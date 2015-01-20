@@ -1,0 +1,574 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		9AD8F93B1A6DF35900F01014 /* Nevo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9AD8F9391A6DF35900F01014 /* Nevo.xcdatamodeld */; };
+		9AD8F9401A6DF35900F01014 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9AD8F93E1A6DF35900F01014 /* Main.storyboard */; };
+		9AD8F9421A6DF35900F01014 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9AD8F9411A6DF35900F01014 /* Images.xcassets */; };
+		9AD8F9451A6DF35900F01014 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9AD8F9431A6DF35900F01014 /* LaunchScreen.xib */; };
+		9AD8F9511A6DF35900F01014 /* NevoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD8F9501A6DF35900F01014 /* NevoTests.swift */; };
+		9AD8F9621A6E00E800F01014 /* NevoBTimpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD8F9611A6E00E800F01014 /* NevoBTimpl.swift */; };
+		9AD8F9651A6E011E00F01014 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD8F9631A6E011E00F01014 /* AppDelegate.swift */; };
+		9AD8F96C1A6E03BC00F01014 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD8F96B1A6E03BC00F01014 /* HomeController.swift */; };
+		9AD8F96E1A6E03F600F01014 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD8F96D1A6E03F600F01014 /* HomeView.swift */; };
+		9AD8F9701A6E041D00F01014 /* ClockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD8F96F1A6E041D00F01014 /* ClockView.swift */; };
+		9AD8F9731A6E047900F01014 /* Goal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD8F9721A6E047900F01014 /* Goal.swift */; };
+		9AD8F9751A6E049500F01014 /* NumberOfStepsGoal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD8F9741A6E049500F01014 /* NumberOfStepsGoal.swift */; };
+		9AD8F9791A6E05F700F01014 /* NevoBT.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD8F9781A6E05F700F01014 /* NevoBT.swift */; };
+		9AD8F9841A6E2C8E00F01014 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD8F9821A6E2C8E00F01014 /* Request.swift */; };
+		9AD8F98D1A6E2D6E00F01014 /* RawPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD8F98C1A6E2D6E00F01014 /* RawPacket.swift */; };
+		9AD8F98F1A6E2EE000F01014 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD8F98E1A6E2EE000F01014 /* Profile.swift */; };
+		9AD8F9951A6E3D4700F01014 /* ConnectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD8F9931A6E3D4700F01014 /* ConnectionController.swift */; };
+		9AD8F9961A6E3D4700F01014 /* NevoProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD8F9941A6E3D4700F01014 /* NevoProfile.swift */; };
+		9AD8F99A1A6E3D6200F01014 /* NevoPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD8F9991A6E3D6200F01014 /* NevoPacket.swift */; };
+		9AD8F99C1A6E3D6A00F01014 /* NevoRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD8F99B1A6E3D6A00F01014 /* NevoRequest.swift */; };
+		9AD8F99E1A6E3E0100F01014 /* SyncController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD8F99D1A6E3E0100F01014 /* SyncController.swift */; };
+		9AD8F9A01A6E47B400F01014 /* SetGoalRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD8F99F1A6E47B400F01014 /* SetGoalRequest.swift */; };
+		9AD8F9A21A6E587100F01014 /* ConnectionControllerImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD8F9A11A6E587100F01014 /* ConnectionControllerImpl.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		9AD8F94B1A6DF35900F01014 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9AD8F92A1A6DF35800F01014 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9AD8F9311A6DF35900F01014;
+			remoteInfo = Nevo;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		9AD8F9321A6DF35900F01014 /* Nevo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Nevo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9AD8F9361A6DF35900F01014 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9AD8F93A1A6DF35900F01014 /* Nevo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Nevo.xcdatamodel; sourceTree = "<group>"; };
+		9AD8F93F1A6DF35900F01014 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		9AD8F9411A6DF35900F01014 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		9AD8F9441A6DF35900F01014 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		9AD8F94A1A6DF35900F01014 /* NevoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NevoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		9AD8F94F1A6DF35900F01014 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9AD8F9501A6DF35900F01014 /* NevoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NevoTests.swift; sourceTree = "<group>"; };
+		9AD8F9611A6E00E800F01014 /* NevoBTimpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NevoBTimpl.swift; path = Frameworks/NevoBT/NevoBTimpl.swift; sourceTree = "<group>"; };
+		9AD8F9631A6E011E00F01014 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = Controller/AppDelegate.swift; sourceTree = "<group>"; };
+		9AD8F96B1A6E03BC00F01014 /* HomeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeController.swift; path = Controller/HomeController.swift; sourceTree = "<group>"; };
+		9AD8F96D1A6E03F600F01014 /* HomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeView.swift; path = View/HomeView.swift; sourceTree = "<group>"; };
+		9AD8F96F1A6E041D00F01014 /* ClockView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ClockView.swift; path = View/ClockView.swift; sourceTree = "<group>"; };
+		9AD8F9721A6E047900F01014 /* Goal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Goal.swift; sourceTree = "<group>"; };
+		9AD8F9741A6E049500F01014 /* NumberOfStepsGoal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumberOfStepsGoal.swift; sourceTree = "<group>"; };
+		9AD8F9781A6E05F700F01014 /* NevoBT.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NevoBT.swift; path = Frameworks/NevoBT/NevoBT.swift; sourceTree = "<group>"; };
+		9AD8F9821A6E2C8E00F01014 /* Request.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Request.swift; path = Frameworks/NevoBT/Request.swift; sourceTree = "<group>"; };
+		9AD8F98C1A6E2D6E00F01014 /* RawPacket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RawPacket.swift; path = Frameworks/NevoBT/RawPacket.swift; sourceTree = "<group>"; };
+		9AD8F98E1A6E2EE000F01014 /* Profile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Profile.swift; path = Frameworks/NevoBT/Profile.swift; sourceTree = "<group>"; };
+		9AD8F9931A6E3D4700F01014 /* ConnectionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConnectionController.swift; path = Controller/Connection/ConnectionController.swift; sourceTree = "<group>"; };
+		9AD8F9941A6E3D4700F01014 /* NevoProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NevoProfile.swift; path = Controller/Connection/NevoProfile.swift; sourceTree = "<group>"; };
+		9AD8F9991A6E3D6200F01014 /* NevoPacket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NevoPacket.swift; path = Controller/Connection/Packet/NevoPacket.swift; sourceTree = "<group>"; };
+		9AD8F99B1A6E3D6A00F01014 /* NevoRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NevoRequest.swift; path = Controller/Connection/Request/NevoRequest.swift; sourceTree = "<group>"; };
+		9AD8F99D1A6E3E0100F01014 /* SyncController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SyncController.swift; path = Controller/SyncController.swift; sourceTree = "<group>"; };
+		9AD8F99F1A6E47B400F01014 /* SetGoalRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SetGoalRequest.swift; path = Controller/Connection/Request/SetGoalRequest.swift; sourceTree = "<group>"; };
+		9AD8F9A11A6E587100F01014 /* ConnectionControllerImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConnectionControllerImpl.swift; path = Controller/Connection/ConnectionControllerImpl.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		9AD8F92F1A6DF35900F01014 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9AD8F9471A6DF35900F01014 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		9AD8F9291A6DF35800F01014 = {
+			isa = PBXGroup;
+			children = (
+				9AD8F95A1A6DFE3400F01014 /* Frameworks */,
+				9AD8F9341A6DF35900F01014 /* Nevo */,
+				9AD8F94D1A6DF35900F01014 /* NevoTests */,
+				9AD8F9331A6DF35900F01014 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		9AD8F9331A6DF35900F01014 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9AD8F9321A6DF35900F01014 /* Nevo.app */,
+				9AD8F94A1A6DF35900F01014 /* NevoTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9AD8F9341A6DF35900F01014 /* Nevo */ = {
+			isa = PBXGroup;
+			children = (
+				9AD8F93E1A6DF35900F01014 /* Main.storyboard */,
+				9AD8F9411A6DF35900F01014 /* Images.xcassets */,
+				9AD8F9431A6DF35900F01014 /* LaunchScreen.xib */,
+				9AD8F9391A6DF35900F01014 /* Nevo.xcdatamodeld */,
+				9AD8F95F1A6E004000F01014 /* View */,
+				9AD8F95E1A6E003B00F01014 /* Model */,
+				9AD8F95D1A6E003100F01014 /* Controller */,
+				9AD8F9351A6DF35900F01014 /* Supporting Files */,
+			);
+			path = Nevo;
+			sourceTree = "<group>";
+		};
+		9AD8F9351A6DF35900F01014 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				9AD8F9361A6DF35900F01014 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		9AD8F94D1A6DF35900F01014 /* NevoTests */ = {
+			isa = PBXGroup;
+			children = (
+				9AD8F9501A6DF35900F01014 /* NevoTests.swift */,
+				9AD8F94E1A6DF35900F01014 /* Supporting Files */,
+			);
+			path = NevoTests;
+			sourceTree = "<group>";
+		};
+		9AD8F94E1A6DF35900F01014 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				9AD8F94F1A6DF35900F01014 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		9AD8F95A1A6DFE3400F01014 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9AD8F9601A6E00C000F01014 /* NevoBT */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9AD8F95D1A6E003100F01014 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				9AD8F9921A6E3D3D00F01014 /* Connection */,
+				9AD8F9631A6E011E00F01014 /* AppDelegate.swift */,
+				9AD8F96B1A6E03BC00F01014 /* HomeController.swift */,
+				9AD8F99D1A6E3E0100F01014 /* SyncController.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		9AD8F95E1A6E003B00F01014 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				9AD8F9711A6E046400F01014 /* Goal */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		9AD8F95F1A6E004000F01014 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				9AD8F96D1A6E03F600F01014 /* HomeView.swift */,
+				9AD8F96F1A6E041D00F01014 /* ClockView.swift */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		9AD8F9601A6E00C000F01014 /* NevoBT */ = {
+			isa = PBXGroup;
+			children = (
+				9AD8F9821A6E2C8E00F01014 /* Request.swift */,
+				9AD8F9611A6E00E800F01014 /* NevoBTimpl.swift */,
+				9AD8F9781A6E05F700F01014 /* NevoBT.swift */,
+				9AD8F98C1A6E2D6E00F01014 /* RawPacket.swift */,
+				9AD8F98E1A6E2EE000F01014 /* Profile.swift */,
+			);
+			name = NevoBT;
+			sourceTree = "<group>";
+		};
+		9AD8F9711A6E046400F01014 /* Goal */ = {
+			isa = PBXGroup;
+			children = (
+				9AD8F9721A6E047900F01014 /* Goal.swift */,
+				9AD8F9741A6E049500F01014 /* NumberOfStepsGoal.swift */,
+			);
+			name = Goal;
+			path = Model/Goal;
+			sourceTree = "<group>";
+		};
+		9AD8F9921A6E3D3D00F01014 /* Connection */ = {
+			isa = PBXGroup;
+			children = (
+				9AD8F9981A6E3D5500F01014 /* Request */,
+				9AD8F9971A6E3D4E00F01014 /* Packet */,
+				9AD8F9931A6E3D4700F01014 /* ConnectionController.swift */,
+				9AD8F9A11A6E587100F01014 /* ConnectionControllerImpl.swift */,
+				9AD8F9941A6E3D4700F01014 /* NevoProfile.swift */,
+			);
+			name = Connection;
+			sourceTree = "<group>";
+		};
+		9AD8F9971A6E3D4E00F01014 /* Packet */ = {
+			isa = PBXGroup;
+			children = (
+				9AD8F9991A6E3D6200F01014 /* NevoPacket.swift */,
+			);
+			name = Packet;
+			sourceTree = "<group>";
+		};
+		9AD8F9981A6E3D5500F01014 /* Request */ = {
+			isa = PBXGroup;
+			children = (
+				9AD8F99B1A6E3D6A00F01014 /* NevoRequest.swift */,
+				9AD8F99F1A6E47B400F01014 /* SetGoalRequest.swift */,
+			);
+			name = Request;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		9AD8F9311A6DF35900F01014 /* Nevo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9AD8F9541A6DF35900F01014 /* Build configuration list for PBXNativeTarget "Nevo" */;
+			buildPhases = (
+				9AD8F92E1A6DF35900F01014 /* Sources */,
+				9AD8F92F1A6DF35900F01014 /* Frameworks */,
+				9AD8F9301A6DF35900F01014 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Nevo;
+			productName = Nevo;
+			productReference = 9AD8F9321A6DF35900F01014 /* Nevo.app */;
+			productType = "com.apple.product-type.application";
+		};
+		9AD8F9491A6DF35900F01014 /* NevoTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9AD8F9571A6DF35900F01014 /* Build configuration list for PBXNativeTarget "NevoTests" */;
+			buildPhases = (
+				9AD8F9461A6DF35900F01014 /* Sources */,
+				9AD8F9471A6DF35900F01014 /* Frameworks */,
+				9AD8F9481A6DF35900F01014 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9AD8F94C1A6DF35900F01014 /* PBXTargetDependency */,
+			);
+			name = NevoTests;
+			productName = NevoTests;
+			productReference = 9AD8F94A1A6DF35900F01014 /* NevoTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		9AD8F92A1A6DF35800F01014 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0610;
+				ORGANIZATIONNAME = Nevo;
+				TargetAttributes = {
+					9AD8F9311A6DF35900F01014 = {
+						CreatedOnToolsVersion = 6.1.1;
+					};
+					9AD8F9491A6DF35900F01014 = {
+						CreatedOnToolsVersion = 6.1.1;
+						TestTargetID = 9AD8F9311A6DF35900F01014;
+					};
+				};
+			};
+			buildConfigurationList = 9AD8F92D1A6DF35800F01014 /* Build configuration list for PBXProject "Nevo" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 9AD8F9291A6DF35800F01014;
+			productRefGroup = 9AD8F9331A6DF35900F01014 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				9AD8F9311A6DF35900F01014 /* Nevo */,
+				9AD8F9491A6DF35900F01014 /* NevoTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		9AD8F9301A6DF35900F01014 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9AD8F9401A6DF35900F01014 /* Main.storyboard in Resources */,
+				9AD8F9451A6DF35900F01014 /* LaunchScreen.xib in Resources */,
+				9AD8F9421A6DF35900F01014 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9AD8F9481A6DF35900F01014 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		9AD8F92E1A6DF35900F01014 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9AD8F99A1A6E3D6200F01014 /* NevoPacket.swift in Sources */,
+				9AD8F9841A6E2C8E00F01014 /* Request.swift in Sources */,
+				9AD8F9731A6E047900F01014 /* Goal.swift in Sources */,
+				9AD8F9651A6E011E00F01014 /* AppDelegate.swift in Sources */,
+				9AD8F9A21A6E587100F01014 /* ConnectionControllerImpl.swift in Sources */,
+				9AD8F9961A6E3D4700F01014 /* NevoProfile.swift in Sources */,
+				9AD8F98D1A6E2D6E00F01014 /* RawPacket.swift in Sources */,
+				9AD8F9621A6E00E800F01014 /* NevoBTimpl.swift in Sources */,
+				9AD8F9791A6E05F700F01014 /* NevoBT.swift in Sources */,
+				9AD8F9751A6E049500F01014 /* NumberOfStepsGoal.swift in Sources */,
+				9AD8F99E1A6E3E0100F01014 /* SyncController.swift in Sources */,
+				9AD8F96E1A6E03F600F01014 /* HomeView.swift in Sources */,
+				9AD8F9A01A6E47B400F01014 /* SetGoalRequest.swift in Sources */,
+				9AD8F98F1A6E2EE000F01014 /* Profile.swift in Sources */,
+				9AD8F9701A6E041D00F01014 /* ClockView.swift in Sources */,
+				9AD8F9951A6E3D4700F01014 /* ConnectionController.swift in Sources */,
+				9AD8F99C1A6E3D6A00F01014 /* NevoRequest.swift in Sources */,
+				9AD8F93B1A6DF35900F01014 /* Nevo.xcdatamodeld in Sources */,
+				9AD8F96C1A6E03BC00F01014 /* HomeController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9AD8F9461A6DF35900F01014 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9AD8F9511A6DF35900F01014 /* NevoTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		9AD8F94C1A6DF35900F01014 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9AD8F9311A6DF35900F01014 /* Nevo */;
+			targetProxy = 9AD8F94B1A6DF35900F01014 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		9AD8F93E1A6DF35900F01014 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9AD8F93F1A6DF35900F01014 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		9AD8F9431A6DF35900F01014 /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9AD8F9441A6DF35900F01014 /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		9AD8F9521A6DF35900F01014 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		9AD8F9531A6DF35900F01014 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		9AD8F9551A6DF35900F01014 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Nevo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		9AD8F9561A6DF35900F01014 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Nevo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		9AD8F9581A6DF35900F01014 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = NevoTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Nevo.app/Nevo";
+			};
+			name = Debug;
+		};
+		9AD8F9591A6DF35900F01014 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = NevoTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Nevo.app/Nevo";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		9AD8F92D1A6DF35800F01014 /* Build configuration list for PBXProject "Nevo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9AD8F9521A6DF35900F01014 /* Debug */,
+				9AD8F9531A6DF35900F01014 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9AD8F9541A6DF35900F01014 /* Build configuration list for PBXNativeTarget "Nevo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9AD8F9551A6DF35900F01014 /* Debug */,
+				9AD8F9561A6DF35900F01014 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		9AD8F9571A6DF35900F01014 /* Build configuration list for PBXNativeTarget "NevoTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9AD8F9581A6DF35900F01014 /* Debug */,
+				9AD8F9591A6DF35900F01014 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		9AD8F9391A6DF35900F01014 /* Nevo.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				9AD8F93A1A6DF35900F01014 /* Nevo.xcdatamodel */,
+			);
+			currentVersion = 9AD8F93A1A6DF35900F01014 /* Nevo.xcdatamodel */;
+			path = Nevo.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 9AD8F92A1A6DF35800F01014 /* Project object */;
+}
