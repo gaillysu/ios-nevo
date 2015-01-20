@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CoreBluetooth
 
 /*
 A Profile is a set of GATT values that defines a device

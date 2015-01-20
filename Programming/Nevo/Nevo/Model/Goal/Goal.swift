@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CoreData
 
 /*
 This class represents all goals,
@@ -15,19 +16,23 @@ being steps count, calorie count etc...
 
 class Goal {
     private var goalIntensity : GoalIntensity
-    private let type
+    private let type : NSString
     
     struct GoalFactory {
         static func fromCoreData(NSManagedObject) -> Goal{
             //Here, we analyse the Code Data object and return the appropriate Goal object
         }
         
-        static func newGoal(type:String) -> Goal{
-            if(type=NumberOfStepsGoal().type) {
-                return NumberOfStepsGoal()
+        static func newGoal(type:String, intensity:GoalIntensity) -> Goal{
+            if(type==NumberOfStepsGoal().type) {
+                return NumberOfStepsGoal(intensity)
             }
             
         }
+    }
+    
+    private init() {
+        //This is an abstract class, we should'nt init it
     }
     
     func setGoalIntensity(intensity : GoalIntensity) {
@@ -35,11 +40,13 @@ class Goal {
         
     }
     
-    func getGoalIntensity() {
+    func getGoalIntensity() -> GoalIntensity{
         return goalIntensity
     }
     
-    class func toCoreData() -> NSManagedObject
+    class func toCoreData() -> NSManagedObject{
+        
+    }
 
 }
 
