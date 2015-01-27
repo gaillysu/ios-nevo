@@ -251,7 +251,7 @@ class ClockView: UIControl {
         var previousPoint:CGPoint = touch.previousLocationInView(self);
 
         //Use the location to design the Handle
-        self.moveHandFromPoint(previousPoint, toPoint: currentPoint)
+        //self.moveHandFromPoint(previousPoint, toPoint: currentPoint)
         return true;
     }
 
@@ -538,5 +538,16 @@ class ClockView: UIControl {
         let isCounterClockwise:Bool = (self.dotProductOfVector(crossProduct, andVector: normal) < 0) ? true : false;
 
         return isCounterClockwise;
+    }
+
+    func currentTimer() {
+        let now:NSDate = NSDate()
+        let cal:NSCalendar = NSCalendar.currentCalendar()
+        let unitFlags:NSCalendarUnit = NSCalendarUnit.YearCalendarUnit | NSCalendarUnit.MonthCalendarUnit | NSCalendarUnit.DayCalendarUnit | NSCalendarUnit.HourCalendarUnit | NSCalendarUnit.MinuteCalendarUnit | NSCalendarUnit.SecondCalendarUnit
+        let dd:NSDateComponents = cal.components(unitFlags, fromDate: now);
+        let hour:NSInteger = dd.hour;
+        let min:NSInteger = dd.minute;
+        setHour(hour, minute: min, animated: false)
+
     }
 }
