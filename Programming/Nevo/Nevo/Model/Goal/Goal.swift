@@ -14,17 +14,17 @@ This class represents all goals,
 being steps count, calorie count etc...
 */
 
-class Goal {
+class Goal { /*
     private var goalIntensity : GoalIntensity
-    private let type : NSString
+    private let type : String
     
     struct GoalFactory {
         static func fromCoreData(NSManagedObject) -> Goal{
             //Here, we analyse the Code Data object and return the appropriate Goal object
         }
         
-        static func newGoal(type:String, intensity:GoalIntensity) -> Goal{
-            if(type==NumberOfStepsGoal().type) {
+        static func newGoal(aType:String, intensity:GoalIntensity) -> Goal{
+            if (aType== (NumberOfStepsGoal()).type ) {
                 return NumberOfStepsGoal(intensity)
             }
             
@@ -46,7 +46,7 @@ class Goal {
     
     class func toCoreData() -> NSManagedObject{
         
-    }
+    }*/
 
 }
 

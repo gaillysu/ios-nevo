@@ -22,6 +22,7 @@ class SetGoalRequest : NevoRequest {
     class func getRawData() -> NSData {
         //Construct the query in different ways
         //Depending on the given goal
+        return NSData()
     }
     
 }

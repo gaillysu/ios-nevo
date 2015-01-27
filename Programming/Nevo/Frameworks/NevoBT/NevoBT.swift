@@ -17,18 +17,52 @@ It only can connect to one peripheral at a time
 */
 //This is a cat -----> 🐱
 protocol NevoBT {
-    let SCANNING_DURATION : NSTimeInterval
+    /**
+    Determines how long a scan is
+    */
+    var SCANNING_DURATION : NSTimeInterval { get }
     
-    class func scanAndConnect(acceptableDevice : Profile)
-    class func connectToAddress(peripheralAddress : CBUUID)
-    class func disconnect()
+    /**
+    Tries to connect to any compatible peripheral
+    */
+    func scanAndConnect()
     
-    class func sendRequest(Request)
+    /**
+    Tries to connect to the given address
+    */
+    func connectToAddress(peripheralAddress : String)
     
-    class func isConnected() -> Boolean
+    /**
+    Disconnects the given peripheral
+    */
+    func disconnect()
+    
+    /**
+    Sends a request to the connected peripheral.
+    NOTE : The Request target profile 's Control characteristic can be different than the one used to initiate the NevoBT
+    But the Callback Characteristic should be the same. Or the packet will be rejected for incompatibility.
+    */
+    func sendRequest(Request)
+    
+    /**
+    Checks wether there is a peripheral currently connected
+    */
+    func isConnected() -> Bool
 }
 
 protocol NevoBTDelegate {
-    class func connectionStateChanged(isConnected : Boolean)
-    class func packetReceived(RawPacket)
+    /**
+    Called when we received a valid packet
+    */
+    func packetReceived(RawPacket)
+    
+    /**
+    Called when a peripheral connects or disconnects
+    */
+    func connectionStateChanged(isConnected : Bool)
+    
+    /**
+    Called when the manager stopped scanning
+    */
+    func scanStopped()
 }
