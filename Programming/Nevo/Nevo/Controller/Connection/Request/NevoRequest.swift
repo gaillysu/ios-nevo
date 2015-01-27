@@ -17,4 +17,8 @@ class NevoRequest : Request {
         return NevoProfile()
     }
     
+    func getRawData() -> NSData {
+        return NSData()
+    }
+    
 }

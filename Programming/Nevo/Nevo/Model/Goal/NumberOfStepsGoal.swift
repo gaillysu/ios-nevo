@@ -9,11 +9,15 @@
 import Foundation
 
 class NumberOfStepsGoal : Goal {
-    private let type = "NUMBER_OF_STEPS"
+    internal let type = "NUMBER_OF_STEPS"
     
+    override init() {
+        
+    }
     
     func getNumberOfSteps() -> NSInteger {
         //return the number of steps depending on the goal intensity
+        return 6
     }
     
 }

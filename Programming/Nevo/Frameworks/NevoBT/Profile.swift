@@ -15,7 +15,18 @@ A Profile is a set of GATT values that defines a device
 */
 
 protocol Profile {
-    let CONTROL_SERVICE : CBUUID
-    let CONTROL_CHARACTERISTIC : CBUUID
-    let CALLBACK_CHARACTERISTIC : CBUUID
+    /**
+    The control Service is a GATT service that contains several charactersitics
+    */
+    var CONTROL_SERVICE : CBUUID { get }
+    
+    /**
+    The control characteristic receives requests as a write without response command
+    */
+    var CONTROL_CHARACTERISTIC : CBUUID { get }
+    
+    /**
+    The callback characterisitc is notified of the device's response
+    */
+    var CALLBACK_CHARACTERISTIC : CBUUID { get }
 }
