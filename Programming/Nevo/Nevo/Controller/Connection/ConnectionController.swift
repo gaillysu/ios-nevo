@@ -15,15 +15,17 @@ It also memorise the first device connected and automatically connects to it
 🚧🚧🚧Backbone Class : Modify with care🚧🚧🚧
 */
 protocol ConnectionController {
-    class func connect()
-    class func disconnect()
-    class func isConnected()
+    func connect()
+
+    func disconnect()
     
-    class func forgetCurrentlySavedDevice()
+    func isConnected() -> Bool
     
-    class func sendRequest(Request)
+    func forgetCurrentlySavedDevice()
+    
+    func sendRequest(Request)
 }
 
 protocol ConnectionControllerDelegate {
-    class func packetReceived(RawPacket)
+    func packetReceived(RawPacket)
 }

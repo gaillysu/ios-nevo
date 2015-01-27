@@ -32,16 +32,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qAf-7D-FZS">
-                                <rect key="frame" x="85" y="502" width="150" height="30"/>
-                                <state key="normal" title="stopScan">
-                                    <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="managerButtonAction:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="0iy-Cr-Pbr"/>
-                                </connections>
-                            </button>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="E1U-pw-VVm">
                                 <rect key="frame" x="0.0" y="120" width="320" height="287"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -63,7 +53,6 @@
                     <connections>
                         <outlet property="clockViewBackground" destination="E1U-pw-VVm" id="oQc-ZT-shh"/>
                         <outlet property="connectButton" destination="M47-SL-v6o" id="e7y-ua-6de"/>
-                        <outlet property="stopScan" destination="qAf-7D-FZS" id="tMf-I1-HbY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
