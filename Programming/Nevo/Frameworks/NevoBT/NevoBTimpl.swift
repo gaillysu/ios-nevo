@@ -20,6 +20,8 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
     */
     let SCANNING_DURATION : NSTimeInterval = 10.000
     
+    let RETRY_DURATION : NSTimeInterval = 0.500
+    
     /**
     Gets notified when a periphare connects/disconnects and when we receive data
     */
@@ -71,6 +73,7 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
     */
     func scanAndConnect() {
         
+        //We can't be sure if the Manager is ready, so let's try
         if(self.isLECapableHardware()) {
             
             var services:[AnyObject] = [mProfile.CONTROL_SERVICE]
@@ -111,6 +114,10 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
             }
 
     
+        } else {
+            //Maybe the Manager is not ready yet, let's try again after a delay
+            NSLog("Bluetooth Manager unavailable or not initialised, le'ts retry after a delay")
+            NSTimer.scheduledTimerWithTimeInterval(RETRY_DURATION, target: self, selector: Selector("scanAndConnect"), userInfo: nil, repeats: false)
         }
 
     }
@@ -160,7 +167,10 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
         //If it's not connected already, let's connect to it
         if(aPeripheral.state==CBPeripheralState.Disconnected){
 
-            mManager?.connectPeripheral(aPeripheral,options:[CBConnectPeripheralOptionNotifyOnDisconnectionKey:true])
+            //We have to save the peripheral, otherwise we will forget it
+            setPeripheral(aPeripheral)
+            
+            mManager?.connectPeripheral(aPeripheral,options:nil)
             
         }
     
@@ -173,14 +183,6 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
     func centralManager(_ central: CBCentralManager!, didConnectPeripheral aPeripheral: CBPeripheral!) {
         
         NSLog("Peripheral connected : \(aPeripheral.name)")
-        
-        //First, we forget the previous peripheral
-        mPeripheral?.delegate = nil
-        
-        aPeripheral.delegate = self
-        aPeripheral.discoverServices(nil)
-        
-        mPeripheral = aPeripheral
         
         mDelegate.connectionStateChanged(true)
         
@@ -294,12 +296,10 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
     See NevoBT protocol
     */
     func disconnect() {
-
-        mPeripheral?.delegate = nil
         
         mManager?.cancelPeripheralConnection(mPeripheral)
 
-        mPeripheral = nil
+        setPeripheral(nil)
     }
 
     /**
@@ -315,10 +315,8 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
         }
     
 
-        mPeripheral?.delegate = nil
-
-    
-        mPeripheral = nil
+        //Let's forget this device
+        setPeripheral(nil)
     
         mDelegate.connectionStateChanged(false)
     
@@ -366,6 +364,17 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
     
     
         return false
+    }
+    
+    private func setPeripheral(aPeripheral:CBPeripheral?) {
+        //When setting a new peripheral, there are several steps to do first
+    
+        mPeripheral?.delegate = nil
+    
+        aPeripheral?.delegate = self
+        aPeripheral?.discoverServices(nil)
+    
+        mPeripheral = aPeripheral
     }
     
     /**
