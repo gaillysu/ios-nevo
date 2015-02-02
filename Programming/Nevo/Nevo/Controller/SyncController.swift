@@ -123,3 +123,12 @@ class TestQuery : Request {
         return data
     }
 }
+
+
+protocol SyncControllerDelegate {
+
+    /**
+    Called when a peripheral connects or disconnects
+    */
+    func connectionStateChanged(isConnected : Bool)
+}

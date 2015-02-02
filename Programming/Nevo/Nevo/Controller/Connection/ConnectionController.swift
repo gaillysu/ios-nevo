@@ -23,9 +23,16 @@ protocol ConnectionController {
     
     func forgetCurrentlySavedDevice()
     
+    func hasSavedAddress() -> Bool
+    
     func sendRequest(Request)
 }
 
 protocol ConnectionControllerDelegate {
     func packetReceived(RawPacket)
+    
+    /**
+    Called when a peripheral connects or disconnects
+    */
+    func connectionStateChanged(isConnected : Bool)
 }
