@@ -29,10 +29,6 @@ class SyncController: ConnectionControllerDelegate {
         mConnectionController?.connect()
     }
     
-    func startSync() {
-        
-    }
-    
     func setGoal(goal:Goal) {
         mConnectionController?.sendRequest(SetGoalRequest(goal: goal))
     }
@@ -41,6 +37,10 @@ class SyncController: ConnectionControllerDelegate {
         var alert = UIAlertController(title: "Received", message: "Message : "+hexString(packet.getRawData()), preferredStyle: UIAlertControllerStyle.Alert)
         alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.Default, handler: nil))
         mTestHomeController.presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    func connectionStateChanged(isConnected : Bool) {
+        
     }
     
     //TODO remove

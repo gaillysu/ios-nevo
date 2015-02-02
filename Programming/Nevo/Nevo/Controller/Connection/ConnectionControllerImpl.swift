@@ -65,6 +65,10 @@ class ConnectionControllerImpl : ConnectionController, NevoBTDelegate {
         return mNevoBT!.isConnected()
     }
     
+    func hasSavedAddress() -> Bool {
+        return true
+    }
+    
     func sendRequest(request:Request) {
         mNevoBT?.sendRequest(request)
     }
