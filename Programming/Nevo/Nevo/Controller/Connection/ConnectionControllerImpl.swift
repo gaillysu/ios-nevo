@@ -27,7 +27,10 @@ class ConnectionControllerImpl : ConnectionController, NevoBTDelegate {
     Connects to the previously known device and/or searchs for a new one
     */
     func connect() {
+        //TODO this is just test code
+        //For the test we can try to use scan and conenct or just connect
         mNevoBT?.scanAndConnect()
+        //mNevoBT?.connectToAddress(NSUUID(UUIDString: "D9E68ED2-3C2D-71A7-93DE-4DF0AC5F374C")!)
     }
     
     /**
@@ -35,6 +38,12 @@ class ConnectionControllerImpl : ConnectionController, NevoBTDelegate {
     */
     func scanStopped() {
       //TODO smart retry service
+        
+        if (!mNevoBT!.isConnected()) {
+            connect()
+        } else {
+            //Send the set time querry
+        }
     }
     
     /**
@@ -76,7 +85,7 @@ class ConnectionControllerImpl : ConnectionController, NevoBTDelegate {
     /**
     See NevoBTDelegate
     */
-    func packetReceived(packet:RawPacket) {
+    func packetReceived(packet:RawPacket, fromAddress : NSUUID) {
         mDelegate.packetReceived(packet)
     }
     

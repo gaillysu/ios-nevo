@@ -30,7 +30,7 @@ protocol NevoBT {
     /**
     Tries to connect to the given address
     */
-    func connectToAddress(peripheralAddress : String)
+    func connectToAddress(peripheralAddress : NSUUID)
     
     /**
     Disconnects the given peripheral
@@ -53,8 +53,12 @@ protocol NevoBT {
 protocol NevoBTDelegate {
     /**
     Called when we received a valid packet
+
+    fromAddress is the address of the peripheral that sent this packet
+    Warning, this address is not a MAC address and may change in time
+
     */
-    func packetReceived(RawPacket)
+    func packetReceived(RawPacket, fromAddress : NSUUID)
     
     /**
     Called when a peripheral connects or disconnects
