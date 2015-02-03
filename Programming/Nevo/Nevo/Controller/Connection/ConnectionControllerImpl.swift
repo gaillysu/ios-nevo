@@ -14,13 +14,23 @@ See ConnectionController
 */
 class ConnectionControllerImpl : ConnectionController, NevoBTDelegate {
     let mNevoBT:NevoBT?
-    let mDelegate:ConnectionControllerDelegate
+    var mDelegate:ConnectionControllerDelegate?
     
-    init(delegate:ConnectionControllerDelegate) {
-        
-        mDelegate = delegate
+    //A classic singelton pattern
+    class var sharedInstance : ConnectionControllerImpl {
+        struct Singleton {
+            static let instance = ConnectionControllerImpl()
+        }
+        return Singleton.instance
+    }
+    
+    private init() {
 
         mNevoBT = NevoBTImpl(externalDelegate: self, acceptableDevice: NevoProfile())
+    }
+    
+    func setDelegate(delegate:ConnectionControllerDelegate) {
+        mDelegate = delegate
     }
     
     /**
@@ -58,7 +68,7 @@ class ConnectionControllerImpl : ConnectionController, NevoBTDelegate {
             //Send the set time querry
         }
         
-        mDelegate.connectionStateChanged(isConnected)
+        mDelegate?.connectionStateChanged(isConnected)
     }
     
     func disconnect() {
@@ -67,7 +77,7 @@ class ConnectionControllerImpl : ConnectionController, NevoBTDelegate {
     
 
     
-    func forgetCurrentlySavedDevice() {
+    func forgetSavedAddress() {
         //TODO
     }
     
@@ -87,7 +97,7 @@ class ConnectionControllerImpl : ConnectionController, NevoBTDelegate {
     See NevoBTDelegate
     */
     func packetReceived(packet:RawPacket, fromAddress : NSUUID) {
-        mDelegate.packetReceived(packet)
+        mDelegate?.packetReceived(packet)
     }
     
 }
