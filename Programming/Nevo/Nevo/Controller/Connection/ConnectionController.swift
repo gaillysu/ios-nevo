@@ -19,7 +19,7 @@ protocol ConnectionController {
     /**
     Sets the current  connection controller's delegate
     */
-    func setDelegate(ConnectionControllerDelegate)
+    func setDelegate(ConnectionControllerDelegate, _ OTAMode:Bool = false)
     
     /**
     Tries to connect to a Nevo
@@ -49,6 +49,18 @@ protocol ConnectionController {
     Tries to send a request, you can't be sure that it will effectively be sent
     */
     func sendRequest(Request)
+    
+    /**
+    Enters the OTA mode. In this mode, it searchs for OTA enabled Nevo
+    It won't connect to other Nevo and will stop sending regular nevo querries
+    */
+    func setOTAMode(Bool)
+
+    /**
+    Checks whether the connection controller is in OTA mode
+    While in OTA mode, the ConnectionController will stop responding to normal commands
+    */
+    func getOTAMode() -> Bool
 }
 
 protocol ConnectionControllerDelegate {

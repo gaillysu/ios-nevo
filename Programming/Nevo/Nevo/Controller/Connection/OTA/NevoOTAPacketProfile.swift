@@ -10,23 +10,23 @@ import Foundation
 import CoreBluetooth
 
 /**
-This is the regular Nevo Profile
-It is used to send most common commands to Nevo
+This is the OTA Packet Profile
+It is used to send OTA Packets while doing OTA
+This Profile doesn't expect responses
 🚧🚧🚧Backbone Class : Modify with care🚧🚧🚧
 */
-class NevoProfile : Profile {
-
+class NevoOTAPacketProfile : Profile {
+    
     var CONTROL_SERVICE:CBUUID {
-        return CBUUID(string: "F0BA3020-6CAC-4C99-9089-4B0A1DF45002");
+        return CBUUID(string: "????DFU SERVICE????");
     }
-
+    
     var CONTROL_CHARACTERISTIC:CBUUID {
-        return CBUUID(string: "F0BA3021-6CAC-4C99-9089-4B0A1DF45002");
+        return CBUUID(string: "????DFU PACKET SERVICE????");
     }
-
+    
     var CALLBACK_CHARACTERISTIC:CBUUID {
-        return CBUUID(string: "F0BA3022-6CAC-4C99-9089-4B0A1DF45002");
+        //No callback
+        return CBUUID(string: "XXX");
     }
 }
-
-//This is a tiger -----> 🐯

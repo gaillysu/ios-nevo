@@ -15,8 +15,11 @@ See ConnectionController
 class ConnectionControllerImpl : ConnectionController, NevoBTDelegate {
     let mNevoBT:NevoBT?
     var mDelegate:ConnectionControllerDelegate?
+    var mSavedAddress:NSUUID?
     
-    //A classic singelton pattern
+    /**
+    A classic singelton pattern
+    */
     class var sharedInstance : ConnectionControllerImpl {
         struct Singleton {
             static let instance = ConnectionControllerImpl()
@@ -24,17 +27,23 @@ class ConnectionControllerImpl : ConnectionController, NevoBTDelegate {
         return Singleton.instance
     }
     
+    /**
+    No initialisation outside of this class, this is a singleton
+    */
     private init() {
 
         mNevoBT = NevoBTImpl(externalDelegate: self, acceptableDevice: NevoProfile())
     }
     
+    /**
+    See ConnectionController protocol
+    */
     func setDelegate(delegate:ConnectionControllerDelegate) {
         mDelegate = delegate
     }
     
     /**
-    Connects to the previously known device and/or searchs for a new one
+    See ConnectionController protocol
     */
     func connect() {
         //TODO this is just test code
@@ -71,25 +80,47 @@ class ConnectionControllerImpl : ConnectionController, NevoBTDelegate {
         mDelegate?.connectionStateChanged(isConnected)
     }
     
+    /**
+    See ConnectionController protocol
+    */
     func disconnect() {
         //TODO
     }
     
-
-    
+    /**
+    See ConnectionController protocol
+    */
     func forgetSavedAddress() {
         //TODO
     }
     
+    /**
+    See ConnectionController protocol
+    */
     func isConnected() -> Bool {
         return mNevoBT!.isConnected()
     }
     
+    /**
+    See ConnectionController protocol
+    */
     func hasSavedAddress() -> Bool {
         return true
     }
     
+    /**
+    See ConnectionController protocol
+    */
     func sendRequest(request:Request) {
+        if(getOTAMode() && request.getTargetProfile().CONTROL_SERVICE != NevoOTAProfile().CONTROL_SERVICE) {
+            
+            NSLog("ERROR ! The ConnectionController is in OTA mode, impossible to send a normal nevo request !")
+            
+        } else if (!getOTAMode() && request.getTargetProfile().CONTROL_SERVICE != NevoProfile().CONTROL_SERVICE) {
+            
+            NSLog("ERROR ! The ConnectionController is NOT in OTA mode, impossible to send an OTA nevo request !")
+            
+        }
         mNevoBT?.sendRequest(request)
     }
     
@@ -98,6 +129,15 @@ class ConnectionControllerImpl : ConnectionController, NevoBTDelegate {
     */
     func packetReceived(packet:RawPacket, fromAddress : NSUUID) {
         mDelegate?.packetReceived(packet)
+    }
+    
+    func setOTAMode(Bool) {
+        //TODO
+    }
+    
+    func getOTAMode() -> Bool {
+        //TODO
+        return false
     }
     
 }
