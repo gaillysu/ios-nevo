@@ -228,7 +228,7 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
     Invoked whenever a connection is succesfully created with the peripheral.
     Discover available services on the peripheral and notifies our delegate
     */
-    func centralManager(_ central: CBCentralManager!, didConnectPeripheral aPeripheral: CBPeripheral!) {
+    func centralManager(central: CBCentralManager!, didConnectPeripheral aPeripheral: CBPeripheral!) {
         
         NSLog("Peripheral connected : \(aPeripheral.name)")
         
@@ -249,7 +249,7 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
     Invoked upon completion of a -[discoverServices:] request.
     Discover available characteristics on interested services
     */
-    func peripheral(_ aPeripheral: CBPeripheral!, didDiscoverServices error: NSError!) {
+    func peripheral(aPeripheral: CBPeripheral!, didDiscoverServices error: NSError!) {
     
         //Our aim is to subscribe to the callback characteristic, so we'll have to find it in the control service
         if let services = aPeripheral.services as? [CBService] {
@@ -270,14 +270,14 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
     Invoked upon completion of a -[discoverCharacteristics:forService:] request.
     Perform appropriate operations on interested characteristics
     */
-    func peripheral(aPeripheral:CBPeripheral!, didDiscoverCharacteristicsForService service:CBService!, error error :NSError!) {
+    func peripheral(aPeripheral:CBPeripheral!, didDiscoverCharacteristicsForService service:CBService!, error :NSError!) {
     
         NSLog("Service : \(service.UUID.UUIDString)")
     
         if let characteristics = service.characteristics as? [CBCharacteristic] {
             for aChar:CBCharacteristic in characteristics {
             
-                if(aChar==mProfile.CALLBACK_CHARACTERISTIC ) {
+                if(aChar.UUID==mProfile.CALLBACK_CHARACTERISTIC ) {
                     mPeripheral?.setNotifyValue(true,forCharacteristic:aChar)
             
                     NSLog("Callback char : \(aChar.UUID.UUIDString)")
@@ -294,7 +294,7 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
     /*
     Invoked upon completion of a -[readValueForCharacteristic:] request or on the reception of a notification/indication.
     */
-    func peripheral(aPeripheral:CBPeripheral!, didUpdateValueForCharacteristic characteristic:CBCharacteristic!, error error :NSError!) {
+    func peripheral(aPeripheral:CBPeripheral!, didUpdateValueForCharacteristic characteristic:CBCharacteristic!, error  :NSError!) {
         
         //We received a value, if it did came from the calllback char, let's return it
         if (characteristic.UUID==mProfile.CALLBACK_CHARACTERISTIC)
@@ -314,7 +314,7 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
     /*
     Invoked upon completion of a -[writeValueForCharacteristic:] request
     */
-    func peripheral(_peripheral:CBPeripheral!, didWriteValueForCharacteristic characteristic:CBCharacteristic!, error error :NSError!) {
+    func peripheral(_peripheral:CBPeripheral!, didWriteValueForCharacteristic characteristic:CBCharacteristic!, error :NSError!) {
     
         if (error != nil) {
             NSLog("Failed to write value for characteristic \(characteristic), reason: \(error)")
@@ -379,7 +379,7 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
     Invoked whenever an existing connection with the peripheral is torn down.
     Reset local variables and notifies our delegate
     */
-    func centralManager(_ central: CBCentralManager!, didDisconnectPeripheral aPeripheral: CBPeripheral!, error error : NSError!) {
+    func centralManager(central: CBCentralManager!, didDisconnectPeripheral aPeripheral: CBPeripheral!, error : NSError!) {
     
         NSLog("Peripheral disconnected : \(aPeripheral.name)")
     
@@ -443,9 +443,8 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
     
         mPeripheral?.delegate = nil
     
-        aPeripheral?.delegate = self
-    
         mPeripheral = aPeripheral
+        mPeripheral?.delegate = self
     }
     
     /**
