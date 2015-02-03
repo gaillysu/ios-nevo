@@ -230,7 +230,7 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
     */
     func centralManager(central: CBCentralManager!, didConnectPeripheral aPeripheral: CBPeripheral!) {
         
-        NSLog("Peripheral connected : \(aPeripheral.name)")
+        NSLog("***Peripheral connected : \(aPeripheral.name)***")
         
         //We save this periphral for later use
         setPeripheral(aPeripheral)
@@ -262,7 +262,7 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
                 }
             }
         } else {
-            NSLog("No services found for \(aPeripheral.identifier.UUIDString)")
+            NSLog("No services found for \(aPeripheral.identifier.UUIDString), connection impossible")
         }
     }
     
@@ -285,7 +285,7 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
                 
             }
         } else {
-            NSLog("No characteristics found for \(service.UUID.UUIDString)")
+            NSLog("No characteristics found for \(service.UUID.UUIDString), can't listen to notifications")
         }
       
     
@@ -353,15 +353,20 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
                                 mPeripheral?.writeValue(request.getRawData(),forCharacteristic:charac,type:CBCharacteristicWriteType.WithoutResponse)
                             }
                         }
+                    } else {
+                        NSLog("No Characteristics found for : \(service.UUID.UUIDString), can't send packet")
                     }
                     
-                } else {
-                    NSLog("No Characteristics found for : \(service.UUID.UUIDString)")
                 }
             }
 
         } else {
-             NSLog("No services found for : \(mPeripheral)")
+            
+            if(mPeripheral != nil) {
+                NSLog("No services found for : \(mPeripheral), can't send packet")
+            } else {
+                NSLog("No peripheral connected, can't send packet")
+            }
         }
     }
     
@@ -381,7 +386,7 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
     */
     func centralManager(central: CBCentralManager!, didDisconnectPeripheral aPeripheral: CBPeripheral!, error : NSError!) {
     
-        NSLog("Peripheral disconnected : \(aPeripheral.name)")
+        NSLog("***Peripheral disconnected : \(aPeripheral.name)***")
     
         if(error != nil) {
             NSLog("Error : \(error.localizedDescription) for peripheral : \(aPeripheral.name)")
