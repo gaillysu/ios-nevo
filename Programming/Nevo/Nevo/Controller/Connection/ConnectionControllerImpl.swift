@@ -39,6 +39,7 @@ class ConnectionControllerImpl : ConnectionController, NevoBTDelegate {
     See ConnectionController protocol
     */
     func setDelegate(delegate:ConnectionControllerDelegate) {
+        //TODO FIND A WAY TO ENSURE THAT WE DON'T LEAVE THE OTA SCREEN STILL IN OTA MODE
         mDelegate = delegate
     }
     
@@ -112,7 +113,7 @@ class ConnectionControllerImpl : ConnectionController, NevoBTDelegate {
     See ConnectionController protocol
     */
     func sendRequest(request:Request) {
-        if(getOTAMode() && request.getTargetProfile().CONTROL_SERVICE != NevoOTAProfile().CONTROL_SERVICE) {
+        if(getOTAMode() && request.getTargetProfile().CONTROL_SERVICE != NevoOTAControllerProfile().CONTROL_SERVICE) {
             
             NSLog("ERROR ! The ConnectionController is in OTA mode, impossible to send a normal nevo request !")
             

@@ -19,7 +19,7 @@ protocol ConnectionController {
     /**
     Sets the current  connection controller's delegate
     */
-    func setDelegate(ConnectionControllerDelegate, _ OTAMode:Bool = false)
+    func setDelegate(ConnectionControllerDelegate)
     
     /**
     Tries to connect to a Nevo
