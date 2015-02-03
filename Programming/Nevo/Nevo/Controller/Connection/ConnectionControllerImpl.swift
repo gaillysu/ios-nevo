@@ -49,6 +49,7 @@ class ConnectionControllerImpl : ConnectionController, NevoBTDelegate {
             //Send the set time querry
         }
         
+        mDelegate.connectionStateChanged(isConnected)
     }
     
     func disconnect() {

@@ -17,11 +17,11 @@ class NevoProfile : Profile {
     }
 
     var CONTROL_CHARACTERISTIC:CBUUID {
-        return CBUUID(string: "F0BA3022-6CAC-4C99-9089-4B0A1DF45002");
+        return CBUUID(string: "F0BA3021-6CAC-4C99-9089-4B0A1DF45002");
     }
 
     var CALLBACK_CHARACTERISTIC:CBUUID {
-        return CBUUID(string: "F0BA3021-6CAC-4C99-9089-4B0A1DF45002");
+        return CBUUID(string: "F0BA3022-6CAC-4C99-9089-4B0A1DF45002");
     }
 }
 
