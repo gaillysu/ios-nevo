@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		07C18C0A1A80DF4900D0BF4A /* NevoOtaController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C18C091A80DF4900D0BF4A /* NevoOtaController.swift */; };
+		07C18C0E1A81AB3900D0BF4A /* NevoOtaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C18C0D1A81AB3900D0BF4A /* NevoOtaViewController.swift */; };
 		9AD8F93B1A6DF35900F01014 /* Nevo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9AD8F9391A6DF35900F01014 /* Nevo.xcdatamodeld */; };
 		9AD8F9401A6DF35900F01014 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9AD8F93E1A6DF35900F01014 /* Main.storyboard */; };
 		9AD8F9421A6DF35900F01014 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9AD8F9411A6DF35900F01014 /* Images.xcassets */; };
@@ -43,6 +45,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		07C18C091A80DF4900D0BF4A /* NevoOtaController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NevoOtaController.swift; path = Controller/NevoOtaController.swift; sourceTree = "<group>"; };
+		07C18C0D1A81AB3900D0BF4A /* NevoOtaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NevoOtaViewController.swift; path = Controller/NevoOtaViewController.swift; sourceTree = "<group>"; };
 		9AD8F9321A6DF35900F01014 /* Nevo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Nevo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AD8F9361A6DF35900F01014 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9AD8F93A1A6DF35900F01014 /* Nevo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Nevo.xcdatamodel; sourceTree = "<group>"; };
@@ -164,6 +168,8 @@
 				9AD8F9631A6E011E00F01014 /* AppDelegate.swift */,
 				9AD8F96B1A6E03BC00F01014 /* HomeController.swift */,
 				9AD8F99D1A6E3E0100F01014 /* SyncController.swift */,
+				07C18C091A80DF4900D0BF4A /* NevoOtaController.swift */,
+				07C18C0D1A81AB3900D0BF4A /* NevoOtaViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -354,7 +360,9 @@
 				9AD8F9951A6E3D4700F01014 /* ConnectionController.swift in Sources */,
 				9AD8F99C1A6E3D6A00F01014 /* NevoRequest.swift in Sources */,
 				9AD8F93B1A6DF35900F01014 /* Nevo.xcdatamodeld in Sources */,
+				07C18C0A1A80DF4900D0BF4A /* NevoOtaController.swift in Sources */,
 				9AD8F96C1A6E03BC00F01014 /* HomeController.swift in Sources */,
+				07C18C0E1A81AB3900D0BF4A /* NevoOtaViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -546,6 +554,7 @@
 				9AD8F9561A6DF35900F01014 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		9AD8F9571A6DF35900F01014 /* Build configuration list for PBXNativeTarget "NevoTests" */ = {
 			isa = XCConfigurationList;
@@ -554,6 +563,7 @@
 				9AD8F9591A6DF35900F01014 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

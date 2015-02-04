@@ -6,8 +6,20 @@
 //  Copyright (c) 2015年 Nevo. All rights reserved.
 //
 
-import Cocoa
+import Foundation
 
-class NevoOtaController: NSObject {
 
+class NevoOtaController : ConnectionControllerDelegate {
+    
+    init(controller : NevoOtaViewController) {
+
+    }
+    
+    func packetReceived(packet:RawPacket) {
+ 
+    }
+    
+    func connectionStateChanged(isConnected : Bool) {
+        
+    }
 }
