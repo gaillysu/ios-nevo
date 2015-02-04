@@ -14,11 +14,6 @@ Implementation of the NevoBT Protocol
 🚧🚧🚧Backbone Class : Modify with care🚧🚧🚧
 */
 protocol RawPacket {
-    /**
-    The address of the peripheral that sent this packet
-    Warning, this address is not a MAC address and my change in time
-    */
-    func getPeripheralAddress() -> NSUUID
     
     /**
     The service and Char that sent packet
@@ -33,18 +28,12 @@ protocol RawPacket {
 
 class RawPacketImpl : RawPacket {
     private var mData:NSData
-    private var mAddress:NSUUID
     private var mProfile:Profile
     
     
-    init( data:NSData, address:NSUUID, profile:Profile ) {
+    init( data:NSData, profile:Profile ) {
         mData=data
-        mAddress=address
         mProfile=profile
-    }
-    
-    func getPeripheralAddress() -> NSUUID {
-        return mAddress
     }
     
     func getSourceProfile() -> Profile {

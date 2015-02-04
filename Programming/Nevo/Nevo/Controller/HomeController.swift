@@ -19,6 +19,8 @@ class HomeController: UIViewController {
     @IBOutlet var clockViewBackground: UIView!
     @IBOutlet var connectButton: UIButton!
     @IBOutlet var stopScan: UIButton!
+    
+    var syncController : SyncController?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +31,8 @@ class HomeController: UIViewController {
         clockTimerView.borderWidth = 4.0;
         clockTimerView.currentTimer()
         clockViewBackground.addSubview(clockTimerView)
+        
+        syncController = SyncController(controller: self)
 
         let timer:NSTimer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector:"timerAction:", userInfo: nil, repeats: true);
     }
@@ -47,7 +51,8 @@ class HomeController: UIViewController {
         //TODO remove
         if sender == connectButton {
             NSLog("connectButton");
-            SyncController(controller: self).sendRawPacket()
+            
+            syncController?.sendRawPacket()
            
         }
     }

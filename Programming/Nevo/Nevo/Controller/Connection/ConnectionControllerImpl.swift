@@ -14,20 +14,43 @@ See ConnectionController
 */
 class ConnectionControllerImpl : ConnectionController, NevoBTDelegate {
     let mNevoBT:NevoBT?
-    let mDelegate:ConnectionControllerDelegate
+    var mDelegate:ConnectionControllerDelegate?
+    var mSavedAddress:NSUUID?
     
-    init(delegate:ConnectionControllerDelegate) {
-        
-        mDelegate = delegate
+    /**
+    A classic singelton pattern
+    */
+    class var sharedInstance : ConnectionControllerImpl {
+        struct Singleton {
+            static let instance = ConnectionControllerImpl()
+        }
+        return Singleton.instance
+    }
+    
+    /**
+    No initialisation outside of this class, this is a singleton
+    */
+    private init() {
 
         mNevoBT = NevoBTImpl(externalDelegate: self, acceptableDevice: NevoProfile())
     }
     
     /**
-    Connects to the previously known device and/or searchs for a new one
+    See ConnectionController protocol
+    */
+    func setDelegate(delegate:ConnectionControllerDelegate) {
+        //TODO FIND A WAY TO ENSURE THAT WE DON'T LEAVE THE OTA SCREEN STILL IN OTA MODE
+        mDelegate = delegate
+    }
+    
+    /**
+    See ConnectionController protocol
     */
     func connect() {
+        //TODO this is just test code
+        //For the test we can try to use scan and conenct or just connect
         mNevoBT?.scanAndConnect()
+        //mNevoBT?.connectToAddress(NSUUID(UUIDString: "D9E68ED2-3C2D-71A7-93DE-4DF0AC5F374C")!)
     }
     
     /**
@@ -35,6 +58,12 @@ class ConnectionControllerImpl : ConnectionController, NevoBTDelegate {
     */
     func scanStopped() {
       //TODO smart retry service
+        
+        if (!mNevoBT!.isConnected()) {
+            connect()
+        } else {
+            //Send the set time querry
+        }
     }
     
     /**
@@ -49,36 +78,67 @@ class ConnectionControllerImpl : ConnectionController, NevoBTDelegate {
             //Send the set time querry
         }
         
-        mDelegate.connectionStateChanged(isConnected)
+        mDelegate?.connectionStateChanged(isConnected)
     }
     
+    /**
+    See ConnectionController protocol
+    */
     func disconnect() {
         //TODO
     }
     
-
-    
-    func forgetCurrentlySavedDevice() {
+    /**
+    See ConnectionController protocol
+    */
+    func forgetSavedAddress() {
         //TODO
     }
     
+    /**
+    See ConnectionController protocol
+    */
     func isConnected() -> Bool {
         return mNevoBT!.isConnected()
     }
     
+    /**
+    See ConnectionController protocol
+    */
     func hasSavedAddress() -> Bool {
         return true
     }
     
+    /**
+    See ConnectionController protocol
+    */
     func sendRequest(request:Request) {
+        if(getOTAMode() && request.getTargetProfile().CONTROL_SERVICE != NevoOTAControllerProfile().CONTROL_SERVICE) {
+            
+            NSLog("ERROR ! The ConnectionController is in OTA mode, impossible to send a normal nevo request !")
+            
+        } else if (!getOTAMode() && request.getTargetProfile().CONTROL_SERVICE != NevoProfile().CONTROL_SERVICE) {
+            
+            NSLog("ERROR ! The ConnectionController is NOT in OTA mode, impossible to send an OTA nevo request !")
+            
+        }
         mNevoBT?.sendRequest(request)
     }
     
     /**
     See NevoBTDelegate
     */
-    func packetReceived(packet:RawPacket) {
-        mDelegate.packetReceived(packet)
+    func packetReceived(packet:RawPacket, fromAddress : NSUUID) {
+        mDelegate?.packetReceived(packet)
+    }
+    
+    func setOTAMode(Bool) {
+        //TODO
+    }
+    
+    func getOTAMode() -> Bool {
+        //TODO
+        return false
     }
     
 }

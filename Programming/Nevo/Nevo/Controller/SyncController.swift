@@ -24,7 +24,9 @@ class SyncController: ConnectionControllerDelegate {
 
         mTestHomeController = controller
         
-        mConnectionController = ConnectionControllerImpl(delegate:self)
+        mConnectionController = ConnectionControllerImpl.sharedInstance
+        
+        mConnectionController?.setDelegate(self)
         
         mConnectionController?.connect()
     }
