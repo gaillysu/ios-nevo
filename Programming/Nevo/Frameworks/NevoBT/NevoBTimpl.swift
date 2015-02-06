@@ -48,7 +48,7 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
     /**
     The GATT profile we are looking for
     */
-    private let mProfile : Profile
+    private var mProfile : Profile
     
     /**
     The Stop scan timer
@@ -172,6 +172,13 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
                 self.connectToAddress(peripheralAddress)
             })
         }
+    }
+    /**
+    See NevoBT protocol
+    */
+    func setProfile(profile:Profile)
+    {
+        self.mProfile = profile
     }
     
     /**

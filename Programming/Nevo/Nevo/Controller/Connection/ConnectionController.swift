@@ -61,6 +61,13 @@ protocol ConnectionController {
     While in OTA mode, the ConnectionController will stop responding to normal commands
     */
     func getOTAMode() -> Bool
+    
+    /**
+    when normal mode to ota mode, set it before connect nevo again
+    */
+    func setProfile(Profile)
+    
+    
 }
 
 protocol ConnectionControllerDelegate {

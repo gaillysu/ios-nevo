@@ -31,6 +31,7 @@ class HomeController: UIViewController {
         clockTimerView.borderWidth = 4.0;
         clockTimerView.currentTimer()
         clockViewBackground.addSubview(clockTimerView)
+    
         
         syncController = SyncController(controller: self)
 

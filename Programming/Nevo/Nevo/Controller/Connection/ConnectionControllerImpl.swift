@@ -42,7 +42,10 @@ class ConnectionControllerImpl : ConnectionController, NevoBTDelegate {
         //TODO FIND A WAY TO ENSURE THAT WE DON'T LEAVE THE OTA SCREEN STILL IN OTA MODE
         mDelegate = delegate
     }
-    
+    func setProfile(profile:Profile)
+    {
+        mNevoBT?.setProfile(profile)
+    }
     /**
     See ConnectionController protocol
     */
@@ -71,6 +74,7 @@ class ConnectionControllerImpl : ConnectionController, NevoBTDelegate {
     */
     func connectionStateChanged(isConnected : Bool) {
         //TODO smart retry
+        mDelegate?.connectionStateChanged(isConnected)
         
         if (!isConnected) {
             connect()
@@ -78,7 +82,6 @@ class ConnectionControllerImpl : ConnectionController, NevoBTDelegate {
             //Send the set time querry
         }
         
-        mDelegate?.connectionStateChanged(isConnected)
     }
     
     /**

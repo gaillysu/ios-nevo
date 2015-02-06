@@ -8,12 +8,20 @@
 
 import UIKit
 
-class NevoOtaViewController: UIViewController {
+class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate {
 
+    var isTransferring:Bool = false
+    var enumFirmwareType:DfuFirmwareTypes?=DfuFirmwareTypes.APPLICATION
+    var selectedFileURL:NSURL?
+    
+    var mNevoOtaController : NevoOtaController?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        mNevoOtaController = NevoOtaController(controller: self)
+        initValue()
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -21,15 +29,71 @@ class NevoOtaViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    //init data function
+    private func initValue()
+    {
+        //TODO
+     //   selectedFileURL = NSURL(string: "file://firmware/imaze_BLE_R2.hex")!
+        enumFirmwareType? = DfuFirmwareTypes.APPLICATION
     }
-    */
+    
+    //upload button function
+    func uploadPressed()
+    {
+        if (self.isTransferring) {
+            mNevoOtaController?.cancelDFU()
+        }
+        else {
+            mNevoOtaController?.performDFUOnFile(selectedFileURL!, firmwareType: enumFirmwareType!)
+        }
+    }
+    
+    //below is delegate function
+    
+    func onDFUStarted(){
+     NSLog("onDFUStarted");
+    //here enable upload button
+    }
+    
+    //user cancel
+    func onDFUCancelled(){
+        NSLog("onDFUCancelled");
+        //reset OTA view controller 's some data, such as progress bar and upload button text/status
+        initValue()
+    }
+
+    //percent is[0..100]
+    func onTransferPercentage(percent:Int){
+        
+    }
+    
+    //successfully
+    func onSuccessfulFileTranferred(){
+        dispatch_async(dispatch_get_main_queue(), {
+            
+            self.initValue()
+            
+            var alert :UIAlertView = UIAlertView(title: "Firmware Upgrade", message: "Successful!", delegate: nil, cancelButtonTitle: "OK")
+            alert.show()
+            
+            
+            });
+    
+    }
+    //Error happen
+    func onError(errString : NSString){
+    
+        dispatch_async(dispatch_get_main_queue(), {
+            
+            self.initValue()
+            
+            var alert :UIAlertView = UIAlertView(title: "Firmware Upgrade", message: errString, delegate: nil, cancelButtonTitle: "OK")
+            alert.show()
+            
+            
+        });
+
+    }
+    
 
 }

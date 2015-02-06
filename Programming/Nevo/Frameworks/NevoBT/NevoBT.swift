@@ -48,6 +48,11 @@ protocol NevoBT {
     Checks wether there is a peripheral currently connected
     */
     func isConnected() -> Bool
+    
+    /**
+    when normal mode to ota mode, set it before connect nevo again
+    */
+    func setProfile(Profile)
 }
 
 protocol NevoBTDelegate {

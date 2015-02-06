@@ -7,8 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		07BE0CF21A84A2F8000C4AC7 /* IntelHex2BinConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = 07BE0CF11A84A2F8000C4AC7 /* IntelHex2BinConverter.m */; };
 		07C18C0A1A80DF4900D0BF4A /* NevoOtaController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C18C091A80DF4900D0BF4A /* NevoOtaController.swift */; };
 		07C18C0E1A81AB3900D0BF4A /* NevoOtaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C18C0D1A81AB3900D0BF4A /* NevoOtaViewController.swift */; };
+		07CC4A261A81F26C008DA749 /* imaze_BLE_R2.hex in Resources */ = {isa = PBXBuildFile; fileRef = 07CC4A241A81F26C008DA749 /* imaze_BLE_R2.hex */; };
+		07CC4A271A81F26C008DA749 /* iMaze_v3.bin in Resources */ = {isa = PBXBuildFile; fileRef = 07CC4A251A81F26C008DA749 /* iMaze_v3.bin */; };
+		07CC4A291A820A9B008DA749 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07CC4A281A820A9B008DA749 /* Utility.swift */; };
+		07CC4A2F1A821B46008DA749 /* NevoOTARequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07CC4A2E1A821B46008DA749 /* NevoOTARequest.swift */; };
 		9A3E57231A80E56E00DFFAE1 /* ConnectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3E571B1A80E56E00DFFAE1 /* ConnectionController.swift */; };
 		9A3E57241A80E56E00DFFAE1 /* ConnectionControllerImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3E571C1A80E56E00DFFAE1 /* ConnectionControllerImpl.swift */; };
 		9A3E57251A80E56E00DFFAE1 /* NevoProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3E571D1A80E56E00DFFAE1 /* NevoProfile.swift */; };
@@ -48,8 +53,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		07BE0CEE1A84A0C8000C4AC7 /* Nevo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Nevo-Bridging-Header.h"; sourceTree = "<group>"; };
+		07BE0CF01A84A2F8000C4AC7 /* IntelHex2BinConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntelHex2BinConverter.h; sourceTree = "<group>"; };
+		07BE0CF11A84A2F8000C4AC7 /* IntelHex2BinConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntelHex2BinConverter.m; sourceTree = "<group>"; };
 		07C18C091A80DF4900D0BF4A /* NevoOtaController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NevoOtaController.swift; path = Controller/NevoOtaController.swift; sourceTree = "<group>"; };
 		07C18C0D1A81AB3900D0BF4A /* NevoOtaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NevoOtaViewController.swift; path = Controller/NevoOtaViewController.swift; sourceTree = "<group>"; };
+		07CC4A241A81F26C008DA749 /* imaze_BLE_R2.hex */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = imaze_BLE_R2.hex; sourceTree = "<group>"; };
+		07CC4A251A81F26C008DA749 /* iMaze_v3.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = iMaze_v3.bin; sourceTree = "<group>"; };
+		07CC4A281A820A9B008DA749 /* Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Utility.swift; path = OTA/Utility.swift; sourceTree = "<group>"; };
+		07CC4A2E1A821B46008DA749 /* NevoOTARequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NevoOTARequest.swift; path = OTA/NevoOTARequest.swift; sourceTree = "<group>"; };
 		9A3E571B1A80E56E00DFFAE1 /* ConnectionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConnectionController.swift; path = Controller/Connection/ConnectionController.swift; sourceTree = "<group>"; };
 		9A3E571C1A80E56E00DFFAE1 /* ConnectionControllerImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConnectionControllerImpl.swift; path = Controller/Connection/ConnectionControllerImpl.swift; sourceTree = "<group>"; };
 		9A3E571D1A80E56E00DFFAE1 /* NevoProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NevoProfile.swift; path = Controller/Connection/NevoProfile.swift; sourceTree = "<group>"; };
@@ -100,12 +112,36 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		07BE0CEF1A84A2F8000C4AC7 /* IntelHex2BinConverter */ = {
+			isa = PBXGroup;
+			children = (
+				07BE0CF01A84A2F8000C4AC7 /* IntelHex2BinConverter.h */,
+				07BE0CF11A84A2F8000C4AC7 /* IntelHex2BinConverter.m */,
+			);
+			name = IntelHex2BinConverter;
+			path = OTA/IntelHex2BinConverter;
+			sourceTree = "<group>";
+		};
+		07CC4A231A81F26C008DA749 /* Firmwares */ = {
+			isa = PBXGroup;
+			children = (
+				07CC4A241A81F26C008DA749 /* imaze_BLE_R2.hex */,
+				07CC4A251A81F26C008DA749 /* iMaze_v3.bin */,
+			);
+			name = Firmwares;
+			path = OTA/Firmwares;
+			sourceTree = "<group>";
+		};
 		9A3E572D1A80F04600DFFAE1 /* OTA */ = {
 			isa = PBXGroup;
 			children = (
+				07BE0CEF1A84A2F8000C4AC7 /* IntelHex2BinConverter */,
+				07CC4A231A81F26C008DA749 /* Firmwares */,
 				9A3E572E1A80F08400DFFAE1 /* NevoOTAControllerProfile.swift */,
 				9A3E572F1A80F08400DFFAE1 /* NevoOTAModeProfile.swift */,
 				9A3E57301A80F08400DFFAE1 /* NevoOTAPacketProfile.swift */,
+				07CC4A281A820A9B008DA749 /* Utility.swift */,
+				07CC4A2E1A821B46008DA749 /* NevoOTARequest.swift */,
 			);
 			name = OTA;
 			path = Controller/Connection;
@@ -183,6 +219,7 @@
 			children = (
 				9AD8F9921A6E3D3D00F01014 /* Connection */,
 				9AD8F9631A6E011E00F01014 /* AppDelegate.swift */,
+				07BE0CEE1A84A0C8000C4AC7 /* Nevo-Bridging-Header.h */,
 				9AD8F96B1A6E03BC00F01014 /* HomeController.swift */,
 				9AD8F99D1A6E3E0100F01014 /* SyncController.swift */,
 				07C18C091A80DF4900D0BF4A /* NevoOtaController.swift */,
@@ -341,7 +378,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				9AD8F9401A6DF35900F01014 /* Main.storyboard in Resources */,
+				07CC4A271A81F26C008DA749 /* iMaze_v3.bin in Resources */,
 				9AD8F9451A6DF35900F01014 /* LaunchScreen.xib in Resources */,
+				07CC4A261A81F26C008DA749 /* imaze_BLE_R2.hex in Resources */,
 				9AD8F9421A6DF35900F01014 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -366,9 +405,11 @@
 				9A3E57321A80F08400DFFAE1 /* NevoOTAModeProfile.swift in Sources */,
 				9AD8F98D1A6E2D6E00F01014 /* RawPacket.swift in Sources */,
 				9AD8F9621A6E00E800F01014 /* NevoBTimpl.swift in Sources */,
+				07CC4A2F1A821B46008DA749 /* NevoOTARequest.swift in Sources */,
 				9AD8F9791A6E05F700F01014 /* NevoBT.swift in Sources */,
 				9AD8F9751A6E049500F01014 /* NumberOfStepsGoal.swift in Sources */,
 				9AD8F99E1A6E3E0100F01014 /* SyncController.swift in Sources */,
+				07BE0CF21A84A2F8000C4AC7 /* IntelHex2BinConverter.m in Sources */,
 				9AD8F96E1A6E03F600F01014 /* HomeView.swift in Sources */,
 				9AD8F9A01A6E47B400F01014 /* SetGoalRequest.swift in Sources */,
 				9A3E57261A80E56E00DFFAE1 /* NevoPacket.swift in Sources */,
@@ -379,6 +420,7 @@
 				9A3E57251A80E56E00DFFAE1 /* NevoProfile.swift in Sources */,
 				9A3E57231A80E56E00DFFAE1 /* ConnectionController.swift in Sources */,
 				9AD8F93B1A6DF35900F01014 /* Nevo.xcdatamodeld in Sources */,
+				07CC4A291A820A9B008DA749 /* Utility.swift in Sources */,
 				07C18C0A1A80DF4900D0BF4A /* NevoOtaController.swift in Sources */,
 				9A3E57331A80F08400DFFAE1 /* NevoOTAPacketProfile.swift in Sources */,
 				9A3E57241A80E56E00DFFAE1 /* ConnectionControllerImpl.swift in Sources */,
@@ -509,6 +551,7 @@
 				INFOPLIST_FILE = Nevo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Nevo/Nevo-Bridging-Header.h";
 			};
 			name = Debug;
 		};
@@ -519,6 +562,7 @@
 				INFOPLIST_FILE = Nevo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Nevo/Nevo-Bridging-Header.h";
 			};
 			name = Release;
 		};

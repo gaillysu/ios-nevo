@@ -18,15 +18,15 @@ This Profile doesn't expect responses
 class NevoOTAPacketProfile : Profile {
     
     var CONTROL_SERVICE:CBUUID {
-        return CBUUID(string: "????DFU SERVICE????");
+        return CBUUID(string: "00001530-1212-EFDE-1523-785FEABCD123");
     }
     
     var CONTROL_CHARACTERISTIC:CBUUID {
-        return CBUUID(string: "????DFU PACKET SERVICE????");
+        return CBUUID(string: "00001532-1212-EFDE-1523-785FEABCD123");
     }
     
     var CALLBACK_CHARACTERISTIC:CBUUID {
-        //No callback
-        return CBUUID(string: "XXX");
+        
+        return CBUUID(string: "00001531-1212-EFDE-1523-785FEABCD123");
     }
 }
