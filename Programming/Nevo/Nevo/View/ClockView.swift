@@ -56,18 +56,18 @@ class ClockView: UIControl {
     */
     var majorMarkingColor: UIColor = UIColor(white:0.3, alpha:1.0);
     var minorMarkingColor: UIColor = UIColor(white:0.4, alpha:1.0);
-    var majorMarkingsThickness: CGFloat = 1.0;
+    var majorMarkingsThickness: CGFloat = 3.0;
     var minorMarkingsThickness: CGFloat = 1.0;
-    var majorMarkingsLength: CGFloat = 5.0;
+    var majorMarkingsLength: CGFloat = 10.0;
     var minorMarkingsLength: CGFloat = 1.0;
-    var markingsInset: CGFloat = 5.0;
+    var markingsInset: CGFloat = 3.0;
 
     /*
     Customisation for the clock hands.
     */
-    var minuteHandColor: UIColor = UIColor(white:0.2, alpha:1.0);
-    var hourHandColor: UIColor = UIColor(white:0.2, alpha:1.0);
-    var minuteHandThickness: CGFloat = 5.0;
+    var minuteHandColor: UIColor = UIColor.blackColor();
+    var hourHandColor: UIColor = UIColor.blackColor();
+    var minuteHandThickness: CGFloat = 3.5;
     var hourHandThickness: CGFloat = 5.0;
 
     /**
@@ -309,6 +309,13 @@ class ClockView: UIControl {
         CGContextFillEllipseInRect(context, rectForClockFace);
 
         // --------------------------
+        // --  Draw the Nevo Logo  --
+        // --------------------------
+        let imageRect:CGRect = CGRectMake(15, 12, frame.size.width-30, frame.size.width-30)
+        let bagimage:UIImage = UIImage(named: "nevologo")!
+        bagimage.drawInRect(imageRect)
+
+        // --------------------------
         // --    Draw the title    --
         // --------------------------
         var titleRect:CGRect = CGRectMake(CGRectGetMinX(rectForClockFace) + CGRectGetWidth(rectForClockFace)*0.2,
@@ -397,7 +404,8 @@ class ClockView: UIControl {
             var labelY:(CGFloat) = center.y + (-1) * (markingDistanceFromCenter - digitFont.lineHeight/2.0) * sin((CGFloat(M_PI)/180)*(CGFloat(i)+CGFloat(offset)) * 30);
 
             var hourNumber:NSString = NSString(format:"%i", i+1);
-            hourNumber.drawInRect(CGRectMake(labelX - digitFont.lineHeight/2.0,labelY - digitFont.lineHeight/2.0,digitFont.lineHeight,digitFont.lineHeight), withAttributes: self.digitAttributes)
+             //Cancel time numbers
+            //hourNumber.drawInRect(CGRectMake(labelX - digitFont.lineHeight/2.0,labelY - digitFont.lineHeight/2.0,digitFont.lineHeight,digitFont.lineHeight), withAttributes: self.digitAttributes)
         }
 
         // --------------------------
@@ -461,6 +469,12 @@ class ClockView: UIControl {
         // --------------------------
         CGContextSetFillColorWithColor(context, self.minuteHandColor.CGColor);
         CGContextFillEllipseInRect(context, CGRectMake(CGRectGetMidX(rectForClockFace)-8,CGRectGetMidY(rectForClockFace)-8,16,16));
+
+        // -------------------------------------
+        // -- Draw the whiteColor centre cap  --
+        // -------------------------------------
+        CGContextSetFillColorWithColor(context, UIColor.whiteColor().CGColor);
+        CGContextFillEllipseInRect(context, CGRectMake(CGRectGetMidX(rectForClockFace)-3,CGRectGetMidY(rectForClockFace)-3,6,6));
 
         // --------------------------
         // --   Draw the stroke    --
