@@ -50,9 +50,11 @@ protocol NevoBT {
     func isConnected() -> Bool
     
     /**
-    when normal mode to ota mode, set it before connect nevo again
+    Gets the currently saved profile
+    Note that if you want to register a new profile, you have to delete this Nevo Object and recreate a new one
     */
-    func setProfile(Profile)
+    func getProfile() -> Profile
+
 }
 
 protocol NevoBTDelegate {

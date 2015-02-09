@@ -13,7 +13,7 @@ See ConnectionController
 🚧🚧🚧Backbone Class : Modify with care🚧🚧🚧
 */
 class ConnectionControllerImpl : ConnectionController, NevoBTDelegate {
-    let mNevoBT:NevoBT?
+    var mNevoBT:NevoBT?
     var mDelegate:ConnectionControllerDelegate?
     var mSavedAddress:NSUUID?
     
@@ -31,8 +31,9 @@ class ConnectionControllerImpl : ConnectionController, NevoBTDelegate {
     No initialisation outside of this class, this is a singleton
     */
     private init() {
-
+        
         mNevoBT = NevoBTImpl(externalDelegate: self, acceptableDevice: NevoProfile())
+        setOTAMode(false)
     }
     
     /**
@@ -42,10 +43,7 @@ class ConnectionControllerImpl : ConnectionController, NevoBTDelegate {
         //TODO FIND A WAY TO ENSURE THAT WE DON'T LEAVE THE OTA SCREEN STILL IN OTA MODE
         mDelegate = delegate
     }
-    func setProfile(profile:Profile)
-    {
-        mNevoBT?.setProfile(profile)
-    }
+
     /**
     See ConnectionController protocol
     */
@@ -135,12 +133,32 @@ class ConnectionControllerImpl : ConnectionController, NevoBTDelegate {
         mDelegate?.packetReceived(packet)
     }
     
-    func setOTAMode(Bool) {
-        //TODO
+    /**
+    See ConnectionController
+    */
+    func setOTAMode(OTAMode:Bool) {
+        
+        //No need to change the mode if we are already in OTA Mode
+        if getOTAMode() == OTAMode {
+            return;
+        }
+        
+        mNevoBT?.disconnect()
+        
+        //We don't set the profile on the NevoBT, because it could create too many issues
+        //So we destroy the previous instance and recreate one
+        if(OTAMode) {
+            mNevoBT = NevoBTImpl(externalDelegate: self, acceptableDevice: NevoOTAControllerProfile())
+        } else {
+            mNevoBT = NevoBTImpl(externalDelegate: self, acceptableDevice: NevoProfile())
+        }
+
     }
     
     func getOTAMode() -> Bool {
-        //TODO
+        if let profile = mNevoBT?.getProfile() {
+            return profile is NevoOTAControllerProfile
+        }
         return false
     }
     

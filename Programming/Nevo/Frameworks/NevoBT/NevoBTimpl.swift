@@ -173,13 +173,6 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
             })
         }
     }
-    /**
-    See NevoBT protocol
-    */
-    func setProfile(profile:Profile)
-    {
-        self.mProfile = profile
-    }
     
     /**
     Stops the current scan
@@ -412,6 +405,13 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
     */
     func isConnected() -> Bool {
         return ( mPeripheral != nil && mPeripheral!.state == CBPeripheralState.Connected )
+    }
+    
+    /**
+    See NevoBT protocol
+    */
+    func getProfile() -> Profile {
+        return mProfile
     }
 
     /**

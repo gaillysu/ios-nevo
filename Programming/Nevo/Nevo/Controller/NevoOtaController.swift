@@ -307,7 +307,7 @@ class NevoOtaController : ConnectionControllerDelegate {
             {
             isOTAmode = true
             mConnectionController?.setOTAMode(true)
-            mConnectionController?.setProfile(NevoOTAControllerProfile())
+
             //disconnect by entry OTA mode, again connect it,
             //    ConnectionControllerImpl.connectionStateChanged will auto called, so here
             //    not call connect()
