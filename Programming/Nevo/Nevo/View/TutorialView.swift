@@ -13,8 +13,8 @@ class TutorialView: UIView {
 
     var acheterButton: UIButton!
 
-    let color00C6DC = UIColor(red: 65/255.0, green: 105/255.0, blue: 225/255.0, alpha: 1)//The color of the button font color and other needs to use
-    let fontRalewayBold:UIFont! = UIFont(name:"Raleway-Thin", size: 30);//Uniform font
+    let color00C6DC = UIColor(red: 255/255.0, green: 255/255.0, blue: 255/255.0, alpha: 1)//The color of the button font color and other needs to use
+    let fontRalewayBold:UIFont! = UIFont(name:"Raleway-Thin", size: 26);//Uniform font
 
     var Controller:UIViewController!//The current controller
 
@@ -36,29 +36,29 @@ class TutorialView: UIView {
     func bulidTutorialView(){
 
         //The background image,center display
-        let backgroundImage:UIImageView = UIImageView(frame: CGRectMake(0, 0, self.frame.size.width*(self.frame.width/self.frame.size.height)*1.5, self.frame.height*(self.frame.size.width/self.frame.size.height)*1.5))
+        let backgroundImage:UIImageView = UIImageView(frame: CGRectMake(0, 0, self.frame.size.width, self.frame.height))
         backgroundImage.center = CGPointMake(self.frame.size.width/2.0, self.frame.size.height/2.0)
         backgroundImage.userInteractionEnabled = true;
         backgroundImage.backgroundColor = UIColor.clearColor();
-        backgroundImage.image = UIImage(named: "640-1136")
+        backgroundImage.image = UIImage(named: "NevoPicture")
         self.addSubview(backgroundImage)
 
         //Click into the tutorial page
         //TODO string
         tutorialButton = UIButton(frame: CGRectMake(0, 0, 160, 48))
-        tutorialButton.setTitle(NSLocalizedString("Tutorial", comment:""), forState: UIControlState.Normal)
+        tutorialButton.setTitle(NSLocalizedString("Tutorial", comment:"Tutorial button title"), forState: UIControlState.Normal)
         tutorialButton.setTitleColor(color00C6DC, forState: UIControlState.Normal)
         tutorialButton.titleLabel?.font = fontRalewayBold
         tutorialButton.addTarget(self, action: Selector("displayTutorialPageView"), forControlEvents: UIControlEvents.TouchUpInside)
-        tutorialButton.center = CGPointMake(self.frame.size.width/2.0, self.frame.size.height-146)
+        tutorialButton.center = CGPointMake(self.frame.size.width/2.0, self.frame.size.height-106)
         self.addSubview(tutorialButton)
 
         //TODO string
         acheterButton = UIButton(frame: CGRectMake(0, 0, 160, 48))
-        acheterButton.setTitle(NSLocalizedString("Acheter", comment:""), forState: UIControlState.Normal)
+        acheterButton.setTitle(NSLocalizedString("Acheter", comment:"Acheter button title"), forState: UIControlState.Normal)
         acheterButton.setTitleColor(color00C6DC, forState: UIControlState.Normal)
         acheterButton.titleLabel?.font = fontRalewayBold
-        acheterButton.center = CGPointMake(self.frame.size.width/2.0, self.frame.size.height-93)
+        acheterButton.center = CGPointMake(self.frame.size.width/2.0, self.frame.size.height-53)
         acheterButton.addTarget(self, action: Selector("DismisTutorial"), forControlEvents: UIControlEvents.TouchUpInside)
         self.addSubview(acheterButton)
 
