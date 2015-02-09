@@ -8,8 +8,9 @@
 
 import UIkit
 
-class TutorialController: UIViewController {
-    var tutorialView: TutorialView!
+class TutorialController: UIViewController, ConnectionControllerDelegate {
+    var mTutorialView: TutorialView?
+    var mConnectionController : ConnectionController?
 
     //This controller is not displayed on the storyboard
 
@@ -17,9 +18,35 @@ class TutorialController: UIViewController {
         super.viewDidLoad()
 
         //init TutorialView
-        tutorialView = TutorialView(frame: CGRectMake(0,0, self.view.frame.size.width, self.view.frame.size.height), delegate: self)
-        self.view.addSubview(tutorialView)
+        mTutorialView = TutorialView(frame: CGRectMake(0,0, self.view.frame.size.width, self.view.frame.size.height), delegate: self)
+        self.view.addSubview(mTutorialView!)
+        
+        mConnectionController = ConnectionControllerImpl.sharedInstance
+        
+        mConnectionController?.setDelegate(self)
 
+    }
+    
+    func scanButtonPressed(sender:UIButton) {
+        mConnectionController?.setOTAMode(false)
+        mConnectionController?.forgetSavedAddress()
+        mConnectionController?.connect()
+        
+    }
+    
+    /**
+    See ConnectionControllerDelegate
+    */
+    func packetReceived(RawPacket) {
+        //Do nothing
+    }
+    
+    /**
+    See ConnectionControllerDelegate
+    */
+    func connectionStateChanged(isConnected : Bool) {
+        //TODO by Hugo
+        //When we receive a connection, let's start the app automatically
     }
 
 

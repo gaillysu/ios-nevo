@@ -11,12 +11,14 @@ import UIkit
 
 class TutorialScanPageView : UIView {
     
-    var mDelegate:UIViewController?
+    var mDelegate:TutorialController?
     
     init(frame: CGRect, delegate:UIViewController) {
         super.init(frame: frame)
         
-        mDelegate = delegate
+        if let tutorialController = delegate as? TutorialController {
+            mDelegate = tutorialController
+        }
         
         buildTutorialPage()
         
@@ -44,13 +46,7 @@ class TutorialScanPageView : UIView {
     
     //Scan button action
     func ScanAction(sender:UIButton){
-        NSLog("ScanAction")
-        UIView.animateKeyframesWithDuration(0.3, delay: 0, options: UIViewKeyframeAnimationOptions(), animations: { () -> Void in
-            self.transform = CGAffineTransformMakeScale(0.00, 0.00);
-            }) { (Bool) -> Void in
-                self.removeFromSuperview();
-        }
-        //SyncController(controller:self).sendRawPacket();
+        mDelegate?.scanButtonPressed(sender)
     }
     
 }
