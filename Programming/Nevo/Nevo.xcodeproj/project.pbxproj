@@ -50,6 +50,7 @@
 		9A3E57321A80F08400DFFAE1 /* NevoOTAModeProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3E572F1A80F08400DFFAE1 /* NevoOTAModeProfile.swift */; };
 		9A3E57331A80F08400DFFAE1 /* NevoOTAPacketProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3E57301A80F08400DFFAE1 /* NevoOTAPacketProfile.swift */; };
 		9A9BD1C11A88849700A95ACA /* TutorialPage1View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A9BD1C01A88849700A95ACA /* TutorialPage1View.swift */; };
+		9A9BD1C81A88C0A400A95ACA /* TutorialScanPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A9BD1C71A88C0A400A95ACA /* TutorialScanPageView.swift */; };
 		9AD8F93B1A6DF35900F01014 /* Nevo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9AD8F9391A6DF35900F01014 /* Nevo.xcdatamodeld */; };
 		9AD8F9401A6DF35900F01014 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9AD8F93E1A6DF35900F01014 /* Main.storyboard */; };
 		9AD8F9421A6DF35900F01014 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9AD8F9411A6DF35900F01014 /* Images.xcassets */; };
@@ -135,6 +136,7 @@
 		9A3E572F1A80F08400DFFAE1 /* NevoOTAModeProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NevoOTAModeProfile.swift; path = OTA/NevoOTAModeProfile.swift; sourceTree = "<group>"; };
 		9A3E57301A80F08400DFFAE1 /* NevoOTAPacketProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NevoOTAPacketProfile.swift; path = OTA/NevoOTAPacketProfile.swift; sourceTree = "<group>"; };
 		9A9BD1C01A88849700A95ACA /* TutorialPage1View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TutorialPage1View.swift; path = View/Tutorial/TutorialPage1View.swift; sourceTree = "<group>"; };
+		9A9BD1C71A88C0A400A95ACA /* TutorialScanPageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TutorialScanPageView.swift; path = View/Tutorial/TutorialScanPageView.swift; sourceTree = "<group>"; };
 		9AD8F9321A6DF35900F01014 /* Nevo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Nevo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AD8F9361A6DF35900F01014 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9AD8F93A1A6DF35900F01014 /* Nevo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Nevo.xcdatamodel; sourceTree = "<group>"; };
@@ -273,6 +275,7 @@
 			isa = PBXGroup;
 			children = (
 				9A9BD1C01A88849700A95ACA /* TutorialPage1View.swift */,
+				9A9BD1C71A88C0A400A95ACA /* TutorialScanPageView.swift */,
 			);
 			name = Tutorial;
 			sourceTree = "<group>";
@@ -569,6 +572,7 @@
 				9A3E57321A80F08400DFFAE1 /* NevoOTAModeProfile.swift in Sources */,
 				9A9BD1C11A88849700A95ACA /* TutorialPage1View.swift in Sources */,
 				007F796E1A878C6C006C89E6 /* TutorialView.swift in Sources */,
+				9A9BD1C81A88C0A400A95ACA /* TutorialScanPageView.swift in Sources */,
 				9AD8F98D1A6E2D6E00F01014 /* RawPacket.swift in Sources */,
 				9AD8F9621A6E00E800F01014 /* NevoBTimpl.swift in Sources */,
 				07CC4A2F1A821B46008DA749 /* NevoOTARequest.swift in Sources */,

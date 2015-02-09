@@ -17,9 +17,6 @@ class PageView: UIView,UIScrollViewDelegate {
     //PageView background color
     let background:UIColor = UIColor(red: 153/255.0, green: 153/255.0, blue: 153/255.0, alpha: 1)
 
-    //button background color
-    let buttonBackground:UIColor = UIColor(red: 200/255.0, green: 200/255.0, blue: 200/255.0, alpha: 1)
-
     override init(frame: CGRect) {
         super.init(frame: frame)
         super.backgroundColor = background
@@ -69,22 +66,6 @@ class PageView: UIView,UIScrollViewDelegate {
         let page:NSInteger = NSInteger(offset)
         pageControll.currentPage = Int(page)
 
-        UIView.animateKeyframesWithDuration(0.3, delay: 0, options: UIViewKeyframeAnimationOptions(), animations: { () -> Void in
-            if (page==2) {
-                //page number 2 display startButton
-                let startButton:UIButton = UIButton(frame: CGRectMake(0, self.pageControll.frame.origin.y+self.pageControll.frame.size.height, self.frame.size.width, self.pageControll.frame.size.height))
-                startButton.backgroundColor = self.buttonBackground
-                startButton .setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
-                startButton.titleLabel?.font = UIFont.systemFontOfSize(20)
-                startButton.setTitle(NSLocalizedString("Scan", comment:"") , forState: UIControlState.Normal)
-                startButton.addTarget(self, action: Selector("ScanAction:"), forControlEvents: UIControlEvents.TouchUpInside)
-                startButton.enabled = true
-                self.addSubview(startButton)
-            }
-
-            }) { (Bool) -> Void in
-
-        }
     }
 
     /*
@@ -102,16 +83,6 @@ class PageView: UIView,UIScrollViewDelegate {
 
     }
 
-    //Scan button action
-    func ScanAction(sender:UIButton){
-        NSLog("ScanAction")
-        UIView.animateKeyframesWithDuration(0.3, delay: 0, options: UIViewKeyframeAnimationOptions(), animations: { () -> Void in
-            self.transform = CGAffineTransformMakeScale(0.00, 0.00);
-        }) { (Bool) -> Void in
-            self.removeFromSuperview();
-        }
-        //SyncController(controller:self).sendRawPacket();
-    }
 }
 
 

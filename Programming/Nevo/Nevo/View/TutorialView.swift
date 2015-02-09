@@ -76,7 +76,7 @@ class TutorialView: UIView {
         
         //TODO Displays the Page slide
         //Array represents the display of the page
-        let pagesArray:[UIView] = [TutorialPage1View(frame:pageFrame,delegate:mDelegate),TutorialPage1View(frame:pageFrame,delegate:mDelegate),TutorialPage1View(frame:pageFrame,delegate:mDelegate)]
+        let pagesArray:[UIView] = [TutorialPage1View(frame:pageFrame,delegate:mDelegate),TutorialPage1View(frame:pageFrame,delegate:mDelegate),TutorialScanPageView(frame:pageFrame,delegate:mDelegate)]
         let pageView:PageView = PageView(frame: CGRectMake(0, 0, 320, 320))
         pageView.frame = pageFrame
         pageView.displayPageView(pagesArray)
