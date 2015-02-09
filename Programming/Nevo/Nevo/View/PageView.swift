@@ -40,21 +40,23 @@ class PageView: UIView,UIScrollViewDelegate {
     /*Display PageView content
       @param imageArray: The content of the load on the scrollView
     */
-    func displayPageView(imageArray:NSArray){
+    func displayPageView(pageArray:[UIView]){
         scrollView.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)
-        scrollView.contentSize = CGSizeMake(scrollView.frame.size.width*CGFloat(imageArray.count), scrollView.frame.height)
+        scrollView.contentSize = CGSizeMake(scrollView.frame.size.width*CGFloat(pageArray.count), scrollView.frame.height)
         scrollView.contentOffset = CGPointMake(0, 0)
-        for (var i=0; i<imageArray.count; i++) {
+        for (var i=0; i<pageArray.count; i++) {
             //According to the actual size decided to pictures
-            let poorSub:CGFloat = self.frame.size.width/2
-            let guideImage:UIImageView = UIImageView(image: UIImage(named: String(imageArray[NSInteger(i)] as NSString)))
-            guideImage.center = CGPointMake(CGFloat(i) * self.frame.size.width+poorSub, self.frame.size.height/2.0)
-            guideImage.userInteractionEnabled = true;
-            guideImage.backgroundColor = UIColor.clearColor();
-            guideImage.image = UIImage(named: String(imageArray[NSInteger(i)] as NSString))
-            scrollView.addSubview(guideImage)
+            
+            var page = pageArray[NSInteger(i)]
+            
+            scrollView.addSubview(page)
+            
+            page.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)
+            
+            page.center = CGPointMake(CGFloat(i) * self.frame.size.width+self.frame.size.width/2, self.frame.size.height/2.0)
+            
         }
-        displayPageControll(imageArray.count)
+        displayPageControll(pageArray.count)
 
     }
 
