@@ -1,0 +1,18 @@
+
+/* Class = "IBUITabBarItem"; title = "Clock"; ObjectID = "FTX-5o-89V"; */
+"FTX-5o-89V.title" = "Clock";
+
+/* Class = "IBUINavigationItem"; title = "Root View Controller"; ObjectID = "Gfa-JZ-GCB"; */
+"Gfa-JZ-GCB.title" = "Root View Controller";
+
+/* Class = "IBUIButton"; normalTitle = "scanAndConnect"; ObjectID = "M47-SL-v6o"; */
+"M47-SL-v6o.normalTitle" = "scanAndConnect";
+
+/* Class = "IBUINavigationItem"; title = "Root View Controller"; ObjectID = "b9k-cC-IvP"; */
+"b9k-cC-IvP.title" = "Root View Controller";
+
+/* Class = "IBUITabBarItem"; title = "Record"; ObjectID = "ba1-Wn-XQe"; */
+"ba1-Wn-XQe.title" = "Record";
+
+/* Class = "IBUITabBarItem"; title = "Sleep"; ObjectID = "dU5-Ty-hhC"; */
+"dU5-Ty-hhC.title" = "Sleep";
