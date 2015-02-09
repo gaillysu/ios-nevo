@@ -17,7 +17,7 @@ It checks that the firmware is up to date, and handles every steps of the synchr
 class SyncController: ConnectionControllerDelegate {
  
     let mConnectionController : ConnectionController?
-    //TODO remove
+    //TODO by Hugo remove
     let mTestHomeController : HomeController
     
     init(controller : HomeController) {
@@ -45,7 +45,7 @@ class SyncController: ConnectionControllerDelegate {
         
     }
     
-    //TODO remove
+    //TODO by Hugo remove
     func sendRawPacket() {
         var inputTextField:UITextField?
         
@@ -73,7 +73,7 @@ class SyncController: ConnectionControllerDelegate {
         mTestHomeController.presentViewController(alert, animated: true, completion: nil)
     }
     
-    //TODO remove
+    //TODO by Hugo remove
     private func hexString(data:NSData) -> NSString {
         var str = NSMutableString()
         let bytes = UnsafeBufferPointer<UInt8>(start: UnsafePointer(data.bytes), count:data.length)
@@ -85,7 +85,7 @@ class SyncController: ConnectionControllerDelegate {
     
 }
 
-//TODO remove
+//TODO by Hugo remove
 class TestQuery : Request {
     var mString:NSString
     

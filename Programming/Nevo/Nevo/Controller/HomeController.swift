@@ -39,7 +39,7 @@ class HomeController: UIViewController {
     }
 
     @IBAction func managerButtonAction(sender: UIButton) {
-        //TODO remove
+        //TODO by Hugo remove
         if sender == connectButton {
             NSLog("connectButton");
             

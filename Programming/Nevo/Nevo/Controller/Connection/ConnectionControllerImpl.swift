@@ -40,7 +40,7 @@ class ConnectionControllerImpl : ConnectionController, NevoBTDelegate {
     See ConnectionController protocol
     */
     func setDelegate(delegate:ConnectionControllerDelegate) {
-        //TODO FIND A WAY TO ENSURE THAT WE DON'T LEAVE THE OTA SCREEN STILL IN OTA MODE
+        //TODO by Hugo FIND A WAY TO ENSURE THAT WE DON'T LEAVE THE OTA SCREEN STILL IN OTA MODE
         mDelegate = delegate
     }
 
@@ -48,7 +48,7 @@ class ConnectionControllerImpl : ConnectionController, NevoBTDelegate {
     See ConnectionController protocol
     */
     func connect() {
-        //TODO this is just test code
+        //TODO by Hugo this is just test code
         //For the test we can try to use scan and conenct or just connect
         mNevoBT?.scanAndConnect()
         //mNevoBT?.connectToAddress(NSUUID(UUIDString: "D9E68ED2-3C2D-71A7-93DE-4DF0AC5F374C")!)
@@ -58,7 +58,7 @@ class ConnectionControllerImpl : ConnectionController, NevoBTDelegate {
     See NevoBTDelegate
     */
     func scanStopped() {
-      //TODO smart retry service
+      //TODO by Hugo smart retry service
         
         if (!mNevoBT!.isConnected()) {
             connect()
@@ -71,7 +71,7 @@ class ConnectionControllerImpl : ConnectionController, NevoBTDelegate {
     See NevoBTDelegate
     */
     func connectionStateChanged(isConnected : Bool) {
-        //TODO smart retry
+        //TODO by Hugo smart retry
         mDelegate?.connectionStateChanged(isConnected)
         
         if (!isConnected) {
@@ -86,14 +86,14 @@ class ConnectionControllerImpl : ConnectionController, NevoBTDelegate {
     See ConnectionController protocol
     */
     func disconnect() {
-        //TODO
+        //TODO by Hugo
     }
     
     /**
     See ConnectionController protocol
     */
     func forgetSavedAddress() {
-        //TODO
+        //TODO by Hugo
     }
     
     /**
