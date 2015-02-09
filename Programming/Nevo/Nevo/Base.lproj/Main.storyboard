@@ -7,7 +7,7 @@
         <!--Navigation Controller-->
         <scene sceneID="jSz-QX-Nx0">
             <objects>
-                <navigationController id="B94-9O-eGF" sceneMemberID="viewController">
+                <navigationController navigationBarHidden="YES" id="B94-9O-eGF" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="7in-Ls-p47">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -20,10 +20,10 @@
             </objects>
             <point key="canvasLocation" x="-1479.375" y="-361.26760563380282"/>
         </scene>
-        <!--Main View Controller-->
+        <!--Tab Bar Controller-->
         <scene sceneID="cdp-L5-L47">
             <objects>
-                <tabBarController id="VSL-Nt-5H3" customClass="MainViewController" customModule="Nevo" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController id="VSL-Nt-5H3" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="FO7-Rc-dES"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="7hv-Kv-cDO">
@@ -46,6 +46,7 @@
             <objects>
                 <navigationController useStoryboardIdentifierAsRestorationIdentifier="YES" id="bGr-qo-zHH" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Clock" image="clockitem" id="FTX-5o-89V"/>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="p9j-eT-GsY">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -152,7 +153,7 @@
         <!--Home Controller-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <viewController id="vXZ-lx-hvc" customClass="HomeController" customModule="Nevo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController extendedLayoutIncludesOpaqueBars="YES" id="vXZ-lx-hvc" customClass="HomeController" customModule="Nevo" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
@@ -177,10 +178,14 @@
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="M47-SL-v6o" secondAttribute="bottom" constant="43" id="Rv2-aC-Fce"/>
                             <constraint firstAttribute="centerX" secondItem="M47-SL-v6o" secondAttribute="centerX" id="eHz-EE-RAa"/>
                         </constraints>
+                        <connections>
+                            <outlet property="connectButton" destination="M47-SL-v6o" id="wWP-Wh-ZLx"/>
+                        </connections>
                     </view>
-                    <navigationItem key="navigationItem" id="RXC-Fy-u76"/>
+                    <navigationItem key="navigationItem" id="RXC-Fy-u76">
+                        <nil key="title"/>
+                    </navigationItem>
                     <connections>
-                        <outlet property="connectButton" destination="M47-SL-v6o" id="e7y-ua-6de"/>
                         <outlet property="homeView" destination="kh9-bI-dsS" id="5wv-HP-UN7"/>
                     </connections>
                 </viewController>

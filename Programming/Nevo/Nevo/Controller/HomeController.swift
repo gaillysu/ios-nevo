@@ -15,12 +15,13 @@ it should handle very little, only the initialisation of the different Views and
 */
 
 class HomeController: UIViewController {
-    @IBOutlet var connectButton: UIButton!
+    
     @IBOutlet var homeView: HomeView!
-    var syncController : SyncController?
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
         homeView.bulidHomeView()
 
         let timer:NSTimer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector:"timerAction:", userInfo: nil, repeats: true);
@@ -39,11 +40,13 @@ class HomeController: UIViewController {
     }
 
     @IBAction func managerButtonAction(sender: UIButton) {
+
         //TODO by Hugo remove
-        if sender == connectButton {
+        if sender == homeView.connectButton {
+
             NSLog("connectButton");
             
-            syncController?.sendRawPacket()
+            SyncController(controller: self).sendRawPacket()
            
         }
     }
