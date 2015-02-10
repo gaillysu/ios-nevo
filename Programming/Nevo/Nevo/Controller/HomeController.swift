@@ -41,11 +41,11 @@ class HomeController: UIViewController {
 
     @IBAction func managerButtonAction(sender: UIButton) {
         //TODO remove
-        if sender == homeView.connectButton {
+        //if sender == homeView.connectButton {
             NSLog("connectButton");
             
             SyncController(controller: self).sendRawPacket()
            
-        }
+        //}
     }
 }

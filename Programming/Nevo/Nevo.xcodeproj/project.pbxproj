@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		005BC9541A888873006F9E86 /* nevologo.png in Resources */ = {isa = PBXBuildFile; fileRef = 005BC9531A888873006F9E86 /* nevologo.png */; };
 		005BC9561A889F14006F9E86 /* NevoPicture.png in Resources */ = {isa = PBXBuildFile; fileRef = 005BC9551A889F14006F9E86 /* NevoPicture.png */; };
+		005BC95F1A88B79F006F9E86 /* FXBlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = 005BC95E1A88B79F006F9E86 /* FXBlurView.m */; };
 		007F796D1A878C6C006C89E6 /* PageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007F796B1A878C6C006C89E6 /* PageView.swift */; };
 		007F796E1A878C6C006C89E6 /* TutorialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007F796C1A878C6C006C89E6 /* TutorialView.swift */; };
 		007F79721A878C8B006C89E6 /* TutorialController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007F79701A878C8B006C89E6 /* TutorialController.swift */; };
@@ -35,6 +36,7 @@
 		007F799F1A878D0B006C89E6 /* nevo360.png in Resources */ = {isa = PBXBuildFile; fileRef = 007F798A1A878D0B006C89E6 /* nevo360.png */; };
 		00A773961A88562F0018E121 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 00A773911A88562F0018E121 /* Localizable.strings */; };
 		00A7739B1A8860100018E121 /* 640-1136333.png in Resources */ = {isa = PBXBuildFile; fileRef = 00A7739A1A8860100018E121 /* 640-1136333.png */; };
+		00E0E1441A88BBDE0001B8CA /* wallpaper0.png in Resources */ = {isa = PBXBuildFile; fileRef = 00E0E1431A88BBDE0001B8CA /* wallpaper0.png */; };
 		07BE0CF21A84A2F8000C4AC7 /* IntelHex2BinConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = 07BE0CF11A84A2F8000C4AC7 /* IntelHex2BinConverter.m */; };
 		07C18C0A1A80DF4900D0BF4A /* NevoOtaController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C18C091A80DF4900D0BF4A /* NevoOtaController.swift */; };
 		07C18C0E1A81AB3900D0BF4A /* NevoOtaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C18C0D1A81AB3900D0BF4A /* NevoOtaViewController.swift */; };
@@ -83,6 +85,8 @@
 /* Begin PBXFileReference section */
 		005BC9531A888873006F9E86 /* nevologo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nevologo.png; sourceTree = "<group>"; };
 		005BC9551A889F14006F9E86 /* NevoPicture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NevoPicture.png; sourceTree = "<group>"; };
+		005BC95D1A88B79F006F9E86 /* FXBlurView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FXBlurView.h; sourceTree = "<group>"; };
+		005BC95E1A88B79F006F9E86 /* FXBlurView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FXBlurView.m; sourceTree = "<group>"; };
 		007F796B1A878C6C006C89E6 /* PageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PageView.swift; path = View/PageView.swift; sourceTree = "<group>"; };
 		007F796C1A878C6C006C89E6 /* TutorialView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TutorialView.swift; path = View/TutorialView.swift; sourceTree = "<group>"; };
 		007F79701A878C8B006C89E6 /* TutorialController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TutorialController.swift; path = Controller/TutorialController.swift; sourceTree = "<group>"; };
@@ -117,6 +121,7 @@
 		00A773951A88562F0018E121 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		00A773971A885A880018E121 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		00A7739A1A8860100018E121 /* 640-1136333.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "640-1136333.png"; sourceTree = "<group>"; };
+		00E0E1431A88BBDE0001B8CA /* wallpaper0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wallpaper0.png; sourceTree = "<group>"; };
 		07BE0CEE1A84A0C8000C4AC7 /* Nevo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Nevo-Bridging-Header.h"; sourceTree = "<group>"; };
 		07BE0CF01A84A2F8000C4AC7 /* IntelHex2BinConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntelHex2BinConverter.h; sourceTree = "<group>"; };
 		07BE0CF11A84A2F8000C4AC7 /* IntelHex2BinConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntelHex2BinConverter.m; sourceTree = "<group>"; };
@@ -176,6 +181,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		005BC95C1A88B79F006F9E86 /* FXBlurView */ = {
+			isa = PBXGroup;
+			children = (
+				005BC95D1A88B79F006F9E86 /* FXBlurView.h */,
+				005BC95E1A88B79F006F9E86 /* FXBlurView.m */,
+			);
+			name = FXBlurView;
+			path = Frameworks/FXBlurView;
+			sourceTree = "<group>";
+		};
 		007F79731A878D0B006C89E6 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -215,6 +230,7 @@
 		007F79881A878D0B006C89E6 /* image */ = {
 			isa = PBXGroup;
 			children = (
+				00E0E1431A88BBDE0001B8CA /* wallpaper0.png */,
 				005BC9551A889F14006F9E86 /* NevoPicture.png */,
 				005BC9531A888873006F9E86 /* nevologo.png */,
 				00A7739A1A8860100018E121 /* 640-1136333.png */,
@@ -330,6 +346,7 @@
 		9AD8F95A1A6DFE3400F01014 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				005BC95C1A88B79F006F9E86 /* FXBlurView */,
 				9AD8F9601A6E00C000F01014 /* NevoBT */,
 			);
 			name = Frameworks;
@@ -535,6 +552,7 @@
 				9AD8F9421A6DF35900F01014 /* Images.xcassets in Resources */,
 				007F798D1A878D0B006C89E6 /* Raleway-Bold.ttf in Resources */,
 				007F799B1A878D0B006C89E6 /* Raleway-Thin.ttf in Resources */,
+				00E0E1441A88BBDE0001B8CA /* wallpaper0.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -566,6 +584,7 @@
 				9AD8F99E1A6E3E0100F01014 /* SyncController.swift in Sources */,
 				07BE0CF21A84A2F8000C4AC7 /* IntelHex2BinConverter.m in Sources */,
 				9AD8F96E1A6E03F600F01014 /* HomeView.swift in Sources */,
+				005BC95F1A88B79F006F9E86 /* FXBlurView.m in Sources */,
 				9AD8F9A01A6E47B400F01014 /* SetGoalRequest.swift in Sources */,
 				007F796D1A878C6C006C89E6 /* PageView.swift in Sources */,
 				9A3E57261A80E56E00DFFAE1 /* NevoPacket.swift in Sources */,
