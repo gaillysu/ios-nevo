@@ -45,7 +45,7 @@ class TutorialView: UIView {
 
         //Click into the tutorial page
         //TODO string
-        tutorialButton = UIButton(frame: CGRectMake(0, 0, 160, 48))
+        tutorialButton = UIButton(frame: CGRectMake(0, 0, 230, 48))
         tutorialButton.setTitle(NSLocalizedString("Tutorial", comment:"Tutorial button title"), forState: UIControlState.Normal)
         tutorialButton.setTitleColor(color00C6DC, forState: UIControlState.Normal)
         tutorialButton.titleLabel?.font = fontRalewayBold
@@ -54,7 +54,7 @@ class TutorialView: UIView {
         self.addSubview(tutorialButton)
 
         //TODO string
-        acheterButton = UIButton(frame: CGRectMake(0, 0, 160, 48))
+        acheterButton = UIButton(frame: CGRectMake(0, 0, 230, 48))
         acheterButton.setTitle(NSLocalizedString("Acheter", comment:"Acheter button title"), forState: UIControlState.Normal)
         acheterButton.setTitleColor(color00C6DC, forState: UIControlState.Normal)
         acheterButton.titleLabel?.font = fontRalewayBold

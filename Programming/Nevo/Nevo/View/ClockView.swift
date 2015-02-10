@@ -54,7 +54,7 @@ class ClockView: UIControl {
     Customisation for the markings that are displayed around the circumference
     of the clock.
     */
-    var majorMarkingColor: UIColor = UIColor(white:0.3, alpha:1.0);
+    var majorMarkingColor: UIColor = UIColor(white:1, alpha:1.0);
     var minorMarkingColor: UIColor = UIColor(white:0.4, alpha:1.0);
     var majorMarkingsThickness: CGFloat = 3.0;
     var minorMarkingsThickness: CGFloat = 1.0;
