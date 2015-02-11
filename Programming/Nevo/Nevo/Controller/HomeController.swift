@@ -26,8 +26,7 @@ class HomeController: UIViewController {
 
         let timer:NSTimer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector:"timerAction:", userInfo: nil, repeats: true);
 
-        let tutorialCont = TutorialController()
-        self.presentViewController(tutorialCont, animated: true, completion: nil)
+        //self.performSegueWithIdentifier("Home_Tutorial", sender: self)
     }
 
     override func didReceiveMemoryWarning() {

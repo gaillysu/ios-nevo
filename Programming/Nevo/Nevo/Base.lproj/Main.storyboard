@@ -179,11 +179,48 @@
                     </navigationItem>
                     <connections>
                         <outlet property="homeView" destination="kh9-bI-dsS" id="5wv-HP-UN7"/>
+                        <segue destination="Gec-Ym-Om4" kind="modal" identifier="Home_Tutorial" id="9p1-uA-j54"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-2265" y="2018"/>
+        </scene>
+        <!--Tutorial Controller-->
+        <scene sceneID="Rdd-pv-bH0">
+            <objects>
+                <viewController id="sMm-vm-fnG" customClass="TutorialController" customModule="Nevo" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="fJZ-Lz-FjL"/>
+                        <viewControllerLayoutGuide type="bottom" id="GVG-yc-HD1"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="7Uq-gX-WNW">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="l5z-bm-cuW"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZrC-LT-fiX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2987" y="3580"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="XKn-l0-A5F">
+            <objects>
+                <navigationController navigationBarHidden="YES" id="Gec-Ym-Om4" sceneMemberID="viewController">
+                    <nil key="simulatedTopBarMetrics"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="hNv-GT-3gE">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="sMm-vm-fnG" kind="relationship" relationship="rootViewController" id="Mb8-Ym-eZk"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lza-Ds-F3H" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2987" y="2804"/>
         </scene>
     </scenes>
     <resources>

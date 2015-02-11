@@ -7,3 +7,9 @@
 //
 
 import Foundation
+
+protocol ButtonActionCallBack {
+
+    func nextButtonAction(sender:UIButton)
+    
+}
