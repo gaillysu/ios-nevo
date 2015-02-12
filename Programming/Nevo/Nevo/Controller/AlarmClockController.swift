@@ -82,6 +82,8 @@ class AlarmClockController: UIViewController, ConnectionControllerDelegate {
             
             alert.show();
             
+        } else {
+            //TODO by Cloud dismiss the popup
         }
         
         
