@@ -54,6 +54,11 @@ protocol NevoBT {
     Note that if you want to register a new profile, you have to delete this Nevo Object and recreate a new one
     */
     func getProfile() -> Profile
+    
+    /**
+    Checks if the Bluetooth is avaikabke and enabled
+    */
+    func isBluetoothEnabled() -> Bool
 
 }
 

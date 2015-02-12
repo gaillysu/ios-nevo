@@ -62,6 +62,11 @@ protocol ConnectionController {
     */
     func getOTAMode() -> Bool
     
+    /**
+    Checks whether the bluetooth is currently enabled
+    */
+    func isBluetoothEnabled() -> Bool
+    
 }
 
 protocol ConnectionControllerDelegate {
