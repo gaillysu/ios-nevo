@@ -24,6 +24,9 @@ class TutorialController: UIViewController, ConnectionControllerDelegate {
         mConnectionController = ConnectionControllerImpl.sharedInstance
         
         mConnectionController?.setDelegate(self)
+        
+        mConnectionController?.connect()
+        
 
     }
     

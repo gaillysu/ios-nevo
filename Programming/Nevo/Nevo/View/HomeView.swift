@@ -10,14 +10,18 @@ import Foundation
 import UIkit
 
 class HomeView: UIView {
-     @IBOutlet var connectButton: UIButton!
     
     //Put all UI operation HomeView inside
     let clockTimerView = ClockView(frame: CGRectMake(0, 0, UIScreen.mainScreen().bounds.width-60, UIScreen.mainScreen().bounds.width-60));//init "ClockView" ,Use the code relative layout
 
     func bulidHomeView() {
 
-        connectButton.setTitle(NSLocalizedString("scanAndConnect", comment:"scanAndConnect button title"), forState: UIControlState.Normal)
+        //add BlurView
+        let blurView:FXBlurView = FXBlurView(frame: CGRectMake(0, 0, self.frame.size.width, self.frame.size.height))
+        blurView.alpha = 0;
+        blurView.dynamic = true
+        blurView.blurRadius = 90
+        self.addSubview(blurView)
 
         clockTimerView.borderColor = UIColor(red: 188/255.0, green: 187/255.0, blue: 185/255, alpha: 1.0);
         clockTimerView.borderWidth = 4.0;

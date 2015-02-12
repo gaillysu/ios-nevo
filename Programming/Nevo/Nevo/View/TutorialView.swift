@@ -46,8 +46,7 @@ class TutorialView: UIView {
 
         //Click into the tutorial page
         //TODO string
-
-        mTutorialButton = UIButton(frame: CGRectMake(0, 0, 160, 48))
+        mTutorialButton = UIButton(frame: CGRectMake(0, 0, 230, 48))
         mTutorialButton.setTitle(NSLocalizedString("Tutorial", comment:"Tutorial button title"), forState: UIControlState.Normal)
         mTutorialButton.setTitleColor(COLOR_00C6DC, forState: UIControlState.Normal)
         mTutorialButton.titleLabel?.font = FONT_RALEWAY_BOLD
@@ -56,7 +55,7 @@ class TutorialView: UIView {
         self.addSubview(mTutorialButton)
 
         //TODO string
-        mBuyButton = UIButton(frame: CGRectMake(0, 0, 160, 48))
+        mBuyButton = UIButton(frame: CGRectMake(0, 0, 230, 48))
         mBuyButton.setTitle(NSLocalizedString("Acheter", comment:"Acheter button title"), forState: UIControlState.Normal)
         mBuyButton.setTitleColor(COLOR_00C6DC, forState: UIControlState.Normal)
         mBuyButton.titleLabel?.font = FONT_RALEWAY_BOLD
@@ -71,16 +70,8 @@ class TutorialView: UIView {
     Display TutorialView page
     */
     func displayTutorialPageView(){
-        
-        let pageFrame = CGRectMake(0, 0, self.frame.width, self.frame.height)
-        
-        //TODO Displays the Page slide
-        //Array represents the display of the page
-        let pagesArray:[UIView] = [TutorialPage1View(frame:pageFrame,delegate:mDelegate),TutorialPage1View(frame:pageFrame,delegate:mDelegate),TutorialScanPageView(frame:pageFrame,delegate:mDelegate)]
-        let pageView:PageView = PageView(frame: CGRectMake(0, 0, 320, 320))
-        pageView.frame = pageFrame
-        pageView.displayPageView(pagesArray)
-        self.addSubview(pageView)
+        let page1Cont = Page1Controller()
+        mDelegate.navigationController?.pushViewController(page1Cont, animated: true)
     }
 
     /*

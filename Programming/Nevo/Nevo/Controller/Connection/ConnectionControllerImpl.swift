@@ -15,7 +15,8 @@ See ConnectionController
 class ConnectionControllerImpl : ConnectionController, NevoBTDelegate {
     var mNevoBT:NevoBT?
     var mDelegate:ConnectionControllerDelegate?
-    var mSavedAddress:NSUUID?
+
+    let SAVED_ADDRESS_KEY = "SAVED_ADDRESS"
     
     /**
     A classic singelton pattern
@@ -48,10 +49,24 @@ class ConnectionControllerImpl : ConnectionController, NevoBTDelegate {
     See ConnectionController protocol
     */
     func connect() {
-        //TODO by Hugo this is just test code
-        //For the test we can try to use scan and conenct or just connect
-        mNevoBT?.scanAndConnect()
-        //mNevoBT?.connectToAddress(NSUUID(UUIDString: "D9E68ED2-3C2D-71A7-93DE-4DF0AC5F374C")!)
+
+        if hasSavedAddress() {
+            
+            NSLog("We have a saved address, let's connect to it directly.")
+            
+            mNevoBT?.connectToAddress(
+                NSUUID(UUIDString:
+                    NSUserDefaults.standardUserDefaults().objectForKey(SAVED_ADDRESS_KEY) as String
+                    )!
+            )
+
+        } else {
+            
+            NSLog("We don't have a saved address, let's scan for nearby devices.")
+
+            mNevoBT?.scanAndConnect()
+        }
+
     }
     
     /**
@@ -70,14 +85,25 @@ class ConnectionControllerImpl : ConnectionController, NevoBTDelegate {
     /**
     See NevoBTDelegate
     */
-    func connectionStateChanged(isConnected : Bool) {
-        //TODO by Hugo smart retry
+    func connectionStateChanged(isConnected : Bool, fromAddress : NSUUID!) {
+
         mDelegate?.connectionStateChanged(isConnected)
         
         if (!isConnected) {
             connect()
         } else {
-            //Send the set time querry
+            //Let's save this address
+            
+            if let address = fromAddress?.UUIDString {
+                
+                let userDefaults = NSUserDefaults.standardUserDefaults();
+                
+                userDefaults.setObject(address,forKey:SAVED_ADDRESS_KEY)
+                
+                userDefaults.synchronize()
+                
+            }
+            
         }
         
     }
@@ -86,14 +112,20 @@ class ConnectionControllerImpl : ConnectionController, NevoBTDelegate {
     See ConnectionController protocol
     */
     func disconnect() {
-        //TODO by Hugo
+        mNevoBT!.disconnect()
     }
     
     /**
     See ConnectionController protocol
     */
     func forgetSavedAddress() {
-        //TODO by Hugo
+
+        let userDefaults = NSUserDefaults.standardUserDefaults();
+
+        userDefaults.setObject("",forKey:SAVED_ADDRESS_KEY)
+        
+        userDefaults.synchronize()
+
     }
     
     /**
@@ -107,7 +139,12 @@ class ConnectionControllerImpl : ConnectionController, NevoBTDelegate {
     See ConnectionController protocol
     */
     func hasSavedAddress() -> Bool {
-        return true
+        
+        if let saved = NSUserDefaults.standardUserDefaults().objectForKey(SAVED_ADDRESS_KEY) as? String {
+            return !saved.isEmpty
+        }
+        
+        return false
     }
     
     /**
@@ -158,6 +195,13 @@ class ConnectionControllerImpl : ConnectionController, NevoBTDelegate {
     func getOTAMode() -> Bool {
         if let profile = mNevoBT?.getProfile() {
             return profile is NevoOTAControllerProfile
+        }
+        return false
+    }
+    
+    func isBluetoothEnabled() -> Bool {
+        if let enabled = mNevoBT?.isBluetoothEnabled() {
+            return enabled
         }
         return false
     }

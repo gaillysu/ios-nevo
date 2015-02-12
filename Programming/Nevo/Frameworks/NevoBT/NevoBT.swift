@@ -54,6 +54,11 @@ protocol NevoBT {
     Note that if you want to register a new profile, you have to delete this Nevo Object and recreate a new one
     */
     func getProfile() -> Profile
+    
+    /**
+    Checks if the Bluetooth is avaikabke and enabled
+    */
+    func isBluetoothEnabled() -> Bool
 
 }
 
@@ -70,7 +75,7 @@ protocol NevoBTDelegate {
     /**
     Called when a peripheral connects or disconnects
     */
-    func connectionStateChanged(isConnected : Bool)
+    func connectionStateChanged(isConnected : Bool, fromAddress : NSUUID!)
     
     /**
     Called when the manager stopped scanning

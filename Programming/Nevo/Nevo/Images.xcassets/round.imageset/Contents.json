@@ -3,16 +3,17 @@
     {
       "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "nevo_alpha320.png"
+      "filename" : "round.png"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "nevo_alpha640.png"
+      "filename" : "round@2x.png"
     },
     {
       "idiom" : "universal",
-      "scale" : "3x"
+      "scale" : "3x",
+      "filename" : "round@3x.png"
     }
   ],
   "info" : {

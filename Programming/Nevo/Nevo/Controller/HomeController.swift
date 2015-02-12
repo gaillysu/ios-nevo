@@ -26,8 +26,16 @@ class HomeController: UIViewController {
 
         let timer:NSTimer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector:"timerAction:", userInfo: nil, repeats: true);
 
-        let tutorialCont = TutorialController()
-        self.presentViewController(tutorialCont, animated: true, completion: nil)
+        if !ConnectionControllerImpl.sharedInstance.hasSavedAddress() {
+            
+            NSLog("No saved device, let's launch the tutorial")
+            
+            self.performSegueWithIdentifier("Home_Tutorial", sender: self)
+            
+        } else {
+            NSLog("We have a saved address, no need to go through the tutorial")
+        }
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -40,14 +48,12 @@ class HomeController: UIViewController {
     }
 
     @IBAction func managerButtonAction(sender: UIButton) {
-
-        //TODO by Hugo remove
-        if sender == homeView.connectButton {
-
+        //TODO remove
+        //if sender == homeView.connectButton {
             NSLog("connectButton");
             
             SyncController(controller: self).sendRawPacket()
            
-        }
+        //}
     }
 }
