@@ -26,7 +26,16 @@ class HomeController: UIViewController {
 
         let timer:NSTimer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector:"timerAction:", userInfo: nil, repeats: true);
 
-        self.performSegueWithIdentifier("Home_Tutorial", sender: self)
+        if !ConnectionControllerImpl.sharedInstance.hasSavedAddress() {
+            
+            NSLog("No saved device, let's launch the tutorial")
+            
+            self.performSegueWithIdentifier("Home_Tutorial", sender: self)
+            
+        } else {
+            NSLog("We have a saved address, no need to go through the tutorial")
+        }
+        
     }
 
     override func didReceiveMemoryWarning() {

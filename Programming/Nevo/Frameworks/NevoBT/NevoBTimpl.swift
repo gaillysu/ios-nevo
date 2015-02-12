@@ -141,7 +141,7 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
     func connectToAddress(peripheralAddress : NSUUID) {
         
         //We can't be sure if the Manager is ready, so let's try
-        if(self.isLECapableHardware()) {
+        if(self.isBluetoothEnabled()) {
             
             
             NSLog("Connecting to : \(peripheralAddress.UUIDString)")
@@ -190,7 +190,7 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
     Invoked whenever the central manager's state is updated.
     */
     func centralManagerDidUpdateState(central : CBCentralManager) {
-        self.isLECapableHardware()
+        self.isBluetoothEnabled()
     }
     
     /**
@@ -241,7 +241,7 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
         //We do so by forgetting them
         mTryingToConnectPeripherals = []
         
-        mDelegate.connectionStateChanged(true)
+        mDelegate.connectionStateChanged(true, fromAddress: aPeripheral.identifier)
         
     }
 
@@ -396,7 +396,7 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
         //Let's forget this device
         setPeripheral(nil)
     
-        mDelegate.connectionStateChanged(false)
+        mDelegate.connectionStateChanged(false, fromAddress: aPeripheral.identifier)
     
     }
     
