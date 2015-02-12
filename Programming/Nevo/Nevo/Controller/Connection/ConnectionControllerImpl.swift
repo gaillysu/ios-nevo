@@ -12,11 +12,29 @@ import Foundation
 See ConnectionController
 🚧🚧🚧Backbone Class : Modify with care🚧🚧🚧
 */
-class ConnectionControllerImpl : ConnectionController, NevoBTDelegate {
+class ConnectionControllerImpl : NSObject, ConnectionController, NevoBTDelegate {
     var mNevoBT:NevoBT?
     var mDelegate:ConnectionControllerDelegate?
 
     let SAVED_ADDRESS_KEY = "SAVED_ADDRESS"
+    
+    /**
+    This procedure explain the scan procedure
+    Every X sec we will check if the peripheral is connected and retry to connect to it
+    X changes depending on how long ago we scaned previously
+    For example, we'll retry afetr 1 sec, then 10s, then 10s, then 10s, then 60s sec, 120s etc..
+    */
+    let SCAN_PROCEDURE:[Double] = [1,10,10,10,60,120,240,3600]
+    
+    /**
+    This status is used to search in SCAN_PROCEDURE to know when is the next time we should scan
+    */
+    var mScanProcedureStatus = 0
+    
+    /**
+    This time handles the retry procedure
+    */
+    var mRetryTimer:NSTimer?
     
     /**
     A classic singelton pattern
@@ -31,7 +49,8 @@ class ConnectionControllerImpl : ConnectionController, NevoBTDelegate {
     /**
     No initialisation outside of this class, this is a singleton
     */
-    private init() {
+    private override init() {
+        super.init()
         
         mNevoBT = NevoBTImpl(externalDelegate: self, acceptableDevice: NevoProfile())
         setOTAMode(false)
@@ -49,11 +68,20 @@ class ConnectionControllerImpl : ConnectionController, NevoBTDelegate {
     See ConnectionController protocol
     */
     func connect() {
+        
+        initRetryTimer()
 
+        //If we're already connected, no need to reconnect
+        if isConnected() {
+            
+            return;
+        }
+        
+        //We're not connected, let's connect
         if hasSavedAddress() {
             
-            NSLog("We have a saved address, let's connect to it directly.")
-            
+            NSLog("We have a saved address, let's connect to it directly : \(NSUserDefaults.standardUserDefaults().objectForKey(SAVED_ADDRESS_KEY))")
+
             mNevoBT?.connectToAddress(
                 NSUUID(UUIDString:
                     NSUserDefaults.standardUserDefaults().objectForKey(SAVED_ADDRESS_KEY) as String
@@ -67,19 +95,6 @@ class ConnectionControllerImpl : ConnectionController, NevoBTDelegate {
             mNevoBT?.scanAndConnect()
         }
 
-    }
-    
-    /**
-    See NevoBTDelegate
-    */
-    func scanStopped() {
-      //TODO by Hugo smart retry service
-        
-        if (!mNevoBT!.isConnected()) {
-            connect()
-        } else {
-            //Send the set time querry
-        }
     }
     
     /**
@@ -113,6 +128,10 @@ class ConnectionControllerImpl : ConnectionController, NevoBTDelegate {
     */
     func disconnect() {
         mNevoBT!.disconnect()
+        
+        mRetryTimer?.invalidate()
+        
+        mRetryTimer = nil
     }
     
     /**
@@ -190,6 +209,54 @@ class ConnectionControllerImpl : ConnectionController, NevoBTDelegate {
             mNevoBT = NevoBTImpl(externalDelegate: self, acceptableDevice: NevoProfile())
         }
 
+    }
+    
+    private func initRetryTimer() {
+        if mRetryTimer != nil {
+            //If we already have initialised it, no need to continue
+            return;
+        }
+        
+        mScanProcedureStatus = 0
+        
+        mRetryTimer = NSTimer.scheduledTimerWithTimeInterval(SCAN_PROCEDURE[mScanProcedureStatus], target: self, selector:Selector("retryTimer"), userInfo: nil, repeats: false)
+        
+    }
+    
+    func retryTimer() {
+        
+        //The retry timer will follow a certain procedure to retry connecting
+        //First, we check if we are currently connected
+        if isConnected() {
+            //We are connected, so we'll run this rety time in 1 sec, to see if it is still the case
+            //This corresponds to the status "0" of the procedure
+            
+            mScanProcedureStatus = 0
+
+        } else {
+            
+            //We are currently not connected. First, let's try to connect
+            connect()
+            
+            //Then, let's reschedule a retry, to do so, let's increase the procedure status
+            mScanProcedureStatus++
+            
+            //The retry status is an index on the SCAN_PROCEDURE, so we can't have it too long (array out of bound etc...)
+            if mScanProcedureStatus >= SCAN_PROCEDURE.count {
+                
+               mScanProcedureStatus = SCAN_PROCEDURE.count - 1
+                
+            }
+            
+            NSLog("Connection lost detected ! Retrying in : \(SCAN_PROCEDURE[mScanProcedureStatus])")
+        }
+        
+        
+        //Ok, let's launch the retry timer
+        mRetryTimer?.invalidate()
+        
+        mRetryTimer = NSTimer.scheduledTimerWithTimeInterval(SCAN_PROCEDURE[mScanProcedureStatus], target: self, selector:Selector("retryTimer"), userInfo: nil, repeats: false)
+        
     }
     
     func getOTAMode() -> Bool {

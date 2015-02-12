@@ -182,8 +182,6 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
         
         NSLog("Scan stopped.")
         
-        mDelegate.scanStopped()
-        
     }
     
     /**
