@@ -62,11 +62,11 @@
             </objects>
             <point key="canvasLocation" x="-2265" y="1275"/>
         </scene>
-        <!--Record-->
+        <!--Step-->
         <scene sceneID="QXP-JR-yAP">
             <objects>
                 <navigationController id="rem-vM-ODh" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Record" image="goalitem" id="ba1-Wn-XQe"/>
+                    <tabBarItem key="tabBarItem" title="Step" image="goalitem" id="ba1-Wn-XQe"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="gdh-sX-Da8">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -110,11 +110,11 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <state key="normal" title="30000">
-                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="controllManager:" destination="iqE-5u-mSW" eventType="touchUpInside" id="JD5-4G-EWC"/>
+                                    <action selector="buttonAction:" destination="esU-rF-t9Y" eventType="touchUpInside" id="cz5-uA-bXd"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kAf-Gx-iId">
@@ -130,7 +130,7 @@
                                 </state>
                                 <state key="selected" title="Moderate" image="rounds"/>
                                 <connections>
-                                    <action selector="controllManager:" destination="iqE-5u-mSW" eventType="touchUpInside" id="lom-6w-pwK"/>
+                                    <action selector="buttonAction:" destination="esU-rF-t9Y" eventType="touchUpInside" id="cR3-wJ-5Zs"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dsh-Mg-AqS">
@@ -147,7 +147,7 @@
                                 </state>
                                 <state key="selected" title="Interive" image="rounds"/>
                                 <connections>
-                                    <action selector="controllManager:" destination="iqE-5u-mSW" eventType="touchUpInside" id="ACK-g2-vfs"/>
+                                    <action selector="buttonAction:" destination="esU-rF-t9Y" eventType="touchUpInside" id="kzU-IM-Z9Y"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QbO-Lj-nW0">
@@ -164,7 +164,7 @@
                                 </state>
                                 <state key="selected" image="rounds"/>
                                 <connections>
-                                    <action selector="controllManager:" destination="iqE-5u-mSW" eventType="touchUpInside" id="D2O-dl-C7l"/>
+                                    <action selector="buttonAction:" destination="esU-rF-t9Y" eventType="touchUpInside" id="Giy-mn-Bfh"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NdC-74-8iE">
@@ -181,7 +181,7 @@
                                 </state>
                                 <state key="selected" title="Custom" image="rounds"/>
                                 <connections>
-                                    <action selector="controllManager:" destination="iqE-5u-mSW" eventType="touchUpInside" id="jUf-Fs-pNW"/>
+                                    <action selector="buttonAction:" destination="esU-rF-t9Y" eventType="touchUpInside" id="JRI-77-Mfi"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -218,49 +218,77 @@
             </objects>
             <point key="canvasLocation" x="-1480" y="2018"/>
         </scene>
-        <!--Root View Controller-->
-        <scene sceneID="Wwk-d3-UIz">
-            <objects>
-                <tableViewController id="aB2-xU-bt7" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="bGP-7F-WCj">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="iW6-wi-2NR">
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="iW6-wi-2NR" id="K41-Ah-hcw">
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="aB2-xU-bt7" id="5hg-Ho-Rts"/>
-                            <outlet property="delegate" destination="aB2-xU-bt7" id="uk8-5r-lpV"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="Gfa-JZ-GCB"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="8fO-D8-Gfv" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-699.375" y="2019.7183098591545"/>
-        </scene>
-        <!--Sleep-->
+        <!--Alarm-->
         <scene sceneID="ct5-Mu-dmL">
             <objects>
                 <navigationController id="Hsa-EN-v8Q" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Sleep" image="lightitem" id="dU5-Ty-hhC"/>
+                    <tabBarItem key="tabBarItem" title="Alarm" image="lightitem" id="dU5-Ty-hhC"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="0g2-Qz-bFf">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="aB2-xU-bt7" kind="relationship" relationship="rootViewController" id="D8D-ct-GWI"/>
+                        <segue destination="o5W-lr-L9o" kind="relationship" relationship="rootViewController" id="5s5-TF-ISQ"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mkp-rg-CxF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-699.375" y="1275"/>
+        </scene>
+        <!--Alarm Clock Controller-->
+        <scene sceneID="aOz-wY-I4v">
+            <objects>
+                <viewController id="o5W-lr-L9o" customClass="alarmClockController" customModule="Nevo" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="aIe-e2-91U"/>
+                        <viewControllerLayoutGuide type="bottom" id="zZF-AZ-p1t"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="pwc-5p-Bqy" customClass="alarmClockView" customModule="Nevo" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qE2-bj-eX9">
+                                <rect key="frame" x="184" y="230" width="150" height="40"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="Bvq-K9-gr3"/>
+                                    <constraint firstAttribute="height" constant="40" id="j6i-hu-Y5p"/>
+                                </constraints>
+                                <state key="normal" title="Button">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="controllEventManager:" destination="pwc-5p-Bqy" eventType="touchUpInside" id="5GT-RT-JpZ"/>
+                                </connections>
+                            </button>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fjs-qS-fa5">
+                                <rect key="frame" x="368" y="234" width="51" height="31"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="31" id="Q88-wd-CuH"/>
+                                    <constraint firstAttribute="width" constant="49" id="cKS-7V-ThW"/>
+                                </constraints>
+                                <connections>
+                                    <action selector="controllEventManager:" destination="pwc-5p-Bqy" eventType="valueChanged" id="mAQ-HP-BbD"/>
+                                </connections>
+                            </switch>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="centerY" secondItem="qE2-bj-eX9" secondAttribute="centerY" constant="50" id="GK5-jA-CuT"/>
+                            <constraint firstAttribute="centerY" secondItem="fjs-qS-fa5" secondAttribute="centerY" constant="50.5" id="fgd-vZ-mBf"/>
+                            <constraint firstAttribute="centerX" secondItem="qE2-bj-eX9" secondAttribute="centerX" constant="41" id="fyT-f8-orB"/>
+                            <constraint firstAttribute="centerX" secondItem="fjs-qS-fa5" secondAttribute="centerX" constant="-92.5" id="gJa-I6-YoP"/>
+                        </constraints>
+                        <connections>
+                            <outlet property="alarmSwitch" destination="fjs-qS-fa5" id="qyK-Rn-3D8"/>
+                            <outlet property="selectedTimerButton" destination="qE2-bj-eX9" id="kh0-sm-CdR"/>
+                        </connections>
+                    </view>
+                    <navigationItem key="navigationItem" id="h9a-N5-63D"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="s88-HX-jRc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-700" y="2018"/>
         </scene>
         <!--Home Controller-->
         <scene sceneID="ufC-wZ-h7g">
