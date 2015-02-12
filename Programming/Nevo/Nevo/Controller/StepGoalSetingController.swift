@@ -8,7 +8,7 @@
 
 import UIKit
 
-class StepGoalSetingController: UIViewController {
+class StepGoalSetingController: UIViewController, ConnectionControllerDelegate {
 
     @IBOutlet var stepGoalView: StepGoalSetingView!
 
@@ -16,6 +16,10 @@ class StepGoalSetingController: UIViewController {
         super.viewDidLoad()
 
         stepGoalView.bulidStepGoalView(self)
+        
+        ConnectionControllerImpl.sharedInstance.setDelegate(self)
+        
+        checkConnection()
 
     }
 
@@ -62,14 +66,63 @@ class StepGoalSetingController: UIViewController {
     }
 
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
+    /**
+    
+    See ConnectionControllerDelegate
+    
     */
+    
+    func packetReceived(RawPacket) {
+        
+        //Do nothing
+        
+    }
+    
+    
+    
+    /**
+    
+    See ConnectionControllerDelegate
+    
+    */
+    
+    func connectionStateChanged(isConnected : Bool) {
+        
+        //Maybe we just got disconnected, let's check
+        
+        checkConnection()
+        
+    }
+    
+    
+    
+    /**
+    
+    Checks if any device is currently connected
+    
+    */
+    
+    func checkConnection() {
+        
+        
+        
+        if !ConnectionControllerImpl.sharedInstance.isConnected() {
+            
+            //We are currently not connected
+            
+            
+            
+            //TODO by Cloud Display the not connected screen instead of this popup
+            
+            var alert:UIAlertView = UIAlertView(title:"Alert", message:"This is an example alert!", delegate:self, cancelButtonTitle:"Hide")
+            
+            
+            
+            alert.show();
+            
+        }
+        
+        
+    }
 
 }
