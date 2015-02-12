@@ -13,7 +13,7 @@
 		005BC9541A888873006F9E86 /* nevologo.png in Resources */ = {isa = PBXBuildFile; fileRef = 005BC9531A888873006F9E86 /* nevologo.png */; };
 		005BC9561A889F14006F9E86 /* NevoPicture.png in Resources */ = {isa = PBXBuildFile; fileRef = 005BC9551A889F14006F9E86 /* NevoPicture.png */; };
 		005BC95F1A88B79F006F9E86 /* FXBlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = 005BC95E1A88B79F006F9E86 /* FXBlurView.m */; };
-		005FE7791A8C974B00961239 /* alarmClockController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005FE7781A8C974A00961239 /* alarmClockController.swift */; };
+		005FE7791A8C974B00961239 /* AlarmClockController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005FE7781A8C974A00961239 /* AlarmClockController.swift */; };
 		005FE77B1A8C979800961239 /* alarmClockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005FE77A1A8C979800961239 /* alarmClockView.swift */; };
 		007DD4BB1A89DDC000CE7264 /* Page1Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007DD4BA1A89DDC000CE7264 /* Page1Controller.swift */; };
 		007DD4BD1A89DF2A00CE7264 /* Page2Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007DD4BC1A89DF2A00CE7264 /* Page2Controller.swift */; };
@@ -106,7 +106,7 @@
 		005BC9551A889F14006F9E86 /* NevoPicture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NevoPicture.png; sourceTree = "<group>"; };
 		005BC95D1A88B79F006F9E86 /* FXBlurView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FXBlurView.h; sourceTree = "<group>"; };
 		005BC95E1A88B79F006F9E86 /* FXBlurView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FXBlurView.m; sourceTree = "<group>"; };
-		005FE7781A8C974A00961239 /* alarmClockController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = alarmClockController.swift; path = Controller/alarmClockController.swift; sourceTree = "<group>"; };
+		005FE7781A8C974A00961239 /* AlarmClockController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AlarmClockController.swift; path = Controller/AlarmClockController.swift; sourceTree = "<group>"; };
 		005FE77A1A8C979800961239 /* alarmClockView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = alarmClockView.swift; path = View/alarmClockView.swift; sourceTree = "<group>"; };
 		007DD4BA1A89DDC000CE7264 /* Page1Controller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Page1Controller.swift; sourceTree = "<group>"; };
 		007DD4BC1A89DF2A00CE7264 /* Page2Controller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Page2Controller.swift; sourceTree = "<group>"; };
@@ -419,7 +419,7 @@
 				005350B91A8B4BC600BF289D /* StepGoalSetingController.swift */,
 				07C18C091A80DF4900D0BF4A /* NevoOtaController.swift */,
 				07C18C0D1A81AB3900D0BF4A /* NevoOtaViewController.swift */,
-				005FE7781A8C974A00961239 /* alarmClockController.swift */,
+				005FE7781A8C974A00961239 /* AlarmClockController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -657,7 +657,7 @@
 				9AD8F99E1A6E3E0100F01014 /* SyncController.swift in Sources */,
 				07BE0CF21A84A2F8000C4AC7 /* IntelHex2BinConverter.m in Sources */,
 				9AD8F96E1A6E03F600F01014 /* HomeView.swift in Sources */,
-				005FE7791A8C974B00961239 /* alarmClockController.swift in Sources */,
+				005FE7791A8C974B00961239 /* AlarmClockController.swift in Sources */,
 				005BC95F1A88B79F006F9E86 /* FXBlurView.m in Sources */,
 				9AD8F9A01A6E47B400F01014 /* SetGoalRequest.swift in Sources */,
 				005FE77B1A8C979800961239 /* alarmClockView.swift in Sources */,

@@ -238,7 +238,7 @@
         <!--Alarm Clock Controller-->
         <scene sceneID="aOz-wY-I4v">
             <objects>
-                <viewController id="o5W-lr-L9o" customClass="alarmClockController" customModule="Nevo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="o5W-lr-L9o" customClass="AlarmClockController" customModule="Nevo" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="aIe-e2-91U"/>
                         <viewControllerLayoutGuide type="bottom" id="zZF-AZ-p1t"/>
