@@ -8,3 +8,17 @@
 "Acheter"="I want a nevo!";
 "Tutorial"="Activate my nevo";
 "scanAndConnect"="scanAndConnect";
+"BluetoothEnabled"="Bluetooth enabled";
+"EnableBluetoothPhone"="Enable Bluetooth on your phone";
+"BluetoothIcon"="Swipe up to open the control center and tap on the Bluetooth icon";
+"WatchBluetooth"="Enable Bluetooth on your watch";
+"LongPushOn"="Long push on the third button of your nevo";
+"PlacePhoneSearch"="Place your nevo near the phone and tap Search";
+"ConnectButton"="Connect nevo to phone";
+"PlaceConnect"="Place your nevo near the phone and tap Connect";
+"step"="Step";
+"goalButton"="30000";
+"Modarate"="Modarate";
+"Intensive"="Intensive";
+"Sportive"="Sportive";
+"Custom"="Custom";

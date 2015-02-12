@@ -39,14 +39,18 @@ class Page3Controller: UIViewController,ButtonActionCallBack,ConnectionControlle
                 ConnectionControllerImpl.sharedInstance.setDelegate( self)
             }
         } else {
-
-
+            //Finish Button Action
+            self.dismissViewControllerAnimated(true, completion: nil);
         }
 
     }
 
     func connectionStateChanged(isConnected : Bool){
 
+        if isConnected {
+            //connect Success clear
+            pagesView.connectSuccessClean()
+        }
     }
 
     func packetReceived(RawPacket) {

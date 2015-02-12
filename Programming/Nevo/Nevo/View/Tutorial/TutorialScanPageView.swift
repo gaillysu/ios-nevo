@@ -20,6 +20,7 @@ class TutorialScanPageView : UIView {
     var connectButton:UIButton!
     var errorLabel:UILabel!
     var finishButton:UIButton!
+    var optionIndices:NSMutableIndexSet = NSMutableIndexSet(index: 1)
 
     init(frame: CGRect, delegate:UIViewController) {
         super.init(frame: frame)
@@ -89,6 +90,70 @@ class TutorialScanPageView : UIView {
 
     }
 
+    /*
+    - (void)didTapItemAtIndex:(NSUInteger)index {
+    BOOL didEnable = ! [self.selectedIndices containsIndex:index];
+
+    if (self.borderColors) {
+    UIColor *stroke = self.borderColors[index];
+    UIView *view = self.itemViews[index];
+
+    if (didEnable) {
+    view.layer.borderColor = stroke.CGColor;
+
+    CABasicAnimation *borderAnimation = [CABasicAnimation animationWithKeyPath:@"borderColor"];
+    borderAnimation.fromValue = (id)[UIColor clearColor].CGColor;
+    borderAnimation.toValue = (id)stroke.CGColor;
+    borderAnimation.duration = 0.5f;
+    [view.layer addAnimation:borderAnimation forKey:nil];
+
+    [self.selectedIndices addIndex:index];
+    }else {
+    view.layer.borderColor = [UIColor clearColor].CGColor;
+    [self.selectedIndices removeIndex:index];
+    }
+
+    CGRect pathFrame = CGRectMake(-CGRectGetMidX(view.bounds), -CGRectGetMidY(view.bounds), view.bounds.size.width, view.bounds.size.height);
+    UIBezierPath *path = [UIBezierPath bezierPathWithRoundedRect:pathFrame cornerRadius:view.layer.cornerRadius];
+
+    // accounts for left/right offset and contentOffset of scroll view
+    CGPoint shapePosition = [self.view convertPoint:view.center fromView:self.contentView];
+
+    CAShapeLayer *circleShape = [CAShapeLayer layer];
+    circleShape.path = path.CGPath;
+    circleShape.position = shapePosition;
+    circleShape.fillColor = [UIColor clearColor].CGColor;
+    circleShape.opacity = 0;
+    circleShape.strokeColor = stroke.CGColor;
+    circleShape.lineWidth = self.borderWidth;
+
+    [self.view.layer addSublayer:circleShape];
+
+    CABasicAnimation *scaleAnimation = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
+    scaleAnimation.fromValue = [NSValue valueWithCATransform3D:CATransform3DIdentity];
+    scaleAnimation.toValue = [NSValue valueWithCATransform3D:CATransform3DMakeScale(2.5, 2.5, 1)];
+
+    CABasicAnimation *alphaAnimation = [CABasicAnimation animationWithKeyPath:@"opacity"];
+    alphaAnimation.fromValue = @1;
+    alphaAnimation.toValue = @0;
+
+    CAAnimationGroup *animation = [CAAnimationGroup animation];
+    animation.animations = @[scaleAnimation, alphaAnimation];
+    animation.duration = 0.5f;
+    animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut];
+    [circleShape addAnimation:animation forKey:nil];
+    }
+    */
+    func buttonAnimation(sender:UIButton) {
+        let didEnable:Bool = !optionIndices.containsIndex(0)
+        let stroke:UIColor = UIColor.blackColor();
+        var view:UIView = sender as UIView;
+        if (didEnable) {
+
+        }else{
+
+        }
+    }
     /*
     Connect the Success to empty some pictures don't need the button and the label text
     */
