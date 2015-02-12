@@ -9,11 +9,11 @@
 import UIKit
 
 /*
-StepGoalSetingView class all button events to follow this protocol
+alarmClockView class all button events to follow this protocol
 */
-protocol onActionCallBack {
+protocol alarmButtonActionCallBack {
 
-    func controllManager(sender:UIButton)
+    func controllManager(sender:AnyObject)
     
 }
 
@@ -34,10 +34,12 @@ class alarmClockView: UIView {
         if let callBackDelgate = delegate as? alarmClockController {
             mDelegate = callBackDelgate
         }
+        
     }
 
     @IBAction func controllEventManager(sender: AnyObject) {
-        
+        //CallBack StepGoalSetingController
+        mDelegate?.controllManager(sender)
     }
 
     /*
@@ -53,6 +55,7 @@ class alarmClockView: UIView {
         //Create a DatePicker
         datePicker = UIDatePicker(frame: CGRectMake(0, PickerbgView.frame.size.height-160-50, self.frame.size.width, 160))
         datePicker.backgroundColor = PICKER_BG_COLOR
+        datePicker.addTarget(self, action: Selector("controllEventManager:"), forControlEvents: UIControlEvents.ValueChanged)
         PickerbgView.addSubview(datePicker)
 
         let buttonBgView:UIView = UIView(frame: CGRectMake(0, datePicker.frame.origin.y-40, datePicker.frame.size.width, 40))

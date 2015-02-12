@@ -8,20 +8,48 @@
 
 import UIKit
 
-class alarmClockController: UIViewController {
+class alarmClockController: UIViewController,alarmButtonActionCallBack {
+
+    @IBOutlet var alarmView: alarmClockView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        alarmView.bulidAlarmView(self)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
 
+    func stringFromDate(date:NSDate) -> String {
+        var dateFormatter:NSDateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "HH:mm:ss"
+        let dateString:String = dateFormatter.stringFromDate(date)
+        return dateString
+    }
+    /*
+    call back Button Action
+    */
+    func controllManager(sender:AnyObject){
+
+
+        if sender.isEqual(alarmView.selectedTimerButton){
+            alarmView.initPickerView()
+            NSLog("alarmView.selectedTimerButton")
+        }
+
+        if sender.isEqual(alarmView.alarmSwitch){
+            NSLog("alarmView.alarmSwitch")
+        }
+
+        if sender.isEqual(alarmView.datePicker) {
+            let dateButtonTitle = stringFromDate(alarmView.datePicker.date)
+            alarmView.selectedTimerButton.setTitle(dateButtonTitle as String, forState: UIControlState.Normal)
+
+            NSLog("datePicker:%@",dateButtonTitle)
+        }
+    }
     /*
     // MARK: - Navigation
 

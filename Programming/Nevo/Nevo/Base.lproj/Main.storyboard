@@ -254,7 +254,8 @@
                                     <constraint firstAttribute="width" constant="150" id="Bvq-K9-gr3"/>
                                     <constraint firstAttribute="height" constant="40" id="j6i-hu-Y5p"/>
                                 </constraints>
-                                <state key="normal" title="Button">
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <state key="normal" title="8:30">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -285,6 +286,9 @@
                         </connections>
                     </view>
                     <navigationItem key="navigationItem" id="h9a-N5-63D"/>
+                    <connections>
+                        <outlet property="alarmView" destination="pwc-5p-Bqy" id="1w5-k7-BeR"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="s88-HX-jRc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -77,7 +77,7 @@ class StepGoalSetingView: UIView,UIPickerViewDelegate,UIPickerViewDataSource {
     */
     @IBAction func buttonAction(sender: AnyObject) {
         //CallBack StepGoalSetingController
-        mDelegate.controllManager(sender as UIButton)
+        mDelegate?.controllManager(sender as UIButton)
     }
 
     // MARK: - PickerView
