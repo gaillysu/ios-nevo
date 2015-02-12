@@ -83,7 +83,7 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
     func scanAndConnect() {
         
         //We can't be sure if the Manager is ready, so let's try
-        if(self.isLECapableHardware()) {
+        if(self.isBluetoothEnabled()) {
             
             var services:[AnyObject] = [mProfile.CONTROL_SERVICE]
             
@@ -417,7 +417,7 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
     /**
     Uses CBCentralManager to check whether the current platform/hardware supports Bluetooth LE. An alert is raised if Bluetooth LE is not enabled or is not supported.
     */
-    private func isLECapableHardware() -> Bool {
+    func isBluetoothEnabled() -> Bool {
         if(mManager == nil) {
             return false
         }

@@ -162,4 +162,11 @@ class ConnectionControllerImpl : ConnectionController, NevoBTDelegate {
         return false
     }
     
+    func isBluetoothEnabled() -> Bool {
+        if let enabled = mNevoBT?.isBluetoothEnabled() {
+            return enabled
+        }
+        return false
+    }
+    
 }
