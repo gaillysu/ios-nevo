@@ -17,6 +17,10 @@ class TutorialScanPageView : UIView {
     let TEXT_FONT:UIFont = UIFont(name:"Raleway-Light", size: 23)!
     let BUTTON_FONT:UIFont = UIFont(name:"Raleway-Light", size: 25)!
 
+    var connectButton:UIButton!
+    var errorLabel:UILabel!
+    var finishButton:UIButton!
+
     init(frame: CGRect, delegate:UIViewController) {
         super.init(frame: frame)
         super.backgroundColor = BACKGROUND_COLOR
@@ -54,7 +58,7 @@ class TutorialScanPageView : UIView {
         self.addSubview(titleLabel)
 
 
-        let connectButton:UIButton = UIButton(frame: CGRectMake(0, 0, 150, 150))
+        connectButton = UIButton(frame: CGRectMake(0, 0, 150, 150))
         connectButton.setBackgroundImage(UIImage(named:"connect"), forState: UIControlState.Normal)
         connectButton.setTitle( NSLocalizedString("Connect",comment:"lable string"), forState: UIControlState.Normal)
         connectButton.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
@@ -65,29 +69,42 @@ class TutorialScanPageView : UIView {
         self.addSubview(connectButton)
 
 
-        let nextButton:UIButton = UIButton.buttonWithType(UIButtonType.System) as UIButton
-        nextButton.frame = CGRectMake(0, 0, 120, 50)
-        nextButton.setTitle(NSLocalizedString(NSLocalizedString("Finish",comment:"lable string"),comment:"button title string"), forState: UIControlState.Normal)
-        nextButton.titleLabel?.font = BUTTON_FONT
-        nextButton.center = CGPointMake(self.frame.size.width/2.0, self.frame.size.height-90)
-        //nextButton.hidden = true
-        nextButton.addTarget(self, action: "ButtonAction:", forControlEvents: UIControlEvents.TouchUpInside)
-        self.addSubview(nextButton)
+        finishButton = UIButton.buttonWithType(UIButtonType.System) as UIButton
+        finishButton.frame = CGRectMake(0, 0, 120, 50)
+    finishButton.setTitle(NSLocalizedString(NSLocalizedString("Finish",comment:"lable string"),comment:"button title string"), forState: UIControlState.Normal)
+        finishButton.titleLabel?.font = BUTTON_FONT
+        finishButton.center = CGPointMake(self.frame.size.width/2.0, self.frame.size.height-90)
+        finishButton.hidden = true
+        finishButton.addTarget(self, action: "ButtonAction:", forControlEvents: UIControlEvents.TouchUpInside)
+        self.addSubview(finishButton)
 
-        let errorLabel:UILabel = UILabel(frame: CGRectMake(0, 0, titleLabel.frame.size.width, 80))
+        errorLabel = UILabel(frame: CGRectMake(0, 0, titleLabel.frame.size.width, 80))
         errorLabel.center = CGPointMake(self.frame.size.width/2.0, self.frame.size.height-100)
         errorLabel.textAlignment = NSTextAlignment.Center
         errorLabel.numberOfLines = 0
         errorLabel.lineBreakMode = NSLineBreakMode.ByWordWrapping
         errorLabel.font = TEXT_FONT
         errorLabel.text = NSLocalizedString("PlaceConnect",comment:"lable string")
-        errorLabel.hidden = true
         self.addSubview(errorLabel)
 
     }
-    
+
+    /*
+    Connect the Success to empty some pictures don't need the button and the label text
+    */
+    func connectSuccessClean() {
+        connectButton.setTitle(" ", forState: UIControlState.Normal)
+        connectButton.setBackgroundImage(UIImage(named:"success"), forState: UIControlState.Normal)
+        finishButton.hidden = false
+        errorLabel.hidden = true
+    }
+    /*
+    Button Event handling all returns in the controller
+    */
     func ButtonAction(sender:UIButton){
+
         mDelegate?.nextButtonAction(sender)
+        
     }
     
 }

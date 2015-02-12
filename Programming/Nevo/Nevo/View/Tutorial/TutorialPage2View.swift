@@ -58,16 +58,6 @@ class TutorialPage2View: UIView {
         titleLabel.text = NSLocalizedString("WatchBluetooth",comment:"lable string")
         self.addSubview(titleLabel)
 
-        let guide2LabelFrameWidth:CGFloat = self.frame.size.width - sideImage.frame.size.width
-        let guide1Label:UILabel = UILabel(frame: CGRectMake(sideImage.frame.size.width, sideImage.frame.origin.y+50, guide2LabelFrameWidth, 100))
-        guide1Label.textAlignment = NSTextAlignment.Center
-        guide1Label.numberOfLines = 0
-        guide1Label.lineBreakMode = NSLineBreakMode.ByWordWrapping
-        guide1Label.backgroundColor = UIColor.clearColor()
-        guide1Label.font = TEXT_FONT
-        guide1Label.text = NSLocalizedString("PlacePhoneSearch",comment:"lable string")
-        self.addSubview(guide1Label)
-
         let guide2Label:UILabel = UILabel(frame: CGRectMake(titleLabel.frame.origin.x, sideImage.frame.origin.y+sideImage.frame.size.height-40, titleLabel.frame.size.width, 80))
         guide2Label.textAlignment = NSTextAlignment.Center
         guide2Label.numberOfLines = 0

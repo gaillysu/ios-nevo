@@ -87,7 +87,7 @@ class TutorialPage1View : UIView {
         upwardimage.backgroundColor = UIColor.clearColor()
         self.addSubview(upwardimage)
 
-        if 0==0  {
+        if ConnectionControllerImpl.sharedInstance.isBluetoothEnabled()  {
             statesImage.image = UIImage(named:"Bluetoothon")
             titleLabel.text = NSLocalizedString("BluetoothEnabled",comment:"lable string")
             titleLabel.textAlignment = NSTextAlignment.Center

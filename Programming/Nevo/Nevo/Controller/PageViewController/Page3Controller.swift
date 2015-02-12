@@ -8,13 +8,15 @@
 
 import UIKit
 
-class Page3Controller: UIViewController,ButtonActionCallBack {
+class Page3Controller: UIViewController,ButtonActionCallBack,ConnectionControllerDelegate {
+
+    var pagesView:TutorialScanPageView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let pagesArray:UIView = TutorialScanPageView(frame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height),delegate:self)
-        self.view .addSubview(pagesArray)
+        pagesView = TutorialScanPageView(frame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height),delegate:self)
+        self.view .addSubview(pagesView)
     }
 
     override func didReceiveMemoryWarning() {
@@ -27,7 +29,27 @@ class Page3Controller: UIViewController,ButtonActionCallBack {
     */
     func nextButtonAction(sender:UIButton){
 
-        NSLog("Page3 CallBack Success")
-        self.dismissViewControllerAnimated(true, completion: nil)
+        if sender.isEqual(pagesView.connectButton) {
+
+            let isConnectedBool:Bool = ConnectionControllerImpl.sharedInstance.isConnected()
+            if(isConnectedBool) {
+                self.dismissViewControllerAnimated(true, completion: nil)
+            } else {
+                ConnectionControllerImpl.sharedInstance.connect()
+                ConnectionControllerImpl.sharedInstance.setDelegate( self)
+            }
+        } else {
+
+
+        }
+
+    }
+
+    func connectionStateChanged(isConnected : Bool){
+
+    }
+
+    func packetReceived(RawPacket) {
+
     }
 }
