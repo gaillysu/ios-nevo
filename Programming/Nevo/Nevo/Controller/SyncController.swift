@@ -31,9 +31,36 @@ class SyncController: ConnectionControllerDelegate {
         mConnectionController?.connect()
     }
     
+    //add new functions when  get connected Nevo
+    private func setRTC() {
+        mConnectionController?.sendRequest(SetRTCRequest())
+    }
+    
+    private func SetProfile() {
+        mConnectionController?.sendRequest(SetProfileRequest())
+    }
+    private func SetCardio() {
+        mConnectionController?.sendRequest(SetCardioRequest())
+    }
+    
+    private func WriteSetting() {
+        mConnectionController?.sendRequest(WriteSettingRequest())
+    }
+    //end functions for connected to Nevo
+    
+    //below functions by UI
     func setGoal(goal:Goal) {
         mConnectionController?.sendRequest(SetGoalRequest(goal: goal))
     }
+    
+    func setAlarm() {
+        mConnectionController?.sendRequest(SetAlarmRequest())
+    }
+
+    func SetNortification() {
+        mConnectionController?.sendRequest(SetNortificationRequest())
+    }
+    //end functions by UI
     
     func packetReceived(packet:RawPacket) {
         var alert = UIAlertController(title: "Received", message: "Message : "+hexString(packet.getRawData()), preferredStyle: UIAlertControllerStyle.Alert)
@@ -42,6 +69,14 @@ class SyncController: ConnectionControllerDelegate {
     }
     
     func connectionStateChanged(isConnected : Bool) {
+        
+        if isConnected
+        {
+            setRTC()
+            SetProfile()
+            WriteSetting()
+            SetCardio()
+        }
         
     }
     

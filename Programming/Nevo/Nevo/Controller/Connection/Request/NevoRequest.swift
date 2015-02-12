@@ -12,13 +12,16 @@ import Foundation
 All requests that should be sent to nevo have to extend this class
 🚧🚧🚧Backbone Class : Modify with care🚧🚧🚧
 */
-class NevoRequest : Request {
+class NevoRequest : RequestEx {
     func getTargetProfile() -> Profile {
         return NevoProfile()
     }
     
     func getRawData() -> NSData {
         return NSData()
+    }
+    func getRawDataEx() -> NSArray {
+        return NSArray()
     }
     
 }

@@ -38,6 +38,12 @@
 		07BE0CF21A84A2F8000C4AC7 /* IntelHex2BinConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = 07BE0CF11A84A2F8000C4AC7 /* IntelHex2BinConverter.m */; };
 		07C18C0A1A80DF4900D0BF4A /* NevoOtaController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C18C091A80DF4900D0BF4A /* NevoOtaController.swift */; };
 		07C18C0E1A81AB3900D0BF4A /* NevoOtaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C18C0D1A81AB3900D0BF4A /* NevoOtaViewController.swift */; };
+		07C59F241A8C5A0A00D65C84 /* SetNortificationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C59F231A8C5A0A00D65C84 /* SetNortificationRequest.swift */; };
+		07C59F281A8C618A00D65C84 /* WriteSettingRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C59F271A8C618A00D65C84 /* WriteSettingRequest.swift */; };
+		07C59F2A1A8C61E900D65C84 /* SetCardioRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C59F291A8C61E900D65C84 /* SetCardioRequest.swift */; };
+		07C59F2E1A8C622300D65C84 /* SetProfileRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C59F2D1A8C622300D65C84 /* SetProfileRequest.swift */; };
+		07C59F301A8C625800D65C84 /* SetAlarmRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C59F2F1A8C625800D65C84 /* SetAlarmRequest.swift */; };
+		07C59F321A8C6A6000D65C84 /* SetRTCRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C59F311A8C6A6000D65C84 /* SetRTCRequest.swift */; };
 		07CC4A261A81F26C008DA749 /* imaze_BLE_R2.hex in Resources */ = {isa = PBXBuildFile; fileRef = 07CC4A241A81F26C008DA749 /* imaze_BLE_R2.hex */; };
 		07CC4A271A81F26C008DA749 /* iMaze_v3.bin in Resources */ = {isa = PBXBuildFile; fileRef = 07CC4A251A81F26C008DA749 /* iMaze_v3.bin */; };
 		07CC4A291A820A9B008DA749 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07CC4A281A820A9B008DA749 /* Utility.swift */; };
@@ -124,6 +130,12 @@
 		07BE0CF11A84A2F8000C4AC7 /* IntelHex2BinConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntelHex2BinConverter.m; sourceTree = "<group>"; };
 		07C18C091A80DF4900D0BF4A /* NevoOtaController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NevoOtaController.swift; path = Controller/NevoOtaController.swift; sourceTree = "<group>"; };
 		07C18C0D1A81AB3900D0BF4A /* NevoOtaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NevoOtaViewController.swift; path = Controller/NevoOtaViewController.swift; sourceTree = "<group>"; };
+		07C59F231A8C5A0A00D65C84 /* SetNortificationRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SetNortificationRequest.swift; path = Controller/Connection/Request/SetNortificationRequest.swift; sourceTree = "<group>"; };
+		07C59F271A8C618A00D65C84 /* WriteSettingRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WriteSettingRequest.swift; path = Controller/Connection/Request/WriteSettingRequest.swift; sourceTree = "<group>"; };
+		07C59F291A8C61E900D65C84 /* SetCardioRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SetCardioRequest.swift; path = Controller/Connection/Request/SetCardioRequest.swift; sourceTree = "<group>"; };
+		07C59F2D1A8C622300D65C84 /* SetProfileRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SetProfileRequest.swift; path = Controller/Connection/Request/SetProfileRequest.swift; sourceTree = "<group>"; };
+		07C59F2F1A8C625800D65C84 /* SetAlarmRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SetAlarmRequest.swift; path = Controller/Connection/Request/SetAlarmRequest.swift; sourceTree = "<group>"; };
+		07C59F311A8C6A6000D65C84 /* SetRTCRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SetRTCRequest.swift; path = Controller/Connection/Request/SetRTCRequest.swift; sourceTree = "<group>"; };
 		07CC4A241A81F26C008DA749 /* imaze_BLE_R2.hex */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = imaze_BLE_R2.hex; sourceTree = "<group>"; };
 		07CC4A251A81F26C008DA749 /* iMaze_v3.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = iMaze_v3.bin; sourceTree = "<group>"; };
 		07CC4A281A820A9B008DA749 /* Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Utility.swift; path = OTA/Utility.swift; sourceTree = "<group>"; };
@@ -431,6 +443,12 @@
 			children = (
 				9AD8F99B1A6E3D6A00F01014 /* NevoRequest.swift */,
 				9AD8F99F1A6E47B400F01014 /* SetGoalRequest.swift */,
+				07C59F231A8C5A0A00D65C84 /* SetNortificationRequest.swift */,
+				07C59F271A8C618A00D65C84 /* WriteSettingRequest.swift */,
+				07C59F291A8C61E900D65C84 /* SetCardioRequest.swift */,
+				07C59F2D1A8C622300D65C84 /* SetProfileRequest.swift */,
+				07C59F2F1A8C625800D65C84 /* SetAlarmRequest.swift */,
+				07C59F311A8C6A6000D65C84 /* SetRTCRequest.swift */,
 			);
 			name = Request;
 			sourceTree = "<group>";
@@ -570,6 +588,7 @@
 				9AD8F9731A6E047900F01014 /* Goal.swift in Sources */,
 				9AD8F9651A6E011E00F01014 /* AppDelegate.swift in Sources */,
 				9A3E57321A80F08400DFFAE1 /* NevoOTAModeProfile.swift in Sources */,
+				07C59F2A1A8C61E900D65C84 /* SetCardioRequest.swift in Sources */,
 				9A9BD1C11A88849700A95ACA /* TutorialPage1View.swift in Sources */,
 				007F796E1A878C6C006C89E6 /* TutorialView.swift in Sources */,
 				9A9BD1C81A88C0A400A95ACA /* TutorialScanPageView.swift in Sources */,
@@ -577,17 +596,21 @@
 				9AD8F9621A6E00E800F01014 /* NevoBTimpl.swift in Sources */,
 				07CC4A2F1A821B46008DA749 /* NevoOTARequest.swift in Sources */,
 				9AD8F9791A6E05F700F01014 /* NevoBT.swift in Sources */,
+				07C59F321A8C6A6000D65C84 /* SetRTCRequest.swift in Sources */,
 				007F79721A878C8B006C89E6 /* TutorialController.swift in Sources */,
 				9AD8F9751A6E049500F01014 /* NumberOfStepsGoal.swift in Sources */,
 				9AD8F99E1A6E3E0100F01014 /* SyncController.swift in Sources */,
 				07BE0CF21A84A2F8000C4AC7 /* IntelHex2BinConverter.m in Sources */,
 				9AD8F96E1A6E03F600F01014 /* HomeView.swift in Sources */,
 				9AD8F9A01A6E47B400F01014 /* SetGoalRequest.swift in Sources */,
+				07C59F281A8C618A00D65C84 /* WriteSettingRequest.swift in Sources */,
 				007F796D1A878C6C006C89E6 /* PageView.swift in Sources */,
 				9A3E57261A80E56E00DFFAE1 /* NevoPacket.swift in Sources */,
 				9AD8F98F1A6E2EE000F01014 /* Profile.swift in Sources */,
 				9AD8F9701A6E041D00F01014 /* ClockView.swift in Sources */,
+				07C59F241A8C5A0A00D65C84 /* SetNortificationRequest.swift in Sources */,
 				9A3E57311A80F08400DFFAE1 /* NevoOTAControllerProfile.swift in Sources */,
+				07C59F2E1A8C622300D65C84 /* SetProfileRequest.swift in Sources */,
 				9AD8F99C1A6E3D6A00F01014 /* NevoRequest.swift in Sources */,
 				9A3E57251A80E56E00DFFAE1 /* NevoProfile.swift in Sources */,
 				9A3E57231A80E56E00DFFAE1 /* ConnectionController.swift in Sources */,
@@ -597,6 +620,7 @@
 				9A3E57331A80F08400DFFAE1 /* NevoOTAPacketProfile.swift in Sources */,
 				9A3E57241A80E56E00DFFAE1 /* ConnectionControllerImpl.swift in Sources */,
 				9AD8F96C1A6E03BC00F01014 /* HomeController.swift in Sources */,
+				07C59F301A8C625800D65C84 /* SetAlarmRequest.swift in Sources */,
 				07C18C0E1A81AB3900D0BF4A /* NevoOtaViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
