@@ -11,14 +11,17 @@ import UIKit
 
 class Page1Controller: UIViewController,ButtonActionCallBack {
 
+    var mBluetoothTutorialView:TutorialPage1View?
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         //TODO Displays the Page slide
         //Array represents the display of the page
-        let pagesArray:UIView = TutorialPage1View(frame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height),delegate:self)
-        self.view .addSubview(pagesArray)
+        mBluetoothTutorialView = TutorialPage1View(frame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height),delegate:self,bluetoothHint:ConnectionControllerImpl.sharedInstance.isBluetoothEnabled())
+        self.view .addSubview(mBluetoothTutorialView!)
+        
+        NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector:Selector("checkBluetoothEnabled"), userInfo: nil, repeats: true)
     }
 
     override func didReceiveMemoryWarning() {
@@ -46,5 +49,21 @@ class Page1Controller: UIViewController,ButtonActionCallBack {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    func checkBluetoothEnabled() {
+        
+        let btEnabled = ConnectionControllerImpl.sharedInstance.isBluetoothEnabled()
+        
+        if( mBluetoothTutorialView?.getBluetoothHint() != btEnabled ) {
+            NSLog("BT status changed, changin UI. New status : \(btEnabled)")
+            
+            mBluetoothTutorialView?.removeFromSuperview()
+            
+            mBluetoothTutorialView = TutorialPage1View(frame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height),delegate:self,bluetoothHint:ConnectionControllerImpl.sharedInstance.isBluetoothEnabled())
+            self.view .addSubview(mBluetoothTutorialView!)
+            
+        }
+        
+    }
 
 }
