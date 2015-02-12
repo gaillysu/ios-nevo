@@ -32,6 +32,9 @@ class Page1Controller: UIViewController,ButtonActionCallBack {
     func nextButtonAction(sender:UIButton){
 
         NSLog("CallBack Success")
+        let page2controller = Page2Controller()
+        page2controller.navigationController?.navigationBarHidden = true
+        self.navigationController?.pushViewController(page2controller, animated: true)
     }
 
     /*

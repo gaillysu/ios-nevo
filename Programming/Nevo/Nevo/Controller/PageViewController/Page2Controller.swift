@@ -8,12 +8,13 @@
 
 import UIKit
 
-class Page2Controller: UIViewController {
+class Page2Controller: UIViewController,ButtonActionCallBack {
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        let pagesArray:UIView = TutorialPage2View(frame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height),delegate:self)
+        self.view .addSubview(pagesArray)
     }
 
     override func didReceiveMemoryWarning() {
@@ -21,15 +22,13 @@ class Page2Controller: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
+    Button Action CallBack
     */
+    func nextButtonAction(sender:UIButton){
 
+        NSLog("Page2 CallBack Success")
+        let page3cont = Page3Controller()
+        self.navigationController?.pushViewController(page3cont, animated: true)
+    }
 }

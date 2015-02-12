@@ -62,33 +62,6 @@
             </objects>
             <point key="canvasLocation" x="-2265" y="1275"/>
         </scene>
-        <!--Root View Controller-->
-        <scene sceneID="0hA-8e-xg2">
-            <objects>
-                <tableViewController id="KBa-f8-dJs" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="1QD-tz-ZHv">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="lC3-pl-kWE">
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lC3-pl-kWE" id="SKo-da-Tsp">
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="KBa-f8-dJs" id="KmE-NI-58L"/>
-                            <outlet property="delegate" destination="KBa-f8-dJs" id="N8A-88-sj4"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="b9k-cC-IvP"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="K3t-bk-fdS" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-1479.375" y="2019.7183098591545"/>
-        </scene>
         <!--Record-->
         <scene sceneID="QXP-JR-yAP">
             <objects>
@@ -99,12 +72,151 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="KBa-f8-dJs" kind="relationship" relationship="rootViewController" id="10D-DO-T42"/>
+                        <segue destination="iqE-5u-mSW" kind="relationship" relationship="rootViewController" id="daJ-gb-59R"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3yg-Ph-IEs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1479.375" y="1275"/>
+        </scene>
+        <!--Step Goal Seting Controller-->
+        <scene sceneID="d5l-RI-6Wg">
+            <objects>
+                <viewController id="iqE-5u-mSW" customClass="StepGoalSetingController" customModule="Nevo" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Y6d-zv-u6z"/>
+                        <viewControllerLayoutGuide type="bottom" id="b4f-8n-7a5"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="esU-rF-t9Y" customClass="StepGoalSetingView" customModule="Nevo" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Step" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eye-WF-BOl">
+                                <rect key="frame" x="397" y="90" width="69" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="4Ck-sO-XlA"/>
+                                    <constraint firstAttribute="width" constant="69" id="GfP-md-LIW"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6bb-WV-M23">
+                                <rect key="frame" x="212" y="90" width="177" height="50"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="177" id="6kk-Zr-iKj"/>
+                                    <constraint firstAttribute="height" constant="50" id="8g1-pD-mvk"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <state key="normal" title="30000">
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="controllManager:" destination="iqE-5u-mSW" eventType="touchUpInside" id="JD5-4G-EWC"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kAf-Gx-iId">
+                                <rect key="frame" x="212" y="180" width="177" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="9Sb-QA-B3B"/>
+                                    <constraint firstAttribute="width" constant="177" id="e6W-uc-Pmd"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                <inset key="titleEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <state key="normal" title="Modarate" image="round">
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <state key="selected" title="Moderate" image="rounds"/>
+                                <connections>
+                                    <action selector="controllManager:" destination="iqE-5u-mSW" eventType="touchUpInside" id="lom-6w-pwK"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dsh-Mg-AqS">
+                                <rect key="frame" x="212" y="260" width="177" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="177" id="UL6-RZ-iBS"/>
+                                    <constraint firstAttribute="height" constant="50" id="j6J-PV-YHq"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                <inset key="titleEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <state key="normal" title="Intensive" image="round">
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="selected" title="Interive" image="rounds"/>
+                                <connections>
+                                    <action selector="controllManager:" destination="iqE-5u-mSW" eventType="touchUpInside" id="ACK-g2-vfs"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QbO-Lj-nW0">
+                                <rect key="frame" x="212" y="340" width="177" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="RCc-yp-O9w"/>
+                                    <constraint firstAttribute="width" constant="177" id="q0g-wd-4R5"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                <inset key="titleEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <state key="normal" title="Sportive" image="round">
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="selected" image="rounds"/>
+                                <connections>
+                                    <action selector="controllManager:" destination="iqE-5u-mSW" eventType="touchUpInside" id="D2O-dl-C7l"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NdC-74-8iE">
+                                <rect key="frame" x="212" y="419" width="177" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="177" id="1wz-lX-GAz"/>
+                                    <constraint firstAttribute="height" constant="50" id="K9S-27-WEh"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                <inset key="titleEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <state key="normal" title="Custom" image="round">
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="selected" title="Custom" image="rounds"/>
+                                <connections>
+                                    <action selector="controllManager:" destination="iqE-5u-mSW" eventType="touchUpInside" id="jUf-Fs-pNW"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="centerX" secondItem="kAf-Gx-iId" secondAttribute="centerX" id="5CZ-tf-8id"/>
+                            <constraint firstAttribute="centerY" secondItem="Eye-WF-BOl" secondAttribute="centerY" constant="185" id="5sv-MU-xwj"/>
+                            <constraint firstAttribute="centerX" secondItem="QbO-Lj-nW0" secondAttribute="centerX" id="69b-Cd-2l8"/>
+                            <constraint firstAttribute="centerX" secondItem="Eye-WF-BOl" secondAttribute="centerX" constant="-131.5" id="ONL-TK-DXa"/>
+                            <constraint firstAttribute="centerX" secondItem="6bb-WV-M23" secondAttribute="centerX" id="ZCD-XD-nXM"/>
+                            <constraint firstAttribute="centerY" secondItem="kAf-Gx-iId" secondAttribute="centerY" constant="95" id="dOj-lI-UEY"/>
+                            <constraint firstAttribute="centerX" secondItem="NdC-74-8iE" secondAttribute="centerX" id="h5P-IK-O34"/>
+                            <constraint firstAttribute="centerX" secondItem="dsh-Mg-AqS" secondAttribute="centerX" id="jsF-Ea-YYy"/>
+                            <constraint firstAttribute="centerY" secondItem="dsh-Mg-AqS" secondAttribute="centerY" constant="15" id="ssf-UM-Pz2"/>
+                            <constraint firstAttribute="centerY" secondItem="6bb-WV-M23" secondAttribute="centerY" constant="185" id="tXd-Wm-8dt"/>
+                            <constraint firstAttribute="centerY" secondItem="NdC-74-8iE" secondAttribute="centerY" constant="-144" id="w6X-02-w7i"/>
+                            <constraint firstAttribute="centerY" secondItem="QbO-Lj-nW0" secondAttribute="centerY" constant="-65" id="x7U-qn-3ES"/>
+                        </constraints>
+                        <connections>
+                            <outlet property="customButton" destination="NdC-74-8iE" id="TPB-ZA-rKw"/>
+                            <outlet property="goalButton" destination="6bb-WV-M23" id="iCI-WT-dXV"/>
+                            <outlet property="intensiveButton" destination="dsh-Mg-AqS" id="7k7-Dr-dig"/>
+                            <outlet property="modarateButton" destination="kAf-Gx-iId" id="aOD-M1-jcK"/>
+                            <outlet property="sportiveButton" destination="QbO-Lj-nW0" id="s60-sO-z3c"/>
+                            <outlet property="stepLabel" destination="Eye-WF-BOl" id="lZQ-YX-fkD"/>
+                        </connections>
+                    </view>
+                    <navigationItem key="navigationItem" id="VUx-V6-WUk"/>
+                    <connections>
+                        <outlet property="stepGoalView" destination="esU-rF-t9Y" id="Pqi-PA-DsZ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NbF-OP-8w7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1480" y="2018"/>
         </scene>
         <!--Root View Controller-->
         <scene sceneID="Wwk-d3-UIz">
@@ -203,7 +315,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZrC-LT-fiX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2987" y="3580"/>
+            <point key="canvasLocation" x="-2915" y="3516"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="XKn-l0-A5F">
@@ -220,13 +332,15 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lza-Ds-F3H" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2987" y="2804"/>
+            <point key="canvasLocation" x="-2915" y="2772"/>
         </scene>
     </scenes>
     <resources>
         <image name="clockitem" width="40" height="40"/>
         <image name="goalitem" width="40" height="40"/>
         <image name="lightitem" width="40" height="40"/>
+        <image name="round" width="50" height="50"/>
+        <image name="rounds" width="50" height="50"/>
         <image name="wallpaper0.png" width="640" height="1136"/>
     </resources>
 </document>

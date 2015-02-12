@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		005350B81A8B0F2B00BF289D /* TutorialPage2View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005350B71A8B0F2B00BF289D /* TutorialPage2View.swift */; };
+		005350BA1A8B4BC600BF289D /* StepGoalSetingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005350B91A8B4BC600BF289D /* StepGoalSetingController.swift */; };
+		005350BC1A8B4C1200BF289D /* StepGoalSetingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005350BB1A8B4C1200BF289D /* StepGoalSetingView.swift */; };
 		005BC9541A888873006F9E86 /* nevologo.png in Resources */ = {isa = PBXBuildFile; fileRef = 005BC9531A888873006F9E86 /* nevologo.png */; };
 		005BC9561A889F14006F9E86 /* NevoPicture.png in Resources */ = {isa = PBXBuildFile; fileRef = 005BC9551A889F14006F9E86 /* NevoPicture.png */; };
 		005BC95F1A88B79F006F9E86 /* FXBlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = 005BC95E1A88B79F006F9E86 /* FXBlurView.m */; };
@@ -88,6 +91,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		005350B71A8B0F2B00BF289D /* TutorialPage2View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TutorialPage2View.swift; path = View/Tutorial/TutorialPage2View.swift; sourceTree = "<group>"; };
+		005350B91A8B4BC600BF289D /* StepGoalSetingController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StepGoalSetingController.swift; path = Controller/StepGoalSetingController.swift; sourceTree = "<group>"; };
+		005350BB1A8B4C1200BF289D /* StepGoalSetingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StepGoalSetingView.swift; path = View/StepGoalSetingView.swift; sourceTree = "<group>"; };
 		005BC9531A888873006F9E86 /* nevologo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nevologo.png; sourceTree = "<group>"; };
 		005BC9551A889F14006F9E86 /* NevoPicture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NevoPicture.png; sourceTree = "<group>"; };
 		005BC95D1A88B79F006F9E86 /* FXBlurView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FXBlurView.h; sourceTree = "<group>"; };
@@ -309,6 +315,7 @@
 			children = (
 				00C30ADA1A89FC8200C9F67B /* ButtonCallBack.swift */,
 				9A9BD1C01A88849700A95ACA /* TutorialPage1View.swift */,
+				005350B71A8B0F2B00BF289D /* TutorialPage2View.swift */,
 				9A9BD1C71A88C0A400A95ACA /* TutorialScanPageView.swift */,
 			);
 			name = TutorialPageView;
@@ -386,13 +393,14 @@
 		9AD8F95D1A6E003100F01014 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				007DD4B91A89DDA800CE7264 /* PageViewController */,
 				9AD8F9921A6E3D3D00F01014 /* Connection */,
+				007DD4B91A89DDA800CE7264 /* PageViewController */,
 				07BE0CEE1A84A0C8000C4AC7 /* Nevo-Bridging-Header.h */,
 				007F79701A878C8B006C89E6 /* TutorialController.swift */,
 				9AD8F9631A6E011E00F01014 /* AppDelegate.swift */,
 				9AD8F96B1A6E03BC00F01014 /* HomeController.swift */,
 				9AD8F99D1A6E3E0100F01014 /* SyncController.swift */,
+				005350B91A8B4BC600BF289D /* StepGoalSetingController.swift */,
 				07C18C091A80DF4900D0BF4A /* NevoOtaController.swift */,
 				07C18C0D1A81AB3900D0BF4A /* NevoOtaViewController.swift */,
 			);
@@ -414,6 +422,7 @@
 				007F796C1A878C6C006C89E6 /* TutorialView.swift */,
 				9AD8F96D1A6E03F600F01014 /* HomeView.swift */,
 				9AD8F96F1A6E041D00F01014 /* ClockView.swift */,
+				005350BB1A8B4C1200BF289D /* StepGoalSetingView.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -606,9 +615,11 @@
 				9AD8F9841A6E2C8E00F01014 /* Request.swift in Sources */,
 				9AD8F9731A6E047900F01014 /* Goal.swift in Sources */,
 				9AD8F9651A6E011E00F01014 /* AppDelegate.swift in Sources */,
+				005350B81A8B0F2B00BF289D /* TutorialPage2View.swift in Sources */,
 				9A3E57321A80F08400DFFAE1 /* NevoOTAModeProfile.swift in Sources */,
 				9A9BD1C11A88849700A95ACA /* TutorialPage1View.swift in Sources */,
 				007F796E1A878C6C006C89E6 /* TutorialView.swift in Sources */,
+				005350BA1A8B4BC600BF289D /* StepGoalSetingController.swift in Sources */,
 				9A9BD1C81A88C0A400A95ACA /* TutorialScanPageView.swift in Sources */,
 				9AD8F98D1A6E2D6E00F01014 /* RawPacket.swift in Sources */,
 				9AD8F9621A6E00E800F01014 /* NevoBTimpl.swift in Sources */,
@@ -628,6 +639,7 @@
 				9A3E57311A80F08400DFFAE1 /* NevoOTAControllerProfile.swift in Sources */,
 				9AD8F99C1A6E3D6A00F01014 /* NevoRequest.swift in Sources */,
 				9A3E57251A80E56E00DFFAE1 /* NevoProfile.swift in Sources */,
+				005350BC1A8B4C1200BF289D /* StepGoalSetingView.swift in Sources */,
 				007DD4BB1A89DDC000CE7264 /* Page1Controller.swift in Sources */,
 				9A3E57231A80E56E00DFFAE1 /* ConnectionController.swift in Sources */,
 				9AD8F93B1A6DF35900F01014 /* Nevo.xcdatamodeld in Sources */,
