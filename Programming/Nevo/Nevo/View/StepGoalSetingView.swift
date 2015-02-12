@@ -30,9 +30,12 @@ class StepGoalSetingView: UIView,UIPickerViewDelegate,UIPickerViewDataSource {
 
     var buttonArray:[UIButton]!
 
+    var noConnectScanButton:UIButton!
+
     var indexArray:NSMutableArray = NSMutableArray()
 
-    let BAG_PICKER_TAG:Int = 1300;//Looking for view using a fixed tag values
+    let BAG_PICKER_TAG:Int = 1300//Looking for view using a fixed tag values
+    let NO_CONNECT_VIEW:Int = 1200
     let PICKER_BG_COLOR = UIColor(red: 186/255.0, green: 185/255.0, blue: 182/255.0, alpha: 1)//pickerView background color
     let BUTTONBGVIEW_COLOR = UIColor(red: 244/255.0, green: 242/255.0, blue: 241/255.0, alpha: 1)//View button background color
     var mDelegate:StepGoalSetingController!
@@ -133,6 +136,42 @@ class StepGoalSetingView: UIView,UIPickerViewDelegate,UIPickerViewDataSource {
 
         }
 
+    }
+
+    func bulibNoConnectView() {
+        if noConnectScanButton==nil {
+            var noConnectView:UIView = UIView(frame: CGRectMake(0, 0, self.frame.size.width, self.frame.size.height))
+            noConnectView.backgroundColor = PICKER_BG_COLOR
+            noConnectView.tag = NO_CONNECT_VIEW
+            self.addSubview(noConnectView)
+
+            noConnectScanButton = UIButton.buttonWithType(UIButtonType.System) as UIButton
+            noConnectScanButton.frame = CGRectMake(0, noConnectView.frame.origin.y-40, 50, 40)
+            noConnectScanButton.center = CGPointMake(noConnectView.frame.size.width/2.0, noConnectView.frame.size.height/2.0)
+            noConnectScanButton.setTitle(NSLocalizedString("Scan", comment: ""), forState: UIControlState.Normal)
+            noConnectScanButton.backgroundColor = UIColor.clearColor()
+            noConnectScanButton.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
+            noConnectScanButton.addTarget(self, action: Selector("enterAction:"), forControlEvents: UIControlEvents.TouchUpInside)
+            noConnectView.addSubview(noConnectScanButton)
+        }
+    }
+
+    func endConnectRemoveView() {
+        for view : AnyObject in self.subviews {
+            if view is UIView {
+                let noConnect:UIView = view as UIView;
+                if noConnect.tag == NO_CONNECT_VIEW {
+                    UIView.animateKeyframesWithDuration(0.3, delay: 0, options: UIViewKeyframeAnimationOptions.LayoutSubviews, animations: { () -> Void in
+
+                        noConnect.alpha = 0;
+
+                        }) { (Bool) -> Void in
+                            noConnect.removeFromSuperview()
+                    }
+                }
+            }
+
+        }
     }
 
     /*

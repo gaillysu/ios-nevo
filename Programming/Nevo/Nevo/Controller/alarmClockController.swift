@@ -106,12 +106,9 @@ class AlarmClockController: UIViewController, ConnectionControllerDelegate,alarm
 
             //TODO by Cloud Display the not connected screen instead of this popup
 
-            var alert:UIAlertView = UIAlertView(title:"Alert", message:"This is an example alert!", delegate:self, cancelButtonTitle:"Hide")
-
-
-
-            alert.show();
-
+            alarmView.bulibNoConnectView()
+        }else {
+            alarmView.endConnectRemoveView()
         }
 
 

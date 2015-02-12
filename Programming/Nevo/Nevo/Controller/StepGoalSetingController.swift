@@ -66,6 +66,11 @@ class StepGoalSetingController: UIViewController, ConnectionControllerDelegate {
             //stepGoalView.cleanButtonControlState()
             //stepGoalView.customButton.selected = true
         }
+
+        if sender.isEqual(stepGoalView.noConnectScanButton) {
+            NSLog("noConnectScanButton")
+            
+        }
     }
 
 
@@ -112,18 +117,12 @@ class StepGoalSetingController: UIViewController, ConnectionControllerDelegate {
         if !ConnectionControllerImpl.sharedInstance.isConnected() {
             
             //We are currently not connected
-            
-            
-            
             //TODO by Cloud Display the not connected screen instead of this popup
-            
-            var alert:UIAlertView = UIAlertView(title:"Alert", message:"This is an example alert!", delegate:self, cancelButtonTitle:"Hide")
-            
-            
-            
-            alert.show();
+            stepGoalView.bulibNoConnectView()
             
         } else {
+
+            stepGoalView.endConnectRemoveView()
             //TODO by Cloud dismiss the popup
         }
         
