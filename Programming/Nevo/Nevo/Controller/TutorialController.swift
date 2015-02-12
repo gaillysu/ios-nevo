@@ -22,7 +22,10 @@ class TutorialController: UIViewController, ConnectionControllerDelegate {
         self.view.addSubview(mTutorialView!)
         
         mConnectionController = ConnectionControllerImpl.sharedInstance
-        
+
+    }
+    
+    override func viewDidAppear(animated: Bool) {
         mConnectionController?.setDelegate(self)
         
         mConnectionController?.connect()

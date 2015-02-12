@@ -28,10 +28,10 @@ class alarmClockView: UIView {
     let PICKER_BG_COLOR = UIColor(red: 186/255.0, green: 185/255.0, blue: 182/255.0, alpha: 1)//pickerView background color
 
     let BUTTONBGVIEW_COLOR = UIColor(red: 244/255.0, green: 242/255.0, blue: 241/255.0, alpha: 1)//View button background color
-    var mDelegate:alarmClockController!
+    var mDelegate:AlarmClockController!
 
     func bulidAlarmView(delegate:UIViewController) {
-        if let callBackDelgate = delegate as? alarmClockController {
+        if let callBackDelgate = delegate as? AlarmClockController {
             mDelegate = callBackDelgate
         }
     }

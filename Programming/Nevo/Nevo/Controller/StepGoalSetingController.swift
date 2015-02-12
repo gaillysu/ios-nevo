@@ -16,7 +16,10 @@ class StepGoalSetingController: UIViewController, ConnectionControllerDelegate {
         super.viewDidLoad()
 
         stepGoalView.bulidStepGoalView(self)
-        
+
+    }
+    
+    override func viewDidAppear(animated: Bool) {
         ConnectionControllerImpl.sharedInstance.setDelegate(self)
         
         checkConnection()
