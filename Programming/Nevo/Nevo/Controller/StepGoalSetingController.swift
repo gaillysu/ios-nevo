@@ -15,6 +15,13 @@ class StepGoalSetingController: UIViewController, ConnectionControllerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        var titleLabel:UILabel = UILabel(frame: CGRectMake(0, 0, 120, 30))
+        titleLabel.textColor = UIColor.whiteColor()
+        titleLabel.text = "Step"
+        titleLabel.font = UIFont.systemFontOfSize(25)
+        titleLabel.textAlignment = NSTextAlignment.Center
+        self.navigationItem.titleView = titleLabel
+
         stepGoalView.bulidStepGoalView(self)
 
     }

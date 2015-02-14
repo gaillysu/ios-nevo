@@ -15,6 +15,13 @@ class AlarmClockController: UIViewController, ConnectionControllerDelegate,alarm
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        var titleLabel:UILabel = UILabel(frame: CGRectMake(0, 0, 120, 30))
+        titleLabel.textColor = UIColor.whiteColor()
+        titleLabel.text = "Alarm"
+        titleLabel.font = UIFont.systemFontOfSize(25)
+        titleLabel.textAlignment = NSTextAlignment.Center
+        self.navigationItem.titleView = titleLabel
+
         alarmView.bulidAlarmView(self)
         // Do any additional setup after loading the view.
     }
