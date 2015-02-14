@@ -8,6 +8,7 @@
         <scene sceneID="jSz-QX-Nx0">
             <objects>
                 <navigationController navigationBarHidden="YES" id="B94-9O-eGF" sceneMemberID="viewController">
+                    <nil key="simulatedStatusBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="7in-Ls-p47">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -20,11 +21,12 @@
             </objects>
             <point key="canvasLocation" x="-1479.375" y="-361.26760563380282"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Main Tab Bar Controller-->
         <scene sceneID="cdp-L5-L47">
             <objects>
-                <tabBarController id="VSL-Nt-5H3" sceneMemberID="viewController">
+                <tabBarController id="VSL-Nt-5H3" customClass="MainTabBarController" customModule="Nevo" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="FO7-Rc-dES"/>
+                    <nil key="simulatedStatusBarMetrics"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="7hv-Kv-cDO">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
@@ -32,8 +34,8 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="bGr-qo-zHH" kind="relationship" relationship="viewControllers" id="zui-dx-LpG"/>
                         <segue destination="rem-vM-ODh" kind="relationship" relationship="viewControllers" id="ZEI-Ns-a4R"/>
+                        <segue destination="bGr-qo-zHH" kind="relationship" relationship="viewControllers" id="zui-dx-LpG"/>
                         <segue destination="Hsa-EN-v8Q" kind="relationship" relationship="viewControllers" id="0xI-f4-E6a"/>
                     </connections>
                 </tabBarController>
@@ -41,12 +43,12 @@
             </objects>
             <point key="canvasLocation" x="-1479.375" y="441.54929577464787"/>
         </scene>
-        <!--Clock-->
+        <!--Navigation Controller-->
         <scene sceneID="qEP-IN-OCQ">
             <objects>
                 <navigationController useStoryboardIdentifierAsRestorationIdentifier="YES" id="bGr-qo-zHH" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Clock" image="clockitem" id="FTX-5o-89V"/>
-                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
+                    <tabBarItem key="tabBarItem" title="" image="homeitem" id="FTX-5o-89V"/>
+                    <nil key="simulatedStatusBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="p9j-eT-GsY">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -62,11 +64,11 @@
             </objects>
             <point key="canvasLocation" x="-2265" y="1275"/>
         </scene>
-        <!--Step-->
+        <!--Navigation Controller-->
         <scene sceneID="QXP-JR-yAP">
             <objects>
                 <navigationController id="rem-vM-ODh" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Step" image="goalitem" id="ba1-Wn-XQe"/>
+                    <tabBarItem key="tabBarItem" title="" image="goalitem" id="ba1-Wn-XQe"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="gdh-sX-Da8">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -79,7 +81,7 @@
             </objects>
             <point key="canvasLocation" x="-1479.375" y="1275"/>
         </scene>
-        <!--Step Goal Seting Controller-->
+        <!--Step-->
         <scene sceneID="d5l-RI-6Wg">
             <objects>
                 <viewController id="iqE-5u-mSW" customClass="StepGoalSetingController" customModule="Nevo" customModuleProvider="target" sceneMemberID="viewController">
@@ -209,7 +211,7 @@
                             <outlet property="stepLabel" destination="Eye-WF-BOl" id="lZQ-YX-fkD"/>
                         </connections>
                     </view>
-                    <navigationItem key="navigationItem" id="VUx-V6-WUk"/>
+                    <navigationItem key="navigationItem" title="Step" id="VUx-V6-WUk"/>
                     <connections>
                         <outlet property="stepGoalView" destination="esU-rF-t9Y" id="Pqi-PA-DsZ"/>
                     </connections>
@@ -218,11 +220,12 @@
             </objects>
             <point key="canvasLocation" x="-1480" y="2018"/>
         </scene>
-        <!--Alarm-->
+        <!--Navigation Controller-->
         <scene sceneID="ct5-Mu-dmL">
             <objects>
                 <navigationController id="Hsa-EN-v8Q" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Alarm" image="lightitem" id="dU5-Ty-hhC"/>
+                    <tabBarItem key="tabBarItem" title="" image="alarmitem" id="dU5-Ty-hhC"/>
+                    <nil key="simulatedStatusBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="0g2-Qz-bFf">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -235,7 +238,7 @@
             </objects>
             <point key="canvasLocation" x="-699.375" y="1275"/>
         </scene>
-        <!--Alarm Clock Controller-->
+        <!--Alarm-->
         <scene sceneID="aOz-wY-I4v">
             <objects>
                 <viewController id="o5W-lr-L9o" customClass="AlarmClockController" customModule="Nevo" customModuleProvider="target" sceneMemberID="viewController">
@@ -285,7 +288,8 @@
                             <outlet property="selectedTimerButton" destination="qE2-bj-eX9" id="kh0-sm-CdR"/>
                         </connections>
                     </view>
-                    <navigationItem key="navigationItem" id="h9a-N5-63D"/>
+                    <navigationItem key="navigationItem" title="Alarm" id="h9a-N5-63D"/>
+                    <nil key="simulatedStatusBarMetrics"/>
                     <connections>
                         <outlet property="alarmView" destination="pwc-5p-Bqy" id="1w5-k7-BeR"/>
                     </connections>
@@ -294,7 +298,7 @@
             </objects>
             <point key="canvasLocation" x="-700" y="2018"/>
         </scene>
-        <!--Home Controller-->
+        <!--Clock-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
                 <viewController extendedLayoutIncludesOpaqueBars="YES" id="vXZ-lx-hvc" customClass="HomeController" customModule="Nevo" customModuleProvider="target" sceneMemberID="viewController">
@@ -305,22 +309,10 @@
                     <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS" customClass="HomeView" customModule="Nevo" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wallpaper0.png" translatesAutoresizingMaskIntoConstraints="NO" id="Snr-7Y-vkD">
-                                <rect key="frame" x="0.0" y="64" width="600" height="487"/>
-                            </imageView>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="Snr-7Y-vkD" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="Lfb-Wv-ecH"/>
-                            <constraint firstItem="Snr-7Y-vkD" firstAttribute="bottom" secondItem="2fi-mo-0CV" secondAttribute="top" id="ZlS-0B-0hG"/>
-                            <constraint firstItem="Snr-7Y-vkD" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" id="eia-hq-Oli"/>
-                            <constraint firstAttribute="trailing" secondItem="Snr-7Y-vkD" secondAttribute="trailing" id="oLW-EG-UZT"/>
-                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="RXC-Fy-u76">
-                        <nil key="title"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Clock" id="RXC-Fy-u76"/>
+                    <nil key="simulatedStatusBarMetrics"/>
                     <connections>
                         <outlet property="homeView" destination="kh9-bI-dsS" id="5wv-HP-UN7"/>
                         <segue destination="Gec-Ym-Om4" kind="modal" identifier="Home_Tutorial" id="9p1-uA-j54"/>
@@ -368,11 +360,10 @@
         </scene>
     </scenes>
     <resources>
-        <image name="clockitem" width="40" height="40"/>
-        <image name="goalitem" width="40" height="40"/>
-        <image name="lightitem" width="40" height="40"/>
+        <image name="alarmitem" width="45" height="45"/>
+        <image name="goalitem" width="45" height="45"/>
+        <image name="homeitem" width="45" height="45"/>
         <image name="round" width="50" height="50"/>
         <image name="rounds" width="50" height="50"/>
-        <image name="wallpaper0.png" width="640" height="1136"/>
     </resources>
 </document>
