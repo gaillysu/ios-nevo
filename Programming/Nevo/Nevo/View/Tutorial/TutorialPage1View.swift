@@ -19,8 +19,11 @@ class TutorialPage1View : UIView {
     let BACKGROUND_COLOR:UIColor = UIColor(red: 244.0/255.0, green: 242.0/255.0, blue: 241.0/255.0, alpha: 1)
 
     var backButton:UIButton!
+
+    var mBluetoothHint:Bool = false
     
-    init(frame: CGRect, delegate:UIViewController) {
+    init(frame: CGRect, delegate:UIViewController, bluetoothHint:Bool) {
+        mBluetoothHint = bluetoothHint
         super.init(frame: frame)
         super.backgroundColor = BACKGROUND_COLOR
         if let callBackDelgate = delegate as? Page1Controller {
@@ -98,7 +101,7 @@ class TutorialPage1View : UIView {
         upwardimage.backgroundColor = UIColor.clearColor()
         self.addSubview(upwardimage)
 
-        if ConnectionControllerImpl.sharedInstance.isBluetoothEnabled()  {
+        if mBluetoothHint  {
             statesImage.image = UIImage(named:"Bluetoothon")
             titleLabel.text = NSLocalizedString("BluetoothEnabled",comment:"lable string")
             titleLabel.textAlignment = NSTextAlignment.Center
@@ -107,6 +110,10 @@ class TutorialPage1View : UIView {
             errorLabel.hidden = true
         }
 
+    }
+    
+    func getBluetoothHint() -> Bool {
+        return mBluetoothHint
     }
 
     func ButtonAction(sender:UIButton){
