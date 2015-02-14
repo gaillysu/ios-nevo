@@ -38,7 +38,9 @@ class Page3Controller: UIViewController,ButtonActionCallBack,ConnectionControlle
                 ConnectionControllerImpl.sharedInstance.connect()
                 ConnectionControllerImpl.sharedInstance.setDelegate( self)
             }
-        } else {
+        } else if sender.isEqual(pagesView.backButton) {
+            self.navigationController?.popViewControllerAnimated(true)
+        }else {
             //Finish Button Action
             self.dismissViewControllerAnimated(true, completion: nil);
         }

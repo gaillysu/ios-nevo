@@ -10,11 +10,13 @@ import UIKit
 
 class Page2Controller: UIViewController,ButtonActionCallBack {
 
+    var pagesView:TutorialPage2View!
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let pagesArray:UIView = TutorialPage2View(frame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height),delegate:self)
-        self.view .addSubview(pagesArray)
+        pagesView = TutorialPage2View(frame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height),delegate:self)
+        self.view .addSubview(pagesView)
     }
 
     override func didReceiveMemoryWarning() {
@@ -26,9 +28,12 @@ class Page2Controller: UIViewController,ButtonActionCallBack {
     Button Action CallBack
     */
     func nextButtonAction(sender:UIButton){
-
         NSLog("Page2 CallBack Success")
-        let page3cont = Page3Controller()
-        self.navigationController?.pushViewController(page3cont, animated: true)
+        if sender.isEqual(pagesView.backButton) {
+            self.navigationController?.popViewControllerAnimated(true)
+        }else{
+            let page3cont = Page3Controller()
+            self.navigationController?.pushViewController(page3cont, animated: true)
+        }
     }
 }
