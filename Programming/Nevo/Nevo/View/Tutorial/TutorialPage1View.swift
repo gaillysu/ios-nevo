@@ -14,7 +14,11 @@ class TutorialPage1View : UIView {
 
     let TEXT_FONT:UIFont = UIFont(name:"Raleway-Light", size: 25)!
 
+    let BACK_BUTTON_FONT:UIFont = UIFont(name:"Raleway-Light", size: 20)!
+
     let BACKGROUND_COLOR:UIColor = UIColor(red: 244.0/255.0, green: 242.0/255.0, blue: 241.0/255.0, alpha: 1)
+
+    var backButton:UIButton!
     
     init(frame: CGRect, delegate:UIViewController) {
         super.init(frame: frame)
@@ -34,7 +38,14 @@ class TutorialPage1View : UIView {
     }
     
     func buildTutorialPage() {
-        
+
+        backButton = UIButton.buttonWithType(UIButtonType.System) as UIButton
+        backButton.frame = CGRectMake(15, 10, 60, 40)
+        backButton.setTitle(NSLocalizedString("Back",comment:"button title string"), forState: UIControlState.Normal)
+        backButton.titleLabel?.font = BACK_BUTTON_FONT
+        backButton.addTarget(self, action: "ButtonAction:", forControlEvents: UIControlEvents.TouchUpInside)
+        self.addSubview(backButton)
+
         let guideImage:UIImageView = UIImageView(image: UIImage(named: String("step1" as NSString)))
         guideImage.frame = CGRectMake(0, 0, self.frame.size.width-70, 100)
         guideImage.center = CGPointMake(self.frame.size.width/2.0, 100)
