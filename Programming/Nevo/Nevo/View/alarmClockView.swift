@@ -28,7 +28,7 @@ class alarmClockView: UIView {
 
     var noConnectScanButton:UIButton!
 
-    let PICKER_BG_COLOR = UIColor(red: 186/255.0, green: 185/255.0, blue: 182/255.0, alpha: 1)//pickerView background color
+    let PICKER_BG_COLOR = UIColor(red: 255/255.0, green: 255/255.0, blue: 255/255.0, alpha: 1)//pickerView background color
 
     let BUTTONBGVIEW_COLOR = UIColor(red: 244/255.0, green: 242/255.0, blue: 241/255.0, alpha: 1)//View button background color
     var mDelegate:AlarmClockController!
@@ -105,10 +105,10 @@ class alarmClockView: UIView {
             noConnectView.tag = NO_CONNECT_VIEW
             self.addSubview(noConnectView)
 
-            noConnectScanButton = UIButton.buttonWithType(UIButtonType.System) as UIButton
-            noConnectScanButton.frame = CGRectMake(0, noConnectView.frame.origin.y-40, 50, 40)
+            noConnectScanButton = UIButton.buttonWithType(UIButtonType.Custom) as UIButton
+            noConnectScanButton.frame = CGRectMake(0, 0, 160, 160)
             noConnectScanButton.center = CGPointMake(noConnectView.frame.size.width/2.0, noConnectView.frame.size.height/2.0)
-            noConnectScanButton.setTitle(NSLocalizedString("Scan", comment: ""), forState: UIControlState.Normal)
+            noConnectScanButton.setImage(UIImage(named: "connect"), forState: UIControlState.Normal)
             noConnectScanButton.backgroundColor = UIColor.clearColor()
             noConnectScanButton.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
             noConnectScanButton.addTarget(self, action: Selector("enterAction:"), forControlEvents: UIControlEvents.TouchUpInside)
