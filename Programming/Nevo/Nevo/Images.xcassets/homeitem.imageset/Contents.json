@@ -3,16 +3,17 @@
     {
       "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "lightitem.png"
+      "filename" : "home45.png"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "lightitem@2x.png"
+      "filename" : "home90.png"
     },
     {
       "idiom" : "universal",
-      "scale" : "3x"
+      "scale" : "3x",
+      "filename" : "home135.png"
     }
   ],
   "info" : {
