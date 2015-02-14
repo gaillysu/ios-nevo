@@ -12,19 +12,10 @@ import UIkit
 class HomeView: UIView {
     
     //Put all UI operation HomeView inside
-    let clockTimerView = ClockView(frame: CGRectMake(0, 0, UIScreen.mainScreen().bounds.width-60, UIScreen.mainScreen().bounds.width-60));//init "ClockView" ,Use the code relative layout
+    let clockTimerView = ClockView(frame:CGRectMake(0, 0, UIScreen.mainScreen().bounds.width-60, UIScreen.mainScreen().bounds.width-60), hourImage:  UIImage(named: "clockViewHour")!, minuteImage: UIImage(named: "clockViewMinute")!, dialImage: UIImage(named: "clockView600")!);//init "ClockView" ,Use the code relative layout
 
     func bulidHomeView() {
 
-        //add BlurView
-        let blurView:FXBlurView = FXBlurView(frame: CGRectMake(0, 0, self.frame.size.width, self.frame.size.height))
-        blurView.alpha = 0;
-        blurView.dynamic = true
-        blurView.blurRadius = 90
-        self.addSubview(blurView)
-
-        clockTimerView.borderColor = UIColor(red: 188/255.0, green: 187/255.0, blue: 185/255, alpha: 1.0);
-        clockTimerView.borderWidth = 4.0;
         clockTimerView.currentTimer()
         self.addSubview(clockTimerView)
         clockTimerView.center = CGPointMake(self.frame.width/2.0, self.frame.height/2.0-80);//Using the center property determines the location of the ClockView
