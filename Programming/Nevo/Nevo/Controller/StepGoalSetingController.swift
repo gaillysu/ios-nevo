@@ -76,6 +76,7 @@ class StepGoalSetingController: UIViewController, ConnectionControllerDelegate {
 
         if sender.isEqual(stepGoalView.noConnectScanButton) {
             NSLog("noConnectScanButton")
+            stepGoalView.buttonAnimation(stepGoalView.noConnectScanButton)
             
         }
     }

@@ -111,7 +111,7 @@ class alarmClockView: UIView {
             noConnectScanButton.setImage(UIImage(named: "connect"), forState: UIControlState.Normal)
             noConnectScanButton.backgroundColor = UIColor.clearColor()
             noConnectScanButton.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
-            noConnectScanButton.addTarget(self, action: Selector("enterAction:"), forControlEvents: UIControlEvents.TouchUpInside)
+            noConnectScanButton.addTarget(self, action: Selector("controllEventManager:"), forControlEvents: UIControlEvents.TouchUpInside)
             noConnectView.addSubview(noConnectScanButton)
         }
     }
@@ -159,6 +159,19 @@ class alarmClockView: UIView {
             }
         }
         
+    }
+
+    func buttonAnimation(sender:UIButton) {
+
+        var rotationAnimation:CABasicAnimation = CABasicAnimation(keyPath: "transform.rotation.z")
+        rotationAnimation.toValue = NSNumber(double: M_PI * 2.0);
+        rotationAnimation.duration = 1;
+        rotationAnimation.cumulative = true;
+        rotationAnimation.repeatCount = 10;
+        rotationAnimation.delegate = self
+        rotationAnimation.fillMode = kCAFillModeForwards;
+        rotationAnimation.removedOnCompletion = false
+        sender.layer.addAnimation(rotationAnimation, forKey: "NoButtonRotationAnimation")
     }
 
     /*

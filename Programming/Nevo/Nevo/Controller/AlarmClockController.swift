@@ -64,6 +64,12 @@ class AlarmClockController: UIViewController, ConnectionControllerDelegate,alarm
 
             NSLog("datePicker:%@",dateButtonTitle)
         }
+
+        if sender.isEqual(alarmView.noConnectScanButton) {
+            NSLog("noConnectScanButton")
+            alarmView.buttonAnimation(alarmView.noConnectScanButton)
+
+        }
     }
     /**
 

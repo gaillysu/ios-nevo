@@ -72,7 +72,7 @@ class TutorialScanPageView : UIView {
 
         connectButton = UIButton(frame: CGRectMake(0, 0, 150, 150))
         connectButton.setBackgroundImage(UIImage(named:"connect"), forState: UIControlState.Normal)
-        connectButton.setTitle( NSLocalizedString("Connect",comment:"lable string"), forState: UIControlState.Normal)
+        //connectButton.setTitle( NSLocalizedString("Connect",comment:"lable string"), forState: UIControlState.Normal)
         connectButton.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
         connectButton.center = CGPointMake(self.frame.size.width/2.0, self.frame.size.height/2.0+50)
         connectButton.contentMode = UIViewContentMode.ScaleAspectFit
@@ -101,76 +101,42 @@ class TutorialScanPageView : UIView {
 
     }
 
-    /*
-    - (void)didTapItemAtIndex:(NSUInteger)index {
-    BOOL didEnable = ! [self.selectedIndices containsIndex:index];
-
-    if (self.borderColors) {
-    UIColor *stroke = self.borderColors[index];
-    UIView *view = self.itemViews[index];
-
-    if (didEnable) {
-    view.layer.borderColor = stroke.CGColor;
-
-    CABasicAnimation *borderAnimation = [CABasicAnimation animationWithKeyPath:@"borderColor"];
-    borderAnimation.fromValue = (id)[UIColor clearColor].CGColor;
-    borderAnimation.toValue = (id)stroke.CGColor;
-    borderAnimation.duration = 0.5f;
-    [view.layer addAnimation:borderAnimation forKey:nil];
-
-    [self.selectedIndices addIndex:index];
-    }else {
-    view.layer.borderColor = [UIColor clearColor].CGColor;
-    [self.selectedIndices removeIndex:index];
-    }
-
-    CGRect pathFrame = CGRectMake(-CGRectGetMidX(view.bounds), -CGRectGetMidY(view.bounds), view.bounds.size.width, view.bounds.size.height);
-    UIBezierPath *path = [UIBezierPath bezierPathWithRoundedRect:pathFrame cornerRadius:view.layer.cornerRadius];
-
-    // accounts for left/right offset and contentOffset of scroll view
-    CGPoint shapePosition = [self.view convertPoint:view.center fromView:self.contentView];
-
-    CAShapeLayer *circleShape = [CAShapeLayer layer];
-    circleShape.path = path.CGPath;
-    circleShape.position = shapePosition;
-    circleShape.fillColor = [UIColor clearColor].CGColor;
-    circleShape.opacity = 0;
-    circleShape.strokeColor = stroke.CGColor;
-    circleShape.lineWidth = self.borderWidth;
-
-    [self.view.layer addSublayer:circleShape];
-
-    CABasicAnimation *scaleAnimation = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
-    scaleAnimation.fromValue = [NSValue valueWithCATransform3D:CATransform3DIdentity];
-    scaleAnimation.toValue = [NSValue valueWithCATransform3D:CATransform3DMakeScale(2.5, 2.5, 1)];
-
-    CABasicAnimation *alphaAnimation = [CABasicAnimation animationWithKeyPath:@"opacity"];
-    alphaAnimation.fromValue = @1;
-    alphaAnimation.toValue = @0;
-
-    CAAnimationGroup *animation = [CAAnimationGroup animation];
-    animation.animations = @[scaleAnimation, alphaAnimation];
-    animation.duration = 0.5f;
-    animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut];
-    [circleShape addAnimation:animation forKey:nil];
-    }
-    */
     func buttonAnimation(sender:UIButton) {
-        let didEnable:Bool = !optionIndices.containsIndex(0)
-        let stroke:UIColor = UIColor.blackColor();
-        var view:UIView = sender as UIView;
-        if (didEnable) {
 
-        }else{
+        var rotationAnimation:CABasicAnimation = CABasicAnimation(keyPath: "transform.rotation.z")
+        rotationAnimation.toValue = NSNumber(double: M_PI * 2.0);
+        rotationAnimation.duration = 1;
+        rotationAnimation.cumulative = true;
+        rotationAnimation.repeatCount = 10;
+        rotationAnimation.delegate = self
+        rotationAnimation.fillMode = kCAFillModeForwards;
+        rotationAnimation.removedOnCompletion = false
+        sender.layer.addAnimation(rotationAnimation, forKey: "rotationAnimation")
+    }
 
-        }
+    func stopButtonAnimation(sender:UIButton) {
+        sender.layer.removeAnimationForKey("rotationAnimation")
+    }
+
+    /**
+    * 动画开始时
+    */
+    override func animationDidStart(theAnimation:CAAnimation){
+        NSLog("begin");
+    }
+
+    /**
+    * 动画结束时
+    */
+    override func animationDidStop(theAnimation:CAAnimation ,finished:Bool){
+        NSLog("end")
     }
     /*
     Connect the Success to empty some pictures don't need the button and the label text
     */
     func connectSuccessClean() {
-        connectButton.setTitle(" ", forState: UIControlState.Normal)
         connectButton.setBackgroundImage(UIImage(named:"success"), forState: UIControlState.Normal)
+        stopButtonAnimation(connectButton)
         finishButton.hidden = false
         errorLabel.hidden = true
     }
@@ -179,6 +145,7 @@ class TutorialScanPageView : UIView {
     */
     func ButtonAction(sender:UIButton){
 
+        buttonAnimation(sender)
         mDelegate?.nextButtonAction(sender)
         
     }
