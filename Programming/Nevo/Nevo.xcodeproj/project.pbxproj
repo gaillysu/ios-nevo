@@ -12,11 +12,12 @@
 		005350B81A8B0F2B00BF289D /* TutorialPage2View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005350B71A8B0F2B00BF289D /* TutorialPage2View.swift */; };
 		005350BA1A8B4BC600BF289D /* StepGoalSetingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005350B91A8B4BC600BF289D /* StepGoalSetingController.swift */; };
 		005350BC1A8B4C1200BF289D /* StepGoalSetingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005350BB1A8B4C1200BF289D /* StepGoalSetingView.swift */; };
-		005BC9541A888873006F9E86 /* nevologo.png in Resources */ = {isa = PBXBuildFile; fileRef = 005BC9531A888873006F9E86 /* nevologo.png */; };
 		005BC9561A889F14006F9E86 /* NevoPicture.png in Resources */ = {isa = PBXBuildFile; fileRef = 005BC9551A889F14006F9E86 /* NevoPicture.png */; };
 		005BC95F1A88B79F006F9E86 /* FXBlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = 005BC95E1A88B79F006F9E86 /* FXBlurView.m */; };
 		005FE77B1A8C979800961239 /* alarmClockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005FE77A1A8C979800961239 /* alarmClockView.swift */; };
 		006B73491A8F7D0B00A7E92F /* AlarmClockController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006B73481A8F7D0B00A7E92F /* AlarmClockController.swift */; };
+		007D37AF1A91F99200960E69 /* round600.png in Resources */ = {isa = PBXBuildFile; fileRef = 007D37AE1A91F99200960E69 /* round600.png */; };
+		007D37B11A9203A300960E69 /* selectedButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 007D37B01A9203A300960E69 /* selectedButton.png */; };
 		007DD4BB1A89DDC000CE7264 /* Page1Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007DD4BA1A89DDC000CE7264 /* Page1Controller.swift */; };
 		007DD4BD1A89DF2A00CE7264 /* Page2Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007DD4BC1A89DF2A00CE7264 /* Page2Controller.swift */; };
 		007F796E1A878C6C006C89E6 /* TutorialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007F796C1A878C6C006C89E6 /* TutorialView.swift */; };
@@ -105,12 +106,13 @@
 		005350B71A8B0F2B00BF289D /* TutorialPage2View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TutorialPage2View.swift; path = View/Tutorial/TutorialPage2View.swift; sourceTree = "<group>"; };
 		005350B91A8B4BC600BF289D /* StepGoalSetingController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StepGoalSetingController.swift; path = Controller/StepGoalSetingController.swift; sourceTree = "<group>"; };
 		005350BB1A8B4C1200BF289D /* StepGoalSetingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StepGoalSetingView.swift; path = View/StepGoalSetingView.swift; sourceTree = "<group>"; };
-		005BC9531A888873006F9E86 /* nevologo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nevologo.png; sourceTree = "<group>"; };
 		005BC9551A889F14006F9E86 /* NevoPicture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NevoPicture.png; sourceTree = "<group>"; };
 		005BC95D1A88B79F006F9E86 /* FXBlurView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FXBlurView.h; sourceTree = "<group>"; };
 		005BC95E1A88B79F006F9E86 /* FXBlurView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FXBlurView.m; sourceTree = "<group>"; };
 		005FE77A1A8C979800961239 /* alarmClockView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = alarmClockView.swift; path = View/alarmClockView.swift; sourceTree = "<group>"; };
 		006B73481A8F7D0B00A7E92F /* AlarmClockController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AlarmClockController.swift; path = Controller/AlarmClockController.swift; sourceTree = "<group>"; };
+		007D37AE1A91F99200960E69 /* round600.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = round600.png; sourceTree = "<group>"; };
+		007D37B01A9203A300960E69 /* selectedButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = selectedButton.png; sourceTree = "<group>"; };
 		007DD4BA1A89DDC000CE7264 /* Page1Controller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Page1Controller.swift; sourceTree = "<group>"; };
 		007DD4BC1A89DF2A00CE7264 /* Page2Controller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Page2Controller.swift; sourceTree = "<group>"; };
 		007F796C1A878C6C006C89E6 /* TutorialView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TutorialView.swift; path = View/TutorialView.swift; sourceTree = "<group>"; };
@@ -275,12 +277,13 @@
 		007F79881A878D0B006C89E6 /* image */ = {
 			isa = PBXGroup;
 			children = (
+				007D37B01A9203A300960E69 /* selectedButton.png */,
+				007D37AE1A91F99200960E69 /* round600.png */,
 				00478F4D1A8F637D00D0DCE2 /* clockViewHour.png */,
 				00478F4E1A8F637D00D0DCE2 /* clockViewMinute.png */,
 				00C640F51A8DEE0800815CF8 /* clockView600.png */,
 				00E0E1431A88BBDE0001B8CA /* wallpaper0.png */,
 				005BC9551A889F14006F9E86 /* NevoPicture.png */,
-				005BC9531A888873006F9E86 /* nevologo.png */,
 			);
 			path = image;
 			sourceTree = "<group>";
@@ -592,7 +595,6 @@
 			files = (
 				9AD8F9401A6DF35900F01014 /* Main.storyboard in Resources */,
 				007F79921A878D0B006C89E6 /* Raleway-ExtraLightItalic.ttf in Resources */,
-				005BC9541A888873006F9E86 /* nevologo.png in Resources */,
 				007F79901A878D0B006C89E6 /* Raleway-ExtraBoldItalic.ttf in Resources */,
 				00A773961A88562F0018E121 /* Localizable.strings in Resources */,
 				007F799D1A878D0B006C89E6 /* SIL Open Font License.txt in Resources */,
@@ -601,6 +603,7 @@
 				007F79981A878D0B006C89E6 /* Raleway-Regular.ttf in Resources */,
 				007F79951A878D0B006C89E6 /* Raleway-LightItalic.ttf in Resources */,
 				07CC4A271A81F26C008DA749 /* iMaze_v3.bin in Resources */,
+				007D37B11A9203A300960E69 /* selectedButton.png in Resources */,
 				007F798C1A878D0B006C89E6 /* Raleway-BlackItalic.ttf in Resources */,
 				007F798B1A878D0B006C89E6 /* Raleway-Black.ttf in Resources */,
 				007F79991A878D0B006C89E6 /* Raleway-SemiBold.ttf in Resources */,
@@ -615,6 +618,7 @@
 				007F798F1A878D0B006C89E6 /* Raleway-ExtraBold.ttf in Resources */,
 				007F79911A878D0B006C89E6 /* Raleway-ExtraLight.ttf in Resources */,
 				007F798E1A878D0B006C89E6 /* Raleway-BoldItalic.ttf in Resources */,
+				007D37AF1A91F99200960E69 /* round600.png in Resources */,
 				9AD8F9421A6DF35900F01014 /* Images.xcassets in Resources */,
 				007F798D1A878D0B006C89E6 /* Raleway-Bold.ttf in Resources */,
 				007F799B1A878D0B006C89E6 /* Raleway-Thin.ttf in Resources */,
@@ -824,9 +828,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = Nevo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Nevo/Nevo-Bridging-Header.h";
 			};
 			name = Debug;
@@ -835,9 +841,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = Nevo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Nevo/Nevo-Bridging-Header.h";
 			};
 			name = Release;
