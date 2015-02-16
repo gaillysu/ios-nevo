@@ -12,7 +12,7 @@ import Foundation
 All requests that should be sent to nevo have to extend this class
 🚧🚧🚧Backbone Class : Modify with care🚧🚧🚧
 */
-class NevoRequest : RequestEx {
+class NevoRequest : Request {
     func getTargetProfile() -> Profile {
         return NevoProfile()
     }

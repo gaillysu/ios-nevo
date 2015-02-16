@@ -8,10 +8,9 @@
 
 import UIkit
 
-class TutorialController: UIViewController, ConnectionControllerDelegate {
+class TutorialController: UIViewController {
     var mTutorialView: TutorialView?
-    var mConnectionController : ConnectionController?
-
+    var sync:SyncController?
     //This controller is not displayed on the storyboard
 
     override func viewDidLoad() {
@@ -20,21 +19,14 @@ class TutorialController: UIViewController, ConnectionControllerDelegate {
         //init TutorialView
         mTutorialView = TutorialView(frame: CGRectMake(0,0, self.view.frame.size.width, self.view.frame.size.height), delegate: self)
         self.view.addSubview(mTutorialView!)
-        
-        mConnectionController = ConnectionControllerImpl.sharedInstance
-        
-        mConnectionController?.setDelegate(self)
-        
-        mConnectionController?.connect()
+
+        sync = SyncController(controller: self, forceScan:true)
         
 
     }
     
     func scanButtonPressed(sender:UIButton) {
-        mConnectionController?.setOTAMode(false)
-        mConnectionController?.forgetSavedAddress()
-        mConnectionController?.connect()
-        
+        SyncController(controller: self, forceScan:true)
     }
     
     /**

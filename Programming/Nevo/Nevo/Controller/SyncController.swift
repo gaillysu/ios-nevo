@@ -18,32 +18,37 @@ class SyncController: ConnectionControllerDelegate {
  
     let mConnectionController : ConnectionController?
     //TODO by Hugo remove
-    let mTestHomeController : HomeController
+    let mTestHomeController : UIViewController
+    private var packetsbuffer:[NSData]
     
-    init(controller : HomeController) {
+    init(controller : UIViewController,forceScan :Bool) {
 
         mTestHomeController = controller
-        
+        packetsbuffer = []
         mConnectionController = ConnectionControllerImpl.sharedInstance
         
         mConnectionController?.setDelegate(self)
         
+        if forceScan
+        {
+            mConnectionController?.forgetSavedAddress()
+        }
         mConnectionController?.connect()
     }
     
     //add new functions when  get connected Nevo
-    private func setRTC() {
+    func setRTC() {
         mConnectionController?.sendRequest(SetRTCRequest())
     }
     
-    private func SetProfile() {
+    func SetProfile() {
         mConnectionController?.sendRequest(SetProfileRequest())
     }
-    private func SetCardio() {
+    func SetCardio() {
         mConnectionController?.sendRequest(SetCardioRequest())
     }
     
-    private func WriteSetting() {
+    func WriteSetting() {
         mConnectionController?.sendRequest(WriteSettingRequest())
     }
     //end functions for connected to Nevo
@@ -63,20 +68,26 @@ class SyncController: ConnectionControllerDelegate {
     //end functions by UI
     
     func packetReceived(packet:RawPacket) {
-        var alert = UIAlertController(title: "Received", message: "Message : "+hexString(packet.getRawData()), preferredStyle: UIAlertControllerStyle.Alert)
-        alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.Default, handler: nil))
-        mTestHomeController.presentViewController(alert, animated: true, completion: nil)
+        
+        packetsbuffer.append(packet.getRawData())
+        if(NSData2Bytes(packet.getRawData())[0] == 0xFF)
+        {
+        var data:NSData!
+        var message :String = ""
+            
+        for data in packetsbuffer
+        {
+            message = message + "\r\n"+hexString(data)
+        }
+            var alert = UIAlertController(title: "Received", message: "Message : "+message, preferredStyle: UIAlertControllerStyle.Alert)
+            alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.Default, handler: nil))
+            mTestHomeController.presentViewController(alert, animated: true, completion: nil)
+            
+            packetsbuffer = []
+        }
     }
     
     func connectionStateChanged(isConnected : Bool) {
-        
-        if isConnected
-        {
-            setRTC()
-            SetProfile()
-            WriteSetting()
-            SetCardio()
-        }
         
     }
     
@@ -134,7 +145,9 @@ class TestQuery : Request {
     func getRawData() -> NSData {
        return self.dataFromHexadecimalString()!
     }
-    
+    func getRawDataEx() -> NSArray {
+        return NSArray()
+    }
     func dataFromHexadecimalString() -> NSData? {
         let trimmedString = mString.stringByTrimmingCharactersInSet(NSCharacterSet(charactersInString: "<> ")).stringByReplacingOccurrencesOfString(" ", withString: "")
         

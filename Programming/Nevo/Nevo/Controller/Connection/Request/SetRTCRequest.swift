@@ -28,7 +28,9 @@ class SetRTCRequest: NevoRequest {
             UInt8((year>>8)&0xFF),
             UInt8(month&0xFF),
             UInt8(day&0xFF),
-            0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+            UInt8(hour&0xFF),
+            UInt8(min&0xFF),
+            0,0,0,0,0,0,0,0,0,0,0,0]
         
         var values2 :[UInt8] = [0xFF,0x01,
             0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]

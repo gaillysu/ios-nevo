@@ -12,25 +12,25 @@ class SetNortificationRequest: NevoRequest {
     override func getRawDataEx() -> NSArray {
        
         var call_vib_number:UInt8 = 3
-        var call_led_pattern:UInt32 = 0x00112233
+        var call_led_pattern:UInt32 = 0
         
         var sms_vib_number:UInt8 = 2
-        var sms_led_pattern:UInt32 = 0x00445566
+        var sms_led_pattern:UInt32 = 0
         
         var email_vib_number:UInt8 = 1
-        var email_led_pattern:UInt32 = 0x00778899
+        var email_led_pattern:UInt32 = 0
         
         var facebook_vib_number:UInt8 = 3
-        var facebook_led_pattern:UInt32 = 0x00aabbcc
+        var facebook_led_pattern:UInt32 = 0
 
         var twitter_vib_number:UInt8 = 3
-        var twitter_led_pattern:UInt32 = 0x00abcabc
+        var twitter_led_pattern:UInt32 = 0
         
         var whatsapp_vib_number:UInt8 = 3
-        var whatsapp_led_pattern:UInt32 = 0x00defdef
+        var whatsapp_led_pattern:UInt32 = 0
 
         var wechat_vib_number:UInt8 = 3
-        var wechat_led_pattern:UInt32 = 0x00123456
+        var wechat_led_pattern:UInt32 = 0
 
         
         var values1 :[UInt8] = [0x00,0x02,

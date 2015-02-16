@@ -21,14 +21,18 @@ this file include all  OTA request class
 
 class SetOTAModeRequest : Request {
     
-    let values :[UInt8] = [0x80,0x72,0xA0,0x8A,0x7D,0xDE,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-    
+    let values :[UInt8] = [0x00,0x72,0xA0,0x8A,0x7D,0xDE,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+    let values2 :[UInt8] = [0xFF,0x72,0x00,0x00,0x00,0x00,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
     func getTargetProfile() -> Profile {
         return NevoOTAModeProfile()
     }
     
     func getRawData() -> NSData {
         return NSData(bytes: values, length: values.count)
+    }
+    func getRawDataEx() -> NSArray {
+        return NSArray(array: [NSData(bytes: values, length: values.count),
+                               NSData(bytes: values2, length: values2.count)])
     }
 }
 
@@ -44,6 +48,9 @@ class StartOTARequest: Request {
     func getRawData() -> NSData {
         return NSData(bytes: values, length: values.count)
     }
+    func getRawDataEx() -> NSArray {
+        return NSArray()
+    }
 }
 
 class StartOTAOldRequest: Request {
@@ -56,6 +63,9 @@ class StartOTAOldRequest: Request {
     
     func getRawData() -> NSData {
         return NSData(bytes: values, length: values.count)
+    }
+    func getRawDataEx() -> NSArray {
+        return NSArray()
     }
 }
 
@@ -76,6 +86,9 @@ class writeFileSizeRequest: Request {
         
         return NSData(bytes: fileSizeCollection, length: fileSizeCollection.count * sizeof(UInt32))
     }
+    func getRawDataEx() -> NSArray {
+        return NSArray()
+    }
 }
 
 class writeFileSizeOldRequest: Request {
@@ -95,6 +108,9 @@ class writeFileSizeOldRequest: Request {
         
         return NSData(bytes: fileSizeCollection, length: fileSizeCollection.count * sizeof(UInt32))
     }
+    func getRawDataEx() -> NSArray {
+        return NSArray()
+    }
 }
 
 
@@ -109,6 +125,9 @@ class ResetSystemRequest:Request {
     func getRawData() -> NSData {
         return NSData(bytes: values, length: values.count)
     }
+    func getRawDataEx() -> NSArray {
+        return NSArray()
+    }
 }
 
 class EnablePacketNotifyRequest:Request {
@@ -121,6 +140,9 @@ class EnablePacketNotifyRequest:Request {
     
     func getRawData() -> NSData {
         return NSData(bytes: values, length: values.count)
+    }
+    func getRawDataEx() -> NSArray {
+        return NSArray()
     }
 }
 
@@ -135,6 +157,9 @@ class ReceiveFirmwareImageRequest:Request {
     func getRawData() -> NSData {
         return NSData(bytes: values, length: values.count)
     }
+    func getRawDataEx() -> NSArray {
+        return NSArray()
+    }
 }
 
 class ValidateFirmwareRequest:Request {
@@ -148,6 +173,9 @@ class ValidateFirmwareRequest:Request {
     func getRawData() -> NSData {
         return NSData(bytes: values, length: values.count)
     }
+    func getRawDataEx() -> NSArray {
+        return NSArray()
+    }
 }
 
 class ActivateAndResetRequest:Request {
@@ -160,6 +188,9 @@ class ActivateAndResetRequest:Request {
     
     func getRawData() -> NSData {
         return NSData(bytes: values, length: values.count)
+    }
+    func getRawDataEx() -> NSArray {
+        return NSArray()
     }
 }
 
@@ -178,5 +209,8 @@ class OnePacketRequest: Request {
     func getRawData() -> NSData {
         
         return mPacketData!
+    }
+    func getRawDataEx() -> NSArray {
+        return NSArray()
     }
 }

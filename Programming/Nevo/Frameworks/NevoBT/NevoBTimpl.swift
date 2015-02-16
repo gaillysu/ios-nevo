@@ -348,9 +348,21 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
                         
                             if(charac.UUID == request.getTargetProfile().CONTROL_CHARACTERISTIC) {
     
+                                if request.getRawDataEx().count == 0
+                                {
                                 NSLog("Request raw data :\(request.getRawData())")
-
+                                
                                 mPeripheral?.writeValue(request.getRawData(),forCharacteristic:charac,type:CBCharacteristicWriteType.WithoutResponse)
+                                }
+                                else
+                                {
+                                    var data:NSData!
+                                    for data in request.getRawDataEx() {
+                                        NSLog("Request raw data Ex:\(data)")
+                                        
+                                        mPeripheral?.writeValue(data as NSData,forCharacteristic:charac,type:CBCharacteristicWriteType.WithoutResponse)
+                                    }
+                                }
                             }
                         }
                     } else {
