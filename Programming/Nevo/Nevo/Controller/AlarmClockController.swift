@@ -96,7 +96,7 @@ class AlarmClockController: UIViewController, SyncControllerDelegate,alarmButton
     }
     
     func reconnect() {
-            alarmView.buttonAnimation(alarmView.noConnectScanButton)
+            alarmView.buttonAnimation(alarmView.noConnectImage)
             mSyncController?.connect()
     }
 

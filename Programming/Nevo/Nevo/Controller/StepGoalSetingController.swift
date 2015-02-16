@@ -97,7 +97,7 @@ class StepGoalSetingController: UIViewController, SyncControllerDelegate {
     }
     
     func reconnect() {
-        stepGoalView.buttonAnimation(stepGoalView.noConnectScanButton)
+        stepGoalView.buttonAnimation(stepGoalView.noConnectImage)
         mSyncController?.connect()
     }
 
