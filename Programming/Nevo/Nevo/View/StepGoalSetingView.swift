@@ -40,6 +40,10 @@ class StepGoalSetingView: UIView,UIPickerViewDelegate,UIPickerViewDataSource {
     let BUTTONBGVIEW_COLOR = UIColor(red: 244/255.0, green: 242/255.0, blue: 241/255.0, alpha: 1)//View button background color
     var mDelegate:StepGoalSetingController!
 
+    var mData:Int!
+
+    var enterButton:UIButton!
+
     func bulidStepGoalView(delegate:UIViewController){
 
         if let callBackDelgate = delegate as? StepGoalSetingController {
@@ -68,7 +72,6 @@ class StepGoalSetingView: UIView,UIPickerViewDelegate,UIPickerViewDataSource {
         //For loop will stuck the main thread, so you need to for an asynchronous thread to handle this line function
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
             for var index:Int = 1000; index<=30000; index+=1000 {
-                NSLog("index:\(index)")
                 self.indexArray.addObject(index)
             }
          });
@@ -114,7 +117,7 @@ class StepGoalSetingView: UIView,UIPickerViewDelegate,UIPickerViewDataSource {
         cancelButton.addTarget(self, action: Selector("enterAction:"), forControlEvents: UIControlEvents.TouchUpInside)
         PickerbgView.addSubview(cancelButton)
 
-        let enterButton:UIButton = UIButton.buttonWithType(UIButtonType.System) as UIButton
+        enterButton = UIButton.buttonWithType(UIButtonType.System) as UIButton
         enterButton.frame = CGRectMake(pickerView.frame.size.width-50, pickerView.frame.origin.y-40, 50, 40)
         enterButton.setTitle("Enter", forState: UIControlState.Normal)
         enterButton.backgroundColor = UIColor.clearColor()
@@ -230,6 +233,10 @@ class StepGoalSetingView: UIView,UIPickerViewDelegate,UIPickerViewDataSource {
     Click the cancelButton and enterButton events
     */
     func enterAction(sender:UIButton) {
+        if sender.isEqual(enterButton)
+        {
+            mDelegate?.controllManager(sender)
+        }
         EndAnimation()
     }
     /*
@@ -247,6 +254,7 @@ class StepGoalSetingView: UIView,UIPickerViewDelegate,UIPickerViewDataSource {
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int){
 
         let pickerContent:NSInteger = NSInteger(indexArray.objectAtIndex(row) as Int)
+        mData = pickerContent as Int
         switch pickerContent {
         case 7000:
             cleanButtonControlState()

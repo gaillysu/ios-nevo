@@ -11,8 +11,6 @@ import UIKit
 class StepGoalSetingController: UIViewController, ConnectionControllerDelegate {
 
     @IBOutlet var stepGoalView: StepGoalSetingView!
-
-    var data :Int =3000
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,8 +51,7 @@ class StepGoalSetingController: UIViewController, ConnectionControllerDelegate {
             stepGoalView.cleanButtonControlState()
             stepGoalView.modarateButton.selected = true
             stepGoalView.goalButton.setTitle("7000", forState: UIControlState.Normal)
-            data = 7000
-            ConnectionControllerImpl.sharedInstance.sendRequest(SetGoalRequest(goal: Goal.GoalFactory.newGoal("NUMBER_OF_STEPS",intensity: GoalIntensity.HIGH,data: data)))
+            ConnectionControllerImpl.sharedInstance.sendRequest(SetGoalRequest(goal: Goal.GoalFactory.newGoal("NUMBER_OF_STEPS",intensity: GoalIntensity.LOW,data: stepGoalView.mData)))
         }
 
         if sender.isEqual(stepGoalView.intensiveButton) {
@@ -62,8 +59,7 @@ class StepGoalSetingController: UIViewController, ConnectionControllerDelegate {
             stepGoalView.cleanButtonControlState()
             stepGoalView.intensiveButton.selected = true
             stepGoalView.goalButton.setTitle("10000", forState: UIControlState.Normal)
-            data = 10000
-            ConnectionControllerImpl.sharedInstance.sendRequest(SetGoalRequest(goal: Goal.GoalFactory.newGoal("NUMBER_OF_STEPS",intensity: GoalIntensity.HIGH,data: data)))
+            ConnectionControllerImpl.sharedInstance.sendRequest(SetGoalRequest(goal: Goal.GoalFactory.newGoal("NUMBER_OF_STEPS",intensity: GoalIntensity.MEDIUM,data: stepGoalView.mData)))
         }
 
         if sender.isEqual(stepGoalView.sportiveButton) {
@@ -71,8 +67,7 @@ class StepGoalSetingController: UIViewController, ConnectionControllerDelegate {
             stepGoalView.cleanButtonControlState()
             stepGoalView.sportiveButton.selected = true
             stepGoalView.goalButton.setTitle("20000", forState: UIControlState.Normal)
-            data = 20000
-            ConnectionControllerImpl.sharedInstance.sendRequest(SetGoalRequest(goal: Goal.GoalFactory.newGoal("NUMBER_OF_STEPS",intensity: GoalIntensity.HIGH,data: data)))
+            ConnectionControllerImpl.sharedInstance.sendRequest(SetGoalRequest(goal: Goal.GoalFactory.newGoal("NUMBER_OF_STEPS",intensity: GoalIntensity.HIGH,data: stepGoalView.mData)))
         }
 
         if sender.isEqual(stepGoalView.customButton) {
@@ -86,6 +81,10 @@ class StepGoalSetingController: UIViewController, ConnectionControllerDelegate {
             NSLog("noConnectScanButton")
             stepGoalView.buttonAnimation(stepGoalView.noConnectScanButton)
             ConnectionControllerImpl.sharedInstance.connect()
+        }
+
+        if sender.isEqual(stepGoalView.enterButton) {
+            ConnectionControllerImpl.sharedInstance.sendRequest(SetGoalRequest(goal: Goal.GoalFactory.newGoal("NUMBER_OF_STEPS",intensity: GoalIntensity.LOW,data: stepGoalView.mData)))
         }
     }
 

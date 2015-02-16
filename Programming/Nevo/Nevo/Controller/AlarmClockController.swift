@@ -60,18 +60,25 @@ class AlarmClockController: UIViewController, ConnectionControllerDelegate,alarm
 
         if sender.isEqual(alarmView.alarmSwitch){
             NSLog("alarmView.alarmSwitch")
-            
-            alarmenable = !alarmenable
+            if alarmView.alarmSwitch.on {
+                alarmenable = true
+            }else{
+                alarmenable = false
+            }
+
+            ConnectionControllerImpl.sharedInstance.sendRequest(SetAlarmRequest(hour:alarmhour,min: alarmmin,enable: alarmenable))
+
         }
 
         if sender.isEqual(alarmView.datePicker) {
             let dateButtonTitle = stringFromDate(alarmView.datePicker.date)
             alarmView.selectedTimerButton.setTitle(dateButtonTitle as String, forState: UIControlState.Normal)
+            var lines:[String] = dateButtonTitle.componentsSeparatedByString(":");
 
-            NSLog("datePicker:%@",dateButtonTitle)
-            
-         //   alarmhour = alarmView.datePicker.date.hour
-         //   alarmmin  = alarmView.datePicker.date.min
+            alarmhour = (lines[0] as NSString).integerValue
+            alarmmin  = (lines[1] as NSString).integerValue
+
+            NSLog("datePicker.alarmhour:%d,alarmmin:%d",alarmhour,alarmmin)
         }
 
         if sender.isEqual(alarmView.noConnectScanButton) {
