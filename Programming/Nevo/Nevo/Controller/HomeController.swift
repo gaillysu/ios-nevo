@@ -25,7 +25,7 @@ class HomeController: UIViewController {
 
         var titleLabel:UILabel = UILabel(frame: CGRectMake(0, 0, 120, 30))
         titleLabel.textColor = UIColor.whiteColor()
-        titleLabel.text = "Clock"
+        titleLabel.text = NSLocalizedString("homeTitle", comment: "")
         titleLabel.font = UIFont.systemFontOfSize(25)
         titleLabel.textAlignment = NSTextAlignment.Center
         self.navigationItem.titleView = titleLabel

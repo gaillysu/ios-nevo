@@ -21,7 +21,7 @@ class AlarmClockController: UIViewController, ConnectionControllerDelegate,alarm
 
         var titleLabel:UILabel = UILabel(frame: CGRectMake(0, 0, 120, 30))
         titleLabel.textColor = UIColor.whiteColor()
-        titleLabel.text = "Alarm"
+        titleLabel.text = NSLocalizedString("alarmTitle", comment: "")
         titleLabel.font = UIFont.systemFontOfSize(25)
         titleLabel.textAlignment = NSTextAlignment.Center
         self.navigationItem.titleView = titleLabel
@@ -43,7 +43,7 @@ class AlarmClockController: UIViewController, ConnectionControllerDelegate,alarm
 
     func stringFromDate(date:NSDate) -> String {
         var dateFormatter:NSDateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "HH:mm:ss"
+        dateFormatter.dateFormat = "HH:mm"
         let dateString:String = dateFormatter.stringFromDate(date)
         return dateString
     }

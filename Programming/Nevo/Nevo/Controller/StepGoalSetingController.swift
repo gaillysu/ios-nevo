@@ -19,7 +19,7 @@ class StepGoalSetingController: UIViewController, ConnectionControllerDelegate {
 
         var titleLabel:UILabel = UILabel(frame: CGRectMake(0, 0, 120, 30))
         titleLabel.textColor = UIColor.whiteColor()
-        titleLabel.text = "Step"
+        titleLabel.text = NSLocalizedString("stepGoalTitle", comment: "")
         titleLabel.font = UIFont.systemFontOfSize(25)
         titleLabel.textAlignment = NSTextAlignment.Center
         self.navigationItem.titleView = titleLabel
@@ -75,12 +75,6 @@ class StepGoalSetingController: UIViewController, ConnectionControllerDelegate {
             ConnectionControllerImpl.sharedInstance.sendRequest(SetGoalRequest(goal: Goal.GoalFactory.newGoal("NUMBER_OF_STEPS",intensity: GoalIntensity.HIGH,data: stepGoalView.mData)))
         }
 
-        if sender.isEqual(stepGoalView.customButton) {
-            NSLog("customButton")
-            //stepGoalView.cleanButtonControlState()
-            //stepGoalView.customButton.selected = true
-            
-        }
 
         if sender.isEqual(stepGoalView.noConnectScanButton) {
             NSLog("noConnectScanButton")
