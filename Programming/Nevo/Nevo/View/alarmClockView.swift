@@ -62,6 +62,7 @@ class alarmClockView: UIView {
         //Create a DatePicker
         datePicker = UIDatePicker(frame: CGRectMake(0, PickerbgView.frame.size.height-160-50, self.frame.size.width, 160))
         datePicker.backgroundColor = PICKER_BG_COLOR
+        datePicker.datePickerMode = UIDatePickerMode.Time
         datePicker.addTarget(self, action: Selector("controllEventManager:"), forControlEvents: UIControlEvents.ValueChanged)
         PickerbgView.addSubview(datePicker)
 
