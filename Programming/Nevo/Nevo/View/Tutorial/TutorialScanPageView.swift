@@ -102,7 +102,12 @@ class TutorialScanPageView : UIView {
     }
 
     func buttonAnimation(sender:UIButton) {
-
+        
+        //If the finish button is visible, we shouldn't be able to rotate the figure
+        if(!finishButton.hidden) {
+            return;
+        }
+        
         var rotationAnimation:CABasicAnimation = CABasicAnimation(keyPath: "transform.rotation.z")
         rotationAnimation.toValue = NSNumber(double: M_PI * 2.0);
         rotationAnimation.duration = 1;

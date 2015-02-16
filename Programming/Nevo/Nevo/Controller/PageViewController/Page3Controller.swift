@@ -33,7 +33,7 @@ class Page3Controller: UIViewController,ButtonActionCallBack,ConnectionControlle
 
             let isConnectedBool:Bool = ConnectionControllerImpl.sharedInstance.isConnected()
             if(isConnectedBool) {
-                self.dismissViewControllerAnimated(true, completion: nil)
+                pagesView.connectSuccessClean()
             } else {
                 ConnectionControllerImpl.sharedInstance.connect()
                 ConnectionControllerImpl.sharedInstance.setDelegate( self)
