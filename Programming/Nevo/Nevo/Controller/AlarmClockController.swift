@@ -76,8 +76,7 @@ class AlarmClockController: UIViewController, ConnectionControllerDelegate,alarm
 
         if sender.isEqual(alarmView.noConnectScanButton) {
             NSLog("noConnectScanButton")
-            alarmView.buttonAnimation(alarmView.noConnectScanButton)
-            ConnectionControllerImpl.sharedInstance.connect()
+            reconnect()
         }
         if sender.isEqual(alarmView.enterButton){
             NSLog("alarmView.enterButton")
@@ -85,6 +84,12 @@ class AlarmClockController: UIViewController, ConnectionControllerDelegate,alarm
             ConnectionControllerImpl.sharedInstance.sendRequest(SetAlarmRequest(hour:alarmhour,min: alarmmin,enable: alarmenable))
         }
     }
+    
+    func reconnect() {
+        alarmView.buttonAnimation(alarmView.noConnectScanButton)
+        ConnectionControllerImpl.sharedInstance.connect()
+    }
+    
     /**
 
     See ConnectionControllerDelegate
@@ -126,15 +131,12 @@ class AlarmClockController: UIViewController, ConnectionControllerDelegate,alarm
 
 
         if !ConnectionControllerImpl.sharedInstance.isConnected() {
-
+            
             //We are currently not connected
-
-
-
-            //TODO by Cloud Display the not connected screen instead of this popup
-
             alarmView.bulibNoConnectView()
-        }else {
+            reconnect()
+        } else {
+            
             alarmView.endConnectRemoveView()
         }
 

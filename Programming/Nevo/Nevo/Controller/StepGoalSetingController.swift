@@ -12,7 +12,7 @@ class StepGoalSetingController: UIViewController, ConnectionControllerDelegate {
 
     @IBOutlet var stepGoalView: StepGoalSetingView!
 
-    var data :Int =3000
+    var data:Int = 3000
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -84,9 +84,13 @@ class StepGoalSetingController: UIViewController, ConnectionControllerDelegate {
 
         if sender.isEqual(stepGoalView.noConnectScanButton) {
             NSLog("noConnectScanButton")
-            stepGoalView.buttonAnimation(stepGoalView.noConnectScanButton)
-            ConnectionControllerImpl.sharedInstance.connect()
+            reconnect()
         }
+    }
+    
+    func reconnect() {
+        stepGoalView.buttonAnimation(stepGoalView.noConnectScanButton)
+        ConnectionControllerImpl.sharedInstance.connect()
     }
 
 
@@ -133,13 +137,11 @@ class StepGoalSetingController: UIViewController, ConnectionControllerDelegate {
         if !ConnectionControllerImpl.sharedInstance.isConnected() {
             
             //We are currently not connected
-            //TODO by Cloud Display the not connected screen instead of this popup
             stepGoalView.bulibNoConnectView()
-            
+            reconnect()
         } else {
 
             stepGoalView.endConnectRemoveView()
-            //TODO by Cloud dismiss the popup
         }
         
         
