@@ -12,7 +12,7 @@ class StepGoalSetingController: UIViewController, ConnectionControllerDelegate {
 
     @IBOutlet var stepGoalView: StepGoalSetingView!
 
-    var data :Int =3000
+    var data :Int = 3000
     
     override func viewDidLoad() {
         super.viewDidLoad()
