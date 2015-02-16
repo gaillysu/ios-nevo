@@ -11,6 +11,8 @@ import UIKit
 class StepGoalSetingController: UIViewController, ConnectionControllerDelegate {
 
     @IBOutlet var stepGoalView: StepGoalSetingView!
+    var data:Int = 3000
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -82,14 +84,19 @@ class StepGoalSetingController: UIViewController, ConnectionControllerDelegate {
 
         if sender.isEqual(stepGoalView.noConnectScanButton) {
             NSLog("noConnectScanButton")
-            stepGoalView.buttonAnimation(stepGoalView.noConnectImage)
 
             ConnectionControllerImpl.sharedInstance.connect()
+            reconnect()
         }
 
         if sender.isEqual(stepGoalView.enterButton) {
             ConnectionControllerImpl.sharedInstance.sendRequest(SetGoalRequest(goal: Goal.GoalFactory.newGoal("NUMBER_OF_STEPS",intensity: GoalIntensity.LOW,data: stepGoalView.mData)))
         }
+    }
+    
+    func reconnect() {
+        stepGoalView.buttonAnimation(stepGoalView.noConnectImage)
+        SyncController(controller: self, forceScan:false)
     }
 
 
@@ -136,13 +143,11 @@ class StepGoalSetingController: UIViewController, ConnectionControllerDelegate {
         if !ConnectionControllerImpl.sharedInstance.isConnected() {
             
             //We are currently not connected
-            //TODO by Cloud Display the not connected screen instead of this popup
             stepGoalView.bulibNoConnectView()
-            
+            reconnect()
         } else {
 
             stepGoalView.endConnectRemoveView()
-            //TODO by Cloud dismiss the popup
         }
         
         

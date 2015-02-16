@@ -72,6 +72,7 @@ class SyncController: ConnectionControllerDelegate {
         packetsbuffer.append(packet.getRawData())
         if(NSData2Bytes(packet.getRawData())[0] == 0xFF)
         {
+            /*
         var data:NSData!
         var message :String = ""
             
@@ -82,6 +83,20 @@ class SyncController: ConnectionControllerDelegate {
             var alert = UIAlertController(title: "Received", message: "Message : "+message, preferredStyle: UIAlertControllerStyle.Alert)
             alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.Default, handler: nil))
             mTestHomeController.presentViewController(alert, animated: true, completion: nil)
+            */
+            if(NSData2Bytes(packet.getRawData())[1] == 0x01)
+            {
+                self.SetProfile()
+            }
+            if(NSData2Bytes(packet.getRawData())[1] == 0x20)
+            {
+                self.WriteSetting()
+            }
+            
+            if(NSData2Bytes(packet.getRawData())[1] == 0x21)
+            {
+                self.SetCardio()
+            }
             
             packetsbuffer = []
         }
@@ -89,8 +104,17 @@ class SyncController: ConnectionControllerDelegate {
     
     func connectionStateChanged(isConnected : Bool) {
         
+        if( isConnected )
+        {
+         //  NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: Selector("setRTC"), userInfo: nil, repeats: false)
+            var dispatchTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, Int64(1.0 * Double(NSEC_PER_SEC)))
+            dispatch_after(dispatchTime, dispatch_get_main_queue(), {
+                self.setRTC()
+            })
+            
+        }
     }
-    
+
     //TODO by Hugo remove
     func sendRawPacket() {
         var inputTextField:UITextField?

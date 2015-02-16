@@ -22,6 +22,8 @@ class alarmClockView: UIView {
     @IBOutlet var selectedTimerButton: UIButton!
     @IBOutlet var alarmSwitch: UISwitch!
 
+    var noConnectionView:UIView?
+    
     var cancelButton:UIButton!
     var enterButton:UIButton!
     var datePicker:UIDatePicker!
@@ -104,45 +106,53 @@ class alarmClockView: UIView {
 
     func bulibNoConnectView() {
         if noConnectScanButton==nil {
-            var noConnectView:UIView = UIView(frame: CGRectMake(0, 0, self.frame.size.width, self.frame.size.height))
-            noConnectView.backgroundColor = PICKER_BG_COLOR
-            noConnectView.tag = NO_CONNECT_VIEW
-            self.addSubview(noConnectView)
+            noConnectionView = UIView(frame: CGRectMake(0, 0, self.frame.size.width, self.frame.size.height))
+            noConnectionView?.backgroundColor = PICKER_BG_COLOR
+            noConnectionView?.tag = NO_CONNECT_VIEW
+            self.addSubview(noConnectionView!)
 
             noConnectImage = UIImageView(frame: CGRectMake(0, 0, 160, 160))
             noConnectImage.image = UIImage(named: "connect")
-            noConnectImage.center = CGPointMake(noConnectView.frame.size.width/2.0, noConnectView.frame.size.height/2.0)
+            noConnectImage.center = CGPointMake(noConnectionView!.frame.size.width/2.0, noConnectionView!.frame.size.height/2.0)
             noConnectImage.backgroundColor = UIColor.clearColor()
-            noConnectView.addSubview(noConnectImage)
+            noConnectionView?.addSubview(noConnectImage)
 
             noConnectScanButton = UIButton.buttonWithType(UIButtonType.Custom) as UIButton
             noConnectScanButton.frame = CGRectMake(0, 0, 160, 160)
-            noConnectScanButton.center = CGPointMake(noConnectView.frame.size.width/2.0, noConnectView.frame.size.height/2.0)
-            //noConnectScanButton.setImage(UIImage(named: "connect"), forState: UIControlState.Normal)
+            noConnectScanButton.center = CGPointMake(noConnectionView!.frame.size.width/2.0, noConnectionView!.frame.size.height/2.0)
             noConnectScanButton.setTitle(NSLocalizedString("Connect", comment: ""), forState: UIControlState.Normal)
             noConnectScanButton.backgroundColor = UIColor.clearColor()
             noConnectScanButton.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
             noConnectScanButton.addTarget(self, action: Selector("controllEventManager:"), forControlEvents: UIControlEvents.TouchUpInside)
-            noConnectView.addSubview(noConnectScanButton)
+            noConnectionView?.addSubview(noConnectScanButton)
+        } else {
+            
+            if let noConnect:UIView = noConnectionView {
+                UIView.animateKeyframesWithDuration(0.3, delay: 0, options: UIViewKeyframeAnimationOptions.LayoutSubviews, animations: { () -> Void in
+                    
+                    noConnect.alpha = 255;
+                    
+                    }) { (Bool) -> Void in
+                        noConnect.hidden=false
+                }
+            }
         }
     }
 
     func endConnectRemoveView() {
-        for view : AnyObject in self.subviews {
-            if view is UIView {
-                let noConnect:UIView = view as UIView;
-                if noConnect.tag == NO_CONNECT_VIEW {
-                    UIView.animateKeyframesWithDuration(0.3, delay: 0, options: UIViewKeyframeAnimationOptions.LayoutSubviews, animations: { () -> Void in
-
-                        noConnect.alpha = 0;
-
-                        }) { (Bool) -> Void in
-                            noConnect.removeFromSuperview()
-                    }
-                }
+        
+        if let noConnect:UIView = noConnectionView {
+            UIView.animateKeyframesWithDuration(0.3, delay: 0, options: UIViewKeyframeAnimationOptions.LayoutSubviews, animations: { () -> Void in
+                
+                noConnect.alpha = 0;
+                
+                }) { (Bool) -> Void in
+                    noConnect.hidden=true
             }
-            
         }
+        
+        
+        
     }
 
     /*
