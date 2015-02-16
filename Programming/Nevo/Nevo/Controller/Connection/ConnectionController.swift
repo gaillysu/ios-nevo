@@ -17,9 +17,9 @@ It also memorise the first device connected and automatically connects to it
 protocol ConnectionController {
 
     /**
-    Sets the current  connection controller's delegate
+    Adds one additionnal delegate
     */
-    func setDelegate(ConnectionControllerDelegate)
+    func addDelegate(ConnectionControllerDelegate)
     
     /**
     Tries to connect to a Nevo

@@ -19,7 +19,7 @@ class StepGoalSetingController: UIViewController, SyncControllerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        mSyncController = SyncController(controller: self, forceScan:false)
+        mSyncController = SyncController(controller: self, forceScan:false, delegate:self)
         
         var titleLabel:UILabel = UILabel(frame: CGRectMake(0, 0, 120, 30))
         titleLabel.textColor = UIColor.whiteColor()
@@ -33,8 +33,6 @@ class StepGoalSetingController: UIViewController, SyncControllerDelegate {
     }
     
     override func viewDidAppear(animated: Bool) {
-        mSyncController?.setDelegate(self)
-        
         checkConnection()
 
     }

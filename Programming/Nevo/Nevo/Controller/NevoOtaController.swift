@@ -42,7 +42,7 @@ class NevoOtaController : ConnectionControllerDelegate {
         mDelegate = controller
         mConnectionController = ConnectionControllerImpl.sharedInstance
         
-        mConnectionController?.setDelegate(self)
+        mConnectionController?.addDelegate(self)
         
         mConnectionController?.connect()
 

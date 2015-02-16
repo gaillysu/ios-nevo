@@ -16,20 +16,22 @@ It checks that the firmware is up to date, and handles every steps of the synchr
 
 class SyncController: ConnectionControllerDelegate {
     
-    var mDelegate:SyncControllerDelegate?
+    var mDelegate:SyncControllerDelegate
  
     let mConnectionController : ConnectionController?
     //TODO by Hugo remove
     let mTestHomeController : UIViewController
     private var packetsbuffer:[NSData]
     
-    init(controller : UIViewController,forceScan :Bool) {
+    init(controller : UIViewController,forceScan :Bool, delegate:SyncControllerDelegate) {
 
+        mDelegate = delegate
+        
         mTestHomeController = controller
         packetsbuffer = []
         mConnectionController = ConnectionControllerImpl.sharedInstance
         
-        mConnectionController?.setDelegate(self)
+        mConnectionController?.addDelegate(self)
         
         if forceScan
         {
@@ -106,7 +108,9 @@ class SyncController: ConnectionControllerDelegate {
     
     func connectionStateChanged(isConnected : Bool) {
         
-        mDelegate?.connectionStateChanged(isConnected)
+        NSLog("State changed : \(isConnected) To delegate  : \(mDelegate)")
+        
+        mDelegate.connectionStateChanged(isConnected)
         
         if( isConnected )
         {
@@ -156,10 +160,6 @@ class SyncController: ConnectionControllerDelegate {
             return connContr.isConnected()
         }
         return false
-    }
-    
-    func setDelegate(delegate:SyncControllerDelegate) {
-        mDelegate = delegate
     }
     
     //TODO by Hugo remove
