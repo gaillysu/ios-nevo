@@ -84,7 +84,7 @@ class AlarmClockController: UIViewController, ConnectionControllerDelegate,alarm
         if sender.isEqual(alarmView.noConnectScanButton) {
             NSLog("noConnectScanButton")
             alarmView.buttonAnimation(alarmView.noConnectScanButton)
-            ConnectionControllerImpl.sharedInstance.connect()
+            SyncController(controller: self, forceScan:false)
         }
         if sender.isEqual(alarmView.enterButton){
             NSLog("alarmView.enterButton")
