@@ -8,17 +8,20 @@
 
 import UIKit
 
-class AlarmClockController: UIViewController, ConnectionControllerDelegate,alarmButtonActionCallBack {
+class AlarmClockController: UIViewController, SyncControllerDelegate,alarmButtonActionCallBack {
 
     @IBOutlet var alarmView: alarmClockView!
     
     var alarmhour:Int = 0
     var alarmmin:Int = 0
     var alarmenable:Bool = true
+    var mSyncController:SyncController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        mSyncController = SyncController(controller: self, forceScan:false)
+        
         var titleLabel:UILabel = UILabel(frame: CGRectMake(0, 0, 120, 30))
         titleLabel.textColor = UIColor.whiteColor()
         titleLabel.text = "Alarm"
@@ -31,7 +34,7 @@ class AlarmClockController: UIViewController, ConnectionControllerDelegate,alarm
     }
 
     override func viewDidAppear(animated: Bool) {
-        ConnectionControllerImpl.sharedInstance.setDelegate(self)
+        mSyncController?.setDelegate(self)
 
         checkConnection()
     }
@@ -94,26 +97,14 @@ class AlarmClockController: UIViewController, ConnectionControllerDelegate,alarm
     
     func reconnect() {
             alarmView.buttonAnimation(alarmView.noConnectScanButton)
-            SyncController(controller: self, forceScan:false)
-    }
-    
-    /**
-
-    See ConnectionControllerDelegate
-
-    */
-
-    func packetReceived(RawPacket) {
-
-        //Do nothing
-
+            mSyncController?.connect()
     }
 
 
 
     /**
 
-    See ConnectionControllerDelegate
+    See SyncControllerDelegate
 
     */
 
@@ -137,7 +128,7 @@ class AlarmClockController: UIViewController, ConnectionControllerDelegate,alarm
 
 
 
-        if !ConnectionControllerImpl.sharedInstance.isConnected() {
+        if mSyncController != nil && !(mSyncController!.isConnected()) {
             
             //We are currently not connected
             alarmView.bulibNoConnectView()

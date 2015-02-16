@@ -60,6 +60,8 @@ class ConnectionControllerImpl : NSObject, ConnectionController, NevoBTDelegate 
     See ConnectionController protocol
     */
     func setDelegate(delegate:ConnectionControllerDelegate) {
+        NSLog("New delegate : \(delegate)")
+        
         //TODO by Hugo FIND A WAY TO ENSURE THAT WE DON'T LEAVE THE OTA SCREEN STILL IN OTA MODE
         mDelegate = delegate
     }

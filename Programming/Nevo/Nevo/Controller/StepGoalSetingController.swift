@@ -8,15 +8,19 @@
 
 import UIKit
 
-class StepGoalSetingController: UIViewController, ConnectionControllerDelegate {
+class StepGoalSetingController: UIViewController, SyncControllerDelegate {
 
     @IBOutlet var stepGoalView: StepGoalSetingView!
     var data:Int = 3000
+    
+    var mSyncController:SyncController?
 
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        mSyncController = SyncController(controller: self, forceScan:false)
+        
         var titleLabel:UILabel = UILabel(frame: CGRectMake(0, 0, 120, 30))
         titleLabel.textColor = UIColor.whiteColor()
         titleLabel.text = "Step"
@@ -29,7 +33,7 @@ class StepGoalSetingController: UIViewController, ConnectionControllerDelegate {
     }
     
     override func viewDidAppear(animated: Bool) {
-        ConnectionControllerImpl.sharedInstance.setDelegate(self)
+        mSyncController?.setDelegate(self)
         
         checkConnection()
 
@@ -94,7 +98,7 @@ class StepGoalSetingController: UIViewController, ConnectionControllerDelegate {
     
     func reconnect() {
         stepGoalView.buttonAnimation(stepGoalView.noConnectScanButton)
-        SyncController(controller: self, forceScan:false)
+        mSyncController?.connect()
     }
 
 
@@ -138,7 +142,7 @@ class StepGoalSetingController: UIViewController, ConnectionControllerDelegate {
         
         
         
-        if !ConnectionControllerImpl.sharedInstance.isConnected() {
+        if mSyncController != nil && !(mSyncController!.isConnected()) {
             
             //We are currently not connected
             stepGoalView.bulibNoConnectView()

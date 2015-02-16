@@ -15,6 +15,8 @@ It checks that the firmware is up to date, and handles every steps of the synchr
 */
 
 class SyncController: ConnectionControllerDelegate {
+    
+    var mDelegate:SyncControllerDelegate?
  
     let mConnectionController : ConnectionController?
     //TODO by Hugo remove
@@ -104,6 +106,8 @@ class SyncController: ConnectionControllerDelegate {
     
     func connectionStateChanged(isConnected : Bool) {
         
+        mDelegate?.connectionStateChanged(isConnected)
+        
         if( isConnected )
         {
          //  NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: Selector("setRTC"), userInfo: nil, repeats: false)
@@ -141,6 +145,21 @@ class SyncController: ConnectionControllerDelegate {
             inputTextField = textField
         })
         mTestHomeController.presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    func connect() {
+        self.mConnectionController?.connect()
+    }
+    
+    func isConnected() -> Bool{
+        if let connContr = mConnectionController {
+            return connContr.isConnected()
+        }
+        return false
+    }
+    
+    func setDelegate(delegate:SyncControllerDelegate) {
+        mDelegate = delegate
     }
     
     //TODO by Hugo remove
