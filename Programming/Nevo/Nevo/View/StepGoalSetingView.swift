@@ -44,6 +44,8 @@ class StepGoalSetingView: UIView,UIPickerViewDelegate,UIPickerViewDataSource {
 
     var enterButton:UIButton!
 
+    var noConnectImage:UIImageView!
+
     func bulidStepGoalView(delegate:UIViewController){
 
         if let callBackDelgate = delegate as? StepGoalSetingController {
@@ -111,7 +113,7 @@ class StepGoalSetingView: UIView,UIPickerViewDelegate,UIPickerViewDataSource {
         //Create a cancel button
         let cancelButton:UIButton = UIButton.buttonWithType(UIButtonType.System) as UIButton
         cancelButton.frame = CGRectMake(0, pickerView.frame.origin.y-40, 50, 40)
-        cancelButton.setTitle("Cancel", forState: UIControlState.Normal)
+        cancelButton.setTitle(NSLocalizedString("Cancel", comment: ""), forState: UIControlState.Normal)
         cancelButton.backgroundColor = UIColor.clearColor()
         cancelButton.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
         cancelButton.addTarget(self, action: Selector("enterAction:"), forControlEvents: UIControlEvents.TouchUpInside)
@@ -119,7 +121,7 @@ class StepGoalSetingView: UIView,UIPickerViewDelegate,UIPickerViewDataSource {
 
         enterButton = UIButton.buttonWithType(UIButtonType.System) as UIButton
         enterButton.frame = CGRectMake(pickerView.frame.size.width-50, pickerView.frame.origin.y-40, 50, 40)
-        enterButton.setTitle("Enter", forState: UIControlState.Normal)
+        enterButton.setTitle(NSLocalizedString("Enter", comment: ""), forState: UIControlState.Normal)
         enterButton.backgroundColor = UIColor.clearColor()
         enterButton.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
         enterButton.addTarget(self, action: Selector("enterAction:"), forControlEvents: UIControlEvents.TouchUpInside)
@@ -148,10 +150,17 @@ class StepGoalSetingView: UIView,UIPickerViewDelegate,UIPickerViewDataSource {
             noConnectView.tag = NO_CONNECT_VIEW
             self.addSubview(noConnectView)
 
+            noConnectImage = UIImageView(frame: CGRectMake(0, 0, 160, 160))
+            noConnectImage.image = UIImage(named: "connect")
+            noConnectImage.center = CGPointMake(noConnectView.frame.size.width/2.0, noConnectView.frame.size.height/2.0)
+            noConnectImage.backgroundColor = UIColor.clearColor()
+            noConnectView.addSubview(noConnectImage)
+
             noConnectScanButton = UIButton.buttonWithType(UIButtonType.Custom) as UIButton
             noConnectScanButton.frame = CGRectMake(0, 0, 160, 160)
             noConnectScanButton.center = CGPointMake(noConnectView.frame.size.width/2.0, noConnectView.frame.size.height/2.0)
-            noConnectScanButton.setImage(UIImage(named: "connect"), forState: UIControlState.Normal)
+            noConnectScanButton.setTitle(NSLocalizedString("Connect", comment: ""), forState: UIControlState.Normal)
+            //noConnectScanButton.setImage(UIImage(named: "connect"), forState: UIControlState.Normal)
             noConnectScanButton.backgroundColor = UIColor.clearColor()
             noConnectScanButton.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
             noConnectScanButton.addTarget(self, action: Selector("buttonAction:"), forControlEvents: UIControlEvents.TouchUpInside)
@@ -204,7 +213,7 @@ class StepGoalSetingView: UIView,UIPickerViewDelegate,UIPickerViewDataSource {
         
     }
 
-    func buttonAnimation(sender:UIButton) {
+    func buttonAnimation(sender:UIImageView) {
 
         var rotationAnimation:CABasicAnimation = CABasicAnimation(keyPath: "transform.rotation.z")
         rotationAnimation.toValue = NSNumber(double: M_PI * 2.0);
@@ -215,6 +224,23 @@ class StepGoalSetingView: UIView,UIPickerViewDelegate,UIPickerViewDataSource {
         rotationAnimation.fillMode = kCAFillModeForwards;
         rotationAnimation.removedOnCompletion = false
         sender.layer.addAnimation(rotationAnimation, forKey: "NoButtonRotationAnimation")
+    }
+
+    /**
+    * Animation Start
+    */
+    override func animationDidStart(theAnimation:CAAnimation)
+    {
+        NSLog("begin");
+        noConnectScanButton.setTitle(NSLocalizedString(" ", comment: ""), forState: UIControlState.Normal)
+    }
+
+    /**
+    * Animation Stop
+    */
+    override func animationDidStop(theAnimation:CAAnimation ,finished:Bool){
+        NSLog("end");
+        noConnectScanButton.setTitle(NSLocalizedString("Connect", comment: ""), forState: UIControlState.Normal)
     }
 
     /*

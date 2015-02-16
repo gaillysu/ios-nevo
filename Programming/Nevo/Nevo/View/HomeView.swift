@@ -18,7 +18,7 @@ class HomeView: UIView {
 
         clockTimerView.currentTimer()
         self.addSubview(clockTimerView)
-        clockTimerView.center = CGPointMake(self.frame.width/2.0, self.frame.height/2.0-80);//Using the center property determines the location of the ClockView
+        clockTimerView.center = CGPointMake(self.frame.width/2.0, self.frame.height/2.0);//Using the center property determines the location of the ClockView
     }
     
 }
