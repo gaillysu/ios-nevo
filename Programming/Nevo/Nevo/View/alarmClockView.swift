@@ -22,6 +22,8 @@ class alarmClockView: UIView {
     @IBOutlet var selectedTimerButton: UIButton!
     @IBOutlet var alarmSwitch: UISwitch!
 
+    @IBOutlet var alarmTitle: UILabel!
+    
     var noConnectionView:UIView?
     
     var cancelButton:UIButton!
@@ -42,6 +44,10 @@ class alarmClockView: UIView {
         if let callBackDelgate = delegate as? AlarmClockController {
             mDelegate = callBackDelgate
         }
+        alarmSwitch.tintColor = UIColor.blackColor()
+        alarmSwitch.onTintColor = UIColor.grayColor()
+
+        alarmTitle.text = NSLocalizedString("alarmLabelTitle", comment: "")
         
     }
 

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="B94-9O-eGF">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="B94-9O-eGF">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
     </dependencies>
@@ -19,7 +19,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9xM-Ob-4Qz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1479.375" y="-361.26760563380282"/>
+            <point key="canvasLocation" x="-789" y="-342"/>
         </scene>
         <!--Main Tab Bar Controller-->
         <scene sceneID="cdp-L5-L47">
@@ -41,7 +41,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XdP-rD-VpY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1479.375" y="441.54929577464787"/>
+            <point key="canvasLocation" x="-789" y="418"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="qEP-IN-OCQ">
@@ -62,7 +62,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lxX-gp-6KC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2265" y="1275"/>
+            <point key="canvasLocation" x="-1208" y="1207"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="QXP-JR-yAP">
@@ -79,7 +79,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3yg-Ph-IEs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1479.375" y="1275"/>
+            <point key="canvasLocation" x="-789" y="1207"/>
         </scene>
         <!--Step-->
         <scene sceneID="d5l-RI-6Wg">
@@ -90,27 +90,23 @@
                         <viewControllerLayoutGuide type="bottom" id="b4f-8n-7a5"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="esU-rF-t9Y" customClass="StepGoalSetingView" customModule="Nevo" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Step" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eye-WF-BOl">
-                                <rect key="frame" x="397" y="90" width="69" height="50"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="round600.png" translatesAutoresizingMaskIntoConstraints="NO" id="yRT-9T-y4R">
+                                <rect key="frame" x="30" y="154" width="260" height="260"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="4Ck-sO-XlA"/>
-                                    <constraint firstAttribute="width" constant="69" id="GfP-md-LIW"/>
+                                    <constraint firstAttribute="width" constant="260" id="Upd-yt-qiS"/>
+                                    <constraint firstAttribute="height" constant="260" id="fSV-ob-0Wp"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6bb-WV-M23">
-                                <rect key="frame" x="212" y="90" width="177" height="50"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <rect key="frame" x="30" y="231" width="260" height="105"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="177" id="6kk-Zr-iKj"/>
-                                    <constraint firstAttribute="height" constant="50" id="8g1-pD-mvk"/>
+                                    <constraint firstAttribute="width" constant="260" id="6kk-Zr-iKj"/>
+                                    <constraint firstAttribute="height" constant="105" id="8g1-pD-mvk"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="70"/>
                                 <state key="normal" title="30000">
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -119,91 +115,83 @@
                                     <action selector="buttonAction:" destination="esU-rF-t9Y" eventType="touchUpInside" id="cz5-uA-bXd"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kAf-Gx-iId">
-                                <rect key="frame" x="212" y="180" width="177" height="50"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dsh-Mg-AqS">
+                                <rect key="frame" x="16" y="454" width="80" height="45"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="9Sb-QA-B3B"/>
-                                    <constraint firstAttribute="width" constant="177" id="e6W-uc-Pmd"/>
+                                    <constraint firstAttribute="width" constant="80" id="UL6-RZ-iBS"/>
+                                    <constraint firstAttribute="height" constant="45" id="j6J-PV-YHq"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <inset key="titleEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                <state key="normal" title="Modarate" image="round">
-                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <state key="selected" title="Moderate" image="rounds"/>
-                                <connections>
-                                    <action selector="buttonAction:" destination="esU-rF-t9Y" eventType="touchUpInside" id="cR3-wJ-5Zs"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dsh-Mg-AqS">
-                                <rect key="frame" x="212" y="260" width="177" height="50"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="177" id="UL6-RZ-iBS"/>
-                                    <constraint firstAttribute="height" constant="50" id="j6J-PV-YHq"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
-                                <inset key="titleEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                <state key="normal" title="Intensive" image="round">
+                                <state key="normal" title="Normal">
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
-                                <state key="selected" title="Interive" image="rounds"/>
+                                <state key="selected" title="Interive" backgroundImage="selectedButton.png"/>
                                 <connections>
                                     <action selector="buttonAction:" destination="esU-rF-t9Y" eventType="touchUpInside" id="kzU-IM-Z9Y"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QbO-Lj-nW0">
-                                <rect key="frame" x="212" y="340" width="177" height="50"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" Set your daily Goal" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eye-WF-BOl">
+                                <rect key="frame" x="10" y="61" width="300" height="50"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="RCc-yp-O9w"/>
-                                    <constraint firstAttribute="width" constant="177" id="q0g-wd-4R5"/>
+                                    <constraint firstAttribute="height" constant="50" id="4Ck-sO-XlA"/>
+                                    <constraint firstAttribute="width" constant="300" id="GfP-md-LIW"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kAf-Gx-iId">
+                                <rect key="frame" x="120" y="454" width="80" height="45"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="9Sb-QA-B3B"/>
+                                    <constraint firstAttribute="width" constant="80" id="e6W-uc-Pmd"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <inset key="titleEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                <state key="normal" title="Sportive" image="round">
+                                <state key="normal" title="Moderate">
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
-                                <state key="selected" image="rounds"/>
+                                <state key="selected" title="Moderate" backgroundImage="selectedButton.png"/>
                                 <connections>
-                                    <action selector="buttonAction:" destination="esU-rF-t9Y" eventType="touchUpInside" id="Giy-mn-Bfh"/>
+                                    <action selector="buttonAction:" destination="esU-rF-t9Y" eventType="touchUpInside" id="cR3-wJ-5Zs"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NdC-74-8iE">
-                                <rect key="frame" x="212" y="419" width="177" height="50"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QbO-Lj-nW0">
+                                <rect key="frame" x="224" y="454" width="80" height="45"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="177" id="1wz-lX-GAz"/>
-                                    <constraint firstAttribute="height" constant="50" id="K9S-27-WEh"/>
+                                    <constraint firstAttribute="height" constant="45" id="RCc-yp-O9w"/>
+                                    <constraint firstAttribute="width" constant="80" id="q0g-wd-4R5"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <inset key="titleEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                <state key="normal" title="Custom" image="round">
+                                <state key="normal" title="Sportive">
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
-                                <state key="selected" title="Custom" image="rounds"/>
+                                <state key="selected" backgroundImage="selectedButton.png"/>
                                 <connections>
-                                    <action selector="buttonAction:" destination="esU-rF-t9Y" eventType="touchUpInside" id="JRI-77-Mfi"/>
+                                    <action selector="buttonAction:" destination="esU-rF-t9Y" eventType="touchUpInside" id="Giy-mn-Bfh"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="centerX" secondItem="kAf-Gx-iId" secondAttribute="centerX" id="5CZ-tf-8id"/>
-                            <constraint firstAttribute="centerY" secondItem="Eye-WF-BOl" secondAttribute="centerY" constant="185" id="5sv-MU-xwj"/>
-                            <constraint firstAttribute="centerX" secondItem="QbO-Lj-nW0" secondAttribute="centerX" id="69b-Cd-2l8"/>
-                            <constraint firstAttribute="centerX" secondItem="Eye-WF-BOl" secondAttribute="centerX" constant="-131.5" id="ONL-TK-DXa"/>
+                            <constraint firstAttribute="centerY" secondItem="Eye-WF-BOl" secondAttribute="centerY" constant="198" id="5sv-MU-xwj"/>
+                            <constraint firstAttribute="centerX" secondItem="QbO-Lj-nW0" secondAttribute="centerX" constant="-104" id="69b-Cd-2l8"/>
+                            <constraint firstAttribute="centerX" secondItem="Eye-WF-BOl" secondAttribute="centerX" id="ONL-TK-DXa"/>
+                            <constraint firstItem="yRT-9T-y4R" firstAttribute="leading" secondItem="6bb-WV-M23" secondAttribute="leading" id="VpA-ft-M0M"/>
                             <constraint firstAttribute="centerX" secondItem="6bb-WV-M23" secondAttribute="centerX" id="ZCD-XD-nXM"/>
-                            <constraint firstAttribute="centerY" secondItem="kAf-Gx-iId" secondAttribute="centerY" constant="95" id="dOj-lI-UEY"/>
-                            <constraint firstAttribute="centerX" secondItem="NdC-74-8iE" secondAttribute="centerX" id="h5P-IK-O34"/>
-                            <constraint firstAttribute="centerX" secondItem="dsh-Mg-AqS" secondAttribute="centerX" id="jsF-Ea-YYy"/>
-                            <constraint firstAttribute="centerY" secondItem="dsh-Mg-AqS" secondAttribute="centerY" constant="15" id="ssf-UM-Pz2"/>
-                            <constraint firstAttribute="centerY" secondItem="6bb-WV-M23" secondAttribute="centerY" constant="185" id="tXd-Wm-8dt"/>
-                            <constraint firstAttribute="centerY" secondItem="NdC-74-8iE" secondAttribute="centerY" constant="-144" id="w6X-02-w7i"/>
-                            <constraint firstAttribute="centerY" secondItem="QbO-Lj-nW0" secondAttribute="centerY" constant="-65" id="x7U-qn-3ES"/>
+                            <constraint firstAttribute="centerY" secondItem="kAf-Gx-iId" secondAttribute="centerY" constant="-192.5" id="dOj-lI-UEY"/>
+                            <constraint firstAttribute="centerX" secondItem="dsh-Mg-AqS" secondAttribute="centerX" constant="104" id="jsF-Ea-YYy"/>
+                            <constraint firstItem="yRT-9T-y4R" firstAttribute="centerY" secondItem="esU-rF-t9Y" secondAttribute="centerY" id="nQH-kC-QfS"/>
+                            <constraint firstAttribute="centerY" secondItem="dsh-Mg-AqS" secondAttribute="centerY" constant="-192.5" id="ssf-UM-Pz2"/>
+                            <constraint firstAttribute="centerY" secondItem="6bb-WV-M23" secondAttribute="centerY" constant="0.5" id="tXd-Wm-8dt"/>
+                            <constraint firstAttribute="centerY" secondItem="QbO-Lj-nW0" secondAttribute="centerY" constant="-192.5" id="x7U-qn-3ES"/>
                         </constraints>
                         <connections>
-                            <outlet property="customButton" destination="NdC-74-8iE" id="TPB-ZA-rKw"/>
                             <outlet property="goalButton" destination="6bb-WV-M23" id="iCI-WT-dXV"/>
                             <outlet property="intensiveButton" destination="dsh-Mg-AqS" id="7k7-Dr-dig"/>
                             <outlet property="modarateButton" destination="kAf-Gx-iId" id="aOD-M1-jcK"/>
@@ -218,7 +206,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NbF-OP-8w7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1480" y="2018"/>
+            <point key="canvasLocation" x="-789.33333333333337" y="1910.3733333333332"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="ct5-Mu-dmL">
@@ -236,7 +224,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mkp-rg-CxF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-699.375" y="1275"/>
+            <point key="canvasLocation" x="-373" y="1207"/>
         </scene>
         <!--Alarm-->
         <scene sceneID="aOz-wY-I4v">
@@ -247,29 +235,46 @@
                         <viewControllerLayoutGuide type="bottom" id="zZF-AZ-p1t"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="pwc-5p-Bqy" customClass="alarmClockView" customModule="Nevo" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qE2-bj-eX9">
-                                <rect key="frame" x="184" y="230" width="150" height="40"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="round600.png" translatesAutoresizingMaskIntoConstraints="NO" id="dsW-M2-zpw">
+                                <rect key="frame" x="30" y="154" width="260" height="260"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="150" id="Bvq-K9-gr3"/>
-                                    <constraint firstAttribute="height" constant="40" id="j6i-hu-Y5p"/>
+                                    <constraint firstAttribute="height" constant="260" id="CxU-sr-f05"/>
+                                    <constraint firstAttribute="width" constant="260" id="c4c-TZ-mT2"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qE2-bj-eX9">
+                                <rect key="frame" x="10" y="231" width="300" height="105"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="Z3s-ju-9JV"/>
+                                    <constraint firstAttribute="height" constant="105" id="ikh-fr-lon"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="70"/>
                                 <state key="normal" title="8:30">
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="controllEventManager:" destination="pwc-5p-Bqy" eventType="touchUpInside" id="5GT-RT-JpZ"/>
                                 </connections>
                             </button>
-                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fjs-qS-fa5">
-                                <rect key="frame" x="368" y="234" width="51" height="31"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Set your Alarm" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cvc-DW-voE">
+                                <rect key="frame" x="10" y="77" width="300" height="35"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="31" id="Q88-wd-CuH"/>
-                                    <constraint firstAttribute="width" constant="49" id="cKS-7V-ThW"/>
+                                    <constraint firstAttribute="width" constant="300" id="0kp-rL-Yto"/>
+                                    <constraint firstAttribute="height" constant="35" id="qzT-rU-gHN"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fjs-qS-fa5">
+                                <rect key="frame" x="136" y="465" width="51" height="31"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="49" id="a1Z-gj-U9L"/>
+                                    <constraint firstAttribute="height" constant="31" id="wwP-ku-8jt"/>
                                 </constraints>
                                 <connections>
                                     <action selector="controllEventManager:" destination="pwc-5p-Bqy" eventType="valueChanged" id="mAQ-HP-BbD"/>
@@ -278,13 +283,19 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="centerY" secondItem="qE2-bj-eX9" secondAttribute="centerY" constant="50" id="GK5-jA-CuT"/>
-                            <constraint firstAttribute="centerY" secondItem="fjs-qS-fa5" secondAttribute="centerY" constant="50.5" id="fgd-vZ-mBf"/>
-                            <constraint firstAttribute="centerX" secondItem="qE2-bj-eX9" secondAttribute="centerX" constant="41" id="fyT-f8-orB"/>
-                            <constraint firstAttribute="centerX" secondItem="fjs-qS-fa5" secondAttribute="centerX" constant="-92.5" id="gJa-I6-YoP"/>
+                            <constraint firstItem="fjs-qS-fa5" firstAttribute="top" secondItem="dsW-M2-zpw" secondAttribute="bottom" constant="51" id="1IU-Ua-HSe"/>
+                            <constraint firstItem="dsW-M2-zpw" firstAttribute="centerY" secondItem="pwc-5p-Bqy" secondAttribute="centerY" id="5K7-wx-QxF"/>
+                            <constraint firstAttribute="centerY" secondItem="qE2-bj-eX9" secondAttribute="centerY" id="Mip-QU-LlP"/>
+                            <constraint firstAttribute="centerX" secondItem="dsW-M2-zpw" secondAttribute="centerX" id="Vsd-Yd-cas"/>
+                            <constraint firstItem="cvc-DW-voE" firstAttribute="top" secondItem="aIe-e2-91U" secondAttribute="bottom" constant="33" id="WB2-63-azG"/>
+                            <constraint firstAttribute="centerX" secondItem="cvc-DW-voE" secondAttribute="centerX" id="gPm-zV-PhY"/>
+                            <constraint firstAttribute="centerY" secondItem="dsW-M2-zpw" secondAttribute="centerY" id="hC5-RN-5xi"/>
+                            <constraint firstAttribute="centerX" secondItem="fjs-qS-fa5" secondAttribute="centerX" id="rpy-Ys-rCt"/>
+                            <constraint firstAttribute="centerX" secondItem="qE2-bj-eX9" secondAttribute="centerX" id="yBb-6q-HeS"/>
                         </constraints>
                         <connections>
                             <outlet property="alarmSwitch" destination="fjs-qS-fa5" id="qyK-Rn-3D8"/>
+                            <outlet property="alarmTitle" destination="cvc-DW-voE" id="h00-bM-gSe"/>
                             <outlet property="selectedTimerButton" destination="qE2-bj-eX9" id="kh0-sm-CdR"/>
                         </connections>
                     </view>
@@ -296,7 +307,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="s88-HX-jRc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-700" y="2018"/>
+            <point key="canvasLocation" x="-373.33333333333331" y="1910.3733333333332"/>
         </scene>
         <!--Clock-->
         <scene sceneID="ufC-wZ-h7g">
@@ -307,7 +318,7 @@
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS" customClass="HomeView" customModule="Nevo" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -320,7 +331,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2265" y="2018"/>
+            <point key="canvasLocation" x="-1208" y="1910.3733333333332"/>
         </scene>
         <!--Tutorial Controller-->
         <scene sceneID="Rdd-pv-bH0">
@@ -331,7 +342,7 @@
                         <viewControllerLayoutGuide type="bottom" id="GVG-yc-HD1"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="7Uq-gX-WNW">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -339,7 +350,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZrC-LT-fiX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2915" y="3516"/>
+            <point key="canvasLocation" x="-1554.6666666666667" y="3328.48"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="XKn-l0-A5F">
@@ -356,14 +367,19 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lza-Ds-F3H" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2915" y="2772"/>
+            <point key="canvasLocation" x="-1554.6666666666667" y="2624.1599999999999"/>
         </scene>
     </scenes>
     <resources>
         <image name="alarmitem" width="45" height="45"/>
         <image name="goalitem" width="45" height="45"/>
         <image name="homeitem" width="45" height="45"/>
-        <image name="round" width="50" height="50"/>
-        <image name="rounds" width="50" height="50"/>
+        <image name="round600.png" width="600" height="600"/>
+        <image name="selectedButton.png" width="173" height="89"/>
     </resources>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
 </document>

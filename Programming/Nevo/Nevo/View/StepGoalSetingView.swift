@@ -59,19 +59,20 @@ class StepGoalSetingView: UIView,UIPickerViewDelegate,UIPickerViewDataSource {
         goalButton.setTitle(NSLocalizedString("goalButton", comment: ""), forState: UIControlState.Normal)
         goalButton.setTitle(NSLocalizedString("goalButton", comment: ""), forState: UIControlState.Selected)
 
+
         modarateButton.setTitle(NSLocalizedString("Modarate", comment: ""), forState: UIControlState.Normal)
         modarateButton.setTitle(NSLocalizedString("Modarate", comment: ""), forState: UIControlState.Selected)
+        modarateButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Selected)
 
         intensiveButton.setTitle(NSLocalizedString("Intensive", comment: ""), forState: UIControlState.Normal)
         intensiveButton.setTitle(NSLocalizedString("Intensive", comment: ""), forState: UIControlState.Selected)
+        intensiveButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Selected)
 
         sportiveButton.setTitle(NSLocalizedString("Sportive", comment: ""), forState: UIControlState.Normal)
         sportiveButton.setTitle(NSLocalizedString("Sportive", comment: ""), forState: UIControlState.Selected)
+        sportiveButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Selected)
 
-        customButton.setTitle(NSLocalizedString("Custom", comment: ""), forState: UIControlState.Normal)
-        customButton.setTitle(NSLocalizedString("Custom", comment: ""), forState: UIControlState.Selected)
-
-        buttonArray = [modarateButton,intensiveButton,sportiveButton,customButton]
+        buttonArray = [modarateButton,intensiveButton,sportiveButton]
 
         //For loop will stuck the main thread, so you need to for an asynchronous thread to handle this line function
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
