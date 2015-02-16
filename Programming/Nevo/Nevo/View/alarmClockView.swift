@@ -22,6 +22,8 @@ class alarmClockView: UIView {
     @IBOutlet var selectedTimerButton: UIButton!
     @IBOutlet var alarmSwitch: UISwitch!
 
+    var cancelButton:UIButton!
+    var enterButton:UIButton!
     var datePicker:UIDatePicker!
     let BAG_PICKER_TAG:Int = 1500;//Looking for view using a fixed tag values
     let NO_CONNECT_VIEW:Int = 1200
@@ -66,7 +68,7 @@ class alarmClockView: UIView {
         PickerbgView.addSubview(buttonBgView)
 
         //Create a cancel button
-        let cancelButton:UIButton = UIButton.buttonWithType(UIButtonType.System) as UIButton
+        cancelButton = UIButton.buttonWithType(UIButtonType.System) as UIButton
         cancelButton.frame = CGRectMake(0, datePicker.frame.origin.y-40, 50, 40)
         cancelButton.setTitle("Cancel", forState: UIControlState.Normal)
         cancelButton.backgroundColor = UIColor.clearColor()
@@ -74,7 +76,7 @@ class alarmClockView: UIView {
         cancelButton.addTarget(self, action: Selector("enterAction:"), forControlEvents: UIControlEvents.TouchUpInside)
         PickerbgView.addSubview(cancelButton)
 
-        let enterButton:UIButton = UIButton.buttonWithType(UIButtonType.System) as UIButton
+        enterButton = UIButton.buttonWithType(UIButtonType.System) as UIButton
         enterButton.frame = CGRectMake(datePicker.frame.size.width-50, datePicker.frame.origin.y-40, 50, 40)
         enterButton.setTitle("Enter", forState: UIControlState.Normal)
         enterButton.backgroundColor = UIColor.clearColor()
@@ -178,6 +180,10 @@ class alarmClockView: UIView {
     Click the cancelButton and enterButton events
     */
     func enterAction(sender:UIButton) {
+        if sender.isEqual(enterButton)
+        {
+            mDelegate?.controllManager(sender)
+        }
         EndAnimation()
     }
 

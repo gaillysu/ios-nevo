@@ -27,9 +27,9 @@ class Goal {
             return Goal()
         }
         
-        static func newGoal(aType:String, intensity:GoalIntensity) -> Goal{
+        static func newGoal(aType:String, intensity:GoalIntensity,data : Int) -> Goal{
             if (aType == (NumberOfStepsGoal()).getType()) {
-                return NumberOfStepsGoal(intensity: intensity)
+                return NumberOfStepsGoal(intensity: intensity, step: data)
             }
             return Goal()
         }

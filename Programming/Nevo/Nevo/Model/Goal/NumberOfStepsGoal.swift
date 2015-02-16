@@ -10,22 +10,24 @@ import Foundation
 
 class NumberOfStepsGoal : Goal {
     internal let thistype = "NUMBER_OF_STEPS"
+    var mSteps:Int = 3000
     
     override init() {
         super.init()
         type = thistype
     }
     
-    init(intensity:GoalIntensity)
+    init(intensity:GoalIntensity,step:Int)
     {
         super.init()
         goalIntensity = intensity
         type = thistype
+        mSteps = step
     }
     func getNumberOfSteps() -> NSInteger {
         //return the number of steps depending on the goal intensity
-        NSLog("getNumberOfSteps() return 1000")
-        return 1000
+        NSLog("getNumberOfSteps() return \(mSteps)")
+        return NSInteger(mSteps)
     }
     
 }

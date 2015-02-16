@@ -58,8 +58,8 @@ class SyncController: ConnectionControllerDelegate {
         mConnectionController?.sendRequest(SetGoalRequest(goal: goal))
     }
     
-    func setAlarm() {
-        mConnectionController?.sendRequest(SetAlarmRequest())
+    func setAlarm(alarmhour:Int,alarmmin:Int,alarmenable:Bool) {
+        mConnectionController?.sendRequest(SetAlarmRequest(hour:alarmhour,min: alarmmin,enable: alarmenable))
     }
 
     func SetNortification() {

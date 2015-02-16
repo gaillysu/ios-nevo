@@ -9,26 +9,26 @@
 import UIKit
 
 class SetAlarmRequest: NevoRequest {
-   
+   //0~23
+    var alarmhour: Int
+   //0~59
+    var alarmmin:Int
+    // true or false
+    var alarmenable:Bool
+
+    init(hour:Int,min:Int,enable:Bool)
+    {
+        alarmhour = hour
+        alarmmin = min
+        alarmenable = enable
+    }
+    
     override func getRawDataEx() -> NSArray {
-        
-        let now:NSDate = NSDate()
-        let cal:NSCalendar = NSCalendar.currentCalendar()
-        let unitFlags:NSCalendarUnit = NSCalendarUnit.YearCalendarUnit | NSCalendarUnit.MonthCalendarUnit | NSCalendarUnit.DayCalendarUnit | NSCalendarUnit.HourCalendarUnit | NSCalendarUnit.MinuteCalendarUnit | NSCalendarUnit.SecondCalendarUnit
-        let dd:NSDateComponents = cal.components(unitFlags, fromDate: now);
-        
-        let year:NSInteger = dd.year;
-        let month:NSInteger = dd.month;
-        let day:NSInteger = dd.day;
-        let hour:NSInteger = dd.hour;
-        let min:NSInteger = dd.minute + 1;
-        
-        var enable :UInt8 = 7 //bit0 =1,bit1 =1,bit2 = 1
-        
+
         var values1 :[UInt8] = [0x00,0x41,
-            UInt8(hour&0xFF),
-            UInt8(min&0xFF),
-            UInt8(enable&0xFF),
+            UInt8(alarmhour&0xFF),
+            UInt8(alarmmin&0xFF),
+            UInt8(alarmenable ? 7:0),
             0,
             0,
             0,

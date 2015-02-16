@@ -11,7 +11,11 @@ import UIKit
 class AlarmClockController: UIViewController, ConnectionControllerDelegate,alarmButtonActionCallBack {
 
     @IBOutlet var alarmView: alarmClockView!
-
+    
+    var alarmhour:Int = 0
+    var alarmmin:Int = 0
+    var alarmenable:Bool = true
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -56,6 +60,8 @@ class AlarmClockController: UIViewController, ConnectionControllerDelegate,alarm
 
         if sender.isEqual(alarmView.alarmSwitch){
             NSLog("alarmView.alarmSwitch")
+            
+            alarmenable = !alarmenable
         }
 
         if sender.isEqual(alarmView.datePicker) {
@@ -63,12 +69,20 @@ class AlarmClockController: UIViewController, ConnectionControllerDelegate,alarm
             alarmView.selectedTimerButton.setTitle(dateButtonTitle as String, forState: UIControlState.Normal)
 
             NSLog("datePicker:%@",dateButtonTitle)
+            
+         //   alarmhour = alarmView.datePicker.date.hour
+         //   alarmmin  = alarmView.datePicker.date.min
         }
 
         if sender.isEqual(alarmView.noConnectScanButton) {
             NSLog("noConnectScanButton")
             alarmView.buttonAnimation(alarmView.noConnectScanButton)
-
+            ConnectionControllerImpl.sharedInstance.connect()
+        }
+        if sender.isEqual(alarmView.enterButton){
+            NSLog("alarmView.enterButton")
+            
+            ConnectionControllerImpl.sharedInstance.sendRequest(SetAlarmRequest(hour:alarmhour,min: alarmmin,enable: alarmenable))
         }
     }
     /**

@@ -19,8 +19,7 @@ class HomeController: UIViewController {
     @IBOutlet var homeView: HomeView!
     
     var mConnectionController: ConnectionController?
-
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -65,7 +64,7 @@ class HomeController: UIViewController {
         //if sender == homeView.connectButton {
             NSLog("connectButton");
             
-            SyncController(controller: self).sendRawPacket()
+         //   SyncController(controller: self).sendRawPacket()
            
         //}
     }
