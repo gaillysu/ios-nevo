@@ -8,7 +8,7 @@
 
 import UIkit
 
-class TutorialController: UIViewController {
+class TutorialController: UIViewController, SyncControllerDelegate {
     var mTutorialView: TutorialView?
     var sync:SyncController?
     //This controller is not displayed on the storyboard
@@ -20,13 +20,13 @@ class TutorialController: UIViewController {
         mTutorialView = TutorialView(frame: CGRectMake(0,0, self.view.frame.size.width, self.view.frame.size.height), delegate: self)
         self.view.addSubview(mTutorialView!)
 
-        sync = SyncController(controller: self, forceScan:true)
+        sync = SyncController(controller: self, forceScan:true, delegate: self)
         
 
     }
     
     func scanButtonPressed(sender:UIButton) {
-        SyncController(controller: self, forceScan:true)
+        SyncController(controller: self, forceScan:true, delegate: self)
     }
     
     /**

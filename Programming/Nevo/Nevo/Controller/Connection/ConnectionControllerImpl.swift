@@ -14,7 +14,7 @@ See ConnectionController
 */
 class ConnectionControllerImpl : NSObject, ConnectionController, NevoBTDelegate {
     var mNevoBT:NevoBT?
-    var mDelegate:ConnectionControllerDelegate?
+    var mDelegates:[ConnectionControllerDelegate]=[]
 
     let SAVED_ADDRESS_KEY = "SAVED_ADDRESS"
     
@@ -59,9 +59,10 @@ class ConnectionControllerImpl : NSObject, ConnectionController, NevoBTDelegate 
     /**
     See ConnectionController protocol
     */
-    func setDelegate(delegate:ConnectionControllerDelegate) {
-        //TODO by Hugo FIND A WAY TO ENSURE THAT WE DON'T LEAVE THE OTA SCREEN STILL IN OTA MODE
-        mDelegate = delegate
+    func addDelegate(delegate:ConnectionControllerDelegate) {
+        NSLog("New delegate : \(delegate)")
+        
+        mDelegates.append(delegate)
     }
 
     /**
@@ -102,7 +103,9 @@ class ConnectionControllerImpl : NSObject, ConnectionController, NevoBTDelegate 
     */
     func connectionStateChanged(isConnected : Bool, fromAddress : NSUUID!) {
 
-        mDelegate?.connectionStateChanged(isConnected)
+        for (index, delegate) in enumerate(mDelegates) {
+            delegate.connectionStateChanged(isConnected)
+        }
         
         if (!isConnected) {
             connect()
@@ -186,7 +189,9 @@ class ConnectionControllerImpl : NSObject, ConnectionController, NevoBTDelegate 
     See NevoBTDelegate
     */
     func packetReceived(packet:RawPacket, fromAddress : NSUUID) {
-        mDelegate?.packetReceived(packet)
+        for (index, delegate) in enumerate(mDelegates) {
+            delegate.packetReceived(packet)
+        }
     }
     
     /**

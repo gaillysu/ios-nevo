@@ -36,7 +36,8 @@ class Page3Controller: UIViewController,ButtonActionCallBack,ConnectionControlle
                 pagesView.connectSuccessClean()
             } else {
                 ConnectionControllerImpl.sharedInstance.connect()
-                ConnectionControllerImpl.sharedInstance.setDelegate( self)
+                //TODO by Hugo What happens when the utto is clicked a lot of times
+                ConnectionControllerImpl.sharedInstance.addDelegate( self)
             }
         } else if sender.isEqual(pagesView.backButton) {
             self.navigationController?.popViewControllerAnimated(true)

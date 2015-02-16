@@ -14,7 +14,7 @@ Controller of the Home Screen,
 it should handle very little, only the initialisation of the different Views and the Sync Controller
 */
 
-class HomeController: UIViewController {
+class HomeController: UIViewController, SyncControllerDelegate{
     
     @IBOutlet var homeView: HomeView!
     
@@ -44,7 +44,7 @@ class HomeController: UIViewController {
             
         } else {
             NSLog("We have a saved address, no need to go through the tutorial")
-            SyncController(controller: self, forceScan:false)
+            SyncController(controller: self, forceScan:false, delegate:self)
         }
         
     }
@@ -66,5 +66,9 @@ class HomeController: UIViewController {
          //   SyncController(controller: self).sendRawPacket()
            
         //}
+    }
+    
+    func connectionStateChanged(isConnected: Bool) {
+        //Do nothing
     }
 }
