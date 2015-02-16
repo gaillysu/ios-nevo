@@ -35,7 +35,7 @@ class HomeController: UIViewController {
         let timer:NSTimer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector:"timerAction:", userInfo: nil, repeats: true);
         
         mConnectionController = ConnectionControllerImpl.sharedInstance
-
+        
         if !ConnectionControllerImpl.sharedInstance.hasSavedAddress() {
             
             NSLog("No saved device, let's launch the tutorial")
@@ -44,8 +44,7 @@ class HomeController: UIViewController {
             
         } else {
             NSLog("We have a saved address, no need to go through the tutorial")
-            
-            mConnectionController?.connect()
+            SyncController(controller: self, forceScan:false)
         }
         
     }
