@@ -76,9 +76,5 @@ protocol NevoBTDelegate {
     Called when a peripheral connects or disconnects
     */
     func connectionStateChanged(isConnected : Bool, fromAddress : NSUUID!)
-    
-    /**
-    Called when the manager stopped scanning
-    */
-    func scanStopped()
+
 }

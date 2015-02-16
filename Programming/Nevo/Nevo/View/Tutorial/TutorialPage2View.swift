@@ -15,7 +15,12 @@ class TutorialPage2View: UIView {
     let BACKGROUND_COLOR:UIColor = UIColor(red: 244.0/255.0, green: 242.0/255.0, blue: 241.0/255.0, alpha: 1)
 
     let TEXT_FONT:UIFont = UIFont(name:"Raleway-Light", size: 20)!
+    
     let BUTTON_FONT:UIFont = UIFont(name:"Raleway-Light", size: 25)!
+
+    let BACK_BUTTON_FONT:UIFont = UIFont(name:"Raleway-Light", size: 20)!
+
+    var backButton:UIButton!
 
     init(frame: CGRect, delegate:UIViewController) {
         super.init(frame: frame)
@@ -36,6 +41,13 @@ class TutorialPage2View: UIView {
 
     func buildTutorialPage() {
 
+        backButton = UIButton.buttonWithType(UIButtonType.System) as UIButton
+        backButton.frame = CGRectMake(15, 10, 60, 40)
+        backButton.setTitle(NSLocalizedString("Back",comment:"button title string"), forState: UIControlState.Normal)
+        backButton.titleLabel?.font = BACK_BUTTON_FONT
+        backButton.addTarget(self, action: "ButtonAction:", forControlEvents: UIControlEvents.TouchUpInside)
+        self.addSubview(backButton)
+        
         let guideImage:UIImageView = UIImageView(image: UIImage(named: String("step2" as NSString)))
         guideImage.frame = CGRectMake(0, 0, self.frame.size.width-70, 100)
         guideImage.center = CGPointMake(self.frame.size.width/2.0, 100)
@@ -57,16 +69,6 @@ class TutorialPage2View: UIView {
         titleLabel.font = TEXT_FONT
         titleLabel.text = NSLocalizedString("WatchBluetooth",comment:"lable string")
         self.addSubview(titleLabel)
-
-        let guide2LabelFrameWidth:CGFloat = self.frame.size.width - sideImage.frame.size.width
-        let guide1Label:UILabel = UILabel(frame: CGRectMake(sideImage.frame.size.width, sideImage.frame.origin.y+50, guide2LabelFrameWidth, 100))
-        guide1Label.textAlignment = NSTextAlignment.Center
-        guide1Label.numberOfLines = 0
-        guide1Label.lineBreakMode = NSLineBreakMode.ByWordWrapping
-        guide1Label.backgroundColor = UIColor.clearColor()
-        guide1Label.font = TEXT_FONT
-        guide1Label.text = NSLocalizedString("PlacePhoneSearch",comment:"lable string")
-        self.addSubview(guide1Label)
 
         let guide2Label:UILabel = UILabel(frame: CGRectMake(titleLabel.frame.origin.x, sideImage.frame.origin.y+sideImage.frame.size.height-40, titleLabel.frame.size.width, 80))
         guide2Label.textAlignment = NSTextAlignment.Center

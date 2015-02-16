@@ -125,7 +125,7 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
     
         } else {
             //Maybe the Manager is not ready yet, let's try again after a delay
-            NSLog("Bluetooth Manager unavailable or not initialised, le'ts retry after a delay")
+            NSLog("Bluetooth Manager unavailable or not initialised, let's retry after a delay")
             
             var dispatchTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, Int64(RETRY_DURATION * Double(NSEC_PER_SEC)))
             dispatch_after(dispatchTime, dispatch_get_main_queue(), {
@@ -165,7 +165,7 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
             
         } else {
             //Maybe the Manager is not ready yet, let's try again after a delay
-            NSLog("Bluetooth Manager unavailable or not initialised, le'ts retry after a delay")
+            NSLog("Bluetooth Manager unavailable or not initialised, let's retry after a delay")
             
             var dispatchTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, Int64(RETRY_DURATION * Double(NSEC_PER_SEC)))
             dispatch_after(dispatchTime, dispatch_get_main_queue(), {
@@ -181,8 +181,6 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
         mManager?.stopScan()
         
         NSLog("Scan stopped.")
-        
-        mDelegate.scanStopped()
         
     }
     
@@ -416,7 +414,7 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
     See NevoBT protocol
     */
     func isConnected() -> Bool {
-        return ( mPeripheral != nil && mPeripheral!.state == CBPeripheralState.Connected )
+        return ( mPeripheral != nil && mPeripheral!.state == CBPeripheralState.Connected && isBluetoothEnabled() )
     }
     
     /**
