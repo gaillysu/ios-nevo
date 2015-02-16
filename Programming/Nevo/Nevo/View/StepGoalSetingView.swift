@@ -67,7 +67,7 @@ class StepGoalSetingView: UIView,UIPickerViewDelegate,UIPickerViewDataSource {
 
         //For loop will stuck the main thread, so you need to for an asynchronous thread to handle this line function
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
-            for var index:Int = 1000; index<=30000; index+=100 {
+            for var index:Int = 1000; index<=30000; index+=1000 {
                 NSLog("index:\(index)")
                 self.indexArray.addObject(index)
             }
