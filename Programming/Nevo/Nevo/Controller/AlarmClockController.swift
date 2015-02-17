@@ -71,8 +71,8 @@ class AlarmClockController: UIViewController, SyncControllerDelegate,alarmButton
 
         }
 
-        if sender.isEqual(alarmView.datePicker) {
-            let dateButtonTitle = stringFromDate(alarmView.datePicker.date)
+        if sender.isEqual(alarmView.getDatePicker()?) {
+            let dateButtonTitle = stringFromDate(alarmView.getDatePicker()!.date)
             alarmView.selectedTimerButton.setTitle(dateButtonTitle as String, forState: UIControlState.Normal)
             var lines:[String] = dateButtonTitle.componentsSeparatedByString(":");
 
@@ -82,11 +82,11 @@ class AlarmClockController: UIViewController, SyncControllerDelegate,alarmButton
             NSLog("datePicker.alarmhour:%d,alarmmin:%d",alarmhour,alarmmin)
         }
 
-        if sender.isEqual(alarmView.noConnectScanButton) {
+        if sender.isEqual(alarmView.getNoConnectScanButton()?) {
             NSLog("noConnectScanButton")
             reconnect()
         }
-        if sender.isEqual(alarmView.enterButton){
+        if sender.isEqual(alarmView.getEnterButton()?){
             NSLog("alarmView.enterButton")
             
             ConnectionControllerImpl.sharedInstance.sendRequest(SetAlarmRequest(hour:alarmhour,min: alarmmin,enable: alarmenable))
@@ -94,7 +94,7 @@ class AlarmClockController: UIViewController, SyncControllerDelegate,alarmButton
     }
     
     func reconnect() {
-            alarmView.buttonAnimation(alarmView.noConnectImage)
+            alarmView.buttonAnimation(alarmView.getNoConnectImage()!)
             mSyncController?.connect()
     }
 

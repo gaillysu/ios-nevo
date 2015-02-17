@@ -10,9 +10,9 @@ import UIKit
 
 class ClockView: UIControl {
 
-    private var hourImageView:UIImageView!
-    private var minuteImageView:UIImageView!
-    private var clockDialView:UIImageView!
+    private var mHourImageView:UIImageView!
+    private var mMinuteImageView:UIImageView!
+    private var mClockDialView:UIImageView!
 
 
     init(frame: CGRect ,hourImage:UIImage ,minuteImage:UIImage ,dialImage:UIImage) {
@@ -23,25 +23,25 @@ class ClockView: UIControl {
         // --  Draw the Nevo clockDialeView image  --
         // ------------------------------------------
         let dialeRect:CGRect = CGRectMake(0, 0, frame.size.width, frame.size.width)
-        clockDialView = UIImageView(frame: dialeRect)
-        clockDialView.image = dialImage
-        self.addSubview(clockDialView)
+        mClockDialView = UIImageView(frame: dialeRect)
+        mClockDialView.image = dialImage
+        self.addSubview(mClockDialView)
 
         // --------------------------------
         // --  Draw the Nevo hour image  --
         // --------------------------------
         let hourImageRect:CGRect = CGRectMake(0, 0, self.frame.size.width, self.frame.size.width)
-        hourImageView = UIImageView(frame:hourImageRect)
-        hourImageView.image = hourImage
-        self.addSubview(hourImageView)
+        mHourImageView = UIImageView(frame:hourImageRect)
+        mHourImageView.image = hourImage
+        self.addSubview(mHourImageView)
 
         // ----------------------------------
         // --  Draw the Nevo minute image  --
         // ----------------------------------
         let minuteImageRect:CGRect = CGRectMake(0, 0, self.frame.size.width, self.frame.size.width)
-        minuteImageView = UIImageView(frame:minuteImageRect)
-        minuteImageView.image = minuteImage
-        self.addSubview(minuteImageView)
+        mMinuteImageView = UIImageView(frame:minuteImageRect)
+        mMinuteImageView.image = minuteImage
+        self.addSubview(mMinuteImageView)
 
         // ------------------------
         // --  SET TIMER RADIANS --
@@ -67,10 +67,10 @@ class ClockView: UIControl {
         let minute:NSInteger = dd.minute;
 
         let angleOfHour:CGFloat = (CGFloat(hour)%12)*30.0 + ((CGFloat(minute) + CGFloat(seconds)/60.0 )/60.0)*30.0;
-        hourImageView.transform = CGAffineTransformRotate(CGAffineTransformIdentity,  DegreesToRadians(CGFloat(angleOfHour)));
+        mHourImageView.transform = CGAffineTransformRotate(CGAffineTransformIdentity,  DegreesToRadians(CGFloat(angleOfHour)));
 
         let angleOfMinute:CGFloat = (CGFloat(minute) + CGFloat(seconds)/60.0) * 6.0;
-        minuteImageView.transform = CGAffineTransformRotate(CGAffineTransformIdentity,  DegreesToRadians(CGFloat(angleOfMinute)));
+        mMinuteImageView.transform = CGAffineTransformRotate(CGAffineTransformIdentity,  DegreesToRadians(CGFloat(angleOfMinute)));
     }
 
     /*

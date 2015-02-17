@@ -75,12 +75,12 @@ class StepGoalSetingController: UIViewController, SyncControllerDelegate {
         }
 
 
-        if sender.isEqual(stepGoalView.noConnectScanButton) {
+        if sender.isEqual(stepGoalView.getNoConnectScanButton()?) {
             NSLog("noConnectScanButton")
             reconnect()
         }
 
-        if sender.isEqual(stepGoalView.enterButton) {
+        if sender.isEqual(stepGoalView.getEnterButton()?) {
 
             sendRequestGoal(GoalIntensity.LOW,value: stepGoalView.getNumberOfStepsGoal())
 
@@ -95,7 +95,9 @@ class StepGoalSetingController: UIViewController, SyncControllerDelegate {
     }
     
     func reconnect() {
-        stepGoalView.buttonAnimation(stepGoalView.noConnectImage)
+        if let noConnectImage = stepGoalView.getNoConnectImage() {
+            stepGoalView.buttonAnimation(noConnectImage)
+        }
         mSyncController?.connect()
     }
 

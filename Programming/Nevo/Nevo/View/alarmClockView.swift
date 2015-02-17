@@ -24,21 +24,22 @@ class alarmClockView: UIView {
 
     @IBOutlet var alarmTitle: UILabel!
     
-    var noConnectionView:UIView?
+    private var mNoConnectionView:UIView?
     
-    var cancelButton:UIButton!
-    var enterButton:UIButton!
-    var datePicker:UIDatePicker!
+    private var mCancelButton:UIButton?
+    private var mEnterButton:UIButton?
+    private var mDatePicker:UIDatePicker?
     let BAG_PICKER_TAG:Int = 1500;//Looking for view using a fixed tag values
     let NO_CONNECT_VIEW:Int = 1200
 
-    var noConnectScanButton:UIButton!
-    var noConnectImage:UIImageView!
+    private var mNoConnectScanButton:UIButton?
+    private var mNoConnectImage:UIImageView?
 
     let PICKER_BG_COLOR = UIColor(red: 255/255.0, green: 255/255.0, blue: 255/255.0, alpha: 1)//pickerView background color
 
     let BUTTONBGVIEW_COLOR = UIColor(red: 244/255.0, green: 242/255.0, blue: 241/255.0, alpha: 1)//View button background color
-    var mDelegate:AlarmClockController!
+    
+    private var mDelegate:AlarmClockController?
 
     func bulidAlarmView(delegate:UIViewController) {
         if let callBackDelgate = delegate as? AlarmClockController {
@@ -67,18 +68,20 @@ class alarmClockView: UIView {
         self.addSubview(PickerbgView)
 
         //Create a DatePicker
-        datePicker = UIDatePicker(frame: CGRectMake(0, PickerbgView.frame.size.height-160-50, self.frame.size.width, 160))
+        let datePicker = UIDatePicker(frame: CGRectMake(0, PickerbgView.frame.size.height-160-50, self.frame.size.width, 160))
         datePicker.backgroundColor = PICKER_BG_COLOR
         datePicker.datePickerMode = UIDatePickerMode.Time
         datePicker.addTarget(self, action: Selector("controllEventManager:"), forControlEvents: UIControlEvents.ValueChanged)
         PickerbgView.addSubview(datePicker)
 
+        mDatePicker = datePicker
+        
         let buttonBgView:UIView = UIView(frame: CGRectMake(0, datePicker.frame.origin.y-40, datePicker.frame.size.width, 40))
         buttonBgView.backgroundColor = BUTTONBGVIEW_COLOR
         PickerbgView.addSubview(buttonBgView)
 
         //Create a cancel button
-        cancelButton = UIButton.buttonWithType(UIButtonType.System) as UIButton
+        let cancelButton = UIButton.buttonWithType(UIButtonType.System) as UIButton
         cancelButton.frame = CGRectMake(0, datePicker.frame.origin.y-40, 50, 40)
         cancelButton.setTitle(NSLocalizedString("Cancel", comment: ""), forState: UIControlState.Normal)
         cancelButton.backgroundColor = UIColor.clearColor()
@@ -86,7 +89,9 @@ class alarmClockView: UIView {
         cancelButton.addTarget(self, action: Selector("enterAction:"), forControlEvents: UIControlEvents.TouchUpInside)
         PickerbgView.addSubview(cancelButton)
 
-        enterButton = UIButton.buttonWithType(UIButtonType.System) as UIButton
+        mCancelButton = cancelButton
+        
+        let enterButton = UIButton.buttonWithType(UIButtonType.System) as UIButton
         enterButton.frame = CGRectMake(datePicker.frame.size.width-50, datePicker.frame.origin.y-40, 50, 40)
         enterButton.setTitle(NSLocalizedString("Enter", comment: ""), forState: UIControlState.Normal)
         enterButton.backgroundColor = UIColor.clearColor()
@@ -94,6 +99,7 @@ class alarmClockView: UIView {
         enterButton.addTarget(self, action: Selector("enterAction:"), forControlEvents: UIControlEvents.TouchUpInside)
         PickerbgView.addSubview(enterButton)
 
+        mEnterButton = enterButton
 
         //Create a click gesture
         let tapCancel:UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "tapAction:")
@@ -111,29 +117,29 @@ class alarmClockView: UIView {
     }
 
     func bulibNoConnectView() {
-        if noConnectScanButton==nil {
-            noConnectionView = UIView(frame: CGRectMake(0, 0, self.frame.size.width, self.frame.size.height))
-            noConnectionView?.backgroundColor = PICKER_BG_COLOR
-            noConnectionView?.tag = NO_CONNECT_VIEW
-            self.addSubview(noConnectionView!)
+        if mNoConnectScanButton==nil {
+            mNoConnectionView = UIView(frame: CGRectMake(0, 0, self.frame.size.width, self.frame.size.height))
+            mNoConnectionView?.backgroundColor = PICKER_BG_COLOR
+            mNoConnectionView?.tag = NO_CONNECT_VIEW
+            self.addSubview(mNoConnectionView!)
 
-            noConnectImage = UIImageView(frame: CGRectMake(0, 0, 160, 160))
-            noConnectImage.image = UIImage(named: "connect")
-            noConnectImage.center = CGPointMake(noConnectionView!.frame.size.width/2.0, noConnectionView!.frame.size.height/2.0)
-            noConnectImage.backgroundColor = UIColor.clearColor()
-            noConnectionView?.addSubview(noConnectImage)
+            mNoConnectImage = UIImageView(frame: CGRectMake(0, 0, 160, 160))
+            mNoConnectImage?.image = UIImage(named: "connect")
+            mNoConnectImage?.center = CGPointMake(mNoConnectionView!.frame.size.width/2.0, mNoConnectionView!.frame.size.height/2.0)
+            mNoConnectImage?.backgroundColor = UIColor.clearColor()
+            mNoConnectionView?.addSubview(mNoConnectImage!)
 
-            noConnectScanButton = UIButton.buttonWithType(UIButtonType.Custom) as UIButton
-            noConnectScanButton.frame = CGRectMake(0, 0, 160, 160)
-            noConnectScanButton.center = CGPointMake(noConnectionView!.frame.size.width/2.0, noConnectionView!.frame.size.height/2.0)
-            noConnectScanButton.setTitle(NSLocalizedString("Connect", comment: ""), forState: UIControlState.Normal)
-            noConnectScanButton.backgroundColor = UIColor.clearColor()
-            noConnectScanButton.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
-            noConnectScanButton.addTarget(self, action: Selector("controllEventManager:"), forControlEvents: UIControlEvents.TouchUpInside)
-            noConnectionView?.addSubview(noConnectScanButton)
+            mNoConnectScanButton = UIButton.buttonWithType(UIButtonType.Custom) as UIButton
+            mNoConnectScanButton?.frame = CGRectMake(0, 0, 160, 160)
+            mNoConnectScanButton?.center = CGPointMake(mNoConnectionView!.frame.size.width/2.0, mNoConnectionView!.frame.size.height/2.0)
+            mNoConnectScanButton?.setTitle(NSLocalizedString("Connect", comment: ""), forState: UIControlState.Normal)
+            mNoConnectScanButton?.backgroundColor = UIColor.clearColor()
+            mNoConnectScanButton?.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
+            mNoConnectScanButton?.addTarget(self, action: Selector("controllEventManager:"), forControlEvents: UIControlEvents.TouchUpInside)
+            mNoConnectionView?.addSubview(mNoConnectScanButton!)
         } else {
             
-            if let noConnect:UIView = noConnectionView {
+            if let noConnect:UIView = mNoConnectionView {
                 UIView.animateKeyframesWithDuration(0.3, delay: 0, options: UIViewKeyframeAnimationOptions.LayoutSubviews, animations: { () -> Void in
                     
                     noConnect.alpha = 255;
@@ -147,7 +153,7 @@ class alarmClockView: UIView {
 
     func endConnectRemoveView() {
         
-        if let noConnect:UIView = noConnectionView {
+        if let noConnect:UIView = mNoConnectionView {
             UIView.animateKeyframesWithDuration(0.3, delay: 0, options: UIViewKeyframeAnimationOptions.LayoutSubviews, animations: { () -> Void in
                 
                 noConnect.alpha = 0;
@@ -206,23 +212,21 @@ class alarmClockView: UIView {
     */
     override func animationDidStart(theAnimation:CAAnimation)
     {
-        NSLog("begin");
-        noConnectScanButton.setTitle(NSLocalizedString(" ", comment: ""), forState: UIControlState.Normal)
+        mNoConnectScanButton?.setTitle(NSLocalizedString(" ", comment: ""), forState: UIControlState.Normal)
     }
 
     /**
     * 动画结束时
     */
     override func animationDidStop(theAnimation:CAAnimation ,finished:Bool){
-        NSLog("end");
-        noConnectScanButton.setTitle(NSLocalizedString("Connect", comment: ""), forState: UIControlState.Normal)
+        mNoConnectScanButton?.setTitle(NSLocalizedString("Connect", comment: ""), forState: UIControlState.Normal)
     }
 
     /*
     Click the cancelButton and enterButton events
     */
     func enterAction(sender:UIButton) {
-        if sender.isEqual(enterButton)
+        if sender.isEqual(mEnterButton)
         {
             mDelegate?.controllManager(sender)
         }
@@ -234,6 +238,26 @@ class alarmClockView: UIView {
     */
     func tapAction(sender:UITapGestureRecognizer) {
         EndAnimation()
+    }
+    
+    func getDatePicker() -> UIDatePicker? {
+        return mDatePicker
+    }
+    
+    func getEnterButton() -> UIButton? {
+        return mEnterButton
+    }
+    
+    func getNoConnectionView() -> UIView? {
+        return mNoConnectionView
+    }
+    
+    func getNoConnectScanButton() -> UIButton? {
+        return mNoConnectScanButton
+    }
+    
+    func getNoConnectImage() -> UIImageView? {
+        return mNoConnectImage
     }
 
     /*

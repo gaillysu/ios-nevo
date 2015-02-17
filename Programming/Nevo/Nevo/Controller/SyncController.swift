@@ -16,78 +16,64 @@ It checks that the firmware is up to date, and handles every steps of the synchr
 
 class SyncController: ConnectionControllerDelegate {
     
-    var mDelegate:SyncControllerDelegate
+    private var mDelegate:SyncControllerDelegate
  
-    let mConnectionController : ConnectionController?
-    //TODO by Hugo remove
-    let mTestHomeController : UIViewController
-    private var packetsbuffer:[NSData]
+    private let mConnectionController : ConnectionController
+
+    private var mPacketsbuffer:[NSData]
     
     init(controller : UIViewController,forceScan :Bool, delegate:SyncControllerDelegate) {
 
         mDelegate = delegate
-        
-        mTestHomeController = controller
-        packetsbuffer = []
+
+        mPacketsbuffer = []
         mConnectionController = ConnectionControllerImpl.sharedInstance
         
-        mConnectionController?.addDelegate(self)
+        mConnectionController.addDelegate(self)
         
         if forceScan
         {
-            mConnectionController?.forgetSavedAddress()
+            mConnectionController.forgetSavedAddress()
         }
-        mConnectionController?.connect()
+        mConnectionController.connect()
     }
     
     //add new functions when  get connected Nevo
     func setRTC() {
-        mConnectionController?.sendRequest(SetRTCRequest())
+        mConnectionController.sendRequest(SetRTCRequest())
     }
     
     func SetProfile() {
-        mConnectionController?.sendRequest(SetProfileRequest())
+        mConnectionController.sendRequest(SetProfileRequest())
     }
     func SetCardio() {
-        mConnectionController?.sendRequest(SetCardioRequest())
+        mConnectionController.sendRequest(SetCardioRequest())
     }
     
     func WriteSetting() {
-        mConnectionController?.sendRequest(WriteSettingRequest())
+        mConnectionController.sendRequest(WriteSettingRequest())
     }
     //end functions for connected to Nevo
     
     //below functions by UI
     func setGoal(goal:Goal) {
-        mConnectionController?.sendRequest(SetGoalRequest(goal: goal))
+        mConnectionController.sendRequest(SetGoalRequest(goal: goal))
     }
     
     func setAlarm(alarmhour:Int,alarmmin:Int,alarmenable:Bool) {
-        mConnectionController?.sendRequest(SetAlarmRequest(hour:alarmhour,min: alarmmin,enable: alarmenable))
+        mConnectionController.sendRequest(SetAlarmRequest(hour:alarmhour,min: alarmmin,enable: alarmenable))
     }
 
     func SetNortification() {
-        mConnectionController?.sendRequest(SetNortificationRequest())
+        mConnectionController.sendRequest(SetNortificationRequest())
     }
     //end functions by UI
     
     func packetReceived(packet:RawPacket) {
         
-        packetsbuffer.append(packet.getRawData())
+        mPacketsbuffer.append(packet.getRawData())
         if(NSData2Bytes(packet.getRawData())[0] == 0xFF)
         {
-            /*
-        var data:NSData!
-        var message :String = ""
-            
-        for data in packetsbuffer
-        {
-            message = message + "\r\n"+hexString(data)
-        }
-            var alert = UIAlertController(title: "Received", message: "Message : "+message, preferredStyle: UIAlertControllerStyle.Alert)
-            alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.Default, handler: nil))
-            mTestHomeController.presentViewController(alert, animated: true, completion: nil)
-            */
             if(NSData2Bytes(packet.getRawData())[1] == 0x01)
             {
                 self.SetProfile()
@@ -102,7 +88,7 @@ class SyncController: ConnectionControllerDelegate {
                 self.SetCardio()
             }
             
-            packetsbuffer = []
+            mPacketsbuffer = []
         }
     }
     
@@ -124,24 +110,12 @@ class SyncController: ConnectionControllerDelegate {
     }
     
     func connect() {
-        self.mConnectionController?.connect()
+        self.mConnectionController.connect()
     }
     
     func isConnected() -> Bool{
-        if let connContr = mConnectionController {
-            return connContr.isConnected()
-        }
-        return false
-    }
-    
-    //TODO by Hugo remove
-    private func hexString(data:NSData) -> NSString {
-        var str = NSMutableString()
-        let bytes = UnsafeBufferPointer<UInt8>(start: UnsafePointer(data.bytes), count:data.length)
-        for byte in bytes {
-            str.appendFormat("%02hhx", byte)
-        }
-        return str
+        return mConnectionController.isConnected()
+
     }
     
 }
