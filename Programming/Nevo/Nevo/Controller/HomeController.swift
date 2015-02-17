@@ -55,7 +55,7 @@ class HomeController: UIViewController, SyncControllerDelegate{
     }
 
     func timerAction(NSTimer) {
-        homeView.clockTimerView.currentTimer()
+        homeView.getClockTimerView().currentTimer()
     }
 
     @IBAction func managerButtonAction(sender: UIButton) {

@@ -29,7 +29,7 @@ class Page2Controller: UIViewController,ButtonActionCallBack {
     */
     func nextButtonAction(sender:UIButton){
         NSLog("Page2 CallBack Success")
-        if sender.isEqual(pagesView.backButton) {
+        if sender.isEqual(pagesView.getBackButton()?) {
             self.navigationController?.popViewControllerAnimated(true)
         }else{
             let page3cont = Page3Controller()

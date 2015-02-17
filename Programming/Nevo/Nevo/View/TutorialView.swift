@@ -9,20 +9,22 @@
 import UIkit
 
 class TutorialView: UIView {
-    var mTutorialButton: UIButton!
+    private var mTutorialButton: UIButton?
 
-    var mBuyButton: UIButton!
+    private var mBuyButton: UIButton?
 
     let COLOR_00C6DC = UIColor(red: 255/255.0, green: 255/255.0, blue: 255/255.0, alpha: 1)//The color of the button font color and other needs to use
     let FONT_RALEWAY_BOLD:UIFont! = UIFont(name:"Raleway-Thin", size: 26);//Uniform font
 
 
-    var mDelegate:UIViewController!//The current controller
+    private var mDelegate:UIViewController//The current controller
 
     init(frame: CGRect, delegate:UIViewController) {
+        mDelegate = delegate
+        
         super.init(frame: frame)
         super.backgroundColor = UIColor.whiteColor()
-        mDelegate = delegate
+        
         bulidTutorialView()
     }
 
@@ -46,22 +48,26 @@ class TutorialView: UIView {
 
         //Click into the tutorial page
         //TODO string
-        mTutorialButton = UIButton(frame: CGRectMake(0, 0, 230, 48))
-        mTutorialButton.setTitle(NSLocalizedString("Tutorial", comment:"Tutorial button title"), forState: UIControlState.Normal)
-        mTutorialButton.setTitleColor(COLOR_00C6DC, forState: UIControlState.Normal)
-        mTutorialButton.titleLabel?.font = FONT_RALEWAY_BOLD
-        mTutorialButton.addTarget(self, action: Selector("displayTutorialPageView"), forControlEvents: UIControlEvents.TouchUpInside)
-        mTutorialButton.center = CGPointMake(self.frame.size.width/2.0, self.frame.size.height-106)
-        self.addSubview(mTutorialButton)
+        let tutorialButton = UIButton(frame: CGRectMake(0, 0, 230, 48))
+        tutorialButton.setTitle(NSLocalizedString("Tutorial", comment:"Tutorial button title"), forState: UIControlState.Normal)
+        tutorialButton.setTitleColor(COLOR_00C6DC, forState: UIControlState.Normal)
+        tutorialButton.titleLabel?.font = FONT_RALEWAY_BOLD
+        tutorialButton.addTarget(self, action: Selector("displayTutorialPageView"), forControlEvents: UIControlEvents.TouchUpInside)
+        tutorialButton.center = CGPointMake(self.frame.size.width/2.0, self.frame.size.height-106)
+        self.addSubview(tutorialButton)
+        
+        mTutorialButton = tutorialButton
 
         //TODO string
-        mBuyButton = UIButton(frame: CGRectMake(0, 0, 230, 48))
-        mBuyButton.setTitle(NSLocalizedString("Acheter", comment:"Acheter button title"), forState: UIControlState.Normal)
-        mBuyButton.setTitleColor(COLOR_00C6DC, forState: UIControlState.Normal)
-        mBuyButton.titleLabel?.font = FONT_RALEWAY_BOLD
-        mBuyButton.center = CGPointMake(self.frame.size.width/2.0, self.frame.size.height-53)
-        mBuyButton.addTarget(self, action: Selector("DismisTutorial"), forControlEvents: UIControlEvents.TouchUpInside)
-        self.addSubview(mBuyButton)
+        let buyButton = UIButton(frame: CGRectMake(0, 0, 230, 48))
+        buyButton.setTitle(NSLocalizedString("Acheter", comment:"Acheter button title"), forState: UIControlState.Normal)
+        buyButton.setTitleColor(COLOR_00C6DC, forState: UIControlState.Normal)
+        buyButton.titleLabel?.font = FONT_RALEWAY_BOLD
+        buyButton.center = CGPointMake(self.frame.size.width/2.0, self.frame.size.height-53)
+        buyButton.addTarget(self, action: Selector("DismisTutorial"), forControlEvents: UIControlEvents.TouchUpInside)
+        self.addSubview(buyButton)
+        
+        mBuyButton = buyButton
 
 
     }
@@ -79,6 +85,14 @@ class TutorialView: UIView {
     */
     func DismisTutorial() {
         mDelegate.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    func getTutorialButton() -> UIButton? {
+        return mTutorialButton
+    }
+    
+    func getBuyButton() -> UIButton? {
+        return mBuyButton
     }
 
 }
