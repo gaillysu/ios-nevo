@@ -6,7 +6,7 @@ This is the repository of Nevo-iOS version
 
 ### Contribution guidelines ###
 
-1-Naming conventions :
+#### 1-Naming conventions : #### 
 Variable :
 /**
 Comments goeS here
@@ -24,7 +24,8 @@ Class :
 ​(Why : Because if all variables are private, a variable won't be changed without your consent)​
 
 
-​2- Optionals​ : https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/TheBasics.html#//apple_ref/doc/uid/TP40014097-CH5-ID330
+​####  2- Optionals​ : #### 
+https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/TheBasics.html#//apple_ref/doc/uid/TP40014097-CH5-ID330
 
 We should never use :
 var mNameOfObject:TypeOfObject!
@@ -42,7 +43,7 @@ if let nameOfObject = mNameOfObject {
 }
 
 (Why ? Because using ObjectType! exposes to geart danger. We had a big big crash because of a variable initialised that way. It is too hard to know if it is null or not)
-3- Everything which have a close relation to the UI, should be inside a View
+####  3- Everything which have a close relation to the UI, should be inside a View #### 
 Ex This shouldn't be inside a Controller :
         var titleLabel:UILabel = UILabel(frame: CGRectMake(0, 0, 120, 30))
         titleLabel.textColor = UIColor.whiteColor()
@@ -50,7 +51,8 @@ Ex This shouldn't be inside a Controller :
         titleLabel.font = UIFont.systemFontOfSize(25)
 Everything that starts with UIXXXXX or ColorXXX should be done inside a View
 (Why ? UI changes often, Controller much less often. So every thigns specific to teh appearance. Colors, Fonts, positions. Should be isolated from the rest of the code)
-​4- Sync Controller
+​
+#### 4- Sync Controller #### 
 Normally, all bluetooth operations should go through the Sync controller.
 
 If you do this inside a controller : ConnectionControllerImpl.sharedInstance
@@ -66,6 +68,16 @@ ex :
 //TODO by Hugo
 
 (Why ? So when I publish, I will contact you and check if we can publish even with this TODO​)
+
+#### 5-NSLog #### 
+When you do some tests, it's ok to put some NSLog everywhere. Just don't forget to remove them when your have finished
+Or keep tehm , but make them very explicit
+This is ok :
+Error : The connection has timed out unexpectedly. for peripheral : Nevo
+
+This is not ok :
+NSLog("end");
+NSLog("begin");
 
 ### Who do I talk to? ###
 
