@@ -18,7 +18,7 @@ class HomeController: UIViewController, SyncControllerDelegate{
     
     @IBOutlet var homeView: HomeView!
     
-    var mConnectionController: ConnectionController?
+    private var mConnectionController: ConnectionController?
     
     override func viewDidLoad() {
         super.viewDidLoad()

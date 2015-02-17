@@ -13,20 +13,20 @@ Sets a goal to the given value
 */
 class SetGoalRequest : NevoRequest {
 
-    var thisGoal : Goal
+    private var mThisGoal : Goal
     
     init (goal : Goal) {
-        thisGoal = goal
+        mThisGoal = goal
     }
     
     override func getRawDataEx() -> NSArray {
     
        
-    var level :UInt8 = thisGoal.getGoalIntensity().rawValue
+    var level :UInt8 = mThisGoal.getGoalIntensity().rawValue
     var display:UInt8 = 0  //default is step goal showing
     var goal_dist = 10000 //unit ??cm
   
-    var goal_steps = thisGoal.getType() == "NUMBER_OF_STEPS" ? (thisGoal as NumberOfStepsGoal).getNumberOfSteps() : 0
+    var goal_steps = mThisGoal.getType() == "NUMBER_OF_STEPS" ? (mThisGoal as NumberOfStepsGoal).getNumberOfSteps() : 0
         
     var goal_carlories = 2000 // unit ??
     var goal_time = 100 //unit ??

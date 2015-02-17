@@ -12,10 +12,10 @@ class AlarmClockController: UIViewController, SyncControllerDelegate,alarmButton
 
     @IBOutlet var alarmView: alarmClockView!
     
-    var alarmhour:Int = 0
-    var alarmmin:Int = 0
-    var alarmenable:Bool = true
-    var mSyncController:SyncController?
+    private var mAlarmhour:Int = 0
+    private var mAlarmmin:Int = 0
+    private var mAlarmenable:Bool = true
+    private var mSyncController:SyncController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,12 +62,12 @@ class AlarmClockController: UIViewController, SyncControllerDelegate,alarmButton
         if sender.isEqual(alarmView.alarmSwitch){
             NSLog("alarmView.alarmSwitch")
             if alarmView.alarmSwitch.on {
-                alarmenable = true
+                mAlarmenable = true
             }else{
-                alarmenable = false
+                mAlarmenable = false
             }
 
-            ConnectionControllerImpl.sharedInstance.sendRequest(SetAlarmRequest(hour:alarmhour,min: alarmmin,enable: alarmenable))
+            ConnectionControllerImpl.sharedInstance.sendRequest(SetAlarmRequest(hour:mAlarmhour,min: mAlarmmin,enable: mAlarmenable))
 
         }
 
@@ -76,10 +76,10 @@ class AlarmClockController: UIViewController, SyncControllerDelegate,alarmButton
             alarmView.selectedTimerButton.setTitle(dateButtonTitle as String, forState: UIControlState.Normal)
             var lines:[String] = dateButtonTitle.componentsSeparatedByString(":");
 
-            alarmhour = (lines[0] as NSString).integerValue
-            alarmmin  = (lines[1] as NSString).integerValue
+            mAlarmhour = (lines[0] as NSString).integerValue
+            mAlarmmin  = (lines[1] as NSString).integerValue
 
-            NSLog("datePicker.alarmhour:%d,alarmmin:%d",alarmhour,alarmmin)
+            NSLog("datePicker.alarmhour:%d,alarmmin:%d",mAlarmhour,mAlarmmin)
         }
 
         if sender.isEqual(alarmView.getNoConnectScanButton()?) {
@@ -89,7 +89,7 @@ class AlarmClockController: UIViewController, SyncControllerDelegate,alarmButton
         if sender.isEqual(alarmView.getEnterButton()?){
             NSLog("alarmView.enterButton")
             
-            ConnectionControllerImpl.sharedInstance.sendRequest(SetAlarmRequest(hour:alarmhour,min: alarmmin,enable: alarmenable))
+            ConnectionControllerImpl.sharedInstance.sendRequest(SetAlarmRequest(hour:mAlarmhour,min: mAlarmmin,enable: mAlarmenable))
         }
     }
     

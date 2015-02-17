@@ -18,8 +18,8 @@ class Goal {
     
     //how to make goalIntensity & type is invisible in other class (exclude sub class), it is bad idea expose these variable，we should avoid this case.
     
-    var goalIntensity : GoalIntensity?
-    var type : String  = "UNKNOWN"
+    var mGoalIntensity : GoalIntensity = GoalIntensity.LOW
+    var mType : String  = "UNKNOWN"
     
     struct GoalFactory {
         static func fromCoreData(NSManagedObject) -> Goal{
@@ -41,16 +41,16 @@ class Goal {
     
     func getType() ->NSString
     {
-        return  type
+        return  mType
     }
     
     func setGoalIntensity(intensity : GoalIntensity) {
-        goalIntensity = intensity
+        mGoalIntensity = intensity
         
     }
     
     func getGoalIntensity() -> GoalIntensity{
-        return goalIntensity!
+        return mGoalIntensity
     }
     
     class func toCoreData() -> NSManagedObject{

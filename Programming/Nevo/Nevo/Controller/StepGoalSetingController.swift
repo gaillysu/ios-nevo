@@ -11,9 +11,8 @@ import UIKit
 class StepGoalSetingController: UIViewController, SyncControllerDelegate {
 
     @IBOutlet var stepGoalView: StepGoalSetingView!
-    var data:Int = 3000
     
-    var mSyncController:SyncController?
+    private var mSyncController:SyncController?
 
     
     override func viewDidLoad() {

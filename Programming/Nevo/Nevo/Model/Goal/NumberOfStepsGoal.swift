@@ -9,19 +9,19 @@
 import Foundation
 
 class NumberOfStepsGoal : Goal {
-    internal let thistype = "NUMBER_OF_STEPS"
-    var mSteps:Int = 3000
+    private let mThistype = "NUMBER_OF_STEPS"
+    private var mSteps:Int = 3000
     
     override init() {
         super.init()
-        type = thistype
+        mType = mThistype
     }
     
     init(intensity:GoalIntensity,step:Int)
     {
         super.init()
-        goalIntensity = intensity
-        type = thistype
+        mGoalIntensity = intensity
+        mType = mThistype
         mSteps = step
     }
     func getNumberOfSteps() -> NSInteger {
