@@ -24,7 +24,6 @@ class StepGoalSetingView: UIView,UIPickerViewDelegate,UIPickerViewDataSource {
     @IBOutlet var modarateButton: UIButton!
     @IBOutlet var intensiveButton: UIButton!
     @IBOutlet var sportiveButton: UIButton!
-    @IBOutlet var customButton: UIButton!
 
     var noConnectionView:UIView?
     
@@ -42,7 +41,7 @@ class StepGoalSetingView: UIView,UIPickerViewDelegate,UIPickerViewDataSource {
     let BUTTONBGVIEW_COLOR = UIColor(red: 244/255.0, green: 242/255.0, blue: 241/255.0, alpha: 1)//View button background color
     var mDelegate:StepGoalSetingController!
 
-    var mData:Int!
+    var mData:Int=7000
 
     var enterButton:UIButton!
 
@@ -80,6 +79,8 @@ class StepGoalSetingView: UIView,UIPickerViewDelegate,UIPickerViewDataSource {
                 self.indexArray.addObject(index)
             }
          });
+        
+        setNumberOfStepsGoal(7000)
 
     }
 
@@ -143,6 +144,10 @@ class StepGoalSetingView: UIView,UIPickerViewDelegate,UIPickerViewDataSource {
         }) { (Bool) -> Void in
 
         }
+        
+        //We initalise the value at 7000
+        setNumberOfStepsGoal(7000)
+        pickerView.selectRow(6, inComponent: 0, animated: false)
 
     }
 
@@ -312,7 +317,6 @@ class StepGoalSetingView: UIView,UIPickerViewDelegate,UIPickerViewDataSource {
         default:
             NSLog("\(pickerContent)")
             cleanButtonControlState()
-            customButton.selected = true
             goalButton.setTitle("\(pickerContent)", forState: UIControlState.Normal)
         }
 
@@ -338,7 +342,16 @@ class StepGoalSetingView: UIView,UIPickerViewDelegate,UIPickerViewDataSource {
 
         return indexArray.count
     }
+    
+    func getNumberOfStepsGoal() -> Int{
+        return mData
+    }
 
+    func setNumberOfStepsGoal(goal:Int){
+        mData = goal
+        goalButton.setTitle("\(goal)", forState: UIControlState.Normal)
+        //TODO by Hugo set the selecetd row here
+    }
 
 
 }
