@@ -55,7 +55,7 @@ class StepGoalSetingController: UIViewController, SyncControllerDelegate {
             stepGoalView.cleanButtonControlState()
             stepGoalView.modarateButton.selected = true
             stepGoalView.setNumberOfStepsGoal(7000)
-            ConnectionControllerImpl.sharedInstance.sendRequest(SetGoalRequest(goal: Goal.GoalFactory.newGoal("NUMBER_OF_STEPS",intensity: GoalIntensity.LOW,data: stepGoalView.getNumberOfStepsGoal())))
+            sendRequestGoal(GoalIntensity.LOW,value: stepGoalView.getNumberOfStepsGoal())
         }
 
         if sender.isEqual(stepGoalView.intensiveButton) {
@@ -63,7 +63,7 @@ class StepGoalSetingController: UIViewController, SyncControllerDelegate {
             stepGoalView.cleanButtonControlState()
             stepGoalView.intensiveButton.selected = true
             stepGoalView.setNumberOfStepsGoal(10000)
-            ConnectionControllerImpl.sharedInstance.sendRequest(SetGoalRequest(goal: Goal.GoalFactory.newGoal("NUMBER_OF_STEPS",intensity: GoalIntensity.MEDIUM,data: stepGoalView.getNumberOfStepsGoal())))
+            sendRequestGoal(GoalIntensity.MEDIUM,value: stepGoalView.getNumberOfStepsGoal())
         }
 
         if sender.isEqual(stepGoalView.sportiveButton) {
@@ -71,7 +71,7 @@ class StepGoalSetingController: UIViewController, SyncControllerDelegate {
             stepGoalView.cleanButtonControlState()
             stepGoalView.sportiveButton.selected = true
             stepGoalView.setNumberOfStepsGoal(20000)
-            ConnectionControllerImpl.sharedInstance.sendRequest(SetGoalRequest(goal: Goal.GoalFactory.newGoal("NUMBER_OF_STEPS",intensity: GoalIntensity.HIGH,data: stepGoalView.getNumberOfStepsGoal())))
+            sendRequestGoal(GoalIntensity.HIGH,value: stepGoalView.getNumberOfStepsGoal())
         }
 
 
@@ -82,9 +82,16 @@ class StepGoalSetingController: UIViewController, SyncControllerDelegate {
 
         if sender.isEqual(stepGoalView.enterButton) {
 
-            ConnectionControllerImpl.sharedInstance.sendRequest(SetGoalRequest(goal: Goal.GoalFactory.newGoal("NUMBER_OF_STEPS",intensity: GoalIntensity.LOW,data: stepGoalView.getNumberOfStepsGoal())))
+            sendRequestGoal(GoalIntensity.LOW,value: stepGoalView.getNumberOfStepsGoal())
 
         }
+    }
+    
+    func sendRequestGoal(GoalIntensity, value:Int) {
+        
+        var request = SetGoalRequest(goal: Goal.GoalFactory.newGoal("NUMBER_OF_STEPS",intensity: GoalIntensity.LOW,data: stepGoalView.getNumberOfStepsGoal()))
+        
+        ConnectionControllerImpl.sharedInstance.sendRequest(request)
     }
     
     func reconnect() {

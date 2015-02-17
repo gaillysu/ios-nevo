@@ -60,6 +60,7 @@
 		07CC4A271A81F26C008DA749 /* iMaze_v3.bin in Resources */ = {isa = PBXBuildFile; fileRef = 07CC4A251A81F26C008DA749 /* iMaze_v3.bin */; };
 		07CC4A291A820A9B008DA749 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07CC4A281A820A9B008DA749 /* Utility.swift */; };
 		07CC4A2F1A821B46008DA749 /* NevoOTARequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07CC4A2E1A821B46008DA749 /* NevoOTARequest.swift */; };
+		9A12E5461A931B1F00536729 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A12E5451A931B1F00536729 /* Alert.swift */; };
 		9A3E57231A80E56E00DFFAE1 /* ConnectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3E571B1A80E56E00DFFAE1 /* ConnectionController.swift */; };
 		9A3E57241A80E56E00DFFAE1 /* ConnectionControllerImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3E571C1A80E56E00DFFAE1 /* ConnectionControllerImpl.swift */; };
 		9A3E57251A80E56E00DFFAE1 /* NevoProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3E571D1A80E56E00DFFAE1 /* NevoProfile.swift */; };
@@ -165,6 +166,7 @@
 		07CC4A251A81F26C008DA749 /* iMaze_v3.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = iMaze_v3.bin; sourceTree = "<group>"; };
 		07CC4A281A820A9B008DA749 /* Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Utility.swift; path = OTA/Utility.swift; sourceTree = "<group>"; };
 		07CC4A2E1A821B46008DA749 /* NevoOTARequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NevoOTARequest.swift; path = OTA/NevoOTARequest.swift; sourceTree = "<group>"; };
+		9A12E5451A931B1F00536729 /* Alert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Alert.swift; path = Util/Alert.swift; sourceTree = "<group>"; };
 		9A3E571B1A80E56E00DFFAE1 /* ConnectionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConnectionController.swift; path = Controller/Connection/ConnectionController.swift; sourceTree = "<group>"; };
 		9A3E571C1A80E56E00DFFAE1 /* ConnectionControllerImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConnectionControllerImpl.swift; path = Controller/Connection/ConnectionControllerImpl.swift; sourceTree = "<group>"; };
 		9A3E571D1A80E56E00DFFAE1 /* NevoProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NevoProfile.swift; path = Controller/Connection/NevoProfile.swift; sourceTree = "<group>"; };
@@ -316,6 +318,14 @@
 			path = OTA/Firmwares;
 			sourceTree = "<group>";
 		};
+		9A12E5441A931B0000536729 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				9A12E5451A931B1F00536729 /* Alert.swift */,
+			);
+			name = Util;
+			sourceTree = "<group>";
+		};
 		9A3E572D1A80F04600DFFAE1 /* OTA */ = {
 			isa = PBXGroup;
 			children = (
@@ -365,6 +375,7 @@
 		9AD8F9341A6DF35900F01014 /* Nevo */ = {
 			isa = PBXGroup;
 			children = (
+				9A12E5441A931B0000536729 /* Util */,
 				9AD8F93E1A6DF35900F01014 /* Main.storyboard */,
 				9AD8F9411A6DF35900F01014 /* Images.xcassets */,
 				9AD8F9431A6DF35900F01014 /* LaunchScreen.xib */,
@@ -669,6 +680,7 @@
 				9AD8F9A01A6E47B400F01014 /* SetGoalRequest.swift in Sources */,
 				005FE77B1A8C979800961239 /* alarmClockView.swift in Sources */,
 				00C640F41A8D9F4500815CF8 /* MainTabBarController.swift in Sources */,
+				9A12E5461A931B1F00536729 /* Alert.swift in Sources */,
 				07C59F281A8C618A00D65C84 /* WriteSettingRequest.swift in Sources */,
 				9A3E57261A80E56E00DFFAE1 /* NevoPacket.swift in Sources */,
 				9AD8F98F1A6E2EE000F01014 /* Profile.swift in Sources */,
