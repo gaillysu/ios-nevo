@@ -20,7 +20,12 @@ protocol Request {
     But the Callback Characteristic should be the same. Or the packet will be rejected for incompatibility.
     */
     func getTargetProfile() -> Profile
+    
+    /**
+    Returns the raw packet to be sent via bluetooth
+    */
     func getRawData() -> NSData
+    
     /**
     for Nevo/ Tracker, the communication protocol has 2 packet(0x00,0xFF)
     */

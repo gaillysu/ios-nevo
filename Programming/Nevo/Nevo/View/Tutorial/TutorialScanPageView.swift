@@ -10,7 +10,7 @@ import Foundation
 import UIkit
 
 class TutorialScanPageView : UIView {
-    var mDelegate:Page3Controller?
+    private var mDelegate:Page3Controller?
 
     let BACKGROUND_COLOR:UIColor = UIColor(red: 244.0/255.0, green: 242.0/255.0, blue: 241.0/255.0, alpha: 1)
 
@@ -19,12 +19,12 @@ class TutorialScanPageView : UIView {
 
     let BACK_BUTTON_FONT:UIFont = UIFont(name:"Raleway-Light", size: 20)!
     
-    var backButton:UIButton!
+    private var mBackButton:UIButton?
 
-    var connectButton:UIButton!
-    var errorLabel:UILabel!
-    var finishButton:UIButton!
-    var optionIndices:NSMutableIndexSet = NSMutableIndexSet(index: 1)
+    private var mConnectButton:UIButton?
+    private var mErrorLabel:UILabel?
+    private var mFinishButton:UIButton?
+    private var mOptionIndices:NSMutableIndexSet = NSMutableIndexSet(index: 1)
 
     init(frame: CGRect, delegate:UIViewController) {
         super.init(frame: frame)
@@ -45,12 +45,14 @@ class TutorialScanPageView : UIView {
 
     func buildTutorialPage() {
 
-        backButton = UIButton.buttonWithType(UIButtonType.System) as UIButton
+        let backButton = UIButton.buttonWithType(UIButtonType.System) as UIButton
         backButton.frame = CGRectMake(15, 10, 60, 40)
         backButton.setTitle(NSLocalizedString("Back",comment:"button title string"), forState: UIControlState.Normal)
         backButton.titleLabel?.font = BACK_BUTTON_FONT
         backButton.addTarget(self, action: "ButtonAction:", forControlEvents: UIControlEvents.TouchUpInside)
         self.addSubview(backButton)
+        
+        mBackButton = backButton
 
         let guideImage:UIImageView = UIImageView(image: UIImage(named: String("step3" as NSString)))
         guideImage.frame = CGRectMake(0, 0, self.frame.size.width-70, 100)
@@ -70,7 +72,7 @@ class TutorialScanPageView : UIView {
         self.addSubview(titleLabel)
 
 
-        connectButton = UIButton(frame: CGRectMake(0, 0, 150, 150))
+        let connectButton = UIButton(frame: CGRectMake(0, 0, 150, 150))
         connectButton.setBackgroundImage(UIImage(named:"connect"), forState: UIControlState.Normal)
         //connectButton.setTitle( NSLocalizedString("Connect",comment:"lable string"), forState: UIControlState.Normal)
         connectButton.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
@@ -79,18 +81,22 @@ class TutorialScanPageView : UIView {
         connectButton.backgroundColor = UIColor.clearColor()
         connectButton.addTarget(self, action: "ButtonAction:", forControlEvents: UIControlEvents.TouchUpInside)
         self.addSubview(connectButton)
+        
+        mConnectButton = connectButton
 
 
-        finishButton = UIButton.buttonWithType(UIButtonType.System) as UIButton
+        let finishButton = UIButton.buttonWithType(UIButtonType.System) as UIButton
         finishButton.frame = CGRectMake(0, 0, 120, 50)
-    finishButton.setTitle(NSLocalizedString(NSLocalizedString("Finish",comment:"lable string"),comment:"button title string"), forState: UIControlState.Normal)
+        finishButton.setTitle(NSLocalizedString(NSLocalizedString("Finish",comment:"lable string"),comment:"button title string"), forState: UIControlState.Normal)
         finishButton.titleLabel?.font = BUTTON_FONT
         finishButton.center = CGPointMake(self.frame.size.width/2.0, self.frame.size.height-90)
         finishButton.hidden = true
         finishButton.addTarget(self, action: "ButtonAction:", forControlEvents: UIControlEvents.TouchUpInside)
         self.addSubview(finishButton)
+        
+        mFinishButton = finishButton
 
-        errorLabel = UILabel(frame: CGRectMake(0, 0, titleLabel.frame.size.width, 80))
+        let errorLabel = UILabel(frame: CGRectMake(0, 0, titleLabel.frame.size.width, 80))
         errorLabel.center = CGPointMake(self.frame.size.width/2.0, self.frame.size.height-100)
         errorLabel.textAlignment = NSTextAlignment.Center
         errorLabel.numberOfLines = 0
@@ -98,13 +104,15 @@ class TutorialScanPageView : UIView {
         errorLabel.font = TEXT_FONT
         errorLabel.text = NSLocalizedString("PlaceConnect",comment:"lable string")
         self.addSubview(errorLabel)
+        
+        mErrorLabel = errorLabel
 
     }
 
     func buttonAnimation(sender:UIButton) {
         
         //If the finish button is visible, we shouldn't be able to rotate the figure
-        if(!finishButton.hidden) {
+        if mFinishButton != nil && !( mFinishButton!.hidden ) {
             return;
         }
         
@@ -127,23 +135,25 @@ class TutorialScanPageView : UIView {
     * 动画开始时
     */
     override func animationDidStart(theAnimation:CAAnimation){
-        NSLog("begin");
+
     }
 
     /**
     * 动画结束时
     */
     override func animationDidStop(theAnimation:CAAnimation ,finished:Bool){
-        NSLog("end")
+
     }
     /*
     Connect the Success to empty some pictures don't need the button and the label text
     */
     func connectSuccessClean() {
-        connectButton.setBackgroundImage(UIImage(named:"success"), forState: UIControlState.Normal)
-        stopButtonAnimation(connectButton)
-        finishButton.hidden = false
-        errorLabel.hidden = true
+        mConnectButton?.setBackgroundImage(UIImage(named:"success"), forState: UIControlState.Normal)
+        if let connectButton = mConnectButton {
+            stopButtonAnimation(connectButton)
+        }
+        mFinishButton?.hidden = false
+        mErrorLabel?.hidden = true
     }
     /*
     Button Event handling all returns in the controller
@@ -153,6 +163,14 @@ class TutorialScanPageView : UIView {
         buttonAnimation(sender)
         mDelegate?.nextButtonAction(sender)
         
+    }
+    
+    func getBackButton() -> UIButton? {
+        return mBackButton
+    }
+    
+    func getConnectButton() -> UIButton? {
+        return mConnectButton
     }
     
 }

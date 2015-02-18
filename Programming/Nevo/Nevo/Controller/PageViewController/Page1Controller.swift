@@ -36,7 +36,7 @@ class Page1Controller: UIViewController,ButtonActionCallBack {
     func nextButtonAction(sender:UIButton){
 
          NSLog("CallBack Success")
-        if sender.isEqual(mBluetoothTutorialView?.backButton) {
+        if sender.isEqual(mBluetoothTutorialView?.getBackButton()?) {
             self.navigationController?.popViewControllerAnimated(true)
         }else{
             let page2controller = Page2Controller()

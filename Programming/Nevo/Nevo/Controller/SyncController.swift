@@ -16,78 +16,64 @@ It checks that the firmware is up to date, and handles every steps of the synchr
 
 class SyncController: ConnectionControllerDelegate {
     
-    var mDelegate:SyncControllerDelegate
+    private var mDelegate:SyncControllerDelegate
  
-    let mConnectionController : ConnectionController?
-    //TODO by Hugo remove
-    let mTestHomeController : UIViewController
-    private var packetsbuffer:[NSData]
+    private let mConnectionController : ConnectionController
+
+    private var mPacketsbuffer:[NSData]
     
     init(controller : UIViewController,forceScan :Bool, delegate:SyncControllerDelegate) {
 
         mDelegate = delegate
-        
-        mTestHomeController = controller
-        packetsbuffer = []
+
+        mPacketsbuffer = []
         mConnectionController = ConnectionControllerImpl.sharedInstance
         
-        mConnectionController?.addDelegate(self)
+        mConnectionController.addDelegate(self)
         
         if forceScan
         {
-            mConnectionController?.forgetSavedAddress()
+            mConnectionController.forgetSavedAddress()
         }
-        mConnectionController?.connect()
+        mConnectionController.connect()
     }
     
     //add new functions when  get connected Nevo
     func setRTC() {
-        mConnectionController?.sendRequest(SetRTCRequest())
+        mConnectionController.sendRequest(SetRTCRequest())
     }
     
     func SetProfile() {
-        mConnectionController?.sendRequest(SetProfileRequest())
+        mConnectionController.sendRequest(SetProfileRequest())
     }
     func SetCardio() {
-        mConnectionController?.sendRequest(SetCardioRequest())
+        mConnectionController.sendRequest(SetCardioRequest())
     }
     
     func WriteSetting() {
-        mConnectionController?.sendRequest(WriteSettingRequest())
+        mConnectionController.sendRequest(WriteSettingRequest())
     }
     //end functions for connected to Nevo
     
     //below functions by UI
     func setGoal(goal:Goal) {
-        mConnectionController?.sendRequest(SetGoalRequest(goal: goal))
+        mConnectionController.sendRequest(SetGoalRequest(goal: goal))
     }
     
     func setAlarm(alarmhour:Int,alarmmin:Int,alarmenable:Bool) {
-        mConnectionController?.sendRequest(SetAlarmRequest(hour:alarmhour,min: alarmmin,enable: alarmenable))
+        mConnectionController.sendRequest(SetAlarmRequest(hour:alarmhour,min: alarmmin,enable: alarmenable))
     }
 
     func SetNortification() {
-        mConnectionController?.sendRequest(SetNortificationRequest())
+        mConnectionController.sendRequest(SetNortificationRequest())
     }
     //end functions by UI
     
     func packetReceived(packet:RawPacket) {
         
-        packetsbuffer.append(packet.getRawData())
+        mPacketsbuffer.append(packet.getRawData())
         if(NSData2Bytes(packet.getRawData())[0] == 0xFF)
         {
-            /*
-        var data:NSData!
-        var message :String = ""
-            
-        for data in packetsbuffer
-        {
-            message = message + "\r\n"+hexString(data)
-        }
-            var alert = UIAlertController(title: "Received", message: "Message : "+message, preferredStyle: UIAlertControllerStyle.Alert)
-            alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.Default, handler: nil))
-            mTestHomeController.presentViewController(alert, animated: true, completion: nil)
-            */
             if(NSData2Bytes(packet.getRawData())[1] == 0x01)
             {
                 self.SetProfile()
@@ -102,7 +88,7 @@ class SyncController: ConnectionControllerDelegate {
                 self.SetCardio()
             }
             
-            packetsbuffer = []
+            mPacketsbuffer = []
         }
     }
     
@@ -122,99 +108,16 @@ class SyncController: ConnectionControllerDelegate {
             
         }
     }
-
-    //TODO by Hugo remove
-    func sendRawPacket() {
-        var inputTextField:UITextField?
-        
-        var alert = UIAlertController(title: "Send", message: " ", preferredStyle: UIAlertControllerStyle.Alert)
-        
-        
-        
-        alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.Default, handler:
-       
-            { (action) -> Void in
-                // Now do whatever you want with inputTextField (remember to unwrap the optional)
-                
-                // Do something witht he inputTextField.text
-                
-                self.mConnectionController!.sendRequest(TestQuery(hex: inputTextField!.text))
-                
-            }
-        
-        ))
-        
-        alert.addTextFieldWithConfigurationHandler({(textField: UITextField!) in
-            textField.placeholder = "Enter text:"
-            inputTextField = textField
-        })
-        mTestHomeController.presentViewController(alert, animated: true, completion: nil)
-    }
     
     func connect() {
-        self.mConnectionController?.connect()
+        self.mConnectionController.connect()
     }
     
     func isConnected() -> Bool{
-        if let connContr = mConnectionController {
-            return connContr.isConnected()
-        }
-        return false
-    }
-    
-    //TODO by Hugo remove
-    private func hexString(data:NSData) -> NSString {
-        var str = NSMutableString()
-        let bytes = UnsafeBufferPointer<UInt8>(start: UnsafePointer(data.bytes), count:data.length)
-        for byte in bytes {
-            str.appendFormat("%02hhx", byte)
-        }
-        return str
-    }
-    
-}
+        return mConnectionController.isConnected()
 
-//TODO by Hugo remove
-class TestQuery : Request {
-    var mString:NSString
-    
-    init (hex:NSString) {
-    mString = hex
     }
     
-    func getTargetProfile() -> Profile {
-        return NevoProfile()
-    }
-    func getRawData() -> NSData {
-       return self.dataFromHexadecimalString()!
-    }
-    func getRawDataEx() -> NSArray {
-        return NSArray()
-    }
-    func dataFromHexadecimalString() -> NSData? {
-        let trimmedString = mString.stringByTrimmingCharactersInSet(NSCharacterSet(charactersInString: "<> ")).stringByReplacingOccurrencesOfString(" ", withString: "")
-        
-        // make sure the cleaned up string consists solely of hex digits, and that we have even number of them
-        
-        var error: NSError?
-        let regex = NSRegularExpression(pattern: "^[0-9a-f]*$", options: .CaseInsensitive, error: &error)
-        let found = regex?.firstMatchInString(trimmedString, options: nil, range: NSMakeRange(0, countElements(trimmedString)))
-        if found == nil || found?.range.location == NSNotFound || countElements(trimmedString) % 2 != 0 {
-            return nil
-        }
-        
-        // everything ok, so now let's build NSData
-        
-        let data = NSMutableData(capacity: countElements(trimmedString) / 2)
-        
-        for var index = trimmedString.startIndex; index < trimmedString.endIndex; index = index.successor().successor() {
-            let byteString = trimmedString.substringWithRange(Range<String.Index>(start: index, end: index.successor().successor()))
-            let num = Byte(byteString.withCString { strtoul($0, nil, 16) })
-            data?.appendBytes([num] as [Byte], length: 1)
-        }
-        
-        return data
-    }
 }
 
 

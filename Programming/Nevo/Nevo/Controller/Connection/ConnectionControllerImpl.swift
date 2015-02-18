@@ -13,8 +13,8 @@ See ConnectionController
 🚧🚧🚧Backbone Class : Modify with care🚧🚧🚧
 */
 class ConnectionControllerImpl : NSObject, ConnectionController, NevoBTDelegate {
-    var mNevoBT:NevoBT?
-    var mDelegates:[ConnectionControllerDelegate]=[]
+    private var mNevoBT:NevoBT?
+    private var mDelegates:[ConnectionControllerDelegate]=[]
 
     let SAVED_ADDRESS_KEY = "SAVED_ADDRESS"
     
@@ -29,12 +29,12 @@ class ConnectionControllerImpl : NSObject, ConnectionController, NevoBTDelegate 
     /**
     This status is used to search in SCAN_PROCEDURE to know when is the next time we should scan
     */
-    var mScanProcedureStatus = 0
+    private var mScanProcedureStatus = 0
     
     /**
     This time handles the retry procedure
     */
-    var mRetryTimer:NSTimer?
+    private var mRetryTimer:NSTimer?
     
     /**
     A classic singelton pattern

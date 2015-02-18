@@ -18,7 +18,7 @@ class HomeController: UIViewController, SyncControllerDelegate{
     
     @IBOutlet var homeView: HomeView!
     
-    var mConnectionController: ConnectionController?
+    private var mConnectionController: ConnectionController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,7 +55,7 @@ class HomeController: UIViewController, SyncControllerDelegate{
     }
 
     func timerAction(NSTimer) {
-        homeView.clockTimerView.currentTimer()
+        homeView.getClockTimerView().currentTimer()
     }
 
     @IBAction func managerButtonAction(sender: UIButton) {

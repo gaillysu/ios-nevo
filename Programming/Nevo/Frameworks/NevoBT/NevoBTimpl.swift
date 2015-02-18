@@ -20,7 +20,10 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
     */
     let SCANNING_DURATION : NSTimeInterval = 10.000
     
-    let RETRY_DURATION : NSTimeInterval = 0.500
+    /**
+    How long before we retry to connect when the central manager is powering up
+    */
+    private let RETRY_DURATION : NSTimeInterval = 0.500
     
     /**
     Gets notified when a periphare connects/disconnects and when we receive data

@@ -25,27 +25,28 @@ class StepGoalSetingView: UIView,UIPickerViewDelegate,UIPickerViewDataSource {
     @IBOutlet var intensiveButton: UIButton!
     @IBOutlet var sportiveButton: UIButton!
 
-    var noConnectionView:UIView?
+    private var mNoConnectionView:UIView?
     
-    var pickerView:UIPickerView!
+    private var mPickerView:UIPickerView?
 
-    var buttonArray:[UIButton]!
+    private var mButtonArray:[UIButton]=[]
 
-    var noConnectScanButton:UIButton!
+    private var mNoConnectScanButton:UIButton?
 
-    var indexArray:NSMutableArray = NSMutableArray()
+    private var mIndexArray:NSMutableArray = NSMutableArray()
 
     let BAG_PICKER_TAG:Int = 1300//Looking for view using a fixed tag values
     let NO_CONNECT_VIEW:Int = 1200
     let PICKER_BG_COLOR = UIColor(red: 255/255.0, green: 255/255.0, blue: 255/255.0, alpha: 1)//pickerView background color
     let BUTTONBGVIEW_COLOR = UIColor(red: 244/255.0, green: 242/255.0, blue: 241/255.0, alpha: 1)//View button background color
-    var mDelegate:StepGoalSetingController!
+    
+    private var mDelegate:StepGoalSetingController?
 
-    var mData:Int!
+    private var mData:Int=7000
 
-    var enterButton:UIButton!
+    private var mEnterButton:UIButton?
 
-    var noConnectImage:UIImageView!
+    private var mNoConnectImage:UIImageView?
 
     func bulidStepGoalView(delegate:UIViewController){
 
@@ -71,14 +72,16 @@ class StepGoalSetingView: UIView,UIPickerViewDelegate,UIPickerViewDataSource {
         sportiveButton.setTitle(NSLocalizedString("Sportive", comment: ""), forState: UIControlState.Selected)
         sportiveButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Selected)
 
-        buttonArray = [modarateButton,intensiveButton,sportiveButton]
+        mButtonArray = [modarateButton,intensiveButton,sportiveButton]
 
         //For loop will stuck the main thread, so you need to for an asynchronous thread to handle this line function
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
             for var index:Int = 1000; index<=30000; index+=1000 {
-                self.indexArray.addObject(index)
+                self.mIndexArray.addObject(index)
             }
          });
+        
+        setNumberOfStepsGoal(7000)
 
     }
 
@@ -102,12 +105,14 @@ class StepGoalSetingView: UIView,UIPickerViewDelegate,UIPickerViewDataSource {
         self.addSubview(PickerbgView)
 
         //Create a pickerView
-        pickerView = UIPickerView(frame: CGRectMake(0, PickerbgView.frame.size.height-160-50, self.frame.size.width, 160))
+        let pickerView = UIPickerView(frame: CGRectMake(0, PickerbgView.frame.size.height-160-50, self.frame.size.width, 160))
         pickerView.backgroundColor = PICKER_BG_COLOR
         pickerView.delegate = self
         pickerView.dataSource = self
         PickerbgView.addSubview(pickerView)
 
+        mPickerView = pickerView
+        
         let buttonBgView:UIView = UIView(frame: CGRectMake(0, pickerView.frame.origin.y-40, pickerView.frame.size.width, 40))
         buttonBgView.backgroundColor = BUTTONBGVIEW_COLOR
         PickerbgView.addSubview(buttonBgView)
@@ -121,7 +126,7 @@ class StepGoalSetingView: UIView,UIPickerViewDelegate,UIPickerViewDataSource {
         cancelButton.addTarget(self, action: Selector("enterAction:"), forControlEvents: UIControlEvents.TouchUpInside)
         PickerbgView.addSubview(cancelButton)
 
-        enterButton = UIButton.buttonWithType(UIButtonType.System) as UIButton
+        let enterButton = UIButton.buttonWithType(UIButtonType.System) as UIButton
         enterButton.frame = CGRectMake(pickerView.frame.size.width-50, pickerView.frame.origin.y-40, 50, 40)
         enterButton.setTitle(NSLocalizedString("Enter", comment: ""), forState: UIControlState.Normal)
         enterButton.backgroundColor = UIColor.clearColor()
@@ -129,6 +134,7 @@ class StepGoalSetingView: UIView,UIPickerViewDelegate,UIPickerViewDataSource {
         enterButton.addTarget(self, action: Selector("enterAction:"), forControlEvents: UIControlEvents.TouchUpInside)
         PickerbgView.addSubview(enterButton)
 
+        mEnterButton = enterButton
 
         //Create a click gesture
         let tapCancel:UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "tapAction:")
@@ -142,33 +148,37 @@ class StepGoalSetingView: UIView,UIPickerViewDelegate,UIPickerViewDataSource {
         }) { (Bool) -> Void in
 
         }
+        
+        //We initalise the value at 7000
+        setNumberOfStepsGoal(7000)
+        pickerView.selectRow(6, inComponent: 0, animated: false)
 
     }
 
     func bulibNoConnectView() {
-        if noConnectionView==nil {
-            noConnectionView = UIView(frame: CGRectMake(0, 0, self.frame.size.width, self.frame.size.height))
-            noConnectionView?.backgroundColor = PICKER_BG_COLOR
-            noConnectionView?.tag = NO_CONNECT_VIEW
-            self.addSubview(noConnectionView!)
+        if mNoConnectionView==nil {
+            mNoConnectionView = UIView(frame: CGRectMake(0, 0, self.frame.size.width, self.frame.size.height))
+            mNoConnectionView?.backgroundColor = PICKER_BG_COLOR
+            mNoConnectionView?.tag = NO_CONNECT_VIEW
+            self.addSubview(mNoConnectionView!)
 
-            noConnectImage = UIImageView(frame: CGRectMake(0, 0, 160, 160))
-            noConnectImage.image = UIImage(named: "connect")
-            noConnectImage.center = CGPointMake(noConnectionView!.frame.size.width/2.0, noConnectionView!.frame.size.height/2.0)
-            noConnectImage.backgroundColor = UIColor.clearColor()
-            noConnectionView?.addSubview(noConnectImage)
+            mNoConnectImage = UIImageView(frame: CGRectMake(0, 0, 160, 160))
+            mNoConnectImage?.image = UIImage(named: "connect")
+            mNoConnectImage?.center = CGPointMake(mNoConnectionView!.frame.size.width/2.0, mNoConnectionView!.frame.size.height/2.0)
+            mNoConnectImage?.backgroundColor = UIColor.clearColor()
+            mNoConnectionView?.addSubview(mNoConnectImage!)
 
-            noConnectScanButton = UIButton.buttonWithType(UIButtonType.Custom) as UIButton
-            noConnectScanButton.frame = CGRectMake(0, 0, 160, 160)
-            noConnectScanButton.center = CGPointMake(noConnectionView!.frame.size.width/2.0, noConnectionView!.frame.size.height/2.0)
-            noConnectScanButton.setTitle(NSLocalizedString("Connect", comment: ""), forState: UIControlState.Normal)
-            noConnectScanButton.backgroundColor = UIColor.clearColor()
-            noConnectScanButton.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
-            noConnectScanButton.addTarget(self, action: Selector("buttonAction:"), forControlEvents: UIControlEvents.TouchUpInside)
-            noConnectionView?.addSubview(noConnectScanButton)
+            mNoConnectScanButton = UIButton.buttonWithType(UIButtonType.Custom) as UIButton
+            mNoConnectScanButton?.frame = CGRectMake(0, 0, 160, 160)
+            mNoConnectScanButton?.center = CGPointMake(mNoConnectionView!.frame.size.width/2.0, mNoConnectionView!.frame.size.height/2.0)
+            mNoConnectScanButton?.setTitle(NSLocalizedString("Connect", comment: ""), forState: UIControlState.Normal)
+            mNoConnectScanButton?.backgroundColor = UIColor.clearColor()
+            mNoConnectScanButton?.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
+            mNoConnectScanButton?.addTarget(self, action: Selector("buttonAction:"), forControlEvents: UIControlEvents.TouchUpInside)
+            mNoConnectionView?.addSubview(mNoConnectScanButton!)
         } else {
             
-            if let noConnect:UIView = noConnectionView {
+            if let noConnect:UIView = mNoConnectionView {
                 UIView.animateKeyframesWithDuration(0.3, delay: 0, options: UIViewKeyframeAnimationOptions.LayoutSubviews, animations: { () -> Void in
                     
                     noConnect.alpha = 255;
@@ -183,7 +193,7 @@ class StepGoalSetingView: UIView,UIPickerViewDelegate,UIPickerViewDataSource {
     func endConnectRemoveView() {
 
 
-        if let noConnect:UIView = noConnectionView {
+        if let noConnect:UIView = mNoConnectionView {
             UIView.animateKeyframesWithDuration(0.3, delay: 0, options: UIViewKeyframeAnimationOptions.LayoutSubviews, animations: { () -> Void in
 
                 noConnect.alpha = 0;
@@ -243,7 +253,7 @@ class StepGoalSetingView: UIView,UIPickerViewDelegate,UIPickerViewDataSource {
     override func animationDidStart(theAnimation:CAAnimation)
     {
         NSLog("begin");
-        noConnectScanButton.setTitle(NSLocalizedString(" ", comment: ""), forState: UIControlState.Normal)
+        mNoConnectScanButton?.setTitle(NSLocalizedString(" ", comment: ""), forState: UIControlState.Normal)
     }
 
     /**
@@ -251,14 +261,14 @@ class StepGoalSetingView: UIView,UIPickerViewDelegate,UIPickerViewDataSource {
     */
     override func animationDidStop(theAnimation:CAAnimation ,finished:Bool){
         NSLog("end");
-        noConnectScanButton.setTitle(NSLocalizedString("Connect", comment: ""), forState: UIControlState.Normal)
+        mNoConnectScanButton?.setTitle(NSLocalizedString("Connect", comment: ""), forState: UIControlState.Normal)
     }
 
     /*
     Clean up the state of all buttons
     */
     func cleanButtonControlState() {
-        for button in buttonArray {
+        for button in mButtonArray {
             let controlButton:UIButton = button as UIButton;
             if controlButton.selected {
                 controlButton.selected = false
@@ -270,7 +280,7 @@ class StepGoalSetingView: UIView,UIPickerViewDelegate,UIPickerViewDataSource {
     Click the cancelButton and enterButton events
     */
     func enterAction(sender:UIButton) {
-        if sender.isEqual(enterButton)
+        if sender.isEqual(mEnterButton?)
         {
             mDelegate?.controllManager(sender)
         }
@@ -290,7 +300,7 @@ class StepGoalSetingView: UIView,UIPickerViewDelegate,UIPickerViewDataSource {
 
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int){
 
-        let pickerContent:NSInteger = NSInteger(indexArray.objectAtIndex(row) as Int)
+        let pickerContent:NSInteger = NSInteger(mIndexArray.objectAtIndex(row) as Int)
         mData = pickerContent as Int
         switch pickerContent {
         case 7000:
@@ -321,7 +331,7 @@ class StepGoalSetingView: UIView,UIPickerViewDelegate,UIPickerViewDataSource {
         labelView.backgroundColor = UIColor.clearColor()
         labelView.textAlignment = NSTextAlignment.Center
         labelView.font = UIFont.systemFontOfSize(26)
-        labelView.text = NSString(format: "%d", indexArray[row] as Int)
+        labelView.text = NSString(format: "%d", mIndexArray[row] as Int)
         return labelView
     }
 
@@ -334,9 +344,30 @@ class StepGoalSetingView: UIView,UIPickerViewDelegate,UIPickerViewDataSource {
     // returns the # of rows in each component..
     func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int{
 
-        return indexArray.count
+        return mIndexArray.count
+    }
+    
+    func getNumberOfStepsGoal() -> Int{
+        return mData
     }
 
+    func setNumberOfStepsGoal(goal:Int){
+        mData = goal
+        goalButton.setTitle("\(goal)", forState: UIControlState.Normal)
+        //TODO by Hugo set the selecetd row here
+    }
+    
+    func getNoConnectScanButton() -> UIButton? {
+        return mNoConnectScanButton
+    }
+    
+    func getEnterButton() -> UIButton? {
+        return mEnterButton
+    }
+    
+    func getNoConnectImage() -> UIImageView? {
+        return mNoConnectImage
+    }
 
 
 }

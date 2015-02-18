@@ -10,7 +10,7 @@ import UIKit
 
 class TutorialPage2View: UIView {
 
-    var mDelegate:Page2Controller?
+    private var mDelegate:Page2Controller?
 
     let BACKGROUND_COLOR:UIColor = UIColor(red: 244.0/255.0, green: 242.0/255.0, blue: 241.0/255.0, alpha: 1)
 
@@ -20,7 +20,7 @@ class TutorialPage2View: UIView {
 
     let BACK_BUTTON_FONT:UIFont = UIFont(name:"Raleway-Light", size: 20)!
 
-    var backButton:UIButton!
+    private var mBackButton:UIButton?
 
     init(frame: CGRect, delegate:UIViewController) {
         super.init(frame: frame)
@@ -41,12 +41,14 @@ class TutorialPage2View: UIView {
 
     func buildTutorialPage() {
 
-        backButton = UIButton.buttonWithType(UIButtonType.System) as UIButton
+        let backButton = UIButton.buttonWithType(UIButtonType.System) as UIButton
         backButton.frame = CGRectMake(15, 10, 60, 40)
         backButton.setTitle(NSLocalizedString("Back",comment:"button title string"), forState: UIControlState.Normal)
         backButton.titleLabel?.font = BACK_BUTTON_FONT
         backButton.addTarget(self, action: "ButtonAction:", forControlEvents: UIControlEvents.TouchUpInside)
         self.addSubview(backButton)
+        
+        mBackButton = backButton
         
         let guideImage:UIImageView = UIImageView(image: UIImage(named: String("step2" as NSString)))
         guideImage.frame = CGRectMake(0, 0, self.frame.size.width-70, 100)
@@ -91,6 +93,10 @@ class TutorialPage2View: UIView {
     
     func ButtonAction(sender:UIButton){
         mDelegate?.nextButtonAction(sender)
+    }
+    
+    func getBackButton() -> UIButton? {
+        return mBackButton
     }
 
     /*

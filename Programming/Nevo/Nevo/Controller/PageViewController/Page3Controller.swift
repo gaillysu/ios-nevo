@@ -29,7 +29,7 @@ class Page3Controller: UIViewController,ButtonActionCallBack,ConnectionControlle
     */
     func nextButtonAction(sender:UIButton){
 
-        if sender.isEqual(pagesView.connectButton) {
+        if sender.isEqual(pagesView.getConnectButton()?) {
 
             let isConnectedBool:Bool = ConnectionControllerImpl.sharedInstance.isConnected()
             if(isConnectedBool) {
@@ -39,7 +39,7 @@ class Page3Controller: UIViewController,ButtonActionCallBack,ConnectionControlle
                 //TODO by Hugo What happens when the utto is clicked a lot of times
                 ConnectionControllerImpl.sharedInstance.addDelegate( self)
             }
-        } else if sender.isEqual(pagesView.backButton) {
+        } else if sender.isEqual(pagesView.getBackButton()?) {
             self.navigationController?.popViewControllerAnimated(true)
         }else {
             //Finish Button Action
