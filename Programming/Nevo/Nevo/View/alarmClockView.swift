@@ -23,6 +23,8 @@ class alarmClockView: UIView {
     @IBOutlet var alarmSwitch: UISwitch!
 
     @IBOutlet var alarmTitle: UILabel!
+
+    @IBOutlet var stepRoundImage: UIImageView!
     
     private var mNoConnectionView:UIView?
     
@@ -52,6 +54,10 @@ class alarmClockView: UIView {
         
     }
 
+    func bulidUI() {
+        stepRoundImage.frame = CGRectMake(0, 0, UIScreen.mainScreen().bounds.width-60, UIScreen.mainScreen().bounds.width-60);
+        stepRoundImage.center = CGPointMake(self.frame.width/2.0, self.frame.height/2.0);
+    }
     @IBAction func controllEventManager(sender: AnyObject) {
         //CallBack StepGoalSetingController
         mDelegate?.controllManager(sender)

@@ -100,6 +100,16 @@
                                     <constraint firstAttribute="height" constant="260" id="fSV-ob-0Wp"/>
                                 </constraints>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" Set your daily Goal" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eye-WF-BOl">
+                                <rect key="frame" x="10" y="77" width="300" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="4Ck-sO-XlA"/>
+                                    <constraint firstAttribute="width" constant="300" id="GfP-md-LIW"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6bb-WV-M23">
                                 <rect key="frame" x="30" y="231" width="260" height="105"/>
                                 <constraints>
@@ -132,16 +142,6 @@
                                     <action selector="buttonAction:" destination="esU-rF-t9Y" eventType="touchUpInside" id="kzU-IM-Z9Y"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" Set your daily Goal" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eye-WF-BOl">
-                                <rect key="frame" x="10" y="61" width="300" height="50"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="4Ck-sO-XlA"/>
-                                    <constraint firstAttribute="width" constant="300" id="GfP-md-LIW"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kAf-Gx-iId">
                                 <rect key="frame" x="120" y="454" width="80" height="45"/>
                                 <constraints>
@@ -179,17 +179,17 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="centerX" secondItem="kAf-Gx-iId" secondAttribute="centerX" id="5CZ-tf-8id"/>
-                            <constraint firstAttribute="centerY" secondItem="Eye-WF-BOl" secondAttribute="centerY" constant="198" id="5sv-MU-xwj"/>
                             <constraint firstAttribute="centerX" secondItem="QbO-Lj-nW0" secondAttribute="centerX" constant="-104" id="69b-Cd-2l8"/>
+                            <constraint firstItem="Eye-WF-BOl" firstAttribute="top" secondItem="Y6d-zv-u6z" secondAttribute="bottom" constant="33" id="BEu-pl-Vbr"/>
                             <constraint firstAttribute="centerX" secondItem="Eye-WF-BOl" secondAttribute="centerX" id="ONL-TK-DXa"/>
                             <constraint firstItem="yRT-9T-y4R" firstAttribute="leading" secondItem="6bb-WV-M23" secondAttribute="leading" id="VpA-ft-M0M"/>
                             <constraint firstAttribute="centerX" secondItem="6bb-WV-M23" secondAttribute="centerX" id="ZCD-XD-nXM"/>
-                            <constraint firstAttribute="centerY" secondItem="kAf-Gx-iId" secondAttribute="centerY" constant="-192.5" id="dOj-lI-UEY"/>
+                            <constraint firstAttribute="bottom" secondItem="QbO-Lj-nW0" secondAttribute="bottom" constant="69" id="e29-1f-tDa"/>
                             <constraint firstAttribute="centerX" secondItem="dsh-Mg-AqS" secondAttribute="centerX" constant="104" id="jsF-Ea-YYy"/>
                             <constraint firstItem="yRT-9T-y4R" firstAttribute="centerY" secondItem="esU-rF-t9Y" secondAttribute="centerY" id="nQH-kC-QfS"/>
-                            <constraint firstAttribute="centerY" secondItem="dsh-Mg-AqS" secondAttribute="centerY" constant="-192.5" id="ssf-UM-Pz2"/>
+                            <constraint firstAttribute="bottom" secondItem="dsh-Mg-AqS" secondAttribute="bottom" constant="69" id="sKB-TJ-P5C"/>
                             <constraint firstAttribute="centerY" secondItem="6bb-WV-M23" secondAttribute="centerY" constant="0.5" id="tXd-Wm-8dt"/>
-                            <constraint firstAttribute="centerY" secondItem="QbO-Lj-nW0" secondAttribute="centerY" constant="-192.5" id="x7U-qn-3ES"/>
+                            <constraint firstAttribute="bottom" secondItem="kAf-Gx-iId" secondAttribute="bottom" constant="69" id="tts-Uh-CqZ"/>
                         </constraints>
                         <connections>
                             <outlet property="goalButton" destination="6bb-WV-M23" id="iCI-WT-dXV"/>
@@ -197,6 +197,7 @@
                             <outlet property="modarateButton" destination="kAf-Gx-iId" id="aOD-M1-jcK"/>
                             <outlet property="sportiveButton" destination="QbO-Lj-nW0" id="s60-sO-z3c"/>
                             <outlet property="stepLabel" destination="Eye-WF-BOl" id="lZQ-YX-fkD"/>
+                            <outlet property="stepRoundImage" destination="yRT-9T-y4R" id="MzU-Ax-yzW"/>
                         </connections>
                     </view>
                     <navigationItem key="navigationItem" title="Step" id="VUx-V6-WUk"/>
@@ -283,13 +284,13 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="fjs-qS-fa5" firstAttribute="top" secondItem="dsW-M2-zpw" secondAttribute="bottom" constant="51" id="1IU-Ua-HSe"/>
                             <constraint firstItem="dsW-M2-zpw" firstAttribute="centerY" secondItem="pwc-5p-Bqy" secondAttribute="centerY" id="5K7-wx-QxF"/>
                             <constraint firstAttribute="centerY" secondItem="qE2-bj-eX9" secondAttribute="centerY" id="Mip-QU-LlP"/>
                             <constraint firstAttribute="centerX" secondItem="dsW-M2-zpw" secondAttribute="centerX" id="Vsd-Yd-cas"/>
                             <constraint firstItem="cvc-DW-voE" firstAttribute="top" secondItem="aIe-e2-91U" secondAttribute="bottom" constant="33" id="WB2-63-azG"/>
                             <constraint firstAttribute="centerX" secondItem="cvc-DW-voE" secondAttribute="centerX" id="gPm-zV-PhY"/>
                             <constraint firstAttribute="centerY" secondItem="dsW-M2-zpw" secondAttribute="centerY" id="hC5-RN-5xi"/>
+                            <constraint firstAttribute="bottom" secondItem="fjs-qS-fa5" secondAttribute="bottom" constant="72" id="qo1-bu-BUY"/>
                             <constraint firstAttribute="centerX" secondItem="fjs-qS-fa5" secondAttribute="centerX" id="rpy-Ys-rCt"/>
                             <constraint firstAttribute="centerX" secondItem="qE2-bj-eX9" secondAttribute="centerX" id="yBb-6q-HeS"/>
                         </constraints>
@@ -297,6 +298,7 @@
                             <outlet property="alarmSwitch" destination="fjs-qS-fa5" id="qyK-Rn-3D8"/>
                             <outlet property="alarmTitle" destination="cvc-DW-voE" id="h00-bM-gSe"/>
                             <outlet property="selectedTimerButton" destination="qE2-bj-eX9" id="kh0-sm-CdR"/>
+                            <outlet property="stepRoundImage" destination="dsW-M2-zpw" id="W54-oG-Fof"/>
                         </connections>
                     </view>
                     <navigationItem key="navigationItem" title="Alarm" id="h9a-N5-63D"/>
