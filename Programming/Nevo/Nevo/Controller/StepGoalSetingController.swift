@@ -30,7 +30,11 @@ class StepGoalSetingController: UIViewController, SyncControllerDelegate {
         stepGoalView.bulidStepGoalView(self)
 
     }
-    
+
+    override func viewDidLayoutSubviews() {
+        stepGoalView.bulidUI()
+    }
+
     override func viewDidAppear(animated: Bool) {
         checkConnection()
 

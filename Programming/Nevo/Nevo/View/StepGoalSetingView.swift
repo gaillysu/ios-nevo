@@ -24,6 +24,7 @@ class StepGoalSetingView: UIView,UIPickerViewDelegate,UIPickerViewDataSource {
     @IBOutlet var modarateButton: UIButton!
     @IBOutlet var intensiveButton: UIButton!
     @IBOutlet var sportiveButton: UIButton!
+    @IBOutlet var stepRoundImage: UIImageView!
 
     private var mNoConnectionView:UIView?
     
@@ -85,6 +86,10 @@ class StepGoalSetingView: UIView,UIPickerViewDelegate,UIPickerViewDataSource {
 
     }
 
+    func bulidUI() {
+        stepRoundImage.frame = CGRectMake(0, 0, UIScreen.mainScreen().bounds.width-60, UIScreen.mainScreen().bounds.width-60);
+        stepRoundImage.center = CGPointMake(self.frame.width/2.0, self.frame.height/2.0);
+    }
     /*
     Button Action
     */
