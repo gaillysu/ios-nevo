@@ -61,6 +61,7 @@
 		07CC4A291A820A9B008DA749 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07CC4A281A820A9B008DA749 /* Utility.swift */; };
 		07CC4A2F1A821B46008DA749 /* NevoOTARequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07CC4A2E1A821B46008DA749 /* NevoOTARequest.swift */; };
 		9A12E5461A931B1F00536729 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A12E5451A931B1F00536729 /* Alert.swift */; };
+		9A3B7AAF1A9450D000BDC3C6 /* AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3B7AAE1A9450D000BDC3C6 /* AppTheme.swift */; };
 		9A3E57231A80E56E00DFFAE1 /* ConnectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3E571B1A80E56E00DFFAE1 /* ConnectionController.swift */; };
 		9A3E57241A80E56E00DFFAE1 /* ConnectionControllerImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3E571C1A80E56E00DFFAE1 /* ConnectionControllerImpl.swift */; };
 		9A3E57251A80E56E00DFFAE1 /* NevoProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3E571D1A80E56E00DFFAE1 /* NevoProfile.swift */; };
@@ -167,6 +168,7 @@
 		07CC4A281A820A9B008DA749 /* Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Utility.swift; path = OTA/Utility.swift; sourceTree = "<group>"; };
 		07CC4A2E1A821B46008DA749 /* NevoOTARequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NevoOTARequest.swift; path = OTA/NevoOTARequest.swift; sourceTree = "<group>"; };
 		9A12E5451A931B1F00536729 /* Alert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Alert.swift; path = Util/Alert.swift; sourceTree = "<group>"; };
+		9A3B7AAE1A9450D000BDC3C6 /* AppTheme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppTheme.swift; path = View/AppTheme.swift; sourceTree = "<group>"; };
 		9A3E571B1A80E56E00DFFAE1 /* ConnectionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConnectionController.swift; path = Controller/Connection/ConnectionController.swift; sourceTree = "<group>"; };
 		9A3E571C1A80E56E00DFFAE1 /* ConnectionControllerImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConnectionControllerImpl.swift; path = Controller/Connection/ConnectionControllerImpl.swift; sourceTree = "<group>"; };
 		9A3E571D1A80E56E00DFFAE1 /* NevoProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NevoProfile.swift; path = Controller/Connection/NevoProfile.swift; sourceTree = "<group>"; };
@@ -458,6 +460,7 @@
 				9AD8F96F1A6E041D00F01014 /* ClockView.swift */,
 				005350BB1A8B4C1200BF289D /* StepGoalSetingView.swift */,
 				005FE77A1A8C979800961239 /* alarmClockView.swift */,
+				9A3B7AAE1A9450D000BDC3C6 /* AppTheme.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -569,6 +572,7 @@
 				TargetAttributes = {
 					9AD8F9311A6DF35900F01014 = {
 						CreatedOnToolsVersion = 6.1.1;
+						DevelopmentTeam = WEGPWR9LDA;
 					};
 					9AD8F9491A6DF35900F01014 = {
 						CreatedOnToolsVersion = 6.1.1;
@@ -672,6 +676,7 @@
 				007F79721A878C8B006C89E6 /* TutorialController.swift in Sources */,
 				00C30AD91A89E08600C9F67B /* Page3Controller.swift in Sources */,
 				006B73491A8F7D0B00A7E92F /* AlarmClockController.swift in Sources */,
+				9A3B7AAF1A9450D000BDC3C6 /* AppTheme.swift in Sources */,
 				9AD8F9751A6E049500F01014 /* NumberOfStepsGoal.swift in Sources */,
 				9AD8F99E1A6E3E0100F01014 /* SyncController.swift in Sources */,
 				07BE0CF21A84A2F8000C4AC7 /* IntelHex2BinConverter.m in Sources */,
@@ -841,6 +846,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Nevo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -854,6 +860,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Nevo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";

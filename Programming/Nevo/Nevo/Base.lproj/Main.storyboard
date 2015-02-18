@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="B94-9O-eGF">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="B94-9O-eGF">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
     </dependencies>
@@ -123,11 +123,11 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <inset key="titleEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                <state key="normal" title="Normal">
+                                <state key="normal" title="Moderate">
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
-                                <state key="selected" title="Interive" backgroundImage="selectedButton.png"/>
+                                <state key="selected" backgroundImage="selectedButton.png"/>
                                 <connections>
                                     <action selector="buttonAction:" destination="esU-rF-t9Y" eventType="touchUpInside" id="kzU-IM-Z9Y"/>
                                 </connections>
@@ -150,10 +150,10 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <inset key="titleEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                <state key="normal" title="Moderate">
+                                <state key="normal" title="Normal">
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
-                                <state key="selected" title="Moderate" backgroundImage="selectedButton.png"/>
+                                <state key="selected" backgroundImage="selectedButton.png"/>
                                 <connections>
                                     <action selector="buttonAction:" destination="esU-rF-t9Y" eventType="touchUpInside" id="cR3-wJ-5Zs"/>
                                 </connections>
@@ -193,8 +193,8 @@
                         </constraints>
                         <connections>
                             <outlet property="goalButton" destination="6bb-WV-M23" id="iCI-WT-dXV"/>
-                            <outlet property="intensiveButton" destination="dsh-Mg-AqS" id="7k7-Dr-dig"/>
-                            <outlet property="modarateButton" destination="kAf-Gx-iId" id="aOD-M1-jcK"/>
+                            <outlet property="intensiveButton" destination="kAf-Gx-iId" id="gy1-dj-lm1"/>
+                            <outlet property="modarateButton" destination="dsh-Mg-AqS" id="ACD-eA-HAs"/>
                             <outlet property="sportiveButton" destination="QbO-Lj-nW0" id="s60-sO-z3c"/>
                             <outlet property="stepLabel" destination="Eye-WF-BOl" id="lZQ-YX-fkD"/>
                         </connections>

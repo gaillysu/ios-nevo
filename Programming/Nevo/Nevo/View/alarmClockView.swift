@@ -46,7 +46,7 @@ class alarmClockView: UIView {
             mDelegate = callBackDelgate
         }
         alarmSwitch.tintColor = UIColor.blackColor()
-        alarmSwitch.onTintColor = UIColor.grayColor()
+        alarmSwitch.onTintColor = AppTheme.NEVO_SOLAR_YELLOW()
 
         alarmTitle.text = NSLocalizedString("alarmLabelTitle", comment: "")
         
