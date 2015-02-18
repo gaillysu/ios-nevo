@@ -24,7 +24,6 @@ class StepGoalSetingView: UIView,UIPickerViewDelegate,UIPickerViewDataSource {
     @IBOutlet var modarateButton: UIButton!
     @IBOutlet var intensiveButton: UIButton!
     @IBOutlet var sportiveButton: UIButton!
-    @IBOutlet var customButton: UIButton!
 
     var noConnectionView:UIView?
     
@@ -312,7 +311,6 @@ class StepGoalSetingView: UIView,UIPickerViewDelegate,UIPickerViewDataSource {
         default:
             NSLog("\(pickerContent)")
             cleanButtonControlState()
-            customButton.selected = true
             goalButton.setTitle("\(pickerContent)", forState: UIControlState.Normal)
         }
 
