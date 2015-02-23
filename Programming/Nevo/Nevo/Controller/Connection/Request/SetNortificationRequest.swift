@@ -50,9 +50,9 @@ class SetNortificationRequest: NevoRequest {
     private var wechat_vib_number:UInt8
     private var wechat_led_pattern:UInt32
     
-    func init(callColor callLedColor: UInt32 = BLUE_LED, smsColor smsLedColor: UInt32 = GREEN_LED, emailColor emailLedColor: UInt32 = YELLOW_LED, facebookColor facebookLedColor: UInt32 = RED_LED, twitterColor twitterLedColor: UInt32 = VIOLET_LED, whatsappColor whatsappLedColor: UInt32 = PURPLE_LED) {
+    init(callColor callLedColor: UInt32 = BLUE_LED, smsColor smsLedColor: UInt32 = GREEN_LED, emailColor emailLedColor: UInt32 = YELLOW_LED, facebookColor facebookLedColor: UInt32 = RED_LED, twitterColor twitterLedColor: UInt32 = VIOLET_LED, whatsappColor whatsappLedColor: UInt32 = PURPLE_LED) {
         
-        //WE set each colors, one by one. In case a color is chosen, we turn on the vibration
+        //We set each colors, one by one. In case a color is chosen, we turn on the vibration
         
         call_vib_number = VIBRATION_ON
         call_led_pattern = callLedColor
