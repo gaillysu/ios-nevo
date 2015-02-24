@@ -9,25 +9,59 @@
 import Foundation
 
 class NumberOfStepsGoal : Goal {
-    private let mThistype = "NUMBER_OF_STEPS"
-    private var mSteps:Int = 3000
     
-    override init() {
-        super.init()
-        mType = mThistype
+    let NUMBER_OF_STEPS = "NUMBER_OF_STEPS"
+    
+    let LOW_INTENSITY_STEPS = 7000
+    
+    let MEDIUM_INTENSITY_STEPS = 10000
+
+    let HIGH_INTENSITY_STEPS = 20000
+    
+    private var mSteps:Int
+    
+    init(steps:Int=0) {
+
+        mSteps = steps
+        
     }
     
-    init(intensity:GoalIntensity,step:Int)
-    {
-        super.init()
-        mGoalIntensity = intensity
-        mType = mThistype
-        mSteps = step
+    init(intensity:GoalIntensity) {
+        
+        mSteps = 0
+        
+        if(intensity==GoalIntensity.LOW) {
+            mSteps = LOW_INTENSITY_STEPS
+        }
+        
+        if(intensity==GoalIntensity.MEDIUM) {
+            mSteps = MEDIUM_INTENSITY_STEPS
+        }
+        
+        if(intensity==GoalIntensity.HIGH) {
+            mSteps = HIGH_INTENSITY_STEPS
+        }
     }
-    func getNumberOfSteps() -> NSInteger {
-        //return the number of steps depending on the goal intensity
-        NSLog("getNumberOfSteps() return \(mSteps)")
-        return NSInteger(mSteps)
+    
+    func getType() -> String {
+        return NUMBER_OF_STEPS
+    }
+    
+    func getGoalIntensity() -> GoalIntensity {
+        if(mSteps<=LOW_INTENSITY_STEPS) {
+            return GoalIntensity.LOW
+        }
+        
+        if(mSteps<=MEDIUM_INTENSITY_STEPS) {
+            return GoalIntensity.MEDIUM
+        }
+        
+        return GoalIntensity.HIGH
+
+    }
+    
+    func getValue() -> Int {
+        return mSteps
     }
     
 }

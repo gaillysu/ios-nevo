@@ -9,10 +9,14 @@
 import UIKit
 
 class StepGoalSetingController: UIViewController, SyncControllerDelegate {
+    
+    let NUMBER_OF_STEPS_GOAL_KEY = "NUMBER_OF_STEPS_GOAL_KEY"
 
     @IBOutlet var stepGoalView: StepGoalSetingView!
     
     private var mSyncController:SyncController?
+    
+    private var mCurrentGoal:Goal = NumberOfStepsGoal()
 
     
     override func viewDidLoad() {
@@ -28,6 +32,12 @@ class StepGoalSetingController: UIViewController, SyncControllerDelegate {
         self.navigationItem.titleView = titleLabel
 
         stepGoalView.bulidStepGoalView(self)
+        
+        if let numberOfSteps = NSUserDefaults.standardUserDefaults().objectForKey(NUMBER_OF_STEPS_GOAL_KEY) as? Int {
+            setGoal(NumberOfStepsGoal(steps: numberOfSteps))
+        } else {
+            setGoal(NumberOfStepsGoal(intensity: GoalIntensity.LOW))
+        }
 
     }
 
@@ -50,31 +60,22 @@ class StepGoalSetingController: UIViewController, SyncControllerDelegate {
     func controllManager(sender:UIButton) {
         if sender.isEqual(stepGoalView.goalButton) {
             NSLog("goalButton")
-            stepGoalView.initPickerView()
+            stepGoalView.initPickerView(mCurrentGoal.getValue())
         }
 
         if sender.isEqual(stepGoalView.modarateButton) {
             NSLog("modarateButton")
-            stepGoalView.cleanButtonControlState()
-            stepGoalView.modarateButton.selected = true
-            stepGoalView.setNumberOfStepsGoal(7000)
-            sendRequestGoal(GoalIntensity.LOW,value: stepGoalView.getNumberOfStepsGoal())
+            setGoal(NumberOfStepsGoal(intensity: GoalIntensity.LOW))
         }
 
         if sender.isEqual(stepGoalView.intensiveButton) {
             NSLog("intensiveButton")
-            stepGoalView.cleanButtonControlState()
-            stepGoalView.intensiveButton.selected = true
-            stepGoalView.setNumberOfStepsGoal(10000)
-            sendRequestGoal(GoalIntensity.MEDIUM,value: stepGoalView.getNumberOfStepsGoal())
+            setGoal(NumberOfStepsGoal(intensity: GoalIntensity.MEDIUM))
         }
 
         if sender.isEqual(stepGoalView.sportiveButton) {
             NSLog("sportiveButton")
-            stepGoalView.cleanButtonControlState()
-            stepGoalView.sportiveButton.selected = true
-            stepGoalView.setNumberOfStepsGoal(20000)
-            sendRequestGoal(GoalIntensity.HIGH,value: stepGoalView.getNumberOfStepsGoal())
+            setGoal(NumberOfStepsGoal(intensity: GoalIntensity.HIGH))
         }
 
 
@@ -85,14 +86,33 @@ class StepGoalSetingController: UIViewController, SyncControllerDelegate {
 
         if sender.isEqual(stepGoalView.getEnterButton()?) {
 
-            sendRequestGoal(GoalIntensity.LOW,value: stepGoalView.getNumberOfStepsGoal())
+            setGoal(NumberOfStepsGoal(steps: stepGoalView.getNumberOfStepsGoal()))
 
         }
     }
     
-    func sendRequestGoal(GoalIntensity, value:Int) {
+    func setGoal(goal:Goal) {
         
-        var request = SetGoalRequest(goal: Goal.GoalFactory.newGoal("NUMBER_OF_STEPS",intensity: GoalIntensity.LOW,data: stepGoalView.getNumberOfStepsGoal()))
+        mCurrentGoal = goal
+        
+        
+        stepGoalView.setNumberOfStepsGoal(goal.getValue())
+        
+        
+        let userDefaults = NSUserDefaults.standardUserDefaults();
+        
+        userDefaults.setObject(goal.getValue(),forKey:NUMBER_OF_STEPS_GOAL_KEY)
+        
+        userDefaults.synchronize()
+        
+        
+        sendRequestGoal(goal)
+        
+    }
+    
+    func sendRequestGoal(goal:Goal) {
+        
+        var request = SetGoalRequest(goal: goal)
         
         ConnectionControllerImpl.sharedInstance.sendRequest(request)
     }

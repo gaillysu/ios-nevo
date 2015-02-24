@@ -14,48 +14,13 @@ This class represents all goals,
 being steps count, calorie count etc...
 */
 
-class Goal {
+protocol Goal {
+
+    func getType() ->String
     
-    //how to make goalIntensity & type is invisible in other class (exclude sub class), it is bad idea expose these variable，we should avoid this case.
+    func getGoalIntensity() -> GoalIntensity
     
-    var mGoalIntensity : GoalIntensity = GoalIntensity.LOW
-    var mType : String  = "UNKNOWN"
-    
-    struct GoalFactory {
-        static func fromCoreData(NSManagedObject) -> Goal{
-            //Here, we analyse the Code Data object and return the appropriate Goal object
-            return Goal()
-        }
-        
-        static func newGoal(aType:String, intensity:GoalIntensity,data : Int) -> Goal{
-            if (aType == "NUMBER_OF_STEPS") {
-                return NumberOfStepsGoal(intensity: intensity, step: data)
-            }
-            return Goal()
-        }
-    }
-    
-    init() {
-        //This is an abstract class, we should'nt init it
-    }
-    
-    func getType() ->NSString
-    {
-        return  mType
-    }
-    
-    func setGoalIntensity(intensity : GoalIntensity) {
-        mGoalIntensity = intensity
-        
-    }
-    
-    func getGoalIntensity() -> GoalIntensity{
-        return mGoalIntensity
-    }
-    
-    class func toCoreData() -> NSManagedObject{
-        return NSManagedObject()
-    }
+    func getValue() -> Int
 
 }
 

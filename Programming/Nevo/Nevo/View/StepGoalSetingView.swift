@@ -43,7 +43,7 @@ class StepGoalSetingView: UIView,UIPickerViewDelegate,UIPickerViewDataSource {
     
     private var mDelegate:StepGoalSetingController?
 
-    private var mData:Int=7000
+    private var mTempData:Int=0
 
     private var mEnterButton:UIButton?
 
@@ -102,7 +102,7 @@ class StepGoalSetingView: UIView,UIPickerViewDelegate,UIPickerViewDataSource {
     /*
     Create a PickerView
     */
-    func initPickerView() {
+    func initPickerView(initialValue:Int) {
         //Create a pickerView backgroundView
         var PickerbgView:UIView = UIView(frame: CGRectMake(0, 210, self.frame.size.width, self.frame.size.height))
         PickerbgView.backgroundColor = UIColor.clearColor()
@@ -154,9 +154,10 @@ class StepGoalSetingView: UIView,UIPickerViewDelegate,UIPickerViewDataSource {
 
         }
         
-        //We initalise the value at 7000
-        setNumberOfStepsGoal(7000)
-        pickerView.selectRow(6, inComponent: 0, animated: false)
+        mTempData = initialValue
+    
+        pickerView.selectRow(((initialValue/1000)-1) , inComponent: 0, animated: false)
+
 
     }
 
@@ -306,28 +307,7 @@ class StepGoalSetingView: UIView,UIPickerViewDelegate,UIPickerViewDataSource {
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int){
 
         let pickerContent:NSInteger = NSInteger(mIndexArray.objectAtIndex(row) as Int)
-        mData = pickerContent as Int
-        switch pickerContent {
-        case 7000:
-            cleanButtonControlState()
-            modarateButton.selected = true
-            goalButton.setTitle("\(pickerContent)", forState: UIControlState.Normal)
-
-        case 10000:
-            cleanButtonControlState()
-            intensiveButton.selected = true
-            goalButton.setTitle("\(pickerContent)", forState: UIControlState.Normal)
-
-        case 20000:
-            cleanButtonControlState()
-            sportiveButton.selected = true
-            goalButton.setTitle("\(pickerContent)", forState: UIControlState.Normal)
-
-        default:
-            NSLog("\(pickerContent)")
-            cleanButtonControlState()
-            goalButton.setTitle("\(pickerContent)", forState: UIControlState.Normal)
-        }
+        mTempData = pickerContent as Int
 
     }
 
@@ -353,13 +333,29 @@ class StepGoalSetingView: UIView,UIPickerViewDelegate,UIPickerViewDataSource {
     }
     
     func getNumberOfStepsGoal() -> Int{
-        return mData
+        return mTempData
     }
 
     func setNumberOfStepsGoal(goal:Int){
-        mData = goal
+
         goalButton.setTitle("\(goal)", forState: UIControlState.Normal)
-        //TODO by Hugo set the selecetd row here
+        
+        
+        cleanButtonControlState()
+        
+        if(goal==NumberOfStepsGoal().LOW_INTENSITY_STEPS) {
+            
+            modarateButton.selected = true
+            
+        } else if(goal==NumberOfStepsGoal().MEDIUM_INTENSITY_STEPS) {
+            
+            intensiveButton.selected = true
+            
+        } else if(goal==NumberOfStepsGoal().HIGH_INTENSITY_STEPS) {
+            
+            sportiveButton.selected = true
+            
+        }
     }
     
     func getNoConnectScanButton() -> UIButton? {

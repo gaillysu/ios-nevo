@@ -26,7 +26,7 @@ class SetGoalRequest : NevoRequest {
     var display:UInt8 = 0  //default is step goal showing
     var goal_dist = 10000 //unit ??cm
   
-    var goal_steps = mThisGoal.getType() == "NUMBER_OF_STEPS" ? (mThisGoal as NumberOfStepsGoal).getNumberOfSteps() : 0
+    var goal_steps = mThisGoal.getType() == NumberOfStepsGoal().getType() ? mThisGoal.getValue() : 0
         
     var goal_carlories = 2000 // unit ??
     var goal_time = 100 //unit ??
