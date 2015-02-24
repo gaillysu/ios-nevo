@@ -17,7 +17,7 @@ protocol StepGoalButtonActionCallBack {
 
 }
 
-class StepGoalSetingView: UIView,UIPickerViewDelegate,UIPickerViewDataSource {
+class StepGoalSetingView: UIView,UIPickerViewDataSource {
 
     @IBOutlet var stepLabel: UILabel!
     @IBOutlet var goalButton: UIButton!
@@ -42,8 +42,6 @@ class StepGoalSetingView: UIView,UIPickerViewDelegate,UIPickerViewDataSource {
     let BUTTONBGVIEW_COLOR = UIColor(red: 244/255.0, green: 242/255.0, blue: 241/255.0, alpha: 1)//View button background color
     
     private var mDelegate:StepGoalSetingController?
-
-    private var mTempData:Int=0
 
     private var mEnterButton:UIButton?
 
@@ -112,7 +110,6 @@ class StepGoalSetingView: UIView,UIPickerViewDelegate,UIPickerViewDataSource {
         //Create a pickerView
         let pickerView = UIPickerView(frame: CGRectMake(0, PickerbgView.frame.size.height-160-50, self.frame.size.width, 160))
         pickerView.backgroundColor = PICKER_BG_COLOR
-        pickerView.delegate = self
         pickerView.dataSource = self
         PickerbgView.addSubview(pickerView)
 
@@ -154,8 +151,6 @@ class StepGoalSetingView: UIView,UIPickerViewDelegate,UIPickerViewDataSource {
 
         }
         
-        mTempData = initialValue
-    
         pickerView.selectRow(((initialValue/1000)-1) , inComponent: 0, animated: false)
 
 
@@ -299,18 +294,6 @@ class StepGoalSetingView: UIView,UIPickerViewDelegate,UIPickerViewDataSource {
         EndAnimation()
     }
 
-    // MARK: - PickerViewDelegate
-    func pickerView(pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat{
-        return 50
-    }
-
-    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int){
-
-        let pickerContent:NSInteger = NSInteger(mIndexArray.objectAtIndex(row) as Int)
-        mTempData = pickerContent as Int
-
-    }
-
     func pickerView(pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusingView view: UIView!) -> UIView{
         let labelView:UILabel = UILabel(frame: CGRectMake(0, 0, pickerView.frame.size.width, 50))
         labelView.backgroundColor = UIColor.clearColor()
@@ -333,7 +316,8 @@ class StepGoalSetingView: UIView,UIPickerViewDelegate,UIPickerViewDataSource {
     }
     
     func getNumberOfStepsGoal() -> Int{
-        return mTempData
+        let row = mPickerView?.selectedRowInComponent(0)
+        return mIndexArray.objectAtIndex(row!) as Int
     }
 
     func setNumberOfStepsGoal(goal:Int){
