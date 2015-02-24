@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import HealthKit
 
 /*
 The sync controller handles all the very high level connection workflow
@@ -16,11 +17,18 @@ It checks that the firmware is up to date, and handles every steps of the synchr
 
 class SyncController: ConnectionControllerDelegate {
     
+    //Let's sync every days
+    let SYNC_INTERVAL:NSTimeInterval = 24*60*60*1000
+    
+    let LAST_SYNC_DATE_KEY = "LAST_SYNC_DATE_KEY"
+    
     private var mDelegate:SyncControllerDelegate
  
     private let mConnectionController : ConnectionController
 
     private var mPacketsbuffer:[NSData]
+    
+    private let mHealthKitStore:HKHealthStore = HKHealthStore()
     
     init(controller : UIViewController,forceScan :Bool, delegate:SyncControllerDelegate) {
 
@@ -36,9 +44,66 @@ class SyncController: ConnectionControllerDelegate {
             mConnectionController.forgetSavedAddress()
         }
         mConnectionController.connect()
+        syncActivityData()
     }
     
     //add new functions when  get connected Nevo
+    
+    
+    /**
+    This function will syncrhonise activity data with the watch.
+    It is a long process and hence shouldn't be done too often, so we save the date of previous sync.
+    The watch should be emptied after all data have been saved.
+    */
+    func syncActivityData() {
+        var lastSync = 0.0
+        
+        if let lastSyncSaved = NSUserDefaults.standardUserDefaults().objectForKey(LAST_SYNC_DATE_KEY) as? Double {
+            lastSync = lastSyncSaved
+        }
+        
+        if( NSDate().timeIntervalSince1970-lastSync > SYNC_INTERVAL) {
+            //We haven't synched for a while, let's sync now !
+            
+            NSLog("*** Sync started ! ***")
+            
+            //TODO by Hugo to Gailly
+            //Sync process here
+            syncStep1()
+        
+        }
+    }
+    
+    func syncStep1() {
+        //TODO by Hugo to Gailly
+        //Real sync
+        syncStep2()
+    }
+    
+    func syncStep2() {
+        //TODO by Hugo to Gailly
+        //Real sync
+
+        
+        //When the sync is finished, let's simply call the sync Finished function
+        syncFinished()
+    }
+    
+    /**
+    When the sync process is finished, le't refresh the date of sync
+    */
+    func syncFinished() {
+        
+        NSLog("*** Sync finished ***")
+        
+        let userDefaults = NSUserDefaults.standardUserDefaults();
+        
+        userDefaults.setObject(NSDate().timeIntervalSince1970,forKey:LAST_SYNC_DATE_KEY)
+        
+        userDefaults.synchronize()
+    }
+    
+    
     func setRTC() {
         mConnectionController.sendRequest(SetRTCRequest())
     }

@@ -61,6 +61,9 @@
 		07CC4A291A820A9B008DA749 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07CC4A281A820A9B008DA749 /* Utility.swift */; };
 		07CC4A2F1A821B46008DA749 /* NevoOTARequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07CC4A2E1A821B46008DA749 /* NevoOTARequest.swift */; };
 		9A12E5461A931B1F00536729 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A12E5451A931B1F00536729 /* Alert.swift */; };
+		9A2D6C3B1A9C6D9F00591BDC /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A2D6C3A1A9C6D9F00591BDC /* HealthKit.framework */; };
+		9A2D6C3E1A9C71E500591BDC /* NevoHK.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2D6C3D1A9C71E500591BDC /* NevoHK.swift */; };
+		9A2D6C401A9C783800591BDC /* NevoHKImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2D6C3F1A9C783800591BDC /* NevoHKImpl.swift */; };
 		9A3B7AAF1A9450D000BDC3C6 /* AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3B7AAE1A9450D000BDC3C6 /* AppTheme.swift */; };
 		9A3B7AB11A947BCB00BDC3C6 /* GetActivityRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3B7AB01A947BCB00BDC3C6 /* GetActivityRequest.swift */; };
 		9A3E57231A80E56E00DFFAE1 /* ConnectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3E571B1A80E56E00DFFAE1 /* ConnectionController.swift */; };
@@ -169,6 +172,10 @@
 		07CC4A281A820A9B008DA749 /* Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Utility.swift; path = OTA/Utility.swift; sourceTree = "<group>"; };
 		07CC4A2E1A821B46008DA749 /* NevoOTARequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NevoOTARequest.swift; path = OTA/NevoOTARequest.swift; sourceTree = "<group>"; };
 		9A12E5451A931B1F00536729 /* Alert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Alert.swift; path = Util/Alert.swift; sourceTree = "<group>"; };
+		9A2D6C391A9C6D9F00591BDC /* Nevo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Nevo.entitlements; sourceTree = "<group>"; };
+		9A2D6C3A1A9C6D9F00591BDC /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
+		9A2D6C3D1A9C71E500591BDC /* NevoHK.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NevoHK.swift; path = Frameworks/NevoHK/NevoHK.swift; sourceTree = "<group>"; };
+		9A2D6C3F1A9C783800591BDC /* NevoHKImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NevoHKImpl.swift; path = Frameworks/NevoHK/NevoHKImpl.swift; sourceTree = "<group>"; };
 		9A3B7AAE1A9450D000BDC3C6 /* AppTheme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppTheme.swift; path = View/AppTheme.swift; sourceTree = "<group>"; };
 		9A3B7AB01A947BCB00BDC3C6 /* GetActivityRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GetActivityRequest.swift; path = Controller/Connection/Request/GetActivityRequest.swift; sourceTree = "<group>"; };
 		9A3E571B1A80E56E00DFFAE1 /* ConnectionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConnectionController.swift; path = Controller/Connection/ConnectionController.swift; sourceTree = "<group>"; };
@@ -210,6 +217,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A2D6C3B1A9C6D9F00591BDC /* HealthKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -330,6 +338,15 @@
 			name = Util;
 			sourceTree = "<group>";
 		};
+		9A2D6C3C1A9C717E00591BDC /* NevoHK */ = {
+			isa = PBXGroup;
+			children = (
+				9A2D6C3D1A9C71E500591BDC /* NevoHK.swift */,
+				9A2D6C3F1A9C783800591BDC /* NevoHKImpl.swift */,
+			);
+			name = NevoHK;
+			sourceTree = "<group>";
+		};
 		9A3E572D1A80F04600DFFAE1 /* OTA */ = {
 			isa = PBXGroup;
 			children = (
@@ -379,6 +396,7 @@
 		9AD8F9341A6DF35900F01014 /* Nevo */ = {
 			isa = PBXGroup;
 			children = (
+				9A2D6C391A9C6D9F00591BDC /* Nevo.entitlements */,
 				9A12E5441A931B0000536729 /* Util */,
 				9AD8F93E1A6DF35900F01014 /* Main.storyboard */,
 				9AD8F9411A6DF35900F01014 /* Images.xcassets */,
@@ -420,6 +438,8 @@
 		9AD8F95A1A6DFE3400F01014 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9A2D6C3C1A9C717E00591BDC /* NevoHK */,
+				9A2D6C3A1A9C6D9F00591BDC /* HealthKit.framework */,
 				005BC95C1A88B79F006F9E86 /* FXBlurView */,
 				9AD8F9601A6E00C000F01014 /* NevoBT */,
 			);
@@ -576,6 +596,11 @@
 					9AD8F9311A6DF35900F01014 = {
 						CreatedOnToolsVersion = 6.1.1;
 						DevelopmentTeam = WEGPWR9LDA;
+						SystemCapabilities = {
+							com.apple.HealthKit = {
+								enabled = 1;
+							};
+						};
 					};
 					9AD8F9491A6DF35900F01014 = {
 						CreatedOnToolsVersion = 6.1.1;
@@ -693,6 +718,7 @@
 				9A3E57261A80E56E00DFFAE1 /* NevoPacket.swift in Sources */,
 				9AD8F98F1A6E2EE000F01014 /* Profile.swift in Sources */,
 				9AD8F9701A6E041D00F01014 /* ClockView.swift in Sources */,
+				9A2D6C401A9C783800591BDC /* NevoHKImpl.swift in Sources */,
 				9A3B7AB11A947BCB00BDC3C6 /* GetActivityRequest.swift in Sources */,
 				07C59F241A8C5A0A00D65C84 /* SetNortificationRequest.swift in Sources */,
 				9A3E57311A80F08400DFFAE1 /* NevoOTAControllerProfile.swift in Sources */,
@@ -702,6 +728,7 @@
 				005350BC1A8B4C1200BF289D /* StepGoalSetingView.swift in Sources */,
 				007DD4BB1A89DDC000CE7264 /* Page1Controller.swift in Sources */,
 				9A3E57231A80E56E00DFFAE1 /* ConnectionController.swift in Sources */,
+				9A2D6C3E1A9C71E500591BDC /* NevoHK.swift in Sources */,
 				9AD8F93B1A6DF35900F01014 /* Nevo.xcdatamodeld in Sources */,
 				07CC4A291A820A9B008DA749 /* Utility.swift in Sources */,
 				007DD4BD1A89DF2A00CE7264 /* Page2Controller.swift in Sources */,
@@ -849,6 +876,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Nevo/Nevo.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Nevo/Info.plist;
@@ -863,6 +891,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Nevo/Nevo.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Nevo/Info.plist;
