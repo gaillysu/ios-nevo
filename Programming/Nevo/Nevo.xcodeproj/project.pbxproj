@@ -64,6 +64,8 @@
 		9A2D6C3B1A9C6D9F00591BDC /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A2D6C3A1A9C6D9F00591BDC /* HealthKit.framework */; };
 		9A2D6C3E1A9C71E500591BDC /* NevoHK.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2D6C3D1A9C71E500591BDC /* NevoHK.swift */; };
 		9A2D6C401A9C783800591BDC /* NevoHKImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2D6C3F1A9C783800591BDC /* NevoHKImpl.swift */; };
+		9A2D6C431A9C8E3600591BDC /* HourlySteps.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2D6C421A9C8E3600591BDC /* HourlySteps.swift */; };
+		9A2D6C451A9C8E4800591BDC /* DailySteps.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2D6C441A9C8E4800591BDC /* DailySteps.swift */; };
 		9A3B7AAF1A9450D000BDC3C6 /* AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3B7AAE1A9450D000BDC3C6 /* AppTheme.swift */; };
 		9A3B7AB11A947BCB00BDC3C6 /* GetActivityRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3B7AB01A947BCB00BDC3C6 /* GetActivityRequest.swift */; };
 		9A3E57231A80E56E00DFFAE1 /* ConnectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3E571B1A80E56E00DFFAE1 /* ConnectionController.swift */; };
@@ -176,6 +178,8 @@
 		9A2D6C3A1A9C6D9F00591BDC /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		9A2D6C3D1A9C71E500591BDC /* NevoHK.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NevoHK.swift; path = Frameworks/NevoHK/NevoHK.swift; sourceTree = "<group>"; };
 		9A2D6C3F1A9C783800591BDC /* NevoHKImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NevoHKImpl.swift; path = Frameworks/NevoHK/NevoHKImpl.swift; sourceTree = "<group>"; };
+		9A2D6C421A9C8E3600591BDC /* HourlySteps.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HourlySteps.swift; path = Model/Activity/HourlySteps.swift; sourceTree = "<group>"; };
+		9A2D6C441A9C8E4800591BDC /* DailySteps.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DailySteps.swift; path = Model/Activity/DailySteps.swift; sourceTree = "<group>"; };
 		9A3B7AAE1A9450D000BDC3C6 /* AppTheme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppTheme.swift; path = View/AppTheme.swift; sourceTree = "<group>"; };
 		9A3B7AB01A947BCB00BDC3C6 /* GetActivityRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GetActivityRequest.swift; path = Controller/Connection/Request/GetActivityRequest.swift; sourceTree = "<group>"; };
 		9A3E571B1A80E56E00DFFAE1 /* ConnectionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConnectionController.swift; path = Controller/Connection/ConnectionController.swift; sourceTree = "<group>"; };
@@ -347,6 +351,15 @@
 			name = NevoHK;
 			sourceTree = "<group>";
 		};
+		9A2D6C411A9C8E0700591BDC /* Activity */ = {
+			isa = PBXGroup;
+			children = (
+				9A2D6C421A9C8E3600591BDC /* HourlySteps.swift */,
+				9A2D6C441A9C8E4800591BDC /* DailySteps.swift */,
+			);
+			name = Activity;
+			sourceTree = "<group>";
+		};
 		9A3E572D1A80F04600DFFAE1 /* OTA */ = {
 			isa = PBXGroup;
 			children = (
@@ -468,6 +481,7 @@
 		9AD8F95E1A6E003B00F01014 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				9A2D6C411A9C8E0700591BDC /* Activity */,
 				9AD8F9711A6E046400F01014 /* Goal */,
 			);
 			name = Model;
@@ -692,6 +706,7 @@
 				005350B81A8B0F2B00BF289D /* TutorialPage2View.swift in Sources */,
 				9A3E57321A80F08400DFFAE1 /* NevoOTAModeProfile.swift in Sources */,
 				07C59F2A1A8C61E900D65C84 /* SetCardioRequest.swift in Sources */,
+				9A2D6C451A9C8E4800591BDC /* DailySteps.swift in Sources */,
 				9A9BD1C11A88849700A95ACA /* TutorialPage1View.swift in Sources */,
 				007F796E1A878C6C006C89E6 /* TutorialView.swift in Sources */,
 				005350BA1A8B4BC600BF289D /* StepGoalSetingController.swift in Sources */,
@@ -727,6 +742,7 @@
 				9A3E57251A80E56E00DFFAE1 /* NevoProfile.swift in Sources */,
 				005350BC1A8B4C1200BF289D /* StepGoalSetingView.swift in Sources */,
 				007DD4BB1A89DDC000CE7264 /* Page1Controller.swift in Sources */,
+				9A2D6C431A9C8E3600591BDC /* HourlySteps.swift in Sources */,
 				9A3E57231A80E56E00DFFAE1 /* ConnectionController.swift in Sources */,
 				9A2D6C3E1A9C71E500591BDC /* NevoHK.swift in Sources */,
 				9AD8F93B1A6DF35900F01014 /* Nevo.xcdatamodeld in Sources */,
