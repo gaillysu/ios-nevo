@@ -77,18 +77,13 @@ class AlarmClockController: UIViewController, SyncControllerDelegate,alarmButton
     func controllManager(sender:AnyObject){
 
         if sender.isEqual(alarmView.selectedTimerButton){
-            alarmView.initPickerView()
+            alarmView.initPickerView(mAlarmhour,min: mAlarmmin)
             NSLog("alarmView.selectedTimerButton")
         }
 
         if sender.isEqual(alarmView.alarmSwitch){
             NSLog("alarmView.alarmSwitch")
             setAlarm()
-        }
-
-        if sender.isEqual(alarmView.getDatePicker()?) {
-            setAlarm()
-            NSLog("datePicker.alarmhour:%d,alarmmin:%d",mAlarmhour,mAlarmmin)
         }
 
         if sender.isEqual(alarmView.getNoConnectScanButton()?) {

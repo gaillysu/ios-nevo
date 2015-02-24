@@ -70,7 +70,7 @@ class alarmClockView: UIView {
     /*
     Create a DatePicker
     */
-    func initPickerView() {
+    func initPickerView(hour:Int,min:Int) {
         //Create a DatePicker backgroundView
         var PickerbgView:UIView = UIView(frame: CGRectMake(0, 210, self.frame.size.width, self.frame.size.height))
         PickerbgView.backgroundColor = UIColor.clearColor()
@@ -82,7 +82,17 @@ class alarmClockView: UIView {
         datePicker.backgroundColor = PICKER_BG_COLOR
         datePicker.datePickerMode = UIDatePickerMode.Time
         datePicker.addTarget(self, action: Selector("controllEventManager:"), forControlEvents: UIControlEvents.ValueChanged)
+        
+        //The inital date should be the given hour and min
+        let cal: NSCalendar = NSCalendar(calendarIdentifier: NSGregorianCalendar)!
+        
+        let newDate: NSDate = cal.dateBySettingHour(hour, minute: min, second: 0, ofDate: NSDate(), options: NSCalendarOptions())!
+        
+        datePicker.date = newDate
+        
         PickerbgView.addSubview(datePicker)
+
+
 
         mDatePicker = datePicker
         
