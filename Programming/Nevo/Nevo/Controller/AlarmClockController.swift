@@ -106,23 +106,23 @@ class AlarmClockController: UIViewController, SyncControllerDelegate,alarmButton
             
             mAlarmhour = (lines[0] as NSString).integerValue
             mAlarmmin  = (lines[1] as NSString).integerValue
-
-            mAlarmenable = alarmView.getEnabled()
-            
-            alarmView.setAlarmTime(mAlarmhour,min: mAlarmmin)
-            
-            ConnectionControllerImpl.sharedInstance.sendRequest(SetAlarmRequest(hour:mAlarmhour,min: mAlarmmin,enable: mAlarmenable))
-            
-            
-            let userDefaults = NSUserDefaults.standardUserDefaults();
-            
-            userDefaults.setObject(mAlarmhour,forKey:SAVED_ALARM_HOUR_KEY)
-            userDefaults.setObject(mAlarmmin,forKey:SAVED_ALARM_MIN_KEY)
-            userDefaults.setObject(mAlarmenable,forKey:SAVED_ALARM_ENABLED_KEY)
-            
-            userDefaults.synchronize()
             
         }
+        
+        mAlarmenable = alarmView.getEnabled()
+        
+        alarmView.setAlarmTime(mAlarmhour,min: mAlarmmin)
+        
+        ConnectionControllerImpl.sharedInstance.sendRequest(SetAlarmRequest(hour:mAlarmhour,min: mAlarmmin,enable: mAlarmenable))
+        
+        
+        let userDefaults = NSUserDefaults.standardUserDefaults();
+        
+        userDefaults.setObject(mAlarmhour,forKey:SAVED_ALARM_HOUR_KEY)
+        userDefaults.setObject(mAlarmmin,forKey:SAVED_ALARM_MIN_KEY)
+        userDefaults.setObject(mAlarmenable,forKey:SAVED_ALARM_ENABLED_KEY)
+        
+        userDefaults.synchronize()
         
     }
     
