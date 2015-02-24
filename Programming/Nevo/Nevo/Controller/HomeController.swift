@@ -18,8 +18,6 @@ class HomeController: UIViewController, SyncControllerDelegate{
     
     @IBOutlet var homeView: HomeView!
     
-    private var mConnectionController: ConnectionController?
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -33,8 +31,6 @@ class HomeController: UIViewController, SyncControllerDelegate{
         homeView.bulidHomeView()
 
         let timer:NSTimer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector:"timerAction:", userInfo: nil, repeats: true);
-        
-        mConnectionController = ConnectionControllerImpl.sharedInstance
         
         if !ConnectionControllerImpl.sharedInstance.hasSavedAddress() {
             

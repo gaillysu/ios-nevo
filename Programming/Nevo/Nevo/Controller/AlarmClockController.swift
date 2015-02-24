@@ -113,8 +113,7 @@ class AlarmClockController: UIViewController, SyncControllerDelegate,alarmButton
         
         alarmView.setAlarmTime(mAlarmhour,min: mAlarmmin)
         
-        ConnectionControllerImpl.sharedInstance.sendRequest(SetAlarmRequest(hour:mAlarmhour,min: mAlarmmin,enable: mAlarmenable))
-        
+        mSyncController?.setAlarm(mAlarmhour, alarmmin: mAlarmmin, alarmenable: mAlarmenable)
         
         let userDefaults = NSUserDefaults.standardUserDefaults();
         

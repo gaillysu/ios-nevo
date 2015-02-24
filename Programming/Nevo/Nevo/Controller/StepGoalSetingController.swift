@@ -106,15 +106,8 @@ class StepGoalSetingController: UIViewController, SyncControllerDelegate {
         userDefaults.synchronize()
         
         
-        sendRequestGoal(goal)
+        mSyncController?.setGoal(goal)
         
-    }
-    
-    func sendRequestGoal(goal:Goal) {
-        
-        var request = SetGoalRequest(goal: goal)
-        
-        ConnectionControllerImpl.sharedInstance.sendRequest(request)
     }
     
     func reconnect() {
