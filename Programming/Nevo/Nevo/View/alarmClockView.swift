@@ -43,7 +43,7 @@ class alarmClockView: UIView {
     
     private var mDelegate:AlarmClockController?
 
-    func bulidAlarmView(delegate:UIViewController) {
+    func bulidAlarmView(delegate:UIViewController,hour:Int,min:Int,enabled:Bool) {
         if let callBackDelgate = delegate as? AlarmClockController {
             mDelegate = callBackDelgate
         }
@@ -51,6 +51,10 @@ class alarmClockView: UIView {
         alarmSwitch.onTintColor = AppTheme.NEVO_SOLAR_YELLOW()
 
         alarmTitle.text = NSLocalizedString("alarmLabelTitle", comment: "")
+        
+        setAlarmTime(hour,min: min)
+        
+        alarmSwitch.on = enabled
         
     }
 
@@ -135,7 +139,7 @@ class alarmClockView: UIView {
             mNoConnectImage?.backgroundColor = UIColor.clearColor()
             mNoConnectionView?.addSubview(mNoConnectImage!)
 
-            mNoConnectScanButton = UIButton.buttonWithType(UIButtonType.Custom) as UIButton
+            mNoConnectScanButton = UIButton.buttonWithType(UIButtonType.Custom) as? UIButton
             mNoConnectScanButton?.frame = CGRectMake(0, 0, 160, 160)
             mNoConnectScanButton?.center = CGPointMake(mNoConnectionView!.frame.size.width/2.0, mNoConnectionView!.frame.size.height/2.0)
             mNoConnectScanButton?.setTitle(NSLocalizedString("Connect", comment: ""), forState: UIControlState.Normal)
@@ -176,7 +180,7 @@ class alarmClockView: UIView {
     /*
     End pickerView performed operation
     */
-    func EndAnimation() {
+    func endAnimation() {
         for view : AnyObject in self.subviews{
             if view is UIView{
                 let bgPicker:UIView = view as UIView;
@@ -236,14 +240,14 @@ class alarmClockView: UIView {
         {
             mDelegate?.controllManager(sender)
         }
-        EndAnimation()
+        endAnimation()
     }
 
     /*
     Click the tapGesture events
     */
     func tapAction(sender:UITapGestureRecognizer) {
-        EndAnimation()
+        endAnimation()
     }
     
     func getDatePicker() -> UIDatePicker? {
@@ -264,6 +268,14 @@ class alarmClockView: UIView {
     
     func getNoConnectImage() -> UIImageView? {
         return mNoConnectImage
+    }
+    
+    func setAlarmTime(hour:Int,min:Int) {
+        selectedTimerButton.setTitle("\(hour):\(min)", forState: UIControlState.Normal)
+    }
+    
+    func getEnabled() -> Bool {
+     return alarmSwitch.on
     }
 
     /*

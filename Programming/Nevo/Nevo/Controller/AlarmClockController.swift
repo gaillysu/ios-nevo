@@ -12,9 +12,13 @@ class AlarmClockController: UIViewController, SyncControllerDelegate,alarmButton
 
     @IBOutlet var alarmView: alarmClockView!
     
-    private var mAlarmhour:Int = 0
-    private var mAlarmmin:Int = 0
-    private var mAlarmenable:Bool = true
+    let SAVED_ALARM_HOUR_KEY = "SAVED_ALARM_HOUR_KEY"
+    let SAVED_ALARM_MIN_KEY = "SAVED_ALARM_MIN_KEY"
+    let SAVED_ALARM_ENABLED_KEY = "SAVED_ALARM_ENABLED_KEY"
+    
+    private var mAlarmhour:Int = 8
+    private var mAlarmmin:Int = 30
+    private var mAlarmenable:Bool = false
     private var mSyncController:SyncController?
     
     override func viewDidLoad() {
@@ -28,8 +32,22 @@ class AlarmClockController: UIViewController, SyncControllerDelegate,alarmButton
         titleLabel.font = UIFont.systemFontOfSize(25)
         titleLabel.textAlignment = NSTextAlignment.Center
         self.navigationItem.titleView = titleLabel
+        
+        
+        //If we have any previously saved hour, min and/or enabled/ disabled, we'll use those variables first
+        if let alarmHourSaved = NSUserDefaults.standardUserDefaults().objectForKey(SAVED_ALARM_HOUR_KEY) as? Int {
+            mAlarmhour = alarmHourSaved
+        }
 
-        alarmView.bulidAlarmView(self)
+        if let alarmMinSaved = NSUserDefaults.standardUserDefaults().objectForKey(SAVED_ALARM_MIN_KEY) as? Int {
+            mAlarmmin = alarmMinSaved
+        }
+        
+        if let alarmEnableSaved = NSUserDefaults.standardUserDefaults().objectForKey(SAVED_ALARM_ENABLED_KEY) as? Bool {
+            mAlarmenable = alarmEnableSaved
+        }
+
+        alarmView.bulidAlarmView(self,hour:mAlarmhour,min:mAlarmmin,enabled:mAlarmenable)
         // Do any additional setup after loading the view.
     }
 
@@ -65,24 +83,11 @@ class AlarmClockController: UIViewController, SyncControllerDelegate,alarmButton
 
         if sender.isEqual(alarmView.alarmSwitch){
             NSLog("alarmView.alarmSwitch")
-            if alarmView.alarmSwitch.on {
-                mAlarmenable = true
-            }else{
-                mAlarmenable = false
-            }
-
-            ConnectionControllerImpl.sharedInstance.sendRequest(SetAlarmRequest(hour:mAlarmhour,min: mAlarmmin,enable: mAlarmenable))
-
+            setAlarm()
         }
 
         if sender.isEqual(alarmView.getDatePicker()?) {
-            let dateButtonTitle = stringFromDate(alarmView.getDatePicker()!.date)
-            alarmView.selectedTimerButton.setTitle(dateButtonTitle as String, forState: UIControlState.Normal)
-            var lines:[String] = dateButtonTitle.componentsSeparatedByString(":");
-
-            mAlarmhour = (lines[0] as NSString).integerValue
-            mAlarmmin  = (lines[1] as NSString).integerValue
-
+            setAlarm()
             NSLog("datePicker.alarmhour:%d,alarmmin:%d",mAlarmhour,mAlarmmin)
         }
 
@@ -92,9 +97,38 @@ class AlarmClockController: UIViewController, SyncControllerDelegate,alarmButton
         }
         if sender.isEqual(alarmView.getEnterButton()?){
             NSLog("alarmView.enterButton")
+            setAlarm()
+        }
+    }
+    
+    func setAlarm() {
+        
+        if let date = alarmView.getDatePicker()?.date  {
+            
+            var strDate = stringFromDate(date)
+            
+            var lines:[String] = strDate.componentsSeparatedByString(":");
+            
+            mAlarmhour = (lines[0] as NSString).integerValue
+            mAlarmmin  = (lines[1] as NSString).integerValue
+
+            mAlarmenable = alarmView.getEnabled()
+            
+            alarmView.setAlarmTime(mAlarmhour,min: mAlarmmin)
             
             ConnectionControllerImpl.sharedInstance.sendRequest(SetAlarmRequest(hour:mAlarmhour,min: mAlarmmin,enable: mAlarmenable))
+            
+            
+            let userDefaults = NSUserDefaults.standardUserDefaults();
+            
+            userDefaults.setObject(mAlarmhour,forKey:SAVED_ALARM_HOUR_KEY)
+            userDefaults.setObject(mAlarmmin,forKey:SAVED_ALARM_MIN_KEY)
+            userDefaults.setObject(mAlarmenable,forKey:SAVED_ALARM_ENABLED_KEY)
+            
+            userDefaults.synchronize()
+            
         }
+        
     }
     
     func reconnect() {
