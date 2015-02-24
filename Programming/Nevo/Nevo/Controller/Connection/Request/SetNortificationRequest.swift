@@ -10,24 +10,26 @@ import UIKit
 
 class SetNortificationRequest: NevoRequest {
     
-    let VIBRATION_ON:UInt8 = 0x01
-    let VIBRATION_OFF:UInt8 = 0x00
-    
-    let LED_OFF:UInt32 = 0x000000
-    
-    let BLUE_LED:UInt32 = 0x000101
-    let GREEN_LED:UInt32 = 0x000201
-    let YELLOW_LED:UInt32 = 0x000301
-    let RED_LED:UInt32 = 0x000401
-    let VIOLET_LED:UInt32 = 0x000501
-    let PURPLE_LED:UInt32 = 0x000601
-    
-    let WHITE_1_LED:UInt32 = 0x010001
-    let WHITE_3_LED:UInt32 = 0x030001
-    let WHITE_5_LED:UInt32 = 0x050001
-    let WHITE_7_LED:UInt32 = 0x070001
-    let WHITE_9_LED:UInt32 = 0x090001
-    let WHITE_11_LED:UInt32 = 0x0b0001
+    struct SetNortificationRequestValues {
+        static let VIBRATION_ON:UInt8 = 0x01
+        static let VIBRATION_OFF:UInt8 = 0x00
+        
+        static let LED_OFF:UInt32 = 0x000000
+        
+        static let BLUE_LED:UInt32 = 0x000101
+        static let GREEN_LED:UInt32 = 0x000201
+        static let YELLOW_LED:UInt32 = 0x000301
+        static let RED_LED:UInt32 = 0x000401
+        static let VIOLET_LED:UInt32 = 0x000501
+        static let PURPLE_LED:UInt32 = 0x000601
+        
+        static let WHITE_1_LED:UInt32 = 0x010001
+        static let WHITE_3_LED:UInt32 = 0x030001
+        static let WHITE_5_LED:UInt32 = 0x050001
+        static let WHITE_7_LED:UInt32 = 0x070001
+        static let WHITE_9_LED:UInt32 = 0x090001
+        static let WHITE_11_LED:UInt32 = 0x0b0001
+    }
     
     private var call_vib_number:UInt8
     private var call_led_pattern:UInt32
@@ -50,63 +52,63 @@ class SetNortificationRequest: NevoRequest {
     private var wechat_vib_number:UInt8
     private var wechat_led_pattern:UInt32
     
-    init(callColor callLedColor: UInt32 = BLUE_LED, smsColor smsLedColor: UInt32 = GREEN_LED, emailColor emailLedColor: UInt32 = YELLOW_LED, facebookColor facebookLedColor: UInt32 = RED_LED, twitterColor twitterLedColor: UInt32 = VIOLET_LED, whatsappColor whatsappLedColor: UInt32 = PURPLE_LED) {
+    init(callColor callLedColor: UInt32 = SetNortificationRequestValues.BLUE_LED, smsColor smsLedColor: UInt32 = SetNortificationRequestValues.GREEN_LED, emailColor emailLedColor: UInt32 = SetNortificationRequestValues.YELLOW_LED, facebookColor facebookLedColor: UInt32 = SetNortificationRequestValues.RED_LED, twitterColor twitterLedColor: UInt32 = SetNortificationRequestValues.VIOLET_LED, whatsappColor whatsappLedColor: UInt32 = SetNortificationRequestValues.PURPLE_LED) {
         
         //We set each colors, one by one. In case a color is chosen, we turn on the vibration
         
-        call_vib_number = VIBRATION_ON
+        call_vib_number = SetNortificationRequestValues.VIBRATION_ON
         call_led_pattern = callLedColor
         
-        if(call_led_pattern == LED_OFF) {
-            call_vib_number = VIBRATION_OFF
+        if(call_led_pattern == SetNortificationRequestValues.LED_OFF) {
+            call_vib_number = SetNortificationRequestValues.VIBRATION_OFF
         }
         
         
-        sms_vib_number = VIBRATION_ON
+        sms_vib_number = SetNortificationRequestValues.VIBRATION_ON
         sms_led_pattern = smsLedColor
         
-        if(sms_led_pattern == LED_OFF) {
-            sms_vib_number = VIBRATION_OFF
+        if(sms_led_pattern == SetNortificationRequestValues.LED_OFF) {
+            sms_vib_number = SetNortificationRequestValues.VIBRATION_OFF
         }
         
         
-        email_vib_number = VIBRATION_ON
+        email_vib_number = SetNortificationRequestValues.VIBRATION_ON
         email_led_pattern = emailLedColor
         
-        if(email_led_pattern == LED_OFF) {
-            email_vib_number = VIBRATION_OFF
+        if(email_led_pattern == SetNortificationRequestValues.LED_OFF) {
+            email_vib_number = SetNortificationRequestValues.VIBRATION_OFF
         }
         
         
-        facebook_vib_number = VIBRATION_ON
+        facebook_vib_number = SetNortificationRequestValues.VIBRATION_ON
         facebook_led_pattern = facebookLedColor
         
-        if(facebook_led_pattern == LED_OFF) {
-            facebook_vib_number = VIBRATION_OFF
+        if(facebook_led_pattern == SetNortificationRequestValues.LED_OFF) {
+            facebook_vib_number = SetNortificationRequestValues.VIBRATION_OFF
         }
         
         
-        twitter_vib_number = VIBRATION_ON
+        twitter_vib_number = SetNortificationRequestValues.VIBRATION_ON
         twitter_led_pattern = twitterLedColor
         
-        if(twitter_led_pattern == LED_OFF) {
-            twitter_vib_number = VIBRATION_OFF
+        if(twitter_led_pattern == SetNortificationRequestValues.LED_OFF) {
+            twitter_vib_number = SetNortificationRequestValues.VIBRATION_OFF
         }
         
         
-        whatsapp_vib_number = VIBRATION_ON
+        whatsapp_vib_number = SetNortificationRequestValues.VIBRATION_ON
         whatsapp_led_pattern = whatsappLedColor
         
-        if(whatsapp_led_pattern == LED_OFF) {
-            whatsapp_vib_number = VIBRATION_OFF
+        if(whatsapp_led_pattern == SetNortificationRequestValues.LED_OFF) {
+            whatsapp_vib_number = SetNortificationRequestValues.VIBRATION_OFF
         }
         
         
-        wechat_vib_number = VIBRATION_ON
+        wechat_vib_number = SetNortificationRequestValues.VIBRATION_ON
         wechat_led_pattern = whatsappLedColor
         
-        if(wechat_led_pattern == LED_OFF) {
-            wechat_vib_number = VIBRATION_OFF
+        if(wechat_led_pattern == SetNortificationRequestValues.LED_OFF) {
+            wechat_vib_number = SetNortificationRequestValues.VIBRATION_OFF
         }
         
         
