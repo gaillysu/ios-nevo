@@ -47,6 +47,8 @@
 		00C640F41A8D9F4500815CF8 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C640F31A8D9F4500815CF8 /* MainTabBarController.swift */; };
 		00C640F61A8DEE0800815CF8 /* clockView600.png in Resources */ = {isa = PBXBuildFile; fileRef = 00C640F51A8DEE0800815CF8 /* clockView600.png */; };
 		00E0E1441A88BBDE0001B8CA /* wallpaper0.png in Resources */ = {isa = PBXBuildFile; fileRef = 00E0E1431A88BBDE0001B8CA /* wallpaper0.png */; };
+		0704C95E1AA413BB00F9AE09 /* imaze_20150227_v10_2.hex in Resources */ = {isa = PBXBuildFile; fileRef = 0704C95C1AA413BB00F9AE09 /* imaze_20150227_v10_2.hex */; };
+		0704C95F1AA413BB00F9AE09 /* iMaze_v8_8hr.bin in Resources */ = {isa = PBXBuildFile; fileRef = 0704C95D1AA413BB00F9AE09 /* iMaze_v8_8hr.bin */; };
 		07BE0CF21A84A2F8000C4AC7 /* IntelHex2BinConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = 07BE0CF11A84A2F8000C4AC7 /* IntelHex2BinConverter.m */; };
 		07C18C0A1A80DF4900D0BF4A /* NevoOtaController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C18C091A80DF4900D0BF4A /* NevoOtaController.swift */; };
 		07C18C0E1A81AB3900D0BF4A /* NevoOtaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C18C0D1A81AB3900D0BF4A /* NevoOtaViewController.swift */; };
@@ -56,8 +58,6 @@
 		07C59F2E1A8C622300D65C84 /* SetProfileRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C59F2D1A8C622300D65C84 /* SetProfileRequest.swift */; };
 		07C59F301A8C625800D65C84 /* SetAlarmRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C59F2F1A8C625800D65C84 /* SetAlarmRequest.swift */; };
 		07C59F321A8C6A6000D65C84 /* SetRTCRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C59F311A8C6A6000D65C84 /* SetRTCRequest.swift */; };
-		07CC4A261A81F26C008DA749 /* imaze_BLE_R2.hex in Resources */ = {isa = PBXBuildFile; fileRef = 07CC4A241A81F26C008DA749 /* imaze_BLE_R2.hex */; };
-		07CC4A271A81F26C008DA749 /* iMaze_v3.bin in Resources */ = {isa = PBXBuildFile; fileRef = 07CC4A251A81F26C008DA749 /* iMaze_v3.bin */; };
 		07CC4A291A820A9B008DA749 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07CC4A281A820A9B008DA749 /* Utility.swift */; };
 		07CC4A2F1A821B46008DA749 /* NevoOTARequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07CC4A2E1A821B46008DA749 /* NevoOTARequest.swift */; };
 		9A12E5461A931B1F00536729 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A12E5451A931B1F00536729 /* Alert.swift */; };
@@ -158,6 +158,8 @@
 		00C640F31A8D9F4500815CF8 /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainTabBarController.swift; path = Controller/MainTabBarController.swift; sourceTree = "<group>"; };
 		00C640F51A8DEE0800815CF8 /* clockView600.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clockView600.png; sourceTree = "<group>"; };
 		00E0E1431A88BBDE0001B8CA /* wallpaper0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wallpaper0.png; sourceTree = "<group>"; };
+		0704C95C1AA413BB00F9AE09 /* imaze_20150227_v10_2.hex */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = imaze_20150227_v10_2.hex; sourceTree = "<group>"; };
+		0704C95D1AA413BB00F9AE09 /* iMaze_v8_8hr.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = iMaze_v8_8hr.bin; sourceTree = "<group>"; };
 		07BE0CEE1A84A0C8000C4AC7 /* Nevo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Nevo-Bridging-Header.h"; sourceTree = "<group>"; };
 		07BE0CF01A84A2F8000C4AC7 /* IntelHex2BinConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntelHex2BinConverter.h; sourceTree = "<group>"; };
 		07BE0CF11A84A2F8000C4AC7 /* IntelHex2BinConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntelHex2BinConverter.m; sourceTree = "<group>"; };
@@ -169,8 +171,6 @@
 		07C59F2D1A8C622300D65C84 /* SetProfileRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SetProfileRequest.swift; path = Controller/Connection/Request/SetProfileRequest.swift; sourceTree = "<group>"; };
 		07C59F2F1A8C625800D65C84 /* SetAlarmRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SetAlarmRequest.swift; path = Controller/Connection/Request/SetAlarmRequest.swift; sourceTree = "<group>"; };
 		07C59F311A8C6A6000D65C84 /* SetRTCRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SetRTCRequest.swift; path = Controller/Connection/Request/SetRTCRequest.swift; sourceTree = "<group>"; };
-		07CC4A241A81F26C008DA749 /* imaze_BLE_R2.hex */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = imaze_BLE_R2.hex; sourceTree = "<group>"; };
-		07CC4A251A81F26C008DA749 /* iMaze_v3.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = iMaze_v3.bin; sourceTree = "<group>"; };
 		07CC4A281A820A9B008DA749 /* Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Utility.swift; path = OTA/Utility.swift; sourceTree = "<group>"; };
 		07CC4A2E1A821B46008DA749 /* NevoOTARequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NevoOTARequest.swift; path = OTA/NevoOTARequest.swift; sourceTree = "<group>"; };
 		9A12E5451A931B1F00536729 /* Alert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Alert.swift; path = Util/Alert.swift; sourceTree = "<group>"; };
@@ -327,8 +327,8 @@
 		07CC4A231A81F26C008DA749 /* Firmwares */ = {
 			isa = PBXGroup;
 			children = (
-				07CC4A241A81F26C008DA749 /* imaze_BLE_R2.hex */,
-				07CC4A251A81F26C008DA749 /* iMaze_v3.bin */,
+				0704C95C1AA413BB00F9AE09 /* imaze_20150227_v10_2.hex */,
+				0704C95D1AA413BB00F9AE09 /* iMaze_v8_8hr.bin */,
 			);
 			name = Firmwares;
 			path = OTA/Firmwares;
@@ -659,17 +659,17 @@
 				00478F4F1A8F637D00D0DCE2 /* clockViewHour.png in Resources */,
 				007F79981A878D0B006C89E6 /* Raleway-Regular.ttf in Resources */,
 				007F79951A878D0B006C89E6 /* Raleway-LightItalic.ttf in Resources */,
-				07CC4A271A81F26C008DA749 /* iMaze_v3.bin in Resources */,
 				007D37B11A9203A300960E69 /* selectedButton.png in Resources */,
 				007F798C1A878D0B006C89E6 /* Raleway-BlackItalic.ttf in Resources */,
 				007F798B1A878D0B006C89E6 /* Raleway-Black.ttf in Resources */,
 				007F79991A878D0B006C89E6 /* Raleway-SemiBold.ttf in Resources */,
 				007F79941A878D0B006C89E6 /* Raleway-Light.ttf in Resources */,
+				0704C95F1AA413BB00F9AE09 /* iMaze_v8_8hr.bin in Resources */,
 				005BC9561A889F14006F9E86 /* NevoPicture.png in Resources */,
 				007F79961A878D0B006C89E6 /* Raleway-Medium.ttf in Resources */,
 				007F799A1A878D0B006C89E6 /* Raleway-SemiBoldItalic.ttf in Resources */,
 				9AD8F9451A6DF35900F01014 /* LaunchScreen.xib in Resources */,
-				07CC4A261A81F26C008DA749 /* imaze_BLE_R2.hex in Resources */,
+				0704C95E1AA413BB00F9AE09 /* imaze_20150227_v10_2.hex in Resources */,
 				007F799C1A878D0B006C89E6 /* Raleway-ThinItalic.ttf in Resources */,
 				007F79931A878D0B006C89E6 /* Raleway-Italic.ttf in Resources */,
 				007F798F1A878D0B006C89E6 /* Raleway-ExtraBold.ttf in Resources */,
