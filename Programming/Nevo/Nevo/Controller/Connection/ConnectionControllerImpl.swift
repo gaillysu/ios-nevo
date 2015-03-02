@@ -14,7 +14,7 @@ See ConnectionController
 */
 class ConnectionControllerImpl : NSObject, ConnectionController, NevoBTDelegate {
     private var mNevoBT:NevoBT?
-    private var mDelegates:[ConnectionControllerDelegate]=[]
+    private var mDelegate:ConnectionControllerDelegate?
 
     let SAVED_ADDRESS_KEY = "SAVED_ADDRESS"
     
@@ -59,10 +59,10 @@ class ConnectionControllerImpl : NSObject, ConnectionController, NevoBTDelegate 
     /**
     See ConnectionController protocol
     */
-    func addDelegate(delegate:ConnectionControllerDelegate) {
+    func setDelegate(delegate:ConnectionControllerDelegate) {
         NSLog("New delegate : \(delegate)")
         
-        mDelegates.append(delegate)
+        mDelegate = delegate
     }
 
     /**
@@ -103,9 +103,9 @@ class ConnectionControllerImpl : NSObject, ConnectionController, NevoBTDelegate 
     */
     func connectionStateChanged(isConnected : Bool, fromAddress : NSUUID!) {
 
-        for (index, delegate) in enumerate(mDelegates) {
-            delegate.connectionStateChanged(isConnected)
-        }
+      
+        mDelegate?.connectionStateChanged(isConnected)
+       
         
         if (!isConnected) {
             connect()
@@ -189,9 +189,7 @@ class ConnectionControllerImpl : NSObject, ConnectionController, NevoBTDelegate 
     See NevoBTDelegate
     */
     func packetReceived(packet:RawPacket, fromAddress : NSUUID) {
-        for (index, delegate) in enumerate(mDelegates) {
-            delegate.packetReceived(packet)
-        }
+        mDelegate?.packetReceived(packet)
     }
     
     /**

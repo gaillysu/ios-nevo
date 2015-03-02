@@ -18,11 +18,11 @@ It checks that the firmware is up to date, and handles every steps of the synchr
 class SyncController: ConnectionControllerDelegate {
     
     //Let's sync every days
-    let SYNC_INTERVAL:NSTimeInterval = 24*60*60*1000
+    let SYNC_INTERVAL:NSTimeInterval = 24*60*60 //unit is second in iOS
     
     let LAST_SYNC_DATE_KEY = "LAST_SYNC_DATE_KEY"
     
-    private var mDelegate:SyncControllerDelegate
+    private var mDelegates:[SyncControllerDelegate]
  
     private let mConnectionController : ConnectionController
 
@@ -30,21 +30,35 @@ class SyncController: ConnectionControllerDelegate {
     
     private let mHealthKitStore:HKHealthStore = HKHealthStore()
     
-    init(controller : UIViewController,forceScan :Bool, delegate:SyncControllerDelegate) {
+    /**
+    A classic singelton pattern
+    */
+    class var sharedInstance : SyncController {
+        struct Singleton {
+            static let instance = SyncController()
+        }
+        return Singleton.instance
+    }
 
-        mDelegate = delegate
-
+    
+  private init() {
+        mDelegates = []
         mPacketsbuffer = []
         mConnectionController = ConnectionControllerImpl.sharedInstance
-        
-        mConnectionController.addDelegate(self)
+        mConnectionController.setDelegate(self)
+    
+    }
+    
+    func startConnect(forceScan:Bool,delegate:SyncControllerDelegate)
+    {
+        NSLog("New delegate : \(delegate)")
+        mDelegates.append(delegate)
         
         if forceScan
         {
             mConnectionController.forgetSavedAddress()
         }
         mConnectionController.connect()
-        syncActivityData()
     }
     
     //add new functions when  get connected Nevo
@@ -66,27 +80,9 @@ class SyncController: ConnectionControllerDelegate {
             //We haven't synched for a while, let's sync now !
             
             NSLog("*** Sync started ! ***")
-            
-            //TODO by Hugo to Gailly
-            //Sync process here
-            syncStep1()
-        
+            //setp1: cmd 0x01, set RTC
+            setRTC()
         }
-    }
-    
-    func syncStep1() {
-        //TODO by Hugo to Gailly
-        //Real sync
-        syncStep2()
-    }
-    
-    func syncStep2() {
-        //TODO by Hugo to Gailly
-        //Real sync
-
-        
-        //When the sync is finished, let's simply call the sync Finished function
-        syncFinished()
     }
     
     /**
@@ -118,13 +114,17 @@ class SyncController: ConnectionControllerDelegate {
     func WriteSetting() {
         mConnectionController.sendRequest(WriteSettingRequest())
     }
+    func getGoal()
+    {
+        mConnectionController.sendRequest(GetStepsGoalRequest())
+    }
     //end functions for connected to Nevo
     
     //below functions by UI
     func setGoal(goal:Goal) {
         mConnectionController.sendRequest(SetGoalRequest(goal: goal))
     }
-    
+
     func setAlarm(alarmhour:Int,alarmmin:Int,alarmenable:Bool) {
         mConnectionController.sendRequest(SetAlarmRequest(hour:alarmhour,min: alarmmin,enable: alarmenable))
     }
@@ -136,21 +136,46 @@ class SyncController: ConnectionControllerDelegate {
     
     func packetReceived(packet:RawPacket) {
         
+        for (index, delegate) in enumerate(mDelegates) {
+            delegate.packetReceived(packet)
+        }
+
         mPacketsbuffer.append(packet.getRawData())
         if(NSData2Bytes(packet.getRawData())[0] == 0xFF)
         {
             if(NSData2Bytes(packet.getRawData())[1] == 0x01)
             {
+                //step2:cmd 0x20
                 self.SetProfile()
             }
             if(NSData2Bytes(packet.getRawData())[1] == 0x20)
             {
+                //step3:cmd 0x21
                 self.WriteSetting()
             }
             
             if(NSData2Bytes(packet.getRawData())[1] == 0x21)
             {
+                //step4:cmd 0x23
                 self.SetCardio()
+            }
+            if(NSData2Bytes(packet.getRawData())[1] == 0x22
+                || NSData2Bytes(packet.getRawData())[1] == 0x23)
+            {
+                //step5:
+                //when set new Goal or every day reconnected BLE, get daily steps
+                self.getGoal()
+            }
+            if(NSData2Bytes(packet.getRawData())[1] == 0x26)
+            {
+                //step 6:
+                //write the daily steps to healthkit
+                //Data format: 0x00 ,0x26, daily steps (4B,LSB mode), goal steps (4B,LSB mode)
+                
+                var hk = NevoHKImpl()
+                hk.requestPermission()
+               // hk.writeDataPoint()
+                syncFinished()
             }
             
             mPacketsbuffer = []
@@ -159,16 +184,15 @@ class SyncController: ConnectionControllerDelegate {
     
     func connectionStateChanged(isConnected : Bool) {
         
-        NSLog("State changed : \(isConnected) To delegate  : \(mDelegate)")
-        
-        mDelegate.connectionStateChanged(isConnected)
+        for (index, delegate) in enumerate(mDelegates) {
+            delegate.connectionStateChanged(isConnected)
+        }
         
         if( isConnected )
         {
-         //  NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: Selector("setRTC"), userInfo: nil, repeats: false)
             var dispatchTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, Int64(1.0 * Double(NSEC_PER_SEC)))
             dispatch_after(dispatchTime, dispatch_get_main_queue(), {
-                self.setRTC()
+                self.syncActivityData()
             })
             
         }
@@ -188,6 +212,10 @@ class SyncController: ConnectionControllerDelegate {
 
 protocol SyncControllerDelegate {
 
+    /**
+    Called when a packet is received from the device
+    */
+    func packetReceived(RawPacket)
     /**
     Called when a peripheral connects or disconnects
     */
