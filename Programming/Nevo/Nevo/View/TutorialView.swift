@@ -84,7 +84,8 @@ class TutorialView: UIView {
     Jump out of the Tutorial View
     */
     func DismisTutorial() {
-        mDelegate.dismissViewControllerAnimated(true, completion: nil)
+        //mDelegate.dismissViewControllerAnimated(true, completion: nil)
+        UIApplication.sharedApplication().openURL(NSURL(string:NSLocalizedString("nevoURL",comment:""))!)
     }
     
     func getTutorialButton() -> UIButton? {
