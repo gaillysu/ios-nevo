@@ -21,4 +21,16 @@ class AppTheme {
     class func NEVO_SOLAR_YELLOW() -> UIColor {
         return UIColor(red: 255/255.0, green: 153/255.0, blue: 51/255.0, alpha: 1)
     }
+
+    class func FONT_RALEWAY_BOLD(mSize size:CGFloat = 26) -> UIFont {
+        return UIFont(name:"Raleway-Bold", size: size)!
+    }
+
+    class func FONT_RALEWAY_LIGHT(mSize size:CGFloat = 26) -> UIFont {
+        return UIFont(name:"Raleway-Light", size: size)!
+    }
+
+    class func FONT_RALEWAY_THIN(mSize size:CGFloat = 26) -> UIFont {
+        return UIFont(name:"Raleway-Thin", size: size)!//Uniform
+    }
 }
