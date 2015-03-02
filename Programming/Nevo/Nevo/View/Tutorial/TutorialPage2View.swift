@@ -41,10 +41,11 @@ class TutorialPage2View: UIView {
 
     func buildTutorialPage() {
 
-        let backButton = UIButton.buttonWithType(UIButtonType.System) as UIButton
+        let backButton = UIButton.buttonWithType(UIButtonType.Custom) as UIButton
         backButton.frame = CGRectMake(15, 10, 60, 40)
         backButton.setTitle(NSLocalizedString("Back",comment:"button title string"), forState: UIControlState.Normal)
         backButton.titleLabel?.font = BACK_BUTTON_FONT
+        backButton.setTitleColor(AppTheme.NEVO_SOLAR_YELLOW(), forState: UIControlState.Normal)
         backButton.addTarget(self, action: "ButtonAction:", forControlEvents: UIControlEvents.TouchUpInside)
         self.addSubview(backButton)
         
@@ -80,11 +81,12 @@ class TutorialPage2View: UIView {
         guide2Label.text = NSLocalizedString("LongPushOn",comment:"lable string")
         self.addSubview(guide2Label)
 
-        let nextButton:UIButton = UIButton.buttonWithType(UIButtonType.System) as UIButton
+        let nextButton:UIButton = UIButton.buttonWithType(UIButtonType.Custom) as UIButton
         nextButton.frame = CGRectMake(0, 0, 120, 50)
         nextButton.setTitle(NSLocalizedString("Next",comment:"button title string"), forState: UIControlState.Normal)
         nextButton.backgroundColor = UIColor.clearColor()
         nextButton.titleLabel?.font = BUTTON_FONT
+        nextButton.setTitleColor(AppTheme.NEVO_SOLAR_YELLOW(), forState: UIControlState.Normal)
         nextButton.center = CGPointMake(self.frame.size.width/2.0, self.frame.size.height-90)
         nextButton.addTarget(self, action: "ButtonAction:", forControlEvents: UIControlEvents.TouchUpInside)
         self.addSubview(nextButton)
