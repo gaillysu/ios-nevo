@@ -49,6 +49,8 @@
 		00E0E1441A88BBDE0001B8CA /* wallpaper0.png in Resources */ = {isa = PBXBuildFile; fileRef = 00E0E1431A88BBDE0001B8CA /* wallpaper0.png */; };
 		0704C95E1AA413BB00F9AE09 /* imaze_20150227_v10_2.hex in Resources */ = {isa = PBXBuildFile; fileRef = 0704C95C1AA413BB00F9AE09 /* imaze_20150227_v10_2.hex */; };
 		0704C95F1AA413BB00F9AE09 /* iMaze_v8_8hr.bin in Resources */ = {isa = PBXBuildFile; fileRef = 0704C95D1AA413BB00F9AE09 /* iMaze_v8_8hr.bin */; };
+		0704C9611AA4167600F9AE09 /* iMaze_v8_24hr.bin in Resources */ = {isa = PBXBuildFile; fileRef = 0704C9601AA4167600F9AE09 /* iMaze_v8_24hr.bin */; };
+		0704C9631AA431EE00F9AE09 /* GetStepsGoalRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0704C9621AA431EE00F9AE09 /* GetStepsGoalRequest.swift */; };
 		07BE0CF21A84A2F8000C4AC7 /* IntelHex2BinConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = 07BE0CF11A84A2F8000C4AC7 /* IntelHex2BinConverter.m */; };
 		07C18C0A1A80DF4900D0BF4A /* NevoOtaController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C18C091A80DF4900D0BF4A /* NevoOtaController.swift */; };
 		07C18C0E1A81AB3900D0BF4A /* NevoOtaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C18C0D1A81AB3900D0BF4A /* NevoOtaViewController.swift */; };
@@ -160,6 +162,8 @@
 		00E0E1431A88BBDE0001B8CA /* wallpaper0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wallpaper0.png; sourceTree = "<group>"; };
 		0704C95C1AA413BB00F9AE09 /* imaze_20150227_v10_2.hex */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = imaze_20150227_v10_2.hex; sourceTree = "<group>"; };
 		0704C95D1AA413BB00F9AE09 /* iMaze_v8_8hr.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = iMaze_v8_8hr.bin; sourceTree = "<group>"; };
+		0704C9601AA4167600F9AE09 /* iMaze_v8_24hr.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = iMaze_v8_24hr.bin; sourceTree = "<group>"; };
+		0704C9621AA431EE00F9AE09 /* GetStepsGoalRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GetStepsGoalRequest.swift; path = Controller/Connection/Request/GetStepsGoalRequest.swift; sourceTree = "<group>"; };
 		07BE0CEE1A84A0C8000C4AC7 /* Nevo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Nevo-Bridging-Header.h"; sourceTree = "<group>"; };
 		07BE0CF01A84A2F8000C4AC7 /* IntelHex2BinConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntelHex2BinConverter.h; sourceTree = "<group>"; };
 		07BE0CF11A84A2F8000C4AC7 /* IntelHex2BinConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntelHex2BinConverter.m; sourceTree = "<group>"; };
@@ -327,6 +331,7 @@
 		07CC4A231A81F26C008DA749 /* Firmwares */ = {
 			isa = PBXGroup;
 			children = (
+				0704C9601AA4167600F9AE09 /* iMaze_v8_24hr.bin */,
 				0704C95C1AA413BB00F9AE09 /* imaze_20150227_v10_2.hex */,
 				0704C95D1AA413BB00F9AE09 /* iMaze_v8_8hr.bin */,
 			);
@@ -556,6 +561,7 @@
 				07C59F2F1A8C625800D65C84 /* SetAlarmRequest.swift */,
 				07C59F311A8C6A6000D65C84 /* SetRTCRequest.swift */,
 				9A3B7AB01A947BCB00BDC3C6 /* GetActivityRequest.swift */,
+				0704C9621AA431EE00F9AE09 /* GetStepsGoalRequest.swift */,
 			);
 			name = Request;
 			sourceTree = "<group>";
@@ -657,6 +663,7 @@
 				007F799D1A878D0B006C89E6 /* SIL Open Font License.txt in Resources */,
 				007F79971A878D0B006C89E6 /* Raleway-MediumItalic.ttf in Resources */,
 				00478F4F1A8F637D00D0DCE2 /* clockViewHour.png in Resources */,
+				0704C9611AA4167600F9AE09 /* iMaze_v8_24hr.bin in Resources */,
 				007F79981A878D0B006C89E6 /* Raleway-Regular.ttf in Resources */,
 				007F79951A878D0B006C89E6 /* Raleway-LightItalic.ttf in Resources */,
 				007D37B11A9203A300960E69 /* selectedButton.png in Resources */,
@@ -746,6 +753,7 @@
 				9A3E57231A80E56E00DFFAE1 /* ConnectionController.swift in Sources */,
 				9A2D6C3E1A9C71E500591BDC /* NevoHK.swift in Sources */,
 				9AD8F93B1A6DF35900F01014 /* Nevo.xcdatamodeld in Sources */,
+				0704C9631AA431EE00F9AE09 /* GetStepsGoalRequest.swift in Sources */,
 				07CC4A291A820A9B008DA749 /* Utility.swift in Sources */,
 				007DD4BD1A89DF2A00CE7264 /* Page2Controller.swift in Sources */,
 				07C18C0A1A80DF4900D0BF4A /* NevoOtaController.swift in Sources */,

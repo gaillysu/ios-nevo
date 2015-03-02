@@ -22,8 +22,8 @@ class StepGoalSetingController: UIViewController, SyncControllerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        mSyncController = SyncController(controller: self, forceScan:false, delegate:self)
-        
+        mSyncController = SyncController.sharedInstance
+        mSyncController?.startConnect(false, delegate: self)
         var titleLabel:UILabel = UILabel(frame: CGRectMake(0, 0, 120, 30))
         titleLabel.textColor = UIColor.whiteColor()
         titleLabel.text = NSLocalizedString("stepGoalTitle", comment: "")
@@ -120,7 +120,7 @@ class StepGoalSetingController: UIViewController, SyncControllerDelegate {
 
     /**
     
-    See ConnectionControllerDelegate
+    See SyncControllerDelegate
     
     */
     
@@ -134,7 +134,7 @@ class StepGoalSetingController: UIViewController, SyncControllerDelegate {
     
     /**
     
-    See ConnectionControllerDelegate
+    See SyncControllerDelegate
     
     */
     

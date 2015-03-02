@@ -17,9 +17,11 @@ It also memorise the first device connected and automatically connects to it
 protocol ConnectionController {
 
     /**
-    Adds one additionnal delegate
+    set one  delegate,  this delegate comes from syncController 
+    Layer struct: L1(NevoBT) -->L2 (ConnectionController,Single instance) -->L3 (syncController, single instance)
+    -->L4(UI viewController), L1 is the base Layer, L4 is the top layer
     */
-    func addDelegate(ConnectionControllerDelegate)
+    func setDelegate(ConnectionControllerDelegate)
     
     /**
     Tries to connect to a Nevo
