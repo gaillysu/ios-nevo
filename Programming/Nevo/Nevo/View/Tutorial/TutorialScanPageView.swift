@@ -45,10 +45,11 @@ class TutorialScanPageView : UIView {
 
     func buildTutorialPage() {
 
-        let backButton = UIButton.buttonWithType(UIButtonType.System) as UIButton
+        let backButton = UIButton.buttonWithType(UIButtonType.Custom) as UIButton
         backButton.frame = CGRectMake(15, 10, 60, 40)
         backButton.setTitle(NSLocalizedString("Back",comment:"button title string"), forState: UIControlState.Normal)
         backButton.titleLabel?.font = BACK_BUTTON_FONT
+        backButton.setTitleColor(AppTheme.NEVO_SOLAR_YELLOW(), forState: UIControlState.Normal)
         backButton.addTarget(self, action: "ButtonAction:", forControlEvents: UIControlEvents.TouchUpInside)
         self.addSubview(backButton)
         
@@ -85,10 +86,11 @@ class TutorialScanPageView : UIView {
         mConnectButton = connectButton
 
 
-        let finishButton = UIButton.buttonWithType(UIButtonType.System) as UIButton
+        let finishButton = UIButton.buttonWithType(UIButtonType.Custom) as UIButton
         finishButton.frame = CGRectMake(0, 0, 120, 50)
         finishButton.setTitle(NSLocalizedString(NSLocalizedString("Finish",comment:"lable string"),comment:"button title string"), forState: UIControlState.Normal)
         finishButton.titleLabel?.font = BUTTON_FONT
+        finishButton.setTitleColor(AppTheme.NEVO_SOLAR_YELLOW(), forState: UIControlState.Normal)
         finishButton.center = CGPointMake(self.frame.size.width/2.0, self.frame.size.height-90)
         finishButton.hidden = true
         finishButton.addTarget(self, action: "ButtonAction:", forControlEvents: UIControlEvents.TouchUpInside)

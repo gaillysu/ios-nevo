@@ -70,30 +70,66 @@ class NevoHKImpl {
     See NevoHK protocol
     */
     func writeDataPoint(data:NevoHKDataPoint) {
-        
-        let present = isPresent(data)
-        
-        //We only write this data point if it isn't present in HK
-        if( present != false) {
+
+        isPresent(data, handler:  { (present) -> Void in
             
-            mHealthKitStore.saveObject(data.toHKQuantitySample(), withCompletion: { (success, error) -> Void in
-                if( error != nil ) {
-                    println("Error saving sample: \(error.localizedDescription)")
-                } else {
-                    println("New sample saved successfully!")
-                }
-            })
+            //We only write this data point if it isn't present in HK
+            if( present != true) {
+                
+                self.mHealthKitStore.saveObject(data.toHKQuantitySample(), withCompletion: { (success, error) -> Void in
+                    if( error != nil ) {
+                        println("Error saving sample: \(error.localizedDescription)")
+                    } else {
+                        println("Saved in Health Kit : \(data.toHKQuantitySample())")
+                    }
+                })
+                
+            } else {
+                
+                println("Can't save Health Kit. Already present or Health Kit autorisation wasn't given : \(data.toHKQuantitySample())")
+
+            }
             
-        }
+        })
+
         
     }
     
     /**
     See NevoHK protocol
     */
-    func isPresent(NevoHKDataPoint) -> Bool? {
-            //TODO by Hugo
-            //Check if this data point is present in HK
-        return false
+    func isPresent(data:NevoHKDataPoint, handler:( (Bool?) -> Void) ) {
+        let sample = data.toHKQuantitySample()
+        //Check if this data point is present in HK
+
+        let datePredicate = HKQuery.predicateForSamplesWithStartDate(sample.startDate,
+            endDate: sample.endDate, options: .None)
+        
+        let sourcePredicate:NSPredicate = HKQuery.predicateForObjectsFromSource(HKSource.defaultSource());
+        
+        let dateAndSourcePredicate = NSCompoundPredicate.andPredicateWithSubpredicates([datePredicate,sourcePredicate])
+        
+        let query = HKSampleQuery(sampleType: sample.quantityType, predicate: dateAndSourcePredicate,
+            limit: 1, sortDescriptors: nil, resultsHandler: {
+                (query, results, error) in
+                
+                if error != nil {
+                    //In case of error, it probably means that we don't have the autorisation to access HK
+                    //Or that we are not in a HK capable device
+                    handler(nil)
+                    return;
+                }
+                
+                else {
+                    //If there's no error, if we have a result, then the data is present, if we don't it's absent
+                    handler( results != nil && results.count >= 1 )
+                    return;
+
+                }
+
+        })
+        
+        mHealthKitStore.executeQuery(query)
+        
     }
 }

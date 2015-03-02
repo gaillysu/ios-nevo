@@ -17,7 +17,7 @@ protocol StepGoalButtonActionCallBack {
 
 }
 
-class StepGoalSetingView: UIView,UIPickerViewDataSource {
+class StepGoalSetingView: UIView,UIPickerViewDataSource,UIPickerViewDelegate {
 
     @IBOutlet var stepLabel: UILabel!
     @IBOutlet var goalButton: UIButton!
@@ -111,6 +111,7 @@ class StepGoalSetingView: UIView,UIPickerViewDataSource {
         let pickerView = UIPickerView(frame: CGRectMake(0, PickerbgView.frame.size.height-160-50, self.frame.size.width, 160))
         pickerView.backgroundColor = PICKER_BG_COLOR
         pickerView.dataSource = self
+        pickerView.delegate = self
         PickerbgView.addSubview(pickerView)
 
         mPickerView = pickerView
@@ -169,7 +170,7 @@ class StepGoalSetingView: UIView,UIPickerViewDataSource {
             mNoConnectImage?.backgroundColor = UIColor.clearColor()
             mNoConnectionView?.addSubview(mNoConnectImage!)
 
-            mNoConnectScanButton = UIButton.buttonWithType(UIButtonType.Custom) as UIButton
+            mNoConnectScanButton = UIButton.buttonWithType(UIButtonType.Custom) as? UIButton
             mNoConnectScanButton?.frame = CGRectMake(0, 0, 160, 160)
             mNoConnectScanButton?.center = CGPointMake(mNoConnectionView!.frame.size.width/2.0, mNoConnectionView!.frame.size.height/2.0)
             mNoConnectScanButton?.setTitle(NSLocalizedString("Connect", comment: ""), forState: UIControlState.Normal)
@@ -294,6 +295,7 @@ class StepGoalSetingView: UIView,UIPickerViewDataSource {
         EndAnimation()
     }
 
+    // MARK: - PickerViewDelegate
     func pickerView(pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusingView view: UIView!) -> UIView{
         let labelView:UILabel = UILabel(frame: CGRectMake(0, 0, pickerView.frame.size.width, 50))
         labelView.backgroundColor = UIColor.clearColor()
@@ -303,6 +305,9 @@ class StepGoalSetingView: UIView,UIPickerViewDataSource {
         return labelView
     }
 
+    func pickerView(pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
+        return 40.0
+    }
     // MARK: - PickerViewDataSource
     // returns the number of 'columns' to display.
     func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int{
