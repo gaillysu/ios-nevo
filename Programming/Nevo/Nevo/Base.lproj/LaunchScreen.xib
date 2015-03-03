@@ -10,27 +10,17 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  Copyright (c) 2015 Nevo. All rights reserved." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="8ie-xW-0ye">
-                    <rect key="frame" x="20" y="528" width="280" height="21"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultImage.png" translatesAutoresizingMaskIntoConstraints="NO" id="0dl-BY-reo">
                     <rect key="frame" x="0.0" y="-1" width="320" height="569"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="569" id="GNh-sF-X94"/>
-                    </constraints>
                 </imageView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstAttribute="centerX" secondItem="0dl-BY-reo" secondAttribute="centerX" id="AgH-il-pYI"/>
+                <constraint firstItem="0dl-BY-reo" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="-1" id="Br9-5B-OLU"/>
                 <constraint firstAttribute="centerY" secondItem="0dl-BY-reo" secondAttribute="centerY" id="CuI-0i-FQi"/>
-                <constraint firstAttribute="bottom" secondItem="8ie-xW-0ye" secondAttribute="bottom" constant="20" id="Kzo-t9-V3l"/>
-                <constraint firstItem="8ie-xW-0ye" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" symbolic="YES" id="MfP-vx-nX0"/>
-                <constraint firstAttribute="centerX" secondItem="8ie-xW-0ye" secondAttribute="centerX" id="ZEH-qu-HZ9"/>
-                <constraint firstItem="0dl-BY-reo" firstAttribute="leading" secondItem="8ie-xW-0ye" secondAttribute="leading" constant="-20" id="uHK-Rz-4GY"/>
-                <constraint firstItem="0dl-BY-reo" firstAttribute="trailing" secondItem="8ie-xW-0ye" secondAttribute="trailing" constant="20" id="wb1-TH-cIc"/>
+                <constraint firstItem="0dl-BY-reo" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="W5O-Ry-GU5"/>
+                <constraint firstAttribute="trailing" secondItem="0dl-BY-reo" secondAttribute="trailing" id="cUw-X8-JlW"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
