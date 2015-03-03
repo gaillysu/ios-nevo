@@ -10,6 +10,8 @@ import UIKit
 
 class TableListCell: UITableViewCell {
 
+    @IBOutlet var StatesLabel: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

@@ -14,19 +14,21 @@ class NotificationView: UIView {
 
     func NotificationlistCell(indexPath:NSIndexPath,dataSource:NSArray)->UITableViewCell {
         let endCellID:NSString = "endCell"
-        var endCell = tableListView.dequeueReusableCellWithIdentifier(endCellID) as? UITableViewCell
+        var endCell = tableListView.dequeueReusableCellWithIdentifier(endCellID) as? TableListCell
         var StatesLabel:UILabel!
 
         if (endCell == nil) {
-            endCell = UITableViewCell(style:UITableViewCellStyle.Default, reuseIdentifier: endCellID)
+            let nibs:NSArray = NSBundle.mainBundle().loadNibNamed("TableListCell", owner: self, options: nil)
+             endCell = nibs.objectAtIndex(0) as? TableListCell;
             endCell?.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator;
-            StatesLabel = UILabel(frame: CGRectMake(0, 0, 55, 30))
-            //StatesLabel.center = CGPointMake(endCell?.frame.size.height/2.0, endCell?.frame.size.height/2.0)
+            endCell?.backgroundColor = UIColor.clearColor();
+
         }
         endCell?.selectionStyle = UITableViewCellSelectionStyle.None;
-        endCell?.backgroundColor = UIColor.whiteColor();
+
         endCell?.textLabel?.text = dataSource[indexPath.row] as? String
-        endCell?.detailTextLabel?.text = "FFFF"
+        endCell?.StatesLabel.textColor = AppTheme.NEVO_SOLAR_GRAY()
+        endCell?.StatesLabel.text = "On"
 
         return endCell!
 

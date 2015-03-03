@@ -12,7 +12,7 @@ class NotificationController: UIViewController {
 
 
     @IBOutlet var notificationList: NotificationView!
-    var listArray:NSArray = ["FaceBook","SMS","CALL","EMAIL"]
+    var listArray:NSArray = ["FaceBook","SMS","CALL","EMAIL"]//TODD
     var typeInt:Int!
 
     override func viewDidLoad() {
@@ -35,7 +35,7 @@ class NotificationController: UIViewController {
     // MARK: - UITableViewDelegate
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
 
-        return 43.0
+        return 50.0
     }
 
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
@@ -60,6 +60,7 @@ class NotificationController: UIViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        //TODD
         if (segue.identifier == "EnterNotification"){
             NSLog("segue.identifier\(segue.identifier)")
             var notficp = segue.destinationViewController as EnterNotificationController

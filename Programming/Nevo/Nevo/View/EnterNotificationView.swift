@@ -12,6 +12,12 @@ class EnterNotificationView: UIView {
 
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var notificSwitch: UISwitch!
+
+    func bulidUI(){
+        //TODD
+        self.backgroundColor = UIColor.grayColor()
+        
+    }
     /*
     // Only override drawRect: if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.

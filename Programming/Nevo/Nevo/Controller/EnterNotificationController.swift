@@ -15,6 +15,9 @@ class EnterNotificationController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        enterNotifiView.bulidUI()
+
         var titleLabel:UILabel = UILabel(frame: CGRectMake(0, 0, 120, 30))
         titleLabel.textColor = UIColor.whiteColor()
         titleLabel.text = NSLocalizedString("NotificationType", comment: "")
@@ -28,8 +31,7 @@ class EnterNotificationController: UIViewController {
         let item:UIBarButtonItem = UIBarButtonItem(customView: backButton as UIView);
         self.navigationItem.leftBarButtonItem = item
 
-        
-
+        //TODD
         switch (type){
 
         case 0:
