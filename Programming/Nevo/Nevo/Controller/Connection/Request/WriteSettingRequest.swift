@@ -10,6 +10,13 @@ import UIKit
 
 class WriteSettingRequest: NevoRequest {
     
+    /*
+    This header is the key by which this kind of packet is called.
+    */
+    class func HEADER() -> UInt8 {
+        return 0x21
+    }
+    
     override func getRawDataEx() -> NSArray {
    
         var walk_stride :UInt16 = 50
@@ -18,7 +25,7 @@ class WriteSettingRequest: NevoRequest {
         var enable:UInt8 = 3; //bit0:1, bit1:1
         
         
-        var values1 :[UInt8] = [0x00,0x21,
+        var values1 :[UInt8] = [0x00,HEADER(),
             UInt8(walk_stride&0xFF),
             UInt8((walk_stride>>8)&0xFF),
             
@@ -32,7 +39,7 @@ class WriteSettingRequest: NevoRequest {
             
             0,0,0,0,0,0,0,0,0,0,0]
         
-        var values2 :[UInt8] = [0xFF,0x21,
+        var values2 :[UInt8] = [0xFF,HEADER(),
             0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
         
         

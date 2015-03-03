@@ -12,6 +12,13 @@ import Foundation
 Sets a goal to the given value
 */
 class SetGoalRequest : NevoRequest {
+    
+    /*
+    This header is the key by which this kind of packet is called.
+    */
+    class func HEADER() -> UInt8 {
+        return 0x22
+    }
 
     private var mThisGoal : Goal
     
@@ -32,7 +39,7 @@ class SetGoalRequest : NevoRequest {
     var goal_time = 100 //unit ??
     var goal_stroke = 3000 // unit ???
         
-    var values1 :[UInt8] = [0x00,0x22,level,display,
+    var values1 :[UInt8] = [0x00,HEADER(),level,display,
         UInt8(goal_dist&0xFF),
         UInt8((goal_dist>>8)&0xFF),
         UInt8((goal_dist>>16)&0xFF),
@@ -51,7 +58,7 @@ class SetGoalRequest : NevoRequest {
         UInt8((goal_time>>24)&0xFF)
         ]
         
-    var values2 :[UInt8] = [0xFF,0x22,
+    var values2 :[UInt8] = [0xFF,HEADER(),
         UInt8(goal_stroke&0xFF),
         UInt8((goal_stroke>>8)&0xFF),
         UInt8((goal_stroke>>16)&0xFF),
