@@ -23,7 +23,7 @@ class HomeView: UIView {
         mClockTimerView.center = CGPointMake(self.frame.width/2.0, self.frame.height/2.0);//Using the center property determines the location of the ClockView
         //add the progressbar
         mProgressView.progressTintColor = AppTheme.NEVO_SOLAR_YELLOW()
-        mProgressView.setProgress(0.57, animated: true)
+        mProgressView.setProgress(0.0, animated: true)
         self.addSubview(mProgressView)
     }
     
