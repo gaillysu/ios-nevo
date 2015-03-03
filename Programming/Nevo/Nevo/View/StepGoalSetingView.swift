@@ -255,6 +255,7 @@ class StepGoalSetingView: UIView,UIPickerViewDataSource,UIPickerViewDelegate {
     override func animationDidStart(theAnimation:CAAnimation)
     {
         NSLog("begin");
+        mNoConnectScanButton?.enabled = false
         mNoConnectScanButton?.setTitle(NSLocalizedString(" ", comment: ""), forState: UIControlState.Normal)
     }
 
@@ -263,6 +264,7 @@ class StepGoalSetingView: UIView,UIPickerViewDataSource,UIPickerViewDelegate {
     */
     override func animationDidStop(theAnimation:CAAnimation ,finished:Bool){
         NSLog("end");
+        mNoConnectScanButton?.enabled = true
         mNoConnectScanButton?.setTitle(NSLocalizedString("Connect", comment: ""), forState: UIControlState.Normal)
     }
 

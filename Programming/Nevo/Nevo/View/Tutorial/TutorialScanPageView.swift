@@ -117,7 +117,7 @@ class TutorialScanPageView : UIView {
         if mFinishButton != nil && !( mFinishButton!.hidden ) {
             return;
         }
-        
+
         var rotationAnimation:CABasicAnimation = CABasicAnimation(keyPath: "transform.rotation.z")
         rotationAnimation.toValue = NSNumber(double: M_PI * 2.0);
         rotationAnimation.duration = 1;
@@ -137,14 +137,14 @@ class TutorialScanPageView : UIView {
     * 动画开始时
     */
     override func animationDidStart(theAnimation:CAAnimation){
-
+        mConnectButton?.enabled = false
     }
 
     /**
     * 动画结束时
     */
     override func animationDidStop(theAnimation:CAAnimation ,finished:Bool){
-
+        mConnectButton?.enabled = true
     }
     /*
     Connect the Success to empty some pictures don't need the button and the label text
