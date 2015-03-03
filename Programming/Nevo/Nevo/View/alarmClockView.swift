@@ -78,7 +78,7 @@ class alarmClockView: UIView {
         self.addSubview(PickerbgView)
 
         //Create a DatePicker
-        let datePicker = UIDatePicker(frame: CGRectMake(0, PickerbgView.frame.size.height-160-50, self.frame.size.width, 160))
+        let datePicker = UIDatePicker(frame: CGRectMake(0, PickerbgView.frame.size.height-160-50, self.frame.size.width, 130))
         datePicker.backgroundColor = PICKER_BG_COLOR
         datePicker.datePickerMode = UIDatePickerMode.Time
         datePicker.addTarget(self, action: Selector("controllEventManager:"), forControlEvents: UIControlEvents.ValueChanged)
@@ -232,6 +232,7 @@ class alarmClockView: UIView {
     */
     override func animationDidStart(theAnimation:CAAnimation)
     {
+        mNoConnectScanButton?.enabled = false
         mNoConnectScanButton?.setTitle(NSLocalizedString(" ", comment: ""), forState: UIControlState.Normal)
     }
 
@@ -239,6 +240,7 @@ class alarmClockView: UIView {
     * 动画结束时
     */
     override func animationDidStop(theAnimation:CAAnimation ,finished:Bool){
+        mNoConnectScanButton?.enabled = true
         mNoConnectScanButton?.setTitle(NSLocalizedString("Connect", comment: ""), forState: UIControlState.Normal)
     }
 

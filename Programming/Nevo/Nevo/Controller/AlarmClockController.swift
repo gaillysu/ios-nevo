@@ -24,7 +24,8 @@ class AlarmClockController: UIViewController, SyncControllerDelegate,alarmButton
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        mSyncController = SyncController(controller: self, forceScan:false, delegate:self)
+        mSyncController = SyncController.sharedInstance
+        mSyncController?.startConnect(false, delegate: self)
         
         var titleLabel:UILabel = UILabel(frame: CGRectMake(0, 0, 120, 30))
         titleLabel.textColor = UIColor.whiteColor()
@@ -130,7 +131,14 @@ class AlarmClockController: UIViewController, SyncControllerDelegate,alarmButton
             mSyncController?.connect()
     }
 
-
+    /**
+    
+    See SyncControllerDelegate
+    
+    */
+     func packetReceived(packet:RawPacket) {
+    
+    }
 
     /**
 

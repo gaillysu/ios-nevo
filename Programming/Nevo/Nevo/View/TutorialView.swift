@@ -14,8 +14,6 @@ class TutorialView: UIView {
     private var mBuyButton: UIButton?
 
     let COLOR_00C6DC = UIColor(red: 255/255.0, green: 255/255.0, blue: 255/255.0, alpha: 1)//The color of the button font color and other needs to use
-    let FONT_RALEWAY_BOLD:UIFont! = UIFont(name:"Raleway-Thin", size: 26);//Uniform font
-
 
     private var mDelegate:UIViewController//The current controller
 
@@ -51,7 +49,7 @@ class TutorialView: UIView {
         let tutorialButton = UIButton(frame: CGRectMake(0, 0, 230, 48))
         tutorialButton.setTitle(NSLocalizedString("Tutorial", comment:"Tutorial button title"), forState: UIControlState.Normal)
         tutorialButton.setTitleColor(COLOR_00C6DC, forState: UIControlState.Normal)
-        tutorialButton.titleLabel?.font = FONT_RALEWAY_BOLD
+        tutorialButton.titleLabel?.font = AppTheme.FONT_RALEWAY_THIN()
         tutorialButton.addTarget(self, action: Selector("displayTutorialPageView"), forControlEvents: UIControlEvents.TouchUpInside)
         tutorialButton.center = CGPointMake(self.frame.size.width/2.0, self.frame.size.height-106)
         self.addSubview(tutorialButton)
@@ -62,7 +60,7 @@ class TutorialView: UIView {
         let buyButton = UIButton(frame: CGRectMake(0, 0, 230, 48))
         buyButton.setTitle(NSLocalizedString("Acheter", comment:"Acheter button title"), forState: UIControlState.Normal)
         buyButton.setTitleColor(COLOR_00C6DC, forState: UIControlState.Normal)
-        buyButton.titleLabel?.font = FONT_RALEWAY_BOLD
+        buyButton.titleLabel?.font = AppTheme.FONT_RALEWAY_THIN(mSize:24)
         buyButton.center = CGPointMake(self.frame.size.width/2.0, self.frame.size.height-53)
         buyButton.addTarget(self, action: Selector("DismisTutorial"), forControlEvents: UIControlEvents.TouchUpInside)
         self.addSubview(buyButton)

@@ -40,7 +40,7 @@ class HomeController: UIViewController, SyncControllerDelegate{
             
         } else {
             NSLog("We have a saved address, no need to go through the tutorial")
-            SyncController(controller: self, forceScan:false, delegate:self)
+            SyncController.sharedInstance.startConnect(false, delegate: self)
         }
         
     }
@@ -64,6 +64,14 @@ class HomeController: UIViewController, SyncControllerDelegate{
         //}
     }
     
+    /**
+    
+    See SyncControllerDelegate
+    
+    */
+    func packetReceived(packet:RawPacket) {
+        
+    }
     func connectionStateChanged(isConnected: Bool) {
         //Do nothing
     }

@@ -31,7 +31,7 @@ protocol NevoHK {
     Checks if a data point is present in the DB
     returns an empty Optional if we don't have the right to read this kind of data
     */
-    func isPresent(NevoHKDataPoint) -> Bool?
+    func isPresent(NevoHKDataPoint, resultHandler:((Bool?) -> Void) )
     
 }
 

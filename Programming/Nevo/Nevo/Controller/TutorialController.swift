@@ -19,14 +19,12 @@ class TutorialController: UIViewController, SyncControllerDelegate {
         //init TutorialView
         mTutorialView = TutorialView(frame: CGRectMake(0,0, self.view.frame.size.width, self.view.frame.size.height), delegate: self)
         self.view.addSubview(mTutorialView!)
-
-        mSync = SyncController(controller: self, forceScan:true, delegate: self)
-        
-
+        mSync    = SyncController.sharedInstance
+        mSync?.startConnect(true, delegate: self)
     }
     
     func scanButtonPressed(sender:UIButton) {
-        SyncController(controller: self, forceScan:true, delegate: self)
+        mSync?.startConnect(true, delegate: self)
     }
     
     /**
