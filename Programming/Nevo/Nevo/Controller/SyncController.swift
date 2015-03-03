@@ -114,13 +114,25 @@ class SyncController: ConnectionControllerDelegate {
     func WriteSetting() {
         mConnectionController.sendRequest(WriteSettingRequest())
     }
+   
+    //end functions for connected to Nevo
+    
+    //below functions by UI
+    
+    func  getDailyTrackerInfo()
+    {
+        mConnectionController.sendRequest(ReadDailyTrackerInfo())
+    }
+    
+    func  getDailyTracker(trackerno:UInt8)
+    {
+        mConnectionController.sendRequest(ReadDailyTracker(trackerno:trackerno))
+    }
+    
     func getGoal()
     {
         mConnectionController.sendRequest(GetStepsGoalRequest())
     }
-    //end functions for connected to Nevo
-    
-    //below functions by UI
     func setGoal(goal:Goal) {
         mConnectionController.sendRequest(SetGoalRequest(goal: goal))
     }
@@ -159,10 +171,11 @@ class SyncController: ConnectionControllerDelegate {
                 //step4:cmd 0x23
                 self.SetCardio()
             }
+            //TODO it test 0x26 CMD, removed when add "getGoal" screen
             if(NSData2Bytes(packet.getRawData())[1] == 0x22
                 || NSData2Bytes(packet.getRawData())[1] == 0x23)
             {
-                //step5:
+                //step5:cmd 0x26
                 //when set new Goal or every day reconnected BLE, get daily steps
                 self.getGoal()
             }
@@ -172,12 +185,19 @@ class SyncController: ConnectionControllerDelegate {
                 //write the daily steps to healthkit
                 //Data format: 0x00 ,0x26, daily steps (4B,LSB mode), goal steps (4B,LSB mode)
                 
+                var dailySteps:Int = Int(NSData2Bytes(mPacketsbuffer[0])[2] )
+                dailySteps =  dailySteps + Int(NSData2Bytes(mPacketsbuffer[0])[3] )<<8
+                dailySteps =  dailySteps + Int(NSData2Bytes(mPacketsbuffer[0])[4] )<<16
+                dailySteps =  dailySteps + Int(NSData2Bytes(mPacketsbuffer[0])[5] )<<24
+                
+                NSLog("get Daily Steps is: \(dailySteps), now write it to healthkit")
+                
                 var hk = NevoHKImpl()
                 hk.requestPermission()
-               // hk.writeDataPoint()
+                hk.writeDataPoint(DailySteps(numberOfSteps: dailySteps ,date: NSDate()))
                 syncFinished()
             }
-            
+            //end TODO
             mPacketsbuffer = []
         }
     }

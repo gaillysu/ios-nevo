@@ -17,7 +17,7 @@ it should handle very little, only the initialisation of the different Views and
 class HomeController: UIViewController, SyncControllerDelegate{
     
     @IBOutlet var homeView: HomeView!
-    
+    private var mPacketsbuffer:[NSData]=[]
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -45,6 +45,12 @@ class HomeController: UIViewController, SyncControllerDelegate{
         
     }
 
+    override func viewDidAppear(animated: Bool) {
+        NSLog("We getGoal in home screen")
+        mPacketsbuffer = []
+        SyncController.sharedInstance.getGoal()
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -71,8 +77,41 @@ class HomeController: UIViewController, SyncControllerDelegate{
     */
     func packetReceived(packet:RawPacket) {
         
+        mPacketsbuffer.append(packet.getRawData())
+        
+        if(NSData2Bytes(packet.getRawData())[0] == 0xFF
+            && NSData2Bytes(packet.getRawData())[1] == 0x26 )
+        {
+                var dailySteps:Int = Int(NSData2Bytes(mPacketsbuffer[0])[2] )
+                dailySteps =  dailySteps + Int(NSData2Bytes(mPacketsbuffer[0])[3] )<<8
+                dailySteps =  dailySteps + Int(NSData2Bytes(mPacketsbuffer[0])[4] )<<16
+                dailySteps =  dailySteps + Int(NSData2Bytes(mPacketsbuffer[0])[5] )<<24
+            
+                var dailyStepGoal:Int = Int(NSData2Bytes(mPacketsbuffer[0])[6] )
+                dailyStepGoal =  dailyStepGoal + Int(NSData2Bytes(mPacketsbuffer[0])[7] )<<8
+                dailyStepGoal =  dailyStepGoal + Int(NSData2Bytes(mPacketsbuffer[0])[8] )<<16
+                dailyStepGoal =  dailyStepGoal + Int(NSData2Bytes(mPacketsbuffer[0])[9] )<<24
+            
+                let numberOfSteps = NSUserDefaults.standardUserDefaults().objectForKey("NUMBER_OF_STEPS_GOAL_KEY") as? Int
+            
+                var percent :Float = Float(dailySteps)/Float(dailyStepGoal)
+            
+                NSLog("get Daily Steps is: \(dailySteps), getDaily Goal is: \(dailyStepGoal), saved Goal is:\(numberOfSteps),percent is: \(percent)")
+            
+                homeView.mProgressView.progress = percent
+            
+                mPacketsbuffer = []
+        }        
     }
     func connectionStateChanged(isConnected: Bool) {
-        //Do nothing
+        //get Goal
+        if isConnected
+        {
+            var dispatchTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, Int64(1.0 * Double(NSEC_PER_SEC)))
+            dispatch_after(dispatchTime, dispatch_get_main_queue(), {
+                self.mPacketsbuffer = []
+                SyncController.sharedInstance.getGoal()
+            })
+        }
     }
 }

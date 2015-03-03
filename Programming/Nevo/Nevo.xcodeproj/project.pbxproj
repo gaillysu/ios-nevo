@@ -57,6 +57,8 @@
 		0704C95F1AA413BB00F9AE09 /* iMaze_v8_8hr.bin in Resources */ = {isa = PBXBuildFile; fileRef = 0704C95D1AA413BB00F9AE09 /* iMaze_v8_8hr.bin */; };
 		0704C9611AA4167600F9AE09 /* iMaze_v8_24hr.bin in Resources */ = {isa = PBXBuildFile; fileRef = 0704C9601AA4167600F9AE09 /* iMaze_v8_24hr.bin */; };
 		0704C9631AA431EE00F9AE09 /* GetStepsGoalRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0704C9621AA431EE00F9AE09 /* GetStepsGoalRequest.swift */; };
+		07731E521AA58EFE007F9FD6 /* ReadDailyTrackerInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07731E511AA58EFE007F9FD6 /* ReadDailyTrackerInfo.swift */; };
+		07731E541AA58F27007F9FD6 /* ReadDailyTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07731E531AA58F27007F9FD6 /* ReadDailyTracker.swift */; };
 		07BE0CF21A84A2F8000C4AC7 /* IntelHex2BinConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = 07BE0CF11A84A2F8000C4AC7 /* IntelHex2BinConverter.m */; };
 		07C18C0A1A80DF4900D0BF4A /* NevoOtaController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C18C091A80DF4900D0BF4A /* NevoOtaController.swift */; };
 		07C18C0E1A81AB3900D0BF4A /* NevoOtaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C18C0D1A81AB3900D0BF4A /* NevoOtaViewController.swift */; };
@@ -176,6 +178,8 @@
 		0704C95D1AA413BB00F9AE09 /* iMaze_v8_8hr.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = iMaze_v8_8hr.bin; sourceTree = "<group>"; };
 		0704C9601AA4167600F9AE09 /* iMaze_v8_24hr.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = iMaze_v8_24hr.bin; sourceTree = "<group>"; };
 		0704C9621AA431EE00F9AE09 /* GetStepsGoalRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GetStepsGoalRequest.swift; path = Controller/Connection/Request/GetStepsGoalRequest.swift; sourceTree = "<group>"; };
+		07731E511AA58EFE007F9FD6 /* ReadDailyTrackerInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ReadDailyTrackerInfo.swift; path = Controller/Connection/Request/ReadDailyTrackerInfo.swift; sourceTree = "<group>"; };
+		07731E531AA58F27007F9FD6 /* ReadDailyTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ReadDailyTracker.swift; path = Controller/Connection/Request/ReadDailyTracker.swift; sourceTree = "<group>"; };
 		07BE0CEE1A84A0C8000C4AC7 /* Nevo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Nevo-Bridging-Header.h"; sourceTree = "<group>"; };
 		07BE0CF01A84A2F8000C4AC7 /* IntelHex2BinConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntelHex2BinConverter.h; sourceTree = "<group>"; };
 		07BE0CF11A84A2F8000C4AC7 /* IntelHex2BinConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntelHex2BinConverter.m; sourceTree = "<group>"; };
@@ -589,6 +593,8 @@
 				07C59F311A8C6A6000D65C84 /* SetRTCRequest.swift */,
 				9A3B7AB01A947BCB00BDC3C6 /* GetActivityRequest.swift */,
 				0704C9621AA431EE00F9AE09 /* GetStepsGoalRequest.swift */,
+				07731E511AA58EFE007F9FD6 /* ReadDailyTrackerInfo.swift */,
+				07731E531AA58F27007F9FD6 /* ReadDailyTracker.swift */,
 			);
 			name = Request;
 			sourceTree = "<group>";
@@ -766,6 +772,7 @@
 				005FE77B1A8C979800961239 /* alarmClockView.swift in Sources */,
 				00C640F41A8D9F4500815CF8 /* MainTabBarController.swift in Sources */,
 				9A12E5461A931B1F00536729 /* Alert.swift in Sources */,
+				07731E541AA58F27007F9FD6 /* ReadDailyTracker.swift in Sources */,
 				07C59F281A8C618A00D65C84 /* WriteSettingRequest.swift in Sources */,
 				9A3E57261A80E56E00DFFAE1 /* NevoPacket.swift in Sources */,
 				9AD8F98F1A6E2EE000F01014 /* Profile.swift in Sources */,
@@ -786,6 +793,7 @@
 				9AD8F93B1A6DF35900F01014 /* Nevo.xcdatamodeld in Sources */,
 				0704C9631AA431EE00F9AE09 /* GetStepsGoalRequest.swift in Sources */,
 				07CC4A291A820A9B008DA749 /* Utility.swift in Sources */,
+				07731E521AA58EFE007F9FD6 /* ReadDailyTrackerInfo.swift in Sources */,
 				007DD4BD1A89DF2A00CE7264 /* Page2Controller.swift in Sources */,
 				07C18C0A1A80DF4900D0BF4A /* NevoOtaController.swift in Sources */,
 				00A228701AA551A400360C36 /* NotificationController.swift in Sources */,
