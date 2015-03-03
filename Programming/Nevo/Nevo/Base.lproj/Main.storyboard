@@ -19,7 +19,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9xM-Ob-4Qz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-789" y="-342"/>
+            <point key="canvasLocation" x="-573" y="-382"/>
         </scene>
         <!--Main Tab Bar Controller-->
         <scene sceneID="cdp-L5-L47">
@@ -37,11 +37,12 @@
                         <segue destination="rem-vM-ODh" kind="relationship" relationship="viewControllers" id="ZEI-Ns-a4R"/>
                         <segue destination="bGr-qo-zHH" kind="relationship" relationship="viewControllers" id="zui-dx-LpG"/>
                         <segue destination="Hsa-EN-v8Q" kind="relationship" relationship="viewControllers" id="0xI-f4-E6a"/>
+                        <segue destination="DaX-x3-cRa" kind="relationship" relationship="viewControllers" id="Il3-oc-PIC"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XdP-rD-VpY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-789" y="418"/>
+            <point key="canvasLocation" x="-573" y="378"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="qEP-IN-OCQ">
@@ -230,6 +231,24 @@
             </objects>
             <point key="canvasLocation" x="-373" y="1207"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="v51-aK-aDp">
+            <objects>
+                <navigationController id="DaX-x3-cRa" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="" image="rss_selected" id="tcz-zj-CZY"/>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="NaF-UI-JG3">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="y9Z-P5-cut" kind="relationship" relationship="rootViewController" id="VFz-G1-R6d"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9El-st-8Rg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="12" y="1207"/>
+        </scene>
         <!--Alarm-->
         <scene sceneID="aOz-wY-I4v">
             <objects>
@@ -314,6 +333,104 @@
             </objects>
             <point key="canvasLocation" x="-373.33333333333331" y="1910.3733333333332"/>
         </scene>
+        <!--Notification-->
+        <scene sceneID="pJ5-WT-KS1">
+            <objects>
+                <viewController id="y9Z-P5-cut" customClass="NotificationController" customModule="Nevo" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="3iy-c3-UnN"/>
+                        <viewControllerLayoutGuide type="bottom" id="Btq-vY-5HU"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="h7L-SF-lkB" customClass="NotificationView" customModule="Nevo" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Zx4-WI-sxC">
+                                <rect key="frame" x="0.0" y="49" width="320" height="470"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="y9Z-P5-cut" id="0uy-wB-PIo"/>
+                                    <outlet property="delegate" destination="y9Z-P5-cut" id="OlG-DG-0TR"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Zx4-WI-sxC" firstAttribute="bottom" secondItem="Btq-vY-5HU" secondAttribute="top" id="LY1-ee-2z5"/>
+                            <constraint firstAttribute="centerX" secondItem="Zx4-WI-sxC" secondAttribute="centerX" id="dzd-27-egw"/>
+                            <constraint firstItem="Zx4-WI-sxC" firstAttribute="leading" secondItem="h7L-SF-lkB" secondAttribute="leading" id="seG-fb-RPS"/>
+                            <constraint firstAttribute="centerY" secondItem="Zx4-WI-sxC" secondAttribute="centerY" id="xfw-nh-Hfp"/>
+                        </constraints>
+                        <connections>
+                            <outlet property="tableListView" destination="Zx4-WI-sxC" id="Czw-V2-Naa"/>
+                        </connections>
+                    </view>
+                    <navigationItem key="navigationItem" title="Notification" id="QNM-Mj-NtH"/>
+                    <connections>
+                        <outlet property="notificationList" destination="h7L-SF-lkB" id="8vS-ge-L65"/>
+                        <segue destination="PLg-gm-zyv" kind="push" identifier="EnterNotification" id="z11-dp-pLg"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QO6-tg-aH2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="12" y="1910"/>
+        </scene>
+        <!--Enter Notification Controller-->
+        <scene sceneID="PSY-Cj-O5o">
+            <objects>
+                <viewController id="PLg-gm-zyv" customClass="EnterNotificationController" customModule="Nevo" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="A83-X7-MXP"/>
+                        <viewControllerLayoutGuide type="bottom" id="iu0-1j-hnT"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="buS-hT-xZN" customClass="EnterNotificationView" customModule="Nevo" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kny-IN-PsQ">
+                                <rect key="frame" x="0.0" y="73" width="320" height="50"/>
+                                <subviews>
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="M4m-43-AMR">
+                                        <rect key="frame" x="238" y="9.5" width="51" height="31"/>
+                                    </switch>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pPr-RY-0a8">
+                                        <rect key="frame" x="20" y="5" width="89" height="40"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="pPr-RY-0a8" firstAttribute="top" secondItem="kny-IN-PsQ" secondAttribute="top" constant="5" id="2gE-AH-zjd"/>
+                                    <constraint firstAttribute="trailing" secondItem="M4m-43-AMR" secondAttribute="trailing" constant="33" id="a22-ki-eFo"/>
+                                    <constraint firstItem="pPr-RY-0a8" firstAttribute="leading" secondItem="kny-IN-PsQ" secondAttribute="leading" constant="20" id="arW-2T-Vgn"/>
+                                    <constraint firstAttribute="centerY" secondItem="pPr-RY-0a8" secondAttribute="centerY" id="cAF-li-0Ld"/>
+                                    <constraint firstAttribute="centerY" secondItem="M4m-43-AMR" secondAttribute="centerY" id="m0Q-nu-vdQ"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="kny-IN-PsQ" firstAttribute="leading" secondItem="buS-hT-xZN" secondAttribute="leading" id="9fA-E3-KDf"/>
+                            <constraint firstAttribute="centerX" secondItem="kny-IN-PsQ" secondAttribute="centerX" id="GtE-mB-kEn"/>
+                            <constraint firstAttribute="centerY" secondItem="kny-IN-PsQ" secondAttribute="centerY" constant="186" id="SHf-00-buh"/>
+                            <constraint firstAttribute="trailing" secondItem="kny-IN-PsQ" secondAttribute="trailing" id="UHB-uE-uEk"/>
+                        </constraints>
+                        <connections>
+                            <outlet property="notificSwitch" destination="M4m-43-AMR" id="LhB-mU-kWm"/>
+                            <outlet property="titleLabel" destination="pPr-RY-0a8" id="ULP-wx-rtq"/>
+                        </connections>
+                    </view>
+                    <navigationItem key="navigationItem" id="0eI-XQ-foW"/>
+                    <connections>
+                        <outlet property="enterNotifiView" destination="buS-hT-xZN" id="1xi-uG-XSd"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MWs-2j-zUi" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="12" y="2646"/>
+        </scene>
         <!--Clock-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
@@ -380,6 +497,7 @@
         <image name="goalitem" width="45" height="45"/>
         <image name="homeitem" width="45" height="45"/>
         <image name="round600.png" width="600" height="600"/>
+        <image name="rss_selected" width="45" height="45"/>
         <image name="selectedButton.png" width="173" height="89"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

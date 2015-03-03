@@ -13,7 +13,7 @@ class TutorialView: UIView {
 
     private var mBuyButton: UIButton?
 
-    let COLOR_00C6DC = UIColor(red: 255/255.0, green: 255/255.0, blue: 255/255.0, alpha: 1)//The color of the button font color and other needs to use
+    let COLOR_00C6DC = UIColor(red: 0/255.0, green: 0/255.0, blue: 0/255.0, alpha: 1)//The color of the button font color and other needs to use
 
     private var mDelegate:UIViewController//The current controller
 

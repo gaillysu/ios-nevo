@@ -10,6 +10,13 @@ import UIKit
 
 class SetProfileRequest: NevoRequest {
     
+    /*
+    This header is the key by which this kind of packet is called.
+    */
+    class func HEADER() -> UInt8 {
+        return 0x20
+    }
+    
     override func getRawDataEx() -> NSArray {
         
         var age :UInt8 = 50
@@ -18,7 +25,7 @@ class SetProfileRequest: NevoRequest {
         var sex:UInt8 = 1; //man:1,female:0
         var unit:UInt8 = 1; //unit ???
         
-        var values1 :[UInt8] = [0x00,0x20,
+        var values1 :[UInt8] = [0x00,HEADER(),
             UInt8(age&0xFF),
             UInt8(height&0xFF),
             UInt8(weight&0xFF),
@@ -28,7 +35,7 @@ class SetProfileRequest: NevoRequest {
             0,
             0,0,0,0,0,0,0,0,0,0,0]
         
-        var values2 :[UInt8] = [0xFF,0x20,
+        var values2 :[UInt8] = [0xFF,HEADER(),
             0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
         
         

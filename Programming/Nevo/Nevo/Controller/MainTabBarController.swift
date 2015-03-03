@@ -54,8 +54,8 @@ class MainTabBarController: UITabBarController,UITabBarControllerDelegate {
         if (items == nil) {
             items = NSMutableArray(capacity: 5)
         }
-        let imgArray:NSArray = NSArray(arrayLiteral: "selectedGoalitem","selectedHomeitem","selectedAlarmitem")
-        let selectImgArray:NSArray = NSArray(arrayLiteral: "goalitem","homeitem","alarmitem")
+        let imgArray:NSArray = NSArray(arrayLiteral: "selectedGoalitem","selectedHomeitem","selectedAlarmitem","rss_selected")
+        let selectImgArray:NSArray = NSArray(arrayLiteral: "goalitem","homeitem","alarmitem","rss")
 
         for (var i:Int = 0; i < imgArray.count; i++) {
 

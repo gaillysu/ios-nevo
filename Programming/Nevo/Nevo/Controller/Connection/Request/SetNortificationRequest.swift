@@ -10,6 +10,13 @@ import UIKit
 
 class SetNortificationRequest: NevoRequest {
     
+    /*
+    This header is the key by which this kind of packet is called.
+    */
+    class func HEADER() -> UInt8 {
+        return 0x02
+    }
+    
     struct SetNortificationRequestValues {
         static let VIBRATION_ON:UInt8 = 0x01
         static let VIBRATION_OFF:UInt8 = 0x00
@@ -118,7 +125,7 @@ class SetNortificationRequest: NevoRequest {
 
 
         
-        var values1 :[UInt8] = [0x00,0x02,
+        var values1 :[UInt8] = [0x00,HEADER(),
             UInt8(call_vib_number&0xFF),
             UInt8(call_led_pattern&0xFF),
             UInt8((call_led_pattern>>8)&0xFF),
@@ -143,7 +150,7 @@ class SetNortificationRequest: NevoRequest {
             UInt8(twitter_led_pattern&0xFF)
             ]
         
-        var values2 :[UInt8] = [0xFF,0x02,
+        var values2 :[UInt8] = [0xFF,HEADER(),
             UInt8((twitter_led_pattern>>8)&0xFF),
             UInt8((twitter_led_pattern>>16)&0xFF),
             

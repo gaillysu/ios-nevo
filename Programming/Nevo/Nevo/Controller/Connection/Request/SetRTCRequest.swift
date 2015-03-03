@@ -9,7 +9,16 @@
 import UIKit
 
 class SetRTCRequest: NevoRequest {
+    
+    /*
+    This header is the key by which this kind of packet is called.
+    */
+    class func HEADER() -> UInt8 {
+        return 0x01
+    }
+    
     override func getRawDataEx() -> NSArray {
+        
         
         let now:NSDate = NSDate()
         let cal:NSCalendar = NSCalendar.currentCalendar()
@@ -23,7 +32,7 @@ class SetRTCRequest: NevoRequest {
         let min:NSInteger = dd.minute;
         
         
-        var values1 :[UInt8] = [0x00,0x01,
+        var values1 :[UInt8] = [0x00,HEADER(),
             UInt8(year&0xFF),
             UInt8((year>>8)&0xFF),
             UInt8(month&0xFF),
@@ -32,7 +41,7 @@ class SetRTCRequest: NevoRequest {
             UInt8(min&0xFF),
             0,0,0,0,0,0,0,0,0,0,0,0]
         
-        var values2 :[UInt8] = [0xFF,0x01,
+        var values2 :[UInt8] = [0xFF,HEADER(),
             0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
         
         

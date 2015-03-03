@@ -10,12 +10,19 @@ import Foundation
 
 class GetActivityRequest: NevoRequest {
     
+    /*
+    This header is the key by which this kind of packet is called.
+    */
+    class func HEADER() -> UInt8 {
+        return 0x25
+    }
+    
     override func getRawDataEx() -> NSArray {
         
-        var values1 :[UInt8] = [0x00,0x25,
+        var values1 :[UInt8] = [0x00,HEADER(),
             0x01,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
         
-        var values2 :[UInt8] = [0xFF,0x25,
+        var values2 :[UInt8] = [0xFF,HEADER(),
             0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
         
         
