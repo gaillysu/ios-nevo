@@ -24,7 +24,7 @@ class SetCardioRequest: NevoRequest {
         var zone_HR_H :UInt8 = 180
         var zone_HR_L :UInt8 = 60
         
-        var values1 :[UInt8] = [0x00,HEADER(),
+        var values1 :[UInt8] = [0x00,SetCardioRequest.HEADER(),
             UInt8(maxHR&0xFF),
             UInt8(restHR&0xFF),
             UInt8(zone_HR_H&0xFF),
@@ -34,7 +34,7 @@ class SetCardioRequest: NevoRequest {
             0,
             0,0,0,0,0,0,0,0,0,0,0]
         
-        var values2 :[UInt8] = [0xFF,HEADER(),
+        var values2 :[UInt8] = [0xFF,SetCardioRequest.HEADER(),
             0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
         
         
