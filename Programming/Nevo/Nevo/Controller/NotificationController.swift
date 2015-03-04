@@ -12,7 +12,8 @@ class NotificationController: UIViewController {
 
 
     @IBOutlet var notificationList: NotificationView!
-    var listArray:NSArray = ["FaceBook","SMS","CALL","EMAIL"]//TODD
+    let listContentArray:NSArray = [["FaceBook","facebookIcon"],["SMS","smsIcon"],["CALL","callIcon"],["EMAIL","emailIcon"]]//TODD
+
     var typeInt:Int!
 
     override func viewDidLoad() {
@@ -46,11 +47,11 @@ class NotificationController: UIViewController {
     // MARK: - UITableViewDataSource
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
 
-        return listArray.count
+        return listContentArray.count
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = notificationList.NotificationlistCell(indexPath, dataSource: listArray)
+        let cell = notificationList.NotificationlistCell(indexPath, dataSource: listContentArray)
         return cell
     }
 

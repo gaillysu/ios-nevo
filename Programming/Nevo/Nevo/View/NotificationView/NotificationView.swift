@@ -25,8 +25,8 @@ class NotificationView: UIView {
 
         }
         endCell?.selectionStyle = UITableViewCellSelectionStyle.None;
-
-        endCell?.textLabel?.text = dataSource[indexPath.row] as? String
+        endCell?.imageView?.image = UIImage(named:dataSource[indexPath.row].objectAtIndex(1) as String)
+        endCell?.textLabel?.text = dataSource[indexPath.row].objectAtIndex(0) as? String
         endCell?.StatesLabel.textColor = AppTheme.NEVO_SOLAR_GRAY()
         endCell?.StatesLabel.text = "On"
 
