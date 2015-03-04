@@ -39,7 +39,7 @@ class SetGoalRequest : NevoRequest {
     var goal_time = 100 //unit ??
     var goal_stroke = 3000 // unit ???
         
-    var values1 :[UInt8] = [0x00,HEADER(),level,display,
+    var values1 :[UInt8] = [0x00,SetGoalRequest.HEADER(),level,display,
         UInt8(goal_dist&0xFF),
         UInt8((goal_dist>>8)&0xFF),
         UInt8((goal_dist>>16)&0xFF),
@@ -58,7 +58,7 @@ class SetGoalRequest : NevoRequest {
         UInt8((goal_time>>24)&0xFF)
         ]
         
-    var values2 :[UInt8] = [0xFF,HEADER(),
+    var values2 :[UInt8] = [0xFF,SetGoalRequest.HEADER(),
         UInt8(goal_stroke&0xFF),
         UInt8((goal_stroke>>8)&0xFF),
         UInt8((goal_stroke>>16)&0xFF),

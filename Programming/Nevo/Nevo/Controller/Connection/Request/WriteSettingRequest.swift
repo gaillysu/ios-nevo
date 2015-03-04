@@ -25,7 +25,7 @@ class WriteSettingRequest: NevoRequest {
         var enable:UInt8 = 3; //bit0:1, bit1:1
         
         
-        var values1 :[UInt8] = [0x00,HEADER(),
+        var values1 :[UInt8] = [0x00,WriteSettingRequest.HEADER(),
             UInt8(walk_stride&0xFF),
             UInt8((walk_stride>>8)&0xFF),
             
@@ -39,7 +39,7 @@ class WriteSettingRequest: NevoRequest {
             
             0,0,0,0,0,0,0,0,0,0,0]
         
-        var values2 :[UInt8] = [0xFF,HEADER(),
+        var values2 :[UInt8] = [0xFF,WriteSettingRequest.HEADER(),
             0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
         
         

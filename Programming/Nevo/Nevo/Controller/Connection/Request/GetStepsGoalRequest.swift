@@ -19,10 +19,10 @@ class GetStepsGoalRequest: NevoRequest {
     
     override func getRawDataEx() -> NSArray {
         
-        var values1 :[UInt8] = [0x00,HEADER(),
+        var values1 :[UInt8] = [0x00,GetStepsGoalRequest.HEADER(),
             0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
         
-        var values2 :[UInt8] = [0xFF,HEADER(),
+        var values2 :[UInt8] = [0xFF,GetStepsGoalRequest.HEADER(),
             0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
         
         

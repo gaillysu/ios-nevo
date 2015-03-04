@@ -125,7 +125,7 @@ class SetNortificationRequest: NevoRequest {
 
 
         
-        var values1 :[UInt8] = [0x00,HEADER(),
+        var values1 :[UInt8] = [0x00,SetNortificationRequest.HEADER(),
             UInt8(call_vib_number&0xFF),
             UInt8(call_led_pattern&0xFF),
             UInt8((call_led_pattern>>8)&0xFF),
@@ -150,7 +150,7 @@ class SetNortificationRequest: NevoRequest {
             UInt8(twitter_led_pattern&0xFF)
             ]
         
-        var values2 :[UInt8] = [0xFF,HEADER(),
+        var values2 :[UInt8] = [0xFF,SetNortificationRequest.HEADER(),
             UInt8((twitter_led_pattern>>8)&0xFF),
             UInt8((twitter_led_pattern>>16)&0xFF),
             

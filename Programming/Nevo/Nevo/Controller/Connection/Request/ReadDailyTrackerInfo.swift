@@ -9,13 +9,19 @@
 import UIKit
 
 class ReadDailyTrackerInfo: NevoRequest {
-    let CMD:UInt8 = 0x24
+     /*
+    This header is the key by which this kind of packet is called.
+    */
+    class func HEADER() -> UInt8 {
+        return 0x24
+    }
+
     override func getRawDataEx() -> NSArray {
         
-        var values1 :[UInt8] = [0x00,CMD,
+        var values1 :[UInt8] = [0x00,ReadDailyTrackerInfo.HEADER(),
             0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
         
-        var values2 :[UInt8] = [0xFF,CMD,
+        var values2 :[UInt8] = [0xFF,ReadDailyTrackerInfo.HEADER(),
             0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
         
         

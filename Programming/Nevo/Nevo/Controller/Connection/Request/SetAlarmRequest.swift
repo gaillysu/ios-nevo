@@ -32,7 +32,7 @@ class SetAlarmRequest: NevoRequest {
     
     override func getRawDataEx() -> NSArray {
 
-        var values1 :[UInt8] = [0x00,HEADER(),
+        var values1 :[UInt8] = [0x00,SetAlarmRequest.HEADER(),
             UInt8(alarmhour&0xFF),
             UInt8(alarmmin&0xFF),
             UInt8(alarmenable ? 7:0),
@@ -42,7 +42,7 @@ class SetAlarmRequest: NevoRequest {
             0,
             0,0,0,0,0,0,0,0,0,0,0]
         
-        var values2 :[UInt8] = [0xFF,HEADER(),
+        var values2 :[UInt8] = [0xFF,SetAlarmRequest.HEADER(),
             0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
         
         
