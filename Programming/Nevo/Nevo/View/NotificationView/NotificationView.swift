@@ -12,6 +12,15 @@ class NotificationView: UIView {
 
     @IBOutlet var tableListView: UITableView!
 
+    private var mDelegate:ButtonManagerCallBack!
+    var animationView:AnimationView!
+
+    func bulidNotificationViewUI(delegate:ButtonManagerCallBack){
+        mDelegate = delegate
+        animationView = AnimationView(frame: self.frame, delegate: delegate)
+        
+    }
+    
     func NotificationlistCell(indexPath:NSIndexPath,dataSource:NSArray)->UITableViewCell {
         let endCellID:NSString = "endCell"
         var endCell = tableListView.dequeueReusableCellWithIdentifier(endCellID) as? TableListCell

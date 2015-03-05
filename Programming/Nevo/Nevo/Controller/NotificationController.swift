@@ -8,9 +8,9 @@
 
 import UIKit
 
-class NotificationController: UIViewController,SelectionTypeDelegate {
+class NotificationController: UIViewController,SelectionTypeDelegate,SyncControllerDelegate,ButtonManagerCallBack {
 
-    var sDelegate:SelectionTypeDelegate!
+    private var mSyncController:SyncController?
 
     @IBOutlet var notificationList: NotificationView!
 
@@ -19,7 +19,6 @@ class NotificationController: UIViewController,SelectionTypeDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         var titleLabel:UILabel = UILabel(frame: CGRectMake(0, 0, 120, 30))
         titleLabel.textColor = UIColor.whiteColor()
         titleLabel.text = NSLocalizedString("Notification", comment: "")
@@ -27,14 +26,64 @@ class NotificationController: UIViewController,SelectionTypeDelegate {
         titleLabel.textAlignment = NSTextAlignment.Center
         self.navigationItem.titleView = titleLabel
 
-        sDelegate = self
+        mSyncController = SyncController.sharedInstance
+        mSyncController?.startConnect(false, delegate: self)
+
+        notificationList.bulidNotificationViewUI(self)
         typeModel = TypeModel()
-        
+    }
+
+    override func viewDidAppear(animated: Bool) {
+        checkConnection()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+
+    // MARK: - ButtonManagerCallBack
+    func controllManager(sender:AnyObject){
+        if sender.isEqual(notificationList.animationView.getNoConnectScanButton()?) {
+            NSLog("noConnectScanButton")
+            reconnect()
+        }
+    }
+
+    // MARK: - SyncControllerDelegate
+    /**
+    See SyncControllerDelegate
+    */
+    func packetReceived(packet:RawPacket) {
+
+    }
+
+    /**
+    See SyncControllerDelegate
+    */
+    func connectionStateChanged(isConnected : Bool) {
+        //Maybe we just got disconnected, let's check
+        checkConnection()
+    }
+
+    /**
+    Checks if any device is currently connected
+    */
+    func checkConnection() {
+        if mSyncController != nil && !(mSyncController!.isConnected()) {
+            //We are currently not connected
+            notificationList.addSubview(notificationList.animationView.bulibNoConnectView())
+            reconnect()
+        } else {
+            notificationList.animationView.endConnectRemoveView()
+        }
+        
+        
+    }
+
+    func reconnect() {
+        notificationList.animationView.RotatingAnimationObject(notificationList.animationView.getNoConnectImage()!)
+        mSyncController?.connect()
     }
 
     // MARK: - SelectionTypeDelegate
@@ -72,12 +121,10 @@ class NotificationController: UIViewController,SelectionTypeDelegate {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
-        //TODD
         if (segue.identifier == "EnterNotification"){
             var notficp = segue.destinationViewController as EnterNotificationController
             notficp.notTypeArray = noticeTypeArray
-
-            notficp.sDelegate = sDelegate
+            notficp.mDelegate = self
 
         }
 

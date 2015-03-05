@@ -21,7 +21,7 @@ protocol SelectionTypeDelegate {
 
 }
 
-class EnterNotificationController: UITableViewController,SwitchActionDelegate,PaletteDelegate{
+class EnterNotificationController: UITableViewController,SwitchActionDelegate,PaletteDelegate,SyncControllerDelegate,ButtonManagerCallBack{
 
     @IBOutlet var enterNotView: EnterNotificationView!
     
@@ -31,25 +31,12 @@ class EnterNotificationController: UITableViewController,SwitchActionDelegate,Pa
     /*
     Type switch state callBack to the before a object
     */
-    var sDelegate:SelectionTypeDelegate!
+    var mDelegate:SelectionTypeDelegate!
 
-    /*
-    Receive event callback from the switch
-    */
-    var switchDelegate:SwitchActionDelegate!
-
-    /**
-    Palette callback protocol
-    */
-    var pDelegate:PaletteDelegate!
+    private var mSyncController:SyncController?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        switchDelegate = self
-
-        pDelegate = self
-
         var titleLabel:UILabel = UILabel(frame: CGRectMake(0, 0, 120, 30))
         titleLabel.textColor = UIColor.whiteColor()
         titleLabel.text = NSLocalizedString("NotificationType", comment: "")
@@ -63,11 +50,15 @@ class EnterNotificationController: UITableViewController,SwitchActionDelegate,Pa
         let item:UIBarButtonItem = UIBarButtonItem(customView: backButton as UIView);
         self.navigationItem.leftBarButtonItem = item
 
+        mSyncController = SyncController.sharedInstance
+        mSyncController?.startConnect(false, delegate: self)
+
+        enterNotView.bulidEnterNotificationView(self)
+
     }
 
-    func BackAction(back:UIButton) {
-
-        self.navigationController?.popViewControllerAnimated(true)
+    override func viewDidAppear(animated: Bool) {
+        checkConnection()
     }
 
     override func didReceiveMemoryWarning() {
@@ -75,10 +66,57 @@ class EnterNotificationController: UITableViewController,SwitchActionDelegate,Pa
         // Dispose of any resources that can be recreated.
     }
 
+    func BackAction(back:UIButton) {
+
+        self.navigationController?.popViewControllerAnimated(true)
+    }
+    
+    // MARK: - ButtonManagerCallBack
+    func controllManager(sender:AnyObject){
+        if sender.isEqual(enterNotView.animationView.getNoConnectScanButton()?) {
+            NSLog("noConnectScanButton")
+            reconnect()
+        }
+    }
+
+    // MARK: - SyncControllerDelegate
+    /**
+    See SyncControllerDelegate
+    */
+    func packetReceived(packet:RawPacket) {
+
+    }
+
+    /**
+    See SyncControllerDelegate
+    */
+    func connectionStateChanged(isConnected : Bool) {
+        //Maybe we just got disconnected, let's check
+        checkConnection()
+    }
+
+    /**
+    Checks if any device is currently connected
+    */
+    func checkConnection() {
+        if mSyncController != nil && !(mSyncController!.isConnected()) {
+            //We are currently not connected
+            enterNotView.addSubview(enterNotView.animationView.bulibNoConnectView())
+            reconnect()
+        } else {
+            enterNotView.animationView.endConnectRemoveView()
+        }
+    }
+
+    func reconnect() {
+        enterNotView.animationView.RotatingAnimationObject(enterNotView.animationView.getNoConnectImage()!)
+        mSyncController?.connect()
+    }
+
     // MARK: - SwitchActionDelegate
     func onSwitch(results:Bool){
 
-        sDelegate.onSelectedType(results, type: notTypeArray[1] as NSString)
+        mDelegate.onSelectedType(results, type: notTypeArray[1] as NSString)
     }
 
     // MARK: - PaletteDelegate
@@ -122,13 +160,13 @@ class EnterNotificationController: UITableViewController,SwitchActionDelegate,Pa
             var endCell:NotificationTypeCell = tableView.dequeueReusableCellWithIdentifier("NotificationTypeCell", forIndexPath: indexPath) as NotificationTypeCell
             endCell.cellSwitch.on = notTypeArray[0] as Bool
             endCell.cellLabel.text = notTypeArray[1] as? String
-            endCell.ActionDelegate = switchDelegate
+            endCell.ActionDelegate = self
 
             return endCell
         }else if (indexPath.section == 1){
 
             let endCell:PaletteViewCell = enterNotView.EnterPaletteListCell(indexPath, dataSource: NSArray())
-            endCell.pDelegate = pDelegate
+            endCell.pDelegate = self
 
             return endCell
         }

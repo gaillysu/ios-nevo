@@ -10,9 +10,12 @@ import UIKit
 
 class EnterNotificationView: UITableView {
 
-    func bulidUI(){
-        //TODD
-        //self.backgroundColor = UIColor.grayColor()
+    private var mDelegate:ButtonManagerCallBack!
+    var animationView:AnimationView!
+
+    func bulidEnterNotificationView(delegate:ButtonManagerCallBack){
+        mDelegate = delegate
+        animationView = AnimationView(frame: self.frame, delegate: delegate)
 
     }
 
