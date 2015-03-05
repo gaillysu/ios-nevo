@@ -170,18 +170,12 @@ class SyncController: ConnectionControllerDelegate {
             {
                 //step4:cmd 0x23
                 self.SetCardio()
+                //sync end here
+                syncFinished()
             }
-            //TODO it test 0x26 CMD, removed when add "getGoal" screen
-            if(NSData2Bytes(packet.getRawData())[1] == 0x22
-                || NSData2Bytes(packet.getRawData())[1] == 0x23)
-            {
-                //step5:cmd 0x26
-                //when set new Goal or every day reconnected BLE, get daily steps
-                self.getGoal()
-            }
+
             if(NSData2Bytes(packet.getRawData())[1] == 0x26)
             {
-                //step 6:
                 //write the daily steps to healthkit
                 //Data format: 0x00 ,0x26, daily steps (4B,LSB mode), goal steps (4B,LSB mode)
                 
@@ -195,9 +189,9 @@ class SyncController: ConnectionControllerDelegate {
                 var hk = NevoHKImpl()
                 hk.requestPermission()
                 hk.writeDataPoint(DailySteps(numberOfSteps: dailySteps ,date: NSDate()))
-                syncFinished()
+                
             }
-            //end TODO
+            
             mPacketsbuffer = []
         }
     }
