@@ -8,7 +8,7 @@
 
 import UIKit
 
-class StepGoalSetingController: UIViewController, SyncControllerDelegate {
+class StepGoalSetingController: UIViewController, SyncControllerDelegate,ButtonManagerCallBack {
     
     let NUMBER_OF_STEPS_GOAL_KEY = "NUMBER_OF_STEPS_GOAL_KEY"
 
@@ -56,8 +56,8 @@ class StepGoalSetingController: UIViewController, SyncControllerDelegate {
     }
 
 
-    // MARK: - ButtonAction
-    func controllManager(sender:UIButton) {
+    // MARK: - ButtonManagerCallBack
+    func controllManager(sender:AnyObject) {
         if sender.isEqual(stepGoalView.goalButton) {
             NSLog("goalButton")
             stepGoalView.initPickerView(mCurrentGoal.getValue())
@@ -79,7 +79,7 @@ class StepGoalSetingController: UIViewController, SyncControllerDelegate {
         }
 
 
-        if sender.isEqual(stepGoalView.getNoConnectScanButton()?) {
+        if sender.isEqual(stepGoalView.animationView.getNoConnectScanButton()?) {
             NSLog("noConnectScanButton")
             reconnect()
         }
@@ -111,8 +111,8 @@ class StepGoalSetingController: UIViewController, SyncControllerDelegate {
     }
     
     func reconnect() {
-        if let noConnectImage = stepGoalView.getNoConnectImage() {
-            stepGoalView.buttonAnimation(noConnectImage)
+        if let noConnectImage = stepGoalView.animationView.getNoConnectImage() {
+            stepGoalView.animationView.RotatingAnimationObject(noConnectImage)
         }
         mSyncController?.connect()
     }
@@ -133,9 +133,7 @@ class StepGoalSetingController: UIViewController, SyncControllerDelegate {
     
     
     /**
-    
     See SyncControllerDelegate
-    
     */
     
     func connectionStateChanged(isConnected : Bool) {
@@ -149,23 +147,19 @@ class StepGoalSetingController: UIViewController, SyncControllerDelegate {
     
     
     /**
-    
     Checks if any device is currently connected
-    
     */
     
     func checkConnection() {
-        
-        
-        
+
         if mSyncController != nil && !(mSyncController!.isConnected()) {
-            
+
             //We are currently not connected
-            stepGoalView.bulibNoConnectView()
+            stepGoalView.addSubview(stepGoalView.animationView.bulibNoConnectView())
             reconnect()
         } else {
 
-            stepGoalView.endConnectRemoveView()
+            stepGoalView.animationView.endConnectRemoveView()
         }
         
         

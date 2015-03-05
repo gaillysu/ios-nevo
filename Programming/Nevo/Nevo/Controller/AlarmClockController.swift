@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AlarmClockController: UIViewController, SyncControllerDelegate,alarmButtonActionCallBack {
+class AlarmClockController: UIViewController, SyncControllerDelegate,ButtonManagerCallBack {
 
     @IBOutlet var alarmView: alarmClockView!
     
@@ -87,7 +87,7 @@ class AlarmClockController: UIViewController, SyncControllerDelegate,alarmButton
             setAlarm()
         }
 
-        if sender.isEqual(alarmView.getNoConnectScanButton()?) {
+        if sender.isEqual(alarmView.animationView.getNoConnectScanButton()?) {
             NSLog("noConnectScanButton")
             reconnect()
         }
@@ -127,14 +127,12 @@ class AlarmClockController: UIViewController, SyncControllerDelegate,alarmButton
     }
     
     func reconnect() {
-            alarmView.buttonAnimation(alarmView.getNoConnectImage()!)
+            alarmView.animationView.RotatingAnimationObject(alarmView.animationView.getNoConnectImage()!)
             mSyncController?.connect()
     }
 
     /**
-    
     See SyncControllerDelegate
-    
     */
      func packetReceived(packet:RawPacket) {
     
@@ -164,16 +162,14 @@ class AlarmClockController: UIViewController, SyncControllerDelegate,alarmButton
 
     func checkConnection() {
 
-
-
         if mSyncController != nil && !(mSyncController!.isConnected()) {
             
             //We are currently not connected
-            alarmView.bulibNoConnectView()
+           alarmView.addSubview(alarmView.animationView.bulibNoConnectView())
             reconnect()
         } else {
             
-            alarmView.endConnectRemoveView()
+            alarmView.animationView.endConnectRemoveView()
         }
 
 

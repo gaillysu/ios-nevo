@@ -26,32 +26,27 @@ class StepGoalSetingView: UIView,UIPickerViewDataSource,UIPickerViewDelegate {
     @IBOutlet var sportiveButton: UIButton!
     @IBOutlet var stepRoundImage: UIImageView!
 
-    private var mNoConnectionView:UIView?
-    
     private var mPickerView:UIPickerView?
 
     private var mButtonArray:[UIButton]=[]
 
-    private var mNoConnectScanButton:UIButton?
-
     private var mIndexArray:NSMutableArray = NSMutableArray()
 
     let BAG_PICKER_TAG:Int = 1300//Looking for view using a fixed tag values
-    let NO_CONNECT_VIEW:Int = 1200
     let PICKER_BG_COLOR = UIColor(red: 255/255.0, green: 255/255.0, blue: 255/255.0, alpha: 1)//pickerView background color
     let BUTTONBGVIEW_COLOR = UIColor(red: 244/255.0, green: 242/255.0, blue: 241/255.0, alpha: 1)//View button background color
     
-    private var mDelegate:StepGoalSetingController?
+    private var mDelegate:ButtonManagerCallBack!
 
     private var mEnterButton:UIButton?
 
-    private var mNoConnectImage:UIImageView?
+    var animationView:AnimationView!
 
-    func bulidStepGoalView(delegate:UIViewController){
+    func bulidStepGoalView(delegate:ButtonManagerCallBack){
 
-        if let callBackDelgate = delegate as? StepGoalSetingController {
-            mDelegate = callBackDelgate
-        }
+        mDelegate = delegate
+
+        animationView = AnimationView(frame: self.frame, delegate: delegate)
 
         stepLabel.text = NSLocalizedString("step", comment: "")
 
@@ -157,58 +152,6 @@ class StepGoalSetingView: UIView,UIPickerViewDataSource,UIPickerViewDelegate {
 
     }
 
-    func bulibNoConnectView() {
-        if mNoConnectionView==nil {
-            mNoConnectionView = UIView(frame: CGRectMake(0, 0, self.frame.size.width, self.frame.size.height))
-            mNoConnectionView?.backgroundColor = PICKER_BG_COLOR
-            mNoConnectionView?.tag = NO_CONNECT_VIEW
-            self.addSubview(mNoConnectionView!)
-
-            mNoConnectImage = UIImageView(frame: CGRectMake(0, 0, 160, 160))
-            mNoConnectImage?.image = UIImage(named: "connect")
-            mNoConnectImage?.center = CGPointMake(mNoConnectionView!.frame.size.width/2.0, mNoConnectionView!.frame.size.height/2.0)
-            mNoConnectImage?.backgroundColor = UIColor.clearColor()
-            mNoConnectionView?.addSubview(mNoConnectImage!)
-
-            mNoConnectScanButton = UIButton.buttonWithType(UIButtonType.Custom) as? UIButton
-            mNoConnectScanButton?.frame = CGRectMake(0, 0, 160, 160)
-            mNoConnectScanButton?.center = CGPointMake(mNoConnectionView!.frame.size.width/2.0, mNoConnectionView!.frame.size.height/2.0)
-            mNoConnectScanButton?.setTitle(NSLocalizedString("Connect", comment: ""), forState: UIControlState.Normal)
-            mNoConnectScanButton?.backgroundColor = UIColor.clearColor()
-            mNoConnectScanButton?.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
-            mNoConnectScanButton?.addTarget(self, action: Selector("buttonAction:"), forControlEvents: UIControlEvents.TouchUpInside)
-            mNoConnectionView?.addSubview(mNoConnectScanButton!)
-        } else {
-            
-            if let noConnect:UIView = mNoConnectionView {
-                UIView.animateKeyframesWithDuration(0.3, delay: 0, options: UIViewKeyframeAnimationOptions.LayoutSubviews, animations: { () -> Void in
-                    
-                    noConnect.alpha = 255;
-                    
-                    }) { (Bool) -> Void in
-                        noConnect.hidden=false
-                }
-            }
-        }
-    }
-
-    func endConnectRemoveView() {
-
-
-        if let noConnect:UIView = mNoConnectionView {
-            UIView.animateKeyframesWithDuration(0.3, delay: 0, options: UIViewKeyframeAnimationOptions.LayoutSubviews, animations: { () -> Void in
-
-                noConnect.alpha = 0;
-
-                }) { (Bool) -> Void in
-                noConnect.hidden=true
-            }
-        }
-
-
-
-    }
-
     /*
     End pickerView performed operation
     */
@@ -236,38 +179,6 @@ class StepGoalSetingView: UIView,UIPickerViewDataSource,UIPickerViewDelegate {
         
     }
 
-    func buttonAnimation(sender:UIImageView) {
-
-        var rotationAnimation:CABasicAnimation = CABasicAnimation(keyPath: "transform.rotation.z")
-        rotationAnimation.toValue = NSNumber(double: M_PI * 2.0);
-        rotationAnimation.duration = 1;
-        rotationAnimation.cumulative = true;
-        rotationAnimation.repeatCount = 10;
-        rotationAnimation.delegate = self
-        rotationAnimation.fillMode = kCAFillModeForwards;
-        rotationAnimation.removedOnCompletion = false
-        sender.layer.addAnimation(rotationAnimation, forKey: "NoButtonRotationAnimation")
-    }
-
-    /**
-    * Animation Start
-    */
-    override func animationDidStart(theAnimation:CAAnimation)
-    {
-        NSLog("begin");
-        mNoConnectScanButton?.enabled = false
-        mNoConnectScanButton?.setTitle(NSLocalizedString(" ", comment: ""), forState: UIControlState.Normal)
-    }
-
-    /**
-    * Animation Stop
-    */
-    override func animationDidStop(theAnimation:CAAnimation ,finished:Bool){
-        NSLog("end");
-        mNoConnectScanButton?.enabled = true
-        mNoConnectScanButton?.setTitle(NSLocalizedString("Connect", comment: ""), forState: UIControlState.Normal)
-    }
-
     /*
     Clean up the state of all buttons
     */
@@ -284,8 +195,8 @@ class StepGoalSetingView: UIView,UIPickerViewDataSource,UIPickerViewDelegate {
     Click the cancelButton and enterButton events
     */
     func enterAction(sender:UIButton) {
-        if sender.isEqual(mEnterButton?)
-        {
+        if sender.isEqual(mEnterButton?){
+
             mDelegate?.controllManager(sender)
         }
         EndAnimation()
@@ -348,18 +259,9 @@ class StepGoalSetingView: UIView,UIPickerViewDataSource,UIPickerViewDelegate {
             
         }
     }
-    
-    func getNoConnectScanButton() -> UIButton? {
-        return mNoConnectScanButton
-    }
-    
+
     func getEnterButton() -> UIButton? {
         return mEnterButton
     }
-    
-    func getNoConnectImage() -> UIImageView? {
-        return mNoConnectImage
-    }
-
 
 }
