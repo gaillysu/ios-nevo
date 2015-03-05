@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		003542B11AA7F69E00B27381 /* EnterNotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003542B01AA7F69E00B27381 /* EnterNotificationView.swift */; };
+		003542B71AA823B000B27381 /* AnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003542B61AA823B000B27381 /* AnimationView.swift */; };
 		00478F4F1A8F637D00D0DCE2 /* clockViewHour.png in Resources */ = {isa = PBXBuildFile; fileRef = 00478F4D1A8F637D00D0DCE2 /* clockViewHour.png */; };
 		00478F501A8F637D00D0DCE2 /* clockViewMinute.png in Resources */ = {isa = PBXBuildFile; fileRef = 00478F4E1A8F637D00D0DCE2 /* clockViewMinute.png */; };
 		005350B81A8B0F2B00BF289D /* TutorialPage2View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005350B71A8B0F2B00BF289D /* TutorialPage2View.swift */; };
@@ -126,6 +127,7 @@
 
 /* Begin PBXFileReference section */
 		003542B01AA7F69E00B27381 /* EnterNotificationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnterNotificationView.swift; sourceTree = "<group>"; };
+		003542B61AA823B000B27381 /* AnimationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AnimationView.swift; path = View/AnimationView.swift; sourceTree = "<group>"; };
 		00478F4D1A8F637D00D0DCE2 /* clockViewHour.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clockViewHour.png; sourceTree = "<group>"; };
 		00478F4E1A8F637D00D0DCE2 /* clockViewMinute.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clockViewMinute.png; sourceTree = "<group>"; };
 		005350B71A8B0F2B00BF289D /* TutorialPage2View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TutorialPage2View.swift; path = View/Tutorial/TutorialPage2View.swift; sourceTree = "<group>"; };
@@ -568,8 +570,8 @@
 				005350BB1A8B4C1200BF289D /* StepGoalSetingView.swift */,
 				005FE77A1A8C979800961239 /* alarmClockView.swift */,
 				9A3B7AAE1A9450D000BDC3C6 /* AppTheme.swift */,
-				00A2287F1AA5845F00360C36 /* EnterNotificationView.swift */,
 				591BF2C81AA7F4CC00DFF349 /* AnnularProgressView.swift */,
+				003542B61AA823B000B27381 /* AnimationView.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -820,6 +822,7 @@
 				9A2D6C401A9C783800591BDC /* NevoHKImpl.swift in Sources */,
 				9A3B7AB11A947BCB00BDC3C6 /* GetActivityRequest.swift in Sources */,
 				00A228831AA5BAF800360C36 /* TableListCell.swift in Sources */,
+				003542B71AA823B000B27381 /* AnimationView.swift in Sources */,
 				07C59F241A8C5A0A00D65C84 /* SetNortificationRequest.swift in Sources */,
 				9A3E57311A80F08400DFFAE1 /* NevoOTAControllerProfile.swift in Sources */,
 				07C59F2E1A8C622300D65C84 /* SetProfileRequest.swift in Sources */,

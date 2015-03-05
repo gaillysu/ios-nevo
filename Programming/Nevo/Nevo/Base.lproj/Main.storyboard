@@ -291,7 +291,7 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fjs-qS-fa5">
+                            <switch opaque="NO" tag="2300" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fjs-qS-fa5">
                                 <rect key="frame" x="136" y="465" width="51" height="31"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="49" id="a1Z-gj-U9L"/>
