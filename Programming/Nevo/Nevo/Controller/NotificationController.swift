@@ -8,13 +8,14 @@
 
 import UIKit
 
-class NotificationController: UIViewController {
+class NotificationController: UIViewController,SelectionTypeDelegate {
 
+    var sDelegate:SelectionTypeDelegate!
 
     @IBOutlet var notificationList: NotificationView!
-    let listContentArray:NSArray = [["FaceBook","facebookIcon"],["SMS","smsIcon"],["CALL","callIcon"],["EMAIL","emailIcon"]]//TODD
 
-    var typeInt:Int!
+    var noticeTypeArray:NSArray!
+    var typeModel:TypeModel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,12 +26,22 @@ class NotificationController: UIViewController {
         titleLabel.font = UIFont.systemFontOfSize(25)
         titleLabel.textAlignment = NSTextAlignment.Center
         self.navigationItem.titleView = titleLabel
+
+        sDelegate = self
+        typeModel = TypeModel()
         
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+
+    // MARK: - SelectionTypeDelegate
+    func onSelectedType(results:Bool,type:NSString){
+        NSLog("type===:\(type)")
+        typeModel.setNotificationTypeStates(type, states: results)
+        notificationList.tableListView.reloadData()
     }
 
     // MARK: - UITableViewDelegate
@@ -40,18 +51,18 @@ class NotificationController: UIViewController {
     }
 
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
-        typeInt = indexPath.row
+        noticeTypeArray = typeModel.getNotificationTypeContent()[indexPath.row] as NSArray
         self.performSegueWithIdentifier("EnterNotification", sender: self)
     }
 
     // MARK: - UITableViewDataSource
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
-
-        return listContentArray.count
+        let countyyy:Int = typeModel.getNotificationTypeContent().count
+        return typeModel.getNotificationTypeContent().count
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = notificationList.NotificationlistCell(indexPath, dataSource: listContentArray)
+        let cell = notificationList.NotificationlistCell(indexPath, dataSource: typeModel.getNotificationTypeContent())
         return cell
     }
 
@@ -63,9 +74,10 @@ class NotificationController: UIViewController {
         // Pass the selected object to the new view controller.
         //TODD
         if (segue.identifier == "EnterNotification"){
-            NSLog("segue.identifier\(segue.identifier)")
             var notficp = segue.destinationViewController as EnterNotificationController
-            notficp.type = typeInt
+            notficp.notTypeArray = noticeTypeArray
+
+            notficp.sDelegate = sDelegate
 
         }
 

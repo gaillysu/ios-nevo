@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="B94-9O-eGF">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Navigation Controller-->
@@ -342,9 +343,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Zx4-WI-sxC">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="Zx4-WI-sxC">
                                 <rect key="frame" x="0.0" y="49" width="320" height="470"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <connections>
                                     <outlet property="dataSource" destination="y9Z-P5-cut" id="0uy-wB-PIo"/>
                                     <outlet property="delegate" destination="y9Z-P5-cut" id="OlG-DG-0TR"/>
@@ -365,7 +366,7 @@
                     <navigationItem key="navigationItem" title="Notification" id="QNM-Mj-NtH"/>
                     <connections>
                         <outlet property="notificationList" destination="h7L-SF-lkB" id="8vS-ge-L65"/>
-                        <segue destination="PLg-gm-zyv" kind="push" identifier="EnterNotification" id="z11-dp-pLg"/>
+                        <segue destination="zNg-MH-VNI" kind="push" identifier="EnterNotification" id="oHk-eI-Rxb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QO6-tg-aH2" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -373,60 +374,60 @@
             <point key="canvasLocation" x="12" y="1910"/>
         </scene>
         <!--Enter Notification Controller-->
-        <scene sceneID="PSY-Cj-O5o">
+        <scene sceneID="JFS-lA-F3A">
             <objects>
-                <viewController id="PLg-gm-zyv" customClass="EnterNotificationController" customModule="Nevo" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="A83-X7-MXP"/>
-                        <viewControllerLayoutGuide type="bottom" id="iu0-1j-hnT"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="buS-hT-xZN" customClass="EnterNotificationView" customModule="Nevo" customModuleProvider="target">
+                <tableViewController id="zNg-MH-VNI" customClass="EnterNotificationController" customModule="Nevo" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="1" sectionFooterHeight="10" id="Z1d-Y2-5BZ" customClass="EnterNotificationView" customModule="Nevo" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kny-IN-PsQ">
-                                <rect key="frame" x="0.0" y="73" width="320" height="50"/>
-                                <subviews>
-                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="M4m-43-AMR">
-                                        <rect key="frame" x="238" y="9.5" width="51" height="31"/>
-                                    </switch>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pPr-RY-0a8">
-                                        <rect key="frame" x="20" y="5" width="89" height="40"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstItem="pPr-RY-0a8" firstAttribute="top" secondItem="kny-IN-PsQ" secondAttribute="top" constant="5" id="2gE-AH-zjd"/>
-                                    <constraint firstAttribute="trailing" secondItem="M4m-43-AMR" secondAttribute="trailing" constant="33" id="a22-ki-eFo"/>
-                                    <constraint firstItem="pPr-RY-0a8" firstAttribute="leading" secondItem="kny-IN-PsQ" secondAttribute="leading" constant="20" id="arW-2T-Vgn"/>
-                                    <constraint firstAttribute="centerY" secondItem="pPr-RY-0a8" secondAttribute="centerY" id="cAF-li-0Ld"/>
-                                    <constraint firstAttribute="centerY" secondItem="M4m-43-AMR" secondAttribute="centerY" id="m0Q-nu-vdQ"/>
-                                </constraints>
-                            </view>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="kny-IN-PsQ" firstAttribute="leading" secondItem="buS-hT-xZN" secondAttribute="leading" id="9fA-E3-KDf"/>
-                            <constraint firstAttribute="centerX" secondItem="kny-IN-PsQ" secondAttribute="centerX" id="GtE-mB-kEn"/>
-                            <constraint firstAttribute="centerY" secondItem="kny-IN-PsQ" secondAttribute="centerY" constant="186" id="SHf-00-buh"/>
-                            <constraint firstAttribute="trailing" secondItem="kny-IN-PsQ" secondAttribute="trailing" id="UHB-uE-uEk"/>
-                        </constraints>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="NotificationTypeCell" rowHeight="44" id="xtn-ig-IAf" customClass="NotificationTypeCell" customModule="Nevo" customModuleProvider="target">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="xtn-ig-IAf" id="7av-HV-kMH">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="M4m-43-AMR">
+                                            <rect key="frame" x="249" y="6" width="51" height="31"/>
+                                            <connections>
+                                                <action selector="onTypeSwitchAction:" destination="xtn-ig-IAf" eventType="valueChanged" id="B7T-nh-QsV"/>
+                                            </connections>
+                                        </switch>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pPr-RY-0a8">
+                                            <rect key="frame" x="16" y="4" width="89" height="36"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="pPr-RY-0a8" firstAttribute="top" secondItem="7av-HV-kMH" secondAttribute="top" constant="4" id="5N6-pP-ZIl"/>
+                                        <constraint firstAttribute="centerY" secondItem="pPr-RY-0a8" secondAttribute="centerY" id="7H5-hx-cKW"/>
+                                        <constraint firstAttribute="trailing" secondItem="pPr-RY-0a8" secondAttribute="trailing" constant="215" id="ApD-iK-HHC"/>
+                                        <constraint firstAttribute="centerY" secondItem="M4m-43-AMR" secondAttribute="centerY" id="JtJ-UW-w7I"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="M4m-43-AMR" secondAttribute="trailing" constant="14" id="XO0-ss-f1X"/>
+                                        <constraint firstItem="pPr-RY-0a8" firstAttribute="leading" secondItem="7av-HV-kMH" secondAttribute="leading" constant="16" id="Xon-6i-smS"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="cellLabel" destination="pPr-RY-0a8" id="huF-Tu-ZGr"/>
+                                    <outlet property="cellSwitch" destination="M4m-43-AMR" id="6zx-bM-66i"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
                         <connections>
-                            <outlet property="notificSwitch" destination="M4m-43-AMR" id="LhB-mU-kWm"/>
-                            <outlet property="titleLabel" destination="pPr-RY-0a8" id="ULP-wx-rtq"/>
+                            <outlet property="dataSource" destination="zNg-MH-VNI" id="6f7-kh-NTd"/>
+                            <outlet property="delegate" destination="zNg-MH-VNI" id="EGq-jm-WRv"/>
                         </connections>
-                    </view>
-                    <navigationItem key="navigationItem" id="0eI-XQ-foW"/>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="FRM-bu-h7l"/>
                     <connections>
-                        <outlet property="enterNotifiView" destination="buS-hT-xZN" id="1xi-uG-XSd"/>
+                        <outlet property="enterNotView" destination="Z1d-Y2-5BZ" id="hVA-I8-nun"/>
                     </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="MWs-2j-zUi" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UwG-zm-DKP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="12" y="2646"/>
+            <point key="canvasLocation" x="12" y="2624"/>
         </scene>
         <!--Clock-->
         <scene sceneID="ufC-wZ-h7g">

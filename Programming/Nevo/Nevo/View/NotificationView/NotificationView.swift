@@ -21,14 +21,17 @@ class NotificationView: UIView {
             let nibs:NSArray = NSBundle.mainBundle().loadNibNamed("TableListCell", owner: self, options: nil)
              endCell = nibs.objectAtIndex(0) as? TableListCell;
             endCell?.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator;
-            endCell?.backgroundColor = UIColor.clearColor();
 
         }
         endCell?.selectionStyle = UITableViewCellSelectionStyle.None;
-        endCell?.imageView?.image = UIImage(named:dataSource[indexPath.row].objectAtIndex(1) as String)
-        endCell?.textLabel?.text = dataSource[indexPath.row].objectAtIndex(0) as? String
+        if (dataSource[indexPath.row].objectAtIndex(0) as Bool){
+            endCell?.StatesLabel.text = "On"
+        }else{
+            endCell?.StatesLabel.text = "OFF"
+        }
+        endCell?.textLabel?.text = dataSource[indexPath.row].objectAtIndex(1) as? String
+        endCell?.imageView?.image = UIImage(named:dataSource[indexPath.row].objectAtIndex(2) as String)
         endCell?.StatesLabel.textColor = AppTheme.NEVO_SOLAR_GRAY()
-        endCell?.StatesLabel.text = "On"
 
         return endCell!
 

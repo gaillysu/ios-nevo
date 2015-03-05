@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		003542B11AA7F69E00B27381 /* EnterNotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003542B01AA7F69E00B27381 /* EnterNotificationView.swift */; };
 		00478F4F1A8F637D00D0DCE2 /* clockViewHour.png in Resources */ = {isa = PBXBuildFile; fileRef = 00478F4D1A8F637D00D0DCE2 /* clockViewHour.png */; };
 		00478F501A8F637D00D0DCE2 /* clockViewMinute.png in Resources */ = {isa = PBXBuildFile; fileRef = 00478F4E1A8F637D00D0DCE2 /* clockViewMinute.png */; };
 		005350B81A8B0F2B00BF289D /* TutorialPage2View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005350B71A8B0F2B00BF289D /* TutorialPage2View.swift */; };
@@ -44,15 +45,18 @@
 		00A228701AA551A400360C36 /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A2286F1AA551A400360C36 /* NotificationController.swift */; };
 		00A228761AA5573B00360C36 /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A228751AA5573B00360C36 /* NotificationView.swift */; };
 		00A2287E1AA57F1A00360C36 /* EnterNotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A2287D1AA57F1A00360C36 /* EnterNotificationController.swift */; };
-		00A228801AA5845F00360C36 /* EnterNotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A2287F1AA5845F00360C36 /* EnterNotificationView.swift */; };
 		00A228831AA5BAF800360C36 /* TableListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A228811AA5BAF800360C36 /* TableListCell.swift */; };
 		00A228841AA5BAF800360C36 /* TableListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00A228821AA5BAF800360C36 /* TableListCell.xib */; };
 		00A773961A88562F0018E121 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 00A773911A88562F0018E121 /* Localizable.strings */; };
+		00B1DFAF1AA7F21200FDFECD /* NotificationTypeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B1DFAE1AA7F21200FDFECD /* NotificationTypeCell.swift */; };
+		00B1DFB21AA7F2DB00FDFECD /* PaletteViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B1DFB01AA7F2DB00FDFECD /* PaletteViewCell.swift */; };
+		00B1DFB31AA7F2DB00FDFECD /* PaletteViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00B1DFB11AA7F2DB00FDFECD /* PaletteViewCell.xib */; };
 		00BBA65F1AA4580800D1DA9D /* defaultImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 00BBA65E1AA4580800D1DA9D /* defaultImage.png */; };
 		00C30AD91A89E08600C9F67B /* Page3Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C30AD81A89E08600C9F67B /* Page3Controller.swift */; };
 		00C30ADB1A89FC8200C9F67B /* ButtonCallBack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C30ADA1A89FC8200C9F67B /* ButtonCallBack.swift */; };
 		00C640F41A8D9F4500815CF8 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C640F31A8D9F4500815CF8 /* MainTabBarController.swift */; };
 		00C640F61A8DEE0800815CF8 /* clockView600.png in Resources */ = {isa = PBXBuildFile; fileRef = 00C640F51A8DEE0800815CF8 /* clockView600.png */; };
+		00CD3AFA1AA701D900F3D6A5 /* TypeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00CD3AF91AA701D900F3D6A5 /* TypeModel.swift */; };
 		00E0E1441A88BBDE0001B8CA /* wallpaper0.png in Resources */ = {isa = PBXBuildFile; fileRef = 00E0E1431A88BBDE0001B8CA /* wallpaper0.png */; };
 		0704C95E1AA413BB00F9AE09 /* imaze_20150227_v10_2.hex in Resources */ = {isa = PBXBuildFile; fileRef = 0704C95C1AA413BB00F9AE09 /* imaze_20150227_v10_2.hex */; };
 		0704C95F1AA413BB00F9AE09 /* iMaze_v8_8hr.bin in Resources */ = {isa = PBXBuildFile; fileRef = 0704C95D1AA413BB00F9AE09 /* iMaze_v8_8hr.bin */; };
@@ -120,6 +124,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		003542B01AA7F69E00B27381 /* EnterNotificationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnterNotificationView.swift; sourceTree = "<group>"; };
 		00478F4D1A8F637D00D0DCE2 /* clockViewHour.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clockViewHour.png; sourceTree = "<group>"; };
 		00478F4E1A8F637D00D0DCE2 /* clockViewMinute.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clockViewMinute.png; sourceTree = "<group>"; };
 		005350B71A8B0F2B00BF289D /* TutorialPage2View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TutorialPage2View.swift; path = View/Tutorial/TutorialPage2View.swift; sourceTree = "<group>"; };
@@ -158,7 +163,6 @@
 		00A2286F1AA551A400360C36 /* NotificationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NotificationController.swift; path = Controller/NotificationController.swift; sourceTree = "<group>"; };
 		00A228751AA5573B00360C36 /* NotificationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
 		00A2287D1AA57F1A00360C36 /* EnterNotificationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EnterNotificationController.swift; path = Controller/EnterNotificationController.swift; sourceTree = "<group>"; };
-		00A2287F1AA5845F00360C36 /* EnterNotificationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EnterNotificationView.swift; path = View/EnterNotificationView.swift; sourceTree = "<group>"; };
 		00A228811AA5BAF800360C36 /* TableListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableListCell.swift; sourceTree = "<group>"; };
 		00A228821AA5BAF800360C36 /* TableListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TableListCell.xib; sourceTree = "<group>"; };
 		00A773841A8854580018E121 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Main.strings; sourceTree = "<group>"; };
@@ -170,11 +174,15 @@
 		00A773941A88562F0018E121 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		00A773951A88562F0018E121 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		00A773971A885A880018E121 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
+		00B1DFAE1AA7F21200FDFECD /* NotificationTypeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationTypeCell.swift; sourceTree = "<group>"; };
+		00B1DFB01AA7F2DB00FDFECD /* PaletteViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaletteViewCell.swift; sourceTree = "<group>"; };
+		00B1DFB11AA7F2DB00FDFECD /* PaletteViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PaletteViewCell.xib; sourceTree = "<group>"; };
 		00BBA65E1AA4580800D1DA9D /* defaultImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = defaultImage.png; sourceTree = "<group>"; };
 		00C30AD81A89E08600C9F67B /* Page3Controller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Page3Controller.swift; sourceTree = "<group>"; };
 		00C30ADA1A89FC8200C9F67B /* ButtonCallBack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ButtonCallBack.swift; path = View/Tutorial/ButtonCallBack.swift; sourceTree = "<group>"; };
 		00C640F31A8D9F4500815CF8 /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainTabBarController.swift; path = Controller/MainTabBarController.swift; sourceTree = "<group>"; };
 		00C640F51A8DEE0800815CF8 /* clockView600.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clockView600.png; sourceTree = "<group>"; };
+		00CD3AF91AA701D900F3D6A5 /* TypeModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TypeModel.swift; sourceTree = "<group>"; };
 		00E0E1431A88BBDE0001B8CA /* wallpaper0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wallpaper0.png; sourceTree = "<group>"; };
 		0704C95C1AA413BB00F9AE09 /* imaze_20150227_v10_2.hex */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = imaze_20150227_v10_2.hex; sourceTree = "<group>"; };
 		0704C95D1AA413BB00F9AE09 /* iMaze_v8_8hr.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = iMaze_v8_8hr.bin; sourceTree = "<group>"; };
@@ -348,6 +356,27 @@
 			path = Strings;
 			sourceTree = "<group>";
 		};
+		00B1DFAD1AA7F1B800FDFECD /* EnterNotificationView */ = {
+			isa = PBXGroup;
+			children = (
+				003542B01AA7F69E00B27381 /* EnterNotificationView.swift */,
+				00B1DFAE1AA7F21200FDFECD /* NotificationTypeCell.swift */,
+				00B1DFB01AA7F2DB00FDFECD /* PaletteViewCell.swift */,
+				00B1DFB11AA7F2DB00FDFECD /* PaletteViewCell.xib */,
+			);
+			name = EnterNotificationView;
+			path = View/EnterNotificationView;
+			sourceTree = "<group>";
+		};
+		00CD3AF81AA7019C00F3D6A5 /* NotificationType */ = {
+			isa = PBXGroup;
+			children = (
+				00CD3AF91AA701D900F3D6A5 /* TypeModel.swift */,
+			);
+			name = NotificationType;
+			path = Model/NotificationType;
+			sourceTree = "<group>";
+		};
 		07BE0CEF1A84A2F8000C4AC7 /* IntelHex2BinConverter */ = {
 			isa = PBXGroup;
 			children = (
@@ -518,6 +547,7 @@
 		9AD8F95E1A6E003B00F01014 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				00CD3AF81AA7019C00F3D6A5 /* NotificationType */,
 				9A2D6C411A9C8E0700591BDC /* Activity */,
 				9AD8F9711A6E046400F01014 /* Goal */,
 			);
@@ -527,6 +557,7 @@
 		9AD8F95F1A6E004000F01014 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				00B1DFAD1AA7F1B800FDFECD /* EnterNotificationView */,
 				00A228741AA5573B00360C36 /* NotificationView */,
 				9A9BD1BF1A88844900A95ACA /* TutorialPageView */,
 				007F796C1A878C6C006C89E6 /* TutorialView.swift */,
@@ -535,7 +566,6 @@
 				005350BB1A8B4C1200BF289D /* StepGoalSetingView.swift */,
 				005FE77A1A8C979800961239 /* alarmClockView.swift */,
 				9A3B7AAE1A9450D000BDC3C6 /* AppTheme.swift */,
-				00A2287F1AA5845F00360C36 /* EnterNotificationView.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -702,6 +732,7 @@
 				00478F4F1A8F637D00D0DCE2 /* clockViewHour.png in Resources */,
 				0704C9611AA4167600F9AE09 /* iMaze_v8_24hr.bin in Resources */,
 				007F79981A878D0B006C89E6 /* Raleway-Regular.ttf in Resources */,
+				00B1DFB31AA7F2DB00FDFECD /* PaletteViewCell.xib in Resources */,
 				007F79951A878D0B006C89E6 /* Raleway-LightItalic.ttf in Resources */,
 				007D37B11A9203A300960E69 /* selectedButton.png in Resources */,
 				007F798C1A878D0B006C89E6 /* Raleway-BlackItalic.ttf in Resources */,
@@ -751,14 +782,15 @@
 				005350B81A8B0F2B00BF289D /* TutorialPage2View.swift in Sources */,
 				9A3E57321A80F08400DFFAE1 /* NevoOTAModeProfile.swift in Sources */,
 				07C59F2A1A8C61E900D65C84 /* SetCardioRequest.swift in Sources */,
+				00CD3AFA1AA701D900F3D6A5 /* TypeModel.swift in Sources */,
 				9A2D6C451A9C8E4800591BDC /* DailySteps.swift in Sources */,
 				9A9BD1C11A88849700A95ACA /* TutorialPage1View.swift in Sources */,
-				00A228801AA5845F00360C36 /* EnterNotificationView.swift in Sources */,
 				007F796E1A878C6C006C89E6 /* TutorialView.swift in Sources */,
 				005350BA1A8B4BC600BF289D /* StepGoalSetingController.swift in Sources */,
 				9A9BD1C81A88C0A400A95ACA /* TutorialScanPageView.swift in Sources */,
 				9AD8F98D1A6E2D6E00F01014 /* RawPacket.swift in Sources */,
 				9AD8F9621A6E00E800F01014 /* NevoBTimpl.swift in Sources */,
+				00B1DFAF1AA7F21200FDFECD /* NotificationTypeCell.swift in Sources */,
 				07CC4A2F1A821B46008DA749 /* NevoOTARequest.swift in Sources */,
 				00A2287E1AA57F1A00360C36 /* EnterNotificationController.swift in Sources */,
 				9AD8F9791A6E05F700F01014 /* NevoBT.swift in Sources */,
@@ -791,6 +823,7 @@
 				9A3E57251A80E56E00DFFAE1 /* NevoProfile.swift in Sources */,
 				005350BC1A8B4C1200BF289D /* StepGoalSetingView.swift in Sources */,
 				007DD4BB1A89DDC000CE7264 /* Page1Controller.swift in Sources */,
+				003542B11AA7F69E00B27381 /* EnterNotificationView.swift in Sources */,
 				9A2D6C431A9C8E3600591BDC /* HourlySteps.swift in Sources */,
 				9A3E57231A80E56E00DFFAE1 /* ConnectionController.swift in Sources */,
 				9A2D6C3E1A9C71E500591BDC /* NevoHK.swift in Sources */,
@@ -804,6 +837,7 @@
 				9A3E57331A80F08400DFFAE1 /* NevoOTAPacketProfile.swift in Sources */,
 				00A228761AA5573B00360C36 /* NotificationView.swift in Sources */,
 				9A3E57241A80E56E00DFFAE1 /* ConnectionControllerImpl.swift in Sources */,
+				00B1DFB21AA7F2DB00FDFECD /* PaletteViewCell.swift in Sources */,
 				9AD8F96C1A6E03BC00F01014 /* HomeController.swift in Sources */,
 				07C59F301A8C625800D65C84 /* SetAlarmRequest.swift in Sources */,
 				07C18C0E1A81AB3900D0BF4A /* NevoOtaViewController.swift in Sources */,
