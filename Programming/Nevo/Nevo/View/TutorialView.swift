@@ -41,7 +41,8 @@ class TutorialView: UIView {
         backgroundImage.center = CGPointMake(self.frame.size.width/2.0, self.frame.size.height/2.0)
         backgroundImage.userInteractionEnabled = true;
         backgroundImage.backgroundColor = UIColor.clearColor();
-        backgroundImage.image = UIImage(named: "NevoPicture")
+        let imagePath:String = NSBundle.mainBundle().pathForResource("NevoPicture", ofType: "png")!
+        backgroundImage.image = UIImage(contentsOfFile: imagePath)
         self.addSubview(backgroundImage)
 
         //Click into the tutorial page
