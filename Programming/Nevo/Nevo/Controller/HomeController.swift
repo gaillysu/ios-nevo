@@ -98,7 +98,7 @@ class HomeController: UIViewController, SyncControllerDelegate{
             
                 NSLog("get Daily Steps is: \(dailySteps), getDaily Goal is: \(dailyStepGoal), saved Goal is:\(numberOfSteps),percent is: \(percent)")
             
-                homeView.mProgressView.progress = percent
+                homeView.setProgressViewProgress(percent)
             
                 mPacketsbuffer = []
         }        
