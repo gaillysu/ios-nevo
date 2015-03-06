@@ -106,7 +106,7 @@ class NotificationController: UIViewController,SelectionTypeDelegate,SyncControl
 
     // MARK: - UITableViewDataSource
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
-        let countyyy:Int = typeModel.getNotificationTypeContent().count
+
         return typeModel.getNotificationTypeContent().count
     }
 
