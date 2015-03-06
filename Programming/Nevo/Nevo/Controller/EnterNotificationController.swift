@@ -193,14 +193,14 @@ class EnterNotificationController: UITableViewController,SwitchActionDelegate,Pa
         }else if (indexPath.section == 1){
 
             let endCell:PaletteViewCell = enterNotView.EnterPaletteListCell(indexPath, dataSource: NSArray())
-
-            if ((notTypeArray[3] as NSNumber).unsignedIntValue == SetNortificationRequest.SetNortificationRequestValues.RED_LED){
+//!NSNumber(unsignedInt: SetNortificationRequest.getLedColor(emailTypeString) & SetNortificationRequest.SetNortificationRequestValues.VIB_MOTOR)
+            if (((notTypeArray[3] as NSNumber).unsignedIntValue & SetNortificationRequest.SetNortificationRequestValues.VIB_MOTOR) == SetNortificationRequest.SetNortificationRequestValues.RED_LED){
                 endCell.currentColorView.backgroundColor = UIColor.redColor()
-            }else if ((notTypeArray[3] as NSNumber).unsignedIntValue == SetNortificationRequest.SetNortificationRequestValues.BLUE_LED){
+            }else if (((notTypeArray[3] as NSNumber).unsignedIntValue & SetNortificationRequest.SetNortificationRequestValues.VIB_MOTOR) == SetNortificationRequest.SetNortificationRequestValues.BLUE_LED){
                 endCell.currentColorView.backgroundColor = UIColor.blueColor()
-            }else if ((notTypeArray[3] as NSNumber).unsignedIntValue == SetNortificationRequest.SetNortificationRequestValues.GREEN_LED){
+            }else if (((notTypeArray[3] as NSNumber).unsignedIntValue & SetNortificationRequest.SetNortificationRequestValues.VIB_MOTOR) == SetNortificationRequest.SetNortificationRequestValues.GREEN_LED){
                 endCell.currentColorView.backgroundColor = UIColor.greenColor()
-            }else if ((notTypeArray[3] as NSNumber).unsignedIntValue == SetNortificationRequest.SetNortificationRequestValues.YELLOW_LED){
+            }else if (((notTypeArray[3] as NSNumber).unsignedIntValue & SetNortificationRequest.SetNortificationRequestValues.VIB_MOTOR) == SetNortificationRequest.SetNortificationRequestValues.YELLOW_LED){
                 endCell.currentColorView.backgroundColor = UIColor.yellowColor()
             }
             endCell.pDelegate = self

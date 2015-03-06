@@ -35,22 +35,23 @@ class TypeModel: NSObject {
     override init() {
         super.init()
         faceBookCurrentColor = NSNumber(unsignedInt: SetNortificationRequest.getLedColor(faceBookTypeString))
-        if (faceBookCurrentColor.isEqualToNumber(NSNumber(unsignedInt: SetNortificationRequest.SetNortificationRequestValues.LED_OFF))){
+
+        if (!NSNumber(unsignedInt: SetNortificationRequest.getLedColor(faceBookTypeString) & SetNortificationRequest.SetNortificationRequestValues.VIB_MOTOR).isEqualToNumber(NSNumber(unsignedInt: SetNortificationRequest.SetNortificationRequestValues.VIB_MOTOR))){
             faceBookStates = false
         }
 
         smsCurrentColor = NSNumber(unsignedInt: SetNortificationRequest.getLedColor(smsTypeString))
-        if (smsCurrentColor.isEqualToNumber(NSNumber(unsignedInt: SetNortificationRequest.SetNortificationRequestValues.LED_OFF))){
+        if (!NSNumber(unsignedInt: SetNortificationRequest.getLedColor(smsTypeString) & SetNortificationRequest.SetNortificationRequestValues.VIB_MOTOR).isEqualToNumber(NSNumber(unsignedInt: SetNortificationRequest.SetNortificationRequestValues.LED_OFF))){
             smsStates = false
         }
 
         callCurrentColor = NSNumber(unsignedInt: SetNortificationRequest.getLedColor(callTypeString))
-        if (callCurrentColor.isEqualToNumber(NSNumber(unsignedInt: SetNortificationRequest.SetNortificationRequestValues.LED_OFF))){
+        if (!NSNumber(unsignedInt: SetNortificationRequest.getLedColor(callTypeString) & SetNortificationRequest.SetNortificationRequestValues.VIB_MOTOR).isEqualToNumber(NSNumber(unsignedInt: SetNortificationRequest.SetNortificationRequestValues.LED_OFF))){
             callStates = false
         }
 
         emailCurrentColor = NSNumber(unsignedInt: SetNortificationRequest.getLedColor(emailTypeString))
-        if (emailCurrentColor.isEqualToNumber(NSNumber(unsignedInt: SetNortificationRequest.SetNortificationRequestValues.LED_OFF))){
+        if (!NSNumber(unsignedInt: SetNortificationRequest.getLedColor(emailTypeString) & SetNortificationRequest.SetNortificationRequestValues.VIB_MOTOR).isEqualToNumber(NSNumber(unsignedInt: SetNortificationRequest.SetNortificationRequestValues.LED_OFF))){
             emailStates = false
         }
 
