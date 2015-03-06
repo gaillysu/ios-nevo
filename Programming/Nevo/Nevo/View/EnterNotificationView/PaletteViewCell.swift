@@ -24,24 +24,41 @@ class PaletteViewCell: UITableViewCell {
 
     @IBOutlet weak var yellowButton: UIButton!
 
+    @IBOutlet weak var orangeButton: UIButton!
+
+    @IBOutlet weak var cyanButton: UIButton!
+
+    @IBOutlet weak var currentLabel: UILabel!
+
+    @IBOutlet weak var currentColorView: UIView!
+
     var pDelegate:PaletteDelegate!
+    var currentColor:UIColor!
+
 
     @IBAction func PaletteButtonManager(sender: AnyObject) {
         let senders:UIButton = sender as UIButton
 
         if (senders.isEqual(blueButton)){
-
-            pDelegate.selectedPalette(UIColor.blueColor())
+            currentColor = UIColor.blueColor()
+            pDelegate.selectedPalette(currentColor)
         }else if (senders.isEqual(redButton)){
-
-            pDelegate.selectedPalette(UIColor.redColor())
+            currentColor = UIColor.redColor()
+            pDelegate.selectedPalette(currentColor)
         }else if (senders.isEqual(greenButton)){
-
-            pDelegate.selectedPalette(UIColor.greenColor());
+            currentColor = UIColor.greenColor()
+            pDelegate.selectedPalette(currentColor);
         }else if (senders.isEqual(yellowButton)){
-
-            pDelegate.selectedPalette(UIColor.yellowColor())
+            currentColor = UIColor.yellowColor()
+            pDelegate.selectedPalette(currentColor)
+        }else if (senders.isEqual(orangeButton)){
+            currentColor = UIColor.orangeColor()
+            pDelegate.selectedPalette(currentColor)
+        }else if (senders.isEqual(cyanButton)){
+            currentColor = UIColor.cyanColor()
+            pDelegate.selectedPalette(currentColor)
         }
+        currentColorView.backgroundColor = currentColor
     }
 
     override func awakeFromNib() {
@@ -51,6 +68,8 @@ class PaletteViewCell: UITableViewCell {
         redButton.setTitle(NSLocalizedString("Red",comment: ""), forState: UIControlState.Normal)
         greenButton.setTitle(NSLocalizedString("Green",comment: ""), forState: UIControlState.Normal)
         yellowButton.setTitle(NSLocalizedString("Yellow",comment: ""), forState: UIControlState.Normal)
+        orangeButton.setTitle(NSLocalizedString("Orange",comment: ""), forState: UIControlState.Normal)
+        cyanButton.setTitle(NSLocalizedString("Cyan",comment: ""), forState: UIControlState.Normal)
     }
 
     override func setSelected(selected: Bool, animated: Bool) {

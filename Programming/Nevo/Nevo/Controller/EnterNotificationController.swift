@@ -163,7 +163,7 @@ class EnterNotificationController: UITableViewController,SwitchActionDelegate,Pa
         if (indexPath.section == 0){
             return 50.0
         }else{
-            return 130
+            return 170
         }
 
     }
@@ -171,7 +171,7 @@ class EnterNotificationController: UITableViewController,SwitchActionDelegate,Pa
         if (section == 0){
             return 44.0
         }else{
-            return UIScreen.mainScreen().bounds.height-333
+            return UIScreen.mainScreen().bounds.height-373
         }
     }
 
