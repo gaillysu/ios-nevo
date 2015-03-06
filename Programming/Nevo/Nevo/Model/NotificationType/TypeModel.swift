@@ -10,19 +10,19 @@ import UIKit
 
 class TypeModel: NSObject {
     var faceBookStates:Bool!
-    private var faceBookTypeString:NSString = "FaceBook"
+    private var faceBookTypeString:NSString = SetNortificationRequest.SOURCETYPE.FACEBOOK
     private var faceBookImageIcon:NSString = "facebookIcon"
 
     var smsStates:Bool!
-    private let smsTypeString:NSString = "SMS"
+    private let smsTypeString:NSString = SetNortificationRequest.SOURCETYPE.SMS
     private let smsImageIcon:NSString = "smsIcon"
 
     var callStates:Bool!
-    private let callTypeString:NSString = "CALL"
+    private let callTypeString:NSString = SetNortificationRequest.SOURCETYPE.CALL
     private let callImageIcon:NSString = "callIcon"
 
     var emailStates:Bool!
-    private let emailTypeString:NSString = "EMAIL"
+    private let emailTypeString:NSString = SetNortificationRequest.SOURCETYPE.EMAIL
     private let emailImageIcon:NSString = "emailIcon"
 
     private var contentArray:NSMutableArray!

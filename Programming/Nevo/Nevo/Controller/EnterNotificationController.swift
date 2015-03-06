@@ -34,6 +34,12 @@ class EnterNotificationController: UITableViewController,SwitchActionDelegate,Pa
     var mDelegate:SelectionTypeDelegate!
 
     private var mSyncController:SyncController?
+    
+    /*
+    led color default is full color led light on
+    */
+    var ledcolor: UInt32 = 0xFF0000
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -113,15 +119,43 @@ class EnterNotificationController: UITableViewController,SwitchActionDelegate,Pa
         mSyncController?.connect()
     }
 
-    // MARK: - SwitchActionDelegate
+       // MARK: - SwitchActionDelegate
     func onSwitch(results:Bool){
-
+      
+        ledcolor = results ? SetNortificationRequest.getLedColor(notTypeArray[1] as NSString) : SetNortificationRequest.SetNortificationRequestValues.LED_OFF
+        SetNortificationRequest.setLedColor(notTypeArray[1] as NSString,ledColor:ledcolor)
+        
+        mSyncController?.SetNortification()
         mDelegate.onSelectedType(results, type: notTypeArray[1] as NSString)
     }
 
     // MARK: - PaletteDelegate
     func selectedPalette(color:UIColor){
         NSLog("UIColor\(color)")
+        if color == UIColor.blueColor()
+        {
+            ledcolor = SetNortificationRequest.SetNortificationRequestValues.BLUE_LED
+        }
+        else if color == UIColor.redColor()
+        {
+            ledcolor = SetNortificationRequest.SetNortificationRequestValues.RED_LED
+        }
+        else if color == UIColor.yellowColor()
+        {
+            ledcolor = SetNortificationRequest.SetNortificationRequestValues.YELLOW_LED
+        }
+        else if color == UIColor.greenColor()
+        {
+            ledcolor = SetNortificationRequest.SetNortificationRequestValues.GREEN_LED
+        }
+        else
+        {
+            ledcolor = SetNortificationRequest.getLedColor(notTypeArray[1] as NSString)
+        }
+        
+        SetNortificationRequest.setLedColor(notTypeArray[1] as NSString,ledColor:ledcolor)
+        mSyncController?.SetNortification()
+        
     }
 
     // MARK: - UITableViewDelegate
