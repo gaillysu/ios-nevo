@@ -57,15 +57,15 @@ class SetNortificationRequest: NevoRequest {
     struct SetNortificationRequestValues {
         static let VIBRATION_ON:UInt8 = 0x03
         static let VIBRATION_OFF:UInt8 = 0x00
-        
+        static let VIB_MOTOR:UInt32 = 0x800000
         static let LED_OFF:UInt32 = 0x000000
         
-        static let BLUE_LED:UInt32 = 0x010000
-        static let GREEN_LED:UInt32 = 0x020000
-        static let YELLOW_LED:UInt32 = 0x040000
-        static let RED_LED:UInt32 = 0x080000
-        static let VIOLET_LED:UInt32 = 0x100000
-        static let PURPLE_LED:UInt32 = 0x200000
+        static let BLUE_LED:UInt32 = 0x810000
+        static let GREEN_LED:UInt32 = 0x820000
+        static let YELLOW_LED:UInt32 = 0x840000
+        static let RED_LED:UInt32 = 0x880000
+        static let VIOLET_LED:UInt32 = 0x900000
+        static let PURPLE_LED:UInt32 = 0xA00000
         
         static let WHITE_1_LED:UInt32 = 0x000001
         static let WHITE_3_LED:UInt32 = 0x000004
@@ -103,15 +103,14 @@ class SetNortificationRequest: NevoRequest {
         call_vib_number = SetNortificationRequestValues.VIBRATION_ON
         call_led_pattern = SetNortificationRequest.getLedColor(SOURCETYPE.CALL)
         
-        if(call_led_pattern == SetNortificationRequestValues.LED_OFF) {
+        if((call_led_pattern & SetNortificationRequestValues.VIB_MOTOR) != SetNortificationRequestValues.VIB_MOTOR) {
             call_vib_number = SetNortificationRequestValues.VIBRATION_OFF
         }
-        
         
         sms_vib_number = SetNortificationRequestValues.VIBRATION_ON
         sms_led_pattern = SetNortificationRequest.getLedColor(SOURCETYPE.SMS)
         
-        if(sms_led_pattern == SetNortificationRequestValues.LED_OFF) {
+        if((sms_led_pattern & SetNortificationRequestValues.VIB_MOTOR) != SetNortificationRequestValues.VIB_MOTOR) {
             sms_vib_number = SetNortificationRequestValues.VIBRATION_OFF
         }
         
@@ -119,7 +118,7 @@ class SetNortificationRequest: NevoRequest {
         email_vib_number = SetNortificationRequestValues.VIBRATION_ON
         email_led_pattern = SetNortificationRequest.getLedColor(SOURCETYPE.EMAIL)
         
-        if(email_led_pattern == SetNortificationRequestValues.LED_OFF) {
+        if((email_led_pattern & SetNortificationRequestValues.VIB_MOTOR) != SetNortificationRequestValues.VIB_MOTOR) {
             email_vib_number = SetNortificationRequestValues.VIBRATION_OFF
         }
         
@@ -127,7 +126,7 @@ class SetNortificationRequest: NevoRequest {
         facebook_vib_number = SetNortificationRequestValues.VIBRATION_ON
         facebook_led_pattern = SetNortificationRequest.getLedColor(SOURCETYPE.FACEBOOK)
         
-        if(facebook_led_pattern == SetNortificationRequestValues.LED_OFF) {
+        if((facebook_led_pattern & SetNortificationRequestValues.VIB_MOTOR) != SetNortificationRequestValues.VIB_MOTOR) {
             facebook_vib_number = SetNortificationRequestValues.VIBRATION_OFF
         }
         
@@ -135,7 +134,7 @@ class SetNortificationRequest: NevoRequest {
         twitter_vib_number = SetNortificationRequestValues.VIBRATION_ON
         twitter_led_pattern = SetNortificationRequest.getLedColor(SOURCETYPE.TWITTER)
         
-        if(twitter_led_pattern == SetNortificationRequestValues.LED_OFF) {
+        if((twitter_led_pattern & SetNortificationRequestValues.VIB_MOTOR) != SetNortificationRequestValues.VIB_MOTOR) {
             twitter_vib_number = SetNortificationRequestValues.VIBRATION_OFF
         }
         
@@ -143,7 +142,7 @@ class SetNortificationRequest: NevoRequest {
         whatsapp_vib_number = SetNortificationRequestValues.VIBRATION_ON
         whatsapp_led_pattern = SetNortificationRequest.getLedColor(SOURCETYPE.WHATSAPP)
         
-        if(whatsapp_led_pattern == SetNortificationRequestValues.LED_OFF) {
+        if((whatsapp_led_pattern & SetNortificationRequestValues.VIB_MOTOR) != SetNortificationRequestValues.VIB_MOTOR) {
             whatsapp_vib_number = SetNortificationRequestValues.VIBRATION_OFF
         }
         
