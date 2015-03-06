@@ -38,7 +38,7 @@ class EnterNotificationController: UITableViewController,SwitchActionDelegate,Pa
     /*
     led color default is full color led light on
     */
-    var ledcolor: UInt32 = 0xFF0000
+    //var ledcolor: UInt32 = 0xFF0000
     
 
     override func viewDidLoad() {
@@ -121,10 +121,6 @@ class EnterNotificationController: UITableViewController,SwitchActionDelegate,Pa
 
        // MARK: - SwitchActionDelegate
     func onSwitch(results:Bool){
-      
-        ledcolor = results ? SetNortificationRequest.getLedColor(notTypeArray[1] as NSString) : SetNortificationRequest.SetNortificationRequestValues.LED_OFF
-        SetNortificationRequest.setLedColor(notTypeArray[1] as NSString,ledColor:ledcolor)
-        
         mSyncController?.SetNortification()
         mDelegate.onSelectedType(results, type: notTypeArray[1] as NSString)
     }
@@ -134,26 +130,19 @@ class EnterNotificationController: UITableViewController,SwitchActionDelegate,Pa
         NSLog("UIColor\(color)")
         if color == UIColor.blueColor()
         {
-            ledcolor = SetNortificationRequest.SetNortificationRequestValues.BLUE_LED
+            SetNortificationRequest.setLedColor(notTypeArray[1] as NSString,ledColor:SetNortificationRequest.SetNortificationRequestValues.BLUE_LED)
+        }else if color == UIColor.redColor(){
+            SetNortificationRequest.setLedColor(notTypeArray[1] as NSString,ledColor:SetNortificationRequest.SetNortificationRequestValues.RED_LED)
+        }else if color == UIColor.yellowColor(){
+            SetNortificationRequest.setLedColor(notTypeArray[1] as NSString,ledColor:SetNortificationRequest.SetNortificationRequestValues.YELLOW_LED)
+        }else if color == UIColor.greenColor(){
+            SetNortificationRequest.setLedColor(notTypeArray[1] as NSString,ledColor:SetNortificationRequest.SetNortificationRequestValues.GREEN_LED)
+        }else if color == UIColor.orangeColor(){
+            SetNortificationRequest.setLedColor(notTypeArray[1] as NSString,ledColor:SetNortificationRequest.SetNortificationRequestValues.VIOLET_LED)
+        }else if color == UIColor.cyanColor(){
+            SetNortificationRequest.setLedColor(notTypeArray[1] as NSString,ledColor:SetNortificationRequest.SetNortificationRequestValues.PURPLE_LED)
         }
-        else if color == UIColor.redColor()
-        {
-            ledcolor = SetNortificationRequest.SetNortificationRequestValues.RED_LED
-        }
-        else if color == UIColor.yellowColor()
-        {
-            ledcolor = SetNortificationRequest.SetNortificationRequestValues.YELLOW_LED
-        }
-        else if color == UIColor.greenColor()
-        {
-            ledcolor = SetNortificationRequest.SetNortificationRequestValues.GREEN_LED
-        }
-        else
-        {
-            ledcolor = SetNortificationRequest.getLedColor(notTypeArray[1] as NSString)
-        }
-        
-        SetNortificationRequest.setLedColor(notTypeArray[1] as NSString,ledColor:ledcolor)
+
         mSyncController?.SetNortification()
         
     }
@@ -200,6 +189,16 @@ class EnterNotificationController: UITableViewController,SwitchActionDelegate,Pa
         }else if (indexPath.section == 1){
 
             let endCell:PaletteViewCell = enterNotView.EnterPaletteListCell(indexPath, dataSource: NSArray())
+
+            if ((notTypeArray[3] as NSNumber).unsignedIntValue == SetNortificationRequest.SetNortificationRequestValues.RED_LED){
+                endCell.currentColorView.backgroundColor = UIColor.redColor()
+            }else if ((notTypeArray[3] as NSNumber).unsignedIntValue == SetNortificationRequest.SetNortificationRequestValues.BLUE_LED){
+                endCell.currentColorView.backgroundColor = UIColor.blueColor()
+            }else if ((notTypeArray[3] as NSNumber).unsignedIntValue == SetNortificationRequest.SetNortificationRequestValues.GREEN_LED){
+                endCell.currentColorView.backgroundColor = UIColor.greenColor()
+            }else if ((notTypeArray[3] as NSNumber).unsignedIntValue == SetNortificationRequest.SetNortificationRequestValues.YELLOW_LED){
+                endCell.currentColorView.backgroundColor = UIColor.yellowColor()
+            }
             endCell.pDelegate = self
 
             return endCell
