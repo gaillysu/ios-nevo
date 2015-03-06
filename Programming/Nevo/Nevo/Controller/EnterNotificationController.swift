@@ -121,6 +121,10 @@ class EnterNotificationController: UITableViewController,SwitchActionDelegate,Pa
 
        // MARK: - SwitchActionDelegate
     func onSwitch(results:Bool){
+        var color:UInt32 = (notTypeArray[3] as NSNumber).unsignedIntValue
+        color = results ? color:color&0x7FFFFF
+        SetNortificationRequest.setLedColor(notTypeArray[1] as NSString,ledColor:color)
+        
         mSyncController?.SetNortification()
         mDelegate.onSelectedType(results, type: notTypeArray[1] as NSString)
     }
