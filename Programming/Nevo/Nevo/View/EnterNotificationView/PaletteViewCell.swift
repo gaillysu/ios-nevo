@@ -55,7 +55,7 @@ class PaletteViewCell: UITableViewCell {
             currentColor = UIColor.orangeColor()
             pDelegate.selectedPalette(currentColor)
         }else if (senders.isEqual(cyanButton)){
-            currentColor = UIColor.cyanColor()
+            currentColor = AppTheme.PALETTE_BAGGROUND_COLOR()
             pDelegate.selectedPalette(currentColor)
         }
         currentColorView.backgroundColor = currentColor
@@ -64,12 +64,12 @@ class PaletteViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        blueButton.setTitle(NSLocalizedString("Blue",comment: ""), forState: UIControlState.Normal)
-        redButton.setTitle(NSLocalizedString("Red",comment: ""), forState: UIControlState.Normal)
-        greenButton.setTitle(NSLocalizedString("Green",comment: ""), forState: UIControlState.Normal)
-        yellowButton.setTitle(NSLocalizedString("Yellow",comment: ""), forState: UIControlState.Normal)
-        orangeButton.setTitle(NSLocalizedString("Orange",comment: ""), forState: UIControlState.Normal)
-        cyanButton.setTitle(NSLocalizedString("Cyan",comment: ""), forState: UIControlState.Normal)
+        blueButton.setTitle(NSLocalizedString(" ",comment: ""), forState: UIControlState.Normal)
+        redButton.setTitle(NSLocalizedString(" ",comment: ""), forState: UIControlState.Normal)
+        greenButton.setTitle(NSLocalizedString(" ",comment: ""), forState: UIControlState.Normal)
+        yellowButton.setTitle(NSLocalizedString(" ",comment: ""), forState: UIControlState.Normal)
+        orangeButton.setTitle(NSLocalizedString(" ",comment: ""), forState: UIControlState.Normal)
+        cyanButton.setTitle(NSLocalizedString(" ",comment: ""), forState: UIControlState.Normal)
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
