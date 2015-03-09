@@ -14,7 +14,7 @@ So this class is here to be sure of that.
 It will receive different Closures and will run them when appropriate
 🚧🚧🚧Backbone Class : Modify with care🚧🚧🚧
 */
-class SyncQueue {
+class SyncQueue : NSObject {
     /** The max lock time before timeout. */
     private let MAX_LOCK_TIME = 5
     
@@ -40,7 +40,7 @@ class SyncQueue {
     /**
     No initialisation outside of this class, this is a singleton
     */
-    private init() {
+    private override init() {
         
     }
     
