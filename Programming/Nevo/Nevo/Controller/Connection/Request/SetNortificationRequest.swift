@@ -16,57 +16,22 @@ class SetNortificationRequest: NevoRequest {
     class func HEADER() -> UInt8 {
         return 0x02
     }
-    
-    struct SOURCETYPE {
-        static let CALL:NSString = "CALL"
-        static let SMS:NSString = "SMS"
-        static let EMAIL:NSString = "EMAIL"
-        static let FACEBOOK:NSString = "FaceBook"
-        static let TWITTER:NSString = "Twitter"
-        static let WHATSAPP:NSString = "Whatsapp"
-    }
-    
-    class func setLedColor(sourceType: NSString,ledColor:UInt32)
-    {
-        let userDefaults = NSUserDefaults.standardUserDefaults();
         
-        userDefaults.setObject(UInt(ledColor),forKey:sourceType)
-        
-        userDefaults.synchronize()
-        
-    }
-    class  func getLedColor(sourceType: NSString) ->UInt32
-    {
-        if let color = NSUserDefaults.standardUserDefaults().objectForKey(sourceType) as? UInt
-        {
-            return UInt32(color)
-        }
-        // default value
-        else{
-            if sourceType == SOURCETYPE.CALL  { return SetNortificationRequest.SetNortificationRequestValues.BLUE_LED }
-            if sourceType == SOURCETYPE.SMS  { return SetNortificationRequest.SetNortificationRequestValues.GREEN_LED }
-            if sourceType == SOURCETYPE.EMAIL  { return SetNortificationRequest.SetNortificationRequestValues.YELLOW_LED }
-            if sourceType == SOURCETYPE.FACEBOOK  { return SetNortificationRequest.SetNortificationRequestValues.RED_LED }
-            if sourceType == SOURCETYPE.TWITTER  { return SetNortificationRequest.SetNortificationRequestValues.VIOLET_LED }
-            if sourceType == SOURCETYPE.WHATSAPP  { return SetNortificationRequest.SetNortificationRequestValues.PURPLE_LED }
-
-            return 0xFF0000
-        }
-    }
-
     struct SetNortificationRequestValues {
+        //default vibrator number is 3
         static let VIBRATION_ON:UInt8 = 0x03
         static let VIBRATION_OFF:UInt8 = 0x00
+        //motor control bit is bit23
         static let VIB_MOTOR:UInt32 = 0x800000
         static let LED_OFF:UInt32 = 0x000000
-        
-        static let BLUE_LED:UInt32 = 0x810000
-        static let GREEN_LED:UInt32 = 0x820000
-        static let YELLOW_LED:UInt32 = 0x840000
-        static let RED_LED:UInt32 = 0x880000
-        static let VIOLET_LED:UInt32 = 0x900000
-        static let PURPLE_LED:UInt32 = 0xA00000
-        
+        //color LED control bit is bit16~21
+        static let BLUE_LED:UInt32   = 0x010000
+        static let GREEN_LED:UInt32  = 0x100000
+        static let YELLOW_LED:UInt32 = 0x040000
+        static let RED_LED:UInt32    = 0x200000
+        static let VIOLET_LED:UInt32 = 0x080000
+        static let PURPLE_LED:UInt32 = 0x020000
+        //white LED control bit is bit0~10
         static let WHITE_1_LED:UInt32 = 0x000001
         static let WHITE_3_LED:UInt32 = 0x000004
         static let WHITE_5_LED:UInt32 = 0x000010
@@ -100,51 +65,48 @@ class SetNortificationRequest: NevoRequest {
         
         //We set each colors, one by one. In case a color is chosen, we turn on the vibration
         
-        call_vib_number = SetNortificationRequestValues.VIBRATION_ON
-        call_led_pattern = SetNortificationRequest.getLedColor(SOURCETYPE.CALL)
-        
-        if((call_led_pattern & SetNortificationRequestValues.VIB_MOTOR) != SetNortificationRequestValues.VIB_MOTOR) {
-            call_vib_number = SetNortificationRequestValues.VIBRATION_OFF
+        call_vib_number = EnterNotificationController.getMotorOnOff(EnterNotificationController.SOURCETYPE.CALL) ? SetNortificationRequestValues.VIBRATION_ON : SetNortificationRequestValues.VIBRATION_OFF
+        call_led_pattern = EnterNotificationController.getLedColor(EnterNotificationController.SOURCETYPE.CALL)
+        if call_vib_number == SetNortificationRequestValues.VIBRATION_ON
+        {
+            call_led_pattern = call_led_pattern | SetNortificationRequestValues.VIB_MOTOR
         }
         
-        sms_vib_number = SetNortificationRequestValues.VIBRATION_ON
-        sms_led_pattern = SetNortificationRequest.getLedColor(SOURCETYPE.SMS)
-        
-        if((sms_led_pattern & SetNortificationRequestValues.VIB_MOTOR) != SetNortificationRequestValues.VIB_MOTOR) {
-            sms_vib_number = SetNortificationRequestValues.VIBRATION_OFF
+        sms_vib_number = EnterNotificationController.getMotorOnOff(EnterNotificationController.SOURCETYPE.SMS) ? SetNortificationRequestValues.VIBRATION_ON : SetNortificationRequestValues.VIBRATION_OFF
+        sms_led_pattern = EnterNotificationController.getLedColor(EnterNotificationController.SOURCETYPE.SMS)
+        if sms_vib_number == SetNortificationRequestValues.VIBRATION_ON
+        {
+            sms_led_pattern = sms_led_pattern | SetNortificationRequestValues.VIB_MOTOR
         }
         
-        
-        email_vib_number = SetNortificationRequestValues.VIBRATION_ON
-        email_led_pattern = SetNortificationRequest.getLedColor(SOURCETYPE.EMAIL)
-        
-        if((email_led_pattern & SetNortificationRequestValues.VIB_MOTOR) != SetNortificationRequestValues.VIB_MOTOR) {
-            email_vib_number = SetNortificationRequestValues.VIBRATION_OFF
+        email_vib_number = EnterNotificationController.getMotorOnOff(EnterNotificationController.SOURCETYPE.EMAIL) ? SetNortificationRequestValues.VIBRATION_ON : SetNortificationRequestValues.VIBRATION_OFF
+        email_led_pattern = EnterNotificationController.getLedColor(EnterNotificationController.SOURCETYPE.EMAIL)
+        if email_vib_number == SetNortificationRequestValues.VIBRATION_ON
+        {
+            email_led_pattern = email_led_pattern | SetNortificationRequestValues.VIB_MOTOR
         }
         
-        
-        facebook_vib_number = SetNortificationRequestValues.VIBRATION_ON
-        facebook_led_pattern = SetNortificationRequest.getLedColor(SOURCETYPE.FACEBOOK)
-        
-        if((facebook_led_pattern & SetNortificationRequestValues.VIB_MOTOR) != SetNortificationRequestValues.VIB_MOTOR) {
-            facebook_vib_number = SetNortificationRequestValues.VIBRATION_OFF
+        facebook_vib_number = EnterNotificationController.getMotorOnOff(EnterNotificationController.SOURCETYPE.FACEBOOK) ? SetNortificationRequestValues.VIBRATION_ON : SetNortificationRequestValues.VIBRATION_OFF
+        facebook_led_pattern = EnterNotificationController.getLedColor(EnterNotificationController.SOURCETYPE.FACEBOOK)
+        if facebook_vib_number == SetNortificationRequestValues.VIBRATION_ON
+        {
+            facebook_led_pattern = facebook_led_pattern | SetNortificationRequestValues.VIB_MOTOR
         }
         
-        
-        twitter_vib_number = SetNortificationRequestValues.VIBRATION_ON
-        twitter_led_pattern = SetNortificationRequest.getLedColor(SOURCETYPE.TWITTER)
-        
-        if((twitter_led_pattern & SetNortificationRequestValues.VIB_MOTOR) != SetNortificationRequestValues.VIB_MOTOR) {
-            twitter_vib_number = SetNortificationRequestValues.VIBRATION_OFF
+        twitter_vib_number = EnterNotificationController.getMotorOnOff(EnterNotificationController.SOURCETYPE.TWITTER) ? SetNortificationRequestValues.VIBRATION_ON : SetNortificationRequestValues.VIBRATION_OFF
+        twitter_led_pattern = EnterNotificationController.getLedColor(EnterNotificationController.SOURCETYPE.TWITTER)
+        if twitter_vib_number == SetNortificationRequestValues.VIBRATION_ON
+        {
+            twitter_led_pattern = twitter_led_pattern | SetNortificationRequestValues.VIB_MOTOR
         }
         
-        
-        whatsapp_vib_number = SetNortificationRequestValues.VIBRATION_ON
-        whatsapp_led_pattern = SetNortificationRequest.getLedColor(SOURCETYPE.WHATSAPP)
-        
-        if((whatsapp_led_pattern & SetNortificationRequestValues.VIB_MOTOR) != SetNortificationRequestValues.VIB_MOTOR) {
-            whatsapp_vib_number = SetNortificationRequestValues.VIBRATION_OFF
+        whatsapp_vib_number = EnterNotificationController.getMotorOnOff(EnterNotificationController.SOURCETYPE.WHATSAPP) ? SetNortificationRequestValues.VIBRATION_ON : SetNortificationRequestValues.VIBRATION_OFF
+        whatsapp_led_pattern = EnterNotificationController.getLedColor(EnterNotificationController.SOURCETYPE.WHATSAPP)
+        if whatsapp_vib_number == SetNortificationRequestValues.VIBRATION_ON
+        {
+            whatsapp_led_pattern = whatsapp_led_pattern | SetNortificationRequestValues.VIB_MOTOR
         }
+        
         
     }
     

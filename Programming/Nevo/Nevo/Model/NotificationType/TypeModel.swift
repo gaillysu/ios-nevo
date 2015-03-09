@@ -10,23 +10,23 @@ import UIKit
 
 class TypeModel: NSObject {
     var faceBookStates:Bool = true
-    private var faceBookTypeString:NSString = SetNortificationRequest.SOURCETYPE.FACEBOOK
+    private var faceBookTypeString:NSString = EnterNotificationController.SOURCETYPE.FACEBOOK
     private var faceBookImageIcon:NSString = "facebookIcon"
     private var faceBookCurrentColor:NSNumber!
 
 
     var smsStates:Bool = true
-    private let smsTypeString:NSString = SetNortificationRequest.SOURCETYPE.SMS
+    private let smsTypeString:NSString = EnterNotificationController.SOURCETYPE.SMS
     private let smsImageIcon:NSString = "smsIcon"
     private var smsCurrentColor:NSNumber!
 
     var callStates:Bool = true
-    private let callTypeString:NSString = SetNortificationRequest.SOURCETYPE.CALL
+    private let callTypeString:NSString = EnterNotificationController.SOURCETYPE.CALL
     private let callImageIcon:NSString = "callIcon"
     private var callCurrentColor:NSNumber!
 
     var emailStates:Bool = true
-    private let emailTypeString:NSString = SetNortificationRequest.SOURCETYPE.EMAIL
+    private let emailTypeString:NSString = EnterNotificationController.SOURCETYPE.EMAIL
     private let emailImageIcon:NSString = "emailIcon"
     private var emailCurrentColor:NSNumber!
 
@@ -34,26 +34,17 @@ class TypeModel: NSObject {
 
     override init() {
         super.init()
-        faceBookCurrentColor = NSNumber(unsignedInt: SetNortificationRequest.getLedColor(faceBookTypeString))
+        faceBookCurrentColor = NSNumber(unsignedInt: EnterNotificationController.getLedColor(faceBookTypeString))
+        faceBookStates = EnterNotificationController.getMotorOnOff(faceBookTypeString)
 
-        if (!NSNumber(unsignedInt: SetNortificationRequest.getLedColor(faceBookTypeString) & SetNortificationRequest.SetNortificationRequestValues.VIB_MOTOR).isEqualToNumber(NSNumber(unsignedInt: SetNortificationRequest.SetNortificationRequestValues.VIB_MOTOR))){
-            faceBookStates = false
-        }
+        smsCurrentColor = NSNumber(unsignedInt: EnterNotificationController.getLedColor(smsTypeString))
+        smsStates = EnterNotificationController.getMotorOnOff(smsTypeString)
+        
+        callCurrentColor = NSNumber(unsignedInt: EnterNotificationController.getLedColor(callTypeString))
+        callStates = EnterNotificationController.getMotorOnOff(callTypeString)
 
-        smsCurrentColor = NSNumber(unsignedInt: SetNortificationRequest.getLedColor(smsTypeString))
-        if (!NSNumber(unsignedInt: SetNortificationRequest.getLedColor(smsTypeString) & SetNortificationRequest.SetNortificationRequestValues.VIB_MOTOR).isEqualToNumber(NSNumber(unsignedInt: SetNortificationRequest.SetNortificationRequestValues.LED_OFF))){
-            smsStates = false
-        }
-
-        callCurrentColor = NSNumber(unsignedInt: SetNortificationRequest.getLedColor(callTypeString))
-        if (!NSNumber(unsignedInt: SetNortificationRequest.getLedColor(callTypeString) & SetNortificationRequest.SetNortificationRequestValues.VIB_MOTOR).isEqualToNumber(NSNumber(unsignedInt: SetNortificationRequest.SetNortificationRequestValues.LED_OFF))){
-            callStates = false
-        }
-
-        emailCurrentColor = NSNumber(unsignedInt: SetNortificationRequest.getLedColor(emailTypeString))
-        if (!NSNumber(unsignedInt: SetNortificationRequest.getLedColor(emailTypeString) & SetNortificationRequest.SetNortificationRequestValues.VIB_MOTOR).isEqualToNumber(NSNumber(unsignedInt: SetNortificationRequest.SetNortificationRequestValues.LED_OFF))){
-            emailStates = false
-        }
+        emailCurrentColor = NSNumber(unsignedInt: EnterNotificationController.getLedColor(emailTypeString))
+        emailStates = EnterNotificationController.getMotorOnOff(emailTypeString)
 
         contentArray = NSMutableArray(objects:
             [faceBookStates,faceBookTypeString,faceBookImageIcon,faceBookCurrentColor],
@@ -65,12 +56,16 @@ class TypeModel: NSObject {
     func setNotificationTypeStates(type:NSString,states:Bool){
         if (type.isEqualToString(faceBookTypeString)){
             faceBookStates = states
+            faceBookCurrentColor = NSNumber(unsignedInt:EnterNotificationController.getLedColor(faceBookTypeString))
         }else if (type.isEqualToString(smsTypeString)){
             smsStates = states
+            smsCurrentColor = NSNumber(unsignedInt:EnterNotificationController.getLedColor(smsTypeString))
         }else if (type.isEqualToString(callTypeString)){
             callStates = states
+            callCurrentColor = NSNumber(unsignedInt: EnterNotificationController.getLedColor(callTypeString))
         }else if (type.isEqualToString(emailTypeString)){
             emailStates = states
+            emailCurrentColor = NSNumber(unsignedInt:EnterNotificationController.getLedColor(emailTypeString))
         }
     }
 

@@ -23,6 +23,65 @@ protocol SelectionTypeDelegate {
 
 class EnterNotificationController: UITableViewController,SwitchActionDelegate,PaletteDelegate,SyncControllerDelegate,ButtonManagerCallBack{
 
+    struct SOURCETYPE {
+        static let CALL:NSString = "CALL"
+        static let SMS:NSString = "SMS"
+        static let EMAIL:NSString = "EMAIL"
+        static let FACEBOOK:NSString = "FaceBook"
+        static let TWITTER:NSString = "Twitter"
+        static let WHATSAPP:NSString = "Whatsapp"
+    }
+    
+    class func setLedColor(sourceType: NSString,ledColor:UInt32)
+    {
+        let userDefaults = NSUserDefaults.standardUserDefaults();
+        var value:UInt32 = getMotorOnOff(sourceType) ? (ledColor | SetNortificationRequest.SetNortificationRequestValues.VIB_MOTOR)
+            : (ledColor & ~SetNortificationRequest.SetNortificationRequestValues.VIB_MOTOR)
+        
+        userDefaults.setObject(UInt(value),forKey:sourceType)
+        userDefaults.synchronize()
+        
+    }
+    class  func getLedColor(sourceType: NSString) ->UInt32
+    {
+        if let color = NSUserDefaults.standardUserDefaults().objectForKey(sourceType) as? UInt
+        {
+            return UInt32(color) & ~SetNortificationRequest.SetNortificationRequestValues.VIB_MOTOR
+        }
+            // default value
+        else{
+            if sourceType == SOURCETYPE.CALL  { return SetNortificationRequest.SetNortificationRequestValues.BLUE_LED }
+            if sourceType == SOURCETYPE.SMS  { return SetNortificationRequest.SetNortificationRequestValues.GREEN_LED }
+            if sourceType == SOURCETYPE.EMAIL  { return SetNortificationRequest.SetNortificationRequestValues.YELLOW_LED }
+            if sourceType == SOURCETYPE.FACEBOOK  { return SetNortificationRequest.SetNortificationRequestValues.RED_LED }
+            if sourceType == SOURCETYPE.TWITTER  { return SetNortificationRequest.SetNortificationRequestValues.VIOLET_LED }
+            if sourceType == SOURCETYPE.WHATSAPP  { return SetNortificationRequest.SetNortificationRequestValues.PURPLE_LED }
+            
+            return 0xFF0000
+        }
+    }
+    
+    class func setMotorOnOff(sourceType: NSString,motorStatus:Bool)
+    {
+        let userDefaults = NSUserDefaults.standardUserDefaults();
+        var ledColor = getLedColor(sourceType)
+        
+        ledColor = motorStatus ? (ledColor | SetNortificationRequest.SetNortificationRequestValues.VIB_MOTOR)
+            : (ledColor & ~SetNortificationRequest.SetNortificationRequestValues.VIB_MOTOR)
+        userDefaults.setObject(UInt(ledColor),forKey:sourceType)
+        userDefaults.synchronize()
+    }
+    
+    class func getMotorOnOff(sourceType: NSString) ->Bool
+    {
+        if let color = NSUserDefaults.standardUserDefaults().objectForKey(sourceType) as? UInt
+        {
+            return ((UInt32(color) & SetNortificationRequest.SetNortificationRequestValues.VIB_MOTOR) == SetNortificationRequest.SetNortificationRequestValues.VIB_MOTOR) ? true : false
+        }
+        
+        return true
+    }
+
     @IBOutlet var enterNotView: EnterNotificationView!
     
     //From the higher level of the incoming type Array
@@ -121,10 +180,7 @@ class EnterNotificationController: UITableViewController,SwitchActionDelegate,Pa
 
        // MARK: - SwitchActionDelegate
     func onSwitch(results:Bool){
-        var color:UInt32 = (notTypeArray[3] as NSNumber).unsignedIntValue
-        color = results ? color:color&0x7FFFFF
-        SetNortificationRequest.setLedColor(notTypeArray[1] as NSString,ledColor:color)
-        
+        EnterNotificationController.setMotorOnOff(notTypeArray[1] as NSString, motorStatus: results)
         mSyncController?.SetNortification()
         mDelegate.onSelectedType(results, type: notTypeArray[1] as NSString)
     }
@@ -134,20 +190,21 @@ class EnterNotificationController: UITableViewController,SwitchActionDelegate,Pa
         NSLog("UIColor\(color)")
         if color == UIColor.blueColor()
         {
-            SetNortificationRequest.setLedColor(notTypeArray[1] as NSString,ledColor:SetNortificationRequest.SetNortificationRequestValues.BLUE_LED)
+            EnterNotificationController.setLedColor(notTypeArray[1] as NSString,ledColor:SetNortificationRequest.SetNortificationRequestValues.BLUE_LED)
         }else if color == UIColor.redColor(){
-            SetNortificationRequest.setLedColor(notTypeArray[1] as NSString,ledColor:SetNortificationRequest.SetNortificationRequestValues.RED_LED)
+            EnterNotificationController.setLedColor(notTypeArray[1] as NSString,ledColor:SetNortificationRequest.SetNortificationRequestValues.RED_LED)
         }else if color == UIColor.yellowColor(){
-            SetNortificationRequest.setLedColor(notTypeArray[1] as NSString,ledColor:SetNortificationRequest.SetNortificationRequestValues.YELLOW_LED)
+            EnterNotificationController.setLedColor(notTypeArray[1] as NSString,ledColor:SetNortificationRequest.SetNortificationRequestValues.YELLOW_LED)
         }else if color == UIColor.greenColor(){
-            SetNortificationRequest.setLedColor(notTypeArray[1] as NSString,ledColor:SetNortificationRequest.SetNortificationRequestValues.GREEN_LED)
+            EnterNotificationController.setLedColor(notTypeArray[1] as NSString,ledColor:SetNortificationRequest.SetNortificationRequestValues.GREEN_LED)
         }else if color == UIColor.orangeColor(){
-            SetNortificationRequest.setLedColor(notTypeArray[1] as NSString,ledColor:SetNortificationRequest.SetNortificationRequestValues.VIOLET_LED)
+            EnterNotificationController.setLedColor(notTypeArray[1] as NSString,ledColor:SetNortificationRequest.SetNortificationRequestValues.VIOLET_LED)
         }else if color == UIColor.cyanColor(){
-            SetNortificationRequest.setLedColor(notTypeArray[1] as NSString,ledColor:SetNortificationRequest.SetNortificationRequestValues.PURPLE_LED)
+            EnterNotificationController.setLedColor(notTypeArray[1] as NSString,ledColor:SetNortificationRequest.SetNortificationRequestValues.PURPLE_LED)
         }
 
         mSyncController?.SetNortification()
+        mDelegate.onSelectedType(true, type: notTypeArray[1] as NSString)
         
     }
 
@@ -193,16 +250,21 @@ class EnterNotificationController: UITableViewController,SwitchActionDelegate,Pa
         }else if (indexPath.section == 1){
 
             let endCell:PaletteViewCell = enterNotView.EnterPaletteListCell(indexPath, dataSource: NSArray())
-//!NSNumber(unsignedInt: SetNortificationRequest.getLedColor(emailTypeString) & SetNortificationRequest.SetNortificationRequestValues.VIB_MOTOR)
-            if (((notTypeArray[3] as NSNumber).unsignedIntValue & SetNortificationRequest.SetNortificationRequestValues.VIB_MOTOR) == SetNortificationRequest.SetNortificationRequestValues.RED_LED){
+            if (((notTypeArray[3] as NSNumber).unsignedIntValue) == SetNortificationRequest.SetNortificationRequestValues.RED_LED){
                 endCell.currentColorView.backgroundColor = UIColor.redColor()
-            }else if (((notTypeArray[3] as NSNumber).unsignedIntValue & SetNortificationRequest.SetNortificationRequestValues.VIB_MOTOR) == SetNortificationRequest.SetNortificationRequestValues.BLUE_LED){
+            }else if (((notTypeArray[3] as NSNumber).unsignedIntValue) == SetNortificationRequest.SetNortificationRequestValues.BLUE_LED){
                 endCell.currentColorView.backgroundColor = UIColor.blueColor()
-            }else if (((notTypeArray[3] as NSNumber).unsignedIntValue & SetNortificationRequest.SetNortificationRequestValues.VIB_MOTOR) == SetNortificationRequest.SetNortificationRequestValues.GREEN_LED){
+            }else if (((notTypeArray[3] as NSNumber).unsignedIntValue) == SetNortificationRequest.SetNortificationRequestValues.GREEN_LED){
                 endCell.currentColorView.backgroundColor = UIColor.greenColor()
-            }else if (((notTypeArray[3] as NSNumber).unsignedIntValue & SetNortificationRequest.SetNortificationRequestValues.VIB_MOTOR) == SetNortificationRequest.SetNortificationRequestValues.YELLOW_LED){
+            }else if (((notTypeArray[3] as NSNumber).unsignedIntValue) == SetNortificationRequest.SetNortificationRequestValues.YELLOW_LED){
                 endCell.currentColorView.backgroundColor = UIColor.yellowColor()
+            }else if (((notTypeArray[3] as NSNumber).unsignedIntValue) == SetNortificationRequest.SetNortificationRequestValues.VIOLET_LED){
+                endCell.currentColorView.backgroundColor = UIColor.orangeColor()
             }
+            else if (((notTypeArray[3] as NSNumber).unsignedIntValue) == SetNortificationRequest.SetNortificationRequestValues.PURPLE_LED){
+                endCell.currentColorView.backgroundColor = UIColor.cyanColor()
+            }
+            
             endCell.pDelegate = self
 
             return endCell
