@@ -26,6 +26,9 @@ class AppTheme {
         return UIColor(red: 186/255.0, green: 185/255.0, blue: 182/255.0, alpha: 1)
     }
 
+    class func SYSTEMFONTOFSIZE(mSize size:CGFloat = 25) -> UIFont {
+        return UIFont.systemFontOfSize(size)
+    }
     class func FONT_RALEWAY_BOLD(mSize size:CGFloat = 26) -> UIFont {
         return UIFont(name:"Raleway-Bold", size: size)!
     }
