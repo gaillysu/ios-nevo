@@ -76,7 +76,6 @@
 		07C59F321A8C6A6000D65C84 /* SetRTCRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C59F311A8C6A6000D65C84 /* SetRTCRequest.swift */; };
 		07CC4A291A820A9B008DA749 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07CC4A281A820A9B008DA749 /* Utility.swift */; };
 		07CC4A2F1A821B46008DA749 /* NevoOTARequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07CC4A2E1A821B46008DA749 /* NevoOTARequest.swift */; };
-		591BF2C91AA7F4CC00DFF349 /* AnnularProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 591BF2C81AA7F4CC00DFF349 /* AnnularProgressView.swift */; };
 		9A12E5461A931B1F00536729 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A12E5451A931B1F00536729 /* Alert.swift */; };
 		9A2D6C3B1A9C6D9F00591BDC /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A2D6C3A1A9C6D9F00591BDC /* HealthKit.framework */; };
 		9A2D6C3E1A9C71E500591BDC /* NevoHK.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2D6C3D1A9C71E500591BDC /* NevoHK.swift */; };
@@ -206,7 +205,6 @@
 		07C59F311A8C6A6000D65C84 /* SetRTCRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SetRTCRequest.swift; path = Controller/Connection/Request/SetRTCRequest.swift; sourceTree = "<group>"; };
 		07CC4A281A820A9B008DA749 /* Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Utility.swift; path = OTA/Utility.swift; sourceTree = "<group>"; };
 		07CC4A2E1A821B46008DA749 /* NevoOTARequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NevoOTARequest.swift; path = OTA/NevoOTARequest.swift; sourceTree = "<group>"; };
-		591BF2C81AA7F4CC00DFF349 /* AnnularProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AnnularProgressView.swift; path = View/AnnularProgressView.swift; sourceTree = "<group>"; };
 		9A12E5451A931B1F00536729 /* Alert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Alert.swift; path = Util/Alert.swift; sourceTree = "<group>"; };
 		9A2D6C391A9C6D9F00591BDC /* Nevo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Nevo.entitlements; sourceTree = "<group>"; };
 		9A2D6C3A1A9C6D9F00591BDC /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
@@ -570,7 +568,6 @@
 				005350BB1A8B4C1200BF289D /* StepGoalSetingView.swift */,
 				005FE77A1A8C979800961239 /* alarmClockView.swift */,
 				9A3B7AAE1A9450D000BDC3C6 /* AppTheme.swift */,
-				591BF2C81AA7F4CC00DFF349 /* AnnularProgressView.swift */,
 				003542B61AA823B000B27381 /* AnimationView.swift */,
 			);
 			name = View;
@@ -837,7 +834,6 @@
 				9AD8F93B1A6DF35900F01014 /* Nevo.xcdatamodeld in Sources */,
 				0704C9631AA431EE00F9AE09 /* GetStepsGoalRequest.swift in Sources */,
 				07CC4A291A820A9B008DA749 /* Utility.swift in Sources */,
-				591BF2C91AA7F4CC00DFF349 /* AnnularProgressView.swift in Sources */,
 				07731E521AA58EFE007F9FD6 /* ReadDailyTrackerInfo.swift in Sources */,
 				007DD4BD1A89DF2A00CE7264 /* Page2Controller.swift in Sources */,
 				07C18C0A1A80DF4900D0BF4A /* NevoOtaController.swift in Sources */,
