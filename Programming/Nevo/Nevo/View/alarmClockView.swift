@@ -30,7 +30,13 @@ class alarmClockView: UIView {
 
     var animationView:AnimationView!
     
-    func bulidAlarmView(delegate:ButtonManagerCallBack,hour:Int,min:Int,enabled:Bool) {
+    func bulidAlarmView(delegate:ButtonManagerCallBack,hour:Int,min:Int,enabled:Bool,navigationItem:UINavigationItem) {
+        var titleLabel:UILabel = UILabel(frame: CGRectMake(0, 0, 120, 30))
+        titleLabel.textColor = UIColor.whiteColor()
+        titleLabel.text = NSLocalizedString("alarmTitle", comment: "")
+        titleLabel.font = AppTheme.SYSTEMFONTOFSIZE()
+        titleLabel.textAlignment = NSTextAlignment.Center
+        navigationItem.titleView = titleLabel
 
         mDelegate = delegate
         animationView = AnimationView(frame: self.frame, delegate: delegate)
