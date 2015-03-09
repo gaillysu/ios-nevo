@@ -192,7 +192,7 @@ class EnterNotificationController: UITableViewController,SwitchActionDelegate,Pa
         }
 
         mSyncController?.SetNortification()
-        mDelegate.onSelectedType(true, type: notTypeArray[1] as NSString)
+        mDelegate?.onSelectedType(true, type: notTypeArray[1] as NSString)
         
     }
 
