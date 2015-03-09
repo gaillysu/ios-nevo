@@ -133,6 +133,10 @@ At best 3 times a day.
 
 If you have separate functions, do separate commits and write a different comment for each commit.
 
+When you commit, always first Pull, then commit, then push.
+
+And not first commit, then pull, then push.
+
 #### 5- Comment a lot
 Comment you code A LOT. (and in English)
 

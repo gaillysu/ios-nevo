@@ -101,18 +101,18 @@ class SyncController: ConnectionControllerDelegate {
     
     
     func setRTC() {
-        mConnectionController.sendRequest(SetRTCRequest())
+        sendRequest(SetRTCRequest())
     }
     
     func SetProfile() {
-        mConnectionController.sendRequest(SetProfileRequest())
+        sendRequest(SetProfileRequest())
     }
     func SetCardio() {
-        mConnectionController.sendRequest(SetCardioRequest())
+        sendRequest(SetCardioRequest())
     }
     
     func WriteSetting() {
-        mConnectionController.sendRequest(WriteSettingRequest())
+        sendRequest(WriteSettingRequest())
     }
    
     //end functions for connected to Nevo
@@ -121,30 +121,38 @@ class SyncController: ConnectionControllerDelegate {
     
     func  getDailyTrackerInfo()
     {
-        mConnectionController.sendRequest(ReadDailyTrackerInfo())
+        sendRequest(ReadDailyTrackerInfo())
     }
     
     func  getDailyTracker(trackerno:UInt8)
     {
-        mConnectionController.sendRequest(ReadDailyTracker(trackerno:trackerno))
+        sendRequest(ReadDailyTracker(trackerno:trackerno))
     }
     
     func getGoal()
     {
-        mConnectionController.sendRequest(GetStepsGoalRequest())
+        sendRequest(GetStepsGoalRequest())
     }
     func setGoal(goal:Goal) {
-        mConnectionController.sendRequest(SetGoalRequest(goal: goal))
+        sendRequest(SetGoalRequest(goal: goal))
     }
 
     func setAlarm(alarmhour:Int,alarmmin:Int,alarmenable:Bool) {
-        mConnectionController.sendRequest(SetAlarmRequest(hour:alarmhour,min: alarmmin,enable: alarmenable))
+        sendRequest(SetAlarmRequest(hour:alarmhour,min: alarmmin,enable: alarmenable))
     }
 
     func SetNortification() {
-        mConnectionController.sendRequest(SetNortificationRequest())
+        sendRequest(SetNortificationRequest())
     }
     //end functions by UI
+    
+    func sendRequest(r:Request) {
+        SyncQueue.sharedInstance.post( { (Void) -> (Void) in
+
+                self.mConnectionController.sendRequest(r)
+            
+            } )
+    }
     
     func packetReceived(packet:RawPacket) {
         
@@ -155,6 +163,9 @@ class SyncController: ConnectionControllerDelegate {
         mPacketsbuffer.append(packet.getRawData())
         if(NSData2Bytes(packet.getRawData())[0] == 0xFF)
         {
+            //We just received a full response, so we can safely send the next request
+            SyncQueue.sharedInstance.next()
+            
             if(NSData2Bytes(packet.getRawData())[1] == 0x01)
             {
                 //step2:cmd 0x20
