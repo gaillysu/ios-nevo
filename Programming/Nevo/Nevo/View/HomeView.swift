@@ -15,7 +15,7 @@ class HomeView: UIView {
     private let mClockTimerView = ClockView(frame:CGRectMake(0, 0, UIScreen.mainScreen().bounds.width-60, UIScreen.mainScreen().bounds.width-60), hourImage:  UIImage(named: "clockViewHour")!, minuteImage: UIImage(named: "clockViewMinute")!, dialImage: UIImage(named: "clockView600")!);//init "ClockView" ,Use the code relative layout
 
     var progressView:CircleProgressView?
-    var progresValue:CGFloat = 0.2
+    var progresValue:CGFloat = 0.0
     
     func bulidHomeView(navigationItem:UINavigationItem) {
 
