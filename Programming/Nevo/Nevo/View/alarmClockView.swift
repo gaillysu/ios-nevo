@@ -185,7 +185,7 @@ class alarmClockView: UIView {
     }
     
     func setAlarmTime(hour:Int,min:Int) {
-        selectedTimerButton.setTitle("\(hour):\(min)", forState: UIControlState.Normal)
+        selectedTimerButton.setTitle(String(format: "%02d:%02d", hour, min), forState: UIControlState.Normal)
     }
     
     func getEnabled() -> Bool {
