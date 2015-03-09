@@ -187,7 +187,7 @@ class EnterNotificationController: UITableViewController,SwitchActionDelegate,Pa
             EnterNotificationController.setLedColor(notTypeArray[1] as NSString,ledColor:SetNortificationRequest.SetNortificationRequestValues.GREEN_LED)
         }else if color == UIColor.orangeColor(){
             EnterNotificationController.setLedColor(notTypeArray[1] as NSString,ledColor:SetNortificationRequest.SetNortificationRequestValues.VIOLET_LED)
-        }else if color == UIColor.cyanColor(){
+        }else if color == AppTheme.PALETTE_BAGGROUND_COLOR(){
             EnterNotificationController.setLedColor(notTypeArray[1] as NSString,ledColor:SetNortificationRequest.SetNortificationRequestValues.PURPLE_LED)
         }
 
@@ -250,7 +250,7 @@ class EnterNotificationController: UITableViewController,SwitchActionDelegate,Pa
                 endCell.currentColorView.backgroundColor = UIColor.orangeColor()
             }
             else if (((notTypeArray[3] as NSNumber).unsignedIntValue) == SetNortificationRequest.SetNortificationRequestValues.PURPLE_LED){
-                endCell.currentColorView.backgroundColor = UIColor.cyanColor()
+                endCell.currentColorView.backgroundColor = AppTheme.PALETTE_BAGGROUND_COLOR()
             }
             
             endCell.pDelegate = self
