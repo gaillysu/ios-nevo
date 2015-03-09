@@ -24,14 +24,8 @@ class StepGoalSetingController: UIViewController, SyncControllerDelegate,ButtonM
 
         mSyncController = SyncController.sharedInstance
         mSyncController?.startConnect(false, delegate: self)
-        var titleLabel:UILabel = UILabel(frame: CGRectMake(0, 0, 120, 30))
-        titleLabel.textColor = UIColor.whiteColor()
-        titleLabel.text = NSLocalizedString("stepGoalTitle", comment: "")
-        titleLabel.font = UIFont.systemFontOfSize(25)
-        titleLabel.textAlignment = NSTextAlignment.Center
-        self.navigationItem.titleView = titleLabel
 
-        stepGoalView.bulidStepGoalView(self)
+        stepGoalView.bulidStepGoalView(self,navigationItem: self.navigationItem)
         
         if let numberOfSteps = NSUserDefaults.standardUserDefaults().objectForKey(NUMBER_OF_STEPS_GOAL_KEY) as? Int {
             setGoal(NumberOfStepsGoal(steps: numberOfSteps))

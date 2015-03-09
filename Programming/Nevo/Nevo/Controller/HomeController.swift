@@ -21,14 +21,7 @@ class HomeController: UIViewController, SyncControllerDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        var titleLabel:UILabel = UILabel(frame: CGRectMake(0, 0, 120, 30))
-        titleLabel.textColor = UIColor.whiteColor()
-        titleLabel.text = NSLocalizedString("homeTitle", comment: "")
-        titleLabel.font = UIFont.systemFontOfSize(25)
-        titleLabel.textAlignment = NSTextAlignment.Center
-        self.navigationItem.titleView = titleLabel
-
-        homeView.bulidHomeView()
+        homeView.bulidHomeView(self.navigationItem)
 
         let timer:NSTimer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector:"timerAction:", userInfo: nil, repeats: true);
         
@@ -98,7 +91,7 @@ class HomeController: UIViewController, SyncControllerDelegate{
             
                 NSLog("get Daily Steps is: \(dailySteps), getDaily Goal is: \(dailyStepGoal), saved Goal is:\(numberOfSteps),percent is: \(percent)")
             
-                homeView.setProgressViewProgress(percent)
+                homeView.setProgress(percent)
             
                 mPacketsbuffer = []
         }        

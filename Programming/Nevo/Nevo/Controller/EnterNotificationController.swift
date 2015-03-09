@@ -31,7 +31,7 @@ class EnterNotificationController: UITableViewController,SwitchActionDelegate,Pa
     /*
     Type switch state callBack to the before a object
     */
-    var mDelegate:SelectionTypeDelegate!
+    var mDelegate:SelectionTypeDelegate?
 
     private var mSyncController:SyncController?
     
@@ -43,23 +43,11 @@ class EnterNotificationController: UITableViewController,SwitchActionDelegate,Pa
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        var titleLabel:UILabel = UILabel(frame: CGRectMake(0, 0, 120, 30))
-        titleLabel.textColor = UIColor.whiteColor()
-        titleLabel.text = NSLocalizedString("NotificationType", comment: "")
-        titleLabel.font = UIFont.systemFontOfSize(25)
-        titleLabel.textAlignment = NSTextAlignment.Center
-        self.navigationItem.titleView = titleLabel
-
-        let backButton:UIButton = UIButton(frame: CGRectMake(0, 0, 35, 35))
-        backButton.setImage(UIImage(named: "back"), forState: UIControlState.Normal)
-        backButton.addTarget(self, action: Selector("BackAction:"), forControlEvents: UIControlEvents.TouchUpInside)
-        let item:UIBarButtonItem = UIBarButtonItem(customView: backButton as UIView);
-        self.navigationItem.leftBarButtonItem = item
 
         mSyncController = SyncController.sharedInstance
         mSyncController?.startConnect(false, delegate: self)
 
-        enterNotView.bulidEnterNotificationView(self)
+        enterNotView.bulidEnterNotificationView(self,navigationItem:self.navigationItem)
 
     }
 
@@ -72,16 +60,16 @@ class EnterNotificationController: UITableViewController,SwitchActionDelegate,Pa
         // Dispose of any resources that can be recreated.
     }
 
-    func BackAction(back:UIButton) {
-
-        self.navigationController?.popViewControllerAnimated(true)
-    }
     
     // MARK: - ButtonManagerCallBack
     func controllManager(sender:AnyObject){
-        if sender.isEqual(enterNotView.animationView.getNoConnectScanButton()?) {
+        if sender.isEqual(enterNotView.animationView?.getNoConnectScanButton()?) {
             NSLog("noConnectScanButton")
             reconnect()
+        }
+
+        if sender.isEqual(enterNotView.backButton) {
+            self.navigationController?.popViewControllerAnimated(true)
         }
     }
 
@@ -107,15 +95,15 @@ class EnterNotificationController: UITableViewController,SwitchActionDelegate,Pa
     func checkConnection() {
         if mSyncController != nil && !(mSyncController!.isConnected()) {
             //We are currently not connected
-            enterNotView.addSubview(enterNotView.animationView.bulibNoConnectView())
+            enterNotView.addSubview((enterNotView.animationView?.bulibNoConnectView())!)
             reconnect()
         } else {
-            enterNotView.animationView.endConnectRemoveView()
+            enterNotView.animationView?.endConnectRemoveView()
         }
     }
 
     func reconnect() {
-        enterNotView.animationView.RotatingAnimationObject(enterNotView.animationView.getNoConnectImage()!)
+        enterNotView.animationView?.RotatingAnimationObject((enterNotView.animationView?.getNoConnectImage())!)
         mSyncController?.connect()
     }
 
@@ -126,7 +114,7 @@ class EnterNotificationController: UITableViewController,SwitchActionDelegate,Pa
         SetNortificationRequest.setLedColor(notTypeArray[1] as NSString,ledColor:color)
         
         mSyncController?.SetNortification()
-        mDelegate.onSelectedType(results, type: notTypeArray[1] as NSString)
+        mDelegate?.onSelectedType(results, type: notTypeArray[1] as NSString)
     }
 
     // MARK: - PaletteDelegate

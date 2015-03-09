@@ -12,11 +12,18 @@ class NotificationView: UIView {
 
     @IBOutlet var tableListView: UITableView!
 
-    private var mDelegate:ButtonManagerCallBack!
+    private var mDelegate:ButtonManagerCallBack?
     var animationView:AnimationView!
 
-    func bulidNotificationViewUI(delegate:ButtonManagerCallBack){
-        mDelegate = delegate
+    func bulidNotificationViewUI(delegate:ButtonManagerCallBack,navigationItem:UINavigationItem){
+        var titleLabel:UILabel = UILabel(frame: CGRectMake(0, 0, 120, 30))
+        titleLabel.textColor = UIColor.whiteColor()
+        titleLabel.text = NSLocalizedString("Notification", comment: "")
+        titleLabel.font = UIFont.systemFontOfSize(25)
+        titleLabel.textAlignment = NSTextAlignment.Center
+        navigationItem.titleView = titleLabel
+
+        mDelegate? = delegate
         animationView = AnimationView(frame: self.frame, delegate: delegate)
         
     }
