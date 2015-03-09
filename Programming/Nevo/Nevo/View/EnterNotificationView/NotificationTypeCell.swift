@@ -23,11 +23,11 @@ class NotificationTypeCell: UITableViewCell {
     @IBOutlet var cellLabel: UILabel!
     @IBOutlet var cellSwitch: UISwitch!
 
-    var ActionDelegate:SwitchActionDelegate!
+    var ActionDelegate:SwitchActionDelegate?
 
     @IBAction func onTypeSwitchAction(sender: AnyObject) {
         let switchSender:UISwitch = sender as UISwitch
-        ActionDelegate.onSwitch(switchSender.on)
+        ActionDelegate?.onSwitch(switchSender.on)
     }
 
     override func awakeFromNib() {

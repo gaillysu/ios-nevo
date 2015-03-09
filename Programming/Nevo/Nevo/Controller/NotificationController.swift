@@ -19,17 +19,10 @@ class NotificationController: UIViewController,SelectionTypeDelegate,SyncControl
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        var titleLabel:UILabel = UILabel(frame: CGRectMake(0, 0, 120, 30))
-        titleLabel.textColor = UIColor.whiteColor()
-        titleLabel.text = NSLocalizedString("Notification", comment: "")
-        titleLabel.font = UIFont.systemFontOfSize(25)
-        titleLabel.textAlignment = NSTextAlignment.Center
-        self.navigationItem.titleView = titleLabel
-
         mSyncController = SyncController.sharedInstance
         mSyncController?.startConnect(false, delegate: self)
 
-        notificationList.bulidNotificationViewUI(self)
+        notificationList.bulidNotificationViewUI(self,navigationItem: self.navigationItem)
         typeModel = TypeModel()
     }
 
@@ -44,7 +37,7 @@ class NotificationController: UIViewController,SelectionTypeDelegate,SyncControl
 
     // MARK: - ButtonManagerCallBack
     func controllManager(sender:AnyObject){
-        if sender.isEqual(notificationList.animationView.getNoConnectScanButton()?) {
+        if sender.isEqual(notificationList.animationView?.getNoConnectScanButton()?) {
             NSLog("noConnectScanButton")
             reconnect()
         }
@@ -75,7 +68,7 @@ class NotificationController: UIViewController,SelectionTypeDelegate,SyncControl
             notificationList.addSubview(notificationList.animationView.bulibNoConnectView())
             reconnect()
         } else {
-            notificationList.animationView.endConnectRemoveView()
+            notificationList.animationView?.endConnectRemoveView()
         }
         
         

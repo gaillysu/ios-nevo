@@ -27,14 +27,6 @@ class AlarmClockController: UIViewController, SyncControllerDelegate,ButtonManag
         mSyncController = SyncController.sharedInstance
         mSyncController?.startConnect(false, delegate: self)
         
-        var titleLabel:UILabel = UILabel(frame: CGRectMake(0, 0, 120, 30))
-        titleLabel.textColor = UIColor.whiteColor()
-        titleLabel.text = NSLocalizedString("alarmTitle", comment: "")
-        titleLabel.font = UIFont.systemFontOfSize(25)
-        titleLabel.textAlignment = NSTextAlignment.Center
-        self.navigationItem.titleView = titleLabel
-        
-        
         //If we have any previously saved hour, min and/or enabled/ disabled, we'll use those variables first
         if let alarmHourSaved = NSUserDefaults.standardUserDefaults().objectForKey(SAVED_ALARM_HOUR_KEY) as? Int {
             mAlarmhour = alarmHourSaved
@@ -48,7 +40,7 @@ class AlarmClockController: UIViewController, SyncControllerDelegate,ButtonManag
             mAlarmenable = alarmEnableSaved
         }
 
-        alarmView.bulidAlarmView(self,hour:mAlarmhour,min:mAlarmmin,enabled:mAlarmenable)
+        alarmView.bulidAlarmView(self,hour:mAlarmhour,min:mAlarmmin,enabled:mAlarmenable,navigationItem: self.navigationItem)
         // Do any additional setup after loading the view.
     }
 

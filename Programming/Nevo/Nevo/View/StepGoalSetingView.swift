@@ -42,7 +42,14 @@ class StepGoalSetingView: UIView,UIPickerViewDataSource,UIPickerViewDelegate {
 
     var animationView:AnimationView!
 
-    func bulidStepGoalView(delegate:ButtonManagerCallBack){
+    func bulidStepGoalView(delegate:ButtonManagerCallBack,navigationItem:UINavigationItem){
+
+        var titleLabel:UILabel = UILabel(frame: CGRectMake(0, 0, 120, 30))
+        titleLabel.textColor = UIColor.whiteColor()
+        titleLabel.text = NSLocalizedString("stepGoalTitle", comment: "")
+        titleLabel.font = AppTheme.SYSTEMFONTOFSIZE()
+        titleLabel.textAlignment = NSTextAlignment.Center
+        navigationItem.titleView = titleLabel
 
         mDelegate = delegate
 

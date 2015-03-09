@@ -15,25 +15,36 @@ class HomeView: UIView {
     private let mClockTimerView = ClockView(frame:CGRectMake(0, 0, UIScreen.mainScreen().bounds.width-60, UIScreen.mainScreen().bounds.width-60), hourImage:  UIImage(named: "clockViewHour")!, minuteImage: UIImage(named: "clockViewMinute")!, dialImage: UIImage(named: "clockView600")!);//init "ClockView" ,Use the code relative layout
 
     private let mProgressView:UIProgressView = UIProgressView(frame: CGRectMake(UIScreen.mainScreen().bounds.width/4, UIScreen.mainScreen().bounds.height-80, UIScreen.mainScreen().bounds.width/2, 20))
+
+    var progressView:CircleProgressView?
+    var progresValue:CGFloat = 0.2
     
-    //a uiview for animation
-    var mAnimationView:AnnularProgressView = AnnularProgressView(frame: CGRectMake(0, 0, UIScreen.mainScreen().bounds.width, UIScreen.mainScreen().bounds.height))
-    
-    func bulidHomeView() {
-        self.addSubview(mAnimationView)
-        //REMOVE add a test function
-        mAnimationView.testDrawAnnularProgressBar()
-        
+    func bulidHomeView(navigationItem:UINavigationItem) {
+
+        var titleLabel:UILabel = UILabel(frame: CGRectMake(0, 0, 120, 30))
+        titleLabel.textColor = UIColor.whiteColor()
+        titleLabel.text = NSLocalizedString("homeTitle", comment: "")
+        titleLabel.font = AppTheme.SYSTEMFONTOFSIZE()
+        titleLabel.textAlignment = NSTextAlignment.Center
+        navigationItem.titleView = titleLabel
+
         mClockTimerView.currentTimer()
         self.addSubview(mClockTimerView)
-        mClockTimerView.center = CGPointMake(self.frame.width/2.0, self.frame.height/2.0);//Using the center property determines the location of the ClockView
-        
+        mClockTimerView.center = CGPointMake(self.frame.width/2.0, self.frame.height/2.0)//Using the center property determines the location of the ClockView
+
         //add the progressbar
-        mProgressView.progressTintColor = AppTheme.NEVO_SOLAR_YELLOW()
-        setProgressViewProgress(0.0)
-        self.addSubview(mProgressView)
+        //mProgressView.progressTintColor = AppTheme.NEVO_SOLAR_YELLOW()
+        //setProgressViewProgress(0.0)
+        //self.addSubview(mProgressView)
+
+        progressView = CircleProgressView()
+        progressView?.setProgressColor(AppTheme.NEVO_SOLAR_YELLOW())
+        progressView?.frame = CGRectMake(mClockTimerView.frame.origin.x-5, mClockTimerView.frame.origin.y-5, UIScreen.mainScreen().bounds.width-50, UIScreen.mainScreen().bounds.width-50)
+        progressView?.setProgress(progresValue)
+        self.layer.addSublayer(progressView)
 
     }
+
     
     func getClockTimerView() -> ClockView {
         return mClockTimerView
@@ -41,14 +52,13 @@ class HomeView: UIView {
     
     /**
     set the progress of the progressView
-    
+
     :param: progress
     :param: animated
     */
-    func setProgressViewProgress(progress: Float, animated: Bool = true){
-        if !progress.isNaN{
-            mProgressView.setProgress(progress, animated: animated)
-        }
+    func setProgress(progress: Float, animated: Bool = true){
+        progresValue = CGFloat(progress)
+        progressView?.setProgress(progresValue)
     }
     
     
