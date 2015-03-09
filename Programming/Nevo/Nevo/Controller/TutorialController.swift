@@ -8,9 +8,8 @@
 
 import UIkit
 
-class TutorialController: UIViewController, SyncControllerDelegate {
+class TutorialController: UIViewController {
     private var mTutorialView: TutorialView?
-    private var mSync:SyncController?
     //This controller is not displayed on the storyboard
 
     override func viewDidLoad() {
@@ -19,28 +18,6 @@ class TutorialController: UIViewController, SyncControllerDelegate {
         //init TutorialView
         mTutorialView = TutorialView(frame: CGRectMake(0,0, self.view.frame.size.width, self.view.frame.size.height), delegate: self)
         self.view.addSubview(mTutorialView!)
-        mSync    = SyncController.sharedInstance
-        mSync?.startConnect(true, delegate: self)
     }
     
-    func scanButtonPressed(sender:UIButton) {
-        mSync?.startConnect(true, delegate: self)
-    }
-    
-    /**
-    See ConnectionControllerDelegate
-    */
-    func packetReceived(RawPacket) {
-        //Do nothing
-    }
-    
-    /**
-    See ConnectionControllerDelegate
-    */
-    func connectionStateChanged(isConnected : Bool) {
-        //TODO by Hugo
-        //When we receive a connection, let's start the app automatically
-    }
-
-
 }

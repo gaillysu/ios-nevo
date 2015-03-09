@@ -18,12 +18,18 @@ class HomeController: UIViewController, SyncControllerDelegate{
     
     @IBOutlet var homeView: HomeView!
     private var mPacketsbuffer:[NSData]=[]
+    private var sync:SyncController?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         homeView.bulidHomeView(self.navigationItem)
 
         let timer:NSTimer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector:"timerAction:", userInfo: nil, repeats: true);
+        
+    }
+
+    override func viewDidAppear(animated: Bool) {
         
         if !ConnectionControllerImpl.sharedInstance.hasSavedAddress() {
             
@@ -32,16 +38,18 @@ class HomeController: UIViewController, SyncControllerDelegate{
             self.performSegueWithIdentifier("Home_Tutorial", sender: self)
             
         } else {
-            NSLog("We have a saved address, no need to go through the tutorial")
-            SyncController.sharedInstance.startConnect(false, delegate: self)
+            if(sync == nil)
+            {
+               NSLog("We have a saved address, no need to go through the tutorial")
+               sync  = SyncController.sharedInstance
+               sync?.startConnect(false, delegate: self)
+            }
+            NSLog("We getGoal in home screen")
+            mPacketsbuffer = []
+            SyncController.sharedInstance.getGoal()
         }
-        
-    }
 
-    override func viewDidAppear(animated: Bool) {
-        NSLog("We getGoal in home screen")
-        mPacketsbuffer = []
-        SyncController.sharedInstance.getGoal()
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -53,15 +61,6 @@ class HomeController: UIViewController, SyncControllerDelegate{
         homeView.getClockTimerView().currentTimer()
     }
 
-    @IBAction func managerButtonAction(sender: UIButton) {
-        //TODO remove
-        //if sender == homeView.connectButton {
-            NSLog("connectButton");
-            
-         //   SyncController(controller: self).sendRawPacket()
-           
-        //}
-    }
     
     /**
     
