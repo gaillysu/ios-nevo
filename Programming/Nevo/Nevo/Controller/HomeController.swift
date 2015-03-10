@@ -71,9 +71,10 @@ class HomeController: UIViewController, SyncControllerDelegate{
         
         mPacketsbuffer.append(packet.getRawData())
         
-        if(NSData2Bytes(packet.getRawData())[0] == 0xFF
-            && NSData2Bytes(packet.getRawData())[1] == 0x26 )
+        if(NSData2Bytes(packet.getRawData())[0] == 0xFF)
         {
+                if NSData2Bytes(packet.getRawData())[1] == 0x26
+                {
                 var dailySteps:Int = Int(NSData2Bytes(mPacketsbuffer[0])[2] )
                 dailySteps =  dailySteps + Int(NSData2Bytes(mPacketsbuffer[0])[3] )<<8
                 dailySteps =  dailySteps + Int(NSData2Bytes(mPacketsbuffer[0])[4] )<<16
@@ -91,7 +92,8 @@ class HomeController: UIViewController, SyncControllerDelegate{
                 NSLog("get Daily Steps is: \(dailySteps), getDaily Goal is: \(dailyStepGoal), saved Goal is:\(numberOfSteps),percent is: \(percent)")
             
                 homeView.setProgress(percent)
-            
+                }
+                //reset buffer for every end-packet
                 mPacketsbuffer = []
         }        
     }
