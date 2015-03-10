@@ -50,6 +50,11 @@ class HomeController: UIViewController, SyncControllerDelegate{
         }
 
         
+        //TEST this is for test
+//        var tapAction = UITapGestureRecognizer(target: self, action: "gotoProfileScreen")
+//        homeView.addGestureRecognizer(tapAction)
+        //end TEST
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -61,6 +66,13 @@ class HomeController: UIViewController, SyncControllerDelegate{
         homeView.getClockTimerView().currentTimer()
     }
 
+    
+    /**
+    goto profileTest screen.  just for test
+    */
+    func gotoProfileScreen(){
+        self.performSegueWithIdentifier("Home_profile", sender: self)
+    }
     
     /**
     
