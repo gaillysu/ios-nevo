@@ -36,6 +36,11 @@ class HomeController: UIViewController, SyncControllerDelegate{
             SyncController.sharedInstance.startConnect(false, delegate: self)
         }
         
+        //TEST this is for test
+//        var tapAction = UITapGestureRecognizer(target: self, action: "gotoProfileScreen")
+//        homeView.addGestureRecognizer(tapAction)
+        //end TEST
+        
     }
 
     override func viewDidAppear(animated: Bool) {
@@ -61,6 +66,13 @@ class HomeController: UIViewController, SyncControllerDelegate{
          //   SyncController(controller: self).sendRawPacket()
            
         //}
+    }
+    
+    /**
+    goto profileTest screen.  just for test
+    */
+    func gotoProfileScreen(){
+        self.performSegueWithIdentifier("Home_profile", sender: self)
     }
     
     /**
