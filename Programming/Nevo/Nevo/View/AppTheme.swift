@@ -40,4 +40,8 @@ class AppTheme {
     class func FONT_RALEWAY_THIN(mSize size:CGFloat = 26) -> UIFont {
         return UIFont(name:"Raleway-Thin", size: size)!//Uniform
     }
+
+    class func PALETTE_BAGGROUND_COLOR() -> UIColor {
+        return UIColor(red: 10/255.0, green: 255/255.0, blue: 178/255.0, alpha: 1)//Uniform
+    }
 }

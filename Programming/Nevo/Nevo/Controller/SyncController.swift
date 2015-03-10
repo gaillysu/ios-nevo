@@ -71,18 +71,16 @@ class SyncController: ConnectionControllerDelegate {
     */
     func syncActivityData() {
         var lastSync = 0.0
-        
         if let lastSyncSaved = NSUserDefaults.standardUserDefaults().objectForKey(LAST_SYNC_DATE_KEY) as? Double {
             lastSync = lastSyncSaved
         }
         
         if( NSDate().timeIntervalSince1970-lastSync > SYNC_INTERVAL) {
             //We haven't synched for a while, let's sync now !
-            
             NSLog("*** Sync started ! ***")
-            //setp1: cmd 0x01, set RTC
-            setRTC()
+            //self.getDailyTrackerInfo()
         }
+
     }
     
     /**
@@ -101,18 +99,18 @@ class SyncController: ConnectionControllerDelegate {
     
     
     func setRTC() {
-        mConnectionController.sendRequest(SetRTCRequest())
+        sendRequest(SetRTCRequest())
     }
     
     func SetProfile() {
-        mConnectionController.sendRequest(SetProfileRequest())
+        sendRequest(SetProfileRequest())
     }
     func SetCardio() {
-        mConnectionController.sendRequest(SetCardioRequest())
+        sendRequest(SetCardioRequest())
     }
     
     func WriteSetting() {
-        mConnectionController.sendRequest(WriteSettingRequest())
+        sendRequest(WriteSettingRequest())
     }
    
     //end functions for connected to Nevo
@@ -121,30 +119,38 @@ class SyncController: ConnectionControllerDelegate {
     
     func  getDailyTrackerInfo()
     {
-        mConnectionController.sendRequest(ReadDailyTrackerInfo())
+        sendRequest(ReadDailyTrackerInfo())
     }
     
     func  getDailyTracker(trackerno:UInt8)
     {
-        mConnectionController.sendRequest(ReadDailyTracker(trackerno:trackerno))
+        sendRequest(ReadDailyTracker(trackerno:trackerno))
     }
     
     func getGoal()
     {
-        mConnectionController.sendRequest(GetStepsGoalRequest())
+        sendRequest(GetStepsGoalRequest())
     }
     func setGoal(goal:Goal) {
-        mConnectionController.sendRequest(SetGoalRequest(goal: goal))
+        sendRequest(SetGoalRequest(goal: goal))
     }
 
     func setAlarm(alarmhour:Int,alarmmin:Int,alarmenable:Bool) {
-        mConnectionController.sendRequest(SetAlarmRequest(hour:alarmhour,min: alarmmin,enable: alarmenable))
+        sendRequest(SetAlarmRequest(hour:alarmhour,min: alarmmin,enable: alarmenable))
     }
 
-    func SetNortification() {
-        mConnectionController.sendRequest(SetNortificationRequest())
+    func SetNortification(type:TypeModel) {
+        sendRequest(SetNortificationRequest(type:type))
     }
     //end functions by UI
+    
+    func sendRequest(r:Request) {
+        SyncQueue.sharedInstance.post( { (Void) -> (Void) in
+
+                self.mConnectionController.sendRequest(r)
+            
+            } )
+    }
     
     func packetReceived(packet:RawPacket) {
         
@@ -155,9 +161,12 @@ class SyncController: ConnectionControllerDelegate {
         mPacketsbuffer.append(packet.getRawData())
         if(NSData2Bytes(packet.getRawData())[0] == 0xFF)
         {
+            //We just received a full response, so we can safely send the next request
+            SyncQueue.sharedInstance.next()
+            
             if(NSData2Bytes(packet.getRawData())[1] == 0x01)
             {
-                //step2:cmd 0x20
+                //setp2:start set user profile
                 self.SetProfile()
             }
             if(NSData2Bytes(packet.getRawData())[1] == 0x20)
@@ -170,8 +179,14 @@ class SyncController: ConnectionControllerDelegate {
             {
                 //step4:cmd 0x23
                 self.SetCardio()
-                //sync end here
-                syncFinished()
+            }
+            if(NSData2Bytes(packet.getRawData())[1] == 0x23)
+            {
+                //TODO : current BLE FW has a bug, cmd 0x23 can't get its response packet :0023..., FF23..., this cmd get 0022..., FF22... packets, it is wrong
+                
+                //self.syncActivityData()
+                //...
+               // syncFinished()
             }
 
             if(NSData2Bytes(packet.getRawData())[1] == 0x26)
@@ -206,7 +221,8 @@ class SyncController: ConnectionControllerDelegate {
         {
             var dispatchTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, Int64(1.0 * Double(NSEC_PER_SEC)))
             dispatch_after(dispatchTime, dispatch_get_main_queue(), {
-                self.syncActivityData()
+                //setp1: cmd 0x01, set RTC, for every connected Nevo
+                self.setRTC()
             })
             
         }

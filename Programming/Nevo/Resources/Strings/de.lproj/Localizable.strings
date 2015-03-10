@@ -18,9 +18,9 @@
 "PlaceConnect"="Place your nevo near the phone and tap Connect";
 "step"="Step";
 "goalButton"="30000";
-"Modarate"="Light";
-"Intensive"="Moderate";
-"Sportive"="Intensive";
+"Modarate"="Modarate";
+"Intensive"="Normal";
+"Sportive"="Sportive";
 "Custom"="Custom";
 "Back"="Back";
 "Next"="Next";

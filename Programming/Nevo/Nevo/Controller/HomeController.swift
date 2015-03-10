@@ -18,12 +18,18 @@ class HomeController: UIViewController, SyncControllerDelegate{
     
     @IBOutlet var homeView: HomeView!
     private var mPacketsbuffer:[NSData]=[]
+    private var sync:SyncController?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         homeView.bulidHomeView(self.navigationItem)
 
         let timer:NSTimer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector:"timerAction:", userInfo: nil, repeats: true);
+        
+    }
+
+    override func viewDidAppear(animated: Bool) {
         
         if !ConnectionControllerImpl.sharedInstance.hasSavedAddress() {
             
@@ -32,21 +38,23 @@ class HomeController: UIViewController, SyncControllerDelegate{
             self.performSegueWithIdentifier("Home_Tutorial", sender: self)
             
         } else {
-            NSLog("We have a saved address, no need to go through the tutorial")
-            SyncController.sharedInstance.startConnect(false, delegate: self)
+            if(sync == nil)
+            {
+               NSLog("We have a saved address, no need to go through the tutorial")
+               sync  = SyncController.sharedInstance
+               sync?.startConnect(false, delegate: self)
+            }
+            NSLog("We getGoal in home screen")
+            mPacketsbuffer = []
+            SyncController.sharedInstance.getGoal()
         }
+
         
         //TEST this is for test
 //        var tapAction = UITapGestureRecognizer(target: self, action: "gotoProfileScreen")
 //        homeView.addGestureRecognizer(tapAction)
         //end TEST
         
-    }
-
-    override func viewDidAppear(animated: Bool) {
-        NSLog("We getGoal in home screen")
-        mPacketsbuffer = []
-        SyncController.sharedInstance.getGoal()
     }
     
     override func didReceiveMemoryWarning() {
@@ -58,15 +66,6 @@ class HomeController: UIViewController, SyncControllerDelegate{
         homeView.getClockTimerView().currentTimer()
     }
 
-    @IBAction func managerButtonAction(sender: UIButton) {
-        //TODO remove
-        //if sender == homeView.connectButton {
-            NSLog("connectButton");
-            
-         //   SyncController(controller: self).sendRawPacket()
-           
-        //}
-    }
     
     /**
     goto profileTest screen.  just for test
@@ -84,9 +83,10 @@ class HomeController: UIViewController, SyncControllerDelegate{
         
         mPacketsbuffer.append(packet.getRawData())
         
-        if(NSData2Bytes(packet.getRawData())[0] == 0xFF
-            && NSData2Bytes(packet.getRawData())[1] == 0x26 )
+        if(NSData2Bytes(packet.getRawData())[0] == 0xFF)
         {
+                if NSData2Bytes(packet.getRawData())[1] == 0x26
+                {
                 var dailySteps:Int = Int(NSData2Bytes(mPacketsbuffer[0])[2] )
                 dailySteps =  dailySteps + Int(NSData2Bytes(mPacketsbuffer[0])[3] )<<8
                 dailySteps =  dailySteps + Int(NSData2Bytes(mPacketsbuffer[0])[4] )<<16
@@ -104,7 +104,8 @@ class HomeController: UIViewController, SyncControllerDelegate{
                 NSLog("get Daily Steps is: \(dailySteps), getDaily Goal is: \(dailyStepGoal), saved Goal is:\(numberOfSteps),percent is: \(percent)")
             
                 homeView.setProgress(percent)
-            
+                }
+                //reset buffer for every end-packet
                 mPacketsbuffer = []
         }        
     }
