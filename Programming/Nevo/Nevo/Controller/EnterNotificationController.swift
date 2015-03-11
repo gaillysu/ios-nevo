@@ -172,7 +172,7 @@ class EnterNotificationController: UITableViewController,SwitchActionDelegate,Pa
        // MARK: - SwitchActionDelegate
     func onSwitch(results:Bool){
         EnterNotificationController.setMotorOnOff(notTypeArray[1] as NSString, motorStatus: results)
-        mSyncController?.SetNortification()
+        mSyncController?.SetNortification(TypeModel())
         mDelegate?.onSelectedType(results, type: notTypeArray[1] as NSString)
     }
 
@@ -194,7 +194,7 @@ class EnterNotificationController: UITableViewController,SwitchActionDelegate,Pa
             EnterNotificationController.setLedColor(notTypeArray[1] as NSString,ledColor:SetNortificationRequest.SetNortificationRequestValues.PURPLE_LED)
         }
 
-        mSyncController?.SetNortification()
+        mSyncController?.SetNortification(TypeModel())
         mDelegate?.onSelectedType(true, type: notTypeArray[1] as NSString)
         
     }

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class Page3Controller: UIViewController,ButtonActionCallBack,ConnectionControllerDelegate {
+class Page3Controller: UIViewController,ButtonActionCallBack,SyncControllerDelegate {
 
     var pagesView:TutorialScanPageView!
 
@@ -35,9 +35,7 @@ class Page3Controller: UIViewController,ButtonActionCallBack,ConnectionControlle
             if(isConnectedBool) {
                 pagesView.connectSuccessClean()
             } else {
-                ConnectionControllerImpl.sharedInstance.connect()
-                //TODO by Hugo What happens when the utto is clicked a lot of times
-                ConnectionControllerImpl.sharedInstance.setDelegate( self)
+                SyncController.sharedInstance.startConnect(true, delegate: self)
             }
         } else if sender.isEqual(pagesView.getBackButton()?) {
             self.navigationController?.popViewControllerAnimated(true)

@@ -45,6 +45,54 @@
             </objects>
             <point key="canvasLocation" x="-573" y="378"/>
         </scene>
+        <!--Root View Controller-->
+        <scene sceneID="eZU-OA-XUh">
+            <objects>
+                <tableViewController id="qYv-3Z-IQq" customClass="ProfileTestController" customModule="Nevo" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="22" sectionFooterHeight="22" id="uDM-kh-pxg">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="60" id="8VI-Du-nWn">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8VI-Du-nWn" id="f6f-wa-AUa">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="qYv-3Z-IQq" id="Nwq-mo-LTo"/>
+                            <outlet property="delegate" destination="qYv-3Z-IQq" id="Zu4-hc-1e8"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Root View Controller" id="dcQ-bq-fi3"/>
+                    <connections>
+                        <outlet property="myTable" destination="uDM-kh-pxg" id="GUn-Oa-24d"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QIO-iy-pyg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1958" y="2550"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="lO3-1K-Jdj">
+            <objects>
+                <navigationController id="Yx7-ER-zM7" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="" image="back" id="ivY-qa-8Co"/>
+                    <navigationItem key="navigationItem" id="DEK-8X-u9m"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="r0Z-5q-gqz">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="qYv-3Z-IQq" kind="relationship" relationship="rootViewController" id="2B8-bW-r9K"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aAU-r9-bUf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1958" y="1838"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="qEP-IN-OCQ">
             <objects>
@@ -445,6 +493,7 @@
                     <connections>
                         <outlet property="homeView" destination="kh9-bI-dsS" id="5wv-HP-UN7"/>
                         <segue destination="Gec-Ym-Om4" kind="modal" identifier="Home_Tutorial" id="9p1-uA-j54"/>
+                        <segue destination="Yx7-ER-zM7" kind="modal" identifier="Home_profile" id="NL6-ww-dw9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
@@ -490,6 +539,7 @@
     </scenes>
     <resources>
         <image name="alarmitem" width="45" height="45"/>
+        <image name="back" width="45" height="45"/>
         <image name="goalitem" width="45" height="45"/>
         <image name="homeitem" width="45" height="45"/>
         <image name="round600.png" width="600" height="600"/>

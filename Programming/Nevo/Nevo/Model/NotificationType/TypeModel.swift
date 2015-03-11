@@ -12,23 +12,23 @@ class TypeModel: NSObject {
     var faceBookStates:Bool = true
     private var faceBookTypeString:NSString = EnterNotificationController.SOURCETYPE.FACEBOOK
     private var faceBookImageIcon:NSString = "facebookIcon"
-    private var faceBookCurrentColor:NSNumber!
+    var faceBookCurrentColor:NSNumber!
 
 
     var smsStates:Bool = true
     private let smsTypeString:NSString = EnterNotificationController.SOURCETYPE.SMS
     private let smsImageIcon:NSString = "smsIcon"
-    private var smsCurrentColor:NSNumber!
+    var smsCurrentColor:NSNumber!
 
     var callStates:Bool = true
     private let callTypeString:NSString = EnterNotificationController.SOURCETYPE.CALL
     private let callImageIcon:NSString = "callIcon"
-    private var callCurrentColor:NSNumber!
+    var callCurrentColor:NSNumber!
 
     var emailStates:Bool = true
     private let emailTypeString:NSString = EnterNotificationController.SOURCETYPE.EMAIL
     private let emailImageIcon:NSString = "emailIcon"
-    private var emailCurrentColor:NSNumber!
+    var emailCurrentColor:NSNumber!
 
     private var contentArray:NSMutableArray!
 
