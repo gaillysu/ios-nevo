@@ -10,10 +10,8 @@ import UIKit
 
 class CurrentPaletteCell: UITableViewCell {
 
-    @IBOutlet weak var currentLabel: UILabel!
-
     @IBOutlet weak var currentColorView: UIView!
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -21,7 +19,6 @@ class CurrentPaletteCell: UITableViewCell {
 
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
         // Configure the view for the selected state
     }
     

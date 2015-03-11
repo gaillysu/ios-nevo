@@ -179,8 +179,11 @@ class EnterNotificationController: UITableViewController,SwitchActionDelegate,Pa
     // MARK: - PaletteDelegate
     func selectedPalette(color:UIColor){
         NSLog("UIColor\(color)")
-        if color == UIColor.blueColor()
-        {
+        let indexPathRow:NSIndexPath = NSIndexPath(forRow: 0, inSection: 1)
+        let cellForRow:CurrentPaletteCell = self.tableView.cellForRowAtIndexPath(indexPathRow) as CurrentPaletteCell
+        cellForRow.currentColorView.backgroundColor = color
+
+        if color == UIColor.blueColor(){
             EnterNotificationController.setLedColor(notTypeArray[1] as NSString,ledColor:SetNortificationRequest.SetNortificationRequestValues.BLUE_LED)
         }else if color == UIColor.redColor(){
             EnterNotificationController.setLedColor(notTypeArray[1] as NSString,ledColor:SetNortificationRequest.SetNortificationRequestValues.RED_LED)
@@ -263,25 +266,20 @@ class EnterNotificationController: UITableViewController,SwitchActionDelegate,Pa
 
             if (indexPath.row == 0) {
                 let endCell:CurrentPaletteCell = enterNotView.EnterCurrentPaletteCell(indexPath)
+                
                 if (((notTypeArray[3] as NSNumber).unsignedIntValue) == SetNortificationRequest.SetNortificationRequestValues.RED_LED){
-                    endCell.backgroundColor = UIColor.orangeColor()
-                    //endCell.currentColorView.backgroundColor = UIColor.redColor()
+                    endCell.currentColorView.backgroundColor = UIColor.redColor()
                 }else if (((notTypeArray[3] as NSNumber).unsignedIntValue) == SetNortificationRequest.SetNortificationRequestValues.BLUE_LED){
-                    endCell.backgroundColor = UIColor.orangeColor()
-                    //endCell.currentColorView.backgroundColor = UIColor.blueColor()
+                    endCell.currentColorView.backgroundColor = UIColor.blueColor()
                 }else if (((notTypeArray[3] as NSNumber).unsignedIntValue) == SetNortificationRequest.SetNortificationRequestValues.GREEN_LED){
-                    endCell.backgroundColor = UIColor.orangeColor()
-                    //endCell.currentColorView.backgroundColor = UIColor.greenColor()
+                    endCell.currentColorView.backgroundColor = UIColor.greenColor()
                 }else if (((notTypeArray[3] as NSNumber).unsignedIntValue) == SetNortificationRequest.SetNortificationRequestValues.YELLOW_LED){
-                    endCell.backgroundColor = UIColor.orangeColor()
-                    //endCell.currentColorView.backgroundColor = UIColor.yellowColor()
+                    endCell.currentColorView.backgroundColor = UIColor.yellowColor()
                 }else if (((notTypeArray[3] as NSNumber).unsignedIntValue) == SetNortificationRequest.SetNortificationRequestValues.VIOLET_LED){
-                    endCell.backgroundColor = UIColor.orangeColor()
-                    //endCell.currentColorView.backgroundColor = UIColor.orangeColor()
+                    endCell.currentColorView.backgroundColor = UIColor.orangeColor()
                 }
                 else if (((notTypeArray[3] as NSNumber).unsignedIntValue) == SetNortificationRequest.SetNortificationRequestValues.PURPLE_LED){
-                    endCell.backgroundColor = UIColor.orangeColor()
-                    //endCell.currentColorView.backgroundColor = UIColor.purpleColor()
+                    endCell.currentColorView.backgroundColor = UIColor.purpleColor()
                 }
 
                 //endCell.pDelegate = self

@@ -46,10 +46,6 @@ class EnterNotificationView: UITableView {
             let nibs:NSArray = NSBundle.mainBundle().loadNibNamed("CurrentPaletteCell", owner: self, options: nil)
             CurrentCell = nibs.objectAtIndex(0) as? CurrentPaletteCell;
             CurrentCell?.selectionStyle = UITableViewCellSelectionStyle.None
-            CurrentCell?.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
-            var bhView:UIView = UIView(frame: CGRectMake(0, 0, 45, 45))
-            bhView.backgroundColor = UIColor.purpleColor()
-            CurrentCell?.accessoryView = bhView
         }
         return CurrentCell!
     }
