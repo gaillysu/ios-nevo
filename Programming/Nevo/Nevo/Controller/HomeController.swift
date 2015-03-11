@@ -93,8 +93,10 @@ class HomeController: UIViewController, SyncControllerDelegate{
                 homeView.setProgress(percent, dailySteps: dailySteps, dailyStepGoal: dailyStepGoal)
             
                 mPacketsbuffer = []
-        }        
+        }
+      }
     }
+
     func connectionStateChanged(isConnected: Bool) {
         //NOTHING to do here
     }
