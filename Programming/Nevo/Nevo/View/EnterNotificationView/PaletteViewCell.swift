@@ -28,10 +28,6 @@ class PaletteViewCell: UITableViewCell {
 
     @IBOutlet weak var cyanButton: UIButton!
 
-    @IBOutlet weak var currentLabel: UILabel!
-
-    @IBOutlet weak var currentColorView: UIView!
-
     var pDelegate:PaletteDelegate!
     var currentColor:UIColor!
 
@@ -58,7 +54,7 @@ class PaletteViewCell: UITableViewCell {
             currentColor = AppTheme.PALETTE_BAGGROUND_COLOR()
             pDelegate.selectedPalette(currentColor)
         }
-        currentColorView.backgroundColor = currentColor
+        //currentColorView.backgroundColor = currentColor
     }
 
     override func awakeFromNib() {

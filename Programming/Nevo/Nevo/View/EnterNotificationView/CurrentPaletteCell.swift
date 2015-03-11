@@ -10,6 +10,10 @@ import UIKit
 
 class CurrentPaletteCell: UITableViewCell {
 
+    @IBOutlet weak var currentLabel: UILabel!
+
+    @IBOutlet weak var currentColorView: UIView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

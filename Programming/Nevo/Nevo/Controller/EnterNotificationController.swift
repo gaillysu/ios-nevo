@@ -98,6 +98,9 @@ class EnterNotificationController: UITableViewController,SwitchActionDelegate,Pa
     led color default is full color led light on
     */
     //var ledcolor: UInt32 = 0xFF0000
+
+    var numberCount:Int = 1
+    var PaletteSele:Bool = false
     
 
     override func viewDidLoad() {
@@ -187,7 +190,7 @@ class EnterNotificationController: UITableViewController,SwitchActionDelegate,Pa
             EnterNotificationController.setLedColor(notTypeArray[1] as NSString,ledColor:SetNortificationRequest.SetNortificationRequestValues.GREEN_LED)
         }else if color == UIColor.orangeColor(){
             EnterNotificationController.setLedColor(notTypeArray[1] as NSString,ledColor:SetNortificationRequest.SetNortificationRequestValues.VIOLET_LED)
-        }else if color == AppTheme.PALETTE_BAGGROUND_COLOR(){
+        }else if color == UIColor.purpleColor(){
             EnterNotificationController.setLedColor(notTypeArray[1] as NSString,ledColor:SetNortificationRequest.SetNortificationRequestValues.PURPLE_LED)
         }
 
@@ -201,20 +204,35 @@ class EnterNotificationController: UITableViewController,SwitchActionDelegate,Pa
         if (indexPath.section == 0){
             return 50.0
         }else{
-            return 170
+            if indexPath.row == 0 {
+                return 45
+            }else {
+                return 245
+            }
         }
-
     }
     override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat{
         if (section == 0){
             return 44.0
         }else{
-            return UIScreen.mainScreen().bounds.height-373
+            return 100
         }
     }
 
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
-
+        if (indexPath.section == 1){
+            if !PaletteSele {
+                numberCount+=1
+                PaletteSele = true
+                let indexPathRow:NSIndexPath = NSIndexPath(forRow: 1, inSection: 1)
+                tableView.insertRowsAtIndexPaths([indexPathRow], withRowAnimation: UITableViewRowAnimation.Bottom)
+            }else {
+                numberCount-=1
+                PaletteSele = false
+                let indexPathRow:NSIndexPath = NSIndexPath(forRow: 1, inSection: 1)
+                tableView.deleteRowsAtIndexPaths([indexPathRow], withRowAnimation: UITableViewRowAnimation.Bottom)
+            }
+        }
     }
 
     // MARK: - UITableViewDataSource
@@ -223,8 +241,14 @@ class EnterNotificationController: UITableViewController,SwitchActionDelegate,Pa
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
+        if (section == 0) {
+            return 1
+        }else if (section == 1) {
+            return numberCount
+        }else{
+            return 0
+        }
 
-        return 1
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -237,25 +261,37 @@ class EnterNotificationController: UITableViewController,SwitchActionDelegate,Pa
             return endCell
         }else if (indexPath.section == 1){
 
-            let endCell:PaletteViewCell = enterNotView.EnterPaletteListCell(indexPath, dataSource: NSArray())
-            if (((notTypeArray[3] as NSNumber).unsignedIntValue) == SetNortificationRequest.SetNortificationRequestValues.RED_LED){
-                endCell.currentColorView.backgroundColor = UIColor.redColor()
-            }else if (((notTypeArray[3] as NSNumber).unsignedIntValue) == SetNortificationRequest.SetNortificationRequestValues.BLUE_LED){
-                endCell.currentColorView.backgroundColor = UIColor.blueColor()
-            }else if (((notTypeArray[3] as NSNumber).unsignedIntValue) == SetNortificationRequest.SetNortificationRequestValues.GREEN_LED){
-                endCell.currentColorView.backgroundColor = UIColor.greenColor()
-            }else if (((notTypeArray[3] as NSNumber).unsignedIntValue) == SetNortificationRequest.SetNortificationRequestValues.YELLOW_LED){
-                endCell.currentColorView.backgroundColor = UIColor.yellowColor()
-            }else if (((notTypeArray[3] as NSNumber).unsignedIntValue) == SetNortificationRequest.SetNortificationRequestValues.VIOLET_LED){
-                endCell.currentColorView.backgroundColor = UIColor.orangeColor()
-            }
-            else if (((notTypeArray[3] as NSNumber).unsignedIntValue) == SetNortificationRequest.SetNortificationRequestValues.PURPLE_LED){
-                endCell.currentColorView.backgroundColor = AppTheme.PALETTE_BAGGROUND_COLOR()
-            }
-            
-            endCell.pDelegate = self
+            if (indexPath.row == 0) {
+                let endCell:CurrentPaletteCell = enterNotView.EnterCurrentPaletteCell(indexPath)
+                if (((notTypeArray[3] as NSNumber).unsignedIntValue) == SetNortificationRequest.SetNortificationRequestValues.RED_LED){
+                    endCell.backgroundColor = UIColor.orangeColor()
+                    //endCell.currentColorView.backgroundColor = UIColor.redColor()
+                }else if (((notTypeArray[3] as NSNumber).unsignedIntValue) == SetNortificationRequest.SetNortificationRequestValues.BLUE_LED){
+                    endCell.backgroundColor = UIColor.orangeColor()
+                    //endCell.currentColorView.backgroundColor = UIColor.blueColor()
+                }else if (((notTypeArray[3] as NSNumber).unsignedIntValue) == SetNortificationRequest.SetNortificationRequestValues.GREEN_LED){
+                    endCell.backgroundColor = UIColor.orangeColor()
+                    //endCell.currentColorView.backgroundColor = UIColor.greenColor()
+                }else if (((notTypeArray[3] as NSNumber).unsignedIntValue) == SetNortificationRequest.SetNortificationRequestValues.YELLOW_LED){
+                    endCell.backgroundColor = UIColor.orangeColor()
+                    //endCell.currentColorView.backgroundColor = UIColor.yellowColor()
+                }else if (((notTypeArray[3] as NSNumber).unsignedIntValue) == SetNortificationRequest.SetNortificationRequestValues.VIOLET_LED){
+                    endCell.backgroundColor = UIColor.orangeColor()
+                    //endCell.currentColorView.backgroundColor = UIColor.orangeColor()
+                }
+                else if (((notTypeArray[3] as NSNumber).unsignedIntValue) == SetNortificationRequest.SetNortificationRequestValues.PURPLE_LED){
+                    endCell.backgroundColor = UIColor.orangeColor()
+                    //endCell.currentColorView.backgroundColor = UIColor.purpleColor()
+                }
 
-            return endCell
+                //endCell.pDelegate = self
+                return endCell
+            }else {
+                let paletteCell:PaletteViewCell = enterNotView.EnterPaletteListCell(indexPath, dataSource: NSArray())
+                paletteCell.pDelegate = self
+                return paletteCell
+            }
+
         }
 
         return UITableViewCell()
