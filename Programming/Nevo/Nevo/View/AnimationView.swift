@@ -151,9 +151,13 @@ class CircleProgressView: CAShapeLayer {
     private var progressLayer:CAShapeLayer! //The progress bar object
     private var progressColor:UIColor = UIColor.greenColor() //The background color of the progress bar
 
+    
+    private var array:NSMutableArray!
+
 
     override init(){
         super.init()
+        array = NSMutableArray()
         self.path = drawPathWithArcCenter()
         self.fillColor = UIColor.clearColor().CGColor
         self.strokeColor = UIColor(red: 0.56, green: 0.56, blue: 0.56, alpha: 0.4).CGColor
@@ -164,9 +168,19 @@ class CircleProgressView: CAShapeLayer {
         progressLayer.fillColor = UIColor.clearColor().CGColor
         progressLayer.strokeColor = progressColor.CGColor
         progressLayer.lineWidth = 5
-        //progressLayer.lineCap = kCALineCapRound
-        //progressLayer.lineJoin = kCALineJoinRound
+
         self.addSublayer(progressLayer)
+
+        for var index:Int = 0; index < 2; index++ {
+            let valueLabel:UILabel = UILabel(frame: CGRectMake(0, 0, 120, 25))
+            //valueLabel.backgroundColor = UIColor.greenColor()
+            valueLabel.textAlignment = NSTextAlignment.Center
+            valueLabel.font = AppTheme.FONT_RALEWAY_LIGHT(mSize: 15)
+            valueLabel.tag = index
+            self.addSublayer(valueLabel.layer)
+            array?.addObject(valueLabel)
+        }
+
     }
 
     required init(coder aDecoder: NSCoder) {
@@ -179,6 +193,14 @@ class CircleProgressView: CAShapeLayer {
         super.layoutSublayers()
     }
 
+    /*
+    Used to calculate the rotate degree
+    */
+    private func DegreesToRadians(degrees:CGFloat) -> CGFloat {
+
+        return (degrees * CGFloat(M_PI))/180.0;
+    }
+    
     /**
     The progress path function
 
@@ -187,7 +209,7 @@ class CircleProgressView: CAShapeLayer {
     func drawPathWithArcCenter()->CGPathRef{
         let position_y:CGFloat = self.frame.size.height/2.0
         let position_x:CGFloat = self.frame.size.width/2.0
-        let path:CGPathRef = UIBezierPath(arcCenter: CGPointMake(position_x, position_y), radius: position_y, startAngle: CGFloat(-CGFloat(M_PI)/2), endAngle: CGFloat(3*CGFloat(M_PI)/2), clockwise: true).CGPath
+        let path:CGPathRef = UIBezierPath(arcCenter: CGPointMake(position_x, position_y), radius: position_y, startAngle: CGFloat(-M_PI/90), endAngle: CGFloat(4*M_PI/2), clockwise: true).CGPath
         return path
     }
 
@@ -196,7 +218,18 @@ class CircleProgressView: CAShapeLayer {
 
     :param: Sprogress You need to set up the current progress
     */
-    func setProgress(Sprogress:CGFloat) {
+    func setProgress(Sprogress:CGFloat,Steps steps:Int = 0,GoalStep goalstep:Int = 0) {
+        for layer in array {
+            let valueLabel:UILabel = layer as UILabel
+            if (valueLabel.tag == 0) {
+                valueLabel.center = CGPointMake(self.frame.size.width/2.0-valueLabel.frame.size.width/2-10, self.frame.size.height+30)
+                valueLabel.text = NSString(format: "%@%.1f%c", NSLocalizedString("Progress: ",comment: ""),Float(Sprogress)*100.0,37) as String
+            }else if (valueLabel.tag == 1) {
+                valueLabel.center = CGPointMake(self.frame.size.width/2.0+valueLabel.frame.size.width/2+10, self.frame.size.height+30)
+                valueLabel.text = String(format:"%@\(steps)",NSLocalizedString("Step: ",comment: ""))
+            }
+        }
+
         initialProgress = CGFloat(calculatePercent(progress, toProgress: progressLimit))
         progress = Sprogress
 

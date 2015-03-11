@@ -49,9 +49,9 @@ class HomeView: UIView {
     :param: progress
     :param: animated
     */
-    func setProgress(progress: Float, animated: Bool = true){
+    func setProgress(progress: Float,dailySteps:Int,dailyStepGoal:Int){
         progresValue = CGFloat(progress)
-        progressView?.setProgress(progresValue)
+        progressView?.setProgress(progresValue, Steps: dailySteps, GoalStep: dailyStepGoal)
     }
     
     
