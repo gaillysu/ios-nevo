@@ -139,8 +139,8 @@ class SyncController: ConnectionControllerDelegate {
         sendRequest(SetAlarmRequest(hour:alarmhour,min: alarmmin,enable: alarmenable))
     }
 
-    func SetNortification(type:TypeModel) {
-        sendRequest(SetNortificationRequest(type:type))
+    func SetNortification(type:NSArray) {
+        sendRequest(SetNortificationRequest(typeArray:type))
     }
     //end functions by UI
     

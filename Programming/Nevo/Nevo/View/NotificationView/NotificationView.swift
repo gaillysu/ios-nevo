@@ -40,13 +40,14 @@ class NotificationView: UIView {
 
         }
         endCell?.selectionStyle = UITableViewCellSelectionStyle.None;
-        if (dataSource[indexPath.row].objectAtIndex(0) as Bool){
+        let typeContent:NSDictionary = (dataSource[indexPath.row] as TypeModel).getNotificationTypeContent()
+        if (typeContent.objectForKey("states") as Bool){
             endCell?.StatesLabel.text = "On"
         }else{
             endCell?.StatesLabel.text = "OFF"
         }
-        endCell?.textLabel?.text = dataSource[indexPath.row].objectAtIndex(1) as? String
-        endCell?.imageView?.image = UIImage(named:dataSource[indexPath.row].objectAtIndex(2) as String)
+        endCell?.textLabel?.text = typeContent.objectForKey("type") as? String
+        endCell?.imageView?.image = UIImage(named:typeContent.objectForKey("icon") as String)
         endCell?.StatesLabel.textColor = AppTheme.NEVO_SOLAR_GRAY()
 
         return endCell!
