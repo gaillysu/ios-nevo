@@ -24,7 +24,7 @@ class TutorialScanPageView : UIView {
     private var mConnectButton:UIButton?
     private var mErrorLabel:UILabel?
     private var mFinishButton:UIButton?
-    private var mOptionIndices:NSMutableIndexSet = NSMutableIndexSet(index: 1)
+    private var connectImage:UIImageView?
 
     init(frame: CGRect, delegate:UIViewController) {
         super.init(frame: frame)
@@ -73,33 +73,41 @@ class TutorialScanPageView : UIView {
         self.addSubview(titleLabel)
 
 
-        let connectButton = UIButton(frame: CGRectMake(0, 0, 150, 150))
-        connectButton.setBackgroundImage(UIImage(named:"connect"), forState: UIControlState.Normal)
-        //connectButton.setTitle( NSLocalizedString("Connect",comment:"lable string"), forState: UIControlState.Normal)
-        connectButton.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
-        connectButton.center = CGPointMake(self.frame.size.width/2.0, self.frame.size.height/2.0+50)
-        connectButton.contentMode = UIViewContentMode.ScaleAspectFit
-        connectButton.backgroundColor = UIColor.clearColor()
-        connectButton.addTarget(self, action: "ButtonAction:", forControlEvents: UIControlEvents.TouchUpInside)
-        self.addSubview(connectButton)
-        
-        mConnectButton = connectButton
+        connectImage = UIImageView(frame: CGRectMake(0, 0, 150, 150))
+        connectImage?.image = UIImage(named:"connect")
+        connectImage?.center = CGPointMake(self.frame.size.width/2.0, self.frame.size.height/2.0+50)
+        self.addSubview(connectImage!)
+
+        mConnectButton = UIButton(frame: CGRectMake(0, 0, 150, 150))
+        mConnectButton?.setTitle( NSLocalizedString("Connect",comment:"lable string"), forState: UIControlState.Normal)
+        mConnectButton?.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
+        mConnectButton?.center = CGPointMake(self.frame.size.width/2.0, self.frame.size.height/2.0+50)
+        mConnectButton?.contentMode = UIViewContentMode.ScaleAspectFit
+        mConnectButton?.backgroundColor = UIColor.clearColor()
+        mConnectButton?.addTarget(self, action: "ButtonAction:", forControlEvents: UIControlEvents.TouchUpInside)
+        self.addSubview(mConnectButton!)
 
 
-        let finishButton = UIButton.buttonWithType(UIButtonType.Custom) as UIButton
-        finishButton.frame = CGRectMake(0, 0, 120, 50)
-        finishButton.setTitle(NSLocalizedString(NSLocalizedString("Finish",comment:"lable string"),comment:"button title string"), forState: UIControlState.Normal)
-        finishButton.titleLabel?.font = BUTTON_FONT
-        finishButton.setTitleColor(AppTheme.NEVO_SOLAR_YELLOW(), forState: UIControlState.Normal)
-        finishButton.center = CGPointMake(self.frame.size.width/2.0, self.frame.size.height-90)
-        finishButton.hidden = true
-        finishButton.addTarget(self, action: "ButtonAction:", forControlEvents: UIControlEvents.TouchUpInside)
-        self.addSubview(finishButton)
-        
-        mFinishButton = finishButton
+        mFinishButton = UIButton(frame: CGRectMake(0, 0, 120, 50))
+        mFinishButton?.setTitle(NSLocalizedString(NSLocalizedString("Finish",comment:"lable string"),comment:"button title string"), forState: UIControlState.Normal)
+        mFinishButton?.titleLabel?.font = BUTTON_FONT
+        mFinishButton?.setTitleColor(AppTheme.NEVO_SOLAR_YELLOW(), forState: UIControlState.Normal)
+        if AppTheme.GET_IS_iPhone4S() {
+            mFinishButton?.center = CGPointMake(self.frame.size.width/2.0, self.frame.size.height-25)
+        }else {
+            mFinishButton?.center = CGPointMake(self.frame.size.width/2.0, self.frame.size.height-50)
+        }
+        mFinishButton?.hidden = true
+        mFinishButton?.addTarget(self, action: "ButtonAction:", forControlEvents: UIControlEvents.TouchUpInside)
+        self.addSubview(mFinishButton!)
 
         let errorLabel = UILabel(frame: CGRectMake(0, 0, titleLabel.frame.size.width, 80))
-        errorLabel.center = CGPointMake(self.frame.size.width/2.0, self.frame.size.height-100)
+        if AppTheme.GET_IS_iPhone4S(){
+            errorLabel.center = CGPointMake(self.frame.size.width/2.0, self.frame.size.height-90)
+        }else {
+            errorLabel.center = CGPointMake(self.frame.size.width/2.0, self.frame.size.height-120)
+        }
+
         errorLabel.textAlignment = NSTextAlignment.Center
         errorLabel.numberOfLines = 0
         errorLabel.lineBreakMode = NSLineBreakMode.ByWordWrapping
@@ -111,13 +119,7 @@ class TutorialScanPageView : UIView {
 
     }
 
-    func buttonAnimation(sender:UIButton) {
-        
-        //If the finish button is visible, we shouldn't be able to rotate the figure
-        if mFinishButton != nil && !( mFinishButton!.hidden ) {
-            return;
-        }
-
+    func buttonAnimation(sender:UIImageView) {
         var rotationAnimation:CABasicAnimation = CABasicAnimation(keyPath: "transform.rotation.z")
         rotationAnimation.toValue = NSNumber(double: M_PI * 2.0);
         rotationAnimation.duration = 1;
@@ -129,7 +131,7 @@ class TutorialScanPageView : UIView {
         sender.layer.addAnimation(rotationAnimation, forKey: "rotationAnimation")
     }
 
-    func stopButtonAnimation(sender:UIButton) {
+    func stopButtonAnimation(sender:UIImageView) {
         sender.layer.removeAnimationForKey("rotationAnimation")
     }
 
@@ -138,6 +140,7 @@ class TutorialScanPageView : UIView {
     */
     override func animationDidStart(theAnimation:CAAnimation){
         mConnectButton?.enabled = false
+        mConnectButton?.setTitle( NSLocalizedString("",comment:"lable string"), forState: UIControlState.Normal)
     }
 
     /**
@@ -145,26 +148,29 @@ class TutorialScanPageView : UIView {
     */
     override func animationDidStop(theAnimation:CAAnimation ,finished:Bool){
         mConnectButton?.enabled = true
+        mConnectButton?.setTitle( NSLocalizedString("Connect",comment:"lable string"), forState: UIControlState.Normal)
     }
     /*
     Connect the Success to empty some pictures don't need the button and the label text
     */
     func connectSuccessClean() {
-        mConnectButton?.setBackgroundImage(UIImage(named:"success"), forState: UIControlState.Normal)
-        if let connectButton = mConnectButton {
-            stopButtonAnimation(connectButton)
+        connectImage?.image = UIImage(named:"success")
+        if mConnectButton != nil {
+            stopButtonAnimation(connectImage!)
         }
-        mFinishButton?.hidden = false
+        mConnectButton?.hidden = true
         mErrorLabel?.hidden = true
+        mFinishButton?.hidden = false
     }
     /*
     Button Event handling all returns in the controller
     */
     func ButtonAction(sender:UIButton){
-
-        buttonAnimation(sender)
+        //If the finish button is visible, we shouldn't be able to rotate the figure
+        if sender.isEqual(mConnectButton) {
+            buttonAnimation(connectImage!)
+        }
         mDelegate?.nextButtonAction(sender)
-        
     }
     
     func getBackButton() -> UIButton? {

@@ -60,12 +60,17 @@ class TutorialPage2View: UIView {
 
         let sideImage:UIImageView = UIImageView(image: UIImage(named: String("side" as NSString)))
         sideImage.frame = CGRectMake(0, 0, 120, self.frame.size.width-100)
-        sideImage.center = CGPointMake(60, self.frame.size.height/2.0+20)
+        if AppTheme.GET_IS_iPhone4S() {
+            sideImage.center = CGPointMake(50, self.frame.size.height/2.0+20)
+        }else{
+            sideImage.center = CGPointMake(60, self.frame.size.height/2.0+20)
+        }
+
         sideImage.contentMode = UIViewContentMode.ScaleAspectFit
         sideImage.backgroundColor = UIColor.clearColor()
         self.addSubview(sideImage)
 
-        let titleLabel:UILabel = UILabel(frame: CGRectMake(sideImage.frame.size.width-70, guideImage.frame.origin.y+guideImage.frame.size.height, guideImage.frame.size.width, 100))
+        let titleLabel:UILabel = UILabel(frame: CGRectMake(sideImage.frame.size.width-70, guideImage.frame.origin.y+guideImage.frame.size.height-20, guideImage.frame.size.width, 100))
         titleLabel.textAlignment = NSTextAlignment.Center
         titleLabel.numberOfLines = 0
         titleLabel.lineBreakMode = NSLineBreakMode.ByWordWrapping
@@ -73,13 +78,21 @@ class TutorialPage2View: UIView {
         titleLabel.text = NSLocalizedString("WatchBluetooth",comment:"lable string")
         self.addSubview(titleLabel)
 
-        let guide2Label:UILabel = UILabel(frame: CGRectMake(titleLabel.frame.origin.x, sideImage.frame.origin.y+sideImage.frame.size.height-40, titleLabel.frame.size.width, 80))
-        guide2Label.textAlignment = NSTextAlignment.Center
+        let guide2Label:UILabel = UILabel(frame: CGRectMake(titleLabel.frame.origin.x, sideImage.frame.origin.y+sideImage.frame.size.height-40, titleLabel.frame.size.width, 70))
+        guide2Label.textAlignment = NSTextAlignment.Left
         guide2Label.numberOfLines = 0
         guide2Label.lineBreakMode = NSLineBreakMode.ByWordWrapping
         guide2Label.font = TEXT_FONT
         guide2Label.text = NSLocalizedString("LongPushOn",comment:"lable string")
         self.addSubview(guide2Label)
+
+        let guide3Label:UILabel = UILabel(frame: CGRectMake(titleLabel.frame.origin.x, sideImage.frame.origin.y+sideImage.frame.size.height+10, titleLabel.frame.size.width, 70))
+        guide3Label.textAlignment = NSTextAlignment.Left
+        guide3Label.numberOfLines = 0
+        guide3Label.lineBreakMode = NSLineBreakMode.ByWordWrapping
+        guide3Label.font = TEXT_FONT
+        guide3Label.text = NSLocalizedString("LongPushLED",comment:"lable string")
+        self.addSubview(guide3Label)
 
         let nextButton:UIButton = UIButton.buttonWithType(UIButtonType.Custom) as UIButton
         nextButton.frame = CGRectMake(0, 0, 120, 50)
@@ -87,7 +100,12 @@ class TutorialPage2View: UIView {
         nextButton.backgroundColor = UIColor.clearColor()
         nextButton.titleLabel?.font = BUTTON_FONT
         nextButton.setTitleColor(AppTheme.NEVO_SOLAR_YELLOW(), forState: UIControlState.Normal)
-        nextButton.center = CGPointMake(self.frame.size.width/2.0, self.frame.size.height-90)
+        if AppTheme.GET_IS_iPhone4S() {
+            nextButton.center = CGPointMake(self.frame.size.width/2.0, self.frame.size.height-25)
+        }else {
+            nextButton.center = CGPointMake(self.frame.size.width/2.0, self.frame.size.height-50)
+        }
+
         nextButton.addTarget(self, action: "ButtonAction:", forControlEvents: UIControlEvents.TouchUpInside)
         self.addSubview(nextButton)
 
