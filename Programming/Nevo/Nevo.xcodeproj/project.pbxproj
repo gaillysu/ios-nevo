@@ -82,6 +82,7 @@
 		07CC4A291A820A9B008DA749 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07CC4A281A820A9B008DA749 /* Utility.swift */; };
 		07CC4A2F1A821B46008DA749 /* NevoOTARequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07CC4A2E1A821B46008DA749 /* NevoOTARequest.swift */; };
 		5901F3681AB1836C002AAB13 /* ProfileTestController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5901F3671AB1836C002AAB13 /* ProfileTestController.swift */; };
+		5901F36A1AB18973002AAB13 /* NevoOtaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5901F3691AB18973002AAB13 /* NevoOtaView.swift */; };
 		9A12E5461A931B1F00536729 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A12E5451A931B1F00536729 /* Alert.swift */; };
 		9A2D6C3B1A9C6D9F00591BDC /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A2D6C3A1A9C6D9F00591BDC /* HealthKit.framework */; };
 		9A2D6C3E1A9C71E500591BDC /* NevoHK.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2D6C3D1A9C71E500591BDC /* NevoHK.swift */; };
@@ -217,6 +218,7 @@
 		07CC4A281A820A9B008DA749 /* Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Utility.swift; path = OTA/Utility.swift; sourceTree = "<group>"; };
 		07CC4A2E1A821B46008DA749 /* NevoOTARequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NevoOTARequest.swift; path = OTA/NevoOTARequest.swift; sourceTree = "<group>"; };
 		5901F3671AB1836C002AAB13 /* ProfileTestController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfileTestController.swift; path = Controller/ProfileTestController.swift; sourceTree = "<group>"; };
+		5901F3691AB18973002AAB13 /* NevoOtaView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NevoOtaView.swift; path = View/NevoOtaView.swift; sourceTree = "<group>"; };
 		9A12E5451A931B1F00536729 /* Alert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Alert.swift; path = Util/Alert.swift; sourceTree = "<group>"; };
 		9A2D6C391A9C6D9F00591BDC /* Nevo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Nevo.entitlements; sourceTree = "<group>"; };
 		9A2D6C3A1A9C6D9F00591BDC /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
@@ -587,6 +589,7 @@
 				005FE77A1A8C979800961239 /* alarmClockView.swift */,
 				9A3B7AAE1A9450D000BDC3C6 /* AppTheme.swift */,
 				003542B61AA823B000B27381 /* AnimationView.swift */,
+				5901F3691AB18973002AAB13 /* NevoOtaView.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -852,6 +855,7 @@
 				005350BC1A8B4C1200BF289D /* StepGoalSetingView.swift in Sources */,
 				007DD4BB1A89DDC000CE7264 /* Page1Controller.swift in Sources */,
 				003542B11AA7F69E00B27381 /* EnterNotificationView.swift in Sources */,
+				5901F36A1AB18973002AAB13 /* NevoOtaView.swift in Sources */,
 				9A2D6C431A9C8E3600591BDC /* HourlySteps.swift in Sources */,
 				9A3E57231A80E56E00DFFAE1 /* ConnectionController.swift in Sources */,
 				9A2D6C3E1A9C71E500591BDC /* NevoHK.swift in Sources */,
