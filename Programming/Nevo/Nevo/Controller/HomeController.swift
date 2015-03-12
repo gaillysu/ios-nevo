@@ -27,6 +27,11 @@ class HomeController: UIViewController, SyncControllerDelegate{
 
         let timer:NSTimer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector:"timerAction:", userInfo: nil, repeats: true);
         
+        //TEST this is for test. pls not to remove it 
+//                var tapAction = UITapGestureRecognizer(target: self, action: "gotoProfileScreen")
+//                homeView.addGestureRecognizer(tapAction)
+        //end TEST
+
     }
 
     override func viewDidAppear(animated: Bool) {
@@ -63,6 +68,15 @@ class HomeController: UIViewController, SyncControllerDelegate{
     
     /**
     
+    goto profileTest screen.
+    */
+    func gotoProfileScreen(){
+//        self.performSegueWithIdentifier("Home_profile", sender: self)
+        self.performSegueWithIdentifier("Home_nevoOta", sender: self)
+    }
+
+    /**
+
     See SyncControllerDelegate
     
     */
