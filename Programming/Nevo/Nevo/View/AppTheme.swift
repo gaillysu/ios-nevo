@@ -58,4 +58,12 @@ class AppTheme {
 
     }
 
+    /**
+     Determine whether the iphone 4 s
+    :returns: If it returns true or false
+    */
+    class func GET_IS_iPhone4S() -> Bool {
+        let isiPhone4S:Bool = (UIScreen.instancesRespondToSelector(Selector("currentMode")) ? CGSizeEqualToSize(CGSizeMake(640, 960), UIScreen.mainScreen().currentMode!.size) : false)
+        return isiPhone4S
+    }
 }
