@@ -13,7 +13,7 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
     @IBOutlet var nevoOtaView: NevoOtaView!
     
     var isTransferring:Bool = false
-    var enumFirmwareType:DfuFirmwareTypes?=DfuFirmwareTypes.APPLICATION
+    var enumFirmwareType:DfuFirmwareTypes = DfuFirmwareTypes.APPLICATION
     var selectedFileURL:NSURL?
     
     var mNevoOtaController : NevoOtaController?
@@ -39,8 +39,10 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
     private func initValue()
     {
         //TODO
-     //   selectedFileURL = NSURL(string: "file://firmware/imaze_BLE_R2.hex")!
-        enumFirmwareType? = DfuFirmwareTypes.APPLICATION
+       // var files = AppTheme.GET_FIRMWARE_FILES("Firmwares")
+        
+        selectedFileURL = NSURL(string: "file://firmwares/iMaze_v9.bin")!
+        enumFirmwareType = DfuFirmwareTypes.SOFTDEVICE
     }
     
     //upload button function
@@ -50,7 +52,7 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
             mNevoOtaController?.cancelDFU()
         }
         else {
-            mNevoOtaController?.performDFUOnFile(selectedFileURL!, firmwareType: enumFirmwareType!)
+            mNevoOtaController?.performDFUOnFile(selectedFileURL!, firmwareType: enumFirmwareType)
         }
     }
     
@@ -113,8 +115,19 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
             NSLog("selectWatchFile")
         }else if senderString == "selectWatchDevice"{
             NSLog("selectWatchDevice")
+            if enumFirmwareType == DfuFirmwareTypes.APPLICATION
+            {
+                
+            }
+            else if enumFirmwareType == DfuFirmwareTypes.SOFTDEVICE
+            {
+                
+            }
+            
+            
         }else if senderString == "uploadFile"{
             NSLog("uploadFile")
+            uploadPressed()
         }
         
         

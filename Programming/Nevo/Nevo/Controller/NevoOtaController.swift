@@ -22,7 +22,7 @@ import Foundation
 class NevoOtaController : ConnectionControllerDelegate {
     let mDelegate : NevoOtaControllerDelegate?
     let mConnectionController : ConnectionController?
-    var isOTAmode : Bool = false
+    
     var dfuFirmwareType : DfuFirmwareTypes = DfuFirmwareTypes.APPLICATION
     private var mPacketsbuffer:[NSData]=[]
     private var binFileSize:Int = 0
@@ -336,27 +336,20 @@ class NevoOtaController : ConnectionControllerDelegate {
     func connectionStateChanged(isConnected : Bool) {
         if isConnected
         {
-            if !isOTAmode
+            if mConnectionController?.getOTAMode() == true
             {
-             mConnectionController?.sendRequest(SetOTAModeRequest())
-            }
-            else
-            {
-                //no need let view controller know connection change
-                //mDelegate?.connectionStateChanged(true)
+                //delay for finished discovery services
+                
+                performDFUOnFile(firmwareFile! , firmwareType:dfuFirmwareType)
             }
         }
         else
         {
-            if !isOTAmode
+            if mConnectionController?.getOTAMode() == false
             {
-            isOTAmode = true
-            mConnectionController?.setOTAMode(true)
-
-            //disconnect by entry OTA mode, again connect it,
-            //    ConnectionControllerImpl.connectionStateChanged will auto called, so here
-            //    not call connect()
-           // mConnectionController?.connect()
+                mConnectionController?.setOTAMode(true)
+                //delay ???
+                mConnectionController?.connect()
             }
         }
     }
@@ -369,10 +362,16 @@ class NevoOtaController : ConnectionControllerDelegate {
         openFile(firmwareURL)
         //enable it done after doing discover service
         //[dfuRequests enableNotification];
-        if(dfuFirmwareType == DfuFirmwareTypes.APPLICATION)
+        if(dfuFirmwareType == DfuFirmwareTypes.APPLICATION )
         {
-        mConnectionController?.sendRequest(StartOTARequest())
-        mConnectionController?.sendRequest(writeFileSizeRequest(filelength: binFileSize))
+            if mConnectionController?.getOTAMode() == false
+            {
+                mConnectionController?.sendRequest(SetOTAModeRequest())
+            }
+            else {
+                mConnectionController?.sendRequest(StartOTARequest())
+                mConnectionController?.sendRequest(writeFileSizeRequest(filelength: binFileSize))
+            }
         }
         else if(dfuFirmwareType == DfuFirmwareTypes.SOFTDEVICE)
         {
