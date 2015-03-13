@@ -28,8 +28,8 @@ class EnterNotificationController: UITableViewController,SwitchActionDelegate,Pa
         static let SMS:NSString = "SMS"
         static let EMAIL:NSString = "EMAIL"
         static let FACEBOOK:NSString = "Facebook"
-        static let TWITTER:NSString = "Twitter"
-        static let WHATSAPP:NSString = "Whatsapp"
+        static let CALENDAR:NSString = "Calendar"
+        static let WECHAT:NSString = "WeChat"
     }
     
     class func setLedColor(sourceType: NSString,ledColor:UInt32)
@@ -54,8 +54,8 @@ class EnterNotificationController: UITableViewController,SwitchActionDelegate,Pa
             if sourceType == SOURCETYPE.SMS  { return SetNortificationRequest.SetNortificationRequestValues.PURPLE_LED }
             if sourceType == SOURCETYPE.EMAIL  { return SetNortificationRequest.SetNortificationRequestValues.YELLOW_LED }
             if sourceType == SOURCETYPE.FACEBOOK  { return SetNortificationRequest.SetNortificationRequestValues.VIOLET_LED }
-            if sourceType == SOURCETYPE.TWITTER  { return SetNortificationRequest.SetNortificationRequestValues.GREEN_LED }
-            if sourceType == SOURCETYPE.WHATSAPP  { return SetNortificationRequest.SetNortificationRequestValues.RED_LED }
+            if sourceType == SOURCETYPE.CALENDAR  { return SetNortificationRequest.SetNortificationRequestValues.GREEN_LED }
+            if sourceType == SOURCETYPE.WECHAT  { return SetNortificationRequest.SetNortificationRequestValues.RED_LED }
             
             return 0xFF0000
         }
