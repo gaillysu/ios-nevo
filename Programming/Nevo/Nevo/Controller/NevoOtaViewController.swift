@@ -8,9 +8,13 @@
 
 import UIKit
 
-class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonManagerCallBack  {
+class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonManagerCallBack,PtlSelectFile  {
 
     @IBOutlet var nevoOtaView: NevoOtaView!
+    
+    @IBOutlet weak var labelFileName: UILabel!
+    @IBOutlet var labelFileSize: UILabel!
+    @IBOutlet var labelFIleTypes: UILabel!
     
     var isTransferring:Bool = false
     var enumFirmwareType:DfuFirmwareTypes?=DfuFirmwareTypes.APPLICATION
@@ -104,13 +108,11 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
 
     // MARK: - ButtonManagerCallBack
     func controllManager(sender:AnyObject){
-        if sender.isEqual(nevoOtaView.backButton) {
-            self.dismissViewControllerAnimated(true, completion: nil)
-            return
-        }
+
         var senderString = sender as String
         if senderString == "selectWatchFile"{
             NSLog("selectWatchFile")
+            self.performSegueWithIdentifier("Ota2SelectFile", sender: self)
         }else if senderString == "selectWatchDevice"{
             NSLog("selectWatchDevice")
         }else if senderString == "uploadFile"{
@@ -119,4 +121,48 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
         
         
     }
+    
+    /**
+    PtlSelectFile
+    
+    :param: path <#path description#>
+    */
+    func onFileSelected(selectedFile:NSURL){
+        NSLog("onFileSelected")
+        if (selectedFile.path != nil) {
+            var fileName:String? = selectedFile.path!.lastPathComponent
+            var fileData = NSData(contentsOfURL: selectedFile)
+            var fileExtension:String? = selectedFile.pathExtension
+            //set the file information
+            if let name = fileName{
+                labelFileName.text = fileName
+            }
+            if let data = fileData{
+                labelFileSize.text = String(data.length)
+            }
+            if let fextension = fileExtension{
+                labelFIleTypes.text = fextension
+            }
+        }
+    }
+    
+    /**
+    <#Description#>
+    
+    :param: segue  <#segue description#>
+    :param: sender <#sender description#>
+    */
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        if(segue.identifier == "Ota2SelectFile"){
+            var selectFile = segue.destinationViewController as SelectFileController
+            selectFile.mFileDelegate = self
+        }
+    }
+    
+    
+}
+
+protocol PtlSelectFile {
+    func onFileSelected(selectedFile:NSURL)
 }
