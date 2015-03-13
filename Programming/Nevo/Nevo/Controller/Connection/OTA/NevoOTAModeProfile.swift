@@ -27,6 +27,6 @@ class NevoOTAModeProfile : Profile {
     
     var CALLBACK_CHARACTERISTIC:CBUUID {
    
-        return CBUUID(string: "F0BA3022-6CAC-4C99-9089-4B0A1DF45002");
+        return CBUUID(string: "F0BA3023-6CAC-4C99-9089-4B0A1DF45002");
     }
 }

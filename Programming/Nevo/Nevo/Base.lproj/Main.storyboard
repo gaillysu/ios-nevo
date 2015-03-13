@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="B94-9O-eGF">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1510" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="B94-9O-eGF">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -668,7 +668,7 @@
         <scene sceneID="JFS-lA-F3A">
             <objects>
                 <tableViewController id="zNg-MH-VNI" customClass="EnterNotificationController" customModule="Nevo" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="1" sectionFooterHeight="10" id="Z1d-Y2-5BZ" customClass="EnterNotificationView" customModule="Nevo" customModuleProvider="target">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="1" sectionFooterHeight="10" id="Z1d-Y2-5BZ" customClass="EnterNotificationView" customModule="Nevo" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
@@ -684,23 +684,13 @@
                                                 <action selector="onTypeSwitchAction:" destination="xtn-ig-IAf" eventType="valueChanged" id="B7T-nh-QsV"/>
                                             </connections>
                                         </switch>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pPr-RY-0a8">
-                                            <rect key="frame" x="16" y="4" width="42" height="36"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstAttribute="bottomMargin" secondItem="pPr-RY-0a8" secondAttribute="bottom" constant="-4.5" id="7ql-8w-Bzh"/>
-                                        <constraint firstItem="pPr-RY-0a8" firstAttribute="top" secondItem="7av-HV-kMH" secondAttribute="topMargin" constant="-4" id="NsU-xW-cah"/>
-                                        <constraint firstItem="pPr-RY-0a8" firstAttribute="leading" secondItem="7av-HV-kMH" secondAttribute="leadingMargin" constant="8" id="U6a-D6-phj"/>
-                                        <constraint firstItem="M4m-43-AMR" firstAttribute="centerY" secondItem="7av-HV-kMH" secondAttribute="centerY" id="Zde-gH-3aS"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="M4m-43-AMR" secondAttribute="trailing" constant="14" id="hYv-OU-7sM"/>
+                                        <constraint firstItem="M4m-43-AMR" firstAttribute="centerY" secondItem="7av-HV-kMH" secondAttribute="centerY" id="EEf-H3-dX0"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="M4m-43-AMR" secondAttribute="trailing" constant="14" id="RPz-6G-Y5x"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="cellLabel" destination="pPr-RY-0a8" id="huF-Tu-ZGr"/>
                                     <outlet property="cellSwitch" destination="M4m-43-AMR" id="6zx-bM-66i"/>
                                 </connections>
                             </tableViewCell>

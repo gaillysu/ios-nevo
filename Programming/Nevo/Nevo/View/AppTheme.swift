@@ -57,9 +57,21 @@ class AppTheme {
         return UIImage(contentsOfFile: imagePath)!
 
     }
+    
+    class func GET_FIRMWARE_FILES(folderName:String) -> NSArray {
+        
+        var appPath:NSString  = NSBundle.mainBundle().resourcePath!
+        var error:NSErrorPointer!
+        
+        var  fileNames:NSArray = NSFileManager.defaultManager().contentsOfDirectoryAtPath(appPath, error:error )!
+        
+        return fileNames
+        
+    }
+
 
     /**
-     Determine whether the iphone 4 s
+     Determine whether the iPhone4s
     :returns: If it returns true or false
     */
     class func GET_IS_iPhone4S() -> Bool {

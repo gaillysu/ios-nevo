@@ -68,6 +68,8 @@
 		0704C95F1AA413BB00F9AE09 /* iMaze_v8_8hr.bin in Resources */ = {isa = PBXBuildFile; fileRef = 0704C95D1AA413BB00F9AE09 /* iMaze_v8_8hr.bin */; };
 		0704C9611AA4167600F9AE09 /* iMaze_v8_24hr.bin in Resources */ = {isa = PBXBuildFile; fileRef = 0704C9601AA4167600F9AE09 /* iMaze_v8_24hr.bin */; };
 		0704C9631AA431EE00F9AE09 /* GetStepsGoalRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0704C9621AA431EE00F9AE09 /* GetStepsGoalRequest.swift */; };
+		074243221AB00F630076F789 /* RealTimeCountSteps.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074243211AB00F630076F789 /* RealTimeCountSteps.swift */; };
+		0742432A1AB2D0A20076F789 /* Firmwares in Resources */ = {isa = PBXBuildFile; fileRef = 074243291AB2D0A20076F789 /* Firmwares */; };
 		07731E521AA58EFE007F9FD6 /* ReadDailyTrackerInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07731E511AA58EFE007F9FD6 /* ReadDailyTrackerInfo.swift */; };
 		07731E541AA58F27007F9FD6 /* ReadDailyTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07731E531AA58F27007F9FD6 /* ReadDailyTracker.swift */; };
 		07BE0CF21A84A2F8000C4AC7 /* IntelHex2BinConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = 07BE0CF11A84A2F8000C4AC7 /* IntelHex2BinConverter.m */; };
@@ -202,10 +204,9 @@
 		00D4DE8D1AB011950062523D /* check.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = check.png; sourceTree = "<group>"; };
 		00D4DE901AB141FB0062523D /* NevoPicture960.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NevoPicture960.png; sourceTree = "<group>"; };
 		00E0E1431A88BBDE0001B8CA /* wallpaper0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wallpaper0.png; sourceTree = "<group>"; };
-		0704C95C1AA413BB00F9AE09 /* imaze_20150227_v10_2.hex */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = imaze_20150227_v10_2.hex; sourceTree = "<group>"; };
-		0704C95D1AA413BB00F9AE09 /* iMaze_v8_8hr.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = iMaze_v8_8hr.bin; sourceTree = "<group>"; };
-		0704C9601AA4167600F9AE09 /* iMaze_v8_24hr.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = iMaze_v8_24hr.bin; sourceTree = "<group>"; };
 		0704C9621AA431EE00F9AE09 /* GetStepsGoalRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GetStepsGoalRequest.swift; path = Controller/Connection/Request/GetStepsGoalRequest.swift; sourceTree = "<group>"; };
+		074243211AB00F630076F789 /* RealTimeCountSteps.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RealTimeCountSteps.swift; path = Model/Activity/RealTimeCountSteps.swift; sourceTree = "<group>"; };
+		074243291AB2D0A20076F789 /* Firmwares */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Firmwares; path = OTA/Firmwares; sourceTree = "<group>"; };
 		07731E511AA58EFE007F9FD6 /* ReadDailyTrackerInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ReadDailyTrackerInfo.swift; path = Controller/Connection/Request/ReadDailyTrackerInfo.swift; sourceTree = "<group>"; };
 		07731E531AA58F27007F9FD6 /* ReadDailyTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ReadDailyTracker.swift; path = Controller/Connection/Request/ReadDailyTracker.swift; sourceTree = "<group>"; };
 		07BE0CEE1A84A0C8000C4AC7 /* Nevo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Nevo-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -416,36 +417,6 @@
 			path = OTA/IntelHex2BinConverter;
 			sourceTree = "<group>";
 		};
-		07CC4A231A81F26C008DA749 /* Firmwares */ = {
-			isa = PBXGroup;
-			children = (
-				0704C9601AA4167600F9AE09 /* iMaze_v8_24hr.bin */,
-				0704C95C1AA413BB00F9AE09 /* imaze_20150227_v10_2.hex */,
-				0704C95D1AA413BB00F9AE09 /* iMaze_v8_8hr.bin */,
-			);
-			name = Firmwares;
-			path = OTA/Firmwares;
-			sourceTree = "<group>";
-		};
-		5901F36B1AB28189002AAB13 /* NevoOtaView */ = {
-			isa = PBXGroup;
-			children = (
-				5901F36E1AB28833002AAB13 /* NevoOtaView.swift */,
-				5901F3771AB291A2002AAB13 /* DeviceScannerView.swift */,
-				5901F3791AB291CD002AAB13 /* SelectFileView.swift */,
-			);
-			name = NevoOtaView;
-			sourceTree = "<group>";
-		};
-		5901F3721AB29049002AAB13 /* NevoOta */ = {
-			isa = PBXGroup;
-			children = (
-				5901F3731AB290A1002AAB13 /* DeviceScannerController.swift */,
-				5901F3751AB290E0002AAB13 /* SelectFileController.swift */,
-			);
-			name = NevoOta;
-			sourceTree = "<group>";
-		};
 		9A12E5441A931B0000536729 /* Util */ = {
 			isa = PBXGroup;
 			children = (
@@ -466,6 +437,7 @@
 		9A2D6C411A9C8E0700591BDC /* Activity */ = {
 			isa = PBXGroup;
 			children = (
+				074243211AB00F630076F789 /* RealTimeCountSteps.swift */,
 				9A2D6C421A9C8E3600591BDC /* HourlySteps.swift */,
 				9A2D6C441A9C8E4800591BDC /* DailySteps.swift */,
 			);
@@ -475,8 +447,8 @@
 		9A3E572D1A80F04600DFFAE1 /* OTA */ = {
 			isa = PBXGroup;
 			children = (
+				074243291AB2D0A20076F789 /* Firmwares */,
 				07BE0CEF1A84A2F8000C4AC7 /* IntelHex2BinConverter */,
-				07CC4A231A81F26C008DA749 /* Firmwares */,
 				9A3E572E1A80F08400DFFAE1 /* NevoOTAControllerProfile.swift */,
 				9A3E572F1A80F08400DFFAE1 /* NevoOTAModeProfile.swift */,
 				9A3E57301A80F08400DFFAE1 /* NevoOTAPacketProfile.swift */,
@@ -647,10 +619,10 @@
 		9AD8F9921A6E3D3D00F01014 /* Connection */ = {
 			isa = PBXGroup;
 			children = (
+				9A3E572D1A80F04600DFFAE1 /* OTA */,
 				9A3E571B1A80E56E00DFFAE1 /* ConnectionController.swift */,
 				9A3E571C1A80E56E00DFFAE1 /* ConnectionControllerImpl.swift */,
 				9A3E571D1A80E56E00DFFAE1 /* NevoProfile.swift */,
-				9A3E572D1A80F04600DFFAE1 /* OTA */,
 				9AD8F9981A6E3D5500F01014 /* Request */,
 				9AD8F9971A6E3D4E00F01014 /* Packet */,
 			);
@@ -784,7 +756,6 @@
 				00478F4F1A8F637D00D0DCE2 /* clockViewHour.png in Resources */,
 				0079EDEF1AAED673004BCAE2 /* CurrentPaletteCell.xib in Resources */,
 				00D4DE921AB141FB0062523D /* NevoPicture960.png in Resources */,
-				0704C9611AA4167600F9AE09 /* iMaze_v8_24hr.bin in Resources */,
 				007F79981A878D0B006C89E6 /* Raleway-Regular.ttf in Resources */,
 				00B1DFB31AA7F2DB00FDFECD /* PaletteViewCell.xib in Resources */,
 				007F79951A878D0B006C89E6 /* Raleway-LightItalic.ttf in Resources */,
@@ -793,11 +764,9 @@
 				007F798B1A878D0B006C89E6 /* Raleway-Black.ttf in Resources */,
 				007F79991A878D0B006C89E6 /* Raleway-SemiBold.ttf in Resources */,
 				007F79941A878D0B006C89E6 /* Raleway-Light.ttf in Resources */,
-				0704C95F1AA413BB00F9AE09 /* iMaze_v8_8hr.bin in Resources */,
 				005BC9561A889F14006F9E86 /* NevoPicture.png in Resources */,
 				007F79961A878D0B006C89E6 /* Raleway-Medium.ttf in Resources */,
 				007F799A1A878D0B006C89E6 /* Raleway-SemiBoldItalic.ttf in Resources */,
-				0704C95E1AA413BB00F9AE09 /* imaze_20150227_v10_2.hex in Resources */,
 				007F799C1A878D0B006C89E6 /* Raleway-ThinItalic.ttf in Resources */,
 				007ED3BF1AAE81A800478D0F /* buttonRoundSelected.png in Resources */,
 				007F79931A878D0B006C89E6 /* Raleway-Italic.ttf in Resources */,
@@ -810,6 +779,7 @@
 				9AD8F9421A6DF35900F01014 /* Images.xcassets in Resources */,
 				007F798D1A878D0B006C89E6 /* Raleway-Bold.ttf in Resources */,
 				007F799B1A878D0B006C89E6 /* Raleway-Thin.ttf in Resources */,
+				0742432A1AB2D0A20076F789 /* Firmwares in Resources */,
 				00478F501A8F637D00D0DCE2 /* clockViewMinute.png in Resources */,
 				00C640F61A8DEE0800815CF8 /* clockView600.png in Resources */,
 				00E0E1441A88BBDE0001B8CA /* wallpaper0.png in Resources */,
@@ -853,6 +823,7 @@
 				07CC4A2F1A821B46008DA749 /* NevoOTARequest.swift in Sources */,
 				00A2287E1AA57F1A00360C36 /* EnterNotificationController.swift in Sources */,
 				9AD8F9791A6E05F700F01014 /* NevoBT.swift in Sources */,
+				074243221AB00F630076F789 /* RealTimeCountSteps.swift in Sources */,
 				07C59F321A8C6A6000D65C84 /* SetRTCRequest.swift in Sources */,
 				007F79721A878C8B006C89E6 /* TutorialController.swift in Sources */,
 				0079EDEE1AAED673004BCAE2 /* CurrentPaletteCell.swift in Sources */,

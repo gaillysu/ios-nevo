@@ -25,7 +25,7 @@ protocol NevoHK {
     Writes the given datapoint to the database
     This function will ensure that there are no doublons
     */
-    func writeDataPoint(NevoHKDataPoint)
+    func writeDataPoint(NevoHKDataPoint,resultHandler:((Bool?,NSError?) -> Void))
     
     /**
     Checks if a data point is present in the DB

@@ -3,17 +3,17 @@
     {
       "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "25sms.png"
+      "filename" : "sms_Icon25.png"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "50sms.png"
+      "filename" : "sms_Icon50.png"
     },
     {
       "idiom" : "universal",
       "scale" : "3x",
-      "filename" : "75sms.png"
+      "filename" : "sms_Icon75.png"
     }
   ],
   "info" : {

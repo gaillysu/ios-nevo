@@ -24,12 +24,12 @@ protocol SelectionTypeDelegate {
 class EnterNotificationController: UITableViewController,SwitchActionDelegate,PaletteDelegate,SyncControllerDelegate,ButtonManagerCallBack{
 
     struct SOURCETYPE {
-        static let CALL:NSString = "CALL"
-        static let SMS:NSString = "SMS"
-        static let EMAIL:NSString = "EMAIL"
-        static let FACEBOOK:NSString = "Facebook"
-        static let TWITTER:NSString = "Twitter"
-        static let WHATSAPP:NSString = "Whatsapp"
+        static let CALL:NSString = NSLocalizedString("CALL", comment: "")
+        static let SMS:NSString = NSLocalizedString("SMS", comment: "")
+        static let EMAIL:NSString = NSLocalizedString("EMAIL", comment: "")
+        static let FACEBOOK:NSString = NSLocalizedString("Facebook", comment: "")
+        static let CALENDAR:NSString = NSLocalizedString("Calendar", comment: "")
+        static let WECHAT:NSString = NSLocalizedString("WeChat", comment: "")
     }
     
     class func setLedColor(sourceType: NSString,ledColor:UInt32)
@@ -54,8 +54,8 @@ class EnterNotificationController: UITableViewController,SwitchActionDelegate,Pa
             if sourceType == SOURCETYPE.SMS  { return SetNortificationRequest.SetNortificationRequestValues.PURPLE_LED }
             if sourceType == SOURCETYPE.EMAIL  { return SetNortificationRequest.SetNortificationRequestValues.YELLOW_LED }
             if sourceType == SOURCETYPE.FACEBOOK  { return SetNortificationRequest.SetNortificationRequestValues.VIOLET_LED }
-            if sourceType == SOURCETYPE.TWITTER  { return SetNortificationRequest.SetNortificationRequestValues.GREEN_LED }
-            if sourceType == SOURCETYPE.WHATSAPP  { return SetNortificationRequest.SetNortificationRequestValues.RED_LED }
+            if sourceType == SOURCETYPE.CALENDAR  { return SetNortificationRequest.SetNortificationRequestValues.GREEN_LED }
+            if sourceType == SOURCETYPE.WECHAT  { return SetNortificationRequest.SetNortificationRequestValues.RED_LED }
             
             return 0xFF0000
         }
@@ -171,7 +171,13 @@ class EnterNotificationController: UITableViewController,SwitchActionDelegate,Pa
         mSyncController?.connect()
     }
 
-       // MARK: - SwitchActionDelegate
+
+    /**
+    Used to change the content of array function
+
+    :param: results The switch state
+    :param: color   Select the color
+    */
     func replaceNotTypeArray(results:Bool,color:NSNumber) {
         var index:Int = 0
         for model in notTypeArray! {
@@ -187,6 +193,7 @@ class EnterNotificationController: UITableViewController,SwitchActionDelegate,Pa
         }
     }
 
+    // MARK: - SwitchActionDelegate
     func onSwitch(results:Bool){
 
         replaceNotTypeArray(results, color: notType?.getNotificationTypeContent().objectForKey("color") as NSNumber)
@@ -212,7 +219,7 @@ class EnterNotificationController: UITableViewController,SwitchActionDelegate,Pa
             EnterNotificationController.setLedColor(notType!.getNotificationTypeContent().objectForKey("type") as NSString,ledColor:SetNortificationRequest.SetNortificationRequestValues.GREEN_LED)
         }else if color == UIColor.orangeColor(){
             EnterNotificationController.setLedColor(notType!.getNotificationTypeContent().objectForKey("type") as NSString,ledColor:SetNortificationRequest.SetNortificationRequestValues.VIOLET_LED)
-        }else if color == UIColor.purpleColor(){
+        }else if color == AppTheme.PALETTE_BAGGROUND_COLOR(){
             EnterNotificationController.setLedColor(notType!.getNotificationTypeContent().objectForKey("type") as NSString,ledColor:SetNortificationRequest.SetNortificationRequestValues.PURPLE_LED)
         }
         replaceNotTypeArray(notType!.getNotificationTypeContent().objectForKey("states") as Bool, color: NSNumber(unsignedInt: EnterNotificationController.getLedColor(notType!.getNotificationTypeContent().objectForKey("type") as NSString)))
@@ -277,7 +284,12 @@ class EnterNotificationController: UITableViewController,SwitchActionDelegate,Pa
         if (indexPath.section == 0){
             var endCell:NotificationTypeCell = tableView.dequeueReusableCellWithIdentifier("NotificationTypeCell", forIndexPath: indexPath) as NotificationTypeCell
             endCell.cellSwitch.on = notType!.getNotificationTypeContent().objectForKey("states") as Bool
-            endCell.cellLabel.text = notType!.getNotificationTypeContent().objectForKey("type") as? String
+            //endCell.cellLabel.text = notType!.getNotificationTypeContent().objectForKey("type") as? String
+            endCell.textLabel?.backgroundColor = UIColor.clearColor()
+            endCell.textLabel?.text = notType!.getNotificationTypeContent().objectForKey("type") as? String
+            endCell.imageView?.image = UIImage(named: notType!.getNotificationTypeContent().objectForKey("icon") as String)
+
+                //AppTheme.GET_RESOURCES_IMAGE(notType!.getNotificationTypeContent().objectForKey("icon") as String)
             endCell.ActionDelegate = self
 
             return endCell

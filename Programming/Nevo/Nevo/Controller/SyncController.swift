@@ -203,7 +203,15 @@ class SyncController: ConnectionControllerDelegate {
                 
                 var hk = NevoHKImpl()
                 hk.requestPermission()
-                hk.writeDataPoint(DailySteps(numberOfSteps: dailySteps ,date: NSDate()))
+                
+                hk.writeDataPoint(RealTimeCountSteps(numberOfSteps: dailySteps - RealTimeCountSteps.getLastNumberOfSteps(),date: RealTimeCountSteps.getLastDate()), resultHandler: { (result, error) -> Void in
+                    if (result != true) {
+                         NSLog("\(error)")
+                    }
+                    RealTimeCountSteps.setLastNumberOfSteps(dailySteps)
+                    RealTimeCountSteps.setLastDate(NSDate())
+                })
+                
                 
             }
             
