@@ -51,7 +51,7 @@ class PaletteViewCell: UITableViewCell {
             currentColor = UIColor.orangeColor()
             pDelegate?.selectedPalette(currentColor)
         }else if (senders.isEqual(cyanButton)){
-            currentColor = UIColor.purpleColor()
+            currentColor = AppTheme.PALETTE_BAGGROUND_COLOR()
             pDelegate?.selectedPalette(currentColor)
         }
         //currentColorView.backgroundColor = currentColor
