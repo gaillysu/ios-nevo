@@ -171,7 +171,13 @@ class EnterNotificationController: UITableViewController,SwitchActionDelegate,Pa
         mSyncController?.connect()
     }
 
-       // MARK: - SwitchActionDelegate
+
+    /**
+    Used to change the content of array function
+
+    :param: results The switch state
+    :param: color   Select the color
+    */
     func replaceNotTypeArray(results:Bool,color:NSNumber) {
         var index:Int = 0
         for model in notTypeArray! {
@@ -187,6 +193,7 @@ class EnterNotificationController: UITableViewController,SwitchActionDelegate,Pa
         }
     }
 
+    // MARK: - SwitchActionDelegate
     func onSwitch(results:Bool){
 
         replaceNotTypeArray(results, color: notType?.getNotificationTypeContent().objectForKey("color") as NSNumber)
