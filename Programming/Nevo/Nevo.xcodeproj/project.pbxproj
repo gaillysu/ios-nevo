@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0017199C1AB2EE2E00889FED /* DeviceScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001719991AB2EE2E00889FED /* DeviceScannerView.swift */; };
+		0017199D1AB2EE2E00889FED /* NevoOtaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0017199A1AB2EE2E00889FED /* NevoOtaView.swift */; };
+		0017199E1AB2EE2E00889FED /* SelectFileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0017199B1AB2EE2E00889FED /* SelectFileView.swift */; };
+		001719A21AB2EE5300889FED /* DeviceScannerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001719A01AB2EE5300889FED /* DeviceScannerController.swift */; };
+		001719A31AB2EE5300889FED /* SelectFileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001719A11AB2EE5300889FED /* SelectFileController.swift */; };
 		003542B11AA7F69E00B27381 /* EnterNotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003542B01AA7F69E00B27381 /* EnterNotificationView.swift */; };
 		003542B71AA823B000B27381 /* AnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003542B61AA823B000B27381 /* AnimationView.swift */; };
 		00478F4F1A8F637D00D0DCE2 /* clockViewHour.png in Resources */ = {isa = PBXBuildFile; fileRef = 00478F4D1A8F637D00D0DCE2 /* clockViewHour.png */; };
@@ -64,9 +69,6 @@
 		00D4DE8E1AB011950062523D /* check.png in Resources */ = {isa = PBXBuildFile; fileRef = 00D4DE8D1AB011950062523D /* check.png */; };
 		00D4DE921AB141FB0062523D /* NevoPicture960.png in Resources */ = {isa = PBXBuildFile; fileRef = 00D4DE901AB141FB0062523D /* NevoPicture960.png */; };
 		00E0E1441A88BBDE0001B8CA /* wallpaper0.png in Resources */ = {isa = PBXBuildFile; fileRef = 00E0E1431A88BBDE0001B8CA /* wallpaper0.png */; };
-		0704C95E1AA413BB00F9AE09 /* imaze_20150227_v10_2.hex in Resources */ = {isa = PBXBuildFile; fileRef = 0704C95C1AA413BB00F9AE09 /* imaze_20150227_v10_2.hex */; };
-		0704C95F1AA413BB00F9AE09 /* iMaze_v8_8hr.bin in Resources */ = {isa = PBXBuildFile; fileRef = 0704C95D1AA413BB00F9AE09 /* iMaze_v8_8hr.bin */; };
-		0704C9611AA4167600F9AE09 /* iMaze_v8_24hr.bin in Resources */ = {isa = PBXBuildFile; fileRef = 0704C9601AA4167600F9AE09 /* iMaze_v8_24hr.bin */; };
 		0704C9631AA431EE00F9AE09 /* GetStepsGoalRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0704C9621AA431EE00F9AE09 /* GetStepsGoalRequest.swift */; };
 		074243221AB00F630076F789 /* RealTimeCountSteps.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074243211AB00F630076F789 /* RealTimeCountSteps.swift */; };
 		0742432A1AB2D0A20076F789 /* Firmwares in Resources */ = {isa = PBXBuildFile; fileRef = 074243291AB2D0A20076F789 /* Firmwares */; };
@@ -84,11 +86,6 @@
 		07CC4A291A820A9B008DA749 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07CC4A281A820A9B008DA749 /* Utility.swift */; };
 		07CC4A2F1A821B46008DA749 /* NevoOTARequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07CC4A2E1A821B46008DA749 /* NevoOTARequest.swift */; };
 		5901F3681AB1836C002AAB13 /* ProfileTestController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5901F3671AB1836C002AAB13 /* ProfileTestController.swift */; };
-		5901F36F1AB28833002AAB13 /* NevoOtaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5901F36E1AB28833002AAB13 /* NevoOtaView.swift */; };
-		5901F3741AB290A1002AAB13 /* DeviceScannerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5901F3731AB290A1002AAB13 /* DeviceScannerController.swift */; };
-		5901F3761AB290E0002AAB13 /* SelectFileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5901F3751AB290E0002AAB13 /* SelectFileController.swift */; };
-		5901F3781AB291A2002AAB13 /* DeviceScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5901F3771AB291A2002AAB13 /* DeviceScannerView.swift */; };
-		5901F37A1AB291CD002AAB13 /* SelectFileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5901F3791AB291CD002AAB13 /* SelectFileView.swift */; };
 		9A12E5461A931B1F00536729 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A12E5451A931B1F00536729 /* Alert.swift */; };
 		9A2D6C3B1A9C6D9F00591BDC /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A2D6C3A1A9C6D9F00591BDC /* HealthKit.framework */; };
 		9A2D6C3E1A9C71E500591BDC /* NevoHK.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2D6C3D1A9C71E500591BDC /* NevoHK.swift */; };
@@ -108,7 +105,6 @@
 		9A9BD1C11A88849700A95ACA /* TutorialPage1View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A9BD1C01A88849700A95ACA /* TutorialPage1View.swift */; };
 		9A9BD1C81A88C0A400A95ACA /* TutorialScanPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A9BD1C71A88C0A400A95ACA /* TutorialScanPageView.swift */; };
 		9AD8F93B1A6DF35900F01014 /* Nevo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9AD8F9391A6DF35900F01014 /* Nevo.xcdatamodeld */; };
-		9AD8F9401A6DF35900F01014 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9AD8F93E1A6DF35900F01014 /* Main.storyboard */; };
 		9AD8F9421A6DF35900F01014 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9AD8F9411A6DF35900F01014 /* Images.xcassets */; };
 		9AD8F9511A6DF35900F01014 /* NevoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD8F9501A6DF35900F01014 /* NevoTests.swift */; };
 		9AD8F9621A6E00E800F01014 /* NevoBTimpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD8F9611A6E00E800F01014 /* NevoBTimpl.swift */; };
@@ -138,6 +134,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		001719991AB2EE2E00889FED /* DeviceScannerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceScannerView.swift; sourceTree = "<group>"; };
+		0017199A1AB2EE2E00889FED /* NevoOtaView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NevoOtaView.swift; sourceTree = "<group>"; };
+		0017199B1AB2EE2E00889FED /* SelectFileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectFileView.swift; sourceTree = "<group>"; };
+		001719A01AB2EE5300889FED /* DeviceScannerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceScannerController.swift; sourceTree = "<group>"; };
+		001719A11AB2EE5300889FED /* SelectFileController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectFileController.swift; sourceTree = "<group>"; };
 		003542B01AA7F69E00B27381 /* EnterNotificationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnterNotificationView.swift; sourceTree = "<group>"; };
 		003542B61AA823B000B27381 /* AnimationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AnimationView.swift; path = View/AnimationView.swift; sourceTree = "<group>"; };
 		00478F4D1A8F637D00D0DCE2 /* clockViewHour.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clockViewHour.png; sourceTree = "<group>"; };
@@ -223,11 +224,6 @@
 		07CC4A281A820A9B008DA749 /* Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Utility.swift; path = OTA/Utility.swift; sourceTree = "<group>"; };
 		07CC4A2E1A821B46008DA749 /* NevoOTARequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NevoOTARequest.swift; path = OTA/NevoOTARequest.swift; sourceTree = "<group>"; };
 		5901F3671AB1836C002AAB13 /* ProfileTestController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfileTestController.swift; path = Controller/ProfileTestController.swift; sourceTree = "<group>"; };
-		5901F36E1AB28833002AAB13 /* NevoOtaView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NevoOtaView.swift; path = View/NevoOtaView/NevoOtaView.swift; sourceTree = "<group>"; };
-		5901F3731AB290A1002AAB13 /* DeviceScannerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DeviceScannerController.swift; path = Controller/NevoOta/DeviceScannerController.swift; sourceTree = "<group>"; };
-		5901F3751AB290E0002AAB13 /* SelectFileController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SelectFileController.swift; path = Controller/NevoOta/SelectFileController.swift; sourceTree = "<group>"; };
-		5901F3771AB291A2002AAB13 /* DeviceScannerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DeviceScannerView.swift; path = View/NevoOtaView/DeviceScannerView.swift; sourceTree = "<group>"; };
-		5901F3791AB291CD002AAB13 /* SelectFileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SelectFileView.swift; path = View/NevoOtaView/SelectFileView.swift; sourceTree = "<group>"; };
 		9A12E5451A931B1F00536729 /* Alert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Alert.swift; path = Util/Alert.swift; sourceTree = "<group>"; };
 		9A2D6C391A9C6D9F00591BDC /* Nevo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Nevo.entitlements; sourceTree = "<group>"; };
 		9A2D6C3A1A9C6D9F00591BDC /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
@@ -290,6 +286,27 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		001719981AB2EE2E00889FED /* NevoOtaView */ = {
+			isa = PBXGroup;
+			children = (
+				001719991AB2EE2E00889FED /* DeviceScannerView.swift */,
+				0017199A1AB2EE2E00889FED /* NevoOtaView.swift */,
+				0017199B1AB2EE2E00889FED /* SelectFileView.swift */,
+			);
+			name = NevoOtaView;
+			path = View/NevoOtaView;
+			sourceTree = "<group>";
+		};
+		0017199F1AB2EE5300889FED /* NevoOta */ = {
+			isa = PBXGroup;
+			children = (
+				001719A01AB2EE5300889FED /* DeviceScannerController.swift */,
+				001719A11AB2EE5300889FED /* SelectFileController.swift */,
+			);
+			name = NevoOta;
+			path = Controller/NevoOta;
+			sourceTree = "<group>";
+		};
 		005BC95C1A88B79F006F9E86 /* FXBlurView */ = {
 			isa = PBXGroup;
 			children = (
@@ -545,7 +562,7 @@
 		9AD8F95D1A6E003100F01014 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				5901F3721AB29049002AAB13 /* NevoOta */,
+				0017199F1AB2EE5300889FED /* NevoOta */,
 				5901F3671AB1836C002AAB13 /* ProfileTestController.swift */,
 				9AD8F9921A6E3D3D00F01014 /* Connection */,
 				007DD4B91A89DDA800CE7264 /* PageViewController */,
@@ -579,7 +596,7 @@
 		9AD8F95F1A6E004000F01014 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				5901F36B1AB28189002AAB13 /* NevoOtaView */,
+				001719981AB2EE2E00889FED /* NevoOtaView */,
 				00B1DFAD1AA7F1B800FDFECD /* EnterNotificationView */,
 				00A228741AA5573B00360C36 /* NotificationView */,
 				9A9BD1BF1A88844900A95ACA /* TutorialPageView */,
@@ -746,7 +763,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9AD8F9401A6DF35900F01014 /* Main.storyboard in Resources */,
 				007F79921A878D0B006C89E6 /* Raleway-ExtraLightItalic.ttf in Resources */,
 				007F79901A878D0B006C89E6 /* Raleway-ExtraBoldItalic.ttf in Resources */,
 				007ED3BE1AAE81A800478D0F /* butonRound.png in Resources */,
@@ -811,11 +827,10 @@
 				9A2D6C451A9C8E4800591BDC /* DailySteps.swift in Sources */,
 				9A9BD1C11A88849700A95ACA /* TutorialPage1View.swift in Sources */,
 				007F796E1A878C6C006C89E6 /* TutorialView.swift in Sources */,
-				5901F3761AB290E0002AAB13 /* SelectFileController.swift in Sources */,
-				5901F36F1AB28833002AAB13 /* NevoOtaView.swift in Sources */,
 				005350BA1A8B4BC600BF289D /* StepGoalSetingController.swift in Sources */,
 				9A9BD1C81A88C0A400A95ACA /* TutorialScanPageView.swift in Sources */,
 				5901F3681AB1836C002AAB13 /* ProfileTestController.swift in Sources */,
+				0017199E1AB2EE2E00889FED /* SelectFileView.swift in Sources */,
 				9AD8F98D1A6E2D6E00F01014 /* RawPacket.swift in Sources */,
 				9AD8F9621A6E00E800F01014 /* NevoBTimpl.swift in Sources */,
 				00B1DFAF1AA7F21200FDFECD /* NotificationTypeCell.swift in Sources */,
@@ -835,22 +850,23 @@
 				07BE0CF21A84A2F8000C4AC7 /* IntelHex2BinConverter.m in Sources */,
 				9AD8F96E1A6E03F600F01014 /* HomeView.swift in Sources */,
 				005BC95F1A88B79F006F9E86 /* FXBlurView.m in Sources */,
+				0017199D1AB2EE2E00889FED /* NevoOtaView.swift in Sources */,
 				9AD8F9A01A6E47B400F01014 /* SetGoalRequest.swift in Sources */,
+				001719A31AB2EE5300889FED /* SelectFileController.swift in Sources */,
 				005FE77B1A8C979800961239 /* alarmClockView.swift in Sources */,
 				00C640F41A8D9F4500815CF8 /* MainTabBarController.swift in Sources */,
 				9A12E5461A931B1F00536729 /* Alert.swift in Sources */,
 				07731E541AA58F27007F9FD6 /* ReadDailyTracker.swift in Sources */,
-				5901F3781AB291A2002AAB13 /* DeviceScannerView.swift in Sources */,
 				07C59F281A8C618A00D65C84 /* WriteSettingRequest.swift in Sources */,
 				9A3E57261A80E56E00DFFAE1 /* NevoPacket.swift in Sources */,
 				9AD8F98F1A6E2EE000F01014 /* Profile.swift in Sources */,
 				9AD8F9701A6E041D00F01014 /* ClockView.swift in Sources */,
 				9A2D6C401A9C783800591BDC /* NevoHKImpl.swift in Sources */,
 				9A3B7AB11A947BCB00BDC3C6 /* GetActivityRequest.swift in Sources */,
-				5901F37A1AB291CD002AAB13 /* SelectFileView.swift in Sources */,
 				00A228831AA5BAF800360C36 /* TableListCell.swift in Sources */,
 				003542B71AA823B000B27381 /* AnimationView.swift in Sources */,
-				5901F3741AB290A1002AAB13 /* DeviceScannerController.swift in Sources */,
+				0017199C1AB2EE2E00889FED /* DeviceScannerView.swift in Sources */,
+				001719A21AB2EE5300889FED /* DeviceScannerController.swift in Sources */,
 				07C59F241A8C5A0A00D65C84 /* SetNortificationRequest.swift in Sources */,
 				9A3E57311A80F08400DFFAE1 /* NevoOTAControllerProfile.swift in Sources */,
 				07C59F2E1A8C622300D65C84 /* SetProfileRequest.swift in Sources */,
