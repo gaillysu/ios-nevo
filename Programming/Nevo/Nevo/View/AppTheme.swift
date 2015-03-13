@@ -57,18 +57,36 @@ class AppTheme {
         return UIImage(contentsOfFile: imagePath)!
 
     }
-    
-    class func GET_FIRMWARE_FILES(folderName:String) -> NSArray {
-        
-        var appPath:NSString  = NSBundle.mainBundle().resourcePath!
-        var error:NSErrorPointer!
-        
-        var  fileNames:NSArray = NSFileManager.defaultManager().contentsOfDirectoryAtPath(appPath, error:error )!
-        
-        return fileNames
-        
-    }
 
+    /**
+    Get or get the resource path of the array
+
+    :param: folderName Resource folder name
+
+    :returns: Return path array
+    */
+    class func GET_FIRMWARE_FILES(folderName:String) -> NSArray {
+
+        var AllFilesNames:NSMutableArray = NSMutableArray()
+        var appPath:NSString  = NSBundle.mainBundle().resourcePath!
+        let firmwaresDirectoryPath:NSString = appPath.stringByAppendingPathComponent(folderName)
+        var error:NSError?
+        
+        var  fileNames:NSArray = NSFileManager.defaultManager().contentsOfDirectoryAtPath(firmwaresDirectoryPath, error: &error)!
+        if (error == nil) {
+            NSLog("number of files in directory %d",fileNames.count);
+            for fileName in fileNames {
+                NSLog("Found file in directory: %@",fileName as NSString);
+                let filePath:NSString = firmwaresDirectoryPath.stringByAppendingPathComponent(fileName as String)
+                let fileURL:NSURL = NSURL.fileURLWithPath(filePath)!
+                AllFilesNames.addObject(fileURL)
+            }
+            return AllFilesNames.copy() as NSArray
+        }else {
+            NSLog("error in opening directory path: %@",firmwaresDirectoryPath);
+            return NSArray()
+        }
+    }
 
     /**
      Determine whether the iPhone4s
