@@ -20,7 +20,6 @@ protocol SwitchActionDelegate {
 
 class NotificationTypeCell: UITableViewCell {
 
-    @IBOutlet var cellLabel: UILabel!
     @IBOutlet var cellSwitch: UISwitch!
 
     var ActionDelegate:SwitchActionDelegate?

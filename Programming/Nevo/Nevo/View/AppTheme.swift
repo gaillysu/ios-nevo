@@ -59,7 +59,7 @@ class AppTheme {
     }
 
     /**
-     Determine whether the iphone 4 s
+     Determine whether the iPhone4s
     :returns: If it returns true or false
     */
     class func GET_IS_iPhone4S() -> Bool {

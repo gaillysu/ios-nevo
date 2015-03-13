@@ -40,3 +40,9 @@
 "Green"="Green";
 "Yellow"="Yellow";
 "LongPushLED"="Long push on the third button until blue LED blinks";
+"CALL"="CALL";
+"SMS"="SMS";
+"EMAIL"="EMAIL";
+"Facebook"="Facebook";
+"Calendar"="Calendar";
+"WeChat"="WeChat";
