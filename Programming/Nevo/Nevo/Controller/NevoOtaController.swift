@@ -320,7 +320,7 @@ class NevoOtaController : ConnectionControllerDelegate {
     */
     func packetReceived(packet:RawPacket) {
         
-        if(dfuFirmwareType == DfuFirmwareTypes.APPLICATION)
+        if(dfuFirmwareType == DfuFirmwareTypes.APPLICATION && mConnectionController?.getOTAMode() == true)
         {
             processDFUResponse(NSData2Bytes(packet.getRawData()))
         }
