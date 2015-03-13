@@ -93,6 +93,98 @@
             </objects>
             <point key="canvasLocation" x="-1958" y="1838"/>
         </scene>
+        <!--Device Scanner Controller-->
+        <scene sceneID="iAZ-pJ-bGU">
+            <objects>
+                <viewController id="Yvw-kx-bK8" customClass="DeviceScannerController" customModule="Nevo" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="fch-9M-jjd"/>
+                        <viewControllerLayoutGuide type="bottom" id="LE3-pu-eiE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="JZm-2h-cbf">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Select device:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R6v-d8-eb6">
+                                <rect key="frame" x="106" y="0.0" width="108" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4dt-k8-YZ6">
+                                <rect key="frame" x="0.0" y="0.0" width="60" height="30"/>
+                                <color key="backgroundColor" red="0.98039215690000003" green="0.21176470589999999" blue="0.21960784310000001" alpha="1" colorSpace="deviceRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <state key="normal" title="Cancel">
+                                    <color key="titleColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="L6n-xo-3z0">
+                                <rect key="frame" x="0.0" y="72" width="320" height="500"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <inset key="separatorInset" minX="15" minY="0.0" maxX="15" maxY="0.0"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" textLabel="Sab-Ge-ath" imageView="3Vh-HV-miX" rowHeight="50" style="IBUITableViewCellStyleDefault" id="qwe-Ki-1s9">
+                                        <rect key="frame" x="0.0" y="22" width="320" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qwe-Ki-1s9" id="SIk-tf-Yo0">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Sab-Ge-ath">
+                                                    <rect key="frame" x="60" y="0.0" width="245" height="49"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="Signal_3.png" id="3Vh-HV-miX">
+                                                    <rect key="frame" x="15" y="13" width="30" height="22"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                </imageView>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <inset key="separatorInset" minX="15" minY="0.0" maxX="15" maxY="0.0"/>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="4lJ-bg-jkN"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="34B-q3-LYf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2355" y="547"/>
+        </scene>
+        <!--Select File Controller-->
+        <scene sceneID="FMW-Wa-5d7">
+            <objects>
+                <tableViewController id="QaI-im-wFo" customClass="SelectFileController" customModule="Nevo" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="JCS-wb-Ude">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FolderFilesCell" id="G3r-xl-miG">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="G3r-xl-miG" id="EfD-hU-krx">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="QaI-im-wFo" id="uSK-7w-6rS"/>
+                            <outlet property="delegate" destination="QaI-im-wFo" id="xx0-0Q-mIq"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="wXx-Mh-SnY"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8jt-kn-PGP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2349" y="1279"/>
+        </scene>
         <!--Nevo Ota View Controller-->
         <scene sceneID="iDy-Jj-27q">
             <objects>
@@ -105,8 +197,36 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sn2-vv-l0b">
+                                <rect key="frame" x="41" y="387" width="251" height="35"/>
+                                <color key="backgroundColor" red="0.98039215690000003" green="0.21176470589999999" blue="0.21960784310000001" alpha="1" colorSpace="deviceRGB"/>
+                                <fontDescription key="fontDescription" name="TrebuchetMS" family="Trebuchet MS" pointSize="17"/>
+                                <state key="normal" title="SELECT WACTHZ DEVICE">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted" backgroundImage="ConnectButtonPressed">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="selectWatchDevice:" destination="sRG-8v-pva" eventType="touchUpInside" id="CtU-MB-7gi"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aEp-Xl-VFt">
+                                <rect key="frame" x="41" y="336" width="251" height="34"/>
+                                <color key="backgroundColor" red="0.98039215690000003" green="0.21176470589999999" blue="0.21960784310000001" alpha="1" colorSpace="deviceRGB"/>
+                                <state key="normal" title="SELECT WACTHZ FILE">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="disabled">
+                                    <color key="titleColor" red="0.66666668650000005" green="0.67058825489999996" blue="0.68627452850000004" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="selectWatchFile:" destination="sRG-8v-pva" eventType="touchUpInside" id="k4I-IM-aYO"/>
+                                </connections>
+                            </button>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EUQ-ub-EHk" userLabel="View - ACTIVITY">
-                                <rect key="frame" x="40" y="215" width="251" height="93"/>
+                                <rect key="frame" x="41" y="228" width="251" height="93"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cxH-gh-qgt">
                                         <rect key="frame" x="102" y="9" width="50" height="30"/>
@@ -139,7 +259,7 @@
                                 <color key="backgroundColor" red="0.90196079019999997" green="0.90588235859999999" blue="0.9098039269" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IzD-eh-vYY" userLabel="View - ACTIVITY">
-                                <rect key="frame" x="40" y="45" width="251" height="122"/>
+                                <rect key="frame" x="41" y="78" width="251" height="122"/>
                                 <subviews>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gSI-wr-FQf">
                                         <rect key="frame" x="12" y="11" width="49" height="21"/>
@@ -187,66 +307,35 @@
                                 <color key="backgroundColor" red="0.90196079019999997" green="0.90588235859999999" blue="0.9098039269" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="WACTHZ FIRMWARE UPDATE" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8qF-dd-75H">
-                                <rect key="frame" x="40" y="195" width="251" height="21"/>
+                                <rect key="frame" x="41" y="208" width="251" height="21"/>
                                 <color key="backgroundColor" red="0.98039215690000003" green="0.21176470589999999" blue="0.21960784310000001" alpha="1" colorSpace="deviceRGB"/>
                                 <fontDescription key="fontDescription" name="TrebuchetMS" family="Trebuchet MS" pointSize="15"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sn2-vv-l0b">
-                                <rect key="frame" x="41" y="387" width="251" height="48"/>
-                                <color key="backgroundColor" red="0.98039215690000003" green="0.21176470589999999" blue="0.21960784310000001" alpha="1" colorSpace="deviceRGB"/>
-                                <fontDescription key="fontDescription" name="TrebuchetMS" family="Trebuchet MS" pointSize="17"/>
-                                <state key="normal" title="SELECT WACTHZ DEVICE">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="highlighted" backgroundImage="ConnectButtonPressed">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="selectWatchDevice:" destination="sRG-8v-pva" eventType="touchUpInside" id="CtU-MB-7gi"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Firmware" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4UJ-HD-K8S">
-                                <rect key="frame" x="40" y="28" width="251" height="21"/>
+                                <rect key="frame" x="41" y="57" width="251" height="21"/>
                                 <color key="backgroundColor" red="0.98039215690000003" green="0.21176470589999999" blue="0.21960784310000001" alpha="1" colorSpace="deviceRGB"/>
                                 <fontDescription key="fontDescription" name="TrebuchetMS" family="Trebuchet MS" pointSize="15"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jdb-Dc-xR2">
-                                <rect key="frame" x="16" y="0.0" width="46" height="30"/>
-                                <state key="normal" title="Back">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aEp-Xl-VFt">
-                                <rect key="frame" x="40" y="323" width="251" height="48"/>
-                                <color key="backgroundColor" red="0.98039215690000003" green="0.21176470589999999" blue="0.21960784310000001" alpha="1" colorSpace="deviceRGB"/>
-                                <state key="normal" title="SELECT WACTHZ FILE">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="disabled">
-                                    <color key="titleColor" red="0.66666668650000005" green="0.67058825489999996" blue="0.68627452850000004" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="selectWatchFile:" destination="sRG-8v-pva" eventType="touchUpInside" id="k4I-IM-aYO"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <connections>
-                            <outlet property="backButton" destination="jdb-Dc-xR2" id="6IE-Mm-LVX"/>
-                        </connections>
                     </view>
+                    <navigationItem key="navigationItem" id="dDb-MT-AUi"/>
                     <connections>
+                        <outlet property="labelFIleTypes" destination="N9K-dc-I3R" id="aMx-GO-BP6"/>
+                        <outlet property="labelFileName" destination="TIW-vX-FKl" id="PUs-N0-2sR"/>
+                        <outlet property="labelFileSize" destination="rBg-VO-3FK" id="Anj-Kx-4a1"/>
                         <outlet property="nevoOtaView" destination="sRG-8v-pva" id="YQ9-qw-xDg"/>
+                        <segue destination="Yvw-kx-bK8" kind="push" identifier="Ota2DeviceScanner" id="ADC-l2-jEg"/>
+                        <segue destination="QaI-im-wFo" kind="push" identifier="Ota2SelectFile" id="x9a-qz-qgu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aUP-8E-Rim" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1764" y="1004"/>
+            <point key="canvasLocation" x="-1749" y="235"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="qEP-IN-OCQ">
@@ -267,7 +356,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lxX-gp-6KC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1208" y="1207"/>
+            <point key="canvasLocation" x="-676" y="1207"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="QXP-JR-yAP">
@@ -284,7 +373,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3yg-Ph-IEs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-789" y="1207"/>
+            <point key="canvasLocation" x="-257" y="1207"/>
         </scene>
         <!--Step-->
         <scene sceneID="d5l-RI-6Wg">
@@ -429,7 +518,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mkp-rg-CxF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-373" y="1207"/>
+            <point key="canvasLocation" x="159" y="1207"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="v51-aK-aDp">
@@ -447,7 +536,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9El-st-8Rg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="12" y="1207"/>
+            <point key="canvasLocation" x="544" y="1207"/>
         </scene>
         <!--Alarm-->
         <scene sceneID="aOz-wY-I4v">
@@ -639,7 +728,7 @@
                         <outlet property="homeView" destination="kh9-bI-dsS" id="5wv-HP-UN7"/>
                         <segue destination="Gec-Ym-Om4" kind="modal" identifier="Home_Tutorial" id="9p1-uA-j54"/>
                         <segue destination="Yx7-ER-zM7" kind="modal" identifier="Home_profile" id="NL6-ww-dw9"/>
-                        <segue destination="3Rl-K6-FbH" kind="modal" identifier="Home_nevoOta" id="IJq-at-Nnr"/>
+                        <segue destination="3Rl-K6-FbH" kind="push" identifier="Home_nevoOta" id="0Tz-XG-HwM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
@@ -682,9 +771,29 @@
             </objects>
             <point key="canvasLocation" x="-1554.6666666666667" y="2624.1599999999999"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="lfq-jk-exz">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="PHe-XY-JLg" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="31R-87-aTe"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="6Ya-vv-M3s">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="3Rl-K6-FbH" kind="relationship" relationship="rootViewController" id="b4l-YM-9KW"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KdB-q9-1RX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1764" y="1004"/>
+        </scene>
     </scenes>
     <resources>
         <image name="ConnectButtonPressed" width="320" height="57"/>
+        <image name="Signal_3.png" width="45" height="45"/>
         <image name="alarmitem" width="45" height="45"/>
         <image name="back" width="45" height="45"/>
         <image name="goalitem" width="45" height="45"/>
@@ -698,4 +807,7 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="0Tz-XG-HwM"/>
+    </inferredMetricsTieBreakers>
 </document>

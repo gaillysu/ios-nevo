@@ -12,11 +12,9 @@ class NevoOtaView: UIView {
 
     private var mDelegate:ButtonManagerCallBack?
     
-    @IBOutlet weak var backButton: UIButton!
     
     func buildView(delegate:ButtonManagerCallBack) {
         mDelegate = delegate
-        backButton.addTarget(self, action: Selector("BackAction:"), forControlEvents: UIControlEvents.TouchUpInside)
     }
     
     func BackAction(back:UIButton) {
