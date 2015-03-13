@@ -339,8 +339,13 @@ class NevoOtaController : ConnectionControllerDelegate {
             if mConnectionController?.getOTAMode() == true
             {
                 //delay for finished discovery services
+                var dispatchTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, Int64(2.0 * Double(NSEC_PER_SEC)))
+                dispatch_after(dispatchTime, dispatch_get_main_queue(), {
+                    
+                 self.performDFUOnFile(self.firmwareFile! , firmwareType:self.dfuFirmwareType)
+                    
+                })
                 
-                performDFUOnFile(firmwareFile! , firmwareType:dfuFirmwareType)
             }
         }
         else
