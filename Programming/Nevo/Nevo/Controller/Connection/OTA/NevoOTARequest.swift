@@ -18,6 +18,9 @@ this file include all  OTA request class
 //
 //}
 
+/**
+below class is for Nordic BLE OTA, Firmware is hex file
+*/
 
 class SetOTAModeRequest : Request {
     
@@ -214,3 +217,76 @@ class OnePacketRequest: Request {
         return NSArray()
     }
 }
+
+/**
+below class is for Epson MCU OTA, FW is bin file
+*/
+
+class Mcu_SetOTAModeRequest : Request {
+    
+    let values :[UInt8] = [0x00,0x70,0xA0,0x8A,0x7D,0xDE,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+    let values2 :[UInt8] = [0xFF,0x70,0x00,0x00,0x00,0x00,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+    
+    func getTargetProfile() -> Profile {
+        return NevoOTAModeProfile()
+    }
+    
+    func getRawData() -> NSData {
+        return NSData(bytes: values, length: values.count)
+    }
+    func getRawDataEx() -> NSArray {
+        return NSArray(array: [NSData(bytes: values, length: values.count),
+            NSData(bytes: values2, length: values2.count)])
+    }
+}
+
+class Mcu_OnePacketRequest: Request {
+    
+    var mPacketData:NSData?
+    
+    init(packetdata: NSData)
+    {
+        mPacketData = NSData(data: packetdata)
+    }
+    func getTargetProfile() -> Profile {
+        return NevoOTAModeProfile()
+    }
+    
+    func getRawData() -> NSData {
+        return mPacketData!
+    }
+    func getRawDataEx() -> NSArray {
+        return NSArray()
+    }
+}
+
+class Mcu_CheckSumPacketRequest: Request {
+    
+    var mTotalpage:Int
+    var mChecksum:Int
+    
+    init(totalpage:Int,checksum:Int)
+    {
+        mTotalpage = totalpage
+        mChecksum  = checksum
+    }
+    func getTargetProfile() -> Profile {
+        return NevoOTAModeProfile()
+    }
+    
+    func getRawData() -> NSData {
+        
+        return NSData()
+    }
+    func getRawDataEx() -> NSArray {
+        
+        let values :[UInt8] = [0x00,0x71,0xFF,0xFF,UInt8(mTotalpage&0xFF),UInt8((mTotalpage>>8)&0xFF)
+            ,UInt8(mChecksum&0xFF),0,0,0,0,0,0,0,0,0,0,0,0,0]
+        let values2 :[UInt8] = [0xFF,0x71,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        
+        return NSArray(array: [NSData(bytes: values, length: values.count),
+            NSData(bytes: values2, length: values2.count)])
+
+    }
+}
+

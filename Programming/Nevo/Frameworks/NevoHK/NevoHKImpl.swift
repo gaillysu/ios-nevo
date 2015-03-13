@@ -69,7 +69,7 @@ class NevoHKImpl {
     /**
     See NevoHK protocol
     */
-    func writeDataPoint(data:NevoHKDataPoint) {
+    func writeDataPoint(data:NevoHKDataPoint,resultHandler:((result:Bool?,error:NSError?) -> Void)) {
 
         isPresent(data, handler:  { (present) -> Void in
             
@@ -79,14 +79,17 @@ class NevoHKImpl {
                 self.mHealthKitStore.saveObject(data.toHKQuantitySample(), withCompletion: { (success, error) -> Void in
                     if( error != nil ) {
                         println("Error saving sample: \(error.localizedDescription)")
+                        resultHandler(result: false,error: error as NSError)
                     } else {
                         println("Saved in Health Kit : \(data.toHKQuantitySample())")
+                        resultHandler(result: true,error: nil)
                     }
                 })
                 
             } else {
                 
                 println("Can't save Health Kit. Already present or Health Kit autorisation wasn't given : \(data.toHKQuantitySample())")
+                resultHandler(result:false,error:NSError(domain:"Can't save Health Kit. Already present or Health Kit autorisation wasn't given : \(data.toHKQuantitySample())" , code: 404, userInfo: nil))
 
             }
             

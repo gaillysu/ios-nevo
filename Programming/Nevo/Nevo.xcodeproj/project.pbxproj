@@ -59,10 +59,10 @@
 		00C640F61A8DEE0800815CF8 /* clockView600.png in Resources */ = {isa = PBXBuildFile; fileRef = 00C640F51A8DEE0800815CF8 /* clockView600.png */; };
 		00CD3AFA1AA701D900F3D6A5 /* TypeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00CD3AF91AA701D900F3D6A5 /* TypeModel.swift */; };
 		00E0E1441A88BBDE0001B8CA /* wallpaper0.png in Resources */ = {isa = PBXBuildFile; fileRef = 00E0E1431A88BBDE0001B8CA /* wallpaper0.png */; };
-		0704C95E1AA413BB00F9AE09 /* imaze_20150227_v10_2.hex in Resources */ = {isa = PBXBuildFile; fileRef = 0704C95C1AA413BB00F9AE09 /* imaze_20150227_v10_2.hex */; };
-		0704C95F1AA413BB00F9AE09 /* iMaze_v8_8hr.bin in Resources */ = {isa = PBXBuildFile; fileRef = 0704C95D1AA413BB00F9AE09 /* iMaze_v8_8hr.bin */; };
-		0704C9611AA4167600F9AE09 /* iMaze_v8_24hr.bin in Resources */ = {isa = PBXBuildFile; fileRef = 0704C9601AA4167600F9AE09 /* iMaze_v8_24hr.bin */; };
 		0704C9631AA431EE00F9AE09 /* GetStepsGoalRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0704C9621AA431EE00F9AE09 /* GetStepsGoalRequest.swift */; };
+		074243221AB00F630076F789 /* RealTimeCountSteps.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074243211AB00F630076F789 /* RealTimeCountSteps.swift */; };
+		074243251AB29C3D0076F789 /* imaze_20150310_v13.hex in Resources */ = {isa = PBXBuildFile; fileRef = 074243231AB29C3D0076F789 /* imaze_20150310_v13.hex */; };
+		074243261AB29C3D0076F789 /* iMaze_v9.bin in Resources */ = {isa = PBXBuildFile; fileRef = 074243241AB29C3D0076F789 /* iMaze_v9.bin */; };
 		07731E521AA58EFE007F9FD6 /* ReadDailyTrackerInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07731E511AA58EFE007F9FD6 /* ReadDailyTrackerInfo.swift */; };
 		07731E541AA58F27007F9FD6 /* ReadDailyTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07731E531AA58F27007F9FD6 /* ReadDailyTracker.swift */; };
 		07BE0CF21A84A2F8000C4AC7 /* IntelHex2BinConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = 07BE0CF11A84A2F8000C4AC7 /* IntelHex2BinConverter.m */; };
@@ -188,10 +188,10 @@
 		00C640F51A8DEE0800815CF8 /* clockView600.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clockView600.png; sourceTree = "<group>"; };
 		00CD3AF91AA701D900F3D6A5 /* TypeModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TypeModel.swift; sourceTree = "<group>"; };
 		00E0E1431A88BBDE0001B8CA /* wallpaper0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wallpaper0.png; sourceTree = "<group>"; };
-		0704C95C1AA413BB00F9AE09 /* imaze_20150227_v10_2.hex */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = imaze_20150227_v10_2.hex; sourceTree = "<group>"; };
-		0704C95D1AA413BB00F9AE09 /* iMaze_v8_8hr.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = iMaze_v8_8hr.bin; sourceTree = "<group>"; };
-		0704C9601AA4167600F9AE09 /* iMaze_v8_24hr.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = iMaze_v8_24hr.bin; sourceTree = "<group>"; };
 		0704C9621AA431EE00F9AE09 /* GetStepsGoalRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GetStepsGoalRequest.swift; path = Controller/Connection/Request/GetStepsGoalRequest.swift; sourceTree = "<group>"; };
+		074243211AB00F630076F789 /* RealTimeCountSteps.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RealTimeCountSteps.swift; path = Model/Activity/RealTimeCountSteps.swift; sourceTree = "<group>"; };
+		074243231AB29C3D0076F789 /* imaze_20150310_v13.hex */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = imaze_20150310_v13.hex; sourceTree = "<group>"; };
+		074243241AB29C3D0076F789 /* iMaze_v9.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = iMaze_v9.bin; sourceTree = "<group>"; };
 		07731E511AA58EFE007F9FD6 /* ReadDailyTrackerInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ReadDailyTrackerInfo.swift; path = Controller/Connection/Request/ReadDailyTrackerInfo.swift; sourceTree = "<group>"; };
 		07731E531AA58F27007F9FD6 /* ReadDailyTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ReadDailyTracker.swift; path = Controller/Connection/Request/ReadDailyTracker.swift; sourceTree = "<group>"; };
 		07BE0CEE1A84A0C8000C4AC7 /* Nevo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Nevo-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -396,9 +396,8 @@
 		07CC4A231A81F26C008DA749 /* Firmwares */ = {
 			isa = PBXGroup;
 			children = (
-				0704C9601AA4167600F9AE09 /* iMaze_v8_24hr.bin */,
-				0704C95C1AA413BB00F9AE09 /* imaze_20150227_v10_2.hex */,
-				0704C95D1AA413BB00F9AE09 /* iMaze_v8_8hr.bin */,
+				074243231AB29C3D0076F789 /* imaze_20150310_v13.hex */,
+				074243241AB29C3D0076F789 /* iMaze_v9.bin */,
 			);
 			name = Firmwares;
 			path = OTA/Firmwares;
@@ -424,6 +423,7 @@
 		9A2D6C411A9C8E0700591BDC /* Activity */ = {
 			isa = PBXGroup;
 			children = (
+				074243211AB00F630076F789 /* RealTimeCountSteps.swift */,
 				9A2D6C421A9C8E3600591BDC /* HourlySteps.swift */,
 				9A2D6C441A9C8E4800591BDC /* DailySteps.swift */,
 			);
@@ -739,7 +739,6 @@
 				007F799D1A878D0B006C89E6 /* SIL Open Font License.txt in Resources */,
 				007F79971A878D0B006C89E6 /* Raleway-MediumItalic.ttf in Resources */,
 				00478F4F1A8F637D00D0DCE2 /* clockViewHour.png in Resources */,
-				0704C9611AA4167600F9AE09 /* iMaze_v8_24hr.bin in Resources */,
 				007F79981A878D0B006C89E6 /* Raleway-Regular.ttf in Resources */,
 				00B1DFB31AA7F2DB00FDFECD /* PaletteViewCell.xib in Resources */,
 				007F79951A878D0B006C89E6 /* Raleway-LightItalic.ttf in Resources */,
@@ -748,12 +747,10 @@
 				007F798B1A878D0B006C89E6 /* Raleway-Black.ttf in Resources */,
 				007F79991A878D0B006C89E6 /* Raleway-SemiBold.ttf in Resources */,
 				007F79941A878D0B006C89E6 /* Raleway-Light.ttf in Resources */,
-				0704C95F1AA413BB00F9AE09 /* iMaze_v8_8hr.bin in Resources */,
 				005BC9561A889F14006F9E86 /* NevoPicture.png in Resources */,
 				007F79961A878D0B006C89E6 /* Raleway-Medium.ttf in Resources */,
 				007F799A1A878D0B006C89E6 /* Raleway-SemiBoldItalic.ttf in Resources */,
 				9AD8F9451A6DF35900F01014 /* LaunchScreen.xib in Resources */,
-				0704C95E1AA413BB00F9AE09 /* imaze_20150227_v10_2.hex in Resources */,
 				007F799C1A878D0B006C89E6 /* Raleway-ThinItalic.ttf in Resources */,
 				007F79931A878D0B006C89E6 /* Raleway-Italic.ttf in Resources */,
 				007F798F1A878D0B006C89E6 /* Raleway-ExtraBold.ttf in Resources */,
@@ -765,8 +762,10 @@
 				007F798D1A878D0B006C89E6 /* Raleway-Bold.ttf in Resources */,
 				007F799B1A878D0B006C89E6 /* Raleway-Thin.ttf in Resources */,
 				00478F501A8F637D00D0DCE2 /* clockViewMinute.png in Resources */,
+				074243261AB29C3D0076F789 /* iMaze_v9.bin in Resources */,
 				00C640F61A8DEE0800815CF8 /* clockView600.png in Resources */,
 				00E0E1441A88BBDE0001B8CA /* wallpaper0.png in Resources */,
+				074243251AB29C3D0076F789 /* imaze_20150310_v13.hex in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -804,6 +803,7 @@
 				07CC4A2F1A821B46008DA749 /* NevoOTARequest.swift in Sources */,
 				00A2287E1AA57F1A00360C36 /* EnterNotificationController.swift in Sources */,
 				9AD8F9791A6E05F700F01014 /* NevoBT.swift in Sources */,
+				074243221AB00F630076F789 /* RealTimeCountSteps.swift in Sources */,
 				07C59F321A8C6A6000D65C84 /* SetRTCRequest.swift in Sources */,
 				007F79721A878C8B006C89E6 /* TutorialController.swift in Sources */,
 				00C30AD91A89E08600C9F67B /* Page3Controller.swift in Sources */,

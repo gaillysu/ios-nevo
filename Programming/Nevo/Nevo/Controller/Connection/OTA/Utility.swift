@@ -48,6 +48,22 @@ enum DfuOperationStatus:UInt8{
     
 }
 
+enum DFUControllerState
+{
+    case INIT,
+    DISCOVERING,
+    IDLE,
+    SEND_NOTIFICATION_REQUEST,
+    SEND_START_COMMAND,
+    SEND_RECEIVE_COMMAND,
+    SEND_FIRMWARE_DATA,
+    SEND_VALIDATE_COMMAND,
+    SEND_RESET,
+    WAIT_RECEIPT,
+    FINISHED,
+    CANCELED
+}
+
 enum DfuFirmwareTypes:UInt8{
     case  SOFTDEVICE = 0x01,
     BOOTLOADER = 0x02,
