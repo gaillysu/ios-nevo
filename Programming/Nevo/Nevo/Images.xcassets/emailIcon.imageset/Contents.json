@@ -3,17 +3,17 @@
     {
       "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "25em.png"
+      "filename" : "email_icon25.png"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "50em.png"
+      "filename" : "email_icon50.png"
     },
     {
       "idiom" : "universal",
       "scale" : "3x",
-      "filename" : "75em.png"
+      "filename" : "email_icon75.png"
     }
   ],
   "info" : {
