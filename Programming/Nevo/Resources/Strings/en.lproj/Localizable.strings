@@ -25,10 +25,10 @@
 "Next"="Next";
 "Finish"="Finish";
 "Connect"="Connect";
-"step"="Set your daily Goal";
+"step"="Set your daily goal";
 "Cancel"="Cancel";
 "Enter"="Enter";
-"alarmLabelTitle"=" Set your Alarm";
+"alarmLabelTitle"=" Set your alarm";
 "alarmTitle"="Alarm";
 "stepGoalTitle"="Goal";
 "homeTitle"="Welcome";
@@ -38,3 +38,4 @@
 "Red"="Red";
 "Green"="Green";
 "Yellow"="Yellow";
+"LongPushLED"="Long push on the third button until blue LED blinks";

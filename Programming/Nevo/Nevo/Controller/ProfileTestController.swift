@@ -87,14 +87,14 @@ class ProfileTestController: UITableViewController,SyncControllerDelegate,Button
         mSyncController = SyncController.sharedInstance
         mSyncController?.startConnect(false, delegate: self)
         
-        let firstMode = UserModel(userName: "\(0 + 1)",userID: 0, phone: "11111111", email: "632840804@qq.com")
+        let firstMode = UserModel(userName: "\(0 + 1)",userID: 0, phone: "test", email: "test")
         dataSource.addObject(firstMode)
         // Do any additional setup after loading the view.
-        for index in 0...1 {
-            let model = UserModel(userName: "\(index + 1)",
-                userID: index, phone: "13877747982", email: "632840804@qq.com")
-            dataSource.addObject(model)
-        }
+//        for index in 0...1 {
+//            let model = UserModel(userName: "\(index + 1)",
+//                userID: index, phone: "13877747982", email: "632840804@qq.com")
+//            dataSource.addObject(model)
+//        }
         
         self.title = "UITableViewDemo"
         let indexPath = NSIndexPath(forRow: 0, inSection: 0)
@@ -158,6 +158,14 @@ class ProfileTestController: UITableViewController,SyncControllerDelegate,Button
         mPacketsbuffer = []
         mSyncController?.getGoal()
         
+        //to get the information about notification
+        var keys = []
+        var userSetting = NSUserDefaults.standardUserDefaults()
+        //var notificationSetting = TypeModel().getNotificationTypeContent()
+        var notificationArray = refreshNotificationSettingArray()
+        for (key,value) in notificationArray{
+            NSLog("key:\(key.rawValue) \(value.description())")
+        }
     }
     
     func insertNewObject(sender:AnyObject){
@@ -175,13 +183,13 @@ class ProfileTestController: UITableViewController,SyncControllerDelegate,Button
     }
     
     // MARK: - Table view data source
-    //返回节的个数
+    //return section num
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Potentially incomplete method implementation.
         // Return the number of sections.
         return 1
     }
-    //返回某个节中的行数
+    //return num of line in the section
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return dataSource.count
     }
@@ -207,7 +215,7 @@ class ProfileTestController: UITableViewController,SyncControllerDelegate,Button
         return cell!
     }
     
-    // 支持单元格编辑功能
+    // support the cell edit function
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         // Return NO if you do not want the specified item to be editable.
         return false
@@ -241,7 +249,7 @@ class ProfileTestController: UITableViewController,SyncControllerDelegate,Button
     
     
     // Override to support conditional rearranging of the table view.
-    //在编辑状态，可以拖动设置item位置
+    //when it at edit status , you can move the position of the item
     override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         // Return NO if you do not want the item to be re-orderable.
         return true
@@ -308,5 +316,71 @@ class ProfileTestController: UITableViewController,SyncControllerDelegate,Button
         // Pass the selected object to the new view controller.
     }
     */
+    
+    
+    
+    
+    //create all notification setting
+    func getNotificationSettingArray() -> Dictionary<NotificationType,NotificationSetting>{
+        var config:Dictionary<String, String> = ["CALL":"callIcon", "SMS":"smsIcon", "EMAIL":"emailIcon", "FaceBook":"callIcon", "Twitter":"callIcon", "Whatsapp":"callIcon" ]
+        var notificationArray:Dictionary<NotificationType,NotificationSetting> = [:]
+        for (key, value) in config {
+            if var valueType:NotificationType = NotificationType(rawValue: key){
+                notificationArray.updateValue(NotificationSetting(type: valueType, icon: value, color: 0), forKey: valueType)
+            }
+        }
+        return notificationArray
+    }
+    
+    func refreshNotificationSettingArray() -> Dictionary<NotificationType,NotificationSetting>{
+        var notificationArray:Dictionary<NotificationType,NotificationSetting> = getNotificationSettingArray()
+        for (key,value) in notificationArray{
+            value.updateValueFromEnternotification()
+        }
+        return notificationArray
+    }
+    
 
+    // notification setting
+    class NotificationSetting {
+        var mStates:Bool = true
+        var mType:NotificationType
+        var mIcon:NSString
+        var mColor:NSNumber
+        
+        init(type:NotificationType, icon:NSString, color:NSNumber){
+            mType = type
+            mIcon = icon
+            mColor = color
+        }
+        
+        func updateValueFromEnternotification(){
+            mColor = NSNumber(unsignedInt: EnterNotificationController.getLedColor(mType.rawValue))
+            mStates = EnterNotificationController.getMotorOnOff(mType.rawValue)
+        }
+        
+        func description() -> String{
+            var description = ""
+            description = "type:\(mType.rawValue) color:\(mColor) status:\(mStates)"
+            return description
+        }
+        
+        func getColorName(){
+            var colorName = ""
+        }
+    }
+    
+    //notification type
+    enum NotificationType:NSString {
+        case CALL = "CALL"
+        case SMS = "SMS"
+        case EMAIL = "EMAIL"
+        case FACEBOOK = "FaceBook"
+        case TWITTER = "Twitter"
+        case WHATSAPP = "Whatsapp"
+        
+        static let allValues = [CALL, SMS, EMAIL, FACEBOOK, TWITTER, WHATSAPP]
+    }
+    
+    //end of class
 }

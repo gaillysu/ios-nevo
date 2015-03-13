@@ -44,4 +44,26 @@ class AppTheme {
     class func PALETTE_BAGGROUND_COLOR() -> UIColor {
         return UIColor(red: 10/255.0, green: 255/255.0, blue: 178/255.0, alpha: 1)//Uniform
     }
+
+    /**
+    Access to resources image
+
+    :param: imageName resource name picture
+
+    :returns: Return to obtain images of the object
+    */
+    class func GET_RESOURCES_IMAGE(imageName:String) -> UIImage {
+        let imagePath:String = NSBundle.mainBundle().pathForResource(imageName, ofType: "png")!
+        return UIImage(contentsOfFile: imagePath)!
+
+    }
+
+    /**
+     Determine whether the iphone 4 s
+    :returns: If it returns true or false
+    */
+    class func GET_IS_iPhone4S() -> Bool {
+        let isiPhone4S:Bool = (UIScreen.instancesRespondToSelector(Selector("currentMode")) ? CGSizeEqualToSize(CGSizeMake(640, 960), UIScreen.mainScreen().currentMode!.size) : false)
+        return isiPhone4S
+    }
 }

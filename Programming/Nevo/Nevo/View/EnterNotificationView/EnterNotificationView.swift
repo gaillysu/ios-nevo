@@ -38,16 +38,26 @@ class EnterNotificationView: UITableView {
         mDelegate?.controllManager(back)
     }
 
+    func EnterCurrentPaletteCell(indexPath:NSIndexPath) ->CurrentPaletteCell{
+        let CurrentCellID:NSString = "CurrentCell"
+        var CurrentCell = self.dequeueReusableCellWithIdentifier(CurrentCellID) as? CurrentPaletteCell
+
+        if (CurrentCell == nil) {
+            let nibs:NSArray = NSBundle.mainBundle().loadNibNamed("CurrentPaletteCell", owner: self, options: nil)
+            CurrentCell = nibs.objectAtIndex(0) as? CurrentPaletteCell;
+            CurrentCell?.selectionStyle = UITableViewCellSelectionStyle.None
+        }
+        return CurrentCell!
+    }
+
     func EnterPaletteListCell(indexPath:NSIndexPath,dataSource:NSArray)->PaletteViewCell {
-        let endCellID:NSString = "endCell"
+        let endCellID:NSString = "PaletteListCell"
         var endCell = self.dequeueReusableCellWithIdentifier(endCellID) as? PaletteViewCell
-        var StatesLabel:UILabel!
 
         if (endCell == nil) {
             let nibs:NSArray = NSBundle.mainBundle().loadNibNamed("PaletteViewCell", owner: self, options: nil)
             endCell = nibs.objectAtIndex(0) as? PaletteViewCell;
             endCell?.selectionStyle = UITableViewCellSelectionStyle.None;
-
         }
 
         return endCell!

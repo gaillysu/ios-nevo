@@ -8,8 +8,10 @@
 
 import UIKit
 
-class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate {
+class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonManagerCallBack  {
 
+    @IBOutlet var nevoOtaView: NevoOtaView!
+    
     var isTransferring:Bool = false
     var enumFirmwareType:DfuFirmwareTypes?=DfuFirmwareTypes.APPLICATION
     var selectedFileURL:NSURL?
@@ -19,6 +21,10 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        //init the view
+        nevoOtaView.buildView(self)
+        
+        //init the ota
         mNevoOtaController = NevoOtaController(controller: self)
         initValue()
         
@@ -96,4 +102,21 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate {
     }
     
 
+    // MARK: - ButtonManagerCallBack
+    func controllManager(sender:AnyObject){
+        if sender.isEqual(nevoOtaView.backButton) {
+            self.dismissViewControllerAnimated(true, completion: nil)
+            return
+        }
+        var senderString = sender as String
+        if senderString == "selectWatchFile"{
+            NSLog("selectWatchFile")
+        }else if senderString == "selectWatchDevice"{
+            NSLog("selectWatchDevice")
+        }else if senderString == "uploadFile"{
+            NSLog("uploadFile")
+        }
+        
+        
+    }
 }

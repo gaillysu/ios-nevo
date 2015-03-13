@@ -27,9 +27,9 @@ class EnterNotificationController: UITableViewController,SwitchActionDelegate,Pa
         static let CALL:NSString = "CALL"
         static let SMS:NSString = "SMS"
         static let EMAIL:NSString = "EMAIL"
-        static let FACEBOOK:NSString = "FaceBook"
-        static let TWITTER:NSString = "Twitter"
-        static let WHATSAPP:NSString = "Whatsapp"
+        static let FACEBOOK:NSString = "Facebook"
+        static let CALENDAR:NSString = "Calendar"
+        static let WECHAT:NSString = "WeChat"
     }
     
     class func setLedColor(sourceType: NSString,ledColor:UInt32)
@@ -51,11 +51,11 @@ class EnterNotificationController: UITableViewController,SwitchActionDelegate,Pa
             // default value
         else{
             if sourceType == SOURCETYPE.CALL  { return SetNortificationRequest.SetNortificationRequestValues.BLUE_LED }
-            if sourceType == SOURCETYPE.SMS  { return SetNortificationRequest.SetNortificationRequestValues.GREEN_LED }
+            if sourceType == SOURCETYPE.SMS  { return SetNortificationRequest.SetNortificationRequestValues.PURPLE_LED }
             if sourceType == SOURCETYPE.EMAIL  { return SetNortificationRequest.SetNortificationRequestValues.YELLOW_LED }
-            if sourceType == SOURCETYPE.FACEBOOK  { return SetNortificationRequest.SetNortificationRequestValues.RED_LED }
-            if sourceType == SOURCETYPE.TWITTER  { return SetNortificationRequest.SetNortificationRequestValues.VIOLET_LED }
-            if sourceType == SOURCETYPE.WHATSAPP  { return SetNortificationRequest.SetNortificationRequestValues.PURPLE_LED }
+            if sourceType == SOURCETYPE.FACEBOOK  { return SetNortificationRequest.SetNortificationRequestValues.VIOLET_LED }
+            if sourceType == SOURCETYPE.CALENDAR  { return SetNortificationRequest.SetNortificationRequestValues.GREEN_LED }
+            if sourceType == SOURCETYPE.WECHAT  { return SetNortificationRequest.SetNortificationRequestValues.RED_LED }
             
             return 0xFF0000
         }
@@ -85,7 +85,9 @@ class EnterNotificationController: UITableViewController,SwitchActionDelegate,Pa
     @IBOutlet var enterNotView: EnterNotificationView!
     
     //From the higher level of the incoming type Array
-    var notTypeArray:NSArray!
+    var notTypeArray:NSMutableArray?
+
+    var notType:TypeModel?
 
     /*
     Type switch state callBack to the before a object
@@ -98,6 +100,9 @@ class EnterNotificationController: UITableViewController,SwitchActionDelegate,Pa
     led color default is full color led light on
     */
     //var ledcolor: UInt32 = 0xFF0000
+
+    var numberCount:Int = 1
+    var PaletteSele:Bool = false
     
 
     override func viewDidLoad() {
@@ -166,33 +171,60 @@ class EnterNotificationController: UITableViewController,SwitchActionDelegate,Pa
         mSyncController?.connect()
     }
 
-       // MARK: - SwitchActionDelegate
+
+    /**
+    Used to change the content of array function
+
+    :param: results The switch state
+    :param: color   Select the color
+    */
+    func replaceNotTypeArray(results:Bool,color:NSNumber) {
+        var index:Int = 0
+        for model in notTypeArray! {
+            let mModel:TypeModel = model as TypeModel
+            let typeString:NSString = mModel.getNotificationTypeContent().objectForKey("type") as NSString
+            let notTypeString:NSString = notType?.getNotificationTypeContent().objectForKey("type") as NSString
+            let sss:Bool = mModel.getNotificationTypeContent().objectForKey("states") as Bool
+            if typeString.isEqualToString(notTypeString) {
+                mModel.setNotificationTypeStates(typeString, state: results, icon: mModel.getNotificationTypeContent().objectForKey("icon") as NSString, color: color)
+                notTypeArray?.replaceObjectAtIndex(index, withObject: mModel)
+            }
+            index++
+        }
+    }
+
+    // MARK: - SwitchActionDelegate
     func onSwitch(results:Bool){
-        EnterNotificationController.setMotorOnOff(notTypeArray[1] as NSString, motorStatus: results)
-        mSyncController?.SetNortification(TypeModel())
-        mDelegate?.onSelectedType(results, type: notTypeArray[1] as NSString)
+
+        replaceNotTypeArray(results, color: notType?.getNotificationTypeContent().objectForKey("color") as NSNumber)
+        EnterNotificationController.setMotorOnOff(notType?.getNotificationTypeContent().objectForKey("type") as NSString, motorStatus: results)
+        mSyncController?.SetNortification(notTypeArray!)
+        mDelegate?.onSelectedType(results, type: notType!.getNotificationTypeContent().objectForKey("type") as NSString)
     }
 
     // MARK: - PaletteDelegate
     func selectedPalette(color:UIColor){
         NSLog("UIColor\(color)")
-        if color == UIColor.blueColor()
-        {
-            EnterNotificationController.setLedColor(notTypeArray[1] as NSString,ledColor:SetNortificationRequest.SetNortificationRequestValues.BLUE_LED)
-        }else if color == UIColor.redColor(){
-            EnterNotificationController.setLedColor(notTypeArray[1] as NSString,ledColor:SetNortificationRequest.SetNortificationRequestValues.RED_LED)
-        }else if color == UIColor.yellowColor(){
-            EnterNotificationController.setLedColor(notTypeArray[1] as NSString,ledColor:SetNortificationRequest.SetNortificationRequestValues.YELLOW_LED)
-        }else if color == UIColor.greenColor(){
-            EnterNotificationController.setLedColor(notTypeArray[1] as NSString,ledColor:SetNortificationRequest.SetNortificationRequestValues.GREEN_LED)
-        }else if color == UIColor.orangeColor(){
-            EnterNotificationController.setLedColor(notTypeArray[1] as NSString,ledColor:SetNortificationRequest.SetNortificationRequestValues.VIOLET_LED)
-        }else if color == AppTheme.PALETTE_BAGGROUND_COLOR(){
-            EnterNotificationController.setLedColor(notTypeArray[1] as NSString,ledColor:SetNortificationRequest.SetNortificationRequestValues.PURPLE_LED)
-        }
+        let indexPathRow:NSIndexPath = NSIndexPath(forRow: 0, inSection: 1)
+        let cellForRow:CurrentPaletteCell = self.tableView.cellForRowAtIndexPath(indexPathRow) as CurrentPaletteCell
+        cellForRow.currentColorView.backgroundColor = color
 
-        mSyncController?.SetNortification(TypeModel())
-        mDelegate?.onSelectedType(true, type: notTypeArray[1] as NSString)
+        if color == UIColor.blueColor(){
+            EnterNotificationController.setLedColor(notType!.getNotificationTypeContent().objectForKey("type") as NSString,ledColor:SetNortificationRequest.SetNortificationRequestValues.BLUE_LED)
+        }else if color == UIColor.redColor(){
+            EnterNotificationController.setLedColor(notType!.getNotificationTypeContent().objectForKey("type") as NSString,ledColor:SetNortificationRequest.SetNortificationRequestValues.RED_LED)
+        }else if color == UIColor.yellowColor(){
+            EnterNotificationController.setLedColor(notType!.getNotificationTypeContent().objectForKey("type") as NSString,ledColor:SetNortificationRequest.SetNortificationRequestValues.YELLOW_LED)
+        }else if color == UIColor.greenColor(){
+            EnterNotificationController.setLedColor(notType!.getNotificationTypeContent().objectForKey("type") as NSString,ledColor:SetNortificationRequest.SetNortificationRequestValues.GREEN_LED)
+        }else if color == UIColor.orangeColor(){
+            EnterNotificationController.setLedColor(notType!.getNotificationTypeContent().objectForKey("type") as NSString,ledColor:SetNortificationRequest.SetNortificationRequestValues.VIOLET_LED)
+        }else if color == UIColor.purpleColor(){
+            EnterNotificationController.setLedColor(notType!.getNotificationTypeContent().objectForKey("type") as NSString,ledColor:SetNortificationRequest.SetNortificationRequestValues.PURPLE_LED)
+        }
+        replaceNotTypeArray(notType!.getNotificationTypeContent().objectForKey("states") as Bool, color: NSNumber(unsignedInt: EnterNotificationController.getLedColor(notType!.getNotificationTypeContent().objectForKey("type") as NSString)))
+        mSyncController?.SetNortification(notTypeArray!)
+        mDelegate?.onSelectedType(true, type: notType!.getNotificationTypeContent().objectForKey("type") as NSString)
         
     }
 
@@ -201,20 +233,35 @@ class EnterNotificationController: UITableViewController,SwitchActionDelegate,Pa
         if (indexPath.section == 0){
             return 50.0
         }else{
-            return 170
+            if indexPath.row == 0 {
+                return 45
+            }else {
+                return 245
+            }
         }
-
     }
     override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat{
         if (section == 0){
             return 44.0
         }else{
-            return UIScreen.mainScreen().bounds.height-373
+            return 100
         }
     }
 
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
-
+        if (indexPath.section == 1){
+            if !PaletteSele {
+                numberCount+=1
+                PaletteSele = true
+                let indexPathRow:NSIndexPath = NSIndexPath(forRow: 1, inSection: 1)
+                tableView.insertRowsAtIndexPaths([indexPathRow], withRowAnimation: UITableViewRowAnimation.Bottom)
+            }else {
+                numberCount-=1
+                PaletteSele = false
+                let indexPathRow:NSIndexPath = NSIndexPath(forRow: 1, inSection: 1)
+                tableView.deleteRowsAtIndexPaths([indexPathRow], withRowAnimation: UITableViewRowAnimation.Bottom)
+            }
+        }
     }
 
     // MARK: - UITableViewDataSource
@@ -223,39 +270,52 @@ class EnterNotificationController: UITableViewController,SwitchActionDelegate,Pa
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
+        if (section == 0) {
+            return 1
+        }else if (section == 1) {
+            return numberCount
+        }else{
+            return 0
+        }
 
-        return 1
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if (indexPath.section == 0){
             var endCell:NotificationTypeCell = tableView.dequeueReusableCellWithIdentifier("NotificationTypeCell", forIndexPath: indexPath) as NotificationTypeCell
-            endCell.cellSwitch.on = notTypeArray[0] as Bool
-            endCell.cellLabel.text = notTypeArray[1] as? String
+            endCell.cellSwitch.on = notType!.getNotificationTypeContent().objectForKey("states") as Bool
+            endCell.cellLabel.text = notType!.getNotificationTypeContent().objectForKey("type") as? String
             endCell.ActionDelegate = self
 
             return endCell
         }else if (indexPath.section == 1){
 
-            let endCell:PaletteViewCell = enterNotView.EnterPaletteListCell(indexPath, dataSource: NSArray())
-            if (((notTypeArray[3] as NSNumber).unsignedIntValue) == SetNortificationRequest.SetNortificationRequestValues.RED_LED){
-                endCell.currentColorView.backgroundColor = UIColor.redColor()
-            }else if (((notTypeArray[3] as NSNumber).unsignedIntValue) == SetNortificationRequest.SetNortificationRequestValues.BLUE_LED){
-                endCell.currentColorView.backgroundColor = UIColor.blueColor()
-            }else if (((notTypeArray[3] as NSNumber).unsignedIntValue) == SetNortificationRequest.SetNortificationRequestValues.GREEN_LED){
-                endCell.currentColorView.backgroundColor = UIColor.greenColor()
-            }else if (((notTypeArray[3] as NSNumber).unsignedIntValue) == SetNortificationRequest.SetNortificationRequestValues.YELLOW_LED){
-                endCell.currentColorView.backgroundColor = UIColor.yellowColor()
-            }else if (((notTypeArray[3] as NSNumber).unsignedIntValue) == SetNortificationRequest.SetNortificationRequestValues.VIOLET_LED){
-                endCell.currentColorView.backgroundColor = UIColor.orangeColor()
-            }
-            else if (((notTypeArray[3] as NSNumber).unsignedIntValue) == SetNortificationRequest.SetNortificationRequestValues.PURPLE_LED){
-                endCell.currentColorView.backgroundColor = AppTheme.PALETTE_BAGGROUND_COLOR()
-            }
-            
-            endCell.pDelegate = self
+            if (indexPath.row == 0) {
+                let endCell:CurrentPaletteCell = enterNotView.EnterCurrentPaletteCell(indexPath)
 
-            return endCell
+                if (((notType!.getNotificationTypeContent().objectForKey("color") as NSNumber).unsignedIntValue) == SetNortificationRequest.SetNortificationRequestValues.RED_LED){
+                    endCell.currentColorView.backgroundColor = UIColor.redColor()
+                }else if (((notType!.getNotificationTypeContent().objectForKey("color") as NSNumber).unsignedIntValue) == SetNortificationRequest.SetNortificationRequestValues.BLUE_LED){
+                    endCell.currentColorView.backgroundColor = UIColor.blueColor()
+                }else if (((notType!.getNotificationTypeContent().objectForKey("color") as NSNumber).unsignedIntValue) == SetNortificationRequest.SetNortificationRequestValues.GREEN_LED){
+                    endCell.currentColorView.backgroundColor = UIColor.greenColor()
+                }else if (((notType!.getNotificationTypeContent().objectForKey("color") as NSNumber).unsignedIntValue) == SetNortificationRequest.SetNortificationRequestValues.YELLOW_LED){
+                    endCell.currentColorView.backgroundColor = UIColor.yellowColor()
+                }else if (((notType!.getNotificationTypeContent().objectForKey("color") as NSNumber).unsignedIntValue) == SetNortificationRequest.SetNortificationRequestValues.VIOLET_LED){
+                    endCell.currentColorView.backgroundColor = UIColor.orangeColor()
+                }
+                else if (((notType!.getNotificationTypeContent().objectForKey("color") as NSNumber).unsignedIntValue) == SetNortificationRequest.SetNortificationRequestValues.PURPLE_LED){
+                    endCell.currentColorView.backgroundColor = UIColor.purpleColor()
+                }
+
+                //endCell.pDelegate = self
+                return endCell
+            }else {
+                let paletteCell:PaletteViewCell = enterNotView.EnterPaletteListCell(indexPath, dataSource: NSArray())
+                paletteCell.pDelegate = self
+                return paletteCell
+            }
+
         }
 
         return UITableViewCell()

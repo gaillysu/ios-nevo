@@ -27,6 +27,11 @@ class HomeController: UIViewController, SyncControllerDelegate{
 
         let timer:NSTimer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector:"timerAction:", userInfo: nil, repeats: true);
         
+        //TEST this is for test. pls not to remove it 
+//                var tapAction = UITapGestureRecognizer(target: self, action: "gotoProfileScreen")
+//                homeView.addGestureRecognizer(tapAction)
+        //end TEST
+
     }
 
     override func viewDidAppear(animated: Bool) {
@@ -49,12 +54,6 @@ class HomeController: UIViewController, SyncControllerDelegate{
             SyncController.sharedInstance.getGoal()
         }
 
-        
-        //TEST this is for test
-//        var tapAction = UITapGestureRecognizer(target: self, action: "gotoProfileScreen")
-//        homeView.addGestureRecognizer(tapAction)
-        //end TEST
-        
     }
     
     override func didReceiveMemoryWarning() {
@@ -68,14 +67,16 @@ class HomeController: UIViewController, SyncControllerDelegate{
 
     
     /**
-    goto profileTest screen.  just for test
+    
+    goto profileTest screen.
     */
     func gotoProfileScreen(){
-        self.performSegueWithIdentifier("Home_profile", sender: self)
+//        self.performSegueWithIdentifier("Home_profile", sender: self)
+        self.performSegueWithIdentifier("Home_nevoOta", sender: self)
     }
-    
+
     /**
-    
+
     See SyncControllerDelegate
     
     */
@@ -103,12 +104,13 @@ class HomeController: UIViewController, SyncControllerDelegate{
             
                 NSLog("get Daily Steps is: \(dailySteps), getDaily Goal is: \(dailyStepGoal), saved Goal is:\(numberOfSteps),percent is: \(percent)")
             
-                homeView.setProgress(percent)
-                }
-                //reset buffer for every end-packet
+                homeView.setProgress(percent, dailySteps: dailySteps, dailyStepGoal: dailyStepGoal)
+            
                 mPacketsbuffer = []
-        }        
+        }
+      }
     }
+
     func connectionStateChanged(isConnected: Bool) {
         //NOTHING to do here
     }

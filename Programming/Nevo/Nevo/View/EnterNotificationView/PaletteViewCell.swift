@@ -28,11 +28,7 @@ class PaletteViewCell: UITableViewCell {
 
     @IBOutlet weak var cyanButton: UIButton!
 
-    @IBOutlet weak var currentLabel: UILabel!
-
-    @IBOutlet weak var currentColorView: UIView!
-
-    var pDelegate:PaletteDelegate!
+    var pDelegate:PaletteDelegate?
     var currentColor:UIColor!
 
 
@@ -41,24 +37,24 @@ class PaletteViewCell: UITableViewCell {
 
         if (senders.isEqual(blueButton)){
             currentColor = UIColor.blueColor()
-            pDelegate.selectedPalette(currentColor)
+            pDelegate?.selectedPalette(currentColor)
         }else if (senders.isEqual(redButton)){
             currentColor = UIColor.redColor()
-            pDelegate.selectedPalette(currentColor)
+            pDelegate?.selectedPalette(currentColor)
         }else if (senders.isEqual(greenButton)){
             currentColor = UIColor.greenColor()
-            pDelegate.selectedPalette(currentColor);
+            pDelegate?.selectedPalette(currentColor);
         }else if (senders.isEqual(yellowButton)){
             currentColor = UIColor.yellowColor()
-            pDelegate.selectedPalette(currentColor)
+            pDelegate?.selectedPalette(currentColor)
         }else if (senders.isEqual(orangeButton)){
             currentColor = UIColor.orangeColor()
-            pDelegate.selectedPalette(currentColor)
+            pDelegate?.selectedPalette(currentColor)
         }else if (senders.isEqual(cyanButton)){
-            currentColor = AppTheme.PALETTE_BAGGROUND_COLOR()
-            pDelegate.selectedPalette(currentColor)
+            currentColor = UIColor.purpleColor()
+            pDelegate?.selectedPalette(currentColor)
         }
-        currentColorView.backgroundColor = currentColor
+        //currentColorView.backgroundColor = currentColor
     }
 
     override func awakeFromNib() {
