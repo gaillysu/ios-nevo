@@ -62,25 +62,25 @@ class NevoPacket {
                 
                 if(i<=3)
                 {
-                year  = Int(NSData2Bytes(mPackets[0])[2+4*i] ) + Int((NSData2Bytes(mPackets[0])[3+4*i])<<8 )
+                year  = Int(NSData2Bytes(mPackets[0])[2+4*i] ) + Int(NSData2Bytes(mPackets[0])[3+4*i])<<8
                 month = Int(NSData2Bytes(mPackets[0])[4+4*i] )
                 day   = Int(NSData2Bytes(mPackets[0])[5+4*i] )
                 }
                 else if(i == 4)
                 {
-                    year  = Int(NSData2Bytes(mPackets[0])[2+4*i] ) + Int((NSData2Bytes(mPackets[0])[3+4*i])<<8 )
+                    year  = Int(NSData2Bytes(mPackets[0])[2+4*i] ) + Int(NSData2Bytes(mPackets[0])[3+4*i])<<8
                     month = Int(NSData2Bytes(mPackets[1])[2] )
                     day   = Int(NSData2Bytes(mPackets[1])[3] )
                 }
                 else if(i == 5)
                 {
-                    year  = Int(NSData2Bytes(mPackets[1])[4] ) + Int((NSData2Bytes(mPackets[1])[5])<<8 )
+                    year  = Int(NSData2Bytes(mPackets[1])[4] ) + Int(NSData2Bytes(mPackets[1])[5])<<8
                     month = Int(NSData2Bytes(mPackets[1])[6] )
                     day   = Int(NSData2Bytes(mPackets[1])[7] )
                 }
                 else if(i == 6)
                 {
-                    year  = Int(NSData2Bytes(mPackets[1])[8] ) + Int((NSData2Bytes(mPackets[1])[9])<<8 )
+                    year  = Int(NSData2Bytes(mPackets[1])[8] ) + Int(NSData2Bytes(mPackets[1])[9])<<8
                     month = Int(NSData2Bytes(mPackets[1])[10] )
                     day   = Int(NSData2Bytes(mPackets[1])[11] )
                 }
