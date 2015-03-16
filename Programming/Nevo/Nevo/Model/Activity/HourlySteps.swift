@@ -13,31 +13,24 @@ class HourlySteps : NevoHKDataPoint {
     
     private var mNumberOfSteps:Int
     private var mDate:NSDate
-    private var mHour:Int
+    private var lateNight:NSDate
     
     init(numberOfSteps:Int, date:NSDate,hour:Int) {
         mNumberOfSteps=numberOfSteps
-        mHour = hour
-        
-        //Here, we normalise the date
-        //It's a daily data point, so we normalise it to midnight
+       
         
         let cal: NSCalendar = NSCalendar(calendarIdentifier: NSGregorianCalendar)!
         
-        mDate = cal.dateBySettingHour(mHour, minute: 0, second: 0, ofDate: date, options: NSCalendarOptions())!
+        mDate = cal.dateBySettingHour(hour, minute: 0, second: 0, ofDate: date, options: NSCalendarOptions())!
+        //A hourly data point if from hh:00:00 to hh:59:59
+        lateNight = cal.dateBySettingHour(hour, minute: 59, second: 59, ofDate: date, options: NSCalendarOptions())!
         
     }
     
     func toHKQuantitySample() -> HKQuantitySample {
         
         let stepCountQuantity = HKQuantity(unit:HKUnit.countUnit(), doubleValue: Double(mNumberOfSteps))
-        
-        
-        //A hourly data point if from hh:00:00 to hh:59:59
-        let cal: NSCalendar = NSCalendar(calendarIdentifier: NSGregorianCalendar)!
-        
-        let lateNight = cal.dateBySettingHour(mHour, minute: 59, second: 59, ofDate: mDate, options: NSCalendarOptions())!
-        
+        NSLog("-------------------start time:\(mDate),end time\(lateNight)")
         return HKQuantitySample(type: HKQuantityType.quantityTypeForIdentifier(HKQuantityTypeIdentifierStepCount),
             quantity: stepCountQuantity,
             startDate: mDate, endDate: lateNight)
