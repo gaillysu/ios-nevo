@@ -283,8 +283,8 @@ class EnterNotificationController: UITableViewController,SwitchActionDelegate,Pa
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if (indexPath.section == 0){
             var endCell:NotificationTypeCell = tableView.dequeueReusableCellWithIdentifier("NotificationTypeCell", forIndexPath: indexPath) as NotificationTypeCell
+            endCell.selectionStyle = UITableViewCellSelectionStyle.None
             endCell.cellSwitch.on = notType!.getNotificationTypeContent().objectForKey("states") as Bool
-            //endCell.cellLabel.text = notType!.getNotificationTypeContent().objectForKey("type") as? String
             endCell.textLabel?.backgroundColor = UIColor.clearColor()
             endCell.textLabel?.text = notType!.getNotificationTypeContent().objectForKey("type") as? String
             endCell.imageView?.image = UIImage(named: notType!.getNotificationTypeContent().objectForKey("icon") as String)
