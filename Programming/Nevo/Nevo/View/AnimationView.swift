@@ -43,6 +43,13 @@ class AnimationView: UIView {
             mNoConnectionView?.tag = NO_CONNECT_VIEW
             self.addSubview(mNoConnectionView!)
 
+            let message:UILabel = UILabel(frame: CGRectMake(0, 0, 300, 60))
+            message.center = CGPointMake(self.frame.size.width/2, mNoConnectionView!.frame.size.height/2.0-120)
+            message.text = NSLocalizedString("EnableBluetoothPhone", comment: "")
+            message.textAlignment = NSTextAlignment.Center
+            message.textColor = UIColor.blackColor()
+            mNoConnectionView?.addSubview(message)
+
             mNoConnectImage = UIImageView(frame: CGRectMake(0, 0, 160, 160))
             mNoConnectImage?.image = UIImage(named: "connect")
             mNoConnectImage?.center = CGPointMake(mNoConnectionView!.frame.size.width/2.0, mNoConnectionView!.frame.size.height/2.0)
@@ -57,6 +64,14 @@ class AnimationView: UIView {
             mNoConnectScanButton?.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
             mNoConnectScanButton?.addTarget(self, action: Selector("noConnectButtonAction:"), forControlEvents: UIControlEvents.TouchUpInside)
             mNoConnectionView?.addSubview(mNoConnectScanButton!)
+
+            let message2:UILabel = UILabel(frame: CGRectMake(0, 0, 300, 60))
+            message2.center = CGPointMake(self.frame.size.width/2, mNoConnectionView!.frame.size.height/2.0+120)
+            message2.text = NSLocalizedString("WatchBluetooth", comment: "")
+            message2.textAlignment = NSTextAlignment.Center
+            message2.textColor = UIColor.blackColor()
+            mNoConnectionView?.addSubview(message2)
+
         } else {
 
             if let noConnect:UIView = mNoConnectionView {
