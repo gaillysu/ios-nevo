@@ -191,9 +191,10 @@ class SyncController: ConnectionControllerDelegate {
             }
             if(NSData2Bytes(packet.getRawData())[1] == 0x24)
             {
+                var packet:NevoPacket = NevoPacket(packets:mPacketsbuffer)
                 currentDay = 0
-                savedDailyHistory = NevoPacket(packets:mPacketsbuffer).getDailyTrackerInfo()
-              
+                savedDailyHistory = packet.getDailyTrackerInfo()
+                NSLog("History Total Days:\(savedDailyHistory.count)")
                 self.getDailyTracker(currentDay)
             }
             if(NSData2Bytes(packet.getRawData())[1] == 0x25)
@@ -202,13 +203,34 @@ class SyncController: ConnectionControllerDelegate {
                 
                 savedDailyHistory[Int(currentDay)].TotalSteps = packet.getDailySteps()
                 savedDailyHistory[Int(currentDay)].HourlySteps = packet.getHourlySteps()
+                
+                NSLog("Day:\(savedDailyHistory[Int(currentDay)].Date), Daily Steps:\(savedDailyHistory[Int(currentDay)].TotalSteps)")
+                
+                NSLog("Day:\(savedDailyHistory[Int(currentDay)].Date), Hourly Steps:\(savedDailyHistory[Int(currentDay)].HourlySteps)")
+                
                 //save to health kit
+                 var hk = NevoHKImpl()
+                hk.requestPermission()
                 
+                hk.writeDataPoint(DailySteps(numberOfSteps: savedDailyHistory[Int(currentDay)].TotalSteps,date: savedDailyHistory[Int(currentDay)].Date), resultHandler: { (result, error) -> Void in
+                    if (result != true) {
+                    NSLog("Saved Daily steps error:\(error),Day:\(self.savedDailyHistory[Int(self.currentDay)].Date), Daily Steps:\(self.savedDailyHistory[Int(self.currentDay)].TotalSteps)")
+                    }
+                })
+                
+                for (var i:Int = 0; i<24; i++)
+                {
+                    hk.writeDataPoint(HourlySteps(numberOfSteps: savedDailyHistory[Int(currentDay)].TotalSteps,date: savedDailyHistory[Int(currentDay)].Date,hour:i), resultHandler: { (result, error) -> Void in
+                        if (result != true) {
+                            NSLog("Save Hourly steps error\(i),\(error)")
+                        }
+                    })
+                }
+
                 //end save
-                
+                currentDay++
                 if(currentDay < UInt8(savedDailyHistory.count))
                 {
-                    currentDay++
                     self.getDailyTracker(currentDay)
                 }
                 else

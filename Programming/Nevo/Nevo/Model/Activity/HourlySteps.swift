@@ -36,7 +36,7 @@ class HourlySteps : NevoHKDataPoint {
         //A hourly data point if from hh:00:00 to hh:59:59
         let cal: NSCalendar = NSCalendar(calendarIdentifier: NSGregorianCalendar)!
         
-        let lateNight = cal.dateBySettingHour(0, minute: 59, second: 59, ofDate: mDate, options: NSCalendarOptions())!
+        let lateNight = cal.dateBySettingHour(mHour, minute: 59, second: 59, ofDate: mDate, options: NSCalendarOptions())!
         
         return HKQuantitySample(type: HKQuantityType.quantityTypeForIdentifier(HKQuantityTypeIdentifierStepCount),
             quantity: stepCountQuantity,

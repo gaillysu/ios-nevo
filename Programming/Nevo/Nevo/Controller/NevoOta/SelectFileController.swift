@@ -18,7 +18,7 @@ class SelectFileController: UITableViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        var fileArray = AppTheme.GET_FIRMWARE_FILES("Firmwares")
+        var fileArray = GET_FIRMWARE_FILES("Firmwares")
         for tmpfile in fileArray {
             mFiles.append(tmpfile as NSURL)
         }

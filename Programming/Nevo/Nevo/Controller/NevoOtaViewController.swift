@@ -42,9 +42,6 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
     //init data function
     private func initValue()
     {
-        //TODO
-       // var files = AppTheme.GET_FIRMWARE_FILES("Firmwares")
-        
         selectedFileURL = NSURL(string: "file://firmwares/iMaze_v9.bin")!
         enumFirmwareType = DfuFirmwareTypes.SOFTDEVICE
     }
