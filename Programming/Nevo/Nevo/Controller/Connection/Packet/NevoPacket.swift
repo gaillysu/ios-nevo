@@ -58,7 +58,7 @@ class NevoPacket {
            for (var i:Int = 0; i<total; i++)
             {
                 var format:NSDateFormatter = NSDateFormatter()
-                format.setLocalizedDateFormatFromTemplate("YYYY,MM,DD,00,00,00")
+                format.dateFormat = "yyyyMMddHHmmss"
                 
                 if(i<=3)
                 {
@@ -89,9 +89,9 @@ class NevoPacket {
                 if(year != 0)
                 {
                 //20150316
-                var date:NSDate = format.dateFromString("")!
-                
-                days.append(DailyHistory(TotalSteps: 0, HourlySteps: [24], Date:date))
+                    let mdata:String = String(format: "\(year)%02d%02d000000",month,day)
+                    var date:NSDate = format.dateFromString(mdata)!
+                    days.append(DailyHistory(TotalSteps: 0, HourlySteps: [24], Date:date))
                 }
                 
             }
