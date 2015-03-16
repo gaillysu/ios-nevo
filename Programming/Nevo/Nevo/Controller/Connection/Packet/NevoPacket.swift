@@ -17,12 +17,19 @@ class NevoPacket {
     private var mHeader:UInt8 = 0
     let endFlag:UInt8 = 0xFF
     
+    struct DailyHistory
+    {
+        var TotalSteps:Int;
+        var HourlySteps:[Int];
+        var Date:NSDate;
+    }
+    
     init(packets:[NSData])
     {
         if(packets.count >= 2)
         {
         mPackets = packets
-        mHeader = NSData2Bytes(mPackets[0])[0]
+        mHeader = NSData2Bytes(mPackets[0])[1]
         }
     }
     
@@ -30,9 +37,109 @@ class NevoPacket {
     {
         return mHeader
     }
-    class func isLastPacket(packet:RawPacket) ->Bool
+    
+    func isLastPacket(packet:RawPacket) ->Bool
     {
         return (NSData2Bytes(packet.getRawData())[0] == 0xFF)
+    }
+    
+    func getDailyTrackerInfo() ->[DailyHistory]
+    {
+        var days:[DailyHistory] = []
+        
+        if( mHeader  == 0x24)
+        {
+           var total:Int = Int(NSData2Bytes(mPackets[1])[12])
+            
+           var year:Int = 0
+           var month:Int = 0
+           var day:Int = 0
+            
+           for (var i:Int = 0; i<total; i++)
+            {
+                var format:NSDateFormatter = NSDateFormatter()
+                format.setLocalizedDateFormatFromTemplate("YYYY,MM,DD,00,00,00")
+                
+                if(i<=3)
+                {
+                year  = Int(NSData2Bytes(mPackets[0])[2+4*i] ) + Int((NSData2Bytes(mPackets[0])[3+4*i])<<8 )
+                month = Int(NSData2Bytes(mPackets[0])[4+4*i] )
+                day   = Int(NSData2Bytes(mPackets[0])[5+4*i] )
+                }
+                else if(i == 4)
+                {
+                    year  = Int(NSData2Bytes(mPackets[0])[2+4*i] ) + Int((NSData2Bytes(mPackets[0])[3+4*i])<<8 )
+                    month = Int(NSData2Bytes(mPackets[1])[2] )
+                    day   = Int(NSData2Bytes(mPackets[1])[3] )
+                }
+                else if(i == 5)
+                {
+                    year  = Int(NSData2Bytes(mPackets[1])[4] ) + Int((NSData2Bytes(mPackets[1])[5])<<8 )
+                    month = Int(NSData2Bytes(mPackets[1])[6] )
+                    day   = Int(NSData2Bytes(mPackets[1])[7] )
+                }
+                else if(i == 6)
+                {
+                    year  = Int(NSData2Bytes(mPackets[1])[8] ) + Int((NSData2Bytes(mPackets[1])[9])<<8 )
+                    month = Int(NSData2Bytes(mPackets[1])[10] )
+                    day   = Int(NSData2Bytes(mPackets[1])[11] )
+                }
+                
+                //vaild year
+                if(year != 0)
+                {
+                //20150316
+                var date:NSDate = format.dateFromString("")!
+                
+                days.append(DailyHistory(TotalSteps: 0, HourlySteps: [24], Date:date))
+                }
+                
+            }
+
+            
+        }
+        return days
+    }
+    
+    func getDailySteps() ->Int
+    {
+         if( mHeader  == 0x25 && mPackets.count == 78)
+         {
+            var dailySteps:Int = Int(NSData2Bytes(mPackets[1])[4] )
+            dailySteps =  dailySteps + Int(NSData2Bytes(mPackets[1])[5] )<<8
+            dailySteps =  dailySteps + Int(NSData2Bytes(mPackets[1])[6] )<<16
+            dailySteps =  dailySteps + Int(NSData2Bytes(mPackets[1])[7] )<<24
+            return dailySteps
+         }
+         return 0
+    }
+    
+    func getHourlySteps() ->[Int]
+    {
+        var HourlySteps:[Int] = [24]
+        let offset:Int = 6
+        var hourlySteps:Int = 0
+        
+        if( mHeader  == 0x25 && mPackets.count == 78)
+        {
+        //get every hour Steps:
+            for (var i:Int = 0; i<24; i++)
+            {
+                if NSData2Bytes(mPackets[offset+i*3])[18] != 0xFF
+                    && NSData2Bytes(mPackets[offset+i*3])[19] != 0xFF
+                    && NSData2Bytes(mPackets[offset+i*3+1])[2] != 0xFF
+                    && NSData2Bytes(mPackets[offset+i*3+1])[3] != 0xFF
+                {
+                hourlySteps = Int(NSData2Bytes(mPackets[offset+i*3])[18] )
+                hourlySteps = hourlySteps + Int(NSData2Bytes(mPackets[offset+i*3])[19] )<<8
+                hourlySteps = hourlySteps + Int(NSData2Bytes(mPackets[offset+i*3+1])[2] )
+                hourlySteps = hourlySteps + Int(NSData2Bytes(mPackets[offset+i*3+1])[3] )<<8
+                HourlySteps[i] = hourlySteps
+                }
+                
+            }
+        }
+        return HourlySteps
     }
     
 }

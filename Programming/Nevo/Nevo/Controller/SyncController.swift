@@ -18,7 +18,7 @@ It checks that the firmware is up to date, and handles every steps of the synchr
 class SyncController: ConnectionControllerDelegate {
     
     //Let's sync every days
-    let SYNC_INTERVAL:NSTimeInterval = 24*60*60 //unit is second in iOS
+    let SYNC_INTERVAL:NSTimeInterval = 1*60*60 //unit is second in iOS
     
     let LAST_SYNC_DATE_KEY = "LAST_SYNC_DATE_KEY"
     
@@ -29,6 +29,9 @@ class SyncController: ConnectionControllerDelegate {
     private var mPacketsbuffer:[NSData]
     
     private let mHealthKitStore:HKHealthStore = HKHealthStore()
+    
+    private var savedDailyHistory:[NevoPacket.DailyHistory]=[]
+    private var currentDay:UInt8 = 0
     
     /**
     A classic singelton pattern
@@ -78,7 +81,7 @@ class SyncController: ConnectionControllerDelegate {
         if( NSDate().timeIntervalSince1970-lastSync > SYNC_INTERVAL) {
             //We haven't synched for a while, let's sync now !
             NSLog("*** Sync started ! ***")
-            //self.getDailyTrackerInfo()
+            self.getDailyTrackerInfo()
         }
 
     }
@@ -182,12 +185,38 @@ class SyncController: ConnectionControllerDelegate {
             }
             if(NSData2Bytes(packet.getRawData())[1] == 0x23)
             {
-                //TODO : current BLE FW has a bug, cmd 0x23 can't get its response packet :0023..., FF23..., this cmd get 0022..., FF22... packets, it is wrong
-                
-                //self.syncActivityData()
-                //...
-               // syncFinished()
+                //start sync data
+                savedDailyHistory = []
+                self.syncActivityData()
             }
+            if(NSData2Bytes(packet.getRawData())[1] == 0x24)
+            {
+                currentDay = 0
+                savedDailyHistory = NevoPacket(packets:mPacketsbuffer).getDailyTrackerInfo()
+              
+                self.getDailyTracker(currentDay)
+            }
+            if(NSData2Bytes(packet.getRawData())[1] == 0x25)
+            {
+                var packet:NevoPacket = NevoPacket(packets:mPacketsbuffer)
+                
+                savedDailyHistory[Int(currentDay)].TotalSteps = packet.getDailySteps()
+                savedDailyHistory[Int(currentDay)].HourlySteps = packet.getHourlySteps()
+                //save to health kit
+                
+                //end save
+                
+                if(currentDay < UInt8(savedDailyHistory.count))
+                {
+                    currentDay++
+                    self.getDailyTracker(currentDay)
+                }
+                else
+                {
+                   self.syncFinished()
+                }
+            }
+            
 
             if(NSData2Bytes(packet.getRawData())[1] == 0x26)
             {
@@ -200,7 +229,7 @@ class SyncController: ConnectionControllerDelegate {
                 dailySteps =  dailySteps + Int(NSData2Bytes(mPacketsbuffer[0])[5] )<<24
                 
                 NSLog("get Daily Steps is: \(dailySteps), now write it to healthkit")
-                
+                /* //remove real time count steps
                 var hk = NevoHKImpl()
                 hk.requestPermission()
                 
@@ -211,7 +240,7 @@ class SyncController: ConnectionControllerDelegate {
                     RealTimeCountSteps.setLastNumberOfSteps(dailySteps)
                     RealTimeCountSteps.setLastDate(NSDate())
                 })
-                
+                */
                 
             }
             
