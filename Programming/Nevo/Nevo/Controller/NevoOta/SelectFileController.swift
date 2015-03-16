@@ -10,7 +10,7 @@ import UIKit
 
 class SelectFileController: UITableViewController {
 
-    private var mFiles:[String] = []
+    private var mFiles:[NSURL] = []
     private var mDirectoryPath:String = ""
     var mFileDelegate:PtlSelectFile?
     
@@ -18,8 +18,10 @@ class SelectFileController: UITableViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        mFiles.append("iMaze_v8_24hr.bin")
-        mFiles.append("imaze_20150227_v10_2.hex")
+        var fileArray = AppTheme.GET_FIRMWARE_FILES("Firmwares")
+        for tmpfile in fileArray {
+            mFiles.append(tmpfile as NSURL)
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -38,19 +40,18 @@ class SelectFileController: UITableViewController {
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell:UITableViewCell = tableView.dequeueReusableCellWithIdentifier("FolderFilesCell" , forIndexPath: indexPath) as UITableViewCell
-        var fileNmae = mFiles[indexPath.row]
-        //configure the cell 
-        cell.textLabel?.text = mFiles[indexPath.row]
+        var fileName = mFiles[indexPath.row].lastPathComponent
+        //configure the cell
+        cell.textLabel?.text = fileName
+
         return cell
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        var fileName:String = mFiles[indexPath.row]
-        var filePath:String = mDirectoryPath.stringByAppendingPathComponent(fileName)
-        var fileURL = NSURL(fileURLWithPath: filePath)
+        var fileURL:NSURL = mFiles[indexPath.row]
         //set the select file to screen
         self.navigationController?.popViewControllerAnimated(true)
-        mFileDelegate?.onFileSelected(fileURL!)
+        mFileDelegate?.onFileSelected(fileURL)
         
     }
     

@@ -144,13 +144,14 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
         NSLog("onFileSelected")
         if (selectedFile.path != nil) {
             var fileName:String? = selectedFile.path!.lastPathComponent
-            var fileData = NSData(contentsOfURL: selectedFile)
             var fileExtension:String? = selectedFile.pathExtension
+            var fileManager = NSFileManager.defaultManager()
+            //var fileAttr = fileManager.attributesOfItemAtPath(selectedFile, error: nil)
             //set the file information
             if let name = fileName{
                 labelFileName.text = fileName
             }
-            if let data = fileData{
+            if let data:NSData = NSData(contentsOfURL: selectedFile){
                 labelFileSize.text = String(data.length)
             }
             if let fextension = fileExtension{
