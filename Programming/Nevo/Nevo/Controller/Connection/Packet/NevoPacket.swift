@@ -116,7 +116,7 @@ class NevoPacket {
     
     func getHourlySteps() ->[Int]
     {
-        var HourlySteps:[Int] = [24]
+        var HourlySteps = [Int](count: 24, repeatedValue: 0)
         let offset:Int = 6
         var hourlySteps:Int = 0
         
