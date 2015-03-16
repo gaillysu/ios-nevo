@@ -24,12 +24,12 @@ protocol SelectionTypeDelegate {
 class EnterNotificationController: UITableViewController,SwitchActionDelegate,PaletteDelegate,SyncControllerDelegate,ButtonManagerCallBack{
 
     struct SOURCETYPE {
-        static let CALL:NSString = NSLocalizedString("CALL", comment: "")
-        static let SMS:NSString = NSLocalizedString("SMS", comment: "")
-        static let EMAIL:NSString = NSLocalizedString("EMAIL", comment: "")
-        static let FACEBOOK:NSString = NSLocalizedString("Facebook", comment: "")
-        static let CALENDAR:NSString = NSLocalizedString("Calendar", comment: "")
-        static let WECHAT:NSString = NSLocalizedString("WeChat", comment: "")
+        static let CALL:NSString = "CALL"
+        static let SMS:NSString = "SMS"
+        static let EMAIL:NSString = "EMAIL"
+        static let FACEBOOK:NSString = "Facebook"
+        static let CALENDAR:NSString = "Calendar"
+        static let WECHAT:NSString = "WeChat"
     }
     
     class func setLedColor(sourceType: NSString,ledColor:UInt32)
@@ -286,7 +286,8 @@ class EnterNotificationController: UITableViewController,SwitchActionDelegate,Pa
             endCell.selectionStyle = UITableViewCellSelectionStyle.None
             endCell.cellSwitch.on = notType!.getNotificationTypeContent().objectForKey("states") as Bool
             endCell.textLabel?.backgroundColor = UIColor.clearColor()
-            endCell.textLabel?.text = notType!.getNotificationTypeContent().objectForKey("type") as? String
+            endCell.textLabel?.text = NSLocalizedString(notType!.getNotificationTypeContent().objectForKey("type") as String, comment: "")
+
             endCell.imageView?.image = UIImage(named: notType!.getNotificationTypeContent().objectForKey("icon") as String)
 
                 //AppTheme.GET_RESOURCES_IMAGE(notType!.getNotificationTypeContent().objectForKey("icon") as String)

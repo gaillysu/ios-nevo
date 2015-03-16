@@ -46,7 +46,7 @@ class NotificationView: UIView {
         }else{
             endCell?.StatesLabel.text = "OFF"
         }
-        endCell?.textLabel?.text = typeContent.objectForKey("type") as? String
+        endCell?.textLabel?.text = NSLocalizedString(typeContent.objectForKey("type") as String, comment: "")
         endCell?.imageView?.image = UIImage(named:typeContent.objectForKey("icon") as String)
         endCell?.StatesLabel.textColor = AppTheme.NEVO_SOLAR_GRAY()
 
