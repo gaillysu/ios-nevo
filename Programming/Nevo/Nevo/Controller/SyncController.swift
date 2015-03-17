@@ -148,11 +148,18 @@ class SyncController: ConnectionControllerDelegate {
     //end functions by UI
     
     func sendRequest(r:Request) {
-        SyncQueue.sharedInstance.post( { (Void) -> (Void) in
+        if(isConnected()){
+            SyncQueue.sharedInstance.post( { (Void) -> (Void) in
 
                 self.mConnectionController.sendRequest(r)
             
             } )
+        }else {
+            //tell caller
+            for (index, delegate) in enumerate(mDelegates) {
+                delegate.connectionStateChanged(false)
+            }
+        }
     }
     
     func packetReceived(packet:RawPacket) {
