@@ -194,7 +194,6 @@
 		00A773931A88562F0018E121 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		00A773941A88562F0018E121 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		00A773951A88562F0018E121 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
-		00A773971A885A880018E121 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		00B1DFAE1AA7F21200FDFECD /* NotificationTypeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationTypeCell.swift; sourceTree = "<group>"; };
 		00B1DFB01AA7F2DB00FDFECD /* PaletteViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaletteViewCell.swift; sourceTree = "<group>"; };
 		00B1DFB11AA7F2DB00FDFECD /* PaletteViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PaletteViewCell.xib; sourceTree = "<group>"; };
@@ -923,7 +922,6 @@
 				00A773931A88562F0018E121 /* fr */,
 				00A773941A88562F0018E121 /* zh-Hans */,
 				00A773951A88562F0018E121 /* zh-Hant */,
-				00A773971A885A880018E121 /* de */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
