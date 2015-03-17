@@ -79,7 +79,7 @@ class EnterNotificationController: UITableViewController,SwitchActionDelegate,Pa
             return ((UInt32(color) & SetNortificationRequest.SetNortificationRequestValues.VIB_MOTOR) == SetNortificationRequest.SetNortificationRequestValues.VIB_MOTOR) ? true : false
         }
         
-        return true
+        return false
     }
 
     @IBOutlet var enterNotView: EnterNotificationView!
