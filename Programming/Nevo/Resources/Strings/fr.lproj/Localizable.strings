@@ -7,7 +7,6 @@
 */
 "Acheter"="I want a nevo!";
 "Tutorial"="Activate my nevo";
-"scanAndConnect"="scanAndConnect";
 "BluetoothEnabled"="Bluetooth enabled";
 "EnableBluetoothPhone"="Turn on the Bluetooth";
 "BluetoothIcon"="Swipe up to open the control center and tap on the Bluetooth icon";
@@ -15,7 +14,7 @@
 "PlacePhoneSearch"="Place your nevo near the phone and tap Search";
 "ConnectButton"="Connect nevo to phone";
 "PlaceConnect"="Place your nevo near the phone and tap Connect";
-"step"="Step";
+"step"="Steps";
 "goalButton"="30000";
 "Modarate"="Light";
 "Intensive"="Moderate";
@@ -33,15 +32,15 @@
 "stepGoalTitle"="Goal";
 "homeTitle"="Welcome";
 "nevoURL"="https://www.indiegogo.com/projects/nevo-the-first-minimalist-connected-watch/";
-"NotificationType"="NotificationType";
+"NotificationType"="Notification Type";
 "Blue"="Blue";
 "Red"="Red";
 "Green"="Green";
 "Yellow"="Yellow";
 "LongPushLED"="Long push on the third button until blue LED blinks";
-"CALL"="CALL";
+"CALL"="Call";
 "SMS"="SMS";
-"EMAIL"="EMAIL";
+"EMAIL"="Email";
 "Facebook"="Facebook";
 "Calendar"="Calendar";
 "WeChat"="WeChat";
