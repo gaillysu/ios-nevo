@@ -118,7 +118,7 @@ class StepGoalSetingController: UIViewController, SyncControllerDelegate,ButtonM
     
     */
     
-    func packetReceived(RawPacket) {
+    func packetReceived(NevoPacket) {
         
         //Do nothing
         

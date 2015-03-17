@@ -164,49 +164,49 @@ class SyncController: ConnectionControllerDelegate {
     
     func packetReceived(packet:RawPacket) {
         
-        for (index, delegate) in enumerate(mDelegates) {
-            delegate.packetReceived(packet)
-        }
+        //for (index, delegate) in enumerate(mDelegates) {
+        //    delegate.packetReceived(packet)
+        //}
 
         mPacketsbuffer.append(packet.getRawData())
-        if(NSData2Bytes(packet.getRawData())[0] == 0xFF)
+        if(packet.isLastPacket())
         {
             //We just received a full response, so we can safely send the next request
             SyncQueue.sharedInstance.next()
             
-            if(NSData2Bytes(packet.getRawData())[1] == 0x01)
+            if(packet.getHeader() == SetRTCRequest.HEADER())
             {
                 //setp2:start set user profile
                 self.SetProfile()
             }
-            if(NSData2Bytes(packet.getRawData())[1] == 0x20)
+            if(packet.getHeader() == SetProfileRequest.HEADER())
             {
-                //step3:cmd 0x21
+                //step3:
                 self.WriteSetting()
             }
             
-            if(NSData2Bytes(packet.getRawData())[1] == 0x21)
+            if(packet.getHeader() == WriteSettingRequest.HEADER())
             {
-                //step4:cmd 0x23
+                //step4:
                 self.SetCardio()
             }
-            if(NSData2Bytes(packet.getRawData())[1] == 0x23)
+            if(packet.getHeader() == SetCardioRequest.HEADER())
             {
                 //start sync data
                 savedDailyHistory = []
                 self.syncActivityData()
             }
-            if(NSData2Bytes(packet.getRawData())[1] == 0x24)
+            if(packet.getHeader() == ReadDailyTrackerInfo.HEADER())
             {
-                var packet:NevoPacket = NevoPacket(packets:mPacketsbuffer)
+                var packet:DailyTrackerInfoNevoPacket = DailyTrackerInfoNevoPacket(packets:mPacketsbuffer)
                 currentDay = 0
                 savedDailyHistory = packet.getDailyTrackerInfo()
                 NSLog("History Total Days:\(savedDailyHistory.count),Today is \(NSDate())")
                 self.getDailyTracker(currentDay)
             }
-            if(NSData2Bytes(packet.getRawData())[1] == 0x25)
+            if(packet.getHeader() == ReadDailyTracker.HEADER())
             {
-                var packet:NevoPacket = NevoPacket(packets:mPacketsbuffer)
+                var packet:DailyTrackerNevoPacket = DailyTrackerNevoPacket(packets:mPacketsbuffer)
                 
                 savedDailyHistory[Int(currentDay)].TotalSteps = packet.getDailySteps()
                 savedDailyHistory[Int(currentDay)].HourlySteps = packet.getHourlySteps()
@@ -240,7 +240,7 @@ class SyncController: ConnectionControllerDelegate {
                 })
                 }
                 
-                for (var i:Int = 0; i<24; i++)
+                for (var i:Int = 0; i<savedDailyHistory[Int(currentDay)].HourlySteps.count; i++)
                 {
                     //only save vaild hourly steps for every day, include today.
                     if savedDailyHistory[Int(currentDay)].HourlySteps[i] > 0
@@ -268,30 +268,24 @@ class SyncController: ConnectionControllerDelegate {
                    self.syncFinished()
                 }
             }
-            
 
-            if(NSData2Bytes(packet.getRawData())[1] == 0x26)
+            if(packet.getHeader() == GetStepsGoalRequest.HEADER())
             {
-                //write the daily steps to healthkit
-                //Data format: 0x00 ,0x26, daily steps (4B,LSB mode), goal steps (4B,LSB mode)
+                var packet:DailyStepsNevoPacket = DailyStepsNevoPacket(packets:mPacketsbuffer)
                 
-                /* //remove real time count steps
-                
-                var dailySteps:Int = Int(NSData2Bytes(mPacketsbuffer[0])[2] )
-                dailySteps =  dailySteps + Int(NSData2Bytes(mPacketsbuffer[0])[3] )<<8
-                dailySteps =  dailySteps + Int(NSData2Bytes(mPacketsbuffer[0])[4] )<<16
-                dailySteps =  dailySteps + Int(NSData2Bytes(mPacketsbuffer[0])[5] )<<24
-                
-                NSLog("get Daily Steps is: \(dailySteps), now write it to healthkit")
-                
+                for (index, delegate) in enumerate(mDelegates) {
+                    delegate.packetReceived(packet)
+                }
+                /*
+                //remove real time count steps to healthkit
                 var hk = NevoHKImpl()
                 hk.requestPermission()
                 
-                hk.writeDataPoint(RealTimeCountSteps(numberOfSteps: dailySteps - RealTimeCountSteps.getLastNumberOfSteps(),date: RealTimeCountSteps.getLastDate()), resultHandler: { (result, error) -> Void in
+                hk.writeDataPoint(RealTimeCountSteps(numberOfSteps: packet.getDailySteps() - RealTimeCountSteps.getLastNumberOfSteps(),date: RealTimeCountSteps.getLastDate()), resultHandler: { (result, error) -> Void in
                     if (result != true) {
                          NSLog("\(error)")
                     }
-                    RealTimeCountSteps.setLastNumberOfSteps(dailySteps)
+                    RealTimeCountSteps.setLastNumberOfSteps(packet.getDailySteps())
                     RealTimeCountSteps.setLastDate(NSDate())
                 })
                 */
@@ -336,7 +330,7 @@ protocol SyncControllerDelegate {
     /**
     Called when a packet is received from the device
     */
-    func packetReceived(RawPacket)
+    func packetReceived(NevoPacket)
     /**
     Called when a peripheral connects or disconnects
     */

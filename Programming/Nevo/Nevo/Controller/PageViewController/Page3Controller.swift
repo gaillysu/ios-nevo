@@ -54,7 +54,7 @@ class Page3Controller: UIViewController,ButtonActionCallBack,SyncControllerDeleg
         }
     }
 
-    func packetReceived(RawPacket) {
+    func packetReceived(NevoPacket) {
 
     }
 }

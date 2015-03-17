@@ -62,7 +62,7 @@ class NotificationController: UIViewController,SelectionTypeDelegate,SyncControl
     /**
     See SyncControllerDelegate
     */
-    func packetReceived(packet:RawPacket) {
+    func packetReceived(packet:NevoPacket) {
 
     }
 

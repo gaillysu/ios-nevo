@@ -126,7 +126,7 @@ class AlarmClockController: UIViewController, SyncControllerDelegate,ButtonManag
     /**
     See SyncControllerDelegate
     */
-     func packetReceived(packet:RawPacket) {
+     func packetReceived(packet:NevoPacket) {
     
     }
 
