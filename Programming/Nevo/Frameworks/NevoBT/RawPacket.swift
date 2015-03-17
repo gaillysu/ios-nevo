@@ -24,6 +24,20 @@ protocol RawPacket {
     The raw packet data
     */
     func getRawData() -> NSData
+    
+    /**
+    return the packet's Header(protocol command)
+    such as 00XX.....,
+    Header value: XX
+    header offset: 1
+    */
+    func getHeader() -> UInt8
+    
+    /**
+    return true or false , true , end of packets
+    */
+    func isLastPacket() ->Bool
+    
 }
 
 class RawPacketImpl : RawPacket {
@@ -44,4 +58,12 @@ class RawPacketImpl : RawPacket {
         return mData
     }
     
+    func getHeader() -> UInt8
+    {
+        return NSData2Bytes(mData)[1]
+    }
+    func isLastPacket() ->Bool
+    {
+        return (NSData2Bytes(mData)[0] == 0xFF)
+    }
 }

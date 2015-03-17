@@ -141,7 +141,7 @@ class EnterNotificationController: UITableViewController,SwitchActionDelegate,Pa
     /**
     See SyncControllerDelegate
     */
-    func packetReceived(packet:RawPacket) {
+    func packetReceived(packet:NevoPacket) {
 
     }
 

@@ -17,7 +17,6 @@ it should handle very little, only the initialisation of the different Views and
 class HomeController: UIViewController, SyncControllerDelegate{
     
     @IBOutlet var homeView: HomeView!
-    private var mPacketsbuffer:[NSData]=[]
     private var sync:SyncController?
     
     override func viewDidLoad() {
@@ -50,7 +49,6 @@ class HomeController: UIViewController, SyncControllerDelegate{
                sync?.startConnect(false, delegate: self)
             }
             NSLog("We getGoal in home screen")
-            mPacketsbuffer = []
             SyncController.sharedInstance.getGoal()
         }
 
@@ -80,35 +78,23 @@ class HomeController: UIViewController, SyncControllerDelegate{
     See SyncControllerDelegate
     
     */
-    func packetReceived(packet:RawPacket) {
+    func packetReceived(packet:NevoPacket) {
         
-        mPacketsbuffer.append(packet.getRawData())
-        
-        if(NSData2Bytes(packet.getRawData())[0] == 0xFF)
+        if packet.getHeader() == GetStepsGoalRequest.HEADER()
         {
-                if NSData2Bytes(packet.getRawData())[1] == 0x26
-                {
-                var dailySteps:Int = Int(NSData2Bytes(mPacketsbuffer[0])[2] )
-                dailySteps =  dailySteps + Int(NSData2Bytes(mPacketsbuffer[0])[3] )<<8
-                dailySteps =  dailySteps + Int(NSData2Bytes(mPacketsbuffer[0])[4] )<<16
-                dailySteps =  dailySteps + Int(NSData2Bytes(mPacketsbuffer[0])[5] )<<24
+            var thispacket = packet as DailyStepsNevoPacket
             
-                var dailyStepGoal:Int = Int(NSData2Bytes(mPacketsbuffer[0])[6] )
-                dailyStepGoal =  dailyStepGoal + Int(NSData2Bytes(mPacketsbuffer[0])[7] )<<8
-                dailyStepGoal =  dailyStepGoal + Int(NSData2Bytes(mPacketsbuffer[0])[8] )<<16
-                dailyStepGoal =  dailyStepGoal + Int(NSData2Bytes(mPacketsbuffer[0])[9] )<<24
+            var dailySteps:Int = thispacket.getDailySteps()
+            var dailyStepGoal:Int = thispacket.getDailyStepsGoal()
             
-                let numberOfSteps = NSUserDefaults.standardUserDefaults().objectForKey("NUMBER_OF_STEPS_GOAL_KEY") as? Int
+            let numberOfSteps = NSUserDefaults.standardUserDefaults().objectForKey("NUMBER_OF_STEPS_GOAL_KEY") as? Int
             
-                var percent :Float = Float(dailySteps)/Float(dailyStepGoal)
+            var percent :Float = Float(dailySteps)/Float(dailyStepGoal)
             
-                NSLog("get Daily Steps is: \(dailySteps), getDaily Goal is: \(dailyStepGoal), saved Goal is:\(numberOfSteps),percent is: \(percent)")
+            NSLog("get Daily Steps is: \(dailySteps), getDaily Goal is: \(dailyStepGoal), saved Goal is:\(numberOfSteps),percent is: \(percent)")
             
-                homeView.setProgress(percent, dailySteps: dailySteps, dailyStepGoal: dailyStepGoal)
-            
-                mPacketsbuffer = []
+            homeView.setProgress(percent, dailySteps: dailySteps, dailyStepGoal: dailyStepGoal)
         }
-      }
     }
 
     func connectionStateChanged(isConnected: Bool) {

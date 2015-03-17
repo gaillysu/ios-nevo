@@ -17,7 +17,6 @@ class ProfileTestController: UITableViewController,SyncControllerDelegate,Button
     @IBOutlet var myTable: UITableView?
     
     private var mSyncController:SyncController?
-    private var mPacketsbuffer:[NSData]=[]
     
     var dataSource = NSMutableArray()
     var currentIndexPath: NSIndexPath?
@@ -155,7 +154,6 @@ class ProfileTestController: UITableViewController,SyncControllerDelegate,Button
         self.refreshControl?.endRefreshing()
         
         //to get the profile information
-        mPacketsbuffer = []
         mSyncController?.getGoal()
         
         //to get the information about notification
@@ -274,21 +272,12 @@ class ProfileTestController: UITableViewController,SyncControllerDelegate,Button
     /**
     See SyncControllerDelegate
     */
-    func packetReceived(packet:RawPacket) {
-        mPacketsbuffer.append(packet.getRawData())
-        
-        if(NSData2Bytes(packet.getRawData())[0] == 0xFF
-            && NSData2Bytes(packet.getRawData())[1] == 0x26 )
+    func packetReceived(packet:NevoPacket) {
+        if packet.getHeader() == GetStepsGoalRequest.HEADER()
         {
-            var dailySteps:Int = Int(NSData2Bytes(mPacketsbuffer[0])[2] )
-            dailySteps =  dailySteps + Int(NSData2Bytes(mPacketsbuffer[0])[3] )<<8
-            dailySteps =  dailySteps + Int(NSData2Bytes(mPacketsbuffer[0])[4] )<<16
-            dailySteps =  dailySteps + Int(NSData2Bytes(mPacketsbuffer[0])[5] )<<24
-            
-            var dailyStepGoal:Int = Int(NSData2Bytes(mPacketsbuffer[0])[6] )
-            dailyStepGoal =  dailyStepGoal + Int(NSData2Bytes(mPacketsbuffer[0])[7] )<<8
-            dailyStepGoal =  dailyStepGoal + Int(NSData2Bytes(mPacketsbuffer[0])[8] )<<16
-            dailyStepGoal =  dailyStepGoal + Int(NSData2Bytes(mPacketsbuffer[0])[9] )<<24
+            var thispacket = packet as DailyStepsNevoPacket
+            var dailySteps:Int = thispacket.getDailySteps()
+            var dailyStepGoal:Int = thispacket.getDailyStepsGoal()
             
             let numberOfSteps = NSUserDefaults.standardUserDefaults().objectForKey("NUMBER_OF_STEPS_GOAL_KEY") as? Int
             
@@ -300,6 +289,7 @@ class ProfileTestController: UITableViewController,SyncControllerDelegate,Button
             var appGoal = "appGoal: \(numberOfSteps) percent: \(percent) \n"
             
             insertNewItem(UserModel(userName: "0", userID: 0, phone: stepGoal, email: appGoal))
+            
         }
     }
     
