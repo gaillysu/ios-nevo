@@ -275,7 +275,7 @@ class ProfileTestController: UITableViewController,SyncControllerDelegate,Button
     func packetReceived(packet:NevoPacket) {
         if packet.getHeader() == GetStepsGoalRequest.HEADER()
         {
-            var thispacket = packet as DailyStepsNevoPacket
+            var thispacket = packet.copy() as DailyStepsNevoPacket
             var dailySteps:Int = thispacket.getDailySteps()
             var dailyStepGoal:Int = thispacket.getDailyStepsGoal()
             

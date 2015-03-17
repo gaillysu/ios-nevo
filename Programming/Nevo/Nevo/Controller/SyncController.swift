@@ -163,14 +163,16 @@ class SyncController: ConnectionControllerDelegate {
     }
     
     func packetReceived(packet:RawPacket) {
-        
-        //for (index, delegate) in enumerate(mDelegates) {
-        //    delegate.packetReceived(packet)
-        //}
-
+ 
         mPacketsbuffer.append(packet.getRawData())
         if(packet.isLastPacket())
         {
+            var packet:NevoPacket = NevoPacket(packets:mPacketsbuffer)
+            
+            for (index, delegate) in enumerate(mDelegates) {
+                delegate.packetReceived(packet)
+            }
+            
             //We just received a full response, so we can safely send the next request
             SyncQueue.sharedInstance.next()
             
@@ -198,18 +200,18 @@ class SyncController: ConnectionControllerDelegate {
             }
             if(packet.getHeader() == ReadDailyTrackerInfo.HEADER())
             {
-                var packet:DailyTrackerInfoNevoPacket = DailyTrackerInfoNevoPacket(packets:mPacketsbuffer)
+                var thispacket = packet.copy() as DailyTrackerInfoNevoPacket
                 currentDay = 0
-                savedDailyHistory = packet.getDailyTrackerInfo()
+                savedDailyHistory = thispacket.getDailyTrackerInfo()
                 NSLog("History Total Days:\(savedDailyHistory.count),Today is \(NSDate())")
                 self.getDailyTracker(currentDay)
             }
             if(packet.getHeader() == ReadDailyTracker.HEADER())
             {
-                var packet:DailyTrackerNevoPacket = DailyTrackerNevoPacket(packets:mPacketsbuffer)
+                var thispacket:DailyTrackerNevoPacket = packet.copy() as DailyTrackerNevoPacket
                 
-                savedDailyHistory[Int(currentDay)].TotalSteps = packet.getDailySteps()
-                savedDailyHistory[Int(currentDay)].HourlySteps = packet.getHourlySteps()
+                savedDailyHistory[Int(currentDay)].TotalSteps = thispacket.getDailySteps()
+                savedDailyHistory[Int(currentDay)].HourlySteps = thispacket.getHourlySteps()
                 
                 NSLog("Day:\(savedDailyHistory[Int(currentDay)].Date), Daily Steps:\(savedDailyHistory[Int(currentDay)].TotalSteps)")
                 
@@ -219,6 +221,7 @@ class SyncController: ConnectionControllerDelegate {
                 var hk = NevoHKImpl()
                 hk.requestPermission()
                 
+                /* // disable write every day 's total steps, only write every day's hourly steps
                 //not save today 's daily steps, due to today not end.
                 let now:NSDate = NSDate()
                 let cal:NSCalendar = NSCalendar.currentCalendar()
@@ -228,6 +231,7 @@ class SyncController: ConnectionControllerDelegate {
                 let dd2:NSDateComponents = cal.components(unitFlags, fromDate: savedDailyHistory[Int(currentDay)].Date)
                 
                 if !(dd.year == dd2.year && dd.month == dd2.month && dd.day == dd2.day)
+                     && savedDailyHistory[Int(currentDay)].TotalSteps > 0
                 {
                 hk.writeDataPoint(DailySteps(numberOfSteps: savedDailyHistory[Int(currentDay)].TotalSteps,date: savedDailyHistory[Int(currentDay)].Date), resultHandler: { (result, error) -> Void in
                     if (result != true) {
@@ -239,6 +243,7 @@ class SyncController: ConnectionControllerDelegate {
                     }
                 })
                 }
+                */
                 
                 for (var i:Int = 0; i<savedDailyHistory[Int(currentDay)].HourlySteps.count; i++)
                 {
@@ -271,11 +276,8 @@ class SyncController: ConnectionControllerDelegate {
 
             if(packet.getHeader() == GetStepsGoalRequest.HEADER())
             {
-                var packet:DailyStepsNevoPacket = DailyStepsNevoPacket(packets:mPacketsbuffer)
-                
-                for (index, delegate) in enumerate(mDelegates) {
-                    delegate.packetReceived(packet)
-                }
+                var thispacket = packet.copy() as DailyStepsNevoPacket
+          
                 /*
                 //remove real time count steps to healthkit
                 var hk = NevoHKImpl()
