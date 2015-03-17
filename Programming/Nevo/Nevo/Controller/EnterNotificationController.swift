@@ -50,12 +50,12 @@ class EnterNotificationController: UITableViewController,SwitchActionDelegate,Pa
         }
             // default value
         else{
-            if sourceType == SOURCETYPE.CALL  { return SetNortificationRequest.SetNortificationRequestValues.BLUE_LED }
-            if sourceType == SOURCETYPE.SMS  { return SetNortificationRequest.SetNortificationRequestValues.PURPLE_LED }
+            if sourceType == SOURCETYPE.CALL  { return SetNortificationRequest.SetNortificationRequestValues.VIOLET_LED }
+            if sourceType == SOURCETYPE.SMS  { return SetNortificationRequest.SetNortificationRequestValues.GREEN_LED }
             if sourceType == SOURCETYPE.EMAIL  { return SetNortificationRequest.SetNortificationRequestValues.YELLOW_LED }
-            if sourceType == SOURCETYPE.FACEBOOK  { return SetNortificationRequest.SetNortificationRequestValues.VIOLET_LED }
-            if sourceType == SOURCETYPE.CALENDAR  { return SetNortificationRequest.SetNortificationRequestValues.GREEN_LED }
-            if sourceType == SOURCETYPE.WECHAT  { return SetNortificationRequest.SetNortificationRequestValues.RED_LED }
+            if sourceType == SOURCETYPE.FACEBOOK  { return SetNortificationRequest.SetNortificationRequestValues.BLUE_LED }
+            if sourceType == SOURCETYPE.CALENDAR  { return SetNortificationRequest.SetNortificationRequestValues.RED_LED }
+            if sourceType == SOURCETYPE.WECHAT  { return SetNortificationRequest.SetNortificationRequestValues.PURPLE_LED }
             
             return 0xFF0000
         }
