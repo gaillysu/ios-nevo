@@ -42,9 +42,9 @@ class NotificationView: UIView {
         endCell?.selectionStyle = UITableViewCellSelectionStyle.None;
         let typeContent:NSDictionary = (dataSource[indexPath.row] as TypeModel).getNotificationTypeContent()
         if (typeContent.objectForKey("states") as Bool){
-            endCell?.StatesLabel.text = "On"
+            endCell?.StatesLabel.text = NSLocalizedString("On", comment:"")
         }else{
-            endCell?.StatesLabel.text = "OFF"
+            endCell?.StatesLabel.text = NSLocalizedString("Off", comment:"")
         }
         endCell?.textLabel?.text = NSLocalizedString(typeContent.objectForKey("type") as String, comment: "")
         endCell?.imageView?.image = UIImage(named:typeContent.objectForKey("icon") as String)
