@@ -311,7 +311,7 @@ class EnterNotificationController: UITableViewController,SwitchActionDelegate,Pa
                     endCell.currentColorView.backgroundColor = UIColor.orangeColor()
                 }
                 else if (((notType!.getNotificationTypeContent().objectForKey("color") as NSNumber).unsignedIntValue) == SetNortificationRequest.SetNortificationRequestValues.PURPLE_LED){
-                    endCell.currentColorView.backgroundColor = UIColor.purpleColor()
+                    endCell.currentColorView.backgroundColor = AppTheme.PALETTE_BAGGROUND_COLOR()
                 }
 
                 //endCell.pDelegate = self
