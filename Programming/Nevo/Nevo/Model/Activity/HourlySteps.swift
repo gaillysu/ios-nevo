@@ -17,8 +17,7 @@ class HourlySteps : NevoHKDataPoint {
     
     init(numberOfSteps:Int, date:NSDate,hour:Int) {
         mNumberOfSteps=numberOfSteps
-       
-        
+               
         let cal: NSCalendar = NSCalendar(calendarIdentifier: NSGregorianCalendar)!
         
         mDate = cal.dateBySettingHour(hour, minute: 0, second: 0, ofDate: date, options: NSCalendarOptions())!
@@ -30,7 +29,6 @@ class HourlySteps : NevoHKDataPoint {
     func toHKQuantitySample() -> HKQuantitySample {
         
         let stepCountQuantity = HKQuantity(unit:HKUnit.countUnit(), doubleValue: Double(mNumberOfSteps))
-        NSLog("-------------------start time:\(mDate),end time\(lateNight)")
         return HKQuantitySample(type: HKQuantityType.quantityTypeForIdentifier(HKQuantityTypeIdentifierStepCount),
             quantity: stepCountQuantity,
             startDate: mDate, endDate: lateNight)

@@ -194,7 +194,7 @@ class SyncController: ConnectionControllerDelegate {
                 var packet:NevoPacket = NevoPacket(packets:mPacketsbuffer)
                 currentDay = 0
                 savedDailyHistory = packet.getDailyTrackerInfo()
-                NSLog("History Total Days:\(savedDailyHistory.count)")
+                NSLog("History Total Days:\(savedDailyHistory.count),Today is \(NSDate())")
                 self.getDailyTracker(currentDay)
             }
             if(NSData2Bytes(packet.getRawData())[1] == 0x25)
@@ -209,22 +209,30 @@ class SyncController: ConnectionControllerDelegate {
                 NSLog("Day:\(savedDailyHistory[Int(currentDay)].Date), Hourly Steps:\(savedDailyHistory[Int(currentDay)].HourlySteps)")
                 
                 //save to health kit
-                 var hk = NevoHKImpl()
+                var hk = NevoHKImpl()
                 hk.requestPermission()
                 
+                //not save today 's daily steps, due to today not end.
+                if savedDailyHistory[Int(currentDay)].Date.timeIntervalSince1970 != NSDate().timeIntervalSince1970
+                {
                 hk.writeDataPoint(DailySteps(numberOfSteps: savedDailyHistory[Int(currentDay)].TotalSteps,date: savedDailyHistory[Int(currentDay)].Date), resultHandler: { (result, error) -> Void in
                     if (result != true) {
-                    NSLog("Saved Daily steps error:\(error),Day:\(self.savedDailyHistory[Int(self.currentDay)].Date), Daily Steps:\(self.savedDailyHistory[Int(self.currentDay)].TotalSteps)")
+                       NSLog("Saved Daily steps error:\(error)")
                     }
                 })
+                }
                 
                 for (var i:Int = 0; i<24; i++)
                 {
+                    //only save vaild hourly steps for every day, include today.
+                    if savedDailyHistory[Int(currentDay)].TotalSteps > 0
+                    {
                     hk.writeDataPoint(HourlySteps(numberOfSteps: savedDailyHistory[Int(currentDay)].TotalSteps,date: savedDailyHistory[Int(currentDay)].Date,hour:i), resultHandler: { (result, error) -> Void in
                         if (result != true) {
                             NSLog("Save Hourly steps error\(i),\(error)")
                         }
                     })
+                    }
                 }
 
                 //end save
@@ -245,13 +253,15 @@ class SyncController: ConnectionControllerDelegate {
                 //write the daily steps to healthkit
                 //Data format: 0x00 ,0x26, daily steps (4B,LSB mode), goal steps (4B,LSB mode)
                 
+                /* //remove real time count steps
+                
                 var dailySteps:Int = Int(NSData2Bytes(mPacketsbuffer[0])[2] )
                 dailySteps =  dailySteps + Int(NSData2Bytes(mPacketsbuffer[0])[3] )<<8
                 dailySteps =  dailySteps + Int(NSData2Bytes(mPacketsbuffer[0])[4] )<<16
                 dailySteps =  dailySteps + Int(NSData2Bytes(mPacketsbuffer[0])[5] )<<24
                 
                 NSLog("get Daily Steps is: \(dailySteps), now write it to healthkit")
-                /* //remove real time count steps
+                
                 var hk = NevoHKImpl()
                 hk.requestPermission()
                 

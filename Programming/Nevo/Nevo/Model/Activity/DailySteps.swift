@@ -20,8 +20,7 @@ class DailySteps : NevoHKDataPoint {
     
     init(numberOfSteps:Int, date:NSDate) {
         mNumberOfSteps=numberOfSteps
-        
-        
+                
         //Here, we normalise the date
         //It's a daily data point, so we normalise it to midnight
         
@@ -35,7 +34,6 @@ class DailySteps : NevoHKDataPoint {
     func toHKQuantitySample() -> HKQuantitySample {
         
         let stepCountQuantity = HKQuantity(unit:HKUnit.countUnit(), doubleValue: Double(mNumberOfSteps))
-        NSLog("****************start time:\(mDate),end time\(lateNight)")
         return HKQuantitySample(type: HKQuantityType.quantityTypeForIdentifier(HKQuantityTypeIdentifierStepCount),
             quantity: stepCountQuantity,
             startDate: mDate, endDate: lateNight)

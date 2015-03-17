@@ -117,7 +117,7 @@ class NevoPacket {
     func getHourlySteps() ->[Int]
     {
         var HourlySteps = [Int](count: 24, repeatedValue: 0)
-        let offset:Int = 6
+        let HEADERLENGTH:Int = 6
         var hourlySteps:Int = 0
         
         if( mHeader  == 0x25 && mPackets.count == 78)
@@ -125,15 +125,15 @@ class NevoPacket {
         //get every hour Steps:
             for (var i:Int = 0; i<24; i++)
             {
-                if NSData2Bytes(mPackets[offset+i*3])[18] != 0xFF
-                    && NSData2Bytes(mPackets[offset+i*3])[19] != 0xFF
-                    && NSData2Bytes(mPackets[offset+i*3+1])[2] != 0xFF
-                    && NSData2Bytes(mPackets[offset+i*3+1])[3] != 0xFF
+                if NSData2Bytes(mPackets[HEADERLENGTH+i*3])[18] != 0xFF
+                    && NSData2Bytes(mPackets[HEADERLENGTH+i*3])[19] != 0xFF
+                    && NSData2Bytes(mPackets[HEADERLENGTH+i*3+1])[2] != 0xFF
+                    && NSData2Bytes(mPackets[HEADERLENGTH+i*3+1])[3] != 0xFF
                 {
-                hourlySteps = Int(NSData2Bytes(mPackets[offset+i*3])[18] )
-                hourlySteps = hourlySteps + Int(NSData2Bytes(mPackets[offset+i*3])[19] )<<8
-                hourlySteps = hourlySteps + Int(NSData2Bytes(mPackets[offset+i*3+1])[2] )
-                hourlySteps = hourlySteps + Int(NSData2Bytes(mPackets[offset+i*3+1])[3] )<<8
+                hourlySteps = Int(NSData2Bytes(mPackets[HEADERLENGTH+i*3])[18] )
+                hourlySteps = hourlySteps + Int(NSData2Bytes(mPackets[HEADERLENGTH+i*3])[19] )<<8
+                hourlySteps = hourlySteps + Int(NSData2Bytes(mPackets[HEADERLENGTH+i*3+1])[2] )
+                hourlySteps = hourlySteps + Int(NSData2Bytes(mPackets[HEADERLENGTH+i*3+1])[3] )<<8
                 HourlySteps[i] = hourlySteps
                 }
                 
