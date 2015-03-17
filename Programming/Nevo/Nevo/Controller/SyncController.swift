@@ -213,11 +213,22 @@ class SyncController: ConnectionControllerDelegate {
                 hk.requestPermission()
                 
                 //not save today 's daily steps, due to today not end.
-                if savedDailyHistory[Int(currentDay)].Date.timeIntervalSince1970 != NSDate().timeIntervalSince1970
+                let now:NSDate = NSDate()
+                let cal:NSCalendar = NSCalendar.currentCalendar()
+                let unitFlags:NSCalendarUnit = NSCalendarUnit.YearCalendarUnit | NSCalendarUnit.MonthCalendarUnit | NSCalendarUnit.DayCalendarUnit | NSCalendarUnit.HourCalendarUnit | NSCalendarUnit.MinuteCalendarUnit | NSCalendarUnit.SecondCalendarUnit
+                let dd:NSDateComponents = cal.components(unitFlags, fromDate: now)
+                
+                let dd2:NSDateComponents = cal.components(unitFlags, fromDate: savedDailyHistory[Int(currentDay)].Date)
+                
+                if !(dd.year == dd2.year && dd.month == dd2.month && dd.day == dd2.day)
                 {
                 hk.writeDataPoint(DailySteps(numberOfSteps: savedDailyHistory[Int(currentDay)].TotalSteps,date: savedDailyHistory[Int(currentDay)].Date), resultHandler: { (result, error) -> Void in
                     if (result != true) {
                        NSLog("Saved Daily steps error:\(error)")
+                    }
+                    else
+                    {
+                        NSLog("Saved Daily steps OK")
                     }
                 })
                 }
@@ -225,11 +236,15 @@ class SyncController: ConnectionControllerDelegate {
                 for (var i:Int = 0; i<24; i++)
                 {
                     //only save vaild hourly steps for every day, include today.
-                    if savedDailyHistory[Int(currentDay)].TotalSteps > 0
+                    if savedDailyHistory[Int(currentDay)].HourlySteps[i] > 0
                     {
-                    hk.writeDataPoint(HourlySteps(numberOfSteps: savedDailyHistory[Int(currentDay)].TotalSteps,date: savedDailyHistory[Int(currentDay)].Date,hour:i), resultHandler: { (result, error) -> Void in
+                    hk.writeDataPoint(HourlySteps(numberOfSteps: savedDailyHistory[Int(currentDay)].HourlySteps[i],date: savedDailyHistory[Int(currentDay)].Date,hour:i), resultHandler: { (result, error) -> Void in
                         if (result != true) {
                             NSLog("Save Hourly steps error\(i),\(error)")
+                        }
+                        else
+                        {
+                            NSLog("Save Hourly steps OK")
                         }
                     })
                     }
