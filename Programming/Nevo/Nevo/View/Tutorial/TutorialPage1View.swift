@@ -97,7 +97,7 @@ class TutorialPage1View : UIView {
         errorLabel.center = CGPointMake(self.frame.size.width/2.0, self.frame.size.height-100)
         errorLabel.textAlignment = NSTextAlignment.Left
         errorLabel.numberOfLines = 0
-        errorLabel.lineBreakMode = NSLineBreakMode.ByCharWrapping
+        errorLabel.lineBreakMode = NSLineBreakMode.ByWordWrapping
         errorLabel.font = TEXT_FONT
         errorLabel.text = NSLocalizedString("BluetoothIcon",comment:"lable string")
         self.addSubview(errorLabel)

@@ -78,21 +78,13 @@ class TutorialPage2View: UIView {
         titleLabel.text = NSLocalizedString("WatchBluetooth",comment:"lable string")
         self.addSubview(titleLabel)
 
-        let guide2Label:UILabel = UILabel(frame: CGRectMake(titleLabel.frame.origin.x, sideImage.frame.origin.y+sideImage.frame.size.height-40, titleLabel.frame.size.width, 70))
+        let guide2Label:UILabel = UILabel(frame: CGRectMake(titleLabel.frame.origin.x, sideImage.frame.origin.y+sideImage.frame.size.height-30, titleLabel.frame.size.width, 70))
         guide2Label.textAlignment = NSTextAlignment.Left
         guide2Label.numberOfLines = 0
         guide2Label.lineBreakMode = NSLineBreakMode.ByWordWrapping
         guide2Label.font = TEXT_FONT
-        guide2Label.text = NSLocalizedString("LongPushOn",comment:"lable string")
+        guide2Label.text = NSLocalizedString("LongPushLED",comment:"lable string")
         self.addSubview(guide2Label)
-
-        let guide3Label:UILabel = UILabel(frame: CGRectMake(titleLabel.frame.origin.x, sideImage.frame.origin.y+sideImage.frame.size.height+10, titleLabel.frame.size.width, 70))
-        guide3Label.textAlignment = NSTextAlignment.Left
-        guide3Label.numberOfLines = 0
-        guide3Label.lineBreakMode = NSLineBreakMode.ByWordWrapping
-        guide3Label.font = TEXT_FONT
-        guide3Label.text = NSLocalizedString("LongPushLED",comment:"lable string")
-        self.addSubview(guide3Label)
 
         let nextButton:UIButton = UIButton.buttonWithType(UIButtonType.Custom) as UIButton
         nextButton.frame = CGRectMake(0, 0, 120, 50)
