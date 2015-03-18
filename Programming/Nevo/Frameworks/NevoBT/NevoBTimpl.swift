@@ -243,6 +243,7 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
         mTryingToConnectPeripherals = []
         
         mDelegate.connectionStateChanged(true, fromAddress: aPeripheral.identifier)
+        AppTheme.LocalNotificationBody(NSLocalizedString("The connected",comment: ""))
         
     }
 
@@ -410,6 +411,7 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
         setPeripheral(nil)
     
         mDelegate.connectionStateChanged(false, fromAddress: aPeripheral.identifier)
+        AppTheme.LocalNotificationBody(NSLocalizedString("Disconnect",comment: ""))
     
     }
     

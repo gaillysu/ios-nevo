@@ -50,7 +50,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication , didReceiveLocalNotification notification: UILocalNotification ) {
 
-        var alertView = UIAlertView (title:NSLocalizedString("disconnectError", comment: "") , message: notification.alertBody , delegate: nil , cancelButtonTitle: "ok" )
+        var alertView = UIAlertView (title:notification.alertBody , message:nil , delegate: nil , cancelButtonTitle: "ok" )
         alertView.show ()
     }
 
