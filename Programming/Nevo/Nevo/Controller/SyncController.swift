@@ -203,7 +203,7 @@ class SyncController: ConnectionControllerDelegate {
                 var thispacket = packet.copy() as DailyTrackerInfoNevoPacket
                 currentDay = 0
                 savedDailyHistory = thispacket.getDailyTrackerInfo()
-                NSLog("History Total Days:\(savedDailyHistory.count),Today is \(NSDate())")
+                NSLog("History Total Days:\(savedDailyHistory.count),Today is \(GmtNSDate2LocaleNSDate(NSDate()))")
                 self.getDailyTracker(currentDay)
             }
             if(packet.getHeader() == ReadDailyTracker.HEADER())
@@ -213,16 +213,15 @@ class SyncController: ConnectionControllerDelegate {
                 savedDailyHistory[Int(currentDay)].TotalSteps = thispacket.getDailySteps()
                 savedDailyHistory[Int(currentDay)].HourlySteps = thispacket.getHourlySteps()
                 
-                NSLog("Day:\(savedDailyHistory[Int(currentDay)].Date), Daily Steps:\(savedDailyHistory[Int(currentDay)].TotalSteps)")
+                NSLog("Day:\(GmtNSDate2LocaleNSDate(savedDailyHistory[Int(currentDay)].Date)), Daily Steps:\(savedDailyHistory[Int(currentDay)].TotalSteps)")
                 
-                NSLog("Day:\(savedDailyHistory[Int(currentDay)].Date), Hourly Steps:\(savedDailyHistory[Int(currentDay)].HourlySteps)")
+                NSLog("Day:\(GmtNSDate2LocaleNSDate(savedDailyHistory[Int(currentDay)].Date)), Hourly Steps:\(savedDailyHistory[Int(currentDay)].HourlySteps)")
                 
                 //save to health kit
                 var hk = NevoHKImpl()
                 hk.requestPermission()
                 
-                /* // disable write every day 's total steps, only write every day's hourly steps
-                //not save today 's daily steps, due to today not end.
+                
                 let now:NSDate = NSDate()
                 let cal:NSCalendar = NSCalendar.currentCalendar()
                 let unitFlags:NSCalendarUnit = NSCalendarUnit.YearCalendarUnit | NSCalendarUnit.MonthCalendarUnit | NSCalendarUnit.DayCalendarUnit | NSCalendarUnit.HourCalendarUnit | NSCalendarUnit.MinuteCalendarUnit | NSCalendarUnit.SecondCalendarUnit
@@ -230,6 +229,9 @@ class SyncController: ConnectionControllerDelegate {
                 
                 let dd2:NSDateComponents = cal.components(unitFlags, fromDate: savedDailyHistory[Int(currentDay)].Date)
                 
+                // disable write every day 's total steps, only write every day's hourly steps
+                //not save today 's daily steps, due to today not end.
+                /*
                 if !(dd.year == dd2.year && dd.month == dd2.month && dd.day == dd2.day)
                      && savedDailyHistory[Int(currentDay)].TotalSteps > 0
                 {
@@ -250,7 +252,8 @@ class SyncController: ConnectionControllerDelegate {
                     //only save vaild hourly steps for every day, include today.
                     if savedDailyHistory[Int(currentDay)].HourlySteps[i] > 0
                     {
-                    hk.writeDataPoint(HourlySteps(numberOfSteps: savedDailyHistory[Int(currentDay)].HourlySteps[i],date: savedDailyHistory[Int(currentDay)].Date,hour:i), resultHandler: { (result, error) -> Void in
+                    //only today 's current hourly can do update!!!, due to current hourly not end
+                    hk.writeDataPoint(HourlySteps(numberOfSteps: savedDailyHistory[Int(currentDay)].HourlySteps[i],date: savedDailyHistory[Int(currentDay)].Date,hour:i,update:dd.hour == i && dd.year == dd2.year && dd.month == dd2.month && dd.day == dd2.day), resultHandler: { (result, error) -> Void in
                         if (result != true) {
                             NSLog("Save Hourly steps error\(i),\(error)")
                         }
@@ -270,6 +273,7 @@ class SyncController: ConnectionControllerDelegate {
                 }
                 else
                 {
+                   currentDay = 0
                    self.syncFinished()
                 }
             }
@@ -278,6 +282,14 @@ class SyncController: ConnectionControllerDelegate {
             {
                 var thispacket = packet.copy() as DailyStepsNevoPacket
           
+                //record current hourly steps changing in the healthkit
+                /*
+                currentDay = 0
+                savedDailyHistory = []
+                savedDailyHistory.append(NevoPacket.DailyHistory(TotalSteps: 0, HourlySteps: [], Date:NSDate()))
+                self.getDailyTracker(currentDay)
+                */
+                
                 /*
                 //remove real time count steps to healthkit
                 var hk = NevoHKImpl()

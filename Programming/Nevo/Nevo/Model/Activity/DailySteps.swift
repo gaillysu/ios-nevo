@@ -38,5 +38,5 @@ class DailySteps : NevoHKDataPoint {
             quantity: stepCountQuantity,
             startDate: mDate, endDate: lateNight)
     }
-    
+    func isUpdate()->Bool {return false}
 }

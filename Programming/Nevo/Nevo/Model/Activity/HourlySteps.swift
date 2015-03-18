@@ -14,10 +14,10 @@ class HourlySteps : NevoHKDataPoint {
     private var mNumberOfSteps:Int
     private var mDate:NSDate
     private var lateNight:NSDate
-    
-    init(numberOfSteps:Int, date:NSDate,hour:Int) {
+    private var mUpdate:Bool
+    init(numberOfSteps:Int, date:NSDate,hour:Int,update:Bool) {
         mNumberOfSteps=numberOfSteps
-               
+        mUpdate = update
         let cal: NSCalendar = NSCalendar(calendarIdentifier: NSGregorianCalendar)!
         
         mDate = cal.dateBySettingHour(hour, minute: 0, second: 0, ofDate: date, options: NSCalendarOptions())!
@@ -33,5 +33,8 @@ class HourlySteps : NevoHKDataPoint {
             quantity: stepCountQuantity,
             startDate: mDate, endDate: lateNight)
     }
-    
+    func isUpdate()->Bool
+    {
+        return mUpdate
+    }
 }

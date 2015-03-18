@@ -59,5 +59,5 @@ class RealTimeCountSteps: NevoHKDataPoint {
     {
         RealTimeCountSteps.Variables.mLastNumberOfSteps = data
     }
-    
+    func isUpdate()->Bool {return false}
 }

@@ -41,4 +41,9 @@ protocol NevoHKDataPoint{
     It's the only prerequisite
     */
     func toHKQuantitySample() -> HKQuantitySample
+    
+    /**
+    if a HKQuantitySample has present in HK database, when its value changed, perhaps need update it.
+    */
+    func isUpdate()->Bool
 }

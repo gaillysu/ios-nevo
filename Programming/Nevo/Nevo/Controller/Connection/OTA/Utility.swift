@@ -152,4 +152,13 @@ func GET_FIRMWARE_FILES(folderName:String) -> NSArray {
     }
 }
 
+/**
+transfer GMT NSDate to locale NSDate
+*/
+func GmtNSDate2LocaleNSDate(gmtDate:NSDate) ->NSDate
+{
+    var zone = NSTimeZone.systemTimeZone()
+    var interval =  zone.secondsFromGMTForDate(gmtDate)
+    return gmtDate.dateByAddingTimeInterval(NSTimeInterval(interval))
+}
 
