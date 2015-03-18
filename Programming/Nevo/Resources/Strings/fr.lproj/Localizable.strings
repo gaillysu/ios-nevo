@@ -46,3 +46,5 @@
 "WeChat"="WeChat";
 "Off"="Off";
 "On"="On";
+"disconnectError"="disconnectError";
+"ok"="ok";

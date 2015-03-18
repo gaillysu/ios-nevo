@@ -46,3 +46,5 @@
 "WeChat"="微信";
 "Off"="關";
 "On"="開";
+"disconnectError"="disconnectError";
+"ok"="ok";
