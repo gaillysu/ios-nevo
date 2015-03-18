@@ -66,4 +66,27 @@ class AppTheme {
         let isiPhone4S:Bool = (UIScreen.instancesRespondToSelector(Selector("currentMode")) ? CGSizeEqualToSize(CGSizeMake(640, 960), UIScreen.mainScreen().currentMode!.size) : false)
         return isiPhone4S
     }
+
+    /**
+    Local notifications
+
+    :param: string Inform the content
+    */
+    class func LocalNotificationBody(string:NSString) {
+        if (UIDevice.currentDevice().systemVersion as NSString).floatValue >= 8.0 {
+            var categorys:UIMutableUserNotificationCategory = UIMutableUserNotificationCategory()
+            categorys.identifier = "alert";
+            var localUns:UIUserNotificationSettings = UIUserNotificationSettings(forTypes: UIUserNotificationType.Badge|UIUserNotificationType.Sound|UIUserNotificationType.Alert, categories: NSSet(objects: categorys))
+            UIApplication.sharedApplication().registerUserNotificationSettings(localUns)
+        }
+
+        let notification:UILocalNotification=UILocalNotification()
+        notification.timeZone = NSTimeZone.defaultTimeZone()
+        notification.fireDate = NSDate().dateByAddingTimeInterval(0)
+        notification.alertBody=string;
+        notification.applicationIconBadgeNumber = 0;
+        notification.soundName = UILocalNotificationDefaultSoundName;
+        notification.category = "invite"
+        UIApplication.sharedApplication().scheduleLocalNotification(notification)
+    }
 }

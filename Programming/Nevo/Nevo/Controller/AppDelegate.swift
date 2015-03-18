@@ -48,6 +48,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.saveContext()
     }
 
+    func application(application: UIApplication , didReceiveLocalNotification notification: UILocalNotification ) {
+
+        var alertView = UIAlertView (title:NSLocalizedString("disconnectError", comment: "") , message: notification.alertBody , delegate: nil , cancelButtonTitle: "ok" )
+        alertView.show ()
+    }
+
     // MARK: - Core Data stack
 
     lazy var applicationDocumentsDirectory: NSURL = {
