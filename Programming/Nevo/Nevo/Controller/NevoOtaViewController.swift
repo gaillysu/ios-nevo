@@ -15,6 +15,11 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
     @IBOutlet weak var labelFileName: UILabel!
     @IBOutlet var labelFileSize: UILabel!
     @IBOutlet var labelFIleTypes: UILabel!
+    @IBOutlet weak var uploadBtn: UIButton!
+    @IBOutlet weak var progressBar: UIProgressView!
+    
+    @IBOutlet weak var ProgressLabel: UILabel!
+    @IBOutlet weak var upLoadStatus: UILabel!
     
     var isTransferring:Bool = false
     var enumFirmwareType:DfuFirmwareTypes = DfuFirmwareTypes.APPLICATION
@@ -27,7 +32,7 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
 
         //init the view
         nevoOtaView.buildView(self)
-        
+        uploadBtn.enabled = false
         //init the ota
         mNevoOtaController = NevoOtaController(controller: self)
         initValue()
@@ -42,17 +47,25 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
     //init data function
     private func initValue()
     {
-        selectedFileURL = NSURL(string: "file://firmwares/iMaze_v9.bin")!
-        enumFirmwareType = DfuFirmwareTypes.SOFTDEVICE
+        progressBar.setProgress(0.0, animated: false)
+        ProgressLabel.text = ""
     }
     
     //upload button function
     func uploadPressed()
     {
+        if selectedFileURL? == nil
+        {
+            var alert :UIAlertView = UIAlertView(title: "", message: "Please select NEVO file!", delegate: nil, cancelButtonTitle: "OK")
+            alert.show()
+            return
+        }
         if (self.isTransferring) {
+            isTransferring = false
             mNevoOtaController?.cancelDFU()
         }
         else {
+            isTransferring = true
             mNevoOtaController?.performDFUOnFile(selectedFileURL!, firmwareType: enumFirmwareType)
         }
     }
@@ -68,12 +81,17 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
     func onDFUCancelled(){
         NSLog("onDFUCancelled");
         //reset OTA view controller 's some data, such as progress bar and upload button text/status
-        initValue()
+        dispatch_async(dispatch_get_main_queue(), {
+        self.initValue()
+        });
     }
 
     //percent is[0..100]
     func onTransferPercentage(percent:Int){
-        
+        dispatch_async(dispatch_get_main_queue(), {
+        self.progressBar.setProgress((Float(percent)/100.0), animated: false)
+        self.ProgressLabel.text = "\(percent) %"
+        });
     }
     
     //successfully
@@ -104,6 +122,34 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
 
     }
     
+    func connectionStateChanged(isConnected : Bool) {
+        
+        //Maybe we just got disconnected, let's check
+        
+        checkConnection()
+        
+    }
+    
+    
+    
+    /**
+    Checks if any device is currently connected
+    */
+    
+    func checkConnection() {
+        
+        if mNevoOtaController != nil && !(mNevoOtaController!.isConnected()) {
+            //disable upPress button
+            uploadBtn.enabled = false
+        }
+        else
+        {
+            // enable upPress button
+            uploadBtn.enabled = true
+        }
+        
+    }
+
 
     // MARK: - ButtonManagerCallBack
     func controllManager(sender:AnyObject){
@@ -154,6 +200,19 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
             if let fextension = fileExtension{
                 labelFIleTypes.text = fextension
             }
+            
+            selectedFileURL = selectedFile
+            if fileExtension == "bin"
+            {
+               enumFirmwareType = DfuFirmwareTypes.SOFTDEVICE
+               labelFIleTypes.text = "MCU firmware"
+            }
+            if fileExtension == "hex"
+            {
+                enumFirmwareType = DfuFirmwareTypes.APPLICATION
+                labelFIleTypes.text = "BLE firmware"
+            }
+            
         }
     }
     
