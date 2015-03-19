@@ -334,6 +334,9 @@ class NevoOtaController : ConnectionControllerDelegate {
     see ConnectionControllerDelegate protocol
     */
     func connectionStateChanged(isConnected : Bool) {
+        
+        mDelegate?.connectionStateChanged(isConnected)
+        
         if isConnected
         {
             if mConnectionController?.getOTAMode() == true
@@ -584,6 +587,9 @@ class NevoOtaController : ConnectionControllerDelegate {
     }
     //end added
     
+    func isConnected() -> Bool{
+        return mConnectionController!.isConnected()
+    }
 }
 
 /**
@@ -591,7 +597,7 @@ this protocol is defined for OTA UIView controller
 */
 protocol NevoOtaControllerDelegate {
     
-   // func connectionStateChanged(isConnected : Bool)
+    func connectionStateChanged(isConnected : Bool)
     func onDFUStarted()
     func onDFUCancelled()
     func onTransferPercentage(Int)

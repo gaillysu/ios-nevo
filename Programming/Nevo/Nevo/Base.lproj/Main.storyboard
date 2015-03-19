@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="B94-9O-eGF">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1510" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="B94-9O-eGF">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -149,7 +149,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sn2-vv-l0b">
+                            <button opaque="NO" alpha="0.0" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sn2-vv-l0b">
                                 <rect key="frame" x="41" y="387" width="251" height="35"/>
                                 <color key="backgroundColor" red="0.98039215690000003" green="0.21176470589999999" blue="0.21960784310000001" alpha="1" colorSpace="deviceRGB"/>
                                 <fontDescription key="fontDescription" name="TrebuchetMS" family="Trebuchet MS" pointSize="17"/>
@@ -167,7 +167,7 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aEp-Xl-VFt">
                                 <rect key="frame" x="41" y="336" width="251" height="34"/>
                                 <color key="backgroundColor" red="0.98039215690000003" green="0.21176470589999999" blue="0.21960784310000001" alpha="1" colorSpace="deviceRGB"/>
-                                <state key="normal" title="SELECT WACTHZ FILE">
+                                <state key="normal" title="SELECT NEVO FILE">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <state key="disabled">
@@ -277,10 +277,14 @@
                     </view>
                     <navigationItem key="navigationItem" id="dDb-MT-AUi"/>
                     <connections>
+                        <outlet property="ProgressLabel" destination="iD1-il-7gJ" id="zAq-Ek-jDu"/>
                         <outlet property="labelFIleTypes" destination="N9K-dc-I3R" id="aMx-GO-BP6"/>
                         <outlet property="labelFileName" destination="TIW-vX-FKl" id="PUs-N0-2sR"/>
                         <outlet property="labelFileSize" destination="rBg-VO-3FK" id="Anj-Kx-4a1"/>
                         <outlet property="nevoOtaView" destination="sRG-8v-pva" id="YQ9-qw-xDg"/>
+                        <outlet property="progressBar" destination="qFR-1N-NGc" id="sMg-Il-Pky"/>
+                        <outlet property="upLoadStatus" destination="DCF-65-lo4" id="g14-na-la5"/>
+                        <outlet property="uploadBtn" destination="cxH-gh-qgt" id="7e3-WL-SK6"/>
                         <segue destination="Yvw-kx-bK8" kind="push" identifier="Ota2DeviceScanner" id="ADC-l2-jEg"/>
                         <segue destination="QaI-im-wFo" kind="push" identifier="Ota2SelectFile" id="x9a-qz-qgu"/>
                     </connections>
@@ -725,7 +729,7 @@
     </scenes>
     <resources>
         <image name="ConnectButtonPressed" width="320" height="57"/>
-        <image name="Signal_3.png" width="45" height="45"/>
+        <image name="Signal_3.png" width="320" height="57"/>
         <image name="alarmitem" width="45" height="45"/>
         <image name="goalitem" width="45" height="45"/>
         <image name="homeitem" width="45" height="45"/>
