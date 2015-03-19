@@ -32,7 +32,7 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
 
         //init the view
         nevoOtaView.buildView(self)
-        //uploadBtn.enabled = false
+        uploadBtn.enabled = false
         //init the ota
         mNevoOtaController = NevoOtaController(controller: self)
         initValue()
@@ -54,9 +54,9 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
     //upload button function
     func uploadPressed()
     {
-        if selectedFileURL == nil
+        if selectedFileURL? == nil
         {
-            var alert :UIAlertView = UIAlertView(title: "Firmware Upgrade", message: "Please select NEVO file!", delegate: nil, cancelButtonTitle: "OK")
+            var alert :UIAlertView = UIAlertView(title: "", message: "Please select NEVO file!", delegate: nil, cancelButtonTitle: "OK")
             alert.show()
             return
         }
