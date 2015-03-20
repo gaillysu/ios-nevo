@@ -40,20 +40,20 @@ class SetNortificationRequest: NevoRequest {
         static let WHITE_11_LED:UInt32 = 0x000400
     }
     
-    private var call_vib_number:UInt8
-    private var call_led_pattern:UInt32
+    private var call_vib_number:UInt8 = 0
+    private var call_led_pattern:UInt32 = 0
     
-    private var sms_vib_number:UInt8
-    private var sms_led_pattern:UInt32
+    private var sms_vib_number:UInt8 = 0
+    private var sms_led_pattern:UInt32 = 0
     
-    private var email_vib_number:UInt8
-    private var email_led_pattern:UInt32
+    private var email_vib_number:UInt8 = 0
+    private var email_led_pattern:UInt32 = 0
     
-    private var facebook_vib_number:UInt8
-    private var facebook_led_pattern:UInt32
+    private var facebook_vib_number:UInt8 = 0
+    private var facebook_led_pattern:UInt32 = 0
     
-    private var calendar_vib_number:UInt8
-    private var calendar_led_pattern:UInt32
+    private var calendar_vib_number:UInt8 = 0
+    private var calendar_led_pattern:UInt32 = 0
     
     //private var whatsapp_vib_number:UInt8
     //private var whatsapp_led_pattern:UInt32
@@ -111,6 +111,65 @@ class SetNortificationRequest: NevoRequest {
         if wechat_vib_number == SetNortificationRequestValues.VIBRATION_ON
         {
             wechat_led_pattern = wechat_led_pattern | SetNortificationRequestValues.VIB_MOTOR
+        }
+
+    }
+    
+    init(settingArray:[NotificationSetting]) {
+
+        //We set each colors, one by one. In case a color is chosen, we turn on the vibration
+        if var setting = NotificationSetting.indexOfObjectAtType(settingArray, type: NotificationType.CALL) {
+            call_vib_number = setting.getStates() ? SetNortificationRequestValues.VIBRATION_ON : SetNortificationRequestValues.VIBRATION_OFF
+            call_led_pattern = setting.getColor().unsignedIntValue
+            if call_vib_number == SetNortificationRequestValues.VIBRATION_ON
+            {
+                call_led_pattern = call_led_pattern | SetNortificationRequestValues.VIB_MOTOR
+            }
+        }
+
+        if var setting = NotificationSetting.indexOfObjectAtType(settingArray, type: NotificationType.SMS) {
+            sms_vib_number = setting.getStates() ? SetNortificationRequestValues.VIBRATION_ON : SetNortificationRequestValues.VIBRATION_OFF
+            sms_led_pattern = setting.getColor().unsignedIntValue
+            if sms_vib_number == SetNortificationRequestValues.VIBRATION_ON
+            {
+                sms_led_pattern = sms_led_pattern | SetNortificationRequestValues.VIB_MOTOR
+            }
+        }
+        
+        if var setting = NotificationSetting.indexOfObjectAtType(settingArray, type: NotificationType.EMAIL) {
+            email_vib_number = setting.getStates() ? SetNortificationRequestValues.VIBRATION_ON : SetNortificationRequestValues.VIBRATION_OFF
+            email_led_pattern = setting.getColor().unsignedIntValue
+            if email_vib_number == SetNortificationRequestValues.VIBRATION_ON
+            {
+                email_led_pattern = email_led_pattern | SetNortificationRequestValues.VIB_MOTOR
+            }
+        }
+
+        if var setting = NotificationSetting.indexOfObjectAtType(settingArray, type: NotificationType.FACEBOOK) {
+            facebook_vib_number = setting.getStates() ? SetNortificationRequestValues.VIBRATION_ON : SetNortificationRequestValues.VIBRATION_OFF
+            facebook_led_pattern = setting.getColor().unsignedIntValue
+            if facebook_vib_number == SetNortificationRequestValues.VIBRATION_ON
+            {
+                facebook_led_pattern = facebook_led_pattern | SetNortificationRequestValues.VIB_MOTOR
+            }
+        }
+
+        if var setting = NotificationSetting.indexOfObjectAtType(settingArray, type: NotificationType.CALENDAR) {
+            calendar_vib_number = setting.getStates() ? SetNortificationRequestValues.VIBRATION_ON : SetNortificationRequestValues.VIBRATION_OFF
+            calendar_led_pattern = setting.getColor().unsignedIntValue
+            if calendar_vib_number == SetNortificationRequestValues.VIBRATION_ON
+            {
+                calendar_led_pattern = calendar_led_pattern | SetNortificationRequestValues.VIB_MOTOR
+            }
+        }
+
+        if var setting = NotificationSetting.indexOfObjectAtType(settingArray, type: NotificationType.WECHAT) {
+            wechat_vib_number = setting.getStates() ? SetNortificationRequestValues.VIBRATION_ON : SetNortificationRequestValues.VIBRATION_OFF
+            wechat_led_pattern = setting.getColor().unsignedIntValue
+            if wechat_vib_number == SetNortificationRequestValues.VIBRATION_ON
+            {
+                wechat_led_pattern = wechat_led_pattern | SetNortificationRequestValues.VIB_MOTOR
+            }
         }
 
     }

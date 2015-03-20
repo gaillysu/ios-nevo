@@ -145,6 +145,10 @@ class SyncController: ConnectionControllerDelegate {
     func SetNortification(type:NSArray) {
         sendRequest(SetNortificationRequest(typeArray:type))
     }
+    
+    func SetNortification(settingArray:[NotificationSetting]) {
+        sendRequest(SetNortificationRequest(settingArray: settingArray))
+    }
     //end functions by UI
     
     func sendRequest(r:Request) {

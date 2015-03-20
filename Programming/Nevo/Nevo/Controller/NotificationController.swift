@@ -14,8 +14,8 @@ class NotificationController: UIViewController,SelectionTypeDelegate,SyncControl
 
     @IBOutlet var notificationList: NotificationView!
 
-    var noticeTypeModel:TypeModel!
-    var typeModelArray:NSMutableArray?
+    private var mNotificationType:NotificationType = NotificationType.CALL
+    private var mNotificationSettingArray:[NotificationSetting] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,9 +24,7 @@ class NotificationController: UIViewController,SelectionTypeDelegate,SyncControl
 
         notificationList.bulidNotificationViewUI(self,navigationItem: self.navigationItem)
 
-        typeModelArray = NSMutableArray()
-        getNotificationTypeModel()
-
+        initNotificationSettingArray()
     }
 
     override func viewDidAppear(animated: Bool) {
@@ -38,18 +36,41 @@ class NotificationController: UIViewController,SelectionTypeDelegate,SyncControl
         // Dispose of any resources that can be recreated.
     }
 
-    func getNotificationTypeModel(){
-        if(typeModelArray?.count>0) {
-            typeModelArray?.removeAllObjects()
-        }
-        typeModelArray?.addObject(TypeModel(type: EnterNotificationController.SOURCETYPE.FACEBOOK, state: EnterNotificationController.getMotorOnOff(EnterNotificationController.SOURCETYPE.FACEBOOK), icon: "facebookIcon", color: NSNumber(unsignedInt: EnterNotificationController.getLedColor(EnterNotificationController.SOURCETYPE.FACEBOOK))))
-        typeModelArray?.addObject(TypeModel(type: EnterNotificationController.SOURCETYPE.SMS, state: EnterNotificationController.getMotorOnOff(EnterNotificationController.SOURCETYPE.SMS), icon: "smsIcon", color: NSNumber(unsignedInt: EnterNotificationController.getLedColor(EnterNotificationController.SOURCETYPE.SMS))))
-        typeModelArray?.addObject(TypeModel(type: EnterNotificationController.SOURCETYPE.CALL, state: EnterNotificationController.getMotorOnOff(EnterNotificationController.SOURCETYPE.CALL), icon: "callIcon", color: NSNumber(unsignedInt: EnterNotificationController.getLedColor(EnterNotificationController.SOURCETYPE.CALL))))
-        typeModelArray?.addObject(TypeModel(type: EnterNotificationController.SOURCETYPE.EMAIL, state: EnterNotificationController.getMotorOnOff(EnterNotificationController.SOURCETYPE.EMAIL), icon: "emailIcon", color: NSNumber(unsignedInt: EnterNotificationController.getLedColor(EnterNotificationController.SOURCETYPE.EMAIL))))
-        typeModelArray?.addObject(TypeModel(type: EnterNotificationController.SOURCETYPE.CALENDAR, state: EnterNotificationController.getMotorOnOff(EnterNotificationController.SOURCETYPE.CALENDAR), icon: "calendar_icon", color: NSNumber(unsignedInt: EnterNotificationController.getLedColor(EnterNotificationController.SOURCETYPE.CALENDAR))))
-        typeModelArray?.addObject(TypeModel(type: EnterNotificationController.SOURCETYPE.WECHAT, state: EnterNotificationController.getMotorOnOff(EnterNotificationController.SOURCETYPE.WECHAT), icon: "WeChat_Icon", color: NSNumber(unsignedInt: EnterNotificationController.getLedColor(EnterNotificationController.SOURCETYPE.WECHAT))))
-    }
 
+    /**
+    init the mNotificationSettingArray
+    
+    :returns:
+    */
+    func initNotificationSettingArray() {
+        var notificationTypeArray:[NotificationType] = [NotificationType.CALL, NotificationType.EMAIL, NotificationType.FACEBOOK, NotificationType.SMS, NotificationType.CALENDAR, NotificationType.WECHAT]
+        for notificationType in notificationTypeArray {
+            var setting = NotificationSetting(type: notificationType, color: 0)
+            NotificationController.refreshNotificationSetting(&setting)
+            mNotificationSettingArray.append(setting)
+        }
+    }
+    
+    /**
+    reresh NotificationSetting
+    */
+    class func refreshNotificationSetting(inout setting:NotificationSetting) {
+        var color = NSNumber(unsignedInt: EnterNotificationController.getLedColor(setting.getType().rawValue))
+        var states = EnterNotificationController.getMotorOnOff(setting.getType().rawValue)
+        setting.updateValue(color, states: states)
+    }
+    
+    /**
+    reresh NotificationSetting Array
+    */
+    class func refreshNotificationSettingArray(inout settingArray:[NotificationSetting]) {
+        for var i=0;i<settingArray.count;i++ {
+            NotificationController.refreshNotificationSetting(&settingArray[i])
+        }
+    }
+    
+    
+    
     // MARK: - ButtonManagerCallBack
     func controllManager(sender:AnyObject){
         if sender.isEqual(notificationList.animationView?.getNoConnectScanButton()?) {
@@ -97,7 +118,7 @@ class NotificationController: UIViewController,SelectionTypeDelegate,SyncControl
     // MARK: - SelectionTypeDelegate
     func onSelectedType(results:Bool,type:NSString){
         NSLog("type===:\(type)")
-        getNotificationTypeModel()
+        NotificationController.refreshNotificationSettingArray(&mNotificationSettingArray)
         notificationList.tableListView.reloadData()
     }
 
@@ -108,18 +129,18 @@ class NotificationController: UIViewController,SelectionTypeDelegate,SyncControl
     }
 
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
-        noticeTypeModel = typeModelArray![indexPath.row] as TypeModel
+        mNotificationType = mNotificationSettingArray[indexPath.row].getType()
         self.performSegueWithIdentifier("EnterNotification", sender: self)
     }
 
     // MARK: - UITableViewDataSource
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
 
-        return typeModelArray!.count
+        return mNotificationSettingArray.count
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = notificationList.NotificationlistCell(indexPath, dataSource: typeModelArray!)
+        let cell = notificationList.NotificationlistCell(indexPath, dataSource: mNotificationSettingArray)
         return cell
     }
 
@@ -131,10 +152,15 @@ class NotificationController: UIViewController,SelectionTypeDelegate,SyncControl
         // Pass the selected object to the new view controller.
         if (segue.identifier == "EnterNotification"){
             var notficp = segue.destinationViewController as EnterNotificationController
-            notficp.notTypeArray = typeModelArray
-            notficp.notType = noticeTypeModel
             notficp.mDelegate = self
+            
+            notficp.mNotificationSettingArray = mNotificationSettingArray
+            notficp.mCurrentNotificationSetting = NotificationSetting.indexOfObjectAtType(mNotificationSettingArray, type: mNotificationType)
 
+            for setting in mNotificationSettingArray {
+                NSLog(setting.description())
+            }
+            NSLog("\(mNotificationType.rawValue)")
         }
 
     }
