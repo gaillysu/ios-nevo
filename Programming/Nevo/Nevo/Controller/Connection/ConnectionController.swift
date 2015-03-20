@@ -55,8 +55,9 @@ protocol ConnectionController {
     /**
     Enters the OTA mode. In this mode, it searchs for OTA enabled Nevo
     It won't connect to other Nevo and will stop sending regular nevo querries
+    add second parameter, when BLE ota, auto disconnect by BLE peer, so no need disconnect it again
     */
-    func setOTAMode(Bool)
+    func setOTAMode(OTAMode:Bool,Disconnect:Bool)
 
     /**
     Checks whether the connection controller is in OTA mode
