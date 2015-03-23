@@ -18,6 +18,11 @@ class ConnectionControllerImpl : NSObject, ConnectionController, NevoBTDelegate 
 
     let SAVED_ADDRESS_KEY = "SAVED_ADDRESS"
     
+    //use this struct for other class to read
+    struct Const {
+        static let SAVED_ADDRESS_KEY = "SAVED_ADDRESS"
+    }
+    
     /**
     This procedure explain the scan procedure
     Every X sec we will check if the peripheral is connected and retry to connect to it

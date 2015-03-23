@@ -10,21 +10,24 @@ import Foundation
 import UIkit
 
 class HomeView: UIView {
-    
+
+    @IBOutlet weak var title: UILabel!
+    @IBOutlet weak var settingButton: UIButton!
     //Put all UI operation HomeView inside
     private let mClockTimerView = ClockView(frame:CGRectMake(0, 0, UIScreen.mainScreen().bounds.width-60, UIScreen.mainScreen().bounds.width-60), hourImage:  UIImage(named: "clockViewHour")!, minuteImage: UIImage(named: "clockViewMinute")!, dialImage: UIImage(named: "clockView600")!);//init "ClockView" ,Use the code relative layout
 
     var progressView:CircleProgressView?
     var progresValue:CGFloat = 0.0
-    
-    func bulidHomeView(navigationItem:UINavigationItem) {
 
-        var titleLabel:UILabel = UILabel(frame: CGRectMake(0, 0, 120, 30))
-        titleLabel.textColor = UIColor.whiteColor()
-        titleLabel.text = NSLocalizedString("homeTitle", comment: "")
-        titleLabel.font = AppTheme.SYSTEMFONTOFSIZE()
-        titleLabel.textAlignment = NSTextAlignment.Center
-        navigationItem.titleView = titleLabel
+    private var mDelegate:ButtonManagerCallBack!
+    
+    func bulidHomeView(delegate:ButtonManagerCallBack) {
+        mDelegate = delegate
+        
+        title.textColor = UIColor.whiteColor()
+        title.text = NSLocalizedString("homeTitle", comment: "")
+        title.font = AppTheme.SYSTEMFONTOFSIZE()
+        title.textAlignment = NSTextAlignment.Center
 
         mClockTimerView.currentTimer()
         self.addSubview(mClockTimerView)
@@ -42,7 +45,11 @@ class HomeView: UIView {
     func getClockTimerView() -> ClockView {
         return mClockTimerView
     }
-    
+
+    @IBAction func ButtonAction(sender: AnyObject) {
+        mDelegate?.controllManager(sender)
+    }
+
     /**
     set the progress of the progressView
 

@@ -44,24 +44,30 @@ class MainTabBarController: UITabBarController,UITabBarControllerDelegate {
 
     func customInitTabbar(){
         self.tabBar.hidden = true
-
-        //创建自定义tabbar  [UIScreen mainScreen].bounds.size.width
-        let myTabbarView:UIView = UIView(frame: CGRectMake(-1, self.view.frame.size.height-54, UIScreen.mainScreen().bounds.size.width+2, 55));
-        myTabbarView.backgroundColor = UIColor.blackColor();
+        
+        let myTabbarView:UIView = UIView(frame: CGRectMake(-1, self.view.frame.size.height-99, UIScreen.mainScreen().bounds.size.width+2, 100));
+        myTabbarView.backgroundColor = UIColor.whiteColor();
         myTabbarView.layer.borderWidth = 1.0;
         myTabbarView.layer.borderColor = UIColor.grayColor().CGColor;
         self.view.addSubview(myTabbarView)
+
+        let itemView:UIView = UIView(frame: CGRectMake(0, 0, UIScreen.mainScreen().bounds.size.width-50, myTabbarView.frame.size.height));
+        itemView.backgroundColor = UIColor.whiteColor()
+        itemView.center = CGPointMake(myTabbarView.frame.size.width/2.0, myTabbarView.frame.size.height/2.0)
+        myTabbarView.addSubview(itemView)
         if (items == nil) {
-            items = NSMutableArray(capacity: 5)
+            items = NSMutableArray(capacity: 4)
         }
-        let imgArray:NSArray = NSArray(arrayLiteral: "selectedGoalitem","selectedHomeitem","selectedAlarmitem","rss_selected")
-        let selectImgArray:NSArray = NSArray(arrayLiteral: "goalitem","homeitem","alarmitem","rss")
+        let imgArray:NSArray = NSArray(arrayLiteral: "goalitem","homeitem","alarmitem")
+        let selectImgArray:NSArray = NSArray(arrayLiteral: "selectedGoalitem","selectedHomeitem","selectedAlarmitem")
 
         for (var i:Int = 0; i < imgArray.count; i++) {
 
-            var item:UIButton  = UIButton(frame:  CGRectMake(UIScreen.mainScreen().bounds.size.width/CGFloat(imgArray.count)*CGFloat(i), 0, UIScreen.mainScreen().bounds.size.width / CGFloat(imgArray.count), 55))
+            var itemWidth:CGFloat = itemView.frame.size.width/CGFloat(imgArray.count)
+            var item:UIButton  = UIButton(frame:  CGRectMake(itemWidth*CGFloat(i), 0, itemWidth, itemView.frame.size.height))
             item.backgroundColor = UIColor.clearColor()
             item.setImage(UIImage(named: selectImgArray[i] as String), forState: UIControlState.Selected)
+            item.setImage(UIImage(named: selectImgArray[i] as String), forState: UIControlState.Highlighted)
             item.setImage(UIImage(named: imgArray[i] as String), forState: UIControlState.Normal)
             
             if (i==1) {
@@ -69,7 +75,7 @@ class MainTabBarController: UITabBarController,UITabBarControllerDelegate {
                 selectedItem=item
             }
             item.addTarget(self, action: Selector("tabbarItemClickAction:"), forControlEvents: UIControlEvents.TouchUpInside)
-            myTabbarView.addSubview(item)
+            itemView.addSubview(item)
             item.tag = i;
             items.addObject(item)
 

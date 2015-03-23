@@ -66,4 +66,8 @@ class AppTheme {
         let isiPhone4S:Bool = (UIScreen.instancesRespondToSelector(Selector("currentMode")) ? CGSizeEqualToSize(CGSizeMake(640, 960), UIScreen.mainScreen().currentMode!.size) : false)
         return isiPhone4S
     }
+
+    class func CUSTOMBAR_BACKGROUND_COLOR() ->UIColor {
+        return UIColor(red: 48/255.0, green: 48/255.0, blue: 48/255.0, alpha: 1)
+    }
 }
