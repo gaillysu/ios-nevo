@@ -37,6 +37,12 @@ class ConnectionControllerImpl : NSObject, ConnectionController, NevoBTDelegate 
     private var mRetryTimer:NSTimer?
     
     /**
+    this parameter saved old BLE 's  address, when doing BLE OTA, the address has been changed to another one
+    so, after finisned BLE ota, must restore it to normal 's address
+    */
+    private var savedAddress:String?
+    
+    /**
     A classic singelton pattern
     */
     class var sharedInstance : ConnectionControllerImpl {
@@ -141,12 +147,32 @@ class ConnectionControllerImpl : NSObject, ConnectionController, NevoBTDelegate 
     See ConnectionController protocol
     */
     func forgetSavedAddress() {
+        
+        if hasSavedAddress()
+        {
+            savedAddress = NSUserDefaults.standardUserDefaults().objectForKey(SAVED_ADDRESS_KEY) as? String
+        }
 
         let userDefaults = NSUserDefaults.standardUserDefaults();
 
         userDefaults.setObject("",forKey:SAVED_ADDRESS_KEY)
         
         userDefaults.synchronize()
+
+    }
+    /**
+    See ConnectionController protocol
+    */
+    func restoreSavedAddress()
+    {
+        if( savedAddress? != nil)
+        {
+        let userDefaults = NSUserDefaults.standardUserDefaults();
+        
+        userDefaults.setObject(savedAddress?,forKey:SAVED_ADDRESS_KEY)
+        
+        userDefaults.synchronize()
+        }
 
     }
     

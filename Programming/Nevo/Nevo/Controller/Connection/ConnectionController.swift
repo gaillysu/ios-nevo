@@ -48,6 +48,13 @@ protocol ConnectionController {
     func forgetSavedAddress()
     
     /**
+    restore the saved address. BLE OTA use it
+    Usage:forgetSavedAddress()/restoreSavedAddress(), if not call forgetSavedAddress()
+    before call it, do nothing
+    */
+    func restoreSavedAddress()
+    
+    /**
     Tries to send a request, you can't be sure that it will effectively be sent
     */
     func sendRequest(Request)
