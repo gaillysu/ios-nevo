@@ -24,8 +24,9 @@ class StepGoalSetingView: UIView,UIPickerViewDataSource,UIPickerViewDelegate {
     @IBOutlet var modarateButton: UIButton!
     @IBOutlet var intensiveButton: UIButton!
     @IBOutlet var sportiveButton: UIButton!
-    @IBOutlet var stepRoundImage: UIImageView!
-
+    @IBOutlet weak var title: UILabel!
+    @IBOutlet weak var setingButton: UIButton!
+    
     private var mPickerView:UIPickerView?
 
     private var mButtonArray:[UIButton]=[]
@@ -42,20 +43,18 @@ class StepGoalSetingView: UIView,UIPickerViewDataSource,UIPickerViewDelegate {
 
     var animationView:AnimationView!
 
-    func bulidStepGoalView(delegate:ButtonManagerCallBack,navigationItem:UINavigationItem){
+    func bulidStepGoalView(delegate:ButtonManagerCallBack){
 
-        var titleLabel:UILabel = UILabel(frame: CGRectMake(0, 0, 120, 30))
-        titleLabel.textColor = UIColor.whiteColor()
-        titleLabel.text = NSLocalizedString("stepGoalTitle", comment: "")
-        titleLabel.font = AppTheme.SYSTEMFONTOFSIZE()
-        titleLabel.textAlignment = NSTextAlignment.Center
-        navigationItem.titleView = titleLabel
+        title.textColor = UIColor.whiteColor()
+        title.text = NSLocalizedString("stepGoalTitle", comment: "")
+        title.font = AppTheme.SYSTEMFONTOFSIZE()
+        title.textAlignment = NSTextAlignment.Center
 
         mDelegate = delegate
 
         animationView = AnimationView(frame: self.frame, delegate: delegate)
 
-        stepLabel.text = NSLocalizedString("step", comment: "")
+        stepLabel.text = NSLocalizedString("Step", comment: "")
 
         goalButton.setTitle(NSLocalizedString("goalButton", comment: ""), forState: UIControlState.Normal)
         goalButton.setTitle(NSLocalizedString("goalButton", comment: ""), forState: UIControlState.Selected)
@@ -64,14 +63,20 @@ class StepGoalSetingView: UIView,UIPickerViewDataSource,UIPickerViewDelegate {
         modarateButton.setTitle(NSLocalizedString("Modarate", comment: ""), forState: UIControlState.Normal)
         modarateButton.setTitle(NSLocalizedString("Modarate", comment: ""), forState: UIControlState.Selected)
         modarateButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Selected)
+        modarateButton.layer.borderWidth = 1.0;
+        modarateButton.layer.borderColor = UIColor.grayColor().CGColor;
 
         intensiveButton.setTitle(NSLocalizedString("Intensive", comment: ""), forState: UIControlState.Normal)
         intensiveButton.setTitle(NSLocalizedString("Intensive", comment: ""), forState: UIControlState.Selected)
         intensiveButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Selected)
+        intensiveButton.layer.borderWidth = 1.0;
+        intensiveButton.layer.borderColor = UIColor.grayColor().CGColor;
 
         sportiveButton.setTitle(NSLocalizedString("Sportive", comment: ""), forState: UIControlState.Normal)
         sportiveButton.setTitle(NSLocalizedString("Sportive", comment: ""), forState: UIControlState.Selected)
         sportiveButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Selected)
+        sportiveButton.layer.borderWidth = 1.0;
+        sportiveButton.layer.borderColor = UIColor.grayColor().CGColor;
 
         mButtonArray = [modarateButton,intensiveButton,sportiveButton]
 
@@ -87,8 +92,7 @@ class StepGoalSetingView: UIView,UIPickerViewDataSource,UIPickerViewDelegate {
     }
 
     func bulidUI() {
-        stepRoundImage.frame = CGRectMake(0, 0, UIScreen.mainScreen().bounds.width-60, UIScreen.mainScreen().bounds.width-60);
-        stepRoundImage.center = CGPointMake(self.frame.width/2.0, self.frame.height/2.0);
+
     }
     /*
     Button Action

@@ -25,7 +25,7 @@ class StepGoalSetingController: UIViewController, SyncControllerDelegate,ButtonM
         mSyncController = SyncController.sharedInstance
         mSyncController?.startConnect(false, delegate: self)
 
-        stepGoalView.bulidStepGoalView(self,navigationItem: self.navigationItem)
+        stepGoalView.bulidStepGoalView(self)
         
         if let numberOfSteps = NSUserDefaults.standardUserDefaults().objectForKey(NUMBER_OF_STEPS_GOAL_KEY) as? Int {
             setGoal(NumberOfStepsGoal(steps: numberOfSteps))
@@ -82,6 +82,11 @@ class StepGoalSetingController: UIViewController, SyncControllerDelegate,ButtonM
 
             setGoal(NumberOfStepsGoal(steps: stepGoalView.getNumberOfStepsGoal()))
 
+        }
+
+        if sender.isEqual(stepGoalView.setingButton) {
+
+            
         }
     }
     

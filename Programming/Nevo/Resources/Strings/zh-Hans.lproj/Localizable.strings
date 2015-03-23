@@ -24,7 +24,6 @@
 "Next"="下一步";
 "Finish"="完成";
 "Connect"="连接";
-"step"="设置你的日常目标";
 "Cancel"="取消";
 "Enter"="进入";
 "alarmLabelTitle"="设置你的闹钟";
@@ -48,4 +47,4 @@
 "On"="开";
 "Notification"="Notification";
 "Progress: "="Progress: ";
-"Step: "="Steps: ";
+"Step"="步";

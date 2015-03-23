@@ -24,7 +24,6 @@
 "Next"="下壹步";
 "Finish"="完成";
 "Connect"="連接";
-"step"="設置妳的日常目標";
 "Cancel"="取消";
 "Enter"="進入";
 "alarmLabelTitle"="設置妳的鬧鐘";
@@ -48,4 +47,4 @@
 "On"="開";
 "Notification"="Notification";
 "Progress: "="Progress: ";
-"Step: "="Steps: ";
+"Step"="步";

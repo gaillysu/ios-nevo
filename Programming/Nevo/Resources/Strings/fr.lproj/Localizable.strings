@@ -24,7 +24,6 @@
 "Next"="Next";
 "Finish"="Finish";
 "Connect"="Connect";
-"step"="Set your daily goal";
 "Cancel"="Cancel";
 "Enter"="Enter";
 "alarmLabelTitle"=" Set your alarm";
@@ -48,4 +47,4 @@
 "On"="On";
 "Notification"="Notification";
 "Progress: "="Progress: ";
-"Step: "="Steps: ";
+"Step"="Steps";
