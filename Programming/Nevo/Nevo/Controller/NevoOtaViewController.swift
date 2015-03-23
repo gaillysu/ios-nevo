@@ -34,9 +34,8 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
         nevoOtaView.buildView(self)
         //init the ota
         mNevoOtaController = NevoOtaController(controller: self)
-        checkConnection()
         initValue()
-        
+        checkConnection()
     }
 
     override func didReceiveMemoryWarning() {
@@ -46,7 +45,7 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
     
     override func viewDidDisappear(animated: Bool) {
         super.viewDidDisappear(animated)
-        mNevoOtaController!.reset()
+        mNevoOtaController!.reset(true)
     }
     
     //init data function
@@ -55,6 +54,9 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
         progressBar.setProgress(0.0, animated: false)
         ProgressLabel.text = ""
         upLoadStatus.text = ""
+        isTransferring = false
+        uploadBtn.setTitle("Upload", forState: UIControlState.Normal)
+        uploadBtn.enabled = false
     }
     
     //upload button function
@@ -68,10 +70,12 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
         }
         if (self.isTransferring) {
             isTransferring = false
+            uploadBtn.setTitle("Upload", forState: UIControlState.Normal)
             mNevoOtaController?.cancelDFU()
         }
         else {
             isTransferring = true
+            uploadBtn.setTitle("Cancel", forState: UIControlState.Normal)
             mNevoOtaController?.performDFUOnFile(selectedFileURL!, firmwareType: enumFirmwareType)
         }
     }
@@ -89,7 +93,7 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
         //reset OTA view controller 's some data, such as progress bar and upload button text/status
         dispatch_async(dispatch_get_main_queue(), {
         self.initValue()
-        self.mNevoOtaController!.reset()
+        self.mNevoOtaController!.reset(false)
         });
     }
 
@@ -110,7 +114,8 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
             var alert :UIAlertView = UIAlertView(title: "Firmware Upgrade", message: "Successful!,pls open Nevo's bluetooth.", delegate: nil, cancelButtonTitle: "OK")
             alert.show()
             
-            self.mNevoOtaController!.reset()
+            self.mNevoOtaController!.reset(false)
+            
             });
     
     }
@@ -124,8 +129,7 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
             var alert :UIAlertView = UIAlertView(title: "Firmware Upgrade", message: errString, delegate: nil, cancelButtonTitle: "OK")
             alert.show()
             
-            self.mNevoOtaController!.reset()
-            
+            self.mNevoOtaController!.reset(false)
         });
 
     }

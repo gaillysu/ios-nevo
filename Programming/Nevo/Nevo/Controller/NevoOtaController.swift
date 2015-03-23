@@ -66,7 +66,6 @@ class NevoOtaController : ConnectionControllerDelegate {
     init(controller : NevoOtaViewController) {
         
         dfuResponse = DFUResponse(responseCode: 0,requestedCode: 0,responseStatus: 0)
-        
         mDelegate = controller
         mConnectionController = ConnectionControllerImpl.sharedInstance
         
@@ -110,6 +109,10 @@ class NevoOtaController : ConnectionControllerDelegate {
     bytesInLastPacket = ((binFileData?.length)! % enumPacketOption.PACKET_SIZE.rawValue);
     if (bytesInLastPacket == 0) {
         bytesInLastPacket = enumPacketOption.PACKET_SIZE.rawValue;
+    }
+    else
+    {
+        numberOfPackets = numberOfPackets + 1
     }
     NSLog("Number of Packets \(numberOfPackets) Bytes in last Packet \(bytesInLastPacket)")
     writingPacketNumber = 0
@@ -426,6 +429,7 @@ class NevoOtaController : ConnectionControllerDelegate {
     
     func performDFUOnFile(firmwareURL:NSURL , firmwareType:DfuFirmwareTypes)
     {
+        mConnectionController?.setDelegate(self)
         state = DFUControllerState.IDLE
         dfuFirmwareType = firmwareType
         firmwareFile = firmwareURL
@@ -479,6 +483,8 @@ class NevoOtaController : ConnectionControllerDelegate {
     //remove first 16K bytes, remain 48k bytes
     var currentRange :NSRange =  NSMakeRange(16*1024, locData.length - 16 * 1024);
     
+    firmwareDataBytesSent = 0
+    curpage = 0
     binFileData = locData.subdataWithRange(currentRange)
     binFileSize = binFileData!.length
     totalpage = binFileData!.length/DFUCONTROLLER_PAGE_SIZE;
@@ -645,10 +651,28 @@ class NevoOtaController : ConnectionControllerDelegate {
     func isConnected() -> Bool{
         return mConnectionController!.isConnected()
     }
-    
-    //reset to normal mode "NevoProfile"
-    func reset()
+
+    /**
+    reset to normal mode "NevoProfile"
+    parameter: switch2SyncController: true/false
+    step1: restore Address
+    step2: restore syncController
+    step3: restore normal mode
+    step4: reconnect
+    //from OTA mode to normal mode, must make syncController to handle connectionController
+    because MCU/BLE ota, user has done one of them, perhaps do another one,
+    so no need make syncController handle connectionController
+    */
+    func reset(switch2SyncController:Bool)
     {
+        if(dfuFirmwareType == DfuFirmwareTypes.APPLICATION )
+        {
+            self.mConnectionController!.restoreSavedAddress()
+        }
+        if switch2SyncController
+        {
+        self.mConnectionController?.setDelegate(SyncController.sharedInstance)
+        }
         self.mConnectionController!.setOTAMode(false,Disconnect:true)
         self.mConnectionController!.connect()
     }
