@@ -336,34 +336,97 @@ class NevoOtaController : ConnectionControllerDelegate {
     func connectionStateChanged(isConnected : Bool) {
         
         mDelegate?.connectionStateChanged(isConnected)
-        
+        //only BLE OTA run below code
+        if(dfuFirmwareType == DfuFirmwareTypes.APPLICATION )
+        {
         if isConnected
         {
-            if mConnectionController?.getOTAMode() == true
+            if state == DFUControllerState.SEND_RECONNECT
             {
-                //delay for finished discovery services
-                var dispatchTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, Int64(2.0 * Double(NSEC_PER_SEC)))
+                state = DFUControllerState.SEND_START_COMMAND
+                var dispatchTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, Int64(1.0 * Double(NSEC_PER_SEC)))
                 dispatch_after(dispatchTime, dispatch_get_main_queue(), {
-                    
-                 self.performDFUOnFile(self.firmwareFile! , firmwareType:self.dfuFirmwareType)
-                    
+                    self.mConnectionController!.sendRequest(SetOTAModeRequest())
                 })
                 
             }
+            
+            else if state == DFUControllerState.DISCOVERING
+            {
+                state == DFUControllerState.SEND_FIRMWARE_DATA
+                var dispatchTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, Int64(1.0 * Double(NSEC_PER_SEC)))
+                dispatch_after(dispatchTime, dispatch_get_main_queue(), {
+                    self.mConnectionController!.sendRequest(StartOTARequest())
+                    self.mConnectionController!.sendRequest(writeFileSizeRequest(filelength: self.binFileSize))
+                })
+                
+            }
+            
         }
         else
         {
-            if mConnectionController?.getOTAMode() == false
+                if state == DFUControllerState.IDLE
+                {
+                    self.state = DFUControllerState.SEND_RECONNECT
+                    
+                    var dispatchTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, Int64(1.0 * Double(NSEC_PER_SEC)))
+                    dispatch_after(dispatchTime, dispatch_get_main_queue(), {
+                        self.mConnectionController!.connect()
+                    })
+                }
+                else if state == DFUControllerState.SEND_START_COMMAND
+                {
+                    self.state = DFUControllerState.DISCOVERING
+                    //reset it by BLE peer disconnect
+                    self.mConnectionController!.setOTAMode(false,Disconnect:false)
+                    
+                    var dispatchTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, Int64(1.0 * Double(NSEC_PER_SEC)))
+                    dispatch_after(dispatchTime, dispatch_get_main_queue(), {
+                        NSLog("***********again set OTA mode,forget it firstly,and scan DFU service*******")
+                        //when switch to DFU mode, the identifier has changed another one
+                        self.mConnectionController!.forgetSavedAddress()
+                        self.mConnectionController!.setOTAMode(true,Disconnect:false)
+                        self.mConnectionController!.connect()
+                        
+                    })
+                }
+        }
+        }
+        //only MCU OTA run below code
+        else
+        {
+            if(isConnected)
             {
-                mConnectionController?.setOTAMode(true)
-                //delay ???
-                mConnectionController?.connect()
+                if self.state == DFUControllerState.SEND_RECONNECT
+                {
+                    self.state = DFUControllerState.SEND_START_COMMAND
+                    var dispatchTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, Int64(1.0 * Double(NSEC_PER_SEC)))
+                    dispatch_after(dispatchTime, dispatch_get_main_queue(), {
+                    self.mConnectionController!.sendRequest(Mcu_SetOTAModeRequest())
+                    })
+                }
+
+            }
+            else
+            {
+                if self.state == DFUControllerState.IDLE
+                {
+                self.state = DFUControllerState.SEND_RECONNECT
+                var dispatchTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, Int64(1.0 * Double(NSEC_PER_SEC)))
+                dispatch_after(dispatchTime, dispatch_get_main_queue(), {
+                    
+                    self.mConnectionController!.connect()
+                })
+                }
+
+                
             }
         }
     }
     
     func performDFUOnFile(firmwareURL:NSURL , firmwareType:DfuFirmwareTypes)
     {
+        state = DFUControllerState.IDLE
         dfuFirmwareType = firmwareType
         firmwareFile = firmwareURL
         //Hex to bin and read it to buffer
@@ -372,19 +435,11 @@ class NevoOtaController : ConnectionControllerDelegate {
         //[dfuRequests enableNotification];
         if(dfuFirmwareType == DfuFirmwareTypes.APPLICATION )
         {
-            if mConnectionController?.getOTAMode() == false
-            {
-                mConnectionController?.sendRequest(SetOTAModeRequest())
-            }
-            else {
-                mConnectionController?.sendRequest(StartOTARequest())
-                mConnectionController?.sendRequest(writeFileSizeRequest(filelength: binFileSize))
-            }
+            mConnectionController?.setOTAMode(true,Disconnect:true)
         }
         else if(dfuFirmwareType == DfuFirmwareTypes.SOFTDEVICE)
         {
-            state = DFUControllerState.SEND_START_COMMAND
-            mConnectionController?.sendRequest(Mcu_SetOTAModeRequest())
+            mConnectionController?.setOTAMode(true,Disconnect:true)
         }
     }
     
@@ -589,6 +644,13 @@ class NevoOtaController : ConnectionControllerDelegate {
     
     func isConnected() -> Bool{
         return mConnectionController!.isConnected()
+    }
+    
+    //reset to normal mode "NevoProfile"
+    func reset()
+    {
+        self.mConnectionController!.setOTAMode(false,Disconnect:true)
+        self.mConnectionController!.connect()
     }
 }
 

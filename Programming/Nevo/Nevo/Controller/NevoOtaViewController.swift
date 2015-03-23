@@ -32,9 +32,9 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
 
         //init the view
         nevoOtaView.buildView(self)
-        uploadBtn.enabled = false
         //init the ota
         mNevoOtaController = NevoOtaController(controller: self)
+        checkConnection()
         initValue()
         
     }
@@ -44,11 +44,17 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
         // Dispose of any resources that can be recreated.
     }
     
+    override func viewDidDisappear(animated: Bool) {
+        super.viewDidDisappear(animated)
+        mNevoOtaController!.reset()
+    }
+    
     //init data function
     private func initValue()
     {
         progressBar.setProgress(0.0, animated: false)
         ProgressLabel.text = ""
+        upLoadStatus.text = ""
     }
     
     //upload button function
@@ -83,6 +89,7 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
         //reset OTA view controller 's some data, such as progress bar and upload button text/status
         dispatch_async(dispatch_get_main_queue(), {
         self.initValue()
+        self.mNevoOtaController!.reset()
         });
     }
 
@@ -100,10 +107,10 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
             
             self.initValue()
             
-            var alert :UIAlertView = UIAlertView(title: "Firmware Upgrade", message: "Successful!", delegate: nil, cancelButtonTitle: "OK")
+            var alert :UIAlertView = UIAlertView(title: "Firmware Upgrade", message: "Successful!,pls open Nevo's bluetooth.", delegate: nil, cancelButtonTitle: "OK")
             alert.show()
             
-            
+            self.mNevoOtaController!.reset()
             });
     
     }
@@ -117,6 +124,7 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
             var alert :UIAlertView = UIAlertView(title: "Firmware Upgrade", message: errString, delegate: nil, cancelButtonTitle: "OK")
             alert.show()
             
+            self.mNevoOtaController!.reset()
             
         });
 

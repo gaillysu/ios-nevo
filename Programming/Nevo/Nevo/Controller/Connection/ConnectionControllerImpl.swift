@@ -53,7 +53,7 @@ class ConnectionControllerImpl : NSObject, ConnectionController, NevoBTDelegate 
         super.init()
         
         mNevoBT = NevoBTImpl(externalDelegate: self, acceptableDevice: NevoProfile())
-        setOTAMode(false)
+        setOTAMode(false,Disconnect:true)
     }
     
     /**
@@ -173,8 +173,9 @@ class ConnectionControllerImpl : NSObject, ConnectionController, NevoBTDelegate 
     See ConnectionController protocol
     */
     func sendRequest(request:Request) {
-        if(getOTAMode() && request.getTargetProfile().CONTROL_SERVICE != NevoOTAControllerProfile().CONTROL_SERVICE) {
-            
+        if(getOTAMode() && (request.getTargetProfile().CONTROL_SERVICE != NevoOTAModeProfile().CONTROL_SERVICE
+                        && request.getTargetProfile().CONTROL_SERVICE != NevoOTAControllerProfile().CONTROL_SERVICE))
+        {
             NSLog("ERROR ! The ConnectionController is in OTA mode, impossible to send a normal nevo request !")
             
         } else if (!getOTAMode() && request.getTargetProfile().CONTROL_SERVICE != NevoProfile().CONTROL_SERVICE) {
@@ -195,19 +196,25 @@ class ConnectionControllerImpl : NSObject, ConnectionController, NevoBTDelegate 
     /**
     See ConnectionController
     */
-    func setOTAMode(OTAMode:Bool) {
+    func setOTAMode(OTAMode:Bool,Disconnect:Bool) {
         
         //No need to change the mode if we are already in OTA Mode
         if getOTAMode() == OTAMode {
             return;
         }
-        
-        mNevoBT?.disconnect()
+        if Disconnect
+        {
+           //cancel reconnect timer, make sure OTA can do connect by OTAcontroller
+           disconnect()
+        }
         
         //We don't set the profile on the NevoBT, because it could create too many issues
         //So we destroy the previous instance and recreate one
         if(OTAMode) {
-            mNevoBT = NevoBTImpl(externalDelegate: self, acceptableDevice: NevoOTAControllerProfile())
+            if Disconnect
+            { mNevoBT = NevoBTImpl(externalDelegate: self, acceptableDevice: NevoOTAModeProfile())}
+            else
+            { mNevoBT = NevoBTImpl(externalDelegate: self, acceptableDevice: NevoOTAControllerProfile())}
         } else {
             mNevoBT = NevoBTImpl(externalDelegate: self, acceptableDevice: NevoProfile())
         }
@@ -264,7 +271,7 @@ class ConnectionControllerImpl : NSObject, ConnectionController, NevoBTDelegate 
     
     func getOTAMode() -> Bool {
         if let profile = mNevoBT?.getProfile() {
-            return profile is NevoOTAControllerProfile
+            return profile is NevoOTAControllerProfile || profile is NevoOTAModeProfile
         }
         return false
     }
