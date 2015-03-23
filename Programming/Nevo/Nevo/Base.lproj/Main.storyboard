@@ -1,27 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1510" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="B94-9O-eGF">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="VSL-Nt-5H3">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Navigation Controller-->
-        <scene sceneID="jSz-QX-Nx0">
-            <objects>
-                <navigationController navigationBarHidden="YES" id="B94-9O-eGF" sceneMemberID="viewController">
-                    <nil key="simulatedStatusBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="7in-Ls-p47">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="VSL-Nt-5H3" kind="relationship" relationship="rootViewController" id="RIO-0o-gcb"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="9xM-Ob-4Qz" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-37" y="-422"/>
-        </scene>
         <!--Main Tab Bar Controller-->
         <scene sceneID="cdp-L5-L47">
             <objects>
@@ -296,9 +279,11 @@
         <!--Navigation Controller-->
         <scene sceneID="qEP-IN-OCQ">
             <objects>
-                <navigationController useStoryboardIdentifierAsRestorationIdentifier="YES" id="bGr-qo-zHH" sceneMemberID="viewController">
+                <navigationController useStoryboardIdentifierAsRestorationIdentifier="YES" navigationBarHidden="YES" id="bGr-qo-zHH" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" image="homeitem" id="FTX-5o-89V"/>
                     <nil key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="p9j-eT-GsY">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -317,8 +302,11 @@
         <!--Navigation Controller-->
         <scene sceneID="QXP-JR-yAP">
             <objects>
-                <navigationController id="rem-vM-ODh" sceneMemberID="viewController">
+                <navigationController navigationBarHidden="YES" id="rem-vM-ODh" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" image="goalitem" id="ba1-Wn-XQe"/>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="gdh-sX-Da8">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -343,6 +331,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DWK-bD-PWQ">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="85"/>
+                                <color key="backgroundColor" red="0.18823529410000001" green="0.18823529410000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="round600.png" translatesAutoresizingMaskIntoConstraints="NO" id="yRT-9T-y4R">
                                 <rect key="frame" x="30" y="154" width="260" height="260"/>
                                 <constraints>
@@ -351,7 +343,7 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" Set your daily goal" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eye-WF-BOl">
-                                <rect key="frame" x="10" y="77" width="300" height="35"/>
+                                <rect key="frame" x="10" y="104" width="300" height="35"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="4Ck-sO-XlA"/>
                                     <constraint firstAttribute="width" constant="300" id="GfP-md-LIW"/>
@@ -427,16 +419,20 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="DWK-bD-PWQ" firstAttribute="centerX" secondItem="Eye-WF-BOl" secondAttribute="centerX" id="2MM-97-AVV"/>
                             <constraint firstAttribute="centerX" secondItem="kAf-Gx-iId" secondAttribute="centerX" id="5CZ-tf-8id"/>
                             <constraint firstAttribute="centerX" secondItem="QbO-Lj-nW0" secondAttribute="centerX" constant="-104" id="69b-Cd-2l8"/>
-                            <constraint firstItem="Eye-WF-BOl" firstAttribute="top" secondItem="Y6d-zv-u6z" secondAttribute="bottom" constant="33" id="BEu-pl-Vbr"/>
+                            <constraint firstItem="Eye-WF-BOl" firstAttribute="top" secondItem="Y6d-zv-u6z" secondAttribute="bottom" constant="104" id="BEu-pl-Vbr"/>
                             <constraint firstAttribute="centerX" secondItem="Eye-WF-BOl" secondAttribute="centerX" id="ONL-TK-DXa"/>
                             <constraint firstItem="yRT-9T-y4R" firstAttribute="leading" secondItem="6bb-WV-M23" secondAttribute="leading" constant="-10" id="VpA-ft-M0M"/>
                             <constraint firstAttribute="centerX" secondItem="6bb-WV-M23" secondAttribute="centerX" id="ZCD-XD-nXM"/>
+                            <constraint firstItem="DWK-bD-PWQ" firstAttribute="top" secondItem="Y6d-zv-u6z" secondAttribute="bottom" id="cLv-2U-Udi"/>
                             <constraint firstAttribute="bottom" secondItem="QbO-Lj-nW0" secondAttribute="bottom" constant="60" id="e29-1f-tDa"/>
+                            <constraint firstItem="DWK-bD-PWQ" firstAttribute="leading" secondItem="esU-rF-t9Y" secondAttribute="leading" id="gWj-rn-VYi"/>
                             <constraint firstAttribute="centerX" secondItem="dsh-Mg-AqS" secondAttribute="centerX" constant="104" id="jsF-Ea-YYy"/>
                             <constraint firstItem="yRT-9T-y4R" firstAttribute="centerY" secondItem="esU-rF-t9Y" secondAttribute="centerY" id="nQH-kC-QfS"/>
                             <constraint firstAttribute="bottom" secondItem="dsh-Mg-AqS" secondAttribute="bottom" constant="60" id="sKB-TJ-P5C"/>
+                            <constraint firstItem="yRT-9T-y4R" firstAttribute="top" secondItem="DWK-bD-PWQ" secondAttribute="bottom" constant="69" id="szg-t4-Kcv"/>
                             <constraint firstAttribute="centerY" secondItem="6bb-WV-M23" secondAttribute="centerY" constant="0.5" id="tXd-Wm-8dt"/>
                             <constraint firstAttribute="bottom" secondItem="kAf-Gx-iId" secondAttribute="bottom" constant="60" id="tts-Uh-CqZ"/>
                         </constraints>
@@ -450,6 +446,7 @@
                         </connections>
                     </view>
                     <navigationItem key="navigationItem" title="Step" id="VUx-V6-WUk"/>
+                    <nil key="simulatedStatusBarMetrics"/>
                     <connections>
                         <outlet property="stepGoalView" destination="esU-rF-t9Y" id="Pqi-PA-DsZ"/>
                     </connections>
@@ -461,9 +458,11 @@
         <!--Navigation Controller-->
         <scene sceneID="ct5-Mu-dmL">
             <objects>
-                <navigationController id="Hsa-EN-v8Q" sceneMemberID="viewController">
+                <navigationController navigationBarHidden="YES" id="Hsa-EN-v8Q" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" image="alarmitem" id="dU5-Ty-hhC"/>
                     <nil key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="0g2-Qz-bFf">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -479,9 +478,11 @@
         <!--Navigation Controller-->
         <scene sceneID="v51-aK-aDp">
             <objects>
-                <navigationController id="DaX-x3-cRa" sceneMemberID="viewController">
+                <navigationController navigationBarHidden="YES" id="DaX-x3-cRa" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" image="rss_selected" id="tcz-zj-CZY"/>
                     <nil key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="NaF-UI-JG3">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -506,6 +507,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zsl-Jp-9LG">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="85"/>
+                                <color key="backgroundColor" red="0.18823529410000001" green="0.18823529410000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="round600.png" translatesAutoresizingMaskIntoConstraints="NO" id="dsW-M2-zpw">
                                 <rect key="frame" x="30" y="154" width="260" height="260"/>
                                 <constraints>
@@ -528,7 +533,7 @@
                                     <action selector="controllEventManager:" destination="pwc-5p-Bqy" eventType="touchUpInside" id="5GT-RT-JpZ"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Set your Alarm" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cvc-DW-voE">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Set your Alarm" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cvc-DW-voE">
                                 <rect key="frame" x="10" y="77" width="300" height="35"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="300" id="0kp-rL-Yto"/>
@@ -590,7 +595,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="Zx4-WI-sxC">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="Zx4-WI-sxC">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
                                 <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
@@ -676,6 +681,12 @@
                     <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS" customClass="HomeView" customModule="Nevo" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GEc-qU-m9Q">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="85"/>
+                                <color key="backgroundColor" red="0.18823529411764706" green="0.18823529411764706" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Clock" id="RXC-Fy-u76"/>
@@ -688,7 +699,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-688" y="1970"/>
+            <point key="canvasLocation" x="-676" y="1970"/>
         </scene>
         <!--Tutorial Controller-->
         <scene sceneID="Rdd-pv-bH0">
@@ -730,9 +741,9 @@
     <resources>
         <image name="ConnectButtonPressed" width="320" height="57"/>
         <image name="Signal_3.png" width="320" height="57"/>
-        <image name="alarmitem" width="45" height="45"/>
-        <image name="goalitem" width="45" height="45"/>
-        <image name="homeitem" width="45" height="45"/>
+        <image name="alarmitem" width="68" height="68"/>
+        <image name="goalitem" width="68" height="68"/>
+        <image name="homeitem" width="68" height="68"/>
         <image name="round600.png" width="600" height="600"/>
         <image name="rss_selected" width="45" height="45"/>
         <image name="selectedButton.png" width="173" height="89"/>
