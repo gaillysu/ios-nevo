@@ -147,6 +147,7 @@ class SyncController: ConnectionControllerDelegate {
     }
     
     func SetNortification(settingArray:[NotificationSetting]) {
+        NSLog("SetNortification")
         sendRequest(SetNortificationRequest(settingArray: settingArray))
     }
     //end functions by UI
