@@ -63,7 +63,7 @@ class TutorialScanPageView : UIView {
         guideImage.backgroundColor = UIColor.clearColor()
         self.addSubview(guideImage)
 
-        let titleLabel:UILabel = UILabel(frame: CGRectMake(0, 0, guideImage.frame.size.width, 50))
+        let titleLabel:UILabel = UILabel(frame: CGRectMake(0, 0, guideImage.frame.size.width, 60))
         titleLabel.center = CGPointMake(self.frame.size.width/2.0, guideImage.frame.origin.y+guideImage.frame.size.height+30)
         titleLabel.textAlignment = NSTextAlignment.Center
         titleLabel.numberOfLines = 0
@@ -101,11 +101,11 @@ class TutorialScanPageView : UIView {
         mFinishButton?.addTarget(self, action: "ButtonAction:", forControlEvents: UIControlEvents.TouchUpInside)
         self.addSubview(mFinishButton!)
 
-        let errorLabel = UILabel(frame: CGRectMake(0, 0, titleLabel.frame.size.width, 80))
+        let errorLabel = UILabel(frame: CGRectMake(0, 0, titleLabel.frame.size.width, 90))
         if AppTheme.GET_IS_iPhone4S(){
-            errorLabel.center = CGPointMake(self.frame.size.width/2.0, self.frame.size.height-90)
+            errorLabel.center = CGPointMake(self.frame.size.width/2.0, self.frame.size.height-80)
         }else {
-            errorLabel.center = CGPointMake(self.frame.size.width/2.0, self.frame.size.height-120)
+            errorLabel.center = CGPointMake(self.frame.size.width/2.0, self.frame.size.height-130)
         }
 
         errorLabel.textAlignment = NSTextAlignment.Center

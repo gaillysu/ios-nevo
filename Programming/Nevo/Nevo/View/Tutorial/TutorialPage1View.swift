@@ -60,7 +60,7 @@ class TutorialPage1View : UIView {
         guideImage.backgroundColor = UIColor.clearColor()
         self.addSubview(guideImage)
 
-        let titleLabel:UILabel = UILabel(frame: CGRectMake(0, 0, guideImage.frame.size.width, 50))
+        let titleLabel:UILabel = UILabel(frame: CGRectMake(0, 0, guideImage.frame.size.width, 60))
         titleLabel.center = CGPointMake(self.frame.size.width/2.0, guideImage.frame.origin.y+guideImage.frame.size.height+70)
         titleLabel.textAlignment = NSTextAlignment.Left
         titleLabel.numberOfLines = 0
@@ -93,7 +93,7 @@ class TutorialPage1View : UIView {
         nextButton.hidden = true
         self.addSubview(nextButton)
 
-        let errorLabel:UILabel = UILabel(frame: CGRectMake(0, 0, titleLabel.frame.size.width, 80))
+        let errorLabel:UILabel = UILabel(frame: CGRectMake(0, 0, titleLabel.frame.size.width, 90))
         errorLabel.center = CGPointMake(self.frame.size.width/2.0, self.frame.size.height-100)
         errorLabel.textAlignment = NSTextAlignment.Left
         errorLabel.numberOfLines = 0
