@@ -45,7 +45,7 @@ class AlarmClockController: UIViewController, SyncControllerDelegate,ButtonManag
     }
 
     override func viewDidAppear(animated: Bool) {
-        checkConnection()
+        //checkConnection()
     }
 
     override func viewDidLayoutSubviews() {
@@ -89,6 +89,19 @@ class AlarmClockController: UIViewController, SyncControllerDelegate,ButtonManag
         }
         if sender.isEqual(alarmView.setingButton){
             NSLog("alarmView.setingButton")
+
+        }
+
+        if sender.isEqual(alarmView.amButton){
+            alarmView.amButton.selected = true
+            alarmView.pmButton.selected = false
+            NSLog("alarmView.amButton")
+
+        }
+        if sender.isEqual(alarmView.pmButton){
+            alarmView.amButton.selected = false
+            alarmView.pmButton.selected = true
+            NSLog("alarmView.pmButton")
 
         }
     }

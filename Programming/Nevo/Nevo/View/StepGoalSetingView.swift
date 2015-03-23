@@ -19,7 +19,7 @@ protocol StepGoalButtonActionCallBack {
 
 class StepGoalSetingView: UIView,UIPickerViewDataSource,UIPickerViewDelegate {
 
-    @IBOutlet var stepLabel: UILabel!
+    @IBOutlet weak var stepLabel: UILabel!
     @IBOutlet var goalButton: UIButton!
     @IBOutlet var modarateButton: UIButton!
     @IBOutlet var intensiveButton: UIButton!

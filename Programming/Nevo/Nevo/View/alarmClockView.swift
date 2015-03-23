@@ -12,8 +12,10 @@ class alarmClockView: UIView {
 
     @IBOutlet var selectedTimerButton: UIButton!
     @IBOutlet var alarmSwitch: UISwitch!
-    @IBOutlet var alarmTitle: UILabel!
+    @IBOutlet weak var title: UILabel!
     @IBOutlet weak var setingButton: UIButton!
+    @IBOutlet weak var amButton: UIButton!
+    @IBOutlet weak var pmButton: UIButton!
 
     
     private var mCancelButton:UIButton?
@@ -30,10 +32,10 @@ class alarmClockView: UIView {
     var animationView:AnimationView!
     
     func bulidAlarmView(delegate:ButtonManagerCallBack,hour:Int,min:Int,enabled:Bool) {
-        alarmTitle.textColor = UIColor.whiteColor()
-        alarmTitle.text = NSLocalizedString("alarmTitle", comment: "")
-        alarmTitle.font = AppTheme.SYSTEMFONTOFSIZE()
-        alarmTitle.textAlignment = NSTextAlignment.Center
+        title.textColor = UIColor.whiteColor()
+        title.text = NSLocalizedString("alarmTitle", comment: "")
+        title.font = AppTheme.SYSTEMFONTOFSIZE()
+        title.textAlignment = NSTextAlignment.Center
 
         mDelegate = delegate
         animationView = AnimationView(frame: self.frame, delegate: delegate)
