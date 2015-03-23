@@ -22,7 +22,7 @@ class HomeController: UIViewController, SyncControllerDelegate ,ButtonManagerCal
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        homeView.bulidHomeView()
+        homeView.bulidHomeView(self)
 
         let timer:NSTimer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector:"timerAction:", userInfo: nil, repeats: true);
         

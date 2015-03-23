@@ -18,8 +18,12 @@ class HomeView: UIView {
 
     var progressView:CircleProgressView?
     var progresValue:CGFloat = 0.0
+
+    private var mDelegate:ButtonManagerCallBack!
     
-    func bulidHomeView() {
+    func bulidHomeView(delegate:ButtonManagerCallBack) {
+        mDelegate = delegate
+        
         title.textColor = UIColor.whiteColor()
         title.text = NSLocalizedString("homeTitle", comment: "")
         title.font = AppTheme.SYSTEMFONTOFSIZE()
@@ -41,7 +45,11 @@ class HomeView: UIView {
     func getClockTimerView() -> ClockView {
         return mClockTimerView
     }
-    
+
+    @IBAction func ButtonAction(sender: AnyObject) {
+        mDelegate?.controllManager(sender)
+    }
+
     /**
     set the progress of the progressView
 
