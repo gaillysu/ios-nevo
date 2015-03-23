@@ -14,7 +14,7 @@ Controller of the Home Screen,
 it should handle very little, only the initialisation of the different Views and the Sync Controller
 */
 
-class HomeController: UIViewController, SyncControllerDelegate{
+class HomeController: UIViewController, SyncControllerDelegate ,ButtonManagerCallBack{
     
     @IBOutlet var homeView: HomeView!
     private var sync:SyncController?
@@ -22,7 +22,7 @@ class HomeController: UIViewController, SyncControllerDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        homeView.bulidHomeView(self.navigationItem)
+        homeView.bulidHomeView(self)
 
         let timer:NSTimer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector:"timerAction:", userInfo: nil, repeats: true);
         
@@ -57,6 +57,14 @@ class HomeController: UIViewController, SyncControllerDelegate{
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+
+    // MARK: - ButtonManagerCallBack
+    func controllManager(sender:AnyObject) {
+        if sender.isEqual(homeView.settingButton) {
+            
+            
+        }
     }
 
     func timerAction(NSTimer) {

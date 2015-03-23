@@ -3,17 +3,17 @@
     {
       "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "round.png"
+      "filename" : "nevo_app-screens_02_65.png"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "round@2x.png"
+      "filename" : "nevo_app-screens_02_135.png"
     },
     {
       "idiom" : "universal",
       "scale" : "3x",
-      "filename" : "round@3x.png"
+      "filename" : "nevo_app-screens_02_195.png"
     }
   ],
   "info" : {
