@@ -12,10 +12,9 @@ class alarmClockView: UIView {
 
     @IBOutlet var selectedTimerButton: UIButton!
     @IBOutlet var alarmSwitch: UISwitch!
-
     @IBOutlet var alarmTitle: UILabel!
+    @IBOutlet weak var setingButton: UIButton!
 
-    @IBOutlet var stepRoundImage: UIImageView!
     
     private var mCancelButton:UIButton?
     private var mEnterButton:UIButton?
@@ -30,21 +29,17 @@ class alarmClockView: UIView {
 
     var animationView:AnimationView!
     
-    func bulidAlarmView(delegate:ButtonManagerCallBack,hour:Int,min:Int,enabled:Bool,navigationItem:UINavigationItem) {
-        var titleLabel:UILabel = UILabel(frame: CGRectMake(0, 0, 120, 30))
-        titleLabel.textColor = UIColor.whiteColor()
-        titleLabel.text = NSLocalizedString("alarmTitle", comment: "")
-        titleLabel.font = AppTheme.SYSTEMFONTOFSIZE()
-        titleLabel.textAlignment = NSTextAlignment.Center
-        navigationItem.titleView = titleLabel
+    func bulidAlarmView(delegate:ButtonManagerCallBack,hour:Int,min:Int,enabled:Bool) {
+        alarmTitle.textColor = UIColor.whiteColor()
+        alarmTitle.text = NSLocalizedString("alarmTitle", comment: "")
+        alarmTitle.font = AppTheme.SYSTEMFONTOFSIZE()
+        alarmTitle.textAlignment = NSTextAlignment.Center
 
         mDelegate = delegate
         animationView = AnimationView(frame: self.frame, delegate: delegate)
 
         alarmSwitch.tintColor = UIColor.blackColor()
         alarmSwitch.onTintColor = AppTheme.NEVO_SOLAR_YELLOW()
-
-        alarmTitle.text = NSLocalizedString("alarmLabelTitle", comment: "")
         
         setAlarmTime(hour,min: min)
         
@@ -53,8 +48,7 @@ class alarmClockView: UIView {
     }
 
     func bulidUI() {
-        stepRoundImage.frame = CGRectMake(0, 0, UIScreen.mainScreen().bounds.width-60, UIScreen.mainScreen().bounds.width-60);
-        stepRoundImage.center = CGPointMake(self.frame.width/2.0, self.frame.height/2.0);
+
     }
     @IBAction func controllEventManager(sender: AnyObject) {
         //CallBack StepGoalSetingController

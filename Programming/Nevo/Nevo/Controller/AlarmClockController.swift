@@ -40,7 +40,7 @@ class AlarmClockController: UIViewController, SyncControllerDelegate,ButtonManag
             mAlarmenable = alarmEnableSaved
         }
 
-        alarmView.bulidAlarmView(self,hour:mAlarmhour,min:mAlarmmin,enabled:mAlarmenable,navigationItem: self.navigationItem)
+        alarmView.bulidAlarmView(self,hour:mAlarmhour,min:mAlarmmin,enabled:mAlarmenable)
         // Do any additional setup after loading the view.
     }
 
@@ -86,6 +86,10 @@ class AlarmClockController: UIViewController, SyncControllerDelegate,ButtonManag
         if sender.isEqual(alarmView.getEnterButton()?){
             NSLog("alarmView.enterButton")
             setAlarm()
+        }
+        if sender.isEqual(alarmView.setingButton){
+            NSLog("alarmView.setingButton")
+
         }
     }
     
