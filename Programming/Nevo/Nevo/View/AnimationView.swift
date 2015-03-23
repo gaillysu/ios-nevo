@@ -173,10 +173,10 @@ class CircleProgressView: CAShapeLayer {
     override init(){
         super.init()
         array = NSMutableArray()
-        self.path = drawPathWithArcCenter()
+        //self.path = drawPathWithArcCenter()
         self.fillColor = UIColor.clearColor().CGColor
-        self.strokeColor = UIColor(red: 0.56, green: 0.56, blue: 0.56, alpha: 0.4).CGColor
-        self.lineWidth = 5
+        //self.strokeColor = UIColor(red: 0.56, green: 0.56, blue: 0.56, alpha: 0.4).CGColor
+        //self.lineWidth = 5
 
         progressLayer = CAShapeLayer()
         progressLayer.path = drawPathWithArcCenter()
