@@ -731,6 +731,10 @@
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <connections>
+                            <outlet property="settingButton" destination="knP-Iu-DTh" id="LNw-gF-Vzq"/>
+                            <outlet property="title" destination="Agf-W9-MZv" id="1Gi-JS-DT8"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" title="Clock" id="RXC-Fy-u76"/>
                     <nil key="simulatedStatusBarMetrics"/>
