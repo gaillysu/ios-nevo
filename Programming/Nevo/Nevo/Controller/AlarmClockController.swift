@@ -45,7 +45,7 @@ class AlarmClockController: UIViewController, SyncControllerDelegate,ButtonManag
     }
 
     override func viewDidAppear(animated: Bool) {
-        //checkConnection()
+        checkConnection()
     }
 
     override func viewDidLayoutSubviews() {

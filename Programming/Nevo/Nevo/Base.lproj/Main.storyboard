@@ -374,18 +374,20 @@
                                     <constraint firstAttribute="trailing" secondItem="TcK-m2-0zV" secondAttribute="trailing" constant="8" id="wph-Vj-AgO"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QbO-Lj-nW0">
-                                <rect key="frame" x="0.0" y="322" width="322" height="60"/>
+                            <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QbO-Lj-nW0">
+                                <rect key="frame" x="-1" y="322" width="322" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="hKM-0q-TAQ"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                <state key="normal" title="Sportive">
-                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <inset key="titleEdgeInsets" minX="90" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <inset key="imageEdgeInsets" minX="30" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <state key="normal" title="Sportive" image="goal3Button">
+                                    <color key="titleColor" red="0.83137254901960789" green="0.82352941176470584" blue="0.81176470588235294" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
-                                <state key="selected" backgroundImage="selectedButton"/>
-                                <state key="highlighted" backgroundImage="selectedButton.png"/>
+                                <state key="selected" image="goal3Selected_Button" backgroundImage="selectedButton"/>
+                                <state key="highlighted" image="goal3Selected_Button" backgroundImage="selectedButton.png"/>
                                 <connections>
                                     <action selector="buttonAction:" destination="esU-rF-t9Y" eventType="touchUpInside" id="Giy-mn-Bfh"/>
                                 </connections>
@@ -412,33 +414,37 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dsh-Mg-AqS">
-                                <rect key="frame" x="0.0" y="204" width="322" height="60"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dsh-Mg-AqS">
+                                <rect key="frame" x="-1" y="204" width="322" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="VLc-j7-EzA"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                <state key="normal" title="Moderate">
-                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <inset key="titleEdgeInsets" minX="90" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <inset key="imageEdgeInsets" minX="30" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <state key="normal" title="Moderate" image="goal1Button">
+                                    <color key="titleColor" red="0.83137254901960789" green="0.82352941176470584" blue="0.81176470588235294" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
-                                <state key="selected" backgroundImage="selectedButton"/>
-                                <state key="highlighted" backgroundImage="selectedButton.png"/>
+                                <state key="selected" image="goal1Selected_Button" backgroundImage="selectedButton"/>
+                                <state key="highlighted" image="goal1Selected_Button" backgroundImage="selectedButton"/>
                                 <connections>
                                     <action selector="buttonAction:" destination="esU-rF-t9Y" eventType="touchUpInside" id="kzU-IM-Z9Y"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kAf-Gx-iId">
-                                <rect key="frame" x="0.0" y="263" width="322" height="60"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kAf-Gx-iId">
+                                <rect key="frame" x="-1" y="263" width="322" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="0mC-Qw-neA"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                <state key="normal" title="Normal">
-                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <inset key="titleEdgeInsets" minX="90" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <inset key="imageEdgeInsets" minX="30" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <state key="normal" title="Normal" image="goal2Button">
+                                    <color key="titleColor" red="0.83137254901960789" green="0.82352941176470584" blue="0.81176470588235294" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
-                                <state key="selected" backgroundImage="selectedButton"/>
-                                <state key="highlighted" backgroundImage="selectedButton.png"/>
+                                <state key="selected" image="goal2Selected_Button" backgroundImage="selectedButton"/>
+                                <state key="highlighted" image="goal2Selected_Button" backgroundImage="selectedButton"/>
                                 <connections>
                                     <action selector="buttonAction:" destination="esU-rF-t9Y" eventType="touchUpInside" id="cR3-wJ-5Zs"/>
                                 </connections>
@@ -448,16 +454,16 @@
                         <constraints>
                             <constraint firstItem="6bb-WV-M23" firstAttribute="centerX" secondItem="qmf-z0-xh7" secondAttribute="centerX" id="1Az-bM-Adu"/>
                             <constraint firstItem="DWK-bD-PWQ" firstAttribute="top" secondItem="esU-rF-t9Y" secondAttribute="top" id="4LX-cf-rJ5"/>
-                            <constraint firstItem="6bb-WV-M23" firstAttribute="leading" secondItem="dsh-Mg-AqS" secondAttribute="leading" id="5Or-7O-hDt"/>
-                            <constraint firstAttribute="trailing" secondItem="QbO-Lj-nW0" secondAttribute="trailing" constant="-2" id="7br-AB-Wcd"/>
+                            <constraint firstItem="6bb-WV-M23" firstAttribute="leading" secondItem="dsh-Mg-AqS" secondAttribute="leading" constant="1" id="5Or-7O-hDt"/>
+                            <constraint firstAttribute="trailing" secondItem="QbO-Lj-nW0" secondAttribute="trailing" constant="-1" id="7br-AB-Wcd"/>
                             <constraint firstItem="qmf-z0-xh7" firstAttribute="top" secondItem="esU-rF-t9Y" secondAttribute="top" constant="162" id="A4i-b9-Frb"/>
                             <constraint firstItem="kAf-Gx-iId" firstAttribute="top" secondItem="qmf-z0-xh7" secondAttribute="bottom" constant="86" id="EUG-nk-xVl"/>
-                            <constraint firstAttribute="trailing" secondItem="dsh-Mg-AqS" secondAttribute="trailing" constant="-2" id="EyL-4T-s0H"/>
-                            <constraint firstAttribute="trailing" secondItem="kAf-Gx-iId" secondAttribute="trailing" constant="-2" id="Mgv-WS-ZX0"/>
+                            <constraint firstAttribute="trailing" secondItem="dsh-Mg-AqS" secondAttribute="trailing" constant="-1" id="EyL-4T-s0H"/>
+                            <constraint firstAttribute="trailing" secondItem="kAf-Gx-iId" secondAttribute="trailing" constant="-1" id="Mgv-WS-ZX0"/>
                             <constraint firstItem="kAf-Gx-iId" firstAttribute="leading" secondItem="QbO-Lj-nW0" secondAttribute="leading" id="QlK-6o-mLl"/>
                             <constraint firstItem="6bb-WV-M23" firstAttribute="leading" secondItem="DWK-bD-PWQ" secondAttribute="leading" id="THX-CG-w2y"/>
                             <constraint firstItem="qmf-z0-xh7" firstAttribute="leading" secondItem="esU-rF-t9Y" secondAttribute="leadingMargin" constant="99" id="Uzm-ME-Ran"/>
-                            <constraint firstItem="kAf-Gx-iId" firstAttribute="leading" secondItem="esU-rF-t9Y" secondAttribute="leadingMargin" constant="-16" id="WFb-NV-TLq"/>
+                            <constraint firstItem="kAf-Gx-iId" firstAttribute="leading" secondItem="esU-rF-t9Y" secondAttribute="leadingMargin" constant="-17" id="WFb-NV-TLq"/>
                             <constraint firstItem="6bb-WV-M23" firstAttribute="trailing" secondItem="DWK-bD-PWQ" secondAttribute="trailing" id="X03-Yq-P9p"/>
                             <constraint firstItem="kAf-Gx-iId" firstAttribute="leading" secondItem="dsh-Mg-AqS" secondAttribute="leading" id="dXL-ac-uma"/>
                             <constraint firstItem="qmf-z0-xh7" firstAttribute="top" secondItem="6bb-WV-M23" secondAttribute="bottom" id="odF-hT-Shm"/>
@@ -865,6 +871,12 @@
         <image name="alarmitem" width="68" height="68"/>
         <image name="amButton" width="63" height="63"/>
         <image name="amSelectedButton" width="63" height="63"/>
+        <image name="goal1Button" width="30" height="30"/>
+        <image name="goal1Selected_Button" width="30" height="30"/>
+        <image name="goal2Button" width="30" height="30"/>
+        <image name="goal2Selected_Button" width="30" height="30"/>
+        <image name="goal3Button" width="30" height="30"/>
+        <image name="goal3Selected_Button" width="30" height="30"/>
         <image name="goalitem" width="68" height="68"/>
         <image name="homeitem" width="68" height="68"/>
         <image name="pmButton" width="63" height="63"/>
