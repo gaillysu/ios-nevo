@@ -14,6 +14,7 @@ class NotificationView: UIView {
 
     private var mDelegate:ButtonManagerCallBack?
     var animationView:AnimationView!
+    var mSendLocalNotificationSwitchButton:UISwitch!
 
     func bulidNotificationViewUI(delegate:ButtonManagerCallBack,navigationItem:UINavigationItem){
         var titleLabel:UILabel = UILabel(frame: CGRectMake(0, 0, 120, 30))
@@ -23,7 +24,7 @@ class NotificationView: UIView {
         titleLabel.textAlignment = NSTextAlignment.Center
         navigationItem.titleView = titleLabel
 
-        mDelegate? = delegate
+        mDelegate = delegate
         animationView = AnimationView(frame: self.frame, delegate: delegate)
         
     }
@@ -53,6 +54,32 @@ class NotificationView: UIView {
         return endCell!
 
     }
+    
+    func NotificationSwicthCell(indexPath:NSIndexPath)->UITableViewCell {
+        let endCellID:String = "SwicthCell"
+        var endCell:UITableViewCell?
+        endCell = tableListView.dequeueReusableCellWithIdentifier(endCellID) as? UITableViewCell
+        
+        if (endCell == nil) {
+            endCell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: endCellID)
+            mSendLocalNotificationSwitchButton = UISwitch(frame: CGRectMake(endCell!.contentView.frame.size.width-60, 5, 50, 40))
+            mSendLocalNotificationSwitchButton.addTarget(self, action: Selector("SendLocalNotificationSwitchAction:"), forControlEvents: UIControlEvents.ValueChanged)
+            mSendLocalNotificationSwitchButton.on = ConnectionManager.sharedInstance.getIsSendLocalMsg()
+            endCell?.contentView.addSubview(mSendLocalNotificationSwitchButton)
+        }
+        endCell?.selectionStyle = UITableViewCellSelectionStyle.None;
+
+        endCell?.textLabel?.text = NSLocalizedString("SendLocalNotification", comment: "")
+        endCell?.imageView?.image = UIImage(named:"")
+        
+        return endCell!
+        
+    }
+    
+    func SendLocalNotificationSwitchAction(swicth:UISwitch) {
+        mDelegate?.controllManager(swicth)
+    }
+    
     /*
     // Only override drawRect: if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.

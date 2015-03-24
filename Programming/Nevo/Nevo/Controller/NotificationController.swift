@@ -55,6 +55,12 @@ class NotificationController: UIViewController,SelectionTypeDelegate,SyncControl
         if sender.isEqual(notificationList.animationView?.getNoConnectScanButton()?) {
             NSLog("noConnectScanButton")
             reconnect()
+        }else if sender is UISwitch {
+            var switchButton = sender as UISwitch
+            if switchButton.isEqual(notificationList.mSendLocalNotificationSwitchButton){
+                NSLog("setIsSendLocalMsg \(switchButton.on)")
+                ConnectionManager.sharedInstance.setIsSendLocalMsg(switchButton.on)
+            }
         }
     }
 
@@ -115,13 +121,34 @@ class NotificationController: UIViewController,SelectionTypeDelegate,SyncControl
     // MARK: - UITableViewDataSource
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
 
-        return typeModelArray!.count
+        if (section == 0) {
+            return typeModelArray!.count
+        }else if (section == 1) {
+            return 1
+        }else{
+            return 0
+        }
+        
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = notificationList.NotificationlistCell(indexPath, dataSource: typeModelArray!)
-        return cell
+        if indexPath.section == 0 {
+            let cell = notificationList.NotificationlistCell(indexPath, dataSource: typeModelArray!)
+            return cell
+            
+        }else{
+        
+            let cell = notificationList.NotificationSwicthCell(indexPath)
+            return cell
+            
+        }
+       
     }
+
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 2;
+    }
+    
 
 
     // MARK: - Navigation

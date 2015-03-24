@@ -72,7 +72,7 @@ class AppTheme {
 
     :param: string Inform the content
     */
-    class func LocalNotificationBody(string:NSString) {
+    class func LocalNotificationBody(string:NSString, delay:Double=0) -> UILocalNotification {
         if (UIDevice.currentDevice().systemVersion as NSString).floatValue >= 8.0 {
             var categorys:UIMutableUserNotificationCategory = UIMutableUserNotificationCategory()
             categorys.identifier = "alert";
@@ -80,13 +80,20 @@ class AppTheme {
             UIApplication.sharedApplication().registerUserNotificationSettings(localUns)
         }
 
+        
         let notification:UILocalNotification=UILocalNotification()
         notification.timeZone = NSTimeZone.defaultTimeZone()
-        notification.fireDate = NSDate().dateByAddingTimeInterval(0)
+        notification.fireDate = NSDate().dateByAddingTimeInterval(delay)
         notification.alertBody=string;
         notification.applicationIconBadgeNumber = 0;
         notification.soundName = UILocalNotificationDefaultSoundName;
         notification.category = "invite"
         UIApplication.sharedApplication().scheduleLocalNotification(notification)
+        return notification
     }
+    
+
+    
+    
+    
 }
