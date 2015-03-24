@@ -22,7 +22,7 @@ class NotificationController: UIViewController,SelectionTypeDelegate,SyncControl
         mSyncController = SyncController.sharedInstance
         mSyncController?.startConnect(false, delegate: self)
 
-        notificationList.bulidNotificationViewUI(self,navigationItem: self.navigationItem)
+        notificationList.bulidNotificationViewUI(self)
 
         initNotificationSettingArray()
     }
@@ -79,6 +79,10 @@ class NotificationController: UIViewController,SelectionTypeDelegate,SyncControl
             NSLog("noConnectScanButton")
             reconnect()
         }
+
+        if sender.isEqual(notificationList.backButton) {
+           self.dismissViewControllerAnimated(true, completion: nil)
+        }
     }
 
     // MARK: - SyncControllerDelegate
@@ -94,7 +98,7 @@ class NotificationController: UIViewController,SelectionTypeDelegate,SyncControl
     */
     func connectionStateChanged(isConnected : Bool) {
         //Maybe we just got disconnected, let's check
-        checkConnection()
+        //checkConnection()
     }
 
     /**

@@ -14,6 +14,10 @@
 		001719A31AB2EE5300889FED /* SelectFileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001719A11AB2EE5300889FED /* SelectFileController.swift */; };
 		003542B11AA7F69E00B27381 /* EnterNotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003542B01AA7F69E00B27381 /* EnterNotificationView.swift */; };
 		003542B71AA823B000B27381 /* AnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003542B61AA823B000B27381 /* AnimationView.swift */; };
+		003F3C571AC15E4F0003DA89 /* SetingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003F3C561AC15E4F0003DA89 /* SetingViewController.swift */; };
+		003F3C591AC15E9E0003DA89 /* SetingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003F3C581AC15E9E0003DA89 /* SetingView.swift */; };
+		003F3C5C1AC1642C0003DA89 /* SetingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003F3C5A1AC1642C0003DA89 /* SetingCell.swift */; };
+		003F3C5D1AC1642C0003DA89 /* SetingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 003F3C5B1AC1642C0003DA89 /* SetingCell.xib */; };
 		00478F4F1A8F637D00D0DCE2 /* clockViewHour.png in Resources */ = {isa = PBXBuildFile; fileRef = 00478F4D1A8F637D00D0DCE2 /* clockViewHour.png */; };
 		00478F501A8F637D00D0DCE2 /* clockViewMinute.png in Resources */ = {isa = PBXBuildFile; fileRef = 00478F4E1A8F637D00D0DCE2 /* clockViewMinute.png */; };
 		005350B81A8B0F2B00BF289D /* TutorialPage2View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005350B71A8B0F2B00BF289D /* TutorialPage2View.swift */; };
@@ -146,6 +150,10 @@
 		001719A11AB2EE5300889FED /* SelectFileController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectFileController.swift; sourceTree = "<group>"; };
 		003542B01AA7F69E00B27381 /* EnterNotificationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnterNotificationView.swift; sourceTree = "<group>"; };
 		003542B61AA823B000B27381 /* AnimationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AnimationView.swift; path = View/AnimationView.swift; sourceTree = "<group>"; };
+		003F3C561AC15E4F0003DA89 /* SetingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SetingViewController.swift; path = Controller/SetingViewController.swift; sourceTree = "<group>"; };
+		003F3C581AC15E9E0003DA89 /* SetingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetingView.swift; sourceTree = "<group>"; };
+		003F3C5A1AC1642C0003DA89 /* SetingCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetingCell.swift; sourceTree = "<group>"; };
+		003F3C5B1AC1642C0003DA89 /* SetingCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SetingCell.xib; sourceTree = "<group>"; };
 		00478F4D1A8F637D00D0DCE2 /* clockViewHour.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clockViewHour.png; sourceTree = "<group>"; };
 		00478F4E1A8F637D00D0DCE2 /* clockViewMinute.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clockViewMinute.png; sourceTree = "<group>"; };
 		005350B71A8B0F2B00BF289D /* TutorialPage2View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TutorialPage2View.swift; path = View/Tutorial/TutorialPage2View.swift; sourceTree = "<group>"; };
@@ -313,6 +321,17 @@
 			);
 			name = NevoOta;
 			path = Controller/NevoOta;
+			sourceTree = "<group>";
+		};
+		003F3C551AC15E340003DA89 /* SetingView */ = {
+			isa = PBXGroup;
+			children = (
+				003F3C581AC15E9E0003DA89 /* SetingView.swift */,
+				003F3C5A1AC1642C0003DA89 /* SetingCell.swift */,
+				003F3C5B1AC1642C0003DA89 /* SetingCell.xib */,
+			);
+			name = SetingView;
+			path = View/SetingView;
 			sourceTree = "<group>";
 		};
 		005BC95C1A88B79F006F9E86 /* FXBlurView */ = {
@@ -588,6 +607,7 @@
 				00C640F31A8D9F4500815CF8 /* MainTabBarController.swift */,
 				00A2286F1AA551A400360C36 /* NotificationController.swift */,
 				00A2287D1AA57F1A00360C36 /* EnterNotificationController.swift */,
+				003F3C561AC15E4F0003DA89 /* SetingViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -605,6 +625,7 @@
 		9AD8F95F1A6E004000F01014 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				003F3C551AC15E340003DA89 /* SetingView */,
 				001719981AB2EE2E00889FED /* NevoOtaView */,
 				00B1DFAD1AA7F1B800FDFECD /* EnterNotificationView */,
 				00A228741AA5573B00360C36 /* NotificationView */,
@@ -780,6 +801,7 @@
 				007F79901A878D0B006C89E6 /* Raleway-ExtraBoldItalic.ttf in Resources */,
 				007ED3BE1AAE81A800478D0F /* butonRound.png in Resources */,
 				00A773961A88562F0018E121 /* Localizable.strings in Resources */,
+				003F3C5D1AC1642C0003DA89 /* SetingCell.xib in Resources */,
 				007F799D1A878D0B006C89E6 /* SIL Open Font License.txt in Resources */,
 				007F79971A878D0B006C89E6 /* Raleway-MediumItalic.ttf in Resources */,
 				00478F4F1A8F637D00D0DCE2 /* clockViewHour.png in Resources */,
@@ -849,6 +871,7 @@
 				00B1DFAF1AA7F21200FDFECD /* NotificationTypeCell.swift in Sources */,
 				9A7551A71AADA91B00DD9292 /* SyncQueue.swift in Sources */,
 				07CC4A2F1A821B46008DA749 /* NevoOTARequest.swift in Sources */,
+				003F3C571AC15E4F0003DA89 /* SetingViewController.swift in Sources */,
 				00A2287E1AA57F1A00360C36 /* EnterNotificationController.swift in Sources */,
 				9AD8F9791A6E05F700F01014 /* NevoBT.swift in Sources */,
 				079EED311AB7FE6000CEA78D /* DailyStepsNevoPacket.swift in Sources */,
@@ -884,11 +907,13 @@
 				003542B71AA823B000B27381 /* AnimationView.swift in Sources */,
 				0017199C1AB2EE2E00889FED /* DeviceScannerView.swift in Sources */,
 				001719A21AB2EE5300889FED /* DeviceScannerController.swift in Sources */,
+				003F3C591AC15E9E0003DA89 /* SetingView.swift in Sources */,
 				07C59F241A8C5A0A00D65C84 /* SetNortificationRequest.swift in Sources */,
 				9A3E57311A80F08400DFFAE1 /* NevoOTAControllerProfile.swift in Sources */,
 				07C59F2E1A8C622300D65C84 /* SetProfileRequest.swift in Sources */,
 				9AD8F99C1A6E3D6A00F01014 /* NevoRequest.swift in Sources */,
 				9A3E57251A80E56E00DFFAE1 /* NevoProfile.swift in Sources */,
+				003F3C5C1AC1642C0003DA89 /* SetingCell.swift in Sources */,
 				005350BC1A8B4C1200BF289D /* StepGoalSetingView.swift in Sources */,
 				007DD4BB1A89DDC000CE7264 /* Page1Controller.swift in Sources */,
 				003542B11AA7F69E00B27381 /* EnterNotificationView.swift in Sources */,

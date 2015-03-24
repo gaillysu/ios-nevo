@@ -104,6 +104,11 @@ class AlarmClockController: UIViewController, SyncControllerDelegate,ButtonManag
             NSLog("alarmView.pmButton")
 
         }
+
+        if sender.isEqual(alarmView.setingButton){
+            self.performSegueWithIdentifier("Home_Seting", sender: self)
+        }
+
     }
     
     func setAlarm() {

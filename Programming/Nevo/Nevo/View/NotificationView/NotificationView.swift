@@ -11,23 +11,28 @@ import UIKit
 class NotificationView: UIView {
 
     @IBOutlet var tableListView: UITableView!
-
+    @IBOutlet weak var backButton: UIButton!
+    @IBOutlet weak var title: UILabel!
+    
     private var mDelegate:ButtonManagerCallBack?
     var animationView:AnimationView!
 
-    func bulidNotificationViewUI(delegate:ButtonManagerCallBack,navigationItem:UINavigationItem){
-        var titleLabel:UILabel = UILabel(frame: CGRectMake(0, 0, 120, 30))
-        titleLabel.textColor = UIColor.whiteColor()
-        titleLabel.text = NSLocalizedString("Notification", comment: "")
-        titleLabel.font = UIFont.systemFontOfSize(25)
-        titleLabel.textAlignment = NSTextAlignment.Center
-        navigationItem.titleView = titleLabel
+    func bulidNotificationViewUI(delegate:ButtonManagerCallBack){
+        title.textColor = UIColor.whiteColor()
+        title.text = NSLocalizedString("Notification", comment: "")
+        title.font = UIFont.systemFontOfSize(25)
+        title.textAlignment = NSTextAlignment.Center
 
-        mDelegate? = delegate
+        mDelegate = delegate
         animationView = AnimationView(frame: self.frame, delegate: delegate)
         
     }
-    
+
+
+    @IBAction func buttonAction(sender: AnyObject) {
+        mDelegate?.controllManager(sender)
+    }
+
     func NotificationlistCell(indexPath:NSIndexPath,dataSource:NSArray)->UITableViewCell {
         let endCellID:NSString = "endCell"
         var endCell = tableListView.dequeueReusableCellWithIdentifier(endCellID) as? TableListCell

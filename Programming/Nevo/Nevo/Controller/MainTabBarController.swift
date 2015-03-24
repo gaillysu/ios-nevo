@@ -56,7 +56,7 @@ class MainTabBarController: UITabBarController,UITabBarControllerDelegate {
         itemView.center = CGPointMake(myTabbarView.frame.size.width/2.0, myTabbarView.frame.size.height/2.0)
         myTabbarView.addSubview(itemView)
         if (items == nil) {
-            items = NSMutableArray(capacity: 4)
+            items = NSMutableArray(capacity: 3)
         }
         let imgArray:NSArray = NSArray(arrayLiteral: "goalitem","homeitem","alarmitem")
         let selectImgArray:NSArray = NSArray(arrayLiteral: "selectedGoalitem","selectedHomeitem","selectedAlarmitem")

@@ -62,8 +62,7 @@ class HomeController: UIViewController, SyncControllerDelegate ,ButtonManagerCal
     // MARK: - ButtonManagerCallBack
     func controllManager(sender:AnyObject) {
         if sender.isEqual(homeView.settingButton) {
-            
-            
+            self.performSegueWithIdentifier("Home_Seting", sender: self)
         }
     }
 

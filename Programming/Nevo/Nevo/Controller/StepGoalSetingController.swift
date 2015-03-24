@@ -87,8 +87,7 @@ class StepGoalSetingController: UIViewController, SyncControllerDelegate,ButtonM
         }
 
         if sender.isEqual(stepGoalView.setingButton) {
-
-            
+            self.performSegueWithIdentifier("Home_Seting", sender: self)
         }
     }
     
