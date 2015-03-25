@@ -28,7 +28,7 @@ class NotificationController: UIViewController,SelectionTypeDelegate,SyncControl
     }
 
     override func viewDidAppear(animated: Bool) {
-//        checkConnection()
+        checkConnection()
         //send request to watch, if there is no connect , it will auto to conncet
         mSyncController?.SetNortification(mNotificationSettingArray)
     }
@@ -98,7 +98,7 @@ class NotificationController: UIViewController,SelectionTypeDelegate,SyncControl
     */
     func connectionStateChanged(isConnected : Bool) {
         //Maybe we just got disconnected, let's check
-        //checkConnection()
+        checkConnection()
     }
 
     /**
