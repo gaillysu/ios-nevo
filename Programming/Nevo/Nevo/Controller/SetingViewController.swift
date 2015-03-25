@@ -18,7 +18,7 @@ class SetingViewController: UIViewController,ButtonManagerCallBack {
         super.viewDidLoad()
         setingView.buliudView(self)
 
-        sources = ["profile","Notifications","AAA","BBB"]
+        sources = ["Notifications"]
 
     }
 
@@ -38,6 +38,11 @@ class SetingViewController: UIViewController,ButtonManagerCallBack {
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
         let cell:UITableViewCell = tableView.cellForRowAtIndexPath(indexPath)!
         cell.textLabel?.textColor = UIColor.whiteColor()
+    }
+
+    func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath){
+        let cell:UITableViewCell = tableView.cellForRowAtIndexPath(indexPath)!
+        cell.textLabel?.textColor = UIColor.blackColor()
     }
 
     // MARK: - UITableViewDataSource

@@ -16,6 +16,8 @@ class NotificationController: UIViewController,SelectionTypeDelegate,SyncControl
 
     private var mNotificationType:NotificationType = NotificationType.CALL
     private var mNotificationSettingArray:[NotificationSetting] = []
+    var sources:NSArray!
+    var selectedB:Bool = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +27,8 @@ class NotificationController: UIViewController,SelectionTypeDelegate,SyncControl
         notificationList.bulidNotificationViewUI(self)
 
         initNotificationSettingArray()
+
+        sources = ["Notifications"]
     }
 
     override func viewDidAppear(animated: Bool) {
@@ -131,23 +135,33 @@ class NotificationController: UIViewController,SelectionTypeDelegate,SyncControl
     // MARK: - UITableViewDelegate
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
 
-        return 50.0
+        return 65.0
     }
 
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
         mNotificationType = mNotificationSettingArray[indexPath.row].getType()
-        self.performSegueWithIdentifier("EnterNotification", sender: self)
+        //self.performSegueWithIdentifier("EnterNotification", sender: self)
     }
 
     // MARK: - UITableViewDataSource
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
-
-        return mNotificationSettingArray.count
+        if selectedB {
+            return sources.count + mNotificationSettingArray.count
+        }
+        return sources.count
+        //return mNotificationSettingArray.count
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        if indexPath.row == 0 {
+            var endCell:UITableViewCell = tableView.dequeueReusableCellWithIdentifier("SetingCell", forIndexPath: indexPath) as UITableViewCell
+            endCell.selectedBackgroundView = UIImageView(image: UIImage(named:"selectedButton"))
+            endCell.textLabel?.text = sources.objectAtIndex(indexPath.row) as? String
+            return endCell
+        }
         let cell = notificationList.NotificationlistCell(indexPath, dataSource: mNotificationSettingArray)
         return cell
+
     }
 
 
