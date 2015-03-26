@@ -43,7 +43,7 @@ class EnterNotificationController: UITableViewController,SwitchActionDelegate,Pa
             var ledColor:UInt32
             switch sourceType {
                 case NotificationType.CALL.rawValue :
-                ledColor = SetNortificationRequest.SetNortificationRequestValues.VIOLET_LED
+                ledColor = SetNortificationRequest.SetNortificationRequestValues.ORANGE_LED
             case NotificationType.SMS.rawValue:
                 ledColor = SetNortificationRequest.SetNortificationRequestValues.GREEN_LED
             case NotificationType.EMAIL.rawValue:
@@ -53,7 +53,7 @@ class EnterNotificationController: UITableViewController,SwitchActionDelegate,Pa
             case NotificationType.CALENDAR.rawValue:
                 ledColor = SetNortificationRequest.SetNortificationRequestValues.RED_LED
             case NotificationType.WECHAT.rawValue:
-                ledColor = SetNortificationRequest.SetNortificationRequestValues.PURPLE_LED
+                ledColor = SetNortificationRequest.SetNortificationRequestValues.LIGHTGREEN_LED
             default:
                 ledColor = 0xFF0000
             }
@@ -217,9 +217,9 @@ class EnterNotificationController: UITableViewController,SwitchActionDelegate,Pa
         case UIColor.greenColor():
             currentColor = SetNortificationRequest.SetNortificationRequestValues.GREEN_LED
         case UIColor.orangeColor():
-            currentColor = SetNortificationRequest.SetNortificationRequestValues.VIOLET_LED
+            currentColor = SetNortificationRequest.SetNortificationRequestValues.ORANGE_LED
         case AppTheme.PALETTE_BAGGROUND_COLOR():
-            currentColor = SetNortificationRequest.SetNortificationRequestValues.PURPLE_LED
+            currentColor = SetNortificationRequest.SetNortificationRequestValues.LIGHTGREEN_LED
         default:
             currentColor = 0
         }
@@ -318,10 +318,10 @@ class EnterNotificationController: UITableViewController,SwitchActionDelegate,Pa
                         endCell.currentColorView.backgroundColor = UIColor.greenColor()
                     }else if (currentColor == SetNortificationRequest.SetNortificationRequestValues.YELLOW_LED){
                         endCell.currentColorView.backgroundColor = UIColor.yellowColor()
-                    }else if (currentColor == SetNortificationRequest.SetNortificationRequestValues.VIOLET_LED){
+                    }else if (currentColor == SetNortificationRequest.SetNortificationRequestValues.ORANGE_LED){
                         endCell.currentColorView.backgroundColor = UIColor.orangeColor()
                     }
-                    else if (currentColor == SetNortificationRequest.SetNortificationRequestValues.PURPLE_LED){
+                    else if (currentColor == SetNortificationRequest.SetNortificationRequestValues.LIGHTGREEN_LED){
                         endCell.currentColorView.backgroundColor = AppTheme.PALETTE_BAGGROUND_COLOR()
                     }
                     
