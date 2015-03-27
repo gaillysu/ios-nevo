@@ -74,11 +74,6 @@ class AlarmClockController: UIViewController, SyncControllerDelegate,ButtonManag
             NSLog("alarmView.selectedTimerButton")
         }
 
-        if sender.isEqual(alarmView.alarmSwitch){
-            NSLog("alarmView.alarmSwitch")
-            setAlarm()
-        }
-
         if sender.isEqual(alarmView.animationView.getNoConnectScanButton()?) {
             NSLog("noConnectScanButton")
             reconnect()
@@ -92,15 +87,18 @@ class AlarmClockController: UIViewController, SyncControllerDelegate,ButtonManag
 
         }
 
-        if sender.isEqual(alarmView.amButton){
-            alarmView.amButton.selected = true
-            alarmView.pmButton.selected = false
+        if sender.isEqual(alarmView.onButton){
+            alarmView.onButton.selected = true
+            alarmView.offButton.selected = false
+
+            setAlarm()
             NSLog("alarmView.amButton")
 
         }
-        if sender.isEqual(alarmView.pmButton){
-            alarmView.amButton.selected = false
-            alarmView.pmButton.selected = true
+        if sender.isEqual(alarmView.offButton){
+            alarmView.onButton.selected = false
+            alarmView.offButton.selected = true
+            setAlarm()
             NSLog("alarmView.pmButton")
 
         }

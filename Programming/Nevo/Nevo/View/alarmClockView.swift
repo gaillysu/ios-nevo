@@ -11,11 +11,10 @@ import UIKit
 class alarmClockView: UIView {
 
     @IBOutlet var selectedTimerButton: UIButton!
-    @IBOutlet var alarmSwitch: UISwitch!
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var setingButton: UIButton!
-    @IBOutlet weak var amButton: UIButton!
-    @IBOutlet weak var pmButton: UIButton!
+    @IBOutlet weak var onButton: UIButton!
+    @IBOutlet weak var offButton: UIButton!
 
     
     private var mCancelButton:UIButton?
@@ -40,12 +39,27 @@ class alarmClockView: UIView {
         mDelegate = delegate
         animationView = AnimationView(frame: self.frame, delegate: delegate)
 
-        alarmSwitch.tintColor = UIColor.blackColor()
-        alarmSwitch.onTintColor = AppTheme.NEVO_SOLAR_YELLOW()
-        
         setAlarmTime(hour,min: min)
+
+        selectedTimerButton.setTitleColor(AppTheme.NEVO_SOLAR_YELLOW(), forState: UIControlState.Normal)
+        selectedTimerButton.setTitleColor(AppTheme.NEVO_SOLAR_YELLOW(), forState: UIControlState.Selected)
+        selectedTimerButton.setTitleColor(AppTheme.NEVO_SOLAR_YELLOW(), forState: UIControlState.Highlighted)
+        selectedTimerButton.titleLabel?.font = AppTheme.FONT_RALEWAY_LIGHT(mSize: 70)
         
-        alarmSwitch.on = enabled
+        onButton.setTitle(NSLocalizedString("On", comment:""), forState: UIControlState.Normal)
+        onButton.setTitle(NSLocalizedString("On", comment:""), forState: UIControlState.Selected)
+        onButton.setTitle(NSLocalizedString("On", comment:""), forState: UIControlState.Highlighted)
+
+        offButton.setTitle(NSLocalizedString("Off", comment:""), forState: UIControlState.Normal)
+        offButton.setTitle(NSLocalizedString("Off", comment:""), forState: UIControlState.Selected)
+        offButton.setTitle(NSLocalizedString("Off", comment:""), forState: UIControlState.Highlighted)
+        if enabled {
+            onButton.selected = true
+            offButton.selected = false
+        }else{
+            onButton.selected = false
+            offButton.selected = true
+        }
         
     }
 
@@ -185,7 +199,7 @@ class alarmClockView: UIView {
     }
     
     func getEnabled() -> Bool {
-     return alarmSwitch.on
+     return onButton.selected
     }
 
     /*

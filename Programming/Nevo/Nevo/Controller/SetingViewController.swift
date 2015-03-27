@@ -11,11 +11,15 @@ import UIKit
 class SetingViewController: UIViewController,ButtonManagerCallBack {
 
     @IBOutlet var setingView: SetingView!
-    
+
+    var sources:NSArray!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setingView.buliudView(self)
-        
+
+        sources = ["Notifications"]
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -32,7 +36,13 @@ class SetingViewController: UIViewController,ButtonManagerCallBack {
 
     // MARK: - UITableViewDelegate
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
+        let cell:UITableViewCell = tableView.cellForRowAtIndexPath(indexPath)!
+        cell.textLabel?.textColor = UIColor.whiteColor()
+    }
 
+    func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath){
+        let cell:UITableViewCell = tableView.cellForRowAtIndexPath(indexPath)!
+        cell.textLabel?.textColor = UIColor.blackColor()
     }
 
     // MARK: - UITableViewDataSource
@@ -41,13 +51,14 @@ class SetingViewController: UIViewController,ButtonManagerCallBack {
     }
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
-        return 4
+        return sources.count
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var endCell:UITableViewCell = tableView.dequeueReusableCellWithIdentifier("SetingCell", forIndexPath: indexPath) as UITableViewCell
-
-        //endCell.selectionStyle = UITableViewCellSelectionStyle.None
+        endCell.selectedBackgroundView = UIImageView(image: UIImage(named:"selectedButton"))
+        endCell.textLabel?.text = sources.objectAtIndex(indexPath.row) as? String
+        //endCell.textLabel?.textColor = UIColor.whiteColor()
         return endCell
         
     }
