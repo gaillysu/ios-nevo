@@ -691,7 +691,7 @@
                                     <outlet property="delegate" destination="y9Z-P5-cut" id="OlG-DG-0TR"/>
                                 </connections>
                             </tableView>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vMC-h3-wEd">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vMC-h3-wEd">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="85"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Seting" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Egi-xc-Nog">
@@ -746,7 +746,7 @@
                             <constraint firstItem="Zx4-WI-sxC" firstAttribute="bottom" secondItem="Btq-vY-5HU" secondAttribute="top" constant="-86" id="9gr-Hc-sFI"/>
                             <constraint firstItem="Zx4-WI-sxC" firstAttribute="leading" secondItem="h7L-SF-lkB" secondAttribute="leading" id="Nwn-YC-UI8"/>
                             <constraint firstItem="vMC-h3-wEd" firstAttribute="leading" secondItem="Zx4-WI-sxC" secondAttribute="leading" id="Qhk-mK-WAm"/>
-                            <constraint firstItem="vMC-h3-wEd" firstAttribute="top" secondItem="3iy-c3-UnN" secondAttribute="bottom" constant="-20" id="gSd-Co-Q9j"/>
+                            <constraint firstItem="vMC-h3-wEd" firstAttribute="top" secondItem="3iy-c3-UnN" secondAttribute="bottom" id="gSd-Co-Q9j"/>
                             <constraint firstItem="Zx4-WI-sxC" firstAttribute="top" secondItem="3iy-c3-UnN" secondAttribute="bottom" constant="65" id="i5c-jF-UGw"/>
                             <constraint firstAttribute="trailing" secondItem="Zx4-WI-sxC" secondAttribute="trailing" id="jNU-ba-Eo6"/>
                         </constraints>
