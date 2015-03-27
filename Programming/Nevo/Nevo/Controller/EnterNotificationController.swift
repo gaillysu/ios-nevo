@@ -21,7 +21,7 @@ protocol SelectionTypeDelegate {
 
 }
 
-class EnterNotificationController: UITableViewController,SwitchActionDelegate,PaletteDelegate,SyncControllerDelegate,ButtonManagerCallBack{
+class EnterNotificationController: UIViewController,SwitchActionDelegate,PaletteDelegate,SyncControllerDelegate,ButtonManagerCallBack{
 
     class func setLedColor(sourceType: NSString,ledColor:UInt32)
     {
@@ -101,8 +101,6 @@ class EnterNotificationController: UITableViewController,SwitchActionDelegate,Pa
     led color default is full color led light on
     */
     //var ledcolor: UInt32 = 0xFF0000
-
-    var numberCount:Int = 1
     var PaletteSele:Bool = false
     
 
@@ -112,7 +110,7 @@ class EnterNotificationController: UITableViewController,SwitchActionDelegate,Pa
         mSyncController = SyncController.sharedInstance
         mSyncController?.startConnect(false, delegate: self)
 
-        enterNotView.bulidEnterNotificationView(self,navigationItem:self.navigationItem)
+        enterNotView.bulidEnterNotificationView(self)
 
     }
 
@@ -184,13 +182,13 @@ class EnterNotificationController: UITableViewController,SwitchActionDelegate,Pa
     }
     
     // MARK: - SwitchActionDelegate
-    func onSwitch(results:Bool){
+    func onSwitch(results:Bool ,sender:UISwitch){
         if let currentSettings = mCurrentNotificationSetting {
             //save in local
             EnterNotificationController.setMotorOnOff(currentSettings.typeName, motorStatus: results)
             //update the currentSetting
             currentSettings.setStates(results)
-            NotificationController.refreshNotificationSettingArray(&mNotificationSettingArray)
+            SetingViewController.refreshNotificationSettingArray(&mNotificationSettingArray)
             //send request to watch
             mSyncController?.SetNortification(mNotificationSettingArray)
             //refresh ui
@@ -202,9 +200,9 @@ class EnterNotificationController: UITableViewController,SwitchActionDelegate,Pa
     // MARK: - PaletteDelegate
     func selectedPalette(color:UIColor){
         NSLog("UIColor\(color)")
-        let indexPathRow:NSIndexPath = NSIndexPath(forRow: 0, inSection: 1)
-        let cellForRow:CurrentPaletteCell = self.tableView.cellForRowAtIndexPath(indexPathRow) as CurrentPaletteCell
-        cellForRow.currentColorView.backgroundColor = color
+//        let indexPathRow:NSIndexPath = NSIndexPath(forRow: 0, inSection: 1)
+//        let cellForRow:CurrentPaletteCell = enterNotView.NotificationTableView.cellForRowAtIndexPath(indexPathRow) as CurrentPaletteCell
+//        cellForRow.currentColorView.backgroundColor = color
 
         var currentColor:UInt32
         switch color {
@@ -227,7 +225,7 @@ class EnterNotificationController: UITableViewController,SwitchActionDelegate,Pa
             setCurrentNotificationSettingColor(currentColor)
         }
         //refresh the settingArray value
-        NotificationController.refreshNotificationSettingArray(&mNotificationSettingArray)
+        SetingViewController.refreshNotificationSettingArray(&mNotificationSettingArray)
         //send request to watch
         mSyncController?.SetNortification(mNotificationSettingArray)
         //reload data
@@ -238,103 +236,59 @@ class EnterNotificationController: UITableViewController,SwitchActionDelegate,Pa
     }
 
     // MARK: - UITableViewDelegate
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         if (indexPath.section == 0){
-            return 50.0
+            return 65.0
         }else{
-            if indexPath.row == 0 {
-                return 45
-            }else {
-                return 245
-            }
+            return 245
         }
     }
-    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat{
+    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat{
         if (section == 0){
-            return 44.0
+            return 0.0
         }else{
             return 100
         }
     }
 
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
-        if (indexPath.section == 1){
-            if !PaletteSele {
-                numberCount+=1
-                PaletteSele = true
-                let indexPathRow:NSIndexPath = NSIndexPath(forRow: 1, inSection: 1)
-                tableView.insertRowsAtIndexPaths([indexPathRow], withRowAnimation: UITableViewRowAnimation.Bottom)
-            }else {
-                numberCount-=1
-                PaletteSele = false
-                let indexPathRow:NSIndexPath = NSIndexPath(forRow: 1, inSection: 1)
-                tableView.deleteRowsAtIndexPaths([indexPathRow], withRowAnimation: UITableViewRowAnimation.Bottom)
-            }
-        }
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
+        
     }
 
     // MARK: - UITableViewDataSource
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 2;
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
         if (section == 0) {
             return 1
         }else if (section == 1) {
-            return numberCount
+            return 1
         }else{
             return 0
         }
 
     }
 
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if (indexPath.section == 0){
             var endCell:NotificationTypeCell = tableView.dequeueReusableCellWithIdentifier("NotificationTypeCell", forIndexPath: indexPath) as NotificationTypeCell
             endCell.selectionStyle = UITableViewCellSelectionStyle.None
             endCell.textLabel?.backgroundColor = UIColor.clearColor()
             if let currentSetting = mCurrentNotificationSetting {
-                endCell.cellSwitch.on = currentSetting.getStates()
-                endCell.textLabel?.text = NSLocalizedString(currentSetting.typeName, comment: "")
-                endCell.imageView?.image = UIImage(named: NotificationView.getNotificationSettingIcon(currentSetting))
+                endCell.typeTitle.font = AppTheme.FONT_RALEWAY_LIGHT(mSize: 28)
+                endCell.typeTitle.backgroundColor = AppTheme.NEVO_SOLAR_YELLOW()
+                endCell.typeTitle.textColor = UIColor.whiteColor()
+                endCell.typeTitle.text = NSLocalizedString(currentSetting.typeName, comment: "")
             }
-            
-            //AppTheme.GET_RESOURCES_IMAGE(notType!.getNotificationTypeContent().objectForKey("icon") as String)
             endCell.ActionDelegate = self
 
             return endCell
         }else if (indexPath.section == 1){
-
-            if (indexPath.row == 0) {
-                let endCell:CurrentPaletteCell = enterNotView.EnterCurrentPaletteCell(indexPath)
-                if let currentSetting = mCurrentNotificationSetting {
-                    var currentColor:UInt32 = currentSetting.getColor().unsignedIntValue
-                    if (currentColor == SetNortificationRequest.SetNortificationRequestValues.RED_LED){
-                        endCell.currentColorView.backgroundColor = UIColor.redColor()
-                    }else if (currentColor == SetNortificationRequest.SetNortificationRequestValues.BLUE_LED){
-                        endCell.currentColorView.backgroundColor = UIColor.blueColor()
-                    }else if (currentColor == SetNortificationRequest.SetNortificationRequestValues.GREEN_LED){
-                        endCell.currentColorView.backgroundColor = UIColor.greenColor()
-                    }else if (currentColor == SetNortificationRequest.SetNortificationRequestValues.YELLOW_LED){
-                        endCell.currentColorView.backgroundColor = UIColor.yellowColor()
-                    }else if (currentColor == SetNortificationRequest.SetNortificationRequestValues.ORANGE_LED){
-                        endCell.currentColorView.backgroundColor = UIColor.orangeColor()
-                    }
-                    else if (currentColor == SetNortificationRequest.SetNortificationRequestValues.LIGHTGREEN_LED){
-                        endCell.currentColorView.backgroundColor = AppTheme.PALETTE_BAGGROUND_COLOR()
-                    }
-                    
-                }
-
-                //endCell.pDelegate = self
-                return endCell
-            }else {
-                let paletteCell:PaletteViewCell = enterNotView.EnterPaletteListCell(indexPath, dataSource: NSArray())
-                paletteCell.pDelegate = self
-                return paletteCell
-            }
-
+            let paletteCell:PaletteViewCell = enterNotView.EnterPaletteListCell(indexPath, dataSource: NSArray())
+            paletteCell.pDelegate = self
+            return paletteCell
         }
 
         return UITableViewCell()

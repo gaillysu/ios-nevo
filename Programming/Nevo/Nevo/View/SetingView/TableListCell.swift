@@ -9,9 +9,15 @@
 import UIKit
 
 class TableListCell: UITableViewCell {
+    @IBOutlet weak var statesSwitch: UISwitch!
 
-    @IBOutlet var StatesLabel: UILabel!
-    
+    var mSwitchDelegate:SwitchActionDelegate?
+
+    @IBAction func onTypeSwitchAction(sender: AnyObject) {
+        let switchSender:UISwitch = sender as UISwitch
+        mSwitchDelegate?.onSwitch(switchSender.on, sender: switchSender)
+    }
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

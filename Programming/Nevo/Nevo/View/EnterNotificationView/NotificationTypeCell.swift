@@ -14,20 +14,14 @@ protocol SwitchActionDelegate {
     Switch event callback
     :param: results Switch state
     */
-    func onSwitch(results:Bool)
+    func onSwitch(results:Bool ,sender:UISwitch)
     
 }
 
 class NotificationTypeCell: UITableViewCell {
 
-    @IBOutlet var cellSwitch: UISwitch!
-
+    @IBOutlet weak var typeTitle: UILabel!
     var ActionDelegate:SwitchActionDelegate?
-
-    @IBAction func onTypeSwitchAction(sender: AnyObject) {
-        let switchSender:UISwitch = sender as UISwitch
-        ActionDelegate?.onSwitch(switchSender.on)
-    }
 
     override func awakeFromNib() {
         super.awakeFromNib()

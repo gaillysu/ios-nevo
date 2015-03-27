@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1510" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="VSL-Nt-5H3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="VSL-Nt-5H3">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -602,7 +602,7 @@
                                     <color key="titleColor" red="0.83137254900000002" green="0.82352941180000006" blue="0.81176470590000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
-                                <state key="selected" backgroundImage="pmSelectedButton">
+                                <state key="selected" backgroundImage="BlackSelectedButton">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <state key="highlighted" backgroundImage="pmSelectedButton">
@@ -663,32 +663,15 @@
         <!--Notification-->
         <scene sceneID="pJ5-WT-KS1">
             <objects>
-                <viewController id="y9Z-P5-cut" customClass="NotificationController" customModule="Nevo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="y9Z-P5-cut" customClass="SetingViewController" customModule="Nevo" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="3iy-c3-UnN"/>
                         <viewControllerLayoutGuide type="bottom" id="Btq-vY-5HU"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="h7L-SF-lkB" customClass="NotificationView" customModule="Nevo" customModuleProvider="target">
+                    <view key="view" contentMode="scaleToFill" id="h7L-SF-lkB" customClass="SetingView" customModule="Nevo" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="Zx4-WI-sxC">
-                                <rect key="frame" x="0.0" y="85" width="320" height="397"/>
-                                <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
-                                <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SetingCell" id="jy6-2o-7Tg">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jy6-2o-7Tg" id="Hea-sY-zN0">
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </prototypes>
-                                <connections>
-                                    <outlet property="dataSource" destination="y9Z-P5-cut" id="0uy-wB-PIo"/>
-                                    <outlet property="delegate" destination="y9Z-P5-cut" id="OlG-DG-0TR"/>
-                                </connections>
-                            </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vMC-h3-wEd">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="85"/>
                                 <subviews>
@@ -738,14 +721,31 @@
                                     <constraint firstItem="RA7-Lc-QEf" firstAttribute="top" secondItem="vMC-h3-wEd" secondAttribute="top" constant="14" id="z6j-xt-lK4"/>
                                 </constraints>
                             </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Zx4-WI-sxC">
+                                <rect key="frame" x="0.0" y="85" width="320" height="483"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SetingCell" id="jy6-2o-7Tg">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jy6-2o-7Tg" id="Hea-sY-zN0">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="y9Z-P5-cut" id="0uy-wB-PIo"/>
+                                    <outlet property="delegate" destination="y9Z-P5-cut" id="OlG-DG-0TR"/>
+                                </connections>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Zx4-WI-sxC" firstAttribute="bottom" secondItem="Btq-vY-5HU" secondAttribute="top" constant="-86" id="9gr-Hc-sFI"/>
+                            <constraint firstItem="Zx4-WI-sxC" firstAttribute="bottom" secondItem="Btq-vY-5HU" secondAttribute="top" id="9gr-Hc-sFI"/>
                             <constraint firstItem="Zx4-WI-sxC" firstAttribute="leading" secondItem="h7L-SF-lkB" secondAttribute="leading" id="Nwn-YC-UI8"/>
                             <constraint firstItem="vMC-h3-wEd" firstAttribute="leading" secondItem="Zx4-WI-sxC" secondAttribute="leading" id="Qhk-mK-WAm"/>
                             <constraint firstItem="vMC-h3-wEd" firstAttribute="top" secondItem="3iy-c3-UnN" secondAttribute="bottom" id="gSd-Co-Q9j"/>
-                            <constraint firstItem="Zx4-WI-sxC" firstAttribute="top" secondItem="3iy-c3-UnN" secondAttribute="bottom" constant="65" id="i5c-jF-UGw"/>
+                            <constraint firstItem="Zx4-WI-sxC" firstAttribute="top" secondItem="3iy-c3-UnN" secondAttribute="bottom" constant="85" id="i5c-jF-UGw"/>
                             <constraint firstAttribute="trailing" secondItem="Zx4-WI-sxC" secondAttribute="trailing" id="jNU-ba-Eo6"/>
                         </constraints>
                         <connections>
@@ -757,7 +757,7 @@
                     <navigationItem key="navigationItem" title="Notification" id="QNM-Mj-NtH"/>
                     <connections>
                         <outlet property="notificationList" destination="h7L-SF-lkB" id="8vS-ge-L65"/>
-                        <segue destination="zNg-MH-VNI" kind="push" identifier="EnterNotification" id="oHk-eI-Rxb"/>
+                        <segue destination="Dq6-9y-wmH" kind="push" identifier="EnterNotification" id="Qx8-3M-iWu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QO6-tg-aH2" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -782,30 +782,21 @@
             </objects>
             <point key="canvasLocation" x="-37" y="2771"/>
         </scene>
-        <!--Seting View Controller-->
+        <!--Enter Notification Controller-->
         <scene sceneID="piz-iO-UN6">
             <objects>
-                <viewController id="Dq6-9y-wmH" customClass="SetingViewController" customModule="Nevo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Dq6-9y-wmH" customClass="EnterNotificationController" customModule="Nevo" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="9Vm-8P-1hK"/>
                         <viewControllerLayoutGuide type="bottom" id="YnJ-xB-mUt"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="NjH-bU-cd8" customClass="SetingView" customModule="Nevo" customModuleProvider="target">
+                    <view key="view" contentMode="scaleToFill" id="NjH-bU-cd8" customClass="EnterNotificationView" customModule="Nevo" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eh8-7F-htO">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eh8-7F-htO">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="85"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Seting" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MfW-Ha-iAM">
-                                        <rect key="frame" x="85" y="14" width="150" height="58"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="150" id="YgM-MX-zKl"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zgc-9e-IWk">
                                         <rect key="frame" x="8" y="14" width="58" height="58"/>
                                         <constraints>
@@ -815,14 +806,23 @@
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="buttonAction:" destination="NjH-bU-cd8" eventType="touchUpInside" id="Cg8-qE-XCB"/>
+                                            <action selector="BackAction:" destination="NjH-bU-cd8" eventType="touchUpInside" id="g2G-ia-kKJ"/>
                                         </connections>
                                     </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NotificationType" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MfW-Ha-iAM">
+                                        <rect key="frame" x="70" y="14" width="180" height="58"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="180" id="YgM-MX-zKl"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" red="0.18823529410000001" green="0.18823529410000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="MfW-Ha-iAM" firstAttribute="top" secondItem="eh8-7F-htO" secondAttribute="top" constant="14" id="0Ae-Hl-2zH"/>
-                                    <constraint firstItem="MfW-Ha-iAM" firstAttribute="leading" secondItem="zgc-9e-IWk" secondAttribute="trailing" constant="19" id="0Fh-5z-0de"/>
+                                    <constraint firstItem="MfW-Ha-iAM" firstAttribute="leading" secondItem="zgc-9e-IWk" secondAttribute="trailing" constant="4" id="0Fh-5z-0de"/>
                                     <constraint firstItem="zgc-9e-IWk" firstAttribute="leading" secondItem="eh8-7F-htO" secondAttribute="leading" constant="8" id="1FO-MR-mau"/>
                                     <constraint firstItem="MfW-Ha-iAM" firstAttribute="top" secondItem="eh8-7F-htO" secondAttribute="top" constant="14" id="9yE-1d-eBP"/>
                                     <constraint firstItem="MfW-Ha-iAM" firstAttribute="top" secondItem="eh8-7F-htO" secondAttribute="top" constant="14" id="A9m-hd-kNL"/>
@@ -831,28 +831,46 @@
                                     <constraint firstItem="zgc-9e-IWk" firstAttribute="top" secondItem="eh8-7F-htO" secondAttribute="top" constant="14" id="NCV-8B-Sej"/>
                                     <constraint firstItem="zgc-9e-IWk" firstAttribute="top" secondItem="eh8-7F-htO" secondAttribute="top" constant="14" id="Ovp-Je-4Iy"/>
                                     <constraint firstItem="zgc-9e-IWk" firstAttribute="leading" secondItem="eh8-7F-htO" secondAttribute="leading" constant="8" id="U7V-rG-TJ0"/>
-                                    <constraint firstItem="MfW-Ha-iAM" firstAttribute="leading" secondItem="eh8-7F-htO" secondAttribute="leading" constant="85" id="ZAe-rN-qBy"/>
-                                    <constraint firstAttribute="trailing" secondItem="MfW-Ha-iAM" secondAttribute="trailing" constant="85" id="c35-uG-uq3"/>
+                                    <constraint firstItem="MfW-Ha-iAM" firstAttribute="leading" secondItem="eh8-7F-htO" secondAttribute="leading" constant="70" id="ZAe-rN-qBy"/>
+                                    <constraint firstAttribute="trailing" secondItem="MfW-Ha-iAM" secondAttribute="trailing" constant="70" id="c35-uG-uq3"/>
                                     <constraint firstAttribute="bottom" secondItem="MfW-Ha-iAM" secondAttribute="bottom" constant="13" id="cSv-7H-kuo"/>
                                     <constraint firstItem="zgc-9e-IWk" firstAttribute="leading" secondItem="eh8-7F-htO" secondAttribute="leading" constant="8" id="dRr-i0-SD0"/>
                                     <constraint firstItem="MfW-Ha-iAM" firstAttribute="centerX" secondItem="eh8-7F-htO" secondAttribute="centerX" id="ioD-UW-gNI"/>
                                     <constraint firstItem="zgc-9e-IWk" firstAttribute="top" secondItem="eh8-7F-htO" secondAttribute="top" constant="14" id="kJq-Fr-kAk"/>
                                     <constraint firstItem="MfW-Ha-iAM" firstAttribute="top" secondItem="zgc-9e-IWk" secondAttribute="top" id="le4-l1-ENH"/>
                                     <constraint firstItem="zgc-9e-IWk" firstAttribute="leading" secondItem="eh8-7F-htO" secondAttribute="leadingMargin" id="vIR-LN-orQ"/>
-                                    <constraint firstItem="MfW-Ha-iAM" firstAttribute="leading" secondItem="eh8-7F-htO" secondAttribute="leading" constant="85" id="y5q-O7-odS"/>
+                                    <constraint firstItem="MfW-Ha-iAM" firstAttribute="leading" secondItem="eh8-7F-htO" secondAttribute="leading" constant="70" id="y5q-O7-odS"/>
                                     <constraint firstItem="zgc-9e-IWk" firstAttribute="centerY" secondItem="MfW-Ha-iAM" secondAttribute="centerY" id="zE0-8x-KXY"/>
                                 </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="65" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Vl9-FC-Y56">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="65" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="Vl9-FC-Y56">
                                 <rect key="frame" x="0.0" y="85" width="320" height="483"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="SetingCell" id="bVr-fz-yLg">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="NotificationTypeCell" rowHeight="65" id="bVr-fz-yLg" customClass="NotificationTypeCell" customModule="Nevo" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bVr-fz-yLg" id="QOF-FP-aq0">
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9gP-da-Ykw">
+                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="65"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" red="1" green="0.59999999999999998" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="9gP-da-Ykw" secondAttribute="bottom" id="hgs-Ym-OlG"/>
+                                                <constraint firstItem="9gP-da-Ykw" firstAttribute="top" secondItem="QOF-FP-aq0" secondAttribute="top" id="ifW-No-SDf"/>
+                                                <constraint firstAttribute="trailing" secondItem="9gP-da-Ykw" secondAttribute="trailing" id="uJ5-de-LkO"/>
+                                                <constraint firstItem="9gP-da-Ykw" firstAttribute="leading" secondItem="QOF-FP-aq0" secondAttribute="leading" id="vqi-6R-ztZ"/>
+                                            </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="typeTitle" destination="9gP-da-Ykw" id="S8B-6R-oKV"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -871,64 +889,19 @@
                             <constraint firstItem="Vl9-FC-Y56" firstAttribute="bottom" secondItem="YnJ-xB-mUt" secondAttribute="top" id="bkO-3v-mvn"/>
                         </constraints>
                         <connections>
-                            <outlet property="SetingTableView" destination="Vl9-FC-Y56" id="ueZ-Tc-vdr"/>
-                            <outlet property="backButton" destination="zgc-9e-IWk" id="q5i-ZH-utG"/>
-                            <outlet property="title" destination="MfW-Ha-iAM" id="H0z-gn-zKh"/>
+                            <outlet property="NotificationTableView" destination="Vl9-FC-Y56" id="ipY-Rq-6vn"/>
+                            <outlet property="backButton" destination="zgc-9e-IWk" id="V5W-vJ-nEd"/>
+                            <outlet property="title" destination="MfW-Ha-iAM" id="KIy-1D-cCu"/>
                         </connections>
                     </view>
                     <navigationItem key="navigationItem" id="yoo-T2-W16"/>
                     <connections>
-                        <outlet property="setingView" destination="NjH-bU-cd8" id="vsc-FT-N1b"/>
+                        <outlet property="enterNotView" destination="NjH-bU-cd8" id="2Bt-Rh-7hm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9sd-fb-e0o" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-37" y="3556"/>
-        </scene>
-        <!--Enter Notification Controller-->
-        <scene sceneID="JFS-lA-F3A">
-            <objects>
-                <tableViewController id="zNg-MH-VNI" customClass="EnterNotificationController" customModule="Nevo" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="1" sectionFooterHeight="10" id="Z1d-Y2-5BZ" customClass="EnterNotificationView" customModule="Nevo" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
-                        <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="gray" indentationWidth="10" reuseIdentifier="NotificationTypeCell" rowHeight="44" id="xtn-ig-IAf" customClass="NotificationTypeCell" customModule="Nevo" customModuleProvider="target">
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="xtn-ig-IAf" id="7av-HV-kMH">
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="M4m-43-AMR">
-                                            <rect key="frame" x="249" y="6" width="51" height="31"/>
-                                            <connections>
-                                                <action selector="onTypeSwitchAction:" destination="xtn-ig-IAf" eventType="valueChanged" id="B7T-nh-QsV"/>
-                                            </connections>
-                                        </switch>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstItem="M4m-43-AMR" firstAttribute="centerY" secondItem="7av-HV-kMH" secondAttribute="centerY" id="EEf-H3-dX0"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="M4m-43-AMR" secondAttribute="trailing" constant="14" id="RPz-6G-Y5x"/>
-                                    </constraints>
-                                </tableViewCellContentView>
-                                <connections>
-                                    <outlet property="cellSwitch" destination="M4m-43-AMR" id="6zx-bM-66i"/>
-                                </connections>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="zNg-MH-VNI" id="6f7-kh-NTd"/>
-                            <outlet property="delegate" destination="zNg-MH-VNI" id="EGq-jm-WRv"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" id="FRM-bu-h7l"/>
-                    <connections>
-                        <outlet property="enterNotView" destination="Z1d-Y2-5BZ" id="hVA-I8-nun"/>
-                    </connections>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="UwG-zm-DKP" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="555" y="4272"/>
+            <point key="canvasLocation" x="555" y="4318"/>
         </scene>
         <!--Clock-->
         <scene sceneID="ufC-wZ-h7g">
@@ -1047,6 +1020,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="BlackSelectedButton" width="63" height="63"/>
         <image name="ConnectButtonPressed" width="320" height="57"/>
         <image name="Signal_3.png" width="100" height="100"/>
         <image name="alarmitem" width="68" height="68"/>

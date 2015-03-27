@@ -16,9 +16,6 @@ class NotificationSetting: NSObject {
         get {
             return self.mType.rawValue
         }
-        set {
-            
-        }
     }
     
     init(type:NotificationType, color:NSNumber){

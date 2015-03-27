@@ -30,10 +30,15 @@ class PaletteViewCell: UITableViewCell {
 
     var pDelegate:PaletteDelegate?
     var currentColor:UIColor!
+    private var buttonArray:[UIButton]!
 
 
     @IBAction func PaletteButtonManager(sender: AnyObject) {
         let senders:UIButton = sender as UIButton
+        for button:UIButton in buttonArray {
+            button.selected = false
+        }
+        senders.selected = true
 
         if (senders.isEqual(blueButton)){
             currentColor = UIColor.blueColor()
@@ -60,6 +65,8 @@ class PaletteViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        buttonArray = [blueButton, redButton, greenButton, greenButton, yellowButton, orangeButton, cyanButton]
+
         blueButton.setTitle(NSLocalizedString(" ",comment: ""), forState: UIControlState.Normal)
         redButton.setTitle(NSLocalizedString(" ",comment: ""), forState: UIControlState.Normal)
         greenButton.setTitle(NSLocalizedString(" ",comment: ""), forState: UIControlState.Normal)
