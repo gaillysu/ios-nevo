@@ -170,18 +170,10 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
         if senderString == "selectWatchFile"{
             NSLog("selectWatchFile")
             self.performSegueWithIdentifier("Ota2SelectFile", sender: self)
-        }else if senderString == "selectWatchDevice"{
-            NSLog("selectWatchDevice")
-            if enumFirmwareType == DfuFirmwareTypes.APPLICATION
-            {
-                
-            }
-            else if enumFirmwareType == DfuFirmwareTypes.SOFTDEVICE
-            {
-                
-            }
-            
-            
+        }else if senderString == "back2Home"{
+            NSLog("back2Home")
+            //self.dismissViewControllerAnimated(true, completion: nil)
+            self.navigationController?.popViewControllerAnimated(true)
         }else if senderString == "uploadFile"{
             NSLog("uploadFile")
             uploadPressed()

@@ -27,8 +27,10 @@ class HomeController: UIViewController, SyncControllerDelegate ,ButtonManagerCal
         let timer:NSTimer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector:"timerAction:", userInfo: nil, repeats: true);
         
         //TEST this is for test. pls not to remove it 
-//                var tapAction = UITapGestureRecognizer(target: self, action: "gotoProfileScreen")
-//                homeView.addGestureRecognizer(tapAction)
+                var tapAction = UITapGestureRecognizer(target: self, action: "gotoProfileScreen")
+                tapAction.numberOfTapsRequired = 4
+                tapAction.numberOfTouchesRequired = 2
+                homeView.addGestureRecognizer(tapAction)
         //end TEST
 
     }
