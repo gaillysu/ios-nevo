@@ -29,8 +29,8 @@ class SetNortificationRequest: NevoRequest {
         static let GREEN_LED:UInt32  = 0x100000
         static let YELLOW_LED:UInt32 = 0x040000
         static let RED_LED:UInt32    = 0x200000
-        static let VIOLET_LED:UInt32 = 0x080000
-        static let PURPLE_LED:UInt32 = 0x020000
+        static let ORANGE_LED:UInt32 = 0x080000
+        static let LIGHTGREEN_LED:UInt32 = 0x020000
         //white LED control bit is bit0~10
         static let WHITE_1_LED:UInt32 = 0x000001
         static let WHITE_3_LED:UInt32 = 0x000004
