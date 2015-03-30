@@ -61,59 +61,6 @@ class SetNortificationRequest: NevoRequest {
     private var wechat_vib_number:UInt8 = 0
     private var wechat_led_pattern:UInt32 = 0
     
-    init(typeArray: NSArray) {
-        
-        //We set each colors, one by one. In case a color is chosen, we turn on the vibration
-        let type:TypeModel = typeArray.objectAtIndex(2) as TypeModel
-        call_vib_number = (type.getNotificationTypeContent().objectForKey("states") as Bool)
-         ? SetNortificationRequestValues.VIBRATION_ON : SetNortificationRequestValues.VIBRATION_OFF
-        call_led_pattern = (type.getNotificationTypeContent().objectForKey("color") as NSNumber).unsignedIntValue
-        if call_vib_number == SetNortificationRequestValues.VIBRATION_ON
-        {
-            call_led_pattern = call_led_pattern | SetNortificationRequestValues.VIB_MOTOR
-        }
-
-        let smstype:TypeModel = typeArray.objectAtIndex(1) as TypeModel
-        sms_vib_number = (smstype.getNotificationTypeContent().objectForKey("states") as Bool) ? SetNortificationRequestValues.VIBRATION_ON : SetNortificationRequestValues.VIBRATION_OFF
-        sms_led_pattern = (smstype.getNotificationTypeContent().objectForKey("color") as NSNumber).unsignedIntValue
-        if sms_vib_number == SetNortificationRequestValues.VIBRATION_ON
-        {
-            sms_led_pattern = sms_led_pattern | SetNortificationRequestValues.VIB_MOTOR
-        }
-
-        let emailtype:TypeModel = typeArray.objectAtIndex(3) as TypeModel
-        email_vib_number = (emailtype.getNotificationTypeContent().objectForKey("states") as Bool) ? SetNortificationRequestValues.VIBRATION_ON : SetNortificationRequestValues.VIBRATION_OFF
-        email_led_pattern = (emailtype.getNotificationTypeContent().objectForKey("color") as NSNumber).unsignedIntValue
-        if email_vib_number == SetNortificationRequestValues.VIBRATION_ON
-        {
-            email_led_pattern = email_led_pattern | SetNortificationRequestValues.VIB_MOTOR
-        }
-
-        let facebooktype:TypeModel = typeArray.objectAtIndex(0) as TypeModel
-        facebook_vib_number = (facebooktype.getNotificationTypeContent().objectForKey("states") as Bool) ? SetNortificationRequestValues.VIBRATION_ON : SetNortificationRequestValues.VIBRATION_OFF
-        facebook_led_pattern = (facebooktype.getNotificationTypeContent().objectForKey("color") as NSNumber).unsignedIntValue
-        if facebook_vib_number == SetNortificationRequestValues.VIBRATION_ON
-        {
-            facebook_led_pattern = facebook_led_pattern | SetNortificationRequestValues.VIB_MOTOR
-        }
-
-        let calendartype:TypeModel = typeArray.objectAtIndex(4) as TypeModel
-        calendar_vib_number = (calendartype.getNotificationTypeContent().objectForKey("states") as Bool) ? SetNortificationRequestValues.VIBRATION_ON : SetNortificationRequestValues.VIBRATION_OFF
-        calendar_led_pattern = (calendartype.getNotificationTypeContent().objectForKey("color") as NSNumber).unsignedIntValue
-        if calendar_vib_number == SetNortificationRequestValues.VIBRATION_ON
-        {
-            calendar_led_pattern = calendar_led_pattern | SetNortificationRequestValues.VIB_MOTOR
-        }
-
-        let wechattype:TypeModel = typeArray.objectAtIndex(5) as TypeModel
-        wechat_vib_number = (wechattype.getNotificationTypeContent().objectForKey("states") as Bool) ? SetNortificationRequestValues.VIBRATION_ON : SetNortificationRequestValues.VIBRATION_OFF
-        wechat_led_pattern = (wechattype.getNotificationTypeContent().objectForKey("color") as NSNumber).unsignedIntValue
-        if wechat_vib_number == SetNortificationRequestValues.VIBRATION_ON
-        {
-            wechat_led_pattern = wechat_led_pattern | SetNortificationRequestValues.VIB_MOTOR
-        }
-
-    }
     
     init(settingArray:[NotificationSetting]) {
 
