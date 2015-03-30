@@ -33,26 +33,6 @@ class SetingView: UIView {
         mDelegate?.controllManager(sender)
     }
 
-    func NotificationlistCell(indexPath:NSIndexPath,dataSource:NSArray)->UITableViewCell {
-        let endCellID:NSString = "endCell"
-        var endCell = tableListView.dequeueReusableCellWithIdentifier(endCellID) as? TableListCell
-        var StatesLabel:UILabel!
-
-        if (endCell == nil) {
-            let nibs:NSArray = NSBundle.mainBundle().loadNibNamed("TableListCell", owner: self, options: nil)
-             endCell = nibs.objectAtIndex(0) as? TableListCell;
-            //endCell?.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator;
-
-        }
-        endCell?.selectionStyle = UITableViewCellSelectionStyle.None;
-        let typeContent:NSDictionary = (dataSource[indexPath.row] as TypeModel).getNotificationTypeContent()
-
-        endCell?.textLabel?.text = NSLocalizedString(typeContent.objectForKey("type") as String, comment: "")
-        endCell?.imageView?.image = UIImage(named:typeContent.objectForKey("icon") as String)
-
-        return endCell!
-
-    }
     /**
     create the tablecell accrording to nofiticaitonSetting
     

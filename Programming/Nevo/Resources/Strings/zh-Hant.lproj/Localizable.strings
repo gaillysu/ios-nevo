@@ -24,6 +24,7 @@
 "Next"="下壹步";
 "Finish"="完成";
 "Connect"="連接";
+"step"="設置妳的日常目標";
 "Cancel"="取消";
 "Enter"="确定";
 "alarmLabelTitle"="設置妳的鬧鐘";
@@ -52,3 +53,4 @@
 "nevoConnected"="nevo is not connected\nEnable Bluetooth on phone";
 "pushHoldButton"="Then push and hold 3rd button\nTo connect your watch";
 "Link-Loss Notifications"="Link-Loss Notifications";
+"ok"="ok";

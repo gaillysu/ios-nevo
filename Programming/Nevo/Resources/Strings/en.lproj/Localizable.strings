@@ -24,6 +24,7 @@
 "Next"="Next";
 "Finish"="Finish";
 "Connect"="Connect";
+"step"="Set your daily goal";
 "Cancel"="Cancel";
 "Enter"="Enter";
 "alarmLabelTitle"=" Set your alarm";
@@ -52,3 +53,4 @@
 "nevoConnected"="nevo is not connected\nEnable Bluetooth on phone";
 "pushHoldButton"="Then push and hold 3rd button\nTo connect your watch";
 "Link-Loss Notifications"="Link-Loss Notifications";
+"ok"="ok";

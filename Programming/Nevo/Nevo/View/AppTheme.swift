@@ -67,7 +67,34 @@ class AppTheme {
         return isiPhone4S
     }
 
+
+    /**
+    Local notifications
+
+    :param: string Inform the content
+    */
+    class func LocalNotificationBody(string:NSString, delay:Double=0) -> UILocalNotification {
+        if (UIDevice.currentDevice().systemVersion as NSString).floatValue >= 8.0 {
+            var categorys:UIMutableUserNotificationCategory = UIMutableUserNotificationCategory()
+            categorys.identifier = "alert";
+            var localUns:UIUserNotificationSettings = UIUserNotificationSettings(forTypes: UIUserNotificationType.Badge|UIUserNotificationType.Sound|UIUserNotificationType.Alert, categories: NSSet(objects: categorys))
+            UIApplication.sharedApplication().registerUserNotificationSettings(localUns)
+        }
+
+        
+        let notification:UILocalNotification=UILocalNotification()
+        notification.timeZone = NSTimeZone.defaultTimeZone()
+        notification.fireDate = NSDate().dateByAddingTimeInterval(delay)
+        notification.alertBody=string;
+        notification.applicationIconBadgeNumber = 0;
+        notification.soundName = UILocalNotificationDefaultSoundName;
+        notification.category = "invite"
+        UIApplication.sharedApplication().scheduleLocalNotification(notification)
+        return notification
+    }
+
     class func CUSTOMBAR_BACKGROUND_COLOR() ->UIColor {
         return UIColor(red: 48/255.0, green: 48/255.0, blue: 48/255.0, alpha: 1)
     }
+
 }

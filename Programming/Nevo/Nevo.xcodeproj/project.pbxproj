@@ -61,7 +61,6 @@
 		00C30ADB1A89FC8200C9F67B /* ButtonCallBack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C30ADA1A89FC8200C9F67B /* ButtonCallBack.swift */; };
 		00C640F41A8D9F4500815CF8 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C640F31A8D9F4500815CF8 /* MainTabBarController.swift */; };
 		00C640F61A8DEE0800815CF8 /* clockView600.png in Resources */ = {isa = PBXBuildFile; fileRef = 00C640F51A8DEE0800815CF8 /* clockView600.png */; };
-		00CD3AFA1AA701D900F3D6A5 /* TypeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00CD3AF91AA701D900F3D6A5 /* TypeModel.swift */; };
 		00D4DE8E1AB011950062523D /* check.png in Resources */ = {isa = PBXBuildFile; fileRef = 00D4DE8D1AB011950062523D /* check.png */; };
 		00D4DE921AB141FB0062523D /* NevoPicture960.png in Resources */ = {isa = PBXBuildFile; fileRef = 00D4DE901AB141FB0062523D /* NevoPicture960.png */; };
 		00E0E1441A88BBDE0001B8CA /* wallpaper0.png in Resources */ = {isa = PBXBuildFile; fileRef = 00E0E1431A88BBDE0001B8CA /* wallpaper0.png */; };
@@ -88,6 +87,7 @@
 		07CC4A2F1A821B46008DA749 /* NevoOTARequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07CC4A2E1A821B46008DA749 /* NevoOTARequest.swift */; };
 		5901F3681AB1836C002AAB13 /* ProfileTestController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5901F3671AB1836C002AAB13 /* ProfileTestController.swift */; };
 		59406DF61AB964B2008619EB /* NotificationSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59406DF51AB964B2008619EB /* NotificationSetting.swift */; };
+		59893B401AC8E3CD0063572B /* ConnectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59893B3F1AC8E3CD0063572B /* ConnectionManager.swift */; };
 		9A12E5461A931B1F00536729 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A12E5451A931B1F00536729 /* Alert.swift */; };
 		9A2D6C3B1A9C6D9F00591BDC /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A2D6C3A1A9C6D9F00591BDC /* HealthKit.framework */; };
 		9A2D6C3E1A9C71E500591BDC /* NevoHK.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2D6C3D1A9C71E500591BDC /* NevoHK.swift */; };
@@ -198,7 +198,6 @@
 		00C30ADA1A89FC8200C9F67B /* ButtonCallBack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ButtonCallBack.swift; path = View/Tutorial/ButtonCallBack.swift; sourceTree = "<group>"; };
 		00C640F31A8D9F4500815CF8 /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainTabBarController.swift; path = Controller/MainTabBarController.swift; sourceTree = "<group>"; };
 		00C640F51A8DEE0800815CF8 /* clockView600.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clockView600.png; sourceTree = "<group>"; };
-		00CD3AF91AA701D900F3D6A5 /* TypeModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TypeModel.swift; sourceTree = "<group>"; };
 		00D4DE8D1AB011950062523D /* check.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = check.png; sourceTree = "<group>"; };
 		00D4DE901AB141FB0062523D /* NevoPicture960.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NevoPicture960.png; sourceTree = "<group>"; };
 		00E0E1431A88BBDE0001B8CA /* wallpaper0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wallpaper0.png; sourceTree = "<group>"; };
@@ -226,6 +225,7 @@
 		07CC4A2E1A821B46008DA749 /* NevoOTARequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NevoOTARequest.swift; path = OTA/NevoOTARequest.swift; sourceTree = "<group>"; };
 		5901F3671AB1836C002AAB13 /* ProfileTestController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfileTestController.swift; path = Controller/ProfileTestController.swift; sourceTree = "<group>"; };
 		59406DF51AB964B2008619EB /* NotificationSetting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationSetting.swift; sourceTree = "<group>"; };
+		59893B3F1AC8E3CD0063572B /* ConnectionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConnectionManager.swift; path = Controller/Connection/ConnectionManager.swift; sourceTree = "<group>"; };
 		9A12E5451A931B1F00536729 /* Alert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Alert.swift; path = Util/Alert.swift; sourceTree = "<group>"; };
 		9A2D6C391A9C6D9F00591BDC /* Nevo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Nevo.entitlements; sourceTree = "<group>"; };
 		9A2D6C3A1A9C6D9F00591BDC /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
@@ -417,7 +417,6 @@
 		00CD3AF81AA7019C00F3D6A5 /* NotificationType */ = {
 			isa = PBXGroup;
 			children = (
-				00CD3AF91AA701D900F3D6A5 /* TypeModel.swift */,
 				59406DF51AB964B2008619EB /* NotificationSetting.swift */,
 			);
 			name = NotificationType;
@@ -636,6 +635,7 @@
 		9AD8F9921A6E3D3D00F01014 /* Connection */ = {
 			isa = PBXGroup;
 			children = (
+				59893B3F1AC8E3CD0063572B /* ConnectionManager.swift */,
 				9A3E572D1A80F04600DFFAE1 /* OTA */,
 				9A3E571B1A80E56E00DFFAE1 /* ConnectionController.swift */,
 				9A3E571C1A80E56E00DFFAE1 /* ConnectionControllerImpl.swift */,
@@ -824,7 +824,6 @@
 				005350B81A8B0F2B00BF289D /* TutorialPage2View.swift in Sources */,
 				9A3E57321A80F08400DFFAE1 /* NevoOTAModeProfile.swift in Sources */,
 				07C59F2A1A8C61E900D65C84 /* SetCardioRequest.swift in Sources */,
-				00CD3AFA1AA701D900F3D6A5 /* TypeModel.swift in Sources */,
 				9A2D6C451A9C8E4800591BDC /* DailySteps.swift in Sources */,
 				9A9BD1C11A88849700A95ACA /* TutorialPage1View.swift in Sources */,
 				007F796E1A878C6C006C89E6 /* TutorialView.swift in Sources */,
@@ -875,6 +874,7 @@
 				07C59F241A8C5A0A00D65C84 /* SetNortificationRequest.swift in Sources */,
 				9A3E57311A80F08400DFFAE1 /* NevoOTAControllerProfile.swift in Sources */,
 				07C59F2E1A8C622300D65C84 /* SetProfileRequest.swift in Sources */,
+				59893B401AC8E3CD0063572B /* ConnectionManager.swift in Sources */,
 				9AD8F99C1A6E3D6A00F01014 /* NevoRequest.swift in Sources */,
 				9A3E57251A80E56E00DFFAE1 /* NevoProfile.swift in Sources */,
 				005350BC1A8B4C1200BF289D /* StepGoalSetingView.swift in Sources */,
