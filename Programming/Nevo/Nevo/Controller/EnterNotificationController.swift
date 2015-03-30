@@ -156,12 +156,22 @@ class EnterNotificationController: UIViewController,SwitchActionDelegate,Palette
     Checks if any device is currently connected
     */
     func checkConnection() {
+
         if mSyncController != nil && !(mSyncController!.isConnected()) {
             //We are currently not connected
-            enterNotView.addSubview((enterNotView.animationView?.bulibNoConnectView())!)
-            reconnect()
+            var isView:Bool = false
+            for view in enterNotView.subviews {
+                let anView:UIView = view as UIView
+                if anView.isEqual(enterNotView.animationView?.bulibNoConnectView()) {
+                    isView = true
+                }
+            }
+            if !isView {
+                enterNotView.addSubview(enterNotView.animationView!.bulibNoConnectView())
+                reconnect()
+            }
         } else {
-            enterNotView.animationView?.endConnectRemoveView()
+            enterNotView.animationView!.endConnectRemoveView()
         }
     }
 

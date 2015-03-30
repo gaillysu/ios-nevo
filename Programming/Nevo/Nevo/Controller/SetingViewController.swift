@@ -107,15 +107,24 @@ class SetingViewController: UIViewController,SelectionTypeDelegate,SyncControlle
     Checks if any device is currently connected
     */
     func checkConnection() {
+
         if mSyncController != nil && !(mSyncController!.isConnected()) {
             //We are currently not connected
-            notificationList.addSubview(notificationList.animationView.bulibNoConnectView())
-            reconnect()
+            var isView:Bool = false
+            for view in notificationList.subviews {
+                let anView:UIView = view as UIView
+                if anView.isEqual(notificationList.animationView.bulibNoConnectView()) {
+                    isView = true
+                }
+            }
+            if !isView {
+                notificationList.addSubview(notificationList.animationView.bulibNoConnectView())
+                reconnect()
+            }
         } else {
-            notificationList.animationView?.endConnectRemoveView()
+
+            notificationList.animationView.endConnectRemoveView()
         }
-        
-        
     }
 
     func reconnect() {

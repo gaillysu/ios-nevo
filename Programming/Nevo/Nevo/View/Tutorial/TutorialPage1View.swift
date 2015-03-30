@@ -62,7 +62,7 @@ class TutorialPage1View : UIView {
 
         let titleLabel:UILabel = UILabel(frame: CGRectMake(0, 0, guideImage.frame.size.width, 60))
         titleLabel.center = CGPointMake(self.frame.size.width/2.0, guideImage.frame.origin.y+guideImage.frame.size.height+70)
-        titleLabel.textAlignment = NSTextAlignment.Left
+        titleLabel.textAlignment = NSTextAlignment.Center
         titleLabel.numberOfLines = 0
         titleLabel.lineBreakMode = NSLineBreakMode.ByCharWrapping
         titleLabel.font = TEXT_FONT

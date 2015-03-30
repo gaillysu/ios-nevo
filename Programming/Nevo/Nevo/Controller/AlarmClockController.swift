@@ -175,16 +175,22 @@ class AlarmClockController: UIViewController, SyncControllerDelegate,ButtonManag
     func checkConnection() {
 
         if mSyncController != nil && !(mSyncController!.isConnected()) {
-            
             //We are currently not connected
-           alarmView.addSubview(alarmView.animationView.bulibNoConnectView())
-            reconnect()
+            var isView:Bool = false
+            for view in alarmView.subviews {
+                let anView:UIView = view as UIView
+                if anView.isEqual(alarmView.animationView.bulibNoConnectView()) {
+                    isView = true
+                }
+            }
+            if !isView {
+                alarmView.addSubview(alarmView.animationView.bulibNoConnectView())
+                reconnect()
+            }
         } else {
-            
+
             alarmView.animationView.endConnectRemoveView()
         }
-
-
     }
 
 }

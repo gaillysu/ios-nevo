@@ -76,7 +76,7 @@ class SetingView: UIView {
         endCell?.layer.borderColor = UIColor.grayColor().CGColor;
         endCell?.selectionStyle = UITableViewCellSelectionStyle.None;
         endCell?.statesSwitch.tag = indexPath.row
-        endCell?.statesSwitch.tintColor = AppTheme.CUSTOMBAR_BACKGROUND_COLOR()
+        endCell?.statesSwitch.tintColor = AppTheme.NEVO_SOLAR_GRAY()
         endCell?.statesSwitch.onTintColor = AppTheme.NEVO_SOLAR_YELLOW()
         let setting:NotificationSetting = dataSource[indexPath.row-1]
         if setting.getStates() {
