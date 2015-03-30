@@ -16,6 +16,7 @@ class SetingView: UIView {
     
     private var mDelegate:ButtonManagerCallBack?
     var animationView:AnimationView!
+    var mSendLocalNotificationSwitchButton:UISwitch!
 
     func bulidNotificationViewUI(delegate:ButtonManagerCallBack){
         title.textColor = UIColor.whiteColor()
@@ -97,6 +98,35 @@ class SetingView: UIView {
         return icon
     }
     
+    func NotificationSwicthCell(indexPath:NSIndexPath)->UITableViewCell {
+        let endCellID:String = "SwicthCell"
+        var endCell:UITableViewCell?
+        endCell = tableListView.dequeueReusableCellWithIdentifier(endCellID) as? UITableViewCell
+        
+        if (endCell == nil) {
+            endCell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: endCellID)
+            mSendLocalNotificationSwitchButton = UISwitch(frame: CGRectMake(0, 0, 50, 40))
+            mSendLocalNotificationSwitchButton.center = CGPointMake(endCell!.contentView.frame.size.width-60, 65/2.0)
+            mSendLocalNotificationSwitchButton.addTarget(self, action: Selector("SendLocalNotificationSwitchAction:"), forControlEvents: UIControlEvents.ValueChanged)
+            mSendLocalNotificationSwitchButton.on = ConnectionManager.sharedInstance.getIsSendLocalMsg()
+            mSendLocalNotificationSwitchButton.tintColor = AppTheme.NEVO_SOLAR_GRAY()
+            mSendLocalNotificationSwitchButton.onTintColor = AppTheme.NEVO_SOLAR_YELLOW()
+            endCell?.contentView.addSubview(mSendLocalNotificationSwitchButton)
+            endCell?.layer.borderWidth = 0.5;
+            endCell?.layer.borderColor = UIColor.grayColor().CGColor;
+            endCell?.selectionStyle = UITableViewCellSelectionStyle.None;
+            endCell?.textLabel?.text = NSLocalizedString("Link-Loss Notifications", comment: "")
+        }
+
+        return endCell!
+        
+    }
+    
+    func SendLocalNotificationSwitchAction(swicth:UISwitch) {
+        mDelegate?.controllManager(swicth)
+    }
+    
+
     /*
     // Only override drawRect: if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.

@@ -85,6 +85,15 @@ class SetingViewController: UIViewController,SelectionTypeDelegate,SyncControlle
         if sender.isEqual(notificationList.backButton) {
            self.dismissViewControllerAnimated(true, completion: nil)
         }
+        
+        if sender is UISwitch {
+            var switchButton = sender as UISwitch
+            if switchButton.isEqual(notificationList.mSendLocalNotificationSwitchButton){
+                NSLog("setIsSendLocalMsg \(switchButton.on)")
+                ConnectionManager.sharedInstance.setIsSendLocalMsg(switchButton.on)
+            }
+        }
+
     }
 
     // MARK: - SyncControllerDelegate
@@ -219,6 +228,8 @@ class SetingViewController: UIViewController,SelectionTypeDelegate,SyncControlle
                     self.performSegueWithIdentifier("EnterNotification", sender: self)
                 }
             }
+        }else if indexPath.section == 1 {
+            NSLog("\(indexPath)")
         }else{
             didSelectTableViewCell(tableView, didIndexPath: indexPath)
 
@@ -248,6 +259,11 @@ class SetingViewController: UIViewController,SelectionTypeDelegate,SyncControlle
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        if indexPath.section == 1 {
+            let endCell = notificationList.NotificationSwicthCell(indexPath)
+            return endCell
+        }
+
         if indexPath.row == 0 {
             var endCell:UITableViewCell = tableView.dequeueReusableCellWithIdentifier("SetingCell", forIndexPath: indexPath) as UITableViewCell
             endCell.selectedBackgroundView = UIImageView(image: UIImage(named:"selectedButton"))
