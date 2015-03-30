@@ -10,11 +10,14 @@ import UIKit
 
 class NevoOtaView: UIView {
 
+    @IBOutlet weak var title: UILabel!
+    
     private var mDelegate:ButtonManagerCallBack?
     
     
     func buildView(delegate:ButtonManagerCallBack) {
         mDelegate = delegate
+        title.text = NSLocalizedString("Firmware Upgrade", comment:"")
     }
     
     
