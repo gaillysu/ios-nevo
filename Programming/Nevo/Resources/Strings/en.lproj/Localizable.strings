@@ -45,6 +45,9 @@
 "WeChat"="WeChat";
 "Off"="Off";
 "On"="On";
-"Notification"="Notification";
+"Notifications"="Notifications";
 "Progress: "="Progress: ";
 "Step"="Steps";
+"Setting"="Setting";
+"nevoConnected"="nevo is not connected\nEnable Bluetooth on phone";
+"pushHoldButton"="Then push and hold 3rd button\nTo connect your watch";

@@ -64,7 +64,7 @@ class MainTabBarController: UITabBarController,UITabBarControllerDelegate {
         for (var i:Int = 0; i < imgArray.count; i++) {
 
             var itemWidth:CGFloat = itemView.frame.size.width/CGFloat(imgArray.count)
-            var item:UIButton  = UIButton(frame:  CGRectMake(itemWidth*CGFloat(i), 0, itemWidth, itemView.frame.size.height))
+            var item:UIButton  = UIButton(frame: CGRectMake(itemWidth*CGFloat(i), 0, itemWidth, itemView.frame.size.height))
             item.backgroundColor = UIColor.clearColor()
             item.setImage(UIImage(named: selectImgArray[i] as String), forState: UIControlState.Selected)
             item.setImage(UIImage(named: selectImgArray[i] as String), forState: UIControlState.Highlighted)
@@ -74,7 +74,7 @@ class MainTabBarController: UITabBarController,UITabBarControllerDelegate {
                 item.selected=true
                 selectedItem=item
             }
-            item.addTarget(self, action: Selector("tabbarItemClickAction:"), forControlEvents: UIControlEvents.TouchUpInside)
+            item.addTarget(self, action: Selector("tabbarItemClickAction:"), forControlEvents: UIControlEvents.TouchDown)
             itemView.addSubview(item)
             item.tag = i;
             items.addObject(item)

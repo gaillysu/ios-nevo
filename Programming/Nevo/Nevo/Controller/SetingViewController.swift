@@ -28,7 +28,7 @@ class SetingViewController: UIViewController,SelectionTypeDelegate,SyncControlle
 
         initNotificationSettingArray()
 
-        sources = ["Notifications"]
+        sources = [NSLocalizedString("Notifications", comment: "")]
     }
 
     override func viewDidAppear(animated: Bool) {

@@ -19,7 +19,7 @@ class SetingView: UIView {
 
     func bulidNotificationViewUI(delegate:ButtonManagerCallBack){
         title.textColor = UIColor.whiteColor()
-        title.text = NSLocalizedString("Seting", comment: "")
+        title.text = NSLocalizedString("Setting", comment: "")
         title.font = UIFont.systemFontOfSize(25)
         title.textAlignment = NSTextAlignment.Center
 

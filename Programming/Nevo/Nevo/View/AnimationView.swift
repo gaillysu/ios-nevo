@@ -43,9 +43,11 @@ class AnimationView: UIView {
             mNoConnectionView?.tag = NO_CONNECT_VIEW
             self.addSubview(mNoConnectionView!)
 
-            let message:UILabel = UILabel(frame: CGRectMake(0, 0, 300, 60))
+            let message:UILabel = UILabel(frame: CGRectMake(0, 0, 300, 90))
             message.center = CGPointMake(self.frame.size.width/2, mNoConnectionView!.frame.size.height/2.0-120)
-            message.text = NSLocalizedString("EnableBluetoothPhone", comment: "")
+            message.text = NSLocalizedString("nevoConnected", comment: "")
+            message.numberOfLines = 0
+            message.lineBreakMode = NSLineBreakMode.ByWordWrapping
             message.textAlignment = NSTextAlignment.Center
             message.textColor = UIColor.blackColor()
             mNoConnectionView?.addSubview(message)
@@ -65,9 +67,11 @@ class AnimationView: UIView {
             mNoConnectScanButton?.addTarget(self, action: Selector("noConnectButtonAction:"), forControlEvents: UIControlEvents.TouchUpInside)
             mNoConnectionView?.addSubview(mNoConnectScanButton!)
 
-            let message2:UILabel = UILabel(frame: CGRectMake(0, 0, 300, 60))
+            let message2:UILabel = UILabel(frame: CGRectMake(0, 0, 300, 90))
             message2.center = CGPointMake(self.frame.size.width/2, mNoConnectionView!.frame.size.height/2.0+120)
-            message2.text = NSLocalizedString("WatchBluetooth", comment: "")
+            message2.text = NSLocalizedString("pushHoldButton", comment: "")
+            message2.numberOfLines = 0
+            message2.lineBreakMode = NSLineBreakMode.ByWordWrapping
             message2.textAlignment = NSTextAlignment.Center
             message2.textColor = UIColor.blackColor()
             mNoConnectionView?.addSubview(message2)
