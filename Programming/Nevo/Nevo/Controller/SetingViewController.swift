@@ -28,7 +28,7 @@ class SetingViewController: UIViewController,SelectionTypeDelegate,SyncControlle
 
         initNotificationSettingArray()
 
-        sources = [NSLocalizedString("Notifications", comment: "")]
+        sources = [NSLocalizedString("Notifications", comment: ""),NSLocalizedString("Link-Loss Notifications", comment: "")]
     }
 
     override func viewDidAppear(animated: Bool) {
@@ -159,51 +159,56 @@ class SetingViewController: UIViewController,SelectionTypeDelegate,SyncControlle
     }
 
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
-
-        if !selectedB {
-            let cell:UITableViewCell = tableView.cellForRowAtIndexPath(indexPath)!
-            cell.textLabel?.textColor = UIColor.whiteColor()
-
-            var soures:[NSIndexPath] = []
-            var indexPathRow:NSIndexPath!
-            for var index:Int = 0 ; index < mNotificationSettingArray.count ; index++ {
-                indexPathRow = NSIndexPath(forRow:index + 1, inSection: 0)
-                soures.append(indexPathRow)
-            }
-            selectedB = true
-            tableView.insertRowsAtIndexPaths(soures, withRowAnimation: UITableViewRowAnimation.Bottom)
-        }else{
-            if indexPath.row == 0 {
+        if indexPath.section == 0 {
+            if !selectedB {
                 let cell:UITableViewCell = tableView.cellForRowAtIndexPath(indexPath)!
-                cell.textLabel?.textColor = UIColor.blackColor()
-                cell.selected = false
+                cell.textLabel?.textColor = UIColor.whiteColor()
+
                 var soures:[NSIndexPath] = []
                 var indexPathRow:NSIndexPath!
                 for var index:Int = 0 ; index < mNotificationSettingArray.count ; index++ {
                     indexPathRow = NSIndexPath(forRow:index + 1, inSection: 0)
                     soures.append(indexPathRow)
                 }
-                selectedB = false
-                tableView.deleteRowsAtIndexPaths(soures, withRowAnimation: UITableViewRowAnimation.Bottom)
+                selectedB = true
+                tableView.insertRowsAtIndexPaths(soures, withRowAnimation: UITableViewRowAnimation.Bottom)
             }else{
-                var indexPathRow = NSIndexPath(forRow:0, inSection: 0)
-                let cell:UITableViewCell = tableView.cellForRowAtIndexPath(indexPathRow)!
-                cell.textLabel?.textColor = UIColor.whiteColor()
-                cell.selected = true
-                mNotificationType = mNotificationSettingArray[indexPath.row-1].getType()
-                self.performSegueWithIdentifier("EnterNotification", sender: self)
+                if indexPath.row == 0 {
+                    let cell:UITableViewCell = tableView.cellForRowAtIndexPath(indexPath)!
+                    cell.textLabel?.textColor = UIColor.blackColor()
+                    cell.selected = false
+                    var soures:[NSIndexPath] = []
+                    var indexPathRow:NSIndexPath!
+                    for var index:Int = 0 ; index < mNotificationSettingArray.count ; index++ {
+                        indexPathRow = NSIndexPath(forRow:index + 1, inSection: 0)
+                        soures.append(indexPathRow)
+                    }
+                    selectedB = false
+                    tableView.deleteRowsAtIndexPaths(soures, withRowAnimation: UITableViewRowAnimation.Bottom)
+                }else{
+                    var indexPathRow = NSIndexPath(forRow:0, inSection: 0)
+                    let cell:UITableViewCell = tableView.cellForRowAtIndexPath(indexPathRow)!
+                    cell.textLabel?.textColor = UIColor.whiteColor()
+                    cell.selected = true
+                    mNotificationType = mNotificationSettingArray[indexPath.row-1].getType()
+                    self.performSegueWithIdentifier("EnterNotification", sender: self)
+                }
             }
         }
-
     }
 
     // MARK: - UITableViewDataSource
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
-        if selectedB {
-            NSLog("count:\(sources.count + mNotificationSettingArray.count)")
-            return sources.count + mNotificationSettingArray.count
-        }
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int{
         return sources.count
+
+    }
+
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
+        if selectedB && section==0 {
+            NSLog("count:\(sources.count + mNotificationSettingArray.count)")
+            return 1 + mNotificationSettingArray.count
+        }
+        return 1
         //return mNotificationSettingArray.count
     }
 
@@ -211,7 +216,7 @@ class SetingViewController: UIViewController,SelectionTypeDelegate,SyncControlle
         if indexPath.row == 0 {
             var endCell:UITableViewCell = tableView.dequeueReusableCellWithIdentifier("SetingCell", forIndexPath: indexPath) as UITableViewCell
             endCell.selectedBackgroundView = UIImageView(image: UIImage(named:"selectedButton"))
-            endCell.textLabel?.text = sources.objectAtIndex(indexPath.row) as? String
+            endCell.textLabel?.text = sources.objectAtIndex(indexPath.section) as? String
             endCell.layer.borderWidth = 0.5;
             endCell.layer.borderColor = UIColor.grayColor().CGColor;
             return endCell
