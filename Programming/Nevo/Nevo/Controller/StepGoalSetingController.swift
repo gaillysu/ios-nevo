@@ -155,8 +155,17 @@ class StepGoalSetingController: UIViewController, SyncControllerDelegate,ButtonM
         if mSyncController != nil && !(mSyncController!.isConnected()) {
 
             //We are currently not connected
-            stepGoalView.addSubview(stepGoalView.animationView.bulibNoConnectView())
-            reconnect()
+            var isView:Bool = false
+            for view in stepGoalView.subviews {
+                let anView:UIView = view as UIView
+                if anView.isEqual(stepGoalView.animationView.bulibNoConnectView()) {
+                    isView = true
+                }
+            }
+            if !isView {
+                stepGoalView.addSubview(stepGoalView.animationView.bulibNoConnectView())
+                reconnect()
+            }
         } else {
 
             stepGoalView.animationView.endConnectRemoveView()
