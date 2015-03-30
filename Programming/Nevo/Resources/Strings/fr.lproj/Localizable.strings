@@ -53,6 +53,6 @@
 "Setting"="Paramètres";
 "nevoConnected"="Votre nevo n’est pas connectée\nActivez le Bluetooth sur votre Smartphone";
 "pushHoldButton"="Appuyez ensuite sur le 3eme bouton\nPour connecter votre montre";
-"Link-Loss Notifications"="Alerte de perte de connection";
+"Link-Loss Notifications"="Alerte de déconnection";
 "ok"="Ok";
 "Firmware Upgrade"="Firmware Upgrade";
