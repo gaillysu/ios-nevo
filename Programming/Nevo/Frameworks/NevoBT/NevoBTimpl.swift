@@ -243,7 +243,6 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
         mTryingToConnectPeripherals = []
         
         mDelegate.connectionStateChanged(true, fromAddress: aPeripheral.identifier)
-        ConnectionManager.sharedInstance.checkConnectSendNotification(ConnectionManager.Const.connectionStatus.connected)
         
     }
 
@@ -421,7 +420,6 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
         setPeripheral(nil)
     
         mDelegate.connectionStateChanged(false, fromAddress: aPeripheral.identifier)
-        ConnectionManager.sharedInstance.checkConnectSendNotification(ConnectionManager.Const.connectionStatus.disconnected)
     
     }
     

@@ -312,6 +312,12 @@ class SyncController: ConnectionControllerDelegate {
     }
     
     func connectionStateChanged(isConnected : Bool) {
+        //send local notification
+        if isConnected {
+            ConnectionManager.sharedInstance.checkConnectSendNotification(ConnectionManager.Const.connectionStatus.connected)
+        }else {
+            ConnectionManager.sharedInstance.checkConnectSendNotification(ConnectionManager.Const.connectionStatus.disconnected)
+        }
         
         for (index, delegate) in enumerate(mDelegates) {
             delegate.connectionStateChanged(isConnected)
