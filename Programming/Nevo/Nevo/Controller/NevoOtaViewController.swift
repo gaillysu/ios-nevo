@@ -172,8 +172,8 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
             self.performSegueWithIdentifier("Ota2SelectFile", sender: self)
         }else if senderString == "back2Home"{
             NSLog("back2Home")
-            //self.dismissViewControllerAnimated(true, completion: nil)
-            self.navigationController?.popViewControllerAnimated(true)
+            self.dismissViewControllerAnimated(true, completion: nil)
+            //self.navigationController?.popViewControllerAnimated(true)
         }else if senderString == "uploadFile"{
             NSLog("uploadFile")
             uploadPressed()

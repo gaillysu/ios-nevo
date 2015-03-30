@@ -50,7 +50,8 @@ class SelectFileController: UITableViewController {
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         var fileURL:NSURL = mFiles[indexPath.row]
         //set the select file to screen
-        self.navigationController?.popViewControllerAnimated(true)
+        //self.navigationController?.popViewControllerAnimated(true)
+        self.dismissViewControllerAnimated(true, completion: nil)
         mFileDelegate?.onFileSelected(fileURL)
         
     }

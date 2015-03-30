@@ -28,7 +28,7 @@ class SetingViewController: UIViewController,SelectionTypeDelegate,SyncControlle
 
         initNotificationSettingArray()
 
-        sources = [NSLocalizedString("Notifications", comment: ""),NSLocalizedString("Link-Loss Notifications", comment: "")]
+        sources = [NSLocalizedString("Notifications", comment: ""),NSLocalizedString("Link-Loss Notifications", comment: ""),NSLocalizedString("Firmware Upgrade", comment: "")]
     }
 
     override func viewDidAppear(animated: Bool) {
@@ -150,6 +150,53 @@ class SetingViewController: UIViewController,SelectionTypeDelegate,SyncControlle
     }
 
     // MARK: - UITableViewDelegate
+    func deleteRowsAtIndexPaths(tableView:UITableView, indexPath:NSIndexPath){
+        allCellTextColor(tableView)
+
+        let cell:UITableViewCell = tableView.cellForRowAtIndexPath(indexPath)!
+        cell.textLabel?.textColor = UIColor.blackColor()
+        cell.selected = false
+        var soures:[NSIndexPath] = []
+        var indexPathRow:NSIndexPath!
+        for var index:Int = 0 ; index < mNotificationSettingArray.count ; index++ {
+            indexPathRow = NSIndexPath(forRow:index + 1, inSection: 0)
+            soures.append(indexPathRow)
+        }
+        selectedB = false
+        tableView.deleteRowsAtIndexPaths(soures, withRowAnimation: UITableViewRowAnimation.Bottom)
+    }
+
+    func insertRowsAtIndexPaths(tableView:UITableView,indexPath:NSIndexPath){
+        allCellTextColor(tableView)
+
+        var soures:[NSIndexPath] = []
+        var indexPathRow:NSIndexPath!
+        for var index:Int = 0 ; index < mNotificationSettingArray.count ; index++ {
+            indexPathRow = NSIndexPath(forRow:index + 1, inSection: 0)
+            soures.append(indexPathRow)
+        }
+        selectedB = true
+        tableView.insertRowsAtIndexPaths(soures, withRowAnimation: UITableViewRowAnimation.Bottom)
+    }
+
+    func didSelectTableViewCell(tableView:UITableView,didIndexPath:NSIndexPath) {
+        allCellTextColor(tableView)
+        var indexPathRow:NSIndexPath!
+        indexPathRow = NSIndexPath(forRow:0, inSection: didIndexPath.section)
+        let cell:UITableViewCell = tableView.cellForRowAtIndexPath(indexPathRow)!
+//        cell.textLabel?.textColor = UIColor.whiteColor()
+        cell.selected = true
+    }
+
+    func allCellTextColor(tableView:UITableView) {
+        var allCell = tableView.indexPathsForVisibleRows()
+        for cell in allCell! {
+            let seletedCell:UITableViewCell = tableView.cellForRowAtIndexPath(cell as NSIndexPath)!
+            //cell as UITableViewCell
+            seletedCell.textLabel?.textColor = UIColor.blackColor()
+        }
+    }
+
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 65.0
     }
@@ -161,38 +208,26 @@ class SetingViewController: UIViewController,SelectionTypeDelegate,SyncControlle
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
         if indexPath.section == 0 {
             if !selectedB {
-                let cell:UITableViewCell = tableView.cellForRowAtIndexPath(indexPath)!
-                cell.textLabel?.textColor = UIColor.whiteColor()
-
-                var soures:[NSIndexPath] = []
-                var indexPathRow:NSIndexPath!
-                for var index:Int = 0 ; index < mNotificationSettingArray.count ; index++ {
-                    indexPathRow = NSIndexPath(forRow:index + 1, inSection: 0)
-                    soures.append(indexPathRow)
-                }
-                selectedB = true
-                tableView.insertRowsAtIndexPaths(soures, withRowAnimation: UITableViewRowAnimation.Bottom)
+                insertRowsAtIndexPaths(tableView, indexPath: indexPath)
             }else{
                 if indexPath.row == 0 {
-                    let cell:UITableViewCell = tableView.cellForRowAtIndexPath(indexPath)!
-                    cell.textLabel?.textColor = UIColor.blackColor()
-                    cell.selected = false
-                    var soures:[NSIndexPath] = []
-                    var indexPathRow:NSIndexPath!
-                    for var index:Int = 0 ; index < mNotificationSettingArray.count ; index++ {
-                        indexPathRow = NSIndexPath(forRow:index + 1, inSection: 0)
-                        soures.append(indexPathRow)
-                    }
-                    selectedB = false
-                    tableView.deleteRowsAtIndexPaths(soures, withRowAnimation: UITableViewRowAnimation.Bottom)
+
+                    deleteRowsAtIndexPaths(tableView, indexPath: indexPath)
                 }else{
-                    var indexPathRow = NSIndexPath(forRow:0, inSection: 0)
-                    let cell:UITableViewCell = tableView.cellForRowAtIndexPath(indexPathRow)!
-                    cell.textLabel?.textColor = UIColor.whiteColor()
-                    cell.selected = true
+                    didSelectTableViewCell(tableView, didIndexPath: indexPath)
                     mNotificationType = mNotificationSettingArray[indexPath.row-1].getType()
                     self.performSegueWithIdentifier("EnterNotification", sender: self)
                 }
+            }
+        }else{
+            didSelectTableViewCell(tableView, didIndexPath: indexPath)
+
+            if selectedB {
+                deleteRowsAtIndexPaths(tableView, indexPath: indexPath)
+            }
+
+            if indexPath.section == 2{
+                self.performSegueWithIdentifier("Setting_nevoOta", sender: self)
             }
         }
     }

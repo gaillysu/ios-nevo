@@ -42,7 +42,7 @@ class SetingView: UIView {
     :returns: <#return value description#>
     */
     func NotificationlistCell(indexPath:NSIndexPath,dataSource:[NotificationSetting])->UITableViewCell {
-        let endCellID:NSString = "endCell"
+        let endCellID:NSString = "SetingCell"
         var endCell = tableListView.dequeueReusableCellWithIdentifier(endCellID) as? TableListCell
         var StatesLabel:UILabel!
         
