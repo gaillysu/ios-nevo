@@ -88,9 +88,14 @@ class AnimationView: UIView {
     }
 
     func noConnectButtonAction(sender:UIButton){
+        //forgot the address to reconnect
+        NSLog("noConnectScanButton")
+        NSLog("forgot the watch address before \(NSUserDefaults.standardUserDefaults().objectForKey(ConnectionControllerImpl.Const.SAVED_ADDRESS_KEY))")
+        NSUserDefaults.standardUserDefaults().removeObjectForKey(ConnectionControllerImpl.Const.SAVED_ADDRESS_KEY)
         //CallBack StepGoalSetingController
         mDelegate?.controllManager(sender as UIButton)
     }
+    
     func RotatingAnimationObject(sender:UIImageView) {
 
         var rotationAnimation:CABasicAnimation = CABasicAnimation(keyPath: "transform.rotation.z")

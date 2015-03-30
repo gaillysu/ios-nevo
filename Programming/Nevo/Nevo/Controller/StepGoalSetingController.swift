@@ -74,9 +74,6 @@ class StepGoalSetingController: UIViewController, SyncControllerDelegate,ButtonM
 
 
         if sender.isEqual(stepGoalView.animationView.getNoConnectScanButton()?) {
-            NSLog("noConnectScanButton")
-            NSLog("forgot the watch address before \(NSUserDefaults.standardUserDefaults().objectForKey(ConnectionControllerImpl.Const.SAVED_ADDRESS_KEY))")
-            NSUserDefaults.standardUserDefaults().removeObjectForKey(ConnectionControllerImpl.Const.SAVED_ADDRESS_KEY)
             reconnect()
         }
 
