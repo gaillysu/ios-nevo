@@ -105,7 +105,7 @@ class TutorialScanPageView : UIView {
         if AppTheme.GET_IS_iPhone4S(){
             errorLabel.center = CGPointMake(self.frame.size.width/2.0, self.frame.size.height-80)
         }else {
-            errorLabel.center = CGPointMake(self.frame.size.width/2.0, self.frame.size.height-130)
+            errorLabel.center = CGPointMake(self.frame.size.width/2.0, self.frame.size.height-110)
         }
 
         errorLabel.textAlignment = NSTextAlignment.Center
@@ -140,7 +140,7 @@ class TutorialScanPageView : UIView {
     */
     override func animationDidStart(theAnimation:CAAnimation){
         mConnectButton?.enabled = false
-        mConnectButton?.setTitle( NSLocalizedString("",comment:"lable string"), forState: UIControlState.Normal)
+        mConnectButton?.setTitleColor(AppTheme.NEVO_SOLAR_GRAY(), forState: UIControlState.Normal)
     }
 
     /**
@@ -148,7 +148,7 @@ class TutorialScanPageView : UIView {
     */
     override func animationDidStop(theAnimation:CAAnimation ,finished:Bool){
         mConnectButton?.enabled = true
-        mConnectButton?.setTitle( NSLocalizedString("Connect",comment:"lable string"), forState: UIControlState.Normal)
+        mConnectButton?.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
     }
     /*
     Connect the Success to empty some pictures don't need the button and the label text

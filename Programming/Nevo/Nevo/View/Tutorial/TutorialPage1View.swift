@@ -95,7 +95,7 @@ class TutorialPage1View : UIView {
 
         let errorLabel:UILabel = UILabel(frame: CGRectMake(0, 0, titleLabel.frame.size.width, 90))
         errorLabel.center = CGPointMake(self.frame.size.width/2.0, self.frame.size.height-100)
-        errorLabel.textAlignment = NSTextAlignment.Left
+        errorLabel.textAlignment = NSTextAlignment.Center
         errorLabel.numberOfLines = 0
         errorLabel.lineBreakMode = NSLineBreakMode.ByWordWrapping
         errorLabel.font = TEXT_FONT

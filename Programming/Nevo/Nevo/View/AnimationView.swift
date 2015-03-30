@@ -128,7 +128,7 @@ class AnimationView: UIView {
     {
         NSLog("begin");
         mNoConnectScanButton?.enabled = false
-        mNoConnectScanButton?.setTitle(NSLocalizedString(" ", comment: ""), forState: UIControlState.Normal)
+        mNoConnectScanButton?.setTitleColor(AppTheme.NEVO_SOLAR_GRAY(), forState: UIControlState.Normal)
     }
 
     /**
@@ -137,7 +137,7 @@ class AnimationView: UIView {
     override func animationDidStop(theAnimation:CAAnimation ,finished:Bool){
         NSLog("end");
         mNoConnectScanButton?.enabled = true
-        mNoConnectScanButton?.setTitle(NSLocalizedString("Connect", comment: ""), forState: UIControlState.Normal)
+        mNoConnectScanButton?.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
     }
 
     func getNoConnectScanButton() -> UIButton? {
