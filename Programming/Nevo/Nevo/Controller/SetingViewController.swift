@@ -223,7 +223,7 @@ class SetingViewController: UIViewController,SelectionTypeDelegate,SyncControlle
 
                     deleteRowsAtIndexPaths(tableView, indexPath: indexPath)
                 }else{
-                    didSelectTableViewCell(tableView, didIndexPath: indexPath)
+                    //didSelectTableViewCell(tableView, didIndexPath: indexPath)
                     mNotificationType = mNotificationSettingArray[indexPath.row-1].getType()
                     self.performSegueWithIdentifier("EnterNotification", sender: self)
                 }
@@ -231,7 +231,7 @@ class SetingViewController: UIViewController,SelectionTypeDelegate,SyncControlle
         }else if indexPath.section == 1 {
             NSLog("\(indexPath)")
         }else{
-            didSelectTableViewCell(tableView, didIndexPath: indexPath)
+            //didSelectTableViewCell(tableView, didIndexPath: indexPath)
 
             if selectedB {
                 deleteRowsAtIndexPaths(tableView, indexPath: indexPath)

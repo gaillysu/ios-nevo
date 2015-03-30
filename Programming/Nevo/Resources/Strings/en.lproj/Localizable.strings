@@ -48,6 +48,7 @@
 "On"="On";
 "Notifications"="Notifications";
 "Progress: "="Progress: ";
+"Step: "="Steps: ";
 "Step"="Steps";
 "Setting"="Settings";
 "nevoConnected"="nevo is not connected\nEnable Bluetooth on phone";

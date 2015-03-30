@@ -48,6 +48,7 @@
 "On"="開";
 "Notifications"="通知";
 "Progress: "="進度: ";
+"Step: "="步数: ";
 "Step"="步";
 "Setting"="設置";
 "nevoConnected"="nevo未連接\n請打開手機藍牙";
