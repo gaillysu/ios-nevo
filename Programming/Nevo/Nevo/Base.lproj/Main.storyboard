@@ -357,7 +357,6 @@
                             <constraint firstItem="4UJ-HD-K8S" firstAttribute="trailing" secondItem="IzD-eh-vYY" secondAttribute="trailing" constant="6" id="4ZI-y7-NQZ"/>
                             <constraint firstItem="aEp-Xl-VFt" firstAttribute="top" secondItem="EUQ-ub-EHk" secondAttribute="bottom" constant="15" id="5IB-FQ-kfo"/>
                             <constraint firstItem="lNM-9j-XkJ" firstAttribute="top" secondItem="gaD-b4-56S" secondAttribute="bottom" id="9k5-Mf-P8a"/>
-                            <constraint firstItem="7uk-Lo-xTC" firstAttribute="top" secondItem="aEp-Xl-VFt" secondAttribute="bottom" constant="138" id="A0o-L2-chk"/>
                             <constraint firstItem="IzD-eh-vYY" firstAttribute="leading" secondItem="4UJ-HD-K8S" secondAttribute="leading" constant="-6" id="EIi-cq-mxQ"/>
                             <constraint firstItem="aEp-Xl-VFt" firstAttribute="leading" secondItem="EUQ-ub-EHk" secondAttribute="leading" id="Gj3-Cr-qf5"/>
                             <constraint firstItem="8qF-dd-75H" firstAttribute="trailing" secondItem="EUQ-ub-EHk" secondAttribute="trailing" id="Hvm-Tb-ESj"/>
@@ -369,7 +368,10 @@
                             <constraint firstItem="IzD-eh-vYY" firstAttribute="top" secondItem="lNM-9j-XkJ" secondAttribute="bottom" constant="53" id="bEE-tI-eaC"/>
                             <constraint firstItem="IzD-eh-vYY" firstAttribute="top" secondItem="4UJ-HD-K8S" secondAttribute="bottom" constant="60" id="gQy-rI-LqA"/>
                             <constraint firstItem="aEp-Xl-VFt" firstAttribute="trailing" secondItem="EUQ-ub-EHk" secondAttribute="trailing" id="k7X-Wy-Div"/>
+                            <constraint firstItem="8qF-dd-75H" firstAttribute="top" relation="greaterThanOrEqual" secondItem="sRG-8v-pva" secondAttribute="top" constant="268" id="lbv-IU-2Fv"/>
                             <constraint firstItem="8qF-dd-75H" firstAttribute="leading" secondItem="IzD-eh-vYY" secondAttribute="leading" id="t7w-8u-pj9"/>
+                            <constraint firstItem="EUQ-ub-EHk" firstAttribute="top" secondItem="sRG-8v-pva" secondAttribute="top" constant="288" id="tJq-4I-CAX"/>
+                            <constraint firstItem="aEp-Xl-VFt" firstAttribute="top" secondItem="sRG-8v-pva" secondAttribute="top" constant="396" id="vrB-tY-U9X"/>
                             <constraint firstItem="4UJ-HD-K8S" firstAttribute="leading" secondItem="sRG-8v-pva" secondAttribute="leadingMargin" constant="25" id="xma-mI-LBD"/>
                         </constraints>
                         <connections>

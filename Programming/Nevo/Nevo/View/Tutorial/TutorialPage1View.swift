@@ -43,7 +43,7 @@ class TutorialPage1View : UIView {
     func buildTutorialPage() {
 
         let backButton = UIButton.buttonWithType(UIButtonType.Custom) as UIButton
-        backButton.frame = CGRectMake(15, 10, 60, 40)
+        backButton.frame = CGRectMake(15, 10, 70, 40)
         backButton.setTitle(NSLocalizedString("Back",comment:"button title string"), forState: UIControlState.Normal)
         backButton.titleLabel?.font = BACK_BUTTON_FONT
         backButton.setTitleColor(AppTheme.NEVO_SOLAR_YELLOW(), forState: UIControlState.Normal)
