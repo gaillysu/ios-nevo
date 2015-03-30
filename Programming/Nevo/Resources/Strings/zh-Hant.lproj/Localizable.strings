@@ -26,7 +26,7 @@
 "Connect"="連接";
 "step"="設置妳的日常目標";
 "Cancel"="取消";
-"Enter"="進入";
+"Enter"="确定";
 "alarmLabelTitle"="設置妳的鬧鐘";
 "alarmTitle"="鬧鐘";
 "stepGoalTitle"="目標";
@@ -48,3 +48,6 @@
 "On"="開";
 "disconnectError"="disconnectError";
 "ok"="ok";
+"Notification"="Notification";
+"Progress: "="Progress: ";
+"Step"="步";

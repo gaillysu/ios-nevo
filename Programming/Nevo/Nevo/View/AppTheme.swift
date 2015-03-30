@@ -67,6 +67,7 @@ class AppTheme {
         return isiPhone4S
     }
 
+
     /**
     Local notifications
 
@@ -91,9 +92,9 @@ class AppTheme {
         UIApplication.sharedApplication().scheduleLocalNotification(notification)
         return notification
     }
-    
 
-    
-    
-    
+    class func CUSTOMBAR_BACKGROUND_COLOR() ->UIColor {
+        return UIColor(red: 48/255.0, green: 48/255.0, blue: 48/255.0, alpha: 1)
+    }
+
 }

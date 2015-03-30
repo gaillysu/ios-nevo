@@ -8,39 +8,34 @@
 
 import UIKit
 
-class EnterNotificationView: UITableView {
+class EnterNotificationView: UIView {
+
+    @IBOutlet weak var NotificationTableView: UITableView!
 
     private var mDelegate:ButtonManagerCallBack?
     var animationView:AnimationView?
-    var backButton:UIButton?
+    @IBOutlet weak  var backButton:UIButton!
+    @IBOutlet weak  var title:UILabel!
 
-    func bulidEnterNotificationView(delegate:ButtonManagerCallBack,navigationItem:UINavigationItem){
+    func bulidEnterNotificationView(delegate:ButtonManagerCallBack){
 
-        var titleLabel:UILabel = UILabel(frame: CGRectMake(0, 0, 120, 30))
-        titleLabel.textColor = UIColor.whiteColor()
-        titleLabel.text = NSLocalizedString("NotificationType", comment: "")
-        titleLabel.font = UIFont.systemFontOfSize(25)
-        titleLabel.textAlignment = NSTextAlignment.Center
-        navigationItem.titleView = titleLabel
-
-        backButton = UIButton(frame: CGRectMake(0, 0, 35, 35))
-        backButton?.setImage(UIImage(named: "back"), forState: UIControlState.Normal)
-        backButton?.addTarget(self, action: Selector("BackAction:"), forControlEvents: UIControlEvents.TouchUpInside)
-        let item:UIBarButtonItem = UIBarButtonItem(customView: backButton as UIView!);
-        navigationItem.leftBarButtonItem = item
+        title.textColor = UIColor.whiteColor()
+        title.text = NSLocalizedString("NotificationType", comment: "")
+        title.font = UIFont.systemFontOfSize(23)
+        title.textAlignment = NSTextAlignment.Center
 
         mDelegate = delegate
         animationView = AnimationView(frame: self.frame, delegate: delegate)
 
     }
 
-    func BackAction(back:UIButton) {
+    @IBAction func BackAction(back:UIButton) {
         mDelegate?.controllManager(back)
     }
 
     func EnterCurrentPaletteCell(indexPath:NSIndexPath) ->CurrentPaletteCell{
         let CurrentCellID:NSString = "CurrentCell"
-        var CurrentCell = self.dequeueReusableCellWithIdentifier(CurrentCellID) as? CurrentPaletteCell
+        var CurrentCell = NotificationTableView.dequeueReusableCellWithIdentifier(CurrentCellID) as? CurrentPaletteCell
 
         if (CurrentCell == nil) {
             let nibs:NSArray = NSBundle.mainBundle().loadNibNamed("CurrentPaletteCell", owner: self, options: nil)
@@ -52,7 +47,7 @@ class EnterNotificationView: UITableView {
 
     func EnterPaletteListCell(indexPath:NSIndexPath,dataSource:NSArray)->PaletteViewCell {
         let endCellID:NSString = "PaletteListCell"
-        var endCell = self.dequeueReusableCellWithIdentifier(endCellID) as? PaletteViewCell
+        var endCell = NotificationTableView.dequeueReusableCellWithIdentifier(endCellID) as? PaletteViewCell
 
         if (endCell == nil) {
             let nibs:NSArray = NSBundle.mainBundle().loadNibNamed("PaletteViewCell", owner: self, options: nil)

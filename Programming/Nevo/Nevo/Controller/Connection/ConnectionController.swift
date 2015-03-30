@@ -48,6 +48,13 @@ protocol ConnectionController {
     func forgetSavedAddress()
     
     /**
+    restore the saved address. BLE OTA use it
+    Usage:forgetSavedAddress()/restoreSavedAddress(), if not call forgetSavedAddress()
+    before call it, do nothing
+    */
+    func restoreSavedAddress()
+    
+    /**
     Tries to send a request, you can't be sure that it will effectively be sent
     */
     func sendRequest(Request)
@@ -55,8 +62,9 @@ protocol ConnectionController {
     /**
     Enters the OTA mode. In this mode, it searchs for OTA enabled Nevo
     It won't connect to other Nevo and will stop sending regular nevo querries
+    add second parameter, when BLE ota, auto disconnect by BLE peer, so no need disconnect it again
     */
-    func setOTAMode(Bool)
+    func setOTAMode(OTAMode:Bool,Disconnect:Bool)
 
     /**
     Checks whether the connection controller is in OTA mode

@@ -40,7 +40,7 @@ class AlarmClockController: UIViewController, SyncControllerDelegate,ButtonManag
             mAlarmenable = alarmEnableSaved
         }
 
-        alarmView.bulidAlarmView(self,hour:mAlarmhour,min:mAlarmmin,enabled:mAlarmenable,navigationItem: self.navigationItem)
+        alarmView.bulidAlarmView(self,hour:mAlarmhour,min:mAlarmmin,enabled:mAlarmenable)
         // Do any additional setup after loading the view.
     }
 
@@ -74,11 +74,6 @@ class AlarmClockController: UIViewController, SyncControllerDelegate,ButtonManag
             NSLog("alarmView.selectedTimerButton")
         }
 
-        if sender.isEqual(alarmView.alarmSwitch){
-            NSLog("alarmView.alarmSwitch")
-            setAlarm()
-        }
-
         if sender.isEqual(alarmView.animationView.getNoConnectScanButton()?) {
             NSLog("noConnectScanButton")
             reconnect()
@@ -87,6 +82,31 @@ class AlarmClockController: UIViewController, SyncControllerDelegate,ButtonManag
             NSLog("alarmView.enterButton")
             setAlarm()
         }
+        if sender.isEqual(alarmView.setingButton){
+            NSLog("alarmView.setingButton")
+
+        }
+
+        if sender.isEqual(alarmView.onButton){
+            alarmView.onButton.selected = true
+            alarmView.offButton.selected = false
+
+            setAlarm()
+            NSLog("alarmView.amButton")
+
+        }
+        if sender.isEqual(alarmView.offButton){
+            alarmView.onButton.selected = false
+            alarmView.offButton.selected = true
+            setAlarm()
+            NSLog("alarmView.pmButton")
+
+        }
+
+        if sender.isEqual(alarmView.setingButton){
+            self.performSegueWithIdentifier("Home_Seting", sender: self)
+        }
+
     }
     
     func setAlarm() {

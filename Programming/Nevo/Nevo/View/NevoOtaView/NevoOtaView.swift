@@ -17,18 +17,15 @@ class NevoOtaView: UIView {
         mDelegate = delegate
     }
     
-    func BackAction(back:UIButton) {
-        mDelegate?.controllManager(back)
-    }
     
+    @IBAction func back2Home(sender: AnyObject) {
+        mDelegate?.controllManager("back2Home")
+    }
     @IBAction func uploadFile(sender: AnyObject) {
         mDelegate?.controllManager("uploadFile")
     }
     @IBAction func selectWatchFile(sender: AnyObject) {
         mDelegate?.controllManager("selectWatchFile")
-    }
-    @IBAction func selectWatchDevice(sender: AnyObject) {
-        mDelegate?.controllManager("selectWatchDevice")
     }
     /*
     // Only override drawRect: if you perform custom drawing.

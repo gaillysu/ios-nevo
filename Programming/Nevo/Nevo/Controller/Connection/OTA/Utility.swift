@@ -61,7 +61,8 @@ enum DFUControllerState
     SEND_RESET,
     WAIT_RECEIPT,
     FINISHED,
-    CANCELED
+    CANCELED,
+    SEND_RECONNECT
 }
 
 enum DfuFirmwareTypes:UInt8{

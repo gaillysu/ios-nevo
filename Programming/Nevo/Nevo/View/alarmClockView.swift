@@ -11,11 +11,11 @@ import UIKit
 class alarmClockView: UIView {
 
     @IBOutlet var selectedTimerButton: UIButton!
-    @IBOutlet var alarmSwitch: UISwitch!
+    @IBOutlet weak var title: UILabel!
+    @IBOutlet weak var setingButton: UIButton!
+    @IBOutlet weak var onButton: UIButton!
+    @IBOutlet weak var offButton: UIButton!
 
-    @IBOutlet var alarmTitle: UILabel!
-
-    @IBOutlet var stepRoundImage: UIImageView!
     
     private var mCancelButton:UIButton?
     private var mEnterButton:UIButton?
@@ -30,31 +30,41 @@ class alarmClockView: UIView {
 
     var animationView:AnimationView!
     
-    func bulidAlarmView(delegate:ButtonManagerCallBack,hour:Int,min:Int,enabled:Bool,navigationItem:UINavigationItem) {
-        var titleLabel:UILabel = UILabel(frame: CGRectMake(0, 0, 120, 30))
-        titleLabel.textColor = UIColor.whiteColor()
-        titleLabel.text = NSLocalizedString("alarmTitle", comment: "")
-        titleLabel.font = AppTheme.SYSTEMFONTOFSIZE()
-        titleLabel.textAlignment = NSTextAlignment.Center
-        navigationItem.titleView = titleLabel
+    func bulidAlarmView(delegate:ButtonManagerCallBack,hour:Int,min:Int,enabled:Bool) {
+        title.textColor = UIColor.whiteColor()
+        title.text = NSLocalizedString("alarmTitle", comment: "")
+        title.font = AppTheme.SYSTEMFONTOFSIZE()
+        title.textAlignment = NSTextAlignment.Center
 
         mDelegate = delegate
         animationView = AnimationView(frame: self.frame, delegate: delegate)
 
-        alarmSwitch.tintColor = UIColor.blackColor()
-        alarmSwitch.onTintColor = AppTheme.NEVO_SOLAR_YELLOW()
-
-        alarmTitle.text = NSLocalizedString("alarmLabelTitle", comment: "")
-        
         setAlarmTime(hour,min: min)
+
+        selectedTimerButton.setTitleColor(AppTheme.NEVO_SOLAR_YELLOW(), forState: UIControlState.Normal)
+        selectedTimerButton.setTitleColor(AppTheme.NEVO_SOLAR_YELLOW(), forState: UIControlState.Selected)
+        selectedTimerButton.setTitleColor(AppTheme.NEVO_SOLAR_YELLOW(), forState: UIControlState.Highlighted)
+        selectedTimerButton.titleLabel?.font = AppTheme.FONT_RALEWAY_LIGHT(mSize: 70)
         
-        alarmSwitch.on = enabled
+        onButton.setTitle(NSLocalizedString("On", comment:""), forState: UIControlState.Normal)
+        onButton.setTitle(NSLocalizedString("On", comment:""), forState: UIControlState.Selected)
+        onButton.setTitle(NSLocalizedString("On", comment:""), forState: UIControlState.Highlighted)
+
+        offButton.setTitle(NSLocalizedString("Off", comment:""), forState: UIControlState.Normal)
+        offButton.setTitle(NSLocalizedString("Off", comment:""), forState: UIControlState.Selected)
+        offButton.setTitle(NSLocalizedString("Off", comment:""), forState: UIControlState.Highlighted)
+        if enabled {
+            onButton.selected = true
+            offButton.selected = false
+        }else{
+            onButton.selected = false
+            offButton.selected = true
+        }
         
     }
 
     func bulidUI() {
-        stepRoundImage.frame = CGRectMake(0, 0, UIScreen.mainScreen().bounds.width-60, UIScreen.mainScreen().bounds.width-60);
-        stepRoundImage.center = CGPointMake(self.frame.width/2.0, self.frame.height/2.0);
+
     }
     @IBAction func controllEventManager(sender: AnyObject) {
         //CallBack StepGoalSetingController
@@ -72,7 +82,7 @@ class alarmClockView: UIView {
         self.addSubview(PickerbgView)
 
         //Create a DatePicker
-        let datePicker = UIDatePicker(frame: CGRectMake(0, PickerbgView.frame.size.height-160-50, self.frame.size.width, 130))
+        let datePicker = UIDatePicker(frame: CGRectMake(0, PickerbgView.frame.size.height-160-100, self.frame.size.width, 130))
         datePicker.backgroundColor = PICKER_BG_COLOR
         datePicker.datePickerMode = UIDatePickerMode.Time
         datePicker.addTarget(self, action: Selector("controllEventManager:"), forControlEvents: UIControlEvents.ValueChanged)
@@ -189,7 +199,7 @@ class alarmClockView: UIView {
     }
     
     func getEnabled() -> Bool {
-     return alarmSwitch.on
+     return onButton.selected
     }
 
     /*

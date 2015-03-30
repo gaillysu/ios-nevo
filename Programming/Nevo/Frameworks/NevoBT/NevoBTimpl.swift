@@ -352,9 +352,16 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
     
                                 if request.getRawDataEx().count == 0
                                 {
-                                NSLog("Request raw data :\(request.getRawData())")
-                                
-                                mPeripheral?.writeValue(request.getRawData(),forCharacteristic:charac,type:CBCharacteristicWriteType.WithoutResponse)
+                                    NSLog("Request raw data :\(request.getRawData())")
+                                    //OTA control CHAR, need a response
+                                    if mProfile is NevoOTAControllerProfile && request.getTargetProfile().CONTROL_CHARACTERISTIC == mProfile.CONTROL_CHARACTERISTIC
+                                    {
+                                        mPeripheral?.writeValue(request.getRawData(),forCharacteristic:charac,type:CBCharacteristicWriteType.WithResponse)
+                                    }
+                                    else
+                                    {
+                                        mPeripheral?.writeValue(request.getRawData(),forCharacteristic:charac,type:CBCharacteristicWriteType.WithoutResponse)
+                                    }
                                 }
                                 else
                                 {
@@ -388,10 +395,13 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
     See NevoBT protocol
     */
     func disconnect() {
-        
-        mManager?.cancelPeripheralConnection(mPeripheral)
-
+        if(mPeripheral? != nil)
+        {
+            mManager?.cancelPeripheralConnection(mPeripheral?)
+            mDelegate.connectionStateChanged(false, fromAddress: mPeripheral?.identifier)
+        }
         setPeripheral(nil)
+        
     }
 
     /**

@@ -19,13 +19,14 @@ protocol StepGoalButtonActionCallBack {
 
 class StepGoalSetingView: UIView,UIPickerViewDataSource,UIPickerViewDelegate {
 
-    @IBOutlet var stepLabel: UILabel!
+    @IBOutlet weak var stepLabel: UILabel!
     @IBOutlet var goalButton: UIButton!
     @IBOutlet var modarateButton: UIButton!
     @IBOutlet var intensiveButton: UIButton!
     @IBOutlet var sportiveButton: UIButton!
-    @IBOutlet var stepRoundImage: UIImageView!
-
+    @IBOutlet weak var title: UILabel!
+    @IBOutlet weak var setingButton: UIButton!
+    
     private var mPickerView:UIPickerView?
 
     private var mButtonArray:[UIButton]=[]
@@ -42,36 +43,41 @@ class StepGoalSetingView: UIView,UIPickerViewDataSource,UIPickerViewDelegate {
 
     var animationView:AnimationView!
 
-    func bulidStepGoalView(delegate:ButtonManagerCallBack,navigationItem:UINavigationItem){
+    func bulidStepGoalView(delegate:ButtonManagerCallBack){
 
-        var titleLabel:UILabel = UILabel(frame: CGRectMake(0, 0, 120, 30))
-        titleLabel.textColor = UIColor.whiteColor()
-        titleLabel.text = NSLocalizedString("stepGoalTitle", comment: "")
-        titleLabel.font = AppTheme.SYSTEMFONTOFSIZE()
-        titleLabel.textAlignment = NSTextAlignment.Center
-        navigationItem.titleView = titleLabel
+        title.textColor = UIColor.whiteColor()
+        title.text = NSLocalizedString("stepGoalTitle", comment: "")
+        title.font = AppTheme.SYSTEMFONTOFSIZE()
+        title.textAlignment = NSTextAlignment.Center
 
         mDelegate = delegate
 
         animationView = AnimationView(frame: self.frame, delegate: delegate)
 
-        stepLabel.text = NSLocalizedString("step", comment: "")
+        stepLabel.text = NSLocalizedString("Step", comment: "")
 
         goalButton.setTitle(NSLocalizedString("goalButton", comment: ""), forState: UIControlState.Normal)
         goalButton.setTitle(NSLocalizedString("goalButton", comment: ""), forState: UIControlState.Selected)
+        goalButton.titleLabel?.font = AppTheme.FONT_RALEWAY_LIGHT(mSize: 60)
 
 
         modarateButton.setTitle(NSLocalizedString("Modarate", comment: ""), forState: UIControlState.Normal)
         modarateButton.setTitle(NSLocalizedString("Modarate", comment: ""), forState: UIControlState.Selected)
         modarateButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Selected)
+        modarateButton.layer.borderWidth = 1.0;
+        modarateButton.layer.borderColor = UIColor.grayColor().CGColor;
 
         intensiveButton.setTitle(NSLocalizedString("Intensive", comment: ""), forState: UIControlState.Normal)
         intensiveButton.setTitle(NSLocalizedString("Intensive", comment: ""), forState: UIControlState.Selected)
         intensiveButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Selected)
+        intensiveButton.layer.borderWidth = 1.0;
+        intensiveButton.layer.borderColor = UIColor.grayColor().CGColor;
 
         sportiveButton.setTitle(NSLocalizedString("Sportive", comment: ""), forState: UIControlState.Normal)
         sportiveButton.setTitle(NSLocalizedString("Sportive", comment: ""), forState: UIControlState.Selected)
         sportiveButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Selected)
+        sportiveButton.layer.borderWidth = 1.0;
+        sportiveButton.layer.borderColor = UIColor.grayColor().CGColor;
 
         mButtonArray = [modarateButton,intensiveButton,sportiveButton]
 
@@ -87,8 +93,7 @@ class StepGoalSetingView: UIView,UIPickerViewDataSource,UIPickerViewDelegate {
     }
 
     func bulidUI() {
-        stepRoundImage.frame = CGRectMake(0, 0, UIScreen.mainScreen().bounds.width-60, UIScreen.mainScreen().bounds.width-60);
-        stepRoundImage.center = CGPointMake(self.frame.width/2.0, self.frame.height/2.0);
+
     }
     /*
     Button Action
@@ -110,21 +115,19 @@ class StepGoalSetingView: UIView,UIPickerViewDataSource,UIPickerViewDelegate {
         self.addSubview(PickerbgView)
 
         //Create a pickerView
-        let pickerView = UIPickerView(frame: CGRectMake(0, PickerbgView.frame.size.height-160-50, self.frame.size.width, 160))
-        pickerView.backgroundColor = PICKER_BG_COLOR
-        pickerView.dataSource = self
-        pickerView.delegate = self
-        PickerbgView.addSubview(pickerView)
+        mPickerView = UIPickerView(frame: CGRectMake(0, PickerbgView.frame.size.height-160-100, self.frame.size.width, 160))
+        mPickerView?.backgroundColor = PICKER_BG_COLOR
+        mPickerView?.dataSource = self
+        mPickerView?.delegate = self
+        PickerbgView.addSubview(mPickerView!)
 
-        mPickerView = pickerView
-        
-        let buttonBgView:UIView = UIView(frame: CGRectMake(0, pickerView.frame.origin.y-40, pickerView.frame.size.width, 40))
+        let buttonBgView:UIView = UIView(frame: CGRectMake(0, mPickerView!.frame.origin.y-40, mPickerView!.frame.size.width, 40))
         buttonBgView.backgroundColor = BUTTONBGVIEW_COLOR
         PickerbgView.addSubview(buttonBgView)
 
         //Create a cancel button
         let cancelButton:UIButton = UIButton.buttonWithType(UIButtonType.System) as UIButton
-        cancelButton.frame = CGRectMake(0, pickerView.frame.origin.y-40, 50, 40)
+        cancelButton.frame = CGRectMake(0, mPickerView!.frame.origin.y-40, 50, 40)
         cancelButton.setTitle(NSLocalizedString("Cancel", comment: ""), forState: UIControlState.Normal)
         cancelButton.backgroundColor = UIColor.clearColor()
         cancelButton.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
@@ -132,7 +135,7 @@ class StepGoalSetingView: UIView,UIPickerViewDataSource,UIPickerViewDelegate {
         PickerbgView.addSubview(cancelButton)
 
         let enterButton = UIButton.buttonWithType(UIButtonType.System) as UIButton
-        enterButton.frame = CGRectMake(pickerView.frame.size.width-50, pickerView.frame.origin.y-40, 50, 40)
+        enterButton.frame = CGRectMake(mPickerView!.frame.size.width-50, mPickerView!.frame.origin.y-40, 50, 40)
         enterButton.setTitle(NSLocalizedString("Enter", comment: ""), forState: UIControlState.Normal)
         enterButton.backgroundColor = UIColor.clearColor()
         enterButton.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
@@ -154,7 +157,7 @@ class StepGoalSetingView: UIView,UIPickerViewDataSource,UIPickerViewDelegate {
 
         }
         
-        pickerView.selectRow(((initialValue/1000)-1) , inComponent: 0, animated: false)
+        mPickerView!.selectRow(((initialValue/1000)-1) , inComponent: 0, animated: false)
 
 
     }

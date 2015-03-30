@@ -26,7 +26,7 @@
 "Connect"="连接";
 "step"="设置你的日常目标";
 "Cancel"="取消";
-"Enter"="进入";
+"Enter"="确定";
 "alarmLabelTitle"="设置你的闹钟";
 "alarmTitle"="闹钟";
 "stepGoalTitle"="目标";
@@ -48,3 +48,6 @@
 "On"="开";
 "disconnectError"="disconnectError";
 "ok"="ok";
+"Notification"="Notification";
+"Progress: "="Progress: ";
+"Step"="步";

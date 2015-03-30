@@ -10,9 +10,9 @@
 "BluetoothEnabled"="Bluetooth enabled";
 "EnableBluetoothPhone"="Turn on the Bluetooth";
 "BluetoothIcon"="Swipe up to open the control center and tap on the Bluetooth icon";
-"WatchBluetooth"="Enable Bluetooth on your watch";
+"WatchBluetooth"="Enable the Bluetooth on your watch";
 "PlacePhoneSearch"="Place your nevo near the phone and tap Search";
-"ConnectButton"="Connect nevo to phone";
+"ConnectButton"="Connect your nevo to the phone";
 "PlaceConnect"="Place your nevo near the phone and tap Connect";
 "step"="Steps";
 "goalButton"="30000";
@@ -37,7 +37,7 @@
 "Red"="Red";
 "Green"="Green";
 "Yellow"="Yellow";
-"LongPushLED"="Long push on the third button until blue LED blinks";
+"LongPushLED"="Long push on the third button until the blue LED blinks";
 "CALL"="Call";
 "SMS"="SMS";
 "EMAIL"="Email";
@@ -48,3 +48,6 @@
 "On"="On";
 "disconnectError"="disconnectError";
 "ok"="ok";
+"Notification"="Notification";
+"Progress: "="Progress: ";
+"Step"="Steps";

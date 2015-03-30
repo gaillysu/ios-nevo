@@ -3,17 +3,17 @@
     {
       "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "goal.png"
+      "filename" : "goal68.png"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "goal90.png"
+      "filename" : "goal135.png"
     },
     {
       "idiom" : "universal",
       "scale" : "3x",
-      "filename" : "goal135.png"
+      "filename" : "goal203.png"
     }
   ],
   "info" : {

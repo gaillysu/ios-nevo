@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1510" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -14,109 +14,114 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Thj-DZ-MbL">
-                        <rect key="frame" x="0.0" y="205" width="320" height="35"/>
-                        <color key="backgroundColor" red="0.039215686274509803" green="1" blue="0.69803921568627447" alpha="1" colorSpace="calibratedRGB"/>
-                        <state key="normal">
-                            <color key="titleColor" red="0.0" green="0.77647058820000003" blue="0.86274509799999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                        </state>
-                        <connections>
-                            <action selector="PaletteButtonManager:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="df0-xh-mRi"/>
-                        </connections>
-                    </button>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3vS-l0-gzH">
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3vS-l0-gzH">
                         <rect key="frame" x="0.0" y="5" width="320" height="35"/>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="35" id="Yh0-ws-8lO"/>
-                        </constraints>
                         <state key="normal">
                             <color key="titleColor" red="0.0" green="0.77647058820000003" blue="0.86274509799999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
+                        <state key="selected" image="check.png"/>
                         <connections>
                             <action selector="PaletteButtonManager:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="63n-EJ-ioh"/>
                         </connections>
                     </button>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dAp-cR-bE7">
-                        <rect key="frame" x="0.0" y="165" width="320" height="35"/>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dAp-cR-bE7">
+                        <rect key="frame" x="0.0" y="165" width="320" height="34"/>
                         <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="35" id="o9r-iV-v5b"/>
+                            <constraint firstAttribute="height" constant="34" id="CVq-6S-5Mx"/>
                         </constraints>
                         <state key="normal">
                             <color key="titleColor" red="0.0" green="0.77647058820000003" blue="0.86274509799999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
+                        <state key="selected" image="check.png"/>
                         <connections>
                             <action selector="PaletteButtonManager:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="WeC-44-bas"/>
                         </connections>
                     </button>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1RY-y9-PMK">
-                        <rect key="frame" x="0.0" y="45" width="320" height="35"/>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1RY-y9-PMK">
+                        <rect key="frame" x="0.0" y="45" width="320" height="34"/>
                         <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="35" id="JtY-Ku-yhL"/>
+                            <constraint firstAttribute="height" constant="34" id="GGt-bu-c1l"/>
                         </constraints>
                         <state key="normal">
                             <color key="titleColor" red="0.0" green="0.77647058820000003" blue="0.86274509799999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
+                        <state key="selected" image="check.png"/>
                         <connections>
                             <action selector="PaletteButtonManager:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="dVC-C7-i3r"/>
                         </connections>
                     </button>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YzF-1H-6Mq">
-                        <rect key="frame" x="0.0" y="85" width="320" height="35"/>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YzF-1H-6Mq">
+                        <rect key="frame" x="0.0" y="85" width="320" height="34"/>
                         <color key="backgroundColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="35" id="OsI-a6-khm"/>
+                            <constraint firstAttribute="height" constant="34" id="phU-AX-HyX"/>
                         </constraints>
                         <state key="normal">
                             <color key="titleColor" red="0.0" green="0.77647058820000003" blue="0.86274509799999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
+                        <state key="selected" image="check.png"/>
                         <connections>
                             <action selector="PaletteButtonManager:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="wKN-7Z-Xw4"/>
                         </connections>
                     </button>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V5D-LF-efs">
-                        <rect key="frame" x="0.0" y="125" width="320" height="35"/>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V5D-LF-efs">
+                        <rect key="frame" x="0.0" y="125" width="320" height="34"/>
                         <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="35" id="7RB-3g-Kn8"/>
+                            <constraint firstAttribute="height" constant="34" id="MTn-tE-8tD"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <state key="normal">
                             <color key="titleColor" red="0.0" green="0.77647058820000003" blue="0.86274509799999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
+                        <state key="selected" image="check.png"/>
                         <connections>
                             <action selector="PaletteButtonManager:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="bGQ-Ku-Nxv"/>
                         </connections>
                     </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Thj-DZ-MbL">
+                        <rect key="frame" x="0.0" y="205" width="320" height="34"/>
+                        <color key="backgroundColor" red="0.039215686274509803" green="1" blue="0.69803921568627447" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="34" id="Ed3-2c-d0q"/>
+                        </constraints>
+                        <state key="normal">
+                            <color key="titleColor" red="0.0" green="0.77647058820000003" blue="0.86274509799999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                        <state key="selected" image="check.png"/>
+                        <connections>
+                            <action selector="PaletteButtonManager:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="df0-xh-mRi"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="V5D-LF-efs" firstAttribute="top" secondItem="YzF-1H-6Mq" secondAttribute="bottom" constant="5" id="0LA-sh-kOI"/>
-                    <constraint firstItem="YzF-1H-6Mq" firstAttribute="top" secondItem="1RY-y9-PMK" secondAttribute="bottom" constant="5" id="13T-PZ-tPS"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="Thj-DZ-MbL" secondAttribute="bottom" constant="-3.5" id="1HY-TZ-ehq"/>
-                    <constraint firstItem="V5D-LF-efs" firstAttribute="leading" secondItem="dAp-cR-bE7" secondAttribute="leading" id="3Re-H9-BMZ"/>
-                    <constraint firstItem="1RY-y9-PMK" firstAttribute="leading" secondItem="3vS-l0-gzH" secondAttribute="leading" id="BdD-Dj-i56"/>
-                    <constraint firstItem="Thj-DZ-MbL" firstAttribute="leading" secondItem="dAp-cR-bE7" secondAttribute="leading" id="Coh-zf-3cl"/>
-                    <constraint firstItem="YzF-1H-6Mq" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" constant="8" id="FZd-OF-WOt"/>
-                    <constraint firstItem="3vS-l0-gzH" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="-3" id="HDK-8S-Qa0"/>
-                    <constraint firstItem="dAp-cR-bE7" firstAttribute="top" secondItem="V5D-LF-efs" secondAttribute="bottom" constant="5" id="N2a-hK-IzB"/>
-                    <constraint firstItem="1RY-y9-PMK" firstAttribute="trailing" secondItem="3vS-l0-gzH" secondAttribute="trailing" id="SRh-WG-6kT"/>
-                    <constraint firstItem="1RY-y9-PMK" firstAttribute="top" secondItem="3vS-l0-gzH" secondAttribute="bottom" constant="5" id="WZN-L2-gem"/>
-                    <constraint firstItem="Thj-DZ-MbL" firstAttribute="trailing" secondItem="dAp-cR-bE7" secondAttribute="trailing" id="fVT-Cn-8Vk"/>
-                    <constraint firstItem="YzF-1H-6Mq" firstAttribute="trailing" secondItem="1RY-y9-PMK" secondAttribute="trailing" id="g4s-Sv-ORZ"/>
-                    <constraint firstItem="V5D-LF-efs" firstAttribute="trailing" secondItem="dAp-cR-bE7" secondAttribute="trailing" id="gGV-lI-yUW"/>
-                    <constraint firstItem="YzF-1H-6Mq" firstAttribute="leading" secondItem="1RY-y9-PMK" secondAttribute="leading" id="gJL-68-TBn"/>
-                    <constraint firstItem="Thj-DZ-MbL" firstAttribute="top" secondItem="dAp-cR-bE7" secondAttribute="bottom" constant="5" id="kka-mo-Uuy"/>
-                    <constraint firstItem="1RY-y9-PMK" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="-8" id="qoS-ce-tra"/>
-                    <constraint firstItem="YzF-1H-6Mq" firstAttribute="trailing" secondItem="V5D-LF-efs" secondAttribute="trailing" id="tkN-SZ-2AR"/>
-                    <constraint firstItem="YzF-1H-6Mq" firstAttribute="leading" secondItem="V5D-LF-efs" secondAttribute="leading" id="vVW-Cj-xiP"/>
+                    <constraint firstItem="3vS-l0-gzH" firstAttribute="leading" secondItem="1RY-y9-PMK" secondAttribute="leading" id="9MQ-YS-LJX"/>
+                    <constraint firstAttribute="trailing" secondItem="YzF-1H-6Mq" secondAttribute="trailing" id="BXw-I1-w51"/>
+                    <constraint firstItem="Thj-DZ-MbL" firstAttribute="top" secondItem="dAp-cR-bE7" secondAttribute="bottom" constant="6" id="EWc-ix-WFN"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="Thj-DZ-MbL" secondAttribute="bottom" constant="-2.5" id="Feo-zw-keH"/>
+                    <constraint firstItem="V5D-LF-efs" firstAttribute="leading" secondItem="dAp-cR-bE7" secondAttribute="leading" id="InO-c1-hl6"/>
+                    <constraint firstItem="1RY-y9-PMK" firstAttribute="top" secondItem="3vS-l0-gzH" secondAttribute="bottom" constant="5" id="Npp-vg-bBX"/>
+                    <constraint firstItem="YzF-1H-6Mq" firstAttribute="trailing" secondItem="1RY-y9-PMK" secondAttribute="trailing" id="QIZ-OA-4El"/>
+                    <constraint firstItem="Thj-DZ-MbL" firstAttribute="leading" secondItem="dAp-cR-bE7" secondAttribute="leading" id="TJX-lT-c23"/>
+                    <constraint firstItem="YzF-1H-6Mq" firstAttribute="trailing" secondItem="V5D-LF-efs" secondAttribute="trailing" id="Wqs-xs-bet"/>
+                    <constraint firstItem="YzF-1H-6Mq" firstAttribute="top" secondItem="1RY-y9-PMK" secondAttribute="bottom" constant="6" id="YaF-9b-w7U"/>
+                    <constraint firstItem="3vS-l0-gzH" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="-3" id="aRh-gm-lFi"/>
+                    <constraint firstItem="V5D-LF-efs" firstAttribute="top" secondItem="YzF-1H-6Mq" secondAttribute="bottom" constant="6" id="ay2-9l-2pC"/>
+                    <constraint firstItem="dAp-cR-bE7" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="cKs-fb-QcS"/>
+                    <constraint firstItem="dAp-cR-bE7" firstAttribute="trailing" secondItem="V5D-LF-efs" secondAttribute="trailing" id="gvt-8G-0ba"/>
+                    <constraint firstItem="1RY-y9-PMK" firstAttribute="trailing" secondItem="3vS-l0-gzH" secondAttribute="trailing" id="h5G-LW-0uB"/>
+                    <constraint firstItem="V5D-LF-efs" firstAttribute="leading" secondItem="YzF-1H-6Mq" secondAttribute="leading" id="l8r-xY-RUj"/>
+                    <constraint firstItem="dAp-cR-bE7" firstAttribute="top" secondItem="V5D-LF-efs" secondAttribute="bottom" constant="6" id="obq-Ye-Vyt"/>
+                    <constraint firstItem="Thj-DZ-MbL" firstAttribute="trailing" secondItem="dAp-cR-bE7" secondAttribute="trailing" id="rmA-Oa-Xqn"/>
+                    <constraint firstItem="YzF-1H-6Mq" firstAttribute="leading" secondItem="1RY-y9-PMK" secondAttribute="leading" id="xw7-Ba-IP3"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
@@ -130,4 +135,7 @@
             <point key="canvasLocation" x="289" y="260.5"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="check.png" width="35" height="35"/>
+    </resources>
 </document>
