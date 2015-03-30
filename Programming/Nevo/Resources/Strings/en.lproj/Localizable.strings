@@ -31,13 +31,13 @@
 "alarmTitle"="Alarm";
 "stepGoalTitle"="Goal";
 "homeTitle"="Welcome";
-"nevoURL"="https://www.indiegogo.com/projects/nevo-the-first-minimalist-connected-watch/";
+"nevoURL"="http://nevowatch.com";
 "NotificationType"="Notification Type";
 "Blue"="Blue";
 "Red"="Red";
 "Green"="Green";
 "Yellow"="Yellow";
-"LongPushLED"="Long push on the third button until the blue LED blinks";
+"LongPushLED"="Push and hold the third button until blue LED blinks";
 "CALL"="Call";
 "SMS"="SMS";
 "EMAIL"="Email";
@@ -49,7 +49,7 @@
 "Notifications"="Notifications";
 "Progress: "="Progress: ";
 "Step"="Steps";
-"Setting"="Setting";
+"Setting"="Settings";
 "nevoConnected"="nevo is not connected\nEnable Bluetooth on phone";
 "pushHoldButton"="Then push and hold 3rd button\nTo connect your watch";
 "Link-Loss Notifications"="Link-Loss Notifications";
