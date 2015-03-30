@@ -191,6 +191,7 @@ class AlarmClockController: UIViewController, SyncControllerDelegate,ButtonManag
 
             alarmView.animationView.endConnectRemoveView()
         }
+        self.view.bringSubviewToFront(alarmView.titleBgView)
     }
 
 }

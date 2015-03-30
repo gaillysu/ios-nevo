@@ -159,6 +159,7 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
             // enable upPress button
             uploadBtn.enabled = true
         }
+        self.view.bringSubviewToFront(nevoOtaView.titleBgView)
         
     }
 

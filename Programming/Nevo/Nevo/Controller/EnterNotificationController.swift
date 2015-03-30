@@ -173,6 +173,7 @@ class EnterNotificationController: UIViewController,SwitchActionDelegate,Palette
         } else {
             enterNotView.animationView!.endConnectRemoveView()
         }
+        self.view.bringSubviewToFront(enterNotView.titleBgView)
     }
 
     func reconnect() {

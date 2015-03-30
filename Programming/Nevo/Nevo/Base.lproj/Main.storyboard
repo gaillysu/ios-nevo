@@ -606,6 +606,7 @@
                             <outlet property="sportiveButton" destination="QbO-Lj-nW0" id="s60-sO-z3c"/>
                             <outlet property="stepLabel" destination="qmf-z0-xh7" id="3cE-xR-eFq"/>
                             <outlet property="title" destination="QWX-c3-B9Z" id="vXV-WC-FMb"/>
+                            <outlet property="titleBgView" destination="DWK-bD-PWQ" id="Qeu-zM-kL0"/>
                         </connections>
                     </view>
                     <navigationItem key="navigationItem" title="Step" id="VUx-V6-WUk"/>
@@ -768,6 +769,7 @@
                             <outlet property="selectedTimerButton" destination="qE2-bj-eX9" id="kh0-sm-CdR"/>
                             <outlet property="setingButton" destination="WpY-io-HBL" id="Xgj-kY-lRu"/>
                             <outlet property="title" destination="gKZ-QU-Itl" id="1td-JX-8Bf"/>
+                            <outlet property="titleBgView" destination="hn8-fV-dcc" id="b9l-Jk-xSE"/>
                         </connections>
                     </view>
                     <navigationItem key="navigationItem" title="Alarm" id="h9a-N5-63D"/>
@@ -873,6 +875,7 @@
                             <outlet property="backButton" destination="RA7-Lc-QEf" id="IV6-F8-T6I"/>
                             <outlet property="tableListView" destination="Zx4-WI-sxC" id="Czw-V2-Naa"/>
                             <outlet property="title" destination="Egi-xc-Nog" id="u9g-3w-29M"/>
+                            <outlet property="titleBgView" destination="vMC-h3-wEd" id="6zf-9j-LYg"/>
                         </connections>
                     </view>
                     <navigationItem key="navigationItem" title="Notification" id="QNM-Mj-NtH"/>
@@ -1014,6 +1017,7 @@
                             <outlet property="NotificationTableView" destination="Vl9-FC-Y56" id="ipY-Rq-6vn"/>
                             <outlet property="backButton" destination="zgc-9e-IWk" id="V5W-vJ-nEd"/>
                             <outlet property="title" destination="MfW-Ha-iAM" id="KIy-1D-cCu"/>
+                            <outlet property="titleBgView" destination="eh8-7F-htO" id="b5Z-Wo-jbo"/>
                         </connections>
                     </view>
                     <navigationItem key="navigationItem" id="yoo-T2-W16"/>
@@ -1169,7 +1173,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="2Ya-p7-XfV"/>
         <segue reference="fWv-2o-zLR"/>
+        <segue reference="huA-lR-B9r"/>
     </inferredMetricsTieBreakers>
 </document>

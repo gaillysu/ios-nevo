@@ -15,7 +15,7 @@ class alarmClockView: UIView {
     @IBOutlet weak var setingButton: UIButton!
     @IBOutlet weak var onButton: UIButton!
     @IBOutlet weak var offButton: UIButton!
-
+    @IBOutlet weak var titleBgView: UIView!
     
     private var mCancelButton:UIButton?
     private var mEnterButton:UIButton?

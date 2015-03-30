@@ -169,6 +169,7 @@ class StepGoalSetingController: UIViewController, SyncControllerDelegate,ButtonM
         }
         
         
+        self.view.bringSubviewToFront(stepGoalView.titleBgView)
     }
 
 }

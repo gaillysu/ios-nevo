@@ -13,6 +13,7 @@ class SetingView: UIView {
     @IBOutlet var tableListView: UITableView!
     @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var title: UILabel!
+    @IBOutlet weak var titleBgView: UIView!
     
     private var mDelegate:ButtonManagerCallBack?
     var animationView:AnimationView!

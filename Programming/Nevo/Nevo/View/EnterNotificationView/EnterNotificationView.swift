@@ -16,7 +16,7 @@ class EnterNotificationView: UIView {
     var animationView:AnimationView?
     @IBOutlet weak  var backButton:UIButton!
     @IBOutlet weak  var title:UILabel!
-
+    @IBOutlet weak var titleBgView: UIView!
     func bulidEnterNotificationView(delegate:ButtonManagerCallBack){
 
         title.textColor = UIColor.whiteColor()

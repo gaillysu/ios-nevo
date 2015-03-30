@@ -134,6 +134,7 @@ class SetingViewController: UIViewController,SelectionTypeDelegate,SyncControlle
 
             notificationList.animationView.endConnectRemoveView()
         }
+        self.view.bringSubviewToFront(notificationList.titleBgView)
     }
 
     func reconnect() {

@@ -26,6 +26,7 @@ class StepGoalSetingView: UIView,UIPickerViewDataSource,UIPickerViewDelegate {
     @IBOutlet var sportiveButton: UIButton!
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var setingButton: UIButton!
+    @IBOutlet weak var titleBgView: UIView!
     
     private var mPickerView:UIPickerView?
 

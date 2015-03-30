@@ -11,6 +11,7 @@ import UIKit
 class NevoOtaView: UIView {
 
     @IBOutlet weak var title: UILabel!
+    @IBOutlet weak var titleBgView: UIView!
     
     private var mDelegate:ButtonManagerCallBack?
     
