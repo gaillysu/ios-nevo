@@ -1,17 +1,17 @@
-/* 
-  Localizable.strings
-  Nevo
-
-  Created by leiyuncun on 15/2/9.
-  Copyright (c) 2015年 Nevo. All rights reserved.
-*/
+/*
+ Localizable.strings
+ Nevo
+ 
+ Created by leiyuncun on 15/2/9.
+ Copyright (c) 2015年 Nevo. All rights reserved.
+ */
 "Acheter"="Je veux une nevo!";
-"Tutorial"="Activez ma nevo";
+"Tutorial"="Activer ma nevo";
 "BluetoothEnabled"="Bluetooth activé";
 "EnableBluetoothPhone"="Activez le bluetooth";
 "BluetoothIcon"="Glissez vers le haut pour ouvrir le panneau de contrôle et appuyez sur l’icône Bluetooth";
 "WatchBluetooth"="Activez le Bluetooth sur votre montre";
-"PlacePhoneSearch"="Placez votre nevo à côté du smartphone et appuyez sur Chercher";
+"PlacePhoneSearch"="Placez votre nevo à côté du smartphone et appuyez sur Connecter";
 "ConnectButton"="Connectez votre nevo au smartphone ";
 "PlaceConnect"="Placez votre nevo à côté du smartphone et appuyez sur Connecter";
 "step"="Pas";
@@ -19,7 +19,7 @@
 "Modarate"="Léger";
 "Intensive"="Modéré";
 "Sportive"="Intensif";
-"Custom"="Personnaliser ";
+"Custom"="Personnaliser";
 "Back"="Retour";
 "Next"="Suivant";
 "Finish"="Terminer";
@@ -37,7 +37,7 @@
 "Red"="Rouge";
 "Green"="Vert";
 "Yellow"="Jaune";
-"LongPushLED"="Appuyez et maintenez le 3eme bouton jusqu'à ce que la led bleue clignote";
+"LongPushLED"="Appuyez et maintenez le 3ème bouton jusqu'à ce que la led bleue clignote";
 "CALL"="Appel";
 "SMS"="SMS";
 "EMAIL"="Email";
@@ -47,12 +47,12 @@
 "Off"="Off";
 "On"="On";
 "Notifications"="Notifications";
-"Progress: "="Progression: ";
-"Step: "="Steps: ";
+"Progress: "="Progression:";
+"Step: "="Pas:";
 "Step"="Pas";
 "Setting"="Paramètres";
 "nevoConnected"="Votre nevo n’est pas connectée\nActivez le Bluetooth sur votre Smartphone";
-"pushHoldButton"="Appuyez ensuite sur le 3eme bouton\nPour connecter votre montre";
+"pushHoldButton"="Appuyez ensuite sur le 3ème bouton\nPour connecter votre montre";
 "Link-Loss Notifications"="Alerte de déconnection";
 "ok"="Ok";
 "Firmware Upgrade"="Firmware Upgrade";
