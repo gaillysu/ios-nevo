@@ -115,7 +115,7 @@ class EnterNotificationController: UIViewController,SwitchActionDelegate,Palette
     }
 
     override func viewDidAppear(animated: Bool) {
-        //checkConnection()
+        checkConnection()
     }
 
     override func didReceiveMemoryWarning() {
@@ -149,7 +149,7 @@ class EnterNotificationController: UIViewController,SwitchActionDelegate,Palette
     */
     func connectionStateChanged(isConnected : Bool) {
         //Maybe we just got disconnected, let's check
-        //checkConnection()
+        checkConnection()
     }
 
     /**
