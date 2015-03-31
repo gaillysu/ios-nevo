@@ -41,7 +41,7 @@ class HomeController: UIViewController, SyncControllerDelegate ,ButtonManagerCal
             
             NSLog("No saved device, let's launch the tutorial")
             
-            //self.performSegueWithIdentifier("Home_Tutorial", sender: self)
+            self.performSegueWithIdentifier("Home_Tutorial", sender: self)
             
         } else {
             if(sync == nil)
