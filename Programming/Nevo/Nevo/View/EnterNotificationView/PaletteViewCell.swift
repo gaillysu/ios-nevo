@@ -41,22 +41,22 @@ class PaletteViewCell: UITableViewCell {
         senders.selected = true
 
         if (senders.isEqual(blueButton)){
-            currentColor = UIColor.blueColor()
+            currentColor = AppTheme.NEVO_CUSTOM_COLOR(Red: 44, Green: 166, Blue: 224)
             pDelegate?.selectedPalette(currentColor)
         }else if (senders.isEqual(redButton)){
-            currentColor = UIColor.redColor()
+            currentColor = AppTheme.NEVO_CUSTOM_COLOR(Red: 229, Green: 0, Blue: 18)
             pDelegate?.selectedPalette(currentColor)
         }else if (senders.isEqual(greenButton)){
-            currentColor = UIColor.greenColor()
+            currentColor = AppTheme.NEVO_CUSTOM_COLOR(Red: 141, Green: 194, Blue: 31)
             pDelegate?.selectedPalette(currentColor);
         }else if (senders.isEqual(yellowButton)){
-            currentColor = UIColor.yellowColor()
+            currentColor = AppTheme.NEVO_CUSTOM_COLOR(Red: 250, Green: 237, Blue: 0)
             pDelegate?.selectedPalette(currentColor)
         }else if (senders.isEqual(orangeButton)){
-            currentColor = UIColor.orangeColor()
+            currentColor = AppTheme.NEVO_CUSTOM_COLOR(Red: 242, Green: 150, Blue: 0)
             pDelegate?.selectedPalette(currentColor)
         }else if (senders.isEqual(cyanButton)){
-            currentColor = AppTheme.PALETTE_BAGGROUND_COLOR()
+            currentColor = AppTheme.NEVO_CUSTOM_COLOR(Red: 13, Green: 172, Blue: 103)
             pDelegate?.selectedPalette(currentColor)
         }
         //currentColorView.backgroundColor = currentColor

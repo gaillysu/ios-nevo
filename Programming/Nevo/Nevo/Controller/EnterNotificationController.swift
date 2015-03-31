@@ -115,7 +115,7 @@ class EnterNotificationController: UIViewController,SwitchActionDelegate,Palette
     }
 
     override func viewDidAppear(animated: Bool) {
-        checkConnection()
+        //checkConnection()
     }
 
     override func didReceiveMemoryWarning() {
@@ -149,7 +149,7 @@ class EnterNotificationController: UIViewController,SwitchActionDelegate,Palette
     */
     func connectionStateChanged(isConnected : Bool) {
         //Maybe we just got disconnected, let's check
-        checkConnection()
+        //checkConnection()
     }
 
     /**
@@ -211,23 +211,22 @@ class EnterNotificationController: UIViewController,SwitchActionDelegate,Palette
     // MARK: - PaletteDelegate
     func selectedPalette(color:UIColor){
         NSLog("UIColor\(color)")
-//        let indexPathRow:NSIndexPath = NSIndexPath(forRow: 0, inSection: 1)
-//        let cellForRow:CurrentPaletteCell = enterNotView.NotificationTableView.cellForRowAtIndexPath(indexPathRow) as CurrentPaletteCell
-//        cellForRow.currentColorView.backgroundColor = color
-
+         let indexPathRow:NSIndexPath = NSIndexPath(forRow: 0, inSection: 0)
+        let cellForRow:NotificationTypeCell = enterNotView.NotificationTableView.cellForRowAtIndexPath(indexPathRow) as NotificationTypeCell
+        cellForRow.typeTitle.backgroundColor = color
         var currentColor:UInt32
         switch color {
-        case UIColor.blueColor():
+        case AppTheme.NEVO_CUSTOM_COLOR(Red: 44, Green: 166, Blue: 224):
             currentColor = SetNortificationRequest.SetNortificationRequestValues.BLUE_LED
-        case UIColor.redColor():
+        case AppTheme.NEVO_CUSTOM_COLOR(Red: 229, Green: 0, Blue: 18):
             currentColor = SetNortificationRequest.SetNortificationRequestValues.RED_LED
-        case UIColor.yellowColor():
+        case AppTheme.NEVO_CUSTOM_COLOR(Red: 250, Green: 237, Blue: 0):
             currentColor = SetNortificationRequest.SetNortificationRequestValues.YELLOW_LED
-        case UIColor.greenColor():
+        case AppTheme.NEVO_CUSTOM_COLOR(Red: 141, Green: 194, Blue: 31):
             currentColor = SetNortificationRequest.SetNortificationRequestValues.GREEN_LED
-        case UIColor.orangeColor():
+        case AppTheme.NEVO_CUSTOM_COLOR(Red: 242, Green: 150, Blue: 0):
             currentColor = SetNortificationRequest.SetNortificationRequestValues.ORANGE_LED
-        case AppTheme.PALETTE_BAGGROUND_COLOR():
+        case AppTheme.NEVO_CUSTOM_COLOR(Red: 13, Green: 172, Blue: 103):
             currentColor = SetNortificationRequest.SetNortificationRequestValues.LIGHTGREEN_LED
         default:
             currentColor = 0
@@ -287,11 +286,31 @@ class EnterNotificationController: UIViewController,SwitchActionDelegate,Palette
             var endCell:NotificationTypeCell = tableView.dequeueReusableCellWithIdentifier("NotificationTypeCell", forIndexPath: indexPath) as NotificationTypeCell
             endCell.selectionStyle = UITableViewCellSelectionStyle.None
             endCell.textLabel?.backgroundColor = UIColor.clearColor()
+
             if let currentSetting = mCurrentNotificationSetting {
                 endCell.typeTitle.font = AppTheme.FONT_RALEWAY_LIGHT(mSize: 28)
                 endCell.typeTitle.backgroundColor = AppTheme.NEVO_SOLAR_YELLOW()
                 endCell.typeTitle.textColor = UIColor.whiteColor()
                 endCell.typeTitle.text = NSLocalizedString(currentSetting.typeName, comment: "")
+
+                if let currentSetting = mCurrentNotificationSetting {
+                    var currentColor:UInt32 = currentSetting.getColor().unsignedIntValue
+                    if (currentColor == SetNortificationRequest.SetNortificationRequestValues.RED_LED){
+                        endCell.typeTitle.backgroundColor = AppTheme.NEVO_CUSTOM_COLOR(Red: 229, Green: 0, Blue: 18)
+                    }else if (currentColor == SetNortificationRequest.SetNortificationRequestValues.BLUE_LED){
+                        endCell.typeTitle.backgroundColor = AppTheme.NEVO_CUSTOM_COLOR(Red: 44, Green: 166, Blue: 224)
+                    }else if (currentColor == SetNortificationRequest.SetNortificationRequestValues.GREEN_LED){
+                        endCell.typeTitle.backgroundColor = AppTheme.NEVO_CUSTOM_COLOR(Red: 141, Green: 194, Blue: 31)
+                    }else if (currentColor == SetNortificationRequest.SetNortificationRequestValues.YELLOW_LED){
+                        endCell.typeTitle.backgroundColor = AppTheme.NEVO_CUSTOM_COLOR(Red: 250, Green: 237, Blue: 0)
+                    }else if (currentColor == SetNortificationRequest.SetNortificationRequestValues.ORANGE_LED){
+                        endCell.typeTitle.backgroundColor = AppTheme.NEVO_CUSTOM_COLOR(Red: 242, Green: 150, Blue: 0)
+                    }
+                    else if (currentColor == SetNortificationRequest.SetNortificationRequestValues.LIGHTGREEN_LED){
+                        endCell.typeTitle.backgroundColor = AppTheme.NEVO_CUSTOM_COLOR(Red: 13, Green: 172, Blue: 103)
+                    }
+
+                }
             }
             endCell.ActionDelegate = self
 

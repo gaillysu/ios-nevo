@@ -1150,7 +1150,7 @@
     </scenes>
     <resources>
         <image name="BlackSelectedButton" width="63" height="63"/>
-        <image name="Signal_3.png" width="40" height="40"/>
+        <image name="Signal_3.png" width="100" height="100"/>
         <image name="alarmitem" width="68" height="68"/>
         <image name="amButton" width="63" height="63"/>
         <image name="amSelectedButton" width="63" height="63"/>

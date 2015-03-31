@@ -26,6 +26,19 @@ class AppTheme {
         return UIColor(red: 186/255.0, green: 185/255.0, blue: 182/255.0, alpha: 1)
     }
 
+    /**
+    Custom colors
+
+    :param: reds   The red channel value
+    :param: greens The green channel value
+    :param: blue   The blue channel value
+
+    :returns: Custom colors
+    */
+    class func NEVO_CUSTOM_COLOR(Red reds:CGFloat = 186, Green greens:CGFloat = 185, Blue blue:CGFloat = 182) -> UIColor {
+        return UIColor(red: reds/255.0 , green: greens/255.0, blue: blue/255.0, alpha: 1)
+    }
+
     class func SYSTEMFONTOFSIZE(mSize size:CGFloat = 25) -> UIFont {
         return UIFont.systemFontOfSize(size)
     }
