@@ -426,7 +426,12 @@ class NevoOtaController : ConnectionControllerDelegate {
             }
         }
     }
-    
+
+    func setConnectControllerDelegate2Self()
+    {
+        mConnectionController?.setDelegate(self)
+    }
+
     func performDFUOnFile(firmwareURL:NSURL , firmwareType:DfuFirmwareTypes)
     {
         mConnectionController?.setDelegate(self)

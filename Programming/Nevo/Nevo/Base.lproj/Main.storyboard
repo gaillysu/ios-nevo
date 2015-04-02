@@ -154,7 +154,6 @@
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="back2Home:" destination="sRG-8v-pva" eventType="touchUpInside" id="Zny-eL-dgV"/>
                                             <action selector="buttonAction:" destination="sRG-8v-pva" eventType="touchUpInside" id="Ko4-hc-UIX"/>
                                         </connections>
                                     </button>
@@ -376,6 +375,7 @@
                             <constraint firstItem="4UJ-HD-K8S" firstAttribute="leading" secondItem="sRG-8v-pva" secondAttribute="leadingMargin" constant="25" id="xma-mI-LBD"/>
                         </constraints>
                         <connections>
+                            <outlet property="backButton" destination="xeK-jO-kBg" id="oCL-yM-6jN"/>
                             <outlet property="selectFileButton" destination="aEp-Xl-VFt" id="cyT-uJ-giU"/>
                             <outlet property="title" destination="Urm-TO-Lvz" id="iJo-pq-hl9"/>
                             <outlet property="titleBgView" destination="lNM-9j-XkJ" id="Tcj-Y2-JFr"/>

@@ -47,6 +47,10 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
         super.viewDidDisappear(animated)
         mNevoOtaController!.reset(true)
     }
+
+    override func viewDidAppear(animated: Bool) {
+        mNevoOtaController!.setConnectControllerDelegate2Self()
+    }
     
     //init data function
     private func initValue()
@@ -167,7 +171,7 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
     // MARK: - ButtonManagerCallBack
     func controllManager(sender:AnyObject){
 
-        if (sender.isEqual(nevoOtaView.backButton)){
+        if (sender.isEqual(nevoOtaView.selectFileButton)){
             NSLog("selectWatchFile")
             self.performSegueWithIdentifier("Ota2SelectFile", sender: self)
         }else if (sender.isEqual(nevoOtaView.backButton)) {
