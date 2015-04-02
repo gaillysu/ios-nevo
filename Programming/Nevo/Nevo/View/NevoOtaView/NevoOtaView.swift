@@ -13,6 +13,10 @@ class NevoOtaView: UIView {
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var titleBgView: UIView!
     
+    @IBOutlet weak var backButton: UIButton!
+    @IBOutlet weak var uploadButton: UIButton!
+    @IBOutlet weak var selectFileButton: UIButton!
+
     private var mDelegate:ButtonManagerCallBack?
     
     
@@ -22,14 +26,8 @@ class NevoOtaView: UIView {
     }
     
     
-    @IBAction func back2Home(sender: AnyObject) {
-        mDelegate?.controllManager("back2Home")
-    }
-    @IBAction func uploadFile(sender: AnyObject) {
-        mDelegate?.controllManager("uploadFile")
-    }
-    @IBAction func selectWatchFile(sender: AnyObject) {
-        mDelegate?.controllManager("selectWatchFile")
+    @IBAction func buttonAction(sender: AnyObject) {
+        mDelegate?.controllManager(sender)
     }
     /*
     // Only override drawRect: if you perform custom drawing.

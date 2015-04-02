@@ -167,15 +167,14 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
     // MARK: - ButtonManagerCallBack
     func controllManager(sender:AnyObject){
 
-        var senderString = sender as String
-        if senderString == "selectWatchFile"{
+        if (sender.isEqual(nevoOtaView.backButton)){
             NSLog("selectWatchFile")
             self.performSegueWithIdentifier("Ota2SelectFile", sender: self)
-        }else if senderString == "back2Home"{
+        }else if (sender.isEqual(nevoOtaView.backButton)) {
             NSLog("back2Home")
             self.dismissViewControllerAnimated(true, completion: nil)
             //self.navigationController?.popViewControllerAnimated(true)
-        }else if senderString == "uploadFile"{
+        }else if (sender.isEqual(nevoOtaView.uploadButton)){
             NSLog("uploadFile")
             uploadPressed()
         }
