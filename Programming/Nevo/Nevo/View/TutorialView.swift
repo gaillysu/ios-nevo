@@ -6,7 +6,6 @@
 //  Copyright (c) 2015年 Nevo. All rights reserved.
 //
 
-import UIkit
 
 class TutorialView: UIView {
     private var mTutorialButton: UIButton?

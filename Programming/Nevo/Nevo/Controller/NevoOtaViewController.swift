@@ -66,7 +66,7 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
     //upload button function
     func uploadPressed()
     {
-        if selectedFileURL? == nil
+        if selectedFileURL == nil
         {
             var alert :UIAlertView = UIAlertView(title: "", message: "Please select NEVO file!", delegate: nil, cancelButtonTitle: "OK")
             alert.show()
@@ -130,7 +130,7 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
             
             self.initValue()
             
-            var alert :UIAlertView = UIAlertView(title: "Firmware Upgrade", message: errString, delegate: nil, cancelButtonTitle: "OK")
+            var alert :UIAlertView = UIAlertView(title: "Firmware Upgrade", message: errString as String, delegate: nil, cancelButtonTitle: "OK")
             alert.show()
             
             self.mNevoOtaController!.reset(false)
@@ -233,7 +233,7 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
         if(segue.identifier == "Ota2SelectFile"){
-            var selectFile = segue.destinationViewController as SelectFileController
+            var selectFile = segue.destinationViewController as! SelectFileController
             selectFile.mFileDelegate = self
         }
     }

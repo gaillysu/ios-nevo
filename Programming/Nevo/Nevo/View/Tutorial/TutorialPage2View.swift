@@ -41,7 +41,7 @@ class TutorialPage2View: UIView {
 
     func buildTutorialPage() {
 
-        let backButton = UIButton.buttonWithType(UIButtonType.Custom) as UIButton
+        let backButton = UIButton.buttonWithType(UIButtonType.Custom) as! UIButton
         backButton.frame = CGRectMake(15, 10, 70, 40)
         backButton.setTitle(NSLocalizedString("Back",comment:"button title string"), forState: UIControlState.Normal)
         backButton.titleLabel?.font = BACK_BUTTON_FONT
@@ -86,7 +86,7 @@ class TutorialPage2View: UIView {
         guide2Label.text = NSLocalizedString("LongPushLED",comment:"lable string")
         self.addSubview(guide2Label)
 
-        let nextButton:UIButton = UIButton.buttonWithType(UIButtonType.Custom) as UIButton
+        let nextButton:UIButton = UIButton.buttonWithType(UIButtonType.Custom) as! UIButton
         nextButton.frame = CGRectMake(0, 0, 120, 50)
         nextButton.setTitle(NSLocalizedString("Next",comment:"button title string"), forState: UIControlState.Normal)
         nextButton.backgroundColor = UIColor.clearColor()

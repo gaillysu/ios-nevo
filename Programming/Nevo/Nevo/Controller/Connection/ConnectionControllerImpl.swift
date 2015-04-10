@@ -96,7 +96,7 @@ class ConnectionControllerImpl : NSObject, ConnectionController, NevoBTDelegate 
 
             mNevoBT?.connectToAddress(
                 NSUUID(UUIDString:
-                    NSUserDefaults.standardUserDefaults().objectForKey(SAVED_ADDRESS_KEY) as String
+                    NSUserDefaults.standardUserDefaults().objectForKey(SAVED_ADDRESS_KEY) as! String
                     )!
             )
 
@@ -170,11 +170,11 @@ class ConnectionControllerImpl : NSObject, ConnectionController, NevoBTDelegate 
     */
     func restoreSavedAddress()
     {
-        if( savedAddress? != nil)
+        if( savedAddress != nil)
         {
         let userDefaults = NSUserDefaults.standardUserDefaults();
         
-        userDefaults.setObject(savedAddress?,forKey:SAVED_ADDRESS_KEY)
+        userDefaults.setObject(savedAddress,forKey:SAVED_ADDRESS_KEY)
         
         userDefaults.synchronize()
         }

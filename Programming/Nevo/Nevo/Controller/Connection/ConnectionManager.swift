@@ -57,7 +57,7 @@ class ConnectionManager: NSObject {
         let userDefaults = NSUserDefaults.standardUserDefaults()
         var val:Bool = false
         if let isOpen: AnyObject = userDefaults.objectForKey(mIsSendLocalMsgKey) {
-            val = isOpen as Bool
+            val = isOpen as! Bool
         }
         return val
     }

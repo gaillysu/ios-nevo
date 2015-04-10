@@ -57,7 +57,7 @@ class NevoHKImpl {
         }
         
         // 4.  Request HealthKit authorization
-        mHealthKitStore.requestAuthorizationToShareTypes(healthKitTypesToWrite, readTypes: healthKitTypesToRead) { (success, error) -> Void in
+        mHealthKitStore.requestAuthorizationToShareTypes(healthKitTypesToWrite as Set<NSObject>, readTypes: healthKitTypesToRead as Set<NSObject>) { (success, error) -> Void in
             
             if( completion != nil )
             {

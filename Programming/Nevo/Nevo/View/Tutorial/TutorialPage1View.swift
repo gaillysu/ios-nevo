@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import UIkit
 
 class TutorialPage1View : UIView {
     private var mDelegate:Page1Controller?
@@ -42,7 +41,7 @@ class TutorialPage1View : UIView {
     
     func buildTutorialPage() {
 
-        let backButton = UIButton.buttonWithType(UIButtonType.Custom) as UIButton
+        let backButton = UIButton.buttonWithType(UIButtonType.Custom) as! UIButton
         backButton.frame = CGRectMake(15, 10, 70, 40)
         backButton.setTitle(NSLocalizedString("Back",comment:"button title string"), forState: UIControlState.Normal)
         backButton.titleLabel?.font = BACK_BUTTON_FONT
@@ -79,7 +78,7 @@ class TutorialPage1View : UIView {
 
         
 
-        let nextButton:UIButton = UIButton.buttonWithType(UIButtonType.Custom) as UIButton
+        let nextButton:UIButton = UIButton.buttonWithType(UIButtonType.Custom) as! UIButton
         nextButton.frame = CGRectMake(0, 0, 120, 50)
         nextButton.setTitle(NSLocalizedString("Next",comment:"button title string"), forState: UIControlState.Normal)
         nextButton.titleLabel?.font = TEXT_FONT

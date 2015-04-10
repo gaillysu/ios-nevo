@@ -45,7 +45,7 @@ class SetingView: UIView {
     */
     func NotificationlistCell(indexPath:NSIndexPath,dataSource:[NotificationSetting])->UITableViewCell {
         let endCellID:NSString = "SetingCell"
-        var endCell = tableListView.dequeueReusableCellWithIdentifier(endCellID) as? TableListCell
+        var endCell = tableListView.dequeueReusableCellWithIdentifier(endCellID as String) as? TableListCell
         var StatesLabel:UILabel!
         
         if (endCell == nil) {

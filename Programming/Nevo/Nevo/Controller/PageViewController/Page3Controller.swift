@@ -29,7 +29,7 @@ class Page3Controller: UIViewController,ButtonActionCallBack,SyncControllerDeleg
     */
     func nextButtonAction(sender:UIButton){
 
-        if sender.isEqual(pagesView.getConnectButton()?) {
+        if sender.isEqual(pagesView.getConnectButton()) {
 
             let isConnectedBool:Bool = ConnectionControllerImpl.sharedInstance.isConnected()
             if(isConnectedBool) {
@@ -37,7 +37,7 @@ class Page3Controller: UIViewController,ButtonActionCallBack,SyncControllerDeleg
             } else {
                 SyncController.sharedInstance.startConnect(true, delegate: self)
             }
-        } else if sender.isEqual(pagesView.getBackButton()?) {
+        } else if sender.isEqual(pagesView.getBackButton()) {
             self.navigationController?.popViewControllerAnimated(true)
         }else {
             //Finish Button Action

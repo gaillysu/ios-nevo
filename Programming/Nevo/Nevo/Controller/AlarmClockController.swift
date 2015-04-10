@@ -74,11 +74,11 @@ class AlarmClockController: UIViewController, SyncControllerDelegate,ButtonManag
             NSLog("alarmView.selectedTimerButton")
         }
 
-        if sender.isEqual(alarmView.animationView.getNoConnectScanButton()?) {
+        if sender.isEqual(alarmView.animationView.getNoConnectScanButton()) {
             NSLog("noConnectScanButton")
             reconnect()
         }
-        if sender.isEqual(alarmView.getEnterButton()?){
+        if sender.isEqual(alarmView.getEnterButton()){
             NSLog("alarmView.enterButton")
             setAlarm()
         }
@@ -178,7 +178,7 @@ class AlarmClockController: UIViewController, SyncControllerDelegate,ButtonManag
             //We are currently not connected
             var isView:Bool = false
             for view in alarmView.subviews {
-                let anView:UIView = view as UIView
+                let anView:UIView = view as! UIView
                 if anView.isEqual(alarmView.animationView.bulibNoConnectView()) {
                     isView = true
                 }

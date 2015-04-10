@@ -20,7 +20,7 @@ class SelectFileController: UITableViewController {
         // Do any additional setup after loading the view.
         var fileArray = GET_FIRMWARE_FILES("Firmwares")
         for tmpfile in fileArray {
-            mFiles.append(tmpfile as NSURL)
+            mFiles.append(tmpfile as! NSURL)
         }
     }
 
@@ -39,7 +39,7 @@ class SelectFileController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell:UITableViewCell = tableView.dequeueReusableCellWithIdentifier("FolderFilesCell" , forIndexPath: indexPath) as UITableViewCell
+        var cell:UITableViewCell = tableView.dequeueReusableCellWithIdentifier("FolderFilesCell" , forIndexPath: indexPath) as! UITableViewCell
         var fileName = mFiles[indexPath.row].lastPathComponent
         //configure the cell
         cell.textLabel?.text = fileName

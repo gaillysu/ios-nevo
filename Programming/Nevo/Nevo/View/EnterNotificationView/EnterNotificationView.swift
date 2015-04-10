@@ -35,7 +35,7 @@ class EnterNotificationView: UIView {
 
     func EnterCurrentPaletteCell(indexPath:NSIndexPath) ->CurrentPaletteCell{
         let CurrentCellID:NSString = "CurrentCell"
-        var CurrentCell = NotificationTableView.dequeueReusableCellWithIdentifier(CurrentCellID) as? CurrentPaletteCell
+        var CurrentCell = NotificationTableView.dequeueReusableCellWithIdentifier(CurrentCellID as String) as? CurrentPaletteCell
 
         if (CurrentCell == nil) {
             let nibs:NSArray = NSBundle.mainBundle().loadNibNamed("CurrentPaletteCell", owner: self, options: nil)
@@ -47,7 +47,7 @@ class EnterNotificationView: UIView {
 
     func EnterPaletteListCell(indexPath:NSIndexPath,dataSource:NSArray)->PaletteViewCell {
         let endCellID:NSString = "PaletteListCell"
-        var endCell = NotificationTableView.dequeueReusableCellWithIdentifier(endCellID) as? PaletteViewCell
+        var endCell = NotificationTableView.dequeueReusableCellWithIdentifier(endCellID as String) as? PaletteViewCell
 
         if (endCell == nil) {
             let nibs:NSArray = NSBundle.mainBundle().loadNibNamed("PaletteViewCell", owner: self, options: nil)

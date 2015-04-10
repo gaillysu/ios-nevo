@@ -545,11 +545,11 @@ class NevoOtaController : ConnectionControllerDelegate {
 
     if i == self.notificationPacketInterval - 1
     {
-        fulldata.appendBytes([0xFF,0x71] as [Byte], length: 2)
+        fulldata.appendBytes([0xFF,0x71] as [UInt8], length: 2)
     }
     else
     {
-        fulldata.appendBytes([UInt8(i),0x71] as [Byte], length: 2)
+        fulldata.appendBytes([UInt8(i),0x71] as [UInt8], length: 2)
     }
         
     fulldata.appendData(currentData)
@@ -557,7 +557,7 @@ class NevoOtaController : ConnectionControllerDelegate {
     //last packet of the page, remains 8 bytes,fill 0
     if(i == (notificationPacketInterval - 1))
     {
-       fulldata.appendBytes([0,0,0,0,0,0,0,0] as [Byte], length: 8)
+       fulldata.appendBytes([0,0,0,0,0,0,0,0] as [UInt8], length: 8)
     }
     pagePacket = fulldata
     
@@ -598,7 +598,7 @@ class NevoOtaController : ConnectionControllerDelegate {
     {
         NSLog("didReceiveReceipt")
         mPacketsbuffer.append(packet.getRawData())
-        var databyte:[Byte] = NSData2Bytes(packet.getRawData())
+        var databyte:[UInt8] = NSData2Bytes(packet.getRawData())
         
         if(databyte[0] == 0xFF)
         {
@@ -611,15 +611,15 @@ class NevoOtaController : ConnectionControllerDelegate {
             }
             if( databyte[1] == 0x71 && self.state == DFUControllerState.FINISHED)
             {
-                var databyte1:[Byte] = NSData2Bytes(mPacketsbuffer[0])
+                var databyte1:[UInt8] = NSData2Bytes(mPacketsbuffer[0])
                 
                 if(databyte1[1] == 0x71
                     && databyte1[2] == 0xFF
                     && databyte1[3] == 0xFF
                     )
                 {
-                    var TotalPageLo:Byte = Byte(totalpage & 0xFF)
-                    var TotalPageHi:Byte = Byte((totalpage>>8) & 0xFF)
+                    var TotalPageLo:UInt8 = UInt8(totalpage & 0xFF)
+                    var TotalPageHi:UInt8 = UInt8((totalpage>>8) & 0xFF)
                     
                     if (databyte1[4] == TotalPageLo
                         && databyte1[5] == TotalPageHi)

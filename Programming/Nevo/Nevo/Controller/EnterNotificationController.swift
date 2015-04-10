@@ -29,13 +29,13 @@ class EnterNotificationController: UIViewController,SwitchActionDelegate,Palette
         var value:UInt32 = getMotorOnOff(sourceType) ? (ledColor | SetNortificationRequest.SetNortificationRequestValues.VIB_MOTOR)
             : (ledColor & ~SetNortificationRequest.SetNortificationRequestValues.VIB_MOTOR)
         
-        userDefaults.setObject(UInt(value),forKey:sourceType)
+        userDefaults.setObject(UInt(value),forKey:sourceType as String)
         userDefaults.synchronize()
         
     }
     class  func getLedColor(sourceType: NSString) ->UInt32
     {
-        if let color = NSUserDefaults.standardUserDefaults().objectForKey(sourceType) as? UInt
+        if let color = NSUserDefaults.standardUserDefaults().objectForKey(sourceType as String) as? UInt
         {
             return UInt32(color) & ~SetNortificationRequest.SetNortificationRequestValues.VIB_MOTOR
         } else {
@@ -69,13 +69,13 @@ class EnterNotificationController: UIViewController,SwitchActionDelegate,Palette
         
         ledColor = motorStatus ? (ledColor | SetNortificationRequest.SetNortificationRequestValues.VIB_MOTOR)
             : (ledColor & ~SetNortificationRequest.SetNortificationRequestValues.VIB_MOTOR)
-        userDefaults.setObject(UInt(ledColor),forKey:sourceType)
+        userDefaults.setObject(UInt(ledColor),forKey:sourceType as String)
         userDefaults.synchronize()
     }
     
     class func getMotorOnOff(sourceType: NSString) ->Bool
     {
-        if let color = NSUserDefaults.standardUserDefaults().objectForKey(sourceType) as? UInt
+        if let color = NSUserDefaults.standardUserDefaults().objectForKey(sourceType as String) as? UInt
         {
             return ((UInt32(color) & SetNortificationRequest.SetNortificationRequestValues.VIB_MOTOR) == SetNortificationRequest.SetNortificationRequestValues.VIB_MOTOR) ? true : false
         }
@@ -126,7 +126,7 @@ class EnterNotificationController: UIViewController,SwitchActionDelegate,Palette
     
     // MARK: - ButtonManagerCallBack
     func controllManager(sender:AnyObject){
-        if sender.isEqual(enterNotView.animationView?.getNoConnectScanButton()?) {
+        if sender.isEqual(enterNotView.animationView?.getNoConnectScanButton()) {
             NSLog("noConnectScanButton")
             reconnect()
         }
@@ -161,7 +161,7 @@ class EnterNotificationController: UIViewController,SwitchActionDelegate,Palette
             //We are currently not connected
             var isView:Bool = false
             for view in enterNotView.subviews {
-                let anView:UIView = view as UIView
+                let anView:UIView = view as! UIView
                 if anView.isEqual(enterNotView.animationView?.bulibNoConnectView()) {
                     isView = true
                 }
@@ -212,7 +212,7 @@ class EnterNotificationController: UIViewController,SwitchActionDelegate,Palette
     func selectedPalette(color:UIColor){
         NSLog("UIColor\(color)")
          let indexPathRow:NSIndexPath = NSIndexPath(forRow: 0, inSection: 0)
-        let cellForRow:NotificationTypeCell = enterNotView.NotificationTableView.cellForRowAtIndexPath(indexPathRow) as NotificationTypeCell
+        let cellForRow:NotificationTypeCell = enterNotView.NotificationTableView.cellForRowAtIndexPath(indexPathRow) as! NotificationTypeCell
         cellForRow.typeTitle.backgroundColor = color
         var currentColor:UInt32
         switch color {
@@ -283,7 +283,7 @@ class EnterNotificationController: UIViewController,SwitchActionDelegate,Palette
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if (indexPath.section == 0){
-            var endCell:NotificationTypeCell = tableView.dequeueReusableCellWithIdentifier("NotificationTypeCell", forIndexPath: indexPath) as NotificationTypeCell
+            var endCell:NotificationTypeCell = tableView.dequeueReusableCellWithIdentifier("NotificationTypeCell", forIndexPath: indexPath) as! NotificationTypeCell
             endCell.selectionStyle = UITableViewCellSelectionStyle.None
             endCell.textLabel?.backgroundColor = UIColor.clearColor()
 

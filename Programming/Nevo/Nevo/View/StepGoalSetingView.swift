@@ -101,7 +101,7 @@ class StepGoalSetingView: UIView,UIPickerViewDataSource,UIPickerViewDelegate {
     */
     @IBAction func buttonAction(sender: AnyObject) {
         //CallBack StepGoalSetingController
-        mDelegate?.controllManager(sender as UIButton)
+        mDelegate?.controllManager(sender as! UIButton)
     }
 
     // MARK: - PickerView
@@ -127,7 +127,7 @@ class StepGoalSetingView: UIView,UIPickerViewDataSource,UIPickerViewDelegate {
         PickerbgView.addSubview(buttonBgView)
 
         //Create a cancel button
-        let cancelButton:UIButton = UIButton.buttonWithType(UIButtonType.System) as UIButton
+        let cancelButton:UIButton = UIButton.buttonWithType(UIButtonType.System) as! UIButton
         cancelButton.frame = CGRectMake(0, mPickerView!.frame.origin.y-40, 60, 40)
         cancelButton.setTitle(NSLocalizedString("Cancel", comment: ""), forState: UIControlState.Normal)
         cancelButton.backgroundColor = UIColor.clearColor()
@@ -135,7 +135,7 @@ class StepGoalSetingView: UIView,UIPickerViewDataSource,UIPickerViewDelegate {
         cancelButton.addTarget(self, action: Selector("enterAction:"), forControlEvents: UIControlEvents.TouchUpInside)
         PickerbgView.addSubview(cancelButton)
 
-        let enterButton = UIButton.buttonWithType(UIButtonType.System) as UIButton
+        let enterButton = UIButton.buttonWithType(UIButtonType.System) as! UIButton
         enterButton.frame = CGRectMake(mPickerView!.frame.size.width-50, mPickerView!.frame.origin.y-40, 50, 40)
         enterButton.setTitle(NSLocalizedString("Enter", comment: ""), forState: UIControlState.Normal)
         enterButton.backgroundColor = UIColor.clearColor()
@@ -169,7 +169,7 @@ class StepGoalSetingView: UIView,UIPickerViewDataSource,UIPickerViewDelegate {
     func EndAnimation() {
         for view : AnyObject in self.subviews{
             if view is UIView{
-                let bgPicker:UIView = view as UIView;
+                let bgPicker:UIView = view as! UIView;
                 if bgPicker.tag == self.BAG_PICKER_TAG {
 
                     UIView.animateKeyframesWithDuration(0.3, delay: 0, options: UIViewKeyframeAnimationOptions.LayoutSubviews, animations: { () -> Void in
@@ -206,7 +206,7 @@ class StepGoalSetingView: UIView,UIPickerViewDataSource,UIPickerViewDelegate {
     Click the cancelButton and enterButton events
     */
     func enterAction(sender:UIButton) {
-        if sender.isEqual(mEnterButton?){
+        if sender.isEqual(mEnterButton){
 
             mDelegate?.controllManager(sender)
         }
@@ -225,7 +225,7 @@ class StepGoalSetingView: UIView,UIPickerViewDataSource,UIPickerViewDelegate {
         labelView.backgroundColor = UIColor.clearColor()
         labelView.textAlignment = NSTextAlignment.Center
         labelView.font = UIFont.systemFontOfSize(26)
-        labelView.text = NSString(format: "%d", mIndexArray[row] as Int)
+        labelView.text = NSString(format: "%d", mIndexArray[row] as! Int) as String
         return labelView
     }
 
@@ -246,7 +246,7 @@ class StepGoalSetingView: UIView,UIPickerViewDataSource,UIPickerViewDelegate {
     
     func getNumberOfStepsGoal() -> Int{
         let row = mPickerView?.selectedRowInComponent(0)
-        return mIndexArray.objectAtIndex(row!) as Int
+        return mIndexArray.objectAtIndex(row!) as! Int
     }
 
     func setNumberOfStepsGoal(goal:Int){

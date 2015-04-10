@@ -14,7 +14,7 @@ class NotificationSetting: NSObject {
     private var mColor:NSNumber
     var typeName:String {
         get {
-            return self.mType.rawValue
+            return self.mType.rawValue as String
         }
     }
     
@@ -40,7 +40,7 @@ class NotificationSetting: NSObject {
         mStates = states
     }
     
-    func description() -> String{
+    func sdescription() -> String{
         var description = ""
         description = "type:\(mType.rawValue) color:\(mColor) status:\(mStates)"
         return description

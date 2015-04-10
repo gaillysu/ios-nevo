@@ -34,7 +34,7 @@ class PaletteViewCell: UITableViewCell {
 
 
     @IBAction func PaletteButtonManager(sender: AnyObject) {
-        let senders:UIButton = sender as UIButton
+        let senders:UIButton = sender as! UIButton
         for button:UIButton in buttonArray {
             button.selected = false
         }

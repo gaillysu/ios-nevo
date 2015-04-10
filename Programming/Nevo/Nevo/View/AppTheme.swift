@@ -90,7 +90,7 @@ class AppTheme {
         if (UIDevice.currentDevice().systemVersion as NSString).floatValue >= 8.0 {
             var categorys:UIMutableUserNotificationCategory = UIMutableUserNotificationCategory()
             categorys.identifier = "alert";
-            var localUns:UIUserNotificationSettings = UIUserNotificationSettings(forTypes: UIUserNotificationType.Badge|UIUserNotificationType.Sound|UIUserNotificationType.Alert, categories: NSSet(objects: categorys))
+            var localUns:UIUserNotificationSettings = UIUserNotificationSettings(forTypes: UIUserNotificationType.Badge|UIUserNotificationType.Sound|UIUserNotificationType.Alert, categories: NSSet(objects: categorys) as Set<NSObject>)
             UIApplication.sharedApplication().registerUserNotificationSettings(localUns)
         }
 
@@ -98,7 +98,7 @@ class AppTheme {
         let notification:UILocalNotification=UILocalNotification()
         notification.timeZone = NSTimeZone.defaultTimeZone()
         notification.fireDate = NSDate().dateByAddingTimeInterval(delay)
-        notification.alertBody=string;
+        notification.alertBody=string as String;
         notification.applicationIconBadgeNumber = 0;
         notification.soundName = UILocalNotificationDefaultSoundName;
         notification.category = "invite"

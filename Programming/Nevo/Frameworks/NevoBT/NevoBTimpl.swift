@@ -28,12 +28,12 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
     /**
     Gets notified when a periphare connects/disconnects and when we receive data
     */
-    private let mDelegate : NevoBTDelegate
+    private var mDelegate : NevoBTDelegate?
     
     /**
     The central manager, we have to save it
     */
-    private let mManager : CBCentralManager?
+    private var mManager : CBCentralManager?
     
     /**
     The connected peripheral
@@ -46,12 +46,12 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
     There might be for example 10 peripherals known to the device, but one only is in range
     So we need to try to connect to all of them
     */
-    private var mTryingToConnectPeripherals : [CBPeripheral]
+    private var mTryingToConnectPeripherals : [CBPeripheral]?
     
     /**
     The GATT profile we are looking for
     */
-    private var mProfile : Profile
+    private var mProfile : Profile?
     
     /**
     The Stop scan timer
@@ -88,7 +88,7 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
         //We can't be sure if the Manager is ready, so let's try
         if(self.isBluetoothEnabled()) {
             
-            var services:[AnyObject] = [mProfile.CONTROL_SERVICE]
+            var services:[AnyObject] = [mProfile!.CONTROL_SERVICE]
             
             //No address was specified, we'll search for devices with the right profile.
     
@@ -217,7 +217,7 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
             //We don't knopw were this peripheral come from,
             //There might be for example 10 peripherals known to the device, but one only is in range
             //So we need to try to connect to all of them, and hence we need to save all of them
-            mTryingToConnectPeripherals.append(aPeripheral)
+            mTryingToConnectPeripherals?.append(aPeripheral)
             
             mManager?.connectPeripheral(aPeripheral,options:nil)
             
@@ -242,7 +242,7 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
         //We do so by forgetting them
         mTryingToConnectPeripherals = []
         
-        mDelegate.connectionStateChanged(true, fromAddress: aPeripheral.identifier)
+        mDelegate?.connectionStateChanged(true, fromAddress: aPeripheral.identifier)
         
     }
 
@@ -258,7 +258,7 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
             for aService:CBService in services {
                 NSLog("Service found with UUID : \(aService.UUID.UUIDString)")
     
-                if (aService.UUID == mProfile.CONTROL_SERVICE) {
+                if (aService.UUID == mProfile?.CONTROL_SERVICE) {
                     aPeripheral.discoverCharacteristics(nil,forService:aService)
                 }
             }
@@ -278,7 +278,7 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
         if let characteristics = service.characteristics as? [CBCharacteristic] {
             for aChar:CBCharacteristic in characteristics {
             
-                if(aChar.UUID==mProfile.CALLBACK_CHARACTERISTIC ) {
+                if(aChar.UUID==mProfile?.CALLBACK_CHARACTERISTIC ) {
                     mPeripheral?.setNotifyValue(true,forCharacteristic:aChar)
             
                     NSLog("Callback char : \(aChar.UUID.UUIDString)")
@@ -298,14 +298,14 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
     func peripheral(aPeripheral:CBPeripheral!, didUpdateValueForCharacteristic characteristic:CBCharacteristic!, error  :NSError!) {
         
         //We received a value, if it did came from the calllback char, let's return it
-        if (characteristic.UUID==mProfile.CALLBACK_CHARACTERISTIC)
+        if (characteristic.UUID==mProfile?.CALLBACK_CHARACTERISTIC)
         {
             
             if error == nil && characteristic.value != nil && aPeripheral.identifier != nil {
                 NSLog("Received : \(characteristic.UUID.UUIDString) \(hexString(characteristic.value))")
                 
                 /* It is valid data, let's return it to our delegate */
-                mDelegate.packetReceived( RawPacketImpl(data: characteristic.value , profile: mProfile) ,  fromAddress : aPeripheral.identifier )
+                mDelegate?.packetReceived( RawPacketImpl(data: characteristic.value , profile: mProfile!) ,  fromAddress : aPeripheral.identifier )
             }
         }
     
@@ -332,7 +332,7 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
 
         if let services = mPeripheral?.services as? [CBService] {
             
-            if( mProfile.CALLBACK_CHARACTERISTIC != request.getTargetProfile().CALLBACK_CHARACTERISTIC ) {
+            if( mProfile?.CALLBACK_CHARACTERISTIC != request.getTargetProfile().CALLBACK_CHARACTERISTIC ) {
                 //We didn't subscribe to this profile's CallbackCharacteristic, there have to be a mistake somewhere
                 NSLog("The target profile is incompatible with the profile given on this NevoBT's initalisation.")
                 return ;
@@ -353,7 +353,7 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
                                 {
                                     NSLog("Request raw data :\(request.getRawData())")
                                     //OTA control CHAR, need a response
-                                    if mProfile is NevoOTAControllerProfile && request.getTargetProfile().CONTROL_CHARACTERISTIC == mProfile.CONTROL_CHARACTERISTIC
+                                    if mProfile is NevoOTAControllerProfile && request.getTargetProfile().CONTROL_CHARACTERISTIC == mProfile?.CONTROL_CHARACTERISTIC
                                     {
                                         mPeripheral?.writeValue(request.getRawData(),forCharacteristic:charac,type:CBCharacteristicWriteType.WithResponse)
                                     }
@@ -368,7 +368,7 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
                                     for data in request.getRawDataEx() {
                                         NSLog("Request raw data Ex:\(data)")
                                         
-                                        mPeripheral?.writeValue(data as NSData,forCharacteristic:charac,type:CBCharacteristicWriteType.WithoutResponse)
+                                        mPeripheral?.writeValue(data as! NSData,forCharacteristic:charac,type:CBCharacteristicWriteType.WithoutResponse)
                                     }
                                 }
                             }
@@ -394,10 +394,10 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
     See NevoBT protocol
     */
     func disconnect() {
-        if(mPeripheral? != nil)
+        if(mPeripheral != nil)
         {
-            mManager?.cancelPeripheralConnection(mPeripheral?)
-            mDelegate.connectionStateChanged(false, fromAddress: mPeripheral?.identifier)
+            mManager?.cancelPeripheralConnection(mPeripheral)
+            mDelegate?.connectionStateChanged(false, fromAddress: mPeripheral?.identifier)
         }
         setPeripheral(nil)
         
@@ -419,7 +419,7 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
         //Let's forget this device
         setPeripheral(nil)
     
-        mDelegate.connectionStateChanged(false, fromAddress: aPeripheral.identifier)
+        mDelegate?.connectionStateChanged(false, fromAddress: aPeripheral.identifier)
     
     }
     
@@ -434,7 +434,7 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
     See NevoBT protocol
     */
     func getProfile() -> Profile {
-        return mProfile
+        return mProfile!
     }
 
     /**

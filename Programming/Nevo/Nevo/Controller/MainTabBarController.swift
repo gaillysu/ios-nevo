@@ -23,7 +23,7 @@ class MainTabBarController: UITabBarController,UITabBarControllerDelegate {
         var nav:UINavigationController!
         let viewArray:[AnyObject] = self.viewControllers!
         for nav in viewArray {
-            var contll = (nav as UINavigationController).topViewController
+            var contll = (nav as! UINavigationController).topViewController
             if contll.isKindOfClass(AlarmClockController){
                 NSLog("AlarmClockController:\(contll)")
 
@@ -66,9 +66,9 @@ class MainTabBarController: UITabBarController,UITabBarControllerDelegate {
             var itemWidth:CGFloat = itemView.frame.size.width/CGFloat(imgArray.count)
             var item:UIButton  = UIButton(frame: CGRectMake(itemWidth*CGFloat(i), 0, itemWidth, itemView.frame.size.height))
             item.backgroundColor = UIColor.clearColor()
-            item.setImage(UIImage(named: selectImgArray[i] as String), forState: UIControlState.Selected)
-            item.setImage(UIImage(named: selectImgArray[i] as String), forState: UIControlState.Highlighted)
-            item.setImage(UIImage(named: imgArray[i] as String), forState: UIControlState.Normal)
+            item.setImage(UIImage(named: selectImgArray[i] as! String), forState: UIControlState.Selected)
+            item.setImage(UIImage(named: selectImgArray[i] as! String), forState: UIControlState.Highlighted)
+            item.setImage(UIImage(named: imgArray[i] as! String), forState: UIControlState.Normal)
             
             if (i==1) {
                 item.selected=true

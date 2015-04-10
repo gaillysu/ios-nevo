@@ -77,7 +77,7 @@ class SetingViewController: UIViewController,SelectionTypeDelegate,SyncControlle
 
     // MARK: - ButtonManagerCallBack
     func controllManager(sender:AnyObject){
-        if sender.isEqual(notificationList.animationView?.getNoConnectScanButton()?) {
+        if sender.isEqual(notificationList.animationView?.getNoConnectScanButton()) {
             NSLog("noConnectScanButton")
             reconnect()
         }
@@ -87,7 +87,7 @@ class SetingViewController: UIViewController,SelectionTypeDelegate,SyncControlle
         }
         
         if sender is UISwitch {
-            var switchButton = sender as UISwitch
+            var switchButton = sender as! UISwitch
             if switchButton.isEqual(notificationList.mSendLocalNotificationSwitchButton){
                 NSLog("setIsSendLocalMsg \(switchButton.on)")
                 ConnectionManager.sharedInstance.setIsSendLocalMsg(switchButton.on)
@@ -121,7 +121,7 @@ class SetingViewController: UIViewController,SelectionTypeDelegate,SyncControlle
             //We are currently not connected
             var isView:Bool = false
             for view in notificationList.subviews {
-                let anView:UIView = view as UIView
+                let anView:UIView = view as! UIView
                 if anView.isEqual(notificationList.animationView.bulibNoConnectView()) {
                     isView = true
                 }
@@ -201,7 +201,7 @@ class SetingViewController: UIViewController,SelectionTypeDelegate,SyncControlle
     func allCellTextColor(tableView:UITableView) {
         var allCell = tableView.indexPathsForVisibleRows()
         for cell in allCell! {
-            let seletedCell:UITableViewCell = tableView.cellForRowAtIndexPath(cell as NSIndexPath)!
+            let seletedCell:UITableViewCell = tableView.cellForRowAtIndexPath(cell as! NSIndexPath)!
             //cell as UITableViewCell
             seletedCell.textLabel?.textColor = UIColor.blackColor()
         }
@@ -266,14 +266,14 @@ class SetingViewController: UIViewController,SelectionTypeDelegate,SyncControlle
         }
 
         if indexPath.row == 0 {
-            var endCell:UITableViewCell = tableView.dequeueReusableCellWithIdentifier("SetingCell", forIndexPath: indexPath) as UITableViewCell
+            var endCell:UITableViewCell = tableView.dequeueReusableCellWithIdentifier("SetingCell", forIndexPath: indexPath) as! UITableViewCell
             endCell.selectedBackgroundView = UIImageView(image: UIImage(named:"selectedButton"))
             endCell.textLabel?.text = sources.objectAtIndex(indexPath.section) as? String
             endCell.layer.borderWidth = 0.5;
             endCell.layer.borderColor = UIColor.grayColor().CGColor;
             return endCell
         }
-        let cell:TableListCell = notificationList.NotificationlistCell(indexPath, dataSource: mNotificationSettingArray) as TableListCell
+        let cell:TableListCell = notificationList.NotificationlistCell(indexPath, dataSource: mNotificationSettingArray) as! TableListCell
         cell.mSwitchDelegate = self
         return cell
 
@@ -286,14 +286,14 @@ class SetingViewController: UIViewController,SelectionTypeDelegate,SyncControlle
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
         if (segue.identifier == "EnterNotification"){
-            var notficp = segue.destinationViewController as EnterNotificationController
+            var notficp = segue.destinationViewController as! EnterNotificationController
             notficp.mDelegate = self
             
             notficp.mNotificationSettingArray = mNotificationSettingArray
             notficp.mCurrentNotificationSetting = NotificationSetting.indexOfObjectAtType(mNotificationSettingArray, type: mNotificationType)
 
             for setting in mNotificationSettingArray {
-                NSLog(setting.description())
+                NSLog(setting.sdescription())
             }
             NSLog("\(mNotificationType.rawValue)")
         }

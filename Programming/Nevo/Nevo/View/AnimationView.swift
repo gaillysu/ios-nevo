@@ -244,7 +244,7 @@ class CircleProgressView: CAShapeLayer {
     */
     func setProgress(Sprogress:CGFloat,Steps steps:Int = 0,GoalStep goalstep:Int = 0) {
         for layer in array {
-            let valueLabel:UILabel = layer as UILabel
+            let valueLabel:UILabel = layer as! UILabel
             if (valueLabel.tag == 0) {
                 valueLabel.center = CGPointMake(self.frame.size.width/2.0-valueLabel.frame.size.width/2-10, self.frame.size.height+30)
                 valueLabel.text = NSString(format: "%@%.1f%c", NSLocalizedString("Progress: ",comment: ""),Float(Sprogress)*100.0,37) as String

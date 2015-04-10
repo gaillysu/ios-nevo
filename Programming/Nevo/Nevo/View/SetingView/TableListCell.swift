@@ -14,7 +14,7 @@ class TableListCell: UITableViewCell {
     var mSwitchDelegate:SwitchActionDelegate?
 
     @IBAction func onTypeSwitchAction(sender: AnyObject) {
-        let switchSender:UISwitch = sender as UISwitch
+        let switchSender:UISwitch = sender as! UISwitch
         mSwitchDelegate?.onSwitch(switchSender.on, sender: switchSender)
     }
 

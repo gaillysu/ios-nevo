@@ -73,11 +73,11 @@ class StepGoalSetingController: UIViewController, SyncControllerDelegate,ButtonM
         }
 
 
-        if sender.isEqual(stepGoalView.animationView.getNoConnectScanButton()?) {
+        if sender.isEqual(stepGoalView.animationView.getNoConnectScanButton()) {
             reconnect()
         }
 
-        if sender.isEqual(stepGoalView.getEnterButton()?) {
+        if sender.isEqual(stepGoalView.getEnterButton()) {
 
             setGoal(NumberOfStepsGoal(steps: stepGoalView.getNumberOfStepsGoal()))
 
@@ -154,7 +154,7 @@ class StepGoalSetingController: UIViewController, SyncControllerDelegate,ButtonM
             //We are currently not connected
             var isView:Bool = false
             for view in stepGoalView.subviews {
-                let anView:UIView = view as UIView
+                let anView:UIView = view as! UIView
                 if anView.isEqual(stepGoalView.animationView.bulibNoConnectView()) {
                     isView = true
                 }

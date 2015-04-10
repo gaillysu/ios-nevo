@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import UIkit
 
 class TutorialScanPageView : UIView {
     private var mDelegate:Page3Controller?
@@ -45,7 +44,7 @@ class TutorialScanPageView : UIView {
 
     func buildTutorialPage() {
 
-        let backButton = UIButton.buttonWithType(UIButtonType.Custom) as UIButton
+        let backButton = UIButton.buttonWithType(UIButtonType.Custom) as! UIButton
         backButton.frame = CGRectMake(15, 10, 70, 40)
         backButton.setTitle(NSLocalizedString("Back",comment:"button title string"), forState: UIControlState.Normal)
         backButton.titleLabel?.font = BACK_BUTTON_FONT

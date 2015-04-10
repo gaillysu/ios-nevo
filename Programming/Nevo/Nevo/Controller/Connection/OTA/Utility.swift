@@ -96,19 +96,19 @@ func NSString2NSData(string:NSString) -> NSData
     
     var error: NSError?
     let regex = NSRegularExpression(pattern: "^[0-9a-f]*$", options: .CaseInsensitive, error: &error)
-    let found = regex?.firstMatchInString(trimmedString, options: nil, range: NSMakeRange(0, countElements(trimmedString)))
-    if found == nil || found?.range.location == NSNotFound || countElements(trimmedString) % 2 != 0 {
+    let found = regex?.firstMatchInString(trimmedString, options: nil, range: NSMakeRange(0, count(trimmedString)))
+    if found == nil || found?.range.location == NSNotFound || count(trimmedString) % 2 != 0 {
         return NSData()
     }
     
     // everything ok, so now let's build NSData
     
-    let data = NSMutableData(capacity: countElements(trimmedString) / 2)
+    let data = NSMutableData(capacity: count(trimmedString) / 2)
     
     for var index = trimmedString.startIndex; index < trimmedString.endIndex; index = index.successor().successor() {
         let byteString = trimmedString.substringWithRange(Range<String.Index>(start: index, end: index.successor().successor()))
-        let num = Byte(byteString.withCString { strtoul($0, nil, 16) })
-        data?.appendBytes([num] as [Byte], length: 1)
+        let num = UInt8(byteString.withCString { strtoul($0, nil, 16) })
+        data?.appendBytes([num] as [UInt8], length: 1)
     }
     
     return data!
@@ -137,16 +137,16 @@ func GET_FIRMWARE_FILES(folderName:String) -> NSArray {
     let firmwaresDirectoryPath:NSString = appPath.stringByAppendingPathComponent(folderName)
     var error:NSError?
     
-    var  fileNames:NSArray = NSFileManager.defaultManager().contentsOfDirectoryAtPath(firmwaresDirectoryPath, error: &error)!
+    var  fileNames:NSArray = NSFileManager.defaultManager().contentsOfDirectoryAtPath(firmwaresDirectoryPath as String, error: &error)!
     if (error == nil) {
         NSLog("number of files in directory %d",fileNames.count);
         for fileName in fileNames {
-            NSLog("Found file in directory: %@",fileName as NSString);
-            let filePath:NSString = firmwaresDirectoryPath.stringByAppendingPathComponent(fileName as String)
-            let fileURL:NSURL = NSURL.fileURLWithPath(filePath)!
+            NSLog("Found file in directory: %@",fileName as! NSString);
+            let filePath:NSString = firmwaresDirectoryPath.stringByAppendingPathComponent(fileName as! String)
+            let fileURL:NSURL = NSURL.fileURLWithPath(filePath as String)!
             AllFilesNames.addObject(fileURL)
         }
-        return AllFilesNames.copy() as NSArray
+        return AllFilesNames.copy() as! NSArray
     }else {
         NSLog("error in opening directory path: %@",firmwaresDirectoryPath);
         return NSArray()
