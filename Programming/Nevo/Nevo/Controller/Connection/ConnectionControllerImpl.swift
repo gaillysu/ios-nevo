@@ -29,7 +29,11 @@ class ConnectionControllerImpl : NSObject, ConnectionController, NevoBTDelegate 
     X changes depending on how long ago we scaned previously
     For example, we'll retry afetr 1 sec, then 10s, then 10s, then 10s, then 60s sec, 120s etc..
     */
-    let SCAN_PROCEDURE:[Double] = [1,10,10,10,60,120,240,3600]
+    let SCAN_PROCEDURE:[Double] = [1,10,10,10,
+        30,30,30,30,30,30,30,30,30,30,/*5min*/
+        60,60,60,60,60,60,60,60,60,60,/*10min*/
+        120,120,120,120,120,120,120,120,120,/*20min*/
+        240,3600]
     
     /**
     This status is used to search in SCAN_PROCEDURE to know when is the next time we should scan
