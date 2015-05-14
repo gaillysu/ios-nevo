@@ -8,7 +8,7 @@
 
 import UIKit
 
-class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonManagerCallBack,PtlSelectFile  {
+class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonManagerCallBack,PtlSelectFile,UIAlertViewDelegate  {
 
     @IBOutlet var nevoOtaView: NevoOtaView!
     
@@ -24,6 +24,9 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
     var isTransferring:Bool = false
     var enumFirmwareType:DfuFirmwareTypes = DfuFirmwareTypes.APPLICATION
     var selectedFileURL:NSURL?
+    //save the build-in firmware version, it should be the latest FW version
+    var buildinSoftwareVersion:Int  = 12
+    var buildinFirmwareVersion:Int  = 25
     
     var mNevoOtaController : NevoOtaController?
     
@@ -36,6 +39,35 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
         mNevoOtaController = NevoOtaController(controller: self)
         initValue()
         checkConnection()
+        
+        var fileArray = GET_FIRMWARE_FILES("Firmwares")
+        for tmpfile in fileArray {
+            var selectedFile = tmpfile as! NSURL
+            var fileName:String? = selectedFile.path!.lastPathComponent
+            var fileExtension:String? = selectedFile.pathExtension
+            //get build in FW version from the file name
+            if fileExtension == "bin"
+            {
+               //buildinSoftwareVersion =
+            }
+            if fileExtension == "hex"
+            {
+                //buildinFirmwareVersion =
+            }
+        }
+        if(mNevoOtaController!.isConnected())
+        {
+            var currentSoftwareVersion = mNevoOtaController!.getSoftwareVersion() as String
+            var currentFirmwareVersion = mNevoOtaController!.getFirmwareVersion() as String
+            
+            if(currentSoftwareVersion.toInt() < buildinSoftwareVersion
+               || currentFirmwareVersion.toInt() < buildinFirmwareVersion )
+            {
+                var alert :UIAlertView = UIAlertView(title: "Firmware Version", message: "the nevo Firmware version:\(currentFirmwareVersion),\(currentSoftwareVersion) is not the lastest version:\(buildinFirmwareVersion),\(buildinSoftwareVersion)", delegate: self, cancelButtonTitle: "Cancel")
+                alert.addButtonWithTitle("Upgrade")
+               // alert.show()
+            }
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -60,7 +92,9 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
         upLoadStatus.text = ""
         isTransferring = false
         uploadBtn.setTitle("Upload", forState: UIControlState.Normal)
+        uploadBtn.hidden  = false
         uploadBtn.enabled = false
+        nevoOtaView.backButton.enabled = true
     }
     
     //upload button function
@@ -80,6 +114,9 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
         else {
             isTransferring = true
             uploadBtn.setTitle("Cancel", forState: UIControlState.Normal)
+            //when doing OTA, disable Cancel/Back button, enable them by callback function invoke initValue()/checkConnection()
+            uploadBtn.hidden = true
+            nevoOtaView.backButton.enabled = false
             mNevoOtaController?.performDFUOnFile(selectedFileURL!, firmwareType: enumFirmwareType)
         }
     }
@@ -145,8 +182,13 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
         checkConnection()
         
     }
-    
-    
+    /**
+    see NevoOtaControllerDelegate
+    */
+    func firmwareVersionReceived(whichfirmware:DfuFirmwareTypes, version:NSString)
+    {
+        upLoadStatus.text = "Firmware version BLE:"+(mNevoOtaController!.getFirmwareVersion() as String) + ",MCU:" +  (mNevoOtaController!.getSoftwareVersion() as String)
+    }
     
     /**
     Checks if any device is currently connected
@@ -157,11 +199,13 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
         if mNevoOtaController != nil && !(mNevoOtaController!.isConnected()) {
             //disable upPress button
             uploadBtn.enabled = false
+            upLoadStatus.text = ""
         }
         else
         {
             // enable upPress button
             uploadBtn.enabled = true
+            upLoadStatus.text = "Firmware version BLE:"+(mNevoOtaController!.getFirmwareVersion() as String) + ",MCU:" +  (mNevoOtaController!.getSoftwareVersion() as String)
         }
         self.view.bringSubviewToFront(nevoOtaView.titleBgView)
         

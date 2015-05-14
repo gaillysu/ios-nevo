@@ -333,6 +333,28 @@ class SyncController: ConnectionControllerDelegate {
             
         }
     }
+    /**
+    See ConnectionControllerDelegate
+    */
+    func firmwareVersionReceived(whichfirmware:DfuFirmwareTypes, version:NSString)
+    {
+        //DONOTHING,NO NEED Forward to UIViewController, UIViewController can use getFirmwareVersion()/getSoftwareVersion()
+    }
+    /**
+    See ConnectionController protocol
+    */
+    func  getFirmwareVersion() -> NSString
+    {
+        return isConnected() ? self.mConnectionController.getFirmwareVersion() : NSString()
+    }
+    
+    /**
+    See ConnectionController protocol
+    */
+    func  getSoftwareVersion() -> NSString
+    {
+        return isConnected() ? self.mConnectionController.getSoftwareVersion() : NSString()
+    }
     
     func connect() {
         self.mConnectionController.connect()

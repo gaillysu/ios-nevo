@@ -58,7 +58,15 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
     */
     private var mTimer : NSTimer?
     
+    /**
+    Ble firmware version
+    */
+    private var mFirmwareVersion:NSString?
     
+    /**
+    MCU Software version
+    */
+    private var mSoftwareVersion:NSString?
     
     /**
     Basic constructor, just a Delegate handsake
@@ -70,6 +78,9 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
         mProfile = acceptableDevice
         
         mTryingToConnectPeripherals = []
+        
+        mFirmwareVersion = NSString()
+        mSoftwareVersion = NSString()
         
         super.init()
         
@@ -261,11 +272,16 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
                 if (aService.UUID == mProfile?.CONTROL_SERVICE) {
                     aPeripheral.discoverCharacteristics(nil,forService:aService)
                 }
+                //device info service
+                else if (aService.UUID == CBUUID(string: "0000180a-0000-1000-8000-00805f9b34fb")) {
+                    aPeripheral.discoverCharacteristics(nil,forService:aService)
+                }
             }
         } else {
             NSLog("No services found for \(aPeripheral.identifier.UUIDString), connection impossible")
         }
     }
+    
     
     /*
     Invoked upon completion of a -[discoverCharacteristics:forService:] request.
@@ -284,6 +300,14 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
                     NSLog("Callback char : \(aChar.UUID.UUIDString)")
                 }
                 
+                else if(aChar.UUID==CBUUID(string: "00002a26-0000-1000-8000-00805f9b34fb")) {
+                    mPeripheral?.readValueForCharacteristic(aChar)
+                    NSLog("read firmware version char : \(aChar.UUID.UUIDString)")
+                }
+                else if(aChar.UUID==CBUUID(string: "00002a28-0000-1000-8000-00805f9b34fb")) {
+                    mPeripheral?.readValueForCharacteristic(aChar)
+                    NSLog("read software version char : \(aChar.UUID.UUIDString)")
+                }
             }
         } else {
             NSLog("No characteristics found for \(service.UUID.UUIDString), can't listen to notifications")
@@ -309,6 +333,18 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
             }
         }
     
+        
+        else if(characteristic.UUID==CBUUID(string: "00002a26-0000-1000-8000-00805f9b34fb")) {
+            mFirmwareVersion = NSString(data: characteristic.value, encoding: NSUTF8StringEncoding)
+            NSLog("get firmware version char : \(characteristic.UUID.UUIDString), version : \(mFirmwareVersion)")
+            //tell OTA new version
+            mDelegate?.firmwareVersionReceived(DfuFirmwareTypes.APPLICATION, version: mFirmwareVersion!)
+        }
+        else if(characteristic.UUID==CBUUID(string: "00002a28-0000-1000-8000-00805f9b34fb")) {
+            mSoftwareVersion = NSString(data: characteristic.value, encoding: NSUTF8StringEncoding)
+            NSLog("get software version char : \(characteristic.UUID.UUIDString), version : \(mSoftwareVersion)")
+            mDelegate?.firmwareVersionReceived(DfuFirmwareTypes.SOFTDEVICE, version: mSoftwareVersion!)
+        }
 
     }
     
@@ -435,6 +471,20 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
     */
     func getProfile() -> Profile {
         return mProfile!
+    }
+    
+    /**
+    See NevoBT protocol
+    */
+    func getFirmwareVersion() -> NSString! {
+        return mFirmwareVersion!
+    }
+    
+    /**
+    See NevoBT protocol
+    */
+    func getSoftwareVersion() -> NSString! {
+        return mSoftwareVersion!
     }
 
     /**
