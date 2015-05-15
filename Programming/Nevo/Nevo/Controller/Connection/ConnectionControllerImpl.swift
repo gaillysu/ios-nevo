@@ -142,6 +142,14 @@ class ConnectionControllerImpl : NSObject, ConnectionController, NevoBTDelegate 
     }
     
     /**
+    See NevoBTDelegate
+    */
+    func firmwareVersionReceived(whichfirmware:DfuFirmwareTypes, version:NSString)
+    {
+       mDelegate?.firmwareVersionReceived(whichfirmware, version: version)
+    }
+    
+    /**
     See ConnectionController protocol
     */
     func disconnect() {
@@ -220,6 +228,23 @@ class ConnectionControllerImpl : NSObject, ConnectionController, NevoBTDelegate 
         }
         mNevoBT?.sendRequest(request)
     }
+    
+    /**
+    See ConnectionController protocol
+    */
+    func  getFirmwareVersion() -> NSString!
+    {
+        return mNevoBT?.getFirmwareVersion()!
+    }
+    
+    /**
+    See ConnectionController protocol
+    */
+    func  getSoftwareVersion() -> NSString!
+    {
+        return mNevoBT?.getSoftwareVersion()!
+    }
+    
     
     /**
     See NevoBTDelegate

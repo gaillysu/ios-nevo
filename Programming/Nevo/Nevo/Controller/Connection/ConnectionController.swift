@@ -77,6 +77,16 @@ protocol ConnectionController {
     */
     func isBluetoothEnabled() -> Bool
     
+    /**
+    get Nevo 's ble firmware version
+    */
+    func  getFirmwareVersion() -> NSString!
+    
+    /**
+    get Nevo 's MCU software version
+    */
+    func  getSoftwareVersion() -> NSString!
+    
 }
 
 protocol ConnectionControllerDelegate {
@@ -90,4 +100,11 @@ protocol ConnectionControllerDelegate {
     Called when a peripheral connects or disconnects
     */
     func connectionStateChanged(isConnected : Bool)
+    
+    /**
+    Call when finish reading Firmware
+    @parameter whichfirmware, firmware type
+    @parameter version, return the version
+    */
+    func firmwareVersionReceived(whichfirmware:DfuFirmwareTypes, version:NSString)
 }

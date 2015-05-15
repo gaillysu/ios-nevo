@@ -426,6 +426,13 @@ class NevoOtaController : ConnectionControllerDelegate {
             }
         }
     }
+    /**
+    See ConnectionControllerDelegate
+    */
+    func firmwareVersionReceived(whichfirmware:DfuFirmwareTypes, version:NSString)
+    {
+        mDelegate?.firmwareVersionReceived(whichfirmware, version: version)
+    }
 
     func setConnectControllerDelegate2Self()
     {
@@ -681,6 +688,23 @@ class NevoOtaController : ConnectionControllerDelegate {
         self.mConnectionController!.setOTAMode(false,Disconnect:true)
         self.mConnectionController!.connect()
     }
+    
+    /**
+    See ConnectionController protocol
+    */
+    func  getFirmwareVersion() -> NSString
+    {
+        return isConnected() ? self.mConnectionController!.getFirmwareVersion() : NSString()
+    }
+    
+    /**
+    See ConnectionController protocol
+    */
+    func  getSoftwareVersion() -> NSString
+    {
+        return isConnected() ? self.mConnectionController!.getSoftwareVersion() : NSString()
+    }
+
 }
 
 /**
@@ -694,5 +718,11 @@ protocol NevoOtaControllerDelegate {
     func onTransferPercentage(Int)
     func onSuccessfulFileTranferred()
     func onError(NSString)
+    /**
+    Call when finish reading Firmware
+    @parameter whichfirmware, firmware type
+    @parameter version, return the version
+    */
+    func firmwareVersionReceived(whichfirmware:DfuFirmwareTypes, version:NSString)
     
 }

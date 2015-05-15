@@ -59,6 +59,16 @@ protocol NevoBT {
     Checks if the Bluetooth is avaikabke and enabled
     */
     func isBluetoothEnabled() -> Bool
+    
+    /**
+    get Nevo 's ble firmware version
+    */
+    func  getFirmwareVersion() -> NSString!
+    
+    /**
+    get Nevo 's MCU software version
+    */
+    func  getSoftwareVersion() -> NSString!
 
 }
 
@@ -76,5 +86,11 @@ protocol NevoBTDelegate {
     Called when a peripheral connects or disconnects
     */
     func connectionStateChanged(isConnected : Bool, fromAddress : NSUUID!)
-
+    
+    /**
+    Call when finish reading Firmware
+    @parameter whichfirmware, firmware type
+    @parameter version, return the version
+    */
+    func firmwareVersionReceived(whichfirmware:DfuFirmwareTypes, version:NSString)
 }
