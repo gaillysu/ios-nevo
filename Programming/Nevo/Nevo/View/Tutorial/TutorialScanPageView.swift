@@ -9,7 +9,7 @@
 import Foundation
 
 class TutorialScanPageView : UIView {
-    private var mDelegate:Page3Controller?
+    private var mDelegate:Page4Controller?
 
     let BACKGROUND_COLOR:UIColor = UIColor(red: 244.0/255.0, green: 242.0/255.0, blue: 241.0/255.0, alpha: 1)
 
@@ -28,7 +28,7 @@ class TutorialScanPageView : UIView {
     init(frame: CGRect, delegate:UIViewController) {
         super.init(frame: frame)
         super.backgroundColor = BACKGROUND_COLOR
-        if let callBackDelgate = delegate as? Page3Controller {
+        if let callBackDelgate = delegate as? Page4Controller {
 
             mDelegate = callBackDelgate
         }
@@ -54,7 +54,7 @@ class TutorialScanPageView : UIView {
         
         mBackButton = backButton
 
-        let guideImage:UIImageView = UIImageView(image: UIImage(named: String("step3" as NSString)))
+        let guideImage:UIImageView = UIImageView(image: UIImage(named: String("step4" as NSString)))
         guideImage.frame = CGRectMake(0, 0, self.frame.size.width-70, 100)
         guideImage.center = CGPointMake(self.frame.size.width/2.0, 100)
         guideImage.contentMode = UIViewContentMode.ScaleAspectFit
@@ -88,7 +88,7 @@ class TutorialScanPageView : UIView {
 
 
         mFinishButton = UIButton(frame: CGRectMake(0, 0, 120, 50))
-        mFinishButton?.setTitle(NSLocalizedString(NSLocalizedString("Finish",comment:"lable string"),comment:"button title string"), forState: UIControlState.Normal)
+        mFinishButton?.setTitle(NSLocalizedString("Next",comment:"lable string"), forState: UIControlState.Normal)
         mFinishButton?.titleLabel?.font = BUTTON_FONT
         mFinishButton?.setTitleColor(AppTheme.NEVO_SOLAR_YELLOW(), forState: UIControlState.Normal)
         if AppTheme.GET_IS_iPhone4S() {
@@ -96,7 +96,7 @@ class TutorialScanPageView : UIView {
         }else {
             mFinishButton?.center = CGPointMake(self.frame.size.width/2.0, self.frame.size.height-50)
         }
-        mFinishButton?.hidden = true
+        //mFinishButton?.hidden = true
         mFinishButton?.addTarget(self, action: "ButtonAction:", forControlEvents: UIControlEvents.TouchUpInside)
         self.addSubview(mFinishButton!)
 
@@ -161,6 +161,7 @@ class TutorialScanPageView : UIView {
         mErrorLabel?.hidden = true
         mFinishButton?.hidden = false
     }
+    
     /*
     Button Event handling all returns in the controller
     */

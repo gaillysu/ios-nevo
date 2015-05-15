@@ -8,14 +8,14 @@
 
 import UIKit
 
-class Page1Controller: UIViewController,ButtonActionCallBack {
+class Page6Controller: UIViewController,ButtonActionCallBack {
 
-    var pagesView:TutorialPage1View!
+    var pagesView:TutorialPage6View!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        pagesView = TutorialPage1View(frame: CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height), delegate: self, bluetoothHint: true)
+        pagesView = TutorialPage6View(frame: CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height), delegate: self, bluetoothHint: true)
         self.view .addSubview(pagesView)
     }
 

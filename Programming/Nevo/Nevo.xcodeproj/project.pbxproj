@@ -12,11 +12,17 @@
 		0017199E1AB2EE2E00889FED /* SelectFileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0017199B1AB2EE2E00889FED /* SelectFileView.swift */; };
 		001719A21AB2EE5300889FED /* DeviceScannerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001719A01AB2EE5300889FED /* DeviceScannerController.swift */; };
 		001719A31AB2EE5300889FED /* SelectFileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001719A11AB2EE5300889FED /* SelectFileController.swift */; };
+		001818301B044E5D005E9F2D /* Page1Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0018182F1B044E5D005E9F2D /* Page1Controller.swift */; };
+		001818321B044F8D005E9F2D /* TutorialPage1View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001818311B044F8D005E9F2D /* TutorialPage1View.swift */; };
+		001818351B048DAC005E9F2D /* Page5Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001818331B048DAC005E9F2D /* Page5Controller.swift */; };
+		001818361B048DAC005E9F2D /* Page6Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001818341B048DAC005E9F2D /* Page6Controller.swift */; };
+		001818391B048E12005E9F2D /* TutorialPage5View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001818371B048E12005E9F2D /* TutorialPage5View.swift */; };
+		0018183A1B048E12005E9F2D /* TutorialPage6View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001818381B048E12005E9F2D /* TutorialPage6View.swift */; };
 		003542B11AA7F69E00B27381 /* EnterNotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003542B01AA7F69E00B27381 /* EnterNotificationView.swift */; };
 		003542B71AA823B000B27381 /* AnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003542B61AA823B000B27381 /* AnimationView.swift */; };
 		00478F4F1A8F637D00D0DCE2 /* clockViewHour.png in Resources */ = {isa = PBXBuildFile; fileRef = 00478F4D1A8F637D00D0DCE2 /* clockViewHour.png */; };
 		00478F501A8F637D00D0DCE2 /* clockViewMinute.png in Resources */ = {isa = PBXBuildFile; fileRef = 00478F4E1A8F637D00D0DCE2 /* clockViewMinute.png */; };
-		005350B81A8B0F2B00BF289D /* TutorialPage2View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005350B71A8B0F2B00BF289D /* TutorialPage2View.swift */; };
+		005350B81A8B0F2B00BF289D /* TutorialPage3View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005350B71A8B0F2B00BF289D /* TutorialPage3View.swift */; };
 		005350BA1A8B4BC600BF289D /* StepGoalSetingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005350B91A8B4BC600BF289D /* StepGoalSetingController.swift */; };
 		005350BC1A8B4C1200BF289D /* StepGoalSetingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005350BB1A8B4C1200BF289D /* StepGoalSetingView.swift */; };
 		005BC9561A889F14006F9E86 /* NevoPicture.png in Resources */ = {isa = PBXBuildFile; fileRef = 005BC9551A889F14006F9E86 /* NevoPicture.png */; };
@@ -25,8 +31,8 @@
 		006B73491A8F7D0B00A7E92F /* AlarmClockController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006B73481A8F7D0B00A7E92F /* AlarmClockController.swift */; };
 		0079EDEE1AAED673004BCAE2 /* CurrentPaletteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0079EDEC1AAED673004BCAE2 /* CurrentPaletteCell.swift */; };
 		0079EDEF1AAED673004BCAE2 /* CurrentPaletteCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0079EDED1AAED673004BCAE2 /* CurrentPaletteCell.xib */; };
-		007DD4BB1A89DDC000CE7264 /* Page1Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007DD4BA1A89DDC000CE7264 /* Page1Controller.swift */; };
-		007DD4BD1A89DF2A00CE7264 /* Page2Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007DD4BC1A89DF2A00CE7264 /* Page2Controller.swift */; };
+		007DD4BB1A89DDC000CE7264 /* Page2Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007DD4BA1A89DDC000CE7264 /* Page2Controller.swift */; };
+		007DD4BD1A89DF2A00CE7264 /* Page3Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007DD4BC1A89DF2A00CE7264 /* Page3Controller.swift */; };
 		007F796E1A878C6C006C89E6 /* TutorialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007F796C1A878C6C006C89E6 /* TutorialView.swift */; };
 		007F79721A878C8B006C89E6 /* TutorialController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007F79701A878C8B006C89E6 /* TutorialController.swift */; };
 		007F798B1A878D0B006C89E6 /* Raleway-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 007F79751A878D0B006C89E6 /* Raleway-Black.ttf */; };
@@ -57,7 +63,7 @@
 		00B427321AC50AAE00787C58 /* SetingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B4272F1AC50AAE00787C58 /* SetingView.swift */; };
 		00B427331AC50AAE00787C58 /* TableListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B427301AC50AAE00787C58 /* TableListCell.swift */; };
 		00B427341AC50AAE00787C58 /* TableListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00B427311AC50AAE00787C58 /* TableListCell.xib */; };
-		00C30AD91A89E08600C9F67B /* Page3Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C30AD81A89E08600C9F67B /* Page3Controller.swift */; };
+		00C30AD91A89E08600C9F67B /* Page4Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C30AD81A89E08600C9F67B /* Page4Controller.swift */; };
 		00C30ADB1A89FC8200C9F67B /* ButtonCallBack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C30ADA1A89FC8200C9F67B /* ButtonCallBack.swift */; };
 		00C640F41A8D9F4500815CF8 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C640F31A8D9F4500815CF8 /* MainTabBarController.swift */; };
 		00C640F61A8DEE0800815CF8 /* clockView600.png in Resources */ = {isa = PBXBuildFile; fileRef = 00C640F51A8DEE0800815CF8 /* clockView600.png */; };
@@ -104,7 +110,7 @@
 		9A3E57321A80F08400DFFAE1 /* NevoOTAModeProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3E572F1A80F08400DFFAE1 /* NevoOTAModeProfile.swift */; };
 		9A3E57331A80F08400DFFAE1 /* NevoOTAPacketProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3E57301A80F08400DFFAE1 /* NevoOTAPacketProfile.swift */; };
 		9A7551A71AADA91B00DD9292 /* SyncQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A7551A61AADA91B00DD9292 /* SyncQueue.swift */; };
-		9A9BD1C11A88849700A95ACA /* TutorialPage1View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A9BD1C01A88849700A95ACA /* TutorialPage1View.swift */; };
+		9A9BD1C11A88849700A95ACA /* TutorialPage2View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A9BD1C01A88849700A95ACA /* TutorialPage2View.swift */; };
 		9A9BD1C81A88C0A400A95ACA /* TutorialScanPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A9BD1C71A88C0A400A95ACA /* TutorialScanPageView.swift */; };
 		9AD8F93B1A6DF35900F01014 /* Nevo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9AD8F9391A6DF35900F01014 /* Nevo.xcdatamodeld */; };
 		9AD8F9421A6DF35900F01014 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9AD8F9411A6DF35900F01014 /* Images.xcassets */; };
@@ -141,11 +147,17 @@
 		0017199B1AB2EE2E00889FED /* SelectFileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectFileView.swift; sourceTree = "<group>"; };
 		001719A01AB2EE5300889FED /* DeviceScannerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceScannerController.swift; sourceTree = "<group>"; };
 		001719A11AB2EE5300889FED /* SelectFileController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectFileController.swift; sourceTree = "<group>"; };
+		0018182F1B044E5D005E9F2D /* Page1Controller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Page1Controller.swift; sourceTree = "<group>"; };
+		001818311B044F8D005E9F2D /* TutorialPage1View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TutorialPage1View.swift; path = View/Tutorial/TutorialPage1View.swift; sourceTree = "<group>"; };
+		001818331B048DAC005E9F2D /* Page5Controller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Page5Controller.swift; sourceTree = "<group>"; };
+		001818341B048DAC005E9F2D /* Page6Controller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Page6Controller.swift; sourceTree = "<group>"; };
+		001818371B048E12005E9F2D /* TutorialPage5View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TutorialPage5View.swift; path = View/Tutorial/TutorialPage5View.swift; sourceTree = "<group>"; };
+		001818381B048E12005E9F2D /* TutorialPage6View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TutorialPage6View.swift; path = View/Tutorial/TutorialPage6View.swift; sourceTree = "<group>"; };
 		003542B01AA7F69E00B27381 /* EnterNotificationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnterNotificationView.swift; sourceTree = "<group>"; };
 		003542B61AA823B000B27381 /* AnimationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AnimationView.swift; path = View/AnimationView.swift; sourceTree = "<group>"; };
 		00478F4D1A8F637D00D0DCE2 /* clockViewHour.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clockViewHour.png; sourceTree = "<group>"; };
 		00478F4E1A8F637D00D0DCE2 /* clockViewMinute.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clockViewMinute.png; sourceTree = "<group>"; };
-		005350B71A8B0F2B00BF289D /* TutorialPage2View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TutorialPage2View.swift; path = View/Tutorial/TutorialPage2View.swift; sourceTree = "<group>"; };
+		005350B71A8B0F2B00BF289D /* TutorialPage3View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TutorialPage3View.swift; path = View/Tutorial/TutorialPage3View.swift; sourceTree = "<group>"; };
 		005350B91A8B4BC600BF289D /* StepGoalSetingController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StepGoalSetingController.swift; path = Controller/StepGoalSetingController.swift; sourceTree = "<group>"; };
 		005350BB1A8B4C1200BF289D /* StepGoalSetingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StepGoalSetingView.swift; path = View/StepGoalSetingView.swift; sourceTree = "<group>"; };
 		005BC9551A889F14006F9E86 /* NevoPicture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NevoPicture.png; sourceTree = "<group>"; };
@@ -155,8 +167,8 @@
 		006B73481A8F7D0B00A7E92F /* AlarmClockController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AlarmClockController.swift; path = Controller/AlarmClockController.swift; sourceTree = "<group>"; };
 		0079EDEC1AAED673004BCAE2 /* CurrentPaletteCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentPaletteCell.swift; sourceTree = "<group>"; };
 		0079EDED1AAED673004BCAE2 /* CurrentPaletteCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CurrentPaletteCell.xib; sourceTree = "<group>"; };
-		007DD4BA1A89DDC000CE7264 /* Page1Controller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Page1Controller.swift; sourceTree = "<group>"; };
-		007DD4BC1A89DF2A00CE7264 /* Page2Controller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Page2Controller.swift; sourceTree = "<group>"; };
+		007DD4BA1A89DDC000CE7264 /* Page2Controller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Page2Controller.swift; sourceTree = "<group>"; };
+		007DD4BC1A89DF2A00CE7264 /* Page3Controller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Page3Controller.swift; sourceTree = "<group>"; };
 		007F796C1A878C6C006C89E6 /* TutorialView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TutorialView.swift; path = View/TutorialView.swift; sourceTree = "<group>"; };
 		007F79701A878C8B006C89E6 /* TutorialController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TutorialController.swift; path = Controller/TutorialController.swift; sourceTree = "<group>"; };
 		007F79751A878D0B006C89E6 /* Raleway-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-Black.ttf"; sourceTree = "<group>"; };
@@ -194,7 +206,7 @@
 		00B4272F1AC50AAE00787C58 /* SetingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetingView.swift; sourceTree = "<group>"; };
 		00B427301AC50AAE00787C58 /* TableListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableListCell.swift; sourceTree = "<group>"; };
 		00B427311AC50AAE00787C58 /* TableListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TableListCell.xib; sourceTree = "<group>"; };
-		00C30AD81A89E08600C9F67B /* Page3Controller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Page3Controller.swift; sourceTree = "<group>"; };
+		00C30AD81A89E08600C9F67B /* Page4Controller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Page4Controller.swift; sourceTree = "<group>"; };
 		00C30ADA1A89FC8200C9F67B /* ButtonCallBack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ButtonCallBack.swift; path = View/Tutorial/ButtonCallBack.swift; sourceTree = "<group>"; };
 		00C640F31A8D9F4500815CF8 /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainTabBarController.swift; path = Controller/MainTabBarController.swift; sourceTree = "<group>"; };
 		00C640F51A8DEE0800815CF8 /* clockView600.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clockView600.png; sourceTree = "<group>"; };
@@ -243,7 +255,7 @@
 		9A3E572F1A80F08400DFFAE1 /* NevoOTAModeProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NevoOTAModeProfile.swift; path = OTA/NevoOTAModeProfile.swift; sourceTree = "<group>"; };
 		9A3E57301A80F08400DFFAE1 /* NevoOTAPacketProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NevoOTAPacketProfile.swift; path = OTA/NevoOTAPacketProfile.swift; sourceTree = "<group>"; };
 		9A7551A61AADA91B00DD9292 /* SyncQueue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SyncQueue.swift; path = Controller/SyncQueue.swift; sourceTree = "<group>"; };
-		9A9BD1C01A88849700A95ACA /* TutorialPage1View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TutorialPage1View.swift; path = View/Tutorial/TutorialPage1View.swift; sourceTree = "<group>"; };
+		9A9BD1C01A88849700A95ACA /* TutorialPage2View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TutorialPage2View.swift; path = View/Tutorial/TutorialPage2View.swift; sourceTree = "<group>"; };
 		9A9BD1C71A88C0A400A95ACA /* TutorialScanPageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TutorialScanPageView.swift; path = View/Tutorial/TutorialScanPageView.swift; sourceTree = "<group>"; };
 		9AD8F9321A6DF35900F01014 /* Nevo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Nevo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AD8F9361A6DF35900F01014 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -322,9 +334,12 @@
 		007DD4B91A89DDA800CE7264 /* PageViewController */ = {
 			isa = PBXGroup;
 			children = (
-				007DD4BA1A89DDC000CE7264 /* Page1Controller.swift */,
-				007DD4BC1A89DF2A00CE7264 /* Page2Controller.swift */,
-				00C30AD81A89E08600C9F67B /* Page3Controller.swift */,
+				0018182F1B044E5D005E9F2D /* Page1Controller.swift */,
+				007DD4BA1A89DDC000CE7264 /* Page2Controller.swift */,
+				007DD4BC1A89DF2A00CE7264 /* Page3Controller.swift */,
+				00C30AD81A89E08600C9F67B /* Page4Controller.swift */,
+				001818331B048DAC005E9F2D /* Page5Controller.swift */,
+				001818341B048DAC005E9F2D /* Page6Controller.swift */,
 			);
 			name = PageViewController;
 			path = Controller/PageViewController;
@@ -479,9 +494,12 @@
 			isa = PBXGroup;
 			children = (
 				00C30ADA1A89FC8200C9F67B /* ButtonCallBack.swift */,
-				9A9BD1C01A88849700A95ACA /* TutorialPage1View.swift */,
-				005350B71A8B0F2B00BF289D /* TutorialPage2View.swift */,
+				001818311B044F8D005E9F2D /* TutorialPage1View.swift */,
+				9A9BD1C01A88849700A95ACA /* TutorialPage2View.swift */,
+				005350B71A8B0F2B00BF289D /* TutorialPage3View.swift */,
 				9A9BD1C71A88C0A400A95ACA /* TutorialScanPageView.swift */,
+				001818371B048E12005E9F2D /* TutorialPage5View.swift */,
+				001818381B048E12005E9F2D /* TutorialPage6View.swift */,
 			);
 			name = TutorialPageView;
 			sourceTree = "<group>";
@@ -822,11 +840,11 @@
 				9AD8F9841A6E2C8E00F01014 /* Request.swift in Sources */,
 				9AD8F9731A6E047900F01014 /* Goal.swift in Sources */,
 				9AD8F9651A6E011E00F01014 /* AppDelegate.swift in Sources */,
-				005350B81A8B0F2B00BF289D /* TutorialPage2View.swift in Sources */,
+				005350B81A8B0F2B00BF289D /* TutorialPage3View.swift in Sources */,
 				9A3E57321A80F08400DFFAE1 /* NevoOTAModeProfile.swift in Sources */,
 				07C59F2A1A8C61E900D65C84 /* SetCardioRequest.swift in Sources */,
 				9A2D6C451A9C8E4800591BDC /* DailySteps.swift in Sources */,
-				9A9BD1C11A88849700A95ACA /* TutorialPage1View.swift in Sources */,
+				9A9BD1C11A88849700A95ACA /* TutorialPage2View.swift in Sources */,
 				007F796E1A878C6C006C89E6 /* TutorialView.swift in Sources */,
 				005350BA1A8B4BC600BF289D /* StepGoalSetingController.swift in Sources */,
 				9A9BD1C81A88C0A400A95ACA /* TutorialScanPageView.swift in Sources */,
@@ -846,12 +864,13 @@
 				007F79721A878C8B006C89E6 /* TutorialController.swift in Sources */,
 				079EED2D1AB7FDEA00CEA78D /* DailyTrackerInfoNevoPacket.swift in Sources */,
 				0079EDEE1AAED673004BCAE2 /* CurrentPaletteCell.swift in Sources */,
-				00C30AD91A89E08600C9F67B /* Page3Controller.swift in Sources */,
+				00C30AD91A89E08600C9F67B /* Page4Controller.swift in Sources */,
 				079EED2F1AB7FE2D00CEA78D /* DailyTrackerNevoPacket.swift in Sources */,
 				006B73491A8F7D0B00A7E92F /* AlarmClockController.swift in Sources */,
 				9A3B7AAF1A9450D000BDC3C6 /* AppTheme.swift in Sources */,
 				9AD8F9751A6E049500F01014 /* NumberOfStepsGoal.swift in Sources */,
 				9AD8F99E1A6E3E0100F01014 /* SyncController.swift in Sources */,
+				001818301B044E5D005E9F2D /* Page1Controller.swift in Sources */,
 				07BE0CF21A84A2F8000C4AC7 /* IntelHex2BinConverter.m in Sources */,
 				9AD8F96E1A6E03F600F01014 /* HomeView.swift in Sources */,
 				005BC95F1A88B79F006F9E86 /* FXBlurView.m in Sources */,
@@ -862,6 +881,7 @@
 				59406DF61AB964B2008619EB /* NotificationSetting.swift in Sources */,
 				00C640F41A8D9F4500815CF8 /* MainTabBarController.swift in Sources */,
 				9A12E5461A931B1F00536729 /* Alert.swift in Sources */,
+				001818321B044F8D005E9F2D /* TutorialPage1View.swift in Sources */,
 				07731E541AA58F27007F9FD6 /* ReadDailyTracker.swift in Sources */,
 				07C59F281A8C618A00D65C84 /* WriteSettingRequest.swift in Sources */,
 				9A3E57261A80E56E00DFFAE1 /* NevoPacket.swift in Sources */,
@@ -879,16 +899,19 @@
 				9AD8F99C1A6E3D6A00F01014 /* NevoRequest.swift in Sources */,
 				9A3E57251A80E56E00DFFAE1 /* NevoProfile.swift in Sources */,
 				005350BC1A8B4C1200BF289D /* StepGoalSetingView.swift in Sources */,
-				007DD4BB1A89DDC000CE7264 /* Page1Controller.swift in Sources */,
+				001818391B048E12005E9F2D /* TutorialPage5View.swift in Sources */,
+				007DD4BB1A89DDC000CE7264 /* Page2Controller.swift in Sources */,
 				003542B11AA7F69E00B27381 /* EnterNotificationView.swift in Sources */,
 				9A2D6C431A9C8E3600591BDC /* HourlySteps.swift in Sources */,
 				9A3E57231A80E56E00DFFAE1 /* ConnectionController.swift in Sources */,
+				001818361B048DAC005E9F2D /* Page6Controller.swift in Sources */,
 				9A2D6C3E1A9C71E500591BDC /* NevoHK.swift in Sources */,
 				9AD8F93B1A6DF35900F01014 /* Nevo.xcdatamodeld in Sources */,
 				0704C9631AA431EE00F9AE09 /* GetStepsGoalRequest.swift in Sources */,
 				07CC4A291A820A9B008DA749 /* Utility.swift in Sources */,
 				07731E521AA58EFE007F9FD6 /* ReadDailyTrackerInfo.swift in Sources */,
-				007DD4BD1A89DF2A00CE7264 /* Page2Controller.swift in Sources */,
+				0018183A1B048E12005E9F2D /* TutorialPage6View.swift in Sources */,
+				007DD4BD1A89DF2A00CE7264 /* Page3Controller.swift in Sources */,
 				07C18C0A1A80DF4900D0BF4A /* NevoOtaController.swift in Sources */,
 				00A228701AA551A400360C36 /* SetingViewController.swift in Sources */,
 				9A3E57331A80F08400DFFAE1 /* NevoOTAPacketProfile.swift in Sources */,
@@ -898,6 +921,7 @@
 				9AD8F96C1A6E03BC00F01014 /* HomeController.swift in Sources */,
 				07C59F301A8C625800D65C84 /* SetAlarmRequest.swift in Sources */,
 				07C18C0E1A81AB3900D0BF4A /* NevoOtaViewController.swift in Sources */,
+				001818351B048DAC005E9F2D /* Page5Controller.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1033,13 +1057,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = Nevo/Nevo.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: MED Enterprises Limited (WEGPWR9LDA)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: MED Enterprises Limited (WEGPWR9LDA)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Nevo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "b9409a60-e3db-48b4-bf29-778c4e790695";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Nevo/Nevo-Bridging-Header.h";
 			};
 			name = Debug;
@@ -1050,13 +1074,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = Nevo/Nevo.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: MED Enterprises Limited (WEGPWR9LDA)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: MED Enterprises Limited (WEGPWR9LDA)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Nevo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "b9409a60-e3db-48b4-bf29-778c4e790695";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Nevo/Nevo-Bridging-Header.h";
 			};
 			name = Release;

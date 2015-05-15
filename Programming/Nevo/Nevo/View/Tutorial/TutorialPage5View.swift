@@ -8,9 +8,11 @@
 
 import Foundation
 
-class TutorialPage2View : UIView {
-    private var mDelegate:Page2Controller?
+class TutorialPage5View : UIView {
+    private var mDelegate:Page5Controller?
 
+    let TITLE_TEXT_FONT:UIFont = UIFont(name:"Raleway-Light", size: 25)!
+    let CONTENT_TEXT_FONT:UIFont = UIFont(name:"Raleway-Light", size: 18)!
     let TEXT_FONT:UIFont = UIFont(name:"Raleway-Light", size: 25)!
 
     let BACK_BUTTON_FONT:UIFont = UIFont(name:"Raleway-Light", size: 20)!
@@ -25,7 +27,7 @@ class TutorialPage2View : UIView {
         mBluetoothHint = bluetoothHint
         super.init(frame: frame)
         super.backgroundColor = BACKGROUND_COLOR
-        if let callBackDelgate = delegate as? Page2Controller {
+        if let callBackDelgate = delegate as? Page5Controller {
 
             mDelegate = callBackDelgate
         }
@@ -51,32 +53,29 @@ class TutorialPage2View : UIView {
         
         mBackButton = backButton
 
-        let guideImage:UIImageView = UIImageView(image: UIImage(named: String("step2" as NSString)))
-        guideImage.frame = CGRectMake(0, 0, self.frame.size.width-70, 100)
-        guideImage.center = CGPointMake(self.frame.size.width/2.0, 100)
-        guideImage.contentMode = UIViewContentMode.ScaleAspectFit
-        guideImage.userInteractionEnabled = true;
-        guideImage.backgroundColor = UIColor.clearColor()
-        self.addSubview(guideImage)
-
-        let titleLabel:UILabel = UILabel(frame: CGRectMake(0, 0, guideImage.frame.size.width, 60))
-        titleLabel.center = CGPointMake(self.frame.size.width/2.0, guideImage.frame.origin.y+guideImage.frame.size.height+70)
+        let titleLabel:UILabel = UILabel(frame: CGRectMake(0, 0, self.frame.size.width, 100))
+        titleLabel.center = CGPointMake(self.frame.size.width/2.0, 100)
         titleLabel.textAlignment = NSTextAlignment.Center
         titleLabel.numberOfLines = 0
-        titleLabel.lineBreakMode = NSLineBreakMode.ByCharWrapping
-        titleLabel.font = TEXT_FONT
-        titleLabel.text = NSLocalizedString("EnableBluetoothPhone",comment:"lable string")
+        titleLabel.lineBreakMode = NSLineBreakMode.ByWordWrapping
+        titleLabel.font = TITLE_TEXT_FONT
+        titleLabel.text = NSLocalizedString("disconnection_title",comment:"")
         self.addSubview(titleLabel)
 
-
-        let statesImage:UIImageView = UIImageView(image: UIImage(named: String("Bluetoothoff" as NSString)))
-        statesImage.frame = CGRectMake(0, 0, self.frame.size.width-70, 100)
-        statesImage.center = CGPointMake(self.frame.size.width/2.0, self.frame.size.height/2.0+50)
+        let statesImage:UIImageView = UIImageView(image: UIImage(named: String("disconnection" as NSString)))
+        statesImage.frame = CGRectMake(0, 0, self.frame.size.width, 230)
+        statesImage.center=CGPointMake(self.frame.size.width/2.0, self.frame.size.height/2.0-30)
         statesImage.contentMode = UIViewContentMode.ScaleAspectFit
         statesImage.backgroundColor = UIColor.clearColor()
         self.addSubview(statesImage)
 
-        
+        let contentLabel:UILabel = UILabel(frame: CGRectMake(5, statesImage.frame.origin.y+statesImage.frame.size.height,statesImage.frame.size.width-10, 130))
+        contentLabel.textAlignment = NSTextAlignment.Center
+        contentLabel.numberOfLines = 0
+        contentLabel.lineBreakMode = NSLineBreakMode.ByWordWrapping
+        contentLabel.font = CONTENT_TEXT_FONT
+        contentLabel.text = NSLocalizedString("disconnection_message",comment:"")
+        self.addSubview(contentLabel)
 
         let nextButton:UIButton = UIButton.buttonWithType(UIButtonType.Custom) as! UIButton
         nextButton.frame = CGRectMake(0, 0, 120, 50)
@@ -89,33 +88,7 @@ class TutorialPage2View : UIView {
             nextButton.center = CGPointMake(self.frame.size.width/2.0, self.frame.size.height-50)
         }
         nextButton.addTarget(self, action: "ButtonAction:", forControlEvents: UIControlEvents.TouchUpInside)
-        nextButton.hidden = true
         self.addSubview(nextButton)
-
-        let errorLabel:UILabel = UILabel(frame: CGRectMake(0, 0, titleLabel.frame.size.width, 90))
-        errorLabel.center = CGPointMake(self.frame.size.width/2.0, self.frame.size.height-100)
-        errorLabel.textAlignment = NSTextAlignment.Center
-        errorLabel.numberOfLines = 0
-        errorLabel.lineBreakMode = NSLineBreakMode.ByWordWrapping
-        errorLabel.font = TEXT_FONT
-        errorLabel.text = NSLocalizedString("BluetoothIcon",comment:"lable string")
-        self.addSubview(errorLabel)
-
-        let upwardimage:UIImageView = UIImageView(image: UIImage(named: String("upward" as NSString)))
-        upwardimage.frame = CGRectMake(0, 0,20, 50)
-        upwardimage.contentMode = UIViewContentMode.ScaleAspectFit
-        upwardimage.center = CGPointMake(self.frame.size.width/2.0, self.frame.size.height-20)
-        upwardimage.backgroundColor = UIColor.clearColor()
-        self.addSubview(upwardimage)
-
-        if mBluetoothHint  {
-            statesImage.image = UIImage(named:"Bluetoothon")
-            titleLabel.text = NSLocalizedString("BluetoothEnabled",comment:"lable string")
-            titleLabel.textAlignment = NSTextAlignment.Center
-            nextButton.hidden = false
-            upwardimage.hidden = true
-            errorLabel.hidden = true
-        }
 
     }
     

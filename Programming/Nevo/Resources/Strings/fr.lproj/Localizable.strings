@@ -56,3 +56,7 @@
 "Link-Loss Notifications"="Alerte de déconnection";
 "ok"="Ok";
 "Firmware Upgrade"="Firmware Upgrade";
+"set_watch_time"="Set the Time on your watch";
+"set_watch_one_message"="Pull the crown out and turn to set nevo time. Match the nevo time to the time on phone";
+"disconnection_title"="Bluetooth disconnection when separated";
+"disconnection_message"="To save battery power, Bluetooth disconnects automatically when away from the phone for more than 30 seconds. You will not receive notifications on nevo when disconnected.";

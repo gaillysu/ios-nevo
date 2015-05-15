@@ -56,3 +56,7 @@
 "Link-Loss Notifications"="連接斷開通知";
 "ok"="好";
 "Firmware Upgrade"="固件升級";
+"set_watch_time"="設置手錶時間";
+"set_watch_one_message"="拔出並旋轉手錶中間的按鈕以設置nevo的時間，nevo的時間需與手機的時間一致。";
+"disconnection_title"="Bluetooth disconnection when separated";
+"disconnection_message"="To save battery power, Bluetooth disconnects automatically when away from the phone for more than 30 seconds. You will not receive notifications on nevo when disconnected.";

@@ -8,14 +8,14 @@
 
 import UIKit
 
-class Page1Controller: UIViewController,ButtonActionCallBack {
+class Page5Controller: UIViewController,ButtonActionCallBack {
 
-    var pagesView:TutorialPage1View!
+    var pagesView:TutorialPage5View!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        pagesView = TutorialPage1View(frame: CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height), delegate: self, bluetoothHint: true)
+        pagesView = TutorialPage5View(frame: CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height), delegate: self, bluetoothHint: true)
         self.view .addSubview(pagesView)
     }
 
@@ -32,7 +32,7 @@ class Page1Controller: UIViewController,ButtonActionCallBack {
         if sender.isEqual(pagesView.getBackButton()) {
             self.navigationController?.popViewControllerAnimated(true)
         }else{
-            let page2cont = Page2Controller()
+            let page2cont = Page6Controller()
             self.navigationController?.pushViewController(page2cont, animated: true)
         }
     }
