@@ -96,7 +96,7 @@ class TutorialScanPageView : UIView {
         }else {
             mFinishButton?.center = CGPointMake(self.frame.size.width/2.0, self.frame.size.height-50)
         }
-        //mFinishButton?.hidden = true
+        mFinishButton?.hidden = true
         mFinishButton?.addTarget(self, action: "ButtonAction:", forControlEvents: UIControlEvents.TouchUpInside)
         self.addSubview(mFinishButton!)
 

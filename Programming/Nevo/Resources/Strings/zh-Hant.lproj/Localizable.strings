@@ -60,3 +60,6 @@
 "set_watch_one_message"="拔出並旋轉手錶中間的按鈕以設置nevo的時間，nevo的時間需與手機的時間一致。";
 "disconnection_title"="Bluetooth disconnection when separated";
 "disconnection_message"="To save battery power, Bluetooth disconnects automatically when away from the phone for more than 30 seconds. You will not receive notifications on nevo when disconnected.";
+"reconnection_title"="Bluetooth reconnection";
+"reconnection_message"="Reconnect Bluetooth to receive notifications again by pressing and holding the 3rd button for 3 seconds.";
+"3secs"="3 secs";

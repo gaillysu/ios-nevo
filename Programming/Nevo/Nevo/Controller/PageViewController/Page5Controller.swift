@@ -28,12 +28,12 @@ class Page5Controller: UIViewController,ButtonActionCallBack {
     Button Action CallBack
     */
     func nextButtonAction(sender:UIButton){
-        NSLog("Page2 CallBack Success")
+        NSLog("Page5 CallBack Success")
         if sender.isEqual(pagesView.getBackButton()) {
             self.navigationController?.popViewControllerAnimated(true)
         }else{
-            let page2cont = Page6Controller()
-            self.navigationController?.pushViewController(page2cont, animated: true)
+            let page6cont = Page6Controller()
+            self.navigationController?.pushViewController(page6cont, animated: true)
         }
     }
     
