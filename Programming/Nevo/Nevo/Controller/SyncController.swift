@@ -169,6 +169,12 @@ class SyncController: ConnectionControllerDelegate {
         if(packet.isLastPacket())
         {
             var packet:NevoPacket = NevoPacket(packets:mPacketsbuffer)
+            if(!packet.isVaildPacket())
+            {
+                NSLog("Invaild packet............\(packet.getPackets().count)")
+                mPacketsbuffer = []
+                return;
+            }
             
             for (index, delegate) in enumerate(mDelegates) {
                 delegate.packetReceived(packet)

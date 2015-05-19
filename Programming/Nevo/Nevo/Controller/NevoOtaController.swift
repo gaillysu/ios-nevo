@@ -55,7 +55,7 @@ class NevoOtaController : ConnectionControllerDelegate {
     let DFUCONTROLLER_PAGE_SIZE = 64
     //one page has 5 packets
     let notificationPacketInterval = 5
-    private var state:DFUControllerState = DFUControllerState.IDLE
+    private var state:DFUControllerState = DFUControllerState.INIT
     private var firmwareDataBytesSent:Int = 0
     private var progress = 0.0
     private var curpage:Int = 0
@@ -677,6 +677,9 @@ class NevoOtaController : ConnectionControllerDelegate {
     */
     func reset(switch2SyncController:Bool)
     {
+        //reset it to INIT status !!!IMPORTANT!!!
+        self.state = DFUControllerState.INIT
+        
         if(dfuFirmwareType == DfuFirmwareTypes.APPLICATION )
         {
             self.mConnectionController!.restoreSavedAddress()
@@ -719,10 +722,9 @@ protocol NevoOtaControllerDelegate {
     func onSuccessfulFileTranferred()
     func onError(NSString)
     /**
-    Call when finish reading Firmware
+    Call when finished OTA, will reconnect nevo and read firmware, refresh the firmware  to screen view
     @parameter whichfirmware, firmware type
     @parameter version, return the version
     */
     func firmwareVersionReceived(whichfirmware:DfuFirmwareTypes, version:NSString)
-    
 }

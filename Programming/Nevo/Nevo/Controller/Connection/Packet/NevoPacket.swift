@@ -55,6 +55,28 @@ class NevoPacket {
         return DailyTrackerNevoPacket(packets: mPackets)
     }
     
-    
-        
+    //only two types packets: 2/78 count
+    func isVaildPacket() ->Bool
+    {
+        if(mPackets.count == 2)
+        {
+           return true
+        }
+        if(mPackets.count == 78)
+        {
+            for var i:Int = 0 ;i < mPackets.count ; i++
+            {
+                if UInt8(i) != NSData2Bytes(mPackets[i])[0] && i != mPackets.count - 1
+                {
+                    return false
+                }
+                if mHeader != NSData2Bytes(mPackets[i])[1]
+                {
+                    return false
+                }
+            }
+            return true
+        }
+        return false
+    }
 }
