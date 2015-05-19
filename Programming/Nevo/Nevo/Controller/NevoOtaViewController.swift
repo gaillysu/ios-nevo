@@ -95,6 +95,7 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
         uploadBtn.hidden  = false
         uploadBtn.enabled = false
         nevoOtaView.backButton.enabled = true
+        nevoOtaView.selectFileButton.enabled = true
     }
     
     //upload button function
@@ -117,6 +118,7 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
             //when doing OTA, disable Cancel/Back button, enable them by callback function invoke initValue()/checkConnection()
             uploadBtn.hidden = true
             nevoOtaView.backButton.enabled = false
+            nevoOtaView.selectFileButton.enabled = false
             mNevoOtaController?.performDFUOnFile(selectedFileURL!, firmwareType: enumFirmwareType)
         }
     }

@@ -18,7 +18,7 @@ It checks that the firmware is up to date, and handles every steps of the synchr
 class SyncController: ConnectionControllerDelegate {
     
     //Let's sync every days
-    let SYNC_INTERVAL:NSTimeInterval = 1*60*60 //unit is second in iOS
+    let SYNC_INTERVAL:NSTimeInterval = 1*30*60 //unit is second in iOS, every 30min, do sync
     
     let LAST_SYNC_DATE_KEY = "LAST_SYNC_DATE_KEY"
     
@@ -193,7 +193,52 @@ class SyncController: ConnectionControllerDelegate {
                 //step4:
                 self.SetCardio()
             }
+            
             if(packet.getHeader() == SetCardioRequest.HEADER())
+            {
+                //step5: sync the notification setting, if remove nevo's battery, the nevo notification reset, so here need sync it
+                var mNotificationSettingArray:[NotificationSetting] = []
+                
+                var callsetting:NotificationSetting = NotificationSetting(type: NotificationType.CALL, color: 0)
+                var color = NSNumber(unsignedInt: EnterNotificationController.getLedColor(callsetting.getType().rawValue))
+                var states = EnterNotificationController.getMotorOnOff(callsetting.getType().rawValue)
+                callsetting.updateValue(color, states: states)
+                mNotificationSettingArray.append(callsetting)
+                
+                var smssetting:NotificationSetting = NotificationSetting(type: NotificationType.SMS, color: 0)
+                color = NSNumber(unsignedInt: EnterNotificationController.getLedColor(smssetting.getType().rawValue))
+                states = EnterNotificationController.getMotorOnOff(smssetting.getType().rawValue)
+                smssetting.updateValue(color, states: states)
+                mNotificationSettingArray.append(smssetting)
+                
+                var emailsetting:NotificationSetting = NotificationSetting(type: NotificationType.EMAIL, color: 0)
+                color = NSNumber(unsignedInt: EnterNotificationController.getLedColor(emailsetting.getType().rawValue))
+                states = EnterNotificationController.getMotorOnOff(emailsetting.getType().rawValue)
+                emailsetting.updateValue(color, states: states)
+                mNotificationSettingArray.append(emailsetting)
+                
+                var fbsetting:NotificationSetting = NotificationSetting(type: NotificationType.FACEBOOK, color: 0)
+                color = NSNumber(unsignedInt: EnterNotificationController.getLedColor(fbsetting.getType().rawValue))
+                states = EnterNotificationController.getMotorOnOff(fbsetting.getType().rawValue)
+                fbsetting.updateValue(color, states: states)
+                mNotificationSettingArray.append(fbsetting)
+                
+                var calsetting:NotificationSetting = NotificationSetting(type: NotificationType.CALENDAR, color: 0)
+                color = NSNumber(unsignedInt: EnterNotificationController.getLedColor(calsetting.getType().rawValue))
+                states = EnterNotificationController.getMotorOnOff(calsetting.getType().rawValue)
+                calsetting.updateValue(color, states: states)
+                mNotificationSettingArray.append(calsetting)
+                
+                var wechatchsetting:NotificationSetting = NotificationSetting(type: NotificationType.WECHAT, color: 0)
+                color = NSNumber(unsignedInt: EnterNotificationController.getLedColor(wechatchsetting.getType().rawValue))
+                states = EnterNotificationController.getMotorOnOff(wechatchsetting.getType().rawValue)
+                wechatchsetting.updateValue(color, states: states)
+                mNotificationSettingArray.append(wechatchsetting)
+                //start sync notification setting on the phone side
+                SetNortification(mNotificationSettingArray)
+            }
+
+            if(packet.getHeader() == SetNortificationRequest.HEADER())
             {
                 //start sync data
                 savedDailyHistory = []
@@ -275,7 +320,11 @@ class SyncController: ConnectionControllerDelegate {
                 else
                 {
                    currentDay = 0
-                   self.syncFinished()
+                   //exclude the current houly 's step change
+                   if(!(savedDailyHistory.count == 1 && savedDailyHistory[Int(currentDay)].TotalSteps == -1))
+                   {
+                     self.syncFinished()
+                   }
                 }
             }
 
@@ -283,13 +332,13 @@ class SyncController: ConnectionControllerDelegate {
             {
                 var thispacket = packet.copy() as DailyStepsNevoPacket
           
-                //record current hourly steps changing in the healthkit
-                /*
+                //refresh current hourly steps changing in the healthkit
                 currentDay = 0
                 savedDailyHistory = []
-                savedDailyHistory.append(NevoPacket.DailyHistory(TotalSteps: 0, HourlySteps: [], Date:NSDate()))
+                //here use TotalSteps = -1, it means that only get the current hour 's step, needn't write end-sync flag
+                savedDailyHistory.append(NevoPacket.DailyHistory(TotalSteps: -1, HourlySteps: [], Date:NSDate()))
                 self.getDailyTracker(currentDay)
-                */
+
                 
                 /*
                 //remove real time count steps to healthkit
