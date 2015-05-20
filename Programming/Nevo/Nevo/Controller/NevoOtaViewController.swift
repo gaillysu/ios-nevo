@@ -33,12 +33,13 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        //init the view
-        nevoOtaView.buildView(self)
         //init the ota
         mNevoOtaController = NevoOtaController(controller: self)
         initValue()
         checkConnection()
+
+       //init the view
+        nevoOtaView.buildView(self,otacontroller: mNevoOtaController!)
         
         var fileArray = GET_FIRMWARE_FILES("Firmwares")
         for tmpfile in fileArray {
@@ -209,7 +210,7 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
             uploadBtn.enabled = true
             upLoadStatus.text = "Firmware version BLE:"+(mNevoOtaController!.getFirmwareVersion() as String) + ",MCU:" +  (mNevoOtaController!.getSoftwareVersion() as String)
         }
-        self.view.bringSubviewToFront(nevoOtaView.titleBgView)
+        //self.view.bringSubviewToFront(nevoOtaView.titleBgView)
         
     }
 
