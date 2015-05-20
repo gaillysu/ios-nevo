@@ -37,7 +37,7 @@ class NevoOtaController : NSObject,ConnectionControllerDelegate {
     
     /** check the OTA is doing or stop */
     private var mTimeoutTimer:NSTimer?
-    private let MAX_TIME = 5
+    private let MAX_TIME = 30
     private var lastprogress = 0.0
     //added for MCU OTA
     
