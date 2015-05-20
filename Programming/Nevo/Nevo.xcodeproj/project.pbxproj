@@ -57,6 +57,7 @@
 		00A228701AA551A400360C36 /* SetingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A2286F1AA551A400360C36 /* SetingViewController.swift */; };
 		00A2287E1AA57F1A00360C36 /* EnterNotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A2287D1AA57F1A00360C36 /* EnterNotificationController.swift */; };
 		00A773961A88562F0018E121 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 00A773911A88562F0018E121 /* Localizable.strings */; };
+		00AB7AF91B0989D10090E334 /* MyNevoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AB7AF81B0989D10090E334 /* MyNevoController.swift */; };
 		00B1DFAF1AA7F21200FDFECD /* NotificationTypeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B1DFAE1AA7F21200FDFECD /* NotificationTypeCell.swift */; };
 		00B1DFB21AA7F2DB00FDFECD /* PaletteViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B1DFB01AA7F2DB00FDFECD /* PaletteViewCell.swift */; };
 		00B1DFB31AA7F2DB00FDFECD /* PaletteViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00B1DFB11AA7F2DB00FDFECD /* PaletteViewCell.xib */; };
@@ -200,6 +201,7 @@
 		00A773931A88562F0018E121 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		00A773941A88562F0018E121 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		00A773951A88562F0018E121 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		00AB7AF81B0989D10090E334 /* MyNevoController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MyNevoController.swift; path = Controller/MyNevoController.swift; sourceTree = "<group>"; };
 		00B1DFAE1AA7F21200FDFECD /* NotificationTypeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationTypeCell.swift; sourceTree = "<group>"; };
 		00B1DFB01AA7F2DB00FDFECD /* PaletteViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaletteViewCell.swift; sourceTree = "<group>"; };
 		00B1DFB11AA7F2DB00FDFECD /* PaletteViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PaletteViewCell.xib; sourceTree = "<group>"; };
@@ -596,6 +598,7 @@
 				00C640F31A8D9F4500815CF8 /* MainTabBarController.swift */,
 				00A2286F1AA551A400360C36 /* SetingViewController.swift */,
 				00A2287D1AA57F1A00360C36 /* EnterNotificationController.swift */,
+				00AB7AF81B0989D10090E334 /* MyNevoController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -903,6 +906,7 @@
 				007DD4BB1A89DDC000CE7264 /* Page2Controller.swift in Sources */,
 				003542B11AA7F69E00B27381 /* EnterNotificationView.swift in Sources */,
 				9A2D6C431A9C8E3600591BDC /* HourlySteps.swift in Sources */,
+				00AB7AF91B0989D10090E334 /* MyNevoController.swift in Sources */,
 				9A3E57231A80E56E00DFFAE1 /* ConnectionController.swift in Sources */,
 				001818361B048DAC005E9F2D /* Page6Controller.swift in Sources */,
 				9A2D6C3E1A9C71E500591BDC /* NevoHK.swift in Sources */,

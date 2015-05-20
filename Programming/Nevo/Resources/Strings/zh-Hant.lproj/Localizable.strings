@@ -58,8 +58,9 @@
 "Firmware Upgrade"="固件升級";
 "set_watch_time"="設置手錶時間";
 "set_watch_one_message"="拔出並旋轉手錶中間的按鈕以設置nevo的時間，nevo的時間需與手機的時間一致。";
-"disconnection_title"="Bluetooth disconnection when separated";
-"disconnection_message"="To save battery power, Bluetooth disconnects automatically when away from the phone for more than 30 seconds. You will not receive notifications on nevo when disconnected.";
-"reconnection_title"="Bluetooth reconnection";
-"reconnection_message"="Reconnect Bluetooth to receive notifications again by pressing and holding the 3rd button for 3 seconds.";
-"3secs"="3 secs";
+"disconnection_title"="超出藍牙連接範圍";
+"disconnection_message"="當手機遠離手錶超過2分鐘,為了省電,藍牙連接自動斷開.當藍牙連接斷開,你將收不到任何通知.";
+"reconnection_title"="藍牙重連";
+"reconnection_message"="通過持續按住nevo的第三個按鈕三秒，藍牙重新連接以接受通知.";
+"3secs"="3秒";
+"otahelp"="注意: 請不要中斷OTA升級。使用應用前,請先確認升級已完成。如果意外中斷，請重新升級並確保升級完成。";

@@ -59,7 +59,8 @@
 "set_watch_time"="Set the Time on your watch";
 "set_watch_one_message"="Pull the crown out and turn to set nevo time. Match the nevo time to the time on phone";
 "disconnection_title"="Bluetooth disconnection when separated";
-"disconnection_message"="To save battery power, Bluetooth disconnects automatically when away from the phone for more than 30 seconds. You will not receive notifications on nevo when disconnected.";
+"disconnection_message"="To save battery power, Bluetooth disconnects automatically when away from the phone for more than 2 mins. You will not receive notifications on nevo when disconnected.";
 "reconnection_title"="Bluetooth reconnection";
 "reconnection_message"="Reconnect Bluetooth to receive notifications again by pressing and holding the 3rd button for 3 seconds.";
 "3secs"="3 secs";
+"otahelp"="Attention: Do not interrupt the OTA firmware process. Let the process complete before using app!\nIn case of accidental interruption, begin upgrade again and let it finish completely";
