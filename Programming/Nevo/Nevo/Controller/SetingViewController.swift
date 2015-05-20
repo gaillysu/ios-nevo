@@ -33,8 +33,6 @@ class SetingViewController: UIViewController,SelectionTypeDelegate,SyncControlle
 
     override func viewDidAppear(animated: Bool) {
         checkConnection()
-        //send request to watch, if there is no connect , it will auto to conncet
-        mSyncController?.SetNortification(mNotificationSettingArray)
     }
 
     override func didReceiveMemoryWarning() {

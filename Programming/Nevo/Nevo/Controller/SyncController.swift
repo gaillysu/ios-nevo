@@ -326,11 +326,7 @@ class SyncController: ConnectionControllerDelegate {
                 else
                 {
                    currentDay = 0
-                   //exclude the current houly 's step change
-                   if(!(savedDailyHistory.count == 1 && savedDailyHistory[Int(currentDay)].TotalSteps == -1))
-                   {
-                     self.syncFinished()
-                   }
+                   self.syncFinished()
                 }
             }
 
@@ -339,12 +335,12 @@ class SyncController: ConnectionControllerDelegate {
                 var thispacket = packet.copy() as DailyStepsNevoPacket
           
                 //refresh current hourly steps changing in the healthkit
+                /*
                 currentDay = 0
                 savedDailyHistory = []
-                //here use TotalSteps = -1, it means that only get the current hour 's step, needn't write end-sync flag
-                savedDailyHistory.append(NevoPacket.DailyHistory(TotalSteps: -1, HourlySteps: [], Date:NSDate()))
+                savedDailyHistory.append(NevoPacket.DailyHistory(TotalSteps: 0, HourlySteps: [], Date:NSDate()))
                 self.getDailyTracker(currentDay)
-
+                */
                 
                 /*
                 //remove real time count steps to healthkit

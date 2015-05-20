@@ -18,13 +18,13 @@ class HomeController: UIViewController, SyncControllerDelegate ,ButtonManagerCal
     
     @IBOutlet var homeView: HomeView!
     private var sync:SyncController?
-    
+    private var mVisiable:Bool = false
     override func viewDidLoad() {
         super.viewDidLoad()
 
         homeView.bulidHomeView(self)
 
-        let timer:NSTimer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector:"timerAction:", userInfo: nil, repeats: true);
+        let timer:NSTimer = NSTimer.scheduledTimerWithTimeInterval(10, target: self, selector:"timerAction:", userInfo: nil, repeats: true);
         
         //TEST this is for test. pls not to remove it 
                 //var tapAction = UITapGestureRecognizer(target: self, action: "gotoProfileScreen")
@@ -50,10 +50,15 @@ class HomeController: UIViewController, SyncControllerDelegate ,ButtonManagerCal
                sync  = SyncController.sharedInstance
                sync?.startConnect(false, delegate: self)
             }
-            NSLog("We getGoal in home screen")
-            SyncController.sharedInstance.getGoal()
+            //NSLog("We getGoal in home screen")
+            //SyncController.sharedInstance.getGoal()
+            mVisiable = true
         }
 
+    }
+    
+    override func viewDidDisappear(animated: Bool) {
+        mVisiable = false
     }
     
     override func didReceiveMemoryWarning() {
@@ -70,6 +75,8 @@ class HomeController: UIViewController, SyncControllerDelegate ,ButtonManagerCal
 
     func timerAction(NSTimer) {
         homeView.getClockTimerView().currentTimer()
+        if mVisiable
+        { SyncController.sharedInstance.getGoal() }
     }
 
     
@@ -96,11 +103,14 @@ class HomeController: UIViewController, SyncControllerDelegate ,ButtonManagerCal
             var dailySteps:Int = thispacket.getDailySteps()
             var dailyStepGoal:Int = thispacket.getDailyStepsGoal()
             
-            let numberOfSteps = NSUserDefaults.standardUserDefaults().objectForKey("NUMBER_OF_STEPS_GOAL_KEY") as? Int
+            //sync the Goal
+            let userDefaults = NSUserDefaults.standardUserDefaults();
+            userDefaults.setObject(dailyStepGoal,forKey:"NUMBER_OF_STEPS_GOAL_KEY")
+            userDefaults.synchronize()
             
             var percent :Float = Float(dailySteps)/Float(dailyStepGoal)
             
-            NSLog("get Daily Steps is: \(dailySteps), getDaily Goal is: \(dailyStepGoal), saved Goal is:\(numberOfSteps),percent is: \(percent)")
+            NSLog("get Daily Steps is: \(dailySteps), getDaily Goal is: \(dailyStepGoal),percent is: \(percent)")
             
             homeView.setProgress(percent, dailySteps: dailySteps, dailyStepGoal: dailyStepGoal)
         }

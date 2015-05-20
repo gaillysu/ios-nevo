@@ -19,7 +19,7 @@ mNevoOtaController = NevoOtaController(controller: self)
 import Foundation
 
 
-class NevoOtaController : ConnectionControllerDelegate {
+class NevoOtaController : NSObject,ConnectionControllerDelegate {
     let mDelegate : NevoOtaControllerDelegate?
     let mConnectionController : ConnectionController?
     
@@ -35,6 +35,10 @@ class NevoOtaController : ConnectionControllerDelegate {
     private var bytesInLastPacket:Int = 0
     private var writingPacketNumber :Int = 0
     
+    /** check the OTA is doing or stop */
+    private var mTimeoutTimer:NSTimer?
+    private let MAX_TIME = 5
+    private var lastprogress = 0.0
     //added for MCU OTA
     
     /**
@@ -68,7 +72,7 @@ class NevoOtaController : ConnectionControllerDelegate {
         dfuResponse = DFUResponse(responseCode: 0,requestedCode: 0,responseStatus: 0)
         mDelegate = controller
         mConnectionController = ConnectionControllerImpl.sharedInstance
-        
+        super.init()
         mConnectionController?.setDelegate(self)
         
         mConnectionController?.connect()
@@ -135,8 +139,12 @@ class NevoOtaController : ConnectionControllerDelegate {
         NSLog("packet data: %@",nextPacketData);
         
         mConnectionController?.sendRequest(OnePacketRequest(packetdata: nextPacketData ))
-        
+        progress = 100.0
+        percentage = Int(progress)
+        NSLog("DFUOperations: onTransferPercentage %d",percentage);
+        mDelegate?.onTransferPercentage(percentage)
         self.writingPacketNumber++;
+        mTimeoutTimer?.invalidate()
         NSLog("DFUOperations: onAllPacketsTransfered");
         break;
 
@@ -148,8 +156,8 @@ class NevoOtaController : ConnectionControllerDelegate {
     NSLog("packet data: %@",nextPacketData);
         
     mConnectionController?.sendRequest(OnePacketRequest(packetdata: nextPacketData ))
-  
-    percentage = Int(Double(self.writingPacketNumber * enumPacketOption.PACKET_SIZE.rawValue) / Double(self.binFileSize) * 100.0)
+    progress = Double(self.writingPacketNumber * enumPacketOption.PACKET_SIZE.rawValue) / Double(self.binFileSize) * 100.0
+    percentage = Int(progress)
         
     NSLog("DFUOperations: onTransferPercentage %d",percentage);
     mDelegate?.onTransferPercentage(percentage)
@@ -322,7 +330,9 @@ class NevoOtaController : ConnectionControllerDelegate {
     see ConnectionControllerDelegate protocol
     */
     func packetReceived(packet:RawPacket) {
-        
+        //dicard those packets from  NevoProfile
+        if !(packet.getSourceProfile() is NevoProfile)
+        {
         if(dfuFirmwareType == DfuFirmwareTypes.APPLICATION && mConnectionController?.getOTAMode() == true)
         {
             processDFUResponse(NSData2Bytes(packet.getRawData()))
@@ -331,6 +341,7 @@ class NevoOtaController : ConnectionControllerDelegate {
         else if(dfuFirmwareType == DfuFirmwareTypes.SOFTDEVICE)
         {
             MCU_processDFUResponse(packet)
+        }
         }
     }
     /*
@@ -441,6 +452,11 @@ class NevoOtaController : ConnectionControllerDelegate {
 
     func performDFUOnFile(firmwareURL:NSURL , firmwareType:DfuFirmwareTypes)
     {
+        lastprogress = 0.0
+        progress = 0.0
+        mTimeoutTimer?.invalidate()
+        mTimeoutTimer = NSTimer.scheduledTimerWithTimeInterval(Double(MAX_TIME), target: self, selector:Selector("timeroutProc:"), userInfo: nil, repeats: true)
+        
         mConnectionController?.setDelegate(self)
         state = DFUControllerState.IDLE
         dfuFirmwareType = firmwareType
@@ -459,6 +475,21 @@ class NevoOtaController : ConnectionControllerDelegate {
         }
     }
     
+    func timeroutProc(timer:NSTimer)
+    {
+        if lastprogress == progress  && progress != 100.0
+        {
+            NSLog("* * * OTA timeout * * *")
+            var errorMessage = "upgrade firmware got timeout, please reinstall nevo battery and try again.";
+            mDelegate?.onError(errorMessage)
+
+        }
+        else
+        {
+            lastprogress = progress
+        }
+    }
+
     private func performOldDFUOnFile()
     {
         if (self.dfuFirmwareType == DfuFirmwareTypes.APPLICATION)
@@ -594,7 +625,7 @@ class NevoOtaController : ConnectionControllerDelegate {
     mDelegate?.onTransferPercentage(Int(progress))
     mConnectionController?.sendRequest(Mcu_CheckSumPacketRequest(totalpage: totalpage, checksum: checksum))
     NSLog("sendEndPacket, totalpage =\(totalpage), checksum = \(checksum), checksum-Lowbyte = \(checksum&0xFF)")
-        
+    mTimeoutTimer?.invalidate()
     return
     }
     NSLog("Sent \(self.firmwareDataBytesSent) bytes, pageno: \(curpage).")
@@ -677,6 +708,7 @@ class NevoOtaController : ConnectionControllerDelegate {
     */
     func reset(switch2SyncController:Bool)
     {
+        mTimeoutTimer?.invalidate()
         //reset it to INIT status !!!IMPORTANT!!!
         self.state = DFUControllerState.INIT
         
