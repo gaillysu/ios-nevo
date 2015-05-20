@@ -112,7 +112,6 @@ class OTAProgress: CAShapeLayer {
             if ((progress * 100) > 100) {
                 progress = 1.0;
             }
-            NSLog("Percent = %f", progress);
             return Double(progress);
         }else{
 
@@ -160,8 +159,8 @@ class NevoOtaView: UIView {
         watchVersion!.lineBreakMode = NSLineBreakMode.ByWordWrapping
         watchVersion!.textAlignment = NSTextAlignment.Left
         watchVersion!.font = AppTheme.FONT_RALEWAY_LIGHT(mSize: 15)
-        watchVersion!.text = String(format: "Mcu %@%@\n BLE %@%@",NSLocalizedString("Version:",comment:""), mOTADelegate!.getSoftwareVersion(),NSLocalizedString("Version:",comment:""),mOTADelegate!.getFirmwareVersion())
         self.addSubview(watchVersion!)
+        self.setVersionLbael(mOTADelegate!.getSoftwareVersion(), bleNumber: mOTADelegate!.getFirmwareVersion())
 
         let tipButton:UIButton = UIButton.buttonWithType(UIButtonType.InfoDark) as! UIButton
         tipButton.frame = CGRectMake(self.frame.size.width-50, 90, 50, 50)
@@ -185,6 +184,10 @@ class NevoOtaView: UIView {
         }else{
             self.tipTextView()
         }
+    }
+
+    func setVersionLbael(mcuNumber:NSString,bleNumber:NSString){
+        watchVersion!.text = String(format: "Mcu %@%@\n BLE %@%@",NSLocalizedString("Version:",comment:""), mcuNumber,NSLocalizedString("Version:",comment:""),bleNumber)
     }
 
     /**

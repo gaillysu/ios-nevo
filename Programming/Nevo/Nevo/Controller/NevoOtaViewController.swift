@@ -243,7 +243,8 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
     */
     func firmwareVersionReceived(whichfirmware:DfuFirmwareTypes, version:NSString)
     {
-        upLoadStatus.text = "Firmware version BLE:"+(mNevoOtaController!.getFirmwareVersion() as String) + ",MCU:" +  (mNevoOtaController!.getSoftwareVersion() as String)
+        //upLoadStatus.text = "Firmware version BLE:"+(mNevoOtaController!.getFirmwareVersion() as String) + ",MCU:" +  (mNevoOtaController!.getSoftwareVersion() as String)
+        nevoOtaView.setVersionLbael(mNevoOtaController!.getSoftwareVersion(), bleNumber: mNevoOtaController!.getFirmwareVersion())
     }
     
     /**

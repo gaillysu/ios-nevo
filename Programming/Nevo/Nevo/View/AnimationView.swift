@@ -281,7 +281,6 @@ class CircleProgressView: CAShapeLayer {
             if ((progress * 100) > 100) {
                 progress = 1.0;
             }
-            NSLog("Percent = %f", progress);
             return Double(progress);
         }else{
 
