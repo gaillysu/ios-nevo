@@ -53,7 +53,7 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
                 var fileName:String? = selectedFile.path!.lastPathComponent
                 var fileExtension:String? = selectedFile.pathExtension
                 
-                if fileExtension == "bin" && currentSoftwareVersion.toInt() <= buildinSoftwareVersion
+                if fileExtension == "bin" && currentSoftwareVersion.toInt() < buildinSoftwareVersion
                 {
                     //buildinSoftwareVersion =
                     firmwareURLs.append(selectedFile)
@@ -65,7 +65,7 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
                 var selectedFile = tmpfile as! NSURL
                 var fileName:String? = selectedFile.path!.lastPathComponent
                 var fileExtension:String? = selectedFile.pathExtension
-                if fileExtension == "hex" && currentFirmwareVersion.toInt() <= buildinFirmwareVersion
+                if fileExtension == "hex" && currentFirmwareVersion.toInt() < buildinFirmwareVersion
                 {
                     //buildinFirmwareVersion =
                     firmwareURLs.append(selectedFile)
@@ -74,10 +74,10 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
             }
             
             
-            if( currentSoftwareVersion.toInt() <= buildinSoftwareVersion
-               || currentFirmwareVersion.toInt() <= buildinFirmwareVersion )
+            if( currentSoftwareVersion.toInt() < buildinSoftwareVersion
+               || currentFirmwareVersion.toInt() < buildinFirmwareVersion )
             {
-                var alert :UIAlertView = UIAlertView(title: "Firmware Version", message: "the nevo Firmware version:\(currentFirmwareVersion),\(currentSoftwareVersion) is not the lastest version:\(buildinFirmwareVersion),\(buildinSoftwareVersion)", delegate: self, cancelButtonTitle: "Cancel")
+                var alert :UIAlertView = UIAlertView(title: "Firmware Version", message: "the nevo Firmware version:\(currentFirmwareVersion),\(currentSoftwareVersion). the lastest version:\(buildinFirmwareVersion),\(buildinSoftwareVersion). Do you want Upgrade?", delegate: self, cancelButtonTitle: "Cancel")
                 alert.addButtonWithTitle("Upgrade")
                 alert.show()
             }

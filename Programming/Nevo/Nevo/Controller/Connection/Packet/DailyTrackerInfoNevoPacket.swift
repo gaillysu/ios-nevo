@@ -54,7 +54,7 @@ class DailyTrackerInfoNevoPacket: NevoPacket {
                 }
                 
                 //vaild year
-                if(year != 0)
+                if(year>1970 && year<2050)
                 {
                     //20150316
                     let mdata:String = String(format: "\(year)%02d%02d000000",month,day)
