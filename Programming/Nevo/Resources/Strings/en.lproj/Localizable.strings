@@ -63,4 +63,7 @@
 "reconnection_title"="Bluetooth reconnection";
 "reconnection_message"="Reconnect Bluetooth to receive notifications again by pressing and holding the 3rd button for 3 seconds.";
 "3secs"="3 secs";
-"otahelp"="Attention: Do not interrupt the OTA firmware process. Let the process complete before using app!\nIn case of accidental interruption, begin upgrade again and let it finish completely";
+"Attention!"="Attention!";
+"otahelp"="Do not interrupt the OTA firmware process. Let the process complete before using app!\nIn case of accidental interruption, begin upgrade again and let it finish completely";
+"latestversion"="You have is the\n latest version!";
+"Version:"="Version:";

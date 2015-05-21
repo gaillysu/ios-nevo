@@ -80,6 +80,9 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
                 var alert :UIAlertView = UIAlertView(title: "Firmware Version", message: "the nevo Firmware version:\(currentFirmwareVersion),\(currentSoftwareVersion). the lastest version:\(buildinFirmwareVersion),\(buildinSoftwareVersion). Do you want Upgrade?", delegate: self, cancelButtonTitle: "Cancel")
                 alert.addButtonWithTitle("Upgrade")
                 alert.show()
+            }else{
+
+                nevoOtaView.setLatestVersion(NSLocalizedString("latestversion", comment: ""))
             }
         }
     }
@@ -124,7 +127,9 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
     //upload button function
     func uploadPressed()
     {
-        if currentIndex >= firmwareURLs.count {return}
+        if currentIndex >= firmwareURLs.count {
+            return
+        }
         
         selectedFileURL = firmwareURLs[currentIndex]
         var fileExtension:String? = selectedFileURL!.pathExtension
@@ -201,7 +206,8 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
                     message = "Successful!"
                 }
                 var alert :UIAlertView = UIAlertView(title: "Firmware Upgrade", message: message, delegate: nil, cancelButtonTitle: "OK")
-                alert.show()
+                //alert.show()
+                self.nevoOtaView.upgradeSuccessful()
                 self.mNevoOtaController!.reset(false)
             }
             else

@@ -63,4 +63,7 @@
 "reconnection_title"="藍牙重連";
 "reconnection_message"="通過持續按住nevo的第三個按鈕三秒，藍牙重新連接以接受通知.";
 "3secs"="3秒";
-"otahelp"="注意: 請不要中斷OTA升級。使用應用前,請先確認升級已完成。如果意外中斷，請重新升級並確保升級完成。";
+"Attention!"="注意!";
+"otahelp"="請不要中斷OTA升級。使用應用前,請先確認升級已完成。如果意外中斷，請重新升級並確保升級完成。";
+"latestversion"="你已是最新版本!";
+"Version:"="版本:";

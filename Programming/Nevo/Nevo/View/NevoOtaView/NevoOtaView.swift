@@ -38,10 +38,12 @@ class OTAProgress: CAShapeLayer {
 
         self.addSublayer(progressLayer)
 
-        valueLabel = UILabel(frame: CGRectMake(0, 0, 170, 60))
+        valueLabel = UILabel(frame: CGRectMake(0, 0, 170, 100))
         //valueLabel.backgroundColor = UIColor.greenColor()
         valueLabel.textAlignment = NSTextAlignment.Center
         valueLabel.font = AppTheme.FONT_RALEWAY_LIGHT(mSize: 50)
+        valueLabel.numberOfLines = 0
+        valueLabel.lineBreakMode = NSLineBreakMode.ByWordWrapping
         self.addSublayer(valueLabel.layer)
 
     }
@@ -83,6 +85,7 @@ class OTAProgress: CAShapeLayer {
     */
     func setProgress(Sprogress:CGFloat) {
         valueLabel.center = CGPointMake(self.frame.size.width/2.0, self.frame.size.height/2.0)
+        valueLabel.font = AppTheme.FONT_RALEWAY_LIGHT(mSize: 50)
         valueLabel.text = NSString(format: "%.1f%c", Float(Sprogress)*100.0,37) as String
 
         initialProgress = CGFloat(calculatePercent(progress, toProgress: progressLimit))
@@ -90,6 +93,26 @@ class OTAProgress: CAShapeLayer {
 
         self.progressLayer.strokeEnd = self.percent
         startAnimation();
+    }
+
+    /**
+    Is the latest edition of the display function
+
+    :param: string
+    */
+    func setLatestVersion(string:String){
+        valueLabel.text = string
+        valueLabel.font = AppTheme.FONT_RALEWAY_LIGHT(mSize: 23)
+    }
+
+    /**
+    Upgrade success callback function
+    */
+    func upgradeSuccessful(){
+        valueLabel.text = ""
+        let successImage:UIImageView = UIImageView(image: UIImage(named: "success"))
+        successImage.center = CGPointMake(self.frame.size.width/2.0, self.frame.size.height/2.0)
+        self.addSublayer(successImage.layer)
     }
 
     /**
@@ -169,7 +192,7 @@ class NevoOtaView: UIView {
 
         OTAprogressView = OTAProgress()
         OTAprogressView?.setProgressColor(AppTheme.NEVO_SOLAR_YELLOW())
-        OTAprogressView?.frame = CGRectMake(UIScreen.mainScreen().bounds.width/2.0-(UIScreen.mainScreen().bounds.width-50)/2.0, UIScreen.mainScreen().bounds.height/2.0-(UIScreen.mainScreen().bounds.width-50)/2.0, UIScreen.mainScreen().bounds.width-50, UIScreen.mainScreen().bounds.width-50)
+        OTAprogressView?.frame = CGRectMake(UIScreen.mainScreen().bounds.width/2.0-(UIScreen.mainScreen().bounds.width-50)/2.0, watchVersion!.frame.origin.y+60, UIScreen.mainScreen().bounds.width-50, UIScreen.mainScreen().bounds.width-50)
         OTAprogressView?.setProgress(progresValue)
         self.layer.addSublayer(OTAprogressView)
     }
@@ -201,6 +224,22 @@ class NevoOtaView: UIView {
     }
 
     /**
+    Is the latest edition of the display function
+
+    :param: string
+    */
+    func setLatestVersion(string:String){
+        OTAprogressView?.setLatestVersion(string)
+    }
+
+    /**
+    Upgrade success callback function
+    */
+    func upgradeSuccessful(){
+        OTAprogressView?.upgradeSuccessful()
+    }
+
+    /**
     Prevent OTA disconnect tip
     */
     func tipTextView(){
@@ -224,6 +263,13 @@ class NevoOtaView: UIView {
         textView.backgroundColor = UIColor.clearColor()
         textView.text = NSLocalizedString("otahelp",comment:"")
         tipView!.addSubview(textView)
+
+        let attentionLabel:UILabel = UILabel(frame: CGRectMake(0, textView.frame.origin.y-40, self.frame.size.width, 40))
+        attentionLabel.font = AppTheme.FONT_RALEWAY_LIGHT(mSize: 30)
+        attentionLabel.backgroundColor = UIColor.clearColor()
+        attentionLabel.textAlignment = NSTextAlignment.Center
+        attentionLabel.text = NSLocalizedString("Attention!", comment: "")
+        tipView!.addSubview(attentionLabel)
 
         tipView!.updateAsynchronously(true, completion: { () -> Void in
             self.tipView!.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)
