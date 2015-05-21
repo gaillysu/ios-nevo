@@ -142,6 +142,14 @@ class SetingViewController: UIViewController,SelectionTypeDelegate,SyncControlle
 
     // MARK: - SwitchActionDelegate
     func onSwitch(results:Bool ,sender:UISwitch){
+        let indexPath:NSIndexPath = NSIndexPath(forRow: sender.tag, inSection: 0)
+        var cell:TableListCell = notificationList.tableListView.cellForRowAtIndexPath(indexPath) as! TableListCell
+        if(results){
+            cell.round.hidden = false
+        }else{
+            cell.round.hidden = true
+        }
+
         mNotificationType = mNotificationSettingArray[sender.tag-1].getType()
         var notSetting:NotificationSetting = NotificationSetting.indexOfObjectAtType(mNotificationSettingArray, type: mNotificationType)!
         EnterNotificationController.setMotorOnOff(NSString(string: notSetting.typeName), motorStatus: results)
@@ -291,9 +299,9 @@ class SetingViewController: UIViewController,SelectionTypeDelegate,SyncControlle
             notficp.mCurrentNotificationSetting = NotificationSetting.indexOfObjectAtType(mNotificationSettingArray, type: mNotificationType)
 
             for setting in mNotificationSettingArray {
-                NSLog(setting.sdescription())
+
+
             }
-            NSLog("\(mNotificationType.rawValue)")
         }
 
     }

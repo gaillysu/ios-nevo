@@ -51,7 +51,6 @@ class SetingView: UIView {
         if (endCell == nil) {
             let nibs:NSArray = NSBundle.mainBundle().loadNibNamed("TableListCell", owner: self, options: nil)
             endCell = nibs.objectAtIndex(0) as? TableListCell;
-            //endCell?.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator;
             
         }
         endCell?.layer.borderWidth = 0.5;
@@ -63,11 +62,16 @@ class SetingView: UIView {
         let setting:NotificationSetting = dataSource[indexPath.row-1]
         if setting.getStates() {
             endCell?.statesSwitch.on = true
+            endCell?.round.hidden = false
         }else {
             endCell?.statesSwitch.on = false
+            endCell?.round.hidden = true
         }
-        endCell?.textLabel?.text = NSLocalizedString(setting.typeName, comment: "")
-        endCell?.imageView?.image = UIImage(named:SetingView.getNotificationSettingIcon(setting))
+        endCell?.round.backgroundColor = dataSource[indexPath.row-1].getBagroundColor()
+        endCell?.title.text = NSLocalizedString(setting.typeName, comment: "")
+        endCell?.round.layer.cornerRadius = 5.0
+        endCell?.round.layer.masksToBounds = true
+        //endCell?.imageView?.image = UIImage(named:SetingView.getNotificationSettingIcon(setting))
 
         return endCell!
         
