@@ -30,7 +30,7 @@ class SetRTCRequest: NevoRequest {
         let day:NSInteger = dd.day;
         let hour:NSInteger = dd.hour;
         let min:NSInteger = dd.minute;
-        
+        let sec:NSInteger = dd.second;
         
         var values1 :[UInt8] = [0x00,SetRTCRequest.HEADER(),
             UInt8(year&0xFF),
@@ -39,7 +39,8 @@ class SetRTCRequest: NevoRequest {
             UInt8(day&0xFF),
             UInt8(hour&0xFF),
             UInt8(min&0xFF),
-            0,0,0,0,0,0,0,0,0,0,0,0]
+            UInt8(sec&0xFF),
+            0,0,0,0,0,0,0,0,0,0,0]
         
         var values2 :[UInt8] = [0xFF,SetRTCRequest.HEADER(),
             0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
