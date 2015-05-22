@@ -10,14 +10,24 @@ import UIKit
 
 class EnterNotificationView: UIView {
 
-    @IBOutlet weak var NotificationTableView: UITableView!
-
     private var mDelegate:ButtonManagerCallBack?
     var animationView:AnimationView?
     @IBOutlet weak  var backButton:UIButton!
     @IBOutlet weak  var title:UILabel!
     @IBOutlet weak var titleBgView: UIView!
-    func bulidEnterNotificationView(delegate:ButtonManagerCallBack){
+    @IBOutlet weak var blueButton: UIButton!
+
+    @IBOutlet weak var redButton: UIButton!
+
+    @IBOutlet weak var greenButton: UIButton!
+
+    @IBOutlet weak var yellowButton: UIButton!
+
+    @IBOutlet weak var orangeButton: UIButton!
+
+    @IBOutlet weak var peakgreenButton: UIButton!
+
+    func bulidEnterNotificationView(delegate:ButtonManagerCallBack,seting:NotificationSetting){
 
         title.textColor = UIColor.whiteColor()
         title.text = NSLocalizedString("NotificationType", comment: "")
@@ -27,37 +37,43 @@ class EnterNotificationView: UIView {
         mDelegate = delegate
         animationView = AnimationView(frame: self.frame, delegate: delegate)
 
+        title.text = NSLocalizedString(seting.typeName, comment: "")
+
+        var currentColor:UInt32 = seting.getColor().unsignedIntValue
+        if (currentColor == SetNortificationRequest.SetNortificationRequestValues.RED_LED){
+            //endCell.typeTitle.backgroundColor = AppTheme.NEVO_CUSTOM_COLOR(Red: 229, Green: 0, Blue: 18)
+            redButton.selected = true
+
+        }else if (currentColor == SetNortificationRequest.SetNortificationRequestValues.BLUE_LED){
+            //endCell.typeTitle.backgroundColor = AppTheme.NEVO_CUSTOM_COLOR(Red: 44, Green: 166, Blue: 224)
+            blueButton.selected = true
+
+        }else if (currentColor == SetNortificationRequest.SetNortificationRequestValues.GREEN_LED){
+            //endCell.typeTitle.backgroundColor = AppTheme.NEVO_CUSTOM_COLOR(Red: 141, Green: 194, Blue: 31)
+            greenButton.selected = true
+
+        }else if (currentColor == SetNortificationRequest.SetNortificationRequestValues.YELLOW_LED){
+            //endCell.typeTitle.backgroundColor = AppTheme.NEVO_CUSTOM_COLOR(Red: 250, Green: 237, Blue: 0)
+            yellowButton.selected = true
+
+        }else if (currentColor == SetNortificationRequest.SetNortificationRequestValues.ORANGE_LED){
+            //endCell.typeTitle.backgroundColor = AppTheme.NEVO_CUSTOM_COLOR(Red: 242, Green: 150, Blue: 0)
+            orangeButton.selected = true
+
+        }
+        else if (currentColor == SetNortificationRequest.SetNortificationRequestValues.LIGHTGREEN_LED){
+            //endCell.typeTitle.backgroundColor = AppTheme.NEVO_CUSTOM_COLOR(Red: 13, Green: 172, Blue: 103)
+            peakgreenButton.selected = true
+
+        }
+
+
     }
 
     @IBAction func BackAction(back:UIButton) {
         mDelegate?.controllManager(back)
     }
 
-    func EnterCurrentPaletteCell(indexPath:NSIndexPath) ->CurrentPaletteCell{
-        let CurrentCellID:NSString = "CurrentCell"
-        var CurrentCell = NotificationTableView.dequeueReusableCellWithIdentifier(CurrentCellID as String) as? CurrentPaletteCell
-
-        if (CurrentCell == nil) {
-            let nibs:NSArray = NSBundle.mainBundle().loadNibNamed("CurrentPaletteCell", owner: self, options: nil)
-            CurrentCell = nibs.objectAtIndex(0) as? CurrentPaletteCell;
-            CurrentCell?.selectionStyle = UITableViewCellSelectionStyle.None
-        }
-        return CurrentCell!
-    }
-
-    func EnterPaletteListCell(indexPath:NSIndexPath,dataSource:NSArray)->PaletteViewCell {
-        let endCellID:NSString = "PaletteListCell"
-        var endCell = NotificationTableView.dequeueReusableCellWithIdentifier(endCellID as String) as? PaletteViewCell
-
-        if (endCell == nil) {
-            let nibs:NSArray = NSBundle.mainBundle().loadNibNamed("PaletteViewCell", owner: self, options: nil)
-            endCell = nibs.objectAtIndex(0) as? PaletteViewCell;
-            endCell?.selectionStyle = UITableViewCellSelectionStyle.None;
-        }
-
-        return endCell!
-        
-    }
     /*
     // Only override drawRect: if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.

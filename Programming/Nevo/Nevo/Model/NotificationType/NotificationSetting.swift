@@ -87,14 +87,14 @@ class NotificationSetting: NSObject {
         }else if (currentColor == SetNortificationRequest.SetNortificationRequestValues.BLUE_LED){
             return AppTheme.NEVO_CUSTOM_COLOR(Red: 44, Green: 166, Blue: 224)
         }else if (currentColor == SetNortificationRequest.SetNortificationRequestValues.GREEN_LED){
-            return AppTheme.NEVO_CUSTOM_COLOR(Red: 141, Green: 194, Blue: 31)
+            return AppTheme.NEVO_CUSTOM_COLOR(Red: 13, Green: 172, Blue: 103)
         }else if (currentColor == SetNortificationRequest.SetNortificationRequestValues.YELLOW_LED){
             return AppTheme.NEVO_CUSTOM_COLOR(Red: 250, Green: 237, Blue: 0)
         }else if (currentColor == SetNortificationRequest.SetNortificationRequestValues.ORANGE_LED){
             return AppTheme.NEVO_CUSTOM_COLOR(Red: 242, Green: 150, Blue: 0)
         }
         else if (currentColor == SetNortificationRequest.SetNortificationRequestValues.LIGHTGREEN_LED){
-            return AppTheme.NEVO_CUSTOM_COLOR(Red: 13, Green: 172, Blue: 103)
+            return AppTheme.NEVO_CUSTOM_COLOR(Red: 141, Green: 194, Blue: 31)
         }
         return UIColor.whiteColor()
     }

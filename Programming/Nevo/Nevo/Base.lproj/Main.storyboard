@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="VSL-Nt-5H3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="VSL-Nt-5H3">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -994,56 +994,95 @@
                                     <constraint firstItem="zgc-9e-IWk" firstAttribute="centerY" secondItem="MfW-Ha-iAM" secondAttribute="centerY" id="zE0-8x-KXY"/>
                                 </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="65" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="Vl9-FC-Y56">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jaw-kq-Uvs">
                                 <rect key="frame" x="0.0" y="85" width="320" height="483"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="NotificationTypeCell" rowHeight="65" id="bVr-fz-yLg" customClass="NotificationTypeCell" customModule="Nevo" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bVr-fz-yLg" id="QOF-FP-aq0">
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9gP-da-Ykw">
-                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="65"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <color key="backgroundColor" red="1" green="0.59999999999999998" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
-                                            <constraints>
-                                                <constraint firstAttribute="bottom" secondItem="9gP-da-Ykw" secondAttribute="bottom" id="hgs-Ym-OlG"/>
-                                                <constraint firstItem="9gP-da-Ykw" firstAttribute="top" secondItem="QOF-FP-aq0" secondAttribute="top" id="ifW-No-SDf"/>
-                                                <constraint firstAttribute="trailing" secondItem="9gP-da-Ykw" secondAttribute="trailing" id="uJ5-de-LkO"/>
-                                                <constraint firstItem="9gP-da-Ykw" firstAttribute="leading" secondItem="QOF-FP-aq0" secondAttribute="leading" id="vqi-6R-ztZ"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="clockdial" translatesAutoresizingMaskIntoConstraints="NO" id="6Qr-YO-QDe">
+                                        <rect key="frame" x="15" y="97" width="290" height="290"/>
+                                    </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HP4-rp-Rg0">
+                                        <rect key="frame" x="45" y="167" width="40" height="40"/>
+                                        <state key="normal" image="color-f29600">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="selected" image="color-f29600-selected"/>
                                         <connections>
-                                            <outlet property="typeTitle" destination="9gP-da-Ykw" id="S8B-6R-oKV"/>
+                                            <action selector="BackAction:" destination="NjH-bU-cd8" eventType="touchUpInside" id="5b1-ZD-7r4"/>
                                         </connections>
-                                    </tableViewCell>
-                                </prototypes>
-                                <connections>
-                                    <outlet property="dataSource" destination="Dq6-9y-wmH" id="nsS-2Y-PQR"/>
-                                    <outlet property="delegate" destination="Dq6-9y-wmH" id="195-rI-oev"/>
-                                </connections>
-                            </tableView>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qPq-Vc-e72">
+                                        <rect key="frame" x="140" y="113" width="40" height="40"/>
+                                        <state key="normal" image="color_0dac67">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="selected" image="color_0dac67_selected"/>
+                                        <connections>
+                                            <action selector="BackAction:" destination="NjH-bU-cd8" eventType="touchUpInside" id="Phh-j5-G08"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cc9-8n-Nj5">
+                                        <rect key="frame" x="234" y="167" width="40" height="40"/>
+                                        <state key="normal" image="color-e50012">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="selected" image="color-e50012_selected"/>
+                                        <connections>
+                                            <action selector="BackAction:" destination="NjH-bU-cd8" eventType="touchUpInside" id="diQ-Yu-CMZ"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S3i-u4-JnI">
+                                        <rect key="frame" x="47" y="279" width="40" height="40"/>
+                                        <state key="normal" image="color-faed00">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="selected" image="color-faed00-selected"/>
+                                        <connections>
+                                            <action selector="BackAction:" destination="NjH-bU-cd8" eventType="touchUpInside" id="nOu-NT-KD3"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WAe-Cf-S99">
+                                        <rect key="frame" x="140" y="332" width="40" height="40"/>
+                                        <state key="normal" image="color-8dc21f">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="selected" image="color-8dc21f_selected"/>
+                                        <connections>
+                                            <action selector="BackAction:" destination="NjH-bU-cd8" eventType="touchUpInside" id="ll2-yx-ENC"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gbd-VF-trI">
+                                        <rect key="frame" x="233" y="279" width="40" height="40"/>
+                                        <state key="normal" image="color-e2ca6e0">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="selected" image="color-e2ca6e0_selected"/>
+                                        <connections>
+                                            <action selector="BackAction:" destination="NjH-bU-cd8" eventType="touchUpInside" id="5aI-XU-Oc8"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Vl9-FC-Y56" firstAttribute="trailing" secondItem="eh8-7F-htO" secondAttribute="trailing" id="F0a-dZ-3tN"/>
-                            <constraint firstItem="Vl9-FC-Y56" firstAttribute="top" secondItem="eh8-7F-htO" secondAttribute="bottom" id="Fko-Y5-Z4n"/>
-                            <constraint firstItem="Vl9-FC-Y56" firstAttribute="leading" secondItem="eh8-7F-htO" secondAttribute="leading" id="N37-mZ-Ru0"/>
-                            <constraint firstItem="Vl9-FC-Y56" firstAttribute="leading" secondItem="NjH-bU-cd8" secondAttribute="leading" id="Rnb-sc-Ubx"/>
+                            <constraint firstItem="eh8-7F-htO" firstAttribute="trailing" secondItem="Jaw-kq-Uvs" secondAttribute="trailing" id="Spd-no-Dbf"/>
                             <constraint firstItem="eh8-7F-htO" firstAttribute="top" secondItem="9Vm-8P-1hK" secondAttribute="bottom" id="Ufo-jF-7uT"/>
-                            <constraint firstItem="Vl9-FC-Y56" firstAttribute="bottom" secondItem="YnJ-xB-mUt" secondAttribute="top" id="bkO-3v-mvn"/>
+                            <constraint firstItem="eh8-7F-htO" firstAttribute="leading" secondItem="Jaw-kq-Uvs" secondAttribute="leading" id="WT5-KJ-mBa"/>
+                            <constraint firstItem="eh8-7F-htO" firstAttribute="leading" secondItem="NjH-bU-cd8" secondAttribute="leading" id="gWt-qi-BDt"/>
+                            <constraint firstItem="Jaw-kq-Uvs" firstAttribute="top" secondItem="eh8-7F-htO" secondAttribute="bottom" id="jMI-tl-fjC"/>
+                            <constraint firstItem="Jaw-kq-Uvs" firstAttribute="bottom" secondItem="YnJ-xB-mUt" secondAttribute="top" id="zPM-JL-dEe"/>
                         </constraints>
                         <connections>
-                            <outlet property="NotificationTableView" destination="Vl9-FC-Y56" id="ipY-Rq-6vn"/>
                             <outlet property="backButton" destination="zgc-9e-IWk" id="V5W-vJ-nEd"/>
+                            <outlet property="blueButton" destination="gbd-VF-trI" id="WMI-vs-Tbg"/>
+                            <outlet property="greenButton" destination="qPq-Vc-e72" id="vOd-BQ-9bx"/>
+                            <outlet property="orangeButton" destination="HP4-rp-Rg0" id="K1c-Kq-hoh"/>
+                            <outlet property="peakgreenButton" destination="WAe-Cf-S99" id="4Cc-Nh-p0D"/>
+                            <outlet property="redButton" destination="Cc9-8n-Nj5" id="ima-HR-Jov"/>
                             <outlet property="title" destination="MfW-Ha-iAM" id="KIy-1D-cCu"/>
                             <outlet property="titleBgView" destination="eh8-7F-htO" id="b5Z-Wo-jbo"/>
+                            <outlet property="yellowButton" destination="S3i-u4-JnI" id="cyT-MQ-eGH"/>
                         </connections>
                     </view>
                     <navigationItem key="navigationItem" id="yoo-T2-W16"/>
@@ -1173,11 +1212,24 @@
     </scenes>
     <resources>
         <image name="BlackSelectedButton" width="63" height="63"/>
-        <image name="Signal_3.png" width="100" height="100"/>
+        <image name="Signal_3.png" width="35" height="35"/>
         <image name="alarmitem" width="68" height="68"/>
         <image name="amButton" width="63" height="63"/>
         <image name="amSelectedButton" width="63" height="63"/>
         <image name="backIcon" width="68" height="68"/>
+        <image name="clockdial" width="400" height="400"/>
+        <image name="color-8dc21f" width="55" height="55"/>
+        <image name="color-8dc21f_selected" width="55" height="55"/>
+        <image name="color-e2ca6e0" width="55" height="55"/>
+        <image name="color-e2ca6e0_selected" width="55" height="55"/>
+        <image name="color-e50012" width="55" height="55"/>
+        <image name="color-e50012_selected" width="55" height="55"/>
+        <image name="color-f29600" width="55" height="55"/>
+        <image name="color-f29600-selected" width="55" height="55"/>
+        <image name="color-faed00" width="55" height="55"/>
+        <image name="color-faed00-selected" width="55" height="55"/>
+        <image name="color_0dac67" width="55" height="55"/>
+        <image name="color_0dac67_selected" width="55" height="55"/>
         <image name="editor.png" width="101" height="101"/>
         <image name="goal1Button" width="30" height="30"/>
         <image name="goal1Selected_Button" width="30" height="30"/>

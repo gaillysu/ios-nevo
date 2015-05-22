@@ -71,7 +71,6 @@ class SetingView: UIView {
         endCell?.title.text = NSLocalizedString(setting.typeName, comment: "")
         endCell?.round.layer.cornerRadius = 5.0
         endCell?.round.layer.masksToBounds = true
-        //endCell?.imageView?.image = UIImage(named:SetingView.getNotificationSettingIcon(setting))
 
         return endCell!
         
