@@ -246,10 +246,19 @@ class CircleProgressView: CAShapeLayer {
         for layer in array {
             let valueLabel:UILabel = layer as! UILabel
             if (valueLabel.tag == 0) {
-                valueLabel.center = CGPointMake(self.frame.size.width/2.0-valueLabel.frame.size.width/2-10, self.frame.size.height+30)
+                if AppTheme.GET_IS_iPhone4S(){
+                   valueLabel.center = CGPointMake(self.frame.size.width/2.0-valueLabel.frame.size.width/2-10, self.frame.size.height)
+                }else{
+                   valueLabel.center = CGPointMake(self.frame.size.width/2.0-valueLabel.frame.size.width/2-10, self.frame.size.height+30)
+                }
                 valueLabel.text = NSString(format: "%@%.1f%c", NSLocalizedString("Progress: ",comment: ""),Float(Sprogress)*100.0,37) as String
             }else if (valueLabel.tag == 1) {
-                valueLabel.center = CGPointMake(self.frame.size.width/2.0+valueLabel.frame.size.width/2+10, self.frame.size.height+30)
+                if AppTheme.GET_IS_iPhone4S(){
+                    valueLabel.center = CGPointMake(self.frame.size.width/2.0+valueLabel.frame.size.width/2+10, self.frame.size.height)
+                }else{
+                    valueLabel.center = CGPointMake(self.frame.size.width/2.0+valueLabel.frame.size.width/2+10, self.frame.size.height+30)
+                }
+
                 valueLabel.text = String(format:"%@\(steps)",NSLocalizedString("Step: ",comment: ""))
             }
         }
