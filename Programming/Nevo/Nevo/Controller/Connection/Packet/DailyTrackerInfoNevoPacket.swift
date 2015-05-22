@@ -53,8 +53,8 @@ class DailyTrackerInfoNevoPacket: NevoPacket {
                     day   = Int(NSData2Bytes(getPackets()[1])[11] )
                 }
                 
-                //vaild year
-                if(year>1970 && year<2050)
+                //vaild year,month, day
+                if((year>1970 && year<2050)  && (month>=1 && month<=12) && (day>=1 && day<=31))
                 {
                     //20150316
                     let mdata:String = String(format: "\(year)%02d%02d000000",month,day)

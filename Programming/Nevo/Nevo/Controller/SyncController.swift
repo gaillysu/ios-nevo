@@ -247,7 +247,6 @@ class SyncController: ConnectionControllerDelegate {
             if(packet.getHeader() == SetNortificationRequest.HEADER())
             {
                 //start sync data
-                savedDailyHistory = []
                 self.syncActivityData()
             }
             if(packet.getHeader() == ReadDailyTrackerInfo.HEADER())
