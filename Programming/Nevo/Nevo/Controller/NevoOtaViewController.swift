@@ -155,6 +155,7 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
         }
         else {
             nevoOtaView.setProgress(0.0)
+            self.nevoOtaView.setLatestVersion("Please wait...")
             isTransferring = true
             uploadBtn.setTitle("Cancel", forState: UIControlState.Normal)
             //when doing OTA, disable Cancel/Back button, enable them by callback function invoke initValue()/checkConnection()
@@ -206,7 +207,7 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
                     message = "Successful!"
                 }
                 var alert :UIAlertView = UIAlertView(title: "Firmware Upgrade", message: message, delegate: nil, cancelButtonTitle: "OK")
-                //alert.show()
+                alert.show()
                 self.nevoOtaView.upgradeSuccessful()
                 self.mNevoOtaController!.reset(false)
             }
@@ -230,8 +231,8 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
             self.initValue()
             
             var alert :UIAlertView = UIAlertView(title: "Firmware Upgrade", message: errString as String, delegate: nil, cancelButtonTitle: "OK")
-            alert.show()
-            
+            //alert.show()
+            self.nevoOtaView.setLatestVersion(errString as String)
             self.mNevoOtaController!.reset(false)
         });
 

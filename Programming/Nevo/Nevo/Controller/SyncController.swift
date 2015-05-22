@@ -255,8 +255,11 @@ class SyncController: ConnectionControllerDelegate {
                 var thispacket = packet.copy() as DailyTrackerInfoNevoPacket
                 currentDay = 0
                 savedDailyHistory = thispacket.getDailyTrackerInfo()
-                NSLog("History Total Days:\(savedDailyHistory.count),Today is \(GmtNSDate2LocaleNSDate(NSDate()))")
-                self.getDailyTracker(currentDay)
+                NSLog("History Total Days:\(savedDailyHistory.count),Today is \(GmtNSDate2LocaleNSDate(NSDate()))")                
+                if savedDailyHistory.count > 0
+                {
+                    self.getDailyTracker(currentDay)
+                }
             }
             if(packet.getHeader() == ReadDailyTracker.HEADER())
             {

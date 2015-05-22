@@ -480,7 +480,7 @@ class NevoOtaController : NSObject,ConnectionControllerDelegate {
         if lastprogress == progress  && progress != 100.0
         {
             NSLog("* * * OTA timeout * * *")
-            var errorMessage = "upgrade firmware got timeout, please reinstall nevo battery and try again.";
+            var errorMessage = "Timeout,please try again";
             mDelegate?.onError(errorMessage)
 
         }
