@@ -28,7 +28,7 @@ class SetingViewController: UIViewController,SelectionTypeDelegate,SyncControlle
 
         initNotificationSettingArray()
 
-        sources = [NSLocalizedString("Notifications", comment: ""),NSLocalizedString("Link-Loss Notifications", comment: ""),NSLocalizedString("My nevo", comment: "")]
+        sources = [NSLocalizedString("Notifications", comment: ""),NSLocalizedString("Link-Loss Notifications", comment: ""),NSLocalizedString("My nevo", comment: ""),NSLocalizedString("Find device", comment: "")]
         //NSLocalizedString("Firmware Upgrade", comment: "")
     }
 
@@ -248,10 +248,26 @@ class SetingViewController: UIViewController,SelectionTypeDelegate,SyncControlle
             if indexPath.section == 2{
                 //self.performSegueWithIdentifier("Setting_nevoOta", sender: self)
                 self.performSegueWithIdentifier("Seting_Mynevo", sender: self)
+            }else if indexPath.section == 3{
+                findMydevice()
             }
         }
     }
 
+    //vibrate and show all color light to find my device, only send one request in 6 sec
+    //this action take lot power and we maybe told customer less to use it
+    var mFindMydeviceDatetime:NSDate = NSDate(timeIntervalSinceNow: -6)
+    func findMydevice(){
+        var minDelay:Double = 6
+        var offset:Double = (NSDate().timeIntervalSince1970 - mFindMydeviceDatetime.timeIntervalSince1970)
+        NSLog("findMydevice offset:\(offset)")
+        if (offset < minDelay) {
+            return
+        }
+        mSyncController?.SetLedOnOffandVibrator(0x3F0000, motorOnOff: true)
+        mFindMydeviceDatetime = NSDate()
+    }
+    
     // MARK: - UITableViewDataSource
     func numberOfSectionsInTableView(tableView: UITableView) -> Int{
         return sources.count
