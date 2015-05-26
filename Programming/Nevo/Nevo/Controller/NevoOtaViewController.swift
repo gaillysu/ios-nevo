@@ -11,15 +11,7 @@ import UIKit
 class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonManagerCallBack,PtlSelectFile,UIAlertViewDelegate  {
 
     @IBOutlet var nevoOtaView: NevoOtaView!
-    
-    @IBOutlet weak var labelFileName: UILabel!
-    @IBOutlet var labelFileSize: UILabel!
-    @IBOutlet var labelFIleTypes: UILabel!
-    @IBOutlet weak var uploadBtn: UIButton!
-    @IBOutlet weak var progressBar: UIProgressView!
-    
-    @IBOutlet weak var ProgressLabel: UILabel!
-    @IBOutlet weak var upLoadStatus: UILabel!
+
     
     var isTransferring:Bool = false
     var enumFirmwareType:DfuFirmwareTypes = DfuFirmwareTypes.APPLICATION
@@ -113,15 +105,7 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
     //init data function
     private func initValue()
     {
-        progressBar.setProgress(0.0, animated: false)
-        ProgressLabel.text = ""
-        upLoadStatus.text = ""
-        isTransferring = false
-        uploadBtn.setTitle("Upload", forState: UIControlState.Normal)
-        uploadBtn.hidden  = false
-        uploadBtn.enabled = false
         nevoOtaView.backButton.enabled = true
-        nevoOtaView.selectFileButton.enabled = true
     }
     
     //upload button function
@@ -150,18 +134,14 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
         }
         if (self.isTransferring) {
             isTransferring = false
-            uploadBtn.setTitle("Upload", forState: UIControlState.Normal)
             mNevoOtaController?.cancelDFU()
         }
         else {
             nevoOtaView.setProgress(0.0)
             self.nevoOtaView.setLatestVersion("Please wait...")
             isTransferring = true
-            uploadBtn.setTitle("Cancel", forState: UIControlState.Normal)
             //when doing OTA, disable Cancel/Back button, enable them by callback function invoke initValue()/checkConnection()
-            uploadBtn.hidden = true
             nevoOtaView.backButton.enabled = false
-            nevoOtaView.selectFileButton.enabled = false
             mNevoOtaController?.performDFUOnFile(selectedFileURL!, firmwareType: enumFirmwareType)
         }
     }
@@ -186,9 +166,8 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
     //percent is[0..100]
     func onTransferPercentage(percent:Int){
         dispatch_async(dispatch_get_main_queue(), {
-        self.progressBar.setProgress((Float(percent)/100.0), animated: false)
-        self.ProgressLabel.text = "\(percent) %"
-        self.nevoOtaView.setProgress((Float(percent)/100.0))
+
+            self.nevoOtaView.setProgress((Float(percent)/100.0))
         });
     }
     
@@ -243,14 +222,13 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
         //Maybe we just got disconnected, let's check
         
         checkConnection()
-        
     }
+
     /**
     see NevoOtaControllerDelegate
     */
     func firmwareVersionReceived(whichfirmware:DfuFirmwareTypes, version:NSString)
     {
-        //upLoadStatus.text = "Firmware version BLE:"+(mNevoOtaController!.getFirmwareVersion() as String) + ",MCU:" +  (mNevoOtaController!.getSoftwareVersion() as String)
         nevoOtaView.setVersionLbael(mNevoOtaController!.getSoftwareVersion(), bleNumber: mNevoOtaController!.getFirmwareVersion())
     }
     
@@ -262,16 +240,10 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
         
         if mNevoOtaController != nil && !(mNevoOtaController!.isConnected()) {
             //disable upPress button
-            uploadBtn.enabled = false
-            upLoadStatus.text = ""
-        }
-        else
-        {
+
+        }else{
             // enable upPress button
-            uploadBtn.enabled = true
-            upLoadStatus.text = "Firmware version BLE:"+(mNevoOtaController!.getFirmwareVersion() as String) + ",MCU:" +  (mNevoOtaController!.getSoftwareVersion() as String)
         }
-        //self.view.bringSubviewToFront(nevoOtaView.titleBgView)
         
     }
 
@@ -279,19 +251,11 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
     // MARK: - ButtonManagerCallBack
     func controllManager(sender:AnyObject){
 
-        if (sender.isEqual(nevoOtaView.selectFileButton)){
-            NSLog("selectWatchFile")
-            self.performSegueWithIdentifier("Ota2SelectFile", sender: self)
-        }else if (sender.isEqual(nevoOtaView.backButton)) {
+        if (sender.isEqual(nevoOtaView.backButton)) {
             NSLog("back2Home")
             self.dismissViewControllerAnimated(true, completion: nil)
-            //self.navigationController?.popViewControllerAnimated(true)
-        }else if (sender.isEqual(nevoOtaView.uploadButton)){
-            NSLog("uploadFile")
-            uploadPressed()
         }
-        
-        
+
     }
     
     /**
@@ -305,28 +269,16 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
             var fileName:String? = selectedFile.path!.lastPathComponent
             var fileExtension:String? = selectedFile.pathExtension
             var fileManager = NSFileManager.defaultManager()
-            //var fileAttr = fileManager.attributesOfItemAtPath(selectedFile, error: nil)
             //set the file information
-            if let name = fileName{
-                labelFileName.text = fileName
-            }
-            if let data:NSData = NSData(contentsOfURL: selectedFile){
-                labelFileSize.text = String(data.length)
-            }
-            if let fextension = fileExtension{
-                labelFIleTypes.text = fextension
-            }
             
             selectedFileURL = selectedFile
             if fileExtension == "bin"
             {
                enumFirmwareType = DfuFirmwareTypes.SOFTDEVICE
-               labelFIleTypes.text = "MCU firmware"
             }
             if fileExtension == "hex"
             {
                 enumFirmwareType = DfuFirmwareTypes.APPLICATION
-                labelFIleTypes.text = "BLE firmware"
             }
             
         }

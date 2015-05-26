@@ -8,19 +8,33 @@
 
 import UIKit
 
-class MyNevoController: UIViewController {
+class MyNevoController: UIViewController,ButtonManagerCallBack {
+
+    @IBOutlet var mynevoView: MyNevoView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        mynevoView.bulidMyNevoView(self)
+
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+
+
+    func controllManager(sender:AnyObject){
+        if(sender.isEqual(mynevoView.backButton)){
+            self.navigationController?.popViewControllerAnimated(true)
+        }
+
+        if(sender.isEqual(mynevoView.UpgradeButton)){
+            self.performSegueWithIdentifier("Setting_nevoOta", sender: self)
+        }
+
+    }
 
     /*
     // MARK: - Navigation

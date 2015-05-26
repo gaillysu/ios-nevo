@@ -245,7 +245,8 @@ class SetingViewController: UIViewController,SelectionTypeDelegate,SyncControlle
             }
 
             if indexPath.section == 2{
-                self.performSegueWithIdentifier("Setting_nevoOta", sender: self)
+                //self.performSegueWithIdentifier("Setting_nevoOta", sender: self)
+                self.performSegueWithIdentifier("Seting_Mynevo", sender: self)
             }
         }
     }

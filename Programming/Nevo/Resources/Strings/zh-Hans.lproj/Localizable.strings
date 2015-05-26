@@ -68,3 +68,6 @@
 "latestversion"="你已是最新版本!";
 "Version:"="版本:";
 "FirmwareAlertMessage"="您的手表固件不是最新版本,您确认升级固件吗?";
+"LatestUpdateon"="最近更新\n";
+"namenevo"="名字:nevo";
+"upgrade"="升级";

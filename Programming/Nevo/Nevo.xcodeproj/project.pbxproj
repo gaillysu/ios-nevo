@@ -64,9 +64,9 @@
 		00C30ADB1A89FC8200C9F67B /* ButtonCallBack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C30ADA1A89FC8200C9F67B /* ButtonCallBack.swift */; };
 		00C640F41A8D9F4500815CF8 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C640F31A8D9F4500815CF8 /* MainTabBarController.swift */; };
 		00C640F61A8DEE0800815CF8 /* clockView600.png in Resources */ = {isa = PBXBuildFile; fileRef = 00C640F51A8DEE0800815CF8 /* clockView600.png */; };
-		00D4DE8E1AB011950062523D /* check.png in Resources */ = {isa = PBXBuildFile; fileRef = 00D4DE8D1AB011950062523D /* check.png */; };
+		00D0FF731B130A9F00D084C3 /* Nevo660.png in Resources */ = {isa = PBXBuildFile; fileRef = 00D0FF721B130A9F00D084C3 /* Nevo660.png */; };
+		00D0FF771B13184500D084C3 /* MyNevoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D0FF761B13184500D084C3 /* MyNevoView.swift */; };
 		00D4DE921AB141FB0062523D /* NevoPicture960.png in Resources */ = {isa = PBXBuildFile; fileRef = 00D4DE901AB141FB0062523D /* NevoPicture960.png */; };
-		00E0E1441A88BBDE0001B8CA /* wallpaper0.png in Resources */ = {isa = PBXBuildFile; fileRef = 00E0E1431A88BBDE0001B8CA /* wallpaper0.png */; };
 		00E39A981AC27DDC0004E6C1 /* editor.png in Resources */ = {isa = PBXBuildFile; fileRef = 00E39A971AC27DDC0004E6C1 /* editor.png */; };
 		0704C9631AA431EE00F9AE09 /* GetStepsGoalRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0704C9621AA431EE00F9AE09 /* GetStepsGoalRequest.swift */; };
 		074243221AB00F630076F789 /* RealTimeCountSteps.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074243211AB00F630076F789 /* RealTimeCountSteps.swift */; };
@@ -207,9 +207,9 @@
 		00C30ADA1A89FC8200C9F67B /* ButtonCallBack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ButtonCallBack.swift; path = View/Tutorial/ButtonCallBack.swift; sourceTree = "<group>"; };
 		00C640F31A8D9F4500815CF8 /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainTabBarController.swift; path = Controller/MainTabBarController.swift; sourceTree = "<group>"; };
 		00C640F51A8DEE0800815CF8 /* clockView600.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clockView600.png; sourceTree = "<group>"; };
-		00D4DE8D1AB011950062523D /* check.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = check.png; sourceTree = "<group>"; };
+		00D0FF721B130A9F00D084C3 /* Nevo660.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Nevo660.png; sourceTree = "<group>"; };
+		00D0FF761B13184500D084C3 /* MyNevoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MyNevoView.swift; path = View/MyNevoView.swift; sourceTree = "<group>"; };
 		00D4DE901AB141FB0062523D /* NevoPicture960.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NevoPicture960.png; sourceTree = "<group>"; };
-		00E0E1431A88BBDE0001B8CA /* wallpaper0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wallpaper0.png; sourceTree = "<group>"; };
 		00E39A971AC27DDC0004E6C1 /* editor.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = editor.png; sourceTree = "<group>"; };
 		0704C9621AA431EE00F9AE09 /* GetStepsGoalRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GetStepsGoalRequest.swift; path = Controller/Connection/Request/GetStepsGoalRequest.swift; sourceTree = "<group>"; };
 		074243211AB00F630076F789 /* RealTimeCountSteps.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RealTimeCountSteps.swift; path = Model/Activity/RealTimeCountSteps.swift; sourceTree = "<group>"; };
@@ -384,13 +384,12 @@
 		007F79881A878D0B006C89E6 /* image */ = {
 			isa = PBXGroup;
 			children = (
+				00D0FF721B130A9F00D084C3 /* Nevo660.png */,
 				00E39A971AC27DDC0004E6C1 /* editor.png */,
 				00D4DE901AB141FB0062523D /* NevoPicture960.png */,
-				00D4DE8D1AB011950062523D /* check.png */,
 				00478F4D1A8F637D00D0DCE2 /* clockViewHour.png */,
 				00478F4E1A8F637D00D0DCE2 /* clockViewMinute.png */,
 				00C640F51A8DEE0800815CF8 /* clockView600.png */,
-				00E0E1431A88BBDE0001B8CA /* wallpaper0.png */,
 				005BC9551A889F14006F9E86 /* NevoPicture.png */,
 			);
 			path = image;
@@ -621,6 +620,7 @@
 				005FE77A1A8C979800961239 /* alarmClockView.swift */,
 				9A3B7AAE1A9450D000BDC3C6 /* AppTheme.swift */,
 				003542B61AA823B000B27381 /* AnimationView.swift */,
+				00D0FF761B13184500D084C3 /* MyNevoView.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -785,6 +785,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				00D0FF731B130A9F00D084C3 /* Nevo660.png in Resources */,
 				074B87A61ABFB88C008BD08F /* Main.storyboard in Resources */,
 				007F79921A878D0B006C89E6 /* Raleway-ExtraLightItalic.ttf in Resources */,
 				007F79901A878D0B006C89E6 /* Raleway-ExtraBoldItalic.ttf in Resources */,
@@ -806,7 +807,6 @@
 				007F799A1A878D0B006C89E6 /* Raleway-SemiBoldItalic.ttf in Resources */,
 				007F799C1A878D0B006C89E6 /* Raleway-ThinItalic.ttf in Resources */,
 				007F79931A878D0B006C89E6 /* Raleway-Italic.ttf in Resources */,
-				00D4DE8E1AB011950062523D /* check.png in Resources */,
 				007F798F1A878D0B006C89E6 /* Raleway-ExtraBold.ttf in Resources */,
 				007F79911A878D0B006C89E6 /* Raleway-ExtraLight.ttf in Resources */,
 				007F798E1A878D0B006C89E6 /* Raleway-BoldItalic.ttf in Resources */,
@@ -816,7 +816,6 @@
 				0742432A1AB2D0A20076F789 /* Firmwares in Resources */,
 				00478F501A8F637D00D0DCE2 /* clockViewMinute.png in Resources */,
 				00C640F61A8DEE0800815CF8 /* clockView600.png in Resources */,
-				00E0E1441A88BBDE0001B8CA /* wallpaper0.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -854,6 +853,7 @@
 				9A7551A71AADA91B00DD9292 /* SyncQueue.swift in Sources */,
 				07CC4A2F1A821B46008DA749 /* NevoOTARequest.swift in Sources */,
 				00A2287E1AA57F1A00360C36 /* EnterNotificationController.swift in Sources */,
+				00D0FF771B13184500D084C3 /* MyNevoView.swift in Sources */,
 				9AD8F9791A6E05F700F01014 /* NevoBT.swift in Sources */,
 				079EED311AB7FE6000CEA78D /* DailyStepsNevoPacket.swift in Sources */,
 				074243221AB00F630076F789 /* RealTimeCountSteps.swift in Sources */,
