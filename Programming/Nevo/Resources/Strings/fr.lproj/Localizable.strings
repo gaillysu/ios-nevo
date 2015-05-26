@@ -67,3 +67,6 @@
 "otahelp"="Do not interrupt the OTA firmware process. Let the process complete before using app!\nIn case of accidental interruption, begin upgrade again and let it finish completely";
 "latestversion"="You have is the\n latest version!";
 "Version:"="Version:";
+"LatestUpdateon"="Latest Update\non";
+"namenevo"="Name:nevo";
+"upgrade"="Upgrade";

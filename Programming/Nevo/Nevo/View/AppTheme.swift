@@ -110,4 +110,46 @@ class AppTheme {
         return UIColor(red: 48/255.0, green: 48/255.0, blue: 48/255.0, alpha: 1)
     }
 
+    /**
+    *	@brief	The archive All current data
+    *
+    */
+    class func KeyedArchiverName(name:NSString,andObject object:AnyObject) ->Bool{
+        var objectArray:[AnyObject] = [object.copy()]
+        var senddate:NSDate = NSDate()
+        var dateformatter:NSDateFormatter = NSDateFormatter()
+
+        dateformatter.dateFormat = "YYYY/MM/dd"// HH:mm:ss
+        var locationString:NSString = dateformatter.stringFromDate(senddate)
+        objectArray.append(locationString)
+        NSLog("locationString:%@",locationString);
+
+        var pathArray = NSSearchPathForDirectoriesInDomains(.DocumentDirectory,.UserDomainMask,true)
+        var Path:NSString = (pathArray as NSArray).objectAtIndex(0) as! NSString
+
+        var filename:NSString = Path.stringByAppendingPathComponent(name as String)
+        var iswrite:Bool = NSKeyedArchiver.archiveRootObject(objectArray, toFile: filename as String)
+        return iswrite
+    }
+
+    /**
+    *	@brief	Load the archived data
+    *
+    */
+    class func LoadKeyedArchiverName(name:NSString) ->AnyObject{
+        var pathArray = NSSearchPathForDirectoriesInDomains(.DocumentDirectory,.UserDomainMask,true)
+        var Path:NSString = (pathArray as NSArray).objectAtIndex(0) as! NSString
+
+        var filename:NSString = Path.stringByAppendingPathComponent(name as String)
+
+        var flierManager:Bool = NSFileManager.defaultManager().fileExistsAtPath(filename as String)
+        if(flierManager){
+            var objectArr:AnyObject?
+            objectArr = NSKeyedUnarchiver.unarchiveObjectWithFile(filename as String)!
+            return objectArr!
+        }
+        return []
+    }
+
+
 }

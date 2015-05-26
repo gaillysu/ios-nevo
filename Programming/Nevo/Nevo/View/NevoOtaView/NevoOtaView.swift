@@ -161,8 +161,6 @@ class NevoOtaView: UIView {
     @IBOutlet weak var titleBgView: UIView!
     
     @IBOutlet weak var backButton: UIButton!
-    @IBOutlet weak var uploadButton: UIButton!
-    @IBOutlet weak var selectFileButton: UIButton!
 
     private var mDelegate:ButtonManagerCallBack?
     private var tipView:FXBlurView?;

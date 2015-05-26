@@ -67,3 +67,6 @@
 "otahelp"="请不要中断OTA升级.使用应用前,请先确认升级已完成.\n如果意外中断,请重新升级并确保升级完成.";
 "latestversion"="你已是最新版本!";
 "Version:"="版本:";
+"LatestUpdateon"="最近更新\n";
+"namenevo"="名字:nevo";
+"upgrade"="升级";
