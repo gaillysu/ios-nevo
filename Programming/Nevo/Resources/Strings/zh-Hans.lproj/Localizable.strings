@@ -64,9 +64,10 @@
 "reconnection_message"="通过持续按住nevo的第三个按钮三秒，蓝牙重新连接以接受通知.";
 "3secs"="3秒";
 "Attention!"="注意!";
-"otahelp"="请不要中断OTA升级.使用应用前,请先确认升级已完成.\n如果意外中断,请重新升级并确保升级完成.";
+"otahelp"="请不要中断OTA升级.使用应用前,请先确认升级已完成.\n如果意外中断,请重新升级,有时需要重新安装电池或等待数分钟,确保升级完成.";
 "latestversion"="你已是最新版本!";
 "Version:"="版本:";
+"FirmwareAlertMessage"="您的手表固件不是最新版本,您确认升级固件吗?";
 "LatestUpdateon"="最近更新\n";
 "namenevo"="名字:nevo";
 "upgrade"="升级";

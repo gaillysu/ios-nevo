@@ -452,8 +452,8 @@ class SyncController: NSObject,ConnectionControllerDelegate,UIAlertViewDelegate 
             {
             mAlertUpdateFW = true
                 
-            var alert :UIAlertView = UIAlertView(title: "Firmware Version", message: "Your watch’s software is not up to date. Do you want to update it now ?", delegate: self, cancelButtonTitle: "Cancel")
-            alert.addButtonWithTitle("Upgrade")
+            var alert :UIAlertView = UIAlertView(title: NSLocalizedString("Firmware Upgrade", comment: ""), message: NSLocalizedString("FirmwareAlertMessage", comment: ""), delegate: self, cancelButtonTitle: NSLocalizedString("Cancel", comment: ""))
+            alert.addButtonWithTitle(NSLocalizedString("Enter", comment: ""))
             alert.show()
             }
         }
