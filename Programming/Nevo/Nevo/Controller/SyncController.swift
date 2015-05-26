@@ -148,6 +148,18 @@ class SyncController: NSObject,ConnectionControllerDelegate,UIAlertViewDelegate 
         NSLog("SetNortification")
         sendRequest(SetNortificationRequest(settingArray: settingArray))
     }
+    /**
+    @ledpattern, define Led light pattern, 0 means off all led, 0xFFFFFF means light on all led( include color and white)
+    0x7FF means light on all white led (bit0~bit10), 0x3F0000 means light on all color led (bit16~bit21)
+    other value, light on the related led
+    @motorOnOff, vibrator true or flase
+    */
+    func SetLedOnOffandVibrator(ledpattern:UInt32,  motorOnOff:Bool) {
+        sendRequest(LedLightOnOffNevoRequest(ledpattern: ledpattern, motorOnOff: motorOnOff))
+    }
+    func ReadBatteryLevel() {
+        sendRequest(ReadBatteryLevelNevoRequest())
+    }
     //end functions by UI
     
     func sendRequest(r:Request) {
