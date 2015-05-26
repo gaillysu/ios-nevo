@@ -84,6 +84,7 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
     
         if(buttonIndex==1){
             currentIndex = 0
+            nevoOtaView.tipTextView()
             self.uploadPressed()
         }
     }
