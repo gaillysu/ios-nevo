@@ -39,6 +39,9 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
             var currentSoftwareVersion = mNevoOtaController!.getSoftwareVersion() as String
             var currentFirmwareVersion = mNevoOtaController!.getFirmwareVersion() as String
             
+            buildinSoftwareVersion = GET_SOFTWARE_VERSION()
+            buildinFirmwareVersion = GET_FIRMWARE_VERSION()
+
             var fileArray = GET_FIRMWARE_FILES("Firmwares")
             for tmpfile in fileArray {
                 var selectedFile = tmpfile as! NSURL
@@ -47,7 +50,6 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
                 
                 if fileExtension == "bin" && currentSoftwareVersion.toInt() < buildinSoftwareVersion
                 {
-                    //buildinSoftwareVersion =
                     firmwareURLs.append(selectedFile)
                     break
                 }
@@ -59,7 +61,6 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
                 var fileExtension:String? = selectedFile.pathExtension
                 if fileExtension == "hex" && currentFirmwareVersion.toInt() < buildinFirmwareVersion
                 {
-                    //buildinFirmwareVersion =
                     firmwareURLs.append(selectedFile)
                     break
                 }
@@ -106,6 +107,7 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
     private func initValue()
     {
         nevoOtaView.backButton.enabled = true
+        isTransferring = false
     }
     
     //upload button function
