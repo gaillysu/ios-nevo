@@ -74,6 +74,9 @@
 		074B87A61ABFB88C008BD08F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9AD8F93E1A6DF35900F01014 /* Main.storyboard */; };
 		07731E521AA58EFE007F9FD6 /* ReadDailyTrackerInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07731E511AA58EFE007F9FD6 /* ReadDailyTrackerInfo.swift */; };
 		07731E541AA58F27007F9FD6 /* ReadDailyTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07731E531AA58F27007F9FD6 /* ReadDailyTracker.swift */; };
+		079025991B140FBD0049BB06 /* LedLightOnOffNevoRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079025981B140FBD0049BB06 /* LedLightOnOffNevoRequest.swift */; };
+		0790259B1B141A7E0049BB06 /* ReadBatteryLevelNevoRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0790259A1B141A7E0049BB06 /* ReadBatteryLevelNevoRequest.swift */; };
+		0790259D1B141D2A0049BB06 /* BatteryLevelNevoPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0790259C1B141D2A0049BB06 /* BatteryLevelNevoPacket.swift */; };
 		079EED2D1AB7FDEA00CEA78D /* DailyTrackerInfoNevoPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079EED2C1AB7FDEA00CEA78D /* DailyTrackerInfoNevoPacket.swift */; };
 		079EED2F1AB7FE2D00CEA78D /* DailyTrackerNevoPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079EED2E1AB7FE2D00CEA78D /* DailyTrackerNevoPacket.swift */; };
 		079EED311AB7FE6000CEA78D /* DailyStepsNevoPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079EED301AB7FE6000CEA78D /* DailyStepsNevoPacket.swift */; };
@@ -213,6 +216,9 @@
 		074243291AB2D0A20076F789 /* Firmwares */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Firmwares; path = OTA/Firmwares; sourceTree = "<group>"; };
 		07731E511AA58EFE007F9FD6 /* ReadDailyTrackerInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ReadDailyTrackerInfo.swift; path = Controller/Connection/Request/ReadDailyTrackerInfo.swift; sourceTree = "<group>"; };
 		07731E531AA58F27007F9FD6 /* ReadDailyTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ReadDailyTracker.swift; path = Controller/Connection/Request/ReadDailyTracker.swift; sourceTree = "<group>"; };
+		079025981B140FBD0049BB06 /* LedLightOnOffNevoRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LedLightOnOffNevoRequest.swift; path = Controller/Connection/Request/LedLightOnOffNevoRequest.swift; sourceTree = "<group>"; };
+		0790259A1B141A7E0049BB06 /* ReadBatteryLevelNevoRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ReadBatteryLevelNevoRequest.swift; path = Controller/Connection/Request/ReadBatteryLevelNevoRequest.swift; sourceTree = "<group>"; };
+		0790259C1B141D2A0049BB06 /* BatteryLevelNevoPacket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BatteryLevelNevoPacket.swift; path = Controller/Connection/Packet/BatteryLevelNevoPacket.swift; sourceTree = "<group>"; };
 		079EED2C1AB7FDEA00CEA78D /* DailyTrackerInfoNevoPacket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DailyTrackerInfoNevoPacket.swift; path = Controller/Connection/Packet/DailyTrackerInfoNevoPacket.swift; sourceTree = "<group>"; };
 		079EED2E1AB7FE2D00CEA78D /* DailyTrackerNevoPacket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DailyTrackerNevoPacket.swift; path = Controller/Connection/Packet/DailyTrackerNevoPacket.swift; sourceTree = "<group>"; };
 		079EED301AB7FE6000CEA78D /* DailyStepsNevoPacket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DailyStepsNevoPacket.swift; path = Controller/Connection/Packet/DailyStepsNevoPacket.swift; sourceTree = "<group>"; };
@@ -662,6 +668,7 @@
 				079EED2C1AB7FDEA00CEA78D /* DailyTrackerInfoNevoPacket.swift */,
 				079EED2E1AB7FE2D00CEA78D /* DailyTrackerNevoPacket.swift */,
 				079EED301AB7FE6000CEA78D /* DailyStepsNevoPacket.swift */,
+				0790259C1B141D2A0049BB06 /* BatteryLevelNevoPacket.swift */,
 			);
 			name = Packet;
 			sourceTree = "<group>";
@@ -681,6 +688,8 @@
 				0704C9621AA431EE00F9AE09 /* GetStepsGoalRequest.swift */,
 				07731E511AA58EFE007F9FD6 /* ReadDailyTrackerInfo.swift */,
 				07731E531AA58F27007F9FD6 /* ReadDailyTracker.swift */,
+				079025981B140FBD0049BB06 /* LedLightOnOffNevoRequest.swift */,
+				0790259A1B141A7E0049BB06 /* ReadBatteryLevelNevoRequest.swift */,
 			);
 			name = Request;
 			sourceTree = "<group>";
@@ -867,6 +876,7 @@
 				005FE77B1A8C979800961239 /* alarmClockView.swift in Sources */,
 				59406DF61AB964B2008619EB /* NotificationSetting.swift in Sources */,
 				00C640F41A8D9F4500815CF8 /* MainTabBarController.swift in Sources */,
+				0790259D1B141D2A0049BB06 /* BatteryLevelNevoPacket.swift in Sources */,
 				9A12E5461A931B1F00536729 /* Alert.swift in Sources */,
 				001818321B044F8D005E9F2D /* TutorialPage1View.swift in Sources */,
 				07731E541AA58F27007F9FD6 /* ReadDailyTracker.swift in Sources */,
@@ -874,6 +884,7 @@
 				9A3E57261A80E56E00DFFAE1 /* NevoPacket.swift in Sources */,
 				9AD8F98F1A6E2EE000F01014 /* Profile.swift in Sources */,
 				9AD8F9701A6E041D00F01014 /* ClockView.swift in Sources */,
+				079025991B140FBD0049BB06 /* LedLightOnOffNevoRequest.swift in Sources */,
 				9A2D6C401A9C783800591BDC /* NevoHKImpl.swift in Sources */,
 				9A3B7AB11A947BCB00BDC3C6 /* GetActivityRequest.swift in Sources */,
 				003542B71AA823B000B27381 /* AnimationView.swift in Sources */,
@@ -898,6 +909,7 @@
 				9AD8F93B1A6DF35900F01014 /* Nevo.xcdatamodeld in Sources */,
 				0704C9631AA431EE00F9AE09 /* GetStepsGoalRequest.swift in Sources */,
 				07CC4A291A820A9B008DA749 /* Utility.swift in Sources */,
+				0790259B1B141A7E0049BB06 /* ReadBatteryLevelNevoRequest.swift in Sources */,
 				07731E521AA58EFE007F9FD6 /* ReadDailyTrackerInfo.swift in Sources */,
 				0018183A1B048E12005E9F2D /* TutorialPage6View.swift in Sources */,
 				007DD4BD1A89DF2A00CE7264 /* Page3Controller.swift in Sources */,

@@ -54,7 +54,10 @@ class NevoPacket {
     {
         return DailyTrackerNevoPacket(packets: mPackets)
     }
-    
+    func copy()->BatteryLevelNevoPacket
+    {
+        return BatteryLevelNevoPacket(packets: mPackets)
+    }
     //only two types packets: 2/78 count
     func isVaildPacket() ->Bool
     {

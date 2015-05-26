@@ -15,7 +15,7 @@ The sync controller handles all the very high level connection workflow
 It checks that the firmware is up to date, and handles every steps of the synchronisation process
 */
 
-class SyncController: ConnectionControllerDelegate {
+class SyncController: NSObject,ConnectionControllerDelegate,UIAlertViewDelegate {
     
     //Let's sync every days
     let SYNC_INTERVAL:NSTimeInterval = 1*30*60 //unit is second in iOS, every 30min, do sync
@@ -32,6 +32,7 @@ class SyncController: ConnectionControllerDelegate {
     
     private var savedDailyHistory:[NevoPacket.DailyHistory]=[]
     private var currentDay:UInt8 = 0
+    private var mAlertUpdateFW = false
     
     /**
     A classic singelton pattern
@@ -44,10 +45,11 @@ class SyncController: ConnectionControllerDelegate {
     }
 
     
-  private init() {
+  private override init() {
         mDelegates = []
         mPacketsbuffer = []
         mConnectionController = ConnectionControllerImpl.sharedInstance
+        super.init()
         mConnectionController.setDelegate(self)
     
     }
@@ -145,6 +147,18 @@ class SyncController: ConnectionControllerDelegate {
     func SetNortification(settingArray:[NotificationSetting]) {
         NSLog("SetNortification")
         sendRequest(SetNortificationRequest(settingArray: settingArray))
+    }
+    /**
+    @ledpattern, define Led light pattern, 0 means off all led, 0xFFFFFF means light on all led( include color and white)
+    0x7FF means light on all white led (bit0~bit10), 0x3F0000 means light on all color led (bit16~bit21)
+    other value, light on the related led
+    @motorOnOff, vibrator true or flase
+    */
+    func SetLedOnOffandVibrator(ledpattern:UInt32,  motorOnOff:Bool) {
+        sendRequest(LedLightOnOffNevoRequest(ledpattern: ledpattern, motorOnOff: motorOnOff))
+    }
+    func ReadBatteryLevel() {
+        sendRequest(ReadBatteryLevelNevoRequest())
     }
     //end functions by UI
     
@@ -386,12 +400,63 @@ class SyncController: ConnectionControllerDelegate {
             
         }
     }
+    
+    /**
+    See UIAlertViewDelegate
+    */
+    func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int){
+        
+        if(buttonIndex==1){
+          //GOTO OTA SCREEN
+            for (index, delegate) in enumerate(mDelegates) {
+                if delegate is HomeController
+                {
+                    (delegate as! HomeController).gotoOTAScreen()
+                    break
+                }
+            }
+        }
+    }
+    
+    /**
+    return true, if it is not the first run
+    return false ,if it is running the tutorial screen
+    */
+    func hasLoadHomeController() ->Bool
+    {
+        for (index, delegate) in enumerate(mDelegates) {
+            if delegate is HomeController
+            {
+                return true
+            }
+        }
+        return false
+    }
+
     /**
     See ConnectionControllerDelegate
     */
     func firmwareVersionReceived(whichfirmware:DfuFirmwareTypes, version:NSString)
     {
-        //DONOTHING,NO NEED Forward to UIViewController, UIViewController can use getFirmwareVersion()/getSoftwareVersion()
+        var mcuver = GET_SOFTWARE_VERSION()
+        var blever = GET_FIRMWARE_VERSION()
+        
+        NSLog("Build in software version: \(mcuver), firmware version: \(blever)")
+ 
+        if ((whichfirmware == DfuFirmwareTypes.SOFTDEVICE  && (version as String).toInt() < mcuver)
+          || (whichfirmware == DfuFirmwareTypes.APPLICATION  && (version as String).toInt() < blever))
+            
+        {
+            //for tutorial screen, don't popup update dialog
+            if !mAlertUpdateFW  && hasLoadHomeController()
+            {
+            mAlertUpdateFW = true
+                
+            var alert :UIAlertView = UIAlertView(title: "Firmware Version", message: "Your watch’s software is not up to date. Do you want to update it now ?", delegate: self, cancelButtonTitle: "Cancel")
+            alert.addButtonWithTitle("Upgrade")
+            alert.show()
+            }
+        }
     }
     /**
     See ConnectionController protocol

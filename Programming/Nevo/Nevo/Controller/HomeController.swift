@@ -82,10 +82,9 @@ class HomeController: UIViewController, SyncControllerDelegate ,ButtonManagerCal
     
     /**
     
-    goto profileTest screen.
+    goto OTA screen.
     */
-    func gotoProfileScreen(){
-//        self.performSegueWithIdentifier("Home_profile", sender: self)
+    func gotoOTAScreen(){
         self.performSegueWithIdentifier("Home_nevoOta", sender: self)
     }
 

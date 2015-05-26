@@ -124,6 +124,58 @@ func NSData2NSString(data:NSData) -> NSString {
 }
 
 /**
+Get the FW build-in version by parse the file name
+BLE file: imaze_20150512_v29.hex ,keyword:_v, .hex
+return: 29
+*/
+func GET_FIRMWARE_VERSION() ->Int
+{
+    var buildinFirmwareVersion:Int  = 0
+    var fileArray = GET_FIRMWARE_FILES("Firmwares")
+    for tmpfile in fileArray {
+        var selectedFile = tmpfile as! NSURL
+        var fileName:NSString? = selectedFile.path!.lastPathComponent as NSString
+        var fileExtension:String? = selectedFile.pathExtension
+        
+        if fileExtension == "hex"
+        {
+            var ran:NSRange = fileName!.rangeOfString("_v")
+            var ran2:NSRange = fileName!.rangeOfString(".hex")
+            let string:String = fileName!.substringWithRange(NSRange(location: ran.location + ran.length,length: ran2.location-ran.location-ran.length))
+            buildinFirmwareVersion = string.toInt()!
+            break
+        }
+    }
+
+    return buildinFirmwareVersion
+}
+/**
+Get the FW build-in version by parse the file name
+MCU file: iMaze_v12.bin ,keyword:_v, .bin
+return: 12
+*/
+func GET_SOFTWARE_VERSION() ->Int
+{
+    var buildinSoftwareVersion:Int  = 0
+    var fileArray = GET_FIRMWARE_FILES("Firmwares")
+    for tmpfile in fileArray {
+        var selectedFile = tmpfile as! NSURL
+        var fileName:NSString? = selectedFile.path!.lastPathComponent as NSString
+        var fileExtension:String? = selectedFile.pathExtension
+        
+        if fileExtension == "bin"
+        {
+            var ran:NSRange = fileName!.rangeOfString("_v")
+            var ran2:NSRange = fileName!.rangeOfString(".bin")
+            let string:String = fileName!.substringWithRange(NSRange(location: ran.location + ran.length,length: ran2.location-ran.location-ran.length))
+            buildinSoftwareVersion = string.toInt()!
+            break
+        }
+    }
+    
+    return buildinSoftwareVersion
+}
+/**
 Get or get the resource path of the array
 
 :param: folderName Resource folder name
