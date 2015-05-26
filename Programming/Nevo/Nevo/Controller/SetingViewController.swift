@@ -28,7 +28,8 @@ class SetingViewController: UIViewController,SelectionTypeDelegate,SyncControlle
 
         initNotificationSettingArray()
 
-        sources = [NSLocalizedString("Notifications", comment: ""),NSLocalizedString("Link-Loss Notifications", comment: ""),NSLocalizedString("Firmware Upgrade", comment: "")]
+        sources = [NSLocalizedString("Notifications", comment: ""),NSLocalizedString("Link-Loss Notifications", comment: ""),NSLocalizedString("My nevo", comment: "")]
+        //NSLocalizedString("Firmware Upgrade", comment: "")
     }
 
     override func viewDidAppear(animated: Bool) {

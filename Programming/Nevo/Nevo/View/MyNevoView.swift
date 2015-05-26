@@ -34,10 +34,16 @@ class MyNevoView: UIView {
         var objArray:NSArray = AppTheme.LoadKeyedArchiverName("LatestUpdate") as! NSArray
         update.numberOfLines = 0
         update.lineBreakMode = NSLineBreakMode.ByWordWrapping
-        update.text = NSString(format: "%@ %@", NSLocalizedString("LatestUpdateon",comment: ""),objArray[1] as! String) as String
         update.font = AppTheme.FONT_RALEWAY_LIGHT(mSize: 15)
+        if(objArray.count>0){
+            update.text = NSString(format: "%@ %@", NSLocalizedString("LatestUpdateon",comment: ""),objArray[1] as! String) as String
+        }else{
+            update.text = NSString(format: "%@ %@", NSLocalizedString("LatestUpdateon",comment: ""),"_/_/_") as String
+        }
 
-        UpgradeButton.setTitle("upgrade", forState: UIControlState.Normal)
+
+
+        UpgradeButton.setTitle(NSLocalizedString("upgrade",comment: ""), forState: UIControlState.Normal)
         UpgradeButton.titleLabel?.font = AppTheme.FONT_RALEWAY_LIGHT(mSize: 22)
         UpgradeButton.layer.masksToBounds = true
         UpgradeButton.layer.cornerRadius = 20.0
