@@ -64,6 +64,7 @@
 "reconnection_message"="Reconnect Bluetooth to receive notifications again by pressing and holding the 3rd button for 3 seconds.";
 "3secs"="3 secs";
 "Attention!"="Attention!";
-"otahelp"="Do not interrupt the OTA firmware process. Let the process complete before using app!\nIn case of accidental interruption, begin upgrade again and let it finish completely";
+"otahelp"="Do not interrupt the OTA firmware process. Let the process complete before using app!\nIn case of accidental interruption, begin upgrade again,sometimes need reinstall battery or wait a few minutes,let it finish completely";
 "latestversion"="You have is the\n latest version!";
 "Version:"="Version:";
+"FirmwareAlertMessage"="Your watch’s software is not up to date. Do you want to update it now ?";
