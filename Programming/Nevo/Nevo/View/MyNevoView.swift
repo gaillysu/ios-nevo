@@ -15,7 +15,9 @@ class MyNevoView: UIView {
     @IBOutlet weak var mywatchName: UILabel!
     @IBOutlet weak var progressLabel: UILabel!
     @IBOutlet weak var update: UILabel!
-
+    @IBOutlet weak var batteryImage: UIImageView!
+    @IBOutlet weak var batteryBackground: UIImageView!
+    
     private var mDelegate:ButtonManagerCallBack?
 
     func bulidMyNevoView(delegate:ButtonManagerCallBack){
@@ -28,7 +30,7 @@ class MyNevoView: UIView {
         mywatchName.text = NSLocalizedString("namenevo", comment: "")
         mywatchName.font = AppTheme.FONT_RALEWAY_LIGHT(mSize: 20)
 
-        progressLabel.text = String(format: "%@%c",NSLocalizedString("20", comment: ""),37)
+        progressLabel.text = String(format: "%@%c",0,37)
         progressLabel.font = AppTheme.FONT_RALEWAY_LIGHT(mSize: 18)
 
         var objArray:NSArray = AppTheme.LoadKeyedArchiverName("LatestUpdate") as! NSArray
@@ -40,8 +42,6 @@ class MyNevoView: UIView {
         }else{
             update.text = NSString(format: "%@ %@", NSLocalizedString("LatestUpdateon",comment: ""),"_/_/_") as String
         }
-
-
 
         UpgradeButton.setTitle(NSLocalizedString("upgrade",comment: ""), forState: UIControlState.Normal)
         UpgradeButton.titleLabel?.font = AppTheme.FONT_RALEWAY_LIGHT(mSize: 22)
@@ -60,5 +60,24 @@ class MyNevoView: UIView {
 
     }
 
+    func setBatteryLevelValue(value:Int){
+        var bValue:Float = Float(value)
+        if (value == 0){
+            progressLabel.text = String(format: "0%c",37)
+            bValue = 0
+        }else if (value == 1){
+            progressLabel.text = String(format: "50%c",37)
+            bValue = 0.5
+        }else if (value == 2){
+            progressLabel.text = String(format: "100%c",37)
+            bValue = 1.0
+        }
+
+        var frame:CGRect = batteryImage.frame;
+        batteryImage.clipsToBounds = true
+        //batteryImage.contentMode = UIViewContentMode.Right
+        frame.size.width = CGFloat(bValue) * batteryBackground.bounds.size.width;
+        batteryImage.frame = frame;
+    }
     
 }

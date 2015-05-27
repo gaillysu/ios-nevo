@@ -8,13 +8,18 @@
 
 import UIKit
 
-class MyNevoController: UIViewController,ButtonManagerCallBack {
+class MyNevoController: UIViewController,ButtonManagerCallBack,SyncControllerDelegate {
 
     @IBOutlet var mynevoView: MyNevoView!
+    private var mSyncController:SyncController?
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        mSyncController = SyncController.sharedInstance
+        mSyncController?.startConnect(false, delegate: self)
+        mSyncController?.ReadBatteryLevel()
+        
         mynevoView.bulidMyNevoView(self)
 
     }
@@ -33,6 +38,18 @@ class MyNevoController: UIViewController,ButtonManagerCallBack {
         if(sender.isEqual(mynevoView.UpgradeButton)){
             self.performSegueWithIdentifier("Setting_nevoOta", sender: self)
         }
+
+    }
+
+    // MARK: - SyncControllerDelegate
+    func packetReceived(packet:NevoPacket){
+
+        var thispacket = packet.copy() as BatteryLevelNevoPacket
+        var batteryValue:Int = thispacket.getBatteryLevel()
+        mynevoView.setBatteryLevelValue(batteryValue)
+    }
+
+    func connectionStateChanged(isConnected : Bool){
 
     }
 
