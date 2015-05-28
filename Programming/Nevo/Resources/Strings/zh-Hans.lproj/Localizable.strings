@@ -73,5 +73,11 @@
 "upgrade"="升级";
 "My nevo"="My nevo";
 "Find device"="查找设备";
+"Please waiting..."="请稍等...";
+"UpdateSuccess1"="升级成功";
+"UpdateSuccess2"="升级成功,请打开手表蓝牙.";
+"current FW version"="手表当前固件版本:";
+"latest FW version"="最新固件版本:";
+"are you sure"="您确认升级固件吗?";
 "forgetnevo"="忘记这个nevo";
 "unpairednevo"="你已经忘记nevo的地址";
