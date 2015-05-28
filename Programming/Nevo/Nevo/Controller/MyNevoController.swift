@@ -33,6 +33,11 @@ class MyNevoController: UIViewController,ButtonManagerCallBack,SyncControllerDel
 
 
     func controllManager(sender:AnyObject){
+        if sender.isEqual(mynevoView.animationView?.getNoConnectScanButton()) {
+            NSLog("noConnectScanButton")
+            reconnect()
+        }
+
         if(sender.isEqual(mynevoView.backButton)){
             self.navigationController?.popViewControllerAnimated(true)
         }
