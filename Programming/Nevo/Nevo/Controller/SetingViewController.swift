@@ -202,7 +202,7 @@ class SetingViewController: UIViewController,SelectionTypeDelegate,SyncControlle
         indexPathRow = NSIndexPath(forRow:0, inSection: didIndexPath.section)
         let cell:UITableViewCell = tableView.cellForRowAtIndexPath(indexPathRow)!
 //        cell.textLabel?.textColor = UIColor.whiteColor()
-        cell.selected = true
+        cell.selected = false
     }
 
     func allCellTextColor(tableView:UITableView) {
@@ -249,6 +249,7 @@ class SetingViewController: UIViewController,SelectionTypeDelegate,SyncControlle
                 //self.performSegueWithIdentifier("Setting_nevoOta", sender: self)
                 self.performSegueWithIdentifier("Seting_Mynevo", sender: self)
             }else if indexPath.section == 3{
+                didSelectTableViewCell(tableView, didIndexPath: indexPath)
                 findMydevice()
             }
         }

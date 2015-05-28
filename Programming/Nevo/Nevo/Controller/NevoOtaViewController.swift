@@ -25,6 +25,7 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        UIApplication.sharedApplication().idleTimerDisabled = true
 
         //init the ota
         mNevoOtaController = NevoOtaController(controller: self)
@@ -78,6 +79,10 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
                 nevoOtaView.setLatestVersion(NSLocalizedString("latestversion", comment: ""))
             }
         }
+    }
+
+    override func viewWillDisappear(animated: Bool) {
+        UIApplication.sharedApplication().idleTimerDisabled = false
     }
 
     func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int){

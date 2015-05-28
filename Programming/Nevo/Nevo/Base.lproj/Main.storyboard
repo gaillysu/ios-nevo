@@ -166,6 +166,7 @@
                             <outlet property="mywatchName" destination="bb3-Mq-dnS" id="Wfc-vi-vlU"/>
                             <outlet property="progressLabel" destination="1Et-rF-ckI" id="Uao-51-FDT"/>
                             <outlet property="title" destination="9Yc-5g-ho6" id="qJA-jp-y7A"/>
+                            <outlet property="titleBgView" destination="S7N-3e-PWO" id="KfZ-ii-FTl"/>
                             <outlet property="update" destination="nSz-bJ-Yce" id="Rm5-es-fcR"/>
                         </connections>
                     </view>
@@ -1096,6 +1097,6 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="2Ya-p7-XfV"/>
-        <segue reference="pXY-c9-EIr"/>
+        <segue reference="V30-rJ-nEh"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -9,6 +9,7 @@
 import UIKit
 
 class MyNevoView: UIView {
+    @IBOutlet weak var titleBgView: UIView!
     @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var UpgradeButton: UIButton!
@@ -20,8 +21,12 @@ class MyNevoView: UIView {
     
     private var mDelegate:ButtonManagerCallBack?
 
+    var animationView:AnimationView?
+
     func bulidMyNevoView(delegate:ButtonManagerCallBack){
         mDelegate = delegate
+
+        animationView = AnimationView(frame: self.frame, delegate: delegate)
 
         title.text = NSLocalizedString("My nevo", comment: "")
         title.font = AppTheme.FONT_RALEWAY_LIGHT(mSize: 25)
@@ -63,10 +68,10 @@ class MyNevoView: UIView {
     func setBatteryLevelValue(value:Int){
         var bValue:Float = Float(value)
         if (value == 0){
-            progressLabel.text = String(format: "0%c",37)
+            progressLabel.text = String(format: ">20%c",37)
             bValue = 0
         }else if (value == 1){
-            progressLabel.text = String(format: "50%c",37)
+            progressLabel.text = String(format: "<50%c",37)
             bValue = 0.5
         }else if (value == 2){
             progressLabel.text = String(format: "100%c",37)
