@@ -67,6 +67,9 @@
 		00D0FF731B130A9F00D084C3 /* Nevo660.png in Resources */ = {isa = PBXBuildFile; fileRef = 00D0FF721B130A9F00D084C3 /* Nevo660.png */; };
 		00D0FF771B13184500D084C3 /* MyNevoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D0FF761B13184500D084C3 /* MyNevoView.swift */; };
 		00D4DE921AB141FB0062523D /* NevoPicture960.png in Resources */ = {isa = PBXBuildFile; fileRef = 00D4DE901AB141FB0062523D /* NevoPicture960.png */; };
+		00E2BDE21B16CCD0009C757E /* MBProgressHUD+MJ.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E2BDDE1B16CCD0009C757E /* MBProgressHUD+MJ.m */; };
+		00E2BDE31B16CCD0009C757E /* MBProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 00E2BDDF1B16CCD0009C757E /* MBProgressHUD.bundle */; };
+		00E2BDE41B16CCD0009C757E /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E2BDE11B16CCD0009C757E /* MBProgressHUD.m */; };
 		00E39A981AC27DDC0004E6C1 /* editor.png in Resources */ = {isa = PBXBuildFile; fileRef = 00E39A971AC27DDC0004E6C1 /* editor.png */; };
 		0704C9631AA431EE00F9AE09 /* GetStepsGoalRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0704C9621AA431EE00F9AE09 /* GetStepsGoalRequest.swift */; };
 		074243221AB00F630076F789 /* RealTimeCountSteps.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074243211AB00F630076F789 /* RealTimeCountSteps.swift */; };
@@ -210,6 +213,11 @@
 		00D0FF721B130A9F00D084C3 /* Nevo660.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Nevo660.png; sourceTree = "<group>"; };
 		00D0FF761B13184500D084C3 /* MyNevoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MyNevoView.swift; path = View/MyNevoView.swift; sourceTree = "<group>"; };
 		00D4DE901AB141FB0062523D /* NevoPicture960.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NevoPicture960.png; sourceTree = "<group>"; };
+		00E2BDDD1B16CCD0009C757E /* MBProgressHUD+MJ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MBProgressHUD+MJ.h"; sourceTree = "<group>"; };
+		00E2BDDE1B16CCD0009C757E /* MBProgressHUD+MJ.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MBProgressHUD+MJ.m"; sourceTree = "<group>"; };
+		00E2BDDF1B16CCD0009C757E /* MBProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MBProgressHUD.bundle; sourceTree = "<group>"; };
+		00E2BDE01B16CCD0009C757E /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		00E2BDE11B16CCD0009C757E /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		00E39A971AC27DDC0004E6C1 /* editor.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = editor.png; sourceTree = "<group>"; };
 		0704C9621AA431EE00F9AE09 /* GetStepsGoalRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GetStepsGoalRequest.swift; path = Controller/Connection/Request/GetStepsGoalRequest.swift; sourceTree = "<group>"; };
 		074243211AB00F630076F789 /* RealTimeCountSteps.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RealTimeCountSteps.swift; path = Model/Activity/RealTimeCountSteps.swift; sourceTree = "<group>"; };
@@ -433,6 +441,19 @@
 			path = Model/NotificationType;
 			sourceTree = "<group>";
 		};
+		00E2BDDC1B16CCD0009C757E /* MBProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				00E2BDDD1B16CCD0009C757E /* MBProgressHUD+MJ.h */,
+				00E2BDDE1B16CCD0009C757E /* MBProgressHUD+MJ.m */,
+				00E2BDDF1B16CCD0009C757E /* MBProgressHUD.bundle */,
+				00E2BDE01B16CCD0009C757E /* MBProgressHUD.h */,
+				00E2BDE11B16CCD0009C757E /* MBProgressHUD.m */,
+			);
+			name = MBProgressHUD;
+			path = Frameworks/MBProgressHUD;
+			sourceTree = "<group>";
+		};
 		07BE0CEF1A84A2F8000C4AC7 /* IntelHex2BinConverter */ = {
 			isa = PBXGroup;
 			children = (
@@ -563,6 +584,7 @@
 		9AD8F95A1A6DFE3400F01014 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				00E2BDDC1B16CCD0009C757E /* MBProgressHUD */,
 				9A2D6C3C1A9C717E00591BDC /* NevoHK */,
 				9A2D6C3A1A9C6D9F00591BDC /* HealthKit.framework */,
 				005BC95C1A88B79F006F9E86 /* FXBlurView */,
@@ -786,6 +808,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				00D0FF731B130A9F00D084C3 /* Nevo660.png in Resources */,
+				00E2BDE31B16CCD0009C757E /* MBProgressHUD.bundle in Resources */,
 				074B87A61ABFB88C008BD08F /* Main.storyboard in Resources */,
 				007F79921A878D0B006C89E6 /* Raleway-ExtraLightItalic.ttf in Resources */,
 				007F79901A878D0B006C89E6 /* Raleway-ExtraBoldItalic.ttf in Resources */,
@@ -869,6 +892,7 @@
 				001818301B044E5D005E9F2D /* Page1Controller.swift in Sources */,
 				07BE0CF21A84A2F8000C4AC7 /* IntelHex2BinConverter.m in Sources */,
 				9AD8F96E1A6E03F600F01014 /* HomeView.swift in Sources */,
+				00E2BDE21B16CCD0009C757E /* MBProgressHUD+MJ.m in Sources */,
 				005BC95F1A88B79F006F9E86 /* FXBlurView.m in Sources */,
 				0017199D1AB2EE2E00889FED /* NevoOtaView.swift in Sources */,
 				9AD8F9A01A6E47B400F01014 /* SetGoalRequest.swift in Sources */,
@@ -880,6 +904,7 @@
 				9A12E5461A931B1F00536729 /* Alert.swift in Sources */,
 				001818321B044F8D005E9F2D /* TutorialPage1View.swift in Sources */,
 				07731E541AA58F27007F9FD6 /* ReadDailyTracker.swift in Sources */,
+				00E2BDE41B16CCD0009C757E /* MBProgressHUD.m in Sources */,
 				07C59F281A8C618A00D65C84 /* WriteSettingRequest.swift in Sources */,
 				9A3E57261A80E56E00DFFAE1 /* NevoPacket.swift in Sources */,
 				9AD8F98F1A6E2EE000F01014 /* Profile.swift in Sources */,

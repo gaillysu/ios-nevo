@@ -11,5 +11,6 @@
 
 #import "IntelHex2BinConverter.h"
 #import "FXBlurView.h"
+#import "MBProgressHUD+MJ.h"
 
 #endif
