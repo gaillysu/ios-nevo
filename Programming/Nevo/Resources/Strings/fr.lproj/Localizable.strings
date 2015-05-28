@@ -65,7 +65,7 @@
 "3secs"="3 secs";
 "Attention!"="Attention!";
 "otahelp"="Do not interrupt the OTA firmware process. Let the process complete before using app!\nIn case of accidental interruption, begin upgrade again,sometimes need reinstall battery or wait a few minutes,let it finish completely";
-"latestversion"="You have is the\n latest version!";
+"latestversion"="The latest version already!";
 "Version:"="Version:";
 "FirmwareAlertMessage"="Your watch’s software is not up to date. Do you want to update it now ?";
 "LatestUpdateon"="Latest Update\non";
