@@ -44,7 +44,9 @@ class AnimationView: UIView {
             self.addSubview(mNoConnectionView!)
 
             let message:UILabel = UILabel(frame: CGRectMake(0, 0, 300, 90))
+            message.frame = AppTheme.getLabelSize(NSLocalizedString("nevoConnected", comment: ""), andObject: message.frame);
             message.center = CGPointMake(self.frame.size.width/2, mNoConnectionView!.frame.size.height/2.0-120)
+            message.font = AppTheme.FONT_RALEWAY_LIGHT(mSize: 18)
             message.text = NSLocalizedString("nevoConnected", comment: "")
             message.numberOfLines = 0
             message.lineBreakMode = NSLineBreakMode.ByWordWrapping
@@ -61,6 +63,8 @@ class AnimationView: UIView {
             mNoConnectScanButton = UIButton.buttonWithType(UIButtonType.Custom) as? UIButton
             mNoConnectScanButton?.frame = CGRectMake(0, 0, 160, 160)
             mNoConnectScanButton?.center = CGPointMake(mNoConnectionView!.frame.size.width/2.0, mNoConnectionView!.frame.size.height/2.0)
+
+            mNoConnectScanButton?.titleLabel?.font = AppTheme.FONT_RALEWAY_LIGHT(mSize: 18)
             mNoConnectScanButton?.setTitle(NSLocalizedString("Connect", comment: ""), forState: UIControlState.Normal)
             mNoConnectScanButton?.backgroundColor = UIColor.clearColor()
             mNoConnectScanButton?.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
@@ -68,13 +72,38 @@ class AnimationView: UIView {
             mNoConnectionView?.addSubview(mNoConnectScanButton!)
 
             let message2:UILabel = UILabel(frame: CGRectMake(0, 0, 300, 90))
-            message2.center = CGPointMake(self.frame.size.width/2, mNoConnectionView!.frame.size.height/2.0+120)
+            message2.center = CGPointMake(self.frame.size.width/2, mNoConnectImage!.frame.origin.y+mNoConnectImage!.frame.size.height+55)
+            message2.frame = AppTheme.getLabelSize(NSLocalizedString("pushHoldButton", comment: ""), andObject: message2.frame);
+            message2.font = AppTheme.FONT_RALEWAY_LIGHT(mSize: 18)
             message2.text = NSLocalizedString("pushHoldButton", comment: "")
             message2.numberOfLines = 0
             message2.lineBreakMode = NSLineBreakMode.ByWordWrapping
             message2.textAlignment = NSTextAlignment.Center
             message2.textColor = UIColor.blackColor()
             mNoConnectionView?.addSubview(message2)
+
+            let ForgotButton:UIButton = UIButton.buttonWithType(UIButtonType.Custom) as! UIButton
+            ForgotButton.frame = CGRectMake(0, 0, 120, 40)
+            ForgotButton.center = CGPointMake(mNoConnectionView!.frame.size.width/2.0, mNoConnectionView!.frame.size.height-120)
+            ForgotButton.setTitle(NSLocalizedString("forgetnevo", comment: ""), forState: UIControlState.Normal)
+            ForgotButton.titleLabel?.font = AppTheme.FONT_RALEWAY_LIGHT(mSize: 15)
+            ForgotButton.backgroundColor = UIColor.clearColor()
+            ForgotButton.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
+            ForgotButton.addTarget(self, action: Selector("noConnectButtonAction:"), forControlEvents: UIControlEvents.TouchUpInside)
+            ForgotButton.tag = 1450
+            ForgotButton.layer.masksToBounds = true
+            ForgotButton.layer.cornerRadius = 20.0
+            ForgotButton.layer.borderWidth = 2;//边框宽度
+            ForgotButton.layer.borderColor = AppTheme.NEVO_SOLAR_YELLOW().CGColor
+            mNoConnectionView!.addSubview(ForgotButton)
+
+            if(AppTheme.GET_IS_iPhone4S()){
+                message.frame = CGRectMake(self.frame.size.width/2-150, 90, 300, message.frame.size.height)
+                mNoConnectImage?.frame = CGRectMake(mNoConnectionView!.frame.size.width/2.0-60, message.frame.size.height+message.frame.origin.y, 120, 120)
+                mNoConnectScanButton?.frame = CGRectMake(mNoConnectionView!.frame.size.width/2.0-60, message.frame.size.height+message.frame.origin.y, 120, 120)
+                message2.frame = CGRectMake(self.frame.size.width/2-150, mNoConnectImage!.frame.size.height+mNoConnectImage!.frame.origin.y+10, 300, message.frame.size.height)
+            }
+
 
         } else {
 
@@ -94,10 +123,14 @@ class AnimationView: UIView {
     func noConnectButtonAction(sender:UIButton){
         //forgot the address to reconnect
         NSLog("noConnectScanButton")
-        NSLog("forgot the watch address before \(NSUserDefaults.standardUserDefaults().objectForKey(ConnectionControllerImpl.Const.SAVED_ADDRESS_KEY))")
-        NSUserDefaults.standardUserDefaults().removeObjectForKey(ConnectionControllerImpl.Const.SAVED_ADDRESS_KEY)
-        //CallBack StepGoalSetingController
-        mDelegate?.controllManager(sender as UIButton)
+        if (sender.tag == 1450){
+            NSLog("forgot the watch address before \(NSUserDefaults.standardUserDefaults().objectForKey(ConnectionControllerImpl.Const.SAVED_ADDRESS_KEY))")
+            NSUserDefaults.standardUserDefaults().removeObjectForKey(ConnectionControllerImpl.Const.SAVED_ADDRESS_KEY)
+            MBProgressHUD.showSuccess(NSLocalizedString("unpairednevo",comment: ""))
+        }else{
+            //CallBack StepGoalSetingController
+            mDelegate?.controllManager(sender as UIButton)
+        }
     }
     
     func RotatingAnimationObject(sender:UIImageView) {
