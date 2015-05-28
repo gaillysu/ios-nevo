@@ -151,5 +151,25 @@ class AppTheme {
         return []
     }
 
+    /**
+    Calculate the height of the Label to display text
+
+    :param: string Need to display the source text
+    :param: object The control position and size the source object
+
+    :returns: Returns the modified position and size of the source object
+    */
+    class func getLabelSize(string:String , andObject object:CGRect) ->CGRect{
+        var frame:CGRect = object
+        let loclString:NSString = string as NSString
+        var labelSize:CGSize = loclString.boundingRectWithSize(CGSizeMake(frame.size.width, 1000), options: NSStringDrawingOptions.UsesLineFragmentOrigin|NSStringDrawingOptions.UsesFontLeading, attributes: [NSFontAttributeName:AppTheme.FONT_RALEWAY_LIGHT(mSize: 18)], context: nil).size
+        labelSize.height = ceil(labelSize.height);
+        labelSize.width = ceil(labelSize.width);
+
+        var messageframe:CGRect  = frame;
+        messageframe.size.height = labelSize.height;
+        frame = messageframe;
+        return frame
+    }
 
 }
