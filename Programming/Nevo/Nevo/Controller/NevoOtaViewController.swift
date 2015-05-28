@@ -71,8 +71,10 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
             if( currentSoftwareVersion.toInt() < buildinSoftwareVersion
                || currentFirmwareVersion.toInt() < buildinFirmwareVersion )
             {
-                var alert :UIAlertView = UIAlertView(title: "Firmware Version", message: "the nevo Firmware version:\(currentFirmwareVersion),\(currentSoftwareVersion). the lastest version:\(buildinFirmwareVersion),\(buildinSoftwareVersion). Do you want Upgrade?", delegate: self, cancelButtonTitle: "Cancel")
-                alert.addButtonWithTitle("Upgrade")
+                var updatemsg:String = NSLocalizedString("current FW version", comment: "") + "(\(currentFirmwareVersion),\(currentSoftwareVersion))," + NSLocalizedString("latest FW version", comment: "") + "(\(buildinFirmwareVersion),\(buildinSoftwareVersion)). " + NSLocalizedString("are you sure", comment: "")
+                
+                var alert :UIAlertView = UIAlertView(title: NSLocalizedString("Firmware Upgrade", comment: ""), message: updatemsg, delegate: self, cancelButtonTitle: NSLocalizedString("Cancel", comment: ""))
+                alert.addButtonWithTitle(NSLocalizedString("Enter", comment: ""))
                 alert.show()
             }else{
 
@@ -81,15 +83,21 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
         }
     }
 
-    override func viewWillDisappear(animated: Bool) {
+    override func viewDidDisappear(animated: Bool) {
         UIApplication.sharedApplication().idleTimerDisabled = false
+        if (!self.isTransferring)
+        {mNevoOtaController!.reset(true)}
     }
-
+    
     func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int){
     
         if(buttonIndex==1){
             currentIndex = 0
             nevoOtaView.tipTextView()
+            var dispatchTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, Int64(5.0 * Double(NSEC_PER_SEC)))
+            dispatch_after(dispatchTime, dispatch_get_main_queue(), {
+                self.nevoOtaView.closeTipView()
+            })
             self.uploadPressed()
         }
     }
@@ -99,11 +107,7 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
         // Dispose of any resources that can be recreated.
     }
     
-    override func viewDidDisappear(animated: Bool) {
-        super.viewDidDisappear(animated)
-        if (!self.isTransferring)
-        {mNevoOtaController!.reset(true)}
-    }
+    
 
     override func viewDidAppear(animated: Bool) {
         mNevoOtaController!.setConnectControllerDelegate2Self()
@@ -146,7 +150,7 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
         }
         else {
             nevoOtaView.setProgress(0.0)
-            self.nevoOtaView.setLatestVersion("Please wait...")
+            self.nevoOtaView.setLatestVersion(NSLocalizedString("Please waiting...", comment: ""))
             isTransferring = true
             //when doing OTA, disable Cancel/Back button, enable them by callback function invoke initValue()/checkConnection()
             nevoOtaView.backButton.enabled = false
@@ -188,10 +192,10 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
             self.currentIndex = self.currentIndex + 1
             if self.currentIndex == self.firmwareURLs.count
             {
-                var message = "Successful!,pls open Nevo's bluetooth."
-                if self.enumFirmwareType == DfuFirmwareTypes.SOFTDEVICE
+                var message = NSLocalizedString("UpdateSuccess1", comment: "")
+                if self.enumFirmwareType == DfuFirmwareTypes.APPLICATION
                 {
-                    message = "Successful!"
+                    message = NSLocalizedString("UpdateSuccess2", comment: "")
                 }
                 var alert :UIAlertView = UIAlertView(title: "Firmware Upgrade", message: message, delegate: nil, cancelButtonTitle: "OK")
                 alert.show()

@@ -73,3 +73,9 @@
 "upgrade"="升级";
 "My nevo"="My nevo";
 "Find device"="查找設備";
+"Please waiting..."="請稍等...";
+"UpdateSuccess1"="升級成功";
+"UpdateSuccess2"="升級成功,請打開手錶藍牙.";
+"current FW version"="手錶當前固件版本:";
+"latest FW version"="最新固件版本:";
+"are you sure"="您確認升級固件嗎?";

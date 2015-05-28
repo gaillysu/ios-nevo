@@ -73,3 +73,9 @@
 "upgrade"="Upgrade";
 "My nevo"="My nevo";
 "Find device"="Find device";
+"Please waiting..."="Please waiting...";
+"UpdateSuccess1"="Update Successfully";
+"UpdateSuccess2"="Update Successfully,please open your Nevo bluetooth.";
+"current FW version"="the nevo current firmware version:";
+"latest FW version"="the latest firmware version:";
+"are you sure"="Do you want to upgrade it now ?";
