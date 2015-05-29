@@ -178,7 +178,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uAd-gm-FQI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-341" y="4622"/>
+            <point key="canvasLocation" x="39" y="4318"/>
         </scene>
         <!--Nevo Ota View Controller-->
         <scene sceneID="iDy-Jj-27q">
@@ -260,7 +260,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aUP-8E-Rim" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-341" y="5418"/>
+            <point key="canvasLocation" x="-305" y="5114"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="qEP-IN-OCQ">
@@ -751,6 +751,7 @@
                         <outlet property="notificationList" destination="h7L-SF-lkB" id="8vS-ge-L65"/>
                         <segue destination="Dq6-9y-wmH" kind="push" identifier="EnterNotification" id="Qx8-3M-iWu"/>
                         <segue destination="fee-16-kvl" kind="push" identifier="Seting_Mynevo" id="rhB-Pu-PbV"/>
+                        <segue destination="zby-vn-Q4p" kind="push" identifier="Seting_Help" id="li4-ag-3TS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QO6-tg-aH2" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -935,6 +936,89 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9sd-fb-e0o" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="555" y="4318"/>
+        </scene>
+        <!--Help View Controller-->
+        <scene sceneID="Fhu-6V-Qrf">
+            <objects>
+                <viewController id="zby-vn-Q4p" customClass="HelpViewController" customModule="Nevo" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ip1-ei-ac4"/>
+                        <viewControllerLayoutGuide type="bottom" id="jAQ-8E-eyb"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="MWb-DT-vTw" customClass="HelpView" customModule="Nevo" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZQZ-1b-wEe">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="85"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yFN-ur-OLn">
+                                        <rect key="frame" x="8" y="14" width="58" height="58"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="58" id="AIh-nZ-DYC"/>
+                                        </constraints>
+                                        <state key="normal" image="backIcon">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="ButtonAction:" destination="MWb-DT-vTw" eventType="touchUpInside" id="W6s-XN-Yhj"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Help" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NUt-nr-kHB">
+                                        <rect key="frame" x="70" y="14" width="180" height="58"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="180" id="qhI-u0-WWd"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.18823529410000001" green="0.18823529410000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="yFN-ur-OLn" firstAttribute="bottom" secondItem="NUt-nr-kHB" secondAttribute="bottom" id="2my-Hj-scS"/>
+                                    <constraint firstItem="yFN-ur-OLn" firstAttribute="centerY" secondItem="NUt-nr-kHB" secondAttribute="centerY" id="HJi-9H-sKy"/>
+                                    <constraint firstItem="NUt-nr-kHB" firstAttribute="centerX" secondItem="ZQZ-1b-wEe" secondAttribute="centerX" id="WlW-PK-BGc"/>
+                                    <constraint firstItem="yFN-ur-OLn" firstAttribute="leading" secondItem="ZQZ-1b-wEe" secondAttribute="leadingMargin" id="Wub-Sf-laj"/>
+                                    <constraint firstItem="NUt-nr-kHB" firstAttribute="leading" secondItem="yFN-ur-OLn" secondAttribute="trailing" constant="4" id="Yev-00-g3S"/>
+                                    <constraint firstItem="NUt-nr-kHB" firstAttribute="top" secondItem="yFN-ur-OLn" secondAttribute="top" id="ckC-i8-kdv"/>
+                                    <constraint firstItem="yFN-ur-OLn" firstAttribute="top" secondItem="ZQZ-1b-wEe" secondAttribute="top" constant="14" id="pux-aj-dgg"/>
+                                </constraints>
+                            </view>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GFo-D4-Zku">
+                                <rect key="frame" x="0.0" y="85" width="320" height="483"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="delegate" destination="zby-vn-Q4p" id="Mvm-5O-N49"/>
+                                </connections>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="ZQZ-1b-wEe" firstAttribute="leading" secondItem="GFo-D4-Zku" secondAttribute="leading" id="8Lo-N2-Lt0"/>
+                            <constraint firstItem="ZQZ-1b-wEe" firstAttribute="trailing" secondItem="GFo-D4-Zku" secondAttribute="trailing" id="EtK-zc-Ip3"/>
+                            <constraint firstItem="ZQZ-1b-wEe" firstAttribute="top" secondItem="MWb-DT-vTw" secondAttribute="top" id="bX9-JM-u9N"/>
+                            <constraint firstItem="GFo-D4-Zku" firstAttribute="bottom" secondItem="jAQ-8E-eyb" secondAttribute="top" id="eIe-CP-YqP"/>
+                            <constraint firstItem="ZQZ-1b-wEe" firstAttribute="leading" secondItem="MWb-DT-vTw" secondAttribute="leading" id="grt-N0-Vsf"/>
+                            <constraint firstAttribute="bottom" secondItem="ZQZ-1b-wEe" secondAttribute="bottom" constant="483" id="oer-s3-wGh"/>
+                            <constraint firstAttribute="trailing" secondItem="ZQZ-1b-wEe" secondAttribute="trailing" id="v8t-Ml-Q7d"/>
+                            <constraint firstItem="GFo-D4-Zku" firstAttribute="top" secondItem="ZQZ-1b-wEe" secondAttribute="bottom" id="vgl-gh-2Ep"/>
+                        </constraints>
+                        <connections>
+                            <outlet property="backButton" destination="yFN-ur-OLn" id="Of2-OS-Tov"/>
+                            <outlet property="helpWebView" destination="GFo-D4-Zku" id="B9R-OM-I7e"/>
+                            <outlet property="title" destination="NUt-nr-kHB" id="oa0-jf-idL"/>
+                            <outlet property="titleBgView" destination="ZQZ-1b-wEe" id="VUM-4U-6rH"/>
+                        </connections>
+                    </view>
+                    <navigationItem key="navigationItem" id="gHu-8R-FcQ"/>
+                    <connections>
+                        <outlet property="helpView" destination="MWb-DT-vTw" id="t6b-Un-WaJ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Q0x-9f-lO9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1140" y="4318"/>
         </scene>
         <!--Clock-->
         <scene sceneID="ufC-wZ-h7g">

@@ -71,6 +71,9 @@
 		00E2BDE31B16CCD0009C757E /* MBProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 00E2BDDF1B16CCD0009C757E /* MBProgressHUD.bundle */; };
 		00E2BDE41B16CCD0009C757E /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E2BDE11B16CCD0009C757E /* MBProgressHUD.m */; };
 		00E39A981AC27DDC0004E6C1 /* editor.png in Resources */ = {isa = PBXBuildFile; fileRef = 00E39A971AC27DDC0004E6C1 /* editor.png */; };
+		00E5CFD41B17F81F00D1F829 /* help in Resources */ = {isa = PBXBuildFile; fileRef = 00E5CFD31B17F81F00D1F829 /* help */; };
+		00E5CFD61B17FB7300D1F829 /* HelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E5CFD51B17FB7300D1F829 /* HelpViewController.swift */; };
+		00E5CFD81B18053100D1F829 /* HelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E5CFD71B18053100D1F829 /* HelpView.swift */; };
 		0704C9631AA431EE00F9AE09 /* GetStepsGoalRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0704C9621AA431EE00F9AE09 /* GetStepsGoalRequest.swift */; };
 		074243221AB00F630076F789 /* RealTimeCountSteps.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074243211AB00F630076F789 /* RealTimeCountSteps.swift */; };
 		0742432A1AB2D0A20076F789 /* Firmwares in Resources */ = {isa = PBXBuildFile; fileRef = 074243291AB2D0A20076F789 /* Firmwares */; };
@@ -219,6 +222,9 @@
 		00E2BDE01B16CCD0009C757E /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		00E2BDE11B16CCD0009C757E /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		00E39A971AC27DDC0004E6C1 /* editor.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = editor.png; sourceTree = "<group>"; };
+		00E5CFD31B17F81F00D1F829 /* help */ = {isa = PBXFileReference; lastKnownFileType = folder; path = help; sourceTree = "<group>"; };
+		00E5CFD51B17FB7300D1F829 /* HelpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HelpViewController.swift; path = Controller/HelpViewController.swift; sourceTree = "<group>"; };
+		00E5CFD71B18053100D1F829 /* HelpView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HelpView.swift; path = View/HelpView.swift; sourceTree = "<group>"; };
 		0704C9621AA431EE00F9AE09 /* GetStepsGoalRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GetStepsGoalRequest.swift; path = Controller/Connection/Request/GetStepsGoalRequest.swift; sourceTree = "<group>"; };
 		074243211AB00F630076F789 /* RealTimeCountSteps.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RealTimeCountSteps.swift; path = Model/Activity/RealTimeCountSteps.swift; sourceTree = "<group>"; };
 		074243291AB2D0A20076F789 /* Firmwares */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Firmwares; path = OTA/Firmwares; sourceTree = "<group>"; };
@@ -356,6 +362,7 @@
 		007F79731A878D0B006C89E6 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				00E5CFD31B17F81F00D1F829 /* help */,
 				00A773901A88562F0018E121 /* Strings */,
 				007F79741A878D0B006C89E6 /* Font */,
 				007F79881A878D0B006C89E6 /* image */,
@@ -614,6 +621,7 @@
 				00A2286F1AA551A400360C36 /* SetingViewController.swift */,
 				00A2287D1AA57F1A00360C36 /* EnterNotificationController.swift */,
 				00AB7AF81B0989D10090E334 /* MyNevoController.swift */,
+				00E5CFD51B17FB7300D1F829 /* HelpViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -643,6 +651,7 @@
 				9A3B7AAE1A9450D000BDC3C6 /* AppTheme.swift */,
 				003542B61AA823B000B27381 /* AnimationView.swift */,
 				00D0FF761B13184500D084C3 /* MyNevoView.swift */,
+				00E5CFD71B18053100D1F829 /* HelpView.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -824,6 +833,7 @@
 				007F798B1A878D0B006C89E6 /* Raleway-Black.ttf in Resources */,
 				007F79991A878D0B006C89E6 /* Raleway-SemiBold.ttf in Resources */,
 				00B427341AC50AAE00787C58 /* TableListCell.xib in Resources */,
+				00E5CFD41B17F81F00D1F829 /* help in Resources */,
 				007F79941A878D0B006C89E6 /* Raleway-Light.ttf in Resources */,
 				005BC9561A889F14006F9E86 /* NevoPicture.png in Resources */,
 				007F79961A878D0B006C89E6 /* Raleway-Medium.ttf in Resources */,
@@ -923,6 +933,8 @@
 				9A3E57251A80E56E00DFFAE1 /* NevoProfile.swift in Sources */,
 				008F39711B0EE0BF00698F1B /* NotificationTypeCell.swift in Sources */,
 				005350BC1A8B4C1200BF289D /* StepGoalSetingView.swift in Sources */,
+				00E5CFD81B18053100D1F829 /* HelpView.swift in Sources */,
+				00E5CFD61B17FB7300D1F829 /* HelpViewController.swift in Sources */,
 				001818391B048E12005E9F2D /* TutorialPage5View.swift in Sources */,
 				007DD4BB1A89DDC000CE7264 /* Page2Controller.swift in Sources */,
 				003542B11AA7F69E00B27381 /* EnterNotificationView.swift in Sources */,

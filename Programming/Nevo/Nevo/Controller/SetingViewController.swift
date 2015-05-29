@@ -28,7 +28,7 @@ class SetingViewController: UIViewController,SelectionTypeDelegate,SyncControlle
 
         initNotificationSettingArray()
 
-        sources = [NSLocalizedString("Notifications", comment: ""),NSLocalizedString("Link-Loss Notifications", comment: ""),NSLocalizedString("My nevo", comment: ""),NSLocalizedString("Find device", comment: "")]
+        sources = [NSLocalizedString("Notifications", comment: ""),NSLocalizedString("Link-Loss Notifications", comment: ""),NSLocalizedString("My nevo", comment: ""),NSLocalizedString("Find device", comment: ""),NSLocalizedString("Help", comment: "")]
         //NSLocalizedString("Firmware Upgrade", comment: "")
     }
 
@@ -239,18 +239,19 @@ class SetingViewController: UIViewController,SelectionTypeDelegate,SyncControlle
         }else if indexPath.section == 1 {
             NSLog("\(indexPath)")
         }else{
-            //didSelectTableViewCell(tableView, didIndexPath: indexPath)
 
             if selectedB {
                 deleteRowsAtIndexPaths(tableView, indexPath: indexPath)
             }
 
             if indexPath.section == 2{
-                //self.performSegueWithIdentifier("Setting_nevoOta", sender: self)
                 self.performSegueWithIdentifier("Seting_Mynevo", sender: self)
             }else if indexPath.section == 3{
                 didSelectTableViewCell(tableView, didIndexPath: indexPath)
                 findMydevice()
+            }else if (indexPath.section == 4){
+                self.performSegueWithIdentifier("Seting_Help", sender: self)
+                
             }
         }
     }
