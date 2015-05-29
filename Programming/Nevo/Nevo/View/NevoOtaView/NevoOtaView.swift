@@ -168,6 +168,7 @@ class NevoOtaView: UIView {
     private var watchVersion:UILabel?//Display watch MCU and BLE version number
     private var OTAprogressView:OTAProgress?//OTA upgrade progress bar object
     var progresValue:CGFloat = 0.0//OTA upgrade progress bar default value
+    var ReUpgradeButton:UIButton?
     
     func buildView(delegate:ButtonManagerCallBack,otacontroller:NevoOtaController) {
         mDelegate = delegate
@@ -193,6 +194,20 @@ class NevoOtaView: UIView {
         OTAprogressView?.frame = CGRectMake(UIScreen.mainScreen().bounds.width/2.0-(UIScreen.mainScreen().bounds.width-50)/2.0, watchVersion!.frame.origin.y+60, UIScreen.mainScreen().bounds.width-50, UIScreen.mainScreen().bounds.width-50)
         OTAprogressView?.setProgress(progresValue)
         self.layer.addSublayer(OTAprogressView)
+
+        ReUpgradeButton = UIButton.buttonWithType(UIButtonType.Custom) as? UIButton
+        ReUpgradeButton!.frame = CGRectMake(0, 0, 120, 40)
+        ReUpgradeButton!.center = CGPointMake(self.frame.size.width/2.0, OTAprogressView!.frame.size.height+OTAprogressView!.frame.origin.y+40)
+        ReUpgradeButton!.setTitle(NSLocalizedString("Re-Upgrade", comment: ""), forState: UIControlState.Normal)
+        ReUpgradeButton!.titleLabel?.font = AppTheme.FONT_RALEWAY_LIGHT(mSize: 15)
+        ReUpgradeButton!.backgroundColor = UIColor.clearColor()
+        ReUpgradeButton!.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
+        ReUpgradeButton!.addTarget(self, action: Selector("buttonAction:"), forControlEvents: UIControlEvents.TouchUpInside)
+        ReUpgradeButton!.layer.masksToBounds = true
+        ReUpgradeButton!.layer.cornerRadius = 20.0
+        ReUpgradeButton!.layer.borderWidth = 2;//边框宽度
+        ReUpgradeButton!.layer.borderColor = AppTheme.NEVO_SOLAR_YELLOW().CGColor
+        self.addSubview(ReUpgradeButton!)
     }
 
     @IBAction func buttonAction(sender: AnyObject) {
@@ -243,7 +258,7 @@ class NevoOtaView: UIView {
     func tipTextView(){
         tipView = FXBlurView(frame: CGRectMake(0, 0, self.frame.size.width, self.frame.size.height))
         tipView!.dynamic = false
-        tipView!.blurRadius = 12
+        tipView!.blurRadius = 7
         tipView!.contentMode = UIViewContentMode.Bottom;
         tipView!.tintColor = UIColor.clearColor()
         self.addSubview(tipView!)

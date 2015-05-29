@@ -118,6 +118,7 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
     {
         nevoOtaView.backButton.enabled = true
         isTransferring = false
+        nevoOtaView.ReUpgradeButton?.hidden = false //The process of OTA hide this control
     }
     
     //upload button function
@@ -154,6 +155,7 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
             isTransferring = true
             //when doing OTA, disable Cancel/Back button, enable them by callback function invoke initValue()/checkConnection()
             nevoOtaView.backButton.enabled = false
+            nevoOtaView.ReUpgradeButton?.hidden = true //The process of OTA hide this control
             mNevoOtaController?.performDFUOnFile(selectedFileURL!, firmwareType: enumFirmwareType)
         }
     }
@@ -266,6 +268,9 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
         if (sender.isEqual(nevoOtaView.backButton)) {
             NSLog("back2Home")
             self.dismissViewControllerAnimated(true, completion: nil)
+        }
+
+        if(sender.isEqual(nevoOtaView.ReUpgradeButton)){
         }
 
     }
