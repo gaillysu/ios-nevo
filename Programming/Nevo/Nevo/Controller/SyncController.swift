@@ -321,7 +321,7 @@ class SyncController: NSObject,ConnectionControllerDelegate,UIAlertViewDelegate 
                     if savedDailyHistory[Int(currentDay)].HourlySteps[i] > 0
                     {
                     //only today 's current hourly can do update!!!, due to current hourly not end
-                    hk.writeDataPoint(HourlySteps(numberOfSteps: savedDailyHistory[Int(currentDay)].HourlySteps[i],date: savedDailyHistory[Int(currentDay)].Date,hour:i,update:dd.hour == i && dd.year == dd2.year && dd.month == dd2.month && dd.day == dd2.day), resultHandler: { (result, error) -> Void in
+                    hk.writeDataPoint(HourlySteps(numberOfSteps: savedDailyHistory[Int(currentDay)].HourlySteps[i],date: savedDailyHistory[Int(currentDay)].Date,hour:i,update: dd.year == dd2.year && dd.month == dd2.month && dd.day == dd2.day), resultHandler: { (result, error) -> Void in
                         if (result != true) {
                             NSLog("Save Hourly steps error\(i),\(error)")
                         }
