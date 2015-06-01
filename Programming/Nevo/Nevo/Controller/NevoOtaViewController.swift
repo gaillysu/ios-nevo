@@ -252,11 +252,12 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
     
     func checkConnection() {
         
-        if mNevoOtaController != nil && !(mNevoOtaController!.isConnected()) {
+        if (mNevoOtaController != nil && !(mNevoOtaController!.isConnected() ) || isTransferring) {
             //disable upPress button
-
+            nevoOtaView.ReUpgradeButton?.hidden = true
         }else{
             // enable upPress button
+            nevoOtaView.ReUpgradeButton?.hidden = false
         }
         
     }
@@ -271,6 +272,40 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
         }
 
         if(sender.isEqual(nevoOtaView.ReUpgradeButton)){
+            
+            if(mNevoOtaController!.isConnected())
+            {
+                var fileArray = GET_FIRMWARE_FILES("Firmwares")
+                for tmpfile in fileArray {
+                    var selectedFile = tmpfile as! NSURL
+                    var fileName:String? = selectedFile.path!.lastPathComponent
+                    var fileExtension:String? = selectedFile.pathExtension
+                    
+                    if fileExtension == "bin"
+                    {
+                        firmwareURLs.append(selectedFile)
+                        break
+                    }
+                }
+                
+                for tmpfile in fileArray {
+                    var selectedFile = tmpfile as! NSURL
+                    var fileName:String? = selectedFile.path!.lastPathComponent
+                    var fileExtension:String? = selectedFile.pathExtension
+                    if fileExtension == "hex"
+                    {
+                        firmwareURLs.append(selectedFile)
+                        break
+                    }
+                }
+                // reUpdate all firmwares
+                currentIndex = 0
+                uploadPressed()
+            }
+            else
+            {
+                // no connected nevo, disable update
+            }
         }
 
     }
