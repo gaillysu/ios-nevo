@@ -85,16 +85,17 @@ class AnimationView: UIView {
             let ForgotButton:UIButton = UIButton.buttonWithType(UIButtonType.Custom) as! UIButton
             ForgotButton.frame = CGRectMake(0, 0, 120, 40)
             ForgotButton.center = CGPointMake(mNoConnectionView!.frame.size.width/2.0, mNoConnectionView!.frame.size.height-120)
+            ForgotButton.setBackgroundImage(UIImage(named: "forget_button"), forState: UIControlState.Normal)
             ForgotButton.setTitle(NSLocalizedString("forgetnevo", comment: ""), forState: UIControlState.Normal)
             ForgotButton.titleLabel?.font = AppTheme.FONT_RALEWAY_LIGHT(mSize: 15)
-            ForgotButton.backgroundColor = AppTheme.NEVO_SOLAR_YELLOW()
+            ForgotButton.backgroundColor = UIColor.clearColor()
             ForgotButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
             ForgotButton.addTarget(self, action: Selector("noConnectButtonAction:"), forControlEvents: UIControlEvents.TouchUpInside)
             ForgotButton.tag = 1450
             ForgotButton.layer.masksToBounds = true
             ForgotButton.layer.cornerRadius = 20.0
-            ForgotButton.layer.borderWidth = 2;//边框宽度
-            ForgotButton.layer.borderColor = AppTheme.NEVO_SOLAR_YELLOW().CGColor
+            //ForgotButton.layer.borderWidth = 2;//边框宽度
+            //ForgotButton.layer.borderColor = AppTheme.NEVO_SOLAR_YELLOW().CGColor
             mNoConnectionView!.addSubview(ForgotButton)
 
             if(AppTheme.GET_IS_iPhone4S()){
