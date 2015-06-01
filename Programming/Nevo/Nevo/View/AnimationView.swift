@@ -87,8 +87,8 @@ class AnimationView: UIView {
             ForgotButton.center = CGPointMake(mNoConnectionView!.frame.size.width/2.0, mNoConnectionView!.frame.size.height-120)
             ForgotButton.setTitle(NSLocalizedString("forgetnevo", comment: ""), forState: UIControlState.Normal)
             ForgotButton.titleLabel?.font = AppTheme.FONT_RALEWAY_LIGHT(mSize: 15)
-            ForgotButton.backgroundColor = UIColor.clearColor()
-            ForgotButton.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
+            ForgotButton.backgroundColor = AppTheme.NEVO_SOLAR_YELLOW()
+            ForgotButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
             ForgotButton.addTarget(self, action: Selector("noConnectButtonAction:"), forControlEvents: UIControlEvents.TouchUpInside)
             ForgotButton.tag = 1450
             ForgotButton.layer.masksToBounds = true
