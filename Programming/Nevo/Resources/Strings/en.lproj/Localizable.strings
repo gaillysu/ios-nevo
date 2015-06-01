@@ -64,7 +64,7 @@
 "reconnection_message"="Reconnect Bluetooth to receive notifications again by pressing and holding the 3rd button for 3 seconds.";
 "3secs"="3 secs";
 "Attention!"="Attention!";
-"otahelp"="Do not interrupt the OTA firmware process. Let the process complete before using the app!\nIn case of accidental interruption, try again. If it doesn't work, try removing the battery and putting it back.";
+"otahelp"="Do not interrupt the OTA firmware process. Let the process complete before using the app!\nIn case of accidental interruption, try again. If it doesn't work, remove nevo battery for 30 secs and reinstall.";
 "latestversion"="Your watch is up to date";
 "Version:"="Version:";
 "FirmwareAlertMessage"="Your watch’s software is not up to date. Do you want to update it now ?";
@@ -74,11 +74,11 @@
 "My nevo"="My nevo";
 "Find device"="Find device";
 "Please waiting..."="Please wait...";
-"UpdateSuccess1"="Update Successfull";
-"UpdateSuccess2"="Update Successfull,please turn your nevo's bluetooth on.";
+"UpdateSuccess1"="Update Successful";
+"UpdateSuccess2"="Update Successful,please turn your nevo's Bluetooth on.";
 "current FW version"="Your nevo is not up to date :";
-"latest FW version"=" Do you want to upgrate it to the latest version ? :";
+"latest FW version"=" Do you want to upgrade it to the latest version ? :";
 "are you sure"="";
 "forgetnevo"="Forget this nevo";
-"unpairednevo"="You have already unpaired with your nevo.";
+"unpairednevo"="You have already unpaired your nevo.";
 "Help"="Help";
