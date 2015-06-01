@@ -22,6 +22,9 @@ class HomeController: UIViewController, SyncControllerDelegate ,ButtonManagerCal
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        sync = SyncController.sharedInstance
+        sync?.startConnect(false, delegate: self)
+        
         homeView.bulidHomeView(self)
 
         let timer:NSTimer = NSTimer.scheduledTimerWithTimeInterval(10, target: self, selector:"timerAction:", userInfo: nil, repeats: true);
@@ -50,6 +53,7 @@ class HomeController: UIViewController, SyncControllerDelegate ,ButtonManagerCal
                sync  = SyncController.sharedInstance
                sync?.startConnect(false, delegate: self)
             }
+            checkConnection()
             //NSLog("We getGoal in home screen")
             //SyncController.sharedInstance.getGoal()
             mVisiable = true
@@ -70,6 +74,11 @@ class HomeController: UIViewController, SyncControllerDelegate ,ButtonManagerCal
     func controllManager(sender:AnyObject) {
         if sender.isEqual(homeView.settingButton) {
             self.performSegueWithIdentifier("Home_Seting", sender: self)
+        }
+        
+        if sender.isEqual(homeView.animationView.getNoConnectScanButton()) {
+            NSLog("noConnectScanButton")
+            reconnect()
         }
     }
 
@@ -116,6 +125,41 @@ class HomeController: UIViewController, SyncControllerDelegate ,ButtonManagerCal
     }
 
     func connectionStateChanged(isConnected: Bool) {
-        //NOTHING to do here
+        //Maybe we just got disconnected, let's check
+        
+        checkConnection()
+    }
+    
+    /**
+    
+    Checks if any device is currently connected
+    
+    */
+    
+    func checkConnection() {
+        
+        if sync != nil && !(sync!.isConnected()) {
+            //We are currently not connected
+            var isView:Bool = false
+            for view in homeView.subviews {
+                let anView:UIView = view as! UIView
+                if anView.isEqual(homeView.animationView.bulibNoConnectView()) {
+                    isView = true
+                }
+            }
+            if !isView {
+                homeView.addSubview(homeView.animationView.bulibNoConnectView())
+                reconnect()
+            }
+        } else {
+            
+            homeView.animationView.endConnectRemoveView()
+        }
+        self.view.bringSubviewToFront(homeView.titleBgView)
+    }
+    
+    func reconnect() {
+        homeView.animationView.RotatingAnimationObject(homeView.animationView.getNoConnectImage()!)
+        sync?.connect()
     }
 }

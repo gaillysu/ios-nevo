@@ -93,15 +93,19 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
     
         if(buttonIndex==1){
             currentIndex = 0
-            nevoOtaView.tipTextView()
-            var dispatchTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, Int64(10.0 * Double(NSEC_PER_SEC)))
-            dispatch_after(dispatchTime, dispatch_get_main_queue(), {
-                self.nevoOtaView.closeTipView()
-            })
+            showTipText()
             self.uploadPressed()
         }
     }
-    
+
+    func showTipText(){
+        nevoOtaView.tipTextView()
+            var dispatchTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, Int64(5.0 * Double(NSEC_PER_SEC)))
+            dispatch_after(dispatchTime, dispatch_get_main_queue(), {
+                self.nevoOtaView.closeTipView()
+            })
+    }
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -300,6 +304,7 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
                 }
                 // reUpdate all firmwares
                 currentIndex = 0
+                showTipText()
                 uploadPressed()
             }
             else
