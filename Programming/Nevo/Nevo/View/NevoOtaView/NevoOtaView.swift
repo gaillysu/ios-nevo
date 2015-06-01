@@ -258,7 +258,7 @@ class NevoOtaView: UIView {
     func tipTextView(){
         tipView = FXBlurView(frame: CGRectMake(0, 0, self.frame.size.width, self.frame.size.height))
         tipView!.dynamic = false
-        tipView!.blurRadius = 7
+        tipView!.blurRadius = 12
         tipView!.contentMode = UIViewContentMode.Bottom;
         tipView!.tintColor = UIColor.clearColor()
         self.addSubview(tipView!)
@@ -269,10 +269,11 @@ class NevoOtaView: UIView {
         cancelTip.tag = 5200
         tipView!.addSubview(cancelTip)
 
-        let textView:UITextView = UITextView(frame: CGRectMake(0, 30, self.frame.size.width, 250))
+        let textView:UITextView = UITextView(frame: CGRectMake(5, 30, self.frame.size.width-10, 250))
         textView.center = CGPointMake(self.frame.size.width/2.0, self.frame.size.height/2.0)
         textView.editable = false
-        textView.font = AppTheme.FONT_RALEWAY_LIGHT(mSize: 23)
+        textView.font = AppTheme.FONT_RALEWAY_LIGHT(mSize: 18)
+        textView.textAlignment = NSTextAlignment.Center
         textView.backgroundColor = UIColor.clearColor()
         textView.text = NSLocalizedString("otahelp",comment:"")
         tipView!.addSubview(textView)
