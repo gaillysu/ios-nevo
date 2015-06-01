@@ -17,8 +17,8 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
     var enumFirmwareType:DfuFirmwareTypes = DfuFirmwareTypes.APPLICATION
     var selectedFileURL:NSURL?
     //save the build-in firmware version, it should be the latest FW version
-    var buildinSoftwareVersion:Int  = 12
-    var buildinFirmwareVersion:Int  = 29
+    var buildinSoftwareVersion:Int  = 0
+    var buildinFirmwareVersion:Int  = 0
     var firmwareURLs:[NSURL] = []
     var currentIndex = 0
     var mNevoOtaController : NevoOtaController?
