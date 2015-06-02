@@ -100,7 +100,7 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
 
     func showTipText(){
         nevoOtaView.tipTextView()
-            var dispatchTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, Int64(5.0 * Double(NSEC_PER_SEC)))
+            var dispatchTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, Int64(10.0 * Double(NSEC_PER_SEC)))
             dispatch_after(dispatchTime, dispatch_get_main_queue(), {
                 self.nevoOtaView.closeTipView()
             })
