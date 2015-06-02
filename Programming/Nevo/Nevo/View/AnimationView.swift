@@ -233,7 +233,7 @@ class CircleProgressView: CAShapeLayer {
             let valueLabel:UILabel = UILabel(frame: CGRectMake(0, 0, 120, 25))
             //valueLabel.backgroundColor = UIColor.greenColor()
             valueLabel.textAlignment = NSTextAlignment.Center
-            valueLabel.font = AppTheme.FONT_RALEWAY_LIGHT(mSize: 15)
+            valueLabel.font = AppTheme.FONT_RALEWAY_LIGHT(mSize: 14)
             valueLabel.tag = index
             self.addSublayer(valueLabel.layer)
             array?.addObject(valueLabel)
