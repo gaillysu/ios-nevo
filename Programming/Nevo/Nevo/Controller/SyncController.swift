@@ -318,10 +318,16 @@ class SyncController: NSObject,ConnectionControllerDelegate,UIAlertViewDelegate 
                 for (var i:Int = 0; i<savedDailyHistory[Int(currentDay)].HourlySteps.count; i++)
                 {
                     //only save vaild hourly steps for every day, include today.
-                    if savedDailyHistory[Int(currentDay)].HourlySteps[i] > 0
+                    //exclude update current hour step, due to current hour not end
+                    //for example: at 10:20~ 10:25AM, walk 100 steps, 10:50~10:59, walk 300 steps
+                    //user can't see the 10:00AM record data at 10:XX clock
+                    //user can see 10:00AM data when 11:20 do a big sync, the value should be 400 steps
+                    //that is to say, user can't see current hour 's step in healthkit, he can see it by waiting one hour
+                    
+                    if savedDailyHistory[Int(currentDay)].HourlySteps[i] > 0 &&
+                    !(i == dd.hour && dd.year == dd2.year && dd.month == dd2.month && dd.day == dd2.day)
                     {
-                    //only today 's current hourly can do update!!!, due to current hourly not end
-                    hk.writeDataPoint(HourlySteps(numberOfSteps: savedDailyHistory[Int(currentDay)].HourlySteps[i],date: savedDailyHistory[Int(currentDay)].Date,hour:i,update: dd.year == dd2.year && dd.month == dd2.month && dd.day == dd2.day), resultHandler: { (result, error) -> Void in
+                        hk.writeDataPoint(HourlySteps(numberOfSteps: savedDailyHistory[Int(currentDay)].HourlySteps[i],date: savedDailyHistory[Int(currentDay)].Date,hour:i,update: false), resultHandler: { (result, error) -> Void in
                         if (result != true) {
                             NSLog("Save Hourly steps error\(i),\(error)")
                         }

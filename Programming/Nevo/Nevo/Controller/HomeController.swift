@@ -22,9 +22,6 @@ class HomeController: UIViewController, SyncControllerDelegate ,ButtonManagerCal
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        sync = SyncController.sharedInstance
-        sync?.startConnect(false, delegate: self)
-        
         homeView.bulidHomeView(self)
 
         let timer:NSTimer = NSTimer.scheduledTimerWithTimeInterval(10, target: self, selector:"timerAction:", userInfo: nil, repeats: true);
