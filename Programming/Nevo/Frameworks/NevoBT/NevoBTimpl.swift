@@ -341,7 +341,10 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
             mDelegate?.firmwareVersionReceived(DfuFirmwareTypes.APPLICATION, version: mFirmwareVersion!)
         }
         else if(characteristic.UUID==CBUUID(string: "00002a28-0000-1000-8000-00805f9b34fb")) {
-            mSoftwareVersion = NSString(data: characteristic.value, encoding: NSUTF8StringEncoding)
+            if(characteristic.value != nil){
+                mSoftwareVersion = NSString(data: characteristic.value, encoding: NSUTF8StringEncoding)
+            }
+
             NSLog("get software version char : \(characteristic.UUID.UUIDString), version : \(mSoftwareVersion)")
             mDelegate?.firmwareVersionReceived(DfuFirmwareTypes.SOFTDEVICE, version: mSoftwareVersion!)
         }
