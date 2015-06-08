@@ -86,7 +86,7 @@ class OTAProgress: CAShapeLayer {
     func setProgress(Sprogress:CGFloat) {
         valueLabel.center = CGPointMake(self.frame.size.width/2.0, self.frame.size.height/2.0)
         valueLabel.font = AppTheme.FONT_RALEWAY_LIGHT(mSize: 50)
-        valueLabel.text = NSString(format: "%.1f%c", Float(Sprogress)*100.0,37) as String
+        valueLabel.text = NSString(format: "%.0f%c", Float(Sprogress)*100.0,37) as String
 
         initialProgress = CGFloat(calculatePercent(progress, toProgress: progressLimit))
         progress = Sprogress
