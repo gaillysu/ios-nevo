@@ -65,7 +65,7 @@
 "3secs"="3 secs";
 "Attention!"="Attention!";
 "otahelp"="Do not interrupt the OTA firmware process. Let the process complete before using the app!\nIn case of accidental interruption, try again. If it doesn't work, remove nevo battery for 30 secs and reinstall.";
-"latestversion"="Your watch is up to date";
+"latestversion"="You have the latest version!";
 "Version:"="Version:";
 "FirmwareAlertMessage"="Your watch’s software is not up to date. Do you want to update it now ?";
 "LatestUpdateon"="Latest Update\non";
