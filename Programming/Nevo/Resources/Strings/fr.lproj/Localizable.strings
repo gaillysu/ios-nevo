@@ -65,7 +65,7 @@
 "3secs"="3 secs";
 "Attention!"="Attention!";
 "otahelp"="Il ne faut pas interrompre la mise a jour micrologicielle. Attendez la fin de la mise à jour avant d'utiliser l'app !\nEn cas d'interruption involontaire, veuillez ré-essayer. Si cela ne fonctionne toujours pas, essayez de retirer puis remettre la batterie de votre montre.";
-"latestversion"="You have the latest version!";
+"latestversion"="Votre montre est à jour";
 "Version:"="Version:";
 "FirmwareAlertMessage"="Le logiciel de votre montre n'est pas à jour. Voulez-vous mettre à jour votre monte ?";
 "LatestUpdateon"="Dernière mise à jour\nle";
