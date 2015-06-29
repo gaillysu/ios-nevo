@@ -194,11 +194,12 @@
 		007F79851A878D0B006C89E6 /* Raleway-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-Thin.ttf"; sourceTree = "<group>"; };
 		007F79861A878D0B006C89E6 /* Raleway-ThinItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-ThinItalic.ttf"; sourceTree = "<group>"; };
 		007F79871A878D0B006C89E6 /* SIL Open Font License.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "SIL Open Font License.txt"; sourceTree = "<group>"; };
+		0086858E1B40D53C0062F544 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
+		0086858F1B40D53C0062F544 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		008F39701B0EE0BF00698F1B /* NotificationTypeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationTypeCell.swift; sourceTree = "<group>"; };
 		00A2286F1AA551A400360C36 /* SetingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SetingViewController.swift; path = Controller/SetingViewController.swift; sourceTree = "<group>"; };
 		00A2287D1AA57F1A00360C36 /* EnterNotificationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EnterNotificationController.swift; path = Controller/EnterNotificationController.swift; sourceTree = "<group>"; };
 		00A773841A8854580018E121 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Main.strings; sourceTree = "<group>"; };
-		00A773851A88546F0018E121 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
 		00A773861A8854750018E121 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		00A773871A88547C0018E121 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Main.strings"; sourceTree = "<group>"; };
 		00A773921A88562F0018E121 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -795,10 +796,10 @@
 			knownRegions = (
 				en,
 				Base,
-				de,
 				fr,
 				"zh-Hans",
 				"zh-Hant",
+				de,
 			);
 			mainGroup = 9AD8F9291A6DF35800F01014;
 			productRefGroup = 9AD8F9331A6DF35900F01014 /* Products */;
@@ -988,6 +989,7 @@
 				00A773931A88562F0018E121 /* fr */,
 				00A773941A88562F0018E121 /* zh-Hans */,
 				00A773951A88562F0018E121 /* zh-Hant */,
+				0086858F1B40D53C0062F544 /* de */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -997,9 +999,9 @@
 			children = (
 				9AD8F93F1A6DF35900F01014 /* Base */,
 				00A773841A8854580018E121 /* fr */,
-				00A773851A88546F0018E121 /* de */,
 				00A773861A8854750018E121 /* zh-Hans */,
 				00A773871A88547C0018E121 /* zh-Hant */,
+				0086858E1B40D53C0062F544 /* de */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -1099,6 +1101,7 @@
 				INFOPLIST_FILE = Nevo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_SWIFT_FLAGS = "-D DEBUG";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Nevo/Nevo-Bridging-Header.h";

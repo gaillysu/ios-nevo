@@ -65,7 +65,7 @@ class TutorialPage1View : UIView {
         titleLabel.center = CGPointMake(self.frame.size.width/2.0, guideImage.frame.origin.y+guideImage.frame.size.height+30)
         titleLabel.textAlignment = NSTextAlignment.Center
         titleLabel.numberOfLines = 0
-        titleLabel.lineBreakMode = NSLineBreakMode.ByCharWrapping
+        titleLabel.lineBreakMode = NSLineBreakMode.ByWordWrapping
         titleLabel.font = TITLE_TEXT_FONT
         titleLabel.text = NSLocalizedString("set_watch_time",comment:"")
         self.addSubview(titleLabel)

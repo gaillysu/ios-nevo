@@ -1,18 +1,72 @@
 
-/* Class = "IBUITabBarItem"; title = "Clock"; ObjectID = "FTX-5o-89V"; */
-"FTX-5o-89V.title" = "Clock";
+/* Class = "UILabel"; text = "95%charged"; ObjectID = "1Et-rF-ckI"; */
+"1Et-rF-ckI.text" = "95%charged";
 
-/* Class = "IBUINavigationItem"; title = "Root View Controller"; ObjectID = "Gfa-JZ-GCB"; */
-"Gfa-JZ-GCB.title" = "Root View Controller";
+/* Class = "UIButton"; normalTitle = "30000"; ObjectID = "6bb-WV-M23"; */
+"6bb-WV-M23.normalTitle" = "30000";
 
-/* Class = "IBUIButton"; normalTitle = "scanAndConnect"; ObjectID = "M47-SL-v6o"; */
-"M47-SL-v6o.normalTitle" = "scanAndConnect";
+/* Class = "UILabel"; text = "My Nevo"; ObjectID = "9Yc-5g-ho6"; */
+"9Yc-5g-ho6.text" = "My Nevo";
 
-/* Class = "IBUINavigationItem"; title = "Root View Controller"; ObjectID = "b9k-cC-IvP"; */
-"b9k-cC-IvP.title" = "Root View Controller";
+/* Class = "UILabel"; text = "Home"; ObjectID = "Agf-W9-MZv"; */
+"Agf-W9-MZv.text" = "Home";
 
-/* Class = "IBUITabBarItem"; title = "Record"; ObjectID = "ba1-Wn-XQe"; */
-"ba1-Wn-XQe.title" = "Record";
+/* Class = "UILabel"; text = "Seting"; ObjectID = "Egi-xc-Nog"; */
+"Egi-xc-Nog.text" = "Seting";
 
-/* Class = "IBUITabBarItem"; title = "Sleep"; ObjectID = "dU5-Ty-hhC"; */
-"dU5-Ty-hhC.title" = "Sleep";
+/* Class = "UILabel"; text = "NotificationType"; ObjectID = "MfW-Ha-iAM"; */
+"MfW-Ha-iAM.text" = "NotificationType";
+
+/* Class = "UILabel"; text = "Help"; ObjectID = "NUt-nr-kHB"; */
+"NUt-nr-kHB.text" = "Help";
+
+/* Class = "UINavigationItem"; title = "Notification"; ObjectID = "QNM-Mj-NtH"; */
+"QNM-Mj-NtH.title" = "Notification";
+
+/* Class = "UILabel"; text = "Goal"; ObjectID = "QWX-c3-B9Z"; */
+"QWX-c3-B9Z.text" = "Goal";
+
+/* Class = "UIButton"; normalTitle = "Sportive"; ObjectID = "QbO-Lj-nW0"; */
+"QbO-Lj-nW0.normalTitle" = "Sportive";
+
+/* Class = "UIButton"; normalTitle = "On"; ObjectID = "R7v-DA-qUy"; */
+"R7v-DA-qUy.normalTitle" = "On";
+
+/* Class = "UINavigationItem"; title = "Clock"; ObjectID = "RXC-Fy-u76"; */
+"RXC-Fy-u76.title" = "Clock";
+
+/* Class = "UILabel"; text = "Firmware Upgrade"; ObjectID = "Urm-TO-Lvz"; */
+"Urm-TO-Lvz.text" = "Firmware Upgrade";
+
+/* Class = "UINavigationItem"; title = "Step"; ObjectID = "VUx-V6-WUk"; */
+"VUx-V6-WUk.title" = "Step";
+
+/* Class = "UILabel"; text = "Name:nevo"; ObjectID = "bb3-Mq-dnS"; */
+"bb3-Mq-dnS.text" = "Name:nevo";
+
+/* Class = "UIButton"; normalTitle = "Moderate"; ObjectID = "dsh-Mg-AqS"; */
+"dsh-Mg-AqS.normalTitle" = "Moderate";
+
+/* Class = "UILabel"; text = "Alarm"; ObjectID = "gKZ-QU-Itl"; */
+"gKZ-QU-Itl.text" = "Alarm";
+
+/* Class = "UINavigationItem"; title = "Alarm"; ObjectID = "h9a-N5-63D"; */
+"h9a-N5-63D.title" = "Alarm";
+
+/* Class = "UIButton"; normalTitle = "Normal"; ObjectID = "kAf-Gx-iId"; */
+"kAf-Gx-iId.normalTitle" = "Normal";
+
+/* Class = "UIButton"; normalTitle = "Off"; ObjectID = "kqu-Qc-xlm"; */
+"kqu-Qc-xlm.normalTitle" = "Off";
+
+/* Class = "UILabel"; text = "Latest Update"; ObjectID = "nSz-bJ-Yce"; */
+"nSz-bJ-Yce.text" = "Latest Update";
+
+/* Class = "UIButton"; normalTitle = "8:30"; ObjectID = "qE2-bj-eX9"; */
+"qE2-bj-eX9.normalTitle" = "8:30";
+
+/* Class = "UILabel"; text = "Steps"; ObjectID = "qmf-z0-xh7"; */
+"qmf-z0-xh7.text" = "Steps";
+
+/* Class = "UIButton"; normalTitle = "Upgrade"; ObjectID = "wBc-NV-Xfw"; */
+"wBc-NV-Xfw.normalTitle" = "Upgrade";
