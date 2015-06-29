@@ -128,7 +128,7 @@ class StepGoalSetingView: UIView,UIPickerViewDataSource,UIPickerViewDelegate {
 
         //Create a cancel button
         let cancelButton:UIButton = UIButton.buttonWithType(UIButtonType.System) as! UIButton
-        cancelButton.frame = CGRectMake(0, mPickerView!.frame.origin.y-40, 60, 40)
+        cancelButton.frame = CGRectMake(0, mPickerView!.frame.origin.y-40, 70, 40)
         cancelButton.setTitle(NSLocalizedString("Cancel", comment: ""), forState: UIControlState.Normal)
         cancelButton.backgroundColor = UIColor.clearColor()
         cancelButton.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
