@@ -71,19 +71,19 @@ class AlarmClockController: UIViewController, SyncControllerDelegate,ButtonManag
 
         if sender.isEqual(alarmView.selectedTimerButton){
             alarmView.initPickerView(mAlarmhour,min: mAlarmmin)
-            NSLog("alarmView.selectedTimerButton")
+            AppTheme.DLog("alarmView.selectedTimerButton")
         }
 
         if sender.isEqual(alarmView.animationView.getNoConnectScanButton()) {
-            NSLog("noConnectScanButton")
+            AppTheme.DLog("noConnectScanButton")
             reconnect()
         }
         if sender.isEqual(alarmView.getEnterButton()){
-            NSLog("alarmView.enterButton")
+            AppTheme.DLog("alarmView.enterButton")
             setAlarm()
         }
         if sender.isEqual(alarmView.setingButton){
-            NSLog("alarmView.setingButton")
+            AppTheme.DLog("alarmView.setingButton")
 
         }
 
@@ -92,14 +92,14 @@ class AlarmClockController: UIViewController, SyncControllerDelegate,ButtonManag
             alarmView.offButton.selected = false
 
             setAlarm()
-            NSLog("alarmView.amButton")
+            AppTheme.DLog("alarmView.amButton")
 
         }
         if sender.isEqual(alarmView.offButton){
             alarmView.onButton.selected = false
             alarmView.offButton.selected = true
             setAlarm()
-            NSLog("alarmView.pmButton")
+            AppTheme.DLog("alarmView.pmButton")
 
         }
 

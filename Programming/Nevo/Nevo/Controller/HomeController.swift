@@ -39,14 +39,14 @@ class HomeController: UIViewController, SyncControllerDelegate ,ButtonManagerCal
         
         if !ConnectionControllerImpl.sharedInstance.hasSavedAddress() {
             
-            NSLog("No saved device, let's launch the tutorial")
+            AppTheme.DLog("No saved device, let's launch the tutorial")
             
             self.performSegueWithIdentifier("Home_Tutorial", sender: self)
             
         } else {
             if(sync == nil)
             {
-               NSLog("We have a saved address, no need to go through the tutorial")
+               AppTheme.DLog("We have a saved address, no need to go through the tutorial")
                sync  = SyncController.sharedInstance
                sync?.startConnect(false, delegate: self)
             }
@@ -74,7 +74,7 @@ class HomeController: UIViewController, SyncControllerDelegate ,ButtonManagerCal
         }
         
         if sender.isEqual(homeView.animationView.getNoConnectScanButton()) {
-            NSLog("noConnectScanButton")
+            AppTheme.DLog("noConnectScanButton")
             reconnect()
         }
     }
@@ -115,7 +115,7 @@ class HomeController: UIViewController, SyncControllerDelegate ,ButtonManagerCal
             
             var percent :Float = Float(dailySteps)/Float(dailyStepGoal)
             
-            NSLog("get Daily Steps is: \(dailySteps), getDaily Goal is: \(dailyStepGoal),percent is: \(percent)")
+            AppTheme.DLog("get Daily Steps is: \(dailySteps), getDaily Goal is: \(dailyStepGoal),percent is: \(percent)")
             
             homeView.setProgress(percent, dailySteps: dailySteps, dailyStepGoal: dailyStepGoal)
         }

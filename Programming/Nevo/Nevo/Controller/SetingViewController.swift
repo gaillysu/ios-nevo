@@ -77,7 +77,7 @@ class SetingViewController: UIViewController,SelectionTypeDelegate,SyncControlle
     // MARK: - ButtonManagerCallBack
     func controllManager(sender:AnyObject){
         if sender.isEqual(notificationList.animationView?.getNoConnectScanButton()) {
-            NSLog("noConnectScanButton")
+            AppTheme.DLog("noConnectScanButton")
             reconnect()
         }
 
@@ -88,7 +88,7 @@ class SetingViewController: UIViewController,SelectionTypeDelegate,SyncControlle
         if sender is UISwitch {
             var switchButton = sender as! UISwitch
             if switchButton.isEqual(notificationList.mSendLocalNotificationSwitchButton){
-                NSLog("setIsSendLocalMsg \(switchButton.on)")
+                AppTheme.DLog("setIsSendLocalMsg \(switchButton.on)")
                 ConnectionManager.sharedInstance.setIsSendLocalMsg(switchButton.on)
             }
         }
@@ -161,7 +161,7 @@ class SetingViewController: UIViewController,SelectionTypeDelegate,SyncControlle
 
     // MARK: - SelectionTypeDelegate
     func onSelectedType(results:Bool,type:NSString){
-        NSLog("type===:\(type)")
+        AppTheme.DLog("type===:\(type)")
         SetingViewController.refreshNotificationSettingArray(&mNotificationSettingArray)
         notificationList.tableListView.reloadData()
     }
@@ -237,7 +237,7 @@ class SetingViewController: UIViewController,SelectionTypeDelegate,SyncControlle
                 }
             }
         }else if indexPath.section == 1 {
-            NSLog("\(indexPath)")
+            AppTheme.DLog("\(indexPath)")
         }else{
 
             if selectedB {
@@ -262,7 +262,7 @@ class SetingViewController: UIViewController,SelectionTypeDelegate,SyncControlle
     func findMydevice(){
         var minDelay:Double = 6
         var offset:Double = (NSDate().timeIntervalSince1970 - mFindMydeviceDatetime.timeIntervalSince1970)
-        NSLog("findMydevice offset:\(offset)")
+        AppTheme.DLog("findMydevice offset:\(offset)")
         if (offset < minDelay) {
             return
         }
@@ -278,7 +278,7 @@ class SetingViewController: UIViewController,SelectionTypeDelegate,SyncControlle
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
         if selectedB && section==0 {
-            NSLog("count:\(sources.count + mNotificationSettingArray.count)")
+            AppTheme.DLog("count:\(sources.count + mNotificationSettingArray.count)")
             return 1 + mNotificationSettingArray.count
         }
         return 1

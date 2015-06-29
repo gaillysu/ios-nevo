@@ -28,7 +28,7 @@ class Page1Controller: UIViewController,ButtonActionCallBack {
     Button Action CallBack
     */
     func nextButtonAction(sender:UIButton){
-        NSLog("Page2 CallBack Success")
+        AppTheme.DLog("Page2 CallBack Success")
         if sender.isEqual(pagesView.getBackButton()) {
             self.navigationController?.popViewControllerAnimated(true)
         }else{

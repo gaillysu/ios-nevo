@@ -127,7 +127,7 @@ class EnterNotificationController: UIViewController,SyncControllerDelegate,Butto
     // MARK: - ButtonManagerCallBack
     func controllManager(sender:AnyObject){
         if sender.isEqual(enterNotView.animationView?.getNoConnectScanButton()) {
-            NSLog("noConnectScanButton")
+            AppTheme.DLog("noConnectScanButton")
             reconnect()
         }
 

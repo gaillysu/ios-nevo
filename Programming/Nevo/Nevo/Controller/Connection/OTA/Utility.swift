@@ -191,16 +191,16 @@ func GET_FIRMWARE_FILES(folderName:String) -> NSArray {
     
     var  fileNames:NSArray = NSFileManager.defaultManager().contentsOfDirectoryAtPath(firmwaresDirectoryPath as String, error: &error)!
     if (error == nil) {
-        NSLog("number of files in directory %d",fileNames.count);
+        AppTheme.DLog("number of files in directory \(fileNames.count)");
         for fileName in fileNames {
-            NSLog("Found file in directory: %@",fileName as! NSString);
+            AppTheme.DLog("Found file in directory: \(fileName)");
             let filePath:NSString = firmwaresDirectoryPath.stringByAppendingPathComponent(fileName as! String)
             let fileURL:NSURL = NSURL.fileURLWithPath(filePath as String)!
             AllFilesNames.addObject(fileURL)
         }
         return AllFilesNames.copy() as! NSArray
     }else {
-        NSLog("error in opening directory path: %@",firmwaresDirectoryPath);
+        AppTheme.DLog("error in opening directory path: \(firmwaresDirectoryPath)");
         return NSArray()
     }
 }

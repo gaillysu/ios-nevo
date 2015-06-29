@@ -123,9 +123,9 @@ class AnimationView: UIView {
 
     func noConnectButtonAction(sender:UIButton){
         //forgot the address to reconnect
-        NSLog("noConnectScanButton")
+        AppTheme.DLog("noConnectScanButton")
         if (sender.tag == 1450){
-            NSLog("forgot the watch address before \(NSUserDefaults.standardUserDefaults().objectForKey(ConnectionControllerImpl.Const.SAVED_ADDRESS_KEY))")
+            AppTheme.DLog("forgot the watch address before \(NSUserDefaults.standardUserDefaults().objectForKey(ConnectionControllerImpl.Const.SAVED_ADDRESS_KEY))")
             NSUserDefaults.standardUserDefaults().removeObjectForKey(ConnectionControllerImpl.Const.SAVED_ADDRESS_KEY)
             MBProgressHUD.showSuccess(NSLocalizedString("unpairednevo",comment: ""))
         }else{
@@ -165,7 +165,7 @@ class AnimationView: UIView {
     */
     override func animationDidStart(theAnimation:CAAnimation)
     {
-        NSLog("begin");
+        AppTheme.DLog("begin");
         mNoConnectScanButton?.enabled = false
         mNoConnectScanButton?.setTitleColor(AppTheme.NEVO_SOLAR_GRAY(), forState: UIControlState.Normal)
     }
@@ -174,7 +174,7 @@ class AnimationView: UIView {
     * Animation Stop
     */
     override func animationDidStop(theAnimation:CAAnimation ,finished:Bool){
-        NSLog("end");
+        AppTheme.DLog("end");
         mNoConnectScanButton?.enabled = true
         mNoConnectScanButton?.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
     }

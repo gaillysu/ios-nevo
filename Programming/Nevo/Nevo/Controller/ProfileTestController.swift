@@ -162,7 +162,7 @@ class ProfileTestController: UITableViewController,SyncControllerDelegate,Button
         //var notificationSetting = TypeModel().getNotificationTypeContent()
         var notificationArray = refreshNotificationSettingArray()
         for (key,value) in notificationArray{
-            NSLog("key:\(key.rawValue) \(value.description())")
+            AppTheme.DLog("key:\(key.rawValue) \(value.description())")
         }
     }
     
@@ -256,7 +256,7 @@ class ProfileTestController: UITableViewController,SyncControllerDelegate,Button
     // MARK: - ButtonManagerCallBack
     func controllManager(sender:AnyObject){
         if sender.isEqual(true) {
-            NSLog("noConnectScanButton")
+            AppTheme.DLog("noConnectScanButton")
             reconnect()
         }
     }
@@ -283,7 +283,7 @@ class ProfileTestController: UITableViewController,SyncControllerDelegate,Button
             
             var percent :Float = Float(dailySteps)/Float(dailyStepGoal)
             
-            NSLog("the profile get Daily Steps is: \(dailySteps), getDaily Goal is: \(dailyStepGoal), saved Goal is:\(numberOfSteps),percent is: \(percent)")
+            AppTheme.DLog("the profile get Daily Steps is: \(dailySteps), getDaily Goal is: \(dailyStepGoal), saved Goal is:\(numberOfSteps),percent is: \(percent)")
             
             var stepGoal = "step: \(dailySteps) watchGoal: \(dailyStepGoal)\n"
             var appGoal = "appGoal: \(numberOfSteps) percent: \(percent) \n"

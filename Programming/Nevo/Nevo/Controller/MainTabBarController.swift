@@ -25,16 +25,16 @@ class MainTabBarController: UITabBarController,UITabBarControllerDelegate {
         for nav in viewArray {
             var contll = (nav as! UINavigationController).topViewController
             if contll.isKindOfClass(AlarmClockController){
-                NSLog("AlarmClockController:\(contll)")
+                AppTheme.DLog("AlarmClockController:\(contll)")
 
             }
 
             if contll.isKindOfClass(StepGoalSetingController){
-                NSLog("StepGoalSetingController:\(contll)")
+                AppTheme.DLog("StepGoalSetingController:\(contll)")
             }
 
             if contll.isKindOfClass(HomeController){
-                NSLog("HomeController:\(contll)")
+                AppTheme.DLog("HomeController:\(contll)")
                 contll.tabBarController?.selectedIndex = 1
             }
 
