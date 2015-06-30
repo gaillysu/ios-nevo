@@ -49,8 +49,11 @@ class TutorialView: UIView {
         self.addSubview(backgroundImage)
 
         //Click into the tutorial page
-        //TODO string
-        let tutorialButton = UIButton(frame: CGRectMake(0, 0, 230, 48))
+        var labelSize:CGSize = NSLocalizedString("Tutorial", comment:"Tutorial button title").boundingRectWithSize(CGSizeMake(self.frame.size.width, 1000), options: NSStringDrawingOptions.UsesFontLeading, attributes: [NSFontAttributeName:AppTheme.FONT_RALEWAY_THIN()], context: nil).size
+        labelSize.height = ceil(labelSize.height);
+        labelSize.width = ceil(labelSize.width);
+
+        let tutorialButton = UIButton(frame: CGRectMake(0, 0, labelSize.width, labelSize.height))
         tutorialButton.setTitle(NSLocalizedString("Tutorial", comment:"Tutorial button title"), forState: UIControlState.Normal)
         tutorialButton.setTitleColor(COLOR_00C6DC, forState: UIControlState.Normal)
         tutorialButton.titleLabel?.font = AppTheme.FONT_RALEWAY_THIN()
@@ -60,8 +63,12 @@ class TutorialView: UIView {
         
         mTutorialButton = tutorialButton
 
-        //TODO string
-        let buyButton = UIButton(frame: CGRectMake(0, 0, 230, 48))
+        //Automatic text width
+        var buyButtonSize:CGSize = NSLocalizedString("Acheter", comment:"Acheter button title").boundingRectWithSize(CGSizeMake(self.frame.size.width, 1000), options: NSStringDrawingOptions.UsesFontLeading, attributes: [NSFontAttributeName:AppTheme.FONT_RALEWAY_THIN()], context: nil).size
+        buyButtonSize.height = ceil(buyButtonSize.height);
+        buyButtonSize.width = ceil(buyButtonSize.width);
+
+        let buyButton = UIButton(frame: CGRectMake(0, 0, buyButtonSize.width, buyButtonSize.height))
         buyButton.setTitle(NSLocalizedString("Acheter", comment:"Acheter button title"), forState: UIControlState.Normal)
         buyButton.setTitleColor(COLOR_00C6DC, forState: UIControlState.Normal)
         buyButton.titleLabel?.font = AppTheme.FONT_RALEWAY_THIN(mSize:24)

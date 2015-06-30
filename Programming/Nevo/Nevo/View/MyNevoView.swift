@@ -35,7 +35,7 @@ class MyNevoView: UIView {
         mywatchName.text = NSLocalizedString("namenevo", comment: "")
         mywatchName.font = AppTheme.FONT_RALEWAY_LIGHT(mSize: 20)
 
-        progressLabel.text = String(format: "%@%c",0,37)
+        progressLabel.text = String(format: "%d%c",0,37)
         progressLabel.font = AppTheme.FONT_RALEWAY_LIGHT(mSize: 18)
 
         var objArray:NSArray = AppTheme.LoadKeyedArchiverName("LatestUpdate") as! NSArray

@@ -167,13 +167,13 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
     //below is delegate function
     
     func onDFUStarted(){
-     NSLog("onDFUStarted");
+     AppTheme.DLog("onDFUStarted");
     //here enable upload button
     }
     
     //user cancel
     func onDFUCancelled(){
-        NSLog("onDFUCancelled");
+        AppTheme.DLog("onDFUCancelled");
         //reset OTA view controller 's some data, such as progress bar and upload button text/status
         dispatch_async(dispatch_get_main_queue(), {
         self.initValue()
@@ -271,7 +271,7 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
     func controllManager(sender:AnyObject){
 
         if (sender.isEqual(nevoOtaView.backButton)) {
-            NSLog("back2Home")
+            AppTheme.DLog("back2Home")
             self.dismissViewControllerAnimated(true, completion: nil)
         }
 
@@ -321,7 +321,7 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
     :param: path <#path description#>
     */
     func onFileSelected(selectedFile:NSURL){
-        NSLog("onFileSelected")
+        AppTheme.DLog("onFileSelected")
         if (selectedFile.path != nil) {
             var fileName:String? = selectedFile.path!.lastPathComponent
             var fileExtension:String? = selectedFile.pathExtension

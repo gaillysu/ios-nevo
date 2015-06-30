@@ -59,12 +59,12 @@ class TutorialPage2View : UIView {
         guideImage.backgroundColor = UIColor.clearColor()
         self.addSubview(guideImage)
 
-        let titleLabel:UILabel = UILabel(frame: CGRectMake(0, 0, guideImage.frame.size.width, 60))
+        let titleLabel:UILabel = UILabel(frame: CGRectMake(0, 0, self.frame.size.width-20, 60))
         titleLabel.center = CGPointMake(self.frame.size.width/2.0, guideImage.frame.origin.y+guideImage.frame.size.height+70)
         titleLabel.textAlignment = NSTextAlignment.Center
         titleLabel.numberOfLines = 0
-        titleLabel.lineBreakMode = NSLineBreakMode.ByCharWrapping
-        titleLabel.font = TEXT_FONT
+        titleLabel.lineBreakMode = NSLineBreakMode.ByWordWrapping
+        titleLabel.font = AppTheme.FONT_RALEWAY_LIGHT(mSize:23)
         titleLabel.text = NSLocalizedString("EnableBluetoothPhone",comment:"lable string")
         self.addSubview(titleLabel)
 

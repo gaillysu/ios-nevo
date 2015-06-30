@@ -28,7 +28,7 @@ class Page6Controller: UIViewController,ButtonActionCallBack {
     Button Action CallBack
     */
     func nextButtonAction(sender:UIButton){
-        NSLog("Page6 CallBack Success")
+        AppTheme.DLog("Page6 CallBack Success")
         if sender.isEqual(pagesView.getBackButton()) {
             self.navigationController?.popViewControllerAnimated(true)
         }else{

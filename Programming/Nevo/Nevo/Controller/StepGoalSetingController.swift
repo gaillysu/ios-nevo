@@ -53,22 +53,22 @@ class StepGoalSetingController: UIViewController, SyncControllerDelegate,ButtonM
     // MARK: - ButtonManagerCallBack
     func controllManager(sender:AnyObject) {
         if sender.isEqual(stepGoalView.goalButton) {
-            NSLog("goalButton")
+            AppTheme.DLog("goalButton")
             stepGoalView.initPickerView(mCurrentGoal.getValue())
         }
 
         if sender.isEqual(stepGoalView.modarateButton) {
-            NSLog("modarateButton")
+            AppTheme.DLog("modarateButton")
             setGoal(NumberOfStepsGoal(intensity: GoalIntensity.LOW))
         }
 
         if sender.isEqual(stepGoalView.intensiveButton) {
-            NSLog("intensiveButton")
+            AppTheme.DLog("intensiveButton")
             setGoal(NumberOfStepsGoal(intensity: GoalIntensity.MEDIUM))
         }
 
         if sender.isEqual(stepGoalView.sportiveButton) {
-            NSLog("sportiveButton")
+            AppTheme.DLog("sportiveButton")
             setGoal(NumberOfStepsGoal(intensity: GoalIntensity.HIGH))
         }
 

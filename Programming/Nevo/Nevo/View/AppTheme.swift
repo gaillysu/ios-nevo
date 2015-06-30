@@ -13,7 +13,15 @@ This class holds all app-wide constants.
 Colors, fonts etc...
 */
 class AppTheme {
-    
+
+    #if DEBUG
+    class func DLog(message: String, filename: String = __FILE__, function: String = __FUNCTION__, line: Int = __LINE__) {
+        NSLog("[\(filename.lastPathComponent):\(line)] \(function) - \(message)")
+    }
+    #else
+    class func DLog(message: String, filename: String = __FILE__, function: String = __FUNCTION__, line: Int = __LINE__) {
+    }
+    #endif
     /**
     This color should be used app wide on all actionable elements
     sRGB value : #ff9933

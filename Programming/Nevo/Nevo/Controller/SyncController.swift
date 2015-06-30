@@ -56,7 +56,7 @@ class SyncController: NSObject,ConnectionControllerDelegate,UIAlertViewDelegate 
     
     func startConnect(forceScan:Bool,delegate:SyncControllerDelegate)
     {
-        NSLog("New delegate : \(delegate)")
+        AppTheme.DLog("New delegate : \(delegate)")
         mDelegates.append(delegate)
         
         if forceScan
@@ -82,7 +82,7 @@ class SyncController: NSObject,ConnectionControllerDelegate,UIAlertViewDelegate 
         
         if( NSDate().timeIntervalSince1970-lastSync > SYNC_INTERVAL) {
             //We haven't synched for a while, let's sync now !
-            NSLog("*** Sync started ! ***")
+            AppTheme.DLog("*** Sync started ! ***")
             self.getDailyTrackerInfo()
         }
 
@@ -93,7 +93,7 @@ class SyncController: NSObject,ConnectionControllerDelegate,UIAlertViewDelegate 
     */
     func syncFinished() {
         
-        NSLog("*** Sync finished ***")
+        AppTheme.DLog("*** Sync finished ***")
         
         let userDefaults = NSUserDefaults.standardUserDefaults();
         
@@ -145,7 +145,7 @@ class SyncController: NSObject,ConnectionControllerDelegate,UIAlertViewDelegate 
     }
     
     func SetNortification(settingArray:[NotificationSetting]) {
-        NSLog("SetNortification")
+        AppTheme.DLog("SetNortification")
         sendRequest(SetNortificationRequest(settingArray: settingArray))
     }
     /**
@@ -185,7 +185,7 @@ class SyncController: NSObject,ConnectionControllerDelegate,UIAlertViewDelegate 
             var packet:NevoPacket = NevoPacket(packets:mPacketsbuffer)
             if(!packet.isVaildPacket())
             {
-                NSLog("Invaild packet............\(packet.getPackets().count)")
+                AppTheme.DLog("Invaild packet............\(packet.getPackets().count)")
                 mPacketsbuffer = []
                 return;
             }
@@ -295,7 +295,7 @@ class SyncController: NSObject,ConnectionControllerDelegate,UIAlertViewDelegate 
                 var thispacket = packet.copy() as DailyTrackerInfoNevoPacket
                 currentDay = 0
                 savedDailyHistory = thispacket.getDailyTrackerInfo()
-                NSLog("History Total Days:\(savedDailyHistory.count),Today is \(GmtNSDate2LocaleNSDate(NSDate()))")                
+                AppTheme.DLog("History Total Days:\(savedDailyHistory.count),Today is \(GmtNSDate2LocaleNSDate(NSDate()))")
                 if savedDailyHistory.count > 0
                 {
                     self.getDailyTracker(currentDay)
@@ -308,9 +308,9 @@ class SyncController: NSObject,ConnectionControllerDelegate,UIAlertViewDelegate 
                 savedDailyHistory[Int(currentDay)].TotalSteps = thispacket.getDailySteps()
                 savedDailyHistory[Int(currentDay)].HourlySteps = thispacket.getHourlySteps()
                 
-                NSLog("Day:\(GmtNSDate2LocaleNSDate(savedDailyHistory[Int(currentDay)].Date)), Daily Steps:\(savedDailyHistory[Int(currentDay)].TotalSteps)")
+                AppTheme.DLog("Day:\(GmtNSDate2LocaleNSDate(savedDailyHistory[Int(currentDay)].Date)), Daily Steps:\(savedDailyHistory[Int(currentDay)].TotalSteps)")
                 
-                NSLog("Day:\(GmtNSDate2LocaleNSDate(savedDailyHistory[Int(currentDay)].Date)), Hourly Steps:\(savedDailyHistory[Int(currentDay)].HourlySteps)")
+                AppTheme.DLog("Day:\(GmtNSDate2LocaleNSDate(savedDailyHistory[Int(currentDay)].Date)), Hourly Steps:\(savedDailyHistory[Int(currentDay)].HourlySteps)")
                 
                 //save to health kit
                 var hk = NevoHKImpl()
@@ -356,11 +356,11 @@ class SyncController: NSObject,ConnectionControllerDelegate,UIAlertViewDelegate 
                     {
                         hk.writeDataPoint(HourlySteps(numberOfSteps: savedDailyHistory[Int(currentDay)].HourlySteps[i],date: savedDailyHistory[Int(currentDay)].Date,hour:i,update: false), resultHandler: { (result, error) -> Void in
                         if (result != true) {
-                            NSLog("Save Hourly steps error\(i),\(error)")
+                            AppTheme.DLog("Save Hourly steps error\(i),\(error)")
                         }
                         else
                         {
-                            NSLog("Save Hourly steps OK")
+                            AppTheme.DLog("Save Hourly steps OK")
                         }
                     })
                     }
@@ -474,7 +474,7 @@ class SyncController: NSObject,ConnectionControllerDelegate,UIAlertViewDelegate 
         var mcuver = GET_SOFTWARE_VERSION()
         var blever = GET_FIRMWARE_VERSION()
         
-        NSLog("Build in software version: \(mcuver), firmware version: \(blever)")
+        AppTheme.DLog("Build in software version: \(mcuver), firmware version: \(blever)")
  
         if ((whichfirmware == DfuFirmwareTypes.SOFTDEVICE  && (version as String).toInt() < mcuver)
           || (whichfirmware == DfuFirmwareTypes.APPLICATION  && (version as String).toInt() < blever))

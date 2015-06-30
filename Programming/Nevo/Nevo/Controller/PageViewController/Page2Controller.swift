@@ -35,7 +35,7 @@ class Page2Controller: UIViewController,ButtonActionCallBack {
     */
     func nextButtonAction(sender:UIButton){
 
-         NSLog("CallBack Success")
+         AppTheme.DLog("CallBack Success")
         if sender.isEqual(mBluetoothTutorialView?.getBackButton()) {
             self.navigationController?.popViewControllerAnimated(true)
         }else{
@@ -59,7 +59,7 @@ class Page2Controller: UIViewController,ButtonActionCallBack {
         let btEnabled = ConnectionControllerImpl.sharedInstance.isBluetoothEnabled()
         
         if( mBluetoothTutorialView?.getBluetoothHint() != btEnabled ) {
-            NSLog("BT status changed, changin UI. New status : \(btEnabled)")
+            AppTheme.DLog("BT status changed, changin UI. New status : \(btEnabled)")
             
             mBluetoothTutorialView?.removeFromSuperview()
             
