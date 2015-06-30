@@ -367,7 +367,7 @@ class NevoOtaController : NSObject,ConnectionControllerDelegate {
             
             else if state == DFUControllerState.DISCOVERING
             {
-                state == DFUControllerState.SEND_FIRMWARE_DATA
+                state = DFUControllerState.SEND_FIRMWARE_DATA
                 var dispatchTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, Int64(1.0 * Double(NSEC_PER_SEC)))
                 dispatch_after(dispatchTime, dispatch_get_main_queue(), {
                     self.mConnectionController!.sendRequest(StartOTARequest())

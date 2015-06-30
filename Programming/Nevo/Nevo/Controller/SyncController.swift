@@ -260,9 +260,36 @@ class SyncController: NSObject,ConnectionControllerDelegate,UIAlertViewDelegate 
 
             if(packet.getHeader() == SetNortificationRequest.HEADER())
             {
+                //copy from AlarmClockController
+                var mAlarmhour:Int = 8
+                var mAlarmmin:Int = 30
+                var mAlarmenable:Bool = false
+                let SAVED_ALARM_HOUR_KEY = "SAVED_ALARM_HOUR_KEY"
+                let SAVED_ALARM_MIN_KEY = "SAVED_ALARM_MIN_KEY"
+                let SAVED_ALARM_ENABLED_KEY = "SAVED_ALARM_ENABLED_KEY"
+                 
+                //If we have any previously saved hour, min and/or enabled/ disabled, we'll use those variables first
+                if let alarmHourSaved = NSUserDefaults.standardUserDefaults().objectForKey(SAVED_ALARM_HOUR_KEY) as? Int {
+                    mAlarmhour = alarmHourSaved
+                }
+                
+                if let alarmMinSaved = NSUserDefaults.standardUserDefaults().objectForKey(SAVED_ALARM_MIN_KEY) as? Int {
+                    mAlarmmin = alarmMinSaved
+                }
+                
+                if let alarmEnableSaved = NSUserDefaults.standardUserDefaults().objectForKey(SAVED_ALARM_ENABLED_KEY) as? Bool {
+                    mAlarmenable = alarmEnableSaved
+                }
+                
+                setAlarm(mAlarmhour, alarmmin: mAlarmmin, alarmenable: mAlarmenable)
+            }
+            
+            if(packet.getHeader() == SetAlarmRequest.HEADER())
+            {
                 //start sync data
                 self.syncActivityData()
             }
+            
             if(packet.getHeader() == ReadDailyTrackerInfo.HEADER())
             {
                 var thispacket = packet.copy() as DailyTrackerInfoNevoPacket
