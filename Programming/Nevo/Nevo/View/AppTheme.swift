@@ -180,4 +180,18 @@ class AppTheme {
         return frame
     }
 
+    class func getPreferredLanguage()->NSString{
+
+        let defaults:NSUserDefaults = NSUserDefaults.standardUserDefaults()
+
+        let allLanguages:NSArray = defaults.objectForKey("AppleLanguages") as! NSArray
+
+        let preferredLang:NSString = allLanguages.objectAtIndex(0) as! NSString
+
+        NSLog("当前语言:%@", preferredLang);
+
+        return preferredLang;
+    
+    }
+
 }

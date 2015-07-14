@@ -98,6 +98,14 @@ class AnimationView: UIView {
             //ForgotButton.layer.borderColor = AppTheme.NEVO_SOLAR_YELLOW().CGColor
             mNoConnectionView!.addSubview(ForgotButton)
 
+            /**
+            *  Adapter German text
+            */
+            if(AppTheme.getPreferredLanguage().isEqualToString("de")){
+                message.font = AppTheme.FONT_RALEWAY_LIGHT(mSize: 15)
+                message2.font = AppTheme.FONT_RALEWAY_LIGHT(mSize: 15)
+            }
+
             if(AppTheme.GET_IS_iPhone4S()){
                 message.frame = CGRectMake(self.frame.size.width/2-150, 90, 300, message.frame.size.height)
                 mNoConnectImage?.frame = CGRectMake(mNoConnectionView!.frame.size.width/2.0-60, message.frame.size.height+message.frame.origin.y, 120, 120)
