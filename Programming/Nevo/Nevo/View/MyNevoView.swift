@@ -20,6 +20,7 @@ class MyNevoView: UIView {
     @IBOutlet weak var batteryBackground: UIImageView!
     
     private var mDelegate:ButtonManagerCallBack?
+    private var watchVersion:UILabel?//Display watch MCU and BLE version number
 
     var animationView:AnimationView?
 
@@ -53,6 +54,12 @@ class MyNevoView: UIView {
         UpgradeButton.layer.masksToBounds = true
         UpgradeButton.layer.cornerRadius = 20.0
 
+        watchVersion = UILabel(frame: CGRectMake(0, 90, 150, 50))
+        watchVersion!.numberOfLines = 0
+        watchVersion!.lineBreakMode = NSLineBreakMode.ByWordWrapping
+        watchVersion!.textAlignment = NSTextAlignment.Left
+        watchVersion!.font = AppTheme.FONT_RALEWAY_LIGHT(mSize: 15)
+        self.addSubview(watchVersion!)
     }
 
     @IBAction func buttonAction(sender: AnyObject) {
@@ -83,6 +90,10 @@ class MyNevoView: UIView {
         //batteryImage.contentMode = UIViewContentMode.Right
         frame.size.width = CGFloat(bValue) * batteryBackground.bounds.size.width;
         batteryImage.frame = frame;
+    }
+
+    func setVersionLbael(mcuNumber:NSString,bleNumber:NSString){
+        watchVersion!.text = String(format: "Mcu %@%@\n BLE %@%@",NSLocalizedString("Version:",comment:""), mcuNumber,NSLocalizedString("Version:",comment:""),bleNumber)
     }
     
 }

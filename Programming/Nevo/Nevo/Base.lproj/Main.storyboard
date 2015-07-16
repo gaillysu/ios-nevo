@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="VSL-Nt-5H3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="VSL-Nt-5H3">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -241,16 +241,60 @@
                                     <constraint firstItem="Urm-TO-Lvz" firstAttribute="top" secondItem="lNM-9j-XkJ" secondAttribute="top" constant="14" id="zaD-YS-KrT"/>
                                 </constraints>
                             </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="nevo_wacth.png" translatesAutoresizingMaskIntoConstraints="NO" id="VkI-aL-eUs">
+                                <rect key="frame" x="70" y="120" width="180" height="180"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3af-AQ-leP">
+                                <rect key="frame" x="10" y="360" width="300" height="80"/>
+                                <string key="text">Do not interrupt the OTA firmware process. Let the process complete before using the app!In case of accidental interruption, try again. If it doesn't work, remove nevo battery for 30 secs and reinstall.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Attention!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MgG-7R-WNT">
+                                <rect key="frame" x="100" y="335" width="120" height="25"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2/2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AmS-5k-wEF">
+                                <rect key="frame" x="120" y="312" width="80" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="80" id="fkw-xL-hOo"/>
+                                    <constraint firstAttribute="height" constant="21" id="jVS-Sy-pBl"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="VkI-aL-eUs" firstAttribute="leading" secondItem="sRG-8v-pva" secondAttribute="leadingMargin" constant="54" id="7uR-ob-f1N"/>
                             <constraint firstItem="lNM-9j-XkJ" firstAttribute="top" secondItem="gaD-b4-56S" secondAttribute="bottom" id="9k5-Mf-P8a"/>
+                            <constraint firstItem="3af-AQ-leP" firstAttribute="leading" secondItem="VkI-aL-eUs" secondAttribute="leading" constant="-60" id="KEu-YG-PWn"/>
                             <constraint firstItem="lNM-9j-XkJ" firstAttribute="leading" secondItem="sRG-8v-pva" secondAttribute="leading" id="Nva-6F-05u"/>
+                            <constraint firstItem="MgG-7R-WNT" firstAttribute="leading" secondItem="sRG-8v-pva" secondAttribute="leadingMargin" constant="84" id="OKJ-kj-gRf"/>
+                            <constraint firstItem="3af-AQ-leP" firstAttribute="centerX" secondItem="AmS-5k-wEF" secondAttribute="centerX" id="Oy7-VF-TnO"/>
+                            <constraint firstItem="7uk-Lo-xTC" firstAttribute="top" secondItem="3af-AQ-leP" secondAttribute="bottom" constant="128" id="QbA-mH-yWX"/>
+                            <constraint firstItem="AmS-5k-wEF" firstAttribute="top" secondItem="VkI-aL-eUs" secondAttribute="bottom" constant="12" id="Qd8-7j-rQr"/>
+                            <constraint firstItem="3af-AQ-leP" firstAttribute="top" secondItem="AmS-5k-wEF" secondAttribute="bottom" constant="27" id="T15-sF-h7D"/>
+                            <constraint firstItem="MgG-7R-WNT" firstAttribute="top" secondItem="AmS-5k-wEF" secondAttribute="bottom" constant="2" id="T4k-OM-9MS"/>
+                            <constraint firstItem="3af-AQ-leP" firstAttribute="top" secondItem="MgG-7R-WNT" secondAttribute="bottom" id="hcP-8P-KOS"/>
+                            <constraint firstItem="VkI-aL-eUs" firstAttribute="centerX" secondItem="lNM-9j-XkJ" secondAttribute="centerX" id="ho2-h7-O9D"/>
+                            <constraint firstItem="MgG-7R-WNT" firstAttribute="centerX" secondItem="AmS-5k-wEF" secondAttribute="centerX" id="jQM-xI-9Ed"/>
+                            <constraint firstItem="3af-AQ-leP" firstAttribute="trailing" secondItem="VkI-aL-eUs" secondAttribute="trailing" constant="60" id="oif-70-IU2"/>
+                            <constraint firstItem="VkI-aL-eUs" firstAttribute="top" secondItem="lNM-9j-XkJ" secondAttribute="bottom" constant="35" id="onG-Og-L27"/>
+                            <constraint firstItem="7uk-Lo-xTC" firstAttribute="top" secondItem="VkI-aL-eUs" secondAttribute="bottom" constant="268" id="yne-K6-lND"/>
                         </constraints>
                         <connections>
                             <outlet property="backButton" destination="xeK-jO-kBg" id="oCL-yM-6jN"/>
+                            <outlet property="messageLabel" destination="3af-AQ-leP" id="Rla-ge-hOy"/>
+                            <outlet property="nevoWacthImage" destination="VkI-aL-eUs" id="WL4-rV-W6g"/>
+                            <outlet property="taskLabel" destination="AmS-5k-wEF" id="u3V-8C-o5i"/>
                             <outlet property="title" destination="Urm-TO-Lvz" id="iJo-pq-hl9"/>
                             <outlet property="titleBgView" destination="lNM-9j-XkJ" id="Tcj-Y2-JFr"/>
+                            <outlet property="warningLabel" destination="MgG-7R-WNT" id="Lxq-1X-47L"/>
                         </connections>
                     </view>
                     <navigationItem key="navigationItem" id="dDb-MT-AUi"/>
@@ -1179,6 +1223,7 @@
         <image name="goal3Selected_Button" width="30" height="30"/>
         <image name="goalitem" width="68" height="68"/>
         <image name="homeitem" width="68" height="68"/>
+        <image name="nevo_wacth.png" width="300" height="300"/>
         <image name="pmButton" width="63" height="63"/>
         <image name="pmSelectedButton" width="63" height="63"/>
         <image name="selectedButton" width="320" height="65"/>

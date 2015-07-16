@@ -22,8 +22,11 @@ class MyNevoController: UIViewController,ButtonManagerCallBack,SyncControllerDel
         mynevoView.bulidMyNevoView(self)
 
     }
+
+    
     override func viewDidAppear(animated: Bool) {
         mSyncController?.ReadBatteryLevel()
+        mynevoView.setVersionLbael(mSyncController!.getSoftwareVersion(), bleNumber: mSyncController!.getFirmwareVersion())
     }
 
     override func didReceiveMemoryWarning() {

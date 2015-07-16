@@ -22,7 +22,14 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
     var firmwareURLs:[NSURL] = []
     var currentIndex = 0
     var mNevoOtaController : NevoOtaController?
-    
+    private var allTaskNumber:NSInteger = 0;//计算所有OTA任务数量
+    private var currentTaskNumber:NSInteger = 0;//当前在第几个任务
+
+    override func viewDidLayoutSubviews(){
+        //init the view
+        nevoOtaView.buildView(self,otacontroller: mNevoOtaController!)
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         UIApplication.sharedApplication().idleTimerDisabled = true
@@ -32,9 +39,6 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
         initValue()
         checkConnection()
 
-       //init the view
-        nevoOtaView.buildView(self,otacontroller: mNevoOtaController!)
-        
         if(mNevoOtaController!.isConnected())
         {
             var currentSoftwareVersion = mNevoOtaController!.getSoftwareVersion() as String
@@ -52,6 +56,7 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
                 if fileExtension == "bin" && currentSoftwareVersion.toInt() < buildinSoftwareVersion
                 {
                     firmwareURLs.append(selectedFile)
+                    allTaskNumber++
                     break
                 }
             }
@@ -63,6 +68,7 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
                 if fileExtension == "hex" && currentFirmwareVersion.toInt() < buildinFirmwareVersion
                 {
                     firmwareURLs.append(selectedFile)
+                    allTaskNumber++
                     break
                 }
             }
@@ -93,17 +99,8 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
     
         if(buttonIndex==1){
             currentIndex = 0
-            showTipText()
             self.uploadPressed()
         }
-    }
-
-    func showTipText(){
-        nevoOtaView.tipTextView()
-            var dispatchTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, Int64(10.0 * Double(NSEC_PER_SEC)))
-            dispatch_after(dispatchTime, dispatch_get_main_queue(), {
-                self.nevoOtaView.closeTipView()
-            })
     }
 
     override func didReceiveMemoryWarning() {
@@ -128,6 +125,8 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
     //upload button function
     func uploadPressed()
     {
+        currentTaskNumber++;
+
         if currentIndex >= firmwareURLs.count {
             return
         }
@@ -154,7 +153,7 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
             mNevoOtaController?.cancelDFU()
         }
         else {
-            nevoOtaView.setProgress(0.0)
+            nevoOtaView.setProgress(0.0,currentTask: currentTaskNumber,allTask: allTaskNumber)
             self.nevoOtaView.setLatestVersion(NSLocalizedString("Please waiting...", comment: ""))
             isTransferring = true
             //when doing OTA, disable Cancel/Back button, enable them by callback function invoke initValue()/checkConnection()
@@ -185,7 +184,7 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
     func onTransferPercentage(percent:Int){
         dispatch_async(dispatch_get_main_queue(), {
 
-            self.nevoOtaView.setProgress((Float(percent)/100.0))
+            self.nevoOtaView.setProgress((Float(percent)/100.0),currentTask: self.currentTaskNumber,allTask: self.allTaskNumber)
         });
     }
     
@@ -247,7 +246,7 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
     */
     func firmwareVersionReceived(whichfirmware:DfuFirmwareTypes, version:NSString)
     {
-        nevoOtaView.setVersionLbael(mNevoOtaController!.getSoftwareVersion(), bleNumber: mNevoOtaController!.getFirmwareVersion())
+        //nevoOtaView.setVersionLbael(mNevoOtaController!.getSoftwareVersion(), bleNumber: mNevoOtaController!.getFirmwareVersion())
     }
     
     /**
@@ -279,6 +278,8 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
             
             if(mNevoOtaController!.isConnected())
             {
+                currentTaskNumber = 0;
+                allTaskNumber = 0;
                 var fileArray = GET_FIRMWARE_FILES("Firmwares")
                 for tmpfile in fileArray {
                     var selectedFile = tmpfile as! NSURL
@@ -288,6 +289,7 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
                     if fileExtension == "bin"
                     {
                         firmwareURLs.append(selectedFile)
+                        allTaskNumber++;
                         break
                     }
                 }
@@ -299,12 +301,12 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
                     if fileExtension == "hex"
                     {
                         firmwareURLs.append(selectedFile)
+                        allTaskNumber++;
                         break
                     }
                 }
                 // reUpdate all firmwares
                 currentIndex = 0
-                showTipText()
                 uploadPressed()
             }
             else

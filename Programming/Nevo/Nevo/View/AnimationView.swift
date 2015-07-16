@@ -44,7 +44,7 @@ class AnimationView: UIView {
             self.addSubview(mNoConnectionView!)
 
             let message:UILabel = UILabel(frame: CGRectMake(0, 0, 300, 90))
-            message.frame = AppTheme.getLabelSize(NSLocalizedString("nevoConnected", comment: ""), andObject: message.frame);
+            message.frame = AppTheme.getLabelSize(NSLocalizedString("nevoConnected", comment: ""), andObject: message.frame,andFont: AppTheme.FONT_RALEWAY_LIGHT(mSize: 18));
             message.center = CGPointMake(self.frame.size.width/2, mNoConnectionView!.frame.size.height/2.0-120)
             message.font = AppTheme.FONT_RALEWAY_LIGHT(mSize: 18)
             message.text = NSLocalizedString("nevoConnected", comment: "")
@@ -73,7 +73,7 @@ class AnimationView: UIView {
 
             let message2:UILabel = UILabel(frame: CGRectMake(0, 0, 300, 90))
             message2.center = CGPointMake(self.frame.size.width/2, mNoConnectImage!.frame.origin.y+mNoConnectImage!.frame.size.height+55)
-            message2.frame = AppTheme.getLabelSize(NSLocalizedString("pushHoldButton", comment: ""), andObject: message2.frame);
+            message2.frame = AppTheme.getLabelSize(NSLocalizedString("pushHoldButton", comment: ""), andObject: message2.frame,andFont: AppTheme.FONT_RALEWAY_LIGHT(mSize: 18));
             message2.font = AppTheme.FONT_RALEWAY_LIGHT(mSize: 18)
             message2.text = NSLocalizedString("pushHoldButton", comment: "")
             message2.numberOfLines = 0

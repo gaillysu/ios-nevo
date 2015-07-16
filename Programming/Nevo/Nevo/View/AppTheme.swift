@@ -167,10 +167,10 @@ class AppTheme {
 
     :returns: Returns the modified position and size of the source object
     */
-    class func getLabelSize(string:String , andObject object:CGRect) ->CGRect{
+    class func getLabelSize(string:String , andObject object:CGRect, andFont font:UIFont) ->CGRect{
         var frame:CGRect = object
         let loclString:NSString = string as NSString
-        var labelSize:CGSize = loclString.boundingRectWithSize(CGSizeMake(frame.size.width, 1000), options: NSStringDrawingOptions.UsesLineFragmentOrigin|NSStringDrawingOptions.UsesFontLeading, attributes: [NSFontAttributeName:AppTheme.FONT_RALEWAY_LIGHT(mSize: 18)], context: nil).size
+        var labelSize:CGSize = loclString.boundingRectWithSize(CGSizeMake(frame.size.width, 1000), options: NSStringDrawingOptions.UsesLineFragmentOrigin|NSStringDrawingOptions.UsesFontLeading, attributes: [NSFontAttributeName:font], context: nil).size
         labelSize.height = ceil(labelSize.height);
         labelSize.width = ceil(labelSize.width);
 

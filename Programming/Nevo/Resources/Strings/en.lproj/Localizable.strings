@@ -64,7 +64,7 @@
 "reconnection_message"="Reconnect Bluetooth to receive notifications again by pressing and holding the 3rd button for 3 seconds.";
 "3secs"="3 secs";
 "Attention!"="Attention!";
-"otahelp"="Do not interrupt the OTA firmware process. Let the process complete before using the app!\nIn case of accidental interruption, try again. If it doesn't work, remove nevo battery for 30 secs and reinstall.";
+"otahelp"="Do not interrupt the OTA firmware process. Let the process complete before using the app!In case of accidental interruption, try again. If it doesn't work, remove nevo battery for 30 secs and reinstall.";
 "latestversion"="Your watch is up to date";
 "Version:"="Version:";
 "FirmwareAlertMessage"="Your watch’s software is not up to date. Do you want to update it now ?";

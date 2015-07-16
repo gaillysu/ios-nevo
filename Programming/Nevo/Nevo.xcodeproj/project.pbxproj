@@ -18,6 +18,8 @@
 		001818361B048DAC005E9F2D /* Page6Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001818341B048DAC005E9F2D /* Page6Controller.swift */; };
 		001818391B048E12005E9F2D /* TutorialPage5View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001818371B048E12005E9F2D /* TutorialPage5View.swift */; };
 		0018183A1B048E12005E9F2D /* TutorialPage6View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001818381B048E12005E9F2D /* TutorialPage6View.swift */; };
+		001F1B7B1B57777B001DD426 /* nevo_wacth_selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 001F1B791B57777B001DD426 /* nevo_wacth_selected.png */; };
+		001F1B7C1B57777B001DD426 /* nevo_wacth.png in Resources */ = {isa = PBXBuildFile; fileRef = 001F1B7A1B57777B001DD426 /* nevo_wacth.png */; };
 		003542B11AA7F69E00B27381 /* EnterNotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003542B01AA7F69E00B27381 /* EnterNotificationView.swift */; };
 		003542B71AA823B000B27381 /* AnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003542B61AA823B000B27381 /* AnimationView.swift */; };
 		00478F4F1A8F637D00D0DCE2 /* clockViewHour.png in Resources */ = {isa = PBXBuildFile; fileRef = 00478F4D1A8F637D00D0DCE2 /* clockViewHour.png */; };
@@ -159,6 +161,8 @@
 		001818341B048DAC005E9F2D /* Page6Controller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Page6Controller.swift; sourceTree = "<group>"; };
 		001818371B048E12005E9F2D /* TutorialPage5View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TutorialPage5View.swift; path = View/Tutorial/TutorialPage5View.swift; sourceTree = "<group>"; };
 		001818381B048E12005E9F2D /* TutorialPage6View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TutorialPage6View.swift; path = View/Tutorial/TutorialPage6View.swift; sourceTree = "<group>"; };
+		001F1B791B57777B001DD426 /* nevo_wacth_selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nevo_wacth_selected.png; sourceTree = "<group>"; };
+		001F1B7A1B57777B001DD426 /* nevo_wacth.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nevo_wacth.png; sourceTree = "<group>"; };
 		003542B01AA7F69E00B27381 /* EnterNotificationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnterNotificationView.swift; sourceTree = "<group>"; };
 		003542B61AA823B000B27381 /* AnimationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AnimationView.swift; path = View/AnimationView.swift; sourceTree = "<group>"; };
 		00478F4D1A8F637D00D0DCE2 /* clockViewHour.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clockViewHour.png; sourceTree = "<group>"; };
@@ -400,6 +404,8 @@
 		007F79881A878D0B006C89E6 /* image */ = {
 			isa = PBXGroup;
 			children = (
+				001F1B791B57777B001DD426 /* nevo_wacth_selected.png */,
+				001F1B7A1B57777B001DD426 /* nevo_wacth.png */,
 				00D0FF721B130A9F00D084C3 /* Nevo660.png */,
 				00E39A971AC27DDC0004E6C1 /* editor.png */,
 				00D4DE901AB141FB0062523D /* NevoPicture960.png */,
@@ -831,6 +837,7 @@
 				007F79981A878D0B006C89E6 /* Raleway-Regular.ttf in Resources */,
 				007F79951A878D0B006C89E6 /* Raleway-LightItalic.ttf in Resources */,
 				007F798C1A878D0B006C89E6 /* Raleway-BlackItalic.ttf in Resources */,
+				001F1B7C1B57777B001DD426 /* nevo_wacth.png in Resources */,
 				007F798B1A878D0B006C89E6 /* Raleway-Black.ttf in Resources */,
 				007F79991A878D0B006C89E6 /* Raleway-SemiBold.ttf in Resources */,
 				00B427341AC50AAE00787C58 /* TableListCell.xib in Resources */,
@@ -847,6 +854,7 @@
 				9AD8F9421A6DF35900F01014 /* Images.xcassets in Resources */,
 				007F798D1A878D0B006C89E6 /* Raleway-Bold.ttf in Resources */,
 				007F799B1A878D0B006C89E6 /* Raleway-Thin.ttf in Resources */,
+				001F1B7B1B57777B001DD426 /* nevo_wacth_selected.png in Resources */,
 				0742432A1AB2D0A20076F789 /* Firmwares in Resources */,
 				00478F501A8F637D00D0DCE2 /* clockViewMinute.png in Resources */,
 				00C640F61A8DEE0800815CF8 /* clockView600.png in Resources */,
