@@ -37,7 +37,7 @@ class NevoOtaController : NSObject,ConnectionControllerDelegate {
     
     /** check the OTA is doing or stop */
     private var mTimeoutTimer:NSTimer?
-    private let MAX_TIME = 20
+    private let MAX_TIME = 30
     private var lastprogress = 0.0
     //added for MCU OTA
     
@@ -340,6 +340,7 @@ class NevoOtaController : NSObject,ConnectionControllerDelegate {
         
         else if(dfuFirmwareType == DfuFirmwareTypes.SOFTDEVICE)
         {
+            SyncQueue.sharedInstance_ota.next()
             MCU_processDFUResponse(packet)
         }
         }
@@ -518,6 +519,21 @@ class NevoOtaController : NSObject,ConnectionControllerDelegate {
         mDelegate?.onDFUCancelled()
     }
 
+    func sendRequest(r:Request) {
+        //for MCU OTA, use send queue to control it
+        if (self.dfuFirmwareType == DfuFirmwareTypes.SOFTDEVICE)
+        {
+            SyncQueue.sharedInstance_ota.post( { (Void) -> (Void) in
+                
+                self.mConnectionController?.sendRequest(r)
+            } )
+        }
+        else
+        {
+            self.mConnectionController?.sendRequest(r)
+        }
+    }
+
     //added for MCU OTA
     
     func MCU_openfirmware(firmwareURL:NSURL)
@@ -546,6 +562,8 @@ class NevoOtaController : NSObject,ConnectionControllerDelegate {
     func MCU_sendFirmwareChunk()
     {
         AppTheme.DLog("sendFirmwareData")
+        //define one page request  object
+        var Onepage:Mcu_OnePageRequest = Mcu_OnePageRequest()
         
     for var i:Int = 0; i < notificationPacketInterval && firmwareDataBytesSent < binFileSize; i++
     {
@@ -601,12 +619,12 @@ class NevoOtaController : NSObject,ConnectionControllerDelegate {
     
     firmwareDataBytesSent += length;
     }
-    
-    mConnectionController?.sendRequest(Mcu_OnePacketRequest(packetdata: pagePacket ))
-    
+ 
+    Onepage.addPacket(Mcu_OnePacketRequest(packetdata: pagePacket ))
     }
     if(curpage < totalpage)
     {
+        sendRequest(Onepage)
         progress = 100.0*Double(firmwareDataBytesSent) / Double(binFileSize);
         mDelegate?.onTransferPercentage(Int(progress))
         AppTheme.DLog("didWriteDataPacket")
@@ -623,7 +641,7 @@ class NevoOtaController : NSObject,ConnectionControllerDelegate {
         state = DFUControllerState.FINISHED
         progress = 100.0
         mDelegate?.onTransferPercentage(Int(progress))
-        mConnectionController?.sendRequest(Mcu_CheckSumPacketRequest(totalpage: totalpage, checksum: checksum))
+        sendRequest(Mcu_CheckSumPacketRequest(totalpage: totalpage, checksum: checksum))        
         AppTheme.DLog("sendEndPacket, totalpage =\(totalpage), checksum = \(checksum), checksum-Lowbyte = \(checksum&0xFF)")
         mTimeoutTimer?.invalidate()
         return
@@ -671,8 +689,6 @@ class NevoOtaController : NSObject,ConnectionControllerDelegate {
                         AppTheme.DLog("Checksum error ,OTA get failure!");
                         mDelegate?.onError(NSString(string:"Checksum error ,OTA get failure!"))
                     }
-                    //reset to idle
-                    self.state = DFUControllerState.IDLE
                 }
             }
             
@@ -693,6 +709,14 @@ class NevoOtaController : NSObject,ConnectionControllerDelegate {
     
     func isConnected() -> Bool{
         return mConnectionController!.isConnected()
+    }
+    func setStatus(state:DFUControllerState)
+    {
+      self.state = state
+    }
+    func getStatus() ->DFUControllerState
+    {
+        return state
     }
 
     /**

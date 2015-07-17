@@ -36,6 +36,14 @@ class SyncQueue : NSObject {
         }
         return Singleton.instance
     }
+    //add for OTA use
+    class var sharedInstance_ota : SyncQueue {
+        struct Singleton {
+            static let instance = SyncQueue()
+        }
+        return Singleton.instance
+    }
+
     
     /**
     No initialisation outside of this class, this is a singleton

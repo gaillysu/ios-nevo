@@ -148,10 +148,7 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
             alert.show()
             return
         }
-        if (self.isTransferring) {
-            isTransferring = false
-            mNevoOtaController?.cancelDFU()
-        }else {
+        
             nevoOtaView.setProgress(0.0,currentTask: currentTaskNumber,allTask: allTaskNumber)
             nevoOtaView.setLatestVersion(NSLocalizedString("Please waiting...", comment: ""))
             isTransferring = true
@@ -159,7 +156,7 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
             nevoOtaView.backButton.enabled = false
             nevoOtaView.ReUpgradeButton?.hidden = true //The process of OTA hide this control
             mNevoOtaController?.performDFUOnFile(selectedFileURL!, firmwareType: enumFirmwareType)
-        }
+        
     }
     
     //below is delegate function
@@ -191,11 +188,11 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
     func onSuccessfulFileTranferred(){
         dispatch_async(dispatch_get_main_queue(), {
             
-            self.initValue()
             
             self.currentIndex = self.currentIndex + 1
             if self.currentIndex == self.firmwareURLs.count
             {
+                self.initValue()
                 var message = NSLocalizedString("UpdateSuccess1", comment: "")
                 if self.enumFirmwareType == DfuFirmwareTypes.APPLICATION
                 {
@@ -209,10 +206,15 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
             }
             else
             {
-                var dispatchTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, Int64(1.0 * Double(NSEC_PER_SEC)))
+                self.mNevoOtaController!.reset(false)
+                self.mNevoOtaController!.setStatus(DFUControllerState.SEND_RESET)
+                var dispatchTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, Int64(10.0 * Double(NSEC_PER_SEC)))
                 dispatch_after(dispatchTime, dispatch_get_main_queue(), {
-                    //MCU OTA done,the connection keep alive,continue do BLE OTA after 1s
-                    self.uploadPressed()
+                    if !self.mNevoOtaController!.isConnected() && self.mNevoOtaController!.getStatus() == DFUControllerState.SEND_RESET
+                    {
+                        var errorMessage = "Timeout,please try again";
+                        self.onError(errorMessage)
+                    }
                 })
             }
             
@@ -227,7 +229,7 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
             self.initValue()
             
             var alert :UIAlertView = UIAlertView(title: "Firmware Upgrade", message: errString as String, delegate: nil, cancelButtonTitle: "OK")
-            //alert.show()
+            alert.show()
             self.nevoOtaView.setLatestVersion(errString as String)
             self.mNevoOtaController!.reset(false)
         });
@@ -239,6 +241,18 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
         //Maybe we just got disconnected, let's check
         
         checkConnection()
+        dispatch_async(dispatch_get_main_queue(), {
+            if self.mNevoOtaController!.isConnected() && self.mNevoOtaController!.getStatus() == DFUControllerState.SEND_RESET
+            {
+                self.mNevoOtaController!.setStatus(DFUControllerState.INIT)
+                var dispatchTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, Int64(5.0 * Double(NSEC_PER_SEC)))
+                dispatch_after(dispatchTime, dispatch_get_main_queue(), {
+                    //MCU reset OK, continue BLE OTA
+                    self.uploadPressed();
+                })
+            }
+        });
+
     }
 
     /**

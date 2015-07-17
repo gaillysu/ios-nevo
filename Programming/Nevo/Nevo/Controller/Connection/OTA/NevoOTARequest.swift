@@ -260,6 +260,36 @@ class Mcu_OnePacketRequest: Request {
     }
 }
 
+class Mcu_OnePageRequest: Request {
+    
+    var mOnePage:[Mcu_OnePacketRequest]
+    
+    init()
+    {
+        mOnePage = []
+    }
+    func addPacket(packet:Mcu_OnePacketRequest)
+    {
+        mOnePage.append(packet)
+    }
+    func getTargetProfile() -> Profile {
+        return NevoOTAModeProfile()
+    }
+    
+    func getRawData() -> NSData {
+        return NSData()
+    }
+    
+    func getRawDataEx() -> NSArray {
+        var packetarray = NSMutableArray()
+        for (index, packet) in enumerate(mOnePage) {
+           packetarray.addObject(packet.getRawData())
+        }
+        return packetarray
+    }
+}
+
+
 class Mcu_CheckSumPacketRequest: Request {
     
     var mTotalpage:Int
