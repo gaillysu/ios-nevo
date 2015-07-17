@@ -203,6 +203,7 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
                 }
                 var alert :UIAlertView = UIAlertView(title: "Firmware Upgrade", message: message, delegate: nil, cancelButtonTitle: "OK")
                 alert.show()
+                self.nevoOtaView.setLatestVersion(NSLocalizedString("UpdateSuccess2", comment: ""))
                 self.nevoOtaView.upgradeSuccessful()
                 self.mNevoOtaController!.reset(false)
             }

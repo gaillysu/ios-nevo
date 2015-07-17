@@ -163,6 +163,25 @@ class NevoOtaView: UIView {
             //tipButton.addTarget(self, action: Selector("tipAction:"), forControlEvents: UIControlEvents.TouchUpInside)
             //self.addSubview(tipButton)
 
+            if(AppTheme.GET_IS_iPhone4S()){
+                var frame:CGRect;
+                frame = nevoWacthImage.frame;
+                frame.size.height = nevoWacthImage.frame.height+10
+                nevoWacthImage.frame = frame;
+                
+                frame = taskLabel.frame
+                frame.origin.y = nevoWacthImage.frame.origin.y+nevoWacthImage.frame.size.height
+                taskLabel.frame = frame
+
+                frame = warningLabel.frame
+                frame.origin.y = taskLabel.frame.origin.y+taskLabel.frame.size.height+5
+                warningLabel.frame = frame
+
+                frame = messageLabel.frame
+                frame.origin.y = warningLabel.frame.origin.y+warningLabel.frame.size.height
+                messageLabel.frame = frame
+            }
+
             warningLabel.text = NSLocalizedString("Attention!",comment:"")
             warningLabel.font = AppTheme.FONT_RALEWAY_BOLD(mSize: 20)
 
