@@ -150,52 +150,54 @@ class NevoOtaView: UIView {
     var ReUpgradeButton:UIButton?
     
     func buildView(delegate:ButtonManagerCallBack,otacontroller:NevoOtaController) {
-        mDelegate = delegate
-        mOTADelegate = otacontroller
 
         title.text = NSLocalizedString("Firmware Upgrade", comment:"")
 
-        //let tipButton:UIButton = UIButton.buttonWithType(UIButtonType.InfoDark) as! UIButton
-        //tipButton.frame = CGRectMake(self.frame.size.width-50, 90, 50, 50)
-        //tipButton.addTarget(self, action: Selector("tipAction:"), forControlEvents: UIControlEvents.TouchUpInside)
-        //self.addSubview(tipButton)
-        
         nevoWacthImage.contentMode = UIViewContentMode.ScaleAspectFit
 
-        warningLabel.text = NSLocalizedString("Attention!",comment:"")
-        warningLabel.font = AppTheme.FONT_RALEWAY_BOLD(mSize: 20)
+        if(mDelegate == nil){
+            mDelegate = delegate
+            mOTADelegate = otacontroller
+            //let tipButton:UIButton = UIButton.buttonWithType(UIButtonType.InfoDark) as! UIButton
+            //tipButton.frame = CGRectMake(self.frame.size.width-50, 90, 50, 50)
+            //tipButton.addTarget(self, action: Selector("tipAction:"), forControlEvents: UIControlEvents.TouchUpInside)
+            //self.addSubview(tipButton)
 
-        messageLabel.backgroundColor = UIColor.clearColor()
-        messageLabel.font = AppTheme.FONT_RALEWAY_LIGHT(mSize: 16)
-        messageLabel.numberOfLines = 0;
-        messageLabel.lineBreakMode = NSLineBreakMode.ByWordWrapping
-        messageLabel.textAlignment = NSTextAlignment.Center
-        let messageS:String  = String(format: "%@",NSLocalizedString("otahelp",comment:""))
-        var labelframe:CGRect  = AppTheme.getLabelSize(messageS, andObject: messageLabel.frame,andFont: AppTheme.FONT_RALEWAY_LIGHT(mSize: 16))
-        var labelSize:CGRect = labelframe;
-        labelSize.size.height = labelframe.size.height;
-        messageLabel.frame = labelSize
-        messageLabel.text = String(format: "%@",NSLocalizedString("otahelp",comment:""))
+            warningLabel.text = NSLocalizedString("Attention!",comment:"")
+            warningLabel.font = AppTheme.FONT_RALEWAY_BOLD(mSize: 20)
 
-        OTAprogressView = OTAProgress()
-        OTAprogressView?.setProgressColor(AppTheme.NEVO_SOLAR_YELLOW())
-        OTAprogressView?.frame = CGRectMake(nevoWacthImage.frame.origin.x, nevoWacthImage.frame.origin.y, nevoWacthImage.frame.size.width, nevoWacthImage.frame.size.height)
-        OTAprogressView?.setProgress(progresValue)
-        self.layer.addSublayer(OTAprogressView)
+            messageLabel.backgroundColor = UIColor.clearColor()
+            messageLabel.font = AppTheme.FONT_RALEWAY_LIGHT(mSize: 16)
+            messageLabel.numberOfLines = 0;
+            messageLabel.lineBreakMode = NSLineBreakMode.ByWordWrapping
+            messageLabel.textAlignment = NSTextAlignment.Center
+            let messageS:String  = String(format: "%@",NSLocalizedString("otahelp",comment:""))
+            var labelframe:CGRect  = AppTheme.getLabelSize(messageS, andObject: messageLabel.frame,andFont: AppTheme.FONT_RALEWAY_LIGHT(mSize: 16))
+            var labelSize:CGRect = labelframe;
+            labelSize.size.height = labelframe.size.height;
+            messageLabel.frame = labelSize
+            messageLabel.text = String(format: "%@",NSLocalizedString("otahelp",comment:""))
 
-        ReUpgradeButton = UIButton.buttonWithType(UIButtonType.Custom) as? UIButton
-        ReUpgradeButton!.frame = CGRectMake(0, 0, 120, 40)
-        ReUpgradeButton!.center = CGPointMake(self.frame.size.width/2.0, messageLabel!.frame.size.height+messageLabel!.frame.origin.y+30)
-        ReUpgradeButton!.setTitle(NSLocalizedString("Re-Upgrade", comment: ""), forState: UIControlState.Normal)
-        ReUpgradeButton!.titleLabel?.font = AppTheme.FONT_RALEWAY_LIGHT(mSize: 15)
-        ReUpgradeButton!.backgroundColor = UIColor.clearColor()
-        ReUpgradeButton!.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
-        ReUpgradeButton!.addTarget(self, action: Selector("buttonAction:"), forControlEvents: UIControlEvents.TouchUpInside)
-        ReUpgradeButton!.layer.masksToBounds = true
-        ReUpgradeButton!.layer.cornerRadius = 20.0
-        ReUpgradeButton!.layer.borderWidth = 2;//边框宽度
-        ReUpgradeButton!.layer.borderColor = AppTheme.NEVO_SOLAR_YELLOW().CGColor
-        self.addSubview(ReUpgradeButton!)
+            OTAprogressView = OTAProgress()
+            OTAprogressView?.setProgressColor(AppTheme.NEVO_SOLAR_YELLOW())
+            OTAprogressView?.frame = CGRectMake(nevoWacthImage.frame.origin.x, nevoWacthImage.frame.origin.y, nevoWacthImage.frame.size.width, nevoWacthImage.frame.size.height)
+            OTAprogressView?.setProgress(progresValue)
+            self.layer.addSublayer(OTAprogressView)
+
+            ReUpgradeButton = UIButton.buttonWithType(UIButtonType.Custom) as? UIButton
+            ReUpgradeButton!.frame = CGRectMake(0, 0, 120, 40)
+            ReUpgradeButton!.center = CGPointMake(self.frame.size.width/2.0, messageLabel!.frame.size.height+messageLabel!.frame.origin.y+30)
+            ReUpgradeButton!.setTitle(NSLocalizedString("Re-Upgrade", comment: ""), forState: UIControlState.Normal)
+            ReUpgradeButton!.titleLabel?.font = AppTheme.FONT_RALEWAY_LIGHT(mSize: 15)
+            ReUpgradeButton!.backgroundColor = UIColor.clearColor()
+            ReUpgradeButton!.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
+            ReUpgradeButton!.addTarget(self, action: Selector("buttonAction:"), forControlEvents: UIControlEvents.TouchUpInside)
+            ReUpgradeButton!.layer.masksToBounds = true
+            ReUpgradeButton!.layer.cornerRadius = 20.0
+            ReUpgradeButton!.layer.borderWidth = 2;//边框宽度
+            ReUpgradeButton!.layer.borderColor = AppTheme.NEVO_SOLAR_YELLOW().CGColor
+            self.addSubview(ReUpgradeButton!)
+        }
     }
 
     @IBAction func buttonAction(sender: AnyObject) {
