@@ -252,9 +252,7 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
         //We don't need to continue searching for peripherals, let's stop connecting to the others
         //We do so by forgetting them
         mTryingToConnectPeripherals = []
-        
-        mDelegate?.connectionStateChanged(true, fromAddress: aPeripheral.identifier)
-        
+                
     }
 
     /*
@@ -298,6 +296,7 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
                     mPeripheral?.setNotifyValue(true,forCharacteristic:aChar)
             
                     AppTheme.DLog("Callback char : \(aChar.UUID.UUIDString)")
+                    mDelegate?.connectionStateChanged(true, fromAddress: aPeripheral.identifier)
                 }
                 
                 else if(aChar.UUID==CBUUID(string: "00002a26-0000-1000-8000-00805f9b34fb")) {

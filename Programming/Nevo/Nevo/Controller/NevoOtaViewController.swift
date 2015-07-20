@@ -245,7 +245,7 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
             if self.mNevoOtaController!.isConnected() && self.mNevoOtaController!.getStatus() == DFUControllerState.SEND_RESET
             {
                 self.mNevoOtaController!.setStatus(DFUControllerState.INIT)
-                var dispatchTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, Int64(5.0 * Double(NSEC_PER_SEC)))
+                var dispatchTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, Int64(2.0 * Double(NSEC_PER_SEC)))
                 dispatch_after(dispatchTime, dispatch_get_main_queue(), {
                     //MCU reset OK, continue BLE OTA
                     self.uploadPressed();
@@ -294,6 +294,8 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
             {
                 currentTaskNumber = 0;
                 allTaskNumber = 0;
+                firmwareURLs = []
+                currentIndex = 0
                 var fileArray = GET_FIRMWARE_FILES("Firmwares")
                 for tmpfile in fileArray {
                     var selectedFile = tmpfile as! NSURL
@@ -320,7 +322,6 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
                     }
                 }
                 // reUpdate all firmwares
-                currentIndex = 0
                 uploadPressed()
             }
             else

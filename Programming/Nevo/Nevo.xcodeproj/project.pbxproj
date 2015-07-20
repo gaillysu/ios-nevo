@@ -88,6 +88,7 @@
 		079EED2D1AB7FDEA00CEA78D /* DailyTrackerInfoNevoPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079EED2C1AB7FDEA00CEA78D /* DailyTrackerInfoNevoPacket.swift */; };
 		079EED2F1AB7FE2D00CEA78D /* DailyTrackerNevoPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079EED2E1AB7FE2D00CEA78D /* DailyTrackerNevoPacket.swift */; };
 		079EED311AB7FE6000CEA78D /* DailyStepsNevoPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079EED301AB7FE6000CEA78D /* DailyStepsNevoPacket.swift */; };
+		07BCE82A1B5CAB2200C7F558 /* clockview600_color.png in Resources */ = {isa = PBXBuildFile; fileRef = 07BCE8291B5CAB2100C7F558 /* clockview600_color.png */; };
 		07BE0CF21A84A2F8000C4AC7 /* IntelHex2BinConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = 07BE0CF11A84A2F8000C4AC7 /* IntelHex2BinConverter.m */; };
 		07C18C0A1A80DF4900D0BF4A /* NevoOtaController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C18C091A80DF4900D0BF4A /* NevoOtaController.swift */; };
 		07C18C0E1A81AB3900D0BF4A /* NevoOtaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C18C0D1A81AB3900D0BF4A /* NevoOtaViewController.swift */; };
@@ -241,6 +242,7 @@
 		079EED2C1AB7FDEA00CEA78D /* DailyTrackerInfoNevoPacket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DailyTrackerInfoNevoPacket.swift; path = Controller/Connection/Packet/DailyTrackerInfoNevoPacket.swift; sourceTree = "<group>"; };
 		079EED2E1AB7FE2D00CEA78D /* DailyTrackerNevoPacket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DailyTrackerNevoPacket.swift; path = Controller/Connection/Packet/DailyTrackerNevoPacket.swift; sourceTree = "<group>"; };
 		079EED301AB7FE6000CEA78D /* DailyStepsNevoPacket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DailyStepsNevoPacket.swift; path = Controller/Connection/Packet/DailyStepsNevoPacket.swift; sourceTree = "<group>"; };
+		07BCE8291B5CAB2100C7F558 /* clockview600_color.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clockview600_color.png; sourceTree = "<group>"; };
 		07BE0CEE1A84A0C8000C4AC7 /* Nevo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Nevo-Bridging-Header.h"; sourceTree = "<group>"; };
 		07BE0CF01A84A2F8000C4AC7 /* IntelHex2BinConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntelHex2BinConverter.h; sourceTree = "<group>"; };
 		07BE0CF11A84A2F8000C4AC7 /* IntelHex2BinConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntelHex2BinConverter.m; sourceTree = "<group>"; };
@@ -404,6 +406,7 @@
 		007F79881A878D0B006C89E6 /* image */ = {
 			isa = PBXGroup;
 			children = (
+				07BCE8291B5CAB2100C7F558 /* clockview600_color.png */,
 				001F1B791B57777B001DD426 /* nevo_wacth_selected.png */,
 				001F1B7A1B57777B001DD426 /* nevo_wacth.png */,
 				00D0FF721B130A9F00D084C3 /* Nevo660.png */,
@@ -851,6 +854,7 @@
 				007F798F1A878D0B006C89E6 /* Raleway-ExtraBold.ttf in Resources */,
 				007F79911A878D0B006C89E6 /* Raleway-ExtraLight.ttf in Resources */,
 				007F798E1A878D0B006C89E6 /* Raleway-BoldItalic.ttf in Resources */,
+				07BCE82A1B5CAB2200C7F558 /* clockview600_color.png in Resources */,
 				9AD8F9421A6DF35900F01014 /* Images.xcassets in Resources */,
 				007F798D1A878D0B006C89E6 /* Raleway-Bold.ttf in Resources */,
 				007F799B1A878D0B006C89E6 /* Raleway-Thin.ttf in Resources */,

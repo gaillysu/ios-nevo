@@ -80,4 +80,11 @@ class ClockView: UIControl {
 
         return (degrees * CGFloat(M_PI))/180.0;
     }
+    /*
+    set new Image
+    */
+    func setClockImage(dialImage:UIImage)
+    {
+       mClockDialView.image = dialImage
+    }
 }

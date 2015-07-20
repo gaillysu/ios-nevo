@@ -27,10 +27,9 @@ class HomeController: UIViewController, SyncControllerDelegate ,ButtonManagerCal
         let timer:NSTimer = NSTimer.scheduledTimerWithTimeInterval(10, target: self, selector:"timerAction:", userInfo: nil, repeats: true);
         
         //TEST this is for test. pls not to remove it 
-                //var tapAction = UITapGestureRecognizer(target: self, action: "gotoProfileScreen")
-                //tapAction.numberOfTapsRequired = 4
-                //tapAction.numberOfTouchesRequired = 2
-                //homeView.addGestureRecognizer(tapAction)
+                var tapAction = UITapGestureRecognizer(target: self, action: "testHandshake")
+                tapAction.numberOfTapsRequired = 2
+                homeView.addGestureRecognizer(tapAction)
         //end TEST
 
     }
@@ -85,7 +84,16 @@ class HomeController: UIViewController, SyncControllerDelegate ,ButtonManagerCal
         { SyncController.sharedInstance.getGoal() }
     }
 
-    
+    /**
+    test communication is normal or not
+    */
+    func testHandshake(){
+        if SyncController.sharedInstance.isConnected()
+        {
+            AppTheme.DLog("start handshake nevo");
+            SyncController.sharedInstance.SetLedOnOffandVibrator(0x3F0000, motorOnOff: false)
+        }
+    }
     /**
     
     goto OTA screen.
@@ -118,6 +126,16 @@ class HomeController: UIViewController, SyncControllerDelegate ,ButtonManagerCal
             AppTheme.DLog("get Daily Steps is: \(dailySteps), getDaily Goal is: \(dailyStepGoal),percent is: \(percent)")
             
             homeView.setProgress(percent, dailySteps: dailySteps, dailyStepGoal: dailyStepGoal)
+        }
+        else if packet.getHeader() == LedLightOnOffNevoRequest.HEADER()
+        {
+            AppTheme.DLog("end handshake nevo");
+            //blink once Clock
+            self.homeView.getClockTimerView().setClockImage(AppTheme.GET_RESOURCES_IMAGE("clockview600_color"))
+            var dispatchTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, Int64(2.0 * Double(NSEC_PER_SEC)))
+            dispatch_after(dispatchTime, dispatch_get_main_queue(), {
+              self.homeView.getClockTimerView().setClockImage(AppTheme.GET_RESOURCES_IMAGE("clockView600"))
+            })
         }
     }
 
