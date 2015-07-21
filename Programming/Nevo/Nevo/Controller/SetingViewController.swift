@@ -28,7 +28,7 @@ class SetingViewController: UIViewController,SelectionTypeDelegate,SyncControlle
 
         initNotificationSettingArray()
 
-        sources = [NSLocalizedString("Notifications", comment: ""),NSLocalizedString("Link-Loss Notifications", comment: ""),NSLocalizedString("My nevo", comment: ""),NSLocalizedString("Find device", comment: ""),NSLocalizedString("Help", comment: "")]
+        sources = [NSLocalizedString("Notifications", comment: ""),NSLocalizedString("Link-Loss Notifications", comment: ""),NSLocalizedString("My nevo", comment: ""),NSLocalizedString("Find device", comment: ""),NSLocalizedString("Help", comment: ""),NSLocalizedString("currentVersion:", comment: "")]
         //NSLocalizedString("Firmware Upgrade", comment: "")
     }
 
@@ -251,7 +251,18 @@ class SetingViewController: UIViewController,SelectionTypeDelegate,SyncControlle
                 findMydevice()
             }else if (indexPath.section == 4){
                 self.performSegueWithIdentifier("Seting_Help", sender: self)
-                
+            }else if (indexPath.section == 5){
+                AppTheme.getAppStoreVersion({ (stringVersion, version) -> Void in
+                    let loclString:String = (NSBundle.mainBundle().infoDictionary! as NSDictionary).objectForKey("CFBundleShortVersionString") as! String
+                    let versionString:NSString = loclString.stringByReplacingOccurrencesOfString(".", withString: "")
+                    let versionNumber:Double = Double(versionString.floatValue)
+                    if(version>versionNumber){
+                        var alertView:UIAlertView = UIAlertView(title: "Found the new version", message:String(format: "Found New version:(%@)", stringVersion!), delegate: self, cancelButtonTitle: "Enter")
+                        alertView.show()
+                    }else{
+                        MBProgressHUD.showSuccess("Latest version")
+                    }
+                })
             }
         }
     }
@@ -297,6 +308,10 @@ class SetingViewController: UIViewController,SelectionTypeDelegate,SyncControlle
             endCell.textLabel?.text = sources.objectAtIndex(indexPath.section) as? String
             endCell.layer.borderWidth = 0.5;
             endCell.layer.borderColor = UIColor.grayColor().CGColor;
+            if((sources.objectAtIndex(indexPath.section) as! String).isEqual(NSLocalizedString("currentVersion:", comment: ""))){
+                endCell.textLabel?.text = String(format: "%@%@",(sources.objectAtIndex(indexPath.section) as? String)!,AppTheme.getLoclAppStoreVersion())
+            }
+
             return endCell
         }
         let cell:TableListCell = notificationList.NotificationlistCell(indexPath, dataSource: mNotificationSettingArray) as! TableListCell

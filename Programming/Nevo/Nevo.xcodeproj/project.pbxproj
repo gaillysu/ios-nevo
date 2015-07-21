@@ -76,6 +76,15 @@
 		00E5CFD41B17F81F00D1F829 /* help in Resources */ = {isa = PBXBuildFile; fileRef = 00E5CFD31B17F81F00D1F829 /* help */; };
 		00E5CFD61B17FB7300D1F829 /* HelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E5CFD51B17FB7300D1F829 /* HelpViewController.swift */; };
 		00E5CFD81B18053100D1F829 /* HelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E5CFD71B18053100D1F829 /* HelpView.swift */; };
+		00F1C0DC1B5DD55F009B85DB /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F1C0CA1B5DD55F009B85DB /* AFHTTPRequestOperation.m */; };
+		00F1C0DD1B5DD55F009B85DB /* AFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F1C0CC1B5DD55F009B85DB /* AFHTTPRequestOperationManager.m */; };
+		00F1C0DE1B5DD55F009B85DB /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F1C0CE1B5DD55F009B85DB /* AFHTTPSessionManager.m */; };
+		00F1C0DF1B5DD55F009B85DB /* AFNetworkReachabilityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F1C0D11B5DD55F009B85DB /* AFNetworkReachabilityManager.m */; };
+		00F1C0E01B5DD55F009B85DB /* AFSecurityPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F1C0D31B5DD55F009B85DB /* AFSecurityPolicy.m */; };
+		00F1C0E11B5DD55F009B85DB /* AFURLConnectionOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F1C0D51B5DD55F009B85DB /* AFURLConnectionOperation.m */; };
+		00F1C0E21B5DD55F009B85DB /* AFURLRequestSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F1C0D71B5DD55F009B85DB /* AFURLRequestSerialization.m */; };
+		00F1C0E31B5DD55F009B85DB /* AFURLResponseSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F1C0D91B5DD55F009B85DB /* AFURLResponseSerialization.m */; };
+		00F1C0E41B5DD55F009B85DB /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F1C0DB1B5DD55F009B85DB /* AFURLSessionManager.m */; };
 		0704C9631AA431EE00F9AE09 /* GetStepsGoalRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0704C9621AA431EE00F9AE09 /* GetStepsGoalRequest.swift */; };
 		074243221AB00F630076F789 /* RealTimeCountSteps.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074243211AB00F630076F789 /* RealTimeCountSteps.swift */; };
 		0742432A1AB2D0A20076F789 /* Firmwares in Resources */ = {isa = PBXBuildFile; fileRef = 074243291AB2D0A20076F789 /* Firmwares */; };
@@ -231,6 +240,25 @@
 		00E5CFD31B17F81F00D1F829 /* help */ = {isa = PBXFileReference; lastKnownFileType = folder; path = help; sourceTree = "<group>"; };
 		00E5CFD51B17FB7300D1F829 /* HelpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HelpViewController.swift; path = Controller/HelpViewController.swift; sourceTree = "<group>"; };
 		00E5CFD71B18053100D1F829 /* HelpView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HelpView.swift; path = View/HelpView.swift; sourceTree = "<group>"; };
+		00F1C0C91B5DD55F009B85DB /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
+		00F1C0CA1B5DD55F009B85DB /* AFHTTPRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperation.m; sourceTree = "<group>"; };
+		00F1C0CB1B5DD55F009B85DB /* AFHTTPRequestOperationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperationManager.h; sourceTree = "<group>"; };
+		00F1C0CC1B5DD55F009B85DB /* AFHTTPRequestOperationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperationManager.m; sourceTree = "<group>"; };
+		00F1C0CD1B5DD55F009B85DB /* AFHTTPSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPSessionManager.h; sourceTree = "<group>"; };
+		00F1C0CE1B5DD55F009B85DB /* AFHTTPSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPSessionManager.m; sourceTree = "<group>"; };
+		00F1C0CF1B5DD55F009B85DB /* AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworking.h; sourceTree = "<group>"; };
+		00F1C0D01B5DD55F009B85DB /* AFNetworkReachabilityManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworkReachabilityManager.h; sourceTree = "<group>"; };
+		00F1C0D11B5DD55F009B85DB /* AFNetworkReachabilityManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFNetworkReachabilityManager.m; sourceTree = "<group>"; };
+		00F1C0D21B5DD55F009B85DB /* AFSecurityPolicy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFSecurityPolicy.h; sourceTree = "<group>"; };
+		00F1C0D31B5DD55F009B85DB /* AFSecurityPolicy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFSecurityPolicy.m; sourceTree = "<group>"; };
+		00F1C0D41B5DD55F009B85DB /* AFURLConnectionOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLConnectionOperation.h; sourceTree = "<group>"; };
+		00F1C0D51B5DD55F009B85DB /* AFURLConnectionOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLConnectionOperation.m; sourceTree = "<group>"; };
+		00F1C0D61B5DD55F009B85DB /* AFURLRequestSerialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLRequestSerialization.h; sourceTree = "<group>"; };
+		00F1C0D71B5DD55F009B85DB /* AFURLRequestSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLRequestSerialization.m; sourceTree = "<group>"; };
+		00F1C0D81B5DD55F009B85DB /* AFURLResponseSerialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLResponseSerialization.h; sourceTree = "<group>"; };
+		00F1C0D91B5DD55F009B85DB /* AFURLResponseSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLResponseSerialization.m; sourceTree = "<group>"; };
+		00F1C0DA1B5DD55F009B85DB /* AFURLSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLSessionManager.h; sourceTree = "<group>"; };
+		00F1C0DB1B5DD55F009B85DB /* AFURLSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLSessionManager.m; sourceTree = "<group>"; };
 		0704C9621AA431EE00F9AE09 /* GetStepsGoalRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GetStepsGoalRequest.swift; path = Controller/Connection/Request/GetStepsGoalRequest.swift; sourceTree = "<group>"; };
 		074243211AB00F630076F789 /* RealTimeCountSteps.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RealTimeCountSteps.swift; path = Model/Activity/RealTimeCountSteps.swift; sourceTree = "<group>"; };
 		074243291AB2D0A20076F789 /* Firmwares */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Firmwares; path = OTA/Firmwares; sourceTree = "<group>"; };
@@ -471,6 +499,33 @@
 			path = Frameworks/MBProgressHUD;
 			sourceTree = "<group>";
 		};
+		00F1C0C81B5DD55F009B85DB /* AFNetworking */ = {
+			isa = PBXGroup;
+			children = (
+				00F1C0C91B5DD55F009B85DB /* AFHTTPRequestOperation.h */,
+				00F1C0CA1B5DD55F009B85DB /* AFHTTPRequestOperation.m */,
+				00F1C0CB1B5DD55F009B85DB /* AFHTTPRequestOperationManager.h */,
+				00F1C0CC1B5DD55F009B85DB /* AFHTTPRequestOperationManager.m */,
+				00F1C0CD1B5DD55F009B85DB /* AFHTTPSessionManager.h */,
+				00F1C0CE1B5DD55F009B85DB /* AFHTTPSessionManager.m */,
+				00F1C0CF1B5DD55F009B85DB /* AFNetworking.h */,
+				00F1C0D01B5DD55F009B85DB /* AFNetworkReachabilityManager.h */,
+				00F1C0D11B5DD55F009B85DB /* AFNetworkReachabilityManager.m */,
+				00F1C0D21B5DD55F009B85DB /* AFSecurityPolicy.h */,
+				00F1C0D31B5DD55F009B85DB /* AFSecurityPolicy.m */,
+				00F1C0D41B5DD55F009B85DB /* AFURLConnectionOperation.h */,
+				00F1C0D51B5DD55F009B85DB /* AFURLConnectionOperation.m */,
+				00F1C0D61B5DD55F009B85DB /* AFURLRequestSerialization.h */,
+				00F1C0D71B5DD55F009B85DB /* AFURLRequestSerialization.m */,
+				00F1C0D81B5DD55F009B85DB /* AFURLResponseSerialization.h */,
+				00F1C0D91B5DD55F009B85DB /* AFURLResponseSerialization.m */,
+				00F1C0DA1B5DD55F009B85DB /* AFURLSessionManager.h */,
+				00F1C0DB1B5DD55F009B85DB /* AFURLSessionManager.m */,
+			);
+			name = AFNetworking;
+			path = Frameworks/AFNetworking;
+			sourceTree = "<group>";
+		};
 		07BE0CEF1A84A2F8000C4AC7 /* IntelHex2BinConverter */ = {
 			isa = PBXGroup;
 			children = (
@@ -601,6 +656,7 @@
 		9AD8F95A1A6DFE3400F01014 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				00F1C0C81B5DD55F009B85DB /* AFNetworking */,
 				00E2BDDC1B16CCD0009C757E /* MBProgressHUD */,
 				9A2D6C3C1A9C717E00591BDC /* NevoHK */,
 				9A2D6C3A1A9C6D9F00591BDC /* HealthKit.framework */,
@@ -896,10 +952,12 @@
 				9AD8F98D1A6E2D6E00F01014 /* RawPacket.swift in Sources */,
 				9AD8F9621A6E00E800F01014 /* NevoBTimpl.swift in Sources */,
 				00B427331AC50AAE00787C58 /* TableListCell.swift in Sources */,
+				00F1C0DD1B5DD55F009B85DB /* AFHTTPRequestOperationManager.m in Sources */,
 				9A7551A71AADA91B00DD9292 /* SyncQueue.swift in Sources */,
 				07CC4A2F1A821B46008DA749 /* NevoOTARequest.swift in Sources */,
 				00A2287E1AA57F1A00360C36 /* EnterNotificationController.swift in Sources */,
 				00D0FF771B13184500D084C3 /* MyNevoView.swift in Sources */,
+				00F1C0E11B5DD55F009B85DB /* AFURLConnectionOperation.m in Sources */,
 				9AD8F9791A6E05F700F01014 /* NevoBT.swift in Sources */,
 				079EED311AB7FE6000CEA78D /* DailyStepsNevoPacket.swift in Sources */,
 				074243221AB00F630076F789 /* RealTimeCountSteps.swift in Sources */,
@@ -928,6 +986,7 @@
 				001818321B044F8D005E9F2D /* TutorialPage1View.swift in Sources */,
 				07731E541AA58F27007F9FD6 /* ReadDailyTracker.swift in Sources */,
 				00E2BDE41B16CCD0009C757E /* MBProgressHUD.m in Sources */,
+				00F1C0E41B5DD55F009B85DB /* AFURLSessionManager.m in Sources */,
 				07C59F281A8C618A00D65C84 /* WriteSettingRequest.swift in Sources */,
 				9A3E57261A80E56E00DFFAE1 /* NevoPacket.swift in Sources */,
 				9AD8F98F1A6E2EE000F01014 /* Profile.swift in Sources */,
@@ -939,14 +998,18 @@
 				0017199C1AB2EE2E00889FED /* DeviceScannerView.swift in Sources */,
 				001719A21AB2EE5300889FED /* DeviceScannerController.swift in Sources */,
 				07C59F241A8C5A0A00D65C84 /* SetNortificationRequest.swift in Sources */,
+				00F1C0DC1B5DD55F009B85DB /* AFHTTPRequestOperation.m in Sources */,
 				9A3E57311A80F08400DFFAE1 /* NevoOTAControllerProfile.swift in Sources */,
 				07C59F2E1A8C622300D65C84 /* SetProfileRequest.swift in Sources */,
 				59893B401AC8E3CD0063572B /* ConnectionManager.swift in Sources */,
 				9AD8F99C1A6E3D6A00F01014 /* NevoRequest.swift in Sources */,
+				00F1C0E21B5DD55F009B85DB /* AFURLRequestSerialization.m in Sources */,
 				9A3E57251A80E56E00DFFAE1 /* NevoProfile.swift in Sources */,
 				008F39711B0EE0BF00698F1B /* NotificationTypeCell.swift in Sources */,
 				005350BC1A8B4C1200BF289D /* StepGoalSetingView.swift in Sources */,
+				00F1C0E31B5DD55F009B85DB /* AFURLResponseSerialization.m in Sources */,
 				00E5CFD81B18053100D1F829 /* HelpView.swift in Sources */,
+				00F1C0E01B5DD55F009B85DB /* AFSecurityPolicy.m in Sources */,
 				00E5CFD61B17FB7300D1F829 /* HelpViewController.swift in Sources */,
 				001818391B048E12005E9F2D /* TutorialPage5View.swift in Sources */,
 				007DD4BB1A89DDC000CE7264 /* Page2Controller.swift in Sources */,
@@ -960,10 +1023,12 @@
 				0704C9631AA431EE00F9AE09 /* GetStepsGoalRequest.swift in Sources */,
 				07CC4A291A820A9B008DA749 /* Utility.swift in Sources */,
 				0790259B1B141A7E0049BB06 /* ReadBatteryLevelNevoRequest.swift in Sources */,
+				00F1C0DF1B5DD55F009B85DB /* AFNetworkReachabilityManager.m in Sources */,
 				07731E521AA58EFE007F9FD6 /* ReadDailyTrackerInfo.swift in Sources */,
 				0018183A1B048E12005E9F2D /* TutorialPage6View.swift in Sources */,
 				007DD4BD1A89DF2A00CE7264 /* Page3Controller.swift in Sources */,
 				07C18C0A1A80DF4900D0BF4A /* NevoOtaController.swift in Sources */,
+				00F1C0DE1B5DD55F009B85DB /* AFHTTPSessionManager.m in Sources */,
 				00A228701AA551A400360C36 /* SetingViewController.swift in Sources */,
 				9A3E57331A80F08400DFFAE1 /* NevoOTAPacketProfile.swift in Sources */,
 				9A3E57241A80E56E00DFFAE1 /* ConnectionControllerImpl.swift in Sources */,

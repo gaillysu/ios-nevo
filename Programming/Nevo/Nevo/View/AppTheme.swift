@@ -180,6 +180,11 @@ class AppTheme {
         return frame
     }
 
+    /**
+    Phone the current language
+
+    :returns: Language
+    */
     class func getPreferredLanguage()->NSString{
 
         let defaults:NSUserDefaults = NSUserDefaults.standardUserDefaults()
@@ -187,11 +192,39 @@ class AppTheme {
         let allLanguages:NSArray = defaults.objectForKey("AppleLanguages") as! NSArray
 
         let preferredLang:NSString = allLanguages.objectAtIndex(0) as! NSString
-
-        NSLog("当前语言:%@", preferredLang);
-
         return preferredLang;
     
+    }
+
+    /**
+    To obtain the version number on AppStore
+
+    :param: resulVersion It contains a string version and a Double type version
+    */
+    class func getAppStoreVersion(resulVersion:((stringVersion:NSString?,version:Double?) -> Void)){
+        let url:NSString = NSString(string: "https://itunes.apple.com/lookup?id=977526892")
+        let manager:AFHTTPRequestOperationManager = AFHTTPRequestOperationManager()
+        var operation:AFHTTPRequestOperation?
+        var responseObject:AnyObject?
+        var error:NSError?
+        manager.GET((url as String), parameters:nil, success: { (operation,responseObject) -> Void in
+            var arr: NSDictionary! = responseObject as! NSDictionary
+            let versionString: NSString = ((arr.objectForKey("results") as! NSArray).objectAtIndex(0) as! NSDictionary).objectForKey("version") as! NSString
+            let string:NSString = versionString.stringByReplacingOccurrencesOfString(".", withString: "")
+            let version:Float = string.floatValue
+            resulVersion(stringVersion: versionString,version:Double(version))
+            }) { (operation,error) -> Void in
+        }
+    }
+
+    /**
+    Access to the local version number
+
+    :returns: <#return value description#>
+    */
+    class func getLoclAppStoreVersion()->String{
+        let loclString:String = (NSBundle.mainBundle().infoDictionary! as NSDictionary).objectForKey("CFBundleShortVersionString") as! String
+        return loclString
     }
 
 }
