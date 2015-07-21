@@ -82,7 +82,7 @@
 "forgetnevo"="Forget this nevo";
 "unpairednevo"="You have already unpaired your nevo.";
 "Help"="Help";
-"currentVersion:"="currentVersion:";
+"currentVersion:"="nevo Version:";
 "update_error_noconnect"="No nevo connected.";
 "checking_firmware"="Checking firmware version, please wait...";
 "ota_timeout"="Timeout,please try again";

@@ -249,10 +249,9 @@ class NevoOtaView: UIView {
     */
     func setLatestVersion(string:String){
         let messageS:String  = string
+        taskLabel.font = AppTheme.FONT_RALEWAY_LIGHT(mSize: 15)
         var labelframe:CGRect  = AppTheme.getWidthLabelSize(messageS, andObject: taskLabel.frame,andFont: AppTheme.FONT_RALEWAY_LIGHT(mSize: 15))
-        var labelSize:CGRect = labelframe;
-        labelSize.size.width = labelframe.size.width;
-        taskLabel.frame = labelSize
+        taskLabel.frame = labelframe
         taskLabel.text = string
     }
 

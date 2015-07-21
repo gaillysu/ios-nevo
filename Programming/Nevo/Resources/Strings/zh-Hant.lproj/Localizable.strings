@@ -82,7 +82,7 @@
 "forgetnevo"="忘記這個nevo";
 "unpairednevo"="你已經忘記nevo的地址";
 "Help"="幫助";
-"currentVersion:"="當前版本:";
+"currentVersion:"="nevo版本:";
 "update_error_noconnect"="請先連接Nevo.";
 "checking_firmware"="正在檢查版本號,請稍等";
 "ota_timeout"="升级超时,请重试.";
