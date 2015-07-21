@@ -86,3 +86,5 @@
 "update_error_noconnect"="No nevo connected.";
 "checking_firmware"="Checking firmware version, please wait...";
 "ota_timeout"="Timeout,please try again";
+"is_checking_the_update"="Is checking the update...";
+"nevolatestversion"="Your nevo is up to date";

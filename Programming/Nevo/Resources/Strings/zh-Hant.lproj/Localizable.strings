@@ -86,3 +86,5 @@
 "update_error_noconnect"="請先連接Nevo.";
 "checking_firmware"="正在檢查版本號,請稍等";
 "ota_timeout"="升级超时,请重试.";
+"is_checking_the_update"="正在檢查更新...";
+"nevolatestversion"="Your nevo is up to date";

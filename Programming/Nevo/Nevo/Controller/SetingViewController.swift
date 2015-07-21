@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SetingViewController: UIViewController,SelectionTypeDelegate,SyncControllerDelegate,ButtonManagerCallBack,SwitchActionDelegate {
+class SetingViewController: UIViewController,SelectionTypeDelegate,SyncControllerDelegate,ButtonManagerCallBack,SwitchActionDelegate,UIAlertViewDelegate {
 
     private var mSyncController:SyncController?
 
@@ -252,21 +252,31 @@ class SetingViewController: UIViewController,SelectionTypeDelegate,SyncControlle
             }else if (indexPath.section == 4){
                 self.performSegueWithIdentifier("Seting_Help", sender: self)
             }else if (indexPath.section == 5){
-                AppTheme.getAppStoreVersion({ (stringVersion, version) -> Void in
-                    let loclString:String = (NSBundle.mainBundle().infoDictionary! as NSDictionary).objectForKey("CFBundleShortVersionString") as! String
-                    let versionString:NSString = loclString.stringByReplacingOccurrencesOfString(".", withString: "")
-                    let versionNumber:Double = Double(versionString.floatValue)
-                    if(version>versionNumber){
-                        var alertView:UIAlertView = UIAlertView(title: "Found the new version", message:String(format: "Found New version:(%@)", stringVersion!), delegate: self, cancelButtonTitle: "Enter")
-                        alertView.show()
-                    }else{
-                        MBProgressHUD.showSuccess("Latest version")
-                    }
-                })
+                didSelectTableViewCell(tableView, didIndexPath: indexPath)
+                checkUpdateVersion()
             }
         }
     }
 
+    /**
+    Check the update
+    */
+    func  checkUpdateVersion() {
+        MBProgressHUD.showMessage("Is checking the update...")
+        AppTheme.getAppStoreVersion({ (stringVersion, version) -> Void in
+            MBProgressHUD.hideHUD()
+            let loclString:String = (NSBundle.mainBundle().infoDictionary! as NSDictionary).objectForKey("CFBundleShortVersionString") as! String
+            let versionString:NSString = loclString.stringByReplacingOccurrencesOfString(".", withString: "")
+            let versionNumber:Double = Double(versionString.floatValue)
+            if(version>versionNumber){
+                var alertView:UIAlertView = UIAlertView(title: NSLocalizedString("Found the new version",comment: ""), message:String(format: "Found New version:(%@)", stringVersion!), delegate:self, cancelButtonTitle: NSLocalizedString("cancel",comment: ""), otherButtonTitles: NSLocalizedString("Enter",comment: ""))
+                alertView.show()
+            }else{
+                MBProgressHUD.showSuccess(NSLocalizedString("nevolatestversion",comment: ""))
+            }
+        })
+    }
+    
     //vibrate and show all color light to find my device, only send one request in 6 sec
     //this action take lot power and we maybe told customer less to use it
     var mFindMydeviceDatetime:NSDate = NSDate(timeIntervalSinceNow: -6)
@@ -279,6 +289,13 @@ class SetingViewController: UIViewController,SelectionTypeDelegate,SyncControlle
         }
         mSyncController?.SetLedOnOffandVibrator(0x3F0000, motorOnOff: true)
         mFindMydeviceDatetime = NSDate()
+    }
+
+    // MARK: - UIAlertViewDelegate
+    func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int){
+        if(buttonIndex == 1){
+            AppTheme.toOpenUpdateURL()
+        }
     }
     
     // MARK: - UITableViewDataSource

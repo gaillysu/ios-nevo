@@ -227,6 +227,7 @@ class AppTheme {
             let version:Float = string.floatValue
             resulVersion(stringVersion: versionString,version:Double(version))
             }) { (operation,error) -> Void in
+                resulVersion(stringVersion:"",version:0.0)
         }
     }
 
@@ -238,6 +239,13 @@ class AppTheme {
     class func getLoclAppStoreVersion()->String{
         let loclString:String = (NSBundle.mainBundle().infoDictionary! as NSDictionary).objectForKey("CFBundleShortVersionString") as! String
         return loclString
+    }
+
+    /**
+    Go to AppStore updating links
+    */
+    class func toOpenUpdateURL() {
+        UIApplication.sharedApplication().openURL(NSURL(string: "https://itunes.apple.com/app/nevo-watch/id977526892?mt=8")!)
     }
 
 }
