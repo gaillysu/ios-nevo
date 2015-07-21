@@ -179,6 +179,19 @@ class AppTheme {
         frame = messageframe;
         return frame
     }
+    
+    class func getWidthLabelSize(string:String , andObject object:CGRect, andFont font:UIFont) ->CGRect{
+        var frame:CGRect = object
+        let loclString:NSString = string as NSString
+        var labelSize:CGSize = loclString.boundingRectWithSize(CGSizeMake(1000, frame.size.height), options: NSStringDrawingOptions.UsesLineFragmentOrigin|NSStringDrawingOptions.UsesFontLeading, attributes: [NSFontAttributeName:font], context: nil).size
+        labelSize.height = ceil(labelSize.height);
+        labelSize.width = ceil(labelSize.width);
+        
+        var messageframe:CGRect  = frame;
+        messageframe.size.width = labelSize.width;
+        frame = messageframe;
+        return frame
+    }
 
     class func getPreferredLanguage()->NSString{
 

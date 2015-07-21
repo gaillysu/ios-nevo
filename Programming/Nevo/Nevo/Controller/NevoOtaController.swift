@@ -481,7 +481,7 @@ class NevoOtaController : NSObject,ConnectionControllerDelegate {
         if lastprogress == progress  && progress != 100.0
         {
             AppTheme.DLog("* * * OTA timeout * * *")
-            var errorMessage = "Timeout,please try again";
+            var errorMessage = NSLocalizedString("ota_timeout",comment: "") as NSString
             mDelegate?.onError(errorMessage)
 
         }

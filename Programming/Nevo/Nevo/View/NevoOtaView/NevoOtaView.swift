@@ -249,11 +249,11 @@ class NevoOtaView: UIView {
     */
     func setLatestVersion(string:String){
         let messageS:String  = string
-        var labelframe:CGRect  = AppTheme.getLabelSize(messageS, andObject: messageLabel.frame,andFont: AppTheme.FONT_RALEWAY_LIGHT(mSize: 16))
+        var labelframe:CGRect  = AppTheme.getWidthLabelSize(messageS, andObject: taskLabel.frame,andFont: AppTheme.FONT_RALEWAY_LIGHT(mSize: 15))
         var labelSize:CGRect = labelframe;
-        labelSize.size.height = labelframe.size.height;
-        messageLabel.frame = labelSize
-        messageLabel.text = string
+        labelSize.size.width = labelframe.size.width;
+        taskLabel.frame = labelSize
+        taskLabel.text = string
     }
 
     /**
