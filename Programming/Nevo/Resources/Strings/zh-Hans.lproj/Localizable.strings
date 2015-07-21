@@ -83,3 +83,6 @@
 "unpairednevo"="你已经忘记nevo的地址";
 "Help"="帮助";
 "currentVersion:"="当前版本:";
+"update_error_noconnect"="请先连接Nevo.";
+"checking_firmware"="正在检查版本号,请稍等";
+"ota_timeout"="升级超时,请重试.";

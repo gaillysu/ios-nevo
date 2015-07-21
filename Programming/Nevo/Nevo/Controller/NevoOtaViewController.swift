@@ -43,7 +43,10 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
         {
             var currentSoftwareVersion = mNevoOtaController!.getSoftwareVersion() as String
             var currentFirmwareVersion = mNevoOtaController!.getFirmwareVersion() as String
-            
+            if(currentSoftwareVersion.isEmpty || currentFirmwareVersion.isEmpty)
+            {
+                return
+            }
             buildinSoftwareVersion = GET_SOFTWARE_VERSION()
             buildinFirmwareVersion = GET_FIRMWARE_VERSION()
 
@@ -83,8 +86,7 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
                 alert.addButtonWithTitle(NSLocalizedString("Enter", comment: ""))
                 alert.show()
             }else{
-
-                nevoOtaView.setLatestVersion(NSLocalizedString("latestversion", comment: ""))
+                nevoOtaView.setLatestVersion(NSLocalizedString("latestversion",comment: ""))
             }
         }
     }
@@ -125,12 +127,18 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
     //upload button function
     func uploadPressed()
     {
-        currentTaskNumber++;
-
-        if currentIndex >= firmwareURLs.count {
+        if currentIndex >= firmwareURLs.count  || firmwareURLs.count == 0 {
+            onError(NSLocalizedString("checking_firmware", comment: "") as NSString)
             return
         }
         
+        if(!mNevoOtaController!.isConnected())
+        {
+            onError(NSLocalizedString("update_error_noconnect", comment: "") as NSString)
+            return
+        }
+        
+        currentTaskNumber++;
         selectedFileURL = firmwareURLs[currentIndex]
         var fileExtension:String? = selectedFileURL!.pathExtension
         if fileExtension == "bin"
@@ -140,13 +148,6 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
         if fileExtension == "hex"
         {
             enumFirmwareType = DfuFirmwareTypes.APPLICATION
-        }
-        
-        if selectedFileURL == nil
-        {
-            var alert :UIAlertView = UIAlertView(title: "", message: "Please select NEVO file!", delegate: nil, cancelButtonTitle: "OK")
-            alert.show()
-            return
         }
         
             nevoOtaView.setProgress(0.0,currentTask: currentTaskNumber,allTask: allTaskNumber)
@@ -200,7 +201,6 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
                 }
                 var alert :UIAlertView = UIAlertView(title: "Firmware Upgrade", message: message, delegate: nil, cancelButtonTitle: "OK")
                 alert.show()
-                self.nevoOtaView.setLatestVersion(NSLocalizedString("UpdateSuccess2", comment: ""))
                 self.nevoOtaView.upgradeSuccessful()
                 self.mNevoOtaController!.reset(false)
             }
@@ -230,7 +230,6 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
             
             var alert :UIAlertView = UIAlertView(title: "Firmware Upgrade", message: errString as String, delegate: nil, cancelButtonTitle: "OK")
             alert.show()
-            self.nevoOtaView.setLatestVersion(errString as String)
             self.mNevoOtaController!.reset(false)
         });
 
