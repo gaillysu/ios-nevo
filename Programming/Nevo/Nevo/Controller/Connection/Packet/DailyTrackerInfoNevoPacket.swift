@@ -59,7 +59,7 @@ class DailyTrackerInfoNevoPacket: NevoPacket {
                     //20150316
                     let mdata:String = String(format: "\(year)%02d%02d000000",month,day)
                     var date:NSDate = format.dateFromString(mdata)!
-                    days.append(DailyHistory(TotalSteps: 0, HourlySteps: [24], Date:date))
+                    days.append(DailyHistory(date:date))
                 }
                 
             }

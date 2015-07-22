@@ -19,29 +19,33 @@ class NevoPacket {
     
     struct DailyHistory
     {
-        var TotalSteps:Int;
-        var HourlySteps:[Int];
+        var TotalSteps:Int = 0;
+        var HourlySteps:[Int] = [];
         //add new from v1.2.2
         //unit:cm->meter
-        var TotalDist:Int;
-        var HourlyDist:[Int];
+        var TotalDist:Int = 0;
+        var HourlyDist:[Int] = [];
         //unit: cal->kcal
-        var TotalCalories:Int;
-        var HourlyCalories:[Int];
-        var InactivityTime:Int;
-        var TotalInZoneTime:Int;
-        var TotalOutZoneTime:Int;
+        var TotalCalories:Int = 0;
+        var HourlyCalories:[Int] = [0];
+        var InactivityTime:Int = 0;
+        var TotalInZoneTime:Int = 0;
+        var TotalOutZoneTime:Int = 0;
         //unit: minute
-        var TotalSleepTime:Int;
-        var HourlySleepTime:[Int];
-        var TotalWakeTime:Int;
-        var HourlyWakeTime:[Int];
-        var TotalLightTime:Int;
-        var HourlyLightTime:[Int];
-        var TotalDeepTime:Int;
-        var HourlDeepTime:[Int];
+        var TotalSleepTime:Int = 0;
+        var HourlySleepTime:[Int] = [];
+        var TotalWakeTime:Int = 0;
+        var HourlyWakeTime:[Int] = [];
+        var TotalLightTime:Int = 0;
+        var HourlyLightTime:[Int] = [];
+        var TotalDeepTime:Int = 0;
+        var HourlDeepTime:[Int] = [];
         //end add new
         var Date:NSDate;
+        init( date:NSDate)
+        {
+           Date = date
+        }
     }
     
     init(packets:[NSData])
