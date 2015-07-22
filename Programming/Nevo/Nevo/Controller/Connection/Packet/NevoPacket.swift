@@ -21,6 +21,26 @@ class NevoPacket {
     {
         var TotalSteps:Int;
         var HourlySteps:[Int];
+        //add new from v1.2.2
+        //unit:cm->meter
+        var TotalDist:Int;
+        var HourlyDist:[Int];
+        //unit: cal->kcal
+        var TotalCalories:Int;
+        var HourlyCalories:[Int];
+        var InactivityTime:Int;
+        var TotalInZoneTime:Int;
+        var TotalOutZoneTime:Int;
+        //unit: minute
+        var TotalSleepTime:Int;
+        var HourlySleepTime:[Int];
+        var TotalWakeTime:Int;
+        var HourlyWakeTime:[Int];
+        var TotalLightTime:Int;
+        var HourlyLightTime:[Int];
+        var TotalDeepTime:Int;
+        var HourlDeepTime:[Int];
+        //end add new
         var Date:NSDate;
     }
     
