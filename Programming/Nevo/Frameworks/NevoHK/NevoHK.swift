@@ -35,7 +35,7 @@ protocol NevoHK {
     
 }
 
-protocol NevoHKDataPoint{
+@objc protocol NevoHKDataPoint{
     /**
     HKDataPoint should be mapable to a HealtkKitQuantity sample
     It's the only prerequisite
@@ -46,4 +46,10 @@ protocol NevoHKDataPoint{
     if a HKQuantitySample has present in HK database, when its value changed, perhaps need update it.
     */
     func isUpdate()->Bool
+
+    /**
+    HKDataPoint should be mapable to a HealtkKitQuantity sample
+    It's the only prerequisite
+    */
+    optional func toHKCategorySample()-> HKCategorySample
 }

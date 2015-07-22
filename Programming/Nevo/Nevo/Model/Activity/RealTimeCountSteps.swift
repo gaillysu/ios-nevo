@@ -33,7 +33,7 @@ class RealTimeCountSteps: NevoHKDataPoint {
         mDate = date
     }
     
-    func toHKQuantitySample() -> HKQuantitySample {
+    @objc func toHKQuantitySample() -> HKQuantitySample {
         
         let stepCountQuantity = HKQuantity(unit:HKUnit.countUnit(), doubleValue: Double(mNumberOfSteps))
         
@@ -59,5 +59,5 @@ class RealTimeCountSteps: NevoHKDataPoint {
     {
         RealTimeCountSteps.Variables.mLastNumberOfSteps = data
     }
-    func isUpdate()->Bool {return false}
+    @objc func isUpdate()->Bool {return false}
 }
