@@ -74,44 +74,50 @@ class NevoHKImpl {
         isPresent(data, handler:  { (present,object) -> Void in
             
             //We only write this data point if it isn't present in HK
+            var saveData:HKObject!
+            if(data.toHKQuantitySample().isKindOfClass(HKQuantitySample)){
+                saveData = data.toHKQuantitySample()
+            }else{
+                saveData = data.toHKCategorySample!()
+            }
+
             if( present != true) {
                 
-                self.mHealthKitStore.saveObject(data.toHKQuantitySample(), withCompletion: { (success, error) -> Void in
+                self.mHealthKitStore.saveObject(saveData, withCompletion: { (success, error) -> Void in
                     if( error != nil ) {
                         println("Error saving sample: \(error.localizedDescription)")
                         resultHandler(result: false,error: error as NSError)
                     } else {
-                        println("Saved in Health Kit : \(data.toHKQuantitySample())")
+                        println("Saved in Health Kit : \(saveData)")
                         resultHandler(result: true,error: nil)
                     }
                 })
                 
             } else {
                 
-                if data.isUpdate()
-                {
-                self.mHealthKitStore.deleteObject(object! as HKQuantitySample, withCompletion: { (success, error) -> Void in
-                    if( error != nil ) {
-                        println("Error delete sample: \(error.localizedDescription)")
-                        
-                    } else {
-                        println("Success delete in Health Kit : \(object! as HKQuantitySample)")
-                    }
-                })
-                
-                self.mHealthKitStore.saveObject(data.toHKQuantitySample(), withCompletion: { (success, error) -> Void in
-                    if( error != nil ) {
-                        println("Error saving sample: \(error.localizedDescription)")
-                        resultHandler(result: false,error: error as NSError)
-                    } else {
-                        println("Saved in Health Kit : \(data.toHKQuantitySample())")
-                        resultHandler(result: true,error: nil)
-                    }
-                })
-                }
-                else
-                {
-                resultHandler(result:false,error:NSError(domain:"Can't save Health Kit. Already present or Health Kit autorisation wasn't given : \(data.toHKQuantitySample())" , code: 404, userInfo: nil))
+                if data.isUpdate(){
+                    
+                    self.mHealthKitStore.deleteObject(object!, withCompletion: { (success, error) -> Void in
+                        if( error != nil ) {
+                            println("Error delete sample: \(error.localizedDescription)")
+
+                        } else {
+                            println("Success delete in Health Kit : \(object! as! HKQuantitySample)")
+                        }
+                    })
+
+                    self.mHealthKitStore.saveObject(saveData, withCompletion: { (success, error) -> Void in
+                        if( error != nil ) {
+                            println("Error saving sample: \(error.localizedDescription)")
+                            resultHandler(result: false,error: error as NSError)
+                        } else {
+                            println("Saved in Health Kit : \(saveData)")
+                            resultHandler(result: true,error: nil)
+                        }
+                    })
+
+                }else{
+                    resultHandler(result:false,error:NSError(domain:"Can't save Health Kit. Already present or Health Kit autorisation wasn't given : \(saveData)" , code: 404, userInfo: nil))
                 }
 
             }
@@ -124,8 +130,14 @@ class NevoHKImpl {
     /**
     See NevoHK protocol
     */
-    func isPresent(data:NevoHKDataPoint, handler:( (Bool?,HKQuantitySample?) -> Void) ) {
-        let sample = data.toHKQuantitySample()
+    func isPresent(data:NevoHKDataPoint, handler:( (Bool?,HKObject?) -> Void) ) {
+        var sample:AnyObject!
+        if(data.toHKQuantitySample().isKindOfClass(HKQuantitySample) ){
+            sample = data.toHKQuantitySample()
+        }else{
+            sample = data.toHKCategorySample!()
+        }
+
         //Check if this data point is present in HK
 
         let datePredicate = HKQuery.predicateForSamplesWithStartDate(sample.startDate,
@@ -148,7 +160,11 @@ class NevoHKImpl {
                 
                 else {
                     //If there's no error, if we have a result, then the data is present, if we don't it's absent
-                    handler( results != nil && results.count >= 1 ,(results != nil && results.count >= 1) ?results[0] as? HKQuantitySample:nil)
+                    if(data.toHKQuantitySample().isKindOfClass(HKQuantitySample)){
+                        handler( results != nil && results.count >= 1 ,(results != nil && results.count >= 1) ?results[0] as? HKQuantitySample:nil)
+                    }else{
+                        handler( results != nil && results.count >= 1 ,(results != nil && results.count >= 1) ?results[0] as? HKCategorySample:nil)
+                    }
                     return;
 
                 }
