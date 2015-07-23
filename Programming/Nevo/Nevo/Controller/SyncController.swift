@@ -18,7 +18,7 @@ It checks that the firmware is up to date, and handles every steps of the synchr
 class SyncController: NSObject,ConnectionControllerDelegate,UIAlertViewDelegate {
     
     //Let's sync every days
-    let SYNC_INTERVAL:NSTimeInterval = 1*30*60 //unit is second in iOS, every 30min, do sync
+    let SYNC_INTERVAL:NSTimeInterval = 0*30*60 //unit is second in iOS, every 30min, do sync
     
     let LAST_SYNC_DATE_KEY = "LAST_SYNC_DATE_KEY"
     
@@ -398,6 +398,61 @@ class SyncController: NSObject,ConnectionControllerDelegate,UIAlertViewDelegate 
                             AppTheme.DLog("Save Hourly steps OK")
                         }
                     })
+                    }
+                }
+                
+                //save sleep data for every hour.
+                //save format: first write wake, then write sleep(light&deep)
+                //example 1: 00:00~ 00:59, wake 10, light sleep 40, deep sleep 10
+                //wake start at 00:00, wake end at 00:10
+                //sleep start at:00:10 sleep end at:00:59
+                
+                //example 2: start sleep at 23:12, wake 15, sleep 33,total 48
+                //wake start at:23:12 ,end at 23:27
+                //sleep start at23:27, end at 23:59
+                
+                for (var i:Int = 0; i<savedDailyHistory[Int(currentDay)].HourlySleepTime.count; i++)
+                {
+                    if savedDailyHistory[Int(currentDay)].HourlySleepTime[i] > 0
+                    {
+                        let cal: NSCalendar = NSCalendar(calendarIdentifier: NSGregorianCalendar)!
+                        var startDate:NSDate
+                        var endDate:NSDate
+                        
+                        startDate = cal.dateBySettingHour(i, minute: 60 - savedDailyHistory[Int(currentDay)].HourlySleepTime[i] , second: 0, ofDate: savedDailyHistory[Int(currentDay)].Date, options: NSCalendarOptions())!
+                        endDate = cal.dateBySettingHour(0, minute: savedDailyHistory[Int(currentDay)].HourlyWakeTime[i], second: 0, ofDate: startDate, options: NSCalendarOptions())!
+                        
+                        //save wake time before every hour
+                        if savedDailyHistory[Int(currentDay)].HourlyWakeTime[i] > 0
+                        {
+                        hk.writeDataPoint(DaySleep(isAsleep: false, numberOfSleeps: 0, startDate: startDate, endDate: endDate), resultHandler: { (result, error) -> Void in
+                            if (result != true) {
+                                AppTheme.DLog("Save Hourly wake time error\(i),\(error)")
+                            }
+                            else
+                            {
+                                AppTheme.DLog("Save Hourly wake time OK")
+                            }
+                        })
+                        }
+                        
+                        //save sleep time after wake time, include light/deep sleep time
+                        if(savedDailyHistory[Int(currentDay)].HourlySleepTime[i] - savedDailyHistory[Int(currentDay)].HourlyWakeTime[i] > 0)
+                        {
+                        startDate = cal.dateBySettingHour(0, minute: 0, second: 0, ofDate: endDate, options: NSCalendarOptions())!
+                        endDate = cal.dateBySettingHour(0, minute: savedDailyHistory[Int(currentDay)].HourlySleepTime[i] - savedDailyHistory[Int(currentDay)].HourlyWakeTime[i] - 1, second: 0, ofDate: startDate, options: NSCalendarOptions())!
+                        
+                        hk.writeDataPoint(DaySleep(isAsleep: true, numberOfSleeps: 0, startDate: startDate, endDate: endDate), resultHandler: { (result, error) -> Void in
+                            if (result != true) {
+                                AppTheme.DLog("Save Hourly sleep(light and deep) time error\(i),\(error)")
+                            }
+                            else
+                            {
+                                AppTheme.DLog("Save Hourly sleep(light and deep) time OK")
+                            }
+                        })
+                        }
+                        
                     }
                 }
 
