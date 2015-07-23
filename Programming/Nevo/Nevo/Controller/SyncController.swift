@@ -312,6 +312,41 @@ class SyncController: NSObject,ConnectionControllerDelegate,UIAlertViewDelegate 
                 
                 AppTheme.DLog("Day:\(GmtNSDate2LocaleNSDate(savedDailyHistory[Int(currentDay)].Date)), Hourly Steps:\(savedDailyHistory[Int(currentDay)].HourlySteps)")
                 
+                savedDailyHistory[Int(currentDay)].TotalSleepTime = thispacket.getDailySleepTime()
+                savedDailyHistory[Int(currentDay)].HourlySleepTime = thispacket.getHourlySleepTime()
+                
+                AppTheme.DLog("Day:\(GmtNSDate2LocaleNSDate(savedDailyHistory[Int(currentDay)].Date)), Daily Sleep time:\(savedDailyHistory[Int(currentDay)].TotalSleepTime)")
+                
+                AppTheme.DLog("Day:\(GmtNSDate2LocaleNSDate(savedDailyHistory[Int(currentDay)].Date)), Hourly Sleep time:\(savedDailyHistory[Int(currentDay)].HourlySleepTime)")
+                
+                savedDailyHistory[Int(currentDay)].TotalWakeTime = thispacket.getDailyWakeTime()
+                savedDailyHistory[Int(currentDay)].HourlyWakeTime = thispacket.getHourlyWakeTime()
+                
+                AppTheme.DLog("Day:\(GmtNSDate2LocaleNSDate(savedDailyHistory[Int(currentDay)].Date)), Daily Wake time:\(savedDailyHistory[Int(currentDay)].TotalWakeTime)")
+                
+                AppTheme.DLog("Day:\(GmtNSDate2LocaleNSDate(savedDailyHistory[Int(currentDay)].Date)), Hourly Wake time:\(savedDailyHistory[Int(currentDay)].HourlyWakeTime)")
+
+                savedDailyHistory[Int(currentDay)].TotalLightTime = thispacket.getDailyLightTime()
+                savedDailyHistory[Int(currentDay)].HourlyLightTime = thispacket.getHourlyLightTime()
+                
+                AppTheme.DLog("Day:\(GmtNSDate2LocaleNSDate(savedDailyHistory[Int(currentDay)].Date)), Daily light time:\(savedDailyHistory[Int(currentDay)].TotalLightTime)")
+                
+                AppTheme.DLog("Day:\(GmtNSDate2LocaleNSDate(savedDailyHistory[Int(currentDay)].Date)), Hourly light time:\(savedDailyHistory[Int(currentDay)].HourlyLightTime)")
+                
+                savedDailyHistory[Int(currentDay)].TotalDeepTime = thispacket.getDailyDeepTime()
+                savedDailyHistory[Int(currentDay)].HourlyDeepTime = thispacket.getHourlyDeepTime()
+                
+                AppTheme.DLog("Day:\(GmtNSDate2LocaleNSDate(savedDailyHistory[Int(currentDay)].Date)), Daily deep time:\(savedDailyHistory[Int(currentDay)].TotalDeepTime)")
+                
+                AppTheme.DLog("Day:\(GmtNSDate2LocaleNSDate(savedDailyHistory[Int(currentDay)].Date)), Hourly deep time:\(savedDailyHistory[Int(currentDay)].HourlyDeepTime)")
+                
+                savedDailyHistory[Int(currentDay)].TotalDist = thispacket.getDailyDist()
+                savedDailyHistory[Int(currentDay)].TotalCalories = thispacket.getDailyCalories()
+                
+                AppTheme.DLog("Day:\(GmtNSDate2LocaleNSDate(savedDailyHistory[Int(currentDay)].Date)), Daily Total Disc (m):\(savedDailyHistory[Int(currentDay)].TotalDist)")
+                
+                AppTheme.DLog("Day:\(GmtNSDate2LocaleNSDate(savedDailyHistory[Int(currentDay)].Date)), Daily Total Calories (kcal):\(savedDailyHistory[Int(currentDay)].TotalCalories)")
+                
                 //save to health kit
                 var hk = NevoHKImpl()
                 hk.requestPermission()

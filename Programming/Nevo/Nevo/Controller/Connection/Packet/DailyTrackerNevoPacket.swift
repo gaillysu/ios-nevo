@@ -75,18 +75,30 @@ class DailyTrackerNevoPacket: NevoPacket {
         //get every hour Disc:
         for (var i:Int = 0; i<24; i++)
         {
+            hourlyDisc = 0
+            if NSData2Bytes(getPackets()[HEADERLENGTH+i*3])[2] != 0xFF
+               && NSData2Bytes(getPackets()[HEADERLENGTH+i*3])[3] != 0xFF
+               && NSData2Bytes(getPackets()[HEADERLENGTH+i*3])[4] != 0xFF
+               && NSData2Bytes(getPackets()[HEADERLENGTH+i*3])[5] != 0xFF
+            {
             //walk
                 hourlyDisc = Int(NSData2Bytes(getPackets()[HEADERLENGTH+i*3])[2] )
                 hourlyDisc = hourlyDisc + Int(NSData2Bytes(getPackets()[HEADERLENGTH+i*3])[3] )<<8
                 hourlyDisc = hourlyDisc + Int(NSData2Bytes(getPackets()[HEADERLENGTH+i*3])[4] )<<16
                 hourlyDisc = hourlyDisc + Int(NSData2Bytes(getPackets()[HEADERLENGTH+i*3])[5] )<<24
+            }
+            if NSData2Bytes(getPackets()[HEADERLENGTH+i*3])[6] != 0xFF
+                && NSData2Bytes(getPackets()[HEADERLENGTH+i*3])[7] != 0xFF
+                && NSData2Bytes(getPackets()[HEADERLENGTH+i*3])[8] != 0xFF
+                && NSData2Bytes(getPackets()[HEADERLENGTH+i*3])[9] != 0xFF
+            {
             //run
                 hourlyDisc = hourlyDisc + Int(NSData2Bytes(getPackets()[HEADERLENGTH+i*3])[6] )
                 hourlyDisc = hourlyDisc + Int(NSData2Bytes(getPackets()[HEADERLENGTH+i*3])[7] )<<8
                 hourlyDisc = hourlyDisc + Int(NSData2Bytes(getPackets()[HEADERLENGTH+i*3])[8] )<<16
                 hourlyDisc = hourlyDisc + Int(NSData2Bytes(getPackets()[HEADERLENGTH+i*3])[9] )<<24
-            
-                HourlyDist[i] = hourlyDisc/100
+            }
+            HourlyDist[i] = hourlyDisc/100
         }
         return HourlyDist
     }
@@ -114,11 +126,17 @@ class DailyTrackerNevoPacket: NevoPacket {
         //get every hour Calories:
         for (var i:Int = 0; i<24; i++)
         {
+            hourlyCalories = 0
+            if NSData2Bytes(getPackets()[HEADERLENGTH+i*3])[14] != 0xFF
+                && NSData2Bytes(getPackets()[HEADERLENGTH+i*3])[15] != 0xFF
+                && NSData2Bytes(getPackets()[HEADERLENGTH+i*3])[16] != 0xFF
+                && NSData2Bytes(getPackets()[HEADERLENGTH+i*3])[17] != 0xFF
+            {
             hourlyCalories = Int(NSData2Bytes(getPackets()[HEADERLENGTH+i*3])[14] )
             hourlyCalories = hourlyCalories + Int(NSData2Bytes(getPackets()[HEADERLENGTH+i*3])[15] )<<8
             hourlyCalories = hourlyCalories + Int(NSData2Bytes(getPackets()[HEADERLENGTH+i*3])[16] )<<16
             hourlyCalories = hourlyCalories + Int(NSData2Bytes(getPackets()[HEADERLENGTH+i*3])[17] )<<24
-            
+            }
             HourlyCalories[i] = hourlyCalories/100
         }
         return HourlyCalories
@@ -146,7 +164,11 @@ class DailyTrackerNevoPacket: NevoPacket {
         //get every hour SleepTime:
         for (var i:Int = 0; i<24; i++)
         {
+            hourlySleepTime = 0
+            if NSData2Bytes(getPackets()[HEADERLENGTH+i*3+1])[18] != 0xFF
+            {
             hourlySleepTime = Int(NSData2Bytes(getPackets()[HEADERLENGTH+i*3+1])[18] )
+            }
             HourlySleepTime[i] = hourlySleepTime
         }
         return HourlySleepTime
@@ -173,7 +195,11 @@ class DailyTrackerNevoPacket: NevoPacket {
         //get every hour wake Time:
         for (var i:Int = 0; i<24; i++)
         {
+            hourlyWakeTime = 0
+            if NSData2Bytes(getPackets()[HEADERLENGTH+i*3+1])[19] != 0xFF
+            {
             hourlyWakeTime = Int(NSData2Bytes(getPackets()[HEADERLENGTH+i*3+1])[19] )
+            }
             HourlyWakeTime[i] = hourlyWakeTime
         }
         return HourlyWakeTime
@@ -201,7 +227,11 @@ class DailyTrackerNevoPacket: NevoPacket {
         //get every hour light Time:
         for (var i:Int = 0; i<24; i++)
         {
+            hourlyLightTime = 0
+            if NSData2Bytes(getPackets()[HEADERLENGTH+i*3+2])[2] != 0xFF
+            {
             hourlyLightTime = Int(NSData2Bytes(getPackets()[HEADERLENGTH+i*3+2])[2] )
+            }
             HourlyLightTime[i] = hourlyLightTime
         }
         return HourlyLightTime
@@ -228,7 +258,11 @@ class DailyTrackerNevoPacket: NevoPacket {
         //get every hour deep Time:
         for (var i:Int = 0; i<24; i++)
         {
+            hourlyDeepTime = 0
+            if NSData2Bytes(getPackets()[HEADERLENGTH+i*3+2])[3] != 0xFF
+            {
             hourlyDeepTime = Int(NSData2Bytes(getPackets()[HEADERLENGTH+i*3+2])[3] )
+            }
             HourlyDeepTime[i] = hourlyDeepTime
         }
         return HourlyDeepTime

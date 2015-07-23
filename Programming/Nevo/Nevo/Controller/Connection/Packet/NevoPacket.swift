@@ -39,7 +39,7 @@ class NevoPacket {
         var TotalLightTime:Int = 0;
         var HourlyLightTime:[Int] = [];
         var TotalDeepTime:Int = 0;
-        var HourlDeepTime:[Int] = [];
+        var HourlyDeepTime:[Int] = [];
         //end add new
         var Date:NSDate;
         init( date:NSDate)
