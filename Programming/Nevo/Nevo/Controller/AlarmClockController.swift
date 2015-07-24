@@ -48,10 +48,6 @@ class AlarmClockController: UIViewController, SyncControllerDelegate,ButtonManag
         checkConnection()
     }
 
-    override func viewDidLayoutSubviews() {
-        alarmView.bulidUI()
-    }
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -69,8 +65,9 @@ class AlarmClockController: UIViewController, SyncControllerDelegate,ButtonManag
     */
     func controllManager(sender:AnyObject){
 
-        if sender.isEqual(alarmView.selectedTimerButton){
+        if (sender.isEqual(alarmView.selectedTimerButton1) || sender.isEqual(alarmView.selectedTimerButton2) || sender.isEqual(alarmView.selectedTimerButton3)){
             alarmView.initPickerView(mAlarmhour,min: mAlarmmin)
+            alarmView.setCurrentButton(sender as! UIButton)
             AppTheme.DLog("alarmView.selectedTimerButton")
         }
 
@@ -78,29 +75,31 @@ class AlarmClockController: UIViewController, SyncControllerDelegate,ButtonManag
             AppTheme.DLog("noConnectScanButton")
             reconnect()
         }
+
         if sender.isEqual(alarmView.getEnterButton()){
             AppTheme.DLog("alarmView.enterButton")
-            setAlarm()
+            setAlarm(sender)
         }
+
         if sender.isEqual(alarmView.setingButton){
             AppTheme.DLog("alarmView.setingButton")
 
         }
 
-        if sender.isEqual(alarmView.onButton){
-            alarmView.onButton.selected = true
-            alarmView.offButton.selected = false
-
-            setAlarm()
+        if sender.isEqual(alarmView.alarmSwicth1){
+            setAlarm(sender)
             AppTheme.DLog("alarmView.amButton")
 
         }
-        if sender.isEqual(alarmView.offButton){
-            alarmView.onButton.selected = false
-            alarmView.offButton.selected = true
-            setAlarm()
-            AppTheme.DLog("alarmView.pmButton")
 
+        if sender.isEqual(alarmView.alarmSwicth2){
+            setAlarm(sender)
+            AppTheme.DLog("alarmView.pmButton")
+        }
+
+        if sender.isEqual(alarmView.alarmSwicth2){
+            setAlarm(sender)
+            AppTheme.DLog("alarmView.pmButton")
         }
 
         if sender.isEqual(alarmView.setingButton){
@@ -109,7 +108,7 @@ class AlarmClockController: UIViewController, SyncControllerDelegate,ButtonManag
 
     }
     
-    func setAlarm() {
+    func setAlarm(aObject:AnyObject) {
         
         if let date = alarmView.getDatePicker()?.date  {
             
@@ -121,11 +120,13 @@ class AlarmClockController: UIViewController, SyncControllerDelegate,ButtonManag
             mAlarmmin  = (lines[1] as NSString).integerValue
             
         }
-        
-        mAlarmenable = alarmView.getEnabled()
-        
-        alarmView.setAlarmTime(mAlarmhour,min: mAlarmmin)
-        
+
+        if(aObject.isEqual(UISwitch)){
+            mAlarmenable = alarmView.getEnabled(aObject as! UISwitch)
+        }
+
+        alarmView.setAlarmTime(mAlarmhour,min: mAlarmmin,andObject: alarmView.getCurrentButton())
+
         mSyncController?.setAlarm(mAlarmhour, alarmmin: mAlarmmin, alarmenable: mAlarmenable)
         
         let userDefaults = NSUserDefaults.standardUserDefaults();

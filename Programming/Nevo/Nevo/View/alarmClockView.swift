@@ -10,15 +10,22 @@ import UIKit
 
 class alarmClockView: UIView {
 
-    @IBOutlet var selectedTimerButton: UIButton!
+    @IBOutlet weak var titleBgView: UIView!
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var setingButton: UIButton!
-    @IBOutlet weak var onButton: UIButton!
-    @IBOutlet weak var offButton: UIButton!
-    @IBOutlet weak var titleBgView: UIView!
+
+    @IBOutlet var selectedTimerButton1: UIButton!
+    @IBOutlet var selectedTimerButton2: UIButton!
+    @IBOutlet var selectedTimerButton3: UIButton!
+
+    @IBOutlet var alarmSwicth1: UISwitch!
+    @IBOutlet var alarmSwicth2: UISwitch!
+    @IBOutlet var alarmSwicth3: UISwitch!
+
     
     private var mCancelButton:UIButton?
     private var mEnterButton:UIButton?
+    private var mCurrentButton:UIButton?
     private var mDatePicker:UIDatePicker?
     let BAG_PICKER_TAG:Int = 1500;//Looking for view using a fixed tag values
 
@@ -39,36 +46,40 @@ class alarmClockView: UIView {
         mDelegate = delegate
         animationView = AnimationView(frame: self.frame, delegate: delegate)
 
-        setAlarmTime(hour,min: min)
+        setOnAlarm(hour, min: min, enabled: enabled, andSelectedBt: selectedTimerButton1, toAlarmSwicth: alarmSwicth1)
 
-        selectedTimerButton.setTitleColor(AppTheme.NEVO_SOLAR_YELLOW(), forState: UIControlState.Normal)
-        selectedTimerButton.setTitleColor(AppTheme.NEVO_SOLAR_YELLOW(), forState: UIControlState.Selected)
-        selectedTimerButton.setTitleColor(AppTheme.NEVO_SOLAR_YELLOW(), forState: UIControlState.Highlighted)
-        selectedTimerButton.titleLabel?.font = AppTheme.FONT_RALEWAY_LIGHT(mSize: 70)
-        
-        onButton.setTitle(NSLocalizedString("On", comment:""), forState: UIControlState.Normal)
-        onButton.setTitle(NSLocalizedString("On", comment:""), forState: UIControlState.Selected)
-        onButton.setTitle(NSLocalizedString("On", comment:""), forState: UIControlState.Highlighted)
+        selectedTimerButton1.setTitleColor(AppTheme.NEVO_SOLAR_YELLOW(), forState: UIControlState.Normal)
+        selectedTimerButton1.setTitleColor(AppTheme.NEVO_SOLAR_YELLOW(), forState: UIControlState.Selected)
+        selectedTimerButton1.setTitleColor(AppTheme.NEVO_SOLAR_YELLOW(), forState: UIControlState.Highlighted)
+        selectedTimerButton1.titleLabel?.font = AppTheme.FONT_RALEWAY_LIGHT(mSize: 30)
 
-        offButton.setTitle(NSLocalizedString("Off", comment:""), forState: UIControlState.Normal)
-        offButton.setTitle(NSLocalizedString("Off", comment:""), forState: UIControlState.Selected)
-        offButton.setTitle(NSLocalizedString("Off", comment:""), forState: UIControlState.Highlighted)
-        if enabled {
-            onButton.selected = true
-            offButton.selected = false
-        }else{
-            onButton.selected = false
-            offButton.selected = true
-        }
-        
+        selectedTimerButton2.setTitleColor(AppTheme.NEVO_SOLAR_YELLOW(), forState: UIControlState.Normal)
+        selectedTimerButton3.setTitleColor(AppTheme.NEVO_SOLAR_YELLOW(), forState: UIControlState.Selected)
+        selectedTimerButton2.setTitleColor(AppTheme.NEVO_SOLAR_YELLOW(), forState: UIControlState.Highlighted)
+        selectedTimerButton2.titleLabel?.font = AppTheme.FONT_RALEWAY_LIGHT(mSize: 30)
+
+        selectedTimerButton3.setTitleColor(AppTheme.NEVO_SOLAR_YELLOW(), forState: UIControlState.Normal)
+        selectedTimerButton3.setTitleColor(AppTheme.NEVO_SOLAR_YELLOW(), forState: UIControlState.Selected)
+        selectedTimerButton3.setTitleColor(AppTheme.NEVO_SOLAR_YELLOW(), forState: UIControlState.Highlighted)
+        selectedTimerButton3.titleLabel?.font = AppTheme.FONT_RALEWAY_LIGHT(mSize: 30)
     }
 
-    func bulidUI() {
 
-    }
     @IBAction func controllEventManager(sender: AnyObject) {
         //CallBack StepGoalSetingController
         mDelegate?.controllManager(sender)
+        if(selectedTimerButton1.isEqual(sender) || selectedTimerButton2.isEqual(sender) || selectedTimerButton3.isEqual(sender)){
+            mCurrentButton = sender as? UIButton
+        }
+    }
+
+    func setOnAlarm(hour:Int,min:Int,enabled:Bool ,andSelectedBt:UIButton ,toAlarmSwicth:UISwitch) {
+        setAlarmTime(hour,min: min,andObject: andSelectedBt)
+        if(enabled){
+            toAlarmSwicth.on = true
+        }else{
+            toAlarmSwicth.on = false
+        }
     }
 
     /*
@@ -88,7 +99,7 @@ class alarmClockView: UIView {
         datePicker.addTarget(self, action: Selector("controllEventManager:"), forControlEvents: UIControlEvents.ValueChanged)
         
         //The inital date should be the given hour and min
-        let cal: NSCalendar = NSCalendar(calendarIdentifier: NSGregorianCalendar)!
+        let cal: NSCalendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)!
         
         let newDate: NSDate = cal.dateBySettingHour(hour, minute: min, second: 0, ofDate: NSDate(), options: NSCalendarOptions())!
         
@@ -172,8 +183,8 @@ class alarmClockView: UIView {
     Click the cancelButton and enterButton events
     */
     func enterAction(sender:UIButton) {
-        if sender.isEqual(mEnterButton)
-        {
+        if sender.isEqual(mEnterButton){
+            
             mDelegate?.controllManager(sender)
         }
         endAnimation()
@@ -194,12 +205,26 @@ class alarmClockView: UIView {
         return mEnterButton
     }
     
-    func setAlarmTime(hour:Int,min:Int) {
-        selectedTimerButton.setTitle(String(format: "%02d:%02d", hour, min), forState: UIControlState.Normal)
+    func setAlarmTime(hour:Int,min:Int,andObject:UIButton!) {
+        andObject!.setTitle(String(format: "%02d:%02d", hour, min), forState: UIControlState.Normal)
+        andObject!.setTitle(String(format: "%02d:%02d", hour, min), forState: UIControlState.Selected)
+        andObject!.setTitle(String(format: "%02d:%02d", hour, min), forState: UIControlState.Highlighted)
     }
-    
-    func getEnabled() -> Bool {
-     return onButton.selected
+
+    func getEnabled(aSwicth:UISwitch) -> Bool {
+        let array:[UISwitch] = [alarmSwicth1,alarmSwicth2,alarmSwicth3]
+        for sw in array {
+            return (sw as UISwitch).selected;
+        }
+     return alarmSwicth1.selected
+    }
+
+    func setCurrentButton(sender:UIButton){
+        mCurrentButton = sender;
+    }
+
+    func getCurrentButton()->UIButton{
+        return mCurrentButton!;
     }
 
     /*
