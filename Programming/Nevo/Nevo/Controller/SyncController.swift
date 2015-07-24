@@ -410,22 +410,45 @@ class SyncController: NSObject,ConnectionControllerDelegate,UIAlertViewDelegate 
                 //example 2: start sleep at 23:12, wake 15, sleep 33,total 48
                 //wake start at:23:12 ,end at 23:27
                 //sleep start at23:27, end at 23:59
-                
+             
                 for (var i:Int = 0; i<savedDailyHistory[Int(currentDay)].HourlySleepTime.count; i++)
                 {
+                    let cal: NSCalendar = NSCalendar(calendarIdentifier: NSGregorianCalendar)!
+                    var startDateWake:NSDate?
+                    var endDateWake:NSDate?
+                    
+                    var startDateSleep:NSDate?
+                    var endDateSleep:NSDate?
+
                     if savedDailyHistory[Int(currentDay)].HourlySleepTime[i] > 0
                     {
-                        let cal: NSCalendar = NSCalendar(calendarIdentifier: NSGregorianCalendar)!
-                        var startDate:NSDate
-                        var endDate:NSDate
+                        if(i<=12)
+                        {
+                            startDateWake = cal.dateBySettingHour(i, minute: 0 , second: 0, ofDate: savedDailyHistory[Int(currentDay)].Date, options: NSCalendarOptions())!
+                        }
+                        else
+                        {
+                        startDateWake = cal.dateBySettingHour(i, minute: 60 - savedDailyHistory[Int(currentDay)].HourlySleepTime[i] , second: 0, ofDate: savedDailyHistory[Int(currentDay)].Date, options: NSCalendarOptions())!
+                     
+                        }
                         
-                        startDate = cal.dateBySettingHour(i, minute: 60 - savedDailyHistory[Int(currentDay)].HourlySleepTime[i] , second: 0, ofDate: savedDailyHistory[Int(currentDay)].Date, options: NSCalendarOptions())!
-                        endDate = cal.dateBySettingHour(0, minute: savedDailyHistory[Int(currentDay)].HourlyWakeTime[i], second: 0, ofDate: startDate, options: NSCalendarOptions())!
+                        if savedDailyHistory[Int(currentDay)].HourlyWakeTime[i] == 60
+                        {
+                            endDateWake = startDateWake!.dateByAddingTimeInterval( NSTimeInterval((savedDailyHistory[Int(currentDay)].HourlyWakeTime[i] - 1 )*60))
+                        }
+                        else
+                        {
+                            endDateWake = startDateWake!.dateByAddingTimeInterval( NSTimeInterval(savedDailyHistory[Int(currentDay)].HourlyWakeTime[i]*60))
+                        }
+                    
+                        AppTheme.DLog("wake startDate:\(GmtNSDate2LocaleNSDate(startDateWake!))")
+                        AppTheme.DLog("wake endDate:\(GmtNSDate2LocaleNSDate(endDateWake!))")
                         
                         //save wake time before every hour
                         if savedDailyHistory[Int(currentDay)].HourlyWakeTime[i] > 0
                         {
-                        hk.writeDataPoint(DaySleep(isAsleep: false, numberOfSleeps: 0, startDate: startDate, endDate: endDate), resultHandler: { (result, error) -> Void in
+                        
+                        hk.writeDataPoint(DaySleep(isAsleep: false, numberOfSleeps: 0, startDate: startDateWake!, endDate: endDateWake!), resultHandler: { (result, error) -> Void in
                             if (result != true) {
                                 AppTheme.DLog("Save Hourly wake time error\(i),\(error)")
                             }
@@ -439,10 +462,20 @@ class SyncController: NSObject,ConnectionControllerDelegate,UIAlertViewDelegate 
                         //save sleep time after wake time, include light/deep sleep time
                         if(savedDailyHistory[Int(currentDay)].HourlySleepTime[i] - savedDailyHistory[Int(currentDay)].HourlyWakeTime[i] > 0)
                         {
-                        startDate = cal.dateBySettingHour(0, minute: 0, second: 0, ofDate: endDate, options: NSCalendarOptions())!
-                        endDate = cal.dateBySettingHour(0, minute: savedDailyHistory[Int(currentDay)].HourlySleepTime[i] - savedDailyHistory[Int(currentDay)].HourlyWakeTime[i] - 1, second: 0, ofDate: startDate, options: NSCalendarOptions())!
-                        
-                        hk.writeDataPoint(DaySleep(isAsleep: true, numberOfSleeps: 0, startDate: startDate, endDate: endDate), resultHandler: { (result, error) -> Void in
+                            startDateSleep =  endDateWake
+                            if savedDailyHistory[Int(currentDay)].HourlySleepTime[i] - savedDailyHistory[Int(currentDay)].HourlyWakeTime[i] == 60
+                            {
+                                endDateSleep = startDateSleep!.dateByAddingTimeInterval( NSTimeInterval((savedDailyHistory[Int(currentDay)].HourlySleepTime[i] - savedDailyHistory[Int(currentDay)].HourlyWakeTime[i] - 1)*60))
+                            }
+                            else
+                            {
+                            endDateSleep = startDateSleep!.dateByAddingTimeInterval( NSTimeInterval((savedDailyHistory[Int(currentDay)].HourlySleepTime[i] - savedDailyHistory[Int(currentDay)].HourlyWakeTime[i])*60))
+                            }
+                            
+                            AppTheme.DLog("sleep startDate:\(GmtNSDate2LocaleNSDate(startDateSleep!))")
+                            AppTheme.DLog("sleep endDate:\(GmtNSDate2LocaleNSDate(endDateSleep!))")
+
+                            hk.writeDataPoint(DaySleep(isAsleep: true, numberOfSleeps: 0, startDate: startDateSleep!, endDate: endDateSleep!), resultHandler: { (result, error) -> Void in
                             if (result != true) {
                                 AppTheme.DLog("Save Hourly sleep(light and deep) time error\(i),\(error)")
                             }

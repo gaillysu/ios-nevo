@@ -38,11 +38,13 @@ class NevoHKImpl {
         // 1. Set the types you want to read from HK Store
         let healthKitTypesToRead = NSSet(array:[
             HKObjectType.quantityTypeForIdentifier(HKQuantityTypeIdentifierStepCount)
+            ,HKObjectType.categoryTypeForIdentifier(HKCategoryTypeIdentifierSleepAnalysis)
             ])
         
         // 2. Set the types you want to write to HK Store
         let healthKitTypesToWrite = NSSet(array:[
             HKObjectType.quantityTypeForIdentifier(HKQuantityTypeIdentifierStepCount)
+            ,HKObjectType.categoryTypeForIdentifier(HKCategoryTypeIdentifierSleepAnalysis)
             ])
         
         // 3. If the store is not available (for instance, iPad) return an error and don't go on.
@@ -75,7 +77,7 @@ class NevoHKImpl {
             
             //We only write this data point if it isn't present in HK
             var saveData:HKObject!
-            if(data.toHKQuantitySample().isKindOfClass(HKQuantitySample)){
+            if(data is HourlySteps){
                 saveData = data.toHKQuantitySample()
             }else{
                 saveData = data.toHKCategorySample!()
@@ -132,7 +134,7 @@ class NevoHKImpl {
     */
     func isPresent(data:NevoHKDataPoint, handler:( (Bool?,HKObject?) -> Void) ) {
         var sample:AnyObject!
-        if(data.toHKQuantitySample().isKindOfClass(HKQuantitySample) ){
+        if(data is HourlySteps){
             sample = data.toHKQuantitySample()
         }else{
             sample = data.toHKCategorySample!()
@@ -147,7 +149,11 @@ class NevoHKImpl {
         
         let dateAndSourcePredicate = NSCompoundPredicate.andPredicateWithSubpredicates([datePredicate,sourcePredicate])
         
-        let query = HKSampleQuery(sampleType: sample.quantityType, predicate: dateAndSourcePredicate,
+        var type:HKSampleType
+        if(data is HourlySteps)
+        {type = sample.quantityType}
+        else{ type = (sample as! HKCategorySample ).categoryType}
+        let query = HKSampleQuery(sampleType: type, predicate: dateAndSourcePredicate,
             limit: 1, sortDescriptors: nil, resultsHandler: {
                 (query, results, error) in
                 
@@ -160,7 +166,7 @@ class NevoHKImpl {
                 
                 else {
                     //If there's no error, if we have a result, then the data is present, if we don't it's absent
-                    if(data.toHKQuantitySample().isKindOfClass(HKQuantitySample)){
+                    if(data is HourlySteps){
                         handler( results != nil && results.count >= 1 ,(results != nil && results.count >= 1) ?results[0] as? HKQuantitySample:nil)
                     }else{
                         handler( results != nil && results.count >= 1 ,(results != nil && results.count >= 1) ?results[0] as? HKCategorySample:nil)

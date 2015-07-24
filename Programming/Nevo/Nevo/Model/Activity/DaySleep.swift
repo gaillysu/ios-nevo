@@ -36,10 +36,10 @@ class DaySleep : NevoHKDataPoint {
     @objc func isUpdate()->Bool {return false}
 
     @objc func toHKCategorySample()-> HKCategorySample {
-        //(HKCategoryValueSleepAnalysis.Asleep) : (HKCategoryValueSleepAnalysis.InBed)
-        let sleepType = mIsAsleep ? 0 : 1
+        
+        var sleepType = mIsAsleep ? (HKCategoryValueSleepAnalysis.Asleep.rawValue) : (HKCategoryValueSleepAnalysis.InBed.rawValue)
 
-        let categoryType:HKCategoryType = HKObjectType.categoryTypeForIdentifier(HKCategoryTypeIdentifierSleepAnalysis)
+        var categoryType:HKCategoryType = HKCategoryType.categoryTypeForIdentifier(HKCategoryTypeIdentifierSleepAnalysis)
         let sleepSample:HKCategorySample = HKCategorySample(type: categoryType, value: sleepType, startDate: mDate, endDate: lateNight);
         return sleepSample
     }
