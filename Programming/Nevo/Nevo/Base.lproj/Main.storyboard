@@ -627,6 +627,9 @@
                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6n7-NU-ysr">
                                         <rect key="frame" x="245" y="10" width="51" height="31"/>
                                         <color key="onTintColor" red="0.94901960780000005" green="0.58823529409999997" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <connections>
+                                            <action selector="controllEventManager:" destination="pwc-5p-Bqy" eventType="valueChanged" id="wIi-th-3Fk"/>
+                                        </connections>
                                     </switch>
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Qhs-k4-vRh">
                                         <rect key="frame" x="20" y="49" width="280" height="1"/>
@@ -655,6 +658,9 @@
                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="G6F-u2-oXS">
                                         <rect key="frame" x="245" y="10" width="51" height="31"/>
                                         <color key="onTintColor" red="0.94901960780000005" green="0.58823529409999997" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <connections>
+                                            <action selector="controllEventManager:" destination="pwc-5p-Bqy" eventType="valueChanged" id="G5b-fw-WOV"/>
+                                        </connections>
                                     </switch>
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Avg-Ns-cVD">
                                         <rect key="frame" x="20" y="49" width="280" height="1"/>
@@ -683,6 +689,9 @@
                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DGw-S0-vC1">
                                         <rect key="frame" x="245" y="10" width="51" height="31"/>
                                         <color key="onTintColor" red="0.94901960780000005" green="0.58823529409999997" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <connections>
+                                            <action selector="controllEventManager:" destination="pwc-5p-Bqy" eventType="valueChanged" id="BuW-gm-X5H"/>
+                                        </connections>
                                     </switch>
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fot-PT-9xp">
                                         <rect key="frame" x="20" y="49" width="280" height="1"/>

@@ -21,6 +21,10 @@ class Alarm: NSObject {
         mMinute = minute
         mEnable = enable
     }
+    func getIndex()->Int{
+        return mIndex!
+    }
+
     func getHour() ->Int
     {
         return mHour!
