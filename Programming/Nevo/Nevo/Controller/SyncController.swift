@@ -140,10 +140,9 @@ class SyncController: NSObject,ConnectionControllerDelegate,UIAlertViewDelegate 
         sendRequest(SetGoalRequest(goal: goal))
     }
 
-    func setAlarm(alarmhour:Int,alarmmin:Int,alarmenable:Bool) {
-        sendRequest(SetAlarmRequest(hour:alarmhour,min: alarmmin,enable: alarmenable))
+    func setAlarm(alarm:[Alarm]) {
+        sendRequest(SetAlarmRequest(alarm:alarm))
     }
-    
     func SetNortification(settingArray:[NotificationSetting]) {
         AppTheme.DLog("SetNortification")
         sendRequest(SetNortificationRequest(settingArray: settingArray))
@@ -267,6 +266,16 @@ class SyncController: NSObject,ConnectionControllerDelegate,UIAlertViewDelegate 
                 let SAVED_ALARM_HOUR_KEY = "SAVED_ALARM_HOUR_KEY"
                 let SAVED_ALARM_MIN_KEY = "SAVED_ALARM_MIN_KEY"
                 let SAVED_ALARM_ENABLED_KEY = "SAVED_ALARM_ENABLED_KEY"
+                
+                var alarm:[Alarm] = []
+                
+                let SAVED_ALARM_HOUR_KEY2 = "SAVED_ALARM_HOUR_KEY2"
+                let SAVED_ALARM_MIN_KEY2 = "SAVED_ALARM_MIN_KEY2"
+                let SAVED_ALARM_ENABLED_KEY2 = "SAVED_ALARM_ENABLED_KEY2"
+                
+                let SAVED_ALARM_HOUR_KEY3 = "SAVED_ALARM_HOUR_KEY3"
+                let SAVED_ALARM_MIN_KEY3 = "SAVED_ALARM_MIN_KEY3"
+                let SAVED_ALARM_ENABLED_KEY3 = "SAVED_ALARM_ENABLED_KEY3"
                  
                 //If we have any previously saved hour, min and/or enabled/ disabled, we'll use those variables first
                 if let alarmHourSaved = NSUserDefaults.standardUserDefaults().objectForKey(SAVED_ALARM_HOUR_KEY) as? Int {
@@ -281,7 +290,37 @@ class SyncController: NSObject,ConnectionControllerDelegate,UIAlertViewDelegate 
                     mAlarmenable = alarmEnableSaved
                 }
                 
-                setAlarm(mAlarmhour, alarmmin: mAlarmmin, alarmenable: mAlarmenable)
+                alarm.append(Alarm(index: 0,hour: mAlarmhour,minute: mAlarmmin,enable: mAlarmenable))
+                
+                if let alarmHourSaved = NSUserDefaults.standardUserDefaults().objectForKey(SAVED_ALARM_HOUR_KEY2) as? Int {
+                    mAlarmhour = alarmHourSaved
+                }
+                
+                if let alarmMinSaved = NSUserDefaults.standardUserDefaults().objectForKey(SAVED_ALARM_MIN_KEY2) as? Int {
+                    mAlarmmin = alarmMinSaved
+                }
+                
+                if let alarmEnableSaved = NSUserDefaults.standardUserDefaults().objectForKey(SAVED_ALARM_ENABLED_KEY2) as? Bool {
+                    mAlarmenable = alarmEnableSaved
+                }
+                
+                alarm.append(Alarm(index: 0,hour: mAlarmhour,minute: mAlarmmin,enable: mAlarmenable))
+                
+                if let alarmHourSaved = NSUserDefaults.standardUserDefaults().objectForKey(SAVED_ALARM_HOUR_KEY3) as? Int {
+                    mAlarmhour = alarmHourSaved
+                }
+                
+                if let alarmMinSaved = NSUserDefaults.standardUserDefaults().objectForKey(SAVED_ALARM_MIN_KEY3) as? Int {
+                    mAlarmmin = alarmMinSaved
+                }
+                
+                if let alarmEnableSaved = NSUserDefaults.standardUserDefaults().objectForKey(SAVED_ALARM_ENABLED_KEY3) as? Bool {
+                    mAlarmenable = alarmEnableSaved
+                }
+                
+                alarm.append(Alarm(index: 0,hour: mAlarmhour,minute: mAlarmmin,enable: mAlarmenable))
+                
+                setAlarm(alarm)
             }
             
             if(packet.getHeader() == SetAlarmRequest.HEADER())

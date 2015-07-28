@@ -99,6 +99,7 @@
 		079EED2F1AB7FE2D00CEA78D /* DailyTrackerNevoPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079EED2E1AB7FE2D00CEA78D /* DailyTrackerNevoPacket.swift */; };
 		079EED311AB7FE6000CEA78D /* DailyStepsNevoPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079EED301AB7FE6000CEA78D /* DailyStepsNevoPacket.swift */; };
 		07BCE82A1B5CAB2200C7F558 /* clockview600_color.png in Resources */ = {isa = PBXBuildFile; fileRef = 07BCE8291B5CAB2100C7F558 /* clockview600_color.png */; };
+		07BCE82F1B671B3D00C7F558 /* Alarm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07BCE82E1B671B3D00C7F558 /* Alarm.swift */; };
 		07BE0CF21A84A2F8000C4AC7 /* IntelHex2BinConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = 07BE0CF11A84A2F8000C4AC7 /* IntelHex2BinConverter.m */; };
 		07C18C0A1A80DF4900D0BF4A /* NevoOtaController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C18C091A80DF4900D0BF4A /* NevoOtaController.swift */; };
 		07C18C0E1A81AB3900D0BF4A /* NevoOtaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C18C0D1A81AB3900D0BF4A /* NevoOtaViewController.swift */; };
@@ -273,6 +274,7 @@
 		079EED2E1AB7FE2D00CEA78D /* DailyTrackerNevoPacket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DailyTrackerNevoPacket.swift; path = Controller/Connection/Packet/DailyTrackerNevoPacket.swift; sourceTree = "<group>"; };
 		079EED301AB7FE6000CEA78D /* DailyStepsNevoPacket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DailyStepsNevoPacket.swift; path = Controller/Connection/Packet/DailyStepsNevoPacket.swift; sourceTree = "<group>"; };
 		07BCE8291B5CAB2100C7F558 /* clockview600_color.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clockview600_color.png; sourceTree = "<group>"; };
+		07BCE82E1B671B3D00C7F558 /* Alarm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alarm.swift; sourceTree = "<group>"; };
 		07BE0CEE1A84A0C8000C4AC7 /* Nevo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Nevo-Bridging-Header.h"; sourceTree = "<group>"; };
 		07BE0CF01A84A2F8000C4AC7 /* IntelHex2BinConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntelHex2BinConverter.h; sourceTree = "<group>"; };
 		07BE0CF11A84A2F8000C4AC7 /* IntelHex2BinConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntelHex2BinConverter.m; sourceTree = "<group>"; };
@@ -528,6 +530,15 @@
 			path = Frameworks/AFNetworking;
 			sourceTree = "<group>";
 		};
+		07BCE82D1B671AF100C7F558 /* Alarm */ = {
+			isa = PBXGroup;
+			children = (
+				07BCE82E1B671B3D00C7F558 /* Alarm.swift */,
+			);
+			name = Alarm;
+			path = Model/Alarm;
+			sourceTree = "<group>";
+		};
 		07BE0CEF1A84A2F8000C4AC7 /* IntelHex2BinConverter */ = {
 			isa = PBXGroup;
 			children = (
@@ -698,6 +709,7 @@
 		9AD8F95E1A6E003B00F01014 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				07BCE82D1B671AF100C7F558 /* Alarm */,
 				00CD3AF81AA7019C00F3D6A5 /* NotificationType */,
 				9A2D6C411A9C8E0700591BDC /* Activity */,
 				9AD8F9711A6E046400F01014 /* Goal */,
@@ -1037,6 +1049,7 @@
 				9A3E57331A80F08400DFFAE1 /* NevoOTAPacketProfile.swift in Sources */,
 				9A3E57241A80E56E00DFFAE1 /* ConnectionControllerImpl.swift in Sources */,
 				00B427321AC50AAE00787C58 /* SetingView.swift in Sources */,
+				07BCE82F1B671B3D00C7F558 /* Alarm.swift in Sources */,
 				9AD8F96C1A6E03BC00F01014 /* HomeController.swift in Sources */,
 				07C59F301A8C625800D65C84 /* SetAlarmRequest.swift in Sources */,
 				07C18C0E1A81AB3900D0BF4A /* NevoOtaViewController.swift in Sources */,

@@ -10,11 +10,11 @@ import UIKit
 
 class SetAlarmRequest: NevoRequest {
    //0~23
-    var alarmhour: Int
+    var alarmhour: [Int] = []
    //0~59
-    var alarmmin:Int
+    var alarmmin:[Int] = []
     // true or false
-    var alarmenable:Bool
+    var alarmenable:[Bool] = []
     
     /*
     This header is the key by which this kind of packet is called.
@@ -23,24 +23,29 @@ class SetAlarmRequest: NevoRequest {
         return 0x41
     }
 
-    init(hour:Int,min:Int,enable:Bool)
+    init(alarm:[Alarm])
     {
-        alarmhour = hour
-        alarmmin = min
-        alarmenable = enable
+        for a in alarm
+        {
+        alarmhour.append(a.getHour())
+        alarmmin.append(a.getMinute())
+        alarmenable.append(a.getEnable())
+        }
     }
     
     override func getRawDataEx() -> NSArray {
 
         var values1 :[UInt8] = [0x00,SetAlarmRequest.HEADER(),
-            UInt8(alarmhour&0xFF),
-            UInt8(alarmmin&0xFF),
-            UInt8(alarmenable ? 7:0),
-            0,
-            0,
-            0,
-            0,
-            0,0,0,0,0,0,0,0,0,0,0]
+            UInt8(alarmhour[0]&0xFF),
+            UInt8(alarmmin[0]&0xFF),
+            UInt8(alarmenable[0] ? 7:0),
+            UInt8(alarmhour[1]&0xFF),
+            UInt8(alarmmin[1]&0xFF),
+            UInt8(alarmenable[1] ? 7:0),
+            UInt8(alarmhour[2]&0xFF),
+            UInt8(alarmmin[2]&0xFF),
+            UInt8(alarmenable[2] ? 7:0),
+            0,0,0,0,0,0,0,0,0]
         
         var values2 :[UInt8] = [0xFF,SetAlarmRequest.HEADER(),
             0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
