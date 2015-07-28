@@ -38,14 +38,20 @@ class AlarmClockController: UIViewController, SyncControllerDelegate,ButtonManag
         let userDefaults:NSUserDefaults = NSUserDefaults.standardUserDefaults()
         if let alarmArray1 = userDefaults.objectForKey(SAVED_ALARM_ARRAY0) as? NSDictionary {
             alarmArray.append(getLoclAlarm(alarmArray1))
+        }else{
+            alarmArray.append(Alarm(index:0, hour: mAlarmhour, minute: mAlarmmin, enable: mAlarmenable))
         }
 
         if let alarmArray2 = userDefaults.objectForKey(SAVED_ALARM_ARRAY1) as? NSDictionary {
             alarmArray.append(getLoclAlarm(alarmArray2))
+        }else{
+            alarmArray.append(Alarm(index:1, hour: mAlarmhour, minute: mAlarmmin, enable: mAlarmenable))
         }
         
         if let alarmArray3 = userDefaults.objectForKey(SAVED_ALARM_ARRAY2) as? NSDictionary {
             alarmArray.append(getLoclAlarm(alarmArray3))
+        }else{
+            alarmArray.append(Alarm(index:2, hour: mAlarmhour, minute: mAlarmmin, enable: mAlarmenable))
         }
 
         alarmView.bulidAlarmView(self,array: alarmArray)
@@ -200,20 +206,15 @@ class AlarmClockController: UIViewController, SyncControllerDelegate,ButtonManag
 
     func addAlarmArray(index:Int){
         for object in enumerate(alarmArray){
-            AppTheme.DLog("元素下标:\(object.0)  元素值:\(object.1)");
             var alarm:Alarm = (object.1 as Alarm)
             if(alarm.getIndex() == index){
                 var alarm:Alarm = Alarm(index:index, hour: mAlarmhour, minute: mAlarmmin, enable: mAlarmenable)
                 alarmArray.removeAtIndex(object.0)
                 alarmArray.insert(alarm, atIndex: index)
+                mSyncController?.setAlarm(alarmArray)
                 return;
             }
         }
-
-        var alarm:Alarm = Alarm(index:index, hour: mAlarmhour, minute: mAlarmmin, enable: mAlarmenable)
-        alarmArray.append(alarm)
-
-        mSyncController?.setAlarm(alarmArray)
     }
 
     func reconnect() {
