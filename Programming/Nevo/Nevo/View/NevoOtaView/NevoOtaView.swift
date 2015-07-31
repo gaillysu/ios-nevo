@@ -186,7 +186,7 @@ class NevoOtaView: UIView {
             warningLabel.font = AppTheme.FONT_RALEWAY_BOLD(mSize: 20)
 
             messageLabel.backgroundColor = UIColor.clearColor()
-            messageLabel.font = AppTheme.FONT_RALEWAY_LIGHT(mSize: 16)
+            messageLabel.font = AppTheme.FONT_RALEWAY_LIGHT(mSize: 15)
             messageLabel.numberOfLines = 0;
             messageLabel.lineBreakMode = NSLineBreakMode.ByWordWrapping
             messageLabel.textAlignment = NSTextAlignment.Center
