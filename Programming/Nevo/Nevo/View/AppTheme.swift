@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import AudioToolbox
 
 /**
 This class holds all app-wide constants.
@@ -246,6 +247,22 @@ class AppTheme {
     */
     class func toOpenUpdateURL() {
         UIApplication.sharedApplication().openURL(NSURL(string: "https://itunes.apple.com/app/nevo-watch/id977526892?mt=8")!)
+    }
+
+
+    /**
+    Play the prompt
+    */
+    class func playSound(){
+        let shake_sound_male_id:SystemSoundID  = UInt32(1005);//系统声音的id 取值范围为：1000-2000
+        AudioServicesPlaySystemSound(shake_sound_male_id)
+        //let path:String = NSBundle.mainBundle().pathForResource("shake_sound_male", ofType: "wav")!
+        //if path.isEmpty {
+            //注册声音到系统
+            //AudioServicesCreateSystemSoundID((NSURL.fileURLWithPath(path) as! CFURLRef),shake_sound_male_id);
+            //AudioServicesPlaySystemSound(shake_sound_male_id);
+        //}
+        //AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);   //手机震动
     }
 
 }

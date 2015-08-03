@@ -70,6 +70,7 @@
 		00D0FF731B130A9F00D084C3 /* Nevo660.png in Resources */ = {isa = PBXBuildFile; fileRef = 00D0FF721B130A9F00D084C3 /* Nevo660.png */; };
 		00D0FF771B13184500D084C3 /* MyNevoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D0FF761B13184500D084C3 /* MyNevoView.swift */; };
 		00D4DE921AB141FB0062523D /* NevoPicture960.png in Resources */ = {isa = PBXBuildFile; fileRef = 00D4DE901AB141FB0062523D /* NevoPicture960.png */; };
+		00E2632E1B6F0B0A000B4E75 /* TestMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E2632D1B6F0B0A000B4E75 /* TestMode.swift */; };
 		00E2BDE21B16CCD0009C757E /* MBProgressHUD+MJ.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E2BDDE1B16CCD0009C757E /* MBProgressHUD+MJ.m */; };
 		00E2BDE31B16CCD0009C757E /* MBProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 00E2BDDF1B16CCD0009C757E /* MBProgressHUD.bundle */; };
 		00E2BDE41B16CCD0009C757E /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E2BDE11B16CCD0009C757E /* MBProgressHUD.m */; };
@@ -234,6 +235,7 @@
 		00D0FF721B130A9F00D084C3 /* Nevo660.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Nevo660.png; sourceTree = "<group>"; };
 		00D0FF761B13184500D084C3 /* MyNevoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MyNevoView.swift; path = View/MyNevoView.swift; sourceTree = "<group>"; };
 		00D4DE901AB141FB0062523D /* NevoPicture960.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NevoPicture960.png; sourceTree = "<group>"; };
+		00E2632D1B6F0B0A000B4E75 /* TestMode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestMode.swift; sourceTree = "<group>"; };
 		00E2BDDD1B16CCD0009C757E /* MBProgressHUD+MJ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MBProgressHUD+MJ.h"; sourceTree = "<group>"; };
 		00E2BDDE1B16CCD0009C757E /* MBProgressHUD+MJ.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MBProgressHUD+MJ.m"; sourceTree = "<group>"; };
 		00E2BDDF1B16CCD0009C757E /* MBProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MBProgressHUD.bundle; sourceTree = "<group>"; };
@@ -490,6 +492,15 @@
 			path = Model/NotificationType;
 			sourceTree = "<group>";
 		};
+		00E2632C1B6F0ADA000B4E75 /* TestMode */ = {
+			isa = PBXGroup;
+			children = (
+				00E2632D1B6F0B0A000B4E75 /* TestMode.swift */,
+			);
+			name = TestMode;
+			path = Model/TestMode;
+			sourceTree = "<group>";
+		};
 		00E2BDDC1B16CCD0009C757E /* MBProgressHUD */ = {
 			isa = PBXGroup;
 			children = (
@@ -709,6 +720,7 @@
 		9AD8F95E1A6E003B00F01014 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				00E2632C1B6F0ADA000B4E75 /* TestMode */,
 				07BCE82D1B671AF100C7F558 /* Alarm */,
 				00CD3AF81AA7019C00F3D6A5 /* NotificationType */,
 				9A2D6C411A9C8E0700591BDC /* Activity */,
@@ -988,6 +1000,7 @@
 				9AD8F99E1A6E3E0100F01014 /* SyncController.swift in Sources */,
 				001818301B044E5D005E9F2D /* Page1Controller.swift in Sources */,
 				07BE0CF21A84A2F8000C4AC7 /* IntelHex2BinConverter.m in Sources */,
+				00E2632E1B6F0B0A000B4E75 /* TestMode.swift in Sources */,
 				9AD8F96E1A6E03F600F01014 /* HomeView.swift in Sources */,
 				00E2BDE21B16CCD0009C757E /* MBProgressHUD+MJ.m in Sources */,
 				005BC95F1A88B79F006F9E86 /* FXBlurView.m in Sources */,

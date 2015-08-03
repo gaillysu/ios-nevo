@@ -245,7 +245,7 @@
                                 <rect key="frame" x="70" y="120" width="180" height="180"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3af-AQ-leP">
-                                <rect key="frame" x="10" y="360" width="300" height="80"/>
+                                <rect key="frame" x="10" y="360" width="300" height="100"/>
                                 <string key="text">Do not interrupt the OTA firmware process. Let the process complete before using the app!In case of accidental interruption, try again. If it doesn't work, remove nevo battery for 30 secs and reinstall.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -276,7 +276,7 @@
                             <constraint firstItem="lNM-9j-XkJ" firstAttribute="leading" secondItem="sRG-8v-pva" secondAttribute="leading" id="Nva-6F-05u"/>
                             <constraint firstItem="MgG-7R-WNT" firstAttribute="leading" secondItem="sRG-8v-pva" secondAttribute="leadingMargin" constant="84" id="OKJ-kj-gRf"/>
                             <constraint firstItem="3af-AQ-leP" firstAttribute="centerX" secondItem="AmS-5k-wEF" secondAttribute="centerX" id="Oy7-VF-TnO"/>
-                            <constraint firstItem="7uk-Lo-xTC" firstAttribute="top" secondItem="3af-AQ-leP" secondAttribute="bottom" constant="128" id="QbA-mH-yWX"/>
+                            <constraint firstItem="7uk-Lo-xTC" firstAttribute="top" secondItem="3af-AQ-leP" secondAttribute="bottom" constant="108" id="QbA-mH-yWX"/>
                             <constraint firstItem="AmS-5k-wEF" firstAttribute="top" secondItem="VkI-aL-eUs" secondAttribute="bottom" constant="12" id="Qd8-7j-rQr"/>
                             <constraint firstItem="3af-AQ-leP" firstAttribute="top" secondItem="AmS-5k-wEF" secondAttribute="bottom" constant="27" id="T15-sF-h7D"/>
                             <constraint firstItem="MgG-7R-WNT" firstAttribute="top" secondItem="AmS-5k-wEF" secondAttribute="bottom" constant="2" id="T4k-OM-9MS"/>
@@ -1278,7 +1278,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="huA-lR-B9r"/>
+        <segue reference="2Ya-p7-XfV"/>
         <segue reference="pXY-c9-EIr"/>
     </inferredMetricsTieBreakers>
 </document>
