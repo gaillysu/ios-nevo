@@ -19,7 +19,7 @@ class TestMode: NSObject {
         let header:UInt8 = NSData2Bytes(packetData![0])[1]
         let instruction:UInt8 = NSData2Bytes(packetData![0])[2]
 
-        if(header == 0xF1 && (instruction == 0x01)){
+        if(header == 0xF1 && (instruction == 0x00)){
             //|| instruction == 0x02
             return true;
         }else{
