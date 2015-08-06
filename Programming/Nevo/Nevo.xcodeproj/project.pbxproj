@@ -25,6 +25,14 @@
 		003542B71AA823B000B27381 /* AnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003542B61AA823B000B27381 /* AnimationView.swift */; };
 		00478F4F1A8F637D00D0DCE2 /* clockViewHour.png in Resources */ = {isa = PBXBuildFile; fileRef = 00478F4D1A8F637D00D0DCE2 /* clockViewHour.png */; };
 		00478F501A8F637D00D0DCE2 /* clockViewMinute.png in Resources */ = {isa = PBXBuildFile; fileRef = 00478F4E1A8F637D00D0DCE2 /* clockViewMinute.png */; };
+		004846CB1B72EB06005A6D83 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 004846C11B72EB06005A6D83 /* FMDatabase.m */; };
+		004846CC1B72EB06005A6D83 /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 004846C31B72EB06005A6D83 /* FMDatabaseAdditions.m */; };
+		004846CD1B72EB06005A6D83 /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = 004846C51B72EB06005A6D83 /* FMDatabasePool.m */; };
+		004846CE1B72EB06005A6D83 /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 004846C71B72EB06005A6D83 /* FMDatabaseQueue.m */; };
+		004846CF1B72EB06005A6D83 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 004846CA1B72EB06005A6D83 /* FMResultSet.m */; };
+		004846D41B72EDB9005A6D83 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 004846D31B72EDB9005A6D83 /* libsqlite3.dylib */; };
+		004846D91B72FFB6005A6D83 /* NevoDBModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 004846D81B72FFB6005A6D83 /* NevoDBModel.m */; };
+		004846DC1B73006D005A6D83 /* NevoDBHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 004846DB1B73006D005A6D83 /* NevoDBHelper.m */; };
 		005350B81A8B0F2B00BF289D /* TutorialPage3View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005350B71A8B0F2B00BF289D /* TutorialPage3View.swift */; };
 		005350BA1A8B4BC600BF289D /* StepGoalSetingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005350B91A8B4BC600BF289D /* StepGoalSetingController.swift */; };
 		005350BC1A8B4C1200BF289D /* StepGoalSetingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005350BB1A8B4C1200BF289D /* StepGoalSetingView.swift */; };
@@ -181,6 +189,22 @@
 		003542B61AA823B000B27381 /* AnimationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AnimationView.swift; path = View/AnimationView.swift; sourceTree = "<group>"; };
 		00478F4D1A8F637D00D0DCE2 /* clockViewHour.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clockViewHour.png; sourceTree = "<group>"; };
 		00478F4E1A8F637D00D0DCE2 /* clockViewMinute.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clockViewMinute.png; sourceTree = "<group>"; };
+		004846C01B72EB06005A6D83 /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
+		004846C11B72EB06005A6D83 /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabase.m; sourceTree = "<group>"; };
+		004846C21B72EB06005A6D83 /* FMDatabaseAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseAdditions.h; sourceTree = "<group>"; };
+		004846C31B72EB06005A6D83 /* FMDatabaseAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseAdditions.m; sourceTree = "<group>"; };
+		004846C41B72EB06005A6D83 /* FMDatabasePool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabasePool.h; sourceTree = "<group>"; };
+		004846C51B72EB06005A6D83 /* FMDatabasePool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabasePool.m; sourceTree = "<group>"; };
+		004846C61B72EB06005A6D83 /* FMDatabaseQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseQueue.h; sourceTree = "<group>"; };
+		004846C71B72EB06005A6D83 /* FMDatabaseQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseQueue.m; sourceTree = "<group>"; };
+		004846C81B72EB06005A6D83 /* FMDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDB.h; sourceTree = "<group>"; };
+		004846C91B72EB06005A6D83 /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMResultSet.h; sourceTree = "<group>"; };
+		004846CA1B72EB06005A6D83 /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMResultSet.m; sourceTree = "<group>"; };
+		004846D31B72EDB9005A6D83 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		004846D71B72FFB6005A6D83 /* NevoDBModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NevoDBModel.h; sourceTree = "<group>"; };
+		004846D81B72FFB6005A6D83 /* NevoDBModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NevoDBModel.m; sourceTree = "<group>"; };
+		004846DA1B73006D005A6D83 /* NevoDBHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NevoDBHelper.h; sourceTree = "<group>"; };
+		004846DB1B73006D005A6D83 /* NevoDBHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NevoDBHelper.m; sourceTree = "<group>"; };
 		005350B71A8B0F2B00BF289D /* TutorialPage3View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TutorialPage3View.swift; path = View/Tutorial/TutorialPage3View.swift; sourceTree = "<group>"; };
 		005350B91A8B4BC600BF289D /* StepGoalSetingController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StepGoalSetingController.swift; path = Controller/StepGoalSetingController.swift; sourceTree = "<group>"; };
 		005350BB1A8B4C1200BF289D /* StepGoalSetingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StepGoalSetingView.swift; path = View/StepGoalSetingView.swift; sourceTree = "<group>"; };
@@ -341,6 +365,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				004846D41B72EDB9005A6D83 /* libsqlite3.dylib in Frameworks */,
 				9A2D6C3B1A9C6D9F00591BDC /* HealthKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -374,6 +399,37 @@
 			);
 			name = NevoOta;
 			path = Controller/NevoOta;
+			sourceTree = "<group>";
+		};
+		004846BF1B72EB06005A6D83 /* FMDB */ = {
+			isa = PBXGroup;
+			children = (
+				004846C01B72EB06005A6D83 /* FMDatabase.h */,
+				004846C11B72EB06005A6D83 /* FMDatabase.m */,
+				004846C21B72EB06005A6D83 /* FMDatabaseAdditions.h */,
+				004846C31B72EB06005A6D83 /* FMDatabaseAdditions.m */,
+				004846C41B72EB06005A6D83 /* FMDatabasePool.h */,
+				004846C51B72EB06005A6D83 /* FMDatabasePool.m */,
+				004846C61B72EB06005A6D83 /* FMDatabaseQueue.h */,
+				004846C71B72EB06005A6D83 /* FMDatabaseQueue.m */,
+				004846C81B72EB06005A6D83 /* FMDB.h */,
+				004846C91B72EB06005A6D83 /* FMResultSet.h */,
+				004846CA1B72EB06005A6D83 /* FMResultSet.m */,
+			);
+			name = FMDB;
+			path = Frameworks/FMDB;
+			sourceTree = "<group>";
+		};
+		004846D01B72ECC6005A6D83 /* DBModel */ = {
+			isa = PBXGroup;
+			children = (
+				004846DA1B73006D005A6D83 /* NevoDBHelper.h */,
+				004846DB1B73006D005A6D83 /* NevoDBHelper.m */,
+				004846D71B72FFB6005A6D83 /* NevoDBModel.h */,
+				004846D81B72FFB6005A6D83 /* NevoDBModel.m */,
+			);
+			name = DBModel;
+			path = Model/DBModel;
 			sourceTree = "<group>";
 		};
 		005BC95C1A88B79F006F9E86 /* FXBlurView */ = {
@@ -681,6 +737,8 @@
 		9AD8F95A1A6DFE3400F01014 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				004846D31B72EDB9005A6D83 /* libsqlite3.dylib */,
+				004846BF1B72EB06005A6D83 /* FMDB */,
 				00F1C0C81B5DD55F009B85DB /* AFNetworking */,
 				00E2BDDC1B16CCD0009C757E /* MBProgressHUD */,
 				9A2D6C3C1A9C717E00591BDC /* NevoHK */,
@@ -720,6 +778,7 @@
 		9AD8F95E1A6E003B00F01014 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				004846D01B72ECC6005A6D83 /* DBModel */,
 				00E2632C1B6F0ADA000B4E75 /* TestMode */,
 				07BCE82D1B671AF100C7F558 /* Alarm */,
 				00CD3AF81AA7019C00F3D6A5 /* NotificationType */,
@@ -975,6 +1034,7 @@
 				005350BA1A8B4BC600BF289D /* StepGoalSetingController.swift in Sources */,
 				9A9BD1C81A88C0A400A95ACA /* TutorialScanPageView.swift in Sources */,
 				5901F3681AB1836C002AAB13 /* ProfileTestController.swift in Sources */,
+				004846CD1B72EB06005A6D83 /* FMDatabasePool.m in Sources */,
 				0017199E1AB2EE2E00889FED /* SelectFileView.swift in Sources */,
 				9AD8F98D1A6E2D6E00F01014 /* RawPacket.swift in Sources */,
 				9AD8F9621A6E00E800F01014 /* NevoBTimpl.swift in Sources */,
@@ -987,6 +1047,7 @@
 				00D0FF771B13184500D084C3 /* MyNevoView.swift in Sources */,
 				00F1C0E11B5DD55F009B85DB /* AFURLConnectionOperation.m in Sources */,
 				9AD8F9791A6E05F700F01014 /* NevoBT.swift in Sources */,
+				004846CB1B72EB06005A6D83 /* FMDatabase.m in Sources */,
 				079EED311AB7FE6000CEA78D /* DailyStepsNevoPacket.swift in Sources */,
 				074243221AB00F630076F789 /* RealTimeCountSteps.swift in Sources */,
 				07C59F321A8C6A6000D65C84 /* SetRTCRequest.swift in Sources */,
@@ -1017,6 +1078,7 @@
 				00E2BDE41B16CCD0009C757E /* MBProgressHUD.m in Sources */,
 				00F1C0E41B5DD55F009B85DB /* AFURLSessionManager.m in Sources */,
 				07C59F281A8C618A00D65C84 /* WriteSettingRequest.swift in Sources */,
+				004846DC1B73006D005A6D83 /* NevoDBHelper.m in Sources */,
 				9A3E57261A80E56E00DFFAE1 /* NevoPacket.swift in Sources */,
 				9AD8F98F1A6E2EE000F01014 /* Profile.swift in Sources */,
 				9AD8F9701A6E041D00F01014 /* ClockView.swift in Sources */,
@@ -1034,10 +1096,13 @@
 				9AD8F99C1A6E3D6A00F01014 /* NevoRequest.swift in Sources */,
 				00F1C0E21B5DD55F009B85DB /* AFURLRequestSerialization.m in Sources */,
 				9A3E57251A80E56E00DFFAE1 /* NevoProfile.swift in Sources */,
+				004846CF1B72EB06005A6D83 /* FMResultSet.m in Sources */,
 				008F39711B0EE0BF00698F1B /* NotificationTypeCell.swift in Sources */,
 				005350BC1A8B4C1200BF289D /* StepGoalSetingView.swift in Sources */,
 				00F1C0E31B5DD55F009B85DB /* AFURLResponseSerialization.m in Sources */,
 				00E5CFD81B18053100D1F829 /* HelpView.swift in Sources */,
+				004846CC1B72EB06005A6D83 /* FMDatabaseAdditions.m in Sources */,
+				004846D91B72FFB6005A6D83 /* NevoDBModel.m in Sources */,
 				00F1C0E01B5DD55F009B85DB /* AFSecurityPolicy.m in Sources */,
 				00E5CFD61B17FB7300D1F829 /* HelpViewController.swift in Sources */,
 				001818391B048E12005E9F2D /* TutorialPage5View.swift in Sources */,
@@ -1052,6 +1117,7 @@
 				0704C9631AA431EE00F9AE09 /* GetStepsGoalRequest.swift in Sources */,
 				07CC4A291A820A9B008DA749 /* Utility.swift in Sources */,
 				0790259B1B141A7E0049BB06 /* ReadBatteryLevelNevoRequest.swift in Sources */,
+				004846CE1B72EB06005A6D83 /* FMDatabaseQueue.m in Sources */,
 				00F1C0DF1B5DD55F009B85DB /* AFNetworkReachabilityManager.m in Sources */,
 				07731E521AA58EFE007F9FD6 /* ReadDailyTrackerInfo.swift in Sources */,
 				0018183A1B048E12005E9F2D /* TutorialPage6View.swift in Sources */,
