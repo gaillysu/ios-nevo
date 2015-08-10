@@ -190,11 +190,6 @@ class NevoOtaView: UIView {
             messageLabel.numberOfLines = 0;
             messageLabel.lineBreakMode = NSLineBreakMode.ByWordWrapping
             messageLabel.textAlignment = NSTextAlignment.Center
-            let messageS:String  = String(format: "%@",NSLocalizedString("otahelp",comment:""))
-            var labelframe:CGRect  = AppTheme.getLabelSize(messageS, andObject: messageLabel.frame,andFont: AppTheme.FONT_RALEWAY_LIGHT(mSize: 16))
-            var labelSize:CGRect = labelframe;
-            labelSize.size.height = labelframe.size.height;
-            messageLabel.frame = labelSize
             messageLabel.text = String(format: "%@",NSLocalizedString("otahelp",comment:""))
 
             OTAprogressView = OTAProgress()
@@ -205,7 +200,6 @@ class NevoOtaView: UIView {
 
             ReUpgradeButton = UIButton.buttonWithType(UIButtonType.Custom) as? UIButton
             ReUpgradeButton!.frame = CGRectMake(0, 0, 120, 40)
-            ReUpgradeButton!.center = CGPointMake(self.frame.size.width/2.0, messageLabel!.frame.size.height+messageLabel!.frame.origin.y+30)
             ReUpgradeButton!.setTitle(NSLocalizedString("Re-Upgrade", comment: ""), forState: UIControlState.Normal)
             ReUpgradeButton!.titleLabel?.font = AppTheme.FONT_RALEWAY_LIGHT(mSize: 15)
             ReUpgradeButton!.backgroundColor = UIColor.clearColor()
@@ -217,6 +211,15 @@ class NevoOtaView: UIView {
             ReUpgradeButton!.layer.borderColor = AppTheme.NEVO_SOLAR_YELLOW().CGColor
             self.addSubview(ReUpgradeButton!)
         }
+
+        let messageS:String  = String(format: "%@",NSLocalizedString("otahelp",comment:""))
+        var labelframe:CGRect  = AppTheme.getLabelSize(messageS, andObject: messageLabel.frame,andFont: AppTheme.FONT_RALEWAY_LIGHT(mSize: 16))
+        var labelSize:CGRect = labelframe;
+        labelSize.size.height = labelframe.size.height;
+        messageLabel.frame = labelSize
+
+        ReUpgradeButton!.center = CGPointMake(self.frame.size.width/2.0, messageLabel!.frame.size.height+messageLabel!.frame.origin.y+30)
+
     }
 
     @IBAction func buttonAction(sender: AnyObject) {

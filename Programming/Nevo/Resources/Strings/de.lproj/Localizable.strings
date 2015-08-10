@@ -64,7 +64,7 @@
 "reconnection_message"="Verbinde erneut Bluetooth um Benachrichtigungen zu erhalten in dem du den dritten Knopf drei Sekunden gedrückt hälst";
 "3secs"="3 Sek";
 "Attention!"="Aufgepasst";
-"otahelp"="OTA Firmware Prozess nicht unterbrechen. Wenn es nicht funktioniert, Nevo Batterie für 30 Sek. entfernen und neu einlegen";
+"otahelp"="OTA Firmware Prozess nicht unterbrechen.";
 "latestversion"="Du hast die aktuellste Version";
 "Version:"="Version:";
 "FirmwareAlertMessage"="Die software deiner Nevo ist nicht mehr aktuell. Möchtest du ein Up-Date starten?";

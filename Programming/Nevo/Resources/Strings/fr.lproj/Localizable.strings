@@ -64,7 +64,7 @@
 "reconnection_message"="Reconnectez le Bluetooth pour recevoir de nouveau les notifications en appuyant sur le 3ème bouton de votre montre pendant 3 secondes.";
 "3secs"="3 secs";
 "Attention!"="Attention!";
-"otahelp"="Il ne faut pas interrompre la mise a jour micrologicielle. Attendez la fin de la mise à jour avant d'utiliser l'app !\nEn cas d'interruption involontaire, veuillez ré-essayer. Si cela ne fonctionne toujours pas, essayez de retirer puis remettre la batterie de votre montre.";
+"otahelp"="Il ne faut pas interrompre la mise a jour micrologicielle. Attendez la fin de la mise à jour avant d'utiliser l'app !En cas d'interruption involontaire, veuillez ré-essayer.";
 "latestversion"="Votre montre est à jour";
 "Version:"="Version:";
 "FirmwareAlertMessage"="Le logiciel de votre montre n'est pas à jour. Voulez-vous mettre à jour votre monte ?";
