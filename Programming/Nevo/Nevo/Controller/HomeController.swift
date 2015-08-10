@@ -78,7 +78,7 @@ class HomeController: UIViewController, SyncControllerDelegate ,ButtonManagerCal
         }
     }
 
-    func timerAction(NSTimer) {
+    func timerAction(timer:NSTimer) {
         homeView.getClockTimerView().currentTimer()
         if mVisiable
         { SyncController.sharedInstance.getGoal() }
@@ -136,7 +136,7 @@ class HomeController: UIViewController, SyncControllerDelegate ,ButtonManagerCal
             dispatch_after(dispatchTime, dispatch_get_main_queue(), {
               self.homeView.getClockTimerView().setClockImage(AppTheme.GET_RESOURCES_IMAGE("clockView600"))
             })
-        }else if (TestMode(data: packet.getPackets()).isTestModel()){
+        }else if (TestMode.shareInstance(packet.getPackets()).isTestModel()){
             AppTheme.playSound()
         }
     }
