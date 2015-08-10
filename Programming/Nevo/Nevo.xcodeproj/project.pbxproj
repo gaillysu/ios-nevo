@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		000FA4011B7858AE00DA3E25 /* DaySleepSaveModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000FA4001B7858AE00DA3E25 /* DaySleepSaveModel.swift */; };
 		0017199C1AB2EE2E00889FED /* DeviceScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001719991AB2EE2E00889FED /* DeviceScannerView.swift */; };
 		0017199D1AB2EE2E00889FED /* NevoOtaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0017199A1AB2EE2E00889FED /* NevoOtaView.swift */; };
 		0017199E1AB2EE2E00889FED /* SelectFileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0017199B1AB2EE2E00889FED /* SelectFileView.swift */; };
@@ -171,6 +172,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		000FA4001B7858AE00DA3E25 /* DaySleepSaveModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DaySleepSaveModel.swift; sourceTree = "<group>"; };
 		001719991AB2EE2E00889FED /* DeviceScannerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceScannerView.swift; sourceTree = "<group>"; };
 		0017199A1AB2EE2E00889FED /* NevoOtaView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NevoOtaView.swift; sourceTree = "<group>"; };
 		0017199B1AB2EE2E00889FED /* SelectFileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectFileView.swift; sourceTree = "<group>"; };
@@ -427,6 +429,7 @@
 				004846DB1B73006D005A6D83 /* NevoDBHelper.m */,
 				004846D71B72FFB6005A6D83 /* NevoDBModel.h */,
 				004846D81B72FFB6005A6D83 /* NevoDBModel.m */,
+				000FA4001B7858AE00DA3E25 /* DaySleepSaveModel.swift */,
 			);
 			name = DBModel;
 			path = Model/DBModel;
@@ -921,6 +924,7 @@
 		9AD8F92A1A6DF35800F01014 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = Nevo;
 				TargetAttributes = {
@@ -1123,6 +1127,7 @@
 				0018183A1B048E12005E9F2D /* TutorialPage6View.swift in Sources */,
 				007DD4BD1A89DF2A00CE7264 /* Page3Controller.swift in Sources */,
 				07C18C0A1A80DF4900D0BF4A /* NevoOtaController.swift in Sources */,
+				000FA4011B7858AE00DA3E25 /* DaySleepSaveModel.swift in Sources */,
 				00F1C0DE1B5DD55F009B85DB /* AFHTTPSessionManager.m in Sources */,
 				00A228701AA551A400360C36 /* SetingViewController.swift in Sources */,
 				9A3E57331A80F08400DFFAE1 /* NevoOTAPacketProfile.swift in Sources */,
