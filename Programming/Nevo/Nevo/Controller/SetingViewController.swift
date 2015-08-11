@@ -262,7 +262,7 @@ class SetingViewController: UIViewController,SelectionTypeDelegate,SyncControlle
     Check the update
     */
     func  checkUpdateVersion() {
-        MBProgressHUD.showMessage("Is checking the update...")
+        MBProgressHUD.showMessage(NSLocalizedString("is_checking_the_update",comment: ""))
         AppTheme.getAppStoreVersion({ (stringVersion, version) -> Void in
             MBProgressHUD.hideHUD()
             let loclString:String = (NSBundle.mainBundle().infoDictionary! as NSDictionary).objectForKey("CFBundleShortVersionString") as! String

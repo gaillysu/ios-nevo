@@ -35,17 +35,11 @@ class NevoHKImpl {
     
     func authorizeHealthKit(completion: ((success:Bool, error:NSError!) -> Void)!)
     {
-        // 1. Set the types you want to read from HK Store
-        let healthKitTypesToRead = NSSet(array:[
-            HKObjectType.quantityTypeForIdentifier(HKQuantityTypeIdentifierStepCount)
-            ,HKObjectType.categoryTypeForIdentifier(HKCategoryTypeIdentifierSleepAnalysis)
-            ])
+        // 1. Set the types you want to read from HK Store  HKObjectType.categoryTypeForIdentifier(HKCategoryTypeIdentifierSleepAnalysis)
+        let healthKitTypesToRead = NSSet(array:[HKObjectType.quantityTypeForIdentifier(HKQuantityTypeIdentifierStepCount)])
         
-        // 2. Set the types you want to write to HK Store
-        let healthKitTypesToWrite = NSSet(array:[
-            HKObjectType.quantityTypeForIdentifier(HKQuantityTypeIdentifierStepCount)
-            ,HKObjectType.categoryTypeForIdentifier(HKCategoryTypeIdentifierSleepAnalysis)
-            ])
+        // 2. Set the types you want to write to HK Store  HKObjectType.categoryTypeForIdentifier(HKCategoryTypeIdentifierSleepAnalysis)
+        let healthKitTypesToWrite = NSSet(array:[HKObjectType.quantityTypeForIdentifier(HKQuantityTypeIdentifierStepCount)])
         
         // 3. If the store is not available (for instance, iPad) return an error and don't go on.
         if !HKHealthStore.isHealthDataAvailable()
