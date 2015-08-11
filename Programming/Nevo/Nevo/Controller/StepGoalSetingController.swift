@@ -121,9 +121,19 @@ class StepGoalSetingController: UIViewController, SyncControllerDelegate,ButtonM
     
     */
     
-    func packetReceived(NevoPacket) {
+    func packetReceived(packet:NevoPacket) {
         
         //Do nothing
+        if packet.getHeader() == GetStepsGoalRequest.HEADER(){
+            var thispacket = packet.copy() as DailyStepsNevoPacket
+            var dailySteps:Int = thispacket.getDailySteps()
+            var dailyStepGoal:Int = thispacket.getDailyStepsGoal()
+            stepGoalView.setNumberOfStepsGoal(dailyStepGoal)
+
+            let userDefaults = NSUserDefaults.standardUserDefaults();
+            userDefaults.setObject(dailyStepGoal,forKey:NUMBER_OF_STEPS_GOAL_KEY)
+            userDefaults.synchronize()
+        }
         
     }
     
