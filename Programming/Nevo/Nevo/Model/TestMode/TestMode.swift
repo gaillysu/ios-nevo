@@ -34,10 +34,10 @@ class TestMode: NSObject {
         let instruction:UInt8 = NSData2Bytes(data[0])[2]
         if(header == 0xF1 && (instruction == 0x02)){
             pressedData = data;
-        }else{
-            if(pressedData?.count>0){
-                packetData = data;
-            }
+        }
+
+        if(header == 0xF1 && (instruction == 0x00)){
+            packetData = data;
         }
     }
 

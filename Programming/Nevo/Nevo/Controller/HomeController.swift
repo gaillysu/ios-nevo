@@ -136,8 +136,6 @@ class HomeController: UIViewController, SyncControllerDelegate ,ButtonManagerCal
             dispatch_after(dispatchTime, dispatch_get_main_queue(), {
               self.homeView.getClockTimerView().setClockImage(AppTheme.GET_RESOURCES_IMAGE("clockView600"))
             })
-        }else if (TestMode.shareInstance(packet.getPackets()).isTestModel()){
-            AppTheme.playSound()
         }
     }
 

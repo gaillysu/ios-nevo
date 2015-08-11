@@ -559,6 +559,11 @@ class SyncController: NSObject,ConnectionControllerDelegate,UIAlertViewDelegate 
                 */
                 
             }
+
+            //find Phone
+           if (TestMode.shareInstance(packet.getPackets()).isTestModel()){
+                AppTheme.playSound()
+            }
             
             mPacketsbuffer = []
         }
