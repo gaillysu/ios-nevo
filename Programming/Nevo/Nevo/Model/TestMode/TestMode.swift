@@ -34,7 +34,7 @@ class TestMode: NSObject {
         let instruction:UInt8 = NSData2Bytes(data[0])[2]
         if(header == 0xF1 && (instruction == 0x02)){
             pressedData = data;
-            packetData!.removeAll(keepCapacity: true)
+            packetData?.removeAll(keepCapacity: true)
         }
 
         if(header == 0xF1 && (instruction == 0x00)){
@@ -51,8 +51,8 @@ class TestMode: NSObject {
             let isModelInstruction:UInt8 = NSData2Bytes(packetData![0])[2]
 
             if(header == 0xF1 && (instruction == 0x02) && isModelHeader == 0xF1 && (isModelInstruction == 0x00)){
-                pressedData!.removeAll(keepCapacity: true)
-                packetData!.removeAll(keepCapacity: true)
+                pressedData?.removeAll(keepCapacity: true)
+                packetData?.removeAll(keepCapacity: true)
                 return true;
             }else{
                 return false
