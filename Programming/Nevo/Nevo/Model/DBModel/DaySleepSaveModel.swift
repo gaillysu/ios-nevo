@@ -9,10 +9,16 @@
 import UIKit
 
 class DaySleepSaveModel: NevoDBModel {
-    var sleepTime:Int?
-    var wakeSleepTime:Int?
-    var lightSleepTime:Int?
-    var deepSleepTime:Int?
+    var DailySleepTime:Int?
+    var HourlySleepTime:[Int]?
+    var DailyWakeTime:Int?
+    var HourlyWakeTime:[Int]?
+    var DailyLightTime:Int?
+    var HourlyLightTime:[Int]?
+    var DailyDeepTime:Int?
+    var HourlyDeepTime:[Int]?
+    var DailyDist:Int?
+    var DailyCalories:Int?
 
     override init() {
 

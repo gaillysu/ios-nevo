@@ -377,6 +377,19 @@ class SyncController: NSObject,ConnectionControllerDelegate,UIAlertViewDelegate 
                 
                 AppTheme.DLog("Day:\(GmtNSDate2LocaleNSDate(savedDailyHistory[Int(currentDay)].Date)), Daily Total Calories (kcal):\(savedDailyHistory[Int(currentDay)].TotalCalories)")
                 
+
+                //var daysleepSave:DaySleepSaveModel = DaySleepSaveModel()
+                //daysleepSave.DailySleepTime = thispacket.getDailySleepTime()
+                //daysleepSave.HourlySleepTime = thispacket.getHourlySleepTime()
+                //daysleepSave.DailyWakeTime = thispacket.getDailyWakeTime()
+                //daysleepSave.HourlyWakeTime = thispacket.getHourlyWakeTime()
+                //daysleepSave.DailyLightTime = thispacket.getDailyLightTime()
+                //daysleepSave.HourlyLightTime = thispacket.getHourlyLightTime()
+                //daysleepSave.DailyDeepTime = thispacket.getDailyDeepTime()
+                //daysleepSave.HourlyDeepTime = thispacket.getHourlyDeepTime()
+                //daysleepSave.DailyDist = thispacket.getDailyDist()
+                //daysleepSave.DailyCalories = thispacket.getDailyCalories()
+                //let isSave:Bool = daysleepSave.save()
                 //save to health kit
                 var hk = NevoHKImpl()
                 hk.requestPermission()
