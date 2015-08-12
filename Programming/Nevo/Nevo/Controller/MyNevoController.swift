@@ -57,6 +57,8 @@ class MyNevoController: UIViewController,ButtonManagerCallBack,SyncControllerDel
         var thispacket = packet.copy() as BatteryLevelNevoPacket
         var batteryValue:Int = thispacket.getBatteryLevel()
         mynevoView.setBatteryLevelValue(batteryValue)
+
+        mynevoView.setVersionLbael(mSyncController!.getSoftwareVersion(), bleNumber: mSyncController!.getFirmwareVersion())
     }
 
     func connectionStateChanged(isConnected : Bool){
