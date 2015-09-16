@@ -17,6 +17,13 @@ class TutorialController: UIViewController {
         //init TutorialView
         mTutorialView = TutorialView(frame: CGRectMake(0,0, self.view.frame.size.width, self.view.frame.size.height), delegate: self)
         self.view.addSubview(mTutorialView!)
+
+        var longPush:UILongPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: Selector("longPushTask:"))
+        mTutorialView?.addGestureRecognizer(longPush)
+    }
+
+    func longPushTask(longp:UIGestureRecognizer){
+         self.performSegueWithIdentifier("Aid_Ota", sender: self)
     }
     
 }

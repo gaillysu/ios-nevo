@@ -149,7 +149,7 @@ class NevoOtaView: UIView {
     var progresValue:CGFloat = 0.0//OTA upgrade progress bar default value
     var ReUpgradeButton:UIButton?
     
-    func buildView(delegate:ButtonManagerCallBack,otacontroller:NevoOtaController) {
+    func buildView(delegate:ButtonManagerCallBack,otacontroller:AnyObject) {
 
         title.text = NSLocalizedString("Firmware Upgrade", comment:"")
 
@@ -157,7 +157,6 @@ class NevoOtaView: UIView {
 
         if(mDelegate == nil){
             mDelegate = delegate
-            mOTADelegate = otacontroller
             //let tipButton:UIButton = UIButton.buttonWithType(UIButtonType.InfoDark) as! UIButton
             //tipButton.frame = CGRectMake(self.frame.size.width-50, 90, 50, 50)
             //tipButton.addTarget(self, action: Selector("tipAction:"), forControlEvents: UIControlEvents.TouchUpInside)

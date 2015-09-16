@@ -72,6 +72,8 @@
 		00B427321AC50AAE00787C58 /* SetingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B4272F1AC50AAE00787C58 /* SetingView.swift */; };
 		00B427331AC50AAE00787C58 /* TableListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B427301AC50AAE00787C58 /* TableListCell.swift */; };
 		00B427341AC50AAE00787C58 /* TableListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00B427311AC50AAE00787C58 /* TableListCell.xib */; };
+		00BA73E01BA84FF200321496 /* AidOtaController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00BA73DF1BA84FF200321496 /* AidOtaController.swift */; };
+		00BA73E21BA853BC00321496 /* AidOtaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00BA73E11BA853BC00321496 /* AidOtaViewController.swift */; };
 		00C30AD91A89E08600C9F67B /* Page4Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C30AD81A89E08600C9F67B /* Page4Controller.swift */; };
 		00C30ADB1A89FC8200C9F67B /* ButtonCallBack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C30ADA1A89FC8200C9F67B /* ButtonCallBack.swift */; };
 		00C640F41A8D9F4500815CF8 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C640F31A8D9F4500815CF8 /* MainTabBarController.swift */; };
@@ -254,6 +256,8 @@
 		00B4272F1AC50AAE00787C58 /* SetingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetingView.swift; sourceTree = "<group>"; };
 		00B427301AC50AAE00787C58 /* TableListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableListCell.swift; sourceTree = "<group>"; };
 		00B427311AC50AAE00787C58 /* TableListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TableListCell.xib; sourceTree = "<group>"; };
+		00BA73DF1BA84FF200321496 /* AidOtaController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AidOtaController.swift; sourceTree = "<group>"; };
+		00BA73E11BA853BC00321496 /* AidOtaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AidOtaViewController.swift; sourceTree = "<group>"; };
 		00C30AD81A89E08600C9F67B /* Page4Controller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Page4Controller.swift; sourceTree = "<group>"; };
 		00C30ADA1A89FC8200C9F67B /* ButtonCallBack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ButtonCallBack.swift; path = View/Tutorial/ButtonCallBack.swift; sourceTree = "<group>"; };
 		00C640F31A8D9F4500815CF8 /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainTabBarController.swift; path = Controller/MainTabBarController.swift; sourceTree = "<group>"; };
@@ -542,6 +546,16 @@
 			path = View/SetingView;
 			sourceTree = "<group>";
 		};
+		00BA73DE1BA84F9B00321496 /* AidOTA */ = {
+			isa = PBXGroup;
+			children = (
+				00BA73DF1BA84FF200321496 /* AidOtaController.swift */,
+				00BA73E11BA853BC00321496 /* AidOtaViewController.swift */,
+			);
+			name = AidOTA;
+			path = Controller/AidOTA;
+			sourceTree = "<group>";
+		};
 		00CD3AF81AA7019C00F3D6A5 /* NotificationType */ = {
 			isa = PBXGroup;
 			children = (
@@ -755,6 +769,7 @@
 		9AD8F95D1A6E003100F01014 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				00BA73DE1BA84F9B00321496 /* AidOTA */,
 				0017199F1AB2EE5300889FED /* NevoOta */,
 				5901F3671AB1836C002AAB13 /* ProfileTestController.swift */,
 				9AD8F9921A6E3D3D00F01014 /* Connection */,
@@ -1038,6 +1053,7 @@
 				005350BA1A8B4BC600BF289D /* StepGoalSetingController.swift in Sources */,
 				9A9BD1C81A88C0A400A95ACA /* TutorialScanPageView.swift in Sources */,
 				5901F3681AB1836C002AAB13 /* ProfileTestController.swift in Sources */,
+				00BA73E01BA84FF200321496 /* AidOtaController.swift in Sources */,
 				004846CD1B72EB06005A6D83 /* FMDatabasePool.m in Sources */,
 				0017199E1AB2EE2E00889FED /* SelectFileView.swift in Sources */,
 				9AD8F98D1A6E2D6E00F01014 /* RawPacket.swift in Sources */,
@@ -1109,6 +1125,7 @@
 				004846D91B72FFB6005A6D83 /* NevoDBModel.m in Sources */,
 				00F1C0E01B5DD55F009B85DB /* AFSecurityPolicy.m in Sources */,
 				00E5CFD61B17FB7300D1F829 /* HelpViewController.swift in Sources */,
+				00BA73E21BA853BC00321496 /* AidOtaViewController.swift in Sources */,
 				001818391B048E12005E9F2D /* TutorialPage5View.swift in Sources */,
 				007DD4BB1A89DDC000CE7264 /* Page2Controller.swift in Sources */,
 				003542B11AA7F69E00B27381 /* EnterNotificationView.swift in Sources */,

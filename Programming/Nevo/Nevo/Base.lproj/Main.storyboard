@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="VSL-Nt-5H3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="VSL-Nt-5H3">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -1197,6 +1197,9 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="l5z-bm-cuW"/>
+                    <connections>
+                        <segue destination="TIw-Yk-SAU" kind="modal" identifier="Aid_Ota" id="cIS-cn-tvq"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZrC-LT-fiX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1218,6 +1221,132 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lza-Ds-F3H" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-676" y="2771"/>
+        </scene>
+        <!--Aid Ota View Controller-->
+        <scene sceneID="E2x-Iq-hfb">
+            <objects>
+                <viewController id="TIw-Yk-SAU" customClass="AidOtaViewController" customModule="Nevo" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="fzs-SL-Is5"/>
+                        <viewControllerLayoutGuide type="bottom" id="efD-N3-EJG"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="d3Y-RP-QpN" customClass="NevoOtaView" customModule="Nevo" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ELc-ag-iyj">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="85"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UJq-MP-j5W">
+                                        <rect key="frame" x="8" y="14" width="58" height="58"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="58" id="jpY-5u-LdL"/>
+                                        </constraints>
+                                        <state key="normal" image="backIcon">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="buttonAction:" destination="d3Y-RP-QpN" eventType="touchUpInside" id="hwN-sa-yxc"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Firmware Upgrade" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QL8-VV-plb">
+                                        <rect key="frame" x="70" y="14" width="180" height="58"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="180" id="UBa-pP-65k"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.18823529410000001" green="0.18823529410000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="UJq-MP-j5W" firstAttribute="leading" secondItem="ELc-ag-iyj" secondAttribute="leading" constant="8" id="1pU-WO-Wmg"/>
+                                    <constraint firstItem="QL8-VV-plb" firstAttribute="top" secondItem="ELc-ag-iyj" secondAttribute="top" constant="14" id="5b6-Hc-D5s"/>
+                                    <constraint firstItem="UJq-MP-j5W" firstAttribute="top" secondItem="ELc-ag-iyj" secondAttribute="top" constant="14" id="8V0-rU-Vvh"/>
+                                    <constraint firstItem="QL8-VV-plb" firstAttribute="top" secondItem="ELc-ag-iyj" secondAttribute="top" constant="14" id="AIo-dj-2U3"/>
+                                    <constraint firstAttribute="bottom" secondItem="UJq-MP-j5W" secondAttribute="bottom" constant="13" id="CPF-t4-K9j"/>
+                                    <constraint firstItem="QL8-VV-plb" firstAttribute="leading" secondItem="UJq-MP-j5W" secondAttribute="trailing" constant="4" id="EfD-KZ-nPJ"/>
+                                    <constraint firstItem="UJq-MP-j5W" firstAttribute="leading" secondItem="ELc-ag-iyj" secondAttribute="leading" constant="8" id="F8w-B4-K95"/>
+                                    <constraint firstItem="QL8-VV-plb" firstAttribute="top" secondItem="ELc-ag-iyj" secondAttribute="top" constant="14" id="GPC-CX-ix4"/>
+                                    <constraint firstItem="UJq-MP-j5W" firstAttribute="top" secondItem="ELc-ag-iyj" secondAttribute="top" constant="14" id="Gfc-sT-IFR"/>
+                                    <constraint firstItem="UJq-MP-j5W" firstAttribute="top" secondItem="QL8-VV-plb" secondAttribute="top" id="Kgw-lO-21I"/>
+                                    <constraint firstItem="UJq-MP-j5W" firstAttribute="bottom" secondItem="QL8-VV-plb" secondAttribute="bottom" id="Mjh-Aj-O98"/>
+                                    <constraint firstItem="UJq-MP-j5W" firstAttribute="leading" secondItem="ELc-ag-iyj" secondAttribute="leadingMargin" id="Tqg-af-emf"/>
+                                    <constraint firstAttribute="trailing" secondItem="QL8-VV-plb" secondAttribute="trailing" constant="70" id="Y2R-4F-7Ek"/>
+                                    <constraint firstItem="QL8-VV-plb" firstAttribute="centerX" secondItem="ELc-ag-iyj" secondAttribute="centerX" id="Zfe-ND-sNf"/>
+                                    <constraint firstItem="QL8-VV-plb" firstAttribute="centerY" secondItem="UJq-MP-j5W" secondAttribute="centerY" id="ZnH-pi-oXb"/>
+                                    <constraint firstItem="UJq-MP-j5W" firstAttribute="leading" secondItem="ELc-ag-iyj" secondAttribute="leading" constant="8" id="aBk-ID-Q6b"/>
+                                    <constraint firstItem="QL8-VV-plb" firstAttribute="leading" secondItem="ELc-ag-iyj" secondAttribute="leading" constant="70" id="aIa-mi-BVr"/>
+                                    <constraint firstItem="QL8-VV-plb" firstAttribute="leading" secondItem="ELc-ag-iyj" secondAttribute="leading" constant="70" id="hxN-GE-T41"/>
+                                    <constraint firstAttribute="bottom" secondItem="QL8-VV-plb" secondAttribute="bottom" constant="13" id="i8h-6k-2WB"/>
+                                    <constraint firstItem="UJq-MP-j5W" firstAttribute="top" secondItem="ELc-ag-iyj" secondAttribute="top" constant="14" id="uGh-SW-1Wq"/>
+                                </constraints>
+                            </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="nevo_wacth.png" translatesAutoresizingMaskIntoConstraints="NO" id="xDe-Bb-ej0">
+                                <rect key="frame" x="70" y="120" width="180" height="180"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ef0-fI-I0C">
+                                <rect key="frame" x="10" y="360" width="300" height="100"/>
+                                <string key="text">Do not interrupt the OTA firmware process. Let the process complete before using the app!In case of accidental interruption, try again. If it doesn't work, remove nevo battery for 30 secs and reinstall.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Attention!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4G9-HN-ifh">
+                                <rect key="frame" x="100" y="335" width="120" height="25"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2/2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0HS-Ut-hka">
+                                <rect key="frame" x="16" y="312" width="288" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="288" id="1I4-ge-2UV"/>
+                                    <constraint firstAttribute="height" constant="21" id="nEF-hn-8Oo"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="0HS-Ut-hka" firstAttribute="top" secondItem="xDe-Bb-ej0" secondAttribute="bottom" constant="12" id="5yh-6i-A9J"/>
+                            <constraint firstItem="xDe-Bb-ej0" firstAttribute="leading" secondItem="d3Y-RP-QpN" secondAttribute="leadingMargin" constant="54" id="9K6-hV-SLE"/>
+                            <constraint firstItem="ELc-ag-iyj" firstAttribute="leading" secondItem="d3Y-RP-QpN" secondAttribute="leading" id="9gb-yf-bXo"/>
+                            <constraint firstItem="Ef0-fI-I0C" firstAttribute="centerX" secondItem="0HS-Ut-hka" secondAttribute="centerX" id="AcB-Rf-VmJ"/>
+                            <constraint firstItem="4G9-HN-ifh" firstAttribute="top" secondItem="0HS-Ut-hka" secondAttribute="bottom" constant="2" id="BBW-Cc-sYE"/>
+                            <constraint firstItem="Ef0-fI-I0C" firstAttribute="top" secondItem="0HS-Ut-hka" secondAttribute="bottom" constant="27" id="E1f-vb-VSQ"/>
+                            <constraint firstItem="efD-N3-EJG" firstAttribute="top" secondItem="xDe-Bb-ej0" secondAttribute="bottom" constant="268" id="Hc1-y1-KmV"/>
+                            <constraint firstItem="ELc-ag-iyj" firstAttribute="top" secondItem="fzs-SL-Is5" secondAttribute="bottom" id="OAD-lt-pJP"/>
+                            <constraint firstItem="Ef0-fI-I0C" firstAttribute="trailing" secondItem="xDe-Bb-ej0" secondAttribute="trailing" constant="60" id="OSt-kc-xg4"/>
+                            <constraint firstItem="efD-N3-EJG" firstAttribute="top" secondItem="Ef0-fI-I0C" secondAttribute="bottom" constant="108" id="Wkb-Jy-bHd"/>
+                            <constraint firstItem="Ef0-fI-I0C" firstAttribute="top" secondItem="4G9-HN-ifh" secondAttribute="bottom" id="XRp-OS-2Gb"/>
+                            <constraint firstItem="Ef0-fI-I0C" firstAttribute="leading" secondItem="xDe-Bb-ej0" secondAttribute="leading" constant="-60" id="it8-XE-Qgv"/>
+                            <constraint firstItem="xDe-Bb-ej0" firstAttribute="top" secondItem="ELc-ag-iyj" secondAttribute="bottom" constant="35" id="lgv-So-UqD"/>
+                            <constraint firstItem="4G9-HN-ifh" firstAttribute="leading" secondItem="d3Y-RP-QpN" secondAttribute="leadingMargin" constant="84" id="pqq-Iu-XGo"/>
+                            <constraint firstItem="xDe-Bb-ej0" firstAttribute="centerX" secondItem="ELc-ag-iyj" secondAttribute="centerX" id="quT-nd-n2q"/>
+                            <constraint firstItem="4G9-HN-ifh" firstAttribute="centerX" secondItem="0HS-Ut-hka" secondAttribute="centerX" id="yKf-8Z-ugl"/>
+                        </constraints>
+                        <connections>
+                            <outlet property="backButton" destination="UJq-MP-j5W" id="HbD-wa-Emg"/>
+                            <outlet property="messageLabel" destination="Ef0-fI-I0C" id="QfT-Wp-Chd"/>
+                            <outlet property="nevoWacthImage" destination="xDe-Bb-ej0" id="Erd-uH-m2t"/>
+                            <outlet property="taskLabel" destination="0HS-Ut-hka" id="IcX-zS-2Ev"/>
+                            <outlet property="title" destination="QL8-VV-plb" id="PbB-YP-DXl"/>
+                            <outlet property="titleBgView" destination="ELc-ag-iyj" id="aTh-ii-pYD"/>
+                            <outlet property="warningLabel" destination="4G9-HN-ifh" id="E0O-g7-XGb"/>
+                        </connections>
+                    </view>
+                    <navigationItem key="navigationItem" id="77h-Sb-Dsu"/>
+                    <connections>
+                        <outlet property="nevoOtaView" destination="d3Y-RP-QpN" id="5aT-Tw-Iei"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NRP-4u-X5u" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-676" y="4390"/>
         </scene>
     </scenes>
     <resources>
