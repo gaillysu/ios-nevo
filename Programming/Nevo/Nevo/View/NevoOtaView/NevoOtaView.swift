@@ -261,6 +261,7 @@ class NevoOtaView: UIView {
     Upgrade success callback function
     */
     func upgradeSuccessful(){
+        ReUpgradeButton?.hidden = true
         nevoWacthImage.image = AppTheme.GET_RESOURCES_IMAGE("nevo_wacth_selected");
     }
 

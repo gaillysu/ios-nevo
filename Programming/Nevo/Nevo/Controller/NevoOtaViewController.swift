@@ -37,7 +37,6 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
         //init the ota
         mNevoOtaController = NevoOtaController(controller: self)
         initValue()
-        checkConnection()
 
         if(mNevoOtaController!.isConnected())
         {
@@ -55,9 +54,7 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
                 var selectedFile = tmpfile as! NSURL
                 var fileName:String? = selectedFile.path!.lastPathComponent
                 var fileExtension:String? = selectedFile.pathExtension
-                
-                if fileExtension == "bin" && currentSoftwareVersion.toInt() < buildinSoftwareVersion
-                {
+                if fileExtension == "hex"{
                     firmwareURLs.append(selectedFile)
                     allTaskNumber++
                     break
@@ -68,14 +65,13 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
                 var selectedFile = tmpfile as! NSURL
                 var fileName:String? = selectedFile.path!.lastPathComponent
                 var fileExtension:String? = selectedFile.pathExtension
-                if fileExtension == "hex" && currentFirmwareVersion.toInt() < buildinFirmwareVersion
-                {
+
+                if fileExtension == "bin"{
                     firmwareURLs.append(selectedFile)
                     allTaskNumber++
                     break
                 }
             }
-            
             
             if( currentSoftwareVersion.toInt() < buildinSoftwareVersion
                || currentFirmwareVersion.toInt() < buildinFirmwareVersion )
@@ -87,6 +83,10 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
                 alert.show()
             }else{
                 nevoOtaView.setLatestVersion(NSLocalizedString("latestversion",comment: ""))
+                var dispatchTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, Int64(1.0 * Double(NSEC_PER_SEC)))
+                dispatch_after(dispatchTime, dispatch_get_main_queue(), {
+                    //nevoOtaView.ReUpgradeButton?.hidden = true
+                })
             }
         }
     }
@@ -134,7 +134,8 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
         
         if(!mNevoOtaController!.isConnected())
         {
-            onError(NSLocalizedString("update_error_noconnect", comment: "") as NSString)
+            self.mNevoOtaController!.reset(false)
+            //onError(NSLocalizedString("update_error_noconnect", comment: "") as NSString)
             return
         }
         
@@ -206,15 +207,18 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
             }
             else
             {
-                self.mNevoOtaController!.reset(false)
+                //self.mNevoOtaController!.reset(false)
                 self.mNevoOtaController!.setStatus(DFUControllerState.SEND_RESET)
-                var dispatchTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, Int64(10.0 * Double(NSEC_PER_SEC)))
+                self.initValue()
+                self.nevoOtaView.ReUpgradeButton?.setTitle("继续Mcu", forState: UIControlState.Normal)
+                if(self.currentIndex == 1){
+                    var alert :UIAlertView = UIAlertView(title: "Firmware Upgrade", message: "Ble升级完成请打开手表蓝牙,确保连接上并弹出配对信息点击配对后在点击继续Mcu按钮,不然会出现超时现象", delegate: nil, cancelButtonTitle: "OK")
+                    alert.show()
+                }
+                var dispatchTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, Int64(3.0 * Double(NSEC_PER_SEC)))
                 dispatch_after(dispatchTime, dispatch_get_main_queue(), {
-                    if !self.mNevoOtaController!.isConnected() && self.mNevoOtaController!.getStatus() == DFUControllerState.SEND_RESET
-                    {
-                        var errorMessage = "Timeout,please try again";
-                        self.onError(errorMessage)
-                    }
+                    self.mNevoOtaController!.reset(false)
+                    //self.uploadPressed()
                 })
             }
             
@@ -239,18 +243,18 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
         
         //Maybe we just got disconnected, let's check
         
-        checkConnection()
-        dispatch_async(dispatch_get_main_queue(), {
-            if self.mNevoOtaController!.isConnected() && self.mNevoOtaController!.getStatus() == DFUControllerState.SEND_RESET
-            {
-                self.mNevoOtaController!.setStatus(DFUControllerState.INIT)
-                var dispatchTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, Int64(2.0 * Double(NSEC_PER_SEC)))
-                dispatch_after(dispatchTime, dispatch_get_main_queue(), {
-                    //MCU reset OK, continue BLE OTA
-                    self.uploadPressed();
-                })
-            }
-        });
+//        checkConnection()
+//        dispatch_async(dispatch_get_main_queue(), {
+//            if self.mNevoOtaController!.isConnected() && self.mNevoOtaController!.getStatus() == DFUControllerState.SEND_RESET
+//            {
+//                self.mNevoOtaController!.setStatus(DFUControllerState.INIT)
+//                var dispatchTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, Int64(2.0 * Double(NSEC_PER_SEC)))
+//                dispatch_after(dispatchTime, dispatch_get_main_queue(), {
+//                    //MCU reset OK, continue BLE OTA
+//                    self.uploadPressed();
+//                })
+//            }
+//        });
 
     }
 
@@ -288,43 +292,17 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
         }
 
         if(sender.isEqual(nevoOtaView.ReUpgradeButton)){
-            
-            if(mNevoOtaController!.isConnected())
-            {
-                currentTaskNumber = 0;
-                allTaskNumber = 0;
-                firmwareURLs = []
-                currentIndex = 0
-                var fileArray = GET_FIRMWARE_FILES("Firmwares")
-                for tmpfile in fileArray {
-                    var selectedFile = tmpfile as! NSURL
-                    var fileName:String? = selectedFile.path!.lastPathComponent
-                    var fileExtension:String? = selectedFile.pathExtension
-                    
-                    if fileExtension == "bin"
-                    {
-                        firmwareURLs.append(selectedFile)
-                        allTaskNumber++;
-                        break
-                    }
-                }
-                
-                for tmpfile in fileArray {
-                    var selectedFile = tmpfile as! NSURL
-                    var fileName:String? = selectedFile.path!.lastPathComponent
-                    var fileExtension:String? = selectedFile.pathExtension
-                    if fileExtension == "hex"
-                    {
-                        firmwareURLs.append(selectedFile)
-                        allTaskNumber++;
-                        break
-                    }
-                }
+            let SAVED_ADDRESS_KEY = "SAVED_ADDRESS"
+            NSUserDefaults.standardUserDefaults().removeObjectForKey(SAVED_ADDRESS_KEY)
+            self.mNevoOtaController!.reset(false)
+            uploadPressed()
+            if(mNevoOtaController!.isConnected()){
+                //currentTaskNumber = 0;
+                //allTaskNumber = 0;
+                //firmwareURLs = []
+                //currentIndex = 0
                 // reUpdate all firmwares
-                uploadPressed()
-            }
-            else
-            {
+            }else{
                 // no connected nevo, disable update
             }
         }
