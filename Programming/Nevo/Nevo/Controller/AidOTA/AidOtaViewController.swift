@@ -25,6 +25,10 @@ class AidOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMan
     private var allTaskNumber:NSInteger = 0;//计算所有OTA任务数量
     private var currentTaskNumber:NSInteger = 0;//当前在第几个任务
 
+    private var mTimeoutTimer:NSTimer?
+
+    private var hudView:MBProgressHUD?
+
     override func viewDidLayoutSubviews(){
         //init the view
         nevoOtaView.buildView(self,otacontroller: mAidOtaController!)
@@ -33,7 +37,9 @@ class AidOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMan
     override func viewDidLoad() {
         super.viewDidLoad()
         UIApplication.sharedApplication().idleTimerDisabled = true
-
+        //
+        var alert :UIAlertView = UIAlertView(title: "Use warnings", message: "In the use of first aid mode, please forget all relevant Nevo pairing in the system Bluetooth settings", delegate: nil, cancelButtonTitle: "OK")
+        alert.show()
         //init the ota
         mAidOtaController = AidOtaController(controller: self)
         mAidOtaController?.mConnectionController?.setOTAMode(true, Disconnect: false)
@@ -42,52 +48,32 @@ class AidOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMan
         
         checkConnection()
 
-        if(mAidOtaController!.isConnected()){
-            var currentSoftwareVersion = mAidOtaController!.getSoftwareVersion() as String
-            var currentFirmwareVersion = mAidOtaController!.getFirmwareVersion() as String
-            if(currentSoftwareVersion.isEmpty || currentFirmwareVersion.isEmpty)
+        var fileArray = GET_FIRMWARE_FILES("Firmwares")
+        for tmpfile in fileArray {
+            var selectedFile = tmpfile as! NSURL
+            var fileName:String? = selectedFile.path!.lastPathComponent
+            var fileExtension:String? = selectedFile.pathExtension
+            if fileExtension == "hex"
             {
-                return
-            }
-            buildinSoftwareVersion = GET_SOFTWARE_VERSION()
-            buildinFirmwareVersion = GET_FIRMWARE_VERSION()
-
-            var fileArray = GET_FIRMWARE_FILES("Firmwares")
-            for tmpfile in fileArray {
-                var selectedFile = tmpfile as! NSURL
-                var fileName:String? = selectedFile.path!.lastPathComponent
-                var fileExtension:String? = selectedFile.pathExtension
-                if fileExtension == "hex" && currentFirmwareVersion.toInt() < buildinFirmwareVersion
-                {
-                    firmwareURLs.append(selectedFile)
-                    allTaskNumber++
-                    break
-                }
-            }
-
-            for tmpfile in fileArray {
-                var selectedFile = tmpfile as! NSURL
-                var fileName:String? = selectedFile.path!.lastPathComponent
-                var fileExtension:String? = selectedFile.pathExtension
-
-                if fileExtension == "bin" && currentSoftwareVersion.toInt() < buildinSoftwareVersion {
-                    firmwareURLs.append(selectedFile)
-                    allTaskNumber++
-                    break
-                }
-            }
-
-            if(currentSoftwareVersion.toInt() < buildinSoftwareVersion
-                || currentFirmwareVersion.toInt() < buildinFirmwareVersion ) {
-                var updatemsg:String = NSLocalizedString("current FW version", comment: "") + "(\(currentFirmwareVersion),\(currentSoftwareVersion))," + NSLocalizedString("latest FW version", comment: "") + "(\(buildinFirmwareVersion),\(buildinSoftwareVersion)). " + NSLocalizedString("are you sure", comment: "")
-
-                var alert :UIAlertView = UIAlertView(title: NSLocalizedString("Firmware Upgrade", comment: ""), message: updatemsg, delegate: self, cancelButtonTitle: NSLocalizedString("Cancel", comment: ""))
-                alert.addButtonWithTitle(NSLocalizedString("Enter", comment: ""))
-                alert.show()
-            }else{
-                nevoOtaView.setLatestVersion(NSLocalizedString("latestversion",comment: ""))
+                firmwareURLs.append(selectedFile)
+                allTaskNumber++;
+                break
             }
         }
+
+        for tmpfile in fileArray {
+            var selectedFile = tmpfile as! NSURL
+            var fileName:String? = selectedFile.path!.lastPathComponent
+            var fileExtension:String? = selectedFile.pathExtension
+
+            if fileExtension == "bin"
+            {
+                firmwareURLs.append(selectedFile)
+                allTaskNumber++;
+                break
+            }
+        }
+
     }
 
     override func viewDidAppear(animated: Bool) {
@@ -121,7 +107,8 @@ class AidOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMan
         }
 
         if(!mAidOtaController!.isConnected()){
-            onError(NSLocalizedString("update_error_noconnect", comment: "") as NSString)
+            //onError(NSLocalizedString("update_error_noconnect", comment: "") as NSString)
+            mAidOtaController!.reset(false)
             return
         }
 
@@ -202,15 +189,28 @@ class AidOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMan
             }
             var alert :UIAlertView = UIAlertView(title: "Firmware Upgrade", message: message, delegate: nil, cancelButtonTitle: "OK")
             alert.show()
+            nevoOtaView.ReUpgradeButton?.hidden = true
             nevoOtaView.upgradeSuccessful()
             mAidOtaController!.reset(false)
+            var dispatchTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, Int64(3.0 * Double(NSEC_PER_SEC)))
+            dispatch_after(dispatchTime, dispatch_get_main_queue(), {
+                self.dismissViewControllerAnimated(true, completion: nil)
+            })
         }else{
-            mAidOtaController!.reset(false)
-            mAidOtaController!.setStatus(DFUControllerState.SEND_RESET)
-            var dispatchTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, Int64(10.0 * Double(NSEC_PER_SEC)))
-            if !mAidOtaController!.isConnected() && mAidOtaController!.getStatus() == DFUControllerState.SEND_RESET{
-                var errorMessage = "Timeout,please try again";
-                self.onError(errorMessage)
+            //mAidOtaController!.reset(false)
+            //请确保重新点击配对按钮后再点击继续MCU升级,否则在升级的过程中会中断!
+            var alert :UIAlertView = UIAlertView(title: "Firmware Upgrade", message: "Please make sure that the re click on the pairing button is clicked and then click on the MCU upgrade, otherwise it will be interrupted in the process of upgrading!", delegate: nil, cancelButtonTitle: "OK")
+            alert.show()
+            nevoOtaView.ReUpgradeButton?.hidden = false
+            nevoOtaView.ReUpgradeButton?.setTitle("Upgrade the Ble", forState: UIControlState.Normal)
+            if(mAidOtaController!.isConnected()){
+                nevoOtaView.ReUpgradeButton?.setTitle("Continue MCU", forState: UIControlState.Normal)
+            }else{
+                nevoOtaView.ReUpgradeButton?.setTitle("Try to reconnect", forState: UIControlState.Normal)
+                var dispatchTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, Int64(3.0 * Double(NSEC_PER_SEC)))
+                dispatch_after(dispatchTime, dispatch_get_main_queue(), {
+                    mAidOtaController?.mConnectionController?.setOTAMode(true,Disconnect:true)
+                })
             }
         }
     }
@@ -226,16 +226,17 @@ class AidOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMan
     func connectionStateChanged(isConnected : Bool) {
 
         //Maybe we just got disconnected, let's check
-
-        checkConnection()
-        if mAidOtaController!.isConnected() && mAidOtaController!.getStatus() == DFUControllerState.SEND_RESET
-        {
-            mAidOtaController!.setStatus(DFUControllerState.INIT)
-            var dispatchTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, Int64(2.0 * Double(NSEC_PER_SEC)))
-            dispatch_after(dispatchTime, dispatch_get_main_queue(), {
-                //MCU reset OK, continue BLE OTA
-                self.uploadPressed();
-            })
+        if(!isConnected){
+            let SAVED_ADDRESS_KEY = "SAVED_ADDRESS"
+            NSUserDefaults.standardUserDefaults().removeObjectForKey(SAVED_ADDRESS_KEY)
+            nevoOtaView.ReUpgradeButton?.setTitle("Search Nevo", forState: UIControlState.Normal)
+        }else{
+            //MBProgressHUD.showSuccess("Nevo has been connected, you can upgrade")
+            if(currentIndex != 0){
+                nevoOtaView.ReUpgradeButton?.setTitle("Continue MCU", forState: UIControlState.Normal)
+            }else{
+                nevoOtaView.ReUpgradeButton?.setTitle("Search Nevo", forState: UIControlState.Normal)
+            }
         }
 
     }
@@ -257,42 +258,32 @@ class AidOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMan
         }
 
         if(sender.isEqual(nevoOtaView.ReUpgradeButton)){
-            mAidOtaController?.setStatus(DFUControllerState.DISCOVERING)
+            let SAVED_ADDRESS_KEY = "SAVED_ADDRESS"
+            NSUserDefaults.standardUserDefaults().removeObjectForKey(SAVED_ADDRESS_KEY)
+            currentTaskNumber = currentIndex;
             if(mAidOtaController!.isConnected()){
-                currentTaskNumber = 0;
-                allTaskNumber = 0;
-                firmwareURLs = []
-                currentIndex = 0
-                var fileArray = GET_FIRMWARE_FILES("Firmwares")
-                for tmpfile in fileArray {
-                    var selectedFile = tmpfile as! NSURL
-                    var fileName:String? = selectedFile.path!.lastPathComponent
-                    var fileExtension:String? = selectedFile.pathExtension
-                    if fileExtension == "hex"
-                    {
-                        firmwareURLs.append(selectedFile)
-                        allTaskNumber++;
-                        break
-                    }
-                }
-
-                for tmpfile in fileArray {
-                    var selectedFile = tmpfile as! NSURL
-                    var fileName:String? = selectedFile.path!.lastPathComponent
-                    var fileExtension:String? = selectedFile.pathExtension
-
-                    if fileExtension == "bin"
-                    {
-                        firmwareURLs.append(selectedFile)
-                        allTaskNumber++;
-                        break
-                    }
-                }
                 // reUpdate all firmwares
                 uploadPressed()
             }else{
+                hudView = MBProgressHUD.showMessage("Please later, in the connection.")
+                hudView?.hide(true, afterDelay: 8)
+                mTimeoutTimer = NSTimer.scheduledTimerWithTimeInterval(Double(1), target: self, selector:Selector("timeroutProc:"), userInfo: nil, repeats: true)
+                mAidOtaController?.mConnectionController?.setOTAMode(true, Disconnect: true)
                 // no connected nevo, disable update
             }
+        }
+
+    }
+
+    func timeroutProc(timer:NSTimer){
+        if(mAidOtaController!.isConnected()){
+            timer.invalidate()
+            //[[UIApplication sharedApplication].windows lastObject]
+            hudView?.hide(true)
+        }else{
+            uploadPressed()
+            //mAidOtaController?.setStatus(DFUControllerState.IDLE)
+            //mAidOtaController?.mConnectionController?.setOTAMode(true, Disconnect: true)
         }
 
     }
