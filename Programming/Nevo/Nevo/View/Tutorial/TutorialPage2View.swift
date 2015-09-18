@@ -34,14 +34,14 @@ class TutorialPage2View : UIView {
     }
 
     required init(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
+        super.init(coder: aDecoder)!
         
         buildTutorialPage()
     }
-    
+
     func buildTutorialPage() {
 
-        let backButton = UIButton.buttonWithType(UIButtonType.Custom) as! UIButton
+        let backButton = UIButton(type:UIButtonType.Custom)
         backButton.frame = CGRectMake(15, 10, 70, 40)
         backButton.setTitle(NSLocalizedString("Back",comment:"button title string"), forState: UIControlState.Normal)
         backButton.titleLabel?.font = BACK_BUTTON_FONT
@@ -78,7 +78,7 @@ class TutorialPage2View : UIView {
 
         
 
-        let nextButton:UIButton = UIButton.buttonWithType(UIButtonType.Custom) as! UIButton
+        let nextButton:UIButton = UIButton(type:UIButtonType.Custom)
         nextButton.frame = CGRectMake(0, 0, 120, 50)
         nextButton.setTitle(NSLocalizedString("Next",comment:"button title string"), forState: UIControlState.Normal)
         nextButton.titleLabel?.font = TEXT_FONT

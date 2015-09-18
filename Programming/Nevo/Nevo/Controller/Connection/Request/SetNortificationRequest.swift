@@ -65,7 +65,7 @@ class SetNortificationRequest: NevoRequest {
     init(settingArray:[NotificationSetting]) {
 
         //We set each colors, one by one. In case a color is chosen, we turn on the vibration
-        if var setting = NotificationSetting.indexOfObjectAtType(settingArray, type: NotificationType.CALL) {
+        if let setting = NotificationSetting.indexOfObjectAtType(settingArray, type: NotificationType.CALL) {
             call_vib_number = setting.getStates() ? SetNortificationRequestValues.VIBRATION_ON : SetNortificationRequestValues.VIBRATION_OFF
             call_led_pattern = setting.getColor().unsignedIntValue
             if call_vib_number == SetNortificationRequestValues.VIBRATION_ON
@@ -74,7 +74,7 @@ class SetNortificationRequest: NevoRequest {
             }
         }
 
-        if var setting = NotificationSetting.indexOfObjectAtType(settingArray, type: NotificationType.SMS) {
+        if let setting = NotificationSetting.indexOfObjectAtType(settingArray, type: NotificationType.SMS) {
             sms_vib_number = setting.getStates() ? SetNortificationRequestValues.VIBRATION_ON : SetNortificationRequestValues.VIBRATION_OFF
             sms_led_pattern = setting.getColor().unsignedIntValue
             if sms_vib_number == SetNortificationRequestValues.VIBRATION_ON
@@ -83,7 +83,7 @@ class SetNortificationRequest: NevoRequest {
             }
         }
         
-        if var setting = NotificationSetting.indexOfObjectAtType(settingArray, type: NotificationType.EMAIL) {
+        if let setting = NotificationSetting.indexOfObjectAtType(settingArray, type: NotificationType.EMAIL) {
             email_vib_number = setting.getStates() ? SetNortificationRequestValues.VIBRATION_ON : SetNortificationRequestValues.VIBRATION_OFF
             email_led_pattern = setting.getColor().unsignedIntValue
             if email_vib_number == SetNortificationRequestValues.VIBRATION_ON
@@ -92,7 +92,7 @@ class SetNortificationRequest: NevoRequest {
             }
         }
 
-        if var setting = NotificationSetting.indexOfObjectAtType(settingArray, type: NotificationType.FACEBOOK) {
+        if let setting = NotificationSetting.indexOfObjectAtType(settingArray, type: NotificationType.FACEBOOK) {
             facebook_vib_number = setting.getStates() ? SetNortificationRequestValues.VIBRATION_ON : SetNortificationRequestValues.VIBRATION_OFF
             facebook_led_pattern = setting.getColor().unsignedIntValue
             if facebook_vib_number == SetNortificationRequestValues.VIBRATION_ON
@@ -101,7 +101,7 @@ class SetNortificationRequest: NevoRequest {
             }
         }
 
-        if var setting = NotificationSetting.indexOfObjectAtType(settingArray, type: NotificationType.CALENDAR) {
+        if let setting = NotificationSetting.indexOfObjectAtType(settingArray, type: NotificationType.CALENDAR) {
             calendar_vib_number = setting.getStates() ? SetNortificationRequestValues.VIBRATION_ON : SetNortificationRequestValues.VIBRATION_OFF
             calendar_led_pattern = setting.getColor().unsignedIntValue
             if calendar_vib_number == SetNortificationRequestValues.VIBRATION_ON
@@ -110,7 +110,7 @@ class SetNortificationRequest: NevoRequest {
             }
         }
 
-        if var setting = NotificationSetting.indexOfObjectAtType(settingArray, type: NotificationType.WECHAT) {
+        if let setting = NotificationSetting.indexOfObjectAtType(settingArray, type: NotificationType.WECHAT) {
             wechat_vib_number = setting.getStates() ? SetNortificationRequestValues.VIBRATION_ON : SetNortificationRequestValues.VIBRATION_OFF
             wechat_led_pattern = setting.getColor().unsignedIntValue
             if wechat_vib_number == SetNortificationRequestValues.VIBRATION_ON
@@ -125,7 +125,7 @@ class SetNortificationRequest: NevoRequest {
 
 
         
-        var values1 :[UInt8] = [0x00,SetNortificationRequest.HEADER(),
+        let values1 :[UInt8] = [0x00,SetNortificationRequest.HEADER(),
             UInt8(call_vib_number&0xFF),
             UInt8(call_led_pattern&0xFF),
             UInt8((call_led_pattern>>8)&0xFF),
@@ -150,7 +150,7 @@ class SetNortificationRequest: NevoRequest {
             UInt8(calendar_led_pattern&0xFF)
             ]
         
-        var values2 :[UInt8] = [0xFF,SetNortificationRequest.HEADER(),
+        let values2 :[UInt8] = [0xFF,SetNortificationRequest.HEADER(),
             UInt8((calendar_led_pattern>>8)&0xFF),
             UInt8((calendar_led_pattern>>16)&0xFF),
             

@@ -19,13 +19,13 @@ class WriteSettingRequest: NevoRequest {
     
     override func getRawDataEx() -> NSArray {
    
-        var walk_stride :UInt16 = 73
-        var run_stride :UInt16 =  122
-        var swiming_stride :UInt16 = 105
-        var enable:UInt8 = 3; //bit0:1, bit1:1
+        let walk_stride :UInt16 = 73
+        let run_stride :UInt16 =  122
+        let swiming_stride :UInt16 = 105
+        let enable:UInt8 = 3; //bit0:1, bit1:1
         
         
-        var values1 :[UInt8] = [0x00,WriteSettingRequest.HEADER(),
+        let values1 :[UInt8] = [0x00,WriteSettingRequest.HEADER(),
             UInt8(walk_stride&0xFF),
             UInt8((walk_stride>>8)&0xFF),
             
@@ -39,7 +39,7 @@ class WriteSettingRequest: NevoRequest {
             
             0,0,0,0,0,0,0,0,0,0,0]
         
-        var values2 :[UInt8] = [0xFF,WriteSettingRequest.HEADER(),
+        let values2 :[UInt8] = [0xFF,WriteSettingRequest.HEADER(),
             0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
         
         

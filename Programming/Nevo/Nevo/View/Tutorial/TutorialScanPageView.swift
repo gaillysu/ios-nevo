@@ -37,14 +37,14 @@ class TutorialScanPageView : UIView {
     }
 
     required init(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
+        super.init(coder: aDecoder)!
 
         buildTutorialPage()
     }
 
     func buildTutorialPage() {
 
-        let backButton = UIButton.buttonWithType(UIButtonType.Custom) as! UIButton
+        let backButton = UIButton(type:UIButtonType.Custom)
         backButton.frame = CGRectMake(15, 10, 70, 40)
         backButton.setTitle(NSLocalizedString("Back",comment:"button title string"), forState: UIControlState.Normal)
         backButton.titleLabel?.font = BACK_BUTTON_FONT
@@ -119,7 +119,7 @@ class TutorialScanPageView : UIView {
     }
 
     func buttonAnimation(sender:UIImageView) {
-        var rotationAnimation:CABasicAnimation = CABasicAnimation(keyPath: "transform.rotation.z")
+        let rotationAnimation:CABasicAnimation = CABasicAnimation(keyPath: "transform.rotation.z")
         rotationAnimation.toValue = NSNumber(double: M_PI * 2.0);
         rotationAnimation.duration = 1;
         rotationAnimation.cumulative = true;

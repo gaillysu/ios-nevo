@@ -40,13 +40,13 @@ class LedLightOnOffNevoRequest: NevoRequest {
     
     override func getRawDataEx() -> NSArray {
       
-        var values1 :[UInt8] = [0x00,LedLightOnOffNevoRequest.HEADER(),
+        let values1 :[UInt8] = [0x00,LedLightOnOffNevoRequest.HEADER(),
             UInt8(mLedpattern!&0xFF),
             UInt8((mLedpattern!>>8)&0xFF),
             UInt8((mLedpattern!>>16)&0xFF),
             0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
         
-        var values2 :[UInt8] = [0xFF,LedLightOnOffNevoRequest.HEADER(),
+        let values2 :[UInt8] = [0xFF,LedLightOnOffNevoRequest.HEADER(),
             0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
         
         

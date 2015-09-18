@@ -19,13 +19,13 @@ class SetProfileRequest: NevoRequest {
     
     override func getRawDataEx() -> NSArray {
         
-        var age :UInt8 = 35
-        var height :UInt8 = 175 //cm
-        var weight :UInt8 = 77  //kg
-        var sex:UInt8 = 1; //man:1,female:0
+        let age :UInt8 = 35
+        let height :UInt8 = 175 //cm
+        let weight :UInt8 = 77  //kg
+        let sex:UInt8 = 1; //man:1,female:0
         var unit:UInt8 = 1; //unit ???
         
-        var values1 :[UInt8] = [0x00,SetProfileRequest.HEADER(),
+        let values1 :[UInt8] = [0x00,SetProfileRequest.HEADER(),
             UInt8(age&0xFF),
             UInt8(height&0xFF),
             UInt8(weight&0xFF),
@@ -35,7 +35,7 @@ class SetProfileRequest: NevoRequest {
             0,
             0,0,0,0,0,0,0,0,0,0,0]
         
-        var values2 :[UInt8] = [0xFF,SetProfileRequest.HEADER(),
+        let values2 :[UInt8] = [0xFF,SetProfileRequest.HEADER(),
             0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
         
         

@@ -39,7 +39,7 @@ class HomeView: UIView {
         progressView?.setProgressColor(AppTheme.NEVO_SOLAR_YELLOW())
         progressView?.frame = CGRectMake(mClockTimerView.frame.origin.x-5, mClockTimerView.frame.origin.y-5, UIScreen.mainScreen().bounds.width-50, UIScreen.mainScreen().bounds.width-50)
         progressView?.setProgress(progresValue)
-        self.layer.addSublayer(progressView)
+        self.layer.addSublayer(progressView!)
 
     }
 

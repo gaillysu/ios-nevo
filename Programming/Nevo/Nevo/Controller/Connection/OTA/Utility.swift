@@ -90,20 +90,25 @@ func NSData2Bytes(data:NSData) -> [UInt8]
 func NSString2NSData(string:NSString) -> NSData
 {
     let mString = string
-    let trimmedString = mString.stringByTrimmingCharactersInSet(NSCharacterSet(charactersInString: "<> ")).stringByReplacingOccurrencesOfString(" ", withString: "")
+    let trimmedString:String = mString.stringByTrimmingCharactersInSet(NSCharacterSet(charactersInString: "<> ")).stringByReplacingOccurrencesOfString(" ", withString: "")
     
     // make sure the cleaned up string consists solely of hex digits, and that we have even number of them
     
-    var error: NSError?
-    let regex = NSRegularExpression(pattern: "^[0-9a-f]*$", options: .CaseInsensitive, error: &error)
-    let found = regex?.firstMatchInString(trimmedString, options: nil, range: NSMakeRange(0, count(trimmedString)))
-    if found == nil || found?.range.location == NSNotFound || count(trimmedString) % 2 != 0 {
+    var regex:NSRegularExpression?
+    do {
+        regex = try NSRegularExpression(pattern: "^[0-9a-f]*$", options: .CaseInsensitive)
+    } catch {
+        // deal with not exist
+    }
+
+    let found = regex!.firstMatchInString(trimmedString, options: NSMatchingOptions.Anchored, range: NSMakeRange(0, trimmedString.characters.count))
+    if found == nil || found?.range.location == NSNotFound || trimmedString.characters.count % 2 != 0 {
         return NSData()
     }
     
     // everything ok, so now let's build NSData
     
-    let data = NSMutableData(capacity: count(trimmedString) / 2)
+    let data = NSMutableData(capacity: trimmedString.characters.count / 2)
     
     for var index = trimmedString.startIndex; index < trimmedString.endIndex; index = index.successor().successor() {
         let byteString = trimmedString.substringWithRange(Range<String.Index>(start: index, end: index.successor().successor()))
@@ -115,7 +120,7 @@ func NSString2NSData(string:NSString) -> NSData
 }
 
 func NSData2NSString(data:NSData) -> NSString {
-    var str = NSMutableString()
+    let str:NSMutableString = NSMutableString()
     let bytes = UnsafeBufferPointer<UInt8>(start: UnsafePointer(data.bytes), count:data.length)
     for byte in bytes {
         str.appendFormat("%02hhx", byte)
@@ -131,18 +136,18 @@ return: 29
 func GET_FIRMWARE_VERSION() ->Int
 {
     var buildinFirmwareVersion:Int  = 0
-    var fileArray = GET_FIRMWARE_FILES("Firmwares")
+    let fileArray = GET_FIRMWARE_FILES("Firmwares")
     for tmpfile in fileArray {
-        var selectedFile = tmpfile as! NSURL
-        var fileName:NSString? = selectedFile.path!.lastPathComponent as NSString
-        var fileExtension:String? = selectedFile.pathExtension
-        
+        let selectedFile:NSURL = tmpfile as! NSURL
+        let fileName:NSString? = (selectedFile.path! as NSString).lastPathComponent
+        let fileExtension:String? = selectedFile.pathExtension
+
         if fileExtension == "hex"
         {
-            var ran:NSRange = fileName!.rangeOfString("_v")
-            var ran2:NSRange = fileName!.rangeOfString(".hex")
+            let ran:NSRange = fileName!.rangeOfString("_v")
+            let ran2:NSRange = fileName!.rangeOfString(".hex")
             let string:String = fileName!.substringWithRange(NSRange(location: ran.location + ran.length,length: ran2.location-ran.location-ran.length))
-            buildinFirmwareVersion = string.toInt()!
+            buildinFirmwareVersion = Int(string)!
             break
         }
     }
@@ -157,18 +162,18 @@ return: 12
 func GET_SOFTWARE_VERSION() ->Int
 {
     var buildinSoftwareVersion:Int  = 0
-    var fileArray = GET_FIRMWARE_FILES("Firmwares")
+    let fileArray = GET_FIRMWARE_FILES("Firmwares")
     for tmpfile in fileArray {
-        var selectedFile = tmpfile as! NSURL
-        var fileName:NSString? = selectedFile.path!.lastPathComponent as NSString
-        var fileExtension:String? = selectedFile.pathExtension
-        
+        let selectedFile = tmpfile as! NSURL
+        let fileName:NSString? = (selectedFile.path! as NSString).lastPathComponent
+        let fileExtension:String? = selectedFile.pathExtension
+
         if fileExtension == "bin"
         {
-            var ran:NSRange = fileName!.rangeOfString("_v")
-            var ran2:NSRange = fileName!.rangeOfString(".bin")
+            let ran:NSRange = fileName!.rangeOfString("_v")
+            let ran2:NSRange = fileName!.rangeOfString(".bin")
             let string:String = fileName!.substringWithRange(NSRange(location: ran.location + ran.length,length: ran2.location-ran.location-ran.length))
-            buildinSoftwareVersion = string.toInt()!
+            buildinSoftwareVersion = Int(string)!
             break
         }
     }
@@ -184,22 +189,22 @@ Get or get the resource path of the array
 */
 func GET_FIRMWARE_FILES(folderName:String) -> NSArray {
     
-    var AllFilesNames:NSMutableArray = NSMutableArray()
-    var appPath:NSString  = NSBundle.mainBundle().resourcePath!
+    let AllFilesNames:NSMutableArray = NSMutableArray()
+    let appPath:NSString  = NSBundle.mainBundle().resourcePath!
     let firmwaresDirectoryPath:NSString = appPath.stringByAppendingPathComponent(folderName)
-    var error:NSError?
     
-    var  fileNames:NSArray = NSFileManager.defaultManager().contentsOfDirectoryAtPath(firmwaresDirectoryPath as String, error: &error)!
-    if (error == nil) {
+    var  fileNames:[String] = []
+    do {
+        fileNames = try NSFileManager.defaultManager().contentsOfDirectoryAtPath(firmwaresDirectoryPath as String)
         AppTheme.DLog("number of files in directory \(fileNames.count)");
         for fileName in fileNames {
             AppTheme.DLog("Found file in directory: \(fileName)");
-            let filePath:NSString = firmwaresDirectoryPath.stringByAppendingPathComponent(fileName as! String)
-            let fileURL:NSURL = NSURL.fileURLWithPath(filePath as String)!
+            let filePath:String = firmwaresDirectoryPath.stringByAppendingPathComponent(fileName)
+            let fileURL:NSURL = NSURL.fileURLWithPath(filePath)
             AllFilesNames.addObject(fileURL)
         }
         return AllFilesNames.copy() as! NSArray
-    }else {
+    }catch{
         AppTheme.DLog("error in opening directory path: \(firmwaresDirectoryPath)");
         return NSArray()
     }
@@ -210,8 +215,8 @@ transfer GMT NSDate to locale NSDate
 */
 func GmtNSDate2LocaleNSDate(gmtDate:NSDate) ->NSDate
 {
-    var zone = NSTimeZone.systemTimeZone()
-    var interval =  zone.secondsFromGMTForDate(gmtDate)
+    let zone = NSTimeZone.systemTimeZone()
+    let interval =  zone.secondsFromGMTForDate(gmtDate)
     return gmtDate.dateByAddingTimeInterval(NSTimeInterval(interval))
 }
 

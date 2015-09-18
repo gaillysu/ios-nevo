@@ -48,7 +48,7 @@ class SetingViewController: UIViewController,SelectionTypeDelegate,SyncControlle
     :returns:
     */
     func initNotificationSettingArray() {
-        var notificationTypeArray:[NotificationType] = [NotificationType.CALL, NotificationType.EMAIL, NotificationType.FACEBOOK, NotificationType.SMS, NotificationType.CALENDAR, NotificationType.WECHAT]
+        let notificationTypeArray:[NotificationType] = [NotificationType.CALL, NotificationType.EMAIL, NotificationType.FACEBOOK, NotificationType.SMS, NotificationType.CALENDAR, NotificationType.WECHAT]
         for notificationType in notificationTypeArray {
             var setting = NotificationSetting(type: notificationType, color: 0)
             SetingViewController.refreshNotificationSetting(&setting)
@@ -60,8 +60,8 @@ class SetingViewController: UIViewController,SelectionTypeDelegate,SyncControlle
     reresh NotificationSetting
     */
     class func refreshNotificationSetting(inout setting:NotificationSetting) {
-        var color = NSNumber(unsignedInt: EnterNotificationController.getLedColor(setting.getType().rawValue))
-        var states = EnterNotificationController.getMotorOnOff(setting.getType().rawValue)
+        let color = NSNumber(unsignedInt: EnterNotificationController.getLedColor(setting.getType().rawValue))
+        let states = EnterNotificationController.getMotorOnOff(setting.getType().rawValue)
         setting.updateValue(color, states: states)
     }
     
@@ -86,7 +86,7 @@ class SetingViewController: UIViewController,SelectionTypeDelegate,SyncControlle
         }
         
         if sender is UISwitch {
-            var switchButton = sender as! UISwitch
+            let switchButton = sender as! UISwitch
             if switchButton.isEqual(notificationList.mSendLocalNotificationSwitchButton){
                 AppTheme.DLog("setIsSendLocalMsg \(switchButton.on)")
                 ConnectionManager.sharedInstance.setIsSendLocalMsg(switchButton.on)
@@ -120,7 +120,7 @@ class SetingViewController: UIViewController,SelectionTypeDelegate,SyncControlle
             //We are currently not connected
             var isView:Bool = false
             for view in notificationList.subviews {
-                let anView:UIView = view as! UIView
+                let anView:UIView = view 
                 if anView.isEqual(notificationList.animationView.bulibNoConnectView()) {
                     isView = true
                 }
@@ -144,7 +144,7 @@ class SetingViewController: UIViewController,SelectionTypeDelegate,SyncControlle
     // MARK: - SwitchActionDelegate
     func onSwitch(results:Bool ,sender:UISwitch){
         let indexPath:NSIndexPath = NSIndexPath(forRow: sender.tag, inSection: 0)
-        var cell:TableListCell = notificationList.tableListView.cellForRowAtIndexPath(indexPath) as! TableListCell
+        let cell:TableListCell = notificationList.tableListView.cellForRowAtIndexPath(indexPath) as! TableListCell
         if(results){
             cell.round.hidden = false
         }else{
@@ -152,7 +152,7 @@ class SetingViewController: UIViewController,SelectionTypeDelegate,SyncControlle
         }
 
         mNotificationType = mNotificationSettingArray[sender.tag-1].getType()
-        var notSetting:NotificationSetting = NotificationSetting.indexOfObjectAtType(mNotificationSettingArray, type: mNotificationType)!
+        let notSetting:NotificationSetting = NotificationSetting.indexOfObjectAtType(mNotificationSettingArray, type: mNotificationType)!
         EnterNotificationController.setMotorOnOff(NSString(string: notSetting.typeName), motorStatus: results)
         SetingViewController.refreshNotificationSettingArray(&mNotificationSettingArray)
         //send request to watch
@@ -206,9 +206,9 @@ class SetingViewController: UIViewController,SelectionTypeDelegate,SyncControlle
     }
 
     func allCellTextColor(tableView:UITableView) {
-        var allCell = tableView.indexPathsForVisibleRows()
+        let allCell = tableView.indexPathsForVisibleRows
         for cell in allCell! {
-            let seletedCell:UITableViewCell = tableView.cellForRowAtIndexPath(cell as! NSIndexPath)!
+            let seletedCell:UITableViewCell = tableView.cellForRowAtIndexPath(cell )!
             //cell as UITableViewCell
             seletedCell.textLabel?.textColor = UIColor.blackColor()
         }
@@ -269,7 +269,7 @@ class SetingViewController: UIViewController,SelectionTypeDelegate,SyncControlle
             let versionString:NSString = loclString.stringByReplacingOccurrencesOfString(".", withString: "")
             let versionNumber:Double = Double(versionString.floatValue)
             if(version>versionNumber){
-                var alertView:UIAlertView = UIAlertView(title: NSLocalizedString("Found the new version",comment: ""), message:String(format: "Found New version:(%@)", stringVersion!), delegate:self, cancelButtonTitle: NSLocalizedString("cancel",comment: ""), otherButtonTitles: NSLocalizedString("Enter",comment: ""))
+                let alertView:UIAlertView = UIAlertView(title: NSLocalizedString("Found the new version",comment: ""), message:String(format: "Found New version:(%@)", stringVersion!), delegate:self, cancelButtonTitle: NSLocalizedString("cancel",comment: ""), otherButtonTitles: NSLocalizedString("Enter",comment: ""))
                 alertView.show()
             }else{
                 MBProgressHUD.showSuccess(NSLocalizedString("nevolatestversion",comment: ""))
@@ -281,8 +281,8 @@ class SetingViewController: UIViewController,SelectionTypeDelegate,SyncControlle
     //this action take lot power and we maybe told customer less to use it
     var mFindMydeviceDatetime:NSDate = NSDate(timeIntervalSinceNow: -6)
     func findMydevice(){
-        var minDelay:Double = 6
-        var offset:Double = (NSDate().timeIntervalSince1970 - mFindMydeviceDatetime.timeIntervalSince1970)
+        let minDelay:Double = 6
+        let offset:Double = (NSDate().timeIntervalSince1970 - mFindMydeviceDatetime.timeIntervalSince1970)
         AppTheme.DLog("findMydevice offset:\(offset)")
         if (offset < minDelay) {
             return
@@ -320,7 +320,7 @@ class SetingViewController: UIViewController,SelectionTypeDelegate,SyncControlle
         }
 
         if indexPath.row == 0 {
-            var endCell:UITableViewCell = tableView.dequeueReusableCellWithIdentifier("SetingCell", forIndexPath: indexPath) as! UITableViewCell
+            let endCell:UITableViewCell = tableView.dequeueReusableCellWithIdentifier("SetingCell", forIndexPath: indexPath)
             endCell.selectedBackgroundView = UIImageView(image: UIImage(named:"selectedButton"))
             endCell.textLabel?.text = sources.objectAtIndex(indexPath.section) as? String
             endCell.layer.borderWidth = 0.5;
@@ -344,7 +344,7 @@ class SetingViewController: UIViewController,SelectionTypeDelegate,SyncControlle
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
         if (segue.identifier == "EnterNotification"){
-            var notficp = segue.destinationViewController as! EnterNotificationController
+            let notficp = segue.destinationViewController as! EnterNotificationController
             notficp.mDelegate = self
             
             notficp.mNotificationSettingArray = mNotificationSettingArray

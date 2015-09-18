@@ -85,7 +85,7 @@ class writeFileSizeRequest: Request {
     }
     
     func getRawData() -> NSData {
-        var fileSizeCollection :[UInt32] = [0,0,UInt32(mFilelength!)];
+        let fileSizeCollection :[UInt32] = [0,0,UInt32(mFilelength!)];
         
         return NSData(bytes: fileSizeCollection, length: fileSizeCollection.count * sizeof(UInt32))
     }
@@ -107,7 +107,7 @@ class writeFileSizeOldRequest: Request {
     }
     
     func getRawData() -> NSData {
-        var fileSizeCollection :[UInt32] = [0,0,UInt32(mFilelength!)];
+        let fileSizeCollection :[UInt32] = [0,0,UInt32(mFilelength!)];
         
         return NSData(bytes: fileSizeCollection, length: fileSizeCollection.count * sizeof(UInt32))
     }
@@ -281,8 +281,8 @@ class Mcu_OnePageRequest: Request {
     }
     
     func getRawDataEx() -> NSArray {
-        var packetarray = NSMutableArray()
-        for (index, packet) in enumerate(mOnePage) {
+        let packetarray = NSMutableArray()
+        for packet in mOnePage {
            packetarray.addObject(packet.getRawData())
         }
         return packetarray

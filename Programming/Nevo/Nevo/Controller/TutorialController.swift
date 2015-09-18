@@ -18,7 +18,7 @@ class TutorialController: UIViewController {
         mTutorialView = TutorialView(frame: CGRectMake(0,0, self.view.frame.size.width, self.view.frame.size.height), delegate: self)
         self.view.addSubview(mTutorialView!)
 
-        var longPush:UILongPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: Selector("longPushTask:"))
+        let longPush:UILongPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: Selector("longPushTask:"))
         mTutorialView?.addGestureRecognizer(longPush)
     }
 

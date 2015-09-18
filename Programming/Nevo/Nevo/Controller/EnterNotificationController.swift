@@ -26,7 +26,7 @@ class EnterNotificationController: UIViewController,SyncControllerDelegate,Butto
     class func setLedColor(sourceType: NSString,ledColor:UInt32)
     {
         let userDefaults = NSUserDefaults.standardUserDefaults();
-        var value:UInt32 = getMotorOnOff(sourceType) ? (ledColor | SetNortificationRequest.SetNortificationRequestValues.VIB_MOTOR)
+        let value:UInt32 = getMotorOnOff(sourceType) ? (ledColor | SetNortificationRequest.SetNortificationRequestValues.VIB_MOTOR)
             : (ledColor & ~SetNortificationRequest.SetNortificationRequestValues.VIB_MOTOR)
         
         userDefaults.setObject(UInt(value),forKey:sourceType as String)
@@ -200,7 +200,7 @@ class EnterNotificationController: UIViewController,SyncControllerDelegate,Butto
             //We are currently not connected
             var isView:Bool = false
             for view in enterNotView.subviews {
-                let anView:UIView = view as! UIView
+                let anView:UIView = view 
                 if anView.isEqual(enterNotView.animationView?.bulibNoConnectView()) {
                     isView = true
                 }

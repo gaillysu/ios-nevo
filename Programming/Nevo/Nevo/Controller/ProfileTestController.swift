@@ -103,7 +103,7 @@ class ProfileTestController: UITableViewController,SyncControllerDelegate,Button
         self.navigationItem.rightBarButtonItem = addButton
         
         //add back button
-        var backButton = UIButton(frame: CGRectMake(0, 0, 35, 35))
+        let backButton = UIButton(frame: CGRectMake(0, 0, 35, 35))
         backButton.setImage(UIImage(named: "back"), forState: UIControlState.Normal)
         backButton.addTarget(self, action: Selector("goBack"), forControlEvents: UIControlEvents.TouchUpInside)
         let item:UIBarButtonItem = UIBarButtonItem(customView: backButton as UIView!);

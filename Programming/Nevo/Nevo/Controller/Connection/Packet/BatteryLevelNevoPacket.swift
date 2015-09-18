@@ -9,7 +9,7 @@
 import UIKit
 
 class BatteryLevelNevoPacket: NevoPacket {
-    
+
 /**
     return battery level
     batt_level
@@ -21,4 +21,14 @@ class BatteryLevelNevoPacket: NevoPacket {
    {
     return Int(NSData2Bytes(getPackets()[0])[2] )
    }
+
+    func isReadBatteryCommand(data:[NSData])->Bool{
+        let header:UInt8 = NSData2Bytes(data[0])[0]
+        let instruction:UInt8 = NSData2Bytes(data[0])[1]
+        if(header == 0x00 && instruction == 0x40 ){
+            return true
+        }else{
+            return false
+        }
+    }
 }

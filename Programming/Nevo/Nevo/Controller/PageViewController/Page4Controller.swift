@@ -56,7 +56,7 @@ class Page4Controller: UIViewController,ButtonActionCallBack,SyncControllerDeleg
         }
     }
 
-    func packetReceived(NevoPacket) {
+    func packetReceived(packet: NevoPacket) {
 
     }
 }

@@ -84,7 +84,7 @@ class AlarmClockController: UIViewController, SyncControllerDelegate,ButtonManag
     }
 
     func stringFromDate(date:NSDate) -> String {
-        var dateFormatter:NSDateFormatter = NSDateFormatter()
+        let dateFormatter:NSDateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "HH:mm"
         let dateString:String = dateFormatter.stringFromDate(date)
         return dateString
@@ -180,7 +180,7 @@ class AlarmClockController: UIViewController, SyncControllerDelegate,ButtonManag
             
             if let date = alarmView.getDatePicker()?.date  {
 
-                var strDate = stringFromDate(date)
+                let strDate = stringFromDate(date)
 
                 var lines:[String] = strDate.componentsSeparatedByString(":");
 
@@ -195,8 +195,8 @@ class AlarmClockController: UIViewController, SyncControllerDelegate,ButtonManag
 
         alarmView.setAlarmTime(mAlarmhour,min: mAlarmmin,andObject: alarmView.getCurrentButton())
 
-        let userDefaults = NSUserDefaults.standardUserDefaults();
-        let alarmDict:NSDictionary = NSDictionary(objectsAndKeys: NSNumber(integer: mAlarmhour),SAVED_ALARM_HOUR_KEY,NSNumber(integer: mAlarmmin),SAVED_ALARM_MIN_KEY,NSNumber(bool: mAlarmenable),SAVED_ALARM_ENABLED_KEY,NSNumber(integer: mAlarmindex),SAVED_ALARM_INDEX_KEY)
+        let userDefaults = NSUserDefaults.standardUserDefaults()
+        let alarmDict:NSDictionary = [SAVED_ALARM_HOUR_KEY : NSNumber(integer: mAlarmhour),SAVED_ALARM_MIN_KEY : NSNumber(integer: mAlarmmin),SAVED_ALARM_ENABLED_KEY : NSNumber(bool: mAlarmenable),SAVED_ALARM_INDEX_KEY : NSNumber(integer: mAlarmindex)]
         let loadUserKey:String = String(format: "SAVED_ALARM_ARRAY%d",tagValue);
         userDefaults.setObject(alarmDict, forKey: loadUserKey)
         
@@ -205,11 +205,11 @@ class AlarmClockController: UIViewController, SyncControllerDelegate,ButtonManag
     }
 
     func addAlarmArray(index:Int){
-        for object in enumerate(alarmArray){
-            var alarm:Alarm = (object.1 as Alarm)
+        for object in alarmArray{
+            let alarm:Alarm = (object as Alarm)
             if(alarm.getIndex() == index){
-                var alarm:Alarm = Alarm(index:index, hour: mAlarmhour, minute: mAlarmmin, enable: mAlarmenable)
-                alarmArray.removeAtIndex(object.0)
+                let alarm:Alarm = Alarm(index:index, hour: mAlarmhour, minute: mAlarmmin, enable: mAlarmenable)
+                alarmArray.removeAtIndex(index)
                 alarmArray.insert(alarm, atIndex: index)
                 mSyncController?.setAlarm(alarmArray)
                 return;
@@ -257,7 +257,7 @@ class AlarmClockController: UIViewController, SyncControllerDelegate,ButtonManag
             //We are currently not connected
             var isView:Bool = false
             for view in alarmView.subviews {
-                let anView:UIView = view as! UIView
+                let anView:UIView = view 
                 if anView.isEqual(alarmView.animationView.bulibNoConnectView()) {
                     isView = true
                 }

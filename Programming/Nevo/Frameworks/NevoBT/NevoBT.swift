@@ -42,7 +42,7 @@ protocol NevoBT {
     NOTE : The Request target profile 's Control characteristic can be different than the one used to initiate the NevoBT
     But the Callback Characteristic should be the same. Or the packet will be rejected for incompatibility.
     */
-    func sendRequest(Request)
+    func sendRequest(request: Request)
     
     /**
     Checks wether there is a peripheral currently connected
@@ -80,7 +80,7 @@ protocol NevoBTDelegate {
     Warning, this address is not a MAC address and may change in time
 
     */
-    func packetReceived(RawPacket, fromAddress : NSUUID)
+    func packetReceived(rawpacket: RawPacket, fromAddress : NSUUID)
     
     /**
     Called when a peripheral connects or disconnects

@@ -39,7 +39,7 @@ class MyNevoView: UIView {
         progressLabel.text = String(format: "%d%c",0,37)
         progressLabel.font = AppTheme.FONT_RALEWAY_LIGHT(mSize: 18)
 
-        var objArray:NSArray = AppTheme.LoadKeyedArchiverName("LatestUpdate") as! NSArray
+        let objArray:NSArray = AppTheme.LoadKeyedArchiverName("LatestUpdate") as! NSArray
         update.numberOfLines = 0
         update.lineBreakMode = NSLineBreakMode.ByWordWrapping
         update.font = AppTheme.FONT_RALEWAY_LIGHT(mSize: 15)
@@ -66,7 +66,7 @@ class MyNevoView: UIView {
 
         mDelegate?.controllManager(sender)
         if(sender.isEqual(UpgradeButton)){
-            var senddate:NSDate = NSDate()
+            let senddate:NSDate = NSDate()
             AppTheme.KeyedArchiverName("LatestUpdate", andObject: senddate)
         }
 

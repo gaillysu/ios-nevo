@@ -47,7 +47,7 @@ class NotificationSetting: NSObject {
     }
     
     func getColorName() ->String{
-        var colorName = ""
+        let colorName = ""
         return colorName
     }
    
@@ -81,7 +81,7 @@ class NotificationSetting: NSObject {
     :returns: Returns the color of the value
     */
     func getBagroundColor()->UIColor{
-        var currentColor:UInt32 = self.getColor().unsignedIntValue
+        let currentColor:UInt32 = self.getColor().unsignedIntValue
         if (currentColor == SetNortificationRequest.SetNortificationRequestValues.RED_LED){
             return AppTheme.NEVO_CUSTOM_COLOR(Red: 229, Green: 0, Blue: 18)
         }else if (currentColor == SetNortificationRequest.SetNortificationRequestValues.BLUE_LED){

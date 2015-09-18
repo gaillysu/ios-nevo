@@ -24,10 +24,10 @@ class ReadBatteryLevelNevoRequest: NevoRequest {
     
     override func getRawDataEx() -> NSArray {
         
-        var values1 :[UInt8] = [0x00,ReadBatteryLevelNevoRequest.HEADER(),
+        let values1 :[UInt8] = [0x00,ReadBatteryLevelNevoRequest.HEADER(),
             0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
         
-        var values2 :[UInt8] = [0xFF,ReadBatteryLevelNevoRequest.HEADER(),
+        let values2 :[UInt8] = [0xFF,ReadBatteryLevelNevoRequest.HEADER(),
             0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
         
         

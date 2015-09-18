@@ -20,22 +20,22 @@ class MainTabBarController: UITabBarController,UITabBarControllerDelegate {
         self.delegate = self
 
         // Do any additional setup after loading the view.
-        var nav:UINavigationController!
+        //var nav:UINavigationController!
         let viewArray:[AnyObject] = self.viewControllers!
         for nav in viewArray {
-            var contll = (nav as! UINavigationController).topViewController
-            if contll.isKindOfClass(AlarmClockController){
+            let contll = (nav as! UINavigationController).topViewController
+            if contll!.isKindOfClass(AlarmClockController){
                 AppTheme.DLog("AlarmClockController:\(contll)")
 
             }
 
-            if contll.isKindOfClass(StepGoalSetingController){
+            if contll!.isKindOfClass(StepGoalSetingController){
                 AppTheme.DLog("StepGoalSetingController:\(contll)")
             }
 
-            if contll.isKindOfClass(HomeController){
+            if contll!.isKindOfClass(HomeController){
                 AppTheme.DLog("HomeController:\(contll)")
-                contll.tabBarController?.selectedIndex = 1
+                contll!.tabBarController?.selectedIndex = 1
             }
 
         }
@@ -63,8 +63,8 @@ class MainTabBarController: UITabBarController,UITabBarControllerDelegate {
 
         for (var i:Int = 0; i < imgArray.count; i++) {
 
-            var itemWidth:CGFloat = itemView.frame.size.width/CGFloat(imgArray.count)
-            var item:UIButton  = UIButton(frame: CGRectMake(itemWidth*CGFloat(i), 0, itemWidth, itemView.frame.size.height))
+            let itemWidth:CGFloat = itemView.frame.size.width/CGFloat(imgArray.count)
+            let item:UIButton  = UIButton(frame: CGRectMake(itemWidth*CGFloat(i), 0, itemWidth, itemView.frame.size.height))
             item.backgroundColor = UIColor.clearColor()
             item.setImage(UIImage(named: selectImgArray[i] as! String), forState: UIControlState.Selected)
             item.setImage(UIImage(named: selectImgArray[i] as! String), forState: UIControlState.Highlighted)

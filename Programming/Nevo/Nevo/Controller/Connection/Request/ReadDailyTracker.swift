@@ -26,10 +26,10 @@ class ReadDailyTracker: NevoRequest {
     
     override func getRawDataEx() -> NSArray {
         
-        var values1 :[UInt8] = [0x00,ReadDailyTracker.HEADER(),
+        let values1 :[UInt8] = [0x00,ReadDailyTracker.HEADER(),
             mTrackerNo,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
         
-        var values2 :[UInt8] = [0xFF,ReadDailyTracker.HEADER(),
+        let values2 :[UInt8] = [0xFF,ReadDailyTracker.HEADER(),
             0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
         
         

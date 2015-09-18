@@ -110,7 +110,7 @@ class StepGoalSetingView: UIView,UIPickerViewDataSource,UIPickerViewDelegate {
     */
     func initPickerView(initialValue:Int) {
         //Create a pickerView backgroundView
-        var PickerbgView:UIView = UIView(frame: CGRectMake(0, 210, self.frame.size.width, self.frame.size.height))
+        let PickerbgView:UIView = UIView(frame: CGRectMake(0, 210, self.frame.size.width, self.frame.size.height))
         PickerbgView.backgroundColor = UIColor.clearColor()
         PickerbgView.tag = BAG_PICKER_TAG
         self.addSubview(PickerbgView)
@@ -127,7 +127,7 @@ class StepGoalSetingView: UIView,UIPickerViewDataSource,UIPickerViewDelegate {
         PickerbgView.addSubview(buttonBgView)
 
         //Create a cancel button
-        let cancelButton:UIButton = UIButton.buttonWithType(UIButtonType.System) as! UIButton
+        let cancelButton:UIButton = UIButton(type:UIButtonType.System)
         cancelButton.frame = CGRectMake(0, mPickerView!.frame.origin.y-40, 70, 40)
         cancelButton.setTitle(NSLocalizedString("Cancel", comment: ""), forState: UIControlState.Normal)
         cancelButton.backgroundColor = UIColor.clearColor()
@@ -135,7 +135,7 @@ class StepGoalSetingView: UIView,UIPickerViewDataSource,UIPickerViewDelegate {
         cancelButton.addTarget(self, action: Selector("enterAction:"), forControlEvents: UIControlEvents.TouchUpInside)
         PickerbgView.addSubview(cancelButton)
 
-        let enterButton = UIButton.buttonWithType(UIButtonType.System) as! UIButton
+        let enterButton = UIButton(type:UIButtonType.System)
         enterButton.frame = CGRectMake(mPickerView!.frame.size.width-50, mPickerView!.frame.origin.y-40, 50, 40)
         enterButton.setTitle(NSLocalizedString("Enter", comment: ""), forState: UIControlState.Normal)
         enterButton.backgroundColor = UIColor.clearColor()
@@ -220,7 +220,7 @@ class StepGoalSetingView: UIView,UIPickerViewDataSource,UIPickerViewDelegate {
     }
 
     // MARK: - PickerViewDelegate
-    func pickerView(pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusingView view: UIView!) -> UIView{
+    func pickerView(pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusingView view: UIView?) -> UIView{
         let labelView:UILabel = UILabel(frame: CGRectMake(0, 0, pickerView.frame.size.width, 50))
         labelView.backgroundColor = UIColor.clearColor()
         labelView.textAlignment = NSTextAlignment.Center

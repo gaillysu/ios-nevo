@@ -21,13 +21,13 @@ class NevoHKImpl {
     func requestPermission() {
         authorizeHealthKit { (authorized,  error) -> Void in
             if authorized {
-                println("HealthKit authorization received.")
+                print("HealthKit authorization received.")
             }
             else
             {
-                println("HealthKit authorization denied!")
+                print("HealthKit authorization denied!")
                 if error != nil {
-                    println("\(error)")
+                    print("\(error)")
                 }
             }
         }
@@ -36,10 +36,11 @@ class NevoHKImpl {
     func authorizeHealthKit(completion: ((success:Bool, error:NSError!) -> Void)!)
     {
         // 1. Set the types you want to read from HK Store  HKObjectType.categoryTypeForIdentifier(HKCategoryTypeIdentifierSleepAnalysis)
-        let healthKitTypesToRead = NSSet(array:[HKObjectType.quantityTypeForIdentifier(HKQuantityTypeIdentifierStepCount)])
+        //quantityTypeForIdentifier(HKQuantityTypeIdentifierStepCount)
+        let healthKitTypesToRead = NSSet(array: [HKObjectType.quantityTypeForIdentifier(HKQuantityTypeIdentifierStepCount)!])
         
         // 2. Set the types you want to write to HK Store  HKObjectType.categoryTypeForIdentifier(HKCategoryTypeIdentifierSleepAnalysis)
-        let healthKitTypesToWrite = NSSet(array:[HKObjectType.quantityTypeForIdentifier(HKQuantityTypeIdentifierStepCount)])
+        let healthKitTypesToWrite = NSSet(array:[HKObjectType.quantityTypeForIdentifier(HKQuantityTypeIdentifierStepCount)!])
         
         // 3. If the store is not available (for instance, iPad) return an error and don't go on.
         if !HKHealthStore.isHealthDataAvailable()
@@ -53,7 +54,7 @@ class NevoHKImpl {
         }
         
         // 4.  Request HealthKit authorization
-        mHealthKitStore.requestAuthorizationToShareTypes(healthKitTypesToWrite as Set<NSObject>, readTypes: healthKitTypesToRead as Set<NSObject>) { (success, error) -> Void in
+        mHealthKitStore.requestAuthorizationToShareTypes(healthKitTypesToWrite as? Set<HKSampleType>, readTypes: healthKitTypesToRead as! Set<HKSampleType>) { (success, error) -> Void in
             
             if( completion != nil )
             {
@@ -81,10 +82,10 @@ class NevoHKImpl {
                 
                 self.mHealthKitStore.saveObject(saveData, withCompletion: { (success, error) -> Void in
                     if( error != nil ) {
-                        println("Error saving sample: \(error.localizedDescription)")
-                        resultHandler(result: false,error: error as NSError)
+                        print("Error saving sample: \(error!.localizedDescription)")
+                        resultHandler(result: false,error: error)
                     } else {
-                        println("Saved in Health Kit : \(saveData)")
+                        print("Saved in Health Kit : \(saveData)")
                         resultHandler(result: true,error: nil)
                     }
                 })
@@ -95,19 +96,19 @@ class NevoHKImpl {
                     
                     self.mHealthKitStore.deleteObject(object!, withCompletion: { (success, error) -> Void in
                         if( error != nil ) {
-                            println("Error delete sample: \(error.localizedDescription)")
+                            print("Error delete sample: \(error!.localizedDescription)")
 
                         } else {
-                            println("Success delete in Health Kit : \(object! as! HKQuantitySample)")
+                            print("Success delete in Health Kit : \(object! as! HKQuantitySample)")
                         }
                     })
 
                     self.mHealthKitStore.saveObject(saveData, withCompletion: { (success, error) -> Void in
                         if( error != nil ) {
-                            println("Error saving sample: \(error.localizedDescription)")
-                            resultHandler(result: false,error: error as NSError)
+                            print("Error saving sample: \(error!.localizedDescription)")
+                            resultHandler(result: false,error: error)
                         } else {
-                            println("Saved in Health Kit : \(saveData)")
+                            print("Saved in Health Kit : \(saveData)")
                             resultHandler(result: true,error: nil)
                         }
                     })
@@ -141,8 +142,8 @@ class NevoHKImpl {
         
         let sourcePredicate:NSPredicate = HKQuery.predicateForObjectsFromSource(HKSource.defaultSource());
         
-        let dateAndSourcePredicate = NSCompoundPredicate.andPredicateWithSubpredicates([datePredicate,sourcePredicate])
-        
+        let dateAndSourcePredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [datePredicate,sourcePredicate])
+
         var type:HKSampleType
         if(data is HourlySteps)
         {type = sample.quantityType}
@@ -161,9 +162,9 @@ class NevoHKImpl {
                 else {
                     //If there's no error, if we have a result, then the data is present, if we don't it's absent
                     if(data is HourlySteps){
-                        handler( results != nil && results.count >= 1 ,(results != nil && results.count >= 1) ?results[0] as? HKQuantitySample:nil)
+                        handler( results != nil && results!.count >= 1 ,(results != nil && results!.count >= 1) ?results?[0] as? HKQuantitySample:nil)
                     }else{
-                        handler( results != nil && results.count >= 1 ,(results != nil && results.count >= 1) ?results[0] as? HKCategorySample:nil)
+                        handler( results != nil && results!.count >= 1 ,(results != nil && results!.count >= 1) ?results?[0] as? HKCategorySample:nil)
                     }
                     return;
 

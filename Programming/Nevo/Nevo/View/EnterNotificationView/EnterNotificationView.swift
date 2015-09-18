@@ -39,7 +39,7 @@ class EnterNotificationView: UIView {
 
         title.text = NSLocalizedString(seting.typeName, comment: "")
 
-        var currentColor:UInt32 = seting.getColor().unsignedIntValue
+        let currentColor:UInt32 = seting.getColor().unsignedIntValue
         if (currentColor == SetNortificationRequest.SetNortificationRequestValues.RED_LED){
             //endCell.typeTitle.backgroundColor = AppTheme.NEVO_CUSTOM_COLOR(Red: 229, Green: 0, Blue: 18)
             redButton.selected = true

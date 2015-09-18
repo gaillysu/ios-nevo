@@ -12,6 +12,7 @@ class MyNevoController: UIViewController,ButtonManagerCallBack,SyncControllerDel
 
     @IBOutlet var mynevoView: MyNevoView!
     private var mSyncController:SyncController?
+    private var currentBattery:Int = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,6 +47,11 @@ class MyNevoController: UIViewController,ButtonManagerCallBack,SyncControllerDel
         }
 
         if(sender.isEqual(mynevoView.UpgradeButton)){
+            if (currentBattery<1){
+                let alert :UIAlertView = UIAlertView(title: "Battery warnings", message: "Your watch battery not enough, please change a new battery can be OTA", delegate: nil, cancelButtonTitle: "OK")
+                alert.show()
+                return;
+            }
             self.performSegueWithIdentifier("Setting_nevoOta", sender: self)
         }
 
@@ -53,12 +59,14 @@ class MyNevoController: UIViewController,ButtonManagerCallBack,SyncControllerDel
 
     // MARK: - SyncControllerDelegate
     func packetReceived(packet:NevoPacket){
+        let thispacket:BatteryLevelNevoPacket = packet.copy() as BatteryLevelNevoPacket
+        if(thispacket.isReadBatteryCommand(packet.getPackets())){
+            let batteryValue:Int = thispacket.getBatteryLevel()
+            currentBattery = batteryValue
+            mynevoView.setBatteryLevelValue(batteryValue)
 
-        var thispacket = packet.copy() as BatteryLevelNevoPacket
-        var batteryValue:Int = thispacket.getBatteryLevel()
-        mynevoView.setBatteryLevelValue(batteryValue)
-
-        mynevoView.setVersionLbael(mSyncController!.getSoftwareVersion(), bleNumber: mSyncController!.getFirmwareVersion())
+            mynevoView.setVersionLbael(mSyncController!.getSoftwareVersion(), bleNumber: mSyncController!.getFirmwareVersion())
+        }
     }
 
     func connectionStateChanged(isConnected : Bool){
@@ -78,7 +86,7 @@ class MyNevoController: UIViewController,ButtonManagerCallBack,SyncControllerDel
             //We are currently not connected
             var isView:Bool = false
             for view in mynevoView.subviews {
-                let anView:UIView = view as! UIView
+                let anView:UIView = view 
                 if anView.isEqual(mynevoView.animationView!.bulibNoConnectView()) {
                     isView = true
                 }

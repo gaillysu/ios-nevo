@@ -170,7 +170,7 @@ class SyncController: NSObject,ConnectionControllerDelegate,UIAlertViewDelegate 
             } )
         }else {
             //tell caller
-            for (index, delegate) in enumerate(mDelegates) {
+            for delegate in mDelegates {
                 delegate.connectionStateChanged(false)
             }
         }
@@ -202,7 +202,7 @@ class SyncController: NSObject,ConnectionControllerDelegate,UIAlertViewDelegate 
         mPacketsbuffer.append(packet.getRawData())
         if(packet.isLastPacket())
         {
-            var packet:NevoPacket = NevoPacket(packets:mPacketsbuffer)
+            let packet:NevoPacket = NevoPacket(packets:mPacketsbuffer)
             if(!packet.isVaildPacket())
             {
                 AppTheme.DLog("Invaild packet............\(packet.getPackets().count)")
@@ -210,7 +210,7 @@ class SyncController: NSObject,ConnectionControllerDelegate,UIAlertViewDelegate 
                 return;
             }
             
-            for (index, delegate) in enumerate(mDelegates) {
+            for delegate in mDelegates {
                 delegate.packetReceived(packet)
             }
             
@@ -239,37 +239,37 @@ class SyncController: NSObject,ConnectionControllerDelegate,UIAlertViewDelegate 
                 //step5: sync the notification setting, if remove nevo's battery, the nevo notification reset, so here need sync it
                 var mNotificationSettingArray:[NotificationSetting] = []
                 
-                var callsetting:NotificationSetting = NotificationSetting(type: NotificationType.CALL, color: 0)
+                let callsetting:NotificationSetting = NotificationSetting(type: NotificationType.CALL, color: 0)
                 var color = NSNumber(unsignedInt: EnterNotificationController.getLedColor(callsetting.getType().rawValue))
                 var states = EnterNotificationController.getMotorOnOff(callsetting.getType().rawValue)
                 callsetting.updateValue(color, states: states)
                 mNotificationSettingArray.append(callsetting)
                 
-                var smssetting:NotificationSetting = NotificationSetting(type: NotificationType.SMS, color: 0)
+                let smssetting:NotificationSetting = NotificationSetting(type: NotificationType.SMS, color: 0)
                 color = NSNumber(unsignedInt: EnterNotificationController.getLedColor(smssetting.getType().rawValue))
                 states = EnterNotificationController.getMotorOnOff(smssetting.getType().rawValue)
                 smssetting.updateValue(color, states: states)
                 mNotificationSettingArray.append(smssetting)
                 
-                var emailsetting:NotificationSetting = NotificationSetting(type: NotificationType.EMAIL, color: 0)
+                let emailsetting:NotificationSetting = NotificationSetting(type: NotificationType.EMAIL, color: 0)
                 color = NSNumber(unsignedInt: EnterNotificationController.getLedColor(emailsetting.getType().rawValue))
                 states = EnterNotificationController.getMotorOnOff(emailsetting.getType().rawValue)
                 emailsetting.updateValue(color, states: states)
                 mNotificationSettingArray.append(emailsetting)
                 
-                var fbsetting:NotificationSetting = NotificationSetting(type: NotificationType.FACEBOOK, color: 0)
+                let fbsetting:NotificationSetting = NotificationSetting(type: NotificationType.FACEBOOK, color: 0)
                 color = NSNumber(unsignedInt: EnterNotificationController.getLedColor(fbsetting.getType().rawValue))
                 states = EnterNotificationController.getMotorOnOff(fbsetting.getType().rawValue)
                 fbsetting.updateValue(color, states: states)
                 mNotificationSettingArray.append(fbsetting)
                 
-                var calsetting:NotificationSetting = NotificationSetting(type: NotificationType.CALENDAR, color: 0)
+                let calsetting:NotificationSetting = NotificationSetting(type: NotificationType.CALENDAR, color: 0)
                 color = NSNumber(unsignedInt: EnterNotificationController.getLedColor(calsetting.getType().rawValue))
                 states = EnterNotificationController.getMotorOnOff(calsetting.getType().rawValue)
                 calsetting.updateValue(color, states: states)
                 mNotificationSettingArray.append(calsetting)
                 
-                var wechatchsetting:NotificationSetting = NotificationSetting(type: NotificationType.WECHAT, color: 0)
+                let wechatchsetting:NotificationSetting = NotificationSetting(type: NotificationType.WECHAT, color: 0)
                 color = NSNumber(unsignedInt: EnterNotificationController.getLedColor(wechatchsetting.getType().rawValue))
                 states = EnterNotificationController.getMotorOnOff(wechatchsetting.getType().rawValue)
                 wechatchsetting.updateValue(color, states: states)
@@ -281,9 +281,9 @@ class SyncController: NSObject,ConnectionControllerDelegate,UIAlertViewDelegate 
             if(packet.getHeader() == SetNortificationRequest.HEADER())
             {
                 //copy from AlarmClockController
-                var mAlarmhour:Int = 8
-                var mAlarmmin:Int = 30
-                var mAlarmenable:Bool = false
+                let mAlarmhour:Int = 8
+                let mAlarmmin:Int = 30
+                let mAlarmenable:Bool = false
 
                 var alarm:[Alarm] = []
 
@@ -322,7 +322,7 @@ class SyncController: NSObject,ConnectionControllerDelegate,UIAlertViewDelegate 
             
             if(packet.getHeader() == ReadDailyTrackerInfo.HEADER())
             {
-                var thispacket = packet.copy() as DailyTrackerInfoNevoPacket
+                let thispacket = packet.copy() as DailyTrackerInfoNevoPacket
                 currentDay = 0
                 savedDailyHistory = thispacket.getDailyTrackerInfo()
                 AppTheme.DLog("History Total Days:\(savedDailyHistory.count),Today is \(GmtNSDate2LocaleNSDate(NSDate()))")
@@ -333,7 +333,7 @@ class SyncController: NSObject,ConnectionControllerDelegate,UIAlertViewDelegate 
             }
             if(packet.getHeader() == ReadDailyTracker.HEADER())
             {
-                var thispacket:DailyTrackerNevoPacket = packet.copy() as DailyTrackerNevoPacket
+                let thispacket:DailyTrackerNevoPacket = packet.copy() as DailyTrackerNevoPacket
                 
                 savedDailyHistory[Int(currentDay)].TotalSteps = thispacket.getDailySteps()
                 savedDailyHistory[Int(currentDay)].HourlySteps = thispacket.getHourlySteps()
@@ -391,16 +391,15 @@ class SyncController: NSObject,ConnectionControllerDelegate,UIAlertViewDelegate 
                 //daysleepSave.DailyCalories = thispacket.getDailyCalories()
                 //let isSave:Bool = daysleepSave.save()
                 //save to health kit
-                var hk = NevoHKImpl()
+                let hk = NevoHKImpl()
                 hk.requestPermission()
                 
                 
                 let now:NSDate = NSDate()
                 let cal:NSCalendar = NSCalendar.currentCalendar()
-                let unitFlags:NSCalendarUnit = NSCalendarUnit.YearCalendarUnit | NSCalendarUnit.MonthCalendarUnit | NSCalendarUnit.DayCalendarUnit | NSCalendarUnit.HourCalendarUnit | NSCalendarUnit.MinuteCalendarUnit | NSCalendarUnit.SecondCalendarUnit
-                let dd:NSDateComponents = cal.components(unitFlags, fromDate: now)
+                let dd:NSDateComponents = cal.components([NSCalendarUnit.Year, NSCalendarUnit.Month, NSCalendarUnit.Day ,NSCalendarUnit.Hour, NSCalendarUnit.Minute, NSCalendarUnit.Second,], fromDate: now)
                 
-                let dd2:NSDateComponents = cal.components(unitFlags, fromDate: savedDailyHistory[Int(currentDay)].Date)
+                let dd2:NSDateComponents = cal.components([NSCalendarUnit.Year, NSCalendarUnit.Month, NSCalendarUnit.Day ,NSCalendarUnit.Hour, NSCalendarUnit.Minute, NSCalendarUnit.Second,], fromDate: savedDailyHistory[Int(currentDay)].Date)
                 
                 // disable write every day 's total steps, only write every day's hourly steps
                 //not save today 's daily steps, due to today not end.
@@ -590,13 +589,13 @@ class SyncController: NSObject,ConnectionControllerDelegate,UIAlertViewDelegate 
             ConnectionManager.sharedInstance.checkConnectSendNotification(ConnectionManager.Const.connectionStatus.disconnected)
         }
         
-        for (index, delegate) in enumerate(mDelegates) {
+        for delegate in mDelegates {
             delegate.connectionStateChanged(isConnected)
         }
         
         if( isConnected )
         {
-            var dispatchTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, Int64(1.0 * Double(NSEC_PER_SEC)))
+            let dispatchTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, Int64(1.0 * Double(NSEC_PER_SEC)))
             dispatch_after(dispatchTime, dispatch_get_main_queue(), {
                 //setp1: cmd 0x01, set RTC, for every connected Nevo
                 self.mPacketsbuffer = []
@@ -618,7 +617,7 @@ class SyncController: NSObject,ConnectionControllerDelegate,UIAlertViewDelegate 
         
         if(buttonIndex==1){
           //GOTO OTA SCREEN
-            for (index, delegate) in enumerate(mDelegates) {
+            for delegate in mDelegates {
                 if delegate is HomeController
                 {
                     (delegate as! HomeController).gotoOTAScreen()
@@ -634,7 +633,7 @@ class SyncController: NSObject,ConnectionControllerDelegate,UIAlertViewDelegate 
     */
     func hasLoadHomeController() ->Bool
     {
-        for (index, delegate) in enumerate(mDelegates) {
+        for delegate in mDelegates {
             if delegate is HomeController
             {
                 return true
@@ -648,21 +647,21 @@ class SyncController: NSObject,ConnectionControllerDelegate,UIAlertViewDelegate 
     */
     func firmwareVersionReceived(whichfirmware:DfuFirmwareTypes, version:NSString)
     {
-        var mcuver = GET_SOFTWARE_VERSION()
-        var blever = GET_FIRMWARE_VERSION()
+        let mcuver = GET_SOFTWARE_VERSION()
+        let blever = GET_FIRMWARE_VERSION()
         
         AppTheme.DLog("Build in software version: \(mcuver), firmware version: \(blever)")
  
-        if ((whichfirmware == DfuFirmwareTypes.SOFTDEVICE  && (version as String).toInt() < mcuver)
-          || (whichfirmware == DfuFirmwareTypes.APPLICATION  && (version as String).toInt() < blever))
+        if ((whichfirmware == DfuFirmwareTypes.SOFTDEVICE  && version.integerValue < mcuver)
+          || (whichfirmware == DfuFirmwareTypes.APPLICATION  && version.integerValue < blever))
             
         {
             //for tutorial screen, don't popup update dialog
             if !mAlertUpdateFW  && hasLoadHomeController()
             {
             mAlertUpdateFW = true
-                
-            var alert :UIAlertView = UIAlertView(title: NSLocalizedString("Firmware Upgrade", comment: ""), message: NSLocalizedString("FirmwareAlertMessage", comment: ""), delegate: self, cancelButtonTitle: NSLocalizedString("Cancel", comment: ""))
+
+            let alert :UIAlertView = UIAlertView(title: NSLocalizedString("Firmware Upgrade", comment: ""), message: NSLocalizedString("FirmwareAlertMessage", comment: ""), delegate: self, cancelButtonTitle: NSLocalizedString("Cancel", comment: ""))
             alert.addButtonWithTitle(NSLocalizedString("Enter", comment: ""))
             alert.show()
             }
@@ -701,7 +700,7 @@ protocol SyncControllerDelegate {
     /**
     Called when a packet is received from the device
     */
-    func packetReceived(NevoPacket)
+    func packetReceived(packet: NevoPacket)
     /**
     Called when a peripheral connects or disconnects
     */

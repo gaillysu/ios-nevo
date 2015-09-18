@@ -37,7 +37,7 @@ class RealTimeCountSteps: NevoHKDataPoint {
         
         let stepCountQuantity = HKQuantity(unit:HKUnit.countUnit(), doubleValue: Double(mNumberOfSteps))
         
-        return HKQuantitySample(type: HKQuantityType.quantityTypeForIdentifier(HKQuantityTypeIdentifierStepCount),
+        return HKQuantitySample(type: HKQuantityType.quantityTypeForIdentifier(HKQuantityTypeIdentifierStepCount)!,
             quantity: stepCountQuantity,
             startDate: mDate, endDate: NSDate())
     }

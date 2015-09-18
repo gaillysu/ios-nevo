@@ -29,17 +29,17 @@ class SetGoalRequest : NevoRequest {
     override func getRawDataEx() -> NSArray {
     
        
-    var level :UInt8 = mThisGoal.getGoalIntensity().rawValue
-    var display:UInt8 = 0  //default is step goal showing
-    var goal_dist = 10000 //unit ??cm
+    let level :UInt8 = mThisGoal.getGoalIntensity().rawValue
+    let display:UInt8 = 0  //default is step goal showing
+    let goal_dist = 10000 //unit ??cm
   
-    var goal_steps = mThisGoal.getType() == NumberOfStepsGoal().getType() ? mThisGoal.getValue() : 0
+    let goal_steps = mThisGoal.getType() == NumberOfStepsGoal().getType() ? mThisGoal.getValue() : 0
         
-    var goal_carlories = 2000 // unit ??
-    var goal_time = 100 //unit ??
-    var goal_stroke = 3000 // unit ???
+    let goal_carlories = 2000 // unit ??
+    let goal_time = 100 //unit ??
+    let goal_stroke = 3000 // unit ???
         
-    var values1 :[UInt8] = [0x00,SetGoalRequest.HEADER(),level,display,
+    let values1 :[UInt8] = [0x00,SetGoalRequest.HEADER(),level,display,
         UInt8(goal_dist&0xFF),
         UInt8((goal_dist>>8)&0xFF),
         UInt8((goal_dist>>16)&0xFF),
@@ -58,7 +58,7 @@ class SetGoalRequest : NevoRequest {
         UInt8((goal_time>>24)&0xFF)
         ]
         
-    var values2 :[UInt8] = [0xFF,SetGoalRequest.HEADER(),
+    let values2 :[UInt8] = [0xFF,SetGoalRequest.HEADER(),
         UInt8(goal_stroke&0xFF),
         UInt8((goal_stroke>>8)&0xFF),
         UInt8((goal_stroke>>16)&0xFF),

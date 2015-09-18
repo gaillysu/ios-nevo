@@ -24,13 +24,13 @@ class HelpView: UIView {
         title.font = AppTheme.FONT_RALEWAY_LIGHT(mSize: 25)
         title.textAlignment = NSTextAlignment.Center
 
-        var fileArray = GET_FIRMWARE_FILES("help")
+        let fileArray = GET_FIRMWARE_FILES("help")
         for tmpfile in fileArray {
-            var selectedFile = tmpfile as! NSURL
-            var fileName:String? = selectedFile.path!.lastPathComponent
-            var fileExtension:String? = selectedFile.pathExtension
+            let selectedFile = tmpfile as! NSURL
+            let fileName:String? = (selectedFile.path! as NSString).lastPathComponent
+            let fileExtension:String? = selectedFile.pathExtension
             if fileName=="index.html"{
-                var request:NSURLRequest = NSURLRequest(URL: NSURL(fileURLWithPath: selectedFile.path!)!)
+                let request:NSURLRequest = NSURLRequest(URL: NSURL(fileURLWithPath: selectedFile.path!))
                 helpWebView.loadRequest(request)
             }
         }

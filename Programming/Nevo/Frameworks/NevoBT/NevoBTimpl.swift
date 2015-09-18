@@ -99,7 +99,7 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
         //We can't be sure if the Manager is ready, so let's try
         if(self.isBluetoothEnabled()) {
             
-            var services:[AnyObject] = [mProfile!.CONTROL_SERVICE]
+            let services:[CBUUID] = [mProfile!.CONTROL_SERVICE]
             
             //No address was specified, we'll search for devices with the right profile.
     
@@ -122,7 +122,7 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
             
             
             //Here, we search for known devices
-            if let systemConnected = mManager?.retrieveConnectedPeripheralsWithServices(services) as? [CBPeripheral] {
+            if let systemConnected:[CBPeripheral] = mManager?.retrieveConnectedPeripheralsWithServices(services) {
             
             for peripheral in systemConnected {
                 
@@ -141,7 +141,7 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
             //Maybe the Manager is not ready yet, let's try again after a delay
             AppTheme.DLog("Bluetooth Manager unavailable or not initialised, let's retry after a delay")
             
-            var dispatchTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, Int64(RETRY_DURATION * Double(NSEC_PER_SEC)))
+            let dispatchTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, Int64(RETRY_DURATION * Double(NSEC_PER_SEC)))
             dispatch_after(dispatchTime, dispatch_get_main_queue(), {
                 self.scanAndConnect()
             })
@@ -162,7 +162,7 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
             
             
             //Here, we try to retreive the given peripheral
-            if let potentialMatches = mManager?.retrievePeripheralsWithIdentifiers([peripheralAddress]) as? [CBPeripheral] {
+            if let potentialMatches:[CBPeripheral] = mManager?.retrievePeripheralsWithIdentifiers([peripheralAddress]){
             
                 for peripheral in potentialMatches {
                 
@@ -181,7 +181,7 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
             //Maybe the Manager is not ready yet, let's try again after a delay
             AppTheme.DLog("Bluetooth Manager unavailable or not initialised, let's retry after a delay")
             
-            var dispatchTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, Int64(RETRY_DURATION * Double(NSEC_PER_SEC)))
+            let dispatchTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, Int64(RETRY_DURATION * Double(NSEC_PER_SEC)))
             dispatch_after(dispatchTime, dispatch_get_main_queue(), {
                 self.connectToAddress(peripheralAddress)
             })
@@ -208,7 +208,7 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
     /**
     Invoked when the central discovers a compatible device while scanning.
     */
-    func centralManager(central: CBCentralManager!, didDiscoverPeripheral peripheral: CBPeripheral!, advertisementData: [NSObject : AnyObject]!, RSSI: NSNumber!) {
+    func centralManager(central: CBCentralManager, didDiscoverPeripheral peripheral: CBPeripheral, advertisementData: [String : AnyObject], RSSI: NSNumber){
     
         self.matchingPeripheralFound(peripheral)
     
@@ -240,7 +240,7 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
     Invoked whenever a connection is succesfully created with the peripheral.
     Discover available services on the peripheral and notifies our delegate
     */
-    func centralManager(central: CBCentralManager!, didConnectPeripheral aPeripheral: CBPeripheral!) {
+    func centralManager(central: CBCentralManager, didConnectPeripheral aPeripheral: CBPeripheral) {
         
         AppTheme.DLog("***Peripheral connected : \(aPeripheral.name)***")
         
@@ -259,10 +259,10 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
     Invoked upon completion of a -[discoverServices:] request.
     Discover available characteristics on interested services
     */
-    func peripheral(aPeripheral: CBPeripheral!, didDiscoverServices error: NSError!) {
+    func peripheral(aPeripheral: CBPeripheral, didDiscoverServices error: NSError?) {
     
         //Our aim is to subscribe to the callback characteristic, so we'll have to find it in the control service
-        if let services = aPeripheral.services as? [CBService] {
+        if let services:[CBService] = aPeripheral.services{
         
             for aService:CBService in services {
                 AppTheme.DLog("Service found with UUID : \(aService.UUID.UUIDString)")
@@ -285,11 +285,11 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
     Invoked upon completion of a -[discoverCharacteristics:forService:] request.
     Perform appropriate operations on interested characteristics
     */
-    func peripheral(aPeripheral:CBPeripheral!, didDiscoverCharacteristicsForService service:CBService!, error :NSError!) {
+    func peripheral(aPeripheral:CBPeripheral, didDiscoverCharacteristicsForService service:CBService, error :NSError?) {
     
         AppTheme.DLog("Service : \(service.UUID.UUIDString)")
     
-        if let characteristics = service.characteristics as? [CBCharacteristic] {
+        if let characteristics:[CBCharacteristic] = service.characteristics {
             for aChar:CBCharacteristic in characteristics {
             
                 if(aChar.UUID==mProfile?.CALLBACK_CHARACTERISTIC ) {
@@ -318,30 +318,30 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
     /*
     Invoked upon completion of a -[readValueForCharacteristic:] request or on the reception of a notification/indication.
     */
-    func peripheral(aPeripheral:CBPeripheral!, didUpdateValueForCharacteristic characteristic:CBCharacteristic!, error  :NSError!) {
+    func peripheral(aPeripheral:CBPeripheral, didUpdateValueForCharacteristic characteristic:CBCharacteristic, error  :NSError?) {
         
         //We received a value, if it did came from the calllback char, let's return it
         if (characteristic.UUID==mProfile?.CALLBACK_CHARACTERISTIC)
         {
             
-            if error == nil && characteristic.value != nil && aPeripheral.identifier != nil {
-                AppTheme.DLog("Received : \(characteristic.UUID.UUIDString) \(hexString(characteristic.value))")
+            if error == nil && characteristic.value != nil {
+                AppTheme.DLog("Received : \(characteristic.UUID.UUIDString) \(hexString(characteristic.value!))")
                 
                 /* It is valid data, let's return it to our delegate */
-                mDelegate?.packetReceived( RawPacketImpl(data: characteristic.value , profile: mProfile!) ,  fromAddress : aPeripheral.identifier )
+                mDelegate?.packetReceived( RawPacketImpl(data: characteristic.value! , profile: mProfile!) ,  fromAddress : aPeripheral.identifier )
             }
         }
     
         
         else if(characteristic.UUID==CBUUID(string: "00002a26-0000-1000-8000-00805f9b34fb")) {
-            mFirmwareVersion = NSString(data: characteristic.value, encoding: NSUTF8StringEncoding)
+            mFirmwareVersion = NSString(data: characteristic.value!, encoding: NSUTF8StringEncoding)
             AppTheme.DLog("get firmware version char : \(characteristic.UUID.UUIDString), version : \(mFirmwareVersion)")
             //tell OTA new version
             mDelegate?.firmwareVersionReceived(DfuFirmwareTypes.APPLICATION, version: mFirmwareVersion!)
         }
         else if(characteristic.UUID==CBUUID(string: "00002a28-0000-1000-8000-00805f9b34fb")) {
             if(characteristic.value != nil){
-                mSoftwareVersion = NSString(data: characteristic.value, encoding: NSUTF8StringEncoding)
+                mSoftwareVersion = NSString(data: characteristic.value!, encoding: NSUTF8StringEncoding)
             }
 
             AppTheme.DLog("get software version char : \(characteristic.UUID.UUIDString), version : \(mSoftwareVersion)")
@@ -353,7 +353,7 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
     /*
     Invoked upon completion of a -[writeValueForCharacteristic:] request
     */
-    func peripheral(_peripheral:CBPeripheral!, didWriteValueForCharacteristic characteristic:CBCharacteristic!, error :NSError!) {
+    func peripheral(_peripheral:CBPeripheral, didWriteValueForCharacteristic characteristic:CBCharacteristic, error :NSError?) {
     
         if (error != nil) {
             AppTheme.DLog("Failed to write value for characteristic \(characteristic), reason: \(error)")
@@ -368,7 +368,7 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
     */
     func sendRequest(request:Request) {
 
-        if let services = mPeripheral?.services as? [CBService] {
+        if let services:[CBService] = mPeripheral?.services{
             
             if( mProfile?.CALLBACK_CHARACTERISTIC != request.getTargetProfile().CALLBACK_CHARACTERISTIC ) {
                 //We didn't subscribe to this profile's CallbackCharacteristic, there have to be a mistake somewhere
@@ -381,7 +381,7 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
                 
                 if(service.UUID == request.getTargetProfile().CONTROL_SERVICE) {
                     
-                    if let characteristics = service.characteristics as? [CBCharacteristic] {
+                    if let characteristics:[CBCharacteristic] = service.characteristics{
                     
                         for charac:CBCharacteristic in characteristics {
                         
@@ -434,7 +434,7 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
     func disconnect() {
         if(mPeripheral != nil)
         {
-            mManager?.cancelPeripheralConnection(mPeripheral)
+            mManager?.cancelPeripheralConnection(mPeripheral!)
             mDelegate?.connectionStateChanged(false, fromAddress: mPeripheral?.identifier)
         }
         setPeripheral(nil)
@@ -445,14 +445,14 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
     Invoked whenever an existing connection with the peripheral is torn down.
     Reset local variables and notifies our delegate
     */
-    func centralManager(central: CBCentralManager!, didDisconnectPeripheral aPeripheral: CBPeripheral!, error : NSError!) {
+    func centralManager(central: CBCentralManager, didDisconnectPeripheral aPeripheral: CBPeripheral, error : NSError?) {
     
         AppTheme.DLog("***Peripheral disconnected : \(aPeripheral.name)***")
     
         if(error != nil) {
-            AppTheme.DLog("Error : \(error.localizedDescription) for peripheral : \(aPeripheral.name)")
+            AppTheme.DLog("Error : \(error!.localizedDescription) for peripheral : \(aPeripheral.name)")
         }
-    
+
 
         //Let's forget this device
         setPeripheral(nil)
@@ -538,7 +538,7 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
     Converts a binary value to HEX
     */
     private func hexString(data:NSData) -> NSString {
-        var str = NSMutableString()
+        let str = NSMutableString()
         let bytes = UnsafeBufferPointer<UInt8>(start: UnsafePointer(data.bytes), count:data.length)
         for byte in bytes {
             str.appendFormat("%02hhx", byte)

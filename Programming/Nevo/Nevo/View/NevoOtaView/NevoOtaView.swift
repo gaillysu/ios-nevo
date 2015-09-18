@@ -122,7 +122,7 @@ class OTAProgress: CAShapeLayer {
     Implementation of the animation function
     */
     private func startAnimation() {
-        var pathAnimation:CABasicAnimation = CABasicAnimation(keyPath: "strokeEnd")
+        let pathAnimation:CABasicAnimation = CABasicAnimation(keyPath: "strokeEnd")
         pathAnimation.duration = 1.0
         pathAnimation.fromValue = initialProgress;
         pathAnimation.toValue = percent;
@@ -195,9 +195,9 @@ class NevoOtaView: UIView {
             OTAprogressView?.setProgressColor(AppTheme.NEVO_SOLAR_YELLOW())
             OTAprogressView?.frame = CGRectMake(nevoWacthImage.frame.origin.x, nevoWacthImage.frame.origin.y, nevoWacthImage.frame.size.width, nevoWacthImage.frame.size.height)
             OTAprogressView?.setProgress(progresValue)
-            self.layer.addSublayer(OTAprogressView)
+            self.layer.addSublayer(OTAprogressView!)
 
-            ReUpgradeButton = UIButton.buttonWithType(UIButtonType.Custom) as? UIButton
+            ReUpgradeButton = UIButton(type:UIButtonType.Custom)
             ReUpgradeButton!.frame = CGRectMake(0, 0, 120, 40)
             ReUpgradeButton!.setTitle(NSLocalizedString("Re-Upgrade", comment: ""), forState: UIControlState.Normal)
             ReUpgradeButton!.titleLabel?.font = AppTheme.FONT_RALEWAY_LIGHT(mSize: 15)
@@ -212,7 +212,7 @@ class NevoOtaView: UIView {
         }
 
         let messageS:String  = String(format: "%@",NSLocalizedString("otahelp",comment:""))
-        var labelframe:CGRect  = AppTheme.getLabelSize(messageS, andObject: messageLabel.frame,andFont: AppTheme.FONT_RALEWAY_LIGHT(mSize: 16))
+        let labelframe:CGRect  = AppTheme.getLabelSize(messageS, andObject: messageLabel.frame,andFont: AppTheme.FONT_RALEWAY_LIGHT(mSize: 16))
         var labelSize:CGRect = labelframe;
         labelSize.size.height = labelframe.size.height;
         messageLabel.frame = labelSize
@@ -252,7 +252,7 @@ class NevoOtaView: UIView {
     func setLatestVersion(string:String){
         let messageS:String  = string
         taskLabel.font = AppTheme.FONT_RALEWAY_LIGHT(mSize: 15)
-        var labelframe:CGRect  = AppTheme.getWidthLabelSize(messageS, andObject: taskLabel.frame,andFont: AppTheme.FONT_RALEWAY_LIGHT(mSize: 15))
+        let labelframe:CGRect  = AppTheme.getWidthLabelSize(messageS, andObject: taskLabel.frame,andFont: AppTheme.FONT_RALEWAY_LIGHT(mSize: 15))
         taskLabel.frame = labelframe
         taskLabel.text = string
     }

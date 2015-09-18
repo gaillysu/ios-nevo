@@ -37,11 +37,14 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
         //init the ota
         mNevoOtaController = NevoOtaController(controller: self)
         initValue()
+    }
 
+    override func viewDidAppear(animated: Bool) {
+        mNevoOtaController!.setConnectControllerDelegate2Self()
         if(mNevoOtaController!.isConnected())
         {
-            var currentSoftwareVersion = mNevoOtaController!.getSoftwareVersion() as String
-            var currentFirmwareVersion = mNevoOtaController!.getFirmwareVersion() as String
+            let currentSoftwareVersion = mNevoOtaController!.getSoftwareVersion() as String
+            let currentFirmwareVersion = mNevoOtaController!.getFirmwareVersion() as String
             if(currentSoftwareVersion.isEmpty || currentFirmwareVersion.isEmpty)
             {
                 return
@@ -49,11 +52,10 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
             buildinSoftwareVersion = GET_SOFTWARE_VERSION()
             buildinFirmwareVersion = GET_FIRMWARE_VERSION()
 
-            var fileArray = GET_FIRMWARE_FILES("Firmwares")
+            let fileArray = GET_FIRMWARE_FILES("Firmwares")
             for tmpfile in fileArray {
-                var selectedFile = tmpfile as! NSURL
-                var fileName:String? = selectedFile.path!.lastPathComponent
-                var fileExtension:String? = selectedFile.pathExtension
+                let selectedFile = tmpfile as! NSURL
+                let fileExtension:String? = selectedFile.pathExtension
                 if fileExtension == "hex"{
                     firmwareURLs.append(selectedFile)
                     allTaskNumber++
@@ -62,9 +64,8 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
             }
 
             for tmpfile in fileArray {
-                var selectedFile = tmpfile as! NSURL
-                var fileName:String? = selectedFile.path!.lastPathComponent
-                var fileExtension:String? = selectedFile.pathExtension
+                let selectedFile = tmpfile as! NSURL
+                let fileExtension:String? = selectedFile.pathExtension
 
                 if fileExtension == "bin"{
                     firmwareURLs.append(selectedFile)
@@ -72,21 +73,18 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
                     break
                 }
             }
-            
-            if( currentSoftwareVersion.toInt() < buildinSoftwareVersion
-               || currentFirmwareVersion.toInt() < buildinFirmwareVersion )
+
+            if(Int(currentSoftwareVersion) < buildinSoftwareVersion
+                || Int(currentFirmwareVersion) < buildinFirmwareVersion )
             {
-                var updatemsg:String = NSLocalizedString("current FW version", comment: "") + "(\(currentFirmwareVersion),\(currentSoftwareVersion))," + NSLocalizedString("latest FW version", comment: "") + "(\(buildinFirmwareVersion),\(buildinSoftwareVersion)). " + NSLocalizedString("are you sure", comment: "")
-                
-                var alert :UIAlertView = UIAlertView(title: NSLocalizedString("Firmware Upgrade", comment: ""), message: updatemsg, delegate: self, cancelButtonTitle: NSLocalizedString("Cancel", comment: ""))
+                let updatemsg:String = NSLocalizedString("current FW version", comment: "") + "(\(currentFirmwareVersion),\(currentSoftwareVersion))," + NSLocalizedString("latest FW version", comment: "") + "(\(buildinFirmwareVersion),\(buildinSoftwareVersion)). " + NSLocalizedString("are you sure", comment: "")
+
+                let alert :UIAlertView = UIAlertView(title: NSLocalizedString("Firmware Upgrade", comment: ""), message: updatemsg, delegate: self, cancelButtonTitle: NSLocalizedString("Cancel", comment: ""))
                 alert.addButtonWithTitle(NSLocalizedString("Enter", comment: ""))
                 alert.show()
             }else{
                 nevoOtaView.setLatestVersion(NSLocalizedString("latestversion",comment: ""))
-                var dispatchTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, Int64(1.0 * Double(NSEC_PER_SEC)))
-                dispatch_after(dispatchTime, dispatch_get_main_queue(), {
-                    //nevoOtaView.ReUpgradeButton?.hidden = true
-                })
+                nevoOtaView.ReUpgradeButton?.hidden = true
             }
         }
     }
@@ -109,12 +107,7 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    
 
-    override func viewDidAppear(animated: Bool) {
-        mNevoOtaController!.setConnectControllerDelegate2Self()
-    }
     
     //init data function
     private func initValue()
@@ -141,7 +134,7 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
         
         currentTaskNumber++;
         selectedFileURL = firmwareURLs[currentIndex]
-        var fileExtension:String? = selectedFileURL!.pathExtension
+        let fileExtension:String? = selectedFileURL!.pathExtension
         if fileExtension == "bin"
         {
             enumFirmwareType = DfuFirmwareTypes.SOFTDEVICE
@@ -200,7 +193,7 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
                 {
                     message = NSLocalizedString("UpdateSuccess2", comment: "")
                 }
-                var alert :UIAlertView = UIAlertView(title: "Firmware Upgrade", message: message, delegate: nil, cancelButtonTitle: "OK")
+                let alert :UIAlertView = UIAlertView(title: "Firmware Upgrade", message: message, delegate: nil, cancelButtonTitle: "OK")
                 alert.show()
                 self.nevoOtaView.upgradeSuccessful()
                 self.mNevoOtaController!.reset(false)
@@ -212,10 +205,10 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
                 self.initValue()
                 self.nevoOtaView.ReUpgradeButton?.setTitle("继续Mcu", forState: UIControlState.Normal)
                 if(self.currentIndex == 1){
-                    var alert :UIAlertView = UIAlertView(title: "Firmware Upgrade", message: "Ble升级完成请打开手表蓝牙,确保连接上并弹出配对信息点击配对后在点击继续Mcu按钮,不然会出现超时现象", delegate: nil, cancelButtonTitle: "OK")
+                    let alert :UIAlertView = UIAlertView(title: "Firmware Upgrade", message: "Ble升级完成请打开手表蓝牙,确保连接上并弹出配对信息点击配对后在点击继续Mcu按钮,不然会出现超时现象", delegate: nil, cancelButtonTitle: "OK")
                     alert.show()
                 }
-                var dispatchTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, Int64(3.0 * Double(NSEC_PER_SEC)))
+                let dispatchTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, Int64(3.0 * Double(NSEC_PER_SEC)))
                 dispatch_after(dispatchTime, dispatch_get_main_queue(), {
                     self.mNevoOtaController!.reset(false)
                     //self.uploadPressed()
@@ -232,7 +225,7 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
             
             self.initValue()
             
-            var alert :UIAlertView = UIAlertView(title: "Firmware Upgrade", message: errString as String, delegate: nil, cancelButtonTitle: "OK")
+            let alert :UIAlertView = UIAlertView(title: "Firmware Upgrade", message: errString as String, delegate: nil, cancelButtonTitle: "OK")
             alert.show()
             self.mNevoOtaController!.reset(false)
         });
@@ -317,9 +310,7 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
     func onFileSelected(selectedFile:NSURL){
         AppTheme.DLog("onFileSelected")
         if (selectedFile.path != nil) {
-            var fileName:String? = selectedFile.path!.lastPathComponent
-            var fileExtension:String? = selectedFile.pathExtension
-            var fileManager = NSFileManager.defaultManager()
+            let fileExtension:String? = selectedFile.pathExtension
             //set the file information
             
             selectedFileURL = selectedFile
@@ -344,7 +335,7 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
         if(segue.identifier == "Ota2SelectFile"){
-            var selectFile = segue.destinationViewController as! SelectFileController
+            let selectFile = segue.destinationViewController as! SelectFileController
             selectFile.mFileDelegate = self
         }
     }

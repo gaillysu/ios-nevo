@@ -22,8 +22,7 @@ class SetRTCRequest: NevoRequest {
         
         let now:NSDate = NSDate()
         let cal:NSCalendar = NSCalendar.currentCalendar()
-        let unitFlags:NSCalendarUnit = NSCalendarUnit.YearCalendarUnit | NSCalendarUnit.MonthCalendarUnit | NSCalendarUnit.DayCalendarUnit | NSCalendarUnit.HourCalendarUnit | NSCalendarUnit.MinuteCalendarUnit | NSCalendarUnit.SecondCalendarUnit
-        let dd:NSDateComponents = cal.components(unitFlags, fromDate: now);
+        let dd:NSDateComponents = cal.components([NSCalendarUnit.Year, NSCalendarUnit.Month, NSCalendarUnit.Day ,NSCalendarUnit.Hour, NSCalendarUnit.Minute, NSCalendarUnit.Second,], fromDate: now);
         
         let year:NSInteger = dd.year;
         let month:NSInteger = dd.month;
@@ -32,7 +31,7 @@ class SetRTCRequest: NevoRequest {
         let min:NSInteger = dd.minute;
         let sec:NSInteger = dd.second;
         
-        var values1 :[UInt8] = [0x00,SetRTCRequest.HEADER(),
+        let values1 :[UInt8] = [0x00,SetRTCRequest.HEADER(),
             UInt8(year&0xFF),
             UInt8((year>>8)&0xFF),
             UInt8(month&0xFF),
@@ -42,7 +41,7 @@ class SetRTCRequest: NevoRequest {
             UInt8(sec&0xFF),
             0,0,0,0,0,0,0,0,0,0,0]
         
-        var values2 :[UInt8] = [0xFF,SetRTCRequest.HEADER(),
+        let values2 :[UInt8] = [0xFF,SetRTCRequest.HEADER(),
             0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
         
         

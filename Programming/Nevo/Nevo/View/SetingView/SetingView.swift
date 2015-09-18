@@ -46,7 +46,6 @@ class SetingView: UIView {
     func NotificationlistCell(indexPath:NSIndexPath,dataSource:[NotificationSetting])->UITableViewCell {
         let endCellID:NSString = "SetingCell"
         var endCell = tableListView.dequeueReusableCellWithIdentifier(endCellID as String) as? TableListCell
-        var StatesLabel:UILabel!
         
         if (endCell == nil) {
             let nibs:NSArray = NSBundle.mainBundle().loadNibNamed("TableListCell", owner: self, options: nil)
@@ -105,7 +104,7 @@ class SetingView: UIView {
     func NotificationSwicthCell(indexPath:NSIndexPath)->UITableViewCell {
         let endCellID:String = "SwicthCell"
         var endCell:UITableViewCell?
-        endCell = tableListView.dequeueReusableCellWithIdentifier(endCellID) as? UITableViewCell
+        endCell = tableListView.dequeueReusableCellWithIdentifier(endCellID)
         
         if (endCell == nil) {
             endCell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: endCellID)

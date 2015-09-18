@@ -60,8 +60,7 @@ class ClockView: UIControl {
     func currentTimer() {
         let now:NSDate = NSDate()
         let cal:NSCalendar = NSCalendar.currentCalendar()
-        let unitFlags:NSCalendarUnit = NSCalendarUnit.YearCalendarUnit | NSCalendarUnit.MonthCalendarUnit | NSCalendarUnit.DayCalendarUnit | NSCalendarUnit.HourCalendarUnit | NSCalendarUnit.MinuteCalendarUnit | NSCalendarUnit.SecondCalendarUnit
-        let dd:NSDateComponents = cal.components(unitFlags, fromDate: now);
+        let dd:NSDateComponents = cal.components([NSCalendarUnit.Year, NSCalendarUnit.Month, NSCalendarUnit.Day ,NSCalendarUnit.Hour, NSCalendarUnit.Minute, NSCalendarUnit.Second,], fromDate: now);
         let seconds:NSInteger = dd.second
         let hour:NSInteger = dd.hour;
         let minute:NSInteger = dd.minute;

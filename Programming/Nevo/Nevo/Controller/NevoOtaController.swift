@@ -80,20 +80,20 @@ class NevoOtaController : NSObject,ConnectionControllerDelegate {
     }
     private func openFile(fileURL:NSURL)
     {
-        var selectedFileName:NSString  = fileURL.lastPathComponent!
-        var filetype:NSString = selectedFileName.substringFromIndex(selectedFileName.length - 3)
+        let selectedFileName:NSString  = fileURL.lastPathComponent!
+        let filetype:NSString = selectedFileName.substringFromIndex(selectedFileName.length - 3)
         
         AppTheme.DLog("selected file extension is \(filetype)")
         
         if filetype == "hex"
         {
-            var hexFileData :NSData = NSData(contentsOfURL: fileURL)!;
+            let hexFileData :NSData = NSData(contentsOfURL: fileURL)!;
             if (hexFileData.length > 0) {
                 convertHexFileToBin(hexFileData)
             }
             else {
                 AppTheme.DLog("Error: file is empty!");
-                var errorMessage = "Error on openning file\n Message: file is empty or not exist";
+                let errorMessage = "Error on openning file\n Message: file is empty or not exist";
                 mDelegate?.onError(errorMessage)
             }
         }
@@ -132,8 +132,8 @@ class NevoOtaController : NSObject,ConnectionControllerDelegate {
     for (var index:Int = 0; index<Int(enumPacketOption.PACKETS_NOTIFICATION_INTERVAL.rawValue); index++) {
     if (self.writingPacketNumber > self.numberOfPackets-2) {
         AppTheme.DLog("writing last packet");
-        var dataRange : NSRange = NSMakeRange(self.writingPacketNumber*enumPacketOption.PACKET_SIZE.rawValue, self.bytesInLastPacket);
-        var nextPacketData : NSData = (binFileData?.subdataWithRange(dataRange))!
+        let dataRange : NSRange = NSMakeRange(self.writingPacketNumber*enumPacketOption.PACKET_SIZE.rawValue, self.bytesInLastPacket);
+        let nextPacketData : NSData = (binFileData?.subdataWithRange(dataRange))!
         
         AppTheme.DLog("writing packet number \(self.writingPacketNumber+1) ...");
         AppTheme.DLog("packet data: \(nextPacketData)");
@@ -149,9 +149,9 @@ class NevoOtaController : NSObject,ConnectionControllerDelegate {
         break;
 
     }
-    var dataRange : NSRange = NSMakeRange(self.writingPacketNumber*enumPacketOption.PACKET_SIZE.rawValue, enumPacketOption.PACKET_SIZE.rawValue);
+    let dataRange : NSRange = NSMakeRange(self.writingPacketNumber*enumPacketOption.PACKET_SIZE.rawValue, enumPacketOption.PACKET_SIZE.rawValue);
         
-    var    nextPacketData : NSData  = (self.binFileData?.subdataWithRange(dataRange))!
+    let    nextPacketData : NSData  = (self.binFileData?.subdataWithRange(dataRange))!
     AppTheme.DLog("writing packet number \(self.writingPacketNumber+1) ...");
     AppTheme.DLog("packet data: \(nextPacketData)");
         
@@ -248,7 +248,7 @@ class NevoOtaController : NSObject,ConnectionControllerDelegate {
     private func processStartDFUResponseStatus()
     {
     AppTheme.DLog("processStartDFUResponseStatus");
-    var errorMessage:NSString = "Error on StartDFU\n Message: \(responseErrorMessage(dfuResponse.responseStatus))"
+    let errorMessage:NSString = "Error on StartDFU\n Message: \(responseErrorMessage(dfuResponse.responseStatus))"
     switch (dfuResponse.responseStatus) {
     case DfuOperationStatus.OPERATION_SUCCESSFUL_RESPONSE.rawValue:
     AppTheme.DLog("successfully received startDFU notification");
@@ -276,7 +276,7 @@ class NevoOtaController : NSObject,ConnectionControllerDelegate {
     }
     else {
     AppTheme.DLog("Firmware Image failed, Error Status: \(responseErrorMessage(dfuResponse.responseStatus))");
-    var errorMessage = "Error on Receive Firmware Image\n Message: \(responseErrorMessage(dfuResponse.responseStatus))";
+    let errorMessage = "Error on Receive Firmware Image\n Message: \(responseErrorMessage(dfuResponse.responseStatus))";
     mDelegate?.onError(errorMessage)
     resetSystem()
     }
@@ -292,7 +292,7 @@ class NevoOtaController : NSObject,ConnectionControllerDelegate {
     }
     else {
         AppTheme.DLog("Firmware validate failed, Error Status: \( responseErrorMessage(dfuResponse.responseStatus))");
-        var errorMessage = "Error on Validate Firmware Request\n Message: \(responseErrorMessage(dfuResponse.responseStatus))";
+        let errorMessage = "Error on Validate Firmware Request\n Message: \(responseErrorMessage(dfuResponse.responseStatus))";
         mDelegate?.onError(errorMessage)
         resetSystem()
     }
@@ -359,7 +359,7 @@ class NevoOtaController : NSObject,ConnectionControllerDelegate {
             if state == DFUControllerState.SEND_RECONNECT
             {
                 state = DFUControllerState.SEND_START_COMMAND
-                var dispatchTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, Int64(1.0 * Double(NSEC_PER_SEC)))
+                let dispatchTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, Int64(1.0 * Double(NSEC_PER_SEC)))
                 dispatch_after(dispatchTime, dispatch_get_main_queue(), {
                     self.mConnectionController!.sendRequest(SetOTAModeRequest())
                 })
@@ -369,7 +369,7 @@ class NevoOtaController : NSObject,ConnectionControllerDelegate {
             else if state == DFUControllerState.DISCOVERING
             {
                 state = DFUControllerState.SEND_FIRMWARE_DATA
-                var dispatchTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, Int64(1.0 * Double(NSEC_PER_SEC)))
+                let dispatchTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, Int64(1.0 * Double(NSEC_PER_SEC)))
                 dispatch_after(dispatchTime, dispatch_get_main_queue(), {
                     self.mConnectionController!.sendRequest(StartOTARequest())
                     self.mConnectionController!.sendRequest(writeFileSizeRequest(filelength: self.binFileSize))
@@ -384,7 +384,7 @@ class NevoOtaController : NSObject,ConnectionControllerDelegate {
                 {
                     self.state = DFUControllerState.SEND_RECONNECT
                     
-                    var dispatchTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, Int64(1.0 * Double(NSEC_PER_SEC)))
+                    let dispatchTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, Int64(1.0 * Double(NSEC_PER_SEC)))
                     dispatch_after(dispatchTime, dispatch_get_main_queue(), {
                         self.mConnectionController!.connect()
                     })
@@ -395,7 +395,7 @@ class NevoOtaController : NSObject,ConnectionControllerDelegate {
                     //reset it by BLE peer disconnect
                     self.mConnectionController!.setOTAMode(false,Disconnect:false)
                     
-                    var dispatchTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, Int64(1.0 * Double(NSEC_PER_SEC)))
+                    let dispatchTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, Int64(1.0 * Double(NSEC_PER_SEC)))
                     dispatch_after(dispatchTime, dispatch_get_main_queue(), {
                         AppTheme.DLog("***********again set OTA mode,forget it firstly,and scan DFU service*******")
                         //when switch to DFU mode, the identifier has changed another one
@@ -415,7 +415,7 @@ class NevoOtaController : NSObject,ConnectionControllerDelegate {
                 if self.state == DFUControllerState.SEND_RECONNECT
                 {
                     self.state = DFUControllerState.SEND_START_COMMAND
-                    var dispatchTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, Int64(1.0 * Double(NSEC_PER_SEC)))
+                    let dispatchTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, Int64(1.0 * Double(NSEC_PER_SEC)))
                     dispatch_after(dispatchTime, dispatch_get_main_queue(), {
                     self.mConnectionController!.sendRequest(Mcu_SetOTAModeRequest())
                     })
@@ -427,7 +427,7 @@ class NevoOtaController : NSObject,ConnectionControllerDelegate {
                 if self.state == DFUControllerState.IDLE
                 {
                 self.state = DFUControllerState.SEND_RECONNECT
-                var dispatchTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, Int64(1.0 * Double(NSEC_PER_SEC)))
+                let dispatchTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, Int64(1.0 * Double(NSEC_PER_SEC)))
                 dispatch_after(dispatchTime, dispatch_get_main_queue(), {
                     
                     self.mConnectionController!.connect()
@@ -481,7 +481,7 @@ class NevoOtaController : NSObject,ConnectionControllerDelegate {
         if lastprogress == progress  && progress != 100.0
         {
             AppTheme.DLog("* * * OTA timeout * * *")
-            var errorMessage = NSLocalizedString("ota_timeout",comment: "") as NSString
+            let errorMessage = NSLocalizedString("ota_timeout",comment: "") as NSString
             mDelegate?.onError(errorMessage)
 
         }
@@ -501,7 +501,7 @@ class NevoOtaController : NSObject,ConnectionControllerDelegate {
         }
         else
         {
-            var errorMessage :NSString  = "Old DFU only supports Application upload"
+            let errorMessage :NSString  = "Old DFU only supports Application upload"
             mDelegate?.onError(errorMessage)
             resetSystem()
         }
@@ -538,9 +538,9 @@ class NevoOtaController : NSObject,ConnectionControllerDelegate {
     
     func MCU_openfirmware(firmwareURL:NSURL)
     {
-    var locData:NSData = NSData(contentsOfURL: firmwareURL)!;
+    let locData:NSData = NSData(contentsOfURL: firmwareURL)!;
     //remove first 16K bytes, remain 48k bytes
-    var currentRange :NSRange =  NSMakeRange(16*1024, locData.length - 16 * 1024);
+    let currentRange :NSRange =  NSMakeRange(16*1024, locData.length - 16 * 1024);
     
     firmwareDataBytesSent = 0
     curpage = 0
@@ -563,7 +563,7 @@ class NevoOtaController : NSObject,ConnectionControllerDelegate {
     {
         AppTheme.DLog("sendFirmwareData")
         //define one page request  object
-        var Onepage:Mcu_OnePageRequest = Mcu_OnePageRequest()
+        let Onepage:Mcu_OnePageRequest = Mcu_OnePageRequest()
         
     for var i:Int = 0; i < notificationPacketInterval && firmwareDataBytesSent < binFileSize; i++
     {
@@ -572,7 +572,7 @@ class NevoOtaController : NSObject,ConnectionControllerDelegate {
     if( i == 0)
     {
     //LSB format
-        var pagehead :[UInt8] = [
+        let pagehead :[UInt8] = [
             00,0x71,
             UInt8(curpage & 0xFF),
             UInt8((curpage>>8) & 0xFF),
@@ -593,11 +593,11 @@ class NevoOtaController : NSObject,ConnectionControllerDelegate {
         length = DFUCONTROLLER_PAGE_SIZE%DFUCONTROLLER_MAX_PACKET_SIZE;
     }
     
-    var currentRange:NSRange = NSMakeRange(self.firmwareDataBytesSent, length)
+    let currentRange:NSRange = NSMakeRange(self.firmwareDataBytesSent, length)
     
-    var currentData:NSData =  binFileData!.subdataWithRange(currentRange)
+    let currentData:NSData =  binFileData!.subdataWithRange(currentRange)
    
-    var fulldata:NSMutableData = NSMutableData()
+    let fulldata:NSMutableData = NSMutableData()
 
     if i == self.notificationPacketInterval - 1
     {
@@ -674,8 +674,8 @@ class NevoOtaController : NSObject,ConnectionControllerDelegate {
                     && databyte1[3] == 0xFF
                     )
                 {
-                    var TotalPageLo:UInt8 = UInt8(totalpage & 0xFF)
-                    var TotalPageHi:UInt8 = UInt8((totalpage>>8) & 0xFF)
+                    let TotalPageLo:UInt8 = UInt8(totalpage & 0xFF)
+                    let TotalPageHi:UInt8 = UInt8((totalpage>>8) & 0xFF)
                     
                     if (databyte1[4] == TotalPageLo
                         && databyte1[5] == TotalPageHi)
@@ -774,9 +774,9 @@ protocol NevoOtaControllerDelegate {
     func connectionStateChanged(isConnected : Bool)
     func onDFUStarted()
     func onDFUCancelled()
-    func onTransferPercentage(Int)
+    func onTransferPercentage(_: Int)
     func onSuccessfulFileTranferred()
-    func onError(NSString)
+    func onError(errorMessage: NSString)
     /**
     Call when finished OTA, will reconnect nevo and read firmware, refresh the firmware  to screen view
     @parameter whichfirmware, firmware type

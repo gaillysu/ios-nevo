@@ -31,15 +31,18 @@ class DaySleep : NevoHKDataPoint {
     }
 
     @objc func toHKQuantitySample() -> HKQuantitySample {
-        return HKQuantitySample()
+        let stepCountQuantity = HKQuantity(unit:HKUnit.countUnit(), doubleValue: Double(0))
+        return HKQuantitySample(type: HKQuantityType.quantityTypeForIdentifier(HKQuantityTypeIdentifierStepCount)!,
+            quantity: stepCountQuantity,
+            startDate: mDate, endDate: lateNight)
     }
     @objc func isUpdate()->Bool {return false}
 
     @objc func toHKCategorySample()-> HKCategorySample {
         
-        var sleepType = mIsAsleep ? (HKCategoryValueSleepAnalysis.Asleep.rawValue) : (HKCategoryValueSleepAnalysis.InBed.rawValue)
+        let sleepType = mIsAsleep ? (HKCategoryValueSleepAnalysis.Asleep.rawValue) : (HKCategoryValueSleepAnalysis.InBed.rawValue)
 
-        var categoryType:HKCategoryType = HKCategoryType.categoryTypeForIdentifier(HKCategoryTypeIdentifierSleepAnalysis)
+        let categoryType:HKCategoryType = HKCategoryType.categoryTypeForIdentifier(HKCategoryTypeIdentifierSleepAnalysis)!
         let sleepSample:HKCategorySample = HKCategorySample(type: categoryType, value: sleepType, startDate: mDate, endDate: lateNight);
         return sleepSample
     }

@@ -115,7 +115,7 @@ class alarmClockView: UIView {
     */
     func initPickerView(hour:Int,min:Int) {
         //Create a DatePicker backgroundView
-        var PickerbgView:UIView = UIView(frame: CGRectMake(0, 210, self.frame.size.width, self.frame.size.height))
+        let PickerbgView:UIView = UIView(frame: CGRectMake(0, 210, self.frame.size.width, self.frame.size.height))
         PickerbgView.backgroundColor = UIColor.clearColor()
         PickerbgView.tag = BAG_PICKER_TAG
         self.addSubview(PickerbgView)
@@ -142,7 +142,7 @@ class alarmClockView: UIView {
         PickerbgView.addSubview(buttonBgView)
 
         //Create a cancel button
-        let cancelButton = UIButton.buttonWithType(UIButtonType.System) as! UIButton
+        let cancelButton = UIButton(type:UIButtonType.System)
         cancelButton.frame = CGRectMake(0, datePicker.frame.origin.y-40, 60, 40)
         cancelButton.setTitle(NSLocalizedString("Cancel", comment: ""), forState: UIControlState.Normal)
         cancelButton.backgroundColor = UIColor.clearColor()
@@ -152,7 +152,7 @@ class alarmClockView: UIView {
 
         mCancelButton = cancelButton
         
-        let enterButton = UIButton.buttonWithType(UIButtonType.System) as! UIButton
+        let enterButton = UIButton(type:UIButtonType.System)
         enterButton.frame = CGRectMake(datePicker.frame.size.width-50, datePicker.frame.origin.y-40, 50, 40)
         enterButton.setTitle(NSLocalizedString("Enter", comment: ""), forState: UIControlState.Normal)
         enterButton.backgroundColor = UIColor.clearColor()

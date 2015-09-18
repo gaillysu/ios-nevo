@@ -24,10 +24,10 @@ class HomeController: UIViewController, SyncControllerDelegate ,ButtonManagerCal
 
         homeView.bulidHomeView(self)
 
-        let timer:NSTimer = NSTimer.scheduledTimerWithTimeInterval(10, target: self, selector:"timerAction:", userInfo: nil, repeats: true);
+        NSTimer.scheduledTimerWithTimeInterval(10, target: self, selector:"timerAction:", userInfo: nil, repeats: true);
         
         //TEST this is for test. pls not to remove it 
-                var tapAction = UITapGestureRecognizer(target: self, action: "testHandshake")
+                let tapAction = UITapGestureRecognizer(target: self, action: "testHandshake")
                 tapAction.numberOfTapsRequired = 2
                 homeView.addGestureRecognizer(tapAction)
         //end TEST
@@ -111,17 +111,17 @@ class HomeController: UIViewController, SyncControllerDelegate ,ButtonManagerCal
         
         if packet.getHeader() == GetStepsGoalRequest.HEADER()
         {
-            var thispacket = packet.copy() as DailyStepsNevoPacket
+            let thispacket = packet.copy() as DailyStepsNevoPacket
             
-            var dailySteps:Int = thispacket.getDailySteps()
-            var dailyStepGoal:Int = thispacket.getDailyStepsGoal()
+            let dailySteps:Int = thispacket.getDailySteps()
+            let dailyStepGoal:Int = thispacket.getDailyStepsGoal()
             
             //sync the Goal
             let userDefaults = NSUserDefaults.standardUserDefaults();
             userDefaults.setObject(dailyStepGoal,forKey:"NUMBER_OF_STEPS_GOAL_KEY")
             userDefaults.synchronize()
             
-            var percent :Float = Float(dailySteps)/Float(dailyStepGoal)
+            let percent :Float = Float(dailySteps)/Float(dailyStepGoal)
             
             AppTheme.DLog("get Daily Steps is: \(dailySteps), getDaily Goal is: \(dailyStepGoal),percent is: \(percent)")
             
@@ -132,7 +132,7 @@ class HomeController: UIViewController, SyncControllerDelegate ,ButtonManagerCal
             AppTheme.DLog("end handshake nevo");
             //blink once Clock
             self.homeView.getClockTimerView().setClockImage(AppTheme.GET_RESOURCES_IMAGE("clockview600_color"))
-            var dispatchTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, Int64(2.0 * Double(NSEC_PER_SEC)))
+            let dispatchTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, Int64(2.0 * Double(NSEC_PER_SEC)))
             dispatch_after(dispatchTime, dispatch_get_main_queue(), {
               self.homeView.getClockTimerView().setClockImage(AppTheme.GET_RESOURCES_IMAGE("clockView600"))
             })
@@ -157,7 +157,7 @@ class HomeController: UIViewController, SyncControllerDelegate ,ButtonManagerCal
             //We are currently not connected
             var isView:Bool = false
             for view in homeView.subviews {
-                let anView:UIView = view as! UIView
+                let anView:UIView = view
                 if anView.isEqual(homeView.animationView.bulibNoConnectView()) {
                     isView = true
                 }

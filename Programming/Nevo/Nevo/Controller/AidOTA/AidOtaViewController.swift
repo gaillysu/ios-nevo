@@ -38,7 +38,7 @@ class AidOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMan
         super.viewDidLoad()
         UIApplication.sharedApplication().idleTimerDisabled = true
         //
-        var alert :UIAlertView = UIAlertView(title: "Use warnings", message: "In the use of first aid mode, please forget all relevant Nevo pairing in the system Bluetooth settings", delegate: nil, cancelButtonTitle: "OK")
+        let alert :UIAlertView = UIAlertView(title: "Use warnings", message: "In the use of first aid mode, please forget all relevant Nevo pairing in the system Bluetooth settings", delegate: nil, cancelButtonTitle: "OK")
         alert.show()
         //init the ota
         mAidOtaController = AidOtaController(controller: self)
@@ -48,11 +48,11 @@ class AidOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMan
         
         checkConnection()
 
-        var fileArray = GET_FIRMWARE_FILES("Firmwares")
+        let fileArray = GET_FIRMWARE_FILES("Firmwares")
         for tmpfile in fileArray {
-            var selectedFile = tmpfile as! NSURL
-            var fileName:String? = selectedFile.path!.lastPathComponent
-            var fileExtension:String? = selectedFile.pathExtension
+            let selectedFile = tmpfile as! NSURL
+            let fileName:String? = (selectedFile.path! as NSString).lastPathComponent
+            let fileExtension:String? = selectedFile.pathExtension
             if fileExtension == "hex"
             {
                 firmwareURLs.append(selectedFile)
@@ -62,9 +62,9 @@ class AidOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMan
         }
 
         for tmpfile in fileArray {
-            var selectedFile = tmpfile as! NSURL
-            var fileName:String? = selectedFile.path!.lastPathComponent
-            var fileExtension:String? = selectedFile.pathExtension
+            let selectedFile = tmpfile as! NSURL
+            let fileName:String? = (selectedFile.path! as NSString).lastPathComponent
+            let fileExtension:String? = selectedFile.pathExtension
 
             if fileExtension == "bin"
             {
@@ -114,7 +114,7 @@ class AidOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMan
 
         currentTaskNumber++;
         selectedFileURL = firmwareURLs[currentIndex]
-        var fileExtension:String? = selectedFileURL!.pathExtension
+        let fileExtension:String? = selectedFileURL!.pathExtension
         if fileExtension == "bin"{
             enumFirmwareType = DfuFirmwareTypes.SOFTDEVICE
         }
@@ -187,19 +187,19 @@ class AidOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMan
             if enumFirmwareType == DfuFirmwareTypes.APPLICATION{
                 message = NSLocalizedString("UpdateSuccess2", comment: "")
             }
-            var alert :UIAlertView = UIAlertView(title: "Firmware Upgrade", message: message, delegate: nil, cancelButtonTitle: "OK")
+            let alert :UIAlertView = UIAlertView(title: "Firmware Upgrade", message: message, delegate: nil, cancelButtonTitle: "OK")
             alert.show()
             nevoOtaView.ReUpgradeButton?.hidden = true
             nevoOtaView.upgradeSuccessful()
             mAidOtaController!.reset(false)
-            var dispatchTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, Int64(3.0 * Double(NSEC_PER_SEC)))
+            let dispatchTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, Int64(3.0 * Double(NSEC_PER_SEC)))
             dispatch_after(dispatchTime, dispatch_get_main_queue(), {
                 self.dismissViewControllerAnimated(true, completion: nil)
             })
         }else{
             //mAidOtaController!.reset(false)
             //请确保重新点击配对按钮后再点击继续MCU升级,否则在升级的过程中会中断!
-            var alert :UIAlertView = UIAlertView(title: "Firmware Upgrade", message: "Please make sure that the re click on the pairing button is clicked and then click on the MCU upgrade, otherwise it will be interrupted in the process of upgrading!", delegate: nil, cancelButtonTitle: "OK")
+            let alert :UIAlertView = UIAlertView(title: "Firmware Upgrade", message: "Please make sure that the re click on the pairing button is clicked and then click on the MCU upgrade, otherwise it will be interrupted in the process of upgrading!", delegate: nil, cancelButtonTitle: "OK")
             alert.show()
             nevoOtaView.ReUpgradeButton?.hidden = false
             nevoOtaView.ReUpgradeButton?.setTitle("Upgrade the Ble", forState: UIControlState.Normal)
@@ -207,7 +207,7 @@ class AidOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMan
                 nevoOtaView.ReUpgradeButton?.setTitle("Continue MCU", forState: UIControlState.Normal)
             }else{
                 nevoOtaView.ReUpgradeButton?.setTitle("Try to reconnect", forState: UIControlState.Normal)
-                var dispatchTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, Int64(3.0 * Double(NSEC_PER_SEC)))
+                let dispatchTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, Int64(3.0 * Double(NSEC_PER_SEC)))
                 dispatch_after(dispatchTime, dispatch_get_main_queue(), {
                     mAidOtaController?.mConnectionController?.setOTAMode(true,Disconnect:true)
                 })
@@ -218,7 +218,7 @@ class AidOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMan
     func onError(errString : NSString){
 
         initValue()
-        var alert :UIAlertView = UIAlertView(title: "Firmware Upgrade", message: errString as String, delegate: nil, cancelButtonTitle: "OK")
+        let alert :UIAlertView = UIAlertView(title: "Firmware Upgrade", message: errString as String, delegate: nil, cancelButtonTitle: "OK")
         alert.show()
         mAidOtaController!.reset(false)
     }

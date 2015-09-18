@@ -60,7 +60,7 @@ class AnimationView: UIView {
             mNoConnectImage?.backgroundColor = UIColor.clearColor()
             mNoConnectionView?.addSubview(mNoConnectImage!)
 
-            mNoConnectScanButton = UIButton.buttonWithType(UIButtonType.Custom) as? UIButton
+            mNoConnectScanButton = UIButton(type:UIButtonType.Custom)
             mNoConnectScanButton?.frame = CGRectMake(0, 0, 160, 160)
             mNoConnectScanButton?.center = CGPointMake(mNoConnectionView!.frame.size.width/2.0, mNoConnectionView!.frame.size.height/2.0)
 
@@ -82,7 +82,7 @@ class AnimationView: UIView {
             message2.textColor = UIColor.blackColor()
             mNoConnectionView?.addSubview(message2)
 
-            let ForgotButton:UIButton = UIButton.buttonWithType(UIButtonType.Custom) as! UIButton
+            let ForgotButton:UIButton = UIButton(type:UIButtonType.Custom)
             ForgotButton.frame = CGRectMake(0, 0, 120, 40)
             ForgotButton.center = CGPointMake(mNoConnectionView!.frame.size.width/2.0, mNoConnectionView!.frame.size.height-120)
             ForgotButton.setBackgroundImage(UIImage(named: "forget_button"), forState: UIControlState.Normal)
@@ -144,7 +144,7 @@ class AnimationView: UIView {
     
     func RotatingAnimationObject(sender:UIImageView) {
 
-        var rotationAnimation:CABasicAnimation = CABasicAnimation(keyPath: "transform.rotation.z")
+        let rotationAnimation:CABasicAnimation = CABasicAnimation(keyPath: "transform.rotation.z")
         rotationAnimation.toValue = NSNumber(double: M_PI * 2.0);
         rotationAnimation.duration = 1;
         rotationAnimation.cumulative = true;
@@ -343,7 +343,7 @@ class CircleProgressView: CAShapeLayer {
     Implementation of the animation function
     */
     private func startAnimation() {
-        var pathAnimation:CABasicAnimation = CABasicAnimation(keyPath: "strokeEnd")
+        let pathAnimation:CABasicAnimation = CABasicAnimation(keyPath: "strokeEnd")
         pathAnimation.duration = 1.0
         pathAnimation.fromValue = initialProgress;
         pathAnimation.toValue = percent;

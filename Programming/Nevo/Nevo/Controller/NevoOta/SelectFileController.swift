@@ -18,7 +18,7 @@ class SelectFileController: UITableViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        var fileArray = GET_FIRMWARE_FILES("Firmwares")
+        let fileArray = GET_FIRMWARE_FILES("Firmwares")
         for tmpfile in fileArray {
             mFiles.append(tmpfile as! NSURL)
         }
@@ -39,8 +39,8 @@ class SelectFileController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell:UITableViewCell = tableView.dequeueReusableCellWithIdentifier("FolderFilesCell" , forIndexPath: indexPath) as! UITableViewCell
-        var fileName = mFiles[indexPath.row].lastPathComponent
+        let cell:UITableViewCell = tableView.dequeueReusableCellWithIdentifier("FolderFilesCell" , forIndexPath: indexPath) 
+        let fileName = mFiles[indexPath.row].lastPathComponent
         //configure the cell
         cell.textLabel?.text = fileName
 
@@ -48,7 +48,7 @@ class SelectFileController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        var fileURL:NSURL = mFiles[indexPath.row]
+        let fileURL:NSURL = mFiles[indexPath.row]
         //set the select file to screen
         //self.navigationController?.popViewControllerAnimated(true)
         self.dismissViewControllerAnimated(true, completion: nil)

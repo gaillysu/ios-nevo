@@ -21,7 +21,7 @@ protocol ConnectionController {
     Layer struct: L1(NevoBT) -->L2 (ConnectionController,Single instance) -->L3 (syncController, single instance)
     -->L4(UI viewController), L1 is the base Layer, L4 is the top layer
     */
-    func setDelegate(ConnectionControllerDelegate)
+    func setDelegate(connectionDelegate: ConnectionControllerDelegate)
     
     /**
     Tries to connect to a Nevo
@@ -57,7 +57,7 @@ protocol ConnectionController {
     /**
     Tries to send a request, you can't be sure that it will effectively be sent
     */
-    func sendRequest(Request)
+    func sendRequest(request: Request)
     
     /**
     Enters the OTA mode. In this mode, it searchs for OTA enabled Nevo
@@ -94,7 +94,7 @@ protocol ConnectionControllerDelegate {
     /**
     Called when a packet is received from the device
     */
-    func packetReceived(RawPacket)
+    func packetReceived(rawPacket: RawPacket)
     
     /**
     Called when a peripheral connects or disconnects
