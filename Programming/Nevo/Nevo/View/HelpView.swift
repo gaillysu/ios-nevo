@@ -28,7 +28,7 @@ class HelpView: UIView {
         for tmpfile in fileArray {
             let selectedFile = tmpfile as! NSURL
             let fileName:String? = (selectedFile.path! as NSString).lastPathComponent
-            let fileExtension:String? = selectedFile.pathExtension
+            //let fileExtension:String? = selectedFile.pathExtension
             if fileName=="index.html"{
                 let request:NSURLRequest = NSURLRequest(URL: NSURL(fileURLWithPath: selectedFile.path!))
                 helpWebView.loadRequest(request)

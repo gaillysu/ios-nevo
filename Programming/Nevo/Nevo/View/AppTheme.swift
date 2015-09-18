@@ -100,7 +100,7 @@ class AppTheme {
             let categorys:UIMutableUserNotificationCategory = UIMutableUserNotificationCategory()
             categorys.identifier = "alert";
             //UIUserNotificationType.Badge|UIUserNotificationType.Sound|UIUserNotificationType.Alert
-            let localUns:UIUserNotificationSettings = UIUserNotificationSettings(forTypes: UIUserNotificationType.Badge, categories: Set(arrayLiteral: categorys))
+            let localUns:UIUserNotificationSettings = UIUserNotificationSettings(forTypes: [UIUserNotificationType.Badge,UIUserNotificationType.Sound,UIUserNotificationType.Alert], categories: Set(arrayLiteral: categorys))
             UIApplication.sharedApplication().registerUserNotificationSettings(localUns)
         }
 

@@ -164,7 +164,7 @@ class StepGoalSetingController: UIViewController, SyncControllerDelegate,ButtonM
             //We are currently not connected
             var isView:Bool = false
             for view in stepGoalView.subviews {
-                let anView:UIView = view as! UIView
+                let anView:UIView = view
                 if anView.isEqual(stepGoalView.animationView.bulibNoConnectView()) {
                     isView = true
                 }

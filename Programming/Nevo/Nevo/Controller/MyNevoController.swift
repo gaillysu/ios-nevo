@@ -47,11 +47,21 @@ class MyNevoController: UIViewController,ButtonManagerCallBack,SyncControllerDel
         }
 
         if(sender.isEqual(mynevoView.UpgradeButton)){
-            if (currentBattery<1){
-                let alert :UIAlertView = UIAlertView(title: "Battery warnings", message: "Your watch battery not enough, please change a new battery can be OTA", delegate: nil, cancelButtonTitle: "OK")
+            if (currentBattery<1 && mSyncController!.getSoftwareVersion().integerValue>0){
+                let alert :UIAlertView = UIAlertView(title: "Battery warnings", message: "Battery too low replace new battery before firmware upgrade", delegate: nil, cancelButtonTitle: "OK")
                 alert.show()
                 return;
             }
+
+            let device:UIDevice = UIDevice.currentDevice()
+            device.batteryMonitoringEnabled = true
+            let batterylevel:Float = device.batteryLevel
+            if(batterylevel < 0.2){
+                let alert :UIAlertView = UIAlertView(title: "Battery warnings", message: "Mobile battery too low please charge phone before upgrade", delegate: nil, cancelButtonTitle: "OK")
+                alert.show()
+                return;
+            }
+
             self.performSegueWithIdentifier("Setting_nevoOta", sender: self)
         }
 
@@ -70,9 +80,10 @@ class MyNevoController: UIViewController,ButtonManagerCallBack,SyncControllerDel
     }
 
     func connectionStateChanged(isConnected : Bool){
-
         checkConnection()
-        
+        if(isConnected){
+            mynevoView.setVersionLbael(mSyncController!.getSoftwareVersion(), bleNumber: mSyncController!.getFirmwareVersion())
+        }
     }
 
     /**

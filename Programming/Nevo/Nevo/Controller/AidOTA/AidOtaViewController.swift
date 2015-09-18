@@ -51,7 +51,7 @@ class AidOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMan
         let fileArray = GET_FIRMWARE_FILES("Firmwares")
         for tmpfile in fileArray {
             let selectedFile = tmpfile as! NSURL
-            let fileName:String? = (selectedFile.path! as NSString).lastPathComponent
+            //let fileName:String? = (selectedFile.path! as NSString).lastPathComponent
             let fileExtension:String? = selectedFile.pathExtension
             if fileExtension == "hex"
             {
@@ -63,7 +63,7 @@ class AidOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMan
 
         for tmpfile in fileArray {
             let selectedFile = tmpfile as! NSURL
-            let fileName:String? = (selectedFile.path! as NSString).lastPathComponent
+            //let fileName:String? = (selectedFile.path! as NSString).lastPathComponent
             let fileExtension:String? = selectedFile.pathExtension
 
             if fileExtension == "bin"
