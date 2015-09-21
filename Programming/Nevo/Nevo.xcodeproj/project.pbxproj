@@ -64,6 +64,7 @@
 		007F799B1A878D0B006C89E6 /* Raleway-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 007F79851A878D0B006C89E6 /* Raleway-Thin.ttf */; };
 		007F799C1A878D0B006C89E6 /* Raleway-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 007F79861A878D0B006C89E6 /* Raleway-ThinItalic.ttf */; };
 		007F799D1A878D0B006C89E6 /* SIL Open Font License.txt in Resources */ = {isa = PBXBuildFile; fileRef = 007F79871A878D0B006C89E6 /* SIL Open Font License.txt */; };
+		008976221BAFA699007A7BC0 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008976211BAFA699007A7BC0 /* UserManager.swift */; settings = {ASSET_TAGS = (); }; };
 		008F39711B0EE0BF00698F1B /* NotificationTypeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008F39701B0EE0BF00698F1B /* NotificationTypeCell.swift */; };
 		00A228701AA551A400360C36 /* SetingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A2286F1AA551A400360C36 /* SetingViewController.swift */; };
 		00A2287E1AA57F1A00360C36 /* EnterNotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A2287D1AA57F1A00360C36 /* EnterNotificationController.swift */; };
@@ -242,6 +243,7 @@
 		007F79871A878D0B006C89E6 /* SIL Open Font License.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "SIL Open Font License.txt"; sourceTree = "<group>"; };
 		0086858E1B40D53C0062F544 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
 		0086858F1B40D53C0062F544 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
+		008976211BAFA699007A7BC0 /* UserManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		008F39701B0EE0BF00698F1B /* NotificationTypeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationTypeCell.swift; sourceTree = "<group>"; };
 		00A2286F1AA551A400360C36 /* SetingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SetingViewController.swift; path = Controller/SetingViewController.swift; sourceTree = "<group>"; };
 		00A2287D1AA57F1A00360C36 /* EnterNotificationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EnterNotificationController.swift; path = Controller/EnterNotificationController.swift; sourceTree = "<group>"; };
@@ -517,6 +519,15 @@
 			path = image;
 			sourceTree = "<group>";
 		};
+		008976201BAFA674007A7BC0 /* UserManager */ = {
+			isa = PBXGroup;
+			children = (
+				008976211BAFA699007A7BC0 /* UserManager.swift */,
+			);
+			name = UserManager;
+			path = Controller/UserManager;
+			sourceTree = "<group>";
+		};
 		00A773901A88562F0018E121 /* Strings */ = {
 			isa = PBXGroup;
 			children = (
@@ -769,6 +780,7 @@
 		9AD8F95D1A6E003100F01014 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				008976201BAFA674007A7BC0 /* UserManager */,
 				00BA73DE1BA84F9B00321496 /* AidOTA */,
 				0017199F1AB2EE5300889FED /* NevoOta */,
 				5901F3671AB1836C002AAB13 /* ProfileTestController.swift */,
@@ -1134,6 +1146,7 @@
 				9A3E57231A80E56E00DFFAE1 /* ConnectionController.swift in Sources */,
 				001818361B048DAC005E9F2D /* Page6Controller.swift in Sources */,
 				9A2D6C3E1A9C71E500591BDC /* NevoHK.swift in Sources */,
+				008976221BAFA699007A7BC0 /* UserManager.swift in Sources */,
 				9AD8F93B1A6DF35900F01014 /* Nevo.xcdatamodeld in Sources */,
 				0704C9631AA431EE00F9AE09 /* GetStepsGoalRequest.swift in Sources */,
 				07CC4A291A820A9B008DA749 /* Utility.swift in Sources */,

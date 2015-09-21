@@ -266,4 +266,35 @@ class AppTheme {
         //AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);   //手机震动
     }
 
+    /**
+    *Hexadecimal color string into UIColor (HTML color values)
+    */
+    class func hexStringToColor(stringToConvert:String)->UIColor {
+        var cString:NSString = stringToConvert.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()).uppercaseString
+        // String should be 6 or 8 characters
+        if(cString.length < 6){ return UIColor.blackColor()}
+        // strip 0X if it appears
+        if(cString.hasPrefix("0X")){ cString = cString.substringFromIndex(2)}
+        if (cString.hasPrefix("#")){ cString = cString.substringFromIndex(1)}
+        if (cString.length != 6){ return UIColor.blackColor()}
+
+        // Separate into r, g, b substrings
+
+        var range:NSRange = NSMakeRange(0, 2);
+        let rString:NSString = cString.substringWithRange(range)
+        range.location = 2;
+        let gString:NSString = cString.substringWithRange(range)
+        range.location = 4;
+        let bString:NSString = cString.substringWithRange(range)
+        // Scan values
+        var r:CUnsignedInt = 0
+        var g:CUnsignedInt = 0
+        var b:CUnsignedInt = 0
+
+        NSScanner(string: rString as String).scanHexInt(&r)
+        NSScanner(string: gString as String).scanHexInt(&g)
+        NSScanner(string: bString as String).scanHexInt(&b)
+
+        return UIColor(red: CGFloat(r)/255, green: CGFloat(g)/255, blue: CGFloat(b)/255, alpha: 1)
+    }
 }
