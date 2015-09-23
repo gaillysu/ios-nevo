@@ -379,18 +379,40 @@ class SyncController: NSObject,ConnectionControllerDelegate,UIAlertViewDelegate 
                 AppTheme.DLog("Day:\(GmtNSDate2LocaleNSDate(savedDailyHistory[Int(currentDay)].Date)), Daily Total Calories (kcal):\(savedDailyHistory[Int(currentDay)].TotalCalories)")
                 
 
-                //var daysleepSave:DaySleepSaveModel = DaySleepSaveModel()
-                //daysleepSave.DailySleepTime = thispacket.getDailySleepTime()
-                //daysleepSave.HourlySleepTime = thispacket.getHourlySleepTime()
-                //daysleepSave.DailyWakeTime = thispacket.getDailyWakeTime()
-                //daysleepSave.HourlyWakeTime = thispacket.getHourlyWakeTime()
-                //daysleepSave.DailyLightTime = thispacket.getDailyLightTime()
-                //daysleepSave.HourlyLightTime = thispacket.getHourlyLightTime()
-                //daysleepSave.DailyDeepTime = thispacket.getDailyDeepTime()
-                //daysleepSave.HourlyDeepTime = thispacket.getHourlyDeepTime()
-                //daysleepSave.DailyDist = thispacket.getDailyDist()
-                //daysleepSave.DailyCalories = thispacket.getDailyCalories()
-                //let isSave:Bool = daysleepSave.save()
+                var daysleepSave:DaySleepSaveModel = DaySleepSaveModel()
+                daysleepSave.Steps = NSString(format: "%d", thispacket.getDailySteps())
+                daysleepSave.sleepDate = NSString(format: "%d", thispacket.getDateTimer())
+                daysleepSave.DailySleepTime = NSString(format: "%d", thispacket.getDailySleepTime())
+                daysleepSave.HourlySleepTime = AppTheme.toJSONString(thispacket.getHourlySleepTime())
+                daysleepSave.DailyWakeTime = NSString(format: "%d", thispacket.getDailyWakeTime())
+                daysleepSave.HourlyWakeTime = AppTheme.toJSONString(thispacket.getHourlyWakeTime())
+                daysleepSave.DailyLightTime = NSString(format: "%d", thispacket.getDailyLightTime())
+                daysleepSave.HourlyLightTime = AppTheme.toJSONString(thispacket.getHourlyLightTime())
+                daysleepSave.DailyDeepTime = NSString(format: "%d", thispacket.getDailyDeepTime())
+                daysleepSave.HourlyDeepTime = AppTheme.toJSONString(thispacket.getHourlyDeepTime())
+                daysleepSave.DailyDist = NSString(format: "%d", thispacket.getDailyDist())
+                daysleepSave.DailyCalories = NSString(format: "%d", thispacket.getDailyCalories())
+
+                AppTheme.DLog("---------------\(thispacket.getDateTimer())")
+
+                //Query the database is this record
+                let quyerModel = DaySleepSaveModel.findFirstByCriteria("WHERE sleepDate = \(thispacket.getDateTimer())")
+                if(quyerModel != nil){
+                    AppTheme.DLog("Data that has been saved····")
+                    //Analyzing whether the same data database is not updated if they are equal, otherwise the update the database
+                    if((daysleepSave.DailyLightTime?.intValue)>(quyerModel.DailySleepTime?.intValue)){
+                        AppTheme.DLog("Data is not the same as the data download Watch")
+                        //Update the database using the asynchronous thread
+                        dispatch_async(dispatch_get_global_queue(0, 0), { () -> Void in
+                            daysleepSave.update()
+                        })
+                    }
+                }else{
+                    //Don't have any database if the sleep time is zero
+                    if(thispacket.getDailySleepTime() != 0){
+                        let isSave:Bool = daysleepSave.save()  //If not, save database
+                    }
+                }
                 //save to health kit
                 let hk = NevoHKImpl()
                 hk.requestPermission()

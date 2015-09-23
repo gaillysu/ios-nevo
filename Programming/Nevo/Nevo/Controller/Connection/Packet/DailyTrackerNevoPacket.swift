@@ -303,4 +303,19 @@ class DailyTrackerNevoPacket: NevoPacket {
         return value
     }
 
+    /**
+    get Packet data timer
+
+    :returns: timer/Year,Month,Day
+    */
+    func getDateTimer()->Int{
+        var dailyStepGoal:Int = Int(NSData2Bytes(getPackets()[0])[2] )
+        dailyStepGoal = dailyStepGoal + Int(NSData2Bytes(getPackets()[0])[3] )<<8
+        var month:NSString = NSString(format: "\(NSData2Bytes(getPackets()[0])[4])")
+        month = month.length >= 2 ? NSString(format: "\(NSData2Bytes(getPackets()[0])[4])") : NSString(format: "0\(NSData2Bytes(getPackets()[0])[4])")
+        var year:NSString = NSString(format: "\(NSData2Bytes(getPackets()[0])[5])")
+        year = year.length >= 2 ? NSString(format: "\(NSData2Bytes(getPackets()[0])[5])") : NSString(format: "0\(NSData2Bytes(getPackets()[0])[5])")
+        dailyStepGoal = NSString(format: "\(dailyStepGoal)%@%@",month,year).integerValue
+        return dailyStepGoal
+    }
 }
