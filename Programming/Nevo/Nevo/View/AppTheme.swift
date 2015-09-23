@@ -266,4 +266,41 @@ class AppTheme {
         //AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);   //手机震动
     }
 
+    /**
+    Put the object into a json string
+
+    :param: object 转换对象
+
+    :returns: 返回转换后的json字符串
+    */
+    class func toJSONString(object:AnyObject!)->NSString{
+
+        do{
+            let data = try NSJSONSerialization.dataWithJSONObject(object, options: NSJSONWritingOptions.PrettyPrinted)
+            var strJson=NSString(data: data, encoding: NSUTF8StringEncoding)
+            strJson = strJson?.stringByReplacingOccurrencesOfString("\n", withString: "")
+            strJson = strJson?.stringByReplacingOccurrencesOfString(" ", withString: "")
+            return strJson!
+        }catch{
+            return ""
+        }
+    }
+
+    /**
+    Json string into an array
+
+    :param: object 转换对象
+
+    :returns: 返回转换后的数组
+    */
+    class func jsonToArray(object:String)->NSArray{
+        do{
+            let data:NSData = object.dataUsingEncoding(NSUTF8StringEncoding)!
+            let array:AnyObject = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers)
+            let JsonToArray = array as! NSArray
+            return JsonToArray
+        }catch{
+            return NSArray()
+        }
+    }
 }

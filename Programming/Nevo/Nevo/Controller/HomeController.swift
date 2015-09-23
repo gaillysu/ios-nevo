@@ -76,6 +76,11 @@ class HomeController: UIViewController, SyncControllerDelegate ,ButtonManagerCal
             AppTheme.DLog("noConnectScanButton")
             reconnect()
         }
+
+        if sender.isEqual(homeView.pushButton){
+            let quer:QueryHistoricalController = QueryHistoricalController()
+            self.presentViewController(quer, animated: true, completion:nil)
+        }
     }
 
     func timerAction(timer:NSTimer) {

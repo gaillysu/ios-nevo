@@ -19,6 +19,7 @@ class HomeView: UIView {
     var progressView:CircleProgressView?
     var progresValue:CGFloat = 0.0
     var animationView:AnimationView!
+    var pushButton:UIButton?
     
     private var mDelegate:ButtonManagerCallBack!
     
@@ -40,6 +41,12 @@ class HomeView: UIView {
         progressView?.frame = CGRectMake(mClockTimerView.frame.origin.x-5, mClockTimerView.frame.origin.y-5, UIScreen.mainScreen().bounds.width-50, UIScreen.mainScreen().bounds.width-50)
         progressView?.setProgress(progresValue)
         self.layer.addSublayer(progressView!)
+
+        pushButton = UIButton(frame: CGRectMake(UIScreen.mainScreen().bounds.width-120, titleBgView.frame.size.height, 100, 45))
+        pushButton?.setTitle("Sleep query", forState: UIControlState.Normal)
+        pushButton?.setTitleColor(UIColor.redColor(), forState: UIControlState.Normal)
+        pushButton?.addTarget(self, action: Selector("ButtonAction:"), forControlEvents: UIControlEvents.TouchUpInside)
+        self.addSubview(pushButton!)
 
     }
 

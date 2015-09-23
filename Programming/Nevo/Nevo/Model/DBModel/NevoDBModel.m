@@ -105,6 +105,7 @@
     NevoDBHelper *nevoDB = [NevoDBHelper shareInstance];
     [nevoDB.dbQueue inDatabase:^(FMDatabase *db) {
         NSString *tableName = NSStringFromClass(self.class);
+        tableName = [tableName stringByReplacingOccurrencesOfString:@"." withString:@""];
          res = [db tableExists:tableName];
     }];
     return res;
@@ -116,6 +117,7 @@
     NSMutableArray *columns = [NSMutableArray array];
      [nevoDB.dbQueue inDatabase:^(FMDatabase *db) {
          NSString *tableName = NSStringFromClass(self.class);
+         tableName = [tableName stringByReplacingOccurrencesOfString:@"." withString:@""];
          FMResultSet *resultSet = [db getTableSchema:tableName];
          while ([resultSet next]) {
              NSString *column = [resultSet stringForColumn:@"name"];
@@ -138,6 +140,7 @@
     }
     
     NSString *tableName = NSStringFromClass(self.class);
+    tableName = [tableName stringByReplacingOccurrencesOfString:@"." withString:@""];
     NSString *columeAndType = [self.class getColumeAndTypeString];
     NSString *sql = [NSString stringWithFormat:@"CREATE TABLE IF NOT EXISTS %@(%@);",tableName,columeAndType];
     if (![db executeUpdate:sql]) {
@@ -182,6 +185,7 @@
 - (BOOL)save
 {
     NSString *tableName = NSStringFromClass(self.class);
+    tableName = [tableName stringByReplacingOccurrencesOfString:@"." withString:@""];
     NSMutableString *keyString = [NSMutableString string];
     NSMutableString *valueString = [NSMutableString string];
     NSMutableArray *insertValues = [NSMutableArray  array];
@@ -229,6 +233,7 @@
     [nevoDB.dbQueue inTransaction:^(FMDatabase *db, BOOL *rollback) {
         for (NevoDBModel *model in array) {
             NSString *tableName = NSStringFromClass(model.class);
+            tableName = [tableName stringByReplacingOccurrencesOfString:@"." withString:@""];
             NSMutableString *keyString = [NSMutableString string];
             NSMutableString *valueString = [NSMutableString string];
             NSMutableArray *insertValues = [NSMutableArray  array];
@@ -269,6 +274,7 @@
     __block BOOL res = NO;
     [nevoDB.dbQueue inDatabase:^(FMDatabase *db) {
         NSString *tableName = NSStringFromClass(self.class);
+        tableName = [tableName stringByReplacingOccurrencesOfString:@"." withString:@""];
         id primaryValue = [self valueForKey:primaryId];
         if (!primaryValue || primaryValue <= 0) {
             return ;
@@ -312,6 +318,7 @@
     [nevoDB.dbQueue inTransaction:^(FMDatabase *db, BOOL *rollback) {
         for (NevoDBModel *model in array) {
             NSString *tableName = NSStringFromClass(model.class);
+            tableName = [tableName stringByReplacingOccurrencesOfString:@"." withString:@""];
             id primaryValue = [model valueForKey:primaryId];
             if (!primaryValue || primaryValue <= 0) {
                 res = NO;
@@ -358,6 +365,7 @@
     __block BOOL res = NO;
     [nevoDB.dbQueue inDatabase:^(FMDatabase *db) {
         NSString *tableName = NSStringFromClass(self.class);
+        tableName = [tableName stringByReplacingOccurrencesOfString:@"." withString:@""];
         id primaryValue = [self valueForKey:primaryId];
         if (!primaryValue || primaryValue <= 0) {
             return ;
@@ -384,6 +392,7 @@
     [nevoDB.dbQueue inTransaction:^(FMDatabase *db, BOOL *rollback) {
         for (NevoDBModel *model in array) {
             NSString *tableName = NSStringFromClass(model.class);
+            tableName = [tableName stringByReplacingOccurrencesOfString:@"." withString:@""];
             id primaryValue = [model valueForKey:primaryId];
             if (!primaryValue || primaryValue <= 0) {
                 return ;
@@ -409,6 +418,7 @@
     __block BOOL res = NO;
     [nevoDB.dbQueue inDatabase:^(FMDatabase *db) {
         NSString *tableName = NSStringFromClass(self.class);
+        tableName = [tableName stringByReplacingOccurrencesOfString:@"." withString:@""];
         NSString *sql = [NSString stringWithFormat:@"DELETE FROM %@ %@ ",tableName,criteria];
         res = [db executeUpdate:sql];
         NSLog(res?@"删除成功":@"删除失败");
@@ -423,6 +433,7 @@
     __block BOOL res = NO;
     [nevoDB.dbQueue inDatabase:^(FMDatabase *db) {
         NSString *tableName = NSStringFromClass(self.class);
+        tableName = [tableName stringByReplacingOccurrencesOfString:@"." withString:@""];
         NSString *sql = [NSString stringWithFormat:@"DELETE FROM %@",tableName];
         res = [db executeUpdate:sql];
         NSLog(res?@"清空成功":@"清空失败");
@@ -433,11 +444,12 @@
 /** 查询全部数据 */
 + (NSArray *)findAll
 {
-     NSLog(@"jkdb---%s",__func__);
+     NSLog(@"Nevodb---%s",__func__);
     NevoDBHelper *nevoDB = [NevoDBHelper shareInstance];
     NSMutableArray *users = [NSMutableArray array];
     [nevoDB.dbQueue inDatabase:^(FMDatabase *db) {
         NSString *tableName = NSStringFromClass(self.class);
+        tableName = [tableName stringByReplacingOccurrencesOfString:@"." withString:@""];
         NSString *sql = [NSString stringWithFormat:@"SELECT * FROM %@",tableName];
         FMResultSet *resultSet = [db executeQuery:sql];
         while ([resultSet next]) {
@@ -483,6 +495,7 @@
     NSMutableArray *users = [NSMutableArray array];
     [nevoDB.dbQueue inDatabase:^(FMDatabase *db) {
         NSString *tableName = NSStringFromClass(self.class);
+        tableName = [tableName stringByReplacingOccurrencesOfString:@"." withString:@""];
         NSString *sql = [NSString stringWithFormat:@"SELECT * FROM %@ %@",tableName,criteria];
         FMResultSet *resultSet = [db executeQuery:sql];
         while ([resultSet next]) {
