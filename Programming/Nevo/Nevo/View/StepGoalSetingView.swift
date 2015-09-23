@@ -18,13 +18,19 @@ protocol StepGoalButtonActionCallBack {
 }
 
 class StepGoalSetingView: UIView,UIPickerViewDataSource,UIPickerViewDelegate {
+
+    @IBOutlet weak var stepLabel: UILabel!
+    @IBOutlet var goalButton: UIButton!
+    @IBOutlet var modarateButton: UIButton!
+    @IBOutlet var intensiveButton: UIButton!
+    @IBOutlet var sportiveButton: UIButton!
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var setingButton: UIButton!
     @IBOutlet weak var titleBgView: UIView!
-
-    private let mClockTimerView = ClockView(frame:CGRectMake(0, 0, UIScreen.mainScreen().bounds.width-80, UIScreen.mainScreen().bounds.width-80), hourImage:  UIImage(named: "clockViewHour")!, minuteImage: UIImage(named: "clockViewMinute")!, dialImage: UIImage(named: "clockView600")!);//init "ClockView" ,Use the code relative layout
     
     private var mPickerView:UIPickerView?
+
+    private var mButtonArray:[UIButton]=[]
 
     private var mIndexArray:NSMutableArray = NSMutableArray()
 
@@ -38,8 +44,6 @@ class StepGoalSetingView: UIView,UIPickerViewDataSource,UIPickerViewDelegate {
 
     var animationView:AnimationView!
 
-    var historyTableView:UITableView?
-
     func bulidStepGoalView(delegate:ButtonManagerCallBack){
 
         title.textColor = UIColor.whiteColor()
@@ -49,49 +53,55 @@ class StepGoalSetingView: UIView,UIPickerViewDataSource,UIPickerViewDelegate {
 
         mDelegate = delegate
 
-        mClockTimerView.currentTimer()
-        self.addSubview(mClockTimerView)
-        mClockTimerView.center = CGPointMake(self.frame.width/2.0, 64+mClockTimerView.frame.size.height/2 + 30)//Using the center property determines the location of the ClockView
-
-        historyTableView = UITableView(frame: CGRectMake(0, mClockTimerView.frame.origin.y+mClockTimerView.frame.size.height, UIScreen.mainScreen().bounds.width, UIScreen.mainScreen().bounds.height-mClockTimerView.frame.origin.y-mClockTimerView.frame.size.height-50), style: UITableViewStyle.Plain)
-        self.addSubview(historyTableView!)
-
-        let tabbarView:UIView = UIView(frame: CGRectMake(0, 0, UIScreen.mainScreen().bounds.width, 50))
-        tabbarView.backgroundColor = UIColor.clearColor()
-            //AppTheme.NEVO_CUSTOM_COLOR(Red: 242, Green: 242, Blue: 242)
-        tabbarView.center = CGPointMake(UIScreen.mainScreen().bounds.width/2.0, UIScreen.mainScreen().bounds.height-tabbarView.frame.size.height/2)
-        self.addSubview(tabbarView)
-
-        let historyBt:UIButton = UIButton(type: UIButtonType.Custom)
-        historyBt.frame = CGRectMake(0, 0, 120, 40)
-        historyBt.layer.masksToBounds = true
-        historyBt.layer.cornerRadius = 5
-        historyBt.center = CGPointMake(tabbarView.frame.size.width/2.0, tabbarView.frame.size.height/2.0)
-        historyBt.setTitle("History", forState: UIControlState.Normal)
-        historyBt.titleLabel?.font = AppTheme.FONT_RALEWAY_LIGHT(mSize: 23)
-        historyBt.backgroundColor = AppTheme.NEVO_SOLAR_YELLOW()
-        tabbarView.addSubview(historyBt)
-        
         animationView = AnimationView(frame: self.frame, delegate: delegate)
+
+        stepLabel.text = NSLocalizedString("Step", comment: "")
+
+        goalButton.setTitle(NSLocalizedString("goalButton", comment: ""), forState: UIControlState.Normal)
+        goalButton.setTitle(NSLocalizedString("goalButton", comment: ""), forState: UIControlState.Selected)
+        goalButton.titleLabel?.font = AppTheme.FONT_RALEWAY_LIGHT(mSize: 60)
+
+
+        modarateButton.setTitle(NSLocalizedString("Modarate", comment: ""), forState: UIControlState.Normal)
+        modarateButton.setTitle(NSLocalizedString("Modarate", comment: ""), forState: UIControlState.Selected)
+        modarateButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Selected)
+        modarateButton.layer.borderWidth = 1.0;
+        modarateButton.layer.borderColor = UIColor.grayColor().CGColor;
+
+        intensiveButton.setTitle(NSLocalizedString("Intensive", comment: ""), forState: UIControlState.Normal)
+        intensiveButton.setTitle(NSLocalizedString("Intensive", comment: ""), forState: UIControlState.Selected)
+        intensiveButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Selected)
+        intensiveButton.layer.borderWidth = 1.0;
+        intensiveButton.layer.borderColor = UIColor.grayColor().CGColor;
+
+        sportiveButton.setTitle(NSLocalizedString("Sportive", comment: ""), forState: UIControlState.Normal)
+        sportiveButton.setTitle(NSLocalizedString("Sportive", comment: ""), forState: UIControlState.Selected)
+        sportiveButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Selected)
+        sportiveButton.layer.borderWidth = 1.0;
+        sportiveButton.layer.borderColor = UIColor.grayColor().CGColor;
+
+        mButtonArray = [modarateButton,intensiveButton,sportiveButton]
+
         //For loop will stuck the main thread, so you need to for an asynchronous thread to handle this line function
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
             for var index:Int = 1000; index<=30000; index+=1000 {
                 self.mIndexArray.addObject(index)
             }
          });
+        
+        setNumberOfStepsGoal(7000)
 
     }
 
+    func bulidUI() {
+
+    }
     /*
     Button Action
     */
     @IBAction func buttonAction(sender: AnyObject) {
         //CallBack StepGoalSetingController
         mDelegate?.controllManager(sender as! UIButton)
-    }
-
-    func getClockTimerView() -> ClockView {
-        return mClockTimerView
     }
 
     // MARK: - PickerView
@@ -181,6 +191,18 @@ class StepGoalSetingView: UIView,UIPickerViewDataSource,UIPickerViewDelegate {
     }
 
     /*
+    Clean up the state of all buttons
+    */
+    func cleanButtonControlState() {
+        for button in mButtonArray {
+            let controlButton:UIButton = button as UIButton;
+            if controlButton.selected {
+                controlButton.selected = false
+            }
+        }
+    }
+
+    /*
     Click the cancelButton and enterButton events
     */
     func enterAction(sender:UIButton) {
@@ -225,6 +247,28 @@ class StepGoalSetingView: UIView,UIPickerViewDataSource,UIPickerViewDelegate {
     func getNumberOfStepsGoal() -> Int{
         let row = mPickerView?.selectedRowInComponent(0)
         return mIndexArray.objectAtIndex(row!) as! Int
+    }
+
+    func setNumberOfStepsGoal(goal:Int){
+
+        goalButton.setTitle("\(goal)", forState: UIControlState.Normal)
+        
+        
+        cleanButtonControlState()
+        
+        if(goal==NumberOfStepsGoal().LOW_INTENSITY_STEPS) {
+            
+            modarateButton.selected = true
+            
+        } else if(goal==NumberOfStepsGoal().MEDIUM_INTENSITY_STEPS) {
+            
+            intensiveButton.selected = true
+            
+        } else if(goal==NumberOfStepsGoal().HIGH_INTENSITY_STEPS) {
+            
+            sportiveButton.selected = true
+            
+        }
     }
 
     func getEnterButton() -> UIButton? {

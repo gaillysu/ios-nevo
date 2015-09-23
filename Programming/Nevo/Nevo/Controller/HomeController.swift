@@ -14,19 +14,18 @@ Controller of the Home Screen,
 it should handle very little, only the initialisation of the different Views and the Sync Controller
 */
 
-class HomeController: UIViewController, SyncControllerDelegate ,ButtonManagerCallBack,DataRefreshDelegate{
+class HomeController: UIViewController, SyncControllerDelegate ,ButtonManagerCallBack{
     
     @IBOutlet var homeView: HomeView!
     private var sync:SyncController?
     private var mVisiable:Bool = false
-    private let usermanager:UserManager = UserManager.sharedInstance
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        usermanager.setRefreshObject(self)
-
         homeView.bulidHomeView(self)
 
+        NSTimer.scheduledTimerWithTimeInterval(10, target: self, selector:"timerAction:", userInfo: nil, repeats: true);
+        
         //TEST this is for test. pls not to remove it 
                 let tapAction = UITapGestureRecognizer(target: self, action: "testHandshake")
                 tapAction.numberOfTapsRequired = 2
@@ -79,12 +78,10 @@ class HomeController: UIViewController, SyncControllerDelegate ,ButtonManagerCal
         }
     }
 
-    // MARK: - DataRefreshDelegate
-    func dataRefresh(){
+    func timerAction(timer:NSTimer) {
         homeView.getClockTimerView().currentTimer()
-        if mVisiable{
-            SyncController.sharedInstance.getGoal()
-        }
+        if mVisiable
+        { SyncController.sharedInstance.getGoal() }
     }
 
     /**

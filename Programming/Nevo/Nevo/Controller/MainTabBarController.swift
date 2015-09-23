@@ -10,7 +10,7 @@ import UIKit
 
 class MainTabBarController: UITabBarController,UITabBarControllerDelegate {
 
-    var items:[UIBarButtonItem] = []
+    var items:NSMutableArray!
     var selectedItem:UIButton!
     let FONT_RALEWAY_BOLD:UIFont! = UIFont(name:"Raleway-Thin", size: 23);
 
@@ -31,11 +31,11 @@ class MainTabBarController: UITabBarController,UITabBarControllerDelegate {
 
             if contll!.isKindOfClass(StepGoalSetingController){
                 AppTheme.DLog("StepGoalSetingController:\(contll)")
-                contll!.tabBarController?.selectedIndex = 0
             }
 
             if contll!.isKindOfClass(HomeController){
                 AppTheme.DLog("HomeController:\(contll)")
+                contll!.tabBarController?.selectedIndex = 1
             }
 
         }
@@ -44,45 +44,44 @@ class MainTabBarController: UITabBarController,UITabBarControllerDelegate {
 
     func customInitTabbar(){
         self.tabBar.hidden = true
-
-        let myTabbarView:UIView = UIView(frame: CGRectMake(0, 0, UIScreen.mainScreen().bounds.size.width+2, 64));
-        myTabbarView.backgroundColor = AppTheme.NEVO_CUSTOM_COLOR(Red: 242, Green: 242, Blue: 242);
+        
+        let myTabbarView:UIView = UIView(frame: CGRectMake(-1, self.view.frame.size.height-99, UIScreen.mainScreen().bounds.size.width+2, 100));
+        myTabbarView.backgroundColor = UIColor.whiteColor();
+        myTabbarView.layer.borderWidth = 1.0;
+        myTabbarView.layer.borderColor = UIColor.grayColor().CGColor;
         self.view.addSubview(myTabbarView)
 
-
-        let itemToolbar:UIToolbar = UIToolbar(frame: CGRectMake(0, 20, UIScreen.mainScreen().bounds.width, 44))
-        itemToolbar.barStyle = UIBarStyle.BlackTranslucent
-        itemToolbar.barTintColor = AppTheme.NEVO_CUSTOM_COLOR(Red: 242, Green: 242, Blue: 242)
-        itemToolbar.backgroundColor = AppTheme.NEVO_CUSTOM_COLOR(Red: 242, Green: 242, Blue: 242)
-        myTabbarView.addSubview(itemToolbar)// 添加到view
-
-        let imgArray:NSArray = NSArray(arrayLiteral: "STEPS","ALARM","SLEEP","SETTING")
-        //"selectedGoalitem","selectedHomeitem","selectedAlarmitem"
+        let itemView:UIView = UIView(frame: CGRectMake(0, 0, UIScreen.mainScreen().bounds.size.width-50, myTabbarView.frame.size.height));
+        itemView.backgroundColor = UIColor.whiteColor()
+        itemView.center = CGPointMake(myTabbarView.frame.size.width/2.0, myTabbarView.frame.size.height/2.0)
+        myTabbarView.addSubview(itemView)
+        if (items == nil) {
+            items = NSMutableArray(capacity: 3)
+        }
+        let imgArray:NSArray = NSArray(arrayLiteral: "goalitem","homeitem","alarmitem")
+        let selectImgArray:NSArray = NSArray(arrayLiteral: "selectedGoalitem","selectedHomeitem","selectedAlarmitem")
 
         for (var i:Int = 0; i < imgArray.count; i++) {
 
-            let width:CGFloat = imgArray.objectAtIndex(i).boundingRectWithSize(CGSizeMake(300, 100) , options: NSStringDrawingOptions.UsesLineFragmentOrigin, attributes: [NSFontAttributeName : UIFont.systemFontOfSize(15)], context: nil).size.width
-            let item:UIButton  = UIButton(frame: CGRectMake(0, 0, width, 44))
+            let itemWidth:CGFloat = itemView.frame.size.width/CGFloat(imgArray.count)
+            let item:UIButton  = UIButton(frame: CGRectMake(itemWidth*CGFloat(i), 0, itemWidth, itemView.frame.size.height))
             item.backgroundColor = UIColor.clearColor()
-            item.titleLabel?.font = UIFont.systemFontOfSize(15)
-            item.setTitle(imgArray[i] as? String, forState: UIControlState.Normal)
-            item.setTitleColor(AppTheme.hexStringToColor("#4d4d4d"), forState: UIControlState.Selected)
-            item.setTitleColor(AppTheme.hexStringToColor("#999999"), forState: UIControlState.Normal)
-
-            if (i==0) {
+            item.setImage(UIImage(named: selectImgArray[i] as! String), forState: UIControlState.Selected)
+            item.setImage(UIImage(named: selectImgArray[i] as! String), forState: UIControlState.Highlighted)
+            item.setImage(UIImage(named: imgArray[i] as! String), forState: UIControlState.Normal)
+            
+            if (i==1) {
                 item.selected=true
                 selectedItem=item
             }
             item.addTarget(self, action: Selector("tabbarItemClickAction:"), forControlEvents: UIControlEvents.TouchDown)
+            itemView.addSubview(item)
             item.tag = i;
-            let itemButtonEmpty:UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
-            itemButtonEmpty.tintColor = UIColor.clearColor()
-            items.append(itemButtonEmpty)
-            let itemButton:UIBarButtonItem = UIBarButtonItem(customView: item)
-            items.append(itemButton)
+            items.addObject(item)
 
         }
-        itemToolbar.setItems(items, animated: true)
+
+
     }
 
     func tabbarItemClickAction(item:UIButton) {

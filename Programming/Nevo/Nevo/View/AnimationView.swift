@@ -217,9 +217,13 @@ class CircleProgressView: CAShapeLayer {
     private var progressLayer:CAShapeLayer! //The progress bar object
     private var progressColor:UIColor = UIColor.greenColor() //The background color of the progress bar
 
+    
+    private var array:NSMutableArray!
+
 
     override init(){
         super.init()
+        array = NSMutableArray()
         //self.path = drawPathWithArcCenter()
         self.fillColor = UIColor.clearColor().CGColor
         //self.strokeColor = UIColor(red: 0.56, green: 0.56, blue: 0.56, alpha: 0.4).CGColor
@@ -232,6 +236,16 @@ class CircleProgressView: CAShapeLayer {
         progressLayer.lineWidth = 5
 
         self.addSublayer(progressLayer)
+
+        for var index:Int = 0; index < 2; index++ {
+            let valueLabel:UILabel = UILabel(frame: CGRectMake(0, 0, 120, 25))
+            //valueLabel.backgroundColor = UIColor.greenColor()
+            valueLabel.textAlignment = NSTextAlignment.Center
+            valueLabel.font = AppTheme.FONT_RALEWAY_LIGHT(mSize: 14)
+            valueLabel.tag = index
+            self.addSublayer(valueLabel.layer)
+            array?.addObject(valueLabel)
+        }
 
     }
 
@@ -271,6 +285,26 @@ class CircleProgressView: CAShapeLayer {
     :param: Sprogress You need to set up the current progress
     */
     func setProgress(Sprogress:CGFloat,Steps steps:Int = 0,GoalStep goalstep:Int = 0) {
+        for layer in array {
+            let valueLabel:UILabel = layer as! UILabel
+            if (valueLabel.tag == 0) {
+                if AppTheme.GET_IS_iPhone4S(){
+                   valueLabel.center = CGPointMake(self.frame.size.width/2.0-valueLabel.frame.size.width/2-10, self.frame.size.height)
+                }else{
+                   valueLabel.center = CGPointMake(self.frame.size.width/2.0-valueLabel.frame.size.width/2-10, self.frame.size.height+30)
+                }
+                valueLabel.text = NSString(format: "%@%.1f%c", NSLocalizedString("Progress: ",comment: ""),Float(Sprogress)*100.0,37) as String
+            }else if (valueLabel.tag == 1) {
+                if AppTheme.GET_IS_iPhone4S(){
+                    valueLabel.center = CGPointMake(self.frame.size.width/2.0+valueLabel.frame.size.width/2+10, self.frame.size.height)
+                }else{
+                    valueLabel.center = CGPointMake(self.frame.size.width/2.0+valueLabel.frame.size.width/2+10, self.frame.size.height+30)
+                }
+
+                valueLabel.text = String(format:"%@\(steps)",NSLocalizedString("Step: ",comment: ""))
+            }
+        }
+
         initialProgress = CGFloat(calculatePercent(progress, toProgress: progressLimit))
         progress = Sprogress
 

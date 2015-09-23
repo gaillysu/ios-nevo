@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AlarmClockController: UIViewController, SyncControllerDelegate,ButtonManagerCallBack,DataRefreshDelegate {
+class AlarmClockController: UIViewController, SyncControllerDelegate,ButtonManagerCallBack {
 
     @IBOutlet var alarmView: alarmClockView!
     
@@ -27,12 +27,9 @@ class AlarmClockController: UIViewController, SyncControllerDelegate,ButtonManag
     private var mAlarmenable:Bool = false
     private var mSyncController:SyncController?
     var alarmArray:[Alarm] = []
-    private let usermanager:UserManager = UserManager.sharedInstance
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        usermanager.setRefreshObject(self)
 
         mSyncController = SyncController.sharedInstance
         mSyncController?.startConnect(false, delegate: self)
@@ -91,11 +88,6 @@ class AlarmClockController: UIViewController, SyncControllerDelegate,ButtonManag
         dateFormatter.dateFormat = "HH:mm"
         let dateString:String = dateFormatter.stringFromDate(date)
         return dateString
-    }
-
-    // MARK: - DataRefreshDelegate
-    func dataRefresh(){
-        alarmView.getClockTimerView().currentTimer()
     }
 
     /*

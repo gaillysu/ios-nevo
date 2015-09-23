@@ -41,14 +41,8 @@ class alarmClockView: UIView {
     private var mDelegate:ButtonManagerCallBack!
 
     var animationView:AnimationView!
-    private let mClockTimerView = ClockView(frame:CGRectMake(0, 0, UIScreen.mainScreen().bounds.width-80, UIScreen.mainScreen().bounds.width-80), hourImage:  UIImage(named: "clockViewHour")!, minuteImage: UIImage(named: "clockViewMinute")!, dialImage: UIImage(named: "clockView600")!);//init "ClockView" ,Use the code relative layout
     
     func bulidAlarmView(delegate:ButtonManagerCallBack,array:[Alarm]) {
-
-        mClockTimerView.currentTimer()
-        self.addSubview(mClockTimerView)
-        mClockTimerView.center = CGPointMake(self.frame.width/2.0, 64+mClockTimerView.frame.size.height/2 + 30)//Using the center property determines the location of the ClockView
-
         title.textColor = UIColor.whiteColor()
         title.text = NSLocalizedString("alarmTitle", comment: "")
         title.font = AppTheme.SYSTEMFONTOFSIZE()
@@ -98,10 +92,6 @@ class alarmClockView: UIView {
         alarmSwicth3.tag = switchAndButtonTag3
     }
 
-
-    func getClockTimerView() -> ClockView {
-        return mClockTimerView
-    }
 
     @IBAction func controllEventManager(sender: AnyObject) {
         //CallBack StepGoalSetingController

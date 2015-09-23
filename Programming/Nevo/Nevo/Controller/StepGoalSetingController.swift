@@ -8,7 +8,7 @@
 
 import UIKit
 
-class StepGoalSetingController: UIViewController, SyncControllerDelegate,ButtonManagerCallBack,DataRefreshDelegate {
+class StepGoalSetingController: UIViewController, SyncControllerDelegate,ButtonManagerCallBack {
     
     let NUMBER_OF_STEPS_GOAL_KEY = "NUMBER_OF_STEPS_GOAL_KEY"
 
@@ -17,13 +17,10 @@ class StepGoalSetingController: UIViewController, SyncControllerDelegate,ButtonM
     private var mSyncController:SyncController?
     
     private var mCurrentGoal:Goal = NumberOfStepsGoal()
-    private let usermanager:UserManager = UserManager.sharedInstance
 
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        usermanager.setRefreshObject(self)
 
         mSyncController = SyncController.sharedInstance
         mSyncController?.startConnect(false, delegate: self)
@@ -39,6 +36,7 @@ class StepGoalSetingController: UIViewController, SyncControllerDelegate,ButtonM
     }
 
     override func viewDidLayoutSubviews() {
+        stepGoalView.bulidUI()
     }
 
     override func viewDidAppear(animated: Bool) {
@@ -54,6 +52,26 @@ class StepGoalSetingController: UIViewController, SyncControllerDelegate,ButtonM
 
     // MARK: - ButtonManagerCallBack
     func controllManager(sender:AnyObject) {
+        if sender.isEqual(stepGoalView.goalButton) {
+            AppTheme.DLog("goalButton")
+            stepGoalView.initPickerView(mCurrentGoal.getValue())
+        }
+
+        if sender.isEqual(stepGoalView.modarateButton) {
+            AppTheme.DLog("modarateButton")
+            setGoal(NumberOfStepsGoal(intensity: GoalIntensity.LOW))
+        }
+
+        if sender.isEqual(stepGoalView.intensiveButton) {
+            AppTheme.DLog("intensiveButton")
+            setGoal(NumberOfStepsGoal(intensity: GoalIntensity.MEDIUM))
+        }
+
+        if sender.isEqual(stepGoalView.sportiveButton) {
+            AppTheme.DLog("sportiveButton")
+            setGoal(NumberOfStepsGoal(intensity: GoalIntensity.HIGH))
+        }
+
 
         if sender.isEqual(stepGoalView.animationView.getNoConnectScanButton()) {
             reconnect()
@@ -69,17 +87,15 @@ class StepGoalSetingController: UIViewController, SyncControllerDelegate,ButtonM
             self.performSegueWithIdentifier("Home_Seting", sender: self)
         }
     }
-
-    // MARK: - DataRefreshDelegate
-    func dataRefresh(){
-        stepGoalView.getClockTimerView().currentTimer()
-    }
-
-    // MARK: - 
-
+    
     func setGoal(goal:Goal) {
         
         mCurrentGoal = goal
+        
+        
+        stepGoalView.setNumberOfStepsGoal(goal.getValue())
+        
+        
         let userDefaults = NSUserDefaults.standardUserDefaults();
         
         userDefaults.setObject(goal.getValue(),forKey:NUMBER_OF_STEPS_GOAL_KEY)
@@ -112,6 +128,7 @@ class StepGoalSetingController: UIViewController, SyncControllerDelegate,ButtonM
             let thispacket = packet.copy() as DailyStepsNevoPacket
             var dailySteps:Int = thispacket.getDailySteps()
             let dailyStepGoal:Int = thispacket.getDailyStepsGoal()
+            stepGoalView.setNumberOfStepsGoal(dailyStepGoal)
 
             let userDefaults = NSUserDefaults.standardUserDefaults();
             userDefaults.setObject(dailyStepGoal,forKey:NUMBER_OF_STEPS_GOAL_KEY)
