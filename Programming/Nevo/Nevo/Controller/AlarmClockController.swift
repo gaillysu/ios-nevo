@@ -225,6 +225,13 @@ class AlarmClockController: UIViewController, SyncControllerDelegate,ButtonManag
     /**
     See SyncControllerDelegate
     */
+    func receivedRSSIValue(number:NSNumber){
+
+    }
+
+    /**
+    See SyncControllerDelegate
+    */
      func packetReceived(packet:NevoPacket) {
     
     }

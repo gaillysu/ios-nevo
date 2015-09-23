@@ -446,6 +446,13 @@ class NevoOtaController : NSObject,ConnectionControllerDelegate {
         mDelegate?.firmwareVersionReceived(whichfirmware, version: version)
     }
 
+    /**
+    See ConnectionControllerDelegate
+    */
+    func receivedRSSIValue(number:NSNumber){
+        mDelegate?.receivedRSSIValue(number)
+    }
+
     func setConnectControllerDelegate2Self()
     {
         mConnectionController?.setDelegate(self)
@@ -783,4 +790,8 @@ protocol NevoOtaControllerDelegate {
     @parameter version, return the version
     */
     func firmwareVersionReceived(whichfirmware:DfuFirmwareTypes, version:NSString)
+    /**
+    See SyncControllerDelegate
+    */
+    func receivedRSSIValue(number:NSNumber)
 }

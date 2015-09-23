@@ -107,4 +107,9 @@ protocol ConnectionControllerDelegate {
     @parameter version, return the version
     */
     func firmwareVersionReceived(whichfirmware:DfuFirmwareTypes, version:NSString)
+
+    /**
+    *  Receiving the current device signal strength value
+    */
+    func receivedRSSIValue(number:NSNumber)
 }

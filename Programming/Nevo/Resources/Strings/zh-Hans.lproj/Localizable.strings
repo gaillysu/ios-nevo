@@ -67,7 +67,7 @@
 "otahelp"="请不要中断OTA升级.使用应用前,\n请先确认升级已完成.";
 "latestversion"="你已是最新版本!";
 "Version:"="版本:";
-"FirmwareAlertMessage"="您的手表固件不是最新版本,您确认升级固件吗?";
+"FirmwareAlertMessage"="您的手表固件不是最新版本,请到My nevo确认升级固件.";
 "LatestUpdateon"="最近更新\n";
 "namenevo"="名字:nevo";
 "upgrade"="升级";
@@ -88,3 +88,7 @@
 "ota_timeout"="升级超时,请重试.";
 "is_checking_the_update"="正在检查更新...";
 "nevolatestversion"="你的程式已是最新版本!";
+"BLE_CONNECTION_LOST"="BLE connection lost please connect again";
+"BLE_LOST_TITLE"="BLE connection lost";
+"UNSTABLE_CONNECTION_TITLE"="Unstable connection ensure";
+"UNSTABLE_CONNECTION_MESSAGE"="Unstable connection ensure phone is on and in range";

@@ -29,6 +29,8 @@ class AidOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMan
 
     private var hudView:MBProgressHUD?
 
+    private var rssialert :UIAlertView?
+
     override func viewDidLayoutSubviews(){
         //init the view
         nevoOtaView.buildView(self,otacontroller: mAidOtaController!)
@@ -158,7 +160,22 @@ class AidOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMan
     }
 
     //MARK: - NevoOtaControllerDelegate
-    
+    /**
+    See SyncControllerDelegate
+    */
+    func receivedRSSIValue(number:NSNumber){
+        AppTheme.DLog("Red RSSI Value:\(number)")
+        if(number.integerValue < -85){
+            if(rssialert==nil){
+                rssialert = UIAlertView(title: NSLocalizedString("Unstable connection ensure", comment: ""), message:NSLocalizedString("Unstable connection ensure phone is on and in range", comment: "") , delegate: nil, cancelButtonTitle: nil)
+                rssialert?.show()
+            }
+        }else{
+            rssialert?.dismissWithClickedButtonIndex(1, animated: true)
+            rssialert = nil
+        }
+    }
+
     //below is delegate function
     func onDFUStarted(){
         AppTheme.DLog("onDFUStarted");

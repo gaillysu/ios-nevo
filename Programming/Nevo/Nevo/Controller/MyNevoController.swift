@@ -13,7 +13,7 @@ class MyNevoController: UIViewController,ButtonManagerCallBack,SyncControllerDel
     @IBOutlet var mynevoView: MyNevoView!
     private var mSyncController:SyncController?
     private var currentBattery:Int = 0
-
+    private var rssialert :UIAlertView?
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -68,6 +68,23 @@ class MyNevoController: UIViewController,ButtonManagerCallBack,SyncControllerDel
     }
 
     // MARK: - SyncControllerDelegate
+    /**
+    See SyncControllerDelegate
+    */
+    func receivedRSSIValue(number:NSNumber){
+        AppTheme.DLog("Red RSSI Value:\(number)")
+        if(number.integerValue < -85){
+            if(rssialert==nil){
+                rssialert = UIAlertView(title: NSLocalizedString("Unstable connection ensure", comment: ""), message:NSLocalizedString("Unstable connection ensure phone is on and in range", comment: "") , delegate: nil, cancelButtonTitle: nil)
+                rssialert?.show()
+            }
+        }else{
+            rssialert?.dismissWithClickedButtonIndex(1, animated: true)
+            rssialert = nil
+        }
+    }
+
+
     func packetReceived(packet:NevoPacket){
         let thispacket:BatteryLevelNevoPacket = packet.copy() as BatteryLevelNevoPacket
         if(thispacket.isReadBatteryCommand(packet.getPackets())){

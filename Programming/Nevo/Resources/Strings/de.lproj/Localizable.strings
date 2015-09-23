@@ -67,7 +67,7 @@
 "otahelp"="OTA Firmware Prozess nicht unterbrechen.";
 "latestversion"="Du hast die aktuellste Version";
 "Version:"="Version:";
-"FirmwareAlertMessage"="Die software deiner Nevo ist nicht mehr aktuell. Möchtest du ein Up-Date starten?";
+"FirmwareAlertMessage"="Your watch’s software is not up to date.Please go to My nevo confirm upgrade firmware.";
 "LatestUpdateon"="Letztes Update\nauf";
 "namenevo"="Name:nevo";
 "upgrade"="Upgrade";
@@ -88,3 +88,7 @@
 "ota_timeout"="Timeout,please try again";
 "is_checking_the_update"="Is checking the update...";
 "nevolatestversion"="Your nevo is up to date";
+"BLE_CONNECTION_LOST"="BLE connection lost please connect again";
+"BLE_LOST_TITLE"="BLE connection lost";
+"UNSTABLE_CONNECTION_TITLE"="Unstable connection ensure";
+"UNSTABLE_CONNECTION_MESSAGE"="Unstable connection ensure phone is on and in range";

@@ -59,4 +59,8 @@ class Page4Controller: UIViewController,ButtonActionCallBack,SyncControllerDeleg
     func packetReceived(packet: NevoPacket) {
 
     }
+
+    func receivedRSSIValue(number:NSNumber){
+
+    }
 }

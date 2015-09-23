@@ -24,6 +24,7 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
     var mNevoOtaController : NevoOtaController?
     private var allTaskNumber:NSInteger = 0;//计算所有OTA任务数量
     private var currentTaskNumber:NSInteger = 0;//当前在第几个任务
+    private var rssialert:UIAlertView?
 
     override func viewDidLayoutSubviews(){
         //init the view
@@ -53,7 +54,8 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
             buildinFirmwareVersion = GET_FIRMWARE_VERSION()
 
             let fileArray = GET_FIRMWARE_FILES("Firmwares")
-            if(currentFirmwareVersion.integerValue < buildinFirmwareVersion){
+
+            if(currentFirmwareVersion.integerValue < buildinFirmwareVersion && currentSoftwareVersion != 0){
                 for tmpfile in fileArray {
                     let selectedFile = tmpfile as! NSURL
                     let fileExtension:String? = selectedFile.pathExtension
@@ -171,6 +173,22 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
     }
 
     //MARK: - NevoOtaControllerDelegate
+    /**
+    See SyncControllerDelegate
+    */
+    func receivedRSSIValue(number:NSNumber){
+        AppTheme.DLog("Red RSSI Value:\(number)")
+        if(number.integerValue < -85){
+            if(rssialert==nil){
+                rssialert = UIAlertView(title: NSLocalizedString("Unstable connection ensure", comment: ""), message:NSLocalizedString("Unstable connection ensure phone is on and in range", comment: "") , delegate: nil, cancelButtonTitle: nil)
+                rssialert?.show()
+            }
+        }else{
+            rssialert?.dismissWithClickedButtonIndex(1, animated: true)
+            rssialert = nil
+        }
+    }
+    
     //user cancel
     func onDFUCancelled(){
         AppTheme.DLog("onDFUCancelled");
@@ -242,7 +260,7 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
     func connectionStateChanged(isConnected : Bool) {
         
         //Maybe we just got disconnected, let's check
-        //checkConnection()
+        checkConnection()
 
     }
 

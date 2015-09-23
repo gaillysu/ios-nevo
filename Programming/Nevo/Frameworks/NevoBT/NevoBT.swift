@@ -70,6 +70,11 @@ protocol NevoBT {
     */
     func  getSoftwareVersion() -> NSString!
 
+    /**
+    Get the current connection device of RSSI values
+    */
+    func getRSSI()
+
 }
 
 protocol NevoBTDelegate {
@@ -93,4 +98,9 @@ protocol NevoBTDelegate {
     @parameter version, return the version
     */
     func firmwareVersionReceived(whichfirmware:DfuFirmwareTypes, version:NSString)
+
+    /**
+    *  Receiving the current device signal strength value
+    */
+    func receivedRSSIValue(number:NSNumber)
 }

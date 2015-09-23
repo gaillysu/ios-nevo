@@ -309,6 +309,13 @@ class AidOtaController : NSObject,ConnectionControllerDelegate {
     /*
     see ConnectionControllerDelegate protocol
     */
+    func receivedRSSIValue(number:NSNumber){
+
+    }
+
+    /*
+    see ConnectionControllerDelegate protocol
+    */
     func packetReceived(packet:RawPacket) {
         //dicard those packets from  NevoProfile
         if !(packet.getSourceProfile() is NevoProfile){

@@ -33,6 +33,7 @@ class SyncController: NSObject,ConnectionControllerDelegate,UIAlertViewDelegate 
     private var savedDailyHistory:[NevoPacket.DailyHistory]=[]
     private var currentDay:UInt8 = 0
     private var mAlertUpdateFW = false
+    private var timer:NSTimer = NSTimer()
     
     /**
     A classic singelton pattern
@@ -584,9 +585,14 @@ class SyncController: NSObject,ConnectionControllerDelegate,UIAlertViewDelegate 
     func connectionStateChanged(isConnected : Bool) {
         //send local notification
         if isConnected {
+            if(timer.valid){
+                timer.invalidate()
+            }
             ConnectionManager.sharedInstance.checkConnectSendNotification(ConnectionManager.Const.connectionStatus.connected)
         }else {
             ConnectionManager.sharedInstance.checkConnectSendNotification(ConnectionManager.Const.connectionStatus.disconnected)
+           timer = NSTimer.scheduledTimerWithTimeInterval(3.5, target: self, selector: Selector("BLE_LOST_TITLE_ACTION:"), userInfo: nil, repeats: false)
+
         }
         
         for delegate in mDelegates {
@@ -608,6 +614,11 @@ class SyncController: NSObject,ConnectionControllerDelegate,UIAlertViewDelegate 
             SyncQueue.sharedInstance.clear()
             mPacketsbuffer = []
         }
+    }
+
+    func BLE_LOST_TITLE_ACTION(timer:NSTimer){
+        let alert :UIAlertView = UIAlertView(title: NSLocalizedString("BLE_LOST_TITLE", comment: ""), message: NSLocalizedString("BLE_CONNECTION_LOST", comment: ""), delegate: nil, cancelButtonTitle: NSLocalizedString("ok", comment: ""))
+        alert.show()
     }
     
     /**
@@ -661,8 +672,7 @@ class SyncController: NSObject,ConnectionControllerDelegate,UIAlertViewDelegate 
             {
             mAlertUpdateFW = true
 
-            let alert :UIAlertView = UIAlertView(title: NSLocalizedString("Firmware Upgrade", comment: ""), message: NSLocalizedString("FirmwareAlertMessage", comment: ""), delegate: self, cancelButtonTitle: NSLocalizedString("Cancel", comment: ""))
-            alert.addButtonWithTitle(NSLocalizedString("Enter", comment: ""))
+            let alert :UIAlertView = UIAlertView(title: NSLocalizedString("Firmware Upgrade", comment: ""), message: NSLocalizedString("FirmwareAlertMessage", comment: ""), delegate: nil, cancelButtonTitle: NSLocalizedString("Cancel", comment: ""))
             alert.show()
             }
         }
@@ -682,7 +692,19 @@ class SyncController: NSObject,ConnectionControllerDelegate,UIAlertViewDelegate 
     {
         return isConnected() ? self.mConnectionController.getSoftwareVersion() : NSString()
     }
-    
+
+    /**
+    *  See ConnectionController protocol
+    *  Receiving the current device signal strength value
+    */
+    func receivedRSSIValue(number:NSNumber){
+        for delegate in mDelegates {
+            if delegate is MyNevoController{
+                delegate.receivedRSSIValue(number)
+            }
+        }
+    }
+
     func connect() {
         self.mConnectionController.connect()
     }
@@ -705,4 +727,8 @@ protocol SyncControllerDelegate {
     Called when a peripheral connects or disconnects
     */
     func connectionStateChanged(isConnected : Bool)
+    /**
+    *  Receiving the current device signal strength value
+    */
+    func receivedRSSIValue(number:NSNumber)
 }

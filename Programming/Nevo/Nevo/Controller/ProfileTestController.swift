@@ -12,7 +12,7 @@ import UIKit
 *  just for test 
 *  to get all information about the watch
 */
-class ProfileTestController: UITableViewController,SyncControllerDelegate,ButtonManagerCallBack {
+class ProfileTestController: UITableViewController,ButtonManagerCallBack {
 
     @IBOutlet var myTable: UITableView?
     
@@ -84,7 +84,7 @@ class ProfileTestController: UITableViewController,SyncControllerDelegate,Button
 
         //init the request object
         mSyncController = SyncController.sharedInstance
-        mSyncController?.startConnect(false, delegate: self)
+        //mSyncController?.startConnect(false, delegate: self)
         
         let firstMode = UserModel(userName: "\(0 + 1)",userID: 0, phone: "test", email: "test")
         dataSource.addObject(firstMode)

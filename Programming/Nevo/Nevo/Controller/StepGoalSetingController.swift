@@ -8,7 +8,7 @@
 
 import UIKit
 
-class StepGoalSetingController: UIViewController, SyncControllerDelegate,ButtonManagerCallBack {
+class StepGoalSetingController: UIViewController,ButtonManagerCallBack {
     
     let NUMBER_OF_STEPS_GOAL_KEY = "NUMBER_OF_STEPS_GOAL_KEY"
 
@@ -23,7 +23,7 @@ class StepGoalSetingController: UIViewController, SyncControllerDelegate,ButtonM
         super.viewDidLoad()
 
         mSyncController = SyncController.sharedInstance
-        mSyncController?.startConnect(false, delegate: self)
+        //mSyncController?.startConnect(false, delegate: self)
 
         stepGoalView.bulidStepGoalView(self)
         

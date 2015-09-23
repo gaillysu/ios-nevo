@@ -179,6 +179,13 @@ class EnterNotificationController: UIViewController,SyncControllerDelegate,Butto
     /**
     See SyncControllerDelegate
     */
+    func receivedRSSIValue(number:NSNumber){
+
+    }
+
+    /**
+    See SyncControllerDelegate
+    */
     func packetReceived(packet:NevoPacket) {
 
     }

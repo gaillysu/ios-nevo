@@ -148,6 +148,16 @@ class ConnectionControllerImpl : NSObject, ConnectionController, NevoBTDelegate 
     {
        mDelegate?.firmwareVersionReceived(whichfirmware, version: version)
     }
+
+    /**
+    Receiving the current device signal strength value
+
+    :param: number, Signal strength value
+    */
+    func receivedRSSIValue(number:NSNumber){
+        //AppTheme.DLog("Red RSSI Value:\(number)")
+        mDelegate?.receivedRSSIValue(number)
+    }
     
     /**
     See ConnectionController protocol

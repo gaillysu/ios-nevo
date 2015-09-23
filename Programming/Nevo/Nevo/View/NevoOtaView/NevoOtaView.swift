@@ -199,7 +199,7 @@ class NevoOtaView: UIView {
 
             ReUpgradeButton = UIButton(type:UIButtonType.Custom)
             ReUpgradeButton!.frame = CGRectMake(0, 0, 120, 40)
-            ReUpgradeButton!.setTitle(NSLocalizedString("Re-Upgrade", comment: ""), forState: UIControlState.Normal)
+            ReUpgradeButton!.setTitle(NSLocalizedString("Upgrade", comment: ""), forState: UIControlState.Normal)
             ReUpgradeButton!.titleLabel?.font = AppTheme.FONT_RALEWAY_LIGHT(mSize: 15)
             ReUpgradeButton!.backgroundColor = UIColor.clearColor()
             ReUpgradeButton!.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)

@@ -67,7 +67,8 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
     MCU Software version
     */
     private var mSoftwareVersion:NSString?
-    
+
+    private var redRssiTimer:NSTimer = NSTimer()
     /**
     Basic constructor, just a Delegate handsake
     */
@@ -87,117 +88,11 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
         mManager=CBCentralManager(delegate:self, queue:nil)
         
         mManager?.delegate = self
-        
-        
-    }
-    
-    /**
-    See NevoBT protocol
-    */
-    func scanAndConnect() {
-        
-        //We can't be sure if the Manager is ready, so let's try
-        if(self.isBluetoothEnabled()) {
-            
-            let services:[CBUUID] = [mProfile!.CONTROL_SERVICE]
-            
-            //No address was specified, we'll search for devices with the right profile.
-    
-            //We'll try to connect to both known and nearby devices
-    
-            
-            //Here we search for all nearby devices
-            //We can't just search for all services, because that's not allowed when the app is in the background
-            mManager?.scanForPeripheralsWithServices(services,options:nil)
-            
-            AppTheme.DLog("Scan started.")
-            
-            
-            //The scan will stop X sec later
-            //We scehduele or re-schdeuele the stop scanning
-            mTimer?.invalidate()
-            
-            mTimer = NSTimer.scheduledTimerWithTimeInterval(SCANNING_DURATION, target: self, selector: Selector("stopScan"), userInfo: nil, repeats: false)
-            
-            
-            
-            //Here, we search for known devices
-            if let systemConnected:[CBPeripheral] = mManager?.retrieveConnectedPeripheralsWithServices(services) {
-            
-            for peripheral in systemConnected {
-                
-                    if (peripheral.state == CBPeripheralState.Disconnected) {
-                    
-                        //The given devices are known to the system and disconnected
-                        //With a bit of luck the device is nearby and available
-                        self.matchingPeripheralFound(peripheral)
-                    
-                    }
-                }
-            }
-
-    
-        } else {
-            //Maybe the Manager is not ready yet, let's try again after a delay
-            AppTheme.DLog("Bluetooth Manager unavailable or not initialised, let's retry after a delay")
-            
-            let dispatchTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, Int64(RETRY_DURATION * Double(NSEC_PER_SEC)))
-            dispatch_after(dispatchTime, dispatch_get_main_queue(), {
-                self.scanAndConnect()
-            })
-        }
 
     }
-    
-    /**
-    See NevoBT protocol
-    */
-    func connectToAddress(peripheralAddress : NSUUID) {
-        
-        //We can't be sure if the Manager is ready, so let's try
-        if(self.isBluetoothEnabled()) {
-            
-            
-            AppTheme.DLog("Connecting to : \(peripheralAddress.UUIDString)")
-            
-            
-            //Here, we try to retreive the given peripheral
-            if let potentialMatches:[CBPeripheral] = mManager?.retrievePeripheralsWithIdentifiers([peripheralAddress]){
-            
-                for peripheral in potentialMatches {
-                
-                    if (peripheral.state == CBPeripheralState.Disconnected) {
-                    
-                        //The given devices are known to the system and disconnected
-                        //With a bit of luck the device is nearby and available
-                        self.matchingPeripheralFound(peripheral)
-                    
-                    }
-                }
-            }
-            
-            
-        } else {
-            //Maybe the Manager is not ready yet, let's try again after a delay
-            AppTheme.DLog("Bluetooth Manager unavailable or not initialised, let's retry after a delay")
-            
-            let dispatchTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, Int64(RETRY_DURATION * Double(NSEC_PER_SEC)))
-            dispatch_after(dispatchTime, dispatch_get_main_queue(), {
-                self.connectToAddress(peripheralAddress)
-            })
-        }
-    }
-    
-    /**
-    Stops the current scan
-    */
-    func stopScan() {
-        mManager?.stopScan()
-        
-        AppTheme.DLog("Scan stopped.")
-        
-    }
-    
+
+
+    // MARK: - CBCentralManagerDelegate
     /**
     Invoked whenever the central manager's state is updated.
     */
@@ -213,29 +108,7 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
         self.matchingPeripheralFound(peripheral)
     
     }
-    
-    /**
-    This peripheral is a good candidate, it has the right Services and hence we try to connect to it
-    */
-    private func matchingPeripheralFound( aPeripheral : CBPeripheral ){
 
-        AppTheme.DLog("Connecting to :\(aPeripheral.description)")
-        
-        //If it's not connected already, let's connect to it
-        if(aPeripheral.state==CBPeripheralState.Disconnected){
-
-            //We have to save the peripheral, otherwise we will forget it
-            //We don't knopw were this peripheral come from,
-            //There might be for example 10 peripherals known to the device, but one only is in range
-            //So we need to try to connect to all of them, and hence we need to save all of them
-            mTryingToConnectPeripherals?.append(aPeripheral)
-            
-            mManager?.connectPeripheral(aPeripheral,options:nil)
-            
-        }
-    
-    }
-        
     /**
     Invoked whenever a connection is succesfully created with the peripheral.
     Discover available services on the peripheral and notifies our delegate
@@ -252,9 +125,37 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
         //We don't need to continue searching for peripherals, let's stop connecting to the others
         //We do so by forgetting them
         mTryingToConnectPeripherals = []
-                
+
+        if(redRssiTimer.valid){
+            redRssiTimer.invalidate()
+        }
+        redRssiTimer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: Selector("redRSSI:"), userInfo: nil, repeats: true)
     }
 
+    /**
+    Invoked whenever an existing connection with the peripheral is torn down.
+    Reset local variables and notifies our delegate
+    */
+    func centralManager(central: CBCentralManager, didDisconnectPeripheral aPeripheral: CBPeripheral, error : NSError?) {
+
+        AppTheme.DLog("***Peripheral disconnected : \(aPeripheral.name)***")
+
+        if(error != nil) {
+            AppTheme.DLog("Error : \(error!.localizedDescription) for peripheral : \(aPeripheral.name)")
+        }
+
+
+        //Let's forget this device
+        setPeripheral(nil)
+
+        mDelegate?.connectionStateChanged(false, fromAddress: aPeripheral.identifier)
+
+        if(redRssiTimer.valid){
+            redRssiTimer.invalidate()
+        }
+    }
+
+    // MARK: - CBPeripheralDelegate
     /*
     Invoked upon completion of a -[discoverServices:] request.
     Discover available characteristics on interested services
@@ -362,7 +263,109 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
         }
 
     }
-    
+
+    func peripheral(peripheral: CBPeripheral, didReadRSSI RSSI: NSNumber, error: NSError?){
+        mDelegate?.receivedRSSIValue(RSSI)
+    }
+
+    // MARK: - NevoBT
+    /**
+    See NevoBT protocol
+    */
+    func scanAndConnect() {
+
+        //We can't be sure if the Manager is ready, so let's try
+        if(self.isBluetoothEnabled()) {
+
+            let services:[CBUUID] = [mProfile!.CONTROL_SERVICE]
+
+            //No address was specified, we'll search for devices with the right profile.
+
+            //We'll try to connect to both known and nearby devices
+
+
+            //Here we search for all nearby devices
+            //We can't just search for all services, because that's not allowed when the app is in the background
+            mManager?.scanForPeripheralsWithServices(services,options:nil)
+
+            AppTheme.DLog("Scan started.")
+
+
+            //The scan will stop X sec later
+            //We scehduele or re-schdeuele the stop scanning
+            mTimer?.invalidate()
+
+            mTimer = NSTimer.scheduledTimerWithTimeInterval(SCANNING_DURATION, target: self, selector: Selector("stopScan"), userInfo: nil, repeats: false)
+
+
+
+            //Here, we search for known devices
+            if let systemConnected:[CBPeripheral] = mManager?.retrieveConnectedPeripheralsWithServices(services) {
+
+                for peripheral in systemConnected {
+
+                    if (peripheral.state == CBPeripheralState.Disconnected) {
+
+                        //The given devices are known to the system and disconnected
+                        //With a bit of luck the device is nearby and available
+                        self.matchingPeripheralFound(peripheral)
+
+                    }
+                }
+            }
+
+
+        } else {
+            //Maybe the Manager is not ready yet, let's try again after a delay
+            AppTheme.DLog("Bluetooth Manager unavailable or not initialised, let's retry after a delay")
+
+            let dispatchTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, Int64(RETRY_DURATION * Double(NSEC_PER_SEC)))
+            dispatch_after(dispatchTime, dispatch_get_main_queue(), {
+                self.scanAndConnect()
+            })
+        }
+
+    }
+
+    /**
+    See NevoBT protocol
+    */
+    func connectToAddress(peripheralAddress : NSUUID) {
+
+        //We can't be sure if the Manager is ready, so let's try
+        if(self.isBluetoothEnabled()) {
+
+
+            AppTheme.DLog("Connecting to : \(peripheralAddress.UUIDString)")
+
+
+            //Here, we try to retreive the given peripheral
+            if let potentialMatches:[CBPeripheral] = mManager?.retrievePeripheralsWithIdentifiers([peripheralAddress]){
+
+                for peripheral in potentialMatches {
+
+                    if (peripheral.state == CBPeripheralState.Disconnected) {
+
+                        //The given devices are known to the system and disconnected
+                        //With a bit of luck the device is nearby and available
+                        self.matchingPeripheralFound(peripheral)
+
+                    }
+                }
+            }
+
+
+        } else {
+            //Maybe the Manager is not ready yet, let's try again after a delay
+            AppTheme.DLog("Bluetooth Manager unavailable or not initialised, let's retry after a delay")
+
+            let dispatchTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, Int64(RETRY_DURATION * Double(NSEC_PER_SEC)))
+            dispatch_after(dispatchTime, dispatch_get_main_queue(), {
+                self.connectToAddress(peripheralAddress)
+            })
+        }
+    }
+
     /**
     See NevoBT protocol
     */
@@ -440,26 +443,6 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
         setPeripheral(nil)
         
     }
-
-    /**
-    Invoked whenever an existing connection with the peripheral is torn down.
-    Reset local variables and notifies our delegate
-    */
-    func centralManager(central: CBCentralManager, didDisconnectPeripheral aPeripheral: CBPeripheral, error : NSError?) {
-    
-        AppTheme.DLog("***Peripheral disconnected : \(aPeripheral.name)***")
-    
-        if(error != nil) {
-            AppTheme.DLog("Error : \(error!.localizedDescription) for peripheral : \(aPeripheral.name)")
-        }
-
-
-        //Let's forget this device
-        setPeripheral(nil)
-    
-        mDelegate?.connectionStateChanged(false, fromAddress: aPeripheral.identifier)
-    
-    }
     
     /**
     See NevoBT protocol
@@ -474,7 +457,7 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
     func getProfile() -> Profile {
         return mProfile!
     }
-    
+
     /**
     See NevoBT protocol
     */
@@ -489,51 +472,43 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
         return mSoftwareVersion!
     }
 
-    /**
-    Uses CBCentralManager to check whether the current platform/hardware supports Bluetooth LE. An alert is raised if Bluetooth LE is not enabled or is not supported.
-    */
-    func isBluetoothEnabled() -> Bool {
-        if(mManager == nil) {
-            return false
-        }
-        
-        switch (mManager!.state)
-        {
-        
-        case CBCentralManagerState.PoweredOn:
-            return true
-        
-        case CBCentralManagerState.Unsupported:
-            AppTheme.DLog("The platform/hardware doesn't support Bluetooth Low Energy.")
-            break
-        
-        case CBCentralManagerState.Unauthorized:
-            AppTheme.DLog("The app is not authorized to use Bluetooth Low Energy.")
-            break
-        
-        case CBCentralManagerState.PoweredOff:
-            AppTheme.DLog("Bluetooth is currently powered off.")
-            break
-        
-        default:
-            AppTheme.DLog("Unknown device state")
-            break
-        
-        }
-    
-    
-        return false
+    // MARK: - Red RSSI NSTimer
+    func redRSSI(timer:NSTimer){
+        getRSSI()
     }
-    
+
+    // MARK: -This class of private function
+    /**
+    This peripheral is a good candidate, it has the right Services and hence we try to connect to it
+    */
+    private func matchingPeripheralFound( aPeripheral : CBPeripheral ){
+
+        AppTheme.DLog("Connecting to :\(aPeripheral.description)")
+
+        //If it's not connected already, let's connect to it
+        if(aPeripheral.state==CBPeripheralState.Disconnected){
+
+            //We have to save the peripheral, otherwise we will forget it
+            //We don't knopw were this peripheral come from,
+            //There might be for example 10 peripherals known to the device, but one only is in range
+            //So we need to try to connect to all of them, and hence we need to save all of them
+            mTryingToConnectPeripherals?.append(aPeripheral)
+
+            mManager?.connectPeripheral(aPeripheral,options:nil)
+
+        }
+
+    }
+
     private func setPeripheral(aPeripheral:CBPeripheral?) {
         //When setting a new peripheral, there are several steps to do first
-    
+
         mPeripheral?.delegate = nil
-    
+
         mPeripheral = aPeripheral
         mPeripheral?.delegate = self
     }
-    
+
     /**
     Converts a binary value to HEX
     */
@@ -544,6 +519,60 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
             str.appendFormat("%02hhx", byte)
         }
         return str
+    }
+
+    // MARK: -This class of public function
+    /**
+    Stops the current scan
+    */
+    func stopScan() {
+        mManager?.stopScan()
+
+        AppTheme.DLog("Scan stopped.")
+
+    }
+
+    /**
+    Get the current connection device of RSSI values
+    */
+    func getRSSI(){
+        mPeripheral?.readRSSI()
+    }
+
+    /**
+    Uses CBCentralManager to check whether the current platform/hardware supports Bluetooth LE. An alert is raised if Bluetooth LE is not enabled or is not supported.
+    */
+    func isBluetoothEnabled() -> Bool {
+        if(mManager == nil) {
+            return false
+        }
+
+        switch (mManager!.state)
+        {
+
+        case CBCentralManagerState.PoweredOn:
+            return true
+
+        case CBCentralManagerState.Unsupported:
+            AppTheme.DLog("The platform/hardware doesn't support Bluetooth Low Energy.")
+            break
+
+        case CBCentralManagerState.Unauthorized:
+            AppTheme.DLog("The app is not authorized to use Bluetooth Low Energy.")
+            break
+
+        case CBCentralManagerState.PoweredOff:
+            AppTheme.DLog("Bluetooth is currently powered off.")
+            break
+
+        default:
+            AppTheme.DLog("Unknown device state")
+            break
+
+        }
+
+
+        return false
     }
 
 }

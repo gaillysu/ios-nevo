@@ -139,6 +139,13 @@ class HomeController: UIViewController, SyncControllerDelegate ,ButtonManagerCal
         }
     }
 
+    /**
+    See SyncControllerDelegate
+    */
+    func receivedRSSIValue(number:NSNumber){
+
+    }
+
     func connectionStateChanged(isConnected: Bool) {
         //Maybe we just got disconnected, let's check
         
