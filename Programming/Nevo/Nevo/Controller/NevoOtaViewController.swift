@@ -177,7 +177,7 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
     See SyncControllerDelegate
     */
     func receivedRSSIValue(number:NSNumber){
-        AppTheme.DLog("Red RSSI Value:\(number)")
+        //AppTheme.DLog("Red RSSI Value:\(number)")
         if(number.integerValue < -85){
             if(rssialert==nil){
                 rssialert = UIAlertView(title: NSLocalizedString("Unstable connection ensure", comment: ""), message:NSLocalizedString("Unstable connection ensure phone is on and in range", comment: "") , delegate: nil, cancelButtonTitle: nil)

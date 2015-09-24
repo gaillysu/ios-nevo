@@ -26,13 +26,13 @@ class QueryHistoricalController: UIViewController,UITableViewDataSource,UITableV
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        UIApplication.sharedApplication().setStatusBarOrientation(UIInterfaceOrientation.LandscapeRight, animated: false)
-        UIView.beginAnimations(nil, context: nil)
-        UIView.setAnimationDuration(2)
-        self.view.transform = CGAffineTransformIdentity
-        self.view.transform = CGAffineTransformMakeRotation(CGFloat(M_PI*(90)/180.0));
-        self.view.bounds = CGRectMake(0, 0, UIScreen.mainScreen().bounds.height, UIScreen.mainScreen().bounds.width);
-        UIView.commitAnimations()
+        //UIApplication.sharedApplication().setStatusBarOrientation(UIInterfaceOrientation.LandscapeRight, animated: false)
+        //UIView.beginAnimations(nil, context: nil)
+        //UIView.setAnimationDuration(2)
+        //self.view.transform = CGAffineTransformIdentity
+        //self.view.transform = CGAffineTransformMakeRotation(CGFloat(M_PI*(90)/180.0));
+        //self.view.bounds = CGRectMake(0, 0, UIScreen.mainScreen().bounds.height, UIScreen.mainScreen().bounds.width);
+        //UIView.commitAnimations()
 
         self.view.backgroundColor = UIColor.whiteColor()
         let secondsPerDay:NSTimeInterval  = 24*7 * 60 * 60;

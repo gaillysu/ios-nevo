@@ -50,7 +50,7 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qmS-4V-0uD" customClass="BarChartView" customModule="Nevo" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="94" width="320" height="474"/>
+                    <rect key="frame" x="0.0" y="94" width="320" height="250"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </view>
             </subviews>
@@ -62,7 +62,7 @@
                 <constraint firstItem="Hkh-dG-PEg" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="bG9-re-PJr"/>
                 <constraint firstItem="qmS-4V-0uD" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="94" id="m2D-go-BJu"/>
                 <constraint firstAttribute="trailing" secondItem="qmS-4V-0uD" secondAttribute="trailing" id="nd4-Ol-Dyy"/>
-                <constraint firstAttribute="bottom" secondItem="qmS-4V-0uD" secondAttribute="bottom" id="tEV-Or-xr4"/>
+                <constraint firstAttribute="bottom" secondItem="qmS-4V-0uD" secondAttribute="bottom" constant="224" id="tEV-Or-xr4"/>
             </constraints>
             <connections>
                 <outlet property="backButton" destination="I7h-X1-Bun" id="Myt-ko-DfD"/>

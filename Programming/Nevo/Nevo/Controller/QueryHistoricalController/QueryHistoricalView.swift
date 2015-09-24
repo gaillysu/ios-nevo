@@ -125,9 +125,9 @@ class QueryHistoricalView: UIView {
             }
 
             //获取源数据睡眠时间单位是分钟,转换成小时为单位给画图数据源
-            var val1:Double  = Double(deepTimer)/60;//深睡画图数据源
-            var val2:Double  = Double(lightTimer)/60;//浅睡画图数据源
-            var val3:Double  = Double(wakeTimer)/60;//醒来画图数据源
+            let val1:Double  = Double(deepTimer)/60;//深睡画图数据源
+            let val2:Double  = Double(lightTimer)/60;//浅睡画图数据源
+            let val3:Double  = Double(wakeTimer)/60;//醒来画图数据源
             yVal.append(BarChartDataEntry(values: [val1,val2,val3], xIndex:i))
 
             //释放前一天的睡眠(必须，不然会循环引用)
@@ -138,7 +138,7 @@ class QueryHistoricalView: UIView {
         }
 
         //图标名称
-        var set1:BarChartDataSet  = BarChartDataSet(yVals: yVal, label: "Sleep tracking")
+        let set1:BarChartDataSet  = BarChartDataSet(yVals: yVal, label: "Sleep tracking")
         //每个数据区块的颜色
         set1.colors = [ChartColorTemplates.vordiplom()[0],ChartColorTemplates.vordiplom()[1],ChartColorTemplates.vordiplom()[2]];
         //每个数据块的类别名称,数组形式传递
@@ -147,12 +147,12 @@ class QueryHistoricalView: UIView {
         var dataSets:[BarChartDataSet] = [];
         dataSets.append(set1);
 
-        var formatter:NSNumberFormatter = NSNumberFormatter();
+        let formatter:NSNumberFormatter = NSNumberFormatter();
         formatter.maximumFractionDigits = 1;
         formatter.negativeSuffix = " h";
         formatter.positiveSuffix = " h";
 
-        var data:BarChartData = BarChartData(xVals: xVal, dataSets: dataSets)
+        let data:BarChartData = BarChartData(xVals: xVal, dataSets: dataSets)
         data.setValueFont(UIFont(name: "HelveticaNeue-Light", size: 7.0))
         data.setValueFormatter(formatter)
         chartView!.data = data;
