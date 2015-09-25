@@ -23,8 +23,9 @@ class QueryHistoricalView: UIView {
         queryModel.addObjectsFromArray(modelArray as [AnyObject])
 
         chartView!.delegate = delegate;
-        chartView!.descriptionText = "";
-        chartView!.noDataTextDescription = "You need to provide data for the chart.";
+        chartView!.descriptionText = " ";
+        chartView?.noDataText = "No sleep tracking data"
+        chartView!.noDataTextDescription = " ";
 
         chartView!.maxVisibleValueCount = 60
         chartView!.pinchZoomEnabled = true//手势放大缩小效果
