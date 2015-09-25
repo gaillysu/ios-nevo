@@ -18,16 +18,16 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hkh-dG-PEg">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="55"/>
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="85"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sleep query" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MPS-4M-HBU">
-                            <rect key="frame" x="85" y="5" width="150" height="45"/>
+                            <rect key="frame" x="85" y="20" width="150" height="45"/>
                             <fontDescription key="fontDescription" type="system" pointSize="25"/>
                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I7h-X1-Bun">
-                            <rect key="frame" x="8" y="5" width="45" height="45"/>
+                            <rect key="frame" x="8" y="20" width="45" height="45"/>
                             <state key="normal" image="backIcon">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
@@ -39,18 +39,18 @@
                     <color key="backgroundColor" red="0.18823529410000001" green="0.18823529410000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstItem="I7h-X1-Bun" firstAttribute="bottom" secondItem="MPS-4M-HBU" secondAttribute="bottom" id="3Pa-OR-BTp"/>
-                        <constraint firstAttribute="height" constant="55" id="KMl-sa-1mI"/>
+                        <constraint firstAttribute="height" constant="85" id="KMl-sa-1mI"/>
                         <constraint firstItem="MPS-4M-HBU" firstAttribute="leading" secondItem="I7h-X1-Bun" secondAttribute="trailing" constant="32" id="MVe-gQ-K6Y"/>
-                        <constraint firstItem="MPS-4M-HBU" firstAttribute="top" secondItem="Hkh-dG-PEg" secondAttribute="top" constant="5" id="ORh-hz-gbh"/>
+                        <constraint firstItem="MPS-4M-HBU" firstAttribute="top" secondItem="Hkh-dG-PEg" secondAttribute="top" constant="20" id="ORh-hz-gbh"/>
                         <constraint firstItem="I7h-X1-Bun" firstAttribute="top" secondItem="MPS-4M-HBU" secondAttribute="top" id="SvR-qy-3dv"/>
                         <constraint firstItem="I7h-X1-Bun" firstAttribute="leading" secondItem="Hkh-dG-PEg" secondAttribute="leadingMargin" id="Tbk-Qp-Sbp"/>
-                        <constraint firstAttribute="bottom" secondItem="MPS-4M-HBU" secondAttribute="bottom" constant="5" id="UzD-hN-Ofe"/>
+                        <constraint firstAttribute="bottom" secondItem="MPS-4M-HBU" secondAttribute="bottom" constant="20" id="UzD-hN-Ofe"/>
                         <constraint firstItem="MPS-4M-HBU" firstAttribute="leading" secondItem="Hkh-dG-PEg" secondAttribute="leading" constant="85" id="fQg-vy-j4C"/>
                         <constraint firstAttribute="trailing" secondItem="MPS-4M-HBU" secondAttribute="trailing" constant="85" id="xjS-XK-kqj"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qmS-4V-0uD" customClass="BarChartView" customModule="Nevo" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="94" width="320" height="250"/>
+                    <rect key="frame" x="0.0" y="125" width="320" height="250"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </view>
             </subviews>
@@ -60,9 +60,9 @@
                 <constraint firstItem="Hkh-dG-PEg" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="KxL-f1-OV5"/>
                 <constraint firstAttribute="trailing" secondItem="Hkh-dG-PEg" secondAttribute="trailing" id="V9B-ik-6nA"/>
                 <constraint firstItem="Hkh-dG-PEg" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="bG9-re-PJr"/>
-                <constraint firstItem="qmS-4V-0uD" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="94" id="m2D-go-BJu"/>
+                <constraint firstItem="qmS-4V-0uD" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="125" id="m2D-go-BJu"/>
                 <constraint firstAttribute="trailing" secondItem="qmS-4V-0uD" secondAttribute="trailing" id="nd4-Ol-Dyy"/>
-                <constraint firstAttribute="bottom" secondItem="qmS-4V-0uD" secondAttribute="bottom" constant="224" id="tEV-Or-xr4"/>
+                <constraint firstAttribute="bottom" secondItem="qmS-4V-0uD" secondAttribute="bottom" constant="193" id="tEV-Or-xr4"/>
             </constraints>
             <connections>
                 <outlet property="backButton" destination="I7h-X1-Bun" id="Myt-ko-DfD"/>

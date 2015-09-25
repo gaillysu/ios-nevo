@@ -727,6 +727,14 @@ class SyncController: NSObject,ConnectionControllerDelegate,UIAlertViewDelegate 
         }
     }
 
+    func removeMyNevoDelegate(){
+        for(var i:Int = 0; i < mDelegates.count; i++){
+            if mDelegates[i] is MyNevoController{
+                mDelegates.removeAtIndex(i)
+            }
+        }
+    }
+
     func connect() {
         self.mConnectionController.connect()
     }

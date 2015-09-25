@@ -18,7 +18,6 @@ class MyNevoController: UIViewController,ButtonManagerCallBack,SyncControllerDel
         super.viewDidLoad()
 
         mSyncController = SyncController.sharedInstance
-        mSyncController?.startConnect(false, delegate: self)
 
         mynevoView.bulidMyNevoView(self)
 
@@ -26,8 +25,13 @@ class MyNevoController: UIViewController,ButtonManagerCallBack,SyncControllerDel
 
     
     override func viewDidAppear(animated: Bool) {
+        mSyncController?.startConnect(false, delegate: self)
         mSyncController?.ReadBatteryLevel()
         mynevoView.setVersionLbael(mSyncController!.getSoftwareVersion(), bleNumber: mSyncController!.getFirmwareVersion())
+    }
+    
+    override func viewDidDisappear(animated: Bool) {
+        mSyncController?.removeMyNevoDelegate()
     }
 
     override func didReceiveMemoryWarning() {
