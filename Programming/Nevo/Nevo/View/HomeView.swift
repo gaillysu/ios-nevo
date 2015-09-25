@@ -42,9 +42,9 @@ class HomeView: UIView {
         progressView?.setProgress(progresValue)
         self.layer.addSublayer(progressView!)
 
-        pushButton = UIButton(frame: CGRectMake(UIScreen.mainScreen().bounds.width-120, titleBgView.frame.size.height, 100, 45))
-        pushButton?.setTitle("Sleep query", forState: UIControlState.Normal)
-        pushButton?.setTitleColor(UIColor.redColor(), forState: UIControlState.Normal)
+        pushButton = UIButton(frame: CGRectMake(UIScreen.mainScreen().bounds.width-130, titleBgView.frame.size.height, 120, 45))
+        pushButton?.setTitle("Sleep History", forState: UIControlState.Normal)
+        pushButton?.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
         pushButton?.addTarget(self, action: Selector("ButtonAction:"), forControlEvents: UIControlEvents.TouchUpInside)
         self.addSubview(pushButton!)
 
