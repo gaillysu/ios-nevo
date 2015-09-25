@@ -74,8 +74,8 @@ class QueryHistoricalView: UIView {
             for (var j:Int = i; j < queryModel.count; j++){
                 let iSeleModel:DaySleepSaveModel = queryModel.objectAtIndex(i) as! DaySleepSaveModel;
                 let jSeleModel:DaySleepSaveModel = queryModel.objectAtIndex(j) as! DaySleepSaveModel;
-                let iSleepDate:Int = iSeleModel.sleepDate!.integerValue
-                let jSleepDate:Int = jSeleModel.sleepDate!.integerValue
+                let iSleepDate:Int = iSeleModel.created
+                let jSleepDate:Int = jSeleModel.created
                 if (iSleepDate > jSleepDate){
                     let temp:DaySleepSaveModel = queryModel.objectAtIndex(i) as! DaySleepSaveModel;
                     queryModel.replaceObjectAtIndex(i, withObject: queryModel[j])
@@ -87,13 +87,13 @@ class QueryHistoricalView: UIView {
         //计算睡眠时间以中午12点为计算起点,
         for (var i:Int = 0; i < queryModel.count; i++){
             let seleModel:DaySleepSaveModel = queryModel.objectAtIndex(i) as! DaySleepSaveModel;
-            xVal.append(seleModel.sleepDate!.substringWithRange(NSMakeRange(4, 4)))
+            xVal.append(("\(seleModel.created)" as NSString).substringWithRange(NSMakeRange(4, 4)))
 
             //当天的数据源(没有跨天的数据源)
-            let sleepTimerArray:NSArray = AppTheme.jsonToArray(seleModel.HourlySleepTime as! String)
-            let wakeTimeTimerArray:NSArray = AppTheme.jsonToArray(seleModel.HourlyWakeTime as! String)
-            let lightTimeTimerArray:NSArray = AppTheme.jsonToArray(seleModel.HourlyLightTime as! String)
-            let deepTimeTimerArray:NSArray = AppTheme.jsonToArray(seleModel.HourlyDeepTime as! String)
+            let sleepTimerArray:NSArray = AppTheme.jsonToArray(seleModel.HourlySleepTime as String)
+            let wakeTimeTimerArray:NSArray = AppTheme.jsonToArray(seleModel.HourlyWakeTime as String)
+            let lightTimeTimerArray:NSArray = AppTheme.jsonToArray(seleModel.HourlyLightTime as String)
+            let deepTimeTimerArray:NSArray = AppTheme.jsonToArray(seleModel.HourlyDeepTime as String)
 
             var sleepTimer:Int  = 0
             var wakeTimer:Int  = 0
@@ -112,10 +112,10 @@ class QueryHistoricalView: UIView {
             //跨天的睡眠数据源
             if(i+1<queryModel.count){
                 let nextSeleModel:DaySleepSaveModel = queryModel.objectAtIndex(i+1) as! DaySleepSaveModel;
-                let mSleepTimerArray:NSArray = AppTheme.jsonToArray(nextSeleModel.HourlySleepTime as! String)
-                let mWakeTimeTimerArray:NSArray = AppTheme.jsonToArray(nextSeleModel.HourlyWakeTime as! String)
-                let mLightTimeTimerArray:NSArray = AppTheme.jsonToArray(nextSeleModel.HourlyLightTime as! String)
-                let mDeepTimeTimerArray:NSArray = AppTheme.jsonToArray(nextSeleModel.HourlyDeepTime as! String)
+                let mSleepTimerArray:NSArray = AppTheme.jsonToArray(nextSeleModel.HourlySleepTime as String)
+                let mWakeTimeTimerArray:NSArray = AppTheme.jsonToArray(nextSeleModel.HourlyWakeTime as String)
+                let mLightTimeTimerArray:NSArray = AppTheme.jsonToArray(nextSeleModel.HourlyLightTime as String)
+                let mDeepTimeTimerArray:NSArray = AppTheme.jsonToArray(nextSeleModel.HourlyDeepTime as String)
                 for (var s:Int  = 0; s < mSleepTimerArray.count-12; s++){
                     sleepTimer = (mSleepTimerArray[s] as! NSNumber).integerValue + sleepTimer
                     wakeTimer = (mWakeTimeTimerArray[s] as! NSNumber).integerValue + wakeTimer
@@ -168,12 +168,12 @@ class QueryHistoricalView: UIView {
             endCell = nibs.objectAtIndex(0) as? queryTableviewCell;
 
         }
-        endCell!.deepSleepTime.text = seleModel.HourlyDeepTime as? String
-        endCell!.sleepTime.text = seleModel.DailySleepTime as? String
-        endCell!.wakeTime.text = seleModel.DailyWakeTime as? String
-        endCell!.lightTime.text = seleModel.DailyLightTime as? String
-        endCell!.dailyDist.text = seleModel.DailyDist as? String
-        endCell!.dailyCalories.text = seleModel.DailyCalories as? String
+        //endCell!.deepSleepTime.text = seleModel.HourlyDeepTime as? String
+        //endCell!.sleepTime.text = seleModel.DailySleepTime as? String
+        //endCell!.wakeTime.text = seleModel.DailyWakeTime as? String
+        //endCell!.lightTime.text = seleModel.DailyLightTime as? String
+        //endCell!.dailyDist.text = seleModel.DailyDist as? String
+        //endCell!.dailyCalories.text = seleModel.DailyCalories as? String
         
         endCell?.selectionStyle = UITableViewCellSelectionStyle.None;
         return endCell!

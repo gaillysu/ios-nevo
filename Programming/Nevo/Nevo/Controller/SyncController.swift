@@ -377,42 +377,7 @@ class SyncController: NSObject,ConnectionControllerDelegate,UIAlertViewDelegate 
                 AppTheme.DLog("Day:\(GmtNSDate2LocaleNSDate(savedDailyHistory[Int(currentDay)].Date)), Daily Total Disc (m):\(savedDailyHistory[Int(currentDay)].TotalDist)")
                 
                 AppTheme.DLog("Day:\(GmtNSDate2LocaleNSDate(savedDailyHistory[Int(currentDay)].Date)), Daily Total Calories (kcal):\(savedDailyHistory[Int(currentDay)].TotalCalories)")
-                
 
-                var daysleepSave:DaySleepSaveModel = DaySleepSaveModel()
-                daysleepSave.Steps = NSString(format: "%d", thispacket.getDailySteps())
-                daysleepSave.sleepDate = NSString(format: "%d", thispacket.getDateTimer())
-                daysleepSave.DailySleepTime = NSString(format: "%d", thispacket.getDailySleepTime())
-                daysleepSave.HourlySleepTime = AppTheme.toJSONString(thispacket.getHourlySleepTime())
-                daysleepSave.DailyWakeTime = NSString(format: "%d", thispacket.getDailyWakeTime())
-                daysleepSave.HourlyWakeTime = AppTheme.toJSONString(thispacket.getHourlyWakeTime())
-                daysleepSave.DailyLightTime = NSString(format: "%d", thispacket.getDailyLightTime())
-                daysleepSave.HourlyLightTime = AppTheme.toJSONString(thispacket.getHourlyLightTime())
-                daysleepSave.DailyDeepTime = NSString(format: "%d", thispacket.getDailyDeepTime())
-                daysleepSave.HourlyDeepTime = AppTheme.toJSONString(thispacket.getHourlyDeepTime())
-                daysleepSave.DailyDist = NSString(format: "%d", thispacket.getDailyDist())
-                daysleepSave.DailyCalories = NSString(format: "%d", thispacket.getDailyCalories())
-
-                AppTheme.DLog("---------------\(thispacket.getDateTimer())")
-
-                //Query the database is this record
-                let quyerModel = DaySleepSaveModel.findFirstByCriteria("WHERE sleepDate = \(thispacket.getDateTimer())")
-                if(quyerModel != nil){
-                    AppTheme.DLog("Data that has been saved····")
-                    //Analyzing whether the same data database is not updated if they are equal, otherwise the update the database
-                    if((daysleepSave.DailyLightTime?.intValue)>(quyerModel.DailySleepTime?.intValue)){
-                        AppTheme.DLog("Data is not the same as the data download Watch")
-                        //Update the database using the asynchronous thread
-                        dispatch_async(dispatch_get_global_queue(0, 0), { () -> Void in
-                            daysleepSave.update()
-                        })
-                    }
-                }else{
-                    //Don't have any database if the sleep time is zero
-                    if(thispacket.getDailySleepTime() != 0){
-                        let isSave:Bool = daysleepSave.save()  //If not, save database
-                    }
-                }
                 //save to health kit
                 let hk = NevoHKImpl()
                 hk.requestPermission()
@@ -510,23 +475,20 @@ class SyncController: NSObject,ConnectionControllerDelegate,UIAlertViewDelegate 
                         AppTheme.DLog("wake endDate:\(GmtNSDate2LocaleNSDate(endDateWake!))")
                         
                         //save wake time before every hour
-                        if savedDailyHistory[Int(currentDay)].HourlyWakeTime[i] > 0
-                        {
-                        
-                        hk.writeDataPoint(DaySleep(isAsleep: false, numberOfSleeps: 0, startDate: startDateWake!, endDate: endDateWake!), resultHandler: { (result, error) -> Void in
-                            if (result != true) {
-                                AppTheme.DLog("Save Hourly wake time error\(i),\(error)")
-                            }
-                            else
-                            {
-                                AppTheme.DLog("Save Hourly wake time OK")
-                            }
-                        })
+                        if savedDailyHistory[Int(currentDay)].HourlyWakeTime[i] > 0{
+                            hk.writeDataPoint(DaySleep(isAsleep: false, numberOfSleeps: 0, startDate: startDateWake!, endDate: endDateWake!), resultHandler: { (result, error) -> Void in
+                                if (result != true) {
+                                    AppTheme.DLog("Save Hourly wake time error\(i),\(error)")
+                                }
+                                else
+                                {
+                                    AppTheme.DLog("Save Hourly wake time OK")
+                                }
+                            })
                         }
                         
                         //save sleep time after wake time, include light/deep sleep time
-                        if(savedDailyHistory[Int(currentDay)].HourlySleepTime[i] - savedDailyHistory[Int(currentDay)].HourlyWakeTime[i] > 0)
-                        {
+                        if(savedDailyHistory[Int(currentDay)].HourlySleepTime[i] - savedDailyHistory[Int(currentDay)].HourlyWakeTime[i] > 0){
                             startDateSleep =  endDateWake
                             if savedDailyHistory[Int(currentDay)].HourlySleepTime[i] - savedDailyHistory[Int(currentDay)].HourlyWakeTime[i] == 60
                             {
@@ -534,25 +496,49 @@ class SyncController: NSObject,ConnectionControllerDelegate,UIAlertViewDelegate 
                             }
                             else
                             {
-                            endDateSleep = startDateSleep!.dateByAddingTimeInterval( NSTimeInterval((savedDailyHistory[Int(currentDay)].HourlySleepTime[i] - savedDailyHistory[Int(currentDay)].HourlyWakeTime[i])*60))
+                                endDateSleep = startDateSleep!.dateByAddingTimeInterval( NSTimeInterval((savedDailyHistory[Int(currentDay)].HourlySleepTime[i] - savedDailyHistory[Int(currentDay)].HourlyWakeTime[i])*60))
                             }
-                            
+
                             AppTheme.DLog("sleep startDate:\(GmtNSDate2LocaleNSDate(startDateSleep!))")
                             AppTheme.DLog("sleep endDate:\(GmtNSDate2LocaleNSDate(endDateSleep!))")
 
                             hk.writeDataPoint(DaySleep(isAsleep: true, numberOfSleeps: 0, startDate: startDateSleep!, endDate: endDateSleep!), resultHandler: { (result, error) -> Void in
-                            if (result != true) {
-                                AppTheme.DLog("Save Hourly sleep(light and deep) time error\(i),\(error)")
-                            }
-                            else
-                            {
-                                AppTheme.DLog("Save Hourly sleep(light and deep) time OK")
-                            }
-                        })
+                                if (result != true) {
+                                    AppTheme.DLog("Save Hourly sleep(light and deep) time error\(i),\(error)")
+                                }
+                                else
+                                {
+                                    AppTheme.DLog("Save Hourly sleep(light and deep) time OK")
+                                }
+                            })
                         }
                         
                     }
                 }
+
+                var daysleepSave:DaySleepSaveModel = DaySleepSaveModel()
+                daysleepSave.steps = thispacket.getDailySteps()
+                daysleepSave.created = thispacket.getDateTimer()
+                daysleepSave.HourlySleepTime = AppTheme.toJSONString(thispacket.getHourlySleepTime())
+                daysleepSave.HourlyWakeTime = AppTheme.toJSONString(thispacket.getHourlyWakeTime())
+                daysleepSave.HourlyLightTime = AppTheme.toJSONString(thispacket.getHourlyLightTime())
+                daysleepSave.HourlyDeepTime = AppTheme.toJSONString(thispacket.getHourlyDeepTime())
+
+                AppTheme.DLog("---------------\(thispacket.getDateTimer())")
+
+                //Query the database is this record
+                let quyerModel = DaySleepSaveModel.findFirstByCriteria("WHERE created = \(thispacket.getDateTimer())")
+                if(quyerModel != nil){
+                    AppTheme.DLog("Data that has been saved····")
+                    daysleepSave.update()
+                    //Analyzing whether the same data database is not updated if they are equal, otherwise the update the database
+                }else{
+                    //Don't have any database if the sleep time is zero
+                    if(thispacket.getDailySleepTime() != 0){
+                        let isSave:Bool = daysleepSave.save()  //If not, save database
+                    }
+                }
+
 
                 //end save
                 currentDay++
