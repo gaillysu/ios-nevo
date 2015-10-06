@@ -2,15 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
+      "filename" : "icon-68-selected.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "icon_sleep_selected.png",
+      "filename" : "icon-135-selected.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
+      "filename" : "icon-203-selected.png",
       "scale" : "3x"
     }
   ],

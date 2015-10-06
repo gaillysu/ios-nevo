@@ -28,7 +28,7 @@ class SleepTrackingView: UIView {
         animationView = AnimationView(frame: self.frame, delegate: delegate)
 
         title.textColor = UIColor.whiteColor()
-        title.text = NSLocalizedString("homeTitle", comment: "")
+        title.text = NSLocalizedString("SleepTracking", comment: "")
         title.font = AppTheme.SYSTEMFONTOFSIZE()
         title.textAlignment = NSTextAlignment.Center
 
