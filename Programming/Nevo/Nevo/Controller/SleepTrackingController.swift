@@ -14,22 +14,16 @@ Controller of the Home Screen,
 it should handle very little, only the initialisation of the different Views and the Sync Controller
 */
 
-class SleepTrackingController: UIViewController, SyncControllerDelegate ,ButtonManagerCallBack{
+class SleepTrackingController: UIViewController, SyncControllerDelegate ,ButtonManagerCallBack,ClockRefreshDelegate{
     @IBOutlet weak var sleepView: SleepTrackingView!
     private var sync:SyncController?
     private var mVisiable:Bool = false
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        sleepView.bulidHomeView(self)
+        ClockRefreshManager.sharedInstance.setRefreshDelegate(self)
 
-        NSTimer.scheduledTimerWithTimeInterval(10, target: self, selector:"timerAction:", userInfo: nil, repeats: true);
-        
-        //TEST this is for test. pls not to remove it 
-                let tapAction = UITapGestureRecognizer(target: self, action: "testHandshake")
-                tapAction.numberOfTapsRequired = 2
-                sleepView.addGestureRecognizer(tapAction)
-        //end TEST
+        sleepView.bulidHomeView(self)
 
     }
 
@@ -65,6 +59,11 @@ class SleepTrackingController: UIViewController, SyncControllerDelegate ,ButtonM
         // Dispose of any resources that can be recreated.
     }
 
+    // MARK: - ClockRefreshDelegate
+    func clockRefreshAction(){
+        sleepView.getClockTimerView().currentTimer()
+    }
+
     // MARK: - ButtonManagerCallBack
     func controllManager(sender:AnyObject) {
         if sender.isEqual(sleepView.settingButton) {
@@ -82,22 +81,6 @@ class SleepTrackingController: UIViewController, SyncControllerDelegate ,ButtonM
         }
     }
 
-    func timerAction(timer:NSTimer) {
-        sleepView.getClockTimerView().currentTimer()
-        if mVisiable
-        { SyncController.sharedInstance.getGoal() }
-    }
-
-    /**
-    test communication is normal or not
-    */
-    func testHandshake(){
-        if SyncController.sharedInstance.isConnected()
-        {
-            AppTheme.DLog("start handshake nevo");
-            SyncController.sharedInstance.SetLedOnOffandVibrator(0x3F0000, motorOnOff: false)
-        }
-    }
     /**
     
     goto OTA screen.

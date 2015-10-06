@@ -14,7 +14,7 @@ Controller of the Home Screen,
 it should handle very little, only the initialisation of the different Views and the Sync Controller
 */
 
-class HomeController: UIViewController, SyncControllerDelegate ,ButtonManagerCallBack{
+class HomeController: UIViewController, SyncControllerDelegate ,ButtonManagerCallBack,ClockRefreshDelegate{
     
     @IBOutlet var homeView: HomeView!
     private var sync:SyncController?
@@ -24,9 +24,9 @@ class HomeController: UIViewController, SyncControllerDelegate ,ButtonManagerCal
 
         homeView.bulidHomeView(self)
 
-        NSTimer.scheduledTimerWithTimeInterval(10, target: self, selector:"timerAction:", userInfo: nil, repeats: true);
+        ClockRefreshManager.sharedInstance.setRefreshDelegate(self)
         
-        //TEST this is for test. pls not to remove it 
+        //TEST this is for test. pls not to remove it
                 let tapAction = UITapGestureRecognizer(target: self, action: "testHandshake")
                 tapAction.numberOfTapsRequired = 2
                 homeView.addGestureRecognizer(tapAction)
@@ -66,6 +66,14 @@ class HomeController: UIViewController, SyncControllerDelegate ,ButtonManagerCal
         // Dispose of any resources that can be recreated.
     }
 
+    // MARK: - ClockRefreshDelegate
+    func clockRefreshAction(){
+        homeView.getClockTimerView().currentTimer()
+        if mVisiable{
+            SyncController.sharedInstance.getGoal()
+        }
+    }
+
     // MARK: - ButtonManagerCallBack
     func controllManager(sender:AnyObject) {
         if sender.isEqual(homeView.settingButton) {
@@ -81,12 +89,6 @@ class HomeController: UIViewController, SyncControllerDelegate ,ButtonManagerCal
             let quer:QueryHistoricalController = QueryHistoricalController()
             self.presentViewController(quer, animated: true, completion:nil)
         }
-    }
-
-    func timerAction(timer:NSTimer) {
-        homeView.getClockTimerView().currentTimer()
-        if mVisiable
-        { SyncController.sharedInstance.getGoal() }
     }
 
     /**

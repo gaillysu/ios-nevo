@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		000FA4011B7858AE00DA3E25 /* DaySleepSaveModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000FA4001B7858AE00DA3E25 /* DaySleepSaveModel.swift */; };
+		00134FA41BC3AF83007D276A /* ClockRefreshManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00134FA31BC3AF83007D276A /* ClockRefreshManager.swift */; settings = {ASSET_TAGS = (); }; };
 		0017199C1AB2EE2E00889FED /* DeviceScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001719991AB2EE2E00889FED /* DeviceScannerView.swift */; };
 		0017199D1AB2EE2E00889FED /* NevoOtaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0017199A1AB2EE2E00889FED /* NevoOtaView.swift */; };
 		0017199E1AB2EE2E00889FED /* SelectFileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0017199B1AB2EE2E00889FED /* SelectFileView.swift */; };
@@ -255,6 +256,7 @@
 
 /* Begin PBXFileReference section */
 		000FA4001B7858AE00DA3E25 /* DaySleepSaveModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DaySleepSaveModel.swift; sourceTree = "<group>"; };
+		00134FA31BC3AF83007D276A /* ClockRefreshManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClockRefreshManager.swift; sourceTree = "<group>"; };
 		001719991AB2EE2E00889FED /* DeviceScannerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceScannerView.swift; sourceTree = "<group>"; };
 		0017199A1AB2EE2E00889FED /* NevoOtaView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NevoOtaView.swift; sourceTree = "<group>"; };
 		0017199B1AB2EE2E00889FED /* SelectFileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectFileView.swift; sourceTree = "<group>"; };
@@ -533,6 +535,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		00134FA21BC3AF56007D276A /* ClockRefresh */ = {
+			isa = PBXGroup;
+			children = (
+				00134FA31BC3AF83007D276A /* ClockRefreshManager.swift */,
+			);
+			name = ClockRefresh;
+			path = Controller/ClockRefresh;
+			sourceTree = "<group>";
+		};
 		001719981AB2EE2E00889FED /* NevoOtaView */ = {
 			isa = PBXGroup;
 			children = (
@@ -1067,6 +1078,7 @@
 		9AD8F95D1A6E003100F01014 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				00134FA21BC3AF56007D276A /* ClockRefresh */,
 				00DC9D8F1BB284CC00734DB6 /* QueryHistoricalController */,
 				00BA73DE1BA84F9B00321496 /* AidOTA */,
 				0017199F1AB2EE5300889FED /* NevoOta */,
@@ -1491,6 +1503,7 @@
 				00DC9EA91BB2853D00734DB6 /* BarLineChartViewBase.swift in Sources */,
 				00DC9ED11BB2853D00734DB6 /* RadarChartDataSet.swift in Sources */,
 				9A3E57261A80E56E00DFFAE1 /* NevoPacket.swift in Sources */,
+				00134FA41BC3AF83007D276A /* ClockRefreshManager.swift in Sources */,
 				9AD8F98F1A6E2EE000F01014 /* Profile.swift in Sources */,
 				00DC9ED91BB2853D00734DB6 /* BarChartHighlighter.swift in Sources */,
 				9AD8F9701A6E041D00F01014 /* ClockView.swift in Sources */,
