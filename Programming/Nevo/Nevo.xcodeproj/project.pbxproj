@@ -41,6 +41,8 @@
 		005BC95F1A88B79F006F9E86 /* FXBlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = 005BC95E1A88B79F006F9E86 /* FXBlurView.m */; };
 		005FE77B1A8C979800961239 /* alarmClockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005FE77A1A8C979800961239 /* alarmClockView.swift */; };
 		006B73491A8F7D0B00A7E92F /* AlarmClockController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006B73481A8F7D0B00A7E92F /* AlarmClockController.swift */; };
+		007A2BCB1BC370B000D4185B /* SleepTrackingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007A2BCA1BC370B000D4185B /* SleepTrackingController.swift */; settings = {ASSET_TAGS = (); }; };
+		007A2BCD1BC371A700D4185B /* SleepTrackingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007A2BCC1BC371A700D4185B /* SleepTrackingView.swift */; settings = {ASSET_TAGS = (); }; };
 		007DD4BB1A89DDC000CE7264 /* Page2Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007DD4BA1A89DDC000CE7264 /* Page2Controller.swift */; };
 		007DD4BD1A89DF2A00CE7264 /* Page3Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007DD4BC1A89DF2A00CE7264 /* Page3Controller.swift */; };
 		007F796E1A878C6C006C89E6 /* TutorialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007F796C1A878C6C006C89E6 /* TutorialView.swift */; };
@@ -180,15 +182,6 @@
 		00E5CFD41B17F81F00D1F829 /* help in Resources */ = {isa = PBXBuildFile; fileRef = 00E5CFD31B17F81F00D1F829 /* help */; };
 		00E5CFD61B17FB7300D1F829 /* HelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E5CFD51B17FB7300D1F829 /* HelpViewController.swift */; };
 		00E5CFD81B18053100D1F829 /* HelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E5CFD71B18053100D1F829 /* HelpView.swift */; };
-		00F1C0DC1B5DD55F009B85DB /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F1C0CA1B5DD55F009B85DB /* AFHTTPRequestOperation.m */; };
-		00F1C0DD1B5DD55F009B85DB /* AFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F1C0CC1B5DD55F009B85DB /* AFHTTPRequestOperationManager.m */; };
-		00F1C0DE1B5DD55F009B85DB /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F1C0CE1B5DD55F009B85DB /* AFHTTPSessionManager.m */; };
-		00F1C0DF1B5DD55F009B85DB /* AFNetworkReachabilityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F1C0D11B5DD55F009B85DB /* AFNetworkReachabilityManager.m */; };
-		00F1C0E01B5DD55F009B85DB /* AFSecurityPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F1C0D31B5DD55F009B85DB /* AFSecurityPolicy.m */; };
-		00F1C0E11B5DD55F009B85DB /* AFURLConnectionOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F1C0D51B5DD55F009B85DB /* AFURLConnectionOperation.m */; };
-		00F1C0E21B5DD55F009B85DB /* AFURLRequestSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F1C0D71B5DD55F009B85DB /* AFURLRequestSerialization.m */; };
-		00F1C0E31B5DD55F009B85DB /* AFURLResponseSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F1C0D91B5DD55F009B85DB /* AFURLResponseSerialization.m */; };
-		00F1C0E41B5DD55F009B85DB /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F1C0DB1B5DD55F009B85DB /* AFURLSessionManager.m */; };
 		0704C9631AA431EE00F9AE09 /* GetStepsGoalRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0704C9621AA431EE00F9AE09 /* GetStepsGoalRequest.swift */; };
 		074243221AB00F630076F789 /* RealTimeCountSteps.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074243211AB00F630076F789 /* RealTimeCountSteps.swift */; };
 		0742432A1AB2D0A20076F789 /* Firmwares in Resources */ = {isa = PBXBuildFile; fileRef = 074243291AB2D0A20076F789 /* Firmwares */; };
@@ -214,6 +207,7 @@
 		07C59F321A8C6A6000D65C84 /* SetRTCRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C59F311A8C6A6000D65C84 /* SetRTCRequest.swift */; };
 		07CC4A291A820A9B008DA749 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07CC4A281A820A9B008DA749 /* Utility.swift */; };
 		07CC4A2F1A821B46008DA749 /* NevoOTARequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07CC4A2E1A821B46008DA749 /* NevoOTARequest.swift */; };
+		3EB4814E2F2BBEF4FF005B9A /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 69DA43EC8A53D42EB453ADD6 /* libPods.a */; };
 		5901F3681AB1836C002AAB13 /* ProfileTestController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5901F3671AB1836C002AAB13 /* ProfileTestController.swift */; };
 		59406DF61AB964B2008619EB /* NotificationSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59406DF51AB964B2008619EB /* NotificationSetting.swift */; };
 		59893B401AC8E3CD0063572B /* ConnectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59893B3F1AC8E3CD0063572B /* ConnectionManager.swift */; };
@@ -308,6 +302,8 @@
 		005BC95E1A88B79F006F9E86 /* FXBlurView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FXBlurView.m; sourceTree = "<group>"; };
 		005FE77A1A8C979800961239 /* alarmClockView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = alarmClockView.swift; path = View/alarmClockView.swift; sourceTree = "<group>"; };
 		006B73481A8F7D0B00A7E92F /* AlarmClockController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AlarmClockController.swift; path = Controller/AlarmClockController.swift; sourceTree = "<group>"; };
+		007A2BCA1BC370B000D4185B /* SleepTrackingController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SleepTrackingController.swift; path = Controller/SleepTrackingController.swift; sourceTree = "<group>"; };
+		007A2BCC1BC371A700D4185B /* SleepTrackingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SleepTrackingView.swift; path = View/SleepTrackingView.swift; sourceTree = "<group>"; };
 		007DD4BA1A89DDC000CE7264 /* Page2Controller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Page2Controller.swift; sourceTree = "<group>"; };
 		007DD4BC1A89DF2A00CE7264 /* Page3Controller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Page3Controller.swift; sourceTree = "<group>"; };
 		007F796C1A878C6C006C89E6 /* TutorialView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TutorialView.swift; path = View/TutorialView.swift; sourceTree = "<group>"; };
@@ -457,25 +453,6 @@
 		00E5CFD31B17F81F00D1F829 /* help */ = {isa = PBXFileReference; lastKnownFileType = folder; path = help; sourceTree = "<group>"; };
 		00E5CFD51B17FB7300D1F829 /* HelpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HelpViewController.swift; path = Controller/HelpViewController.swift; sourceTree = "<group>"; };
 		00E5CFD71B18053100D1F829 /* HelpView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HelpView.swift; path = View/HelpView.swift; sourceTree = "<group>"; };
-		00F1C0C91B5DD55F009B85DB /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
-		00F1C0CA1B5DD55F009B85DB /* AFHTTPRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperation.m; sourceTree = "<group>"; };
-		00F1C0CB1B5DD55F009B85DB /* AFHTTPRequestOperationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperationManager.h; sourceTree = "<group>"; };
-		00F1C0CC1B5DD55F009B85DB /* AFHTTPRequestOperationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperationManager.m; sourceTree = "<group>"; };
-		00F1C0CD1B5DD55F009B85DB /* AFHTTPSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPSessionManager.h; sourceTree = "<group>"; };
-		00F1C0CE1B5DD55F009B85DB /* AFHTTPSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPSessionManager.m; sourceTree = "<group>"; };
-		00F1C0CF1B5DD55F009B85DB /* AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworking.h; sourceTree = "<group>"; };
-		00F1C0D01B5DD55F009B85DB /* AFNetworkReachabilityManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworkReachabilityManager.h; sourceTree = "<group>"; };
-		00F1C0D11B5DD55F009B85DB /* AFNetworkReachabilityManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFNetworkReachabilityManager.m; sourceTree = "<group>"; };
-		00F1C0D21B5DD55F009B85DB /* AFSecurityPolicy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFSecurityPolicy.h; sourceTree = "<group>"; };
-		00F1C0D31B5DD55F009B85DB /* AFSecurityPolicy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFSecurityPolicy.m; sourceTree = "<group>"; };
-		00F1C0D41B5DD55F009B85DB /* AFURLConnectionOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLConnectionOperation.h; sourceTree = "<group>"; };
-		00F1C0D51B5DD55F009B85DB /* AFURLConnectionOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLConnectionOperation.m; sourceTree = "<group>"; };
-		00F1C0D61B5DD55F009B85DB /* AFURLRequestSerialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLRequestSerialization.h; sourceTree = "<group>"; };
-		00F1C0D71B5DD55F009B85DB /* AFURLRequestSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLRequestSerialization.m; sourceTree = "<group>"; };
-		00F1C0D81B5DD55F009B85DB /* AFURLResponseSerialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLResponseSerialization.h; sourceTree = "<group>"; };
-		00F1C0D91B5DD55F009B85DB /* AFURLResponseSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLResponseSerialization.m; sourceTree = "<group>"; };
-		00F1C0DA1B5DD55F009B85DB /* AFURLSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLSessionManager.h; sourceTree = "<group>"; };
-		00F1C0DB1B5DD55F009B85DB /* AFURLSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLSessionManager.m; sourceTree = "<group>"; };
 		0704C9621AA431EE00F9AE09 /* GetStepsGoalRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GetStepsGoalRequest.swift; path = Controller/Connection/Request/GetStepsGoalRequest.swift; sourceTree = "<group>"; };
 		074243211AB00F630076F789 /* RealTimeCountSteps.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RealTimeCountSteps.swift; path = Model/Activity/RealTimeCountSteps.swift; sourceTree = "<group>"; };
 		074243291AB2D0A20076F789 /* Firmwares */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Firmwares; path = OTA/Firmwares; sourceTree = "<group>"; };
@@ -502,9 +479,11 @@
 		07C59F311A8C6A6000D65C84 /* SetRTCRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SetRTCRequest.swift; path = Controller/Connection/Request/SetRTCRequest.swift; sourceTree = "<group>"; };
 		07CC4A281A820A9B008DA749 /* Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Utility.swift; path = OTA/Utility.swift; sourceTree = "<group>"; };
 		07CC4A2E1A821B46008DA749 /* NevoOTARequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NevoOTARequest.swift; path = OTA/NevoOTARequest.swift; sourceTree = "<group>"; };
+		14C4652E23FFFA73733C92C2 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		5901F3671AB1836C002AAB13 /* ProfileTestController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfileTestController.swift; path = Controller/ProfileTestController.swift; sourceTree = "<group>"; };
 		59406DF51AB964B2008619EB /* NotificationSetting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationSetting.swift; sourceTree = "<group>"; };
 		59893B3F1AC8E3CD0063572B /* ConnectionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConnectionManager.swift; path = Controller/Connection/ConnectionManager.swift; sourceTree = "<group>"; };
+		69DA43EC8A53D42EB453ADD6 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A12E5451A931B1F00536729 /* Alert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Alert.swift; path = Util/Alert.swift; sourceTree = "<group>"; };
 		9A2D6C391A9C6D9F00591BDC /* Nevo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Nevo.entitlements; sourceTree = "<group>"; };
 		9A2D6C3A1A9C6D9F00591BDC /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
@@ -546,6 +525,7 @@
 		9AD8F99B1A6E3D6A00F01014 /* NevoRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NevoRequest.swift; path = Controller/Connection/Request/NevoRequest.swift; sourceTree = "<group>"; };
 		9AD8F99D1A6E3E0100F01014 /* SyncController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SyncController.swift; path = Controller/SyncController.swift; sourceTree = "<group>"; };
 		9AD8F99F1A6E47B400F01014 /* SetGoalRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SetGoalRequest.swift; path = Controller/Connection/Request/SetGoalRequest.swift; sourceTree = "<group>"; };
+		A7FD54C20F9E4C504037C449 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -555,6 +535,7 @@
 			files = (
 				004846D41B72EDB9005A6D83 /* libsqlite3.dylib in Frameworks */,
 				9A2D6C3B1A9C6D9F00591BDC /* HealthKit.framework in Frameworks */,
+				3EB4814E2F2BBEF4FF005B9A /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -957,33 +938,6 @@
 			path = Frameworks/MBProgressHUD;
 			sourceTree = "<group>";
 		};
-		00F1C0C81B5DD55F009B85DB /* AFNetworking */ = {
-			isa = PBXGroup;
-			children = (
-				00F1C0C91B5DD55F009B85DB /* AFHTTPRequestOperation.h */,
-				00F1C0CA1B5DD55F009B85DB /* AFHTTPRequestOperation.m */,
-				00F1C0CB1B5DD55F009B85DB /* AFHTTPRequestOperationManager.h */,
-				00F1C0CC1B5DD55F009B85DB /* AFHTTPRequestOperationManager.m */,
-				00F1C0CD1B5DD55F009B85DB /* AFHTTPSessionManager.h */,
-				00F1C0CE1B5DD55F009B85DB /* AFHTTPSessionManager.m */,
-				00F1C0CF1B5DD55F009B85DB /* AFNetworking.h */,
-				00F1C0D01B5DD55F009B85DB /* AFNetworkReachabilityManager.h */,
-				00F1C0D11B5DD55F009B85DB /* AFNetworkReachabilityManager.m */,
-				00F1C0D21B5DD55F009B85DB /* AFSecurityPolicy.h */,
-				00F1C0D31B5DD55F009B85DB /* AFSecurityPolicy.m */,
-				00F1C0D41B5DD55F009B85DB /* AFURLConnectionOperation.h */,
-				00F1C0D51B5DD55F009B85DB /* AFURLConnectionOperation.m */,
-				00F1C0D61B5DD55F009B85DB /* AFURLRequestSerialization.h */,
-				00F1C0D71B5DD55F009B85DB /* AFURLRequestSerialization.m */,
-				00F1C0D81B5DD55F009B85DB /* AFURLResponseSerialization.h */,
-				00F1C0D91B5DD55F009B85DB /* AFURLResponseSerialization.m */,
-				00F1C0DA1B5DD55F009B85DB /* AFURLSessionManager.h */,
-				00F1C0DB1B5DD55F009B85DB /* AFURLSessionManager.m */,
-			);
-			name = AFNetworking;
-			path = Frameworks/AFNetworking;
-			sourceTree = "<group>";
-		};
 		07BCE82D1B671AF100C7F558 /* Alarm */ = {
 			isa = PBXGroup;
 			children = (
@@ -1001,6 +955,15 @@
 			);
 			name = IntelHex2BinConverter;
 			path = OTA/IntelHex2BinConverter;
+			sourceTree = "<group>";
+		};
+		2CE56E6C9554D244911B2444 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				14C4652E23FFFA73733C92C2 /* Pods.debug.xcconfig */,
+				A7FD54C20F9E4C504037C449 /* Pods.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 		9A12E5441A931B0000536729 /* Util */ = {
@@ -1068,6 +1031,7 @@
 				9AD8F9341A6DF35900F01014 /* Nevo */,
 				9AD8F94D1A6DF35900F01014 /* NevoTests */,
 				9AD8F9331A6DF35900F01014 /* Products */,
+				2CE56E6C9554D244911B2444 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1126,12 +1090,12 @@
 			children = (
 				004846D31B72EDB9005A6D83 /* libsqlite3.dylib */,
 				004846BF1B72EB06005A6D83 /* FMDB */,
-				00F1C0C81B5DD55F009B85DB /* AFNetworking */,
 				00E2BDDC1B16CCD0009C757E /* MBProgressHUD */,
 				9A2D6C3C1A9C717E00591BDC /* NevoHK */,
 				9A2D6C3A1A9C6D9F00591BDC /* HealthKit.framework */,
 				005BC95C1A88B79F006F9E86 /* FXBlurView */,
 				9AD8F9601A6E00C000F01014 /* NevoBT */,
+				69DA43EC8A53D42EB453ADD6 /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1151,6 +1115,7 @@
 				9AD8F96B1A6E03BC00F01014 /* HomeController.swift */,
 				9AD8F99D1A6E3E0100F01014 /* SyncController.swift */,
 				005350B91A8B4BC600BF289D /* StepGoalSetingController.swift */,
+				007A2BCA1BC370B000D4185B /* SleepTrackingController.swift */,
 				006B73481A8F7D0B00A7E92F /* AlarmClockController.swift */,
 				9A7551A61AADA91B00DD9292 /* SyncQueue.swift */,
 				07C18C091A80DF4900D0BF4A /* NevoOtaController.swift */,
@@ -1193,6 +1158,7 @@
 				003542B61AA823B000B27381 /* AnimationView.swift */,
 				00D0FF761B13184500D084C3 /* MyNevoView.swift */,
 				00E5CFD71B18053100D1F829 /* HelpView.swift */,
+				007A2BCC1BC371A700D4185B /* SleepTrackingView.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -1273,9 +1239,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9AD8F9541A6DF35900F01014 /* Build configuration list for PBXNativeTarget "Nevo" */;
 			buildPhases = (
+				9E80BAAAB461EFC6D6D4E067 /* Check Pods Manifest.lock */,
 				9AD8F92E1A6DF35900F01014 /* Sources */,
 				9AD8F92F1A6DF35900F01014 /* Frameworks */,
 				9AD8F9301A6DF35900F01014 /* Resources */,
+				4C6239DA19EE6789A178C38A /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1408,6 +1376,39 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		4C6239DA19EE6789A178C38A /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9E80BAAAB461EFC6D6D4E067 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		9AD8F92E1A6DF35900F01014 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -1462,7 +1463,6 @@
 				9AD8F9621A6E00E800F01014 /* NevoBTimpl.swift in Sources */,
 				00B427331AC50AAE00787C58 /* TableListCell.swift in Sources */,
 				0021A7A91B5F9E220058905B /* DaySleep.swift in Sources */,
-				00F1C0DD1B5DD55F009B85DB /* AFHTTPRequestOperationManager.m in Sources */,
 				9A7551A71AADA91B00DD9292 /* SyncQueue.swift in Sources */,
 				00DC9ED41BB2853D00734DB6 /* ChartDataApproximatorFilter.swift in Sources */,
 				00DC9EFB1BB2853D00734DB6 /* UIGraphics+Extensions.swift in Sources */,
@@ -1470,7 +1470,6 @@
 				00DC9EC01BB2853D00734DB6 /* BubbleChartData.swift in Sources */,
 				00A2287E1AA57F1A00360C36 /* EnterNotificationController.swift in Sources */,
 				00D0FF771B13184500D084C3 /* MyNevoView.swift in Sources */,
-				00F1C0E11B5DD55F009B85DB /* AFURLConnectionOperation.m in Sources */,
 				9AD8F9791A6E05F700F01014 /* NevoBT.swift in Sources */,
 				00DC9ECF1BB2853D00734DB6 /* PieChartDataSet.swift in Sources */,
 				00DC9EBD1BB2853D00734DB6 /* BarChartDataSet.swift in Sources */,
@@ -1501,6 +1500,7 @@
 				00DC9ECD1BB2853D00734DB6 /* LineScatterCandleChartDataSet.swift in Sources */,
 				001719A31AB2EE5300889FED /* SelectFileController.swift in Sources */,
 				005FE77B1A8C979800961239 /* alarmClockView.swift in Sources */,
+				007A2BCB1BC370B000D4185B /* SleepTrackingController.swift in Sources */,
 				59406DF61AB964B2008619EB /* NotificationSetting.swift in Sources */,
 				00DC9EA71BB2853D00734DB6 /* ChartAnimator.swift in Sources */,
 				00C640F41A8D9F4500815CF8 /* MainTabBarController.swift in Sources */,
@@ -1520,9 +1520,9 @@
 				00DC9EEB1BB2853D00734DB6 /* ChartYAxisRendererHorizontalBarChart.swift in Sources */,
 				00DC9EB31BB2853D00734DB6 /* ScatterChartView.swift in Sources */,
 				00E2BDE41B16CCD0009C757E /* MBProgressHUD.m in Sources */,
-				00F1C0E41B5DD55F009B85DB /* AFURLSessionManager.m in Sources */,
 				07C59F281A8C618A00D65C84 /* WriteSettingRequest.swift in Sources */,
 				00DC9EDE1BB2853D00734DB6 /* HorizontalBarChartHighlighter.swift in Sources */,
+				007A2BCD1BC371A700D4185B /* SleepTrackingView.swift in Sources */,
 				004846DC1B73006D005A6D83 /* NevoDBHelper.m in Sources */,
 				00DC9EBB1BB2853D00734DB6 /* BarChartData.swift in Sources */,
 				00DC9EBA1BB2853D00734DB6 /* ChartYAxis.swift in Sources */,
@@ -1541,7 +1541,6 @@
 				001719A21AB2EE5300889FED /* DeviceScannerController.swift in Sources */,
 				00DC9ED01BB2853D00734DB6 /* RadarChartData.swift in Sources */,
 				07C59F241A8C5A0A00D65C84 /* SetNortificationRequest.swift in Sources */,
-				00F1C0DC1B5DD55F009B85DB /* AFHTTPRequestOperation.m in Sources */,
 				00DC9EC71BB2853D00734DB6 /* ChartDataEntry.swift in Sources */,
 				9A3E57311A80F08400DFFAE1 /* NevoOTAControllerProfile.swift in Sources */,
 				00DC9EDF1BB2853D00734DB6 /* BarChartRenderer.swift in Sources */,
@@ -1552,7 +1551,6 @@
 				00DC9D991BB284CC00734DB6 /* queryTableviewCell.swift in Sources */,
 				00DC9ECA1BB2853D00734DB6 /* LineChartData.swift in Sources */,
 				00DC9EAE1BB2853D00734DB6 /* HorizontalBarChartView.swift in Sources */,
-				00F1C0E21B5DD55F009B85DB /* AFURLRequestSerialization.m in Sources */,
 				9A3E57251A80E56E00DFFAE1 /* NevoProfile.swift in Sources */,
 				00DC9EC41BB2853D00734DB6 /* CandleChartDataEntry.swift in Sources */,
 				004846CF1B72EB06005A6D83 /* FMResultSet.m in Sources */,
@@ -1560,14 +1558,12 @@
 				00DC9ED31BB2853D00734DB6 /* ScatterChartDataSet.swift in Sources */,
 				008F39711B0EE0BF00698F1B /* NotificationTypeCell.swift in Sources */,
 				005350BC1A8B4C1200BF289D /* StepGoalSetingView.swift in Sources */,
-				00F1C0E31B5DD55F009B85DB /* AFURLResponseSerialization.m in Sources */,
 				00DC9EBF1BB2853D00734DB6 /* BarLineScatterCandleBubbleChartDataSet.swift in Sources */,
 				00E5CFD81B18053100D1F829 /* HelpView.swift in Sources */,
 				00DC9EE71BB2853D00734DB6 /* ChartXAxisRendererBarChart.swift in Sources */,
 				004846CC1B72EB06005A6D83 /* FMDatabaseAdditions.m in Sources */,
 				00DC9EAB1BB2853D00734DB6 /* CandleStickChartView.swift in Sources */,
 				004846D91B72FFB6005A6D83 /* NevoDBModel.m in Sources */,
-				00F1C0E01B5DD55F009B85DB /* AFSecurityPolicy.m in Sources */,
 				00E5CFD61B17FB7300D1F829 /* HelpViewController.swift in Sources */,
 				00DC9ED71BB2853D00734DB6 /* ChartFillFormatter.swift in Sources */,
 				00BA73E21BA853BC00321496 /* AidOtaViewController.swift in Sources */,
@@ -1594,7 +1590,6 @@
 				00DC9EAA1BB2853D00734DB6 /* BubbleChartView.swift in Sources */,
 				0790259B1B141A7E0049BB06 /* ReadBatteryLevelNevoRequest.swift in Sources */,
 				004846CE1B72EB06005A6D83 /* FMDatabaseQueue.m in Sources */,
-				00F1C0DF1B5DD55F009B85DB /* AFNetworkReachabilityManager.m in Sources */,
 				07731E521AA58EFE007F9FD6 /* ReadDailyTrackerInfo.swift in Sources */,
 				00DC9EB41BB2853D00734DB6 /* ChartAxisBase.swift in Sources */,
 				0018183A1B048E12005E9F2D /* TutorialPage6View.swift in Sources */,
@@ -1602,7 +1597,6 @@
 				07C18C0A1A80DF4900D0BF4A /* NevoOtaController.swift in Sources */,
 				000FA4011B7858AE00DA3E25 /* DaySleepSaveModel.swift in Sources */,
 				00DC9EFA1BB2853D00734DB6 /* ChartViewPortHandler.swift in Sources */,
-				00F1C0DE1B5DD55F009B85DB /* AFHTTPSessionManager.m in Sources */,
 				00DC9EBC1BB2853D00734DB6 /* BarChartDataEntry.swift in Sources */,
 				00DC9EED1BB2853D00734DB6 /* CombinedChartRenderer.swift in Sources */,
 				00A228701AA551A400360C36 /* SetingViewController.swift in Sources */,
@@ -1749,6 +1743,7 @@
 		};
 		9AD8F9551A6DF35900F01014 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 14C4652E23FFFA73733C92C2 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -1767,6 +1762,7 @@
 		};
 		9AD8F9561A6DF35900F01014 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A7FD54C20F9E4C504037C449 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
