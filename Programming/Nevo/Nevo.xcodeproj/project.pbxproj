@@ -26,11 +26,6 @@
 		003542B71AA823B000B27381 /* AnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003542B61AA823B000B27381 /* AnimationView.swift */; };
 		00478F4F1A8F637D00D0DCE2 /* clockViewHour.png in Resources */ = {isa = PBXBuildFile; fileRef = 00478F4D1A8F637D00D0DCE2 /* clockViewHour.png */; };
 		00478F501A8F637D00D0DCE2 /* clockViewMinute.png in Resources */ = {isa = PBXBuildFile; fileRef = 00478F4E1A8F637D00D0DCE2 /* clockViewMinute.png */; };
-		004846CB1B72EB06005A6D83 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 004846C11B72EB06005A6D83 /* FMDatabase.m */; };
-		004846CC1B72EB06005A6D83 /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 004846C31B72EB06005A6D83 /* FMDatabaseAdditions.m */; };
-		004846CD1B72EB06005A6D83 /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = 004846C51B72EB06005A6D83 /* FMDatabasePool.m */; };
-		004846CE1B72EB06005A6D83 /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 004846C71B72EB06005A6D83 /* FMDatabaseQueue.m */; };
-		004846CF1B72EB06005A6D83 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 004846CA1B72EB06005A6D83 /* FMResultSet.m */; };
 		004846D41B72EDB9005A6D83 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 004846D31B72EDB9005A6D83 /* libsqlite3.dylib */; };
 		004846D91B72FFB6005A6D83 /* NevoDBModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 004846D81B72FFB6005A6D83 /* NevoDBModel.m */; };
 		004846DC1B73006D005A6D83 /* NevoDBHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 004846DB1B73006D005A6D83 /* NevoDBHelper.m */; };
@@ -278,17 +273,6 @@
 		003542B61AA823B000B27381 /* AnimationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AnimationView.swift; path = View/AnimationView.swift; sourceTree = "<group>"; };
 		00478F4D1A8F637D00D0DCE2 /* clockViewHour.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clockViewHour.png; sourceTree = "<group>"; };
 		00478F4E1A8F637D00D0DCE2 /* clockViewMinute.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clockViewMinute.png; sourceTree = "<group>"; };
-		004846C01B72EB06005A6D83 /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
-		004846C11B72EB06005A6D83 /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabase.m; sourceTree = "<group>"; };
-		004846C21B72EB06005A6D83 /* FMDatabaseAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseAdditions.h; sourceTree = "<group>"; };
-		004846C31B72EB06005A6D83 /* FMDatabaseAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseAdditions.m; sourceTree = "<group>"; };
-		004846C41B72EB06005A6D83 /* FMDatabasePool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabasePool.h; sourceTree = "<group>"; };
-		004846C51B72EB06005A6D83 /* FMDatabasePool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabasePool.m; sourceTree = "<group>"; };
-		004846C61B72EB06005A6D83 /* FMDatabaseQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseQueue.h; sourceTree = "<group>"; };
-		004846C71B72EB06005A6D83 /* FMDatabaseQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseQueue.m; sourceTree = "<group>"; };
-		004846C81B72EB06005A6D83 /* FMDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDB.h; sourceTree = "<group>"; };
-		004846C91B72EB06005A6D83 /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMResultSet.h; sourceTree = "<group>"; };
-		004846CA1B72EB06005A6D83 /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMResultSet.m; sourceTree = "<group>"; };
 		004846D31B72EDB9005A6D83 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		004846D71B72FFB6005A6D83 /* NevoDBModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NevoDBModel.h; sourceTree = "<group>"; };
 		004846D81B72FFB6005A6D83 /* NevoDBModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NevoDBModel.m; sourceTree = "<group>"; };
@@ -568,25 +552,6 @@
 			);
 			name = NevoOta;
 			path = Controller/NevoOta;
-			sourceTree = "<group>";
-		};
-		004846BF1B72EB06005A6D83 /* FMDB */ = {
-			isa = PBXGroup;
-			children = (
-				004846C01B72EB06005A6D83 /* FMDatabase.h */,
-				004846C11B72EB06005A6D83 /* FMDatabase.m */,
-				004846C21B72EB06005A6D83 /* FMDatabaseAdditions.h */,
-				004846C31B72EB06005A6D83 /* FMDatabaseAdditions.m */,
-				004846C41B72EB06005A6D83 /* FMDatabasePool.h */,
-				004846C51B72EB06005A6D83 /* FMDatabasePool.m */,
-				004846C61B72EB06005A6D83 /* FMDatabaseQueue.h */,
-				004846C71B72EB06005A6D83 /* FMDatabaseQueue.m */,
-				004846C81B72EB06005A6D83 /* FMDB.h */,
-				004846C91B72EB06005A6D83 /* FMResultSet.h */,
-				004846CA1B72EB06005A6D83 /* FMResultSet.m */,
-			);
-			name = FMDB;
-			path = Frameworks/FMDB;
 			sourceTree = "<group>";
 		};
 		004846D01B72ECC6005A6D83 /* DBModel */ = {
@@ -1089,7 +1054,6 @@
 			isa = PBXGroup;
 			children = (
 				004846D31B72EDB9005A6D83 /* libsqlite3.dylib */,
-				004846BF1B72EB06005A6D83 /* FMDB */,
 				00E2BDDC1B16CCD0009C757E /* MBProgressHUD */,
 				9A2D6C3C1A9C717E00591BDC /* NevoHK */,
 				9A2D6C3A1A9C6D9F00591BDC /* HealthKit.framework */,
@@ -1454,7 +1418,6 @@
 				00DC9EE21BB2853D00734DB6 /* ChartAxisRendererBase.swift in Sources */,
 				5901F3681AB1836C002AAB13 /* ProfileTestController.swift in Sources */,
 				00BA73E01BA84FF200321496 /* AidOtaController.swift in Sources */,
-				004846CD1B72EB06005A6D83 /* FMDatabasePool.m in Sources */,
 				0017199E1AB2EE2E00889FED /* SelectFileView.swift in Sources */,
 				00DC9ECB1BB2853D00734DB6 /* LineChartDataSet.swift in Sources */,
 				00DC9ED81BB2853D00734DB6 /* ChartXAxisValueFormatter.swift in Sources */,
@@ -1473,7 +1436,6 @@
 				9AD8F9791A6E05F700F01014 /* NevoBT.swift in Sources */,
 				00DC9ECF1BB2853D00734DB6 /* PieChartDataSet.swift in Sources */,
 				00DC9EBD1BB2853D00734DB6 /* BarChartDataSet.swift in Sources */,
-				004846CB1B72EB06005A6D83 /* FMDatabase.m in Sources */,
 				079EED311AB7FE6000CEA78D /* DailyStepsNevoPacket.swift in Sources */,
 				074243221AB00F630076F789 /* RealTimeCountSteps.swift in Sources */,
 				07C59F321A8C6A6000D65C84 /* SetRTCRequest.swift in Sources */,
@@ -1553,7 +1515,6 @@
 				00DC9EAE1BB2853D00734DB6 /* HorizontalBarChartView.swift in Sources */,
 				9A3E57251A80E56E00DFFAE1 /* NevoProfile.swift in Sources */,
 				00DC9EC41BB2853D00734DB6 /* CandleChartDataEntry.swift in Sources */,
-				004846CF1B72EB06005A6D83 /* FMResultSet.m in Sources */,
 				00DC9ED21BB2853D00734DB6 /* ScatterChartData.swift in Sources */,
 				00DC9ED31BB2853D00734DB6 /* ScatterChartDataSet.swift in Sources */,
 				008F39711B0EE0BF00698F1B /* NotificationTypeCell.swift in Sources */,
@@ -1561,7 +1522,6 @@
 				00DC9EBF1BB2853D00734DB6 /* BarLineScatterCandleBubbleChartDataSet.swift in Sources */,
 				00E5CFD81B18053100D1F829 /* HelpView.swift in Sources */,
 				00DC9EE71BB2853D00734DB6 /* ChartXAxisRendererBarChart.swift in Sources */,
-				004846CC1B72EB06005A6D83 /* FMDatabaseAdditions.m in Sources */,
 				00DC9EAB1BB2853D00734DB6 /* CandleStickChartView.swift in Sources */,
 				004846D91B72FFB6005A6D83 /* NevoDBModel.m in Sources */,
 				00E5CFD61B17FB7300D1F829 /* HelpViewController.swift in Sources */,
@@ -1589,7 +1549,6 @@
 				00DC9ECE1BB2853D00734DB6 /* PieChartData.swift in Sources */,
 				00DC9EAA1BB2853D00734DB6 /* BubbleChartView.swift in Sources */,
 				0790259B1B141A7E0049BB06 /* ReadBatteryLevelNevoRequest.swift in Sources */,
-				004846CE1B72EB06005A6D83 /* FMDatabaseQueue.m in Sources */,
 				07731E521AA58EFE007F9FD6 /* ReadDailyTrackerInfo.swift in Sources */,
 				00DC9EB41BB2853D00734DB6 /* ChartAxisBase.swift in Sources */,
 				0018183A1B048E12005E9F2D /* TutorialPage6View.swift in Sources */,
