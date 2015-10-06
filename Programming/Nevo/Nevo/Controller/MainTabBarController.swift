@@ -51,15 +51,15 @@ class MainTabBarController: UITabBarController,UITabBarControllerDelegate {
         myTabbarView.layer.borderColor = UIColor.grayColor().CGColor;
         self.view.addSubview(myTabbarView)
 
-        let itemView:UIView = UIView(frame: CGRectMake(0, 0, UIScreen.mainScreen().bounds.size.width-50, myTabbarView.frame.size.height));
+        let itemView:UIView = UIView(frame: CGRectMake(0, 0, UIScreen.mainScreen().bounds.size.width, myTabbarView.frame.size.height));
         itemView.backgroundColor = UIColor.whiteColor()
         itemView.center = CGPointMake(myTabbarView.frame.size.width/2.0, myTabbarView.frame.size.height/2.0)
         myTabbarView.addSubview(itemView)
         if (items == nil) {
-            items = NSMutableArray(capacity: 3)
+            items = NSMutableArray(capacity: 4)
         }
-        let imgArray:NSArray = NSArray(arrayLiteral: "goalitem","homeitem","alarmitem")
-        let selectImgArray:NSArray = NSArray(arrayLiteral: "selectedGoalitem","selectedHomeitem","selectedAlarmitem")
+        let imgArray:NSArray = NSArray(arrayLiteral: "goalitem","homeitem","sleep_icon","alarmitem")
+        let selectImgArray:NSArray = NSArray(arrayLiteral: "selectedGoalitem","selectedHomeitem","sleep_selected_icon","selectedAlarmitem")
 
         for (var i:Int = 0; i < imgArray.count; i++) {
 

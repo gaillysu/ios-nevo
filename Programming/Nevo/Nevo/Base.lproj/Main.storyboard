@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="VSL-Nt-5H3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="VSL-Nt-5H3">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -20,6 +21,7 @@
                     <connections>
                         <segue destination="rem-vM-ODh" kind="relationship" relationship="viewControllers" id="ZEI-Ns-a4R"/>
                         <segue destination="bGr-qo-zHH" kind="relationship" relationship="viewControllers" id="zui-dx-LpG"/>
+                        <segue destination="55x-5E-ejb" kind="relationship" relationship="viewControllers" id="HJ3-Dv-vlR"/>
                         <segue destination="Hsa-EN-v8Q" kind="relationship" relationship="viewControllers" id="0xI-f4-E6a"/>
                     </connections>
                 </tabBarController>
@@ -248,13 +250,13 @@
                                 <rect key="frame" x="10" y="360" width="300" height="100"/>
                                 <string key="text">Do not interrupt the OTA firmware process. Let the process complete before using the app!In case of accidental interruption, try again. If it doesn't work, remove nevo battery for 30 secs and reinstall.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Attention!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MgG-7R-WNT">
                                 <rect key="frame" x="100" y="335" width="120" height="25"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2/2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AmS-5k-wEF">
@@ -264,7 +266,7 @@
                                     <constraint firstAttribute="height" constant="21" id="jVS-Sy-pBl"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -789,9 +791,10 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SetingCell" id="jy6-2o-7Tg">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="22" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jy6-2o-7Tg" id="Hea-sY-zN0">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -1103,6 +1106,79 @@
             </objects>
             <point key="canvasLocation" x="1140" y="4318"/>
         </scene>
+        <!--Sleep Tracking Controller-->
+        <scene sceneID="StW-PB-UoJ">
+            <objects>
+                <viewController id="9Lf-06-d5f" customClass="SleepTrackingController" customModule="Nevo" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="CUe-4G-ajm"/>
+                        <viewControllerLayoutGuide type="bottom" id="3AV-Vs-4QL"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Hi5-WE-evD" customClass="SleepTrackingView" customModule="Nevo" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N7g-1l-64r">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="85"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bhm-m9-LIw">
+                                        <rect key="frame" x="254" y="14" width="58" height="58"/>
+                                        <state key="normal" image="settingIcon">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sleep Tracking" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zKS-Vo-o9q">
+                                        <rect key="frame" x="85" y="14" width="150" height="58"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.18823529410000001" green="0.18823529410000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="bhm-m9-LIw" firstAttribute="top" secondItem="N7g-1l-64r" secondAttribute="top" constant="14" id="2Fk-MI-wCc"/>
+                                    <constraint firstItem="zKS-Vo-o9q" firstAttribute="top" secondItem="N7g-1l-64r" secondAttribute="top" constant="14" id="3K8-ep-wLq"/>
+                                    <constraint firstItem="bhm-m9-LIw" firstAttribute="top" secondItem="zKS-Vo-o9q" secondAttribute="top" id="7Jl-ZE-Y6t"/>
+                                    <constraint firstItem="zKS-Vo-o9q" firstAttribute="top" secondItem="N7g-1l-64r" secondAttribute="top" constant="14" id="9dU-nc-UZ6"/>
+                                    <constraint firstItem="bhm-m9-LIw" firstAttribute="bottom" secondItem="zKS-Vo-o9q" secondAttribute="bottom" id="AXY-y9-cUp"/>
+                                    <constraint firstItem="zKS-Vo-o9q" firstAttribute="top" secondItem="N7g-1l-64r" secondAttribute="top" constant="14" id="Chu-j5-e8A"/>
+                                    <constraint firstAttribute="bottom" secondItem="bhm-m9-LIw" secondAttribute="bottom" constant="13" id="NgO-VP-p4y"/>
+                                    <constraint firstItem="bhm-m9-LIw" firstAttribute="top" secondItem="N7g-1l-64r" secondAttribute="top" constant="14" id="Q5o-ul-pzX"/>
+                                    <constraint firstItem="zKS-Vo-o9q" firstAttribute="leading" secondItem="N7g-1l-64r" secondAttribute="leading" constant="85" id="RgR-1I-6gI"/>
+                                    <constraint firstAttribute="trailing" secondItem="bhm-m9-LIw" secondAttribute="trailing" constant="8" id="SS1-YP-C4x"/>
+                                    <constraint firstItem="zKS-Vo-o9q" firstAttribute="leading" secondItem="N7g-1l-64r" secondAttribute="leading" constant="85" id="Vg6-t2-Mwe"/>
+                                    <constraint firstItem="bhm-m9-LIw" firstAttribute="trailing" secondItem="N7g-1l-64r" secondAttribute="trailingMargin" id="dn9-Nz-4kF"/>
+                                    <constraint firstItem="zKS-Vo-o9q" firstAttribute="centerY" secondItem="bhm-m9-LIw" secondAttribute="centerY" id="e7h-yc-p7k"/>
+                                    <constraint firstItem="bhm-m9-LIw" firstAttribute="leading" secondItem="N7g-1l-64r" secondAttribute="leading" constant="254" id="eNm-1B-Dvj"/>
+                                    <constraint firstItem="zKS-Vo-o9q" firstAttribute="centerX" secondItem="N7g-1l-64r" secondAttribute="centerX" id="fIE-xQ-RdN"/>
+                                    <constraint firstAttribute="bottom" secondItem="zKS-Vo-o9q" secondAttribute="bottom" constant="13" id="fWC-kg-b8o"/>
+                                    <constraint firstItem="bhm-m9-LIw" firstAttribute="leading" secondItem="zKS-Vo-o9q" secondAttribute="trailing" constant="19" id="gVI-Qg-9lv"/>
+                                    <constraint firstItem="zKS-Vo-o9q" firstAttribute="leading" secondItem="N7g-1l-64r" secondAttribute="leading" constant="85" id="oX8-Oa-m1r"/>
+                                    <constraint firstItem="bhm-m9-LIw" firstAttribute="top" secondItem="N7g-1l-64r" secondAttribute="top" constant="14" id="rJe-UO-EZt"/>
+                                    <constraint firstAttribute="trailing" secondItem="bhm-m9-LIw" secondAttribute="trailing" constant="8" id="vRn-jy-bFO"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="N7g-1l-64r" firstAttribute="top" secondItem="CUe-4G-ajm" secondAttribute="bottom" id="Ujh-eJ-aW2"/>
+                            <constraint firstItem="N7g-1l-64r" firstAttribute="leading" secondItem="Hi5-WE-evD" secondAttribute="leading" id="n7k-rX-xVI"/>
+                        </constraints>
+                        <connections>
+                            <outlet property="settingButton" destination="bhm-m9-LIw" id="paf-uf-LCW"/>
+                            <outlet property="title" destination="zKS-Vo-o9q" id="giQ-Q3-nBr"/>
+                            <outlet property="titleBgView" destination="N7g-1l-64r" id="HVG-tq-Hyy"/>
+                        </connections>
+                    </view>
+                    <navigationItem key="navigationItem" id="bjN-go-kyB"/>
+                    <connections>
+                        <outlet property="sleepView" destination="Hi5-WE-evD" id="MDm-KI-64a"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JGt-zZ-7G3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1122" y="1970"/>
+        </scene>
         <!--Clock-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
@@ -1290,13 +1366,13 @@
                                 <rect key="frame" x="10" y="360" width="300" height="100"/>
                                 <string key="text">Do not interrupt the OTA firmware process. Let the process complete before using the app!In case of accidental interruption, try again. If it doesn't work, remove nevo battery for 30 secs and reinstall.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Attention!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4G9-HN-ifh">
                                 <rect key="frame" x="100" y="335" width="120" height="25"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2/2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0HS-Ut-hka">
@@ -1306,7 +1382,7 @@
                                     <constraint firstAttribute="height" constant="21" id="nEF-hn-8Oo"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -1348,6 +1424,29 @@
             </objects>
             <point key="canvasLocation" x="-676" y="4390"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="hvn-OI-PaU">
+            <objects>
+                <navigationController useStoryboardIdentifierAsRestorationIdentifier="YES" navigationBarHidden="YES" id="55x-5E-ejb" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="" image="homeitem" id="QgB-tv-HYG"/>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="wZ6-1e-Ldn">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="bPD-Lb-IFz">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
+                    <connections>
+                        <segue destination="9Lf-06-d5f" kind="relationship" relationship="rootViewController" id="y69-Lj-63P"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="41G-JD-9Zy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1122" y="1207"/>
+        </scene>
     </scenes>
     <resources>
         <image name="Nevo660.png" width="640" height="660"/>
@@ -1383,13 +1482,8 @@
         <image name="settingIcon" width="58" height="58"/>
         <image name="warningicon" width="80" height="80"/>
     </resources>
-    <simulatedMetricsContainer key="defaultSimulatedMetrics">
-        <simulatedStatusBarMetrics key="statusBar"/>
-        <simulatedOrientationMetrics key="orientation"/>
-        <simulatedScreenMetrics key="destination" type="retina4"/>
-    </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="huA-lR-B9r"/>
+        <segue reference="2Ya-p7-XfV"/>
         <segue reference="pXY-c9-EIr"/>
     </inferredMetricsTieBreakers>
 </document>
