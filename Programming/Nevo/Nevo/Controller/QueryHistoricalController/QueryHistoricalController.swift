@@ -82,7 +82,6 @@ class QueryHistoricalController: UIViewController,UITableViewDataSource,UITableV
     }
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
-
         return queryArray!.count
         //return mNotificationSettingArray.count
     }

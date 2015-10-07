@@ -129,7 +129,6 @@ class StepGoalSetingController: UIViewController,ButtonManagerCallBack {
             var dailySteps:Int = thispacket.getDailySteps()
             let dailyStepGoal:Int = thispacket.getDailyStepsGoal()
             stepGoalView.setNumberOfStepsGoal(dailyStepGoal)
-
             let userDefaults = NSUserDefaults.standardUserDefaults();
             userDefaults.setObject(dailyStepGoal,forKey:NUMBER_OF_STEPS_GOAL_KEY)
             userDefaults.synchronize()

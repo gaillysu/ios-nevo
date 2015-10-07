@@ -8,7 +8,7 @@
 
 import UIKit
 
-class QueryHistoricalView: UIView {
+class QueryHistoricalView: UIView , ChartViewDelegate{
 
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var backButton: UIButton!
@@ -17,43 +17,62 @@ class QueryHistoricalView: UIView {
     @IBOutlet weak var queryTableview: UITableView!
     @IBOutlet var chartView:BarChartView?
 
+    @IBOutlet weak var deepSleepLabel: UILabel!
+    @IBOutlet weak var weakSleepLabel: UILabel!
+    @IBOutlet weak var lightSleepLabel: UILabel!
+    @IBOutlet weak var totalSleepLabel: UILabel!
     private var queryModel:NSMutableArray = NSMutableArray()
-
+    private let yVal:[BarChartDataEntry] = [];
     func bulidQueryView(delegate:QueryHistoricalController,modelArray:NSArray){
         queryModel.addObjectsFromArray(modelArray as [AnyObject])
-
+        queryModel.addObjectsFromArray(modelArray as [AnyObject])
+        queryModel.addObjectsFromArray(modelArray as [AnyObject])
+        queryModel.addObjectsFromArray(modelArray as [AnyObject])
+        queryModel.addObjectsFromArray(modelArray as [AnyObject])
+        queryModel.addObjectsFromArray(modelArray as [AnyObject])
+        queryModel.addObjectsFromArray(modelArray as [AnyObject])
+        
         chartView!.delegate = delegate;
         chartView!.descriptionText = " ";
         chartView?.noDataText = "No sleep tracking data"
-        chartView!.noDataTextDescription = " ";
+        chartView!.noDataTextDescription = "";
 
-        chartView!.maxVisibleValueCount = 60
-        chartView!.pinchZoomEnabled = true//手势放大缩小效果
+//        chartView!.maxVisibleValueCount = 7
+        chartView!.pinchZoomEnabled = false
         chartView!.drawGridBackgroundEnabled = false;
         chartView!.drawBarShadowEnabled = false;
-        chartView!.drawValueAboveBarEnabled = false;
-
+        let xScale:CGFloat = CGFloat(queryModel.count/7);
+        chartView!.setScaleMinima(xScale, scaleY: 1)
+        chartView!.setScaleEnabled(false);
+        chartView!.drawValueAboveBarEnabled = true;
+        chartView!.doubleTapToZoomEnabled = false;
+        chartView!.setViewPortOffsets(left: 0.0, top: 0.0, right: 0.0, bottom: 0.0)
+        chartView!.delegate = self
+//        chartView!.
+        //        chartView!.set
+    
         let leftAxis:ChartYAxis = chartView!.leftAxis;
         leftAxis.valueFormatter = NSNumberFormatter();
-        leftAxis.valueFormatter!.maximumFractionDigits = 1;
-        leftAxis.valueFormatter!.negativeSuffix = " h";
-        leftAxis.valueFormatter!.positiveSuffix = " h";
-
+        leftAxis.drawAxisLineEnabled = false;
+        leftAxis.drawGridLinesEnabled = false;
+        leftAxis.enabled = false;
+        
         chartView!.rightAxis.enabled = false;
 
         let xAxis:ChartXAxis = chartView!.xAxis;
-        xAxis.labelPosition = ChartXAxis.XAxisLabelPosition.Top;
-        let l:ChartLegend  = chartView!.legend;
-        l.position = ChartLegend.ChartLegendPosition.BelowChartRight;
-        l.form = ChartLegend.ChartLegendForm.Square;
-        l.formSize = 8.0;
-        l.formToTextSpace = 4.0;
-        l.xEntrySpace = 6.0;
+        xAxis.labelPosition = ChartXAxis.XAxisLabelPosition.Bottom;
+
+        xAxis.drawAxisLineEnabled = false;
+        xAxis.drawGridLinesEnabled = false;
+        xAxis.labelPosition = ChartXAxis.XAxisLabelPosition.BottomInside
+        //        xAxis.labelTextColor = UIColor(red: 255.0/255.0, green: 255.0/255.0, blue: 255.0/255.0, alpha: 1.0);
+        
+        
+        chartView!.legend.enabled = false;
         self.slidersValueChanged()
     }
 
     func slidersValueChanged(){
-
         //[self setDataCount:(_sliderX.value + 1) range:_sliderY.value];
         self.setDataCount(queryModel.count, Range: 50)
     }
@@ -62,14 +81,6 @@ class QueryHistoricalView: UIView {
     func setDataCount(count:Int, Range range:Double){
         var xVal:[String] = [];
         var yVal:[BarChartDataEntry] = [];
-//        for(var i:Int = 0; i<queryModel.count; i++){
-//            let seleModel:DaySleepSaveModel = queryModel.objectAtIndex(i) as! DaySleepSaveModel;
-//            xVal.append(seleModel.sleepDate as! String)
-//            var val1:Double  = seleModel.DailyDeepTime!.doubleValue/60;
-//            var val2:Double  = seleModel.DailyLightTime!.doubleValue/60;
-//            var val3:Double  = seleModel.DailyWakeTime!.doubleValue/60;
-//            yVal.append(BarChartDataEntry(values: [val1,val2,val3], xIndex: i))
-//        }
         for (var i:Int = 0; i < queryModel.count; i++) {
             for (var j:Int = i; j < queryModel.count; j++){
                 let iSeleModel:DaySleepSaveModel = queryModel.objectAtIndex(i) as! DaySleepSaveModel;
@@ -122,7 +133,6 @@ class QueryHistoricalView: UIView {
                     lightTimer = (mLightTimeTimerArray[s] as! NSNumber).integerValue + lightTimer
                     deepTimer = (mDeepTimeTimerArray[s] as! NSNumber).integerValue + deepTimer
                 }
-
             }
 
             //获取源数据睡眠时间单位是分钟,转换成小时为单位给画图数据源
@@ -139,23 +149,22 @@ class QueryHistoricalView: UIView {
         }
 
         //图标名称
-        let set1:BarChartDataSet  = BarChartDataSet(yVals: yVal, label: "Sleep tracking")
+        let set1:BarChartDataSet  = BarChartDataSet(yVals: yVal, label: "")
+        set1.highlightEnabled = true;
+        
         //每个数据区块的颜色
-        set1.colors = [ChartColorTemplates.vordiplom()[0],ChartColorTemplates.vordiplom()[1],ChartColorTemplates.vordiplom()[2]];
+        set1.colors = [ChartColorTemplates.getDeepSleepColor(),ChartColorTemplates.getWeakSleepColor(),ChartColorTemplates.getLightSleepColor()];
         //每个数据块的类别名称,数组形式传递
-        set1.stackLabels = ["Deep sleep", "light sleep", "weak sleep"];
+        set1.stackLabels = ["Deep sleep", "Light sleep", "Weak sleep"];
+        set1.barSpace = 0.05;
 
+//        set1.
         var dataSets:[BarChartDataSet] = [];
         dataSets.append(set1);
 
-        let formatter:NSNumberFormatter = NSNumberFormatter();
-        formatter.maximumFractionDigits = 1;
-        formatter.negativeSuffix = " h";
-        formatter.positiveSuffix = " h";
-
         let data:BarChartData = BarChartData(xVals: xVal, dataSets: dataSets)
-        data.setValueFont(UIFont(name: "HelveticaNeue-Light", size: 7.0))
-        data.setValueFormatter(formatter)
+        data.setDrawValues(false);
+
         chartView!.data = data;
     }
 
@@ -168,25 +177,13 @@ class QueryHistoricalView: UIView {
             endCell = nibs.objectAtIndex(0) as? queryTableviewCell;
 
         }
-        //endCell!.deepSleepTime.text = seleModel.HourlyDeepTime as? String
-        //endCell!.sleepTime.text = seleModel.DailySleepTime as? String
-        //endCell!.wakeTime.text = seleModel.DailyWakeTime as? String
-        //endCell!.lightTime.text = seleModel.DailyLightTime as? String
-        //endCell!.dailyDist.text = seleModel.DailyDist as? String
-        //endCell!.dailyCalories.text = seleModel.DailyCalories as? String
-        
         endCell?.selectionStyle = UITableViewCellSelectionStyle.None;
         return endCell!
 
     }
+    
+    func chartValueSelected(chartView: ChartViewBase, entry: ChartDataEntry, dataSetIndex: Int, highlight: ChartHighlight) {
+        let dataEntry: BarChartDataEntry = self.yVal[dataSetIndex];
 
-
-    /*
-    // Only override drawRect: if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func drawRect(rect: CGRect) {
-        // Drawing code
     }
-    */
-
 }
