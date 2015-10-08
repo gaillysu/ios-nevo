@@ -242,6 +242,7 @@
 		9AD8F99C1A6E3D6A00F01014 /* NevoRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD8F99B1A6E3D6A00F01014 /* NevoRequest.swift */; };
 		9AD8F99E1A6E3E0100F01014 /* SyncController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD8F99D1A6E3E0100F01014 /* SyncController.swift */; };
 		9AD8F9A01A6E47B400F01014 /* SetGoalRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD8F99F1A6E47B400F01014 /* SetGoalRequest.swift */; };
+		CB331BCA1BC610E0001DE562 /* Sleep.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB331BC91BC610E0001DE562 /* Sleep.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -512,6 +513,7 @@
 		9AD8F99D1A6E3E0100F01014 /* SyncController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SyncController.swift; path = Controller/SyncController.swift; sourceTree = "<group>"; };
 		9AD8F99F1A6E47B400F01014 /* SetGoalRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SetGoalRequest.swift; path = Controller/Connection/Request/SetGoalRequest.swift; sourceTree = "<group>"; };
 		A7FD54C20F9E4C504037C449 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		CB331BC91BC610E0001DE562 /* Sleep.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sleep.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1114,6 +1116,7 @@
 				00CD3AF81AA7019C00F3D6A5 /* NotificationType */,
 				9A2D6C411A9C8E0700591BDC /* Activity */,
 				9AD8F9711A6E046400F01014 /* Goal */,
+				CB331BC91BC610E0001DE562 /* Sleep.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -1513,6 +1516,7 @@
 				9A3B7AB11A947BCB00BDC3C6 /* GetActivityRequest.swift in Sources */,
 				003542B71AA823B000B27381 /* AnimationView.swift in Sources */,
 				0017199C1AB2EE2E00889FED /* DeviceScannerView.swift in Sources */,
+				CB331BCA1BC610E0001DE562 /* Sleep.swift in Sources */,
 				001719A21AB2EE5300889FED /* DeviceScannerController.swift in Sources */,
 				00DC9ED01BB2853D00734DB6 /* RadarChartData.swift in Sources */,
 				07C59F241A8C5A0A00D65C84 /* SetNortificationRequest.swift in Sources */,

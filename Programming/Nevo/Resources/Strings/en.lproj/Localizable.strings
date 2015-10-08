@@ -91,4 +91,4 @@
 "BLE_CONNECTION_LOST"="BLE connection lost please connect again";
 "BLE_LOST_TITLE"="BLE connection lost";
 "UNSTABLE_CONNECTION_TITLE"="Unstable connection ensure";
-"UNSTABLE_CONNECTION_MESSAGE"="Unstable connection ensure phone is on and in range";
+"UNSTABLE_CONNECTION_MESSAGE"="Unstable connection ensure BLE is on and in range";

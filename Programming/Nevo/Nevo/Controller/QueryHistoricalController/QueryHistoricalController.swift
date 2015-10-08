@@ -22,7 +22,6 @@ class QueryHistoricalController: UIViewController,UITableViewDataSource,UITableV
         fatalError("init(coder:) has not been implemented")
     }
 
-
     override func viewDidLoad() {
         super.viewDidLoad()
 

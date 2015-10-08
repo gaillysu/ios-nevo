@@ -18,26 +18,18 @@ class QueryHistoricalView: UIView , ChartViewDelegate{
     @IBOutlet var chartView:BarChartView?
 
     @IBOutlet weak var deepSleepLabel: UILabel!
-    @IBOutlet weak var weakSleepLabel: UILabel!
     @IBOutlet weak var lightSleepLabel: UILabel!
     @IBOutlet weak var totalSleepLabel: UILabel!
     private var queryModel:NSMutableArray = NSMutableArray()
-    private let yVal:[BarChartDataEntry] = [];
+    private let sleepArray:NSMutableArray = NSMutableArray();
+    
     func bulidQueryView(delegate:QueryHistoricalController,modelArray:NSArray){
-        queryModel.addObjectsFromArray(modelArray as [AnyObject])
-        queryModel.addObjectsFromArray(modelArray as [AnyObject])
-        queryModel.addObjectsFromArray(modelArray as [AnyObject])
-        queryModel.addObjectsFromArray(modelArray as [AnyObject])
-        queryModel.addObjectsFromArray(modelArray as [AnyObject])
-        queryModel.addObjectsFromArray(modelArray as [AnyObject])
         queryModel.addObjectsFromArray(modelArray as [AnyObject])
         
         chartView!.delegate = delegate;
         chartView!.descriptionText = " ";
         chartView?.noDataText = "No sleep tracking data"
         chartView!.noDataTextDescription = "";
-
-//        chartView!.maxVisibleValueCount = 7
         chartView!.pinchZoomEnabled = false
         chartView!.drawGridBackgroundEnabled = false;
         chartView!.drawBarShadowEnabled = false;
@@ -48,20 +40,17 @@ class QueryHistoricalView: UIView , ChartViewDelegate{
         chartView!.doubleTapToZoomEnabled = false;
         chartView!.setViewPortOffsets(left: 0.0, top: 0.0, right: 0.0, bottom: 0.0)
         chartView!.delegate = self
-//        chartView!.
-        //        chartView!.set
-    
+
         let leftAxis:ChartYAxis = chartView!.leftAxis;
         leftAxis.valueFormatter = NSNumberFormatter();
         leftAxis.drawAxisLineEnabled = false;
         leftAxis.drawGridLinesEnabled = false;
         leftAxis.enabled = false;
+        leftAxis.spaceTop = 0.6;
         
         chartView!.rightAxis.enabled = false;
 
         let xAxis:ChartXAxis = chartView!.xAxis;
-        xAxis.labelPosition = ChartXAxis.XAxisLabelPosition.Bottom;
-
         xAxis.drawAxisLineEnabled = false;
         xAxis.drawGridLinesEnabled = false;
         xAxis.labelPosition = ChartXAxis.XAxisLabelPosition.BottomInside
@@ -96,6 +85,7 @@ class QueryHistoricalView: UIView , ChartViewDelegate{
             }
         }
         //计算睡眠时间以中午12点为计算起点,
+        
         for (var i:Int = 0; i < queryModel.count; i++){
             let seleModel:DaySleepSaveModel = queryModel.objectAtIndex(i) as! DaySleepSaveModel;
             xVal.append(("\(seleModel.created)" as NSString).substringWithRange(NSMakeRange(4, 4)))
@@ -139,26 +129,23 @@ class QueryHistoricalView: UIView , ChartViewDelegate{
             let val1:Double  = Double(deepTimer)/60;//深睡画图数据源
             let val2:Double  = Double(lightTimer)/60;//浅睡画图数据源
             let val3:Double  = Double(wakeTimer)/60;//醒来画图数据源
-            yVal.append(BarChartDataEntry(values: [val1,val2,val3], xIndex:i))
-
+            yVal.append(BarChartDataEntry(values: [val1,(val2+val3)], xIndex:i))
+            sleepArray.addObject(Sleep(weakSleep: val3,lightSleep: val2,deepSleep: val1))
             //释放前一天的睡眠(必须，不然会循环引用)
             sleepTimer = 0
             wakeTimer = 0
             lightTimer = 0
             deepTimer = 0
         }
-
+        
         //图标名称
         let set1:BarChartDataSet  = BarChartDataSet(yVals: yVal, label: "")
-        set1.highlightEnabled = true;
         
         //每个数据区块的颜色
-        set1.colors = [ChartColorTemplates.getDeepSleepColor(),ChartColorTemplates.getWeakSleepColor(),ChartColorTemplates.getLightSleepColor()];
+        set1.colors = [ChartColorTemplates.getDeepSleepColor(),ChartColorTemplates.getLightSleepColor()];
         //每个数据块的类别名称,数组形式传递
-        set1.stackLabels = ["Deep sleep", "Light sleep", "Weak sleep"];
+        set1.stackLabels = ["Deep sleep", "Light sleep"];
         set1.barSpace = 0.05;
-
-//        set1.
         var dataSets:[BarChartDataSet] = [];
         dataSets.append(set1);
 
@@ -171,7 +158,6 @@ class QueryHistoricalView: UIView , ChartViewDelegate{
     func getQueryTableviewCell(indexPath:NSIndexPath,array:NSArray)->UITableViewCell {
         let endCellID:NSString = "queryCell"
         var endCell = queryTableview.dequeueReusableCellWithIdentifier(endCellID as String) as? queryTableviewCell
-        let seleModel:DaySleepSaveModel = array.objectAtIndex(indexPath.row) as! DaySleepSaveModel;
         if (endCell == nil) {
             let nibs:NSArray = NSBundle.mainBundle().loadNibNamed("queryTableviewCell", owner: self, options: nil)
             endCell = nibs.objectAtIndex(0) as? queryTableviewCell;
@@ -183,7 +169,19 @@ class QueryHistoricalView: UIView , ChartViewDelegate{
     }
     
     func chartValueSelected(chartView: ChartViewBase, entry: ChartDataEntry, dataSetIndex: Int, highlight: ChartHighlight) {
-        let dataEntry: BarChartDataEntry = self.yVal[dataSetIndex];
+        
+        let sleep:Sleep = self.sleepArray.objectAtIndex(entry.xIndex) as! Sleep;
 
+        let totalSleepTuple = calculateMinutes(sleep.getTotalSleep());
+        let lightSleepTuple = calculateMinutes(sleep.getLightSleep());
+        let deepSleepTuple = calculateMinutes(sleep.getDeepSleep());
+        self.totalSleepLabel.text = String(format: "Hours: %02d minutes: %02d", totalSleepTuple.hours,totalSleepTuple.minutes)
+        self.lightSleepLabel.text = String(format: "Hours: %02d minutes: %02d", lightSleepTuple.hours,lightSleepTuple.minutes)
+        self.deepSleepLabel.text = String(format: "Hours: %02d minutes: %02d", deepSleepTuple.hours,deepSleepTuple.minutes)
+        
+    }
+    
+    private func calculateMinutes(time:Double) -> (hours:Int,minutes:Int){
+        return (Int(time),Int(60*(time%1)));
     }
 }
