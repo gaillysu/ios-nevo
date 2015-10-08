@@ -87,8 +87,8 @@
 "checking_firmware"="正在检查版本号,请稍等";
 "ota_timeout"="升级超时,请重试.";
 "is_checking_the_update"="正在检查更新...";
-"nevolatestversion"="你的程式已是最新版本!";
-"BLE_CONNECTION_LOST"="BLE connection lost please connect again";
-"BLE_LOST_TITLE"="BLE connection lost";
-"UNSTABLE_CONNECTION_TITLE"="Unstable connection ensure";
-"UNSTABLE_CONNECTION_MESSAGE"="Unstable connection ensure phone is on and in range";
+"nevolatestversion"="你的nevo应用已是最新版本";
+"BLE_CONNECTION_LOST"="蓝牙连接已断开请重新连接";
+"BLE_LOST_TITLE"="蓝牙断开";
+"UNSTABLE_CONNECTION_TITLE"="连接不稳定";
+"UNSTABLE_CONNECTION_MESSAGE"="链接状态不稳定请确保BLE是打开状态和在链接范围内";

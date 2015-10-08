@@ -306,6 +306,7 @@ class CircleProgressView: CAShapeLayer {
         }
 
         initialProgress = CGFloat(calculatePercent(progress, toProgress: progressLimit))
+
         progress = Sprogress
 
         self.progressLayer.strokeEnd = self.percent
@@ -349,5 +350,242 @@ class CircleProgressView: CAShapeLayer {
         pathAnimation.toValue = percent;
         pathAnimation.removedOnCompletion = true;
         progressLayer.addAnimation(pathAnimation, forKey: nil)
+    }
+}
+
+class CircleSleepProgressView: CAShapeLayer {
+    private let progressLimit:CGFloat = 1.0 //The overall progress of the progress bar
+    private var progress:CGFloat = 1.0 //The progress bar target schedule
+    private var percent:CGFloat {
+        //Calculating the percentage of the current value
+        return CGFloat(calculatePercent(progress, toProgress: progressLimit))
+    }
+    private var initialProgress:CGFloat!
+    private var progressColor:UIColor = UIColor.greenColor() //The background color of the progress bar
+
+    override init(){
+        super.init()
+        self.path = drawPathWithArcCenter(NSDate(),endtimer:NSDate())
+        self.fillColor = UIColor.clearColor().CGColor
+    }
+
+    required init(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    override func layoutSublayers() {
+        super.layoutSublayers()
+    }
+
+    /*
+    Used to calculate the rotate degree
+    */
+    private func DegreesToRadians(degrees:CGFloat) -> CGFloat {
+
+        return (degrees * CGFloat(M_PI))/180.0;
+    }
+
+    /**
+    The progress path function
+
+    :returns: Returns the drawing need path
+    */
+    func drawPathWithArcCenter(startTimer:NSDate,endtimer:NSDate)->CGPathRef{
+        let now:NSDate = startTimer
+        let cal:NSCalendar = NSCalendar.currentCalendar()
+        let dd:NSDateComponents = cal.components([NSCalendarUnit.Year, NSCalendarUnit.Month, NSCalendarUnit.Day ,NSCalendarUnit.Hour, NSCalendarUnit.Minute, NSCalendarUnit.Second,], fromDate: now);
+        let hour:NSInteger = dd.hour;
+        let minute:NSInteger = dd.minute;
+        let second:NSInteger = dd.second
+
+        let endNow:NSDate = endtimer
+        let endcal:NSCalendar = NSCalendar.currentCalendar()
+        let enddd:NSDateComponents = endcal.components([NSCalendarUnit.Year, NSCalendarUnit.Month, NSCalendarUnit.Day ,NSCalendarUnit.Hour, NSCalendarUnit.Minute, NSCalendarUnit.Second,], fromDate: endNow);
+        let endhour:NSInteger = enddd.hour;
+        let endminute:NSInteger = enddd.minute;
+        let endsecond:NSInteger = enddd.second
+
+        var startangle:Double = Double(Double(second)/120.0 + Double(minute)/60.0+Double(hour))*Double(2.0/12.0)
+        var endangle:Double = Double(Double(endsecond)/120.0 + Double(endminute)/60.0+Double(endhour))*Double(2.0/12.0)
+
+        let position_y:CGFloat = self.frame.size.height/2.0
+        let position_x:CGFloat = self.frame.size.width/2.0
+
+        if(startangle == endangle){
+            return UIBezierPath(arcCenter: CGPointMake(position_x, position_y), radius: position_y, startAngle: 0, endAngle: 0, clockwise: true).CGPath
+        }
+        if(startangle >= 2){
+            startangle = startangle-2
+        }
+        if(endangle > 2){
+            endangle = endangle-2
+        }
+
+        let path:CGPathRef = UIBezierPath(arcCenter: CGPointMake(position_x, position_y), radius: position_y, startAngle: CGFloat(M_PI*startangle), endAngle: CGFloat(M_PI*endangle), clockwise: true).CGPath
+        return path
+    }
+
+    func setSleepProgress(sleepArray:NSArray, colorArray:[CGColor]){
+         let sleepChartArray = combiningSleepData(sleepArray)
+        var startDate:NSDate = NSDate()
+        var endDate:NSDate = NSDate()
+
+        for(var l:Int = 0; l<(sleepChartArray[0] as! [[NSDate]]).count;l++){
+            let pLayer:CAShapeLayer = CAShapeLayer()
+            startDate = GmtNSDate2LocaleNSDate((sleepChartArray[0] as! [[NSDate]])[l][0]) //[l][0]
+            endDate = GmtNSDate2LocaleNSDate((sleepChartArray[0] as! [[NSDate]])[l][1])
+            pLayer.path = drawPathWithArcCenter(GmtNSDate2LocaleNSDate((sleepChartArray[0] as! [[NSDate]])[l][0]),endtimer:GmtNSDate2LocaleNSDate((sleepChartArray[0] as! [[NSDate]])[l][1]))
+            pLayer.fillColor = UIColor.clearColor().CGColor
+            pLayer.strokeColor = (sleepChartArray[1] as! [CGColor])[l]//sleepChartColorArray[l]
+            pLayer.lineWidth = 5
+
+            //initialProgress = CGFloat(calculatePercent(1.0, toProgress: progressLimit))
+            //progress = 1.0
+
+            pLayer.strokeEnd = percent
+            self.addSublayer(pLayer)
+            startSleepAnimation(pLayer);
+        }
+    }
+
+    func combiningSleepData(array:NSArray) -> NSArray {
+        let cal:NSCalendar = NSCalendar.currentCalendar()
+        var lastTimer:Int = 0
+        var startDate:NSDate?
+        var endDate:NSDate?
+        var sleepChartArray:[[NSDate]] = []
+        var sleepChartColorArray:[CGColor] = []
+        for(var i:Int = 23; i>=12;i--){
+            let sleepTimerArray:[Int] = array.objectAtIndex(0).objectAtIndex(0) as! [Int]
+            let weakTimerArray:[Int] = array.objectAtIndex(0).objectAtIndex(1) as! [Int]
+            let lightTimerArray:[Int] = array.objectAtIndex(0).objectAtIndex(2) as! [Int]
+            let deepTimerArray:[Int] = array.objectAtIndex(0).objectAtIndex(3) as! [Int]
+
+            if(sleepTimerArray[i] == 0 && i == 23){
+                break
+            }
+
+            if(sleepTimerArray[i]==0 && i != 23){
+                for(var l:Int = i+1; l<sleepTimerArray.count;l++){
+                    lastTimer = 60-sleepTimerArray[l]
+                    startDate = cal.dateBySettingHour(l, minute: lastTimer , second:0, ofDate: NSDate(), options: NSCalendarOptions())!
+                    if(lastTimer+weakTimerArray[l]+lightTimerArray[l] == 60){
+                        if(l == 23){
+                            endDate = cal.dateBySettingHour(l, minute: 59, second:59, ofDate: NSDate(), options: NSCalendarOptions())!
+                        }else{
+                            endDate = cal.dateBySettingHour(l+1, minute: 0, second:0, ofDate: NSDate(), options: NSCalendarOptions())!
+                        }
+
+                    }else{
+                        endDate = cal.dateBySettingHour(l, minute: lastTimer+weakTimerArray[l]+lightTimerArray[l]  , second:0, ofDate: NSDate(), options: NSCalendarOptions())!
+                    }
+                    sleepChartArray.append([startDate!,endDate!])
+                    sleepChartColorArray.append(ChartColorTemplates.getLightSleepColor().CGColor)
+
+                    startDate = endDate
+                    if(lastTimer+weakTimerArray[l]+lightTimerArray[l]+deepTimerArray[l] == 60){
+                        if(l == 23){
+                            endDate = cal.dateBySettingHour(l, minute: 59, second:59, ofDate: NSDate(), options: NSCalendarOptions())!
+                        }else{
+                            endDate = cal.dateBySettingHour(l+1, minute: 0, second:0, ofDate: NSDate(), options: NSCalendarOptions())!
+                        }
+                    }else{
+                        endDate = cal.dateBySettingHour(l, minute: lastTimer+weakTimerArray[l]+lightTimerArray[l]+deepTimerArray[l]  , second:0, ofDate: NSDate(), options: NSCalendarOptions())!
+                    }
+                    sleepChartArray.append([startDate!,endDate!])
+                    sleepChartColorArray.append(ChartColorTemplates.getDeepSleepColor().CGColor)
+                }
+                break
+            }
+        }
+        if(sleepChartArray.count != 0){
+            let sleepTimerArray:[Int] = array.objectAtIndex(1).objectAtIndex(0) as! [Int]
+            let weakTimerArray:[Int] = array.objectAtIndex(1).objectAtIndex(1) as! [Int]
+            let lightTimerArray:[Int] = array.objectAtIndex(1).objectAtIndex(2) as! [Int]
+            let deepTimerArray:[Int] = array.objectAtIndex(1).objectAtIndex(3) as! [Int]
+
+            for(var l:Int = 0; l<sleepTimerArray.count-12;l++){
+                if(sleepTimerArray[l] == 0){
+                    break
+                }
+                startDate = endDate
+                if(lightTimerArray[l]+weakTimerArray[l] == 60){
+                    endDate = cal.dateBySettingHour(l+1, minute: 0, second:0, ofDate: NSDate(), options: NSCalendarOptions())!
+                }else{
+                    endDate = cal.dateBySettingHour(l, minute: lightTimerArray[l]+weakTimerArray[l] , second:0, ofDate: NSDate(), options: NSCalendarOptions())!
+                }
+                sleepChartArray.append([startDate!,endDate!])
+                sleepChartColorArray.append(ChartColorTemplates.getLightSleepColor().CGColor)
+
+                startDate = endDate
+                if(lightTimerArray[l]+weakTimerArray[l]+deepTimerArray[l] == 60){
+                    endDate = cal.dateBySettingHour(l+1, minute: 0, second:0, ofDate: NSDate(), options: NSCalendarOptions())!
+                }else{
+                    endDate = cal.dateBySettingHour(l, minute: lightTimerArray[l]+weakTimerArray[l]+deepTimerArray[l] , second:0, ofDate: NSDate(), options: NSCalendarOptions())!
+                }
+                sleepChartArray.append([startDate!,endDate!])
+                sleepChartColorArray.append(ChartColorTemplates.getDeepSleepColor().CGColor)
+            }
+        }else{
+            let sleepTimerArray:[Int] = array.objectAtIndex(0).objectAtIndex(0) as! [Int]
+            let weakTimerArray:[Int] = array.objectAtIndex(0).objectAtIndex(1) as! [Int]
+            let lightTimerArray:[Int] = array.objectAtIndex(0).objectAtIndex(2) as! [Int]
+            let deepTimerArray:[Int] = array.objectAtIndex(0).objectAtIndex(3) as! [Int]
+
+            for(var l:Int = 0; l<sleepTimerArray.count-12;l++){
+                if(sleepTimerArray[l] == 0){
+                    continue
+                }
+                lastTimer = 60-sleepTimerArray[l]
+                startDate = cal.dateBySettingHour(l, minute: lastTimer , second:0, ofDate: NSDate(), options: NSCalendarOptions())!
+                if(lastTimer+lightTimerArray[l]+weakTimerArray[l]+deepTimerArray[l] == 60){
+                    endDate = cal.dateBySettingHour(l+1, minute: 0, second:0, ofDate: NSDate(), options: NSCalendarOptions())!
+                }else{
+                    endDate = cal.dateBySettingHour(l, minute: lastTimer+lightTimerArray[l]+weakTimerArray[l] , second:0, ofDate: NSDate(), options: NSCalendarOptions())!
+                }
+                sleepChartArray.append([startDate!,endDate!])
+                sleepChartColorArray.append(ChartColorTemplates.getLightSleepColor().CGColor)
+
+                startDate = endDate
+                if(lightTimerArray[l]+weakTimerArray[l]+deepTimerArray[l] == 60){
+                    endDate = cal.dateBySettingHour(l+1, minute: 0, second:0, ofDate: NSDate(), options: NSCalendarOptions())!
+                }else{
+                    endDate = cal.dateBySettingHour(l, minute: lightTimerArray[l]+weakTimerArray[l]+deepTimerArray[l] , second:0, ofDate: NSDate(), options: NSCalendarOptions())!
+                }
+                sleepChartArray.append([startDate!,endDate!])
+                sleepChartColorArray.append(ChartColorTemplates.getDeepSleepColor().CGColor)
+            }
+        }
+
+        return NSArray(array: [sleepChartArray,sleepChartColorArray]);
+    }
+
+    private func calculatePercent(fromProgress:CGFloat,toProgress:CGFloat)->Double {
+        if ((toProgress > 0) && (fromProgress > 0)) {
+
+            var progress:CGFloat = 0;
+
+            progress = fromProgress / toProgress
+
+            if ((progress * 100) > 100) {
+                progress = 1.0;
+            }
+            return Double(progress);
+        }else{
+
+            return 0.0;
+        }
+    }
+
+    /**
+    Implementation of the animation function
+    */
+    private func startSleepAnimation(layer:CAShapeLayer) {
+        let pathAnimation:CABasicAnimation = CABasicAnimation(keyPath: "strokeSleepEnd")
+        pathAnimation.duration = 1
+        pathAnimation.fromValue = initialProgress;
+        pathAnimation.toValue = percent;
+        pathAnimation.removedOnCompletion = true;
+        layer.addAnimation(pathAnimation, forKey: nil)
     }
 }
