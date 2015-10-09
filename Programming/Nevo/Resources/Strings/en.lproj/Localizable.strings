@@ -92,3 +92,4 @@
 "BLE_LOST_TITLE"="BLE connection lost";
 "UNSTABLE_CONNECTION_TITLE"="Unstable connection ensure";
 "UNSTABLE_CONNECTION_MESSAGE"="Unstable connection ensure BLE is on and in range";
+"SLEEP_TITLE"="Sleep Tracking";

@@ -92,3 +92,4 @@
 "BLE_LOST_TITLE"="藍芽連接中斷";
 "UNSTABLE_CONNECTION_TITLE"="藍芽連接不穩定";
 "UNSTABLE_CONNECTION_MESSAGE"="藍芽連接不穩定，請確保電話的藍芽功能已開啟並在連接範圍內";
+"SLEEP_TITLE"="睡眠跟蹤";

@@ -92,3 +92,4 @@
 "BLE_LOST_TITLE"="蓝牙断开";
 "UNSTABLE_CONNECTION_TITLE"="连接不稳定";
 "UNSTABLE_CONNECTION_MESSAGE"="链接状态不稳定请确保BLE是打开状态和在链接范围内";
+"SLEEP_TITLE"="睡眠跟踪";
