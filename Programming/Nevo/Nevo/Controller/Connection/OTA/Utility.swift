@@ -215,8 +215,12 @@ transfer GMT NSDate to locale NSDate
 */
 func GmtNSDate2LocaleNSDate(gmtDate:NSDate) ->NSDate
 {
-    let zone = NSTimeZone.systemTimeZone()
-    let interval =  zone.secondsFromGMTForDate(gmtDate)
-    return gmtDate.dateByAddingTimeInterval(NSTimeInterval(interval))
+    let sourceTimeZone:NSTimeZone = NSTimeZone(name: "UTC")!
+    let destinationTimeZone:NSTimeZone = NSTimeZone.localTimeZone()
+    let sourceGMTOffset:Int = sourceTimeZone.secondsFromGMTForDate(gmtDate)
+    let destinationGMTOffset:Int = destinationTimeZone.secondsFromGMTForDate(gmtDate)
+    let interval:NSTimeInterval = NSTimeInterval(destinationGMTOffset) - NSTimeInterval(sourceGMTOffset)
+    let destinationDateNow:NSDate = NSDate(timeInterval: interval, sinceDate: gmtDate)
+    return destinationDateNow
 }
 

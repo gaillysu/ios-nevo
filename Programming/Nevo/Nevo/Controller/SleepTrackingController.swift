@@ -18,7 +18,6 @@ class SleepTrackingController: UIViewController, SyncControllerDelegate ,ButtonM
     @IBOutlet weak var sleepView: SleepTrackingView!
     private var sync:SyncController?
     private var mVisiable:Bool = false
-    private var sleepArray:NSMutableArray = NSMutableArray()
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -29,7 +28,7 @@ class SleepTrackingController: UIViewController, SyncControllerDelegate ,ButtonM
     }
 
     override func viewDidAppear(animated: Bool) {
-        
+        //todaySleepArray: sync!.GET_TodaySleepData()
         if !ConnectionControllerImpl.sharedInstance.hasSavedAddress() {
             
             AppTheme.DLog("No saved device, let's launch the tutorial")
@@ -47,6 +46,10 @@ class SleepTrackingController: UIViewController, SyncControllerDelegate ,ButtonM
             //NSLog("We getGoal in home screen")
             //SyncController.sharedInstance.getGoal()
             mVisiable = true
+        }
+
+        if(sync!.GET_TodaySleepData().count == 2){
+            sleepView.setProgress(sync!.GET_TodaySleepData())
         }
 
     }
@@ -95,6 +98,7 @@ class SleepTrackingController: UIViewController, SyncControllerDelegate ,ButtonM
     See SyncControllerDelegate
     
     */
+    // MARK: - SyncControllerDelegate
     func packetReceived(packet:NevoPacket) {
 
         if packet.getHeader() == LedLightOnOffNevoRequest.HEADER()
@@ -106,41 +110,6 @@ class SleepTrackingController: UIViewController, SyncControllerDelegate ,ButtonM
             dispatch_after(dispatchTime, dispatch_get_main_queue(), {
               self.sleepView.getClockTimerView().setClockImage(AppTheme.GET_RESOURCES_IMAGE("clockView600"))
             })
-        }
-
-        if(packet.getHeader() == ReadDailyTracker.HEADER()) {
-            let today:NSDate  = NSDate()
-            let dateFormatter:NSDateFormatter = NSDateFormatter()
-            dateFormatter.dateFormat = "yyyyMMdd"
-            let currentDateStr:NSString = dateFormatter.stringFromDate(today)
-
-            let thispacket:DailyTrackerNevoPacket = packet.copy() as DailyTrackerNevoPacket
-            if(currentDateStr.integerValue == thispacket.getDateTimer()){
-                let dataArray:[[Int]] = [thispacket.getHourlySleepTime(),thispacket.getHourlyWakeTime(),thispacket.getHourlyLightTime(),thispacket.getHourlyDeepTime()]
-                if(sleepArray.count==0){
-                    sleepArray.addObject(dataArray)
-                }else{
-                    sleepArray.insertObject(dataArray, atIndex: 1)
-                }
-                //daysleepSave.HourlySleepTime = AppTheme.toJSONString(thispacket.getHourlySleepTime())
-                //daysleepSave.HourlyWakeTime = AppTheme.toJSONString(thispacket.getHourlyWakeTime())
-                //daysleepSave.HourlyLightTime = AppTheme.toJSONString(thispacket.getHourlyLightTime())
-                //daysleepSave.HourlyDeepTime = AppTheme.toJSONString(thispacket.getHourlyDeepTime())
-            }
-
-            if(currentDateStr.integerValue-1 == thispacket.getDateTimer()){
-                let dataArray:[[Int]] = [thispacket.getHourlySleepTime(),thispacket.getHourlyWakeTime(),thispacket.getHourlyLightTime(),thispacket.getHourlyDeepTime()]
-                if(sleepArray.count==0){
-                    sleepArray.addObject(dataArray)
-                }else{
-                    sleepArray.insertObject(dataArray, atIndex: 0)
-                }
-            }
-
-            if(sleepArray.count==2){
-                
-                sleepView.setProgress(sleepArray,dataColor:[UIColor.greenColor().CGColor,UIColor.grayColor().CGColor,UIColor.orangeColor().CGColor])
-            }
         }
     }
 
@@ -156,7 +125,12 @@ class SleepTrackingController: UIViewController, SyncControllerDelegate ,ButtonM
         
         checkConnection()
     }
-    
+
+    func syncFinished(){
+        if(sync!.GET_TodaySleepData().count==2){
+            sleepView.setProgress(sync!.GET_TodaySleepData())
+        }
+    }
     /**
     
     Checks if any device is currently connected

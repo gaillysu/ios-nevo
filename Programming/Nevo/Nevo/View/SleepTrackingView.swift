@@ -66,9 +66,9 @@ class SleepTrackingView: UIView {
     :param: progress
     :param: animated
     */
-    func setProgress(dailySleep:NSArray,dataColor:[CGColor]){
+    func setProgress(dailySleep:NSArray){
         //progressView?.setProgress(progresValue, Steps: dailySteps, GoalStep: dailyStepGoal)
-        progressView?.setSleepProgress(dailySleep, colorArray: [AppTheme.NEVO_SOLAR_YELLOW().CGColor])
+        progressView?.setSleepProgress(dailySleep)
     }
 
     /*

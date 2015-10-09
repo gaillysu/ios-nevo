@@ -222,6 +222,7 @@ class AlarmClockController: UIViewController, SyncControllerDelegate,ButtonManag
             mSyncController?.connect()
     }
 
+    // MARK: - SyncControllerDelegate
     /**
     See SyncControllerDelegate
     */
@@ -250,7 +251,9 @@ class AlarmClockController: UIViewController, SyncControllerDelegate,ButtonManag
 
     }
 
+    func syncFinished(){
 
+    }
 
     /**
 

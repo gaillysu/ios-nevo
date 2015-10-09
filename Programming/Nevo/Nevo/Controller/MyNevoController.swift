@@ -107,6 +107,10 @@ class MyNevoController: UIViewController,ButtonManagerCallBack,SyncControllerDel
         }
     }
 
+    func syncFinished(){
+
+    }
+
     /**
     Checks if any device is currently connected
     */

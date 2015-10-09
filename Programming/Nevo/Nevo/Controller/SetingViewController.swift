@@ -118,6 +118,10 @@ class SetingViewController: UIViewController,SelectionTypeDelegate,SyncControlle
         checkConnection()
     }
 
+    func syncFinished(){
+
+    }
+
     /**
     Checks if any device is currently connected
     */

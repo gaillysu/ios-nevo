@@ -63,4 +63,8 @@ class Page4Controller: UIViewController,ButtonActionCallBack,SyncControllerDeleg
     func receivedRSSIValue(number:NSNumber){
 
     }
+
+    func syncFinished(){
+
+    }
 }

@@ -105,6 +105,7 @@ class HomeController: UIViewController, SyncControllerDelegate ,ButtonManagerCal
         self.performSegueWithIdentifier("Home_nevoOta", sender: self)
     }
 
+    // MARK: - SyncControllerDelegate
     /**
 
     See SyncControllerDelegate
@@ -154,7 +155,10 @@ class HomeController: UIViewController, SyncControllerDelegate ,ButtonManagerCal
         
         checkConnection()
     }
-    
+
+    func syncFinished(){
+
+    }
     /**
     
     Checks if any device is currently connected

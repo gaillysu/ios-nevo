@@ -176,6 +176,10 @@ class EnterNotificationController: UIViewController,SyncControllerDelegate,Butto
     }
 
     // MARK: - SyncControllerDelegate
+    func syncFinished(){
+
+    }
+    
     /**
     See SyncControllerDelegate
     */

@@ -34,6 +34,8 @@ class SyncController: NSObject,ConnectionControllerDelegate,UIAlertViewDelegate 
     private var currentDay:UInt8 = 0
     private var mAlertUpdateFW = false
     private var timer:NSTimer = NSTimer()
+
+    private var todaySleepData:NSMutableArray = NSMutableArray(capacity: 2)
     
     /**
     A classic singelton pattern
@@ -52,7 +54,6 @@ class SyncController: NSObject,ConnectionControllerDelegate,UIAlertViewDelegate 
         mConnectionController = ConnectionControllerImpl.sharedInstance
         super.init()
         mConnectionController.setDelegate(self)
-    
     }
     
     func startConnect(forceScan:Bool,delegate:SyncControllerDelegate)
@@ -476,15 +477,7 @@ class SyncController: NSObject,ConnectionControllerDelegate,UIAlertViewDelegate 
                         
                         //save wake time before every hour
                         if savedDailyHistory[Int(currentDay)].HourlyWakeTime[i] > 0{
-                            hk.writeDataPoint(DaySleep(isAsleep: false, numberOfSleeps: 0, startDate: startDateWake!, endDate: endDateWake!), resultHandler: { (result, error) -> Void in
-                                if (result != true) {
-                                    AppTheme.DLog("Save Hourly wake time error\(i),\(error)")
-                                }
-                                else
-                                {
-                                    AppTheme.DLog("Save Hourly wake time OK")
-                                }
-                            })
+
                         }
                         
                         //save sleep time after wake time, include light/deep sleep time
@@ -502,17 +495,30 @@ class SyncController: NSObject,ConnectionControllerDelegate,UIAlertViewDelegate 
                             AppTheme.DLog("sleep startDate:\(GmtNSDate2LocaleNSDate(startDateSleep!))")
                             AppTheme.DLog("sleep endDate:\(GmtNSDate2LocaleNSDate(endDateSleep!))")
 
-                            hk.writeDataPoint(DaySleep(isAsleep: true, numberOfSleeps: 0, startDate: startDateSleep!, endDate: endDateSleep!), resultHandler: { (result, error) -> Void in
-                                if (result != true) {
-                                    AppTheme.DLog("Save Hourly sleep(light and deep) time error\(i),\(error)")
-                                }
-                                else
-                                {
-                                    AppTheme.DLog("Save Hourly sleep(light and deep) time OK")
-                                }
-                            })
                         }
-                        
+                    }
+                }
+
+                let today:NSDate  = NSDate()
+                let dateFormatter:NSDateFormatter = NSDateFormatter()
+                dateFormatter.dateFormat = "yyyyMMdd"
+                let currentDateStr:NSString = dateFormatter.stringFromDate(today)
+
+                if(currentDateStr.integerValue == thispacket.getDateTimer()){
+                    let dataArray:[[Int]] = [thispacket.getHourlySleepTime(),thispacket.getHourlyWakeTime(),thispacket.getHourlyLightTime(),thispacket.getHourlyDeepTime()]
+                    if(todaySleepData.count==0){
+                        todaySleepData.addObject(dataArray)
+                    }else{
+                        todaySleepData.insertObject(dataArray, atIndex: 1)
+                    }
+                }
+
+                if(currentDateStr.integerValue-1 == thispacket.getDateTimer()){
+                    let dataArray:[[Int]] = [thispacket.getHourlySleepTime(),thispacket.getHourlyWakeTime(),thispacket.getHourlyLightTime(),thispacket.getHourlyDeepTime()]
+                    if(todaySleepData.count==0){
+                        todaySleepData.addObject(dataArray)
+                    }else{
+                        todaySleepData.insertObject(dataArray, atIndex: 0)
                     }
                 }
 
@@ -550,6 +556,9 @@ class SyncController: NSObject,ConnectionControllerDelegate,UIAlertViewDelegate 
                 {
                    currentDay = 0
                    self.syncFinished()
+                    for delegate in mDelegates {
+                        delegate.syncFinished()
+                    }
                 }
             }
 
@@ -729,6 +738,10 @@ class SyncController: NSObject,ConnectionControllerDelegate,UIAlertViewDelegate 
         return mConnectionController.isConnected()
 
     }
+
+    func GET_TodaySleepData()->NSArray{
+        return todaySleepData;
+    }
     
 }
 
@@ -747,4 +760,8 @@ protocol SyncControllerDelegate {
     *  Receiving the current device signal strength value
     */
     func receivedRSSIValue(number:NSNumber)
+    /**
+    *  Data synchronization is complete callback
+    */
+    func syncFinished()
 }
