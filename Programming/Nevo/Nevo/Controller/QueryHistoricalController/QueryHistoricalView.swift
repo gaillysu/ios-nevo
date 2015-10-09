@@ -71,6 +71,9 @@ class QueryHistoricalView: UIView , ChartViewDelegate{
         var xVal:[String] = [];
         var yVal:[BarChartDataEntry] = [];
         for (var i:Int = 0; i < queryModel.count; i++) {
+            /**
+            *  Data sorting,Small to large sort
+            */
             for (var j:Int = i; j < queryModel.count; j++){
                 let iSeleModel:DaySleepSaveModel = queryModel.objectAtIndex(i) as! DaySleepSaveModel;
                 let jSeleModel:DaySleepSaveModel = queryModel.objectAtIndex(j) as! DaySleepSaveModel;
@@ -88,7 +91,6 @@ class QueryHistoricalView: UIView , ChartViewDelegate{
         
         for (var i:Int = 0; i < queryModel.count; i++){
             let seleModel:DaySleepSaveModel = queryModel.objectAtIndex(i) as! DaySleepSaveModel;
-            xVal.append(("\(seleModel.created)" as NSString).substringWithRange(NSMakeRange(4, 4)))
 
             //当天的数据源(没有跨天的数据源)
             let sleepTimerArray:NSArray = AppTheme.jsonToArray(seleModel.HourlySleepTime as String)
@@ -129,6 +131,12 @@ class QueryHistoricalView: UIView , ChartViewDelegate{
             let val1:Double  = Double(deepTimer)/60;//深睡画图数据源
             let val2:Double  = Double(lightTimer)/60;//浅睡画图数据源
             let val3:Double  = Double(wakeTimer)/60;//醒来画图数据源
+            if(val1+val2+val3 == 0){
+                continue
+            }else{
+                let dateString:NSString = "\(seleModel.created)" as NSString
+                xVal.append("\(dateString.substringWithRange(NSMakeRange(6, 2)))/\(dateString.substringWithRange(NSMakeRange(4, 2)))")
+            }
             yVal.append(BarChartDataEntry(values: [val1,(val2+val3)], xIndex:i))
             sleepArray.addObject(Sleep(weakSleep: val3,lightSleep: val2,deepSleep: val1))
             //释放前一天的睡眠(必须，不然会循环引用)
