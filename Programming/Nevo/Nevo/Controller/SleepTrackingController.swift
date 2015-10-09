@@ -76,7 +76,7 @@ class SleepTrackingController: UIViewController, SyncControllerDelegate ,ButtonM
             reconnect()
         }
 
-        if sender.isEqual(sleepView.pushButton){
+        if sender.isEqual(sleepView.historyButton){
             let quer:QueryHistoricalController = QueryHistoricalController()
             self.presentViewController(quer, animated: true, completion:nil)
         }

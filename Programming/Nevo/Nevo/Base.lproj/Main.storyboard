@@ -837,6 +837,7 @@
         <scene sceneID="BG4-14-Vmw">
             <objects>
                 <navigationController navigationBarHidden="YES" id="nJo-5a-jKA" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="gA0-DD-dZA"/>
                     <nil key="simulatedStatusBarMetrics"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="0tP-f4-vyr">
@@ -1126,6 +1127,9 @@
                                         <state key="normal" image="settingIcon">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="ButtonAction:" destination="Hi5-WE-evD" eventType="touchUpInside" id="sf2-GY-I0n"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sleep Tracking" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zKS-Vo-o9q">
                                         <rect key="frame" x="85" y="14" width="150" height="58"/>
@@ -1173,6 +1177,7 @@
                     <navigationItem key="navigationItem" id="bjN-go-kyB"/>
                     <connections>
                         <outlet property="sleepView" destination="Hi5-WE-evD" id="MDm-KI-64a"/>
+                        <segue destination="nJo-5a-jKA" kind="modal" identifier="Home_Seting" id="Pzk-9Z-jiJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JGt-zZ-7G3" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1483,7 +1488,7 @@
         <image name="warningicon" width="80" height="80"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="2Ya-p7-XfV"/>
+        <segue reference="Pzk-9Z-jiJ"/>
         <segue reference="pXY-c9-EIr"/>
     </inferredMetricsTieBreakers>
 </document>

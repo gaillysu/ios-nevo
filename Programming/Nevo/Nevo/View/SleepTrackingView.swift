@@ -19,7 +19,7 @@ class SleepTrackingView: UIView {
     var progressView:CircleSleepProgressView?
     var progresValue:CGFloat = 0.0
     var animationView:AnimationView!
-    var pushButton:UIButton?
+    var historyButton:UIButton?
 
     private var mDelegate:ButtonManagerCallBack!
 
@@ -28,8 +28,8 @@ class SleepTrackingView: UIView {
         animationView = AnimationView(frame: self.frame, delegate: delegate)
 
         title.textColor = UIColor.whiteColor()
-        title.text = NSLocalizedString("SleepTracking", comment: "")
-        title.font = AppTheme.SYSTEMFONTOFSIZE()
+        title.text = NSLocalizedString("SLEEP_TITLE", comment: "")
+        title.font = AppTheme.SYSTEMFONTOFSIZE(mSize: 20)
         title.textAlignment = NSTextAlignment.Center
 
         mClockTimerView.currentTimer()
@@ -40,11 +40,14 @@ class SleepTrackingView: UIView {
         progressView?.frame = CGRectMake(mClockTimerView.frame.origin.x-5, mClockTimerView.frame.origin.y-5, UIScreen.mainScreen().bounds.width-50, UIScreen.mainScreen().bounds.width-50)
         self.layer.addSublayer(progressView!)
 
-        pushButton = UIButton(frame: CGRectMake(UIScreen.mainScreen().bounds.width-130, titleBgView.frame.size.height, 120, 45))
-        pushButton?.setTitle("Sleep History", forState: UIControlState.Normal)
-        pushButton?.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
-        pushButton?.addTarget(self, action: Selector("ButtonAction:"), forControlEvents: UIControlEvents.TouchUpInside)
-        self.addSubview(pushButton!)
+        historyButton = UIButton(frame: CGRectMake(UIScreen.mainScreen().bounds.width-70, titleBgView.frame.size.height+20, 50, 50))
+        //sleep_history_icon
+        historyButton?.setImage(UIImage(named: "sleep_history_icon"), forState: UIControlState.Normal)
+        historyButton?.setImage(UIImage(named: "sleep_history_icon"), forState: UIControlState.Highlighted)
+        //historyButton?.setTitle("Sleep History", forState: UIControlState.Normal)
+        historyButton?.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
+        historyButton?.addTarget(self, action: Selector("ButtonAction:"), forControlEvents: UIControlEvents.TouchUpInside)
+        self.addSubview(historyButton!)
 
     }
 
