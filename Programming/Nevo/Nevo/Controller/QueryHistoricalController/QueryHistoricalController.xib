@@ -50,14 +50,14 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qmS-4V-0uD" customClass="BarChartView" customModule="Nevo" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="85" width="320" height="290"/>
+                    <rect key="frame" x="0.0" y="70" width="320" height="290"/>
                     <color key="backgroundColor" red="0.80784313725490198" green="0.80784313725490198" blue="0.80392156862745101" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="290" id="w1r-3v-N82"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wWb-4e-4bp">
-                    <rect key="frame" x="0.0" y="375" width="320" height="193"/>
+                    <rect key="frame" x="0.0" y="360" width="320" height="208"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total sleep:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B1m-n8-sQr">
                             <rect key="frame" x="8" y="13" width="100" height="21"/>
@@ -126,8 +126,8 @@
                         <constraint firstItem="eLg-MN-n24" firstAttribute="baseline" secondItem="5Hk-FA-QWf" secondAttribute="baseline" id="24N-bh-H7p"/>
                         <constraint firstAttribute="trailing" secondItem="N37-Vq-OFv" secondAttribute="trailing" constant="8" id="7rP-od-Xeh"/>
                         <constraint firstItem="eLg-MN-n24" firstAttribute="leading" secondItem="N37-Vq-OFv" secondAttribute="leading" id="8f2-jT-Fri"/>
-                        <constraint firstAttribute="bottom" secondItem="IeM-Y1-PSx" secondAttribute="bottom" constant="61" id="Aiq-nv-vEc"/>
-                        <constraint firstAttribute="bottom" secondItem="EkY-EM-BNN" secondAttribute="bottom" constant="61" id="Tmo-OS-EWx"/>
+                        <constraint firstAttribute="bottom" secondItem="IeM-Y1-PSx" secondAttribute="bottom" constant="76" id="Aiq-nv-vEc"/>
+                        <constraint firstAttribute="bottom" secondItem="EkY-EM-BNN" secondAttribute="bottom" constant="76" id="Tmo-OS-EWx"/>
                         <constraint firstItem="B1m-n8-sQr" firstAttribute="leading" secondItem="wWb-4e-4bp" secondAttribute="leading" constant="8" id="VQk-5S-wyG"/>
                         <constraint firstItem="B1m-n8-sQr" firstAttribute="top" secondItem="wWb-4e-4bp" secondAttribute="top" constant="13" id="Wsb-UQ-Mls"/>
                         <constraint firstItem="EkY-EM-BNN" firstAttribute="leading" secondItem="wWb-4e-4bp" secondAttribute="leading" constant="8" id="Zju-OZ-6z1"/>
@@ -141,7 +141,7 @@
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="wWb-4e-4bp" secondAttribute="trailing" id="0vx-YH-JRI"/>
                 <constraint firstAttribute="bottom" secondItem="wWb-4e-4bp" secondAttribute="bottom" id="118-9v-zoY"/>
-                <constraint firstItem="qmS-4V-0uD" firstAttribute="top" secondItem="Hkh-dG-PEg" secondAttribute="bottom" id="F4R-z4-2r5"/>
+                <constraint firstItem="qmS-4V-0uD" firstAttribute="top" secondItem="Hkh-dG-PEg" secondAttribute="bottom" constant="-15" id="F4R-z4-2r5"/>
                 <constraint firstItem="qmS-4V-0uD" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Imj-h1-35E"/>
                 <constraint firstItem="Hkh-dG-PEg" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="KxL-f1-OV5"/>
                 <constraint firstItem="wWb-4e-4bp" firstAttribute="top" secondItem="qmS-4V-0uD" secondAttribute="bottom" id="NAv-aS-jr6"/>

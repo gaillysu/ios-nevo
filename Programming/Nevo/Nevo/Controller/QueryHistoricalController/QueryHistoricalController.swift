@@ -41,10 +41,8 @@ class QueryHistoricalController: UIViewController,UITableViewDataSource,UITableV
         dateFormatter.dateFormat = "yyyyMMdd"
         let currentDateStr:NSString = dateFormatter.stringFromDate(yesterday)
         //"2015825"
-        queryArray = DaySleepSaveModel.findByCriteria(String(format: " WHERE created > %@ ",currentDateStr))
-        //DaySleepSaveModel.findAll()
-        //queryView.queryTableview.dataSource = self
-        //queryView.queryTableview.delegate = self
+        //queryArray = DaySleepSaveModel.findByCriteria(String(format: " WHERE created > %@ ",currentDateStr))
+        queryArray = DaySleepSaveModel.findAll()
 
         queryView.bulidQueryView(self,modelArray: queryArray!)
 

@@ -104,7 +104,7 @@ class QueryHistoricalView: UIView , ChartViewDelegate{
             var deepTimer:Int  = 0
 
             //因为涉及到跨天按照正常习惯一天的睡眠时间包括从睡觉到结束睡觉的这段时间都是前一天的睡眠时间(包括凌晨0点后到中午12点之间的数据)
-            for (var s:Int  = 12; s < sleepTimerArray.count; s++){
+            for (var s:Int  = 0; s < sleepTimerArray.count-6; s++){
                 //计算一天中后12小时的数据,
                 sleepTimer = (sleepTimerArray[s] as! NSNumber).integerValue + sleepTimer
                 wakeTimer = (wakeTimeTimerArray[s] as! NSNumber).integerValue + wakeTimer
@@ -112,14 +112,15 @@ class QueryHistoricalView: UIView , ChartViewDelegate{
                 deepTimer = (deepTimeTimerArray[s] as! NSNumber).integerValue + deepTimer
             }
 
-            //跨天的睡眠数据源
-            if(i+1<queryModel.count){
-                let nextSeleModel:DaySleepSaveModel = queryModel.objectAtIndex(i+1) as! DaySleepSaveModel;
+            if(i != 0){
+                //跨天的睡眠数据源
+                let nextSeleModel:DaySleepSaveModel = queryModel.objectAtIndex(i-1) as! DaySleepSaveModel;//取出前一天的数据
                 let mSleepTimerArray:NSArray = AppTheme.jsonToArray(nextSeleModel.HourlySleepTime as String)
                 let mWakeTimeTimerArray:NSArray = AppTheme.jsonToArray(nextSeleModel.HourlyWakeTime as String)
                 let mLightTimeTimerArray:NSArray = AppTheme.jsonToArray(nextSeleModel.HourlyLightTime as String)
                 let mDeepTimeTimerArray:NSArray = AppTheme.jsonToArray(nextSeleModel.HourlyDeepTime as String)
-                for (var s:Int  = 0; s < mSleepTimerArray.count-12; s++){
+                //计算在晚上六点以后的睡眠数据
+                for (var s:Int  = 18; s < mSleepTimerArray.count; s++){
                     sleepTimer = (mSleepTimerArray[s] as! NSNumber).integerValue + sleepTimer
                     wakeTimer = (mWakeTimeTimerArray[s] as! NSNumber).integerValue + wakeTimer
                     lightTimer = (mLightTimeTimerArray[s] as! NSNumber).integerValue + lightTimer
@@ -133,10 +134,10 @@ class QueryHistoricalView: UIView , ChartViewDelegate{
             let val3:Double  = Double(wakeTimer)/60;//醒来画图数据源
             if(val1+val2+val3 == 0){
                 continue
-            }else{
-                let dateString:NSString = "\(seleModel.created)" as NSString
-                xVal.append("\(dateString.substringWithRange(NSMakeRange(6, 2)))/\(dateString.substringWithRange(NSMakeRange(4, 2)))")
             }
+            let dateString:NSString = "\(seleModel.created)" as NSString
+            xVal.append("\(dateString.substringWithRange(NSMakeRange(6, 2)))/\(dateString.substringWithRange(NSMakeRange(4, 2)))")
+
             yVal.append(BarChartDataEntry(values: [val1,(val2+val3)], xIndex:i))
             sleepArray.addObject(Sleep(weakSleep: val3,lightSleep: val2,deepSleep: val1))
             //释放前一天的睡眠(必须，不然会循环引用)
@@ -146,14 +147,14 @@ class QueryHistoricalView: UIView , ChartViewDelegate{
             deepTimer = 0
         }
         
-        //图标名称
+        //柱状图表
         let set1:BarChartDataSet  = BarChartDataSet(yVals: yVal, label: "")
         
         //每个数据区块的颜色
         set1.colors = [ChartColorTemplates.getDeepSleepColor(),ChartColorTemplates.getLightSleepColor()];
         //每个数据块的类别名称,数组形式传递
         set1.stackLabels = ["Deep sleep", "Light sleep"];
-        set1.barSpace = 0.05;
+        set1.barSpace = 0.07;
         var dataSets:[BarChartDataSet] = [];
         dataSets.append(set1);
 
