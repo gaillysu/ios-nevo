@@ -93,3 +93,12 @@
 "UNSTABLE_CONNECTION_TITLE"="连接不稳定";
 "UNSTABLE_CONNECTION_MESSAGE"="链接状态不稳定请确保BLE是打开状态和在链接范围内";
 "SLEEP_TITLE"="睡眠跟踪";
+"light_sleep_title"="浅睡:";
+"deep_sleep_title"="深睡:";
+"total_sleep_title"="总睡眠:";
+"select_date"="请选择日期";
+"no_data"="无睡眠数据";
+"hours_and"="小时:";
+"minutes_and"="分钟:";
+"no_sleep_data"="没有睡眠数据";
+"sleep_history_title"="睡眠历史记录";

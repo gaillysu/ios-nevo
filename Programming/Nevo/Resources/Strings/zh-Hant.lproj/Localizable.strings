@@ -93,3 +93,12 @@
 "UNSTABLE_CONNECTION_TITLE"="藍芽連接不穩定";
 "UNSTABLE_CONNECTION_MESSAGE"="藍芽連接不穩定，請確保電話的藍芽功能已開啟並在連接範圍內";
 "SLEEP_TITLE"="睡眠跟蹤";
+"light_sleep_title"="淺睡:";
+"deep_sleep_title"="深睡:";
+"total_sleep_title"="總睡眠:";
+"select_date"="請選擇日期";
+"no_data"="無睡眠記錄";
+"hours_and"="小時:";
+"minutes_and"="分鐘:";
+"no_sleep_data"="沒有睡眠數據";
+"sleep_history_title"="睡眠歷史記錄";

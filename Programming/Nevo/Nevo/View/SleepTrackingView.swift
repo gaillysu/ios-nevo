@@ -27,6 +27,8 @@ class SleepTrackingView: UIView {
         mDelegate = delegate
         animationView = AnimationView(frame: self.frame, delegate: delegate)
 
+        self.backgroundColor = AppTheme.hexStringToColor("#d1cfcf")
+
         title.textColor = UIColor.whiteColor()
         title.text = NSLocalizedString("SLEEP_TITLE", comment: "")
         title.font = AppTheme.SYSTEMFONTOFSIZE(mSize: 20)
