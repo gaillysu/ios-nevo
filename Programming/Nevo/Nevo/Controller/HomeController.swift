@@ -54,7 +54,11 @@ class HomeController: UIViewController, SyncControllerDelegate ,ButtonManagerCal
             //SyncController.sharedInstance.getGoal()
             mVisiable = true
         }
-
+        if(NSUserDefaults.standardUserDefaults().boolForKey("firstLaunch")){
+            let page7:Page7Controller = Page7Controller()
+            self.presentViewController(page7, animated: true, completion: { () -> Void in
+            })
+        }
     }
     
     override func viewDidDisappear(animated: Bool) {

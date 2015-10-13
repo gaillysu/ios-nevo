@@ -21,6 +21,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().barTintColor = UIColor.blackColor()
 
         UITabBar.appearance().barTintColor = UIColor.clearColor()
+        //Start the logo for the first time
+        if(!NSUserDefaults.standardUserDefaults().boolForKey("everLaunched")){
+            NSUserDefaults.standardUserDefaults().setBool(true, forKey: "everLaunched")
+            NSUserDefaults.standardUserDefaults().setBool(true, forKey: "firstLaunch")
+        }else{
+            NSUserDefaults.standardUserDefaults().setBool(false, forKey: "firstLaunch")
+        }
         return true
     }
 
