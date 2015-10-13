@@ -32,6 +32,14 @@ class HomeController: UIViewController, SyncControllerDelegate ,ButtonManagerCal
                 homeView.addGestureRecognizer(tapAction)
         //end TEST
 
+        if(NSUserDefaults.standardUserDefaults().boolForKey("firstLaunch")){
+            let page7:Page7Controller = Page7Controller()
+            self.presentViewController(page7, animated: true, completion: { () -> Void in
+                NSUserDefaults.standardUserDefaults().removeObjectForKey("firstLaunch")
+                NSUserDefaults.standardUserDefaults().removeObjectForKey("everLaunched")
+            })
+        }
+
     }
 
     override func viewDidAppear(animated: Bool) {
@@ -53,11 +61,6 @@ class HomeController: UIViewController, SyncControllerDelegate ,ButtonManagerCal
             //NSLog("We getGoal in home screen")
             //SyncController.sharedInstance.getGoal()
             mVisiable = true
-        }
-        if(NSUserDefaults.standardUserDefaults().boolForKey("firstLaunch")){
-            let page7:Page7Controller = Page7Controller()
-            self.presentViewController(page7, animated: true, completion: { () -> Void in
-            })
         }
     }
     
