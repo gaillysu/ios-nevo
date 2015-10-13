@@ -25,6 +25,12 @@ class SleepTrackingController: UIViewController, SyncControllerDelegate ,ButtonM
 
         sleepView.bulidHomeView(self)
 
+        if(NSUserDefaults.standardUserDefaults().boolForKey("firstLaunch")){
+            let page7:Page7Controller = Page7Controller()
+            self.presentViewController(page7, animated: true, completion: { () -> Void in
+                
+            })
+        }
     }
 
     override func viewDidAppear(animated: Bool) {
