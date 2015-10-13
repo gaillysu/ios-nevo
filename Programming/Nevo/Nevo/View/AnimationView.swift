@@ -195,6 +195,10 @@ class AnimationView: UIView {
         return mNoConnectImage
     }
 
+    func getmNoConnectionView()->UIView{
+        return mNoConnectionView!
+    }
+
     /*
     // Only override drawRect: if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.

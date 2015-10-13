@@ -161,6 +161,7 @@ class SleepTrackingController: UIViewController, SyncControllerDelegate ,ButtonM
     
     func reconnect() {
         sleepView.animationView.RotatingAnimationObject(sleepView.animationView.getNoConnectImage()!)
+        sleepView.animationView.getmNoConnectionView().backgroundColor = AppTheme.hexStringToColor("#d1cfcf")
         sync?.connect()
     }
 }
