@@ -32,10 +32,17 @@ class QueryHistoricalView: UIView , ChartViewDelegate{
         queryModel.addObjectsFromArray(modelArray as [AnyObject])
 
         title.text = NSLocalizedString("sleep_history_title", comment: "")
+
+        totalTitle.font = AppTheme.FONT_RALEWAY_LIGHT(mSize: 15)
         totalTitle.text = NSLocalizedString("total_sleep_title", comment: "")
+        lightTitle.font = AppTheme.FONT_RALEWAY_LIGHT(mSize: 15)
         lightTitle.text = NSLocalizedString("light_sleep_title", comment: "")
+        deepTitle.font = AppTheme.FONT_RALEWAY_LIGHT(mSize: 15)
         deepTitle.text = NSLocalizedString("deep_sleep_title", comment: "")
 
+        totalSleepLabel.font = AppTheme.FONT_RALEWAY_BOLD(mSize: 16)
+        lightSleepLabel.font = AppTheme.FONT_RALEWAY_BOLD(mSize: 16)
+        deepSleepLabel.font = AppTheme.FONT_RALEWAY_BOLD(mSize: 16)
         if(queryModel.count>0){
             totalSleepLabel.text = NSLocalizedString("select_date", comment: "")
             lightSleepLabel.text = NSLocalizedString("select_date", comment: "")

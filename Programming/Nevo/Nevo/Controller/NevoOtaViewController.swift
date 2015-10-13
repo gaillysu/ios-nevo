@@ -217,7 +217,7 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
             if enumFirmwareType == DfuFirmwareTypes.APPLICATION{
                 message = NSLocalizedString("UpdateSuccess2", comment: "")
             }
-            let alert :UIAlertView = UIAlertView(title: "Firmware Upgrade", message: message, delegate: nil, cancelButtonTitle: "OK")
+            let alert :UIAlertView = UIAlertView(title: NSLocalizedString("Firmware Upgrade", comment: ""), message: message, delegate: nil, cancelButtonTitle: NSLocalizedString("Ok", comment: ""))
             alert.show()
             self.nevoOtaView.upgradeSuccessful()
             self.mNevoOtaController!.reset(false)
@@ -229,10 +229,10 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
             //self.mNevoOtaController!.reset(false)
             mNevoOtaController!.setStatus(DFUControllerState.SEND_RESET)
             initValue()
-            nevoOtaView.ReUpgradeButton?.setTitle("继续Mcu", forState: UIControlState.Normal)
+            nevoOtaView.ReUpgradeButton?.setTitle(NSLocalizedString("continue", comment: ""), forState: UIControlState.Normal)
             if(currentIndex == 1){
-                //Ble升级完成请打开手表蓝牙,确保连接上并弹出配对信息点击配对后在点击继续Mcu按钮,不然会出现超时现象
-                let alertTip :UIAlertView = UIAlertView(title: "Firmware Upgrade", message: "Ble upgrade completed please open the watch Bluetooth, to ensure that the connection has been connected to the Nevo and pop up on the information, click on the button to continue to click on the Mcu button, or there will be a timeout phenomenon", delegate: nil, cancelButtonTitle: "Ok")
+                //Ble升级完成请打开手表蓝牙,确保连接上并弹出配对信息,点击配对按钮后在点击继续Mcu按钮,不然会出现超时现象
+                let alertTip :UIAlertView = UIAlertView(title: NSLocalizedString("Firmware Upgrade", comment: ""), message: NSLocalizedString("update_ble_success_message", comment: ""), delegate: nil, cancelButtonTitle: NSLocalizedString("Ok", comment: ""))
                 alertTip.show()
             }
             let dispatchTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, Int64(3.0 * Double(NSEC_PER_SEC)))
@@ -250,7 +250,7 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
             
             self.initValue()
             
-            let alert :UIAlertView = UIAlertView(title: "Firmware Upgrade", message: errString as String, delegate: nil, cancelButtonTitle: "OK")
+            let alert :UIAlertView = UIAlertView(title: NSLocalizedString("Firmware Upgrade", comment: ""), message: errString as String, delegate: nil, cancelButtonTitle: NSLocalizedString("Ok", comment: ""))
             alert.show()
             self.mNevoOtaController!.reset(false)
         });

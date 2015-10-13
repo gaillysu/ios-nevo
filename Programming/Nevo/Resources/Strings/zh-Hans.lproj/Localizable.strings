@@ -102,3 +102,5 @@
 "minutes_and"="分钟:";
 "no_sleep_data"="没有睡眠数据";
 "sleep_history_title"="睡眠历史记录";
+"continue"="继续";
+"update_ble_success_message"="完成BLE升级后，请按手表的第三个按钮以重新开启蓝牙功能，并与电话连接。请确保电话与手表配对成功以免影响升级过程。连接后轻触「继续」以进行MCU升级。";

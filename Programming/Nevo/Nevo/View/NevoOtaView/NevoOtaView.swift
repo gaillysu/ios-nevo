@@ -151,7 +151,7 @@ class NevoOtaView: UIView {
     
     func buildView(delegate:ButtonManagerCallBack,otacontroller:AnyObject) {
 
-        title.text = NSLocalizedString("Firmware Upgrade", comment:"")
+        title.text = NSLocalizedString("Upgrade", comment:"")
 
         nevoWacthImage.contentMode = UIViewContentMode.ScaleAspectFit
 

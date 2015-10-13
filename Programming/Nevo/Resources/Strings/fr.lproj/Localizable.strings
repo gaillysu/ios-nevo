@@ -101,3 +101,5 @@
 "minutes_and"="minutes:";
 "no_sleep_data"="No sleep tracking data";
 "sleep_history_title"="Sleep History";
+"continue"="Continue";
+"update_ble_success_message"="Ble upgrade completed, reconnect the watch to the phone by pressing and holding the third button on the watch. Make sure that the watch is paired so it won't interrupt the upgrade procedure. Once it's connected you can continue to upgrade the Mcu by clicking on continue.";
