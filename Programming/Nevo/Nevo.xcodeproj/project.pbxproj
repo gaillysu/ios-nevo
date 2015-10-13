@@ -79,6 +79,8 @@
 		00D0FF731B130A9F00D084C3 /* Nevo660.png in Resources */ = {isa = PBXBuildFile; fileRef = 00D0FF721B130A9F00D084C3 /* Nevo660.png */; };
 		00D0FF771B13184500D084C3 /* MyNevoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D0FF761B13184500D084C3 /* MyNevoView.swift */; };
 		00D4DE921AB141FB0062523D /* NevoPicture960.png in Resources */ = {isa = PBXBuildFile; fileRef = 00D4DE901AB141FB0062523D /* NevoPicture960.png */; };
+		00DA79CA1BCCDADB000F9054 /* TutorialPage7View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00DA79C91BCCDADB000F9054 /* TutorialPage7View.swift */; settings = {ASSET_TAGS = (); }; };
+		00DA79CC1BCCDAFA000F9054 /* Page7Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00DA79CB1BCCDAFA000F9054 /* Page7Controller.swift */; settings = {ASSET_TAGS = (); }; };
 		00DC9D961BB284CC00734DB6 /* QueryHistoricalController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00DC9D901BB284CC00734DB6 /* QueryHistoricalController.swift */; settings = {ASSET_TAGS = (); }; };
 		00DC9D971BB284CC00734DB6 /* QueryHistoricalController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00DC9D911BB284CC00734DB6 /* QueryHistoricalController.xib */; settings = {ASSET_TAGS = (); }; };
 		00DC9D981BB284CC00734DB6 /* QueryHistoricalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00DC9D921BB284CC00734DB6 /* QueryHistoricalView.swift */; settings = {ASSET_TAGS = (); }; };
@@ -339,6 +341,8 @@
 		00D0FF721B130A9F00D084C3 /* Nevo660.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Nevo660.png; sourceTree = "<group>"; };
 		00D0FF761B13184500D084C3 /* MyNevoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MyNevoView.swift; path = View/MyNevoView.swift; sourceTree = "<group>"; };
 		00D4DE901AB141FB0062523D /* NevoPicture960.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NevoPicture960.png; sourceTree = "<group>"; };
+		00DA79C91BCCDADB000F9054 /* TutorialPage7View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TutorialPage7View.swift; path = View/Tutorial/TutorialPage7View.swift; sourceTree = "<group>"; };
+		00DA79CB1BCCDAFA000F9054 /* Page7Controller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Page7Controller.swift; sourceTree = "<group>"; };
 		00DC9D901BB284CC00734DB6 /* QueryHistoricalController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QueryHistoricalController.swift; sourceTree = "<group>"; };
 		00DC9D911BB284CC00734DB6 /* QueryHistoricalController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QueryHistoricalController.xib; sourceTree = "<group>"; };
 		00DC9D921BB284CC00734DB6 /* QueryHistoricalView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QueryHistoricalView.swift; sourceTree = "<group>"; };
@@ -599,6 +603,7 @@
 				00C30AD81A89E08600C9F67B /* Page4Controller.swift */,
 				001818331B048DAC005E9F2D /* Page5Controller.swift */,
 				001818341B048DAC005E9F2D /* Page6Controller.swift */,
+				00DA79CB1BCCDAFA000F9054 /* Page7Controller.swift */,
 			);
 			name = PageViewController;
 			path = Controller/PageViewController;
@@ -997,6 +1002,7 @@
 				9A9BD1C71A88C0A400A95ACA /* TutorialScanPageView.swift */,
 				001818371B048E12005E9F2D /* TutorialPage5View.swift */,
 				001818381B048E12005E9F2D /* TutorialPage6View.swift */,
+				00DA79C91BCCDADB000F9054 /* TutorialPage7View.swift */,
 			);
 			name = TutorialPageView;
 			sourceTree = "<group>";
@@ -1407,6 +1413,7 @@
 				00DC9EE81BB2853D00734DB6 /* ChartXAxisRendererHorizontalBarChart.swift in Sources */,
 				00DC9EB61BB2853D00734DB6 /* ChartLegend.swift in Sources */,
 				00DC9EAD1BB2853D00734DB6 /* CombinedChartView.swift in Sources */,
+				00DA79CA1BCCDADB000F9054 /* TutorialPage7View.swift in Sources */,
 				00DC9EF71BB2853D00734DB6 /* ChartTransformer.swift in Sources */,
 				00DC9EB91BB2853D00734DB6 /* ChartXAxis.swift in Sources */,
 				07C59F2A1A8C61E900D65C84 /* SetCardioRequest.swift in Sources */,
@@ -1416,6 +1423,7 @@
 				00DC9EF11BB2853D00734DB6 /* PieChartRenderer.swift in Sources */,
 				007F796E1A878C6C006C89E6 /* TutorialView.swift in Sources */,
 				00DC9EF51BB2853D00734DB6 /* ChartColorTemplates.swift in Sources */,
+				00DA79CC1BCCDAFA000F9054 /* Page7Controller.swift in Sources */,
 				00DC9EF31BB2853D00734DB6 /* ScatterChartRenderer.swift in Sources */,
 				00DC9EA61BB2853D00734DB6 /* ChartAnimationEasing.swift in Sources */,
 				00DC9EAC1BB2853D00734DB6 /* ChartViewBase.swift in Sources */,

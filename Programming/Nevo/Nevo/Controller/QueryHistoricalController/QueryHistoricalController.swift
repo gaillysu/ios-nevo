@@ -52,8 +52,8 @@ class QueryHistoricalController: UIViewController,UITableViewDataSource,UITableV
     override func viewDidLayoutSubviews() {
         let sFrame:CGRect = AppTheme.getWidthLabelSize(NSLocalizedString("total_sleep_title", comment: ""), andObject: queryView.totalTitle.frame, andFont: AppTheme.FONT_RALEWAY_LIGHT(mSize: 15))
         queryView.totalTitle.frame = sFrame
-        queryView.lightTitle.frame = CGRectMake(queryView.lightTitle.frame.origin.x, queryView.lightTitle.frame.origin.y, sFrame.size.width, sFrame.size.height)
-        queryView.deepTitle.frame = CGRectMake(queryView.deepTitle.frame.origin.x, queryView.deepTitle.frame.origin.y, sFrame.size.width, sFrame.size.height)
+        queryView.lightTitle.frame = CGRectMake(queryView.lightTitle.frame.origin.x, queryView.lightTitle.frame.origin.y, sFrame.size.width+10, sFrame.size.height)
+        queryView.deepTitle.frame = CGRectMake(queryView.deepTitle.frame.origin.x, queryView.deepTitle.frame.origin.y, sFrame.size.width+10, sFrame.size.height)
 
         queryView.totalSleepLabel.frame = CGRectMake(sFrame.origin.x+sFrame.size.width+20, queryView.totalSleepLabel.frame.origin.y, queryView.totalSleepLabel.frame.size.width, queryView.totalSleepLabel.frame.size.height)
         queryView.lightSleepLabel.frame = CGRectMake(sFrame.origin.x+sFrame.size.width+20, queryView.lightSleepLabel.frame.origin.y, queryView.lightSleepLabel.frame.size.width, queryView.lightSleepLabel.frame.size.height)

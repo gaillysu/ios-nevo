@@ -20,6 +20,7 @@ class SleepTrackingView: UIView {
     var progresValue:CGFloat = 0.0
     var animationView:AnimationView!
     var historyButton:UIButton?
+    var infoButton:UIButton?
 
     private var mDelegate:ButtonManagerCallBack!
 
@@ -43,13 +44,19 @@ class SleepTrackingView: UIView {
         self.layer.addSublayer(progressView!)
 
         historyButton = UIButton(frame: CGRectMake(UIScreen.mainScreen().bounds.width-70, titleBgView.frame.size.height+20, 50, 50))
-        //sleep_history_icon
         historyButton?.setImage(UIImage(named: "sleep_history_icon"), forState: UIControlState.Normal)
         historyButton?.setImage(UIImage(named: "sleep_history_icon"), forState: UIControlState.Highlighted)
-        //historyButton?.setTitle("Sleep History", forState: UIControlState.Normal)
         historyButton?.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
         historyButton?.addTarget(self, action: Selector("ButtonAction:"), forControlEvents: UIControlEvents.TouchUpInside)
         self.addSubview(historyButton!)
+
+        let infoButtonY:CGFloat = UIScreen.mainScreen().bounds.height-180
+        infoButton = UIButton(type: UIButtonType.Custom)
+        infoButton!.setImage(UIImage(named: "question58"), forState: UIControlState.Normal)
+        infoButton!.setImage(UIImage(named: "question58"), forState: UIControlState.Highlighted)
+        infoButton!.frame = CGRectMake(historyButton!.frame.origin.x, infoButtonY, 50, 50)
+        infoButton!.addTarget(self, action: Selector("ButtonAction:"), forControlEvents: UIControlEvents.TouchUpInside)
+        self.addSubview(infoButton!)
 
     }
 

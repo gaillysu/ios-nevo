@@ -83,6 +83,13 @@ class SleepTrackingController: UIViewController, SyncControllerDelegate ,ButtonM
             let quer:QueryHistoricalController = QueryHistoricalController()
             self.presentViewController(quer, animated: true, completion:nil)
         }
+
+        if sender.isEqual(sleepView.infoButton) {
+            let page7:Page7Controller = Page7Controller()
+            self.presentViewController(page7, animated: true, completion: { () -> Void in
+
+            })
+        }
     }
 
     /**

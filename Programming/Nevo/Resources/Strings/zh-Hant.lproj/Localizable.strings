@@ -92,7 +92,7 @@
 "BLE_LOST_TITLE"="藍芽連接中斷";
 "UNSTABLE_CONNECTION_TITLE"="藍芽連接不穩定";
 "UNSTABLE_CONNECTION_MESSAGE"="藍芽連接不穩定，請確保電話的藍芽功能已開啟並在連接範圍內";
-"SLEEP_TITLE"="睡眠跟蹤";
+"SLEEP_TITLE"="睡眠追踪";
 "light_sleep_title"="淺睡:";
 "deep_sleep_title"="深睡:";
 "total_sleep_title"="總睡眠:";
@@ -104,3 +104,4 @@
 "sleep_history_title"="睡眠歷史記錄";
 "continue"="繼續";
 "update_ble_success_message"="完成BLE升級後，請按手錶的第三個按鈕以重新開啟藍芽功能，並與電話連接。請確保電話與手錶配對成功以免影響升級過程。連接後輕觸「繼續」以進行MCU升級。";
+"sleep_description"="按著第一個按鈕3秒以開啟睡眠監測模式。睡醒後，再按第一個按鈕3秒返回運動模式。連接手機後，可查閱睡眠監測紀錄。";

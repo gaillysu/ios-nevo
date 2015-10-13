@@ -92,7 +92,7 @@
 "BLE_LOST_TITLE"="蓝牙断开";
 "UNSTABLE_CONNECTION_TITLE"="连接不稳定";
 "UNSTABLE_CONNECTION_MESSAGE"="链接状态不稳定请确保BLE是打开状态和在链接范围内";
-"SLEEP_TITLE"="睡眠跟踪";
+"SLEEP_TITLE"="睡眠追踪";
 "light_sleep_title"="浅睡:";
 "deep_sleep_title"="深睡:";
 "total_sleep_title"="总睡眠:";
@@ -104,3 +104,4 @@
 "sleep_history_title"="睡眠历史记录";
 "continue"="继续";
 "update_ble_success_message"="完成BLE升级后，请按手表的第三个按钮以重新开启蓝牙功能，并与电话连接。请确保电话与手表配对成功以免影响升级过程。连接后轻触「继续」以进行MCU升级。";
+"sleep_description"="按住第一个按钮3秒，激活睡眠跟踪模式。在你醒来后，再按第一个按钮3秒，激活运动模式，并连接手表以查看你的睡眠记录.";

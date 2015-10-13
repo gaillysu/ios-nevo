@@ -59,7 +59,7 @@ class QueryHistoricalView: UIView , ChartViewDelegate{
         chartView!.pinchZoomEnabled = false
         chartView!.drawGridBackgroundEnabled = false;
         chartView!.drawBarShadowEnabled = false;
-        let xScale:CGFloat = CGFloat(queryModel.count/7);
+        let xScale:CGFloat = CGFloat(queryModel.count)/7.0;//integer/integer = integer,float/float = float
         chartView!.setScaleMinima(xScale, scaleY: 1)
         chartView!.setScaleEnabled(false);
         chartView!.drawValueAboveBarEnabled = true;
@@ -184,7 +184,7 @@ class QueryHistoricalView: UIView , ChartViewDelegate{
         set1.colors = [ChartColorTemplates.getLightSleepColor(),ChartColorTemplates.getDeepSleepColor()];
         //每个数据块的类别名称,数组形式传递
         set1.stackLabels = ["Deep sleep", "Light sleep"];
-        set1.barSpace = 0.07;
+        set1.barSpace = 0.05;
         let dataSets:[BarChartDataSet] = [set1];
 
         let data:BarChartData = BarChartData(xVals: xVal, dataSets: dataSets)
