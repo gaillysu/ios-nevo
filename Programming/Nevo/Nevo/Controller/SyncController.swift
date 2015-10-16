@@ -36,6 +36,8 @@ class SyncController: NSObject,ConnectionControllerDelegate,UIAlertViewDelegate 
     private var timer:NSTimer = NSTimer()
 
     private var todaySleepData:NSMutableArray = NSMutableArray(capacity: 2)
+
+    private var disConnectAlert:UIAlertView?
     
     /**
     A classic singelton pattern
@@ -162,21 +164,6 @@ class SyncController: NSObject,ConnectionControllerDelegate,UIAlertViewDelegate 
         sendRequest(ReadBatteryLevelNevoRequest())
     }
     //end functions by UI
-    
-    func sendRequest(r:Request) {
-        if(isConnected()){
-            SyncQueue.sharedInstance.post( { (Void) -> (Void) in
-
-                self.mConnectionController.sendRequest(r)
-            
-            } )
-        }else {
-            //tell caller
-            for delegate in mDelegates {
-                delegate.connectionStateChanged(false)
-            }
-        }
-    }
 
     /**
     Format from the alarm data
@@ -199,6 +186,75 @@ class SyncController: NSObject,ConnectionControllerDelegate,UIAlertViewDelegate 
         return alarm
     }
 
+    func removeMyNevoDelegate(){
+        for(var i:Int = 0; i < mDelegates.count; i++){
+            if mDelegates[i] is MyNevoController{
+                mDelegates.removeAtIndex(i)
+            }
+        }
+    }
+
+    func GET_TodaySleepData()->NSArray{
+        return todaySleepData;
+    }
+
+    /**
+    return true, if it is not the first run
+    return false ,if it is running the tutorial screen
+    */
+    func hasLoadHomeController() ->Bool
+    {
+        for delegate in mDelegates {
+            if delegate is HomeController
+            {
+                return true
+            }
+        }
+        return false
+    }
+
+    // MARK: - ConnectionController protocol
+    /**
+    See ConnectionController protocol
+    */
+    func  getFirmwareVersion() -> NSString
+    {
+        return isConnected() ? self.mConnectionController.getFirmwareVersion() : NSString()
+    }
+
+    /**
+    See ConnectionController protocol
+    */
+    func  getSoftwareVersion() -> NSString
+    {
+        return isConnected() ? self.mConnectionController.getSoftwareVersion() : NSString()
+    }
+
+    func connect() {
+        self.mConnectionController.connect()
+    }
+
+    func isConnected() -> Bool{
+        return mConnectionController.isConnected()
+
+    }
+
+    func sendRequest(r:Request) {
+        if(isConnected()){
+            SyncQueue.sharedInstance.post( { (Void) -> (Void) in
+
+                self.mConnectionController.sendRequest(r)
+
+            } )
+        }else {
+            //tell caller
+            for delegate in mDelegates {
+                delegate.connectionStateChanged(false)
+            }
+        }
+    }
+
+    // MARK: - ConnectionControllerDelegate
     func packetReceived(packet:RawPacket) {
  
         mPacketsbuffer.append(packet.getRawData())
@@ -631,16 +687,56 @@ class SyncController: NSObject,ConnectionControllerDelegate,UIAlertViewDelegate 
         }
     }
 
-    func BLE_LOST_TITLE_ACTION(timer:NSTimer){
-        let alert :UIAlertView = UIAlertView(title: NSLocalizedString("BLE_LOST_TITLE", comment: ""), message: NSLocalizedString("BLE_CONNECTION_LOST", comment: ""), delegate: nil, cancelButtonTitle: NSLocalizedString("ok", comment: ""))
-        alert.show()
+    func firmwareVersionReceived(whichfirmware:DfuFirmwareTypes, version:NSString)
+    {
+        let mcuver = GET_SOFTWARE_VERSION()
+        let blever = GET_FIRMWARE_VERSION()
+
+        AppTheme.DLog("Build in software version: \(mcuver), firmware version: \(blever)")
+
+        if ((whichfirmware == DfuFirmwareTypes.SOFTDEVICE  && version.integerValue < mcuver)
+            || (whichfirmware == DfuFirmwareTypes.APPLICATION  && version.integerValue < blever))
+
+        {
+            //for tutorial screen, don't popup update dialog
+            if !mAlertUpdateFW  && hasLoadHomeController()
+            {
+                mAlertUpdateFW = true
+
+                let alert :UIAlertView = UIAlertView(title: NSLocalizedString("Firmware Upgrade", comment: ""), message: NSLocalizedString("FirmwareAlertMessage", comment: ""), delegate: nil, cancelButtonTitle: NSLocalizedString("Cancel", comment: ""))
+                alert.show()
+            }
+        }
     }
-    
+
+    /**
+    *  Receiving the current device signal strength value
+    */
+    func receivedRSSIValue(number:NSNumber){
+        for delegate in mDelegates {
+            if delegate is MyNevoController{
+                delegate.receivedRSSIValue(number)
+            }
+        }
+    }
+
+    // MARK: - NSTimer Action
+    func BLE_LOST_TITLE_ACTION(timer:NSTimer){
+        if (disConnectAlert == nil) {
+            disConnectAlert = UIAlertView(title: NSLocalizedString("BLE_LOST_TITLE", comment: ""), message: NSLocalizedString("BLE_CONNECTION_LOST", comment: ""), delegate: nil, cancelButtonTitle: NSLocalizedString("ok", comment: ""))
+            disConnectAlert?.show()
+        }
+
+    }
+
+    // MARK: - UIAlertViewDelegate
     /**
     See UIAlertViewDelegate
     */
     func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int){
-        
+
+        disConnectAlert = nil
+
         if(buttonIndex==1){
           //GOTO OTA SCREEN
             for delegate in mDelegates {
@@ -652,94 +748,7 @@ class SyncController: NSObject,ConnectionControllerDelegate,UIAlertViewDelegate 
             }
         }
     }
-    
-    /**
-    return true, if it is not the first run
-    return false ,if it is running the tutorial screen
-    */
-    func hasLoadHomeController() ->Bool
-    {
-        for delegate in mDelegates {
-            if delegate is HomeController
-            {
-                return true
-            }
-        }
-        return false
-    }
-
-    /**
-    See ConnectionControllerDelegate
-    */
-    func firmwareVersionReceived(whichfirmware:DfuFirmwareTypes, version:NSString)
-    {
-        let mcuver = GET_SOFTWARE_VERSION()
-        let blever = GET_FIRMWARE_VERSION()
-        
-        AppTheme.DLog("Build in software version: \(mcuver), firmware version: \(blever)")
- 
-        if ((whichfirmware == DfuFirmwareTypes.SOFTDEVICE  && version.integerValue < mcuver)
-          || (whichfirmware == DfuFirmwareTypes.APPLICATION  && version.integerValue < blever))
-            
-        {
-            //for tutorial screen, don't popup update dialog
-            if !mAlertUpdateFW  && hasLoadHomeController()
-            {
-            mAlertUpdateFW = true
-
-            let alert :UIAlertView = UIAlertView(title: NSLocalizedString("Firmware Upgrade", comment: ""), message: NSLocalizedString("FirmwareAlertMessage", comment: ""), delegate: nil, cancelButtonTitle: NSLocalizedString("Cancel", comment: ""))
-            alert.show()
-            }
-        }
-    }
-    /**
-    See ConnectionController protocol
-    */
-    func  getFirmwareVersion() -> NSString
-    {
-        return isConnected() ? self.mConnectionController.getFirmwareVersion() : NSString()
-    }
-    
-    /**
-    See ConnectionController protocol
-    */
-    func  getSoftwareVersion() -> NSString
-    {
-        return isConnected() ? self.mConnectionController.getSoftwareVersion() : NSString()
-    }
-
-    /**
-    *  See ConnectionController protocol
-    *  Receiving the current device signal strength value
-    */
-    func receivedRSSIValue(number:NSNumber){
-        for delegate in mDelegates {
-            if delegate is MyNevoController{
-                delegate.receivedRSSIValue(number)
-            }
-        }
-    }
-
-    func removeMyNevoDelegate(){
-        for(var i:Int = 0; i < mDelegates.count; i++){
-            if mDelegates[i] is MyNevoController{
-                mDelegates.removeAtIndex(i)
-            }
-        }
-    }
-
-    func connect() {
-        self.mConnectionController.connect()
-    }
-    
-    func isConnected() -> Bool{
-        return mConnectionController.isConnected()
-
-    }
-
-    func GET_TodaySleepData()->NSArray{
-        return todaySleepData;
-    }
+    // MARK: - 
     
 }
 
