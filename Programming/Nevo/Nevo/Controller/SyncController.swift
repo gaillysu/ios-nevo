@@ -421,14 +421,12 @@ class SyncController: NSObject,ConnectionControllerDelegate,UIAlertViewDelegate 
                     !(i == dd.hour && dd.year == dd2.year && dd.month == dd2.month && dd.day == dd2.day)
                     {
                         hk.writeDataPoint(HourlySteps(numberOfSteps: savedDailyHistory[Int(currentDay)].HourlySteps[i],date: savedDailyHistory[Int(currentDay)].Date,hour:i,update: false), resultHandler: { (result, error) -> Void in
-                        if (result != true) {
-                            AppTheme.DLog("Save Hourly steps error\(i),\(error)")
-                        }
-                        else
-                        {
-                            AppTheme.DLog("Save Hourly steps OK")
-                        }
-                    })
+                            if (result != true) {
+                                AppTheme.DLog("Save Hourly steps error\(i),\(error)")
+                            }else{
+                                AppTheme.DLog("Save Hourly steps OK")
+                            }
+                        })
                     }
                 }
                 

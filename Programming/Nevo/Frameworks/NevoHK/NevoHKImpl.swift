@@ -79,13 +79,11 @@ class NevoHKImpl {
             }
 
             if( present != true) {
-                
-                self.mHealthKitStore.saveObject(saveData, withCompletion: { (success, error) -> Void in
+
+                self.saveDataPoint(saveData, resultHandler: { (result, error) -> Void in
                     if( error != nil ) {
-                        print("Error saving sample: \(error!.localizedDescription)")
                         resultHandler(result: false,error: error)
                     } else {
-                        print("Saved in Health Kit : \(saveData)")
                         resultHandler(result: true,error: nil)
                     }
                 })
@@ -93,22 +91,11 @@ class NevoHKImpl {
             } else {
                 
                 if data.isUpdate(){
-                    
-                    self.mHealthKitStore.deleteObject(object!, withCompletion: { (success, error) -> Void in
-                        if( error != nil ) {
-                            print("Error delete sample: \(error!.localizedDescription)")
 
-                        } else {
-                            print("Success delete in Health Kit : \(object! as! HKQuantitySample)")
-                        }
-                    })
-
-                    self.mHealthKitStore.saveObject(saveData, withCompletion: { (success, error) -> Void in
+                    self.replaceDataPoint(object!, saveData: saveData, resultHandler: { (result, error) -> Void in
                         if( error != nil ) {
-                            print("Error saving sample: \(error!.localizedDescription)")
                             resultHandler(result: false,error: error)
                         } else {
-                            print("Saved in Health Kit : \(saveData)")
                             resultHandler(result: true,error: nil)
                         }
                     })
@@ -122,6 +109,49 @@ class NevoHKImpl {
         })
 
         
+    }
+
+    private func saveDataPoint(data:HKObject,resultHandler:((result:Bool?,error:NSError?) -> Void)){
+        self.mHealthKitStore.saveObject(data, withCompletion: { (success, error) -> Void in
+            if( error != nil ) {
+                print("Error saving sample: \(error!.localizedDescription)")
+                resultHandler(result: false,error: error)
+            } else {
+                print("Saved in Health Kit : \(data)")
+                resultHandler(result: true,error: nil)
+            }
+        })
+    }
+
+    private func deleteDataPoint(data:HKObject,resultHandler:((result:Bool?,error:NSError?) -> Void)){
+        self.mHealthKitStore.deleteObject(data, withCompletion: { (success, error) -> Void in
+            if( error != nil ) {
+                resultHandler(result: false,error: error)
+                print("Error delete sample: \(error!.localizedDescription)")
+            } else {
+                resultHandler(result: true,error: nil)
+                print("Success delete in Health Kit : \(data as! HKQuantitySample)")
+            }
+        })
+    }
+
+    private func replaceDataPoint(deleData:HKObject,saveData:HKObject,resultHandler:((result:Bool?,error:NSError?) -> Void)){
+        deleteDataPoint(deleData) { (result, error) -> Void in
+            if(error == nil && result == true){
+                self.saveDataPoint(saveData, resultHandler: { (result, error) -> Void in
+                    resultHandler(result: result,error: error)
+                    if(result!){
+                        print("Success replace in Health Kit : \(saveData as! HKQuantitySample)")
+                    }else{
+                        print("Error Replace sample:\(deleData as! HKQuantitySample)")
+                    }
+                })
+            }else{
+                resultHandler(result: result,error: error)
+                print("Error Replace sample:\(deleData as! HKQuantitySample)")
+            }
+        }
+
     }
     
     /**
@@ -145,27 +175,24 @@ class NevoHKImpl {
         let dateAndSourcePredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [datePredicate,sourcePredicate])
 
         var type:HKSampleType
-        if(data is HourlySteps)
-        {type = sample.quantityType}
-        else{ type = (sample as! HKCategorySample ).categoryType}
+        if(data is HourlySteps){
+            type = sample.quantityType
+        }else{
+            type = (sample as! HKCategorySample ).categoryType
+        }
+
         let query = HKSampleQuery(sampleType: type, predicate: dateAndSourcePredicate,
             limit: 1, sortDescriptors: nil, resultsHandler: {
                 (query, results, error) in
-                
+
                 if error != nil {
                     //In case of error, it probably means that we don't have the autorisation to access HK
                     //Or that we are not in a HK capable device
-                    handler(nil,nil)
+                    handler(false,nil)
                     return;
-                }
-                
-                else {
+                }else {
                     //If there's no error, if we have a result, then the data is present, if we don't it's absent
-                    if(data is HourlySteps){
-                        handler( results != nil && results!.count >= 1 ,(results != nil && results!.count >= 1) ?results?[0] as? HKQuantitySample:nil)
-                    }else{
-                        handler( results != nil && results!.count >= 1 ,(results != nil && results!.count >= 1) ?results?[0] as? HKCategorySample:nil)
-                    }
+                    handler( results != nil && results!.count >= 1 ,(results != nil && results!.count >= 1) ?results?[0] as? HKQuantitySample:nil)
                     return;
 
                 }
