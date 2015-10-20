@@ -437,6 +437,8 @@ class CircleSleepProgressView: CAShapeLayer {
         var endDate:NSDate = NSDate()
 
         for(var l:Int = 0; l<(sleepChartArray[0] as! [[NSDate]]).count;l++){
+            initialProgress = CGFloat(calculatePercent(1.0, toProgress: progressLimit))
+
             let pLayer:CAShapeLayer = CAShapeLayer()
             startDate = ((sleepChartArray[0] as! [[NSDate]])[l][0]) //[l][0]
             endDate = ((sleepChartArray[0] as! [[NSDate]])[l][1])
@@ -444,16 +446,19 @@ class CircleSleepProgressView: CAShapeLayer {
             pLayer.fillColor = UIColor.clearColor().CGColor
             pLayer.strokeColor = (sleepChartArray[1] as! [CGColor])[l]//sleepChartColorArray[l]
             pLayer.lineWidth = 5
-
-            initialProgress = CGFloat(calculatePercent(1.0, toProgress: progressLimit))
-            progress = 1.0
-
             pLayer.strokeEnd = percent
             self.addSublayer(pLayer)
             startSleepAnimation(pLayer);
         }
     }
 
+    /**
+    解析睡眠数据
+
+    :param: array 睡眠原始数据
+
+    :returns: 返回解析后的数据
+    */
     func combiningSleepData(array:NSArray) -> NSArray {
         let cal:NSCalendar = NSCalendar.currentCalendar()
         var lastTimer:Int = 0
@@ -506,6 +511,7 @@ class CircleSleepProgressView: CAShapeLayer {
             }
         }
         if(sleepChartArray.count != 0){
+            //计算跨天睡眠(前一天有睡眠数据)
             let sleepTimerArray:[Int] = array.objectAtIndex(1).objectAtIndex(0) as! [Int]
             let weakTimerArray:[Int] = array.objectAtIndex(1).objectAtIndex(1) as! [Int]
             let lightTimerArray:[Int] = array.objectAtIndex(1).objectAtIndex(2) as! [Int]
@@ -534,6 +540,7 @@ class CircleSleepProgressView: CAShapeLayer {
                 sleepChartColorArray.append(ChartColorTemplates.getDeepSleepColor().CGColor)
             }
         }else{
+            //跨天后的睡眠计算(前一天无睡眠数据)
             let sleepTimerArray:[Int] = array.objectAtIndex(1).objectAtIndex(0) as! [Int]
             let weakTimerArray:[Int] = array.objectAtIndex(1).objectAtIndex(1) as! [Int]
             let lightTimerArray:[Int] = array.objectAtIndex(1).objectAtIndex(2) as! [Int]
@@ -601,7 +608,7 @@ class CircleSleepProgressView: CAShapeLayer {
     Implementation of the animation function
     */
     private func startSleepAnimation(layer:CAShapeLayer) {
-        let pathAnimation:CABasicAnimation = CABasicAnimation(keyPath: "strokeSleepEnd")
+        let pathAnimation:CABasicAnimation = CABasicAnimation(keyPath: "strokeSleepEnd.scale")
         pathAnimation.duration = 1
         pathAnimation.fromValue = initialProgress;
         pathAnimation.toValue = percent;
