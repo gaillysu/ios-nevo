@@ -52,7 +52,7 @@ class MyNevoController: UIViewController,ButtonManagerCallBack,SyncControllerDel
 
         if(sender.isEqual(mynevoView.UpgradeButton)){
             if (currentBattery<1 && mSyncController!.getSoftwareVersion().integerValue>0){
-                let alert :UIAlertView = UIAlertView(title: "Battery warnings", message: "Battery too low replace new battery before firmware upgrade", delegate: nil, cancelButtonTitle: "OK")
+                let alert :UIAlertView = UIAlertView(title: NSLocalizedString("battery_warnings_title", comment: ""), message: NSLocalizedString("battery_warnings_msg", comment: ""), delegate: nil, cancelButtonTitle: "OK")
                 alert.show()
                 return;
             }
@@ -61,7 +61,7 @@ class MyNevoController: UIViewController,ButtonManagerCallBack,SyncControllerDel
             device.batteryMonitoringEnabled = true
             let batterylevel:Float = device.batteryLevel
             if(batterylevel < 0.2){
-                let alert :UIAlertView = UIAlertView(title: "Battery warnings", message: "Mobile battery too low please charge phone before upgrade", delegate: nil, cancelButtonTitle: "OK")
+                let alert :UIAlertView = UIAlertView(title: NSLocalizedString("battery_warnings_title", comment: ""), message: NSLocalizedString("mobile_battery_warnings_msg", comment: ""), delegate: nil, cancelButtonTitle: NSLocalizedString("OK", comment: ""))
                 alert.show()
                 return;
             }

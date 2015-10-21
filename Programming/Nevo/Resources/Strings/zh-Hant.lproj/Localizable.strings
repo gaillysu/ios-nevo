@@ -106,3 +106,6 @@
 "update_ble_success_message"="完成BLE升級後，請按手錶的第三個按鈕以重新開啟藍芽功能，並與電話連接。請確保電話與手錶配對成功以免影響升級過程。連接後輕觸「繼續」以進行MCU升級。";
 "sleep_description"="按著第一個按鈕3秒以開啟睡眠監測模式。睡醒後，再按第一個按鈕3秒返回運動模式。連接手機後，可查閱睡眠監測紀錄。";
 "minut"="minut";
+"battery_warnings_title"="电量不足";
+"battery_warnings_msg"="更新要求充足电量，现有电量不足，请更换电池後再更新。";
+"mobile_battery_warnings_msg"="手机电量不足请在升级前充满电或者接上电源后在升级。";

@@ -106,3 +106,6 @@
 "update_ble_success_message"="完成BLE升级后，请按手表的第三个按钮以重新开启蓝牙功能，并与电话连接。请确保电话与手表配对成功以免影响升级过程。连接后轻触「继续」以进行MCU升级。";
 "sleep_description"="按住第一个按钮3秒，激活睡眠跟踪模式。在你醒来后，再按第一个按钮3秒，激活运动模式，并连接手表以查看你的睡眠记录.";
 "minut"="minut";
+"battery_warnings_title"="电量不足";
+"battery_warnings_msg"="更新要求充足电量，现有电量不足，请更换电池後再更新。";
+"mobile_battery_warnings_msg"="手机电量不足请在升级前充满电或者接上电源后在升级。";
