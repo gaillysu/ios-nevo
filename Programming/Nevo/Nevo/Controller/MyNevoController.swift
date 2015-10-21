@@ -65,8 +65,9 @@ class MyNevoController: UIViewController,ButtonManagerCallBack,SyncControllerDel
                 alert.show()
                 return;
             }
-
-            self.performSegueWithIdentifier("Setting_nevoOta", sender: self)
+            if(!mynevoView.UpgradeButton.selected){
+                self.performSegueWithIdentifier("Setting_nevoOta", sender: self)
+            }
         }
 
     }
@@ -97,6 +98,18 @@ class MyNevoController: UIViewController,ButtonManagerCallBack,SyncControllerDel
             mynevoView.setBatteryLevelValue(batteryValue)
 
             mynevoView.setVersionLbael(mSyncController!.getSoftwareVersion(), bleNumber: mSyncController!.getFirmwareVersion())
+            let currentSoftwareVersion:NSString = mSyncController!.getSoftwareVersion()
+            let currentFirmwareVersion:NSString = mSyncController!.getFirmwareVersion()
+            let buildinSoftwareVersion = GET_SOFTWARE_VERSION()
+            let buildinFirmwareVersion = GET_FIRMWARE_VERSION()
+
+            if(currentFirmwareVersion.integerValue >= buildinFirmwareVersion && currentSoftwareVersion.integerValue >= buildinSoftwareVersion){
+                mynevoView.UpgradeButton.selected = true
+                mynevoView.UpgradeButton.titleLabel?.font = AppTheme.FONT_RALEWAY_LIGHT(mSize: 15)
+            }else{
+                mynevoView.UpgradeButton.selected = false
+                mynevoView.UpgradeButton.titleLabel?.font = AppTheme.FONT_RALEWAY_LIGHT(mSize: 22)
+            }
         }
     }
 

@@ -50,7 +50,9 @@ class MyNevoView: UIView {
         }
 
         UpgradeButton.setTitle(NSLocalizedString("upgrade",comment: ""), forState: UIControlState.Normal)
-        UpgradeButton.titleLabel?.font = AppTheme.FONT_RALEWAY_LIGHT(mSize: 22)
+        UpgradeButton.setTitle(NSLocalizedString("latestversion",comment: ""), forState: UIControlState.Selected)
+        UpgradeButton.titleLabel?.font = AppTheme.FONT_RALEWAY_LIGHT(mSize: 15)
+        UpgradeButton.selected = true
         UpgradeButton.layer.masksToBounds = true
         UpgradeButton.layer.cornerRadius = 20.0
 
