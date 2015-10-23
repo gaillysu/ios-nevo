@@ -226,7 +226,7 @@ class AidOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMan
                 nevoOtaView.ReUpgradeButton?.setTitle("Try to reconnect", forState: UIControlState.Normal)
                 let dispatchTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, Int64(3.0 * Double(NSEC_PER_SEC)))
                 dispatch_after(dispatchTime, dispatch_get_main_queue(), {
-                    mAidOtaController?.mConnectionController?.setOTAMode(true,Disconnect:true)
+                    self.mAidOtaController?.mConnectionController?.setOTAMode(true,Disconnect:true)
                 })
             }
         }

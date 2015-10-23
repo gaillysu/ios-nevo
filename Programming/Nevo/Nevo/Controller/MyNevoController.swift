@@ -32,6 +32,7 @@ class MyNevoController: UIViewController,ButtonManagerCallBack,SyncControllerDel
     
     override func viewDidDisappear(animated: Bool) {
         mSyncController?.removeMyNevoDelegate()
+        rssialert?.dismissWithClickedButtonIndex(1, animated: true)
     }
 
     override func didReceiveMemoryWarning() {
@@ -104,11 +105,13 @@ class MyNevoController: UIViewController,ButtonManagerCallBack,SyncControllerDel
             let buildinFirmwareVersion = GET_FIRMWARE_VERSION()
 
             if(currentFirmwareVersion.integerValue >= buildinFirmwareVersion && currentSoftwareVersion.integerValue >= buildinSoftwareVersion){
+                mynevoView.UpgradeButton.setTitle(NSLocalizedString("latestversion",comment: ""), forState: UIControlState.Normal)
                 mynevoView.UpgradeButton.selected = true
                 mynevoView.UpgradeButton.titleLabel?.font = AppTheme.FONT_RALEWAY_LIGHT(mSize: 15)
             }else{
                 mynevoView.UpgradeButton.selected = false
                 mynevoView.UpgradeButton.titleLabel?.font = AppTheme.FONT_RALEWAY_LIGHT(mSize: 22)
+                mynevoView.UpgradeButton.setTitle(NSLocalizedString("upgrade",comment: ""), forState: UIControlState.Normal)
             }
         }
     }
