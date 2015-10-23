@@ -14,12 +14,15 @@ class MyNevoController: UIViewController,ButtonManagerCallBack,SyncControllerDel
     private var mSyncController:SyncController?
     private var currentBattery:Int = 0
     private var rssialert :UIAlertView?
+    private var buildinSoftwareVersion:Int = 0
+    private var buildinFirmwareVersion:Int = 0
     override func viewDidLoad() {
         super.viewDidLoad()
 
         mSyncController = SyncController.sharedInstance
-
         mynevoView.bulidMyNevoView(self)
+        buildinSoftwareVersion = GET_SOFTWARE_VERSION()
+        buildinFirmwareVersion = GET_FIRMWARE_VERSION()
 
     }
 
@@ -52,7 +55,8 @@ class MyNevoController: UIViewController,ButtonManagerCallBack,SyncControllerDel
         }
 
         if(sender.isEqual(mynevoView.UpgradeButton)){
-            if (currentBattery<1 && mSyncController!.getSoftwareVersion().integerValue>0){
+            //When upgrading watch battery can not less than 2
+            if (currentBattery<2 && mSyncController!.getSoftwareVersion().integerValue>0 && !mynevoView.UpgradeButton.selected){
                 let alert :UIAlertView = UIAlertView(title: NSLocalizedString("battery_warnings_title", comment: ""), message: NSLocalizedString("battery_warnings_msg", comment: ""), delegate: nil, cancelButtonTitle: "OK")
                 alert.show()
                 return;
@@ -67,6 +71,10 @@ class MyNevoController: UIViewController,ButtonManagerCallBack,SyncControllerDel
                 return;
             }
             if(!mynevoView.UpgradeButton.selected){
+                //Record the latest upgrade time
+                let senddate:NSDate = NSDate()
+                AppTheme.KeyedArchiverName("LatestUpdate", andObject: senddate)
+
                 self.performSegueWithIdentifier("Setting_nevoOta", sender: self)
             }
         }
@@ -88,6 +96,22 @@ class MyNevoController: UIViewController,ButtonManagerCallBack,SyncControllerDel
             rssialert?.dismissWithClickedButtonIndex(1, animated: true)
             rssialert = nil
         }
+
+        mynevoView.setVersionLbael(mSyncController!.getSoftwareVersion(), bleNumber: mSyncController!.getFirmwareVersion())
+        let currentSoftwareVersion:NSString = mSyncController!.getSoftwareVersion()
+        let currentFirmwareVersion:NSString = mSyncController!.getFirmwareVersion()
+
+        if(currentFirmwareVersion.integerValue >= buildinFirmwareVersion && currentSoftwareVersion.integerValue >= buildinSoftwareVersion){
+            mynevoView.UpgradeButton.backgroundColor = AppTheme.NEVO_CUSTOM_COLOR()
+            mynevoView.UpgradeButton.setTitle(NSLocalizedString("latestversion",comment: ""), forState: UIControlState.Normal)
+            mynevoView.UpgradeButton.selected = true
+            mynevoView.UpgradeButton.titleLabel?.font = AppTheme.FONT_RALEWAY_LIGHT(mSize: 15)
+        }else{
+            mynevoView.UpgradeButton.selected = false
+            mynevoView.UpgradeButton.backgroundColor = AppTheme.NEVO_SOLAR_YELLOW()
+            mynevoView.UpgradeButton.titleLabel?.font = AppTheme.FONT_RALEWAY_LIGHT(mSize: 22)
+            mynevoView.UpgradeButton.setTitle(NSLocalizedString("upgrade",comment: ""), forState: UIControlState.Normal)
+        }
     }
 
 
@@ -97,29 +121,13 @@ class MyNevoController: UIViewController,ButtonManagerCallBack,SyncControllerDel
             let batteryValue:Int = thispacket.getBatteryLevel()
             currentBattery = batteryValue
             mynevoView.setBatteryLevelValue(batteryValue)
-
-            mynevoView.setVersionLbael(mSyncController!.getSoftwareVersion(), bleNumber: mSyncController!.getFirmwareVersion())
-            let currentSoftwareVersion:NSString = mSyncController!.getSoftwareVersion()
-            let currentFirmwareVersion:NSString = mSyncController!.getFirmwareVersion()
-            let buildinSoftwareVersion = GET_SOFTWARE_VERSION()
-            let buildinFirmwareVersion = GET_FIRMWARE_VERSION()
-
-            if(currentFirmwareVersion.integerValue >= buildinFirmwareVersion && currentSoftwareVersion.integerValue >= buildinSoftwareVersion){
-                mynevoView.UpgradeButton.setTitle(NSLocalizedString("latestversion",comment: ""), forState: UIControlState.Normal)
-                mynevoView.UpgradeButton.selected = true
-                mynevoView.UpgradeButton.titleLabel?.font = AppTheme.FONT_RALEWAY_LIGHT(mSize: 15)
-            }else{
-                mynevoView.UpgradeButton.selected = false
-                mynevoView.UpgradeButton.titleLabel?.font = AppTheme.FONT_RALEWAY_LIGHT(mSize: 22)
-                mynevoView.UpgradeButton.setTitle(NSLocalizedString("upgrade",comment: ""), forState: UIControlState.Normal)
-            }
         }
     }
 
     func connectionStateChanged(isConnected : Bool){
         checkConnection()
         if(isConnected){
-            mynevoView.setVersionLbael(mSyncController!.getSoftwareVersion(), bleNumber: mSyncController!.getFirmwareVersion())
+            mSyncController?.ReadBatteryLevel()
         }
     }
 

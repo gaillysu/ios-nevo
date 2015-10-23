@@ -51,6 +51,7 @@ class MyNevoView: UIView {
 
         UpgradeButton.setTitle(NSLocalizedString("upgrade",comment: ""), forState: UIControlState.Normal)
         UpgradeButton.setTitle(NSLocalizedString("latestversion",comment: ""), forState: UIControlState.Selected)
+        UpgradeButton.backgroundColor = AppTheme.NEVO_CUSTOM_COLOR()
         UpgradeButton.titleLabel?.font = AppTheme.FONT_RALEWAY_LIGHT(mSize: 15)
         UpgradeButton.selected = true
         UpgradeButton.layer.masksToBounds = true
@@ -67,11 +68,6 @@ class MyNevoView: UIView {
     @IBAction func buttonAction(sender: AnyObject) {
 
         mDelegate?.controllManager(sender)
-        if(sender.isEqual(UpgradeButton)){
-            let senddate:NSDate = NSDate()
-            AppTheme.KeyedArchiverName("LatestUpdate", andObject: senddate)
-        }
-
     }
 
     func setBatteryLevelValue(value:Int){

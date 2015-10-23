@@ -28,7 +28,7 @@ class AppTheme {
     sRGB value : #ff9933
     */
     class func NEVO_SOLAR_YELLOW() -> UIColor {
-        return UIColor(red: 255/255.0, green: 153/255.0, blue: 51/255.0, alpha: 1)
+        return UIColor(red: 245/255.0, green: 164/255.0, blue: 28/255.0, alpha: 1)
     }
 
     class func NEVO_SOLAR_GRAY() -> UIColor {
