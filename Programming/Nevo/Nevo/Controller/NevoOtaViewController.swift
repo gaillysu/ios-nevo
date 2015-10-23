@@ -55,7 +55,7 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
 
             let fileArray = GET_FIRMWARE_FILES("Firmwares")
 
-            if(currentFirmwareVersion.integerValue < buildinFirmwareVersion && currentSoftwareVersion != 0){
+            if(currentFirmwareVersion.integerValue < buildinFirmwareVersion && currentSoftwareVersion.integerValue != 0){
                 for tmpfile in fileArray {
                     let selectedFile = tmpfile as! NSURL
                     let fileExtension:String? = selectedFile.pathExtension
