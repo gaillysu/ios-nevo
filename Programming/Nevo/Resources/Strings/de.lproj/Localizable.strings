@@ -11,7 +11,7 @@
 "EnableBluetoothPhone"="Bluetooth einschalten";
 "BluetoothIcon"="Streiche über das Display um in Einstellungen zu gelangen und drücke auf den Bluetooth Icon";
 "WatchBluetooth"="Schalte das Bluetooth auf deiner Uhr ein";
-"PlacePhoneSearch"="Place your nevo near the phone and tap Search";
+"PlacePhoneSearch"="Platzieren Sie Ihre NEVO in der Nähe des Telefons und tippen Sie auf \"Suchen\"";
 "ConnectButton"="Verbinde deine Nevo mit deinem Smartphone";
 "PlaceConnect"="Halte deine Nevo dicht an dein smartphone und drücken Verbinden ";
 "step"="Schritte";
@@ -36,7 +36,7 @@
 "Blue"="Blau";
 "Red"="Rot";
 "Green"="Grün";
-"Yellow"="Yellow";
+"Yellow"="Gelb";
 "LongPushLED"="Dritten Knopf gedrückt halten bis das blaue LED Licht leutet";
 "CALL"="Anruf";
 "SMS"="SMS";
@@ -59,7 +59,7 @@
 "set_watch_time"="Stelle die Zeit auf deiner Uhr ein";
 "set_watch_one_message"="Zieh den Presskopf hervor und bewege Ihn um die Zeit einzustellen. Stelle die Uhrzeit passend zu deinem smartphone";
 "disconnection_title"="Bluetooth Unterbrochen wenn getrannt";
-"disconnection_message"="To save battery power, Bluetooth disconnects automatically when away from the phone for more than 2 mins. You will not receive notifications on nevo when disconnected.";
+"disconnection_message"="Um die Batterie zu schonen, trennt die Bluetooth-Funktion das Gerät automatisch vom Telefon, wenn dieses länger als 2 Minuten keine Verbindung mit dem Telefon hatte. Sie erhalten keine Benachrichtigung darüber, dass die NEVO vom Telefon getrennt wurde.";
 "reconnection_title"="Um Batterie zu Sparen, Bluetooth trennt sich automatisch, wenn länger als 2 Minuten vom Smartphone entfernt";
 "reconnection_message"="Verbinde erneut Bluetooth um Benachrichtigungen zu erhalten in dem du den dritten Knopf drei Sekunden gedrückt hälst";
 "3secs"="3 Sek";
@@ -67,7 +67,7 @@
 "otahelp"="OTA Firmware Prozess nicht unterbrechen.";
 "latestversion"="Du hast die aktuellste Version";
 "Version:"="Version:";
-"FirmwareAlertMessage"="Your watch’s software is not up to date.Please go to My nevo confirm upgrade firmware.";
+"FirmwareAlertMessage"="Die Systemsoftware Ihrer Uhr ist nicht aktuell. Bitte rufen Sie die Anwendung “Meine NEVO” auf, um die Firmware der Uhr zu aktualisieren.";
 "LatestUpdateon"="Letztes Update\nauf";
 "namenevo"="Name:nevo";
 "upgrade"="Upgrade";
@@ -79,33 +79,46 @@
 "current FW version"="Deine Nevo ist nicht auf dem neusten Stand";
 "latest FW version"=" Möchtest du die aktuellste Nevo Version laden?";
 "are you sure"="bist du dir sicher";
+
+// need to translate
 "forgetnevo"="Forget this nevo";
 "unpairednevo"="You have already unpaired your nevo.";
-"Help"="Help";
+
+"Help"="Hilfe";
 "currentVersion:"="nevo Version:";
-"update_error_noconnect"="No nevo connected.";
-"checking_firmware"="Checking firmware version, please wait...";
-"ota_timeout"="Timeout,please try again";
-"is_checking_the_update"="Is checking the update...";
-"nevolatestversion"="Your nevo is up to date";
-"BLE_CONNECTION_LOST"="BLE connection lost please connect again";
-"BLE_LOST_TITLE"="BLE connection lost";
-"UNSTABLE_CONNECTION_TITLE"="Unstable connection ensure";
-"UNSTABLE_CONNECTION_MESSAGE"="Unstable connection ensure phone is on and in range";
+"update_error_noconnect"="Keine NEVO verbunden";
+"checking_firmware"="Überprüfe Firmware-Version; bitte warten...";
+"ota_timeout"="Timeout, bitte nochmals versuchen";
+"is_checking_the_update"="Überprüfe die Aktualisierung...";
+"nevolatestversion"="Ihre NEVO ist aktualisiert";
+"BLE_CONNECTION_LOST"="BLE-Verbindung unterbrochen; bitte nochmals verbinden";
+"BLE_LOST_TITLE"="BLE-Verbindung unterbrochen";
+"UNSTABLE_CONNECTION_TITLE"="Instabile Verbindung";
+"UNSTABLE_CONNECTION_MESSAGE"="Instabile Verbindung; stellen Sie sicher, dass sich das Telefon eingeschaltet ist, und sich dieses in Reichweite befindet";
+
+// need to translate
 "SLEEP_TITLE"="Sleep Tracking";
 "light_sleep_title"="Light Sleep:";
 "deep_sleep_title"="Deep Sleep:";
 "total_sleep_title"="Total Sleep:";
 "select_date"="Select a date";
 "no_data"="No data available";
-"hours_and"="Hours:";
-"minutes_and"="minutes:";
+
+"hours_and"="Stunden:";
+"minutes_and"="Minuten:";
+// need to translate
 "no_sleep_data"="No sleep tracking data";
 "sleep_history_title"="Sleep History";
-"continue"="Continue";
+
+"continue"="Fortsetzen";
+
+// need to translate
 "update_ble_success_message"="Ble upgrade completed, reconnect the watch to the phone by pressing and holding the third button on the watch. Make sure that the watch is paired so it won't interrupt the upgrade procedure. Once it's connected you can continue to upgrade the Mcu by clicking on continue.";
 "sleep_description"="Hold button for 3 seconds to activate Sleep Tracking mode. After you wake up, hold button for 3 seconds to return to Activity mode. You may then check the app for your sleep history.";
-"minut"="minut";
+
+"minut"="Minute";
+
+// need to translate
 "battery_warnings_title"="Not enough battery";
 "battery_warnings_msg"="Updating the watch costs a lot of battery. Your watch does not have enough battery to perform an update. To upgrade the watch, please buy a new battery.";
 "mobile_battery_warnings_msg"="Mobile battery too low please charge phone before upgrade";
