@@ -400,20 +400,23 @@ class CircleSleepProgressView: CAShapeLayer {
         let cal:NSCalendar = NSCalendar.currentCalendar()
         let comps:NSDateComponents = cal.components([NSCalendarUnit.Year, NSCalendarUnit.Month, NSCalendarUnit.Day ,NSCalendarUnit.Hour, NSCalendarUnit.Minute, NSCalendarUnit.Second,], fromDate: now);
         comps.timeZone = NSTimeZone.localTimeZone()
-        let hour:NSInteger = comps.hour;
+        var hour:NSInteger = comps.hour;
         let minute:NSInteger = comps.minute;
         let second:NSInteger = comps.second
+        hour = hour > 12 ? hour-12:hour
 
         let endNow:NSDate = endtimer
         let endcal:NSCalendar = NSCalendar.currentCalendar()
         let endcomps:NSDateComponents = endcal.components([NSCalendarUnit.Year, NSCalendarUnit.Month, NSCalendarUnit.Day ,NSCalendarUnit.Hour, NSCalendarUnit.Minute, NSCalendarUnit.Second,], fromDate: endNow);
-        let endhour:NSInteger = endcomps.hour;
+        var endhour:NSInteger = endcomps.hour;
         let endminute:NSInteger = endcomps.minute;
         let endsecond:NSInteger = endcomps.second
+        endhour = endhour > 12 ? endhour-12:endhour
 
         var startangle:Double = Double(Double(second)/120.0 + Double(minute)/60.0+Double(hour))*Double(2.0/12.0)-0.5
         var endangle:Double = Double(Double(endsecond)/120.0 + Double(endminute)/60.0+Double(endhour))*Double(2.0/12.0)-0.5
 
+        //AppTheme.DLog("startSecond___\(second,minute,hour)___startangle\(startangle) or endsecond______\(endsecond,endminute,endhour)_____\(endangle)")
         let position_y:CGFloat = self.frame.size.height/2.0
         let position_x:CGFloat = self.frame.size.width/2.0
 
@@ -423,10 +426,19 @@ class CircleSleepProgressView: CAShapeLayer {
         if(startangle >= 2){
             startangle = startangle-2
         }
+
+        if(startangle < 0){
+            startangle = 1.5+(startangle+0.5)
+        }
+
         if(endangle > 2){
             endangle = endangle-2
         }
 
+        if(endangle < 0){
+            endangle = 1.5+(endangle+0.5)
+        }
+        AppTheme.DLog("startSecond___\(second,minute,hour)___startangle\(startangle) or endsecond______\(endsecond,endminute,endhour)_____\(endangle)")
         let path:CGPathRef = UIBezierPath(arcCenter: CGPointMake(position_x, position_y), radius: position_y, startAngle: CGFloat(M_PI*startangle), endAngle: CGFloat(M_PI*endangle), clockwise: true).CGPath
         return path
     }
@@ -442,6 +454,7 @@ class CircleSleepProgressView: CAShapeLayer {
             let pLayer:CAShapeLayer = CAShapeLayer()
             startDate = ((sleepChartArray[0] as! [[NSDate]])[l][0]) //[l][0]
             endDate = ((sleepChartArray[0] as! [[NSDate]])[l][1])
+            AppTheme.DLog("startDate____\(startDate) or endDate______\(endDate)")
             pLayer.path = drawPathWithArcCenter(startDate,endtimer:endDate)
             pLayer.fillColor = UIColor.clearColor().CGColor
             pLayer.strokeColor = (sleepChartArray[1] as! [CGColor])[l]//sleepChartColorArray[l]
@@ -483,21 +496,21 @@ class CircleSleepProgressView: CAShapeLayer {
                     startDate = cal.dateBySettingHour(l, minute: lastTimer , second:0, ofDate: todayDate, options: NSCalendarOptions())!
                     if(lastTimer+weakTimerArray[l]+lightTimerArray[l] == 60){
                         if(l == 23){
-                            endDate = cal.dateBySettingHour(l, minute: 59, second:59, ofDate: todayDate, options: NSCalendarOptions())!
+                            endDate = cal.dateBySettingHour(0, minute: 0, second:0, ofDate: todayDate, options: NSCalendarOptions())!
                         }else{
                             endDate = cal.dateBySettingHour(l+1, minute: 0, second:0, ofDate: todayDate, options: NSCalendarOptions())!
                         }
 
                     }else{
-                        endDate = cal.dateBySettingHour(l, minute: lastTimer+weakTimerArray[l]+lightTimerArray[l]  , second:0, ofDate: NSDate(), options: NSCalendarOptions())!
+                        endDate = cal.dateBySettingHour(l, minute: lastTimer+weakTimerArray[l]+lightTimerArray[l]  , second:0, ofDate: todayDate, options: NSCalendarOptions())!
                     }
                     sleepChartArray.append([startDate!,endDate!])
                     sleepChartColorArray.append(ChartColorTemplates.getLightSleepColor().CGColor)
-
+                    //AppTheme.DLog("Light startDate____\(startDate) or endDate______\(endDate)")
                     startDate = endDate
                     if(lastTimer+weakTimerArray[l]+lightTimerArray[l]+deepTimerArray[l] == 60){
                         if(l == 23){
-                            endDate = cal.dateBySettingHour(l, minute: 59, second:59, ofDate: todayDate, options: NSCalendarOptions())!
+                            endDate = cal.dateBySettingHour(0, minute: 0, second:0, ofDate: todayDate, options: NSCalendarOptions())!
                         }else{
                             endDate = cal.dateBySettingHour(l+1, minute: 0, second:0, ofDate: todayDate, options: NSCalendarOptions())!
                         }
@@ -506,6 +519,7 @@ class CircleSleepProgressView: CAShapeLayer {
                     }
                     sleepChartArray.append([startDate!,endDate!])
                     sleepChartColorArray.append(ChartColorTemplates.getDeepSleepColor().CGColor)
+                    //AppTheme.DLog("Deep startDate____\(startDate) or endDate______\(endDate)")
                 }
                 break
             }
@@ -525,19 +539,21 @@ class CircleSleepProgressView: CAShapeLayer {
                 if(lightTimerArray[l]+weakTimerArray[l] == 60){
                     endDate = cal.dateBySettingHour(l+1, minute: 0, second:0, ofDate: todayDate, options: NSCalendarOptions())!
                 }else{
-                    endDate = cal.dateBySettingHour(l, minute: lightTimerArray[l]+weakTimerArray[l] , second:0, ofDate: NSDate(), options: NSCalendarOptions())!
+                    endDate = cal.dateBySettingHour(l, minute: lightTimerArray[l]+weakTimerArray[l] , second:0, ofDate: todayDate, options: NSCalendarOptions())!
                 }
                 sleepChartArray.append([startDate!,endDate!])
                 sleepChartColorArray.append(ChartColorTemplates.getLightSleepColor().CGColor)
+                //AppTheme.DLog("Light startDate____\(startDate) or endDate______\(endDate)")
 
                 startDate = endDate
                 if(lightTimerArray[l]+weakTimerArray[l]+deepTimerArray[l] == 60){
                     endDate = cal.dateBySettingHour(l+1, minute: 0, second:0, ofDate: todayDate, options: NSCalendarOptions())!
                 }else{
-                    endDate = cal.dateBySettingHour(l, minute: lightTimerArray[l]+weakTimerArray[l]+deepTimerArray[l] , second:0, ofDate: NSDate(), options: NSCalendarOptions())!
+                    endDate = cal.dateBySettingHour(l, minute: lightTimerArray[l]+weakTimerArray[l]+deepTimerArray[l] , second:0, ofDate: todayDate, options: NSCalendarOptions())!
                 }
                 sleepChartArray.append([startDate!,endDate!])
                 sleepChartColorArray.append(ChartColorTemplates.getDeepSleepColor().CGColor)
+                //AppTheme.DLog("Deep startDate____\(startDate) or endDate______\(endDate)")
             }
         }else{
             //跨天后的睡眠计算(前一天无睡眠数据)
@@ -560,11 +576,11 @@ class CircleSleepProgressView: CAShapeLayer {
                     if(sleepChartArray.count == 0 || lightTimerArray[l]+weakTimerArray[l] == 60){
                         endDate = cal.dateBySettingHour(l+1, minute: 0, second:0, ofDate: todayDate, options: NSCalendarOptions())!
                     }else{
-                        endDate = cal.dateBySettingHour(l, minute: lightTimerArray[l]+weakTimerArray[l] , second:0, ofDate: NSDate(), options: NSCalendarOptions())!
+                        endDate = cal.dateBySettingHour(l, minute: lightTimerArray[l]+weakTimerArray[l] , second:0, ofDate: todayDate, options: NSCalendarOptions())!
                     }
 
                 }else{
-                    endDate = cal.dateBySettingHour(l, minute: lightTimerArray[l]+weakTimerArray[l] , second:0, ofDate: NSDate(), options: NSCalendarOptions())!
+                    endDate = cal.dateBySettingHour(l, minute: lightTimerArray[l]+weakTimerArray[l] , second:0, ofDate: todayDate, options: NSCalendarOptions())!
                 }
                 sleepChartArray.append([startDate!,endDate!])
                 sleepChartColorArray.append(ChartColorTemplates.getLightSleepColor().CGColor)
