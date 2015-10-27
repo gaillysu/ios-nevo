@@ -34,8 +34,8 @@
                             <rect key="frame" x="85" y="20" width="150" height="45"/>
                             <animations/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="150" id="x0v-hR-Kcx"/>
-                                <constraint firstAttribute="height" constant="45" id="zd0-Vc-IMv"/>
+                                <constraint firstAttribute="width" constant="150" id="GH8-BN-6BF"/>
+                                <constraint firstAttribute="height" constant="45" id="VBt-aI-S0n"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="25"/>
                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
@@ -45,26 +45,14 @@
                     <animations/>
                     <color key="backgroundColor" red="0.18823529410000001" green="0.18823529410000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
-                        <constraint firstItem="I7h-X1-Bun" firstAttribute="top" secondItem="Hkh-dG-PEg" secondAttribute="top" constant="14" id="08k-hT-hju"/>
-                        <constraint firstItem="MPS-4M-HBU" firstAttribute="centerX" secondItem="Hkh-dG-PEg" secondAttribute="centerX" id="27r-4g-lXL"/>
-                        <constraint firstItem="MPS-4M-HBU" firstAttribute="top" secondItem="Hkh-dG-PEg" secondAttribute="top" constant="20" id="9iy-BV-cec"/>
-                        <constraint firstAttribute="bottom" secondItem="MPS-4M-HBU" secondAttribute="bottom" constant="20" id="Adx-4x-wzM"/>
-                        <constraint firstItem="I7h-X1-Bun" firstAttribute="top" secondItem="Hkh-dG-PEg" secondAttribute="top" constant="14" id="DT2-Vi-Jge"/>
-                        <constraint firstItem="MPS-4M-HBU" firstAttribute="leading" secondItem="I7h-X1-Bun" secondAttribute="trailing" constant="19" id="Dx4-T9-SIg"/>
-                        <constraint firstItem="I7h-X1-Bun" firstAttribute="centerY" secondItem="MPS-4M-HBU" secondAttribute="centerY" id="HCi-ye-8hW"/>
-                        <constraint firstItem="MPS-4M-HBU" firstAttribute="leading" secondItem="Hkh-dG-PEg" secondAttribute="leading" constant="85" id="NsJ-fx-f7j"/>
-                        <constraint firstAttribute="trailing" secondItem="MPS-4M-HBU" secondAttribute="trailing" constant="85" id="OGY-sm-hgr"/>
-                        <constraint firstItem="MPS-4M-HBU" firstAttribute="top" secondItem="Hkh-dG-PEg" secondAttribute="top" constant="20" id="OZD-P5-nxC"/>
-                        <constraint firstItem="MPS-4M-HBU" firstAttribute="centerY" secondItem="Hkh-dG-PEg" secondAttribute="centerY" id="OrN-Xv-Zkq"/>
-                        <constraint firstItem="I7h-X1-Bun" firstAttribute="centerY" secondItem="Hkh-dG-PEg" secondAttribute="centerY" id="Xf6-fI-jTR"/>
-                        <constraint firstItem="I7h-X1-Bun" firstAttribute="top" secondItem="Hkh-dG-PEg" secondAttribute="top" constant="14" id="Zc7-31-vmu"/>
-                        <constraint firstItem="I7h-X1-Bun" firstAttribute="leading" secondItem="Hkh-dG-PEg" secondAttribute="leading" constant="8" id="cGj-K8-Kzd"/>
-                        <constraint firstAttribute="bottom" secondItem="I7h-X1-Bun" secondAttribute="bottom" constant="13" id="cKH-t4-9lw"/>
-                        <constraint firstItem="MPS-4M-HBU" firstAttribute="top" secondItem="Hkh-dG-PEg" secondAttribute="top" constant="20" id="jwN-1P-ePj"/>
-                        <constraint firstItem="I7h-X1-Bun" firstAttribute="leading" secondItem="Hkh-dG-PEg" secondAttribute="leadingMargin" id="mQo-gc-dMU"/>
-                        <constraint firstItem="I7h-X1-Bun" firstAttribute="leading" secondItem="Hkh-dG-PEg" secondAttribute="leading" constant="8" id="mc7-UO-ExP"/>
-                        <constraint firstItem="I7h-X1-Bun" firstAttribute="leading" secondItem="Hkh-dG-PEg" secondAttribute="leading" constant="8" id="oB6-TF-zFL"/>
-                        <constraint firstItem="MPS-4M-HBU" firstAttribute="leading" secondItem="Hkh-dG-PEg" secondAttribute="leading" constant="85" id="z2M-Ti-DA1"/>
+                        <constraint firstItem="I7h-X1-Bun" firstAttribute="top" secondItem="Hkh-dG-PEg" secondAttribute="top" constant="14" id="2Pt-az-veL"/>
+                        <constraint firstItem="I7h-X1-Bun" firstAttribute="centerY" secondItem="Hkh-dG-PEg" secondAttribute="centerY" id="3ed-O5-wWJ"/>
+                        <constraint firstItem="MPS-4M-HBU" firstAttribute="centerX" secondItem="Hkh-dG-PEg" secondAttribute="centerX" id="CB2-tI-ZMb"/>
+                        <constraint firstItem="I7h-X1-Bun" firstAttribute="leading" secondItem="Hkh-dG-PEg" secondAttribute="leadingMargin" id="IWE-a6-dLU"/>
+                        <constraint firstItem="MPS-4M-HBU" firstAttribute="leading" secondItem="I7h-X1-Bun" secondAttribute="trailing" constant="19" id="QEd-g4-LT9"/>
+                        <constraint firstItem="MPS-4M-HBU" firstAttribute="top" secondItem="Hkh-dG-PEg" secondAttribute="top" constant="20" id="sdK-nn-aJc"/>
+                        <constraint firstAttribute="trailing" secondItem="MPS-4M-HBU" secondAttribute="trailing" constant="85" id="tYn-iL-eOl"/>
+                        <constraint firstItem="MPS-4M-HBU" firstAttribute="centerY" secondItem="I7h-X1-Bun" secondAttribute="centerY" id="vvk-mh-wV8"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qmS-4V-0uD" customClass="BarChartView" customModule="Nevo" customModuleProvider="target">
@@ -83,13 +71,13 @@
             <animations/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="Hkh-dG-PEg" firstAttribute="trailing" secondItem="qmS-4V-0uD" secondAttribute="trailing" id="5nX-Ji-gF0"/>
+                <constraint firstItem="qmS-4V-0uD" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="43d-Vy-ROL"/>
                 <constraint firstItem="EuS-UX-KzD" firstAttribute="top" secondItem="qmS-4V-0uD" secondAttribute="bottom" id="8lY-95-xqD"/>
+                <constraint firstItem="qmS-4V-0uD" firstAttribute="leading" secondItem="Hkh-dG-PEg" secondAttribute="leading" id="MgH-XL-Bpy"/>
                 <constraint firstItem="Hkh-dG-PEg" firstAttribute="leading" secondItem="EuS-UX-KzD" secondAttribute="leading" id="ZdK-6E-gRd"/>
                 <constraint firstAttribute="bottom" secondItem="qmS-4V-0uD" secondAttribute="bottom" constant="193" id="g2T-fb-yHh"/>
-                <constraint firstItem="Hkh-dG-PEg" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="gDv-8O-Ssk"/>
                 <constraint firstAttribute="bottom" secondItem="EuS-UX-KzD" secondAttribute="bottom" id="gck-ab-yu6"/>
-                <constraint firstItem="Hkh-dG-PEg" firstAttribute="leading" secondItem="qmS-4V-0uD" secondAttribute="leading" id="ggX-eJ-8cI"/>
+                <constraint firstItem="qmS-4V-0uD" firstAttribute="trailing" secondItem="Hkh-dG-PEg" secondAttribute="trailing" id="jnl-Cz-gt8"/>
                 <constraint firstItem="Hkh-dG-PEg" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="kW9-Xd-ZZz"/>
                 <constraint firstItem="qmS-4V-0uD" firstAttribute="top" secondItem="Hkh-dG-PEg" secondAttribute="bottom" id="llg-Zn-7jo"/>
                 <constraint firstItem="Hkh-dG-PEg" firstAttribute="trailing" secondItem="EuS-UX-KzD" secondAttribute="trailing" id="rc6-ql-3BJ"/>
