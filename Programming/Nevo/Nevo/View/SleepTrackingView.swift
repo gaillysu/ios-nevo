@@ -58,6 +58,11 @@ class SleepTrackingView: UIView {
         infoButton!.addTarget(self, action: Selector("ButtonAction:"), forControlEvents: UIControlEvents.TouchUpInside)
         self.addSubview(infoButton!)
 
+        if(AppTheme.GET_IS_iPhone4S()){
+            historyButton?.frame = CGRectMake(historyButton!.frame.origin.x+10, historyButton!.frame.origin.y, 35, 35)
+            infoButton!.frame = CGRectMake(historyButton!.frame.origin.x, infoButtonY+30, 50, 50)
+        }
+
     }
 
 

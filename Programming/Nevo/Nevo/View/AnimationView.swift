@@ -438,7 +438,7 @@ class CircleSleepProgressView: CAShapeLayer {
         if(endangle < 0){
             endangle = 1.5+(endangle+0.5)
         }
-        AppTheme.DLog("startSecond___\(second,minute,hour)___startangle\(startangle) or endsecond______\(endsecond,endminute,endhour)_____\(endangle)")
+        //AppTheme.DLog("startSecond___\(second,minute,hour)___startangle\(startangle) or endsecond______\(endsecond,endminute,endhour)_____\(endangle)")
         let path:CGPathRef = UIBezierPath(arcCenter: CGPointMake(position_x, position_y), radius: position_y, startAngle: CGFloat(M_PI*startangle), endAngle: CGFloat(M_PI*endangle), clockwise: true).CGPath
         return path
     }
@@ -454,7 +454,7 @@ class CircleSleepProgressView: CAShapeLayer {
             let pLayer:CAShapeLayer = CAShapeLayer()
             startDate = ((sleepChartArray[0] as! [[NSDate]])[l][0]) //[l][0]
             endDate = ((sleepChartArray[0] as! [[NSDate]])[l][1])
-            AppTheme.DLog("startDate____\(startDate) or endDate______\(endDate)")
+            //AppTheme.DLog("startDate____\(startDate) or endDate______\(endDate)")
             pLayer.path = drawPathWithArcCenter(startDate,endtimer:endDate)
             pLayer.fillColor = UIColor.clearColor().CGColor
             pLayer.strokeColor = (sleepChartArray[1] as! [CGColor])[l]//sleepChartColorArray[l]
