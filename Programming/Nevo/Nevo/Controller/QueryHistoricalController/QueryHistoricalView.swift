@@ -203,14 +203,16 @@ class QueryHistoricalView: UIView , ChartViewDelegate,UITableViewDataSource,UITa
             endCell = nibs.objectAtIndex(0) as? queryTableviewCell;
         }
         endCell?.contentView.backgroundColor = UIColor.clearColor()
-        
-        endCell?.textLabel?.text = (array.objectAtIndex(0) as! [[String]])[0][indexPath.row]
-        endCell?.textLabel?.font = AppTheme.FONT_RALEWAY_LIGHT(mSize: 15)
-        endCell?.textLabel?.backgroundColor = UIColor.clearColor()
 
-        endCell?.detailTextLabel!.text = (array.objectAtIndex(0) as! [[String]])[1][indexPath.row]
-        endCell?.detailTextLabel!.font = AppTheme.FONT_RALEWAY_BOLD(mSize: 16)
-        endCell?.detailTextLabel!.backgroundColor = UIColor.clearColor()
+        endCell?.titleString = (array.objectAtIndex(0) as! [[String]])[0][indexPath.row]
+        endCell?.titleLabel.text = (array.objectAtIndex(0) as! [[String]])[0][indexPath.row]
+        endCell?.titleLabel?.font = AppTheme.FONT_RALEWAY_LIGHT(mSize: 15)
+        endCell?.titleLabel?.backgroundColor = UIColor.clearColor()
+
+        endCell?.detailString = (array.objectAtIndex(0) as! [[String]])[1][indexPath.row]
+        endCell?.detailLabel.text = (array.objectAtIndex(0) as! [[String]])[1][indexPath.row]
+        endCell?.detailLabel.font = AppTheme.FONT_RALEWAY_BOLD(mSize: 16)
+        endCell?.detailLabel!.backgroundColor = UIColor.clearColor()
         endCell?.selectionStyle = UITableViewCellSelectionStyle.None;
         return endCell!
         
