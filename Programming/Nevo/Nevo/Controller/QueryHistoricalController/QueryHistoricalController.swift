@@ -64,7 +64,7 @@ class QueryHistoricalController: UIViewController,UITableViewDataSource,UITableV
 
     // MARK: - UITableViewDataSource
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 55.0
+        return 50.0
     }
 
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
