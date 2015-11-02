@@ -34,6 +34,11 @@ class SetingViewController: UIViewController,SelectionTypeDelegate,SyncControlle
 
     override func viewDidAppear(animated: Bool) {
         checkConnection()
+
+        //Must inform options every time refresh written to watch
+        if mSyncController != nil && mSyncController!.isConnected() {
+            mSyncController?.SetNortification(mNotificationSettingArray)
+        }
     }
 
     override func didReceiveMemoryWarning() {
