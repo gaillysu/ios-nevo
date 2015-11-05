@@ -97,6 +97,8 @@ class SetingView: UIView {
             icon = "calendar_icon"
         case .WECHAT:
             icon = "WeChat_Icon"
+        case .WHATSAPP:
+            icon = "WeChat_Icon"
         }
         return icon
     }

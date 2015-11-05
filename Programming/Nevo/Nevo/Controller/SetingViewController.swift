@@ -53,7 +53,7 @@ class SetingViewController: UIViewController,SelectionTypeDelegate,SyncControlle
     :returns:
     */
     func initNotificationSettingArray() {
-        let notificationTypeArray:[NotificationType] = [NotificationType.CALL, NotificationType.EMAIL, NotificationType.FACEBOOK, NotificationType.SMS, NotificationType.CALENDAR, NotificationType.WECHAT]
+        let notificationTypeArray:[NotificationType] = [NotificationType.CALL, NotificationType.EMAIL, NotificationType.FACEBOOK, NotificationType.SMS, NotificationType.CALENDAR, NotificationType.WECHAT, NotificationType.WHATSAPP]
         for notificationType in notificationTypeArray {
             var setting = NotificationSetting(type: notificationType, color: 0)
             SetingViewController.refreshNotificationSetting(&setting)

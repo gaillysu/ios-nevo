@@ -54,6 +54,8 @@ class EnterNotificationController: UIViewController,SyncControllerDelegate,Butto
                 ledColor = SetNortificationRequest.SetNortificationRequestValues.RED_LED
             case NotificationType.WECHAT.rawValue:
                 ledColor = SetNortificationRequest.SetNortificationRequestValues.LIGHTGREEN_LED
+            case NotificationType.WHATSAPP.rawValue:
+                ledColor = SetNortificationRequest.SetNortificationRequestValues.LIGHTGREEN_LED
             default:
                 ledColor = 0xFF0000
             }
