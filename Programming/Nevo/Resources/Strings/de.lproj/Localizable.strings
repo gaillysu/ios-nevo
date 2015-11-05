@@ -79,11 +79,8 @@
 "current FW version"="Deine Nevo ist nicht auf dem neusten Stand";
 "latest FW version"=" Möchtest du die aktuellste Nevo Version laden?";
 "are you sure"="bist du dir sicher";
-
-// need to translate
-"forgetnevo"="Forget this nevo";
-"unpairednevo"="You have already unpaired your nevo.";
-
+"forgetnevo"="Vergessen Sie dieses nevo";
+"unpairednevo"="Sie bereits dieses nevo ungepaarten haben.";
 "Help"="Hilfe";
 "currentVersion:"="nevo Version:";
 "update_error_noconnect"="Keine NEVO verbunden";
@@ -95,30 +92,22 @@
 "BLE_LOST_TITLE"="BLE-Verbindung unterbrochen";
 "UNSTABLE_CONNECTION_TITLE"="Instabile Verbindung";
 "UNSTABLE_CONNECTION_MESSAGE"="Instabile Verbindung; stellen Sie sicher, dass sich das Telefon eingeschaltet ist, und sich dieses in Reichweite befindet";
-
-// need to translate
-"SLEEP_TITLE"="Sleep Tracking";
-"light_sleep_title"="Light Sleep:";
-"deep_sleep_title"="Deep Sleep:";
-"total_sleep_title"="Total Sleep:";
-"select_date"="Select a date";
-"no_data"="No data available";
-
+"SLEEP_TITLE"="Schlaf-Tracking";
+"light_sleep_title"="Leichter schlaf:";
+"deep_sleep_title"="Tief schlaf:";
+"total_sleep_title"="Gesamt schlaf:";
+"select_date"="Markiere ein Datum";
+"no_data"="Keine Daten verfügbar";
 "hours_and"="Stunden:";
 "minutes_and"="Minuten:";
-// need to translate
-"no_sleep_data"="No sleep tracking data";
-"sleep_history_title"="Sleep History";
-
+"no_sleep_data"="Keine Daten verfügbar";
+"sleep_history_title"="Schlaf Geschichte";
 "continue"="Fortsetzen";
-
-// need to translate
-"update_ble_success_message"="Ble upgrade completed, reconnect the watch to the phone by pressing and holding the third button on the watch. Make sure that the watch is paired so it won't interrupt the upgrade procedure. Once it's connected you can continue to upgrade the Mcu by clicking on continue.";
-"sleep_description"="Hold button for 3 seconds to activate Sleep Tracking mode. After you wake up, hold button for 3 seconds to return to Activity mode. You may then check the app for your sleep history.";
-
+"update_ble_success_message"="LE-Aktualisierung ist abgeschlossen; verbinden Sie die Uhr erneut, indem Sie die dritte Taste an der Uhr gedrückt halten. Stellen Sie sicher, dass die Uhr mit der App verbunden ist, damit der Aktualisierungsvorgang nicht unterbrochen wird. Sobald die Uhr wieder verbunden ist, können Sie die Aktualisierung der MCU fortsetzen, indem Sie “ Weiter” anklicken.";
+"sleep_description"="Halten Sie die Taste #1 für 3 Sekunden, um Schlaf-Tracking-Modus zu aktivieren. Nach dem Aufwachen, halten Sie die Taste #1 für 3 Sekunden, um den Activity-Modus zurückzukehren. Sie können dann überprüfen Sie die App für Ihr Schlaf-Geschichte.";
 "minut"="Minute";
+"battery_warnings_title"="Nicht genug Batterie";
 
 // need to translate
-"battery_warnings_title"="Not enough battery";
 "battery_warnings_msg"="Updating the watch costs a lot of battery. Your watch does not have enough battery to perform an update. To upgrade the watch, please buy a new battery.";
 "mobile_battery_warnings_msg"="Mobile battery too low please charge phone before upgrade";

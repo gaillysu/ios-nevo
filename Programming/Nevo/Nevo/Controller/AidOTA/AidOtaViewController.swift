@@ -125,7 +125,7 @@ class AidOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMan
         }
 
         nevoOtaView.setProgress(0.0,currentTask: currentTaskNumber,allTask: allTaskNumber)
-        nevoOtaView.setLatestVersion(NSLocalizedString("Please waiting...", comment: ""))
+        nevoOtaView.setLatestVersion(NSLocalizedString("Please wait...", comment: ""))
         isTransferring = true
         //when doing OTA, disable Cancel/Back button, enable them by callback function invoke initValue()/checkConnection()
         nevoOtaView.backButton.enabled = false

@@ -91,31 +91,23 @@
 "BLE_LOST_TITLE"="BLE connexion BLE coupée";
 "UNSTABLE_CONNECTION_TITLE"="Connexion instable";
 "UNSTABLE_CONNECTION_MESSAGE"="Connexion instable, veuillez s'assurer que le téléphone est en marche et à portée";
-
-// need to translate
 "SLEEP_TITLE"="Sleep Tracking";
-"light_sleep_title"="Light Sleep:";
-"deep_sleep_title"="Deep Sleep:";
-"total_sleep_title"="Total Sleep:";
-"select_date"="Select a date";
-"no_data"="No data available";
-
+"light_sleep_title"="Sommeil léger:";
+"deep_sleep_title"="Sommeil profond:";
+"total_sleep_title"="Sommeil total:";
+"select_date"="Choisir une date";
+"no_data"="Pas de données disponibles";
 "hours_and"="Heures:";
 "minutes_and"="Minutes:";
-
-// need to translate
-"no_sleep_data"="No sleep tracking data";
-"sleep_history_title"="Sleep History";
-
+"no_sleep_data"="Pas de données disponibles";
+"sleep_history_title"="Historique du sommeil";
 "continue"="Continuer";
-
-// need to translate
-"update_ble_success_message"="Ble upgrade completed, reconnect the watch to the phone by pressing and holding the third button on the watch. Make sure that the watch is paired so it won't interrupt the upgrade procedure. Once it's connected you can continue to upgrade the Mcu by clicking on continue.";
-"sleep_description"="Hold button for 3 seconds to activate Sleep Tracking mode. After you wake up, hold button for 3 seconds to return to Activity mode. You may then check the app for your sleep history.";
-
+"update_ble_success_message"="Mise à niveau de BLE effectuée, connecter à nouveau la montre sur le téléphone en appuyant et maintenant la troisième touche de la montre. Assurez-vous que la montre est appariée pour éviter d'interrompre la procédure de la mise à jour. Une fois connectée, vous pouvez continuer la mise à jour du MCU en appuyant sur continuer.";
+"sleep_description"="Maintenez le bouton #1 pendant 3 secondes pour activer le mode de suivi de sommeil. Après vous vous réveillez, maintenez le bouton #1 pendant 3 secondes pour revenir au mode d'activité. Vous pouvez alors vérifier l'application pour l'histoire de votre sommeil.";
 "minut"="minute";
 
+"battery_warnings_title"="Pas assez batterie";
+
 // need to translate
-"battery_warnings_title"="Not enough battery";
 "battery_warnings_msg"="Updating the watch costs a lot of battery. Your watch does not have enough battery to perform an update. To upgrade the watch, please buy a new battery.";
 "mobile_battery_warnings_msg"="Mobile battery too low please charge phone before upgrade";

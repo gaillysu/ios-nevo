@@ -67,7 +67,7 @@
 "otahelp"="Do not interrupt the OTA firmware process. Let the process complete before using the app! In case of accidental interruption, try again.";
 "latestversion"="Your watch is up to date";
 "Version:"="Version:";
-"FirmwareAlertMessage"="Your watch’s software is not up to date. Please go to My nevo confirm upgrade firmware.";
+"FirmwareAlertMessage"="Your watch’s software is not up to date. Please go to My nevo to execute the upgrade.";
 "LatestUpdateon"="Latest Update\non";
 "namenevo"="Name:nevo";
 "upgrade"="Upgrade";
