@@ -703,7 +703,7 @@ class SyncController: NSObject,ConnectionControllerDelegate,UIAlertViewDelegate 
             {
                 mAlertUpdateFW = true
 
-                let alert :UIAlertView = UIAlertView(title: NSLocalizedString("Firmware Upgrade", comment: ""), message: NSLocalizedString("FirmwareAlertMessage", comment: ""), delegate: nil, cancelButtonTitle: NSLocalizedString("OK", comment: ""))
+                let alert :UIAlertView = UIAlertView(title: NSLocalizedString("Firmware Upgrade", comment: ""), message: NSLocalizedString("FirmwareAlertMessage", comment: ""), delegate: nil, cancelButtonTitle: NSLocalizedString("ok", comment: ""))
                 alert.show()
             }
         }
