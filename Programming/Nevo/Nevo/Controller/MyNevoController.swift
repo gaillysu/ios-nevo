@@ -128,6 +128,9 @@ class MyNevoController: UIViewController,ButtonManagerCallBack,SyncControllerDel
         checkConnection()
         if(isConnected){
             mSyncController?.ReadBatteryLevel()
+        }else{
+            rssialert?.dismissWithClickedButtonIndex(1, animated: true)
+            rssialert = nil
         }
     }
 
