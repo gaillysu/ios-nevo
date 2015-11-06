@@ -55,8 +55,8 @@ class SetNortificationRequest: NevoRequest {
     private var calendar_vib_number:UInt8 = 0
     private var calendar_led_pattern:UInt32 = 0
     
-    //private var whatsapp_vib_number:UInt8
-    //private var whatsapp_led_pattern:UInt32
+    private var whatsapp_vib_number:UInt8 = 0
+    private var whatsapp_led_pattern:UInt32 = 0
     
     private var wechat_vib_number:UInt8 = 0
     private var wechat_led_pattern:UInt32 = 0
@@ -116,6 +116,15 @@ class SetNortificationRequest: NevoRequest {
             if wechat_vib_number == SetNortificationRequestValues.VIBRATION_ON
             {
                 wechat_led_pattern = wechat_led_pattern | SetNortificationRequestValues.VIB_MOTOR
+            }
+        }
+
+        if let setting = NotificationSetting.indexOfObjectAtType(settingArray, type: NotificationType.WHATSAPP) {
+            whatsapp_vib_number = setting.getStates() ? SetNortificationRequestValues.VIBRATION_ON : SetNortificationRequestValues.VIBRATION_OFF
+            whatsapp_led_pattern = setting.getColor().unsignedIntValue
+            if whatsapp_vib_number == SetNortificationRequestValues.VIBRATION_ON
+            {
+                whatsapp_led_pattern = whatsapp_led_pattern | SetNortificationRequestValues.VIB_MOTOR
             }
         }
 

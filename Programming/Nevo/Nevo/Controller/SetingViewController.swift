@@ -37,7 +37,7 @@ class SetingViewController: UIViewController,SelectionTypeDelegate,SyncControlle
 
         //Must inform options every time refresh written to watch
         if mSyncController != nil && mSyncController!.isConnected() {
-            mSyncController?.SetNortification(mNotificationSettingArray)
+            //mSyncController?.SetNortification(mNotificationSettingArray)
         }
     }
 
