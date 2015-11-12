@@ -16,7 +16,6 @@ it should handle very little, only the initialisation of the different Views and
 
 class SleepTrackingController: UIViewController, SyncControllerDelegate ,ButtonManagerCallBack,ClockRefreshDelegate{
     @IBOutlet weak var sleepView: SleepTrackingView!
-    private var sync:SyncController?
     private var mVisiable:Bool = false
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,26 +35,16 @@ class SleepTrackingController: UIViewController, SyncControllerDelegate ,ButtonM
     override func viewDidAppear(animated: Bool) {
         //todaySleepArray: sync!.GET_TodaySleepData()
         if !ConnectionControllerImpl.sharedInstance.hasSavedAddress() {
-            
             AppTheme.DLog("No saved device, let's launch the tutorial")
-            
-            //self.performSegueWithIdentifier("Home_Tutorial", sender: self)
-            
         } else {
-            if(sync == nil)
-            {
-               AppTheme.DLog("We have a saved address, no need to go through the tutorial")
-               sync  = SyncController.sharedInstance
-               sync?.startConnect(false, delegate: self)
-            }
+            AppTheme.DLog("We have a saved address, no need to go through the tutorial")
+            AppDelegate.getAppDelegate().startConnect(false, delegate: self)
             checkConnection()
-            //NSLog("We getGoal in home screen")
-            //SyncController.sharedInstance.getGoal()
             mVisiable = true
         }
 
-        if(sync!.GET_TodaySleepData().count == 2){
-            sleepView.setProgress(sync!.GET_TodaySleepData())
+        if(AppDelegate.getAppDelegate().GET_TodaySleepData().count == 2){
+            sleepView.setProgress(AppDelegate.getAppDelegate().GET_TodaySleepData())
         }
 
     }
@@ -140,19 +129,18 @@ class SleepTrackingController: UIViewController, SyncControllerDelegate ,ButtonM
     }
 
     func syncFinished(){
-        if(sync!.GET_TodaySleepData().count==2){
-            sleepView.setProgress(sync!.GET_TodaySleepData())
+        if(AppDelegate.getAppDelegate().GET_TodaySleepData().count==2){
+            sleepView.setProgress(AppDelegate.getAppDelegate().GET_TodaySleepData())
         }
     }
+
     /**
-    
     Checks if any device is currently connected
-    
     */
     
     func checkConnection() {
         
-        if sync != nil && !(sync!.isConnected()) {
+        if !AppDelegate.getAppDelegate().isConnected() {
             //We are currently not connected
             var isView:Bool = false
             for view in sleepView.subviews {
@@ -175,6 +163,6 @@ class SleepTrackingController: UIViewController, SyncControllerDelegate ,ButtonM
     func reconnect() {
         sleepView.animationView.RotatingAnimationObject(sleepView.animationView.getNoConnectImage()!)
         sleepView.animationView.getmNoConnectionView().backgroundColor = AppTheme.hexStringToColor("#d1cfcf")
-        sync?.connect()
+        AppDelegate.getAppDelegate().connect()
     }
 }

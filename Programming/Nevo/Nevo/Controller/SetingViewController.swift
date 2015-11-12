@@ -10,8 +10,6 @@ import UIKit
 
 class SetingViewController: UIViewController,SelectionTypeDelegate,SyncControllerDelegate,ButtonManagerCallBack,SwitchActionDelegate,UIAlertViewDelegate {
 
-    private var mSyncController:SyncController?
-
     @IBOutlet var notificationList: SetingView!
 
     private var mNotificationType:NotificationType = NotificationType.CALL
@@ -19,10 +17,27 @@ class SetingViewController: UIViewController,SelectionTypeDelegate,SyncControlle
     var sources:NSArray!
     var selectedB:Bool = false
 
+    /**
+     reresh NotificationSetting
+     */
+    class func refreshNotificationSetting(inout setting:NotificationSetting) {
+        let color = NSNumber(unsignedInt: EnterNotificationController.getLedColor(setting.getType().rawValue))
+        let states = EnterNotificationController.getMotorOnOff(setting.getType().rawValue)
+        setting.updateValue(color, states: states)
+    }
+
+    /**
+     reresh NotificationSetting Array
+     */
+    class func refreshNotificationSettingArray(inout settingArray:[NotificationSetting]) {
+        for var i=0;i<settingArray.count;i++ {
+            SetingViewController.refreshNotificationSetting(&settingArray[i])
+        }
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        mSyncController = SyncController.sharedInstance
-        mSyncController?.startConnect(false, delegate: self)
+        AppDelegate.getAppDelegate().startConnect(false, delegate: self)
 
         notificationList.bulidNotificationViewUI(self)
 
@@ -34,49 +49,11 @@ class SetingViewController: UIViewController,SelectionTypeDelegate,SyncControlle
 
     override func viewDidAppear(animated: Bool) {
         checkConnection()
-
-        //Must inform options every time refresh written to watch
-        if mSyncController != nil && mSyncController!.isConnected() {
-            //mSyncController?.SetNortification(mNotificationSettingArray)
-        }
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-
-
-    /**
-    init the mNotificationSettingArray
-    
-    :returns:
-    */
-    func initNotificationSettingArray() {
-        let notificationTypeArray:[NotificationType] = [NotificationType.CALL, NotificationType.EMAIL, NotificationType.FACEBOOK, NotificationType.SMS, NotificationType.CALENDAR, NotificationType.WECHAT, NotificationType.WHATSAPP]
-        for notificationType in notificationTypeArray {
-            var setting = NotificationSetting(type: notificationType, color: 0)
-            SetingViewController.refreshNotificationSetting(&setting)
-            mNotificationSettingArray.append(setting)
-        }
-    }
-    
-    /**
-    reresh NotificationSetting
-    */
-    class func refreshNotificationSetting(inout setting:NotificationSetting) {
-        let color = NSNumber(unsignedInt: EnterNotificationController.getLedColor(setting.getType().rawValue))
-        let states = EnterNotificationController.getMotorOnOff(setting.getType().rawValue)
-        setting.updateValue(color, states: states)
-    }
-    
-    /**
-    reresh NotificationSetting Array
-    */
-    class func refreshNotificationSettingArray(inout settingArray:[NotificationSetting]) {
-        for var i=0;i<settingArray.count;i++ {
-            SetingViewController.refreshNotificationSetting(&settingArray[i])
-        }
     }
 
     // MARK: - ButtonManagerCallBack
@@ -101,23 +78,14 @@ class SetingViewController: UIViewController,SelectionTypeDelegate,SyncControlle
     }
 
     // MARK: - SyncControllerDelegate
-    /**
-    See SyncControllerDelegate
-    */
     func receivedRSSIValue(number:NSNumber){
 
     }
 
-    /**
-    See SyncControllerDelegate
-    */
     func packetReceived(packet:NevoPacket) {
 
     }
 
-    /**
-    See SyncControllerDelegate
-    */
     func connectionStateChanged(isConnected : Bool) {
         //Maybe we just got disconnected, let's check
         checkConnection()
@@ -125,36 +93,6 @@ class SetingViewController: UIViewController,SelectionTypeDelegate,SyncControlle
 
     func syncFinished(){
 
-    }
-
-    /**
-    Checks if any device is currently connected
-    */
-    func checkConnection() {
-
-        if mSyncController != nil && !(mSyncController!.isConnected()) {
-            //We are currently not connected
-            var isView:Bool = false
-            for view in notificationList.subviews {
-                let anView:UIView = view 
-                if anView.isEqual(notificationList.animationView.bulibNoConnectView()) {
-                    isView = true
-                }
-            }
-            if !isView {
-                notificationList.addSubview(notificationList.animationView.bulibNoConnectView())
-                reconnect()
-            }
-        } else {
-
-            notificationList.animationView.endConnectRemoveView()
-        }
-        self.view.bringSubviewToFront(notificationList.titleBgView)
-    }
-
-    func reconnect() {
-        notificationList.animationView.RotatingAnimationObject(notificationList.animationView.getNoConnectImage()!)
-        mSyncController?.connect()
     }
 
     // MARK: - SwitchActionDelegate
@@ -172,7 +110,7 @@ class SetingViewController: UIViewController,SelectionTypeDelegate,SyncControlle
         EnterNotificationController.setMotorOnOff(NSString(string: notSetting.typeName), motorStatus: results)
         SetingViewController.refreshNotificationSettingArray(&mNotificationSettingArray)
         //send request to watch
-        mSyncController?.SetNortification(mNotificationSettingArray)
+        AppDelegate.getAppDelegate().SetNortification(mNotificationSettingArray)
     }
 
     // MARK: - SelectionTypeDelegate
@@ -182,7 +120,8 @@ class SetingViewController: UIViewController,SelectionTypeDelegate,SyncControlle
         notificationList.tableListView.reloadData()
     }
 
-    // MARK: - UITableViewDelegate
+
+    // MARK: - insert or delete TableView Rows function
     func deleteRowsAtIndexPaths(tableView:UITableView, indexPath:NSIndexPath){
         allCellTextColor(tableView)
 
@@ -217,7 +156,6 @@ class SetingViewController: UIViewController,SelectionTypeDelegate,SyncControlle
         var indexPathRow:NSIndexPath!
         indexPathRow = NSIndexPath(forRow:0, inSection: didIndexPath.section)
         let cell:UITableViewCell = tableView.cellForRowAtIndexPath(indexPathRow)!
-//        cell.textLabel?.textColor = UIColor.whiteColor()
         cell.selected = false
     }
 
@@ -230,6 +168,7 @@ class SetingViewController: UIViewController,SelectionTypeDelegate,SyncControlle
         }
     }
 
+    // MARK: - UITableViewDelegate
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 65.0
     }
@@ -274,6 +213,45 @@ class SetingViewController: UIViewController,SelectionTypeDelegate,SyncControlle
         }
     }
 
+    // MARK: - UITableViewDataSource
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int{
+        return sources.count
+
+    }
+
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
+        if selectedB && section==0 {
+            AppTheme.DLog("count:\(sources.count + mNotificationSettingArray.count)")
+            return 1 + mNotificationSettingArray.count
+        }
+        return 1
+    }
+
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        if indexPath.section == 1 {
+            let endCell = notificationList.NotificationSwicthCell(indexPath)
+            return endCell
+        }
+
+        if indexPath.row == 0 {
+            let endCell:UITableViewCell = tableView.dequeueReusableCellWithIdentifier("SetingCell", forIndexPath: indexPath)
+            endCell.selectedBackgroundView = UIImageView(image: UIImage(named:"selectedButton"))
+            endCell.textLabel?.text = sources.objectAtIndex(indexPath.section) as? String
+            endCell.layer.borderWidth = 0.5;
+            endCell.layer.borderColor = UIColor.grayColor().CGColor;
+            if((sources.objectAtIndex(indexPath.section) as! String).isEqual(NSLocalizedString("currentVersion:", comment: ""))){
+                endCell.textLabel?.text = String(format: "%@%@",(sources.objectAtIndex(indexPath.section) as? String)!,AppTheme.getLoclAppStoreVersion())
+            }
+
+            return endCell
+        }
+        let cell:TableListCell = notificationList.NotificationlistCell(indexPath, dataSource: mNotificationSettingArray) as! TableListCell
+        cell.mSwitchDelegate = self
+        return cell
+        
+    }
+
+    // MARK: - SetingViewController function
     /**
     Check the update
     */
@@ -303,8 +281,52 @@ class SetingViewController: UIViewController,SelectionTypeDelegate,SyncControlle
         if (offset < minDelay) {
             return
         }
-        mSyncController?.SetLedOnOffandVibrator(0x3F0000, motorOnOff: true)
+        AppDelegate.getAppDelegate().SetLedOnOffandVibrator(0x3F0000, motorOnOff: true)
         mFindMydeviceDatetime = NSDate()
+    }
+
+    /**
+     Checks if any device is currently connected
+     */
+    func checkConnection() {
+
+        if !AppDelegate.getAppDelegate().isConnected() {
+            //We are currently not connected
+            var isView:Bool = false
+            for view in notificationList.subviews {
+                let anView:UIView = view
+                if anView.isEqual(notificationList.animationView.bulibNoConnectView()) {
+                    isView = true
+                }
+            }
+            if !isView {
+                notificationList.addSubview(notificationList.animationView.bulibNoConnectView())
+                reconnect()
+            }
+        } else {
+
+            notificationList.animationView.endConnectRemoveView()
+        }
+        self.view.bringSubviewToFront(notificationList.titleBgView)
+    }
+
+    func reconnect() {
+        notificationList.animationView.RotatingAnimationObject(notificationList.animationView.getNoConnectImage()!)
+        AppDelegate.getAppDelegate().connect()
+    }
+
+    /**
+     init the mNotificationSettingArray
+
+     :returns:
+     */
+    func initNotificationSettingArray() {
+        let notificationTypeArray:[NotificationType] = [NotificationType.CALL, NotificationType.EMAIL, NotificationType.FACEBOOK, NotificationType.SMS, NotificationType.CALENDAR, NotificationType.WECHAT, NotificationType.WHATSAPP]
+        for notificationType in notificationTypeArray {
+            var setting = NotificationSetting(type: notificationType, color: 0)
+            SetingViewController.refreshNotificationSetting(&setting)
+            mNotificationSettingArray.append(setting)
+        }
     }
 
     // MARK: - UIAlertViewDelegate
@@ -313,46 +335,6 @@ class SetingViewController: UIViewController,SelectionTypeDelegate,SyncControlle
             AppTheme.toOpenUpdateURL()
         }
     }
-    
-    // MARK: - UITableViewDataSource
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int{
-        return sources.count
-
-    }
-
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
-        if selectedB && section==0 {
-            AppTheme.DLog("count:\(sources.count + mNotificationSettingArray.count)")
-            return 1 + mNotificationSettingArray.count
-        }
-        return 1
-        //return mNotificationSettingArray.count
-    }
-
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        if indexPath.section == 1 {
-            let endCell = notificationList.NotificationSwicthCell(indexPath)
-            return endCell
-        }
-
-        if indexPath.row == 0 {
-            let endCell:UITableViewCell = tableView.dequeueReusableCellWithIdentifier("SetingCell", forIndexPath: indexPath)
-            endCell.selectedBackgroundView = UIImageView(image: UIImage(named:"selectedButton"))
-            endCell.textLabel?.text = sources.objectAtIndex(indexPath.section) as? String
-            endCell.layer.borderWidth = 0.5;
-            endCell.layer.borderColor = UIColor.grayColor().CGColor;
-            if((sources.objectAtIndex(indexPath.section) as! String).isEqual(NSLocalizedString("currentVersion:", comment: ""))){
-                endCell.textLabel?.text = String(format: "%@%@",(sources.objectAtIndex(indexPath.section) as? String)!,AppTheme.getLoclAppStoreVersion())
-            }
-
-            return endCell
-        }
-        let cell:TableListCell = notificationList.NotificationlistCell(indexPath, dataSource: mNotificationSettingArray) as! TableListCell
-        cell.mSwitchDelegate = self
-        return cell
-
-    }
-
 
     // MARK: - Navigation
     // In a storyboard-based application, you will often want to do a little preparation before navigation

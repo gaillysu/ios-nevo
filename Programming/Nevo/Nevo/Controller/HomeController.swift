@@ -17,7 +17,6 @@ it should handle very little, only the initialisation of the different Views and
 class HomeController: UIViewController, SyncControllerDelegate ,ButtonManagerCallBack,ClockRefreshDelegate{
     
     @IBOutlet var homeView: HomeView!
-    private var sync:SyncController?
     private var mVisiable:Bool = false
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,12 +42,8 @@ class HomeController: UIViewController, SyncControllerDelegate ,ButtonManagerCal
             self.performSegueWithIdentifier("Home_Tutorial", sender: self)
             
         } else {
-            if(sync == nil)
-            {
-               AppTheme.DLog("We have a saved address, no need to go through the tutorial")
-               sync  = SyncController.sharedInstance
-               sync?.startConnect(false, delegate: self)
-            }
+            AppTheme.DLog("We have a saved address, no need to go through the tutorial")
+            AppDelegate.getAppDelegate().startConnect(false, delegate: self)
             checkConnection()
             //NSLog("We getGoal in home screen")
             //SyncController.sharedInstance.getGoal()
@@ -69,7 +64,7 @@ class HomeController: UIViewController, SyncControllerDelegate ,ButtonManagerCal
     func clockRefreshAction(){
         homeView.getClockTimerView().currentTimer()
         if mVisiable{
-            SyncController.sharedInstance.getGoal()
+            AppDelegate.getAppDelegate().getGoal()
         }
     }
 
@@ -90,10 +85,9 @@ class HomeController: UIViewController, SyncControllerDelegate ,ButtonManagerCal
     test communication is normal or not
     */
     func testHandshake(){
-        if SyncController.sharedInstance.isConnected()
-        {
+        if AppDelegate.getAppDelegate().isConnected(){
             AppTheme.DLog("start handshake nevo");
-            SyncController.sharedInstance.SetLedOnOffandVibrator(0x3F0000, motorOnOff: false)
+            AppDelegate.getAppDelegate().SetLedOnOffandVibrator(0x3F0000, motorOnOff: false)
         }
     }
     /**
@@ -129,9 +123,7 @@ class HomeController: UIViewController, SyncControllerDelegate ,ButtonManagerCal
             AppTheme.DLog("get Daily Steps is: \(dailySteps), getDaily Goal is: \(dailyStepGoal),percent is: \(percent)")
             
             homeView.setProgress(percent, dailySteps: dailySteps, dailyStepGoal: dailyStepGoal)
-        }
-        else if packet.getHeader() == LedLightOnOffNevoRequest.HEADER()
-        {
+        }else if packet.getHeader() == LedLightOnOffNevoRequest.HEADER(){
             AppTheme.DLog("end handshake nevo");
             //blink once Clock
             self.homeView.getClockTimerView().setClockImage(AppTheme.GET_RESOURCES_IMAGE("clockview600_color"))
@@ -166,7 +158,7 @@ class HomeController: UIViewController, SyncControllerDelegate ,ButtonManagerCal
     
     func checkConnection() {
         
-        if sync != nil && !(sync!.isConnected()) {
+        if !AppDelegate.getAppDelegate().isConnected() {
             //We are currently not connected
             var isView:Bool = false
             for view in homeView.subviews {
@@ -188,6 +180,6 @@ class HomeController: UIViewController, SyncControllerDelegate ,ButtonManagerCal
     
     func reconnect() {
         homeView.animationView.RotatingAnimationObject(homeView.animationView.getNoConnectImage()!)
-        sync?.connect()
+        AppDelegate.getAppDelegate().connect()
     }
 }

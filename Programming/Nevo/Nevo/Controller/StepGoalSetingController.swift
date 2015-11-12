@@ -8,13 +8,11 @@
 
 import UIKit
 
-class StepGoalSetingController: UIViewController,ButtonManagerCallBack {
+class StepGoalSetingController: UIViewController,ButtonManagerCallBack,SyncControllerDelegate {
     
     let NUMBER_OF_STEPS_GOAL_KEY = "NUMBER_OF_STEPS_GOAL_KEY"
 
     @IBOutlet var stepGoalView: StepGoalSetingView!
-    
-    private var mSyncController:SyncController?
     
     private var mCurrentGoal:Goal = NumberOfStepsGoal()
 
@@ -22,8 +20,7 @@ class StepGoalSetingController: UIViewController,ButtonManagerCallBack {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        mSyncController = SyncController.sharedInstance
-        //mSyncController?.startConnect(false, delegate: self)
+        AppDelegate.getAppDelegate().startConnect(false, delegate: self)
 
         stepGoalView.bulidStepGoalView(self)
         
@@ -87,42 +84,9 @@ class StepGoalSetingController: UIViewController,ButtonManagerCallBack {
             self.performSegueWithIdentifier("Home_Seting", sender: self)
         }
     }
-    
-    func setGoal(goal:Goal) {
-        
-        mCurrentGoal = goal
-        
-        
-        stepGoalView.setNumberOfStepsGoal(goal.getValue())
-        
-        
-        let userDefaults = NSUserDefaults.standardUserDefaults();
-        
-        userDefaults.setObject(goal.getValue(),forKey:NUMBER_OF_STEPS_GOAL_KEY)
-        
-        userDefaults.synchronize()
-        
-        
-        mSyncController?.setGoal(goal)
-        
-    }
-    
-    func reconnect() {
-        if let noConnectImage = stepGoalView.animationView.getNoConnectImage() {
-            stepGoalView.animationView.RotatingAnimationObject(noConnectImage)
-        }
-        mSyncController?.connect()
-    }
 
-
-    /**
-    
-    See SyncControllerDelegate
-    
-    */
-    
+    // MARK: - SyncControllerDelegate
     func packetReceived(packet:NevoPacket) {
-        
         //Do nothing
         if packet.getHeader() == GetStepsGoalRequest.HEADER(){
             let thispacket = packet.copy() as DailyStepsNevoPacket
@@ -136,29 +100,31 @@ class StepGoalSetingController: UIViewController,ButtonManagerCallBack {
         
     }
     
-    
-    
-    /**
-    See SyncControllerDelegate
-    */
-    
     func connectionStateChanged(isConnected : Bool) {
-        
         //Maybe we just got disconnected, let's check
-        
         checkConnection()
-        
     }
     
-    
-    
+    /**
+     *  Receiving the current device signal strength value
+     */
+    func receivedRSSIValue(number:NSNumber){
+
+    }
+    /**
+     *  Data synchronization is complete callback
+     */
+    func syncFinished(){
+        
+    }
+
+    // MARK: - StepGoalSetingController function
     /**
     Checks if any device is currently connected
     */
-    
     func checkConnection() {
 
-        if mSyncController != nil && !(mSyncController!.isConnected()) {
+        if !AppDelegate.getAppDelegate().isConnected() {
 
             //We are currently not connected
             var isView:Bool = false
@@ -176,9 +142,24 @@ class StepGoalSetingController: UIViewController,ButtonManagerCallBack {
 
             stepGoalView.animationView.endConnectRemoveView()
         }
-        
-        
         self.view.bringSubviewToFront(stepGoalView.titleBgView)
     }
 
+    func reconnect() {
+        if let noConnectImage = stepGoalView.animationView.getNoConnectImage() {
+            stepGoalView.animationView.RotatingAnimationObject(noConnectImage)
+        }
+        AppDelegate.getAppDelegate().connect()
+    }
+
+    func setGoal(goal:Goal) {
+        mCurrentGoal = goal
+        stepGoalView.setNumberOfStepsGoal(goal.getValue())
+
+        let userDefaults = NSUserDefaults.standardUserDefaults();
+
+        userDefaults.setObject(goal.getValue(),forKey:NUMBER_OF_STEPS_GOAL_KEY)
+        userDefaults.synchronize()
+        AppDelegate.getAppDelegate().setGoal(goal)
+    }
 }

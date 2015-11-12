@@ -96,8 +96,6 @@ class EnterNotificationController: UIViewController,SyncControllerDelegate,Butto
     Type switch state callBack to the before a object
     */
     var mDelegate:SelectionTypeDelegate?
-
-    private var mSyncController:SyncController?
     
     /*
     led color default is full color led light on
@@ -109,8 +107,7 @@ class EnterNotificationController: UIViewController,SyncControllerDelegate,Butto
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        mSyncController = SyncController.sharedInstance
-        mSyncController?.startConnect(false, delegate: self)
+        AppDelegate.getAppDelegate().startConnect(false, delegate: self)
 
         enterNotView.bulidEnterNotificationView(self,seting:mCurrentNotificationSetting!)
 
@@ -169,7 +166,7 @@ class EnterNotificationController: UIViewController,SyncControllerDelegate,Butto
             //refresh the settingArray value
             SetingViewController.refreshNotificationSettingArray(&mNotificationSettingArray)
             //send request to watch
-            mSyncController?.SetNortification(mNotificationSettingArray)
+            AppDelegate.getAppDelegate().SetNortification(mNotificationSettingArray)
             //reload data
             if let currentSetting = mCurrentNotificationSetting {
                 mDelegate?.onSelectedType(true, type: currentSetting.typeName)
@@ -181,35 +178,27 @@ class EnterNotificationController: UIViewController,SyncControllerDelegate,Butto
     func syncFinished(){
 
     }
-    
-    /**
-    See SyncControllerDelegate
-    */
+
     func receivedRSSIValue(number:NSNumber){
 
     }
 
-    /**
-    See SyncControllerDelegate
-    */
     func packetReceived(packet:NevoPacket) {
 
     }
 
-    /**
-    See SyncControllerDelegate
-    */
     func connectionStateChanged(isConnected : Bool) {
         //Maybe we just got disconnected, let's check
         checkConnection()
     }
 
+    // MARK: - EnterNotificationController function
     /**
     Checks if any device is currently connected
     */
     func checkConnection() {
 
-        if mSyncController != nil && !(mSyncController!.isConnected()) {
+        if !AppDelegate.getAppDelegate().isConnected() {
             //We are currently not connected
             var isView:Bool = false
             for view in enterNotView.subviews {
@@ -230,10 +219,8 @@ class EnterNotificationController: UIViewController,SyncControllerDelegate,Butto
 
     func reconnect() {
         enterNotView.animationView?.RotatingAnimationObject((enterNotView.animationView?.getNoConnectImage())!)
-        mSyncController?.connect()
+        AppDelegate.getAppDelegate().connect()
     }
-
-
 
     /**
     set the color of current notification setting
@@ -253,7 +240,7 @@ class EnterNotificationController: UIViewController,SyncControllerDelegate,Butto
             currentSettings.setStates(results)
             SetingViewController.refreshNotificationSettingArray(&mNotificationSettingArray)
             //send request to watch
-            mSyncController?.SetNortification(mNotificationSettingArray)
+            AppDelegate.getAppDelegate().SetNortification(mNotificationSettingArray)
             //refresh ui
             mDelegate?.onSelectedType(results, type: currentSettings.typeName)
         }

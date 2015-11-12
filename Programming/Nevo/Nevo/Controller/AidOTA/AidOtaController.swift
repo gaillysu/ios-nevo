@@ -699,14 +699,14 @@ class AidOtaController : NSObject,ConnectionControllerDelegate {
         //reset it to INIT status !!!IMPORTANT!!!
         self.state = DFUControllerState.INIT
         
-        if(dfuFirmwareType == DfuFirmwareTypes.APPLICATION )
-        {
+        if(dfuFirmwareType == DfuFirmwareTypes.APPLICATION ){
             self.mConnectionController!.restoreSavedAddress()
         }
-        if switch2SyncController
-        {
-            self.mConnectionController?.setDelegate(SyncController.sharedInstance)
+
+        if switch2SyncController{
+            self.mConnectionController?.setDelegate(AppDelegate.getAppDelegate())
         }
+        
         self.mConnectionController!.setOTAMode(false,Disconnect:true)
         self.mConnectionController!.connect()
     }

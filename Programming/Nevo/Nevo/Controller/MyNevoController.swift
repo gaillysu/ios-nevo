@@ -11,7 +11,6 @@ import UIKit
 class MyNevoController: UIViewController,ButtonManagerCallBack,SyncControllerDelegate {
 
     @IBOutlet var mynevoView: MyNevoView!
-    private var mSyncController:SyncController?
     private var currentBattery:Int = 0
     private var rssialert :UIAlertView?
     private var buildinSoftwareVersion:Int = 0
@@ -19,22 +18,20 @@ class MyNevoController: UIViewController,ButtonManagerCallBack,SyncControllerDel
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        mSyncController = SyncController.sharedInstance
         mynevoView.bulidMyNevoView(self)
         buildinSoftwareVersion = GET_SOFTWARE_VERSION()
         buildinFirmwareVersion = GET_FIRMWARE_VERSION()
-
     }
 
     
     override func viewDidAppear(animated: Bool) {
-        mSyncController?.startConnect(false, delegate: self)
-        mSyncController?.ReadBatteryLevel()
-        mynevoView.setVersionLbael(mSyncController!.getSoftwareVersion(), bleNumber: mSyncController!.getFirmwareVersion())
+        AppDelegate.getAppDelegate().startConnect(false, delegate: self)
+        AppDelegate.getAppDelegate().ReadBatteryLevel()
+        mynevoView.setVersionLbael(AppDelegate.getAppDelegate().getSoftwareVersion(), bleNumber: AppDelegate.getAppDelegate().getFirmwareVersion())
     }
     
     override func viewDidDisappear(animated: Bool) {
-        mSyncController?.removeMyNevoDelegate()
+        AppDelegate.getAppDelegate().removeMyNevoDelegate()
         rssialert?.dismissWithClickedButtonIndex(1, animated: true)
     }
 
@@ -56,7 +53,7 @@ class MyNevoController: UIViewController,ButtonManagerCallBack,SyncControllerDel
 
         if(sender.isEqual(mynevoView.UpgradeButton)){
             //When upgrading watch battery can not less than 2
-            if (currentBattery<2 && mSyncController!.getSoftwareVersion().integerValue>0 && !mynevoView.UpgradeButton.selected){
+            if (currentBattery<2 && AppDelegate.getAppDelegate().getSoftwareVersion().integerValue>0 && !mynevoView.UpgradeButton.selected){
                 let alert :UIAlertView = UIAlertView(title: NSLocalizedString("battery_warnings_title", comment: ""), message: NSLocalizedString("battery_warnings_msg", comment: ""), delegate: nil, cancelButtonTitle: "OK")
                 alert.show()
                 return;
@@ -97,9 +94,9 @@ class MyNevoController: UIViewController,ButtonManagerCallBack,SyncControllerDel
             rssialert = nil
         }
 
-        mynevoView.setVersionLbael(mSyncController!.getSoftwareVersion(), bleNumber: mSyncController!.getFirmwareVersion())
-        let currentSoftwareVersion:NSString = mSyncController!.getSoftwareVersion()
-        let currentFirmwareVersion:NSString = mSyncController!.getFirmwareVersion()
+        mynevoView.setVersionLbael(AppDelegate.getAppDelegate().getSoftwareVersion(), bleNumber: AppDelegate.getAppDelegate().getFirmwareVersion())
+        let currentSoftwareVersion:NSString = AppDelegate.getAppDelegate().getSoftwareVersion()
+        let currentFirmwareVersion:NSString = AppDelegate.getAppDelegate().getFirmwareVersion()
 
         if(currentFirmwareVersion.integerValue >= buildinFirmwareVersion && currentSoftwareVersion.integerValue >= buildinSoftwareVersion){
             mynevoView.UpgradeButton.backgroundColor = AppTheme.NEVO_CUSTOM_COLOR()
@@ -127,7 +124,7 @@ class MyNevoController: UIViewController,ButtonManagerCallBack,SyncControllerDel
     func connectionStateChanged(isConnected : Bool){
         checkConnection()
         if(isConnected){
-            mSyncController?.ReadBatteryLevel()
+            AppDelegate.getAppDelegate().ReadBatteryLevel()
         }else{
             rssialert?.dismissWithClickedButtonIndex(1, animated: true)
             rssialert = nil
@@ -144,7 +141,7 @@ class MyNevoController: UIViewController,ButtonManagerCallBack,SyncControllerDel
 
     func checkConnection() {
 
-        if mSyncController != nil && !(mSyncController!.isConnected()) {
+        if !AppDelegate.getAppDelegate().isConnected() {
 
             //We are currently not connected
             var isView:Bool = false
@@ -160,7 +157,7 @@ class MyNevoController: UIViewController,ButtonManagerCallBack,SyncControllerDel
             }
         } else {
             mynevoView.animationView!.endConnectRemoveView()
-            mSyncController?.ReadBatteryLevel()
+            AppDelegate.getAppDelegate().ReadBatteryLevel()
         }
         self.view.bringSubviewToFront(mynevoView.titleBgView)
 
@@ -170,7 +167,7 @@ class MyNevoController: UIViewController,ButtonManagerCallBack,SyncControllerDel
         if let noConnectImage = mynevoView.animationView!.getNoConnectImage() {
             mynevoView.animationView!.RotatingAnimationObject(noConnectImage)
         }
-        mSyncController?.connect()
+        AppDelegate.getAppDelegate().connect()
     }
 
     /*

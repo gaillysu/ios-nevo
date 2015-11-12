@@ -749,7 +749,7 @@ class NevoOtaController : NSObject,ConnectionControllerDelegate {
         }
         if switch2SyncController
         {
-            self.mConnectionController?.setDelegate(SyncController.sharedInstance)
+            self.mConnectionController?.setDelegate(AppDelegate.getAppDelegate())
         }
         self.mConnectionController!.setOTAMode(false,Disconnect:true)
         self.mConnectionController!.connect()

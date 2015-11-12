@@ -35,7 +35,7 @@ class Page4Controller: UIViewController,ButtonActionCallBack,SyncControllerDeleg
             if(isConnectedBool) {
                 pagesView.connectSuccessClean()
             } else {
-                SyncController.sharedInstance.startConnect(true, delegate: self)
+                AppDelegate.getAppDelegate().startConnect(true, delegate: self)
             }
         } else if sender.isEqual(pagesView.getBackButton()) {
             self.navigationController?.popViewControllerAnimated(true)
@@ -48,8 +48,8 @@ class Page4Controller: UIViewController,ButtonActionCallBack,SyncControllerDeleg
 
     }
 
+    // MARK: - SyncControllerDelegate
     func connectionStateChanged(isConnected : Bool){
-
         if isConnected {
             //connect Success clear
             pagesView.connectSuccessClean()

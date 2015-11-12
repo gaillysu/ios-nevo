@@ -25,14 +25,12 @@ class AlarmClockController: UIViewController, SyncControllerDelegate,ButtonManag
     private var mAlarmmin:Int = 30
     private var mAlarmindex:Int = 0
     private var mAlarmenable:Bool = false
-    private var mSyncController:SyncController?
     var alarmArray:[Alarm] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        mSyncController = SyncController.sharedInstance
-        mSyncController?.startConnect(false, delegate: self)
+        AppDelegate.getAppDelegate().startConnect(false, delegate: self)
 
         //If we have any previously saved hour, min and/or enabled/ disabled, we'll use those variables first
         let userDefaults:NSUserDefaults = NSUserDefaults.standardUserDefaults()
@@ -67,29 +65,7 @@ class AlarmClockController: UIViewController, SyncControllerDelegate,ButtonManag
         // Dispose of any resources that can be recreated.
     }
 
-    /**
-    Format from the alarm data
-
-    :param: alarmArray Alarm dictionary
-
-    :returns: Returns the Alarm
-    */
-    func getLoclAlarm(alarmArray:NSDictionary)->Alarm{
-        let alarm_index:Int = (alarmArray.objectForKey(SAVED_ALARM_INDEX_KEY) as! NSNumber).integerValue
-        let alarm_hour:Int = (alarmArray.objectForKey(SAVED_ALARM_HOUR_KEY) as! NSNumber).integerValue
-        let alarm_min:Int = (alarmArray.objectForKey(SAVED_ALARM_MIN_KEY) as! NSNumber).integerValue
-        let alarm_enabled:Bool = (alarmArray.objectForKey(SAVED_ALARM_ENABLED_KEY) as! NSNumber).boolValue
-        let alarm:Alarm = Alarm(index: alarm_index, hour: alarm_hour, minute: alarm_min, enable: alarm_enabled)
-        return alarm
-    }
-
-    func stringFromDate(date:NSDate) -> String {
-        let dateFormatter:NSDateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "HH:mm"
-        let dateString:String = dateFormatter.stringFromDate(date)
-        return dateString
-    }
-
+    // MARK: - ButtonManagerCallBack
     /*
     call back Button Action
     */
@@ -140,7 +116,77 @@ class AlarmClockController: UIViewController, SyncControllerDelegate,ButtonManag
         }
 
     }
+
+    // MARK: - SyncControllerDelegate
+    func receivedRSSIValue(number:NSNumber){
+
+    }
+
+    func packetReceived(packet:NevoPacket) {
     
+    }
+
+    func connectionStateChanged(isConnected : Bool) {
+
+        //Maybe we just got disconnected, let's check
+
+        checkConnection()
+
+    }
+
+    func syncFinished(){
+
+    }
+
+    // MARK: - Function
+    /**
+    Format from the alarm data
+
+    :param: alarmArray Alarm dictionary
+
+    :returns: Returns the Alarm
+    */
+    func getLoclAlarm(alarmArray:NSDictionary)->Alarm{
+        let alarm_index:Int = (alarmArray.objectForKey(SAVED_ALARM_INDEX_KEY) as! NSNumber).integerValue
+        let alarm_hour:Int = (alarmArray.objectForKey(SAVED_ALARM_HOUR_KEY) as! NSNumber).integerValue
+        let alarm_min:Int = (alarmArray.objectForKey(SAVED_ALARM_MIN_KEY) as! NSNumber).integerValue
+        let alarm_enabled:Bool = (alarmArray.objectForKey(SAVED_ALARM_ENABLED_KEY) as! NSNumber).boolValue
+        let alarm:Alarm = Alarm(index: alarm_index, hour: alarm_hour, minute: alarm_min, enable: alarm_enabled)
+        return alarm
+    }
+
+    func stringFromDate(date:NSDate) -> String {
+        let dateFormatter:NSDateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "HH:mm"
+        let dateString:String = dateFormatter.stringFromDate(date)
+        return dateString
+    }
+
+    /**
+    Checks if any device is currently connected
+    */
+    func checkConnection() {
+
+        if !AppDelegate.getAppDelegate().isConnected() {
+            //We are currently not connected
+            var isView:Bool = false
+            for view in alarmView.subviews {
+                let anView:UIView = view 
+                if anView.isEqual(alarmView.animationView.bulibNoConnectView()) {
+                    isView = true
+                }
+            }
+            if !isView {
+                alarmView.addSubview(alarmView.animationView.bulibNoConnectView())
+                reconnect()
+            }
+        } else {
+
+            alarmView.animationView.endConnectRemoveView()
+        }
+        self.view.bringSubviewToFront(alarmView.titleBgView)
+    }
+
     func setAlarm(aObject:AnyObject) {
         var tagValue:Int = 0
         if(aObject.isKindOfClass(UISwitch .classForCoder())){
@@ -177,7 +223,7 @@ class AlarmClockController: UIViewController, SyncControllerDelegate,ButtonManag
 
         if(aObject.isKindOfClass(UIButton .classForCoder())){
             tagValue = (aObject as! UIButton).tag
-            
+
             if let date = alarmView.getDatePicker()?.date  {
 
                 let strDate = stringFromDate(date)
@@ -204,6 +250,7 @@ class AlarmClockController: UIViewController, SyncControllerDelegate,ButtonManag
         
     }
 
+
     func addAlarmArray(index:Int){
         for object in alarmArray{
             let alarm:Alarm = (object as Alarm)
@@ -211,76 +258,15 @@ class AlarmClockController: UIViewController, SyncControllerDelegate,ButtonManag
                 let alarm:Alarm = Alarm(index:index, hour: mAlarmhour, minute: mAlarmmin, enable: mAlarmenable)
                 alarmArray.removeAtIndex(index)
                 alarmArray.insert(alarm, atIndex: index)
-                mSyncController?.setAlarm(alarmArray)
+                AppDelegate.getAppDelegate().setAlarm(alarmArray)
                 return;
             }
         }
     }
 
     func reconnect() {
-            alarmView.animationView.RotatingAnimationObject(alarmView.animationView.getNoConnectImage()!)
-            mSyncController?.connect()
-    }
-
-    // MARK: - SyncControllerDelegate
-    /**
-    See SyncControllerDelegate
-    */
-    func receivedRSSIValue(number:NSNumber){
-
-    }
-
-    /**
-    See SyncControllerDelegate
-    */
-     func packetReceived(packet:NevoPacket) {
-    
-    }
-
-    /**
-
-    See SyncControllerDelegate
-
-    */
-
-    func connectionStateChanged(isConnected : Bool) {
-
-        //Maybe we just got disconnected, let's check
-
-        checkConnection()
-
-    }
-
-    func syncFinished(){
-
-    }
-
-    /**
-
-    Checks if any device is currently connected
-
-    */
-
-    func checkConnection() {
-
-        if mSyncController != nil && !(mSyncController!.isConnected()) {
-            //We are currently not connected
-            var isView:Bool = false
-            for view in alarmView.subviews {
-                let anView:UIView = view 
-                if anView.isEqual(alarmView.animationView.bulibNoConnectView()) {
-                    isView = true
-                }
-            }
-            if !isView {
-                alarmView.addSubview(alarmView.animationView.bulibNoConnectView())
-                reconnect()
-            }
-        } else {
-
-            alarmView.animationView.endConnectRemoveView()
-        }
-        self.view.bringSubviewToFront(alarmView.titleBgView)
+        alarmView.animationView.RotatingAnimationObject(alarmView.animationView.getNoConnectImage()!)
+        AppDelegate.getAppDelegate().connect()
     }
 
 }
