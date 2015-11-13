@@ -21,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
 
     private var mDelegates:[SyncControllerDelegate] = []
 
-    private let mConnectionController : ConnectionControllerImpl = ConnectionControllerImpl.sharedInstance
+    private var mConnectionController : ConnectionControllerImpl?
 
     private var mPacketsbuffer:[NSData] = []
 
@@ -55,7 +55,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
             NSUserDefaults.standardUserDefaults().setBool(false, forKey: "firstLaunch")
         }
 
-        mConnectionController.setDelegate(self)
+        mConnectionController = ConnectionControllerImpl.sharedInstance
+        mConnectionController?.setDelegate(self)
 
         return true
     }
@@ -110,9 +111,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
         AppTheme.DLog("New delegate : \(delegate)")
         mDelegates.append(delegate)
         if forceScan{
-            mConnectionController.forgetSavedAddress()
+            mConnectionController?.forgetSavedAddress()
         }
-        mConnectionController.connect()
+        mConnectionController?.connect()
     }
 
     func setGoal(goal:Goal) {
@@ -261,22 +262,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
     See ConnectionController protocol
     */
     func  getFirmwareVersion() -> NSString{
-        return isConnected() ? self.mConnectionController.getFirmwareVersion() : NSString()
+        return isConnected() ? self.mConnectionController!.getFirmwareVersion() : NSString()
     }
 
     /**
      See ConnectionController protocol
      */
     func  getSoftwareVersion() -> NSString{
-        return isConnected() ? self.mConnectionController.getSoftwareVersion() : NSString()
+        return isConnected() ? self.mConnectionController!.getSoftwareVersion() : NSString()
     }
 
     func connect() {
-        self.mConnectionController.connect()
+        self.mConnectionController?.connect()
     }
 
     func isConnected() -> Bool{
-        return mConnectionController.isConnected()
+        return mConnectionController!.isConnected()
 
     }
 
@@ -284,7 +285,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
         if(isConnected()){
             SyncQueue.sharedInstance.post( { (Void) -> (Void) in
 
-                self.mConnectionController.sendRequest(r)
+                self.mConnectionController?.sendRequest(r)
 
             } )
         }else {

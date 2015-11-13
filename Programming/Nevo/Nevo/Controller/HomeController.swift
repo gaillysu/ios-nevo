@@ -46,7 +46,6 @@ class HomeController: UIViewController, SyncControllerDelegate ,ButtonManagerCal
             AppDelegate.getAppDelegate().startConnect(false, delegate: self)
             checkConnection()
             //NSLog("We getGoal in home screen")
-            //SyncController.sharedInstance.getGoal()
             mVisiable = true
         }
     }
