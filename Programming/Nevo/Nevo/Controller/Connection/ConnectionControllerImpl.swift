@@ -56,9 +56,13 @@ class ConnectionControllerImpl : NSObject, ConnectionController, NevoBTDelegate 
     */
     class var sharedInstance : ConnectionControllerImpl {
         struct Singleton {
-            static let instance = ConnectionControllerImpl()
+            static var onceToken : dispatch_once_t = 0
+            static var instance : ConnectionControllerImpl? = nil
         }
-        return Singleton.instance
+        dispatch_once(&Singleton.onceToken) {
+            Singleton.instance = ConnectionControllerImpl()
+        }
+        return Singleton.instance!
     }
     
     /**

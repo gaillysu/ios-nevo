@@ -16,37 +16,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
     var window: UIWindow?
     //Let's sync every days
     let SYNC_INTERVAL:NSTimeInterval = 0*30*60 //unit is second in iOS, every 30min, do sync
-
     let LAST_SYNC_DATE_KEY = "LAST_SYNC_DATE_KEY"
-
     private var mDelegates:[SyncControllerDelegate] = []
-
     private var mConnectionController : ConnectionControllerImpl?
-
     private var mPacketsbuffer:[NSData] = []
-
     private let mHealthKitStore:HKHealthStore = HKHealthStore()
-
     private var savedDailyHistory:[NevoPacket.DailyHistory] = []
     private var currentDay:UInt8 = 0
     private var mAlertUpdateFW = false
-    private var timer:NSTimer = NSTimer()
 
     private var todaySleepData:NSMutableArray = NSMutableArray(capacity: 2)
-
     private var disConnectAlert:UIAlertView?
 
     class func getAppDelegate()->AppDelegate {
-
         return UIApplication.sharedApplication().delegate as! AppDelegate
     }
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
-        UINavigationBar.appearance().tintColor = UIColor.blackColor()
-        UINavigationBar.appearance().barTintColor = UIColor.blackColor()
+        //UINavigationBar.appearance().tintColor = UIColor.blackColor()
+        //UINavigationBar.appearance().barTintColor = UIColor.blackColor()
+        //UITabBar.appearance().barTintColor = UIColor.clearColor()
 
-        UITabBar.appearance().barTintColor = UIColor.clearColor()
         //Start the logo for the first time
         if(!NSUserDefaults.standardUserDefaults().boolForKey("everLaunched")){
             NSUserDefaults.standardUserDefaults().setBool(true, forKey: "everLaunched")
@@ -87,7 +78,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
     }
 
     func application(application: UIApplication , didReceiveLocalNotification notification: UILocalNotification ) {
-
+        if (disConnectAlert == nil) {
+            disConnectAlert = UIAlertView(title: NSLocalizedString("BLE_LOST_TITLE", comment: ""), message: NSLocalizedString("BLE_CONNECTION_LOST", comment: ""), delegate: nil, cancelButtonTitle: NSLocalizedString("ok", comment: ""))
+            disConnectAlert?.show()
+        }
     }
 
     // MARK: -AppDelegate SET Function
@@ -105,15 +99,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
 
     func WriteSetting() {
         sendRequest(WriteSettingRequest())
-    }
-
-    func startConnect(forceScan:Bool,delegate:SyncControllerDelegate){
-        AppTheme.DLog("New delegate : \(delegate)")
-        mDelegates.append(delegate)
-        if forceScan{
-            mConnectionController?.forgetSavedAddress()
-        }
-        mConnectionController?.connect()
     }
 
     func setGoal(goal:Goal) {
@@ -136,6 +121,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
      */
     func SetLedOnOffandVibrator(ledpattern:UInt32,  motorOnOff:Bool) {
         sendRequest(LedLightOnOffNevoRequest(ledpattern: ledpattern, motorOnOff: motorOnOff))
+    }
+
+    func startConnect(forceScan:Bool,delegate:SyncControllerDelegate){
+        AppTheme.DLog("New delegate : \(delegate)")
+        mDelegates.append(delegate)
+        if forceScan{
+            mConnectionController?.forgetSavedAddress()
+        }
+        mConnectionController?.connect()
     }
 
     // MARK: -AppDelegate GET Function
@@ -165,15 +159,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
      :returns: Returns the Alarm
      */
     func getLoclAlarm(alarmArray:NSDictionary)->Alarm{
-        let SAVED_ALARM_HOUR_KEY = "SAVED_ALARM_HOUR_KEY"
-        let SAVED_ALARM_MIN_KEY = "SAVED_ALARM_MIN_KEY"
-        let SAVED_ALARM_ENABLED_KEY = "SAVED_ALARM_ENABLED_KEY"
-        let SAVED_ALARM_INDEX_KEY = "SAVED_ALARM_INDEX_KEY"
-
-        let alarm_index:Int = (alarmArray.objectForKey(SAVED_ALARM_INDEX_KEY) as! NSNumber).integerValue
-        let alarm_hour:Int = (alarmArray.objectForKey(SAVED_ALARM_HOUR_KEY) as! NSNumber).integerValue
-        let alarm_min:Int = (alarmArray.objectForKey(SAVED_ALARM_MIN_KEY) as! NSNumber).integerValue
-        let alarm_enabled:Bool = (alarmArray.objectForKey(SAVED_ALARM_ENABLED_KEY) as! NSNumber).boolValue
+        let alarm_index:Int = (alarmArray.objectForKey(AlarmClockController.SAVED_ALARM_INDEX_KEY) as! NSNumber).integerValue
+        let alarm_hour:Int = (alarmArray.objectForKey(AlarmClockController.SAVED_ALARM_HOUR_KEY) as! NSNumber).integerValue
+        let alarm_min:Int = (alarmArray.objectForKey(AlarmClockController.SAVED_ALARM_MIN_KEY) as! NSNumber).integerValue
+        let alarm_enabled:Bool = (alarmArray.objectForKey(AlarmClockController.SAVED_ALARM_ENABLED_KEY) as! NSNumber).boolValue
         let alarm:Alarm = Alarm(index: alarm_index, hour: alarm_hour, minute: alarm_min, enable: alarm_enabled)
         return alarm
     }
@@ -230,6 +219,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
         return false
     }
 
+    /**
+     Remove MyNevoDelegate
+     */
     func removeMyNevoDelegate(){
         for(var i:Int = 0; i < mDelegates.count; i++){
             if mDelegates[i] is MyNevoController{
@@ -258,16 +250,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
     }
 
     // MARK: - ConnectionController protocol
-    /**
-    See ConnectionController protocol
-    */
     func  getFirmwareVersion() -> NSString{
         return isConnected() ? self.mConnectionController!.getFirmwareVersion() : NSString()
     }
 
-    /**
-     See ConnectionController protocol
-     */
     func  getSoftwareVersion() -> NSString{
         return isConnected() ? self.mConnectionController!.getSoftwareVersion() : NSString()
     }
@@ -341,42 +327,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
             {
                 //step5: sync the notification setting, if remove nevo's battery, the nevo notification reset, so here need sync it
                 var mNotificationSettingArray:[NotificationSetting] = []
-
-                let callsetting:NotificationSetting = NotificationSetting(type: NotificationType.CALL, color: 0)
-                var color = NSNumber(unsignedInt: EnterNotificationController.getLedColor(callsetting.getType().rawValue))
-                var states = EnterNotificationController.getMotorOnOff(callsetting.getType().rawValue)
-                callsetting.updateValue(color, states: states)
-                mNotificationSettingArray.append(callsetting)
-
-                let smssetting:NotificationSetting = NotificationSetting(type: NotificationType.SMS, color: 0)
-                color = NSNumber(unsignedInt: EnterNotificationController.getLedColor(smssetting.getType().rawValue))
-                states = EnterNotificationController.getMotorOnOff(smssetting.getType().rawValue)
-                smssetting.updateValue(color, states: states)
-                mNotificationSettingArray.append(smssetting)
-
-                let emailsetting:NotificationSetting = NotificationSetting(type: NotificationType.EMAIL, color: 0)
-                color = NSNumber(unsignedInt: EnterNotificationController.getLedColor(emailsetting.getType().rawValue))
-                states = EnterNotificationController.getMotorOnOff(emailsetting.getType().rawValue)
-                emailsetting.updateValue(color, states: states)
-                mNotificationSettingArray.append(emailsetting)
-
-                let fbsetting:NotificationSetting = NotificationSetting(type: NotificationType.FACEBOOK, color: 0)
-                color = NSNumber(unsignedInt: EnterNotificationController.getLedColor(fbsetting.getType().rawValue))
-                states = EnterNotificationController.getMotorOnOff(fbsetting.getType().rawValue)
-                fbsetting.updateValue(color, states: states)
-                mNotificationSettingArray.append(fbsetting)
-
-                let calsetting:NotificationSetting = NotificationSetting(type: NotificationType.CALENDAR, color: 0)
-                color = NSNumber(unsignedInt: EnterNotificationController.getLedColor(calsetting.getType().rawValue))
-                states = EnterNotificationController.getMotorOnOff(calsetting.getType().rawValue)
-                calsetting.updateValue(color, states: states)
-                mNotificationSettingArray.append(calsetting)
-
-                let wechatchsetting:NotificationSetting = NotificationSetting(type: NotificationType.WECHAT, color: 0)
-                color = NSNumber(unsignedInt: EnterNotificationController.getLedColor(wechatchsetting.getType().rawValue))
-                states = EnterNotificationController.getMotorOnOff(wechatchsetting.getType().rawValue)
-                wechatchsetting.updateValue(color, states: states)
-                mNotificationSettingArray.append(wechatchsetting)
+                let allType:[NotificationType] = [NotificationType.CALL, NotificationType.SMS, NotificationType.EMAIL, NotificationType.FACEBOOK, NotificationType.CALENDAR, NotificationType.WECHAT, NotificationType.WHATSAPP]
+                for notType in allType{
+                    let notificatiosetting:NotificationSetting = NotificationSetting(type:notType, color: 0)
+                    let color = NSNumber(unsignedInt: EnterNotificationController.getLedColor(notificatiosetting.getType().rawValue))
+                    let states = EnterNotificationController.getMotorOnOff(notificatiosetting.getType().rawValue)
+                    notificatiosetting.updateValue(color, states: states)
+                    mNotificationSettingArray.append(notificatiosetting)
+                }
                 //start sync notification setting on the phone side
                 SetNortification(mNotificationSettingArray)
             }
@@ -387,31 +345,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                 let mAlarmhour:Int = 8
                 let mAlarmmin:Int = 30
                 let mAlarmenable:Bool = false
-
                 var alarm:[Alarm] = []
-
-                let SAVED_ALARM_ARRAY0 = "SAVED_ALARM_ARRAY0"
-                let SAVED_ALARM_ARRAY1 = "SAVED_ALARM_ARRAY1"
-                let SAVED_ALARM_ARRAY2 = "SAVED_ALARM_ARRAY2"
 
                 let userDefaults:NSUserDefaults = NSUserDefaults.standardUserDefaults()
                 //If we have any previously saved hour, min and/or enabled/ disabled, we'll use those variables first
-                if let alarmArray1 = userDefaults.objectForKey(SAVED_ALARM_ARRAY0) as? NSDictionary {
-                    alarm.append(getLoclAlarm(alarmArray1))
-                }else{
-                    alarm.append(Alarm(index: 0,hour: mAlarmhour,minute: mAlarmmin,enable: mAlarmenable))
-                }
-
-                if let alarmArray2 = userDefaults.objectForKey(SAVED_ALARM_ARRAY1) as? NSDictionary {
-                    alarm.append(getLoclAlarm(alarmArray2))
-                }else{
-                    alarm.append(Alarm(index: 1,hour: mAlarmhour,minute: mAlarmmin,enable: mAlarmenable))
-                }
-
-                if let alarmArray3 = userDefaults.objectForKey(SAVED_ALARM_ARRAY2) as? NSDictionary {
-                    alarm.append(getLoclAlarm(alarmArray3))
-                }else{
-                    alarm.append(Alarm(index: 2,hour: mAlarmhour,minute: mAlarmmin,enable: mAlarmenable))
+                let forKey:[String] = [AlarmClockController.SAVED_ALARM_ARRAY0,AlarmClockController.SAVED_ALARM_ARRAY1,AlarmClockController.SAVED_ALARM_ARRAY2]
+                for(var index:Int = 0;index<forKey.count;index++){
+                    if let alarmArray = userDefaults.objectForKey(forKey[index]) as? NSDictionary {
+                        alarm.append(getLoclAlarm(alarmArray))
+                    }else{
+                        alarm.append(Alarm(index: index,hour: mAlarmhour,minute: mAlarmmin,enable: mAlarmenable))
+                    }
                 }
 
                 setAlarm(alarm)
@@ -434,8 +378,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                     self.getDailyTracker(currentDay)
                 }
             }
-            if(packet.getHeader() == ReadDailyTracker.HEADER())
-            {
+
+            if(packet.getHeader() == ReadDailyTracker.HEADER()){
                 let thispacket:DailyTrackerNevoPacket = packet.copy() as DailyTrackerNevoPacket
 
                 savedDailyHistory[Int(currentDay)].TotalSteps = thispacket.getDailySteps()
@@ -701,14 +645,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
     func connectionStateChanged(isConnected : Bool) {
         //send local notification
         if isConnected {
-            if(timer.valid){
-                timer.invalidate()
-            }
             ConnectionManager.sharedInstance.checkConnectSendNotification(ConnectionManager.Const.connectionStatus.connected)
         }else {
             ConnectionManager.sharedInstance.checkConnectSendNotification(ConnectionManager.Const.connectionStatus.disconnected)
-            timer = NSTimer.scheduledTimerWithTimeInterval(3.5, target: self, selector: Selector("BLE_LOST_TITLE_ACTION:"), userInfo: nil, repeats: false)
-
         }
 
         for delegate in mDelegates {
@@ -765,14 +704,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
         }
     }
 
-    // MARK: - NSTimer Action
-    func BLE_LOST_TITLE_ACTION(timer:NSTimer){
-        if (disConnectAlert == nil) {
-            disConnectAlert = UIAlertView(title: NSLocalizedString("BLE_LOST_TITLE", comment: ""), message: NSLocalizedString("BLE_CONNECTION_LOST", comment: ""), delegate: nil, cancelButtonTitle: NSLocalizedString("ok", comment: ""))
-            disConnectAlert?.show()
-        }
-
-    }
 }
 
 protocol SyncControllerDelegate:NSObjectProtocol {
