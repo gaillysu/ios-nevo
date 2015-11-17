@@ -35,7 +35,7 @@ class HomeController: UIViewController, SyncControllerDelegate ,ButtonManagerCal
 
     override func viewDidAppear(animated: Bool) {
         
-        if !ConnectionControllerImpl.sharedInstance.hasSavedAddress() {
+        if !AppDelegate.getAppDelegate().getMconnectionController().hasSavedAddress() {
             
             AppTheme.DLog("No saved device, let's launch the tutorial")
             

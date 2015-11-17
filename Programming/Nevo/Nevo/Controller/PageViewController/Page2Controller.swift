@@ -19,7 +19,7 @@ class Page2Controller: UIViewController,ButtonActionCallBack {
         //TODO Displays the Page slide
         //Array represents the display of the page
 
-        mBluetoothTutorialView = TutorialPage2View(frame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height),delegate:self,bluetoothHint:ConnectionControllerImpl.sharedInstance.isBluetoothEnabled())
+        mBluetoothTutorialView = TutorialPage2View(frame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height),delegate:self,bluetoothHint:AppDelegate.getAppDelegate().getMconnectionController().isBluetoothEnabled())
         self.view.addSubview(mBluetoothTutorialView!)
         
         NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector:Selector("checkBluetoothEnabled"), userInfo: nil, repeats: true)
@@ -56,14 +56,14 @@ class Page2Controller: UIViewController,ButtonActionCallBack {
     
     func checkBluetoothEnabled() {
         
-        let btEnabled = ConnectionControllerImpl.sharedInstance.isBluetoothEnabled()
+        let btEnabled = AppDelegate.getAppDelegate().getMconnectionController().isBluetoothEnabled()
         
         if( mBluetoothTutorialView?.getBluetoothHint() != btEnabled ) {
             AppTheme.DLog("BT status changed, changin UI. New status : \(btEnabled)")
             
             mBluetoothTutorialView?.removeFromSuperview()
             
-            mBluetoothTutorialView = TutorialPage2View(frame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height),delegate:self,bluetoothHint:ConnectionControllerImpl.sharedInstance.isBluetoothEnabled())
+            mBluetoothTutorialView = TutorialPage2View(frame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height),delegate:self,bluetoothHint:AppDelegate.getAppDelegate().getMconnectionController().isBluetoothEnabled())
             self.view .addSubview(mBluetoothTutorialView!)
             
         }

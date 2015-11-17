@@ -52,23 +52,9 @@ class ConnectionControllerImpl : NSObject, ConnectionController, NevoBTDelegate 
     private var savedAddress:String?
     
     /**
-    A classic singelton pattern
-    */
-    class var sharedInstance : ConnectionControllerImpl {
-        struct Singleton {
-            static var onceToken : dispatch_once_t = 0
-            static var instance : ConnectionControllerImpl? = nil
-        }
-        dispatch_once(&Singleton.onceToken) {
-            Singleton.instance = ConnectionControllerImpl()
-        }
-        return Singleton.instance!
-    }
-    
-    /**
     No initialisation outside of this class, this is a singleton
     */
-    private override init() {
+    override init() {
         super.init()
         
         mNevoBT = NevoBTImpl(externalDelegate: self, acceptableDevice: NevoProfile())

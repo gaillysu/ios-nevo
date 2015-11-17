@@ -31,7 +31,7 @@ class Page4Controller: UIViewController,ButtonActionCallBack,SyncControllerDeleg
 
         if sender.isEqual(pagesView.getConnectButton()) {
 
-            let isConnectedBool:Bool = ConnectionControllerImpl.sharedInstance.isConnected()
+            let isConnectedBool:Bool = AppDelegate.getAppDelegate().getMconnectionController().isConnected()
             if(isConnectedBool) {
                 pagesView.connectSuccessClean()
             } else {

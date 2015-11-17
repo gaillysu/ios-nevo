@@ -46,7 +46,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
             NSUserDefaults.standardUserDefaults().setBool(false, forKey: "firstLaunch")
         }
 
-        mConnectionController = ConnectionControllerImpl.sharedInstance
+        mConnectionController = ConnectionControllerImpl()
         mConnectionController?.setDelegate(self)
 
         return true
@@ -133,6 +133,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
     }
 
     // MARK: -AppDelegate GET Function
+
+    func getMconnectionController()->ConnectionControllerImpl{
+        return mConnectionController!
+    }
 
     func  getDailyTrackerInfo(){
         sendRequest(ReadDailyTrackerInfo())
@@ -357,7 +361,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                         alarm.append(Alarm(index: index,hour: mAlarmhour,minute: mAlarmmin,enable: mAlarmenable))
                     }
                 }
-
                 setAlarm(alarm)
             }
 
@@ -389,82 +392,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
 
                 AppTheme.DLog("Day:\(GmtNSDate2LocaleNSDate(savedDailyHistory[Int(currentDay)].Date)), Hourly Steps:\(savedDailyHistory[Int(currentDay)].HourlySteps)")
 
-                savedDailyHistory[Int(currentDay)].TotalSleepTime = thispacket.getDailySleepTime()
-                savedDailyHistory[Int(currentDay)].HourlySleepTime = thispacket.getHourlySleepTime()
-
-                AppTheme.DLog("Day:\(GmtNSDate2LocaleNSDate(savedDailyHistory[Int(currentDay)].Date)), Daily Sleep time:\(savedDailyHistory[Int(currentDay)].TotalSleepTime)")
-
-                AppTheme.DLog("Day:\(GmtNSDate2LocaleNSDate(savedDailyHistory[Int(currentDay)].Date)), Hourly Sleep time:\(savedDailyHistory[Int(currentDay)].HourlySleepTime)")
-
-                savedDailyHistory[Int(currentDay)].TotalWakeTime = thispacket.getDailyWakeTime()
-                savedDailyHistory[Int(currentDay)].HourlyWakeTime = thispacket.getHourlyWakeTime()
-
-                AppTheme.DLog("Day:\(GmtNSDate2LocaleNSDate(savedDailyHistory[Int(currentDay)].Date)), Daily Wake time:\(savedDailyHistory[Int(currentDay)].TotalWakeTime)")
-
-                AppTheme.DLog("Day:\(GmtNSDate2LocaleNSDate(savedDailyHistory[Int(currentDay)].Date)), Hourly Wake time:\(savedDailyHistory[Int(currentDay)].HourlyWakeTime)")
-
-                savedDailyHistory[Int(currentDay)].TotalLightTime = thispacket.getDailyLightTime()
-                savedDailyHistory[Int(currentDay)].HourlyLightTime = thispacket.getHourlyLightTime()
-
-                AppTheme.DLog("Day:\(GmtNSDate2LocaleNSDate(savedDailyHistory[Int(currentDay)].Date)), Daily light time:\(savedDailyHistory[Int(currentDay)].TotalLightTime)")
-
-                AppTheme.DLog("Day:\(GmtNSDate2LocaleNSDate(savedDailyHistory[Int(currentDay)].Date)), Hourly light time:\(savedDailyHistory[Int(currentDay)].HourlyLightTime)")
-
-                savedDailyHistory[Int(currentDay)].TotalDeepTime = thispacket.getDailyDeepTime()
-                savedDailyHistory[Int(currentDay)].HourlyDeepTime = thispacket.getHourlyDeepTime()
-
-                AppTheme.DLog("Day:\(GmtNSDate2LocaleNSDate(savedDailyHistory[Int(currentDay)].Date)), Daily deep time:\(savedDailyHistory[Int(currentDay)].TotalDeepTime)")
-
-                AppTheme.DLog("Day:\(GmtNSDate2LocaleNSDate(savedDailyHistory[Int(currentDay)].Date)), Hourly deep time:\(savedDailyHistory[Int(currentDay)].HourlyDeepTime)")
-
-                savedDailyHistory[Int(currentDay)].TotalDist = thispacket.getDailyDist()
-                savedDailyHistory[Int(currentDay)].TotalCalories = thispacket.getDailyCalories()
-
-                AppTheme.DLog("Day:\(GmtNSDate2LocaleNSDate(savedDailyHistory[Int(currentDay)].Date)), Daily Total Disc (m):\(savedDailyHistory[Int(currentDay)].TotalDist)")
-
-                AppTheme.DLog("Day:\(GmtNSDate2LocaleNSDate(savedDailyHistory[Int(currentDay)].Date)), Daily Total Calories (kcal):\(savedDailyHistory[Int(currentDay)].TotalCalories)")
-
                 //save to health kit
                 let hk = NevoHKImpl()
                 hk.requestPermission()
 
-
                 let now:NSDate = NSDate()
                 let cal:NSCalendar = NSCalendar.currentCalendar()
                 let dd:NSDateComponents = cal.components([NSCalendarUnit.Year, NSCalendarUnit.Month, NSCalendarUnit.Day ,NSCalendarUnit.Hour, NSCalendarUnit.Minute, NSCalendarUnit.Second,], fromDate: now)
-
                 let dd2:NSDateComponents = cal.components([NSCalendarUnit.Year, NSCalendarUnit.Month, NSCalendarUnit.Day ,NSCalendarUnit.Hour, NSCalendarUnit.Minute, NSCalendarUnit.Second,], fromDate: savedDailyHistory[Int(currentDay)].Date)
 
-                // disable write every day 's total steps, only write every day's hourly steps
-                //not save today 's daily steps, due to today not end.
-                /*
-                if !(dd.year == dd2.year && dd.month == dd2.month && dd.day == dd2.day)
-                && savedDailyHistory[Int(currentDay)].TotalSteps > 0
-                {
-                hk.writeDataPoint(DailySteps(numberOfSteps: savedDailyHistory[Int(currentDay)].TotalSteps,date: savedDailyHistory[Int(currentDay)].Date), resultHandler: { (result, error) -> Void in
-                if (result != true) {
-                NSLog("Saved Daily steps error:\(error)")
-                }
-                else
-                {
-                NSLog("Saved Daily steps OK")
-                }
-                })
-                }
-                */
-
-                for (var i:Int = 0; i<savedDailyHistory[Int(currentDay)].HourlySteps.count; i++)
-                {
+                for (var i:Int = 0; i<savedDailyHistory[Int(currentDay)].HourlySteps.count; i++){
                     //only save vaild hourly steps for every day, include today.
                     //exclude update current hour step, due to current hour not end
                     //for example: at 10:20~ 10:25AM, walk 100 steps, 10:50~10:59, walk 300 steps
                     //user can't see the 10:00AM record data at 10:XX clock
                     //user can see 10:00AM data when 11:20 do a big sync, the value should be 400 steps
                     //that is to say, user can't see current hour 's step in healthkit, he can see it by waiting one hour
-
                     if savedDailyHistory[Int(currentDay)].HourlySteps[i] > 0 &&
-                        !(i == dd.hour && dd.year == dd2.year && dd.month == dd2.month && dd.day == dd2.day)
-                    {
+                        !(i == dd.hour && dd.year == dd2.year && dd.month == dd2.month && dd.day == dd2.day){
                         hk.writeDataPoint(HourlySteps(numberOfSteps: savedDailyHistory[Int(currentDay)].HourlySteps[i],date: savedDailyHistory[Int(currentDay)].Date,hour:i,update: false), resultHandler: { (result, error) -> Void in
                             if (result != true) {
                                 AppTheme.DLog("Save Hourly steps error\(i),\(error)")
@@ -477,71 +422,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
 
                 //save sleep data for every hour.
                 //save format: first write wake, then write sleep(light&deep)
-                //example 1: 00:00~ 00:59, wake 10, light sleep 40, deep sleep 10
-                //wake start at 00:00, wake end at 00:10
-                //sleep start at:00:10 sleep end at:00:59
-
-                //example 2: start sleep at 23:12, wake 15, sleep 33,total 48
-                //wake start at:23:12 ,end at 23:27
-                //sleep start at23:27, end at 23:59
-
-                for (var i:Int = 0; i<savedDailyHistory[Int(currentDay)].HourlySleepTime.count; i++)
-                {
-                    let cal: NSCalendar = NSCalendar(calendarIdentifier: NSGregorianCalendar)!
-                    var startDateWake:NSDate?
-                    var endDateWake:NSDate?
-
-                    var startDateSleep:NSDate?
-                    var endDateSleep:NSDate?
-
-                    if savedDailyHistory[Int(currentDay)].HourlySleepTime[i] > 0
-                    {
-                        if(i<=12)
-                        {
-                            startDateWake = cal.dateBySettingHour(i, minute: 0 , second: 0, ofDate: savedDailyHistory[Int(currentDay)].Date, options: NSCalendarOptions())!
-                        }
-                        else
-                        {
-                            startDateWake = cal.dateBySettingHour(i, minute: 60 - savedDailyHistory[Int(currentDay)].HourlySleepTime[i] , second: 0, ofDate: savedDailyHistory[Int(currentDay)].Date, options: NSCalendarOptions())!
-
-                        }
-
-                        if savedDailyHistory[Int(currentDay)].HourlyWakeTime[i] == 60
-                        {
-                            endDateWake = startDateWake!.dateByAddingTimeInterval( NSTimeInterval((savedDailyHistory[Int(currentDay)].HourlyWakeTime[i] - 1 )*60))
-                        }
-                        else
-                        {
-                            endDateWake = startDateWake!.dateByAddingTimeInterval( NSTimeInterval(savedDailyHistory[Int(currentDay)].HourlyWakeTime[i]*60))
-                        }
-
-                        AppTheme.DLog("wake startDate:\(GmtNSDate2LocaleNSDate(startDateWake!))")
-                        AppTheme.DLog("wake endDate:\(GmtNSDate2LocaleNSDate(endDateWake!))")
-
-                        //save wake time before every hour
-                        if savedDailyHistory[Int(currentDay)].HourlyWakeTime[i] > 0{
-
-                        }
-
-                        //save sleep time after wake time, include light/deep sleep time
-                        if(savedDailyHistory[Int(currentDay)].HourlySleepTime[i] - savedDailyHistory[Int(currentDay)].HourlyWakeTime[i] > 0){
-                            startDateSleep =  endDateWake
-                            if savedDailyHistory[Int(currentDay)].HourlySleepTime[i] - savedDailyHistory[Int(currentDay)].HourlyWakeTime[i] == 60
-                            {
-                                endDateSleep = startDateSleep!.dateByAddingTimeInterval( NSTimeInterval((savedDailyHistory[Int(currentDay)].HourlySleepTime[i] - savedDailyHistory[Int(currentDay)].HourlyWakeTime[i] - 1)*60))
-                            }
-                            else
-                            {
-                                endDateSleep = startDateSleep!.dateByAddingTimeInterval( NSTimeInterval((savedDailyHistory[Int(currentDay)].HourlySleepTime[i] - savedDailyHistory[Int(currentDay)].HourlyWakeTime[i])*60))
-                            }
-
-                            AppTheme.DLog("sleep startDate:\(GmtNSDate2LocaleNSDate(startDateSleep!))")
-                            AppTheme.DLog("sleep endDate:\(GmtNSDate2LocaleNSDate(endDateSleep!))")
-
-                        }
-                    }
-                }
-
                 let today:NSDate  = NSDate()
                 let dateFormatter:NSDateFormatter = NSDateFormatter()
                 dateFormatter.dateFormat = "yyyyMMdd"
@@ -565,7 +445,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                     }
                 }
 
-                var daysleepSave:DaySleepSaveModel = DaySleepSaveModel()
+                let daysleepSave:DaySleepSaveModel = DaySleepSaveModel()
                 daysleepSave.steps = thispacket.getDailySteps()
                 daysleepSave.created = thispacket.getDateTimer()
                 daysleepSave.HourlySleepTime = AppTheme.toJSONString(thispacket.getHourlySleepTime())
@@ -588,15 +468,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                     }
                 }
 
-
                 //end save
                 currentDay++
-                if(currentDay < UInt8(savedDailyHistory.count))
-                {
+                if(currentDay < UInt8(savedDailyHistory.count)){
                     self.getDailyTracker(currentDay)
-                }
-                else
-                {
+                }else{
                     currentDay = 0
                     self.syncFinished()
                     for delegate in mDelegates {
@@ -605,31 +481,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                 }
             }
 
-            if(packet.getHeader() == GetStepsGoalRequest.HEADER())
-            {
+            if(packet.getHeader() == GetStepsGoalRequest.HEADER()) {
                 var thispacket = packet.copy() as DailyStepsNevoPacket
-
                 //refresh current hourly steps changing in the healthkit
-                /*
-                currentDay = 0
-                savedDailyHistory = []
-                savedDailyHistory.append(NevoPacket.DailyHistory(TotalSteps: 0, HourlySteps: [], Date:NSDate()))
-                self.getDailyTracker(currentDay)
-                */
-
-                /*
-                //remove real time count steps to healthkit
-                var hk = NevoHKImpl()
-                hk.requestPermission()
-
-                hk.writeDataPoint(RealTimeCountSteps(numberOfSteps: packet.getDailySteps() - RealTimeCountSteps.getLastNumberOfSteps(),date: RealTimeCountSteps.getLastDate()), resultHandler: { (result, error) -> Void in
-                if (result != true) {
-                NSLog("\(error)")
-                }
-                RealTimeCountSteps.setLastNumberOfSteps(packet.getDailySteps())
-                RealTimeCountSteps.setLastDate(NSDate())
-                })
-                */
                 
             }
             

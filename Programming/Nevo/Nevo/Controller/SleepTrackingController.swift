@@ -34,7 +34,7 @@ class SleepTrackingController: UIViewController, SyncControllerDelegate ,ButtonM
 
     override func viewDidAppear(animated: Bool) {
         //todaySleepArray: sync!.GET_TodaySleepData()
-        if !ConnectionControllerImpl.sharedInstance.hasSavedAddress() {
+        if !AppDelegate.getAppDelegate().getMconnectionController().hasSavedAddress() {
             AppTheme.DLog("No saved device, let's launch the tutorial")
         } else {
             AppTheme.DLog("We have a saved address, no need to go through the tutorial")

@@ -71,7 +71,7 @@ class AidOtaController : NSObject,ConnectionControllerDelegate {
 
         dfuResponse = DFUResponse(responseCode: 0,requestedCode: 0,responseStatus: 0)
         mDelegate = controller as? NevoOtaControllerDelegate
-        mConnectionController = ConnectionControllerImpl.sharedInstance
+        mConnectionController = AppDelegate.getAppDelegate().getMconnectionController()
         super.init()
         mConnectionController?.setDelegate(self)
 
