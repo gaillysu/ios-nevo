@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "NevoDBHelper.h"
 
 /** SQLite五种数据类型 */
 #define SQLTEXT     @"TEXT"

@@ -10,4 +10,14 @@ import UIKit
 
 class HealthModel: NSObject {
 
+    var id:Int = 0
+    var userId:Int = 0
+    var date:NSDate = NSDate()
+    var createdDate:NSDate = NSDate()
+    var maxHRM:Int = 0
+    var avgHRM:Int = 0
+
+    override init() {
+
+    }
 }

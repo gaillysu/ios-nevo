@@ -7,7 +7,6 @@
 //
 
 #import "NevoDBModel.h"
-#import "NevoDBHelper.h"
 
 #import <objc/runtime.h>
 

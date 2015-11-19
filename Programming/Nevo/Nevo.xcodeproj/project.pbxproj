@@ -676,8 +676,8 @@
 				00828C171BFC17E300194032 /* NevoDBHelper.m */,
 				00828C181BFC17E300194032 /* NevoDBModel.h */,
 				00828C191BFC17E300194032 /* NevoDBModel.m */,
-				00828C1A1BFC17E300194032 /* UserDatabaseHelper.swift */,
 				00828C151BFC17E300194032 /* BaseEntryDatabaseHelper.swift */,
+				00828C1A1BFC17E300194032 /* UserDatabaseHelper.swift */,
 			);
 			path = DBHelper;
 			sourceTree = "<group>";
