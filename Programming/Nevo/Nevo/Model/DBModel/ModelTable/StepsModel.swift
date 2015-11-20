@@ -8,7 +8,7 @@
 
 import UIKit
 
-class StepsModel: NSObject {
+class StepsModel: UserDatabaseHelper {
     var Id:Int = 0
     var Userid:Int = 0
     var Steps:Int = 0

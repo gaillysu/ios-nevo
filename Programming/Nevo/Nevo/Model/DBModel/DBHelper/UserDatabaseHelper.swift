@@ -12,6 +12,11 @@ import UIKit
 
 class UserDatabaseHelper: NevoDBModel,BaseEntryDatabaseHelper {
 
+    /**
+     Insert a table fields
+
+     :returns: Insert results，YES or NO
+     */
     func add()->Bool{
         var tableName:NSString = NSStringFromClass(self.classForCoder);
         tableName = tableName.stringByReplacingOccurrencesOfString(".", withString: "")
@@ -42,7 +47,7 @@ class UserDatabaseHelper: NevoDBModel,BaseEntryDatabaseHelper {
             let sql:NSString = NSString(format: "INSERT INTO %@(%@) VALUES (%@);", tableName, keyString, valueString)
             res = db.executeUpdate("\(sql)", withArgumentsInArray: insertValues as [AnyObject])
             self.pk = res ? NSNumber(longLong: db.lastInsertRowId()).intValue : 0
-            NSLog("\(res ? "插入成功 " : "插入失败")");
+            NSLog("\(res ? "Insert success" : "Insert failed")");
         }
         return res;
     }
@@ -76,20 +81,19 @@ class UserDatabaseHelper: NevoDBModel,BaseEntryDatabaseHelper {
                 }
                 updateValues.addObject(value!)
             }
-            //删除最后那个逗号
             keyString.deleteCharactersInRange(NSMakeRange(keyString.length - 1, 1))
             let sql:NSString = NSString(format: "UPDATE %@ SET %@ WHERE %@ = ?;", tableName, keyString, primaryId)
             updateValues.addObject(primaryValue!)
             res = db.executeUpdate(sql as String, withArgumentsInArray: updateValues as [AnyObject])
-            NSLog("\(res ? "更新成功" : "更新失败")");
+            NSLog("\(res ? "Update Success" : "Update failed")");
         }
         return res
     }
 
     /**
-     To delete a table
+     Delete all of the fields but reserved table
 
-     :returns: Delete the result
+     @param returns Delete the result
      */
     func remove()->Bool{
         let nevoDB:NevoDBHelper = NevoDBHelper.shareInstance()
@@ -103,16 +107,76 @@ class UserDatabaseHelper: NevoDBModel,BaseEntryDatabaseHelper {
             }
             let sql:String = "DELETE FROM \(tableName) WHERE \(primaryId) = ?"
             res = db.executeUpdate(sql, withArgumentsInArray: [primaryValue!])
-            NSLog("\(res ? "删除成功" : "删除失败")");
+            NSLog("\(res ? "Delete the success" : "Delete failed")");
         }
         return res;
     }
 
-    func get(criteria:String)->NSArray {
-        return NSArray();
+    /**
+     Static lookup function according to conditions
+
+     @param criteria To find the condition
+     @param returns Returns the find results
+     */
+     class func getCriteria(criteria:String)->NSArray {
+        let nevoDB:NevoDBHelper = NevoDBHelper.shareInstance()
+        let users:NSMutableArray = NSMutableArray()
+        nevoDB.dbQueue.inDatabase { (db) -> Void in
+            var tableName:String =  NSStringFromClass(self.classForCoder())
+            tableName = tableName.stringByReplacingOccurrencesOfString(".", withString: "")
+            let sql:String = "SELECT * FROM \(tableName) \(criteria)"
+            let resultSet:FMResultSet = db.executeQuery(sql, withArgumentsInArray: nil)
+            while (resultSet.next()) {
+                let classType: AnyObject.Type = self.classForCoder()
+                let nsobjectype : NevoDBModel.Type = classType as! NevoDBModel.Type
+                let model:NevoDBModel = nsobjectype.init()
+
+                for (var i:Int = 0; i < model.columeNames.count; i++) {
+                    let columeName:NSString = (model.columeNames.objectAtIndex(i) as! NSString)
+                    let columeType:NSString = (model.columeTypes.objectAtIndex(i) as! NSString)
+                    if (columeType.isEqualToString(SQLTEXT)) {
+                        model.setValue(resultSet.stringForColumn("\(columeName)"), forKey: "\(columeName)")
+                    } else {
+                        model.setValue(NSNumber(longLong: Int64(columeName.integerValue)), forKey: "\(columeName)")
+                    }
+                }
+                users.addObject(model)
+            }
+        }
+        return users;
     }
 
-    func getAll()->NSArray{
-        return NSArray()
+    /**
+     Lookup table all field data
+
+     :returns: Returns the query to the data
+     */
+    class func getAll()->NSArray{
+        let nevoDB:NevoDBHelper = NevoDBHelper.shareInstance()
+        let users:NSMutableArray = NSMutableArray()
+        nevoDB.dbQueue.inDatabase { (db) -> Void in
+            var tableName:NSString = NSStringFromClass(self.classForCoder())
+            tableName = tableName.stringByReplacingOccurrencesOfString(".", withString: "")
+            let sql:String = "SELECT * FROM \(tableName)"
+            let resultSet:FMResultSet = db.executeQuery(sql, withArgumentsInArray: nil)
+            while (resultSet.next()) {
+                let classType: AnyObject.Type = self.classForCoder()
+                let nsobjectype : NevoDBModel.Type = classType as! NevoDBModel.Type
+                let model:NevoDBModel = nsobjectype.init()
+
+                for (var i:Int = 0; i < model.columeNames.count; i++) {
+                    let columeName:NSString = model.columeNames.objectAtIndex(i) as! NSString
+                    let columeType:NSString = model.columeTypes.objectAtIndex(i) as! NSString
+                    if (columeType.isEqualToString(SQLTEXT)) {
+                        model.setValue(resultSet.stringForColumn("\(columeName)"), forKey: "\(columeName)")
+                    } else {
+                        model.setValue(NSNumber(longLong: Int64(columeName.integerValue)), forKey: "\(columeName)")
+                    }
+                }
+                users.addObject(model)
+            }
+
+        }
+        return users;
     }
 }

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class UserModel: NSObject {
+class UserModel: UserDatabaseHelper {
     var id:Int = 0
     var birfhday:NSDate = NSDate()
     var age:Int = 0

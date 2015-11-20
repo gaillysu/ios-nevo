@@ -12,6 +12,6 @@ protocol BaseEntryDatabaseHelper {
     func add()->Bool
     func update()->Bool
     func remove()->Bool
-    func get(criteria:String)->NSArray
-    func getAll()->NSArray
+    static func getCriteria(criteria:String)->NSArray
+    static func getAll()->NSArray
 }

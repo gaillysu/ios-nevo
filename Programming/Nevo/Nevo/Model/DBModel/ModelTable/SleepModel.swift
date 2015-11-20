@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SleepModel: NSObject {
+class SleepModel: UserDatabaseHelper {
 
     var Id:Int = 0
     var UserId:Int = 0

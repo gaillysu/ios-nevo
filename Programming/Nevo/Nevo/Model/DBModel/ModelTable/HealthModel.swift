@@ -8,7 +8,7 @@
 
 import UIKit
 
-class HealthModel: NSObject {
+class HealthModel: UserDatabaseHelper {
 
     var id:Int = 0
     var userId:Int = 0
