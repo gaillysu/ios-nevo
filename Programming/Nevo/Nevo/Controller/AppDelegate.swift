@@ -455,6 +455,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
 
                 AppTheme.DLog("---------------\(thispacket.getDateTimer())")
 
+                /**
+                 //Test the new database writing situation
+                let sleepSave:SleepModel = SleepModel()
+                sleepSave.Id = 123
+                sleepSave.UserId = 56789
+                sleepSave.TotalSleepTime = 122
+                sleepSave.HourlySleepTime = AppTheme.toJSONString(thispacket.getHourlySleepTime()) as String
+                sleepSave.TotalWakeTime = 123
+                sleepSave.HourlyWakeTime = AppTheme.toJSONString(thispacket.getHourlyWakeTime()) as String
+                sleepSave.TotalLightTime = 124
+                sleepSave.HourlyLightTime = AppTheme.toJSONString(thispacket.getHourlyLightTime()) as String
+                sleepSave.TotalDeepTime = 125
+                sleepSave.HourlyDeepTime = AppTheme.toJSONString(thispacket.getHourlyDeepTime()) as String
+                if(SleepModel.isExistInTable()){
+                    let ave:Bool = sleepSave.add()
+                }else{
+                    let ave:Bool = sleepSave.add()
+                }
+                 */
+
                 //Query the database is this record
                 let quyerModel = DaySleepSaveModel.findFirstByCriteria("WHERE created = \(thispacket.getDateTimer())")
                 if(quyerModel != nil){
