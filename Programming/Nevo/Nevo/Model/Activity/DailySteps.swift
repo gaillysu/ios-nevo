@@ -24,7 +24,7 @@ class DailySteps : NevoHKDataPoint {
         //Here, we normalise the date
         //It's a daily data point, so we normalise it to midnight
         
-        let cal: NSCalendar = NSCalendar(calendarIdentifier: NSGregorianCalendar)!
+        let cal: NSCalendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)!
         
         mDate = cal.dateBySettingHour(0, minute: 0, second: 0, ofDate: date, options: NSCalendarOptions())!
         //A daily data point if from 00AM to 23:59:59

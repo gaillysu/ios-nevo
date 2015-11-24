@@ -402,13 +402,9 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
                                     {
                                         mPeripheral?.writeValue(request.getRawData(),forCharacteristic:charac,type:CBCharacteristicWriteType.WithoutResponse)
                                     }
-                                }
-                                else
-                                {
-                                    var data:NSData!
+                                }else{
                                     for data in request.getRawDataEx() {
                                         AppTheme.DLog("Request raw data Ex:\(data)")
-                                        
                                         mPeripheral?.writeValue(data as! NSData,forCharacteristic:charac,type:CBCharacteristicWriteType.WithoutResponse)
                                     }
                                 }

@@ -18,7 +18,7 @@ class HourlySteps : NevoHKDataPoint {
     init(numberOfSteps:Int, date:NSDate,hour:Int,update:Bool) {
         mNumberOfSteps=numberOfSteps
         mUpdate = update
-        let cal: NSCalendar = NSCalendar(calendarIdentifier: NSGregorianCalendar)!
+        let cal: NSCalendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)!
         
         mDate = cal.dateBySettingHour(hour, minute: 0, second: 0, ofDate: date, options: NSCalendarOptions())!
         //A hourly data point if from hh:00:00 to hh:59:59
