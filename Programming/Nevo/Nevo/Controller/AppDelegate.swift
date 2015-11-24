@@ -10,6 +10,9 @@ import UIKit
 import CoreData
 import HealthKit
 
+let nevoDBDFileURL:String = "nevoDBName";
+let nevoDBNames:String = "nevo.sqlite";
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelegate {
 
@@ -27,6 +30,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
 
     private var todaySleepData:NSMutableArray = NSMutableArray(capacity: 2)
     private var disConnectAlert:UIAlertView?
+
+
+    let dbQueue:FMDatabaseQueue = FMDatabaseQueue(path: AppDelegate.dbPath())
 
     class func getAppDelegate()->AppDelegate {
         return UIApplication.sharedApplication().delegate as! AppDelegate
@@ -82,6 +88,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
             disConnectAlert = UIAlertView(title: NSLocalizedString("BLE_LOST_TITLE", comment: ""), message: NSLocalizedString("BLE_CONNECTION_LOST", comment: ""), delegate: nil, cancelButtonTitle: NSLocalizedString("ok", comment: ""))
             disConnectAlert?.show()
         }
+    }
+
+    // MARK: -dbPath
+    class func dbPath()->String{
+        var docsdir:String = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true).last!
+        let filemanage:NSFileManager = NSFileManager.defaultManager()
+        //nevoDBDFileURL
+        docsdir = docsdir.stringByAppendingFormat("%@%@", "/",nevoDBDFileURL)
+        var isDir : ObjCBool = false
+        let exit:Bool = filemanage.fileExistsAtPath(docsdir, isDirectory:&isDir )
+        if (!exit || !isDir) {
+            do{
+                try filemanage.createDirectoryAtPath(docsdir, withIntermediateDirectories: true, attributes: nil)
+            }catch let error as NSError{
+                NSLog("failed: \(error.localizedDescription)")
+            }
+        }
+        let dbpath:String = docsdir.stringByAppendingString(nevoDBNames)
+        return dbpath;
     }
 
     // MARK: -AppDelegate SET Function
@@ -455,7 +480,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
 
                 AppTheme.DLog("---------------\(thispacket.getDateTimer())")
 
-                /**
+
                  //Test the new database writing situation
                 let sleepSave:SleepModel = SleepModel()
                 sleepSave.Id = 123
@@ -469,11 +494,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                 sleepSave.TotalDeepTime = 125
                 sleepSave.HourlyDeepTime = AppTheme.toJSONString(thispacket.getHourlyDeepTime()) as String
                 if(SleepModel.isExistInTable()){
-                    let ave:Bool = sleepSave.add()
+                    let ave:Bool = sleepSave.update()
+
+
                 }else{
                     let ave:Bool = sleepSave.add()
                 }
-                 */
+
+
 
                 //Query the database is this record
                 let quyerModel = DaySleepSaveModel.findFirstByCriteria("WHERE created = \(thispacket.getDateTimer())")

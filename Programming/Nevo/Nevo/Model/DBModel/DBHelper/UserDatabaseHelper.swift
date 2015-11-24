@@ -29,14 +29,14 @@ class UserDatabaseHelper:NSObject,BaseEntryDatabaseHelper {
     var columeTypes:NSMutableArray = NSMutableArray();
 
     override class func initialize() {
-        if (self !== NevoDBModel.self) {
+        if (self !== UserDatabaseHelper.self) {
             self.createTable()
         }
     }
 
     override init() {
         super.init()
-        let dic:NSDictionary = UserDatabaseHelper.getAllProperties()
+        let dic:NSDictionary = self.classForCoder.getAllProperties()
         columeNames = NSMutableArray(array: dic.objectForKey("name") as! NSArray)
         columeTypes = NSMutableArray(array: dic.objectForKey("type") as! NSArray)
     }
@@ -46,13 +46,13 @@ class UserDatabaseHelper:NSObject,BaseEntryDatabaseHelper {
     * 如果已经创建，返回YES
     */
     private class func createTable()->Bool {
-        let db:FMDatabase = FMDatabase(path: NevoDBHelper.dbPath())
+        let db:FMDatabase = FMDatabase(path: AppDelegate.dbPath())
         if (!db.open()) {
             NSLog("数据库打开失败!");
             return false;
         }
 
-        var tableName:NSString = NSStringFromClass(self);
+        var tableName:NSString = NSStringFromClass(self.classForCoder());
         tableName = tableName.stringByReplacingOccurrencesOfString(".", withString: "")
         let columeAndType:NSString = self.getColumeAndTypeString()
         let sql:NSString = NSString(format: "CREATE TABLE IF NOT EXISTS %@(%@);", tableName,columeAndType)
@@ -107,7 +107,7 @@ class UserDatabaseHelper:NSObject,BaseEntryDatabaseHelper {
     }
 
     /** 获取所有属性，包含主键pk */
-    private class func getAllProperties()->NSDictionary {
+    class func getAllProperties()->NSDictionary {
         let dict:NSDictionary = self.getPropertys()
         let proNames:NSMutableArray = NSMutableArray()
         let proTypes:NSMutableArray = NSMutableArray()
@@ -162,14 +162,13 @@ class UserDatabaseHelper:NSObject,BaseEntryDatabaseHelper {
         }
         free(properties)
         return NSDictionary(dictionary: ["name":proNames,"type":proTypes])
-            //NSDictionary.dictionaryWithValuesForKeys(["name":proNames,"type":proTypes])
     }
 
     /** 数据库中是否存在表 */
     class func isExistInTable()->Bool {
         var res:Bool = false
-        let nevoDB:NevoDBHelper = NevoDBHelper.shareInstance()
-        nevoDB.dbQueue.inDatabase { (db) -> Void in
+        let dbQueue:FMDatabaseQueue = AppDelegate.getAppDelegate().dbQueue
+        dbQueue.inDatabase { (db) -> Void in
             var tableName:NSString = NSStringFromClass(self);
             tableName = tableName.stringByReplacingOccurrencesOfString(".", withString: "")
             res = db.tableExists("\(tableName)")
@@ -213,13 +212,13 @@ class UserDatabaseHelper:NSObject,BaseEntryDatabaseHelper {
         keyString.deleteCharactersInRange(NSMakeRange(keyString.length - 1, 1))
         valueString.deleteCharactersInRange(NSMakeRange(valueString.length - 1, 1))
 
-        let nevoDB:NevoDBHelper = NevoDBHelper.shareInstance()
+        let dbQueue:FMDatabaseQueue = AppDelegate.getAppDelegate().dbQueue
         var res:Bool = false
-        nevoDB.dbQueue.inDatabase { (db) -> Void in
+        dbQueue.inDatabase { (db) -> Void in
             let sql:NSString = NSString(format: "INSERT INTO %@(%@) VALUES (%@);", tableName, keyString, valueString)
             res = db.executeUpdate("\(sql)", withArgumentsInArray: insertValues as [AnyObject])
             self.pk = res ? NSNumber(longLong: db.lastInsertRowId()).integerValue : 0
-            NSLog("\(res ? "Insert success" : "Insert failed")");
+            AppTheme.DLog("\(res ? "Insert success" : "Insert failed"),SQL:\(sql)");
         }
         return res;
     }
@@ -230,9 +229,9 @@ class UserDatabaseHelper:NSObject,BaseEntryDatabaseHelper {
      :returns: update the result ，YES or NO
      */
     func update()->Bool{
-        let nevoDB:NevoDBHelper = NevoDBHelper.shareInstance();
+        let dbQueue:FMDatabaseQueue = AppDelegate.getAppDelegate().dbQueue
         var res:Bool = false;
-        nevoDB.dbQueue.inDatabase { (let db) -> Void in
+        dbQueue.inDatabase { (let db) -> Void in
             var tableName:NSString = NSStringFromClass(self.classForCoder);
             tableName = tableName.stringByReplacingOccurrencesOfString(".", withString: "")
             let primaryValue = self.valueForKey(primaryId)
@@ -268,9 +267,9 @@ class UserDatabaseHelper:NSObject,BaseEntryDatabaseHelper {
      @param returns Delete the result
      */
     func remove()->Bool{
-        let nevoDB:NevoDBHelper = NevoDBHelper.shareInstance()
+        let dbQueue:FMDatabaseQueue = AppDelegate.getAppDelegate().dbQueue
         var res:Bool = false
-        nevoDB.dbQueue.inDatabase { (db) -> Void in
+        dbQueue.inDatabase { (db) -> Void in
             var tableName:NSString = NSStringFromClass(self.classForCoder);
             tableName = tableName.stringByReplacingOccurrencesOfString(".", withString: "")
             let primaryValue = self.valueForKey(primaryId)
@@ -291,17 +290,17 @@ class UserDatabaseHelper:NSObject,BaseEntryDatabaseHelper {
      @param returns Returns the find results
      */
      class func getCriteria(criteria:String)->NSArray {
-        let nevoDB:NevoDBHelper = NevoDBHelper.shareInstance()
+        let dbQueue:FMDatabaseQueue = AppDelegate.getAppDelegate().dbQueue
         let users:NSMutableArray = NSMutableArray()
-        nevoDB.dbQueue.inDatabase { (db) -> Void in
+        dbQueue.inDatabase { (db) -> Void in
             var tableName:String =  NSStringFromClass(self.classForCoder())
             tableName = tableName.stringByReplacingOccurrencesOfString(".", withString: "")
             let sql:String = "SELECT * FROM \(tableName) \(criteria)"
             let resultSet:FMResultSet = db.executeQuery(sql, withArgumentsInArray: nil)
             while (resultSet.next()) {
-                let classType: AnyObject.Type = self.classForCoder()
-                let nsobjectype : NevoDBModel.Type = classType as! NevoDBModel.Type
-                let model:NevoDBModel = nsobjectype.init()
+                //let classType: AnyObject.Type = self.classForCoder()
+                //let nsobjectype : UserDatabaseHelper.Type = classType as! UserDatabaseHelper.Type
+                let model:UserDatabaseHelper = UserDatabaseHelper()
 
                 for (var i:Int = 0; i < model.columeNames.count; i++) {
                     let columeName:NSString = (model.columeNames.objectAtIndex(i) as! NSString)
@@ -324,17 +323,17 @@ class UserDatabaseHelper:NSObject,BaseEntryDatabaseHelper {
      :returns: Returns the query to the data
      */
     class func getAll()->NSArray{
-        let nevoDB:NevoDBHelper = NevoDBHelper.shareInstance()
+        let dbQueue:FMDatabaseQueue = AppDelegate.getAppDelegate().dbQueue
         let users:NSMutableArray = NSMutableArray()
-        nevoDB.dbQueue.inDatabase { (db) -> Void in
+        dbQueue.inDatabase { (db) -> Void in
             var tableName:NSString = NSStringFromClass(self.classForCoder())
             tableName = tableName.stringByReplacingOccurrencesOfString(".", withString: "")
             let sql:String = "SELECT * FROM \(tableName)"
             let resultSet:FMResultSet = db.executeQuery(sql, withArgumentsInArray: nil)
             while (resultSet.next()) {
-                let classType: AnyObject.Type = self.classForCoder()
-                let nsobjectype : NevoDBModel.Type = classType as! NevoDBModel.Type
-                let model:NevoDBModel = nsobjectype.init()
+                //let classType: AnyObject.Type = self.classForCoder()
+                //let nsobjectype : NevoDBModel.Type = classType as! NevoDBModel.Type
+                let model:UserDatabaseHelper = UserDatabaseHelper()
 
                 for (var i:Int = 0; i < model.columeNames.count; i++) {
                     let columeName:NSString = model.columeNames.objectAtIndex(i) as! NSString

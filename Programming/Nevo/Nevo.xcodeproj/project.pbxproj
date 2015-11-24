@@ -60,10 +60,7 @@
 		007F799C1A878D0B006C89E6 /* Raleway-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 007F79861A878D0B006C89E6 /* Raleway-ThinItalic.ttf */; };
 		007F799D1A878D0B006C89E6 /* SIL Open Font License.txt in Resources */ = {isa = PBXBuildFile; fileRef = 007F79871A878D0B006C89E6 /* SIL Open Font License.txt */; };
 		00828C1D1BFC17E300194032 /* BaseEntryDatabaseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00828C151BFC17E300194032 /* BaseEntryDatabaseHelper.swift */; };
-		00828C1E1BFC17E300194032 /* NevoDBHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 00828C171BFC17E300194032 /* NevoDBHelper.m */; };
-		00828C1F1BFC17E300194032 /* NevoDBModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 00828C191BFC17E300194032 /* NevoDBModel.m */; };
 		00828C201BFC17E300194032 /* UserDatabaseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00828C1A1BFC17E300194032 /* UserDatabaseHelper.swift */; };
-		00828C211BFC17E300194032 /* DaySleepSaveModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00828C1C1BFC17E300194032 /* DaySleepSaveModel.swift */; };
 		00828C231BFC180A00194032 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00828C221BFC180A00194032 /* UserModel.swift */; };
 		00828C251BFC19CD00194032 /* StepsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00828C241BFC19CD00194032 /* StepsModel.swift */; };
 		00828C271BFC19E700194032 /* SleepModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00828C261BFC19E700194032 /* SleepModel.swift */; };
@@ -78,6 +75,9 @@
 		00B427341AC50AAE00787C58 /* TableListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00B427311AC50AAE00787C58 /* TableListCell.xib */; };
 		00BA73E01BA84FF200321496 /* AidOtaController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00BA73DF1BA84FF200321496 /* AidOtaController.swift */; };
 		00BA73E21BA853BC00321496 /* AidOtaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00BA73E11BA853BC00321496 /* AidOtaViewController.swift */; };
+		00C1B4A01C045F8A00B902F4 /* DaySleepSaveModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C1B49F1C045F8A00B902F4 /* DaySleepSaveModel.swift */; };
+		00C1B4A51C045F9400B902F4 /* NevoDBHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 00C1B4A21C045F9400B902F4 /* NevoDBHelper.m */; };
+		00C1B4A61C045F9400B902F4 /* NevoDBModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 00C1B4A41C045F9400B902F4 /* NevoDBModel.m */; };
 		00C30AD91A89E08600C9F67B /* Page4Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C30AD81A89E08600C9F67B /* Page4Controller.swift */; };
 		00C30ADB1A89FC8200C9F67B /* ButtonCallBack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C30ADA1A89FC8200C9F67B /* ButtonCallBack.swift */; };
 		00C640F41A8D9F4500815CF8 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C640F31A8D9F4500815CF8 /* MainTabBarController.swift */; };
@@ -316,12 +316,7 @@
 		007F79861A878D0B006C89E6 /* Raleway-ThinItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-ThinItalic.ttf"; sourceTree = "<group>"; };
 		007F79871A878D0B006C89E6 /* SIL Open Font License.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "SIL Open Font License.txt"; sourceTree = "<group>"; };
 		00828C151BFC17E300194032 /* BaseEntryDatabaseHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseEntryDatabaseHelper.swift; sourceTree = "<group>"; };
-		00828C161BFC17E300194032 /* NevoDBHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NevoDBHelper.h; sourceTree = "<group>"; };
-		00828C171BFC17E300194032 /* NevoDBHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NevoDBHelper.m; sourceTree = "<group>"; };
-		00828C181BFC17E300194032 /* NevoDBModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NevoDBModel.h; sourceTree = "<group>"; };
-		00828C191BFC17E300194032 /* NevoDBModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NevoDBModel.m; sourceTree = "<group>"; };
 		00828C1A1BFC17E300194032 /* UserDatabaseHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDatabaseHelper.swift; sourceTree = "<group>"; };
-		00828C1C1BFC17E300194032 /* DaySleepSaveModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DaySleepSaveModel.swift; sourceTree = "<group>"; };
 		00828C221BFC180A00194032 /* UserModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		00828C241BFC19CD00194032 /* StepsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepsModel.swift; sourceTree = "<group>"; };
 		00828C261BFC19E700194032 /* SleepModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SleepModel.swift; sourceTree = "<group>"; };
@@ -344,6 +339,11 @@
 		00B427311AC50AAE00787C58 /* TableListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TableListCell.xib; sourceTree = "<group>"; };
 		00BA73DF1BA84FF200321496 /* AidOtaController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AidOtaController.swift; sourceTree = "<group>"; };
 		00BA73E11BA853BC00321496 /* AidOtaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AidOtaViewController.swift; sourceTree = "<group>"; };
+		00C1B49F1C045F8A00B902F4 /* DaySleepSaveModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DaySleepSaveModel.swift; sourceTree = "<group>"; };
+		00C1B4A11C045F9400B902F4 /* NevoDBHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NevoDBHelper.h; sourceTree = "<group>"; };
+		00C1B4A21C045F9400B902F4 /* NevoDBHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NevoDBHelper.m; sourceTree = "<group>"; };
+		00C1B4A31C045F9400B902F4 /* NevoDBModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NevoDBModel.h; sourceTree = "<group>"; };
+		00C1B4A41C045F9400B902F4 /* NevoDBModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NevoDBModel.m; sourceTree = "<group>"; };
 		00C30AD81A89E08600C9F67B /* Page4Controller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Page4Controller.swift; sourceTree = "<group>"; };
 		00C30ADA1A89FC8200C9F67B /* ButtonCallBack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ButtonCallBack.swift; path = View/Tutorial/ButtonCallBack.swift; sourceTree = "<group>"; };
 		00C640F31A8D9F4500815CF8 /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainTabBarController.swift; path = Controller/MainTabBarController.swift; sourceTree = "<group>"; };
@@ -672,10 +672,10 @@
 		00828C141BFC17E300194032 /* DBHelper */ = {
 			isa = PBXGroup;
 			children = (
-				00828C161BFC17E300194032 /* NevoDBHelper.h */,
-				00828C171BFC17E300194032 /* NevoDBHelper.m */,
-				00828C181BFC17E300194032 /* NevoDBModel.h */,
-				00828C191BFC17E300194032 /* NevoDBModel.m */,
+				00C1B4A11C045F9400B902F4 /* NevoDBHelper.h */,
+				00C1B4A21C045F9400B902F4 /* NevoDBHelper.m */,
+				00C1B4A31C045F9400B902F4 /* NevoDBModel.h */,
+				00C1B4A41C045F9400B902F4 /* NevoDBModel.m */,
 				00828C151BFC17E300194032 /* BaseEntryDatabaseHelper.swift */,
 				00828C1A1BFC17E300194032 /* UserDatabaseHelper.swift */,
 			);
@@ -685,7 +685,7 @@
 		00828C1B1BFC17E300194032 /* ModelTable */ = {
 			isa = PBXGroup;
 			children = (
-				00828C1C1BFC17E300194032 /* DaySleepSaveModel.swift */,
+				00C1B49F1C045F8A00B902F4 /* DaySleepSaveModel.swift */,
 				00828C221BFC180A00194032 /* UserModel.swift */,
 				00828C241BFC19CD00194032 /* StepsModel.swift */,
 				00828C261BFC19E700194032 /* SleepModel.swift */,
@@ -1462,7 +1462,6 @@
 				005350BA1A8B4BC600BF289D /* StepGoalSetingController.swift in Sources */,
 				00DC9EF21BB2853D00734DB6 /* RadarChartRenderer.swift in Sources */,
 				00828C251BFC19CD00194032 /* StepsModel.swift in Sources */,
-				00828C1E1BFC17E300194032 /* NevoDBHelper.m in Sources */,
 				9A9BD1C81A88C0A400A95ACA /* TutorialScanPageView.swift in Sources */,
 				00DC9EF91BB2853D00734DB6 /* ChartUtils.swift in Sources */,
 				00DC9EC31BB2853D00734DB6 /* CandleChartData.swift in Sources */,
@@ -1483,6 +1482,7 @@
 				00DC9ED41BB2853D00734DB6 /* ChartDataApproximatorFilter.swift in Sources */,
 				00DC9EFB1BB2853D00734DB6 /* UIGraphics+Extensions.swift in Sources */,
 				07CC4A2F1A821B46008DA749 /* NevoOTARequest.swift in Sources */,
+				00C1B4A61C045F9400B902F4 /* NevoDBModel.m in Sources */,
 				00DC9EC01BB2853D00734DB6 /* BubbleChartData.swift in Sources */,
 				00A2287E1AA57F1A00360C36 /* EnterNotificationController.swift in Sources */,
 				00D0FF771B13184500D084C3 /* MyNevoView.swift in Sources */,
@@ -1500,7 +1500,6 @@
 				006B73491A8F7D0B00A7E92F /* AlarmClockController.swift in Sources */,
 				00DC9EB11BB2853D00734DB6 /* PieRadarChartViewBase.swift in Sources */,
 				9A3B7AAF1A9450D000BDC3C6 /* AppTheme.swift in Sources */,
-				00828C1F1BFC17E300194032 /* NevoDBModel.m in Sources */,
 				9AD8F9751A6E049500F01014 /* NumberOfStepsGoal.swift in Sources */,
 				001818301B044E5D005E9F2D /* Page1Controller.swift in Sources */,
 				07BE0CF21A84A2F8000C4AC7 /* IntelHex2BinConverter.m in Sources */,
@@ -1514,7 +1513,6 @@
 				9AD8F9A01A6E47B400F01014 /* SetGoalRequest.swift in Sources */,
 				00DC9ECD1BB2853D00734DB6 /* LineScatterCandleChartDataSet.swift in Sources */,
 				001719A31AB2EE5300889FED /* SelectFileController.swift in Sources */,
-				00828C211BFC17E300194032 /* DaySleepSaveModel.swift in Sources */,
 				005FE77B1A8C979800961239 /* alarmClockView.swift in Sources */,
 				007A2BCB1BC370B000D4185B /* SleepTrackingController.swift in Sources */,
 				59406DF61AB964B2008619EB /* NotificationSetting.swift in Sources */,
@@ -1572,6 +1570,7 @@
 				00DC9ECA1BB2853D00734DB6 /* LineChartData.swift in Sources */,
 				00DC9EAE1BB2853D00734DB6 /* HorizontalBarChartView.swift in Sources */,
 				9A3E57251A80E56E00DFFAE1 /* NevoProfile.swift in Sources */,
+				00C1B4A51C045F9400B902F4 /* NevoDBHelper.m in Sources */,
 				00DC9EC41BB2853D00734DB6 /* CandleChartDataEntry.swift in Sources */,
 				00DC9ED21BB2853D00734DB6 /* ScatterChartData.swift in Sources */,
 				00DC9ED31BB2853D00734DB6 /* ScatterChartDataSet.swift in Sources */,
@@ -1605,6 +1604,7 @@
 				00DC9EDC1BB2853D00734DB6 /* ChartRange.swift in Sources */,
 				00DC9ECE1BB2853D00734DB6 /* PieChartData.swift in Sources */,
 				00DC9EAA1BB2853D00734DB6 /* BubbleChartView.swift in Sources */,
+				00C1B4A01C045F8A00B902F4 /* DaySleepSaveModel.swift in Sources */,
 				0790259B1B141A7E0049BB06 /* ReadBatteryLevelNevoRequest.swift in Sources */,
 				00828C291BFC1A9E00194032 /* HealthModel.swift in Sources */,
 				07731E521AA58EFE007F9FD6 /* ReadDailyTrackerInfo.swift in Sources */,
