@@ -95,7 +95,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
         var docsdir:String = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true).last!
         let filemanage:NSFileManager = NSFileManager.defaultManager()
         //nevoDBDFileURL
-        docsdir = docsdir.stringByAppendingFormat("%@%@", "/",nevoDBDFileURL)
+        docsdir = docsdir.stringByAppendingFormat("%@%@/", "/",nevoDBDFileURL)
         var isDir : ObjCBool = false
         let exit:Bool = filemanage.fileExistsAtPath(docsdir, isDirectory:&isDir )
         if (!exit || !isDir) {
@@ -482,9 +482,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
 
 
                  //Test the new database writing situation
+                /**
                 let sleepSave:SleepModel = SleepModel()
-                sleepSave.Id = 123
-                sleepSave.UserId = 56789
+                sleepSave.created = thispacket.getDateTimer()
+                sleepSave.Id = 99666
+                sleepSave.UserId = 66666
                 sleepSave.TotalSleepTime = 122
                 sleepSave.HourlySleepTime = AppTheme.toJSONString(thispacket.getHourlySleepTime()) as String
                 sleepSave.TotalWakeTime = 123
@@ -493,15 +495,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                 sleepSave.HourlyLightTime = AppTheme.toJSONString(thispacket.getHourlyLightTime()) as String
                 sleepSave.TotalDeepTime = 125
                 sleepSave.HourlyDeepTime = AppTheme.toJSONString(thispacket.getHourlyDeepTime()) as String
-                if(SleepModel.isExistInTable()){
-                    let ave:Bool = sleepSave.update()
 
-
+                let sleepQuyerModel:NSArray = SleepModel.getCriteria("WHERE created = \(thispacket.getDateTimer())")
+                if(sleepQuyerModel.count > 0){
+                    for array in sleepQuyerModel{
+                        let sleepModel:UserDatabaseHelper = array as! UserDatabaseHelper
+                        sleepSave.pk = sleepModel.pk
+                        let ave:Bool = sleepSave.update()
+                    }
                 }else{
                     let ave:Bool = sleepSave.add()
                 }
-
-
+                */
 
                 //Query the database is this record
                 let quyerModel = DaySleepSaveModel.findFirstByCriteria("WHERE created = \(thispacket.getDateTimer())")

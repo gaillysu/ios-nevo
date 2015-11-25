@@ -298,8 +298,6 @@ class UserDatabaseHelper:NSObject,BaseEntryDatabaseHelper {
             let sql:String = "SELECT * FROM \(tableName) \(criteria)"
             let resultSet:FMResultSet = db.executeQuery(sql, withArgumentsInArray: nil)
             while (resultSet.next()) {
-                //let classType: AnyObject.Type = self.classForCoder()
-                //let nsobjectype : UserDatabaseHelper.Type = classType as! UserDatabaseHelper.Type
                 let model:UserDatabaseHelper = UserDatabaseHelper()
 
                 for (var i:Int = 0; i < model.columeNames.count; i++) {
@@ -308,7 +306,7 @@ class UserDatabaseHelper:NSObject,BaseEntryDatabaseHelper {
                     if (columeType.isEqualToString(SQLTEXT)) {
                         model.setValue(resultSet.stringForColumn("\(columeName)"), forKey: "\(columeName)")
                     } else {
-                        model.setValue(NSNumber(longLong: Int64(columeName.integerValue)), forKey: "\(columeName)")
+                        model.setValue(NSNumber(longLong: resultSet.longLongIntForColumn("\(columeName)")), forKey: "\(columeName)")
                     }
                 }
                 users.addObject(model)
