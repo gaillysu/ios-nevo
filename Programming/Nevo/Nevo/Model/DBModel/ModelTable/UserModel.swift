@@ -9,7 +9,6 @@
 import UIKit
 
 class UserModel: UserDatabaseHelper {
-    var id:Int = 0
     var birfhday:NSDate = NSDate()
     var age:Int = 0
     var weight:Int = 0

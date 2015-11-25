@@ -10,7 +10,6 @@ import UIKit
 
 class SleepModel: UserDatabaseHelper {
 
-    var Id:Int = 0
     var UserId:Int = 0
     var created:Int = 0
     var TotalSleepTime:Int = 0;

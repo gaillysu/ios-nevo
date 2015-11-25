@@ -477,9 +477,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                 daysleepSave.HourlyWakeTime = AppTheme.toJSONString(thispacket.getHourlyWakeTime())
                 daysleepSave.HourlyLightTime = AppTheme.toJSONString(thispacket.getHourlyLightTime())
                 daysleepSave.HourlyDeepTime = AppTheme.toJSONString(thispacket.getHourlyDeepTime())
-
                 AppTheme.DLog("---------------\(thispacket.getDateTimer())")
-
 
                  //Test the new database writing situation
                 /**
@@ -500,7 +498,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                 if(sleepQuyerModel.count > 0){
                     for array in sleepQuyerModel{
                         let sleepModel:UserDatabaseHelper = array as! UserDatabaseHelper
-                        sleepSave.pk = sleepModel.pk
+                        sleepSave.id = sleepModel.id
                         let ave:Bool = sleepSave.update()
                     }
                 }else{

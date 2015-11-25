@@ -17,12 +17,12 @@ let SQLBLOB = "BLOB"
 let SQLNULL = "NULL"
 
 let PrimaryKey = "primary key"
-let primaryId = "pk"
+let primaryId = "id"
 
 class UserDatabaseHelper:NSObject,BaseEntryDatabaseHelper {
 
     /** 主键 id */
-    var pk:Int = 0;
+    var id:Int = 0;
     /** 列名 */
     var columeNames:NSMutableArray = NSMutableArray();
     /** 列类型 */
@@ -59,7 +59,7 @@ class UserDatabaseHelper:NSObject,BaseEntryDatabaseHelper {
 
         do {
             let args:CVaListPointer = getVaList([1,2,3,4]);
-            let isSuccess = try db.executeUpdate("\(sql)", withVAList: args)
+            let isSuccess = db.executeUpdate("\(sql)", withVAList: args)
             if (!isSuccess) {
                 return false;
             }
@@ -217,7 +217,7 @@ class UserDatabaseHelper:NSObject,BaseEntryDatabaseHelper {
         dbQueue.inDatabase { (db) -> Void in
             let sql:NSString = NSString(format: "INSERT INTO %@(%@) VALUES (%@);", tableName, keyString, valueString)
             res = db.executeUpdate("\(sql)", withArgumentsInArray: insertValues as [AnyObject])
-            self.pk = res ? NSNumber(longLong: db.lastInsertRowId()).integerValue : 0
+            self.id = res ? NSNumber(longLong: db.lastInsertRowId()).integerValue : 0
             AppTheme.DLog("\(res ? "Insert success" : "Insert failed"),SQL:\(sql)");
         }
         return res;

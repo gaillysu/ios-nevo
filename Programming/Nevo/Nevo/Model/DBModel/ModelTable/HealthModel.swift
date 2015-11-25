@@ -9,8 +9,6 @@
 import UIKit
 
 class HealthModel: UserDatabaseHelper {
-
-    var id:Int = 0
     var userId:Int = 0
     var date:NSDate = NSDate()
     var createdDate:NSDate = NSDate()

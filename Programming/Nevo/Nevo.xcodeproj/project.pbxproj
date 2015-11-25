@@ -66,6 +66,8 @@
 		00828C271BFC19E700194032 /* SleepModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00828C261BFC19E700194032 /* SleepModel.swift */; };
 		00828C291BFC1A9E00194032 /* HealthModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00828C281BFC1A9E00194032 /* HealthModel.swift */; };
 		008F39711B0EE0BF00698F1B /* NotificationTypeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008F39701B0EE0BF00698F1B /* NotificationTypeCell.swift */; };
+		009178AB1C05A36600CD904D /* AlarmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009178AA1C05A36600CD904D /* AlarmModel.swift */; };
+		009178AD1C05A3A100CD904D /* PresetsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009178AC1C05A3A100CD904D /* PresetsModel.swift */; };
 		00A228701AA551A400360C36 /* SetingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A2286F1AA551A400360C36 /* SetingViewController.swift */; };
 		00A2287E1AA57F1A00360C36 /* EnterNotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A2287D1AA57F1A00360C36 /* EnterNotificationController.swift */; };
 		00A773961A88562F0018E121 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 00A773911A88562F0018E121 /* Localizable.strings */; };
@@ -324,6 +326,8 @@
 		0086858E1B40D53C0062F544 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
 		0086858F1B40D53C0062F544 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		008F39701B0EE0BF00698F1B /* NotificationTypeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationTypeCell.swift; sourceTree = "<group>"; };
+		009178AA1C05A36600CD904D /* AlarmModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlarmModel.swift; sourceTree = "<group>"; };
+		009178AC1C05A3A100CD904D /* PresetsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresetsModel.swift; sourceTree = "<group>"; };
 		00A2286F1AA551A400360C36 /* SetingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SetingViewController.swift; path = Controller/SetingViewController.swift; sourceTree = "<group>"; };
 		00A2287D1AA57F1A00360C36 /* EnterNotificationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EnterNotificationController.swift; path = Controller/EnterNotificationController.swift; sourceTree = "<group>"; };
 		00A773841A8854580018E121 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Main.strings; sourceTree = "<group>"; };
@@ -690,6 +694,8 @@
 				00828C241BFC19CD00194032 /* StepsModel.swift */,
 				00828C261BFC19E700194032 /* SleepModel.swift */,
 				00828C281BFC1A9E00194032 /* HealthModel.swift */,
+				009178AA1C05A36600CD904D /* AlarmModel.swift */,
+				009178AC1C05A3A100CD904D /* PresetsModel.swift */,
 			);
 			path = ModelTable;
 			sourceTree = "<group>";
@@ -1453,6 +1459,7 @@
 				007F796E1A878C6C006C89E6 /* TutorialView.swift in Sources */,
 				00DC9EF51BB2853D00734DB6 /* ChartColorTemplates.swift in Sources */,
 				00DA79CC1BCCDAFA000F9054 /* Page7Controller.swift in Sources */,
+				009178AB1C05A36600CD904D /* AlarmModel.swift in Sources */,
 				00DC9EF31BB2853D00734DB6 /* ScatterChartRenderer.swift in Sources */,
 				00DC9EA61BB2853D00734DB6 /* ChartAnimationEasing.swift in Sources */,
 				00DC9EAC1BB2853D00734DB6 /* ChartViewBase.swift in Sources */,
@@ -1530,6 +1537,7 @@
 				00DC9EC61BB2853D00734DB6 /* ChartData.swift in Sources */,
 				00DC9EDD1BB2853D00734DB6 /* CombinedHighlighter.swift in Sources */,
 				00DC9ECC1BB2853D00734DB6 /* LineRadarChartDataSet.swift in Sources */,
+				009178AD1C05A3A100CD904D /* PresetsModel.swift in Sources */,
 				00DC9EE51BB2853D00734DB6 /* ChartRendererBase.swift in Sources */,
 				07731E541AA58F27007F9FD6 /* ReadDailyTracker.swift in Sources */,
 				00DC9EEB1BB2853D00734DB6 /* ChartYAxisRendererHorizontalBarChart.swift in Sources */,

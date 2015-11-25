@@ -9,7 +9,6 @@
 import UIKit
 
 class StepsModel: UserDatabaseHelper {
-    var Id:Int = 0
     var Userid:Int = 0
     var Steps:Int = 0
     var Distance:Int = 0
