@@ -14,14 +14,15 @@ Controller of the Home Screen,
 it should handle very little, only the initialisation of the different Views and the Sync Controller
 */
 
-class HomeController: UIViewController, SyncControllerDelegate ,ButtonManagerCallBack,ClockRefreshDelegate{
+class HomeController: PublicClassController, SyncControllerDelegate ,ButtonManagerCallBack,ClockRefreshDelegate{
     
     @IBOutlet var homeView: HomeView!
     private var mVisiable:Bool = false
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        homeView.bulidHomeView(self)
+        homeView.bulidHomeView(self,navigat: self.navigationItem)
 
         ClockRefreshManager.sharedInstance.setRefreshDelegate(self)
         
@@ -30,11 +31,9 @@ class HomeController: UIViewController, SyncControllerDelegate ,ButtonManagerCal
                 tapAction.numberOfTapsRequired = 2
                 homeView.addGestureRecognizer(tapAction)
         //end TEST
-
     }
 
     override func viewDidAppear(animated: Bool) {
-        
         if !AppDelegate.getAppDelegate().getMconnectionController().hasSavedAddress() {
             
             AppTheme.DLog("No saved device, let's launch the tutorial")
@@ -49,7 +48,7 @@ class HomeController: UIViewController, SyncControllerDelegate ,ButtonManagerCal
             mVisiable = true
         }
     }
-    
+
     override func viewDidDisappear(animated: Bool) {
         mVisiable = false
     }
@@ -69,10 +68,6 @@ class HomeController: UIViewController, SyncControllerDelegate ,ButtonManagerCal
 
     // MARK: - ButtonManagerCallBack
     func controllManager(sender:AnyObject) {
-        if sender.isEqual(homeView.settingButton) {
-            self.performSegueWithIdentifier("Home_Seting", sender: self)
-        }
-        
         if sender.isEqual(homeView.animationView.getNoConnectScanButton()) {
             AppTheme.DLog("noConnectScanButton")
             reconnect()
@@ -174,7 +169,7 @@ class HomeController: UIViewController, SyncControllerDelegate ,ButtonManagerCal
             
             homeView.animationView.endConnectRemoveView()
         }
-        self.view.bringSubviewToFront(homeView.titleBgView)
+        //self.view.bringSubviewToFront(homeView.titleBgView)
     }
     
     func reconnect() {

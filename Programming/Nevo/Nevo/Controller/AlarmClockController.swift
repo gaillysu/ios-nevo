@@ -89,48 +89,9 @@ class AlarmClockController: UIViewController, SyncControllerDelegate,ButtonManag
     */
     func controllManager(sender:AnyObject){
 
-        if (sender.isEqual(alarmView.selectedTimerButton1) || sender.isEqual(alarmView.selectedTimerButton2) || sender.isEqual(alarmView.selectedTimerButton3)){
-            alarmView.initPickerView(mAlarmhour,min: mAlarmmin)
-            alarmView.setCurrentButton(sender as! UIButton)
-            AppTheme.DLog("alarmView.selectedTimerButton")
-        }
-
         if sender.isEqual(alarmView.animationView.getNoConnectScanButton()) {
             AppTheme.DLog("noConnectScanButton")
             reconnect()
-        }
-
-        if sender.isEqual(alarmView.getEnterButton()){
-            AppTheme.DLog("alarmView.enterButton")
-            setAlarm(sender)
-        }
-
-        if sender.isEqual(alarmView.setingButton){
-            AppTheme.DLog("alarmView.setingButton")
-
-        }
-
-        if sender.isEqual(alarmView.alarmSwicth1){
-            alarmView.setCurrentButton(alarmView.selectedTimerButton1)
-            setAlarm(sender)
-            AppTheme.DLog("alarmView.amButton")
-
-        }
-
-        if sender.isEqual(alarmView.alarmSwicth2){
-            alarmView.setCurrentButton(alarmView.selectedTimerButton2)
-            setAlarm(sender)
-            AppTheme.DLog("alarmView.pmButton")
-        }
-
-        if sender.isEqual(alarmView.alarmSwicth3){
-            alarmView.setCurrentButton(alarmView.selectedTimerButton3)
-            setAlarm(sender)
-            AppTheme.DLog("alarmView.pmButton")
-        }
-
-        if sender.isEqual(alarmView.setingButton){
-            self.performSegueWithIdentifier("Home_Seting", sender: self)
         }
 
     }
@@ -202,7 +163,6 @@ class AlarmClockController: UIViewController, SyncControllerDelegate,ButtonManag
 
             alarmView.animationView.endConnectRemoveView()
         }
-        self.view.bringSubviewToFront(alarmView.titleBgView)
     }
 
     func setAlarm(aObject:AnyObject) {
@@ -242,22 +202,7 @@ class AlarmClockController: UIViewController, SyncControllerDelegate,ButtonManag
         if(aObject.isKindOfClass(UIButton .classForCoder())){
             tagValue = (aObject as! UIButton).tag
 
-            if let date = alarmView.getDatePicker()?.date  {
-
-                let strDate = stringFromDate(date)
-
-                var lines:[String] = strDate.componentsSeparatedByString(":");
-
-                mAlarmhour = (lines[0] as NSString).integerValue
-                mAlarmmin  = (lines[1] as NSString).integerValue
-            }
-
-            mAlarmenable = alarmView.getEnabled((aObject as! UIButton).tag)
-            addAlarmArray((aObject as! UIButton).tag)
-            mAlarmindex = tagValue
         }
-
-        alarmView.setAlarmTime(mAlarmhour,min: mAlarmmin,andObject: alarmView.getCurrentButton())
 
         let userDefaults = NSUserDefaults.standardUserDefaults()
         let alarmDict:NSDictionary = [AlarmClockController.SAVED_ALARM_HOUR_KEY : NSNumber(integer: mAlarmhour),AlarmClockController.SAVED_ALARM_MIN_KEY : NSNumber(integer: mAlarmmin),AlarmClockController.SAVED_ALARM_ENABLED_KEY : NSNumber(bool: mAlarmenable),AlarmClockController.SAVED_ALARM_INDEX_KEY : NSNumber(integer: mAlarmindex)]

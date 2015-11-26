@@ -40,7 +40,7 @@ class MainTabBarController: UITabBarController,UITabBarControllerDelegate {
             }
 
         }
-        customInitTabbar()
+        //customInitTabbar()
     }
 
     func customInitTabbar(){

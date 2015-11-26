@@ -8,11 +8,8 @@
 
 import Foundation
 
-class HomeView: UIView {
+class HomeView: UIView,toolbarSegmentedDelegate {
 
-    @IBOutlet weak var title: UILabel!
-    @IBOutlet weak var settingButton: UIButton!
-    @IBOutlet weak var titleBgView: UIView!
     //Put all UI operation HomeView inside
     private let mClockTimerView = ClockView(frame:CGRectMake(0, 0, UIScreen.mainScreen().bounds.width-60, UIScreen.mainScreen().bounds.width-60), hourImage:  UIImage(named: "clockViewHour")!, minuteImage: UIImage(named: "clockViewMinute")!, dialImage: UIImage(named: "clockView600")!);//init "ClockView" ,Use the code relative layout
 
@@ -22,14 +19,16 @@ class HomeView: UIView {
     
     private var mDelegate:ButtonManagerCallBack!
     
-    func bulidHomeView(delegate:ButtonManagerCallBack) {
+    func bulidHomeView(delegate:ButtonManagerCallBack,navigat:UINavigationItem) {
         mDelegate = delegate
-        animationView = AnimationView(frame: self.frame, delegate: delegate)
+
+        navigat.title = NSLocalizedString("homeTitle", comment: "")
         
-        title.textColor = UIColor.whiteColor()
-        title.text = NSLocalizedString("homeTitle", comment: "")
-        title.font = AppTheme.SYSTEMFONTOFSIZE()
-        title.textAlignment = NSTextAlignment.Center
+        let toolbar:ToolbarView = ToolbarView(frame: CGRectMake( 0, 0, UIScreen.mainScreen().bounds.width, 35), items: ["Today","History"])
+        toolbar.delegate = self
+        self.addSubview(toolbar)
+
+        animationView = AnimationView(frame: self.frame, delegate: delegate)
 
         mClockTimerView.currentTimer()
         self.addSubview(mClockTimerView)
@@ -43,7 +42,6 @@ class HomeView: UIView {
 
     }
 
-    
     func getClockTimerView() -> ClockView {
         return mClockTimerView
     }
@@ -62,8 +60,10 @@ class HomeView: UIView {
         progresValue = CGFloat(progress)
         progressView?.setProgress(progresValue, Steps: dailySteps, GoalStep: dailyStepGoal)
     }
-    
-    
-    
+
+    // MARK: - toolbarSegmentedDelegate
+    func didSelectedSegmentedControl(segment:UISegmentedControl){
+
+    }
     
 }

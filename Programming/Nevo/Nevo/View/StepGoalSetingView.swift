@@ -17,16 +17,13 @@ protocol StepGoalButtonActionCallBack {
 
 }
 
-class StepGoalSetingView: UIView,UIPickerViewDataSource,UIPickerViewDelegate {
+class StepGoalSetingView: UIView,UIPickerViewDataSource,UIPickerViewDelegate,toolbarSegmentedDelegate {
 
-    @IBOutlet weak var stepLabel: UILabel!
-    @IBOutlet var goalButton: UIButton!
-    @IBOutlet var modarateButton: UIButton!
-    @IBOutlet var intensiveButton: UIButton!
-    @IBOutlet var sportiveButton: UIButton!
-    @IBOutlet weak var title: UILabel!
-    @IBOutlet weak var setingButton: UIButton!
-    @IBOutlet weak var titleBgView: UIView!
+    //Put all UI operation HomeView inside
+    private let mClockTimerView = ClockView(frame:CGRectMake(0, 0, UIScreen.mainScreen().bounds.width-60, UIScreen.mainScreen().bounds.width-60), hourImage:  UIImage(named: "clockViewHour")!, minuteImage: UIImage(named: "clockViewMinute")!, dialImage: UIImage(named: "clockView600")!);//init "ClockView" ,Use the code relative layout
+    var progressView:CircleProgressView?
+
+    var rightButton:UIBarButtonItem?
     
     private var mPickerView:UIPickerView?
 
@@ -44,64 +41,40 @@ class StepGoalSetingView: UIView,UIPickerViewDataSource,UIPickerViewDelegate {
 
     var animationView:AnimationView!
 
-    func bulidStepGoalView(delegate:ButtonManagerCallBack){
-
-        title.textColor = UIColor.whiteColor()
-        title.text = NSLocalizedString("stepGoalTitle", comment: "")
-        title.font = AppTheme.SYSTEMFONTOFSIZE()
-        title.textAlignment = NSTextAlignment.Center
-
+    func bulidStepGoalView(delegate:ButtonManagerCallBack,navigation:UINavigationItem){
         mDelegate = delegate
+
+        navigation.title = NSLocalizedString("stepGoalTitle", comment: "")
 
         animationView = AnimationView(frame: self.frame, delegate: delegate)
 
-        stepLabel.text = NSLocalizedString("Step", comment: "")
+        let toolbar:ToolbarView = ToolbarView(frame: CGRectMake( 0, 0, UIScreen.mainScreen().bounds.width, 35), items: ["Today","History"])
+        toolbar.delegate = self
+        self.addSubview(toolbar)
 
-        goalButton.setTitle(NSLocalizedString("goalButton", comment: ""), forState: UIControlState.Normal)
-        goalButton.setTitle(NSLocalizedString("goalButton", comment: ""), forState: UIControlState.Selected)
-        goalButton.titleLabel?.font = AppTheme.FONT_RALEWAY_LIGHT(mSize: 60)
+        rightButton = UIBarButtonItem(title: "Set Goal", style: UIBarButtonItemStyle.Done, target: self, action: Selector("buttonAction:"))
+        rightButton?.tintColor = AppTheme.NEVO_SOLAR_YELLOW()
+        navigation.rightBarButtonItem = rightButton
 
+        mClockTimerView.currentTimer()
+        mClockTimerView.center = CGPointMake(self.frame.width/2.0, self.frame.height/2.0)//Using the center property determines the location of the ClockView
+        mClockTimerView.frame = CGRectMake(mClockTimerView.frame.origin.x, 45, mClockTimerView.frame.size.width, mClockTimerView.frame.size.height)
+        self.addSubview(mClockTimerView)
 
-        modarateButton.setTitle(NSLocalizedString("Modarate", comment: ""), forState: UIControlState.Normal)
-        modarateButton.setTitle(NSLocalizedString("Modarate", comment: ""), forState: UIControlState.Selected)
-        modarateButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Selected)
-        modarateButton.layer.borderWidth = 1.0;
-        modarateButton.layer.borderColor = UIColor.grayColor().CGColor;
-
-        intensiveButton.setTitle(NSLocalizedString("Intensive", comment: ""), forState: UIControlState.Normal)
-        intensiveButton.setTitle(NSLocalizedString("Intensive", comment: ""), forState: UIControlState.Selected)
-        intensiveButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Selected)
-        intensiveButton.layer.borderWidth = 1.0;
-        intensiveButton.layer.borderColor = UIColor.grayColor().CGColor;
-
-        sportiveButton.setTitle(NSLocalizedString("Sportive", comment: ""), forState: UIControlState.Normal)
-        sportiveButton.setTitle(NSLocalizedString("Sportive", comment: ""), forState: UIControlState.Selected)
-        sportiveButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Selected)
-        sportiveButton.layer.borderWidth = 1.0;
-        sportiveButton.layer.borderColor = UIColor.grayColor().CGColor;
-
-        mButtonArray = [modarateButton,intensiveButton,sportiveButton]
-
-        //For loop will stuck the main thread, so you need to for an asynchronous thread to handle this line function
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
-            for var index:Int = 1000; index<=30000; index+=1000 {
-                self.mIndexArray.addObject(index)
-            }
-         });
-        
-        setNumberOfStepsGoal(7000)
+        progressView = CircleProgressView()
+        progressView?.setProgressColor(AppTheme.NEVO_SOLAR_YELLOW())
+        progressView?.frame = CGRectMake(mClockTimerView.frame.origin.x-5, mClockTimerView.frame.origin.y-5, UIScreen.mainScreen().bounds.width-50, UIScreen.mainScreen().bounds.width-50)
+        progressView?.setProgress(0.5)
+        self.layer.addSublayer(progressView!)
 
     }
 
-    func bulidUI() {
-
-    }
     /*
     Button Action
     */
     @IBAction func buttonAction(sender: AnyObject) {
         //CallBack StepGoalSetingController
-        mDelegate?.controllManager(sender as! UIButton)
+        mDelegate?.controllManager(sender)
     }
 
     // MARK: - PickerView
@@ -249,30 +222,12 @@ class StepGoalSetingView: UIView,UIPickerViewDataSource,UIPickerViewDelegate {
         return mIndexArray.objectAtIndex(row!) as! Int
     }
 
-    func setNumberOfStepsGoal(goal:Int){
-
-        goalButton.setTitle("\(goal)", forState: UIControlState.Normal)
-        
-        
-        cleanButtonControlState()
-        
-        if(goal==NumberOfStepsGoal().LOW_INTENSITY_STEPS) {
-            
-            modarateButton.selected = true
-            
-        } else if(goal==NumberOfStepsGoal().MEDIUM_INTENSITY_STEPS) {
-            
-            intensiveButton.selected = true
-            
-        } else if(goal==NumberOfStepsGoal().HIGH_INTENSITY_STEPS) {
-            
-            sportiveButton.selected = true
-            
-        }
-    }
-
     func getEnterButton() -> UIButton? {
         return mEnterButton
     }
 
+    // MARK: - toolbarSegmentedDelegate
+    func didSelectedSegmentedControl(segment:UISegmentedControl){
+
+    }
 }
