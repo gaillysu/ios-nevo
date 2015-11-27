@@ -115,7 +115,7 @@ class StepGoalSetingController: PublicClassController,ButtonManagerCallBack,Sync
             }
         } else {
 
-            //stepGoalView.animationView.endConnectRemoveView()
+            stepGoalView.animationView.endConnectRemoveView()
         }
     }
 

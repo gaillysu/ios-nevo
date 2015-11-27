@@ -65,9 +65,6 @@ class SleepTrackingController: UIViewController, SyncControllerDelegate ,ButtonM
 
     // MARK: - ButtonManagerCallBack
     func controllManager(sender:AnyObject) {
-        if sender.isEqual(sleepView.settingButton) {
-            self.performSegueWithIdentifier("Home_Seting", sender: self)
-        }
         
         if sender.isEqual(sleepView.animationView.getNoConnectScanButton()) {
             AppTheme.DLog("noConnectScanButton")
@@ -157,7 +154,6 @@ class SleepTrackingController: UIViewController, SyncControllerDelegate ,ButtonM
             
             sleepView.animationView.endConnectRemoveView()
         }
-        self.view.bringSubviewToFront(sleepView.titleBgView)
     }
     
     func reconnect() {

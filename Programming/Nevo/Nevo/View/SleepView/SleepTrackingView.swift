@@ -10,9 +10,6 @@ import UIKit
 
 class SleepTrackingView: UIView {
 
-    @IBOutlet weak var title: UILabel!
-    @IBOutlet weak var settingButton: UIButton!
-    @IBOutlet weak var titleBgView: UIView!
     //Put all UI operation HomeView inside
     private let mClockTimerView = ClockView(frame:CGRectMake(0, 0, UIScreen.mainScreen().bounds.width-60, UIScreen.mainScreen().bounds.width-60), hourImage:  UIImage(named: "clockViewHour")!, minuteImage: UIImage(named: "clockViewMinute")!, dialImage: UIImage(named: "clockView600")!);//init "ClockView" ,Use the code relative layout
 
@@ -28,12 +25,9 @@ class SleepTrackingView: UIView {
         mDelegate = delegate
         animationView = AnimationView(frame: self.frame, delegate: delegate)
 
-        self.backgroundColor = AppTheme.hexStringToColor("#d1cfcf")
+        //self.backgroundColor = AppTheme.hexStringToColor("#d1cfcf")
 
-        title.textColor = UIColor.whiteColor()
-        title.text = NSLocalizedString("SLEEP_TITLE", comment: "")
-        title.font = AppTheme.SYSTEMFONTOFSIZE(mSize: 20)
-        title.textAlignment = NSTextAlignment.Center
+        //title.text = NSLocalizedString("SLEEP_TITLE", comment: "")
 
         mClockTimerView.currentTimer()
         self.addSubview(mClockTimerView)
@@ -43,26 +37,18 @@ class SleepTrackingView: UIView {
         progressView?.frame = CGRectMake(mClockTimerView.frame.origin.x-5, mClockTimerView.frame.origin.y-5, UIScreen.mainScreen().bounds.width-50, UIScreen.mainScreen().bounds.width-50)
         self.layer.addSublayer(progressView!)
 
-        historyButton = UIButton(frame: CGRectMake(UIScreen.mainScreen().bounds.width-70, titleBgView.frame.size.height+20, 50, 50))
-        historyButton?.setImage(UIImage(named: "sleep_history_icon"), forState: UIControlState.Normal)
-        historyButton?.setImage(UIImage(named: "sleep_history_icon"), forState: UIControlState.Highlighted)
-        historyButton?.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
-        historyButton?.addTarget(self, action: Selector("ButtonAction:"), forControlEvents: UIControlEvents.TouchUpInside)
-        self.addSubview(historyButton!)
+        //historyButton = UIButton(frame: CGRectMake(UIScreen.mainScreen().bounds.width-70, titleBgView.frame.size.height+20, 50, 50))
+        //historyButton?.setImage(UIImage(named: "sleep_history_icon"), forState: UIControlState.Normal)
+        //historyButton?.setImage(UIImage(named: "sleep_history_icon"), forState: UIControlState.Highlighted)
+        //historyButton?.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
+        //historyButton?.addTarget(self, action: Selector("ButtonAction:"), forControlEvents: UIControlEvents.TouchUpInside)
 
-        let infoButtonY:CGFloat = UIScreen.mainScreen().bounds.height-180
-        infoButton = UIButton(type: UIButtonType.Custom)
-        infoButton!.setImage(UIImage(named: "question58"), forState: UIControlState.Normal)
-        infoButton!.setImage(UIImage(named: "question58"), forState: UIControlState.Highlighted)
-        infoButton!.frame = CGRectMake(historyButton!.frame.origin.x, infoButtonY, 50, 50)
-        infoButton!.addTarget(self, action: Selector("ButtonAction:"), forControlEvents: UIControlEvents.TouchUpInside)
-        self.addSubview(infoButton!)
-
-        if(AppTheme.GET_IS_iPhone4S()){
-            historyButton?.frame = CGRectMake(historyButton!.frame.origin.x+10, historyButton!.frame.origin.y, 35, 35)
-            infoButton!.frame = CGRectMake(historyButton!.frame.origin.x, infoButtonY+30, 50, 50)
-        }
-
+        //let infoButtonY:CGFloat = UIScreen.mainScreen().bounds.height-180
+        //infoButton = UIButton(type: UIButtonType.Custom)
+        //infoButton!.setImage(UIImage(named: "question58"), forState: UIControlState.Normal)
+        //infoButton!.setImage(UIImage(named: "question58"), forState: UIControlState.Highlighted)
+        //infoButton!.frame = CGRectMake(historyButton!.frame.origin.x, infoButtonY, 50, 50)
+        //infoButton!.addTarget(self, action: Selector("ButtonAction:"), forControlEvents: UIControlEvents.TouchUpInside)
     }
 
 

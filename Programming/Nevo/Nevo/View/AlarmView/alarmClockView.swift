@@ -8,7 +8,7 @@
 
 import UIKit
 
-class alarmClockView: UIView {
+class alarmClockView: UITableView {
 
     /// All buttons id value
     private let switchAndButtonTag1:Int = 0

@@ -44,6 +44,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
         //UINavigationBar.appearance().barTintColor = UIColor.blackColor()
         //UITabBar.appearance().barTintColor = UIColor.clearColor()
 
+        UINavigationBar.appearance().tintColor = AppTheme.NEVO_SOLAR_YELLOW()
         //Start the logo for the first time
         if(!NSUserDefaults.standardUserDefaults().boolForKey("everLaunched")){
             NSUserDefaults.standardUserDefaults().setBool(true, forKey: "everLaunched")
