@@ -14,7 +14,7 @@ Controller of the Home Screen,
 it should handle very little, only the initialisation of the different Views and the Sync Controller
 */
 
-class SleepTrackingController: UIViewController, SyncControllerDelegate ,ButtonManagerCallBack,ClockRefreshDelegate{
+class SleepTrackingController: PublicClassController, SyncControllerDelegate ,ButtonManagerCallBack,ClockRefreshDelegate{
     @IBOutlet weak var sleepView: SleepTrackingView!
     private var mVisiable:Bool = false
     override func viewDidLoad() {
@@ -65,11 +65,6 @@ class SleepTrackingController: UIViewController, SyncControllerDelegate ,ButtonM
 
     // MARK: - ButtonManagerCallBack
     func controllManager(sender:AnyObject) {
-        
-        if sender.isEqual(sleepView.animationView.getNoConnectScanButton()) {
-            AppTheme.DLog("noConnectScanButton")
-            reconnect()
-        }
 
         if sender.isEqual(sleepView.historyButton){
             let quer:QueryHistoricalController = QueryHistoricalController()
@@ -139,26 +134,11 @@ class SleepTrackingController: UIViewController, SyncControllerDelegate ,ButtonM
         
         if !AppDelegate.getAppDelegate().isConnected() {
             //We are currently not connected
-            var isView:Bool = false
-            for view in sleepView.subviews {
-                let anView:UIView = view
-                if anView.isEqual(sleepView.animationView.bulibNoConnectView()) {
-                    isView = true
-                }
-            }
-            if !isView {
-                sleepView.addSubview(sleepView.animationView.bulibNoConnectView())
-                reconnect()
-            }
-        } else {
-            
-            sleepView.animationView.endConnectRemoveView()
+           reconnect()
         }
     }
     
     func reconnect() {
-        sleepView.animationView.RotatingAnimationObject(sleepView.animationView.getNoConnectImage()!)
-        sleepView.animationView.getmNoConnectionView().backgroundColor = AppTheme.hexStringToColor("#d1cfcf")
         AppDelegate.getAppDelegate().connect()
     }
 }

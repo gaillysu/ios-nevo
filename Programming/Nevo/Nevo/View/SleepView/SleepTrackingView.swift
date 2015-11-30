@@ -8,14 +8,14 @@
 
 import UIKit
 
-class SleepTrackingView: UIView {
+class SleepTrackingView: UIView,toolbarSegmentedDelegate {
 
     //Put all UI operation HomeView inside
     private let mClockTimerView = ClockView(frame:CGRectMake(0, 0, UIScreen.mainScreen().bounds.width-60, UIScreen.mainScreen().bounds.width-60), hourImage:  UIImage(named: "clockViewHour")!, minuteImage: UIImage(named: "clockViewMinute")!, dialImage: UIImage(named: "clockView600")!);//init "ClockView" ,Use the code relative layout
 
     var progressView:CircleSleepProgressView?
     var progresValue:CGFloat = 0.0
-    var animationView:AnimationView!
+    //var animationView:AnimationView!
     var historyButton:UIButton?
     var infoButton:UIButton?
 
@@ -23,15 +23,18 @@ class SleepTrackingView: UIView {
 
     func bulidHomeView(delegate:ButtonManagerCallBack) {
         mDelegate = delegate
-        animationView = AnimationView(frame: self.frame, delegate: delegate)
-
+        //animationView = AnimationView(frame: self.frame, delegate: delegate)
         //self.backgroundColor = AppTheme.hexStringToColor("#d1cfcf")
-
         //title.text = NSLocalizedString("SLEEP_TITLE", comment: "")
+
+        let toolbar:ToolbarView = ToolbarView(frame: CGRectMake( 0, 0, UIScreen.mainScreen().bounds.width, 35), items: ["Last night","History"])
+        toolbar.delegate = self
+        self.addSubview(toolbar)
 
         mClockTimerView.currentTimer()
         self.addSubview(mClockTimerView)
         mClockTimerView.center = CGPointMake(self.frame.width/2.0, self.frame.height/2.0)//Using the center property determines the location of the ClockView
+         mClockTimerView.frame = CGRectMake(mClockTimerView.frame.origin.x, 45, mClockTimerView.frame.size.width, mClockTimerView.frame.size.height)
 
         progressView = CircleSleepProgressView()
         progressView?.frame = CGRectMake(mClockTimerView.frame.origin.x-5, mClockTimerView.frame.origin.y-5, UIScreen.mainScreen().bounds.width-50, UIScreen.mainScreen().bounds.width-50)
@@ -71,6 +74,10 @@ class SleepTrackingView: UIView {
         progressView?.setSleepProgress(dailySleep)
     }
 
+    // MARK: - toolbarSegmentedDelegate
+    func didSelectedSegmentedControl(segment:UISegmentedControl){
+
+    }
     /*
     // Only override drawRect: if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.

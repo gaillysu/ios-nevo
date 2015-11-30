@@ -94,11 +94,6 @@ class AlarmClockController: UITableViewController, SyncControllerDelegate,Button
     */
     func controllManager(sender:AnyObject){
 
-        if sender.isEqual(alarmView.animationView.getNoConnectScanButton()) {
-            AppTheme.DLog("noConnectScanButton")
-            reconnect()
-        }
-
         if(sender.isEqual(addButton)){
             let addAlarm:AddAlarmController = AddAlarmController()
             addAlarm.hidesBottomBarWhenPushed = true
@@ -120,7 +115,7 @@ class AlarmClockController: UITableViewController, SyncControllerDelegate,Button
 
         //Maybe we just got disconnected, let's check
 
-        checkConnection()
+        //checkConnection()
 
     }
 
@@ -159,20 +154,7 @@ class AlarmClockController: UITableViewController, SyncControllerDelegate,Button
 
         if !AppDelegate.getAppDelegate().isConnected() {
             //We are currently not connected
-            var isView:Bool = false
-            for view in alarmView.subviews {
-                let anView:UIView = view 
-                if anView.isEqual(alarmView.animationView.bulibNoConnectView()) {
-                    isView = true
-                }
-            }
-            if !isView {
-                alarmView.addSubview(alarmView.animationView.bulibNoConnectView())
-                reconnect()
-            }
-        } else {
-
-            alarmView.animationView.endConnectRemoveView()
+            reconnect()
         }
     }
 
@@ -239,7 +221,6 @@ class AlarmClockController: UITableViewController, SyncControllerDelegate,Button
     }
 
     func reconnect() {
-        alarmView.animationView.RotatingAnimationObject(alarmView.animationView.getNoConnectImage()!)
         AppDelegate.getAppDelegate().connect()
     }
 

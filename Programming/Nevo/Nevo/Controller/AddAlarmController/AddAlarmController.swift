@@ -67,10 +67,10 @@ class AddAlarmController: UITableViewController {
         case 0:
             return AddAlarmView.addAlarmTimerTableViewCell(indexPath, tableView: tableView)
         case 1:
-            return AddAlarmView.addAlarmTimerTableViewCell(indexPath, tableView: tableView)
+            let titleArray:[String] = ["Repeat","Label"]
+            return AddAlarmView.systemTableViewCell(indexPath, tableView: tableView, title: titleArray[indexPath.row])
         default: return UITableViewCell();
         }
-        return AddAlarmView.addAlarmTimerTableViewCell(indexPath, tableView: tableView)
     }
 
 

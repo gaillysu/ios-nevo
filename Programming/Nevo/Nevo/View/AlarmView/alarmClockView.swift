@@ -23,13 +23,13 @@ class alarmClockView: UITableView {
     
     private var mDelegate:ButtonManagerCallBack!
 
-    var animationView:AnimationView!
+    //var animationView:AnimationView!
     
     func bulidAlarmView(delegate:ButtonManagerCallBack,array:[Alarm]) {
         //title.text = NSLocalizedString("alarmTitle", comment: "")
 
         mDelegate = delegate
-        animationView = AnimationView(frame: self.frame, delegate: delegate)
+        //animationView = AnimationView(frame: self.frame, delegate: delegate)
         for aItem in array{
             let alarm:Alarm = aItem as Alarm
             let value:Int = alarm.getIndex()

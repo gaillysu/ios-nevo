@@ -11,12 +11,12 @@ import UIKit
 class AddAlarmView: UITableView {
 
     /**
-     create the tablecell accrording to nofiticaitonSetting
+     returns the time zone TableViewCell selector
 
-     :param: indexPath  index
-     :param: dataSource notification array
+     :param: indexPath TableView path
+     :param: tableView TableView Object
 
-     :returns: <#return value description#>
+     :returns: time zone TableViewCell selector
      */
     class func addAlarmTimerTableViewCell(indexPath:NSIndexPath,tableView:UITableView)->UITableViewCell {
         let endCellID:String = "AddAlarmCell"
@@ -26,9 +26,28 @@ class AddAlarmView: UITableView {
             endCell = nibs.objectAtIndex(0) as? AddAlarmTableViewCell;
 
         }
-        endCell?.layer.borderWidth = 0.5;
-        endCell?.layer.borderColor = UIColor.grayColor().CGColor;
         endCell?.selectionStyle = UITableViewCellSelectionStyle.None;
+        return endCell!
+    }
+
+    /**
+     Constructing the title only TableViewCell
+
+     :param: indexPath The path of the TableView
+     :param: tableView TableView Object
+     :param: title     The title string
+
+     :returns: UITableViewCell
+     */
+    class func systemTableViewCell(indexPath:NSIndexPath,tableView:UITableView,title:String)->UITableViewCell {
+        let endCellID:String = "SystemCell"
+        var endCell = tableView.dequeueReusableCellWithIdentifier(endCellID)
+        if (endCell == nil) {
+            endCell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: endCellID)
+        }
+        endCell?.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
+        endCell?.selectionStyle = UITableViewCellSelectionStyle.None;
+        endCell?.textLabel?.text = title
         return endCell!
     }
 

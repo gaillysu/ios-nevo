@@ -49,10 +49,6 @@ class StepGoalSetingController: PublicClassController,ButtonManagerCallBack,Sync
 
     // MARK: - ButtonManagerCallBack
     func controllManager(sender:AnyObject) {
-        if sender.isEqual(stepGoalView.animationView.getNoConnectScanButton()) {
-            reconnect()
-        }
-
         if sender.isEqual(stepGoalView.getEnterButton()) {
 
             setGoal(NumberOfStepsGoal(steps: stepGoalView.getNumberOfStepsGoal()))
@@ -77,7 +73,7 @@ class StepGoalSetingController: PublicClassController,ButtonManagerCallBack,Sync
     
     func connectionStateChanged(isConnected : Bool) {
         //Maybe we just got disconnected, let's check
-        checkConnection()
+        //checkConnection()
     }
     
     /**
@@ -100,29 +96,12 @@ class StepGoalSetingController: PublicClassController,ButtonManagerCallBack,Sync
     func checkConnection() {
 
         if !AppDelegate.getAppDelegate().isConnected() {
-
             //We are currently not connected
-            var isView:Bool = false
-            for view in stepGoalView.subviews {
-                let anView:UIView = view
-                if anView.isEqual(stepGoalView.animationView.bulibNoConnectView()) {
-                    isView = true
-                }
-            }
-            if !isView {
-                stepGoalView.addSubview(stepGoalView.animationView.bulibNoConnectView())
-                reconnect()
-            }
-        } else {
-
-            stepGoalView.animationView.endConnectRemoveView()
+            reconnect()
         }
     }
 
     func reconnect() {
-        if let noConnectImage = stepGoalView.animationView.getNoConnectImage() {
-            stepGoalView.animationView.RotatingAnimationObject(noConnectImage)
-        }
         AppDelegate.getAppDelegate().connect()
     }
 

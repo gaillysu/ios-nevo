@@ -39,14 +39,14 @@ class StepGoalSetingView: UIView,UIPickerViewDataSource,UIPickerViewDelegate,too
 
     private var mEnterButton:UIButton?
 
-    var animationView:AnimationView!
+    //var animationView:AnimationView!
 
     func bulidStepGoalView(delegate:ButtonManagerCallBack,navigation:UINavigationItem){
         mDelegate = delegate
 
         navigation.title = NSLocalizedString("stepGoalTitle", comment: "")
 
-        animationView = AnimationView(frame: self.frame, delegate: delegate)
+        //animationView = AnimationView(frame: self.frame, delegate: delegate)
 
         let toolbar:ToolbarView = ToolbarView(frame: CGRectMake( 0, 0, UIScreen.mainScreen().bounds.width, 35), items: ["Today","History"])
         toolbar.delegate = self
