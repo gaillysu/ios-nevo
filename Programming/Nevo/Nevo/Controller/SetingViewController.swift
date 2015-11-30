@@ -15,7 +15,11 @@ class SetingViewController: UIViewController,SelectionTypeDelegate,SyncControlle
     private var mNotificationType:NotificationType = NotificationType.CALL
     private var mNotificationSettingArray:[NotificationSetting] = []
     var sources:NSArray!
+    var titleArray:[String]?
     var selectedB:Bool = false
+    //vibrate and show all color light to find my device, only send one request in 6 sec
+    //this action take lot power and we maybe told customer less to use it
+    var mFindMydeviceDatetime:NSDate = NSDate(timeIntervalSinceNow: -6)
 
     /**
      reresh NotificationSetting
@@ -43,8 +47,8 @@ class SetingViewController: UIViewController,SelectionTypeDelegate,SyncControlle
 
         initNotificationSettingArray()
 
-        sources = [NSLocalizedString("Notifications", comment: ""),NSLocalizedString("Link-Loss Notifications", comment: ""),NSLocalizedString("My nevo", comment: ""),NSLocalizedString("Find device", comment: ""),NSLocalizedString("Help", comment: ""),NSLocalizedString("currentVersion:", comment: "")]
-        //NSLocalizedString("Firmware Upgrade", comment: "")
+        sources = [NSLocalizedString("Link-Loss Notifications", comment: ""),NSLocalizedString("Notifications", comment: ""),NSLocalizedString("My nevo", comment: ""),NSLocalizedString("Support", comment: ""),NSLocalizedString("About", comment: "")]
+        titleArray = [NSLocalizedString("Preset-goals", comment: ""),NSLocalizedString("Find device", comment: "")]
     }
 
     override func viewDidAppear(animated: Bool) {
@@ -58,21 +62,9 @@ class SetingViewController: UIViewController,SelectionTypeDelegate,SyncControlle
 
     // MARK: - ButtonManagerCallBack
     func controllManager(sender:AnyObject){
-        if sender.isEqual(notificationList.animationView?.getNoConnectScanButton()) {
-            AppTheme.DLog("noConnectScanButton")
-            reconnect()
-        }
-
-        if sender.isEqual(notificationList.backButton) {
-           self.dismissViewControllerAnimated(true, completion: nil)
-        }
-        
-        if sender is UISwitch {
-            let switchButton = sender as! UISwitch
-            if switchButton.isEqual(notificationList.mSendLocalNotificationSwitchButton){
-                AppTheme.DLog("setIsSendLocalMsg \(switchButton.on)")
-                ConnectionManager.sharedInstance.setIsSendLocalMsg(switchButton.on)
-            }
+        if sender.isEqual(notificationList.mSendLocalNotificationSwitchButton){
+            AppTheme.DLog("setIsSendLocalMsg \(notificationList.mSendLocalNotificationSwitchButton.on)")
+            ConnectionManager.sharedInstance.setIsSendLocalMsg(notificationList.mSendLocalNotificationSwitchButton.on)
         }
 
     }
@@ -120,57 +112,9 @@ class SetingViewController: UIViewController,SelectionTypeDelegate,SyncControlle
         notificationList.tableListView.reloadData()
     }
 
-
-    // MARK: - insert or delete TableView Rows function
-    func deleteRowsAtIndexPaths(tableView:UITableView, indexPath:NSIndexPath){
-        allCellTextColor(tableView)
-
-        let cell:UITableViewCell = tableView.cellForRowAtIndexPath(indexPath)!
-        cell.textLabel?.textColor = UIColor.blackColor()
-        cell.selected = false
-        var soures:[NSIndexPath] = []
-        var indexPathRow:NSIndexPath!
-        for var index:Int = 0 ; index < mNotificationSettingArray.count ; index++ {
-            indexPathRow = NSIndexPath(forRow:index + 1, inSection: 0)
-            soures.append(indexPathRow)
-        }
-        selectedB = false
-        tableView.deleteRowsAtIndexPaths(soures, withRowAnimation: UITableViewRowAnimation.Bottom)
-    }
-
-    func insertRowsAtIndexPaths(tableView:UITableView,indexPath:NSIndexPath){
-        allCellTextColor(tableView)
-
-        var soures:[NSIndexPath] = []
-        var indexPathRow:NSIndexPath!
-        for var index:Int = 0 ; index < mNotificationSettingArray.count ; index++ {
-            indexPathRow = NSIndexPath(forRow:index + 1, inSection: 0)
-            soures.append(indexPathRow)
-        }
-        selectedB = true
-        tableView.insertRowsAtIndexPaths(soures, withRowAnimation: UITableViewRowAnimation.Bottom)
-    }
-
-    func didSelectTableViewCell(tableView:UITableView,didIndexPath:NSIndexPath) {
-        allCellTextColor(tableView)
-        var indexPathRow:NSIndexPath!
-        indexPathRow = NSIndexPath(forRow:0, inSection: didIndexPath.section)
-        let cell:UITableViewCell = tableView.cellForRowAtIndexPath(indexPathRow)!
-        cell.selected = false
-    }
-
-    func allCellTextColor(tableView:UITableView) {
-        let allCell = tableView.indexPathsForVisibleRows
-        for cell in allCell! {
-            let seletedCell:UITableViewCell = tableView.cellForRowAtIndexPath(cell )!
-            //cell as UITableViewCell
-            seletedCell.textLabel?.textColor = UIColor.blackColor()
-        }
-    }
-
     // MARK: - UITableViewDelegate
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 65.0
+        return 45.0
     }
 
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat{
@@ -178,77 +122,54 @@ class SetingViewController: UIViewController,SelectionTypeDelegate,SyncControlle
     }
 
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
-        if indexPath.section == 0 {
-            if !selectedB {
-                insertRowsAtIndexPaths(tableView, indexPath: indexPath)
-            }else{
-                if indexPath.row == 0 {
-
-                    deleteRowsAtIndexPaths(tableView, indexPath: indexPath)
-                }else{
-                    //didSelectTableViewCell(tableView, didIndexPath: indexPath)
-                    mNotificationType = mNotificationSettingArray[indexPath.row-1].getType()
-                    self.performSegueWithIdentifier("EnterNotification", sender: self)
-                }
-            }
-        }else if indexPath.section == 1 {
-            AppTheme.DLog("\(indexPath)")
-        }else{
-
-            if selectedB {
-                deleteRowsAtIndexPaths(tableView, indexPath: indexPath)
+        switch (indexPath.section){
+        case 0:
+            if(isEqualString("\(sources.objectAtIndex(indexPath.row))",string2: NSLocalizedString("Notifications", comment: ""))){
+                AppTheme.DLog("Notifications")
             }
 
-            if indexPath.section == 2{
-                self.performSegueWithIdentifier("Seting_Mynevo", sender: self)
-            }else if indexPath.section == 3{
-                didSelectTableViewCell(tableView, didIndexPath: indexPath)
+            if(isEqualString("\(sources.objectAtIndex(indexPath.row))",string2: NSLocalizedString("My nevo", comment: ""))){
+                AppTheme.DLog("My nevo")
+            }
+            break
+        case 1:
+            if(isEqualString("\(titleArray![indexPath.row])",string2: NSLocalizedString("Find device", comment: ""))){
+                AppTheme.DLog("Find device")
                 findMydevice()
-            }else if (indexPath.section == 4){
-                self.performSegueWithIdentifier("Seting_Help", sender: self)
-            }else if (indexPath.section == 5){
-                didSelectTableViewCell(tableView, didIndexPath: indexPath)
-                checkUpdateVersion()
             }
+            break
+        default: break
         }
+
     }
 
     // MARK: - UITableViewDataSource
     func numberOfSectionsInTableView(tableView: UITableView) -> Int{
-        return sources.count
+        return 2
 
     }
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
-        if selectedB && section==0 {
-            AppTheme.DLog("count:\(sources.count + mNotificationSettingArray.count)")
-            return 1 + mNotificationSettingArray.count
+        switch (section){
+        case 0:
+            return sources.count
+        case 1:
+            return titleArray!.count
+        default: return 1;
         }
-        return 1
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        if indexPath.section == 1 {
-            let endCell = notificationList.NotificationSwicthCell(indexPath)
-            return endCell
-        }
-
-        if indexPath.row == 0 {
-            let endCell:UITableViewCell = tableView.dequeueReusableCellWithIdentifier("SetingCell", forIndexPath: indexPath)
-            endCell.selectedBackgroundView = UIImageView(image: UIImage(named:"selectedButton"))
-            endCell.textLabel?.text = sources.objectAtIndex(indexPath.section) as? String
-            endCell.layer.borderWidth = 0.5;
-            endCell.layer.borderColor = UIColor.grayColor().CGColor;
-            if((sources.objectAtIndex(indexPath.section) as! String).isEqual(NSLocalizedString("currentVersion:", comment: ""))){
-                endCell.textLabel?.text = String(format: "%@%@",(sources.objectAtIndex(indexPath.section) as? String)!,AppTheme.getLoclAppStoreVersion())
+        switch (indexPath.section){
+        case 0:
+            if(indexPath.row == 0){
+                return notificationList.LinkLossNotificationsTableViewCell(indexPath, tableView: tableView, title: sources[indexPath.row] as! String)
             }
-
-            return endCell
+            return notificationList.NotificationSystemTableViewCell(indexPath, tableView: tableView, title: sources[indexPath.row] as! String)
+        case 1:
+            return notificationList.NotificationSystemTableViewCell(indexPath, tableView: tableView, title: titleArray![indexPath.row])
+        default: return notificationList.NotificationSystemTableViewCell(indexPath, tableView: tableView, title: sources[1] as! String);
         }
-        let cell:TableListCell = notificationList.NotificationlistCell(indexPath, dataSource: mNotificationSettingArray) as! TableListCell
-        cell.mSwitchDelegate = self
-        return cell
-        
     }
 
     // MARK: - SetingViewController function
@@ -270,10 +191,7 @@ class SetingViewController: UIViewController,SelectionTypeDelegate,SyncControlle
             }
         })
     }
-    
-    //vibrate and show all color light to find my device, only send one request in 6 sec
-    //this action take lot power and we maybe told customer less to use it
-    var mFindMydeviceDatetime:NSDate = NSDate(timeIntervalSinceNow: -6)
+
     func findMydevice(){
         let minDelay:Double = 6
         let offset:Double = (NSDate().timeIntervalSince1970 - mFindMydeviceDatetime.timeIntervalSince1970)
@@ -292,26 +210,11 @@ class SetingViewController: UIViewController,SelectionTypeDelegate,SyncControlle
 
         if !AppDelegate.getAppDelegate().isConnected() {
             //We are currently not connected
-            var isView:Bool = false
-            for view in notificationList.subviews {
-                let anView:UIView = view
-                if anView.isEqual(notificationList.animationView.bulibNoConnectView()) {
-                    isView = true
-                }
-            }
-            if !isView {
-                notificationList.addSubview(notificationList.animationView.bulibNoConnectView())
-                reconnect()
-            }
-        } else {
-
-            notificationList.animationView.endConnectRemoveView()
+            reconnect()
         }
-        self.view.bringSubviewToFront(notificationList.titleBgView)
     }
 
     func reconnect() {
-        notificationList.animationView.RotatingAnimationObject(notificationList.animationView.getNoConnectImage()!)
         AppDelegate.getAppDelegate().connect()
     }
 
@@ -334,6 +237,11 @@ class SetingViewController: UIViewController,SelectionTypeDelegate,SyncControlle
         if(buttonIndex == 1){
             AppTheme.toOpenUpdateURL()
         }
+    }
+
+    func isEqualString(string1:String,string2:String)->Bool{
+        let object1:NSString = NSString(format: "\(string1)")
+        return object1.isEqualToString(string2)
     }
 
     // MARK: - Navigation

@@ -11,22 +11,14 @@ import UIKit
 class SetingView: UIView {
 
     @IBOutlet var tableListView: UITableView!
-    @IBOutlet weak var backButton: UIButton!
-    @IBOutlet weak var title: UILabel!
-    @IBOutlet weak var titleBgView: UIView!
     
     private var mDelegate:ButtonManagerCallBack?
-    var animationView:AnimationView!
+    //var animationView:AnimationView!
     var mSendLocalNotificationSwitchButton:UISwitch!
 
     func bulidNotificationViewUI(delegate:ButtonManagerCallBack){
-        title.textColor = UIColor.whiteColor()
-        title.text = NSLocalizedString("Setting", comment: "")
-        title.font = UIFont.systemFontOfSize(25)
-        title.textAlignment = NSTextAlignment.Center
-
+        //title.text = NSLocalizedString("Setting", comment: "")
         mDelegate = delegate
-        animationView = AnimationView(frame: self.frame, delegate: delegate)
         
     }
 
@@ -74,7 +66,56 @@ class SetingView: UIView {
         return endCell!
         
     }
-    
+
+    /**
+     Constructing the title only TableViewCell
+
+     :param: indexPath The path of the TableView
+     :param: tableView TableView Object
+     :param: title     The title string
+
+     :returns: UITableViewCell
+     */
+    func NotificationSystemTableViewCell(indexPath:NSIndexPath,tableView:UITableView,title:String)->UITableViewCell {
+        let endCellID:String = "NotificationSystemTableViewCell"
+        var endCell = tableView.dequeueReusableCellWithIdentifier(endCellID)
+        if (endCell == nil) {
+            endCell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: endCellID)
+        }
+        endCell?.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
+        endCell?.selectionStyle = UITableViewCellSelectionStyle.None;
+        endCell?.textLabel?.text = title
+        return endCell!
+    }
+
+    /**
+     LinkLoss Notifications TableViewCell
+
+     :param: indexPath Path
+     :param: tableView tableView object
+     :param: title     title string
+
+     :returns: return LinkLoss Notifications TableViewCell
+     */
+    func LinkLossNotificationsTableViewCell(indexPath:NSIndexPath,tableView:UITableView,title:String)->UITableViewCell {
+        let endCellID:String = "LinkLossNotificationsTableViewCell"
+        var endCell = tableView.dequeueReusableCellWithIdentifier(endCellID)
+        if (endCell == nil) {
+            endCell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: endCellID)
+        }
+        mSendLocalNotificationSwitchButton = UISwitch(frame: CGRectMake(0,0,51,31))
+        mSendLocalNotificationSwitchButton?.on = ConnectionManager.sharedInstance.getIsSendLocalMsg()
+        mSendLocalNotificationSwitchButton?.tintColor = AppTheme.NEVO_SOLAR_YELLOW()
+        mSendLocalNotificationSwitchButton?.onTintColor = AppTheme.NEVO_SOLAR_YELLOW()
+        mSendLocalNotificationSwitchButton?.addTarget(self, action: Selector("buttonAction:"), forControlEvents: UIControlEvents.ValueChanged)
+        mSendLocalNotificationSwitchButton?.center = CGPointMake(UIScreen.mainScreen().bounds.size.width-40, (endCell?.contentView.frame.height)!/2)
+        endCell?.contentView.addSubview(mSendLocalNotificationSwitchButton!)
+
+        endCell?.selectionStyle = UITableViewCellSelectionStyle.None;
+        endCell?.textLabel?.text = title
+        return endCell!
+    }
+
     /**
     get the icon according to the notificationSetting
     

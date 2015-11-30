@@ -854,6 +854,14 @@
 			path = Strings;
 			sourceTree = "<group>";
 		};
+		00B306591C0C2D8800397444 /* Notifications */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Notifications;
+			path = Controller/Notifications;
+			sourceTree = "<group>";
+		};
 		00BA73DE1BA84F9B00321496 /* AidOTA */ = {
 			isa = PBXGroup;
 			children = (
@@ -1240,6 +1248,7 @@
 				0017199F1AB2EE5300889FED /* NevoOta */,
 				9AD8F9921A6E3D3D00F01014 /* Connection */,
 				007DD4B91A89DDA800CE7264 /* PageViewController */,
+				00B306591C0C2D8800397444 /* Notifications */,
 				07BE0CEE1A84A0C8000C4AC7 /* Nevo-Bridging-Header.h */,
 				007F79701A878C8B006C89E6 /* TutorialController.swift */,
 				9AD8F9631A6E011E00F01014 /* AppDelegate.swift */,
