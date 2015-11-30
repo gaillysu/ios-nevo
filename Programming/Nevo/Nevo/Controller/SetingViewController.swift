@@ -8,12 +8,11 @@
 
 import UIKit
 
-class SetingViewController: UIViewController,SelectionTypeDelegate,SyncControllerDelegate,ButtonManagerCallBack,SwitchActionDelegate,UIAlertViewDelegate {
+class SetingViewController: UIViewController,SyncControllerDelegate,ButtonManagerCallBack,UIAlertViewDelegate {
 
     @IBOutlet var notificationList: SetingView!
 
     private var mNotificationType:NotificationType = NotificationType.CALL
-    private var mNotificationSettingArray:[NotificationSetting] = []
     var sources:NSArray!
     var titleArray:[String]?
     var selectedB:Bool = false
@@ -44,8 +43,6 @@ class SetingViewController: UIViewController,SelectionTypeDelegate,SyncControlle
         AppDelegate.getAppDelegate().startConnect(false, delegate: self)
 
         notificationList.bulidNotificationViewUI(self)
-
-        initNotificationSettingArray()
 
         sources = [NSLocalizedString("Link-Loss Notifications", comment: ""),NSLocalizedString("Notifications", comment: ""),NSLocalizedString("My nevo", comment: ""),NSLocalizedString("Support", comment: ""),NSLocalizedString("About", comment: "")]
         titleArray = [NSLocalizedString("Preset-goals", comment: ""),NSLocalizedString("Find device", comment: "")]
@@ -87,30 +84,6 @@ class SetingViewController: UIViewController,SelectionTypeDelegate,SyncControlle
 
     }
 
-    // MARK: - SwitchActionDelegate
-    func onSwitch(results:Bool ,sender:UISwitch){
-        let indexPath:NSIndexPath = NSIndexPath(forRow: sender.tag, inSection: 0)
-        let cell:TableListCell = notificationList.tableListView.cellForRowAtIndexPath(indexPath) as! TableListCell
-        if(results){
-            cell.round.hidden = false
-        }else{
-            cell.round.hidden = true
-        }
-
-        mNotificationType = mNotificationSettingArray[sender.tag-1].getType()
-        let notSetting:NotificationSetting = NotificationSetting.indexOfObjectAtType(mNotificationSettingArray, type: mNotificationType)!
-        EnterNotificationController.setMotorOnOff(NSString(string: notSetting.typeName), motorStatus: results)
-        SetingViewController.refreshNotificationSettingArray(&mNotificationSettingArray)
-        //send request to watch
-        AppDelegate.getAppDelegate().SetNortification(mNotificationSettingArray)
-    }
-
-    // MARK: - SelectionTypeDelegate
-    func onSelectedType(results:Bool,type:NSString){
-        AppTheme.DLog("type===:\(type)")
-        SetingViewController.refreshNotificationSettingArray(&mNotificationSettingArray)
-        notificationList.tableListView.reloadData()
-    }
 
     // MARK: - UITableViewDelegate
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -126,6 +99,9 @@ class SetingViewController: UIViewController,SelectionTypeDelegate,SyncControlle
         case 0:
             if(isEqualString("\(sources.objectAtIndex(indexPath.row))",string2: NSLocalizedString("Notifications", comment: ""))){
                 AppTheme.DLog("Notifications")
+                let notification:NotificationViewController = NotificationViewController()
+                notification.hidesBottomBarWhenPushed = true
+                self.navigationController?.pushViewController(notification, animated: true)
             }
 
             if(isEqualString("\(sources.objectAtIndex(indexPath.row))",string2: NSLocalizedString("My nevo", comment: ""))){
@@ -218,19 +194,6 @@ class SetingViewController: UIViewController,SelectionTypeDelegate,SyncControlle
         AppDelegate.getAppDelegate().connect()
     }
 
-    /**
-     init the mNotificationSettingArray
-
-     :returns:
-     */
-    func initNotificationSettingArray() {
-        let notificationTypeArray:[NotificationType] = [NotificationType.CALL, NotificationType.EMAIL, NotificationType.FACEBOOK, NotificationType.SMS, NotificationType.CALENDAR, NotificationType.WECHAT, NotificationType.WHATSAPP]
-        for notificationType in notificationTypeArray {
-            var setting = NotificationSetting(type: notificationType, color: 0)
-            SetingViewController.refreshNotificationSetting(&setting)
-            mNotificationSettingArray.append(setting)
-        }
-    }
 
     // MARK: - UIAlertViewDelegate
     func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int){
@@ -249,18 +212,6 @@ class SetingViewController: UIViewController,SelectionTypeDelegate,SyncControlle
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
-        if (segue.identifier == "EnterNotification"){
-            let notficp = segue.destinationViewController as! EnterNotificationController
-            notficp.mDelegate = self
-            
-            notficp.mNotificationSettingArray = mNotificationSettingArray
-            notficp.mCurrentNotificationSetting = NotificationSetting.indexOfObjectAtType(mNotificationSettingArray, type: mNotificationType)
-
-            for setting in mNotificationSettingArray {
-
-
-            }
-        }
 
     }
 

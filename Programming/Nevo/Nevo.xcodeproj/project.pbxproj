@@ -89,6 +89,10 @@
 		00A2287E1AA57F1A00360C36 /* EnterNotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A2287D1AA57F1A00360C36 /* EnterNotificationController.swift */; };
 		00A773961A88562F0018E121 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 00A773911A88562F0018E121 /* Localizable.strings */; };
 		00AB7AF91B0989D10090E334 /* MyNevoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AB7AF81B0989D10090E334 /* MyNevoController.swift */; };
+		00B306641C0C352100397444 /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B306621C0C352100397444 /* NotificationViewController.swift */; };
+		00B306651C0C352100397444 /* NotificationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00B306631C0C352100397444 /* NotificationViewController.xib */; };
+		00B306671C0C35F000397444 /* PublicClassTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B306661C0C35F000397444 /* PublicClassTableViewController.swift */; };
+		00B3066A1C0C411300397444 /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B306691C0C411300397444 /* NotificationView.swift */; };
 		00BA73E01BA84FF200321496 /* AidOtaController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00BA73DF1BA84FF200321496 /* AidOtaController.swift */; };
 		00BA73E21BA853BC00321496 /* AidOtaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00BA73E11BA853BC00321496 /* AidOtaViewController.swift */; };
 		00C1B4A01C045F8A00B902F4 /* DaySleepSaveModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C1B49F1C045F8A00B902F4 /* DaySleepSaveModel.swift */; };
@@ -362,6 +366,10 @@
 		00A773941A88562F0018E121 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		00A773951A88562F0018E121 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		00AB7AF81B0989D10090E334 /* MyNevoController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MyNevoController.swift; path = Controller/MyNevoController.swift; sourceTree = "<group>"; };
+		00B306621C0C352100397444 /* NotificationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
+		00B306631C0C352100397444 /* NotificationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NotificationViewController.xib; sourceTree = "<group>"; };
+		00B306661C0C35F000397444 /* PublicClassTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PublicClassTableViewController.swift; sourceTree = "<group>"; };
+		00B306691C0C411300397444 /* NotificationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
 		00BA73DF1BA84FF200321496 /* AidOtaController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AidOtaController.swift; sourceTree = "<group>"; };
 		00BA73E11BA853BC00321496 /* AidOtaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AidOtaViewController.swift; sourceTree = "<group>"; };
 		00C1B49F1C045F8A00B902F4 /* DaySleepSaveModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DaySleepSaveModel.swift; sourceTree = "<group>"; };
@@ -724,6 +732,7 @@
 			isa = PBXGroup;
 			children = (
 				004787CB1C06E715001B3254 /* PublicClassController.swift */,
+				00B306661C0C35F000397444 /* PublicClassTableViewController.swift */,
 			);
 			name = publicClass;
 			path = Controller/publicClass;
@@ -857,9 +866,20 @@
 		00B306591C0C2D8800397444 /* Notifications */ = {
 			isa = PBXGroup;
 			children = (
+				00B306621C0C352100397444 /* NotificationViewController.swift */,
+				00B306631C0C352100397444 /* NotificationViewController.xib */,
 			);
 			name = Notifications;
 			path = Controller/Notifications;
+			sourceTree = "<group>";
+		};
+		00B306681C0C40FF00397444 /* NotificationView */ = {
+			isa = PBXGroup;
+			children = (
+				00B306691C0C411300397444 /* NotificationView.swift */,
+			);
+			name = NotificationView;
+			path = View/NotificationView;
 			sourceTree = "<group>";
 		};
 		00BA73DE1BA84F9B00321496 /* AidOTA */ = {
@@ -1296,6 +1316,7 @@
 				003011731C083CEB00EE1621 /* StepView */,
 				003011751C083CEB00EE1621 /* Tutorial */,
 				0030119D1C083DF800EE1621 /* AddAlarmView */,
+				00B306681C0C40FF00397444 /* NotificationView */,
 				9AD8F96D1A6E03F600F01014 /* HomeView.swift */,
 				00E5CFD71B18053100D1F829 /* HelpView.swift */,
 			);
@@ -1494,6 +1515,7 @@
 				007F799C1A878D0B006C89E6 /* Raleway-ThinItalic.ttf in Resources */,
 				003011AA1C084A3300EE1621 /* AddAlarmTableViewCell.xib in Resources */,
 				007F79931A878D0B006C89E6 /* Raleway-Italic.ttf in Resources */,
+				00B306651C0C352100397444 /* NotificationViewController.xib in Resources */,
 				007F798F1A878D0B006C89E6 /* Raleway-ExtraBold.ttf in Resources */,
 				007F79911A878D0B006C89E6 /* Raleway-ExtraLight.ttf in Resources */,
 				007F798E1A878D0B006C89E6 /* Raleway-BoldItalic.ttf in Resources */,
@@ -1704,6 +1726,7 @@
 				00DC9ECA1BB2853D00734DB6 /* LineChartData.swift in Sources */,
 				00DC9EAE1BB2853D00734DB6 /* HorizontalBarChartView.swift in Sources */,
 				9A3E57251A80E56E00DFFAE1 /* NevoProfile.swift in Sources */,
+				00B3066A1C0C411300397444 /* NotificationView.swift in Sources */,
 				00C1B4A51C045F9400B902F4 /* NevoDBHelper.m in Sources */,
 				00DC9EC41BB2853D00734DB6 /* CandleChartDataEntry.swift in Sources */,
 				00DC9ED21BB2853D00734DB6 /* ScatterChartData.swift in Sources */,
@@ -1719,6 +1742,7 @@
 				00DC9D961BB284CC00734DB6 /* QueryHistoricalController.swift in Sources */,
 				00DC9EBE1BB2853D00734DB6 /* BarLineScatterCandleBubbleChartData.swift in Sources */,
 				007DD4BB1A89DDC000CE7264 /* Page2Controller.swift in Sources */,
+				00B306671C0C35F000397444 /* PublicClassTableViewController.swift in Sources */,
 				00DC9EC21BB2853D00734DB6 /* BubbleChartDataSet.swift in Sources */,
 				00DC9EF01BB2853D00734DB6 /* LineScatterCandleRadarChartRenderer.swift in Sources */,
 				9A2D6C431A9C8E3600591BDC /* HourlySteps.swift in Sources */,
@@ -1733,6 +1757,7 @@
 				003011971C083CEB00EE1621 /* TutorialView.swift in Sources */,
 				0704C9631AA431EE00F9AE09 /* GetStepsGoalRequest.swift in Sources */,
 				0030118E1C083CEB00EE1621 /* StepGoalSetingView.swift in Sources */,
+				00B306641C0C352100397444 /* NotificationViewController.swift in Sources */,
 				00DC9EEF1BB2853D00734DB6 /* LineChartRenderer.swift in Sources */,
 				07CC4A291A820A9B008DA749 /* Utility.swift in Sources */,
 				00DC9EC11BB2853D00734DB6 /* BubbleChartDataEntry.swift in Sources */,
