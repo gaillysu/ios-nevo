@@ -387,6 +387,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Step" id="VUx-V6-WUk"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="stepGoalView" destination="esU-rF-t9Y" id="Pqi-PA-DsZ"/>
                     </connections>
@@ -853,6 +854,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Sleep" id="bjN-go-kyB"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="sleepView" destination="Hi5-WE-evD" id="MDm-KI-64a"/>
                     </connections>

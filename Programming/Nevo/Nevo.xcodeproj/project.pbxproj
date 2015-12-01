@@ -85,6 +85,13 @@
 		00828C291BFC1A9E00194032 /* HealthModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00828C281BFC1A9E00194032 /* HealthModel.swift */; };
 		009178AB1C05A36600CD904D /* AlarmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009178AA1C05A36600CD904D /* AlarmModel.swift */; };
 		009178AD1C05A3A100CD904D /* PresetsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009178AC1C05A3A100CD904D /* PresetsModel.swift */; };
+		009ED4961C0D4B6400623D95 /* SelectedNotificationTypeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009ED4941C0D4B6400623D95 /* SelectedNotificationTypeController.swift */; };
+		009ED4971C0D4B6400623D95 /* SelectedNotificationTypeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 009ED4951C0D4B6400623D95 /* SelectedNotificationTypeController.xib */; };
+		009ED4991C0D4E0700623D95 /* SelectedNotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009ED4981C0D4E0700623D95 /* SelectedNotificationView.swift */; };
+		009ED49C1C0D920300623D95 /* NotificationClockCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009ED49A1C0D920300623D95 /* NotificationClockCell.swift */; };
+		009ED49D1C0D920300623D95 /* NotificationClockCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 009ED49B1C0D920300623D95 /* NotificationClockCell.xib */; };
+		009ED4A01C0DA13200623D95 /* LineColorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009ED49E1C0DA13200623D95 /* LineColorCell.swift */; };
+		009ED4A11C0DA13200623D95 /* LineColorCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 009ED49F1C0DA13200623D95 /* LineColorCell.xib */; };
 		00A228701AA551A400360C36 /* SetingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A2286F1AA551A400360C36 /* SetingViewController.swift */; };
 		00A2287E1AA57F1A00360C36 /* EnterNotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A2287D1AA57F1A00360C36 /* EnterNotificationController.swift */; };
 		00A773961A88562F0018E121 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 00A773911A88562F0018E121 /* Localizable.strings */; };
@@ -356,6 +363,13 @@
 		0086858F1B40D53C0062F544 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		009178AA1C05A36600CD904D /* AlarmModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlarmModel.swift; sourceTree = "<group>"; };
 		009178AC1C05A3A100CD904D /* PresetsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresetsModel.swift; sourceTree = "<group>"; };
+		009ED4941C0D4B6400623D95 /* SelectedNotificationTypeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectedNotificationTypeController.swift; sourceTree = "<group>"; };
+		009ED4951C0D4B6400623D95 /* SelectedNotificationTypeController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SelectedNotificationTypeController.xib; sourceTree = "<group>"; };
+		009ED4981C0D4E0700623D95 /* SelectedNotificationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectedNotificationView.swift; sourceTree = "<group>"; };
+		009ED49A1C0D920300623D95 /* NotificationClockCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationClockCell.swift; sourceTree = "<group>"; };
+		009ED49B1C0D920300623D95 /* NotificationClockCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NotificationClockCell.xib; sourceTree = "<group>"; };
+		009ED49E1C0DA13200623D95 /* LineColorCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineColorCell.swift; sourceTree = "<group>"; };
+		009ED49F1C0DA13200623D95 /* LineColorCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LineColorCell.xib; sourceTree = "<group>"; };
 		00A2286F1AA551A400360C36 /* SetingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SetingViewController.swift; path = Controller/SetingViewController.swift; sourceTree = "<group>"; };
 		00A2287D1AA57F1A00360C36 /* EnterNotificationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EnterNotificationController.swift; path = Controller/EnterNotificationController.swift; sourceTree = "<group>"; };
 		00A773841A8854580018E121 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Main.strings; sourceTree = "<group>"; };
@@ -868,6 +882,8 @@
 			children = (
 				00B306621C0C352100397444 /* NotificationViewController.swift */,
 				00B306631C0C352100397444 /* NotificationViewController.xib */,
+				009ED4941C0D4B6400623D95 /* SelectedNotificationTypeController.swift */,
+				009ED4951C0D4B6400623D95 /* SelectedNotificationTypeController.xib */,
 			);
 			name = Notifications;
 			path = Controller/Notifications;
@@ -877,6 +893,11 @@
 			isa = PBXGroup;
 			children = (
 				00B306691C0C411300397444 /* NotificationView.swift */,
+				009ED4981C0D4E0700623D95 /* SelectedNotificationView.swift */,
+				009ED49A1C0D920300623D95 /* NotificationClockCell.swift */,
+				009ED49B1C0D920300623D95 /* NotificationClockCell.xib */,
+				009ED49E1C0DA13200623D95 /* LineColorCell.swift */,
+				009ED49F1C0DA13200623D95 /* LineColorCell.xib */,
 			);
 			name = NotificationView;
 			path = View/NotificationView;
@@ -1487,6 +1508,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				00DC9D971BB284CC00734DB6 /* QueryHistoricalController.xib in Resources */,
+				009ED49D1C0D920300623D95 /* NotificationClockCell.xib in Resources */,
 				0030119C1C083DB100EE1621 /* AddAlarmController.xib in Resources */,
 				00D0FF731B130A9F00D084C3 /* Nevo660.png in Resources */,
 				00E2BDE31B16CCD0009C757E /* MBProgressHUD.bundle in Resources */,
@@ -1513,6 +1535,8 @@
 				007F79961A878D0B006C89E6 /* Raleway-Medium.ttf in Resources */,
 				007F799A1A878D0B006C89E6 /* Raleway-SemiBoldItalic.ttf in Resources */,
 				007F799C1A878D0B006C89E6 /* Raleway-ThinItalic.ttf in Resources */,
+				009ED4971C0D4B6400623D95 /* SelectedNotificationTypeController.xib in Resources */,
+				009ED4A11C0DA13200623D95 /* LineColorCell.xib in Resources */,
 				003011AA1C084A3300EE1621 /* AddAlarmTableViewCell.xib in Resources */,
 				007F79931A878D0B006C89E6 /* Raleway-Italic.ttf in Resources */,
 				00B306651C0C352100397444 /* NotificationViewController.xib in Resources */,
@@ -1637,6 +1661,7 @@
 				0021A7A91B5F9E220058905B /* DaySleep.swift in Sources */,
 				9A7551A71AADA91B00DD9292 /* SyncQueue.swift in Sources */,
 				00DC9ED41BB2853D00734DB6 /* ChartDataApproximatorFilter.swift in Sources */,
+				009ED4961C0D4B6400623D95 /* SelectedNotificationTypeController.swift in Sources */,
 				00DC9EFB1BB2853D00734DB6 /* UIGraphics+Extensions.swift in Sources */,
 				07CC4A2F1A821B46008DA749 /* NevoOTARequest.swift in Sources */,
 				00C1B4A61C045F9400B902F4 /* NevoDBModel.m in Sources */,
@@ -1669,6 +1694,7 @@
 				00E2BDE21B16CCD0009C757E /* MBProgressHUD+MJ.m in Sources */,
 				005BC95F1A88B79F006F9E86 /* FXBlurView.m in Sources */,
 				9AD8F9A01A6E47B400F01014 /* SetGoalRequest.swift in Sources */,
+				009ED4A01C0DA13200623D95 /* LineColorCell.swift in Sources */,
 				00DC9ECD1BB2853D00734DB6 /* LineScatterCandleChartDataSet.swift in Sources */,
 				001719A31AB2EE5300889FED /* SelectFileController.swift in Sources */,
 				007A2BCB1BC370B000D4185B /* SleepTrackingController.swift in Sources */,
@@ -1736,6 +1762,7 @@
 				00E5CFD81B18053100D1F829 /* HelpView.swift in Sources */,
 				00DC9EE71BB2853D00734DB6 /* ChartXAxisRendererBarChart.swift in Sources */,
 				00DC9EAB1BB2853D00734DB6 /* CandleStickChartView.swift in Sources */,
+				009ED4991C0D4E0700623D95 /* SelectedNotificationView.swift in Sources */,
 				00E5CFD61B17FB7300D1F829 /* HelpViewController.swift in Sources */,
 				00DC9ED71BB2853D00734DB6 /* ChartFillFormatter.swift in Sources */,
 				00BA73E21BA853BC00321496 /* AidOtaViewController.swift in Sources */,
@@ -1787,6 +1814,7 @@
 				07C18C0E1A81AB3900D0BF4A /* NevoOtaViewController.swift in Sources */,
 				001818351B048DAC005E9F2D /* Page5Controller.swift in Sources */,
 				004787CC1C06E715001B3254 /* PublicClassController.swift in Sources */,
+				009ED49C1C0D920300623D95 /* NotificationClockCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

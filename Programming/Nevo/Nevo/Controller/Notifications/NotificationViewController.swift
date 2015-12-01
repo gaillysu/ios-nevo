@@ -8,8 +8,9 @@
 
 import UIKit
 
-class NotificationViewController: PublicClassTableViewController {
+class NotificationViewController: UITableViewController {
     private var mNotificationSettingArray:[NotificationSetting] = []
+    private var mCalendarSettingArray:[NotificationSetting] = []
     private let titleHeader:[String] = ["ACTIVE NOTIFICATIONS","INACTIVE NOTIFICATIONS"]
 
     @IBOutlet weak var notificationView: NotificationView!
@@ -37,12 +38,16 @@ class NotificationViewController: PublicClassTableViewController {
      :returns:
      */
     func initNotificationSettingArray() {
-        let notificationTypeArray:[NotificationType] = [NotificationType.CALL, NotificationType.EMAIL, NotificationType.FACEBOOK, NotificationType.SMS, NotificationType.CALENDAR, NotificationType.WECHAT, NotificationType.WHATSAPP]
+        let notificationTypeArray:[NotificationType] = [NotificationType.CALL, NotificationType.EMAIL, NotificationType.FACEBOOK, NotificationType.SMS, NotificationType.WECHAT, NotificationType.WHATSAPP]
         for notificationType in notificationTypeArray {
             var setting = NotificationSetting(type: notificationType, color: 0)
             SetingViewController.refreshNotificationSetting(&setting)
             mNotificationSettingArray.append(setting)
         }
+
+        var calendarSetting = NotificationSetting(type:  NotificationType.CALENDAR, color: 0)
+        SetingViewController.refreshNotificationSetting(&calendarSetting)
+        mCalendarSettingArray.append(calendarSetting)
     }
 
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat{
@@ -52,6 +57,24 @@ class NotificationViewController: PublicClassTableViewController {
     override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat{
         return 40.0
     }
+
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
+        var titleString:String = ""
+        switch (indexPath.section){
+        case 0:
+            let notificationseting:NotificationSetting = mNotificationSettingArray[indexPath.row]
+            titleString = notificationseting.typeName
+        case 1:
+            let notificationseting:NotificationSetting = mCalendarSettingArray[indexPath.row]
+            titleString = notificationseting.typeName
+        default: break;
+        }
+
+        let selectedNot:SelectedNotificationTypeController = SelectedNotificationTypeController()
+        selectedNot.title = titleString
+        self.navigationController?.pushViewController(selectedNot, animated: true)
+    }
+
     // MARK: - Table view data source
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String{
         return titleHeader[section]
@@ -75,19 +98,12 @@ class NotificationViewController: PublicClassTableViewController {
 
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        //let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
-        // Configure the cell...
-        //return cell
-        let notificationseting:NotificationSetting = mNotificationSettingArray[indexPath.row]
         switch (indexPath.section){
         case 0:
+            let notificationseting:NotificationSetting = mNotificationSettingArray[indexPath.row]
             return NotificationView.NotificationSystemTableViewCell(indexPath, tableView: tableView, title: notificationseting.typeName)
         case 1:
-            for notification in mNotificationSettingArray{
-                if notification.getType() == NotificationType.CALENDAR {
-                    return NotificationView.NotificationSystemTableViewCell(indexPath, tableView: tableView, title: notification.typeName)
-                }
-            }
+            let notificationseting:NotificationSetting = mCalendarSettingArray[indexPath.row]
             return NotificationView.NotificationSystemTableViewCell(indexPath, tableView: tableView, title: notificationseting.typeName)
         default: return UITableViewCell();
         }
@@ -163,26 +179,6 @@ class NotificationViewController: PublicClassTableViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
-    }
-    
-    // MARK: - Navigation
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    // Get the new view controller using segue.destinationViewController.
-    // Pass the selected object to the new view controller.
-    if (segue.identifier == "EnterNotification"){
-    let notficp = segue.destinationViewController as! EnterNotificationController
-    notficp.mDelegate = self
-
-    notficp.mNotificationSettingArray = mNotificationSettingArray
-    notficp.mCurrentNotificationSetting = NotificationSetting.indexOfObjectAtType(mNotificationSettingArray, type: mNotificationType)
-
-    for setting in mNotificationSettingArray {
-
-
-    }
-    }
-
     }
     */
 

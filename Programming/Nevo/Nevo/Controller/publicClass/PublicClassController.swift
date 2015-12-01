@@ -13,7 +13,7 @@ class PublicClassController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         if(Double(UIDevice.currentDevice().systemVersion)>7.0){
-            self.edgesForExtendedLayout = UIRectEdge.None;
+            self.edgesForExtendedLayout = UIRectEdge.Bottom;
             self.extendedLayoutIncludesOpaqueBars = false;
             self.modalPresentationCapturesStatusBarAppearance = false;
         }
