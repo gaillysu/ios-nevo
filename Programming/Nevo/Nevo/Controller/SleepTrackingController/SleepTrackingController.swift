@@ -17,6 +17,7 @@ it should handle very little, only the initialisation of the different Views and
 class SleepTrackingController: PublicClassController, SyncControllerDelegate ,ButtonManagerCallBack,ClockRefreshDelegate{
     @IBOutlet weak var sleepView: SleepTrackingView!
     private var mVisiable:Bool = false
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -30,6 +31,7 @@ class SleepTrackingController: PublicClassController, SyncControllerDelegate ,Bu
                 
             })
         }
+
     }
 
     override func viewDidAppear(animated: Bool) {
@@ -67,7 +69,7 @@ class SleepTrackingController: PublicClassController, SyncControllerDelegate ,Bu
     func controllManager(sender:AnyObject) {
 
         if sender.isEqual(sleepView.historyButton){
-            let quer:QueryHistoricalController = QueryHistoricalController()
+            let quer:SleepHistoricalViewController = SleepHistoricalViewController()
             self.presentViewController(quer, animated: true, completion:nil)
         }
 
@@ -77,10 +79,11 @@ class SleepTrackingController: PublicClassController, SyncControllerDelegate ,Bu
 
             })
         }
+
+        
     }
 
     /**
-    
     goto OTA screen.
     */
     func gotoOTAScreen(){

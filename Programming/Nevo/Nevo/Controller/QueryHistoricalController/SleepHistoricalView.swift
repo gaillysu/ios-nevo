@@ -8,13 +8,9 @@
 
 import UIKit
 
-class QueryHistoricalView: UIView , ChartViewDelegate,UITableViewDataSource,UITableViewDelegate{
+class SleepHistoricalView: UIView , ChartViewDelegate,UITableViewDataSource,UITableViewDelegate{
 
-    @IBOutlet weak var title: UILabel!
-    @IBOutlet weak var backButton: UIButton!
-    @IBOutlet weak var naBgView: UIView!
     @IBOutlet var chartView:BarChartView?
-
     @IBOutlet weak var detailTableView: UITableView!
 
 
@@ -22,10 +18,10 @@ class QueryHistoricalView: UIView , ChartViewDelegate,UITableViewDataSource,UITa
     private let sleepArray:NSMutableArray = NSMutableArray();
     private let detailArray:NSMutableArray = NSMutableArray(capacity:1);
 
-    func bulidQueryView(delegate:QueryHistoricalController,modelArray:NSArray){
+    func bulidQueryView(delegate:SleepHistoricalViewController,modelArray:NSArray,navigation:UINavigationItem){
         queryModel.addObjectsFromArray(modelArray as [AnyObject])
-
-        title.text = NSLocalizedString("sleep_history_title", comment: "")
+        
+        navigation.title = NSLocalizedString("sleep_history_title", comment: "")
 
         if(queryModel.count>0){
             detailArray.addObject([[NSLocalizedString("total_sleep_title", comment: ""),NSLocalizedString("light_sleep_title", comment: ""),NSLocalizedString("deep_sleep_title", comment: "")],[NSLocalizedString("select_date", comment: ""),NSLocalizedString("select_date", comment: ""),NSLocalizedString("select_date", comment: "")]])

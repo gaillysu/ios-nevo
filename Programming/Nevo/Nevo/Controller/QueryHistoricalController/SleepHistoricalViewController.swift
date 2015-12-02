@@ -8,13 +8,13 @@
 
 import UIKit
 
-class QueryHistoricalController: UIViewController,UITableViewDataSource,UITableViewDelegate,ChartViewDelegate {
+class SleepHistoricalViewController: UIViewController,UITableViewDataSource,UITableViewDelegate,ChartViewDelegate {
 
-    @IBOutlet var queryView: QueryHistoricalView!
+    @IBOutlet var queryView: SleepHistoricalView!
 
     private var queryArray:NSArray?
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
-        super.init(nibName: "QueryHistoricalController", bundle: NSBundle.mainBundle())
+        super.init(nibName: "SleepHistoricalViewController", bundle: NSBundle.mainBundle())
 
     }
 
@@ -32,6 +32,11 @@ class QueryHistoricalController: UIViewController,UITableViewDataSource,UITableV
         //self.view.transform = CGAffineTransformMakeRotation(CGFloat(M_PI*(90)/180.0));
         //self.view.bounds = CGRectMake(0, 0, UIScreen.mainScreen().bounds.height, UIScreen.mainScreen().bounds.width);
         //UIView.commitAnimations()
+        if(Double(UIDevice.currentDevice().systemVersion)>7.0){
+            self.edgesForExtendedLayout = UIRectEdge.None;
+            self.extendedLayoutIncludesOpaqueBars = false;
+            self.modalPresentationCapturesStatusBarAppearance = false;
+        }
 
         self.view.backgroundColor = UIColor.whiteColor()
         let secondsPerDay:NSTimeInterval  = 24*7 * 60 * 60;
@@ -44,7 +49,7 @@ class QueryHistoricalController: UIViewController,UITableViewDataSource,UITableV
         //queryArray = DaySleepSaveModel.findByCriteria(String(format: " WHERE created > %@ ",currentDateStr))
         queryArray = DaySleepSaveModel.findAll()
 
-        queryView.bulidQueryView(self,modelArray: queryArray!)
+        queryView.bulidQueryView(self,modelArray: queryArray!,navigation: self.navigationItem)
 
         // Do any additional setup after loading the view.
     }
@@ -55,11 +60,7 @@ class QueryHistoricalController: UIViewController,UITableViewDataSource,UITableV
     }
     
     @IBAction func ButtonController(sender: AnyObject) {
-        if(queryView.backButton.isEqual(sender)){
-            self.dismissViewControllerAnimated(true, completion: { () -> Void in
-                
-            })
-        }
+
     }
 
     // MARK: - UITableViewDataSource

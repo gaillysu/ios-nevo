@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="QueryHistoricalController" customModule="Nevo" customModuleProvider="target">
+            <connections>
+                <outlet property="queryView" destination="i5M-Pr-FkT" id="zE3-Hn-fCS"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT" customClass="SleepHistoricalView" customModule="Nevo" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qmS-4V-0uD" customClass="BarChartView" customModule="Nevo" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="250"/>
+                    <animations/>
+                    <color key="backgroundColor" red="0.80784313725490198" green="0.80784313725490198" blue="0.80392156862745101" alpha="1" colorSpace="calibratedRGB"/>
+                </view>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="EuS-UX-KzD">
+                    <rect key="frame" x="0.0" y="250" width="320" height="318"/>
+                    <animations/>
+                    <color key="backgroundColor" red="0.32156862749999998" green="0.30588235289999999" blue="0.30588235289999999" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="318" id="Rf5-Nf-gjr"/>
+                    </constraints>
+                    <color key="sectionIndexBackgroundColor" red="0.32156862749999998" green="0.30588235289999999" blue="0.30588235289999999" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="sectionIndexTrackingBackgroundColor" red="0.32156862749999998" green="0.30588235289999999" blue="0.30588235289999999" alpha="1" colorSpace="calibratedRGB"/>
+                </tableView>
+            </subviews>
+            <animations/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="qmS-4V-0uD" firstAttribute="trailing" secondItem="EuS-UX-KzD" secondAttribute="trailing" id="CZb-sl-j9l"/>
+                <constraint firstItem="qmS-4V-0uD" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="D83-RI-UEK"/>
+                <constraint firstItem="EuS-UX-KzD" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="K0m-k2-WGm"/>
+                <constraint firstItem="qmS-4V-0uD" firstAttribute="leading" secondItem="EuS-UX-KzD" secondAttribute="leading" id="Kos-Ky-ndb"/>
+                <constraint firstAttribute="bottom" secondItem="EuS-UX-KzD" secondAttribute="bottom" id="Tll-Gv-dYQ"/>
+                <constraint firstAttribute="trailing" secondItem="EuS-UX-KzD" secondAttribute="trailing" id="oNg-UF-MOs"/>
+                <constraint firstItem="EuS-UX-KzD" firstAttribute="top" secondItem="qmS-4V-0uD" secondAttribute="bottom" id="tQD-UZ-9UK"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="chartView" destination="qmS-4V-0uD" id="7iF-18-Ski"/>
+                <outlet property="detailTableView" destination="EuS-UX-KzD" id="Fy2-cP-cto"/>
+            </connections>
+            <point key="canvasLocation" x="588" y="280"/>
+        </view>
+    </objects>
+</document>
