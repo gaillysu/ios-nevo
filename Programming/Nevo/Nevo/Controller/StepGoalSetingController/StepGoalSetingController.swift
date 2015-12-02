@@ -16,6 +16,14 @@ class StepGoalSetingController: PublicClassController,ButtonManagerCallBack,Sync
     
     private var mCurrentGoal:Goal = NumberOfStepsGoal()
 
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
+        super.init(nibName: "StepGoalSetingController", bundle: NSBundle.mainBundle())
+
+    }
+
+    required init(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

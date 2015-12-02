@@ -23,7 +23,7 @@ class ToolbarView: UIView {
         segment.frame = CGRectMake(0, 0, self.frame.size.width-30, 29)
         segment.selectedSegmentIndex = 0
         segment.tintColor = AppTheme.NEVO_SOLAR_YELLOW()
-        segment.addTarget(self, action: Selector("segmentAction:"), forControlEvents: UIControlEvents.TouchUpInside)
+        segment.addTarget(self, action: Selector("segmentAction:"), forControlEvents: UIControlEvents.ValueChanged)
 
         let itemSeg:UIBarButtonItem = UIBarButtonItem(customView: segment)
         itemSeg.style = UIBarButtonItemStyle.Done

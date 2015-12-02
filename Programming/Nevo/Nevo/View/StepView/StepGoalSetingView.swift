@@ -17,14 +17,12 @@ protocol StepGoalButtonActionCallBack {
 
 }
 
-class StepGoalSetingView: UIView,UIPickerViewDataSource,UIPickerViewDelegate,toolbarSegmentedDelegate {
+class StepGoalSetingView: UIView,UIPickerViewDataSource,UIPickerViewDelegate {
 
     //Put all UI operation HomeView inside
     private let mClockTimerView = ClockView(frame:CGRectMake(0, 0, UIScreen.mainScreen().bounds.width-60, UIScreen.mainScreen().bounds.width-60), hourImage:  UIImage(named: "clockViewHour")!, minuteImage: UIImage(named: "clockViewMinute")!, dialImage: UIImage(named: "clockView600")!);//init "ClockView" ,Use the code relative layout
     var progressView:CircleProgressView?
 
-    var rightButton:UIBarButtonItem?
-    
     private var mPickerView:UIPickerView?
 
     private var mButtonArray:[UIButton]=[]
@@ -44,18 +42,7 @@ class StepGoalSetingView: UIView,UIPickerViewDataSource,UIPickerViewDelegate,too
     func bulidStepGoalView(delegate:ButtonManagerCallBack,navigation:UINavigationItem){
         mDelegate = delegate
 
-        navigation.title = NSLocalizedString("stepGoalTitle", comment: "")
-
         //animationView = AnimationView(frame: self.frame, delegate: delegate)
-
-        let toolbar:ToolbarView = ToolbarView(frame: CGRectMake( 0, 0, UIScreen.mainScreen().bounds.width, 35), items: ["Today","History"])
-        toolbar.delegate = self
-        self.addSubview(toolbar)
-
-        rightButton = UIBarButtonItem(title: "Set Goal", style: UIBarButtonItemStyle.Done, target: self, action: Selector("buttonAction:"))
-        rightButton?.tintColor = AppTheme.NEVO_SOLAR_YELLOW()
-        navigation.rightBarButtonItem = rightButton
-
         mClockTimerView.currentTimer()
         mClockTimerView.center = CGPointMake(self.frame.width/2.0, self.frame.height/2.0)//Using the center property determines the location of the ClockView
         mClockTimerView.frame = CGRectMake(mClockTimerView.frame.origin.x, 45, mClockTimerView.frame.size.width, mClockTimerView.frame.size.height)

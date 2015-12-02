@@ -375,12 +375,12 @@
         <!--Step-->
         <scene sceneID="d5l-RI-6Wg">
             <objects>
-                <viewController id="iqE-5u-mSW" customClass="StepGoalSetingController" customModule="Nevo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="iqE-5u-mSW" customClass="StepController" customModule="Nevo" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Y6d-zv-u6z"/>
                         <viewControllerLayoutGuide type="bottom" id="b4f-8n-7a5"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="esU-rF-t9Y" customClass="StepGoalSetingView" customModule="Nevo" customModuleProvider="target">
+                    <view key="view" contentMode="scaleToFill" id="esU-rF-t9Y">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <animations/>
@@ -388,9 +388,6 @@
                     </view>
                     <navigationItem key="navigationItem" title="Step" id="VUx-V6-WUk"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                    <connections>
-                        <outlet property="stepGoalView" destination="esU-rF-t9Y" id="Pqi-PA-DsZ"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NbF-OP-8w7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -842,12 +839,12 @@
         <!--Sleep-->
         <scene sceneID="StW-PB-UoJ">
             <objects>
-                <viewController id="9Lf-06-d5f" customClass="SleepTrackingController" customModule="Nevo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="9Lf-06-d5f" customClass="SleepController" customModule="Nevo" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="CUe-4G-ajm"/>
                         <viewControllerLayoutGuide type="bottom" id="3AV-Vs-4QL"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Hi5-WE-evD" customClass="SleepTrackingView" customModule="Nevo" customModuleProvider="target">
+                    <view key="view" contentMode="scaleToFill" id="Hi5-WE-evD">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <animations/>
@@ -855,9 +852,6 @@
                     </view>
                     <navigationItem key="navigationItem" title="Sleep" id="bjN-go-kyB"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                    <connections>
-                        <outlet property="sleepView" destination="Hi5-WE-evD" id="MDm-KI-64a"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JGt-zZ-7G3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
