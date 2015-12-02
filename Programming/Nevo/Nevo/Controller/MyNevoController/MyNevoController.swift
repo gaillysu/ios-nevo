@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MyNevoController: UIViewController,ButtonManagerCallBack,SyncControllerDelegate {
+class MyNevoController: UITableViewController,ButtonManagerCallBack,SyncControllerDelegate {
 
     @IBOutlet var mynevoView: MyNevoView!
     private var currentBattery:Int = 0
@@ -169,7 +169,6 @@ class MyNevoController: UIViewController,ButtonManagerCallBack,SyncControllerDel
         }
         AppDelegate.getAppDelegate().connect()
     }
-
     /*
     // MARK: - Navigation
 

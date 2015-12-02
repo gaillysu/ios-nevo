@@ -19,7 +19,7 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qmS-4V-0uD" customClass="BarChartView" customModule="Nevo" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="250"/>
                     <animations/>
-                    <color key="backgroundColor" red="0.80784313725490198" green="0.80784313725490198" blue="0.80392156862745101" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </view>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="EuS-UX-KzD">
                     <rect key="frame" x="0.0" y="250" width="320" height="318"/>

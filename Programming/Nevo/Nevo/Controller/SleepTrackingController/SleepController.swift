@@ -11,7 +11,7 @@ import UIKit
 class SleepController: PublicClassController,toolbarSegmentedDelegate {
     var querss:SleepHistoricalViewController?
     var sleepTrking:SleepTrackingController?
-    var currentVC:UIViewController?
+    private var currentVC:UIViewController?
     override func viewDidLoad() {
         super.viewDidLoad()
         let toolbar:ToolbarView = ToolbarView(frame: CGRectMake( 0, 0, UIScreen.mainScreen().bounds.width, 35), items: ["Last night","History"])

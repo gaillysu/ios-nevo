@@ -339,22 +339,7 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
             
         }
     }
-    
-    /**
-    <#Description#>
-    
-    :param: segue  <#segue description#>
-    :param: sender <#sender description#>
-    */
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        
-        if(segue.identifier == "Ota2SelectFile"){
-            let selectFile = segue.destinationViewController as! SelectFileController
-            selectFile.mFileDelegate = self
-        }
-    }
-    
-    
+
 }
 
 protocol PtlSelectFile {
