@@ -87,7 +87,7 @@ class SetingViewController: UIViewController,SyncControllerDelegate,ButtonManage
 
     // MARK: - UITableViewDelegate
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 45.0
+        return 50.0
     }
 
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat{
@@ -115,6 +115,13 @@ class SetingViewController: UIViewController,SyncControllerDelegate,ButtonManage
             if(isEqualString("\(titleArray![indexPath.row])",string2: NSLocalizedString("Find device", comment: ""))){
                 AppTheme.DLog("Find device")
                 findMydevice()
+            }
+
+            if(isEqualString("\(titleArray![indexPath.row])",string2: NSLocalizedString("Preset-goals", comment: ""))){
+                AppTheme.DLog("Preset-goals")
+                let presetView:PresetTableViewController = PresetTableViewController()
+                presetView.hidesBottomBarWhenPushed = true
+                self.navigationController?.pushViewController(presetView, animated: true)
             }
             break
         default: break

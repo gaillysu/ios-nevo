@@ -75,6 +75,14 @@
 		007F799D1A878D0B006C89E6 /* SIL Open Font License.txt in Resources */ = {isa = PBXBuildFile; fileRef = 007F79871A878D0B006C89E6 /* SIL Open Font License.txt */; };
 		0080AC5F1C0FD454007E73B6 /* MyNevoHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0080AC5E1C0FD454007E73B6 /* MyNevoHeaderView.swift */; };
 		0080AC631C0FD88C007E73B6 /* MyNevoHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0080AC621C0FD88C007E73B6 /* MyNevoHeaderView.xib */; };
+		0080AC6B1C0FE501007E73B6 /* PresetTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0080AC691C0FE501007E73B6 /* PresetTableViewController.swift */; };
+		0080AC6C1C0FE501007E73B6 /* PresetTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0080AC6A1C0FE501007E73B6 /* PresetTableViewController.xib */; };
+		0080AC6F1C0FE685007E73B6 /* PresetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0080AC6E1C0FE685007E73B6 /* PresetView.swift */; };
+		0080AC721C0FE716007E73B6 /* PresetTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0080AC701C0FE716007E73B6 /* PresetTableViewCell.swift */; };
+		0080AC731C0FE716007E73B6 /* PresetTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0080AC711C0FE716007E73B6 /* PresetTableViewCell.xib */; };
+		0080AC761C0FEC19007E73B6 /* AddPresetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0080AC741C0FEC19007E73B6 /* AddPresetViewController.swift */; };
+		0080AC771C0FEC19007E73B6 /* AddPresetViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0080AC751C0FEC19007E73B6 /* AddPresetViewController.xib */; };
+		0080AC791C0FEC65007E73B6 /* AddPresetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0080AC781C0FEC65007E73B6 /* AddPresetView.swift */; };
 		00828C1D1BFC17E300194032 /* BaseEntryDatabaseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00828C151BFC17E300194032 /* BaseEntryDatabaseHelper.swift */; };
 		00828C201BFC17E300194032 /* UserDatabaseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00828C1A1BFC17E300194032 /* UserDatabaseHelper.swift */; };
 		00828C231BFC180A00194032 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00828C221BFC180A00194032 /* UserModel.swift */; };
@@ -359,6 +367,14 @@
 		007F79871A878D0B006C89E6 /* SIL Open Font License.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "SIL Open Font License.txt"; sourceTree = "<group>"; };
 		0080AC5E1C0FD454007E73B6 /* MyNevoHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyNevoHeaderView.swift; sourceTree = "<group>"; };
 		0080AC621C0FD88C007E73B6 /* MyNevoHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyNevoHeaderView.xib; sourceTree = "<group>"; };
+		0080AC691C0FE501007E73B6 /* PresetTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresetTableViewController.swift; sourceTree = "<group>"; };
+		0080AC6A1C0FE501007E73B6 /* PresetTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PresetTableViewController.xib; sourceTree = "<group>"; };
+		0080AC6E1C0FE685007E73B6 /* PresetView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresetView.swift; sourceTree = "<group>"; };
+		0080AC701C0FE716007E73B6 /* PresetTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresetTableViewCell.swift; sourceTree = "<group>"; };
+		0080AC711C0FE716007E73B6 /* PresetTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PresetTableViewCell.xib; sourceTree = "<group>"; };
+		0080AC741C0FEC19007E73B6 /* AddPresetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddPresetViewController.swift; sourceTree = "<group>"; };
+		0080AC751C0FEC19007E73B6 /* AddPresetViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddPresetViewController.xib; sourceTree = "<group>"; };
+		0080AC781C0FEC65007E73B6 /* AddPresetView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddPresetView.swift; sourceTree = "<group>"; };
 		00828C151BFC17E300194032 /* BaseEntryDatabaseHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseEntryDatabaseHelper.swift; sourceTree = "<group>"; };
 		00828C1A1BFC17E300194032 /* UserDatabaseHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDatabaseHelper.swift; sourceTree = "<group>"; };
 		00828C221BFC180A00194032 /* UserModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
@@ -849,6 +865,30 @@
 				005BC9551A889F14006F9E86 /* NevoPicture.png */,
 			);
 			path = image;
+			sourceTree = "<group>";
+		};
+		0080AC641C0FE4BF007E73B6 /* PresetController */ = {
+			isa = PBXGroup;
+			children = (
+				0080AC691C0FE501007E73B6 /* PresetTableViewController.swift */,
+				0080AC6A1C0FE501007E73B6 /* PresetTableViewController.xib */,
+				0080AC741C0FEC19007E73B6 /* AddPresetViewController.swift */,
+				0080AC751C0FEC19007E73B6 /* AddPresetViewController.xib */,
+			);
+			name = PresetController;
+			path = Controller/PresetController;
+			sourceTree = "<group>";
+		};
+		0080AC6D1C0FE669007E73B6 /* PresetView */ = {
+			isa = PBXGroup;
+			children = (
+				0080AC6E1C0FE685007E73B6 /* PresetView.swift */,
+				0080AC701C0FE716007E73B6 /* PresetTableViewCell.swift */,
+				0080AC711C0FE716007E73B6 /* PresetTableViewCell.xib */,
+				0080AC781C0FEC65007E73B6 /* AddPresetView.swift */,
+			);
+			name = PresetView;
+			path = View/PresetView;
 			sourceTree = "<group>";
 		};
 		00828C141BFC17E300194032 /* DBHelper */ = {
@@ -1356,6 +1396,7 @@
 				009ED54C1C0E859400623D95 /* SleepTrackingController */,
 				009ED54E1C0E859400623D95 /* StepGoalSetingController */,
 				009ED5661C0ED37200623D95 /* SleepHistoricalViewController */,
+				0080AC641C0FE4BF007E73B6 /* PresetController */,
 				07BE0CEE1A84A0C8000C4AC7 /* Nevo-Bridging-Header.h */,
 				007F79701A878C8B006C89E6 /* TutorialController.swift */,
 				9AD8F9631A6E011E00F01014 /* AppDelegate.swift */,
@@ -1398,6 +1439,7 @@
 				003011751C083CEB00EE1621 /* Tutorial */,
 				0030119D1C083DF800EE1621 /* AddAlarmView */,
 				00B306681C0C40FF00397444 /* NotificationView */,
+				0080AC6D1C0FE669007E73B6 /* PresetView */,
 				9AD8F96D1A6E03F600F01014 /* HomeView.swift */,
 				00E5CFD71B18053100D1F829 /* HelpView.swift */,
 			);
@@ -1567,6 +1609,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0080AC731C0FE716007E73B6 /* PresetTableViewCell.xib in Resources */,
 				009ED49D1C0D920300623D95 /* NotificationClockCell.xib in Resources */,
 				0030119C1C083DB100EE1621 /* AddAlarmController.xib in Resources */,
 				00D0FF731B130A9F00D084C3 /* Nevo660.png in Resources */,
@@ -1609,9 +1652,11 @@
 				007F798E1A878D0B006C89E6 /* Raleway-BoldItalic.ttf in Resources */,
 				009ED5461C0E828A00623D95 /* MyNevoController.xib in Resources */,
 				07BCE82A1B5CAB2200C7F558 /* clockview600_color.png in Resources */,
+				0080AC6C1C0FE501007E73B6 /* PresetTableViewController.xib in Resources */,
 				9AD8F9421A6DF35900F01014 /* Images.xcassets in Resources */,
 				007F798D1A878D0B006C89E6 /* Raleway-Bold.ttf in Resources */,
 				007F799B1A878D0B006C89E6 /* Raleway-Thin.ttf in Resources */,
+				0080AC771C0FEC19007E73B6 /* AddPresetViewController.xib in Resources */,
 				001F1B7B1B57777B001DD426 /* nevo_wacth_selected.png in Resources */,
 				0742432A1AB2D0A20076F789 /* Firmwares in Resources */,
 				00478F501A8F637D00D0DCE2 /* clockViewMinute.png in Resources */,
@@ -1682,6 +1727,7 @@
 				00DC9EE81BB2853D00734DB6 /* ChartXAxisRendererHorizontalBarChart.swift in Sources */,
 				00DC9EB61BB2853D00734DB6 /* ChartLegend.swift in Sources */,
 				0030119B1C083DB100EE1621 /* AddAlarmController.swift in Sources */,
+				0080AC6F1C0FE685007E73B6 /* PresetView.swift in Sources */,
 				00DC9EAD1BB2853D00734DB6 /* CombinedChartView.swift in Sources */,
 				00DC9EF71BB2853D00734DB6 /* ChartTransformer.swift in Sources */,
 				0030117F1C083CEB00EE1621 /* alarmClockView.swift in Sources */,
@@ -1722,6 +1768,7 @@
 				00DC9ED81BB2853D00734DB6 /* ChartXAxisValueFormatter.swift in Sources */,
 				009ED5531C0E859400623D95 /* SleepTrackingController.swift in Sources */,
 				00DC9EF41BB2853D00734DB6 /* CALayer+Extensions.swift in Sources */,
+				0080AC6B1C0FE501007E73B6 /* PresetTableViewController.swift in Sources */,
 				9AD8F98D1A6E2D6E00F01014 /* RawPacket.swift in Sources */,
 				9AD8F9621A6E00E800F01014 /* NevoBTimpl.swift in Sources */,
 				003011861C083CEB00EE1621 /* SelectFileView.swift in Sources */,
@@ -1791,6 +1838,7 @@
 				07731E541AA58F27007F9FD6 /* ReadDailyTracker.swift in Sources */,
 				00DC9EEB1BB2853D00734DB6 /* ChartYAxisRendererHorizontalBarChart.swift in Sources */,
 				00DC9EB31BB2853D00734DB6 /* ScatterChartView.swift in Sources */,
+				0080AC791C0FEC65007E73B6 /* AddPresetView.swift in Sources */,
 				00E2BDE41B16CCD0009C757E /* MBProgressHUD.m in Sources */,
 				07C59F281A8C618A00D65C84 /* WriteSettingRequest.swift in Sources */,
 				00DC9EDE1BB2853D00734DB6 /* HorizontalBarChartHighlighter.swift in Sources */,
@@ -1817,6 +1865,7 @@
 				00DC9EDF1BB2853D00734DB6 /* BarChartRenderer.swift in Sources */,
 				009ED55C1C0E985000623D95 /* SleepController.swift in Sources */,
 				00DC9EE11BB2853D00734DB6 /* CandleStickChartRenderer.swift in Sources */,
+				0080AC761C0FEC19007E73B6 /* AddPresetViewController.swift in Sources */,
 				07C59F2E1A8C622300D65C84 /* SetProfileRequest.swift in Sources */,
 				59893B401AC8E3CD0063572B /* ConnectionManager.swift in Sources */,
 				9AD8F99C1A6E3D6A00F01014 /* NevoRequest.swift in Sources */,
@@ -1838,6 +1887,7 @@
 				00DC9ED71BB2853D00734DB6 /* ChartFillFormatter.swift in Sources */,
 				00BA73E21BA853BC00321496 /* AidOtaViewController.swift in Sources */,
 				00DC9EBE1BB2853D00734DB6 /* BarLineScatterCandleBubbleChartData.swift in Sources */,
+				0080AC721C0FE716007E73B6 /* PresetTableViewCell.swift in Sources */,
 				007DD4BB1A89DDC000CE7264 /* Page2Controller.swift in Sources */,
 				00B306671C0C35F000397444 /* PublicClassTableViewController.swift in Sources */,
 				00DC9EC21BB2853D00734DB6 /* BubbleChartDataSet.swift in Sources */,
