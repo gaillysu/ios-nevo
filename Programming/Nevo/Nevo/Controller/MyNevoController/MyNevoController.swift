@@ -15,19 +15,23 @@ class MyNevoController: UITableViewController,ButtonManagerCallBack,SyncControll
     private var rssialert :UIAlertView?
     private var buildinSoftwareVersion:Int = 0
     private var buildinFirmwareVersion:Int = 0
+
+    var titleArray:[String] = []
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        mynevoView.bulidMyNevoView(self)
+        mynevoView.bulidMyNevoView(self,navigation: self.navigationItem)
         buildinSoftwareVersion = GET_SOFTWARE_VERSION()
         buildinFirmwareVersion = GET_FIRMWARE_VERSION()
+
+        titleArray = ["Firmware","Battery","Watch version"]
     }
 
     
     override func viewDidAppear(animated: Bool) {
         AppDelegate.getAppDelegate().startConnect(false, delegate: self)
-        AppDelegate.getAppDelegate().ReadBatteryLevel()
-        mynevoView.setVersionLbael(AppDelegate.getAppDelegate().getSoftwareVersion(), bleNumber: AppDelegate.getAppDelegate().getFirmwareVersion())
+        //AppDelegate.getAppDelegate().ReadBatteryLevel()
+        //mynevoView.setVersionLbael(AppDelegate.getAppDelegate().getSoftwareVersion(), bleNumber: AppDelegate.getAppDelegate().getFirmwareVersion())
     }
     
     override func viewDidDisappear(animated: Bool) {
@@ -40,41 +44,8 @@ class MyNevoController: UITableViewController,ButtonManagerCallBack,SyncControll
         // Dispose of any resources that can be recreated.
     }
 
-
+    // MARK: - controllManager
     func controllManager(sender:AnyObject){
-        if sender.isEqual(mynevoView.animationView?.getNoConnectScanButton()) {
-            AppTheme.DLog("noConnectScanButton")
-            reconnect()
-        }
-
-        if(sender.isEqual(mynevoView.backButton)){
-            self.navigationController?.popViewControllerAnimated(true)
-        }
-
-        if(sender.isEqual(mynevoView.UpgradeButton)){
-            //When upgrading watch battery can not less than 2
-            if (currentBattery<2 && AppDelegate.getAppDelegate().getSoftwareVersion().integerValue>0 && !mynevoView.UpgradeButton.selected){
-                let alert :UIAlertView = UIAlertView(title: NSLocalizedString("battery_warnings_title", comment: ""), message: NSLocalizedString("battery_warnings_msg", comment: ""), delegate: nil, cancelButtonTitle: "OK")
-                alert.show()
-                return;
-            }
-
-            let device:UIDevice = UIDevice.currentDevice()
-            device.batteryMonitoringEnabled = true
-            let batterylevel:Float = device.batteryLevel
-            if(batterylevel < 0.2){
-                let alert :UIAlertView = UIAlertView(title: NSLocalizedString("battery_warnings_title", comment: ""), message: NSLocalizedString("mobile_battery_warnings_msg", comment: ""), delegate: nil, cancelButtonTitle: NSLocalizedString("OK", comment: ""))
-                alert.show()
-                return;
-            }
-            if(!mynevoView.UpgradeButton.selected){
-                //Record the latest upgrade time
-                let senddate:NSDate = NSDate()
-                AppTheme.KeyedArchiverName("LatestUpdate", andObject: senddate)
-
-                self.performSegueWithIdentifier("Setting_nevoOta", sender: self)
-            }
-        }
 
     }
 
@@ -94,21 +65,9 @@ class MyNevoController: UITableViewController,ButtonManagerCallBack,SyncControll
             rssialert = nil
         }
 
-        mynevoView.setVersionLbael(AppDelegate.getAppDelegate().getSoftwareVersion(), bleNumber: AppDelegate.getAppDelegate().getFirmwareVersion())
         let currentSoftwareVersion:NSString = AppDelegate.getAppDelegate().getSoftwareVersion()
         let currentFirmwareVersion:NSString = AppDelegate.getAppDelegate().getFirmwareVersion()
 
-        if(currentFirmwareVersion.integerValue >= buildinFirmwareVersion && currentSoftwareVersion.integerValue >= buildinSoftwareVersion){
-            mynevoView.UpgradeButton.backgroundColor = AppTheme.NEVO_CUSTOM_COLOR()
-            mynevoView.UpgradeButton.setTitle(NSLocalizedString("latestversion",comment: ""), forState: UIControlState.Normal)
-            mynevoView.UpgradeButton.selected = true
-            mynevoView.UpgradeButton.titleLabel?.font = AppTheme.FONT_RALEWAY_LIGHT(mSize: 15)
-        }else{
-            mynevoView.UpgradeButton.selected = false
-            mynevoView.UpgradeButton.backgroundColor = AppTheme.NEVO_SOLAR_YELLOW()
-            mynevoView.UpgradeButton.titleLabel?.font = AppTheme.FONT_RALEWAY_LIGHT(mSize: 22)
-            mynevoView.UpgradeButton.setTitle(NSLocalizedString("upgrade",comment: ""), forState: UIControlState.Normal)
-        }
     }
 
 
@@ -117,7 +76,6 @@ class MyNevoController: UITableViewController,ButtonManagerCallBack,SyncControll
         if(thispacket.isReadBatteryCommand(packet.getPackets())){
             let batteryValue:Int = thispacket.getBatteryLevel()
             currentBattery = batteryValue
-            mynevoView.setBatteryLevelValue(batteryValue)
         }
     }
 
@@ -138,36 +96,53 @@ class MyNevoController: UITableViewController,ButtonManagerCallBack,SyncControll
     /**
     Checks if any device is currently connected
     */
-
     func checkConnection() {
-
         if !AppDelegate.getAppDelegate().isConnected() {
-
-            //We are currently not connected
-            var isView:Bool = false
-            for view in mynevoView.subviews {
-                let anView:UIView = view 
-                if anView.isEqual(mynevoView.animationView!.bulibNoConnectView()) {
-                    isView = true
-                }
-            }
-            if !isView {
-                mynevoView.addSubview(mynevoView.animationView!.bulibNoConnectView())
-                reconnect()
-            }
-        } else {
-            mynevoView.animationView!.endConnectRemoveView()
             AppDelegate.getAppDelegate().ReadBatteryLevel()
         }
-        self.view.bringSubviewToFront(mynevoView.titleBgView)
-
     }
 
     func reconnect() {
-        if let noConnectImage = mynevoView.animationView!.getNoConnectImage() {
-            mynevoView.animationView!.RotatingAnimationObject(noConnectImage)
-        }
         AppDelegate.getAppDelegate().connect()
+    }
+
+    // MARK: - UITableViewDelegate
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 45.0
+    }
+
+    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat{
+        if(section == 0){
+            let headerimage:UIImageView = MyNevoHeaderView.getMyNevoHeaderView()
+            return headerimage.frame.size.height
+        }
+        return 0
+    }
+
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
+
+    }
+
+    override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView{
+        let headerimage:UIImageView = MyNevoHeaderView.getMyNevoHeaderView()
+        let view:UIView = UIView(frame: CGRectMake(0, 0, UIScreen.mainScreen().bounds.size.width, headerimage.frame.size.height))
+        view.addSubview(headerimage)
+        headerimage.center = CGPointMake(view.frame.size.width/2.0, view.frame.size.height/2.0)
+        return view
+    }
+
+    // MARK: - UITableViewDataSource
+    override func numberOfSectionsInTableView(tableView: UITableView) -> Int{
+        return 1
+
+    }
+
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
+        return titleArray.count
+    }
+
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        return mynevoView.getMyNevoViewTableViewCell(indexPath, tableView: tableView, title: titleArray[indexPath.row])
     }
     /*
     // MARK: - Navigation
