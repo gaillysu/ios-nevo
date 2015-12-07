@@ -11,15 +11,16 @@ import UIKit
 class PresetView: UITableView {
 
     var mDelegate:ButtonManagerCallBack?
+    var leftButton:UIBarButtonItem?
 
     func bulidPresetView(navigation:UINavigationItem,delegateB:ButtonManagerCallBack){
         mDelegate = delegateB
         navigation.title = NSLocalizedString("Preset", comment: "")
-        let leftButton:UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Add, target: self, action: Selector("controllManager:"))
+        leftButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Add, target: self, action: Selector("controllManager:"))
         navigation.rightBarButtonItem = leftButton
     }
 
-    func getPresetTableViewCell(indexPath:NSIndexPath,tableView:UITableView)->UITableViewCell{
+    func getPresetTableViewCell(indexPath:NSIndexPath,tableView:UITableView,presetArray:[Presets],delegate:ButtonManagerCallBack)->UITableViewCell{
         let endCellID:String = "PresetTableViewCell"
         var endCell = tableView.dequeueReusableCellWithIdentifier(endCellID)
         if (endCell == nil) {
@@ -27,6 +28,13 @@ class PresetView: UITableView {
             endCell = nibs.objectAtIndex(0) as? PresetTableViewCell;
 
         }
+        (endCell as! PresetTableViewCell).delegate = delegate
+        (endCell as! PresetTableViewCell).presetStates.tag = indexPath.row
+
+        let presetModel:Presets = presetArray[indexPath.row]
+        (endCell as! PresetTableViewCell).presetSteps.text = "\(presetModel.steps)"
+        (endCell as! PresetTableViewCell).presetName.text = presetModel.label
+        (endCell as! PresetTableViewCell).presetStates.on = presetModel.status
         endCell?.selectionStyle = UITableViewCellSelectionStyle.None;
         return endCell!
     }

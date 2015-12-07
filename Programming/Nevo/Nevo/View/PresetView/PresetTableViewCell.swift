@@ -8,7 +8,17 @@
 
 import UIKit
 
-class PresetTableViewCell: UITableViewCell {
+class PresetTableViewCell: UITableViewCell,ButtonManagerCallBack {
+
+    @IBOutlet weak var presetSteps: UILabel!
+    @IBOutlet weak var presetName: UILabel!
+    @IBOutlet weak var presetStates: UISwitch!
+    var delegate:ButtonManagerCallBack?
+
+
+    @IBAction func controllManager(sender: AnyObject) {
+       delegate?.controllManager(sender)
+    }
 
     override func awakeFromNib() {
         super.awakeFromNib()

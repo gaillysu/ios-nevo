@@ -37,6 +37,9 @@
                         <rect key="frame" x="252" y="5" width="51" height="31"/>
                         <animations/>
                         <color key="onTintColor" red="0.96078431369999995" green="0.64313725489999995" blue="0.10980392160000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <connections>
+                            <action selector="controllManager:" destination="KGk-i7-Jjw" eventType="valueChanged" id="ORb-ip-K1R"/>
+                        </connections>
                     </switch>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7rI-Ga-YWf">
                         <rect key="frame" x="118" y="2" width="1" height="40"/>
@@ -67,6 +70,11 @@
                 </constraints>
             </tableViewCellContentView>
             <animations/>
+            <connections>
+                <outlet property="presetName" destination="8Cq-R5-b91" id="3Qk-Th-KL6"/>
+                <outlet property="presetStates" destination="rTV-lZ-qXo" id="eDq-VK-7yj"/>
+                <outlet property="presetSteps" destination="20W-q0-dxh" id="3vI-c6-M5E"/>
+            </connections>
         </tableViewCell>
     </objects>
 </document>

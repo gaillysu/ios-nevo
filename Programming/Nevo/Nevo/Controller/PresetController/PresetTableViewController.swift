@@ -8,14 +8,23 @@
 
 import UIKit
 
-class PresetTableViewController: UITableViewController,ButtonManagerCallBack {
+protocol AddPresetDelegate {
+    func onAddPresetNumber(number:Int,name:String)
+
+}
+
+class PresetTableViewController: UITableViewController,ButtonManagerCallBack,AddPresetDelegate {
         
     @IBOutlet weak var presetView: PresetView!
-    
+    var prestArray:[Presets] = []
     override func viewDidLoad() {
         super.viewDidLoad()
         presetView.bulidPresetView(self.navigationItem,delegateB: self)
-        
+
+        let array:NSArray = Presets.getAll()
+        for pArray in array {
+            prestArray.append(pArray as! Presets)
+        }
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -28,10 +37,31 @@ class PresetTableViewController: UITableViewController,ButtonManagerCallBack {
         // Dispose of any resources that can be recreated.
     }
 
+    // MARK: - AddPresetDelegate
+    func onAddPresetNumber(number:Int,name:String){
+        NSLog("onAddPresetNumber:\(number),name:\(name)")
+        let prestModel:Presets = Presets(keyDict: ["id":"0","steps":"\(number)","label":"\(name)","status":"\(Bool(true))"])
+        if(prestModel.add()){
+            prestArray.append(prestModel)
+            self.tableView.reloadData()
+        }
+    }
+
     // MARK: - ButtonManagerCallBack
     func controllManager(sender:AnyObject){
-        let addPreset:AddPresetViewController = AddPresetViewController()
-        self.navigationController?.pushViewController(addPreset, animated: true)
+        if(sender.isEqual(presetView.leftButton)){
+            //let removeAll:Bool = Presets.removeAll()
+            let addPreset:AddPresetViewController = AddPresetViewController()
+            addPreset.addDelegate = self
+            self.navigationController?.pushViewController(addPreset, animated: true)
+        }
+
+        if(sender.isKindOfClass(UISwitch.classForCoder())){
+            let switchSender:UISwitch = sender as! UISwitch
+            let preModel:Presets = prestArray[switchSender.tag]
+            preModel.status = switchSender.on
+            let isUpdate:Bool = preModel.update()
+        }
     }
 
     // MARK: - Table view data source
@@ -43,13 +73,13 @@ class PresetTableViewController: UITableViewController,ButtonManagerCallBack {
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 8
+        return prestArray.count
     }
 
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 
-        return presetView.getPresetTableViewCell(indexPath, tableView: tableView)
+        return presetView.getPresetTableViewCell(indexPath, tableView: tableView,presetArray: prestArray, delegate: self)
     }
 
 

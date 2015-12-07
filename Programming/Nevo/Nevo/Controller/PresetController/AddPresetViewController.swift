@@ -11,6 +11,7 @@ import UIKit
 class AddPresetViewController: UIViewController,ButtonManagerCallBack {
 
     @IBOutlet weak var addPresetView: AddPresetView!
+    var addDelegate:AddPresetDelegate?
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
         super.init(nibName: "AddPresetViewController", bundle: NSBundle.mainBundle())
@@ -33,7 +34,15 @@ class AddPresetViewController: UIViewController,ButtonManagerCallBack {
 
     // MARK: - ButtonManagerDelegate
     func controllManager(sender:AnyObject){
-        self.navigationController?.popViewControllerAnimated(true)
+        let number:NSString = addPresetView.presetNumber.text! as NSString
+        let length:Int = number.length
+        if(length >= 4){
+            addDelegate?.onAddPresetNumber(Int(addPresetView.presetNumber.text!)!, name: addPresetView.presetName.text!)
+            self.navigationController?.popViewControllerAnimated(true)
+        }else{
+            let aler:UIAlertView = UIAlertView(title: "", message: NSLocalizedString("Preset Number can't be empty, or you set less than four digits", comment: ""), delegate: nil, cancelButtonTitle: NSLocalizedString("Cancel", comment: ""))
+            aler.show()
+        }
     }
 
     /*
