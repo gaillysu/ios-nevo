@@ -8,13 +8,14 @@
 
 import UIKit
 
-class StepGoalSetingController: PublicClassController,ButtonManagerCallBack,SyncControllerDelegate {
+class StepGoalSetingController: PublicClassController,ButtonManagerCallBack,SyncControllerDelegate,ClockRefreshDelegate {
     
     let NUMBER_OF_STEPS_GOAL_KEY = "NUMBER_OF_STEPS_GOAL_KEY"
 
     @IBOutlet var stepGoalView: StepGoalSetingView!
     
     private var mCurrentGoal:Goal = NumberOfStepsGoal()
+    private var mVisiable:Bool = true
 
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
         super.init(nibName: "StepGoalSetingController", bundle: NSBundle.mainBundle())
@@ -31,6 +32,8 @@ class StepGoalSetingController: PublicClassController,ButtonManagerCallBack,Sync
         AppDelegate.getAppDelegate().startConnect(false, delegate: self)
 
         stepGoalView.bulidStepGoalView(self,navigation: self.navigationItem)
+
+        ClockRefreshManager.sharedInstance.setRefreshDelegate(self)
         
         if let numberOfSteps = NSUserDefaults.standardUserDefaults().objectForKey(NUMBER_OF_STEPS_GOAL_KEY) as? Int {
             setGoal(NumberOfStepsGoal(steps: numberOfSteps))
@@ -57,10 +60,14 @@ class StepGoalSetingController: PublicClassController,ButtonManagerCallBack,Sync
 
     // MARK: - ButtonManagerCallBack
     func controllManager(sender:AnyObject) {
-        if sender.isEqual(stepGoalView.getEnterButton()) {
+        setGoal(NumberOfStepsGoal(steps: 5555))
+    }
 
-            setGoal(NumberOfStepsGoal(steps: stepGoalView.getNumberOfStepsGoal()))
-
+    // MARK: - ClockRefreshDelegate
+    func clockRefreshAction(){
+        stepGoalView.getClockTimerView().currentTimer()
+        if mVisiable{
+            AppDelegate.getAppDelegate().getGoal()
         }
     }
 
@@ -75,6 +82,22 @@ class StepGoalSetingController: PublicClassController,ButtonManagerCallBack,Sync
             let userDefaults = NSUserDefaults.standardUserDefaults();
             userDefaults.setObject(dailyStepGoal,forKey:NUMBER_OF_STEPS_GOAL_KEY)
             userDefaults.synchronize()
+
+            let percent :Float = Float(dailySteps)/Float(dailyStepGoal)
+
+            AppTheme.DLog("get Daily Steps is: \(dailySteps), getDaily Goal is: \(dailyStepGoal),percent is: \(percent)")
+
+            stepGoalView.setProgress(percent, dailySteps: dailySteps, dailyStepGoal: dailyStepGoal)
+        }
+
+        if packet.getHeader() == LedLightOnOffNevoRequest.HEADER(){
+            AppTheme.DLog("end handshake nevo");
+            //blink once Clock
+            self.stepGoalView.getClockTimerView().setClockImage(AppTheme.GET_RESOURCES_IMAGE("clockview600_color"))
+            let dispatchTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, Int64(2.0 * Double(NSEC_PER_SEC)))
+            dispatch_after(dispatchTime, dispatch_get_main_queue(), {
+                self.stepGoalView.getClockTimerView().setClockImage(AppTheme.GET_RESOURCES_IMAGE("clockView600"))
+            })
         }
         
     }

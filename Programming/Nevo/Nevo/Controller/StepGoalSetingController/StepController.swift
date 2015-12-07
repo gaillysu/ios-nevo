@@ -13,10 +13,11 @@ class StepController: PublicClassController,toolbarSegmentedDelegate,UIActionShe
     private var stepGoal:StepGoalSetingController?
     private var stepHistorical:StepHistoricalViewController?
     private var rightButton:UIBarButtonItem?
+    private var goalArray:[Int] = []
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = NSLocalizedString("stepGoalTitle", comment: "")
-        
+
         let toolbar:ToolbarView = ToolbarView(frame: CGRectMake( 0, 0, UIScreen.mainScreen().bounds.width, 35), items: ["Today","History"])
         toolbar.delegate = self
         self.view.addSubview(toolbar)
@@ -36,6 +37,16 @@ class StepController: PublicClassController,toolbarSegmentedDelegate,UIActionShe
 
     }
 
+    override func viewDidAppear(animated: Bool) {
+        let array:NSArray = Presets.getAll()
+        goalArray.removeAll()
+        for pArray in array {
+            let model:Presets = pArray as! Presets
+            if(model.status){
+                goalArray.append(model.steps)
+            }
+        }
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -43,7 +54,10 @@ class StepController: PublicClassController,toolbarSegmentedDelegate,UIActionShe
 
     // MARK: - rightBarButtonAction
     func rightBarButtonAction(rightBar:UIBarButtonItem){
-        let actionSheet:UIActionSheet = UIActionSheet(title: nil, delegate: self, cancelButtonTitle: "Cancel", destructiveButtonTitle: "20000 steps", otherButtonTitles: "30000 steps", "40000 steps")
+        let actionSheet:UIActionSheet = UIActionSheet(title: nil, delegate: self, cancelButtonTitle: "Cancel", destructiveButtonTitle: nil)
+        for steps in goalArray {
+            actionSheet.addButtonWithTitle("\(steps) steps")
+        }
         actionSheet.tintColor = AppTheme.NEVO_SOLAR_YELLOW()
         actionSheet.actionSheetStyle = UIActionSheetStyle.Default;
         actionSheet.showInView(self.view)
@@ -77,6 +91,17 @@ class StepController: PublicClassController,toolbarSegmentedDelegate,UIActionShe
 
                 }
         }
+    }
+
+    // MARK: - UIActionSheetDelegate
+    func actionSheet(actionSheet: UIActionSheet, clickedButtonAtIndex buttonIndex: Int){
+        if(buttonIndex != 0){
+            setGoal(NumberOfStepsGoal(steps: goalArray[buttonIndex-1]))
+        }
+    }
+
+    func setGoal(goal:Goal) {
+        AppDelegate.getAppDelegate().setGoal(goal)
     }
 
     /*
