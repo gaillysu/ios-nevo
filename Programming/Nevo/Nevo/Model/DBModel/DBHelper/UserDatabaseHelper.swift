@@ -283,6 +283,19 @@ class UserDatabaseHelper:NSObject,BaseEntryDatabaseHelper {
         return res;
     }
 
+    /** clear Table */
+    class func removeAll()->Bool{
+        let dbQueue:FMDatabaseQueue = AppDelegate.getAppDelegate().dbQueue
+        var res:Bool = false
+        dbQueue.inDatabase { (db) -> Void in
+            var tableName:NSString = NSStringFromClass(self.classForCoder())
+            tableName = tableName.stringByReplacingOccurrencesOfString(".", withString: "")
+            let sql:String = "DELETE FROM \(tableName)"
+            res = db.executeUpdate(sql,withArgumentsInArray: nil)
+        }
+        return res;
+    }
+
     /**
      Static lookup function according to conditions
 

@@ -48,8 +48,10 @@
 		00478F4F1A8F637D00D0DCE2 /* clockViewHour.png in Resources */ = {isa = PBXBuildFile; fileRef = 00478F4D1A8F637D00D0DCE2 /* clockViewHour.png */; };
 		00478F501A8F637D00D0DCE2 /* clockViewMinute.png in Resources */ = {isa = PBXBuildFile; fileRef = 00478F4E1A8F637D00D0DCE2 /* clockViewMinute.png */; };
 		004846D41B72EDB9005A6D83 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 004846D31B72EDB9005A6D83 /* libsqlite3.dylib */; };
+		0054F34A1C1513860082BA2E /* Presets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0054F3491C1513860082BA2E /* Presets.swift */; };
 		005BC9561A889F14006F9E86 /* NevoPicture.png in Resources */ = {isa = PBXBuildFile; fileRef = 005BC9551A889F14006F9E86 /* NevoPicture.png */; };
 		005BC95F1A88B79F006F9E86 /* FXBlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = 005BC95E1A88B79F006F9E86 /* FXBlurView.m */; };
+		00684C021C1147AC007FB321 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00684C011C1147AB007FB321 /* User.swift */; };
 		006B73491A8F7D0B00A7E92F /* AlarmClockController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006B73481A8F7D0B00A7E92F /* AlarmClockController.swift */; };
 		007DD4BB1A89DDC000CE7264 /* Page2Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007DD4BA1A89DDC000CE7264 /* Page2Controller.swift */; };
 		007DD4BD1A89DF2A00CE7264 /* Page3Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007DD4BC1A89DF2A00CE7264 /* Page3Controller.swift */; };
@@ -83,6 +85,7 @@
 		0080AC761C0FEC19007E73B6 /* AddPresetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0080AC741C0FEC19007E73B6 /* AddPresetViewController.swift */; };
 		0080AC771C0FEC19007E73B6 /* AddPresetViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0080AC751C0FEC19007E73B6 /* AddPresetViewController.xib */; };
 		0080AC791C0FEC65007E73B6 /* AddPresetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0080AC781C0FEC65007E73B6 /* AddPresetView.swift */; };
+		0080AC7B1C1033D1007E73B6 /* SyncBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0080AC7A1C1033D1007E73B6 /* SyncBar.swift */; };
 		00828C1D1BFC17E300194032 /* BaseEntryDatabaseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00828C151BFC17E300194032 /* BaseEntryDatabaseHelper.swift */; };
 		00828C201BFC17E300194032 /* UserDatabaseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00828C1A1BFC17E300194032 /* UserDatabaseHelper.swift */; };
 		00828C231BFC180A00194032 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00828C221BFC180A00194032 /* UserModel.swift */; };
@@ -339,9 +342,11 @@
 		00478F4D1A8F637D00D0DCE2 /* clockViewHour.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clockViewHour.png; sourceTree = "<group>"; };
 		00478F4E1A8F637D00D0DCE2 /* clockViewMinute.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clockViewMinute.png; sourceTree = "<group>"; };
 		004846D31B72EDB9005A6D83 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		0054F3491C1513860082BA2E /* Presets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Presets.swift; sourceTree = "<group>"; };
 		005BC9551A889F14006F9E86 /* NevoPicture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NevoPicture.png; sourceTree = "<group>"; };
 		005BC95D1A88B79F006F9E86 /* FXBlurView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FXBlurView.h; sourceTree = "<group>"; };
 		005BC95E1A88B79F006F9E86 /* FXBlurView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FXBlurView.m; sourceTree = "<group>"; };
+		00684C011C1147AB007FB321 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		006B73481A8F7D0B00A7E92F /* AlarmClockController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AlarmClockController.swift; path = Controller/AlarmClockController.swift; sourceTree = "<group>"; };
 		007DD4BA1A89DDC000CE7264 /* Page2Controller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Page2Controller.swift; sourceTree = "<group>"; };
 		007DD4BC1A89DF2A00CE7264 /* Page3Controller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Page3Controller.swift; sourceTree = "<group>"; };
@@ -375,6 +380,7 @@
 		0080AC741C0FEC19007E73B6 /* AddPresetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddPresetViewController.swift; sourceTree = "<group>"; };
 		0080AC751C0FEC19007E73B6 /* AddPresetViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddPresetViewController.xib; sourceTree = "<group>"; };
 		0080AC781C0FEC65007E73B6 /* AddPresetView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddPresetView.swift; sourceTree = "<group>"; };
+		0080AC7A1C1033D1007E73B6 /* SyncBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncBar.swift; sourceTree = "<group>"; };
 		00828C151BFC17E300194032 /* BaseEntryDatabaseHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseEntryDatabaseHelper.swift; sourceTree = "<group>"; };
 		00828C1A1BFC17E300194032 /* UserDatabaseHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDatabaseHelper.swift; sourceTree = "<group>"; };
 		00828C221BFC180A00194032 /* UserModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
@@ -686,6 +692,7 @@
 				0030116A1C083CEB00EE1621 /* AppTheme.swift */,
 				0030116B1C083CEB00EE1621 /* ClockView.swift */,
 				0030116C1C083CEB00EE1621 /* ToolbarView.swift */,
+				0080AC7A1C1033D1007E73B6 /* SyncBar.swift */,
 			);
 			name = publicClass;
 			path = View/publicClass;
@@ -914,6 +921,8 @@
 				00828C281BFC1A9E00194032 /* HealthModel.swift */,
 				009178AA1C05A36600CD904D /* AlarmModel.swift */,
 				009178AC1C05A3A100CD904D /* PresetsModel.swift */,
+				00684C011C1147AB007FB321 /* User.swift */,
+				0054F3491C1513860082BA2E /* Presets.swift */,
 			);
 			path = ModelTable;
 			sourceTree = "<group>";
@@ -1802,6 +1811,7 @@
 				006B73491A8F7D0B00A7E92F /* AlarmClockController.swift in Sources */,
 				0030119F1C083E1F00EE1621 /* AddAlarmView.swift in Sources */,
 				00DC9EB11BB2853D00734DB6 /* PieRadarChartViewBase.swift in Sources */,
+				0080AC7B1C1033D1007E73B6 /* SyncBar.swift in Sources */,
 				9AD8F9751A6E049500F01014 /* NumberOfStepsGoal.swift in Sources */,
 				001818301B044E5D005E9F2D /* Page1Controller.swift in Sources */,
 				07BE0CF21A84A2F8000C4AC7 /* IntelHex2BinConverter.m in Sources */,
@@ -1813,6 +1823,7 @@
 				00E2BDE21B16CCD0009C757E /* MBProgressHUD+MJ.m in Sources */,
 				005BC95F1A88B79F006F9E86 /* FXBlurView.m in Sources */,
 				9AD8F9A01A6E47B400F01014 /* SetGoalRequest.swift in Sources */,
+				0054F34A1C1513860082BA2E /* Presets.swift in Sources */,
 				009ED4A01C0DA13200623D95 /* LineColorCell.swift in Sources */,
 				00DC9ECD1BB2853D00734DB6 /* LineScatterCandleChartDataSet.swift in Sources */,
 				009ED5571C0E862300623D95 /* StepHistoricalViewController.swift in Sources */,
@@ -1842,6 +1853,7 @@
 				00E2BDE41B16CCD0009C757E /* MBProgressHUD.m in Sources */,
 				07C59F281A8C618A00D65C84 /* WriteSettingRequest.swift in Sources */,
 				00DC9EDE1BB2853D00734DB6 /* HorizontalBarChartHighlighter.swift in Sources */,
+				00684C021C1147AC007FB321 /* User.swift in Sources */,
 				003011921C083CEB00EE1621 /* TutorialPage3View.swift in Sources */,
 				00828C231BFC180A00194032 /* UserModel.swift in Sources */,
 				00DC9EBB1BB2853D00734DB6 /* BarChartData.swift in Sources */,
