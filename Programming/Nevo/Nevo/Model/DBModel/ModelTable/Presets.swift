@@ -39,6 +39,7 @@ class Presets: NSObject,BaseEntryDatabaseHelper {
     }
 
     func remove()->Bool{
+        presetsModel.id = id
         return presetsModel.remove()
     }
 
