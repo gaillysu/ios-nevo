@@ -14,7 +14,9 @@ class SetingViewController: UIViewController,SyncControllerDelegate,ButtonManage
 
     private var mNotificationType:NotificationType = NotificationType.CALL
     var sources:NSArray!
-    var titleArray:[String]?
+    var sourcesImage:[String] = []
+    var titleArray:[String] = []
+    var titleArrayImage:[String] = []
     var selectedB:Bool = false
     //vibrate and show all color light to find my device, only send one request in 6 sec
     //this action take lot power and we maybe told customer less to use it
@@ -45,7 +47,9 @@ class SetingViewController: UIViewController,SyncControllerDelegate,ButtonManage
         notificationList.bulidNotificationViewUI(self)
 
         sources = [NSLocalizedString("Link-Loss Notifications", comment: ""),NSLocalizedString("Notifications", comment: ""),NSLocalizedString("My nevo", comment: ""),NSLocalizedString("Support", comment: ""),NSLocalizedString("About", comment: "")]
+        sourcesImage = ["new_iOS_link_icon","new_iOS_notfications_icon","new_iOS_mynevo_iocn","new_iOS_support_icon","new_iOS_about_icon"]
         titleArray = [NSLocalizedString("Preset-goals", comment: ""),NSLocalizedString("Find device", comment: "")]
+        titleArrayImage = ["new_iOS_goals_icon","new_iOS_findmywatch_icon"]
     }
 
     override func viewDidAppear(animated: Bool) {
@@ -112,12 +116,12 @@ class SetingViewController: UIViewController,SyncControllerDelegate,ButtonManage
             }
             break
         case 1:
-            if(isEqualString("\(titleArray![indexPath.row])",string2: NSLocalizedString("Find device", comment: ""))){
+            if(isEqualString("\(titleArray[indexPath.row])",string2: NSLocalizedString("Find device", comment: ""))){
                 AppTheme.DLog("Find device")
                 findMydevice()
             }
 
-            if(isEqualString("\(titleArray![indexPath.row])",string2: NSLocalizedString("Preset-goals", comment: ""))){
+            if(isEqualString("\(titleArray[indexPath.row])",string2: NSLocalizedString("Preset-goals", comment: ""))){
                 AppTheme.DLog("Preset-goals")
                 let presetView:PresetTableViewController = PresetTableViewController()
                 presetView.hidesBottomBarWhenPushed = true
@@ -140,7 +144,7 @@ class SetingViewController: UIViewController,SyncControllerDelegate,ButtonManage
         case 0:
             return sources.count
         case 1:
-            return titleArray!.count
+            return titleArray.count
         default: return 1;
         }
     }
@@ -149,12 +153,12 @@ class SetingViewController: UIViewController,SyncControllerDelegate,ButtonManage
         switch (indexPath.section){
         case 0:
             if(indexPath.row == 0){
-                return notificationList.LinkLossNotificationsTableViewCell(indexPath, tableView: tableView, title: sources[indexPath.row] as! String)
+                return notificationList.LinkLossNotificationsTableViewCell(indexPath, tableView: tableView, title: sources[indexPath.row] as! String ,imageName:sourcesImage[indexPath.row])
             }
-            return notificationList.NotificationSystemTableViewCell(indexPath, tableView: tableView, title: sources[indexPath.row] as! String)
+            return notificationList.NotificationSystemTableViewCell(indexPath, tableView: tableView, title: sources[indexPath.row] as! String ,imageName:sourcesImage[indexPath.row])
         case 1:
-            return notificationList.NotificationSystemTableViewCell(indexPath, tableView: tableView, title: titleArray![indexPath.row])
-        default: return notificationList.NotificationSystemTableViewCell(indexPath, tableView: tableView, title: sources[1] as! String);
+            return notificationList.NotificationSystemTableViewCell(indexPath, tableView: tableView, title: titleArray[indexPath.row] ,imageName:titleArrayImage[indexPath.row])
+        default: return notificationList.NotificationSystemTableViewCell(indexPath, tableView: tableView, title: sources[1] as! String ,imageName:titleArrayImage[indexPath.row]);
         }
     }
 

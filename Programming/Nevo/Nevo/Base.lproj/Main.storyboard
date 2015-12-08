@@ -335,7 +335,7 @@
         <scene sceneID="qEP-IN-OCQ">
             <objects>
                 <navigationController useStoryboardIdentifierAsRestorationIdentifier="YES" id="bGr-qo-zHH" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" systemItem="contacts" id="FTX-5o-89V"/>
+                    <tabBarItem key="tabBarItem" title="" image="new_iOS_setting_icon" id="FTX-5o-89V"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="p9j-eT-GsY">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -354,11 +354,11 @@
             </objects>
             <point key="canvasLocation" x="214" y="1207"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Steps-->
         <scene sceneID="QXP-JR-yAP">
             <objects>
                 <navigationController id="rem-vM-ODh" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" systemItem="history" id="ba1-Wn-XQe"/>
+                    <tabBarItem key="tabBarItem" title="Steps" image="new_iOS_steps_icon" id="ba1-Wn-XQe"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="gdh-sX-Da8">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -397,7 +397,7 @@
         <scene sceneID="ct5-Mu-dmL">
             <objects>
                 <navigationController id="Hsa-EN-v8Q" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" systemItem="history" id="dU5-Ty-hhC"/>
+                    <tabBarItem key="tabBarItem" title="" image="new_iOS_alarm_icon" id="dU5-Ty-hhC"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="0g2-Qz-bFf">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1036,7 +1036,7 @@
         <scene sceneID="hvn-OI-PaU">
             <objects>
                 <navigationController useStoryboardIdentifierAsRestorationIdentifier="YES" id="55x-5E-ejb" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" systemItem="favorites" id="QgB-tv-HYG"/>
+                    <tabBarItem key="tabBarItem" title="" image="new_iOS_sleepicon" id="QgB-tv-HYG"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="wZ6-1e-Ldn">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1075,6 +1075,10 @@
         <image name="color_0dac67" width="55" height="55"/>
         <image name="color_0dac67_selected" width="55" height="55"/>
         <image name="nevo_wacth.png" width="300" height="300"/>
+        <image name="new_iOS_alarm_icon" width="35" height="36"/>
+        <image name="new_iOS_setting_icon" width="35" height="36"/>
+        <image name="new_iOS_sleepicon" width="35" height="36"/>
+        <image name="new_iOS_steps_icon" width="35" height="36"/>
         <image name="warningicon" width="80" height="80"/>
     </resources>
 </document>

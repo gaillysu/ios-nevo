@@ -19,24 +19,32 @@ class MainTabBarController: UITabBarController,UITabBarControllerDelegate {
         super.viewDidLoad()
 
         self.delegate = self
-
+        self.tabBar.tintColor = AppTheme.NEVO_SOLAR_YELLOW()
         // Do any additional setup after loading the view.
         //var nav:UINavigationController!
         let viewArray:[AnyObject] = self.viewControllers!
         for nav in viewArray {
             let contll = (nav as! UINavigationController).topViewController
             if contll!.isKindOfClass(AlarmClockController){
+                (nav as! UINavigationController).tabBarItem.title = NSLocalizedString("Alarm", comment: "")
                 AppTheme.DLog("AlarmClockController:\(contll)")
 
             }
 
-            if contll!.isKindOfClass(StepGoalSetingController){
-                AppTheme.DLog("StepGoalSetingController:\(contll)")
+            if contll!.isKindOfClass(StepController){
+                (nav as! UINavigationController).tabBarItem.title = NSLocalizedString("Steps", comment: "")
+                AppTheme.DLog("StepController:\(contll)")
+            }
+            
+            if contll!.isKindOfClass(SleepController){
+                contll!.tabBarController?.selectedIndex = 1
+                (nav as! UINavigationController).tabBarItem.title = NSLocalizedString("Sleep", comment: "")
+                AppTheme.DLog("SetingViewController:\(contll)")
             }
 
-            if contll!.isKindOfClass(HomeController){
-                AppTheme.DLog("HomeController:\(contll)")
-                contll!.tabBarController?.selectedIndex = 1
+            if contll!.isKindOfClass(SetingViewController){
+                (nav as! UINavigationController).tabBarItem.title = NSLocalizedString("Seting", comment: "")
+                AppTheme.DLog("SetingViewController:\(contll)")
             }
 
         }

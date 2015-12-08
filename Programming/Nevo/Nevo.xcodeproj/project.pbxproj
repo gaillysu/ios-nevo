@@ -49,6 +49,7 @@
 		00478F501A8F637D00D0DCE2 /* clockViewMinute.png in Resources */ = {isa = PBXBuildFile; fileRef = 00478F4E1A8F637D00D0DCE2 /* clockViewMinute.png */; };
 		004846D41B72EDB9005A6D83 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 004846D31B72EDB9005A6D83 /* libsqlite3.dylib */; };
 		0054F34A1C1513860082BA2E /* Presets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0054F3491C1513860082BA2E /* Presets.swift */; };
+		0054F3581C1590490082BA2E /* UserAlarm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0054F3571C1590490082BA2E /* UserAlarm.swift */; };
 		005BC9561A889F14006F9E86 /* NevoPicture.png in Resources */ = {isa = PBXBuildFile; fileRef = 005BC9551A889F14006F9E86 /* NevoPicture.png */; };
 		005BC95F1A88B79F006F9E86 /* FXBlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = 005BC95E1A88B79F006F9E86 /* FXBlurView.m */; };
 		00684C021C1147AC007FB321 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00684C011C1147AB007FB321 /* User.swift */; };
@@ -343,6 +344,7 @@
 		00478F4E1A8F637D00D0DCE2 /* clockViewMinute.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clockViewMinute.png; sourceTree = "<group>"; };
 		004846D31B72EDB9005A6D83 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		0054F3491C1513860082BA2E /* Presets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Presets.swift; sourceTree = "<group>"; };
+		0054F3571C1590490082BA2E /* UserAlarm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAlarm.swift; sourceTree = "<group>"; };
 		005BC9551A889F14006F9E86 /* NevoPicture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NevoPicture.png; sourceTree = "<group>"; };
 		005BC95D1A88B79F006F9E86 /* FXBlurView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FXBlurView.h; sourceTree = "<group>"; };
 		005BC95E1A88B79F006F9E86 /* FXBlurView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FXBlurView.m; sourceTree = "<group>"; };
@@ -923,6 +925,7 @@
 				009178AC1C05A3A100CD904D /* PresetsModel.swift */,
 				00684C011C1147AB007FB321 /* User.swift */,
 				0054F3491C1513860082BA2E /* Presets.swift */,
+				0054F3571C1590490082BA2E /* UserAlarm.swift */,
 			);
 			path = ModelTable;
 			sourceTree = "<group>";
@@ -1758,6 +1761,7 @@
 				00DC9EAC1BB2853D00734DB6 /* ChartViewBase.swift in Sources */,
 				00DC9EEA1BB2853D00734DB6 /* ChartYAxisRenderer.swift in Sources */,
 				00DC9ED51BB2853D00734DB6 /* ChartDataBaseFilter.swift in Sources */,
+				0054F3581C1590490082BA2E /* UserAlarm.swift in Sources */,
 				003011881C083CEB00EE1621 /* ClockView.swift in Sources */,
 				0030118B1C083CEB00EE1621 /* TableListCell.swift in Sources */,
 				00DC9EDB1BB2853D00734DB6 /* ChartHighlighter.swift in Sources */,
