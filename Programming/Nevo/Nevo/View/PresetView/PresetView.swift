@@ -35,6 +35,9 @@ class PresetView: UITableView {
         (endCell as! PresetTableViewCell).presetSteps.text = "\(presetModel.steps)"
         (endCell as! PresetTableViewCell).presetName.text = presetModel.label
         (endCell as! PresetTableViewCell).presetStates.on = presetModel.status
+        if(!presetModel.status){
+            (endCell as! PresetTableViewCell).backgroundColor = UIColor.clearColor()
+        }
         endCell?.selectionStyle = UITableViewCellSelectionStyle.None;
         return endCell!
     }

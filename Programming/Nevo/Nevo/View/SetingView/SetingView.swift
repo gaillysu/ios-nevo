@@ -76,7 +76,7 @@ class SetingView: UIView {
 
      :returns: UITableViewCell
      */
-    func NotificationSystemTableViewCell(indexPath:NSIndexPath,tableView:UITableView,title:String)->UITableViewCell {
+    func NotificationSystemTableViewCell(indexPath:NSIndexPath,tableView:UITableView,title:String,imageName:String)->UITableViewCell {
         let endCellID:String = "NotificationSystemTableViewCell"
         var endCell = tableView.dequeueReusableCellWithIdentifier(endCellID)
         if (endCell == nil) {
@@ -85,6 +85,7 @@ class SetingView: UIView {
         endCell?.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
         endCell?.selectionStyle = UITableViewCellSelectionStyle.None;
         endCell?.textLabel?.text = title
+        endCell?.imageView?.image = UIImage(named: imageName)
         return endCell!
     }
 
@@ -97,7 +98,7 @@ class SetingView: UIView {
 
      :returns: return LinkLoss Notifications TableViewCell
      */
-    func LinkLossNotificationsTableViewCell(indexPath:NSIndexPath,tableView:UITableView,title:String)->UITableViewCell {
+    func LinkLossNotificationsTableViewCell(indexPath:NSIndexPath,tableView:UITableView,title:String ,imageName:String)->UITableViewCell {
         let endCellID:String = "LinkLossNotificationsTableViewCell"
         var endCell = tableView.dequeueReusableCellWithIdentifier(endCellID)
         if (endCell == nil) {
@@ -112,6 +113,7 @@ class SetingView: UIView {
         endCell?.contentView.addSubview(mSendLocalNotificationSwitchButton!)
 
         endCell?.selectionStyle = UITableViewCellSelectionStyle.None;
+        endCell?.imageView?.image = UIImage(named: imageName)
         endCell?.textLabel?.text = title
         return endCell!
     }

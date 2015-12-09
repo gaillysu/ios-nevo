@@ -54,13 +54,37 @@ class StepController: PublicClassController,toolbarSegmentedDelegate,UIActionShe
 
     // MARK: - rightBarButtonAction
     func rightBarButtonAction(rightBar:UIBarButtonItem){
-        let actionSheet:UIActionSheet = UIActionSheet(title: nil, delegate: self, cancelButtonTitle: "Cancel", destructiveButtonTitle: nil)
-        for steps in goalArray {
-            actionSheet.addButtonWithTitle("\(steps) steps")
+        if((UIDevice.currentDevice().systemVersion as NSString).floatValue >= 8.0){
+            
+            let actionSheet:UIAlertController = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
+            actionSheet.view.tintColor = AppTheme.NEVO_SOLAR_YELLOW()
+
+            let alertAction:UIAlertAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: UIAlertActionStyle.Cancel, handler: nil)
+            actionSheet.addAction(alertAction)
+
+            for steps:Int in goalArray {
+                let alertAction2:UIAlertAction = UIAlertAction(title: "\(steps) steps", style: UIAlertActionStyle.Default) { (action:UIAlertAction) -> Void in
+                    if((action.title! as NSString).isEqualToString("\(steps) steps")){
+                        self.setGoal(NumberOfStepsGoal(steps: steps))
+                    }
+                }
+                actionSheet.addAction(alertAction2)
+            }
+            self.presentViewController(actionSheet, animated: true, completion: nil)
+        }else{
+            let actionSheet:UIActionSheet = UIActionSheet(title: nil, delegate: self, cancelButtonTitle: "Cancel", destructiveButtonTitle: nil)
+            for steps in goalArray {
+                actionSheet.addButtonWithTitle("\(steps) steps")
+            }
+            for button:UIView in actionSheet.subviews{
+                button.tintColor = AppTheme.NEVO_SOLAR_YELLOW()
+                button.backgroundColor = AppTheme.NEVO_SOLAR_YELLOW()
+            }
+            actionSheet.layer.backgroundColor = AppTheme.NEVO_SOLAR_YELLOW().CGColor
+            actionSheet.tintColor = AppTheme.NEVO_SOLAR_YELLOW()
+            actionSheet.actionSheetStyle = UIActionSheetStyle.Default;
+            actionSheet.showInView(self.view)
         }
-        actionSheet.tintColor = AppTheme.NEVO_SOLAR_YELLOW()
-        actionSheet.actionSheetStyle = UIActionSheetStyle.Default;
-        actionSheet.showInView(self.view)
     }
 
     // MARK: - toolbarSegmentedDelegate
@@ -97,6 +121,16 @@ class StepController: PublicClassController,toolbarSegmentedDelegate,UIActionShe
     func actionSheet(actionSheet: UIActionSheet, clickedButtonAtIndex buttonIndex: Int){
         if(buttonIndex != 0){
             setGoal(NumberOfStepsGoal(steps: goalArray[buttonIndex-1]))
+        }
+    }
+
+    func willPresentActionSheet(actionSheet: UIActionSheet){
+        for subViwe in actionSheet.subviews{
+            subViwe.tintColor = AppTheme.NEVO_SOLAR_YELLOW()
+            if(subViwe.isKindOfClass(UIButton.classForCoder())){
+                let button:UIButton = subViwe as! UIButton
+                button.tintColor = AppTheme.NEVO_SOLAR_YELLOW()
+            }
         }
     }
 
