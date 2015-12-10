@@ -16,7 +16,8 @@ class StepGoalSetingController: PublicClassController,ButtonManagerCallBack,Sync
     
     private var mCurrentGoal:Goal = NumberOfStepsGoal()
     private var mVisiable:Bool = true
-
+    private var myHud:SyncBar = SyncBar.getSyncBar()
+    
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
         super.init(nibName: "StepGoalSetingController", bundle: NSBundle.mainBundle())
 
@@ -28,7 +29,9 @@ class StepGoalSetingController: PublicClassController,ButtonManagerCallBack,Sync
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        myHud.statusText = "Syncing nevo";
+        myHud.showHudAddedToView(self.view)
+        
         AppDelegate.getAppDelegate().startConnect(false, delegate: self)
 
         stepGoalView.bulidStepGoalView(self,navigation: self.navigationItem)

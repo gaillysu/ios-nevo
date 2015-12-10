@@ -96,6 +96,7 @@
 		0072EADC1C190DCD001EE2C9 /* SFUIText-RegularItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0072EAB21C190DCD001EE2C9 /* SFUIText-RegularItalic.ttf */; };
 		0072EADD1C190DCD001EE2C9 /* SFUIText-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0072EAB31C190DCD001EE2C9 /* SFUIText-Semibold.ttf */; };
 		0072EADE1C190DCD001EE2C9 /* SFUIText-SemiboldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0072EAB41C190DCD001EE2C9 /* SFUIText-SemiboldItalic.ttf */; };
+		0072EAEB1C192210001EE2C9 /* spinner.png in Resources */ = {isa = PBXBuildFile; fileRef = 0072EAEA1C192210001EE2C9 /* spinner.png */; };
 		007DD4BB1A89DDC000CE7264 /* Page2Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007DD4BA1A89DDC000CE7264 /* Page2Controller.swift */; };
 		007DD4BD1A89DF2A00CE7264 /* Page3Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007DD4BC1A89DF2A00CE7264 /* Page3Controller.swift */; };
 		007F79721A878C8B006C89E6 /* TutorialController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007F79701A878C8B006C89E6 /* TutorialController.swift */; };
@@ -415,6 +416,7 @@
 		0072EAB21C190DCD001EE2C9 /* SFUIText-RegularItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFUIText-RegularItalic.ttf"; sourceTree = "<group>"; };
 		0072EAB31C190DCD001EE2C9 /* SFUIText-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFUIText-Semibold.ttf"; sourceTree = "<group>"; };
 		0072EAB41C190DCD001EE2C9 /* SFUIText-SemiboldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFUIText-SemiboldItalic.ttf"; sourceTree = "<group>"; };
+		0072EAEA1C192210001EE2C9 /* spinner.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spinner.png; sourceTree = "<group>"; };
 		007DD4BA1A89DDC000CE7264 /* Page2Controller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Page2Controller.swift; sourceTree = "<group>"; };
 		007DD4BC1A89DF2A00CE7264 /* Page3Controller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Page3Controller.swift; sourceTree = "<group>"; };
 		007F79701A878C8B006C89E6 /* TutorialController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TutorialController.swift; path = Controller/TutorialController.swift; sourceTree = "<group>"; };
@@ -931,6 +933,7 @@
 		007F79881A878D0B006C89E6 /* image */ = {
 			isa = PBXGroup;
 			children = (
+				0072EAEA1C192210001EE2C9 /* spinner.png */,
 				07BCE8291B5CAB2100C7F558 /* clockview600_color.png */,
 				001F1B791B57777B001DD426 /* nevo_wacth_selected.png */,
 				001F1B7A1B57777B001DD426 /* nevo_wacth.png */,
@@ -1708,6 +1711,7 @@
 				0072EABF1C190DCD001EE2C9 /* SFCompactText-BoldItalic.ttf in Resources */,
 				0072EAC11C190DCD001EE2C9 /* SFCompactText-HeavyItalic.ttf in Resources */,
 				00A773961A88562F0018E121 /* Localizable.strings in Resources */,
+				0072EAEB1C192210001EE2C9 /* spinner.png in Resources */,
 				00E39A981AC27DDC0004E6C1 /* editor.png in Resources */,
 				009ED5751C0ED5B200623D95 /* StepGoalSetingController.xib in Resources */,
 				0072EAC81C190DCD001EE2C9 /* SFCompactText-Semibold.ttf in Resources */,
