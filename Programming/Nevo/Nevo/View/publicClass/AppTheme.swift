@@ -332,4 +332,22 @@ class AppTheme {
         NSScanner(string: bString as String).scanHexInt(&b)
         return UIColor(red: CGFloat(r)/255.0, green:  CGFloat(g)/255.0, blue:  CGFloat(b)/255.0, alpha: 1)
     }
+
+    class func navigationbar(navigation:UINavigationController) {
+        if(navigation.navigationBar.respondsToSelector(Selector("setBackgroundImage:forBarMetrics:"))){
+            let list:NSArray = navigation.navigationBar.subviews
+            for obj in list{
+                if(obj.isKindOfClass(UIImageView.classForCoder())){
+                    let imageView:UIImageView = obj as! UIImageView
+                    imageView.hidden = true
+                }
+            }
+            let imageView:UIImageView = UIImageView(frame: CGRectMake(0, -20, 420, 64))
+             imageView.image = UIImage(named: "navigationBar")
+            imageView.backgroundColor = AppTheme.NEVO_CUSTOM_COLOR(Red: 227.0, Green: 227.0, Blue: 227.0)
+            navigation.navigationBar.addSubview(imageView)
+            navigation.navigationBar.sendSubviewToBack(imageView)
+        }
+    }
+
 }
