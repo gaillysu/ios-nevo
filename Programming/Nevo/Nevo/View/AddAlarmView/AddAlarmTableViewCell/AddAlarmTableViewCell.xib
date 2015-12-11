@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -16,20 +16,17 @@
                 <subviews>
                     <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="MMl-Ob-oVT">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="235"/>
-                        <animations/>
                         <date key="date" timeIntervalSinceReferenceDate="470302396.76814198">
                             <!--2015-11-27 07:33:16 +0000-->
                         </date>
                     </datePicker>
                 </subviews>
-                <animations/>
                 <constraints>
                     <constraint firstItem="MMl-Ob-oVT" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="Gdp-DH-Ub0"/>
                     <constraint firstItem="MMl-Ob-oVT" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="OCw-v0-nyR"/>
                     <constraint firstItem="MMl-Ob-oVT" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="OGk-fe-DRt"/>
                 </constraints>
             </tableViewCellContentView>
-            <animations/>
             <connections>
                 <outlet property="datePicker" destination="MMl-Ob-oVT" id="ccg-co-ucM"/>
             </connections>

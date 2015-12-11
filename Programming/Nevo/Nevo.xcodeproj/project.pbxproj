@@ -44,6 +44,8 @@
 		0030119F1C083E1F00EE1621 /* AddAlarmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0030119E1C083E1F00EE1621 /* AddAlarmView.swift */; };
 		003011A91C084A3300EE1621 /* AddAlarmTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003011A71C084A3300EE1621 /* AddAlarmTableViewCell.swift */; };
 		003011AA1C084A3300EE1621 /* AddAlarmTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 003011A81C084A3300EE1621 /* AddAlarmTableViewCell.xib */; };
+		0037EA211C1A77270018F6AE /* AddAlarmSystemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0037EA1F1C1A77270018F6AE /* AddAlarmSystemCell.swift */; };
+		0037EA241C1A77830018F6AE /* AddAlarmSystemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0037EA231C1A77830018F6AE /* AddAlarmSystemCell.xib */; };
 		004787CC1C06E715001B3254 /* PublicClassController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004787CB1C06E715001B3254 /* PublicClassController.swift */; };
 		00478F4F1A8F637D00D0DCE2 /* clockViewHour.png in Resources */ = {isa = PBXBuildFile; fileRef = 00478F4D1A8F637D00D0DCE2 /* clockViewHour.png */; };
 		00478F501A8F637D00D0DCE2 /* clockViewMinute.png in Resources */ = {isa = PBXBuildFile; fileRef = 00478F4E1A8F637D00D0DCE2 /* clockViewMinute.png */; };
@@ -363,6 +365,8 @@
 		0030119E1C083E1F00EE1621 /* AddAlarmView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddAlarmView.swift; sourceTree = "<group>"; };
 		003011A71C084A3300EE1621 /* AddAlarmTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddAlarmTableViewCell.swift; sourceTree = "<group>"; };
 		003011A81C084A3300EE1621 /* AddAlarmTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddAlarmTableViewCell.xib; sourceTree = "<group>"; };
+		0037EA1F1C1A77270018F6AE /* AddAlarmSystemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddAlarmSystemCell.swift; sourceTree = "<group>"; };
+		0037EA231C1A77830018F6AE /* AddAlarmSystemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddAlarmSystemCell.xib; sourceTree = "<group>"; };
 		004787CB1C06E715001B3254 /* PublicClassController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PublicClassController.swift; sourceTree = "<group>"; };
 		00478F4D1A8F637D00D0DCE2 /* clockViewHour.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clockViewHour.png; sourceTree = "<group>"; };
 		00478F4E1A8F637D00D0DCE2 /* clockViewMinute.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clockViewMinute.png; sourceTree = "<group>"; };
@@ -820,6 +824,8 @@
 			children = (
 				003011A71C084A3300EE1621 /* AddAlarmTableViewCell.swift */,
 				003011A81C084A3300EE1621 /* AddAlarmTableViewCell.xib */,
+				0037EA1F1C1A77270018F6AE /* AddAlarmSystemCell.swift */,
+				0037EA231C1A77830018F6AE /* AddAlarmSystemCell.xib */,
 			);
 			path = AddAlarmTableViewCell;
 			sourceTree = "<group>";
@@ -1754,6 +1760,7 @@
 				07BCE82A1B5CAB2200C7F558 /* clockview600_color.png in Resources */,
 				0072EAD81C190DCD001EE2C9 /* SFUIText-LightItalic.ttf in Resources */,
 				0080AC6C1C0FE501007E73B6 /* PresetTableViewController.xib in Resources */,
+				0037EA241C1A77830018F6AE /* AddAlarmSystemCell.xib in Resources */,
 				9AD8F9421A6DF35900F01014 /* Images.xcassets in Resources */,
 				0072EAD71C190DCD001EE2C9 /* SFUIText-Light.ttf in Resources */,
 				0072EADC1C190DCD001EE2C9 /* SFUIText-RegularItalic.ttf in Resources */,
@@ -2044,6 +2051,7 @@
 				001818351B048DAC005E9F2D /* Page5Controller.swift in Sources */,
 				004787CC1C06E715001B3254 /* PublicClassController.swift in Sources */,
 				009ED5541C0E859400623D95 /* StepGoalSetingController.swift in Sources */,
+				0037EA211C1A77270018F6AE /* AddAlarmSystemCell.swift in Sources */,
 				009ED49C1C0D920300623D95 /* NotificationClockCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

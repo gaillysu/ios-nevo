@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AlarmClockController: UITableViewController, SyncControllerDelegate,ButtonManagerCallBack {
+class AlarmClockController: UITableViewController, SyncControllerDelegate,ButtonManagerCallBack,AddAlarmDelegate {
 
     class var SAVED_ALARM_HOUR_KEY:String {
         return "SAVED_ALARM_HOUR_KEY"
@@ -55,6 +55,8 @@ class AlarmClockController: UITableViewController, SyncControllerDelegate,Button
         addButton.tintColor = AppTheme.NEVO_SOLAR_YELLOW()
         self.navigationItem.leftBarButtonItem = self.editButtonItem()
 
+        let array:NSArray = UserAlarm.getAll()
+
         //If we have any previously saved hour, min and/or enabled/ disabled, we'll use those variables first
         let userDefaults:NSUserDefaults = NSUserDefaults.standardUserDefaults()
         if let alarmArray1 = userDefaults.objectForKey(AlarmClockController.SAVED_ALARM_ARRAY0) as? NSDictionary {
@@ -96,10 +98,17 @@ class AlarmClockController: UITableViewController, SyncControllerDelegate,Button
 
         if(sender.isEqual(addButton)){
             let addAlarm:AddAlarmController = AddAlarmController()
+            addAlarm.mDelegate = self
             addAlarm.hidesBottomBarWhenPushed = true
             self.navigationController?.pushViewController(addAlarm, animated: true)
         }
 
+    }
+
+    // MARK: - AddAlarmDelegate
+    func onDidAddAlarmAction(timer:NSTimeInterval,repeatStatus:Bool,name:String){
+        let addalarm:UserAlarm = UserAlarm(keyDict: ["id":"\(0)","timer":"\(timer)","label":"\(name)","status":"\(true)","repeatStatus":"\(repeatStatus)"])
+        let status:Bool = addalarm.add()
     }
 
     // MARK: - SyncControllerDelegate

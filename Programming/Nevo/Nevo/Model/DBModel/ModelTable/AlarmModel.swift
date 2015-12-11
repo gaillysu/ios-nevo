@@ -9,9 +9,10 @@
 import UIKit
 
 class AlarmModel: UserDatabaseHelper {
-    var timer:Double = 0.0
+    var timer:NSTimeInterval = 0.0
     var label:String = ""
     var status:Bool = false
+    var repeatStatus:Bool = false
 
     override init() {
 

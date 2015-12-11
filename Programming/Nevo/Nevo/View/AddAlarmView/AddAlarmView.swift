@@ -39,15 +39,26 @@ class AddAlarmView: UITableView {
 
      :returns: UITableViewCell
      */
-    class func systemTableViewCell(indexPath:NSIndexPath,tableView:UITableView,title:String)->UITableViewCell {
+    class func systemTableViewCell(indexPath:NSIndexPath,tableView:UITableView,title:String,delegate:ButtonManagerCallBack)->UITableViewCell {
         let endCellID:String = "SystemCell"
         var endCell = tableView.dequeueReusableCellWithIdentifier(endCellID)
         if (endCell == nil) {
-            endCell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: endCellID)
+            let nibs:NSArray = NSBundle.mainBundle().loadNibNamed("AddAlarmSystemCell", owner: self, options: nil)
+            endCell = nibs.objectAtIndex(0) as? AddAlarmSystemCell;
         }
-        endCell?.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
+        (endCell as! AddAlarmSystemCell).mDelegate = delegate
+        if(title == "Repeat"){
+
+        }
+
+        if(title == "Label"){
+            (endCell as! AddAlarmSystemCell).repeatSwicth.hidden = true
+            //(endCell as! AddAlarmSystemCell).repeatSwicth.removeFromSuperview()
+            endCell?.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
+        }
+
         endCell?.selectionStyle = UITableViewCellSelectionStyle.None;
-        endCell?.textLabel?.text = title
+        (endCell as! AddAlarmSystemCell).systemTitle.text = NSLocalizedString("\(title)", comment: "")
         return endCell!
     }
 
@@ -55,6 +66,9 @@ class AddAlarmView: UITableView {
         navigation.title = NSLocalizedString("Add Alarm", comment: "")
     }
 
+    func buttonManage(sender:AnyObject){
+        NSLog("------------")
+    }
     /*
     // Only override drawRect: if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.

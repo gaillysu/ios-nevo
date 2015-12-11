@@ -18,6 +18,15 @@ class SleepTrackingController: PublicClassController, SyncControllerDelegate ,Bu
     @IBOutlet weak var sleepView: SleepTrackingView!
     private var mVisiable:Bool = false
 
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
+        super.init(nibName: "SleepTrackingController", bundle: NSBundle.mainBundle())
+
+    }
+
+    required init(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
