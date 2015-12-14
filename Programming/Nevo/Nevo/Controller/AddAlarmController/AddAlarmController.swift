@@ -51,36 +51,40 @@ class AddAlarmController: UITableViewController,ButtonManagerCallBack {
     }
 
     func controllManager(sender:AnyObject) {
-        let indexPaths:NSIndexPath = NSIndexPath(forRow: 0, inSection: 0)
-        let timerCell:UITableViewCell = self.tableView.cellForRowAtIndexPath(indexPaths)!
-        for datePicker in timerCell.contentView.subviews{
-            if(datePicker.isKindOfClass(UIDatePicker.classForCoder())){
-                let picker:UIDatePicker = datePicker as! UIDatePicker
-                timer = picker.date.timeIntervalSince1970
-                NSLog("UIDatePicker______%@", picker.date)
-                
+        if(sender.isKindOfClass(UISwitch.classForCoder())){
+            
+        }else{
+            let indexPaths:NSIndexPath = NSIndexPath(forRow: 0, inSection: 0)
+            let timerCell:UITableViewCell = self.tableView.cellForRowAtIndexPath(indexPaths)!
+            for datePicker in timerCell.contentView.subviews{
+                if(datePicker.isKindOfClass(UIDatePicker.classForCoder())){
+                    let picker:UIDatePicker = datePicker as! UIDatePicker
+                    timer = picker.date.timeIntervalSince1970
+                    NSLog("UIDatePicker______%@,\(timer)", picker.date)
+
+                }
             }
-        }
 
-        let indexPaths2:NSIndexPath = NSIndexPath(forRow: 0, inSection: 1)
-        let timerCell2:UITableViewCell = self.tableView.cellForRowAtIndexPath(indexPaths2)!
-        for datePicker in timerCell2.contentView.subviews{
-            if(datePicker.isKindOfClass(UISwitch.classForCoder())){
-                let repeatSwicth:UISwitch = datePicker as! UISwitch
-                repeatStatus = repeatSwicth.on
-                NSLog("repeatStatus______%@", repeatStatus)
+            let indexPaths2:NSIndexPath = NSIndexPath(forRow: 0, inSection: 1)
+            let timerCell2:UITableViewCell = self.tableView.cellForRowAtIndexPath(indexPaths2)!
+            for datePicker in timerCell2.contentView.subviews{
+                if(datePicker.isKindOfClass(UISwitch.classForCoder())){
+                    let repeatSwicth:UISwitch = datePicker as! UISwitch
+                    repeatStatus = repeatSwicth.on
+                    NSLog("repeatStatus______%@", repeatStatus)
 
+                }
             }
-        }
 
-        let indexPaths3:NSIndexPath = NSIndexPath(forRow: 1, inSection: 1)
-        let timerCell3:UITableViewCell = self.tableView.cellForRowAtIndexPath(indexPaths3)!
-        for datePicker in timerCell3.contentView.subviews{
-            let labelView:UIView = datePicker as UIView
-            if(labelView.tag == 1230){
-                let labelText:UILabel = labelView as! UILabel
-                name = labelText.text!
-                 NSLog("name______%@", labelText.text!)
+            let indexPaths3:NSIndexPath = NSIndexPath(forRow: 1, inSection: 1)
+            let timerCell3:UITableViewCell = self.tableView.cellForRowAtIndexPath(indexPaths3)!
+            for datePicker in timerCell3.contentView.subviews{
+                let labelView:UIView = datePicker as UIView
+                if(labelView.tag == 1230){
+                    let labelText:UILabel = labelView as! UILabel
+                    name = labelText.text!
+                    NSLog("name______%@", labelText.text!)
+                }
             }
         }
         mDelegate?.onDidAddAlarmAction(timer, repeatStatus: repeatStatus, name: name)

@@ -258,6 +258,14 @@
 		00E5CFD41B17F81F00D1F829 /* help in Resources */ = {isa = PBXBuildFile; fileRef = 00E5CFD31B17F81F00D1F829 /* help */; };
 		00E5CFD61B17FB7300D1F829 /* HelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E5CFD51B17FB7300D1F829 /* HelpViewController.swift */; };
 		00E5CFD81B18053100D1F829 /* HelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E5CFD71B18053100D1F829 /* HelpView.swift */; };
+		00ED43DA1C1EA11700915885 /* Duration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00ED43D21C1EA11700915885 /* Duration.swift */; };
+		00ED43DB1C1EA11700915885 /* Int+Timepiece.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00ED43D31C1EA11700915885 /* Int+Timepiece.swift */; };
+		00ED43DC1C1EA11700915885 /* NSCalendar+Timepiece.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00ED43D41C1EA11700915885 /* NSCalendar+Timepiece.swift */; };
+		00ED43DD1C1EA11700915885 /* NSCalendarUnit+Timepiece.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00ED43D51C1EA11700915885 /* NSCalendarUnit+Timepiece.swift */; };
+		00ED43DE1C1EA11700915885 /* NSDate+Timepiece.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00ED43D61C1EA11700915885 /* NSDate+Timepiece.swift */; };
+		00ED43DF1C1EA11700915885 /* NSDateComponents+Timepiece.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00ED43D71C1EA11700915885 /* NSDateComponents+Timepiece.swift */; };
+		00ED43E01C1EA11700915885 /* NSTimeInterval+Timepiece.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00ED43D81C1EA11700915885 /* NSTimeInterval+Timepiece.swift */; };
+		00ED43E11C1EA11700915885 /* String+Timepiece.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00ED43D91C1EA11700915885 /* String+Timepiece.swift */; };
 		0704C9631AA431EE00F9AE09 /* GetStepsGoalRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0704C9621AA431EE00F9AE09 /* GetStepsGoalRequest.swift */; };
 		074243221AB00F630076F789 /* RealTimeCountSteps.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074243211AB00F630076F789 /* RealTimeCountSteps.swift */; };
 		0742432A1AB2D0A20076F789 /* Firmwares in Resources */ = {isa = PBXBuildFile; fileRef = 074243291AB2D0A20076F789 /* Firmwares */; };
@@ -592,6 +600,14 @@
 		00E5CFD31B17F81F00D1F829 /* help */ = {isa = PBXFileReference; lastKnownFileType = folder; path = help; sourceTree = "<group>"; };
 		00E5CFD51B17FB7300D1F829 /* HelpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HelpViewController.swift; path = Controller/HelpViewController.swift; sourceTree = "<group>"; };
 		00E5CFD71B18053100D1F829 /* HelpView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HelpView.swift; path = View/HelpView.swift; sourceTree = "<group>"; };
+		00ED43D21C1EA11700915885 /* Duration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Duration.swift; sourceTree = "<group>"; };
+		00ED43D31C1EA11700915885 /* Int+Timepiece.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Int+Timepiece.swift"; sourceTree = "<group>"; };
+		00ED43D41C1EA11700915885 /* NSCalendar+Timepiece.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSCalendar+Timepiece.swift"; sourceTree = "<group>"; };
+		00ED43D51C1EA11700915885 /* NSCalendarUnit+Timepiece.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSCalendarUnit+Timepiece.swift"; sourceTree = "<group>"; };
+		00ED43D61C1EA11700915885 /* NSDate+Timepiece.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+Timepiece.swift"; sourceTree = "<group>"; };
+		00ED43D71C1EA11700915885 /* NSDateComponents+Timepiece.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDateComponents+Timepiece.swift"; sourceTree = "<group>"; };
+		00ED43D81C1EA11700915885 /* NSTimeInterval+Timepiece.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSTimeInterval+Timepiece.swift"; sourceTree = "<group>"; };
+		00ED43D91C1EA11700915885 /* String+Timepiece.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Timepiece.swift"; sourceTree = "<group>"; };
 		0704C9621AA431EE00F9AE09 /* GetStepsGoalRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GetStepsGoalRequest.swift; path = Controller/Connection/Request/GetStepsGoalRequest.swift; sourceTree = "<group>"; };
 		074243211AB00F630076F789 /* RealTimeCountSteps.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RealTimeCountSteps.swift; path = Model/Activity/RealTimeCountSteps.swift; sourceTree = "<group>"; };
 		074243291AB2D0A20076F789 /* Firmwares */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Firmwares; path = OTA/Firmwares; sourceTree = "<group>"; };
@@ -1323,6 +1339,22 @@
 			path = Frameworks/MBProgressHUD;
 			sourceTree = "<group>";
 		};
+		00ED43D11C1EA11700915885 /* Timepiece */ = {
+			isa = PBXGroup;
+			children = (
+				00ED43D21C1EA11700915885 /* Duration.swift */,
+				00ED43D31C1EA11700915885 /* Int+Timepiece.swift */,
+				00ED43D41C1EA11700915885 /* NSCalendar+Timepiece.swift */,
+				00ED43D51C1EA11700915885 /* NSCalendarUnit+Timepiece.swift */,
+				00ED43D61C1EA11700915885 /* NSDate+Timepiece.swift */,
+				00ED43D71C1EA11700915885 /* NSDateComponents+Timepiece.swift */,
+				00ED43D81C1EA11700915885 /* NSTimeInterval+Timepiece.swift */,
+				00ED43D91C1EA11700915885 /* String+Timepiece.swift */,
+			);
+			name = Timepiece;
+			path = Frameworks/Timepiece;
+			sourceTree = "<group>";
+		};
 		07BCE82D1B671AF100C7F558 /* Alarm */ = {
 			isa = PBXGroup;
 			children = (
@@ -1459,6 +1491,7 @@
 		9AD8F95A1A6DFE3400F01014 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				00ED43D11C1EA11700915885 /* Timepiece */,
 				004846D31B72EDB9005A6D83 /* libsqlite3.dylib */,
 				00E2BDDC1B16CCD0009C757E /* MBProgressHUD */,
 				9A2D6C3C1A9C717E00591BDC /* NevoHK */,
@@ -1850,6 +1883,7 @@
 				07C59F2A1A8C61E900D65C84 /* SetCardioRequest.swift in Sources */,
 				9A2D6C451A9C8E4800591BDC /* DailySteps.swift in Sources */,
 				00DC9EEE1BB2853D00734DB6 /* HorizontalBarChartRenderer.swift in Sources */,
+				00ED43DC1C1EA11700915885 /* NSCalendar+Timepiece.swift in Sources */,
 				00DC9EF11BB2853D00734DB6 /* PieChartRenderer.swift in Sources */,
 				00DC9EF51BB2853D00734DB6 /* ChartColorTemplates.swift in Sources */,
 				0030118A1C083CEB00EE1621 /* SetingView.swift in Sources */,
@@ -1875,6 +1909,7 @@
 				00DC9EC31BB2853D00734DB6 /* CandleChartData.swift in Sources */,
 				00DC9EE61BB2853D00734DB6 /* ChartXAxisRenderer.swift in Sources */,
 				003011831C083CEB00EE1621 /* MyNevoView.swift in Sources */,
+				00ED43E11C1EA11700915885 /* String+Timepiece.swift in Sources */,
 				00DC9EE41BB2853D00734DB6 /* ChartLegendRenderer.swift in Sources */,
 				003011961C083CEB00EE1621 /* TutorialScanPageView.swift in Sources */,
 				00DC9EB81BB2853D00734DB6 /* ChartMarker.swift in Sources */,
@@ -1896,15 +1931,18 @@
 				009ED4961C0D4B6400623D95 /* SelectedNotificationTypeController.swift in Sources */,
 				00DC9EFB1BB2853D00734DB6 /* UIGraphics+Extensions.swift in Sources */,
 				07CC4A2F1A821B46008DA749 /* NevoOTARequest.swift in Sources */,
+				00ED43DB1C1EA11700915885 /* Int+Timepiece.swift in Sources */,
 				00C1B4A61C045F9400B902F4 /* NevoDBModel.m in Sources */,
 				00DC9EC01BB2853D00734DB6 /* BubbleChartData.swift in Sources */,
 				003011A91C084A3300EE1621 /* AddAlarmTableViewCell.swift in Sources */,
 				00A2287E1AA57F1A00360C36 /* EnterNotificationController.swift in Sources */,
 				009ED5731C0ED59600623D95 /* StepController.swift in Sources */,
+				00ED43DA1C1EA11700915885 /* Duration.swift in Sources */,
 				0080AC5F1C0FD454007E73B6 /* MyNevoHeaderView.swift in Sources */,
 				9AD8F9791A6E05F700F01014 /* NevoBT.swift in Sources */,
 				00DC9ECF1BB2853D00734DB6 /* PieChartDataSet.swift in Sources */,
 				00DC9EBD1BB2853D00734DB6 /* BarChartDataSet.swift in Sources */,
+				00ED43DD1C1EA11700915885 /* NSCalendarUnit+Timepiece.swift in Sources */,
 				003011871C083CEB00EE1621 /* AppTheme.swift in Sources */,
 				079EED311AB7FE6000CEA78D /* DailyStepsNevoPacket.swift in Sources */,
 				074243221AB00F630076F789 /* RealTimeCountSteps.swift in Sources */,
@@ -1914,6 +1952,7 @@
 				009ED56D1C0ED37200623D95 /* queryTableviewCell.swift in Sources */,
 				00C30AD91A89E08600C9F67B /* Page4Controller.swift in Sources */,
 				00DC9EB51BB2853D00734DB6 /* ChartComponentBase.swift in Sources */,
+				00ED43E01C1EA11700915885 /* NSTimeInterval+Timepiece.swift in Sources */,
 				079EED2F1AB7FE2D00CEA78D /* DailyTrackerNevoPacket.swift in Sources */,
 				006B73491A8F7D0B00A7E92F /* AlarmClockController.swift in Sources */,
 				0030119F1C083E1F00EE1621 /* AddAlarmView.swift in Sources */,
@@ -1950,6 +1989,7 @@
 				00DC9EB71BB2853D00734DB6 /* ChartLimitLine.swift in Sources */,
 				00DC9EC61BB2853D00734DB6 /* ChartData.swift in Sources */,
 				00DC9EDD1BB2853D00734DB6 /* CombinedHighlighter.swift in Sources */,
+				00ED43DE1C1EA11700915885 /* NSDate+Timepiece.swift in Sources */,
 				00DC9ECC1BB2853D00734DB6 /* LineRadarChartDataSet.swift in Sources */,
 				009178AD1C05A3A100CD904D /* PresetsModel.swift in Sources */,
 				00DC9EE51BB2853D00734DB6 /* ChartRendererBase.swift in Sources */,
@@ -2037,6 +2077,7 @@
 				00DC9EB41BB2853D00734DB6 /* ChartAxisBase.swift in Sources */,
 				007DD4BD1A89DF2A00CE7264 /* Page3Controller.swift in Sources */,
 				00DC9EFA1BB2853D00734DB6 /* ChartViewPortHandler.swift in Sources */,
+				00ED43DF1C1EA11700915885 /* NSDateComponents+Timepiece.swift in Sources */,
 				00DC9EBC1BB2853D00734DB6 /* BarChartDataEntry.swift in Sources */,
 				009ED5511C0E859400623D95 /* NevoOtaViewController.swift in Sources */,
 				00DC9EED1BB2853D00734DB6 /* CombinedChartRenderer.swift in Sources */,

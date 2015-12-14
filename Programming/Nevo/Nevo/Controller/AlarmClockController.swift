@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AlarmClockController: UITableViewController, SyncControllerDelegate,ButtonManagerCallBack,AddAlarmDelegate {
+class AlarmClockController: UITableViewController, SyncControllerDelegate,AddAlarmDelegate {
 
     class var SAVED_ALARM_HOUR_KEY:String {
         return "SAVED_ALARM_HOUR_KEY"
@@ -39,45 +39,37 @@ class AlarmClockController: UITableViewController, SyncControllerDelegate,Button
     }
 
     @IBOutlet var alarmView: alarmClockView!
-    @IBOutlet weak var addButton: UIBarButtonItem!
 
     private var mAlarmhour:Int = 8
     private var mAlarmmin:Int = 30
     private var mAlarmindex:Int = 0
     private var mAlarmenable:Bool = false
     var alarmArray:[Alarm] = []
+    var mAlarmArray:[UserAlarm] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        alarmView.bulidAlarmView()
+        
         AppDelegate.getAppDelegate().startConnect(false, delegate: self)
         self.editButtonItem().tintColor = AppTheme.NEVO_SOLAR_YELLOW()
-        addButton.tintColor = AppTheme.NEVO_SOLAR_YELLOW()
         self.navigationItem.leftBarButtonItem = self.editButtonItem()
 
+        let rightAddButton:UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Add, target: self, action: Selector("controllManager:"))
+        //
+        rightAddButton.tintColor = AppTheme.NEVO_SOLAR_YELLOW()
+        self.navigationItem.rightBarButtonItem = rightAddButton
+
         let array:NSArray = UserAlarm.getAll()
+        for alarmModel in array{
+            let useralarm:UserAlarm = alarmModel as! UserAlarm
+            mAlarmArray.append(useralarm)
 
-        //If we have any previously saved hour, min and/or enabled/ disabled, we'll use those variables first
-        let userDefaults:NSUserDefaults = NSUserDefaults.standardUserDefaults()
-        if let alarmArray1 = userDefaults.objectForKey(AlarmClockController.SAVED_ALARM_ARRAY0) as? NSDictionary {
-            alarmArray.append(getLoclAlarm(alarmArray1))
-        }else{
-            alarmArray.append(Alarm(index:0, hour: mAlarmhour, minute: mAlarmmin, enable: mAlarmenable))
+            let date:NSDate = NSDate(timeIntervalSince1970: useralarm.timer)
+            let alarm:Alarm = Alarm(index:mAlarmArray.count, hour: date.hour, minute: date.minute, enable: mAlarmenable)
+            alarmArray.append(alarm)
         }
-
-        if let alarmArray2 = userDefaults.objectForKey(AlarmClockController.SAVED_ALARM_ARRAY1) as? NSDictionary {
-            alarmArray.append(getLoclAlarm(alarmArray2))
-        }else{
-            alarmArray.append(Alarm(index:1, hour: mAlarmhour, minute: mAlarmmin, enable: mAlarmenable))
-        }
-        
-        if let alarmArray3 = userDefaults.objectForKey(AlarmClockController.SAVED_ALARM_ARRAY2) as? NSDictionary {
-            alarmArray.append(getLoclAlarm(alarmArray3))
-        }else{
-            alarmArray.append(Alarm(index:2, hour: mAlarmhour, minute: mAlarmmin, enable: mAlarmenable))
-        }
-
-        alarmView.bulidAlarmView(self,array: alarmArray)
         // Do any additional setup after loading the view.
     }
 
@@ -96,19 +88,53 @@ class AlarmClockController: UITableViewController, SyncControllerDelegate,Button
     */
     func controllManager(sender:AnyObject){
 
-        if(sender.isEqual(addButton)){
+        if(sender.isKindOfClass(UIBarButtonItem.classForCoder())){
             let addAlarm:AddAlarmController = AddAlarmController()
             addAlarm.mDelegate = self
             addAlarm.hidesBottomBarWhenPushed = true
             self.navigationController?.pushViewController(addAlarm, animated: true)
         }
 
+        if(sender.isKindOfClass(UISwitch.classForCoder())){
+            let mSwitch:UISwitch = sender as! UISwitch
+            let addalarm:UserAlarm = UserAlarm(keyDict: ["id":mAlarmArray[mSwitch.tag].id,"timer":mAlarmArray[mSwitch.tag].timer,"label":"\(mAlarmArray[mSwitch.tag].label)","status":mSwitch.on,"repeatStatus":mAlarmArray[mSwitch.tag].repeatStatus])
+            if(addalarm.update()){
+                mAlarmArray.removeAtIndex(mSwitch.tag)
+                mAlarmArray.append(addalarm)
+                self.tableView.reloadData()
+
+                let date:NSDate = NSDate(timeIntervalSince1970: addalarm.timer)
+                let alarm:Alarm = Alarm(index:mAlarmArray.count, hour: date.hour, minute: date.minute, enable: mSwitch.on)
+                alarmArray.removeAtIndex(mSwitch.tag)
+                alarmArray.append(alarm)
+                AppDelegate.getAppDelegate().setAlarm(alarmArray)
+            }
+
+        }
+
     }
 
     // MARK: - AddAlarmDelegate
     func onDidAddAlarmAction(timer:NSTimeInterval,repeatStatus:Bool,name:String){
-        let addalarm:UserAlarm = UserAlarm(keyDict: ["id":"\(0)","timer":"\(timer)","label":"\(name)","status":"\(true)","repeatStatus":"\(repeatStatus)"])
-        let status:Bool = addalarm.add()
+
+        if(alarmArray.count>3){
+            let aler:UIAlertView = UIAlertView(title: "Tip", message: "Only add three alarm", delegate: nil, cancelButtonTitle: NSLocalizedString("ok", comment: ""))
+            aler.show()
+        }else{
+            let addalarm:UserAlarm = UserAlarm(keyDict: ["id":0,"timer":timer,"label":"\(name)","status":true,"repeatStatus":repeatStatus])
+            if(addalarm.add()){
+                mAlarmArray.append(addalarm)
+                self.tableView.reloadData()
+
+                let date:NSDate = NSDate(timeIntervalSince1970: timer)
+                let alarm:Alarm = Alarm(index:mAlarmArray.count, hour: date.hour, minute: date.minute, enable: mAlarmenable)
+                alarmArray.append(alarm)
+                AppDelegate.getAppDelegate().setAlarm(alarmArray)
+            }else{
+                let aler:UIAlertView = UIAlertView(title: "Tip", message: "Database insert fail", delegate: nil, cancelButtonTitle: "ok")
+                aler.show()
+            }
+        }
     }
 
     // MARK: - SyncControllerDelegate
@@ -151,7 +177,10 @@ class AlarmClockController: UITableViewController, SyncControllerDelegate,Button
 
     func stringFromDate(date:NSDate) -> String {
         let dateFormatter:NSDateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "HH:mm"
+        dateFormatter.timeZone = NSTimeZone.systemTimeZone()
+        dateFormatter.dateStyle = NSDateFormatterStyle.MediumStyle
+        dateFormatter.timeStyle = NSDateFormatterStyle.ShortStyle
+        dateFormatter.dateFormat = "HH:mm a"
         let dateString:String = dateFormatter.stringFromDate(date)
         return dateString
     }
@@ -242,11 +271,31 @@ class AlarmClockController: UITableViewController, SyncControllerDelegate,Button
     // MARK: - UITableViewDataSource
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
 
-        return 3
+        return mAlarmArray.count
     }
+
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let endCell:UITableViewCell = tableView.dequeueReusableCellWithIdentifier("alarmCell", forIndexPath: indexPath)
+        let alarmModel:UserAlarm = mAlarmArray[indexPath.row]
+        let timerLabel = endCell.contentView.viewWithTag(1500)
+        if(timerLabel != nil){
+            let date:NSDate = NSDate(timeIntervalSince1970: alarmModel.timer)
+            (timerLabel as! UILabel).text = stringFromDate(date)
+        }
+
+        let nameLabel = endCell.contentView.viewWithTag(1600)
+        if(nameLabel != nil){
+            (nameLabel as! UILabel).text = alarmModel.label
+        }
+
+        let mSwitch = endCell.contentView.viewWithTag(1700)
+        if(mSwitch != nil){
+            (mSwitch as! UISwitch).tag = indexPath.row
+            (mSwitch as! UISwitch).addTarget(self, action: Selector("controllManager:"), forControlEvents: UIControlEvents.ValueChanged)
+            (mSwitch as! UISwitch).on = alarmModel.status
+        }
+
         endCell.selectionStyle = UITableViewCellSelectionStyle.None
         return endCell
     }
@@ -262,7 +311,11 @@ class AlarmClockController: UITableViewController, SyncControllerDelegate,Button
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
             // Delete the row from the data source
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+            if(mAlarmArray[indexPath.row].remove()){
+                alarmArray.removeAtIndex(indexPath.row)
+                mAlarmArray.removeAtIndex(indexPath.row)
+                tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+            }
         } else if editingStyle == .Insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }
