@@ -13,7 +13,7 @@ class SleepHistoricalViewController: UIViewController,UITableViewDataSource,UITa
     @IBOutlet var queryView: SleepHistoricalView!
 
     private var queryArray:NSArray?
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
+    init() {
         super.init(nibName: "SleepHistoricalViewController", bundle: NSBundle.mainBundle())
 
     }

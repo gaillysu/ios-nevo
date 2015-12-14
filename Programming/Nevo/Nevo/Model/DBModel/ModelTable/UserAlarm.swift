@@ -57,7 +57,7 @@ class UserAlarm: NSObject,BaseEntryDatabaseHelper {
         let allArray:NSMutableArray = NSMutableArray()
         for model in modelArray {
             let alarmModel:AlarmModel = model as! AlarmModel
-            let presets:UserAlarm = UserAlarm(keyDict: ["timer":"\(alarmModel.timer)","label":"\(alarmModel.label)","status":"\(alarmModel.status)","repeatStatus":"\(alarmModel.repeatStatus)"])
+            let presets:UserAlarm = UserAlarm(keyDict: ["timer":alarmModel.timer,"label":"\(alarmModel.label)","status":alarmModel.status,"repeatStatus":alarmModel.repeatStatus])
             allArray.addObject(presets)
         }
         return allArray
@@ -68,7 +68,7 @@ class UserAlarm: NSObject,BaseEntryDatabaseHelper {
         let allArray:NSMutableArray = NSMutableArray()
         for model in modelArray {
             let alarmModel:AlarmModel = model as! AlarmModel
-            let presets:UserAlarm = UserAlarm(keyDict: ["id":"\(alarmModel.id)","timer":"\(alarmModel.timer)","label":"\(alarmModel.label)","status":"\(alarmModel.status)","repeatStatus":"\(alarmModel.repeatStatus)"])
+            let presets:UserAlarm = UserAlarm(keyDict: ["id":alarmModel.id,"timer":alarmModel.timer,"label":"\(alarmModel.label)","status":alarmModel.status,"repeatStatus":alarmModel.repeatStatus])
             allArray.addObject(presets)
         }
         return allArray

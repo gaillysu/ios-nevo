@@ -24,10 +24,9 @@
 	<true/>
 	<key>UIAppFonts</key>
 	<array>
-		<string>Raleway-Bold.ttf</string>
-		<string>Raleway-Italic.ttf</string>
-		<string>Raleway-Light.ttf</string>
-		<string>Raleway-Thin.ttf</string>
+		<string>SFCompactDisplay-Bold.ttf</string>
+		<string>SFCompactDisplay-Light.ttf</string>
+		<string>SFCompactDisplay-Thin.ttf</string>
 	</array>
 	<key>UIBackgroundModes</key>
 	<array>

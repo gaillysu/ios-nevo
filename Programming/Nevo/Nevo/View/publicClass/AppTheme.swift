@@ -52,15 +52,15 @@ class AppTheme {
         return UIFont.systemFontOfSize(size)
     }
     class func FONT_RALEWAY_BOLD(mSize size:CGFloat = 26) -> UIFont {
-        return UIFont(name:"Raleway-Bold", size: size)!
+        return UIFont(name:"SFCompactDisplay-Bold", size: size)!
     }
 
     class func FONT_RALEWAY_LIGHT(mSize size:CGFloat = 26) -> UIFont {
-        return UIFont(name:"Raleway-Light", size: size)!
+        return UIFont(name:"SFCompactDisplay-Light", size: size)!
     }
 
     class func FONT_RALEWAY_THIN(mSize size:CGFloat = 26) -> UIFont {
-        return UIFont(name:"Raleway-Thin", size: size)!//Uniform
+        return UIFont(name:"SFCompactDisplay-Thin", size: size)!//Uniform
     }
 
     class func PALETTE_BAGGROUND_COLOR() -> UIColor {

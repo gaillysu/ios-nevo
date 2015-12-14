@@ -23,12 +23,12 @@ class AddAlarmController: UITableViewController,ButtonManagerCallBack {
     var repeatStatus:Bool = false
     var name:String = ""
 
-     init() {
+    init() {
         super.init(nibName: "AddAlarmController", bundle: NSBundle.mainBundle())
 
     }
 
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 

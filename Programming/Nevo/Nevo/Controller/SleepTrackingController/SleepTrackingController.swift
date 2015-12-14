@@ -18,7 +18,7 @@ class SleepTrackingController: PublicClassController, SyncControllerDelegate ,Bu
     @IBOutlet weak var sleepView: SleepTrackingView!
     private var mVisiable:Bool = false
 
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
+    init() {
         super.init(nibName: "SleepTrackingController", bundle: NSBundle.mainBundle())
 
     }
