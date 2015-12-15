@@ -9,41 +9,8 @@
 import UIKit
 
 class AlarmClockController: UITableViewController, SyncControllerDelegate,AddAlarmDelegate {
-
-    class var SAVED_ALARM_HOUR_KEY:String {
-        return "SAVED_ALARM_HOUR_KEY"
-    }
-
-    class var SAVED_ALARM_MIN_KEY:String {
-        return "SAVED_ALARM_MIN_KEY"
-    }
-
-    class var SAVED_ALARM_ENABLED_KEY:String {
-        return "SAVED_ALARM_ENABLED_KEY"
-    }
-
-    class var SAVED_ALARM_INDEX_KEY:String {
-        return "SAVED_ALARM_INDEX_KEY"
-    }
-
-    class var SAVED_ALARM_ARRAY0:String {
-        return "SAVED_ALARM_ARRAY0";
-    }
-
-    class var SAVED_ALARM_ARRAY1:String {
-        return "SAVED_ALARM_ARRAY1";
-    }
-
-    class var SAVED_ALARM_ARRAY2:String {
-        return "SAVED_ALARM_ARRAY2";
-    }
-
     @IBOutlet var alarmView: alarmClockView!
 
-    private var mAlarmhour:Int = 8
-    private var mAlarmmin:Int = 30
-    private var mAlarmindex:Int = 0
-    private var mAlarmenable:Bool = false
     private var slectedIndex:Int = -1 //To edit a record the number of rows selected content
     var alarmArray:[Alarm] = []
     var mAlarmArray:[UserAlarm] = []
@@ -70,7 +37,7 @@ class AlarmClockController: UITableViewController, SyncControllerDelegate,AddAla
             mAlarmArray.append(useralarm)
 
             let date:NSDate = NSDate(timeIntervalSince1970: useralarm.timer)
-            let alarm:Alarm = Alarm(index:mAlarmArray.count, hour: date.hour, minute: date.minute, enable: mAlarmenable)
+            let alarm:Alarm = Alarm(index:mAlarmArray.count, hour: date.hour, minute: date.minute, enable: useralarm.status)
             alarmArray.append(alarm)
         }
         // Do any additional setup after loading the view.

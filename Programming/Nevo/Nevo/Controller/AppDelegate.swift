@@ -181,22 +181,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
         sendRequest(ReadBatteryLevelNevoRequest())
     }
 
-    /**
-     Format from the alarm data
-
-     :param: alarmArray Alarm dictionary
-
-     :returns: Returns the Alarm
-     */
-    func getLoclAlarm(alarmArray:NSDictionary)->Alarm{
-        let alarm_index:Int = (alarmArray.objectForKey(AlarmClockController.SAVED_ALARM_INDEX_KEY) as! NSNumber).integerValue
-        let alarm_hour:Int = (alarmArray.objectForKey(AlarmClockController.SAVED_ALARM_HOUR_KEY) as! NSNumber).integerValue
-        let alarm_min:Int = (alarmArray.objectForKey(AlarmClockController.SAVED_ALARM_MIN_KEY) as! NSNumber).integerValue
-        let alarm_enabled:Bool = (alarmArray.objectForKey(AlarmClockController.SAVED_ALARM_ENABLED_KEY) as! NSNumber).boolValue
-        let alarm:Alarm = Alarm(index: alarm_index, hour: alarm_hour, minute: alarm_min, enable: alarm_enabled)
-        return alarm
-    }
-
     func GET_TodaySleepData()->NSArray{
         return todaySleepData;
     }
@@ -371,23 +355,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
 
             if(packet.getHeader() == SetNortificationRequest.HEADER())
             {
-                //copy from AlarmClockController
-                let mAlarmhour:Int = 8
-                let mAlarmmin:Int = 30
-                let mAlarmenable:Bool = false
-                var alarm:[Alarm] = []
-
-                let userDefaults:NSUserDefaults = NSUserDefaults.standardUserDefaults()
-                //If we have any previously saved hour, min and/or enabled/ disabled, we'll use those variables first
-                let forKey:[String] = [AlarmClockController.SAVED_ALARM_ARRAY0,AlarmClockController.SAVED_ALARM_ARRAY1,AlarmClockController.SAVED_ALARM_ARRAY2]
-                for(var index:Int = 0;index<forKey.count;index++){
-                    if let alarmArray = userDefaults.objectForKey(forKey[index]) as? NSDictionary {
-                        alarm.append(getLoclAlarm(alarmArray))
-                    }else{
-                        alarm.append(Alarm(index: index,hour: mAlarmhour,minute: mAlarmmin,enable: mAlarmenable))
-                    }
+                var alarmArray:[Alarm] = []
+                let array:NSArray = UserAlarm.getAll()
+                for(var index:Int = 0; index < array.count; index++){
+                    let useralarm:UserAlarm = array[index] as! UserAlarm
+                    let date:NSDate = NSDate(timeIntervalSince1970: useralarm.timer)
+                    let alarm:Alarm = Alarm(index:index, hour: date.hour, minute: date.minute, enable: useralarm.status)
+                    alarmArray.append(alarm)
                 }
-                setAlarm(alarm)
+
+                setAlarm(alarmArray)
             }
 
             if(packet.getHeader() == SetAlarmRequest.HEADER())
