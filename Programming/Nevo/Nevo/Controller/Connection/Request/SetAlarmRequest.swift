@@ -25,11 +25,16 @@ class SetAlarmRequest: NevoRequest {
 
     init(alarm:[Alarm])
     {
-        for a in alarm
-        {
-        alarmhour.append(a.getHour())
-        alarmmin.append(a.getMinute())
-        alarmenable.append(a.getEnable())
+        for(var index:Int = 0; index<3; index++){
+            if(alarm.count > index){
+                alarmhour.append(alarm[index].getHour())
+                alarmmin.append(alarm[index].getMinute())
+                alarmenable.append(alarm[index].getEnable())
+            }else{
+                alarmhour.append(8)
+                alarmmin.append(30)
+                alarmenable.append(false)
+            }
         }
     }
     
