@@ -166,7 +166,7 @@ class AddAlarmController: UITableViewController,ButtonManagerCallBack {
 
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat{
         if(indexPath.section == 0){
-            let cellHeight:CGFloat = AddAlarmView.addAlarmTimerTableViewCell(indexPath, tableView: tableView).contentView.systemLayoutSizeFittingSize(UILayoutFittingCompressedSize).height
+            let cellHeight:CGFloat = AddAlarmView.addAlarmTimerTableViewCell(indexPath, tableView: tableView, timer:timer).contentView.systemLayoutSizeFittingSize(UILayoutFittingCompressedSize).height
             return cellHeight
         }else{
             return 45.0
@@ -177,10 +177,20 @@ class AddAlarmController: UITableViewController,ButtonManagerCallBack {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         switch (indexPath.section){
         case 0:
-            return AddAlarmView.addAlarmTimerTableViewCell(indexPath, tableView: tableView)
+            return AddAlarmView.addAlarmTimerTableViewCell(indexPath, tableView: tableView, timer:timer)
         case 1:
             let titleArray:[String] = ["Repeat","Label"]
-            return AddAlarmView.systemTableViewCell(indexPath, tableView: tableView, title: titleArray[indexPath.row],delegate: self)
+            let cell = AddAlarmView.systemTableViewCell(indexPath, tableView: tableView, title: titleArray[indexPath.row],delegate: self)
+            let mLabel = cell.contentView.viewWithTag(1230)
+            if(mLabel == nil && titleArray[indexPath.row] == "Label"){
+                let label:UILabel = UILabel(frame: CGRectMake(0,0,80,cell.contentView.frame.size.height))
+                label.tag = 1230
+                label.textAlignment = NSTextAlignment.Center
+                label.center = CGPointMake(cell.contentView.frame.size.width-label.frame.size.width/2.0-25, cell.contentView.frame.size.height/2.0)
+                label.text = name
+                cell.contentView.addSubview(label)
+            }
+            return cell
         default: return UITableViewCell();
         }
     }

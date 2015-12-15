@@ -44,6 +44,7 @@ class AlarmClockController: UITableViewController, SyncControllerDelegate,AddAla
     private var mAlarmmin:Int = 30
     private var mAlarmindex:Int = 0
     private var mAlarmenable:Bool = false
+    private var slectedIndex:Int = -1 //To edit a record the number of rows selected content
     var alarmArray:[Alarm] = []
     var mAlarmArray:[UserAlarm] = []
     
@@ -60,6 +61,8 @@ class AlarmClockController: UITableViewController, SyncControllerDelegate,AddAla
         //
         rightAddButton.tintColor = AppTheme.NEVO_SOLAR_YELLOW()
         self.navigationItem.rightBarButtonItem = rightAddButton
+
+        self.tableView.allowsSelectionDuringEditing = true;
 
         let array:NSArray = UserAlarm.getAll()
         for alarmModel in array{
@@ -117,22 +120,46 @@ class AlarmClockController: UITableViewController, SyncControllerDelegate,AddAla
     // MARK: - AddAlarmDelegate
     func onDidAddAlarmAction(timer:NSTimeInterval,repeatStatus:Bool,name:String){
 
-        if(alarmArray.count>3){
+        if(mAlarmArray.count>3){
             let aler:UIAlertView = UIAlertView(title: "Tip", message: "Only add three alarm", delegate: nil, cancelButtonTitle: NSLocalizedString("ok", comment: ""))
             aler.show()
         }else{
-            let addalarm:UserAlarm = UserAlarm(keyDict: ["id":0,"timer":timer,"label":"\(name)","status":true,"repeatStatus":repeatStatus])
-            if(addalarm.add()){
-                mAlarmArray.append(addalarm)
-                self.tableView.reloadData()
+            if(slectedIndex >= 0){
+                let alarmModel:UserAlarm =  mAlarmArray[slectedIndex]
+                let addalarm:UserAlarm = UserAlarm(keyDict: ["id":alarmModel.id,"timer":timer,"label":"\(name)","status":true,"repeatStatus":repeatStatus])
+                if(addalarm.update()){
+                    mAlarmArray.removeAtIndex(slectedIndex)
+                    mAlarmArray.insert(addalarm, atIndex: slectedIndex)
+                    self.editing = false
+                    self.tableView.setEditing(false, animated: true)
+                    self.tableView.reloadData()
 
-                let date:NSDate = NSDate(timeIntervalSince1970: timer)
-                let alarm:Alarm = Alarm(index:mAlarmArray.count, hour: date.hour, minute: date.minute, enable: mAlarmenable)
-                alarmArray.append(alarm)
-                AppDelegate.getAppDelegate().setAlarm(alarmArray)
+                    let date:NSDate = NSDate(timeIntervalSince1970: timer)
+                    let alarm:Alarm = alarmArray[slectedIndex]
+                    let reAlarm:Alarm = Alarm(index:alarmArray.count, hour: date.hour, minute: date.minute, enable: alarm.getEnable())
+                    alarmArray.removeAtIndex(slectedIndex)
+                    alarmArray.insert(reAlarm, atIndex: slectedIndex)
+                    if(AppDelegate.getAppDelegate().isConnected()){
+                        AppDelegate.getAppDelegate().setAlarm(alarmArray)
+                    }
+                    slectedIndex = -1
+                }
             }else{
-                let aler:UIAlertView = UIAlertView(title: "Tip", message: "Database insert fail", delegate: nil, cancelButtonTitle: "ok")
-                aler.show()
+                let addalarm:UserAlarm = UserAlarm(keyDict: ["id":0,"timer":timer,"label":"\(name)","status":true,"repeatStatus":repeatStatus])
+                if(addalarm.add()){
+                    mAlarmArray.append(addalarm)
+                    self.tableView.reloadData()
+
+                    let date:NSDate = NSDate(timeIntervalSince1970: timer)
+                    let alarm:Alarm = Alarm(index:alarmArray.count, hour: date.hour, minute: date.minute, enable: true)
+                    alarmArray.append(alarm)
+                    if(AppDelegate.getAppDelegate().isConnected()){
+                        AppDelegate.getAppDelegate().setAlarm(alarmArray)
+                    }
+                }else{
+                    let aler:UIAlertView = UIAlertView(title: "Tip", message: "Database insert fail", delegate: nil, cancelButtonTitle: "ok")
+                    aler.show()
+                }
             }
         }
     }
@@ -158,23 +185,6 @@ class AlarmClockController: UITableViewController, SyncControllerDelegate,AddAla
 
     }
 
-    // MARK: - Function
-    /**
-    Format from the alarm data
-
-    :param: alarmArray Alarm dictionary
-
-    :returns: Returns the Alarm
-    */
-    func getLoclAlarm(alarmArray:NSDictionary)->Alarm{
-        let alarm_index:Int = (alarmArray.objectForKey(AlarmClockController.SAVED_ALARM_INDEX_KEY) as! NSNumber).integerValue
-        let alarm_hour:Int = (alarmArray.objectForKey(AlarmClockController.SAVED_ALARM_HOUR_KEY) as! NSNumber).integerValue
-        let alarm_min:Int = (alarmArray.objectForKey(AlarmClockController.SAVED_ALARM_MIN_KEY) as! NSNumber).integerValue
-        let alarm_enabled:Bool = (alarmArray.objectForKey(AlarmClockController.SAVED_ALARM_ENABLED_KEY) as! NSNumber).boolValue
-        let alarm:Alarm = Alarm(index: alarm_index, hour: alarm_hour, minute: alarm_min, enable: alarm_enabled)
-        return alarm
-    }
-
     func stringFromDate(date:NSDate) -> String {
         let dateFormatter:NSDateFormatter = NSDateFormatter()
         dateFormatter.timeZone = NSTimeZone.systemTimeZone()
@@ -193,68 +203,6 @@ class AlarmClockController: UITableViewController, SyncControllerDelegate,AddAla
         if !AppDelegate.getAppDelegate().isConnected() {
             //We are currently not connected
             reconnect()
-        }
-    }
-
-    func setAlarm(aObject:AnyObject) {
-        var tagValue:Int = 0
-        if(aObject.isKindOfClass(UISwitch .classForCoder())){
-            tagValue = (aObject as! UISwitch).tag
-
-            let userDefaults:NSUserDefaults = NSUserDefaults.standardUserDefaults()
-            switch tagValue {
-            case 0:
-                if let alarmArray1 = userDefaults.objectForKey(AlarmClockController.SAVED_ALARM_ARRAY0) as? NSDictionary {
-                    let alarm:Alarm = getLoclAlarm(alarmArray1)
-                    mAlarmhour = alarm.getHour()
-                    mAlarmmin  = alarm.getMinute()
-                }
-            case 1:
-                if let alarmArray2 = userDefaults.objectForKey(AlarmClockController.SAVED_ALARM_ARRAY1) as? NSDictionary {
-                    let alarm:Alarm = getLoclAlarm(alarmArray2)
-                    mAlarmhour = alarm.getHour()
-                    mAlarmmin  = alarm.getMinute()
-                }
-            case 2:
-                if let alarmArray3 = userDefaults.objectForKey(AlarmClockController.SAVED_ALARM_ARRAY2) as? NSDictionary {
-                    let alarm:Alarm = getLoclAlarm(alarmArray3)
-                    mAlarmhour = alarm.getHour()
-                    mAlarmmin  = alarm.getMinute()
-                }
-            default:
-                ""
-            }
-            mAlarmindex = tagValue
-            mAlarmenable = (aObject as! UISwitch).on
-            addAlarmArray((aObject as! UISwitch).tag)
-
-        }
-
-        if(aObject.isKindOfClass(UIButton .classForCoder())){
-            tagValue = (aObject as! UIButton).tag
-
-        }
-
-        let userDefaults = NSUserDefaults.standardUserDefaults()
-        let alarmDict:NSDictionary = [AlarmClockController.SAVED_ALARM_HOUR_KEY : NSNumber(integer: mAlarmhour),AlarmClockController.SAVED_ALARM_MIN_KEY : NSNumber(integer: mAlarmmin),AlarmClockController.SAVED_ALARM_ENABLED_KEY : NSNumber(bool: mAlarmenable),AlarmClockController.SAVED_ALARM_INDEX_KEY : NSNumber(integer: mAlarmindex)]
-        let loadUserKey:String = String(format: "SAVED_ALARM_ARRAY%d",tagValue);
-        userDefaults.setObject(alarmDict, forKey: loadUserKey)
-        
-        userDefaults.synchronize()
-        
-    }
-
-
-    func addAlarmArray(index:Int){
-        for object in alarmArray{
-            let alarm:Alarm = (object as Alarm)
-            if(alarm.getIndex() == index){
-                let alarm:Alarm = Alarm(index:index, hour: mAlarmhour, minute: mAlarmmin, enable: mAlarmenable)
-                alarmArray.removeAtIndex(index)
-                alarmArray.insert(alarm, atIndex: index)
-                AppDelegate.getAppDelegate().setAlarm(alarmArray)
-                return;
-            }
         }
     }
 
@@ -321,7 +269,21 @@ class AlarmClockController: UITableViewController, SyncControllerDelegate,AddAla
         }
     }
 
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
+        if(self.editing){
+            slectedIndex = indexPath.row
 
+            let alarmModel:UserAlarm = mAlarmArray[indexPath.row]
+            let addAlarm:AddAlarmController = AddAlarmController()
+            addAlarm.timer = alarmModel.timer
+            addAlarm.name = alarmModel.label
+            addAlarm.repeatStatus = alarmModel.repeatStatus
+            addAlarm.mDelegate = self
+            addAlarm.hidesBottomBarWhenPushed = true
+            self.navigationController?.pushViewController(addAlarm, animated: true)
+        }
+
+    }
     // Override to support rearranging the table view.
     override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
 

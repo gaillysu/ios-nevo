@@ -18,15 +18,22 @@ class AddAlarmView: UITableView {
 
      :returns: time zone TableViewCell selector
      */
-    class func addAlarmTimerTableViewCell(indexPath:NSIndexPath,tableView:UITableView)->UITableViewCell {
+    class func addAlarmTimerTableViewCell(indexPath:NSIndexPath,tableView:UITableView,timer:NSTimeInterval)->UITableViewCell {
         let endCellID:String = "AddAlarmCell"
         var endCell = tableView.dequeueReusableCellWithIdentifier(endCellID)
         if (endCell == nil) {
             let nibs:NSArray = NSBundle.mainBundle().loadNibNamed("AddAlarmTableViewCell", owner: self, options: nil)
             endCell = nibs.objectAtIndex(0) as? AddAlarmTableViewCell;
-
         }
         endCell?.selectionStyle = UITableViewCellSelectionStyle.None;
+        if(timer > 0){
+            for view in endCell!.contentView.subviews{
+                if(view.isKindOfClass(UIDatePicker.classForCoder())){
+                    let pickerView:UIDatePicker = view as! UIDatePicker
+                    pickerView.date = NSDate(timeIntervalSince1970: timer)
+                }
+            }
+        }
         return endCell!
     }
 
