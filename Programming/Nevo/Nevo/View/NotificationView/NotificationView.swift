@@ -30,8 +30,9 @@ class NotificationView: UITableView {
             endCell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: endCellID)
         }
         endCell?.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
-        endCell?.selectionStyle = UITableViewCellSelectionStyle.None;
+        //endCell?.selectionStyle = UITableViewCellSelectionStyle.None;
         endCell?.textLabel?.text = title
+        endCell?.imageView?.image = UIImage(named: "new_\(title.lowercaseString)")
         return endCell!
     }
 

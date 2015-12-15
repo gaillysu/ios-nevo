@@ -59,6 +59,7 @@ class NotificationViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
         var titleString:String = ""
         switch (indexPath.section){
         case 0:

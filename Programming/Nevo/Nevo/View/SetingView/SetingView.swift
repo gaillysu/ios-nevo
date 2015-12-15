@@ -83,7 +83,7 @@ class SetingView: UIView {
             endCell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: endCellID)
         }
         endCell?.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
-        endCell?.selectionStyle = UITableViewCellSelectionStyle.None;
+        //endCell?.selectionStyle = UITableViewCellSelectionStyle.None;
         endCell?.textLabel?.text = title
         endCell?.imageView?.image = UIImage(named: imageName)
         return endCell!
@@ -112,7 +112,7 @@ class SetingView: UIView {
         mSendLocalNotificationSwitchButton?.center = CGPointMake(UIScreen.mainScreen().bounds.size.width-40, (endCell?.contentView.frame.height)!/2)
         endCell?.contentView.addSubview(mSendLocalNotificationSwitchButton!)
 
-        endCell?.selectionStyle = UITableViewCellSelectionStyle.None;
+        //endCell?.selectionStyle = UITableViewCellSelectionStyle.None;
         endCell?.imageView?.image = UIImage(named: imageName)
         endCell?.textLabel?.text = title
         return endCell!
@@ -162,7 +162,7 @@ class SetingView: UIView {
             endCell?.contentView.addSubview(mSendLocalNotificationSwitchButton)
             endCell?.layer.borderWidth = 0.5;
             endCell?.layer.borderColor = UIColor.grayColor().CGColor;
-            endCell?.selectionStyle = UITableViewCellSelectionStyle.None;
+            //endCell?.selectionStyle = UITableViewCellSelectionStyle.None;
             endCell?.textLabel?.text = NSLocalizedString("Link-Loss Notifications", comment: "")
         }
 

@@ -99,6 +99,7 @@ class SetingViewController: UIViewController,SyncControllerDelegate,ButtonManage
     }
 
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
         switch (indexPath.section){
         case 0:
             if(isEqualString("\(sources.objectAtIndex(indexPath.row))",string2: NSLocalizedString("Notifications", comment: ""))){
