@@ -26,47 +26,7 @@ class SetingView: UIView {
     @IBAction func buttonAction(sender: AnyObject) {
         mDelegate?.controllManager(sender)
     }
-
-    /**
-    create the tablecell accrording to nofiticaitonSetting
     
-    :param: indexPath  index
-    :param: dataSource notification array
-    
-    :returns: <#return value description#>
-    */
-    func NotificationlistCell(indexPath:NSIndexPath,dataSource:[NotificationSetting])->UITableViewCell {
-        let endCellID:NSString = "SetingCell"
-        var endCell = tableListView.dequeueReusableCellWithIdentifier(endCellID as String) as? TableListCell
-        
-        if (endCell == nil) {
-            let nibs:NSArray = NSBundle.mainBundle().loadNibNamed("TableListCell", owner: self, options: nil)
-            endCell = nibs.objectAtIndex(0) as? TableListCell;
-            
-        }
-        endCell?.layer.borderWidth = 0.5;
-        endCell?.layer.borderColor = UIColor.grayColor().CGColor;
-        endCell?.selectionStyle = UITableViewCellSelectionStyle.None;
-        endCell?.statesSwitch.tag = indexPath.row
-        endCell?.statesSwitch.tintColor = AppTheme.NEVO_SOLAR_GRAY()
-        endCell?.statesSwitch.onTintColor = AppTheme.NEVO_SOLAR_YELLOW()
-        let setting:NotificationSetting = dataSource[indexPath.row-1]
-        if setting.getStates() {
-            endCell?.statesSwitch.on = true
-            endCell?.round.hidden = false
-        }else {
-            endCell?.statesSwitch.on = false
-            endCell?.round.hidden = true
-        }
-        endCell?.round.backgroundColor = dataSource[indexPath.row-1].getBagroundColor()
-        endCell?.title.text = NSLocalizedString(setting.typeName, comment: "")
-        endCell?.round.layer.cornerRadius = 5.0
-        endCell?.round.layer.masksToBounds = true
-
-        return endCell!
-        
-    }
-
     /**
      Constructing the title only TableViewCell
 

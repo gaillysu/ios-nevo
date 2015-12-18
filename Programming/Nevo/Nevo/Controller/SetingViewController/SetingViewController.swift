@@ -22,23 +22,6 @@ class SetingViewController: UIViewController,SyncControllerDelegate,ButtonManage
     //this action take lot power and we maybe told customer less to use it
     var mFindMydeviceDatetime:NSDate = NSDate(timeIntervalSinceNow: -6)
 
-    /**
-     reresh NotificationSetting
-     */
-    class func refreshNotificationSetting(inout setting:NotificationSetting) {
-        let color = NSNumber(unsignedInt: EnterNotificationController.getLedColor(setting.getType().rawValue))
-        let states = EnterNotificationController.getMotorOnOff(setting.getType().rawValue)
-        setting.updateValue(color, states: states)
-    }
-
-    /**
-     reresh NotificationSetting Array
-     */
-    class func refreshNotificationSettingArray(inout settingArray:[NotificationSetting]) {
-        for var i=0;i<settingArray.count;i++ {
-            SetingViewController.refreshNotificationSetting(&settingArray[i])
-        }
-    }
 
     override func viewDidLoad() {
         super.viewDidLoad()

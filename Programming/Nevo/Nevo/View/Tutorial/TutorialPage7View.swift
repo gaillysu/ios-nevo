@@ -11,11 +11,11 @@ import Foundation
 class TutorialPage7View : UIView {
     private var mDelegate:Page7Controller?
 
-    let TITLE_TEXT_FONT:UIFont = UIFont(name:"Raleway-Light", size: 23)!
-    let CONTENT_TEXT_FONT:UIFont = UIFont(name:"Raleway-Light", size: 17)!
-    let TEXT_FONT:UIFont = UIFont(name:"Raleway-Light", size: 25)!
+    let TITLE_TEXT_FONT:UIFont = AppTheme.FONT_RALEWAY_LIGHT(mSize: 23)
+    let CONTENT_TEXT_FONT:UIFont = AppTheme.FONT_RALEWAY_LIGHT(mSize: 17)
+    let TEXT_FONT:UIFont = AppTheme.FONT_RALEWAY_LIGHT(mSize: 25)
 
-    let BACK_BUTTON_FONT:UIFont = UIFont(name:"Raleway-Light", size: 20)!
+    let BACK_BUTTON_FONT:UIFont = AppTheme.FONT_RALEWAY_LIGHT(mSize: 20)
 
     let BACKGROUND_COLOR:UIColor = UIColor(red: 244.0/255.0, green: 242.0/255.0, blue: 241.0/255.0, alpha: 1)
 

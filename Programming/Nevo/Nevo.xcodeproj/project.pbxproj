@@ -147,8 +147,9 @@
 		009ED5711C0ED37200623D95 /* SleepHistoricalViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 009ED56C1C0ED37200623D95 /* SleepHistoricalViewController.xib */; };
 		009ED5731C0ED59600623D95 /* StepController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009ED5721C0ED59600623D95 /* StepController.swift */; };
 		009ED5751C0ED5B200623D95 /* StepGoalSetingController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 009ED5741C0ED5B200623D95 /* StepGoalSetingController.xib */; };
-		00A2287E1AA57F1A00360C36 /* EnterNotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A2287D1AA57F1A00360C36 /* EnterNotificationController.swift */; };
 		00A773961A88562F0018E121 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 00A773911A88562F0018E121 /* Localizable.strings */; };
+		00AAB6491C210E36006A26CB /* NotificationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AAB6481C210E36006A26CB /* NotificationModel.swift */; };
+		00AAB64B1C211013006A26CB /* UserNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AAB64A1C211013006A26CB /* UserNotification.swift */; };
 		00B306641C0C352100397444 /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B306621C0C352100397444 /* NotificationViewController.swift */; };
 		00B306651C0C352100397444 /* NotificationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00B306631C0C352100397444 /* NotificationViewController.xib */; };
 		00B306671C0C35F000397444 /* PublicClassTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B306661C0C35F000397444 /* PublicClassTableViewController.swift */; };
@@ -479,7 +480,6 @@
 		009ED56C1C0ED37200623D95 /* SleepHistoricalViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SleepHistoricalViewController.xib; sourceTree = "<group>"; };
 		009ED5721C0ED59600623D95 /* StepController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepController.swift; sourceTree = "<group>"; };
 		009ED5741C0ED5B200623D95 /* StepGoalSetingController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StepGoalSetingController.xib; sourceTree = "<group>"; };
-		00A2287D1AA57F1A00360C36 /* EnterNotificationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EnterNotificationController.swift; path = Controller/EnterNotificationController.swift; sourceTree = "<group>"; };
 		00A773841A8854580018E121 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Main.strings; sourceTree = "<group>"; };
 		00A773861A8854750018E121 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		00A773871A88547C0018E121 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Main.strings"; sourceTree = "<group>"; };
@@ -487,6 +487,8 @@
 		00A773931A88562F0018E121 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		00A773941A88562F0018E121 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		00A773951A88562F0018E121 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		00AAB6481C210E36006A26CB /* NotificationModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationModel.swift; sourceTree = "<group>"; };
+		00AAB64A1C211013006A26CB /* UserNotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserNotification.swift; sourceTree = "<group>"; };
 		00B306621C0C352100397444 /* NotificationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
 		00B306631C0C352100397444 /* NotificationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NotificationViewController.xib; sourceTree = "<group>"; };
 		00B306661C0C35F000397444 /* PublicClassTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PublicClassTableViewController.swift; sourceTree = "<group>"; };
@@ -1017,9 +1019,11 @@
 				00828C281BFC1A9E00194032 /* HealthModel.swift */,
 				009178AA1C05A36600CD904D /* AlarmModel.swift */,
 				009178AC1C05A3A100CD904D /* PresetsModel.swift */,
+				00AAB6481C210E36006A26CB /* NotificationModel.swift */,
 				00684C011C1147AB007FB321 /* User.swift */,
 				0054F3491C1513860082BA2E /* Presets.swift */,
 				0054F3571C1590490082BA2E /* UserAlarm.swift */,
+				00AAB64A1C211013006A26CB /* UserNotification.swift */,
 			);
 			path = ModelTable;
 			sourceTree = "<group>";
@@ -1527,7 +1531,6 @@
 				006B73481A8F7D0B00A7E92F /* AlarmClockController.swift */,
 				9A7551A61AADA91B00DD9292 /* SyncQueue.swift */,
 				00C640F31A8D9F4500815CF8 /* MainTabBarController.swift */,
-				00A2287D1AA57F1A00360C36 /* EnterNotificationController.swift */,
 				00E5CFD51B17FB7300D1F829 /* HelpViewController.swift */,
 			);
 			name = Controller;
@@ -1935,7 +1938,6 @@
 				00C1B4A61C045F9400B902F4 /* NevoDBModel.m in Sources */,
 				00DC9EC01BB2853D00734DB6 /* BubbleChartData.swift in Sources */,
 				003011A91C084A3300EE1621 /* AddAlarmTableViewCell.swift in Sources */,
-				00A2287E1AA57F1A00360C36 /* EnterNotificationController.swift in Sources */,
 				009ED5731C0ED59600623D95 /* StepController.swift in Sources */,
 				00ED43DA1C1EA11700915885 /* Duration.swift in Sources */,
 				0080AC5F1C0FD454007E73B6 /* MyNevoHeaderView.swift in Sources */,
@@ -1969,6 +1971,7 @@
 				00E2BDE21B16CCD0009C757E /* MBProgressHUD+MJ.m in Sources */,
 				005BC95F1A88B79F006F9E86 /* FXBlurView.m in Sources */,
 				9AD8F9A01A6E47B400F01014 /* SetGoalRequest.swift in Sources */,
+				00AAB64B1C211013006A26CB /* UserNotification.swift in Sources */,
 				0054F34A1C1513860082BA2E /* Presets.swift in Sources */,
 				009ED4A01C0DA13200623D95 /* LineColorCell.swift in Sources */,
 				00DC9ECD1BB2853D00734DB6 /* LineScatterCandleChartDataSet.swift in Sources */,
@@ -2013,6 +2016,7 @@
 				00DC9ED91BB2853D00734DB6 /* BarChartHighlighter.swift in Sources */,
 				00DC9ED61BB2853D00734DB6 /* ChartDefaultXAxisValueFormatter.swift in Sources */,
 				079025991B140FBD0049BB06 /* LedLightOnOffNevoRequest.swift in Sources */,
+				00AAB6491C210E36006A26CB /* NotificationModel.swift in Sources */,
 				9A2D6C401A9C783800591BDC /* NevoHKImpl.swift in Sources */,
 				9A3B7AB11A947BCB00BDC3C6 /* GetActivityRequest.swift in Sources */,
 				00828C1D1BFC17E300194032 /* BaseEntryDatabaseHelper.swift in Sources */,
