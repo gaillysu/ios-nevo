@@ -23,15 +23,17 @@ class NotificationView: UITableView {
 
      :returns: UITableViewCell
      */
-    class func NotificationSystemTableViewCell(indexPath:NSIndexPath,tableView:UITableView,title:String)->UITableViewCell {
+    class func NotificationSystemTableViewCell(indexPath:NSIndexPath,tableView:UITableView,title:String,detailLabel:String)->UITableViewCell {
         let endCellID:String = "NotificationSystemTableViewCell"
         var endCell = tableView.dequeueReusableCellWithIdentifier(endCellID)
         if (endCell == nil) {
-            endCell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: endCellID)
+            endCell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: endCellID)
         }
         endCell?.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
         //endCell?.selectionStyle = UITableViewCellSelectionStyle.None;
         endCell?.textLabel?.text = title
+        endCell?.detailTextLabel?.text = detailLabel
+        endCell?.detailTextLabel?.font = AppTheme.FONT_RALEWAY_LIGHT(mSize: 13)
         endCell?.imageView?.image = UIImage(named: "new_\(title.lowercaseString)")
         return endCell!
     }

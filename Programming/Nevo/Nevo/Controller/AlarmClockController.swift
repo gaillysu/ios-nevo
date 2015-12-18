@@ -230,6 +230,9 @@ class AlarmClockController: UITableViewController, SyncControllerDelegate,AddAla
                 alarmArray.removeAtIndex(indexPath.row)
                 mAlarmArray.removeAtIndex(indexPath.row)
                 tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+                if(AppDelegate.getAppDelegate().isConnected()){
+                    AppDelegate.getAppDelegate().setAlarm(alarmArray)
+                }
             }
         } else if editingStyle == .Insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view

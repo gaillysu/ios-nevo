@@ -9,13 +9,14 @@
 import UIKit
 
 class SelectedNotificationView: UITableView {
+    let checkTag:Int = 1560
 
     func bulidSelectedNotificationView(navigationItem:UINavigationItem){
 
         
     }
 
-    func getNotificationClockCell(indexPath:NSIndexPath,tableView:UITableView,title:String)->UITableViewCell {
+    func getNotificationClockCell(indexPath:NSIndexPath, tableView:UITableView, title:String, clockIndex: Int)->UITableViewCell {
         let endCellID:NSString = "NotificationClockCell"
         var endCell = tableView.dequeueReusableCellWithIdentifier(endCellID as String) as? NotificationClockCell
 
@@ -23,19 +24,40 @@ class SelectedNotificationView: UITableView {
             let nibs:NSArray = NSBundle.mainBundle().loadNibNamed("NotificationClockCell", owner: self, options: nil)
             endCell = nibs.objectAtIndex(0) as? NotificationClockCell;
         }
+        for view in endCell!.contentView.subviews{
+            if(view.isKindOfClass(UIImageView.classForCoder())){
+                let clockImage:UIImageView = view as! UIImageView
+                clockImage.image = UIImage(named: "\(clockIndex)_clock_dial")
+            }
+        }
         endCell?.selectionStyle = UITableViewCellSelectionStyle.None;
         return endCell!
     }
 
-    func getLineColorCell(indexPath:NSIndexPath,tableView:UITableView,title:String)->UITableViewCell{
-        let endCellID:NSString = "LineColorCell"
-        var endCell = tableView.dequeueReusableCellWithIdentifier(endCellID as String) as? LineColorCell
+    func getLineColorCell(indexPath:NSIndexPath,tableView:UITableView,cellTitle:String,clockIndex:Int)->UITableViewCell{
+        let endCellID:String = "LineColorCell"
+        var endCell = tableView.dequeueReusableCellWithIdentifier(endCellID)
 
         if (endCell == nil) {
-            let nibs:NSArray = NSBundle.mainBundle().loadNibNamed("LineColorCell", owner: self, options: nil)
-            endCell = nibs.objectAtIndex(0) as? LineColorCell;
+            endCell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: endCellID)
+            let selectedView:UIImageView = UIImageView(frame: CGRectMake(0, 0, endCell!.frame.size.height - 25, endCell!.frame.size.height - 25))
+            selectedView.backgroundColor = UIColor.clearColor()
+            selectedView.image = UIImage(named: "notifications_selected_background")
+            selectedView.center = CGPointMake(endCell!.frame.size.width-(endCell!.frame.size.height - 25), endCell!.frame.size.height/2.0)
+            selectedView.tag = checkTag
+            selectedView.hidden = true
+            endCell?.contentView.addSubview(selectedView)
         }
-        endCell?.selectionStyle = UITableViewCellSelectionStyle.None;
+        if((clockIndex/2 - 1) == indexPath.row){
+            let checkView = endCell?.contentView.viewWithTag(checkTag)
+            if(checkView != nil){
+                checkView?.hidden = false
+            }
+        }
+
+        //endCell?.selectionStyle = UITableViewCellSelectionStyle.Blue;
+        endCell?.textLabel?.text = cellTitle
+        endCell?.imageView?.image = UIImage(named: cellTitle)
         return endCell!
     }
 
@@ -48,27 +70,27 @@ class SelectedNotificationView: UITableView {
 
      :returns: return LinkLoss Notifications TableViewCell
      */
-    func AllowNotificationsTableViewCell(indexPath:NSIndexPath,tableView:UITableView,title:String)->UITableViewCell {
+    func AllowNotificationsTableViewCell(indexPath:NSIndexPath, tableView:UITableView, title:String, state:Bool)->UITableViewCell {
         let endCellID:String = "AllowNotificationsTableViewCell"
         var endCell = tableView.dequeueReusableCellWithIdentifier(endCellID)
         if (endCell == nil) {
             endCell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: endCellID)
+            let mSwitch:UISwitch = UISwitch(frame: CGRectMake(0,0,51,31))
+            mSwitch.on = state
+            mSwitch.tintColor = AppTheme.NEVO_SOLAR_YELLOW()
+            mSwitch.onTintColor = AppTheme.NEVO_SOLAR_YELLOW()
+            mSwitch.center = CGPointMake(UIScreen.mainScreen().bounds.size.width-40, (endCell?.contentView.frame.height)!/2)
+            endCell?.contentView.addSubview(mSwitch)
         }
-        let mSwitch:UISwitch = UISwitch(frame: CGRectMake(0,0,51,31))
-        mSwitch.on = ConnectionManager.sharedInstance.getIsSendLocalMsg()
-        mSwitch.tintColor = AppTheme.NEVO_SOLAR_YELLOW()
-        mSwitch.onTintColor = AppTheme.NEVO_SOLAR_YELLOW()
-        mSwitch.addTarget(self, action: Selector("buttonAction:"), forControlEvents: UIControlEvents.ValueChanged)
-        mSwitch.center = CGPointMake(UIScreen.mainScreen().bounds.size.width-40, (endCell?.contentView.frame.height)!/2)
-        endCell?.contentView.addSubview(mSwitch)
-
+        for view in endCell!.contentView.subviews{
+            if(view.isKindOfClass(UISwitch.classForCoder())){
+                let mSwitch:UISwitch = view as! UISwitch
+                mSwitch.on = state
+            }
+        }
         endCell?.selectionStyle = UITableViewCellSelectionStyle.None;
         endCell?.textLabel?.text = title
         return endCell!
-    }
-
-    func buttonAction(sender:AnyObject){
-
     }
     /*
     // Only override drawRect: if you perform custom drawing.

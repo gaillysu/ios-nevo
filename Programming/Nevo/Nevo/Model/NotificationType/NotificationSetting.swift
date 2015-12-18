@@ -11,38 +11,54 @@ import UIKit
 class NotificationSetting: NSObject {
     private var mStates:Bool = true
     private let mType:NotificationType
-    private var mColor:NSNumber
+    private var mClock:Int = 0
+    private var mColor:NSNumber = 0
     var typeName:String {
         get {
             return self.mType.rawValue as String
         }
     }
     
-    init(type:NotificationType, color:NSNumber){
+    init(type:NotificationType, clock:Int , color:NSNumber,states:Bool){
         mType = type
-        mColor = color
-    }
-    
-    
-    class func indexOfObjectAtType(settingArray:[NotificationSetting], type:NotificationType) -> NotificationSetting?{
-        for setting in settingArray {
-            if setting.getType() == type {
-                return setting
-            }
-        }
-        return nil
+        super.init()
+        mClock = clock
+        mColor = NSNumber(unsignedInt: self.replaceColor(clock))
+        mStates = states
     }
 
-    func updateValue(color:NSNumber, states:Bool){
-//        mColor = NSNumber(unsignedInt: EnterNotificationController.getLedColor(mType.rawValue))
-//        mStates = EnterNotificationController.getMotorOnOff(mType.rawValue)
-        mColor = color
+    private func replaceColor(clock:Int)->UInt32{
+        // default value
+        var ledColor:UInt32
+        switch clock {
+        case 2:
+            ledColor = SetNortificationRequest.SetNortificationRequestValues.RED_LED
+        case 4:
+            ledColor = SetNortificationRequest.SetNortificationRequestValues.BLUE_LED
+        case 6:
+            ledColor = SetNortificationRequest.SetNortificationRequestValues.LIGHTGREEN_LED
+        case 8:
+            ledColor = SetNortificationRequest.SetNortificationRequestValues.YELLOW_LED
+        case 10 :
+            ledColor = SetNortificationRequest.SetNortificationRequestValues.ORANGE_LED
+        case 12:
+            ledColor = SetNortificationRequest.SetNortificationRequestValues.GREEN_LED
+        case 14:
+            ledColor = SetNortificationRequest.SetNortificationRequestValues.LIGHTGREEN_LED
+        default:
+            ledColor = 0xFF0000
+        }
+        return ledColor
+    }
+
+    func updateValue(clock:Int, states:Bool){
+        mClock = clock
         mStates = states
     }
     
     func sdescription() -> String{
         var description = ""
-        description = "type:\(mType.rawValue) color:\(mColor) status:\(mStates)"
+        description = "type:\(mType.rawValue) color:\(mClock) status:\(mStates)"
         return description
     }
     
@@ -51,12 +67,20 @@ class NotificationSetting: NSObject {
         return colorName
     }
    
+    func getClock() ->Int {
+        return mClock
+    }
+
     func getColor() ->NSNumber {
         return mColor
     }
     
-    func setColor(color:NSNumber) {
+    func setColor(color:Int) {
         mColor = color
+    }
+
+    func setClock(clock:Int) {
+        mClock = clock
     }
     
     func getStates() -> Bool {
@@ -74,31 +98,6 @@ class NotificationSetting: NSObject {
     func getType() -> NotificationType{
         return mType
     }
-
-    /**
-    Get in front of the cell dot color
-
-    :returns: Returns the color of the value
-    */
-    func getBagroundColor()->UIColor{
-        let currentColor:UInt32 = self.getColor().unsignedIntValue
-        if (currentColor == SetNortificationRequest.SetNortificationRequestValues.RED_LED){
-            return AppTheme.NEVO_CUSTOM_COLOR(Red: 229, Green: 0, Blue: 18)
-        }else if (currentColor == SetNortificationRequest.SetNortificationRequestValues.BLUE_LED){
-            return AppTheme.NEVO_CUSTOM_COLOR(Red: 44, Green: 166, Blue: 224)
-        }else if (currentColor == SetNortificationRequest.SetNortificationRequestValues.GREEN_LED){
-            return AppTheme.NEVO_CUSTOM_COLOR(Red: 13, Green: 172, Blue: 103)
-        }else if (currentColor == SetNortificationRequest.SetNortificationRequestValues.YELLOW_LED){
-            return AppTheme.NEVO_CUSTOM_COLOR(Red: 250, Green: 237, Blue: 0)
-        }else if (currentColor == SetNortificationRequest.SetNortificationRequestValues.ORANGE_LED){
-            return AppTheme.NEVO_CUSTOM_COLOR(Red: 242, Green: 150, Blue: 0)
-        }
-        else if (currentColor == SetNortificationRequest.SetNortificationRequestValues.LIGHTGREEN_LED){
-            return AppTheme.NEVO_CUSTOM_COLOR(Red: 141, Green: 194, Blue: 31)
-        }
-        return UIColor.whiteColor()
-    }
-    
 }
 
 enum NotificationType:NSString {

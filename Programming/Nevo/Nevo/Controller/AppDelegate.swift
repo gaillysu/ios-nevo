@@ -52,6 +52,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
         }else{
             NSUserDefaults.standardUserDefaults().setBool(false, forKey: "firstLaunch")
         }
+        
+        UserNotification.defaultNotificationColor()
 
         mConnectionController = ConnectionControllerImpl()
         mConnectionController?.setDelegate(self)
@@ -340,17 +342,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
             if(packet.getHeader() == SetCardioRequest.HEADER())
             {
                 //step5: sync the notification setting, if remove nevo's battery, the nevo notification reset, so here need sync it
-                var mNotificationSettingArray:[NotificationSetting] = []
-                let allType:[NotificationType] = [NotificationType.CALL, NotificationType.SMS, NotificationType.EMAIL, NotificationType.FACEBOOK, NotificationType.CALENDAR, NotificationType.WECHAT, NotificationType.WHATSAPP]
-                for notType in allType{
-                    let notificatiosetting:NotificationSetting = NotificationSetting(type:notType, color: 0)
-                    let color = NSNumber(unsignedInt: EnterNotificationController.getLedColor(notificatiosetting.getType().rawValue))
-                    let states = EnterNotificationController.getMotorOnOff(notificatiosetting.getType().rawValue)
-                    notificatiosetting.updateValue(color, states: states)
-                    mNotificationSettingArray.append(notificatiosetting)
-                }
+                //var mNotificationSettingArray:[NotificationSetting] = []
+                //let allType:[NotificationType] = [NotificationType.CALL, NotificationType.SMS, NotificationType.EMAIL, NotificationType.FACEBOOK, NotificationType.CALENDAR, NotificationType.WECHAT, NotificationType.WHATSAPP]
+                //for notType in allType{
+                    //let notificatiosetting:NotificationSetting = NotificationSetting(type:notType, color: 0)
+                    //let color = NSNumber(unsignedInt: EnterNotificationController.getLedColor(notificatiosetting.getType().rawValue))
+                    //let states = EnterNotificationController.getMotorOnOff(notificatiosetting.getType().rawValue)
+                    //notificatiosetting.updateValue(color, states: states)
+                    //mNotificationSettingArray.append(notificatiosetting)
+                //}
                 //start sync notification setting on the phone side
-                SetNortification(mNotificationSettingArray)
+                //SetNortification(mNotificationSettingArray)
             }
 
             if(packet.getHeader() == SetNortificationRequest.HEADER())
