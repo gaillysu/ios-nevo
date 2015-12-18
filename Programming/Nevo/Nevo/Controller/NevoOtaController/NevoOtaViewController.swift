@@ -26,9 +26,18 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
     private var currentTaskNumber:NSInteger = 0;//当前在第几个任务
     private var rssialert:UIAlertView?
 
+    init() {
+        super.init(nibName: "NevoOtaViewController", bundle: NSBundle.mainBundle())
+
+    }
+
+    required init(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
     override func viewDidLayoutSubviews(){
         //init the view
-        nevoOtaView.buildView(self,otacontroller: mNevoOtaController!)
+        //nevoOtaView.buildView(self,otacontroller: mNevoOtaController!)
     }
 
     override func viewDidLoad() {

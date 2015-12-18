@@ -120,7 +120,11 @@ class MyNevoController: UITableViewController,ButtonManagerCallBack,SyncControll
     }
 
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
-
+        if(indexPath.row == 1){
+            let otaCont:NevoOtaViewController = NevoOtaViewController()
+            otaCont.hidesBottomBarWhenPushed = true
+            self.navigationController?.pushViewController(otaCont, animated: true)
+        }
     }
 
     override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView{

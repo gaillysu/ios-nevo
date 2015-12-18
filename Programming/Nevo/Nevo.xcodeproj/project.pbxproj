@@ -255,10 +255,12 @@
 		00E2BDE21B16CCD0009C757E /* MBProgressHUD+MJ.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E2BDDE1B16CCD0009C757E /* MBProgressHUD+MJ.m */; };
 		00E2BDE31B16CCD0009C757E /* MBProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 00E2BDDF1B16CCD0009C757E /* MBProgressHUD.bundle */; };
 		00E2BDE41B16CCD0009C757E /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E2BDE11B16CCD0009C757E /* MBProgressHUD.m */; };
-		00E39A981AC27DDC0004E6C1 /* editor.png in Resources */ = {isa = PBXBuildFile; fileRef = 00E39A971AC27DDC0004E6C1 /* editor.png */; };
 		00E5CFD41B17F81F00D1F829 /* help in Resources */ = {isa = PBXBuildFile; fileRef = 00E5CFD31B17F81F00D1F829 /* help */; };
 		00E5CFD61B17FB7300D1F829 /* HelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E5CFD51B17FB7300D1F829 /* HelpViewController.swift */; };
 		00E5CFD81B18053100D1F829 /* HelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E5CFD71B18053100D1F829 /* HelpView.swift */; };
+		00E759141C23E83200372529 /* firmware_clock.png in Resources */ = {isa = PBXBuildFile; fileRef = 00E759131C23E83200372529 /* firmware_clock.png */; };
+		00E759161C23ED4000372529 /* NevoOtaViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00E759151C23ED4000372529 /* NevoOtaViewController.xib */; };
+		00E759181C2406E600372529 /* upgrade_clock.png in Resources */ = {isa = PBXBuildFile; fileRef = 00E759171C2406E600372529 /* upgrade_clock.png */; };
 		00ED43DA1C1EA11700915885 /* Duration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00ED43D21C1EA11700915885 /* Duration.swift */; };
 		00ED43DB1C1EA11700915885 /* Int+Timepiece.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00ED43D31C1EA11700915885 /* Int+Timepiece.swift */; };
 		00ED43DC1C1EA11700915885 /* NSCalendar+Timepiece.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00ED43D41C1EA11700915885 /* NSCalendar+Timepiece.swift */; };
@@ -598,10 +600,12 @@
 		00E2BDDF1B16CCD0009C757E /* MBProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MBProgressHUD.bundle; sourceTree = "<group>"; };
 		00E2BDE01B16CCD0009C757E /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		00E2BDE11B16CCD0009C757E /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
-		00E39A971AC27DDC0004E6C1 /* editor.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = editor.png; sourceTree = "<group>"; };
 		00E5CFD31B17F81F00D1F829 /* help */ = {isa = PBXFileReference; lastKnownFileType = folder; path = help; sourceTree = "<group>"; };
 		00E5CFD51B17FB7300D1F829 /* HelpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HelpViewController.swift; path = Controller/HelpViewController.swift; sourceTree = "<group>"; };
 		00E5CFD71B18053100D1F829 /* HelpView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HelpView.swift; path = View/HelpView.swift; sourceTree = "<group>"; };
+		00E759131C23E83200372529 /* firmware_clock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = firmware_clock.png; sourceTree = "<group>"; };
+		00E759151C23ED4000372529 /* NevoOtaViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NevoOtaViewController.xib; sourceTree = "<group>"; };
+		00E759171C2406E600372529 /* upgrade_clock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = upgrade_clock.png; sourceTree = "<group>"; };
 		00ED43D21C1EA11700915885 /* Duration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Duration.swift; sourceTree = "<group>"; };
 		00ED43D31C1EA11700915885 /* Int+Timepiece.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Int+Timepiece.swift"; sourceTree = "<group>"; };
 		00ED43D41C1EA11700915885 /* NSCalendar+Timepiece.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSCalendar+Timepiece.swift"; sourceTree = "<group>"; };
@@ -957,12 +961,13 @@
 		007F79881A878D0B006C89E6 /* image */ = {
 			isa = PBXGroup;
 			children = (
+				00E759171C2406E600372529 /* upgrade_clock.png */,
+				00E759131C23E83200372529 /* firmware_clock.png */,
 				0072EAEA1C192210001EE2C9 /* spinner.png */,
 				07BCE8291B5CAB2100C7F558 /* clockview600_color.png */,
 				001F1B791B57777B001DD426 /* nevo_wacth_selected.png */,
 				001F1B7A1B57777B001DD426 /* nevo_wacth.png */,
 				00D0FF721B130A9F00D084C3 /* Nevo660.png */,
-				00E39A971AC27DDC0004E6C1 /* editor.png */,
 				00D4DE901AB141FB0062523D /* NevoPicture960.png */,
 				00478F4D1A8F637D00D0DCE2 /* clockViewHour.png */,
 				00478F4E1A8F637D00D0DCE2 /* clockViewMinute.png */,
@@ -1043,6 +1048,7 @@
 			children = (
 				009ED5481C0E859400623D95 /* NevoOtaController.swift */,
 				009ED5491C0E859400623D95 /* NevoOtaViewController.swift */,
+				00E759151C23ED4000372529 /* NevoOtaViewController.xib */,
 			);
 			name = NevoOtaController;
 			path = Controller/NevoOtaController;
@@ -1741,6 +1747,7 @@
 				0072EACB1C190DCD001EE2C9 /* SFUIDisplay-Bold.ttf in Resources */,
 				0072EAD21C190DCD001EE2C9 /* SFUIDisplay-Ultralight.ttf in Resources */,
 				0072EAD01C190DCD001EE2C9 /* SFUIDisplay-Semibold.ttf in Resources */,
+				00E759141C23E83200372529 /* firmware_clock.png in Resources */,
 				0072EABB1C190DCD001EE2C9 /* SFCompactDisplay-Semibold.ttf in Resources */,
 				0072EAD61C190DCD001EE2C9 /* SFUIText-HeavyItalic.ttf in Resources */,
 				0030119C1C083DB100EE1621 /* AddAlarmController.xib in Resources */,
@@ -1754,7 +1761,6 @@
 				0072EAC11C190DCD001EE2C9 /* SFCompactText-HeavyItalic.ttf in Resources */,
 				00A773961A88562F0018E121 /* Localizable.strings in Resources */,
 				0072EAEB1C192210001EE2C9 /* spinner.png in Resources */,
-				00E39A981AC27DDC0004E6C1 /* editor.png in Resources */,
 				009ED5751C0ED5B200623D95 /* StepGoalSetingController.xib in Resources */,
 				0072EAC81C190DCD001EE2C9 /* SFCompactText-Semibold.ttf in Resources */,
 				0072EADD1C190DCD001EE2C9 /* SFUIText-Semibold.ttf in Resources */,
@@ -1804,8 +1810,10 @@
 				0072EAC31C190DCD001EE2C9 /* SFCompactText-LightItalic.ttf in Resources */,
 				0072EAD51C190DCD001EE2C9 /* SFUIText-Heavy.ttf in Resources */,
 				001F1B7B1B57777B001DD426 /* nevo_wacth_selected.png in Resources */,
+				00E759181C2406E600372529 /* upgrade_clock.png in Resources */,
 				0072EAB91C190DCD001EE2C9 /* SFCompactDisplay-Medium.ttf in Resources */,
 				0742432A1AB2D0A20076F789 /* Firmwares in Resources */,
+				00E759161C23ED4000372529 /* NevoOtaViewController.xib in Resources */,
 				00478F501A8F637D00D0DCE2 /* clockViewMinute.png in Resources */,
 				0072EACF1C190DCD001EE2C9 /* SFUIDisplay-Regular.ttf in Resources */,
 				0072EACE1C190DCD001EE2C9 /* SFUIDisplay-Medium.ttf in Resources */,
