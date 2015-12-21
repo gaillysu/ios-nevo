@@ -18,7 +18,7 @@ class MyNevoView: UITableView {
             endCell = UITableViewCell(style: UITableViewCellStyle.Value1, reuseIdentifier: endCellID)
         }
         endCell?.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
-        endCell?.selectionStyle = UITableViewCellSelectionStyle.None;
+        //endCell?.selectionStyle = UITableViewCellSelectionStyle.None;
         endCell?.textLabel?.text = title
         endCell?.detailTextLabel?.text = detailText
         return endCell!

@@ -96,9 +96,8 @@ class AidOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMan
 
     //init data function
     private func initValue(){
-        nevoOtaView.backButton.enabled = true
         isTransferring = false
-        nevoOtaView.ReUpgradeButton?.hidden = false //The process of OTA hide this control
+
     }
 
     //upload button function
@@ -124,12 +123,10 @@ class AidOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMan
             enumFirmwareType = DfuFirmwareTypes.APPLICATION
         }
 
-        nevoOtaView.setProgress(0.0,currentTask: currentTaskNumber,allTask: allTaskNumber)
+        nevoOtaView.setProgress(0.0,currentTask: currentTaskNumber,allTask: allTaskNumber, progressString: "BLE")
         nevoOtaView.setLatestVersion(NSLocalizedString("Please wait...", comment: ""))
         isTransferring = true
         //when doing OTA, disable Cancel/Back button, enable them by callback function invoke initValue()/checkConnection()
-        nevoOtaView.backButton.enabled = false
-        nevoOtaView.ReUpgradeButton?.hidden = true //The process of OTA hide this control
         mAidOtaController?.performDFUOnFile(selectedFileURL!, firmwareType: enumFirmwareType)
 
     }
@@ -142,10 +139,8 @@ class AidOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMan
 
         if (mAidOtaController != nil && !(mAidOtaController!.isConnected() ) || isTransferring) {
             //disable upPress button
-            nevoOtaView.ReUpgradeButton?.hidden = true
         }else{
             // enable upPress button
-            nevoOtaView.ReUpgradeButton?.hidden = false
         }
         
     }
@@ -192,7 +187,7 @@ class AidOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMan
 
     //percent is[0..100]
     func onTransferPercentage(percent:Int){
-        nevoOtaView.setProgress((Float(percent)/100.0),currentTask: currentTaskNumber,allTask:allTaskNumber)
+        nevoOtaView.setProgress((Float(percent)/100.0), currentTask: currentTaskNumber,allTask: allTaskNumber, progressString: "BLE")
     }
 
     //successfully
@@ -206,7 +201,6 @@ class AidOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMan
             }
             let alert :UIAlertView = UIAlertView(title: "Firmware Upgrade", message: message, delegate: nil, cancelButtonTitle: "OK")
             alert.show()
-            nevoOtaView.ReUpgradeButton?.hidden = true
             nevoOtaView.upgradeSuccessful()
             mAidOtaController!.reset(false)
             let dispatchTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, Int64(3.0 * Double(NSEC_PER_SEC)))
@@ -218,12 +212,12 @@ class AidOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMan
             //请确保重新点击配对按钮后再点击继续MCU升级,否则在升级的过程中会中断!
             let alert :UIAlertView = UIAlertView(title: "Firmware Upgrade", message: "Please make sure that the re click on the pairing button is clicked and then click on the MCU upgrade, otherwise it will be interrupted in the process of upgrading!", delegate: nil, cancelButtonTitle: "OK")
             alert.show()
-            nevoOtaView.ReUpgradeButton?.hidden = false
-            nevoOtaView.ReUpgradeButton?.setTitle("Upgrade the Ble", forState: UIControlState.Normal)
+            //nevoOtaView.ReUpgradeButton?.hidden = false
+            //nevoOtaView.ReUpgradeButton?.setTitle("Upgrade the Ble", forState: UIControlState.Normal)
             if(mAidOtaController!.isConnected()){
-                nevoOtaView.ReUpgradeButton?.setTitle("Continue MCU", forState: UIControlState.Normal)
+                //nevoOtaView.ReUpgradeButton?.setTitle("Continue MCU", forState: UIControlState.Normal)
             }else{
-                nevoOtaView.ReUpgradeButton?.setTitle("Try to reconnect", forState: UIControlState.Normal)
+                //nevoOtaView.ReUpgradeButton?.setTitle("Try to reconnect", forState: UIControlState.Normal)
                 let dispatchTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, Int64(3.0 * Double(NSEC_PER_SEC)))
                 dispatch_after(dispatchTime, dispatch_get_main_queue(), {
                     self.mAidOtaController?.mConnectionController?.setOTAMode(true,Disconnect:true)
@@ -246,13 +240,13 @@ class AidOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMan
         if(!isConnected){
             let SAVED_ADDRESS_KEY = "SAVED_ADDRESS"
             NSUserDefaults.standardUserDefaults().removeObjectForKey(SAVED_ADDRESS_KEY)
-            nevoOtaView.ReUpgradeButton?.setTitle("Search Nevo", forState: UIControlState.Normal)
+            //nevoOtaView.ReUpgradeButton?.setTitle("Search Nevo", forState: UIControlState.Normal)
         }else{
             //MBProgressHUD.showSuccess("Nevo has been connected, you can upgrade")
             if(currentIndex != 0){
-                nevoOtaView.ReUpgradeButton?.setTitle("Continue MCU", forState: UIControlState.Normal)
+                //nevoOtaView.ReUpgradeButton?.setTitle("Continue MCU", forState: UIControlState.Normal)
             }else{
-                nevoOtaView.ReUpgradeButton?.setTitle("Search Nevo", forState: UIControlState.Normal)
+                //nevoOtaView.ReUpgradeButton?.setTitle("Search Nevo", forState: UIControlState.Normal)
             }
         }
 
@@ -267,27 +261,19 @@ class AidOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMan
     }
 
     // MARK: - ButtonManagerCallBack
-    func controllManager(sender:AnyObject){
-
-        if (sender.isEqual(nevoOtaView.backButton)) {
-            AppTheme.DLog("back2Home")
-            self.dismissViewControllerAnimated(true, completion: nil)
-        }
-
-        if(sender.isEqual(nevoOtaView.ReUpgradeButton)){
-            let SAVED_ADDRESS_KEY = "SAVED_ADDRESS"
-            NSUserDefaults.standardUserDefaults().removeObjectForKey(SAVED_ADDRESS_KEY)
-            currentTaskNumber = currentIndex;
-            if(mAidOtaController!.isConnected()){
-                // reUpdate all firmwares
-                uploadPressed()
-            }else{
-                hudView = MBProgressHUD.showMessage("Please later, in the connection.")
-                hudView?.hide(true, afterDelay: 8)
-                mTimeoutTimer = NSTimer.scheduledTimerWithTimeInterval(Double(1), target: self, selector:Selector("timeroutProc:"), userInfo: nil, repeats: true)
-                mAidOtaController?.mConnectionController?.setOTAMode(true, Disconnect: true)
-                // no connected nevo, disable update
-            }
+    func controllManager(sender:AnyObject) {
+        let SAVED_ADDRESS_KEY = "SAVED_ADDRESS"
+        NSUserDefaults.standardUserDefaults().removeObjectForKey(SAVED_ADDRESS_KEY)
+        currentTaskNumber = currentIndex;
+        if(mAidOtaController!.isConnected()){
+            // reUpdate all firmwares
+            uploadPressed()
+        }else{
+            hudView = MBProgressHUD.showMessage("Please later, in the connection.")
+            hudView?.hide(true, afterDelay: 8)
+            mTimeoutTimer = NSTimer.scheduledTimerWithTimeInterval(Double(1), target: self, selector:Selector("timeroutProc:"), userInfo: nil, repeats: true)
+            mAidOtaController?.mConnectionController?.setOTAMode(true, Disconnect: true)
+            // no connected nevo, disable update
         }
 
     }

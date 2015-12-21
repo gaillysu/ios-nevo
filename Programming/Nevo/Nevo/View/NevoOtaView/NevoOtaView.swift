@@ -132,105 +132,43 @@ class OTAProgress: CAShapeLayer {
 }
 
 class NevoOtaView: UIView {
-
-    @IBOutlet weak var title: UILabel!
-    @IBOutlet weak var titleBgView: UIView!
-    
-    @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var nevoWacthImage: UIImageView!
-    @IBOutlet weak var taskLabel: UILabel!
     @IBOutlet weak var messageLabel: UILabel!
-    @IBOutlet weak var warningLabel: UILabel!
+    @IBOutlet weak var progresLabel: UILabel!
+    @IBOutlet weak var firmwareLabel: UILabel!
+    @IBOutlet weak var backButton: UIButton!
+    @IBOutlet weak var backView: UIView!
+    @IBOutlet weak var updatingView: UIView!
+
 
     private var mDelegate:ButtonManagerCallBack?
     private var tipView:FXBlurView?;
     private var mOTADelegate:NevoOtaController?//OTA for watch version number object
     private var OTAprogressView:OTAProgress?//OTA upgrade progress bar object
     var progresValue:CGFloat = 0.0//OTA upgrade progress bar default value
-    var ReUpgradeButton:UIButton?
     
     func buildView(delegate:ButtonManagerCallBack,otacontroller:AnyObject) {
+        mDelegate = delegate
 
-        title.text = NSLocalizedString("Upgrade", comment:"")
+        backButton.layer.masksToBounds = true
+        backButton.layer.cornerRadius = 10.0
+        backButton.layer.borderWidth = 1.0
+        backButton.layer.borderColor = AppTheme.NEVO_SOLAR_YELLOW().CGColor
 
+        self.backgroundColor = AppTheme.NEVO_CUSTOM_COLOR(Red: 239.0, Green: 239.0, Blue: 244.0)
+
+        //title.text = NSLocalizedString("Upgrade", comment:"")
         nevoWacthImage.contentMode = UIViewContentMode.ScaleAspectFit
 
-        if(mDelegate == nil){
-            mDelegate = delegate
-            //let tipButton:UIButton = UIButton.buttonWithType(UIButtonType.InfoDark) as! UIButton
-            //tipButton.frame = CGRectMake(self.frame.size.width-50, 90, 50, 50)
-            //tipButton.addTarget(self, action: Selector("tipAction:"), forControlEvents: UIControlEvents.TouchUpInside)
-            //self.addSubview(tipButton)
-
-            if(AppTheme.GET_IS_iPhone4S()){
-                var frame:CGRect;
-                frame = nevoWacthImage.frame;
-                frame.size.height = nevoWacthImage.frame.height+10
-                nevoWacthImage.frame = frame;
-                
-                frame = taskLabel.frame
-                frame.origin.y = nevoWacthImage.frame.origin.y+nevoWacthImage.frame.size.height
-                taskLabel.frame = frame
-
-                frame = warningLabel.frame
-                frame.origin.y = taskLabel.frame.origin.y+taskLabel.frame.size.height+5
-                warningLabel.frame = frame
-
-                frame = messageLabel.frame
-                frame.origin.y = warningLabel.frame.origin.y+warningLabel.frame.size.height
-                messageLabel.frame = frame
-            }
-
-            warningLabel.text = NSLocalizedString("Attention!",comment:"")
-            warningLabel.font = AppTheme.FONT_RALEWAY_BOLD(mSize: 20)
-
-            messageLabel.backgroundColor = UIColor.clearColor()
-            messageLabel.font = AppTheme.FONT_RALEWAY_LIGHT(mSize: 15)
-            messageLabel.numberOfLines = 0;
-            messageLabel.lineBreakMode = NSLineBreakMode.ByWordWrapping
-            messageLabel.textAlignment = NSTextAlignment.Center
-            messageLabel.text = String(format: "%@",NSLocalizedString("otahelp",comment:""))
-
-            OTAprogressView = OTAProgress()
-            OTAprogressView?.setProgressColor(AppTheme.NEVO_SOLAR_YELLOW())
-            OTAprogressView?.frame = CGRectMake(nevoWacthImage.frame.origin.x, nevoWacthImage.frame.origin.y, nevoWacthImage.frame.size.width, nevoWacthImage.frame.size.height)
-            OTAprogressView?.setProgress(progresValue)
-            self.layer.addSublayer(OTAprogressView!)
-
-            ReUpgradeButton = UIButton(type:UIButtonType.Custom)
-            ReUpgradeButton!.frame = CGRectMake(0, 0, 120, 40)
-            ReUpgradeButton!.setTitle(NSLocalizedString("Upgrade", comment: ""), forState: UIControlState.Normal)
-            ReUpgradeButton!.titleLabel?.font = AppTheme.FONT_RALEWAY_LIGHT(mSize: 15)
-            ReUpgradeButton!.backgroundColor = UIColor.clearColor()
-            ReUpgradeButton!.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
-            ReUpgradeButton!.addTarget(self, action: Selector("buttonAction:"), forControlEvents: UIControlEvents.TouchUpInside)
-            ReUpgradeButton!.layer.masksToBounds = true
-            ReUpgradeButton!.layer.cornerRadius = 20.0
-            ReUpgradeButton!.layer.borderWidth = 2;//边框宽度
-            ReUpgradeButton!.layer.borderColor = AppTheme.NEVO_SOLAR_YELLOW().CGColor
-            self.addSubview(ReUpgradeButton!)
-        }
-
-        let messageS:String  = String(format: "%@",NSLocalizedString("otahelp",comment:""))
-        let labelframe:CGRect  = AppTheme.getLabelSize(messageS, andObject: messageLabel.frame,andFont: AppTheme.FONT_RALEWAY_LIGHT(mSize: 16))
-        var labelSize:CGRect = labelframe;
-        labelSize.size.height = labelframe.size.height;
-        messageLabel.frame = labelSize
-
-        ReUpgradeButton!.center = CGPointMake(self.frame.size.width/2.0, messageLabel!.frame.size.height+messageLabel!.frame.origin.y+30)
-
+        OTAprogressView = OTAProgress()
+        OTAprogressView?.setProgressColor(AppTheme.NEVO_SOLAR_YELLOW())
+        OTAprogressView?.frame = CGRectMake(nevoWacthImage.frame.origin.x, nevoWacthImage.frame.origin.y, nevoWacthImage.frame.size.width, nevoWacthImage.frame.size.height)
+        OTAprogressView?.setProgress(progresValue)
+        self.layer.addSublayer(OTAprogressView!)
     }
 
     @IBAction func buttonAction(sender: AnyObject) {
         mDelegate?.controllManager(sender)
-    }
-
-    func tipAction(sender:UIButton){
-        if(sender.tag==5200){
-            self.closeTipView()
-        }else{
-            self.tipTextView()
-        }
     }
 
     /**
@@ -238,10 +176,11 @@ class NevoOtaView: UIView {
 
     :param: progress Progress value
     */
-    func setProgress(progress: Float,currentTask:NSInteger,allTask:NSInteger){
+    func setProgress(progress: Float, currentTask:NSInteger, allTask:NSInteger, progressString:String){
         progresValue = CGFloat(progress)
         OTAprogressView?.setProgress(progresValue)
-        taskLabel.text = NSString(format: "%.0f%c \(currentTask)/\(allTask)", Float(progresValue)*100.0,37) as String
+        progresLabel.text = "\(progresValue)%"
+        messageLabel.text = NSLocalizedString("Updating", comment: "") + " \(progressString) " + "(\(currentTask)/\(allTask))"
     }
 
     /**
@@ -251,17 +190,16 @@ class NevoOtaView: UIView {
     */
     func setLatestVersion(string:String){
         let messageS:String  = string
-        taskLabel.font = AppTheme.FONT_RALEWAY_LIGHT(mSize: 15)
-        let labelframe:CGRect  = AppTheme.getWidthLabelSize(messageS, andObject: taskLabel.frame,andFont: AppTheme.FONT_RALEWAY_LIGHT(mSize: 15))
-        taskLabel.frame = labelframe
-        taskLabel.text = string
+        //taskLabel.font = AppTheme.FONT_RALEWAY_LIGHT(mSize: 15)
+        //let labelframe:CGRect  = AppTheme.getWidthLabelSize(messageS, andObject: taskLabel.frame,andFont: AppTheme.FONT_RALEWAY_LIGHT(mSize: 15))
+        //taskLabel.frame = labelframe
+        //taskLabel.text = string
     }
 
     /**
     Upgrade success callback function
     */
     func upgradeSuccessful(){
-        ReUpgradeButton?.hidden = true
         nevoWacthImage.image = AppTheme.GET_RESOURCES_IMAGE("nevo_wacth_selected");
     }
 

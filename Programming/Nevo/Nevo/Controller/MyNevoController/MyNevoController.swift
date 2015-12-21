@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MyNevoController: UITableViewController,ButtonManagerCallBack,SyncControllerDelegate {
+class MyNevoController: UITableViewController,ButtonManagerCallBack,SyncControllerDelegate,UIAlertViewDelegate {
 
     @IBOutlet var mynevoView: MyNevoView!
     private var currentBattery:Int = 0
@@ -30,7 +30,7 @@ class MyNevoController: UITableViewController,ButtonManagerCallBack,SyncControll
     
     override func viewDidAppear(animated: Bool) {
         AppDelegate.getAppDelegate().startConnect(false, delegate: self)
-        //AppDelegate.getAppDelegate().ReadBatteryLevel()
+        AppDelegate.getAppDelegate().ReadBatteryLevel()
         //mynevoView.setVersionLbael(AppDelegate.getAppDelegate().getSoftwareVersion(), bleNumber: AppDelegate.getAppDelegate().getFirmwareVersion())
     }
     
@@ -76,6 +76,8 @@ class MyNevoController: UITableViewController,ButtonManagerCallBack,SyncControll
         if(thispacket.isReadBatteryCommand(packet.getPackets())){
             let batteryValue:Int = thispacket.getBatteryLevel()
             currentBattery = batteryValue
+            let indexPath:NSIndexPath = NSIndexPath(forRow: 1, inSection: 0)
+            self.tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
         }
     }
 
@@ -106,6 +108,33 @@ class MyNevoController: UITableViewController,ButtonManagerCallBack,SyncControll
         AppDelegate.getAppDelegate().connect()
     }
 
+    // MARK: - checkUpdateVersion
+    /**
+     Check the update
+     */
+    func  checkUpdateVersion() {
+        MBProgressHUD.showMessage(NSLocalizedString("is_checking_the_update",comment: ""))
+        AppTheme.getAppStoreVersion({ (stringVersion, version) -> Void in
+            MBProgressHUD.hideHUD()
+            let loclString:String = (NSBundle.mainBundle().infoDictionary! as NSDictionary).objectForKey("CFBundleShortVersionString") as! String
+            let versionString:NSString = loclString.stringByReplacingOccurrencesOfString(".", withString: "")
+            let versionNumber:Double = Double(versionString.floatValue)
+            if(version>versionNumber){
+                let alertView:UIAlertController = UIAlertController(title: NSLocalizedString("Found the new version",comment: ""), message: String(format: "Found New version:(%@)", stringVersion!), preferredStyle: UIAlertControllerStyle.Alert)
+                let alertAction:UIAlertAction = UIAlertAction(title: NSLocalizedString("ok", comment: ""), style: UIAlertActionStyle.Default) { (action:UIAlertAction) -> Void in
+                    AppTheme.toOpenUpdateURL()
+                }
+                alertView.addAction(alertAction)
+
+                let alertAction2:UIAlertAction = UIAlertAction(title: nil, style: UIAlertActionStyle.Cancel, handler: nil)
+                alertView.addAction(alertAction2)
+                self.presentViewController(alertView, animated: true, completion: nil)
+            }else{
+                MBProgressHUD.showSuccess(NSLocalizedString("nevolatestversion",comment: ""))
+            }
+        })
+    }
+
     // MARK: - UITableViewDelegate
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 45.0
@@ -120,10 +149,18 @@ class MyNevoController: UITableViewController,ButtonManagerCallBack,SyncControll
     }
 
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
-        if(indexPath.row == 1){
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        if(indexPath.row == 0){
+            if(AppDelegate.getAppDelegate().getSoftwareVersion().integerValue > buildinSoftwareVersion){return}
+            if(AppDelegate.getAppDelegate().getFirmwareVersion().integerValue > buildinFirmwareVersion){return}
             let otaCont:NevoOtaViewController = NevoOtaViewController()
-            otaCont.hidesBottomBarWhenPushed = true
-            self.navigationController?.pushViewController(otaCont, animated: true)
+            let navigation:UINavigationController = UINavigationController(rootViewController: otaCont)
+            self.presentViewController(navigation, animated: true, completion: nil)
+            //self.navigationController?.pushViewController(otaCont, animated: true)
+        }
+
+        if(indexPath.row == 2){
+            checkUpdateVersion()
         }
     }
 
@@ -146,7 +183,23 @@ class MyNevoController: UITableViewController,ButtonManagerCallBack,SyncControll
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        return mynevoView.getMyNevoViewTableViewCell(indexPath, tableView: tableView, title: titleArray[indexPath.row], detailText: titleArray[indexPath.row])
+        var detailString:String = ""
+        switch (indexPath.row){
+        case 0:
+           detailString = "MCU:\(AppDelegate.getAppDelegate().getSoftwareVersion()) BLE:\(AppDelegate.getAppDelegate().getFirmwareVersion())"
+           //buildinSoftwareVersion:Int = 0 buildinFirmwareVersion:Int = 0
+        case 1:
+            if(currentBattery<2){
+                detailString = "Battery low"
+            }else{
+                detailString = "Battery enough"
+            }
+        case 2:
+            let loclString:String = (NSBundle.mainBundle().infoDictionary! as NSDictionary).objectForKey("CFBundleShortVersionString") as! String
+            detailString = loclString
+        default: detailString = "Battery low"
+        }
+        return mynevoView.getMyNevoViewTableViewCell(indexPath, tableView: tableView, title: titleArray[indexPath.row], detailText: detailString)
     }
     /*
     // MARK: - Navigation

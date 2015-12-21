@@ -147,25 +147,7 @@ class SetingViewController: UIViewController,SyncControllerDelegate,ButtonManage
     }
 
     // MARK: - SetingViewController function
-    /**
-    Check the update
-    */
-    func  checkUpdateVersion() {
-        MBProgressHUD.showMessage(NSLocalizedString("is_checking_the_update",comment: ""))
-        AppTheme.getAppStoreVersion({ (stringVersion, version) -> Void in
-            MBProgressHUD.hideHUD()
-            let loclString:String = (NSBundle.mainBundle().infoDictionary! as NSDictionary).objectForKey("CFBundleShortVersionString") as! String
-            let versionString:NSString = loclString.stringByReplacingOccurrencesOfString(".", withString: "")
-            let versionNumber:Double = Double(versionString.floatValue)
-            if(version>versionNumber){
-                let alertView:UIAlertView = UIAlertView(title: NSLocalizedString("Found the new version",comment: ""), message:String(format: "Found New version:(%@)", stringVersion!), delegate:self, cancelButtonTitle: NSLocalizedString("cancel",comment: ""), otherButtonTitles: NSLocalizedString("Enter",comment: ""))
-                alertView.show()
-            }else{
-                MBProgressHUD.showSuccess(NSLocalizedString("nevolatestversion",comment: ""))
-            }
-        })
-    }
-
+    
     func findMydevice(){
         let minDelay:Double = 6
         let offset:Double = (NSDate().timeIntervalSince1970 - mFindMydeviceDatetime.timeIntervalSince1970)

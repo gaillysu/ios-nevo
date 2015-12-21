@@ -50,6 +50,8 @@
 		00478F4F1A8F637D00D0DCE2 /* clockViewHour.png in Resources */ = {isa = PBXBuildFile; fileRef = 00478F4D1A8F637D00D0DCE2 /* clockViewHour.png */; };
 		00478F501A8F637D00D0DCE2 /* clockViewMinute.png in Resources */ = {isa = PBXBuildFile; fileRef = 00478F4E1A8F637D00D0DCE2 /* clockViewMinute.png */; };
 		004846D41B72EDB9005A6D83 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 004846D31B72EDB9005A6D83 /* libsqlite3.dylib */; };
+		0050D5041C27D80E004F6F80 /* NevoOtaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0050D5021C27D80E004F6F80 /* NevoOtaViewController.swift */; };
+		0050D5051C27D80E004F6F80 /* NevoOtaViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0050D5031C27D80E004F6F80 /* NevoOtaViewController.xib */; };
 		0054F34A1C1513860082BA2E /* Presets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0054F3491C1513860082BA2E /* Presets.swift */; };
 		0054F3581C1590490082BA2E /* UserAlarm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0054F3571C1590490082BA2E /* UserAlarm.swift */; };
 		005BC9561A889F14006F9E86 /* NevoPicture.png in Resources */ = {isa = PBXBuildFile; fileRef = 005BC9551A889F14006F9E86 /* NevoPicture.png */; };
@@ -131,7 +133,6 @@
 		009ED5451C0E828A00623D95 /* MyNevoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009ED5431C0E828A00623D95 /* MyNevoController.swift */; };
 		009ED5461C0E828A00623D95 /* MyNevoController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 009ED5441C0E828A00623D95 /* MyNevoController.xib */; };
 		009ED5501C0E859400623D95 /* NevoOtaController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009ED5481C0E859400623D95 /* NevoOtaController.swift */; };
-		009ED5511C0E859400623D95 /* NevoOtaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009ED5491C0E859400623D95 /* NevoOtaViewController.swift */; };
 		009ED5521C0E859400623D95 /* SetingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009ED54B1C0E859400623D95 /* SetingViewController.swift */; };
 		009ED5531C0E859400623D95 /* SleepTrackingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009ED54D1C0E859400623D95 /* SleepTrackingController.swift */; };
 		009ED5541C0E859400623D95 /* StepGoalSetingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009ED54F1C0E859400623D95 /* StepGoalSetingController.swift */; };
@@ -259,7 +260,6 @@
 		00E5CFD61B17FB7300D1F829 /* HelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E5CFD51B17FB7300D1F829 /* HelpViewController.swift */; };
 		00E5CFD81B18053100D1F829 /* HelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E5CFD71B18053100D1F829 /* HelpView.swift */; };
 		00E759141C23E83200372529 /* firmware_clock.png in Resources */ = {isa = PBXBuildFile; fileRef = 00E759131C23E83200372529 /* firmware_clock.png */; };
-		00E759161C23ED4000372529 /* NevoOtaViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00E759151C23ED4000372529 /* NevoOtaViewController.xib */; };
 		00E759181C2406E600372529 /* upgrade_clock.png in Resources */ = {isa = PBXBuildFile; fileRef = 00E759171C2406E600372529 /* upgrade_clock.png */; };
 		00ED43DA1C1EA11700915885 /* Duration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00ED43D21C1EA11700915885 /* Duration.swift */; };
 		00ED43DB1C1EA11700915885 /* Int+Timepiece.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00ED43D31C1EA11700915885 /* Int+Timepiece.swift */; };
@@ -382,6 +382,8 @@
 		00478F4D1A8F637D00D0DCE2 /* clockViewHour.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clockViewHour.png; sourceTree = "<group>"; };
 		00478F4E1A8F637D00D0DCE2 /* clockViewMinute.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clockViewMinute.png; sourceTree = "<group>"; };
 		004846D31B72EDB9005A6D83 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		0050D5021C27D80E004F6F80 /* NevoOtaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NevoOtaViewController.swift; sourceTree = "<group>"; };
+		0050D5031C27D80E004F6F80 /* NevoOtaViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NevoOtaViewController.xib; sourceTree = "<group>"; };
 		0054F3491C1513860082BA2E /* Presets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Presets.swift; sourceTree = "<group>"; };
 		0054F3571C1590490082BA2E /* UserAlarm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAlarm.swift; sourceTree = "<group>"; };
 		005BC9551A889F14006F9E86 /* NevoPicture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NevoPicture.png; sourceTree = "<group>"; };
@@ -466,7 +468,6 @@
 		009ED5431C0E828A00623D95 /* MyNevoController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyNevoController.swift; sourceTree = "<group>"; };
 		009ED5441C0E828A00623D95 /* MyNevoController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyNevoController.xib; sourceTree = "<group>"; };
 		009ED5481C0E859400623D95 /* NevoOtaController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NevoOtaController.swift; sourceTree = "<group>"; };
-		009ED5491C0E859400623D95 /* NevoOtaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NevoOtaViewController.swift; sourceTree = "<group>"; };
 		009ED54B1C0E859400623D95 /* SetingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetingViewController.swift; sourceTree = "<group>"; };
 		009ED54D1C0E859400623D95 /* SleepTrackingController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SleepTrackingController.swift; sourceTree = "<group>"; };
 		009ED54F1C0E859400623D95 /* StepGoalSetingController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepGoalSetingController.swift; sourceTree = "<group>"; };
@@ -604,7 +605,6 @@
 		00E5CFD51B17FB7300D1F829 /* HelpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HelpViewController.swift; path = Controller/HelpViewController.swift; sourceTree = "<group>"; };
 		00E5CFD71B18053100D1F829 /* HelpView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HelpView.swift; path = View/HelpView.swift; sourceTree = "<group>"; };
 		00E759131C23E83200372529 /* firmware_clock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = firmware_clock.png; sourceTree = "<group>"; };
-		00E759151C23ED4000372529 /* NevoOtaViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NevoOtaViewController.xib; sourceTree = "<group>"; };
 		00E759171C2406E600372529 /* upgrade_clock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = upgrade_clock.png; sourceTree = "<group>"; };
 		00ED43D21C1EA11700915885 /* Duration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Duration.swift; sourceTree = "<group>"; };
 		00ED43D31C1EA11700915885 /* Int+Timepiece.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Int+Timepiece.swift"; sourceTree = "<group>"; };
@@ -1046,9 +1046,9 @@
 		009ED5471C0E859400623D95 /* NevoOtaController */ = {
 			isa = PBXGroup;
 			children = (
+				0050D5021C27D80E004F6F80 /* NevoOtaViewController.swift */,
+				0050D5031C27D80E004F6F80 /* NevoOtaViewController.xib */,
 				009ED5481C0E859400623D95 /* NevoOtaController.swift */,
-				009ED5491C0E859400623D95 /* NevoOtaViewController.swift */,
-				00E759151C23ED4000372529 /* NevoOtaViewController.xib */,
 			);
 			name = NevoOtaController;
 			path = Controller/NevoOtaController;
@@ -1743,6 +1743,7 @@
 			files = (
 				0080AC731C0FE716007E73B6 /* PresetTableViewCell.xib in Resources */,
 				009ED49D1C0D920300623D95 /* NotificationClockCell.xib in Resources */,
+				0050D5051C27D80E004F6F80 /* NevoOtaViewController.xib in Resources */,
 				0072EABA1C190DCD001EE2C9 /* SFCompactDisplay-Regular.ttf in Resources */,
 				0072EACB1C190DCD001EE2C9 /* SFUIDisplay-Bold.ttf in Resources */,
 				0072EAD21C190DCD001EE2C9 /* SFUIDisplay-Ultralight.ttf in Resources */,
@@ -1813,7 +1814,6 @@
 				00E759181C2406E600372529 /* upgrade_clock.png in Resources */,
 				0072EAB91C190DCD001EE2C9 /* SFCompactDisplay-Medium.ttf in Resources */,
 				0742432A1AB2D0A20076F789 /* Firmwares in Resources */,
-				00E759161C23ED4000372529 /* NevoOtaViewController.xib in Resources */,
 				00478F501A8F637D00D0DCE2 /* clockViewMinute.png in Resources */,
 				0072EACF1C190DCD001EE2C9 /* SFUIDisplay-Regular.ttf in Resources */,
 				0072EACE1C190DCD001EE2C9 /* SFUIDisplay-Medium.ttf in Resources */,
@@ -1999,6 +1999,7 @@
 				00DC9EC91BB2853D00734DB6 /* CombinedChartData.swift in Sources */,
 				00DC9EB71BB2853D00734DB6 /* ChartLimitLine.swift in Sources */,
 				00DC9EC61BB2853D00734DB6 /* ChartData.swift in Sources */,
+				0050D5041C27D80E004F6F80 /* NevoOtaViewController.swift in Sources */,
 				00DC9EDD1BB2853D00734DB6 /* CombinedHighlighter.swift in Sources */,
 				00ED43DE1C1EA11700915885 /* NSDate+Timepiece.swift in Sources */,
 				00DC9ECC1BB2853D00734DB6 /* LineRadarChartDataSet.swift in Sources */,
@@ -2091,7 +2092,6 @@
 				00DC9EFA1BB2853D00734DB6 /* ChartViewPortHandler.swift in Sources */,
 				00ED43DF1C1EA11700915885 /* NSDateComponents+Timepiece.swift in Sources */,
 				00DC9EBC1BB2853D00734DB6 /* BarChartDataEntry.swift in Sources */,
-				009ED5511C0E859400623D95 /* NevoOtaViewController.swift in Sources */,
 				00DC9EED1BB2853D00734DB6 /* CombinedChartRenderer.swift in Sources */,
 				0030118F1C083CEB00EE1621 /* ButtonCallBack.swift in Sources */,
 				9A3E57331A80F08400DFFAE1 /* NevoOTAPacketProfile.swift in Sources */,
