@@ -146,7 +146,7 @@ class MyNevoController: UITableViewController,ButtonManagerCallBack,SyncControll
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        return mynevoView.getMyNevoViewTableViewCell(indexPath, tableView: tableView, title: titleArray[indexPath.row])
+        return mynevoView.getMyNevoViewTableViewCell(indexPath, tableView: tableView, title: titleArray[indexPath.row], detailText: titleArray[indexPath.row])
     }
     /*
     // MARK: - Navigation
