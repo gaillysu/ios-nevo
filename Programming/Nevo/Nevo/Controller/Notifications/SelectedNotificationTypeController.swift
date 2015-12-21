@@ -119,18 +119,17 @@ class SelectedNotificationTypeController: UITableViewController {
                     }
                 }
             }
-        }
-
-        //(clockIndex/2 - 1) == indexPath.row
-        let mNotificationArray:NSArray =  UserNotification.getAll()
-        for model in mNotificationArray{
-            let notificationModel:UserNotification = model as! UserNotification
-            if(titleString == notificationModel.NotificationType){
-                clockIndex = (indexPath.row+1)*2
-                let reloadIndexPath:NSIndexPath = NSIndexPath(forRow: 0, inSection: 1)
-                selectedDelegate?.didSelectedNotificationDelegate((indexPath.row+1)*2, ntSwitchState: notificationModel.status,notificationType:notificationModel.NotificationType)
-                tableView.reloadRowsAtIndexPaths([reloadIndexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
-                break
+            
+            let mNotificationArray:NSArray =  UserNotification.getAll()
+            for model in mNotificationArray{
+                let notificationModel:UserNotification = model as! UserNotification
+                if(titleString == notificationModel.NotificationType){
+                    clockIndex = (indexPath.row+1)*2
+                    let reloadIndexPath:NSIndexPath = NSIndexPath(forRow: 0, inSection: 1)
+                    selectedDelegate?.didSelectedNotificationDelegate((indexPath.row+1)*2, ntSwitchState: notificationModel.status,notificationType:notificationModel.NotificationType)
+                    tableView.reloadRowsAtIndexPaths([reloadIndexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
+                    break
+                }
             }
         }
 
