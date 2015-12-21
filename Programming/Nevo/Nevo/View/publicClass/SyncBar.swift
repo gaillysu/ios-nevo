@@ -84,7 +84,7 @@ class SyncBar: NSObject,CancelSelectorDelegate {
         view.addSubview(hud)
         //self.spinnerRotate()
         UIView.animateWithDuration(1, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0.0, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
-            self.hud.frame = CGRectMake(0, 0, view.frame.size.width, 30)
+            self.hud.frame = CGRectMake(0, 0, UIScreen.mainScreen().bounds.size.width, 30)
             }) { (completion:Bool) -> Void in
 
         }
