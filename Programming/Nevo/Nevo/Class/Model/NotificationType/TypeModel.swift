@@ -22,7 +22,7 @@ class TypeModel: NSObject {
         typeString = type
         imageIcon = icon
         currentColor = color
-        getDictionary = NSDictionary(objectsAndKeys: states!,"states",typeString!,"type",imageIcon!,"icon",currentColor!,"color")
+        getDictionary = ["states":states!, "type":typeString!, "icon":imageIcon!, "color":currentColor!]
     }
 
     func setNotificationTypeStates(type:NSString, state:Bool, icon:NSString, color:NSNumber){
@@ -34,7 +34,7 @@ class TypeModel: NSObject {
 
     func getNotificationTypeContent() ->NSDictionary {
 
-        getDictionary = NSDictionary(objectsAndKeys: states!,"states",typeString!,"type",imageIcon!,"icon",currentColor!,"color")
+        getDictionary = ["states":states!, "type":typeString!, "icon":imageIcon!, "color":currentColor!]
         return getDictionary
     }
 
