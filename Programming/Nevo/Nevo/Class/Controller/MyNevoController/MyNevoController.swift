@@ -21,8 +21,8 @@ class MyNevoController: UITableViewController,ButtonManagerCallBack,SyncControll
         super.viewDidLoad()
 
         mynevoView.bulidMyNevoView(self,navigation: self.navigationItem)
-        buildinSoftwareVersion = GET_SOFTWARE_VERSION()
-        buildinFirmwareVersion = GET_FIRMWARE_VERSION()
+        buildinSoftwareVersion = AppTheme.GET_SOFTWARE_VERSION()
+        buildinFirmwareVersion = AppTheme.GET_FIRMWARE_VERSION()
 
         titleArray = ["Firmware","Battery","Watch version"]
     }
@@ -32,6 +32,9 @@ class MyNevoController: UITableViewController,ButtonManagerCallBack,SyncControll
         AppDelegate.getAppDelegate().startConnect(false, delegate: self)
         AppDelegate.getAppDelegate().ReadBatteryLevel()
         //mynevoView.setVersionLbael(AppDelegate.getAppDelegate().getSoftwareVersion(), bleNumber: AppDelegate.getAppDelegate().getFirmwareVersion())
+        let indexPath:NSIndexPath = NSIndexPath(forRow: 0, inSection: 0)
+        self.tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
+
     }
     
     override func viewDidDisappear(animated: Bool) {
@@ -151,12 +154,11 @@ class MyNevoController: UITableViewController,ButtonManagerCallBack,SyncControll
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         if(indexPath.row == 0){
-            if(AppDelegate.getAppDelegate().getSoftwareVersion().integerValue > buildinSoftwareVersion){return}
-            if(AppDelegate.getAppDelegate().getFirmwareVersion().integerValue > buildinFirmwareVersion){return}
+            //if(AppDelegate.getAppDelegate().getSoftwareVersion().integerValue > buildinSoftwareVersion && AppDelegate.getAppDelegate().getFirmwareVersion().integerValue > buildinFirmwareVersion){return}
             let otaCont:NevoOtaViewController = NevoOtaViewController()
             let navigation:UINavigationController = UINavigationController(rootViewController: otaCont)
             self.presentViewController(navigation, animated: true, completion: nil)
-            //self.navigationController?.pushViewController(otaCont, animated: true)
+
         }
 
         if(indexPath.row == 2){

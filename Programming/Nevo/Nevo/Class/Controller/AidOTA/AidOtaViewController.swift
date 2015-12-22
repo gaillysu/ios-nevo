@@ -50,7 +50,7 @@ class AidOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMan
         
         checkConnection()
 
-        let fileArray = GET_FIRMWARE_FILES("Firmwares")
+        let fileArray = AppTheme.GET_FIRMWARE_FILES("Firmwares")
         for tmpfile in fileArray {
             let selectedFile = tmpfile as! NSURL
             //let fileName:String? = (selectedFile.path! as NSString).lastPathComponent

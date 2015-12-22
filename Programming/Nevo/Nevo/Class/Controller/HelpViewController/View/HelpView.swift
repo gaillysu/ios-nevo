@@ -24,7 +24,7 @@ class HelpView: UIView {
         title.font = AppTheme.FONT_RALEWAY_LIGHT(mSize: 25)
         title.textAlignment = NSTextAlignment.Center
 
-        let fileArray = GET_FIRMWARE_FILES("help")
+        let fileArray = AppTheme.GET_FIRMWARE_FILES("help")
         for tmpfile in fileArray {
             let selectedFile = tmpfile as! NSURL
             let fileName:String? = (selectedFile.path! as NSString).lastPathComponent

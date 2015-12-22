@@ -167,6 +167,9 @@ class NevoOtaView: UIView {
         self.layer.addSublayer(OTAprogressView!)
     }
 
+    override func layoutSubviews() {
+        OTAprogressView?.frame = CGRectMake(nevoWacthImage.frame.origin.x, nevoWacthImage.frame.origin.y, nevoWacthImage.frame.size.width, nevoWacthImage.frame.size.height)
+    }
     @IBAction func buttonAction(sender: AnyObject) {
         mDelegate?.controllManager(sender)
     }
@@ -179,7 +182,7 @@ class NevoOtaView: UIView {
     func setProgress(progress: Float, currentTask:NSInteger, allTask:NSInteger, progressString:String){
         progresValue = CGFloat(progress)
         OTAprogressView?.setProgress(progresValue)
-        progresLabel.text = "\(progresValue)%"
+        progresLabel.text = String(format: "%.0f%c", progresValue*100,37)
         messageLabel.text = NSLocalizedString("Updating", comment: "") + " \(progressString) " + "(\(currentTask)/\(allTask))"
     }
 

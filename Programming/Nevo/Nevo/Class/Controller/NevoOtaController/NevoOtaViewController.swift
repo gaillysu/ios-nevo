@@ -24,6 +24,7 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
     private var allTaskNumber:NSInteger = 0;//计算所有OTA任务数量
     private var currentTaskNumber:NSInteger = 0;//当前在第几个任务
     private var rssialert:UIAlertView?
+    private var continueButton:UIButton = UIButton(type: UIButtonType.Custom)
 
     init() {
         super.init(nibName: "NevoOtaViewController", bundle: NSBundle.mainBundle())
@@ -45,7 +46,7 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
         //init the view
         nevoOtaView.buildView(self,otacontroller: mNevoOtaController!)
         initValue()
-        nevoOtaView.setProgress(0.5, currentTask: currentTaskNumber,allTask: allTaskNumber, progressString: "BLE")
+        nevoOtaView.setProgress(0, currentTask: currentTaskNumber,allTask: allTaskNumber, progressString: "BLE")
     }
 
     override func viewDidAppear(animated: Bool) {
@@ -56,10 +57,10 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
             if((currentSoftwareVersion as String).isEmpty || (currentFirmwareVersion as String).isEmpty) {
                 return
             }
-            buildinSoftwareVersion = GET_SOFTWARE_VERSION()
-            buildinFirmwareVersion = GET_FIRMWARE_VERSION()
+            buildinSoftwareVersion = AppTheme.GET_SOFTWARE_VERSION()
+            buildinFirmwareVersion = AppTheme.GET_FIRMWARE_VERSION()
 
-            let fileArray = GET_FIRMWARE_FILES("Firmwares")
+            let fileArray = AppTheme.GET_FIRMWARE_FILES("Firmwares")
 
             if(currentFirmwareVersion.integerValue < buildinFirmwareVersion && currentSoftwareVersion.integerValue != 0) {
                 for tmpfile in fileArray {
@@ -73,7 +74,7 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
                 }
             }
 
-            if(currentSoftwareVersion.integerValue < buildinSoftwareVersion){
+            if(currentSoftwareVersion.integerValue < buildinSoftwareVersion) {
                 for tmpfile in fileArray {
                     let selectedFile = tmpfile as! NSURL
                     let fileExtension:String? = selectedFile.pathExtension
@@ -85,7 +86,7 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
                     }
                 }
             }
-            if(currentSoftwareVersion.integerValue < buildinSoftwareVersion){
+            if(currentSoftwareVersion.integerValue < buildinSoftwareVersion) {
                 nevoOtaView.setProgress(0.0, currentTask: currentTaskNumber,allTask: allTaskNumber, progressString: "MCU")
             }
 
@@ -93,14 +94,13 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
                 nevoOtaView.setProgress(0.0, currentTask: currentTaskNumber,allTask: allTaskNumber, progressString: "BLE")
             }
 
-            if(currentSoftwareVersion.integerValue < buildinSoftwareVersion || currentFirmwareVersion.integerValue < buildinFirmwareVersion )
-            {
+            if(currentSoftwareVersion.integerValue < buildinSoftwareVersion || currentFirmwareVersion.integerValue < buildinFirmwareVersion ) {
                 let updatemsg:String = NSLocalizedString("current FW version", comment: "") + "(\(currentFirmwareVersion),\(currentSoftwareVersion))," + NSLocalizedString("latest FW version", comment: "") + "(\(buildinFirmwareVersion),\(buildinSoftwareVersion)). " + NSLocalizedString("are you sure", comment: "")
 
                 let alert :UIAlertView = UIAlertView(title: NSLocalizedString("Firmware Upgrade", comment: ""), message: updatemsg, delegate: self, cancelButtonTitle: NSLocalizedString("Cancel", comment: ""))
                 alert.addButtonWithTitle(NSLocalizedString("Enter", comment: ""))
                 alert.show()
-            }else{
+            }else {
 
                 #if DEBUG
                     //nevoOtaView.ReUpgradeButton?.hidden = false
@@ -113,8 +113,9 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
 
     override func viewDidDisappear(animated: Bool) {
         UIApplication.sharedApplication().idleTimerDisabled = false
-        if (!self.isTransferring)
-        {mNevoOtaController!.reset(true)}
+        if (!self.isTransferring) {
+            mNevoOtaController!.reset(true)
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -123,9 +124,8 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
     }
 
     //MARK: - UIAlertViewDelegate
-    func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int){
-
-        if(buttonIndex==1){
+    func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int) {
+        if(buttonIndex==1) {
             currentIndex = 0
             uploadPressed()
         }
@@ -161,8 +161,6 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
             enumFirmwareType = DfuFirmwareTypes.APPLICATION
             nevoOtaView.setProgress(0.0, currentTask: currentTaskNumber,allTask: allTaskNumber, progressString: "BLE")
         }
-
-
         isTransferring = true
         mNevoOtaController?.performDFUOnFile(selectedFileURL!, firmwareType: enumFirmwareType)
 
@@ -170,7 +168,7 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
 
     //below is delegate function
 
-    func onDFUStarted(){
+    func onDFUStarted() {
         AppTheme.DLog("onDFUStarted");
         //here enable upload button
     }
@@ -179,21 +177,21 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
     /**
     See SyncControllerDelegate
     */
-    func receivedRSSIValue(number:NSNumber){
+    func receivedRSSIValue(number:NSNumber) {
         //AppTheme.DLog("Red RSSI Value:\(number)")
-        if(number.integerValue < -85){
-            if(rssialert==nil){
+        if(number.integerValue < -85) {
+            if(rssialert==nil) {
                 rssialert = UIAlertView(title: NSLocalizedString("Unstable connection ensure", comment: ""), message:NSLocalizedString("Unstable connection ensure phone is on and in range", comment: "") , delegate: nil, cancelButtonTitle: nil)
                 rssialert?.show()
             }
-        }else{
+        }else {
             rssialert?.dismissWithClickedButtonIndex(1, animated: true)
             rssialert = nil
         }
     }
 
     //user cancel
-    func onDFUCancelled(){
+    func onDFUCancelled() {
         AppTheme.DLog("onDFUCancelled");
         //reset OTA view controller 's some data, such as progress bar and upload button text/status
         dispatch_async(dispatch_get_main_queue(), {
@@ -203,24 +201,25 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
     }
 
     //percent is[0..100]
-    func onTransferPercentage(percent:Int){
+    func onTransferPercentage(percent:Int) {
         nevoOtaView.setProgress((Float(percent)/100.0), currentTask: currentTaskNumber, allTask: allTaskNumber, progressString: enumFirmwareType == DfuFirmwareTypes.APPLICATION ? "BLE":"Mcu")
     }
 
     //successfully
-    func onSuccessfulFileTranferred(){
+    func onSuccessfulFileTranferred() {
         currentIndex = currentIndex + 1
-        if currentIndex == firmwareURLs.count
-        {
+        if currentIndex == firmwareURLs.count {
             initValue()
             var message = NSLocalizedString("UpdateSuccess1", comment: "")
             let alert :UIAlertView = UIAlertView(title: NSLocalizedString("Firmware Upgrade", comment: ""), message: message, delegate: nil, cancelButtonTitle: NSLocalizedString("Ok", comment: ""))
             alert.show()
             self.nevoOtaView.upgradeSuccessful()
             self.mNevoOtaController!.reset(false)
+            nevoOtaView.updatingView.hidden = true
+            nevoOtaView.backView.hidden = false
             let dispatchTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, Int64(2.0 * Double(NSEC_PER_SEC)))
             dispatch_after(dispatchTime, dispatch_get_main_queue(), {
-                self.dismissViewControllerAnimated(true, completion: nil)
+                //self.dismissViewControllerAnimated(true, completion: nil)
             })
         }else{
             mNevoOtaController!.setStatus(DFUControllerState.SEND_RESET)
@@ -231,6 +230,19 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
                 //Ble升级完成请打开手表蓝牙,确保连接上并弹出配对信息,点击配对按钮后在点击继续Mcu按钮,不然会出现超时现象
                 let alertTip :UIAlertView = UIAlertView(title: NSLocalizedString("Firmware Upgrade", comment: ""), message: NSLocalizedString("update_ble_success_message", comment: ""), delegate: nil, cancelButtonTitle: NSLocalizedString("Ok", comment: ""))
                 alertTip.show()
+
+                continueButton.setTitle("Continue", forState: UIControlState.Normal)
+                continueButton.setTitleColor(AppTheme.NEVO_SOLAR_YELLOW(), forState: UIControlState.Normal)
+                continueButton.frame = CGRectMake(0, 0, 135, 35)
+                continueButton.center = CGPointMake(UIScreen.mainScreen().bounds.size.width/2.0, UIScreen.mainScreen().bounds.size.height-85)
+                continueButton.addTarget(self, action: Selector("controllManager:"), forControlEvents: UIControlEvents.TouchUpInside)
+                continueButton.layer.masksToBounds = true
+                continueButton.layer.cornerRadius = 8.0
+                continueButton.layer.borderWidth = 1.0
+                continueButton.layer.borderColor = AppTheme.NEVO_SOLAR_YELLOW().CGColor
+
+                self.view.addSubview(continueButton)
+                self.nevoOtaView.updatingView.hidden = true
             }
             let dispatchTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, Int64(3.0 * Double(NSEC_PER_SEC)))
             dispatch_after(dispatchTime, dispatch_get_main_queue(), {
@@ -278,31 +290,25 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
 
         if (mNevoOtaController != nil && !(mNevoOtaController!.isConnected() ) || isTransferring) {
 
-        }else{
+        }else {
             // enable upPress button
         }
-
     }
 
 
     // MARK: - ButtonManagerCallBack
     func controllManager(sender:AnyObject) {
-        if(nevoOtaView.backButton.isEqual(sender)){
-            self.dismissViewControllerAnimated(true, completion: nil)
-        }else {
+        if(continueButton.isEqual(sender)){
             let SAVED_ADDRESS_KEY = "SAVED_ADDRESS"
             NSUserDefaults.standardUserDefaults().removeObjectForKey(SAVED_ADDRESS_KEY)
             self.mNevoOtaController!.reset(false)
             uploadPressed()
-            if(mNevoOtaController!.isConnected()) {
-                //currentTaskNumber = 0;
-                //allTaskNumber = 0;
-                //firmwareURLs = []
-                //currentIndex = 0
-                // reUpdate all firmwares
-            }else {
-                // no connected nevo, disable update
-            }
+            continueButton.hidden = true
+            self.nevoOtaView.updatingView.hidden = false
+        }
+
+        if(nevoOtaView.backButton.isEqual(sender)) {
+            self.dismissViewControllerAnimated(true, completion: nil)
         }
     }
 
@@ -311,22 +317,20 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
 
      :param: path <#path description#>
      */
-    func onFileSelected(selectedFile:NSURL){
+    func onFileSelected(selectedFile:NSURL) {
         AppTheme.DLog("onFileSelected")
         if (selectedFile.path != nil) {
             let fileExtension:String? = selectedFile.pathExtension
             //set the file information
 
             selectedFileURL = selectedFile
-            if fileExtension == "bin"
-            {
+            if fileExtension == "bin" {
                 enumFirmwareType = DfuFirmwareTypes.SOFTDEVICE
             }
-            if fileExtension == "hex"
-            {
+
+            if fileExtension == "hex" {
                 enumFirmwareType = DfuFirmwareTypes.APPLICATION
             }
-            
         }
     }
     

@@ -122,8 +122,6 @@
 		0050D65C1C28E0DB004F6F80 /* ConnectionControllerImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0050D5BD1C28E0DB004F6F80 /* ConnectionControllerImpl.swift */; };
 		0050D65D1C28E0DB004F6F80 /* ConnectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0050D5BE1C28E0DB004F6F80 /* ConnectionManager.swift */; };
 		0050D65E1C28E0DB004F6F80 /* NevoProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0050D5BF1C28E0DB004F6F80 /* NevoProfile.swift */; };
-		0050D65F1C28E0DB004F6F80 /* imaze_20150626_v31.hex in Resources */ = {isa = PBXBuildFile; fileRef = 0050D5C21C28E0DB004F6F80 /* imaze_20150626_v31.hex */; };
-		0050D6601C28E0DB004F6F80 /* iMaze_v18.bin in Resources */ = {isa = PBXBuildFile; fileRef = 0050D5C31C28E0DB004F6F80 /* iMaze_v18.bin */; };
 		0050D6611C28E0DB004F6F80 /* IntelHex2BinConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0050D5C61C28E0DB004F6F80 /* IntelHex2BinConverter.m */; };
 		0050D6621C28E0DB004F6F80 /* NevoOTAControllerProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0050D5C71C28E0DB004F6F80 /* NevoOTAControllerProfile.swift */; };
 		0050D6631C28E0DB004F6F80 /* NevoOTAModeProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0050D5C81C28E0DB004F6F80 /* NevoOTAModeProfile.swift */; };
@@ -159,6 +157,7 @@
 		0050D6971C28E1CD004F6F80 /* AddAlarmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0050D68D1C28E1CD004F6F80 /* AddAlarmView.swift */; };
 		0050D6981C28E1CD004F6F80 /* AlarmClockController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0050D68E1C28E1CD004F6F80 /* AlarmClockController.swift */; };
 		0050D6991C28E1CD004F6F80 /* alarmClockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0050D6901C28E1CD004F6F80 /* alarmClockView.swift */; };
+		0050D69B1C2906D8004F6F80 /* Firmwares in Resources */ = {isa = PBXBuildFile; fileRef = 0050D69A1C2906D8004F6F80 /* Firmwares */; };
 		005BC9561A889F14006F9E86 /* NevoPicture.png in Resources */ = {isa = PBXBuildFile; fileRef = 005BC9551A889F14006F9E86 /* NevoPicture.png */; };
 		005BC95F1A88B79F006F9E86 /* FXBlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = 005BC95E1A88B79F006F9E86 /* FXBlurView.m */; };
 		0072EAB51C190DCD001EE2C9 /* SFCompactDisplay-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0072EA8B1C190DCD001EE2C9 /* SFCompactDisplay-Black.ttf */; };
@@ -452,8 +451,6 @@
 		0050D5BD1C28E0DB004F6F80 /* ConnectionControllerImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectionControllerImpl.swift; sourceTree = "<group>"; };
 		0050D5BE1C28E0DB004F6F80 /* ConnectionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectionManager.swift; sourceTree = "<group>"; };
 		0050D5BF1C28E0DB004F6F80 /* NevoProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NevoProfile.swift; sourceTree = "<group>"; };
-		0050D5C21C28E0DB004F6F80 /* imaze_20150626_v31.hex */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = imaze_20150626_v31.hex; sourceTree = "<group>"; };
-		0050D5C31C28E0DB004F6F80 /* iMaze_v18.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = iMaze_v18.bin; sourceTree = "<group>"; };
 		0050D5C51C28E0DB004F6F80 /* IntelHex2BinConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntelHex2BinConverter.h; sourceTree = "<group>"; };
 		0050D5C61C28E0DB004F6F80 /* IntelHex2BinConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntelHex2BinConverter.m; sourceTree = "<group>"; };
 		0050D5C71C28E0DB004F6F80 /* NevoOTAControllerProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NevoOTAControllerProfile.swift; sourceTree = "<group>"; };
@@ -490,6 +487,7 @@
 		0050D68D1C28E1CD004F6F80 /* AddAlarmView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddAlarmView.swift; sourceTree = "<group>"; };
 		0050D68E1C28E1CD004F6F80 /* AlarmClockController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlarmClockController.swift; sourceTree = "<group>"; };
 		0050D6901C28E1CD004F6F80 /* alarmClockView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = alarmClockView.swift; sourceTree = "<group>"; };
+		0050D69A1C2906D8004F6F80 /* Firmwares */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Firmwares; sourceTree = "<group>"; };
 		005BC9551A889F14006F9E86 /* NevoPicture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NevoPicture.png; sourceTree = "<group>"; };
 		005BC95D1A88B79F006F9E86 /* FXBlurView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FXBlurView.h; sourceTree = "<group>"; };
 		005BC95E1A88B79F006F9E86 /* FXBlurView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FXBlurView.m; sourceTree = "<group>"; };
@@ -1125,7 +1123,6 @@
 		0050D5C01C28E0DB004F6F80 /* OTA */ = {
 			isa = PBXGroup;
 			children = (
-				0050D5C11C28E0DB004F6F80 /* Firmwares */,
 				0050D5C41C28E0DB004F6F80 /* IntelHex2BinConverter */,
 				0050D5C71C28E0DB004F6F80 /* NevoOTAControllerProfile.swift */,
 				0050D5C81C28E0DB004F6F80 /* NevoOTAModeProfile.swift */,
@@ -1134,15 +1131,6 @@
 				0050D5CB1C28E0DB004F6F80 /* Utility.swift */,
 			);
 			path = OTA;
-			sourceTree = "<group>";
-		};
-		0050D5C11C28E0DB004F6F80 /* Firmwares */ = {
-			isa = PBXGroup;
-			children = (
-				0050D5C21C28E0DB004F6F80 /* imaze_20150626_v31.hex */,
-				0050D5C31C28E0DB004F6F80 /* iMaze_v18.bin */,
-			);
-			path = Firmwares;
 			sourceTree = "<group>";
 		};
 		0050D5C41C28E0DB004F6F80 /* IntelHex2BinConverter */ = {
@@ -1240,6 +1228,7 @@
 		007F79731A878D0B006C89E6 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				0050D69A1C2906D8004F6F80 /* Firmwares */,
 				00DC9E461BB2853D00734DB6 /* Classes */,
 				00E5CFD31B17F81F00D1F829 /* help */,
 				00A773901A88562F0018E121 /* Strings */,
@@ -1755,7 +1744,6 @@
 				00D4DE921AB141FB0062523D /* NevoPicture960.png in Resources */,
 				0072EAC71C190DCD001EE2C9 /* SFCompactText-RegularItalic.ttf in Resources */,
 				0050D5F91C28E0DB004F6F80 /* NevoOtaViewController.xib in Resources */,
-				0050D6601C28E0DB004F6F80 /* iMaze_v18.bin in Resources */,
 				0072EAC41C190DCD001EE2C9 /* SFCompactText-Medium.ttf in Resources */,
 				0072EAB81C190DCD001EE2C9 /* SFCompactDisplay-Light.ttf in Resources */,
 				0050D61C1C28E0DB004F6F80 /* SleepHistoricalViewController.xib in Resources */,
@@ -1786,12 +1774,12 @@
 				0050D61E1C28E0DB004F6F80 /* SleepTrackingController.xib in Resources */,
 				0050D6961C28E1CD004F6F80 /* AddAlarmTableViewCell.xib in Resources */,
 				0072EAD51C190DCD001EE2C9 /* SFUIText-Heavy.ttf in Resources */,
+				0050D69B1C2906D8004F6F80 /* Firmwares in Resources */,
 				001F1B7B1B57777B001DD426 /* nevo_wacth_selected.png in Resources */,
 				0050D60C1C28E0DB004F6F80 /* AddPresetViewController.xib in Resources */,
 				00E759181C2406E600372529 /* upgrade_clock.png in Resources */,
 				0072EAB91C190DCD001EE2C9 /* SFCompactDisplay-Medium.ttf in Resources */,
 				00478F501A8F637D00D0DCE2 /* clockViewMinute.png in Resources */,
-				0050D65F1C28E0DB004F6F80 /* imaze_20150626_v31.hex in Resources */,
 				0072EACF1C190DCD001EE2C9 /* SFUIDisplay-Regular.ttf in Resources */,
 				0072EACE1C190DCD001EE2C9 /* SFUIDisplay-Medium.ttf in Resources */,
 				0072EAB71C190DCD001EE2C9 /* SFCompactDisplay-Heavy.ttf in Resources */,

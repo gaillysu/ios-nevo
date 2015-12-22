@@ -222,20 +222,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
     }
 
     /**
-     return true, if it is not the first run
-     return false ,if it is running the tutorial screen
-     */
-    func hasLoadHomeController() ->Bool{
-        for delegate in mDelegates {
-            if delegate is HomeController
-            {
-                return true
-            }
-        }
-        return false
-    }
-
-    /**
      Remove MyNevoDelegate
      */
     func removeMyNevoDelegate(){
@@ -254,15 +240,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
 
         disConnectAlert = nil
 
-        if(buttonIndex==1){
-            //GOTO OTA SCREEN
-            for delegate in mDelegates {
-                if delegate is HomeController{
-                    (delegate as! HomeController).gotoOTAScreen()
-                    break
-                }
-            }
-        }
     }
 
     // MARK: - ConnectionController protocol
@@ -441,11 +418,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                     }
                 }
 
-                if(currentDateStr.integerValue-1 == thispacket.getDateTimer()){
+                if(currentDateStr.integerValue-1 == thispacket.getDateTimer()) {
                     let dataArray:[[Int]] = [thispacket.getHourlySleepTime(),thispacket.getHourlyWakeTime(),thispacket.getHourlyLightTime(),thispacket.getHourlyDeepTime()]
-                    if(todaySleepData.count==0){
+                    if(todaySleepData.count==0) {
                         todaySleepData.addObject(dataArray)
-                    }else{
+                    }else {
                         todaySleepData.insertObject(dataArray, atIndex: 0)
                     }
                 }
@@ -488,22 +465,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
 
                 //Query the database is this record
                 let quyerModel = DaySleepSaveModel.findFirstByCriteria("WHERE created = \(thispacket.getDateTimer())")
-                if(quyerModel != nil){
+                if(quyerModel != nil) {
                     AppTheme.DLog("Data that has been saved····")
                     daysleepSave.update()
                     //Analyzing whether the same data database is not updated if they are equal, otherwise the update the database
-                }else{
+                }else {
                     //Don't have any database if the sleep time is zero
-                    if(thispacket.getDailySleepTime() != 0){
+                    if(thispacket.getDailySleepTime() != 0) {
                         let isSave:Bool = daysleepSave.save()  //If not, save database
                     }
                 }
 
                 //end save
                 currentDay++
-                if(currentDay < UInt8(savedDailyHistory.count)){
+                if(currentDay < UInt8(savedDailyHistory.count)) {
                     self.getDailyTracker(currentDay)
-                }else{
+                }else {
                     currentDay = 0
                     self.syncFinished()
                     for delegate in mDelegates {
@@ -515,11 +492,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
             if(packet.getHeader() == GetStepsGoalRequest.HEADER()) {
                 var thispacket = packet.copy() as DailyStepsNevoPacket
                 //refresh current hourly steps changing in the healthkit
-                
             }
             
             //find Phone
-            if (TestMode.shareInstance(packet.getPackets()).isTestModel()){
+            if (TestMode.shareInstance(packet.getPackets()).isTestModel()) {
                 AppTheme.playSound()
             }
             
@@ -539,8 +515,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
             delegate.connectionStateChanged(isConnected)
         }
 
-        if( isConnected )
-        {
+        if(isConnected) {
             let dispatchTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, Int64(1.0 * Double(NSEC_PER_SEC)))
             dispatch_after(dispatchTime, dispatch_get_main_queue(), {
                 //setp1: cmd 0x01, set RTC, for every connected Nevo
@@ -548,30 +523,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                 self.setRTC()
             })
 
-        }
-        else
-        {
+        }else {
             SyncQueue.sharedInstance.clear()
             mPacketsbuffer = []
         }
     }
 
-    func firmwareVersionReceived(whichfirmware:DfuFirmwareTypes, version:NSString)
-    {
-        let mcuver = GET_SOFTWARE_VERSION()
-        let blever = GET_FIRMWARE_VERSION()
+    func firmwareVersionReceived(whichfirmware:DfuFirmwareTypes, version:NSString) {
+        let mcuver = AppTheme.GET_SOFTWARE_VERSION()
+        let blever = AppTheme.GET_FIRMWARE_VERSION()
 
         AppTheme.DLog("Build in software version: \(mcuver), firmware version: \(blever)")
 
         if ((whichfirmware == DfuFirmwareTypes.SOFTDEVICE  && version.integerValue < mcuver)
-            || (whichfirmware == DfuFirmwareTypes.APPLICATION  && version.integerValue < blever))
-
-        {
+            || (whichfirmware == DfuFirmwareTypes.APPLICATION  && version.integerValue < blever)) {
             //for tutorial screen, don't popup update dialog
-            if !mAlertUpdateFW  && hasLoadHomeController()
-            {
+            if !mAlertUpdateFW {
                 mAlertUpdateFW = true
-
                 let alert :UIAlertView = UIAlertView(title: NSLocalizedString("Firmware Upgrade", comment: ""), message: NSLocalizedString("FirmwareAlertMessage", comment: ""), delegate: nil, cancelButtonTitle: NSLocalizedString("ok", comment: ""))
                 alert.show()
             }
