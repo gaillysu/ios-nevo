@@ -23,11 +23,13 @@ class Presets: NSObject,BaseEntryDatabaseHelper {
         self.setValue(keyDict.objectForKey("status"), forKey: "status")
     }
 
-    func add()->Bool{
+    func add(result:((id:Int?,completion:Bool?) -> Void)){
         presetsModel.steps = steps
         presetsModel.label = label
         presetsModel.status = status
-        return presetsModel.add()
+        presetsModel.add { (id, completion) -> Void in
+           result(id: id!, completion: completion!)
+        }
     }
 
     func update()->Bool{

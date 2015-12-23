@@ -26,12 +26,14 @@ class UserAlarm: NSObject,BaseEntryDatabaseHelper {
         self.setValue(keyDict.objectForKey("repeatStatus"), forKey: "repeatStatus")
     }
 
-    func add()->Bool{
+    func add(result:((id:Int?,completion:Bool?) -> Void)){
         alarmModel.timer = timer
         alarmModel.label = label
         alarmModel.status = status
         alarmModel.repeatStatus = repeatStatus
-        return alarmModel.add()
+        alarmModel.add { (id, completion) -> Void in
+            result(id: id, completion: completion)
+        }
     }
 
     func update()->Bool{

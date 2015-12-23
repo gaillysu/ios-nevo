@@ -127,11 +127,11 @@
                                             </connections>
                                         </switch>
                                         <label opaque="NO" userInteractionEnabled="NO" tag="1500" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="6:00 am" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="obm-ad-oru">
-                                            <rect key="frame" x="17" y="5" width="90" height="40"/>
+                                            <rect key="frame" x="17" y="5" width="100" height="40"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="90" id="PUv-bo-Uwd"/>
+                                                <constraint firstAttribute="width" constant="100" id="PUv-bo-Uwd"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -160,7 +160,7 @@
                                         <constraint firstItem="02F-Ae-9XP" firstAttribute="firstBaseline" secondItem="Hp0-RY-qB3" secondAttribute="firstBaseline" id="EfJ-75-jlK"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="VsW-Nh-SOm" secondAttribute="trailing" constant="12" id="J42-0F-Yac"/>
                                         <constraint firstItem="VsW-Nh-SOm" firstAttribute="leading" secondItem="02F-Ae-9XP" secondAttribute="trailing" constant="34" id="JrO-7p-NWW"/>
-                                        <constraint firstItem="Hp0-RY-qB3" firstAttribute="leading" secondItem="obm-ad-oru" secondAttribute="trailing" constant="10" id="Tn4-xK-wBY"/>
+                                        <constraint firstItem="Hp0-RY-qB3" firstAttribute="leading" secondItem="obm-ad-oru" secondAttribute="trailing" id="Tn4-xK-wBY"/>
                                         <constraint firstItem="obm-ad-oru" firstAttribute="bottom" secondItem="Hp0-RY-qB3" secondAttribute="bottom" id="VkH-iW-RPT"/>
                                         <constraint firstItem="Hp0-RY-qB3" firstAttribute="top" secondItem="obm-ad-oru" secondAttribute="top" id="aJQ-Wo-HVI"/>
                                         <constraint firstItem="obm-ad-oru" firstAttribute="leading" secondItem="fVi-6c-Bo8" secondAttribute="leadingMargin" constant="9" id="acU-er-SJv"/>

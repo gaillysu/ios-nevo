@@ -188,7 +188,7 @@ class UserDatabaseHelper:NSObject,BaseEntryDatabaseHelper {
 
      :returns: Insert results，YES or NO
      */
-    func add()->Bool{
+    func add(result:((id:Int?,completion:Bool?) -> Void)){
         var tableName:NSString = NSStringFromClass(self.classForCoder);
         tableName = tableName.stringByReplacingOccurrencesOfString(".", withString: "")
         let keyString:NSMutableString = NSMutableString()
@@ -219,8 +219,8 @@ class UserDatabaseHelper:NSObject,BaseEntryDatabaseHelper {
             res = db.executeUpdate("\(sql)", withArgumentsInArray: insertValues as [AnyObject])
             self.id = res ? NSNumber(longLong: db.lastInsertRowId()).integerValue : 0
             AppTheme.DLog("\(res ? "Insert success" : "Insert failed"),SQL:\(sql)");
+            result(id: self.id,completion: res)
         }
-        return res;
     }
 
     /**

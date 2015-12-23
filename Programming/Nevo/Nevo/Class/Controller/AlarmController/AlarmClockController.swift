@@ -87,7 +87,7 @@ class AlarmClockController: UITableViewController, SyncControllerDelegate,AddAla
     // MARK: - AddAlarmDelegate
     func onDidAddAlarmAction(timer:NSTimeInterval,repeatStatus:Bool,name:String){
 
-        if(mAlarmArray.count>3){
+        if(mAlarmArray.count==3){
             let aler:UIAlertView = UIAlertView(title: "Tip", message: "Only add three alarm", delegate: nil, cancelButtonTitle: NSLocalizedString("ok", comment: ""))
             aler.show()
         }else{
@@ -113,20 +113,23 @@ class AlarmClockController: UITableViewController, SyncControllerDelegate,AddAla
                 }
             }else{
                 let addalarm:UserAlarm = UserAlarm(keyDict: ["id":0,"timer":timer,"label":"\(name)","status":true,"repeatStatus":repeatStatus])
-                if(addalarm.add()){
-                    mAlarmArray.append(addalarm)
-                    self.tableView.reloadData()
+                addalarm.add({ (id, completion) -> Void in
+                    if(completion!){
+                        addalarm.id = id!
+                        self.mAlarmArray.append(addalarm)
+                        self.tableView.reloadData()
 
-                    let date:NSDate = NSDate(timeIntervalSince1970: timer)
-                    let alarm:Alarm = Alarm(index:alarmArray.count, hour: date.hour, minute: date.minute, enable: true)
-                    alarmArray.append(alarm)
-                    if(AppDelegate.getAppDelegate().isConnected()){
-                        AppDelegate.getAppDelegate().setAlarm(alarmArray)
+                        let date:NSDate = NSDate(timeIntervalSince1970: timer)
+                        let alarm:Alarm = Alarm(index:self.alarmArray.count, hour: date.hour, minute: date.minute, enable: true)
+                        self.alarmArray.append(alarm)
+                        if(AppDelegate.getAppDelegate().isConnected()){
+                            AppDelegate.getAppDelegate().setAlarm(self.alarmArray)
+                        }
+                    }else{
+                        let aler:UIAlertView = UIAlertView(title: "Tip", message: "Database insert fail", delegate: nil, cancelButtonTitle: "ok")
+                        aler.show()
                     }
-                }else{
-                    let aler:UIAlertView = UIAlertView(title: "Tip", message: "Database insert fail", delegate: nil, cancelButtonTitle: "ok")
-                    aler.show()
-                }
+                })
             }
         }
     }

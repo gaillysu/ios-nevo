@@ -26,7 +26,9 @@ class UserNotification: NSObject,BaseEntryDatabaseHelper {
             let notificationTypeArray:[String] = ["Calendar", "Facebook", "WeChat", "EMAIL", "CALL", "SMS", "Whatsapp"]
             for (var index:Int = 0; index < notificationTypeArray.count ; index++) {
                 let notification:UserNotification = UserNotification(keyDict: ["id":index,"clock":(index+1)*2,"NotificationType":notificationTypeArray[index],"status":false])
-                notification.add()
+                notification.add({ (id, completion) -> Void in
+
+                })
             }
         }
     }
@@ -39,11 +41,13 @@ class UserNotification: NSObject,BaseEntryDatabaseHelper {
         self.setValue(keyDict.objectForKey("status"), forKey: "status")
     }
 
-    func add()->Bool{
+    func add(result:((id:Int?,completion:Bool?) -> Void)){
         notificationModel.clock = clock
         notificationModel.NotificationType = NotificationType
         notificationModel.status = status
-        return notificationModel.add()
+        notificationModel.add { (id, completion) -> Void in
+            result(id: id, completion: completion)
+        }
     }
 
     func update()->Bool{
