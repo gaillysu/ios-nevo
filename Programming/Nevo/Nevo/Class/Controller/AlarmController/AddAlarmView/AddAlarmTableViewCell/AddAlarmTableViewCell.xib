@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -22,9 +23,10 @@
                     </datePicker>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="MMl-Ob-oVT" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="Gdp-DH-Ub0"/>
-                    <constraint firstItem="MMl-Ob-oVT" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="OCw-v0-nyR"/>
-                    <constraint firstItem="MMl-Ob-oVT" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="OGk-fe-DRt"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="MMl-Ob-oVT" secondAttribute="bottom" constant="-9" id="PKO-4T-XVA"/>
+                    <constraint firstItem="MMl-Ob-oVT" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="-8" id="RoD-Ve-V1o"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="MMl-Ob-oVT" secondAttribute="trailing" constant="-8" id="i83-X4-wRH"/>
+                    <constraint firstItem="MMl-Ob-oVT" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="-8" id="mx8-jN-0xV"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>

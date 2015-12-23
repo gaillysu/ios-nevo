@@ -49,9 +49,10 @@ class PresetTableViewController: UITableViewController,ButtonManagerCallBack,Add
     // MARK: - AddPresetDelegate
     func onAddPresetNumber(number:Int,name:String){
         NSLog("onAddPresetNumber:\(number),name:\(name)")
-        let prestModel:Presets = Presets(keyDict: ["id":"0","steps":"\(number)","label":"\(name)","status":"\(Bool(true))"])
-        if(prestModel.add()){
-            prestArray.append(prestModel)
+        let prestModel:Presets = Presets(keyDict: ["id":0,"steps":number,"label":"\(name)","status":true])
+        prestModel.add { (id, completion) -> Void in
+            prestModel.id = id!
+            self.prestArray.append(prestModel)
             self.tableView.reloadData()
         }
     }
