@@ -158,6 +158,8 @@
 		0050D6981C28E1CD004F6F80 /* AlarmClockController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0050D68E1C28E1CD004F6F80 /* AlarmClockController.swift */; };
 		0050D6991C28E1CD004F6F80 /* alarmClockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0050D6901C28E1CD004F6F80 /* alarmClockView.swift */; };
 		0050D69B1C2906D8004F6F80 /* Firmwares in Resources */ = {isa = PBXBuildFile; fileRef = 0050D69A1C2906D8004F6F80 /* Firmwares */; };
+		0050D69D1C2A32A5004F6F80 /* UserSteps.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0050D69C1C2A32A5004F6F80 /* UserSteps.swift */; };
+		0050D69F1C2A78C1004F6F80 /* UserSleep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0050D69E1C2A78C1004F6F80 /* UserSleep.swift */; };
 		005BC9561A889F14006F9E86 /* NevoPicture.png in Resources */ = {isa = PBXBuildFile; fileRef = 005BC9551A889F14006F9E86 /* NevoPicture.png */; };
 		005BC95F1A88B79F006F9E86 /* FXBlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = 005BC95E1A88B79F006F9E86 /* FXBlurView.m */; };
 		0072EAB51C190DCD001EE2C9 /* SFCompactDisplay-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0072EA8B1C190DCD001EE2C9 /* SFCompactDisplay-Black.ttf */; };
@@ -488,6 +490,8 @@
 		0050D68E1C28E1CD004F6F80 /* AlarmClockController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlarmClockController.swift; sourceTree = "<group>"; };
 		0050D6901C28E1CD004F6F80 /* alarmClockView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = alarmClockView.swift; sourceTree = "<group>"; };
 		0050D69A1C2906D8004F6F80 /* Firmwares */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Firmwares; sourceTree = "<group>"; };
+		0050D69C1C2A32A5004F6F80 /* UserSteps.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSteps.swift; sourceTree = "<group>"; };
+		0050D69E1C2A78C1004F6F80 /* UserSleep.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSleep.swift; sourceTree = "<group>"; };
 		005BC9551A889F14006F9E86 /* NevoPicture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NevoPicture.png; sourceTree = "<group>"; };
 		005BC95D1A88B79F006F9E86 /* FXBlurView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FXBlurView.h; sourceTree = "<group>"; };
 		005BC95E1A88B79F006F9E86 /* FXBlurView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FXBlurView.m; sourceTree = "<group>"; };
@@ -942,9 +946,9 @@
 		0050D5831C28E0DB004F6F80 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				0050D58B1C28E0DB004F6F80 /* DBModel */,
 				0050D5841C28E0DB004F6F80 /* Activity */,
 				0050D5891C28E0DB004F6F80 /* Alarm */,
-				0050D58B1C28E0DB004F6F80 /* DBModel */,
 				0050D5A01C28E0DB004F6F80 /* Goal */,
 				0050D5A31C28E0DB004F6F80 /* NotificationType */,
 				0050D5A61C28E0DB004F6F80 /* Sleep */,
@@ -1009,6 +1013,8 @@
 				0050D59D1C28E0DB004F6F80 /* UserAlarm.swift */,
 				0050D59E1C28E0DB004F6F80 /* UserModel.swift */,
 				0050D59F1C28E0DB004F6F80 /* UserNotification.swift */,
+				0050D69C1C2A32A5004F6F80 /* UserSteps.swift */,
+				0050D69E1C2A78C1004F6F80 /* UserSleep.swift */,
 			);
 			path = ModelTable;
 			sourceTree = "<group>";
@@ -1985,12 +1991,14 @@
 				0050D6721C28E0DB004F6F80 /* ReadDailyTrackerInfo.swift in Sources */,
 				0050D6061C28E0DB004F6F80 /* Page3Controller.swift in Sources */,
 				0050D61A1C28E0DB004F6F80 /* SleepHistoricalView.swift in Sources */,
+				0050D69F1C2A78C1004F6F80 /* UserSleep.swift in Sources */,
 				00DC9EBA1BB2853D00734DB6 /* ChartYAxis.swift in Sources */,
 				0050D63A1C28E0DB004F6F80 /* BaseEntryDatabaseHelper.swift in Sources */,
 				00DC9EA91BB2853D00734DB6 /* BarLineChartViewBase.swift in Sources */,
 				00DC9ED11BB2853D00734DB6 /* RadarChartDataSet.swift in Sources */,
 				9AD8F98F1A6E2EE000F01014 /* Profile.swift in Sources */,
 				0050D6551C28E0DB004F6F80 /* AppTheme.swift in Sources */,
+				0050D69D1C2A32A5004F6F80 /* UserSteps.swift in Sources */,
 				00DC9ED91BB2853D00734DB6 /* BarChartHighlighter.swift in Sources */,
 				00DC9ED61BB2853D00734DB6 /* ChartDefaultXAxisValueFormatter.swift in Sources */,
 				0050D63E1C28E0DB004F6F80 /* AlarmModel.swift in Sources */,

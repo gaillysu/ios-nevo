@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
 
     var window: UIWindow?
     //Let's sync every days
-    let SYNC_INTERVAL:NSTimeInterval = 0*30*60 //unit is second in iOS, every 30min, do sync
+    let SYNC_INTERVAL:NSTimeInterval = 1*30*60 //unit is second in iOS, every 30min, do sync
     let LAST_SYNC_DATE_KEY = "LAST_SYNC_DATE_KEY"
     private var mDelegates:[SyncControllerDelegate] = []
     private var mConnectionController : ConnectionControllerImpl?
@@ -279,14 +279,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
     /**
      Called when a packet is received from the device
      */
-    func packetReceived(packet: RawPacket){
+    func packetReceived(packet: RawPacket) {
 
         mPacketsbuffer.append(packet.getRawData())
-        if(packet.isLastPacket())
-        {
+        if(packet.isLastPacket()) {
             let packet:NevoPacket = NevoPacket(packets:mPacketsbuffer)
-            if(!packet.isVaildPacket())
-            {
+            if(!packet.isVaildPacket()) {
                 AppTheme.DLog("Invaild packet............\(packet.getPackets().count)")
                 mPacketsbuffer = []
                 return;
@@ -299,41 +297,42 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
             //We just received a full response, so we can safely send the next request
             SyncQueue.sharedInstance.next()
 
-            if(packet.getHeader() == SetRTCRequest.HEADER())
-            {
+            if(packet.getHeader() == SetRTCRequest.HEADER()) {
                 //setp2:start set user profile
                 self.SetProfile()
             }
-            if(packet.getHeader() == SetProfileRequest.HEADER())
-            {
+
+            if(packet.getHeader() == SetProfileRequest.HEADER()) {
                 //step3:
                 self.WriteSetting()
             }
 
-            if(packet.getHeader() == WriteSettingRequest.HEADER())
-            {
+            if(packet.getHeader() == WriteSettingRequest.HEADER()) {
                 //step4:
                 self.SetCardio()
             }
 
-            if(packet.getHeader() == SetCardioRequest.HEADER())
-            {
+            if(packet.getHeader() == SetCardioRequest.HEADER()) {
                 //step5: sync the notification setting, if remove nevo's battery, the nevo notification reset, so here need sync it
-                //var mNotificationSettingArray:[NotificationSetting] = []
-                //let allType:[NotificationType] = [NotificationType.CALL, NotificationType.SMS, NotificationType.EMAIL, NotificationType.FACEBOOK, NotificationType.CALENDAR, NotificationType.WECHAT, NotificationType.WHATSAPP]
-                //for notType in allType{
-                    //let notificatiosetting:NotificationSetting = NotificationSetting(type:notType, color: 0)
-                    //let color = NSNumber(unsignedInt: EnterNotificationController.getLedColor(notificatiosetting.getType().rawValue))
-                    //let states = EnterNotificationController.getMotorOnOff(notificatiosetting.getType().rawValue)
-                    //notificatiosetting.updateValue(color, states: states)
-                    //mNotificationSettingArray.append(notificatiosetting)
-                //}
+                var mNotificationSettingArray:[NotificationSetting] = []
+                let notArray:NSArray = UserNotification.getAll()
+                let notificationTypeArray:[NotificationType] = [NotificationType.CALL, NotificationType.EMAIL, NotificationType.FACEBOOK, NotificationType.SMS, NotificationType.WECHAT, NotificationType.WHATSAPP]
+                for notificationType in notificationTypeArray {
+                    for model in notArray{
+                        let notification:UserNotification = model as! UserNotification
+                        if(notification.NotificationType == notificationType.rawValue){
+                            let setting:NotificationSetting = NotificationSetting(type: notificationType, clock: notification.clock, color: 0, states:notification.status)
+                            mNotificationSettingArray.append(setting)
+                            break
+                        }
+                    }
+                }
+
                 //start sync notification setting on the phone side
-                //SetNortification(mNotificationSettingArray)
+                SetNortification(mNotificationSettingArray)
             }
 
-            if(packet.getHeader() == SetNortificationRequest.HEADER())
-            {
+            if(packet.getHeader() == SetNortificationRequest.HEADER()) {
                 var alarmArray:[Alarm] = []
                 let array:NSArray = UserAlarm.getAll()
                 for(var index:Int = 0; index < array.count; index++){
@@ -346,30 +345,82 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                 setAlarm(alarmArray)
             }
 
-            if(packet.getHeader() == SetAlarmRequest.HEADER())
-            {
+            if(packet.getHeader() == SetAlarmRequest.HEADER()) {
                 //start sync data
                 self.syncActivityData()
             }
 
-            if(packet.getHeader() == ReadDailyTrackerInfo.HEADER())
-            {
+            if(packet.getHeader() == ReadDailyTrackerInfo.HEADER()) {
                 let thispacket = packet.copy() as DailyTrackerInfoNevoPacket
                 currentDay = 0
                 savedDailyHistory = thispacket.getDailyTrackerInfo()
                 AppTheme.DLog("History Total Days:\(savedDailyHistory.count),Today is \(GmtNSDate2LocaleNSDate(NSDate()))")
-                if savedDailyHistory.count > 0
-                {
+                if savedDailyHistory.count > 0 {
                     self.getDailyTracker(currentDay)
                 }
             }
 
-            if(packet.getHeader() == ReadDailyTracker.HEADER()){
+            if(packet.getHeader() == ReadDailyTracker.HEADER()) {
                 let thispacket:DailyTrackerNevoPacket = packet.copy() as DailyTrackerNevoPacket
+                let today:NSDate  = NSDate()
+                let dateFormatter:NSDateFormatter = NSDateFormatter()
+                dateFormatter.dateFormat = "yyyyMMdd"
+                let currentDateStr:NSString = dateFormatter.stringFromDate(today)
+
+                let timeStr:NSString = NSString(format: "\(thispacket.getDateTimer())")
+                let year:NSString = timeStr.substringWithRange(NSMakeRange(0,4)) as NSString
+                let month:NSString = timeStr.substringWithRange(NSMakeRange(6,2)) as NSString
+                let day:NSString = timeStr.substringWithRange(NSMakeRange(6,2)) as NSString
+                let timerInterval:NSDate = NSDate.date(year: year.integerValue, month: month.integerValue, day: day.integerValue)
+
+                let stepsModel = UserSteps.getCriteria("WHERE date = \(thispacket.getDateTimer())")
+                if(stepsModel.count>0) {
+                    let step:UserSteps = stepsModel[0] as! UserSteps
+                    AppTheme.DLog("Data that has been saved····")
+                    let stepsModel:UserSteps = UserSteps(keyDict: ["id":step.id, "steps":thispacket.getDailySteps(), "distance":thispacket.getDailyDist(), "hourlysteps": AppTheme.toJSONString(thispacket.getHourlySteps()), "hourlydistance":AppTheme.toJSONString(thispacket.getHourlyDist()), "calories":thispacket.getDailyCalories() , "hourlycalories":AppTheme.toJSONString(thispacket.getHourlyCalories()), "inZoneTime":thispacket.getInZoneTime(), "outZoneTime":thispacket.getOutZoneTime(), "inactivityTime":thispacket.getInactivityTime(), "goalreach":false, "date":timerInterval.timeIntervalSince1970])
+                    stepsModel.update()
+                }else {
+                    let stepsModel:UserSteps = UserSteps(keyDict: ["id":0, "steps":thispacket.getDailySteps(), "distance":thispacket.getDailyDist(), "hourlysteps": AppTheme.toJSONString(thispacket.getHourlySteps()), "hourlydistance":AppTheme.toJSONString(thispacket.getHourlyDist()), "calories":thispacket.getDailyCalories() , "hourlycalories":AppTheme.toJSONString(thispacket.getHourlyCalories()), "inZoneTime":thispacket.getInZoneTime(), "outZoneTime":thispacket.getOutZoneTime(), "inactivityTime":thispacket.getInactivityTime(), "goalreach":false, "date":thispacket.getDateTimer()])
+                    stepsModel.add({ (id, completion) -> Void in
+
+                    })
+                }
+
+                //save sleep data for every hour.
+                //save format: first write wake, then write sleep(light&deep)
+                if(currentDateStr.integerValue == thispacket.getDateTimer()){
+                    let dataArray:[[Int]] = [thispacket.getHourlySleepTime(),thispacket.getHourlyWakeTime(),thispacket.getHourlyLightTime(),thispacket.getHourlyDeepTime()]
+                    if(todaySleepData.count==0){
+                        todaySleepData.addObject(dataArray)
+                    }else{
+                        todaySleepData.insertObject(dataArray, atIndex: 1)
+                    }
+                }
+
+                if(currentDateStr.integerValue-1 == thispacket.getDateTimer()) {
+                    let dataArray:[[Int]] = [thispacket.getHourlySleepTime(),thispacket.getHourlyWakeTime(),thispacket.getHourlyLightTime(),thispacket.getHourlyDeepTime()]
+                    if(todaySleepData.count==0) {
+                        todaySleepData.addObject(dataArray)
+                    }else {
+                        todaySleepData.insertObject(dataArray, atIndex: 0)
+                    }
+                }
+
+                let sleepModel = UserSleep.getCriteria("WHERE date = \(thispacket.getDateTimer())")
+                if(sleepModel.count>0) {
+                    let model:UserSleep = UserSleep(keyDict: ["id": 0, "date":timerInterval.timeIntervalSince1970, "totalSleepTime":0, "hourlySleepTime":"\(AppTheme.toJSONString(thispacket.getHourlySleepTime()))", "totalWakeTime":0, "hourlyWakeTime":"\(AppTheme.toJSONString(thispacket.getHourlyWakeTime()))" , "totalLightTime":0, "hourlyLightTime":"\(AppTheme.toJSONString(thispacket.getHourlyLightTime()))", "totalDeepTime":0,  "hourlyDeepTime":"\(AppTheme.toJSONString(thispacket.getHourlyDeepTime()))"])
+                    model.update()
+                }else {
+                    let model:UserSleep = UserSleep(keyDict: ["id": 0, "date":timerInterval.timeIntervalSince1970, "totalSleepTime":0, "hourlySleepTime":"\(AppTheme.toJSONString(thispacket.getHourlySleepTime()))", "totalWakeTime":0, "hourlyWakeTime":"\(AppTheme.toJSONString(thispacket.getHourlyWakeTime()))" , "totalLightTime":0, "hourlyLightTime":"\(AppTheme.toJSONString(thispacket.getHourlyLightTime()))", "totalDeepTime":0,  "hourlyDeepTime":"\(AppTheme.toJSONString(thispacket.getHourlyDeepTime()))"])
+                    model.add({ (id, completion) -> Void in
+
+                    })
+                }
+
 
                 savedDailyHistory[Int(currentDay)].TotalSteps = thispacket.getDailySteps()
                 savedDailyHistory[Int(currentDay)].HourlySteps = thispacket.getHourlySteps()
-
+                
                 AppTheme.DLog("Day:\(GmtNSDate2LocaleNSDate(savedDailyHistory[Int(currentDay)].Date)), Daily Steps:\(savedDailyHistory[Int(currentDay)].TotalSteps)")
 
                 AppTheme.DLog("Day:\(GmtNSDate2LocaleNSDate(savedDailyHistory[Int(currentDay)].Date)), Hourly Steps:\(savedDailyHistory[Int(currentDay)].HourlySteps)")
@@ -399,80 +450,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                                 AppTheme.DLog("Save Hourly steps OK")
                             }
                         })
-                    }
-                }
-
-                //save sleep data for every hour.
-                //save format: first write wake, then write sleep(light&deep)
-                let today:NSDate  = NSDate()
-                let dateFormatter:NSDateFormatter = NSDateFormatter()
-                dateFormatter.dateFormat = "yyyyMMdd"
-                let currentDateStr:NSString = dateFormatter.stringFromDate(today)
-
-                if(currentDateStr.integerValue == thispacket.getDateTimer()){
-                    let dataArray:[[Int]] = [thispacket.getHourlySleepTime(),thispacket.getHourlyWakeTime(),thispacket.getHourlyLightTime(),thispacket.getHourlyDeepTime()]
-                    if(todaySleepData.count==0){
-                        todaySleepData.addObject(dataArray)
-                    }else{
-                        todaySleepData.insertObject(dataArray, atIndex: 1)
-                    }
-                }
-
-                if(currentDateStr.integerValue-1 == thispacket.getDateTimer()) {
-                    let dataArray:[[Int]] = [thispacket.getHourlySleepTime(),thispacket.getHourlyWakeTime(),thispacket.getHourlyLightTime(),thispacket.getHourlyDeepTime()]
-                    if(todaySleepData.count==0) {
-                        todaySleepData.addObject(dataArray)
-                    }else {
-                        todaySleepData.insertObject(dataArray, atIndex: 0)
-                    }
-                }
-
-                let daysleepSave:DaySleepSaveModel = DaySleepSaveModel()
-                daysleepSave.steps = thispacket.getDailySteps()
-                daysleepSave.created = thispacket.getDateTimer()
-                daysleepSave.HourlySleepTime = AppTheme.toJSONString(thispacket.getHourlySleepTime())
-                daysleepSave.HourlyWakeTime = AppTheme.toJSONString(thispacket.getHourlyWakeTime())
-                daysleepSave.HourlyLightTime = AppTheme.toJSONString(thispacket.getHourlyLightTime())
-                daysleepSave.HourlyDeepTime = AppTheme.toJSONString(thispacket.getHourlyDeepTime())
-                AppTheme.DLog("---------------\(thispacket.getDateTimer())")
-
-                 //Test the new database writing situation
-                /**
-                let sleepSave:SleepModel = SleepModel()
-                sleepSave.created = thispacket.getDateTimer()
-                sleepSave.Id = 99666
-                sleepSave.UserId = 66666
-                sleepSave.TotalSleepTime = 122
-                sleepSave.HourlySleepTime = AppTheme.toJSONString(thispacket.getHourlySleepTime()) as String
-                sleepSave.TotalWakeTime = 123
-                sleepSave.HourlyWakeTime = AppTheme.toJSONString(thispacket.getHourlyWakeTime()) as String
-                sleepSave.TotalLightTime = 124
-                sleepSave.HourlyLightTime = AppTheme.toJSONString(thispacket.getHourlyLightTime()) as String
-                sleepSave.TotalDeepTime = 125
-                sleepSave.HourlyDeepTime = AppTheme.toJSONString(thispacket.getHourlyDeepTime()) as String
-
-                let sleepQuyerModel:NSArray = SleepModel.getCriteria("WHERE created = \(thispacket.getDateTimer())")
-                if(sleepQuyerModel.count > 0){
-                    for array in sleepQuyerModel{
-                        let sleepModel:UserDatabaseHelper = array as! UserDatabaseHelper
-                        sleepSave.id = sleepModel.id
-                        let ave:Bool = sleepSave.update()
-                    }
-                }else{
-                    let ave:Bool = sleepSave.add()
-                }
-                */
-
-                //Query the database is this record
-                let quyerModel = DaySleepSaveModel.findFirstByCriteria("WHERE created = \(thispacket.getDateTimer())")
-                if(quyerModel != nil) {
-                    AppTheme.DLog("Data that has been saved····")
-                    daysleepSave.update()
-                    //Analyzing whether the same data database is not updated if they are equal, otherwise the update the database
-                }else {
-                    //Don't have any database if the sleep time is zero
-                    if(thispacket.getDailySleepTime() != 0) {
-                        let isSave:Bool = daysleepSave.save()  //If not, save database
                     }
                 }
 

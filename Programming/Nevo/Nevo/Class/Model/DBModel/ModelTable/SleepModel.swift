@@ -10,16 +10,15 @@ import UIKit
 
 class SleepModel: UserDatabaseHelper {
 
-    var UserId:Int = 0
-    var created:Int = 0
-    var TotalSleepTime:Int = 0;
-    var HourlySleepTime:String = "";
-    var TotalWakeTime:Int = 0;
-    var HourlyWakeTime:String = "";
-    var TotalLightTime:Int = 0;
-    var HourlyLightTime:String = "";
-    var TotalDeepTime:Int = 0;
-    var HourlyDeepTime:String = "";
+    var date:NSTimeInterval = 0
+    var totalSleepTime:Int = 0;
+    var hourlySleepTime:String = "";
+    var totalWakeTime:Int = 0;
+    var hourlyWakeTime:String = "";
+    var totalLightTime:Int = 0;
+    var hourlyLightTime:String = "";
+    var totalDeepTime:Int = 0;
+    var hourlyDeepTime:String = "";
 
     override init() {
 
