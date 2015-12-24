@@ -8,15 +8,17 @@
 
 import UIKit
 
-class StepGoalSetingController: PublicClassController,ButtonManagerCallBack,SyncControllerDelegate,ClockRefreshDelegate {
-    
-    let NUMBER_OF_STEPS_GOAL_KEY = "NUMBER_OF_STEPS_GOAL_KEY"
+let NUMBER_OF_STEPS_GOAL_KEY = "NUMBER_OF_STEPS_GOAL_KEY"
 
+class StepGoalSetingController: PublicClassController,ButtonManagerCallBack,SyncControllerDelegate,ClockRefreshDelegate,UICollectionViewDelegate,UICollectionViewDataSource {
+    
     @IBOutlet var stepGoalView: StepGoalSetingView!
     
     private var mCurrentGoal:Goal = NumberOfStepsGoal()
     private var mVisiable:Bool = true
     private var myHud:SyncBar = SyncBar.getSyncBar()
+    private var contentTitleArray:[String] = []
+    private var contentTArray:[String] = ["0","0","0","0","0","0"]
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
         super.init(nibName: "StepGoalSetingController", bundle: NSBundle.mainBundle())
@@ -29,12 +31,16 @@ class StepGoalSetingController: PublicClassController,ButtonManagerCallBack,Sync
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        myHud.statusText = "Syncing nevo";
+        myHud.setStatusLabel("Syncing nevo")
         myHud.showHudAddedToView(self.view)
+
+        contentTitleArray = [NSLocalizedString("goal", comment: ""), NSLocalizedString("you_reached", comment: ""), NSLocalizedString("progress", comment: ""), NSLocalizedString("all_day_mileage", comment: ""), NSLocalizedString("all_day_steps", comment: ""), NSLocalizedString("all_day_consume", comment: "")]
         
         AppDelegate.getAppDelegate().startConnect(false, delegate: self)
 
         stepGoalView.bulidStepGoalView(self,navigation: self.navigationItem)
+        stepGoalView.collectionView?.delegate = self
+        stepGoalView.collectionView?.dataSource = self
 
         ClockRefreshManager.sharedInstance.setRefreshDelegate(self)
         
@@ -63,7 +69,7 @@ class StepGoalSetingController: PublicClassController,ButtonManagerCallBack,Sync
 
     // MARK: - ButtonManagerCallBack
     func controllManager(sender:AnyObject) {
-        setGoal(NumberOfStepsGoal(steps: 5555))
+
     }
 
     // MARK: - ClockRefreshDelegate
@@ -74,21 +80,66 @@ class StepGoalSetingController: PublicClassController,ButtonManagerCallBack,Sync
         }
     }
 
+     // MARK: - UICollectionViewDataSource
+    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 6
+    }
+
+    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("CollectionViewCell", forIndexPath: indexPath)
+        let titleView = cell.contentView.viewWithTag(1500)
+        if(titleView == nil){
+            let titleLabel:UILabel = UILabel(frame: CGRectMake(0, 0, cell.contentView.frame.size.width, cell.contentView.frame.size.height/3.0))
+            titleLabel.textAlignment = NSTextAlignment.Center
+            titleLabel.textColor = UIColor.grayColor()
+            titleLabel.backgroundColor = UIColor.whiteColor()
+            titleLabel.font = UIFont.systemFontOfSize((cell.contentView.frame.size.height/3.0)*0.6)
+            titleLabel.tag = 1500
+            titleLabel.text = contentTitleArray[indexPath.row]
+            cell.contentView.addSubview(titleLabel)
+        }else {
+             let titleLabel:UILabel = titleView as! UILabel
+            titleLabel.text = contentTitleArray[indexPath.row]
+        }
+
+        let contentView = cell.contentView.viewWithTag(1700)
+        if(contentView == nil){
+            let contentStepsView:UILabel = UILabel(frame: CGRectMake(0, cell.contentView.frame.size.height/3.0, cell.contentView.frame.size.width, (cell.contentView.frame.size.height/3.0)*2.0))
+            contentStepsView.textAlignment = NSTextAlignment.Center
+            contentStepsView.backgroundColor = UIColor.whiteColor()
+            contentStepsView.font = UIFont.systemFontOfSize((cell.contentView.frame.size.height/3.0)*0.9)
+            contentStepsView.tag = 1700
+            contentStepsView.text = "\(contentTArray[indexPath.row])"
+            cell.contentView.addSubview(contentStepsView)
+        }else {
+            let contentStepsView:UILabel = contentView as! UILabel
+            contentStepsView.text = "\(contentTArray[indexPath.row])"
+        }
+        return cell
+    }
+
     // MARK: - SyncControllerDelegate
     func packetReceived(packet:NevoPacket) {
         //Do nothing
         if packet.getHeader() == GetStepsGoalRequest.HEADER(){
             let thispacket = packet.copy() as DailyStepsNevoPacket
-            var dailySteps:Int = thispacket.getDailySteps()
+            let dailySteps:Int = thispacket.getDailySteps()
             let dailyStepGoal:Int = thispacket.getDailyStepsGoal()
 
             let userDefaults = NSUserDefaults.standardUserDefaults();
             userDefaults.setObject(dailyStepGoal,forKey:NUMBER_OF_STEPS_GOAL_KEY)
             userDefaults.synchronize()
-
             let percent :Float = Float(dailySteps)/Float(dailyStepGoal)
 
             AppTheme.DLog("get Daily Steps is: \(dailySteps), getDaily Goal is: \(dailyStepGoal),percent is: \(percent)")
+
+            contentTArray.removeAtIndex(0)
+            contentTArray.insert("\(dailyStepGoal)steps", atIndex: 0)
+            contentTArray.removeAtIndex(1)
+            contentTArray.insert("\(dailySteps)steps", atIndex: 1)
+            contentTArray.removeAtIndex(2)
+            contentTArray.insert(String(format: "%.2f%c", percent*100,37), atIndex: 2)
+            stepGoalView.collectionView?.reloadData()
 
             stepGoalView.setProgress(percent, dailySteps: dailySteps, dailyStepGoal: dailyStepGoal)
         }
@@ -107,7 +158,7 @@ class StepGoalSetingController: PublicClassController,ButtonManagerCallBack,Sync
     
     func connectionStateChanged(isConnected : Bool) {
         //Maybe we just got disconnected, let's check
-        //checkConnection()
+        checkConnection()
     }
     
     /**
@@ -120,7 +171,7 @@ class StepGoalSetingController: PublicClassController,ButtonManagerCallBack,Sync
      *  Data synchronization is complete callback
      */
     func syncFinished(){
-        
+        myHud.hideFromView(self.view)
     }
 
     // MARK: - StepGoalSetingController function
@@ -132,6 +183,11 @@ class StepGoalSetingController: PublicClassController,ButtonManagerCallBack,Sync
         if !AppDelegate.getAppDelegate().isConnected() {
             //We are currently not connected
             reconnect()
+            
+            if(!myHud.isHudView()) {
+                myHud.showHudAddedToView(self.view)
+            }
+            myHud.setStatusLabel("Disconnect nevo")
         }
     }
 

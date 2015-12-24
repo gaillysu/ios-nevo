@@ -54,6 +54,8 @@ class StepController: PublicClassController,toolbarSegmentedDelegate,UIActionShe
 
     // MARK: - rightBarButtonAction
     func rightBarButtonAction(rightBar:UIBarButtonItem){
+//        AppDelegate.getAppDelegate().getDailyTrackerInfo()
+//        return
         if((UIDevice.currentDevice().systemVersion as NSString).floatValue >= 8.0){
             
             let actionSheet:UIAlertController = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
@@ -65,6 +67,7 @@ class StepController: PublicClassController,toolbarSegmentedDelegate,UIActionShe
             for steps:Int in goalArray {
                 let alertAction2:UIAlertAction = UIAlertAction(title: "\(steps) steps", style: UIAlertActionStyle.Default) { (action:UIAlertAction) -> Void in
                     if((action.title! as NSString).isEqualToString("\(steps) steps")){
+                        NSUserDefaults.standardUserDefaults().setObject(steps, forKey: NUMBER_OF_STEPS_GOAL_KEY)
                         self.setGoal(NumberOfStepsGoal(steps: steps))
                     }
                 }
@@ -120,6 +123,7 @@ class StepController: PublicClassController,toolbarSegmentedDelegate,UIActionShe
     // MARK: - UIActionSheetDelegate
     func actionSheet(actionSheet: UIActionSheet, clickedButtonAtIndex buttonIndex: Int){
         if(buttonIndex != 0){
+            NSUserDefaults.standardUserDefaults().setObject(goalArray[buttonIndex-1], forKey: NUMBER_OF_STEPS_GOAL_KEY)
             setGoal(NumberOfStepsGoal(steps: goalArray[buttonIndex-1]))
         }
     }

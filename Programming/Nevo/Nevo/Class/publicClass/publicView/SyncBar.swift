@@ -59,7 +59,7 @@ class SyncBar: NSObject,CancelSelectorDelegate {
         return syncBar
     }
 
-    var statusText:String = ""
+    private var statusText:String = ""
     var hud:hudLoader = hudLoader(frame: CGRectMake(0, 0, UIScreen.mainScreen().bounds.size.width, 30))
     var currentView:UIView?
 
@@ -73,6 +73,25 @@ class SyncBar: NSObject,CancelSelectorDelegate {
 
     func cancelSelectorItem(sender:AnyObject){
         self.hideFromView(currentView!)
+    }
+
+    func isHudView()->Bool {
+        if(currentView == nil) {
+            return false
+        }else {
+            for view in currentView!.subviews {
+                if(view.isEqual(hud)){
+                    return true
+                }
+            }
+        }
+        return false
+    }
+
+    func setStatusLabel(label:String) {
+        statusText = label
+        hud.statusLabel.text = statusText
+        hud.statusLabel.textColor = UIColor.whiteColor()
     }
 
     func showHudAddedToView(view:UIView){

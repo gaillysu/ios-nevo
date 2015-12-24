@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
 
     var window: UIWindow?
     //Let's sync every days
-    let SYNC_INTERVAL:NSTimeInterval = 1*30*60 //unit is second in iOS, every 30min, do sync
+    let SYNC_INTERVAL:NSTimeInterval = 0*30*60 //unit is second in iOS, every 30min, do sync
     let LAST_SYNC_DATE_KEY = "LAST_SYNC_DATE_KEY"
     private var mDelegates:[SyncControllerDelegate] = []
     private var mConnectionController : ConnectionControllerImpl?

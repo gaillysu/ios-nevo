@@ -32,6 +32,8 @@ class SleepHistoricalView: UIView , ChartViewDelegate,UITableViewDataSource,UITa
         detailTableView.delegate = self
         detailTableView.dataSource = self
 
+        // MARK: - chartView?.marker
+        // TODO chartView?.marker =
         chartView!.descriptionText = " ";
         chartView?.noDataText = NSLocalizedString("no_sleep_data", comment: "")
         chartView!.noDataTextDescription = "";

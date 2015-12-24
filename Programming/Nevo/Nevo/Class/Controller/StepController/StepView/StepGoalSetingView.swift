@@ -25,6 +25,8 @@ class StepGoalSetingView: UIView {
     var progresValue:CGFloat = 0.0
     private var mDelegate:ButtonManagerCallBack!
 
+    var collectionView:UICollectionView?
+
     func bulidStepGoalView(delegate:ButtonManagerCallBack,navigation:UINavigationItem){
         mDelegate = delegate
 
@@ -39,6 +41,17 @@ class StepGoalSetingView: UIView {
         progressView?.frame = CGRectMake(mClockTimerView.frame.origin.x-5, mClockTimerView.frame.origin.y-5, UIScreen.mainScreen().bounds.width-50, UIScreen.mainScreen().bounds.width-50)
         progressView?.setProgress(0.0)
         self.layer.addSublayer(progressView!)
+
+        let height:CGFloat = UIScreen.mainScreen().bounds.size.height - (progressView!.frame.size.height + progressView!.frame.origin.y) - 168
+        let layout:UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+        layout.itemSize = CGSizeMake((UIScreen.mainScreen().bounds.size.width)/3.0, height/2.0)
+        layout.minimumInteritemSpacing = 0
+        layout.minimumLineSpacing = 0
+
+        collectionView = UICollectionView(frame: CGRectMake(0, progressView!.frame.origin.y+progressView!.frame.size.height+10, UIScreen.mainScreen().bounds.size.width, height), collectionViewLayout: layout)
+        collectionView?.registerClass(UICollectionViewCell.classForCoder(), forCellWithReuseIdentifier: "CollectionViewCell")
+        collectionView?.backgroundColor = UIColor.whiteColor()
+        self.addSubview(collectionView!)
 
     }
 
