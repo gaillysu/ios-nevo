@@ -373,14 +373,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                 let day:NSString = timeStr.substringWithRange(NSMakeRange(6,2)) as NSString
                 let timerInterval:NSDate = NSDate.date(year: year.integerValue, month: month.integerValue, day: day.integerValue)
 
-                let stepsModel = UserSteps.getCriteria("WHERE date = \(thispacket.getDateTimer())")
-                if(stepsModel.count>0) {
-                    let step:UserSteps = stepsModel[0] as! UserSteps
-                    AppTheme.DLog("Data that has been saved····")
-                    let stepsModel:UserSteps = UserSteps(keyDict: ["id":step.id, "steps":thispacket.getDailySteps(), "distance":thispacket.getDailyDist(), "hourlysteps": AppTheme.toJSONString(thispacket.getHourlySteps()), "hourlydistance":AppTheme.toJSONString(thispacket.getHourlyDist()), "calories":thispacket.getDailyCalories() , "hourlycalories":AppTheme.toJSONString(thispacket.getHourlyCalories()), "inZoneTime":thispacket.getInZoneTime(), "outZoneTime":thispacket.getOutZoneTime(), "inactivityTime":thispacket.getInactivityTime(), "goalreach":false, "date":timerInterval.timeIntervalSince1970])
-                    stepsModel.update()
+                let timerInter:NSTimeInterval = timerInterval.timeIntervalSince1970
+                let stepsArray = UserSteps.getCriteria("WHERE date = \(timerInterval.timeIntervalSince1970)")
+                if(stepsArray.count>0) {
+                    let step:UserSteps = stepsArray[0] as! UserSteps
+                    if(step.steps < thispacket.getDailySteps()) {
+                        AppTheme.DLog("Data that has been saved····")
+                        let stepsModel:UserSteps = UserSteps(keyDict: ["id":step.id, "steps":thispacket.getDailySteps(), "distance":thispacket.getDailyDist(), "hourlysteps": AppTheme.toJSONString(thispacket.getHourlySteps()), "hourlydistance":AppTheme.toJSONString(thispacket.getHourlyDist()), "calories":thispacket.getDailyCalories() , "hourlycalories":AppTheme.toJSONString(thispacket.getHourlyCalories()), "inZoneTime":thispacket.getInZoneTime(), "outZoneTime":thispacket.getOutZoneTime(), "inactivityTime":thispacket.getInactivityTime(), "goalreach":false, "date":timerInterval.timeIntervalSince1970])
+                        stepsModel.update()
+                    }
                 }else {
-                    let stepsModel:UserSteps = UserSteps(keyDict: ["id":0, "steps":thispacket.getDailySteps(), "distance":thispacket.getDailyDist(), "hourlysteps": AppTheme.toJSONString(thispacket.getHourlySteps()), "hourlydistance":AppTheme.toJSONString(thispacket.getHourlyDist()), "calories":thispacket.getDailyCalories() , "hourlycalories":AppTheme.toJSONString(thispacket.getHourlyCalories()), "inZoneTime":thispacket.getInZoneTime(), "outZoneTime":thispacket.getOutZoneTime(), "inactivityTime":thispacket.getInactivityTime(), "goalreach":false, "date":thispacket.getDateTimer()])
+                    let stepsModel:UserSteps = UserSteps(keyDict: ["id":0, "steps":thispacket.getDailySteps(), "distance":thispacket.getDailyDist(), "hourlysteps": AppTheme.toJSONString(thispacket.getHourlySteps()), "hourlydistance":AppTheme.toJSONString(thispacket.getHourlyDist()), "calories":thispacket.getDailyCalories() , "hourlycalories":AppTheme.toJSONString(thispacket.getHourlyCalories()), "inZoneTime":thispacket.getInZoneTime(), "outZoneTime":thispacket.getOutZoneTime(), "inactivityTime":thispacket.getInactivityTime(), "goalreach":false, "date":timerInterval.timeIntervalSince1970])
                     stepsModel.add({ (id, completion) -> Void in
 
                     })
@@ -406,9 +409,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                     }
                 }
 
-                let sleepModel = UserSleep.getCriteria("WHERE date = \(thispacket.getDateTimer())")
-                if(sleepModel.count>0) {
-                    let model:UserSleep = UserSleep(keyDict: ["id": 0, "date":timerInterval.timeIntervalSince1970, "totalSleepTime":0, "hourlySleepTime":"\(AppTheme.toJSONString(thispacket.getHourlySleepTime()))", "totalWakeTime":0, "hourlyWakeTime":"\(AppTheme.toJSONString(thispacket.getHourlyWakeTime()))" , "totalLightTime":0, "hourlyLightTime":"\(AppTheme.toJSONString(thispacket.getHourlyLightTime()))", "totalDeepTime":0,  "hourlyDeepTime":"\(AppTheme.toJSONString(thispacket.getHourlyDeepTime()))"])
+                let sleepArray = UserSleep.getCriteria("WHERE date = \(timerInterval.timeIntervalSince1970)")
+                if(sleepArray.count>0) {
+                    let sleep:UserSleep = sleepArray[0] as! UserSleep
+                    let model:UserSleep = UserSleep(keyDict: ["id": sleep.id, "date":timerInterval.timeIntervalSince1970, "totalSleepTime":0, "hourlySleepTime":"\(AppTheme.toJSONString(thispacket.getHourlySleepTime()))", "totalWakeTime":0, "hourlyWakeTime":"\(AppTheme.toJSONString(thispacket.getHourlyWakeTime()))" , "totalLightTime":0, "hourlyLightTime":"\(AppTheme.toJSONString(thispacket.getHourlyLightTime()))", "totalDeepTime":0,  "hourlyDeepTime":"\(AppTheme.toJSONString(thispacket.getHourlyDeepTime()))"])
                     model.update()
                 }else {
                     let model:UserSleep = UserSleep(keyDict: ["id": 0, "date":timerInterval.timeIntervalSince1970, "totalSleepTime":0, "hourlySleepTime":"\(AppTheme.toJSONString(thispacket.getHourlySleepTime()))", "totalWakeTime":0, "hourlyWakeTime":"\(AppTheme.toJSONString(thispacket.getHourlyWakeTime()))" , "totalLightTime":0, "hourlyLightTime":"\(AppTheme.toJSONString(thispacket.getHourlyLightTime()))", "totalDeepTime":0,  "hourlyDeepTime":"\(AppTheme.toJSONString(thispacket.getHourlyDeepTime()))"])

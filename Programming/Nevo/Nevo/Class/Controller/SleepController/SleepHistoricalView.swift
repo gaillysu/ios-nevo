@@ -73,7 +73,16 @@ class SleepHistoricalView: UIView , ChartViewDelegate,UITableViewDataSource,UITa
         self.setDataCount(queryModel.count, Range: 50)
     }
 
-    
+    func stringFromDate(date:NSDate) -> String {
+        let dateFormatter:NSDateFormatter = NSDateFormatter()
+        dateFormatter.timeZone = NSTimeZone.systemTimeZone()
+        dateFormatter.dateStyle = NSDateFormatterStyle.MediumStyle
+        dateFormatter.timeStyle = NSDateFormatterStyle.ShortStyle
+        dateFormatter.dateFormat = "yyyyMMdd"
+        let dateString:String = dateFormatter.stringFromDate(date)
+        return dateString
+    }
+
     func setDataCount(count:Int, Range range:Double){
         var xVal:[String] = [];
         var yVal:[BarChartDataEntry] = [];
@@ -82,12 +91,12 @@ class SleepHistoricalView: UIView , ChartViewDelegate,UITableViewDataSource,UITa
             *  Data sorting,Small to large sort
             */
             for (var j:Int = i; j < queryModel.count; j++){
-                let iSeleModel:DaySleepSaveModel = queryModel.objectAtIndex(i) as! DaySleepSaveModel;
-                let jSeleModel:DaySleepSaveModel = queryModel.objectAtIndex(j) as! DaySleepSaveModel;
-                let iSleepDate:Int = iSeleModel.created
-                let jSleepDate:Int = jSeleModel.created
+                let iSeleModel:UserSleep = queryModel.objectAtIndex(i) as! UserSleep;
+                let jSeleModel:UserSleep = queryModel.objectAtIndex(j) as! UserSleep;
+                let iSleepDate:Double = iSeleModel.date
+                let jSleepDate:Double = jSeleModel.date
                 if (iSleepDate > jSleepDate){
-                    let temp:DaySleepSaveModel = queryModel.objectAtIndex(i) as! DaySleepSaveModel;
+                    let temp:UserSleep = queryModel.objectAtIndex(i) as! UserSleep;
                     queryModel.replaceObjectAtIndex(i, withObject: queryModel[j])
                     queryModel.replaceObjectAtIndex(j, withObject: temp)
 
@@ -97,13 +106,13 @@ class SleepHistoricalView: UIView , ChartViewDelegate,UITableViewDataSource,UITa
         //计算睡眠时间以中午12点为计算起点,
         
         for (var i:Int = 0; i < queryModel.count; i++){
-            let seleModel:DaySleepSaveModel = queryModel.objectAtIndex(i) as! DaySleepSaveModel;
+            let seleModel:UserSleep = queryModel.objectAtIndex(i) as! UserSleep;
 
             //当天的数据源(没有跨天的数据源)
-            let sleepTimerArray:NSArray = AppTheme.jsonToArray(seleModel.HourlySleepTime as String)
-            let wakeTimeTimerArray:NSArray = AppTheme.jsonToArray(seleModel.HourlyWakeTime as String)
-            let lightTimeTimerArray:NSArray = AppTheme.jsonToArray(seleModel.HourlyLightTime as String)
-            let deepTimeTimerArray:NSArray = AppTheme.jsonToArray(seleModel.HourlyDeepTime as String)
+            let sleepTimerArray:NSArray = AppTheme.jsonToArray(seleModel.hourlySleepTime as String)
+            let wakeTimeTimerArray:NSArray = AppTheme.jsonToArray(seleModel.hourlyWakeTime as String)
+            let lightTimeTimerArray:NSArray = AppTheme.jsonToArray(seleModel.hourlyLightTime as String)
+            let deepTimeTimerArray:NSArray = AppTheme.jsonToArray(seleModel.hourlyDeepTime as String)
 
             var sleepTimer:Int  = 0
             var wakeTimer:Int  = 0
@@ -121,11 +130,11 @@ class SleepHistoricalView: UIView , ChartViewDelegate,UITableViewDataSource,UITa
 
             if(i != 0){
                 //跨天的睡眠数据源
-                let nextSeleModel:DaySleepSaveModel = queryModel.objectAtIndex(i-1) as! DaySleepSaveModel;//取出前一天的数据
-                let mSleepTimerArray:NSArray = AppTheme.jsonToArray(nextSeleModel.HourlySleepTime as String)
-                let mWakeTimeTimerArray:NSArray = AppTheme.jsonToArray(nextSeleModel.HourlyWakeTime as String)
-                let mLightTimeTimerArray:NSArray = AppTheme.jsonToArray(nextSeleModel.HourlyLightTime as String)
-                let mDeepTimeTimerArray:NSArray = AppTheme.jsonToArray(nextSeleModel.HourlyDeepTime as String)
+                let nextSeleModel:UserSleep = queryModel.objectAtIndex(i-1) as! UserSleep;//取出前一天的数据
+                let mSleepTimerArray:NSArray = AppTheme.jsonToArray(nextSeleModel.hourlySleepTime as String)
+                let mWakeTimeTimerArray:NSArray = AppTheme.jsonToArray(nextSeleModel.hourlyWakeTime as String)
+                let mLightTimeTimerArray:NSArray = AppTheme.jsonToArray(nextSeleModel.hourlyLightTime as String)
+                let mDeepTimeTimerArray:NSArray = AppTheme.jsonToArray(nextSeleModel.hourlyDeepTime as String)
                 //计算在晚上六点以后的睡眠数据
                 for (var s:Int  = 18; s < mSleepTimerArray.count; s++){
                     sleepTimer = (mSleepTimerArray[s] as! NSNumber).integerValue + sleepTimer
@@ -142,7 +151,11 @@ class SleepHistoricalView: UIView , ChartViewDelegate,UITableViewDataSource,UITa
             if(val1+val2+val3 == 0){
                 continue
             }
-            let dateString:NSString = "\(seleModel.created)" as NSString
+            let mDateString:String = String(format: "%.0f", seleModel.date)
+            let date:NSDate = NSDate(timeIntervalSince1970: seleModel.date)
+            //mDateString.dateFromFormat("yyyyMMdd")!
+            let dateString:NSString = date.stringFromFormat("yyyyMMdd")
+            //stringFromDate(date) as NSString
             xVal.append("\(dateString.substringWithRange(NSMakeRange(6, 2)))/\(dateString.substringWithRange(NSMakeRange(4, 2)))")
 
             yVal.append(BarChartDataEntry(values: [(val2+val3),val1], xIndex:sleepArray.count))

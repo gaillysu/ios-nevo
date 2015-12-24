@@ -47,7 +47,8 @@ class SleepHistoricalViewController: UIViewController,UITableViewDataSource,UITa
         let currentDateStr:NSString = dateFormatter.stringFromDate(yesterday)
         //"2015825"
         //queryArray = DaySleepSaveModel.findByCriteria(String(format: " WHERE created > %@ ",currentDateStr))
-        queryArray = DaySleepSaveModel.findAll()
+        queryArray = UserSleep.getAll()
+            //DaySleepSaveModel.findAll()
 
         queryView.bulidQueryView(self,modelArray: queryArray!,navigation: self.navigationItem)
 
