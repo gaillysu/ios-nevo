@@ -33,6 +33,7 @@ class StepHistoricalViewController: UIViewController,UICollectionViewDelegateFlo
         contentTitleArray = [NSLocalizedString("goal", comment: ""), NSLocalizedString("you_reached", comment: ""), NSLocalizedString("progress", comment: ""), NSLocalizedString("all_day_mileage", comment: ""), NSLocalizedString("all_day_steps", comment: ""), NSLocalizedString("all_day_consume", comment: "")]
         stepsHistori.backgroundColor = UIColor.whiteColor()
         stepsHistori.registerClass(UICollectionViewCell.classForCoder(), forCellWithReuseIdentifier: "StepsHistoryViewCell")
+        (stepsHistori.collectionViewLayout as! UICollectionViewFlowLayout).itemSize = CGSizeMake(UIScreen.mainScreen().bounds.size.width/3.0, stepsHistori.frame.size.height/3.0)
     }
 
     override func didReceiveMemoryWarning() {
@@ -40,9 +41,6 @@ class StepHistoricalViewController: UIViewController,UICollectionViewDelegateFlo
         // Dispose of any resources that can be recreated.
     }
 
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        return CGSizeMake((UIScreen.mainScreen().bounds.size.width-2.0)/3.0, (collectionView.frame.size.height-2)/3.0)
-    }
     // MARK: - UICollectionViewDataSource
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 6
