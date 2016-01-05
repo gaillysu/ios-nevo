@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="StepHistoricalViewController" customModule="Nevo" customModuleProvider="target">
             <connections>
+                <outlet property="stepsHistori" destination="eW0-Ed-FPP" id="fU6-qR-eH5"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -16,31 +17,33 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mMJ-ii-LKw" customClass="BarChartView" customModule="Nevo" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="250"/>
-                    <animations/>
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="280"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </view>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="OBs-9W-QDJ">
-                    <rect key="frame" x="0.0" y="250" width="320" height="318"/>
-                    <animations/>
-                    <color key="backgroundColor" red="0.32156862749999998" green="0.30588235289999999" blue="0.30588235289999999" alpha="1" colorSpace="calibratedRGB"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="318" id="pKJ-ri-atw"/>
-                    </constraints>
-                    <color key="sectionIndexBackgroundColor" red="0.32156862749999998" green="0.30588235289999999" blue="0.30588235289999999" alpha="1" colorSpace="calibratedRGB"/>
-                    <color key="sectionIndexTrackingBackgroundColor" red="0.32156862749999998" green="0.30588235289999999" blue="0.30588235289999999" alpha="1" colorSpace="calibratedRGB"/>
-                </tableView>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="eW0-Ed-FPP">
+                    <rect key="frame" x="0.0" y="280" width="320" height="140"/>
+                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="Mf2-aB-35s">
+                        <size key="itemSize" width="105" height="50"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="9fU-fZ-Bxs"/>
+                        <outlet property="delegate" destination="-1" id="xwe-tT-j3V"/>
+                    </connections>
+                </collectionView>
             </subviews>
-            <animations/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="mMJ-ii-LKw" firstAttribute="trailing" secondItem="OBs-9W-QDJ" secondAttribute="trailing" id="3TB-Nd-4PP"/>
-                <constraint firstAttribute="bottom" secondItem="OBs-9W-QDJ" secondAttribute="bottom" id="DP2-Gr-vuA"/>
-                <constraint firstItem="OBs-9W-QDJ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Zo8-XU-sRA"/>
-                <constraint firstItem="mMJ-ii-LKw" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="gif-Ot-VAD"/>
-                <constraint firstItem="mMJ-ii-LKw" firstAttribute="leading" secondItem="OBs-9W-QDJ" secondAttribute="leading" id="kZG-zo-DV4"/>
-                <constraint firstItem="OBs-9W-QDJ" firstAttribute="top" secondItem="mMJ-ii-LKw" secondAttribute="bottom" id="vtv-zO-zNr"/>
-                <constraint firstAttribute="trailing" secondItem="OBs-9W-QDJ" secondAttribute="trailing" id="z2v-gO-QoH"/>
+                <constraint firstAttribute="bottom" secondItem="eW0-Ed-FPP" secondAttribute="bottom" constant="148" id="2sv-g5-qz9"/>
+                <constraint firstItem="eW0-Ed-FPP" firstAttribute="top" secondItem="mMJ-ii-LKw" secondAttribute="bottom" id="EKr-uG-QJ2"/>
+                <constraint firstItem="eW0-Ed-FPP" firstAttribute="leading" secondItem="mMJ-ii-LKw" secondAttribute="leading" id="Ewb-CL-rPk"/>
+                <constraint firstAttribute="trailing" secondItem="mMJ-ii-LKw" secondAttribute="trailing" id="Kef-sl-XwX"/>
+                <constraint firstItem="mMJ-ii-LKw" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" constant="-288" id="hBk-tc-7Ik"/>
+                <constraint firstItem="mMJ-ii-LKw" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="sBM-p0-2Ok"/>
+                <constraint firstItem="eW0-Ed-FPP" firstAttribute="trailing" secondItem="mMJ-ii-LKw" secondAttribute="trailing" id="u0x-qg-W92"/>
+                <constraint firstItem="mMJ-ii-LKw" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="xm4-Iz-DGp"/>
             </constraints>
             <point key="canvasLocation" x="548" y="346"/>
         </view>

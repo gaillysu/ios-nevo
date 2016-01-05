@@ -87,6 +87,7 @@ class StepGoalSetingController: PublicClassController,ButtonManagerCallBack,Sync
 
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("CollectionViewCell", forIndexPath: indexPath)
+        cell.backgroundColor = UIColor.whiteColor()
         let titleView = cell.contentView.viewWithTag(1500)
         if(titleView == nil){
             let titleLabel:UILabel = UILabel(frame: CGRectMake(0, 0, cell.contentView.frame.size.width, cell.contentView.frame.size.height/3.0))
