@@ -372,18 +372,56 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                 let month:NSString = timeStr.substringWithRange(NSMakeRange(6,2)) as NSString
                 let day:NSString = timeStr.substringWithRange(NSMakeRange(6,2)) as NSString
                 let timerInterval:NSDate = NSDate.date(year: year.integerValue, month: month.integerValue, day: day.integerValue)
-
                 let timerInter:NSTimeInterval = timerInterval.timeIntervalSince1970
-                let stepsArray = UserSteps.getCriteria("WHERE date = \(timerInterval.timeIntervalSince1970)")
+
+                let stepsArray = UserSteps.getCriteria("WHERE createDate = \(timeStr)")
                 if(stepsArray.count>0) {
                     let step:UserSteps = stepsArray[0] as! UserSteps
                     if(step.steps < thispacket.getDailySteps()) {
                         AppTheme.DLog("Data that has been saved····")
-                        let stepsModel:UserSteps = UserSteps(keyDict: ["id":step.id, "steps":thispacket.getDailySteps(), "distance":thispacket.getDailyDist(), "hourlysteps": AppTheme.toJSONString(thispacket.getHourlySteps()), "hourlydistance":AppTheme.toJSONString(thispacket.getHourlyDist()), "calories":thispacket.getDailyCalories() , "hourlycalories":AppTheme.toJSONString(thispacket.getHourlyCalories()), "inZoneTime":thispacket.getInZoneTime(), "outZoneTime":thispacket.getOutZoneTime(), "inactivityTime":thispacket.getInactivityTime(), "goalreach":false, "date":timerInterval.timeIntervalSince1970])
+                        let stepsModel:UserSteps = UserSteps(keyDict: [
+                            "id":step.id,
+                            "steps":thispacket.getDailySteps(),
+                            "distance":thispacket.getDailyDist(),
+                            "hourlysteps":AppTheme.toJSONString(thispacket.getHourlySteps()),
+                            "hourlydistance":AppTheme.toJSONString(thispacket.getHourlyDist()),
+                            "calories":thispacket.getDailyCalories() ,
+                            "hourlycalories":AppTheme.toJSONString(thispacket.getHourlyCalories()),
+                            "inZoneTime":thispacket.getInZoneTime(),
+                            "outZoneTime":thispacket.getOutZoneTime(),
+                            "inactivityTime":thispacket.getInactivityTime(),
+                            "goalreach":false,
+                            "date":timerInter,
+                            "createDate":timeStr,
+                            "walking_distance":thispacket.getDailyWalkingDistance(),
+                            "walking_duration":thispacket.getDailyWalkingTimer(),
+                            "walking_calories":thispacket.getDailyCalories(),
+                            "running_distance":thispacket.getRunningDistance(),
+                            "running_duration":thispacket.getDailyRunningTimer(),
+                            "running_calories":thispacket.getDailyCalories()])
                         stepsModel.update()
                     }
                 }else {
-                    let stepsModel:UserSteps = UserSteps(keyDict: ["id":0, "steps":thispacket.getDailySteps(), "distance":thispacket.getDailyDist(), "hourlysteps": AppTheme.toJSONString(thispacket.getHourlySteps()), "hourlydistance":AppTheme.toJSONString(thispacket.getHourlyDist()), "calories":thispacket.getDailyCalories() , "hourlycalories":AppTheme.toJSONString(thispacket.getHourlyCalories()), "inZoneTime":thispacket.getInZoneTime(), "outZoneTime":thispacket.getOutZoneTime(), "inactivityTime":thispacket.getInactivityTime(), "goalreach":false, "date":timerInterval.timeIntervalSince1970])
+                    let stepsModel:UserSteps = UserSteps(keyDict: [
+                        "id":0,
+                        "steps":thispacket.getDailySteps(),
+                        "distance":thispacket.getDailyDist(),
+                        "hourlysteps":AppTheme.toJSONString(thispacket.getHourlySteps()),
+                        "hourlydistance":AppTheme.toJSONString(thispacket.getHourlyDist()),
+                        "calories":thispacket.getDailyCalories() ,
+                        "hourlycalories":AppTheme.toJSONString(thispacket.getHourlyCalories()),
+                        "inZoneTime":thispacket.getInZoneTime(),
+                        "outZoneTime":thispacket.getOutZoneTime(),
+                        "inactivityTime":thispacket.getInactivityTime(),
+                        "goalreach":false,
+                        "date":timerInter,
+                        "createDate":timeStr,
+                        "walking_distance":thispacket.getDailyWalkingDistance(),
+                        "walking_duration":thispacket.getDailyWalkingTimer(),
+                        "walking_calories":thispacket.getDailyCalories(),
+                        "running_distance":thispacket.getRunningDistance(),
+                        "running_duration":thispacket.getDailyRunningTimer(),
+                        "running_calories":thispacket.getDailyCalories()])
                     stepsModel.add({ (id, completion) -> Void in
 
                     })

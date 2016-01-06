@@ -21,22 +21,20 @@ class UserSteps: NSObject,BaseEntryDatabaseHelper {
     var inactivityTime:Int = 0;
     var goalreach:Double = 0;
     var date:NSTimeInterval = 0
+    var createDate:String = ""
+    var walking_distance:Int = 0
+    var walking_duration:Int = 0
+    var walking_calories:Int = 0
+    var running_distance:Int = 0
+    var running_duration:Int = 0
+    var running_calories:Int = 0
     private var stepsModel:StepsModel = StepsModel()
     
     init(keyDict:NSDictionary) {
         super.init()
-        self.setValue(keyDict.objectForKey("id"), forKey: "id")
-        self.setValue(keyDict.objectForKey("steps"), forKey: "steps")
-        self.setValue(keyDict.objectForKey("distance"), forKey: "distance")
-        self.setValue(keyDict.objectForKey("hourlysteps"), forKey: "hourlysteps")
-        self.setValue(keyDict.objectForKey("hourlydistance"), forKey: "hourlydistance")
-        self.setValue(keyDict.objectForKey("calories"), forKey: "calories")
-        self.setValue(keyDict.objectForKey("hourlycalories"), forKey: "hourlycalories")
-        self.setValue(keyDict.objectForKey("inZoneTime"), forKey: "inZoneTime")
-        self.setValue(keyDict.objectForKey("outZoneTime"), forKey: "outZoneTime")
-        self.setValue(keyDict.objectForKey("inactivityTime"), forKey: "inactivityTime")
-        self.setValue(keyDict.objectForKey("goalreach"), forKey: "goalreach")
-        self.setValue(keyDict.objectForKey("date"), forKey: "date")
+        keyDict.enumerateKeysAndObjectsUsingBlock { (key, value, stop) -> Void in
+            self.setValue(value, forKey: key as! String)
+        }
     }
 
     func add(result:((id:Int?,completion:Bool?) -> Void)){
@@ -51,6 +49,13 @@ class UserSteps: NSObject,BaseEntryDatabaseHelper {
         stepsModel.inactivityTime = inactivityTime
         stepsModel.goalreach = goalreach
         stepsModel.date = date
+        stepsModel.createDate = createDate
+        stepsModel.walking_distance = walking_distance
+        stepsModel.walking_duration = walking_duration
+        stepsModel.walking_calories = walking_calories
+        stepsModel.running_distance = running_distance
+        stepsModel.running_duration = running_duration
+        stepsModel.running_calories = running_calories
 
         stepsModel.add { (id, completion) -> Void in
             result(id: id, completion: completion)
@@ -70,6 +75,13 @@ class UserSteps: NSObject,BaseEntryDatabaseHelper {
         stepsModel.inactivityTime = inactivityTime
         stepsModel.goalreach = goalreach
         stepsModel.date = date
+        stepsModel.createDate = createDate
+        stepsModel.walking_distance = walking_distance
+        stepsModel.walking_duration = walking_duration
+        stepsModel.walking_calories = walking_calories
+        stepsModel.running_distance = running_distance
+        stepsModel.running_duration = running_duration
+        stepsModel.running_calories = running_calories
         return stepsModel.update()
     }
 
@@ -87,7 +99,25 @@ class UserSteps: NSObject,BaseEntryDatabaseHelper {
         let allArray:NSMutableArray = NSMutableArray()
         for model in modelArray {
             let stepsModel:StepsModel = model as! StepsModel
-            let presets:UserSteps = UserSteps(keyDict: ["id":stepsModel.id, "steps":stepsModel.steps, "distance":stepsModel.distance, "hourlysteps":stepsModel.hourlysteps, "hourlydistance":stepsModel.hourlydistance, "calories":stepsModel.calories , "hourlycalories":stepsModel.hourlycalories, "inZoneTime":stepsModel.inZoneTime, "outZoneTime":stepsModel.outZoneTime, "inactivityTime":stepsModel.inactivityTime, "goalreach":stepsModel.goalreach, "date":stepsModel.date])
+            let presets:UserSteps = UserSteps(keyDict: [
+                "id":stepsModel.id,
+                "steps":stepsModel.steps,
+                "distance":stepsModel.distance,
+                "hourlysteps":stepsModel.hourlysteps,
+                "hourlydistance":stepsModel.hourlydistance,
+                "calories":stepsModel.calories ,
+                "hourlycalories":stepsModel.hourlycalories,
+                "inZoneTime":stepsModel.inZoneTime,
+                "outZoneTime":stepsModel.outZoneTime,
+                "inactivityTime":stepsModel.inactivityTime,
+                "goalreach":stepsModel.goalreach,
+                "date":stepsModel.date,
+                "createDate":stepsModel.createDate,
+                "walking_distance":stepsModel.walking_distance,
+                "walking_duration":stepsModel.walking_duration,
+                "walking_calories":stepsModel.walking_calories,
+                "running_distance":stepsModel.running_distance,
+                "running_duration":stepsModel.running_duration, "running_calories":stepsModel.running_calories])
             allArray.addObject(presets)
         }
         return allArray
@@ -98,7 +128,25 @@ class UserSteps: NSObject,BaseEntryDatabaseHelper {
         let allArray:NSMutableArray = NSMutableArray()
         for model in modelArray {
             let stepsModel:StepsModel = model as! StepsModel
-            let presets:UserSteps = UserSteps(keyDict: ["id":stepsModel.id, "steps":stepsModel.steps, "distance":stepsModel.distance, "hourlysteps":stepsModel.hourlysteps, "hourlydistance":stepsModel.hourlydistance, "calories":stepsModel.calories , "hourlycalories":stepsModel.hourlycalories, "inZoneTime":stepsModel.inZoneTime, "outZoneTime":stepsModel.outZoneTime, "inactivityTime":stepsModel.inactivityTime, "goalreach":stepsModel.goalreach, "date":stepsModel.date])
+            let presets:UserSteps = UserSteps(keyDict: [
+                "id":stepsModel.id,
+                "steps":stepsModel.steps,
+                "distance":stepsModel.distance,
+                "hourlysteps":stepsModel.hourlysteps,
+                "hourlydistance":stepsModel.hourlydistance,
+                "calories":stepsModel.calories ,
+                "hourlycalories":stepsModel.hourlycalories,
+                "inZoneTime":stepsModel.inZoneTime,
+                "outZoneTime":stepsModel.outZoneTime,
+                "inactivityTime":stepsModel.inactivityTime,
+                "goalreach":stepsModel.goalreach,
+                "date":stepsModel.date,
+                "createDate":stepsModel.createDate,
+                "walking_distance":stepsModel.walking_distance,
+                "walking_duration":stepsModel.walking_duration,
+                "walking_calories":stepsModel.walking_calories,
+                "running_distance":stepsModel.running_distance,
+                "running_duration":stepsModel.running_duration, "running_calories":stepsModel.running_calories])
             allArray.addObject(presets)
         }
         return allArray

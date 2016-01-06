@@ -318,4 +318,91 @@ class DailyTrackerNevoPacket: NevoPacket {
         dailyStepGoal = NSString(format: "\(dailyStepGoal)%@%@",month,year).integerValue
         return dailyStepGoal
     }
+
+
+    /**
+     daily Running Steps
+
+     :returns: daily Running Steps
+     */
+    func getDailyRunningSteps()->Int {
+        var dailyCalories:Int = Int(NSData2Bytes(getPackets()[1])[12] )
+        dailyCalories =  dailyCalories + Int(NSData2Bytes(getPackets()[1])[13] )<<8
+        dailyCalories =  dailyCalories + Int(NSData2Bytes(getPackets()[1])[14] )<<16
+        dailyCalories =  dailyCalories + Int(NSData2Bytes(getPackets()[1])[15] )<<24
+        return dailyCalories
+    }
+
+    /**
+     daily Running Distance
+
+     :returns: daily Running Distance
+     */
+    func getRunningDistance()->Int {
+        let packetno = 2
+        let offset = 10
+        var dailyDist:Int = Int(NSData2Bytes(getPackets()[packetno])[offset] )
+        dailyDist =  dailyDist + Int(NSData2Bytes(getPackets()[packetno])[packetno+1] )<<8
+        dailyDist =  dailyDist + Int(NSData2Bytes(getPackets()[packetno])[packetno+2] )<<16
+        dailyDist =  dailyDist + Int(NSData2Bytes(getPackets()[packetno])[packetno+3] )<<24
+        return dailyDist/100
+    }
+
+    /**
+     daily Running Timer
+
+     :returns: daily Running Timer
+     */
+    func getDailyRunningTimer()->Int {
+        let packetno = 3
+        let offset = 4
+        var dailyTimer:Int = Int(NSData2Bytes(getPackets()[packetno])[offset] )
+        dailyTimer =  dailyTimer + Int(NSData2Bytes(getPackets()[packetno])[offset+1] )<<8
+        dailyTimer =  dailyTimer + Int(NSData2Bytes(getPackets()[packetno])[offset+2] )<<16
+        dailyTimer =  dailyTimer + Int(NSData2Bytes(getPackets()[packetno])[offset+3] )<<24
+        return dailyTimer/60
+    }
+
+    /**
+     daily Walking Timer
+
+     :returns: daily Walking Timer
+     */
+    func getDailyWalkingTimer()->Int {
+        let packetno = 2
+        let offset = 10
+        var dailyWalkingTimer:Int = Int(NSData2Bytes(getPackets()[packetno])[offset] )
+        dailyWalkingTimer =  dailyWalkingTimer + Int(NSData2Bytes(getPackets()[packetno])[offset+1] )<<8
+        dailyWalkingTimer =  dailyWalkingTimer + Int(NSData2Bytes(getPackets()[packetno])[offset+2] )<<16
+        dailyWalkingTimer =  dailyWalkingTimer + Int(NSData2Bytes(getPackets()[packetno])[offset+3] )<<24
+        return dailyWalkingTimer/60
+    }
+
+    /**
+     daily Walking Steps
+
+     :returns: aily Walking Steps
+     */
+    func getWalkingSteps()->Int {
+        var dailyCalories:Int = Int(NSData2Bytes(getPackets()[1])[8] )
+        dailyCalories =  dailyCalories + Int(NSData2Bytes(getPackets()[1])[9] )<<8
+        dailyCalories =  dailyCalories + Int(NSData2Bytes(getPackets()[1])[10] )<<16
+        dailyCalories =  dailyCalories + Int(NSData2Bytes(getPackets()[1])[11] )<<24
+        return dailyCalories
+    }
+
+    /**
+     daily Walking Distance
+
+     :returns: dailyDistance
+     */
+    func getDailyWalkingDistance()->Int {
+        let packetno = 2
+        let offset = 6
+        var dailyDistance:Int = Int(NSData2Bytes(getPackets()[packetno])[offset] )
+        dailyDistance =  dailyDistance + Int(NSData2Bytes(getPackets()[packetno])[offset+1] )<<8
+        dailyDistance =  dailyDistance + Int(NSData2Bytes(getPackets()[packetno])[offset+2] )<<16
+        dailyDistance =  dailyDistance + Int(NSData2Bytes(getPackets()[packetno])[offset+3] )<<24
+        return dailyDistance/100
+    }
 }

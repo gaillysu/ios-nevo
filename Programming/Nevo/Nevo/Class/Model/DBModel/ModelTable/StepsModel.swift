@@ -21,6 +21,13 @@ class StepsModel: UserDatabaseHelper {
     var inactivityTime:Int = 0;
     var goalreach:Double = 0;
     var date:NSTimeInterval = 0
+    var createDate:String = ""
+    var walking_distance:Int = 0
+    var walking_duration:Int = 0
+    var walking_calories:Int = 0
+    var running_distance:Int = 0
+    var running_duration:Int = 0
+    var running_calories:Int = 0
 
     override init() {
 
