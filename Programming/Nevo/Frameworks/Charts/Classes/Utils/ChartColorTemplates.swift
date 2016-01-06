@@ -26,4 +26,8 @@ public class ChartColorTemplates: NSObject
         return UIColor(red: 252/255.0, green: 182/255.0, blue: 0/255.0, alpha: 1.0)
     }
 
+    public class func getStepsColor () -> UIColor{
+        return UIColor(red: 179.0/255.0, green: 179.0/255.0, blue: 179.0/255.0, alpha: 1.0)
+    }
+
 }

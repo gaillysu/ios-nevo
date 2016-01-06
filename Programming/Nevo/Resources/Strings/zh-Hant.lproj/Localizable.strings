@@ -109,3 +109,17 @@
 "battery_warnings_title"="电量不足";
 "battery_warnings_msg"="更新要求充足电量，现有电量不足，请更换电池後再更新。";
 "mobile_battery_warnings_msg"="手机电量不足请在升级前充满电或者接上电源后在升级。";
+
+//new app string
+"goal"="Goal";
+"you_reached"="you reached";
+"progress"="Progress";
+"all_day_mileage"="All-day Mileage";
+"all_day_steps"="All-day Steps";
+"all_day_consume"="All-day Consume";
+"walking_mileage"="Walking Mileage";
+"walking_duration"="Walking Duration";
+"walking_consume"="Walking Consume";
+"running_mileage"="Running Mileage";
+"running_duration"="Running Duration";
+"running_consume"="Running Consume";

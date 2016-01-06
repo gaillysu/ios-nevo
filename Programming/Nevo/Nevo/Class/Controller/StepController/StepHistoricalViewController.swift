@@ -10,9 +10,11 @@ import UIKit
 
 class StepHistoricalViewController: UIViewController,UICollectionViewDelegateFlowLayout {
 
+    @IBOutlet weak var stepsHistortView: StepHistoricalView!
     @IBOutlet weak var stepsHistori: UICollectionView!
+    private var queryArray:NSArray = NSArray()
     private var contentTitleArray:[String] = []
-    private var contentTArray:[String] = ["0","0","0","0","0","0"]
+    private var contentTArray:[String] = ["0","0","0","0","0","0","0","0","0"]
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
         super.init(nibName: "StepHistoricalViewController", bundle: NSBundle.mainBundle())
@@ -30,7 +32,10 @@ class StepHistoricalViewController: UIViewController,UICollectionViewDelegateFlo
             self.extendedLayoutIncludesOpaqueBars = false;
             self.modalPresentationCapturesStatusBarAppearance = false;
         }
-        contentTitleArray = [NSLocalizedString("goal", comment: ""), NSLocalizedString("you_reached", comment: ""), NSLocalizedString("progress", comment: ""), NSLocalizedString("all_day_mileage", comment: ""), NSLocalizedString("all_day_steps", comment: ""), NSLocalizedString("all_day_consume", comment: "")]
+        queryArray = UserSteps.getAll()
+        stepsHistortView.bulidStepHistoricalView(self, modelArray: queryArray, navigation: self.navigationItem)
+        
+        contentTitleArray = [NSLocalizedString("all_day_mileage", comment: ""), NSLocalizedString("all_day_steps", comment: ""), NSLocalizedString("all_day_consume", comment: ""), NSLocalizedString("walking_mileage", comment: ""), NSLocalizedString("walking_duration", comment: ""), NSLocalizedString("walking_consume", comment: ""),NSLocalizedString("running_mileage", comment: ""), NSLocalizedString("running_duration", comment: ""), NSLocalizedString("running_consume", comment: "")]
         stepsHistori.backgroundColor = UIColor.whiteColor()
         stepsHistori.registerClass(UICollectionViewCell.classForCoder(), forCellWithReuseIdentifier: "StepsHistoryViewCell")
         (stepsHistori.collectionViewLayout as! UICollectionViewFlowLayout).itemSize = CGSizeMake(UIScreen.mainScreen().bounds.size.width/3.0, stepsHistori.frame.size.height/3.0)
@@ -43,7 +48,7 @@ class StepHistoricalViewController: UIViewController,UICollectionViewDelegateFlo
 
     // MARK: - UICollectionViewDataSource
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 6
+        return contentTitleArray.count
     }
 
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {

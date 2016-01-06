@@ -28,16 +28,9 @@ class UserSleep: NSObject,BaseEntryDatabaseHelper {
 
     init(keyDict:NSDictionary) {
         super.init()
-        self.setValue(keyDict.objectForKey("id"), forKey: "id")
-        self.setValue(keyDict.objectForKey("date"), forKey: "date")
-        self.setValue(keyDict.objectForKey("totalSleepTime"), forKey: "totalSleepTime")
-        self.setValue(keyDict.objectForKey("hourlySleepTime"), forKey: "hourlySleepTime")
-        self.setValue(keyDict.objectForKey("totalWakeTime"), forKey: "totalWakeTime")
-        self.setValue(keyDict.objectForKey("hourlyWakeTime"), forKey: "hourlyWakeTime")
-        self.setValue(keyDict.objectForKey("totalLightTime"), forKey: "totalLightTime")
-        self.setValue(keyDict.objectForKey("hourlyLightTime"), forKey: "hourlyLightTime")
-        self.setValue(keyDict.objectForKey("totalDeepTime"), forKey: "totalDeepTime")
-        self.setValue(keyDict.objectForKey("hourlyDeepTime"), forKey: "hourlyDeepTime")
+        keyDict.enumerateKeysAndObjectsUsingBlock { (key, value, stop) -> Void in
+            self.setValue(value, forKey: key as! String)
+        }
     }
 
     func add(result:((id:Int?,completion:Bool?) -> Void)){

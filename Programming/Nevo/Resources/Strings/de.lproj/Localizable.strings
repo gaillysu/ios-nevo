@@ -111,3 +111,17 @@
 // need to translate
 "battery_warnings_msg"="Updating the watch costs a lot of battery. Your watch does not have enough battery to perform an update. To upgrade the watch, please buy a new battery.";
 "mobile_battery_warnings_msg"="Mobile battery too low please charge phone before upgrade";
+
+//new app string
+"goal"="Goal";
+"you_reached"="you reached";
+"progress"="Progress";
+"all_day_mileage"="All-day Mileage";
+"all_day_steps"="All-day Steps";
+"all_day_consume"="All-day Consume";
+"walking_mileage"="Walking Mileage";
+"walking_duration"="Walking Duration";
+"walking_consume"="Walking Consume";
+"running_mileage"="Running Mileage";
+"running_duration"="Running Duration";
+"running_consume"="Running Consume";

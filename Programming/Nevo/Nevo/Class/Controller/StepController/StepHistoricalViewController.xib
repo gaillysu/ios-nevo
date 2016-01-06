@@ -8,6 +8,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="StepHistoricalViewController" customModule="Nevo" customModuleProvider="target">
             <connections>
                 <outlet property="stepsHistori" destination="eW0-Ed-FPP" id="fU6-qR-eH5"/>
+                <outlet property="stepsHistortView" destination="i5M-Pr-FkT" id="voQ-yd-yN9"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -21,7 +22,7 @@
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </view>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="eW0-Ed-FPP">
-                    <rect key="frame" x="0.0" y="280" width="320" height="140"/>
+                    <rect key="frame" x="0.0" y="285" width="320" height="135"/>
                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="Mf2-aB-35s">
                         <size key="itemSize" width="105" height="50"/>
                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -37,7 +38,7 @@
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="eW0-Ed-FPP" secondAttribute="bottom" constant="148" id="2sv-g5-qz9"/>
-                <constraint firstItem="eW0-Ed-FPP" firstAttribute="top" secondItem="mMJ-ii-LKw" secondAttribute="bottom" id="EKr-uG-QJ2"/>
+                <constraint firstItem="eW0-Ed-FPP" firstAttribute="top" secondItem="mMJ-ii-LKw" secondAttribute="bottom" constant="5" id="EKr-uG-QJ2"/>
                 <constraint firstItem="eW0-Ed-FPP" firstAttribute="leading" secondItem="mMJ-ii-LKw" secondAttribute="leading" id="Ewb-CL-rPk"/>
                 <constraint firstAttribute="trailing" secondItem="mMJ-ii-LKw" secondAttribute="trailing" id="Kef-sl-XwX"/>
                 <constraint firstItem="mMJ-ii-LKw" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" constant="-288" id="hBk-tc-7Ik"/>
@@ -45,6 +46,9 @@
                 <constraint firstItem="eW0-Ed-FPP" firstAttribute="trailing" secondItem="mMJ-ii-LKw" secondAttribute="trailing" id="u0x-qg-W92"/>
                 <constraint firstItem="mMJ-ii-LKw" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="xm4-Iz-DGp"/>
             </constraints>
+            <connections>
+                <outlet property="chartView" destination="mMJ-ii-LKw" id="fDB-mP-lM1"/>
+            </connections>
             <point key="canvasLocation" x="548" y="346"/>
         </view>
     </objects>
