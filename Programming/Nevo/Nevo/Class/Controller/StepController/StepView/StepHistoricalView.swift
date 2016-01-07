@@ -8,14 +8,20 @@
 
 import UIKit
 
+protocol SelectedChartViewDelegate{
+    func didSelectedhighlightValue(xIndex:Int,dataSetIndex: Int, dataSteps:UserSteps)
+}
+
 class StepHistoricalView: UIView,ChartViewDelegate {
 
     @IBOutlet weak var chartView: BarChartView!
     private var queryModel:NSMutableArray = NSMutableArray()
     private let sleepArray:NSMutableArray = NSMutableArray();
     private let detailArray:NSMutableArray = NSMutableArray(capacity:1);
+    var selectedDelegate:SelectedChartViewDelegate?
 
-    func bulidStepHistoricalView(delegate:StepHistoricalViewController,modelArray:NSArray,navigation:UINavigationItem){
+    func bulidStepHistoricalView(delegate:SelectedChartViewDelegate,modelArray:NSArray,navigation:UINavigationItem){
+        selectedDelegate = delegate
         queryModel.addObjectsFromArray(modelArray as [AnyObject])
 
         // MARK: - chartView?.marker
@@ -133,9 +139,10 @@ class StepHistoricalView: UIView,ChartViewDelegate {
     }
 
     func chartValueSelected(chartView: ChartViewBase, entry: ChartDataEntry, dataSetIndex: Int, highlight: ChartHighlight) {
-
         chartView.highlightValue(xIndex: entry.xIndex, dataSetIndex: dataSetIndex, callDelegate: false)
-
+        NSLog("chartValueSelected:  %d",entry.xIndex)
+        let stepsModel:UserSteps = queryModel.objectAtIndex(entry.xIndex) as! UserSteps;
+        selectedDelegate?.didSelectedhighlightValue(entry.xIndex,dataSetIndex: dataSetIndex, dataSteps:stepsModel)
     }
     
     private func calculateMinutes(time:Double) -> (hours:Int,minutes:Int){

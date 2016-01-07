@@ -8,7 +8,7 @@
 
 import UIKit
 
-class StepHistoricalViewController: UIViewController,UICollectionViewDelegateFlowLayout {
+class StepHistoricalViewController: UIViewController,UICollectionViewDelegateFlowLayout,SelectedChartViewDelegate {
 
     @IBOutlet weak var stepsHistortView: StepHistoricalView!
     @IBOutlet weak var stepsHistori: UICollectionView!
@@ -44,6 +44,23 @@ class StepHistoricalViewController: UIViewController,UICollectionViewDelegateFlo
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+
+    // MARK: - SelectedChartViewDelegate
+    func didSelectedhighlightValue(xIndex:Int,dataSetIndex: Int, dataSteps:UserSteps) {
+        //contentTArray
+        contentTArray.removeAll()
+        contentTArray.insert("\(dataSteps.distance)", atIndex: 0)
+        contentTArray.insert("\(dataSteps.steps)", atIndex: 1)
+        contentTArray.insert("\(dataSteps.calories)", atIndex: 2)
+        contentTArray.insert("\(dataSteps.walking_distance)", atIndex: 3)
+        contentTArray.insert("\(dataSteps.walking_duration)", atIndex: 4)
+        contentTArray.insert("\(dataSteps.walking_calories)", atIndex: 5)
+        contentTArray.insert("\(dataSteps.running_distance)", atIndex: 6)
+        contentTArray.insert("\(dataSteps.running_duration)", atIndex: 7)
+        contentTArray.insert("\(dataSteps.running_calories)", atIndex: 8)
+        stepsHistori.reloadData()
+        
     }
 
     // MARK: - UICollectionViewDataSource
