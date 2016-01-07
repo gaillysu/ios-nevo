@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Sleep{
+class Sleep:NSObject{
     
     private var weakSleep:Double;
     private var lightSleep:Double;

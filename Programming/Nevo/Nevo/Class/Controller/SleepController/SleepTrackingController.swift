@@ -14,9 +14,11 @@ Controller of the Home Screen,
 it should handle very little, only the initialisation of the different Views and the Sync Controller
 */
 
-class SleepTrackingController: PublicClassController, SyncControllerDelegate ,ButtonManagerCallBack,ClockRefreshDelegate{
+class SleepTrackingController: PublicClassController, SyncControllerDelegate ,ButtonManagerCallBack,ClockRefreshDelegate,UICollectionViewDelegate,UICollectionViewDataSource{
     @IBOutlet weak var sleepView: SleepTrackingView!
     private var mVisiable:Bool = false
+    private var contentTitleArray:[String] = []
+    private var contentTArray:[String] = ["0","0","0","0","0","0"]
 
     init() {
         super.init(nibName: "SleepTrackingController", bundle: NSBundle.mainBundle())
@@ -29,10 +31,12 @@ class SleepTrackingController: PublicClassController, SyncControllerDelegate ,Bu
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        contentTitleArray = [NSLocalizedString("sleep_duration", comment: ""), NSLocalizedString("deep_sleep", comment: ""), NSLocalizedString("light_sleep", comment: ""), NSLocalizedString("sleep_timer", comment: ""), NSLocalizedString("wake_timer", comment: ""), NSLocalizedString("wake_duration", comment: "")]
         ClockRefreshManager.sharedInstance.setRefreshDelegate(self)
 
         sleepView.bulidHomeView(self)
+        sleepView.collectionView?.delegate = self
+        sleepView.collectionView?.dataSource = self
 
         if(NSUserDefaults.standardUserDefaults().boolForKey("firstLaunch")){
             let page7:Page7Controller = Page7Controller()
@@ -76,18 +80,6 @@ class SleepTrackingController: PublicClassController, SyncControllerDelegate ,Bu
 
     // MARK: - ButtonManagerCallBack
     func controllManager(sender:AnyObject) {
-
-        if sender.isEqual(sleepView.historyButton){
-            let quer:SleepHistoricalViewController = SleepHistoricalViewController()
-            self.presentViewController(quer, animated: true, completion:nil)
-        }
-
-        if sender.isEqual(sleepView.infoButton) {
-            let page7:Page7Controller = Page7Controller()
-            self.presentViewController(page7, animated: true, completion: { () -> Void in
-
-            })
-        }
 
         
     }
@@ -153,4 +145,45 @@ class SleepTrackingController: PublicClassController, SyncControllerDelegate ,Bu
     func reconnect() {
         AppDelegate.getAppDelegate().connect()
     }
+
+    // MARK: - UICollectionViewDataSource
+    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 6
+    }
+
+    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("SleepCollectionViewCell", forIndexPath: indexPath)
+        cell.backgroundColor = UIColor.clearColor()
+        let titleView = cell.contentView.viewWithTag(1500)
+        if(titleView == nil){
+            let titleLabel:UILabel = UILabel(frame: CGRectMake(0, 0, cell.contentView.frame.size.width, cell.contentView.frame.size.height/3.0))
+            titleLabel.textAlignment = NSTextAlignment.Center
+            titleLabel.textColor = UIColor.whiteColor()
+            titleLabel.backgroundColor = UIColor.clearColor()
+            titleLabel.font = UIFont.boldSystemFontOfSize((cell.contentView.frame.size.height/3.0)*0.6)
+            titleLabel.tag = 1500
+            titleLabel.text = contentTitleArray[indexPath.row]
+            cell.contentView.addSubview(titleLabel)
+        }else {
+            let titleLabel:UILabel = titleView as! UILabel
+            titleLabel.text = contentTitleArray[indexPath.row]
+        }
+
+        let contentView = cell.contentView.viewWithTag(1700)
+        if(contentView == nil){
+            let contentStepsView:UILabel = UILabel(frame: CGRectMake(0, cell.contentView.frame.size.height/3.0, cell.contentView.frame.size.width, (cell.contentView.frame.size.height/3.0)*2.0))
+            contentStepsView.textAlignment = NSTextAlignment.Center
+            contentStepsView.backgroundColor = UIColor.clearColor()
+            contentStepsView.textColor = UIColor.whiteColor()
+            contentStepsView.font = UIFont.boldSystemFontOfSize((cell.contentView.frame.size.height/3.0)*0.9)
+            contentStepsView.tag = 1700
+            contentStepsView.text = "\(contentTArray[indexPath.row])"
+            cell.contentView.addSubview(contentStepsView)
+        }else {
+            let contentStepsView:UILabel = contentView as! UILabel
+            contentStepsView.text = "\(contentTArray[indexPath.row])"
+        }
+        return cell
+    }
+
 }

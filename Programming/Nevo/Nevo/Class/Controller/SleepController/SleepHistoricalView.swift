@@ -8,45 +8,36 @@
 
 import UIKit
 
-class SleepHistoricalView: UIView , ChartViewDelegate,UITableViewDataSource,UITableViewDelegate{
+class SleepHistoricalView: UIView, ChartViewDelegate{
 
     @IBOutlet var chartView:BarChartView?
-    @IBOutlet weak var detailTableView: UITableView!
-
-
+    @IBOutlet weak var detailCollectionView: UICollectionView!
     private var queryModel:NSMutableArray = NSMutableArray()
     private let sleepArray:NSMutableArray = NSMutableArray();
-    private let detailArray:NSMutableArray = NSMutableArray(capacity:1);
+    private var mDelegate:SelectedChartViewDelegate?
 
-    func bulidQueryView(delegate:SleepHistoricalViewController,modelArray:NSArray,navigation:UINavigationItem){
+    func bulidQueryView(delegate:SelectedChartViewDelegate,modelArray:NSArray,navigation:UINavigationItem){
+        mDelegate = delegate
         queryModel.addObjectsFromArray(modelArray as [AnyObject])
         
         navigation.title = NSLocalizedString("sleep_history_title", comment: "")
 
-        if(queryModel.count>0){
-            detailArray.addObject([[NSLocalizedString("total_sleep_title", comment: ""),NSLocalizedString("light_sleep_title", comment: ""),NSLocalizedString("deep_sleep_title", comment: "")],[NSLocalizedString("select_date", comment: ""),NSLocalizedString("select_date", comment: ""),NSLocalizedString("select_date", comment: "")]])
-        }else{
-            detailArray.addObject([[NSLocalizedString("total_sleep_title", comment: ""),NSLocalizedString("light_sleep_title", comment: ""),NSLocalizedString("deep_sleep_title", comment: "")],[NSLocalizedString("no_data", comment: ""),NSLocalizedString("no_data", comment: ""),NSLocalizedString("no_data", comment: "")]])
-        }
-
-        detailTableView.delegate = self
-        detailTableView.dataSource = self
-
         // MARK: - chartView?.marker
         // TODO chartView?.marker =
-        chartView!.descriptionText = " ";
+        chartView?.backgroundColor = AppTheme.NEVO_CUSTOM_COLOR(Red: 25, Green: 31, Blue: 59)
+        chartView?.descriptionText = " ";
         chartView?.noDataText = NSLocalizedString("no_sleep_data", comment: "")
-        chartView!.noDataTextDescription = "";
-        chartView!.pinchZoomEnabled = false
-        chartView!.drawGridBackgroundEnabled = false;
-        chartView!.drawBarShadowEnabled = false;
+        chartView?.noDataTextDescription = "";
+        chartView?.pinchZoomEnabled = false
+        chartView?.drawGridBackgroundEnabled = false;
+        chartView?.drawBarShadowEnabled = false;
         let xScale:CGFloat = CGFloat(queryModel.count)/7.0;//integer/integer = integer,float/float = float
-        chartView!.setScaleMinima(xScale, scaleY: 1)
-        chartView!.setScaleEnabled(false);
-        chartView!.drawValueAboveBarEnabled = true;
-        chartView!.doubleTapToZoomEnabled = false;
-        chartView!.setViewPortOffsets(left: 0.0, top: 0.0, right: 0.0, bottom: 0.0)
-        chartView!.delegate = self
+        chartView?.setScaleMinima(xScale, scaleY: 1)
+        chartView?.setScaleEnabled(false);
+        chartView?.drawValueAboveBarEnabled = true;
+        chartView?.doubleTapToZoomEnabled = false;
+        chartView?.setViewPortOffsets(left: 0.0, top: 0.0, right: 0.0, bottom: 0.0)
+        chartView?.delegate = self
 
         let leftAxis:ChartYAxis = chartView!.leftAxis;
         leftAxis.valueFormatter = NSNumberFormatter();
@@ -179,6 +170,8 @@ class SleepHistoricalView: UIView , ChartViewDelegate,UITableViewDataSource,UITa
         //每个数据块的类别名称,数组形式传递
         set1.stackLabels = ["Deep sleep", "Light sleep"];
         set1.barSpace = 0.05;
+        set1.highlightColor = AppTheme.NEVO_SOLAR_YELLOW()
+        set1.highLightAlpha = 1
         let dataSets:[BarChartDataSet] = [set1];
 
         let data:BarChartData = BarChartData(xVals: xVal, dataSets: dataSets)
@@ -190,58 +183,10 @@ class SleepHistoricalView: UIView , ChartViewDelegate,UITableViewDataSource,UITa
     }
     
     func chartValueSelected(chartView: ChartViewBase, entry: ChartDataEntry, dataSetIndex: Int, highlight: ChartHighlight) {
-        
+
         let sleep:Sleep = self.sleepArray.objectAtIndex(entry.xIndex) as! Sleep;
-        let totalSleepTuple = calculateMinutes(sleep.getTotalSleep());
-        let lightSleepTuple = calculateMinutes(sleep.getLightSleep());
-        let deepSleepTuple = calculateMinutes(sleep.getDeepSleep());
         chartView.highlightValue(xIndex: entry.xIndex, dataSetIndex: dataSetIndex, callDelegate: false)
-
-        detailArray.removeAllObjects()
-        detailArray.addObject([[NSLocalizedString("total_sleep_title", comment: ""),NSLocalizedString("light_sleep_title", comment: ""),NSLocalizedString("deep_sleep_title", comment: "")],[String(format: "%@ %02d %@ %02d", NSLocalizedString("hours_and", comment: ""), totalSleepTuple.hours,NSLocalizedString("minutes_and", comment: ""),totalSleepTuple.minutes),String(format: "%@ %02d %@ %02d", NSLocalizedString("hours_and", comment: ""), lightSleepTuple.hours,NSLocalizedString("minutes_and", comment: ""),lightSleepTuple.minutes),String(format: "%@ %02d %@ %02d", NSLocalizedString("hours_and", comment: ""), deepSleepTuple.hours,NSLocalizedString("minutes_and", comment: ""),deepSleepTuple.minutes)]])
-        detailTableView.reloadData()
-    }
-    
-    private func calculateMinutes(time:Double) -> (hours:Int,minutes:Int){
-        return (Int(time),Int(60*(time%1)));
+        mDelegate?.didSleepSelectedhighlightValue!(entry.xIndex, dataSetIndex: dataSetIndex, dataSleep: sleep)
     }
 
-    func getQueryTableviewCell(indexPath:NSIndexPath,array:NSArray)->UITableViewCell {
-        let endCellID:NSString = "queryCell"
-        var endCell = detailTableView.dequeueReusableCellWithIdentifier(endCellID as String) as? queryTableviewCell
-        if (endCell == nil) {
-            let nibs:NSArray = NSBundle.mainBundle().loadNibNamed("queryTableviewCell", owner: self, options: nil)
-            endCell = nibs.objectAtIndex(0) as? queryTableviewCell;
-        }
-        endCell?.contentView.backgroundColor = UIColor.clearColor()
-
-        endCell?.titleString = (array.objectAtIndex(0) as! [[String]])[0][indexPath.row]
-        endCell?.titleLabel.text = (array.objectAtIndex(0) as! [[String]])[0][indexPath.row]
-        endCell?.titleLabel?.font = AppTheme.FONT_RALEWAY_LIGHT(mSize: 15)
-        endCell?.titleLabel?.backgroundColor = UIColor.clearColor()
-
-        endCell?.detailString = (array.objectAtIndex(0) as! [[String]])[1][indexPath.row]
-        endCell?.detailLabel.text = (array.objectAtIndex(0) as! [[String]])[1][indexPath.row]
-        endCell?.detailLabel.font = AppTheme.FONT_RALEWAY_BOLD(mSize: 16)
-        endCell?.detailLabel!.backgroundColor = UIColor.clearColor()
-        endCell?.selectionStyle = UITableViewCellSelectionStyle.None;
-        return endCell!
-        
-    }
-
-    // MARK: - UITableViewDelegate
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 55.0
-    }
-
-    // MARK: - UITableViewDataSource
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
-        return 3
-    }
-
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-
-        return self.getQueryTableviewCell(indexPath, array: detailArray)
-        
-    }
 }

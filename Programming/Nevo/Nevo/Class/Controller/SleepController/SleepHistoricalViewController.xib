@@ -16,34 +16,42 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qmS-4V-0uD" customClass="BarChartView" customModule="Nevo" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="250"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4sA-Zz-9hO" customClass="BarChartView" customModule="Nevo" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="280"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </view>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="EuS-UX-KzD">
-                    <rect key="frame" x="0.0" y="250" width="320" height="318"/>
-                    <color key="backgroundColor" red="0.32156862749999998" green="0.30588235289999999" blue="0.30588235289999999" alpha="1" colorSpace="calibratedRGB"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="318" id="Rf5-Nf-gjr"/>
-                    </constraints>
-                    <color key="sectionIndexBackgroundColor" red="0.32156862749999998" green="0.30588235289999999" blue="0.30588235289999999" alpha="1" colorSpace="calibratedRGB"/>
-                    <color key="sectionIndexTrackingBackgroundColor" red="0.32156862749999998" green="0.30588235289999999" blue="0.30588235289999999" alpha="1" colorSpace="calibratedRGB"/>
-                </tableView>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="CWK-RV-oKL">
+                    <rect key="frame" x="0.0" y="305" width="320" height="135"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="7pd-OM-Y5C">
+                        <size key="itemSize" width="105" height="50"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="t7Y-F2-T2p"/>
+                        <outlet property="delegate" destination="-1" id="yAq-y8-cwj"/>
+                    </connections>
+                </collectionView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="qmS-4V-0uD" firstAttribute="trailing" secondItem="EuS-UX-KzD" secondAttribute="trailing" id="CZb-sl-j9l"/>
-                <constraint firstItem="qmS-4V-0uD" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="D83-RI-UEK"/>
-                <constraint firstItem="EuS-UX-KzD" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="K0m-k2-WGm"/>
-                <constraint firstItem="qmS-4V-0uD" firstAttribute="leading" secondItem="EuS-UX-KzD" secondAttribute="leading" id="Kos-Ky-ndb"/>
-                <constraint firstAttribute="bottom" secondItem="EuS-UX-KzD" secondAttribute="bottom" id="Tll-Gv-dYQ"/>
-                <constraint firstAttribute="trailing" secondItem="EuS-UX-KzD" secondAttribute="trailing" id="oNg-UF-MOs"/>
-                <constraint firstItem="EuS-UX-KzD" firstAttribute="top" secondItem="qmS-4V-0uD" secondAttribute="bottom" id="tQD-UZ-9UK"/>
+                <constraint firstItem="CWK-RV-oKL" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="7qW-FQ-lTK"/>
+                <constraint firstItem="CWK-RV-oKL" firstAttribute="width" secondItem="4sA-Zz-9hO" secondAttribute="width" id="9ge-hb-N3Z"/>
+                <constraint firstItem="4sA-Zz-9hO" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" id="H61-UG-4X0"/>
+                <constraint firstItem="4sA-Zz-9hO" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="OFe-Ie-2iL"/>
+                <constraint firstItem="4sA-Zz-9hO" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="T2F-3j-2gV"/>
+                <constraint firstAttribute="trailing" secondItem="CWK-RV-oKL" secondAttribute="trailing" id="bQi-Tc-TYh"/>
+                <constraint firstItem="CWK-RV-oKL" firstAttribute="height" secondItem="4sA-Zz-9hO" secondAttribute="height" constant="-145" id="s6U-Dj-cXe"/>
+                <constraint firstItem="CWK-RV-oKL" firstAttribute="top" secondItem="4sA-Zz-9hO" secondAttribute="bottom" constant="25" id="ul0-Zc-FKz"/>
+                <constraint firstAttribute="trailing" secondItem="4sA-Zz-9hO" secondAttribute="trailing" id="z5a-Fz-VKs"/>
+                <constraint firstAttribute="bottom" secondItem="CWK-RV-oKL" secondAttribute="bottom" constant="128" id="zg8-ng-qwi"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
-                <outlet property="chartView" destination="qmS-4V-0uD" id="7iF-18-Ski"/>
-                <outlet property="detailTableView" destination="EuS-UX-KzD" id="Fy2-cP-cto"/>
+                <outlet property="chartView" destination="4sA-Zz-9hO" id="9CS-Cz-UfW"/>
+                <outlet property="detailCollectionView" destination="CWK-RV-oKL" id="ahz-Ar-Cdh"/>
             </connections>
             <point key="canvasLocation" x="588" y="280"/>
         </view>

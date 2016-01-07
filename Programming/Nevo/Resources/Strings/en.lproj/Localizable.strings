@@ -124,3 +124,9 @@
 "running_duration"="Running Duration";
 "running_consume"="Running Consume";
 "no_step_data"="No steps data";
+"sleep_duration"="Sleep Duration";
+"deep_sleep"="Deep Sleep";
+"light_sleep"="Light Sleep";
+"sleep_timer"="Sleep Timer";
+"wake_timer"="Wake Timer";
+"wake_duration"="Wake Duration";

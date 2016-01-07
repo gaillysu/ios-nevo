@@ -8,8 +8,9 @@
 
 import UIKit
 
-protocol SelectedChartViewDelegate{
-    func didSelectedhighlightValue(xIndex:Int,dataSetIndex: Int, dataSteps:UserSteps)
+@objc protocol SelectedChartViewDelegate{
+    optional func didSelectedhighlightValue(xIndex:Int,dataSetIndex: Int, dataSteps:UserSteps)
+    optional func didSleepSelectedhighlightValue(xIndex:Int,dataSetIndex: Int, dataSleep:Sleep)
 }
 
 class StepHistoricalView: UIView,ChartViewDelegate {
@@ -142,7 +143,7 @@ class StepHistoricalView: UIView,ChartViewDelegate {
         chartView.highlightValue(xIndex: entry.xIndex, dataSetIndex: dataSetIndex, callDelegate: false)
         NSLog("chartValueSelected:  %d",entry.xIndex)
         let stepsModel:UserSteps = queryModel.objectAtIndex(entry.xIndex) as! UserSteps;
-        selectedDelegate?.didSelectedhighlightValue(entry.xIndex,dataSetIndex: dataSetIndex, dataSteps:stepsModel)
+        selectedDelegate?.didSelectedhighlightValue!(entry.xIndex,dataSetIndex: dataSetIndex, dataSteps:stepsModel)
     }
     
     private func calculateMinutes(time:Double) -> (hours:Int,minutes:Int){

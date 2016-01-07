@@ -8,9 +8,11 @@
 
 import UIKit
 
-class SleepHistoricalViewController: UIViewController,UITableViewDataSource,UITableViewDelegate,ChartViewDelegate {
+class SleepHistoricalViewController: UIViewController,ChartViewDelegate,SelectedChartViewDelegate {
 
     @IBOutlet var queryView: SleepHistoricalView!
+    private var contentTitleArray:[String] = []
+    private var contentTArray:[String] = ["0","0","0","0","0","0"]
 
     private var queryArray:NSArray?
     init() {
@@ -24,35 +26,20 @@ class SleepHistoricalViewController: UIViewController,UITableViewDataSource,UITa
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        //UIApplication.sharedApplication().setStatusBarOrientation(UIInterfaceOrientation.LandscapeRight, animated: false)
-        //UIView.beginAnimations(nil, context: nil)
-        //UIView.setAnimationDuration(2)
-        //self.view.transform = CGAffineTransformIdentity
-        //self.view.transform = CGAffineTransformMakeRotation(CGFloat(M_PI*(90)/180.0));
-        //self.view.bounds = CGRectMake(0, 0, UIScreen.mainScreen().bounds.height, UIScreen.mainScreen().bounds.width);
-        //UIView.commitAnimations()
         if(Double(UIDevice.currentDevice().systemVersion)>7.0){
             self.edgesForExtendedLayout = UIRectEdge.None;
             self.extendedLayoutIncludesOpaqueBars = false;
             self.modalPresentationCapturesStatusBarAppearance = false;
         }
 
-        self.view.backgroundColor = UIColor.whiteColor()
-        let secondsPerDay:NSTimeInterval  = 24*7 * 60 * 60;
-        let yesterday:NSDate  = NSDate(timeIntervalSinceNow: -secondsPerDay)
-
-        let dateFormatter:NSDateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "yyyyMMdd"
-        let currentDateStr:NSString = dateFormatter.stringFromDate(yesterday)
-        //"2015825"
-        //queryArray = DaySleepSaveModel.findByCriteria(String(format: " WHERE created > %@ ",currentDateStr))
+        contentTitleArray = [NSLocalizedString("sleep_duration", comment: ""), NSLocalizedString("deep_sleep", comment: ""), NSLocalizedString("light_sleep", comment: ""), NSLocalizedString("sleep_timer", comment: ""), NSLocalizedString("wake_timer", comment: ""), NSLocalizedString("wake_duration", comment: "")]
         queryArray = UserSleep.getAll()
-            //DaySleepSaveModel.findAll()
 
         queryView.bulidQueryView(self,modelArray: queryArray!,navigation: self.navigationItem)
 
-        // Do any additional setup after loading the view.
+        queryView.detailCollectionView.backgroundColor = UIColor.whiteColor()
+        queryView.detailCollectionView.registerClass(UICollectionViewCell.classForCoder(), forCellWithReuseIdentifier: "SleepHistoryViewCell")
+        (queryView.detailCollectionView.collectionViewLayout as! UICollectionViewFlowLayout).itemSize = CGSizeMake(UIScreen.mainScreen().bounds.size.width/3.0, queryView.detailCollectionView.frame.size.height/3.0)
     }
 
     override func didReceiveMemoryWarning() {
@@ -60,33 +47,61 @@ class SleepHistoricalViewController: UIViewController,UITableViewDataSource,UITa
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func ButtonController(sender: AnyObject) {
-
+    // MARK: - SelectedChartViewDelegate
+    func didSleepSelectedhighlightValue(xIndex:Int,dataSetIndex: Int, dataSleep:Sleep) {
+        //contentTArray
+        contentTArray.removeAll()
+        contentTArray.insert(String(format: "%.2f", dataSleep.getTotalSleep()), atIndex: 0)
+        contentTArray.insert(String(format: "%.2f", dataSleep.getDeepSleep()), atIndex: 1)
+        contentTArray.insert(String(format: "%.2f", dataSleep.getLightSleep()), atIndex: 2)
+        contentTArray.insert("\(0)", atIndex: 3)
+        contentTArray.insert("\(0)", atIndex: 4)
+        contentTArray.insert("\(0)", atIndex: 5)
+        queryView.detailCollectionView.reloadData()
     }
 
-    // MARK: - UITableViewDataSource
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 50.0
+    private func calculateMinutes(time:Double) -> (hours:Int,minutes:Int){
+        return (Int(time),Int(60*(time%1)));
     }
 
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
-       
+    // MARK: - UICollectionViewDataSource
+    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return contentTitleArray.count
     }
 
-    // MARK: - UITableViewDataSource
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int{
-        return 1
+    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("SleepHistoryViewCell", forIndexPath: indexPath)
+        cell.backgroundColor = UIColor.whiteColor()
+        cell.backgroundView = UIView()
+        let titleView = cell.contentView.viewWithTag(1500)
+        if(titleView == nil){
+            let titleLabel:UILabel = UILabel(frame: CGRectMake(0, 0, cell.contentView.frame.size.width, cell.contentView.frame.size.height/3.0))
+            titleLabel.textAlignment = NSTextAlignment.Center
+            titleLabel.textColor = UIColor.grayColor()
+            titleLabel.backgroundColor = UIColor.whiteColor()
+            titleLabel.font = UIFont.boldSystemFontOfSize((cell.contentView.frame.size.height/3.0)*0.6)
+            titleLabel.tag = 1500
+            titleLabel.text = contentTitleArray[indexPath.row]
+            cell.contentView.addSubview(titleLabel)
+        }else {
+            let titleLabel:UILabel = titleView as! UILabel
+            titleLabel.text = contentTitleArray[indexPath.row]
+        }
 
-    }
-
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
-        return queryArray!.count
-        //return mNotificationSettingArray.count
-    }
-
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-
-        return queryView.getQueryTableviewCell(indexPath, array: queryArray!)
+        let contentView = cell.contentView.viewWithTag(1700)
+        if(contentView == nil){
+            let contentStepsView:UILabel = UILabel(frame: CGRectMake(0, cell.contentView.frame.size.height/3.0, cell.contentView.frame.size.width, (cell.contentView.frame.size.height/3.0)*2.0))
+            contentStepsView.textAlignment = NSTextAlignment.Center
+            contentStepsView.backgroundColor = UIColor.whiteColor()
+            contentStepsView.font = UIFont.boldSystemFontOfSize((cell.contentView.frame.size.height/3.0)*0.9)
+            contentStepsView.tag = 1700
+            contentStepsView.text = "\(contentTArray[indexPath.row])"
+            cell.contentView.addSubview(contentStepsView)
+        }else {
+            let contentStepsView:UILabel = contentView as! UILabel
+            contentStepsView.text = "\(contentTArray[indexPath.row])"
+        }
+        return cell
     }
 
     /*

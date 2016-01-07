@@ -19,7 +19,7 @@ public class ChartColorTemplates: NSObject
 {
     
     public class func getLightSleepColor () -> UIColor{
-        return UIColor(red: 246/255.0, green: 211/255.0, blue: 128/255.0, alpha: 1.0)
+        return UIColor(red: 239/255.0, green: 239/255.0, blue: 239/255.0, alpha: 1.0)
     }
     
     public class func getDeepSleepColor () -> UIColor{
