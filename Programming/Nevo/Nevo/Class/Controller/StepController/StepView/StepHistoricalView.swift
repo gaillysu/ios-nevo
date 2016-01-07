@@ -117,9 +117,10 @@ class StepHistoricalView: UIView,ChartViewDelegate {
         //柱状图表
         //ChartColorTemplates.getDeepSleepColor()
         let set1:BarChartDataSet  = BarChartDataSet(yVals: yVal, label: "")
-
         //每个数据区块的颜色
         set1.colors = [ChartColorTemplates.getStepsColor()];
+        set1.highlightColor = AppTheme.NEVO_SOLAR_YELLOW()
+        set1.highLightAlpha = 1
         set1.barSpace = 0.05;
         let dataSets:[BarChartDataSet] = [set1];
 

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		000CB3241C3E060800B4ABEC /* BalloonMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000CB3231C3E060800B4ABEC /* BalloonMarker.swift */; };
 		001F1B7B1B57777B001DD426 /* nevo_wacth_selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 001F1B791B57777B001DD426 /* nevo_wacth_selected.png */; };
 		001F1B7C1B57777B001DD426 /* nevo_wacth.png in Resources */ = {isa = PBXBuildFile; fileRef = 001F1B7A1B57777B001DD426 /* nevo_wacth.png */; };
 		00478F4F1A8F637D00D0DCE2 /* clockViewHour.png in Resources */ = {isa = PBXBuildFile; fileRef = 00478F4D1A8F637D00D0DCE2 /* clockViewHour.png */; };
@@ -336,6 +337,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		000CB3231C3E060800B4ABEC /* BalloonMarker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BalloonMarker.swift; sourceTree = "<group>"; };
 		001F1B791B57777B001DD426 /* nevo_wacth_selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nevo_wacth_selected.png; sourceTree = "<group>"; };
 		001F1B7A1B57777B001DD426 /* nevo_wacth.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nevo_wacth.png; sourceTree = "<group>"; };
 		00478F4D1A8F637D00D0DCE2 /* clockViewHour.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clockViewHour.png; sourceTree = "<group>"; };
@@ -1068,6 +1070,7 @@
 		0050D5AF1C28E0DB004F6F80 /* publicView */ = {
 			isa = PBXGroup;
 			children = (
+				000CB3231C3E060800B4ABEC /* BalloonMarker.swift */,
 				0050D5B01C28E0DB004F6F80 /* AnimationView */,
 				0050D5B21C28E0DB004F6F80 /* AppTheme.swift */,
 				0050D5B31C28E0DB004F6F80 /* ClockView.swift */,
@@ -1905,6 +1908,7 @@
 				00DC9ECB1BB2853D00734DB6 /* LineChartDataSet.swift in Sources */,
 				00DC9ED81BB2853D00734DB6 /* ChartXAxisValueFormatter.swift in Sources */,
 				00DC9EF41BB2853D00734DB6 /* CALayer+Extensions.swift in Sources */,
+				000CB3241C3E060800B4ABEC /* BalloonMarker.swift in Sources */,
 				0050D6781C28E0DB004F6F80 /* SetRTCRequest.swift in Sources */,
 				0050D6621C28E0DB004F6F80 /* NevoOTAControllerProfile.swift in Sources */,
 				0050D6431C28E0DB004F6F80 /* PresetsModel.swift in Sources */,
