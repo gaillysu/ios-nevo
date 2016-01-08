@@ -106,7 +106,7 @@ class SleepTrackingController: PublicClassController, SyncControllerDelegate ,Bu
             self.sleepView.getClockTimerView().setClockImage(AppTheme.GET_RESOURCES_IMAGE("clockview600_color"))
             let dispatchTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, Int64(2.0 * Double(NSEC_PER_SEC)))
             dispatch_after(dispatchTime, dispatch_get_main_queue(), {
-              self.sleepView.getClockTimerView().setClockImage(AppTheme.GET_RESOURCES_IMAGE("clockView600"))
+              self.sleepView.getClockTimerView().setClockImage(AppTheme.GET_RESOURCES_IMAGE("white_clock"))
             })
         }
     }
