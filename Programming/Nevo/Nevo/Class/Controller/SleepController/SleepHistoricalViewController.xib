@@ -21,7 +21,7 @@
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </view>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="CWK-RV-oKL">
-                    <rect key="frame" x="0.0" y="305" width="320" height="135"/>
+                    <rect key="frame" x="0.0" y="290" width="320" height="135"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="7pd-OM-Y5C">
                         <size key="itemSize" width="105" height="50"/>
@@ -37,16 +37,17 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="CWK-RV-oKL" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="7qW-FQ-lTK"/>
-                <constraint firstItem="CWK-RV-oKL" firstAttribute="width" secondItem="4sA-Zz-9hO" secondAttribute="width" id="9ge-hb-N3Z"/>
-                <constraint firstItem="4sA-Zz-9hO" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" id="H61-UG-4X0"/>
-                <constraint firstItem="4sA-Zz-9hO" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="OFe-Ie-2iL"/>
-                <constraint firstItem="4sA-Zz-9hO" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="T2F-3j-2gV"/>
-                <constraint firstAttribute="trailing" secondItem="CWK-RV-oKL" secondAttribute="trailing" id="bQi-Tc-TYh"/>
-                <constraint firstItem="CWK-RV-oKL" firstAttribute="height" secondItem="4sA-Zz-9hO" secondAttribute="height" constant="-145" id="s6U-Dj-cXe"/>
-                <constraint firstItem="CWK-RV-oKL" firstAttribute="top" secondItem="4sA-Zz-9hO" secondAttribute="bottom" constant="25" id="ul0-Zc-FKz"/>
-                <constraint firstAttribute="trailing" secondItem="4sA-Zz-9hO" secondAttribute="trailing" id="z5a-Fz-VKs"/>
-                <constraint firstAttribute="bottom" secondItem="CWK-RV-oKL" secondAttribute="bottom" constant="128" id="zg8-ng-qwi"/>
+                <constraint firstItem="CWK-RV-oKL" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="7oe-fC-USA"/>
+                <constraint firstAttribute="bottom" secondItem="4sA-Zz-9hO" secondAttribute="bottom" constant="288" id="9BA-pB-9kf"/>
+                <constraint firstItem="4sA-Zz-9hO" firstAttribute="trailing" secondItem="CWK-RV-oKL" secondAttribute="trailing" id="IgY-oD-8J3"/>
+                <constraint firstItem="4sA-Zz-9hO" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="SYN-iT-tXM"/>
+                <constraint firstItem="CWK-RV-oKL" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" constant="-433" id="Wh9-jA-GDq"/>
+                <constraint firstAttribute="trailing" secondItem="4sA-Zz-9hO" secondAttribute="trailing" id="beI-j5-OMY"/>
+                <constraint firstAttribute="trailing" secondItem="CWK-RV-oKL" secondAttribute="trailing" id="dYk-fe-YE0"/>
+                <constraint firstItem="4sA-Zz-9hO" firstAttribute="leading" secondItem="CWK-RV-oKL" secondAttribute="leading" id="ff3-xH-aq8"/>
+                <constraint firstItem="4sA-Zz-9hO" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="hyu-A7-lSs"/>
+                <constraint firstItem="CWK-RV-oKL" firstAttribute="top" secondItem="4sA-Zz-9hO" secondAttribute="bottom" constant="10" id="nsC-bi-XcS"/>
+                <constraint firstItem="4sA-Zz-9hO" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" id="pY9-NH-cVa"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
