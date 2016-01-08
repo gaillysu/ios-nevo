@@ -342,8 +342,9 @@ class AppTheme {
                     imageView.hidden = true
                 }
             }
+            navigation.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
+            navigation.navigationBar.shadowImage = UIImage()
             let imageView:UIImageView = UIImageView(frame: CGRectMake(0, -20, 420, 64))
-             imageView.image = UIImage(named: "navigationBar")
             imageView.backgroundColor = AppTheme.NEVO_CUSTOM_COLOR(Red: 227.0, Green: 227.0, Blue: 227.0)
             navigation.navigationBar.addSubview(imageView)
             navigation.navigationBar.sendSubviewToBack(imageView)

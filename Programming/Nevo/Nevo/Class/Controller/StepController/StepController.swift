@@ -16,7 +16,7 @@ class StepController: PublicClassController,toolbarSegmentedDelegate,UIActionShe
     private var goalArray:[Int] = []
     override func viewDidLoad() {
         super.viewDidLoad()
-        //self.title = NSLocalizedString("stepGoalTitle", comment: "")
+        AppTheme.navigationbar(self.navigationController!)
 
         let toolbar:ToolbarView = ToolbarView(frame: CGRectMake( 0, 0, UIScreen.mainScreen().bounds.width, 35), items: ["Today","History"])
         toolbar.delegate = self

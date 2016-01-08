@@ -28,9 +28,15 @@ class ToolbarView: UIView {
         let itemSeg:UIBarButtonItem = UIBarButtonItem(customView: segment)
         itemSeg.style = UIBarButtonItemStyle.Done
         itemSeg.action = nil
-        let navToolbar:UIToolbar = UIToolbar(frame:  CGRectMake( 0, 0, self.frame.size.width, 35))
 
         let flexible:UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: self, action: nil)
+
+        let navToolbar:UIToolbar = UIToolbar(frame:  CGRectMake( 0, 0, self.frame.size.width, 35))
+        navToolbar.shadowImageForToolbarPosition(UIBarPosition.Any)
+        let imageView:UIImageView = UIImageView(frame: CGRectMake(0, -20, 420, 64))
+        imageView.backgroundColor = AppTheme.NEVO_CUSTOM_COLOR(Red: 227.0, Green: 227.0, Blue: 227.0)
+        navToolbar.addSubview(imageView)
+        navToolbar.sendSubviewToBack(imageView)
         navToolbar.setItems([flexible,itemSeg,flexible], animated: true)
         self.addSubview(navToolbar)
 
