@@ -15,7 +15,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="164"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="new_clock_dial" translatesAutoresizingMaskIntoConstraints="NO" id="lqf-ED-M5e">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="10_clock_dial" translatesAutoresizingMaskIntoConstraints="NO" id="lqf-ED-M5e">
                         <rect key="frame" x="77" y="0.0" width="165" height="165"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="lqf-ED-M5e" secondAttribute="height" multiplier="1:1" id="1Qj-14-Jnm"/>
@@ -32,6 +32,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="new_clock_dial" width="300" height="300"/>
+        <image name="10_clock_dial" width="300" height="300"/>
     </resources>
 </document>

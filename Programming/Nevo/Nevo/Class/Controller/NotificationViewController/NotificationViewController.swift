@@ -42,7 +42,7 @@ class NotificationViewController: UITableViewController,SelectedNotificationDele
         mCalendarSettingArray.removeAll()
         mNotificationArray = UserNotification.getAll()
         
-        let notificationTypeArray:[NotificationType] = [NotificationType.CALL, NotificationType.EMAIL, NotificationType.FACEBOOK, NotificationType.SMS, NotificationType.WECHAT, NotificationType.WHATSAPP]
+        let notificationTypeArray:[NotificationType] = [NotificationType.CALL, NotificationType.EMAIL, NotificationType.FACEBOOK, NotificationType.SMS, NotificationType.WHATSAPP]
         for notificationType in notificationTypeArray {
             for model in mNotificationArray{
                 let notification:UserNotification = model as! UserNotification
@@ -134,7 +134,7 @@ class NotificationViewController: UITableViewController,SelectedNotificationDele
         // #warning Incomplete implementation, return the number of rows
         switch (section){
         case 0:
-            return mNotificationSettingArray.count-1
+            return mNotificationSettingArray.count
         case 1:
             return 1
         default: return 1;

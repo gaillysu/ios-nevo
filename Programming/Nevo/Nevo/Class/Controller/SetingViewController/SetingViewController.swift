@@ -25,6 +25,8 @@ class SetingViewController: UIViewController,SyncControllerDelegate,ButtonManage
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.title = NSLocalizedString("Setting", comment: "")
+        
         AppDelegate.getAppDelegate().startConnect(false, delegate: self)
 
         notificationList.bulidNotificationViewUI(self)

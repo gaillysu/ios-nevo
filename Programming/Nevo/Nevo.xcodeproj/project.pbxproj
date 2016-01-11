@@ -213,6 +213,7 @@
 		00C640F61A8DEE0800815CF8 /* clockView600.png in Resources */ = {isa = PBXBuildFile; fileRef = 00C640F51A8DEE0800815CF8 /* clockView600.png */; };
 		00D0FF731B130A9F00D084C3 /* Nevo660.png in Resources */ = {isa = PBXBuildFile; fileRef = 00D0FF721B130A9F00D084C3 /* Nevo660.png */; };
 		00D4DE921AB141FB0062523D /* NevoPicture960.png in Resources */ = {isa = PBXBuildFile; fileRef = 00D4DE901AB141FB0062523D /* NevoPicture960.png */; };
+		00DBC3A31C435541004B4376 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 00DBC3A21C435541004B4376 /* Main.storyboard */; };
 		00DC9EA61BB2853D00734DB6 /* ChartAnimationEasing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00DC9E481BB2853D00734DB6 /* ChartAnimationEasing.swift */; };
 		00DC9EA71BB2853D00734DB6 /* ChartAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00DC9E491BB2853D00734DB6 /* ChartAnimator.swift */; };
 		00DC9EA81BB2853D00734DB6 /* BarChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00DC9E4B1BB2853D00734DB6 /* BarChartView.swift */; };
@@ -313,7 +314,6 @@
 		00ED43DF1C1EA11700915885 /* NSDateComponents+Timepiece.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00ED43D71C1EA11700915885 /* NSDateComponents+Timepiece.swift */; };
 		00ED43E01C1EA11700915885 /* NSTimeInterval+Timepiece.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00ED43D81C1EA11700915885 /* NSTimeInterval+Timepiece.swift */; };
 		00ED43E11C1EA11700915885 /* String+Timepiece.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00ED43D91C1EA11700915885 /* String+Timepiece.swift */; };
-		074B87A61ABFB88C008BD08F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9AD8F93E1A6DF35900F01014 /* Main.storyboard */; };
 		07BCE82A1B5CAB2200C7F558 /* clockview600_color.png in Resources */ = {isa = PBXBuildFile; fileRef = 07BCE8291B5CAB2100C7F558 /* clockview600_color.png */; };
 		3EB4814E2F2BBEF4FF005B9A /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 69DA43EC8A53D42EB453ADD6 /* libPods.a */; };
 		9A2D6C3B1A9C6D9F00591BDC /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A2D6C3A1A9C6D9F00591BDC /* HealthKit.framework */; };
@@ -546,11 +546,7 @@
 		0072EAB31C190DCD001EE2C9 /* SFUIText-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFUIText-Semibold.ttf"; sourceTree = "<group>"; };
 		0072EAB41C190DCD001EE2C9 /* SFUIText-SemiboldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFUIText-SemiboldItalic.ttf"; sourceTree = "<group>"; };
 		0072EAEA1C192210001EE2C9 /* spinner.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spinner.png; sourceTree = "<group>"; };
-		0086858E1B40D53C0062F544 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
 		0086858F1B40D53C0062F544 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
-		00A773841A8854580018E121 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Main.strings; sourceTree = "<group>"; };
-		00A773861A8854750018E121 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
-		00A773871A88547C0018E121 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Main.strings"; sourceTree = "<group>"; };
 		00A773921A88562F0018E121 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		00A773931A88562F0018E121 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		00A773941A88562F0018E121 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
@@ -558,6 +554,7 @@
 		00C640F51A8DEE0800815CF8 /* clockView600.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clockView600.png; sourceTree = "<group>"; };
 		00D0FF721B130A9F00D084C3 /* Nevo660.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Nevo660.png; sourceTree = "<group>"; };
 		00D4DE901AB141FB0062523D /* NevoPicture960.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NevoPicture960.png; sourceTree = "<group>"; };
+		00DBC3A21C435541004B4376 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		00DC9E481BB2853D00734DB6 /* ChartAnimationEasing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartAnimationEasing.swift; sourceTree = "<group>"; };
 		00DC9E491BB2853D00734DB6 /* ChartAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartAnimator.swift; sourceTree = "<group>"; };
 		00DC9E4B1BB2853D00734DB6 /* BarChartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarChartView.swift; sourceTree = "<group>"; };
@@ -670,7 +667,6 @@
 		9AD8F9321A6DF35900F01014 /* Nevo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Nevo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AD8F9361A6DF35900F01014 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9AD8F93A1A6DF35900F01014 /* Nevo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Nevo.xcdatamodel; sourceTree = "<group>"; };
-		9AD8F93F1A6DF35900F01014 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9AD8F9411A6DF35900F01014 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		9AD8F94A1A6DF35900F01014 /* NevoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NevoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AD8F94F1A6DF35900F01014 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -1571,7 +1567,7 @@
 			children = (
 				0050D5141C28E0DB004F6F80 /* Class */,
 				9A2D6C391A9C6D9F00591BDC /* Nevo.entitlements */,
-				9AD8F93E1A6DF35900F01014 /* Main.storyboard */,
+				00DBC3A21C435541004B4376 /* Main.storyboard */,
 				9AD8F9411A6DF35900F01014 /* Images.xcassets */,
 				9AD8F9391A6DF35900F01014 /* Nevo.xcdatamodeld */,
 				9AD8F9351A6DF35900F01014 /* Supporting Files */,
@@ -1731,6 +1727,7 @@
 				0072EAD21C190DCD001EE2C9 /* SFUIDisplay-Ultralight.ttf in Resources */,
 				0072EAD01C190DCD001EE2C9 /* SFUIDisplay-Semibold.ttf in Resources */,
 				00E759141C23E83200372529 /* firmware_clock.png in Resources */,
+				00DBC3A31C435541004B4376 /* Main.storyboard in Resources */,
 				0050D5F21C28E0DB004F6F80 /* MyNevoHeaderView.xib in Resources */,
 				0072EABB1C190DCD001EE2C9 /* SFCompactDisplay-Semibold.ttf in Resources */,
 				0050D60E1C28E0DB004F6F80 /* PresetTableViewController.xib in Resources */,
@@ -1740,7 +1737,6 @@
 				0072EACD1C190DCD001EE2C9 /* SFUIDisplay-Light.ttf in Resources */,
 				0050D6011C28E0DB004F6F80 /* NotificationViewController.xib in Resources */,
 				00E2BDE31B16CCD0009C757E /* MBProgressHUD.bundle in Resources */,
-				074B87A61ABFB88C008BD08F /* Main.storyboard in Resources */,
 				0050D6221C28E0DB004F6F80 /* StepGoalSetingController.xib in Resources */,
 				0050D6181C28E0DB004F6F80 /* queryTableviewCell.xib in Resources */,
 				0072EABF1C190DCD001EE2C9 /* SFCompactText-BoldItalic.ttf in Resources */,
@@ -2123,18 +2119,6 @@
 				0086858F1B40D53C0062F544 /* de */,
 			);
 			name = Localizable.strings;
-			sourceTree = "<group>";
-		};
-		9AD8F93E1A6DF35900F01014 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				9AD8F93F1A6DF35900F01014 /* Base */,
-				00A773841A8854580018E121 /* fr */,
-				00A773861A8854750018E121 /* zh-Hans */,
-				00A773871A88547C0018E121 /* zh-Hant */,
-				0086858E1B40D53C0062F544 /* de */,
-			);
-			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
