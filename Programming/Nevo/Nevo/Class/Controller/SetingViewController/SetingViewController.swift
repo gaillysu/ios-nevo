@@ -33,7 +33,7 @@ class SetingViewController: UIViewController,SyncControllerDelegate,ButtonManage
 
         sources = [NSLocalizedString("Link-Loss Notifications", comment: ""),NSLocalizedString("Notifications", comment: ""),NSLocalizedString("My nevo", comment: ""),NSLocalizedString("Support", comment: ""),NSLocalizedString("About", comment: "")]
         sourcesImage = ["new_iOS_link_icon","new_iOS_notfications_icon","new_iOS_mynevo_iocn","new_iOS_support_icon","new_iOS_about_icon"]
-        titleArray = [NSLocalizedString("Preset-goals", comment: ""),NSLocalizedString("Find device", comment: "")]
+        titleArray = [NSLocalizedString("goals", comment: ""),NSLocalizedString("find_my_watch", comment: "")]
         titleArrayImage = ["new_iOS_goals_icon","new_iOS_findmywatch_icon"]
     }
 
@@ -102,12 +102,12 @@ class SetingViewController: UIViewController,SyncControllerDelegate,ButtonManage
             }
             break
         case 1:
-            if(isEqualString("\(titleArray[indexPath.row])",string2: NSLocalizedString("Find device", comment: ""))){
-                AppTheme.DLog("Find device")
+            if(isEqualString("\(titleArray[indexPath.row])",string2: NSLocalizedString("find_my_watch", comment: ""))){
+                AppTheme.DLog("find_my_watch")
                 findMydevice()
             }
 
-            if(isEqualString("\(titleArray[indexPath.row])",string2: NSLocalizedString("Preset-goals", comment: ""))){
+            if(isEqualString("\(titleArray[indexPath.row])",string2: NSLocalizedString("goals", comment: ""))){
                 AppTheme.DLog("Preset-goals")
                 let presetView:PresetTableViewController = PresetTableViewController()
                 presetView.hidesBottomBarWhenPushed = true
