@@ -130,3 +130,11 @@
 "sleep_timer"="Sleep Timer";
 "wake_timer"="Wake Timer";
 "wake_duration"="Wake Duration";
+"CALL"="Call";
+"SMS"="(i)Message";
+"EMAIL"="E-mail";
+"Facebook"="Facebook";
+"Calendar"="Calendar";
+"WeChat"="WeChat";
+"Whatsapp"="Whatsapp";
+"Setting"="Setting";
