@@ -34,7 +34,7 @@ class ToolbarView: UIView {
         let navToolbar:UIToolbar = UIToolbar(frame:  CGRectMake( 0, 0, self.frame.size.width, 35))
         navToolbar.shadowImageForToolbarPosition(UIBarPosition.Any)
         let imageView:UIImageView = UIImageView(frame: CGRectMake(0, -20, 420, 64))
-        imageView.backgroundColor = AppTheme.NEVO_CUSTOM_COLOR(Red: 227.0, Green: 227.0, Blue: 227.0)
+        imageView.backgroundColor = AppTheme.NEVO_CUSTOM_COLOR(Red: 247.0, Green: 247.0, Blue: 247.0)
         navToolbar.addSubview(imageView)
         navToolbar.sendSubviewToBack(imageView)
         navToolbar.setItems([flexible,itemSeg,flexible], animated: true)
