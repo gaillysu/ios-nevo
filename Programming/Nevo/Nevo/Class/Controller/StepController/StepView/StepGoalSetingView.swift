@@ -33,7 +33,7 @@ class StepGoalSetingView: UIView {
         //animationView = AnimationView(frame: self.frame, delegate: delegate)
         mClockTimerView.currentTimer()
         mClockTimerView.center = CGPointMake(UIScreen.mainScreen().bounds.size.width/2.0, UIScreen.mainScreen().bounds.size.height/2.0)//Using the center property determines the location of the ClockView
-        mClockTimerView.frame = CGRectMake(mClockTimerView.frame.origin.x, 45, mClockTimerView.frame.size.width, mClockTimerView.frame.size.height)
+        mClockTimerView.frame = CGRectMake(mClockTimerView.frame.origin.x, 20, mClockTimerView.frame.size.width, mClockTimerView.frame.size.height)
         self.addSubview(mClockTimerView)
 
         progressView = CircleProgressView()
@@ -52,7 +52,6 @@ class StepGoalSetingView: UIView {
         collectionView?.registerClass(UICollectionViewCell.classForCoder(), forCellWithReuseIdentifier: "CollectionViewCell")
         collectionView?.backgroundColor = UIColor.whiteColor()
         self.addSubview(collectionView!)
-
     }
 
     func getClockTimerView() -> ClockView {

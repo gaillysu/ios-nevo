@@ -26,7 +26,7 @@ class SleepTrackingView: UIView {
         mClockTimerView.currentTimer()
         self.addSubview(mClockTimerView)
         mClockTimerView.center = CGPointMake(UIScreen.mainScreen().bounds.size.width/2.0, UIScreen.mainScreen().bounds.size.height/2.0)//Using the center property determines the location of the ClockView
-         mClockTimerView.frame = CGRectMake(mClockTimerView.frame.origin.x, 45, mClockTimerView.frame.size.width, mClockTimerView.frame.size.height)
+         mClockTimerView.frame = CGRectMake(mClockTimerView.frame.origin.x, 20, mClockTimerView.frame.size.width, mClockTimerView.frame.size.height)
 
         progressView = CircleSleepProgressView()
         progressView?.frame = CGRectMake(mClockTimerView.frame.origin.x-5, mClockTimerView.frame.origin.y-5, UIScreen.mainScreen().bounds.width-50, UIScreen.mainScreen().bounds.width-50)

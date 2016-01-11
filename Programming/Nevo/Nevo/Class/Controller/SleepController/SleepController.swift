@@ -15,7 +15,7 @@ class SleepController: PublicClassController,toolbarSegmentedDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         AppTheme.navigationbar(self.navigationController!)
-        let toolbar:ToolbarView = ToolbarView(frame: CGRectMake( 0, 0, UIScreen.mainScreen().bounds.width, 35), items: ["Last night","History"])
+        let toolbar:ToolbarView = ToolbarView(frame: CGRectMake( 0, 0, UIScreen.mainScreen().bounds.width, 35), items: [NSLocalizedString("last_night", comment: ""),NSLocalizedString("history", comment: "")])
         toolbar.delegate = self
         self.view.addSubview(toolbar)
 
