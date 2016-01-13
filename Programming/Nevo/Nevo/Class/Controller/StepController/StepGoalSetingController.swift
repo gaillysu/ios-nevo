@@ -82,7 +82,7 @@ class StepGoalSetingController: PublicClassController,ButtonManagerCallBack,Sync
 
      // MARK: - UICollectionViewDataSource
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 6
+        return contentTitleArray.count
     }
 
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
