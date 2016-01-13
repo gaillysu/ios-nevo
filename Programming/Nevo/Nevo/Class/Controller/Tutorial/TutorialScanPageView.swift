@@ -91,7 +91,7 @@ class TutorialScanPageView : UIView {
         mFinishButton?.setTitle(NSLocalizedString("Next",comment:"lable string"), forState: UIControlState.Normal)
         mFinishButton?.titleLabel?.font = BUTTON_FONT
         mFinishButton?.setTitleColor(AppTheme.NEVO_SOLAR_YELLOW(), forState: UIControlState.Normal)
-        if AppTheme.GET_IS_iPhone4S() {
+        if AppTheme.GET_IS_iPhone5S() {
             mFinishButton?.center = CGPointMake(self.frame.size.width/2.0, self.frame.size.height-25)
         }else {
             mFinishButton?.center = CGPointMake(self.frame.size.width/2.0, self.frame.size.height-50)
@@ -101,7 +101,7 @@ class TutorialScanPageView : UIView {
         self.addSubview(mFinishButton!)
 
         let errorLabel = UILabel(frame: CGRectMake(0, 0, titleLabel.frame.size.width, 90))
-        if AppTheme.GET_IS_iPhone4S(){
+        if AppTheme.GET_IS_iPhone5S(){
             errorLabel.center = CGPointMake(self.frame.size.width/2.0, self.frame.size.height-80)
         }else {
             errorLabel.center = CGPointMake(self.frame.size.width/2.0, self.frame.size.height-110)

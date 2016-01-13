@@ -60,7 +60,7 @@ class TutorialPage3View: UIView {
 
         let sideImage:UIImageView = UIImageView(image: UIImage(named: String("side" as NSString)))
         sideImage.frame = CGRectMake(0, 0, 120, self.frame.size.width-100)
-        if AppTheme.GET_IS_iPhone4S() {
+        if AppTheme.GET_IS_iPhone5S() {
             sideImage.center = CGPointMake(50, self.frame.size.height/2.0+20)
         }else{
             sideImage.center = CGPointMake(60, self.frame.size.height/2.0+20)
@@ -92,7 +92,7 @@ class TutorialPage3View: UIView {
         nextButton.backgroundColor = UIColor.clearColor()
         nextButton.titleLabel?.font = BUTTON_FONT
         nextButton.setTitleColor(AppTheme.NEVO_SOLAR_YELLOW(), forState: UIControlState.Normal)
-        if AppTheme.GET_IS_iPhone4S() {
+        if AppTheme.GET_IS_iPhone5S() {
             nextButton.center = CGPointMake(self.frame.size.width/2.0, self.frame.size.height-25)
         }else {
             nextButton.center = CGPointMake(self.frame.size.width/2.0, self.frame.size.height-50)

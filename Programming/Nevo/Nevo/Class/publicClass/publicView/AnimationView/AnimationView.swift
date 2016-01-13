@@ -106,7 +106,7 @@ class AnimationView: UIView {
                 message2.font = AppTheme.FONT_RALEWAY_LIGHT(mSize: 15)
             }
 
-            if(AppTheme.GET_IS_iPhone4S()){
+            if(AppTheme.GET_IS_iPhone5S()){
                 message.frame = CGRectMake(self.frame.size.width/2-150, 90, 300, message.frame.size.height)
                 mNoConnectImage?.frame = CGRectMake(mNoConnectionView!.frame.size.width/2.0-60, message.frame.size.height+message.frame.origin.y, 120, 120)
                 mNoConnectScanButton?.frame = CGRectMake(mNoConnectionView!.frame.size.width/2.0-60, message.frame.size.height+message.frame.origin.y, 120, 120)

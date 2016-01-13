@@ -76,7 +76,7 @@ class TutorialPage7View : UIView {
         //nextButton.setTitle(NSLocalizedString("Finish",comment:"button title string"), forState: UIControlState.Normal)
         nextButton.titleLabel?.font = TEXT_FONT
         nextButton.setTitleColor(AppTheme.NEVO_SOLAR_YELLOW(), forState: UIControlState.Normal)
-        if AppTheme.GET_IS_iPhone4S() {
+        if AppTheme.GET_IS_iPhone5S() {
             nextButton.center = CGPointMake(self.frame.size.width/2.0, self.frame.size.height-25)
         }else {
             nextButton.center = CGPointMake(self.frame.size.width/2.0, self.frame.size.height-50)

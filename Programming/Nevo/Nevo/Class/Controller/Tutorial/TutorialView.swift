@@ -40,7 +40,7 @@ class TutorialView: UIView {
         backgroundImage.center = CGPointMake(self.frame.size.width/2.0, self.frame.size.height/2.0)
         backgroundImage.userInteractionEnabled = true;
         backgroundImage.backgroundColor = UIColor.clearColor();
-        if AppTheme.GET_IS_iPhone4S() {
+        if AppTheme.GET_IS_iPhone5S() {
             backgroundImage.image = AppTheme.GET_RESOURCES_IMAGE("NevoPicture960")
         }else {
             backgroundImage.image = AppTheme.GET_RESOURCES_IMAGE("NevoPicture")
