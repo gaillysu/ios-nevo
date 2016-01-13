@@ -503,6 +503,7 @@
 		005BC9551A889F14006F9E86 /* NevoPicture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NevoPicture.png; sourceTree = "<group>"; };
 		005BC95D1A88B79F006F9E86 /* FXBlurView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FXBlurView.h; sourceTree = "<group>"; };
 		005BC95E1A88B79F006F9E86 /* FXBlurView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FXBlurView.m; sourceTree = "<group>"; };
+		006B83691C44A20000E20A0C /* Nevo-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Nevo-Bridging-Header.h"; sourceTree = "<group>"; };
 		0072EA8B1C190DCD001EE2C9 /* SFCompactDisplay-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFCompactDisplay-Black.ttf"; sourceTree = "<group>"; };
 		0072EA8C1C190DCD001EE2C9 /* SFCompactDisplay-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFCompactDisplay-Bold.ttf"; sourceTree = "<group>"; };
 		0072EA8D1C190DCD001EE2C9 /* SFCompactDisplay-Heavy.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFCompactDisplay-Heavy.ttf"; sourceTree = "<group>"; };
@@ -1076,7 +1077,6 @@
 				0050D5B01C28E0DB004F6F80 /* AnimationView */,
 				0050D5B21C28E0DB004F6F80 /* AppTheme.swift */,
 				0050D5B31C28E0DB004F6F80 /* ClockView.swift */,
-				0050D5B41C28E0DB004F6F80 /* FBProgressHUD */,
 				0050D5B51C28E0DB004F6F80 /* SyncBar.swift */,
 				0050D5B61C28E0DB004F6F80 /* ToolbarView.swift */,
 			);
@@ -1089,13 +1089,6 @@
 				0050D5B11C28E0DB004F6F80 /* AnimationView.swift */,
 			);
 			path = AnimationView;
-			sourceTree = "<group>";
-		};
-		0050D5B41C28E0DB004F6F80 /* FBProgressHUD */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = FBProgressHUD;
 			sourceTree = "<group>";
 		};
 		0050D5B71C28E0DB004F6F80 /* Util */ = {
@@ -1568,6 +1561,7 @@
 				0050D5141C28E0DB004F6F80 /* Class */,
 				9A2D6C391A9C6D9F00591BDC /* Nevo.entitlements */,
 				00DBC3A21C435541004B4376 /* Main.storyboard */,
+				006B83691C44A20000E20A0C /* Nevo-Bridging-Header.h */,
 				9AD8F9411A6DF35900F01014 /* Images.xcassets */,
 				9AD8F9391A6DF35900F01014 /* Nevo.xcdatamodeld */,
 				9AD8F9351A6DF35900F01014 /* Supporting Files */,

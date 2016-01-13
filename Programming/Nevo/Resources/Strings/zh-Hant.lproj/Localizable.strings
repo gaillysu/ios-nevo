@@ -114,15 +114,9 @@
 "goal"="Goal";
 "you_reached"="you reached";
 "progress"="Progress";
-"all_day_mileage"="All-day Mileage";
+"day_steps_goal"="Steps Goal";
+"day_goal_reach"="Percent";
 "all_day_steps"="All-day Steps";
-"all_day_consume"="All-day Consume";
-"walking_mileage"="Walking Mileage";
-"walking_duration"="Walking Duration";
-"walking_consume"="Walking Consume";
-"running_mileage"="Running Mileage";
-"running_duration"="Running Duration";
-"running_consume"="Running Consume";
 "sleep_duration"="Sleep Duration";
 "deep_sleep"="Deep Sleep";
 "light_sleep"="Light Sleep";

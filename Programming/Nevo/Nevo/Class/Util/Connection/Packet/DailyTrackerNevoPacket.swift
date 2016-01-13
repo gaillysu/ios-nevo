@@ -9,8 +9,19 @@
 import UIKit
 
 class DailyTrackerNevoPacket: NevoPacket {
-   
-    
+
+    /**
+     return Steps goal
+
+     :returns: goal
+     */
+    func getStepsGoal()->Int {
+        var stepGoal:Int = Int(NSData2Bytes(getPackets()[0])[6])
+        stepGoal =  stepGoal + Int(NSData2Bytes(getPackets()[0])[7] )<<8
+        stepGoal =  stepGoal + Int(NSData2Bytes(getPackets()[0])[8] )<<16
+        stepGoal =  stepGoal + Int(NSData2Bytes(getPackets()[0])[9] )<<24
+        return stepGoal;
+    }
     /**
     return History Daily steps
     */

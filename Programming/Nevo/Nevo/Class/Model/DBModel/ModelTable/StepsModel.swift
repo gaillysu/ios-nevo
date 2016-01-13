@@ -11,6 +11,7 @@ import UIKit
 class StepsModel: UserDatabaseHelper {
 
     var steps:Int = 0
+    var goalsteps:Int = 0
     var distance:Int = 0
     var hourlysteps:String = ""
     var hourlydistance:String = ""
@@ -19,7 +20,7 @@ class StepsModel: UserDatabaseHelper {
     var inZoneTime:Int = 0;
     var outZoneTime:Int = 0;
     var inactivityTime:Int = 0;
-    var goalreach:Double = 0;
+    var goalreach:Double = 0.0;
     var date:NSTimeInterval = 0
     var createDate:String = ""
     var walking_distance:Int = 0
@@ -87,7 +88,7 @@ class StepsModel: UserDatabaseHelper {
                     if (columeType.isEqualToString(SQLTEXT)) {
                         model.setValue(resultSet.stringForColumn("\(columeName)"), forKey: "\(columeName)")
                     } else {
-                        model.setValue(NSNumber(longLong: resultSet.longLongIntForColumn("\(columeName)")), forKey: "\(columeName)")
+                        model.setValue(NSNumber(double: resultSet.doubleForColumn("\(columeName)")), forKey: "\(columeName)")
                     }
                 }
                 users.addObject(model)

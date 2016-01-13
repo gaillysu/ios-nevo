@@ -11,6 +11,7 @@ import UIKit
 class UserSteps: NSObject,BaseEntryDatabaseHelper {
     var id:Int = 0
     var steps:Int = 0
+    var goalsteps:Int = 0
     var distance:Int = 0
     var hourlysteps:String = ""
     var hourlydistance:String = ""
@@ -19,7 +20,7 @@ class UserSteps: NSObject,BaseEntryDatabaseHelper {
     var inZoneTime:Int = 0;
     var outZoneTime:Int = 0;
     var inactivityTime:Int = 0;
-    var goalreach:Double = 0;
+    var goalreach:Double = 0.0;
     var date:NSTimeInterval = 0
     var createDate:String = ""
     var walking_distance:Int = 0
@@ -39,6 +40,7 @@ class UserSteps: NSObject,BaseEntryDatabaseHelper {
 
     func add(result:((id:Int?,completion:Bool?) -> Void)){
         stepsModel.steps = steps
+        stepsModel.goalsteps = goalsteps
         stepsModel.distance = distance
         stepsModel.hourlysteps = hourlysteps
         stepsModel.hourlydistance = hourlydistance
@@ -65,6 +67,7 @@ class UserSteps: NSObject,BaseEntryDatabaseHelper {
     func update()->Bool{
         stepsModel.id = id
         stepsModel.steps = steps
+        stepsModel.goalsteps = goalsteps
         stepsModel.distance = distance
         stepsModel.hourlysteps = hourlysteps
         stepsModel.hourlydistance = hourlydistance
@@ -102,6 +105,7 @@ class UserSteps: NSObject,BaseEntryDatabaseHelper {
             let presets:UserSteps = UserSteps(keyDict: [
                 "id":stepsModel.id,
                 "steps":stepsModel.steps,
+                "goalsteps":stepsModel.goalsteps,
                 "distance":stepsModel.distance,
                 "hourlysteps":stepsModel.hourlysteps,
                 "hourlydistance":stepsModel.hourlydistance,
@@ -131,6 +135,7 @@ class UserSteps: NSObject,BaseEntryDatabaseHelper {
             let presets:UserSteps = UserSteps(keyDict: [
                 "id":stepsModel.id,
                 "steps":stepsModel.steps,
+                "goalsteps":stepsModel.goalsteps,
                 "distance":stepsModel.distance,
                 "hourlysteps":stepsModel.hourlysteps,
                 "hourlydistance":stepsModel.hourlydistance,

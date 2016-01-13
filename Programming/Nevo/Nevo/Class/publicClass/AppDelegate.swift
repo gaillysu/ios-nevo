@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
 
     var window: UIWindow?
     //Let's sync every days
-    let SYNC_INTERVAL:NSTimeInterval = 1*30*60 //unit is second in iOS, every 30min, do sync
+    let SYNC_INTERVAL:NSTimeInterval = 0*30*60 //unit is second in iOS, every 30min, do sync
     let LAST_SYNC_DATE_KEY = "LAST_SYNC_DATE_KEY"
     private var mDelegates:[SyncControllerDelegate] = []
     private var mConnectionController : ConnectionControllerImpl?
@@ -382,15 +382,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                         let stepsModel:UserSteps = UserSteps(keyDict: [
                             "id":step.id,
                             "steps":thispacket.getDailySteps(),
+                            "goalsteps":thispacket.getStepsGoal(),
                             "distance":thispacket.getDailyDist(),
                             "hourlysteps":AppTheme.toJSONString(thispacket.getHourlySteps()),
                             "hourlydistance":AppTheme.toJSONString(thispacket.getHourlyDist()),
-                            "calories":thispacket.getDailyCalories() ,
+                            "calories":thispacket.getDailyCalories(),
                             "hourlycalories":AppTheme.toJSONString(thispacket.getHourlyCalories()),
                             "inZoneTime":thispacket.getInZoneTime(),
                             "outZoneTime":thispacket.getOutZoneTime(),
                             "inactivityTime":thispacket.getInactivityTime(),
-                            "goalreach":false,
+                            "goalreach":Double(thispacket.getDailySteps())/Double(thispacket.getStepsGoal()),
                             "date":timerInter,
                             "createDate":timeStr,
                             "walking_distance":thispacket.getDailyWalkingDistance(),
@@ -405,6 +406,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                     let stepsModel:UserSteps = UserSteps(keyDict: [
                         "id":0,
                         "steps":thispacket.getDailySteps(),
+                        "goalsteps":thispacket.getStepsGoal(),
                         "distance":thispacket.getDailyDist(),
                         "hourlysteps":AppTheme.toJSONString(thispacket.getHourlySteps()),
                         "hourlydistance":AppTheme.toJSONString(thispacket.getHourlyDist()),
@@ -413,7 +415,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                         "inZoneTime":thispacket.getInZoneTime(),
                         "outZoneTime":thispacket.getOutZoneTime(),
                         "inactivityTime":thispacket.getInactivityTime(),
-                        "goalreach":false,
+                        "goalreach":Double(thispacket.getDailySteps())/Double(thispacket.getStepsGoal()),
                         "date":timerInter,
                         "createDate":timeStr,
                         "walking_distance":thispacket.getDailyWalkingDistance(),
