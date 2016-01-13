@@ -43,12 +43,12 @@ class SleepTrackingController: PublicClassController, SyncControllerDelegate ,Bu
         sleepView.collectionView?.delegate = self
         sleepView.collectionView?.dataSource = self
 
-        if(NSUserDefaults.standardUserDefaults().boolForKey("firstLaunch")){
-            let page7:Page7Controller = Page7Controller()
-            self.presentViewController(page7, animated: true, completion: { () -> Void in
-                
-            })
-        }
+//        if(NSUserDefaults.standardUserDefaults().boolForKey("firstLaunch")){
+//            let page7:Page7Controller = Page7Controller()
+//            self.presentViewController(page7, animated: true, completion: { () -> Void in
+//                
+//            })
+//        }
 
     }
 
