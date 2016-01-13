@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MyNevoController: UITableViewController,ButtonManagerCallBack,SyncControllerDelegate,UIAlertViewDelegate {
+class MyNevoController: UITableViewController,SyncControllerDelegate,UIAlertViewDelegate {
 
     @IBOutlet var mynevoView: MyNevoView!
     private var currentBattery:Int = 0
@@ -19,8 +19,9 @@ class MyNevoController: UITableViewController,ButtonManagerCallBack,SyncControll
     var titleArray:[String] = []
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.title = NSLocalizedString("My nevo", comment: "")
 
-        mynevoView.bulidMyNevoView(self,navigation: self.navigationItem)
+        mynevoView.bulidMyNevoView()
         buildinSoftwareVersion = AppTheme.GET_SOFTWARE_VERSION()
         buildinFirmwareVersion = AppTheme.GET_FIRMWARE_VERSION()
 
@@ -29,9 +30,11 @@ class MyNevoController: UITableViewController,ButtonManagerCallBack,SyncControll
 
     
     override func viewDidAppear(animated: Bool) {
-        AppDelegate.getAppDelegate().startConnect(false, delegate: self)
-        AppDelegate.getAppDelegate().ReadBatteryLevel()
-        //mynevoView.setVersionLbael(AppDelegate.getAppDelegate().getSoftwareVersion(), bleNumber: AppDelegate.getAppDelegate().getFirmwareVersion())
+        if !AppDelegate.getAppDelegate().isConnected() {
+            AppDelegate.getAppDelegate().startConnect(false, delegate: self)
+        }else{
+            AppDelegate.getAppDelegate().ReadBatteryLevel()
+        }
         let indexPath:NSIndexPath = NSIndexPath(forRow: 0, inSection: 0)
         self.tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
 
@@ -45,11 +48,6 @@ class MyNevoController: UITableViewController,ButtonManagerCallBack,SyncControll
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-
-    // MARK: - controllManager
-    func controllManager(sender:AnyObject){
-
     }
 
     // MARK: - SyncControllerDelegate
@@ -68,9 +66,6 @@ class MyNevoController: UITableViewController,ButtonManagerCallBack,SyncControll
             rssialert = nil
         }
 
-        let currentSoftwareVersion:NSString = AppDelegate.getAppDelegate().getSoftwareVersion()
-        let currentFirmwareVersion:NSString = AppDelegate.getAppDelegate().getFirmwareVersion()
-
     }
 
 
@@ -85,7 +80,6 @@ class MyNevoController: UITableViewController,ButtonManagerCallBack,SyncControll
     }
 
     func connectionStateChanged(isConnected : Bool){
-        checkConnection()
         if(isConnected){
             AppDelegate.getAppDelegate().ReadBatteryLevel()
         }else{
@@ -96,15 +90,6 @@ class MyNevoController: UITableViewController,ButtonManagerCallBack,SyncControll
 
     func syncFinished(){
 
-    }
-
-    /**
-    Checks if any device is currently connected
-    */
-    func checkConnection() {
-        if !AppDelegate.getAppDelegate().isConnected() {
-            AppDelegate.getAppDelegate().ReadBatteryLevel()
-        }
     }
 
     func reconnect() {
@@ -129,7 +114,7 @@ class MyNevoController: UITableViewController,ButtonManagerCallBack,SyncControll
                 }
                 alertView.addAction(alertAction)
 
-                let alertAction2:UIAlertAction = UIAlertAction(title: nil, style: UIAlertActionStyle.Cancel, handler: nil)
+                let alertAction2:UIAlertAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: UIAlertActionStyle.Cancel, handler: nil)
                 alertView.addAction(alertAction2)
                 self.presentViewController(alertView, animated: true, completion: nil)
             }else{
@@ -154,7 +139,7 @@ class MyNevoController: UITableViewController,ButtonManagerCallBack,SyncControll
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         if(indexPath.row == 0){
-            //if(AppDelegate.getAppDelegate().getSoftwareVersion().integerValue > buildinSoftwareVersion && AppDelegate.getAppDelegate().getFirmwareVersion().integerValue > buildinFirmwareVersion){return}
+            if(AppDelegate.getAppDelegate().getSoftwareVersion().integerValue > buildinSoftwareVersion && AppDelegate.getAppDelegate().getFirmwareVersion().integerValue > buildinFirmwareVersion){return}
             let otaCont:NevoOtaViewController = NevoOtaViewController()
             let navigation:UINavigationController = UINavigationController(rootViewController: otaCont)
             self.presentViewController(navigation, animated: true, completion: nil)

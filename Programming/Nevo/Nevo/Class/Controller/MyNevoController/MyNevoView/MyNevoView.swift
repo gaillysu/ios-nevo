@@ -9,7 +9,6 @@
 import UIKit
 
 class MyNevoView: UITableView {
-    private var mDelegate:ButtonManagerCallBack?
 
     func getMyNevoViewTableViewCell(indexPath:NSIndexPath,tableView:UITableView,title:String,detailText:String)->UITableViewCell {
         let endCellID:String = "getMyNevoViewTableViewCell"
@@ -24,10 +23,7 @@ class MyNevoView: UITableView {
         return endCell!
     }
     
-    func bulidMyNevoView(delegate:ButtonManagerCallBack,navigation:UINavigationItem){
-        mDelegate = delegate
-        navigation.title = NSLocalizedString("My nevo", comment: "")
-        //title.text = NSLocalizedString("My nevo", comment: "")
-        //let objArray:NSArray = AppTheme.LoadKeyedArchiverName("LatestUpdate") as! NSArray
+    func bulidMyNevoView(){
+
     }
 }
