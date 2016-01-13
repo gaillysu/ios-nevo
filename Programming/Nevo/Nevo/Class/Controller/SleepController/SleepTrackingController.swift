@@ -176,6 +176,8 @@ class SleepTrackingController: PublicClassController, SyncControllerDelegate ,Bu
         }else {
             let titleLabel:UILabel = titleView as! UILabel
             titleLabel.text = contentTitleArray[indexPath.row]
+            titleLabel.sizeToFit()
+            titleLabel.center = CGPointMake(cell.contentView.frame.size.width/2.0, labelheight/2.0-titleLabel.frame.size.height)
         }
 
         let contentView = cell.contentView.viewWithTag(1700)
@@ -193,6 +195,8 @@ class SleepTrackingController: PublicClassController, SyncControllerDelegate ,Bu
         }else {
             let contentStepsView:UILabel = contentView as! UILabel
             contentStepsView.text = "\(contentTArray[indexPath.row])"
+            contentStepsView.sizeToFit()
+            contentStepsView.center = CGPointMake(cell.contentView.frame.size.width/2.0,labelheight/2.0+contentStepsView.frame.size.height/2.0)
         }
         return cell
     }
