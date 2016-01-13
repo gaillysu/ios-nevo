@@ -16,7 +16,11 @@
         </mutableArray>
     </customFonts>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TutorialPageSeven" customModule="Nevo" customModuleProvider="target">
+            <connections>
+                <outlet property="tryAgainButton" destination="Dnl-L7-kCN" id="fxm-f2-iRf"/>
+            </connections>
+        </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="7zr-Tf-uIq">
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
@@ -35,6 +39,9 @@
                     <state key="normal" title="Try again">
                         <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
+                    <connections>
+                        <action selector="tryAgainAction:" destination="-1" eventType="touchUpInside" id="lOk-Hm-cUX"/>
+                    </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Make sure the blue LED on the nevo is blinking and try again." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mVz-rf-Ylf">
                     <rect key="frame" x="52" y="566" width="271" height="35"/>
