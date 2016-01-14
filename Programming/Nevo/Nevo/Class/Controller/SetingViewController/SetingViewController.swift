@@ -100,6 +100,13 @@ class SetingViewController: UIViewController,SyncControllerDelegate,ButtonManage
                 mynevo.hidesBottomBarWhenPushed = true
                 self.navigationController?.pushViewController(mynevo, animated: true)
             }
+
+            if(isEqualString("\(sources[indexPath.row])",string2: NSLocalizedString("Support", comment: ""))){
+                AppTheme.DLog("Support")
+                let supportView:SupportViewController = SupportViewController()
+                supportView.hidesBottomBarWhenPushed = true
+                self.navigationController?.pushViewController(supportView, animated: true)
+            }
             break
         case 1:
             if(isEqualString("\(titleArray[indexPath.row])",string2: NSLocalizedString("find_my_watch", comment: ""))){

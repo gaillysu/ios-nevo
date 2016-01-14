@@ -13,6 +13,8 @@
 		000CB32A1C3E436000B4ABEC /* white_minute.png in Resources */ = {isa = PBXBuildFile; fileRef = 000CB3271C3E436000B4ABEC /* white_minute.png */; };
 		001F1B7B1B57777B001DD426 /* nevo_wacth_selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 001F1B791B57777B001DD426 /* nevo_wacth_selected.png */; };
 		001F1B7C1B57777B001DD426 /* nevo_wacth.png in Resources */ = {isa = PBXBuildFile; fileRef = 001F1B7A1B57777B001DD426 /* nevo_wacth.png */; };
+		00344F5C1C47A86800C2FC7A /* SupportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00344F5A1C47A86800C2FC7A /* SupportViewController.swift */; };
+		00344F5D1C47A86800C2FC7A /* SupportViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00344F5B1C47A86800C2FC7A /* SupportViewController.xib */; };
 		00478F4F1A8F637D00D0DCE2 /* clockViewHour.png in Resources */ = {isa = PBXBuildFile; fileRef = 00478F4D1A8F637D00D0DCE2 /* clockViewHour.png */; };
 		00478F501A8F637D00D0DCE2 /* clockViewMinute.png in Resources */ = {isa = PBXBuildFile; fileRef = 00478F4E1A8F637D00D0DCE2 /* clockViewMinute.png */; };
 		004846D41B72EDB9005A6D83 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 004846D31B72EDB9005A6D83 /* libsqlite3.dylib */; };
@@ -308,6 +310,8 @@
 		000CB3271C3E436000B4ABEC /* white_minute.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = white_minute.png; sourceTree = "<group>"; };
 		001F1B791B57777B001DD426 /* nevo_wacth_selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nevo_wacth_selected.png; sourceTree = "<group>"; };
 		001F1B7A1B57777B001DD426 /* nevo_wacth.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nevo_wacth.png; sourceTree = "<group>"; };
+		00344F5A1C47A86800C2FC7A /* SupportViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SupportViewController.swift; sourceTree = "<group>"; };
+		00344F5B1C47A86800C2FC7A /* SupportViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SupportViewController.xib; sourceTree = "<group>"; };
 		00478F4D1A8F637D00D0DCE2 /* clockViewHour.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clockViewHour.png; sourceTree = "<group>"; };
 		00478F4E1A8F637D00D0DCE2 /* clockViewMinute.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clockViewMinute.png; sourceTree = "<group>"; };
 		004846D31B72EDB9005A6D83 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
@@ -625,6 +629,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		00344F591C47A79600C2FC7A /* SupportViewController */ = {
+			isa = PBXGroup;
+			children = (
+				00344F5A1C47A86800C2FC7A /* SupportViewController.swift */,
+				00344F5B1C47A86800C2FC7A /* SupportViewController.xib */,
+			);
+			path = SupportViewController;
+			sourceTree = "<group>";
+		};
 		0050D5141C28E0DB004F6F80 /* Class */ = {
 			isa = PBXGroup;
 			children = (
@@ -639,6 +652,7 @@
 		0050D5151C28E0DB004F6F80 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				00344F591C47A79600C2FC7A /* SupportViewController */,
 				0050D6841C28E1CD004F6F80 /* AlarmController */,
 				0050D5201C28E0DB004F6F80 /* AidOTA */,
 				0050D5271C28E0DB004F6F80 /* HelpViewController */,
@@ -1667,6 +1681,7 @@
 				0072EAEB1C192210001EE2C9 /* spinner.png in Resources */,
 				9E98FB1B1C46294C00BAB700 /* TutorialFourViewController.xib in Resources */,
 				000CB32A1C3E436000B4ABEC /* white_minute.png in Resources */,
+				00344F5D1C47A86800C2FC7A /* SupportViewController.xib in Resources */,
 				9E98FB1C1C46294C00BAB700 /* TutorialOneViewController.xib in Resources */,
 				00478F4F1A8F637D00D0DCE2 /* clockViewHour.png in Resources */,
 				0050D6111C28E0DB004F6F80 /* PresetTableViewCell.xib in Resources */,
@@ -1932,6 +1947,7 @@
 				0050D6351C28E0DB004F6F80 /* DailySteps.swift in Sources */,
 				0050D6251C28E0DB004F6F80 /* StepGoalSetingView.swift in Sources */,
 				0050D5F41C28E0DB004F6F80 /* NevoOtaController.swift in Sources */,
+				00344F5C1C47A86800C2FC7A /* SupportViewController.swift in Sources */,
 				00DC9EAB1BB2853D00734DB6 /* CandleStickChartView.swift in Sources */,
 				0050D6421C28E0DB004F6F80 /* Presets.swift in Sources */,
 				0050D6391C28E0DB004F6F80 /* Alarm.swift in Sources */,
