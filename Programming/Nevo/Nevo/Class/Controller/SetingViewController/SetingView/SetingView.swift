@@ -43,9 +43,7 @@ class SetingView: UIView {
             endCell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: endCellID)
         }
         if(title == NSLocalizedString("find_my_watch", comment: "") || title == NSLocalizedString("forget_watch", comment: "")) {
-            let activity:UIActivityIndicatorView = UIActivityIndicatorView(frame: CGRectMake(0, 0, 35, 35))
-            activity.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.Gray
-            //activity.startAnimating()
+            let activity:UIActivityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
             activity.center = CGPointMake(UIScreen.mainScreen().bounds.size.width-activity.frame.size.width, endCell!.contentView.frame.size.height/2.0)
             endCell?.contentView.addSubview(activity)
         }else{

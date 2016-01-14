@@ -158,18 +158,18 @@ class NevoOtaView: UIView {
         self.backgroundColor = AppTheme.NEVO_CUSTOM_COLOR(Red: 239.0, Green: 239.0, Blue: 244.0)
 
         //title.text = NSLocalizedString("Upgrade", comment:"")
-        nevoWacthImage.contentMode = UIViewContentMode.ScaleAspectFit
+        //nevoWacthImage.contentMode = UIViewContentMode.ScaleAspectFit
 
-        OTAprogressView = OTAProgress()
+        if(OTAprogressView == nil){
+            OTAprogressView = OTAProgress()
+        }
         OTAprogressView?.setProgressColor(AppTheme.NEVO_SOLAR_YELLOW())
         OTAprogressView?.frame = CGRectMake(nevoWacthImage.frame.origin.x, nevoWacthImage.frame.origin.y, nevoWacthImage.frame.size.width, nevoWacthImage.frame.size.height)
         OTAprogressView?.setProgress(progresValue)
         self.layer.addSublayer(OTAprogressView!)
     }
+    
 
-    override func layoutSubviews() {
-        OTAprogressView?.frame = CGRectMake(nevoWacthImage.frame.origin.x, nevoWacthImage.frame.origin.y, nevoWacthImage.frame.size.width, nevoWacthImage.frame.size.height)
-    }
     @IBAction func buttonAction(sender: AnyObject) {
         mDelegate?.controllManager(sender)
     }
