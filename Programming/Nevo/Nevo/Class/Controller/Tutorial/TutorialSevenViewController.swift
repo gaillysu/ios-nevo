@@ -8,7 +8,7 @@
 
 import Foundation
 
-class TutorialPageSeven: UIViewController {
+class TutorialSevenViewController: UIViewController {
     
     @IBOutlet weak var tryAgainButton: UIButton!
     

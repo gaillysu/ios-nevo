@@ -310,20 +310,20 @@
 		9AD8F9841A6E2C8E00F01014 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD8F9821A6E2C8E00F01014 /* Request.swift */; };
 		9AD8F98D1A6E2D6E00F01014 /* RawPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD8F98C1A6E2D6E00F01014 /* RawPacket.swift */; };
 		9AD8F98F1A6E2EE000F01014 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD8F98E1A6E2EE000F01014 /* Profile.swift */; };
-		9E98FB1A1C46294C00BAB700 /* TutorialPageFive.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E98FB131C46294C00BAB700 /* TutorialPageFive.xib */; };
-		9E98FB1B1C46294C00BAB700 /* TutorialPageFour.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E98FB141C46294C00BAB700 /* TutorialPageFour.xib */; };
-		9E98FB1C1C46294C00BAB700 /* TutorialPageOne.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E98FB151C46294C00BAB700 /* TutorialPageOne.xib */; };
-		9E98FB1D1C46294C00BAB700 /* TutorialPageSeven.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E98FB161C46294C00BAB700 /* TutorialPageSeven.xib */; };
-		9E98FB1E1C46294C00BAB700 /* TutorialPageSix.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E98FB171C46294C00BAB700 /* TutorialPageSix.xib */; };
-		9E98FB1F1C46294C00BAB700 /* TutorialPageThree.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E98FB181C46294C00BAB700 /* TutorialPageThree.xib */; };
-		9E98FB201C46294C00BAB700 /* TutorialPageTwo.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E98FB191C46294C00BAB700 /* TutorialPageTwo.xib */; };
-		9E98FB291C463A3B00BAB700 /* TutorialPageOne.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E98FB281C463A3B00BAB700 /* TutorialPageOne.swift */; };
-		9E98FB2B1C463BB200BAB700 /* TutorialPageTwo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E98FB2A1C463BB200BAB700 /* TutorialPageTwo.swift */; };
-		9E98FB2D1C463D2A00BAB700 /* TutorialPageThree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E98FB2C1C463D2A00BAB700 /* TutorialPageThree.swift */; };
-		9E98FB2F1C463E1C00BAB700 /* TutorialPageFour.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E98FB2E1C463E1C00BAB700 /* TutorialPageFour.swift */; };
-		9E98FB351C46405800BAB700 /* TutorialPageFive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E98FB341C46405800BAB700 /* TutorialPageFive.swift */; };
-		9E98FB371C4640AF00BAB700 /* TutorialPageSeven.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E98FB361C4640AF00BAB700 /* TutorialPageSeven.swift */; };
-		9E98FB3D1C46434100BAB700 /* TutorialPageSix2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E98FB3C1C46434100BAB700 /* TutorialPageSix2.swift */; };
+		9E98FB1A1C46294C00BAB700 /* TutorialFiveViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E98FB131C46294C00BAB700 /* TutorialFiveViewController.xib */; };
+		9E98FB1B1C46294C00BAB700 /* TutorialFourViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E98FB141C46294C00BAB700 /* TutorialFourViewController.xib */; };
+		9E98FB1C1C46294C00BAB700 /* TutorialOneViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E98FB151C46294C00BAB700 /* TutorialOneViewController.xib */; };
+		9E98FB1D1C46294C00BAB700 /* TutorialSevenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E98FB161C46294C00BAB700 /* TutorialSevenViewController.xib */; };
+		9E98FB1E1C46294C00BAB700 /* TutorialSixViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E98FB171C46294C00BAB700 /* TutorialSixViewController.xib */; };
+		9E98FB1F1C46294C00BAB700 /* TutorialThreeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E98FB181C46294C00BAB700 /* TutorialThreeViewController.xib */; };
+		9E98FB201C46294C00BAB700 /* TutorialTwoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E98FB191C46294C00BAB700 /* TutorialTwoViewController.xib */; };
+		9E98FB291C463A3B00BAB700 /* TutorialOneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E98FB281C463A3B00BAB700 /* TutorialOneViewController.swift */; };
+		9E98FB2B1C463BB200BAB700 /* TutorialTwoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E98FB2A1C463BB200BAB700 /* TutorialTwoViewController.swift */; };
+		9E98FB2D1C463D2A00BAB700 /* TutorialThreeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E98FB2C1C463D2A00BAB700 /* TutorialThreeViewController.swift */; };
+		9E98FB2F1C463E1C00BAB700 /* TutorialFourViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E98FB2E1C463E1C00BAB700 /* TutorialFourViewController.swift */; };
+		9E98FB351C46405800BAB700 /* TutorialFiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E98FB341C46405800BAB700 /* TutorialFiveViewController.swift */; };
+		9E98FB371C4640AF00BAB700 /* TutorialSevenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E98FB361C4640AF00BAB700 /* TutorialSevenViewController.swift */; };
+		9E98FB3D1C46434100BAB700 /* TutorialSixViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E98FB3C1C46434100BAB700 /* TutorialSixViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -657,20 +657,20 @@
 		9AD8F9821A6E2C8E00F01014 /* Request.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Request.swift; path = Frameworks/NevoBT/Request.swift; sourceTree = "<group>"; };
 		9AD8F98C1A6E2D6E00F01014 /* RawPacket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RawPacket.swift; path = Frameworks/NevoBT/RawPacket.swift; sourceTree = "<group>"; };
 		9AD8F98E1A6E2EE000F01014 /* Profile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Profile.swift; path = Frameworks/NevoBT/Profile.swift; sourceTree = "<group>"; };
-		9E98FB131C46294C00BAB700 /* TutorialPageFive.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TutorialPageFive.xib; sourceTree = "<group>"; };
-		9E98FB141C46294C00BAB700 /* TutorialPageFour.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TutorialPageFour.xib; sourceTree = "<group>"; };
-		9E98FB151C46294C00BAB700 /* TutorialPageOne.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TutorialPageOne.xib; sourceTree = "<group>"; };
-		9E98FB161C46294C00BAB700 /* TutorialPageSeven.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TutorialPageSeven.xib; sourceTree = "<group>"; };
-		9E98FB171C46294C00BAB700 /* TutorialPageSix.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TutorialPageSix.xib; sourceTree = "<group>"; };
-		9E98FB181C46294C00BAB700 /* TutorialPageThree.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TutorialPageThree.xib; sourceTree = "<group>"; };
-		9E98FB191C46294C00BAB700 /* TutorialPageTwo.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TutorialPageTwo.xib; sourceTree = "<group>"; };
-		9E98FB281C463A3B00BAB700 /* TutorialPageOne.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialPageOne.swift; sourceTree = "<group>"; };
-		9E98FB2A1C463BB200BAB700 /* TutorialPageTwo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialPageTwo.swift; sourceTree = "<group>"; };
-		9E98FB2C1C463D2A00BAB700 /* TutorialPageThree.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialPageThree.swift; sourceTree = "<group>"; };
-		9E98FB2E1C463E1C00BAB700 /* TutorialPageFour.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialPageFour.swift; sourceTree = "<group>"; };
-		9E98FB341C46405800BAB700 /* TutorialPageFive.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialPageFive.swift; sourceTree = "<group>"; };
-		9E98FB361C4640AF00BAB700 /* TutorialPageSeven.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialPageSeven.swift; sourceTree = "<group>"; };
-		9E98FB3C1C46434100BAB700 /* TutorialPageSix2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialPageSix2.swift; sourceTree = "<group>"; };
+		9E98FB131C46294C00BAB700 /* TutorialFiveViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TutorialFiveViewController.xib; sourceTree = "<group>"; };
+		9E98FB141C46294C00BAB700 /* TutorialFourViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TutorialFourViewController.xib; sourceTree = "<group>"; };
+		9E98FB151C46294C00BAB700 /* TutorialOneViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TutorialOneViewController.xib; sourceTree = "<group>"; };
+		9E98FB161C46294C00BAB700 /* TutorialSevenViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TutorialSevenViewController.xib; sourceTree = "<group>"; };
+		9E98FB171C46294C00BAB700 /* TutorialSixViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TutorialSixViewController.xib; sourceTree = "<group>"; };
+		9E98FB181C46294C00BAB700 /* TutorialThreeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TutorialThreeViewController.xib; sourceTree = "<group>"; };
+		9E98FB191C46294C00BAB700 /* TutorialTwoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TutorialTwoViewController.xib; sourceTree = "<group>"; };
+		9E98FB281C463A3B00BAB700 /* TutorialOneViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialOneViewController.swift; sourceTree = "<group>"; };
+		9E98FB2A1C463BB200BAB700 /* TutorialTwoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialTwoViewController.swift; sourceTree = "<group>"; };
+		9E98FB2C1C463D2A00BAB700 /* TutorialThreeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialThreeViewController.swift; sourceTree = "<group>"; };
+		9E98FB2E1C463E1C00BAB700 /* TutorialFourViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialFourViewController.swift; sourceTree = "<group>"; };
+		9E98FB341C46405800BAB700 /* TutorialFiveViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialFiveViewController.swift; sourceTree = "<group>"; };
+		9E98FB361C4640AF00BAB700 /* TutorialSevenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialSevenViewController.swift; sourceTree = "<group>"; };
+		9E98FB3C1C46434100BAB700 /* TutorialSixViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialSixViewController.swift; sourceTree = "<group>"; };
 		A7FD54C20F9E4C504037C449 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -1600,8 +1600,8 @@
 		9E98FB211C46395F00BAB700 /* One */ = {
 			isa = PBXGroup;
 			children = (
-				9E98FB151C46294C00BAB700 /* TutorialPageOne.xib */,
-				9E98FB281C463A3B00BAB700 /* TutorialPageOne.swift */,
+				9E98FB151C46294C00BAB700 /* TutorialOneViewController.xib */,
+				9E98FB281C463A3B00BAB700 /* TutorialOneViewController.swift */,
 			);
 			name = One;
 			sourceTree = "<group>";
@@ -1609,8 +1609,8 @@
 		9E98FB221C46397E00BAB700 /* Two */ = {
 			isa = PBXGroup;
 			children = (
-				9E98FB191C46294C00BAB700 /* TutorialPageTwo.xib */,
-				9E98FB2A1C463BB200BAB700 /* TutorialPageTwo.swift */,
+				9E98FB191C46294C00BAB700 /* TutorialTwoViewController.xib */,
+				9E98FB2A1C463BB200BAB700 /* TutorialTwoViewController.swift */,
 			);
 			name = Two;
 			sourceTree = "<group>";
@@ -1618,8 +1618,8 @@
 		9E98FB231C46398C00BAB700 /* Three */ = {
 			isa = PBXGroup;
 			children = (
-				9E98FB181C46294C00BAB700 /* TutorialPageThree.xib */,
-				9E98FB2C1C463D2A00BAB700 /* TutorialPageThree.swift */,
+				9E98FB181C46294C00BAB700 /* TutorialThreeViewController.xib */,
+				9E98FB2C1C463D2A00BAB700 /* TutorialThreeViewController.swift */,
 			);
 			name = Three;
 			sourceTree = "<group>";
@@ -1627,8 +1627,8 @@
 		9E98FB241C46399400BAB700 /* Four */ = {
 			isa = PBXGroup;
 			children = (
-				9E98FB141C46294C00BAB700 /* TutorialPageFour.xib */,
-				9E98FB2E1C463E1C00BAB700 /* TutorialPageFour.swift */,
+				9E98FB141C46294C00BAB700 /* TutorialFourViewController.xib */,
+				9E98FB2E1C463E1C00BAB700 /* TutorialFourViewController.swift */,
 			);
 			name = Four;
 			sourceTree = "<group>";
@@ -1636,8 +1636,8 @@
 		9E98FB251C46399900BAB700 /* Five */ = {
 			isa = PBXGroup;
 			children = (
-				9E98FB131C46294C00BAB700 /* TutorialPageFive.xib */,
-				9E98FB341C46405800BAB700 /* TutorialPageFive.swift */,
+				9E98FB131C46294C00BAB700 /* TutorialFiveViewController.xib */,
+				9E98FB341C46405800BAB700 /* TutorialFiveViewController.swift */,
 			);
 			name = Five;
 			sourceTree = "<group>";
@@ -1645,8 +1645,8 @@
 		9E98FB261C4639BB00BAB700 /* Six */ = {
 			isa = PBXGroup;
 			children = (
-				9E98FB171C46294C00BAB700 /* TutorialPageSix.xib */,
-				9E98FB3C1C46434100BAB700 /* TutorialPageSix2.swift */,
+				9E98FB171C46294C00BAB700 /* TutorialSixViewController.xib */,
+				9E98FB3C1C46434100BAB700 /* TutorialSixViewController.swift */,
 			);
 			name = Six;
 			sourceTree = "<group>";
@@ -1654,8 +1654,8 @@
 		9E98FB271C4639D000BAB700 /* Seven */ = {
 			isa = PBXGroup;
 			children = (
-				9E98FB161C46294C00BAB700 /* TutorialPageSeven.xib */,
-				9E98FB361C4640AF00BAB700 /* TutorialPageSeven.swift */,
+				9E98FB161C46294C00BAB700 /* TutorialSevenViewController.xib */,
+				9E98FB361C4640AF00BAB700 /* TutorialSevenViewController.swift */,
 			);
 			name = Seven;
 			sourceTree = "<group>";
@@ -1759,7 +1759,7 @@
 				0072EACB1C190DCD001EE2C9 /* SFUIDisplay-Bold.ttf in Resources */,
 				0072EAD21C190DCD001EE2C9 /* SFUIDisplay-Ultralight.ttf in Resources */,
 				0072EAD01C190DCD001EE2C9 /* SFUIDisplay-Semibold.ttf in Resources */,
-				9E98FB1D1C46294C00BAB700 /* TutorialPageSeven.xib in Resources */,
+				9E98FB1D1C46294C00BAB700 /* TutorialSevenViewController.xib in Resources */,
 				00E759141C23E83200372529 /* firmware_clock.png in Resources */,
 				00DBC3A31C435541004B4376 /* Main.storyboard in Resources */,
 				0050D5F21C28E0DB004F6F80 /* MyNevoHeaderView.xib in Resources */,
@@ -1771,7 +1771,7 @@
 				0072EACD1C190DCD001EE2C9 /* SFUIDisplay-Light.ttf in Resources */,
 				0050D6011C28E0DB004F6F80 /* NotificationViewController.xib in Resources */,
 				00E2BDE31B16CCD0009C757E /* MBProgressHUD.bundle in Resources */,
-				9E98FB1E1C46294C00BAB700 /* TutorialPageSix.xib in Resources */,
+				9E98FB1E1C46294C00BAB700 /* TutorialSixViewController.xib in Resources */,
 				0050D6221C28E0DB004F6F80 /* StepGoalSetingController.xib in Resources */,
 				0050D6181C28E0DB004F6F80 /* queryTableviewCell.xib in Resources */,
 				0072EABF1C190DCD001EE2C9 /* SFCompactText-BoldItalic.ttf in Resources */,
@@ -1779,11 +1779,11 @@
 				00A773961A88562F0018E121 /* Localizable.strings in Resources */,
 				0050D5F01C28E0DB004F6F80 /* MyNevoController.xib in Resources */,
 				0072EAEB1C192210001EE2C9 /* spinner.png in Resources */,
-				9E98FB1B1C46294C00BAB700 /* TutorialPageFour.xib in Resources */,
+				9E98FB1B1C46294C00BAB700 /* TutorialFourViewController.xib in Resources */,
 				000CB32A1C3E436000B4ABEC /* white_minute.png in Resources */,
 				0072EAC81C190DCD001EE2C9 /* SFCompactText-Semibold.ttf in Resources */,
 				0072EADD1C190DCD001EE2C9 /* SFUIText-Semibold.ttf in Resources */,
-				9E98FB1C1C46294C00BAB700 /* TutorialPageOne.xib in Resources */,
+				9E98FB1C1C46294C00BAB700 /* TutorialOneViewController.xib in Resources */,
 				00478F4F1A8F637D00D0DCE2 /* clockViewHour.png in Resources */,
 				0072EAC91C190DCD001EE2C9 /* SFCompactText-SemiboldItalic.ttf in Resources */,
 				0072EAC51C190DCD001EE2C9 /* SFCompactText-MediumItalic.ttf in Resources */,
@@ -1824,8 +1824,8 @@
 				0050D6031C28E0DB004F6F80 /* SelectedNotificationTypeController.xib in Resources */,
 				0050D6941C28E1CD004F6F80 /* AddAlarmSystemCell.xib in Resources */,
 				0072EAC31C190DCD001EE2C9 /* SFCompactText-LightItalic.ttf in Resources */,
-				9E98FB1A1C46294C00BAB700 /* TutorialPageFive.xib in Resources */,
-				9E98FB201C46294C00BAB700 /* TutorialPageTwo.xib in Resources */,
+				9E98FB1A1C46294C00BAB700 /* TutorialFiveViewController.xib in Resources */,
+				9E98FB201C46294C00BAB700 /* TutorialTwoViewController.xib in Resources */,
 				0050D61E1C28E0DB004F6F80 /* SleepTrackingController.xib in Resources */,
 				0050D6961C28E1CD004F6F80 /* AddAlarmTableViewCell.xib in Resources */,
 				0072EAD51C190DCD001EE2C9 /* SFUIText-Heavy.ttf in Resources */,
@@ -1834,7 +1834,7 @@
 				0050D60C1C28E0DB004F6F80 /* AddPresetViewController.xib in Resources */,
 				00E759181C2406E600372529 /* upgrade_clock.png in Resources */,
 				0072EAB91C190DCD001EE2C9 /* SFCompactDisplay-Medium.ttf in Resources */,
-				9E98FB1F1C46294C00BAB700 /* TutorialPageThree.xib in Resources */,
+				9E98FB1F1C46294C00BAB700 /* TutorialThreeViewController.xib in Resources */,
 				00478F501A8F637D00D0DCE2 /* clockViewMinute.png in Resources */,
 				0072EACF1C190DCD001EE2C9 /* SFUIDisplay-Regular.ttf in Resources */,
 				0072EACE1C190DCD001EE2C9 /* SFUIDisplay-Medium.ttf in Resources */,
@@ -1972,7 +1972,7 @@
 				00DC9EC01BB2853D00734DB6 /* BubbleChartData.swift in Sources */,
 				00ED43DA1C1EA11700915885 /* Duration.swift in Sources */,
 				0050D6201C28E0DB004F6F80 /* StepController.swift in Sources */,
-				9E98FB291C463A3B00BAB700 /* TutorialPageOne.swift in Sources */,
+				9E98FB291C463A3B00BAB700 /* TutorialOneViewController.swift in Sources */,
 				0050D5F11C28E0DB004F6F80 /* MyNevoHeaderView.swift in Sources */,
 				0050D6381C28E0DB004F6F80 /* RealTimeCountSteps.swift in Sources */,
 				9AD8F9791A6E05F700F01014 /* NevoBT.swift in Sources */,
@@ -1993,13 +1993,13 @@
 				00E2BDE21B16CCD0009C757E /* MBProgressHUD+MJ.m in Sources */,
 				005BC95F1A88B79F006F9E86 /* FXBlurView.m in Sources */,
 				0050D6931C28E1CD004F6F80 /* AddAlarmSystemCell.swift in Sources */,
-				9E98FB2D1C463D2A00BAB700 /* TutorialPageThree.swift in Sources */,
+				9E98FB2D1C463D2A00BAB700 /* TutorialThreeViewController.swift in Sources */,
 				0050D66E1C28E0DB004F6F80 /* LedLightOnOffNevoRequest.swift in Sources */,
 				0050D6521C28E0DB004F6F80 /* PublicClassController.swift in Sources */,
 				00DC9ECD1BB2853D00734DB6 /* LineScatterCandleChartDataSet.swift in Sources */,
 				00DC9EA71BB2853D00734DB6 /* ChartAnimator.swift in Sources */,
 				00DC9EB01BB2853D00734DB6 /* PieChartView.swift in Sources */,
-				9E98FB351C46405800BAB700 /* TutorialPageFive.swift in Sources */,
+				9E98FB351C46405800BAB700 /* TutorialFiveViewController.swift in Sources */,
 				0050D63D1C28E0DB004F6F80 /* UserDatabaseHelper.swift in Sources */,
 				0050D6711C28E0DB004F6F80 /* ReadDailyTracker.swift in Sources */,
 				0050D60D1C28E0DB004F6F80 /* PresetTableViewController.swift in Sources */,
@@ -2027,7 +2027,7 @@
 				0050D5EE1C28E0DB004F6F80 /* HelpView.swift in Sources */,
 				00DC9EE51BB2853D00734DB6 /* ChartRendererBase.swift in Sources */,
 				00DC9EEB1BB2853D00734DB6 /* ChartYAxisRendererHorizontalBarChart.swift in Sources */,
-				9E98FB3D1C46434100BAB700 /* TutorialPageSix2.swift in Sources */,
+				9E98FB3D1C46434100BAB700 /* TutorialSixViewController.swift in Sources */,
 				00DC9EB31BB2853D00734DB6 /* ScatterChartView.swift in Sources */,
 				00E2BDE41B16CCD0009C757E /* MBProgressHUD.m in Sources */,
 				00DC9EDE1BB2853D00734DB6 /* HorizontalBarChartHighlighter.swift in Sources */,
@@ -2059,7 +2059,7 @@
 				00DC9ECA1BB2853D00734DB6 /* LineChartData.swift in Sources */,
 				00DC9EAE1BB2853D00734DB6 /* HorizontalBarChartView.swift in Sources */,
 				0050D5F81C28E0DB004F6F80 /* NevoOtaViewController.swift in Sources */,
-				9E98FB371C4640AF00BAB700 /* TutorialPageSeven.swift in Sources */,
+				9E98FB371C4640AF00BAB700 /* TutorialSevenViewController.swift in Sources */,
 				0050D6161C28E0DB004F6F80 /* SetingViewController.swift in Sources */,
 				0050D6471C28E0DB004F6F80 /* UserAlarm.swift in Sources */,
 				0050D6971C28E1CD004F6F80 /* AddAlarmView.swift in Sources */,
@@ -2077,10 +2077,10 @@
 				0050D6391C28E0DB004F6F80 /* Alarm.swift in Sources */,
 				00DC9ED71BB2853D00734DB6 /* ChartFillFormatter.swift in Sources */,
 				00DC9EBE1BB2853D00734DB6 /* BarLineScatterCandleBubbleChartData.swift in Sources */,
-				9E98FB2F1C463E1C00BAB700 /* TutorialPageFour.swift in Sources */,
+				9E98FB2F1C463E1C00BAB700 /* TutorialFourViewController.swift in Sources */,
 				0050D6731C28E0DB004F6F80 /* SetAlarmRequest.swift in Sources */,
 				00DC9EC21BB2853D00734DB6 /* BubbleChartDataSet.swift in Sources */,
-				9E98FB2B1C463BB200BAB700 /* TutorialPageTwo.swift in Sources */,
+				9E98FB2B1C463BB200BAB700 /* TutorialTwoViewController.swift in Sources */,
 				00DC9EF01BB2853D00734DB6 /* LineScatterCandleRadarChartRenderer.swift in Sources */,
 				0050D5FE1C28E0DB004F6F80 /* NotificationView.swift in Sources */,
 				00DC9EE91BB2853D00734DB6 /* ChartXAxisRendererRadarChart.swift in Sources */,

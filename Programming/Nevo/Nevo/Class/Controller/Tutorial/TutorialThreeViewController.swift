@@ -8,13 +8,15 @@
 
 import Foundation
 
-class TutorialPageThree: UIViewController {
+class TutorialThreeViewController: UIViewController {
     
     override func viewDidLoad() {
         
     }
     
     @IBAction func nextAction(sender: AnyObject) {
-        
+        let tutorialFour = TutorialFourViewController()
+        self.navigationController?.pushViewController(tutorialFour, animated: true)
+
     }
 }
