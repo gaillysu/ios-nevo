@@ -8,15 +8,17 @@
 
 import Foundation
 
-class TutorialPageSix2: UIViewController{
+class TutorialSixViewController: UIViewController{
     
     @IBOutlet weak var tapToContinueButton: UIButton!
     
     override func viewDidLoad() {
-        
+        print("LOLOL")
     }
     
     @IBAction func tapToContinueAction(sender: AnyObject) {
-        self.navigationController?.popToRootViewControllerAnimated(true)
+//        self.navigationController?.popToRootViewControllerAnimated(true)
+        let tutorialPageSeven = TutorialSevenViewController();
+        self.navigationController?.pushViewController(tutorialPageSeven, animated: true)
     }
 }

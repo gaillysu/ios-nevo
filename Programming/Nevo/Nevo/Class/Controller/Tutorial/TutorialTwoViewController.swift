@@ -8,7 +8,7 @@
 
 import Foundation
 
-class TutorialPageTwo: UIViewController {
+class TutorialTwoViewController: UIViewController {
 
     @IBOutlet weak var turnBluetoothOnButton: UIButton!
     

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="SFCompactDisplay-Bold.ttf">
+            <string>SFCompactDisplay-Bold</string>
+            <string>SFCompactDisplay-Bold</string>
+        </mutableArray>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TutorialSixViewController">
+            <connections>
+                <outlet property="tapToContinueButton" destination="Lk4-Tf-XDL" id="7rr-De-vXv"/>
+                <outlet property="view" destination="skn-7I-1ge" id="sUI-yC-ewk"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="skn-7I-1ge">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Connected" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="35" translatesAutoresizingMaskIntoConstraints="NO" id="doG-bJ-q3v">
+                    <rect key="frame" x="101" y="75" width="174" height="42"/>
+                    <fontDescription key="fontDescription" name="SFCompactDisplay-Bold" family="SF Compact Display" pointSize="35"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lk4-Tf-XDL">
+                    <rect key="frame" x="55" y="572" width="265" height="40"/>
+                    <color key="backgroundColor" red="0.95294117649999999" green="0.70588235290000001" blue="0.32549019610000002" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="pEB-Tk-e0D"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="SFCompactDisplay-Bold" family="SF Compact Display" pointSize="19"/>
+                    <state key="normal" title="Tap to continue">
+                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="10"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="tapToContinueAction:" destination="-1" eventType="touchUpInside" id="Ecp-5N-XtD"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="doG-bJ-q3v" firstAttribute="top" secondItem="skn-7I-1ge" secondAttribute="top" constant="75" id="AIV-8B-Mbj"/>
+                <constraint firstAttribute="bottom" secondItem="Lk4-Tf-XDL" secondAttribute="bottom" constant="55" id="RVS-li-dX8"/>
+                <constraint firstItem="Lk4-Tf-XDL" firstAttribute="leading" secondItem="skn-7I-1ge" secondAttribute="leading" constant="55" id="d7q-6W-re4"/>
+                <constraint firstItem="doG-bJ-q3v" firstAttribute="centerX" secondItem="skn-7I-1ge" secondAttribute="centerX" id="fM9-6x-Wor"/>
+                <constraint firstAttribute="trailing" secondItem="Lk4-Tf-XDL" secondAttribute="trailing" constant="55" id="g3S-xY-6GL"/>
+            </constraints>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+            <point key="canvasLocation" x="575.5" y="340.5"/>
+        </view>
+    </objects>
+</document>

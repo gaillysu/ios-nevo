@@ -8,23 +8,18 @@
 
 import Foundation
 
-class TutorialPageOne: UIViewController{
+class TutorialOneViewController: UIViewController{
     
-    @IBOutlet weak var activateYourNevoButton: UIButton!
-    
-    override func viewDidLoad() {
-        activateYourNevoButton.backgroundColor = UIColor.clearColor()
-        activateYourNevoButton.layer.cornerRadius = 5
-        activateYourNevoButton.layer.borderWidth = 1
+    override func viewDidLoad() {   
     }
     
     @IBAction func activateYourNevoAction(sender: AnyObject) {
         let btEnabled = AppDelegate.getAppDelegate().getMconnectionController().isBluetoothEnabled()
         if(btEnabled){
-            let tutorialThree = TutorialPageThree()
+            let tutorialThree = TutorialThreeViewController()
             self.navigationController?.pushViewController(tutorialThree, animated: true)
         }else{
-            let tutorialTwo = TutorialPageTwo()
+            let tutorialTwo = TutorialTwoViewController()
             self.navigationController?.pushViewController(tutorialTwo, animated: true)
         }
     }

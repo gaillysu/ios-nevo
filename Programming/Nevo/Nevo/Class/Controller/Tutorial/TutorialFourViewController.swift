@@ -8,7 +8,7 @@
 
 import Foundation
 
-class TutorialPageFour: UIViewController{
+class TutorialFourViewController: UIViewController{
     
     @IBOutlet weak var nextButton: UIButton!
     
@@ -17,7 +17,7 @@ class TutorialPageFour: UIViewController{
     }
 
     @IBAction func nextAction(sender: AnyObject) {
-        let tutorialFive = TutorialPageFive()
+        let tutorialFive = TutorialFiveViewController()
         self.navigationController?.pushViewController(tutorialFive, animated: true)
     }
 }
