@@ -18,11 +18,14 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mMJ-ii-LKw" customClass="BarChartView" customModule="Nevo" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="368"/>
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="418"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </view>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="eW0-Ed-FPP">
-                    <rect key="frame" x="0.0" y="368" width="320" height="200"/>
+                    <rect key="frame" x="0.0" y="418" width="320" height="150"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="150" id="KIx-yt-0fa"/>
+                    </constraints>
                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="Mf2-aB-35s">
                         <size key="itemSize" width="105" height="50"/>
                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -37,14 +40,13 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="mMJ-ii-LKw" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="0Cp-Yt-yTc"/>
                 <constraint firstAttribute="trailing" secondItem="eW0-Ed-FPP" secondAttribute="trailing" id="5cK-cJ-nNa"/>
-                <constraint firstItem="eW0-Ed-FPP" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" constant="-368" id="77X-ng-GRQ"/>
                 <constraint firstAttribute="trailing" secondItem="mMJ-ii-LKw" secondAttribute="trailing" id="7fU-Ck-Tka"/>
-                <constraint firstItem="eW0-Ed-FPP" firstAttribute="top" secondItem="mMJ-ii-LKw" secondAttribute="bottom" id="BM3-fK-l6f"/>
-                <constraint firstAttribute="bottom" secondItem="eW0-Ed-FPP" secondAttribute="bottom" id="BO6-Ds-qnM"/>
                 <constraint firstItem="eW0-Ed-FPP" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="MRW-en-HW9"/>
+                <constraint firstAttribute="bottom" secondItem="eW0-Ed-FPP" secondAttribute="bottom" id="P9T-ca-IJE"/>
                 <constraint firstItem="mMJ-ii-LKw" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="hO6-Y8-Swy"/>
+                <constraint firstItem="mMJ-ii-LKw" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="lIT-Ao-oQR"/>
+                <constraint firstItem="eW0-Ed-FPP" firstAttribute="top" secondItem="mMJ-ii-LKw" secondAttribute="bottom" id="ubS-05-eY1"/>
             </constraints>
             <connections>
                 <outlet property="chartView" destination="mMJ-ii-LKw" id="fDB-mP-lM1"/>

@@ -17,12 +17,15 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4sA-Zz-9hO" customClass="BarChartView" customModule="Nevo" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="368"/>
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="418"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </view>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="CWK-RV-oKL">
-                    <rect key="frame" x="0.0" y="368" width="320" height="200"/>
+                    <rect key="frame" x="0.0" y="418" width="320" height="150"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="150" id="pV2-xd-HPf"/>
+                    </constraints>
                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="7pd-OM-Y5C">
                         <size key="itemSize" width="105" height="50"/>
                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -37,14 +40,13 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="CWK-RV-oKL" firstAttribute="top" secondItem="4sA-Zz-9hO" secondAttribute="bottom" id="Eln-3K-oLB"/>
                 <constraint firstAttribute="trailing" secondItem="CWK-RV-oKL" secondAttribute="trailing" id="HIg-V4-RdA"/>
-                <constraint firstItem="CWK-RV-oKL" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" constant="-368" id="LDY-VG-1er"/>
                 <constraint firstAttribute="trailing" secondItem="4sA-Zz-9hO" secondAttribute="trailing" id="N4S-o7-1Bk"/>
-                <constraint firstItem="4sA-Zz-9hO" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="ftx-dP-Yl3"/>
                 <constraint firstItem="CWK-RV-oKL" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="gQn-V7-snO"/>
                 <constraint firstItem="4sA-Zz-9hO" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="hgi-m5-Cui"/>
-                <constraint firstAttribute="bottom" secondItem="CWK-RV-oKL" secondAttribute="bottom" id="nca-za-BlN"/>
+                <constraint firstItem="4sA-Zz-9hO" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="lPH-oe-ZeV"/>
+                <constraint firstItem="CWK-RV-oKL" firstAttribute="top" secondItem="4sA-Zz-9hO" secondAttribute="bottom" id="vo5-dn-j05"/>
+                <constraint firstAttribute="bottom" secondItem="CWK-RV-oKL" secondAttribute="bottom" id="xNO-oQ-OMY"/>
             </constraints>
             <connections>
                 <outlet property="chartView" destination="4sA-Zz-9hO" id="9CS-Cz-UfW"/>
