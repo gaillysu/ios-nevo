@@ -14,7 +14,7 @@ class StepHistoricalViewController: UIViewController,UICollectionViewDelegateFlo
     @IBOutlet weak var stepsHistori: UICollectionView!
     private var queryArray:NSArray = NSArray()
     private var contentTitleArray:[String] = []
-    private var contentTArray:[String] = ["0","0","0"]
+    private var contentTArray:[String] = [NSLocalizedString("select_date", comment: ""),NSLocalizedString("select_date", comment: ""),NSLocalizedString("select_date", comment: "")]
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
         super.init(nibName: "StepHistoricalViewController", bundle: NSBundle.mainBundle())

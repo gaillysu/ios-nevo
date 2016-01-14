@@ -120,6 +120,7 @@
 "sleep_duration"="Sleep Duration";
 "no_step_data"="No steps data";
 "no_sleep_data"="No sleep tracking data";
+"select_date"="Select a date";
 "deep_sleep"="Deep Sleep";
 "light_sleep"="Light Sleep";
 "sleep_timer"="Sleep Timer";

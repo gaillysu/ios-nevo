@@ -77,7 +77,9 @@ class StepHistoricalView: UIView,ChartViewDelegate {
     }
 
     func setDataCount(count:Int, Range range:Double){
-        return
+        if(count == 0) {
+            return
+        }
         var xVal:[String] = [];
         var yVal:[BarChartDataEntry] = [];
         for (var i:Int = 0; i < queryModel.count; i++) {
