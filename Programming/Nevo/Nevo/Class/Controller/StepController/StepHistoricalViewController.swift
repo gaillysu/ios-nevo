@@ -36,6 +36,9 @@ class StepHistoricalViewController: UIViewController,UICollectionViewDelegateFlo
         stepsHistortView.bulidStepHistoricalView(self, modelArray: queryArray, navigation: self.navigationItem)
         
         contentTitleArray = [NSLocalizedString("all_day_steps", comment: ""),NSLocalizedString("day_steps_goal", comment: ""),NSLocalizedString("day_goal_reach", comment: "")]
+    }
+
+    override func viewDidLayoutSubviews() {
         stepsHistori.backgroundColor = UIColor.whiteColor()
         stepsHistori.registerClass(UICollectionViewCell.classForCoder(), forCellWithReuseIdentifier: "StepsHistoryViewCell")
         (stepsHistori.collectionViewLayout as! UICollectionViewFlowLayout).itemSize = CGSizeMake(UIScreen.mainScreen().bounds.size.width/3.0, stepsHistori.frame.size.height/2.0)

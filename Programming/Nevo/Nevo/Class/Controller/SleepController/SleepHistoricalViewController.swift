@@ -36,10 +36,12 @@ class SleepHistoricalViewController: UIViewController,ChartViewDelegate,Selected
         queryArray = UserSleep.getAll()
 
         queryView.bulidQueryView(self,modelArray: queryArray!,navigation: self.navigationItem)
+    }
 
+    override func viewDidLayoutSubviews() {
         queryView.detailCollectionView.backgroundColor = UIColor.whiteColor()
         queryView.detailCollectionView.registerClass(UICollectionViewCell.classForCoder(), forCellWithReuseIdentifier: "SleepHistoryViewCell")
-        (queryView.detailCollectionView.collectionViewLayout as! UICollectionViewFlowLayout).itemSize = CGSizeMake(UIScreen.mainScreen().bounds.size.width/3.0, queryView.detailCollectionView.frame.size.height/3.0)
+        (queryView.detailCollectionView.collectionViewLayout as! UICollectionViewFlowLayout).itemSize = CGSizeMake(UIScreen.mainScreen().bounds.size.width/3.0, queryView.detailCollectionView.frame.size.height/2.0)
     }
 
     override func didReceiveMemoryWarning() {

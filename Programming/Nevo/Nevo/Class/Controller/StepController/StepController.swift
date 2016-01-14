@@ -22,13 +22,13 @@ class StepController: PublicClassController,toolbarSegmentedDelegate,UIActionShe
         toolbar.delegate = self
         self.view.addSubview(toolbar)
         stepGoal = StepGoalSetingController()
-        stepGoal?.view.frame = CGRectMake(0, toolBarHeight, self.view.frame.size.width, self.view.frame.size.height-toolBarHeight-49)
+        stepGoal?.view.frame = CGRectMake(0, toolBarHeight, self.view.frame.size.width, self.view.frame.size.height-toolBarHeight-113)
         self.addChildViewController(stepGoal!)
         self.view.addSubview(stepGoal!.view)
         currentVC = stepGoal
 
         stepHistorical = StepHistoricalViewController()
-        stepHistorical?.view.frame = CGRectMake(0, toolBarHeight, self.view.frame.size.width, self.view.frame.size.height-toolBarHeight-49)
+        stepHistorical?.view.frame = CGRectMake(0, toolBarHeight, self.view.frame.size.width, self.view.frame.size.height-toolBarHeight-113)
 
         rightButton = UIBarButtonItem(title: "Set Goal", style: UIBarButtonItemStyle.Done, target: self, action: Selector("rightBarButtonAction:"))
         rightButton?.tintColor = AppTheme.NEVO_SOLAR_YELLOW()

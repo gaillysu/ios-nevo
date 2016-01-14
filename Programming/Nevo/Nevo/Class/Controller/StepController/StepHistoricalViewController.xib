@@ -37,14 +37,14 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="eW0-Ed-FPP" secondAttribute="bottom" id="2sv-g5-qz9"/>
-                <constraint firstItem="eW0-Ed-FPP" firstAttribute="top" secondItem="mMJ-ii-LKw" secondAttribute="bottom" id="EKr-uG-QJ2"/>
-                <constraint firstItem="eW0-Ed-FPP" firstAttribute="leading" secondItem="mMJ-ii-LKw" secondAttribute="leading" id="Ewb-CL-rPk"/>
-                <constraint firstAttribute="trailing" secondItem="mMJ-ii-LKw" secondAttribute="trailing" id="Kef-sl-XwX"/>
-                <constraint firstItem="mMJ-ii-LKw" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" constant="-200" id="hBk-tc-7Ik"/>
-                <constraint firstItem="mMJ-ii-LKw" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="sBM-p0-2Ok"/>
-                <constraint firstItem="eW0-Ed-FPP" firstAttribute="trailing" secondItem="mMJ-ii-LKw" secondAttribute="trailing" id="u0x-qg-W92"/>
-                <constraint firstItem="mMJ-ii-LKw" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="xm4-Iz-DGp"/>
+                <constraint firstItem="mMJ-ii-LKw" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="0Cp-Yt-yTc"/>
+                <constraint firstAttribute="trailing" secondItem="eW0-Ed-FPP" secondAttribute="trailing" id="5cK-cJ-nNa"/>
+                <constraint firstItem="eW0-Ed-FPP" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" constant="-368" id="77X-ng-GRQ"/>
+                <constraint firstAttribute="trailing" secondItem="mMJ-ii-LKw" secondAttribute="trailing" id="7fU-Ck-Tka"/>
+                <constraint firstItem="eW0-Ed-FPP" firstAttribute="top" secondItem="mMJ-ii-LKw" secondAttribute="bottom" id="BM3-fK-l6f"/>
+                <constraint firstAttribute="bottom" secondItem="eW0-Ed-FPP" secondAttribute="bottom" id="BO6-Ds-qnM"/>
+                <constraint firstItem="eW0-Ed-FPP" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="MRW-en-HW9"/>
+                <constraint firstItem="mMJ-ii-LKw" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="hO6-Y8-Swy"/>
             </constraints>
             <connections>
                 <outlet property="chartView" destination="mMJ-ii-LKw" id="fDB-mP-lM1"/>

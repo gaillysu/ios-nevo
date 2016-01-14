@@ -32,7 +32,7 @@ class SleepTrackingView: UIView {
         progressView?.frame = CGRectMake(mClockTimerView.frame.origin.x-5, mClockTimerView.frame.origin.y-5, UIScreen.mainScreen().bounds.width-50, UIScreen.mainScreen().bounds.width-50)
         self.layer.addSublayer(progressView!)
 
-        let height:CGFloat = UIScreen.mainScreen().bounds.size.height - (progressView!.frame.size.height + progressView!.frame.origin.y) - 168
+        let height:CGFloat = UIScreen.mainScreen().bounds.size.height - (progressView!.frame.size.height + progressView!.frame.origin.y) - 158
         let layout:UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         layout.itemSize = CGSizeMake((UIScreen.mainScreen().bounds.size.width)/3.0, height/2.0)
         layout.minimumInteritemSpacing = 0
@@ -40,7 +40,7 @@ class SleepTrackingView: UIView {
 
         collectionView = UICollectionView(frame: CGRectMake(0, progressView!.frame.origin.y+progressView!.frame.size.height+10, UIScreen.mainScreen().bounds.size.width, height), collectionViewLayout: layout)
         collectionView?.registerClass(UICollectionViewCell.classForCoder(), forCellWithReuseIdentifier: "SleepCollectionViewCell")
-        collectionView?.backgroundColor = UIColor.clearColor()
+        collectionView?.backgroundColor = AppTheme.NEVO_CUSTOM_COLOR(Red: 25, Green: 31, Blue: 59)
         self.addSubview(collectionView!)
     }
 
