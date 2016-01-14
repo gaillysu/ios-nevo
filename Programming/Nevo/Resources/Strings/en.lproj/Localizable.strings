@@ -112,9 +112,9 @@
 
 //new app string
 "goal"="Goal";
-"you_reached"="you reached";
+"you_reached"="Steps";
 "progress"="Progress";
-"day_steps_goal"="Steps Goal";
+"day_steps_goal"="Goal";
 "day_goal_reach"="Percent";
 "all_day_steps"="All-day Steps";
 "no_step_data"="No steps data";
