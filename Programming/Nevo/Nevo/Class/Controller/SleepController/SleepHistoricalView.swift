@@ -75,6 +75,7 @@ class SleepHistoricalView: UIView, ChartViewDelegate{
     }
 
     func setDataCount(count:Int, Range range:Double){
+        return
         var xVal:[String] = [];
         var yVal:[BarChartDataEntry] = [];
         for (var i:Int = 0; i < queryModel.count; i++) {
@@ -166,7 +167,7 @@ class SleepHistoricalView: UIView, ChartViewDelegate{
         let set1:BarChartDataSet  = BarChartDataSet(yVals: yVal, label: "")
         
         //每个数据区块的颜色
-        set1.colors = [ChartColorTemplates.getLightSleepColor(),ChartColorTemplates.getDeepSleepColor()];
+        set1.colors = [UIColor(red: 239/255.0, green: 239/255.0, blue: 239/255.0, alpha: 1.0),ChartColorTemplates.getDeepSleepColor()];
         //每个数据块的类别名称,数组形式传递
         set1.stackLabels = ["Deep sleep", "Light sleep"];
         set1.barSpace = 0.05;

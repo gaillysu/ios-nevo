@@ -10,7 +10,7 @@ import UIKit
 
 class MyNevoView: UITableView {
 
-    func getMyNevoViewTableViewCell(indexPath:NSIndexPath,tableView:UITableView,title:String,detailText:String)->UITableViewCell {
+    class func getMyNevoViewTableViewCell(indexPath:NSIndexPath,tableView:UITableView,title:String,detailText:String)->UITableViewCell {
         let endCellID:String = "getMyNevoViewTableViewCell"
         var endCell = tableView.dequeueReusableCellWithIdentifier(endCellID)
         if (endCell == nil) {
@@ -21,9 +21,5 @@ class MyNevoView: UITableView {
         endCell?.textLabel?.text = title
         endCell?.detailTextLabel?.text = detailText
         return endCell!
-    }
-    
-    func bulidMyNevoView(){
-
     }
 }

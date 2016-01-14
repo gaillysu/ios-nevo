@@ -10,7 +10,6 @@ import UIKit
 
 class MyNevoController: UITableViewController,SyncControllerDelegate,UIAlertViewDelegate {
 
-    @IBOutlet var mynevoView: MyNevoView!
     private var currentBattery:Int = 0
     private var rssialert :UIAlertView?
     private var buildinSoftwareVersion:Int = 0
@@ -20,8 +19,6 @@ class MyNevoController: UITableViewController,SyncControllerDelegate,UIAlertView
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = NSLocalizedString("My nevo", comment: "")
-
-        mynevoView.bulidMyNevoView()
         buildinSoftwareVersion = AppTheme.GET_SOFTWARE_VERSION()
         buildinFirmwareVersion = AppTheme.GET_FIRMWARE_VERSION()
 
@@ -186,7 +183,7 @@ class MyNevoController: UITableViewController,SyncControllerDelegate,UIAlertView
             detailString = loclString
         default: detailString = "Battery low"
         }
-        return mynevoView.getMyNevoViewTableViewCell(indexPath, tableView: tableView, title: titleArray[indexPath.row], detailText: detailString)
+        return MyNevoView.getMyNevoViewTableViewCell(indexPath, tableView: tableView, title: titleArray[indexPath.row], detailText: detailString)
     }
     /*
     // MARK: - Navigation
