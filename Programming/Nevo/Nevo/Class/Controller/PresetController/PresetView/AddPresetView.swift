@@ -38,6 +38,12 @@ class AddPresetView: UIView {
         presetNumber.layer.borderColor = UIColor.grayColor().CGColor
         presetNumber.backgroundColor = UIColor.whiteColor()
 
+        presetName.leftView = UILabel(frame: CGRectMake(0,0,10,presetName.frame.size.height))
+        presetName.leftViewMode = UITextFieldViewMode.Always
+        presetName.layer.cornerRadius = 8
+        presetName.layer.masksToBounds = true
+        presetName.layer.borderWidth = 1
+        presetName.layer.borderColor = UIColor.whiteColor().CGColor
         presetName.placeholder = NSLocalizedString("Preset Name", comment: "")
         presetName.backgroundColor = UIColor.whiteColor()
     }
