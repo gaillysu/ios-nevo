@@ -165,32 +165,24 @@ class ConnectionControllerImpl : NSObject, ConnectionController, NevoBTDelegate 
     */
     func forgetSavedAddress() {
         
-        if hasSavedAddress()
-        {
+        if hasSavedAddress() {
             savedAddress = NSUserDefaults.standardUserDefaults().objectForKey(SAVED_ADDRESS_KEY) as? String
         }
 
         let userDefaults = NSUserDefaults.standardUserDefaults();
-
         userDefaults.setObject("",forKey:SAVED_ADDRESS_KEY)
-        
         userDefaults.synchronize()
 
     }
     /**
     See ConnectionController protocol
     */
-    func restoreSavedAddress()
-    {
-        if( savedAddress != nil)
-        {
-        let userDefaults = NSUserDefaults.standardUserDefaults();
-        
-        userDefaults.setObject(savedAddress,forKey:SAVED_ADDRESS_KEY)
-        
-        userDefaults.synchronize()
+    func restoreSavedAddress() {
+        if( savedAddress != nil) {
+            let userDefaults = NSUserDefaults.standardUserDefaults();
+            userDefaults.setObject(savedAddress,forKey:SAVED_ADDRESS_KEY)
+            userDefaults.synchronize()
         }
-
     }
     
     /**

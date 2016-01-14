@@ -33,8 +33,8 @@ class SetingViewController: UIViewController,SyncControllerDelegate,ButtonManage
 
         sources = [NSLocalizedString("Link-Loss Notifications", comment: ""),NSLocalizedString("Notifications", comment: ""),NSLocalizedString("My nevo", comment: ""),NSLocalizedString("Support", comment: ""),NSLocalizedString("About", comment: "")]
         sourcesImage = ["new_iOS_link_icon","new_iOS_notfications_icon","new_iOS_mynevo_iocn","new_iOS_support_icon","new_iOS_about_icon"]
-        titleArray = [NSLocalizedString("goals", comment: ""),NSLocalizedString("find_my_watch", comment: "")]
-        titleArrayImage = ["new_iOS_goals_icon","new_iOS_findmywatch_icon"]
+        titleArray = [NSLocalizedString("goals", comment: ""),NSLocalizedString("find_my_watch", comment: ""),NSLocalizedString("forget_watch", comment: "")]
+        titleArrayImage = ["new_iOS_goals_icon","new_iOS_findmywatch_icon","forget_watch"]
     }
 
     override func viewDidAppear(animated: Bool) {
@@ -105,6 +105,22 @@ class SetingViewController: UIViewController,SyncControllerDelegate,ButtonManage
             if(isEqualString("\(titleArray[indexPath.row])",string2: NSLocalizedString("find_my_watch", comment: ""))){
                 AppTheme.DLog("find_my_watch")
                 findMydevice()
+                let cellView = tableView.cellForRowAtIndexPath(indexPath)
+                if(cellView != nil){
+                    for activityView in cellView!.contentView.subviews{
+                        if(activityView.isKindOfClass(UIActivityIndicatorView.classForCoder())) {
+                            let activity:UIActivityIndicatorView = activityView as! UIActivityIndicatorView
+                            if(!activity.isAnimating()){
+                                activity.startAnimating()
+                                let dispatchTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, Int64(3.0 * Double(NSEC_PER_SEC)))
+                                dispatch_after(dispatchTime, dispatch_get_main_queue(), {
+                                    activity.stopAnimating()
+                                })
+                            }
+                            break
+                        }
+                    }
+                }
             }
 
             if(isEqualString("\(titleArray[indexPath.row])",string2: NSLocalizedString("goals", comment: ""))){
@@ -112,6 +128,27 @@ class SetingViewController: UIViewController,SyncControllerDelegate,ButtonManage
                 let presetView:PresetTableViewController = PresetTableViewController()
                 presetView.hidesBottomBarWhenPushed = true
                 self.navigationController?.pushViewController(presetView, animated: true)
+            }
+
+            if(isEqualString("\(titleArray[indexPath.row])",string2: NSLocalizedString("forget_watch", comment: ""))){
+                AppTheme.DLog("forget_watch")
+                AppDelegate.getAppDelegate().forgetSavedAddress()
+                let cellView = tableView.cellForRowAtIndexPath(indexPath)
+                if(cellView != nil){
+                    for activityView in cellView!.contentView.subviews{
+                        if(activityView.isKindOfClass(UIActivityIndicatorView.classForCoder())) {
+                            let activity:UIActivityIndicatorView = activityView as! UIActivityIndicatorView
+                            if(!activity.isAnimating()){
+                                activity.startAnimating()
+                                let dispatchTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, Int64(3.0 * Double(NSEC_PER_SEC)))
+                                dispatch_after(dispatchTime, dispatch_get_main_queue(), {
+                                    activity.stopAnimating()
+                                })
+                            }
+                            break
+                        }
+                    }
+                }
             }
             break
         default: break
