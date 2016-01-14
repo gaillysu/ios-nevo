@@ -43,7 +43,7 @@ class SelectedNotificationView: UITableView {
             let selectedView:UIImageView = UIImageView(frame: CGRectMake(0, 0, endCell!.frame.size.height - 25, endCell!.frame.size.height - 25))
             selectedView.backgroundColor = UIColor.clearColor()
             selectedView.image = UIImage(named: "notifications_selected_background")
-            selectedView.center = CGPointMake(endCell!.frame.size.width-(endCell!.frame.size.height - 25), endCell!.frame.size.height/2.0)
+            selectedView.center = CGPointMake(UIScreen.mainScreen().bounds.size.width-(endCell!.frame.size.height - 25), endCell!.frame.size.height/2.0)
             selectedView.tag = checkTag
             selectedView.hidden = true
             endCell?.contentView.addSubview(selectedView)
