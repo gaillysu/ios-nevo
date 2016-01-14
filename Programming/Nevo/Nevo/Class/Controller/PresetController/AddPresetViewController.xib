@@ -20,16 +20,16 @@
                     <rect key="frame" x="53" y="154" width="215" height="60"/>
                     <color key="backgroundColor" red="0.96078431369999995" green="0.64313725489999995" blue="0.10980392160000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="60" id="1Vd-GP-9z9"/>
+                        <constraint firstAttribute="height" constant="60" id="97h-oP-Txe"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KAa-10-q9T">
-                    <rect key="frame" x="0.0" y="258" width="320" height="45"/>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="KAa-10-q9T">
+                    <rect key="frame" x="0.0" y="258" width="320" height="50"/>
                     <color key="backgroundColor" red="0.96078431369999995" green="0.64313725489999995" blue="0.10980392160000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="45" id="ZtS-vW-nyY"/>
+                        <constraint firstAttribute="height" constant="50" id="taY-4p-0mP"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
@@ -37,12 +37,12 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="KAa-10-q9T" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="4mS-qM-4mi"/>
-                <constraint firstAttribute="trailing" secondItem="Bg9-3S-rqv" secondAttribute="trailing" constant="52" id="73f-Pt-gv4"/>
-                <constraint firstAttribute="bottom" secondItem="KAa-10-q9T" secondAttribute="bottom" constant="265" id="A4K-dr-wJD"/>
-                <constraint firstItem="Bg9-3S-rqv" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="53" id="AYA-mc-5lY"/>
-                <constraint firstAttribute="trailing" secondItem="KAa-10-q9T" secondAttribute="trailing" id="eXb-0Z-8Qq"/>
-                <constraint firstItem="Bg9-3S-rqv" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="154" id="fFT-Z7-r0L"/>
+                <constraint firstItem="KAa-10-q9T" firstAttribute="top" secondItem="Bg9-3S-rqv" secondAttribute="bottom" constant="44" id="P92-Ne-qMb"/>
+                <constraint firstAttribute="trailing" secondItem="Bg9-3S-rqv" secondAttribute="trailing" constant="52" id="Vr0-if-hFy"/>
+                <constraint firstAttribute="trailing" secondItem="KAa-10-q9T" secondAttribute="trailing" id="Zki-U2-vtg"/>
+                <constraint firstItem="Bg9-3S-rqv" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="53" id="cCo-ft-LQ8"/>
+                <constraint firstItem="Bg9-3S-rqv" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="154" id="dRk-Ay-4sS"/>
+                <constraint firstItem="KAa-10-q9T" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="eXY-wo-IAy"/>
             </constraints>
             <connections>
                 <outlet property="presetName" destination="KAa-10-q9T" id="zGT-yV-0mq"/>

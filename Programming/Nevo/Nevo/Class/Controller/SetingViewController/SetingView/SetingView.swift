@@ -42,8 +42,13 @@ class SetingView: UIView {
         if (endCell == nil) {
             endCell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: endCellID)
         }
-        endCell?.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
-        //endCell?.selectionStyle = UITableViewCellSelectionStyle.None;
+        if(title == NSLocalizedString("find_my_watch", comment: "") || title == NSLocalizedString("forget_watch", comment: "")) {
+            let activity:UIActivityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
+            activity.center = CGPointMake(UIScreen.mainScreen().bounds.size.width-activity.frame.size.width, endCell!.contentView.frame.size.height/2.0)
+            endCell?.contentView.addSubview(activity)
+        }else{
+            endCell?.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
+        }
         endCell?.textLabel?.text = title
         endCell?.imageView?.image = UIImage(named: imageName)
         return endCell!

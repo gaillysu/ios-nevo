@@ -44,9 +44,13 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
         mNevoOtaController = NevoOtaController(controller: self)
 
         //init the view
-        nevoOtaView.buildView(self,otacontroller: mNevoOtaController!)
+
         initValue()
         nevoOtaView.setProgress(0, currentTask: currentTaskNumber,allTask: allTaskNumber, progressString: "BLE")
+    }
+
+    override func viewDidLayoutSubviews() {
+        nevoOtaView.buildView(self,otacontroller: mNevoOtaController!)
     }
 
     override func viewDidAppear(animated: Bool) {

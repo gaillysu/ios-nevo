@@ -9,8 +9,8 @@
 import UIKit
 
 class NotificationViewController: UITableViewController,SelectedNotificationDelegate {
-    private var mNotificationSettingArray:[NotificationSetting] = []
-    private var mCalendarSettingArray:[NotificationSetting] = []
+    private var mNotificationOFFArray:[NotificationSetting] = []
+    private var mNotificationONArray:[NotificationSetting] = []
     private let titleHeader:[String] = ["ACTIVE NOTIFICATIONS","INACTIVE NOTIFICATIONS"]
     private var mNotificationArray:NSArray = NSArray()
 
@@ -38,28 +38,23 @@ class NotificationViewController: UITableViewController,SelectedNotificationDele
      :returns:
      */
     func initNotificationSettingArray() {
-        mNotificationSettingArray.removeAll()
-        mCalendarSettingArray.removeAll()
+        mNotificationOFFArray.removeAll()
+        mNotificationONArray.removeAll()
         mNotificationArray = UserNotification.getAll()
         
-        let notificationTypeArray:[NotificationType] = [NotificationType.CALL, NotificationType.EMAIL, NotificationType.FACEBOOK, NotificationType.SMS, NotificationType.WHATSAPP]
+        let notificationTypeArray:[NotificationType] = [NotificationType.CALL, NotificationType.EMAIL, NotificationType.FACEBOOK, NotificationType.SMS, NotificationType.WHATSAPP, NotificationType.CALENDAR]
         for notificationType in notificationTypeArray {
             for model in mNotificationArray{
                 let notification:UserNotification = model as! UserNotification
                 if(notification.NotificationType == notificationType.rawValue){
                     let setting:NotificationSetting = NotificationSetting(type: notificationType, clock: notification.clock, color: 0, states:notification.status)
-                    mNotificationSettingArray.append(setting)
+                    if(notification.status) {
+                        mNotificationONArray.append(setting)
+                    }else {
+                        mNotificationOFFArray.append(setting)
+                    }
                     break
                 }
-            }
-        }
-
-        for model in mNotificationArray{
-            let notification:UserNotification = model as! UserNotification
-            if(notification.NotificationType == NotificationType.CALENDAR.rawValue){
-                let calendarSetting:NotificationSetting = NotificationSetting(type: NotificationType.CALENDAR, clock: notification.clock, color: 0, states:notification.status)
-                mCalendarSettingArray.append(calendarSetting)
-                break
             }
         }
     }
@@ -74,7 +69,7 @@ class NotificationViewController: UITableViewController,SelectedNotificationDele
                 if(notification.update()){
                     initNotificationSettingArray()
                     self.tableView.reloadData()
-                    let allArray:[NotificationSetting] = mNotificationSettingArray + mCalendarSettingArray
+                    let allArray:[NotificationSetting] = mNotificationOFFArray + mNotificationONArray
                     if(AppDelegate.getAppDelegate().isConnected()){
                         AppDelegate.getAppDelegate().SetNortification(allArray)
                     }
@@ -100,12 +95,12 @@ class NotificationViewController: UITableViewController,SelectedNotificationDele
         var state:Bool = false
         switch (indexPath.section){
         case 0:
-            let notificationseting:NotificationSetting = mNotificationSettingArray[indexPath.row]
+            let notificationseting:NotificationSetting = mNotificationONArray[indexPath.row]
             titleString = notificationseting.typeName
             clockIndex = notificationseting.getClock()
             state = notificationseting.getStates()
         case 1:
-            let notificationseting:NotificationSetting = mCalendarSettingArray[indexPath.row]
+            let notificationseting:NotificationSetting = mNotificationOFFArray[indexPath.row]
             titleString = notificationseting.typeName
             clockIndex = notificationseting.getClock()
             state = notificationseting.getStates()
@@ -134,9 +129,9 @@ class NotificationViewController: UITableViewController,SelectedNotificationDele
         // #warning Incomplete implementation, return the number of rows
         switch (section){
         case 0:
-            return mNotificationSettingArray.count
+            return mNotificationONArray.count
         case 1:
-            return 1
+            return mNotificationOFFArray.count
         default: return 1;
         }
     }
@@ -145,12 +140,12 @@ class NotificationViewController: UITableViewController,SelectedNotificationDele
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         switch (indexPath.section){
         case 0:
-            let notificationseting:NotificationSetting = mNotificationSettingArray[indexPath.row]
+            let notificationseting:NotificationSetting = mNotificationONArray[indexPath.row]
             var detailString:String = ""
             notificationseting.getStates() ? (detailString = "\(notificationseting.getClock()) o'clock") : (detailString = "Turned off")
             return NotificationView.NotificationSystemTableViewCell(indexPath, tableView: tableView, title: notificationseting.typeName, detailLabel:detailString)
         case 1:
-            let notificationseting:NotificationSetting = mCalendarSettingArray[indexPath.row]
+            let notificationseting:NotificationSetting = mNotificationOFFArray[indexPath.row]
             var detailString:String = ""
             notificationseting.getStates() ? (detailString = "\(notificationseting.getClock()) o'clock") : (detailString = "Turned off")
             return NotificationView.NotificationSystemTableViewCell(indexPath, tableView: tableView, title: notificationseting.typeName, detailLabel:detailString)

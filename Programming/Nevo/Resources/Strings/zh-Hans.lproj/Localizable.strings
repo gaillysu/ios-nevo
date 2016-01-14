@@ -118,6 +118,8 @@
 "day_goal_reach"="Percent";
 "all_day_steps"="All-day Steps";
 "sleep_duration"="Sleep Duration";
+"no_step_data"="No steps data";
+"no_sleep_data"="No sleep tracking data";
 "deep_sleep"="Deep Sleep";
 "light_sleep"="Light Sleep";
 "sleep_timer"="Sleep Timer";
@@ -133,5 +135,6 @@
 "Setting"="Setting";
 "find_my_watch"="Find my watch";
 "goals"="Goals";
-"last_night"="last night";
-"history"="history";
+"last_night"="Last night";
+"history"="History";
+"forget_watch"="Forget watch";

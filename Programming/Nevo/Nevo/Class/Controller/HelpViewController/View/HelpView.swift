@@ -21,7 +21,7 @@ class HelpView: UIView {
         mDelegate = delegate
 
         title.text = NSLocalizedString("Help",comment: "")
-        title.font = AppTheme.FONT_RALEWAY_LIGHT(mSize: 25)
+        title.font = AppTheme.FONT_SFCOMPACTDISPLAY_LIGHT(mSize: 25)
         title.textAlignment = NSTextAlignment.Center
 
         let fileArray = AppTheme.GET_FIRMWARE_FILES("help")

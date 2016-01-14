@@ -32,7 +32,7 @@
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="upgrade_clock.png" translatesAutoresizingMaskIntoConstraints="NO" id="IS9-SL-jhg">
                     <rect key="frame" x="30" y="84" width="260" height="260"/>
                     <constraints>
-                        <constraint firstAttribute="width" secondItem="IS9-SL-jhg" secondAttribute="height" multiplier="1:1" id="bMn-y4-VQx"/>
+                        <constraint firstAttribute="width" secondItem="IS9-SL-jhg" secondAttribute="height" multiplier="1:1" id="DBo-RR-sI5"/>
                     </constraints>
                 </imageView>
                 <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cJj-4J-8kA">
@@ -94,6 +94,7 @@
                         <constraint firstItem="RGC-BG-sUl" firstAttribute="top" secondItem="dbt-yT-oU5" secondAttribute="top" constant="65" id="Bod-8t-R7g"/>
                         <constraint firstItem="of7-FU-tDG" firstAttribute="leading" secondItem="dbt-yT-oU5" secondAttribute="leading" id="TTx-Ux-4ee"/>
                         <constraint firstAttribute="trailing" secondItem="of7-FU-tDG" secondAttribute="trailing" id="XMB-Ov-TMI"/>
+                        <constraint firstItem="of7-FU-tDG" firstAttribute="height" secondItem="dbt-yT-oU5" secondAttribute="height" constant="-165" id="gPh-LQ-fQY"/>
                         <constraint firstItem="of7-FU-tDG" firstAttribute="trailing" secondItem="RGC-BG-sUl" secondAttribute="trailing" id="pOV-9D-8Z0"/>
                         <constraint firstAttribute="height" constant="200" id="rzd-ir-PH9"/>
                         <constraint firstItem="of7-FU-tDG" firstAttribute="leading" secondItem="RGC-BG-sUl" secondAttribute="leading" id="wsY-Hv-hJG"/>
@@ -110,8 +111,9 @@
                 <constraint firstItem="dbt-yT-oU5" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="UVk-Tv-le5"/>
                 <constraint firstItem="dbt-yT-oU5" firstAttribute="top" secondItem="IS9-SL-jhg" secondAttribute="bottom" constant="24" id="UyS-tf-q8s"/>
                 <constraint firstItem="cJj-4J-8kA" firstAttribute="trailing" secondItem="dbt-yT-oU5" secondAttribute="trailing" id="YxL-Ho-BhD"/>
+                <constraint firstAttribute="trailing" secondItem="IS9-SL-jhg" secondAttribute="trailing" constant="30" id="cVZ-Z5-LN7"/>
                 <constraint firstItem="cJj-4J-8kA" firstAttribute="bottom" secondItem="dbt-yT-oU5" secondAttribute="bottom" id="fYa-qQ-z1F"/>
-                <constraint firstItem="IS9-SL-jhg" firstAttribute="width" secondItem="IS9-SL-jhg" secondAttribute="height" multiplier="1:1" id="pxT-P5-xAU"/>
+                <constraint firstItem="IS9-SL-jhg" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="30" id="sTg-ZX-frl"/>
                 <constraint firstItem="IS9-SL-jhg" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="84" id="uWL-8n-kXD"/>
             </constraints>
             <connections>

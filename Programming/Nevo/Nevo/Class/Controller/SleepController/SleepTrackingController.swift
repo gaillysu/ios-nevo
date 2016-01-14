@@ -167,7 +167,7 @@ class SleepTrackingController: PublicClassController, SyncControllerDelegate ,Bu
             titleLabel.textAlignment = NSTextAlignment.Center
             titleLabel.textColor = UIColor.whiteColor()
             titleLabel.backgroundColor = UIColor.clearColor()
-            titleLabel.font = UIFont.boldSystemFontOfSize(iphone ? 10:12)
+            titleLabel.font = AppTheme.FONT_SFUIDISPLAY_REGULAR(mSize: iphone ? 12:15)
             titleLabel.tag = 1500
             titleLabel.text = contentTitleArray[indexPath.row]
             titleLabel.sizeToFit()
@@ -186,7 +186,7 @@ class SleepTrackingController: PublicClassController, SyncControllerDelegate ,Bu
             contentStepsView.textAlignment = NSTextAlignment.Center
             contentStepsView.backgroundColor = UIColor.clearColor()
             contentStepsView.textColor = UIColor.whiteColor()
-            contentStepsView.font = UIFont.boldSystemFontOfSize(iphone ? 12:15)
+            contentStepsView.font = AppTheme.FONT_SFCOMPACTDISPLAY_BOLD(mSize: iphone ? 15:18)
             contentStepsView.tag = 1700
             contentStepsView.text = "\(contentTArray[indexPath.row])"
             contentStepsView.sizeToFit()

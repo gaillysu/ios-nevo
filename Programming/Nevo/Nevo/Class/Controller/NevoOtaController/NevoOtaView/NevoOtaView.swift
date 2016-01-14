@@ -158,18 +158,18 @@ class NevoOtaView: UIView {
         self.backgroundColor = AppTheme.NEVO_CUSTOM_COLOR(Red: 239.0, Green: 239.0, Blue: 244.0)
 
         //title.text = NSLocalizedString("Upgrade", comment:"")
-        nevoWacthImage.contentMode = UIViewContentMode.ScaleAspectFit
+        //nevoWacthImage.contentMode = UIViewContentMode.ScaleAspectFit
 
-        OTAprogressView = OTAProgress()
+        if(OTAprogressView == nil){
+            OTAprogressView = OTAProgress()
+        }
         OTAprogressView?.setProgressColor(AppTheme.NEVO_SOLAR_YELLOW())
         OTAprogressView?.frame = CGRectMake(nevoWacthImage.frame.origin.x, nevoWacthImage.frame.origin.y, nevoWacthImage.frame.size.width, nevoWacthImage.frame.size.height)
         OTAprogressView?.setProgress(progresValue)
         self.layer.addSublayer(OTAprogressView!)
     }
+    
 
-    override func layoutSubviews() {
-        OTAprogressView?.frame = CGRectMake(nevoWacthImage.frame.origin.x, nevoWacthImage.frame.origin.y, nevoWacthImage.frame.size.width, nevoWacthImage.frame.size.height)
-    }
     @IBAction func buttonAction(sender: AnyObject) {
         mDelegate?.controllManager(sender)
     }
@@ -226,14 +226,14 @@ class NevoOtaView: UIView {
         let textView:UITextView = UITextView(frame: CGRectMake(5, 30, self.frame.size.width-10, 250))
         textView.center = CGPointMake(self.frame.size.width/2.0, self.frame.size.height/2.0)
         textView.editable = false
-        textView.font = AppTheme.FONT_RALEWAY_LIGHT(mSize: 18)
+        textView.font = AppTheme.FONT_SFCOMPACTDISPLAY_LIGHT(mSize: 18)
         textView.textAlignment = NSTextAlignment.Center
         textView.backgroundColor = UIColor.clearColor()
         textView.text = NSLocalizedString("otahelp",comment:"")
         tipView!.addSubview(textView)
 
         let attentionLabel:UILabel = UILabel(frame: CGRectMake(0, textView.frame.origin.y-40, self.frame.size.width, 40))
-        attentionLabel.font = AppTheme.FONT_RALEWAY_LIGHT(mSize: 30)
+        attentionLabel.font = AppTheme.FONT_SFCOMPACTDISPLAY_LIGHT(mSize: 30)
         attentionLabel.backgroundColor = UIColor.clearColor()
         attentionLabel.textAlignment = NSTextAlignment.Center
         attentionLabel.text = NSLocalizedString("Attention!", comment: "")

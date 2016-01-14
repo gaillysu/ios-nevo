@@ -20,17 +20,17 @@ class queryTableviewCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
         titleLabel.textColor = UIColor.whiteColor()
-        titleLabel.font = AppTheme.FONT_RALEWAY_LIGHT(mSize: 15)
+        titleLabel.font = AppTheme.FONT_SFCOMPACTDISPLAY_LIGHT(mSize: 15)
         detailLabel.textColor = UIColor.whiteColor()
-        detailLabel.font = AppTheme.FONT_RALEWAY_BOLD(mSize: 16)
+        detailLabel.font = AppTheme.FONT_SFCOMPACTDISPLAY_BOLD(mSize: 16)
     }
 
     override func layoutSubviews() {
         super.layoutSubviews()
-        let sFrame:CGRect = AppTheme.getWidthLabelSize(titleString!, andObject: titleLabel.frame, andFont: AppTheme.FONT_RALEWAY_LIGHT(mSize: 15))
+        let sFrame:CGRect = AppTheme.getWidthLabelSize(titleString!, andObject: titleLabel.frame, andFont: AppTheme.FONT_SFCOMPACTDISPLAY_LIGHT(mSize: 15))
         titleLabel.frame = CGRectMake(titleLabel.frame.origin.x, titleLabel.frame.origin.y, sFrame.size.width, titleLabel.frame.size.height)
 
-        let detailFrame:CGRect = AppTheme.getWidthLabelSize(detailString!, andObject: detailLabel.frame, andFont: AppTheme.FONT_RALEWAY_BOLD(mSize: 16))
+        let detailFrame:CGRect = AppTheme.getWidthLabelSize(detailString!, andObject: detailLabel.frame, andFont: AppTheme.FONT_SFCOMPACTDISPLAY_BOLD(mSize: 16))
         detailLabel.frame = CGRectMake(titleLabel.frame.origin.x+titleLabel.frame.size.width+5, detailLabel.frame.origin.y, detailFrame.size.width, detailLabel.frame.size.height)
 
     }
