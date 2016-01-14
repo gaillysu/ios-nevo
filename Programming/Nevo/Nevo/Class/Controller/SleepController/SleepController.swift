@@ -15,18 +15,19 @@ class SleepController: PublicClassController,toolbarSegmentedDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         AppTheme.navigationbar(self.navigationController!)
-        let toolbar:ToolbarView = ToolbarView(frame: CGRectMake( 0, 0, UIScreen.mainScreen().bounds.width, 35), items: [NSLocalizedString("last_night", comment: ""),NSLocalizedString("history", comment: "")])
+        let toolBarHeight:CGFloat = 45.0
+        let toolbar:ToolbarView = ToolbarView(frame: CGRectMake( 0, 0, UIScreen.mainScreen().bounds.width, toolBarHeight), items: [NSLocalizedString("last_night", comment: ""),NSLocalizedString("history", comment: "")])
         toolbar.delegate = self
         self.view.addSubview(toolbar)
 
         sleepTrking = SleepTrackingController()
-        sleepTrking?.view.frame = CGRectMake(0, 35, self.view.frame.size.width, self.view.frame.size.height)
+        sleepTrking?.view.frame = CGRectMake(0, toolBarHeight, self.view.frame.size.width, self.view.frame.size.height-toolBarHeight-49)
         self.addChildViewController(sleepTrking!)
         self.view.addSubview(sleepTrking!.view)
         currentVC = sleepTrking
 
         querss = SleepHistoricalViewController()
-        querss?.view.frame = CGRectMake(0, 35, self.view.frame.size.width, self.view.frame.size.height)
+        querss?.view.frame = CGRectMake(0, toolBarHeight, self.view.frame.size.width, self.view.frame.size.height-toolBarHeight-49)
     }
 
     override func didReceiveMemoryWarning() {

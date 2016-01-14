@@ -119,6 +119,8 @@
 "day_steps_goal"="Steps Goal";
 "day_goal_reach"="Percent";
 "all_day_steps"="All-day Steps";
+"no_step_data"="No steps data";
+"no_sleep_data"="No sleep tracking data";
 "sleep_duration"="Sleep Duration";
 "deep_sleep"="Deep Sleep";
 "light_sleep"="Light Sleep";

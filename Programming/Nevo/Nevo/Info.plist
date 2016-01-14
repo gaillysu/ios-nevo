@@ -24,6 +24,9 @@
 	<true/>
 	<key>UIAppFonts</key>
 	<array>
+		<string>SFUIDisplay-Regular.ttf</string>
+		<string>SFUIText-Regular.ttf</string>
+		<string>SFCompactDisplay-Regular.ttf</string>
 		<string>SFCompactDisplay-Bold.ttf</string>
 		<string>SFCompactDisplay-Light.ttf</string>
 		<string>SFCompactDisplay-Thin.ttf</string>

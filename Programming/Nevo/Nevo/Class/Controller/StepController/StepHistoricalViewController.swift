@@ -72,7 +72,7 @@ class StepHistoricalViewController: UIViewController,UICollectionViewDelegateFlo
             titleLabel.textAlignment = NSTextAlignment.Center
             titleLabel.textColor = UIColor.grayColor()
             titleLabel.backgroundColor = UIColor.clearColor()
-            titleLabel.font = UIFont.boldSystemFontOfSize(iphone ? 10:12)
+            titleLabel.font = AppTheme.FONT_SFUIDISPLAY_REGULAR(mSize: iphone ? 12:15)
             titleLabel.tag = 1500
             titleLabel.text = contentTitleArray[indexPath.row]
             titleLabel.sizeToFit()
@@ -91,7 +91,7 @@ class StepHistoricalViewController: UIViewController,UICollectionViewDelegateFlo
             contentStepsView.textAlignment = NSTextAlignment.Center
             contentStepsView.backgroundColor = UIColor.clearColor()
             contentStepsView.textColor = UIColor.blackColor()
-            contentStepsView.font = UIFont.boldSystemFontOfSize(iphone ? 12:15)
+            contentStepsView.font = AppTheme.FONT_SFUIDISPLAY_REGULAR(mSize: iphone ? 15:18)
             contentStepsView.tag = 1700
             contentStepsView.text = "\(contentTArray[indexPath.row])"
             contentStepsView.sizeToFit()

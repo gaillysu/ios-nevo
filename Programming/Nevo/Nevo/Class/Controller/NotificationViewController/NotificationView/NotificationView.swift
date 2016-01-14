@@ -33,7 +33,7 @@ class NotificationView: UITableView {
         //endCell?.selectionStyle = UITableViewCellSelectionStyle.None;
         endCell?.textLabel?.text = NSLocalizedString(title, comment: "")
         endCell?.detailTextLabel?.text = detailLabel
-        endCell?.detailTextLabel?.font = AppTheme.FONT_RALEWAY_LIGHT(mSize: 13)
+        endCell?.detailTextLabel?.font = AppTheme.FONT_SFCOMPACTDISPLAY_LIGHT(mSize: 13)
         endCell?.imageView?.image = UIImage(named: "new_\(title.lowercaseString)")
         return endCell!
     }

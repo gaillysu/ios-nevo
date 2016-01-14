@@ -17,24 +17,22 @@ class StepController: PublicClassController,toolbarSegmentedDelegate,UIActionShe
     override func viewDidLoad() {
         super.viewDidLoad()
         AppTheme.navigationbar(self.navigationController!)
-
-        let toolbar:ToolbarView = ToolbarView(frame: CGRectMake( 0, 0, UIScreen.mainScreen().bounds.width, 35), items: ["Today","History"])
+        let toolBarHeight:CGFloat = 45.0
+        let toolbar:ToolbarView = ToolbarView(frame: CGRectMake( 0, 0, UIScreen.mainScreen().bounds.width, toolBarHeight), items: ["Today","History"])
         toolbar.delegate = self
         self.view.addSubview(toolbar)
-
-        rightButton = UIBarButtonItem(title: "Set Goal", style: UIBarButtonItemStyle.Done, target: self, action: Selector("rightBarButtonAction:"))
-        rightButton?.tintColor = AppTheme.NEVO_SOLAR_YELLOW()
-        self.navigationItem.rightBarButtonItem = rightButton
-        
         stepGoal = StepGoalSetingController()
-        stepGoal?.view.frame = CGRectMake(0, 35, self.view.frame.size.width, self.view.frame.size.height)
+        stepGoal?.view.frame = CGRectMake(0, toolBarHeight, self.view.frame.size.width, self.view.frame.size.height-toolBarHeight-49)
         self.addChildViewController(stepGoal!)
         self.view.addSubview(stepGoal!.view)
         currentVC = stepGoal
 
         stepHistorical = StepHistoricalViewController()
-        stepHistorical?.view.frame = CGRectMake(0, 35, self.view.frame.size.width, self.view.frame.size.height)
+        stepHistorical?.view.frame = CGRectMake(0, toolBarHeight, self.view.frame.size.width, self.view.frame.size.height-toolBarHeight-49)
 
+        rightButton = UIBarButtonItem(title: "Set Goal", style: UIBarButtonItemStyle.Done, target: self, action: Selector("rightBarButtonAction:"))
+        rightButton?.tintColor = AppTheme.NEVO_SOLAR_YELLOW()
+        self.navigationItem.rightBarButtonItem = rightButton
     }
 
     override func viewDidAppear(animated: Bool) {

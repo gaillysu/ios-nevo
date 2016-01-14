@@ -44,9 +44,9 @@ class AnimationView: UIView {
             self.addSubview(mNoConnectionView!)
 
             let message:UILabel = UILabel(frame: CGRectMake(0, 0, 300, 90))
-            message.frame = AppTheme.getLabelSize(NSLocalizedString("nevoConnected", comment: ""), andObject: message.frame,andFont: AppTheme.FONT_RALEWAY_LIGHT(mSize: 18));
+            message.frame = AppTheme.getLabelSize(NSLocalizedString("nevoConnected", comment: ""), andObject: message.frame,andFont: AppTheme.FONT_SFCOMPACTDISPLAY_LIGHT(mSize: 18));
             message.center = CGPointMake(self.frame.size.width/2, mNoConnectionView!.frame.size.height/2.0-120)
-            message.font = AppTheme.FONT_RALEWAY_LIGHT(mSize: 18)
+            message.font = AppTheme.FONT_SFCOMPACTDISPLAY_LIGHT(mSize: 18)
             message.text = NSLocalizedString("nevoConnected", comment: "")
             message.numberOfLines = 0
             message.lineBreakMode = NSLineBreakMode.ByWordWrapping
@@ -64,7 +64,7 @@ class AnimationView: UIView {
             mNoConnectScanButton?.frame = CGRectMake(0, 0, 160, 160)
             mNoConnectScanButton?.center = CGPointMake(mNoConnectionView!.frame.size.width/2.0, mNoConnectionView!.frame.size.height/2.0)
 
-            mNoConnectScanButton?.titleLabel?.font = AppTheme.FONT_RALEWAY_LIGHT(mSize: 18)
+            mNoConnectScanButton?.titleLabel?.font = AppTheme.FONT_SFCOMPACTDISPLAY_LIGHT(mSize: 18)
             mNoConnectScanButton?.setTitle(NSLocalizedString("Connect", comment: ""), forState: UIControlState.Normal)
             mNoConnectScanButton?.backgroundColor = UIColor.clearColor()
             mNoConnectScanButton?.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
@@ -73,8 +73,8 @@ class AnimationView: UIView {
 
             let message2:UILabel = UILabel(frame: CGRectMake(0, 0, 300, 90))
             message2.center = CGPointMake(self.frame.size.width/2, mNoConnectImage!.frame.origin.y+mNoConnectImage!.frame.size.height+55)
-            message2.frame = AppTheme.getLabelSize(NSLocalizedString("pushHoldButton", comment: ""), andObject: message2.frame,andFont: AppTheme.FONT_RALEWAY_LIGHT(mSize: 18));
-            message2.font = AppTheme.FONT_RALEWAY_LIGHT(mSize: 18)
+            message2.frame = AppTheme.getLabelSize(NSLocalizedString("pushHoldButton", comment: ""), andObject: message2.frame,andFont: AppTheme.FONT_SFCOMPACTDISPLAY_LIGHT(mSize: 18));
+            message2.font = AppTheme.FONT_SFCOMPACTDISPLAY_LIGHT(mSize: 18)
             message2.text = NSLocalizedString("pushHoldButton", comment: "")
             message2.numberOfLines = 0
             message2.lineBreakMode = NSLineBreakMode.ByWordWrapping
@@ -87,7 +87,7 @@ class AnimationView: UIView {
             ForgotButton.center = CGPointMake(mNoConnectionView!.frame.size.width/2.0, mNoConnectionView!.frame.size.height-120)
             ForgotButton.setBackgroundImage(UIImage(named: "forget_button"), forState: UIControlState.Normal)
             ForgotButton.setTitle(NSLocalizedString("forgetnevo", comment: ""), forState: UIControlState.Normal)
-            ForgotButton.titleLabel?.font = AppTheme.FONT_RALEWAY_LIGHT(mSize: 15)
+            ForgotButton.titleLabel?.font = AppTheme.FONT_SFCOMPACTDISPLAY_LIGHT(mSize: 15)
             ForgotButton.backgroundColor = UIColor.clearColor()
             ForgotButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
             ForgotButton.addTarget(self, action: Selector("noConnectButtonAction:"), forControlEvents: UIControlEvents.TouchUpInside)
@@ -102,8 +102,8 @@ class AnimationView: UIView {
             *  Adapter German text
             */
             if(AppTheme.getPreferredLanguage().isEqualToString("de")){
-                message.font = AppTheme.FONT_RALEWAY_LIGHT(mSize: 15)
-                message2.font = AppTheme.FONT_RALEWAY_LIGHT(mSize: 15)
+                message.font = AppTheme.FONT_SFCOMPACTDISPLAY_LIGHT(mSize: 15)
+                message2.font = AppTheme.FONT_SFCOMPACTDISPLAY_LIGHT(mSize: 15)
             }
 
             if(AppTheme.GET_IS_iPhone5S()){

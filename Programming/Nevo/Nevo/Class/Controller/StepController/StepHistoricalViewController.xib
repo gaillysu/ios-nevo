@@ -18,11 +18,11 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mMJ-ii-LKw" customClass="BarChartView" customModule="Nevo" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="280"/>
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="368"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </view>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="eW0-Ed-FPP">
-                    <rect key="frame" x="0.0" y="285" width="320" height="135"/>
+                    <rect key="frame" x="0.0" y="368" width="320" height="200"/>
                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="Mf2-aB-35s">
                         <size key="itemSize" width="105" height="50"/>
                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -37,11 +37,11 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="eW0-Ed-FPP" secondAttribute="bottom" constant="148" id="2sv-g5-qz9"/>
-                <constraint firstItem="eW0-Ed-FPP" firstAttribute="top" secondItem="mMJ-ii-LKw" secondAttribute="bottom" constant="5" id="EKr-uG-QJ2"/>
+                <constraint firstAttribute="bottom" secondItem="eW0-Ed-FPP" secondAttribute="bottom" id="2sv-g5-qz9"/>
+                <constraint firstItem="eW0-Ed-FPP" firstAttribute="top" secondItem="mMJ-ii-LKw" secondAttribute="bottom" id="EKr-uG-QJ2"/>
                 <constraint firstItem="eW0-Ed-FPP" firstAttribute="leading" secondItem="mMJ-ii-LKw" secondAttribute="leading" id="Ewb-CL-rPk"/>
                 <constraint firstAttribute="trailing" secondItem="mMJ-ii-LKw" secondAttribute="trailing" id="Kef-sl-XwX"/>
-                <constraint firstItem="mMJ-ii-LKw" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" constant="-288" id="hBk-tc-7Ik"/>
+                <constraint firstItem="mMJ-ii-LKw" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" constant="-200" id="hBk-tc-7Ik"/>
                 <constraint firstItem="mMJ-ii-LKw" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="sBM-p0-2Ok"/>
                 <constraint firstItem="eW0-Ed-FPP" firstAttribute="trailing" secondItem="mMJ-ii-LKw" secondAttribute="trailing" id="u0x-qg-W92"/>
                 <constraint firstItem="mMJ-ii-LKw" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="xm4-Iz-DGp"/>
