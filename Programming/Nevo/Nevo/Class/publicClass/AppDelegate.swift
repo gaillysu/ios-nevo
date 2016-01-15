@@ -377,7 +377,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
 
                 let timeStr:NSString = NSString(format: "\(thispacket.getDateTimer())")
                 let year:NSString = timeStr.substringWithRange(NSMakeRange(0,4)) as NSString
-                let month:NSString = timeStr.substringWithRange(NSMakeRange(6,2)) as NSString
+                let month:NSString = timeStr.substringWithRange(NSMakeRange(4,2)) as NSString
                 let day:NSString = timeStr.substringWithRange(NSMakeRange(6,2)) as NSString
                 let timerInterval:NSDate = NSDate.date(year: year.integerValue, month: month.integerValue, day: day.integerValue)
                 let timerInter:NSTimeInterval = timerInterval.timeIntervalSince1970
