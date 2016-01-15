@@ -93,11 +93,20 @@ class AppTheme {
     }
 
     /**
-     Determine whether the iPhone4s
+     Determine whether the iPhone5s
     :returns: If it returns true or false
     */
     class func GET_IS_iPhone5S() -> Bool {
-        let isiPhone4S:Bool = (UIScreen.instancesRespondToSelector(Selector("currentMode")) ? CGSizeEqualToSize(CGSizeMake(640, 1136), UIScreen.mainScreen().currentMode!.size) : false)
+        let isiPhone5S:Bool = (UIScreen.instancesRespondToSelector(Selector("currentMode")) ? CGSizeEqualToSize(CGSizeMake(640, 1136), UIScreen.mainScreen().currentMode!.size) : false)
+        return isiPhone5S
+    }
+
+    /**
+     Determine whether the iPhone4s
+     :returns: If it returns true or false
+     */
+    class func GET_IS_iPhone4S() -> Bool {
+        let isiPhone4S:Bool = (UIScreen.instancesRespondToSelector(Selector("currentMode")) ? CGSizeEqualToSize(CGSizeMake(640, 960), UIScreen.mainScreen().currentMode!.size) : false)
         return isiPhone4S
     }
 

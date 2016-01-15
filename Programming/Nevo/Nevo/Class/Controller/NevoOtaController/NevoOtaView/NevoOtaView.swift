@@ -157,11 +157,13 @@ class NevoOtaView: UIView {
 
         self.backgroundColor = AppTheme.NEVO_CUSTOM_COLOR(Red: 239.0, Green: 239.0, Blue: 244.0)
 
-        //title.text = NSLocalizedString("Upgrade", comment:"")
-        //nevoWacthImage.contentMode = UIViewContentMode.ScaleAspectFit
-
         if(OTAprogressView == nil){
             OTAprogressView = OTAProgress()
+        }
+        if(AppTheme.GET_IS_iPhone4S()) {
+            let point:CGPoint = nevoWacthImage.center
+            nevoWacthImage.frame = CGRectMake(0, 0, nevoWacthImage.frame.size.width-20, nevoWacthImage.frame.size.width-20)
+            nevoWacthImage.center = point
         }
         OTAprogressView?.setProgressColor(AppTheme.NEVO_SOLAR_YELLOW())
         OTAprogressView?.frame = CGRectMake(nevoWacthImage.frame.origin.x, nevoWacthImage.frame.origin.y, nevoWacthImage.frame.size.width, nevoWacthImage.frame.size.height)
