@@ -16,6 +16,14 @@ class NotificationViewController: UITableViewController,SelectedNotificationDele
 
     @IBOutlet weak var notificationView: NotificationView!
 
+    init() {
+        super.init(nibName: "NotificationViewController", bundle: NSBundle.mainBundle())
+    }
+
+    required init(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         initNotificationSettingArray()

@@ -16,6 +16,15 @@ class MyNevoController: UITableViewController,SyncControllerDelegate,UIAlertView
     private var buildinFirmwareVersion:Int = 0
 
     var titleArray:[String] = []
+
+    init() {
+        super.init(nibName: "MyNevoController", bundle: NSBundle.mainBundle())
+    }
+
+    required init(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = NSLocalizedString("My nevo", comment: "")
