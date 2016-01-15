@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <customFonts key="customFonts">
         <mutableArray key="SFCompactDisplay-Bold.ttf">
@@ -22,19 +23,37 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="dbG-VB-Rga">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Turn on nevo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="35" translatesAutoresizingMaskIntoConstraints="NO" id="xse-Xf-xhk">
-                    <rect key="frame" x="86" y="75" width="203" height="42"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Turn on nevo" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="35" translatesAutoresizingMaskIntoConstraints="NO" id="xse-Xf-xhk">
+                    <rect key="frame" x="0.0" y="75" width="600" height="42"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="42" id="NMu-KK-EJw"/>
+                    </constraints>
                     <fontDescription key="fontDescription" name="SFCompactDisplay-Bold" family="SF Compact Display" pointSize="35"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N2N-3j-L2h">
-                    <rect key="frame" x="153" y="577" width="68" height="30"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Push and hold the third button, until the blue LED blinks." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K0B-J6-Yzh">
+                    <rect key="frame" x="15" y="125" width="570" height="36"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="68" id="VIB-Fj-4WX"/>
+                        <constraint firstAttribute="height" constant="36" id="S2m-Dc-B2k"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="SFCompactDisplay-Semibold" family="SF Compact Display" pointSize="13"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="turnonnevo.png" translatesAutoresizingMaskIntoConstraints="NO" id="0QV-eh-GuQ">
+                    <rect key="frame" x="0.0" y="200" width="254" height="254"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="0QV-eh-GuQ" secondAttribute="height" multiplier="1:1" id="70g-K7-rvj"/>
+                    </constraints>
+                </imageView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N2N-3j-L2h">
+                    <rect key="frame" x="0.0" y="510" width="600" height="35"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="35" id="ooz-Oq-Jf9"/>
                     </constraints>
                     <fontDescription key="fontDescription" name="SFCompactDisplay-Semibold" family="SF Compact Display" pointSize="15"/>
                     <state key="normal" title="Next">
@@ -44,28 +63,27 @@
                         <action selector="nextAction:" destination="-1" eventType="touchUpInside" id="LJk-uK-j5b"/>
                     </connections>
                 </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Push and hold the third button, until the blue LED blinks." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K0B-J6-Yzh">
-                    <rect key="frame" x="72" y="125" width="231" height="36"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="36" id="8nN-7o-wFH"/>
-                        <constraint firstAttribute="width" constant="231" id="B8e-E9-88b"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" name="SFCompactDisplay-Semibold" family="SF Compact Display" pointSize="13"/>
-                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <color key="backgroundColor" red="0.96470588235294119" green="0.96470588235294119" blue="0.96470588235294119" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
-                <constraint firstItem="xse-Xf-xhk" firstAttribute="top" secondItem="dbG-VB-Rga" secondAttribute="top" constant="75" id="75n-sR-1N2"/>
-                <constraint firstItem="N2N-3j-L2h" firstAttribute="centerX" secondItem="dbG-VB-Rga" secondAttribute="centerX" id="9fm-gw-3XO"/>
-                <constraint firstItem="K0B-J6-Yzh" firstAttribute="top" secondItem="xse-Xf-xhk" secondAttribute="bottom" constant="8" id="FXC-w6-nIy"/>
-                <constraint firstItem="K0B-J6-Yzh" firstAttribute="centerX" secondItem="dbG-VB-Rga" secondAttribute="centerX" id="Wvd-m6-KqV"/>
-                <constraint firstItem="xse-Xf-xhk" firstAttribute="centerX" secondItem="dbG-VB-Rga" secondAttribute="centerX" id="ZKA-qt-f3N"/>
-                <constraint firstAttribute="bottom" secondItem="N2N-3j-L2h" secondAttribute="bottom" constant="60" id="uaK-S3-Vj4"/>
+                <constraint firstItem="0QV-eh-GuQ" firstAttribute="centerY" secondItem="dbG-VB-Rga" secondAttribute="centerY" constant="27" id="0m6-QO-OD3"/>
+                <constraint firstAttribute="trailing" secondItem="xse-Xf-xhk" secondAttribute="trailing" id="1vF-Uu-lSW"/>
+                <constraint firstAttribute="trailing" secondItem="N2N-3j-L2h" secondAttribute="trailing" id="8dd-cZ-p0v"/>
+                <constraint firstItem="K0B-J6-Yzh" firstAttribute="leading" secondItem="dbG-VB-Rga" secondAttribute="leading" constant="15" id="8wt-gB-nrH"/>
+                <constraint firstItem="N2N-3j-L2h" firstAttribute="leading" secondItem="dbG-VB-Rga" secondAttribute="leading" id="Acg-9M-TuT"/>
+                <constraint firstItem="0QV-eh-GuQ" firstAttribute="leading" secondItem="dbG-VB-Rga" secondAttribute="leading" id="Btn-1M-bIP"/>
+                <constraint firstItem="xse-Xf-xhk" firstAttribute="leading" secondItem="dbG-VB-Rga" secondAttribute="leading" id="OO5-wp-EoU"/>
+                <constraint firstItem="xse-Xf-xhk" firstAttribute="top" secondItem="dbG-VB-Rga" secondAttribute="top" constant="75" id="Qeq-2g-smY"/>
+                <constraint firstItem="K0B-J6-Yzh" firstAttribute="top" secondItem="xse-Xf-xhk" secondAttribute="bottom" constant="8" id="Sge-P1-zsU"/>
+                <constraint firstAttribute="trailing" secondItem="K0B-J6-Yzh" secondAttribute="trailing" constant="15" id="ZaC-nf-NK3"/>
+                <constraint firstItem="0QV-eh-GuQ" firstAttribute="width" secondItem="dbG-VB-Rga" secondAttribute="height" multiplier="127:300" id="tbl-do-At7"/>
+                <constraint firstItem="0QV-eh-GuQ" firstAttribute="centerX" secondItem="dbG-VB-Rga" secondAttribute="centerX" constant="-173" id="vva-kg-gP8"/>
+                <constraint firstAttribute="bottom" secondItem="N2N-3j-L2h" secondAttribute="bottom" constant="55" id="yoQ-iG-adY"/>
             </constraints>
-            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
-            <point key="canvasLocation" x="-331.5" y="303.5"/>
+            <point key="canvasLocation" x="-332" y="303"/>
         </view>
     </objects>
+    <resources>
+        <image name="turnonnevo.png" width="550" height="550"/>
+    </resources>
 </document>

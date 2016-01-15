@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <customFonts key="customFonts">
         <mutableArray key="SFCompactDisplay-Bold.ttf">
@@ -22,17 +23,20 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="7zr-Tf-uIq">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cannot connect" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uOQ-nw-fA7">
-                    <rect key="frame" x="64" y="75" width="248" height="42"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cannot connect" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uOQ-nw-fA7">
+                    <rect key="frame" x="0.0" y="75" width="600" height="42"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="42" id="XsR-Xa-BG8"/>
+                    </constraints>
                     <fontDescription key="fontDescription" name="SFCompactDisplay-Semibold" family="SF Compact Display" pointSize="35"/>
                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Make sure the blue LED on the nevo is blinking and try again." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mVz-rf-Ylf">
-                    <rect key="frame" x="52" y="566" width="271" height="35"/>
+                    <rect key="frame" x="165" y="499" width="271" height="35"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="35" id="Mec-yl-QB5"/>
                         <constraint firstAttribute="width" constant="271" id="a5I-mm-ggJ"/>
@@ -42,7 +46,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dnl-L7-kCN">
-                    <rect key="frame" x="55" y="518" width="265" height="40"/>
+                    <rect key="frame" x="55" y="451" width="490" height="40"/>
                     <color key="backgroundColor" red="0.95294117649999999" green="0.70588235290000001" blue="0.32549019610000002" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="hdH-lV-vap"/>
@@ -60,19 +64,32 @@
                         <action selector="tryAgainAction:" destination="-1" eventType="touchUpInside" id="lOk-Hm-cUX"/>
                     </connections>
                 </button>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bluetoothoff.png" translatesAutoresizingMaskIntoConstraints="NO" id="2uY-pO-QtG">
+                    <rect key="frame" x="173" y="151" width="254" height="254"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="2uY-pO-QtG" secondAttribute="height" multiplier="1:1" id="GXT-6e-Tws"/>
+                    </constraints>
+                </imageView>
             </subviews>
             <color key="backgroundColor" red="0.30196078430000001" green="0.30196078430000001" blue="0.30196078430000001" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="uOQ-nw-fA7" firstAttribute="centerX" secondItem="7zr-Tf-uIq" secondAttribute="centerX" id="Ml8-P4-QX0"/>
+                <constraint firstItem="2uY-pO-QtG" firstAttribute="width" secondItem="7zr-Tf-uIq" secondAttribute="height" multiplier="127:300" id="OUN-iy-4hw"/>
+                <constraint firstItem="2uY-pO-QtG" firstAttribute="centerY" secondItem="7zr-Tf-uIq" secondAttribute="centerY" constant="-22" id="TZJ-cv-k4M"/>
                 <constraint firstItem="Dnl-L7-kCN" firstAttribute="leading" secondItem="7zr-Tf-uIq" secondAttribute="leading" constant="55" id="Ty3-9s-20Y"/>
+                <constraint firstItem="uOQ-nw-fA7" firstAttribute="leading" secondItem="7zr-Tf-uIq" secondAttribute="leading" id="UbE-GB-NIb"/>
                 <constraint firstItem="mVz-rf-Ylf" firstAttribute="top" secondItem="Dnl-L7-kCN" secondAttribute="bottom" constant="8" id="aDy-DX-mQz"/>
                 <constraint firstItem="uOQ-nw-fA7" firstAttribute="top" secondItem="7zr-Tf-uIq" secondAttribute="top" constant="75" id="gCI-Ia-EfY"/>
-                <constraint firstItem="mVz-rf-Ylf" firstAttribute="centerX" secondItem="uOQ-nw-fA7" secondAttribute="centerX" id="mRx-ay-Tq6"/>
+                <constraint firstItem="mVz-rf-Ylf" firstAttribute="centerX" secondItem="Dnl-L7-kCN" secondAttribute="centerX" id="jaN-hb-9uY"/>
                 <constraint firstAttribute="trailing" secondItem="Dnl-L7-kCN" secondAttribute="trailing" constant="55" id="rZv-BN-TyJ"/>
-                <constraint firstAttribute="bottom" secondItem="mVz-rf-Ylf" secondAttribute="bottom" constant="66" id="tC7-DE-6zm"/>
+                <constraint firstAttribute="trailing" secondItem="uOQ-nw-fA7" secondAttribute="trailing" id="ucF-Ix-d5R"/>
+                <constraint firstAttribute="bottom" secondItem="Dnl-L7-kCN" secondAttribute="bottom" constant="109" id="ud1-fB-Rkd"/>
+                <constraint firstItem="2uY-pO-QtG" firstAttribute="centerX" secondItem="7zr-Tf-uIq" secondAttribute="centerX" id="uh8-JI-CAU"/>
             </constraints>
-            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
-            <point key="canvasLocation" x="575.5" y="340.5"/>
+            <point key="canvasLocation" x="575" y="340"/>
         </view>
     </objects>
+    <resources>
+        <image name="bluetoothoff.png" width="550" height="550"/>
+    </resources>
 </document>

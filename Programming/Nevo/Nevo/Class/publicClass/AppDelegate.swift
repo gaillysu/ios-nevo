@@ -259,6 +259,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
         self.mConnectionController?.forgetSavedAddress()
     }
 
+    func hasSavedAddress()->Bool {
+        return self.mConnectionController!.hasSavedAddress()
+    }
+
     func isConnected() -> Bool{
         return mConnectionController!.isConnected()
 

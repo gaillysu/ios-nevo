@@ -9,7 +9,15 @@
 import Foundation
 
 class TutorialOneViewController: UIViewController{
-    
+
+    init() {
+        super.init(nibName: "TutorialOneViewController", bundle: NSBundle.mainBundle())
+    }
+
+    required init(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
     override func viewDidLoad() {   
     }
     

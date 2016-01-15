@@ -44,6 +44,14 @@ class StepController: PublicClassController,toolbarSegmentedDelegate,UIActionShe
                 goalArray.append(model.steps)
             }
         }
+
+        if(!AppDelegate.getAppDelegate().hasSavedAddress()) {
+            let tutrorial:TutorialOneViewController = TutorialOneViewController()
+            let nav:UINavigationController = UINavigationController(rootViewController: tutrorial)
+            nav.navigationBarHidden = true
+            self.presentViewController(nav, animated: true, completion: nil)
+        }
+
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

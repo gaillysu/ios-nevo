@@ -11,7 +11,15 @@ import Foundation
 class TutorialSixViewController: UIViewController{
     
     @IBOutlet weak var tapToContinueButton: UIButton!
-    
+
+    init() {
+        super.init(nibName: "TutorialSixViewController", bundle: NSBundle.mainBundle())
+    }
+
+    required init(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
     override func viewDidLoad() {
         print("LOLOL")
     }

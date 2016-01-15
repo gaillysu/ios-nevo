@@ -15,6 +15,14 @@
 		001F1B7C1B57777B001DD426 /* nevo_wacth.png in Resources */ = {isa = PBXBuildFile; fileRef = 001F1B7A1B57777B001DD426 /* nevo_wacth.png */; };
 		00344F5C1C47A86800C2FC7A /* SupportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00344F5A1C47A86800C2FC7A /* SupportViewController.swift */; };
 		00344F5D1C47A86800C2FC7A /* SupportViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00344F5B1C47A86800C2FC7A /* SupportViewController.xib */; };
+		0036EB051C48BA8300DCED46 /* connected.png in Resources */ = {isa = PBXBuildFile; fileRef = 0036EAFF1C48BA8300DCED46 /* connected.png */; };
+		0036EB061C48BA8300DCED46 /* connected1.png in Resources */ = {isa = PBXBuildFile; fileRef = 0036EB001C48BA8300DCED46 /* connected1.png */; };
+		0036EB071C48BA8300DCED46 /* searching.png in Resources */ = {isa = PBXBuildFile; fileRef = 0036EB011C48BA8300DCED46 /* searching.png */; };
+		0036EB081C48BA8300DCED46 /* settimer.png in Resources */ = {isa = PBXBuildFile; fileRef = 0036EB021C48BA8300DCED46 /* settimer.png */; };
+		0036EB091C48BA8300DCED46 /* turnonnevo.png in Resources */ = {isa = PBXBuildFile; fileRef = 0036EB031C48BA8300DCED46 /* turnonnevo.png */; };
+		0036EB0A1C48BA8300DCED46 /* tutorialone.png in Resources */ = {isa = PBXBuildFile; fileRef = 0036EB041C48BA8300DCED46 /* tutorialone.png */; };
+		0036EB0D1C48C36700DCED46 /* bluetoothoff_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 0036EB0B1C48C36700DCED46 /* bluetoothoff_background.png */; };
+		0036EB0E1C48C36700DCED46 /* bluetoothoff.png in Resources */ = {isa = PBXBuildFile; fileRef = 0036EB0C1C48C36700DCED46 /* bluetoothoff.png */; };
 		00478F4F1A8F637D00D0DCE2 /* clockViewHour.png in Resources */ = {isa = PBXBuildFile; fileRef = 00478F4D1A8F637D00D0DCE2 /* clockViewHour.png */; };
 		00478F501A8F637D00D0DCE2 /* clockViewMinute.png in Resources */ = {isa = PBXBuildFile; fileRef = 00478F4E1A8F637D00D0DCE2 /* clockViewMinute.png */; };
 		004846D41B72EDB9005A6D83 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 004846D31B72EDB9005A6D83 /* libsqlite3.dylib */; };
@@ -312,6 +320,14 @@
 		001F1B7A1B57777B001DD426 /* nevo_wacth.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nevo_wacth.png; sourceTree = "<group>"; };
 		00344F5A1C47A86800C2FC7A /* SupportViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SupportViewController.swift; sourceTree = "<group>"; };
 		00344F5B1C47A86800C2FC7A /* SupportViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SupportViewController.xib; sourceTree = "<group>"; };
+		0036EAFF1C48BA8300DCED46 /* connected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = connected.png; sourceTree = "<group>"; };
+		0036EB001C48BA8300DCED46 /* connected1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = connected1.png; sourceTree = "<group>"; };
+		0036EB011C48BA8300DCED46 /* searching.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = searching.png; sourceTree = "<group>"; };
+		0036EB021C48BA8300DCED46 /* settimer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settimer.png; sourceTree = "<group>"; };
+		0036EB031C48BA8300DCED46 /* turnonnevo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = turnonnevo.png; sourceTree = "<group>"; };
+		0036EB041C48BA8300DCED46 /* tutorialone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tutorialone.png; sourceTree = "<group>"; };
+		0036EB0B1C48C36700DCED46 /* bluetoothoff_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bluetoothoff_background.png; sourceTree = "<group>"; };
+		0036EB0C1C48C36700DCED46 /* bluetoothoff.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bluetoothoff.png; sourceTree = "<group>"; };
 		00478F4D1A8F637D00D0DCE2 /* clockViewHour.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clockViewHour.png; sourceTree = "<group>"; };
 		00478F4E1A8F637D00D0DCE2 /* clockViewMinute.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clockViewMinute.png; sourceTree = "<group>"; };
 		004846D31B72EDB9005A6D83 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
@@ -1179,6 +1195,14 @@
 		007F79881A878D0B006C89E6 /* image */ = {
 			isa = PBXGroup;
 			children = (
+				0036EB0B1C48C36700DCED46 /* bluetoothoff_background.png */,
+				0036EB0C1C48C36700DCED46 /* bluetoothoff.png */,
+				0036EAFF1C48BA8300DCED46 /* connected.png */,
+				0036EB001C48BA8300DCED46 /* connected1.png */,
+				0036EB011C48BA8300DCED46 /* searching.png */,
+				0036EB021C48BA8300DCED46 /* settimer.png */,
+				0036EB031C48BA8300DCED46 /* turnonnevo.png */,
+				0036EB041C48BA8300DCED46 /* tutorialone.png */,
 				000CB3251C3E436000B4ABEC /* white_clock.png */,
 				000CB3261C3E436000B4ABEC /* white_hour.png */,
 				000CB3271C3E436000B4ABEC /* white_minute.png */,
@@ -1682,6 +1706,8 @@
 				9E98FB1B1C46294C00BAB700 /* TutorialFourViewController.xib in Resources */,
 				000CB32A1C3E436000B4ABEC /* white_minute.png in Resources */,
 				00344F5D1C47A86800C2FC7A /* SupportViewController.xib in Resources */,
+				0036EB081C48BA8300DCED46 /* settimer.png in Resources */,
+				0036EB071C48BA8300DCED46 /* searching.png in Resources */,
 				9E98FB1C1C46294C00BAB700 /* TutorialOneViewController.xib in Resources */,
 				00478F4F1A8F637D00D0DCE2 /* clockViewHour.png in Resources */,
 				0050D6111C28E0DB004F6F80 /* PresetTableViewCell.xib in Resources */,
@@ -1690,13 +1716,16 @@
 				0072EADB1C190DCD001EE2C9 /* SFUIText-Regular.ttf in Resources */,
 				00D4DE921AB141FB0062523D /* NevoPicture960.png in Resources */,
 				0050D5F91C28E0DB004F6F80 /* NevoOtaViewController.xib in Resources */,
+				0036EB0D1C48C36700DCED46 /* bluetoothoff_background.png in Resources */,
 				0072EAB81C190DCD001EE2C9 /* SFCompactDisplay-Light.ttf in Resources */,
 				0050D61C1C28E0DB004F6F80 /* SleepHistoricalViewController.xib in Resources */,
 				0050D6241C28E0DB004F6F80 /* StepHistoricalViewController.xib in Resources */,
 				001F1B7C1B57777B001DD426 /* nevo_wacth.png in Resources */,
+				0036EB051C48BA8300DCED46 /* connected.png in Resources */,
 				0050D5FD1C28E0DB004F6F80 /* NotificationClockCell.xib in Resources */,
 				0072EAB51C190DCD001EE2C9 /* SFCompactDisplay-Black.ttf in Resources */,
 				0072EABC1C190DCD001EE2C9 /* SFCompactDisplay-Thin.ttf in Resources */,
+				0036EB091C48BA8300DCED46 /* turnonnevo.png in Resources */,
 				0072EAB61C190DCD001EE2C9 /* SFCompactDisplay-Bold.ttf in Resources */,
 				00E5CFD41B17F81F00D1F829 /* help in Resources */,
 				005BC9561A889F14006F9E86 /* NevoPicture.png in Resources */,
@@ -1704,14 +1733,17 @@
 				9AD8F9421A6DF35900F01014 /* Images.xcassets in Resources */,
 				0050D6031C28E0DB004F6F80 /* SelectedNotificationTypeController.xib in Resources */,
 				0050D6941C28E1CD004F6F80 /* AddAlarmSystemCell.xib in Resources */,
+				0036EB0A1C48BA8300DCED46 /* tutorialone.png in Resources */,
 				9E98FB1A1C46294C00BAB700 /* TutorialFiveViewController.xib in Resources */,
 				9E98FB201C46294C00BAB700 /* TutorialTwoViewController.xib in Resources */,
 				0050D61E1C28E0DB004F6F80 /* SleepTrackingController.xib in Resources */,
+				0036EB061C48BA8300DCED46 /* connected1.png in Resources */,
 				0050D6961C28E1CD004F6F80 /* AddAlarmTableViewCell.xib in Resources */,
 				0050D69B1C2906D8004F6F80 /* Firmwares in Resources */,
 				001F1B7B1B57777B001DD426 /* nevo_wacth_selected.png in Resources */,
 				0050D60C1C28E0DB004F6F80 /* AddPresetViewController.xib in Resources */,
 				00E759181C2406E600372529 /* upgrade_clock.png in Resources */,
+				0036EB0E1C48C36700DCED46 /* bluetoothoff.png in Resources */,
 				9E98FB1F1C46294C00BAB700 /* TutorialThreeViewController.xib in Resources */,
 				00478F501A8F637D00D0DCE2 /* clockViewMinute.png in Resources */,
 				0072EACF1C190DCD001EE2C9 /* SFUIDisplay-Regular.ttf in Resources */,
