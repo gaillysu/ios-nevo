@@ -41,7 +41,7 @@
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="turnonnevo.png" translatesAutoresizingMaskIntoConstraints="NO" id="59u-7g-cmz">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="settimer.png" translatesAutoresizingMaskIntoConstraints="NO" id="59u-7g-cmz">
                     <rect key="frame" x="173" y="220" width="254" height="254"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="59u-7g-cmz" secondAttribute="height" multiplier="1:1" id="KL9-Up-Win"/>
@@ -80,6 +80,6 @@
         </view>
     </objects>
     <resources>
-        <image name="turnonnevo.png" width="550" height="550"/>
+        <image name="settimer.png" width="550" height="550"/>
     </resources>
 </document>
