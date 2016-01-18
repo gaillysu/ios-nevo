@@ -18,6 +18,7 @@ class ToolbarView: UIView {
 
     init(frame: CGRect,items:[String]) {
         super.init(frame: frame)
+        self.backgroundColor = UIColor.clearColor()
 
         let segment:UISegmentedControl = UISegmentedControl(items: items)
         segment.frame = CGRectMake(0, 0, self.frame.size.width-30, 29)
@@ -50,12 +51,28 @@ class ToolbarView: UIView {
         delegate?.didSelectedSegmentedControl(segment)
     }
 
-    /*
+
     // Only override drawRect: if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.
     override func drawRect(rect: CGRect) {
-        // Drawing code
-    }
-    */
+        let bezierPath = UIBezierPath()
+        //确定组成绘画的点
+        let topLeft = CGPointMake(0,self.frame.size.height-0.5)
+        let topRight = CGPointMake(self.frame.size.width,self.frame.size.height-0.5)
 
+        //开始绘制
+        bezierPath.moveToPoint(topLeft)
+        bezierPath.addLineToPoint(topRight)
+
+        //使路径闭合，结束绘制
+        bezierPath.closePath()
+
+        //设定颜色，并绘制它们
+        UIColor.grayColor().setFill()
+        UIColor.grayColor().setStroke()
+
+        bezierPath.lineWidth = 0.5
+        bezierPath.fill()
+        bezierPath.stroke()
+    }
 }
