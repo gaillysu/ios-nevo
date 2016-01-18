@@ -10,6 +10,10 @@ import UIKit
 
 class LineColorCell: UITableViewCell {
 
+    @IBOutlet weak var imageName: UIImageView!
+    @IBOutlet weak var Notificationtitle: UILabel!
+    @IBOutlet weak var NotificationImage: UIImageView!
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
