@@ -150,12 +150,12 @@ class NotificationViewController: UITableViewController,SelectedNotificationDele
         case 0:
             let notificationseting:NotificationSetting = mNotificationONArray[indexPath.row]
             var detailString:String = ""
-            notificationseting.getStates() ? (detailString = "\(notificationseting.getClock()) o'clock") : (detailString = "Turned off")
+            notificationseting.getStates() ? (detailString = notificationseting.getColorName()) : (detailString = "Turned off")
             return NotificationView.NotificationSystemTableViewCell(indexPath, tableView: tableView, title: notificationseting.typeName, detailLabel:detailString)
         case 1:
             let notificationseting:NotificationSetting = mNotificationOFFArray[indexPath.row]
             var detailString:String = ""
-            notificationseting.getStates() ? (detailString = "\(notificationseting.getClock()) o'clock") : (detailString = "Turned off")
+            notificationseting.getStates() ? (detailString = notificationseting.getColorName()) : (detailString = "Turned off")
             return NotificationView.NotificationSystemTableViewCell(indexPath, tableView: tableView, title: notificationseting.typeName, detailLabel:detailString)
         default: return UITableViewCell();
         }

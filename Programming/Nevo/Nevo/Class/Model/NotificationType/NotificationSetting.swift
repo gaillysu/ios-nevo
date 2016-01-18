@@ -61,11 +61,6 @@ class NotificationSetting: NSObject {
         description = "type:\(mType.rawValue) color:\(mClock) status:\(mStates)"
         return description
     }
-    
-    func getColorName() ->String{
-        let colorName = ""
-        return colorName
-    }
    
     func getClock() ->Int {
         return mClock
@@ -97,6 +92,27 @@ class NotificationSetting: NSObject {
     */
     func getType() -> NotificationType{
         return mType
+    }
+
+    func getColorName()->String {
+        var ledColor:String
+        switch mClock {
+        case 2:
+            ledColor = "RED"
+        case 4:
+            ledColor = "BLUE"
+        case 6:
+            ledColor = "LIGHTGREEN"
+        case 8:
+            ledColor = "YELLOW"
+        case 10 :
+            ledColor = "ORANGE"
+        case 12:
+            ledColor = "GREEN"
+        default:
+            ledColor = ""
+        }
+        return ledColor
     }
 }
 

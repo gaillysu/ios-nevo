@@ -27,28 +27,20 @@ class NotificationView: UITableView {
         let endCellID:String = "NotificationSystemTableViewCell"
         var endCell = tableView.dequeueReusableCellWithIdentifier(endCellID)
         if (endCell == nil) {
-            let nibs:NSArray = NSBundle.mainBundle().loadNibNamed("LineColorCell", owner: self, options: nil)
-            endCell = nibs.objectAtIndex(0) as! LineColorCell;
-        }
-        //endCell?.imageView?.image = UIImage(named: "new_\(title.lowercaseString)")
-        (endCell as! LineColorCell).imageName.image = UIImage(named: "new_\(title.lowercaseString)")
-        (endCell as! LineColorCell).Notificationtitle.text = NSLocalizedString(title, comment: "")
-        (endCell as! LineColorCell).NotificationImage.image = UIImage(named: detailLabel)
-        return endCell as! LineColorCell
-        /**
-        let endCellID:String = "NotificationSystemTableViewCell"
-        var endCell = tableView.dequeueReusableCellWithIdentifier(endCellID)
-        if (endCell == nil) {
             endCell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: endCellID)
         }
         endCell?.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
         //endCell?.selectionStyle = UITableViewCellSelectionStyle.None;
-        endCell?.textLabel?.text = NSLocalizedString(title, comment: "")
-        endCell?.detailTextLabel?.text = detailLabel
+        if("Whatsapp" == title) {
+            endCell?.textLabel?.text = NSLocalizedString(title, comment: "")+"&"+NSLocalizedString("WeChat", comment: "")
+        }else {
+           endCell?.textLabel?.text = NSLocalizedString(title, comment: "")
+        }
+
+        endCell?.detailTextLabel?.text = NSLocalizedString(detailLabel, comment: "")
         endCell?.detailTextLabel?.font = AppTheme.FONT_SFCOMPACTDISPLAY_LIGHT(mSize: 13)
         endCell?.imageView?.image = UIImage(named: "new_\(title.lowercaseString)")
         return endCell!
-        */
     }
 
     /*

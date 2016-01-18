@@ -133,7 +133,7 @@
 "Calendar"="Calendar";
 "WeChat"="WeChat";
 "Whatsapp"="Whatsapp";
-"Setting"="Setting";
+"Setting"="Settings";
 "find_my_watch"="Find my watch";
 "goals"="Goals";
 "last_night"="Last night";
@@ -142,3 +142,9 @@
 "Support"="Support";
 "edit_alarm"="Edit Alarm";
 "add_alarm"="Add Alarm";
+"RED"="Red";
+"BLUE"="Blue";
+"LIGHTGREEN"="Light Green";
+"YELLOW"="Yellow";
+"ORANGE"="Orange";
+"GREEN"="Green";

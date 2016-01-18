@@ -12,7 +12,7 @@ class LineColorCell: UITableViewCell {
 
     @IBOutlet weak var imageName: UIImageView!
     @IBOutlet weak var Notificationtitle: UILabel!
-    @IBOutlet weak var NotificationImage: UIImageView!
+    @IBOutlet weak var colorTitle: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()

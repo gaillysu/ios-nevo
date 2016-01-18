@@ -16,7 +16,6 @@ class StepGoalSetingController: PublicClassController,ButtonManagerCallBack,Sync
     
     private var mCurrentGoal:Goal = NumberOfStepsGoal()
     private var mVisiable:Bool = true
-    private var myHud:SyncBar = SyncBar.getSyncBar()
     private var contentTitleArray:[String] = []
     private var contentTArray:[String] = ["0","0","0"]
     
@@ -31,8 +30,6 @@ class StepGoalSetingController: PublicClassController,ButtonManagerCallBack,Sync
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        myHud.setStatusLabel("Syncing nevo")
-        myHud.showHudAddedToView(self.view)
 
         contentTitleArray = [NSLocalizedString("goal", comment: ""), NSLocalizedString("you_reached", comment: ""), NSLocalizedString("progress", comment: "")]
         
@@ -183,7 +180,7 @@ class StepGoalSetingController: PublicClassController,ButtonManagerCallBack,Sync
      *  Data synchronization is complete callback
      */
     func syncFinished(){
-        myHud.hideFromView(self.view)
+
     }
 
     // MARK: - StepGoalSetingController function
@@ -195,11 +192,6 @@ class StepGoalSetingController: PublicClassController,ButtonManagerCallBack,Sync
         if !AppDelegate.getAppDelegate().isConnected() {
             //We are currently not connected
             reconnect()
-            
-            if(!myHud.isHudView()) {
-                myHud.showHudAddedToView(self.view)
-            }
-            myHud.setStatusLabel("Disconnect nevo")
         }
     }
 
