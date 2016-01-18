@@ -60,6 +60,7 @@ class AlarmClockController: UITableViewController, SyncControllerDelegate,AddAla
 
         if(sender.isKindOfClass(UIBarButtonItem.classForCoder())){
             let addAlarm:AddAlarmController = AddAlarmController()
+            addAlarm.title = NSLocalizedString("add_alarm", comment: "")
             addAlarm.mDelegate = self
             addAlarm.hidesBottomBarWhenPushed = true
             self.navigationController?.pushViewController(addAlarm, animated: true)
@@ -248,6 +249,7 @@ class AlarmClockController: UITableViewController, SyncControllerDelegate,AddAla
 
             let alarmModel:UserAlarm = mAlarmArray[indexPath.row]
             let addAlarm:AddAlarmController = AddAlarmController()
+            addAlarm.title = NSLocalizedString("edit_alarm", comment: "")
             addAlarm.timer = alarmModel.timer
             addAlarm.name = alarmModel.label
             addAlarm.repeatStatus = alarmModel.repeatStatus

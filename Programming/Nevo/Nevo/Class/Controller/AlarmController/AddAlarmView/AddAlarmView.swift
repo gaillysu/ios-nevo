@@ -70,7 +70,7 @@ class AddAlarmView: UITableView {
     }
 
     func bulidAdTableView(navigation:UINavigationItem){
-        navigation.title = NSLocalizedString("Add Alarm", comment: "")
+        
     }
 
     func buttonManage(sender:AnyObject){
