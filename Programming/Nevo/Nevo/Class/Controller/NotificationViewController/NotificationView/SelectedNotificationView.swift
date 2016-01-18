@@ -56,7 +56,7 @@ class SelectedNotificationView: UITableView {
         }
 
         //endCell?.selectionStyle = UITableViewCellSelectionStyle.Blue;
-        endCell?.textLabel?.text = cellTitle
+        //endCell?.textLabel?.text = cellTitle
         endCell?.imageView?.image = UIImage(named: cellTitle)
         return endCell!
     }
