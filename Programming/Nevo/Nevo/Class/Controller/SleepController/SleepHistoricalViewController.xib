@@ -37,20 +37,33 @@
                         <outlet property="delegate" destination="-1" id="yAq-y8-cwj"/>
                     </connections>
                 </collectionView>
+                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bHz-ug-X27">
+                    <rect key="frame" x="0.0" y="418" width="320" height="150"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="150" id="uIx-vc-BgK"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="CWK-RV-oKL" secondAttribute="trailing" id="HIg-V4-RdA"/>
+                <constraint firstItem="bHz-ug-X27" firstAttribute="top" secondItem="4sA-Zz-9hO" secondAttribute="bottom" id="LzH-j2-nVz"/>
                 <constraint firstAttribute="trailing" secondItem="4sA-Zz-9hO" secondAttribute="trailing" id="N4S-o7-1Bk"/>
+                <constraint firstItem="bHz-ug-X27" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="NdU-t4-AuG"/>
                 <constraint firstItem="CWK-RV-oKL" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="gQn-V7-snO"/>
                 <constraint firstItem="4sA-Zz-9hO" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="hgi-m5-Cui"/>
                 <constraint firstItem="4sA-Zz-9hO" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="lPH-oe-ZeV"/>
                 <constraint firstItem="CWK-RV-oKL" firstAttribute="top" secondItem="4sA-Zz-9hO" secondAttribute="bottom" id="vo5-dn-j05"/>
                 <constraint firstAttribute="bottom" secondItem="CWK-RV-oKL" secondAttribute="bottom" id="xNO-oQ-OMY"/>
+                <constraint firstAttribute="trailing" secondItem="bHz-ug-X27" secondAttribute="trailing" id="xOV-de-dg8"/>
             </constraints>
             <connections>
                 <outlet property="chartView" destination="4sA-Zz-9hO" id="9CS-Cz-UfW"/>
                 <outlet property="detailCollectionView" destination="CWK-RV-oKL" id="ahz-Ar-Cdh"/>
+                <outlet property="nodataLabel" destination="bHz-ug-X27" id="YU4-v6-Z8a"/>
             </connections>
             <point key="canvasLocation" x="588" y="280"/>
         </view>

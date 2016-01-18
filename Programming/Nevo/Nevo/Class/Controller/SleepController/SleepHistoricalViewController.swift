@@ -38,6 +38,15 @@ class SleepHistoricalViewController: UIViewController,ChartViewDelegate,Selected
         queryView.bulidQueryView(self,modelArray: queryArray!,navigation: self.navigationItem)
     }
 
+    override func viewDidAppear(animated: Bool) {
+
+        if(queryArray?.count>0) {
+            queryView.nodataLabel.hidden = true
+        }else{
+            queryView.nodataLabel.hidden = false
+            queryView.nodataLabel.text = "No Data"
+        }
+    }
     override func viewDidLayoutSubviews() {
         queryView.detailCollectionView.backgroundColor = UIColor.whiteColor()
         queryView.detailCollectionView.registerClass(UICollectionViewCell.classForCoder(), forCellWithReuseIdentifier: "SleepHistoryViewCell")
