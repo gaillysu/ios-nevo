@@ -56,6 +56,12 @@ class SelectedNotificationTypeController: UITableViewController {
                 let notificationModel:UserNotification = model as! UserNotification
                 if(titleString == notificationModel.NotificationType){
                     selectedDelegate?.didSelectedNotificationDelegate(notificationModel.clock, ntSwitchState: switchView.on,notificationType:notificationModel.NotificationType)
+                    if(switchView.on) {
+                        swicthStates = true
+                    }else {
+                        swicthStates = false
+                    }
+                    selectedNotificationView.reloadData()
                     break
                 }
             }
@@ -81,7 +87,11 @@ class SelectedNotificationTypeController: UITableViewController {
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 3
+        if(swicthStates){
+            return 3
+        }else{
+            return 1
+        }
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
