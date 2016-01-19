@@ -50,7 +50,7 @@ class NotificationViewController: UITableViewController,SelectedNotificationDele
         mNotificationONArray.removeAll()
         mNotificationArray = UserNotification.getAll()
         
-        let notificationTypeArray:[NotificationType] = [NotificationType.CALL, NotificationType.EMAIL, NotificationType.FACEBOOK, NotificationType.SMS, NotificationType.WHATSAPP, NotificationType.CALENDAR]
+        let notificationTypeArray:[NotificationType] = [NotificationType.CALL, NotificationType.EMAIL, NotificationType.FACEBOOK, NotificationType.SMS, NotificationType.WHATSAPP, NotificationType.WECHAT ,NotificationType.CALENDAR]
         for notificationType in notificationTypeArray {
             for model in mNotificationArray{
                 let notification:UserNotification = model as! UserNotification

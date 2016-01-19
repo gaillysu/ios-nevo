@@ -31,11 +31,7 @@ class NotificationView: UITableView {
         }
         endCell?.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
         //endCell?.selectionStyle = UITableViewCellSelectionStyle.None;
-        if("Whatsapp" == title) {
-            endCell?.textLabel?.text = NSLocalizedString(title, comment: "")+"&"+NSLocalizedString("WeChat", comment: "")
-        }else {
-           endCell?.textLabel?.text = NSLocalizedString(title, comment: "")
-        }
+        endCell?.textLabel?.text = NSLocalizedString(title, comment: "")
 
         endCell?.detailTextLabel?.text = NSLocalizedString(detailLabel, comment: "")
         endCell?.detailTextLabel?.font = AppTheme.FONT_SFCOMPACTDISPLAY_LIGHT(mSize: 13)

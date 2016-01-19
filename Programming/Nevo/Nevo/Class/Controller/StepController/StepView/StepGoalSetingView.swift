@@ -42,13 +42,18 @@ class StepGoalSetingView: UIView {
         progressView?.setProgress(0.0)
         self.layer.addSublayer(progressView!)
 
-        let height:CGFloat = UIScreen.mainScreen().bounds.size.height - (progressView!.frame.size.height + progressView!.frame.origin.y) - 158
+        let height:CGFloat = UIScreen.mainScreen().bounds.size.height - (progressView!.frame.size.height + progressView!.frame.origin.y)
         let layout:UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         layout.itemSize = CGSizeMake((UIScreen.mainScreen().bounds.size.width)/3.0, height/2.0)
         layout.minimumInteritemSpacing = 0
-        layout.minimumLineSpacing = 0
+        layout.minimumLineSpacing = 1
 
-        collectionView = UICollectionView(frame: CGRectMake(0, progressView!.frame.origin.y+progressView!.frame.size.height+10, UIScreen.mainScreen().bounds.size.width, height), collectionViewLayout: layout)
+        if(AppTheme.GET_IS_iPhone4S()){
+            collectionView = UICollectionView(frame: CGRectMake(0, progressView!.frame.origin.y+progressView!.frame.size.height, UIScreen.mainScreen().bounds.size.width, height), collectionViewLayout: layout)
+        }else {
+            collectionView = UICollectionView(frame: CGRectMake(0, progressView!.frame.origin.y+progressView!.frame.size.height+10, UIScreen.mainScreen().bounds.size.width, height), collectionViewLayout: layout)
+        }
+
         collectionView?.registerClass(UICollectionViewCell.classForCoder(), forCellWithReuseIdentifier: "CollectionViewCell")
         collectionView?.backgroundColor = UIColor.whiteColor()
         self.addSubview(collectionView!)

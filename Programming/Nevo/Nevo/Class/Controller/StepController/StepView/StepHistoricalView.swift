@@ -102,7 +102,6 @@ class StepHistoricalView: UIView,ChartViewDelegate {
                 }
             }
         }
-        //计算睡眠时间以中午12点为计算起点,
 
         for (var i:Int = 0; i < queryModel.count; i++){
             let seleModel:UserSteps = queryModel.objectAtIndex(i) as! UserSteps;

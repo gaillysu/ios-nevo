@@ -21,7 +21,7 @@ class SleepController: PublicClassController,toolbarSegmentedDelegate {
         self.view.addSubview(toolbar)
 
         sleepTrking = SleepTrackingController()
-        sleepTrking?.view.frame = CGRectMake(0, toolBarHeight, self.view.frame.size.width, UIScreen.mainScreen().bounds.size.height-toolBarHeight-113)
+        sleepTrking?.view.frame = CGRectMake(0, toolBarHeight, self.view.frame.size.width, UIScreen.mainScreen().bounds.size.height-toolBarHeight)
         self.addChildViewController(sleepTrking!)
         self.view.addSubview(sleepTrking!.view)
         currentVC = sleepTrking

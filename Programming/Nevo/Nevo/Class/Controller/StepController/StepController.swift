@@ -22,7 +22,7 @@ class StepController: PublicClassController,toolbarSegmentedDelegate,UIActionShe
         toolbar.delegate = self
         self.view.addSubview(toolbar)
         stepGoal = StepGoalSetingController()
-        stepGoal?.view.frame = CGRectMake(0, toolBarHeight, self.view.frame.size.width, self.view.frame.size.height-toolBarHeight-113)
+        stepGoal?.view.frame = CGRectMake(0, toolBarHeight, self.view.frame.size.width, self.view.frame.size.height-toolBarHeight)
         self.addChildViewController(stepGoal!)
         self.view.addSubview(stepGoal!.view)
         currentVC = stepGoal
