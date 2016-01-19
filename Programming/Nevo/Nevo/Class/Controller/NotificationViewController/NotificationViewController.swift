@@ -80,6 +80,9 @@ class NotificationViewController: UITableViewController,SelectedNotificationDele
                     let allArray:[NotificationSetting] = mNotificationOFFArray + mNotificationONArray
                     if(AppDelegate.getAppDelegate().isConnected()){
                         AppDelegate.getAppDelegate().SetNortification(allArray)
+                        let banner = Banner(title: "Syncing Nortifications", subtitle: nil, image: nil, backgroundColor: AppTheme.NEVO_SOLAR_YELLOW())
+                        banner.dismissesOnTap = true
+                        banner.show(duration: 3.0)
                     }
                 }
                 break

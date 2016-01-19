@@ -92,6 +92,10 @@ class AlarmClockController: UITableViewController, SyncControllerDelegate,AddAla
             let aler:UIAlertView = UIAlertView(title: "Tip", message: "Only add three alarm", delegate: nil, cancelButtonTitle: NSLocalizedString("ok", comment: ""))
             aler.show()
         }else{
+            let banner = Banner(title: "Syncing Alarm", subtitle: nil, image: nil, backgroundColor: AppTheme.NEVO_SOLAR_YELLOW())
+            banner.dismissesOnTap = true
+            banner.show(duration: 2.0)
+
             if(slectedIndex >= 0){
                 let alarmModel:UserAlarm =  mAlarmArray[slectedIndex]
                 let addalarm:UserAlarm = UserAlarm(keyDict: ["id":alarmModel.id,"timer":timer,"label":"\(name)","status":true,"repeatStatus":repeatStatus])
@@ -236,6 +240,9 @@ class AlarmClockController: UITableViewController, SyncControllerDelegate,AddAla
                 tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
                 if(AppDelegate.getAppDelegate().isConnected()){
                     AppDelegate.getAppDelegate().setAlarm(alarmArray)
+                    let banner = Banner(title: "Syncing Alarm", subtitle: nil, image: nil, backgroundColor: AppTheme.NEVO_SOLAR_YELLOW())
+                    banner.dismissesOnTap = true
+                    banner.show(duration: 3.0)
                 }
             }
         } else if editingStyle == .Insert {

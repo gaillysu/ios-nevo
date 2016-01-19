@@ -145,6 +145,9 @@ class StepController: PublicClassController,toolbarSegmentedDelegate,UIActionShe
     }
 
     func setGoal(goal:Goal) {
+        let banner = Banner(title: "Syncing Goal", subtitle: nil, image: nil, backgroundColor: AppTheme.NEVO_SOLAR_YELLOW())
+        banner.dismissesOnTap = true
+        banner.show(duration: 3.0)
         AppDelegate.getAppDelegate().setGoal(goal)
     }
 

@@ -18,8 +18,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
 
     var window: UIWindow?
     //Let's sync every days
-    let SYNC_INTERVAL:NSTimeInterval = 0*30*60 //unit is second in iOS, every 30min, do sync
+    let SYNC_INTERVAL:NSTimeInterval = 1*30*60 //unit is second in iOS, every 30min, do sync
     let LAST_SYNC_DATE_KEY = "LAST_SYNC_DATE_KEY"
+    var lastSync = 0.0
     private var mDelegates:[SyncControllerDelegate] = []
     private var mConnectionController : ConnectionControllerImpl?
     private var mPacketsbuffer:[NSData] = []
@@ -194,13 +195,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
      The watch should be emptied after all data have been saved.
      */
     func syncActivityData() {
-        var lastSync = 0.0
-        if let lastSyncSaved = NSUserDefaults.standardUserDefaults().objectForKey(LAST_SYNC_DATE_KEY) as? Double {
-            lastSync = lastSyncSaved
-        }
 
         if( NSDate().timeIntervalSince1970-lastSync > SYNC_INTERVAL) {
             //We haven't synched for a while, let's sync now !
+            let banner = Banner(title: "Syncing data", subtitle: nil, image: nil, backgroundColor: AppTheme.NEVO_SOLAR_YELLOW())
+            banner.dismissesOnTap = true
+            banner.show(duration: 3.0)
             AppTheme.DLog("*** Sync started ! ***")
             self.getDailyTrackerInfo()
         }
@@ -211,14 +211,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
      When the sync process is finished, le't refresh the date of sync
      */
     func syncFinished() {
+        let banner = Banner(title: "Sync finished", subtitle: nil, image: nil, backgroundColor: AppTheme.hexStringToColor("#0dac67"))
+        banner.dismissesOnTap = true
+        banner.show(duration: 3.0)
 
+        lastSync = NSDate().timeIntervalSince1970
         AppTheme.DLog("*** Sync finished ***")
-
-        let userDefaults = NSUserDefaults.standardUserDefaults();
-
-        userDefaults.setObject(NSDate().timeIntervalSince1970,forKey:LAST_SYNC_DATE_KEY)
-
-        userDefaults.synchronize()
+        //let userDefaults = NSUserDefaults.standardUserDefaults();
+        //userDefaults.setObject(NSDate().timeIntervalSince1970,forKey:LAST_SYNC_DATE_KEY)
+        //userDefaults.synchronize()
     }
 
     /**
@@ -534,17 +535,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
 
     func connectionStateChanged(isConnected : Bool) {
         //send local notification
-        if isConnected {
-            ConnectionManager.sharedInstance.checkConnectSendNotification(ConnectionManager.Const.connectionStatus.connected)
-        }else {
-            ConnectionManager.sharedInstance.checkConnectSendNotification(ConnectionManager.Const.connectionStatus.disconnected)
-        }
 
         for delegate in mDelegates {
             delegate.connectionStateChanged(isConnected)
         }
 
         if(isConnected) {
+            let banner = Banner(title: "Connected", subtitle: nil, image: nil, backgroundColor:AppTheme.hexStringToColor("#0dac67"))
+            banner.dismissesOnTap = true
+            banner.show(duration: 3.0)
+
+            ConnectionManager.sharedInstance.checkConnectSendNotification(ConnectionManager.Const.connectionStatus.connected)
+
             let dispatchTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, Int64(1.0 * Double(NSEC_PER_SEC)))
             dispatch_after(dispatchTime, dispatch_get_main_queue(), {
                 //setp1: cmd 0x01, set RTC, for every connected Nevo
@@ -553,6 +555,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
             })
 
         }else {
+            let banner = Banner(title: "Disconnected", subtitle: nil, image: nil, backgroundColor: UIColor.redColor())
+            banner.dismissesOnTap = true
+            banner.show(duration: 3.0)
+
+            ConnectionManager.sharedInstance.checkConnectSendNotification(ConnectionManager.Const.connectionStatus.disconnected)
             SyncQueue.sharedInstance.clear()
             mPacketsbuffer = []
         }
