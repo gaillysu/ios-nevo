@@ -16,47 +16,50 @@ import UIKit
 class StepHistoricalView: UIView,ChartViewDelegate {
 
     @IBOutlet weak var chartView: BarChartView!
+    @IBOutlet weak var nodataLabel: UILabel!
     private var queryModel:NSMutableArray = NSMutableArray()
     private let sleepArray:NSMutableArray = NSMutableArray();
     private let detailArray:NSMutableArray = NSMutableArray(capacity:1);
     var selectedDelegate:SelectedChartViewDelegate?
 
     func bulidStepHistoricalView(delegate:SelectedChartViewDelegate,modelArray:NSArray,navigation:UINavigationItem){
-        selectedDelegate = delegate
+        queryModel.removeAllObjects()
+        sleepArray.removeAllObjects()
         queryModel.addObjectsFromArray(modelArray as [AnyObject])
+        if(selectedDelegate == nil) {
+            selectedDelegate = delegate
+            // MARK: - chartView?.marker
+            chartView!.descriptionText = " ";
+            chartView?.noDataText = NSLocalizedString("no_step_data", comment: "")
+            chartView!.noDataTextDescription = "";
+            chartView!.pinchZoomEnabled = false
+            chartView!.drawGridBackgroundEnabled = false;
+            chartView!.drawBarShadowEnabled = false;
+            let xScale:CGFloat = CGFloat(queryModel.count)/7.0;//integer/integer = integer,float/float = float
+            chartView!.setScaleMinima(xScale, scaleY: 1)
+            chartView!.setScaleEnabled(false);
+            chartView!.drawValueAboveBarEnabled = true;
+            chartView!.doubleTapToZoomEnabled = false;
+            chartView!.setViewPortOffsets(left: 0.0, top: 0.0, right: 0.0, bottom: 0.0)
+            chartView!.delegate = self
 
-        // MARK: - chartView?.marker
-        chartView!.descriptionText = " ";
-        chartView?.noDataText = NSLocalizedString("no_step_data", comment: "")
-        chartView!.noDataTextDescription = "";
-        chartView!.pinchZoomEnabled = false
-        chartView!.drawGridBackgroundEnabled = false;
-        chartView!.drawBarShadowEnabled = false;
-        let xScale:CGFloat = CGFloat(queryModel.count)/7.0;//integer/integer = integer,float/float = float
-        chartView!.setScaleMinima(xScale, scaleY: 1)
-        chartView!.setScaleEnabled(false);
-        chartView!.drawValueAboveBarEnabled = true;
-        chartView!.doubleTapToZoomEnabled = false;
-        chartView!.setViewPortOffsets(left: 0.0, top: 0.0, right: 0.0, bottom: 0.0)
-        chartView!.delegate = self
+            let leftAxis:ChartYAxis = chartView!.leftAxis;
+            leftAxis.valueFormatter = NSNumberFormatter();
+            leftAxis.drawAxisLineEnabled = false;
+            leftAxis.drawGridLinesEnabled = false;
+            leftAxis.enabled = false;
+            leftAxis.spaceTop = 0.6;
 
-        let leftAxis:ChartYAxis = chartView!.leftAxis;
-        leftAxis.valueFormatter = NSNumberFormatter();
-        leftAxis.drawAxisLineEnabled = false;
-        leftAxis.drawGridLinesEnabled = false;
-        leftAxis.enabled = false;
-        leftAxis.spaceTop = 0.6;
+            chartView!.rightAxis.enabled = false;
 
-        chartView!.rightAxis.enabled = false;
+            let xAxis:ChartXAxis = chartView!.xAxis;
+            xAxis.labelFont = UIFont.systemFontOfSize(8)
+            xAxis.drawAxisLineEnabled = false;
+            xAxis.drawGridLinesEnabled = false;
+            xAxis.labelPosition = ChartXAxis.XAxisLabelPosition.BottomInside
 
-        let xAxis:ChartXAxis = chartView!.xAxis;
-        xAxis.labelFont = UIFont.systemFontOfSize(8)
-        xAxis.drawAxisLineEnabled = false;
-        xAxis.drawGridLinesEnabled = false;
-        xAxis.labelPosition = ChartXAxis.XAxisLabelPosition.BottomInside
-
-
-        chartView!.legend.enabled = false;
+            chartView!.legend.enabled = false;
+        }
         self.slidersValueChanged()
     }
 

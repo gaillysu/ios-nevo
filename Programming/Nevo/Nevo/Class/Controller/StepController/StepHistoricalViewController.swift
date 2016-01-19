@@ -32,10 +32,20 @@ class StepHistoricalViewController: UIViewController,UICollectionViewDelegateFlo
             self.extendedLayoutIncludesOpaqueBars = false;
             self.modalPresentationCapturesStatusBarAppearance = false;
         }
+        contentTitleArray = [NSLocalizedString("all_day_steps", comment: ""),NSLocalizedString("day_steps_goal", comment: ""),NSLocalizedString("day_goal_reach", comment: "")]
+    }
+
+    override func viewWillAppear(animated: Bool) {
         queryArray = UserSteps.getAll()
         stepsHistortView.bulidStepHistoricalView(self, modelArray: queryArray, navigation: self.navigationItem)
-        
-        contentTitleArray = [NSLocalizedString("all_day_steps", comment: ""),NSLocalizedString("day_steps_goal", comment: ""),NSLocalizedString("day_goal_reach", comment: "")]
+
+        if(queryArray.count>0) {
+            stepsHistortView.nodataLabel.hidden = true
+        }else{
+            stepsHistortView.nodataLabel.backgroundColor = UIColor.whiteColor()
+            stepsHistortView.nodataLabel.hidden = false
+            stepsHistortView.nodataLabel.text = NSLocalizedString("no_data", comment: "");
+        }
     }
 
     override func viewDidLayoutSubviews() {

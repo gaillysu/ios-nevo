@@ -33,20 +33,22 @@ class SleepHistoricalViewController: UIViewController,ChartViewDelegate,Selected
         }
 
         contentTitleArray = [NSLocalizedString("sleep_duration", comment: ""), NSLocalizedString("deep_sleep", comment: ""), NSLocalizedString("light_sleep", comment: ""), NSLocalizedString("sleep_timer", comment: ""), NSLocalizedString("wake_timer", comment: ""), NSLocalizedString("wake_duration", comment: "")]
-        queryArray = UserSleep.getAll()
 
-        queryView.bulidQueryView(self,modelArray: queryArray!,navigation: self.navigationItem)
     }
 
-    override func viewDidAppear(animated: Bool) {
+    override func viewWillAppear(animated: Bool) {
+        queryArray = UserSleep.getAll()
+        queryView.bulidQueryView(self,modelArray: queryArray!,navigation: self.navigationItem)
 
         if(queryArray?.count>0) {
             queryView.nodataLabel.hidden = true
         }else{
+            queryView.nodataLabel.backgroundColor = UIColor.whiteColor()
             queryView.nodataLabel.hidden = false
-            queryView.nodataLabel.text = "No Data"
+            queryView.nodataLabel.text = NSLocalizedString("no_data", comment: "");
         }
     }
+
     override func viewDidLayoutSubviews() {
         queryView.detailCollectionView.backgroundColor = UIColor.whiteColor()
         queryView.detailCollectionView.registerClass(UICollectionViewCell.classForCoder(), forCellWithReuseIdentifier: "SleepHistoryViewCell")

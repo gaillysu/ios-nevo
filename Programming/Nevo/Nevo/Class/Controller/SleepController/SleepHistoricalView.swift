@@ -18,45 +18,44 @@ class SleepHistoricalView: UIView, ChartViewDelegate{
     private var mDelegate:SelectedChartViewDelegate?
 
     func bulidQueryView(delegate:SelectedChartViewDelegate,modelArray:NSArray,navigation:UINavigationItem){
-        mDelegate = delegate
+        queryModel.removeAllObjects()
+        sleepArray.removeAllObjects()
         queryModel.addObjectsFromArray(modelArray as [AnyObject])
-        
-        navigation.title = NSLocalizedString("sleep_history_title", comment: "")
+        if(mDelegate == nil) {
+            mDelegate = delegate
+            navigation.title = NSLocalizedString("sleep_history_title", comment: "")
+            // MARK: - chartView?.marker
+            chartView?.backgroundColor = AppTheme.NEVO_CUSTOM_COLOR(Red: 25, Green: 31, Blue: 59)
+            chartView?.descriptionText = " ";
+            chartView?.noDataText = NSLocalizedString("no_sleep_data", comment: "")
+            chartView?.noDataTextDescription = "";
+            chartView?.pinchZoomEnabled = false
+            chartView?.drawGridBackgroundEnabled = false;
+            chartView?.drawBarShadowEnabled = false;
+            let xScale:CGFloat = CGFloat(queryModel.count)/7.0;//integer/integer = integer,float/float = float
+            chartView?.setScaleMinima(xScale, scaleY: 1)
+            chartView?.setScaleEnabled(false);
+            chartView?.drawValueAboveBarEnabled = true;
+            chartView?.doubleTapToZoomEnabled = false;
+            chartView?.setViewPortOffsets(left: 0.0, top: 0.0, right: 0.0, bottom: 0.0)
+            chartView?.delegate = self
 
-        // MARK: - chartView?.marker
-        // TODO chartView?.marker =
-        chartView?.backgroundColor = AppTheme.NEVO_CUSTOM_COLOR(Red: 25, Green: 31, Blue: 59)
-        chartView?.descriptionText = " ";
-        chartView?.noDataText = NSLocalizedString("no_sleep_data", comment: "")
-        chartView?.noDataTextDescription = "";
-        chartView?.pinchZoomEnabled = false
-        chartView?.drawGridBackgroundEnabled = false;
-        chartView?.drawBarShadowEnabled = false;
-        let xScale:CGFloat = CGFloat(queryModel.count)/7.0;//integer/integer = integer,float/float = float
-        chartView?.setScaleMinima(xScale, scaleY: 1)
-        chartView?.setScaleEnabled(false);
-        chartView?.drawValueAboveBarEnabled = true;
-        chartView?.doubleTapToZoomEnabled = false;
-        chartView?.setViewPortOffsets(left: 0.0, top: 0.0, right: 0.0, bottom: 0.0)
-        chartView?.delegate = self
+            let leftAxis:ChartYAxis = chartView!.leftAxis;
+            leftAxis.valueFormatter = NSNumberFormatter();
+            leftAxis.drawAxisLineEnabled = false;
+            leftAxis.drawGridLinesEnabled = false;
+            leftAxis.enabled = false;
+            leftAxis.spaceTop = 0.6;
 
-        let leftAxis:ChartYAxis = chartView!.leftAxis;
-        leftAxis.valueFormatter = NSNumberFormatter();
-        leftAxis.drawAxisLineEnabled = false;
-        leftAxis.drawGridLinesEnabled = false;
-        leftAxis.enabled = false;
-        leftAxis.spaceTop = 0.6;
-        
-        chartView!.rightAxis.enabled = false;
+            chartView!.rightAxis.enabled = false;
 
-        let xAxis:ChartXAxis = chartView!.xAxis;
-        xAxis.labelFont = UIFont.systemFontOfSize(8)
-        xAxis.drawAxisLineEnabled = false;
-        xAxis.drawGridLinesEnabled = false;
-        xAxis.labelPosition = ChartXAxis.XAxisLabelPosition.BottomInside
-        
-        
-        chartView!.legend.enabled = false;
+            let xAxis:ChartXAxis = chartView!.xAxis;
+            xAxis.labelFont = UIFont.systemFontOfSize(8)
+            xAxis.drawAxisLineEnabled = false;
+            xAxis.drawGridLinesEnabled = false;
+            xAxis.labelPosition = ChartXAxis.XAxisLabelPosition.BottomInside
+            chartView!.legend.enabled = false;
+        }
         self.slidersValueChanged()
     }
 
