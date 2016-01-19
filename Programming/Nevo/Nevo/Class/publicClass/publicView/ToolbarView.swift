@@ -57,8 +57,8 @@ class ToolbarView: UIView {
     override func drawRect(rect: CGRect) {
         let bezierPath = UIBezierPath()
         //确定组成绘画的点
-        let topLeft = CGPointMake(0,self.frame.size.height-0.5)
-        let topRight = CGPointMake(self.frame.size.width,self.frame.size.height-0.5)
+        let topLeft = CGPointMake(0,self.frame.size.height-0.3)
+        let topRight = CGPointMake(self.frame.size.width,self.frame.size.height-0.3)
 
         //开始绘制
         bezierPath.moveToPoint(topLeft)
@@ -71,7 +71,7 @@ class ToolbarView: UIView {
         UIColor.grayColor().setFill()
         UIColor.grayColor().setStroke()
 
-        bezierPath.lineWidth = 0.5
+        bezierPath.lineWidth = 0.3
         bezierPath.fill()
         bezierPath.stroke()
     }
