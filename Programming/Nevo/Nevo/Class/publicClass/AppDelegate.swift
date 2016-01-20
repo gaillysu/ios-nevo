@@ -50,15 +50,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
         if(!NSUserDefaults.standardUserDefaults().boolForKey("everLaunched")){
             NSUserDefaults.standardUserDefaults().setBool(true, forKey: "everLaunched")
             NSUserDefaults.standardUserDefaults().setBool(true, forKey: "firstLaunch")
+            Presets.defaultPresetsGoal()
+            UserAlarm.defaultAlarm()
+            UserNotification.defaultNotificationColor()
         }else{
             NSUserDefaults.standardUserDefaults().setBool(false, forKey: "firstLaunch")
         }
         
-        UserNotification.defaultNotificationColor()
-        if(!Presets.isExistInTable()) {
-            Presets.defaultPresetsGoal()
-        }
-
         mConnectionController = ConnectionControllerImpl()
         mConnectionController?.setDelegate(self)
 

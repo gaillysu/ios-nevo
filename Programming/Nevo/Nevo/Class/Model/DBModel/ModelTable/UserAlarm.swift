@@ -75,4 +75,25 @@ class UserAlarm: NSObject,BaseEntryDatabaseHelper {
         }
         return allArray
     }
+
+    /**
+     When it is the first time you install and use must be implemented
+     *在用户第一次安装使用的时候必须实现
+     */
+    class func defaultAlarm(){
+        let array = AlarmModel.getAll()
+        if(array.count == 0){
+            let currentDate:NSDate = NSDate()
+            let date1:NSDate = NSDate.date(year: currentDate.year, month: currentDate.minute, day: currentDate.day, hour: 8, minute: 0, second: 0)
+            let date2:NSDate = NSDate.date(year: currentDate.year, month: currentDate.minute, day: currentDate.day, hour: 9, minute: 0, second: 0)
+            let dateArray:[NSTimeInterval] = [date1.timeIntervalSince1970,date2.timeIntervalSince1970]
+            let nameArray:[String] = ["Weekly days","Weekend"]
+            for (var index:Int = 0; index < dateArray.count ; index++) {
+                let alarm:UserAlarm = UserAlarm(keyDict: ["id":index,"timer":dateArray[index],"label":nameArray[index],"status":false,"repeatStatus":true])
+                alarm.add({ (id, completion) -> Void in
+
+                })
+            }
+        }
+    }
 }
