@@ -380,6 +380,11 @@ class NevoOtaController : NSObject,ConnectionControllerDelegate {
             }
         }
     }
+
+    func bluetoothEnabled(enabled:Bool) {
+
+    }
+
     /**
     See ConnectionControllerDelegate
     */

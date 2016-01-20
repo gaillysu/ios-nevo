@@ -106,6 +106,10 @@ class ConnectionControllerImpl : NSObject, ConnectionController, NevoBTDelegate 
     /**
     See NevoBTDelegate
     */
+    func bluetoothEnabled(enabled:Bool){
+        mDelegate?.bluetoothEnabled(enabled)
+    }
+
     func connectionStateChanged(isConnected : Bool, fromAddress : NSUUID!) {
 
       

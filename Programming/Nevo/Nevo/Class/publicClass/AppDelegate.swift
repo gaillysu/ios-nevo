@@ -596,6 +596,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
         }
     }
 
+    func bluetoothEnabled(enabled:Bool) {
+        if(!enabled) {
+            let banner = Banner(title: "Bluetooth turned off. Enable Bluetooth to Sync.", subtitle: nil, image: nil, backgroundColor: UIColor.redColor())
+            banner.dismissesOnTap = true
+            banner.show(duration: 3.0)
+        }
+    }
+
 }
 
 protocol SyncControllerDelegate:NSObjectProtocol {

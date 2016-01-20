@@ -401,6 +401,11 @@ class AidOtaController : NSObject,ConnectionControllerDelegate {
             }
         }
     }
+
+    func bluetoothEnabled(enabled:Bool) {
+
+    }
+    
     /**
     See ConnectionControllerDelegate
     */

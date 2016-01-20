@@ -103,4 +103,6 @@ protocol NevoBTDelegate {
     *  Receiving the current device signal strength value
     */
     func receivedRSSIValue(number:NSNumber)
+
+    func bluetoothEnabled(enabled:Bool)
 }

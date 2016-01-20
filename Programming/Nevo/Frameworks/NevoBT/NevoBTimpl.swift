@@ -97,7 +97,7 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
     Invoked whenever the central manager's state is updated.
     */
     func centralManagerDidUpdateState(central : CBCentralManager) {
-        self.isBluetoothEnabled()
+        mDelegate?.bluetoothEnabled(self.isBluetoothEnabled())
     }
     
     /**
