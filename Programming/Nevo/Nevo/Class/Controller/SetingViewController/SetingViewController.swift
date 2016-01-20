@@ -139,22 +139,31 @@ class SetingViewController: UIViewController,SyncControllerDelegate,ButtonManage
 
             if(isEqualString("\(titleArray[indexPath.row])",string2: NSLocalizedString("forget_watch", comment: ""))){
                 AppTheme.DLog("forget_watch")
-                AppDelegate.getAppDelegate().forgetSavedAddress()
-                let cellView = tableView.cellForRowAtIndexPath(indexPath)
-                if(cellView != nil){
-                    for activityView in cellView!.contentView.subviews{
-                        if(activityView.isKindOfClass(UIActivityIndicatorView.classForCoder())) {
-                            let activity:UIActivityIndicatorView = activityView as! UIActivityIndicatorView
-                            if(!activity.isAnimating()){
-                                activity.startAnimating()
-                                let dispatchTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, Int64(3.0 * Double(NSEC_PER_SEC)))
-                                dispatch_after(dispatchTime, dispatch_get_main_queue(), {
-                                    activity.stopAnimating()
-                                })
-                            }
-                            break
-                        }
-                    }
+                if((UIDevice.currentDevice().systemVersion as NSString).floatValue >= 8.0){
+
+                    let actionSheet:UIAlertController = UIAlertController(title: "Forget watch", message: "Do you want to forget your nevo?", preferredStyle: UIAlertControllerStyle.Alert)
+                    actionSheet.view.tintColor = AppTheme.NEVO_SOLAR_YELLOW()
+
+                    let alertAction:UIAlertAction = UIAlertAction(title: NSLocalizedString("NO", comment: ""), style: UIAlertActionStyle.Cancel, handler: { (alert) -> Void in
+
+                    })
+                    actionSheet.addAction(alertAction)
+
+                    let alertAction2:UIAlertAction = UIAlertAction(title: NSLocalizedString("YES", comment: ""), style: UIAlertActionStyle.Default, handler: { ( alert) -> Void in
+                        AppDelegate.getAppDelegate().forgetSavedAddress()
+                        let tutrorial:TutorialOneViewController = TutorialOneViewController()
+                        let nav:UINavigationController = UINavigationController(rootViewController: tutrorial)
+                        nav.navigationBarHidden = true
+                        self.presentViewController(nav, animated: true, completion: nil)
+                    })
+                    actionSheet.addAction(alertAction2)
+
+                    self.presentViewController(actionSheet, animated: true, completion: nil)
+                }else{
+                    let actionSheet:UIAlertView = UIAlertView(title: "Forget watch", message: "Do you want to forget your nevo?", delegate: self, cancelButtonTitle: NSLocalizedString("NO", comment: ""), otherButtonTitles: NSLocalizedString("YES", comment: ""))
+                    actionSheet.layer.backgroundColor = AppTheme.NEVO_SOLAR_YELLOW().CGColor
+                    actionSheet.tintColor = AppTheme.NEVO_SOLAR_YELLOW()
+                    actionSheet.show()
                 }
             }
             break

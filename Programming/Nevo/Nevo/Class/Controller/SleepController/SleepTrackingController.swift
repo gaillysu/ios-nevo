@@ -31,11 +31,7 @@ class SleepTrackingController: PublicClassController, SyncControllerDelegate ,Bu
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        if(Double(UIDevice.currentDevice().systemVersion)>7.0){
-            self.edgesForExtendedLayout = UIRectEdge.None;
-            self.extendedLayoutIncludesOpaqueBars = false;
-            self.modalPresentationCapturesStatusBarAppearance = false;
-        }
+
         contentTitleArray = [NSLocalizedString("sleep_duration", comment: ""), NSLocalizedString("deep_sleep", comment: ""), NSLocalizedString("light_sleep", comment: ""), NSLocalizedString("sleep_timer", comment: ""), NSLocalizedString("wake_timer", comment: ""), NSLocalizedString("wake_duration", comment: "")]
         ClockRefreshManager.sharedInstance.setRefreshDelegate(self)
 
