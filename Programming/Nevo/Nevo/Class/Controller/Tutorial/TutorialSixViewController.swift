@@ -25,8 +25,9 @@ class TutorialSixViewController: UIViewController{
     }
     
     @IBAction func tapToContinueAction(sender: AnyObject) {
-//        self.navigationController?.popToRootViewControllerAnimated(true)
-        let tutorialPageSeven = TutorialSevenViewController();
-        self.navigationController?.pushViewController(tutorialPageSeven, animated: true)
+        //self.navigationController?.popToRootViewControllerAnimated(true)
+        //let tutorialPageSeven = TutorialSevenViewController();
+        //self.navigationController?.pushViewController(tutorialPageSeven, animated: true)
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
 }

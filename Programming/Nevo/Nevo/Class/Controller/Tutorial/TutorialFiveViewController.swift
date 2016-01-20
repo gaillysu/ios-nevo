@@ -8,8 +8,14 @@
 
 import Foundation
 
-class TutorialFiveViewController: UIViewController {
+class TutorialFiveViewController: UIViewController,SyncControllerDelegate {
 
+    var progressView:CircleProgressView?
+    var progresValue:CGFloat = 0.0
+    var timer:NSTimer?
+
+    @IBOutlet weak var watchImage: UIImageView!
+    
     init() {
         super.init(nibName: "TutorialFiveViewController", bundle: NSBundle.mainBundle())
     }
@@ -19,10 +25,56 @@ class TutorialFiveViewController: UIViewController {
     }
 
     override func viewDidLoad() {
-        delay(2.0) {
-            let tutorialSix = TutorialSixViewController()
-            self.navigationController?.pushViewController(tutorialSix, animated: true)
+        timer = NSTimer.scheduledTimerWithTimeInterval(2, target: self, selector: Selector("timerAction:"), userInfo: nil, repeats: true)
+    }
+
+    override func viewDidLayoutSubviews() {
+        progressView = CircleProgressView()
+        progressView!.setProgressColor(AppTheme.NEVO_SOLAR_YELLOW())
+        progressView?.frame = CGRectMake(watchImage!.frame.origin.x-5, watchImage!.frame.origin.y-5, watchImage.bounds.width+10, watchImage.bounds.width+10)
+        progressView?.setProgress(0.0)
+        self.view.layer.addSublayer(progressView!)
+
+    }
+
+    func timerAction(action:NSTimer) {
+        progresValue+=0.1
+        setProgress(progresValue)
+        if(progresValue > 1){
+            action.valid ? action.invalidate():()
+            if(AppDelegate.getAppDelegate().isConnected()){
+                delay(1.0) {
+                    let tutorialSix = TutorialSixViewController()
+                    self.navigationController?.pushViewController(tutorialSix, animated: true)
+                }
+            }else{
+                for nvc:UIViewController in self.navigationController!.viewControllers {
+                    if(nvc.isKindOfClass(TutorialThreeViewController.classForCoder())) {
+                        self.navigationController?.popToViewController(nvc, animated: true)
+                        return;
+                    }
+                }
+            }
+
+        }else{
+            if(AppDelegate.getAppDelegate().isConnected()){
+                action.valid ? action.invalidate():()
+                delay(1.0) {
+                    let tutorialSix = TutorialSixViewController()
+                    self.navigationController?.pushViewController(tutorialSix, animated: true)
+                }
+            }
         }
+    }
+
+    /**
+     set the progress of the progressView
+
+     :param: progress
+     :param: animated
+     */
+    func setProgress(progress: CGFloat){
+        progressView?.setProgress(progress, Steps: 0, GoalStep: 0)
     }
     
     func delay(delay:Double, closure:()->()) {
@@ -32,5 +84,32 @@ class TutorialFiveViewController: UIViewController {
                 Int64(delay * Double(NSEC_PER_SEC))
             ),
             dispatch_get_main_queue(), closure)
+    }
+
+    /**
+     Called when a packet is received from the device
+     */
+    func packetReceived(packet: NevoPacket) {
+
+    }
+    /**
+     Called when a peripheral connects or disconnects
+     */
+    func connectionStateChanged(isConnected : Bool) {
+        if(isConnected) {
+
+        }
+    }
+    /**
+     *  Receiving the current device signal strength value
+     */
+    func receivedRSSIValue(number:NSNumber) {
+
+    }
+    /**
+     *  Data synchronization is complete callback
+     */
+    func syncFinished() {
+
     }
 }
