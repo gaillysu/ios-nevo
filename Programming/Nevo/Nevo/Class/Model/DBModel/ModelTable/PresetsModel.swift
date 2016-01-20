@@ -81,4 +81,15 @@ class PresetsModel: UserDatabaseHelper {
         return users;
     }
 
+    override class func isExistInTable()->Bool {
+        var res:Bool = false
+        let dbQueue:FMDatabaseQueue = AppDelegate.getAppDelegate().dbQueue
+        dbQueue.inDatabase { (db) -> Void in
+            var tableName:NSString = NSStringFromClass(self.classForCoder())
+            tableName = tableName.stringByReplacingOccurrencesOfString(".", withString: "")
+            res = db.tableExists("\(tableName)")
+        }
+        return res
+    }
+
 }

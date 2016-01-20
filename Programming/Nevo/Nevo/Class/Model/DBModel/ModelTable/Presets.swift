@@ -70,4 +70,26 @@ class Presets: NSObject,BaseEntryDatabaseHelper {
         }
         return allArray
     }
+
+    class func isExistInTable()->Bool {
+        return PresetsModel.isExistInTable()
+    }
+
+    /**
+     When it is the first time you install and use must be implemented
+     *在用户第一次安装使用的时候必须实现
+     */
+    class func defaultPresetsGoal(){
+        let array = Presets.getAll()
+        if(array.count == 0){
+            let presetGoal:[String] = ["7000", "10000", "20000"]
+            let label:[String] = ["Light","Moderate","Heavy"]
+            for (var index:Int = 0; index < presetGoal.count ; index++) {
+                let presets:Presets = Presets(keyDict: ["id":"\(index)","steps":"\(presetGoal[index])","label":"\(label[index])","status":true])
+                presets.add({ (id, completion) -> Void in
+
+                })
+            }
+        }
+    }
 }

@@ -55,6 +55,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
         }
         
         UserNotification.defaultNotificationColor()
+        if(!Presets.isExistInTable()) {
+            Presets.defaultPresetsGoal()
+        }
 
         mConnectionController = ConnectionControllerImpl()
         mConnectionController?.setDelegate(self)
