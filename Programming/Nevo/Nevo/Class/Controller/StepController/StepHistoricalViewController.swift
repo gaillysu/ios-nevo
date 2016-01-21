@@ -32,7 +32,7 @@ class StepHistoricalViewController: UIViewController,UICollectionViewDelegateFlo
             self.extendedLayoutIncludesOpaqueBars = false;
             self.modalPresentationCapturesStatusBarAppearance = false;
         }
-        contentTitleArray = [NSLocalizedString("all_day_steps", comment: ""),NSLocalizedString("day_steps_goal", comment: ""),NSLocalizedString("day_goal_reach", comment: "")]
+        contentTitleArray = [NSLocalizedString("goal", comment: ""), NSLocalizedString("progress", comment: ""), NSLocalizedString("you_reached", comment: "")]
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -62,11 +62,10 @@ class StepHistoricalViewController: UIViewController,UICollectionViewDelegateFlo
     // MARK: - SelectedChartViewDelegate
     func didSelectedhighlightValue(xIndex:Int,dataSetIndex: Int, dataSteps:UserSteps) {
         contentTArray.removeAll()
-        contentTArray.insert("\(dataSteps.steps)", atIndex: 0)
-        contentTArray.insert("\(dataSteps.goalsteps)", atIndex: 1)
-        contentTArray.insert(String(format: "%.2f%c", dataSteps.goalreach*100,37), atIndex: 2)
+        contentTArray.insert("\(dataSteps.goalsteps)", atIndex: 0)
+        contentTArray.insert(String(format: "%.2f%c", dataSteps.goalreach*100,37), atIndex: 1)
+        contentTArray.insert("\(dataSteps.steps)", atIndex: 2)
         stepsHistori.reloadData()
-        
     }
 
     // MARK: - UICollectionViewDataSource

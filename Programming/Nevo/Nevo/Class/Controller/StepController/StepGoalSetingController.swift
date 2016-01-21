@@ -31,7 +31,7 @@ class StepGoalSetingController: PublicClassController,ButtonManagerCallBack,Sync
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        contentTitleArray = [NSLocalizedString("goal", comment: ""), NSLocalizedString("you_reached", comment: ""), NSLocalizedString("progress", comment: "")]
+        contentTitleArray = [NSLocalizedString("goal", comment: ""), NSLocalizedString("progress", comment: ""), NSLocalizedString("you_reached", comment: "")]
         
         AppDelegate.getAppDelegate().startConnect(false, delegate: self)
 
@@ -137,9 +137,10 @@ class StepGoalSetingController: PublicClassController,ButtonManagerCallBack,Sync
             contentTArray.removeAtIndex(0)
             contentTArray.insert("\(dailyStepGoal)", atIndex: 0)
             contentTArray.removeAtIndex(1)
-            contentTArray.insert("\(dailySteps)", atIndex: 1)
+            contentTArray.insert(String(format: "%.2f%c", percent*100,37), atIndex: 1)
             contentTArray.removeAtIndex(2)
-            contentTArray.insert(String(format: "%.2f%c", percent*100,37), atIndex: 2)
+            contentTArray.insert("\(dailySteps)", atIndex: 2)
+
             stepGoalView.collectionView?.reloadData()
 
             stepGoalView.setProgress(percent, dailySteps: dailySteps, dailyStepGoal: dailyStepGoal)

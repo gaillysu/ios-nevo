@@ -79,6 +79,9 @@ class AlarmClockController: UITableViewController, SyncControllerDelegate,AddAla
                 alarmArray.removeAtIndex(mSwitch.tag)
                 alarmArray.append(alarm)
                 AppDelegate.getAppDelegate().setAlarm(alarmArray)
+                let banner = Banner(title: "Syncing Alarm", subtitle: nil, image: nil, backgroundColor: AppTheme.NEVO_SOLAR_YELLOW())
+                banner.dismissesOnTap = true
+                banner.show(duration: 3.0)
             }
 
         }
