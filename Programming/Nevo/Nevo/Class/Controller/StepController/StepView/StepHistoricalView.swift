@@ -106,24 +106,11 @@ class StepHistoricalView: UIView,ChartViewDelegate {
         for (var i:Int = 0; i < queryModel.count; i++){
             let seleModel:UserSteps = queryModel.objectAtIndex(i) as! UserSteps;
             let val1:Double  = Double(seleModel.steps);
-            if(val1 == 0){
-                continue
-            }
             let mDateString:String = String(format: "%.0f", seleModel.date)
             let date:NSDate = NSDate(timeIntervalSince1970: seleModel.date)
-            //mDateString.dateFromFormat("yyyyMMdd")!
             let dateString:NSString = date.stringFromFormat("yyyyMMdd")
-            //stringFromDate(date) as NSString
             xVal.append("\(dateString.substringWithRange(NSMakeRange(6, 2)))/\(dateString.substringWithRange(NSMakeRange(4, 2)))")
             yVal.append(BarChartDataEntry(values: [val1], xIndex:i))
-        }
-
-        //According to at least seven days of data
-        if(yVal.count<7){
-            for (var s:Int  = yVal.count; s < 7; s++){
-                xVal.append(" ")
-                yVal.append(BarChartDataEntry(values: [0], xIndex:sleepArray.count))
-            }
         }
 
         //柱状图表
