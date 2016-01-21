@@ -113,21 +113,19 @@
 "mobile_battery_warnings_msg"="Mobile battery too low please charge phone before upgrade";
 
 //new app string
-"goal"="Goal";
-"you_reached"="you reached";
-"progress"="Progress";
-"day_steps_goal"="Steps Goal";
-"day_goal_reach"="Percent";
-"all_day_steps"="All-day Steps";
-"sleep_duration"="Sleep Duration";
+"goal"="goal";
+"you_reached"="steps";
+"progress"="progress";
+"day_steps_goal"="goal";
 "no_step_data"="No steps data";
 "no_sleep_data"="No sleep tracking data";
 "select_date"="Select a date";
-"deep_sleep"="Deep Sleep";
-"light_sleep"="Light Sleep";
-"sleep_timer"="Sleep Timer";
-"wake_timer"="Wake Timer";
-"wake_duration"="Wake Duration";
+"sleep_duration"="sleep duration";
+"deep_sleep"="deep sleep";
+"light_sleep"="light sleep";
+"sleep_timer"="sleep timer";
+"wake_timer"="wake timer";
+"wake_duration"="wake duration";
 "CALL"="Call";
 "SMS"="(i)Message";
 "EMAIL"="E-mail";

@@ -17,7 +17,7 @@ class StepGoalSetingController: PublicClassController,ButtonManagerCallBack,Sync
     private var mCurrentGoal:Goal = NumberOfStepsGoal()
     private var mVisiable:Bool = true
     private var contentTitleArray:[String] = []
-    private var contentTArray:[String] = ["0","0","0"]
+    private var contentTArray:[String] = ["--","--","--"]
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
         super.init(nibName: "StepGoalSetingController", bundle: NSBundle.mainBundle())

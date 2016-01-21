@@ -17,7 +17,7 @@ it should handle very little, only the initialisation of the different Views and
 class SleepTrackingController: PublicClassController, SyncControllerDelegate ,ButtonManagerCallBack,ClockRefreshDelegate,UICollectionViewDelegate,UICollectionViewDataSource{
     @IBOutlet weak var sleepView: SleepTrackingView!
     private var contentTitleArray:[String] = []
-    private var contentTArray:[String] = ["0","0","0","0","0","0"]
+    private var contentTArray:[String] = ["--","--","--","--","--","--"]
 
     init() {
         super.init(nibName: "SleepTrackingController", bundle: NSBundle.mainBundle())
@@ -31,7 +31,9 @@ class SleepTrackingController: PublicClassController, SyncControllerDelegate ,Bu
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        contentTitleArray = [NSLocalizedString("sleep_duration", comment: ""), NSLocalizedString("deep_sleep", comment: ""), NSLocalizedString("light_sleep", comment: ""), NSLocalizedString("sleep_timer", comment: ""), NSLocalizedString("wake_timer", comment: ""), NSLocalizedString("wake_duration", comment: "")]
+        //Sleep duration -> Sleep Time -> Wake Time
+        //Deep Sleep -> Light Sleep -> Wake Duration
+        contentTitleArray = [NSLocalizedString("sleep_duration", comment: ""), NSLocalizedString("sleep_timer", comment: ""), NSLocalizedString("wake_timer", comment: ""), NSLocalizedString("deep_sleep", comment: ""), NSLocalizedString("light_sleep", comment: ""), NSLocalizedString("wake_duration", comment: "")]
         ClockRefreshManager.sharedInstance.setRefreshDelegate(self)
 
     }
@@ -58,10 +60,10 @@ class SleepTrackingController: PublicClassController, SyncControllerDelegate ,Bu
                 let startTimer:NSDate = NSDate(timeIntervalSince1970: sleep.getStartTimer())
                 let endTimer:NSDate = NSDate(timeIntervalSince1970: sleep.getEndTimer())
                 self.contentTArray.insert(String(format: "%dh%dm", Int(dataSleep.getTotalSleep()/60.0),Int((dataSleep.getTotalSleep())%Double(60))), atIndex: 0)
-                self.contentTArray.insert(String(format: "%dh%dm", Int(dataSleep.getDeepSleep()/60.0),Int((dataSleep.getDeepSleep())%Double(60))), atIndex: 1)
-                self.contentTArray.insert(String(format: "%dh%dm", Int(dataSleep.getLightSleep()/60.0),Int((dataSleep.getLightSleep())%Double(60))), atIndex: 2)
-                self.contentTArray.insert(String(format: "%d:%d", startTimer.hour,startTimer.minute), atIndex: 3)
-                self.contentTArray.insert(String(format: "%d:%d", endTimer.hour,endTimer.minute), atIndex: 4)
+                self.contentTArray.insert(String(format: "%d:%d", startTimer.hour,startTimer.minute), atIndex: 1)
+                self.contentTArray.insert(String(format: "%d:%d", endTimer.hour,endTimer.minute), atIndex: 2)
+                self.contentTArray.insert(String(format: "%dh%dm", Int(dataSleep.getDeepSleep()/60.0),Int((dataSleep.getDeepSleep())%Double(60))), atIndex: 3)
+                self.contentTArray.insert(String(format: "%dh%dm", Int(dataSleep.getLightSleep()/60.0),Int((dataSleep.getLightSleep())%Double(60))), atIndex: 4)
                 self.contentTArray.insert(String(format: "%dh%dm", Int(dataSleep.getWeakSleep()/60.0),Int((dataSleep.getWeakSleep())%Double(60))), atIndex: 5)
                 self.sleepView.collectionView.reloadData()
             })
@@ -138,10 +140,10 @@ class SleepTrackingController: PublicClassController, SyncControllerDelegate ,Bu
                 let startTimer:NSDate = NSDate(timeIntervalSince1970: sleep.getStartTimer())
                 let endTimer:NSDate = NSDate(timeIntervalSince1970: sleep.getEndTimer())
                 self.contentTArray.insert(String(format: "%dh%dm", Int(dataSleep.getTotalSleep()/60.0),Int((dataSleep.getTotalSleep())%Double(60))), atIndex: 0)
-                self.contentTArray.insert(String(format: "%dh%dm", Int(dataSleep.getDeepSleep()/60.0),Int((dataSleep.getDeepSleep())%Double(60))), atIndex: 1)
-                self.contentTArray.insert(String(format: "%dh%dm", Int(dataSleep.getLightSleep()/60.0),Int((dataSleep.getLightSleep())%Double(60))), atIndex: 2)
-                self.contentTArray.insert(String(format: "%d:%d", startTimer.hour,startTimer.minute), atIndex: 3)
-                self.contentTArray.insert(String(format: "%d:%d", endTimer.hour,endTimer.minute), atIndex: 4)
+                self.contentTArray.insert(String(format: "%d:%d", startTimer.hour,startTimer.minute), atIndex: 1)
+                self.contentTArray.insert(String(format: "%d:%d", endTimer.hour,endTimer.minute), atIndex: 2)
+                self.contentTArray.insert(String(format: "%dh%dm", Int(dataSleep.getDeepSleep()/60.0),Int((dataSleep.getDeepSleep())%Double(60))), atIndex: 3)
+                self.contentTArray.insert(String(format: "%dh%dm", Int(dataSleep.getLightSleep()/60.0),Int((dataSleep.getLightSleep())%Double(60))), atIndex: 4)
                 self.contentTArray.insert(String(format: "%dh%dm", Int(dataSleep.getWeakSleep()/60.0),Int((dataSleep.getWeakSleep())%Double(60))), atIndex: 5)
                 self.sleepView.collectionView.reloadData()
             })

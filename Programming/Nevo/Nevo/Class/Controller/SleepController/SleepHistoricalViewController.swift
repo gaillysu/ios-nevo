@@ -12,7 +12,7 @@ class SleepHistoricalViewController: PublicClassController,ChartViewDelegate,Sel
 
     @IBOutlet var queryView: SleepHistoricalView!
     private var contentTitleArray:[String] = []
-    private var contentTArray:[String] = [NSLocalizedString("select_date", comment: ""),NSLocalizedString("select_date", comment: ""),NSLocalizedString("select_date", comment: ""),NSLocalizedString("select_date", comment: ""),NSLocalizedString("select_date", comment: ""),NSLocalizedString("select_date", comment: "")]
+    private var contentTArray:[String] = [NSLocalizedString("--", comment: ""),NSLocalizedString("--", comment: ""),NSLocalizedString("--", comment: ""),NSLocalizedString("--", comment: ""),NSLocalizedString("--", comment: ""),NSLocalizedString("--", comment: "")]
 
     private var queryArray:NSArray?
     init() {
@@ -27,7 +27,7 @@ class SleepHistoricalViewController: PublicClassController,ChartViewDelegate,Sel
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        contentTitleArray = [NSLocalizedString("sleep_duration", comment: ""), NSLocalizedString("deep_sleep", comment: ""), NSLocalizedString("light_sleep", comment: ""), NSLocalizedString("sleep_timer", comment: ""), NSLocalizedString("wake_timer", comment: ""), NSLocalizedString("wake_duration", comment: "")]
+        contentTitleArray = [NSLocalizedString("sleep_duration", comment: ""), NSLocalizedString("sleep_timer", comment: ""), NSLocalizedString("wake_timer", comment: ""), NSLocalizedString("deep_sleep", comment: ""), NSLocalizedString("light_sleep", comment: ""), NSLocalizedString("wake_duration", comment: "")]
 
     }
 
@@ -63,10 +63,10 @@ class SleepHistoricalViewController: PublicClassController,ChartViewDelegate,Sel
         let endTimer:NSDate = NSDate(timeIntervalSince1970: dataSleep.getEndTimer())
 
         contentTArray.insert(String(format: "%dh%dm", Int(dataSleep.getTotalSleep()),Int((dataSleep.getTotalSleep())*Double(60)%Double(60))), atIndex: 0)
-        contentTArray.insert(String(format: "%dh%dm", Int(dataSleep.getDeepSleep()),Int((dataSleep.getDeepSleep())*Double(60)%Double(60))), atIndex: 1)
-        contentTArray.insert(String(format: "%dh%dm", Int(dataSleep.getLightSleep()),Int((dataSleep.getLightSleep())*Double(60)%Double(60))), atIndex: 2)
-        contentTArray.insert(String(format: "%d:%d", startTimer.hour,startTimer.minute), atIndex: 3)
-        contentTArray.insert(String(format: "%d:%d", endTimer.hour,endTimer.minute), atIndex: 4)
+        contentTArray.insert(String(format: "%d:%d", startTimer.hour,startTimer.minute), atIndex: 1)
+        contentTArray.insert(String(format: "%d:%d", endTimer.hour,endTimer.minute), atIndex: 2)
+        contentTArray.insert(String(format: "%dh%dm", Int(dataSleep.getDeepSleep()),Int((dataSleep.getDeepSleep())*Double(60)%Double(60))), atIndex: 3)
+        contentTArray.insert(String(format: "%dh%dm", Int(dataSleep.getLightSleep()),Int((dataSleep.getLightSleep())*Double(60)%Double(60))), atIndex: 4)
         contentTArray.insert(String(format: "%dh%dm", Int(dataSleep.getWeakSleep()),Int((dataSleep.getWeakSleep())*Double(60)%Double(60))), atIndex: 5)
         queryView.detailCollectionView.reloadData()
     }
