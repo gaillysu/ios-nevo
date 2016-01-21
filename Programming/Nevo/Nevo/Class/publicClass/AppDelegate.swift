@@ -60,6 +60,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
         mConnectionController = ConnectionControllerImpl()
         mConnectionController?.setDelegate(self)
 
+        UITabBar.appearance().backgroundImage = UIImage()
+        //UITabBar.appearance().shadowImage = UIImage()
+        UITabBar.appearance().translucent = false
+
         return true
     }
 

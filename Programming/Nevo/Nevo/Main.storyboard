@@ -110,7 +110,7 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="50" sectionHeaderHeight="18" sectionFooterHeight="18" id="E11-Lg-dGI" customClass="alarmClockView" customModule="Nevo" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="alarmCell" id="kFS-2E-OAO">
                                 <rect key="frame" x="0.0" y="114" width="320" height="50"/>
@@ -120,7 +120,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <switch opaque="NO" tag="1700" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VsW-Nh-SOm">
-                                            <rect key="frame" x="251" y="8" width="51" height="31"/>
+                                            <rect key="frame" x="255" y="8" width="51" height="31"/>
                                             <color key="onTintColor" red="0.96078431372549022" green="0.64313725490196072" blue="0.10980392156862745" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <connections>
                                                 <action selector="controllManager:" destination="raW-BV-myH" eventType="valueChanged" id="a2y-Cn-qeM"/>
@@ -146,7 +146,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" tag="1600" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="02F-Ae-9XP">
-                                            <rect key="frame" x="127" y="5" width="90" height="40"/>
+                                            <rect key="frame" x="127" y="5" width="120" height="40"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
@@ -158,8 +158,8 @@
                                         <constraint firstItem="VsW-Nh-SOm" firstAttribute="top" secondItem="fVi-6c-Bo8" secondAttribute="topMargin" id="Ael-J1-QQL"/>
                                         <constraint firstItem="obm-ad-oru" firstAttribute="centerY" secondItem="fVi-6c-Bo8" secondAttribute="centerY" id="EBb-ez-uM2"/>
                                         <constraint firstItem="02F-Ae-9XP" firstAttribute="firstBaseline" secondItem="Hp0-RY-qB3" secondAttribute="firstBaseline" id="EfJ-75-jlK"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="VsW-Nh-SOm" secondAttribute="trailing" constant="12" id="J42-0F-Yac"/>
-                                        <constraint firstItem="VsW-Nh-SOm" firstAttribute="leading" secondItem="02F-Ae-9XP" secondAttribute="trailing" constant="34" id="JrO-7p-NWW"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="VsW-Nh-SOm" secondAttribute="trailing" constant="8" id="J42-0F-Yac"/>
+                                        <constraint firstItem="VsW-Nh-SOm" firstAttribute="leading" secondItem="02F-Ae-9XP" secondAttribute="trailing" constant="8" id="JrO-7p-NWW"/>
                                         <constraint firstItem="Hp0-RY-qB3" firstAttribute="leading" secondItem="obm-ad-oru" secondAttribute="trailing" id="Tn4-xK-wBY"/>
                                         <constraint firstItem="obm-ad-oru" firstAttribute="bottom" secondItem="Hp0-RY-qB3" secondAttribute="bottom" id="VkH-iW-RPT"/>
                                         <constraint firstItem="Hp0-RY-qB3" firstAttribute="top" secondItem="obm-ad-oru" secondAttribute="top" id="aJQ-Wo-HVI"/>
