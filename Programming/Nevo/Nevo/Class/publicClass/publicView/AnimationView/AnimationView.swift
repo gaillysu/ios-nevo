@@ -407,14 +407,21 @@ class CircleSleepProgressView: CAShapeLayer {
         return path
     }
 
-    func setSleepProgress(sleepArray:NSArray){
+    func setSleepProgress(sleepArray:NSArray,resulSleep:((dataSleep:Sleep) -> Void)){
         let sleepChartArray = combiningSleepData(sleepArray)
+        let arrayCount:Int = (sleepChartArray[0] as! [[NSDate]]).count
         var startDate:NSDate = NSDate()
         var endDate:NSDate = NSDate()
 
-        for(var l:Int = 0; l<(sleepChartArray[0] as! [[NSDate]]).count;l++){
-            initialProgress = CGFloat(calculatePercent(1.0, toProgress: progressLimit))
+        var sleepTimer:NSTimeInterval  = 0
+        var wakeTimer:NSTimeInterval  = 0
+        var lightTimer:NSTimeInterval  = 0
+        var deepTimer:NSTimeInterval  = 0
+        var startTimer:NSTimeInterval = 0
+        var endTimer:NSTimeInterval = 0
 
+        for(var l:Int = 0; l<arrayCount;l++){
+            initialProgress = CGFloat(calculatePercent(1.0, toProgress: progressLimit))
             let pLayer:CAShapeLayer = CAShapeLayer()
             startDate = ((sleepChartArray[0] as! [[NSDate]])[l][0]) //[l][0]
             endDate = ((sleepChartArray[0] as! [[NSDate]])[l][1])
@@ -426,7 +433,40 @@ class CircleSleepProgressView: CAShapeLayer {
             pLayer.strokeEnd = percent
             self.addSublayer(pLayer)
             startSleepAnimation(pLayer);
+
+            if(l == 0) {
+                startTimer = startDate.timeIntervalSince1970
+            }
+
+            if(l == arrayCount-1) {
+                endTimer = endDate.timeIntervalSince1970
+            }
         }
+
+        for (var i:Int = 0; i < sleepArray.count; i++){
+            let sleepTimerArray:[Int] = sleepArray.objectAtIndex(i).objectAtIndex(0) as! [Int]
+            let weakTimerArray:[Int] = sleepArray.objectAtIndex(i).objectAtIndex(1) as! [Int]
+            let lightTimerArray:[Int] = sleepArray.objectAtIndex(i).objectAtIndex(2) as! [Int]
+            let deepTimerArray:[Int] = sleepArray.objectAtIndex(i).objectAtIndex(3) as! [Int]
+
+            if(i == 0){
+                for (var s:Int  = 18; s < sleepTimerArray.count; s++){
+                    sleepTimer = Double(sleepTimerArray[s]) + sleepTimer
+                    wakeTimer = Double(weakTimerArray[s]) + wakeTimer
+                    lightTimer = Double(lightTimerArray[s]) + lightTimer
+                    deepTimer = Double(deepTimerArray[s]) + deepTimer
+                }
+            }else{
+                for (var s:Int  = 0; s < sleepTimerArray.count-6; s++){
+                    sleepTimer = Double(sleepTimerArray[s]) + sleepTimer
+                    wakeTimer = Double(weakTimerArray[s]) + wakeTimer
+                    lightTimer = Double(lightTimerArray[s]) + lightTimer
+                    deepTimer = Double(deepTimerArray[s]) + deepTimer
+                }
+            }
+        }
+
+        resulSleep(dataSleep: Sleep(weakSleep: wakeTimer, lightSleep: lightTimer, deepSleep: deepTimer, startTimer: startTimer, endTimer: endTimer))
     }
 
     /**

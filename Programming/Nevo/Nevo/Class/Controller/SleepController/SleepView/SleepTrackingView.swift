@@ -57,9 +57,11 @@ class SleepTrackingView: UIView {
     :param: progress
     :param: animated
     */
-    func setProgress(dailySleep:NSArray){
+    func setProgress(dailySleep:NSArray,resulSleep:((dataSleep:Sleep) -> Void)){
         //progressView?.setProgress(progresValue, Steps: dailySteps, GoalStep: dailyStepGoal)
-        progressView?.setSleepProgress(dailySleep)
+        progressView?.setSleepProgress(dailySleep, resulSleep: { (dataSleep) -> Void in
+            resulSleep(dataSleep: dataSleep)
+        })
     }
 
     /*

@@ -16,7 +16,6 @@ it should handle very little, only the initialisation of the different Views and
 
 class SleepTrackingController: PublicClassController, SyncControllerDelegate ,ButtonManagerCallBack,ClockRefreshDelegate,UICollectionViewDelegate,UICollectionViewDataSource{
     @IBOutlet weak var sleepView: SleepTrackingView!
-    private var mVisiable:Bool = false
     private var contentTitleArray:[String] = []
     private var contentTArray:[String] = ["0","0","0","0","0","0"]
 
@@ -51,18 +50,29 @@ class SleepTrackingController: PublicClassController, SyncControllerDelegate ,Bu
             AppTheme.DLog("We have a saved address, no need to go through the tutorial")
             AppDelegate.getAppDelegate().startConnect(false, delegate: self)
             checkConnection()
-            mVisiable = true
         }
 
         if(AppDelegate.getAppDelegate().GET_TodaySleepData().count == 2){
-            sleepView.setProgress(AppDelegate.getAppDelegate().GET_TodaySleepData())
+            sleepView.setProgress(AppDelegate.getAppDelegate().GET_TodaySleepData(), resulSleep: { (dataSleep) -> Void in
+                let sleep:Sleep = dataSleep
+                let startTimer:NSDate = NSDate(timeIntervalSince1970: sleep.getStartTimer())
+                let endTimer:NSDate = NSDate(timeIntervalSince1970: sleep.getEndTimer())
+                self.contentTArray.insert(String(format: "%dh%dm", Int(dataSleep.getTotalSleep()/60.0),Int((dataSleep.getTotalSleep())%Double(60))), atIndex: 0)
+                self.contentTArray.insert(String(format: "%dh%dm", Int(dataSleep.getDeepSleep()/60.0),Int((dataSleep.getDeepSleep())%Double(60))), atIndex: 1)
+                self.contentTArray.insert(String(format: "%dh%dm", Int(dataSleep.getLightSleep()/60.0),Int((dataSleep.getLightSleep())%Double(60))), atIndex: 2)
+                self.contentTArray.insert(String(format: "%d:%d", startTimer.hour,startTimer.minute), atIndex: 3)
+                self.contentTArray.insert(String(format: "%d:%d", endTimer.hour,endTimer.minute), atIndex: 4)
+                self.contentTArray.insert(String(format: "%dh%dm", Int(dataSleep.getWeakSleep()/60.0),Int((dataSleep.getWeakSleep())%Double(60))), atIndex: 5)
+                self.sleepView.collectionView.reloadData()
+            })
         }
 
     }
     
     override func viewDidDisappear(animated: Bool) {
-        mVisiable = false
+
     }
+
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -122,7 +132,19 @@ class SleepTrackingController: PublicClassController, SyncControllerDelegate ,Bu
 
     func syncFinished(){
         if(AppDelegate.getAppDelegate().GET_TodaySleepData().count==2){
-            sleepView.setProgress(AppDelegate.getAppDelegate().GET_TodaySleepData())
+            //sleepView.setProgress(AppDelegate.getAppDelegate().GET_TodaySleepData())
+            sleepView.setProgress(AppDelegate.getAppDelegate().GET_TodaySleepData(), resulSleep: { (dataSleep) -> Void in
+                let sleep:Sleep = dataSleep
+                let startTimer:NSDate = NSDate(timeIntervalSince1970: sleep.getStartTimer())
+                let endTimer:NSDate = NSDate(timeIntervalSince1970: sleep.getEndTimer())
+                self.contentTArray.insert(String(format: "%dh%dm", Int(dataSleep.getTotalSleep()/60.0),Int((dataSleep.getTotalSleep())%Double(60))), atIndex: 0)
+                self.contentTArray.insert(String(format: "%dh%dm", Int(dataSleep.getDeepSleep()/60.0),Int((dataSleep.getDeepSleep())%Double(60))), atIndex: 1)
+                self.contentTArray.insert(String(format: "%dh%dm", Int(dataSleep.getLightSleep()/60.0),Int((dataSleep.getLightSleep())%Double(60))), atIndex: 2)
+                self.contentTArray.insert(String(format: "%d:%d", startTimer.hour,startTimer.minute), atIndex: 3)
+                self.contentTArray.insert(String(format: "%d:%d", endTimer.hour,endTimer.minute), atIndex: 4)
+                self.contentTArray.insert(String(format: "%dh%dm", Int(dataSleep.getWeakSleep()/60.0),Int((dataSleep.getWeakSleep())%Double(60))), atIndex: 5)
+                self.sleepView.collectionView.reloadData()
+            })
         }
     }
 
