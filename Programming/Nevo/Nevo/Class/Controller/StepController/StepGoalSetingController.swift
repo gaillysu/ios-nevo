@@ -35,22 +35,14 @@ class StepGoalSetingController: PublicClassController,ButtonManagerCallBack,Sync
         
         AppDelegate.getAppDelegate().startConnect(false, delegate: self)
 
-        stepGoalView.bulidStepGoalView(self,navigation: self.navigationItem)
-        stepGoalView.collectionView?.delegate = self
-        stepGoalView.collectionView?.dataSource = self
-
         ClockRefreshManager.sharedInstance.setRefreshDelegate(self)
-        
-        if let numberOfSteps = NSUserDefaults.standardUserDefaults().objectForKey(NUMBER_OF_STEPS_GOAL_KEY) as? Int {
-            setGoal(NumberOfStepsGoal(steps: numberOfSteps))
-        } else {
-            setGoal(NumberOfStepsGoal(intensity: GoalIntensity.LOW))
-        }
 
     }
 
     override func viewDidLayoutSubviews() {
-        
+        stepGoalView.bulidStepGoalView(self,navigation: self.navigationItem)
+        stepGoalView.collectionView?.delegate = self
+        stepGoalView.collectionView?.dataSource = self
     }
 
     override func viewDidAppear(animated: Bool) {
@@ -199,13 +191,4 @@ class StepGoalSetingController: PublicClassController,ButtonManagerCallBack,Sync
         AppDelegate.getAppDelegate().connect()
     }
 
-    func setGoal(goal:Goal) {
-        mCurrentGoal = goal
-
-        let userDefaults = NSUserDefaults.standardUserDefaults();
-
-        userDefaults.setObject(goal.getValue(),forKey:NUMBER_OF_STEPS_GOAL_KEY)
-        userDefaults.synchronize()
-        AppDelegate.getAppDelegate().setGoal(goal)
-    }
 }

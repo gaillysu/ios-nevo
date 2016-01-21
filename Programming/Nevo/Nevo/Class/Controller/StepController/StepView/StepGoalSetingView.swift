@@ -19,48 +19,43 @@ protocol StepGoalButtonActionCallBack {
 
 class StepGoalSetingView: UIView {
 
+    @IBOutlet weak var clockBackGroundView: UIView!
+    @IBOutlet weak var collectionView:UICollectionView!
+
+    private var mDelegate:ButtonManagerCallBack!
     //Put all UI operation HomeView inside
-    private let mClockTimerView = ClockView(frame:CGRectMake(0, 0, UIScreen.mainScreen().bounds.width-60, UIScreen.mainScreen().bounds.width-60), hourImage:  UIImage(named: "clockViewHour")!, minuteImage: UIImage(named: "clockViewMinute")!, dialImage: UIImage(named: "clockView600")!);//init "ClockView" ,Use the code relative layout
+    private var mClockTimerView:ClockView?;//init "ClockView" ,Use the code relative layout
     var progressView:CircleProgressView?
     var progresValue:CGFloat = 0.0
-    private var mDelegate:ButtonManagerCallBack!
-
-    var collectionView:UICollectionView?
 
     func bulidStepGoalView(delegate:ButtonManagerCallBack,navigation:UINavigationItem){
-        mDelegate = delegate
-
         //animationView = AnimationView(frame: self.frame, delegate: delegate)
-        mClockTimerView.currentTimer()
-        mClockTimerView.center = CGPointMake(UIScreen.mainScreen().bounds.size.width/2.0, UIScreen.mainScreen().bounds.size.height/2.0)//Using the center property determines the location of the ClockView
-        mClockTimerView.frame = CGRectMake(mClockTimerView.frame.origin.x, 20, mClockTimerView.frame.size.width, mClockTimerView.frame.size.height)
-        self.addSubview(mClockTimerView)
 
-        progressView = CircleProgressView()
-        progressView?.setProgressColor(AppTheme.NEVO_SOLAR_YELLOW())
-        progressView?.frame = CGRectMake(mClockTimerView.frame.origin.x-5, mClockTimerView.frame.origin.y-5, UIScreen.mainScreen().bounds.width-50, UIScreen.mainScreen().bounds.width-50)
-        progressView?.setProgress(0.0)
-        self.layer.addSublayer(progressView!)
+        if(mDelegate == nil) {
+            mDelegate = delegate
+            mClockTimerView = ClockView(frame:CGRectMake(0, 0, clockBackGroundView.bounds.width, clockBackGroundView.bounds.width), hourImage:  UIImage(named: "clockViewHour")!, minuteImage: UIImage(named: "clockViewMinute")!, dialImage: UIImage(named: "clockView600")!)
+            mClockTimerView?.currentTimer()
+            clockBackGroundView.addSubview(mClockTimerView!)
 
-        let height:CGFloat = UIScreen.mainScreen().bounds.size.height - (progressView!.frame.size.height + progressView!.frame.origin.y)
-        let layout:UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSizeMake((UIScreen.mainScreen().bounds.size.width)/3.0, height/2.0)
-        layout.minimumInteritemSpacing = 0
-        layout.minimumLineSpacing = 1
+            progressView = CircleProgressView()
+            progressView?.setProgressColor(AppTheme.NEVO_SOLAR_YELLOW())
+            progressView?.frame = CGRectMake(clockBackGroundView.frame.origin.x-5, clockBackGroundView.frame.origin.y-5, clockBackGroundView.bounds.width+10, clockBackGroundView.bounds.width+10)
+            progressView?.setProgress(0.0)
+            self.layer.addSublayer(progressView!)
 
-        if(AppTheme.GET_IS_iPhone4S()){
-            collectionView = UICollectionView(frame: CGRectMake(0, progressView!.frame.origin.y+progressView!.frame.size.height, UIScreen.mainScreen().bounds.size.width, height), collectionViewLayout: layout)
-        }else {
-            collectionView = UICollectionView(frame: CGRectMake(0, progressView!.frame.origin.y+progressView!.frame.size.height+10, UIScreen.mainScreen().bounds.size.width, height), collectionViewLayout: layout)
+            let height:CGFloat = UIScreen.mainScreen().bounds.size.height - (progressView!.frame.size.height + progressView!.frame.origin.y)
+            let layout:UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+            layout.itemSize = CGSizeMake((UIScreen.mainScreen().bounds.size.width)/3.0, height/2.0)
+            layout.minimumInteritemSpacing = 0
+            layout.minimumLineSpacing = 1
+            collectionView.collectionViewLayout = layout
+            collectionView?.registerClass(UICollectionViewCell.classForCoder(), forCellWithReuseIdentifier: "CollectionViewCell")
+            collectionView?.backgroundColor = UIColor.whiteColor()
         }
-
-        collectionView?.registerClass(UICollectionViewCell.classForCoder(), forCellWithReuseIdentifier: "CollectionViewCell")
-        collectionView?.backgroundColor = UIColor.whiteColor()
-        self.addSubview(collectionView!)
     }
 
     func getClockTimerView() -> ClockView {
-        return mClockTimerView
+        return mClockTimerView!
     }
 
     /*
