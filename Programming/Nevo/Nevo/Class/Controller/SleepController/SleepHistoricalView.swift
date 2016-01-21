@@ -112,8 +112,24 @@ class SleepHistoricalView: UIView, ChartViewDelegate{
             var wakeTimer:Int  = 0
             var lightTimer:Int  = 0
             var deepTimer:Int  = 0
+            var startTimer:NSTimeInterval = 0
+            var endTimer:NSTimeInterval = 0
 
             //因为涉及到跨天按照正常习惯一天的睡眠时间包括从睡觉到结束睡觉的这段时间都是前一天的睡眠时间(包括凌晨0点后到中午12点之间的数据)
+            //计算睡眠结束时间
+            for (var s:Int  = 0; s < sleepTimerArray.count-6; s++){
+                if((sleepTimerArray[s] as! NSNumber).integerValue == 0){
+                    let date:NSTimeInterval = seleModel.date
+                    if(s==0) {
+                        endTimer = NSTimeInterval(Double(s*60*60)+Double(((sleepTimerArray[s] as! NSNumber).integerValue)*60)) + date
+                    }else{
+                        let timer:Double = Double(((sleepTimerArray[s-1] as! NSNumber).integerValue)*60)
+                        endTimer = NSTimeInterval(Double((s-1)*60*60)+timer) + date
+                    }
+                    break
+                }
+            }
+
             for (var s:Int  = 0; s < sleepTimerArray.count-6; s++){
                 //计算一天中后12小时的数据,
                 sleepTimer = (sleepTimerArray[s] as! NSNumber).integerValue + sleepTimer
@@ -129,6 +145,15 @@ class SleepHistoricalView: UIView, ChartViewDelegate{
                 let mWakeTimeTimerArray:NSArray = AppTheme.jsonToArray(nextSeleModel.hourlyWakeTime as String)
                 let mLightTimeTimerArray:NSArray = AppTheme.jsonToArray(nextSeleModel.hourlyLightTime as String)
                 let mDeepTimeTimerArray:NSArray = AppTheme.jsonToArray(nextSeleModel.hourlyDeepTime as String)
+
+                //计算睡眠开始时间
+                for (var s:Int  = 18; s < mSleepTimerArray.count; s++){
+                    if((mSleepTimerArray[s] as! NSNumber).integerValue != 0){
+                        let date:NSTimeInterval = nextSeleModel.date + NSTimeInterval(Double(s*60*60)+Double((60-(mSleepTimerArray[s] as! NSNumber).integerValue)*60))
+                        startTimer = date
+                        break
+                    }
+                }
                 //计算在晚上六点以后的睡眠数据
                 for (var s:Int  = 18; s < mSleepTimerArray.count; s++){
                     sleepTimer = (mSleepTimerArray[s] as! NSNumber).integerValue + sleepTimer
@@ -153,7 +178,7 @@ class SleepHistoricalView: UIView, ChartViewDelegate{
             xVal.append("\(dateString.substringWithRange(NSMakeRange(6, 2)))/\(dateString.substringWithRange(NSMakeRange(4, 2)))")
 
             yVal.append(BarChartDataEntry(values: [(val2+val3),val1], xIndex:sleepArray.count))
-            sleepArray.addObject(Sleep(weakSleep: val3,lightSleep: val2,deepSleep: val1))
+            sleepArray.addObject(Sleep(weakSleep: val3,lightSleep: val2,deepSleep: val1,startTimer:startTimer , endTimer:endTimer))
         }
 
         //According to at least seven days of data
@@ -161,7 +186,7 @@ class SleepHistoricalView: UIView, ChartViewDelegate{
             for (var s:Int  = yVal.count; s < 7; s++){
                 xVal.append(" ")
                 yVal.append(BarChartDataEntry(values: [0,0], xIndex:sleepArray.count))
-                sleepArray.addObject(Sleep(weakSleep: 0,lightSleep: 0,deepSleep: 0))
+                sleepArray.addObject(Sleep(weakSleep: 0,lightSleep: 0,deepSleep: 0,startTimer:0 ,endTimer:0))
             }
         }
 

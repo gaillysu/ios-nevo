@@ -59,12 +59,15 @@ class SleepHistoricalViewController: PublicClassController,ChartViewDelegate,Sel
     func didSleepSelectedhighlightValue(xIndex:Int,dataSetIndex: Int, dataSleep:Sleep) {
         //contentTArray
         contentTArray.removeAll()
-        contentTArray.insert(String(format: "%.2f", dataSleep.getTotalSleep()), atIndex: 0)
-        contentTArray.insert(String(format: "%.2f", dataSleep.getDeepSleep()), atIndex: 1)
-        contentTArray.insert(String(format: "%.2f", dataSleep.getLightSleep()), atIndex: 2)
-        contentTArray.insert("\(0)", atIndex: 3)
-        contentTArray.insert("\(0)", atIndex: 4)
-        contentTArray.insert("\(0)", atIndex: 5)
+        let startTimer:NSDate = NSDate(timeIntervalSince1970: dataSleep.getStartTimer())
+        let endTimer:NSDate = NSDate(timeIntervalSince1970: dataSleep.getEndTimer())
+
+        contentTArray.insert(String(format: "%dh%dm", Int(dataSleep.getTotalSleep()),Int((dataSleep.getTotalSleep())*Double(60)%Double(60))), atIndex: 0)
+        contentTArray.insert(String(format: "%dh%dm", Int(dataSleep.getDeepSleep()),Int((dataSleep.getDeepSleep())*Double(60)%Double(60))), atIndex: 1)
+        contentTArray.insert(String(format: "%dh%dm", Int(dataSleep.getLightSleep()),Int((dataSleep.getLightSleep())*Double(60)%Double(60))), atIndex: 2)
+        contentTArray.insert(String(format: "%d:%d", startTimer.hour,startTimer.minute), atIndex: 3)
+        contentTArray.insert(String(format: "%d:%d", endTimer.hour,endTimer.minute), atIndex: 4)
+        contentTArray.insert(String(format: "%dh%dm", Int(dataSleep.getWeakSleep()),Int((dataSleep.getWeakSleep())*Double(60)%Double(60))), atIndex: 5)
         queryView.detailCollectionView.reloadData()
     }
 
