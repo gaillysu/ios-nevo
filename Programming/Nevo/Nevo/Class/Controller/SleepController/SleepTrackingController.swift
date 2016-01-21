@@ -35,17 +35,12 @@ class SleepTrackingController: PublicClassController, SyncControllerDelegate ,Bu
         contentTitleArray = [NSLocalizedString("sleep_duration", comment: ""), NSLocalizedString("deep_sleep", comment: ""), NSLocalizedString("light_sleep", comment: ""), NSLocalizedString("sleep_timer", comment: ""), NSLocalizedString("wake_timer", comment: ""), NSLocalizedString("wake_duration", comment: "")]
         ClockRefreshManager.sharedInstance.setRefreshDelegate(self)
 
+    }
+
+    override func viewDidLayoutSubviews() {
         sleepView.bulidHomeView(self)
         sleepView.collectionView?.delegate = self
         sleepView.collectionView?.dataSource = self
-
-//        if(NSUserDefaults.standardUserDefaults().boolForKey("firstLaunch")){
-//            let page7:Page7Controller = Page7Controller()
-//            self.presentViewController(page7, animated: true, completion: { () -> Void in
-//                
-//            })
-//        }
-
     }
 
     override func viewDidAppear(animated: Bool) {

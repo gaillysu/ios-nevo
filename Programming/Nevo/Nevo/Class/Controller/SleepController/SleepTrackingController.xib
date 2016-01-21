@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SleepTrackingController" customModule="Nevo" customModuleProvider="target">
@@ -15,7 +16,38 @@
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT" customClass="SleepTrackingView" customModule="Nevo" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oLR-LA-JCG">
+                    <rect key="frame" x="30" y="15" width="260" height="260"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="oLR-LA-JCG" secondAttribute="height" multiplier="1:1" id="sDK-Ba-f2i"/>
+                    </constraints>
+                </view>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="6f0-8E-KTN">
+                    <rect key="frame" x="0.0" y="285" width="320" height="283"/>
+                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Mi5-ub-PlO">
+                        <size key="itemSize" width="50" height="50"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                </collectionView>
+            </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="6f0-8E-KTN" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="2R3-ir-sR9"/>
+                <constraint firstItem="oLR-LA-JCG" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="30" id="47G-gN-WTZ"/>
+                <constraint firstItem="oLR-LA-JCG" firstAttribute="width" secondItem="oLR-LA-JCG" secondAttribute="height" multiplier="1:1" id="6MW-v1-K8q"/>
+                <constraint firstAttribute="trailing" secondItem="oLR-LA-JCG" secondAttribute="trailing" constant="30" id="6m5-ni-kKv"/>
+                <constraint firstAttribute="trailing" secondItem="6f0-8E-KTN" secondAttribute="trailing" id="h7U-9d-AS8"/>
+                <constraint firstItem="oLR-LA-JCG" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="15" id="nze-Yd-qfa"/>
+                <constraint firstItem="6f0-8E-KTN" firstAttribute="top" secondItem="oLR-LA-JCG" secondAttribute="bottom" constant="10" id="p1y-tG-33y"/>
+                <constraint firstAttribute="bottom" secondItem="6f0-8E-KTN" secondAttribute="bottom" id="tZv-2z-792"/>
+            </constraints>
+            <connections>
+                <outlet property="clockBackGroundView" destination="oLR-LA-JCG" id="0Hs-zB-Hj8"/>
+                <outlet property="collectionView" destination="6f0-8E-KTN" id="kp5-ls-1Tf"/>
+            </connections>
             <point key="canvasLocation" x="548" y="346"/>
         </view>
     </objects>

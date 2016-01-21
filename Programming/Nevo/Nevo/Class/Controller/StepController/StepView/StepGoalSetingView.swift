@@ -43,9 +43,8 @@ class StepGoalSetingView: UIView {
             progressView?.setProgress(0.0)
             self.layer.addSublayer(progressView!)
 
-            let height:CGFloat = UIScreen.mainScreen().bounds.size.height - (progressView!.frame.size.height + progressView!.frame.origin.y)
             let layout:UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-            layout.itemSize = CGSizeMake((UIScreen.mainScreen().bounds.size.width)/3.0, height/2.0)
+            layout.itemSize = CGSizeMake((UIScreen.mainScreen().bounds.size.width)/3.0, collectionView.frame.size.height/2.0)
             layout.minimumInteritemSpacing = 0
             layout.minimumLineSpacing = 1
             collectionView.collectionViewLayout = layout
