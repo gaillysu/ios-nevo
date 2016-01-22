@@ -217,6 +217,7 @@ class CircleProgressView: CAShapeLayer {
         //Calculating the percentage of the current value
         return CGFloat(calculatePercent(progress, toProgress: progressLimit))
     }
+    private let progressWidth:CGFloat  = 2.0
     private var initialProgress:CGFloat!
     private var progressLayer:CAShapeLayer! //The progress bar object
     private var progressColor:UIColor = UIColor.greenColor() //The background color of the progress bar
@@ -232,7 +233,7 @@ class CircleProgressView: CAShapeLayer {
         progressLayer.path = drawPathWithArcCenter()
         progressLayer.fillColor = UIColor.clearColor().CGColor
         progressLayer.strokeColor = progressColor.CGColor
-        progressLayer.lineWidth = 5
+        progressLayer.lineWidth = progressWidth
 
         self.addSublayer(progressLayer)
     }
@@ -328,6 +329,7 @@ class CircleSleepProgressView: CAShapeLayer {
         //Calculating the percentage of the current value
         return CGFloat(calculatePercent(progress, toProgress: progressLimit))
     }
+    private let progressWidth:CGFloat  = 2.0
     private var initialProgress:CGFloat!
     private var progressColor:UIColor = UIColor.greenColor() //The background color of the progress bar
 
@@ -429,7 +431,7 @@ class CircleSleepProgressView: CAShapeLayer {
             pLayer.path = drawPathWithArcCenter(startDate,endtimer:endDate)
             pLayer.fillColor = UIColor.clearColor().CGColor
             pLayer.strokeColor = (sleepChartArray[1] as! [CGColor])[l]//sleepChartColorArray[l]
-            pLayer.lineWidth = 5
+            pLayer.lineWidth = progressWidth
             pLayer.strokeEnd = percent
             self.addSublayer(pLayer)
             startSleepAnimation(pLayer);

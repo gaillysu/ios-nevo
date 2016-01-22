@@ -39,7 +39,7 @@ class StepGoalSetingView: UIView {
 
             progressView = CircleProgressView()
             progressView?.setProgressColor(AppTheme.NEVO_SOLAR_YELLOW())
-            progressView?.frame = CGRectMake(clockBackGroundView.frame.origin.x-5, clockBackGroundView.frame.origin.y-5, clockBackGroundView.bounds.width+10, clockBackGroundView.bounds.width+10)
+            progressView?.frame = CGRectMake(clockBackGroundView.frame.origin.x-3, clockBackGroundView.frame.origin.y-3, clockBackGroundView.bounds.width+6, clockBackGroundView.bounds.width+6)
             progressView?.setProgress(0.0)
             self.layer.addSublayer(progressView!)
 

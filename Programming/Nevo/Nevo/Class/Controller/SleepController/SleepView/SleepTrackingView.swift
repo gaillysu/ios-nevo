@@ -29,7 +29,7 @@ class SleepTrackingView: UIView {
             clockBackGroundView.addSubview(mClockTimerView!)
 
             progressView = CircleSleepProgressView()
-            progressView?.frame = CGRectMake(clockBackGroundView.frame.origin.x-5, clockBackGroundView.frame.origin.y-5, clockBackGroundView.bounds.width+10, clockBackGroundView.bounds.width+10)
+            progressView?.frame = CGRectMake(clockBackGroundView.frame.origin.x-3, clockBackGroundView.frame.origin.y-3, clockBackGroundView.bounds.width+6, clockBackGroundView.bounds.width+6)
             self.layer.addSublayer(progressView!)
 
             let layout:UICollectionViewFlowLayout = UICollectionViewFlowLayout()
