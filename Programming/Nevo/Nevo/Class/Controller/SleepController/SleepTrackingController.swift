@@ -66,6 +66,9 @@ class SleepTrackingController: PublicClassController, SyncControllerDelegate ,Bu
                 self.contentTArray.insert(String(format: "%dh%dm", Int(dataSleep.getLightSleep()/60.0),Int((dataSleep.getLightSleep())%Double(60))), atIndex: 4)
                 self.contentTArray.insert(String(format: "%dh%dm", Int(dataSleep.getWeakSleep()/60.0),Int((dataSleep.getWeakSleep())%Double(60))), atIndex: 5)
                 self.sleepView.collectionView.reloadData()
+                if(dataSleep.getTotalSleep()>0) {
+                    self.sleepView.replaceLabel.hidden = true
+                }
             })
         }
 
@@ -146,6 +149,9 @@ class SleepTrackingController: PublicClassController, SyncControllerDelegate ,Bu
                 self.contentTArray.insert(String(format: "%dh%dm", Int(dataSleep.getLightSleep()/60.0),Int((dataSleep.getLightSleep())%Double(60))), atIndex: 4)
                 self.contentTArray.insert(String(format: "%dh%dm", Int(dataSleep.getWeakSleep()/60.0),Int((dataSleep.getWeakSleep())%Double(60))), atIndex: 5)
                 self.sleepView.collectionView.reloadData()
+                if(dataSleep.getTotalSleep()>0) {
+                    self.sleepView.replaceLabel.hidden = true
+                }
             })
         }
     }

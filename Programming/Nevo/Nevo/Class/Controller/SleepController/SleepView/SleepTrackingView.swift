@@ -12,6 +12,7 @@ class SleepTrackingView: UIView {
 
     @IBOutlet weak var clockBackGroundView: UIView!
     @IBOutlet weak var collectionView:UICollectionView!
+    @IBOutlet weak var replaceLabel: UILabel!
 
     private var mDelegate:ButtonManagerCallBack?
     //Put all UI operation HomeView inside
@@ -24,6 +25,9 @@ class SleepTrackingView: UIView {
 
         if(mDelegate == nil) {
             mDelegate = delegate
+            //You didn't sleep with your nevo.
+            self.replaceLabel.text = NSLocalizedString("did_sleep_with_your_nevo", comment: "")
+            
             mClockTimerView = ClockView(frame:CGRectMake(0, 0, clockBackGroundView.bounds.width, clockBackGroundView.bounds.width), hourImage:  AppTheme.GET_RESOURCES_IMAGE("white_hour"), minuteImage: AppTheme.GET_RESOURCES_IMAGE("white_minute"), dialImage: AppTheme.GET_RESOURCES_IMAGE("white_clock"))
             mClockTimerView?.currentTimer()
             clockBackGroundView.addSubview(mClockTimerView!)
