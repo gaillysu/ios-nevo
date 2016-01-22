@@ -17,6 +17,7 @@
                 <subviews>
                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="z1g-MY-YxB">
                         <rect key="frame" x="260" y="6" width="51" height="31"/>
+                        <color key="onTintColor" red="0.96078431372549022" green="0.64313725490196072" blue="0.10980392156862745" alpha="1" colorSpace="calibratedRGB"/>
                         <connections>
                             <action selector="buttonManager:" destination="KGk-i7-Jjw" eventType="valueChanged" id="v5Z-xY-V1o"/>
                         </connections>

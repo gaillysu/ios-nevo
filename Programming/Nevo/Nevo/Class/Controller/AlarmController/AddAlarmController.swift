@@ -86,9 +86,10 @@ class AddAlarmController: UITableViewController,ButtonManagerCallBack {
                     NSLog("name______%@", labelText.text!)
                 }
             }
+            mDelegate?.onDidAddAlarmAction(timer, repeatStatus: repeatStatus, name: name)
+            self.navigationController?.popViewControllerAnimated(true)
         }
-        mDelegate?.onDidAddAlarmAction(timer, repeatStatus: repeatStatus, name: name)
-        self.navigationController?.popViewControllerAnimated(true)
+
     }
 
     // MARK: - Table view data source
