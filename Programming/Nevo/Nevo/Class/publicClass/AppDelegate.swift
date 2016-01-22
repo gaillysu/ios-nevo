@@ -59,6 +59,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
         
         mConnectionController = ConnectionControllerImpl()
         mConnectionController?.setDelegate(self)
+        
 
         UITabBar.appearance().backgroundImage = UIImage()
         //UITabBar.appearance().shadowImage = UIImage()
@@ -203,11 +204,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
 
         if( NSDate().timeIntervalSince1970-lastSync > SYNC_INTERVAL) {
             //We haven't synched for a while, let's sync now !
-            let banner = Banner(title: "Syncing data", subtitle: nil, image: nil, backgroundColor: AppTheme.NEVO_SOLAR_YELLOW())
-            banner.dismissesOnTap = true
-            banner.show(duration: 3.0)
             AppTheme.DLog("*** Sync started ! ***")
             self.getDailyTrackerInfo()
+            if(isConnected()) {
+                let banner = Banner(title: "Syncing data", subtitle: nil, image: nil, backgroundColor: AppTheme.NEVO_SOLAR_YELLOW())
+                banner.dismissesOnTap = true
+                banner.show(duration: 3.0)
+            }
         }
 
     }

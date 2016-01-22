@@ -13,6 +13,7 @@ let NUMBER_OF_STEPS_GOAL_KEY = "NUMBER_OF_STEPS_GOAL_KEY"
 class StepGoalSetingController: PublicClassController,ButtonManagerCallBack,SyncControllerDelegate,ClockRefreshDelegate,UICollectionViewDelegate,UICollectionViewDataSource {
     
     @IBOutlet var stepGoalView: StepGoalSetingView!
+    let StepsGoalKey:String = "ADYSTEPSGOALKEY"
     
     private var mCurrentGoal:Goal = NumberOfStepsGoal()
     private var mVisiable:Bool = true
@@ -43,6 +44,15 @@ class StepGoalSetingController: PublicClassController,ButtonManagerCallBack,Sync
         stepGoalView.bulidStepGoalView(self,navigation: self.navigationItem)
         stepGoalView.collectionView?.delegate = self
         stepGoalView.collectionView?.dataSource = self
+        if((AppTheme.LoadKeyedArchiverName(StepsGoalKey)).count>0) {
+            contentTArray = (AppTheme.LoadKeyedArchiverName(StepsGoalKey) as! NSArray)[0] as! [String]
+            let dailyStepGoal:Int = NSString(string: contentTArray[0]).integerValue
+            let dailySteps:Int = NSString(string: contentTArray[2]).integerValue
+            let percent:Float = NSString(string: contentTArray[1].stringByReplacingOccurrencesOfString("%", withString: "")).floatValue/100.0
+            stepGoalView.setProgress(percent, dailySteps: dailySteps, dailyStepGoal: dailyStepGoal)
+            stepGoalView.collectionView.reloadData()
+        }
+
     }
 
     override func viewDidAppear(animated: Bool) {
@@ -126,24 +136,17 @@ class StepGoalSetingController: PublicClassController,ButtonManagerCallBack,Sync
             let thispacket = packet.copy() as DailyStepsNevoPacket
             let dailySteps:Int = thispacket.getDailySteps()
             let dailyStepGoal:Int = thispacket.getDailyStepsGoal()
-
-            let userDefaults = NSUserDefaults.standardUserDefaults();
-            userDefaults.setObject(dailyStepGoal,forKey:NUMBER_OF_STEPS_GOAL_KEY)
-            userDefaults.synchronize()
             let percent :Float = Float(dailySteps)/Float(dailyStepGoal)
 
             AppTheme.DLog("get Daily Steps is: \(dailySteps), getDaily Goal is: \(dailyStepGoal),percent is: \(percent)")
-
-            contentTArray.removeAtIndex(0)
+            contentTArray.removeAll()
             contentTArray.insert("\(dailyStepGoal)", atIndex: 0)
-            contentTArray.removeAtIndex(1)
             contentTArray.insert(String(format: "%.2f%c", percent*100,37), atIndex: 1)
-            contentTArray.removeAtIndex(2)
             contentTArray.insert("\(dailySteps)", atIndex: 2)
 
             stepGoalView.collectionView?.reloadData()
-
             stepGoalView.setProgress(percent, dailySteps: dailySteps, dailyStepGoal: dailyStepGoal)
+            AppTheme.KeyedArchiverName(StepsGoalKey, andObject: contentTArray)
         }
 
         if packet.getHeader() == LedLightOnOffNevoRequest.HEADER(){

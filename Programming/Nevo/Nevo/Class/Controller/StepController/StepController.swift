@@ -33,6 +33,12 @@ class StepController: PublicClassController,toolbarSegmentedDelegate,UIActionShe
         rightButton = UIBarButtonItem(title: "Set Goal", style: UIBarButtonItemStyle.Done, target: self, action: Selector("rightBarButtonAction:"))
         rightButton?.tintColor = AppTheme.NEVO_SOLAR_YELLOW()
         self.navigationItem.rightBarButtonItem = rightButton
+
+        if(!AppDelegate.getAppDelegate().isConnected() && AppDelegate.getAppDelegate().getMconnectionController().isBluetoothEnabled()){
+            let banner = Banner(title: NSLocalizedString("nevo_is_not_connected", comment: ""), subtitle: nil, image: nil, backgroundColor:UIColor.redColor())
+            banner.dismissesOnTap = true
+            banner.show(duration: 3.0)
+        }
     }
 
     override func viewDidAppear(animated: Bool) {

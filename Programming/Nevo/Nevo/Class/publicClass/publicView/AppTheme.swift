@@ -164,9 +164,13 @@ class AppTheme {
     }
 
     /**
-    *	@brief	Load the archived data
-    *
-    */
+     解档的数据是包含时间戳的数据数组,要获得原始数据需要自行转换,归档的数据类型都是以弱类型归档解档可自行转换
+     index 1 = time stamp  index 0 = data
+
+     :param: name Archiver Name
+
+     :returns: Archiver data
+     */
     class func LoadKeyedArchiverName(name:NSString) ->AnyObject{
         let pathArray = NSSearchPathForDirectoriesInDomains(.DocumentDirectory,.UserDomainMask,true)
         let Path:NSString = (pathArray as NSArray).objectAtIndex(0) as! NSString
@@ -175,9 +179,8 @@ class AppTheme {
 
         let flierManager:Bool = NSFileManager.defaultManager().fileExistsAtPath(filename as String)
         if(flierManager){
-            var objectArr:AnyObject?
-            objectArr = NSKeyedUnarchiver.unarchiveObjectWithFile(filename as String)!
-            return objectArr!
+            let objectArr = NSKeyedUnarchiver.unarchiveObjectWithFile(filename as String)!
+            return objectArr
         }
         return []
     }

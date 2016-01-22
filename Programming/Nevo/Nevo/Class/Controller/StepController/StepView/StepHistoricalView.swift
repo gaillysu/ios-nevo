@@ -21,6 +21,7 @@ class StepHistoricalView: UIView,ChartViewDelegate {
     private let sleepArray:NSMutableArray = NSMutableArray();
     private let detailArray:NSMutableArray = NSMutableArray(capacity:1);
     var selectedDelegate:SelectedChartViewDelegate?
+    let SELECTED_DATA:String = "SELECTED_DATA"
 
     func bulidStepHistoricalView(delegate:SelectedChartViewDelegate,modelArray:NSArray,navigation:UINavigationItem){
         queryModel.removeAllObjects()
@@ -136,6 +137,8 @@ class StepHistoricalView: UIView,ChartViewDelegate {
         NSLog("chartValueSelected:  %d",entry.xIndex)
         let stepsModel:UserSteps = queryModel.objectAtIndex(entry.xIndex) as! UserSteps;
         selectedDelegate?.didSelectedhighlightValue!(entry.xIndex,dataSetIndex: dataSetIndex, dataSteps:stepsModel)
+        let array:NSArray = NSArray(array: [entry.xIndex,dataSetIndex,stepsModel])
+        AppTheme.KeyedArchiverName(SELECTED_DATA, andObject: array)
     }
     
     private func calculateMinutes(time:Double) -> (hours:Int,minutes:Int){

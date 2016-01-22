@@ -444,7 +444,10 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
     See NevoBT protocol
     */
     func isConnected() -> Bool {
-        return ( mPeripheral != nil && mPeripheral!.state == CBPeripheralState.Connected && isBluetoothEnabled() )
+        if(mPeripheral != nil && mPeripheral!.state == CBPeripheralState.Connected && isBluetoothEnabled()){
+            return true
+        }
+        return false
     }
     
     /**
