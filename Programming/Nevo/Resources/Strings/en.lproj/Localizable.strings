@@ -121,8 +121,8 @@
 "sleep_duration"="sleep duration";
 "deep_sleep"="deep sleep";
 "light_sleep"="light sleep";
-"sleep_timer"="sleep timer";
-"wake_timer"="wake timer";
+"sleep_timer"="sleep time";
+"wake_timer"="wake time";
 "wake_duration"="wake duration";
 "CALL"="Call";
 "SMS"="(i)Message";
