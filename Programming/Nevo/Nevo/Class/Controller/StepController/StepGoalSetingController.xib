@@ -18,7 +18,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="Y0u-3W-BqB">
-                    <rect key="frame" x="0.0" y="285" width="320" height="283"/>
+                    <rect key="frame" x="0.0" y="295" width="320" height="273"/>
                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="nHc-cW-gvy">
                         <size key="itemSize" width="50" height="50"/>
                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -27,7 +27,7 @@
                     </collectionViewFlowLayout>
                 </collectionView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6hx-b1-hnx">
-                    <rect key="frame" x="30" y="15" width="260" height="260"/>
+                    <rect key="frame" x="30" y="25" width="260" height="260"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="6hx-b1-hnx" secondAttribute="height" multiplier="1:1" id="Nm7-PZ-KNs"/>
                     </constraints>
@@ -37,7 +37,7 @@
             <constraints>
                 <constraint firstItem="6hx-b1-hnx" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="30" id="AzH-kW-B2x"/>
                 <constraint firstAttribute="trailing" secondItem="6hx-b1-hnx" secondAttribute="trailing" constant="30" id="Fy2-LP-AXI"/>
-                <constraint firstItem="6hx-b1-hnx" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="15" id="Jx3-3Y-gOQ"/>
+                <constraint firstItem="6hx-b1-hnx" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="25" id="Jx3-3Y-gOQ"/>
                 <constraint firstItem="Y0u-3W-BqB" firstAttribute="top" secondItem="6hx-b1-hnx" secondAttribute="bottom" constant="10" id="Lba-QY-GZa"/>
                 <constraint firstAttribute="trailing" secondItem="Y0u-3W-BqB" secondAttribute="trailing" id="j9g-6G-oby"/>
                 <constraint firstAttribute="bottom" secondItem="Y0u-3W-BqB" secondAttribute="bottom" id="jso-Kf-0U9"/>
