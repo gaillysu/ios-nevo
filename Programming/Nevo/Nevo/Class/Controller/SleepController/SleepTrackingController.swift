@@ -16,6 +16,7 @@ it should handle very little, only the initialisation of the different Views and
 
 class SleepTrackingController: PublicClassController, SyncControllerDelegate ,ButtonManagerCallBack,ClockRefreshDelegate,UICollectionViewDelegate,UICollectionViewDataSource{
     @IBOutlet weak var sleepView: SleepTrackingView!
+    let SleepValueKey:String = "SLEEPVALUEKEY"
     private var contentTitleArray:[String] = []
     private var contentTArray:[String] = ["--","--","--","--","--","--"]
 
@@ -36,6 +37,28 @@ class SleepTrackingController: PublicClassController, SyncControllerDelegate ,Bu
         contentTitleArray = [NSLocalizedString("sleep_duration", comment: ""), NSLocalizedString("sleep_timer", comment: ""), NSLocalizedString("wake_timer", comment: ""), NSLocalizedString("deep_sleep", comment: ""), NSLocalizedString("light_sleep", comment: ""), NSLocalizedString("wake_duration", comment: "")]
         ClockRefreshManager.sharedInstance.setRefreshDelegate(self)
 
+        if((AppTheme.LoadKeyedArchiverName(SleepValueKey)).count>0) {
+            let array:NSArray = (AppTheme.LoadKeyedArchiverName(SleepValueKey) as! NSArray)[0] as! NSArray
+            sleepView.setProgress(array, resulSleep: { (dataSleep) -> Void in
+                let sleep:Sleep = dataSleep
+                let startTimer:NSDate = NSDate(timeIntervalSince1970: sleep.getStartTimer())
+                let endTimer:NSDate = NSDate(timeIntervalSince1970: sleep.getEndTimer())
+                let startString:String = startTimer.stringFromFormat("hh:mm")
+                let endString:String = endTimer.stringFromFormat("hh:mm")
+                self.contentTArray.removeAll()
+                self.contentTArray.insert(String(format: "%dh%dm", Int(dataSleep.getTotalSleep()/60.0),Int((dataSleep.getTotalSleep())%Double(60))), atIndex: 0)
+                self.contentTArray.insert("\(startString)", atIndex: 1)
+                self.contentTArray.insert("\(endString)", atIndex: 2)
+                self.contentTArray.insert(String(format: "%dh%dm", Int(dataSleep.getDeepSleep()/60.0),Int((dataSleep.getDeepSleep())%Double(60))), atIndex: 3)
+                self.contentTArray.insert(String(format: "%dh%dm", Int(dataSleep.getLightSleep()/60.0),Int((dataSleep.getLightSleep())%Double(60))), atIndex: 4)
+                self.contentTArray.insert(String(format: "%dh%dm", Int(dataSleep.getWeakSleep()/60.0),Int((dataSleep.getWeakSleep())%Double(60))), atIndex: 5)
+                self.sleepView.collectionView.reloadData()
+                if(dataSleep.getTotalSleep()>0) {
+                    self.sleepView.replaceLabel.hidden = true
+                }
+            })
+        }
+
     }
 
     override func viewDidLayoutSubviews() {
@@ -55,6 +78,7 @@ class SleepTrackingController: PublicClassController, SyncControllerDelegate ,Bu
         }
 
         if(AppDelegate.getAppDelegate().GET_TodaySleepData().count == 2){
+            AppTheme.KeyedArchiverName(SleepValueKey, andObject: AppDelegate.getAppDelegate().GET_TodaySleepData())
             sleepView.setProgress(AppDelegate.getAppDelegate().GET_TodaySleepData(), resulSleep: { (dataSleep) -> Void in
                 let sleep:Sleep = dataSleep
                 let startTimer:NSDate = NSDate(timeIntervalSince1970: sleep.getStartTimer())
@@ -140,7 +164,7 @@ class SleepTrackingController: PublicClassController, SyncControllerDelegate ,Bu
 
     func syncFinished(){
         if(AppDelegate.getAppDelegate().GET_TodaySleepData().count==2){
-            //sleepView.setProgress(AppDelegate.getAppDelegate().GET_TodaySleepData())
+            AppTheme.KeyedArchiverName(SleepValueKey, andObject: AppDelegate.getAppDelegate().GET_TodaySleepData())
             sleepView.setProgress(AppDelegate.getAppDelegate().GET_TodaySleepData(), resulSleep: { (dataSleep) -> Void in
                 let sleep:Sleep = dataSleep
                 let startTimer:NSDate = NSDate(timeIntervalSince1970: sleep.getStartTimer())
