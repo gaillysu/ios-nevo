@@ -16,7 +16,7 @@ class StepHistoricalViewController: UIViewController,UICollectionViewDelegateFlo
     private var contentTitleArray:[String] = []
     private var contentTArray:[String] = [NSLocalizedString("--", comment: ""),NSLocalizedString("--", comment: ""),NSLocalizedString("--", comment: "")]
     
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
+    init() {
         super.init(nibName: "StepHistoricalViewController", bundle: NSBundle.mainBundle())
     }
 
@@ -27,7 +27,7 @@ class StepHistoricalViewController: UIViewController,UICollectionViewDelegateFlo
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        if(Double(UIDevice.currentDevice().systemVersion)>7.0){
+        if((UIDevice.currentDevice().systemVersion as NSString).floatValue>7.0){
             self.edgesForExtendedLayout = UIRectEdge.None;
             self.extendedLayoutIncludesOpaqueBars = false;
             self.modalPresentationCapturesStatusBarAppearance = false;

@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="QueryHistoricalController" customModule="Nevo" customModuleProvider="target">
@@ -17,15 +18,15 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4sA-Zz-9hO" customClass="BarChartView" customModule="Nevo" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="418"/>
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="285"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="4sA-Zz-9hO" secondAttribute="height" multiplier="64:57" id="SVs-sN-8mV"/>
+                    </constraints>
                 </view>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="CWK-RV-oKL">
-                    <rect key="frame" x="0.0" y="418" width="320" height="150"/>
+                    <rect key="frame" x="0.0" y="295" width="320" height="273"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="150" id="pV2-xd-HPf"/>
-                    </constraints>
                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="7pd-OM-Y5C">
                         <size key="itemSize" width="105" height="50"/>
                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -38,10 +39,7 @@
                     </connections>
                 </collectionView>
                 <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bHz-ug-X27">
-                    <rect key="frame" x="0.0" y="418" width="320" height="150"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="150" id="uIx-vc-BgK"/>
-                    </constraints>
+                    <rect key="frame" x="0.0" y="295" width="320" height="273"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
@@ -49,16 +47,17 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="CWK-RV-oKL" secondAttribute="trailing" id="HIg-V4-RdA"/>
-                <constraint firstItem="bHz-ug-X27" firstAttribute="top" secondItem="4sA-Zz-9hO" secondAttribute="bottom" id="LzH-j2-nVz"/>
-                <constraint firstAttribute="trailing" secondItem="4sA-Zz-9hO" secondAttribute="trailing" id="N4S-o7-1Bk"/>
-                <constraint firstItem="bHz-ug-X27" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="NdU-t4-AuG"/>
-                <constraint firstItem="CWK-RV-oKL" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="gQn-V7-snO"/>
-                <constraint firstItem="4sA-Zz-9hO" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="hgi-m5-Cui"/>
-                <constraint firstItem="4sA-Zz-9hO" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="lPH-oe-ZeV"/>
-                <constraint firstItem="CWK-RV-oKL" firstAttribute="top" secondItem="4sA-Zz-9hO" secondAttribute="bottom" id="vo5-dn-j05"/>
-                <constraint firstAttribute="bottom" secondItem="CWK-RV-oKL" secondAttribute="bottom" id="xNO-oQ-OMY"/>
-                <constraint firstAttribute="trailing" secondItem="bHz-ug-X27" secondAttribute="trailing" id="xOV-de-dg8"/>
+                <constraint firstAttribute="trailing" secondItem="4sA-Zz-9hO" secondAttribute="trailing" id="3qi-Si-P4b"/>
+                <constraint firstItem="bHz-ug-X27" firstAttribute="top" secondItem="4sA-Zz-9hO" secondAttribute="bottom" constant="10" id="J7Q-jO-MJu"/>
+                <constraint firstAttribute="trailing" secondItem="bHz-ug-X27" secondAttribute="trailing" id="WCe-GR-HC9"/>
+                <constraint firstItem="4sA-Zz-9hO" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Wg8-lh-7cw"/>
+                <constraint firstAttribute="bottom" secondItem="bHz-ug-X27" secondAttribute="bottom" id="WuV-Zw-n2j"/>
+                <constraint firstItem="CWK-RV-oKL" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="kEn-eB-aiN"/>
+                <constraint firstItem="CWK-RV-oKL" firstAttribute="top" secondItem="4sA-Zz-9hO" secondAttribute="bottom" constant="10" id="o5Z-LK-sUc"/>
+                <constraint firstItem="4sA-Zz-9hO" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="rTZ-Y6-f5i"/>
+                <constraint firstAttribute="bottom" secondItem="CWK-RV-oKL" secondAttribute="bottom" id="vGR-fJ-GSn"/>
+                <constraint firstItem="bHz-ug-X27" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="wv4-Dd-k2D"/>
+                <constraint firstAttribute="trailing" secondItem="CWK-RV-oKL" secondAttribute="trailing" id="x3Q-33-9Qx"/>
             </constraints>
             <connections>
                 <outlet property="chartView" destination="4sA-Zz-9hO" id="9CS-Cz-UfW"/>

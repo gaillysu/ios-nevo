@@ -20,9 +20,8 @@ class StepGoalSetingController: PublicClassController,ButtonManagerCallBack,Sync
     private var contentTitleArray:[String] = []
     private var contentTArray:[String] = ["--","--","--"]
     
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
+    init() {
         super.init(nibName: "StepGoalSetingController", bundle: NSBundle.mainBundle())
-
     }
 
     required init(coder aDecoder: NSCoder) {

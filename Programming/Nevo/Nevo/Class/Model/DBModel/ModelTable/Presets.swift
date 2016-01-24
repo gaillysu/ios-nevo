@@ -65,7 +65,7 @@ class Presets: NSObject,BaseEntryDatabaseHelper {
         let allArray:NSMutableArray = NSMutableArray()
         for model in modelArray {
             let presetsModel:PresetsModel = model as! PresetsModel
-            let presets:Presets = Presets(keyDict: ["id":"\(presetsModel.id)","steps":"\(presetsModel.steps)","label":"\(presetsModel.label)","status":"\(presetsModel.status)"])
+            let presets:Presets = Presets(keyDict: ["id":presetsModel.id,"steps":presetsModel.steps,"label":"\(presetsModel.label)","status":presetsModel.status])
             allArray.addObject(presets)
         }
         return allArray
@@ -85,7 +85,7 @@ class Presets: NSObject,BaseEntryDatabaseHelper {
             let presetGoal:[String] = ["7000", "10000", "20000"]
             let label:[String] = ["Light","Moderate","Heavy"]
             for (var index:Int = 0; index < presetGoal.count ; index++) {
-                let presets:Presets = Presets(keyDict: ["id":"\(index)","steps":"\(presetGoal[index])","label":"\(label[index])","status":true])
+                let presets:Presets = Presets(keyDict: ["id":index,"steps":(presetGoal[index] as NSString).integerValue,"label":"\(label[index])","status":true])
                 presets.add({ (id, completion) -> Void in
 
                 })
