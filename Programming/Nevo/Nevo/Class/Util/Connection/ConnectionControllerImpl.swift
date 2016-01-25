@@ -248,6 +248,10 @@ class ConnectionControllerImpl : NSObject, ConnectionController, NevoBTDelegate 
     func packetReceived(packet:RawPacket, fromAddress : NSUUID) {
         mDelegate?.packetReceived(packet)
     }
+
+    func scanAndConnect(){
+        mDelegate?.scanAndConnect()
+    }
     
     /**
     See ConnectionController

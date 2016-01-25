@@ -603,10 +603,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
 
     func bluetoothEnabled(enabled:Bool) {
         if(!enabled) {
-            let banner = Banner(title: "Bluetooth turned off. Enable Bluetooth to Sync.", subtitle: nil, image: nil, backgroundColor: UIColor.redColor())
+            let banner = Banner(title: NSLocalizedString("bluetooth_turned_off_enable", comment: ""), subtitle: nil, image: nil, backgroundColor: UIColor.redColor())
             banner.dismissesOnTap = true
             banner.show(duration: 3.0)
         }
+    }
+
+    func scanAndConnect(){
+        let banner = Banner(title: NSLocalizedString("search_for_nevo", comment: ""), subtitle: nil, image: nil, backgroundColor: AppTheme.NEVO_SOLAR_YELLOW())
+        banner.dismissesOnTap = true
+        banner.show(duration: 3.0)
     }
 
 }

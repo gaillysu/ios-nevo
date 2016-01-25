@@ -78,10 +78,17 @@ class AlarmClockController: UITableViewController, SyncControllerDelegate,AddAla
                 let alarm:Alarm = Alarm(index:mAlarmArray.count, hour: date.hour, minute: date.minute, enable: mSwitch.on)
                 alarmArray.removeAtIndex(mSwitch.tag)
                 alarmArray.append(alarm)
-                AppDelegate.getAppDelegate().setAlarm(alarmArray)
-                let banner = Banner(title: "Syncing Alarm", subtitle: nil, image: nil, backgroundColor: AppTheme.NEVO_SOLAR_YELLOW())
-                banner.dismissesOnTap = true
-                banner.show(duration: 3.0)
+
+                if(AppDelegate.getAppDelegate().isConnected()) {
+                    AppDelegate.getAppDelegate().setAlarm(alarmArray)
+                    let banner = Banner(title: NSLocalizedString("syncing_Alarm", comment: ""), subtitle: nil, image: nil, backgroundColor: AppTheme.NEVO_SOLAR_YELLOW())
+                    banner.dismissesOnTap = true
+                    banner.show(duration: 2.0)
+                }else{
+                    let banner = Banner(title: NSLocalizedString("no_watch_connected", comment: ""), subtitle: nil, image: nil, backgroundColor: AppTheme.NEVO_SOLAR_YELLOW())
+                    banner.dismissesOnTap = true
+                    banner.show(duration: 2.0)
+                }
             }
 
         }
@@ -95,9 +102,15 @@ class AlarmClockController: UITableViewController, SyncControllerDelegate,AddAla
             let aler:UIAlertView = UIAlertView(title: "Tip", message: "Only add three alarm", delegate: nil, cancelButtonTitle: NSLocalizedString("ok", comment: ""))
             aler.show()
         }else{
-            let banner = Banner(title: "Syncing Alarm", subtitle: nil, image: nil, backgroundColor: AppTheme.NEVO_SOLAR_YELLOW())
-            banner.dismissesOnTap = true
-            banner.show(duration: 2.0)
+            if(AppDelegate.getAppDelegate().isConnected()) {
+                let banner = Banner(title: NSLocalizedString("syncing_Alarm", comment: ""), subtitle: nil, image: nil, backgroundColor: AppTheme.NEVO_SOLAR_YELLOW())
+                banner.dismissesOnTap = true
+                banner.show(duration: 2.0)
+            }else{
+                let banner = Banner(title: NSLocalizedString("no_watch_connected", comment: ""), subtitle: nil, image: nil, backgroundColor: AppTheme.NEVO_SOLAR_YELLOW())
+                banner.dismissesOnTap = true
+                banner.show(duration: 3.0)
+            }
 
             if(slectedIndex >= 0){
                 let alarmModel:UserAlarm =  mAlarmArray[slectedIndex] as! UserAlarm
@@ -242,7 +255,11 @@ class AlarmClockController: UITableViewController, SyncControllerDelegate,AddAla
                 tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
                 if(AppDelegate.getAppDelegate().isConnected()){
                     AppDelegate.getAppDelegate().setAlarm(alarmArray)
-                    let banner = Banner(title: "Syncing Alarm", subtitle: nil, image: nil, backgroundColor: AppTheme.NEVO_SOLAR_YELLOW())
+                    let banner = Banner(title: NSLocalizedString("syncing_Alarm", comment: ""), subtitle: nil, image: nil, backgroundColor: AppTheme.NEVO_SOLAR_YELLOW())
+                    banner.dismissesOnTap = true
+                    banner.show(duration: 3.0)
+                }else{
+                    let banner = Banner(title: NSLocalizedString("no_watch_connected", comment: ""), subtitle: nil, image: nil, backgroundColor: AppTheme.NEVO_SOLAR_YELLOW())
                     banner.dismissesOnTap = true
                     banner.show(duration: 3.0)
                 }

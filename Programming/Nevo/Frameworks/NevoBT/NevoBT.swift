@@ -105,4 +105,6 @@ protocol NevoBTDelegate {
     func receivedRSSIValue(number:NSNumber)
 
     func bluetoothEnabled(enabled:Bool)
+
+    func scanAndConnect()
 }

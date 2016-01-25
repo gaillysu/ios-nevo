@@ -385,6 +385,10 @@ class NevoOtaController : NSObject,ConnectionControllerDelegate {
 
     }
 
+    func scanAndConnect(){
+
+    }
+
     /**
     See ConnectionControllerDelegate
     */

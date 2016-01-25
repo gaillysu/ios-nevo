@@ -405,6 +405,10 @@ class AidOtaController : NSObject,ConnectionControllerDelegate {
     func bluetoothEnabled(enabled:Bool) {
 
     }
+
+    func scanAndConnect(){
+
+    }
     
     /**
     See ConnectionControllerDelegate

@@ -277,6 +277,8 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
         //We can't be sure if the Manager is ready, so let's try
         if(self.isBluetoothEnabled()) {
 
+            mDelegate?.scanAndConnect()
+
             let services:[CBUUID] = [mProfile!.CONTROL_SERVICE]
 
             //No address was specified, we'll search for devices with the right profile.
@@ -494,6 +496,7 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
             mTryingToConnectPeripherals?.append(aPeripheral)
 
             mManager?.connectPeripheral(aPeripheral,options:nil)
+            mDelegate?.scanAndConnect()
 
         }
 
