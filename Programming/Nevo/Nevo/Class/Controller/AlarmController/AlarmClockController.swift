@@ -13,7 +13,7 @@ class AlarmClockController: UITableViewController, SyncControllerDelegate,AddAla
 
     private var slectedIndex:Int = -1 //To edit a record the number of rows selected content
     var alarmArray:[Alarm] = []
-    var mAlarmArray:[UserAlarm] = []
+    var mAlarmArray:NSMutableArray = NSMutableArray()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,7 +34,7 @@ class AlarmClockController: UITableViewController, SyncControllerDelegate,AddAla
         let array:NSArray = UserAlarm.getAll()
         for alarmModel in array{
             let useralarm:UserAlarm = alarmModel as! UserAlarm
-            mAlarmArray.append(useralarm)
+            mAlarmArray.addObject(useralarm)
 
             let date:NSDate = NSDate(timeIntervalSince1970: useralarm.timer)
             let alarm:Alarm = Alarm(index:mAlarmArray.count, hour: date.hour, minute: date.minute, enable: useralarm.status)
@@ -68,10 +68,10 @@ class AlarmClockController: UITableViewController, SyncControllerDelegate,AddAla
 
         if(sender.isKindOfClass(UISwitch.classForCoder())){
             let mSwitch:UISwitch = sender as! UISwitch
-            let addalarm:UserAlarm = UserAlarm(keyDict: ["id":mAlarmArray[mSwitch.tag].id,"timer":mAlarmArray[mSwitch.tag].timer,"label":"\(mAlarmArray[mSwitch.tag].label)","status":mSwitch.on,"repeatStatus":mAlarmArray[mSwitch.tag].repeatStatus])
+            let alarmA:UserAlarm = mAlarmArray[mSwitch.tag] as! UserAlarm
+            let addalarm:UserAlarm = UserAlarm(keyDict: ["id":alarmA.id,"timer":alarmA.timer,"label":"\(alarmA.label)","status":mSwitch.on,"repeatStatus":alarmA.repeatStatus])
             if(addalarm.update()){
-                mAlarmArray.removeAtIndex(mSwitch.tag)
-                mAlarmArray.append(addalarm)
+                mAlarmArray.replaceObjectAtIndex(mSwitch.tag, withObject: addalarm)
                 self.tableView.reloadData()
 
                 let date:NSDate = NSDate(timeIntervalSince1970: addalarm.timer)
@@ -100,11 +100,10 @@ class AlarmClockController: UITableViewController, SyncControllerDelegate,AddAla
             banner.show(duration: 2.0)
 
             if(slectedIndex >= 0){
-                let alarmModel:UserAlarm =  mAlarmArray[slectedIndex]
+                let alarmModel:UserAlarm =  mAlarmArray[slectedIndex] as! UserAlarm
                 let addalarm:UserAlarm = UserAlarm(keyDict: ["id":alarmModel.id,"timer":timer,"label":"\(name)","status":true,"repeatStatus":repeatStatus])
                 if(addalarm.update()){
-                    mAlarmArray.removeAtIndex(slectedIndex)
-                    mAlarmArray.insert(addalarm, atIndex: slectedIndex)
+                    mAlarmArray.replaceObjectAtIndex(slectedIndex, withObject: addalarm)
                     self.editing = false
                     self.tableView.setEditing(false, animated: true)
                     self.tableView.reloadData()
@@ -124,7 +123,7 @@ class AlarmClockController: UITableViewController, SyncControllerDelegate,AddAla
                 addalarm.add({ (id, completion) -> Void in
                     if(completion!){
                         addalarm.id = id!
-                        self.mAlarmArray.append(addalarm)
+                        self.mAlarmArray.addObject(addalarm)
                         self.tableView.reloadData()
 
                         let date:NSDate = NSDate(timeIntervalSince1970: timer)
@@ -203,7 +202,7 @@ class AlarmClockController: UITableViewController, SyncControllerDelegate,AddAla
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let endCell:UITableViewCell = tableView.dequeueReusableCellWithIdentifier("alarmCell", forIndexPath: indexPath)
-        let alarmModel:UserAlarm = mAlarmArray[indexPath.row]
+        let alarmModel:UserAlarm = mAlarmArray[indexPath.row] as! UserAlarm
         let timerLabel = endCell.contentView.viewWithTag(1500)
         if(timerLabel != nil){
             let date:NSDate = NSDate(timeIntervalSince1970: alarmModel.timer)
@@ -237,9 +236,9 @@ class AlarmClockController: UITableViewController, SyncControllerDelegate,AddAla
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
             // Delete the row from the data source
-            if(mAlarmArray[indexPath.row].remove()){
+            if((mAlarmArray[indexPath.row] as! UserAlarm).remove()){
                 alarmArray.removeAtIndex(indexPath.row)
-                mAlarmArray.removeAtIndex(indexPath.row)
+                mAlarmArray.removeObjectAtIndex(indexPath.row)
                 tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
                 if(AppDelegate.getAppDelegate().isConnected()){
                     AppDelegate.getAppDelegate().setAlarm(alarmArray)
@@ -257,7 +256,7 @@ class AlarmClockController: UITableViewController, SyncControllerDelegate,AddAla
         if(self.editing){
             slectedIndex = indexPath.row
 
-            let alarmModel:UserAlarm = mAlarmArray[indexPath.row]
+            let alarmModel:UserAlarm = mAlarmArray[indexPath.row] as! UserAlarm
             let addAlarm:AddAlarmController = AddAlarmController()
             addAlarm.title = NSLocalizedString("edit_alarm", comment: "")
             addAlarm.timer = alarmModel.timer
