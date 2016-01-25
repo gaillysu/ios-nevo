@@ -25,7 +25,17 @@ class TutorialFiveViewController: UIViewController,SyncControllerDelegate {
     }
 
     override func viewDidLoad() {
-        timer = NSTimer.scheduledTimerWithTimeInterval(2, target: self, selector: Selector("timerAction:"), userInfo: nil, repeats: true)
+
+    }
+
+    override func viewWillAppear(animated: Bool) {
+        if(timer == nil) {
+            timer = NSTimer.scheduledTimerWithTimeInterval(2, target: self, selector: Selector("timerAction:"), userInfo: nil, repeats: true)
+        }else {
+            timer = nil
+            timer = NSTimer.scheduledTimerWithTimeInterval(2, target: self, selector: Selector("timerAction:"), userInfo: nil, repeats: true)
+            progressView?.setProgress(0.0)
+        }
     }
 
     override func viewDidLayoutSubviews() {
@@ -34,7 +44,6 @@ class TutorialFiveViewController: UIViewController,SyncControllerDelegate {
         progressView?.frame = CGRectMake(watchImage!.frame.origin.x-5, watchImage!.frame.origin.y-5, watchImage.bounds.width+10, watchImage.bounds.width+10)
         progressView?.setProgress(0.0)
         self.view.layer.addSublayer(progressView!)
-
     }
 
     func timerAction(action:NSTimer) {
@@ -48,11 +57,19 @@ class TutorialFiveViewController: UIViewController,SyncControllerDelegate {
                     self.navigationController?.pushViewController(tutorialSix, animated: true)
                 }
             }else{
+                var res:Bool = true
                 for nvc:UIViewController in self.navigationController!.viewControllers {
-                    if(nvc.isKindOfClass(TutorialThreeViewController.classForCoder())) {
+                    if(nvc.isKindOfClass(TutorialSevenViewController.classForCoder())) {
+                        res = false
                         self.navigationController?.popToViewController(nvc, animated: true)
                         return;
                     }
+                }
+                if(res) {
+                    progresValue = 0.0
+                    setProgress(0.0)
+                    let tutorial:TutorialSevenViewController = TutorialSevenViewController()
+                    self.navigationController?.pushViewController(tutorial, animated: true)
                 }
             }
 
