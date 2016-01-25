@@ -17,13 +17,17 @@ import UIKit
 
 public class ChartColorTemplates: NSObject
 {
-    
+
+    public class func getWakeSleepColor () -> UIColor{
+        return UIColor(red: 253/255.0, green: 230/255.0, blue: 156.0/255.0, alpha: 1.0)
+    }
+
     public class func getLightSleepColor () -> UIColor{
-        return UIColor(red: 246/255.0, green: 211/255.0, blue: 128/255.0, alpha: 1.0)
+        return UIColor(red: 251.0/255.0, green: 193.0/255.0, blue: 11.0/255.0, alpha: 1.0)
     }
     
     public class func getDeepSleepColor () -> UIColor{
-        return UIColor(red: 252/255.0, green: 182/255.0, blue: 0/255.0, alpha: 1.0)
+        return UIColor(red: 249.0/255.0, green: 160.0/255.0, blue: 1.0/255.0, alpha: 1.0)
     }
 
     public class func getStepsColor () -> UIColor{

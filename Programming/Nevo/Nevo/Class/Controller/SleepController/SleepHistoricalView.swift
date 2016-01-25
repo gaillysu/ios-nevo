@@ -170,14 +170,11 @@ class SleepHistoricalView: UIView, ChartViewDelegate{
             if(val1+val2+val3 == 0){
                 continue
             }
-            let mDateString:String = String(format: "%.0f", seleModel.date)
             let date:NSDate = NSDate(timeIntervalSince1970: seleModel.date)
-            //mDateString.dateFromFormat("yyyyMMdd")!
             let dateString:NSString = date.stringFromFormat("yyyyMMdd")
-            //stringFromDate(date) as NSString
             xVal.append("\(dateString.substringWithRange(NSMakeRange(6, 2)))/\(dateString.substringWithRange(NSMakeRange(4, 2)))")
 
-            yVal.append(BarChartDataEntry(values: [(val2+val3),val1], xIndex:sleepArray.count))
+            yVal.append(BarChartDataEntry(values: [val1,val2,val3], xIndex:sleepArray.count))
             sleepArray.addObject(Sleep(weakSleep: val3,lightSleep: val2,deepSleep: val1,startTimer:startTimer , endTimer:endTimer))
         }
 
@@ -185,7 +182,7 @@ class SleepHistoricalView: UIView, ChartViewDelegate{
         if(yVal.count<7){
             for (var s:Int  = yVal.count; s < 7; s++){
                 xVal.append(" ")
-                yVal.append(BarChartDataEntry(values: [0,0], xIndex:sleepArray.count))
+                yVal.append(BarChartDataEntry(values: [0,0,0], xIndex:sleepArray.count))
                 sleepArray.addObject(Sleep(weakSleep: 0,lightSleep: 0,deepSleep: 0,startTimer:0 ,endTimer:0))
             }
         }
@@ -194,19 +191,20 @@ class SleepHistoricalView: UIView, ChartViewDelegate{
         let set1:BarChartDataSet  = BarChartDataSet(yVals: yVal, label: "")
         
         //每个数据区块的颜色
-        set1.colors = [UIColor(red: 239/255.0, green: 239/255.0, blue: 239/255.0, alpha: 1.0),ChartColorTemplates.getDeepSleepColor()];
+        set1.colors = [ChartColorTemplates.getDeepSleepColor(),ChartColorTemplates.getLightSleepColor(),ChartColorTemplates.getWakeSleepColor()];
+        //UIColor(red: 239/255.0, green: 239/255.0, blue: 239/255.0, alpha: 1.0)
         //每个数据块的类别名称,数组形式传递
-        set1.stackLabels = ["Deep sleep", "Light sleep"];
+        set1.stackLabels = ["Deep sleep","Light sleep","weak sleep"];
         set1.barSpace = 0.05;
         set1.highlightColor = AppTheme.NEVO_SOLAR_YELLOW()
-        set1.highLightAlpha = 1
+        set1.highLightAlpha = 1.0
         let dataSets:[BarChartDataSet] = [set1];
 
         let data:BarChartData = BarChartData(xVals: xVal, dataSets: dataSets)
         data.setDrawValues(false);//false 显示柱状图数值否则不显示
 
         chartView?.data = data;
-        chartView?.animate(yAxisDuration: 2.0, easingOption: ChartEasingOption.EaseInOutCirc)
+        chartView?.animate(yAxisDuration: 1.5, easingOption: ChartEasingOption.EaseInOutCirc)
         chartView?.moveViewToX(yVal.count)
     }
     

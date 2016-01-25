@@ -43,7 +43,12 @@ class StepGoalSetingController: PublicClassController,ButtonManagerCallBack,Sync
         stepGoalView.bulidStepGoalView(self,navigation: self.navigationItem)
         stepGoalView.collectionView?.delegate = self
         stepGoalView.collectionView?.dataSource = self
-        if((AppTheme.LoadKeyedArchiverName(StepsGoalKey)).count>0) {
+
+        let dataArray:NSArray = AppTheme.LoadKeyedArchiverName(StepsGoalKey) as! NSArray
+        if(dataArray.count>0) {
+            let date:NSTimeInterval = (dataArray[1] as! String).dateFromFormat("YYYY/MM/dd")!.timeIntervalSince1970
+            if(date != NSDate.date(year: NSDate().year, month: NSDate().month, day: NSDate().day).timeIntervalSince1970){ return }
+
             contentTArray = (AppTheme.LoadKeyedArchiverName(StepsGoalKey) as! NSArray)[0] as! [String]
             let dailyStepGoal:Int = NSString(string: contentTArray[0]).integerValue
             let dailySteps:Int = NSString(string: contentTArray[2]).integerValue

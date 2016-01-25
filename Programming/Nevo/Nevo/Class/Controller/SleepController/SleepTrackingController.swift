@@ -37,8 +37,17 @@ class SleepTrackingController: PublicClassController, SyncControllerDelegate ,Bu
         contentTitleArray = [NSLocalizedString("sleep_duration", comment: ""), NSLocalizedString("sleep_timer", comment: ""), NSLocalizedString("wake_timer", comment: ""), NSLocalizedString("deep_sleep", comment: ""), NSLocalizedString("light_sleep", comment: ""), NSLocalizedString("wake_duration", comment: "")]
         ClockRefreshManager.sharedInstance.setRefreshDelegate(self)
 
-        if((AppTheme.LoadKeyedArchiverName(SleepValueKey)).count>0) {
-            let array:NSArray = (AppTheme.LoadKeyedArchiverName(SleepValueKey) as! NSArray)[0] as! NSArray
+    }
+
+    override func viewDidLayoutSubviews() {
+        sleepView.bulidHomeView(self)
+        sleepView.collectionView?.delegate = self
+        sleepView.collectionView?.dataSource = self
+        let dataArray:NSArray = AppTheme.LoadKeyedArchiverName(SleepValueKey) as! NSArray
+        if(dataArray.count>0) {
+            let date:NSTimeInterval = (dataArray[1] as! String).dateFromFormat("YYYY/MM/dd")!.timeIntervalSince1970
+            if(date != NSDate.date(year: NSDate().year, month: NSDate().month, day: NSDate().day).timeIntervalSince1970){ return }
+            let array:NSArray = dataArray[0] as! NSArray
             sleepView.setProgress(array, resulSleep: { (dataSleep) -> Void in
                 let sleep:Sleep = dataSleep
                 let startTimer:NSDate = NSDate(timeIntervalSince1970: sleep.getStartTimer())
@@ -58,13 +67,6 @@ class SleepTrackingController: PublicClassController, SyncControllerDelegate ,Bu
                 }
             })
         }
-
-    }
-
-    override func viewDidLayoutSubviews() {
-        sleepView.bulidHomeView(self)
-        sleepView.collectionView?.delegate = self
-        sleepView.collectionView?.dataSource = self
     }
 
     override func viewDidAppear(animated: Bool) {
