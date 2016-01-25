@@ -51,7 +51,7 @@ class StepHistoricalViewController: UIViewController,UICollectionViewDelegateFlo
     override func viewDidLayoutSubviews() {
         stepsHistori.backgroundColor = UIColor.whiteColor()
         stepsHistori.registerClass(UICollectionViewCell.classForCoder(), forCellWithReuseIdentifier: "StepsHistoryViewCell")
-        (stepsHistori.collectionViewLayout as! UICollectionViewFlowLayout).itemSize = CGSizeMake(UIScreen.mainScreen().bounds.size.width/3.0, stepsHistori.frame.size.height/2.0)
+        (stepsHistori.collectionViewLayout as! UICollectionViewFlowLayout).itemSize = CGSizeMake(UIScreen.mainScreen().bounds.size.width/3.0, stepsHistori.frame.size.height)
     }
 
     override func didReceiveMemoryWarning() {

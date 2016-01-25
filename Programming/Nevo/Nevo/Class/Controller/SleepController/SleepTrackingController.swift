@@ -237,7 +237,7 @@ class SleepTrackingController: PublicClassController, SyncControllerDelegate ,Bu
             contentStepsView.textAlignment = NSTextAlignment.Center
             contentStepsView.backgroundColor = UIColor.clearColor()
             contentStepsView.textColor = UIColor.whiteColor()
-            contentStepsView.font = AppTheme.FONT_SFCOMPACTDISPLAY_BOLD(mSize: iphone ? 15:18)
+            contentStepsView.font = AppTheme.FONT_SFUIDISPLAY_REGULAR(mSize: iphone ? 15:18)
             contentStepsView.tag = 1700
             contentStepsView.text = "\(contentTArray[indexPath.row])"
             contentStepsView.sizeToFit()
