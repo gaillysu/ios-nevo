@@ -61,8 +61,8 @@ class SleepHistoricalViewController: PublicClassController,ChartViewDelegate,Sel
         contentTArray.removeAll()
         let startTimer:NSDate = NSDate(timeIntervalSince1970: dataSleep.getStartTimer())
         let endTimer:NSDate = NSDate(timeIntervalSince1970: dataSleep.getEndTimer())
-        let startString:String = startTimer.stringFromFormat("hh:mm")
-        let endString:String = endTimer.stringFromFormat("hh:mm")
+        let startString:String = startTimer.stringFromFormat("hh:mm a")
+        let endString:String = endTimer.stringFromFormat("hh:mm a")
 
         contentTArray.insert(String(format: "%dh%dm", Int(dataSleep.getTotalSleep()),Int((dataSleep.getTotalSleep())*Double(60)%Double(60))), atIndex: 0)
         contentTArray.insert("\(startString)", atIndex: 1)

@@ -52,8 +52,8 @@ class SleepTrackingController: PublicClassController, SyncControllerDelegate ,Bu
                 let sleep:Sleep = dataSleep
                 let startTimer:NSDate = NSDate(timeIntervalSince1970: sleep.getStartTimer())
                 let endTimer:NSDate = NSDate(timeIntervalSince1970: sleep.getEndTimer())
-                let startString:String = startTimer.stringFromFormat("hh:mm")
-                let endString:String = endTimer.stringFromFormat("hh:mm")
+                let startString:String = startTimer.stringFromFormat("hh:mm a")
+                let endString:String = endTimer.stringFromFormat("hh:mm a")
                 self.contentTArray.removeAll()
                 self.contentTArray.insert(String(format: "%dh%dm", Int(dataSleep.getTotalSleep()/60.0),Int((dataSleep.getTotalSleep())%Double(60))), atIndex: 0)
                 self.contentTArray.insert("\(startString)", atIndex: 1)
@@ -85,8 +85,8 @@ class SleepTrackingController: PublicClassController, SyncControllerDelegate ,Bu
                 let sleep:Sleep = dataSleep
                 let startTimer:NSDate = NSDate(timeIntervalSince1970: sleep.getStartTimer())
                 let endTimer:NSDate = NSDate(timeIntervalSince1970: sleep.getEndTimer())
-                let startString:String = startTimer.stringFromFormat("hh:mm")
-                let endString:String = endTimer.stringFromFormat("hh:mm")
+                let startString:String = startTimer.stringFromFormat("hh:mm a")
+                let endString:String = endTimer.stringFromFormat("hh:mm a")
                 self.contentTArray.removeAll()
                 self.contentTArray.insert(String(format: "%dh%dm", Int(dataSleep.getTotalSleep()/60.0),Int((dataSleep.getTotalSleep())%Double(60))), atIndex: 0)
                 self.contentTArray.insert("\(startString)", atIndex: 1)
@@ -171,8 +171,8 @@ class SleepTrackingController: PublicClassController, SyncControllerDelegate ,Bu
                 let sleep:Sleep = dataSleep
                 let startTimer:NSDate = NSDate(timeIntervalSince1970: sleep.getStartTimer())
                 let endTimer:NSDate = NSDate(timeIntervalSince1970: sleep.getEndTimer())
-                let startString:String = startTimer.stringFromFormat("hh:mm")
-                let endString:String = endTimer.stringFromFormat("hh:mm")
+                let startString:String = startTimer.stringFromFormat("hh:mm a")
+                let endString:String = endTimer.stringFromFormat("hh:mm a")
                 self.contentTArray.removeAll()
                 self.contentTArray.insert(String(format: "%dh%dm", Int(dataSleep.getTotalSleep()/60.0),Int((dataSleep.getTotalSleep())%Double(60))), atIndex: 0)
                 self.contentTArray.insert("\(startString)", atIndex: 1)

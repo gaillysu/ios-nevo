@@ -117,15 +117,19 @@ class SleepHistoricalView: UIView, ChartViewDelegate{
 
             //因为涉及到跨天按照正常习惯一天的睡眠时间包括从睡觉到结束睡觉的这段时间都是前一天的睡眠时间(包括凌晨0点后到中午12点之间的数据)
             //计算睡眠结束时间
-            for (var s:Int  = 0; s < sleepTimerArray.count-6; s++){
-                if((sleepTimerArray[s] as! NSNumber).integerValue == 0){
+            for (var s:Int  = 13; s > 0; s--){
+                if((sleepTimerArray[s] as! NSNumber).integerValue != 0){
                     let date:NSTimeInterval = seleModel.date
-                    if(s==0) {
-                        endTimer = NSTimeInterval(Double(s*60*60)+Double(((sleepTimerArray[s] as! NSNumber).integerValue)*60)) + date
-                    }else{
-                        let timer:Double = Double(((sleepTimerArray[s-1] as! NSNumber).integerValue)*60)
-                        endTimer = NSTimeInterval(Double((s-1)*60*60)+timer) + date
-                    }
+                    let timer:Double = Double(((sleepTimerArray[s] as! NSNumber).integerValue)*60)
+                    endTimer = NSTimeInterval(Double((s)*60*60)+timer) + date
+                    break
+                }
+            }
+
+            for (var s:Int  = 0; s < sleepTimerArray.count-6; s++){
+                if((sleepTimerArray[s] as! NSNumber).integerValue != 0){
+                    let date:NSTimeInterval = seleModel.date + NSTimeInterval(Double(s*60*60)+Double((60-(sleepTimerArray[s] as! NSNumber).integerValue)*60))
+                    startTimer = date
                     break
                 }
             }
@@ -147,7 +151,7 @@ class SleepHistoricalView: UIView, ChartViewDelegate{
                 let mDeepTimeTimerArray:NSArray = AppTheme.jsonToArray(nextSeleModel.hourlyDeepTime as String)
 
                 //计算睡眠开始时间
-                for (var s:Int  = 18; s < mSleepTimerArray.count; s++){
+                for (var s:Int  = 20; s < mSleepTimerArray.count; s++){
                     if((mSleepTimerArray[s] as! NSNumber).integerValue != 0){
                         let date:NSTimeInterval = nextSeleModel.date + NSTimeInterval(Double(s*60*60)+Double((60-(mSleepTimerArray[s] as! NSNumber).integerValue)*60))
                         startTimer = date

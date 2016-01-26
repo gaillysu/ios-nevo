@@ -410,7 +410,7 @@ class CircleSleepProgressView: CAShapeLayer {
     }
 
     func setSleepProgress(sleepArray:NSArray,resulSleep:((dataSleep:Sleep) -> Void)){
-        let sleepChartArray = combiningSleepData(sleepArray)
+        let sleepChartArray = CircleSleepProgressView.combiningSleepData(sleepArray)
         let arrayCount:Int = (sleepChartArray[0] as! [[NSDate]]).count
         var startDate:NSDate = NSDate()
         var endDate:NSDate = NSDate()
@@ -478,7 +478,7 @@ class CircleSleepProgressView: CAShapeLayer {
 
     :returns: 返回解析后的数据
     */
-    func combiningSleepData(array:NSArray) -> NSArray {
+    class func combiningSleepData(array:NSArray) -> NSArray {
         let cal:NSCalendar = NSCalendar.currentCalendar()
         var lastTimer:Int = 0
         var startDate:NSDate?

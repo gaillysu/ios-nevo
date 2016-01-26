@@ -195,7 +195,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="Zx4-WI-sxC">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="Zx4-WI-sxC">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
@@ -216,10 +216,11 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Zx4-WI-sxC" firstAttribute="bottom" secondItem="Btq-vY-5HU" secondAttribute="top" constant="49" id="9gr-Hc-sFI"/>
-                            <constraint firstItem="Zx4-WI-sxC" firstAttribute="leading" secondItem="h7L-SF-lkB" secondAttribute="leading" id="Nwn-YC-UI8"/>
-                            <constraint firstItem="Zx4-WI-sxC" firstAttribute="top" secondItem="3iy-c3-UnN" secondAttribute="bottom" constant="-64" id="i5c-jF-UGw"/>
-                            <constraint firstAttribute="trailing" secondItem="Zx4-WI-sxC" secondAttribute="trailing" id="jNU-ba-Eo6"/>
+                            <constraint firstItem="Zx4-WI-sxC" firstAttribute="centerX" secondItem="h7L-SF-lkB" secondAttribute="centerX" id="CZZ-Tl-gs3"/>
+                            <constraint firstItem="Zx4-WI-sxC" firstAttribute="centerY" secondItem="h7L-SF-lkB" secondAttribute="centerY" id="Erl-cs-nmo"/>
+                            <constraint firstItem="Btq-vY-5HU" firstAttribute="top" secondItem="Zx4-WI-sxC" secondAttribute="bottom" constant="-49" id="Mbb-zp-acX"/>
+                            <constraint firstItem="Zx4-WI-sxC" firstAttribute="leading" secondItem="h7L-SF-lkB" secondAttribute="leading" id="V3l-FM-e0G"/>
+                            <constraint firstItem="Zx4-WI-sxC" firstAttribute="top" secondItem="3iy-c3-UnN" secondAttribute="bottom" constant="-64" id="dGd-gt-O0D"/>
                         </constraints>
                         <connections>
                             <outlet property="tableListView" destination="Zx4-WI-sxC" id="Czw-V2-Naa"/>
