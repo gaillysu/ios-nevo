@@ -26,24 +26,27 @@ class MainTabBarController: UITabBarController,UITabBarControllerDelegate {
         for nav in viewArray {
             let contll = (nav as! UINavigationController).topViewController
             if contll!.isKindOfClass(AlarmClockController){
-                (nav as! UINavigationController).tabBarItem.title = NSLocalizedString("Alarm", comment: "")
+                (nav as! UINavigationController).tabBarItem.title = NSLocalizedString("alarmTitle", comment: "")
+                contll?.title = NSLocalizedString("alarmTitle", comment: "")
                 AppTheme.DLog("AlarmClockController:\(contll)")
 
             }
 
             if contll!.isKindOfClass(StepController){
-                (nav as! UINavigationController).tabBarItem.title = NSLocalizedString("Steps", comment: "")
+                (nav as! UINavigationController).tabBarItem.title = NSLocalizedString("you_reached", comment: "")
+                contll?.title = NSLocalizedString("you_reached", comment: "")
                 AppTheme.DLog("StepController:\(contll)")
             }
             
             if contll!.isKindOfClass(SleepController){
-                //contll!.tabBarController?.selectedIndex = 1
-                (nav as! UINavigationController).tabBarItem.title = NSLocalizedString("Sleep", comment: "")
+                (nav as! UINavigationController).tabBarItem.title = NSLocalizedString("sleepTitle", comment: "")
+                contll?.title = NSLocalizedString("sleepTitle", comment: "")
                 AppTheme.DLog("SetingViewController:\(contll)")
             }
 
             if contll!.isKindOfClass(SetingViewController){
                 (nav as! UINavigationController).tabBarItem.title = NSLocalizedString("Setting", comment: "")
+                contll?.title = NSLocalizedString("Setting", comment: "")
                 AppTheme.DLog("SetingViewController:\(contll)")
             }
 

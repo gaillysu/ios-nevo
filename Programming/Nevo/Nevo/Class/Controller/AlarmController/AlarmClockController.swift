@@ -99,7 +99,7 @@ class AlarmClockController: UITableViewController, SyncControllerDelegate,AddAla
     func onDidAddAlarmAction(timer:NSTimeInterval,repeatStatus:Bool,name:String){
 
         if(mAlarmArray.count==3){
-            let aler:UIAlertView = UIAlertView(title: "Tip", message: "Only add three alarm", delegate: nil, cancelButtonTitle: NSLocalizedString("ok", comment: ""))
+            let aler:UIAlertView = UIAlertView(title: NSLocalizedString("alarmTitle", comment: ""), message:NSLocalizedString("nevo_alarms_supports", comment: "") , delegate: nil, cancelButtonTitle: NSLocalizedString("ok", comment: ""))
             aler.show()
         }else{
             if(AppDelegate.getAppDelegate().isConnected()) {

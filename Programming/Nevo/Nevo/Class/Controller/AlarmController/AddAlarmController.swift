@@ -14,7 +14,7 @@ protocol AddAlarmDelegate {
 
 }
 
-class AddAlarmController: UITableViewController,ButtonManagerCallBack {
+class AddAlarmController: UITableViewController,ButtonManagerCallBack,UIAlertViewDelegate {
 
     @IBOutlet weak var adTableView: AddAlarmView!
     var mDelegate:AddAlarmDelegate?
@@ -22,6 +22,7 @@ class AddAlarmController: UITableViewController,ButtonManagerCallBack {
     var timer:NSTimeInterval = 0.0
     var repeatStatus:Bool = false
     var name:String = ""
+    private var selectedIndexPath:NSIndexPath?
 
     init() {
         super.init(nibName: "AddAlarmController", bundle: NSBundle.mainBundle())
@@ -101,8 +102,8 @@ class AddAlarmController: UITableViewController,ButtonManagerCallBack {
             if(indexPath.row == 1){
                 if((UIDevice.currentDevice().systemVersion as NSString).floatValue >= 8.0){
 
-                    let actionSheet:UIAlertController = UIAlertController(title: NSLocalizedString("Add Alarm Label", comment: ""), message: nil, preferredStyle: UIAlertControllerStyle.Alert)
-                    //actionSheet.view.tintColor = AppTheme.NEVO_SOLAR_YELLOW()
+                    let actionSheet:UIAlertController = UIAlertController(title: NSLocalizedString("add_alarm_label", comment: ""), message: nil, preferredStyle: UIAlertControllerStyle.Alert)
+                    actionSheet.view.tintColor = AppTheme.NEVO_SOLAR_YELLOW()
                     actionSheet.addTextFieldWithConfigurationHandler({ (labelText:UITextField) -> Void in
 
                     })
@@ -112,7 +113,7 @@ class AddAlarmController: UITableViewController,ButtonManagerCallBack {
                     })
                     actionSheet.addAction(alertAction)
 
-                    let alertAction1:UIAlertAction = UIAlertAction(title: NSLocalizedString("ok", comment: ""), style: UIAlertActionStyle.Default, handler: { (action:UIAlertAction) -> Void in
+                    let alertAction1:UIAlertAction = UIAlertAction(title: NSLocalizedString("Add", comment: ""), style: UIAlertActionStyle.Default, handler: { (action:UIAlertAction) -> Void in
                         let selectedCell:UITableViewCell = tableView.cellForRowAtIndexPath(indexPath)!
                         let labelkk = selectedCell.contentView.viewWithTag(1230)
                         let labelText:UITextField = actionSheet.textFields![0]
@@ -132,16 +133,11 @@ class AddAlarmController: UITableViewController,ButtonManagerCallBack {
 
                     self.presentViewController(actionSheet, animated: true, completion: nil)
                 }else{
-                    let actionSheet:UIActionSheet = UIActionSheet(title: nil, delegate: nil, cancelButtonTitle: "Cancel", destructiveButtonTitle: nil)
-                    actionSheet.addButtonWithTitle("\(5555) steps")
-                    for button:UIView in actionSheet.subviews{
-                        button.tintColor = AppTheme.NEVO_SOLAR_YELLOW()
-                        button.backgroundColor = AppTheme.NEVO_SOLAR_YELLOW()
-                    }
-                    actionSheet.layer.backgroundColor = AppTheme.NEVO_SOLAR_YELLOW().CGColor
-                    actionSheet.tintColor = AppTheme.NEVO_SOLAR_YELLOW()
-                    actionSheet.actionSheetStyle = UIActionSheetStyle.Default;
-                    actionSheet.showInView(self.view)
+                    selectedIndexPath = indexPath;
+
+                    let actionSheet:UIAlertView = UIAlertView(title: NSLocalizedString("add_alarm_label", comment: ""), message: "", delegate: self, cancelButtonTitle: NSLocalizedString("Cancel", comment: ""), otherButtonTitles: NSLocalizedString("Add", comment: ""))
+                    actionSheet.alertViewStyle = UIAlertViewStyle.PlainTextInput
+                    actionSheet.show()
                 }
             }
 
@@ -197,6 +193,23 @@ class AddAlarmController: UITableViewController,ButtonManagerCallBack {
     }
 
 
+    // MARK: - UIAlertViewDelegate
+    func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int){
+        let selectedCell:UITableViewCell = tableView.cellForRowAtIndexPath(selectedIndexPath!)!
+        let labelkk = selectedCell.contentView.viewWithTag(1230)
+        let labelText:UITextField = alertView.textFieldAtIndex(0)!
+        if(labelkk != nil){
+            let label:UILabel = labelkk as! UILabel
+            label.text = labelText.text
+        }else{
+            let label:UILabel = UILabel(frame: CGRectMake(0,0,80,selectedCell.contentView.frame.size.height))
+            label.tag = 1230
+            label.textAlignment = NSTextAlignment.Center
+            label.center = CGPointMake(selectedCell.contentView.frame.size.width-label.frame.size.width/2.0-15, selectedCell.contentView.frame.size.height/2.0)
+            label.text = labelText.text
+            selectedCell.contentView.addSubview(label)
+        }
+    }
     /*
     // Override to support conditional editing of the table view.
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {

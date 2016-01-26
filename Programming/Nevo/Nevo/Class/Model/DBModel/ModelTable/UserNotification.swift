@@ -23,19 +23,12 @@ class UserNotification: NSObject,BaseEntryDatabaseHelper {
     class func defaultNotificationColor(){
         let array = NotificationModel.getAll()
         if(array.count == 0){
-            let notificationTypeArray:[String] = ["Calendar", "Facebook", "EMAIL", "CALL", "SMS", "Whatsapp","WeChat"]
+            let notificationTypeArray:[String] = ["Calendar", "Facebook", "EMAIL", "CALL", "SMS","WeChat"]
             for (var index:Int = 0; index < notificationTypeArray.count ; index++) {
-                if(notificationTypeArray.count-1 == index){
-                    let notification:UserNotification = UserNotification(keyDict: ["id":index,"clock":12,"NotificationType":notificationTypeArray[index],"status":false])
-                    notification.add({ (id, completion) -> Void in
+                let notification:UserNotification = UserNotification(keyDict: ["id":index,"clock":(index+1)*2,"NotificationType":notificationTypeArray[index],"status":false])
+                notification.add({ (id, completion) -> Void in
 
-                    })
-                }else{
-                    let notification:UserNotification = UserNotification(keyDict: ["id":index,"clock":(index+1)*2,"NotificationType":notificationTypeArray[index],"status":false])
-                    notification.add({ (id, completion) -> Void in
-
-                    })
-                }
+                })
             }
         }
     }

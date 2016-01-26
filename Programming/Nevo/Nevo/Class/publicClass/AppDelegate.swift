@@ -47,14 +47,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
 
         UINavigationBar.appearance().tintColor = AppTheme.NEVO_SOLAR_YELLOW()
         //Start the logo for the first time
-        if(!NSUserDefaults.standardUserDefaults().boolForKey("everLaunched")){
-            NSUserDefaults.standardUserDefaults().setBool(true, forKey: "everLaunched")
-            NSUserDefaults.standardUserDefaults().setBool(true, forKey: "firstLaunch")
+        if(!NSUserDefaults.standardUserDefaults().boolForKey("LaunchedDatabase")){
+            NSUserDefaults.standardUserDefaults().setBool(true, forKey: "LaunchedDatabase")
+            NSUserDefaults.standardUserDefaults().setBool(true, forKey: "firstDatabase")
             Presets.defaultPresetsGoal()
             UserAlarm.defaultAlarm()
             UserNotification.defaultNotificationColor()
         }else{
-            NSUserDefaults.standardUserDefaults().setBool(false, forKey: "firstLaunch")
+            NSUserDefaults.standardUserDefaults().setBool(false, forKey: "firstDatabase")
         }
         
         mConnectionController = ConnectionControllerImpl()
@@ -469,10 +469,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                 let sleepArray = UserSleep.getCriteria("WHERE date = \(timerInterval.timeIntervalSince1970)")
                 if(sleepArray.count>0) {
                     let sleep:UserSleep = sleepArray[0] as! UserSleep
-                    let model:UserSleep = UserSleep(keyDict: ["id": sleep.id, "date":timerInterval.timeIntervalSince1970, "totalSleepTime":0, "hourlySleepTime":"\(AppTheme.toJSONString(thispacket.getHourlySleepTime()))", "totalWakeTime":0, "hourlyWakeTime":"\(AppTheme.toJSONString(thispacket.getHourlyWakeTime()))" , "totalLightTime":0, "hourlyLightTime":"\(AppTheme.toJSONString(thispacket.getHourlyLightTime()))", "totalDeepTime":0,  "hourlyDeepTime":"\(AppTheme.toJSONString(thispacket.getHourlyDeepTime()))"])
+                    let model:UserSleep = UserSleep(keyDict: [
+                        "id": sleep.id,
+                        "date":timerInterval.timeIntervalSince1970,
+                        "totalSleepTime":0,
+                        "hourlySleepTime":"\(AppTheme.toJSONString(thispacket.getHourlySleepTime()))",
+                        "totalWakeTime":0,
+                        "hourlyWakeTime":"\(AppTheme.toJSONString(thispacket.getHourlyWakeTime()))" ,
+                        "totalLightTime":0,
+                        "hourlyLightTime":"\(AppTheme.toJSONString(thispacket.getHourlyLightTime()))",
+                        "totalDeepTime":0,
+                        "hourlyDeepTime":"\(AppTheme.toJSONString(thispacket.getHourlyDeepTime()))"])
                     model.update()
                 }else {
-                    let model:UserSleep = UserSleep(keyDict: ["id": 0, "date":timerInterval.timeIntervalSince1970, "totalSleepTime":0, "hourlySleepTime":"\(AppTheme.toJSONString(thispacket.getHourlySleepTime()))", "totalWakeTime":0, "hourlyWakeTime":"\(AppTheme.toJSONString(thispacket.getHourlyWakeTime()))" , "totalLightTime":0, "hourlyLightTime":"\(AppTheme.toJSONString(thispacket.getHourlyLightTime()))", "totalDeepTime":0,  "hourlyDeepTime":"\(AppTheme.toJSONString(thispacket.getHourlyDeepTime()))"])
+                    let model:UserSleep = UserSleep(keyDict: [
+                        "id": 0,
+                        "date":timerInterval.timeIntervalSince1970,
+                        "totalSleepTime":0,
+                        "hourlySleepTime":"\(AppTheme.toJSONString(thispacket.getHourlySleepTime()))",
+                        "totalWakeTime":0,
+                        "hourlyWakeTime":"\(AppTheme.toJSONString(thispacket.getHourlyWakeTime()))" ,
+                        "totalLightTime":0,
+                        "hourlyLightTime":"\(AppTheme.toJSONString(thispacket.getHourlyLightTime()))",
+                        "totalDeepTime":0,
+                        "hourlyDeepTime":"\(AppTheme.toJSONString(thispacket.getHourlyDeepTime()))"])
                     model.add({ (id, completion) -> Void in
 
                     })
@@ -549,9 +569,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
         }
 
         if(isConnected) {
-            let banner = Banner(title: "Connected", subtitle: nil, image: nil, backgroundColor:AppTheme.hexStringToColor("#0dac67"))
-            banner.dismissesOnTap = true
-            banner.show(duration: 3.0)
+            if(self.hasSavedAddress()){
+                let banner = Banner(title: NSLocalizedString("Connected", comment: ""), subtitle: nil, image: nil, backgroundColor:AppTheme.hexStringToColor("#0dac67"))
+                banner.dismissesOnTap = true
+                banner.show(duration: 3.0)
+            }
 
             ConnectionManager.sharedInstance.checkConnectSendNotification(ConnectionManager.Const.connectionStatus.connected)
 
@@ -563,9 +585,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
             })
 
         }else {
-            let banner = Banner(title: "Disconnected", subtitle: nil, image: nil, backgroundColor: UIColor.redColor())
-            banner.dismissesOnTap = true
-            banner.show(duration: 3.0)
+            if(self.hasSavedAddress()){
+                let banner = Banner(title: NSLocalizedString("Disconnected", comment: ""), subtitle: nil, image: nil, backgroundColor: UIColor.redColor())
+                banner.dismissesOnTap = true
+                banner.show(duration: 3.0)
+            }
 
             ConnectionManager.sharedInstance.checkConnectSendNotification(ConnectionManager.Const.connectionStatus.disconnected)
             SyncQueue.sharedInstance.clear()
@@ -585,7 +609,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
             if !mAlertUpdateFW {
                 mAlertUpdateFW = true
                 let alert :UIAlertView = UIAlertView(title: NSLocalizedString("Firmware Upgrade", comment: ""), message: NSLocalizedString("FirmwareAlertMessage", comment: ""), delegate: nil, cancelButtonTitle: NSLocalizedString("ok", comment: ""))
-                alert.show()
+                //alert.show()
             }
         }
     }
@@ -602,7 +626,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
     }
 
     func bluetoothEnabled(enabled:Bool) {
-        if(!enabled) {
+        if(!enabled && self.hasSavedAddress()) {
             let banner = Banner(title: NSLocalizedString("bluetooth_turned_off_enable", comment: ""), subtitle: nil, image: nil, backgroundColor: UIColor.redColor())
             banner.dismissesOnTap = true
             banner.show(duration: 3.0)
@@ -610,9 +634,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
     }
 
     func scanAndConnect(){
-        let banner = Banner(title: NSLocalizedString("search_for_nevo", comment: ""), subtitle: nil, image: nil, backgroundColor: AppTheme.NEVO_SOLAR_YELLOW())
-        banner.dismissesOnTap = true
-        banner.show(duration: 3.0)
+        if(self.hasSavedAddress()) {
+            let banner = Banner(title: NSLocalizedString("search_for_nevo", comment: ""), subtitle: nil, image: nil, backgroundColor: AppTheme.NEVO_SOLAR_YELLOW())
+            banner.dismissesOnTap = true
+            banner.show(duration: 3.0)
+        }
     }
 
 }

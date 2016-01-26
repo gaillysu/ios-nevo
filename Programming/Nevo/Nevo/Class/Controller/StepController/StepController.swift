@@ -18,7 +18,7 @@ class StepController: PublicClassController,toolbarSegmentedDelegate,UIActionShe
         super.viewDidLoad()
         AppTheme.navigationbar(self.navigationController!)
         let toolBarHeight:CGFloat = 45.0
-        let toolbar:ToolbarView = ToolbarView(frame: CGRectMake( 0, 0, UIScreen.mainScreen().bounds.width, toolBarHeight), items: ["Today","History"])
+        let toolbar:ToolbarView = ToolbarView(frame: CGRectMake( 0, 0, UIScreen.mainScreen().bounds.width, toolBarHeight), items: [NSLocalizedString("today", comment: ""),NSLocalizedString("history", comment: "")])
         toolbar.delegate = self
         self.view.addSubview(toolbar)
         stepGoal = StepGoalSetingController()
@@ -30,7 +30,7 @@ class StepController: PublicClassController,toolbarSegmentedDelegate,UIActionShe
         stepHistorical = StepHistoricalViewController()
         stepHistorical?.view.frame = CGRectMake(0, toolBarHeight, self.view.frame.size.width, self.view.frame.size.height-toolBarHeight-113)
 
-        rightButton = UIBarButtonItem(title: "Set Goal", style: UIBarButtonItemStyle.Done, target: self, action: Selector("rightBarButtonAction:"))
+        rightButton = UIBarButtonItem(title: NSLocalizedString("set_goal", comment: ""), style: UIBarButtonItemStyle.Done, target: self, action: Selector("rightBarButtonAction:"))
         rightButton?.tintColor = AppTheme.NEVO_SOLAR_YELLOW()
         self.navigationItem.rightBarButtonItem = rightButton
 
@@ -38,6 +38,15 @@ class StepController: PublicClassController,toolbarSegmentedDelegate,UIActionShe
             let banner = Banner(title: NSLocalizedString("nevo_is_not_connected", comment: ""), subtitle: nil, image: nil, backgroundColor:UIColor.redColor())
             banner.dismissesOnTap = true
             banner.show(duration: 3.0)
+        }
+    }
+
+    override func viewWillAppear(animated: Bool) {
+        if(!AppDelegate.getAppDelegate().hasSavedAddress()) {
+            let tutrorial:TutorialOneViewController = TutorialOneViewController()
+            let nav:UINavigationController = UINavigationController(rootViewController: tutrorial)
+            nav.navigationBarHidden = true
+            self.presentViewController(nav, animated: true, completion: nil)
         }
     }
 
@@ -50,14 +59,6 @@ class StepController: PublicClassController,toolbarSegmentedDelegate,UIActionShe
                 goalArray.append(model.steps)
             }
         }
-
-        if(!AppDelegate.getAppDelegate().hasSavedAddress()) {
-            let tutrorial:TutorialOneViewController = TutorialOneViewController()
-            let nav:UINavigationController = UINavigationController(rootViewController: tutrorial)
-            nav.navigationBarHidden = true
-            self.presentViewController(nav, animated: true, completion: nil)
-        }
-
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

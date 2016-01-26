@@ -31,8 +31,8 @@ class SetingViewController: UIViewController,SyncControllerDelegate,ButtonManage
 
         notificationList.bulidNotificationViewUI(self)
 
-        sources = [NSLocalizedString("Link-Loss Notifications", comment: ""),NSLocalizedString("Notifications", comment: ""),NSLocalizedString("My nevo", comment: ""),NSLocalizedString("Support", comment: ""),NSLocalizedString("About", comment: "")]
-        sourcesImage = ["new_iOS_link_icon","new_iOS_notfications_icon","new_iOS_mynevo_iocn","new_iOS_support_icon","new_iOS_about_icon"]
+        sources = [NSLocalizedString("Link-Loss Notifications", comment: ""),NSLocalizedString("Notifications", comment: ""),NSLocalizedString("My nevo", comment: ""),NSLocalizedString("Support", comment: "")]
+        sourcesImage = ["new_iOS_link_icon","new_iOS_notfications_icon","new_iOS_mynevo_iocn","new_iOS_support_icon"]
         titleArray = [NSLocalizedString("goals", comment: ""),NSLocalizedString("find_my_watch", comment: ""),NSLocalizedString("forget_watch", comment: "")]
         titleArrayImage = ["new_iOS_goals_icon","new_iOS_findmywatch_icon","forget_watch"]
     }
@@ -141,15 +141,15 @@ class SetingViewController: UIViewController,SyncControllerDelegate,ButtonManage
                 AppTheme.DLog("forget_watch")
                 if((UIDevice.currentDevice().systemVersion as NSString).floatValue >= 8.0){
 
-                    let actionSheet:UIAlertController = UIAlertController(title: "Forget watch", message: "Do you want to forget your nevo?", preferredStyle: UIAlertControllerStyle.Alert)
+                    let actionSheet:UIAlertController = UIAlertController(title: NSLocalizedString("forget_watch", comment: ""), message: NSLocalizedString("forget_your_nevo", comment: ""), preferredStyle: UIAlertControllerStyle.Alert)
                     actionSheet.view.tintColor = AppTheme.NEVO_SOLAR_YELLOW()
 
-                    let alertAction:UIAlertAction = UIAlertAction(title: NSLocalizedString("NO", comment: ""), style: UIAlertActionStyle.Cancel, handler: { (alert) -> Void in
+                    let alertAction:UIAlertAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: UIAlertActionStyle.Cancel, handler: { (alert) -> Void in
 
                     })
                     actionSheet.addAction(alertAction)
 
-                    let alertAction2:UIAlertAction = UIAlertAction(title: NSLocalizedString("YES", comment: ""), style: UIAlertActionStyle.Default, handler: { ( alert) -> Void in
+                    let alertAction2:UIAlertAction = UIAlertAction(title: NSLocalizedString("forget", comment: ""), style: UIAlertActionStyle.Default, handler: { ( alert) -> Void in
                         AppDelegate.getAppDelegate().forgetSavedAddress()
                         let tutrorial:TutorialOneViewController = TutorialOneViewController()
                         let nav:UINavigationController = UINavigationController(rootViewController: tutrorial)
@@ -160,7 +160,7 @@ class SetingViewController: UIViewController,SyncControllerDelegate,ButtonManage
 
                     self.presentViewController(actionSheet, animated: true, completion: nil)
                 }else{
-                    let actionSheet:UIAlertView = UIAlertView(title: "Forget watch", message: "Do you want to forget your nevo?", delegate: self, cancelButtonTitle: NSLocalizedString("NO", comment: ""), otherButtonTitles: NSLocalizedString("YES", comment: ""))
+                    let actionSheet:UIAlertView = UIAlertView(title: NSLocalizedString("forget_watch", comment: ""), message: NSLocalizedString("forget_your_nevo", comment: ""), delegate: self, cancelButtonTitle: NSLocalizedString("Cancel", comment: ""), otherButtonTitles: NSLocalizedString("forget", comment: ""))
                     actionSheet.layer.backgroundColor = AppTheme.NEVO_SOLAR_YELLOW().CGColor
                     actionSheet.tintColor = AppTheme.NEVO_SOLAR_YELLOW()
                     actionSheet.show()
@@ -234,6 +234,13 @@ class SetingViewController: UIViewController,SyncControllerDelegate,ButtonManage
     func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int){
         if(buttonIndex == 1){
             AppTheme.toOpenUpdateURL()
+        }
+        if(buttonIndex == 0) {
+            AppDelegate.getAppDelegate().forgetSavedAddress()
+            let tutrorial:TutorialOneViewController = TutorialOneViewController()
+            let nav:UINavigationController = UINavigationController(rootViewController: tutrorial)
+            nav.navigationBarHidden = true
+            self.presentViewController(nav, animated: true, completion: nil)
         }
     }
 

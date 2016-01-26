@@ -31,7 +31,7 @@ class MyNevoController: UITableViewController,SyncControllerDelegate,UIAlertView
         buildinSoftwareVersion = AppTheme.GET_SOFTWARE_VERSION()
         buildinFirmwareVersion = AppTheme.GET_FIRMWARE_VERSION()
 
-        titleArray = ["Firmware","Battery","Watch version"]
+        titleArray = [NSLocalizedString("watch_version", comment: ""),NSLocalizedString("battery", comment: ""),NSLocalizedString("app_version", comment: "")]
     }
 
     
@@ -107,7 +107,6 @@ class MyNevoController: UITableViewController,SyncControllerDelegate,UIAlertView
      Check the update
      */
     func  checkUpdateVersion() {
-        MBProgressHUD.showMessage(NSLocalizedString("is_checking_the_update",comment: ""))
         AppTheme.getAppStoreVersion({ (stringVersion, version) -> Void in
             MBProgressHUD.hideHUD()
             let loclString:String = (NSBundle.mainBundle().infoDictionary! as NSDictionary).objectForKey("CFBundleShortVersionString") as! String
@@ -146,9 +145,9 @@ class MyNevoController: UITableViewController,SyncControllerDelegate,UIAlertView
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         if(indexPath.row == 0){
             if(AppDelegate.getAppDelegate().getSoftwareVersion().integerValue > buildinSoftwareVersion && AppDelegate.getAppDelegate().getFirmwareVersion().integerValue > buildinFirmwareVersion){return}
-            let otaCont:NevoOtaViewController = NevoOtaViewController()
-            let navigation:UINavigationController = UINavigationController(rootViewController: otaCont)
-            self.presentViewController(navigation, animated: true, completion: nil)
+            //let otaCont:NevoOtaViewController = NevoOtaViewController()
+            //let navigation:UINavigationController = UINavigationController(rootViewController: otaCont)
+            //self.presentViewController(navigation, animated: true, completion: nil)
 
         }
 
@@ -183,14 +182,14 @@ class MyNevoController: UITableViewController,SyncControllerDelegate,UIAlertView
            //buildinSoftwareVersion:Int = 0 buildinFirmwareVersion:Int = 0
         case 1:
             if(currentBattery<2){
-                detailString = "Battery low"
+                detailString = NSLocalizedString("battery_low", comment: "")
             }else{
-                detailString = "Battery enough"
+                detailString = NSLocalizedString("battery_enough", comment: "")
             }
         case 2:
             let loclString:String = (NSBundle.mainBundle().infoDictionary! as NSDictionary).objectForKey("CFBundleShortVersionString") as! String
             detailString = loclString
-        default: detailString = "Battery low"
+        default: detailString = NSLocalizedString("battery_low", comment: "")
         }
         return MyNevoView.getMyNevoViewTableViewCell(indexPath, tableView: tableView, title: titleArray[indexPath.row], detailText: detailString)
     }
