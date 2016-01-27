@@ -170,6 +170,8 @@
 		0072EACF1C190DCD001EE2C9 /* SFUIDisplay-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0072EAA51C190DCD001EE2C9 /* SFUIDisplay-Regular.ttf */; };
 		0072EADB1C190DCD001EE2C9 /* SFUIText-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0072EAB11C190DCD001EE2C9 /* SFUIText-Regular.ttf */; };
 		0072EAEB1C192210001EE2C9 /* spinner.png in Resources */ = {isa = PBXBuildFile; fileRef = 0072EAEA1C192210001EE2C9 /* spinner.png */; };
+		009DD2AA1C5857FD00B11541 /* SetSleepRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009DD2A91C5857FD00B11541 /* SetSleepRequest.swift */; };
+		009DD2AC1C585AC100B11541 /* ConfigSleepAlarm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009DD2AB1C585AC100B11541 /* ConfigSleepAlarm.swift */; };
 		00A773961A88562F0018E121 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 00A773911A88562F0018E121 /* Localizable.strings */; };
 		00C640F61A8DEE0800815CF8 /* clockView600.png in Resources */ = {isa = PBXBuildFile; fileRef = 00C640F51A8DEE0800815CF8 /* clockView600.png */; };
 		00D0FF731B130A9F00D084C3 /* Nevo660.png in Resources */ = {isa = PBXBuildFile; fileRef = 00D0FF721B130A9F00D084C3 /* Nevo660.png */; };
@@ -484,6 +486,8 @@
 		0072EAB11C190DCD001EE2C9 /* SFUIText-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFUIText-Regular.ttf"; sourceTree = "<group>"; };
 		0072EAEA1C192210001EE2C9 /* spinner.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spinner.png; sourceTree = "<group>"; };
 		0086858F1B40D53C0062F544 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
+		009DD2A91C5857FD00B11541 /* SetSleepRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetSleepRequest.swift; sourceTree = "<group>"; };
+		009DD2AB1C585AC100B11541 /* ConfigSleepAlarm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigSleepAlarm.swift; sourceTree = "<group>"; };
 		00A773921A88562F0018E121 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		00A773931A88562F0018E121 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		00A773941A88562F0018E121 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
@@ -1015,6 +1019,7 @@
 			isa = PBXGroup;
 			children = (
 				0050D5A71C28E0DB004F6F80 /* Sleep.swift */,
+				009DD2AB1C585AC100B11541 /* ConfigSleepAlarm.swift */,
 			);
 			path = Sleep;
 			sourceTree = "<group>";
@@ -1144,6 +1149,7 @@
 				0050D5DE1C28E0DB004F6F80 /* SetProfileRequest.swift */,
 				0050D5DF1C28E0DB004F6F80 /* SetRTCRequest.swift */,
 				0050D5E01C28E0DB004F6F80 /* WriteSettingRequest.swift */,
+				009DD2A91C5857FD00B11541 /* SetSleepRequest.swift */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -1921,6 +1927,7 @@
 				0050D5F71C28E0DB004F6F80 /* SelectFileView.swift in Sources */,
 				00DC9ECF1BB2853D00734DB6 /* PieChartDataSet.swift in Sources */,
 				00DC9EBD1BB2853D00734DB6 /* BarChartDataSet.swift in Sources */,
+				009DD2AC1C585AC100B11541 /* ConfigSleepAlarm.swift in Sources */,
 				0050D6561C28E0DB004F6F80 /* ClockView.swift in Sources */,
 				00ED43DD1C1EA11700915885 /* NSCalendarUnit+Timepiece.swift in Sources */,
 				00DC9EB51BB2853D00734DB6 /* ChartComponentBase.swift in Sources */,
@@ -1986,6 +1993,7 @@
 				9AD8F98F1A6E2EE000F01014 /* Profile.swift in Sources */,
 				0050D6551C28E0DB004F6F80 /* AppTheme.swift in Sources */,
 				0050D69D1C2A32A5004F6F80 /* UserSteps.swift in Sources */,
+				009DD2AA1C5857FD00B11541 /* SetSleepRequest.swift in Sources */,
 				00DC9ED91BB2853D00734DB6 /* BarChartHighlighter.swift in Sources */,
 				00DC9ED61BB2853D00734DB6 /* ChartDefaultXAxisValueFormatter.swift in Sources */,
 				0050D63E1C28E0DB004F6F80 /* AlarmModel.swift in Sources */,
