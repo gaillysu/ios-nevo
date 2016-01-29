@@ -6,6 +6,14 @@
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="SFCompactDisplay-Regular.ttf">
+            <string>SFCompactDisplay-Regular</string>
+            <string>SFCompactDisplay-Regular</string>
+            <string>SFCompactDisplay-Regular</string>
+            <string>SFCompactDisplay-Regular</string>
+        </mutableArray>
+    </customFonts>
     <scenes>
         <!--Main Tab Bar Controller-->
         <scene sceneID="cdp-L5-L47">
@@ -107,7 +115,7 @@
         <scene sceneID="pPu-RQ-bFV">
             <objects>
                 <tableViewController id="raW-BV-myH" customClass="AlarmClockController" customModule="Nevo" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="50" sectionHeaderHeight="18" sectionFooterHeight="18" id="E11-Lg-dGI" customClass="alarmClockView" customModule="Nevo" customModuleProvider="target">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="50" sectionHeaderHeight="15" sectionFooterHeight="1" id="E11-Lg-dGI" customClass="alarmClockView" customModule="Nevo" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -167,6 +175,77 @@
                                         <constraint firstItem="02F-Ae-9XP" firstAttribute="leading" secondItem="Hp0-RY-qB3" secondAttribute="trailing" constant="9" id="njd-cd-bwQ"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="sleepAlarmCell" id="6Qo-vZ-5Ag">
+                                <rect key="frame" x="0.0" y="164" width="320" height="50"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6Qo-vZ-5Ag" id="W1t-vJ-GjU">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Start:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fbS-it-YOH">
+                                            <rect key="frame" x="17" y="5" width="35" height="40"/>
+                                            <fontDescription key="fontDescription" name="SFCompactDisplay-Regular" family="SF Compact Display" pointSize="13"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <button opaque="NO" tag="1300" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XSK-Iy-WVL">
+                                            <rect key="frame" x="55" y="5" width="75" height="40"/>
+                                            <fontDescription key="fontDescription" name="SFCompactDisplay-Regular" family="SF Compact Display" pointSize="15"/>
+                                            <state key="normal" title="21:00 PM">
+                                                <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="SleepTomerAction:" destination="raW-BV-myH" eventType="touchUpInside" id="gY4-jY-gME"/>
+                                            </connections>
+                                        </button>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="End:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fty-N0-cIb">
+                                            <rect key="frame" x="135" y="5" width="35" height="40"/>
+                                            <fontDescription key="fontDescription" name="SFCompactDisplay-Regular" family="SF Compact Display" pointSize="13"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <button opaque="NO" tag="1500" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9zW-5S-Zf2">
+                                            <rect key="frame" x="173" y="5" width="75" height="40"/>
+                                            <fontDescription key="fontDescription" name="SFCompactDisplay-Regular" family="SF Compact Display" pointSize="15"/>
+                                            <state key="normal" title="7:30 AM">
+                                                <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="SleepTomerAction:" destination="raW-BV-myH" eventType="touchUpInside" id="4BE-GJ-TCE"/>
+                                            </connections>
+                                        </button>
+                                        <switch opaque="NO" tag="2700" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3DS-8F-BTZ">
+                                            <rect key="frame" x="255" y="8" width="51" height="31"/>
+                                            <color key="onTintColor" red="0.96078431369999995" green="0.64313725489999995" blue="0.10980392160000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <connections>
+                                                <action selector="controllManager:" destination="raW-BV-myH" eventType="valueChanged" id="axq-RU-olc"/>
+                                            </connections>
+                                        </switch>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="bottomMargin" secondItem="fbS-it-YOH" secondAttribute="bottom" constant="-4" id="415-jD-4bR"/>
+                                        <constraint firstItem="fty-N0-cIb" firstAttribute="width" secondItem="9zW-5S-Zf2" secondAttribute="width" constant="-40" id="BY5-0i-YcS"/>
+                                        <constraint firstItem="fbS-it-YOH" firstAttribute="top" secondItem="W1t-vJ-GjU" secondAttribute="topMargin" constant="-3" id="Dg0-cH-6hY"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="3DS-8F-BTZ" secondAttribute="trailing" constant="8" id="ItU-Nu-mvv"/>
+                                        <constraint firstItem="XSK-Iy-WVL" firstAttribute="top" secondItem="W1t-vJ-GjU" secondAttribute="topMargin" constant="-3" id="JFc-sX-gGA"/>
+                                        <constraint firstItem="9zW-5S-Zf2" firstAttribute="top" secondItem="W1t-vJ-GjU" secondAttribute="topMargin" constant="-3" id="OQh-Wy-XCk"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="XSK-Iy-WVL" secondAttribute="bottom" constant="-4" id="QOT-CO-lq1"/>
+                                        <constraint firstItem="fbS-it-YOH" firstAttribute="width" secondItem="XSK-Iy-WVL" secondAttribute="width" constant="-40" id="WCM-fz-KPq"/>
+                                        <constraint firstItem="9zW-5S-Zf2" firstAttribute="width" secondItem="3DS-8F-BTZ" secondAttribute="width" constant="26" id="aRC-Fz-SIi"/>
+                                        <constraint firstItem="9zW-5S-Zf2" firstAttribute="leading" secondItem="fty-N0-cIb" secondAttribute="trailing" constant="3" id="ddf-9E-d0n"/>
+                                        <constraint firstItem="fty-N0-cIb" firstAttribute="top" secondItem="W1t-vJ-GjU" secondAttribute="topMargin" constant="-3" id="hNZ-44-MFx"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="fty-N0-cIb" secondAttribute="bottom" constant="-4" id="ril-iS-nrf"/>
+                                        <constraint firstItem="fbS-it-YOH" firstAttribute="leading" secondItem="W1t-vJ-GjU" secondAttribute="leadingMargin" constant="9" id="sK6-xr-oFI"/>
+                                        <constraint firstItem="fty-N0-cIb" firstAttribute="leading" secondItem="XSK-Iy-WVL" secondAttribute="trailing" constant="5" id="sOZ-go-8La"/>
+                                        <constraint firstItem="XSK-Iy-WVL" firstAttribute="width" secondItem="fty-N0-cIb" secondAttribute="width" constant="40" id="xMq-on-pcz"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="9zW-5S-Zf2" secondAttribute="bottom" constant="-4" id="yXe-CL-yfz"/>
+                                        <constraint firstItem="XSK-Iy-WVL" firstAttribute="leading" secondItem="fbS-it-YOH" secondAttribute="trailing" constant="3" id="zoi-DK-haU"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <constraints>
+                                    <constraint firstItem="3DS-8F-BTZ" firstAttribute="centerY" secondItem="6Qo-vZ-5Ag" secondAttribute="centerY" constant="-1.5" id="OFV-gi-nbx"/>
+                                </constraints>
                             </tableViewCell>
                         </prototypes>
                         <connections>

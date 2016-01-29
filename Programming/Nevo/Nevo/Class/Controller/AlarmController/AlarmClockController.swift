@@ -8,15 +8,19 @@
 
 import UIKit
 
-class AlarmClockController: UITableViewController, SyncControllerDelegate,AddAlarmDelegate {
+class AlarmClockController: UITableViewController, SyncControllerDelegate,AddAlarmDelegate,DatePickerViewDelegate {
     @IBOutlet var alarmView: alarmClockView!
 
     private var slectedIndex:Int = -1 //To edit a record the number of rows selected content
     var alarmArray:[Alarm] = []
     var mAlarmArray:NSMutableArray = NSMutableArray()
+    var configSleepArray:NSMutableArray = NSMutableArray()
+    let SleepAlarmKey = "SLEEPALARMKEY";
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        initValue()
 
         alarmView.bulidAlarmView()
         
@@ -25,11 +29,23 @@ class AlarmClockController: UITableViewController, SyncControllerDelegate,AddAla
         self.navigationItem.leftBarButtonItem = self.editButtonItem()
 
         let rightAddButton:UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Add, target: self, action: Selector("controllManager:"))
-        //
         rightAddButton.tintColor = AppTheme.NEVO_SOLAR_YELLOW()
         self.navigationItem.rightBarButtonItem = rightAddButton
 
         self.tableView.allowsSelectionDuringEditing = true;
+
+    }
+
+    func initValue() {
+        let dataArray:NSArray = AppTheme.LoadKeyedArchiverName(SleepAlarmKey) as! NSArray
+        if(dataArray.count>0) {
+            let date:NSTimeInterval = (dataArray[1] as! String).dateFromFormat("YYYY/MM/dd")!.timeIntervalSince1970
+            if(date != NSDate.date(year: NSDate().year, month: NSDate().month, day: NSDate().day).timeIntervalSince1970){ return }
+            configSleepArray.addObjectsFromArray(dataArray[0] as! [AnyObject])
+            self.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: UITableViewRowAnimation.Automatic)
+        }else{
+            configSleepArray.addObjectsFromArray([[22,30],[7,30],[5],false])
+        }
 
         let array:NSArray = UserAlarm.getAll()
         for alarmModel in array{
@@ -40,7 +56,6 @@ class AlarmClockController: UITableViewController, SyncControllerDelegate,AddAla
             let alarm:Alarm = Alarm(index:mAlarmArray.count, hour: date.hour, minute: date.minute, enable: useralarm.status)
             alarmArray.append(alarm)
         }
-        // Do any additional setup after loading the view.
     }
 
     override func viewDidAppear(animated: Bool) {
@@ -68,29 +83,41 @@ class AlarmClockController: UITableViewController, SyncControllerDelegate,AddAla
 
         if(sender.isKindOfClass(UISwitch.classForCoder())){
             let mSwitch:UISwitch = sender as! UISwitch
-            let alarmA:UserAlarm = mAlarmArray[mSwitch.tag] as! UserAlarm
-            let addalarm:UserAlarm = UserAlarm(keyDict: ["id":alarmA.id,"timer":alarmA.timer,"label":"\(alarmA.label)","status":mSwitch.on,"repeatStatus":alarmA.repeatStatus])
-            if(addalarm.update()){
-                mAlarmArray.replaceObjectAtIndex(mSwitch.tag, withObject: addalarm)
-                self.tableView.reloadData()
+            if(mSwitch.tag == 2700) {
+                let startArray:NSArray = configSleepArray[0] as! NSArray
+                let endArray:NSArray = configSleepArray[1] as! NSArray
+                let weekArray:NSArray = configSleepArray[2] as! NSArray
+                let mEnable:Bool = mSwitch.on
+                configSleepArray.replaceObjectAtIndex(3, withObject: mEnable)
 
-                let date:NSDate = NSDate(timeIntervalSince1970: addalarm.timer)
-                let alarm:Alarm = Alarm(index:mAlarmArray.count, hour: date.hour, minute: date.minute, enable: mSwitch.on)
-                alarmArray.removeAtIndex(mSwitch.tag)
-                alarmArray.append(alarm)
+                let sleepAlarm:ConfigSleepAlarm = ConfigSleepAlarm(startHour: (startArray[0] as! NSNumber).integerValue, startMinute: (startArray[1] as! NSNumber).integerValue, endtHour: (endArray[0] as! NSNumber).integerValue, endMinute: (endArray[1] as! NSNumber).integerValue, enable: mSwitch.on, weekday: (weekArray[0] as! NSNumber).integerValue)
+                AppDelegate.getAppDelegate().setSleepStartAlarm(sleepAlarm)
 
-                if(AppDelegate.getAppDelegate().isConnected()) {
-                    AppDelegate.getAppDelegate().setAlarm(alarmArray)
-                    let banner = Banner(title: NSLocalizedString("syncing_Alarm", comment: ""), subtitle: nil, image: nil, backgroundColor: AppTheme.NEVO_SOLAR_YELLOW())
-                    banner.dismissesOnTap = true
-                    banner.show(duration: 2.0)
-                }else{
-                    let banner = Banner(title: NSLocalizedString("no_watch_connected", comment: ""), subtitle: nil, image: nil, backgroundColor: AppTheme.NEVO_SOLAR_YELLOW())
-                    banner.dismissesOnTap = true
-                    banner.show(duration: 2.0)
+                AppTheme.KeyedArchiverName(SleepAlarmKey, andObject: configSleepArray)
+            }else {
+                let alarmA:UserAlarm = mAlarmArray[mSwitch.tag] as! UserAlarm
+                let addalarm:UserAlarm = UserAlarm(keyDict: ["id":alarmA.id,"timer":alarmA.timer,"label":"\(alarmA.label)","status":mSwitch.on,"repeatStatus":alarmA.repeatStatus])
+                if(addalarm.update()){
+                    mAlarmArray.replaceObjectAtIndex(mSwitch.tag, withObject: addalarm)
+                    self.tableView.reloadData()
+
+                    let date:NSDate = NSDate(timeIntervalSince1970: addalarm.timer)
+                    let alarm:Alarm = Alarm(index:mAlarmArray.count, hour: date.hour, minute: date.minute, enable: mSwitch.on)
+                    alarmArray.removeAtIndex(mSwitch.tag)
+                    alarmArray.append(alarm)
+
+                    if(AppDelegate.getAppDelegate().isConnected()) {
+                        AppDelegate.getAppDelegate().setAlarm(alarmArray)
+                        let banner = Banner(title: NSLocalizedString("syncing_Alarm", comment: ""), subtitle: nil, image: nil, backgroundColor: AppTheme.NEVO_SOLAR_YELLOW())
+                        banner.dismissesOnTap = true
+                        banner.show(duration: 2.0)
+                    }else{
+                        let banner = Banner(title: NSLocalizedString("no_watch_connected", comment: ""), subtitle: nil, image: nil, backgroundColor: AppTheme.NEVO_SOLAR_YELLOW())
+                        banner.dismissesOnTap = true
+                        banner.show(duration: 2.0)
+                    }
                 }
             }
-
         }
 
     }
@@ -200,7 +227,43 @@ class AlarmClockController: UITableViewController, SyncControllerDelegate,AddAla
         AppDelegate.getAppDelegate().connect()
     }
 
+    @IBAction func SleepTomerAction(sender: AnyObject) {
+        let button:UIButton = sender as! UIButton
+        if(button.tag == 1300) {
+            let pickerView:DatePickerView = DatePickerView()
+            pickerView.delegate = self;
+            pickerView.index = 0
+            self.presentViewController(pickerView, animated: true, completion: nil)
+        }
+
+        if(button.tag == 1500) {
+            let pickerView:DatePickerView = DatePickerView()
+            pickerView.delegate = self;
+            pickerView.index = 1
+            self.presentViewController(pickerView, animated: true, completion: nil)
+        }
+    }
+
+    // MARK: - DatePickerViewDelegate
+    func getSelectDate(index:Int,date:NSArray){
+        AppTheme.DLog("timer start:\(date)")
+        configSleepArray.replaceObjectAtIndex(0, withObject: date)
+        let startArray:NSArray = date[0] as! NSArray
+        let endArray:NSArray = date[1] as! NSArray
+        let weekArray:NSArray = date[2] as! NSArray
+        let mEnable:Bool = date[3] as! Bool
+        let sleepAlarm:ConfigSleepAlarm = ConfigSleepAlarm(startHour: (startArray[0] as! NSNumber).integerValue, startMinute: (startArray[1] as! NSNumber).integerValue, endtHour: (endArray[0] as! NSNumber).integerValue, endMinute: (endArray[1] as! NSNumber).integerValue, enable: mEnable, weekday: (weekArray[0] as! NSNumber).integerValue)
+        AppDelegate.getAppDelegate().setSleepStartAlarm(sleepAlarm)
+
+        AppTheme.KeyedArchiverName(SleepAlarmKey, andObject: configSleepArray)
+
+    }
+
     // MARK: - UITableViewDelegate
+    override func numberOfSectionsInTableView(tableView: UITableView) -> Int{
+        return 2
+    }
+
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 50.0
     }
@@ -208,34 +271,73 @@ class AlarmClockController: UITableViewController, SyncControllerDelegate,AddAla
 
     // MARK: - UITableViewDataSource
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
-
-        return mAlarmArray.count
+        if(section == 0) {
+            return 1
+        }else{
+            return mAlarmArray.count
+        }
     }
 
+    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String {
+        let titleArray:[String] = ["Sleep Alarm","Alarm"]
+        return titleArray[section]
+    }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let endCell:UITableViewCell = tableView.dequeueReusableCellWithIdentifier("alarmCell", forIndexPath: indexPath)
-        let alarmModel:UserAlarm = mAlarmArray[indexPath.row] as! UserAlarm
-        let timerLabel = endCell.contentView.viewWithTag(1500)
-        if(timerLabel != nil){
-            let date:NSDate = NSDate(timeIntervalSince1970: alarmModel.timer)
-            (timerLabel as! UILabel).text = stringFromDate(date)
-        }
 
-        let nameLabel = endCell.contentView.viewWithTag(1600)
-        if(nameLabel != nil){
-            (nameLabel as! UILabel).text = alarmModel.label
-        }
+        if(indexPath.section == 0) {
+            let endCell:UITableViewCell = tableView.dequeueReusableCellWithIdentifier("sleepAlarmCell", forIndexPath: indexPath)
+            endCell.endEditing(false)
+            let startArray:NSArray = configSleepArray[0] as! NSArray
+            let endArray:NSArray = configSleepArray[1] as! NSArray
+            let weekArray:NSArray = configSleepArray[2] as! NSArray
+            let mEnable:Bool = configSleepArray[3] as! Bool
+            let sleepAlarm:ConfigSleepAlarm = ConfigSleepAlarm(startHour: (startArray[0] as! NSNumber).integerValue, startMinute: (startArray[1] as! NSNumber).integerValue, endtHour: (endArray[0] as! NSNumber).integerValue, endMinute: (endArray[1] as! NSNumber).integerValue, enable: mEnable, weekday: (weekArray[0] as! NSNumber).integerValue)
 
-        let mSwitch = endCell.contentView.viewWithTag(1700)
-        if(mSwitch != nil){
-            (mSwitch as! UISwitch).tag = indexPath.row
-            (mSwitch as! UISwitch).addTarget(self, action: Selector("controllManager:"), forControlEvents: UIControlEvents.ValueChanged)
-            (mSwitch as! UISwitch).on = alarmModel.status
-        }
+            let StartTimerLabel = endCell.contentView.viewWithTag(1300)
+            if(StartTimerLabel != nil){
+                let date:NSDate = NSDate.date(year: NSDate().year, month: NSDate().month, day: NSDate().day, hour: sleepAlarm.getStartHour(), minute: sleepAlarm.getStartMinute(), second: NSDate().second)
+                (StartTimerLabel as! UIButton).setTitle(stringFromDate(date), forState: UIControlState.Normal)
+            }
 
-        endCell.selectionStyle = UITableViewCellSelectionStyle.None
-        return endCell
+            let EndTimerLabel = endCell.contentView.viewWithTag(1500)
+            if(EndTimerLabel != nil){
+                let date:NSDate = NSDate.date(year: NSDate().year, month: NSDate().month, day: NSDate().day, hour: sleepAlarm.getEndHour(), minute: sleepAlarm.getEndMinute(), second: NSDate().second)
+                (EndTimerLabel as! UIButton).setTitle(stringFromDate(date), forState: UIControlState.Normal)
+            }
+
+            let mSwitch = endCell.contentView.viewWithTag(2700)
+            if(mSwitch != nil){
+                (mSwitch as! UISwitch).addTarget(self, action: Selector("controllManager:"), forControlEvents: UIControlEvents.ValueChanged)
+                (mSwitch as! UISwitch).on = sleepAlarm.getEnable()
+            }
+
+            endCell.selectionStyle = UITableViewCellSelectionStyle.None
+            return endCell
+        }else{
+            let endCell:UITableViewCell = tableView.dequeueReusableCellWithIdentifier("alarmCell", forIndexPath: indexPath)
+            let alarmModel:UserAlarm = mAlarmArray[indexPath.row] as! UserAlarm
+            let timerLabel = endCell.contentView.viewWithTag(1500)
+            if(timerLabel != nil){
+                let date:NSDate = NSDate(timeIntervalSince1970: alarmModel.timer)
+                (timerLabel as! UILabel).text = stringFromDate(date)
+            }
+
+            let nameLabel = endCell.contentView.viewWithTag(1600)
+            if(nameLabel != nil){
+                (nameLabel as! UILabel).text = alarmModel.label
+            }
+
+            let mSwitch = endCell.contentView.viewWithTag(1700)
+            if(mSwitch != nil){
+                (mSwitch as! UISwitch).tag = indexPath.row
+                (mSwitch as! UISwitch).addTarget(self, action: Selector("controllManager:"), forControlEvents: UIControlEvents.ValueChanged)
+                (mSwitch as! UISwitch).on = alarmModel.status
+            }
+
+            endCell.selectionStyle = UITableViewCellSelectionStyle.None
+            return endCell
+        }
     }
 
 
@@ -247,6 +349,10 @@ class AlarmClockController: UITableViewController, SyncControllerDelegate,AddAla
 
     // Override to support editing the table view.
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        if(indexPath.section == 0) {
+            return
+        }
+
         if editingStyle == .Delete {
             // Delete the row from the data source
             if((mAlarmArray[indexPath.row] as! UserAlarm).remove()){

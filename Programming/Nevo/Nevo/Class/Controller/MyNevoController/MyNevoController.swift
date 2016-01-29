@@ -145,10 +145,10 @@ class MyNevoController: UITableViewController,SyncControllerDelegate,UIAlertView
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         if(indexPath.row == 0){
             if(AppDelegate.getAppDelegate().getSoftwareVersion().integerValue > buildinSoftwareVersion && AppDelegate.getAppDelegate().getFirmwareVersion().integerValue > buildinFirmwareVersion){return}
-            //let otaCont:NevoOtaViewController = NevoOtaViewController()
-            //let navigation:UINavigationController = UINavigationController(rootViewController: otaCont)
-            //self.presentViewController(navigation, animated: true, completion: nil)
-
+            if(buildinSoftwareVersion==0&&buildinFirmwareVersion==0){return}
+            let otaCont:NevoOtaViewController = NevoOtaViewController()
+            let navigation:UINavigationController = UINavigationController(rootViewController: otaCont)
+            self.presentViewController(navigation, animated: true, completion: nil)
         }
 
         if(indexPath.row == 2){
