@@ -87,7 +87,7 @@ class UserAlarm: NSObject,BaseEntryDatabaseHelper {
             let date1:NSDate = NSDate.date(year: currentDate.year, month: currentDate.minute, day: currentDate.day, hour: 8, minute: 0, second: 0)
             let date2:NSDate = NSDate.date(year: currentDate.year, month: currentDate.minute, day: currentDate.day, hour: 9, minute: 0, second: 0)
             let dateArray:[NSTimeInterval] = [date1.timeIntervalSince1970,date2.timeIntervalSince1970]
-            let nameArray:[String] = ["Weekly days","Weekend"]
+            let nameArray:[String] = ["Alarm 1","Alarm 2"]
             for (var index:Int = 0; index < dateArray.count ; index++) {
                 let alarm:UserAlarm = UserAlarm(keyDict: ["id":index,"timer":dateArray[index],"label":nameArray[index],"status":false,"repeatStatus":true])
                 alarm.add({ (id, completion) -> Void in

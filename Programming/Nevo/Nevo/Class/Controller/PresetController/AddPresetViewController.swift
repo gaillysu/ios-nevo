@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 class AddPresetViewController: UIViewController,ButtonManagerCallBack {
 
     @IBOutlet weak var addPresetView: AddPresetView!
@@ -40,8 +41,9 @@ class AddPresetViewController: UIViewController,ButtonManagerCallBack {
             addDelegate?.onAddPresetNumber(Int(addPresetView.presetNumber.text!)!, name: addPresetView.presetName.text!)
             self.navigationController?.popViewControllerAnimated(true)
         }else{
-            let aler:UIAlertView = UIAlertView(title: "", message: NSLocalizedString("Preset Number can't be empty, or you set less than four digits", comment: ""), delegate: nil, cancelButtonTitle: NSLocalizedString("Cancel", comment: ""))
-            aler.show()
+            
+            let alert:UIAlertView = UIAlertView(title: "", message: NSLocalizedString("Goal must be bigger than 1000.", comment: ""), delegate: nil, cancelButtonTitle: NSLocalizedString("ok", comment: ""))
+            alert.show()
         }
     }
 

@@ -145,11 +145,12 @@
 "ORANGE"="Orange";
 "GREEN"="Green";
 "no_data"="No Data";
-"nevo_is_not_connected"="nevo is not connected.";
+"nevo_is_not_connected"="Nevo is not connected.";
 "did_sleep_with_your_nevo"="You didn't sleep with your nevo.";
 "search_for_nevo"="Searching for nevo";
 "bluetooth_turned_off_enable"="Bluetooth turned off. Enable Bluetooth to sync";
 "syncing_Alarm"="Syncing alarm";
+// THIS STRING IS NOT ACCORDING TO DESCRIPTION.
 "no_watch_connected"="Will sync when nevo is connected";
 "syncing_goal"="Syncing goal";
 "sync_notifications"="Syncing notifications";

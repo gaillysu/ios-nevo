@@ -44,7 +44,7 @@ class SetingView: UIView {
         }
         if(title == NSLocalizedString("find_my_watch", comment: "") || title == NSLocalizedString("forget_watch", comment: "")) {
             let activity:UIActivityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
-            activity.center = CGPointMake(UIScreen.mainScreen().bounds.size.width-activity.frame.size.width, endCell!.contentView.frame.size.height/2.0)
+            activity.center = CGPointMake(UIScreen.mainScreen().bounds.size.width-activity.frame.size.width, 50/2.0)
             endCell?.contentView.addSubview(activity)
         }else{
             endCell?.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
@@ -115,7 +115,6 @@ class SetingView: UIView {
         let endCellID:String = "SwicthCell"
         var endCell:UITableViewCell?
         endCell = tableListView.dequeueReusableCellWithIdentifier(endCellID)
-        
         if (endCell == nil) {
             endCell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: endCellID)
             mSendLocalNotificationSwitchButton = UISwitch(frame: CGRectMake(0, 0, 50, 40))
@@ -130,15 +129,12 @@ class SetingView: UIView {
             //endCell?.selectionStyle = UITableViewCellSelectionStyle.None;
             endCell?.textLabel?.text = NSLocalizedString("Link-Loss Notifications", comment: "")
         }
-
         return endCell!
-        
     }
     
     func SendLocalNotificationSwitchAction(swicth:UISwitch) {
         mDelegate?.controllManager(swicth)
     }
-    
 
     /*
     // Only override drawRect: if you perform custom drawing.
@@ -147,5 +143,4 @@ class SetingView: UIView {
         // Drawing code
     }
     */
-
 }

@@ -101,11 +101,10 @@ class AddAlarmController: UITableViewController,ButtonManagerCallBack,UIAlertVie
         case 1:
             if(indexPath.row == 1){
                 if((UIDevice.currentDevice().systemVersion as NSString).floatValue >= 8.0){
-
+                    
                     let actionSheet:UIAlertController = UIAlertController(title: NSLocalizedString("add_alarm_label", comment: ""), message: nil, preferredStyle: UIAlertControllerStyle.Alert)
                     actionSheet.view.tintColor = AppTheme.NEVO_SOLAR_YELLOW()
                     actionSheet.addTextFieldWithConfigurationHandler({ (labelText:UITextField) -> Void in
-
                     })
 
                     let alertAction:UIAlertAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: UIAlertActionStyle.Cancel, handler: { (action:UIAlertAction) -> Void in
@@ -130,11 +129,9 @@ class AddAlarmController: UITableViewController,ButtonManagerCallBack,UIAlertVie
                         }
                     })
                     actionSheet.addAction(alertAction1)
-
                     self.presentViewController(actionSheet, animated: true, completion: nil)
                 }else{
                     selectedIndexPath = indexPath;
-
                     let actionSheet:UIAlertView = UIAlertView(title: NSLocalizedString("add_alarm_label", comment: ""), message: "", delegate: self, cancelButtonTitle: NSLocalizedString("Cancel", comment: ""), otherButtonTitles: NSLocalizedString("Add", comment: ""))
                     actionSheet.alertViewStyle = UIAlertViewStyle.PlainTextInput
                     actionSheet.show()

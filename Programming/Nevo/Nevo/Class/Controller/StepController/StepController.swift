@@ -156,7 +156,6 @@ class StepController: PublicClassController,toolbarSegmentedDelegate,UIActionShe
             let banner = Banner(title: NSLocalizedString("syncing_goal", comment: ""), subtitle: nil, image: nil, backgroundColor: AppTheme.NEVO_SOLAR_YELLOW())
             banner.dismissesOnTap = true
             banner.show(duration: 2.0)
-
             AppDelegate.getAppDelegate().setGoal(goal)
         }else{
             let banner = Banner(title: NSLocalizedString("no_watch_connected", comment: ""), subtitle: nil, image: nil, backgroundColor: AppTheme.NEVO_SOLAR_YELLOW())

@@ -34,7 +34,6 @@ class MyNevoController: UITableViewController,SyncControllerDelegate,UIAlertView
         titleArray = [NSLocalizedString("watch_version", comment: ""),NSLocalizedString("battery", comment: ""),NSLocalizedString("app_version", comment: "")]
     }
 
-    
     override func viewDidAppear(animated: Bool) {
         if !AppDelegate.getAppDelegate().isConnected() {
             AppDelegate.getAppDelegate().startConnect(false, delegate: self)
@@ -64,7 +63,7 @@ class MyNevoController: UITableViewController,SyncControllerDelegate,UIAlertView
         AppTheme.DLog("Red RSSI Value:\(number)")
         if(number.integerValue < -85){
             if(rssialert==nil){
-                rssialert = UIAlertView(title: NSLocalizedString("Unstable connection ensure", comment: ""), message:NSLocalizedString("Unstable connection ensure phone is on and in range", comment: "") , delegate: nil, cancelButtonTitle: nil)
+                rssialert = UIAlertView(title: NSLocalizedString("Unstable connection ensure", comment: ""), message:NSLocalizedString("Unstable connection ensure nevo is on and in range", comment: "") , delegate: nil, cancelButtonTitle: nil)
                 rssialert?.show()
             }
         }else{
@@ -102,32 +101,6 @@ class MyNevoController: UITableViewController,SyncControllerDelegate,UIAlertView
         AppDelegate.getAppDelegate().connect()
     }
 
-    // MARK: - checkUpdateVersion
-    /**
-     Check the update
-     */
-    func  checkUpdateVersion() {
-        AppTheme.getAppStoreVersion({ (stringVersion, version) -> Void in
-            MBProgressHUD.hideHUD()
-            let loclString:String = (NSBundle.mainBundle().infoDictionary! as NSDictionary).objectForKey("CFBundleShortVersionString") as! String
-            let versionString:NSString = loclString.stringByReplacingOccurrencesOfString(".", withString: "")
-            let versionNumber:Double = Double(versionString.floatValue)
-            if(version>versionNumber){
-                let alertView:UIAlertController = UIAlertController(title: NSLocalizedString("Found the new version",comment: ""), message: String(format: "Found New version:(%@)", stringVersion!), preferredStyle: UIAlertControllerStyle.Alert)
-                let alertAction:UIAlertAction = UIAlertAction(title: NSLocalizedString("ok", comment: ""), style: UIAlertActionStyle.Default) { (action:UIAlertAction) -> Void in
-                    AppTheme.toOpenUpdateURL()
-                }
-                alertView.addAction(alertAction)
-
-                let alertAction2:UIAlertAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: UIAlertActionStyle.Cancel, handler: nil)
-                alertView.addAction(alertAction2)
-                self.presentViewController(alertView, animated: true, completion: nil)
-            }else{
-                MBProgressHUD.showSuccess(NSLocalizedString("nevolatestversion",comment: ""))
-            }
-        })
-    }
-
     // MARK: - UITableViewDelegate
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 45.0
@@ -151,9 +124,6 @@ class MyNevoController: UITableViewController,SyncControllerDelegate,UIAlertView
             self.presentViewController(navigation, animated: true, completion: nil)
         }
 
-        if(indexPath.row == 2){
-            checkUpdateVersion()
-        }
     }
 
     override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView{
@@ -181,6 +151,7 @@ class MyNevoController: UITableViewController,SyncControllerDelegate,UIAlertView
            detailString = "MCU:\(AppDelegate.getAppDelegate().getSoftwareVersion()) BLE:\(AppDelegate.getAppDelegate().getFirmwareVersion())"
            //buildinSoftwareVersion:Int = 0 buildinFirmwareVersion:Int = 0
         case 1:
+            // MARK: - what the fuck is this kind of expression?
             if(currentBattery<2){
                 detailString = NSLocalizedString("battery_low", comment: "")
             }else{

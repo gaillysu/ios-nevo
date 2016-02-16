@@ -15,7 +15,7 @@ class PresetView: UITableView {
 
     func bulidPresetView(navigation:UINavigationItem,delegateB:ButtonManagerCallBack){
         mDelegate = delegateB
-        navigation.title = NSLocalizedString("Preset", comment: "")
+        navigation.title = NSLocalizedString("Goal", comment: "")
         leftButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Add, target: self, action: Selector("controllManager:"))
         navigation.rightBarButtonItem = leftButton
     }

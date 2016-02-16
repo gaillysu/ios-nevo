@@ -95,10 +95,16 @@ class SetingViewController: UIViewController,SyncControllerDelegate,ButtonManage
             }
 
             if(isEqualString("\(sources.objectAtIndex(indexPath.row))",string2: NSLocalizedString("My nevo", comment: ""))){
-                AppTheme.DLog("My nevo")
-                let mynevo:MyNevoController = MyNevoController()
-                mynevo.hidesBottomBarWhenPushed = true
-                self.navigationController?.pushViewController(mynevo, animated: true)
+                if(AppDelegate.getAppDelegate().isConnected()){
+                    AppTheme.DLog("My nevo")
+                    let mynevo:MyNevoController = MyNevoController()
+                    mynevo.hidesBottomBarWhenPushed = true
+                    self.navigationController?.pushViewController(mynevo, animated: true)
+                }else{
+                    let banner = Banner(title: NSLocalizedString("nevo_is_not_connected", comment: ""), subtitle: nil, image: nil, backgroundColor: AppTheme.NEVO_SOLAR_YELLOW())
+                    banner.dismissesOnTap = true
+                    banner.show(duration: 2.0)
+                }
             }
 
             if(isEqualString("\(sources[indexPath.row])",string2: NSLocalizedString("Support", comment: ""))){
