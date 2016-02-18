@@ -152,10 +152,14 @@ class MyNevoController: UITableViewController,SyncControllerDelegate,UIAlertView
            //buildinSoftwareVersion:Int = 0 buildinFirmwareVersion:Int = 0
         case 1:
             // MARK: - what the fuck is this kind of expression?
-            if(currentBattery<2){
-                detailString = NSLocalizedString("battery_low", comment: "")
-            }else{
+            print(String(format: "Battery level %02d", currentBattery))
+                        print(String(format: "Battery level %02d", currentBattery))
+            if(currentBattery==2){
                 detailString = NSLocalizedString("battery_enough", comment: "")
+            } else if(currentBattery == 1){
+                detailString = "Battery sufficient"
+            }else if (currentBattery == 0){
+                detailString = NSLocalizedString("battery_low", comment: "")
             }
         case 2:
             let loclString:String = (NSBundle.mainBundle().infoDictionary! as NSDictionary).objectForKey("CFBundleShortVersionString") as! String
