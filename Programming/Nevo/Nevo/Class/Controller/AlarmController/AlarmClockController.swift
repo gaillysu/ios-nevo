@@ -40,7 +40,7 @@ class AlarmClockController: UITableViewController, SyncControllerDelegate,AddAla
         let dataArray:NSArray = AppTheme.LoadKeyedArchiverName(SleepAlarmKey) as! NSArray
         if(dataArray.count>0) {
             let date:NSTimeInterval = (dataArray[1] as! String).dateFromFormat("YYYY/MM/dd")!.timeIntervalSince1970
-            if(date != NSDate.date(year: NSDate().year, month: NSDate().month, day: NSDate().day).timeIntervalSince1970){ return }
+            //if(date != NSDate.date(year: NSDate().year, month: NSDate().month, day: NSDate().day).timeIntervalSince1970){ return }
             configSleepArray.addObjectsFromArray(dataArray[0] as! [AnyObject])
             self.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: UITableViewRowAnimation.Automatic)
         }else{
@@ -247,7 +247,10 @@ class AlarmClockController: UITableViewController, SyncControllerDelegate,AddAla
     // MARK: - DatePickerViewDelegate
     func getSelectDate(index:Int,date:NSArray){
         AppTheme.DLog("timer start:\(date)")
-        configSleepArray.replaceObjectAtIndex(0, withObject: date)
+        configSleepArray.removeAllObjects()
+        configSleepArray.addObjectsFromArray(date as [AnyObject])
+        self.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: UITableViewRowAnimation.Automatic)
+
         let startArray:NSArray = date[0] as! NSArray
         let endArray:NSArray = date[1] as! NSArray
         let weekArray:NSArray = date[2] as! NSArray
