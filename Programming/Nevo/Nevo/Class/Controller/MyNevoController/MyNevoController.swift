@@ -32,10 +32,10 @@ class MyNevoController: UITableViewController,SyncControllerDelegate,UIAlertView
         buildinFirmwareVersion = AppTheme.GET_FIRMWARE_VERSION()
 
         titleArray = [NSLocalizedString("watch_version", comment: ""),NSLocalizedString("battery", comment: ""),NSLocalizedString("app_version", comment: "")]
-        AppDelegate.getAppDelegate().startConnect(false, delegate: self)
     }
 
     override func viewDidAppear(animated: Bool) {
+        AppDelegate.getAppDelegate().startConnect(false, delegate: self)
         if AppDelegate.getAppDelegate().isConnected() {
             AppDelegate.getAppDelegate().ReadBatteryLevel()
         }

@@ -99,11 +99,27 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
             }
 
             if(currentSoftwareVersion.integerValue < buildinSoftwareVersion || currentFirmwareVersion.integerValue < buildinFirmwareVersion ) {
-                let updatemsg:String = NSLocalizedString("current FW version", comment: "") + "(\(currentFirmwareVersion),\(currentSoftwareVersion))," + NSLocalizedString("latest FW version", comment: "") + "(\(buildinFirmwareVersion),\(buildinSoftwareVersion)). " + NSLocalizedString("are you sure", comment: "")
+                let updateTitle:String = NSLocalizedString("do_not_exit_this_screen", comment: "")
+                let updatemsg:String = NSLocalizedString("please_follow_the_update_has_been_finished", comment: "")
+                if((UIDevice.currentDevice().systemVersion as NSString).floatValue>8.0){
+                    let alert :UIAlertController = UIAlertController(title: updateTitle, message: updatemsg, preferredStyle: UIAlertControllerStyle.Alert)
+                    let alertAction:UIAlertAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: UIAlertActionStyle.Cancel) { (action:UIAlertAction) -> Void in
+                        self.dismissViewControllerAnimated(true, completion: nil)
+                    }
+                    alert.addAction(alertAction)
 
-                let alert :UIAlertView = UIAlertView(title: NSLocalizedString("Firmware Upgrade", comment: ""), message: updatemsg, delegate: self, cancelButtonTitle: NSLocalizedString("Cancel", comment: ""))
-                alert.addButtonWithTitle(NSLocalizedString("Enter", comment: ""))
-                alert.show()
+                    let alertAction2:UIAlertAction = UIAlertAction(title: NSLocalizedString("Enter", comment: ""), style: UIAlertActionStyle.Default) { (action:UIAlertAction) -> Void in
+                        self.currentIndex = 0
+                        self.uploadPressed()
+                    }
+                    alert.addAction(alertAction2)
+                    self.presentViewController(alert, animated: true, completion: nil)
+
+                }else{
+                    let alert :UIAlertView = UIAlertView(title: updateTitle, message: updatemsg, delegate: self, cancelButtonTitle: NSLocalizedString("Cancel", comment: ""))
+                    alert.addButtonWithTitle(NSLocalizedString("Enter", comment: ""))
+                    alert.show()
+                }
             }else {
 
                 #if DEBUG
@@ -132,6 +148,10 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
         if(buttonIndex==1) {
             currentIndex = 0
             uploadPressed()
+        }
+
+        if(buttonIndex==0) {
+            self.dismissViewControllerAnimated(true, completion: nil)
         }
     }
 
@@ -214,17 +234,11 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
         currentIndex = currentIndex + 1
         if currentIndex == firmwareURLs.count {
             initValue()
-            var message = NSLocalizedString("UpdateSuccess1", comment: "")
-            let alert :UIAlertView = UIAlertView(title: NSLocalizedString("Firmware Upgrade", comment: ""), message: message, delegate: nil, cancelButtonTitle: NSLocalizedString("Ok", comment: ""))
-            alert.show()
             self.nevoOtaView.upgradeSuccessful()
             self.mNevoOtaController!.reset(false)
             nevoOtaView.updatingView.hidden = true
             nevoOtaView.backView.hidden = false
-            let dispatchTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, Int64(2.0 * Double(NSEC_PER_SEC)))
-            dispatch_after(dispatchTime, dispatch_get_main_queue(), {
-                //self.dismissViewControllerAnimated(true, completion: nil)
-            })
+
         }else{
             mNevoOtaController!.setStatus(DFUControllerState.SEND_RESET)
 
@@ -235,18 +249,37 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
                 let alertTip :UIAlertView = UIAlertView(title: NSLocalizedString("Firmware Upgrade", comment: ""), message: NSLocalizedString("update_ble_success_message", comment: ""), delegate: nil, cancelButtonTitle: NSLocalizedString("Ok", comment: ""))
                 alertTip.show()
 
-                continueButton.setTitle("Continue", forState: UIControlState.Normal)
+                nevoOtaView.nevoWacthImage.image = UIImage(named: "4_clock_dial")
+                self.nevoOtaView.updatingView.hidden = true
+                nevoOtaView.OTAprogressViewHiddenOrNotHidden()
+
+                let titleLabel:UILabel = UILabel(frame: CGRectMake(0,  nevoOtaView.nevoWacthImage.frame.origin.y + nevoOtaView.nevoWacthImage.frame.size.height+10, UIScreen.mainScreen().bounds.size.width, 35))
+                //titleLabel.center = CGPointMake(UIScreen.mainScreen().bounds.size.width/2.0, UIScreen.mainScreen().bounds.size.height-100)
+                titleLabel.font = AppTheme.FONT_SFCOMPACTDISPLAY_BOLD(mSize: 19)
+                titleLabel.text = NSLocalizedString("press_the_third_button", comment: "")
+                titleLabel.textAlignment = NSTextAlignment.Center
+                titleLabel.tag = 1360
+                self.view.addSubview(titleLabel)
+
+                let titleLabel2:UILabel = UILabel(frame: CGRectMake(0, 0, UIScreen.mainScreen().bounds.size.width, 50))
+                titleLabel2.center = CGPointMake(UIScreen.mainScreen().bounds.size.width/2.0, (titleLabel.frame.origin.y+titleLabel.frame.size.height)+25)
+                titleLabel2.font = AppTheme.FONT_SFCOMPACTDISPLAY_LIGHT(mSize: 16)
+                titleLabel2.text = NSLocalizedString("in_order_reactivate_bluetooth", comment: "")
+                titleLabel2.numberOfLines = 0
+                titleLabel2.textAlignment = NSTextAlignment.Center
+                titleLabel2.tag = 1361
+                self.view.addSubview(titleLabel2)
+
+                continueButton.setTitle(NSLocalizedString("Continue", comment: ""), forState: UIControlState.Normal)
                 continueButton.setTitleColor(AppTheme.NEVO_SOLAR_YELLOW(), forState: UIControlState.Normal)
                 continueButton.frame = CGRectMake(0, 0, 135, 35)
-                continueButton.center = CGPointMake(UIScreen.mainScreen().bounds.size.width/2.0, UIScreen.mainScreen().bounds.size.height-85)
+                continueButton.center = CGPointMake(UIScreen.mainScreen().bounds.size.width/2.0, (titleLabel2.frame.origin.y+titleLabel2.frame.size.height)+17)
                 continueButton.addTarget(self, action: Selector("controllManager:"), forControlEvents: UIControlEvents.TouchUpInside)
                 continueButton.layer.masksToBounds = true
                 continueButton.layer.cornerRadius = 8.0
                 continueButton.layer.borderWidth = 1.0
                 continueButton.layer.borderColor = AppTheme.NEVO_SOLAR_YELLOW().CGColor
-
                 self.view.addSubview(continueButton)
-                self.nevoOtaView.updatingView.hidden = true
             }
             let dispatchTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, Int64(3.0 * Double(NSEC_PER_SEC)))
             dispatch_after(dispatchTime, dispatch_get_main_queue(), {
@@ -307,8 +340,17 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
             NSUserDefaults.standardUserDefaults().removeObjectForKey(SAVED_ADDRESS_KEY)
             self.mNevoOtaController!.reset(false)
             uploadPressed()
+
+            for(var index:Int = 0; index<2; index++) {
+                let view  = self.view.viewWithTag(1360+index)
+                if(view != nil) {
+                    view?.hidden = true
+                }
+            }
             continueButton.hidden = true
             self.nevoOtaView.updatingView.hidden = false
+            nevoOtaView.nevoWacthImage.image = UIImage(named: "upgrade_clock.png")
+            nevoOtaView.OTAprogressViewHiddenOrNotHidden()
         }
 
         if(nevoOtaView.backButton.isEqual(sender)) {
