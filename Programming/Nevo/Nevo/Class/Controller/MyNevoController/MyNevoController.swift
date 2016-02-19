@@ -32,12 +32,11 @@ class MyNevoController: UITableViewController,SyncControllerDelegate,UIAlertView
         buildinFirmwareVersion = AppTheme.GET_FIRMWARE_VERSION()
 
         titleArray = [NSLocalizedString("watch_version", comment: ""),NSLocalizedString("battery", comment: ""),NSLocalizedString("app_version", comment: "")]
+        AppDelegate.getAppDelegate().startConnect(false, delegate: self)
     }
 
     override func viewDidAppear(animated: Bool) {
-        if !AppDelegate.getAppDelegate().isConnected() {
-            AppDelegate.getAppDelegate().startConnect(false, delegate: self)
-        }else{
+        if AppDelegate.getAppDelegate().isConnected() {
             AppDelegate.getAppDelegate().ReadBatteryLevel()
         }
         let indexPath:NSIndexPath = NSIndexPath(forRow: 0, inSection: 0)
@@ -151,16 +150,19 @@ class MyNevoController: UITableViewController,SyncControllerDelegate,UIAlertView
            detailString = "MCU:\(AppDelegate.getAppDelegate().getSoftwareVersion()) BLE:\(AppDelegate.getAppDelegate().getFirmwareVersion())"
            //buildinSoftwareVersion:Int = 0 buildinFirmwareVersion:Int = 0
         case 1:
-            // MARK: - what the fuck is this kind of expression?
-            if(currentBattery<2){
+            switch (currentBattery){
+            case 0:
                 detailString = NSLocalizedString("battery_low", comment: "")
-            }else{
-                detailString = NSLocalizedString("battery_enough", comment: "")
+            case 1:
+                detailString = NSLocalizedString("battery_sufficient", comment: "")
+            case 2:
+                detailString = NSLocalizedString("battery_full", comment: "")
+            default: detailString = NSLocalizedString("", comment: "")
             }
         case 2:
             let loclString:String = (NSBundle.mainBundle().infoDictionary! as NSDictionary).objectForKey("CFBundleShortVersionString") as! String
             detailString = loclString
-        default: detailString = NSLocalizedString("battery_low", comment: "")
+        default: detailString = NSLocalizedString("", comment: "")
         }
         return MyNevoView.getMyNevoViewTableViewCell(indexPath, tableView: tableView, title: titleArray[indexPath.row], detailText: detailString)
     }
