@@ -6,6 +6,8 @@
   Copyright (c) 2015年 Nevo. All rights reserved.
 */
 "Cancel"="取消";
+"Enter"="确定";
+"Notifications"="通知";
 "My nevo"="My nevo";
 "UpdateSuccess1"="升級成功";
 "UpdateSuccess2"="升級成功,請打開手錶藍牙.";
@@ -86,3 +88,5 @@
 "forget_your_nevo"="Do you want to forget your nevo?";
 "Link-Loss Notifications"="連接斷開通知";
 "nevo_alarms_supports"="nevo supports only 3 alarms for now.";
+"press_the_third_button"="Press the third-button";
+"in_order_reactivate_bluetooth"="In order to reactivate the bluetooth. Don’t exit this screen!";
