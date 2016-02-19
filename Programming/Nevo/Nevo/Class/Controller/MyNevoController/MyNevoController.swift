@@ -116,7 +116,12 @@ class MyNevoController: UITableViewController,SyncControllerDelegate,UIAlertView
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         if(indexPath.row == 0){
-            if(AppDelegate.getAppDelegate().getSoftwareVersion().integerValue > buildinSoftwareVersion && AppDelegate.getAppDelegate().getFirmwareVersion().integerValue > buildinFirmwareVersion){return}
+            if(AppDelegate.getAppDelegate().getSoftwareVersion().integerValue >= buildinSoftwareVersion && AppDelegate.getAppDelegate().getFirmwareVersion().integerValue >= buildinFirmwareVersion){
+                let banner = Banner(title: NSLocalizedString("is_watch_version", comment: ""), subtitle: nil, image: nil, backgroundColor: AppTheme.NEVO_SOLAR_YELLOW())
+                banner.dismissesOnTap = true
+                banner.show(duration: 3.0)
+                return
+            }
             if(buildinSoftwareVersion==0&&buildinFirmwareVersion==0){return}
             let otaCont:NevoOtaViewController = NevoOtaViewController()
             let navigation:UINavigationController = UINavigationController(rootViewController: otaCont)
