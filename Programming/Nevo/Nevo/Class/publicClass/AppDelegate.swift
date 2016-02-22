@@ -359,10 +359,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                 for(var index:Int = 0; index < array.count; index++){
                     let useralarm:UserAlarm = array[index] as! UserAlarm
                     let date:NSDate = NSDate(timeIntervalSince1970: useralarm.timer)
-                    let alarm:Alarm = Alarm(index:index, hour: date.hour, minute: date.minute, enable: useralarm.status)
-                    alarmArray.append(alarm)
+                    if(useralarm.status) {
+                        let alarm:Alarm = Alarm(index:index, hour: date.hour, minute: date.minute, enable: useralarm.status)
+                        alarmArray.append(alarm)
+                    }
                 }
 
+                for(var index:Int = 0; index<3;index++) {
+                    let date:NSDate = NSDate()
+                    let alarm:Alarm = Alarm(index:index, hour: date.hour, minute: date.minute, enable: false)
+                    alarmArray.append(alarm)
+                }
                 setAlarm(alarmArray)
             }
 
