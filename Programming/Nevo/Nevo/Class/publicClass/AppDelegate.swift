@@ -268,6 +268,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
         self.mConnectionController?.connect()
     }
 
+    func disconnect() {
+        self.mConnectionController?.disconnect()
+    }
+
     func forgetSavedAddress() {
         self.mConnectionController?.forgetSavedAddress()
     }

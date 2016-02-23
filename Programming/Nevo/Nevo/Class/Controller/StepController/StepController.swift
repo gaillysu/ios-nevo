@@ -37,16 +37,7 @@ class StepController: PublicClassController,toolbarSegmentedDelegate,UIActionShe
         if(!AppDelegate.getAppDelegate().isConnected() && AppDelegate.getAppDelegate().getMconnectionController().isBluetoothEnabled()){
             let banner = Banner(title: NSLocalizedString("nevo_is_not_connected", comment: ""), subtitle: nil, image: nil, backgroundColor:UIColor.redColor())
             banner.dismissesOnTap = true
-            banner.show(duration: 3.0)
-        }
-    }
-
-    override func viewWillAppear(animated: Bool) {
-        if(!AppDelegate.getAppDelegate().hasSavedAddress()) {
-            let tutrorial:TutorialOneViewController = TutorialOneViewController()
-            let nav:UINavigationController = UINavigationController(rootViewController: tutrorial)
-            nav.navigationBarHidden = true
-            self.presentViewController(nav, animated: true, completion: nil)
+            banner.show(duration: 1.5)
         }
     }
 

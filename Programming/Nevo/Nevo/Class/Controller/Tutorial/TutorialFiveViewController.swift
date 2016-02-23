@@ -25,6 +25,7 @@ class TutorialFiveViewController: UIViewController,SyncControllerDelegate {
     }
 
     override func viewDidLoad() {
+        AppDelegate.getAppDelegate().connect()
 
     }
 
