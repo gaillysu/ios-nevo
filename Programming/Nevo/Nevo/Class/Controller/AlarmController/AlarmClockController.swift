@@ -452,7 +452,7 @@ class AlarmClockController: UITableViewController, SyncControllerDelegate,AddAla
     }
 
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
-        if(self.editing){
+        if(self.editing && indexPath.section > 0){
             slectedIndex = indexPath.row
 
             let alarmModel:UserAlarm = mAlarmArray[indexPath.row] as! UserAlarm
