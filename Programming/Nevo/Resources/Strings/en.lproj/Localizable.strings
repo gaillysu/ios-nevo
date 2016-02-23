@@ -102,3 +102,5 @@
 "Light"="Light";
 "Moderate"="Moderate";
 "Heavy"="Heavy";
+"add_goal"="Add goal";
+"goal_name"="Goal name";

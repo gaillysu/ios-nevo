@@ -67,8 +67,6 @@ class StepController: PublicClassController,toolbarSegmentedDelegate,UIActionShe
 
     // MARK: - rightBarButtonAction
     func rightBarButtonAction(rightBar:UIBarButtonItem){
-//        AppDelegate.getAppDelegate().getDailyTrackerInfo()
-//        return
         if((UIDevice.currentDevice().systemVersion as NSString).floatValue >= 8.0){
             
             let actionSheet:UIAlertController = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
@@ -77,14 +75,19 @@ class StepController: PublicClassController,toolbarSegmentedDelegate,UIActionShe
             let alertAction:UIAlertAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: UIAlertActionStyle.Cancel, handler: nil)
             actionSheet.addAction(alertAction)
 
-            for steps:Int in goalArray {
-                let alertAction2:UIAlertAction = UIAlertAction(title: "\(steps) steps", style: UIAlertActionStyle.Default) { (action:UIAlertAction) -> Void in
-                    if((action.title! as NSString).isEqualToString("\(steps) steps")){
-                        NSUserDefaults.standardUserDefaults().setObject(steps, forKey: NUMBER_OF_STEPS_GOAL_KEY)
-                        self.setGoal(NumberOfStepsGoal(steps: steps))
+            let array:NSArray = Presets.getAll()
+            for pArray in array {
+                let model:Presets = pArray as! Presets
+                if(model.status){
+                    let titleString:String = NSLocalizedString("\(model.label)", comment: "") + " \(model.steps) " + NSLocalizedString("steps_unit", comment: "")
+                    let alertAction2:UIAlertAction = UIAlertAction(title: titleString, style: UIAlertActionStyle.Default) { (action:UIAlertAction) -> Void in
+                        if((action.title! as NSString).isEqualToString(titleString)){
+                            NSUserDefaults.standardUserDefaults().setObject(model.steps, forKey: NUMBER_OF_STEPS_GOAL_KEY)
+                            self.setGoal(NumberOfStepsGoal(steps: model.steps))
+                        }
                     }
+                    actionSheet.addAction(alertAction2)
                 }
-                actionSheet.addAction(alertAction2)
             }
             self.presentViewController(actionSheet, animated: true, completion: nil)
         }else{

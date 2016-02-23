@@ -98,6 +98,8 @@
 "is_watch_version"="Your watch is up to date";
 "steps_unit"="步";
 "title_goal"="目标";
-"Light"="Light";
-"Moderate"="Moderate";
-"Heavy"="Heavy";
+"Light"="轻度";
+"Moderate"="适量";
+"Heavy"="强度";
+"add_goal"="添加目标";
+"goal_name"="目标名称";
