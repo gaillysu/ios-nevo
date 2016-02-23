@@ -106,7 +106,7 @@ class SelectedNotificationTypeController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         switch (indexPath.section){
         case 0:
-            let cell = selectedNotificationView.AllowNotificationsTableViewCell(indexPath, tableView: tableView, title: "Allow Notifications", state:swicthStates)
+            let cell = selectedNotificationView.AllowNotificationsTableViewCell(indexPath, tableView: tableView, title: NSLocalizedString("Allow_Notifications", comment: ""), state:swicthStates)
             for swicthView in cell.contentView.subviews{
                 if(swicthView.isKindOfClass(UISwitch.classForCoder())){
                     let mSwitch:UISwitch = swicthView as! UISwitch

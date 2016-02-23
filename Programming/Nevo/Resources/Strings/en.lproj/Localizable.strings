@@ -104,3 +104,7 @@
 "Heavy"="Heavy";
 "add_goal"="Add goal";
 "goal_name"="Goal name";
+"turned_off"="Turned off";
+"ACTIVE_NOTIFICATIONS"="ACTIVE NOTIFICATIONS";
+"INACTIVE_NOTIFICATIONS"="INACTIVE NOTIFICATIONS";
+"Allow_Notifications"="Allow Notifications";

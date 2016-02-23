@@ -103,7 +103,7 @@ class AlarmClockController: UITableViewController, SyncControllerDelegate,AddAla
                 if(alarmCount == 3) {
                     if(mSwitch.on){
                         mSwitch.setOn(false, animated: true)
-                        let aler:UIAlertView = UIAlertView(title: NSLocalizedString("alarmTitle", comment: ""), message:NSLocalizedString("nevo_alarms_supports", comment: "") , delegate: nil, cancelButtonTitle: NSLocalizedString("ok", comment: ""))
+                        let aler:UIAlertView = UIAlertView(title: NSLocalizedString("alarmTitle", comment: ""), message:NSLocalizedString("nevo_alarms_supports", comment: "") , delegate: nil, cancelButtonTitle: NSLocalizedString("Ok", comment: ""))
                         aler.show()
                     }else{
                         saveSwicthData(mSwitch)
@@ -341,8 +341,8 @@ class AlarmClockController: UITableViewController, SyncControllerDelegate,AddAla
     }
 
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String {
-        let titleArray:[String] = ["Sleep Alarm","Alarm"]
-        return titleArray[section]
+        let titleArray:[String] = ["Sleep Alarm","alarmTitle"]
+        return NSLocalizedString(titleArray[section], comment: "")
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -421,7 +421,8 @@ class AlarmClockController: UITableViewController, SyncControllerDelegate,AddAla
 
         if editingStyle == .Delete {
             // Delete the row from the data source
-            if((mAlarmArray[indexPath.row] as! UserAlarm).remove()){
+            let willAlarm:UserAlarm = mAlarmArray[indexPath.row] as! UserAlarm
+            if(willAlarm.remove()){
                 mAlarmArray.removeObjectAtIndex(indexPath.row)
                 tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
                 var alarmArray:[Alarm] = []
@@ -439,11 +440,14 @@ class AlarmClockController: UITableViewController, SyncControllerDelegate,AddAla
                     alarmArray.append(alarm)
                 }
 
-                if(AppDelegate.getAppDelegate().isConnected()){
-                    AppDelegate.getAppDelegate().setAlarm(alarmArray)
-                    self.SyncAlarmAlertView()
-                }else{
-                    self.willSyncAlarmAlertView()
+                //Only delete state switch on will be synchronized to watch
+                if(willAlarm.status) {
+                    if(AppDelegate.getAppDelegate().isConnected()){
+                        AppDelegate.getAppDelegate().setAlarm(alarmArray)
+                        self.SyncAlarmAlertView()
+                    }else{
+                        self.willSyncAlarmAlertView()
+                    }
                 }
             }
         } else if editingStyle == .Insert {

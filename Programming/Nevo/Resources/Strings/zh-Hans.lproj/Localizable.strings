@@ -103,3 +103,7 @@
 "Heavy"="强度";
 "add_goal"="添加目标";
 "goal_name"="目标名称";
+"turned_off"="关闭";
+"ACTIVE_NOTIFICATIONS"="已激活的通知";
+"INACTIVE_NOTIFICATIONS"="未激活的通知";
+"Allow_Notifications"="开启通知";

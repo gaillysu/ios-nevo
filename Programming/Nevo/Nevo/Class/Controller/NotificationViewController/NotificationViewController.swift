@@ -11,7 +11,7 @@ import UIKit
 class NotificationViewController: UITableViewController,SelectedNotificationDelegate {
     private var mNotificationOFFArray:[NotificationSetting] = []
     private var mNotificationONArray:[NotificationSetting] = []
-    private let titleHeader:[String] = ["ACTIVE NOTIFICATIONS","INACTIVE NOTIFICATIONS"]
+    private let titleHeader:[String] = ["ACTIVE_NOTIFICATIONS","INACTIVE_NOTIFICATIONS"]
     private var mNotificationArray:NSArray = NSArray()
 
     @IBOutlet weak var notificationView: NotificationView!
@@ -138,7 +138,7 @@ class NotificationViewController: UITableViewController,SelectedNotificationDele
 
     // MARK: - Table view data source
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String{
-        return titleHeader[section]
+        return NSLocalizedString(titleHeader[section], comment: "")
     }
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -163,12 +163,12 @@ class NotificationViewController: UITableViewController,SelectedNotificationDele
         case 0:
             let notificationseting:NotificationSetting = mNotificationONArray[indexPath.row]
             var detailString:String = ""
-            notificationseting.getStates() ? (detailString = notificationseting.getColorName()) : (detailString = "Turned off")
+            notificationseting.getStates() ? (detailString = notificationseting.getColorName()) : (detailString = NSLocalizedString("turned_off", comment: ""))
             return NotificationView.NotificationSystemTableViewCell(indexPath, tableView: tableView, title: notificationseting.typeName, detailLabel:detailString)
         case 1:
             let notificationseting:NotificationSetting = mNotificationOFFArray[indexPath.row]
             var detailString:String = ""
-            notificationseting.getStates() ? (detailString = notificationseting.getColorName()) : (detailString = "Turned off")
+            notificationseting.getStates() ? (detailString = notificationseting.getColorName()) : (detailString = NSLocalizedString("turned_off", comment: ""))
             return NotificationView.NotificationSystemTableViewCell(indexPath, tableView: tableView, title: notificationseting.typeName, detailLabel:detailString)
         default: return UITableViewCell();
         }
