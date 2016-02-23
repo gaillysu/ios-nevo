@@ -95,3 +95,8 @@
 "update_ble_success_message"="Ble upgrade completed, reconnect the watch to the phone by pressing and holding the third button on the watch. Make sure that the watch is paired so it won't interrupt the upgrade procedure. Once it's connected you can continue to upgrade the Mcu by clicking on continue.";
 "Ok"="好";
 "is_watch_version"="Your watch is up to date";
+"steps_unit"="步";
+"title_goal"="目标";
+"Light"="Light";
+"Moderate"="Moderate";
+"Heavy"="Heavy";
