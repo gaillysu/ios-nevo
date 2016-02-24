@@ -138,7 +138,19 @@ class NotificationViewController: UITableViewController,SelectedNotificationDele
 
     // MARK: - Table view data source
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String{
-        return NSLocalizedString(titleHeader[section], comment: "")
+        if(section == 0) {
+            if(mNotificationONArray.count == 0) {
+                return ""
+            }else{
+                return NSLocalizedString(titleHeader[section], comment: "")
+            }
+        }else{
+            if(mNotificationOFFArray.count == 0) {
+                return ""
+            }else{
+                return NSLocalizedString(titleHeader[section], comment: "")
+            }
+        }
     }
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
