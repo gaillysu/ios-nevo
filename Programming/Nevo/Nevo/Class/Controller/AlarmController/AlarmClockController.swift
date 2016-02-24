@@ -69,6 +69,8 @@ class AlarmClockController: UITableViewController, SyncControllerDelegate,AddAla
     func controllManager(sender:AnyObject){
 
         if(sender.isKindOfClass(UIBarButtonItem.classForCoder())){
+            self.editing = false
+            self.tableView.setEditing(false, animated: true)
             let addAlarm:AddAlarmController = AddAlarmController()
             addAlarm.title = NSLocalizedString("add_alarm", comment: "")
             addAlarm.mDelegate = self
