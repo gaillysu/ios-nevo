@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="SFCompactDisplay-Regular.ttf">
+            <string>SFCompactDisplay-Regular</string>
+            <string>SFCompactDisplay-Regular</string>
+        </mutableArray>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="NotAlarmView" customModule="Nevo" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Alarm" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gfa-Cx-x1s">
+                    <rect key="frame" x="0.0" y="257" width="600" height="50"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="6Fn-qB-OHu"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="SFCompactDisplay-Regular" family="SF Compact Display" pointSize="22"/>
+                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You didn't set the Alarm, you can add an Alarm" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xCK-0P-Ulf">
+                    <rect key="frame" x="0.0" y="307" width="600" height="35"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="35" id="Oj5-su-WXW"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="SFCompactDisplay-Regular" family="SF Compact Display" pointSize="16"/>
+                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="Gfa-Cx-x1s" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" constant="-18" id="J6b-6P-Eay"/>
+                <constraint firstAttribute="trailing" secondItem="Gfa-Cx-x1s" secondAttribute="trailing" id="L2Q-WB-BGG"/>
+                <constraint firstItem="xCK-0P-Ulf" firstAttribute="top" secondItem="Gfa-Cx-x1s" secondAttribute="bottom" id="LwK-Qb-BFD"/>
+                <constraint firstItem="xCK-0P-Ulf" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="bXe-9f-iWM"/>
+                <constraint firstItem="Gfa-Cx-x1s" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="hht-Vc-j7n"/>
+                <constraint firstAttribute="trailing" secondItem="xCK-0P-Ulf" secondAttribute="trailing" id="i1z-PN-MaR"/>
+                <constraint firstItem="Gfa-Cx-x1s" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="vr1-qq-Oct"/>
+            </constraints>
+            <connections>
+                <outlet property="contentLabel" destination="xCK-0P-Ulf" id="0zr-5U-2e5"/>
+                <outlet property="titleLabel" destination="Gfa-Cx-x1s" id="it0-Ua-o47"/>
+            </connections>
+        </view>
+    </objects>
+</document>

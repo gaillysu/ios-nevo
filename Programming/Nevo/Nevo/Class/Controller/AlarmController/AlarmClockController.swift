@@ -353,6 +353,11 @@ class AlarmClockController: UITableViewController, SyncControllerDelegate,AddAla
 
     // MARK: - UITableViewDataSource
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
+        if(mAlarmArray.count == 0) {
+            tableView.backgroundView = NotAlarmView.getNotAlarmView()
+        }else{
+             tableView.backgroundView = nil
+        }
         return mAlarmArray.count
     }
 
