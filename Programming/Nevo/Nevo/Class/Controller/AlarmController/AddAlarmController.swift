@@ -101,10 +101,16 @@ class AddAlarmController: UITableViewController,ButtonManagerCallBack,UIAlertVie
         case 1:
             if(indexPath.row == 1){
                 if((UIDevice.currentDevice().systemVersion as NSString).floatValue >= 8.0){
-                    
+                    let selectedCell:UITableViewCell = tableView.cellForRowAtIndexPath(indexPath)!
+                    let labelkk = selectedCell.contentView.viewWithTag(1230)
+
                     let actionSheet:UIAlertController = UIAlertController(title: NSLocalizedString("add_alarm_label", comment: ""), message: nil, preferredStyle: UIAlertControllerStyle.Alert)
                     actionSheet.view.tintColor = AppTheme.NEVO_SOLAR_YELLOW()
                     actionSheet.addTextFieldWithConfigurationHandler({ (labelText:UITextField) -> Void in
+                        if(labelkk != nil){
+                            let label:UILabel = labelkk as! UILabel
+                            labelText.text = label.text
+                        }
                     })
 
                     let alertAction:UIAlertAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: UIAlertActionStyle.Cancel, handler: { (action:UIAlertAction) -> Void in
@@ -113,8 +119,6 @@ class AddAlarmController: UITableViewController,ButtonManagerCallBack,UIAlertVie
                     actionSheet.addAction(alertAction)
 
                     let alertAction1:UIAlertAction = UIAlertAction(title: NSLocalizedString("Add", comment: ""), style: UIAlertActionStyle.Default, handler: { (action:UIAlertAction) -> Void in
-                        let selectedCell:UITableViewCell = tableView.cellForRowAtIndexPath(indexPath)!
-                        let labelkk = selectedCell.contentView.viewWithTag(1230)
                         let labelText:UITextField = actionSheet.textFields![0]
                         if(labelkk != nil){
                             let label:UILabel = labelkk as! UILabel
@@ -123,7 +127,8 @@ class AddAlarmController: UITableViewController,ButtonManagerCallBack,UIAlertVie
                             let label:UILabel = UILabel(frame: CGRectMake(0,0,80,selectedCell.contentView.frame.size.height))
                             label.tag = 1230
                             label.textAlignment = NSTextAlignment.Center
-                            label.center = CGPointMake(selectedCell.contentView.frame.size.width-label.frame.size.width/2.0-15, selectedCell.contentView.frame.size.height/2.0)
+                            label.lineBreakMode = NSLineBreakMode.ByClipping
+                            label.center = CGPointMake(UIScreen.mainScreen().bounds.size.width-label.frame.size.width/2.0-15, selectedCell.contentView.frame.size.height/2.0)
                             label.text = labelText.text
                             selectedCell.contentView.addSubview(label)
                         }
@@ -180,7 +185,8 @@ class AddAlarmController: UITableViewController,ButtonManagerCallBack,UIAlertVie
                 let label:UILabel = UILabel(frame: CGRectMake(0,0,80,cell.contentView.frame.size.height))
                 label.tag = 1230
                 label.textAlignment = NSTextAlignment.Center
-                label.center = CGPointMake(cell.contentView.frame.size.width-label.frame.size.width/2.0-25, cell.contentView.frame.size.height/2.0)
+                label.lineBreakMode = NSLineBreakMode.ByClipping
+                label.center = CGPointMake(UIScreen.mainScreen().bounds.size.width-label.frame.size.width/2.0-25, cell.contentView.frame.size.height/2.0)
                 label.text = name
                 cell.contentView.addSubview(label)
             }
@@ -202,7 +208,8 @@ class AddAlarmController: UITableViewController,ButtonManagerCallBack,UIAlertVie
             let label:UILabel = UILabel(frame: CGRectMake(0,0,80,selectedCell.contentView.frame.size.height))
             label.tag = 1230
             label.textAlignment = NSTextAlignment.Center
-            label.center = CGPointMake(selectedCell.contentView.frame.size.width-label.frame.size.width/2.0-15, selectedCell.contentView.frame.size.height/2.0)
+            label.lineBreakMode = NSLineBreakMode.ByClipping
+            label.center = CGPointMake(UIScreen.mainScreen().bounds.size.width-label.frame.size.width/2.0-15, selectedCell.contentView.frame.size.height/2.0)
             label.text = labelText.text
             selectedCell.contentView.addSubview(label)
         }
