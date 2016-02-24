@@ -60,6 +60,7 @@ class NevoOtaController : NSObject,ConnectionControllerDelegate {
     //one page has 5 packets
     let notificationPacketInterval = 5
     private var state:DFUControllerState = DFUControllerState.INIT
+    private var mcu_broken_state:DFUControllerState = DFUControllerState.INIT
     private var firmwareDataBytesSent:Int = 0
     private var progress = 0.0
     private var curpage:Int = 0
@@ -362,12 +363,32 @@ class NevoOtaController : NSObject,ConnectionControllerDelegate {
         else{
             if(isConnected){
                 if self.state == DFUControllerState.SEND_RECONNECT{
-                    self.state = DFUControllerState.SEND_START_COMMAND
-                    let dispatchTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, Int64(1.0 * Double(NSEC_PER_SEC)))
-                    dispatch_after(dispatchTime, dispatch_get_main_queue(), {
+                    if self.mcu_broken_state == DFUControllerState.SEND_FIRMWARE_DATA
+                    || self.mcu_broken_state == DFUControllerState.WAIT_RECEIPT
+                    {
+                        //reset it
+                        self.mcu_broken_state = DFUControllerState.INIT
+                        self.state = DFUControllerState.SEND_FIRMWARE_DATA
+                        //resend current page
+                        if(curpage>0)
+                        {
+                            curpage = curpage - 1
+                            firmwareDataBytesSent = firmwareDataBytesSent - DFUCONTROLLER_PAGE_SIZE
+                        }
+                        MCU_sendFirmwareChunk()
+                    }
+                    else
+                    {
+                        //MCU got broken is more than 30s, app will get timeout and retry connect again,
+                        //when got connected, will send restart OTA cmd and retry do OTA from page No.0
+                        self.state = DFUControllerState.SEND_START_COMMAND
+                        let dispatchTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, Int64(1.0 * Double(NSEC_PER_SEC)))
+                        dispatch_after(dispatchTime, dispatch_get_main_queue(), {
                         self.mConnectionController.sendRequest(Mcu_SetOTAModeRequest())
-                    })
+                        })
+                    }
                 }
+                
             }else{
                 if self.state == DFUControllerState.IDLE{
                     self.state = DFUControllerState.SEND_RECONNECT
@@ -377,6 +398,19 @@ class NevoOtaController : NSObject,ConnectionControllerDelegate {
                         self.mConnectionController.connect()
                     })
                 }
+                
+                else if self.state == DFUControllerState.SEND_FIRMWARE_DATA || self.state == DFUControllerState.WAIT_RECEIPT
+                {
+                    //keep state within 30s timeout
+                    self.mcu_broken_state = self.state
+                    self.state = DFUControllerState.SEND_RECONNECT
+                    let dispatchTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, Int64(1.0 * Double(NSEC_PER_SEC)))
+                    dispatch_after(dispatchTime, dispatch_get_main_queue(), {
+                        
+                        self.mConnectionController.connect()
+                    })
+                }
+
             }
         }
     }
@@ -430,6 +464,11 @@ class NevoOtaController : NSObject,ConnectionControllerDelegate {
     
     func timeroutProc(timer:NSTimer){
         if lastprogress == progress  && progress != 100.0{
+            //when MCU got broken and got timeout(30s), reset mcu_broken_state
+            if(dfuFirmwareType == DfuFirmwareTypes.SOFTDEVICE)
+            {
+                self.mcu_broken_state = DFUControllerState.INIT
+            }
             AppTheme.DLog("* * * OTA timeout * * *")
             let errorMessage = NSLocalizedString("ota_timeout",comment: "") as NSString
             mDelegate?.onError(errorMessage)

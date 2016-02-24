@@ -29,9 +29,9 @@ class DatePickerView: UIViewController,UIPickerViewDataSource,UIPickerViewDelega
 
     var delegate:DatePickerViewDelegate?
 
-    private var startDate:NSMutableArray = NSMutableArray(array: ["0","0"])
-    private var endDate:NSMutableArray =  NSMutableArray(array: ["0","0"])
-    private var week:NSMutableArray = NSMutableArray(array: ["0"])
+    private var startDate:NSMutableArray = NSMutableArray(array: [0,0])
+    private var endDate:NSMutableArray =  NSMutableArray(array: [0,0])
+    private var week:NSMutableArray = NSMutableArray(array: [0])
 
     var index:Int = 0
 

@@ -173,9 +173,8 @@ class ConnectionControllerImpl : NSObject, ConnectionController, NevoBTDelegate 
             savedAddress = NSUserDefaults.standardUserDefaults().objectForKey(SAVED_ADDRESS_KEY) as? String
         }
 
-        let userDefaults = NSUserDefaults.standardUserDefaults();
-        userDefaults.setObject("",forKey:SAVED_ADDRESS_KEY)
-        userDefaults.synchronize()
+        NSUserDefaults.standardUserDefaults().removeObjectForKey(SAVED_ADDRESS_KEY);
+        NSUserDefaults.standardUserDefaults().synchronize()
 
     }
     /**

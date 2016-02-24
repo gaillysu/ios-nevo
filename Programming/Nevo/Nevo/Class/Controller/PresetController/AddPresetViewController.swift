@@ -14,7 +14,7 @@ class AddPresetViewController: UIViewController,ButtonManagerCallBack {
     @IBOutlet weak var addPresetView: AddPresetView!
     var addDelegate:AddPresetDelegate?
     
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
+    init() {
         super.init(nibName: "AddPresetViewController", bundle: NSBundle.mainBundle())
     }
 

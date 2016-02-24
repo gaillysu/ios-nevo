@@ -35,9 +35,8 @@ class MyNevoController: UITableViewController,SyncControllerDelegate,UIAlertView
     }
 
     override func viewDidAppear(animated: Bool) {
-        if !AppDelegate.getAppDelegate().isConnected() {
-            AppDelegate.getAppDelegate().startConnect(false, delegate: self)
-        }else{
+        AppDelegate.getAppDelegate().startConnect(false, delegate: self)
+        if AppDelegate.getAppDelegate().isConnected() {
             AppDelegate.getAppDelegate().ReadBatteryLevel()
         }
         let indexPath:NSIndexPath = NSIndexPath(forRow: 0, inSection: 0)
@@ -117,7 +116,12 @@ class MyNevoController: UITableViewController,SyncControllerDelegate,UIAlertView
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         if(indexPath.row == 0){
-            if(AppDelegate.getAppDelegate().getSoftwareVersion().integerValue > buildinSoftwareVersion && AppDelegate.getAppDelegate().getFirmwareVersion().integerValue > buildinFirmwareVersion){return}
+            if(AppDelegate.getAppDelegate().getSoftwareVersion().integerValue >= buildinSoftwareVersion && AppDelegate.getAppDelegate().getFirmwareVersion().integerValue >= buildinFirmwareVersion){
+                let banner = Banner(title: NSLocalizedString("is_watch_version", comment: ""), subtitle: nil, image: nil, backgroundColor: AppTheme.NEVO_SOLAR_YELLOW())
+                banner.dismissesOnTap = true
+                banner.show(duration: 3.0)
+                return
+            }
             if(buildinSoftwareVersion==0&&buildinFirmwareVersion==0){return}
             let otaCont:NevoOtaViewController = NevoOtaViewController()
             let navigation:UINavigationController = UINavigationController(rootViewController: otaCont)
@@ -151,20 +155,19 @@ class MyNevoController: UITableViewController,SyncControllerDelegate,UIAlertView
            detailString = "MCU:\(AppDelegate.getAppDelegate().getSoftwareVersion()) BLE:\(AppDelegate.getAppDelegate().getFirmwareVersion())"
            //buildinSoftwareVersion:Int = 0 buildinFirmwareVersion:Int = 0
         case 1:
-            // MARK: - what the fuck is this kind of expression?
-            print(String(format: "Battery level %02d", currentBattery))
-                        print(String(format: "Battery level %02d", currentBattery))
-            if(currentBattery==2){
-                detailString = NSLocalizedString("battery_enough", comment: "")
-            } else if(currentBattery == 1){
-                detailString = "Battery sufficient"
-            }else if (currentBattery == 0){
+            switch (currentBattery){
+            case 0:
                 detailString = NSLocalizedString("battery_low", comment: "")
+            case 1:
+                detailString = NSLocalizedString("battery_sufficient", comment: "")
+            case 2:
+                detailString = NSLocalizedString("battery_full", comment: "")
+            default: detailString = NSLocalizedString("", comment: "")
             }
         case 2:
             let loclString:String = (NSBundle.mainBundle().infoDictionary! as NSDictionary).objectForKey("CFBundleShortVersionString") as! String
             detailString = loclString
-        default: detailString = NSLocalizedString("battery_low", comment: "")
+        default: detailString = NSLocalizedString("", comment: "")
         }
         return MyNevoView.getMyNevoViewTableViewCell(indexPath, tableView: tableView, title: titleArray[indexPath.row], detailText: detailString)
     }

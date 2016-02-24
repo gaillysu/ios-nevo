@@ -25,6 +25,7 @@ class TutorialFiveViewController: UIViewController,SyncControllerDelegate {
     }
 
     override func viewDidLoad() {
+        AppDelegate.getAppDelegate().connect()
 
     }
 
@@ -53,6 +54,7 @@ class TutorialFiveViewController: UIViewController,SyncControllerDelegate {
             action.valid ? action.invalidate():()
             if(AppDelegate.getAppDelegate().isConnected()){
                 delay(1.0) {
+                    AppDelegate.getAppDelegate().restoreSavedAddress()
                     let tutorialSix = TutorialSixViewController()
                     self.navigationController?.pushViewController(tutorialSix, animated: true)
                 }

@@ -16,14 +16,14 @@ class AddPresetView: UIView {
 
     func bulidAddPresetView(navigation:UINavigationItem,delegate:ButtonManagerCallBack){
         mDelegate = delegate
-        navigation.title = NSLocalizedString("Add goal", comment: "")
+        navigation.title = NSLocalizedString("add_goal", comment: "")
         self.backgroundColor = AppTheme.hexStringToColor("#EFEFF4")//AppTheme.NEVO_CUSTOM_COLOR(Red: 241.0, Green: 240.0, Blue: 241.0)
 
         let rightButton:UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Save, target: self, action: Selector("controllManager:"))
         navigation.rightBarButtonItem = rightButton
 
         let rightView:UILabel = UILabel(frame: CGRectMake(0,0,50,presetNumber.frame.size.height))
-        rightView.text = NSLocalizedString("steps", comment: "")
+        rightView.text = NSLocalizedString("steps_unit", comment: "")
         rightView.textAlignment = NSTextAlignment.Center
         rightView.font = AppTheme.SYSTEMFONTOFSIZE(mSize: 18)
         rightView.textColor = UIColor.grayColor()
@@ -44,7 +44,7 @@ class AddPresetView: UIView {
         presetName.layer.masksToBounds = true
         presetName.layer.borderWidth = 1
         presetName.layer.borderColor = UIColor.whiteColor().CGColor
-        presetName.placeholder = NSLocalizedString("Goal name", comment: "")
+        presetName.placeholder = NSLocalizedString("goal_name", comment: "")
         presetName.backgroundColor = UIColor.whiteColor()
     }
 

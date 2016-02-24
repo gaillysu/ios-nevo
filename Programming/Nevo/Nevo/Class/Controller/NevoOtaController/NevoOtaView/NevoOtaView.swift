@@ -25,7 +25,7 @@ class OTAProgress: CAShapeLayer {
         super.init()
         self.path = drawPathWithArcCenter()
         self.fillColor = UIColor.clearColor().CGColor
-        self.strokeColor = UIColor(red: 0.56, green: 0.56, blue: 0.56, alpha: 0.4).CGColor
+        self.strokeColor = UIColor.clearColor().CGColor//UIColor(red: 0.56, green: 0.56, blue: 0.56, alpha: 0.4).CGColor
         self.lineWidth = 5
 
         progressLayer = CAShapeLayer()
@@ -188,6 +188,14 @@ class NevoOtaView: UIView {
         messageLabel.text = NSLocalizedString("Updating", comment: "") + " \(progressString) " + "(\(currentTask)/\(allTask))"
     }
 
+    func OTAprogressViewHiddenOrNotHidden() {
+        if(OTAprogressView!.hidden) {
+            OTAprogressView!.hidden = false
+        }else{
+            OTAprogressView!.hidden = true
+        }
+    }
+
     /**
     Is the latest edition of the display function
 
@@ -205,7 +213,8 @@ class NevoOtaView: UIView {
     Upgrade success callback function
     */
     func upgradeSuccessful(){
-        nevoWacthImage.image = AppTheme.GET_RESOURCES_IMAGE("nevo_wacth_selected");
+        nevoWacthImage.image = AppTheme.GET_RESOURCES_IMAGE("connected");
+        OTAprogressView!.hidden = true
     }
 
     /**

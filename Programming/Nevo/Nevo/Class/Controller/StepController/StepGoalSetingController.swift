@@ -32,9 +32,6 @@ class StepGoalSetingController: PublicClassController,ButtonManagerCallBack,Sync
         super.viewDidLoad()
 
         contentTitleArray = [NSLocalizedString("goal", comment: ""), NSLocalizedString("progress", comment: ""), NSLocalizedString("you_reached", comment: "")]
-        
-        AppDelegate.getAppDelegate().startConnect(false, delegate: self)
-
         ClockRefreshManager.sharedInstance.setRefreshDelegate(self)
 
     }
@@ -59,9 +56,15 @@ class StepGoalSetingController: PublicClassController,ButtonManagerCallBack,Sync
 
     }
 
-    override func viewDidAppear(animated: Bool) {
-        checkConnection()
-
+    override func viewWillAppear(animated: Bool) {
+        if(!AppDelegate.getAppDelegate().hasSavedAddress()) {
+            let tutrorial:TutorialOneViewController = TutorialOneViewController()
+            let nav:UINavigationController = UINavigationController(rootViewController: tutrorial)
+            nav.navigationBarHidden = true
+            self.presentViewController(nav, animated: true, completion: nil)
+        }else{
+            AppDelegate.getAppDelegate().startConnect(false, delegate: self)
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -191,12 +194,7 @@ class StepGoalSetingController: PublicClassController,ButtonManagerCallBack,Sync
 
         if !AppDelegate.getAppDelegate().isConnected() {
             //We are currently not connected
-            reconnect()
+            AppDelegate.getAppDelegate().connect()
         }
     }
-
-    func reconnect() {
-        AppDelegate.getAppDelegate().connect()
-    }
-
 }
