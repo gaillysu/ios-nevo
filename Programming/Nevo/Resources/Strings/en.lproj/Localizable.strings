@@ -108,3 +108,6 @@
 "ACTIVE_NOTIFICATIONS"="ACTIVE NOTIFICATIONS";
 "INACTIVE_NOTIFICATIONS"="INACTIVE NOTIFICATIONS";
 "Allow_Notifications"="Allow Notifications";
+"syncing_data"="Syncing data";
+"sync_finished"="Sync finished";
+"Upgrade"="Upgrade";

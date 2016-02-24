@@ -71,9 +71,9 @@
 "sync_notifications"="通知同步中";
 "Connected"="已连接";
 "Disconnected"="已断开连接";
-"battery_low"="Battery low";
-"battery_sufficient"="Battery Sufficient";
-"battery_full"="Battery Full";
+"battery_low"="电量低";
+"battery_sufficient"="电量充足";
+"battery_full"="电量满";
 "alarmTitle"="闹钟";
 "sleepTitle"="睡眠";
 "set_goal"="设置目标";
@@ -107,3 +107,6 @@
 "ACTIVE_NOTIFICATIONS"="已激活的通知";
 "INACTIVE_NOTIFICATIONS"="未激活的通知";
 "Allow_Notifications"="开启通知";
+"syncing_data"="数据同步开始";
+"sync_finished"="同步完成";
+"Upgrade"="升级";
