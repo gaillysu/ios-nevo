@@ -12,6 +12,7 @@ import HealthKit
 
 let nevoDBDFileURL:String = "nevoDBName";
 let nevoDBNames:String = "nevo.sqlite";
+let umengAppKey:String = "56cd052d67e58ed65f002a2f"
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelegate {
@@ -46,6 +47,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
         //UITabBar.appearance().barTintColor = UIColor.clearColor()
 
         UINavigationBar.appearance().tintColor = AppTheme.NEVO_SOLAR_YELLOW()
+
+        MobClick.startWithAppkey(umengAppKey, reportPolicy: BATCH, channelId: "")
+
         //Start the logo for the first time
         if(!NSUserDefaults.standardUserDefaults().boolForKey("LaunchedDatabase")){
             NSUserDefaults.standardUserDefaults().setBool(true, forKey: "LaunchedDatabase")
@@ -164,7 +168,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
 
     func startConnect(forceScan:Bool,delegate:SyncControllerDelegate){
         AppTheme.DLog("New delegate : \(delegate)")
-        mDelegates.append(delegate)
+        var res:Bool = true
+        for value in mDelegates{
+            if(value.isEqual(delegate)) {
+                res = false
+            }
+        }
+
+        if(res) {
+            mDelegates.append(delegate)
+        }
         if forceScan{
             mConnectionController?.forgetSavedAddress()
         }
@@ -278,6 +291,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
 
     func hasSavedAddress()->Bool {
         return self.mConnectionController!.hasSavedAddress()
+    }
+
+    func restoreSavedAddress() {
+        self.mConnectionController?.restoreSavedAddress()
     }
 
     func isConnected() -> Bool{

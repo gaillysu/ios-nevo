@@ -15,4 +15,5 @@
 #import "AFNetworking.h"
 #import "FMDB.h"
 #import "NevoDBModel.h"
+#import "MobClick.h"
 #endif
