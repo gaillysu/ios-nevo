@@ -105,8 +105,26 @@ class AlarmClockController: UITableViewController, SyncControllerDelegate,AddAla
                 if(alarmCount == 3) {
                     if(mSwitch.on){
                         mSwitch.setOn(false, animated: true)
-                        let aler:UIAlertView = UIAlertView(title: NSLocalizedString("alarmTitle", comment: ""), message:NSLocalizedString("nevo_alarms_supports", comment: "") , delegate: nil, cancelButtonTitle: NSLocalizedString("Ok", comment: ""))
-                        aler.show()
+                        let titleString:String = NSLocalizedString("alarmTitle", comment: "")
+                        let msg:String = NSLocalizedString("nevo_alarms_supports", comment: "")
+                        let buttonString:String = NSLocalizedString("Ok", comment: "")
+
+                        if((UIDevice.currentDevice().systemVersion as NSString).floatValue >= 8.0){
+
+                            let actionSheet:UIAlertController = UIAlertController(title: titleString, message: msg, preferredStyle: UIAlertControllerStyle.Alert)
+                            actionSheet.view.tintColor = AppTheme.NEVO_SOLAR_YELLOW()
+                            let alertAction:UIAlertAction = UIAlertAction(title: buttonString, style: UIAlertActionStyle.Default, handler: { ( alert) -> Void in
+
+                            })
+                            actionSheet.addAction(alertAction)
+
+                            self.presentViewController(actionSheet, animated: true, completion: nil)
+                        }else{
+                            let actionSheet:UIAlertView = UIAlertView(title: titleString, message: msg, delegate: nil, cancelButtonTitle: buttonString)
+                            actionSheet.layer.backgroundColor = AppTheme.NEVO_SOLAR_YELLOW().CGColor
+                            actionSheet.tintColor = AppTheme.NEVO_SOLAR_YELLOW()
+                            actionSheet.show()
+                        }
                     }else{
                         saveSwicthData(mSwitch)
                     }
@@ -411,10 +429,6 @@ class AlarmClockController: UITableViewController, SyncControllerDelegate,AddAla
 
     // Override to support editing the table view.
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if(indexPath.section == 0) {
-            return
-        }
-
         if editingStyle == .Delete {
             // Delete the row from the data source
             let willAlarm:UserAlarm = mAlarmArray[indexPath.row] as! UserAlarm

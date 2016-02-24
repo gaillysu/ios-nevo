@@ -15,7 +15,7 @@ let nevoDBNames:String = "nevo.sqlite";
 let umengAppKey:String = "56cd052d67e58ed65f002a2f"
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelegate,UIAlertViewDelegate {
 
     var window: UIWindow?
     //Let's sync every days
@@ -32,6 +32,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
 
     private var todaySleepData:NSMutableArray = NSMutableArray(capacity: 2)
     private var disConnectAlert:UIAlertView?
+    private let alertUpdateTag:Int = 9000
 
 
     let dbQueue:FMDatabaseQueue = FMDatabaseQueue(path: AppDelegate.dbPath())
@@ -99,7 +100,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
 
     func application(application: UIApplication , didReceiveLocalNotification notification: UILocalNotification ) {
         if (disConnectAlert == nil) {
-            disConnectAlert = UIAlertView(title: NSLocalizedString("BLE_LOST_TITLE", comment: ""), message: NSLocalizedString("BLE_CONNECTION_LOST", comment: ""), delegate: nil, cancelButtonTitle: NSLocalizedString("ok", comment: ""))
+            disConnectAlert = UIAlertView(title: NSLocalizedString("BLE_LOST_TITLE", comment: ""), message: NSLocalizedString("BLE_CONNECTION_LOST", comment: ""), delegate: nil, cancelButtonTitle: NSLocalizedString("Ok", comment: ""))
             disConnectAlert?.show()
         }
     }
@@ -224,7 +225,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
             AppTheme.DLog("*** Sync started ! ***")
             self.getDailyTrackerInfo()
             if(isConnected()) {
-                let banner = Banner(title: "Syncing data", subtitle: nil, image: nil, backgroundColor: AppTheme.NEVO_SOLAR_YELLOW())
+                let banner = Banner(title: NSLocalizedString("syncing_data", comment: ""), subtitle: nil, image: nil, backgroundColor: AppTheme.NEVO_SOLAR_YELLOW())
                 banner.dismissesOnTap = true
                 banner.show(duration: 3.0)
             }
@@ -236,7 +237,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
      When the sync process is finished, le't refresh the date of sync
      */
     func syncFinished() {
-        let banner = Banner(title: "Sync finished", subtitle: nil, image: nil, backgroundColor: AppTheme.hexStringToColor("#0dac67"))
+        let banner = Banner(title: NSLocalizedString("sync_finished", comment: ""), subtitle: nil, image: nil, backgroundColor: AppTheme.hexStringToColor("#0dac67"))
         banner.dismissesOnTap = true
         banner.show(duration: 3.0)
 
@@ -263,8 +264,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
     See UIAlertViewDelegate
     */
     func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int){
-
-        disConnectAlert = nil
+        if(alertView.tag == alertUpdateTag) {
+            if(buttonIndex == 1) {
+                let tabVC:UITabBarController = self.window?.rootViewController as! UITabBarController
+                let otaCont:NevoOtaViewController = NevoOtaViewController()
+                let navigation:UINavigationController = UINavigationController(rootViewController: otaCont)
+                tabVC.presentViewController(navigation, animated: true, completion: nil)
+            }
+        }else{
+            disConnectAlert = nil
+        }
 
     }
 
@@ -640,8 +649,38 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
             //for tutorial screen, don't popup update dialog
             if !mAlertUpdateFW {
                 mAlertUpdateFW = true
-                let alert :UIAlertView = UIAlertView(title: NSLocalizedString("Firmware Upgrade", comment: ""), message: NSLocalizedString("FirmwareAlertMessage", comment: ""), delegate: nil, cancelButtonTitle: NSLocalizedString("ok", comment: ""))
-                //alert.show()
+
+                let titleString:String = NSLocalizedString("Firmware Upgrade", comment: "")
+                let msg:String = NSLocalizedString("Found the watch with the new version!", comment: "")
+                let buttonString:String = NSLocalizedString("Upgrade", comment: "")
+                let cancelString:String = NSLocalizedString("Cancel", comment: "")
+
+                if((UIDevice.currentDevice().systemVersion as NSString).floatValue >= 8.0){
+                    let tabVC:UITabBarController = self.window?.rootViewController as! UITabBarController
+
+                    let actionSheet:UIAlertController = UIAlertController(title: titleString, message: msg, preferredStyle: UIAlertControllerStyle.Alert)
+                    actionSheet.view.tintColor = AppTheme.NEVO_SOLAR_YELLOW()
+                    let alertAction1:UIAlertAction = UIAlertAction(title: cancelString, style: UIAlertActionStyle.Cancel, handler: { ( alert) -> Void in
+
+                    })
+                    actionSheet.addAction(alertAction1)
+
+                    let alertAction2:UIAlertAction = UIAlertAction(title: buttonString, style: UIAlertActionStyle.Default, handler: { ( alert) -> Void in
+                        let otaCont:NevoOtaViewController = NevoOtaViewController()
+                        let navigation:UINavigationController = UINavigationController(rootViewController: otaCont)
+                        tabVC.presentViewController(navigation, animated: true, completion: nil)
+
+                    })
+                    actionSheet.addAction(alertAction2)
+                    tabVC.presentViewController(actionSheet, animated: true, completion: nil)
+                }else{
+                    let actionSheet:UIAlertView = UIAlertView(title: titleString, message: msg, delegate: self, cancelButtonTitle: cancelString, otherButtonTitles: buttonString)
+                    actionSheet.layer.backgroundColor = AppTheme.NEVO_SOLAR_YELLOW().CGColor
+                    actionSheet.tintColor = AppTheme.NEVO_SOLAR_YELLOW()
+                    actionSheet.tag = alertUpdateTag
+                    actionSheet.show()
+                }
+
             }
         }
     }
