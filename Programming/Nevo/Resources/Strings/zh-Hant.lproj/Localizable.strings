@@ -42,8 +42,8 @@
 "EMAIL"="E-mail";
 "Facebook"="Facebook";
 "Calendar"="Calendar";
-"WeChat"="WeChat&Whatsapp";
-"Whatsapp"="Whatsapp&WeChat";
+"WeChat"="Whatsapp";
+"Whatsapp"="Whatsapp";
 "Setting"="Settings";
 "find_my_watch"="Find my watch";
 "goals"="Goals";

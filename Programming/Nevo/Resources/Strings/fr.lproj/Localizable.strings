@@ -43,8 +43,8 @@
 "EMAIL"="E-mail";
 "Facebook"="Facebook";
 "Calendar"="Calendrier";
-"WeChat"="WeChat & WhatsApp";
-"Whatsapp"="WhatsApp & WeChat";
+"WeChat"="WhatsApp";
+"Whatsapp"="WhatsApp";
 "Setting"="Réglages";
 "find_my_watch"="Trouver ma montre";
 "goals"="Objectifs";
@@ -88,7 +88,7 @@
 "app_version"="Version de l'appli";
 "forget"="Oublier";
 "forget_your_nevo"="Voulez-vous oublier votre nevo ?";
-"Link-Loss Notifications"="Notifications de perte de lien";
+"Link-Loss Notifications"="Link-Loss Warning";
 "nevo_alarms_supports"="Nevo ne supporte que 3 alarmes pour le moment.";
 "press_the_third_button"="Appuyez sur la troisième touche";
 "in_order_reactivate_bluetooth"="Pour réactiver le bluetooth. Ne quittez pas cet écran !";
