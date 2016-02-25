@@ -62,7 +62,7 @@
 "sync_notifications"="Syncing notifications";
 "Connected"="Connected";
 "Disconnected"="Disconnected";
-"battery_low"="Battery low";
+"battery_low"="Battery Low";
 "battery_sufficient"="Battery Sufficient";
 "battery_full"="Battery Full";
 "alarmTitle"="Alarm";
