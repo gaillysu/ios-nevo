@@ -649,10 +649,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
             //for tutorial screen, don't popup update dialog
             if !mAlertUpdateFW {
                 mAlertUpdateFW = true
-
-                let titleString:String = NSLocalizedString("Firmware Upgrade", comment: "")
-                let msg:String = NSLocalizedString("Found the watch with the new version!", comment: "")
-                let buttonString:String = NSLocalizedString("Upgrade", comment: "")
+                let titleString:String = NSLocalizedString("Update", comment: "")
+                let msg:String = NSLocalizedString("An_update_is_available_for_your_watch", comment: "")
+                let buttonString:String = NSLocalizedString("Update", comment: "")
                 let cancelString:String = NSLocalizedString("Cancel", comment: "")
 
                 if((UIDevice.currentDevice().systemVersion as NSString).floatValue >= 8.0){

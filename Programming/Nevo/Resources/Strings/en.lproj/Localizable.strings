@@ -110,5 +110,7 @@
 "Allow_Notifications"="Allow Notifications";
 "syncing_data"="Syncing data";
 "sync_finished"="Sync finished";
-"Upgrade"="Upgrade";
+"Update"="Update";
 "Add"="Add";
+"no_alarm_content"="You don’t have any alarm set. Set an alarm by tapping on the plus button in the upper right corner.";
+"An_update_is_available_for_your_watch"="An update is available for your watch.";
