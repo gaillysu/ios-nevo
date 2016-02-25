@@ -28,6 +28,8 @@
 		0036EB0A1C48BA8300DCED46 /* tutorialone.png in Resources */ = {isa = PBXBuildFile; fileRef = 0036EB041C48BA8300DCED46 /* tutorialone.png */; };
 		0036EB0D1C48C36700DCED46 /* bluetoothoff_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 0036EB0B1C48C36700DCED46 /* bluetoothoff_background.png */; };
 		0036EB0E1C48C36700DCED46 /* bluetoothoff.png in Resources */ = {isa = PBXBuildFile; fileRef = 0036EB0C1C48C36700DCED46 /* bluetoothoff.png */; };
+		0042C8B21C7DB37200177D3D /* NotAlarmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0042C8B11C7DB37200177D3D /* NotAlarmView.swift */; };
+		0042C8B41C7DB3EF00177D3D /* NotAlarmView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0042C8B31C7DB3EF00177D3D /* NotAlarmView.xib */; };
 		00478F4F1A8F637D00D0DCE2 /* clockViewHour.png in Resources */ = {isa = PBXBuildFile; fileRef = 00478F4D1A8F637D00D0DCE2 /* clockViewHour.png */; };
 		00478F501A8F637D00D0DCE2 /* clockViewMinute.png in Resources */ = {isa = PBXBuildFile; fileRef = 00478F4E1A8F637D00D0DCE2 /* clockViewMinute.png */; };
 		004846D41B72EDB9005A6D83 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 004846D31B72EDB9005A6D83 /* libsqlite3.dylib */; };
@@ -340,6 +342,8 @@
 		0036EB041C48BA8300DCED46 /* tutorialone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tutorialone.png; sourceTree = "<group>"; };
 		0036EB0B1C48C36700DCED46 /* bluetoothoff_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bluetoothoff_background.png; sourceTree = "<group>"; };
 		0036EB0C1C48C36700DCED46 /* bluetoothoff.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bluetoothoff.png; sourceTree = "<group>"; };
+		0042C8B11C7DB37200177D3D /* NotAlarmView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotAlarmView.swift; sourceTree = "<group>"; };
+		0042C8B31C7DB3EF00177D3D /* NotAlarmView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NotAlarmView.xib; sourceTree = "<group>"; };
 		00478F4D1A8F637D00D0DCE2 /* clockViewHour.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clockViewHour.png; sourceTree = "<group>"; };
 		00478F4E1A8F637D00D0DCE2 /* clockViewMinute.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clockViewMinute.png; sourceTree = "<group>"; };
 		004846D31B72EDB9005A6D83 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
@@ -1196,6 +1200,8 @@
 			isa = PBXGroup;
 			children = (
 				0050D6901C28E1CD004F6F80 /* alarmClockView.swift */,
+				0042C8B11C7DB37200177D3D /* NotAlarmView.swift */,
+				0042C8B31C7DB3EF00177D3D /* NotAlarmView.xib */,
 			);
 			path = AlarmView;
 			sourceTree = "<group>";
@@ -1776,6 +1782,7 @@
 				0072EAB61C190DCD001EE2C9 /* SFCompactDisplay-Bold.ttf in Resources */,
 				00E5CFD41B17F81F00D1F829 /* help in Resources */,
 				005BC9561A889F14006F9E86 /* NevoPicture.png in Resources */,
+				0042C8B41C7DB3EF00177D3D /* NotAlarmView.xib in Resources */,
 				07BCE82A1B5CAB2200C7F558 /* clockview600_color.png in Resources */,
 				9AD8F9421A6DF35900F01014 /* Images.xcassets in Resources */,
 				0050D6031C28E0DB004F6F80 /* SelectedNotificationTypeController.xib in Resources */,
@@ -1941,6 +1948,7 @@
 				0050D6681C28E0DB004F6F80 /* DailyStepsNevoPacket.swift in Sources */,
 				00ED43E01C1EA11700915885 /* NSTimeInterval+Timepiece.swift in Sources */,
 				00DC9EB11BB2853D00734DB6 /* PieRadarChartViewBase.swift in Sources */,
+				0042C8B21C7DB37200177D3D /* NotAlarmView.swift in Sources */,
 				00DC9EC81BB2853D00734DB6 /* ChartDataSet.swift in Sources */,
 				0050D5F61C28E0DB004F6F80 /* NevoOtaView.swift in Sources */,
 				0050D6361C28E0DB004F6F80 /* DaySleep.swift in Sources */,
@@ -2206,6 +2214,7 @@
 				CODE_SIGN_ENTITLEMENTS = Nevo/Nevo.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Nevo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -2226,6 +2235,7 @@
 				CODE_SIGN_ENTITLEMENTS = Nevo/Nevo.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Nevo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

@@ -87,7 +87,7 @@
 "forget"="Forget";
 "forget_your_nevo"="Do you want to forget your nevo?";
 "Link-Loss Notifications"="連接斷開通知";
-"nevo_alarms_supports"="nevo supports only 3 alarms for now.";
+"nevo_alarms_supports"="Nevo supports only 3 alarms for now.";
 "press_the_third_button"="Press the third-button";
 "in_order_reactivate_bluetooth"="In order to reactivate the bluetooth. Don’t exit this screen!";
 "do_not_exit_this_screen"="Do not exit this screen";
@@ -95,3 +95,18 @@
 "update_ble_success_message"="Ble upgrade completed, reconnect the watch to the phone by pressing and holding the third button on the watch. Make sure that the watch is paired so it won't interrupt the upgrade procedure. Once it's connected you can continue to upgrade the Mcu by clicking on continue.";
 "Ok"="好";
 "is_watch_version"="Your watch is up to date";
+"steps_unit"="步";
+"title_goal"="目标";
+"Light"="轻度";
+"Moderate"="适量";
+"Heavy"="强度";
+"add_goal"="添加目标";
+"goal_name"="目标名称";
+"turned_off"="关闭";
+"ACTIVE_NOTIFICATIONS"="已激活的通知";
+"INACTIVE_NOTIFICATIONS"="未激活的通知";
+"Allow_Notifications"="开启通知";
+"syncing_data"="数据同步开始";
+"sync_finished"="同步完成";
+"Upgrade"="升级";
+"Add"="添加";
