@@ -103,6 +103,7 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
                 let updatemsg:String = NSLocalizedString("please_follow_the_update_has_been_finished", comment: "")
                 if((UIDevice.currentDevice().systemVersion as NSString).floatValue>8.0){
                     let alert :UIAlertController = UIAlertController(title: updateTitle, message: updatemsg, preferredStyle: UIAlertControllerStyle.Alert)
+                    alert.view.tintColor = AppTheme.NEVO_SOLAR_YELLOW()
                     let alertAction:UIAlertAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: UIAlertActionStyle.Cancel) { (action:UIAlertAction) -> Void in
                         self.dismissViewControllerAnimated(true, completion: nil)
                     }
@@ -275,6 +276,7 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
                 continueButton.frame = CGRectMake(0, 0, 135, 35)
                 continueButton.center = CGPointMake(UIScreen.mainScreen().bounds.size.width/2.0, (titleLabel2.frame.origin.y+titleLabel2.frame.size.height)+17)
                 continueButton.addTarget(self, action: Selector("controllManager:"), forControlEvents: UIControlEvents.TouchUpInside)
+                continueButton.hidden = true
                 continueButton.layer.masksToBounds = true
                 continueButton.layer.cornerRadius = 8.0
                 continueButton.layer.borderWidth = 1.0
@@ -316,7 +318,8 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
      */
     func firmwareVersionReceived(whichfirmware:DfuFirmwareTypes, version:NSString)
     {
-        //nevoOtaView.setVersionLbael(mNevoOtaController!.getSoftwareVersion(), bleNumber: mNevoOtaController!.getFirmwareVersion())
+        AppTheme.DLog("version :  \(version)")
+        continueButton.hidden = false
     }
 
     /**
@@ -347,7 +350,7 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
                     view?.hidden = true
                 }
             }
-            continueButton.hidden = true
+            continueButton.alpha = 0
             self.nevoOtaView.updatingView.hidden = false
             nevoOtaView.nevoWacthImage.image = UIImage(named: "upgrade_clock.png")
             nevoOtaView.OTAprogressViewHiddenOrNotHidden()
