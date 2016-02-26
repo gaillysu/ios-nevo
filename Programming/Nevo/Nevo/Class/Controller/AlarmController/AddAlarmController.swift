@@ -79,14 +79,8 @@ class AddAlarmController: UITableViewController,ButtonManagerCallBack,UIAlertVie
 
             let indexPaths3:NSIndexPath = NSIndexPath(forRow: 1, inSection: 1)
             let timerCell3:UITableViewCell = self.tableView.cellForRowAtIndexPath(indexPaths3)!
-            for datePicker in timerCell3.contentView.subviews{
-                let labelView:UIView = datePicker as UIView
-                if(labelView.tag == 1230){
-                    let labelText:UILabel = labelView as! UILabel
-                    name = labelText.text!
-                    NSLog("name______%@", labelText.text!)
-                }
-            }
+            name = (timerCell3.detailTextLabel!.text)!
+
             mDelegate?.onDidAddAlarmAction(timer, repeatStatus: repeatStatus, name: name)
             self.navigationController?.popViewControllerAnimated(true)
         }
