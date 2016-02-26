@@ -177,6 +177,8 @@
 		009DD2AA1C5857FD00B11541 /* SetSleepRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009DD2A91C5857FD00B11541 /* SetSleepRequest.swift */; };
 		009DD2AC1C585AC100B11541 /* ConfigSleepAlarm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009DD2AB1C585AC100B11541 /* ConfigSleepAlarm.swift */; };
 		00A773961A88562F0018E121 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 00A773911A88562F0018E121 /* Localizable.strings */; };
+		00BF2D9A1C7FED2200909316 /* VideoPlayController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00BF2D981C7FED2200909316 /* VideoPlayController.swift */; };
+		00BF2D9B1C7FED2200909316 /* VideoPlayController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00BF2D991C7FED2200909316 /* VideoPlayController.xib */; };
 		00C640F61A8DEE0800815CF8 /* clockView600.png in Resources */ = {isa = PBXBuildFile; fileRef = 00C640F51A8DEE0800815CF8 /* clockView600.png */; };
 		00D0FF731B130A9F00D084C3 /* Nevo660.png in Resources */ = {isa = PBXBuildFile; fileRef = 00D0FF721B130A9F00D084C3 /* Nevo660.png */; };
 		00D4DE921AB141FB0062523D /* NevoPicture960.png in Resources */ = {isa = PBXBuildFile; fileRef = 00D4DE901AB141FB0062523D /* NevoPicture960.png */; };
@@ -500,6 +502,8 @@
 		00A773931A88562F0018E121 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		00A773941A88562F0018E121 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		00A773951A88562F0018E121 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		00BF2D981C7FED2200909316 /* VideoPlayController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoPlayController.swift; sourceTree = "<group>"; };
+		00BF2D991C7FED2200909316 /* VideoPlayController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VideoPlayController.xib; sourceTree = "<group>"; };
 		00C640F51A8DEE0800815CF8 /* clockView600.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clockView600.png; sourceTree = "<group>"; };
 		00D0FF721B130A9F00D084C3 /* Nevo660.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Nevo660.png; sourceTree = "<group>"; };
 		00D4DE901AB141FB0062523D /* NevoPicture960.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NevoPicture960.png; sourceTree = "<group>"; };
@@ -713,6 +717,7 @@
 		0050D5151C28E0DB004F6F80 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				00BF2D971C7FEAB400909316 /* VideoPlayController */,
 				00344F591C47A79600C2FC7A /* SupportViewController */,
 				0050D6841C28E1CD004F6F80 /* AlarmController */,
 				0050D5201C28E0DB004F6F80 /* AidOTA */,
@@ -1281,6 +1286,15 @@
 			path = Strings;
 			sourceTree = "<group>";
 		};
+		00BF2D971C7FEAB400909316 /* VideoPlayController */ = {
+			isa = PBXGroup;
+			children = (
+				00BF2D981C7FED2200909316 /* VideoPlayController.swift */,
+				00BF2D991C7FED2200909316 /* VideoPlayController.xib */,
+			);
+			path = VideoPlayController;
+			sourceTree = "<group>";
+		};
 		00DC9E461BB2853D00734DB6 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
@@ -1804,6 +1818,7 @@
 				0072EACF1C190DCD001EE2C9 /* SFUIDisplay-Regular.ttf in Resources */,
 				000CB3281C3E436000B4ABEC /* white_clock.png in Resources */,
 				00C640F61A8DEE0800815CF8 /* clockView600.png in Resources */,
+				00BF2D9B1C7FED2200909316 /* VideoPlayController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1907,6 +1922,7 @@
 				00DC9EE21BB2853D00734DB6 /* ChartAxisRendererBase.swift in Sources */,
 				0050D6441C28E0DB004F6F80 /* SleepModel.swift in Sources */,
 				0050D6581C28E0DB004F6F80 /* ToolbarView.swift in Sources */,
+				00BF2D9A1C7FED2200909316 /* VideoPlayController.swift in Sources */,
 				0050D6191C28E0DB004F6F80 /* SleepController.swift in Sources */,
 				0050D5ED1C28E0DB004F6F80 /* HelpViewController.swift in Sources */,
 				0050D5EA1C28E0DB004F6F80 /* AidOtaViewController.swift in Sources */,

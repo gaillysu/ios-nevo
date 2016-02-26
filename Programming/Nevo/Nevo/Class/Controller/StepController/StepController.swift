@@ -34,6 +34,10 @@ class StepController: PublicClassController,toolbarSegmentedDelegate,UIActionShe
         rightButton?.tintColor = AppTheme.NEVO_SOLAR_YELLOW()
         self.navigationItem.rightBarButtonItem = rightButton
 
+        let leftButton = UIBarButtonItem(title: NSLocalizedString("Video", comment: ""), style: UIBarButtonItemStyle.Done, target: self, action: Selector("leftBarButtonAction:"))
+        leftButton.tintColor = AppTheme.NEVO_SOLAR_YELLOW()
+        self.navigationItem.leftBarButtonItem = leftButton
+
         if(!AppDelegate.getAppDelegate().isConnected() && AppDelegate.getAppDelegate().getMconnectionController().isBluetoothEnabled()){
             let banner = Banner(title: NSLocalizedString("nevo_is_not_connected", comment: ""), subtitle: nil, image: nil, backgroundColor:UIColor.redColor())
             banner.dismissesOnTap = true
@@ -57,6 +61,13 @@ class StepController: PublicClassController,toolbarSegmentedDelegate,UIActionShe
     }
 
     // MARK: - rightBarButtonAction
+    func leftBarButtonAction(leftBar:UIBarButtonItem){
+        let videoPlay:VideoPlayController = VideoPlayController();
+        self.presentViewController(videoPlay, animated: true) { () -> Void in
+
+        }
+    }
+
     func rightBarButtonAction(rightBar:UIBarButtonItem){
         if((UIDevice.currentDevice().systemVersion as NSString).floatValue >= 8.0){
             
