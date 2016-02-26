@@ -102,15 +102,11 @@ class AddAlarmController: UITableViewController,ButtonManagerCallBack,UIAlertVie
             if(indexPath.row == 1){
                 if((UIDevice.currentDevice().systemVersion as NSString).floatValue >= 8.0){
                     let selectedCell:UITableViewCell = tableView.cellForRowAtIndexPath(indexPath)!
-                    let labelkk = selectedCell.contentView.viewWithTag(1230)
 
                     let actionSheet:UIAlertController = UIAlertController(title: NSLocalizedString("add_alarm_label", comment: ""), message: nil, preferredStyle: UIAlertControllerStyle.Alert)
                     actionSheet.view.tintColor = AppTheme.NEVO_SOLAR_YELLOW()
                     actionSheet.addTextFieldWithConfigurationHandler({ (labelText:UITextField) -> Void in
-                        if(labelkk != nil){
-                            let label:UILabel = labelkk as! UILabel
-                            labelText.text = label.text
-                        }
+                        labelText.text = selectedCell.detailTextLabel?.text
                     })
 
                     let alertAction:UIAlertAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: UIAlertActionStyle.Cancel, handler: { (action:UIAlertAction) -> Void in
@@ -120,18 +116,7 @@ class AddAlarmController: UITableViewController,ButtonManagerCallBack,UIAlertVie
 
                     let alertAction1:UIAlertAction = UIAlertAction(title: NSLocalizedString("Add", comment: ""), style: UIAlertActionStyle.Default, handler: { (action:UIAlertAction) -> Void in
                         let labelText:UITextField = actionSheet.textFields![0]
-                        if(labelkk != nil){
-                            let label:UILabel = labelkk as! UILabel
-                            label.text = labelText.text
-                        }else{
-                            let label:UILabel = UILabel(frame: CGRectMake(0,0,80,selectedCell.contentView.frame.size.height))
-                            label.tag = 1230
-                            label.textAlignment = NSTextAlignment.Center
-                            label.lineBreakMode = NSLineBreakMode.ByClipping
-                            label.center = CGPointMake(UIScreen.mainScreen().bounds.size.width-label.frame.size.width/2.0-15, selectedCell.contentView.frame.size.height/2.0)
-                            label.text = labelText.text
-                            selectedCell.contentView.addSubview(label)
-                        }
+                        selectedCell.detailTextLabel?.text = labelText.text
                     })
                     actionSheet.addAction(alertAction1)
                     self.presentViewController(actionSheet, animated: true, completion: nil)
@@ -179,40 +164,28 @@ class AddAlarmController: UITableViewController,ButtonManagerCallBack,UIAlertVie
             return AddAlarmView.addAlarmTimerTableViewCell(indexPath, tableView: tableView, timer:timer)
         case 1:
             let titleArray:[String] = ["Repeat","Label"]
-            let cell = AddAlarmView.systemTableViewCell(indexPath, tableView: tableView, title: titleArray[indexPath.row],delegate: self)
-            let mLabel = cell.contentView.viewWithTag(1230)
-            if(mLabel == nil && titleArray[indexPath.row] == "Label"){
-                let label:UILabel = UILabel(frame: CGRectMake(0,0,80,cell.contentView.frame.size.height))
-                label.tag = 1230
-                label.textAlignment = NSTextAlignment.Center
-                label.lineBreakMode = NSLineBreakMode.ByClipping
-                label.center = CGPointMake(UIScreen.mainScreen().bounds.size.width-label.frame.size.width/2.0-25, cell.contentView.frame.size.height/2.0)
-                label.text = name
-                cell.contentView.addSubview(label)
+            if(indexPath.row == 0){
+                let cell = AddAlarmView.systemTableViewCell(indexPath, tableView: tableView, title: titleArray[indexPath.row],delegate: self)
+                return cell
+            }else if(indexPath.row == 1) {
+                let cell = UITableViewCell(style: UITableViewCellStyle.Value1, reuseIdentifier: "SystemLabelCell")
+                cell.textLabel?.text = NSLocalizedString("\(titleArray[indexPath.row])", comment: "")
+                cell.detailTextLabel?.text = name
+                cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
+                cell.selectionStyle = UITableViewCellSelectionStyle.None;
+                return cell
             }
-            return cell
         default: return UITableViewCell();
         }
+        return UITableViewCell();
     }
 
 
     // MARK: - UIAlertViewDelegate
     func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int){
         let selectedCell:UITableViewCell = tableView.cellForRowAtIndexPath(selectedIndexPath!)!
-        let labelkk = selectedCell.contentView.viewWithTag(1230)
         let labelText:UITextField = alertView.textFieldAtIndex(0)!
-        if(labelkk != nil){
-            let label:UILabel = labelkk as! UILabel
-            label.text = labelText.text
-        }else{
-            let label:UILabel = UILabel(frame: CGRectMake(0,0,80,selectedCell.contentView.frame.size.height))
-            label.tag = 1230
-            label.textAlignment = NSTextAlignment.Center
-            label.lineBreakMode = NSLineBreakMode.ByClipping
-            label.center = CGPointMake(UIScreen.mainScreen().bounds.size.width-label.frame.size.width/2.0-15, selectedCell.contentView.frame.size.height/2.0)
-            label.text = labelText.text
-            selectedCell.contentView.addSubview(label)
-        }
+        selectedCell.detailTextLabel?.text = labelText.text
     }
 
     /*
