@@ -273,6 +273,14 @@
 		00E2BDE31B16CCD0009C757E /* MBProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 00E2BDDF1B16CCD0009C757E /* MBProgressHUD.bundle */; };
 		00E2BDE41B16CCD0009C757E /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E2BDE11B16CCD0009C757E /* MBProgressHUD.m */; };
 		00E5CFD41B17F81F00D1F829 /* help in Resources */ = {isa = PBXBuildFile; fileRef = 00E5CFD31B17F81F00D1F829 /* help */; };
+		00E650941C83D8F400278D3E /* HomeTutorialController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E650921C83D8F400278D3E /* HomeTutorialController.swift */; };
+		00E650951C83D8F400278D3E /* HomeTutorialController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00E650931C83D8F400278D3E /* HomeTutorialController.xib */; };
+		00E650971C83DA8000278D3E /* homeTutorial.png in Resources */ = {isa = PBXBuildFile; fileRef = 00E650961C83DA8000278D3E /* homeTutorial.png */; };
+		00E650991C83DD9000278D3E /* nevoFontImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 00E650981C83DD9000278D3E /* nevoFontImage.png */; };
+		00E6509C1C83EE6700278D3E /* SleepTutorialController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E6509A1C83EE6700278D3E /* SleepTutorialController.swift */; };
+		00E6509D1C83EE6700278D3E /* SleepTutorialController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00E6509B1C83EE6700278D3E /* SleepTutorialController.xib */; };
+		00E650A01C840FD500278D3E /* MorningTutorialController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E6509E1C840FD500278D3E /* MorningTutorialController.swift */; };
+		00E650A11C840FD500278D3E /* MorningTutorialController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00E6509F1C840FD500278D3E /* MorningTutorialController.xib */; };
 		00E759141C23E83200372529 /* firmware_clock.png in Resources */ = {isa = PBXBuildFile; fileRef = 00E759131C23E83200372529 /* firmware_clock.png */; };
 		00E759181C2406E600372529 /* upgrade_clock.png in Resources */ = {isa = PBXBuildFile; fileRef = 00E759171C2406E600372529 /* upgrade_clock.png */; };
 		00ED43DA1C1EA11700915885 /* Duration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00ED43D21C1EA11700915885 /* Duration.swift */; };
@@ -600,6 +608,14 @@
 		00E2BDE01B16CCD0009C757E /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		00E2BDE11B16CCD0009C757E /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		00E5CFD31B17F81F00D1F829 /* help */ = {isa = PBXFileReference; lastKnownFileType = folder; path = help; sourceTree = "<group>"; };
+		00E650921C83D8F400278D3E /* HomeTutorialController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTutorialController.swift; sourceTree = "<group>"; };
+		00E650931C83D8F400278D3E /* HomeTutorialController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeTutorialController.xib; sourceTree = "<group>"; };
+		00E650961C83DA8000278D3E /* homeTutorial.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = homeTutorial.png; sourceTree = "<group>"; };
+		00E650981C83DD9000278D3E /* nevoFontImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nevoFontImage.png; sourceTree = "<group>"; };
+		00E6509A1C83EE6700278D3E /* SleepTutorialController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SleepTutorialController.swift; sourceTree = "<group>"; };
+		00E6509B1C83EE6700278D3E /* SleepTutorialController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SleepTutorialController.xib; sourceTree = "<group>"; };
+		00E6509E1C840FD500278D3E /* MorningTutorialController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MorningTutorialController.swift; sourceTree = "<group>"; };
+		00E6509F1C840FD500278D3E /* MorningTutorialController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MorningTutorialController.xib; sourceTree = "<group>"; };
 		00E759131C23E83200372529 /* firmware_clock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = firmware_clock.png; sourceTree = "<group>"; };
 		00E759171C2406E600372529 /* upgrade_clock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = upgrade_clock.png; sourceTree = "<group>"; };
 		00ED43D21C1EA11700915885 /* Duration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Duration.swift; sourceTree = "<group>"; };
@@ -930,6 +946,12 @@
 				9E98FB251C46399900BAB700 /* Five */,
 				9E98FB261C4639BB00BAB700 /* Six */,
 				9E98FB271C4639D000BAB700 /* Seven */,
+				00E650921C83D8F400278D3E /* HomeTutorialController.swift */,
+				00E650931C83D8F400278D3E /* HomeTutorialController.xib */,
+				00E6509A1C83EE6700278D3E /* SleepTutorialController.swift */,
+				00E6509B1C83EE6700278D3E /* SleepTutorialController.xib */,
+				00E6509E1C840FD500278D3E /* MorningTutorialController.swift */,
+				00E6509F1C840FD500278D3E /* MorningTutorialController.xib */,
 			);
 			path = Tutorial;
 			sourceTree = "<group>";
@@ -1251,6 +1273,8 @@
 		007F79881A878D0B006C89E6 /* image */ = {
 			isa = PBXGroup;
 			children = (
+				00E650981C83DD9000278D3E /* nevoFontImage.png */,
+				00E650961C83DA8000278D3E /* homeTutorial.png */,
 				0036EB0B1C48C36700DCED46 /* bluetoothoff_background.png */,
 				0036EB0C1C48C36700DCED46 /* bluetoothoff.png */,
 				0036EAFF1C48BA8300DCED46 /* connected.png */,
@@ -1761,6 +1785,7 @@
 				0050D5F21C28E0DB004F6F80 /* MyNevoHeaderView.xib in Resources */,
 				0050D60E1C28E0DB004F6F80 /* PresetTableViewController.xib in Resources */,
 				00D0FF731B130A9F00D084C3 /* Nevo660.png in Resources */,
+				00E650A11C840FD500278D3E /* MorningTutorialController.xib in Resources */,
 				0050D6011C28E0DB004F6F80 /* NotificationViewController.xib in Resources */,
 				00E2BDE31B16CCD0009C757E /* MBProgressHUD.bundle in Resources */,
 				9E98FB1E1C46294C00BAB700 /* TutorialSixViewController.xib in Resources */,
@@ -1783,6 +1808,7 @@
 				0072EADB1C190DCD001EE2C9 /* SFUIText-Regular.ttf in Resources */,
 				00D4DE921AB141FB0062523D /* NevoPicture960.png in Resources */,
 				0050D5F91C28E0DB004F6F80 /* NevoOtaViewController.xib in Resources */,
+				00E650951C83D8F400278D3E /* HomeTutorialController.xib in Resources */,
 				0036EB0D1C48C36700DCED46 /* bluetoothoff_background.png in Resources */,
 				0072EAB81C190DCD001EE2C9 /* SFCompactDisplay-Light.ttf in Resources */,
 				0050D61C1C28E0DB004F6F80 /* SleepHistoricalViewController.xib in Resources */,
@@ -1799,16 +1825,19 @@
 				0042C8B41C7DB3EF00177D3D /* NotAlarmView.xib in Resources */,
 				07BCE82A1B5CAB2200C7F558 /* clockview600_color.png in Resources */,
 				9AD8F9421A6DF35900F01014 /* Images.xcassets in Resources */,
+				00E6509D1C83EE6700278D3E /* SleepTutorialController.xib in Resources */,
 				0050D6031C28E0DB004F6F80 /* SelectedNotificationTypeController.xib in Resources */,
 				0050D6941C28E1CD004F6F80 /* AddAlarmSystemCell.xib in Resources */,
 				0036EB0A1C48BA8300DCED46 /* tutorialone.png in Resources */,
 				9E98FB1A1C46294C00BAB700 /* TutorialFiveViewController.xib in Resources */,
 				9E98FB201C46294C00BAB700 /* TutorialTwoViewController.xib in Resources */,
+				00E650971C83DA8000278D3E /* homeTutorial.png in Resources */,
 				0050D61E1C28E0DB004F6F80 /* SleepTrackingController.xib in Resources */,
 				0036EB061C48BA8300DCED46 /* connected1.png in Resources */,
 				0050D6961C28E1CD004F6F80 /* AddAlarmTableViewCell.xib in Resources */,
 				0050D69B1C2906D8004F6F80 /* Firmwares in Resources */,
 				001F1B7B1B57777B001DD426 /* nevo_wacth_selected.png in Resources */,
+				00E650991C83DD9000278D3E /* nevoFontImage.png in Resources */,
 				0050D60C1C28E0DB004F6F80 /* AddPresetViewController.xib in Resources */,
 				00E759181C2406E600372529 /* upgrade_clock.png in Resources */,
 				0017CB4F1C59B58D00F1182D /* DatePickerView.xib in Resources */,
@@ -1952,6 +1981,7 @@
 				0050D6201C28E0DB004F6F80 /* StepController.swift in Sources */,
 				9E98FB291C463A3B00BAB700 /* TutorialOneViewController.swift in Sources */,
 				0050D5F11C28E0DB004F6F80 /* MyNevoHeaderView.swift in Sources */,
+				00E6509C1C83EE6700278D3E /* SleepTutorialController.swift in Sources */,
 				0050D6381C28E0DB004F6F80 /* RealTimeCountSteps.swift in Sources */,
 				9AD8F9791A6E05F700F01014 /* NevoBT.swift in Sources */,
 				0050D5F71C28E0DB004F6F80 /* SelectFileView.swift in Sources */,
@@ -2032,6 +2062,7 @@
 				9A2D6C401A9C783800591BDC /* NevoHKImpl.swift in Sources */,
 				0050D6411C28E0DB004F6F80 /* NotificationModel.swift in Sources */,
 				00DC9ED01BB2853D00734DB6 /* RadarChartData.swift in Sources */,
+				00E650A01C840FD500278D3E /* MorningTutorialController.swift in Sources */,
 				00DC9EC71BB2853D00734DB6 /* ChartDataEntry.swift in Sources */,
 				00DC9EDF1BB2853D00734DB6 /* BarChartRenderer.swift in Sources */,
 				0050D6651C28E0DB004F6F80 /* NevoOTARequest.swift in Sources */,
@@ -2075,6 +2106,7 @@
 				0050D6371C28E0DB004F6F80 /* HourlySteps.swift in Sources */,
 				0050D6771C28E0DB004F6F80 /* SetProfileRequest.swift in Sources */,
 				0050D66A1C28E0DB004F6F80 /* DailyTrackerNevoPacket.swift in Sources */,
+				00E650941C83D8F400278D3E /* HomeTutorialController.swift in Sources */,
 				0032921D1C4E118D00931AF5 /* Banner.swift in Sources */,
 				9AD8F93B1A6DF35900F01014 /* Nevo.xcdatamodeld in Sources */,
 				00DC9EEF1BB2853D00734DB6 /* LineChartRenderer.swift in Sources */,
