@@ -41,9 +41,19 @@ class AddPresetViewController: UIViewController,ButtonManagerCallBack {
             addDelegate?.onAddPresetNumber(Int(addPresetView.presetNumber.text!)!, name: addPresetView.presetName.text!)
             self.navigationController?.popViewControllerAnimated(true)
         }else{
-            
-            let alert:UIAlertView = UIAlertView(title: "", message: NSLocalizedString("Goal must be bigger than 1000.", comment: ""), delegate: nil, cancelButtonTitle: NSLocalizedString("ok", comment: ""))
-            alert.show()
+            if((UIDevice.currentDevice().systemVersion as NSString).floatValue >= 8.0){
+                let actionSheet:UIAlertController = UIAlertController(title: "", message: NSLocalizedString("goal_must_bigger_1000", comment: ""), preferredStyle: UIAlertControllerStyle.Alert)
+                actionSheet.view.tintColor = AppTheme.NEVO_SOLAR_YELLOW()
+                let alertAction:UIAlertAction = UIAlertAction(title: NSLocalizedString("Ok", comment: ""), style: UIAlertActionStyle.Default, handler: { (action:UIAlertAction) -> Void in
+
+                })
+                actionSheet.addAction(alertAction)
+                self.presentViewController(actionSheet, animated: true, completion: nil)
+            }else{
+                let actionSheet:UIAlertView = UIAlertView(title: "", message: NSLocalizedString("goal_must_bigger_1000", comment: ""), delegate: nil, cancelButtonTitle: NSLocalizedString("Cancel", comment: ""), otherButtonTitles: NSLocalizedString("Ok", comment: ""))
+                actionSheet.alertViewStyle = UIAlertViewStyle.PlainTextInput
+                actionSheet.show()
+            }
         }
     }
 

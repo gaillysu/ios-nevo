@@ -110,5 +110,6 @@
 "sync_finished"="同步完成";
 "Update"="升级";
 "Add"="添加";
-"no_alarm_content"="You don’t have any alarm set. Set an alarm by tapping on the plus button in the upper right corner.";
-"An_update_is_available_for_your_watch"="An update is available for your watch.";
+"no_alarm_content"="你没有设置一个闹钟,可以点击右上角的加好按钮添加一个闹钟";
+"An_update_is_available_for_your_watch"="你的手表有可用的更新";
+"goal_must_bigger_1000"="目标值必须是大于1000";
