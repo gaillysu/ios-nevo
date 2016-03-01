@@ -40,12 +40,6 @@
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="nevoWhiteLEDImage.png" translatesAutoresizingMaskIntoConstraints="NO" id="DmG-ck-KTL">
-                    <rect key="frame" x="0.0" y="185" width="254" height="254"/>
-                    <constraints>
-                        <constraint firstAttribute="width" secondItem="DmG-ck-KTL" secondAttribute="height" multiplier="1:1" id="9ar-xF-y4T"/>
-                    </constraints>
-                </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gue-7o-VWB">
                     <rect key="frame" x="45" y="505" width="500" height="30"/>
                     <constraints>
@@ -59,8 +53,14 @@
                         <action selector="buttonManager:" destination="-1" eventType="touchUpInside" id="TYL-o6-FKb"/>
                     </connections>
                 </button>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="nevoWhiteLEDImage.png" translatesAutoresizingMaskIntoConstraints="NO" id="DmG-ck-KTL">
+                    <rect key="frame" x="0.0" y="185" width="254" height="254"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="DmG-ck-KTL" secondAttribute="height" multiplier="1:1" id="9ar-xF-y4T"/>
+                    </constraints>
+                </imageView>
             </subviews>
-            <color key="backgroundColor" red="0.96470588235294119" green="0.96470588235294119" blue="0.96470588235294119" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" red="0.95974655382287155" green="0.96095251019870898" blue="0.96357415449401074" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="4nA-h1-L87" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="7ma-al-QUB"/>
                 <constraint firstAttribute="trailing" secondItem="vIS-Wv-bD5" secondAttribute="trailing" constant="10" id="RTX-W6-M9Z"/>
@@ -76,6 +76,7 @@
                 <constraint firstItem="DmG-ck-KTL" firstAttribute="top" secondItem="4nA-h1-L87" secondAttribute="bottom" constant="40" id="soF-WF-dzU"/>
                 <constraint firstItem="vIS-Wv-bD5" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="ykl-DK-rOn"/>
             </constraints>
+            <point key="canvasLocation" x="435" y="249"/>
         </view>
     </objects>
     <resources>

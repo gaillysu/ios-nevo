@@ -274,16 +274,26 @@
 		00E2BDE41B16CCD0009C757E /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E2BDE11B16CCD0009C757E /* MBProgressHUD.m */; };
 		00E5CFD41B17F81F00D1F829 /* help in Resources */ = {isa = PBXBuildFile; fileRef = 00E5CFD31B17F81F00D1F829 /* help */; };
 		00E650941C83D8F400278D3E /* HomeTutorialController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E650921C83D8F400278D3E /* HomeTutorialController.swift */; };
-		00E650951C83D8F400278D3E /* HomeTutorialController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00E650931C83D8F400278D3E /* HomeTutorialController.xib */; };
 		00E650971C83DA8000278D3E /* homeTutorial.png in Resources */ = {isa = PBXBuildFile; fileRef = 00E650961C83DA8000278D3E /* homeTutorial.png */; };
 		00E650991C83DD9000278D3E /* nevoFontImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 00E650981C83DD9000278D3E /* nevoFontImage.png */; };
 		00E6509C1C83EE6700278D3E /* SleepTutorialController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E6509A1C83EE6700278D3E /* SleepTutorialController.swift */; };
-		00E6509D1C83EE6700278D3E /* SleepTutorialController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00E6509B1C83EE6700278D3E /* SleepTutorialController.xib */; };
 		00E650A01C840FD500278D3E /* MorningTutorialController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E6509E1C840FD500278D3E /* MorningTutorialController.swift */; };
-		00E650A11C840FD500278D3E /* MorningTutorialController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00E6509F1C840FD500278D3E /* MorningTutorialController.xib */; };
 		00E650A31C8425E600278D3E /* nevoWhiteLEDImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 00E650A21C8425E600278D3E /* nevoWhiteLEDImage.png */; };
 		00E759141C23E83200372529 /* firmware_clock.png in Resources */ = {isa = PBXBuildFile; fileRef = 00E759131C23E83200372529 /* firmware_clock.png */; };
 		00E759181C2406E600372529 /* upgrade_clock.png in Resources */ = {isa = PBXBuildFile; fileRef = 00E759171C2406E600372529 /* upgrade_clock.png */; };
+		00EC9DA81C857BDB00280904 /* LICENSE.md in Sources */ = {isa = PBXBuildFile; fileRef = 00EC9DA51C857BDB00280904 /* LICENSE.md */; };
+		00EC9DA91C857BDB00280904 /* LocalNotificationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EC9DA61C857BDB00280904 /* LocalNotificationHelper.swift */; };
+		00EC9DAA1C857BDB00280904 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 00EC9DA71C857BDB00280904 /* README.md */; };
+		00EC9DAE1C8582E400280904 /* TutorialOneViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00EC9DB01C8582E400280904 /* TutorialOneViewController.xib */; };
+		00EC9DB91C85830F00280904 /* HomeTutorialController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00EC9DBB1C85830F00280904 /* HomeTutorialController.xib */; };
+		00EC9DC41C85832300280904 /* SleepTutorialController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00EC9DC61C85832300280904 /* SleepTutorialController.xib */; };
+		00EC9DCF1C85833400280904 /* MorningTutorialController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00EC9DD11C85833400280904 /* MorningTutorialController.xib */; };
+		00EC9DDA1C85834F00280904 /* TutorialTwoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00EC9DDC1C85834F00280904 /* TutorialTwoViewController.xib */; };
+		00EC9DE51C85835F00280904 /* TutorialThreeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00EC9DE71C85835F00280904 /* TutorialThreeViewController.xib */; };
+		00EC9DF01C85837500280904 /* TutorialFourViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00EC9DF21C85837500280904 /* TutorialFourViewController.xib */; };
+		00EC9DFB1C85838900280904 /* TutorialFiveViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00EC9DFD1C85838900280904 /* TutorialFiveViewController.xib */; };
+		00EC9E061C85839A00280904 /* TutorialSixViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00EC9E081C85839A00280904 /* TutorialSixViewController.xib */; };
+		00EC9E111C8583AA00280904 /* TutorialSevenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00EC9E131C8583AA00280904 /* TutorialSevenViewController.xib */; };
 		00ED43DA1C1EA11700915885 /* Duration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00ED43D21C1EA11700915885 /* Duration.swift */; };
 		00ED43DB1C1EA11700915885 /* Int+Timepiece.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00ED43D31C1EA11700915885 /* Int+Timepiece.swift */; };
 		00ED43DC1C1EA11700915885 /* NSCalendar+Timepiece.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00ED43D41C1EA11700915885 /* NSCalendar+Timepiece.swift */; };
@@ -304,13 +314,6 @@
 		9AD8F9841A6E2C8E00F01014 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD8F9821A6E2C8E00F01014 /* Request.swift */; };
 		9AD8F98D1A6E2D6E00F01014 /* RawPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD8F98C1A6E2D6E00F01014 /* RawPacket.swift */; };
 		9AD8F98F1A6E2EE000F01014 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD8F98E1A6E2EE000F01014 /* Profile.swift */; };
-		9E98FB1A1C46294C00BAB700 /* TutorialFiveViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E98FB131C46294C00BAB700 /* TutorialFiveViewController.xib */; };
-		9E98FB1B1C46294C00BAB700 /* TutorialFourViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E98FB141C46294C00BAB700 /* TutorialFourViewController.xib */; };
-		9E98FB1C1C46294C00BAB700 /* TutorialOneViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E98FB151C46294C00BAB700 /* TutorialOneViewController.xib */; };
-		9E98FB1D1C46294C00BAB700 /* TutorialSevenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E98FB161C46294C00BAB700 /* TutorialSevenViewController.xib */; };
-		9E98FB1E1C46294C00BAB700 /* TutorialSixViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E98FB171C46294C00BAB700 /* TutorialSixViewController.xib */; };
-		9E98FB1F1C46294C00BAB700 /* TutorialThreeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E98FB181C46294C00BAB700 /* TutorialThreeViewController.xib */; };
-		9E98FB201C46294C00BAB700 /* TutorialTwoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E98FB191C46294C00BAB700 /* TutorialTwoViewController.xib */; };
 		9E98FB291C463A3B00BAB700 /* TutorialOneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E98FB281C463A3B00BAB700 /* TutorialOneViewController.swift */; };
 		9E98FB2B1C463BB200BAB700 /* TutorialTwoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E98FB2A1C463BB200BAB700 /* TutorialTwoViewController.swift */; };
 		9E98FB2D1C463D2A00BAB700 /* TutorialThreeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E98FB2C1C463D2A00BAB700 /* TutorialThreeViewController.swift */; };
@@ -610,16 +613,66 @@
 		00E2BDE11B16CCD0009C757E /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		00E5CFD31B17F81F00D1F829 /* help */ = {isa = PBXFileReference; lastKnownFileType = folder; path = help; sourceTree = "<group>"; };
 		00E650921C83D8F400278D3E /* HomeTutorialController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTutorialController.swift; sourceTree = "<group>"; };
-		00E650931C83D8F400278D3E /* HomeTutorialController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeTutorialController.xib; sourceTree = "<group>"; };
 		00E650961C83DA8000278D3E /* homeTutorial.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = homeTutorial.png; sourceTree = "<group>"; };
 		00E650981C83DD9000278D3E /* nevoFontImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nevoFontImage.png; sourceTree = "<group>"; };
 		00E6509A1C83EE6700278D3E /* SleepTutorialController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SleepTutorialController.swift; sourceTree = "<group>"; };
-		00E6509B1C83EE6700278D3E /* SleepTutorialController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SleepTutorialController.xib; sourceTree = "<group>"; };
 		00E6509E1C840FD500278D3E /* MorningTutorialController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MorningTutorialController.swift; sourceTree = "<group>"; };
-		00E6509F1C840FD500278D3E /* MorningTutorialController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MorningTutorialController.xib; sourceTree = "<group>"; };
 		00E650A21C8425E600278D3E /* nevoWhiteLEDImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nevoWhiteLEDImage.png; sourceTree = "<group>"; };
 		00E759131C23E83200372529 /* firmware_clock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = firmware_clock.png; sourceTree = "<group>"; };
 		00E759171C2406E600372529 /* upgrade_clock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = upgrade_clock.png; sourceTree = "<group>"; };
+		00EC9DA51C857BDB00280904 /* LICENSE.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = LICENSE.md; sourceTree = "<group>"; };
+		00EC9DA61C857BDB00280904 /* LocalNotificationHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalNotificationHelper.swift; sourceTree = "<group>"; };
+		00EC9DA71C857BDB00280904 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		00EC9DAF1C8582E400280904 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/TutorialOneViewController.xib; sourceTree = "<group>"; };
+		00EC9DB21C8582E900280904 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/TutorialOneViewController.strings; sourceTree = "<group>"; };
+		00EC9DB41C8582EB00280904 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/TutorialOneViewController.strings"; sourceTree = "<group>"; };
+		00EC9DB61C8582EF00280904 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/TutorialOneViewController.strings"; sourceTree = "<group>"; };
+		00EC9DB81C8582F000280904 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/TutorialOneViewController.strings; sourceTree = "<group>"; };
+		00EC9DBA1C85830F00280904 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/HomeTutorialController.xib; sourceTree = "<group>"; };
+		00EC9DBD1C85831100280904 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/HomeTutorialController.strings; sourceTree = "<group>"; };
+		00EC9DBF1C85831200280904 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/HomeTutorialController.strings"; sourceTree = "<group>"; };
+		00EC9DC11C85831400280904 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/HomeTutorialController.strings"; sourceTree = "<group>"; };
+		00EC9DC31C85831600280904 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/HomeTutorialController.strings; sourceTree = "<group>"; };
+		00EC9DC51C85832300280904 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/SleepTutorialController.xib; sourceTree = "<group>"; };
+		00EC9DC81C85832700280904 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/SleepTutorialController.strings; sourceTree = "<group>"; };
+		00EC9DCA1C85832B00280904 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/SleepTutorialController.strings"; sourceTree = "<group>"; };
+		00EC9DCC1C85832C00280904 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/SleepTutorialController.strings"; sourceTree = "<group>"; };
+		00EC9DCE1C85832D00280904 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/SleepTutorialController.strings; sourceTree = "<group>"; };
+		00EC9DD01C85833400280904 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MorningTutorialController.xib; sourceTree = "<group>"; };
+		00EC9DD31C85833600280904 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/MorningTutorialController.strings; sourceTree = "<group>"; };
+		00EC9DD51C85833800280904 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/MorningTutorialController.strings"; sourceTree = "<group>"; };
+		00EC9DD71C85833900280904 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/MorningTutorialController.strings"; sourceTree = "<group>"; };
+		00EC9DD91C85833A00280904 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/MorningTutorialController.strings; sourceTree = "<group>"; };
+		00EC9DDB1C85834F00280904 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/TutorialTwoViewController.xib; sourceTree = "<group>"; };
+		00EC9DDE1C85835200280904 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/TutorialTwoViewController.strings; sourceTree = "<group>"; };
+		00EC9DE01C85835300280904 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/TutorialTwoViewController.strings"; sourceTree = "<group>"; };
+		00EC9DE21C85835500280904 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/TutorialTwoViewController.strings"; sourceTree = "<group>"; };
+		00EC9DE41C85835600280904 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/TutorialTwoViewController.strings; sourceTree = "<group>"; };
+		00EC9DE61C85835F00280904 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/TutorialThreeViewController.xib; sourceTree = "<group>"; };
+		00EC9DE91C85836200280904 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/TutorialThreeViewController.strings; sourceTree = "<group>"; };
+		00EC9DEB1C85836300280904 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/TutorialThreeViewController.strings"; sourceTree = "<group>"; };
+		00EC9DED1C85836400280904 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/TutorialThreeViewController.strings"; sourceTree = "<group>"; };
+		00EC9DEF1C85836600280904 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/TutorialThreeViewController.strings; sourceTree = "<group>"; };
+		00EC9DF11C85837500280904 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/TutorialFourViewController.xib; sourceTree = "<group>"; };
+		00EC9DF41C85837700280904 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/TutorialFourViewController.strings; sourceTree = "<group>"; };
+		00EC9DF61C85837800280904 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/TutorialFourViewController.strings"; sourceTree = "<group>"; };
+		00EC9DF81C85837900280904 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/TutorialFourViewController.strings"; sourceTree = "<group>"; };
+		00EC9DFA1C85837B00280904 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/TutorialFourViewController.strings; sourceTree = "<group>"; };
+		00EC9DFC1C85838900280904 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/TutorialFiveViewController.xib; sourceTree = "<group>"; };
+		00EC9DFF1C85838C00280904 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/TutorialFiveViewController.strings; sourceTree = "<group>"; };
+		00EC9E011C85838E00280904 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/TutorialFiveViewController.strings"; sourceTree = "<group>"; };
+		00EC9E031C85838F00280904 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/TutorialFiveViewController.strings"; sourceTree = "<group>"; };
+		00EC9E051C85839100280904 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/TutorialFiveViewController.strings; sourceTree = "<group>"; };
+		00EC9E071C85839A00280904 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/TutorialSixViewController.xib; sourceTree = "<group>"; };
+		00EC9E0A1C85839C00280904 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/TutorialSixViewController.strings; sourceTree = "<group>"; };
+		00EC9E0C1C85839D00280904 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/TutorialSixViewController.strings"; sourceTree = "<group>"; };
+		00EC9E0E1C85839F00280904 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/TutorialSixViewController.strings"; sourceTree = "<group>"; };
+		00EC9E101C8583A000280904 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/TutorialSixViewController.strings; sourceTree = "<group>"; };
+		00EC9E121C8583AA00280904 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/TutorialSevenViewController.xib; sourceTree = "<group>"; };
+		00EC9E151C8583F200280904 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/TutorialSevenViewController.strings; sourceTree = "<group>"; };
+		00EC9E171C8583F300280904 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/TutorialSevenViewController.strings"; sourceTree = "<group>"; };
+		00EC9E191C8583F400280904 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/TutorialSevenViewController.strings"; sourceTree = "<group>"; };
+		00EC9E1B1C8583F500280904 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/TutorialSevenViewController.strings; sourceTree = "<group>"; };
 		00ED43D21C1EA11700915885 /* Duration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Duration.swift; sourceTree = "<group>"; };
 		00ED43D31C1EA11700915885 /* Int+Timepiece.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Int+Timepiece.swift"; sourceTree = "<group>"; };
 		00ED43D41C1EA11700915885 /* NSCalendar+Timepiece.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSCalendar+Timepiece.swift"; sourceTree = "<group>"; };
@@ -647,13 +700,6 @@
 		9AD8F9821A6E2C8E00F01014 /* Request.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Request.swift; path = Frameworks/NevoBT/Request.swift; sourceTree = "<group>"; };
 		9AD8F98C1A6E2D6E00F01014 /* RawPacket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RawPacket.swift; path = Frameworks/NevoBT/RawPacket.swift; sourceTree = "<group>"; };
 		9AD8F98E1A6E2EE000F01014 /* Profile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Profile.swift; path = Frameworks/NevoBT/Profile.swift; sourceTree = "<group>"; };
-		9E98FB131C46294C00BAB700 /* TutorialFiveViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TutorialFiveViewController.xib; sourceTree = "<group>"; };
-		9E98FB141C46294C00BAB700 /* TutorialFourViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TutorialFourViewController.xib; sourceTree = "<group>"; };
-		9E98FB151C46294C00BAB700 /* TutorialOneViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TutorialOneViewController.xib; sourceTree = "<group>"; };
-		9E98FB161C46294C00BAB700 /* TutorialSevenViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TutorialSevenViewController.xib; sourceTree = "<group>"; };
-		9E98FB171C46294C00BAB700 /* TutorialSixViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TutorialSixViewController.xib; sourceTree = "<group>"; };
-		9E98FB181C46294C00BAB700 /* TutorialThreeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TutorialThreeViewController.xib; sourceTree = "<group>"; };
-		9E98FB191C46294C00BAB700 /* TutorialTwoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TutorialTwoViewController.xib; sourceTree = "<group>"; };
 		9E98FB281C463A3B00BAB700 /* TutorialOneViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialOneViewController.swift; sourceTree = "<group>"; };
 		9E98FB2A1C463BB200BAB700 /* TutorialTwoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialTwoViewController.swift; sourceTree = "<group>"; };
 		9E98FB2C1C463D2A00BAB700 /* TutorialThreeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialThreeViewController.swift; sourceTree = "<group>"; };
@@ -949,11 +995,11 @@
 				9E98FB261C4639BB00BAB700 /* Six */,
 				9E98FB271C4639D000BAB700 /* Seven */,
 				00E650921C83D8F400278D3E /* HomeTutorialController.swift */,
-				00E650931C83D8F400278D3E /* HomeTutorialController.xib */,
+				00EC9DBB1C85830F00280904 /* HomeTutorialController.xib */,
 				00E6509A1C83EE6700278D3E /* SleepTutorialController.swift */,
-				00E6509B1C83EE6700278D3E /* SleepTutorialController.xib */,
+				00EC9DC61C85832300280904 /* SleepTutorialController.xib */,
 				00E6509E1C840FD500278D3E /* MorningTutorialController.swift */,
-				00E6509F1C840FD500278D3E /* MorningTutorialController.xib */,
+				00EC9DD11C85833400280904 /* MorningTutorialController.xib */,
 			);
 			path = Tutorial;
 			sourceTree = "<group>";
@@ -1501,6 +1547,17 @@
 			path = Frameworks/MBProgressHUD;
 			sourceTree = "<group>";
 		};
+		00EC9DA41C857BDB00280904 /* LocalNotificationHelper */ = {
+			isa = PBXGroup;
+			children = (
+				00EC9DA51C857BDB00280904 /* LICENSE.md */,
+				00EC9DA61C857BDB00280904 /* LocalNotificationHelper.swift */,
+				00EC9DA71C857BDB00280904 /* README.md */,
+			);
+			name = LocalNotificationHelper;
+			path = Frameworks/LocalNotificationHelper;
+			sourceTree = "<group>";
+		};
 		00ED43D11C1EA11700915885 /* Timepiece */ = {
 			isa = PBXGroup;
 			children = (
@@ -1598,6 +1655,7 @@
 		9AD8F95A1A6DFE3400F01014 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				00EC9DA41C857BDB00280904 /* LocalNotificationHelper */,
 				003292161C4E118D00931AF5 /* BRYXBanner */,
 				00ED43D11C1EA11700915885 /* Timepiece */,
 				004846D31B72EDB9005A6D83 /* libsqlite3.dylib */,
@@ -1626,7 +1684,7 @@
 		9E98FB211C46395F00BAB700 /* One */ = {
 			isa = PBXGroup;
 			children = (
-				9E98FB151C46294C00BAB700 /* TutorialOneViewController.xib */,
+				00EC9DB01C8582E400280904 /* TutorialOneViewController.xib */,
 				9E98FB281C463A3B00BAB700 /* TutorialOneViewController.swift */,
 			);
 			name = One;
@@ -1635,7 +1693,7 @@
 		9E98FB221C46397E00BAB700 /* Two */ = {
 			isa = PBXGroup;
 			children = (
-				9E98FB191C46294C00BAB700 /* TutorialTwoViewController.xib */,
+				00EC9DDC1C85834F00280904 /* TutorialTwoViewController.xib */,
 				9E98FB2A1C463BB200BAB700 /* TutorialTwoViewController.swift */,
 			);
 			name = Two;
@@ -1644,7 +1702,7 @@
 		9E98FB231C46398C00BAB700 /* Three */ = {
 			isa = PBXGroup;
 			children = (
-				9E98FB181C46294C00BAB700 /* TutorialThreeViewController.xib */,
+				00EC9DE71C85835F00280904 /* TutorialThreeViewController.xib */,
 				9E98FB2C1C463D2A00BAB700 /* TutorialThreeViewController.swift */,
 			);
 			name = Three;
@@ -1653,7 +1711,7 @@
 		9E98FB241C46399400BAB700 /* Four */ = {
 			isa = PBXGroup;
 			children = (
-				9E98FB141C46294C00BAB700 /* TutorialFourViewController.xib */,
+				00EC9DF21C85837500280904 /* TutorialFourViewController.xib */,
 				9E98FB2E1C463E1C00BAB700 /* TutorialFourViewController.swift */,
 			);
 			name = Four;
@@ -1662,7 +1720,7 @@
 		9E98FB251C46399900BAB700 /* Five */ = {
 			isa = PBXGroup;
 			children = (
-				9E98FB131C46294C00BAB700 /* TutorialFiveViewController.xib */,
+				00EC9DFD1C85838900280904 /* TutorialFiveViewController.xib */,
 				9E98FB341C46405800BAB700 /* TutorialFiveViewController.swift */,
 			);
 			name = Five;
@@ -1671,7 +1729,7 @@
 		9E98FB261C4639BB00BAB700 /* Six */ = {
 			isa = PBXGroup;
 			children = (
-				9E98FB171C46294C00BAB700 /* TutorialSixViewController.xib */,
+				00EC9E081C85839A00280904 /* TutorialSixViewController.xib */,
 				9E98FB3C1C46434100BAB700 /* TutorialSixViewController.swift */,
 			);
 			name = Six;
@@ -1680,7 +1738,7 @@
 		9E98FB271C4639D000BAB700 /* Seven */ = {
 			isa = PBXGroup;
 			children = (
-				9E98FB161C46294C00BAB700 /* TutorialSevenViewController.xib */,
+				00EC9E131C8583AA00280904 /* TutorialSevenViewController.xib */,
 				9E98FB361C4640AF00BAB700 /* TutorialSevenViewController.swift */,
 			);
 			name = Seven;
@@ -1782,27 +1840,27 @@
 			files = (
 				0072EABA1C190DCD001EE2C9 /* SFCompactDisplay-Regular.ttf in Resources */,
 				0050D6921C28E1CD004F6F80 /* AddAlarmController.xib in Resources */,
-				9E98FB1D1C46294C00BAB700 /* TutorialSevenViewController.xib in Resources */,
+				00EC9E111C8583AA00280904 /* TutorialSevenViewController.xib in Resources */,
 				00E759141C23E83200372529 /* firmware_clock.png in Resources */,
 				00DBC3A31C435541004B4376 /* Main.storyboard in Resources */,
 				0050D5F21C28E0DB004F6F80 /* MyNevoHeaderView.xib in Resources */,
 				0050D60E1C28E0DB004F6F80 /* PresetTableViewController.xib in Resources */,
 				00D0FF731B130A9F00D084C3 /* Nevo660.png in Resources */,
-				00E650A11C840FD500278D3E /* MorningTutorialController.xib in Resources */,
+				00EC9DCF1C85833400280904 /* MorningTutorialController.xib in Resources */,
 				0050D6011C28E0DB004F6F80 /* NotificationViewController.xib in Resources */,
 				00E2BDE31B16CCD0009C757E /* MBProgressHUD.bundle in Resources */,
-				9E98FB1E1C46294C00BAB700 /* TutorialSixViewController.xib in Resources */,
+				00EC9E061C85839A00280904 /* TutorialSixViewController.xib in Resources */,
 				0050D6221C28E0DB004F6F80 /* StepGoalSetingController.xib in Resources */,
 				0050D6181C28E0DB004F6F80 /* queryTableviewCell.xib in Resources */,
 				00A773961A88562F0018E121 /* Localizable.strings in Resources */,
 				0050D5F01C28E0DB004F6F80 /* MyNevoController.xib in Resources */,
 				0072EAEB1C192210001EE2C9 /* spinner.png in Resources */,
-				9E98FB1B1C46294C00BAB700 /* TutorialFourViewController.xib in Resources */,
+				00EC9DF01C85837500280904 /* TutorialFourViewController.xib in Resources */,
 				000CB32A1C3E436000B4ABEC /* white_minute.png in Resources */,
 				00344F5D1C47A86800C2FC7A /* SupportViewController.xib in Resources */,
 				0036EB081C48BA8300DCED46 /* settimer.png in Resources */,
 				0036EB071C48BA8300DCED46 /* searching.png in Resources */,
-				9E98FB1C1C46294C00BAB700 /* TutorialOneViewController.xib in Resources */,
+				00EC9DAE1C8582E400280904 /* TutorialOneViewController.xib in Resources */,
 				00478F4F1A8F637D00D0DCE2 /* clockViewHour.png in Resources */,
 				0050D6111C28E0DB004F6F80 /* PresetTableViewCell.xib in Resources */,
 				0032921C1C4E118D00931AF5 /* LICENSE in Resources */,
@@ -1811,7 +1869,7 @@
 				0072EADB1C190DCD001EE2C9 /* SFUIText-Regular.ttf in Resources */,
 				00D4DE921AB141FB0062523D /* NevoPicture960.png in Resources */,
 				0050D5F91C28E0DB004F6F80 /* NevoOtaViewController.xib in Resources */,
-				00E650951C83D8F400278D3E /* HomeTutorialController.xib in Resources */,
+				00EC9DB91C85830F00280904 /* HomeTutorialController.xib in Resources */,
 				0036EB0D1C48C36700DCED46 /* bluetoothoff_background.png in Resources */,
 				0072EAB81C190DCD001EE2C9 /* SFCompactDisplay-Light.ttf in Resources */,
 				0050D61C1C28E0DB004F6F80 /* SleepHistoricalViewController.xib in Resources */,
@@ -1828,13 +1886,13 @@
 				0042C8B41C7DB3EF00177D3D /* NotAlarmView.xib in Resources */,
 				07BCE82A1B5CAB2200C7F558 /* clockview600_color.png in Resources */,
 				9AD8F9421A6DF35900F01014 /* Images.xcassets in Resources */,
-				00E6509D1C83EE6700278D3E /* SleepTutorialController.xib in Resources */,
+				00EC9DC41C85832300280904 /* SleepTutorialController.xib in Resources */,
 				00E650A31C8425E600278D3E /* nevoWhiteLEDImage.png in Resources */,
 				0050D6031C28E0DB004F6F80 /* SelectedNotificationTypeController.xib in Resources */,
 				0050D6941C28E1CD004F6F80 /* AddAlarmSystemCell.xib in Resources */,
 				0036EB0A1C48BA8300DCED46 /* tutorialone.png in Resources */,
-				9E98FB1A1C46294C00BAB700 /* TutorialFiveViewController.xib in Resources */,
-				9E98FB201C46294C00BAB700 /* TutorialTwoViewController.xib in Resources */,
+				00EC9DFB1C85838900280904 /* TutorialFiveViewController.xib in Resources */,
+				00EC9DDA1C85834F00280904 /* TutorialTwoViewController.xib in Resources */,
 				00E650971C83DA8000278D3E /* homeTutorial.png in Resources */,
 				0050D61E1C28E0DB004F6F80 /* SleepTrackingController.xib in Resources */,
 				0036EB061C48BA8300DCED46 /* connected1.png in Resources */,
@@ -1846,7 +1904,7 @@
 				00E759181C2406E600372529 /* upgrade_clock.png in Resources */,
 				0017CB4F1C59B58D00F1182D /* DatePickerView.xib in Resources */,
 				0036EB0E1C48C36700DCED46 /* bluetoothoff.png in Resources */,
-				9E98FB1F1C46294C00BAB700 /* TutorialThreeViewController.xib in Resources */,
+				00EC9DE51C85835F00280904 /* TutorialThreeViewController.xib in Resources */,
 				00478F501A8F637D00D0DCE2 /* clockViewMinute.png in Resources */,
 				0072EACF1C190DCD001EE2C9 /* SFUIDisplay-Regular.ttf in Resources */,
 				000CB3281C3E436000B4ABEC /* white_clock.png in Resources */,
@@ -1996,6 +2054,7 @@
 				00ED43DD1C1EA11700915885 /* NSCalendarUnit+Timepiece.swift in Sources */,
 				00DC9EB51BB2853D00734DB6 /* ChartComponentBase.swift in Sources */,
 				0050D6681C28E0DB004F6F80 /* DailyStepsNevoPacket.swift in Sources */,
+				00EC9DA91C857BDB00280904 /* LocalNotificationHelper.swift in Sources */,
 				00ED43E01C1EA11700915885 /* NSTimeInterval+Timepiece.swift in Sources */,
 				00DC9EB11BB2853D00734DB6 /* PieRadarChartViewBase.swift in Sources */,
 				0042C8B21C7DB37200177D3D /* NotAlarmView.swift in Sources */,
@@ -2007,6 +2066,7 @@
 				00E2BDE21B16CCD0009C757E /* MBProgressHUD+MJ.m in Sources */,
 				005BC95F1A88B79F006F9E86 /* FXBlurView.m in Sources */,
 				0050D6931C28E1CD004F6F80 /* AddAlarmSystemCell.swift in Sources */,
+				00EC9DAA1C857BDB00280904 /* README.md in Sources */,
 				9E98FB2D1C463D2A00BAB700 /* TutorialThreeViewController.swift in Sources */,
 				0050D66E1C28E0DB004F6F80 /* LedLightOnOffNevoRequest.swift in Sources */,
 				0050D6521C28E0DB004F6F80 /* PublicClassController.swift in Sources */,
@@ -2137,6 +2197,7 @@
 				00DC9EF81BB2853D00734DB6 /* ChartTransformerHorizontalBarChart.swift in Sources */,
 				0050D6541C28E0DB004F6F80 /* AnimationView.swift in Sources */,
 				00DC9EDA1BB2853D00734DB6 /* ChartHighlight.swift in Sources */,
+				00EC9DA81C857BDB00280904 /* LICENSE.md in Sources */,
 				0050D5F51C28E0DB004F6F80 /* DeviceScannerView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2170,6 +2231,126 @@
 				0086858F1B40D53C0062F544 /* de */,
 			);
 			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		00EC9DB01C8582E400280904 /* TutorialOneViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				00EC9DAF1C8582E400280904 /* en */,
+				00EC9DB21C8582E900280904 /* fr */,
+				00EC9DB41C8582EB00280904 /* zh-Hans */,
+				00EC9DB61C8582EF00280904 /* zh-Hant */,
+				00EC9DB81C8582F000280904 /* de */,
+			);
+			name = TutorialOneViewController.xib;
+			sourceTree = "<group>";
+		};
+		00EC9DBB1C85830F00280904 /* HomeTutorialController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				00EC9DBA1C85830F00280904 /* en */,
+				00EC9DBD1C85831100280904 /* fr */,
+				00EC9DBF1C85831200280904 /* zh-Hans */,
+				00EC9DC11C85831400280904 /* zh-Hant */,
+				00EC9DC31C85831600280904 /* de */,
+			);
+			name = HomeTutorialController.xib;
+			sourceTree = "<group>";
+		};
+		00EC9DC61C85832300280904 /* SleepTutorialController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				00EC9DC51C85832300280904 /* en */,
+				00EC9DC81C85832700280904 /* fr */,
+				00EC9DCA1C85832B00280904 /* zh-Hans */,
+				00EC9DCC1C85832C00280904 /* zh-Hant */,
+				00EC9DCE1C85832D00280904 /* de */,
+			);
+			name = SleepTutorialController.xib;
+			sourceTree = "<group>";
+		};
+		00EC9DD11C85833400280904 /* MorningTutorialController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				00EC9DD01C85833400280904 /* en */,
+				00EC9DD31C85833600280904 /* fr */,
+				00EC9DD51C85833800280904 /* zh-Hans */,
+				00EC9DD71C85833900280904 /* zh-Hant */,
+				00EC9DD91C85833A00280904 /* de */,
+			);
+			name = MorningTutorialController.xib;
+			sourceTree = "<group>";
+		};
+		00EC9DDC1C85834F00280904 /* TutorialTwoViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				00EC9DDB1C85834F00280904 /* en */,
+				00EC9DDE1C85835200280904 /* fr */,
+				00EC9DE01C85835300280904 /* zh-Hans */,
+				00EC9DE21C85835500280904 /* zh-Hant */,
+				00EC9DE41C85835600280904 /* de */,
+			);
+			name = TutorialTwoViewController.xib;
+			sourceTree = "<group>";
+		};
+		00EC9DE71C85835F00280904 /* TutorialThreeViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				00EC9DE61C85835F00280904 /* en */,
+				00EC9DE91C85836200280904 /* fr */,
+				00EC9DEB1C85836300280904 /* zh-Hans */,
+				00EC9DED1C85836400280904 /* zh-Hant */,
+				00EC9DEF1C85836600280904 /* de */,
+			);
+			name = TutorialThreeViewController.xib;
+			sourceTree = "<group>";
+		};
+		00EC9DF21C85837500280904 /* TutorialFourViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				00EC9DF11C85837500280904 /* en */,
+				00EC9DF41C85837700280904 /* fr */,
+				00EC9DF61C85837800280904 /* zh-Hans */,
+				00EC9DF81C85837900280904 /* zh-Hant */,
+				00EC9DFA1C85837B00280904 /* de */,
+			);
+			name = TutorialFourViewController.xib;
+			sourceTree = "<group>";
+		};
+		00EC9DFD1C85838900280904 /* TutorialFiveViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				00EC9DFC1C85838900280904 /* en */,
+				00EC9DFF1C85838C00280904 /* fr */,
+				00EC9E011C85838E00280904 /* zh-Hans */,
+				00EC9E031C85838F00280904 /* zh-Hant */,
+				00EC9E051C85839100280904 /* de */,
+			);
+			name = TutorialFiveViewController.xib;
+			sourceTree = "<group>";
+		};
+		00EC9E081C85839A00280904 /* TutorialSixViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				00EC9E071C85839A00280904 /* en */,
+				00EC9E0A1C85839C00280904 /* fr */,
+				00EC9E0C1C85839D00280904 /* zh-Hans */,
+				00EC9E0E1C85839F00280904 /* zh-Hant */,
+				00EC9E101C8583A000280904 /* de */,
+			);
+			name = TutorialSixViewController.xib;
+			sourceTree = "<group>";
+		};
+		00EC9E131C8583AA00280904 /* TutorialSevenViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				00EC9E121C8583AA00280904 /* en */,
+				00EC9E151C8583F200280904 /* fr */,
+				00EC9E171C8583F300280904 /* zh-Hans */,
+				00EC9E191C8583F400280904 /* zh-Hant */,
+				00EC9E1B1C8583F500280904 /* de */,
+			);
+			name = TutorialSevenViewController.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

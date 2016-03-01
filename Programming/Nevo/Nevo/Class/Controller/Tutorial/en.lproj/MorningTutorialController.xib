@@ -36,7 +36,8 @@
                     <constraints>
                         <constraint firstAttribute="height" constant="50" id="sAa-2c-egu"/>
                     </constraints>
-                    <string key="text">You just finished tracking your first night of sleep with your nevo. To start tracking your daily routine,push and hold the third button, untill the white LED blinks</string>
+                    <string key="text">You just finished tracking your first night of sleep with your nevo. To start tracking your daily routine,
+push and hold the third button, untill the white LED blinks</string>
                     <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="12"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
