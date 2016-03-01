@@ -16,6 +16,11 @@ it should handle very little, only the initialisation of the different Views and
 
 class SleepTrackingController: PublicClassController, SyncControllerDelegate ,ButtonManagerCallBack,ClockRefreshDelegate,UICollectionViewDelegate,UICollectionViewDataSource{
     @IBOutlet weak var sleepView: SleepTrackingView!
+
+    @IBOutlet weak var notSleepDataView: UIView!
+
+    @IBOutlet weak var trackButton: UIButton!
+
     let SleepValueKey:String = "SLEEPVALUEKEY"
     private var contentTitleArray:[String] = []
     private var contentTArray:[String] = ["--","--","--","--","--","--"]
@@ -36,6 +41,8 @@ class SleepTrackingController: PublicClassController, SyncControllerDelegate ,Bu
         //Deep Sleep -> Light Sleep -> Wake Duration
         contentTitleArray = [NSLocalizedString("sleep_duration", comment: ""), NSLocalizedString("sleep_timer", comment: ""), NSLocalizedString("wake_timer", comment: ""), NSLocalizedString("deep_sleep", comment: ""), NSLocalizedString("light_sleep", comment: ""), NSLocalizedString("wake_duration", comment: "")]
         ClockRefreshManager.sharedInstance.setRefreshDelegate(self)
+
+         trackButton.layer.borderColor = AppTheme.NEVO_SOLAR_YELLOW().CGColor
 
     }
 
@@ -63,7 +70,7 @@ class SleepTrackingController: PublicClassController, SyncControllerDelegate ,Bu
                 self.contentTArray.insert(String(format: "%dh%dm", Int(dataSleep.getWeakSleep()/60.0),Int((dataSleep.getWeakSleep())%Double(60))), atIndex: 5)
                 self.sleepView.collectionView.reloadData()
                 if(dataSleep.getTotalSleep()>0) {
-                    self.sleepView.replaceLabel.hidden = true
+                    self.notSleepDataView.hidden = true
                 }
             })
         }
@@ -96,7 +103,7 @@ class SleepTrackingController: PublicClassController, SyncControllerDelegate ,Bu
                 self.contentTArray.insert(String(format: "%dh%dm", Int(dataSleep.getWeakSleep()/60.0),Int((dataSleep.getWeakSleep())%Double(60))), atIndex: 5)
                 self.sleepView.collectionView.reloadData()
                 if(dataSleep.getTotalSleep()>0) {
-                    self.sleepView.replaceLabel.hidden = true
+                    self.notSleepDataView.hidden = true
                 }
             })
         }
@@ -119,9 +126,13 @@ class SleepTrackingController: PublicClassController, SyncControllerDelegate ,Bu
     }
 
     // MARK: - ButtonManagerCallBack
-    func controllManager(sender:AnyObject) {
+    @IBAction func controllManager(sender:AnyObject) {
+        if(sender.isEqual(trackButton)){
+            let notSleepData:SleepTutorialController = SleepTutorialController()
+            self.presentViewController(notSleepData, animated: true) { () -> Void in
 
-        
+            }
+        }
     }
 
     /**
@@ -182,7 +193,7 @@ class SleepTrackingController: PublicClassController, SyncControllerDelegate ,Bu
                 self.contentTArray.insert(String(format: "%dh%dm", Int(dataSleep.getWeakSleep()/60.0),Int((dataSleep.getWeakSleep())%Double(60))), atIndex: 5)
                 self.sleepView.collectionView.reloadData()
                 if(dataSleep.getTotalSleep()>0) {
-                    self.sleepView.replaceLabel.hidden = true
+                    self.notSleepDataView.hidden = true
                 }
             })
         }

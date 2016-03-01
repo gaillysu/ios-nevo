@@ -157,7 +157,7 @@ class SetingViewController: UIViewController,SyncControllerDelegate,ButtonManage
 
                     let alertAction2:UIAlertAction = UIAlertAction(title: NSLocalizedString("forget", comment: ""), style: UIAlertActionStyle.Default, handler: { ( alert) -> Void in
                         AppDelegate.getAppDelegate().forgetSavedAddress()
-                        let tutrorial:TutorialOneViewController = TutorialOneViewController()
+                        let tutrorial:HomeTutorialController = HomeTutorialController()
                         let nav:UINavigationController = UINavigationController(rootViewController: tutrorial)
                         nav.navigationBarHidden = true
                         self.presentViewController(nav, animated: true, completion: nil)

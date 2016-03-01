@@ -30,13 +30,13 @@ class SleepTutorialController: UIViewController {
     }
     
     @IBAction func buttonManager(sender: AnyObject) {
-        let nav:MorningTutorialController = MorningTutorialController()
-        self.presentViewController(nav, animated: true) { () -> Void in
-
-        }
-//        self.dismissViewControllerAnimated(true) { () -> Void in
-//            
+//        let nav:MorningTutorialController = MorningTutorialController()
+//        self.presentViewController(nav, animated: true) { () -> Void in
+//
 //        }
+        self.dismissViewControllerAnimated(true) { () -> Void in
+            
+        }
     }
 
     /*

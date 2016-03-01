@@ -37,10 +37,8 @@ class HomeTutorialController: UIViewController {
 
     @IBAction func buttonManager(sender: AnyObject) {
         if(sender.isEqual(activateButton)){
-            let nav:SleepTutorialController = SleepTutorialController()
-            self.presentViewController(nav, animated: true, completion: { () -> Void in
-                
-            })
+            let nav:TutorialOneViewController = TutorialOneViewController()
+            self.navigationController?.pushViewController(nav, animated: true)
         }
 
         if(sender.isEqual(takeButton)){
