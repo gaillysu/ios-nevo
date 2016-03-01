@@ -498,7 +498,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                     }
                 }
 
-                if(currentDateStr.integerValue-1 == thispacket.getDateTimer()) {
+                let yesterdayDateStr:NSString = dateFormatter.stringFromDate(NSDate.yesterday())
+                if(yesterdayDateStr.integerValue == thispacket.getDateTimer()) {
                     let dataArray:[[Int]] = [thispacket.getHourlySleepTime(),thispacket.getHourlyWakeTime(),thispacket.getHourlyLightTime(),thispacket.getHourlyDeepTime()]
                     if(todaySleepData.count==0) {
                         todaySleepData.addObject(dataArray)
