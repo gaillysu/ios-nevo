@@ -343,7 +343,7 @@ class AlarmClockController: UITableViewController, SyncControllerDelegate,AddAla
 
     // MARK: - UITableViewDelegate
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int{
-        return 1
+        return 2
     }
 
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -353,23 +353,27 @@ class AlarmClockController: UITableViewController, SyncControllerDelegate,AddAla
 
     // MARK: - UITableViewDataSource
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
-        if(mAlarmArray.count == 0) {
-            tableView.backgroundView = NotAlarmView.getNotAlarmView()
+//        if(mAlarmArray.count == 0) {
+//            tableView.backgroundView = NotAlarmView.getNotAlarmView()
+//        }else{
+//             tableView.backgroundView = nil
+//        }
+        if(section == 0) {
+            return 1
         }else{
-             tableView.backgroundView = nil
+            return mAlarmArray.count
         }
-        return mAlarmArray.count
     }
 
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String {
         let titleArray:[String] = ["Sleep Alarm","alarmTitle"]
         //NSLocalizedString(titleArray[section], comment: "")
-        return ""
+        return NSLocalizedString(titleArray[section], comment: "")
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 
-        if(false) {
+        if(indexPath.section == 0) {
             //Enable sleep alarm position "indexPath.section == 0"
             let endCell:UITableViewCell = tableView.dequeueReusableCellWithIdentifier("sleepAlarmCell", forIndexPath: indexPath)
             endCell.endEditing(false)
@@ -429,7 +433,11 @@ class AlarmClockController: UITableViewController, SyncControllerDelegate,AddAla
     // Override to support conditional editing of the table view.
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
     // Return false if you do not want the specified item to be editable.
-        return true
+        if(indexPath.section == 0) {
+            return false
+        }else{
+            return true
+        }
     }
 
     // Override to support editing the table view.
@@ -471,7 +479,7 @@ class AlarmClockController: UITableViewController, SyncControllerDelegate,AddAla
     }
 
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
-        if(self.editing){
+        if(self.editing && indexPath.section > 0){
             slectedIndex = indexPath.row
 
             let alarmModel:UserAlarm = mAlarmArray[indexPath.row] as! UserAlarm
