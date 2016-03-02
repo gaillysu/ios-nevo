@@ -43,7 +43,7 @@
                         <constraint firstAttribute="height" constant="45" id="hSP-GN-opA"/>
                     </constraints>
                     <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="20"/>
-                    <state key="normal" title="Take the thour"/>
+                    <state key="normal" title="Take the tour"/>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                             <integer key="value" value="10"/>

@@ -29,6 +29,10 @@ class HomeTutorialController: UIViewController {
         takeButton.layer.borderColor = UIColor.whiteColor().CGColor
     }
 
+    override func viewDidAppear(animated: Bool) {
+        UIApplication.sharedApplication().setStatusBarHidden(false, withAnimation: UIStatusBarAnimation.None)
+    }
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -37,12 +41,20 @@ class HomeTutorialController: UIViewController {
 
     @IBAction func buttonManager(sender: AnyObject) {
         if(sender.isEqual(activateButton)){
-            let nav:TutorialOneViewController = TutorialOneViewController()
-            self.navigationController?.pushViewController(nav, animated: true)
+            let tutorialOne:TutorialOneViewController = TutorialOneViewController()
+            let nav:UINavigationController = UINavigationController(rootViewController: tutorialOne)
+            nav.navigationBarHidden = true
+            self.presentViewController(nav, animated: true) { () -> Void in
+
+            }
         }
 
         if(sender.isEqual(takeButton)){
-            self.dismissViewControllerAnimated(true, completion: nil)
+            UIApplication.sharedApplication().setStatusBarHidden(true, withAnimation: UIStatusBarAnimation.None)
+            let videoPlay:VideoPlayController = VideoPlayController();
+            self.presentViewController(videoPlay, animated: true) { () -> Void in
+
+            }
         }
     }
     /*

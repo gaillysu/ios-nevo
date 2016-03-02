@@ -10,15 +10,26 @@ import UIKit
 import AVKit
 import AVFoundation
 
-class VideoPlayController: UIViewController,AVPlayerViewControllerDelegate {
+class VideoPlayController: AVPlayerViewController,AVPlayerViewControllerDelegate {
 
     private let session:AVAudioSession = AVAudioSession.sharedInstance()
-    private var player:AVPlayer = AVPlayer(URL: NSURL(string: "https://fpdl.vimeocdn.com/vimeo-prod-skyfire-std-us/01/2533/4/112668560/310935973.mp4?token=56cfc526_0xc6b179c5920dc35f73c5e33ce8267e923976313d&play=1&filename=The+nevo+watch+-+Time+in+motion-Mobile.mp4")!)
-    private let playerController:AVPlayerViewController = AVPlayerViewController()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        UIApplication.sharedApplication().setStatusBarOrientation(UIInterfaceOrientation.LandscapeRight, animated: true)
+        UIView.beginAnimations(nil, context: nil)
+        UIView.setAnimationDuration(0.2)
+        self.view.transform = CGAffineTransformIdentity
+        self.view.transform = CGAffineTransformMakeRotation(CGFloat(M_PI*(90)/180.0));
+        self.view.bounds = CGRectMake(0, 0, UIScreen.mainScreen().bounds.height, UIScreen.mainScreen().bounds.width);
+        UIView.commitAnimations()
+
+
+
+        self.view.backgroundColor = UIColor.blackColor()
+
+        
         // Do any additional setup after loading the view.
         do {
             try session.setCategory(AVAudioSessionCategoryPlayback)
@@ -26,30 +37,28 @@ class VideoPlayController: UIViewController,AVPlayerViewControllerDelegate {
 
         }
 
-        playerController.player = player;
-        playerController.videoGravity = AVLayerVideoGravityResizeAspect;
+        self.player = AVPlayer(URL: NSURL(string: "http://nevowatch.com/wp-content/uploads/2016/03/video.mp4")!);
+        self.videoGravity = AVLayerVideoGravityResizeAspect;
         if #available(iOS 9.0, *) {
-            playerController.delegate = self
+            self.delegate = self
         } else {
             // Fallback on earlier versions
         };
 
         if #available(iOS 9.0, *) {
-            playerController.allowsPictureInPicturePlayback = true
+            self.allowsPictureInPicturePlayback = true
         } else {
             // Fallback on earlier versions
         };
 
         //画中画，iPad可用
-        playerController.showsPlaybackControls = true;
+        self.showsPlaybackControls = true;
 
-        self.addChildViewController(playerController)
-        playerController.view.translatesAutoresizingMaskIntoConstraints = true;    //AVPlayerViewController 内部可能是用约束写的，这句可以禁用自动约束，消除报错
-        playerController.view.frame = self.view.bounds;
-        //[self.view addSubview:_playerController.view];
-        self.view.addSubview(playerController.view)
-        
-        playerController.player?.play()    //自动播放
+        self.view.translatesAutoresizingMaskIntoConstraints = true;    // 内部可能是用约束写的，这句可以禁用自动约束，消除报错
+        self.view.frame = self.view.bounds;
+
+        self.videoGravity = AVLayerVideoGravityResizeAspect
+        self.player?.play()    //自动播放
     }
 
     override func didReceiveMemoryWarning() {
