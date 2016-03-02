@@ -97,7 +97,7 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
     Invoked whenever the central manager's state is updated.
     */
     func centralManagerDidUpdateState(central : CBCentralManager) {
-        self.isBluetoothEnabled()
+        mDelegate?.bluetoothEnabled(self.isBluetoothEnabled())
     }
     
     /**
@@ -277,6 +277,8 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
         //We can't be sure if the Manager is ready, so let's try
         if(self.isBluetoothEnabled()) {
 
+            mDelegate?.scanAndConnect()
+
             let services:[CBUUID] = [mProfile!.CONTROL_SERVICE]
 
             //No address was specified, we'll search for devices with the right profile.
@@ -402,13 +404,9 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
                                     {
                                         mPeripheral?.writeValue(request.getRawData(),forCharacteristic:charac,type:CBCharacteristicWriteType.WithoutResponse)
                                     }
-                                }
-                                else
-                                {
-                                    var data:NSData!
+                                }else{
                                     for data in request.getRawDataEx() {
                                         AppTheme.DLog("Request raw data Ex:\(data)")
-                                        
                                         mPeripheral?.writeValue(data as! NSData,forCharacteristic:charac,type:CBCharacteristicWriteType.WithoutResponse)
                                     }
                                 }
@@ -448,7 +446,10 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
     See NevoBT protocol
     */
     func isConnected() -> Bool {
-        return ( mPeripheral != nil && mPeripheral!.state == CBPeripheralState.Connected && isBluetoothEnabled() )
+        if(mPeripheral != nil && mPeripheral!.state == CBPeripheralState.Connected && isBluetoothEnabled()){
+            return true
+        }
+        return false
     }
     
     /**
@@ -495,6 +496,7 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
             mTryingToConnectPeripherals?.append(aPeripheral)
 
             mManager?.connectPeripheral(aPeripheral,options:nil)
+            mDelegate?.scanAndConnect()
 
         }
 

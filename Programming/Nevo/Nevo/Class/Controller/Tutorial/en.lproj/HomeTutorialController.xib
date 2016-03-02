@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="SFUIDisplay-Regular.ttf">
+            <string>SFUIDisplay-Regular</string>
+            <string>SFUIDisplay-Regular</string>
+        </mutableArray>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HomeTutorialController" customModule="Nevo" customModuleProvider="target">
+            <connections>
+                <outlet property="activateButton" destination="e9J-3s-npn" id="1SQ-3h-tg0"/>
+                <outlet property="takeButton" destination="toD-J3-M6A" id="w4s-vO-1mQ"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="homeTutorial.png" translatesAutoresizingMaskIntoConstraints="NO" id="Lzg-Sf-I3c">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oML-cz-VR6">
+                    <rect key="frame" x="50" y="492" width="500" height="1"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="igA-Rv-f7W"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="toD-J3-M6A">
+                    <rect key="frame" x="50" y="515" width="500" height="45"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="45" id="hSP-GN-opA"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="20"/>
+                    <state key="normal" title="Take the tour"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="10"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                            <integer key="value" value="1"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="layer.borderColor">
+                            <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="buttonManager:" destination="-1" eventType="touchUpInside" id="Mpa-Qv-Gud"/>
+                    </connections>
+                </button>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="nevoFontImage.png" translatesAutoresizingMaskIntoConstraints="NO" id="H4I-Ei-806">
+                    <rect key="frame" x="150" y="30" width="300" height="149"/>
+                </imageView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e9J-3s-npn">
+                    <rect key="frame" x="50" y="425" width="500" height="45"/>
+                    <color key="backgroundColor" red="0.96078431369999995" green="0.64313725489999995" blue="0.23137254900000001" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="45" id="vfT-qb-qar"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="20"/>
+                    <state key="normal" title=" Activate you nevo"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="10"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="buttonManager:" destination="-1" eventType="touchUpInside" id="87i-OR-VPT"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="Lzg-Sf-I3c" secondAttribute="bottom" id="8El-qH-LNt"/>
+                <constraint firstItem="e9J-3s-npn" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="50" id="9q8-sA-Gfx"/>
+                <constraint firstAttribute="trailing" secondItem="e9J-3s-npn" secondAttribute="trailing" constant="50" id="Bga-Ht-RkT"/>
+                <constraint firstItem="H4I-Ei-806" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="height" multiplier="7:12" constant="-50" id="DnN-eM-u8V"/>
+                <constraint firstItem="e9J-3s-npn" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" constant="147.5" id="Odu-Ur-VCP"/>
+                <constraint firstItem="oML-cz-VR6" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="50" id="RD9-wP-Lkr"/>
+                <constraint firstAttribute="trailing" secondItem="oML-cz-VR6" secondAttribute="trailing" constant="50" id="U9a-Kb-uul"/>
+                <constraint firstItem="H4I-Ei-806" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" constant="-195.5" id="VIG-wv-GOc"/>
+                <constraint firstItem="e9J-3s-npn" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Xyw-eg-GE8"/>
+                <constraint firstAttribute="trailing" secondItem="toD-J3-M6A" secondAttribute="trailing" constant="50" id="aW1-mz-FOQ"/>
+                <constraint firstItem="H4I-Ei-806" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="30" id="bzi-B1-T5o"/>
+                <constraint firstAttribute="trailing" secondItem="Lzg-Sf-I3c" secondAttribute="trailing" id="dJm-t2-YSH"/>
+                <constraint firstItem="toD-J3-M6A" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="50" id="dMj-dg-qxd"/>
+                <constraint firstItem="toD-J3-M6A" firstAttribute="top" secondItem="oML-cz-VR6" secondAttribute="bottom" constant="22" id="gKP-pz-pGe"/>
+                <constraint firstItem="Lzg-Sf-I3c" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="nKs-ee-Kmn"/>
+                <constraint firstItem="oML-cz-VR6" firstAttribute="top" secondItem="e9J-3s-npn" secondAttribute="bottom" constant="22" id="riv-gr-lCP"/>
+                <constraint firstItem="Lzg-Sf-I3c" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="wZp-Gy-V5k"/>
+                <constraint firstItem="H4I-Ei-806" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="yQf-Go-gId"/>
+            </constraints>
+            <point key="canvasLocation" x="527" y="312"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="homeTutorial.png" width="335" height="600"/>
+        <image name="nevoFontImage.png" width="600" height="300"/>
+    </resources>
+</document>

@@ -15,4 +15,7 @@
 #import "AFNetworking.h"
 #import "FMDB.h"
 #import "NevoDBModel.h"
+#import "MobClick.h"
+#import "NJKWebViewProgress.h"
+#import "NJKWebViewProgressView.h"
 #endif

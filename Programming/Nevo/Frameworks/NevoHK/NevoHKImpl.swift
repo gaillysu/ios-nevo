@@ -166,13 +166,19 @@ class NevoHKImpl {
         }
 
         //Check if this data point is present in HK
+        var datePredicate:NSPredicate?
+        if(sample is HKQuantitySample) {
+            datePredicate = HKQuery.predicateForSamplesWithStartDate((sample as! HKQuantitySample).startDate,
+                endDate: sample.endDate, options: .None)
+        }else{
+            datePredicate = HKQuery.predicateForSamplesWithStartDate((sample as! HKCategorySample).startDate,
+                endDate: sample.endDate, options: .None)
+        }
 
-        let datePredicate = HKQuery.predicateForSamplesWithStartDate(sample.startDate,
-            endDate: sample.endDate, options: .None)
         
         let sourcePredicate:NSPredicate = HKQuery.predicateForObjectsFromSource(HKSource.defaultSource());
         
-        let dateAndSourcePredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [datePredicate,sourcePredicate])
+        let dateAndSourcePredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [datePredicate!,sourcePredicate])
 
         var type:HKSampleType
         if(data is HourlySteps){
