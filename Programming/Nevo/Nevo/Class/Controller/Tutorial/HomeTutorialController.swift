@@ -42,11 +42,7 @@ class HomeTutorialController: UIViewController {
     @IBAction func buttonManager(sender: AnyObject) {
         if(sender.isEqual(activateButton)){
             let tutorialOne:TutorialOneViewController = TutorialOneViewController()
-            let nav:UINavigationController = UINavigationController(rootViewController: tutorialOne)
-            nav.navigationBarHidden = true
-            self.presentViewController(nav, animated: true) { () -> Void in
-
-            }
+            self.navigationController?.pushViewController(tutorialOne, animated: true)
         }
 
         if(sender.isEqual(takeButton)){
