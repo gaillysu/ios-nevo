@@ -26,13 +26,16 @@ class AddAlarmView: UITableView {
             endCell = nibs.objectAtIndex(0) as? AddAlarmTableViewCell;
         }
         endCell?.selectionStyle = UITableViewCellSelectionStyle.None;
-        if(timer > 0){
-            for view in endCell!.contentView.subviews{
-                if(view.isKindOfClass(UIDatePicker.classForCoder())){
-                    let pickerView:UIDatePicker = view as! UIDatePicker
-                    pickerView.date = NSDate(timeIntervalSince1970: timer)
-                }
+        var pickerView:UIDatePicker?
+        for view in endCell!.contentView.subviews{
+            if(view.isKindOfClass(UIDatePicker.classForCoder())){
+                pickerView = view as? UIDatePicker
+                break
             }
+        }
+
+        if(timer > 0){
+            pickerView!.date = NSDate(timeIntervalSince1970: timer)
         }
         return endCell!
     }
@@ -65,7 +68,8 @@ class AddAlarmView: UITableView {
         }
 
         endCell?.selectionStyle = UITableViewCellSelectionStyle.None;
-        (endCell as! AddAlarmSystemCell).systemTitle.text = NSLocalizedString("\(title)", comment: "")
+        endCell?.textLabel?.text = NSLocalizedString("\(title)", comment: "")
+        endCell?.detailTextLabel?.text = "Wake Alarm"
         return endCell!
     }
 

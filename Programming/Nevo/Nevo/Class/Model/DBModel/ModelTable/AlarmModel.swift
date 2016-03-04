@@ -13,6 +13,8 @@ class AlarmModel: UserDatabaseHelper {
     var label:String = ""
     var status:Bool = false
     var repeatStatus:Bool = false
+    var dayOfWeek:Int = 0
+    var type:Int = 0
 
     override init() {
 
@@ -82,5 +84,57 @@ class AlarmModel: UserDatabaseHelper {
         return users;
     }
 
+    override class func isExistInTable()->Bool {
+        var res:Bool = false
+        let dbQueue:FMDatabaseQueue = AppDelegate.getAppDelegate().dbQueue
+        dbQueue.inDatabase { (db) -> Void in
+            var tableName:NSString = NSStringFromClass(self.classForCoder())
+            tableName = tableName.stringByReplacingOccurrencesOfString(".", withString: "")
+            res = db.tableExists("\(tableName)")
+        }
+        return res
+    }
+
+    /**
+     * update Table
+     * succes return true, failure return false
+     */
+    override class func updateTable()->Bool {
+        let db:FMDatabase = FMDatabase(path: AppDelegate.dbPath())
+        if(db.open()) {
+            NSLog("数据库打开失败!");
+            return false;
+        }
+
+        var tableName:NSString = NSStringFromClass(self.classForCoder())
+        tableName = tableName.stringByReplacingOccurrencesOfString(".", withString: "")
+        let columns:NSMutableArray = NSMutableArray()
+        let resultSet:FMResultSet = db.getTableSchema(tableName as String)
+        while (resultSet.next()) {
+            let column:NSString = resultSet.stringForColumn("name")
+            columns.addObject(column)
+        }
+
+        let dict:NSDictionary = self.getAllProperties();
+        let properties:NSArray = dict.objectForKey("name") as! NSArray
+        let filterPredicate:NSPredicate = NSPredicate(format: "NOT (SELF IN %@)",columns)
+        //过滤数组
+        let resultArray:NSArray = properties.filteredArrayUsingPredicate(filterPredicate)
+
+        for column in resultArray {
+            let index:Int = properties.indexOfObject(column)
+            let proType:String = (dict.objectForKey("type") as! NSArray).objectAtIndex(index) as! String
+            let fieldSql:String = "\(column) \(proType)"
+            //[NSString stringWithFormat:@"%@ %@",column,proType];
+            let sql:String = String(format: "ALTER TABLE %@ ADD COLUMN %@ ",tableName,fieldSql)
+            var args:CVaListPointer?
+            if (db.executeUpdate(sql, withVAList: args!)) {
+                //db.close();
+                return false;
+            }
+        }
+        db.close();
+        return true
+    }
 
 }

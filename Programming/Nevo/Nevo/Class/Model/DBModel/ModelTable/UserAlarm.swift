@@ -14,6 +14,8 @@ class UserAlarm: NSObject,BaseEntryDatabaseHelper {
     var label:String = ""
     var status:Bool = false
     var repeatStatus:Bool = false
+    var dayOfWeek:Int = 0
+    var type:Int = 0
 
     private var alarmModel:AlarmModel = AlarmModel()
 
@@ -24,6 +26,8 @@ class UserAlarm: NSObject,BaseEntryDatabaseHelper {
         self.setValue(keyDict.objectForKey("label"), forKey: "label")
         self.setValue(keyDict.objectForKey("status"), forKey: "status")
         self.setValue(keyDict.objectForKey("repeatStatus"), forKey: "repeatStatus")
+        self.setValue(keyDict.objectForKey("dayOfWeek"), forKey: "dayOfWeek")
+        self.setValue(keyDict.objectForKey("type"), forKey: "type")
     }
 
     func add(result:((id:Int?,completion:Bool?) -> Void)){
@@ -31,6 +35,8 @@ class UserAlarm: NSObject,BaseEntryDatabaseHelper {
         alarmModel.label = label
         alarmModel.status = status
         alarmModel.repeatStatus = repeatStatus
+        alarmModel.dayOfWeek = dayOfWeek
+        alarmModel.type = type
         alarmModel.add { (id, completion) -> Void in
             result(id: id, completion: completion)
         }
@@ -42,6 +48,8 @@ class UserAlarm: NSObject,BaseEntryDatabaseHelper {
         alarmModel.label = label
         alarmModel.status = status
         alarmModel.repeatStatus = repeatStatus
+        alarmModel.dayOfWeek = dayOfWeek
+        alarmModel.type = type
         return alarmModel.update()
     }
 
@@ -59,7 +67,7 @@ class UserAlarm: NSObject,BaseEntryDatabaseHelper {
         let allArray:NSMutableArray = NSMutableArray()
         for model in modelArray {
             let alarmModel:AlarmModel = model as! AlarmModel
-            let presets:UserAlarm = UserAlarm(keyDict: ["id":alarmModel.id,"timer":alarmModel.timer,"label":"\(alarmModel.label)","status":alarmModel.status,"repeatStatus":alarmModel.repeatStatus])
+            let presets:UserAlarm = UserAlarm(keyDict: ["id":alarmModel.id,"timer":alarmModel.timer,"label":"\(alarmModel.label)","status":alarmModel.status,"repeatStatus":alarmModel.repeatStatus,"dayOfWeek":alarmModel.dayOfWeek,"type":alarmModel.type])
             allArray.addObject(presets)
         }
         return allArray
@@ -70,10 +78,18 @@ class UserAlarm: NSObject,BaseEntryDatabaseHelper {
         let allArray:NSMutableArray = NSMutableArray()
         for model in modelArray {
             let alarmModel:AlarmModel = model as! AlarmModel
-            let presets:UserAlarm = UserAlarm(keyDict: ["id":alarmModel.id,"timer":alarmModel.timer,"label":"\(alarmModel.label)","status":alarmModel.status,"repeatStatus":alarmModel.repeatStatus])
+            let presets:UserAlarm = UserAlarm(keyDict: ["id":alarmModel.id,"timer":alarmModel.timer,"label":"\(alarmModel.label)","status":alarmModel.status,"repeatStatus":alarmModel.repeatStatus,"dayOfWeek":alarmModel.dayOfWeek,"type":alarmModel.type])
             allArray.addObject(presets)
         }
         return allArray
+    }
+
+    class func isExistInTable()->Bool {
+        return AlarmModel.isExistInTable()
+    }
+
+    class func updateTable()->Bool {
+        return AlarmModel.updateTable()
     }
 
     /**
@@ -89,7 +105,7 @@ class UserAlarm: NSObject,BaseEntryDatabaseHelper {
             let dateArray:[NSTimeInterval] = [date1.timeIntervalSince1970,date2.timeIntervalSince1970]
             let nameArray:[String] = ["Alarm 1","Alarm 2"]
             for (var index:Int = 0; index < dateArray.count ; index++) {
-                let alarm:UserAlarm = UserAlarm(keyDict: ["id":index,"timer":dateArray[index],"label":nameArray[index],"status":false,"repeatStatus":true])
+                let alarm:UserAlarm = UserAlarm(keyDict: ["id":index,"timer":dateArray[index],"label":nameArray[index],"status":false,"repeatStatus":true,"dayOfWeek":0,"type":0])
                 alarm.add({ (id, completion) -> Void in
 
                 })

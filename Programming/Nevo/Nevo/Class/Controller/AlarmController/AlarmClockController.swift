@@ -343,7 +343,7 @@ class AlarmClockController: UITableViewController, SyncControllerDelegate,AddAla
 
     // MARK: - UITableViewDelegate
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int{
-        return 2
+        return 1
     }
 
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -353,91 +353,51 @@ class AlarmClockController: UITableViewController, SyncControllerDelegate,AddAla
 
     // MARK: - UITableViewDataSource
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
-//        if(mAlarmArray.count == 0) {
-//            tableView.backgroundView = NotAlarmView.getNotAlarmView()
-//        }else{
-//             tableView.backgroundView = nil
-//        }
-        if(section == 0) {
-            return 1
+        if(mAlarmArray.count == 0) {
+            tableView.backgroundView = NotAlarmView.getNotAlarmView()
         }else{
-            return mAlarmArray.count
+             tableView.backgroundView = nil
         }
+        return mAlarmArray.count
     }
 
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String {
         let titleArray:[String] = ["Sleep Alarm","alarmTitle"]
         //NSLocalizedString(titleArray[section], comment: "")
-        return NSLocalizedString(titleArray[section], comment: "")
+        return ""
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 
-        if(indexPath.section == 0) {
-            //Enable sleep alarm position "indexPath.section == 0"
-            let endCell:UITableViewCell = tableView.dequeueReusableCellWithIdentifier("sleepAlarmCell", forIndexPath: indexPath)
-            endCell.endEditing(false)
-            let startArray:NSArray = configSleepArray[0] as! NSArray
-            let endArray:NSArray = configSleepArray[1] as! NSArray
-            let weekArray:NSArray = configSleepArray[2] as! NSArray
-            let mEnable:Bool = configSleepArray[3] as! Bool
-            let sleepAlarm:ConfigSleepAlarm = ConfigSleepAlarm(startHour: (startArray[0] as! NSNumber).integerValue, startMinute: (startArray[1] as! NSNumber).integerValue, endtHour: (endArray[0] as! NSNumber).integerValue, endMinute: (endArray[1] as! NSNumber).integerValue, enable: mEnable, weekday: (weekArray[0] as! NSNumber).integerValue)
-
-            let StartTimerLabel = endCell.contentView.viewWithTag(1300)
-            if(StartTimerLabel != nil){
-                let date:NSDate = NSDate.date(year: NSDate().year, month: NSDate().month, day: NSDate().day, hour: sleepAlarm.getStartHour(), minute: sleepAlarm.getStartMinute(), second: NSDate().second)
-                (StartTimerLabel as! UIButton).setTitle(stringFromDate(date), forState: UIControlState.Normal)
-            }
-
-            let EndTimerLabel = endCell.contentView.viewWithTag(1500)
-            if(EndTimerLabel != nil){
-                let date:NSDate = NSDate.date(year: NSDate().year, month: NSDate().month, day: NSDate().day, hour: sleepAlarm.getEndHour(), minute: sleepAlarm.getEndMinute(), second: NSDate().second)
-                (EndTimerLabel as! UIButton).setTitle(stringFromDate(date), forState: UIControlState.Normal)
-            }
-
-            let mSwitch = endCell.contentView.viewWithTag(2700)
-            if(mSwitch != nil){
-                (mSwitch as! UISwitch).addTarget(self, action: Selector("controllManager:"), forControlEvents: UIControlEvents.ValueChanged)
-                (mSwitch as! UISwitch).on = sleepAlarm.getEnable()
-            }
-
-            endCell.selectionStyle = UITableViewCellSelectionStyle.None
-            return endCell
-        }else{
-            let endCell:UITableViewCell = tableView.dequeueReusableCellWithIdentifier("alarmCell", forIndexPath: indexPath)
-            let alarmModel:UserAlarm = mAlarmArray[indexPath.row] as! UserAlarm
-            let timerLabel = endCell.contentView.viewWithTag(1500)
-            if(timerLabel != nil){
-                let date:NSDate = NSDate(timeIntervalSince1970: alarmModel.timer)
-                (timerLabel as! UILabel).text = stringFromDate(date)
-            }
-
-            let nameLabel = endCell.contentView.viewWithTag(1600)
-            if(nameLabel != nil){
-                (nameLabel as! UILabel).text = alarmModel.label
-            }
-
-            let mSwitch = endCell.contentView.viewWithTag(1700)
-            if(mSwitch != nil){
-                (mSwitch as! UISwitch).tag = indexPath.row
-                (mSwitch as! UISwitch).addTarget(self, action: Selector("controllManager:"), forControlEvents: UIControlEvents.ValueChanged)
-                (mSwitch as! UISwitch).on = alarmModel.status
-            }
-
-            endCell.selectionStyle = UITableViewCellSelectionStyle.None
-            return endCell
+        let endCell:UITableViewCell = tableView.dequeueReusableCellWithIdentifier("alarmCell", forIndexPath: indexPath)
+        let alarmModel:UserAlarm = mAlarmArray[indexPath.row] as! UserAlarm
+        let timerLabel = endCell.contentView.viewWithTag(1500)
+        if(timerLabel != nil){
+            let date:NSDate = NSDate(timeIntervalSince1970: alarmModel.timer)
+            (timerLabel as! UILabel).text = stringFromDate(date)
         }
+
+        let nameLabel = endCell.contentView.viewWithTag(1600)
+        if(nameLabel != nil){
+            (nameLabel as! UILabel).text = alarmModel.label
+        }
+
+        let mSwitch = endCell.contentView.viewWithTag(1700)
+        if(mSwitch != nil){
+            (mSwitch as! UISwitch).tag = indexPath.row
+            (mSwitch as! UISwitch).addTarget(self, action: Selector("controllManager:"), forControlEvents: UIControlEvents.ValueChanged)
+            (mSwitch as! UISwitch).on = alarmModel.status
+        }
+
+        endCell.selectionStyle = UITableViewCellSelectionStyle.None
+        return endCell
     }
 
 
     // Override to support conditional editing of the table view.
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
     // Return false if you do not want the specified item to be editable.
-        if(indexPath.section == 0) {
-            return false
-        }else{
-            return true
-        }
+        return true
     }
 
     // Override to support editing the table view.

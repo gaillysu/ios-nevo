@@ -61,7 +61,7 @@ class StepGoalSetingController: PublicClassController,ButtonManagerCallBack,Sync
             let tutrorial:HomeTutorialController = HomeTutorialController()
             let nav:UINavigationController = UINavigationController(rootViewController: tutrorial)
             nav.navigationBarHidden = true
-            self.presentViewController(nav, animated: true, completion: nil)
+//            self.presentViewController(nav, animated: true, completion: nil)
         }else{
             AppDelegate.getAppDelegate().startConnect(false, delegate: self)
         }

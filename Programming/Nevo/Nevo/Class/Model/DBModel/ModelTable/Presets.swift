@@ -82,10 +82,10 @@ class Presets: NSObject,BaseEntryDatabaseHelper {
     class func defaultPresetsGoal(){
         let array = Presets.getAll()
         if(array.count == 0){
-            let presetGoal:[String] = ["7000", "10000", "20000"]
+            let presetGoal:[Int] = [7000, 10000, 20000]
             let label:[String] = ["Light","Moderate","Heavy"]
             for (var index:Int = 0; index < presetGoal.count ; index++) {
-                let presets:Presets = Presets(keyDict: ["id":index,"steps":(presetGoal[index] as NSString).integerValue,"label":"\(label[index])","status":true])
+                let presets:Presets = Presets(keyDict: ["id":index,"steps":presetGoal[index],"label":"\(label[index])","status":true])
                 presets.add({ (id, completion) -> Void in
 
                 })
