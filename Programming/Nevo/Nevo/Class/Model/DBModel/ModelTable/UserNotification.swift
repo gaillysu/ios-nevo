@@ -24,12 +24,15 @@ class UserNotification: NSObject,BaseEntryDatabaseHelper {
         let array = NotificationModel.getAll()
         if(array.count == 0){
             let notificationTypeArray:[String] = ["Calendar", "Facebook", "EMAIL", "CALL", "SMS","WeChat"]
-            for (var index:Int = 0; index < notificationTypeArray.count ; index++) {
-                let notification:UserNotification = UserNotification(keyDict: ["id":index,"clock":(index+1)*2,"NotificationType":notificationTypeArray[index],"status":false])
-                notification.add({ (id, completion) -> Void in
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,0), { () -> Void in
+                for (var index:Int = 0; index < notificationTypeArray.count ; index++) {
+                    let notification:UserNotification = UserNotification(keyDict: ["id":index,"clock":(index+1)*2,"NotificationType":notificationTypeArray[index],"status":false])
+                    notification.add({ (id, completion) -> Void in
 
-                })
-            }
+                    })
+                }
+            })
+            
         }
     }
 

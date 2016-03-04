@@ -13,7 +13,7 @@ protocol SelectedSleepTypeDelegate {
 }
 
 class AlarmTypeController: UITableViewController {
-    let typeArray:[String] = ["Sleep Alarm","Wake Alarm"]
+    let typeArray:[String] = ["Wake Alarm","Sleep Alarm"]
 
     var sleepTypeDelegate:SelectedSleepTypeDelegate?
 

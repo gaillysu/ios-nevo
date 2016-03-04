@@ -81,7 +81,7 @@ class StepGoalSetingController: PublicClassController,ButtonManagerCallBack,Sync
     // MARK: - ClockRefreshDelegate
     func clockRefreshAction(){
         stepGoalView.getClockTimerView().currentTimer()
-        if mVisiable{
+        if AppDelegate.getAppDelegate().isConnected() {
             AppDelegate.getAppDelegate().getGoal()
         }
     }

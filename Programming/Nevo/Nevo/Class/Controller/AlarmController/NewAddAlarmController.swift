@@ -1,21 +1,15 @@
 //
-//  AddAlarmController.swift
+//  NewAddAlarmController.swift
 //  Nevo
 //
-//  Created by leiyuncun on 15/11/27.
-//  Copyright © 2015年 Nevo. All rights reserved.
+//  Created by leiyuncun on 16/3/4.
+//  Copyright © 2016年 Nevo. All rights reserved.
 //
 
 import UIKit
 
-protocol AddAlarmDelegate {
-    func onDidAddAlarmAction(timer:NSTimeInterval,repeatStatus:Bool,name:String)
-    func onDidAddAlarmAction(timer:NSTimeInterval,name:String,repeatNumber:Int,alarmType:Int)
-}
-
-class AddAlarmController: UITableViewController,ButtonManagerCallBack,UIAlertViewDelegate,SelectedRepeatDelegate,SelectedSleepTypeDelegate {
-
-    @IBOutlet weak var adTableView: AddAlarmView!
+class NewAddAlarmController: UITableViewController,ButtonManagerCallBack,UIAlertViewDelegate,SelectedRepeatDelegate,SelectedSleepTypeDelegate {
+        
     var mDelegate:AddAlarmDelegate?
 
     var timer:NSTimeInterval = 0.0
@@ -26,7 +20,7 @@ class AddAlarmController: UITableViewController,ButtonManagerCallBack,UIAlertVie
     private var alarmTypeIndex:Int = 0
 
     init() {
-        super.init(nibName: "AddAlarmController", bundle: NSBundle.mainBundle())
+        super.init(nibName: "NewAddAlarmController", bundle: NSBundle.mainBundle())
 
     }
 
@@ -37,14 +31,9 @@ class AddAlarmController: UITableViewController,ButtonManagerCallBack,UIAlertVie
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        adTableView.bulidAdTableView(self.navigationItem)
+        self.navigationItem.title = "Add Alarm"
 
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Save, target: self, action: Selector("controllManager:"))
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
 
     override func didReceiveMemoryWarning() {
@@ -54,7 +43,7 @@ class AddAlarmController: UITableViewController,ButtonManagerCallBack,UIAlertVie
 
     func controllManager(sender:AnyObject) {
         if(sender.isKindOfClass(UISwitch.classForCoder())){
-            
+
         }else{
             let indexPaths:NSIndexPath = NSIndexPath(forRow: 0, inSection: 0)
             let timerCell:UITableViewCell = self.tableView.cellForRowAtIndexPath(indexPaths)!
@@ -82,7 +71,7 @@ class AddAlarmController: UITableViewController,ButtonManagerCallBack,UIAlertVie
             let timerCell3:UITableViewCell = self.tableView.cellForRowAtIndexPath(indexPaths3)!
             name = (timerCell3.detailTextLabel!.text)!
 
-            mDelegate?.onDidAddAlarmAction(timer, repeatStatus: repeatStatus, name: name)
+            mDelegate?.onDidAddAlarmAction(timer, name: name, repeatNumber: repeatSelectedIndex, alarmType: alarmTypeIndex)
 
             self.navigationController?.popViewControllerAnimated(true)
         }
@@ -157,7 +146,7 @@ class AddAlarmController: UITableViewController,ButtonManagerCallBack,UIAlertVie
                 }
             }
 
-        default: break 
+        default: break
         }
     }
 

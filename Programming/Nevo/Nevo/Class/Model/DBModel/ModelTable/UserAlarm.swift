@@ -15,7 +15,7 @@ class UserAlarm: NSObject,BaseEntryDatabaseHelper {
     var status:Bool = false
     var repeatStatus:Bool = false
     var dayOfWeek:Int = 0
-    var type:Int = 0
+    var type:Int = 0 //0-1
 
     private var alarmModel:AlarmModel = AlarmModel()
 
@@ -104,12 +104,15 @@ class UserAlarm: NSObject,BaseEntryDatabaseHelper {
             let date2:NSDate = NSDate.date(year: currentDate.year, month: currentDate.minute, day: currentDate.day, hour: 9, minute: 0, second: 0)
             let dateArray:[NSTimeInterval] = [date1.timeIntervalSince1970,date2.timeIntervalSince1970]
             let nameArray:[String] = ["Alarm 1","Alarm 2"]
-            for (var index:Int = 0; index < dateArray.count ; index++) {
-                let alarm:UserAlarm = UserAlarm(keyDict: ["id":index,"timer":dateArray[index],"label":nameArray[index],"status":false,"repeatStatus":true,"dayOfWeek":0,"type":0])
-                alarm.add({ (id, completion) -> Void in
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,0), { () -> Void in
+                for (var index:Int = 0; index < dateArray.count ; index++) {
+                    let alarm:UserAlarm = UserAlarm(keyDict: ["id":index,"timer":dateArray[index],"label":nameArray[index],"status":false,"repeatStatus":true,"dayOfWeek":0,"type":0])
+                    alarm.add({ (id, completion) -> Void in
 
-                })
-            }
+                    })
+                }
+            })
+
         }
     }
 }

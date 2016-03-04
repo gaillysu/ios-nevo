@@ -149,6 +149,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
         sendRequest(SetAlarmRequest(alarm:alarm))
     }
 
+    func setNewAlarm(alarm:NewAlarm) {
+        sendRequest(SetNewAlarmRequest(alarm:alarm))
+    }
+
     func setSleepStartAlarm(sleepAlarm:ConfigSleepAlarm) {
         sendRequest(SetSleepRequest(sleepAlarm: sleepAlarm))
     }
@@ -458,7 +462,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                             "running_distance":thispacket.getRunningDistance(),
                             "running_duration":thispacket.getDailyRunningTimer(),
                             "running_calories":thispacket.getDailyCalories()])
-                        stepsModel.update()
+
+                        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,0), { () -> Void in
+                            stepsModel.update()
+                        })
                     }
                 }else {
                     let stepsModel:UserSteps = UserSteps(keyDict: [
@@ -482,8 +489,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                         "running_distance":thispacket.getRunningDistance(),
                         "running_duration":thispacket.getDailyRunningTimer(),
                         "running_calories":thispacket.getDailyCalories()])
-                    stepsModel.add({ (id, completion) -> Void in
 
+                    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,0), { () -> Void in
+                        stepsModel.add({ (id, completion) -> Void in
+
+                        })
                     })
                 }
 
@@ -522,7 +532,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                         "hourlyLightTime":"\(AppTheme.toJSONString(thispacket.getHourlyLightTime()))",
                         "totalDeepTime":0,
                         "hourlyDeepTime":"\(AppTheme.toJSONString(thispacket.getHourlyDeepTime()))"])
-                    model.update()
+
+                    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,0), { () -> Void in
+                        model.update()
+                    })
                 }else {
                     let model:UserSleep = UserSleep(keyDict: [
                         "id": 0,
@@ -535,8 +548,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                         "hourlyLightTime":"\(AppTheme.toJSONString(thispacket.getHourlyLightTime()))",
                         "totalDeepTime":0,
                         "hourlyDeepTime":"\(AppTheme.toJSONString(thispacket.getHourlyDeepTime()))"])
-                    model.add({ (id, completion) -> Void in
 
+                    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,0), { () -> Void in
+                        model.add({ (id, completion) -> Void in
+
+                        })
                     })
                 }
 
@@ -614,7 +630,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
             if(self.hasSavedAddress()){
                 let banner = Banner(title: NSLocalizedString("Connected", comment: ""), subtitle: nil, image: nil, backgroundColor:AppTheme.hexStringToColor("#0dac67"))
                 banner.dismissesOnTap = true
-                banner.show(duration: 3.0)
+                banner.show(duration: 1.5)
             }
 
             ConnectionManager.sharedInstance.checkConnectSendNotification(ConnectionManager.Const.connectionStatus.connected)
@@ -630,7 +646,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
             if(self.hasSavedAddress()){
                 let banner = Banner(title: NSLocalizedString("Disconnected", comment: ""), subtitle: nil, image: nil, backgroundColor: UIColor.redColor())
                 banner.dismissesOnTap = true
-                banner.show(duration: 3.0)
+                banner.show(duration: 1.5)
             }
 
             ConnectionManager.sharedInstance.checkConnectSendNotification(ConnectionManager.Const.connectionStatus.disconnected)

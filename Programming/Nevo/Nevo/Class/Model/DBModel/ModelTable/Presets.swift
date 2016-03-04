@@ -84,12 +84,14 @@ class Presets: NSObject,BaseEntryDatabaseHelper {
         if(array.count == 0){
             let presetGoal:[Int] = [7000, 10000, 20000]
             let label:[String] = ["Light","Moderate","Heavy"]
-            for (var index:Int = 0; index < presetGoal.count ; index++) {
-                let presets:Presets = Presets(keyDict: ["id":index,"steps":presetGoal[index],"label":"\(label[index])","status":true])
-                presets.add({ (id, completion) -> Void in
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,0), { () -> Void in
+                for (var index:Int = 0; index < presetGoal.count ; index++) {
+                    let presets:Presets = Presets(keyDict: ["id":index,"steps":presetGoal[index],"label":"\(label[index])","status":true])
+                    presets.add({ (id, completion) -> Void in
 
-                })
-            }
+                    })
+                }
+            })
         }
     }
 }

@@ -306,6 +306,10 @@
 		00ED43E11C1EA11700915885 /* String+Timepiece.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00ED43D91C1EA11700915885 /* String+Timepiece.swift */; };
 		00F0C34B1C893EE6005888A7 /* AlarmTypeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F0C3491C893EE6005888A7 /* AlarmTypeController.swift */; };
 		00F0C34C1C893EE6005888A7 /* AlarmTypeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00F0C34A1C893EE6005888A7 /* AlarmTypeController.xib */; };
+		00F0C34E1C896D16005888A7 /* SetNewAlarmRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F0C34D1C896D16005888A7 /* SetNewAlarmRequest.swift */; };
+		00F0C3501C896F12005888A7 /* NewAlarm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F0C34F1C896F12005888A7 /* NewAlarm.swift */; };
+		00F0C3531C8993DD005888A7 /* NewAddAlarmController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F0C3511C8993DD005888A7 /* NewAddAlarmController.swift */; };
+		00F0C3541C8993DD005888A7 /* NewAddAlarmController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00F0C3521C8993DD005888A7 /* NewAddAlarmController.xib */; };
 		07BCE82A1B5CAB2200C7F558 /* clockview600_color.png in Resources */ = {isa = PBXBuildFile; fileRef = 07BCE8291B5CAB2100C7F558 /* clockview600_color.png */; };
 		9A2D6C3B1A9C6D9F00591BDC /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A2D6C3A1A9C6D9F00591BDC /* HealthKit.framework */; };
 		9A2D6C3E1A9C71E500591BDC /* NevoHK.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2D6C3D1A9C71E500591BDC /* NevoHK.swift */; };
@@ -689,6 +693,10 @@
 		00ED43D91C1EA11700915885 /* String+Timepiece.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Timepiece.swift"; sourceTree = "<group>"; };
 		00F0C3491C893EE6005888A7 /* AlarmTypeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlarmTypeController.swift; sourceTree = "<group>"; };
 		00F0C34A1C893EE6005888A7 /* AlarmTypeController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AlarmTypeController.xib; sourceTree = "<group>"; };
+		00F0C34D1C896D16005888A7 /* SetNewAlarmRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetNewAlarmRequest.swift; sourceTree = "<group>"; };
+		00F0C34F1C896F12005888A7 /* NewAlarm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewAlarm.swift; sourceTree = "<group>"; };
+		00F0C3511C8993DD005888A7 /* NewAddAlarmController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewAddAlarmController.swift; sourceTree = "<group>"; };
+		00F0C3521C8993DD005888A7 /* NewAddAlarmController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewAddAlarmController.xib; sourceTree = "<group>"; };
 		07BCE8291B5CAB2100C7F558 /* clockview600_color.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clockview600_color.png; sourceTree = "<group>"; };
 		14C4652E23FFFA73733C92C2 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		5E9CB0CD7FD34957EA49FC88 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1041,6 +1049,7 @@
 			isa = PBXGroup;
 			children = (
 				0050D58A1C28E0DB004F6F80 /* Alarm.swift */,
+				00F0C34F1C896F12005888A7 /* NewAlarm.swift */,
 			);
 			path = Alarm;
 			sourceTree = "<group>";
@@ -1243,6 +1252,7 @@
 				0050D5DF1C28E0DB004F6F80 /* SetRTCRequest.swift */,
 				0050D5E01C28E0DB004F6F80 /* WriteSettingRequest.swift */,
 				009DD2A91C5857FD00B11541 /* SetSleepRequest.swift */,
+				00F0C34D1C896D16005888A7 /* SetNewAlarmRequest.swift */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -1256,6 +1266,8 @@
 				0017DC101C8812640058A065 /* RepeatViewController.xib */,
 				0050D6851C28E1CD004F6F80 /* AddAlarmController.swift */,
 				0050D6861C28E1CD004F6F80 /* AddAlarmController.xib */,
+				00F0C3511C8993DD005888A7 /* NewAddAlarmController.swift */,
+				00F0C3521C8993DD005888A7 /* NewAddAlarmController.xib */,
 				0050D68E1C28E1CD004F6F80 /* AlarmClockController.swift */,
 				0050D6871C28E1CD004F6F80 /* AddAlarmView */,
 				0050D68F1C28E1CD004F6F80 /* AlarmView */,
@@ -1872,6 +1884,7 @@
 				000CB32A1C3E436000B4ABEC /* white_minute.png in Resources */,
 				00344F5D1C47A86800C2FC7A /* SupportViewController.xib in Resources */,
 				0036EB081C48BA8300DCED46 /* settimer.png in Resources */,
+				00F0C3541C8993DD005888A7 /* NewAddAlarmController.xib in Resources */,
 				0036EB071C48BA8300DCED46 /* searching.png in Resources */,
 				00EC9DAE1C8582E400280904 /* TutorialOneViewController.xib in Resources */,
 				00478F4F1A8F637D00D0DCE2 /* clockViewHour.png in Resources */,
@@ -2001,6 +2014,7 @@
 				00DC9EF31BB2853D00734DB6 /* ScatterChartRenderer.swift in Sources */,
 				00DC9EA61BB2853D00734DB6 /* ChartAnimationEasing.swift in Sources */,
 				0050D6261C28E0DB004F6F80 /* StepHistoricalView.swift in Sources */,
+				00F0C34E1C896D16005888A7 /* SetNewAlarmRequest.swift in Sources */,
 				0050D6611C28E0DB004F6F80 /* IntelHex2BinConverter.m in Sources */,
 				00DC9EAC1BB2853D00734DB6 /* ChartViewBase.swift in Sources */,
 				00DC9EEA1BB2853D00734DB6 /* ChartYAxisRenderer.swift in Sources */,
@@ -2127,6 +2141,7 @@
 				0050D61A1C28E0DB004F6F80 /* SleepHistoricalView.swift in Sources */,
 				0050D69F1C2A78C1004F6F80 /* UserSleep.swift in Sources */,
 				00DC9EBA1BB2853D00734DB6 /* ChartYAxis.swift in Sources */,
+				00F0C3531C8993DD005888A7 /* NewAddAlarmController.swift in Sources */,
 				0050D63A1C28E0DB004F6F80 /* BaseEntryDatabaseHelper.swift in Sources */,
 				00DC9EA91BB2853D00734DB6 /* BarLineChartViewBase.swift in Sources */,
 				00DC9ED11BB2853D00734DB6 /* RadarChartDataSet.swift in Sources */,
@@ -2142,6 +2157,7 @@
 				00DC9ED01BB2853D00734DB6 /* RadarChartData.swift in Sources */,
 				00E650A01C840FD500278D3E /* MorningTutorialController.swift in Sources */,
 				00DC9EC71BB2853D00734DB6 /* ChartDataEntry.swift in Sources */,
+				00F0C3501C896F12005888A7 /* NewAlarm.swift in Sources */,
 				00DC9EDF1BB2853D00734DB6 /* BarChartRenderer.swift in Sources */,
 				0050D6651C28E0DB004F6F80 /* NevoOTARequest.swift in Sources */,
 				0050D5FA1C28E0DB004F6F80 /* LineColorCell.swift in Sources */,
