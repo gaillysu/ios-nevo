@@ -13,7 +13,7 @@ protocol AddAlarmDelegate {
     func onDidAddAlarmAction(timer:NSTimeInterval,name:String,repeatNumber:Int,alarmType:Int)
 }
 
-class AddAlarmController: UITableViewController,ButtonManagerCallBack,UIAlertViewDelegate,SelectedRepeatDelegate,SelectedSleepTypeDelegate {
+class AddAlarmController: UITableViewController,ButtonManagerCallBack,UIAlertViewDelegate {
 
     @IBOutlet weak var adTableView: AddAlarmView!
     var mDelegate:AddAlarmDelegate?
@@ -22,8 +22,6 @@ class AddAlarmController: UITableViewController,ButtonManagerCallBack,UIAlertVie
     var repeatStatus:Bool = false
     var name:String = ""
     private var selectedIndexPath:NSIndexPath?
-    private var repeatSelectedIndex:Int = 0
-    private var alarmTypeIndex:Int = 0
 
     init() {
         super.init(nibName: "AddAlarmController", bundle: NSBundle.mainBundle())
@@ -67,7 +65,7 @@ class AddAlarmController: UITableViewController,ButtonManagerCallBack,UIAlertVie
                 }
             }
 
-            let indexPaths2:NSIndexPath = NSIndexPath(forRow: 1, inSection: 1)
+            let indexPaths2:NSIndexPath = NSIndexPath(forRow: 0, inSection: 1)
             let timerCell2:UITableViewCell = self.tableView.cellForRowAtIndexPath(indexPaths2)!
             for datePicker in timerCell2.contentView.subviews{
                 if(datePicker.isKindOfClass(UISwitch.classForCoder())){
@@ -78,37 +76,14 @@ class AddAlarmController: UITableViewController,ButtonManagerCallBack,UIAlertVie
                 }
             }
 
-            let indexPaths3:NSIndexPath = NSIndexPath(forRow: 2, inSection: 1)
+            let indexPaths3:NSIndexPath = NSIndexPath(forRow: 1, inSection: 1)
             let timerCell3:UITableViewCell = self.tableView.cellForRowAtIndexPath(indexPaths3)!
             name = (timerCell3.detailTextLabel!.text)!
 
             mDelegate?.onDidAddAlarmAction(timer, repeatStatus: repeatStatus, name: name)
-
             self.navigationController?.popViewControllerAnimated(true)
         }
 
-    }
-
-    // MARK: - SelectedRepeatDelegate
-    func onSelectedRepeatAction(value:Int,name:String){
-        NSLog("onSelectedRepeatAction:value:\(value),name:\(name)")
-        let indexPath:NSIndexPath = NSIndexPath(forRow: 1, inSection: 1)
-        let cell = self.tableView.cellForRowAtIndexPath(indexPath)
-        if(cell != nil) {
-            cell!.detailTextLabel?.text = name
-        }
-        repeatSelectedIndex = value
-    }
-
-    // MARK: - SelectedSleepTypeDelegate
-    func onSelectedSleepTypeAction(value:Int,name:String){
-        NSLog("onSelectedRepeatAction:value:\(value),name:\(name)")
-        let indexPath:NSIndexPath = NSIndexPath(forRow: 0, inSection: 1)
-        let cell = self.tableView.cellForRowAtIndexPath(indexPath)
-        if(cell != nil) {
-            cell!.detailTextLabel?.text = name
-        }
-        alarmTypeIndex = value
     }
 
     // MARK: - Table view data source
@@ -117,18 +92,7 @@ class AddAlarmController: UITableViewController,ButtonManagerCallBack,UIAlertVie
         case 0: break
 
         case 1:
-            if(indexPath.row == 0) {
-                let typeControll:AlarmTypeController = AlarmTypeController()
-                typeControll.sleepTypeDelegate = self
-                self.navigationController?.pushViewController(typeControll, animated: true)
-            }
             if(indexPath.row == 1){
-                let repeatControll:RepeatViewController = RepeatViewController()
-                repeatControll.selectedDelegate = self
-                self.navigationController?.pushViewController(repeatControll, animated: true)
-            }
-
-            if(indexPath.row == 2){
                 if((UIDevice.currentDevice().systemVersion as NSString).floatValue >= 8.0){
                     let selectedCell:UITableViewCell = tableView.cellForRowAtIndexPath(indexPath)!
 
@@ -172,7 +136,7 @@ class AddAlarmController: UITableViewController,ButtonManagerCallBack,UIAlertVie
         case 0:
             return 1
         case 1:
-            return 3
+            return 2
         default: return 1;
         }
     }
@@ -192,30 +156,17 @@ class AddAlarmController: UITableViewController,ButtonManagerCallBack,UIAlertVie
         case 0:
             return AddAlarmView.addAlarmTimerTableViewCell(indexPath, tableView: tableView, timer:timer)
         case 1:
-            let titleArray:[String] = ["Alarm type","Repeat","Label"]
-            var cell = tableView.dequeueReusableCellWithIdentifier("AlarmTypeCell")
-            if(cell == nil){
-                cell = UITableViewCell(style: UITableViewCellStyle.Value1, reuseIdentifier: "AlarmTypeCell")
-            }
-
+            let titleArray:[String] = ["Repeat","Label"]
             if(indexPath.row == 0){
-                cell!.textLabel?.text = NSLocalizedString("\(titleArray[indexPath.row])", comment: "")
-                cell?.detailTextLabel?.text = "Wake Alarm"
-                cell!.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
-                cell!.selectionStyle = UITableViewCellSelectionStyle.None;
-                return cell!
+                let cell = AddAlarmView.systemTableViewCell(indexPath, tableView: tableView, title: titleArray[indexPath.row],delegate: self)
+                return cell
             }else if(indexPath.row == 1) {
-                cell!.textLabel?.text = NSLocalizedString("\(titleArray[indexPath.row])", comment: "")
-                cell!.detailTextLabel?.text = "Disable"
-                cell!.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
-                cell!.selectionStyle = UITableViewCellSelectionStyle.None;
-                return cell!
-            }else if(indexPath.row == 2) {
-                cell!.textLabel?.text = NSLocalizedString("\(titleArray[indexPath.row])", comment: "")
-                cell!.detailTextLabel?.text = name
-                cell!.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
-                cell!.selectionStyle = UITableViewCellSelectionStyle.None;
-                return cell!
+                let cell = UITableViewCell(style: UITableViewCellStyle.Value1, reuseIdentifier: "SystemLabelCell")
+                cell.textLabel?.text = NSLocalizedString("\(titleArray[indexPath.row])", comment: "")
+                cell.detailTextLabel?.text = name
+                cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
+                cell.selectionStyle = UITableViewCellSelectionStyle.None;
+                return cell
             }
         default: return UITableViewCell();
         }
