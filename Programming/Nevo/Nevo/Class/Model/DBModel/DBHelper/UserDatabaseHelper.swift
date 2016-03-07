@@ -369,7 +369,7 @@ class UserDatabaseHelper:NSObject,BaseEntryDatabaseHelper {
     class func updateTable()->Bool {
         let db:FMDatabase = FMDatabase(path: AppDelegate.dbPath())
         if(db.open()) {
-            NSLog("数据库打开失败!");
+            NSLog("数据库打开失败!数据库路径:\(AppDelegate.dbPath())");
             return false;
         }
 

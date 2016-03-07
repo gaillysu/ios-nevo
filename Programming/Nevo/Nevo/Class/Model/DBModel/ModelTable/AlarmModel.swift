@@ -101,8 +101,8 @@ class AlarmModel: UserDatabaseHelper {
      */
     override class func updateTable()->Bool {
         let db:FMDatabase = FMDatabase(path: AppDelegate.dbPath())
-        if(db.open()) {
-            NSLog("数据库打开失败!");
+        if(!db.open()) {
+            NSLog("数据库打开失败!数据库路径:\(AppDelegate.dbPath())");
             return false;
         }
 
@@ -127,8 +127,8 @@ class AlarmModel: UserDatabaseHelper {
             let fieldSql:String = "\(column) \(proType)"
             //[NSString stringWithFormat:@"%@ %@",column,proType];
             let sql:String = String(format: "ALTER TABLE %@ ADD COLUMN %@ ",tableName,fieldSql)
-            var args:CVaListPointer?
-            if (db.executeUpdate(sql, withVAList: args!)) {
+            let args:CVaListPointer = getVaList([0,1,2,3,4,5,6,7]);
+            if (db.executeUpdate(sql, withVAList: args)) {
                 //db.close();
                 return false;
             }

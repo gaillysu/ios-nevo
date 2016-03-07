@@ -42,10 +42,7 @@ class AlarmClockController: UITableViewController, SyncControllerDelegate,AddAla
 
         //Start the logo for the first time
         if(UserAlarm.isExistInTable()){
-            if(!NSUserDefaults.standardUserDefaults().boolForKey("isOldAlarmDatabase")){
-                NSUserDefaults.standardUserDefaults().setBool(true, forKey: "isOldAlarmDatabase")
-                UserAlarm.updateTable()
-            }
+            UserAlarm.updateTable()
         }
     }
 
