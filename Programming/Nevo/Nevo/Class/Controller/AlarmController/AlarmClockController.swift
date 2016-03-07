@@ -40,7 +40,6 @@ class AlarmClockController: UITableViewController, SyncControllerDelegate,AddAla
             mAlarmArray.addObject(useralarm)
         }
 
-        //Start the logo for the first time
         if(UserAlarm.isExistInTable()){
             UserAlarm.updateTable()
         }
