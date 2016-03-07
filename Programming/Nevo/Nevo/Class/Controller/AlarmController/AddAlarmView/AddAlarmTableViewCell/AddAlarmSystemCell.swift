@@ -10,6 +10,7 @@ import UIKit
 
 class AddAlarmSystemCell: UITableViewCell {
 
+    @IBOutlet weak var systemTitle: UILabel!
     @IBOutlet weak var repeatSwicth: UISwitch!
     var mDelegate:ButtonManagerCallBack?
 

@@ -68,7 +68,7 @@ class AddAlarmView: UITableView {
         }
 
         endCell?.selectionStyle = UITableViewCellSelectionStyle.None;
-        endCell?.textLabel?.text = NSLocalizedString("\(title)", comment: "")
+        (endCell as! AddAlarmSystemCell).systemTitle.text = NSLocalizedString("\(title)", comment: "")
         return endCell!
     }
 

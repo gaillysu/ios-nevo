@@ -16,8 +16,8 @@ class NewAddAlarmController: UITableViewController,ButtonManagerCallBack,UIAlert
     var repeatStatus:Bool = false
     var name:String = ""
     private var selectedIndexPath:NSIndexPath?
-    private var repeatSelectedIndex:Int = 0
-    private var alarmTypeIndex:Int = 0
+    var repeatSelectedIndex:Int = 0
+    var alarmTypeIndex:Int = 0
 
     init() {
         super.init(nibName: "NewAddAlarmController", bundle: NSBundle.mainBundle())
@@ -91,7 +91,7 @@ class NewAddAlarmController: UITableViewController,ButtonManagerCallBack,UIAlert
 
     // MARK: - SelectedSleepTypeDelegate
     func onSelectedSleepTypeAction(value:Int,name:String){
-        NSLog("onSelectedRepeatAction:value:\(value),name:\(name)")
+        NSLog("onSelectedSleepTypeAction:\(value),name:\(name)")
         let indexPath:NSIndexPath = NSIndexPath(forRow: 0, inSection: 1)
         let cell = self.tableView.cellForRowAtIndexPath(indexPath)
         if(cell != nil) {
@@ -189,13 +189,15 @@ class NewAddAlarmController: UITableViewController,ButtonManagerCallBack,UIAlert
 
             if(indexPath.row == 0){
                 cell!.textLabel?.text = NSLocalizedString("\(titleArray[indexPath.row])", comment: "")
-                cell?.detailTextLabel?.text = "Wake Alarm"
+                let typeArray:[String] = ["Wake Alarm","Sleep Alarm"]
+                cell?.detailTextLabel?.text = typeArray[alarmTypeIndex]
                 cell!.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
                 cell!.selectionStyle = UITableViewCellSelectionStyle.None;
                 return cell!
             }else if(indexPath.row == 1) {
                 cell!.textLabel?.text = NSLocalizedString("\(titleArray[indexPath.row])", comment: "")
-                cell!.detailTextLabel?.text = "Disable"
+                let repeatDayArray:[String] = ["Disable","Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]
+                cell!.detailTextLabel?.text = repeatDayArray[repeatSelectedIndex]
                 cell!.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
                 cell!.selectionStyle = UITableViewCellSelectionStyle.None;
                 return cell!
