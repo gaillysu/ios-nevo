@@ -57,6 +57,10 @@ class AddPresetViewController: UIViewController,ButtonManagerCallBack {
         }
     }
 
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        addPresetView.presetName.resignFirstResponder()
+        addPresetView.presetNumber.resignFirstResponder()
+    }
     /*
     // MARK: - Navigation
 
