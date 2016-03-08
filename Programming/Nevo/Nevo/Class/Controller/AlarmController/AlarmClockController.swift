@@ -87,7 +87,6 @@ class AlarmClockController: UITableViewController, SyncControllerDelegate,AddAla
                 //Sleep alarm set
                 var alarmCount:Int = 0
                 for (index, value) in mAlarmArray.enumerate() {
-                    print("Item \(index + 1): \(value)")
                     let alarm:UserAlarm = value as! UserAlarm
                     if(alarm.status){
                         alarmCount++
@@ -193,7 +192,7 @@ class AlarmClockController: UITableViewController, SyncControllerDelegate,AddAla
 
     func saveSwicthData(mSwitch:UISwitch) {
         let alarmA:UserAlarm = mAlarmArray[mSwitch.tag] as! UserAlarm
-        let addalarm:UserAlarm = UserAlarm(keyDict: ["id":alarmA.id,"timer":alarmA.timer,"label":"\(alarmA.label)","status":mSwitch.on,"repeatStatus":alarmA.repeatStatus])
+        let addalarm:UserAlarm = UserAlarm(keyDict: ["id":alarmA.id,"timer":alarmA.timer,"label":"\(alarmA.label)","status":mSwitch.on,"repeatStatus":alarmA.repeatStatus,"dayOfWeek":alarmA.dayOfWeek,"type":alarmA.type])
         addalarm.update()
 
         mAlarmArray.replaceObjectAtIndex(mSwitch.tag, withObject: addalarm)

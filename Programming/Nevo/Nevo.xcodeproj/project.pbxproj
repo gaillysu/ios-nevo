@@ -274,7 +274,6 @@
 		00E2BDE21B16CCD0009C757E /* MBProgressHUD+MJ.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E2BDDE1B16CCD0009C757E /* MBProgressHUD+MJ.m */; };
 		00E2BDE31B16CCD0009C757E /* MBProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 00E2BDDF1B16CCD0009C757E /* MBProgressHUD.bundle */; };
 		00E2BDE41B16CCD0009C757E /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E2BDE11B16CCD0009C757E /* MBProgressHUD.m */; };
-		00E5CFD41B17F81F00D1F829 /* help in Resources */ = {isa = PBXBuildFile; fileRef = 00E5CFD31B17F81F00D1F829 /* help */; };
 		00E650941C83D8F400278D3E /* HomeTutorialController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E650921C83D8F400278D3E /* HomeTutorialController.swift */; };
 		00E650971C83DA8000278D3E /* homeTutorial.png in Resources */ = {isa = PBXBuildFile; fileRef = 00E650961C83DA8000278D3E /* homeTutorial.png */; };
 		00E650991C83DD9000278D3E /* nevoFontImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 00E650981C83DD9000278D3E /* nevoFontImage.png */; };
@@ -621,7 +620,6 @@
 		00E2BDDF1B16CCD0009C757E /* MBProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MBProgressHUD.bundle; sourceTree = "<group>"; };
 		00E2BDE01B16CCD0009C757E /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		00E2BDE11B16CCD0009C757E /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
-		00E5CFD31B17F81F00D1F829 /* help */ = {isa = PBXFileReference; lastKnownFileType = folder; path = help; sourceTree = "<group>"; };
 		00E650921C83D8F400278D3E /* HomeTutorialController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTutorialController.swift; sourceTree = "<group>"; };
 		00E650961C83DA8000278D3E /* homeTutorial.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = homeTutorial.png; sourceTree = "<group>"; };
 		00E650981C83DD9000278D3E /* nevoFontImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nevoFontImage.png; sourceTree = "<group>"; };
@@ -1320,7 +1318,6 @@
 			children = (
 				0050D69A1C2906D8004F6F80 /* Firmwares */,
 				00DC9E461BB2853D00734DB6 /* Classes */,
-				00E5CFD31B17F81F00D1F829 /* help */,
 				00A773901A88562F0018E121 /* Strings */,
 				007F79741A878D0B006C89E6 /* Font */,
 				007F79881A878D0B006C89E6 /* image */,
@@ -1907,7 +1904,6 @@
 				0072EABC1C190DCD001EE2C9 /* SFCompactDisplay-Thin.ttf in Resources */,
 				0036EB091C48BA8300DCED46 /* turnonnevo.png in Resources */,
 				0072EAB61C190DCD001EE2C9 /* SFCompactDisplay-Bold.ttf in Resources */,
-				00E5CFD41B17F81F00D1F829 /* help in Resources */,
 				005BC9561A889F14006F9E86 /* NevoPicture.png in Resources */,
 				0042C8B41C7DB3EF00177D3D /* NotAlarmView.xib in Resources */,
 				07BCE82A1B5CAB2200C7F558 /* clockview600_color.png in Resources */,
