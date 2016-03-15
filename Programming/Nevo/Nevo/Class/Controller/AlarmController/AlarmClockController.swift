@@ -314,7 +314,7 @@ class AlarmClockController: UITableViewController, SyncControllerDelegate,AddAla
 
     func onDidAddAlarmAction(timer:NSTimeInterval,name:String,repeatNumber:Int,alarmType:Int) {
 
-        var sleepAlarmCount:Int = 0
+        var sleepAlarmCount:Int = 7
         var dayAlarmCount:Int = 0
         for alarm in mAlarmArray{
             let alarmModel:UserAlarm =  alarm as! UserAlarm
