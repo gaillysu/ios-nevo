@@ -17,6 +17,7 @@
 		0017DC121C8812640058A065 /* RepeatViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0017DC101C8812640058A065 /* RepeatViewController.xib */; };
 		001F1B7B1B57777B001DD426 /* nevo_wacth_selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 001F1B791B57777B001DD426 /* nevo_wacth_selected.png */; };
 		001F1B7C1B57777B001DD426 /* nevo_wacth.png in Resources */ = {isa = PBXBuildFile; fileRef = 001F1B7A1B57777B001DD426 /* nevo_wacth.png */; };
+		00321D6D1C98EBB10069BFCC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00321D6C1C98EBB10069BFCC /* AppDelegate.swift */; };
 		0032921C1C4E118D00931AF5 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 003292171C4E118D00931AF5 /* LICENSE */; };
 		0032921D1C4E118D00931AF5 /* Banner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0032921A1C4E118D00931AF5 /* Banner.swift */; };
 		0032921E1C4E118D00931AF5 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 0032921B1C4E118D00931AF5 /* README.md */; };
@@ -113,7 +114,6 @@
 		0050D64D1C28E0DB004F6F80 /* TypeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0050D5A51C28E0DB004F6F80 /* TypeModel.swift */; };
 		0050D64E1C28E0DB004F6F80 /* Sleep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0050D5A71C28E0DB004F6F80 /* Sleep.swift */; };
 		0050D64F1C28E0DB004F6F80 /* TestMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0050D5A91C28E0DB004F6F80 /* TestMode.swift */; };
-		0050D6501C28E0DB004F6F80 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0050D5AB1C28E0DB004F6F80 /* AppDelegate.swift */; };
 		0050D6511C28E0DB004F6F80 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0050D5AC1C28E0DB004F6F80 /* MainTabBarController.swift */; };
 		0050D6521C28E0DB004F6F80 /* PublicClassController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0050D5AD1C28E0DB004F6F80 /* PublicClassController.swift */; };
 		0050D6531C28E0DB004F6F80 /* PublicClassTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0050D5AE1C28E0DB004F6F80 /* PublicClassTableViewController.swift */; };
@@ -352,6 +352,7 @@
 		0017DC101C8812640058A065 /* RepeatViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RepeatViewController.xib; sourceTree = "<group>"; };
 		001F1B791B57777B001DD426 /* nevo_wacth_selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nevo_wacth_selected.png; sourceTree = "<group>"; };
 		001F1B7A1B57777B001DD426 /* nevo_wacth.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nevo_wacth.png; sourceTree = "<group>"; };
+		00321D6C1C98EBB10069BFCC /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		003292171C4E118D00931AF5 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		0032921A1C4E118D00931AF5 /* Banner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Banner.swift; sourceTree = "<group>"; };
 		0032921B1C4E118D00931AF5 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -450,7 +451,6 @@
 		0050D5A51C28E0DB004F6F80 /* TypeModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TypeModel.swift; sourceTree = "<group>"; };
 		0050D5A71C28E0DB004F6F80 /* Sleep.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sleep.swift; sourceTree = "<group>"; };
 		0050D5A91C28E0DB004F6F80 /* TestMode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestMode.swift; sourceTree = "<group>"; };
-		0050D5AB1C28E0DB004F6F80 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0050D5AC1C28E0DB004F6F80 /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		0050D5AD1C28E0DB004F6F80 /* PublicClassController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PublicClassController.swift; sourceTree = "<group>"; };
 		0050D5AE1C28E0DB004F6F80 /* PublicClassTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PublicClassTableViewController.swift; sourceTree = "<group>"; };
@@ -1133,7 +1133,6 @@
 		0050D5AA1C28E0DB004F6F80 /* publicClass */ = {
 			isa = PBXGroup;
 			children = (
-				0050D5AB1C28E0DB004F6F80 /* AppDelegate.swift */,
 				0050D5AC1C28E0DB004F6F80 /* MainTabBarController.swift */,
 				0050D5AD1C28E0DB004F6F80 /* PublicClassController.swift */,
 				0050D5AE1C28E0DB004F6F80 /* PublicClassTableViewController.swift */,
@@ -1641,6 +1640,7 @@
 				9A2D6C391A9C6D9F00591BDC /* Nevo.entitlements */,
 				00DBC3A21C435541004B4376 /* Main.storyboard */,
 				006B83691C44A20000E20A0C /* Nevo-Bridging-Header.h */,
+				00321D6C1C98EBB10069BFCC /* AppDelegate.swift */,
 				9AD8F9411A6DF35900F01014 /* Images.xcassets */,
 				9AD8F9391A6DF35900F01014 /* Nevo.xcdatamodeld */,
 				9AD8F9351A6DF35900F01014 /* Supporting Files */,
@@ -1995,6 +1995,7 @@
 				00DC9EE31BB2853D00734DB6 /* ChartDataRendererBase.swift in Sources */,
 				00DC9EE81BB2853D00734DB6 /* ChartXAxisRendererHorizontalBarChart.swift in Sources */,
 				00DC9EB61BB2853D00734DB6 /* ChartLegend.swift in Sources */,
+				00321D6D1C98EBB10069BFCC /* AppDelegate.swift in Sources */,
 				00DC9EAD1BB2853D00734DB6 /* CombinedChartView.swift in Sources */,
 				00DC9EF71BB2853D00734DB6 /* ChartTransformer.swift in Sources */,
 				00DC9EB91BB2853D00734DB6 /* ChartXAxis.swift in Sources */,
@@ -2054,7 +2055,6 @@
 				0050D6641C28E0DB004F6F80 /* NevoOTAPacketProfile.swift in Sources */,
 				9AD8F9621A6E00E800F01014 /* NevoBTimpl.swift in Sources */,
 				00DC9ED41BB2853D00734DB6 /* ChartDataApproximatorFilter.swift in Sources */,
-				0050D6501C28E0DB004F6F80 /* AppDelegate.swift in Sources */,
 				00DC9EFB1BB2853D00734DB6 /* UIGraphics+Extensions.swift in Sources */,
 				0050D6741C28E0DB004F6F80 /* SetCardioRequest.swift in Sources */,
 				0050D6531C28E0DB004F6F80 /* PublicClassTableViewController.swift in Sources */,

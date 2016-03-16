@@ -390,26 +390,68 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
             if(packet.getHeader() == SetNortificationRequest.HEADER()) {
                 var alarmArray:[Alarm] = []
                 let array:NSArray = UserAlarm.getAll()
-                for(var index:Int = 0; index < array.count; index++){
-                    let useralarm:UserAlarm = array[index] as! UserAlarm
-                    let date:NSDate = NSDate(timeIntervalSince1970: useralarm.timer)
-                    if(useralarm.status) {
-                        let alarm:Alarm = Alarm(index:index, hour: date.hour, minute: date.minute, enable: useralarm.status)
+
+                if(AppDelegate.getAppDelegate().getSoftwareVersion().integerValue > 18){
+                    for(var index:Int = 0;index<13;index++) {
+                        let date:NSDate = NSDate()
+                        let newAlarm:NewAlarm = NewAlarm(alarmhour: date.hour, alarmmin: date.minute, alarmNumber: index, alarmWeekday: 0)
+                        if(AppDelegate.getAppDelegate().isConnected()){
+                            AppDelegate.getAppDelegate().setNewAlarm(newAlarm)
+                        }
+                    }
+
+                    var sleepAlarmCount:Int = 7
+                    var dayAlarmCount:Int = 0
+                    for alarm in array{
+                        let alarmModel:UserAlarm =  alarm as! UserAlarm
+                        if(alarmModel.type == 1 && alarmModel.status) {
+                            let date:NSDate = NSDate(timeIntervalSince1970: alarmModel.timer)
+                            let newAlarm:NewAlarm = NewAlarm(alarmhour: date.hour, alarmmin: date.minute, alarmNumber: sleepAlarmCount, alarmWeekday: alarmModel.dayOfWeek)
+
+                            if(AppDelegate.getAppDelegate().isConnected()){
+                                AppDelegate.getAppDelegate().setNewAlarm(newAlarm)
+                            }
+
+                            sleepAlarmCount++
+                        }else if (alarmModel.type == 0 && alarmModel.status){
+                            let date:NSDate = NSDate(timeIntervalSince1970: alarmModel.timer)
+                            let newAlarm:NewAlarm = NewAlarm(alarmhour: date.hour, alarmmin: date.minute, alarmNumber: dayAlarmCount, alarmWeekday: alarmModel.dayOfWeek)
+
+                            if(AppDelegate.getAppDelegate().isConnected()){
+                                AppDelegate.getAppDelegate().setNewAlarm(newAlarm)
+                            }
+
+                            dayAlarmCount++
+                        }
+                    }
+
+                    //start sync data
+                    self.syncActivityData()
+
+                }else{
+                    for(var index:Int = 0; index < array.count; index++){
+                        let useralarm:UserAlarm = array[index] as! UserAlarm
+                        let date:NSDate = NSDate(timeIntervalSince1970: useralarm.timer)
+                        if(useralarm.status) {
+                            let alarm:Alarm = Alarm(index:index, hour: date.hour, minute: date.minute, enable: useralarm.status)
+                            alarmArray.append(alarm)
+                        }
+                    }
+
+                    for(var index:Int = 0; index<3;index++) {
+                        let date:NSDate = NSDate()
+                        let alarm:Alarm = Alarm(index:index, hour: date.hour, minute: date.minute, enable: false)
                         alarmArray.append(alarm)
                     }
+                    setAlarm(alarmArray)
                 }
-
-                for(var index:Int = 0; index<3;index++) {
-                    let date:NSDate = NSDate()
-                    let alarm:Alarm = Alarm(index:index, hour: date.hour, minute: date.minute, enable: false)
-                    alarmArray.append(alarm)
-                }
-                setAlarm(alarmArray)
             }
 
             if(packet.getHeader() == SetAlarmRequest.HEADER()) {
-                //start sync data
-                self.syncActivityData()
+                if(AppDelegate.getAppDelegate().getSoftwareVersion().integerValue <= 18){
+                    //start sync data
+                    self.syncActivityData()
+                }
             }
 
             if(packet.getHeader() == ReadDailyTrackerInfo.HEADER()) {
@@ -569,9 +611,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                 hk.requestPermission()
 
                 let now:NSDate = NSDate()
-                let cal:NSCalendar = NSCalendar.currentCalendar()
-                let dd:NSDateComponents = cal.components([NSCalendarUnit.Year, NSCalendarUnit.Month, NSCalendarUnit.Day ,NSCalendarUnit.Hour, NSCalendarUnit.Minute, NSCalendarUnit.Second,], fromDate: now)
-                let dd2:NSDateComponents = cal.components([NSCalendarUnit.Year, NSCalendarUnit.Month, NSCalendarUnit.Day ,NSCalendarUnit.Hour, NSCalendarUnit.Minute, NSCalendarUnit.Second,], fromDate: savedDailyHistory[Int(currentDay)].Date)
+                let saveDay:NSDate = savedDailyHistory[Int(currentDay)].Date
 
                 for (var i:Int = 0; i<savedDailyHistory[Int(currentDay)].HourlySteps.count; i++){
                     //only save vaild hourly steps for every day, include today.
@@ -581,7 +621,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                     //user can see 10:00AM data when 11:20 do a big sync, the value should be 400 steps
                     //that is to say, user can't see current hour 's step in healthkit, he can see it by waiting one hour
                     if savedDailyHistory[Int(currentDay)].HourlySteps[i] > 0 &&
-                        !(i == dd.hour && dd.year == dd2.year && dd.month == dd2.month && dd.day == dd2.day){
+                        !(i == now.hour && now.year == saveDay.year && now.month == saveDay.month && now.day == saveDay.day){
                         hk.writeDataPoint(HourlySteps(numberOfSteps: savedDailyHistory[Int(currentDay)].HourlySteps[i],date: savedDailyHistory[Int(currentDay)].Date,hour:i,update: false), resultHandler: { (result, error) -> Void in
                             if (result != true) {
                                 AppTheme.DLog("Save Hourly steps error\(i),\(error)")
@@ -716,7 +756,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
         if(!enabled && self.hasSavedAddress()) {
             let banner = Banner(title: NSLocalizedString("bluetooth_turned_off_enable", comment: ""), subtitle: nil, image: nil, backgroundColor: UIColor.redColor())
             banner.dismissesOnTap = true
-            banner.show(duration: 3.0)
+            banner.show(duration: 1.5)
         }
     }
 
@@ -724,7 +764,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
         if(self.hasSavedAddress()) {
             let banner = Banner(title: NSLocalizedString("search_for_nevo", comment: ""), subtitle: nil, image: nil, backgroundColor: AppTheme.NEVO_SOLAR_YELLOW())
             banner.dismissesOnTap = true
-            banner.show(duration: 3.0)
+            banner.show(duration: 1.5)
         }
     }
 

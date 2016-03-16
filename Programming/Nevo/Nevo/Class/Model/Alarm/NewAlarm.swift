@@ -15,7 +15,7 @@ class NewAlarm: NSObject {
     private var mAlarmMin:Int = 0
     //0~6End sleep 7-13 start sleep
     private var mAlarmNumber:Int = 0
-    // true or false
+    // 0-7
     private var mAlarmWeekday:Int = 0
 
     init(alarmhour: Int, alarmmin:Int,alarmNumber:Int,alarmWeekday:Int){
