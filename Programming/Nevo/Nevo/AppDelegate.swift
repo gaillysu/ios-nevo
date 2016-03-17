@@ -472,6 +472,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                 let currentDateStr:NSString = dateFormatter.stringFromDate(today)
 
                 let timeStr:NSString = NSString(format: "\(thispacket.getDateTimer())")
+                if(timeStr.length < 8 ) {
+                    return
+                }
                 let year:NSString = timeStr.substringWithRange(NSMakeRange(0,4)) as NSString
                 let month:NSString = timeStr.substringWithRange(NSMakeRange(4,2)) as NSString
                 let day:NSString = timeStr.substringWithRange(NSMakeRange(6,2)) as NSString

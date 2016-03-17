@@ -109,7 +109,10 @@ class StepHistoricalView: UIView,ChartViewDelegate {
             let val1:Double  = Double(seleModel.steps);
             let mDateString:String = String(format: "%.0f", seleModel.date)
             let date:NSDate = NSDate(timeIntervalSince1970: seleModel.date)
-            let dateString:NSString = date.stringFromFormat("yyyyMMdd")
+            var dateString:NSString = date.stringFromFormat("yyyyMMdd")
+            if(dateString.length < 8) {
+                dateString = "00000000"
+            }
             xVal.append("\(dateString.substringWithRange(NSMakeRange(6, 2)))/\(dateString.substringWithRange(NSMakeRange(4, 2)))")
             yVal.append(BarChartDataEntry(values: [val1], xIndex:i))
         }
