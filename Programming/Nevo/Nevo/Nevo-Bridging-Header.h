@@ -12,10 +12,7 @@
 #import "IntelHex2BinConverter.h"
 #import "FXBlurView.h"
 #import "MBProgressHUD+MJ.h"
-#import "AFNetworking.h"
-#import "FMDB.h"
 #import "NevoDBModel.h"
 #import "MobClick.h"
-#import "NJKWebViewProgress.h"
-#import "NJKWebViewProgressView.h"
+#import <CommonCrypto/CommonCrypto.h>
 #endif

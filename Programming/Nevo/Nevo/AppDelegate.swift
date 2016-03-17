@@ -9,6 +9,8 @@
 import UIKit
 import CoreData
 import HealthKit
+import FMDB
+import Alamofire
 
 let nevoDBDFileURL:String = "nevoDBName";
 let nevoDBNames:String = "nevo.sqlite";
@@ -124,6 +126,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
         return dbpath;
     }
 
+    /**
+     获取网络数据函数,对AFNetworking的二次封装
+
+     :param: requestURL    请求目的的URL 字符串
+     :param: resultHandler 请求后返回的数据块
+     */
+    func getRequestNetwork(requestURL:String,parameters:AnyObject,resultHandler:((result:AnyObject?,error:NSError?) -> Void)){
+        let string = AppTheme.toJSONString(parameters)
+
+        Alamofire.request(.POST, requestURL, parameters: parameters as? [String : AnyObject] ,encoding: .JSON).responseJSON { (response) -> Void in
+            if response.result.isSuccess {
+                NSLog("getJSON: \(response.result.value!)")
+                resultHandler(result: response.result.value, error: nil)
+            }else if (response.result.isFailure){
+                resultHandler(result: response.result.value, error: NSError(domain: "error", code: 403, userInfo: nil))
+            }else{
+                resultHandler(result: nil, error: NSError(domain: "unknown error", code: 404, userInfo: nil))
+            }
+        }
+
+    }
     // MARK: -AppDelegate SET Function
     func setRTC() {
         sendRequest(SetRTCRequest())

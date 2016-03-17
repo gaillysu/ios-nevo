@@ -1,9 +1,12 @@
 platform :ios, '7.0'
-pod 'AFNetworking', '~> 2.0'
-pod 'FMDB'
+pod 'FMDB', '~> 2.6'
 pod 'UMengAnalytics-NO-IDFA'
 pod 'NJKWebViewProgress'
 
+platform :ios, '8.0'
+use_frameworks!
+pod 'Alamofire', '~> 3.0'
+pod 'GSMessages'
 #pod 'Charts' 
 
 # pod 'FMDB/FTS'   # FMDB with FTS

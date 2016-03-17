@@ -18,6 +18,15 @@
 		001F1B7B1B57777B001DD426 /* nevo_wacth_selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 001F1B791B57777B001DD426 /* nevo_wacth_selected.png */; };
 		001F1B7C1B57777B001DD426 /* nevo_wacth.png in Resources */ = {isa = PBXBuildFile; fileRef = 001F1B7A1B57777B001DD426 /* nevo_wacth.png */; };
 		00321D6D1C98EBB10069BFCC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00321D6C1C98EBB10069BFCC /* AppDelegate.swift */; };
+		00321D731C99377A0069BFCC /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00321D6F1C99377A0069BFCC /* Alamofire.framework */; };
+		00321D741C99377A0069BFCC /* FMDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00321D701C99377A0069BFCC /* FMDB.framework */; };
+		00321D751C99377A0069BFCC /* NJKWebViewProgress.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00321D711C99377A0069BFCC /* NJKWebViewProgress.framework */; };
+		00321D7C1C993C320069BFCC /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00321D771C993C320069BFCC /* LoginController.swift */; };
+		00321D7D1C993C320069BFCC /* LoginController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00321D781C993C320069BFCC /* LoginController.xib */; };
+		00321D7E1C993C320069BFCC /* RegisterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00321D7A1C993C320069BFCC /* RegisterController.swift */; };
+		00321D7F1C993C320069BFCC /* RegisterController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00321D7B1C993C320069BFCC /* RegisterController.xib */; };
+		00321D821C993C7D0069BFCC /* HttpPostRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00321D811C993C7D0069BFCC /* HttpPostRequest.swift */; };
+		00321D841C993CCE0069BFCC /* GSMessages.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00321D831C993CCE0069BFCC /* GSMessages.framework */; };
 		0032921C1C4E118D00931AF5 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 003292171C4E118D00931AF5 /* LICENSE */; };
 		0032921D1C4E118D00931AF5 /* Banner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0032921A1C4E118D00931AF5 /* Banner.swift */; };
 		0032921E1C4E118D00931AF5 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 0032921B1C4E118D00931AF5 /* README.md */; };
@@ -310,6 +319,7 @@
 		00F0C3531C8993DD005888A7 /* NewAddAlarmController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F0C3511C8993DD005888A7 /* NewAddAlarmController.swift */; };
 		00F0C3541C8993DD005888A7 /* NewAddAlarmController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00F0C3521C8993DD005888A7 /* NewAddAlarmController.xib */; };
 		07BCE82A1B5CAB2200C7F558 /* clockview600_color.png in Resources */ = {isa = PBXBuildFile; fileRef = 07BCE8291B5CAB2100C7F558 /* clockview600_color.png */; };
+		831397CF96CB3D9C3196191B /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A369353E785AD00871B06011 /* Pods.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		9A2D6C3B1A9C6D9F00591BDC /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A2D6C3A1A9C6D9F00591BDC /* HealthKit.framework */; };
 		9A2D6C3E1A9C71E500591BDC /* NevoHK.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2D6C3D1A9C71E500591BDC /* NevoHK.swift */; };
 		9A2D6C401A9C783800591BDC /* NevoHKImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2D6C3F1A9C783800591BDC /* NevoHKImpl.swift */; };
@@ -328,7 +338,6 @@
 		9E98FB351C46405800BAB700 /* TutorialFiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E98FB341C46405800BAB700 /* TutorialFiveViewController.swift */; };
 		9E98FB371C4640AF00BAB700 /* TutorialSevenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E98FB361C4640AF00BAB700 /* TutorialSevenViewController.swift */; };
 		9E98FB3D1C46434100BAB700 /* TutorialSixViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E98FB3C1C46434100BAB700 /* TutorialSixViewController.swift */; };
-		A41194E7CEEFA99A8D2E02B5 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9CB0CD7FD34957EA49FC88 /* libPods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -353,6 +362,16 @@
 		001F1B791B57777B001DD426 /* nevo_wacth_selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nevo_wacth_selected.png; sourceTree = "<group>"; };
 		001F1B7A1B57777B001DD426 /* nevo_wacth.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nevo_wacth.png; sourceTree = "<group>"; };
 		00321D6C1C98EBB10069BFCC /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		00321D6E1C99377A0069BFCC /* AFNetworking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AFNetworking.framework; path = "Pods/../build/Debug-iphoneos/AFNetworking.framework"; sourceTree = "<group>"; };
+		00321D6F1C99377A0069BFCC /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = "Pods/../build/Debug-iphoneos/Alamofire.framework"; sourceTree = "<group>"; };
+		00321D701C99377A0069BFCC /* FMDB.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FMDB.framework; path = "Pods/../build/Debug-iphoneos/FMDB.framework"; sourceTree = "<group>"; };
+		00321D711C99377A0069BFCC /* NJKWebViewProgress.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NJKWebViewProgress.framework; path = "Pods/../build/Debug-iphoneos/NJKWebViewProgress.framework"; sourceTree = "<group>"; };
+		00321D771C993C320069BFCC /* LoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
+		00321D781C993C320069BFCC /* LoginController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginController.xib; sourceTree = "<group>"; };
+		00321D7A1C993C320069BFCC /* RegisterController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterController.swift; sourceTree = "<group>"; };
+		00321D7B1C993C320069BFCC /* RegisterController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RegisterController.xib; sourceTree = "<group>"; };
+		00321D811C993C7D0069BFCC /* HttpPostRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpPostRequest.swift; sourceTree = "<group>"; };
+		00321D831C993CCE0069BFCC /* GSMessages.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GSMessages.framework; path = "Pods/../build/Debug-iphoneos/GSMessages.framework"; sourceTree = "<group>"; };
 		003292171C4E118D00931AF5 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		0032921A1C4E118D00931AF5 /* Banner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Banner.swift; sourceTree = "<group>"; };
 		0032921B1C4E118D00931AF5 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -697,7 +716,6 @@
 		00F0C3521C8993DD005888A7 /* NewAddAlarmController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewAddAlarmController.xib; sourceTree = "<group>"; };
 		07BCE8291B5CAB2100C7F558 /* clockview600_color.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clockview600_color.png; sourceTree = "<group>"; };
 		14C4652E23FFFA73733C92C2 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
-		5E9CB0CD7FD34957EA49FC88 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A2D6C391A9C6D9F00591BDC /* Nevo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Nevo.entitlements; sourceTree = "<group>"; };
 		9A2D6C3A1A9C6D9F00591BDC /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		9A2D6C3D1A9C71E500591BDC /* NevoHK.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NevoHK.swift; path = Frameworks/NevoHK/NevoHK.swift; sourceTree = "<group>"; };
@@ -721,6 +739,7 @@
 		9E98FB341C46405800BAB700 /* TutorialFiveViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialFiveViewController.swift; sourceTree = "<group>"; };
 		9E98FB361C4640AF00BAB700 /* TutorialSevenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialSevenViewController.swift; sourceTree = "<group>"; };
 		9E98FB3C1C46434100BAB700 /* TutorialSixViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialSixViewController.swift; sourceTree = "<group>"; };
+		A369353E785AD00871B06011 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7FD54C20F9E4C504037C449 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -729,9 +748,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				00321D841C993CCE0069BFCC /* GSMessages.framework in Frameworks */,
+				00321D731C99377A0069BFCC /* Alamofire.framework in Frameworks */,
+				00321D741C99377A0069BFCC /* FMDB.framework in Frameworks */,
+				00321D751C99377A0069BFCC /* NJKWebViewProgress.framework in Frameworks */,
 				004846D41B72EDB9005A6D83 /* libsqlite3.dylib in Frameworks */,
 				9A2D6C3B1A9C6D9F00591BDC /* HealthKit.framework in Frameworks */,
-				A41194E7CEEFA99A8D2E02B5 /* libPods.a in Frameworks */,
+				831397CF96CB3D9C3196191B /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -745,6 +768,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		00321D761C993C320069BFCC /* LoginController */ = {
+			isa = PBXGroup;
+			children = (
+				00321D771C993C320069BFCC /* LoginController.swift */,
+				00321D781C993C320069BFCC /* LoginController.xib */,
+			);
+			path = LoginController;
+			sourceTree = "<group>";
+		};
+		00321D791C993C320069BFCC /* RegisterController */ = {
+			isa = PBXGroup;
+			children = (
+				00321D7A1C993C320069BFCC /* RegisterController.swift */,
+				00321D7B1C993C320069BFCC /* RegisterController.xib */,
+			);
+			path = RegisterController;
+			sourceTree = "<group>";
+		};
+		00321D801C993C7D0069BFCC /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				00321D811C993C7D0069BFCC /* HttpPostRequest.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
 		003292161C4E118D00931AF5 /* BRYXBanner */ = {
 			isa = PBXGroup;
 			children = (
@@ -784,6 +833,7 @@
 		0050D5141C28E0DB004F6F80 /* Class */ = {
 			isa = PBXGroup;
 			children = (
+				00321D801C993C7D0069BFCC /* Network */,
 				0050D5B71C28E0DB004F6F80 /* Util */,
 				0050D5AA1C28E0DB004F6F80 /* publicClass */,
 				0050D5831C28E0DB004F6F80 /* Model */,
@@ -795,6 +845,8 @@
 		0050D5151C28E0DB004F6F80 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				00321D761C993C320069BFCC /* LoginController */,
+				00321D791C993C320069BFCC /* RegisterController */,
 				00BF2D971C7FEAB400909316 /* VideoPlayController */,
 				00344F591C47A79600C2FC7A /* SupportViewController */,
 				0050D6841C28E1CD004F6F80 /* AlarmController */,
@@ -1676,6 +1728,11 @@
 		9AD8F95A1A6DFE3400F01014 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				00321D831C993CCE0069BFCC /* GSMessages.framework */,
+				00321D6E1C99377A0069BFCC /* AFNetworking.framework */,
+				00321D6F1C99377A0069BFCC /* Alamofire.framework */,
+				00321D701C99377A0069BFCC /* FMDB.framework */,
+				00321D711C99377A0069BFCC /* NJKWebViewProgress.framework */,
 				00EC9DA41C857BDB00280904 /* LocalNotificationHelper */,
 				003292161C4E118D00931AF5 /* BRYXBanner */,
 				00ED43D11C1EA11700915885 /* Timepiece */,
@@ -1685,7 +1742,7 @@
 				9A2D6C3A1A9C6D9F00591BDC /* HealthKit.framework */,
 				005BC95C1A88B79F006F9E86 /* FXBlurView */,
 				9AD8F9601A6E00C000F01014 /* NevoBT */,
-				5E9CB0CD7FD34957EA49FC88 /* libPods.a */,
+				A369353E785AD00871B06011 /* Pods.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1777,6 +1834,7 @@
 				9AD8F92F1A6DF35900F01014 /* Frameworks */,
 				9AD8F9301A6DF35900F01014 /* Resources */,
 				4C6239DA19EE6789A178C38A /* Copy Pods Resources */,
+				D93A79A20D57400E8922FDAC /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1911,6 +1969,7 @@
 				00EC9DC41C85832300280904 /* SleepTutorialController.xib in Resources */,
 				00E650A31C8425E600278D3E /* nevoWhiteLEDImage.png in Resources */,
 				0050D6031C28E0DB004F6F80 /* SelectedNotificationTypeController.xib in Resources */,
+				00321D7F1C993C320069BFCC /* RegisterController.xib in Resources */,
 				0050D6941C28E1CD004F6F80 /* AddAlarmSystemCell.xib in Resources */,
 				0036EB0A1C48BA8300DCED46 /* tutorialone.png in Resources */,
 				00EC9DFB1C85838900280904 /* TutorialFiveViewController.xib in Resources */,
@@ -1932,6 +1991,7 @@
 				0072EACF1C190DCD001EE2C9 /* SFUIDisplay-Regular.ttf in Resources */,
 				000CB3281C3E436000B4ABEC /* white_clock.png in Resources */,
 				00C640F61A8DEE0800815CF8 /* clockView600.png in Resources */,
+				00321D7D1C993C320069BFCC /* LoginController.xib in Resources */,
 				00BF2D9B1C7FED2200909316 /* VideoPlayController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1976,6 +2036,21 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
+		D93A79A20D57400E8922FDAC /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -1991,6 +2066,7 @@
 				0050D60F1C28E0DB004F6F80 /* AddPresetView.swift in Sources */,
 				0050D64A1C28E0DB004F6F80 /* Goal.swift in Sources */,
 				00DC9EEC1BB2853D00734DB6 /* ChartYAxisRendererRadarChart.swift in Sources */,
+				00321D7E1C993C320069BFCC /* RegisterController.swift in Sources */,
 				00DC9EF61BB2853D00734DB6 /* ChartSelectionDetail.swift in Sources */,
 				00DC9EE31BB2853D00734DB6 /* ChartDataRendererBase.swift in Sources */,
 				00DC9EE81BB2853D00734DB6 /* ChartXAxisRendererHorizontalBarChart.swift in Sources */,
@@ -2017,6 +2093,7 @@
 				00DC9EEA1BB2853D00734DB6 /* ChartYAxisRenderer.swift in Sources */,
 				0050D61D1C28E0DB004F6F80 /* SleepTrackingController.swift in Sources */,
 				00DC9ED51BB2853D00734DB6 /* ChartDataBaseFilter.swift in Sources */,
+				00321D7C1C993C320069BFCC /* LoginController.swift in Sources */,
 				00DC9EDB1BB2853D00734DB6 /* ChartHighlighter.swift in Sources */,
 				0050D60B1C28E0DB004F6F80 /* AddPresetViewController.swift in Sources */,
 				00DC9EF21BB2853D00734DB6 /* RadarChartRenderer.swift in Sources */,
@@ -2104,6 +2181,7 @@
 				00DC9EA81BB2853D00734DB6 /* BarChartView.swift in Sources */,
 				0050D63B1C28E0DB004F6F80 /* NevoDBHelper.m in Sources */,
 				0050D6231C28E0DB004F6F80 /* StepHistoricalViewController.swift in Sources */,
+				00321D821C993C7D0069BFCC /* HttpPostRequest.swift in Sources */,
 				0050D6101C28E0DB004F6F80 /* PresetTableViewCell.swift in Sources */,
 				0050D6791C28E0DB004F6F80 /* WriteSettingRequest.swift in Sources */,
 				0050D6571C28E0DB004F6F80 /* SyncBar.swift in Sources */,
@@ -2476,6 +2554,10 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos",
+				);
 				INFOPLIST_FILE = Nevo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -2497,6 +2579,10 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos",
+				);
 				INFOPLIST_FILE = Nevo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

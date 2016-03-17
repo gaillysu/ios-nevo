@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import NJKWebViewProgress
 
 class SupportViewController: UIViewController,NJKWebViewProgressDelegate,UIWebViewDelegate {
 

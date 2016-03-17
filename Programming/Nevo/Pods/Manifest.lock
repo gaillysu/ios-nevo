@@ -1,30 +1,9 @@
 PODS:
-  - AFNetworking (2.6.0):
-    - AFNetworking/NSURLConnection (= 2.6.0)
-    - AFNetworking/NSURLSession (= 2.6.0)
-    - AFNetworking/Reachability (= 2.6.0)
-    - AFNetworking/Security (= 2.6.0)
-    - AFNetworking/Serialization (= 2.6.0)
-    - AFNetworking/UIKit (= 2.6.0)
-  - AFNetworking/NSURLConnection (2.6.0):
-    - AFNetworking/Reachability
-    - AFNetworking/Security
-    - AFNetworking/Serialization
-  - AFNetworking/NSURLSession (2.6.0):
-    - AFNetworking/Reachability
-    - AFNetworking/Security
-    - AFNetworking/Serialization
-  - AFNetworking/Reachability (2.6.0)
-  - AFNetworking/Security (2.6.0)
-  - AFNetworking/Serialization (2.6.0)
-  - AFNetworking/UIKit (2.6.0):
-    - AFNetworking/NSURLConnection
-    - AFNetworking/NSURLSession
-  - FMDB (2.5):
-    - FMDB/standard (= 2.5)
-  - FMDB/common (2.5)
-  - FMDB/standard (2.5):
-    - FMDB/common
+  - Alamofire (3.2.1)
+  - FMDB (2.6):
+    - FMDB/standard (= 2.6)
+  - FMDB/standard (2.6)
+  - GSMessages (1.2.0)
   - NJKWebViewProgress (0.2.3):
     - NJKWebViewProgress/Core (= 0.2.3)
     - NJKWebViewProgress/ProgressView (= 0.2.3)
@@ -33,15 +12,17 @@ PODS:
   - UMengAnalytics-NO-IDFA (3.6.7)
 
 DEPENDENCIES:
-  - AFNetworking (~> 2.0)
-  - FMDB
+  - Alamofire (~> 3.0)
+  - FMDB (~> 2.6)
+  - GSMessages
   - NJKWebViewProgress
   - UMengAnalytics-NO-IDFA
 
 SPEC CHECKSUMS:
-  AFNetworking: 79f7eb1a0fcfa7beb409332b2ca49afe9ce53b05
-  FMDB: 96e8f1bcc1329e269330f99770ad4285d9003e52
+  Alamofire: f11d8624a05f5d39e0c99309b3e600a3ba64298a
+  FMDB: c1968bab3ab0aed38f66cb778ae1e7fa9a652b6e
+  GSMessages: 92a2aadb81bd7505e7375d7f70a58a2f49eb6e25
   NJKWebViewProgress: f481fd424cb5ecc27eacae11b5397db92fba9a4d
   UMengAnalytics-NO-IDFA: 6d02561a00579b2e37718f204eb81347df5d7b8b
 
-COCOAPODS: 0.38.2
+COCOAPODS: 0.39.0

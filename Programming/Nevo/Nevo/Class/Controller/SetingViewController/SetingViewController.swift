@@ -171,6 +171,29 @@ class SetingViewController: UIViewController,SyncControllerDelegate,ButtonManage
                 }
             }
             break
+        case 2:
+            let defaults = NSUserDefaults.standardUserDefaults()
+            if(defaults.objectForKey("User_Logged_In") != nil){
+                if(defaults.objectForKey("User_Logged_In") as! Bool){
+                    defaults.setBool(false, forKey: "User_Logged_In")
+                    defaults.setValue("", forKey: "User_Logged_In_UID")
+                    defaults.setValue("", forKey: "User_Logged_In_Token")
+                    let indexPath = NSIndexPath(forRow: 0, inSection: 2)
+                    let tableViewCell: UITableViewCell = tableView.cellForRowAtIndexPath(indexPath)!
+                    tableViewCell.accessoryType = UITableViewCellAccessoryType.None
+                    tableViewCell.backgroundColor=UIColor(red:129.0/255.0, green: 150.0/255.0, blue: 248.0/255.0, alpha: 1.0)
+                    let loginLabel = tableViewCell.contentView.viewWithTag(1900)
+                    (loginLabel as! UILabel).text = "Login"
+                }else{
+                    let loginController:LoginController = LoginController()
+                    loginController.hidesBottomBarWhenPushed = true
+                    self.navigationController?.pushViewController(loginController, animated: true)
+                }
+            }else{
+                let loginController:LoginController = LoginController()
+                loginController.hidesBottomBarWhenPushed = true
+                self.navigationController?.pushViewController(loginController, animated: true)
+            }
         default: break
         }
 
@@ -178,7 +201,7 @@ class SetingViewController: UIViewController,SyncControllerDelegate,ButtonManage
 
     // MARK: - UITableViewDataSource
     func numberOfSectionsInTableView(tableView: UITableView) -> Int{
-        return 2
+        return 3
 
     }
 
@@ -201,6 +224,30 @@ class SetingViewController: UIViewController,SyncControllerDelegate,ButtonManage
             return notificationList.NotificationSystemTableViewCell(indexPath, tableView: tableView, title: sources[indexPath.row] as! String ,imageName:sourcesImage[indexPath.row])
         case 1:
             return notificationList.NotificationSystemTableViewCell(indexPath, tableView: tableView, title: titleArray[indexPath.row] ,imageName:titleArrayImage[indexPath.row])
+        case 2:
+            let cell = notificationList.NotificationSystemTableViewCell(indexPath, tableView: tableView, title:"" ,imageName:"")
+            cell.accessoryType = UITableViewCellAccessoryType.None
+            cell.backgroundColor=UIColor(red:129.0/255.0, green: 150.0/255.0, blue: 248.0/255.0, alpha: 1.0)
+
+            var loginLabel = cell.contentView.viewWithTag(1900)
+            if(loginLabel == nil){
+                loginLabel = UILabel(frame: CGRectMake(0,0,UIScreen.mainScreen().bounds.size.width,cell.frame.size.height))
+                loginLabel?.backgroundColor = UIColor.clearColor()
+                loginLabel?.tag = 1900
+                (loginLabel as! UILabel).textColor = UIColor.whiteColor()
+                (loginLabel as! UILabel).textAlignment = NSTextAlignment.Center
+                (loginLabel as! UILabel).text = "Login"
+                cell.contentView.addSubview(loginLabel!)
+            }
+            let defaults = NSUserDefaults.standardUserDefaults()
+            if(defaults.objectForKey("User_Logged_In") != nil){
+                if(defaults.objectForKey("User_Logged_In") as! Bool){
+                    cell.backgroundColor=UIColor(red:255/255.0, green: 149/255.0, blue: 38/255.0, alpha: 1.0)
+                    (loginLabel as! UILabel).text = "Logout"
+                }
+            }
+            return cell
+
         default: return notificationList.NotificationSystemTableViewCell(indexPath, tableView: tableView, title: sources[1] as! String ,imageName:titleArrayImage[indexPath.row]);
         }
     }
