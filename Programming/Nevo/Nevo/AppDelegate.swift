@@ -13,6 +13,8 @@ import FMDB
 import Alamofire
 import BRYXBanner
 import Timepiece
+import Fabric
+import Crashlytics
 
 let nevoDBDFileURL:String = "nevoDBName";
 let nevoDBNames:String = "nevo.sqlite";
@@ -47,6 +49,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
     }
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        Fabric.with([Crashlytics.self])
         // Override point for customization after application launch
         UINavigationBar.appearance().tintColor = AppTheme.NEVO_SOLAR_YELLOW()
         UITabBar.appearance().backgroundImage = UIImage()

@@ -10,6 +10,8 @@ pod 'GSMessages'
 pod 'LocalNotificationHelper'
 pod 'BRYXBanner'
 pod 'Timepiece'
+pod 'Fabric'
+pod 'Crashlytics'
 #pod 'Charts' 
 
 # pod 'FMDB/FTS'   # FMDB with FTS
