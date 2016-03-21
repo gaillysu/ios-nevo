@@ -36,41 +36,58 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
     private var disConnectAlert:UIAlertView?
     private let alertUpdateTag:Int = 9000
 
-
     let dbQueue:FMDatabaseQueue = FMDatabaseQueue(path: AppDelegate.dbPath())
+
+    private let networkManager = NetworkReachabilityManager(host: "www.apple.com")
 
     class func getAppDelegate()->AppDelegate {
         return UIApplication.sharedApplication().delegate as! AppDelegate
     }
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
-        //UINavigationBar.appearance().tintColor = UIColor.blackColor()
-        //UINavigationBar.appearance().barTintColor = UIColor.blackColor()
-        //UITabBar.appearance().barTintColor = UIColor.clearColor()
-
+        // Override point for customization after application launch
         UINavigationBar.appearance().tintColor = AppTheme.NEVO_SOLAR_YELLOW()
-
-        MobClick.startWithAppkey(umengAppKey, reportPolicy: BATCH, channelId: "")
+        UITabBar.appearance().backgroundImage = UIImage()
+        //UITabBar.appearance().shadowImage = UIImage()
+        UITabBar.appearance().translucent = false
 
         //Start the logo for the first time
         if(!NSUserDefaults.standardUserDefaults().boolForKey("LaunchedDatabase")){
             NSUserDefaults.standardUserDefaults().setBool(true, forKey: "LaunchedDatabase")
             NSUserDefaults.standardUserDefaults().setBool(true, forKey: "firstDatabase")
+            /**
+            *  Initialize the database
+            */
             Presets.defaultPresetsGoal()
             UserAlarm.defaultAlarm()
             UserNotification.defaultNotificationColor()
         }else{
             NSUserDefaults.standardUserDefaults().setBool(false, forKey: "firstDatabase")
         }
-        
+
+        /**
+        *  Initialize the umeng
+        *
+        *  @param umengAppKey umeng AppKey
+        *  @param BATCH       ReportPolicy
+        *  @param ""         channel Id
+        *
+        */
+        MobClick.startWithAppkey(umengAppKey, reportPolicy: BATCH, channelId: "")
+
+        /**
+        *  Network monitoring
+        */
+        networkManager?.listener = { status in
+            debugPrint("Network Status Changed: \(status)")
+        }
+        networkManager?.startListening()
+
+        /**
+        Initialize the BLE Manager
+        */
         mConnectionController = ConnectionControllerImpl()
         mConnectionController?.setDelegate(self)
-        
-
-        UITabBar.appearance().backgroundImage = UIImage()
-        //UITabBar.appearance().shadowImage = UIImage()
-        UITabBar.appearance().translucent = false
 
         return true
     }
@@ -126,6 +143,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
         return dbpath;
     }
 
+    func getNetworkState()->Bool {
+        return networkManager!.isReachable
+    }
+
     /**
      获取网络数据函数,对AFNetworking的二次封装
 
@@ -133,8 +154,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
      :param: resultHandler 请求后返回的数据块
      */
     func getRequestNetwork(requestURL:String,parameters:AnyObject,resultHandler:((result:AnyObject?,error:NSError?) -> Void)){
-        let string = AppTheme.toJSONString(parameters)
-
         Alamofire.request(.POST, requestURL, parameters: parameters as? [String : AnyObject] ,encoding: .JSON).responseJSON { (response) -> Void in
             if response.result.isSuccess {
                 NSLog("getJSON: \(response.result.value!)")

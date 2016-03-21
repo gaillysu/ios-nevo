@@ -27,6 +27,7 @@ class HomeTutorialController: UIViewController {
 
         // Do any additional setup after loading the view.
         takeButton.layer.borderColor = UIColor.whiteColor().CGColor
+
     }
 
     override func viewDidAppear(animated: Bool) {
@@ -46,11 +47,17 @@ class HomeTutorialController: UIViewController {
         }
 
         if(sender.isEqual(takeButton)){
-            UIApplication.sharedApplication().setStatusBarHidden(true, withAnimation: UIStatusBarAnimation.None)
-            let videoPlay:VideoPlayController = VideoPlayController();
-            self.presentViewController(videoPlay, animated: true) { () -> Void in
+            if(AppDelegate.getAppDelegate().getNetworkState()){
+                UIApplication.sharedApplication().setStatusBarHidden(true, withAnimation: UIStatusBarAnimation.None)
+                let videoPlay:VideoPlayController = VideoPlayController();
+                self.presentViewController(videoPlay, animated: true) { () -> Void in
 
+                }
+            }else{
+                let tutorialOne:TutorialOneViewController = TutorialOneViewController()
+                self.navigationController?.pushViewController(tutorialOne, animated: true)
             }
+
         }
     }
     /*
