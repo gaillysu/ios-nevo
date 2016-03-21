@@ -295,7 +295,6 @@
 		00E650A31C8425E600278D3E /* nevoWhiteLEDImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 00E650A21C8425E600278D3E /* nevoWhiteLEDImage.png */; };
 		00E759141C23E83200372529 /* firmware_clock.png in Resources */ = {isa = PBXBuildFile; fileRef = 00E759131C23E83200372529 /* firmware_clock.png */; };
 		00E759181C2406E600372529 /* upgrade_clock.png in Resources */ = {isa = PBXBuildFile; fileRef = 00E759171C2406E600372529 /* upgrade_clock.png */; };
-		00EB50771C9F811E00D331F5 /* UserHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EB50761C9F811D00D331F5 /* UserHeader.swift */; };
 		00EC9DA81C857BDB00280904 /* LICENSE.md in Sources */ = {isa = PBXBuildFile; fileRef = 00EC9DA51C857BDB00280904 /* LICENSE.md */; };
 		00EC9DA91C857BDB00280904 /* LocalNotificationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EC9DA61C857BDB00280904 /* LocalNotificationHelper.swift */; };
 		00EC9DAA1C857BDB00280904 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 00EC9DA71C857BDB00280904 /* README.md */; };
@@ -656,7 +655,6 @@
 		00E650A21C8425E600278D3E /* nevoWhiteLEDImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nevoWhiteLEDImage.png; sourceTree = "<group>"; };
 		00E759131C23E83200372529 /* firmware_clock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = firmware_clock.png; sourceTree = "<group>"; };
 		00E759171C2406E600372529 /* upgrade_clock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = upgrade_clock.png; sourceTree = "<group>"; };
-		00EB50761C9F811D00D331F5 /* UserHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserHeader.swift; sourceTree = "<group>"; };
 		00EC9DA51C857BDB00280904 /* LICENSE.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = LICENSE.md; sourceTree = "<group>"; };
 		00EC9DA61C857BDB00280904 /* LocalNotificationHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalNotificationHelper.swift; sourceTree = "<group>"; };
 		00EC9DA71C857BDB00280904 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -1441,7 +1439,6 @@
 				009703C11C9BD9D700F2FF0D /* UserProfileController.xib */,
 				009703C41C9BDB3200F2FF0D /* UserProfileCell.swift */,
 				009703C51C9BDB3200F2FF0D /* UserProfileCell.xib */,
-				00EB50761C9F811D00D331F5 /* UserHeader.swift */,
 			);
 			path = UserProfileController;
 			sourceTree = "<group>";
@@ -1858,6 +1855,7 @@
 				9AD8F9301A6DF35900F01014 /* Resources */,
 				4C6239DA19EE6789A178C38A /* Copy Pods Resources */,
 				D93A79A20D57400E8922FDAC /* Embed Pods Frameworks */,
+				CBF54EAF1C9FBCD50061A356 /* Run Script */,
 			);
 			buildRules = (
 			);
@@ -2061,6 +2059,20 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
+		CBF54EAF1C9FBCD50061A356 /* Run Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Run Script";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/run\" bf39954f177ecf7d9d8a5efe2e1d624856f03464 e3f2da77dd42327a3c13b2223e31674c22e5a7c31ee0b6b80da61d310ae0a329";
+		};
 		D93A79A20D57400E8922FDAC /* Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -2152,7 +2164,6 @@
 				0050D6621C28E0DB004F6F80 /* NevoOTAControllerProfile.swift in Sources */,
 				0050D6431C28E0DB004F6F80 /* PresetsModel.swift in Sources */,
 				0050D6991C28E1CD004F6F80 /* alarmClockView.swift in Sources */,
-				00EB50771C9F811E00D331F5 /* UserHeader.swift in Sources */,
 				9AD8F98D1A6E2D6E00F01014 /* RawPacket.swift in Sources */,
 				0050D6211C28E0DB004F6F80 /* StepGoalSetingController.swift in Sources */,
 				0050D6641C28E0DB004F6F80 /* NevoOTAPacketProfile.swift in Sources */,
