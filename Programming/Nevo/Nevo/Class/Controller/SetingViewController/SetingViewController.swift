@@ -33,6 +33,9 @@ class SetingViewController: UIViewController,SyncControllerDelegate,ButtonManage
         sourcesImage = ["new_iOS_link_icon","new_iOS_notfications_icon","new_iOS_mynevo_iocn","new_iOS_support_icon"]
         titleArray = [NSLocalizedString("goals", comment: ""),NSLocalizedString("find_my_watch", comment: ""),NSLocalizedString("forget_watch", comment: "")]
         titleArrayImage = ["new_iOS_goals_icon","new_iOS_findmywatch_icon","forget_watch"]
+
+        let userProfile:UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Compose, target: self, action: Selector("userProfileAction:"))
+        self.navigationItem.rightBarButtonItem = userProfile
     }
 
     override func viewDidAppear(animated: Bool) {
@@ -42,6 +45,13 @@ class SetingViewController: UIViewController,SyncControllerDelegate,ButtonManage
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+
+    func userProfileAction(sender:AnyObject) {
+        let userprofile:UserProfileController = UserProfileController()
+        userprofile.title = "UserProfile"
+        userprofile.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(userprofile, animated: true)
     }
 
     // MARK: - ButtonManagerCallBack
@@ -227,7 +237,7 @@ class SetingViewController: UIViewController,SyncControllerDelegate,ButtonManage
         case 2:
             let cell = notificationList.NotificationSystemTableViewCell(indexPath, tableView: tableView, title:"" ,imageName:"")
             cell.accessoryType = UITableViewCellAccessoryType.None
-            cell.backgroundColor=UIColor(red:129.0/255.0, green: 150.0/255.0, blue: 248.0/255.0, alpha: 1.0)
+            cell.backgroundColor = AppTheme.NEVO_SOLAR_YELLOW()
 
             var loginLabel = cell.contentView.viewWithTag(1900)
             if(loginLabel == nil){

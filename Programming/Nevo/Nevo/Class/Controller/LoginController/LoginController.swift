@@ -12,10 +12,19 @@ class LoginController: UIViewController {
 
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var userNameTextField: UITextField!
+
+    init() {
+        super.init(nibName: "LoginController", bundle: NSBundle.mainBundle())
+    }
+
+    required init(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
-        view.addGestureRecognizer(tap)
+        self.navigationItem.title = "Nevo Login"
         userNameTextField.text = "1508496092@qq.com"
         passwordTextField.text = "123456"
     }
@@ -62,10 +71,6 @@ class LoginController: UIViewController {
         self.navigationController?.pushViewController(registerController, animated: true);
     }
     
-    func dismissKeyboard() {
-        view.endEditing(true)
-    }
-    
     func delay(delay:Double, closure:()->()) {
         dispatch_after(
             dispatch_time(
@@ -73,6 +78,10 @@ class LoginController: UIViewController {
                 Int64(delay * Double(NSEC_PER_SEC))
             ),
             dispatch_get_main_queue(), closure)
+    }
+
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        view.endEditing(true)
     }
     
 }

@@ -14,6 +14,15 @@ class RegisterController: UIViewController {
     @IBOutlet weak var repeatPasswordTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
+
+    init() {
+        super.init(nibName: "RegisterController", bundle: NSBundle.mainBundle())
+    }
+
+    required init(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.title = "Register"
