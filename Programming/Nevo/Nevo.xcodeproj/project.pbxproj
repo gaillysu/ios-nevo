@@ -27,9 +27,6 @@
 		00321D7F1C993C320069BFCC /* RegisterController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00321D7B1C993C320069BFCC /* RegisterController.xib */; };
 		00321D821C993C7D0069BFCC /* HttpPostRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00321D811C993C7D0069BFCC /* HttpPostRequest.swift */; };
 		00321D841C993CCE0069BFCC /* GSMessages.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00321D831C993CCE0069BFCC /* GSMessages.framework */; };
-		0032921C1C4E118D00931AF5 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 003292171C4E118D00931AF5 /* LICENSE */; };
-		0032921D1C4E118D00931AF5 /* Banner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0032921A1C4E118D00931AF5 /* Banner.swift */; };
-		0032921E1C4E118D00931AF5 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 0032921B1C4E118D00931AF5 /* README.md */; };
 		00344F5C1C47A86800C2FC7A /* SupportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00344F5A1C47A86800C2FC7A /* SupportViewController.swift */; };
 		00344F5D1C47A86800C2FC7A /* SupportViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00344F5B1C47A86800C2FC7A /* SupportViewController.xib */; };
 		0036EB051C48BA8300DCED46 /* connected.png in Resources */ = {isa = PBXBuildFile; fileRef = 0036EAFF1C48BA8300DCED46 /* connected.png */; };
@@ -296,9 +293,11 @@
 		00E759141C23E83200372529 /* firmware_clock.png in Resources */ = {isa = PBXBuildFile; fileRef = 00E759131C23E83200372529 /* firmware_clock.png */; };
 		00E759181C2406E600372529 /* upgrade_clock.png in Resources */ = {isa = PBXBuildFile; fileRef = 00E759171C2406E600372529 /* upgrade_clock.png */; };
 		00EB50771C9F811E00D331F5 /* UserHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EB50761C9F811D00D331F5 /* UserHeader.swift */; };
-		00EC9DA81C857BDB00280904 /* LICENSE.md in Sources */ = {isa = PBXBuildFile; fileRef = 00EC9DA51C857BDB00280904 /* LICENSE.md */; };
-		00EC9DA91C857BDB00280904 /* LocalNotificationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EC9DA61C857BDB00280904 /* LocalNotificationHelper.swift */; };
-		00EC9DAA1C857BDB00280904 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 00EC9DA71C857BDB00280904 /* README.md */; };
+		00EB507B1C9FCCB100D331F5 /* LocalNotificationHelper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00EB507A1C9FCCB100D331F5 /* LocalNotificationHelper.framework */; };
+		00EB507D1C9FE5F900D331F5 /* RunningToHK.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EB507C1C9FE5F900D331F5 /* RunningToHK.swift */; };
+		00EB507F1C9FE93500D331F5 /* CaloriesToHK.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EB507E1C9FE93500D331F5 /* CaloriesToHK.swift */; };
+		00EB50821C9FEB4600D331F5 /* BRYXBanner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00EB50801C9FEB4600D331F5 /* BRYXBanner.framework */; };
+		00EB50831C9FEB4600D331F5 /* Timepiece.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00EB50811C9FEB4600D331F5 /* Timepiece.framework */; };
 		00EC9DAE1C8582E400280904 /* TutorialOneViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00EC9DB01C8582E400280904 /* TutorialOneViewController.xib */; };
 		00EC9DB91C85830F00280904 /* HomeTutorialController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00EC9DBB1C85830F00280904 /* HomeTutorialController.xib */; };
 		00EC9DC41C85832300280904 /* SleepTutorialController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00EC9DC61C85832300280904 /* SleepTutorialController.xib */; };
@@ -309,14 +308,6 @@
 		00EC9DFB1C85838900280904 /* TutorialFiveViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00EC9DFD1C85838900280904 /* TutorialFiveViewController.xib */; };
 		00EC9E061C85839A00280904 /* TutorialSixViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00EC9E081C85839A00280904 /* TutorialSixViewController.xib */; };
 		00EC9E111C8583AA00280904 /* TutorialSevenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00EC9E131C8583AA00280904 /* TutorialSevenViewController.xib */; };
-		00ED43DA1C1EA11700915885 /* Duration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00ED43D21C1EA11700915885 /* Duration.swift */; };
-		00ED43DB1C1EA11700915885 /* Int+Timepiece.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00ED43D31C1EA11700915885 /* Int+Timepiece.swift */; };
-		00ED43DC1C1EA11700915885 /* NSCalendar+Timepiece.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00ED43D41C1EA11700915885 /* NSCalendar+Timepiece.swift */; };
-		00ED43DD1C1EA11700915885 /* NSCalendarUnit+Timepiece.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00ED43D51C1EA11700915885 /* NSCalendarUnit+Timepiece.swift */; };
-		00ED43DE1C1EA11700915885 /* NSDate+Timepiece.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00ED43D61C1EA11700915885 /* NSDate+Timepiece.swift */; };
-		00ED43DF1C1EA11700915885 /* NSDateComponents+Timepiece.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00ED43D71C1EA11700915885 /* NSDateComponents+Timepiece.swift */; };
-		00ED43E01C1EA11700915885 /* NSTimeInterval+Timepiece.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00ED43D81C1EA11700915885 /* NSTimeInterval+Timepiece.swift */; };
-		00ED43E11C1EA11700915885 /* String+Timepiece.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00ED43D91C1EA11700915885 /* String+Timepiece.swift */; };
 		00F0C34B1C893EE6005888A7 /* AlarmTypeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F0C3491C893EE6005888A7 /* AlarmTypeController.swift */; };
 		00F0C34C1C893EE6005888A7 /* AlarmTypeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00F0C34A1C893EE6005888A7 /* AlarmTypeController.xib */; };
 		00F0C34E1C896D16005888A7 /* SetNewAlarmRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F0C34D1C896D16005888A7 /* SetNewAlarmRequest.swift */; };
@@ -377,9 +368,6 @@
 		00321D7B1C993C320069BFCC /* RegisterController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RegisterController.xib; sourceTree = "<group>"; };
 		00321D811C993C7D0069BFCC /* HttpPostRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpPostRequest.swift; sourceTree = "<group>"; };
 		00321D831C993CCE0069BFCC /* GSMessages.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GSMessages.framework; path = "Pods/../build/Debug-iphoneos/GSMessages.framework"; sourceTree = "<group>"; };
-		003292171C4E118D00931AF5 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
-		0032921A1C4E118D00931AF5 /* Banner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Banner.swift; sourceTree = "<group>"; };
-		0032921B1C4E118D00931AF5 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		00344F5A1C47A86800C2FC7A /* SupportViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SupportViewController.swift; sourceTree = "<group>"; };
 		00344F5B1C47A86800C2FC7A /* SupportViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SupportViewController.xib; sourceTree = "<group>"; };
 		0036EAFF1C48BA8300DCED46 /* connected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = connected.png; sourceTree = "<group>"; };
@@ -657,9 +645,11 @@
 		00E759131C23E83200372529 /* firmware_clock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = firmware_clock.png; sourceTree = "<group>"; };
 		00E759171C2406E600372529 /* upgrade_clock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = upgrade_clock.png; sourceTree = "<group>"; };
 		00EB50761C9F811D00D331F5 /* UserHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserHeader.swift; sourceTree = "<group>"; };
-		00EC9DA51C857BDB00280904 /* LICENSE.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = LICENSE.md; sourceTree = "<group>"; };
-		00EC9DA61C857BDB00280904 /* LocalNotificationHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalNotificationHelper.swift; sourceTree = "<group>"; };
-		00EC9DA71C857BDB00280904 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		00EB507A1C9FCCB100D331F5 /* LocalNotificationHelper.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LocalNotificationHelper.framework; path = "Pods/../build/Debug-iphoneos/LocalNotificationHelper.framework"; sourceTree = "<group>"; };
+		00EB507C1C9FE5F900D331F5 /* RunningToHK.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RunningToHK.swift; sourceTree = "<group>"; };
+		00EB507E1C9FE93500D331F5 /* CaloriesToHK.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaloriesToHK.swift; sourceTree = "<group>"; };
+		00EB50801C9FEB4600D331F5 /* BRYXBanner.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BRYXBanner.framework; path = "Pods/../build/Debug-iphoneos/BRYXBanner.framework"; sourceTree = "<group>"; };
+		00EB50811C9FEB4600D331F5 /* Timepiece.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Timepiece.framework; path = "Pods/../build/Debug-iphoneos/Timepiece.framework"; sourceTree = "<group>"; };
 		00EC9DAF1C8582E400280904 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/TutorialOneViewController.xib; sourceTree = "<group>"; };
 		00EC9DB21C8582E900280904 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/TutorialOneViewController.strings; sourceTree = "<group>"; };
 		00EC9DB41C8582EB00280904 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/TutorialOneViewController.strings"; sourceTree = "<group>"; };
@@ -710,14 +700,6 @@
 		00EC9E171C8583F300280904 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/TutorialSevenViewController.strings"; sourceTree = "<group>"; };
 		00EC9E191C8583F400280904 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/TutorialSevenViewController.strings"; sourceTree = "<group>"; };
 		00EC9E1B1C8583F500280904 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/TutorialSevenViewController.strings; sourceTree = "<group>"; };
-		00ED43D21C1EA11700915885 /* Duration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Duration.swift; sourceTree = "<group>"; };
-		00ED43D31C1EA11700915885 /* Int+Timepiece.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Int+Timepiece.swift"; sourceTree = "<group>"; };
-		00ED43D41C1EA11700915885 /* NSCalendar+Timepiece.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSCalendar+Timepiece.swift"; sourceTree = "<group>"; };
-		00ED43D51C1EA11700915885 /* NSCalendarUnit+Timepiece.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSCalendarUnit+Timepiece.swift"; sourceTree = "<group>"; };
-		00ED43D61C1EA11700915885 /* NSDate+Timepiece.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+Timepiece.swift"; sourceTree = "<group>"; };
-		00ED43D71C1EA11700915885 /* NSDateComponents+Timepiece.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDateComponents+Timepiece.swift"; sourceTree = "<group>"; };
-		00ED43D81C1EA11700915885 /* NSTimeInterval+Timepiece.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSTimeInterval+Timepiece.swift"; sourceTree = "<group>"; };
-		00ED43D91C1EA11700915885 /* String+Timepiece.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Timepiece.swift"; sourceTree = "<group>"; };
 		00F0C3491C893EE6005888A7 /* AlarmTypeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlarmTypeController.swift; sourceTree = "<group>"; };
 		00F0C34A1C893EE6005888A7 /* AlarmTypeController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AlarmTypeController.xib; sourceTree = "<group>"; };
 		00F0C34D1C896D16005888A7 /* SetNewAlarmRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetNewAlarmRequest.swift; sourceTree = "<group>"; };
@@ -758,6 +740,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				00EB50821C9FEB4600D331F5 /* BRYXBanner.framework in Frameworks */,
+				00EB50831C9FEB4600D331F5 /* Timepiece.framework in Frameworks */,
+				00EB507B1C9FCCB100D331F5 /* LocalNotificationHelper.framework in Frameworks */,
 				00321D841C993CCE0069BFCC /* GSMessages.framework in Frameworks */,
 				00321D731C99377A0069BFCC /* Alamofire.framework in Frameworks */,
 				00321D741C99377A0069BFCC /* FMDB.framework in Frameworks */,
@@ -802,33 +787,6 @@
 				00321D811C993C7D0069BFCC /* HttpPostRequest.swift */,
 			);
 			path = Network;
-			sourceTree = "<group>";
-		};
-		003292161C4E118D00931AF5 /* BRYXBanner */ = {
-			isa = PBXGroup;
-			children = (
-				003292171C4E118D00931AF5 /* LICENSE */,
-				003292181C4E118D00931AF5 /* Pod */,
-				0032921B1C4E118D00931AF5 /* README.md */,
-			);
-			name = BRYXBanner;
-			path = Frameworks/BRYXBanner;
-			sourceTree = "<group>";
-		};
-		003292181C4E118D00931AF5 /* Pod */ = {
-			isa = PBXGroup;
-			children = (
-				003292191C4E118D00931AF5 /* Classes */,
-			);
-			path = Pod;
-			sourceTree = "<group>";
-		};
-		003292191C4E118D00931AF5 /* Classes */ = {
-			isa = PBXGroup;
-			children = (
-				0032921A1C4E118D00931AF5 /* Banner.swift */,
-			);
-			path = Classes;
 			sourceTree = "<group>";
 		};
 		00344F591C47A79600C2FC7A /* SupportViewController */ = {
@@ -1102,6 +1060,8 @@
 				0050D5861C28E0DB004F6F80 /* DaySleep.swift */,
 				0050D5871C28E0DB004F6F80 /* HourlySteps.swift */,
 				0050D5881C28E0DB004F6F80 /* RealTimeCountSteps.swift */,
+				00EB507C1C9FE5F900D331F5 /* RunningToHK.swift */,
+				00EB507E1C9FE93500D331F5 /* CaloriesToHK.swift */,
 			);
 			path = Activity;
 			sourceTree = "<group>";
@@ -1642,33 +1602,6 @@
 			path = Frameworks/MBProgressHUD;
 			sourceTree = "<group>";
 		};
-		00EC9DA41C857BDB00280904 /* LocalNotificationHelper */ = {
-			isa = PBXGroup;
-			children = (
-				00EC9DA51C857BDB00280904 /* LICENSE.md */,
-				00EC9DA61C857BDB00280904 /* LocalNotificationHelper.swift */,
-				00EC9DA71C857BDB00280904 /* README.md */,
-			);
-			name = LocalNotificationHelper;
-			path = Frameworks/LocalNotificationHelper;
-			sourceTree = "<group>";
-		};
-		00ED43D11C1EA11700915885 /* Timepiece */ = {
-			isa = PBXGroup;
-			children = (
-				00ED43D21C1EA11700915885 /* Duration.swift */,
-				00ED43D31C1EA11700915885 /* Int+Timepiece.swift */,
-				00ED43D41C1EA11700915885 /* NSCalendar+Timepiece.swift */,
-				00ED43D51C1EA11700915885 /* NSCalendarUnit+Timepiece.swift */,
-				00ED43D61C1EA11700915885 /* NSDate+Timepiece.swift */,
-				00ED43D71C1EA11700915885 /* NSDateComponents+Timepiece.swift */,
-				00ED43D81C1EA11700915885 /* NSTimeInterval+Timepiece.swift */,
-				00ED43D91C1EA11700915885 /* String+Timepiece.swift */,
-			);
-			name = Timepiece;
-			path = Frameworks/Timepiece;
-			sourceTree = "<group>";
-		};
 		2CE56E6C9554D244911B2444 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -1751,14 +1684,14 @@
 		9AD8F95A1A6DFE3400F01014 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				00EB50801C9FEB4600D331F5 /* BRYXBanner.framework */,
+				00EB50811C9FEB4600D331F5 /* Timepiece.framework */,
+				00EB507A1C9FCCB100D331F5 /* LocalNotificationHelper.framework */,
 				00321D831C993CCE0069BFCC /* GSMessages.framework */,
 				00321D6E1C99377A0069BFCC /* AFNetworking.framework */,
 				00321D6F1C99377A0069BFCC /* Alamofire.framework */,
 				00321D701C99377A0069BFCC /* FMDB.framework */,
 				00321D711C99377A0069BFCC /* NJKWebViewProgress.framework */,
-				00EC9DA41C857BDB00280904 /* LocalNotificationHelper */,
-				003292161C4E118D00931AF5 /* BRYXBanner */,
-				00ED43D11C1EA11700915885 /* Timepiece */,
 				004846D31B72EDB9005A6D83 /* libsqlite3.dylib */,
 				00E2BDDC1B16CCD0009C757E /* MBProgressHUD */,
 				9A2D6C3C1A9C717E00591BDC /* NevoHK */,
@@ -1968,7 +1901,6 @@
 				00EC9DAE1C8582E400280904 /* TutorialOneViewController.xib in Resources */,
 				00478F4F1A8F637D00D0DCE2 /* clockViewHour.png in Resources */,
 				0050D6111C28E0DB004F6F80 /* PresetTableViewCell.xib in Resources */,
-				0032921C1C4E118D00931AF5 /* LICENSE in Resources */,
 				000CB3291C3E436000B4ABEC /* white_hour.png in Resources */,
 				0050D5FB1C28E0DB004F6F80 /* LineColorCell.xib in Resources */,
 				0072EADB1C190DCD001EE2C9 /* SFUIText-Regular.ttf in Resources */,
@@ -2105,7 +2037,6 @@
 				0050D63F1C28E0DB004F6F80 /* DaySleepSaveModel.swift in Sources */,
 				0050D6401C28E0DB004F6F80 /* HealthModel.swift in Sources */,
 				00DC9EEE1BB2853D00734DB6 /* HorizontalBarChartRenderer.swift in Sources */,
-				00ED43DC1C1EA11700915885 /* NSCalendar+Timepiece.swift in Sources */,
 				00DC9EF11BB2853D00734DB6 /* PieChartRenderer.swift in Sources */,
 				00DC9EF51BB2853D00734DB6 /* ChartColorTemplates.swift in Sources */,
 				0050D5FF1C28E0DB004F6F80 /* SelectedNotificationView.swift in Sources */,
@@ -2118,6 +2049,7 @@
 				00DC9EEA1BB2853D00734DB6 /* ChartYAxisRenderer.swift in Sources */,
 				0050D61D1C28E0DB004F6F80 /* SleepTrackingController.swift in Sources */,
 				00DC9ED51BB2853D00734DB6 /* ChartDataBaseFilter.swift in Sources */,
+				00EB507D1C9FE5F900D331F5 /* RunningToHK.swift in Sources */,
 				00321D7C1C993C320069BFCC /* LoginController.swift in Sources */,
 				00DC9EDB1BB2853D00734DB6 /* ChartHighlighter.swift in Sources */,
 				0050D60B1C28E0DB004F6F80 /* AddPresetViewController.swift in Sources */,
@@ -2130,7 +2062,6 @@
 				00DC9EE61BB2853D00734DB6 /* ChartXAxisRenderer.swift in Sources */,
 				0050D65A1C28E0DB004F6F80 /* ClockRefreshManager.swift in Sources */,
 				0050D6591C28E0DB004F6F80 /* Alert.swift in Sources */,
-				00ED43E11C1EA11700915885 /* String+Timepiece.swift in Sources */,
 				00DC9EE41BB2853D00734DB6 /* ChartLegendRenderer.swift in Sources */,
 				0050D66D1C28E0DB004F6F80 /* GetStepsGoalRequest.swift in Sources */,
 				0050D6631C28E0DB004F6F80 /* NevoOTAModeProfile.swift in Sources */,
@@ -2164,9 +2095,7 @@
 				0050D6671C28E0DB004F6F80 /* BatteryLevelNevoPacket.swift in Sources */,
 				0050D6131C28E0DB004F6F80 /* SetingView.swift in Sources */,
 				0050D67A1C28E0DB004F6F80 /* SyncQueue.swift in Sources */,
-				00ED43DB1C1EA11700915885 /* Int+Timepiece.swift in Sources */,
 				00DC9EC01BB2853D00734DB6 /* BubbleChartData.swift in Sources */,
-				00ED43DA1C1EA11700915885 /* Duration.swift in Sources */,
 				0050D6201C28E0DB004F6F80 /* StepController.swift in Sources */,
 				9E98FB291C463A3B00BAB700 /* TutorialOneViewController.swift in Sources */,
 				0050D5F11C28E0DB004F6F80 /* MyNevoHeaderView.swift in Sources */,
@@ -2178,12 +2107,9 @@
 				00DC9EBD1BB2853D00734DB6 /* BarChartDataSet.swift in Sources */,
 				009DD2AC1C585AC100B11541 /* ConfigSleepAlarm.swift in Sources */,
 				0050D6561C28E0DB004F6F80 /* ClockView.swift in Sources */,
-				00ED43DD1C1EA11700915885 /* NSCalendarUnit+Timepiece.swift in Sources */,
 				00DC9EB51BB2853D00734DB6 /* ChartComponentBase.swift in Sources */,
 				0050D6681C28E0DB004F6F80 /* DailyStepsNevoPacket.swift in Sources */,
-				00EC9DA91C857BDB00280904 /* LocalNotificationHelper.swift in Sources */,
 				009703C21C9BD9D700F2FF0D /* UserProfileController.swift in Sources */,
-				00ED43E01C1EA11700915885 /* NSTimeInterval+Timepiece.swift in Sources */,
 				009703C61C9BDB3200F2FF0D /* UserProfileCell.swift in Sources */,
 				00DC9EB11BB2853D00734DB6 /* PieRadarChartViewBase.swift in Sources */,
 				0042C8B21C7DB37200177D3D /* NotAlarmView.swift in Sources */,
@@ -2195,7 +2121,6 @@
 				00E2BDE21B16CCD0009C757E /* MBProgressHUD+MJ.m in Sources */,
 				005BC95F1A88B79F006F9E86 /* FXBlurView.m in Sources */,
 				0050D6931C28E1CD004F6F80 /* AddAlarmSystemCell.swift in Sources */,
-				00EC9DAA1C857BDB00280904 /* README.md in Sources */,
 				9E98FB2D1C463D2A00BAB700 /* TutorialThreeViewController.swift in Sources */,
 				0050D66E1C28E0DB004F6F80 /* LedLightOnOffNevoRequest.swift in Sources */,
 				0050D6521C28E0DB004F6F80 /* PublicClassController.swift in Sources */,
@@ -2225,7 +2150,6 @@
 				00DC9EB71BB2853D00734DB6 /* ChartLimitLine.swift in Sources */,
 				00DC9EC61BB2853D00734DB6 /* ChartData.swift in Sources */,
 				00DC9EDD1BB2853D00734DB6 /* CombinedHighlighter.swift in Sources */,
-				00ED43DE1C1EA11700915885 /* NSDate+Timepiece.swift in Sources */,
 				0050D6461C28E0DB004F6F80 /* User.swift in Sources */,
 				0050D5EF1C28E0DB004F6F80 /* MyNevoController.swift in Sources */,
 				00DC9ECC1BB2853D00734DB6 /* LineRadarChartDataSet.swift in Sources */,
@@ -2283,6 +2207,7 @@
 				0050D6251C28E0DB004F6F80 /* StepGoalSetingView.swift in Sources */,
 				0050D5F41C28E0DB004F6F80 /* NevoOtaController.swift in Sources */,
 				00344F5C1C47A86800C2FC7A /* SupportViewController.swift in Sources */,
+				00EB507F1C9FE93500D331F5 /* CaloriesToHK.swift in Sources */,
 				00DC9EAB1BB2853D00734DB6 /* CandleStickChartView.swift in Sources */,
 				0050D6421C28E0DB004F6F80 /* Presets.swift in Sources */,
 				0050D6391C28E0DB004F6F80 /* Alarm.swift in Sources */,
@@ -2304,7 +2229,6 @@
 				0050D6771C28E0DB004F6F80 /* SetProfileRequest.swift in Sources */,
 				0050D66A1C28E0DB004F6F80 /* DailyTrackerNevoPacket.swift in Sources */,
 				00E650941C83D8F400278D3E /* HomeTutorialController.swift in Sources */,
-				0032921D1C4E118D00931AF5 /* Banner.swift in Sources */,
 				9AD8F93B1A6DF35900F01014 /* Nevo.xcdatamodeld in Sources */,
 				0017DC111C8812640058A065 /* RepeatViewController.swift in Sources */,
 				00DC9EEF1BB2853D00734DB6 /* LineChartRenderer.swift in Sources */,
@@ -2323,15 +2247,12 @@
 				00DC9EAA1BB2853D00734DB6 /* BubbleChartView.swift in Sources */,
 				00DC9EB41BB2853D00734DB6 /* ChartAxisBase.swift in Sources */,
 				00DC9EFA1BB2853D00734DB6 /* ChartViewPortHandler.swift in Sources */,
-				00ED43DF1C1EA11700915885 /* NSDateComponents+Timepiece.swift in Sources */,
 				0050D6691C28E0DB004F6F80 /* DailyTrackerInfoNevoPacket.swift in Sources */,
 				00DC9EBC1BB2853D00734DB6 /* BarChartDataEntry.swift in Sources */,
-				0032921E1C4E118D00931AF5 /* README.md in Sources */,
 				00DC9EED1BB2853D00734DB6 /* CombinedChartRenderer.swift in Sources */,
 				00DC9EF81BB2853D00734DB6 /* ChartTransformerHorizontalBarChart.swift in Sources */,
 				0050D6541C28E0DB004F6F80 /* AnimationView.swift in Sources */,
 				00DC9EDA1BB2853D00734DB6 /* ChartHighlight.swift in Sources */,
-				00EC9DA81C857BDB00280904 /* LICENSE.md in Sources */,
 				0050D5F51C28E0DB004F6F80 /* DeviceScannerView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

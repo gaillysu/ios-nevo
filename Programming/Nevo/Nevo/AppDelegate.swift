@@ -11,6 +11,8 @@ import CoreData
 import HealthKit
 import FMDB
 import Alamofire
+import BRYXBanner
+import Timepiece
 
 let nevoDBDFileURL:String = "nevoDBName";
 let nevoDBNames:String = "nevo.sqlite";
@@ -273,7 +275,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
             if(isConnected()) {
                 let banner = Banner(title: NSLocalizedString("syncing_data", comment: ""), subtitle: nil, image: nil, backgroundColor: AppTheme.NEVO_SOLAR_YELLOW())
                 banner.dismissesOnTap = true
-                banner.show(duration: 3.0)
+                banner.show(duration: 1.5)
             }
         }
 
@@ -285,7 +287,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
     func syncFinished() {
         let banner = Banner(title: NSLocalizedString("sync_finished", comment: ""), subtitle: nil, image: nil, backgroundColor: AppTheme.hexStringToColor("#0dac67"))
         banner.dismissesOnTap = true
-        banner.show(duration: 3.0)
+        banner.show(duration: 1.5)
 
         lastSync = NSDate().timeIntervalSince1970
         AppTheme.DLog("*** Sync finished ***")

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import BRYXBanner
 
 class MyNevoController: UITableViewController,SyncControllerDelegate,UIAlertViewDelegate {
 
@@ -119,7 +120,7 @@ class MyNevoController: UITableViewController,SyncControllerDelegate,UIAlertView
             if(AppDelegate.getAppDelegate().getSoftwareVersion().integerValue >= buildinSoftwareVersion && AppDelegate.getAppDelegate().getFirmwareVersion().integerValue >= buildinFirmwareVersion){
                 let banner = Banner(title: NSLocalizedString("is_watch_version", comment: ""), subtitle: nil, image: nil, backgroundColor: AppTheme.NEVO_SOLAR_YELLOW())
                 banner.dismissesOnTap = true
-                banner.show(duration: 3.0)
+                banner.show(duration: 1.5)
                 return
             }
             if(buildinSoftwareVersion==0&&buildinFirmwareVersion==0){return}

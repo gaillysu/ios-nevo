@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import BRYXBanner
 
 class NotificationViewController: UITableViewController,SelectedNotificationDelegate {
     private var mNotificationOFFArray:[NotificationSetting] = []

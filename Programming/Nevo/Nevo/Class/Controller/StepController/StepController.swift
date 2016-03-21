@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import BRYXBanner
+import Timepiece
 
 class StepController: PublicClassController,toolbarSegmentedDelegate,UIActionSheetDelegate {
     private var currentVC:UIViewController?

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import BRYXBanner
 
 class SetingViewController: UIViewController,SyncControllerDelegate,ButtonManagerCallBack,UIAlertViewDelegate {
 
@@ -111,7 +112,7 @@ class SetingViewController: UIViewController,SyncControllerDelegate,ButtonManage
                 }else{
                     let banner = Banner(title: NSLocalizedString("nevo_is_not_connected", comment: ""), subtitle: nil, image: nil, backgroundColor: AppTheme.NEVO_SOLAR_YELLOW())
                     banner.dismissesOnTap = true
-                    banner.show(duration: 2.0)
+                    banner.show(duration: 1.5)
                 }
             }
 

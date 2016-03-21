@@ -1,28 +1,39 @@
 PODS:
   - Alamofire (3.2.1)
+  - BRYXBanner (0.5.2):
+    - BRYXBanner/Core (= 0.5.2)
+  - BRYXBanner/Core (0.5.2)
   - FMDB (2.6):
     - FMDB/standard (= 2.6)
   - FMDB/standard (2.6)
   - GSMessages (1.2.0)
+  - LocalNotificationHelper (1.1.1)
   - NJKWebViewProgress (0.2.3):
     - NJKWebViewProgress/Core (= 0.2.3)
     - NJKWebViewProgress/ProgressView (= 0.2.3)
   - NJKWebViewProgress/Core (0.2.3)
   - NJKWebViewProgress/ProgressView (0.2.3)
+  - Timepiece (0.4.2)
   - UMengAnalytics-NO-IDFA (3.6.7)
 
 DEPENDENCIES:
   - Alamofire (~> 3.0)
+  - BRYXBanner
   - FMDB (~> 2.6)
   - GSMessages
+  - LocalNotificationHelper
   - NJKWebViewProgress
+  - Timepiece
   - UMengAnalytics-NO-IDFA
 
 SPEC CHECKSUMS:
   Alamofire: f11d8624a05f5d39e0c99309b3e600a3ba64298a
+  BRYXBanner: 5f0911d52e0a77e088f7ea7ddcdebd02afb7828a
   FMDB: c1968bab3ab0aed38f66cb778ae1e7fa9a652b6e
   GSMessages: 92a2aadb81bd7505e7375d7f70a58a2f49eb6e25
+  LocalNotificationHelper: 0c3e13b651cc3000ab21eb64716e9726065cbf96
   NJKWebViewProgress: f481fd424cb5ecc27eacae11b5397db92fba9a4d
+  Timepiece: cf53bb908bf542acc0e3d5f69cabfed869df4ebd
   UMengAnalytics-NO-IDFA: 6d02561a00579b2e37718f204eb81347df5d7b8b
 
 COCOAPODS: 0.39.0

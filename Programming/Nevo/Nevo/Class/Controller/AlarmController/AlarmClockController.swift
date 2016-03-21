@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import BRYXBanner
+import Timepiece
 
 class AlarmClockController: UITableViewController, SyncControllerDelegate,AddAlarmDelegate {
     @IBOutlet var alarmView: alarmClockView!
