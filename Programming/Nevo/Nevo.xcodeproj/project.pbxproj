@@ -182,6 +182,8 @@
 		0072EACF1C190DCD001EE2C9 /* SFUIDisplay-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0072EAA51C190DCD001EE2C9 /* SFUIDisplay-Regular.ttf */; };
 		0072EADB1C190DCD001EE2C9 /* SFUIText-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0072EAB11C190DCD001EE2C9 /* SFUIText-Regular.ttf */; };
 		0072EAEB1C192210001EE2C9 /* spinner.png in Resources */ = {isa = PBXBuildFile; fileRef = 0072EAEA1C192210001EE2C9 /* spinner.png */; };
+		007F1F511CAA1B630021DF1B /* LocalNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007F1F501CAA1B630021DF1B /* LocalNotification.swift */; };
+		007F1F531CAA63F30021DF1B /* NevoAllKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007F1F521CAA63F30021DF1B /* NevoAllKeys.swift */; };
 		009703C21C9BD9D700F2FF0D /* UserProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009703C01C9BD9D700F2FF0D /* UserProfileController.swift */; };
 		009703C31C9BD9D700F2FF0D /* UserProfileController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 009703C11C9BD9D700F2FF0D /* UserProfileController.xib */; };
 		009703C61C9BDB3200F2FF0D /* UserProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009703C41C9BDB3200F2FF0D /* UserProfileCell.swift */; };
@@ -292,15 +294,11 @@
 		00E650A31C8425E600278D3E /* nevoWhiteLEDImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 00E650A21C8425E600278D3E /* nevoWhiteLEDImage.png */; };
 		00E759141C23E83200372529 /* firmware_clock.png in Resources */ = {isa = PBXBuildFile; fileRef = 00E759131C23E83200372529 /* firmware_clock.png */; };
 		00E759181C2406E600372529 /* upgrade_clock.png in Resources */ = {isa = PBXBuildFile; fileRef = 00E759171C2406E600372529 /* upgrade_clock.png */; };
-		00EB50771C9F811E00D331F5 /* UserHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EB50761C9F811D00D331F5 /* UserHeader.swift */; };
 		00EB507B1C9FCCB100D331F5 /* LocalNotificationHelper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00EB507A1C9FCCB100D331F5 /* LocalNotificationHelper.framework */; };
 		00EB507D1C9FE5F900D331F5 /* RunningToHK.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EB507C1C9FE5F900D331F5 /* RunningToHK.swift */; };
 		00EB507F1C9FE93500D331F5 /* CaloriesToHK.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EB507E1C9FE93500D331F5 /* CaloriesToHK.swift */; };
 		00EB50821C9FEB4600D331F5 /* BRYXBanner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00EB50801C9FEB4600D331F5 /* BRYXBanner.framework */; };
 		00EB50831C9FEB4600D331F5 /* Timepiece.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00EB50811C9FEB4600D331F5 /* Timepiece.framework */; };
-		00EC9DA81C857BDB00280904 /* LICENSE.md in Sources */ = {isa = PBXBuildFile; fileRef = 00EC9DA51C857BDB00280904 /* LICENSE.md */; };
-		00EC9DA91C857BDB00280904 /* LocalNotificationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EC9DA61C857BDB00280904 /* LocalNotificationHelper.swift */; };
-		00EC9DAA1C857BDB00280904 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 00EC9DA71C857BDB00280904 /* README.md */; };
 		00EC9DAE1C8582E400280904 /* TutorialOneViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00EC9DB01C8582E400280904 /* TutorialOneViewController.xib */; };
 		00EC9DB91C85830F00280904 /* HomeTutorialController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00EC9DBB1C85830F00280904 /* HomeTutorialController.xib */; };
 		00EC9DC41C85832300280904 /* SleepTutorialController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00EC9DC61C85832300280904 /* SleepTutorialController.xib */; };
@@ -531,6 +529,8 @@
 		0072EAA51C190DCD001EE2C9 /* SFUIDisplay-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFUIDisplay-Regular.ttf"; sourceTree = "<group>"; };
 		0072EAB11C190DCD001EE2C9 /* SFUIText-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFUIText-Regular.ttf"; sourceTree = "<group>"; };
 		0072EAEA1C192210001EE2C9 /* spinner.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spinner.png; sourceTree = "<group>"; };
+		007F1F501CAA1B630021DF1B /* LocalNotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocalNotification.swift; path = Frameworks/LocalNotification.swift; sourceTree = "<group>"; };
+		007F1F521CAA63F30021DF1B /* NevoAllKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NevoAllKeys.swift; sourceTree = "<group>"; };
 		0086858F1B40D53C0062F544 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		009703C01C9BD9D700F2FF0D /* UserProfileController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileController.swift; sourceTree = "<group>"; };
 		009703C11C9BD9D700F2FF0D /* UserProfileController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserProfileController.xib; sourceTree = "<group>"; };
@@ -647,15 +647,11 @@
 		00E650A21C8425E600278D3E /* nevoWhiteLEDImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nevoWhiteLEDImage.png; sourceTree = "<group>"; };
 		00E759131C23E83200372529 /* firmware_clock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = firmware_clock.png; sourceTree = "<group>"; };
 		00E759171C2406E600372529 /* upgrade_clock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = upgrade_clock.png; sourceTree = "<group>"; };
-		00EB50761C9F811D00D331F5 /* UserHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserHeader.swift; sourceTree = "<group>"; };
 		00EB507A1C9FCCB100D331F5 /* LocalNotificationHelper.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LocalNotificationHelper.framework; path = "Pods/../build/Debug-iphoneos/LocalNotificationHelper.framework"; sourceTree = "<group>"; };
 		00EB507C1C9FE5F900D331F5 /* RunningToHK.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RunningToHK.swift; sourceTree = "<group>"; };
 		00EB507E1C9FE93500D331F5 /* CaloriesToHK.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaloriesToHK.swift; sourceTree = "<group>"; };
 		00EB50801C9FEB4600D331F5 /* BRYXBanner.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BRYXBanner.framework; path = "Pods/../build/Debug-iphoneos/BRYXBanner.framework"; sourceTree = "<group>"; };
 		00EB50811C9FEB4600D331F5 /* Timepiece.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Timepiece.framework; path = "Pods/../build/Debug-iphoneos/Timepiece.framework"; sourceTree = "<group>"; };
-		00EC9DA51C857BDB00280904 /* LICENSE.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = LICENSE.md; sourceTree = "<group>"; };
-		00EC9DA61C857BDB00280904 /* LocalNotificationHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalNotificationHelper.swift; sourceTree = "<group>"; };
-		00EC9DA71C857BDB00280904 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		00EC9DAF1C8582E400280904 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/TutorialOneViewController.xib; sourceTree = "<group>"; };
 		00EC9DB21C8582E900280904 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/TutorialOneViewController.strings; sourceTree = "<group>"; };
 		00EC9DB41C8582EB00280904 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/TutorialOneViewController.strings"; sourceTree = "<group>"; };
@@ -1654,6 +1650,7 @@
 				00DBC3A21C435541004B4376 /* Main.storyboard */,
 				006B83691C44A20000E20A0C /* Nevo-Bridging-Header.h */,
 				00321D6C1C98EBB10069BFCC /* AppDelegate.swift */,
+				007F1F521CAA63F30021DF1B /* NevoAllKeys.swift */,
 				9AD8F9411A6DF35900F01014 /* Images.xcassets */,
 				9AD8F9391A6DF35900F01014 /* Nevo.xcdatamodeld */,
 				9AD8F9351A6DF35900F01014 /* Supporting Files */,
@@ -1689,6 +1686,7 @@
 		9AD8F95A1A6DFE3400F01014 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				007F1F501CAA1B630021DF1B /* LocalNotification.swift */,
 				00EB50801C9FEB4600D331F5 /* BRYXBanner.framework */,
 				00EB50811C9FEB4600D331F5 /* Timepiece.framework */,
 				00EB507A1C9FCCB100D331F5 /* LocalNotificationHelper.framework */,
@@ -2108,6 +2106,7 @@
 				0050D6641C28E0DB004F6F80 /* NevoOTAPacketProfile.swift in Sources */,
 				9AD8F9621A6E00E800F01014 /* NevoBTimpl.swift in Sources */,
 				00DC9ED41BB2853D00734DB6 /* ChartDataApproximatorFilter.swift in Sources */,
+				007F1F531CAA63F30021DF1B /* NevoAllKeys.swift in Sources */,
 				00DC9EFB1BB2853D00734DB6 /* UIGraphics+Extensions.swift in Sources */,
 				0050D6741C28E0DB004F6F80 /* SetCardioRequest.swift in Sources */,
 				0050D6531C28E0DB004F6F80 /* PublicClassTableViewController.swift in Sources */,
@@ -2262,6 +2261,7 @@
 				0050D6701C28E0DB004F6F80 /* ReadBatteryLevelNevoRequest.swift in Sources */,
 				0050D64D1C28E0DB004F6F80 /* TypeModel.swift in Sources */,
 				0050D66B1C28E0DB004F6F80 /* NevoPacket.swift in Sources */,
+				007F1F511CAA1B630021DF1B /* LocalNotification.swift in Sources */,
 				0050D61F1C28E0DB004F6F80 /* SleepTrackingView.swift in Sources */,
 				00DC9EAA1BB2853D00734DB6 /* BubbleChartView.swift in Sources */,
 				00DC9EB41BB2853D00734DB6 /* ChartAxisBase.swift in Sources */,

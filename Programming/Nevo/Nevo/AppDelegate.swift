@@ -94,6 +94,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
         mConnectionController = ConnectionControllerImpl()
         mConnectionController?.setDelegate(self)
 
+        //cancel all notifications  PM-13:00, PM 19:00
+        LocalNotification.sharedInstance().cancelNotification([NevoAllKeys.LocalStartSportKey(),NevoAllKeys.LocalEndSportKey()])
+        
         return true
     }
 

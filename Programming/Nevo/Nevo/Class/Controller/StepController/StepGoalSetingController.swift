@@ -35,6 +35,8 @@ class StepGoalSetingController: PublicClassController,ButtonManagerCallBack,Sync
         contentTitleArray = [NSLocalizedString("goal", comment: ""), NSLocalizedString("progress", comment: ""), NSLocalizedString("you_reached", comment: "")]
         ClockRefreshManager.sharedInstance.setRefreshDelegate(self)
 
+        let local:LocalNotification = LocalNotification.sharedInstance()
+        local.scheduleNotificationWithKey(NevoAllKeys.LocalStartSportKey(), title: "Today's activity", message: "Today's activity level haven't reach your goals", date: NSDate.date(year: NSDate().year, month: NSDate().month, day: NSDate().day, hour: 13, minute: 0, second: 0) , userInfo: nil)
     }
 
     override func viewDidLayoutSubviews() {
@@ -155,6 +157,12 @@ class StepGoalSetingController: PublicClassController,ButtonManagerCallBack,Sync
             stepGoalView.collectionView?.reloadData()
             stepGoalView.setProgress(percent, dailySteps: dailySteps, dailyStepGoal: dailyStepGoal)
             AppTheme.KeyedArchiverName(StepsGoalKey, andObject: contentTArray)
+
+            if(dailySteps>=dailyStepGoal) {
+                LocalNotification.sharedInstance().cancelNotification([NevoAllKeys.LocalEndSportKey()])
+                let local:LocalNotification = LocalNotification.sharedInstance()
+                local.scheduleNotificationWithKey(NevoAllKeys.LocalEndSportKey(), title: "Today's activity", message: "Today's activity level has reached your preset goals", date: NSDate.date(year: NSDate().year, month: NSDate().month, day: NSDate().day, hour: 19, minute: 0, second: 0) , userInfo: nil)
+            }
         }
 
         if packet.getHeader() == LedLightOnOffNevoRequest.HEADER(){
