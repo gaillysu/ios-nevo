@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import LocalNotificationHelper
+
 
 let NUMBER_OF_STEPS_GOAL_KEY = "NUMBER_OF_STEPS_GOAL_KEY"
 

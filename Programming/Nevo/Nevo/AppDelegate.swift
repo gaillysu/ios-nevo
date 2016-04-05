@@ -96,6 +96,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
 
         //cancel all notifications  PM-13:00, PM 19:00
         LocalNotification.sharedInstance().cancelNotification([NevoAllKeys.LocalStartSportKey(),NevoAllKeys.LocalEndSportKey()])
+
+        //Rate our app Pop-up
+        iRate.sharedInstance().messageTitle = NSLocalizedString("Rate Nevo", comment: "")
+        iRate.sharedInstance().message = NSLocalizedString("If you like Nevo, please take the time, etc", comment:"");
+        iRate.sharedInstance().cancelButtonLabel = NSLocalizedString("No, Thanks", comment:"");
+        iRate.sharedInstance().remindButtonLabel = NSLocalizedString("Remind Me Later", comment:"");
+        iRate.sharedInstance().rateButtonLabel = NSLocalizedString("Rate It Now", comment:"");
+        iRate.sharedInstance().applicationBundleID = "com.nevowatch.Nevo"
+        iRate.sharedInstance().onlyPromptIfLatestVersion = false
+        iRate.sharedInstance().previewMode = true
         
         return true
     }

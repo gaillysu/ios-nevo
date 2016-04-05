@@ -15,4 +15,5 @@
 #import "NevoDBModel.h"
 #import "MobClick.h"
 #import <CommonCrypto/CommonCrypto.h>
+#import "iRate.h"
 #endif
