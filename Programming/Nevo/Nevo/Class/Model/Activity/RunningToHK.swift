@@ -18,14 +18,14 @@ class RunningToHK: NevoHKDataPoint {
     init(distance:Double, date:NSDate) {
         mRunning_Distance=distance
 
-        mRunning_Date = NSDate().change(year: date.year, month: date.month, day: date.day, hour: 0, minute: 0, second: 0)
+        mRunning_Date = date
         //A daily data point if from 00AM to 23:59:59
-        lateNight = NSDate().change(year: date.year, month: date.month, day: date.day, hour: 23, minute: 59, second: 59)
+        lateNight = NSDate().change(year: date.year, month: date.month, day: date.day, hour: date.hour, minute: 59, second: 59)
     }
 
     @objc func toHKQuantitySample() -> HKQuantitySample {
 
-        let stepCountQuantity = HKQuantity(unit:HKUnit.countUnit(), doubleValue: mRunning_Distance)
+        let stepCountQuantity = HKQuantity(unit:HKUnit.meterUnit(), doubleValue: mRunning_Distance)
         return HKQuantitySample(type: HKQuantityType.quantityTypeForIdentifier(HKQuantityTypeIdentifierDistanceWalkingRunning)!,
             quantity: stepCountQuantity,
             startDate: mRunning_Date, endDate: lateNight)

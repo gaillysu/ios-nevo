@@ -481,7 +481,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                                 AppDelegate.getAppDelegate().setNewAlarm(newAlarm)
                             }
 
-                            dayAlarmCount++
+                            dayAlarmCount += 1
                         }
                     }
 
@@ -489,7 +489,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                     self.syncActivityData()
 
                 }else{
-                    for(var index:Int = 0; index < array.count; index++){
+                    for(var index:Int = 0; index < array.count; index += 1){
                         let useralarm:UserAlarm = array[index] as! UserAlarm
                         let date:NSDate = NSDate(timeIntervalSince1970: useralarm.timer)
                         if(useralarm.status) {
@@ -664,6 +664,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
 
                 savedDailyHistory[Int(currentDay)].TotalSteps = thispacket.getDailySteps()
                 savedDailyHistory[Int(currentDay)].HourlySteps = thispacket.getHourlySteps()
+                savedDailyHistory[Int(currentDay)].TotalCalories = thispacket.getDailyCalories()
+                savedDailyHistory[Int(currentDay)].HourlyCalories = thispacket.getHourlyCalories()
                 
                 AppTheme.DLog("Day:\(GmtNSDate2LocaleNSDate(savedDailyHistory[Int(currentDay)].Date)), Daily Steps:\(savedDailyHistory[Int(currentDay)].TotalSteps)")
 
@@ -675,8 +677,34 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
 
                 let now:NSDate = NSDate()
                 let saveDay:NSDate = savedDailyHistory[Int(currentDay)].Date
+                let nowDate:NSDate = NSDate.date(year: now.year, month: now.month, day: now.day, hour: now.hour, minute: 0, second: 0)
+                let saveDate:NSDate = NSDate.date(year: saveDay.year, month: saveDay.month, day: saveDay.day, hour: saveDay.hour, minute: 0, second: 0)
 
-                for (var i:Int = 0; i<savedDailyHistory[Int(currentDay)].HourlySteps.count; i++){
+                // to HK Running
+                for index:Int in 0 ..< thispacket.getHourlyRunningDistance().count {
+                    if(thispacket.getHourlyRunningDistance()[index] > 0) {
+                        hk.writeDataPoint(RunningToHK(distance:Double(thispacket.getHourlyRunningDistance()[index]), date:NSDate.date(year: saveDay.year, month: saveDay.month, day: saveDay.day, hour: index, minute: 0, second: 0)), resultHandler: { (result, error) in
+
+                        })
+                    }
+                }
+
+                // to HK Calories
+                for index:Int in 0 ..< thispacket.getHourlyCalories().count {
+                    if savedDailyHistory[Int(currentDay)].HourlyCalories[index] > 0 && index == now.hour &&
+                        !nowDate.isEqualToDate(saveDate){
+
+                        hk.writeDataPoint(CaloriesToHK(calories: Double(savedDailyHistory[Int(currentDay)].HourlyCalories[index]), date: NSDate.date(year: saveDay.year, month: saveDay.month, day: saveDay.day, hour: index, minute: 0, second: 0)), resultHandler: { (result, error) in
+                            if (result != true) {
+                                AppTheme.DLog("Save Hourly Calories error\(index),\(error)")
+                            }else{
+                                AppTheme.DLog("Save Hourly Calories OK")
+                            }
+                        })
+                    }
+                }
+
+                for i:Int in 0 ..< savedDailyHistory[Int(currentDay)].HourlySteps.count {
                     //only save vaild hourly steps for every day, include today.
                     //exclude update current hour step, due to current hour not end
                     //for example: at 10:20~ 10:25AM, walk 100 steps, 10:50~10:59, walk 300 steps
@@ -684,7 +712,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                     //user can see 10:00AM data when 11:20 do a big sync, the value should be 400 steps
                     //that is to say, user can't see current hour 's step in healthkit, he can see it by waiting one hour
                     if savedDailyHistory[Int(currentDay)].HourlySteps[i] > 0 &&
-                        !(i == now.hour && now.year == saveDay.year && now.month == saveDay.month && now.day == saveDay.day){
+                        !nowDate.isEqualToDate(saveDate){
                         hk.writeDataPoint(HourlySteps(numberOfSteps: savedDailyHistory[Int(currentDay)].HourlySteps[i],date: savedDailyHistory[Int(currentDay)].Date,hour:i,update: false), resultHandler: { (result, error) -> Void in
                             if (result != true) {
                                 AppTheme.DLog("Save Hourly steps error\(i),\(error)")
@@ -696,7 +724,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                 }
 
                 //end save
-                currentDay++
+                currentDay += 1
                 if(currentDay < UInt8(savedDailyHistory.count)) {
                     self.getDailyTracker(currentDay)
                 }else {

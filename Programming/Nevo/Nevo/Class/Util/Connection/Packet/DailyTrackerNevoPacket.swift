@@ -43,8 +43,7 @@ class DailyTrackerNevoPacket: NevoPacket {
         var hourlySteps:Int = 0
         
         //get every hour Steps:
-        for (var i:Int = 0; i<24; i++)
-        {
+        for i:Int in 0 ..< 24 {
                 if NSData2Bytes(getPackets()[HEADERLENGTH+i*3])[18] != 0xFF
                     && NSData2Bytes(getPackets()[HEADERLENGTH+i*3])[19] != 0xFF
                     && NSData2Bytes(getPackets()[HEADERLENGTH+i*3+1])[2] != 0xFF
@@ -84,8 +83,7 @@ class DailyTrackerNevoPacket: NevoPacket {
         var hourlyDisc:Int = 0
         
         //get every hour Disc:
-        for (var i:Int = 0; i<24; i++)
-        {
+        for i:Int in 0 ..< 24 {
             hourlyDisc = 0
             if NSData2Bytes(getPackets()[HEADERLENGTH+i*3])[2] != 0xFF
                && NSData2Bytes(getPackets()[HEADERLENGTH+i*3])[3] != 0xFF
@@ -135,8 +133,7 @@ class DailyTrackerNevoPacket: NevoPacket {
         var hourlyCalories:Int = 0
         
         //get every hour Calories:
-        for (var i:Int = 0; i<24; i++)
-        {
+        for i:Int in 0 ..< 24 {
             hourlyCalories = 0
             if NSData2Bytes(getPackets()[HEADERLENGTH+i*3])[14] != 0xFF
                 && NSData2Bytes(getPackets()[HEADERLENGTH+i*3])[15] != 0xFF
@@ -173,8 +170,7 @@ class DailyTrackerNevoPacket: NevoPacket {
         var hourlySleepTime:Int = 0
         
         //get every hour SleepTime:
-        for (var i:Int = 0; i<24; i++)
-        {
+        for i:Int in 0 ..< 24 {
             hourlySleepTime = 0
             if NSData2Bytes(getPackets()[HEADERLENGTH+i*3+1])[18] != 0xFF
             {
@@ -204,8 +200,7 @@ class DailyTrackerNevoPacket: NevoPacket {
         var hourlyWakeTime:Int = 0
         
         //get every hour wake Time:
-        for (var i:Int = 0; i<24; i++)
-        {
+        for i:Int in 0 ..< 24 {
             hourlyWakeTime = 0
             if NSData2Bytes(getPackets()[HEADERLENGTH+i*3+1])[19] != 0xFF
             {
@@ -236,8 +231,7 @@ class DailyTrackerNevoPacket: NevoPacket {
         var hourlyLightTime:Int = 0
         
         //get every hour light Time:
-        for (var i:Int = 0; i<24; i++)
-        {
+        for i:Int in 0 ..< 24 {
             hourlyLightTime = 0
             if NSData2Bytes(getPackets()[HEADERLENGTH+i*3+2])[2] != 0xFF
             {
@@ -267,8 +261,7 @@ class DailyTrackerNevoPacket: NevoPacket {
         var hourlyDeepTime:Int = 0
         
         //get every hour deep Time:
-        for (var i:Int = 0; i<24; i++)
-        {
+        for i:Int in 0 ..< 24 {
             hourlyDeepTime = 0
             if NSData2Bytes(getPackets()[HEADERLENGTH+i*3+2])[3] != 0xFF
             {
@@ -320,14 +313,13 @@ class DailyTrackerNevoPacket: NevoPacket {
     :returns: timer/Year,Month,Day
     */
     func getDateTimer()->Int{
-        var dailyStepGoal:Int = Int(NSData2Bytes(getPackets()[0])[2] )
-        dailyStepGoal = dailyStepGoal + Int(NSData2Bytes(getPackets()[0])[3] )<<8
+        var year:Int = Int(NSData2Bytes(getPackets()[0])[2] )
+        year = year + Int(NSData2Bytes(getPackets()[0])[3] )<<8
         var month:NSString = NSString(format: "\(NSData2Bytes(getPackets()[0])[4])")
         month = month.length >= 2 ? NSString(format: "\(NSData2Bytes(getPackets()[0])[4])") : NSString(format: "0\(NSData2Bytes(getPackets()[0])[4])")
-        var year:NSString = NSString(format: "\(NSData2Bytes(getPackets()[0])[5])")
-        year = year.length >= 2 ? NSString(format: "\(NSData2Bytes(getPackets()[0])[5])") : NSString(format: "0\(NSData2Bytes(getPackets()[0])[5])")
-        dailyStepGoal = NSString(format: "\(dailyStepGoal)%@%@",month,year).integerValue
-        return dailyStepGoal
+        var day:NSString = NSString(format: "\(NSData2Bytes(getPackets()[0])[5])")
+        day = day.length >= 2 ? NSString(format: "\(NSData2Bytes(getPackets()[0])[5])") : NSString(format: "0\(NSData2Bytes(getPackets()[0])[5])")
+        return NSString(format: "\(year)%@%@",month,day).integerValue
     }
 
 
@@ -337,11 +329,11 @@ class DailyTrackerNevoPacket: NevoPacket {
      :returns: daily Running Steps
      */
     func getDailyRunningSteps()->Int {
-        var dailyCalories:Int = Int(NSData2Bytes(getPackets()[1])[12] )
-        dailyCalories =  dailyCalories + Int(NSData2Bytes(getPackets()[1])[13] )<<8
-        dailyCalories =  dailyCalories + Int(NSData2Bytes(getPackets()[1])[14] )<<16
-        dailyCalories =  dailyCalories + Int(NSData2Bytes(getPackets()[1])[15] )<<24
-        return dailyCalories
+        var total_run_steps:Int = Int(NSData2Bytes(getPackets()[1])[12] )
+        total_run_steps =  total_run_steps + Int(NSData2Bytes(getPackets()[1])[13] )<<8
+        total_run_steps =  total_run_steps + Int(NSData2Bytes(getPackets()[1])[14] )<<16
+        total_run_steps =  total_run_steps + Int(NSData2Bytes(getPackets()[1])[15] )<<24
+        return total_run_steps
     }
 
     /**
@@ -353,10 +345,34 @@ class DailyTrackerNevoPacket: NevoPacket {
         let packetno = 2
         let offset = 10
         var dailyDist:Int = Int(NSData2Bytes(getPackets()[packetno])[offset] )
-        dailyDist =  dailyDist + Int(NSData2Bytes(getPackets()[packetno])[packetno+1] )<<8
-        dailyDist =  dailyDist + Int(NSData2Bytes(getPackets()[packetno])[packetno+2] )<<16
-        dailyDist =  dailyDist + Int(NSData2Bytes(getPackets()[packetno])[packetno+3] )<<24
+        dailyDist =  dailyDist + Int(NSData2Bytes(getPackets()[packetno])[packetno+1])<<8
+        dailyDist =  dailyDist + Int(NSData2Bytes(getPackets()[packetno])[packetno+2])<<16
+        dailyDist =  dailyDist + Int(NSData2Bytes(getPackets()[packetno])[packetno+3])<<24
         return dailyDist/100
+    }
+
+    /**
+     hour running distance
+
+     - returns: hour running distance array
+     */
+    func getHourlyRunningDistance()->[Int] {
+        var HourlyRunningDistance = [Int](count: 24, repeatedValue: 0)
+        let HEADERLENGTH:Int = 6
+        var hourlyRunningTime:Int = 0
+
+        //get every hour running distance:
+        for i:Int in 0 ..< 24 {
+            hourlyRunningTime = 0
+            for x:Int in 0 ..< 4 {
+                let value:UInt8 = NSData2Bytes(getPackets()[HEADERLENGTH+i*3])[6+x]
+                if value != 0xFF {
+                    hourlyRunningTime = hourlyRunningTime + Int(value) << (8*x)
+                }
+            }
+            HourlyRunningDistance[i] = hourlyRunningTime/100
+        }
+        return HourlyRunningDistance
     }
 
     /**
@@ -416,4 +432,5 @@ class DailyTrackerNevoPacket: NevoPacket {
         dailyDistance =  dailyDistance + Int(NSData2Bytes(getPackets()[packetno])[offset+3] )<<24
         return dailyDistance/100
     }
+
 }

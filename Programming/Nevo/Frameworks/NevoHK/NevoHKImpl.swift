@@ -37,10 +37,10 @@ class NevoHKImpl {
     {
         // 1. Set the types you want to read from HK Store  HKObjectType.categoryTypeForIdentifier(HKCategoryTypeIdentifierSleepAnalysis)
         //quantityTypeForIdentifier(HKQuantityTypeIdentifierStepCount)
-        let healthKitTypesToRead = NSSet(array: [HKObjectType.quantityTypeForIdentifier(HKQuantityTypeIdentifierStepCount)!])
+        let healthKitTypesToRead = NSSet(array: [HKObjectType.quantityTypeForIdentifier(HKQuantityTypeIdentifierStepCount)!,HKQuantityType.quantityTypeForIdentifier(HKQuantityTypeIdentifierActiveEnergyBurned)!,HKQuantityType.quantityTypeForIdentifier(HKQuantityTypeIdentifierDistanceWalkingRunning)!])
         
         // 2. Set the types you want to write to HK Store  HKObjectType.categoryTypeForIdentifier(HKCategoryTypeIdentifierSleepAnalysis)
-        let healthKitTypesToWrite = NSSet(array:[HKObjectType.quantityTypeForIdentifier(HKQuantityTypeIdentifierStepCount)!])
+        let healthKitTypesToWrite = NSSet(array:[HKObjectType.quantityTypeForIdentifier(HKQuantityTypeIdentifierStepCount)!,HKQuantityType.quantityTypeForIdentifier(HKQuantityTypeIdentifierActiveEnergyBurned)!,HKQuantityType.quantityTypeForIdentifier(HKQuantityTypeIdentifierDistanceWalkingRunning)!])
         
         // 3. If the store is not available (for instance, iPad) return an error and don't go on.
         if !HKHealthStore.isHealthDataAvailable()
@@ -72,10 +72,10 @@ class NevoHKImpl {
             
             //We only write this data point if it isn't present in HK
             var saveData:HKObject!
-            if(data is HourlySteps){
-                saveData = data.toHKQuantitySample()
-            }else{
+            if(data is DaySleep){
                 saveData = data.toHKCategorySample!()
+            }else{
+                saveData = data.toHKQuantitySample()
             }
 
             if( present != true) {
@@ -159,10 +159,10 @@ class NevoHKImpl {
     */
     func isPresent(data:NevoHKDataPoint, handler:( (Bool?,HKObject?) -> Void) ) {
         var sample:AnyObject!
-        if(data is HourlySteps){
-            sample = data.toHKQuantitySample()
-        }else{
+        if(data is DaySleep){
             sample = data.toHKCategorySample!()
+        }else{
+            sample = data.toHKQuantitySample()
         }
 
         //Check if this data point is present in HK
@@ -181,10 +181,10 @@ class NevoHKImpl {
         let dateAndSourcePredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [datePredicate!,sourcePredicate])
 
         var type:HKSampleType
-        if(data is HourlySteps){
-            type = sample.quantityType
-        }else{
+        if(data is DaySleep){
             type = (sample as! HKCategorySample ).categoryType
+        }else{
+            type = sample.quantityType
         }
 
         let query = HKSampleQuery(sampleType: type, predicate: dateAndSourcePredicate,
