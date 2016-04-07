@@ -11,6 +11,8 @@ import UIKit
 let userIdentifier:String = "UserProfileIdentifier"
 class UserProfileController: UITableViewController {
 
+    private let titleArray:[String] = ["First name","Last Name","Weight","Stride length","Age","Length"]
+
     init() {
         super.init(nibName: "UserProfileController", bundle: NSBundle.mainBundle())
     }
@@ -22,7 +24,6 @@ class UserProfileController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.sectionHeaderHeight = 90
-        //self.tableView.tableHeaderView = UserHeader.getUserHeader()
 
     }
 
@@ -40,7 +41,7 @@ class UserProfileController: UITableViewController {
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 5
+        return titleArray.count
     }
 
 
@@ -52,6 +53,8 @@ class UserProfileController: UITableViewController {
         }
         cell?.selectionStyle = UITableViewCellSelectionStyle.None;
         cell?.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
+        cell?.textLabel?.text = titleArray[indexPath.row]
+        cell?.detailTextLabel?.text = titleArray[indexPath.row]
         return cell!
     }
 

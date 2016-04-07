@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		00036B8B1CB4DF8400F9E141 /* NevoProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00036B8A1CB4DF8400F9E141 /* NevoProfileModel.swift */; };
 		000CB3241C3E060800B4ABEC /* BalloonMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000CB3231C3E060800B4ABEC /* BalloonMarker.swift */; };
 		000CB3281C3E436000B4ABEC /* white_clock.png in Resources */ = {isa = PBXBuildFile; fileRef = 000CB3251C3E436000B4ABEC /* white_clock.png */; };
 		000CB3291C3E436000B4ABEC /* white_hour.png in Resources */ = {isa = PBXBuildFile; fileRef = 000CB3261C3E436000B4ABEC /* white_hour.png */; };
@@ -113,7 +114,7 @@
 		0050D6431C28E0DB004F6F80 /* PresetsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0050D5991C28E0DB004F6F80 /* PresetsModel.swift */; };
 		0050D6441C28E0DB004F6F80 /* SleepModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0050D59A1C28E0DB004F6F80 /* SleepModel.swift */; };
 		0050D6451C28E0DB004F6F80 /* StepsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0050D59B1C28E0DB004F6F80 /* StepsModel.swift */; };
-		0050D6461C28E0DB004F6F80 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0050D59C1C28E0DB004F6F80 /* User.swift */; };
+		0050D6461C28E0DB004F6F80 /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0050D59C1C28E0DB004F6F80 /* UserProfile.swift */; };
 		0050D6471C28E0DB004F6F80 /* UserAlarm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0050D59D1C28E0DB004F6F80 /* UserAlarm.swift */; };
 		0050D6481C28E0DB004F6F80 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0050D59E1C28E0DB004F6F80 /* UserModel.swift */; };
 		0050D6491C28E0DB004F6F80 /* UserNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0050D59F1C28E0DB004F6F80 /* UserNotification.swift */; };
@@ -199,6 +200,8 @@
 		00C640F61A8DEE0800815CF8 /* clockView600.png in Resources */ = {isa = PBXBuildFile; fileRef = 00C640F51A8DEE0800815CF8 /* clockView600.png */; };
 		00D0FF731B130A9F00D084C3 /* Nevo660.png in Resources */ = {isa = PBXBuildFile; fileRef = 00D0FF721B130A9F00D084C3 /* Nevo660.png */; };
 		00D4DE921AB141FB0062523D /* NevoPicture960.png in Resources */ = {isa = PBXBuildFile; fileRef = 00D4DE901AB141FB0062523D /* NevoPicture960.png */; };
+		00D581441CB50C7500953B8A /* ChangeProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D581421CB50C7500953B8A /* ChangeProfileController.swift */; };
+		00D581451CB50C7500953B8A /* ChangeProfileController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00D581431CB50C7500953B8A /* ChangeProfileController.xib */; };
 		00DBC3A31C435541004B4376 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 00DBC3A21C435541004B4376 /* Main.storyboard */; };
 		00DC9EA61BB2853D00734DB6 /* ChartAnimationEasing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00DC9E481BB2853D00734DB6 /* ChartAnimationEasing.swift */; };
 		00DC9EA71BB2853D00734DB6 /* ChartAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00DC9E491BB2853D00734DB6 /* ChartAnimator.swift */; };
@@ -350,6 +353,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		00036B8A1CB4DF8400F9E141 /* NevoProfileModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NevoProfileModel.swift; sourceTree = "<group>"; };
 		000CB3231C3E060800B4ABEC /* BalloonMarker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BalloonMarker.swift; sourceTree = "<group>"; };
 		000CB3251C3E436000B4ABEC /* white_clock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = white_clock.png; sourceTree = "<group>"; };
 		000CB3261C3E436000B4ABEC /* white_hour.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = white_hour.png; sourceTree = "<group>"; };
@@ -460,7 +464,7 @@
 		0050D5991C28E0DB004F6F80 /* PresetsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresetsModel.swift; sourceTree = "<group>"; };
 		0050D59A1C28E0DB004F6F80 /* SleepModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SleepModel.swift; sourceTree = "<group>"; };
 		0050D59B1C28E0DB004F6F80 /* StepsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepsModel.swift; sourceTree = "<group>"; };
-		0050D59C1C28E0DB004F6F80 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		0050D59C1C28E0DB004F6F80 /* UserProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
 		0050D59D1C28E0DB004F6F80 /* UserAlarm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAlarm.swift; sourceTree = "<group>"; };
 		0050D59E1C28E0DB004F6F80 /* UserModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		0050D59F1C28E0DB004F6F80 /* UserNotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserNotification.swift; sourceTree = "<group>"; };
@@ -553,6 +557,8 @@
 		00C640F51A8DEE0800815CF8 /* clockView600.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clockView600.png; sourceTree = "<group>"; };
 		00D0FF721B130A9F00D084C3 /* Nevo660.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Nevo660.png; sourceTree = "<group>"; };
 		00D4DE901AB141FB0062523D /* NevoPicture960.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NevoPicture960.png; sourceTree = "<group>"; };
+		00D581421CB50C7500953B8A /* ChangeProfileController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangeProfileController.swift; sourceTree = "<group>"; };
+		00D581431CB50C7500953B8A /* ChangeProfileController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChangeProfileController.xib; sourceTree = "<group>"; };
 		00DBC3A21C435541004B4376 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		00DC9E481BB2853D00734DB6 /* ChartAnimationEasing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartAnimationEasing.swift; sourceTree = "<group>"; };
 		00DC9E491BB2853D00734DB6 /* ChartAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartAnimator.swift; sourceTree = "<group>"; };
@@ -831,6 +837,7 @@
 		0050D5151C28E0DB004F6F80 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				00D581411CB50C5900953B8A /* ChangeProfileController */,
 				009703BF1C9BD98300F2FF0D /* UserProfileController */,
 				00321D761C993C320069BFCC /* LoginController */,
 				00321D791C993C320069BFCC /* RegisterController */,
@@ -1122,11 +1129,12 @@
 				0050D5951C28E0DB004F6F80 /* DaySleepSaveModel.swift */,
 				0050D5961C28E0DB004F6F80 /* HealthModel.swift */,
 				0050D5971C28E0DB004F6F80 /* NotificationModel.swift */,
+				00036B8A1CB4DF8400F9E141 /* NevoProfileModel.swift */,
 				0050D5981C28E0DB004F6F80 /* Presets.swift */,
 				0050D5991C28E0DB004F6F80 /* PresetsModel.swift */,
 				0050D59A1C28E0DB004F6F80 /* SleepModel.swift */,
 				0050D59B1C28E0DB004F6F80 /* StepsModel.swift */,
-				0050D59C1C28E0DB004F6F80 /* User.swift */,
+				0050D59C1C28E0DB004F6F80 /* UserProfile.swift */,
 				0050D59D1C28E0DB004F6F80 /* UserAlarm.swift */,
 				0050D59E1C28E0DB004F6F80 /* UserModel.swift */,
 				0050D59F1C28E0DB004F6F80 /* UserNotification.swift */,
@@ -1438,6 +1446,15 @@
 				00BF2D991C7FED2200909316 /* VideoPlayController.xib */,
 			);
 			path = VideoPlayController;
+			sourceTree = "<group>";
+		};
+		00D581411CB50C5900953B8A /* ChangeProfileController */ = {
+			isa = PBXGroup;
+			children = (
+				00D581421CB50C7500953B8A /* ChangeProfileController.swift */,
+				00D581431CB50C7500953B8A /* ChangeProfileController.xib */,
+			);
+			path = ChangeProfileController;
 			sourceTree = "<group>";
 		};
 		00DC9E461BB2853D00734DB6 /* Classes */ = {
@@ -1916,6 +1933,7 @@
 				000CB32A1C3E436000B4ABEC /* white_minute.png in Resources */,
 				00344F5D1C47A86800C2FC7A /* SupportViewController.xib in Resources */,
 				0036EB081C48BA8300DCED46 /* settimer.png in Resources */,
+				00D581451CB50C7500953B8A /* ChangeProfileController.xib in Resources */,
 				004ED1F11CB386CC009D053C /* iRate.bundle in Resources */,
 				00F0C3541C8993DD005888A7 /* NewAddAlarmController.xib in Resources */,
 				0036EB071C48BA8300DCED46 /* searching.png in Resources */,
@@ -2178,6 +2196,7 @@
 				0017CB4D1C59B55A00F1182D /* DatePickerView.swift in Sources */,
 				00DC9EE01BB2853D00734DB6 /* BubbleChartRenderer.swift in Sources */,
 				0050D63C1C28E0DB004F6F80 /* NevoDBModel.m in Sources */,
+				00036B8B1CB4DF8400F9E141 /* NevoProfileModel.swift in Sources */,
 				0050D6001C28E0DB004F6F80 /* NotificationViewController.swift in Sources */,
 				00DC9EC91BB2853D00734DB6 /* CombinedChartData.swift in Sources */,
 				0050D6661C28E0DB004F6F80 /* Utility.swift in Sources */,
@@ -2187,7 +2206,7 @@
 				00DC9EB71BB2853D00734DB6 /* ChartLimitLine.swift in Sources */,
 				00DC9EC61BB2853D00734DB6 /* ChartData.swift in Sources */,
 				00DC9EDD1BB2853D00734DB6 /* CombinedHighlighter.swift in Sources */,
-				0050D6461C28E0DB004F6F80 /* User.swift in Sources */,
+				0050D6461C28E0DB004F6F80 /* UserProfile.swift in Sources */,
 				0050D5EF1C28E0DB004F6F80 /* MyNevoController.swift in Sources */,
 				00DC9ECC1BB2853D00734DB6 /* LineRadarChartDataSet.swift in Sources */,
 				0050D5EE1C28E0DB004F6F80 /* HelpView.swift in Sources */,
@@ -2236,6 +2255,7 @@
 				00DC9EC41BB2853D00734DB6 /* CandleChartDataEntry.swift in Sources */,
 				00DC9ED21BB2853D00734DB6 /* ScatterChartData.swift in Sources */,
 				00DC9ED31BB2853D00734DB6 /* ScatterChartDataSet.swift in Sources */,
+				00D581441CB50C7500953B8A /* ChangeProfileController.swift in Sources */,
 				00F0C34B1C893EE6005888A7 /* AlarmTypeController.swift in Sources */,
 				00DC9EBF1BB2853D00734DB6 /* BarLineScatterCandleBubbleChartDataSet.swift in Sources */,
 				00DC9EE71BB2853D00734DB6 /* ChartXAxisRendererBarChart.swift in Sources */,

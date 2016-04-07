@@ -11,6 +11,7 @@ pod 'BRYXBanner'
 pod 'Timepiece'
 pod 'Fabric'
 pod 'Crashlytics'
+pod 'TextFieldEffects'
 #pod 'Charts' 
 
 # pod 'FMDB/FTS'   # FMDB with FTS
