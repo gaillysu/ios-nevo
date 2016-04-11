@@ -32,7 +32,7 @@ class StepController: PublicClassController,toolbarSegmentedDelegate,UIActionShe
         stepHistorical = StepHistoricalViewController()
         stepHistorical?.view.frame = CGRectMake(0, toolBarHeight, self.view.frame.size.width, self.view.frame.size.height-toolBarHeight-113)
 
-        rightButton = UIBarButtonItem(title: NSLocalizedString("set_goal", comment: ""), style: UIBarButtonItemStyle.Done, target: self, action: Selector("rightBarButtonAction:"))
+        rightButton = UIBarButtonItem(title: NSLocalizedString("set_goal", comment: ""), style: UIBarButtonItemStyle.Done, target: self, action: #selector(StepController.rightBarButtonAction(_:)))
         rightButton?.tintColor = AppTheme.NEVO_SOLAR_YELLOW()
         self.navigationItem.rightBarButtonItem = rightButton
 

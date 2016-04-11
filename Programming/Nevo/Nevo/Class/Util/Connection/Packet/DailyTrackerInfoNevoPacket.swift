@@ -23,31 +23,23 @@ class DailyTrackerInfoNevoPacket: NevoPacket {
             var month:Int = 0
             var day:Int = 0
             
-            for (var i:Int = 0; i<total; i++)
-            {
+            for i:Int in 0 ..< total {
                 let format:NSDateFormatter = NSDateFormatter()
                 format.dateFormat = "yyyyMMddHHmmss"
                 
-                if(i<=3)
-                {
+                if (i<=3) {
                     year  = Int(NSData2Bytes(getPackets()[0])[2+4*i] ) + Int(NSData2Bytes(getPackets()[0])[3+4*i])<<8
                     month = Int(NSData2Bytes(getPackets()[0])[4+4*i] )
                     day   = Int(NSData2Bytes(getPackets()[0])[5+4*i] )
-                }
-                else if(i == 4)
-                {
+                }else if (i == 4) {
                     year  = Int(NSData2Bytes(getPackets()[0])[2+4*i] ) + Int(NSData2Bytes(getPackets()[0])[3+4*i])<<8
                     month = Int(NSData2Bytes(getPackets()[1])[2] )
                     day   = Int(NSData2Bytes(getPackets()[1])[3] )
-                }
-                else if(i == 5)
-                {
+                }else if (i == 5) {
                     year  = Int(NSData2Bytes(getPackets()[1])[4] ) + Int(NSData2Bytes(getPackets()[1])[5])<<8
                     month = Int(NSData2Bytes(getPackets()[1])[6] )
                     day   = Int(NSData2Bytes(getPackets()[1])[7] )
-                }
-                else if(i == 6)
-                {
+                }else if (i == 6) {
                     year  = Int(NSData2Bytes(getPackets()[1])[8] ) + Int(NSData2Bytes(getPackets()[1])[9])<<8
                     month = Int(NSData2Bytes(getPackets()[1])[10] )
                     day   = Int(NSData2Bytes(getPackets()[1])[11] )

@@ -435,4 +435,12 @@ class AppTheme {
         }
     }
 
+    class func on_ios_simulator(@noescape fun: () -> Void){
+        #if (arch(x86_64) || arch(i386)) && os(iOS)
+            
+        #else
+            fun()
+        #endif
+    }
+
 }

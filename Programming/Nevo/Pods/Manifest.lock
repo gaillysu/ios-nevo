@@ -6,9 +6,9 @@ PODS:
   - Crashlytics (3.7.0):
     - Fabric (~> 1.6.3)
   - Fabric (1.6.7)
-  - FMDB (2.6):
-    - FMDB/standard (= 2.6)
-  - FMDB/standard (2.6)
+  - FMDB (2.6.2):
+    - FMDB/standard (= 2.6.2)
+  - FMDB/standard (2.6.2)
   - GSMessages (1.2.0)
   - NJKWebViewProgress (0.2.3):
     - NJKWebViewProgress/Core (= 0.2.3)
@@ -24,7 +24,7 @@ DEPENDENCIES:
   - BRYXBanner
   - Crashlytics
   - Fabric
-  - FMDB (~> 2.6)
+  - FMDB (~> 2.6.2)
   - GSMessages
   - NJKWebViewProgress
   - TextFieldEffects
@@ -36,7 +36,7 @@ SPEC CHECKSUMS:
   BRYXBanner: 5f0911d52e0a77e088f7ea7ddcdebd02afb7828a
   Crashlytics: c3a2333dea9e2733d2777f730910321fc9e25c0d
   Fabric: caf7580c725e64db144f610ac65cd60956911dc7
-  FMDB: c1968bab3ab0aed38f66cb778ae1e7fa9a652b6e
+  FMDB: 854a0341b4726e53276f2a8996f06f1b80f9259a
   GSMessages: 92a2aadb81bd7505e7375d7f70a58a2f49eb6e25
   NJKWebViewProgress: f481fd424cb5ecc27eacae11b5397db92fba9a4d
   TextFieldEffects: bc4fd3bd557321bd61a0762f3f50965477a36f62
