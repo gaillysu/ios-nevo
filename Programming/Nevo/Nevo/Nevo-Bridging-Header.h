@@ -13,7 +13,7 @@
 #import "FXBlurView.h"
 #import "MBProgressHUD+MJ.h"
 #import "NevoDBModel.h"
-#import "MobClick.h"
+#import <UMMobClick/MobClick.h>
 #import <CommonCrypto/CommonCrypto.h>
 #import "iRate.h"
 #endif

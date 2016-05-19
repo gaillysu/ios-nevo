@@ -78,7 +78,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
         *  @param ""         channel Id
         *
         */
-        MobClick.startWithAppkey(umengAppKey, reportPolicy: BATCH, channelId: "")
+        UMAnalyticsConfig.sharedInstance().appKey = umengAppKey
+        MobClick.startWithConfigure(UMAnalyticsConfig.sharedInstance())
 
         /**
         *  Network monitoring
