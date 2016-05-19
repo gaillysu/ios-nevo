@@ -86,11 +86,11 @@ class StepHistoricalView: UIView,ChartViewDelegate {
         }
         var xVal:[String] = [];
         var yVal:[BarChartDataEntry] = [];
-        for (var i:Int = 0; i < queryModel.count; i++) {
+        for i in 0 ..< queryModel.count{
             /**
             *  Data sorting,Small to large sort
             */
-            for (var j:Int = i; j < queryModel.count; j++){
+            for j in 0 ..< queryModel.count{
                 let iStepsModel:UserSteps = queryModel.objectAtIndex(i) as! UserSteps;
                 let jStepsModel:UserSteps = queryModel.objectAtIndex(j) as! UserSteps;
                 let iStepsDate:Double = iStepsModel.date
@@ -104,10 +104,9 @@ class StepHistoricalView: UIView,ChartViewDelegate {
             }
         }
 
-        for (var i:Int = 0; i < queryModel.count; i++){
+        for i in 0 ..< queryModel.count{
             let seleModel:UserSteps = queryModel.objectAtIndex(i) as! UserSteps;
             let val1:Double  = Double(seleModel.steps);
-            let mDateString:String = String(format: "%.0f", seleModel.date)
             let date:NSDate = NSDate(timeIntervalSince1970: seleModel.date)
             var dateString:NSString = date.stringFromFormat("yyyyMMdd")
             if(dateString.length < 8) {

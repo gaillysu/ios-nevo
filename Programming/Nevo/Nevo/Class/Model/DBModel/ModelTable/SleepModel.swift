@@ -41,7 +41,7 @@ class SleepModel: UserDatabaseHelper {
             let resultSet:FMResultSet = db.executeQuery(sql, withArgumentsInArray: nil)
             while (resultSet.next()) {
                 let model:SleepModel = SleepModel()
-                for (var i:Int = 0; i < model.columeNames.count; i++) {
+                for i in 0 ..< model.columeNames.count{
                     let columeName:NSString = (model.columeNames.objectAtIndex(i) as! NSString)
                     let columeType:NSString = (model.columeTypes.objectAtIndex(i) as! NSString)
                     if (columeType.isEqualToString(SQLTEXT)) {
@@ -71,7 +71,7 @@ class SleepModel: UserDatabaseHelper {
             let resultSet:FMResultSet = db.executeQuery(sql, withArgumentsInArray: nil)
             while (resultSet.next()) {
                 let model:SleepModel = SleepModel()
-                for (var i:Int = 0; i < model.columeNames.count; i++) {
+                for i in 0 ..< model.columeNames.count{
                     let columeName:NSString = model.columeNames.objectAtIndex(i) as! NSString
                     let columeType:NSString = model.columeTypes.objectAtIndex(i) as! NSString
                     if (columeType.isEqualToString(SQLTEXT)) {

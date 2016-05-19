@@ -129,7 +129,7 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
         if(redRssiTimer.valid){
             redRssiTimer.invalidate()
         }
-        redRssiTimer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: Selector("redRSSI:"), userInfo: nil, repeats: true)
+        redRssiTimer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(NevoBTImpl.redRSSI(_:)), userInfo: nil, repeats: true)
     }
 
     /**
@@ -297,7 +297,7 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
             //We scehduele or re-schdeuele the stop scanning
             mTimer?.invalidate()
 
-            mTimer = NSTimer.scheduledTimerWithTimeInterval(SCANNING_DURATION, target: self, selector: Selector("stopScan"), userInfo: nil, repeats: false)
+            mTimer = NSTimer.scheduledTimerWithTimeInterval(SCANNING_DURATION, target: self, selector: #selector(NevoBTImpl.stopScan), userInfo: nil, repeats: false)
 
 
 

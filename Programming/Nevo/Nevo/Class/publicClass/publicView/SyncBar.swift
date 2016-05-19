@@ -44,7 +44,7 @@ class SyncBar: NSObject,CancelSelectorDelegate {
 
             cancelButton.setImage(UIImage(named: "syncBar_cancel"), forState: UIControlState.Normal)
             cancelButton.frame = CGRectMake(self.frame.size.width-30,0,30,30)
-            cancelButton.addTarget(self, action: Selector("cancelAction:"), forControlEvents: UIControlEvents.TouchUpInside)
+            cancelButton.addTarget(self, action: #selector(hudLoader.cancelAction(_:)), forControlEvents: UIControlEvents.TouchUpInside)
             self.addSubview(cancelButton)
         }
 
@@ -123,7 +123,7 @@ class SyncBar: NSObject,CancelSelectorDelegate {
         //hud.spinnerImage.layer.addAnimation(fullRotation, forKey: "360")
     }
 
-    private func hide(var presentHud:hudLoader,from view:UIView){
+    private func hide( presentHud:hudLoader,from view:UIView){
         //hud.spinnerImage.removeFromSuperview()
         //hud.backgroundColor = AppTheme.hexStringToColor("#FF0000")
         presentHud = hud

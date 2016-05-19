@@ -316,7 +316,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
      Remove MyNevoDelegate
      */
     func removeMyNevoDelegate(){
-        for(var i:Int = 0; i < mDelegates.count; i++){
+        for i in 0 ..< mDelegates.count{
             if mDelegates[i] is MyNevoController{
                 mDelegates.removeAtIndex(i)
             }
@@ -452,7 +452,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                 let array:NSArray = UserAlarm.getAll()
 
                 if(AppDelegate.getAppDelegate().getSoftwareVersion().integerValue > 18){
-                    for(var index:Int = 0;index<13;index++) {
+                    for index in 0 ..< mDelegates.count{
                         let date:NSDate = NSDate()
                         let newAlarm:NewAlarm = NewAlarm(alarmhour: date.hour, alarmmin: date.minute, alarmNumber: index, alarmWeekday: 0)
                         if(AppDelegate.getAppDelegate().isConnected()){
@@ -472,7 +472,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                                 AppDelegate.getAppDelegate().setNewAlarm(newAlarm)
                             }
 
-                            sleepAlarmCount++
+                            sleepAlarmCount+=1
                         }else if (alarmModel.type == 0 && alarmModel.status){
                             let date:NSDate = NSDate(timeIntervalSince1970: alarmModel.timer)
                             let newAlarm:NewAlarm = NewAlarm(alarmhour: date.hour, alarmmin: date.minute, alarmNumber: dayAlarmCount, alarmWeekday: alarmModel.dayOfWeek)
@@ -489,7 +489,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                     self.syncActivityData()
 
                 }else{
-                    for(var index:Int = 0; index < array.count; index += 1){
+                    for index in 0 ..< array.count{
                         let useralarm:UserAlarm = array[index] as! UserAlarm
                         let date:NSDate = NSDate(timeIntervalSince1970: useralarm.timer)
                         if(useralarm.status) {
@@ -498,7 +498,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                         }
                     }
 
-                    for(var index:Int = 0; index<3;index++) {
+                    for index in 0 ..< 3{
                         let date:NSDate = NSDate()
                         let alarm:Alarm = Alarm(index:index, hour: date.hour, minute: date.minute, enable: false)
                         alarmArray.append(alarm)
@@ -737,7 +737,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
             }
 
             if(packet.getHeader() == GetStepsGoalRequest.HEADER()) {
-                var thispacket = packet.copy() as DailyStepsNevoPacket
+                _ = packet.copy() as DailyStepsNevoPacket
                 //refresh current hourly steps changing in the healthkit
             }
             

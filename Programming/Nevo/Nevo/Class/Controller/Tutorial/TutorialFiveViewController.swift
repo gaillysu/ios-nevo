@@ -31,10 +31,10 @@ class TutorialFiveViewController: UIViewController,SyncControllerDelegate {
 
     override func viewWillAppear(animated: Bool) {
         if(timer == nil) {
-            timer = NSTimer.scheduledTimerWithTimeInterval(2, target: self, selector: Selector("timerAction:"), userInfo: nil, repeats: true)
+            timer = NSTimer.scheduledTimerWithTimeInterval(2, target: self, selector: #selector(TutorialFiveViewController.timerAction(_:)), userInfo: nil, repeats: true)
         }else {
             timer = nil
-            timer = NSTimer.scheduledTimerWithTimeInterval(2, target: self, selector: Selector("timerAction:"), userInfo: nil, repeats: true)
+            timer = NSTimer.scheduledTimerWithTimeInterval(2, target: self, selector: #selector(TutorialFiveViewController.timerAction(_:)), userInfo: nil, repeats: true)
             progressView?.setProgress(0.0)
         }
     }

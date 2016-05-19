@@ -20,7 +20,6 @@
 		001F1B7C1B57777B001DD426 /* nevo_wacth.png in Resources */ = {isa = PBXBuildFile; fileRef = 001F1B7A1B57777B001DD426 /* nevo_wacth.png */; };
 		00321D6D1C98EBB10069BFCC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00321D6C1C98EBB10069BFCC /* AppDelegate.swift */; };
 		00321D731C99377A0069BFCC /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00321D6F1C99377A0069BFCC /* Alamofire.framework */; };
-		00321D741C99377A0069BFCC /* FMDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00321D701C99377A0069BFCC /* FMDB.framework */; };
 		00321D751C99377A0069BFCC /* NJKWebViewProgress.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00321D711C99377A0069BFCC /* NJKWebViewProgress.framework */; };
 		00321D7C1C993C320069BFCC /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00321D771C993C320069BFCC /* LoginController.swift */; };
 		00321D7D1C993C320069BFCC /* LoginController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00321D781C993C320069BFCC /* LoginController.xib */; };
@@ -333,6 +332,8 @@
 		9AD8F9841A6E2C8E00F01014 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD8F9821A6E2C8E00F01014 /* Request.swift */; };
 		9AD8F98D1A6E2D6E00F01014 /* RawPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD8F98C1A6E2D6E00F01014 /* RawPacket.swift */; };
 		9AD8F98F1A6E2EE000F01014 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD8F98E1A6E2EE000F01014 /* Profile.swift */; };
+		9E15EAB11CED5BF6009F129F /* TextFieldEffects.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E15EAB01CED5BF6009F129F /* TextFieldEffects.framework */; };
+		9E15EAB31CED5F47009F129F /* FMDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E15EAB21CED5F47009F129F /* FMDB.framework */; };
 		9E98FB291C463A3B00BAB700 /* TutorialOneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E98FB281C463A3B00BAB700 /* TutorialOneViewController.swift */; };
 		9E98FB2B1C463BB200BAB700 /* TutorialTwoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E98FB2A1C463BB200BAB700 /* TutorialTwoViewController.swift */; };
 		9E98FB2D1C463D2A00BAB700 /* TutorialThreeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E98FB2C1C463D2A00BAB700 /* TutorialThreeViewController.swift */; };
@@ -737,6 +738,8 @@
 		9AD8F9821A6E2C8E00F01014 /* Request.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Request.swift; path = Frameworks/NevoBT/Request.swift; sourceTree = "<group>"; };
 		9AD8F98C1A6E2D6E00F01014 /* RawPacket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RawPacket.swift; path = Frameworks/NevoBT/RawPacket.swift; sourceTree = "<group>"; };
 		9AD8F98E1A6E2EE000F01014 /* Profile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Profile.swift; path = Frameworks/NevoBT/Profile.swift; sourceTree = "<group>"; };
+		9E15EAB01CED5BF6009F129F /* TextFieldEffects.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TextFieldEffects.framework; path = "../../../../../Library/Developer/Xcode/DerivedData/Nevo-aermbqasljcozldcsamycxhhblpv/Build/Products/Debug-iphonesimulator/TextFieldEffects.framework"; sourceTree = "<group>"; };
+		9E15EAB21CED5F47009F129F /* FMDB.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FMDB.framework; path = "Pods/../build/Debug-iphoneos/FMDB.framework"; sourceTree = "<group>"; };
 		9E98FB281C463A3B00BAB700 /* TutorialOneViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialOneViewController.swift; sourceTree = "<group>"; };
 		9E98FB2A1C463BB200BAB700 /* TutorialTwoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialTwoViewController.swift; sourceTree = "<group>"; };
 		9E98FB2C1C463D2A00BAB700 /* TutorialThreeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialThreeViewController.swift; sourceTree = "<group>"; };
@@ -753,11 +756,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9E15EAB31CED5F47009F129F /* FMDB.framework in Frameworks */,
+				9E15EAB11CED5BF6009F129F /* TextFieldEffects.framework in Frameworks */,
 				00EB50821C9FEB4600D331F5 /* BRYXBanner.framework in Frameworks */,
 				00EB50831C9FEB4600D331F5 /* Timepiece.framework in Frameworks */,
 				00321D841C993CCE0069BFCC /* GSMessages.framework in Frameworks */,
 				00321D731C99377A0069BFCC /* Alamofire.framework in Frameworks */,
-				00321D741C99377A0069BFCC /* FMDB.framework in Frameworks */,
 				00321D751C99377A0069BFCC /* NJKWebViewProgress.framework in Frameworks */,
 				004846D41B72EDB9005A6D83 /* libsqlite3.dylib in Frameworks */,
 				9A2D6C3B1A9C6D9F00591BDC /* HealthKit.framework in Frameworks */,
@@ -1719,6 +1723,8 @@
 		9AD8F95A1A6DFE3400F01014 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9E15EAB21CED5F47009F129F /* FMDB.framework */,
+				9E15EAB01CED5BF6009F129F /* TextFieldEffects.framework */,
 				004ED1EB1CB386CC009D053C /* iRate */,
 				007F1F501CAA1B630021DF1B /* LocalNotification.swift */,
 				00EB50801C9FEB4600D331F5 /* BRYXBanner.framework */,

@@ -27,7 +27,7 @@ class ClockRefreshManager: NSObject {
         /**
         *  Ten seconds to refresh the clock and read the data
         */
-        NSTimer.scheduledTimerWithTimeInterval(10, target: self, selector:"refreshTimerAction:", userInfo: nil, repeats: true);
+        NSTimer.scheduledTimerWithTimeInterval(10, target: self, selector:#selector(ClockRefreshManager.refreshTimerAction(_:)), userInfo: nil, repeats: true);
     }
 
     func refreshTimerAction(timer:NSTimer){

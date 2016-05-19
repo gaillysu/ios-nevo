@@ -72,8 +72,7 @@ public class ChartYAxisRendererRadarChart: ChartYAxisRenderer
             
             var v = yMin
             
-            for (var i = 0; i < labelCount; i++)
-            {
+            for _ in 0 ..< labelCount{
                 _yAxis.entries.append(v)
                 v += step
             }
@@ -118,7 +117,7 @@ public class ChartYAxisRendererRadarChart: ChartYAxisRenderer
             var n = 0
             for (f = first; f <= last; f += interval)
             {
-                ++n
+                n += 1
             }
             
             if (isnan(_yAxis.customAxisMax))
@@ -165,9 +164,7 @@ public class ChartYAxisRendererRadarChart: ChartYAxisRenderer
         let labelCount = _yAxis.entryCount
         
         let labelLineHeight = _yAxis.labelFont.lineHeight
-        
-        for (var j = 0; j < labelCount; j++)
-        {
+        for j in 0 ..< labelCount{
             if (j == labelCount - 1 && _yAxis.isDrawTopYLabelEntryEnabled == false)
             {
                 break
@@ -200,9 +197,7 @@ public class ChartYAxisRendererRadarChart: ChartYAxisRenderer
         let factor = _chart.factor
         
         let center = _chart.centerOffsets
-        
-        for (var i = 0; i < limitLines.count; i++)
-        {
+        for i in 0 ..< limitLines.count{
             let l = limitLines[i]
             
             CGContextSetStrokeColorWithColor(context, l.lineColor.CGColor)
@@ -220,7 +215,7 @@ public class ChartYAxisRendererRadarChart: ChartYAxisRenderer
             
             CGContextBeginPath(context)
             
-            for (var j = 0, count = _chart.data!.xValCount; j < count; j++)
+            for (var j = 0, count = _chart.data!.xValCount; j < count; j += 1)
             {
                 let p = ChartUtils.getPosition(center: center, dist: r, angle: sliceangle * CGFloat(j) + _chart.rotationAngle)
                 

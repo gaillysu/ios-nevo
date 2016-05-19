@@ -124,7 +124,7 @@ class AidOtaController : NSObject,ConnectionControllerDelegate {
 
     private func writeNextPacket(){
         var percentage :Int = 0;
-        for (var index:Int = 0; index<Int(enumPacketOption.PACKETS_NOTIFICATION_INTERVAL.rawValue); index++) {
+            for _ in 0..<Int(enumPacketOption.PACKETS_NOTIFICATION_INTERVAL.rawValue){
             if (self.writingPacketNumber > self.numberOfPackets-2) {
                 AppTheme.DLog("writing last packet");
                 let dataRange : NSRange = NSMakeRange(self.writingPacketNumber*enumPacketOption.PACKET_SIZE.rawValue, self.bytesInLastPacket);
@@ -138,7 +138,7 @@ class AidOtaController : NSObject,ConnectionControllerDelegate {
                 percentage = Int(progress)
                 AppTheme.DLog("DFUOperations: onTransferPercentage \(percentage)");
                 mDelegate?.onTransferPercentage(percentage)
-                self.writingPacketNumber++;
+                self.writingPacketNumber+=1;
                 mTimeoutTimer?.invalidate()
                 AppTheme.DLog("DFUOperations: onAllPacketsTransfered");
                 break;
@@ -157,7 +157,7 @@ class AidOtaController : NSObject,ConnectionControllerDelegate {
             AppTheme.DLog("DFUOperations: onTransferPercentage \(percentage)");
             mDelegate?.onTransferPercentage(percentage)
 
-            self.writingPacketNumber++;
+            self.writingPacketNumber+=1;
 
         }
 
@@ -428,7 +428,7 @@ class AidOtaController : NSObject,ConnectionControllerDelegate {
         lastprogress = 0.0
         progress = 0.0
         mTimeoutTimer?.invalidate()
-        mTimeoutTimer = NSTimer.scheduledTimerWithTimeInterval(Double(MAX_TIME), target: self, selector:Selector("timeroutProc:"), userInfo: nil, repeats: true)
+        mTimeoutTimer = NSTimer.scheduledTimerWithTimeInterval(Double(MAX_TIME), target: self, selector:#selector(AidOtaController.timeroutProc(_:)), userInfo: nil, repeats: true)
 
         mConnectionController?.setDelegate(self)
         state = DFUControllerState.IDLE
@@ -536,8 +536,7 @@ class AidOtaController : NSObject,ConnectionControllerDelegate {
         AppTheme.DLog("sendFirmwareData")
         //define one page request  object
         let Onepage:Mcu_OnePageRequest = Mcu_OnePageRequest()
-
-        for var i:Int = 0; i < notificationPacketInterval && firmwareDataBytesSent < binFileSize; i++
+        for var i:Int = 0; i < notificationPacketInterval && firmwareDataBytesSent < binFileSize; i+=1
         {
             var length = DFUCONTROLLER_MAX_PACKET_SIZE;
             var pagePacket : NSData;
@@ -603,7 +602,7 @@ class AidOtaController : NSObject,ConnectionControllerDelegate {
 
             if (state == DFUControllerState.SEND_FIRMWARE_DATA)
             {
-                curpage++
+                curpage+=1
                 state = DFUControllerState.WAIT_RECEIPT
             }
 

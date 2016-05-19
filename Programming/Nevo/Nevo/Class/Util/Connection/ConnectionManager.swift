@@ -84,7 +84,7 @@ class ConnectionManager: NSObject {
         let nowTime = Int(NSDate().timeIntervalSince1970)
         ConnectionManager.Const.connectedTime = timeInter
         
-        if let preConnectedTime = ConnectionManager.Const.connectedTime {
+        if ConnectionManager.Const.connectedTime != nil {
             //if disconnecttime and connectedtime not more than 20 seconds, not show the connected msg
             if let preDisconnectTime = ConnectionManager.Const.disconnectTime {
                 if nowTime - preDisconnectTime > Int(ConnectionManager.Const.maxReconnectTime) {
@@ -109,7 +109,7 @@ class ConnectionManager: NSObject {
                         UIApplication.sharedApplication().cancelLocalNotification(disMsg)
                         mDisconnectedLocalMsg.removeAtIndex(arrayIndex)
                     }
-                    arrayIndex++
+                    arrayIndex+=1
                 }
             }
             
@@ -176,8 +176,6 @@ class ConnectionManager: NSObject {
         case .disconnected:
             AppTheme.DLog("checkConnectSendNotification disconnected time \(nowTime)")
             setDisconnectTime(nowTime)
-        default:
-            AppTheme.DLog("checkConnectSendNotification default")
         }
     }
     

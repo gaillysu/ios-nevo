@@ -88,8 +88,6 @@ class UserDatabaseHelper:NSObject,BaseEntryDatabaseHelper {
             }
             db.close()
             return true
-        } catch let error as NSError {
-            print("failed: \(error.localizedDescription)")
         }
     }
 
@@ -98,7 +96,7 @@ class UserDatabaseHelper:NSObject,BaseEntryDatabaseHelper {
         let dict:NSDictionary = self.getAllProperties()
         let proNames:NSMutableArray = NSMutableArray(array: (dict.objectForKey("name") as! [NSString]))
         let proTypes:NSMutableArray = NSMutableArray(array: (dict.objectForKey("type") as! [NSString]))
-        for (var i:Int = 0; i < proNames.count; i++) {
+        for i in 0 ..< proNames.count{
             pars.appendFormat("%@ %@", proNames.objectAtIndex(i) as! NSString,proTypes.objectAtIndex(i) as! NSString)
             if(i+1 != proNames.count){
                 pars.appendString(",")
@@ -126,9 +124,9 @@ class UserDatabaseHelper:NSObject,BaseEntryDatabaseHelper {
         let proNames:NSMutableArray = NSMutableArray()
         let proTypes:NSMutableArray = NSMutableArray()
         let theTransients:NSArray = self.transients()
-        var outCount:UInt32 = 0, i:UInt32 = 0;
+        var outCount:UInt32 = 0, _:UInt32 = 0;
         let properties:UnsafeMutablePointer = class_copyPropertyList(self,&outCount)
-        for (i = 0; i < outCount; i++) {
+        for i in 0 ..< outCount{
             let property:objc_property_t = properties[Int(i)];
             //获取属性名
             let propertyName:NSString = NSString(CString: property_getName(property), encoding: NSUTF8StringEncoding)!
@@ -195,7 +193,7 @@ class UserDatabaseHelper:NSObject,BaseEntryDatabaseHelper {
         let keyString:NSMutableString = NSMutableString()
         let valueString:NSMutableString = NSMutableString()
         let insertValues:NSMutableArray = NSMutableArray()
-        for (var i:Int = 0; i < self.columeNames.count; i++) {
+        for i in 0 ..< self.columeNames.count{
             let proname:NSString = self.columeNames.objectAtIndex(i) as! NSString
             if (proname.isEqualToString(primaryId)) {
                 continue;
@@ -241,7 +239,7 @@ class UserDatabaseHelper:NSObject,BaseEntryDatabaseHelper {
             }
             let keyString:NSMutableString = NSMutableString()
             let updateValues:NSMutableArray = NSMutableArray()
-            for (var i:Int = 0; i < self.columeNames.count; i++) {
+            for i in 0 ..< self.columeNames.count{
                 let proname:NSString = self.columeNames.objectAtIndex(i) as! NSString
                 if (proname.isEqualToString(primaryId)) {
                     continue;
@@ -313,8 +311,7 @@ class UserDatabaseHelper:NSObject,BaseEntryDatabaseHelper {
             let resultSet:FMResultSet = db.executeQuery(sql, withArgumentsInArray: nil)
             while (resultSet.next()) {
                 let model:UserDatabaseHelper = UserDatabaseHelper()
-
-                for (var i:Int = 0; i < model.columeNames.count; i++) {
+                for i in 0 ..< model.columeNames.count{
                     let columeName:NSString = (model.columeNames.objectAtIndex(i) as! NSString)
                     let columeType:NSString = (model.columeTypes.objectAtIndex(i) as! NSString)
                     if (columeType.isEqualToString(SQLTEXT)) {
@@ -346,8 +343,7 @@ class UserDatabaseHelper:NSObject,BaseEntryDatabaseHelper {
                 //let classType: AnyObject.Type = self.classForCoder()
                 //let nsobjectype : NevoDBModel.Type = classType as! NevoDBModel.Type
                 let model:UserDatabaseHelper = UserDatabaseHelper()
-
-                for (var i:Int = 0; i < model.columeNames.count; i++) {
+                for i in 0 ..< model.columeNames.count{
                     let columeName:NSString = model.columeNames.objectAtIndex(i) as! NSString
                     let columeType:NSString = model.columeTypes.objectAtIndex(i) as! NSString
                     if (columeType.isEqualToString(SQLTEXT)) {
@@ -395,7 +391,7 @@ class UserDatabaseHelper:NSObject,BaseEntryDatabaseHelper {
             let fieldSql:String = "\(column) \(proType)"
             //[NSString stringWithFormat:@"%@ %@",column,proType];
             let sql:String = String(format: "ALTER TABLE %@ ADD COLUMN %@ ",tableName,fieldSql)
-            var args:CVaListPointer?
+            let args:CVaListPointer?
             if (db.executeUpdate(sql, withVAList: args!)) {
                 return false;
             }
