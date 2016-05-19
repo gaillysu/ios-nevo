@@ -26,7 +26,7 @@ class RegisterController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.title = "Register"
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(RegisterController.dismissKeyboard))
         view.addGestureRecognizer(tap)
         self.repeatPasswordTextField.text = "123456"
         self.passwordTextField.text = "123456"

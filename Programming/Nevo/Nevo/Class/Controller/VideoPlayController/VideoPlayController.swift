@@ -68,25 +68,25 @@ class VideoPlayController: AVPlayerViewController,AVPlayerViewControllerDelegate
     
 
     func playerViewControllerWillStartPictureInPicture(playerViewController: AVPlayerViewController) {
-        NSLog("%s", __FUNCTION__);
+        NSLog("%s", #function);
     }
 
     func playerViewControllerDidStartPictureInPicture(playerViewController: AVPlayerViewController) {
-        NSLog("%s", __FUNCTION__);
+        NSLog("%s", #function);
     }
 
 
     func playerViewController(playerViewController: AVPlayerViewController, failedToStartPictureInPictureWithError error: NSError) {
-        NSLog("%s", __FUNCTION__);
+        NSLog("%s", #function);
     }
 
     func playerViewControllerWillStopPictureInPicture(playerViewController: AVPlayerViewController) {
-        NSLog("%s", __FUNCTION__);
+        NSLog("%s", #function);
     }
 
 
     func playerViewControllerDidStopPictureInPicture(playerViewController: AVPlayerViewController) {
-        NSLog("%s", __FUNCTION__);
+        NSLog("%s", #function);
     }
 
     func playerViewControllerShouldAutomaticallyDismissAtPictureInPictureStart(playerViewController: AVPlayerViewController) -> Bool {
@@ -95,7 +95,7 @@ class VideoPlayController: AVPlayerViewController,AVPlayerViewControllerDelegate
 
 
     func playerViewController(playerViewController: AVPlayerViewController, restoreUserInterfaceForPictureInPictureStopWithCompletionHandler completionHandler: (Bool) -> Void) {
-        NSLog("%s", __FUNCTION__);
+        NSLog("%s", #function);
     }
 
     /*

@@ -110,7 +110,7 @@ class SelectedNotificationTypeController: UITableViewController {
             for swicthView in cell.contentView.subviews{
                 if(swicthView.isKindOfClass(UISwitch.classForCoder())){
                     let mSwitch:UISwitch = swicthView as! UISwitch
-                    mSwitch.addTarget(self, action: Selector("buttonManager:"), forControlEvents: UIControlEvents.ValueChanged)
+                    mSwitch.addTarget(self, action: #selector(SelectedNotificationTypeController.buttonManager(_:)), forControlEvents: UIControlEvents.ValueChanged)
                 }
             }
             return cell

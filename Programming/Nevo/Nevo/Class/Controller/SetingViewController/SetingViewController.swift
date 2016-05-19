@@ -32,11 +32,11 @@ class SetingViewController: UIViewController,SyncControllerDelegate,ButtonManage
 
         sources = [NSLocalizedString("Link-Loss Notifications", comment: ""),NSLocalizedString("Notifications", comment: ""),NSLocalizedString("My nevo", comment: ""),NSLocalizedString("Support", comment: "")]
         sourcesImage = ["new_iOS_link_icon","new_iOS_notfications_icon","new_iOS_mynevo_iocn","new_iOS_support_icon"]
-        titleArray = [NSLocalizedString("goals", comment: ""),NSLocalizedString("find_my_watch", comment: ""),NSLocalizedString("forget_watch", comment: ""),NSLocalizedString("Rate", comment: "")]
+        titleArray = [NSLocalizedString("goals", comment: ""),NSLocalizedString("find_my_watch", comment: ""),NSLocalizedString("forget_watch", comment: "")]
         titleArrayImage = ["new_iOS_goals_icon","new_iOS_findmywatch_icon","forget_watch","iOS_rate"]
 
-        let userProfile:UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Compose, target: self, action: #selector(SetingViewController.userProfileAction(_:)))
-        self.navigationItem.rightBarButtonItem = userProfile
+//        let userProfile:UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Compose, target: self, action: #selector(SetingViewController.userProfileAction(_:)))
+//        self.navigationItem.rightBarButtonItem = userProfile
     }
 
     override func viewDidAppear(animated: Bool) {
@@ -223,7 +223,7 @@ class SetingViewController: UIViewController,SyncControllerDelegate,ButtonManage
 
     // MARK: - UITableViewDataSource
     func numberOfSectionsInTableView(tableView: UITableView) -> Int{
-        return 3
+        return 2
 
     }
 

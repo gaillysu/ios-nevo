@@ -42,8 +42,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
 
     let dbQueue:FMDatabaseQueue = FMDatabaseQueue(path: AppDelegate.dbPath())
 
-    private let networkManager = NetworkReachabilityManager(host: "www.apple.com")
-
     class func getAppDelegate()->AppDelegate {
         return UIApplication.sharedApplication().delegate as! AppDelegate
     }
@@ -82,19 +80,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
         MobClick.startWithConfigure(UMAnalyticsConfig.sharedInstance())
 
         /**
-        *  Network monitoring
-        */
-        networkManager?.listener = { status in
-            debugPrint("Network Status Changed: \(status)")
-        }
-        networkManager?.startListening()
-
-        /**
         Initialize the BLE Manager
         */
         mConnectionController = ConnectionControllerImpl()
         mConnectionController?.setDelegate(self)
-
+        let userDefaults = NSUserDefaults.standardUserDefaults();
+        lastSync = userDefaults.doubleForKey(LAST_SYNC_DATE_KEY)
+        
         //cancel all notifications  PM-13:00, PM 19:00
         LocalNotification.sharedInstance().cancelNotification([NevoAllKeys.LocalStartSportKey(),NevoAllKeys.LocalEndSportKey()])
 
@@ -163,7 +155,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
     }
 
     func getNetworkState()->Bool {
-        return networkManager!.isReachable
+        return false;
     }
 
     /**
@@ -295,7 +287,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                 banner.show(duration: 1.5)
             }
         }
-
     }
 
     /**
@@ -305,19 +296,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
         let banner = Banner(title: NSLocalizedString("sync_finished", comment: ""), subtitle: nil, image: nil, backgroundColor: AppTheme.hexStringToColor("#0dac67"))
         banner.dismissesOnTap = true
         banner.show(duration: 1.5)
-
         lastSync = NSDate().timeIntervalSince1970
-        AppTheme.DLog("*** Sync finished ***")
-        //let userDefaults = NSUserDefaults.standardUserDefaults();
-        //userDefaults.setObject(NSDate().timeIntervalSince1970,forKey:LAST_SYNC_DATE_KEY)
-        //userDefaults.synchronize()
+        let userDefaults = NSUserDefaults.standardUserDefaults();
+        userDefaults.setObject(NSDate().timeIntervalSince1970,forKey:LAST_SYNC_DATE_KEY)
+        userDefaults.synchronize()
     }
 
     /**
      Remove MyNevoDelegate
      */
     func removeMyNevoDelegate(){
-        for(var i:Int = 0; i < mDelegates.count; i++){
+        for i in 0 ..< mDelegates.count{
             if mDelegates[i] is MyNevoController{
                 mDelegates.removeAtIndex(i)
             }
@@ -453,7 +442,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                 let array:NSArray = UserAlarm.getAll()
 
                 if(AppDelegate.getAppDelegate().getSoftwareVersion().integerValue > 18){
-                    for(var index:Int = 0;index<13;index++) {
+                    for index in 0 ..< mDelegates.count{
                         let date:NSDate = NSDate()
                         let newAlarm:NewAlarm = NewAlarm(alarmhour: date.hour, alarmmin: date.minute, alarmNumber: index, alarmWeekday: 0)
                         if(AppDelegate.getAppDelegate().isConnected()){
@@ -473,7 +462,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                                 AppDelegate.getAppDelegate().setNewAlarm(newAlarm)
                             }
 
-                            sleepAlarmCount++
+                            sleepAlarmCount+=1
                         }else if (alarmModel.type == 0 && alarmModel.status){
                             let date:NSDate = NSDate(timeIntervalSince1970: alarmModel.timer)
                             let newAlarm:NewAlarm = NewAlarm(alarmhour: date.hour, alarmmin: date.minute, alarmNumber: dayAlarmCount, alarmWeekday: alarmModel.dayOfWeek)
@@ -490,7 +479,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                     self.syncActivityData()
 
                 }else{
-                    for(var index:Int = 0; index < array.count; index += 1){
+                    for index in 0 ..< array.count{
                         let useralarm:UserAlarm = array[index] as! UserAlarm
                         let date:NSDate = NSDate(timeIntervalSince1970: useralarm.timer)
                         if(useralarm.status) {
@@ -499,7 +488,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                         }
                     }
 
-                    for(var index:Int = 0; index<3;index++) {
+                    for index in 0 ..< 3{
                         let date:NSDate = NSDate()
                         let alarm:Alarm = Alarm(index:index, hour: date.hour, minute: date.minute, enable: false)
                         alarmArray.append(alarm)
@@ -703,7 +692,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                             }
                         })
                     }
-                }
+                }   
 
                 for i:Int in 0 ..< savedDailyHistory[Int(currentDay)].HourlySteps.count {
                     //only save vaild hourly steps for every day, include today.
@@ -738,7 +727,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
             }
 
             if(packet.getHeader() == GetStepsGoalRequest.HEADER()) {
-                var thispacket = packet.copy() as DailyStepsNevoPacket
+                _ = packet.copy() as DailyStepsNevoPacket
                 //refresh current hourly steps changing in the healthkit
             }
             
@@ -859,7 +848,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
             banner.show(duration: 1.5)
         }
     }
-
 }
 
 protocol SyncControllerDelegate:NSObjectProtocol {

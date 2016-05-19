@@ -144,13 +144,13 @@ class DatePickerView: UIViewController,UIPickerViewDataSource,UIPickerViewDelega
             switch (component){
             case 0:
                 var timerArray:[String] = []
-                for(var index:Int = 0;index<24;index++) {
+                for index in 0 ..< 24{
                     timerArray.append("\(index)")
                 }
                 return timerArray[row]
             case 1:
                 var timerArray:[String] = []
-                for(var index:Int = 0;index<60;index++) {
+                for index in 0 ..< 60{
                     timerArray.append("\(index)")
                 }
                 return timerArray[row]
@@ -162,13 +162,13 @@ class DatePickerView: UIViewController,UIPickerViewDataSource,UIPickerViewDelega
             switch (component){
             case 0:
                 var timerArray:[String] = []
-                for(var index:Int = 0;index<24;index++) {
+                for index in 0 ..< 24{
                     timerArray.append("\(index)")
                 }
                 return timerArray[row]
             case 1:
                 var timerArray:[String] = []
-                for(var index:Int = 0;index<60;index++) {
+                for index in 0 ..< 60{
                     timerArray.append("\(index)")
                 }
                 return timerArray[row]

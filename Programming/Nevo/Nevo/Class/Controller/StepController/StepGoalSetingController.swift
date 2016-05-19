@@ -20,7 +20,7 @@ class StepGoalSetingController: PublicClassController,ButtonManagerCallBack,Sync
     private var mVisiable:Bool = true
     private var contentTitleArray:[String] = []
     private var contentTArray:[String] = ["0","0","0"]
-    
+    var shouldSync = false;
     init() {
         super.init(nibName: "StepGoalSetingController", bundle: NSBundle.mainBundle())
     }
@@ -85,7 +85,9 @@ class StepGoalSetingController: PublicClassController,ButtonManagerCallBack,Sync
     func clockRefreshAction(){
         stepGoalView.getClockTimerView().currentTimer()
         if AppDelegate.getAppDelegate().isConnected() {
-            AppDelegate.getAppDelegate().getGoal()
+            if shouldSync{
+                AppDelegate.getAppDelegate().getGoal()
+            }
         }
     }
 

@@ -58,7 +58,7 @@ class AidOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMan
             if fileExtension == "hex"
             {
                 firmwareURLs.append(selectedFile)
-                allTaskNumber++;
+                allTaskNumber+=1;
                 break
             }
         }
@@ -71,7 +71,7 @@ class AidOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMan
             if fileExtension == "bin"
             {
                 firmwareURLs.append(selectedFile)
-                allTaskNumber++;
+                allTaskNumber+=1;
                 break
             }
         }
@@ -113,7 +113,7 @@ class AidOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMan
             return
         }
 
-        currentTaskNumber++;
+        currentTaskNumber += 1;
         selectedFileURL = firmwareURLs[currentIndex]
         let fileExtension:String? = selectedFileURL!.pathExtension
         if fileExtension == "bin"{
@@ -271,7 +271,7 @@ class AidOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMan
         }else{
             hudView = MBProgressHUD.showMessage("Please later, in the connection.")
             hudView?.hide(true, afterDelay: 8)
-            mTimeoutTimer = NSTimer.scheduledTimerWithTimeInterval(Double(1), target: self, selector:Selector("timeroutProc:"), userInfo: nil, repeats: true)
+            mTimeoutTimer = NSTimer.scheduledTimerWithTimeInterval(Double(1), target: self, selector:#selector(AidOtaViewController.timeroutProc(_:)), userInfo: nil, repeats: true)
             mAidOtaController?.mConnectionController?.setOTAMode(true, Disconnect: true)
             // no connected nevo, disable update
         }

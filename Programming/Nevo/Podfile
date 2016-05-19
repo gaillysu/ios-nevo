@@ -12,7 +12,7 @@ pod 'Timepiece'
 pod 'Fabric'
 pod 'Crashlytics'
 pod 'TextFieldEffects'
-#pod 'Charts' 
+pod 'Charts' 
 
 # pod 'FMDB/FTS'   # FMDB with FTS
 # pod 'FMDB/standalone'   # FMDB with latest SQLite amalgamation source

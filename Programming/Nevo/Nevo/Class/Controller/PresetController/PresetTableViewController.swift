@@ -70,7 +70,7 @@ class PresetTableViewController: UITableViewController,ButtonManagerCallBack,Add
             let switchSender:UISwitch = sender as! UISwitch
             let preModel:Presets = prestArray[switchSender.tag]
             preModel.status = switchSender.on
-            let isUpdate:Bool = preModel.update()
+            _ = preModel.update()
         }
     }
 
@@ -106,7 +106,7 @@ class PresetTableViewController: UITableViewController,ButtonManagerCallBack,Add
         if editingStyle == .Delete {
             // Delete the row from the data source
             let preModel:Presets = prestArray[indexPath.row]
-            let isUpdate:Bool = preModel.remove()
+            _ = preModel.remove()
             prestArray.removeAtIndex(indexPath.row)
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
         } else if editingStyle == .Insert {
