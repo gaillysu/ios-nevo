@@ -391,7 +391,7 @@ class UserDatabaseHelper:NSObject,BaseEntryDatabaseHelper {
             let fieldSql:String = "\(column) \(proType)"
             //[NSString stringWithFormat:@"%@ %@",column,proType];
             let sql:String = String(format: "ALTER TABLE %@ ADD COLUMN %@ ",tableName,fieldSql)
-            let args:CVaListPointer?
+            var args:CVaListPointer?
             if (db.executeUpdate(sql, withVAList: args!)) {
                 return false;
             }

@@ -42,8 +42,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
 
     let dbQueue:FMDatabaseQueue = FMDatabaseQueue(path: AppDelegate.dbPath())
 
-    private let networkManager = NetworkReachabilityManager(host: "www.apple.com")
-
     class func getAppDelegate()->AppDelegate {
         return UIApplication.sharedApplication().delegate as! AppDelegate
     }
@@ -81,19 +79,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
         MobClick.startWithAppkey(umengAppKey, reportPolicy: BATCH, channelId: "")
 
         /**
-        *  Network monitoring
-        */
-        networkManager?.listener = { status in
-            debugPrint("Network Status Changed: \(status)")
-        }
-        networkManager?.startListening()
-
-        /**
         Initialize the BLE Manager
         */
         mConnectionController = ConnectionControllerImpl()
         mConnectionController?.setDelegate(self)
-
+        let userDefaults = NSUserDefaults.standardUserDefaults();
+        lastSync = userDefaults.doubleForKey(LAST_SYNC_DATE_KEY)
+        
         //cancel all notifications  PM-13:00, PM 19:00
         LocalNotification.sharedInstance().cancelNotification([NevoAllKeys.LocalStartSportKey(),NevoAllKeys.LocalEndSportKey()])
 
@@ -162,7 +154,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
     }
 
     func getNetworkState()->Bool {
-        return networkManager!.isReachable
+        return false;
     }
 
     /**
@@ -294,7 +286,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                 banner.show(duration: 1.5)
             }
         }
-
     }
 
     /**
@@ -304,12 +295,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
         let banner = Banner(title: NSLocalizedString("sync_finished", comment: ""), subtitle: nil, image: nil, backgroundColor: AppTheme.hexStringToColor("#0dac67"))
         banner.dismissesOnTap = true
         banner.show(duration: 1.5)
-
         lastSync = NSDate().timeIntervalSince1970
-        AppTheme.DLog("*** Sync finished ***")
-        //let userDefaults = NSUserDefaults.standardUserDefaults();
-        //userDefaults.setObject(NSDate().timeIntervalSince1970,forKey:LAST_SYNC_DATE_KEY)
-        //userDefaults.synchronize()
+        let userDefaults = NSUserDefaults.standardUserDefaults();
+        userDefaults.setObject(NSDate().timeIntervalSince1970,forKey:LAST_SYNC_DATE_KEY)
+        userDefaults.synchronize()
     }
 
     /**
@@ -702,7 +691,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                             }
                         })
                     }
-                }
+                }   
 
                 for i:Int in 0 ..< savedDailyHistory[Int(currentDay)].HourlySteps.count {
                     //only save vaild hourly steps for every day, include today.
@@ -858,7 +847,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
             banner.show(duration: 1.5)
         }
     }
-
 }
 
 protocol SyncControllerDelegate:NSObjectProtocol {

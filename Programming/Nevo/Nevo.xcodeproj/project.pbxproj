@@ -19,14 +19,11 @@
 		001F1B7B1B57777B001DD426 /* nevo_wacth_selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 001F1B791B57777B001DD426 /* nevo_wacth_selected.png */; };
 		001F1B7C1B57777B001DD426 /* nevo_wacth.png in Resources */ = {isa = PBXBuildFile; fileRef = 001F1B7A1B57777B001DD426 /* nevo_wacth.png */; };
 		00321D6D1C98EBB10069BFCC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00321D6C1C98EBB10069BFCC /* AppDelegate.swift */; };
-		00321D731C99377A0069BFCC /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00321D6F1C99377A0069BFCC /* Alamofire.framework */; };
-		00321D751C99377A0069BFCC /* NJKWebViewProgress.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00321D711C99377A0069BFCC /* NJKWebViewProgress.framework */; };
 		00321D7C1C993C320069BFCC /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00321D771C993C320069BFCC /* LoginController.swift */; };
 		00321D7D1C993C320069BFCC /* LoginController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00321D781C993C320069BFCC /* LoginController.xib */; };
 		00321D7E1C993C320069BFCC /* RegisterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00321D7A1C993C320069BFCC /* RegisterController.swift */; };
 		00321D7F1C993C320069BFCC /* RegisterController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00321D7B1C993C320069BFCC /* RegisterController.xib */; };
 		00321D821C993C7D0069BFCC /* HttpPostRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00321D811C993C7D0069BFCC /* HttpPostRequest.swift */; };
-		00321D841C993CCE0069BFCC /* GSMessages.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00321D831C993CCE0069BFCC /* GSMessages.framework */; };
 		00344F5C1C47A86800C2FC7A /* SupportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00344F5A1C47A86800C2FC7A /* SupportViewController.swift */; };
 		00344F5D1C47A86800C2FC7A /* SupportViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00344F5B1C47A86800C2FC7A /* SupportViewController.xib */; };
 		0036EB051C48BA8300DCED46 /* connected.png in Resources */ = {isa = PBXBuildFile; fileRef = 0036EAFF1C48BA8300DCED46 /* connected.png */; };
@@ -41,7 +38,6 @@
 		0042C8B41C7DB3EF00177D3D /* NotAlarmView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0042C8B31C7DB3EF00177D3D /* NotAlarmView.xib */; };
 		00478F4F1A8F637D00D0DCE2 /* clockViewHour.png in Resources */ = {isa = PBXBuildFile; fileRef = 00478F4D1A8F637D00D0DCE2 /* clockViewHour.png */; };
 		00478F501A8F637D00D0DCE2 /* clockViewMinute.png in Resources */ = {isa = PBXBuildFile; fileRef = 00478F4E1A8F637D00D0DCE2 /* clockViewMinute.png */; };
-		004846D41B72EDB9005A6D83 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 004846D31B72EDB9005A6D83 /* libsqlite3.dylib */; };
 		004ED1F01CB386CC009D053C /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 004ED1EC1CB386CC009D053C /* Info.plist */; };
 		004ED1F11CB386CC009D053C /* iRate.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 004ED1ED1CB386CC009D053C /* iRate.bundle */; };
 		004ED1F21CB386CC009D053C /* iRate.m in Sources */ = {isa = PBXBuildFile; fileRef = 004ED1EF1CB386CC009D053C /* iRate.m */; };
@@ -301,8 +297,6 @@
 		00E759181C2406E600372529 /* upgrade_clock.png in Resources */ = {isa = PBXBuildFile; fileRef = 00E759171C2406E600372529 /* upgrade_clock.png */; };
 		00EB507D1C9FE5F900D331F5 /* RunningToHK.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EB507C1C9FE5F900D331F5 /* RunningToHK.swift */; };
 		00EB507F1C9FE93500D331F5 /* CaloriesToHK.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EB507E1C9FE93500D331F5 /* CaloriesToHK.swift */; };
-		00EB50821C9FEB4600D331F5 /* BRYXBanner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00EB50801C9FEB4600D331F5 /* BRYXBanner.framework */; };
-		00EB50831C9FEB4600D331F5 /* Timepiece.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00EB50811C9FEB4600D331F5 /* Timepiece.framework */; };
 		00EC9DAE1C8582E400280904 /* TutorialOneViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00EC9DB01C8582E400280904 /* TutorialOneViewController.xib */; };
 		00EC9DB91C85830F00280904 /* HomeTutorialController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00EC9DBB1C85830F00280904 /* HomeTutorialController.xib */; };
 		00EC9DC41C85832300280904 /* SleepTutorialController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00EC9DC61C85832300280904 /* SleepTutorialController.xib */; };
@@ -320,7 +314,6 @@
 		00F0C3531C8993DD005888A7 /* NewAddAlarmController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F0C3511C8993DD005888A7 /* NewAddAlarmController.swift */; };
 		00F0C3541C8993DD005888A7 /* NewAddAlarmController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00F0C3521C8993DD005888A7 /* NewAddAlarmController.xib */; };
 		07BCE82A1B5CAB2200C7F558 /* clockview600_color.png in Resources */ = {isa = PBXBuildFile; fileRef = 07BCE8291B5CAB2100C7F558 /* clockview600_color.png */; };
-		831397CF96CB3D9C3196191B /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A369353E785AD00871B06011 /* Pods.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		9A2D6C3B1A9C6D9F00591BDC /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A2D6C3A1A9C6D9F00591BDC /* HealthKit.framework */; };
 		9A2D6C3E1A9C71E500591BDC /* NevoHK.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2D6C3D1A9C71E500591BDC /* NevoHK.swift */; };
 		9A2D6C401A9C783800591BDC /* NevoHKImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2D6C3F1A9C783800591BDC /* NevoHKImpl.swift */; };
@@ -333,7 +326,14 @@
 		9AD8F98D1A6E2D6E00F01014 /* RawPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD8F98C1A6E2D6E00F01014 /* RawPacket.swift */; };
 		9AD8F98F1A6E2EE000F01014 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD8F98E1A6E2EE000F01014 /* Profile.swift */; };
 		9E15EAB11CED5BF6009F129F /* TextFieldEffects.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E15EAB01CED5BF6009F129F /* TextFieldEffects.framework */; };
-		9E15EAB31CED5F47009F129F /* FMDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E15EAB21CED5F47009F129F /* FMDB.framework */; };
+		9E15EABB1CED6B33009F129F /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E15EAB41CED6B33009F129F /* Alamofire.framework */; };
+		9E15EABC1CED6B33009F129F /* BRYXBanner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E15EAB51CED6B33009F129F /* BRYXBanner.framework */; };
+		9E15EABD1CED6B33009F129F /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E15EAB61CED6B33009F129F /* Charts.framework */; };
+		9E15EABE1CED6B33009F129F /* FMDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E15EAB71CED6B33009F129F /* FMDB.framework */; };
+		9E15EABF1CED6B33009F129F /* GSMessages.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E15EAB81CED6B33009F129F /* GSMessages.framework */; };
+		9E15EAC01CED6B33009F129F /* NJKWebViewProgress.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E15EAB91CED6B33009F129F /* NJKWebViewProgress.framework */; };
+		9E15EAC11CED6B33009F129F /* Timepiece.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E15EABA1CED6B33009F129F /* Timepiece.framework */; };
+		9E15EAC31CED6B3A009F129F /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E15EAC21CED6B3A009F129F /* Pods.framework */; };
 		9E98FB291C463A3B00BAB700 /* TutorialOneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E98FB281C463A3B00BAB700 /* TutorialOneViewController.swift */; };
 		9E98FB2B1C463BB200BAB700 /* TutorialTwoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E98FB2A1C463BB200BAB700 /* TutorialTwoViewController.swift */; };
 		9E98FB2D1C463D2A00BAB700 /* TutorialThreeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E98FB2C1C463D2A00BAB700 /* TutorialThreeViewController.swift */; };
@@ -366,16 +366,11 @@
 		001F1B791B57777B001DD426 /* nevo_wacth_selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nevo_wacth_selected.png; sourceTree = "<group>"; };
 		001F1B7A1B57777B001DD426 /* nevo_wacth.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nevo_wacth.png; sourceTree = "<group>"; };
 		00321D6C1C98EBB10069BFCC /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		00321D6E1C99377A0069BFCC /* AFNetworking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AFNetworking.framework; path = "Pods/../build/Debug-iphoneos/AFNetworking.framework"; sourceTree = "<group>"; };
-		00321D6F1C99377A0069BFCC /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = "Pods/../build/Debug-iphoneos/Alamofire.framework"; sourceTree = "<group>"; };
-		00321D701C99377A0069BFCC /* FMDB.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FMDB.framework; path = "Pods/../build/Debug-iphoneos/FMDB.framework"; sourceTree = "<group>"; };
-		00321D711C99377A0069BFCC /* NJKWebViewProgress.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NJKWebViewProgress.framework; path = "Pods/../build/Debug-iphoneos/NJKWebViewProgress.framework"; sourceTree = "<group>"; };
 		00321D771C993C320069BFCC /* LoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		00321D781C993C320069BFCC /* LoginController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginController.xib; sourceTree = "<group>"; };
 		00321D7A1C993C320069BFCC /* RegisterController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterController.swift; sourceTree = "<group>"; };
 		00321D7B1C993C320069BFCC /* RegisterController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RegisterController.xib; sourceTree = "<group>"; };
 		00321D811C993C7D0069BFCC /* HttpPostRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpPostRequest.swift; sourceTree = "<group>"; };
-		00321D831C993CCE0069BFCC /* GSMessages.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GSMessages.framework; path = "Pods/../build/Debug-iphoneos/GSMessages.framework"; sourceTree = "<group>"; };
 		00344F5A1C47A86800C2FC7A /* SupportViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SupportViewController.swift; sourceTree = "<group>"; };
 		00344F5B1C47A86800C2FC7A /* SupportViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SupportViewController.xib; sourceTree = "<group>"; };
 		0036EAFF1C48BA8300DCED46 /* connected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = connected.png; sourceTree = "<group>"; };
@@ -390,7 +385,6 @@
 		0042C8B31C7DB3EF00177D3D /* NotAlarmView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NotAlarmView.xib; sourceTree = "<group>"; };
 		00478F4D1A8F637D00D0DCE2 /* clockViewHour.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clockViewHour.png; sourceTree = "<group>"; };
 		00478F4E1A8F637D00D0DCE2 /* clockViewMinute.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clockViewMinute.png; sourceTree = "<group>"; };
-		004846D31B72EDB9005A6D83 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		004ED1EC1CB386CC009D053C /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		004ED1ED1CB386CC009D053C /* iRate.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = iRate.bundle; sourceTree = "<group>"; };
 		004ED1EE1CB386CC009D053C /* iRate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iRate.h; sourceTree = "<group>"; };
@@ -662,8 +656,6 @@
 		00E759171C2406E600372529 /* upgrade_clock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = upgrade_clock.png; sourceTree = "<group>"; };
 		00EB507C1C9FE5F900D331F5 /* RunningToHK.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RunningToHK.swift; sourceTree = "<group>"; };
 		00EB507E1C9FE93500D331F5 /* CaloriesToHK.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaloriesToHK.swift; sourceTree = "<group>"; };
-		00EB50801C9FEB4600D331F5 /* BRYXBanner.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BRYXBanner.framework; path = "Pods/../build/Debug-iphoneos/BRYXBanner.framework"; sourceTree = "<group>"; };
-		00EB50811C9FEB4600D331F5 /* Timepiece.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Timepiece.framework; path = "Pods/../build/Debug-iphoneos/Timepiece.framework"; sourceTree = "<group>"; };
 		00EC9DAF1C8582E400280904 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/TutorialOneViewController.xib; sourceTree = "<group>"; };
 		00EC9DB21C8582E900280904 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/TutorialOneViewController.strings; sourceTree = "<group>"; };
 		00EC9DB41C8582EB00280904 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/TutorialOneViewController.strings"; sourceTree = "<group>"; };
@@ -739,7 +731,14 @@
 		9AD8F98C1A6E2D6E00F01014 /* RawPacket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RawPacket.swift; path = Frameworks/NevoBT/RawPacket.swift; sourceTree = "<group>"; };
 		9AD8F98E1A6E2EE000F01014 /* Profile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Profile.swift; path = Frameworks/NevoBT/Profile.swift; sourceTree = "<group>"; };
 		9E15EAB01CED5BF6009F129F /* TextFieldEffects.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TextFieldEffects.framework; path = "../../../../../Library/Developer/Xcode/DerivedData/Nevo-aermbqasljcozldcsamycxhhblpv/Build/Products/Debug-iphonesimulator/TextFieldEffects.framework"; sourceTree = "<group>"; };
-		9E15EAB21CED5F47009F129F /* FMDB.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FMDB.framework; path = "Pods/../build/Debug-iphoneos/FMDB.framework"; sourceTree = "<group>"; };
+		9E15EAB41CED6B33009F129F /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = "../../../../../Library/Developer/Xcode/DerivedData/Nevo-aermbqasljcozldcsamycxhhblpv/Build/Products/Debug-iphonesimulator/Alamofire.framework"; sourceTree = "<group>"; };
+		9E15EAB51CED6B33009F129F /* BRYXBanner.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BRYXBanner.framework; path = "../../../../../Library/Developer/Xcode/DerivedData/Nevo-aermbqasljcozldcsamycxhhblpv/Build/Products/Debug-iphonesimulator/BRYXBanner.framework"; sourceTree = "<group>"; };
+		9E15EAB61CED6B33009F129F /* Charts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Charts.framework; path = "../../../../../Library/Developer/Xcode/DerivedData/Nevo-aermbqasljcozldcsamycxhhblpv/Build/Products/Debug-iphonesimulator/Charts.framework"; sourceTree = "<group>"; };
+		9E15EAB71CED6B33009F129F /* FMDB.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FMDB.framework; path = "../../../../../Library/Developer/Xcode/DerivedData/Nevo-aermbqasljcozldcsamycxhhblpv/Build/Products/Debug-iphonesimulator/FMDB.framework"; sourceTree = "<group>"; };
+		9E15EAB81CED6B33009F129F /* GSMessages.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GSMessages.framework; path = "../../../../../Library/Developer/Xcode/DerivedData/Nevo-aermbqasljcozldcsamycxhhblpv/Build/Products/Debug-iphonesimulator/GSMessages.framework"; sourceTree = "<group>"; };
+		9E15EAB91CED6B33009F129F /* NJKWebViewProgress.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NJKWebViewProgress.framework; path = "../../../../../Library/Developer/Xcode/DerivedData/Nevo-aermbqasljcozldcsamycxhhblpv/Build/Products/Debug-iphonesimulator/NJKWebViewProgress.framework"; sourceTree = "<group>"; };
+		9E15EABA1CED6B33009F129F /* Timepiece.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Timepiece.framework; path = "../../../../../Library/Developer/Xcode/DerivedData/Nevo-aermbqasljcozldcsamycxhhblpv/Build/Products/Debug-iphonesimulator/Timepiece.framework"; sourceTree = "<group>"; };
+		9E15EAC21CED6B3A009F129F /* Pods.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods.framework; path = "../../../../../Library/Developer/Xcode/DerivedData/Nevo-aermbqasljcozldcsamycxhhblpv/Build/Products/Debug-iphonesimulator/Pods.framework"; sourceTree = "<group>"; };
 		9E98FB281C463A3B00BAB700 /* TutorialOneViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialOneViewController.swift; sourceTree = "<group>"; };
 		9E98FB2A1C463BB200BAB700 /* TutorialTwoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialTwoViewController.swift; sourceTree = "<group>"; };
 		9E98FB2C1C463D2A00BAB700 /* TutorialThreeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialThreeViewController.swift; sourceTree = "<group>"; };
@@ -747,7 +746,6 @@
 		9E98FB341C46405800BAB700 /* TutorialFiveViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialFiveViewController.swift; sourceTree = "<group>"; };
 		9E98FB361C4640AF00BAB700 /* TutorialSevenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialSevenViewController.swift; sourceTree = "<group>"; };
 		9E98FB3C1C46434100BAB700 /* TutorialSixViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialSixViewController.swift; sourceTree = "<group>"; };
-		A369353E785AD00871B06011 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7FD54C20F9E4C504037C449 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -756,16 +754,16 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9E15EAB31CED5F47009F129F /* FMDB.framework in Frameworks */,
+				9E15EAC31CED6B3A009F129F /* Pods.framework in Frameworks */,
+				9E15EABB1CED6B33009F129F /* Alamofire.framework in Frameworks */,
+				9E15EABC1CED6B33009F129F /* BRYXBanner.framework in Frameworks */,
+				9E15EABD1CED6B33009F129F /* Charts.framework in Frameworks */,
+				9E15EABE1CED6B33009F129F /* FMDB.framework in Frameworks */,
+				9E15EABF1CED6B33009F129F /* GSMessages.framework in Frameworks */,
+				9E15EAC01CED6B33009F129F /* NJKWebViewProgress.framework in Frameworks */,
+				9E15EAC11CED6B33009F129F /* Timepiece.framework in Frameworks */,
 				9E15EAB11CED5BF6009F129F /* TextFieldEffects.framework in Frameworks */,
-				00EB50821C9FEB4600D331F5 /* BRYXBanner.framework in Frameworks */,
-				00EB50831C9FEB4600D331F5 /* Timepiece.framework in Frameworks */,
-				00321D841C993CCE0069BFCC /* GSMessages.framework in Frameworks */,
-				00321D731C99377A0069BFCC /* Alamofire.framework in Frameworks */,
-				00321D751C99377A0069BFCC /* NJKWebViewProgress.framework in Frameworks */,
-				004846D41B72EDB9005A6D83 /* libsqlite3.dylib in Frameworks */,
 				9A2D6C3B1A9C6D9F00591BDC /* HealthKit.framework in Frameworks */,
-				831397CF96CB3D9C3196191B /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1723,24 +1721,22 @@
 		9AD8F95A1A6DFE3400F01014 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				9E15EAB21CED5F47009F129F /* FMDB.framework */,
+				9E15EAC21CED6B3A009F129F /* Pods.framework */,
+				9E15EAB41CED6B33009F129F /* Alamofire.framework */,
+				9E15EAB51CED6B33009F129F /* BRYXBanner.framework */,
+				9E15EAB61CED6B33009F129F /* Charts.framework */,
+				9E15EAB71CED6B33009F129F /* FMDB.framework */,
+				9E15EAB81CED6B33009F129F /* GSMessages.framework */,
+				9E15EAB91CED6B33009F129F /* NJKWebViewProgress.framework */,
+				9E15EABA1CED6B33009F129F /* Timepiece.framework */,
 				9E15EAB01CED5BF6009F129F /* TextFieldEffects.framework */,
 				004ED1EB1CB386CC009D053C /* iRate */,
 				007F1F501CAA1B630021DF1B /* LocalNotification.swift */,
-				00EB50801C9FEB4600D331F5 /* BRYXBanner.framework */,
-				00EB50811C9FEB4600D331F5 /* Timepiece.framework */,
-				00321D831C993CCE0069BFCC /* GSMessages.framework */,
-				00321D6E1C99377A0069BFCC /* AFNetworking.framework */,
-				00321D6F1C99377A0069BFCC /* Alamofire.framework */,
-				00321D701C99377A0069BFCC /* FMDB.framework */,
-				00321D711C99377A0069BFCC /* NJKWebViewProgress.framework */,
-				004846D31B72EDB9005A6D83 /* libsqlite3.dylib */,
 				00E2BDDC1B16CCD0009C757E /* MBProgressHUD */,
 				9A2D6C3C1A9C717E00591BDC /* NevoHK */,
 				9A2D6C3A1A9C6D9F00591BDC /* HealthKit.framework */,
 				005BC95C1A88B79F006F9E86 /* FXBlurView */,
 				9AD8F9601A6E00C000F01014 /* NevoBT */,
-				A369353E785AD00871B06011 /* Pods.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";

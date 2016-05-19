@@ -123,7 +123,7 @@ class SyncBar: NSObject,CancelSelectorDelegate {
         //hud.spinnerImage.layer.addAnimation(fullRotation, forKey: "360")
     }
 
-    private func hide( presentHud:hudLoader,from view:UIView){
+    private func hide(var presentHud:hudLoader,from view:UIView){
         //hud.spinnerImage.removeFromSuperview()
         //hud.backgroundColor = AppTheme.hexStringToColor("#FF0000")
         presentHud = hud
