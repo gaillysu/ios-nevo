@@ -1,5 +1,5 @@
 platform :ios, '7.0'
-pod 'UMengAnalytics-NO-IDFA'
+pod 'UMengAnalytics-NO-IDFA', '~> 4.0.3'
 pod 'NJKWebViewProgress'
 
 platform :ios, '8.0'
@@ -12,7 +12,7 @@ pod 'Timepiece'
 pod 'Fabric'
 pod 'Crashlytics'
 pod 'TextFieldEffects'
-pod 'Charts' 
+pod 'Charts', '~> 2.2.4'
 
 # pod 'FMDB/FTS'   # FMDB with FTS
 # pod 'FMDB/standalone'   # FMDB with latest SQLite amalgamation source

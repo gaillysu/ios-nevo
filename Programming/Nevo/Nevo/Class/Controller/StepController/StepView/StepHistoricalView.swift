@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Charts
 
 @objc protocol SelectedChartViewDelegate{
     optional func didSelectedhighlightValue(xIndex:Int,dataSetIndex: Int, dataSteps:UserSteps)
@@ -30,15 +31,15 @@ class StepHistoricalView: UIView,ChartViewDelegate {
         if(selectedDelegate == nil) {
             selectedDelegate = delegate
             // MARK: - chartView?.marker
-            chartView!.descriptionText = " ";
+            chartView?.descriptionText = " ";
             chartView?.noDataText = NSLocalizedString("no_step_data", comment: "")
-            chartView!.noDataTextDescription = "";
-            chartView!.pinchZoomEnabled = false
-            chartView!.drawGridBackgroundEnabled = false;
-            chartView!.drawBarShadowEnabled = false;
+            chartView?.noDataTextDescription = "";
+            chartView?.pinchZoomEnabled = false
+            chartView?.drawGridBackgroundEnabled = false;
+            chartView?.drawBarShadowEnabled = false;
             let xScale:CGFloat = CGFloat(queryModel.count)/7.0;//integer/integer = integer,float/float = float
-            chartView!.setScaleMinima(xScale, scaleY: 1)
-            chartView!.setScaleEnabled(false);
+            chartView?.setScaleMinima(xScale, scaleY: 1)
+            chartView?.setScaleEnabled(false);
             chartView!.drawValueAboveBarEnabled = true;
             chartView!.doubleTapToZoomEnabled = false;
             chartView!.setViewPortOffsets(left: 0.0, top: 0.0, right: 0.0, bottom: 0.0)
@@ -120,9 +121,8 @@ class StepHistoricalView: UIView,ChartViewDelegate {
         //ChartColorTemplates.getDeepSleepColor()
         let set1:BarChartDataSet  = BarChartDataSet(yVals: yVal, label: "")
         //每个数据区块的颜色
-        set1.colors = [ChartColorTemplates.getStepsColor()];
+        set1.colors = [AppTheme.getStepsColor()];
         set1.highlightColor = AppTheme.NEVO_SOLAR_YELLOW()
-        set1.highLightAlpha = 1
         set1.barSpace = 0.05;
         let dataSets:[BarChartDataSet] = [set1];
 
@@ -131,7 +131,7 @@ class StepHistoricalView: UIView,ChartViewDelegate {
 
         chartView?.data = data;
         chartView?.animate(yAxisDuration: 2.0, easingOption: ChartEasingOption.EaseInOutCirc)
-        chartView?.moveViewToX(yVal.count)
+        chartView?.moveViewToX(CGFloat(yVal.count))
     }
 
     func chartValueSelected(chartView: ChartViewBase, entry: ChartDataEntry, dataSetIndex: Int, highlight: ChartHighlight) {

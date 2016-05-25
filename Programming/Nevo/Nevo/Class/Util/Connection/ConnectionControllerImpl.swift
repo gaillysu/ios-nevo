@@ -288,7 +288,7 @@ class ConnectionControllerImpl : NSObject, ConnectionController, NevoBTDelegate 
         
         mScanProcedureStatus = 0
         
-        mRetryTimer = NSTimer.scheduledTimerWithTimeInterval(SCAN_PROCEDURE[mScanProcedureStatus], target: self, selector:Selector("retryTimer"), userInfo: nil, repeats: false)
+        mRetryTimer = NSTimer.scheduledTimerWithTimeInterval(SCAN_PROCEDURE[mScanProcedureStatus], target: self, selector:#selector(retryTimer), userInfo: nil, repeats: false)
         
     }
     
@@ -308,7 +308,7 @@ class ConnectionControllerImpl : NSObject, ConnectionController, NevoBTDelegate 
             connect()
             
             //Then, let's reschedule a retry, to do so, let's increase the procedure status
-            mScanProcedureStatus++
+            mScanProcedureStatus += 1
             
             //The retry status is an index on the SCAN_PROCEDURE, so we can't have it too long (array out of bound etc...)
             if mScanProcedureStatus >= SCAN_PROCEDURE.count {
@@ -324,7 +324,7 @@ class ConnectionControllerImpl : NSObject, ConnectionController, NevoBTDelegate 
         //Ok, let's launch the retry timer
         mRetryTimer?.invalidate()
         
-        mRetryTimer = NSTimer.scheduledTimerWithTimeInterval(SCAN_PROCEDURE[mScanProcedureStatus], target: self, selector:Selector("retryTimer"), userInfo: nil, repeats: false)
+        mRetryTimer = NSTimer.scheduledTimerWithTimeInterval(SCAN_PROCEDURE[mScanProcedureStatus], target: self, selector:#selector(retryTimer), userInfo: nil, repeats: false)
         
     }
     

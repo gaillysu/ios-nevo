@@ -68,7 +68,7 @@ class AnimationView: UIView {
             mNoConnectScanButton?.setTitle(NSLocalizedString("Connect", comment: ""), forState: UIControlState.Normal)
             mNoConnectScanButton?.backgroundColor = UIColor.clearColor()
             mNoConnectScanButton?.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
-            mNoConnectScanButton?.addTarget(self, action: Selector("noConnectButtonAction:"), forControlEvents: UIControlEvents.TouchUpInside)
+            mNoConnectScanButton?.addTarget(self, action: #selector(noConnectButtonAction(_:)), forControlEvents: UIControlEvents.TouchUpInside)
             mNoConnectionView?.addSubview(mNoConnectScanButton!)
 
             let message2:UILabel = UILabel(frame: CGRectMake(0, 0, 300, 90))
@@ -90,7 +90,7 @@ class AnimationView: UIView {
             ForgotButton.titleLabel?.font = AppTheme.FONT_SFCOMPACTDISPLAY_LIGHT(mSize: 15)
             ForgotButton.backgroundColor = UIColor.clearColor()
             ForgotButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
-            ForgotButton.addTarget(self, action: Selector("noConnectButtonAction:"), forControlEvents: UIControlEvents.TouchUpInside)
+            ForgotButton.addTarget(self, action: #selector(noConnectButtonAction(_:)), forControlEvents: UIControlEvents.TouchUpInside)
             ForgotButton.tag = 1450
             ForgotButton.layer.masksToBounds = true
             ForgotButton.layer.cornerRadius = 20.0
@@ -422,7 +422,7 @@ class CircleSleepProgressView: CAShapeLayer {
         var startTimer:NSTimeInterval = 0
         var endTimer:NSTimeInterval = 0
 
-        for(var l:Int = 0; l<arrayCount;l++){
+        for l:Int in 0 ..< arrayCount {
             initialProgress = CGFloat(calculatePercent(1.0, toProgress: progressLimit))
             let pLayer:CAShapeLayer = CAShapeLayer()
             startDate = ((sleepChartArray[0] as! [[NSDate]])[l][0]) //[l][0]
@@ -445,21 +445,21 @@ class CircleSleepProgressView: CAShapeLayer {
             }
         }
 
-        for (var i:Int = 0; i < sleepArray.count; i++){
+        for i:Int in 0 ..< sleepArray.count {
             let sleepTimerArray:[Int] = sleepArray.objectAtIndex(i).objectAtIndex(0) as! [Int]
             let weakTimerArray:[Int] = sleepArray.objectAtIndex(i).objectAtIndex(1) as! [Int]
             let lightTimerArray:[Int] = sleepArray.objectAtIndex(i).objectAtIndex(2) as! [Int]
             let deepTimerArray:[Int] = sleepArray.objectAtIndex(i).objectAtIndex(3) as! [Int]
 
             if(i == 0){
-                for (var s:Int  = 18; s < sleepTimerArray.count; s++){
+                for s:Int in 18 ..< sleepTimerArray.count {
                     sleepTimer = Double(sleepTimerArray[s]) + sleepTimer
                     wakeTimer = Double(weakTimerArray[s]) + wakeTimer
                     lightTimer = Double(lightTimerArray[s]) + lightTimer
                     deepTimer = Double(deepTimerArray[s]) + deepTimer
                 }
             }else{
-                for (var s:Int  = 0; s < sleepTimerArray.count-6; s++){
+                for s:Int in 0 ..< sleepTimerArray.count-6 {
                     sleepTimer = Double(sleepTimerArray[s]) + sleepTimer
                     wakeTimer = Double(weakTimerArray[s]) + wakeTimer
                     lightTimer = Double(lightTimerArray[s]) + lightTimer
@@ -511,7 +511,7 @@ class CircleSleepProgressView: CAShapeLayer {
                         endDate = NSDate.date(year: todayDate.year, month: todayDate.month, day: todayDate.day, hour: l, minute: lastTimer+weakTimerArray[l]+lightTimerArray[l], second: 0)
                     }
                     sleepChartArray.append([startDate!,endDate!])
-                    sleepChartColorArray.append(ChartColorTemplates.getLightSleepColor().CGColor)
+                    sleepChartColorArray.append(AppTheme.getLightSleepColor().CGColor)
                     //AppTheme.DLog("Light startDate____\(startDate) or endDate______\(endDate)")
                     startDate = endDate
                     if(lastTimer+weakTimerArray[l]+lightTimerArray[l]+deepTimerArray[l] == 60){
@@ -524,7 +524,7 @@ class CircleSleepProgressView: CAShapeLayer {
                         endDate = NSDate.date(year: todayDate.year, month: todayDate.month, day: todayDate.day, hour: l, minute: lastTimer+weakTimerArray[l]+lightTimerArray[l]+deepTimerArray[l], second: 0)
                     }
                     sleepChartArray.append([startDate!,endDate!])
-                    sleepChartColorArray.append(ChartColorTemplates.getDeepSleepColor().CGColor)
+                    sleepChartColorArray.append(AppTheme.getDeepSleepColor().CGColor)
                     //AppTheme.DLog("Deep startDate____\(startDate) or endDate______\(endDate)")
                 }
                 break
@@ -548,7 +548,7 @@ class CircleSleepProgressView: CAShapeLayer {
                     endDate = NSDate.date(year: todayDate.year, month: todayDate.month, day: todayDate.day, hour: l, minute: lightTimerArray[l]+weakTimerArray[l], second: 0)
                 }
                 sleepChartArray.append([startDate!,endDate!])
-                sleepChartColorArray.append(ChartColorTemplates.getLightSleepColor().CGColor)
+                sleepChartColorArray.append(AppTheme.getLightSleepColor().CGColor)
                 //AppTheme.DLog("Light startDate____\(startDate) or endDate______\(endDate)")
 
                 startDate = endDate
@@ -558,7 +558,7 @@ class CircleSleepProgressView: CAShapeLayer {
                     endDate = NSDate.date(year: todayDate.year, month: todayDate.month, day: todayDate.day, hour: l, minute: lightTimerArray[l]+weakTimerArray[l]+deepTimerArray[l], second: 0)
                 }
                 sleepChartArray.append([startDate!,endDate!])
-                sleepChartColorArray.append(ChartColorTemplates.getDeepSleepColor().CGColor)
+                sleepChartColorArray.append(AppTheme.getDeepSleepColor().CGColor)
             }
         }else{
             //跨天后的睡眠计算(前一天无睡眠数据)
@@ -588,7 +588,7 @@ class CircleSleepProgressView: CAShapeLayer {
                     endDate = NSDate.date(year: todayDate.year, month: todayDate.month, day: todayDate.day, hour: l, minute: lightTimerArray[l]+weakTimerArray[l], second: 0)
                 }
                 sleepChartArray.append([startDate!,endDate!])
-                sleepChartColorArray.append(ChartColorTemplates.getLightSleepColor().CGColor)
+                sleepChartColorArray.append(AppTheme.getLightSleepColor().CGColor)
 
                 startDate = endDate
                 if(lightTimerArray[l]+weakTimerArray[l]+deepTimerArray[l] == 60){
@@ -601,7 +601,7 @@ class CircleSleepProgressView: CAShapeLayer {
                     }
                 }
                 sleepChartArray.append([startDate!,endDate!])
-                sleepChartColorArray.append(ChartColorTemplates.getDeepSleepColor().CGColor)
+                sleepChartColorArray.append(AppTheme.getDeepSleepColor().CGColor)
             }
         }
 

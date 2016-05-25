@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Charts
 
 class SleepHistoricalViewController: PublicClassController,ChartViewDelegate,SelectedChartViewDelegate {
 

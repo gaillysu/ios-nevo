@@ -35,8 +35,8 @@ class SetingViewController: UIViewController,SyncControllerDelegate,ButtonManage
         titleArray = [NSLocalizedString("goals", comment: ""),NSLocalizedString("find_my_watch", comment: ""),NSLocalizedString("forget_watch", comment: "")]
         titleArrayImage = ["new_iOS_goals_icon","new_iOS_findmywatch_icon","forget_watch","iOS_rate"]
 
-//        let userProfile:UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Compose, target: self, action: #selector(SetingViewController.userProfileAction(_:)))
-//        self.navigationItem.rightBarButtonItem = userProfile
+        let userProfile:UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Compose, target: self, action: #selector(userProfileAction(_:)))
+        self.navigationItem.rightBarButtonItem = userProfile
     }
 
     override func viewDidAppear(animated: Bool) {

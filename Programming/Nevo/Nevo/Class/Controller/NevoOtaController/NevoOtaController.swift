@@ -115,7 +115,7 @@ class NevoOtaController : NSObject,ConnectionControllerDelegate {
     
     private func writeNextPacket(){
         var percentage :Int = 0;
-        for (var index:Int = 0; index<Int(enumPacketOption.PACKETS_NOTIFICATION_INTERVAL.rawValue); index++) {
+        for index:Int in 0 ..< Int(enumPacketOption.PACKETS_NOTIFICATION_INTERVAL.rawValue) {
             if (self.writingPacketNumber > self.numberOfPackets-2) {
                 AppTheme.DLog("writing last packet");
                 let dataRange : NSRange = NSMakeRange(self.writingPacketNumber*enumPacketOption.PACKET_SIZE.rawValue, self.bytesInLastPacket);
@@ -445,7 +445,7 @@ class NevoOtaController : NSObject,ConnectionControllerDelegate {
         lastprogress = 0.0
         progress = 0.0
         mTimeoutTimer?.invalidate()
-        mTimeoutTimer = NSTimer.scheduledTimerWithTimeInterval(Double(MAX_TIME), target: self, selector:Selector("timeroutProc:"), userInfo: nil, repeats: true)
+        mTimeoutTimer = NSTimer.scheduledTimerWithTimeInterval(Double(MAX_TIME), target: self, selector:#selector(timeroutProc(_:)), userInfo: nil, repeats: true)
         
         mConnectionController.setDelegate(self)
         state = DFUControllerState.IDLE

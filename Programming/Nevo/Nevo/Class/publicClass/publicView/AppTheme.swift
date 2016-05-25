@@ -443,4 +443,19 @@ class AppTheme {
         #endif
     }
 
+    class func getWakeSleepColor () -> UIColor{
+        return UIColor(red: 253/255.0, green: 230/255.0, blue: 156.0/255.0, alpha: 1.0)
+    }
+    
+    class func getLightSleepColor () -> UIColor{
+        return UIColor(red: 251.0/255.0, green: 193.0/255.0, blue: 11.0/255.0, alpha: 1.0)
+    }
+    
+    class func getDeepSleepColor () -> UIColor{
+        return UIColor(red: 249.0/255.0, green: 160.0/255.0, blue: 1.0/255.0, alpha: 1.0)
+    }
+    
+    class func getStepsColor () -> UIColor{
+        return UIColor(red: 179.0/255.0, green: 179.0/255.0, blue: 179.0/255.0, alpha: 1.0)
+    }
 }

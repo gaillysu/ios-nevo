@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Charts
 
 class SleepHistoricalView: UIView, ChartViewDelegate{
 
@@ -199,13 +200,12 @@ class SleepHistoricalView: UIView, ChartViewDelegate{
         let set1:BarChartDataSet  = BarChartDataSet(yVals: yVal, label: "")
         
         //每个数据区块的颜色
-        set1.colors = [ChartColorTemplates.getDeepSleepColor(),ChartColorTemplates.getLightSleepColor(),ChartColorTemplates.getWakeSleepColor()];
+        set1.colors = [AppTheme.getDeepSleepColor(),AppTheme.getLightSleepColor(),AppTheme.getWakeSleepColor()];
         //UIColor(red: 239/255.0, green: 239/255.0, blue: 239/255.0, alpha: 1.0)
         //每个数据块的类别名称,数组形式传递
         set1.stackLabels = ["Deep sleep","Light sleep","weak sleep"];
         set1.barSpace = 0.05;
         set1.highlightColor = AppTheme.NEVO_SOLAR_YELLOW()
-        set1.highLightAlpha = 1.0
         let dataSets:[BarChartDataSet] = [set1];
 
         let data:BarChartData = BarChartData(xVals: xVal, dataSets: dataSets)
@@ -213,7 +213,7 @@ class SleepHistoricalView: UIView, ChartViewDelegate{
 
         chartView?.data = data;
         chartView?.animate(yAxisDuration: 1.5, easingOption: ChartEasingOption.EaseInOutCirc)
-        chartView?.moveViewToX(yVal.count)
+        chartView?.moveViewToX(CGFloat(yVal.count))
     }
     
     func chartValueSelected(chartView: ChartViewBase, entry: ChartDataEntry, dataSetIndex: Int, highlight: ChartHighlight) {

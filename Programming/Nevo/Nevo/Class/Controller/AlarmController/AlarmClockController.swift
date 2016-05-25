@@ -27,7 +27,7 @@ class AlarmClockController: UITableViewController, SyncControllerDelegate,AddAla
         self.editButtonItem().tintColor = AppTheme.NEVO_SOLAR_YELLOW()
         self.navigationItem.leftBarButtonItem = self.editButtonItem()
 
-        let rightAddButton:UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Add, target: self, action: Selector("controllManager:"))
+        let rightAddButton:UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Add, target: self, action: #selector(controllManager(_:)))
         rightAddButton.tintColor = AppTheme.NEVO_SOLAR_YELLOW()
         self.navigationItem.rightBarButtonItem = rightAddButton
 
@@ -91,7 +91,7 @@ class AlarmClockController: UITableViewController, SyncControllerDelegate,AddAla
                 for (index, value) in mAlarmArray.enumerate() {
                     let alarm:UserAlarm = value as! UserAlarm
                     if(alarm.status){
-                        alarmCount++
+                        alarmCount += 1
                     }
                 }
 
@@ -137,9 +137,9 @@ class AlarmClockController: UITableViewController, SyncControllerDelegate,AddAla
         for alarm in mAlarmArray{
             let alarmModel:UserAlarm =  alarm as! UserAlarm
             if(alarmModel.type == 1 && alarmModel.status) {
-                sleepAlarmCount++
+                sleepAlarmCount += 1
             }else if (alarmModel.type == 0 && alarmModel.status){
-                dayAlarmCount++
+                dayAlarmCount += 1
             }
         }
 
@@ -260,7 +260,7 @@ class AlarmClockController: UITableViewController, SyncControllerDelegate,AddAla
                         }
                     }
 
-                    for(var index:Int = alarmArray.count; index<3; index++) {
+                    for index:Int in alarmArray.count ..< 3 {
                         let date:NSDate = NSDate(timeIntervalSince1970: timer)
                         let alarm:Alarm = Alarm(index:alarmArray.count, hour: date.hour, minute: date.minute, enable: false)
                         alarmArray.append(alarm)
@@ -293,7 +293,7 @@ class AlarmClockController: UITableViewController, SyncControllerDelegate,AddAla
                             }
                         }
 
-                        for(var index:Int = alarmArray.count; index<3; index++) {
+                        for index:Int in alarmArray.count ..< 3 {
                             let date:NSDate = NSDate(timeIntervalSince1970: timer)
                             let alarm:Alarm = Alarm(index:alarmArray.count, hour: date.hour, minute: date.minute, enable: true)
                             alarmArray.append(alarm)
@@ -477,7 +477,7 @@ class AlarmClockController: UITableViewController, SyncControllerDelegate,AddAla
         let mSwitch = endCell.contentView.viewWithTag(1700)
         if(mSwitch != nil){
             (mSwitch as! UISwitch).tag = indexPath.row
-            (mSwitch as! UISwitch).addTarget(self, action: Selector("controllManager:"), forControlEvents: UIControlEvents.ValueChanged)
+            (mSwitch as! UISwitch).addTarget(self, action: #selector(controllManager(_:)), forControlEvents: UIControlEvents.ValueChanged)
             (mSwitch as! UISwitch).on = alarmModel.status
         }
 
@@ -509,7 +509,7 @@ class AlarmClockController: UITableViewController, SyncControllerDelegate,AddAla
                     }
                 }
 
-                for(var index:Int = alarmArray.count; index<3; index++) {
+                for index:Int in alarmArray.count ..< 3 {
                     let date:NSDate = NSDate()
                     let alarm:Alarm = Alarm(index:alarmArray.count, hour: date.hour, minute: date.minute, enable: false)
                     alarmArray.append(alarm)
