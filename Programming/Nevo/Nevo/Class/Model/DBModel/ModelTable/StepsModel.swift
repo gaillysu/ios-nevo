@@ -43,7 +43,7 @@ class StepsModel: UserDatabaseHelper {
      */
     override class func getCriteria(criteria:String)->NSArray {
         let dbQueue:FMDatabaseQueue = AppDelegate.getAppDelegate().dbQueue
-        let users:NSMutableArray = NSMutableArray()
+        let steps:NSMutableArray = NSMutableArray()
         dbQueue.inDatabase { (db) -> Void in
             var tableName:String =  NSStringFromClass(self.classForCoder())
             tableName = tableName.stringByReplacingOccurrencesOfString(".", withString: "")
@@ -60,10 +60,10 @@ class StepsModel: UserDatabaseHelper {
                         model.setValue(NSNumber(longLong: resultSet.longLongIntForColumn("\(columeName)")), forKey: "\(columeName)")
                     }
                 }
-                users.addObject(model)
+                steps.addObject(model)
             }
         }
-        return users;
+        return steps;
     }
 
     /**
@@ -73,7 +73,7 @@ class StepsModel: UserDatabaseHelper {
      */
     override class func getAll()->NSArray{
         let dbQueue:FMDatabaseQueue = AppDelegate.getAppDelegate().dbQueue
-        let users:NSMutableArray = NSMutableArray()
+        let steps:NSMutableArray = NSMutableArray()
         dbQueue.inDatabase { (db) -> Void in
             var tableName:NSString = NSStringFromClass(self.classForCoder())
             tableName = tableName.stringByReplacingOccurrencesOfString(".", withString: "")
@@ -91,10 +91,10 @@ class StepsModel: UserDatabaseHelper {
                         model.setValue(NSNumber(double: resultSet.doubleForColumn("\(columeName)")), forKey: "\(columeName)")
                     }
                 }
-                users.addObject(model)
+                steps.addObject(model)
             }
             
         }
-        return users;
+        return steps;
     }
 }

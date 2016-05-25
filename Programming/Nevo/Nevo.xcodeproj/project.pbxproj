@@ -171,6 +171,8 @@
 		0050D69B1C2906D8004F6F80 /* Firmwares in Resources */ = {isa = PBXBuildFile; fileRef = 0050D69A1C2906D8004F6F80 /* Firmwares */; };
 		0050D69D1C2A32A5004F6F80 /* UserSteps.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0050D69C1C2A32A5004F6F80 /* UserSteps.swift */; };
 		0050D69F1C2A78C1004F6F80 /* UserSleep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0050D69E1C2A78C1004F6F80 /* UserSleep.swift */; };
+		0058B3EA1CF55D590079A213 /* ConnectOtherAppsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0058B3E81CF55D590079A213 /* ConnectOtherAppsController.swift */; };
+		0058B3EB1CF55D590079A213 /* ConnectOtherAppsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0058B3E91CF55D590079A213 /* ConnectOtherAppsController.xib */; };
 		005BC9561A889F14006F9E86 /* NevoPicture.png in Resources */ = {isa = PBXBuildFile; fileRef = 005BC9551A889F14006F9E86 /* NevoPicture.png */; };
 		005BC95F1A88B79F006F9E86 /* FXBlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = 005BC95E1A88B79F006F9E86 /* FXBlurView.m */; };
 		0072EAB51C190DCD001EE2C9 /* SFCompactDisplay-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0072EA8B1C190DCD001EE2C9 /* SFCompactDisplay-Black.ttf */; };
@@ -436,6 +438,8 @@
 		0050D69A1C2906D8004F6F80 /* Firmwares */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Firmwares; sourceTree = "<group>"; };
 		0050D69C1C2A32A5004F6F80 /* UserSteps.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSteps.swift; sourceTree = "<group>"; };
 		0050D69E1C2A78C1004F6F80 /* UserSleep.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSleep.swift; sourceTree = "<group>"; };
+		0058B3E81CF55D590079A213 /* ConnectOtherAppsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectOtherAppsController.swift; sourceTree = "<group>"; };
+		0058B3E91CF55D590079A213 /* ConnectOtherAppsController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConnectOtherAppsController.xib; sourceTree = "<group>"; };
 		005BC9551A889F14006F9E86 /* NevoPicture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NevoPicture.png; sourceTree = "<group>"; };
 		005BC95D1A88B79F006F9E86 /* FXBlurView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FXBlurView.h; sourceTree = "<group>"; };
 		005BC95E1A88B79F006F9E86 /* FXBlurView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FXBlurView.m; sourceTree = "<group>"; };
@@ -667,6 +671,7 @@
 		0050D5151C28E0DB004F6F80 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				0058B3E31CF55CF50079A213 /* ConnectOtherAppsController */,
 				00D581411CB50C5900953B8A /* ChangeProfileController */,
 				009703BF1C9BD98300F2FF0D /* UserProfileController */,
 				00321D761C993C320069BFCC /* LoginController */,
@@ -1181,6 +1186,15 @@
 			path = AlarmView;
 			sourceTree = "<group>";
 		};
+		0058B3E31CF55CF50079A213 /* ConnectOtherAppsController */ = {
+			isa = PBXGroup;
+			children = (
+				0058B3E81CF55D590079A213 /* ConnectOtherAppsController.swift */,
+				0058B3E91CF55D590079A213 /* ConnectOtherAppsController.xib */,
+			);
+			path = ConnectOtherAppsController;
+			sourceTree = "<group>";
+		};
 		005BC95C1A88B79F006F9E86 /* FXBlurView */ = {
 			isa = PBXGroup;
 			children = (
@@ -1606,6 +1620,7 @@
 				000CB3291C3E436000B4ABEC /* white_hour.png in Resources */,
 				0050D5FB1C28E0DB004F6F80 /* LineColorCell.xib in Resources */,
 				0072EADB1C190DCD001EE2C9 /* SFUIText-Regular.ttf in Resources */,
+				0058B3EB1CF55D590079A213 /* ConnectOtherAppsController.xib in Resources */,
 				00D4DE921AB141FB0062523D /* NevoPicture960.png in Resources */,
 				0050D5F91C28E0DB004F6F80 /* NevoOtaViewController.xib in Resources */,
 				00EC9DB91C85830F00280904 /* HomeTutorialController.xib in Resources */,
@@ -1802,6 +1817,7 @@
 				005BC95F1A88B79F006F9E86 /* FXBlurView.m in Sources */,
 				0050D6931C28E1CD004F6F80 /* AddAlarmSystemCell.swift in Sources */,
 				9E98FB2D1C463D2A00BAB700 /* TutorialThreeViewController.swift in Sources */,
+				0058B3EA1CF55D590079A213 /* ConnectOtherAppsController.swift in Sources */,
 				0050D66E1C28E0DB004F6F80 /* LedLightOnOffNevoRequest.swift in Sources */,
 				0050D6521C28E0DB004F6F80 /* PublicClassController.swift in Sources */,
 				9E98FB351C46405800BAB700 /* TutorialFiveViewController.swift in Sources */,

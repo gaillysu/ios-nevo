@@ -30,8 +30,8 @@ class SetingViewController: UIViewController,SyncControllerDelegate,ButtonManage
 
         notificationList.bulidNotificationViewUI(self)
 
-        sources = [NSLocalizedString("Link-Loss Notifications", comment: ""),NSLocalizedString("Notifications", comment: ""),NSLocalizedString("My nevo", comment: ""),NSLocalizedString("Support", comment: "")]
-        sourcesImage = ["new_iOS_link_icon","new_iOS_notfications_icon","new_iOS_mynevo_iocn","new_iOS_support_icon"]
+        sources = [NSLocalizedString("Link-Loss Notifications", comment: ""),NSLocalizedString("Notifications", comment: ""),NSLocalizedString("My nevo", comment: ""),NSLocalizedString("Support", comment: ""),NSLocalizedString("Connect to other apps", comment: "")]
+        sourcesImage = ["new_iOS_link_icon","new_iOS_notfications_icon","new_iOS_mynevo_iocn","new_iOS_support_icon","new_iOS_link_icon"]
         titleArray = [NSLocalizedString("goals", comment: ""),NSLocalizedString("find_my_watch", comment: ""),NSLocalizedString("forget_watch", comment: "")]
         titleArrayImage = ["new_iOS_goals_icon","new_iOS_findmywatch_icon","forget_watch","iOS_rate"]
 
@@ -123,6 +123,13 @@ class SetingViewController: UIViewController,SyncControllerDelegate,ButtonManage
                 supportView.hidesBottomBarWhenPushed = true
                 self.navigationController?.pushViewController(supportView, animated: true)
             }
+            
+            if(isEqualString("\(sources[indexPath.row])",string2: NSLocalizedString("Connect to other apps", comment: ""))){
+                AppTheme.DLog("Connect to other apps")
+                let supportView:SupportViewController = SupportViewController()
+                supportView.hidesBottomBarWhenPushed = true
+                self.navigationController?.pushViewController(supportView, animated: true)
+            }
             break
         case 1:
             if(isEqualString("\(titleArray[indexPath.row])",string2: NSLocalizedString("find_my_watch", comment: ""))){
@@ -194,12 +201,10 @@ class SetingViewController: UIViewController,SyncControllerDelegate,ButtonManage
             }
             break
         case 2:
-            let defaults = NSUserDefaults.standardUserDefaults()
-            if(defaults.objectForKey("User_Logged_In") != nil){
-                if(defaults.objectForKey("User_Logged_In") as! Bool){
-                    defaults.setBool(false, forKey: "User_Logged_In")
-                    defaults.setValue("", forKey: "User_Logged_In_UID")
-                    defaults.setValue("", forKey: "User_Logged_In_Token")
+            let user:NSArray = UserProfile.getAll()
+            if(user.count>0){
+                let userProfile:UserProfile = user.objectAtIndex(0) as! UserProfile
+                if(userProfile.remove()){
                     let indexPath = NSIndexPath(forRow: 0, inSection: 2)
                     let tableViewCell: UITableViewCell = tableView.cellForRowAtIndexPath(indexPath)!
                     tableViewCell.accessoryType = UITableViewCellAccessoryType.None
@@ -223,7 +228,7 @@ class SetingViewController: UIViewController,SyncControllerDelegate,ButtonManage
 
     // MARK: - UITableViewDataSource
     func numberOfSectionsInTableView(tableView: UITableView) -> Int{
-        return 2
+        return 3
 
     }
 
@@ -233,6 +238,8 @@ class SetingViewController: UIViewController,SyncControllerDelegate,ButtonManage
             return sources.count
         case 1:
             return titleArray.count
+        case 2:
+            return 1
         default: return 1;
         }
     }
@@ -261,12 +268,9 @@ class SetingViewController: UIViewController,SyncControllerDelegate,ButtonManage
                 (loginLabel as! UILabel).text = "Login"
                 cell.contentView.addSubview(loginLabel!)
             }
-            let defaults = NSUserDefaults.standardUserDefaults()
-            if(defaults.objectForKey("User_Logged_In") != nil){
-                if(defaults.objectForKey("User_Logged_In") as! Bool){
-                    cell.backgroundColor=UIColor(red:255/255.0, green: 149/255.0, blue: 38/255.0, alpha: 1.0)
-                    (loginLabel as! UILabel).text = "Logout"
-                }
+            let user:NSArray = UserProfile.getAll()
+            if(user.count>0){
+                (loginLabel as! UILabel).text = "Logout"
             }
             return cell
 

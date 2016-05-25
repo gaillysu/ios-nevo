@@ -8,6 +8,7 @@
 
 import UIKit
 
+private let NotificationSwitchButtonTAG:Int = 1690
 class SetingView: UIView {
 
     @IBOutlet var tableListView: UITableView!
@@ -69,14 +70,18 @@ class SetingView: UIView {
         if (endCell == nil) {
             endCell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: endCellID)
         }
-        mSendLocalNotificationSwitchButton = UISwitch(frame: CGRectMake(0,0,51,31))
-        mSendLocalNotificationSwitchButton?.on = ConnectionManager.sharedInstance.getIsSendLocalMsg()
-        mSendLocalNotificationSwitchButton?.tintColor = AppTheme.NEVO_SOLAR_YELLOW()
-        mSendLocalNotificationSwitchButton?.onTintColor = AppTheme.NEVO_SOLAR_YELLOW()
-        mSendLocalNotificationSwitchButton?.addTarget(self, action: #selector(SetingView.buttonAction(_:)), forControlEvents: UIControlEvents.ValueChanged)
-        mSendLocalNotificationSwitchButton?.center = CGPointMake(UIScreen.mainScreen().bounds.size.width-40, 50.0/2.0)
-        endCell?.contentView.addSubview(mSendLocalNotificationSwitchButton!)
-
+        
+        let view = endCell!.contentView.viewWithTag(NotificationSwitchButtonTAG)
+        if view == nil {
+            mSendLocalNotificationSwitchButton = UISwitch(frame: CGRectMake(0,0,51,31))
+            mSendLocalNotificationSwitchButton.tag = NotificationSwitchButtonTAG
+            mSendLocalNotificationSwitchButton?.on = ConnectionManager.sharedInstance.getIsSendLocalMsg()
+            mSendLocalNotificationSwitchButton?.tintColor = AppTheme.NEVO_SOLAR_YELLOW()
+            mSendLocalNotificationSwitchButton?.onTintColor = AppTheme.NEVO_SOLAR_YELLOW()
+            mSendLocalNotificationSwitchButton?.addTarget(self, action: #selector(SetingView.buttonAction(_:)), forControlEvents: UIControlEvents.ValueChanged)
+            mSendLocalNotificationSwitchButton?.center = CGPointMake(UIScreen.mainScreen().bounds.size.width-40, 50.0/2.0)
+            endCell?.contentView.addSubview(mSendLocalNotificationSwitchButton!)
+        }
         //endCell?.selectionStyle = UITableViewCellSelectionStyle.None;
         endCell?.imageView?.image = UIImage(named: imageName)
         endCell?.textLabel?.text = title
