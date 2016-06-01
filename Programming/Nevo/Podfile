@@ -13,6 +13,7 @@ pod 'Fabric'
 pod 'Crashlytics'
 pod 'TextFieldEffects'
 pod 'Charts', '~> 2.2.4'
+pod 'AutocompleteField','~> 1.1'
 
 # pod 'FMDB/FTS'   # FMDB with FTS
 # pod 'FMDB/standalone'   # FMDB with latest SQLite amalgamation source

@@ -338,7 +338,7 @@ class AppTheme {
     }
 
     class func navigationbar(navigation:UINavigationController) {
-        if(navigation.navigationBar.respondsToSelector(Selector("setBackgroundImage:forBarMetrics:"))){
+        if(navigation.navigationBar.respondsToSelector(#selector(UINavigationBar.setBackgroundImage(_:forBarMetrics:)))){
             let list:NSArray = navigation.navigationBar.subviews
             for obj in list{
                 if(obj.isKindOfClass(UIImageView.classForCoder())){
