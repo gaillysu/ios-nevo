@@ -126,7 +126,7 @@ class SetingViewController: UIViewController,SyncControllerDelegate,ButtonManage
             
             if(isEqualString("\(sources[indexPath.row])",string2: NSLocalizedString("Connect to other apps", comment: ""))){
                 AppTheme.DLog("Connect to other apps")
-                let supportView:SupportViewController = SupportViewController()
+                let supportView:ConnectOtherAppsController = ConnectOtherAppsController()
                 supportView.hidesBottomBarWhenPushed = true
                 self.navigationController?.pushViewController(supportView, animated: true)
             }

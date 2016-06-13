@@ -9,6 +9,7 @@
 import UIKit
 
 class ConnectOtherAppsController: UITableViewController {
+    private let licenseApp:[String] = ["HealthKit","Validic"]
     
     init() {
         super.init(nibName: "ConnectOtherAppsController", bundle: NSBundle.mainBundle())
@@ -20,12 +21,8 @@ class ConnectOtherAppsController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        self.navigationItem.title = "App Authorized"
+        self.tableView.registerNib(UINib(nibName: "ConnectOtherAppsCell", bundle:nil), forCellReuseIdentifier: "reuseIdentifier")
     }
 
     override func didReceiveMemoryWarning() {
@@ -37,23 +34,36 @@ class ConnectOtherAppsController: UITableViewController {
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return licenseApp.count
     }
 
-    /*
+    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
-
-        // Configure the cell...
-
+        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier" ,forIndexPath: indexPath)
+        cell.selectionStyle = UITableViewCellSelectionStyle.None
+        (cell as! ConnectOtherAppsCell).appNameLabel.text = licenseApp[indexPath.row]
+        (cell as! ConnectOtherAppsCell).appSwitch.tag = indexPath.row
+        (cell as! ConnectOtherAppsCell).appSwitch.addTarget(self, action: #selector(appAuthorizedAction(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         return cell
     }
-    */
+    
+    func appAuthorizedAction(sender:UISwitch) {
+        switch sender.tag {
+        case 0:
+            break
+        case 1:
+            break
+        case 2: break
+        case 3: break
+        default: break
+            
+        }
+    }
 
     /*
     // Override to support conditional editing of the table view.
@@ -87,16 +97,6 @@ class ConnectOtherAppsController: UITableViewController {
     override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         // Return false if you do not want the item to be re-orderable.
         return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
     }
     */
     
