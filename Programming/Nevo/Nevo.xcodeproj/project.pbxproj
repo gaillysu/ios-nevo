@@ -196,6 +196,10 @@
 		009DD2AA1C5857FD00B11541 /* SetSleepRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009DD2A91C5857FD00B11541 /* SetSleepRequest.swift */; };
 		009DD2AC1C585AC100B11541 /* ConfigSleepAlarm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009DD2AB1C585AC100B11541 /* ConfigSleepAlarm.swift */; };
 		00A773961A88562F0018E121 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 00A773911A88562F0018E121 /* Localizable.strings */; };
+		00B606E71D0F9DB800FF5A01 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00B606E61D0F9DB800FF5A01 /* SwiftyJSON.framework */; };
+		00B606E91D0FC9D700FF5A01 /* ValidicRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B606E81D0FC9D700FF5A01 /* ValidicRequest.swift */; };
+		00B606EB1D0FCE9200FF5A01 /* MRProgress.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00B606EA1D0FCE9200FF5A01 /* MRProgress.framework */; };
+		00B606ED1D0FCEE700FF5A01 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B606EC1D0FCEE700FF5A01 /* Color.swift */; };
 		00BF2D9A1C7FED2200909316 /* VideoPlayController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00BF2D981C7FED2200909316 /* VideoPlayController.swift */; };
 		00BF2D9B1C7FED2200909316 /* VideoPlayController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00BF2D991C7FED2200909316 /* VideoPlayController.xib */; };
 		00C640F61A8DEE0800815CF8 /* clockView600.png in Resources */ = {isa = PBXBuildFile; fileRef = 00C640F51A8DEE0800815CF8 /* clockView600.png */; };
@@ -472,6 +476,10 @@
 		00A773931A88562F0018E121 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		00A773941A88562F0018E121 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		00A773951A88562F0018E121 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		00B606E61D0F9DB800FF5A01 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = "../../../../Library/Developer/Xcode/DerivedData/Nevo-cbjnruaifgvemfduxtlzizqanuqy/Build/Products/Debug-iphoneos/SwiftyJSON.framework"; sourceTree = "<group>"; };
+		00B606E81D0FC9D700FF5A01 /* ValidicRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValidicRequest.swift; sourceTree = "<group>"; };
+		00B606EA1D0FCE9200FF5A01 /* MRProgress.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MRProgress.framework; path = "Pods/../build/Debug-iphoneos/MRProgress.framework"; sourceTree = "<group>"; };
+		00B606EC1D0FCEE700FF5A01 /* Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		00BF2D981C7FED2200909316 /* VideoPlayController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoPlayController.swift; sourceTree = "<group>"; };
 		00BF2D991C7FED2200909316 /* VideoPlayController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VideoPlayController.xib; sourceTree = "<group>"; };
 		00C640F51A8DEE0800815CF8 /* clockView600.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clockView600.png; sourceTree = "<group>"; };
@@ -593,6 +601,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				00B606EB1D0FCE9200FF5A01 /* MRProgress.framework in Frameworks */,
+				00B606E71D0F9DB800FF5A01 /* SwiftyJSON.framework in Frameworks */,
 				002C442A1CFD89AA00322B46 /* AutocompleteField.framework in Frameworks */,
 				002C44281CFD7D6C00322B46 /* Charts.framework in Frameworks */,
 				9E15EAC31CED6B3A009F129F /* Pods.framework in Frameworks */,
@@ -639,6 +649,7 @@
 			isa = PBXGroup;
 			children = (
 				00321D811C993C7D0069BFCC /* HttpPostRequest.swift */,
+				00B606E81D0FC9D700FF5A01 /* ValidicRequest.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -1025,6 +1036,7 @@
 		0050D5AA1C28E0DB004F6F80 /* publicClass */ = {
 			isa = PBXGroup;
 			children = (
+				00B606EC1D0FCEE700FF5A01 /* Color.swift */,
 				0050D5AC1C28E0DB004F6F80 /* MainTabBarController.swift */,
 				0050D5AD1C28E0DB004F6F80 /* PublicClassController.swift */,
 				0050D5AE1C28E0DB004F6F80 /* PublicClassTableViewController.swift */,
@@ -1406,6 +1418,8 @@
 		9AD8F95A1A6DFE3400F01014 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				00B606EA1D0FCE9200FF5A01 /* MRProgress.framework */,
+				00B606E61D0F9DB800FF5A01 /* SwiftyJSON.framework */,
 				002C44291CFD89AA00322B46 /* AutocompleteField.framework */,
 				002C44271CFD7D6C00322B46 /* Charts.framework */,
 				9E15EAC21CED6B3A009F129F /* Pods.framework */,
@@ -1762,6 +1776,7 @@
 			files = (
 				9AD8F9841A6E2C8E00F01014 /* Request.swift in Sources */,
 				0050D6981C28E1CD004F6F80 /* AlarmClockController.swift in Sources */,
+				00B606ED1D0FCEE700FF5A01 /* Color.swift in Sources */,
 				0050D6511C28E0DB004F6F80 /* MainTabBarController.swift in Sources */,
 				0050D60F1C28E0DB004F6F80 /* AddPresetView.swift in Sources */,
 				0050D64A1C28E0DB004F6F80 /* Goal.swift in Sources */,
@@ -1876,6 +1891,7 @@
 				0050D6651C28E0DB004F6F80 /* NevoOTARequest.swift in Sources */,
 				0050D5FA1C28E0DB004F6F80 /* LineColorCell.swift in Sources */,
 				0050D65B1C28E0DB004F6F80 /* ConnectionController.swift in Sources */,
+				00B606E91D0FC9D700FF5A01 /* ValidicRequest.swift in Sources */,
 				0050D5F81C28E0DB004F6F80 /* NevoOtaViewController.swift in Sources */,
 				9E98FB371C4640AF00BAB700 /* TutorialSevenViewController.swift in Sources */,
 				0050D6161C28E0DB004F6F80 /* SetingViewController.swift in Sources */,

@@ -14,7 +14,9 @@ pod 'Crashlytics'
 pod 'TextFieldEffects'
 pod 'Charts', '~> 2.2.4'
 pod 'AutocompleteField','~> 1.1'
-
+pod 'SwiftyJSON', :git => 'https://github.com/SwiftyJSON/SwiftyJSON.git'
+pod 'MRProgress'
+pod 'UIColor_Hex_Swift'
 # pod 'FMDB/FTS'   # FMDB with FTS
 # pod 'FMDB/standalone'   # FMDB with latest SQLite amalgamation source
 # pod 'FMDB/standalone/FTS'   # FMDB with latest SQLite amalgamation source and FTS

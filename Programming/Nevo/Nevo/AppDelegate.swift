@@ -172,7 +172,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
      :param: resultHandler 请求后返回的数据块
      */
     func getRequestNetwork(requestURL:String,parameters:AnyObject,resultHandler:((result:AnyObject?,error:NSError?) -> Void)){
-        Alamofire.request(.POST, requestURL, parameters: parameters as? [String : AnyObject] ,encoding: .JSON).responseJSON { (response) -> Void in
+        Alamofire.request(.POST, requestURL, parameters: parameters as? [String : AnyObject] ,encoding: .URL).responseJSON { (response) -> Void in
             if response.result.isSuccess {
                 NSLog("getJSON: \(response.result.value!)")
                 resultHandler(result: response.result.value, error: nil)

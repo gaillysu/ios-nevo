@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 class LoginController: UIViewController {
 
@@ -46,21 +47,21 @@ class LoginController: UIViewController {
         dict["user"] = self.userNameTextField.text
 
         HttpPostRequest.postRequest("http://api.nevowatch.com/api/account/login", data: dict) { (result) -> Void in
-            let error:String? = String(result["error"])
-            if let tempErrorCode = error {
-                // TODO please unwrap this, I dont get it. lol.
-                if(tempErrorCode == "Optional(-12)"){
-                    self.showMessage("Invalid E-mail", type: .Error, options: [.HideOnTap(true),.AutoHide(true)])
-                }else if(tempErrorCode == "Optional(1)" && result["state"] as! String == "success" && result.objectForKey("uid") != nil){
-                    self.showMessage("User logged in", type: .Success, options: [.HideOnTap(true),.AutoHide(true)])
-                    self.delay(1.3) {
-                        self.navigationController?.popViewControllerAnimated(true)
-                    }
-
-                    let defaults = NSUserDefaults.standardUserDefaults()
-                    defaults.setBool(true, forKey: "User_Logged_In")
-                    defaults.setValue(result["uid"], forKey: "User_Logged_In_UID")
-                    defaults.setValue(result["token"], forKey: "User_Logged_In_Token")
+            let json = JSON(result)
+            if json["error"].boolValue {
+                let user = UserProfile.getAll()
+                if user.count>0 {
+                    let userprofile:UserProfile = user[0] as! UserProfile
+                    userprofile.uid = json["uid"].intValue
+                    userprofile.update()
+                }else{
+                    let uesrProfile:UserProfile = UserProfile(keyDict: ["id":0,"uid":json["uid"].intValue,"first_name":"First name","last_name":"Last name","birthday":NSDate().timeIntervalSince1970,"gender":false,"age":25,"weight":60,"lenght":168,"stride_length":60,"metricORimperial":false,"created":NSDate().timeIntervalSince1970])
+                    uesrProfile.add({ (id, completion) -> Void in
+                        
+                    })
+                }
+                self.delay(1.3) {
+                    self.navigationController?.popViewControllerAnimated(true)
                 }
             }
         }
