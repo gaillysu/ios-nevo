@@ -86,7 +86,7 @@ class ConnectOtherAppsController: UITableViewController {
                 let textfield:UITextField = alert.textFields![0]
                 let userprofile:UserProfile = UserProfile.getAll()[0] as! UserProfile
                 var finalData: [String : AnyObject] = [:]
-                let params: [String: AnyObject] = ["uid":"\(userprofile.uid)"];
+                let params: [String: AnyObject] = ["uid":"\(userprofile.id)"];
                 finalData["user"] = params
                 finalData["pin"] = textfield.text!
                 finalData["access_token"] = OrganizationAccessToken

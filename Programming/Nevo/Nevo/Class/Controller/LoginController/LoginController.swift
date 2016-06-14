@@ -52,10 +52,10 @@ class LoginController: UIViewController {
                 let user = UserProfile.getAll()
                 if user.count>0 {
                     let userprofile:UserProfile = user[0] as! UserProfile
-                    userprofile.uid = json["uid"].intValue
+                    userprofile.id = json["uid"].intValue
                     userprofile.update()
                 }else{
-                    let uesrProfile:UserProfile = UserProfile(keyDict: ["id":0,"uid":json["uid"].intValue,"first_name":"First name","last_name":"Last name","birthday":NSDate().timeIntervalSince1970,"gender":false,"age":25,"weight":60,"lenght":168,"stride_length":60,"metricORimperial":false,"created":NSDate().timeIntervalSince1970])
+                    let uesrProfile:UserProfile = UserProfile(keyDict: ["id":json["uid"].intValue,"first_name":"First name","last_name":"Last name","birthday":NSDate().timeIntervalSince1970,"gender":false,"age":25,"weight":60,"lenght":168,"stride_length":60,"metricORimperial":false,"created":NSDate().timeIntervalSince1970])
                     uesrProfile.add({ (id, completion) -> Void in
                         
                     })
