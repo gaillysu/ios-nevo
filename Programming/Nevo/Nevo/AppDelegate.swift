@@ -67,14 +67,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
         }else{
             NSUserDefaults.standardUserDefaults().setBool(false, forKey: "firstDatabase")
         }
-
-        let user:NSArray = UserProfile.getAll()
-        if user.count == 0 {
-            let profile:UserProfile = UserProfile(keyDict: ["first_name":"Nevo","last_name":"Nevo","age":23,"weight":55,"lenght":170,"stride_length":Int(Double(170)*0.415)])
-            profile.add({ (id, completion) in
-                
-            })
-        }
+        
         /**
         *  Initialize the umeng
         *

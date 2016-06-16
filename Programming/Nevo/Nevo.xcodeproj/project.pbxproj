@@ -177,6 +177,8 @@
 		0058B3EB1CF55D590079A213 /* ConnectOtherAppsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0058B3E91CF55D590079A213 /* ConnectOtherAppsController.xib */; };
 		005BC9561A889F14006F9E86 /* NevoPicture.png in Resources */ = {isa = PBXBuildFile; fileRef = 005BC9551A889F14006F9E86 /* NevoPicture.png */; };
 		005BC95F1A88B79F006F9E86 /* FXBlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = 005BC95E1A88B79F006F9E86 /* FXBlurView.m */; };
+		006A65D11D10F2DD00DE647A /* SetingLoginCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006A65CF1D10F2DD00DE647A /* SetingLoginCell.swift */; };
+		006A65D21D10F2DD00DE647A /* SetingLoginCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 006A65D01D10F2DD00DE647A /* SetingLoginCell.xib */; };
 		0072EAB51C190DCD001EE2C9 /* SFCompactDisplay-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0072EA8B1C190DCD001EE2C9 /* SFCompactDisplay-Black.ttf */; };
 		0072EAB61C190DCD001EE2C9 /* SFCompactDisplay-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0072EA8C1C190DCD001EE2C9 /* SFCompactDisplay-Bold.ttf */; };
 		0072EAB81C190DCD001EE2C9 /* SFCompactDisplay-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0072EA8E1C190DCD001EE2C9 /* SFCompactDisplay-Light.ttf */; };
@@ -189,6 +191,8 @@
 		007E0CAF1D0E5C3E00B0B600 /* ConnectOtherAppsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 007E0CAD1D0E5C3E00B0B600 /* ConnectOtherAppsCell.xib */; };
 		007F1F511CAA1B630021DF1B /* LocalNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007F1F501CAA1B630021DF1B /* LocalNotification.swift */; };
 		007F1F531CAA63F30021DF1B /* NevoAllKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007F1F521CAA63F30021DF1B /* NevoAllKeys.swift */; };
+		0095C0DA1D123E9100331266 /* SetingNotLoginCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0095C0D81D123E9100331266 /* SetingNotLoginCell.swift */; };
+		0095C0DB1D123E9100331266 /* SetingNotLoginCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0095C0D91D123E9100331266 /* SetingNotLoginCell.xib */; };
 		009703C21C9BD9D700F2FF0D /* UserProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009703C01C9BD9D700F2FF0D /* UserProfileController.swift */; };
 		009703C31C9BD9D700F2FF0D /* UserProfileController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 009703C11C9BD9D700F2FF0D /* UserProfileController.xib */; };
 		009703C61C9BDB3200F2FF0D /* UserProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009703C41C9BDB3200F2FF0D /* UserProfileCell.swift */; };
@@ -452,6 +456,8 @@
 		005BC9551A889F14006F9E86 /* NevoPicture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NevoPicture.png; sourceTree = "<group>"; };
 		005BC95D1A88B79F006F9E86 /* FXBlurView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FXBlurView.h; sourceTree = "<group>"; };
 		005BC95E1A88B79F006F9E86 /* FXBlurView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FXBlurView.m; sourceTree = "<group>"; };
+		006A65CF1D10F2DD00DE647A /* SetingLoginCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetingLoginCell.swift; sourceTree = "<group>"; };
+		006A65D01D10F2DD00DE647A /* SetingLoginCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SetingLoginCell.xib; sourceTree = "<group>"; };
 		006B83691C44A20000E20A0C /* Nevo-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Nevo-Bridging-Header.h"; sourceTree = "<group>"; };
 		0072EA8B1C190DCD001EE2C9 /* SFCompactDisplay-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFCompactDisplay-Black.ttf"; sourceTree = "<group>"; };
 		0072EA8C1C190DCD001EE2C9 /* SFCompactDisplay-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFCompactDisplay-Bold.ttf"; sourceTree = "<group>"; };
@@ -466,6 +472,8 @@
 		007F1F501CAA1B630021DF1B /* LocalNotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocalNotification.swift; path = Frameworks/LocalNotification.swift; sourceTree = "<group>"; };
 		007F1F521CAA63F30021DF1B /* NevoAllKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NevoAllKeys.swift; sourceTree = "<group>"; };
 		0086858F1B40D53C0062F544 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
+		0095C0D81D123E9100331266 /* SetingNotLoginCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetingNotLoginCell.swift; sourceTree = "<group>"; };
+		0095C0D91D123E9100331266 /* SetingNotLoginCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SetingNotLoginCell.xib; sourceTree = "<group>"; };
 		009703C01C9BD9D700F2FF0D /* UserProfileController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileController.swift; sourceTree = "<group>"; };
 		009703C11C9BD9D700F2FF0D /* UserProfileController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserProfileController.xib; sourceTree = "<group>"; };
 		009703C41C9BDB3200F2FF0D /* UserProfileCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileCell.swift; sourceTree = "<group>"; };
@@ -840,6 +848,10 @@
 			isa = PBXGroup;
 			children = (
 				0050D55A1C28E0DB004F6F80 /* SetingView.swift */,
+				006A65CF1D10F2DD00DE647A /* SetingLoginCell.swift */,
+				006A65D01D10F2DD00DE647A /* SetingLoginCell.xib */,
+				0095C0D81D123E9100331266 /* SetingNotLoginCell.swift */,
+				0095C0D91D123E9100331266 /* SetingNotLoginCell.xib */,
 			);
 			path = SetingView;
 			sourceTree = "<group>";
@@ -1680,6 +1692,7 @@
 				0050D61E1C28E0DB004F6F80 /* SleepTrackingController.xib in Resources */,
 				0036EB061C48BA8300DCED46 /* connected1.png in Resources */,
 				0050D6961C28E1CD004F6F80 /* AddAlarmTableViewCell.xib in Resources */,
+				0095C0DB1D123E9100331266 /* SetingNotLoginCell.xib in Resources */,
 				0050D69B1C2906D8004F6F80 /* Firmwares in Resources */,
 				001F1B7B1B57777B001DD426 /* nevo_wacth_selected.png in Resources */,
 				00E650991C83DD9000278D3E /* nevoFontImage.png in Resources */,
@@ -1695,6 +1708,7 @@
 				00C640F61A8DEE0800815CF8 /* clockView600.png in Resources */,
 				00321D7D1C993C320069BFCC /* LoginController.xib in Resources */,
 				00BF2D9B1C7FED2200909316 /* VideoPlayController.xib in Resources */,
+				006A65D21D10F2DD00DE647A /* SetingLoginCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1793,6 +1807,7 @@
 				0050D61D1C28E0DB004F6F80 /* SleepTrackingController.swift in Sources */,
 				00EB507D1C9FE5F900D331F5 /* RunningToHK.swift in Sources */,
 				00321D7C1C993C320069BFCC /* LoginController.swift in Sources */,
+				0095C0DA1D123E9100331266 /* SetingNotLoginCell.swift in Sources */,
 				0050D60B1C28E0DB004F6F80 /* AddPresetViewController.swift in Sources */,
 				0050D6021C28E0DB004F6F80 /* SelectedNotificationTypeController.swift in Sources */,
 				0050D64B1C28E0DB004F6F80 /* NumberOfStepsGoal.swift in Sources */,
@@ -1811,6 +1826,7 @@
 				0050D5ED1C28E0DB004F6F80 /* HelpViewController.swift in Sources */,
 				0050D5EA1C28E0DB004F6F80 /* AidOtaViewController.swift in Sources */,
 				000CB3241C3E060800B4ABEC /* BalloonMarker.swift in Sources */,
+				006A65D11D10F2DD00DE647A /* SetingLoginCell.swift in Sources */,
 				0050D6781C28E0DB004F6F80 /* SetRTCRequest.swift in Sources */,
 				0050D6621C28E0DB004F6F80 /* NevoOTAControllerProfile.swift in Sources */,
 				0050D6431C28E0DB004F6F80 /* PresetsModel.swift in Sources */,

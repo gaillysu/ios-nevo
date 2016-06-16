@@ -11,8 +11,7 @@ import SwiftyJSON
 
 class LoginController: UIViewController {
 
-    @IBOutlet weak var passwordTextField: UITextField!
-    @IBOutlet weak var userNameTextField: UITextField!
+    @IBOutlet weak var logoinTableview: UITableView!
 
     init() {
         super.init(nibName: "LoginController", bundle: NSBundle.mainBundle())
@@ -26,44 +25,93 @@ class LoginController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "Nevo Login"
-        userNameTextField.text = "1508496092@qq.com"
-        passwordTextField.text = "123456"
+        //userNameTextField.text = "1508496092@qq.com"
+        //passwordTextField.text = "123456"
+        logoinTableview.registerNib(UINib(nibName:"SetingLoginCell" ,bundle: nil), forCellReuseIdentifier: "SetingLoginIdentifier")
+        logoinTableview.registerClass(UITableViewCell.classForCoder(), forCellReuseIdentifier: "LoginIdentifier")
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
-    @IBAction func loginButtonAction(sender: AnyObject) {
-        if(self.passwordTextField.text == "" || self.userNameTextField.text == "" ){
-            self.showMessage("E-mail or password is empty", type: .Error, options: [.HideOnTap(true),
-                .AutoHide(true)])
-            return;
+    // MARK: - UITableViewDelegate
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        if indexPath.section == 0 {
+            return 80
         }
-        //let dict:Dictionary = Dictionary(dictionaryLiteral: ("user",["uid":"gaillysu"]),("access_token","b85dcb3b85e925200f3fd4cafe6dce92295f449d9596b137941de7e9e2c3e7ae"),("pin","5234274"))
-        /**http://api.nevowatch.com/api/account/login "https://api.validic.com/v1/organizations/56d3b075407e010001000000/authorization/new_user"*/
-        var dict:[String : AnyObject] = [:]
-        dict["password"] = self.passwordTextField.text
-        dict["user"] = self.userNameTextField.text
-
-        HttpPostRequest.postRequest("http://api.nevowatch.com/api/account/login", data: dict) { (result) -> Void in
-            let json = JSON(result)
-            if json["error"].boolValue {
-                let user = UserProfile.getAll()
-                if user.count>0 {
-                    let userprofile:UserProfile = user[0] as! UserProfile
-                    userprofile.id = json["uid"].intValue
-                    userprofile.update()
-                }else{
-                    let uesrProfile:UserProfile = UserProfile(keyDict: ["id":json["uid"].intValue,"first_name":"First name","last_name":"Last name","birthday":NSDate().timeIntervalSince1970,"gender":false,"age":25,"weight":60,"lenght":168,"stride_length":60,"metricORimperial":false,"created":NSDate().timeIntervalSince1970])
-                    uesrProfile.add({ (id, completion) -> Void in
-                        
-                    })
-                }
-                self.delay(1.3) {
-                    self.navigationController?.popViewControllerAnimated(true)
-                }
-            }
+        return 50.0
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        switch (indexPath.section){
+        case 0:
+            break
+        case 1:
+            
+            break
+        case 2:
+            
+            break
+        case 3:
+            break
+        default: break
+        }
+        
+    }
+    
+    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if section == 2 {
+            return 60
+        }
+        return 30
+    }
+    
+    func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        if section == 1 {
+            return 30
+        }
+        return 20
+    }
+    func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView {
+        if section == 1 {
+            let clickButton:UIButton = UIButton(type: UIButtonType.System)
+            clickButton.frame = CGRectMake(0, 0, 120, 40)
+            clickButton.setTitle("忘记密码?", forState: UIControlState.Normal)
+            clickButton.titleLabel?.textAlignment = NSTextAlignment.Left
+            clickButton.addTarget(self, action: #selector(forgotPassword(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+            return clickButton
+        }
+        return UILabel(frame: CGRectMake(0,0,120,40))
+    }
+    
+    // MARK: - UITableViewDataSource
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
+        return 1
+    }
+    
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int{
+        return 3
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        switch indexPath.section {
+        case 0:
+            let cell = tableView.dequeueReusableCellWithIdentifier("SetingLoginIdentifier", forIndexPath: indexPath)
+            return cell
+        case 1:
+            let cell = tableView.dequeueReusableCellWithIdentifier("LoginIdentifier", forIndexPath: indexPath)
+            cell.textLabel?.text = "Logoin"
+            cell.textLabel?.textColor = AppTheme.NEVO_SOLAR_YELLOW()
+            return cell
+        case 2:
+            let cell = tableView.dequeueReusableCellWithIdentifier("LoginIdentifier", forIndexPath: indexPath)
+            cell.textLabel?.text = "Create a new Nevo account"
+            cell.textLabel?.textColor = AppTheme.NEVO_SOLAR_YELLOW()
+            return cell
+        default:
+            return UITableViewCell()
         }
     }
 
@@ -85,4 +133,8 @@ class LoginController: UIViewController {
         view.endEditing(true)
     }
     
+    
+    func forgotPassword(sender:UIButton) {
+        
+    }
 }
