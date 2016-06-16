@@ -142,10 +142,18 @@ class SetingViewController: UIViewController,SyncControllerDelegate,ButtonManage
             }
             
             if(isEqualString("\(sources[indexPath.row])",string2: NSLocalizedString("Connect to other apps", comment: ""))){
-                AppTheme.DLog("Connect to other apps")
-                let supportView:ConnectOtherAppsController = ConnectOtherAppsController()
-                supportView.hidesBottomBarWhenPushed = true
-                self.navigationController?.pushViewController(supportView, animated: true)
+               
+                let user:NSArray = UserProfile.getAll()
+                if user.count == 0 {
+                    let logoin:LoginController = LoginController()
+                    logoin.hidesBottomBarWhenPushed = true
+                    self.navigationController?.pushViewController(logoin, animated: true)
+                }else{
+                    AppTheme.DLog("Connect to other apps")
+                    let supportView:ConnectOtherAppsController = ConnectOtherAppsController()
+                    supportView.hidesBottomBarWhenPushed = true
+                    self.navigationController?.pushViewController(supportView, animated: true)
+                }
             }
             break
         case 2:
