@@ -54,7 +54,7 @@ class ChangeProfileController: UIViewController,UIPickerViewDataSource,UIPickerV
             changeTextfield.inputView = picker
         }
         
-        if changeField == "lenght"{
+        if changeField == "length"{
             weightArray = generatePickerData(100, rangeEnd: 220, interval: 0)
             textPostFix = " cm"
             let picker = UIPickerView();
@@ -64,21 +64,11 @@ class ChangeProfileController: UIViewController,UIPickerViewDataSource,UIPickerV
             changeTextfield.inputView = picker
         }
         
-        if changeField == "age"{
-            weightArray = generatePickerData(10, rangeEnd: 75, interval: 0)
-            textPostFix = " age"
-            let picker = UIPickerView();
-            picker.delegate = self;
-            picker.dataSource = self;
-            picker.backgroundColor = UIColor.whiteColor()
-            changeTextfield.inputView = picker
-        }
     }
     
     func saveChangeAction(sender:AnyObject) {
         let userArray:NSArray = UserProfile.getAll()
         let profile:UserProfile = userArray.objectAtIndex(0) as! UserProfile
-        //["first_name","last_name","weight","age","lenght"]
         if changeField == "first_name" && changeTextfield.text != nil{
             profile.first_name = changeTextfield.text!
         }
@@ -91,13 +81,10 @@ class ChangeProfileController: UIViewController,UIPickerViewDataSource,UIPickerV
             profile.weight = Int(changeTextfield.text!)!
         }
         
-        if changeField == "lenght" && changeTextfield.text != nil{
-            profile.lenght = Int(changeTextfield.text!)!
+        if changeField == "length" && changeTextfield.text != nil{
+            profile.length = Int(changeTextfield.text!)!
         }
         
-        if changeField == "age" && changeTextfield.text != nil{
-            profile.age = Int(changeTextfield.text!)!
-        }
         profile.update()
         self.navigationController?.popViewControllerAnimated(true)
     }

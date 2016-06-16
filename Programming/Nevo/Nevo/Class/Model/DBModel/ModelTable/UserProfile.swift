@@ -12,14 +12,13 @@ class UserProfile: NSObject {
     var id:Int = 0
     var first_name:String = ""
     var last_name:String = ""
-    var birthday:NSTimeInterval = NSDate().timeIntervalSince1970
-    var gender:Bool = false
-    var age:Int = 0
-    var weight:Int = 0
-    var lenght:Int = 0
-    var stride_length:Int = 0
+    var birthday:String = "" //2016-06-07
+    var gender:Bool = false // true = male || false = female
+    var weight:Int = 0 //KG
+    var length:Int = 0 //CM
     var metricORimperial:Bool = false
     var created:NSTimeInterval = NSDate().timeIntervalSince1970
+    var email:String = ""
 
     private var profileModel:NevoProfileModel = NevoProfileModel()
 
@@ -36,12 +35,11 @@ class UserProfile: NSObject {
         profileModel.last_name = last_name
         profileModel.birthday = birthday
         profileModel.gender = gender
-        profileModel.age = age
         profileModel.weight = weight
-        profileModel.lenght = lenght
-        profileModel.stride_length = stride_length
+        profileModel.length = length
         profileModel.metricORimperial = metricORimperial
         profileModel.created = created
+        profileModel.email = email
         profileModel.add { (id, completion) -> Void in
             result(id: id, completion: completion)
         }
@@ -53,12 +51,11 @@ class UserProfile: NSObject {
         profileModel.last_name = last_name
         profileModel.birthday = birthday
         profileModel.gender = gender
-        profileModel.age = age
         profileModel.weight = weight
-        profileModel.lenght = lenght
-        profileModel.stride_length = stride_length
+        profileModel.length = length
         profileModel.metricORimperial = metricORimperial
         profileModel.created = created
+        profileModel.email = email
         return profileModel.update()
     }
 
@@ -77,7 +74,7 @@ class UserProfile: NSObject {
         for model in modelArray {
             let userProfileModel:NevoProfileModel = model as! NevoProfileModel
 
-            let profile:UserProfile = UserProfile(keyDict: ["id":userProfileModel.id,"first_name":userProfileModel.first_name,"last_name":"\(userProfileModel.last_name)","birthday":userProfileModel.birthday,"gender":userProfileModel.gender,"age":userProfileModel.age,"weight":userProfileModel.weight,"lenght":userProfileModel.lenght,"stride_length":userProfileModel.stride_length,"metricORimperial":userProfileModel.metricORimperial,"created":userProfileModel.created])
+            let profile:UserProfile = UserProfile(keyDict: ["id":userProfileModel.id,"first_name":userProfileModel.first_name,"last_name":"\(userProfileModel.last_name)","birthday":userProfileModel.birthday,"gender":userProfileModel.gender,"weight":userProfileModel.weight,"length":userProfileModel.length,"metricORimperial":userProfileModel.metricORimperial,"created":userProfileModel.created,"email":userProfileModel.email])
             allArray.addObject(profile)
         }
         return allArray
@@ -88,7 +85,7 @@ class UserProfile: NSObject {
         let allArray:NSMutableArray = NSMutableArray()
         for model in modelArray {
             let userProfileModel:NevoProfileModel = model as! NevoProfileModel
-            let profile:UserProfile = UserProfile(keyDict: ["id":userProfileModel.id,"first_name":userProfileModel.first_name,"last_name":"\(userProfileModel.last_name)","birthday":userProfileModel.birthday,"gender":userProfileModel.gender,"age":userProfileModel.age,"weight":userProfileModel.weight,"lenght":userProfileModel.lenght,"stride_length":userProfileModel.stride_length,"metricORimperial":userProfileModel.metricORimperial,"created":userProfileModel.created])
+            let profile:UserProfile = UserProfile(keyDict: ["id":userProfileModel.id,"first_name":userProfileModel.first_name,"last_name":"\(userProfileModel.last_name)","birthday":userProfileModel.birthday,"gender":userProfileModel.gender,"weight":userProfileModel.weight,"length":userProfileModel.length,"metricORimperial":userProfileModel.metricORimperial,"created":userProfileModel.created,"email":userProfileModel.email])
             allArray.addObject(profile)
         }
         return allArray
@@ -109,10 +106,12 @@ class UserProfile: NSObject {
     class func defaultProfile(){
         let array = UserProfile.getAll()
         if(array.count == 0){
-            let uesrProfile:UserProfile = UserProfile(keyDict: ["id":0,"first_name":"First name","last_name":"Last name","birthday":NSDate().timeIntervalSince1970,"gender":false,"age":25,"weight":60,"lenght":168,"stride_length":60,"metricORimperial":false,"created":NSDate().timeIntervalSince1970])
+            let uesrProfile:UserProfile = UserProfile(keyDict: ["id":0,"first_name":"First name","last_name":"Last name","birthday":"2000-01-01","gender":false,"age":25,"weight":60,"length":168,"metricORimperial":false,"created":NSDate().timeIntervalSince1970])
             uesrProfile.add({ (id, completion) -> Void in
 
             })
         }
     }
+    
+    override func setValue(value: AnyObject?, forUndefinedKey key: String) {}
 }

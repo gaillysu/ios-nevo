@@ -7,20 +7,27 @@
 //
 
 import UIKit
+import Alamofire
+import XCGLogger
 
 class HttpPostRequest: NSObject {
 
     class  func postRequest(url: String, data:Dictionary<String,AnyObject>, completion:(result:NSDictionary) -> Void){
-        let commonParams = getCommonParams();
-        var finalData: [String : AnyObject] = [:];
-        let params: [String: AnyObject] = ["time":commonParams.time, "check_key": commonParams.md5];
-        for (key, value) in data {
-            finalData[key] = value
-        }
-        finalData["params"] = params;
-        print(finalData);
-        AppDelegate.getAppDelegate().getRequestNetwork(url, parameters: finalData) { (result, error) -> Void in
-            completion(result: result as! NSDictionary)
+        var finalData: Dictionary<String,AnyObject> = ["token":"ZQpFYPBMqFbUQq8E99FztS2x6yQ2v1Ei"]
+        finalData["params"] = data;
+        XCGLogger.defaultInstance().debug("\(finalData)")
+        
+        Alamofire.request(Method.POST, url, parameters: finalData, encoding:ParameterEncoding.JSON, headers: ["Authorization": "Basic YXBwczptZWRfYXBwX2RldmVsb3BtZW50","Content-Type":"application/json"]).responseJSON { (response) -> Void in
+            if response.result.isSuccess {
+                XCGLogger.defaultInstance().debug("getJSON: \(response.result.value)")
+                completion(result: response.result.value as! NSDictionary)
+            }else if (response.result.isFailure){
+                if (response.result.value == nil) {
+                    completion(result: NSDictionary(dictionary: ["error" : "request error"]))
+                }else{
+                    completion(result: response.result.value as! NSDictionary)
+                }
+            }
         }
     }
 

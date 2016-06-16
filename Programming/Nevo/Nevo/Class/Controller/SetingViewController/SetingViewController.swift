@@ -34,16 +34,19 @@ class SetingViewController: UIViewController,SyncControllerDelegate,ButtonManage
         sourcesImage = ["new_iOS_link_icon","new_iOS_notfications_icon","new_iOS_mynevo_iocn","new_iOS_support_icon","new_iOS_link_icon"]
         titleArray = [NSLocalizedString("goals", comment: ""),NSLocalizedString("find_my_watch", comment: ""),NSLocalizedString("forget_watch", comment: "")]
         titleArrayImage = ["new_iOS_goals_icon","new_iOS_findmywatch_icon","forget_watch","iOS_rate"]
-
-        let userProfile:UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Compose, target: self, action: #selector(userProfileAction(_:)))
-        self.navigationItem.rightBarButtonItem = userProfile
         
         notificationList.tableListView.registerNib(UINib(nibName:"SetingLoginCell" ,bundle: nil), forCellReuseIdentifier: "SetingLoginIdentifier")
         notificationList.tableListView.registerNib(UINib(nibName:"SetingNotLoginCell" ,bundle: nil), forCellReuseIdentifier: "SetingNotLoginIdentifier")
+        notificationList.tableListView.registerNib(UINib(nibName:"SetingInfoCell" ,bundle: nil), forCellReuseIdentifier: "SetingInfoIdentifier")
     }
     
     override func viewDidAppear(animated: Bool) {
         AppDelegate.getAppDelegate().startConnect(false, delegate: self)
+        
+        let user:NSArray = UserProfile.getAll()
+        if(user.count>0){
+            notificationList.tableListView.reloadData()
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -52,10 +55,7 @@ class SetingViewController: UIViewController,SyncControllerDelegate,ButtonManage
     }
 
     func userProfileAction(sender:AnyObject) {
-        let userprofile:UserProfileController = UserProfileController()
-        userprofile.title = "UserProfile"
-        userprofile.hidesBottomBarWhenPushed = true
-        self.navigationController?.pushViewController(userprofile, animated: true)
+        
     }
 
     // MARK: - ButtonManagerCallBack
@@ -102,10 +102,17 @@ class SetingViewController: UIViewController,SyncControllerDelegate,ButtonManage
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         switch (indexPath.section){
         case 0:
-            let logoin:LoginController = LoginController()
-            logoin.hidesBottomBarWhenPushed = true
-            self.navigationController?.pushViewController(logoin, animated: true)
-            break
+            let user:NSArray = UserProfile.getAll()
+            if user.count == 0 {
+                let logoin:LoginController = LoginController()
+                logoin.hidesBottomBarWhenPushed = true
+                self.navigationController?.pushViewController(logoin, animated: true)
+            }else{
+                let userprofile:UserProfileController = UserProfileController()
+                userprofile.title = "UserProfile"
+                userprofile.hidesBottomBarWhenPushed = true
+                self.navigationController?.pushViewController(userprofile, animated: true)
+            }
         case 1:
             if(isEqualString("\(sources.objectAtIndex(indexPath.row))",string2: NSLocalizedString("Notifications", comment: ""))){
                 AppTheme.DLog("Notifications")
@@ -215,7 +222,6 @@ class SetingViewController: UIViewController,SyncControllerDelegate,ButtonManage
             if(user.count>0){
                 let userProfile:UserProfile = user.objectAtIndex(0) as! UserProfile
                 if(userProfile.remove()){
-                    let indexPath = NSIndexPath(forRow: 0, inSection: 2)
                     let tableViewCell: UITableViewCell = tableView.cellForRowAtIndexPath(indexPath)!
                     tableViewCell.accessoryType = UITableViewCellAccessoryType.None
                     tableViewCell.backgroundColor=UIColor(red:129.0/255.0, green: 150.0/255.0, blue: 248.0/255.0, alpha: 1.0)
@@ -238,7 +244,7 @@ class SetingViewController: UIViewController,SyncControllerDelegate,ButtonManage
 
     // MARK: - UITableViewDataSource
     func numberOfSectionsInTableView(tableView: UITableView) -> Int{
-        return 4
+        return 3
     }
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
@@ -260,7 +266,12 @@ class SetingViewController: UIViewController,SyncControllerDelegate,ButtonManage
         case 0:
             let user:NSArray = UserProfile.getAll()
             if user.count>0 {
-                let cell = tableView.dequeueReusableCellWithIdentifier("SetingLoginIdentifier", forIndexPath: indexPath)
+                let cell = tableView.dequeueReusableCellWithIdentifier("SetingInfoIdentifier", forIndexPath: indexPath)
+                let user:NSArray = UserProfile.getAll()
+                
+                let userprofile:UserProfile = user[0] as! UserProfile
+                (cell as! SetingInfoCell).emailLabel.text = userprofile.email
+                (cell as! SetingInfoCell).userName.text = userprofile.first_name + userprofile.last_name
                 return cell
             }else{
                 let cell = tableView.dequeueReusableCellWithIdentifier("SetingNotLoginIdentifier", forIndexPath: indexPath)

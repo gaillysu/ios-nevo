@@ -13,7 +13,6 @@ class SetingLoginCell: UITableViewCell {
     @IBOutlet weak var userIcon: UIImageView!
     @IBOutlet weak var userEmail: UITextField!
     @IBOutlet weak var userPassword: UITextField!
-    @IBOutlet weak var loginButton: UIButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()

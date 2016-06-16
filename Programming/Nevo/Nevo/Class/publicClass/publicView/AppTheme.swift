@@ -8,6 +8,7 @@
 
 import Foundation
 import AudioToolbox
+import RegexKitLite
 
 /**
 This class holds all app-wide constants.
@@ -457,5 +458,17 @@ class AppTheme {
     
     class func getStepsColor () -> UIColor{
         return UIColor(red: 179.0/255.0, green: 179.0/255.0, blue: 179.0/255.0, alpha: 1.0)
+    }
+    
+    class func isEmail(email:String)->Bool{
+        return email.isMatchedByRegex("[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}")
+    }
+    
+    class func isPassword(password:String)->Bool{
+        return password.isMatchedByRegex("^[a-zA-Z]w{5,17}$")
+    }
+    
+    class func isNull(object:String)->Bool{
+        return object.isEmpty
     }
 }

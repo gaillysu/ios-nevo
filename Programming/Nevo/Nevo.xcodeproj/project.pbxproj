@@ -193,6 +193,11 @@
 		007F1F531CAA63F30021DF1B /* NevoAllKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007F1F521CAA63F30021DF1B /* NevoAllKeys.swift */; };
 		0095C0DA1D123E9100331266 /* SetingNotLoginCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0095C0D81D123E9100331266 /* SetingNotLoginCell.swift */; };
 		0095C0DB1D123E9100331266 /* SetingNotLoginCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0095C0D91D123E9100331266 /* SetingNotLoginCell.xib */; };
+		0095C0DE1D1274B600331266 /* UIColor_Hex_Swift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0095C0DC1D1274B600331266 /* UIColor_Hex_Swift.framework */; };
+		0095C0DF1D1274B600331266 /* XCGLogger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0095C0DD1D1274B600331266 /* XCGLogger.framework */; };
+		0095C0E11D12772C00331266 /* RegexKitLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0095C0E01D12772C00331266 /* RegexKitLite.framework */; };
+		0095C0E41D12940C00331266 /* SetingInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0095C0E21D12940C00331266 /* SetingInfoCell.swift */; };
+		0095C0E51D12940C00331266 /* SetingInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0095C0E31D12940C00331266 /* SetingInfoCell.xib */; };
 		009703C21C9BD9D700F2FF0D /* UserProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009703C01C9BD9D700F2FF0D /* UserProfileController.swift */; };
 		009703C31C9BD9D700F2FF0D /* UserProfileController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 009703C11C9BD9D700F2FF0D /* UserProfileController.xib */; };
 		009703C61C9BDB3200F2FF0D /* UserProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009703C41C9BDB3200F2FF0D /* UserProfileCell.swift */; };
@@ -474,6 +479,11 @@
 		0086858F1B40D53C0062F544 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		0095C0D81D123E9100331266 /* SetingNotLoginCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetingNotLoginCell.swift; sourceTree = "<group>"; };
 		0095C0D91D123E9100331266 /* SetingNotLoginCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SetingNotLoginCell.xib; sourceTree = "<group>"; };
+		0095C0DC1D1274B600331266 /* UIColor_Hex_Swift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIColor_Hex_Swift.framework; path = "../../../../Library/Developer/Xcode/DerivedData/Nevo-cbjnruaifgvemfduxtlzizqanuqy/Build/Products/Debug-iphoneos/UIColor_Hex_Swift.framework"; sourceTree = "<group>"; };
+		0095C0DD1D1274B600331266 /* XCGLogger.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCGLogger.framework; path = "../../../../Library/Developer/Xcode/DerivedData/Nevo-cbjnruaifgvemfduxtlzizqanuqy/Build/Products/Debug-iphoneos/XCGLogger.framework"; sourceTree = "<group>"; };
+		0095C0E01D12772C00331266 /* RegexKitLite.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RegexKitLite.framework; path = "Pods/../build/Debug-iphoneos/RegexKitLite.framework"; sourceTree = "<group>"; };
+		0095C0E21D12940C00331266 /* SetingInfoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetingInfoCell.swift; sourceTree = "<group>"; };
+		0095C0E31D12940C00331266 /* SetingInfoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SetingInfoCell.xib; sourceTree = "<group>"; };
 		009703C01C9BD9D700F2FF0D /* UserProfileController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileController.swift; sourceTree = "<group>"; };
 		009703C11C9BD9D700F2FF0D /* UserProfileController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserProfileController.xib; sourceTree = "<group>"; };
 		009703C41C9BDB3200F2FF0D /* UserProfileCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileCell.swift; sourceTree = "<group>"; };
@@ -609,6 +619,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0095C0E11D12772C00331266 /* RegexKitLite.framework in Frameworks */,
+				0095C0DE1D1274B600331266 /* UIColor_Hex_Swift.framework in Frameworks */,
+				0095C0DF1D1274B600331266 /* XCGLogger.framework in Frameworks */,
 				00B606EB1D0FCE9200FF5A01 /* MRProgress.framework in Frameworks */,
 				00B606E71D0F9DB800FF5A01 /* SwiftyJSON.framework in Frameworks */,
 				002C442A1CFD89AA00322B46 /* AutocompleteField.framework in Frameworks */,
@@ -852,6 +865,8 @@
 				006A65D01D10F2DD00DE647A /* SetingLoginCell.xib */,
 				0095C0D81D123E9100331266 /* SetingNotLoginCell.swift */,
 				0095C0D91D123E9100331266 /* SetingNotLoginCell.xib */,
+				0095C0E21D12940C00331266 /* SetingInfoCell.swift */,
+				0095C0E31D12940C00331266 /* SetingInfoCell.xib */,
 			);
 			path = SetingView;
 			sourceTree = "<group>";
@@ -1430,6 +1445,9 @@
 		9AD8F95A1A6DFE3400F01014 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0095C0E01D12772C00331266 /* RegexKitLite.framework */,
+				0095C0DC1D1274B600331266 /* UIColor_Hex_Swift.framework */,
+				0095C0DD1D1274B600331266 /* XCGLogger.framework */,
 				00B606EA1D0FCE9200FF5A01 /* MRProgress.framework */,
 				00B606E61D0F9DB800FF5A01 /* SwiftyJSON.framework */,
 				002C44291CFD89AA00322B46 /* AutocompleteField.framework */,
@@ -1635,6 +1653,7 @@
 				00D0FF731B130A9F00D084C3 /* Nevo660.png in Resources */,
 				00EC9DCF1C85833400280904 /* MorningTutorialController.xib in Resources */,
 				0050D6011C28E0DB004F6F80 /* NotificationViewController.xib in Resources */,
+				0095C0E51D12940C00331266 /* SetingInfoCell.xib in Resources */,
 				00E2BDE31B16CCD0009C757E /* MBProgressHUD.bundle in Resources */,
 				00EC9E061C85839A00280904 /* TutorialSixViewController.xib in Resources */,
 				0050D6221C28E0DB004F6F80 /* StepGoalSetingController.xib in Resources */,
@@ -1881,6 +1900,7 @@
 				0050D6001C28E0DB004F6F80 /* NotificationViewController.swift in Sources */,
 				0050D6661C28E0DB004F6F80 /* Utility.swift in Sources */,
 				0050D65D1C28E0DB004F6F80 /* ConnectionManager.swift in Sources */,
+				0095C0E41D12940C00331266 /* SetingInfoCell.swift in Sources */,
 				0050D6171C28E0DB004F6F80 /* queryTableviewCell.swift in Sources */,
 				0050D5E91C28E0DB004F6F80 /* AidOtaController.swift in Sources */,
 				0050D6461C28E0DB004F6F80 /* UserProfile.swift in Sources */,

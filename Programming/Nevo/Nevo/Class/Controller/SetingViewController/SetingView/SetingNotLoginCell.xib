@@ -16,9 +16,8 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="79.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="GXs-an-rXf">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="usericon" translatesAutoresizingMaskIntoConstraints="NO" id="GXs-an-rXf">
                         <rect key="frame" x="125" y="5" width="70" height="70"/>
-                        <color key="backgroundColor" red="0.96078431369999995" green="0.64313725489999995" blue="0.10980392160000001" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="GXs-an-rXf" secondAttribute="height" multiplier="1:1" id="EhB-hf-8bs"/>
                         </constraints>
@@ -32,4 +31,7 @@
             </tableViewCellContentView>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="usericon" width="60" height="60"/>
+    </resources>
 </document>
