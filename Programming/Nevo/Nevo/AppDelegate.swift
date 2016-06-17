@@ -533,62 +533,42 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                 let timerInter:NSTimeInterval = timerInterval.timeIntervalSince1970
 
                 let stepsArray = UserSteps.getCriteria("WHERE createDate = \(timeStr)")
+                let stepsModel:UserSteps = UserSteps(keyDict: [
+                    "id":0,
+                    "steps":thispacket.getDailySteps(),
+                    "goalsteps":thispacket.getStepsGoal(),
+                    "distance":thispacket.getDailyDist(),
+                    "hourlysteps":AppTheme.toJSONString(thispacket.getHourlySteps()),
+                    "hourlydistance":AppTheme.toJSONString(thispacket.getHourlyDist()),
+                    "calories":thispacket.getDailyCalories() ,
+                    "hourlycalories":AppTheme.toJSONString(thispacket.getHourlyCalories()),
+                    "inZoneTime":thispacket.getInZoneTime(),
+                    "outZoneTime":thispacket.getOutZoneTime(),
+                    "inactivityTime":thispacket.getInactivityTime(),
+                    "goalreach":Double(thispacket.getDailySteps())/Double(thispacket.getStepsGoal()),
+                    "date":timerInter,
+                    "createDate":timeStr,
+                    "walking_distance":thispacket.getDailyWalkingDistance(),
+                    "walking_duration":thispacket.getDailyWalkingTimer(),
+                    "walking_calories":thispacket.getDailyCalories(),
+                    "running_distance":thispacket.getRunningDistance(),
+                    "running_duration":thispacket.getDailyRunningTimer(),
+                    "running_calories":thispacket.getDailyCalories()])
+                
+                UPDATE_VALIDIC_REQUEST.updateToValidic(NSArray(arrayLiteral: stepsModel))
+                
                 if(stepsArray.count>0) {
                     let step:UserSteps = stepsArray[0] as! UserSteps
                     if(step.steps < thispacket.getDailySteps()) {
                         AppTheme.DLog("Data that has been saved····")
-                        let stepsModel:UserSteps = UserSteps(keyDict: [
-                            "id":step.id,
-                            "steps":thispacket.getDailySteps(),
-                            "goalsteps":thispacket.getStepsGoal(),
-                            "distance":thispacket.getDailyDist(),
-                            "hourlysteps":AppTheme.toJSONString(thispacket.getHourlySteps()),
-                            "hourlydistance":AppTheme.toJSONString(thispacket.getHourlyDist()),
-                            "calories":thispacket.getDailyCalories(),
-                            "hourlycalories":AppTheme.toJSONString(thispacket.getHourlyCalories()),
-                            "inZoneTime":thispacket.getInZoneTime(),
-                            "outZoneTime":thispacket.getOutZoneTime(),
-                            "inactivityTime":thispacket.getInactivityTime(),
-                            "goalreach":Double(thispacket.getDailySteps())/Double(thispacket.getStepsGoal()),
-                            "date":timerInter,
-                            "createDate":timeStr,
-                            "walking_distance":thispacket.getDailyWalkingDistance(),
-                            "walking_duration":thispacket.getDailyWalkingTimer(),
-                            "walking_calories":thispacket.getDailyCalories(),
-                            "running_distance":thispacket.getRunningDistance(),
-                            "running_duration":thispacket.getDailyRunningTimer(),
-                            "running_calories":thispacket.getDailyCalories()])
-
+                        stepsModel.id = step.id
                         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,0), { () -> Void in
                             stepsModel.update()
                         })
                     }
                 }else {
-                    let stepsModel:UserSteps = UserSteps(keyDict: [
-                        "id":0,
-                        "steps":thispacket.getDailySteps(),
-                        "goalsteps":thispacket.getStepsGoal(),
-                        "distance":thispacket.getDailyDist(),
-                        "hourlysteps":AppTheme.toJSONString(thispacket.getHourlySteps()),
-                        "hourlydistance":AppTheme.toJSONString(thispacket.getHourlyDist()),
-                        "calories":thispacket.getDailyCalories() ,
-                        "hourlycalories":AppTheme.toJSONString(thispacket.getHourlyCalories()),
-                        "inZoneTime":thispacket.getInZoneTime(),
-                        "outZoneTime":thispacket.getOutZoneTime(),
-                        "inactivityTime":thispacket.getInactivityTime(),
-                        "goalreach":Double(thispacket.getDailySteps())/Double(thispacket.getStepsGoal()),
-                        "date":timerInter,
-                        "createDate":timeStr,
-                        "walking_distance":thispacket.getDailyWalkingDistance(),
-                        "walking_duration":thispacket.getDailyWalkingTimer(),
-                        "walking_calories":thispacket.getDailyCalories(),
-                        "running_distance":thispacket.getRunningDistance(),
-                        "running_duration":thispacket.getDailyRunningTimer(),
-                        "running_calories":thispacket.getDailyCalories()])
-
                     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,0), { () -> Void in
                         stepsModel.add({ (id, completion) -> Void in
-
                         })
                     })
                 }

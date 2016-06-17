@@ -25,6 +25,7 @@ class ConnectOtherAppsController: UITableViewController {
         super.viewDidLoad()
         self.navigationItem.title = "App Authorized"
         self.tableView.registerNib(UINib(nibName: "ConnectOtherAppsCell", bundle:nil), forCellReuseIdentifier: "reuseIdentifier")
+        UPDATE_VALIDIC_REQUEST.updateToValidic(nil)
     }
 
     override func didReceiveMemoryWarning() {
@@ -98,6 +99,7 @@ class ConnectOtherAppsController: UITableViewController {
                         userdefalut.setObject(resultJson["user"].dictionaryObject, forKey: ValidicAuthorizedKey)
                         userdefalut.synchronize()
                         
+                        UPDATE_VALIDIC_REQUEST.updateToValidic(nil)
                         
                     }else{
                         switchView.setOn(false, animated: true)
@@ -112,31 +114,6 @@ class ConnectOtherAppsController: UITableViewController {
             
         }else{
             NSUserDefaults.standardUserDefaults().removeObjectForKey(ValidicAuthorizedKey)
-        }
-        //UserSteps.getAll()
-    }
-    
-    func updateToValidic() {
-        let stepsArray:NSArray = UserSteps.getAll()
-        var array:[[String : AnyObject]] = []
-        for steps in stepsArray{
-            let userSteps:UserSteps = steps as! UserSteps
-            var detail:[String : AnyObject] = [:]
-            detail["timestamp"] = ValidicRequest.formatterDate(NSDate(timeIntervalSince1970: userSteps.date))
-            detail["utc_offset"] = "+00:00"
-            detail["steps"] = userSteps.steps
-            detail["distance"] = userSteps.distance
-            detail["floors"] = 0
-            detail["elevation"] = 0
-            detail["calories_burned"] = userSteps.calories
-            detail["activity_id"] = "0"
-            array.append(detail)
-        }
-        
-        for object in array{
-            UPDATE_VALIDIC_REQUEST.updateValidicData(object, completion: { (result) in
-                
-            })
         }
     }
     
