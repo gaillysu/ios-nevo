@@ -53,14 +53,13 @@
                     </view>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="Q4o-Nt-Avz" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" constant="-120" id="6D7-p0-o5X"/>
                     <constraint firstAttribute="leadingMargin" secondItem="Q4o-Nt-Avz" secondAttribute="leading" constant="3" id="6X0-XI-d3N"/>
                     <constraint firstAttribute="bottomMargin" secondItem="PJc-D8-MYM" secondAttribute="bottom" constant="-8" id="T5D-bz-NhH"/>
-                    <constraint firstAttribute="topMargin" secondItem="Q4o-Nt-Avz" secondAttribute="top" constant="3" id="b4R-sP-eiv"/>
                     <constraint firstItem="Q4o-Nt-Avz" firstAttribute="centerY" secondItem="PJc-D8-MYM" secondAttribute="centerY" id="cdJ-f4-UAz"/>
                     <constraint firstItem="PJc-D8-MYM" firstAttribute="leading" secondItem="Q4o-Nt-Avz" secondAttribute="trailing" constant="5" id="fDX-lI-ylB"/>
                     <constraint firstAttribute="trailingMargin" secondItem="PJc-D8-MYM" secondAttribute="trailing" constant="-8" id="mFK-c2-ALg"/>
                     <constraint firstItem="PJc-D8-MYM" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="-8" id="pIs-Q0-TqM"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="Q4o-Nt-Avz" secondAttribute="bottom" constant="-3.5" id="uOs-G7-yRo"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>

@@ -43,10 +43,7 @@ class SetingViewController: UIViewController,SyncControllerDelegate,ButtonManage
     override func viewDidAppear(animated: Bool) {
         AppDelegate.getAppDelegate().startConnect(false, delegate: self)
         
-        let user:NSArray = UserProfile.getAll()
-        if(user.count>0){
-            notificationList.tableListView.reloadData()
-        }
+        notificationList.tableListView.reloadData()
     }
 
     override func didReceiveMemoryWarning() {
