@@ -555,6 +555,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                     "running_duration":thispacket.getDailyRunningTimer(),
                     "running_calories":thispacket.getDailyCalories()])
                 
+                //upload data validic
                 UPDATE_VALIDIC_REQUEST.updateToValidic(NSArray(arrayLiteral: stepsModel))
                 
                 if(stepsArray.count>0) {

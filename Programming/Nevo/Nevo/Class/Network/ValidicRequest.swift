@@ -9,6 +9,7 @@
 import UIKit
 import Alamofire
 import SwiftyJSON
+import XCGLogger
 
 let ValidicOrganizationID = "56d3b075407e010001000000"
 let OrganizationAccessToken = "b85dcb3b85e925200f3fd4cafe6dce92295f449d9596b137941de7e9e2c3e7ae"
@@ -18,24 +19,43 @@ let UPDATE_VALIDIC_REQUEST:ValidicRequest = ValidicRequest()
 
 class ValidicRequest: NSObject {
 
+    // MARK: - Request func
     class func validicPostJSONRequest(url: String, data:Dictionary<String,AnyObject>, completion:(result:NSDictionary) -> Void){
         debugPrint("accessData:\(data)")
         Alamofire.request(.POST, url, parameters: data ,encoding: .JSON, headers: ["Content-Type":"application/json"]).responseJSON { (response) -> Void in
             if response.result.isSuccess {
-                NSLog("getJSON: \(response.result.value!)")
                 completion(result: response.result.value! as! NSDictionary)
             }else if (response.result.isFailure){
                 if response.result.value != nil {
-                    NSLog("getJSON: \(response.result.value!)")
                     completion(result: response.result.value! as! NSDictionary)
                 }else{
                     completion(result: NSDictionary(dictionary: ["code": 500,"message": "Authorized",]))
                 }
-                
             }
         }
     }
     
+    class func deleteValidicRequest(url: String, data:Dictionary<String,AnyObject>, completion:(result:NSDictionary) -> Void){
+        //debugPrint("accessData:\(data)")
+        Alamofire.request(.DELETE, url, parameters: data ,encoding: .JSON, headers: ["Content-Type":"application/json"]).responseJSON { (response) -> Void in
+            if response.result.isSuccess {
+                completion(result: response.result.value! as! NSDictionary)
+            }else if (response.result.isFailure){
+                if response.result.value != nil {
+                    completion(result: response.result.value! as! NSDictionary)
+                }else{
+                    completion(result: NSDictionary(dictionary: ["code": 500,"message": "Authorized",]))
+                }
+            }
+        }
+    }
+    
+    // MARK: - Instantiation function
+    /**
+     Instantiation function,Upload the update user steps
+     
+     - parameter array: <#array description#>
+     */
     func updateToValidic(array:NSArray?) {
         var stepsArray:NSArray = NSArray()
         if array == nil {
@@ -66,12 +86,13 @@ class ValidicRequest: NSObject {
             let timeInterval = userSteps.date
             var detail:[String : AnyObject] = [:]
             detail["timestamp"] = ValidicRequest.formatterDate(NSDate(timeIntervalSince1970: timeInterval))
-            if timeZone>0 {
+            if timeZone>0{
                 if "\(timeZone)".lengthOfBytesUsingEncoding(NSUTF8StringEncoding)==1 {
                     detail["utc_offset"] = "+0\(timeZone):00"
                 }else{
                     detail["utc_offset"] = "+\(timeZone):00"
                 }
+                
             }else{
                 if "\(timeZone)".lengthOfBytesUsingEncoding(NSUTF8StringEncoding)==2 {
                     var string:String = "\(timeZone):00"
@@ -90,17 +111,37 @@ class ValidicRequest: NSObject {
             array.append(detail)
         }
         
+        var _id:String = " "
+        var URL = ""
+        
+        if NSUserDefaults.standardUserDefaults().objectForKey(ValidicAuthorizedKey) != nil {
+            _id = "\((NSUserDefaults.standardUserDefaults().objectForKey(ValidicAuthorizedKey) as! NSDictionary).objectForKey("_id")!)"
+            URL = "https://api.validic.com/v1/organizations/\(ValidicOrganizationID)/users/\(_id)/routine.json"
+        }else{
+            //If there is validic no authorization is not upload data
+            return;
+        }
+        
+        //create steps network global queue
+        let queue:dispatch_queue_t = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
+        let group = dispatch_group_create()
+        
         for object in array{
-            let data = ["routine":"\(object)","access_token":"\(OrganizationAccessToken)"]
-            UPDATE_VALIDIC_REQUEST.updateValidicData(data, completion: { (result) in
-                
+            dispatch_group_async(group, queue, {
+                let data = ["routine":object,"access_token":"\(OrganizationAccessToken)"]
+                self.updateValidicData(URL,data: data as! Dictionary<String, AnyObject>, completion: { (result) in
+                    XCGLogger.defaultInstance().debug("updateValidicData: \(result)")
+                })
             })
         }
+        
+        dispatch_group_notify(group, queue, {
+            XCGLogger.defaultInstance().debug("create steps completed")
+        })
     }
     
-    private func updateValidicData(data:Dictionary<String,AnyObject>,completion:(result:NSDictionary) -> Void)  {
-        let _id:String = "\((NSUserDefaults.standardUserDefaults().objectForKey(ValidicAuthorizedKey) as! NSDictionary).objectForKey("_id")!)"
-        let URL = "https://api.validic.com/v1/organizations/\(ValidicOrganizationID)/users/\(_id)/routine.json"
+    private func updateValidicData(URL:String,data:Dictionary<String,AnyObject>,completion:(result:NSDictionary) -> Void)  {
+        
         ValidicRequest.validicPostJSONRequest(URL, data: data) { (result) in
             completion(result: result)
         }
@@ -110,7 +151,15 @@ class ValidicRequest: NSObject {
         let dateArray = "\(date.beginningOfDay)".componentsSeparatedByString(" ")
         let startIndex = dateArray[2].startIndex.advancedBy(0)
         let endIndex = dateArray[2].startIndex.advancedBy(3)
-        let dateString  = dateArray[0]+"T"+dateArray[1]+dateArray[2].substringWithRange(Range(startIndex..<endIndex))
+        let dateString = dateArray[0]+"T"+dateArray[1]+dateArray[2].substringWithRange(Range(startIndex..<endIndex))
         return dateString+":"+"00"
+    }
+    
+    func deleteValidicUser(uid:String) {
+        let URL = "https://api.validic.com/v1/organizations/\(ValidicOrganizationID)/users.json"
+        let data = ["uid":uid,"access_token":"\(OrganizationAccessToken)"]
+        ValidicRequest.deleteValidicRequest(URL,data: data, completion: { (result) in
+            XCGLogger.defaultInstance().debug("deleteValidic User: \(result)")
+        })
     }
 }
