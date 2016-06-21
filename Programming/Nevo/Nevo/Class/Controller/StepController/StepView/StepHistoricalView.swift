@@ -58,7 +58,7 @@ class StepHistoricalView: UIView,ChartViewDelegate {
             xAxis.labelFont = UIFont.systemFontOfSize(8)
             xAxis.drawAxisLineEnabled = false;
             xAxis.drawGridLinesEnabled = false;
-            xAxis.labelPosition = ChartXAxis.XAxisLabelPosition.BottomInside
+            xAxis.labelPosition = ChartXAxis.LabelPosition.BottomInside
 
             chartView!.legend.enabled = false;
         }
