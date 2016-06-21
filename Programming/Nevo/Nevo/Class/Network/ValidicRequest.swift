@@ -50,6 +50,58 @@ class ValidicRequest: NSObject {
         }
     }
     
+    
+    class func getValidicRequest(url: String, data:Dictionary<String,AnyObject>, completion:(result:NSDictionary) -> Void){
+        //debugPrint("accessData:\(data)")
+        Alamofire.request(.GET, url, parameters: data ,encoding: .JSON).responseJSON { (response) -> Void in
+            if response.result.isSuccess {
+                completion(result: response.result.value! as! NSDictionary)
+            }else if (response.result.isFailure){
+                if response.result.value != nil {
+                    completion(result: response.result.value! as! NSDictionary)
+                }else{
+                    completion(result: NSDictionary(dictionary: ["code": 500,"message": "Authorized",]))
+                }
+            }
+        }
+    }
+    
+    class func formatterDate(date:NSDate)->String {
+        let dateArray = "\(date.beginningOfDay)".componentsSeparatedByString(" ")
+        let startIndex = dateArray[2].startIndex.advancedBy(0)
+        let endIndex = dateArray[2].startIndex.advancedBy(3)
+        let dateString = dateArray[0]+"T"+dateArray[1]+dateArray[2].substringWithRange(Range(startIndex..<endIndex))
+        return dateString+":"+"00"
+    }
+    
+    class func formatterUTCOffset(timeZone:Int)->String {
+        if timeZone>0{
+            if "\(timeZone)".lengthOfBytesUsingEncoding(NSUTF8StringEncoding)==1 {
+                return "+0\(timeZone):00"
+            }else{
+                return "+\(timeZone):00"
+            }
+            
+        }else{
+            if "\(timeZone)".lengthOfBytesUsingEncoding(NSUTF8StringEncoding)==2 {
+                var string:String = "\(timeZone):00"
+                string.insert("0", atIndex: string.startIndex.advancedBy(1))
+                return string
+            }else{
+                return "\(timeZone):00"
+            }
+        }
+    }
+    
+    //If there is validic no authorization is not upload data
+    class func isValidicAuthorization()->Bool {
+        if NSUserDefaults.standardUserDefaults().objectForKey(ValidicAuthorizedKey) != nil {
+            return true
+        }else{
+            return false
+        }
+    }
+    
     // MARK: - Instantiation function
     /**
      Instantiation function,Upload the update user steps
@@ -86,22 +138,7 @@ class ValidicRequest: NSObject {
             let timeInterval = userSteps.date
             var detail:[String : AnyObject] = [:]
             detail["timestamp"] = ValidicRequest.formatterDate(NSDate(timeIntervalSince1970: timeInterval))
-            if timeZone>0{
-                if "\(timeZone)".lengthOfBytesUsingEncoding(NSUTF8StringEncoding)==1 {
-                    detail["utc_offset"] = "+0\(timeZone):00"
-                }else{
-                    detail["utc_offset"] = "+\(timeZone):00"
-                }
-                
-            }else{
-                if "\(timeZone)".lengthOfBytesUsingEncoding(NSUTF8StringEncoding)==2 {
-                    var string:String = "\(timeZone):00"
-                    string.insert("0", atIndex: string.startIndex.advancedBy(1))
-                    detail["utc_offset"] = string
-                }else{
-                    detail["utc_offset"] = "\(timeZone):00"
-                }
-            }
+            detail["utc_offset"] = ValidicRequest.formatterUTCOffset(timeZone)
             detail["steps"] = stepsValue
             detail["distance"] = distanceValue
             detail["floors"] = 0
@@ -114,7 +151,7 @@ class ValidicRequest: NSObject {
         var _id:String = " "
         var URL = ""
         
-        if NSUserDefaults.standardUserDefaults().objectForKey(ValidicAuthorizedKey) != nil {
+        if ValidicRequest.isValidicAuthorization() {
             _id = "\((NSUserDefaults.standardUserDefaults().objectForKey(ValidicAuthorizedKey) as! NSDictionary).objectForKey("_id")!)"
             URL = "https://api.validic.com/v1/organizations/\(ValidicOrganizationID)/users/\(_id)/routine.json"
         }else{
@@ -147,12 +184,28 @@ class ValidicRequest: NSObject {
         }
     }
     
-    class func formatterDate(date:NSDate)->String {
-        let dateArray = "\(date.beginningOfDay)".componentsSeparatedByString(" ")
-        let startIndex = dateArray[2].startIndex.advancedBy(0)
-        let endIndex = dateArray[2].startIndex.advancedBy(3)
-        let dateString = dateArray[0]+"T"+dateArray[1]+dateArray[2].substringWithRange(Range(startIndex..<endIndex))
-        return dateString+":"+"00"
+    func downloadValidicData() {
+        if ValidicRequest.isValidicAuthorization() {
+            let _id:String = "\((NSUserDefaults.standardUserDefaults().objectForKey(ValidicAuthorizedKey) as! NSDictionary).objectForKey("_id")!)"
+            let URL:String = "https://api.validic.com/v1/organizations/\(ValidicOrganizationID)/users/\(_id)/routine/latest.json?access_token=\(OrganizationAccessToken)"
+            
+            var index:Int = 1
+            
+            while index != 0 {
+                ValidicRequest.getValidicRequest(URL, data: ["start_date":ValidicRequest.formatterDate(NSDate().beginningOfMonth),"end_date":NSDate().endOfMonth,"page":index,"limit":""]) { (result) in
+                    let json = JSON(result)
+                    let routineArray:[JSON] = json["routine"].arrayValue
+                    if routineArray.count>0 {
+                        for (startIndex,value) in routineArray.enumerate() {
+                            
+                        }
+                    }else{
+                        index = 0
+                    }
+                }
+                index += 1
+            }
+        }
     }
     
     func deleteValidicUser(uid:String) {
@@ -161,5 +214,11 @@ class ValidicRequest: NSObject {
         ValidicRequest.deleteValidicRequest(URL,data: data, completion: { (result) in
             XCGLogger.defaultInstance().debug("deleteValidic User: \(result)")
         })
+    }
+    
+    func analyticalData(object:JSON) {
+        for (key,value) in object {
+            
+        }
     }
 }

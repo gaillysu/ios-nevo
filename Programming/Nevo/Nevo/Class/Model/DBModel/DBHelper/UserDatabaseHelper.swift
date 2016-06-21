@@ -340,8 +340,6 @@ class UserDatabaseHelper:NSObject,BaseEntryDatabaseHelper {
             let sql:String = "SELECT * FROM \(tableName)"
             let resultSet:FMResultSet = db.executeQuery(sql, withArgumentsInArray: nil)
             while (resultSet.next()) {
-                //let classType: AnyObject.Type = self.classForCoder()
-                //let nsobjectype : NevoDBModel.Type = classType as! NevoDBModel.Type
                 let model:UserDatabaseHelper = UserDatabaseHelper()
                 for i in 0 ..< model.columeNames.count{
                     let columeName:NSString = model.columeNames.objectAtIndex(i) as! NSString
@@ -365,11 +363,11 @@ class UserDatabaseHelper:NSObject,BaseEntryDatabaseHelper {
      */
     class func updateTable()->Bool {
         let db:FMDatabase = FMDatabase(path: AppDelegate.dbPath())
-        if(db.open()) {
+        if(!db.open()) {
             NSLog("数据库打开失败!数据库路径:\(AppDelegate.dbPath())");
             return false;
         }
-
+        
         var tableName:NSString = NSStringFromClass(self.classForCoder())
         tableName = tableName.stringByReplacingOccurrencesOfString(".", withString: "")
         let columns:NSMutableArray = NSMutableArray()
@@ -378,26 +376,24 @@ class UserDatabaseHelper:NSObject,BaseEntryDatabaseHelper {
             let column:NSString = resultSet.stringForColumn("name")
             columns.addObject(column)
         }
-
+        
         let dict:NSDictionary = self.getAllProperties();
         let properties:NSArray = dict.objectForKey("name") as! NSArray
         let filterPredicate:NSPredicate = NSPredicate(format: "NOT (SELF IN %@)",columns)
         //过滤数组
         let resultArray:NSArray = properties.filteredArrayUsingPredicate(filterPredicate)
-
         for column in resultArray {
             let index:Int = properties.indexOfObject(column)
             let proType:String = (dict.objectForKey("type") as! NSArray).objectAtIndex(index) as! String
             let fieldSql:String = "\(column) \(proType)"
-            //[NSString stringWithFormat:@"%@ %@",column,proType];
-            let sql:String = String(format: "ALTER TABLE %@ ADD COLUMN %@ ",tableName,fieldSql)
-            var args:CVaListPointer?
-            if (db.executeUpdate(sql, withVAList: args!)) {
+            let sql:String = String(format: "ALTER TABLE %@ ADD COLUMN %@",tableName,fieldSql)
+            let args:CVaListPointer = getVaList([0,1,2,3,4,5,6,7]);
+            if (db.executeUpdate(sql, withVAList: args)) {
+                db.close();
                 return false;
             }
         }
         db.close();
         return true
     }
-
 }

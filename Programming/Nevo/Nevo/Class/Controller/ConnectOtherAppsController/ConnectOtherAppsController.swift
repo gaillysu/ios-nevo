@@ -11,7 +11,8 @@ import SwiftyJSON
 import MRProgress
 
 class ConnectOtherAppsController: UITableViewController {
-    private let licenseApp:[String] = ["HealthKit","Validic"]
+    private let licenseApp:[String] = ["Validic"]
+    //"HealthKit"
     
     init() {
         super.init(nibName: "ConnectOtherAppsController", bundle: NSBundle.mainBundle())
@@ -73,15 +74,15 @@ class ConnectOtherAppsController: UITableViewController {
     func checkPinCode(switchView:UISwitch) {
         if switchView.on {
             UIApplication.sharedApplication().openURL(NSURL(string:"https://partner.validic.com/applications/47/test/marketplace")!)
-            let alert:UIAlertController = UIAlertController(title: "请输入PIN码", message: nil, preferredStyle: UIAlertControllerStyle.Alert)
+            let alert:UIAlertController = UIAlertController(title: "Please enter the PIN code", message: nil, preferredStyle: UIAlertControllerStyle.Alert)
             alert.addTextFieldWithConfigurationHandler { (testField:UITextField) in
             }
             
-            alert.addAction(UIAlertAction(title: "取消", style: UIAlertActionStyle.Cancel) { (action) in
+            alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: UIAlertActionStyle.Cancel) { (action) in
                 switchView.setOn(false, animated: true)
                 })
             
-            alert.addAction(UIAlertAction(title: "确定", style: UIAlertActionStyle.Default) { (action) in
+            alert.addAction(UIAlertAction(title: NSLocalizedString("Ok", comment: ""), style: UIAlertActionStyle.Default) { (action) in
                 let view = MRProgressOverlayView.showOverlayAddedTo(self.navigationController!.view, title: "Please wait...", mode: MRProgressOverlayViewMode.Indeterminate, animated: true)
                 view.setTintColor(UIColor.getBaseColor())
                 let textfield:UITextField = alert.textFields![0]
