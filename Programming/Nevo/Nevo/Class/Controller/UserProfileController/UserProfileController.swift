@@ -30,7 +30,7 @@ class UserProfileController: UITableViewController {
         self.tableView.registerNib(UINib(nibName: "UserProfileCell", bundle:nil), forCellReuseIdentifier: userIdentifier)
     }
 
-    override func viewDidAppear(animated: Bool) {
+    override func viewWillAppear(animated: Bool) {
         userprofile = UserProfile.getAll()
         self.tableView.reloadData()
     }
@@ -107,8 +107,10 @@ class UserProfileController: UITableViewController {
         }else {
             let profile:NSArray = UserProfile.getAll()
             let userprofile:UserProfile = profile[0] as! UserProfile
-            userprofile.remove()
-            self.navigationController?.popViewControllerAnimated(true)
+            if userprofile.remove() {
+               self.navigationController?.popViewControllerAnimated(true)
+            }
+            
         }
     }
 }

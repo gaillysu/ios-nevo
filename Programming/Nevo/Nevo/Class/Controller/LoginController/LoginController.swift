@@ -206,7 +206,7 @@ class LoginController: UIViewController,UITextFieldDelegate {
             view.setTintColor(UIColor.getBaseColor())
 
             
-            HttpPostRequest.postRequest("http://drone.karljohnchow.com/user/login", data: ["user":["email":userName,"password":password]]) { (result) in
+            HttpPostRequest.postRequest("http://nevo.karljohnchow.com/user/login", data: ["user":["email":userName,"password":password]]) { (result) in
                 MRProgressOverlayView.dismissAllOverlaysForView(self.navigationController!.view, animated: true)
                 
                 let json = JSON(result)
@@ -236,9 +236,9 @@ class LoginController: UIViewController,UITextFieldDelegate {
                     userprofile.add({ (id, completion) in
                         XCGLogger.defaultInstance().debug("Added? id = \(id)")
                     })
-                    
+                    self.navigationController?.popViewControllerAnimated(true)
                 }
-               self.navigationController?.popViewControllerAnimated(true)
+               
             }
         }else{
             

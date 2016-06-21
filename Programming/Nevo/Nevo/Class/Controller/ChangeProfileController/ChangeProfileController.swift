@@ -8,6 +8,11 @@
 
 import UIKit
 import AutocompleteField
+import MRProgress
+import SwiftyTimer
+import SwiftyJSON
+import XCGLogger
+import BRYXBanner
 
 class ChangeProfileController: UIViewController,UIPickerViewDataSource,UIPickerViewDelegate {
 
@@ -86,7 +91,11 @@ class ChangeProfileController: UIViewController,UIPickerViewDataSource,UIPickerV
         }
         
         profile.update()
-        self.navigationController?.popViewControllerAnimated(true)
+        self.updateUserProfile(profile) { (result) in
+            if result {
+                self.navigationController?.popViewControllerAnimated(true)
+            }
+        }
     }
     
     override func viewDidDisappear(animated: Bool) {
@@ -127,5 +136,50 @@ class ChangeProfileController: UIViewController,UIPickerViewDataSource,UIPickerV
     // MARK: - UIPickerViewDelegate
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         changeTextfield.text = "\(weightArray[row])"
+    }
+    
+    
+    func updateUserProfile(profile:UserProfile, completion:(result:Bool) -> Void){
+        if AppDelegate.getAppDelegate().network!.isReachable {
+            if !AppDelegate.getAppDelegate().isConnected() {
+                let view = MRProgressOverlayView.showOverlayAddedTo(self.navigationController!.view, title: NSLocalizedString("no_watch_connected", comment: ""), mode: MRProgressOverlayViewMode.Cross, animated: true)
+                view.setTintColor(UIColor.getBaseColor())
+                NSTimer.after(0.6.second) {
+                    view.dismiss(true)
+                }
+                return
+            }
+            
+            
+            var loadingIndicator:MRProgressOverlayView = MRProgressOverlayView.showOverlayAddedTo(self.navigationController!.view, title: "Please wait...", mode: MRProgressOverlayViewMode.Indeterminate, animated: true)
+            loadingIndicator.setTintColor(UIColor.getBaseColor())
+            
+            HttpPostRequest.putRequest("http://nevo.karljohnchow.com/user/update", data: ["user":["id":profile.id, "first_name":profile.first_name,"last_name":profile.last_name,"email":profile.email,"length":profile.length,"birthday":profile.birthday]]) { (result) in
+                let json = JSON(result)
+                let message = json["message"].stringValue
+                let status = json["status"].intValue
+                let user:[String : JSON] = json["user"].dictionaryValue
+                if(status > 0 && user.count > 0) {
+                    completion(result: true)
+                    loadingIndicator.dismiss(true, completion: {
+                        self.dismissViewControllerAnimated(true, completion: nil)
+                    })
+                }else{
+                    completion(result: false)
+                    XCGLogger.defaultInstance().debug("Request error");
+                    loadingIndicator.dismiss(true)
+                    let banner:Banner = Banner(title: NSLocalizedString("not_update", comment: ""), subtitle: "", image: nil, backgroundColor: UIColor.getBaseColor(), didTapBlock: nil)
+                    banner.dismissesOnTap = true
+                    banner.show(duration: 3)
+                }
+            }
+        }else{
+            completion(result: false)
+            let view = MRProgressOverlayView.showOverlayAddedTo(self.navigationController!.view, title: "No internet", mode: MRProgressOverlayViewMode.Cross, animated: true)
+            view.setTintColor(UIColor.getBaseColor())
+            let timeout:NSTimer = NSTimer.after(0.6.seconds, {
+                MRProgressOverlayView.dismissAllOverlaysForView(self.navigationController!.view, animated: true)
+            })
+        }
     }
 }

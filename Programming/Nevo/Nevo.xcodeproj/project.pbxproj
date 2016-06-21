@@ -172,6 +172,7 @@
 		0050D69B1C2906D8004F6F80 /* Firmwares in Resources */ = {isa = PBXBuildFile; fileRef = 0050D69A1C2906D8004F6F80 /* Firmwares */; };
 		0050D69D1C2A32A5004F6F80 /* UserSteps.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0050D69C1C2A32A5004F6F80 /* UserSteps.swift */; };
 		0050D69F1C2A78C1004F6F80 /* UserSleep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0050D69E1C2A78C1004F6F80 /* UserSleep.swift */; };
+		0056DBE01D18D186003D92CE /* SwiftyTimer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0056DBDF1D18D186003D92CE /* SwiftyTimer.framework */; };
 		0058B3EA1CF55D590079A213 /* ConnectOtherAppsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0058B3E81CF55D590079A213 /* ConnectOtherAppsController.swift */; };
 		0058B3EB1CF55D590079A213 /* ConnectOtherAppsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0058B3E91CF55D590079A213 /* ConnectOtherAppsController.xib */; };
 		005BC95F1A88B79F006F9E86 /* FXBlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = 005BC95E1A88B79F006F9E86 /* FXBlurView.m */; };
@@ -451,6 +452,7 @@
 		0050D69A1C2906D8004F6F80 /* Firmwares */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Firmwares; sourceTree = "<group>"; };
 		0050D69C1C2A32A5004F6F80 /* UserSteps.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSteps.swift; sourceTree = "<group>"; };
 		0050D69E1C2A78C1004F6F80 /* UserSleep.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSleep.swift; sourceTree = "<group>"; };
+		0056DBDF1D18D186003D92CE /* SwiftyTimer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyTimer.framework; path = "Pods/../build/Debug-iphoneos/SwiftyTimer.framework"; sourceTree = "<group>"; };
 		0058B3E81CF55D590079A213 /* ConnectOtherAppsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectOtherAppsController.swift; sourceTree = "<group>"; };
 		0058B3E91CF55D590079A213 /* ConnectOtherAppsController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConnectOtherAppsController.xib; sourceTree = "<group>"; };
 		005BC95D1A88B79F006F9E86 /* FXBlurView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FXBlurView.h; sourceTree = "<group>"; };
@@ -611,6 +613,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0056DBE01D18D186003D92CE /* SwiftyTimer.framework in Frameworks */,
 				0095C0E11D12772C00331266 /* RegexKitLite.framework in Frameworks */,
 				0095C0DE1D1274B600331266 /* UIColor_Hex_Swift.framework in Frameworks */,
 				0095C0DF1D1274B600331266 /* XCGLogger.framework in Frameworks */,
@@ -1433,6 +1436,7 @@
 		9AD8F95A1A6DFE3400F01014 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0056DBDF1D18D186003D92CE /* SwiftyTimer.framework */,
 				0095C0E01D12772C00331266 /* RegexKitLite.framework */,
 				0095C0DC1D1274B600331266 /* UIColor_Hex_Swift.framework */,
 				0095C0DD1D1274B600331266 /* XCGLogger.framework */,
