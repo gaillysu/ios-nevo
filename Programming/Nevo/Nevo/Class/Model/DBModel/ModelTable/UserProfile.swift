@@ -30,32 +30,28 @@ class UserProfile: NSObject {
     }
 
     func add(result:((id:Int?,completion:Bool?) -> Void)){
-        profileModel.id = id
-        profileModel.first_name = first_name
-        profileModel.last_name = last_name
-        profileModel.birthday = birthday
-        profileModel.gender = gender
-        profileModel.weight = weight
-        profileModel.length = length
-        profileModel.metricORimperial = metricORimperial
-        profileModel.created = created
-        profileModel.email = email
+        if NevoProfileModel.isExistInTable() {
+            NevoProfileModel.updateTable()
+        }
+        let keyName:NSArray = UserProfile.getPropertys().objectForKey("name") as! NSArray
+        for value in keyName {
+            let key:String = value as! String
+            profileModel.setValue(self.valueForKey(key), forKey: key)
+        }
         profileModel.add { (id, completion) -> Void in
             result(id: id, completion: completion)
         }
     }
 
     func update()->Bool{
-        profileModel.id = id
-        profileModel.first_name = first_name
-        profileModel.last_name = last_name
-        profileModel.birthday = birthday
-        profileModel.gender = gender
-        profileModel.weight = weight
-        profileModel.length = length
-        profileModel.metricORimperial = metricORimperial
-        profileModel.created = created
-        profileModel.email = email
+        if NevoProfileModel.isExistInTable() {
+            NevoProfileModel.updateTable()
+        }
+        let keyName:NSArray = UserProfile.getPropertys().objectForKey("name") as! NSArray
+        for value in keyName {
+            let key:String = value as! String
+            profileModel.setValue(self.valueForKey(key), forKey: key)
+        }
         return profileModel.update()
     }
 
@@ -73,9 +69,15 @@ class UserProfile: NSObject {
         let allArray:NSMutableArray = NSMutableArray()
         for model in modelArray {
             let userProfileModel:NevoProfileModel = model as! NevoProfileModel
-
-            let profile:UserProfile = UserProfile(keyDict: ["id":userProfileModel.id,"first_name":userProfileModel.first_name,"last_name":"\(userProfileModel.last_name)","birthday":userProfileModel.birthday,"gender":userProfileModel.gender,"weight":userProfileModel.weight,"length":userProfileModel.length,"metricORimperial":userProfileModel.metricORimperial,"created":userProfileModel.created,"email":userProfileModel.email])
-            allArray.addObject(profile)
+            let keyName:NSArray = NevoProfileModel.getAllProperties().objectForKey("name") as! NSArray
+            var keyDict:[String:AnyObject] = [:]
+            for value in keyName {
+                let key:String = value as! String
+                keyDict[key] = userProfileModel.valueForKey(key)
+            }
+            
+            let presets:UserProfile = UserProfile(keyDict: keyDict)
+            allArray.addObject(presets)
         }
         return allArray
     }
@@ -85,18 +87,21 @@ class UserProfile: NSObject {
         let allArray:NSMutableArray = NSMutableArray()
         for model in modelArray {
             let userProfileModel:NevoProfileModel = model as! NevoProfileModel
-            let profile:UserProfile = UserProfile(keyDict: ["id":userProfileModel.id,"first_name":userProfileModel.first_name,"last_name":"\(userProfileModel.last_name)","birthday":userProfileModel.birthday,"gender":userProfileModel.gender,"weight":userProfileModel.weight,"length":userProfileModel.length,"metricORimperial":userProfileModel.metricORimperial,"created":userProfileModel.created,"email":userProfileModel.email])
-            allArray.addObject(profile)
+            let keyName:NSArray = NevoProfileModel.getAllProperties().objectForKey("name") as! NSArray
+            var keyDict:[String:AnyObject] = [:]
+            for value in keyName {
+                let key:String = value as! String
+                keyDict[key] = userProfileModel.valueForKey(key)
+            }
+            
+            let presets:UserProfile = UserProfile(keyDict: keyDict)
+            allArray.addObject(presets)
         }
         return allArray
     }
 
     class func isExistInTable()->Bool {
         return NevoProfileModel.isExistInTable()
-    }
-
-    class func updateTable()->Bool {
-        return NevoProfileModel.updateTable()
     }
 
     /**
@@ -111,6 +116,49 @@ class UserProfile: NSObject {
 
             })
         }
+    }
+    
+    class func getPropertys()->NSDictionary {
+        let proNames:NSMutableArray = NSMutableArray()
+        let proTypes:NSMutableArray = NSMutableArray()
+        let theTransients:NSArray = NSArray()
+        var outCount:UInt32 = 0, _:UInt32 = 0;
+        let properties:UnsafeMutablePointer = class_copyPropertyList(self,&outCount)
+        for i in 0 ..< outCount{
+            let property:objc_property_t = properties[Int(i)];
+            //获取属性名
+            let propertyName:NSString = NSString(CString: property_getName(property), encoding: NSUTF8StringEncoding)!
+            if (theTransients.containsObject(propertyName)) {
+                continue;
+            }
+            proNames.addObject(propertyName)
+            //获取属性类型等参数
+            let propertyType:NSString = NSString(CString: property_getAttributes(property), encoding: NSUTF8StringEncoding)!
+            /*
+             c char         C unsigned char
+             i int          I unsigned int
+             l long         L unsigned long
+             s short        S unsigned short
+             d double       D unsigned double
+             f float        F unsigned float
+             q long long    Q unsigned long long
+             B BOOL
+             @ 对象类型 //指针 对象类型 如NSString 是@“NSString”
+             
+             
+             64位下long 和long long 都是Tq
+             SQLite 默认支持五种数据类型TEXT、INTEGER、REAL、BLOB、NULL
+             */
+            if (propertyType.hasPrefix("T@")) {
+                proTypes.addObject(SQLTEXT)
+            } else if (propertyType.hasPrefix("Ti")||propertyType.hasPrefix("TI")||propertyType.hasPrefix("Ts")||propertyType.hasPrefix("TS")||propertyType.hasPrefix("TB")) {
+                proTypes.addObject(SQLINTEGER)
+            } else {
+                proTypes.addObject(SQLREAL)
+            }
+        }
+        free(properties)
+        return NSDictionary(dictionary: ["name":proNames,"type":proTypes])
     }
     
     override func setValue(value: AnyObject?, forUndefinedKey key: String) {}

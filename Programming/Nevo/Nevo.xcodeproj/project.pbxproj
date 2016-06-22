@@ -112,7 +112,6 @@
 		0050D6451C28E0DB004F6F80 /* StepsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0050D59B1C28E0DB004F6F80 /* StepsModel.swift */; };
 		0050D6461C28E0DB004F6F80 /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0050D59C1C28E0DB004F6F80 /* UserProfile.swift */; };
 		0050D6471C28E0DB004F6F80 /* UserAlarm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0050D59D1C28E0DB004F6F80 /* UserAlarm.swift */; };
-		0050D6481C28E0DB004F6F80 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0050D59E1C28E0DB004F6F80 /* UserModel.swift */; };
 		0050D6491C28E0DB004F6F80 /* UserNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0050D59F1C28E0DB004F6F80 /* UserNotification.swift */; };
 		0050D64A1C28E0DB004F6F80 /* Goal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0050D5A11C28E0DB004F6F80 /* Goal.swift */; };
 		0050D64B1C28E0DB004F6F80 /* NumberOfStepsGoal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0050D5A21C28E0DB004F6F80 /* NumberOfStepsGoal.swift */; };
@@ -391,7 +390,6 @@
 		0050D59B1C28E0DB004F6F80 /* StepsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepsModel.swift; sourceTree = "<group>"; };
 		0050D59C1C28E0DB004F6F80 /* UserProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
 		0050D59D1C28E0DB004F6F80 /* UserAlarm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAlarm.swift; sourceTree = "<group>"; };
-		0050D59E1C28E0DB004F6F80 /* UserModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		0050D59F1C28E0DB004F6F80 /* UserNotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserNotification.swift; sourceTree = "<group>"; };
 		0050D5A11C28E0DB004F6F80 /* Goal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Goal.swift; sourceTree = "<group>"; };
 		0050D5A21C28E0DB004F6F80 /* NumberOfStepsGoal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumberOfStepsGoal.swift; sourceTree = "<group>"; };
@@ -1012,7 +1010,6 @@
 				0050D59B1C28E0DB004F6F80 /* StepsModel.swift */,
 				0050D59C1C28E0DB004F6F80 /* UserProfile.swift */,
 				0050D59D1C28E0DB004F6F80 /* UserAlarm.swift */,
-				0050D59E1C28E0DB004F6F80 /* UserModel.swift */,
 				0050D59F1C28E0DB004F6F80 /* UserNotification.swift */,
 				0050D69C1C2A32A5004F6F80 /* UserSteps.swift */,
 				0050D69E1C2A78C1004F6F80 /* UserSleep.swift */,
@@ -1824,7 +1821,6 @@
 				0050D66D1C28E0DB004F6F80 /* GetStepsGoalRequest.swift in Sources */,
 				0050D6631C28E0DB004F6F80 /* NevoOTAModeProfile.swift in Sources */,
 				0050D5FC1C28E0DB004F6F80 /* NotificationClockCell.swift in Sources */,
-				0050D6481C28E0DB004F6F80 /* UserModel.swift in Sources */,
 				0050D6441C28E0DB004F6F80 /* SleepModel.swift in Sources */,
 				0050D6581C28E0DB004F6F80 /* ToolbarView.swift in Sources */,
 				007E0CAE1D0E5C3E00B0B600 /* ConnectOtherAppsCell.swift in Sources */,
