@@ -191,8 +191,83 @@ class ValidicRequest: NSObject {
         })
     }
     
-    private func updateValidicData(URL:String,data:Dictionary<String,AnyObject>,completion:(result:NSDictionary) -> Void)  {
+    func updateSleepDataToValidic(array:NSArray?) {
+        var sleepArray:NSArray = NSArray()
+        if array == nil {
+            sleepArray = UserSleep.getAll()
+        }else{
+            sleepArray = array!.copy() as! NSArray
+        }
         
+        var array:[[String : AnyObject]] = []
+        let timeZone: Int = NSTimeZone.systemTimeZone().secondsFromGMT/3600
+        
+        for steps in sleepArray{
+            let userSleep:UserSleep = steps as! UserSleep
+            let hourlySleep = AppTheme.jsonToArray(userSleep.hourlySleepTime)
+            let hourlyWakeTime = AppTheme.jsonToArray(userSleep.hourlyWakeTime)
+            let hourlyLightTime = AppTheme.jsonToArray(userSleep.hourlyLightTime)
+            let hourlyDeepTime = AppTheme.jsonToArray(userSleep.hourlyDeepTime)
+            
+            var awake:Int = 0
+            var deep:Int = 0
+            var light:Int = 0
+            var totalSleep:Int = 0
+            
+            for (index,value) in hourlySleep.enumerate() {
+                if (value as! NSNumber).integerValue != 0 {
+                    totalSleep += (value as! NSNumber).integerValue
+                    awake = (hourlyWakeTime[index] as! NSNumber).integerValue
+                    deep = (hourlyDeepTime[index] as! NSNumber).integerValue
+                    light = (hourlyLightTime[index] as! NSNumber).integerValue
+                }
+            }
+            let timeInterval = userSleep.date
+            var detail:[String : AnyObject] = [:]
+            detail["timestamp"] = ValidicRequest.formatterDate(NSDate(timeIntervalSince1970: timeInterval))
+            detail["utc_offset"] = ValidicRequest.formatterUTCOffset(timeZone)
+            detail["awake"] = awake
+            detail["deep"] = deep
+            detail["light"] = light
+            detail["rem"] = 0
+            detail["times_woken"] = 0
+            detail["total_sleep"] = "\(totalSleep)"
+            detail["activity_id"] = "\(timeInterval)"
+            detail["validated"] = false
+            detail["device"] = ""
+            array.append(detail)
+        }
+        
+        var _id:String = " "
+        var URL = ""
+        
+        if ValidicRequest.isValidicAuthorization() {
+            _id = "\((NSUserDefaults.standardUserDefaults().objectForKey(ValidicAuthorizedKey) as! NSDictionary).objectForKey("_id")!)"
+            URL = "https://api.validic.com/v1/organizations/\(ValidicOrganizationID)/users/\(_id)/sleep.json"
+        }else{
+            //If there is validic no authorization is not upload data
+            return;
+        }
+        
+        //create steps network global queue
+        let queue:dispatch_queue_t = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
+        let group = dispatch_group_create()
+        
+        for object in array{
+            dispatch_group_async(group, queue, {
+                let data = ["routine":object,"access_token":"\(OrganizationAccessToken)"]
+                self.updateValidicData(URL,data: data as! Dictionary<String, AnyObject>, completion: { (result) in
+                    XCGLogger.defaultInstance().debug("updateValidicData: \(result)")
+                })
+            })
+        }
+        
+        dispatch_group_notify(group, queue, {
+            XCGLogger.defaultInstance().debug("create steps completed")
+        })
+    }
+    
+    private func updateValidicData(URL:String,data:Dictionary<String,AnyObject>,completion:(result:NSDictionary) -> Void)  {
         ValidicRequest.validicPostJSONRequest(URL, data: data) { (result) in
             completion(result: result)
         }
@@ -202,7 +277,6 @@ class ValidicRequest: NSObject {
         //USERID: 576792d636c913a66d00edd4
         if ValidicRequest.isValidicAuthorization() {
             let _id:String = "576792d636c913a66d00edd4"
-                //"\((NSUserDefaults.standardUserDefaults().objectForKey(ValidicAuthorizedKey) as! NSDictionary).objectForKey("_id")!)"
             let startDate:NSDate = NSDate(timeIntervalSince1970: NSDate().beginningOfDay.timeIntervalSince1970-365*86400)
             let endDate:NSDate = NSDate().endOfDay
             let URL:String = "https://api.validic.com/v1/organizations/\(ValidicOrganizationID)/users/\(_id)/routine/latest.json?access_token=\(OrganizationAccessToken)&start_date=\(ValidicRequest.formatterDate(startDate))&end_date=\(ValidicRequest.formatterDate(endDate))&limit=200&page=\(index)"
