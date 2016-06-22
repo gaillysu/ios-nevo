@@ -61,6 +61,7 @@ class ConnectOtherAppsController: UITableViewController {
     func appAuthorizedAction(sender:UISwitch) {
         switch sender.tag {
         case 0:
+            self.checkPinCode(sender)
             break
         case 1:
             self.checkPinCode(sender)
@@ -99,9 +100,8 @@ class ConnectOtherAppsController: UITableViewController {
                         let userdefalut:NSUserDefaults = NSUserDefaults.standardUserDefaults()
                         userdefalut.setObject(resultJson["user"].dictionaryObject, forKey: ValidicAuthorizedKey)
                         userdefalut.synchronize()
-                        
-                        UPDATE_VALIDIC_REQUEST.updateToValidic(nil)
-                        
+                        //download validic data
+                        UPDATE_VALIDIC_REQUEST.downloadValidicData()
                     }else{
                         switchView.setOn(false, animated: true)
                     }

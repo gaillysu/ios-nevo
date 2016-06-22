@@ -18,7 +18,8 @@ let ValidicAuthorizedKey = "Nevo_ValidicAuthorized"
 let UPDATE_VALIDIC_REQUEST:ValidicRequest = ValidicRequest()
 
 class ValidicRequest: NSObject {
-
+    var index:Int = 1
+    
     // MARK: - Request func
     class func validicPostJSONRequest(url: String, data:Dictionary<String,AnyObject>, completion:(result:NSDictionary) -> Void){
         debugPrint("accessData:\(data)")
@@ -51,7 +52,7 @@ class ValidicRequest: NSObject {
     }
     
     
-    class func getValidicRequest(url: String, data:Dictionary<String,AnyObject>, completion:(result:NSDictionary) -> Void){
+    class func getValidicRequest(url: String, data:Dictionary<String,AnyObject>?, completion:(result:NSDictionary) -> Void){
         //debugPrint("accessData:\(data)")
         Alamofire.request(.GET, url, parameters: data ,encoding: .JSON).responseJSON { (response) -> Void in
             if response.result.isSuccess {
@@ -185,26 +186,27 @@ class ValidicRequest: NSObject {
     }
     
     func downloadValidicData() {
+        //USERID: 576792d636c913a66d00edd4
         if ValidicRequest.isValidicAuthorization() {
-            let _id:String = "\((NSUserDefaults.standardUserDefaults().objectForKey(ValidicAuthorizedKey) as! NSDictionary).objectForKey("_id")!)"
-            let URL:String = "https://api.validic.com/v1/organizations/\(ValidicOrganizationID)/users/\(_id)/routine/latest.json?access_token=\(OrganizationAccessToken)"
+            let _id:String = "576792d636c913a66d00edd4"
+                //"\((NSUserDefaults.standardUserDefaults().objectForKey(ValidicAuthorizedKey) as! NSDictionary).objectForKey("_id")!)"
+            let startDate:NSDate = NSDate(timeIntervalSince1970: NSDate().beginningOfDay.timeIntervalSince1970-365*86400)
+            let endDate:NSDate = NSDate().endOfDay
+            let URL:String = "https://api.validic.com/v1/organizations/\(ValidicOrganizationID)/users/\(_id)/routine/latest.json?access_token=\(OrganizationAccessToken)&start_date=\(ValidicRequest.formatterDate(startDate))&end_date=\(ValidicRequest.formatterDate(endDate))&limit=200&page=\(index)"
             
-            var index:Int = 1
-            
-            while index != 0 {
-                ValidicRequest.getValidicRequest(URL, data: ["start_date":ValidicRequest.formatterDate(NSDate().beginningOfMonth),"end_date":NSDate().endOfMonth,"page":index,"limit":""]) { (result) in
-                    let json = JSON(result)
-                    let routineArray:[JSON] = json["routine"].arrayValue
-                    if routineArray.count>0 {
-                        for (startIndex,value) in routineArray.enumerate() {
-                            
-                        }
-                    }else{
-                        index = 0
+            ValidicRequest.getValidicRequest(URL, data: nil) { (result) in
+                let json = JSON(result)
+                let routineArray:[JSON] = json["routine"].arrayValue
+                if routineArray.count>0 {
+                    for value in routineArray {
+                        self.analyticalData(value)
                     }
+                    self.downloadValidicData()
+                }else{
+                    self.index = 1
                 }
-                index += 1
             }
+            index += 1
         }
     }
     
@@ -217,8 +219,26 @@ class ValidicRequest: NSObject {
     }
     
     func analyticalData(object:JSON) {
-        for (key,value) in object {
-            
+        XCGLogger.defaultInstance().debug("\(object)")
+        var timer = object["timestamp"].stringValue.stringByReplacingOccurrencesOfString("T", withString: " ")
+        timer = timer.stringByReplacingOccurrencesOfString("+00:00", withString: "")
+        let date = GmtNSDate2LocaleNSDate(timer.dateFromFormat("yyyy-MM-dd HH:mm:ss'UTC'")!)
+        var steps:[String:AnyObject] = [:]
+        steps["steps"] = object["steps"].intValue
+        steps["hourlysteps"] = "[0,0,0,0,0,0,0,0,\(object["steps"].intValue),0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]"
+        steps["distance"] = object["distance"].intValue
+        steps["hourlydistance"] = "[0,0,0,0,0,0,0,0,\(object["distance"].intValue),0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]"
+        steps["calories"] = object["calories_burned"].doubleValue
+        steps["hourlycalories"] = "[0,0,0,0,0,0,0,0,\(object["calories_burned"].intValue),0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]"
+        steps["date"] = date.timeIntervalSince1970
+        steps["createDate"] = date.stringFromFormat("yyyyMMdd")
+        steps["validic_id"] = object["_id"].stringValue
+        let userSteps:NSArray = UserSteps.getCriteria("WHERE createDate = \(steps["createDate"]!)")
+        if userSteps.count == 0 {
+            let userSteps:UserSteps = UserSteps(keyDict: steps)
+            userSteps.add { (id, completion) in
+                
+            }
         }
     }
 }
