@@ -94,12 +94,25 @@ class ValidicRequest: NSObject {
         }
     }
     
-    //If there is validic no authorization is not upload data
+    /**
+     If there is validic no authorization is not upload data
+     
+     - returns: authorization state
+     */
     class func isValidicAuthorization()->Bool {
         if NSUserDefaults.standardUserDefaults().objectForKey(ValidicAuthorizedKey) != nil {
             return true
         }else{
             return false
+        }
+    }
+    
+    /**
+     Cancel validic the authorization
+     */
+    class func cancelAuthorization() {
+        if ValidicRequest.isValidicAuthorization() {
+            NSUserDefaults.standardUserDefaults().removeObjectForKey(ValidicAuthorizedKey)
         }
     }
     

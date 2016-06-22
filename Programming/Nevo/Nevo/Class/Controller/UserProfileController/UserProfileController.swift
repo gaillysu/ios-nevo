@@ -108,6 +108,7 @@ class UserProfileController: UITableViewController {
             let profile:NSArray = UserProfile.getAll()
             let userprofile:UserProfile = profile[0] as! UserProfile
             if userprofile.remove() {
+                ValidicRequest.cancelAuthorization()
                self.navigationController?.popViewControllerAnimated(true)
             }
             
