@@ -555,7 +555,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                     "running_duration":thispacket.getDailyRunningTimer(),
                     "running_calories":thispacket.getDailyCalories()])
                 
-                //upload data validic
+                //upload steps data to validic
                 UPDATE_VALIDIC_REQUEST.updateToValidic(NSArray(arrayLiteral: stepsModel))
                 
                 if(stepsArray.count>0) {
@@ -596,39 +596,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                 }
 
                 let sleepArray = UserSleep.getCriteria("WHERE date = \(timerInterval.timeIntervalSince1970)")
+                let model:UserSleep = UserSleep(keyDict: [
+                    "id": 0,
+                    "date":timerInterval.timeIntervalSince1970,
+                    "totalSleepTime":0,
+                    "hourlySleepTime":"\(AppTheme.toJSONString(thispacket.getHourlySleepTime()))",
+                    "totalWakeTime":0,
+                    "hourlyWakeTime":"\(AppTheme.toJSONString(thispacket.getHourlyWakeTime()))" ,
+                    "totalLightTime":0,
+                    "hourlyLightTime":"\(AppTheme.toJSONString(thispacket.getHourlyLightTime()))",
+                    "totalDeepTime":0,
+                    "hourlyDeepTime":"\(AppTheme.toJSONString(thispacket.getHourlyDeepTime()))"])
+                
+                //upload sleep data to validic
+                UPDATE_VALIDIC_REQUEST.updateSleepDataToValidic(NSArray(arrayLiteral: stepsModel))
+                
                 if(sleepArray.count>0) {
                     let sleep:UserSleep = sleepArray[0] as! UserSleep
-                    let model:UserSleep = UserSleep(keyDict: [
-                        "id": sleep.id,
-                        "date":timerInterval.timeIntervalSince1970,
-                        "totalSleepTime":0,
-                        "hourlySleepTime":"\(AppTheme.toJSONString(thispacket.getHourlySleepTime()))",
-                        "totalWakeTime":0,
-                        "hourlyWakeTime":"\(AppTheme.toJSONString(thispacket.getHourlyWakeTime()))" ,
-                        "totalLightTime":0,
-                        "hourlyLightTime":"\(AppTheme.toJSONString(thispacket.getHourlyLightTime()))",
-                        "totalDeepTime":0,
-                        "hourlyDeepTime":"\(AppTheme.toJSONString(thispacket.getHourlyDeepTime()))"])
-
+                    model.id = sleep.id
                     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,0), { () -> Void in
                         model.update()
                     })
                 }else {
-                    let model:UserSleep = UserSleep(keyDict: [
-                        "id": 0,
-                        "date":timerInterval.timeIntervalSince1970,
-                        "totalSleepTime":0,
-                        "hourlySleepTime":"\(AppTheme.toJSONString(thispacket.getHourlySleepTime()))",
-                        "totalWakeTime":0,
-                        "hourlyWakeTime":"\(AppTheme.toJSONString(thispacket.getHourlyWakeTime()))" ,
-                        "totalLightTime":0,
-                        "hourlyLightTime":"\(AppTheme.toJSONString(thispacket.getHourlyLightTime()))",
-                        "totalDeepTime":0,
-                        "hourlyDeepTime":"\(AppTheme.toJSONString(thispacket.getHourlyDeepTime()))"])
-
                     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,0), { () -> Void in
                         model.add({ (id, completion) -> Void in
-
                         })
                     })
                 }

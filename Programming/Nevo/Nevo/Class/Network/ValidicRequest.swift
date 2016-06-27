@@ -189,6 +189,7 @@ class ValidicRequest: NSObject {
         
         dispatch_group_notify(group, queue, {
             XCGLogger.defaultInstance().debug("create steps completed")
+            self.updateSleepDataToValidic(nil)
         })
     }
     
