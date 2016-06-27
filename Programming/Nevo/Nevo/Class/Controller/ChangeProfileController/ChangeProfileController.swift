@@ -8,6 +8,11 @@
 
 import UIKit
 import AutocompleteField
+import MRProgress
+import SwiftyTimer
+import SwiftyJSON
+import XCGLogger
+import BRYXBanner
 
 class ChangeProfileController: UIViewController,UIPickerViewDataSource,UIPickerViewDelegate {
 
@@ -54,7 +59,7 @@ class ChangeProfileController: UIViewController,UIPickerViewDataSource,UIPickerV
             changeTextfield.inputView = picker
         }
         
-        if changeField == "lenght"{
+        if changeField == "length"{
             weightArray = generatePickerData(100, rangeEnd: 220, interval: 0)
             textPostFix = " cm"
             let picker = UIPickerView();
@@ -64,21 +69,11 @@ class ChangeProfileController: UIViewController,UIPickerViewDataSource,UIPickerV
             changeTextfield.inputView = picker
         }
         
-        if changeField == "age"{
-            weightArray = generatePickerData(10, rangeEnd: 75, interval: 0)
-            textPostFix = " age"
-            let picker = UIPickerView();
-            picker.delegate = self;
-            picker.dataSource = self;
-            picker.backgroundColor = UIColor.whiteColor()
-            changeTextfield.inputView = picker
-        }
     }
     
     func saveChangeAction(sender:AnyObject) {
         let userArray:NSArray = UserProfile.getAll()
         let profile:UserProfile = userArray.objectAtIndex(0) as! UserProfile
-        //["first_name","last_name","weight","age","lenght"]
         if changeField == "first_name" && changeTextfield.text != nil{
             profile.first_name = changeTextfield.text!
         }
@@ -91,15 +86,16 @@ class ChangeProfileController: UIViewController,UIPickerViewDataSource,UIPickerV
             profile.weight = Int(changeTextfield.text!)!
         }
         
-        if changeField == "lenght" && changeTextfield.text != nil{
-            profile.lenght = Int(changeTextfield.text!)!
+        if changeField == "length" && changeTextfield.text != nil{
+            profile.length = Int(changeTextfield.text!)!
         }
         
-        if changeField == "age" && changeTextfield.text != nil{
-            profile.age = Int(changeTextfield.text!)!
-        }
         profile.update()
-        self.navigationController?.popViewControllerAnimated(true)
+        self.updateUserProfile(profile) { (result) in
+            if result {
+                self.navigationController?.popViewControllerAnimated(true)
+            }
+        }
     }
     
     override func viewDidDisappear(animated: Bool) {
@@ -140,5 +136,50 @@ class ChangeProfileController: UIViewController,UIPickerViewDataSource,UIPickerV
     // MARK: - UIPickerViewDelegate
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         changeTextfield.text = "\(weightArray[row])"
+    }
+    
+    
+    func updateUserProfile(profile:UserProfile, completion:(result:Bool) -> Void){
+        if AppDelegate.getAppDelegate().network!.isReachable {
+            if !AppDelegate.getAppDelegate().isConnected() {
+                let view = MRProgressOverlayView.showOverlayAddedTo(self.navigationController!.view, title: NSLocalizedString("no_watch_connected", comment: ""), mode: MRProgressOverlayViewMode.Cross, animated: true)
+                view.setTintColor(UIColor.getBaseColor())
+                NSTimer.after(0.6.second) {
+                    view.dismiss(true)
+                }
+                return
+            }
+            
+            
+            var loadingIndicator:MRProgressOverlayView = MRProgressOverlayView.showOverlayAddedTo(self.navigationController!.view, title: "Please wait...", mode: MRProgressOverlayViewMode.Indeterminate, animated: true)
+            loadingIndicator.setTintColor(UIColor.getBaseColor())
+            
+            HttpPostRequest.putRequest("http://nevo.karljohnchow.com/user/update", data: ["user":["id":profile.id, "first_name":profile.first_name,"last_name":profile.last_name,"email":profile.email,"length":profile.length,"birthday":profile.birthday]]) { (result) in
+                let json = JSON(result)
+                let message = json["message"].stringValue
+                let status = json["status"].intValue
+                let user:[String : JSON] = json["user"].dictionaryValue
+                if(status > 0 && user.count > 0) {
+                    completion(result: true)
+                    loadingIndicator.dismiss(true, completion: {
+                        self.dismissViewControllerAnimated(true, completion: nil)
+                    })
+                }else{
+                    completion(result: false)
+                    XCGLogger.defaultInstance().debug("Request error");
+                    loadingIndicator.dismiss(true)
+                    let banner:Banner = Banner(title: NSLocalizedString("not_update", comment: ""), subtitle: "", image: nil, backgroundColor: UIColor.getBaseColor(), didTapBlock: nil)
+                    banner.dismissesOnTap = true
+                    banner.show(duration: 3)
+                }
+            }
+        }else{
+            completion(result: false)
+            let view = MRProgressOverlayView.showOverlayAddedTo(self.navigationController!.view, title: "No internet", mode: MRProgressOverlayViewMode.Cross, animated: true)
+            view.setTintColor(UIColor.getBaseColor())
+            let timeout:NSTimer = NSTimer.after(0.6.seconds, {
+                MRProgressOverlayView.dismissAllOverlaysForView(self.navigationController!.view, animated: true)
+            })
+        }
     }
 }

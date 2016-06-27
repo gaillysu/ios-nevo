@@ -7,9 +7,12 @@
 //
 
 import UIKit
+import SwiftyJSON
+import MRProgress
 
 class ConnectOtherAppsController: UITableViewController {
-    private let licenseApp:[String] = ["HealthKit","Validic"]
+    private let licenseApp:[String] = ["Validic"]
+    //"HealthKit"
     
     init() {
         super.init(nibName: "ConnectOtherAppsController", bundle: NSBundle.mainBundle())
@@ -23,6 +26,7 @@ class ConnectOtherAppsController: UITableViewController {
         super.viewDidLoad()
         self.navigationItem.title = "App Authorized"
         self.tableView.registerNib(UINib(nibName: "ConnectOtherAppsCell", bundle:nil), forCellReuseIdentifier: "reuseIdentifier")
+        UPDATE_VALIDIC_REQUEST.updateToValidic(nil)
     }
 
     override func didReceiveMemoryWarning() {
@@ -31,14 +35,11 @@ class ConnectOtherAppsController: UITableViewController {
     }
 
     // MARK: - Table view data source
-
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         return licenseApp.count
     }
 
@@ -49,15 +50,21 @@ class ConnectOtherAppsController: UITableViewController {
         (cell as! ConnectOtherAppsCell).appNameLabel.text = licenseApp[indexPath.row]
         (cell as! ConnectOtherAppsCell).appSwitch.tag = indexPath.row
         (cell as! ConnectOtherAppsCell).appSwitch.addTarget(self, action: #selector(appAuthorizedAction(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+        if "Validic" ==  licenseApp[indexPath.row]{
+            if (NSUserDefaults.standardUserDefaults().objectForKey(ValidicAuthorizedKey) != nil) {
+                (cell as! ConnectOtherAppsCell).appSwitch.on = true
+            }
+        }
         return cell
     }
     
     func appAuthorizedAction(sender:UISwitch) {
         switch sender.tag {
         case 0:
+            self.checkPinCode(sender)
             break
         case 1:
-            break
+            self.checkPinCode(sender)
         case 2: break
         case 3: break
         default: break
@@ -65,39 +72,50 @@ class ConnectOtherAppsController: UITableViewController {
         }
     }
 
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+    func checkPinCode(switchView:UISwitch) {
+        if switchView.on {
+            UIApplication.sharedApplication().openURL(NSURL(string:"https://partner.validic.com/applications/47/test/marketplace")!)
+            let alert:UIAlertController = UIAlertController(title: "Please enter the PIN code", message: nil, preferredStyle: UIAlertControllerStyle.Alert)
+            alert.addTextFieldWithConfigurationHandler { (testField:UITextField) in
+            }
+            
+            alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: UIAlertActionStyle.Cancel) { (action) in
+                switchView.setOn(false, animated: true)
+                })
+            
+            alert.addAction(UIAlertAction(title: NSLocalizedString("Ok", comment: ""), style: UIAlertActionStyle.Default) { (action) in
+                let view = MRProgressOverlayView.showOverlayAddedTo(self.navigationController!.view, title: "Please wait...", mode: MRProgressOverlayViewMode.Indeterminate, animated: true)
+                view.setTintColor(UIColor.getBaseColor())
+                let textfield:UITextField = alert.textFields![0]
+                let userprofile:UserProfile = UserProfile.getAll()[0] as! UserProfile
+                var finalData: [String : AnyObject] = [:]
+                let params: [String: AnyObject] = ["uid":"\(userprofile.id)"];
+                finalData["user"] = params
+                finalData["pin"] = textfield.text!
+                finalData["access_token"] = OrganizationAccessToken
+                ValidicRequest.validicPostJSONRequest("https://api.validic.com/v1/organizations/\(ValidicOrganizationID)/authorization/new_user", data: finalData, completion: { (result) in
+                    MRProgressOverlayView.dismissAllOverlaysForView(self.navigationController!.view, animated: true)
+                    let resultJson = JSON(result)
+                    if (resultJson["code"].intValue == 201 || resultJson["code"].intValue == 200) {
+                        let userdefalut:NSUserDefaults = NSUserDefaults.standardUserDefaults()
+                        userdefalut.setObject(resultJson["user"].dictionaryObject, forKey: ValidicAuthorizedKey)
+                        userdefalut.synchronize()
+                        //download validic data
+                        UPDATE_VALIDIC_REQUEST.downloadValidicData()
+                    }else{
+                        switchView.setOn(false, animated: true)
+                    }
+                })
+                
+                })
+            
+            self.presentViewController(alert, animated: true) {
+                
+            }
+            
+        }else{
+            NSUserDefaults.standardUserDefaults().removeObjectForKey(ValidicAuthorizedKey)
+        }
     }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            // Delete the row from the data source
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
     
 }

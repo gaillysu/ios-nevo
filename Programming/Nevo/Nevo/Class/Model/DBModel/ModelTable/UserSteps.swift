@@ -29,6 +29,8 @@ class UserSteps: NSObject,BaseEntryDatabaseHelper {
     var running_distance:Int = 0
     var running_duration:Int = 0
     var running_calories:Int = 0
+    var validic_id:String = ""
+    
     private var stepsModel:StepsModel = StepsModel()
 
     // MARK: - NSCoding
@@ -86,53 +88,72 @@ class UserSteps: NSObject,BaseEntryDatabaseHelper {
         }
     }
 
+    class func getPropertys()->NSDictionary {
+        let proNames:NSMutableArray = NSMutableArray()
+        let proTypes:NSMutableArray = NSMutableArray()
+        let theTransients:NSArray = NSArray()
+        var outCount:UInt32 = 0, _:UInt32 = 0;
+        let properties:UnsafeMutablePointer = class_copyPropertyList(self,&outCount)
+        for i in 0 ..< outCount{
+            let property:objc_property_t = properties[Int(i)];
+            //获取属性名
+            let propertyName:NSString = NSString(CString: property_getName(property), encoding: NSUTF8StringEncoding)!
+            if (theTransients.containsObject(propertyName)) {
+                continue;
+            }
+            proNames.addObject(propertyName)
+            //获取属性类型等参数
+            let propertyType:NSString = NSString(CString: property_getAttributes(property), encoding: NSUTF8StringEncoding)!
+            /*
+             c char         C unsigned char
+             i int          I unsigned int
+             l long         L unsigned long
+             s short        S unsigned short
+             d double       D unsigned double
+             f float        F unsigned float
+             q long long    Q unsigned long long
+             B BOOL
+             @ 对象类型 //指针 对象类型 如NSString 是@“NSString”
+             
+             
+             64位下long 和long long 都是Tq
+             SQLite 默认支持五种数据类型TEXT、INTEGER、REAL、BLOB、NULL
+             */
+            if (propertyType.hasPrefix("T@")) {
+                proTypes.addObject(SQLTEXT)
+            } else if (propertyType.hasPrefix("Ti")||propertyType.hasPrefix("TI")||propertyType.hasPrefix("Ts")||propertyType.hasPrefix("TS")||propertyType.hasPrefix("TB")) {
+                proTypes.addObject(SQLINTEGER)
+            } else {
+                proTypes.addObject(SQLREAL)
+            }
+        }
+        free(properties)
+        return NSDictionary(dictionary: ["name":proNames,"type":proTypes])
+    }
+    
     func add(result:((id:Int?,completion:Bool?) -> Void)){
-        stepsModel.steps = steps
-        stepsModel.goalsteps = goalsteps
-        stepsModel.distance = distance
-        stepsModel.hourlysteps = hourlysteps
-        stepsModel.hourlydistance = hourlydistance
-        stepsModel.calories = calories
-        stepsModel.hourlycalories = hourlycalories
-        stepsModel.inZoneTime = inZoneTime
-        stepsModel.outZoneTime = outZoneTime
-        stepsModel.inactivityTime = inactivityTime
-        stepsModel.goalreach = goalreach
-        stepsModel.date = date
-        stepsModel.createDate = createDate
-        stepsModel.walking_distance = walking_distance
-        stepsModel.walking_duration = walking_duration
-        stepsModel.walking_calories = walking_calories
-        stepsModel.running_distance = running_distance
-        stepsModel.running_duration = running_duration
-        stepsModel.running_calories = running_calories
-
+        if StepsModel.isExistInTable() {
+            StepsModel.updateTable()
+        }
+        let keyName:NSArray = UserSteps.getPropertys().objectForKey("name") as! NSArray
+        for value in keyName {
+            let key:String = value as! String
+            stepsModel.setValue(self.valueForKey(key), forKey: key)
+        }
         stepsModel.add { (id, completion) -> Void in
             result(id: id, completion: completion)
         }
     }
 
     func update()->Bool{
-        stepsModel.id = id
-        stepsModel.steps = steps
-        stepsModel.goalsteps = goalsteps
-        stepsModel.distance = distance
-        stepsModel.hourlysteps = hourlysteps
-        stepsModel.hourlydistance = hourlydistance
-        stepsModel.calories = calories
-        stepsModel.hourlycalories = hourlycalories
-        stepsModel.inZoneTime = inZoneTime
-        stepsModel.outZoneTime = outZoneTime
-        stepsModel.inactivityTime = inactivityTime
-        stepsModel.goalreach = goalreach
-        stepsModel.date = date
-        stepsModel.createDate = createDate
-        stepsModel.walking_distance = walking_distance
-        stepsModel.walking_duration = walking_duration
-        stepsModel.walking_calories = walking_calories
-        stepsModel.running_distance = running_distance
-        stepsModel.running_duration = running_duration
-        stepsModel.running_calories = running_calories
+        if StepsModel.isExistInTable() {
+            StepsModel.updateTable()
+        }
+        let keyName:NSArray = UserSteps.getPropertys().objectForKey("name") as! NSArray
+        for value in keyName {
+            let key:String = value as! String
+            stepsModel.setValue(self.valueForKey(key), forKey: key)
+        }
         return stepsModel.update()
     }
 
@@ -150,26 +171,14 @@ class UserSteps: NSObject,BaseEntryDatabaseHelper {
         let allArray:NSMutableArray = NSMutableArray()
         for model in modelArray {
             let stepsModel:StepsModel = model as! StepsModel
-            let presets:UserSteps = UserSteps(keyDict: [
-                "id":stepsModel.id,
-                "steps":stepsModel.steps,
-                "goalsteps":stepsModel.goalsteps,
-                "distance":stepsModel.distance,
-                "hourlysteps":stepsModel.hourlysteps,
-                "hourlydistance":stepsModel.hourlydistance,
-                "calories":stepsModel.calories ,
-                "hourlycalories":stepsModel.hourlycalories,
-                "inZoneTime":stepsModel.inZoneTime,
-                "outZoneTime":stepsModel.outZoneTime,
-                "inactivityTime":stepsModel.inactivityTime,
-                "goalreach":stepsModel.goalreach,
-                "date":stepsModel.date,
-                "createDate":stepsModel.createDate,
-                "walking_distance":stepsModel.walking_distance,
-                "walking_duration":stepsModel.walking_duration,
-                "walking_calories":stepsModel.walking_calories,
-                "running_distance":stepsModel.running_distance,
-                "running_duration":stepsModel.running_duration, "running_calories":stepsModel.running_calories])
+            let keyName:NSArray = StepsModel.getAllProperties().objectForKey("name") as! NSArray
+            var keyDict:[String:AnyObject] = [:]
+            for value in keyName {
+                let key:String = value as! String
+                keyDict[key] = stepsModel.valueForKey(key)
+            }
+            
+            let presets:UserSteps = UserSteps(keyDict: keyDict)
             allArray.addObject(presets)
         }
         return allArray
@@ -180,28 +189,18 @@ class UserSteps: NSObject,BaseEntryDatabaseHelper {
         let allArray:NSMutableArray = NSMutableArray()
         for model in modelArray {
             let stepsModel:StepsModel = model as! StepsModel
-            let presets:UserSteps = UserSteps(keyDict: [
-                "id":stepsModel.id,
-                "steps":stepsModel.steps,
-                "goalsteps":stepsModel.goalsteps,
-                "distance":stepsModel.distance,
-                "hourlysteps":stepsModel.hourlysteps,
-                "hourlydistance":stepsModel.hourlydistance,
-                "calories":stepsModel.calories ,
-                "hourlycalories":stepsModel.hourlycalories,
-                "inZoneTime":stepsModel.inZoneTime,
-                "outZoneTime":stepsModel.outZoneTime,
-                "inactivityTime":stepsModel.inactivityTime,
-                "goalreach":stepsModel.goalreach,
-                "date":stepsModel.date,
-                "createDate":stepsModel.createDate,
-                "walking_distance":stepsModel.walking_distance,
-                "walking_duration":stepsModel.walking_duration,
-                "walking_calories":stepsModel.walking_calories,
-                "running_distance":stepsModel.running_distance,
-                "running_duration":stepsModel.running_duration, "running_calories":stepsModel.running_calories])
+            let keyName:NSArray = StepsModel.getAllProperties().objectForKey("name") as! NSArray
+            var keyDict:[String:AnyObject] = [:]
+            for value in keyName {
+                let key:String = value as! String
+                keyDict[key] = stepsModel.valueForKey(key)
+            }
+            
+            let presets:UserSteps = UserSteps(keyDict: keyDict)
             allArray.addObject(presets)
         }
         return allArray
     }
+    
+    override func setValue(value: AnyObject?, forUndefinedKey key: String) {}
 }

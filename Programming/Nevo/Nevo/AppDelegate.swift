@@ -41,6 +41,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
     private let alertUpdateTag:Int = 9000
 
     let dbQueue:FMDatabaseQueue = FMDatabaseQueue(path: AppDelegate.dbPath())
+    let network = NetworkReachabilityManager(host: "drone.karljohnchow.com")
 
     class func getAppDelegate()->AppDelegate {
         return UIApplication.sharedApplication().delegate as! AppDelegate
@@ -67,14 +68,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
         }else{
             NSUserDefaults.standardUserDefaults().setBool(false, forKey: "firstDatabase")
         }
-
-        let user:NSArray = UserProfile.getAll()
-        if user.count == 0 {
-            let profile:UserProfile = UserProfile(keyDict: ["first_name":"Nevo","last_name":"Nevo","age":23,"weight":55,"lenght":170,"stride_length":Int(Double(170)*0.415)])
-            profile.add({ (id, completion) in
-                
-            })
-        }
+        
         /**
         *  Initialize the umeng
         *
@@ -172,7 +166,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
      :param: resultHandler 请求后返回的数据块
      */
     func getRequestNetwork(requestURL:String,parameters:AnyObject,resultHandler:((result:AnyObject?,error:NSError?) -> Void)){
-        Alamofire.request(.POST, requestURL, parameters: parameters as? [String : AnyObject] ,encoding: .JSON).responseJSON { (response) -> Void in
+        Alamofire.request(.POST, requestURL, parameters: parameters as? [String : AnyObject] ,encoding: .URL).responseJSON { (response) -> Void in
             if response.result.isSuccess {
                 NSLog("getJSON: \(response.result.value!)")
                 resultHandler(result: response.result.value, error: nil)
@@ -539,62 +533,43 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                 let timerInter:NSTimeInterval = timerInterval.timeIntervalSince1970
 
                 let stepsArray = UserSteps.getCriteria("WHERE createDate = \(timeStr)")
+                let stepsModel:UserSteps = UserSteps(keyDict: [
+                    "id":0,
+                    "steps":thispacket.getDailySteps(),
+                    "goalsteps":thispacket.getStepsGoal(),
+                    "distance":thispacket.getDailyDist(),
+                    "hourlysteps":AppTheme.toJSONString(thispacket.getHourlySteps()),
+                    "hourlydistance":AppTheme.toJSONString(thispacket.getHourlyDist()),
+                    "calories":thispacket.getDailyCalories() ,
+                    "hourlycalories":AppTheme.toJSONString(thispacket.getHourlyCalories()),
+                    "inZoneTime":thispacket.getInZoneTime(),
+                    "outZoneTime":thispacket.getOutZoneTime(),
+                    "inactivityTime":thispacket.getInactivityTime(),
+                    "goalreach":Double(thispacket.getDailySteps())/Double(thispacket.getStepsGoal()),
+                    "date":timerInter,
+                    "createDate":timeStr,
+                    "walking_distance":thispacket.getDailyWalkingDistance(),
+                    "walking_duration":thispacket.getDailyWalkingTimer(),
+                    "walking_calories":thispacket.getDailyCalories(),
+                    "running_distance":thispacket.getRunningDistance(),
+                    "running_duration":thispacket.getDailyRunningTimer(),
+                    "running_calories":thispacket.getDailyCalories()])
+                
+                //upload steps data to validic
+                UPDATE_VALIDIC_REQUEST.updateToValidic(NSArray(arrayLiteral: stepsModel))
+                
                 if(stepsArray.count>0) {
                     let step:UserSteps = stepsArray[0] as! UserSteps
                     if(step.steps < thispacket.getDailySteps()) {
                         AppTheme.DLog("Data that has been saved····")
-                        let stepsModel:UserSteps = UserSteps(keyDict: [
-                            "id":step.id,
-                            "steps":thispacket.getDailySteps(),
-                            "goalsteps":thispacket.getStepsGoal(),
-                            "distance":thispacket.getDailyDist(),
-                            "hourlysteps":AppTheme.toJSONString(thispacket.getHourlySteps()),
-                            "hourlydistance":AppTheme.toJSONString(thispacket.getHourlyDist()),
-                            "calories":thispacket.getDailyCalories(),
-                            "hourlycalories":AppTheme.toJSONString(thispacket.getHourlyCalories()),
-                            "inZoneTime":thispacket.getInZoneTime(),
-                            "outZoneTime":thispacket.getOutZoneTime(),
-                            "inactivityTime":thispacket.getInactivityTime(),
-                            "goalreach":Double(thispacket.getDailySteps())/Double(thispacket.getStepsGoal()),
-                            "date":timerInter,
-                            "createDate":timeStr,
-                            "walking_distance":thispacket.getDailyWalkingDistance(),
-                            "walking_duration":thispacket.getDailyWalkingTimer(),
-                            "walking_calories":thispacket.getDailyCalories(),
-                            "running_distance":thispacket.getRunningDistance(),
-                            "running_duration":thispacket.getDailyRunningTimer(),
-                            "running_calories":thispacket.getDailyCalories()])
-
+                        stepsModel.id = step.id
                         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,0), { () -> Void in
                             stepsModel.update()
                         })
                     }
                 }else {
-                    let stepsModel:UserSteps = UserSteps(keyDict: [
-                        "id":0,
-                        "steps":thispacket.getDailySteps(),
-                        "goalsteps":thispacket.getStepsGoal(),
-                        "distance":thispacket.getDailyDist(),
-                        "hourlysteps":AppTheme.toJSONString(thispacket.getHourlySteps()),
-                        "hourlydistance":AppTheme.toJSONString(thispacket.getHourlyDist()),
-                        "calories":thispacket.getDailyCalories() ,
-                        "hourlycalories":AppTheme.toJSONString(thispacket.getHourlyCalories()),
-                        "inZoneTime":thispacket.getInZoneTime(),
-                        "outZoneTime":thispacket.getOutZoneTime(),
-                        "inactivityTime":thispacket.getInactivityTime(),
-                        "goalreach":Double(thispacket.getDailySteps())/Double(thispacket.getStepsGoal()),
-                        "date":timerInter,
-                        "createDate":timeStr,
-                        "walking_distance":thispacket.getDailyWalkingDistance(),
-                        "walking_duration":thispacket.getDailyWalkingTimer(),
-                        "walking_calories":thispacket.getDailyCalories(),
-                        "running_distance":thispacket.getRunningDistance(),
-                        "running_duration":thispacket.getDailyRunningTimer(),
-                        "running_calories":thispacket.getDailyCalories()])
-
                     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,0), { () -> Void in
                         stepsModel.add({ (id, completion) -> Void in
-
                         })
                     })
                 }
@@ -621,39 +596,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                 }
 
                 let sleepArray = UserSleep.getCriteria("WHERE date = \(timerInterval.timeIntervalSince1970)")
+                let model:UserSleep = UserSleep(keyDict: [
+                    "id": 0,
+                    "date":timerInterval.timeIntervalSince1970,
+                    "totalSleepTime":0,
+                    "hourlySleepTime":"\(AppTheme.toJSONString(thispacket.getHourlySleepTime()))",
+                    "totalWakeTime":0,
+                    "hourlyWakeTime":"\(AppTheme.toJSONString(thispacket.getHourlyWakeTime()))" ,
+                    "totalLightTime":0,
+                    "hourlyLightTime":"\(AppTheme.toJSONString(thispacket.getHourlyLightTime()))",
+                    "totalDeepTime":0,
+                    "hourlyDeepTime":"\(AppTheme.toJSONString(thispacket.getHourlyDeepTime()))"])
+                
+                //upload sleep data to validic
+                UPDATE_VALIDIC_REQUEST.updateSleepDataToValidic(NSArray(arrayLiteral: stepsModel))
+                
                 if(sleepArray.count>0) {
                     let sleep:UserSleep = sleepArray[0] as! UserSleep
-                    let model:UserSleep = UserSleep(keyDict: [
-                        "id": sleep.id,
-                        "date":timerInterval.timeIntervalSince1970,
-                        "totalSleepTime":0,
-                        "hourlySleepTime":"\(AppTheme.toJSONString(thispacket.getHourlySleepTime()))",
-                        "totalWakeTime":0,
-                        "hourlyWakeTime":"\(AppTheme.toJSONString(thispacket.getHourlyWakeTime()))" ,
-                        "totalLightTime":0,
-                        "hourlyLightTime":"\(AppTheme.toJSONString(thispacket.getHourlyLightTime()))",
-                        "totalDeepTime":0,
-                        "hourlyDeepTime":"\(AppTheme.toJSONString(thispacket.getHourlyDeepTime()))"])
-
+                    model.id = sleep.id
                     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,0), { () -> Void in
                         model.update()
                     })
                 }else {
-                    let model:UserSleep = UserSleep(keyDict: [
-                        "id": 0,
-                        "date":timerInterval.timeIntervalSince1970,
-                        "totalSleepTime":0,
-                        "hourlySleepTime":"\(AppTheme.toJSONString(thispacket.getHourlySleepTime()))",
-                        "totalWakeTime":0,
-                        "hourlyWakeTime":"\(AppTheme.toJSONString(thispacket.getHourlyWakeTime()))" ,
-                        "totalLightTime":0,
-                        "hourlyLightTime":"\(AppTheme.toJSONString(thispacket.getHourlyLightTime()))",
-                        "totalDeepTime":0,
-                        "hourlyDeepTime":"\(AppTheme.toJSONString(thispacket.getHourlyDeepTime()))"])
-
                     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,0), { () -> Void in
                         model.add({ (id, completion) -> Void in
-
                         })
                     })
                 }

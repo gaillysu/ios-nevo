@@ -5,17 +5,18 @@ pod 'NJKWebViewProgress'
 platform :ios, '8.0'
 use_frameworks!
 pod 'FMDB', '~> 2.6.2'
-pod 'Alamofire', '~> 3.0'
+pod 'Alamofire'
 pod 'GSMessages'
 pod 'BRYXBanner'
 pod 'Timepiece'
 pod 'Fabric'
 pod 'Crashlytics'
 pod 'TextFieldEffects'
-pod 'Charts', '~> 2.2.4'
-pod 'AutocompleteField','~> 1.1'
-
-# pod 'FMDB/FTS'   # FMDB with FTS
-# pod 'FMDB/standalone'   # FMDB with latest SQLite amalgamation source
-# pod 'FMDB/standalone/FTS'   # FMDB with latest SQLite amalgamation source and FTS
-# pod 'FMDB/SQLCipher'   # FMDB with SQLCipher
+pod 'Charts'
+pod 'AutocompleteField'
+pod 'SwiftyJSON', :git => 'https://github.com/SwiftyJSON/SwiftyJSON.git'
+pod 'MRProgress'
+pod 'UIColor_Hex_Swift'
+pod 'XCGLogger'
+pod 'RegexKitLite'
+pod 'SwiftyTimer'

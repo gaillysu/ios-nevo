@@ -16,7 +16,6 @@
 		0017CB4F1C59B58D00F1182D /* DatePickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0017CB4E1C59B58D00F1182D /* DatePickerView.xib */; };
 		0017DC111C8812640058A065 /* RepeatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0017DC0F1C8812640058A065 /* RepeatViewController.swift */; };
 		0017DC121C8812640058A065 /* RepeatViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0017DC101C8812640058A065 /* RepeatViewController.xib */; };
-		001F1B7B1B57777B001DD426 /* nevo_wacth_selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 001F1B791B57777B001DD426 /* nevo_wacth_selected.png */; };
 		001F1B7C1B57777B001DD426 /* nevo_wacth.png in Resources */ = {isa = PBXBuildFile; fileRef = 001F1B7A1B57777B001DD426 /* nevo_wacth.png */; };
 		002C44281CFD7D6C00322B46 /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 002C44271CFD7D6C00322B46 /* Charts.framework */; };
 		002C442A1CFD89AA00322B46 /* AutocompleteField.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 002C44291CFD89AA00322B46 /* AutocompleteField.framework */; };
@@ -113,7 +112,6 @@
 		0050D6451C28E0DB004F6F80 /* StepsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0050D59B1C28E0DB004F6F80 /* StepsModel.swift */; };
 		0050D6461C28E0DB004F6F80 /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0050D59C1C28E0DB004F6F80 /* UserProfile.swift */; };
 		0050D6471C28E0DB004F6F80 /* UserAlarm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0050D59D1C28E0DB004F6F80 /* UserAlarm.swift */; };
-		0050D6481C28E0DB004F6F80 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0050D59E1C28E0DB004F6F80 /* UserModel.swift */; };
 		0050D6491C28E0DB004F6F80 /* UserNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0050D59F1C28E0DB004F6F80 /* UserNotification.swift */; };
 		0050D64A1C28E0DB004F6F80 /* Goal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0050D5A11C28E0DB004F6F80 /* Goal.swift */; };
 		0050D64B1C28E0DB004F6F80 /* NumberOfStepsGoal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0050D5A21C28E0DB004F6F80 /* NumberOfStepsGoal.swift */; };
@@ -173,10 +171,12 @@
 		0050D69B1C2906D8004F6F80 /* Firmwares in Resources */ = {isa = PBXBuildFile; fileRef = 0050D69A1C2906D8004F6F80 /* Firmwares */; };
 		0050D69D1C2A32A5004F6F80 /* UserSteps.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0050D69C1C2A32A5004F6F80 /* UserSteps.swift */; };
 		0050D69F1C2A78C1004F6F80 /* UserSleep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0050D69E1C2A78C1004F6F80 /* UserSleep.swift */; };
+		0056DBE01D18D186003D92CE /* SwiftyTimer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0056DBDF1D18D186003D92CE /* SwiftyTimer.framework */; };
 		0058B3EA1CF55D590079A213 /* ConnectOtherAppsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0058B3E81CF55D590079A213 /* ConnectOtherAppsController.swift */; };
 		0058B3EB1CF55D590079A213 /* ConnectOtherAppsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0058B3E91CF55D590079A213 /* ConnectOtherAppsController.xib */; };
-		005BC9561A889F14006F9E86 /* NevoPicture.png in Resources */ = {isa = PBXBuildFile; fileRef = 005BC9551A889F14006F9E86 /* NevoPicture.png */; };
 		005BC95F1A88B79F006F9E86 /* FXBlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = 005BC95E1A88B79F006F9E86 /* FXBlurView.m */; };
+		006A65D11D10F2DD00DE647A /* SetingLoginCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006A65CF1D10F2DD00DE647A /* SetingLoginCell.swift */; };
+		006A65D21D10F2DD00DE647A /* SetingLoginCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 006A65D01D10F2DD00DE647A /* SetingLoginCell.xib */; };
 		0072EAB51C190DCD001EE2C9 /* SFCompactDisplay-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0072EA8B1C190DCD001EE2C9 /* SFCompactDisplay-Black.ttf */; };
 		0072EAB61C190DCD001EE2C9 /* SFCompactDisplay-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0072EA8C1C190DCD001EE2C9 /* SFCompactDisplay-Bold.ttf */; };
 		0072EAB81C190DCD001EE2C9 /* SFCompactDisplay-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0072EA8E1C190DCD001EE2C9 /* SFCompactDisplay-Light.ttf */; };
@@ -189,6 +189,13 @@
 		007E0CAF1D0E5C3E00B0B600 /* ConnectOtherAppsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 007E0CAD1D0E5C3E00B0B600 /* ConnectOtherAppsCell.xib */; };
 		007F1F511CAA1B630021DF1B /* LocalNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007F1F501CAA1B630021DF1B /* LocalNotification.swift */; };
 		007F1F531CAA63F30021DF1B /* NevoAllKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007F1F521CAA63F30021DF1B /* NevoAllKeys.swift */; };
+		0095C0DA1D123E9100331266 /* SetingNotLoginCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0095C0D81D123E9100331266 /* SetingNotLoginCell.swift */; };
+		0095C0DB1D123E9100331266 /* SetingNotLoginCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0095C0D91D123E9100331266 /* SetingNotLoginCell.xib */; };
+		0095C0DE1D1274B600331266 /* UIColor_Hex_Swift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0095C0DC1D1274B600331266 /* UIColor_Hex_Swift.framework */; };
+		0095C0DF1D1274B600331266 /* XCGLogger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0095C0DD1D1274B600331266 /* XCGLogger.framework */; };
+		0095C0E11D12772C00331266 /* RegexKitLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0095C0E01D12772C00331266 /* RegexKitLite.framework */; };
+		0095C0E41D12940C00331266 /* SetingInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0095C0E21D12940C00331266 /* SetingInfoCell.swift */; };
+		0095C0E51D12940C00331266 /* SetingInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0095C0E31D12940C00331266 /* SetingInfoCell.xib */; };
 		009703C21C9BD9D700F2FF0D /* UserProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009703C01C9BD9D700F2FF0D /* UserProfileController.swift */; };
 		009703C31C9BD9D700F2FF0D /* UserProfileController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 009703C11C9BD9D700F2FF0D /* UserProfileController.xib */; };
 		009703C61C9BDB3200F2FF0D /* UserProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009703C41C9BDB3200F2FF0D /* UserProfileCell.swift */; };
@@ -196,11 +203,13 @@
 		009DD2AA1C5857FD00B11541 /* SetSleepRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009DD2A91C5857FD00B11541 /* SetSleepRequest.swift */; };
 		009DD2AC1C585AC100B11541 /* ConfigSleepAlarm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009DD2AB1C585AC100B11541 /* ConfigSleepAlarm.swift */; };
 		00A773961A88562F0018E121 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 00A773911A88562F0018E121 /* Localizable.strings */; };
+		00B606E71D0F9DB800FF5A01 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00B606E61D0F9DB800FF5A01 /* SwiftyJSON.framework */; };
+		00B606E91D0FC9D700FF5A01 /* ValidicRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B606E81D0FC9D700FF5A01 /* ValidicRequest.swift */; };
+		00B606EB1D0FCE9200FF5A01 /* MRProgress.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00B606EA1D0FCE9200FF5A01 /* MRProgress.framework */; };
+		00B606ED1D0FCEE700FF5A01 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B606EC1D0FCEE700FF5A01 /* Color.swift */; };
 		00BF2D9A1C7FED2200909316 /* VideoPlayController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00BF2D981C7FED2200909316 /* VideoPlayController.swift */; };
 		00BF2D9B1C7FED2200909316 /* VideoPlayController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00BF2D991C7FED2200909316 /* VideoPlayController.xib */; };
 		00C640F61A8DEE0800815CF8 /* clockView600.png in Resources */ = {isa = PBXBuildFile; fileRef = 00C640F51A8DEE0800815CF8 /* clockView600.png */; };
-		00D0FF731B130A9F00D084C3 /* Nevo660.png in Resources */ = {isa = PBXBuildFile; fileRef = 00D0FF721B130A9F00D084C3 /* Nevo660.png */; };
-		00D4DE921AB141FB0062523D /* NevoPicture960.png in Resources */ = {isa = PBXBuildFile; fileRef = 00D4DE901AB141FB0062523D /* NevoPicture960.png */; };
 		00D581441CB50C7500953B8A /* ChangeProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D581421CB50C7500953B8A /* ChangeProfileController.swift */; };
 		00D581451CB50C7500953B8A /* ChangeProfileController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00D581431CB50C7500953B8A /* ChangeProfileController.xib */; };
 		00DBC3A31C435541004B4376 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 00DBC3A21C435541004B4376 /* Main.storyboard */; };
@@ -282,7 +291,6 @@
 		0017CB4E1C59B58D00F1182D /* DatePickerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DatePickerView.xib; sourceTree = "<group>"; };
 		0017DC0F1C8812640058A065 /* RepeatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepeatViewController.swift; sourceTree = "<group>"; };
 		0017DC101C8812640058A065 /* RepeatViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RepeatViewController.xib; sourceTree = "<group>"; };
-		001F1B791B57777B001DD426 /* nevo_wacth_selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nevo_wacth_selected.png; sourceTree = "<group>"; };
 		001F1B7A1B57777B001DD426 /* nevo_wacth.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nevo_wacth.png; sourceTree = "<group>"; };
 		002C44271CFD7D6C00322B46 /* Charts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Charts.framework; path = "../../../../Library/Developer/Xcode/DerivedData/Nevo-cbjnruaifgvemfduxtlzizqanuqy/Build/Products/Debug-iphoneos/Charts.framework"; sourceTree = "<group>"; };
 		002C44291CFD89AA00322B46 /* AutocompleteField.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AutocompleteField.framework; path = "../../../../Library/Developer/Xcode/DerivedData/Nevo-cbjnruaifgvemfduxtlzizqanuqy/Build/Products/Debug-iphoneos/AutocompleteField.framework"; sourceTree = "<group>"; };
@@ -382,7 +390,6 @@
 		0050D59B1C28E0DB004F6F80 /* StepsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepsModel.swift; sourceTree = "<group>"; };
 		0050D59C1C28E0DB004F6F80 /* UserProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
 		0050D59D1C28E0DB004F6F80 /* UserAlarm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAlarm.swift; sourceTree = "<group>"; };
-		0050D59E1C28E0DB004F6F80 /* UserModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		0050D59F1C28E0DB004F6F80 /* UserNotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserNotification.swift; sourceTree = "<group>"; };
 		0050D5A11C28E0DB004F6F80 /* Goal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Goal.swift; sourceTree = "<group>"; };
 		0050D5A21C28E0DB004F6F80 /* NumberOfStepsGoal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumberOfStepsGoal.swift; sourceTree = "<group>"; };
@@ -443,11 +450,13 @@
 		0050D69A1C2906D8004F6F80 /* Firmwares */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Firmwares; sourceTree = "<group>"; };
 		0050D69C1C2A32A5004F6F80 /* UserSteps.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSteps.swift; sourceTree = "<group>"; };
 		0050D69E1C2A78C1004F6F80 /* UserSleep.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSleep.swift; sourceTree = "<group>"; };
+		0056DBDF1D18D186003D92CE /* SwiftyTimer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyTimer.framework; path = "Pods/../build/Debug-iphoneos/SwiftyTimer.framework"; sourceTree = "<group>"; };
 		0058B3E81CF55D590079A213 /* ConnectOtherAppsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectOtherAppsController.swift; sourceTree = "<group>"; };
 		0058B3E91CF55D590079A213 /* ConnectOtherAppsController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConnectOtherAppsController.xib; sourceTree = "<group>"; };
-		005BC9551A889F14006F9E86 /* NevoPicture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NevoPicture.png; sourceTree = "<group>"; };
 		005BC95D1A88B79F006F9E86 /* FXBlurView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FXBlurView.h; sourceTree = "<group>"; };
 		005BC95E1A88B79F006F9E86 /* FXBlurView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FXBlurView.m; sourceTree = "<group>"; };
+		006A65CF1D10F2DD00DE647A /* SetingLoginCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetingLoginCell.swift; sourceTree = "<group>"; };
+		006A65D01D10F2DD00DE647A /* SetingLoginCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SetingLoginCell.xib; sourceTree = "<group>"; };
 		006B83691C44A20000E20A0C /* Nevo-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Nevo-Bridging-Header.h"; sourceTree = "<group>"; };
 		0072EA8B1C190DCD001EE2C9 /* SFCompactDisplay-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFCompactDisplay-Black.ttf"; sourceTree = "<group>"; };
 		0072EA8C1C190DCD001EE2C9 /* SFCompactDisplay-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFCompactDisplay-Bold.ttf"; sourceTree = "<group>"; };
@@ -462,6 +471,13 @@
 		007F1F501CAA1B630021DF1B /* LocalNotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocalNotification.swift; path = Frameworks/LocalNotification.swift; sourceTree = "<group>"; };
 		007F1F521CAA63F30021DF1B /* NevoAllKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NevoAllKeys.swift; sourceTree = "<group>"; };
 		0086858F1B40D53C0062F544 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
+		0095C0D81D123E9100331266 /* SetingNotLoginCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetingNotLoginCell.swift; sourceTree = "<group>"; };
+		0095C0D91D123E9100331266 /* SetingNotLoginCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SetingNotLoginCell.xib; sourceTree = "<group>"; };
+		0095C0DC1D1274B600331266 /* UIColor_Hex_Swift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIColor_Hex_Swift.framework; path = "../../../../Library/Developer/Xcode/DerivedData/Nevo-cbjnruaifgvemfduxtlzizqanuqy/Build/Products/Debug-iphoneos/UIColor_Hex_Swift.framework"; sourceTree = "<group>"; };
+		0095C0DD1D1274B600331266 /* XCGLogger.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCGLogger.framework; path = "../../../../Library/Developer/Xcode/DerivedData/Nevo-cbjnruaifgvemfduxtlzizqanuqy/Build/Products/Debug-iphoneos/XCGLogger.framework"; sourceTree = "<group>"; };
+		0095C0E01D12772C00331266 /* RegexKitLite.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RegexKitLite.framework; path = "Pods/../build/Debug-iphoneos/RegexKitLite.framework"; sourceTree = "<group>"; };
+		0095C0E21D12940C00331266 /* SetingInfoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetingInfoCell.swift; sourceTree = "<group>"; };
+		0095C0E31D12940C00331266 /* SetingInfoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SetingInfoCell.xib; sourceTree = "<group>"; };
 		009703C01C9BD9D700F2FF0D /* UserProfileController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileController.swift; sourceTree = "<group>"; };
 		009703C11C9BD9D700F2FF0D /* UserProfileController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserProfileController.xib; sourceTree = "<group>"; };
 		009703C41C9BDB3200F2FF0D /* UserProfileCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileCell.swift; sourceTree = "<group>"; };
@@ -472,11 +488,13 @@
 		00A773931A88562F0018E121 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		00A773941A88562F0018E121 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		00A773951A88562F0018E121 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		00B606E61D0F9DB800FF5A01 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = "../../../../Library/Developer/Xcode/DerivedData/Nevo-cbjnruaifgvemfduxtlzizqanuqy/Build/Products/Debug-iphoneos/SwiftyJSON.framework"; sourceTree = "<group>"; };
+		00B606E81D0FC9D700FF5A01 /* ValidicRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValidicRequest.swift; sourceTree = "<group>"; };
+		00B606EA1D0FCE9200FF5A01 /* MRProgress.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MRProgress.framework; path = "Pods/../build/Debug-iphoneos/MRProgress.framework"; sourceTree = "<group>"; };
+		00B606EC1D0FCEE700FF5A01 /* Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		00BF2D981C7FED2200909316 /* VideoPlayController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoPlayController.swift; sourceTree = "<group>"; };
 		00BF2D991C7FED2200909316 /* VideoPlayController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VideoPlayController.xib; sourceTree = "<group>"; };
 		00C640F51A8DEE0800815CF8 /* clockView600.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clockView600.png; sourceTree = "<group>"; };
-		00D0FF721B130A9F00D084C3 /* Nevo660.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Nevo660.png; sourceTree = "<group>"; };
-		00D4DE901AB141FB0062523D /* NevoPicture960.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NevoPicture960.png; sourceTree = "<group>"; };
 		00D581421CB50C7500953B8A /* ChangeProfileController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangeProfileController.swift; sourceTree = "<group>"; };
 		00D581431CB50C7500953B8A /* ChangeProfileController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChangeProfileController.xib; sourceTree = "<group>"; };
 		00DBC3A21C435541004B4376 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
@@ -593,6 +611,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0056DBE01D18D186003D92CE /* SwiftyTimer.framework in Frameworks */,
+				0095C0E11D12772C00331266 /* RegexKitLite.framework in Frameworks */,
+				0095C0DE1D1274B600331266 /* UIColor_Hex_Swift.framework in Frameworks */,
+				0095C0DF1D1274B600331266 /* XCGLogger.framework in Frameworks */,
+				00B606EB1D0FCE9200FF5A01 /* MRProgress.framework in Frameworks */,
+				00B606E71D0F9DB800FF5A01 /* SwiftyJSON.framework in Frameworks */,
 				002C442A1CFD89AA00322B46 /* AutocompleteField.framework in Frameworks */,
 				002C44281CFD7D6C00322B46 /* Charts.framework in Frameworks */,
 				9E15EAC31CED6B3A009F129F /* Pods.framework in Frameworks */,
@@ -639,6 +663,7 @@
 			isa = PBXGroup;
 			children = (
 				00321D811C993C7D0069BFCC /* HttpPostRequest.swift */,
+				00B606E81D0FC9D700FF5A01 /* ValidicRequest.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -829,6 +854,12 @@
 			isa = PBXGroup;
 			children = (
 				0050D55A1C28E0DB004F6F80 /* SetingView.swift */,
+				006A65CF1D10F2DD00DE647A /* SetingLoginCell.swift */,
+				006A65D01D10F2DD00DE647A /* SetingLoginCell.xib */,
+				0095C0D81D123E9100331266 /* SetingNotLoginCell.swift */,
+				0095C0D91D123E9100331266 /* SetingNotLoginCell.xib */,
+				0095C0E21D12940C00331266 /* SetingInfoCell.swift */,
+				0095C0E31D12940C00331266 /* SetingInfoCell.xib */,
 			);
 			path = SetingView;
 			sourceTree = "<group>";
@@ -979,7 +1010,6 @@
 				0050D59B1C28E0DB004F6F80 /* StepsModel.swift */,
 				0050D59C1C28E0DB004F6F80 /* UserProfile.swift */,
 				0050D59D1C28E0DB004F6F80 /* UserAlarm.swift */,
-				0050D59E1C28E0DB004F6F80 /* UserModel.swift */,
 				0050D59F1C28E0DB004F6F80 /* UserNotification.swift */,
 				0050D69C1C2A32A5004F6F80 /* UserSteps.swift */,
 				0050D69E1C2A78C1004F6F80 /* UserSleep.swift */,
@@ -1025,6 +1055,7 @@
 		0050D5AA1C28E0DB004F6F80 /* publicClass */ = {
 			isa = PBXGroup;
 			children = (
+				00B606EC1D0FCEE700FF5A01 /* Color.swift */,
 				0050D5AC1C28E0DB004F6F80 /* MainTabBarController.swift */,
 				0050D5AD1C28E0DB004F6F80 /* PublicClassController.swift */,
 				0050D5AE1C28E0DB004F6F80 /* PublicClassTableViewController.swift */,
@@ -1261,14 +1292,10 @@
 				00E759131C23E83200372529 /* firmware_clock.png */,
 				0072EAEA1C192210001EE2C9 /* spinner.png */,
 				07BCE8291B5CAB2100C7F558 /* clockview600_color.png */,
-				001F1B791B57777B001DD426 /* nevo_wacth_selected.png */,
 				001F1B7A1B57777B001DD426 /* nevo_wacth.png */,
-				00D0FF721B130A9F00D084C3 /* Nevo660.png */,
-				00D4DE901AB141FB0062523D /* NevoPicture960.png */,
 				00478F4D1A8F637D00D0DCE2 /* clockViewHour.png */,
 				00478F4E1A8F637D00D0DCE2 /* clockViewMinute.png */,
 				00C640F51A8DEE0800815CF8 /* clockView600.png */,
-				005BC9551A889F14006F9E86 /* NevoPicture.png */,
 			);
 			path = image;
 			sourceTree = "<group>";
@@ -1406,6 +1433,12 @@
 		9AD8F95A1A6DFE3400F01014 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0056DBDF1D18D186003D92CE /* SwiftyTimer.framework */,
+				0095C0E01D12772C00331266 /* RegexKitLite.framework */,
+				0095C0DC1D1274B600331266 /* UIColor_Hex_Swift.framework */,
+				0095C0DD1D1274B600331266 /* XCGLogger.framework */,
+				00B606EA1D0FCE9200FF5A01 /* MRProgress.framework */,
+				00B606E61D0F9DB800FF5A01 /* SwiftyJSON.framework */,
 				002C44291CFD89AA00322B46 /* AutocompleteField.framework */,
 				002C44271CFD7D6C00322B46 /* Charts.framework */,
 				9E15EAC21CED6B3A009F129F /* Pods.framework */,
@@ -1606,9 +1639,9 @@
 				00DBC3A31C435541004B4376 /* Main.storyboard in Resources */,
 				0050D5F21C28E0DB004F6F80 /* MyNevoHeaderView.xib in Resources */,
 				0050D60E1C28E0DB004F6F80 /* PresetTableViewController.xib in Resources */,
-				00D0FF731B130A9F00D084C3 /* Nevo660.png in Resources */,
 				00EC9DCF1C85833400280904 /* MorningTutorialController.xib in Resources */,
 				0050D6011C28E0DB004F6F80 /* NotificationViewController.xib in Resources */,
+				0095C0E51D12940C00331266 /* SetingInfoCell.xib in Resources */,
 				00E2BDE31B16CCD0009C757E /* MBProgressHUD.bundle in Resources */,
 				00EC9E061C85839A00280904 /* TutorialSixViewController.xib in Resources */,
 				0050D6221C28E0DB004F6F80 /* StepGoalSetingController.xib in Resources */,
@@ -1634,7 +1667,6 @@
 				0050D5FB1C28E0DB004F6F80 /* LineColorCell.xib in Resources */,
 				0072EADB1C190DCD001EE2C9 /* SFUIText-Regular.ttf in Resources */,
 				0058B3EB1CF55D590079A213 /* ConnectOtherAppsController.xib in Resources */,
-				00D4DE921AB141FB0062523D /* NevoPicture960.png in Resources */,
 				0050D5F91C28E0DB004F6F80 /* NevoOtaViewController.xib in Resources */,
 				00EC9DB91C85830F00280904 /* HomeTutorialController.xib in Resources */,
 				0036EB0D1C48C36700DCED46 /* bluetoothoff_background.png in Resources */,
@@ -1650,7 +1682,6 @@
 				0036EB091C48BA8300DCED46 /* turnonnevo.png in Resources */,
 				0072EAB61C190DCD001EE2C9 /* SFCompactDisplay-Bold.ttf in Resources */,
 				009703C71C9BDB3200F2FF0D /* UserProfileCell.xib in Resources */,
-				005BC9561A889F14006F9E86 /* NevoPicture.png in Resources */,
 				0042C8B41C7DB3EF00177D3D /* NotAlarmView.xib in Resources */,
 				07BCE82A1B5CAB2200C7F558 /* clockview600_color.png in Resources */,
 				9AD8F9421A6DF35900F01014 /* Images.xcassets in Resources */,
@@ -1666,8 +1697,8 @@
 				0050D61E1C28E0DB004F6F80 /* SleepTrackingController.xib in Resources */,
 				0036EB061C48BA8300DCED46 /* connected1.png in Resources */,
 				0050D6961C28E1CD004F6F80 /* AddAlarmTableViewCell.xib in Resources */,
+				0095C0DB1D123E9100331266 /* SetingNotLoginCell.xib in Resources */,
 				0050D69B1C2906D8004F6F80 /* Firmwares in Resources */,
-				001F1B7B1B57777B001DD426 /* nevo_wacth_selected.png in Resources */,
 				00E650991C83DD9000278D3E /* nevoFontImage.png in Resources */,
 				0050D60C1C28E0DB004F6F80 /* AddPresetViewController.xib in Resources */,
 				00E759181C2406E600372529 /* upgrade_clock.png in Resources */,
@@ -1681,6 +1712,7 @@
 				00C640F61A8DEE0800815CF8 /* clockView600.png in Resources */,
 				00321D7D1C993C320069BFCC /* LoginController.xib in Resources */,
 				00BF2D9B1C7FED2200909316 /* VideoPlayController.xib in Resources */,
+				006A65D21D10F2DD00DE647A /* SetingLoginCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1762,6 +1794,7 @@
 			files = (
 				9AD8F9841A6E2C8E00F01014 /* Request.swift in Sources */,
 				0050D6981C28E1CD004F6F80 /* AlarmClockController.swift in Sources */,
+				00B606ED1D0FCEE700FF5A01 /* Color.swift in Sources */,
 				0050D6511C28E0DB004F6F80 /* MainTabBarController.swift in Sources */,
 				0050D60F1C28E0DB004F6F80 /* AddPresetView.swift in Sources */,
 				0050D64A1C28E0DB004F6F80 /* Goal.swift in Sources */,
@@ -1778,6 +1811,7 @@
 				0050D61D1C28E0DB004F6F80 /* SleepTrackingController.swift in Sources */,
 				00EB507D1C9FE5F900D331F5 /* RunningToHK.swift in Sources */,
 				00321D7C1C993C320069BFCC /* LoginController.swift in Sources */,
+				0095C0DA1D123E9100331266 /* SetingNotLoginCell.swift in Sources */,
 				0050D60B1C28E0DB004F6F80 /* AddPresetViewController.swift in Sources */,
 				0050D6021C28E0DB004F6F80 /* SelectedNotificationTypeController.swift in Sources */,
 				0050D64B1C28E0DB004F6F80 /* NumberOfStepsGoal.swift in Sources */,
@@ -1787,7 +1821,6 @@
 				0050D66D1C28E0DB004F6F80 /* GetStepsGoalRequest.swift in Sources */,
 				0050D6631C28E0DB004F6F80 /* NevoOTAModeProfile.swift in Sources */,
 				0050D5FC1C28E0DB004F6F80 /* NotificationClockCell.swift in Sources */,
-				0050D6481C28E0DB004F6F80 /* UserModel.swift in Sources */,
 				0050D6441C28E0DB004F6F80 /* SleepModel.swift in Sources */,
 				0050D6581C28E0DB004F6F80 /* ToolbarView.swift in Sources */,
 				007E0CAE1D0E5C3E00B0B600 /* ConnectOtherAppsCell.swift in Sources */,
@@ -1796,6 +1829,7 @@
 				0050D5ED1C28E0DB004F6F80 /* HelpViewController.swift in Sources */,
 				0050D5EA1C28E0DB004F6F80 /* AidOtaViewController.swift in Sources */,
 				000CB3241C3E060800B4ABEC /* BalloonMarker.swift in Sources */,
+				006A65D11D10F2DD00DE647A /* SetingLoginCell.swift in Sources */,
 				0050D6781C28E0DB004F6F80 /* SetRTCRequest.swift in Sources */,
 				0050D6621C28E0DB004F6F80 /* NevoOTAControllerProfile.swift in Sources */,
 				0050D6431C28E0DB004F6F80 /* PresetsModel.swift in Sources */,
@@ -1850,6 +1884,7 @@
 				0050D6001C28E0DB004F6F80 /* NotificationViewController.swift in Sources */,
 				0050D6661C28E0DB004F6F80 /* Utility.swift in Sources */,
 				0050D65D1C28E0DB004F6F80 /* ConnectionManager.swift in Sources */,
+				0095C0E41D12940C00331266 /* SetingInfoCell.swift in Sources */,
 				0050D6171C28E0DB004F6F80 /* queryTableviewCell.swift in Sources */,
 				0050D5E91C28E0DB004F6F80 /* AidOtaController.swift in Sources */,
 				0050D6461C28E0DB004F6F80 /* UserProfile.swift in Sources */,
@@ -1876,6 +1911,7 @@
 				0050D6651C28E0DB004F6F80 /* NevoOTARequest.swift in Sources */,
 				0050D5FA1C28E0DB004F6F80 /* LineColorCell.swift in Sources */,
 				0050D65B1C28E0DB004F6F80 /* ConnectionController.swift in Sources */,
+				00B606E91D0FC9D700FF5A01 /* ValidicRequest.swift in Sources */,
 				0050D5F81C28E0DB004F6F80 /* NevoOtaViewController.swift in Sources */,
 				9E98FB371C4640AF00BAB700 /* TutorialSevenViewController.swift in Sources */,
 				0050D6161C28E0DB004F6F80 /* SetingViewController.swift in Sources */,

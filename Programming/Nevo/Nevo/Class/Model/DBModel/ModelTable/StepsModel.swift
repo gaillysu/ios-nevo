@@ -30,7 +30,8 @@ class StepsModel: UserDatabaseHelper {
     var running_distance:Int = 0
     var running_duration:Int = 0
     var running_calories:Int = 0
-
+    var validic_id:String = ""
+    
     override init() {
 
     }

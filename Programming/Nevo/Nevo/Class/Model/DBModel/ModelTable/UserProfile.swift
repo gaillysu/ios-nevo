@@ -12,14 +12,13 @@ class UserProfile: NSObject {
     var id:Int = 0
     var first_name:String = ""
     var last_name:String = ""
-    var birthday:NSTimeInterval = NSDate().timeIntervalSince1970
-    var gender:Bool = false
-    var age:Int = 0
-    var weight:Int = 0
-    var lenght:Int = 0
-    var stride_length:Int = 0
+    var birthday:String = "" //2016-06-07
+    var gender:Bool = false // true = male || false = female
+    var weight:Int = 0 //KG
+    var length:Int = 0 //CM
     var metricORimperial:Bool = false
     var created:NSTimeInterval = NSDate().timeIntervalSince1970
+    var email:String = ""
 
     private var profileModel:NevoProfileModel = NevoProfileModel()
 
@@ -31,34 +30,28 @@ class UserProfile: NSObject {
     }
 
     func add(result:((id:Int?,completion:Bool?) -> Void)){
-        profileModel.id = id
-        profileModel.first_name = first_name
-        profileModel.last_name = last_name
-        profileModel.birthday = birthday
-        profileModel.gender = gender
-        profileModel.age = age
-        profileModel.weight = weight
-        profileModel.lenght = lenght
-        profileModel.stride_length = stride_length
-        profileModel.metricORimperial = metricORimperial
-        profileModel.created = created
+        if NevoProfileModel.isExistInTable() {
+            NevoProfileModel.updateTable()
+        }
+        let keyName:NSArray = UserProfile.getPropertys().objectForKey("name") as! NSArray
+        for value in keyName {
+            let key:String = value as! String
+            profileModel.setValue(self.valueForKey(key), forKey: key)
+        }
         profileModel.add { (id, completion) -> Void in
             result(id: id, completion: completion)
         }
     }
 
     func update()->Bool{
-        profileModel.id = id
-        profileModel.first_name = first_name
-        profileModel.last_name = last_name
-        profileModel.birthday = birthday
-        profileModel.gender = gender
-        profileModel.age = age
-        profileModel.weight = weight
-        profileModel.lenght = lenght
-        profileModel.stride_length = stride_length
-        profileModel.metricORimperial = metricORimperial
-        profileModel.created = created
+        if NevoProfileModel.isExistInTable() {
+            NevoProfileModel.updateTable()
+        }
+        let keyName:NSArray = UserProfile.getPropertys().objectForKey("name") as! NSArray
+        for value in keyName {
+            let key:String = value as! String
+            profileModel.setValue(self.valueForKey(key), forKey: key)
+        }
         return profileModel.update()
     }
 
@@ -76,9 +69,15 @@ class UserProfile: NSObject {
         let allArray:NSMutableArray = NSMutableArray()
         for model in modelArray {
             let userProfileModel:NevoProfileModel = model as! NevoProfileModel
-
-            let profile:UserProfile = UserProfile(keyDict: ["id":userProfileModel.id,"first_name":userProfileModel.first_name,"last_name":"\(userProfileModel.last_name)","birthday":userProfileModel.birthday,"gender":userProfileModel.gender,"age":userProfileModel.age,"weight":userProfileModel.weight,"lenght":userProfileModel.lenght,"stride_length":userProfileModel.stride_length,"metricORimperial":userProfileModel.metricORimperial,"created":userProfileModel.created])
-            allArray.addObject(profile)
+            let keyName:NSArray = NevoProfileModel.getAllProperties().objectForKey("name") as! NSArray
+            var keyDict:[String:AnyObject] = [:]
+            for value in keyName {
+                let key:String = value as! String
+                keyDict[key] = userProfileModel.valueForKey(key)
+            }
+            
+            let presets:UserProfile = UserProfile(keyDict: keyDict)
+            allArray.addObject(presets)
         }
         return allArray
     }
@@ -88,18 +87,21 @@ class UserProfile: NSObject {
         let allArray:NSMutableArray = NSMutableArray()
         for model in modelArray {
             let userProfileModel:NevoProfileModel = model as! NevoProfileModel
-            let profile:UserProfile = UserProfile(keyDict: ["id":userProfileModel.id,"first_name":userProfileModel.first_name,"last_name":"\(userProfileModel.last_name)","birthday":userProfileModel.birthday,"gender":userProfileModel.gender,"age":userProfileModel.age,"weight":userProfileModel.weight,"lenght":userProfileModel.lenght,"stride_length":userProfileModel.stride_length,"metricORimperial":userProfileModel.metricORimperial,"created":userProfileModel.created])
-            allArray.addObject(profile)
+            let keyName:NSArray = NevoProfileModel.getAllProperties().objectForKey("name") as! NSArray
+            var keyDict:[String:AnyObject] = [:]
+            for value in keyName {
+                let key:String = value as! String
+                keyDict[key] = userProfileModel.valueForKey(key)
+            }
+            
+            let presets:UserProfile = UserProfile(keyDict: keyDict)
+            allArray.addObject(presets)
         }
         return allArray
     }
 
     class func isExistInTable()->Bool {
         return NevoProfileModel.isExistInTable()
-    }
-
-    class func updateTable()->Bool {
-        return NevoProfileModel.updateTable()
     }
 
     /**
@@ -109,10 +111,55 @@ class UserProfile: NSObject {
     class func defaultProfile(){
         let array = UserProfile.getAll()
         if(array.count == 0){
-            let uesrProfile:UserProfile = UserProfile(keyDict: ["id":0,"first_name":"First name","last_name":"Last name","birthday":NSDate().timeIntervalSince1970,"gender":false,"age":25,"weight":60,"lenght":168,"stride_length":60,"metricORimperial":false,"created":NSDate().timeIntervalSince1970])
+            let uesrProfile:UserProfile = UserProfile(keyDict: ["id":0,"first_name":"First name","last_name":"Last name","birthday":"2000-01-01","gender":false,"age":25,"weight":60,"length":168,"metricORimperial":false,"created":NSDate().timeIntervalSince1970])
             uesrProfile.add({ (id, completion) -> Void in
 
             })
         }
     }
+    
+    class func getPropertys()->NSDictionary {
+        let proNames:NSMutableArray = NSMutableArray()
+        let proTypes:NSMutableArray = NSMutableArray()
+        let theTransients:NSArray = NSArray()
+        var outCount:UInt32 = 0, _:UInt32 = 0;
+        let properties:UnsafeMutablePointer = class_copyPropertyList(self,&outCount)
+        for i in 0 ..< outCount{
+            let property:objc_property_t = properties[Int(i)];
+            //获取属性名
+            let propertyName:NSString = NSString(CString: property_getName(property), encoding: NSUTF8StringEncoding)!
+            if (theTransients.containsObject(propertyName)) {
+                continue;
+            }
+            proNames.addObject(propertyName)
+            //获取属性类型等参数
+            let propertyType:NSString = NSString(CString: property_getAttributes(property), encoding: NSUTF8StringEncoding)!
+            /*
+             c char         C unsigned char
+             i int          I unsigned int
+             l long         L unsigned long
+             s short        S unsigned short
+             d double       D unsigned double
+             f float        F unsigned float
+             q long long    Q unsigned long long
+             B BOOL
+             @ 对象类型 //指针 对象类型 如NSString 是@“NSString”
+             
+             
+             64位下long 和long long 都是Tq
+             SQLite 默认支持五种数据类型TEXT、INTEGER、REAL、BLOB、NULL
+             */
+            if (propertyType.hasPrefix("T@")) {
+                proTypes.addObject(SQLTEXT)
+            } else if (propertyType.hasPrefix("Ti")||propertyType.hasPrefix("TI")||propertyType.hasPrefix("Ts")||propertyType.hasPrefix("TS")||propertyType.hasPrefix("TB")) {
+                proTypes.addObject(SQLINTEGER)
+            } else {
+                proTypes.addObject(SQLREAL)
+            }
+        }
+        free(properties)
+        return NSDictionary(dictionary: ["name":proNames,"type":proTypes])
+    }
+    
+    override func setValue(value: AnyObject?, forUndefinedKey key: String) {}
 }

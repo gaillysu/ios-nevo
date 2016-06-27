@@ -20,6 +20,7 @@ class SleepModel: UserDatabaseHelper {
     var hourlyLightTime:String = "";
     var totalDeepTime:Int = 0;
     var hourlyDeepTime:String = "";
+    var _id:String = "0"
 
     override init() {
 
