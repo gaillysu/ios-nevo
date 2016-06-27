@@ -19,6 +19,7 @@ let UPDATE_VALIDIC_REQUEST:ValidicRequest = ValidicRequest()
 
 class ValidicRequest: NSObject {
     var index:Int = 1
+    var sleepIndex:Int = 1
     
     // MARK: - Request func
     class func validicPostJSONRequest(url: String, data:Dictionary<String,AnyObject>, completion:(result:NSDictionary) -> Void){
@@ -274,9 +275,8 @@ class ValidicRequest: NSObject {
     }
     
     func downloadValidicData() {
-        //USERID: 576792d636c913a66d00edd4
         if ValidicRequest.isValidicAuthorization() {
-            let _id:String = "576792d636c913a66d00edd4"
+            let _id:String = "\((NSUserDefaults.standardUserDefaults().objectForKey(ValidicAuthorizedKey) as! NSDictionary).objectForKey("_id")!)"
             let startDate:NSDate = NSDate(timeIntervalSince1970: NSDate().beginningOfDay.timeIntervalSince1970-365*86400)
             let endDate:NSDate = NSDate().endOfDay
             let URL:String = "https://api.validic.com/v1/organizations/\(ValidicOrganizationID)/users/\(_id)/routine/latest.json?access_token=\(OrganizationAccessToken)&start_date=\(ValidicRequest.formatterDate(startDate))&end_date=\(ValidicRequest.formatterDate(endDate))&limit=200&page=\(index)"
@@ -291,9 +291,33 @@ class ValidicRequest: NSObject {
                     self.downloadValidicData()
                 }else{
                     self.index = 1
+                    self.downloadValidicSleepData()
                 }
             }
             index += 1
+        }
+    }
+    
+    func downloadValidicSleepData() {
+        if ValidicRequest.isValidicAuthorization() {
+            let _id:String = "\((NSUserDefaults.standardUserDefaults().objectForKey(ValidicAuthorizedKey) as! NSDictionary).objectForKey("_id")!)"
+            let startDate:NSDate = NSDate(timeIntervalSince1970: NSDate().beginningOfDay.timeIntervalSince1970-365*86400)
+            let endDate:NSDate = NSDate().endOfDay
+            let URL:String = "https://api.validic.com/v1/organizations/\(ValidicOrganizationID)/users/\(_id)/sleep/latest.json?access_token=\(OrganizationAccessToken)&start_date=\(ValidicRequest.formatterDate(startDate))&end_date=\(ValidicRequest.formatterDate(endDate))&limit=200&page=\(index)"
+            
+            ValidicRequest.getValidicRequest(URL, data: nil) { (result) in
+                let json = JSON(result)
+                let routineArray:[JSON] = json["sleep"].arrayValue
+                if routineArray.count>0 {
+                    for value in routineArray {
+                        self.analyticalSleepData(value)
+                    }
+                    self.downloadValidicSleepData()
+                }else{
+                    self.sleepIndex = 1
+                }
+            }
+            sleepIndex += 1
         }
     }
     
@@ -323,6 +347,36 @@ class ValidicRequest: NSObject {
         let userSteps:NSArray = UserSteps.getCriteria("WHERE createDate = \(steps["createDate"]!)")
         if userSteps.count == 0 {
             let userSteps:UserSteps = UserSteps(keyDict: steps)
+            userSteps.add { (id, completion) in
+                
+            }
+        }
+    }
+    
+    func analyticalSleepData(object:JSON) {
+        XCGLogger.defaultInstance().debug("\(object)")
+        var timer = object["timestamp"].stringValue.stringByReplacingOccurrencesOfString("T", withString: " ")
+        timer = timer.stringByReplacingOccurrencesOfString("+00:00", withString: "")
+        let date = GmtNSDate2LocaleNSDate(timer.dateFromFormat("yyyy-MM-dd HH:mm:ss'UTC'")!)
+        
+        let awakeSleep:Int = object["awake"].intValue
+        let awakeDeep:Int = object["deep"].intValue
+        let lightSleep:Int = object["light"].intValue
+        
+        var sleep:[String:AnyObject] = [:]
+        sleep["_id"] = object["_id"].stringValue
+        sleep["date"] = date.timeIntervalSince1970
+        sleep["totalSleepTime"] = object["total_sleep"].intValue
+        sleep["hourlySleepTime"] = "[0,\(object["total_sleep"].intValue),0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]"
+        sleep["totalWakeTime"] = awakeSleep
+        sleep["hourlyWakeTime"] = "[0,\(awakeSleep),0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]"
+        sleep["totalLightTime"] = lightSleep
+        sleep["hourlyLightTime"] = "[0,\(lightSleep),0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]"
+        sleep["totalDeepTime"] = awakeDeep
+        sleep["hourlyDeepTime"] = "[0,\(awakeDeep),0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]"
+        let userSteps:NSArray = UserSleep.getCriteria("WHERE createDate = \(sleep["createDate"]!)")
+        if userSteps.count == 0 {
+            let userSteps:UserSleep = UserSleep(keyDict: sleep)
             userSteps.add { (id, completion) in
                 
             }

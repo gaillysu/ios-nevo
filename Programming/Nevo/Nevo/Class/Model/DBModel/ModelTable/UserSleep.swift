@@ -20,6 +20,7 @@ class UserSleep: NSObject,BaseEntryDatabaseHelper {
     var hourlyLightTime:String = "";
     var totalDeepTime:Int = 0;
     var hourlyDeepTime:String = "";
+    var _id:String = "0"
     private var sleepModel:SleepModel = SleepModel()
 
     override init() {
