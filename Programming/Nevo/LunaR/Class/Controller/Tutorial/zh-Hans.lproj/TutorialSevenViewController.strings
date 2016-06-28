@@ -1,0 +1,9 @@
+
+/* Class = "UIButton"; normalTitle = "Try again"; ObjectID = "Dnl-L7-kCN"; */
+"Dnl-L7-kCN.normalTitle" = "Try again";
+
+/* Class = "UILabel"; text = "Make sure the blue LED on the nevo is blinking and try again."; ObjectID = "mVz-rf-Ylf"; */
+"mVz-rf-Ylf.text" = "Make sure the blue LED on the nevo is blinking and try again.";
+
+/* Class = "UILabel"; text = "Cannot connect"; ObjectID = "uOQ-nw-fA7"; */
+"uOQ-nw-fA7.text" = "Cannot connect";
