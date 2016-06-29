@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "00AF8E6B1D225266009047AC"
+               BlueprintIdentifier = "00EFE0491D227D5F0066C905"
                BuildableName = "LunaR.app"
                BlueprintName = "LunaR"
                ReferencedContainer = "container:Nevo.xcodeproj">
@@ -28,11 +28,31 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "00EFE05E1D227D5F0066C905"
+               BuildableName = "LunaRTests.xctest"
+               BlueprintName = "LunaRTests"
+               ReferencedContainer = "container:Nevo.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "00EFE0691D227D5F0066C905"
+               BuildableName = "LunaRUITests.xctest"
+               BlueprintName = "LunaRUITests"
+               ReferencedContainer = "container:Nevo.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "00AF8E6B1D225266009047AC"
+            BlueprintIdentifier = "00EFE0491D227D5F0066C905"
             BuildableName = "LunaR.app"
             BlueprintName = "LunaR"
             ReferencedContainer = "container:Nevo.xcodeproj">
@@ -55,7 +75,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "00AF8E6B1D225266009047AC"
+            BlueprintIdentifier = "00EFE0491D227D5F0066C905"
             BuildableName = "LunaR.app"
             BlueprintName = "LunaR"
             ReferencedContainer = "container:Nevo.xcodeproj">
@@ -74,7 +94,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "00AF8E6B1D225266009047AC"
+            BlueprintIdentifier = "00EFE0491D227D5F0066C905"
             BuildableName = "LunaR.app"
             BlueprintName = "LunaR"
             ReferencedContainer = "container:Nevo.xcodeproj">

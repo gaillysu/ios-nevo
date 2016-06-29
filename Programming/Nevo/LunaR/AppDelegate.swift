@@ -41,7 +41,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
     private let alertUpdateTag:Int = 9000
 
     let dbQueue:FMDatabaseQueue = FMDatabaseQueue(path: AppDelegate.dbPath())
-    let network = NetworkReachabilityManager(host: "drone.karljohnchow.com")
+    let network = NetworkReachabilityManager(host: "nevo.karljohnchow.com")
 
     class func getAppDelegate()->AppDelegate {
         return UIApplication.sharedApplication().delegate as! AppDelegate

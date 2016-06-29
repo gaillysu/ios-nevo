@@ -1,3 +1,4 @@
+link_with 'Nevo','LunaR'
 platform :ios, '7.0'
 pod 'UMengAnalytics-NO-IDFA', '~> 4.0.3'
 pod 'NJKWebViewProgress'
