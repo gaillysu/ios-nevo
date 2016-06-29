@@ -11,6 +11,8 @@ import SwiftyJSON
 import MRProgress
 import BRYXBanner
 import XCGLogger
+import LTNavigationBar
+import UIColor_Hex_Swift
 
 class LoginController: UIViewController,UITextFieldDelegate {
 
@@ -28,13 +30,26 @@ class LoginController: UIViewController,UITextFieldDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = "Login"
+        self.navigationController?.navigationBar.lt_setBackgroundColor(UIColor(rgba: "#54575a"))
+        UIApplication.sharedApplication().statusBarStyle = UIStatusBarStyle.LightContent
+        
+        let rightButton:UIBarButtonItem = UIBarButtonItem(title: "Skip Login", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(rightAction(_:)))
+        self.navigationItem.rightBarButtonItem = rightButton
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.navigationController?.navigationBar.lt_reset()
+        UIApplication.sharedApplication().statusBarStyle = UIStatusBarStyle.Default
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
+    func rightAction(sender:UIBarButtonItem) {
+        
+    }
 
     @IBAction func registerButtonAction(sender: AnyObject) {
         let registerController =  RegisterController()

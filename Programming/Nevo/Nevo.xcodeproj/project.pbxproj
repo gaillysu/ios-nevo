@@ -175,6 +175,18 @@
 		0037EC3A1D235F5300502140 /* clockViewHour.png in Resources */ = {isa = PBXBuildFile; fileRef = 00478F4D1A8F637D00D0DCE2 /* clockViewHour.png */; };
 		0037EC3B1D235F5300502140 /* clockViewMinute.png in Resources */ = {isa = PBXBuildFile; fileRef = 00478F4E1A8F637D00D0DCE2 /* clockViewMinute.png */; };
 		0037EC3C1D235F5300502140 /* clockView600.png in Resources */ = {isa = PBXBuildFile; fileRef = 00C640F51A8DEE0800815CF8 /* clockView600.png */; };
+		0037EC3E1D236A0000502140 /* LTNavigationBar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0037EC3D1D236A0000502140 /* LTNavigationBar.framework */; };
+		0037EC421D2370A200502140 /* ForgotPasswordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0037EC401D2370A200502140 /* ForgotPasswordController.swift */; };
+		0037EC431D2370A200502140 /* ForgotPasswordController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0037EC411D2370A200502140 /* ForgotPasswordController.xib */; };
+		0037EC4D1D2385DF00502140 /* Raleway-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0037EC441D2385DF00502140 /* Raleway-Bold.ttf */; };
+		0037EC4E1D2385DF00502140 /* Raleway-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0037EC451D2385DF00502140 /* Raleway-ExtraBold.ttf */; };
+		0037EC4F1D2385DF00502140 /* Raleway-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0037EC461D2385DF00502140 /* Raleway-ExtraLight.ttf */; };
+		0037EC501D2385DF00502140 /* Raleway-Heavy.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0037EC471D2385DF00502140 /* Raleway-Heavy.ttf */; };
+		0037EC511D2385DF00502140 /* Raleway-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0037EC481D2385DF00502140 /* Raleway-Light.ttf */; };
+		0037EC521D2385DF00502140 /* Raleway-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0037EC491D2385DF00502140 /* Raleway-Medium.ttf */; };
+		0037EC531D2385DF00502140 /* Raleway-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0037EC4A1D2385DF00502140 /* Raleway-Regular.ttf */; };
+		0037EC541D2385DF00502140 /* Raleway-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0037EC4B1D2385DF00502140 /* Raleway-SemiBold.ttf */; };
+		0037EC551D2385DF00502140 /* Raleway-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0037EC4C1D2385DF00502140 /* Raleway-Thin.ttf */; };
 		0042C8B21C7DB37200177D3D /* NotAlarmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0042C8B11C7DB37200177D3D /* NotAlarmView.swift */; };
 		0042C8B41C7DB3EF00177D3D /* NotAlarmView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0042C8B31C7DB3EF00177D3D /* NotAlarmView.xib */; };
 		00478F4F1A8F637D00D0DCE2 /* clockViewHour.png in Resources */ = {isa = PBXBuildFile; fileRef = 00478F4D1A8F637D00D0DCE2 /* clockViewHour.png */; };
@@ -595,6 +607,18 @@
 		0036EB0B1C48C36700DCED46 /* bluetoothoff_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bluetoothoff_background.png; sourceTree = "<group>"; };
 		0036EB0C1C48C36700DCED46 /* bluetoothoff.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bluetoothoff.png; sourceTree = "<group>"; };
 		0037EC1B1D235DCE00502140 /* LunaR-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "LunaR-Bridging-Header.h"; sourceTree = "<group>"; };
+		0037EC3D1D236A0000502140 /* LTNavigationBar.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LTNavigationBar.framework; path = "Pods/../build/Debug-iphoneos/LTNavigationBar.framework"; sourceTree = "<group>"; };
+		0037EC401D2370A200502140 /* ForgotPasswordController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordController.swift; sourceTree = "<group>"; };
+		0037EC411D2370A200502140 /* ForgotPasswordController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ForgotPasswordController.xib; sourceTree = "<group>"; };
+		0037EC441D2385DF00502140 /* Raleway-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-Bold.ttf"; sourceTree = "<group>"; };
+		0037EC451D2385DF00502140 /* Raleway-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-ExtraBold.ttf"; sourceTree = "<group>"; };
+		0037EC461D2385DF00502140 /* Raleway-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-ExtraLight.ttf"; sourceTree = "<group>"; };
+		0037EC471D2385DF00502140 /* Raleway-Heavy.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-Heavy.ttf"; sourceTree = "<group>"; };
+		0037EC481D2385DF00502140 /* Raleway-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-Light.ttf"; sourceTree = "<group>"; };
+		0037EC491D2385DF00502140 /* Raleway-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-Medium.ttf"; sourceTree = "<group>"; };
+		0037EC4A1D2385DF00502140 /* Raleway-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-Regular.ttf"; sourceTree = "<group>"; };
+		0037EC4B1D2385DF00502140 /* Raleway-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-SemiBold.ttf"; sourceTree = "<group>"; };
+		0037EC4C1D2385DF00502140 /* Raleway-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-Thin.ttf"; sourceTree = "<group>"; };
 		0042C8B11C7DB37200177D3D /* NotAlarmView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotAlarmView.swift; sourceTree = "<group>"; };
 		0042C8B31C7DB3EF00177D3D /* NotAlarmView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NotAlarmView.xib; sourceTree = "<group>"; };
 		00478F4D1A8F637D00D0DCE2 /* clockViewHour.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clockViewHour.png; sourceTree = "<group>"; };
@@ -1078,6 +1102,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0037EC3E1D236A0000502140 /* LTNavigationBar.framework in Frameworks */,
 				0037EB321D2354C200502140 /* Alamofire.framework in Frameworks */,
 				0037EB331D2354C200502140 /* AutocompleteField.framework in Frameworks */,
 				0037EB341D2354C200502140 /* BRYXBanner.framework in Frameworks */,
@@ -1170,6 +1195,15 @@
 				00344F5B1C47A86800C2FC7A /* SupportViewController.xib */,
 			);
 			path = SupportViewController;
+			sourceTree = "<group>";
+		};
+		0037EC3F1D23708D00502140 /* ForgotPasswordController */ = {
+			isa = PBXGroup;
+			children = (
+				0037EC401D2370A200502140 /* ForgotPasswordController.swift */,
+				0037EC411D2370A200502140 /* ForgotPasswordController.xib */,
+			);
+			path = ForgotPasswordController;
 			sourceTree = "<group>";
 		};
 		004ED1EB1CB386CC009D053C /* iRate */ = {
@@ -1512,6 +1546,15 @@
 		007F79741A878D0B006C89E6 /* Font */ = {
 			isa = PBXGroup;
 			children = (
+				0037EC441D2385DF00502140 /* Raleway-Bold.ttf */,
+				0037EC451D2385DF00502140 /* Raleway-ExtraBold.ttf */,
+				0037EC461D2385DF00502140 /* Raleway-ExtraLight.ttf */,
+				0037EC471D2385DF00502140 /* Raleway-Heavy.ttf */,
+				0037EC481D2385DF00502140 /* Raleway-Light.ttf */,
+				0037EC491D2385DF00502140 /* Raleway-Medium.ttf */,
+				0037EC4A1D2385DF00502140 /* Raleway-Regular.ttf */,
+				0037EC4B1D2385DF00502140 /* Raleway-SemiBold.ttf */,
+				0037EC4C1D2385DF00502140 /* Raleway-Thin.ttf */,
 				0072EA8B1C190DCD001EE2C9 /* SFCompactDisplay-Black.ttf */,
 				0072EA8C1C190DCD001EE2C9 /* SFCompactDisplay-Bold.ttf */,
 				0072EA8E1C190DCD001EE2C9 /* SFCompactDisplay-Light.ttf */,
@@ -1897,6 +1940,7 @@
 		00EFE07B1D227DCC0066C905 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				0037EC3F1D23708D00502140 /* ForgotPasswordController */,
 				00EFE07C1D227DCC0066C905 /* AidOTA */,
 				00EFE07F1D227DCC0066C905 /* AlarmController */,
 				00EFE0941D227DCC0066C905 /* ChangeProfileController */,
@@ -2352,6 +2396,7 @@
 		9AD8F95A1A6DFE3400F01014 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0037EC3D1D236A0000502140 /* LTNavigationBar.framework */,
 				00AF8E541D224ED8009047AC /* Alamofire.framework */,
 				00AF8E551D224ED8009047AC /* BRYXBanner.framework */,
 				00AF8E561D224ED8009047AC /* FMDB.framework */,
@@ -2652,7 +2697,9 @@
 				0037EC281D235F5300502140 /* nevoFontImage.png in Resources */,
 				0037EC291D235F5300502140 /* homeTutorial.png in Resources */,
 				0037EC2A1D235F5300502140 /* bluetoothoff_background.png in Resources */,
+				0037EC551D2385DF00502140 /* Raleway-Thin.ttf in Resources */,
 				0037EC2B1D235F5300502140 /* bluetoothoff.png in Resources */,
+				0037EC431D2370A200502140 /* ForgotPasswordController.xib in Resources */,
 				0037EC2C1D235F5300502140 /* connected.png in Resources */,
 				0037EC2D1D235F5300502140 /* connected1.png in Resources */,
 				0037EC2E1D235F5300502140 /* searching.png in Resources */,
@@ -2684,12 +2731,14 @@
 				00EFE1761D227DCC0066C905 /* NotificationViewController.xib in Resources */,
 				00EFE17F1D227DCC0066C905 /* PresetTableViewCell.xib in Resources */,
 				00EFE1A31D227DCC0066C905 /* TutorialSevenViewController.strings in Resources */,
+				0037EC541D2385DF00502140 /* Raleway-SemiBold.ttf in Resources */,
 				00EFE17C1D227DCC0066C905 /* PresetTableViewController.xib in Resources */,
 				00EFE1A01D227DCC0066C905 /* TutorialFiveViewController.strings in Resources */,
 				00EFE1781D227DCC0066C905 /* SelectedNotificationTypeController.xib in Resources */,
 				00EFE1A61D227DCC0066C905 /* TutorialTwoViewController.strings in Resources */,
 				00EFE1551D227DCC0066C905 /* NotAlarmView.xib in Resources */,
 				00EFE14A1D227DCC0066C905 /* AddAlarmController.xib in Resources */,
+				0037EC4F1D2385DF00502140 /* Raleway-ExtraLight.ttf in Resources */,
 				00EFE1881D227DCC0066C905 /* SetingNotLoginCell.xib in Resources */,
 				00EFE1841D227DCC0066C905 /* SetingInfoCell.xib in Resources */,
 				00EFE1651D227DCC0066C905 /* MyNevoController.xib in Resources */,
@@ -2698,11 +2747,14 @@
 				00EFE1BD1D227DCC0066C905 /* UserProfileCell.xib in Resources */,
 				00EFE19E1D227DCC0066C905 /* MorningTutorialController.strings in Resources */,
 				00EFE15D1D227DCC0066C905 /* ConnectOtherAppsCell.xib in Resources */,
+				0037EC511D2385DF00502140 /* Raleway-Light.ttf in Resources */,
 				00EFE16E1D227DCC0066C905 /* NevoOtaViewController.xib in Resources */,
 				00EFE1AB1D227DCC0066C905 /* TutorialFourViewController.xib in Resources */,
 				00EFE1A51D227DCC0066C905 /* TutorialThreeViewController.strings in Resources */,
 				00EFE1B01D227DCC0066C905 /* TutorialTwoViewController.xib in Resources */,
 				00EFE1861D227DCC0066C905 /* SetingLoginCell.xib in Resources */,
+				0037EC531D2385DF00502140 /* Raleway-Regular.ttf in Resources */,
+				0037EC521D2385DF00502140 /* Raleway-Medium.ttf in Resources */,
 				00EFE1AF1D227DCC0066C905 /* TutorialThreeViewController.xib in Resources */,
 				00EFE1821D227DCC0066C905 /* RegisterController.xib in Resources */,
 				00EFE14C1D227DCC0066C905 /* AddAlarmSystemCell.xib in Resources */,
@@ -2711,6 +2763,7 @@
 				00EFE15B1D227DCC0066C905 /* ChangeProfileController.xib in Resources */,
 				00EFE17A1D227DCC0066C905 /* AddPresetViewController.xib in Resources */,
 				00EFE1571D227DCC0066C905 /* NewAddAlarmController.xib in Resources */,
+				0037EC4D1D2385DF00502140 /* Raleway-Bold.ttf in Resources */,
 				00EFE1C11D227DCC0066C905 /* VideoPlayController.xib in Resources */,
 				00EFE1A11D227DCC0066C905 /* TutorialFourViewController.strings in Resources */,
 				00EFE1961D227DCC0066C905 /* StepGoalSetingController.xib in Resources */,
@@ -2720,6 +2773,7 @@
 				00EFE19C1D227DCC0066C905 /* SupportViewController.xib in Resources */,
 				00EFE1A91D227DCC0066C905 /* SleepTutorialController.xib in Resources */,
 				00EFE1921D227DCC0066C905 /* SleepTrackingController.xib in Resources */,
+				0037EC4E1D2385DF00502140 /* Raleway-ExtraBold.ttf in Resources */,
 				00EFE1701D227DCC0066C905 /* LineColorCell.xib in Resources */,
 				00EFE1AA1D227DCC0066C905 /* TutorialFiveViewController.xib in Resources */,
 				00EFE1AD1D227DCC0066C905 /* TutorialSevenViewController.xib in Resources */,
@@ -2727,6 +2781,7 @@
 				00EFE1AE1D227DCC0066C905 /* TutorialSixViewController.xib in Resources */,
 				00EFE19D1D227DCC0066C905 /* HomeTutorialController.strings in Resources */,
 				00EFE19F1D227DCC0066C905 /* SleepTutorialController.strings in Resources */,
+				0037EC501D2385DF00502140 /* Raleway-Heavy.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2978,6 +3033,7 @@
 				0037EBBC1D235BD000502140 /* RealTimeCountSteps.swift in Sources */,
 				0037EBBD1D235BD000502140 /* RunningToHK.swift in Sources */,
 				0037EBBE1D235BD000502140 /* Alarm.swift in Sources */,
+				0037EC421D2370A200502140 /* ForgotPasswordController.swift in Sources */,
 				0037EBBF1D235BD000502140 /* NewAlarm.swift in Sources */,
 				0037EBC01D235BD000502140 /* BaseEntryDatabaseHelper.swift in Sources */,
 				0037EBC11D235BD000502140 /* NevoDBHelper.h in Sources */,
@@ -3695,6 +3751,7 @@
 					"\"${PODS_ROOT}/Crashlytics/iOS\"",
 					"\"${PODS_ROOT}/Fabric/iOS\"",
 					"\"${PODS_ROOT}/UMengAnalytics-NO-IDFA/umsdk_IOS_analyics_no-idfa_v4.0.5\"",
+					"$(PROJECT_DIR)/build/Debug-iphoneos",
 				);
 				GCC_NO_COMMON_BLOCKS = YES;
 				INFOPLIST_FILE = LunaR/Info.plist;
@@ -3722,6 +3779,7 @@
 					"\"${PODS_ROOT}/Crashlytics/iOS\"",
 					"\"${PODS_ROOT}/Fabric/iOS\"",
 					"\"${PODS_ROOT}/UMengAnalytics-NO-IDFA/umsdk_IOS_analyics_no-idfa_v4.0.5\"",
+					"$(PROJECT_DIR)/build/Debug-iphoneos",
 				);
 				GCC_NO_COMMON_BLOCKS = YES;
 				INFOPLIST_FILE = LunaR/Info.plist;

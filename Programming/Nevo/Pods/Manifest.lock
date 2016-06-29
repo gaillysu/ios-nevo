@@ -14,6 +14,7 @@ PODS:
     - FMDB/standard (= 2.6.2)
   - FMDB/standard (2.6.2)
   - GSMessages (1.2.1)
+  - LTNavigationBar (2.1.2)
   - MRProgress (0.8.3):
     - MRProgress/ActivityIndicator (= 0.8.3)
     - MRProgress/Blur (= 0.8.3)
@@ -65,6 +66,7 @@ DEPENDENCIES:
   - Fabric
   - FMDB (~> 2.6.2)
   - GSMessages
+  - LTNavigationBar
   - MRProgress
   - NJKWebViewProgress
   - RegexKitLite
@@ -94,6 +96,7 @@ SPEC CHECKSUMS:
   Fabric: caf7580c725e64db144f610ac65cd60956911dc7
   FMDB: 854a0341b4726e53276f2a8996f06f1b80f9259a
   GSMessages: 0816b7e39282f8b5533ea1326edcbafd8c9f8c29
+  LTNavigationBar: bfc5fc06a83463009b9d99675f2a32dcbb631b00
   MRProgress: 16de7cc9f347e8846797a770db102a323fe7ef09
   NJKWebViewProgress: f481fd424cb5ecc27eacae11b5397db92fba9a4d
   RegexKitLite: c0e4c12e6e7de0769f3a3ed679f0f61604170661
