@@ -189,6 +189,8 @@
 		0037EC551D2385DF00502140 /* Raleway-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0037EC4C1D2385DF00502140 /* Raleway-Thin.ttf */; };
 		0042C8B21C7DB37200177D3D /* NotAlarmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0042C8B11C7DB37200177D3D /* NotAlarmView.swift */; };
 		0042C8B41C7DB3EF00177D3D /* NotAlarmView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0042C8B31C7DB3EF00177D3D /* NotAlarmView.xib */; };
+		0043EDCD1D24EF94007DEBDA /* CheckYourIndoxController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0043EDCB1D24EF94007DEBDA /* CheckYourIndoxController.swift */; };
+		0043EDCE1D24EF94007DEBDA /* CheckYourIndoxController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0043EDCC1D24EF94007DEBDA /* CheckYourIndoxController.xib */; };
 		00478F4F1A8F637D00D0DCE2 /* clockViewHour.png in Resources */ = {isa = PBXBuildFile; fileRef = 00478F4D1A8F637D00D0DCE2 /* clockViewHour.png */; };
 		00478F501A8F637D00D0DCE2 /* clockViewMinute.png in Resources */ = {isa = PBXBuildFile; fileRef = 00478F4E1A8F637D00D0DCE2 /* clockViewMinute.png */; };
 		004ED1F01CB386CC009D053C /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 004ED1EC1CB386CC009D053C /* Info.plist */; };
@@ -621,6 +623,8 @@
 		0037EC4C1D2385DF00502140 /* Raleway-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-Thin.ttf"; sourceTree = "<group>"; };
 		0042C8B11C7DB37200177D3D /* NotAlarmView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotAlarmView.swift; sourceTree = "<group>"; };
 		0042C8B31C7DB3EF00177D3D /* NotAlarmView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NotAlarmView.xib; sourceTree = "<group>"; };
+		0043EDCB1D24EF94007DEBDA /* CheckYourIndoxController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckYourIndoxController.swift; sourceTree = "<group>"; };
+		0043EDCC1D24EF94007DEBDA /* CheckYourIndoxController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CheckYourIndoxController.xib; sourceTree = "<group>"; };
 		00478F4D1A8F637D00D0DCE2 /* clockViewHour.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clockViewHour.png; sourceTree = "<group>"; };
 		00478F4E1A8F637D00D0DCE2 /* clockViewMinute.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clockViewMinute.png; sourceTree = "<group>"; };
 		004ED1EC1CB386CC009D053C /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -1204,6 +1208,15 @@
 				0037EC411D2370A200502140 /* ForgotPasswordController.xib */,
 			);
 			path = ForgotPasswordController;
+			sourceTree = "<group>";
+		};
+		0043EDCA1D24EF7D007DEBDA /* CheckYourIndox */ = {
+			isa = PBXGroup;
+			children = (
+				0043EDCB1D24EF94007DEBDA /* CheckYourIndoxController.swift */,
+				0043EDCC1D24EF94007DEBDA /* CheckYourIndoxController.xib */,
+			);
+			path = CheckYourIndox;
 			sourceTree = "<group>";
 		};
 		004ED1EB1CB386CC009D053C /* iRate */ = {
@@ -1940,6 +1953,7 @@
 		00EFE07B1D227DCC0066C905 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				0043EDCA1D24EF7D007DEBDA /* CheckYourIndox */,
 				0037EC3F1D23708D00502140 /* ForgotPasswordController */,
 				00EFE07C1D227DCC0066C905 /* AidOTA */,
 				00EFE07F1D227DCC0066C905 /* AlarmController */,
@@ -2707,6 +2721,7 @@
 				0037EC301D235F5300502140 /* turnonnevo.png in Resources */,
 				0037EC311D235F5300502140 /* tutorialone.png in Resources */,
 				0037EC321D235F5300502140 /* white_clock.png in Resources */,
+				0043EDCE1D24EF94007DEBDA /* CheckYourIndoxController.xib in Resources */,
 				0037EC331D235F5300502140 /* white_hour.png in Resources */,
 				0037EC341D235F5300502140 /* white_minute.png in Resources */,
 				0037EC351D235F5300502140 /* upgrade_clock.png in Resources */,
@@ -3100,6 +3115,7 @@
 				0037EC011D235BD000502140 /* ReadDailyTrackerInfo.swift in Sources */,
 				0037EC021D235BD000502140 /* SetAlarmRequest.swift in Sources */,
 				0037EC031D235BD000502140 /* SetCardioRequest.swift in Sources */,
+				0043EDCD1D24EF94007DEBDA /* CheckYourIndoxController.swift in Sources */,
 				0037EC041D235BD000502140 /* SetGoalRequest.swift in Sources */,
 				0037EC051D235BD000502140 /* SetNewAlarmRequest.swift in Sources */,
 				0037EC061D235BD000502140 /* SetNortificationRequest.swift in Sources */,
