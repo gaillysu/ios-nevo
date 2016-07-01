@@ -274,6 +274,8 @@
 		007E0CAE1D0E5C3E00B0B600 /* ConnectOtherAppsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007E0CAC1D0E5C3E00B0B600 /* ConnectOtherAppsCell.swift */; };
 		007E0CAF1D0E5C3E00B0B600 /* ConnectOtherAppsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 007E0CAD1D0E5C3E00B0B600 /* ConnectOtherAppsCell.xib */; };
 		007F1F511CAA1B630021DF1B /* LocalNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007F1F501CAA1B630021DF1B /* LocalNotification.swift */; };
+		008AEF1A1D264A4C00B9E4D0 /* ProfileSetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008AEF181D264A4C00B9E4D0 /* ProfileSetupViewController.swift */; };
+		008AEF1B1D264A4C00B9E4D0 /* ProfileSetupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 008AEF191D264A4C00B9E4D0 /* ProfileSetupViewController.xib */; };
 		0095C0DA1D123E9100331266 /* SetingNotLoginCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0095C0D81D123E9100331266 /* SetingNotLoginCell.swift */; };
 		0095C0DB1D123E9100331266 /* SetingNotLoginCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0095C0D91D123E9100331266 /* SetingNotLoginCell.xib */; };
 		0095C0DE1D1274B600331266 /* UIColor_Hex_Swift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0095C0DC1D1274B600331266 /* UIColor_Hex_Swift.framework */; };
@@ -712,6 +714,8 @@
 		007E0CAD1D0E5C3E00B0B600 /* ConnectOtherAppsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConnectOtherAppsCell.xib; sourceTree = "<group>"; };
 		007F1F501CAA1B630021DF1B /* LocalNotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocalNotification.swift; path = Frameworks/LocalNotification.swift; sourceTree = "<group>"; };
 		0086858F1B40D53C0062F544 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
+		008AEF181D264A4C00B9E4D0 /* ProfileSetupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileSetupViewController.swift; sourceTree = "<group>"; };
+		008AEF191D264A4C00B9E4D0 /* ProfileSetupViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileSetupViewController.xib; sourceTree = "<group>"; };
 		0095C0D81D123E9100331266 /* SetingNotLoginCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetingNotLoginCell.swift; sourceTree = "<group>"; };
 		0095C0D91D123E9100331266 /* SetingNotLoginCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SetingNotLoginCell.xib; sourceTree = "<group>"; };
 		0095C0DC1D1274B600331266 /* UIColor_Hex_Swift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIColor_Hex_Swift.framework; path = "../../../../Library/Developer/Xcode/DerivedData/Nevo-cbjnruaifgvemfduxtlzizqanuqy/Build/Products/Debug-iphoneos/UIColor_Hex_Swift.framework"; sourceTree = "<group>"; };
@@ -1608,6 +1612,15 @@
 			path = image;
 			sourceTree = "<group>";
 		};
+		008AEF171D264A4B00B9E4D0 /* ProfileSetupController */ = {
+			isa = PBXGroup;
+			children = (
+				008AEF181D264A4C00B9E4D0 /* ProfileSetupViewController.swift */,
+				008AEF191D264A4C00B9E4D0 /* ProfileSetupViewController.xib */,
+			);
+			path = ProfileSetupController;
+			sourceTree = "<group>";
+		};
 		009703BF1C9BD98300F2FF0D /* UserProfileController */ = {
 			isa = PBXGroup;
 			children = (
@@ -1953,6 +1966,7 @@
 		00EFE07B1D227DCC0066C905 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				008AEF171D264A4B00B9E4D0 /* ProfileSetupController */,
 				0043EDCA1D24EF7D007DEBDA /* CheckYourIndox */,
 				0037EC3F1D23708D00502140 /* ForgotPasswordController */,
 				00EFE07C1D227DCC0066C905 /* AidOTA */,
@@ -2738,6 +2752,7 @@
 				00EFE1A41D227DCC0066C905 /* TutorialSixViewController.strings in Resources */,
 				00EFE1A21D227DCC0066C905 /* TutorialOneViewController.strings in Resources */,
 				00EFE1A71D227DCC0066C905 /* HomeTutorialController.xib in Resources */,
+				008AEF1B1D264A4C00B9E4D0 /* ProfileSetupViewController.xib in Resources */,
 				00EFE1BF1D227DCC0066C905 /* UserProfileController.xib in Resources */,
 				00EFE1521D227DCC0066C905 /* AlarmTypeController.xib in Resources */,
 				00EFE18C1D227DCC0066C905 /* queryTableviewCell.xib in Resources */,
@@ -3075,6 +3090,7 @@
 				0037EBD71D235BD000502140 /* TypeModel.swift in Sources */,
 				0037EBD81D235BD000502140 /* ConfigSleepAlarm.swift in Sources */,
 				0037EBD91D235BD000502140 /* Sleep.swift in Sources */,
+				008AEF1A1D264A4C00B9E4D0 /* ProfileSetupViewController.swift in Sources */,
 				0037EBDA1D235BD000502140 /* TestMode.swift in Sources */,
 				0037EBDB1D235BD000502140 /* HttpPostRequest.swift in Sources */,
 				0037EBDC1D235BD000502140 /* ValidicRequest.swift in Sources */,

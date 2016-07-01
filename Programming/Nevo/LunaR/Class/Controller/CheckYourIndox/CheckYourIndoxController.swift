@@ -12,10 +12,27 @@ class CheckYourIndoxController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.navigationBar.lt_setBackgroundColor(UIColor(rgba: "#54575a"))
+        UIApplication.sharedApplication().statusBarStyle = UIStatusBarStyle.LightContent
+        
+        let leftButton:UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "cancel_lunar"), style: UIBarButtonItemStyle.Plain, target: self, action: #selector(leftCancelAction(_:)))
+        self.navigationItem.leftBarButtonItem = leftButton
 
-        // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.navigationController?.navigationBar.lt_reset()
+        UIApplication.sharedApplication().statusBarStyle = UIStatusBarStyle.Default
     }
 
+    func leftCancelAction(sender:UIBarButtonItem) {
+        let viewController = self.navigationController?.popViewControllerAnimated(true)
+        if viewController != nil {
+            self.dismissViewControllerAnimated(true, completion: nil)
+        }
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
