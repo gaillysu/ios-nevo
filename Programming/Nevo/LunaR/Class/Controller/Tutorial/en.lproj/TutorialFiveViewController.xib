@@ -31,7 +31,7 @@
                         <constraint firstAttribute="height" constant="16" id="cXC-Eh-sUb"/>
                     </constraints>
                     <fontDescription key="fontDescription" name="SFCompactDisplay-Semibold" family="SF Compact Display" pointSize="13"/>
-                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Searching" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="35" translatesAutoresizingMaskIntoConstraints="NO" id="wVD-0G-Xmg">
@@ -40,17 +40,17 @@
                         <constraint firstAttribute="height" constant="42" id="6nY-vk-gQq"/>
                     </constraints>
                     <fontDescription key="fontDescription" name="SFCompactDisplay-Bold" family="SF Compact Display" pointSize="35"/>
-                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tutorialone.png" translatesAutoresizingMaskIntoConstraints="NO" id="aI1-f3-dYG">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="searching" translatesAutoresizingMaskIntoConstraints="NO" id="aI1-f3-dYG">
                     <rect key="frame" x="173" y="173" width="254" height="254"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="aI1-f3-dYG" secondAttribute="height" multiplier="1:1" id="e8L-t4-KeB"/>
                     </constraints>
                 </imageView>
             </subviews>
-            <color key="backgroundColor" red="0.96470588235294119" green="0.96470588235294119" blue="0.96470588235294119" alpha="1" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" red="0.3294117647" green="0.3411764706" blue="0.35294117650000001" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="wVD-0G-Xmg" firstAttribute="top" secondItem="jOH-fH-NFX" secondAttribute="top" constant="75" id="1IG-Z5-AeF"/>
                 <constraint firstItem="hBX-Kh-EeG" firstAttribute="top" secondItem="wVD-0G-Xmg" secondAttribute="bottom" constant="8" id="YZL-UN-5R8"/>
@@ -66,6 +66,6 @@
         </view>
     </objects>
     <resources>
-        <image name="tutorialone.png" width="550" height="550"/>
+        <image name="searching" width="350" height="350"/>
     </resources>
 </document>

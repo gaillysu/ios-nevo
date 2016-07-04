@@ -32,7 +32,7 @@
                         <constraint firstAttribute="height" constant="42" id="NMu-KK-EJw"/>
                     </constraints>
                     <fontDescription key="fontDescription" name="SFCompactDisplay-Bold" family="SF Compact Display" pointSize="35"/>
-                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Push and hold the third button, until the blue LED blinks." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K0B-J6-Yzh">
@@ -41,10 +41,10 @@
                         <constraint firstAttribute="height" constant="36" id="S2m-Dc-B2k"/>
                     </constraints>
                     <fontDescription key="fontDescription" name="SFCompactDisplay-Semibold" family="SF Compact Display" pointSize="13"/>
-                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="turnonnevo.png" translatesAutoresizingMaskIntoConstraints="NO" id="0QV-eh-GuQ">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="turn_lunar" translatesAutoresizingMaskIntoConstraints="NO" id="0QV-eh-GuQ">
                     <rect key="frame" x="0.0" y="200" width="254" height="254"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="0QV-eh-GuQ" secondAttribute="height" multiplier="1:1" id="70g-K7-rvj"/>
@@ -57,14 +57,14 @@
                     </constraints>
                     <fontDescription key="fontDescription" name="SFCompactDisplay-Semibold" family="SF Compact Display" pointSize="20"/>
                     <state key="normal" title="Next">
-                        <color key="titleColor" red="0.95294117649999999" green="0.70588235290000001" blue="0.32549019610000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
                         <action selector="nextAction:" destination="-1" eventType="touchUpInside" id="LJk-uK-j5b"/>
                     </connections>
                 </button>
             </subviews>
-            <color key="backgroundColor" red="0.96470588235294119" green="0.96470588235294119" blue="0.96470588235294119" alpha="1" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" red="0.3294117647" green="0.3411764706" blue="0.35294117650000001" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="0QV-eh-GuQ" firstAttribute="centerY" secondItem="dbG-VB-Rga" secondAttribute="centerY" constant="27" id="0m6-QO-OD3"/>
                 <constraint firstAttribute="trailing" secondItem="xse-Xf-xhk" secondAttribute="trailing" id="1vF-Uu-lSW"/>
@@ -84,6 +84,6 @@
         </view>
     </objects>
     <resources>
-        <image name="turnonnevo.png" width="550" height="550"/>
+        <image name="turn_lunar" width="350" height="350"/>
     </resources>
 </document>

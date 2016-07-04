@@ -47,7 +47,7 @@
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dnl-L7-kCN">
                     <rect key="frame" x="55" y="451" width="490" height="40"/>
-                    <color key="backgroundColor" red="0.95294117649999999" green="0.70588235290000001" blue="0.32549019610000002" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" red="0.4941176471" green="0.84705882349999995" blue="0.81960784310000001" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="hdH-lV-vap"/>
                     </constraints>
@@ -64,14 +64,14 @@
                         <action selector="tryAgainAction:" destination="-1" eventType="touchUpInside" id="lOk-Hm-cUX"/>
                     </connections>
                 </button>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bluetoothoff.png" translatesAutoresizingMaskIntoConstraints="NO" id="2uY-pO-QtG">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Lunar_off" translatesAutoresizingMaskIntoConstraints="NO" id="2uY-pO-QtG">
                     <rect key="frame" x="173" y="151" width="254" height="254"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="2uY-pO-QtG" secondAttribute="height" multiplier="1:1" id="GXT-6e-Tws"/>
                     </constraints>
                 </imageView>
             </subviews>
-            <color key="backgroundColor" red="0.30196078430000001" green="0.30196078430000001" blue="0.30196078430000001" alpha="1" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" red="0.3294117647" green="0.3411764706" blue="0.35294117650000001" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="uOQ-nw-fA7" firstAttribute="centerX" secondItem="7zr-Tf-uIq" secondAttribute="centerX" id="Ml8-P4-QX0"/>
                 <constraint firstItem="2uY-pO-QtG" firstAttribute="width" secondItem="7zr-Tf-uIq" secondAttribute="height" multiplier="127:300" id="OUN-iy-4hw"/>
@@ -90,6 +90,6 @@
         </view>
     </objects>
     <resources>
-        <image name="bluetoothoff.png" width="550" height="550"/>
+        <image name="Lunar_off" width="350" height="350"/>
     </resources>
 </document>

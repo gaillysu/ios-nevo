@@ -26,12 +26,12 @@
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Connected" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="35" translatesAutoresizingMaskIntoConstraints="NO" id="doG-bJ-q3v">
                     <rect key="frame" x="55" y="75" width="490" height="42"/>
                     <fontDescription key="fontDescription" name="SFCompactDisplay-Bold" family="SF Compact Display" pointSize="35"/>
-                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lk4-Tf-XDL">
                     <rect key="frame" x="55" y="505" width="490" height="40"/>
-                    <color key="backgroundColor" red="0.95294117649999999" green="0.70588235290000001" blue="0.32549019610000002" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" red="0.4941176471" green="0.84705882349999995" blue="0.81960784310000001" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="pEB-Tk-e0D"/>
                     </constraints>
@@ -48,14 +48,14 @@
                         <action selector="tapToContinueAction:" destination="-1" eventType="touchUpInside" id="Ecp-5N-XtD"/>
                     </connections>
                 </button>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="connected.png" translatesAutoresizingMaskIntoConstraints="NO" id="58E-1z-a9k">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="connection_complete" translatesAutoresizingMaskIntoConstraints="NO" id="58E-1z-a9k">
                     <rect key="frame" x="173" y="173" width="254" height="254"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="58E-1z-a9k" secondAttribute="height" multiplier="1:1" id="5Jx-Bu-T2R"/>
                     </constraints>
                 </imageView>
             </subviews>
-            <color key="backgroundColor" red="0.96470588235294119" green="0.96470588235294119" blue="0.96470588235294119" alpha="1" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" red="0.3294117647" green="0.3411764706" blue="0.35294117650000001" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="doG-bJ-q3v" firstAttribute="top" secondItem="skn-7I-1ge" secondAttribute="top" constant="75" id="AIV-8B-Mbj"/>
                 <constraint firstAttribute="trailing" secondItem="doG-bJ-q3v" secondAttribute="trailing" constant="55" id="Id6-jL-5Rs"/>
@@ -72,6 +72,6 @@
         </view>
     </objects>
     <resources>
-        <image name="connected.png" width="550" height="550"/>
+        <image name="connection_complete" width="350" height="350"/>
     </resources>
 </document>

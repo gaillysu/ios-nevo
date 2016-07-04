@@ -29,7 +29,7 @@
                         <constraint firstAttribute="height" constant="52" id="tsU-pb-CQH"/>
                     </constraints>
                     <fontDescription key="fontDescription" name="SFCompactDisplay-Semibold" family="SF Compact Display" pointSize="43"/>
-                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pull the crown out and turn to set the time on your nevo watch. Be aware that nevo doesn’t syncs time with your phone." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lGd-3f-4uL">
@@ -38,10 +38,10 @@
                         <constraint firstAttribute="height" constant="47" id="fqu-Xa-9l6"/>
                     </constraints>
                     <fontDescription key="fontDescription" name="SFCompactDisplay-Semibold" family="SF Compact Display" pointSize="13"/>
-                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="settimer.png" translatesAutoresizingMaskIntoConstraints="NO" id="59u-7g-cmz">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="set_timer" translatesAutoresizingMaskIntoConstraints="NO" id="59u-7g-cmz">
                     <rect key="frame" x="173" y="220" width="254" height="254"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="59u-7g-cmz" secondAttribute="height" multiplier="1:1" id="KL9-Up-Win"/>
@@ -54,14 +54,14 @@
                     </constraints>
                     <fontDescription key="fontDescription" name="SFCompactDisplay-Semibold" family="SF Compact Display" pointSize="20"/>
                     <state key="normal" title="Next">
-                        <color key="titleColor" red="0.95294117649999999" green="0.70588235290000001" blue="0.32549019610000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
                         <action selector="nextAction:" destination="-1" eventType="touchUpInside" id="sdd-rZ-Uhe"/>
                     </connections>
                 </button>
             </subviews>
-            <color key="backgroundColor" red="0.96470588235294119" green="0.96470588235294119" blue="0.96470588235294119" alpha="1" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" red="0.3294117647" green="0.3411764706" blue="0.35294117650000001" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="jc7-Ij-g1w" firstAttribute="leading" secondItem="LeH-dC-LZT" secondAttribute="leading" id="4dn-Bv-pqU"/>
                 <constraint firstAttribute="trailing" secondItem="jc7-Ij-g1w" secondAttribute="trailing" id="9o7-tZ-aF2"/>
@@ -80,6 +80,6 @@
         </view>
     </objects>
     <resources>
-        <image name="settimer.png" width="550" height="550"/>
+        <image name="set_timer" width="350" height="350"/>
     </resources>
 </document>
