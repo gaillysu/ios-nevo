@@ -271,6 +271,8 @@
 		0072EACF1C190DCD001EE2C9 /* SFUIDisplay-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0072EAA51C190DCD001EE2C9 /* SFUIDisplay-Regular.ttf */; };
 		0072EADB1C190DCD001EE2C9 /* SFUIText-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0072EAB11C190DCD001EE2C9 /* SFUIText-Regular.ttf */; };
 		0072EAEB1C192210001EE2C9 /* spinner.png in Resources */ = {isa = PBXBuildFile; fileRef = 0072EAEA1C192210001EE2C9 /* spinner.png */; };
+		0074CB971D29EEAA00963607 /* InformationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0074CB951D29EEAA00963607 /* InformationController.swift */; };
+		0074CB981D29EEAA00963607 /* InformationController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0074CB961D29EEAA00963607 /* InformationController.xib */; };
 		007E0CAE1D0E5C3E00B0B600 /* ConnectOtherAppsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007E0CAC1D0E5C3E00B0B600 /* ConnectOtherAppsCell.swift */; };
 		007E0CAF1D0E5C3E00B0B600 /* ConnectOtherAppsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 007E0CAD1D0E5C3E00B0B600 /* ConnectOtherAppsCell.xib */; };
 		007F1F511CAA1B630021DF1B /* LocalNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007F1F501CAA1B630021DF1B /* LocalNotification.swift */; };
@@ -710,6 +712,8 @@
 		0072EAA51C190DCD001EE2C9 /* SFUIDisplay-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFUIDisplay-Regular.ttf"; sourceTree = "<group>"; };
 		0072EAB11C190DCD001EE2C9 /* SFUIText-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFUIText-Regular.ttf"; sourceTree = "<group>"; };
 		0072EAEA1C192210001EE2C9 /* spinner.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spinner.png; sourceTree = "<group>"; };
+		0074CB951D29EEAA00963607 /* InformationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InformationController.swift; sourceTree = "<group>"; };
+		0074CB961D29EEAA00963607 /* InformationController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InformationController.xib; sourceTree = "<group>"; };
 		007E0CAC1D0E5C3E00B0B600 /* ConnectOtherAppsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectOtherAppsCell.swift; sourceTree = "<group>"; };
 		007E0CAD1D0E5C3E00B0B600 /* ConnectOtherAppsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConnectOtherAppsCell.xib; sourceTree = "<group>"; };
 		007F1F501CAA1B630021DF1B /* LocalNotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocalNotification.swift; path = Frameworks/LocalNotification.swift; sourceTree = "<group>"; };
@@ -1549,6 +1553,15 @@
 			path = Frameworks/FXBlurView;
 			sourceTree = "<group>";
 		};
+		0074CB941D29EE9200963607 /* InformationController */ = {
+			isa = PBXGroup;
+			children = (
+				0074CB951D29EEAA00963607 /* InformationController.swift */,
+				0074CB961D29EEAA00963607 /* InformationController.xib */,
+			);
+			path = InformationController;
+			sourceTree = "<group>";
+		};
 		007F79731A878D0B006C89E6 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -1966,6 +1979,7 @@
 		00EFE07B1D227DCC0066C905 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				0074CB941D29EE9200963607 /* InformationController */,
 				008AEF171D264A4B00B9E4D0 /* ProfileSetupController */,
 				0043EDCA1D24EF7D007DEBDA /* CheckYourIndox */,
 				0037EC3F1D23708D00502140 /* ForgotPasswordController */,
@@ -2766,6 +2780,7 @@
 				00EFE1A01D227DCC0066C905 /* TutorialFiveViewController.strings in Resources */,
 				00EFE1781D227DCC0066C905 /* SelectedNotificationTypeController.xib in Resources */,
 				00EFE1A61D227DCC0066C905 /* TutorialTwoViewController.strings in Resources */,
+				0074CB981D29EEAA00963607 /* InformationController.xib in Resources */,
 				00EFE1551D227DCC0066C905 /* NotAlarmView.xib in Resources */,
 				00EFE14A1D227DCC0066C905 /* AddAlarmController.xib in Resources */,
 				0037EC4F1D2385DF00502140 /* Raleway-ExtraLight.ttf in Resources */,
@@ -3137,6 +3152,7 @@
 				0037EC061D235BD000502140 /* SetNortificationRequest.swift in Sources */,
 				0037EC071D235BD000502140 /* SetProfileRequest.swift in Sources */,
 				0037EC081D235BD000502140 /* SetRTCRequest.swift in Sources */,
+				0074CB971D29EEAA00963607 /* InformationController.swift in Sources */,
 				0037EC091D235BD000502140 /* SetSleepRequest.swift in Sources */,
 				0037EC0A1D235BD000502140 /* WriteSettingRequest.swift in Sources */,
 				0037EC0B1D235BD000502140 /* SyncQueue.swift in Sources */,
