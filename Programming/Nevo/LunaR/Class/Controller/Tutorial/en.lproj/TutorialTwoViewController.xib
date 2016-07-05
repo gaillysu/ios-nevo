@@ -6,8 +6,8 @@
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <customFonts key="customFonts">
-        <mutableArray key="SFCompactDisplay-Bold.ttf">
-            <string>SFCompactDisplay-Bold</string>
+        <mutableArray key="Raleway-Regular.ttf">
+            <string>Raleway</string>
         </mutableArray>
     </customFonts>
     <objects>
@@ -19,26 +19,26 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="vjj-Iz-Ie4" userLabel="Tutorial Page Two">
-            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Get connected" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="35" translatesAutoresizingMaskIntoConstraints="NO" id="WkS-nm-Wd3">
-                    <rect key="frame" x="0.0" y="75" width="600" height="42"/>
-                    <fontDescription key="fontDescription" name="SFCompactDisplay-Bold" family="SF Compact Display" pointSize="35"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Get connected" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="35" translatesAutoresizingMaskIntoConstraints="NO" id="WkS-nm-Wd3">
+                    <rect key="frame" x="0.0" y="75" width="375" height="42"/>
+                    <fontDescription key="fontDescription" name="Raleway" family="Raleway" pointSize="40"/>
                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="swipe up and go to control centre, or go to settings to turn on bluetooth." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HV3-5H-8VR">
-                    <rect key="frame" x="96" y="522" width="408" height="32"/>
+                    <rect key="frame" x="96" y="555" width="183" height="32"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="32" id="aoR-CN-vvN"/>
                     </constraints>
-                    <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="12"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="11"/>
                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vgc-yf-hly">
-                    <rect key="frame" x="55" y="466" width="490" height="40"/>
+                    <rect key="frame" x="55" y="499" width="265" height="40"/>
                     <color key="backgroundColor" red="0.4941176471" green="0.84705882349999995" blue="0.81960784310000001" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="0z0-Cu-Ons"/>
@@ -57,7 +57,7 @@
                     </connections>
                 </button>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Lunar_off" translatesAutoresizingMaskIntoConstraints="NO" id="6Kz-DZ-PCL">
-                    <rect key="frame" x="173" y="163" width="254" height="254"/>
+                    <rect key="frame" x="46" y="182" width="282" height="282"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="6Kz-DZ-PCL" secondAttribute="height" multiplier="1:1" id="TIA-2y-QRk"/>
                     </constraints>
@@ -79,6 +79,7 @@
                 <constraint firstItem="Vgc-yf-hly" firstAttribute="centerX" secondItem="vjj-Iz-Ie4" secondAttribute="centerX" id="vj8-1R-bAU"/>
                 <constraint firstItem="WkS-nm-Wd3" firstAttribute="top" secondItem="vjj-Iz-Ie4" secondAttribute="top" constant="75" id="xeN-vN-ocn"/>
             </constraints>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
             <point key="canvasLocation" x="523" y="339"/>
         </view>
     </objects>

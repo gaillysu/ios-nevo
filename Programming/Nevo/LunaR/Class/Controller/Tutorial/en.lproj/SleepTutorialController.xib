@@ -39,7 +39,7 @@
                     <constraints>
                         <constraint firstAttribute="height" constant="35" id="Ve3-OR-lqB"/>
                     </constraints>
-                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="37"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="38"/>
                     <state key="normal" title="Go it!">
                         <color key="titleColor" red="0.4941176471" green="0.84705882349999995" blue="0.81960784310000001" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
@@ -47,8 +47,9 @@
                         <action selector="buttonManager:" destination="-1" eventType="touchUpInside" id="TYL-o6-FKb"/>
                     </connections>
                 </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To activate sleeping-mode, push and hold the  first button, until the white LED blinks." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4nA-h1-L87">
-                    <rect key="frame" x="47" y="142" width="280" height="45"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4nA-h1-L87">
+                    <rect key="frame" x="37" y="142" width="300" height="45"/>
+                    <string key="text">To activate sleeping-mode, push and hold the third button, until the blue LED blinks. </string>
                     <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="12"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
@@ -60,14 +61,14 @@
                 <constraint firstItem="vIS-Wv-bD5" firstAttribute="height" secondItem="4nA-h1-L87" secondAttribute="height" constant="2" id="7Qi-2H-Hgr"/>
                 <constraint firstItem="vIS-Wv-bD5" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="95" id="BQO-8B-yEQ"/>
                 <constraint firstItem="vIS-Wv-bD5" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="E5r-Ox-gTk"/>
-                <constraint firstItem="4nA-h1-L87" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="47" id="ECf-sv-p3N"/>
+                <constraint firstItem="4nA-h1-L87" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="37" id="ECf-sv-p3N"/>
                 <constraint firstAttribute="trailing" secondItem="gue-7o-VWB" secondAttribute="trailing" constant="50" id="Jls-al-G3B"/>
                 <constraint firstAttribute="trailing" secondItem="vIS-Wv-bD5" secondAttribute="trailing" constant="10" id="K3S-mx-bxj"/>
                 <constraint firstItem="gue-7o-VWB" firstAttribute="top" secondItem="DmG-ck-KTL" secondAttribute="bottom" constant="32" id="YLE-rK-o1t"/>
                 <constraint firstItem="DmG-ck-KTL" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" constant="31.5" id="aIE-iU-Szh"/>
                 <constraint firstItem="4nA-h1-L87" firstAttribute="top" secondItem="vIS-Wv-bD5" secondAttribute="bottom" id="amB-5f-0X4"/>
                 <constraint firstItem="DmG-ck-KTL" firstAttribute="top" secondItem="4nA-h1-L87" secondAttribute="bottom" constant="3" id="bxD-4K-nCP"/>
-                <constraint firstAttribute="trailing" secondItem="4nA-h1-L87" secondAttribute="trailing" constant="48" id="paT-gj-m0K"/>
+                <constraint firstAttribute="trailing" secondItem="4nA-h1-L87" secondAttribute="trailing" constant="38" id="paT-gj-m0K"/>
                 <constraint firstItem="DmG-ck-KTL" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="11" id="vii-K2-njx"/>
                 <constraint firstItem="gue-7o-VWB" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="50" id="yhb-j8-cSG"/>
             </constraints>

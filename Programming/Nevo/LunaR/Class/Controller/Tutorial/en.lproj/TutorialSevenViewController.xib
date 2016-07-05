@@ -6,12 +6,8 @@
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <customFonts key="customFonts">
-        <mutableArray key="SFCompactDisplay-Bold.ttf">
-            <string>SFCompactDisplay-Bold</string>
-        </mutableArray>
-        <mutableArray key="SFCompactDisplay-Semibold.ttf">
-            <string>SFCompactDisplay-Semibold</string>
-            <string>SFCompactDisplay-Semibold</string>
+        <mutableArray key="Raleway-Regular.ttf">
+            <string>Raleway</string>
         </mutableArray>
     </customFonts>
     <objects>
@@ -23,35 +19,36 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="7zr-Tf-uIq">
-            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cannot connect" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uOQ-nw-fA7">
-                    <rect key="frame" x="0.0" y="75" width="600" height="42"/>
+                    <rect key="frame" x="0.0" y="75" width="375" height="42"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="42" id="XsR-Xa-BG8"/>
                     </constraints>
-                    <fontDescription key="fontDescription" name="SFCompactDisplay-Semibold" family="SF Compact Display" pointSize="35"/>
+                    <fontDescription key="fontDescription" name="Raleway" family="Raleway" pointSize="40"/>
                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Make sure the blue LED on the nevo is blinking and try again." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mVz-rf-Ylf">
-                    <rect key="frame" x="165" y="499" width="271" height="35"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mVz-rf-Ylf">
+                    <rect key="frame" x="52" y="566" width="271" height="35"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="35" id="Mec-yl-QB5"/>
                         <constraint firstAttribute="width" constant="271" id="a5I-mm-ggJ"/>
                     </constraints>
-                    <fontDescription key="fontDescription" name="SFCompactDisplay-Semibold" family="SF Compact Display" pointSize="13"/>
+                    <string key="text">Make sure the blue LED on the LunaR is blinkingand try again.</string>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="11"/>
                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dnl-L7-kCN">
-                    <rect key="frame" x="55" y="451" width="490" height="40"/>
+                    <rect key="frame" x="55" y="518" width="265" height="40"/>
                     <color key="backgroundColor" red="0.4941176471" green="0.84705882349999995" blue="0.81960784310000001" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="hdH-lV-vap"/>
                     </constraints>
-                    <fontDescription key="fontDescription" name="SFCompactDisplay-Bold" family="SF Compact Display" pointSize="19"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
                     <state key="normal" title="Try again">
                         <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
@@ -65,7 +62,7 @@
                     </connections>
                 </button>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Lunar_off" translatesAutoresizingMaskIntoConstraints="NO" id="2uY-pO-QtG">
-                    <rect key="frame" x="173" y="151" width="254" height="254"/>
+                    <rect key="frame" x="46" y="170" width="282" height="282"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="2uY-pO-QtG" secondAttribute="height" multiplier="1:1" id="GXT-6e-Tws"/>
                     </constraints>
@@ -86,6 +83,7 @@
                 <constraint firstAttribute="bottom" secondItem="Dnl-L7-kCN" secondAttribute="bottom" constant="109" id="ud1-fB-Rkd"/>
                 <constraint firstItem="2uY-pO-QtG" firstAttribute="centerX" secondItem="7zr-Tf-uIq" secondAttribute="centerX" id="uh8-JI-CAU"/>
             </constraints>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
             <point key="canvasLocation" x="575" y="340"/>
         </view>
     </objects>

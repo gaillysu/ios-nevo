@@ -6,12 +6,8 @@
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <customFonts key="customFonts">
-        <mutableArray key="SFCompactDisplay-Bold.ttf">
-            <string>SFCompactDisplay-Bold</string>
-        </mutableArray>
-        <mutableArray key="SFCompactDisplay-Semibold.ttf">
-            <string>SFCompactDisplay-Semibold</string>
-            <string>SFCompactDisplay-Semibold</string>
+        <mutableArray key="Raleway-Regular.ttf">
+            <string>Raleway</string>
         </mutableArray>
     </customFonts>
     <objects>
@@ -23,41 +19,35 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="dbG-VB-Rga">
-            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Turn on nevo" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="35" translatesAutoresizingMaskIntoConstraints="NO" id="xse-Xf-xhk">
-                    <rect key="frame" x="0.0" y="75" width="600" height="42"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="42" id="NMu-KK-EJw"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" name="SFCompactDisplay-Bold" family="SF Compact Display" pointSize="35"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Turn on LunaR" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="35" translatesAutoresizingMaskIntoConstraints="NO" id="xse-Xf-xhk">
+                    <rect key="frame" x="0.0" y="75" width="375" height="47"/>
+                    <fontDescription key="fontDescription" name="Raleway" family="Raleway" pointSize="40"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Push and hold the third button, until the blue LED blinks." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K0B-J6-Yzh">
-                    <rect key="frame" x="15" y="125" width="570" height="36"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="36" id="S2m-Dc-B2k"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" name="SFCompactDisplay-Semibold" family="SF Compact Display" pointSize="13"/>
+                    <rect key="frame" x="0.0" y="130" width="375" height="41"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="12"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="turn_lunar" translatesAutoresizingMaskIntoConstraints="NO" id="0QV-eh-GuQ">
-                    <rect key="frame" x="0.0" y="200" width="254" height="254"/>
+                    <rect key="frame" x="12" y="195" width="350" height="350"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="0QV-eh-GuQ" secondAttribute="height" multiplier="1:1" id="70g-K7-rvj"/>
                     </constraints>
                 </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N2N-3j-L2h">
-                    <rect key="frame" x="0.0" y="510" width="600" height="35"/>
+                    <rect key="frame" x="0.0" y="577" width="375" height="35"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="35" id="ooz-Oq-Jf9"/>
                     </constraints>
-                    <fontDescription key="fontDescription" name="SFCompactDisplay-Semibold" family="SF Compact Display" pointSize="20"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="32"/>
                     <state key="normal" title="Next">
-                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="titleColor" red="0.4941176471" green="0.84705882349999995" blue="0.81960784310000001" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
                     <connections>
                         <action selector="nextAction:" destination="-1" eventType="touchUpInside" id="LJk-uK-j5b"/>
@@ -66,20 +56,23 @@
             </subviews>
             <color key="backgroundColor" red="0.3294117647" green="0.3411764706" blue="0.35294117650000001" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
-                <constraint firstItem="0QV-eh-GuQ" firstAttribute="centerY" secondItem="dbG-VB-Rga" secondAttribute="centerY" constant="27" id="0m6-QO-OD3"/>
+                <constraint firstItem="0QV-eh-GuQ" firstAttribute="centerY" secondItem="dbG-VB-Rga" secondAttribute="centerY" constant="36.5" id="0m6-QO-OD3"/>
                 <constraint firstAttribute="trailing" secondItem="xse-Xf-xhk" secondAttribute="trailing" id="1vF-Uu-lSW"/>
                 <constraint firstAttribute="trailing" secondItem="N2N-3j-L2h" secondAttribute="trailing" id="8dd-cZ-p0v"/>
-                <constraint firstItem="K0B-J6-Yzh" firstAttribute="leading" secondItem="dbG-VB-Rga" secondAttribute="leading" constant="15" id="8wt-gB-nrH"/>
+                <constraint firstItem="K0B-J6-Yzh" firstAttribute="leading" secondItem="dbG-VB-Rga" secondAttribute="leading" id="8wt-gB-nrH"/>
                 <constraint firstItem="N2N-3j-L2h" firstAttribute="leading" secondItem="dbG-VB-Rga" secondAttribute="leading" id="Acg-9M-TuT"/>
-                <constraint firstItem="0QV-eh-GuQ" firstAttribute="leading" secondItem="dbG-VB-Rga" secondAttribute="leading" id="Btn-1M-bIP"/>
+                <constraint firstItem="0QV-eh-GuQ" firstAttribute="top" secondItem="K0B-J6-Yzh" secondAttribute="bottom" constant="24" id="CwJ-y4-3ju"/>
                 <constraint firstItem="xse-Xf-xhk" firstAttribute="leading" secondItem="dbG-VB-Rga" secondAttribute="leading" id="OO5-wp-EoU"/>
                 <constraint firstItem="xse-Xf-xhk" firstAttribute="top" secondItem="dbG-VB-Rga" secondAttribute="top" constant="75" id="Qeq-2g-smY"/>
                 <constraint firstItem="K0B-J6-Yzh" firstAttribute="top" secondItem="xse-Xf-xhk" secondAttribute="bottom" constant="8" id="Sge-P1-zsU"/>
-                <constraint firstAttribute="trailing" secondItem="K0B-J6-Yzh" secondAttribute="trailing" constant="15" id="ZaC-nf-NK3"/>
-                <constraint firstItem="0QV-eh-GuQ" firstAttribute="width" secondItem="dbG-VB-Rga" secondAttribute="height" multiplier="127:300" id="tbl-do-At7"/>
-                <constraint firstItem="0QV-eh-GuQ" firstAttribute="centerX" secondItem="dbG-VB-Rga" secondAttribute="centerX" constant="-173" id="vva-kg-gP8"/>
+                <constraint firstAttribute="trailing" secondItem="0QV-eh-GuQ" secondAttribute="trailing" constant="13" id="TEg-ZE-s1t"/>
+                <constraint firstItem="0QV-eh-GuQ" firstAttribute="leading" secondItem="dbG-VB-Rga" secondAttribute="leading" constant="12" id="WvX-gx-dYM"/>
+                <constraint firstAttribute="trailing" secondItem="K0B-J6-Yzh" secondAttribute="trailing" id="ZaC-nf-NK3"/>
+                <constraint firstItem="0QV-eh-GuQ" firstAttribute="centerX" secondItem="dbG-VB-Rga" secondAttribute="centerX" id="ngV-bD-05m"/>
+                <constraint firstItem="xse-Xf-xhk" firstAttribute="height" secondItem="K0B-J6-Yzh" secondAttribute="height" constant="6" id="uO3-i0-1JG"/>
                 <constraint firstAttribute="bottom" secondItem="N2N-3j-L2h" secondAttribute="bottom" constant="55" id="yoQ-iG-adY"/>
             </constraints>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
             <point key="canvasLocation" x="-332" y="303"/>
         </view>
     </objects>
