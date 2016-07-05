@@ -29,7 +29,7 @@
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="249" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="3BL-lP-3ac">
                     <rect key="frame" x="52" y="141" width="270" height="61"/>
-                    <string key="text">You just finished tracking your first night of sleep with your nevo. To start tracking your daily routine,
+                    <string key="text">You just finished tracking your first night of sleep with your LunaR. To start tracking your daily routine,
 push and hold the third button, untill the white LED blinks</string>
                     <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="12"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -41,13 +41,13 @@ push and hold the third button, untill the white LED blinks</string>
                         <constraint firstAttribute="width" secondItem="NON-Nm-n7D" secondAttribute="height" multiplier="1:1" id="n77-Qc-Myg"/>
                     </constraints>
                 </imageView>
-                <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GdL-Xs-p2M">
-                    <rect key="frame" x="50" y="586" width="275" height="30"/>
+                <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="749" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GdL-Xs-p2M">
+                    <rect key="frame" x="50" y="572" width="275" height="57"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="e0O-gc-Pmq"/>
                     </constraints>
                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="38"/>
-                    <state key="normal" title="Go it!">
+                    <state key="normal" title="Got it!">
                         <color key="titleColor" red="0.4941176471" green="0.84705882349999995" blue="0.81960784310000001" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
                 </button>

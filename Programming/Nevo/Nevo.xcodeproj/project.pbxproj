@@ -41,7 +41,6 @@
 		0037EB3A1D2354C200502140 /* RegexKitLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00AF8E5B1D224ED8009047AC /* RegexKitLite.framework */; };
 		0037EB3B1D2354C200502140 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00B606E61D0F9DB800FF5A01 /* SwiftyJSON.framework */; };
 		0037EB3C1D2354C200502140 /* SwiftyTimer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00AF8E5C1D224ED8009047AC /* SwiftyTimer.framework */; };
-		0037EB3D1D2354C200502140 /* TextFieldEffects.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00AF8E5D1D224ED8009047AC /* TextFieldEffects.framework */; };
 		0037EB3E1D2354C200502140 /* Timepiece.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00AF8E5E1D224ED8009047AC /* Timepiece.framework */; };
 		0037EB3F1D2354C200502140 /* UIColor_Hex_Swift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0095C0DC1D1274B600331266 /* UIColor_Hex_Swift.framework */; };
 		0037EB401D2354C200502140 /* XCGLogger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0095C0DD1D1274B600331266 /* XCGLogger.framework */; };
@@ -273,6 +272,16 @@
 		0072EAEB1C192210001EE2C9 /* spinner.png in Resources */ = {isa = PBXBuildFile; fileRef = 0072EAEA1C192210001EE2C9 /* spinner.png */; };
 		0074CB971D29EEAA00963607 /* InformationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0074CB951D29EEAA00963607 /* InformationController.swift */; };
 		0074CB981D29EEAA00963607 /* InformationController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0074CB961D29EEAA00963607 /* InformationController.xib */; };
+		007C45351D2B4C08004929E0 /* HomeTutorialController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 007C452B1D2B4C08004929E0 /* HomeTutorialController.xib */; };
+		007C453F1D2B4C1F004929E0 /* MorningTutorialController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 007C45411D2B4C20004929E0 /* MorningTutorialController.xib */; };
+		007C454A1D2B4C60004929E0 /* SleepTutorialController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 007C454C1D2B4C60004929E0 /* SleepTutorialController.xib */; };
+		007C45531D2B4C73004929E0 /* TutorialFiveViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 007C45551D2B4C73004929E0 /* TutorialFiveViewController.xib */; };
+		007C455C1D2B4CD3004929E0 /* TutorialFourViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 007C455E1D2B4CD3004929E0 /* TutorialFourViewController.xib */; };
+		007C45651D2B4D51004929E0 /* TutorialOneViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 007C45671D2B4D51004929E0 /* TutorialOneViewController.xib */; };
+		007C456E1D2B4D89004929E0 /* TutorialSevenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 007C45701D2B4D89004929E0 /* TutorialSevenViewController.xib */; };
+		007C45771D2B4D9B004929E0 /* TutorialSixViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 007C45791D2B4D9B004929E0 /* TutorialSixViewController.xib */; };
+		007C45801D2B4DAA004929E0 /* TutorialThreeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 007C45821D2B4DAA004929E0 /* TutorialThreeViewController.xib */; };
+		007C45891D2B4DB9004929E0 /* TutorialTwoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 007C458B1D2B4DB9004929E0 /* TutorialTwoViewController.xib */; };
 		007E0CAE1D0E5C3E00B0B600 /* ConnectOtherAppsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007E0CAC1D0E5C3E00B0B600 /* ConnectOtherAppsCell.swift */; };
 		007E0CAF1D0E5C3E00B0B600 /* ConnectOtherAppsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 007E0CAD1D0E5C3E00B0B600 /* ConnectOtherAppsCell.xib */; };
 		007F1F511CAA1B630021DF1B /* LocalNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007F1F501CAA1B630021DF1B /* LocalNotification.swift */; };
@@ -493,26 +502,6 @@
 		00EFE19A1D227DCC0066C905 /* StepHistoricalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EFE0E91D227DCC0066C905 /* StepHistoricalView.swift */; };
 		00EFE19B1D227DCC0066C905 /* SupportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EFE0EB1D227DCC0066C905 /* SupportViewController.swift */; };
 		00EFE19C1D227DCC0066C905 /* SupportViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00EFE0EC1D227DCC0066C905 /* SupportViewController.xib */; };
-		00EFE19D1D227DCC0066C905 /* HomeTutorialController.strings in Resources */ = {isa = PBXBuildFile; fileRef = 00EFE0EE1D227DCC0066C905 /* HomeTutorialController.strings */; };
-		00EFE19E1D227DCC0066C905 /* MorningTutorialController.strings in Resources */ = {isa = PBXBuildFile; fileRef = 00EFE0F01D227DCC0066C905 /* MorningTutorialController.strings */; };
-		00EFE19F1D227DCC0066C905 /* SleepTutorialController.strings in Resources */ = {isa = PBXBuildFile; fileRef = 00EFE0F21D227DCC0066C905 /* SleepTutorialController.strings */; };
-		00EFE1A01D227DCC0066C905 /* TutorialFiveViewController.strings in Resources */ = {isa = PBXBuildFile; fileRef = 00EFE0F41D227DCC0066C905 /* TutorialFiveViewController.strings */; };
-		00EFE1A11D227DCC0066C905 /* TutorialFourViewController.strings in Resources */ = {isa = PBXBuildFile; fileRef = 00EFE0F61D227DCC0066C905 /* TutorialFourViewController.strings */; };
-		00EFE1A21D227DCC0066C905 /* TutorialOneViewController.strings in Resources */ = {isa = PBXBuildFile; fileRef = 00EFE0F81D227DCC0066C905 /* TutorialOneViewController.strings */; };
-		00EFE1A31D227DCC0066C905 /* TutorialSevenViewController.strings in Resources */ = {isa = PBXBuildFile; fileRef = 00EFE0FA1D227DCC0066C905 /* TutorialSevenViewController.strings */; };
-		00EFE1A41D227DCC0066C905 /* TutorialSixViewController.strings in Resources */ = {isa = PBXBuildFile; fileRef = 00EFE0FC1D227DCC0066C905 /* TutorialSixViewController.strings */; };
-		00EFE1A51D227DCC0066C905 /* TutorialThreeViewController.strings in Resources */ = {isa = PBXBuildFile; fileRef = 00EFE0FE1D227DCC0066C905 /* TutorialThreeViewController.strings */; };
-		00EFE1A61D227DCC0066C905 /* TutorialTwoViewController.strings in Resources */ = {isa = PBXBuildFile; fileRef = 00EFE1001D227DCC0066C905 /* TutorialTwoViewController.strings */; };
-		00EFE1A71D227DCC0066C905 /* HomeTutorialController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00EFE1021D227DCC0066C905 /* HomeTutorialController.xib */; };
-		00EFE1A81D227DCC0066C905 /* MorningTutorialController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00EFE1041D227DCC0066C905 /* MorningTutorialController.xib */; };
-		00EFE1A91D227DCC0066C905 /* SleepTutorialController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00EFE1061D227DCC0066C905 /* SleepTutorialController.xib */; };
-		00EFE1AA1D227DCC0066C905 /* TutorialFiveViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00EFE1081D227DCC0066C905 /* TutorialFiveViewController.xib */; };
-		00EFE1AB1D227DCC0066C905 /* TutorialFourViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00EFE10A1D227DCC0066C905 /* TutorialFourViewController.xib */; };
-		00EFE1AC1D227DCC0066C905 /* TutorialOneViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00EFE10C1D227DCC0066C905 /* TutorialOneViewController.xib */; };
-		00EFE1AD1D227DCC0066C905 /* TutorialSevenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00EFE10E1D227DCC0066C905 /* TutorialSevenViewController.xib */; };
-		00EFE1AE1D227DCC0066C905 /* TutorialSixViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00EFE1101D227DCC0066C905 /* TutorialSixViewController.xib */; };
-		00EFE1AF1D227DCC0066C905 /* TutorialThreeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00EFE1121D227DCC0066C905 /* TutorialThreeViewController.xib */; };
-		00EFE1B01D227DCC0066C905 /* TutorialTwoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00EFE1141D227DCC0066C905 /* TutorialTwoViewController.xib */; };
 		00EFE1B11D227DCC0066C905 /* HomeTutorialController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EFE1201D227DCC0066C905 /* HomeTutorialController.swift */; };
 		00EFE1B21D227DCC0066C905 /* MorningTutorialController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EFE1211D227DCC0066C905 /* MorningTutorialController.swift */; };
 		00EFE1B31D227DCC0066C905 /* SleepTutorialController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EFE1221D227DCC0066C905 /* SleepTutorialController.swift */; };
@@ -714,6 +703,44 @@
 		0072EAEA1C192210001EE2C9 /* spinner.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spinner.png; sourceTree = "<group>"; };
 		0074CB951D29EEAA00963607 /* InformationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InformationController.swift; sourceTree = "<group>"; };
 		0074CB961D29EEAA00963607 /* InformationController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InformationController.xib; sourceTree = "<group>"; };
+		007C452B1D2B4C08004929E0 /* HomeTutorialController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeTutorialController.xib; sourceTree = "<group>"; };
+		007C45401D2B4C20004929E0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MorningTutorialController.xib; sourceTree = "<group>"; };
+		007C45431D2B4C4D004929E0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/MorningTutorialController.strings; sourceTree = "<group>"; };
+		007C45451D2B4C50004929E0 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/MorningTutorialController.strings"; sourceTree = "<group>"; };
+		007C45471D2B4C53004929E0 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/MorningTutorialController.strings"; sourceTree = "<group>"; };
+		007C45491D2B4C56004929E0 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/MorningTutorialController.strings; sourceTree = "<group>"; };
+		007C454B1D2B4C60004929E0 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/SleepTutorialController.xib; sourceTree = "<group>"; };
+		007C454E1D2B4C66004929E0 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/SleepTutorialController.strings"; sourceTree = "<group>"; };
+		007C45501D2B4C68004929E0 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/SleepTutorialController.strings"; sourceTree = "<group>"; };
+		007C45521D2B4C69004929E0 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/SleepTutorialController.strings; sourceTree = "<group>"; };
+		007C45541D2B4C73004929E0 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/TutorialFiveViewController.xib; sourceTree = "<group>"; };
+		007C45571D2B4CBC004929E0 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/TutorialFiveViewController.strings"; sourceTree = "<group>"; };
+		007C45591D2B4CBE004929E0 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/TutorialFiveViewController.strings"; sourceTree = "<group>"; };
+		007C455B1D2B4CBF004929E0 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/TutorialFiveViewController.strings; sourceTree = "<group>"; };
+		007C455D1D2B4CD3004929E0 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/TutorialFourViewController.xib; sourceTree = "<group>"; };
+		007C45601D2B4D1C004929E0 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/TutorialFourViewController.strings"; sourceTree = "<group>"; };
+		007C45621D2B4D1D004929E0 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/TutorialFourViewController.strings"; sourceTree = "<group>"; };
+		007C45641D2B4D1F004929E0 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/TutorialFourViewController.strings; sourceTree = "<group>"; };
+		007C45661D2B4D51004929E0 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/TutorialOneViewController.xib; sourceTree = "<group>"; };
+		007C45691D2B4D7F004929E0 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/TutorialOneViewController.strings"; sourceTree = "<group>"; };
+		007C456B1D2B4D80004929E0 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/TutorialOneViewController.strings"; sourceTree = "<group>"; };
+		007C456D1D2B4D82004929E0 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/TutorialOneViewController.strings; sourceTree = "<group>"; };
+		007C456F1D2B4D89004929E0 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/TutorialSevenViewController.xib; sourceTree = "<group>"; };
+		007C45721D2B4D8E004929E0 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/TutorialSevenViewController.strings"; sourceTree = "<group>"; };
+		007C45741D2B4D90004929E0 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/TutorialSevenViewController.strings"; sourceTree = "<group>"; };
+		007C45761D2B4D91004929E0 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/TutorialSevenViewController.strings; sourceTree = "<group>"; };
+		007C45781D2B4D9B004929E0 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/TutorialSixViewController.xib; sourceTree = "<group>"; };
+		007C457B1D2B4D9F004929E0 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/TutorialSixViewController.strings"; sourceTree = "<group>"; };
+		007C457D1D2B4DA0004929E0 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/TutorialSixViewController.strings"; sourceTree = "<group>"; };
+		007C457F1D2B4DA2004929E0 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/TutorialSixViewController.strings; sourceTree = "<group>"; };
+		007C45811D2B4DAA004929E0 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/TutorialThreeViewController.xib; sourceTree = "<group>"; };
+		007C45841D2B4DAF004929E0 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/TutorialThreeViewController.strings"; sourceTree = "<group>"; };
+		007C45861D2B4DB0004929E0 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/TutorialThreeViewController.strings"; sourceTree = "<group>"; };
+		007C45881D2B4DB1004929E0 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/TutorialThreeViewController.strings; sourceTree = "<group>"; };
+		007C458A1D2B4DB9004929E0 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/TutorialTwoViewController.xib; sourceTree = "<group>"; };
+		007C458D1D2B4DBE004929E0 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/TutorialTwoViewController.strings"; sourceTree = "<group>"; };
+		007C458F1D2B4DC0004929E0 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/TutorialTwoViewController.strings"; sourceTree = "<group>"; };
+		007C45911D2B4DC1004929E0 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/TutorialTwoViewController.strings; sourceTree = "<group>"; };
 		007E0CAC1D0E5C3E00B0B600 /* ConnectOtherAppsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectOtherAppsCell.swift; sourceTree = "<group>"; };
 		007E0CAD1D0E5C3E00B0B600 /* ConnectOtherAppsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConnectOtherAppsCell.xib; sourceTree = "<group>"; };
 		007F1F501CAA1B630021DF1B /* LocalNotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocalNotification.swift; path = Frameworks/LocalNotification.swift; sourceTree = "<group>"; };
@@ -1000,36 +1027,6 @@
 		00EFE0E91D227DCC0066C905 /* StepHistoricalView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepHistoricalView.swift; sourceTree = "<group>"; };
 		00EFE0EB1D227DCC0066C905 /* SupportViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SupportViewController.swift; sourceTree = "<group>"; };
 		00EFE0EC1D227DCC0066C905 /* SupportViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SupportViewController.xib; sourceTree = "<group>"; };
-		00EFE0EF1D227DCC0066C905 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/HomeTutorialController.strings; sourceTree = "<group>"; };
-		00EFE0F11D227DCC0066C905 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/MorningTutorialController.strings; sourceTree = "<group>"; };
-		00EFE0F31D227DCC0066C905 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/SleepTutorialController.strings; sourceTree = "<group>"; };
-		00EFE0F51D227DCC0066C905 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/TutorialFiveViewController.strings; sourceTree = "<group>"; };
-		00EFE0F71D227DCC0066C905 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/TutorialFourViewController.strings; sourceTree = "<group>"; };
-		00EFE0F91D227DCC0066C905 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/TutorialOneViewController.strings; sourceTree = "<group>"; };
-		00EFE0FB1D227DCC0066C905 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/TutorialSevenViewController.strings; sourceTree = "<group>"; };
-		00EFE0FD1D227DCC0066C905 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/TutorialSixViewController.strings; sourceTree = "<group>"; };
-		00EFE0FF1D227DCC0066C905 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/TutorialThreeViewController.strings; sourceTree = "<group>"; };
-		00EFE1011D227DCC0066C905 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/TutorialTwoViewController.strings; sourceTree = "<group>"; };
-		00EFE1031D227DCC0066C905 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/HomeTutorialController.xib; sourceTree = "<group>"; };
-		00EFE1051D227DCC0066C905 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MorningTutorialController.xib; sourceTree = "<group>"; };
-		00EFE1071D227DCC0066C905 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/SleepTutorialController.xib; sourceTree = "<group>"; };
-		00EFE1091D227DCC0066C905 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/TutorialFiveViewController.xib; sourceTree = "<group>"; };
-		00EFE10B1D227DCC0066C905 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/TutorialFourViewController.xib; sourceTree = "<group>"; };
-		00EFE10D1D227DCC0066C905 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/TutorialOneViewController.xib; sourceTree = "<group>"; };
-		00EFE10F1D227DCC0066C905 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/TutorialSevenViewController.xib; sourceTree = "<group>"; };
-		00EFE1111D227DCC0066C905 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/TutorialSixViewController.xib; sourceTree = "<group>"; };
-		00EFE1131D227DCC0066C905 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/TutorialThreeViewController.xib; sourceTree = "<group>"; };
-		00EFE1151D227DCC0066C905 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/TutorialTwoViewController.xib; sourceTree = "<group>"; };
-		00EFE1161D227DCC0066C905 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/HomeTutorialController.strings; sourceTree = "<group>"; };
-		00EFE1171D227DCC0066C905 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/MorningTutorialController.strings; sourceTree = "<group>"; };
-		00EFE1181D227DCC0066C905 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/SleepTutorialController.strings; sourceTree = "<group>"; };
-		00EFE1191D227DCC0066C905 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/TutorialFiveViewController.strings; sourceTree = "<group>"; };
-		00EFE11A1D227DCC0066C905 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/TutorialFourViewController.strings; sourceTree = "<group>"; };
-		00EFE11B1D227DCC0066C905 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/TutorialOneViewController.strings; sourceTree = "<group>"; };
-		00EFE11C1D227DCC0066C905 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/TutorialSevenViewController.strings; sourceTree = "<group>"; };
-		00EFE11D1D227DCC0066C905 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/TutorialSixViewController.strings; sourceTree = "<group>"; };
-		00EFE11E1D227DCC0066C905 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/TutorialThreeViewController.strings; sourceTree = "<group>"; };
-		00EFE11F1D227DCC0066C905 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/TutorialTwoViewController.strings; sourceTree = "<group>"; };
 		00EFE1201D227DCC0066C905 /* HomeTutorialController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTutorialController.swift; sourceTree = "<group>"; };
 		00EFE1211D227DCC0066C905 /* MorningTutorialController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MorningTutorialController.swift; sourceTree = "<group>"; };
 		00EFE1221D227DCC0066C905 /* SleepTutorialController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SleepTutorialController.swift; sourceTree = "<group>"; };
@@ -1040,26 +1037,6 @@
 		00EFE1271D227DCC0066C905 /* TutorialSixViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialSixViewController.swift; sourceTree = "<group>"; };
 		00EFE1281D227DCC0066C905 /* TutorialThreeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialThreeViewController.swift; sourceTree = "<group>"; };
 		00EFE1291D227DCC0066C905 /* TutorialTwoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialTwoViewController.swift; sourceTree = "<group>"; };
-		00EFE12A1D227DCC0066C905 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/HomeTutorialController.strings"; sourceTree = "<group>"; };
-		00EFE12B1D227DCC0066C905 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/MorningTutorialController.strings"; sourceTree = "<group>"; };
-		00EFE12C1D227DCC0066C905 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/SleepTutorialController.strings"; sourceTree = "<group>"; };
-		00EFE12D1D227DCC0066C905 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/TutorialFiveViewController.strings"; sourceTree = "<group>"; };
-		00EFE12E1D227DCC0066C905 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/TutorialFourViewController.strings"; sourceTree = "<group>"; };
-		00EFE12F1D227DCC0066C905 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/TutorialOneViewController.strings"; sourceTree = "<group>"; };
-		00EFE1301D227DCC0066C905 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/TutorialSevenViewController.strings"; sourceTree = "<group>"; };
-		00EFE1311D227DCC0066C905 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/TutorialSixViewController.strings"; sourceTree = "<group>"; };
-		00EFE1321D227DCC0066C905 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/TutorialThreeViewController.strings"; sourceTree = "<group>"; };
-		00EFE1331D227DCC0066C905 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/TutorialTwoViewController.strings"; sourceTree = "<group>"; };
-		00EFE1341D227DCC0066C905 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/HomeTutorialController.strings"; sourceTree = "<group>"; };
-		00EFE1351D227DCC0066C905 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/MorningTutorialController.strings"; sourceTree = "<group>"; };
-		00EFE1361D227DCC0066C905 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/SleepTutorialController.strings"; sourceTree = "<group>"; };
-		00EFE1371D227DCC0066C905 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/TutorialFiveViewController.strings"; sourceTree = "<group>"; };
-		00EFE1381D227DCC0066C905 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/TutorialFourViewController.strings"; sourceTree = "<group>"; };
-		00EFE1391D227DCC0066C905 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/TutorialOneViewController.strings"; sourceTree = "<group>"; };
-		00EFE13A1D227DCC0066C905 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/TutorialSevenViewController.strings"; sourceTree = "<group>"; };
-		00EFE13B1D227DCC0066C905 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/TutorialSixViewController.strings"; sourceTree = "<group>"; };
-		00EFE13C1D227DCC0066C905 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/TutorialThreeViewController.strings"; sourceTree = "<group>"; };
-		00EFE13D1D227DCC0066C905 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/TutorialTwoViewController.strings"; sourceTree = "<group>"; };
 		00EFE13F1D227DCC0066C905 /* UserHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserHeader.swift; sourceTree = "<group>"; };
 		00EFE1401D227DCC0066C905 /* UserProfileCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileCell.swift; sourceTree = "<group>"; };
 		00EFE1411D227DCC0066C905 /* UserProfileCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserProfileCell.xib; sourceTree = "<group>"; };
@@ -1126,7 +1103,6 @@
 				0037EB3A1D2354C200502140 /* RegexKitLite.framework in Frameworks */,
 				0037EB3B1D2354C200502140 /* SwiftyJSON.framework in Frameworks */,
 				0037EB3C1D2354C200502140 /* SwiftyTimer.framework in Frameworks */,
-				0037EB3D1D2354C200502140 /* TextFieldEffects.framework in Frameworks */,
 				0037EB3E1D2354C200502140 /* Timepiece.framework in Frameworks */,
 				0037EB3F1D2354C200502140 /* UIColor_Hex_Swift.framework in Frameworks */,
 				0037EB401D2354C200502140 /* XCGLogger.framework in Frameworks */,
@@ -2295,26 +2271,16 @@
 		00EFE0ED1D227DCC0066C905 /* Tutorial */ = {
 			isa = PBXGroup;
 			children = (
-				00EFE0EE1D227DCC0066C905 /* HomeTutorialController.strings */,
-				00EFE0F01D227DCC0066C905 /* MorningTutorialController.strings */,
-				00EFE0F21D227DCC0066C905 /* SleepTutorialController.strings */,
-				00EFE0F41D227DCC0066C905 /* TutorialFiveViewController.strings */,
-				00EFE0F61D227DCC0066C905 /* TutorialFourViewController.strings */,
-				00EFE0F81D227DCC0066C905 /* TutorialOneViewController.strings */,
-				00EFE0FA1D227DCC0066C905 /* TutorialSevenViewController.strings */,
-				00EFE0FC1D227DCC0066C905 /* TutorialSixViewController.strings */,
-				00EFE0FE1D227DCC0066C905 /* TutorialThreeViewController.strings */,
-				00EFE1001D227DCC0066C905 /* TutorialTwoViewController.strings */,
-				00EFE1021D227DCC0066C905 /* HomeTutorialController.xib */,
-				00EFE1041D227DCC0066C905 /* MorningTutorialController.xib */,
-				00EFE1061D227DCC0066C905 /* SleepTutorialController.xib */,
-				00EFE1081D227DCC0066C905 /* TutorialFiveViewController.xib */,
-				00EFE10A1D227DCC0066C905 /* TutorialFourViewController.xib */,
-				00EFE10C1D227DCC0066C905 /* TutorialOneViewController.xib */,
-				00EFE10E1D227DCC0066C905 /* TutorialSevenViewController.xib */,
-				00EFE1101D227DCC0066C905 /* TutorialSixViewController.xib */,
-				00EFE1121D227DCC0066C905 /* TutorialThreeViewController.xib */,
-				00EFE1141D227DCC0066C905 /* TutorialTwoViewController.xib */,
+				007C452B1D2B4C08004929E0 /* HomeTutorialController.xib */,
+				007C45411D2B4C20004929E0 /* MorningTutorialController.xib */,
+				007C454C1D2B4C60004929E0 /* SleepTutorialController.xib */,
+				007C45551D2B4C73004929E0 /* TutorialFiveViewController.xib */,
+				007C455E1D2B4CD3004929E0 /* TutorialFourViewController.xib */,
+				007C45671D2B4D51004929E0 /* TutorialOneViewController.xib */,
+				007C45701D2B4D89004929E0 /* TutorialSevenViewController.xib */,
+				007C45791D2B4D9B004929E0 /* TutorialSixViewController.xib */,
+				007C45821D2B4DAA004929E0 /* TutorialThreeViewController.xib */,
+				007C458B1D2B4DB9004929E0 /* TutorialTwoViewController.xib */,
 				00EFE1201D227DCC0066C905 /* HomeTutorialController.swift */,
 				00EFE1211D227DCC0066C905 /* MorningTutorialController.swift */,
 				00EFE1221D227DCC0066C905 /* SleepTutorialController.swift */,
@@ -2730,14 +2696,18 @@
 				0037EC1F1D235F5300502140 /* Localizable.strings in Resources */,
 				0037EC201D235F5300502140 /* SFCompactDisplay-Black.ttf in Resources */,
 				0037EC211D235F5300502140 /* SFCompactDisplay-Bold.ttf in Resources */,
+				007C456E1D2B4D89004929E0 /* TutorialSevenViewController.xib in Resources */,
 				0037EC221D235F5300502140 /* SFCompactDisplay-Light.ttf in Resources */,
+				007C454A1D2B4C60004929E0 /* SleepTutorialController.xib in Resources */,
 				0037EC231D235F5300502140 /* SFCompactDisplay-Regular.ttf in Resources */,
+				007C45651D2B4D51004929E0 /* TutorialOneViewController.xib in Resources */,
 				0037EC241D235F5300502140 /* SFCompactDisplay-Thin.ttf in Resources */,
 				0037EC251D235F5300502140 /* SFUIDisplay-Regular.ttf in Resources */,
 				0037EC261D235F5300502140 /* SFUIText-Regular.ttf in Resources */,
 				0037EC271D235F5300502140 /* nevoWhiteLEDImage.png in Resources */,
 				0037EC281D235F5300502140 /* nevoFontImage.png in Resources */,
 				0037EC291D235F5300502140 /* homeTutorial.png in Resources */,
+				007C45801D2B4DAA004929E0 /* TutorialThreeViewController.xib in Resources */,
 				0037EC2A1D235F5300502140 /* bluetoothoff_background.png in Resources */,
 				0037EC551D2385DF00502140 /* Raleway-Thin.ttf in Resources */,
 				0037EC2B1D235F5300502140 /* bluetoothoff.png in Resources */,
@@ -2750,6 +2720,7 @@
 				0037EC311D235F5300502140 /* tutorialone.png in Resources */,
 				0037EC321D235F5300502140 /* white_clock.png in Resources */,
 				0043EDCE1D24EF94007DEBDA /* CheckYourIndoxController.xib in Resources */,
+				007C45351D2B4C08004929E0 /* HomeTutorialController.xib in Resources */,
 				0037EC331D235F5300502140 /* white_hour.png in Resources */,
 				0037EC341D235F5300502140 /* white_minute.png in Resources */,
 				0037EC351D235F5300502140 /* upgrade_clock.png in Resources */,
@@ -2758,14 +2729,12 @@
 				0037EC381D235F5300502140 /* clockview600_color.png in Resources */,
 				0037EC391D235F5300502140 /* nevo_wacth.png in Resources */,
 				0037EC3A1D235F5300502140 /* clockViewHour.png in Resources */,
+				007C45891D2B4DB9004929E0 /* TutorialTwoViewController.xib in Resources */,
 				0037EC3B1D235F5300502140 /* clockViewMinute.png in Resources */,
 				0037EC3C1D235F5300502140 /* clockView600.png in Resources */,
+				007C45531D2B4C73004929E0 /* TutorialFiveViewController.xib in Resources */,
 				00EFE1721D227DCC0066C905 /* NotificationClockCell.xib in Resources */,
-				00EFE1AC1D227DCC0066C905 /* TutorialOneViewController.xib in Resources */,
 				00EFE0591D227D5F0066C905 /* LaunchScreen.storyboard in Resources */,
-				00EFE1A41D227DCC0066C905 /* TutorialSixViewController.strings in Resources */,
-				00EFE1A21D227DCC0066C905 /* TutorialOneViewController.strings in Resources */,
-				00EFE1A71D227DCC0066C905 /* HomeTutorialController.xib in Resources */,
 				008AEF1B1D264A4C00B9E4D0 /* ProfileSetupViewController.xib in Resources */,
 				00EFE1BF1D227DCC0066C905 /* UserProfileController.xib in Resources */,
 				00EFE1521D227DCC0066C905 /* AlarmTypeController.xib in Resources */,
@@ -2774,14 +2743,12 @@
 				00EFE1631D227DCC0066C905 /* LoginController.xib in Resources */,
 				00EFE1761D227DCC0066C905 /* NotificationViewController.xib in Resources */,
 				00EFE17F1D227DCC0066C905 /* PresetTableViewCell.xib in Resources */,
-				00EFE1A31D227DCC0066C905 /* TutorialSevenViewController.strings in Resources */,
 				0037EC541D2385DF00502140 /* Raleway-SemiBold.ttf in Resources */,
 				00EFE17C1D227DCC0066C905 /* PresetTableViewController.xib in Resources */,
-				00EFE1A01D227DCC0066C905 /* TutorialFiveViewController.strings in Resources */,
 				00EFE1781D227DCC0066C905 /* SelectedNotificationTypeController.xib in Resources */,
-				00EFE1A61D227DCC0066C905 /* TutorialTwoViewController.strings in Resources */,
 				0074CB981D29EEAA00963607 /* InformationController.xib in Resources */,
 				00EFE1551D227DCC0066C905 /* NotAlarmView.xib in Resources */,
+				007C453F1D2B4C1F004929E0 /* MorningTutorialController.xib in Resources */,
 				00EFE14A1D227DCC0066C905 /* AddAlarmController.xib in Resources */,
 				0037EC4F1D2385DF00502140 /* Raleway-ExtraLight.ttf in Resources */,
 				00EFE1881D227DCC0066C905 /* SetingNotLoginCell.xib in Resources */,
@@ -2790,42 +2757,31 @@
 				00EFE1671D227DCC0066C905 /* MyNevoHeaderView.xib in Resources */,
 				00EFE0561D227D5F0066C905 /* Assets.xcassets in Resources */,
 				00EFE1BD1D227DCC0066C905 /* UserProfileCell.xib in Resources */,
-				00EFE19E1D227DCC0066C905 /* MorningTutorialController.strings in Resources */,
 				00EFE15D1D227DCC0066C905 /* ConnectOtherAppsCell.xib in Resources */,
 				0037EC511D2385DF00502140 /* Raleway-Light.ttf in Resources */,
 				00EFE16E1D227DCC0066C905 /* NevoOtaViewController.xib in Resources */,
-				00EFE1AB1D227DCC0066C905 /* TutorialFourViewController.xib in Resources */,
-				00EFE1A51D227DCC0066C905 /* TutorialThreeViewController.strings in Resources */,
-				00EFE1B01D227DCC0066C905 /* TutorialTwoViewController.xib in Resources */,
+				007C455C1D2B4CD3004929E0 /* TutorialFourViewController.xib in Resources */,
 				00EFE1861D227DCC0066C905 /* SetingLoginCell.xib in Resources */,
 				0037EC531D2385DF00502140 /* Raleway-Regular.ttf in Resources */,
 				0037EC521D2385DF00502140 /* Raleway-Medium.ttf in Resources */,
-				00EFE1AF1D227DCC0066C905 /* TutorialThreeViewController.xib in Resources */,
 				00EFE1821D227DCC0066C905 /* RegisterController.xib in Resources */,
 				00EFE14C1D227DCC0066C905 /* AddAlarmSystemCell.xib in Resources */,
-				00EFE1A81D227DCC0066C905 /* MorningTutorialController.xib in Resources */,
 				00EFE0541D227D5F0066C905 /* Main.storyboard in Resources */,
 				00EFE15B1D227DCC0066C905 /* ChangeProfileController.xib in Resources */,
 				00EFE17A1D227DCC0066C905 /* AddPresetViewController.xib in Resources */,
 				00EFE1571D227DCC0066C905 /* NewAddAlarmController.xib in Resources */,
 				0037EC4D1D2385DF00502140 /* Raleway-Bold.ttf in Resources */,
 				00EFE1C11D227DCC0066C905 /* VideoPlayController.xib in Resources */,
-				00EFE1A11D227DCC0066C905 /* TutorialFourViewController.strings in Resources */,
 				00EFE1961D227DCC0066C905 /* StepGoalSetingController.xib in Resources */,
 				00EFE1901D227DCC0066C905 /* SleepHistoricalViewController.xib in Resources */,
 				00EFE14E1D227DCC0066C905 /* AddAlarmTableViewCell.xib in Resources */,
 				00EFE1591D227DCC0066C905 /* RepeatViewController.xib in Resources */,
+				007C45771D2B4D9B004929E0 /* TutorialSixViewController.xib in Resources */,
 				00EFE19C1D227DCC0066C905 /* SupportViewController.xib in Resources */,
-				00EFE1A91D227DCC0066C905 /* SleepTutorialController.xib in Resources */,
 				00EFE1921D227DCC0066C905 /* SleepTrackingController.xib in Resources */,
 				0037EC4E1D2385DF00502140 /* Raleway-ExtraBold.ttf in Resources */,
 				00EFE1701D227DCC0066C905 /* LineColorCell.xib in Resources */,
-				00EFE1AA1D227DCC0066C905 /* TutorialFiveViewController.xib in Resources */,
-				00EFE1AD1D227DCC0066C905 /* TutorialSevenViewController.xib in Resources */,
 				00EFE1981D227DCC0066C905 /* StepHistoricalViewController.xib in Resources */,
-				00EFE1AE1D227DCC0066C905 /* TutorialSixViewController.xib in Resources */,
-				00EFE19D1D227DCC0066C905 /* HomeTutorialController.strings in Resources */,
-				00EFE19F1D227DCC0066C905 /* SleepTutorialController.strings in Resources */,
 				0037EC501D2385DF00502140 /* Raleway-Heavy.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3444,6 +3400,106 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		007C45411D2B4C20004929E0 /* MorningTutorialController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				007C45401D2B4C20004929E0 /* Base */,
+				007C45431D2B4C4D004929E0 /* en */,
+				007C45451D2B4C50004929E0 /* zh-Hans */,
+				007C45471D2B4C53004929E0 /* zh-Hant */,
+				007C45491D2B4C56004929E0 /* de */,
+			);
+			name = MorningTutorialController.xib;
+			sourceTree = "<group>";
+		};
+		007C454C1D2B4C60004929E0 /* SleepTutorialController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				007C454B1D2B4C60004929E0 /* en */,
+				007C454E1D2B4C66004929E0 /* zh-Hans */,
+				007C45501D2B4C68004929E0 /* zh-Hant */,
+				007C45521D2B4C69004929E0 /* de */,
+			);
+			name = SleepTutorialController.xib;
+			sourceTree = "<group>";
+		};
+		007C45551D2B4C73004929E0 /* TutorialFiveViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				007C45541D2B4C73004929E0 /* en */,
+				007C45571D2B4CBC004929E0 /* zh-Hans */,
+				007C45591D2B4CBE004929E0 /* zh-Hant */,
+				007C455B1D2B4CBF004929E0 /* de */,
+			);
+			name = TutorialFiveViewController.xib;
+			sourceTree = "<group>";
+		};
+		007C455E1D2B4CD3004929E0 /* TutorialFourViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				007C455D1D2B4CD3004929E0 /* en */,
+				007C45601D2B4D1C004929E0 /* zh-Hans */,
+				007C45621D2B4D1D004929E0 /* zh-Hant */,
+				007C45641D2B4D1F004929E0 /* de */,
+			);
+			name = TutorialFourViewController.xib;
+			sourceTree = "<group>";
+		};
+		007C45671D2B4D51004929E0 /* TutorialOneViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				007C45661D2B4D51004929E0 /* en */,
+				007C45691D2B4D7F004929E0 /* zh-Hans */,
+				007C456B1D2B4D80004929E0 /* zh-Hant */,
+				007C456D1D2B4D82004929E0 /* de */,
+			);
+			name = TutorialOneViewController.xib;
+			sourceTree = "<group>";
+		};
+		007C45701D2B4D89004929E0 /* TutorialSevenViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				007C456F1D2B4D89004929E0 /* en */,
+				007C45721D2B4D8E004929E0 /* zh-Hans */,
+				007C45741D2B4D90004929E0 /* zh-Hant */,
+				007C45761D2B4D91004929E0 /* de */,
+			);
+			name = TutorialSevenViewController.xib;
+			sourceTree = "<group>";
+		};
+		007C45791D2B4D9B004929E0 /* TutorialSixViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				007C45781D2B4D9B004929E0 /* en */,
+				007C457B1D2B4D9F004929E0 /* zh-Hans */,
+				007C457D1D2B4DA0004929E0 /* zh-Hant */,
+				007C457F1D2B4DA2004929E0 /* de */,
+			);
+			name = TutorialSixViewController.xib;
+			sourceTree = "<group>";
+		};
+		007C45821D2B4DAA004929E0 /* TutorialThreeViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				007C45811D2B4DAA004929E0 /* en */,
+				007C45841D2B4DAF004929E0 /* zh-Hans */,
+				007C45861D2B4DB0004929E0 /* zh-Hant */,
+				007C45881D2B4DB1004929E0 /* de */,
+			);
+			name = TutorialThreeViewController.xib;
+			sourceTree = "<group>";
+		};
+		007C458B1D2B4DB9004929E0 /* TutorialTwoViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				007C458A1D2B4DB9004929E0 /* en */,
+				007C458D1D2B4DBE004929E0 /* zh-Hans */,
+				007C458F1D2B4DC0004929E0 /* zh-Hant */,
+				007C45911D2B4DC1004929E0 /* de */,
+			);
+			name = TutorialTwoViewController.xib;
+			sourceTree = "<group>";
+		};
 		00A773911A88562F0018E121 /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -3590,196 +3646,6 @@
 				00EFE0581D227D5F0066C905 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-		00EFE0EE1D227DCC0066C905 /* HomeTutorialController.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				00EFE0EF1D227DCC0066C905 /* de */,
-				00EFE1161D227DCC0066C905 /* fr */,
-				00EFE12A1D227DCC0066C905 /* zh-Hans */,
-				00EFE1341D227DCC0066C905 /* zh-Hant */,
-			);
-			name = HomeTutorialController.strings;
-			sourceTree = "<group>";
-		};
-		00EFE0F01D227DCC0066C905 /* MorningTutorialController.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				00EFE0F11D227DCC0066C905 /* de */,
-				00EFE1171D227DCC0066C905 /* fr */,
-				00EFE12B1D227DCC0066C905 /* zh-Hans */,
-				00EFE1351D227DCC0066C905 /* zh-Hant */,
-			);
-			name = MorningTutorialController.strings;
-			sourceTree = "<group>";
-		};
-		00EFE0F21D227DCC0066C905 /* SleepTutorialController.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				00EFE0F31D227DCC0066C905 /* de */,
-				00EFE1181D227DCC0066C905 /* fr */,
-				00EFE12C1D227DCC0066C905 /* zh-Hans */,
-				00EFE1361D227DCC0066C905 /* zh-Hant */,
-			);
-			name = SleepTutorialController.strings;
-			sourceTree = "<group>";
-		};
-		00EFE0F41D227DCC0066C905 /* TutorialFiveViewController.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				00EFE0F51D227DCC0066C905 /* de */,
-				00EFE1191D227DCC0066C905 /* fr */,
-				00EFE12D1D227DCC0066C905 /* zh-Hans */,
-				00EFE1371D227DCC0066C905 /* zh-Hant */,
-			);
-			name = TutorialFiveViewController.strings;
-			sourceTree = "<group>";
-		};
-		00EFE0F61D227DCC0066C905 /* TutorialFourViewController.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				00EFE0F71D227DCC0066C905 /* de */,
-				00EFE11A1D227DCC0066C905 /* fr */,
-				00EFE12E1D227DCC0066C905 /* zh-Hans */,
-				00EFE1381D227DCC0066C905 /* zh-Hant */,
-			);
-			name = TutorialFourViewController.strings;
-			sourceTree = "<group>";
-		};
-		00EFE0F81D227DCC0066C905 /* TutorialOneViewController.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				00EFE0F91D227DCC0066C905 /* de */,
-				00EFE11B1D227DCC0066C905 /* fr */,
-				00EFE12F1D227DCC0066C905 /* zh-Hans */,
-				00EFE1391D227DCC0066C905 /* zh-Hant */,
-			);
-			name = TutorialOneViewController.strings;
-			sourceTree = "<group>";
-		};
-		00EFE0FA1D227DCC0066C905 /* TutorialSevenViewController.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				00EFE0FB1D227DCC0066C905 /* de */,
-				00EFE11C1D227DCC0066C905 /* fr */,
-				00EFE1301D227DCC0066C905 /* zh-Hans */,
-				00EFE13A1D227DCC0066C905 /* zh-Hant */,
-			);
-			name = TutorialSevenViewController.strings;
-			sourceTree = "<group>";
-		};
-		00EFE0FC1D227DCC0066C905 /* TutorialSixViewController.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				00EFE0FD1D227DCC0066C905 /* de */,
-				00EFE11D1D227DCC0066C905 /* fr */,
-				00EFE1311D227DCC0066C905 /* zh-Hans */,
-				00EFE13B1D227DCC0066C905 /* zh-Hant */,
-			);
-			name = TutorialSixViewController.strings;
-			sourceTree = "<group>";
-		};
-		00EFE0FE1D227DCC0066C905 /* TutorialThreeViewController.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				00EFE0FF1D227DCC0066C905 /* de */,
-				00EFE11E1D227DCC0066C905 /* fr */,
-				00EFE1321D227DCC0066C905 /* zh-Hans */,
-				00EFE13C1D227DCC0066C905 /* zh-Hant */,
-			);
-			name = TutorialThreeViewController.strings;
-			sourceTree = "<group>";
-		};
-		00EFE1001D227DCC0066C905 /* TutorialTwoViewController.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				00EFE1011D227DCC0066C905 /* de */,
-				00EFE11F1D227DCC0066C905 /* fr */,
-				00EFE1331D227DCC0066C905 /* zh-Hans */,
-				00EFE13D1D227DCC0066C905 /* zh-Hant */,
-			);
-			name = TutorialTwoViewController.strings;
-			sourceTree = "<group>";
-		};
-		00EFE1021D227DCC0066C905 /* HomeTutorialController.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				00EFE1031D227DCC0066C905 /* en */,
-			);
-			name = HomeTutorialController.xib;
-			sourceTree = "<group>";
-		};
-		00EFE1041D227DCC0066C905 /* MorningTutorialController.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				00EFE1051D227DCC0066C905 /* en */,
-			);
-			name = MorningTutorialController.xib;
-			sourceTree = "<group>";
-		};
-		00EFE1061D227DCC0066C905 /* SleepTutorialController.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				00EFE1071D227DCC0066C905 /* en */,
-			);
-			name = SleepTutorialController.xib;
-			sourceTree = "<group>";
-		};
-		00EFE1081D227DCC0066C905 /* TutorialFiveViewController.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				00EFE1091D227DCC0066C905 /* en */,
-			);
-			name = TutorialFiveViewController.xib;
-			sourceTree = "<group>";
-		};
-		00EFE10A1D227DCC0066C905 /* TutorialFourViewController.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				00EFE10B1D227DCC0066C905 /* en */,
-			);
-			name = TutorialFourViewController.xib;
-			sourceTree = "<group>";
-		};
-		00EFE10C1D227DCC0066C905 /* TutorialOneViewController.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				00EFE10D1D227DCC0066C905 /* en */,
-			);
-			name = TutorialOneViewController.xib;
-			sourceTree = "<group>";
-		};
-		00EFE10E1D227DCC0066C905 /* TutorialSevenViewController.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				00EFE10F1D227DCC0066C905 /* en */,
-			);
-			name = TutorialSevenViewController.xib;
-			sourceTree = "<group>";
-		};
-		00EFE1101D227DCC0066C905 /* TutorialSixViewController.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				00EFE1111D227DCC0066C905 /* en */,
-			);
-			name = TutorialSixViewController.xib;
-			sourceTree = "<group>";
-		};
-		00EFE1121D227DCC0066C905 /* TutorialThreeViewController.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				00EFE1131D227DCC0066C905 /* en */,
-			);
-			name = TutorialThreeViewController.xib;
-			sourceTree = "<group>";
-		};
-		00EFE1141D227DCC0066C905 /* TutorialTwoViewController.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				00EFE1151D227DCC0066C905 /* en */,
-			);
-			name = TutorialTwoViewController.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

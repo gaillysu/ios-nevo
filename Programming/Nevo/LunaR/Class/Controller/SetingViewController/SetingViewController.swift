@@ -101,7 +101,7 @@ class SetingViewController: UIViewController,SyncControllerDelegate,ButtonManage
         case 0:
             let user:NSArray = UserProfile.getAll()
             if user.count == 0 {
-                let logoin:ForgotPasswordController = ForgotPasswordController()
+                let logoin:ProfileSetupViewController = ProfileSetupViewController()
                 logoin.hidesBottomBarWhenPushed = true
                 self.navigationController?.pushViewController(logoin, animated: true)
             }else{

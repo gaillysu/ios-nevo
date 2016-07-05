@@ -35,7 +35,9 @@
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="fqu-Xa-9l6"/>
                     </constraints>
-                    <string key="text">Pull out the crown out and turn to set the time onyour LunaR watch. Be aware that LunaR doesn’t synctime with your phone.</string>
+                    <string key="text">Pull out the crown out and turn to set the time on
+your LunaR watch. Be aware that LunaR doesn’t sync
+time with your phone.</string>
                     <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="11"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>

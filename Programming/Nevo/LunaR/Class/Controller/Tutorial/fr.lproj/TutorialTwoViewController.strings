@@ -1,9 +1,0 @@
-
-/* Class = "UILabel"; text = "Tap the Settings button and turn Bluetooth on."; ObjectID = "HV3-5H-8VR"; */
-"HV3-5H-8VR.text" = "Tap the Settings button and turn Bluetooth on.";
-
-/* Class = "UIButton"; normalTitle = "Turn Bluetooth on"; ObjectID = "Vgc-yf-hly"; */
-"Vgc-yf-hly.normalTitle" = "Turn Bluetooth on";
-
-/* Class = "UILabel"; text = "Turn on Bluetooth"; ObjectID = "WkS-nm-Wd3"; */
-"WkS-nm-Wd3.text" = "Turn on Bluetooth";

@@ -1,9 +1,9 @@
 
-/* Class = "UIButton"; normalTitle = "Activate your nevo"; ObjectID = "1aT-kr-juo"; */
-"1aT-kr-juo.normalTitle" = "激活你的Nevo!";
+/* Class = "UIButton"; normalTitle = "Activate your LunaR"; ObjectID = "1aT-kr-juo"; */
+"1aT-kr-juo.normalTitle" = "Activate your LunaR";
 
 /* Class = "UILabel"; text = "Let's get started!"; ObjectID = "FYs-Sp-ziw"; */
-"FYs-Sp-ziw.text" = "让我们开始吧!";
+"FYs-Sp-ziw.text" = "Let's get started!";
 
 /* Class = "UILabel"; text = "Use your nevo watch to set, track and analyse your personal health and fitness data."; ObjectID = "fyF-KY-aRW"; */
-"fyF-KY-aRW.text" = "用你的Nevo watch设定跟踪和分析您的个人健康和健身数据。";
+"fyF-KY-aRW.text" = "Use your nevo watch to set, track and analyse your personal health and fitness data.";

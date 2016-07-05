@@ -37,7 +37,8 @@
                         <constraint firstAttribute="height" constant="35" id="Mec-yl-QB5"/>
                         <constraint firstAttribute="width" constant="271" id="a5I-mm-ggJ"/>
                     </constraints>
-                    <string key="text">Make sure the blue LED on the LunaR is blinkingand try again.</string>
+                    <string key="text">Make sure the blue LED on the LunaR is blinking
+and try again.</string>
                     <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="11"/>
                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
