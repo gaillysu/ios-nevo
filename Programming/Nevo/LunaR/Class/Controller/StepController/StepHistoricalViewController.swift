@@ -8,7 +8,7 @@
 
 import UIKit
 
-class StepHistoricalViewController: UIViewController,UICollectionViewDelegateFlowLayout,SelectedChartViewDelegate {
+class StepHistoricalViewController: PublicClassController,UICollectionViewDelegateFlowLayout,SelectedChartViewDelegate {
 
     @IBOutlet weak var stepsHistortView: StepHistoricalView!
     @IBOutlet weak var stepsHistori: UICollectionView!
@@ -49,6 +49,7 @@ class StepHistoricalViewController: UIViewController,UICollectionViewDelegateFlo
     }
 
     override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
         stepsHistori.backgroundColor = UIColor.whiteColor()
         stepsHistori.registerClass(UICollectionViewCell.classForCoder(), forCellWithReuseIdentifier: "StepsHistoryViewCell")
         (stepsHistori.collectionViewLayout as! UICollectionViewFlowLayout).itemSize = CGSizeMake(UIScreen.mainScreen().bounds.size.width/3.0, stepsHistori.frame.size.height)

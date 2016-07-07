@@ -302,6 +302,8 @@
 		0095DDAC1D2E0E5500F80BFD /* wacth_dial.png in Resources */ = {isa = PBXBuildFile; fileRef = 0095DDA61D2E0D7D00F80BFD /* wacth_dial.png */; };
 		0095DDAD1D2E0E5500F80BFD /* wacth_hour.png in Resources */ = {isa = PBXBuildFile; fileRef = 0095DDA71D2E0D7D00F80BFD /* wacth_hour.png */; };
 		0095DDAE1D2E0E5500F80BFD /* wacth_mint.png in Resources */ = {isa = PBXBuildFile; fileRef = 0095DDA81D2E0D7D00F80BFD /* wacth_mint.png */; };
+		0095DDB51D2E361800F80BFD /* FMDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0095DDB31D2E361800F80BFD /* FMDB.framework */; };
+		0095DDB61D2E361800F80BFD /* PagingMenuController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0095DDB41D2E361800F80BFD /* PagingMenuController.framework */; };
 		009703C21C9BD9D700F2FF0D /* UserProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009703C01C9BD9D700F2FF0D /* UserProfileController.swift */; };
 		009703C31C9BD9D700F2FF0D /* UserProfileController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 009703C11C9BD9D700F2FF0D /* UserProfileController.xib */; };
 		009703C61C9BDB3200F2FF0D /* UserProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009703C41C9BDB3200F2FF0D /* UserProfileCell.swift */; };
@@ -767,6 +769,8 @@
 		0095DDA61D2E0D7D00F80BFD /* wacth_dial.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wacth_dial.png; sourceTree = "<group>"; };
 		0095DDA71D2E0D7D00F80BFD /* wacth_hour.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wacth_hour.png; sourceTree = "<group>"; };
 		0095DDA81D2E0D7D00F80BFD /* wacth_mint.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wacth_mint.png; sourceTree = "<group>"; };
+		0095DDB31D2E361800F80BFD /* FMDB.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FMDB.framework; path = "../../../../Library/Developer/Xcode/DerivedData/Nevo-cbjnruaifgvemfduxtlzizqanuqy/Build/Products/Debug-iphoneos/FMDB.framework"; sourceTree = "<group>"; };
+		0095DDB41D2E361800F80BFD /* PagingMenuController.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PagingMenuController.framework; path = "../../../../Library/Developer/Xcode/DerivedData/Nevo-cbjnruaifgvemfduxtlzizqanuqy/Build/Products/Debug-iphoneos/PagingMenuController.framework"; sourceTree = "<group>"; };
 		009703C01C9BD9D700F2FF0D /* UserProfileController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileController.swift; sourceTree = "<group>"; };
 		009703C11C9BD9D700F2FF0D /* UserProfileController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserProfileController.xib; sourceTree = "<group>"; };
 		009703C41C9BDB3200F2FF0D /* UserProfileCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileCell.swift; sourceTree = "<group>"; };
@@ -1103,6 +1107,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0095DDB51D2E361800F80BFD /* FMDB.framework in Frameworks */,
+				0095DDB61D2E361800F80BFD /* PagingMenuController.framework in Frameworks */,
 				003CD0511D2CE93500494D5A /* SMSegmentView.framework in Frameworks */,
 				0037EC3E1D236A0000502140 /* LTNavigationBar.framework in Frameworks */,
 				0037EB321D2354C200502140 /* Alamofire.framework in Frameworks */,
@@ -2421,6 +2427,8 @@
 		9AD8F95A1A6DFE3400F01014 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0095DDB31D2E361800F80BFD /* FMDB.framework */,
+				0095DDB41D2E361800F80BFD /* PagingMenuController.framework */,
 				0022650F1D2CF61A0033F981 /* LTNavigationBar.framework */,
 				003CD0501D2CE93500494D5A /* SMSegmentView.framework */,
 				0037EC3D1D236A0000502140 /* LTNavigationBar.framework */,

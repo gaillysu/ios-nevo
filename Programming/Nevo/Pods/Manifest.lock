@@ -48,6 +48,7 @@ PODS:
     - NJKWebViewProgress/ProgressView (= 0.2.3)
   - NJKWebViewProgress/Core (0.2.3)
   - NJKWebViewProgress/ProgressView (0.2.3)
+  - PagingMenuController (1.1.2)
   - RegexKitLite (4.0)
   - SMSegmentView (1.1)
   - SwiftyJSON (2.3.2)
@@ -69,6 +70,7 @@ DEPENDENCIES:
   - LTNavigationBar
   - MRProgress
   - NJKWebViewProgress
+  - PagingMenuController
   - RegexKitLite
   - SMSegmentView
   - SwiftyJSON (from `https://github.com/SwiftyJSON/SwiftyJSON.git`)
@@ -99,6 +101,7 @@ SPEC CHECKSUMS:
   LTNavigationBar: bfc5fc06a83463009b9d99675f2a32dcbb631b00
   MRProgress: 16de7cc9f347e8846797a770db102a323fe7ef09
   NJKWebViewProgress: f481fd424cb5ecc27eacae11b5397db92fba9a4d
+  PagingMenuController: a47a9669760b95f630cc3ef28bdce104f9107d14
   RegexKitLite: c0e4c12e6e7de0769f3a3ed679f0f61604170661
   SMSegmentView: a99862f36ea73478558ae665c209cb80c0d4f059
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a

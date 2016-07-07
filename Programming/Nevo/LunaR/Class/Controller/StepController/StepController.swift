@@ -10,6 +10,20 @@ import UIKit
 import BRYXBanner
 import Timepiece
 import UIColor_Hex_Swift
+import PagingMenuController
+
+private struct PagingMenuOptions: PagingMenuControllerCustomizable {
+    
+    private var componentType: ComponentType {
+        return .PagingController(pagingControllers: pagingControllers)
+    }
+    
+    private var pagingControllers: [UIViewController] {
+        let viewController1 = StepGoalSetingController()
+        let viewController2 = StepHistoricalViewController()
+        return [viewController1, viewController2]
+    }
+}
 
 class StepController: PublicClassController,toolbarSegmentedDelegate,UIActionSheetDelegate {
     private var currentVC:UIViewController?
@@ -17,21 +31,13 @@ class StepController: PublicClassController,toolbarSegmentedDelegate,UIActionShe
     private var stepHistorical:StepHistoricalViewController?
     private var rightButton:UIBarButtonItem?
     private var goalArray:[Int] = []
+    var viewControllers:[UIViewController] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.lt_setBackgroundColor(UIColor(rgba: "#54575a"))
         UIApplication.sharedApplication().statusBarStyle = UIStatusBarStyle.LightContent
-        
         self.view.backgroundColor = UIColor(rgba: "#54575a")
-        
-        stepGoal = StepGoalSetingController()
-        stepGoal?.view.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)
-        self.addChildViewController(stepGoal!)
-        self.view.addSubview(stepGoal!.view)
-        currentVC = stepGoal
-
-        stepHistorical = StepHistoricalViewController()
-        stepHistorical?.view.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height-113)
 
         rightButton = UIBarButtonItem(image: UIImage(named: "edit_icon"), style: UIBarButtonItemStyle.Plain, target: self, action: #selector(rightBarButtonAction(_:)))
         rightButton?.tintColor = UIColor(rgba: "#7ED8D1")
@@ -45,6 +51,17 @@ class StepController: PublicClassController,toolbarSegmentedDelegate,UIActionShe
         }
     }
 
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        let options = PagingMenuOptions()
+        let pagingMenuController = PagingMenuController(options: options)
+        pagingMenuController.view.backgroundColor = UIColor.clearColor()
+        pagingMenuController.view.frame = CGRectMake(0, 0, UIScreen.mainScreen().bounds.width, self.view.frame.size.height)
+        self.addChildViewController(pagingMenuController)
+        view.addSubview(pagingMenuController.view)
+        pagingMenuController.didMoveToParentViewController(self)
+    }
+    
     override func viewDidAppear(animated: Bool) {
         let array:NSArray = Presets.getAll()
         goalArray.removeAll()
