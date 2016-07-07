@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import UIColor_Hex_Swift
 
 class PublicClassController: UIViewController {
 
@@ -17,6 +18,14 @@ class PublicClassController: UIViewController {
             self.extendedLayoutIncludesOpaqueBars = false;
             self.modalPresentationCapturesStatusBarAppearance = false;
         }
+        let infoDictionary:[String : AnyObject] = NSBundle.mainBundle().infoDictionary!
+        
+        let app_Name:String = infoDictionary["CFBundleName"] as! String
+        if app_Name == "LunaR" {
+            self.view.backgroundColor = UIColor(rgba: "#54575a")
+        }
+
+        
         // Do any additional setup after loading the view.
     }
 

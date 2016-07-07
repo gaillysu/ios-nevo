@@ -296,6 +296,12 @@
 		0095C0E11D12772C00331266 /* RegexKitLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0095C0E01D12772C00331266 /* RegexKitLite.framework */; };
 		0095C0E41D12940C00331266 /* SetingInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0095C0E21D12940C00331266 /* SetingInfoCell.swift */; };
 		0095C0E51D12940C00331266 /* SetingInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0095C0E31D12940C00331266 /* SetingInfoCell.xib */; };
+		0095DDA91D2E0D7D00F80BFD /* wacth_dial.png in Resources */ = {isa = PBXBuildFile; fileRef = 0095DDA61D2E0D7D00F80BFD /* wacth_dial.png */; };
+		0095DDAA1D2E0D7D00F80BFD /* wacth_hour.png in Resources */ = {isa = PBXBuildFile; fileRef = 0095DDA71D2E0D7D00F80BFD /* wacth_hour.png */; };
+		0095DDAB1D2E0D7D00F80BFD /* wacth_mint.png in Resources */ = {isa = PBXBuildFile; fileRef = 0095DDA81D2E0D7D00F80BFD /* wacth_mint.png */; };
+		0095DDAC1D2E0E5500F80BFD /* wacth_dial.png in Resources */ = {isa = PBXBuildFile; fileRef = 0095DDA61D2E0D7D00F80BFD /* wacth_dial.png */; };
+		0095DDAD1D2E0E5500F80BFD /* wacth_hour.png in Resources */ = {isa = PBXBuildFile; fileRef = 0095DDA71D2E0D7D00F80BFD /* wacth_hour.png */; };
+		0095DDAE1D2E0E5500F80BFD /* wacth_mint.png in Resources */ = {isa = PBXBuildFile; fileRef = 0095DDA81D2E0D7D00F80BFD /* wacth_mint.png */; };
 		009703C21C9BD9D700F2FF0D /* UserProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009703C01C9BD9D700F2FF0D /* UserProfileController.swift */; };
 		009703C31C9BD9D700F2FF0D /* UserProfileController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 009703C11C9BD9D700F2FF0D /* UserProfileController.xib */; };
 		009703C61C9BDB3200F2FF0D /* UserProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009703C41C9BDB3200F2FF0D /* UserProfileCell.swift */; };
@@ -758,6 +764,9 @@
 		0095C0E01D12772C00331266 /* RegexKitLite.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RegexKitLite.framework; path = "Pods/../build/Debug-iphoneos/RegexKitLite.framework"; sourceTree = "<group>"; };
 		0095C0E21D12940C00331266 /* SetingInfoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetingInfoCell.swift; sourceTree = "<group>"; };
 		0095C0E31D12940C00331266 /* SetingInfoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SetingInfoCell.xib; sourceTree = "<group>"; };
+		0095DDA61D2E0D7D00F80BFD /* wacth_dial.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wacth_dial.png; sourceTree = "<group>"; };
+		0095DDA71D2E0D7D00F80BFD /* wacth_hour.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wacth_hour.png; sourceTree = "<group>"; };
+		0095DDA81D2E0D7D00F80BFD /* wacth_mint.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wacth_mint.png; sourceTree = "<group>"; };
 		009703C01C9BD9D700F2FF0D /* UserProfileController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileController.swift; sourceTree = "<group>"; };
 		009703C11C9BD9D700F2FF0D /* UserProfileController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserProfileController.xib; sourceTree = "<group>"; };
 		009703C41C9BDB3200F2FF0D /* UserProfileCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileCell.swift; sourceTree = "<group>"; };
@@ -1580,6 +1589,9 @@
 		007F79881A878D0B006C89E6 /* image */ = {
 			isa = PBXGroup;
 			children = (
+				0095DDA61D2E0D7D00F80BFD /* wacth_dial.png */,
+				0095DDA71D2E0D7D00F80BFD /* wacth_hour.png */,
+				0095DDA81D2E0D7D00F80BFD /* wacth_mint.png */,
 				00E650A21C8425E600278D3E /* nevoWhiteLEDImage.png */,
 				00E650981C83DD9000278D3E /* nevoFontImage.png */,
 				00E650961C83DA8000278D3E /* homeTutorial.png */,
@@ -2698,6 +2710,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0095DDAC1D2E0E5500F80BFD /* wacth_dial.png in Resources */,
+				0095DDAD1D2E0E5500F80BFD /* wacth_hour.png in Resources */,
+				0095DDAE1D2E0E5500F80BFD /* wacth_mint.png in Resources */,
 				0037EC1E1D235F5300502140 /* Firmwares in Resources */,
 				0037EC1F1D235F5300502140 /* Localizable.strings in Resources */,
 				0037EC201D235F5300502140 /* SFCompactDisplay-Black.ttf in Resources */,
@@ -2813,8 +2828,10 @@
 				00AF8CE01D224CFA009047AC /* DatePickerView.xib in Resources */,
 				0072EABA1C190DCD001EE2C9 /* SFCompactDisplay-Regular.ttf in Resources */,
 				0050D6921C28E1CD004F6F80 /* AddAlarmController.xib in Resources */,
+				0095DDAB1D2E0D7D00F80BFD /* wacth_mint.png in Resources */,
 				00EC9E111C8583AA00280904 /* TutorialSevenViewController.xib in Resources */,
 				00E759141C23E83200372529 /* firmware_clock.png in Resources */,
+				0095DDAA1D2E0D7D00F80BFD /* wacth_hour.png in Resources */,
 				00DBC3A31C435541004B4376 /* Main.storyboard in Resources */,
 				0050D5F21C28E0DB004F6F80 /* MyNevoHeaderView.xib in Resources */,
 				0050D60E1C28E0DB004F6F80 /* PresetTableViewController.xib in Resources */,
@@ -2867,6 +2884,7 @@
 				00EC9DC41C85832300280904 /* SleepTutorialController.xib in Resources */,
 				00E650A31C8425E600278D3E /* nevoWhiteLEDImage.png in Resources */,
 				0050D6031C28E0DB004F6F80 /* SelectedNotificationTypeController.xib in Resources */,
+				0095DDA91D2E0D7D00F80BFD /* wacth_dial.png in Resources */,
 				00321D7F1C993C320069BFCC /* RegisterController.xib in Resources */,
 				0050D6941C28E1CD004F6F80 /* AddAlarmSystemCell.xib in Resources */,
 				0036EB0A1C48BA8300DCED46 /* tutorialone.png in Resources */,

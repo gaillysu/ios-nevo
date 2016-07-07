@@ -9,6 +9,7 @@
 import UIKit
 import BRYXBanner
 import Timepiece
+import UIColor_Hex_Swift
 
 class StepController: PublicClassController,toolbarSegmentedDelegate,UIActionSheetDelegate {
     private var currentVC:UIViewController?
@@ -18,27 +19,24 @@ class StepController: PublicClassController,toolbarSegmentedDelegate,UIActionShe
     private var goalArray:[Int] = []
     override func viewDidLoad() {
         super.viewDidLoad()
-        AppTheme.navigationbar(self.navigationController!)
-        let toolBarHeight:CGFloat = 45.0
-        let toolbar:ToolbarView = ToolbarView(frame: CGRectMake( 0, 0, UIScreen.mainScreen().bounds.width, toolBarHeight), items: [NSLocalizedString("today", comment: ""),NSLocalizedString("history", comment: "")])
-        toolbar.delegate = self
-        self.view.addSubview(toolbar)
+        self.navigationController?.navigationBar.lt_setBackgroundColor(UIColor(rgba: "#54575a"))
+        UIApplication.sharedApplication().statusBarStyle = UIStatusBarStyle.LightContent
+        
+        self.view.backgroundColor = UIColor(rgba: "#54575a")
+        
         stepGoal = StepGoalSetingController()
-        stepGoal?.view.frame = CGRectMake(0, toolBarHeight, self.view.frame.size.width, self.view.frame.size.height-toolBarHeight)
+        stepGoal?.view.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)
         self.addChildViewController(stepGoal!)
         self.view.addSubview(stepGoal!.view)
         currentVC = stepGoal
 
         stepHistorical = StepHistoricalViewController()
-        stepHistorical?.view.frame = CGRectMake(0, toolBarHeight, self.view.frame.size.width, self.view.frame.size.height-toolBarHeight-113)
+        stepHistorical?.view.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height-113)
 
-        rightButton = UIBarButtonItem(title: NSLocalizedString("set_goal", comment: ""), style: UIBarButtonItemStyle.Done, target: self, action: #selector(StepController.rightBarButtonAction(_:)))
-        rightButton?.tintColor = AppTheme.NEVO_SOLAR_YELLOW()
+        rightButton = UIBarButtonItem(image: UIImage(named: "edit_icon"), style: UIBarButtonItemStyle.Plain, target: self, action: #selector(rightBarButtonAction(_:)))
+        rightButton?.tintColor = UIColor(rgba: "#7ED8D1")
         self.navigationItem.rightBarButtonItem = rightButton
 
-//        let leftButton = UIBarButtonItem(title: NSLocalizedString("Video", comment: ""), style: UIBarButtonItemStyle.Done, target: self, action: Selector("leftBarButtonAction:"))
-//        leftButton.tintColor = AppTheme.NEVO_SOLAR_YELLOW()
-//        self.navigationItem.leftBarButtonItem = leftButton
 
         if(!AppDelegate.getAppDelegate().isConnected() && AppDelegate.getAppDelegate().getMconnectionController().isBluetoothEnabled()){
             let banner = Banner(title: NSLocalizedString("nevo_is_not_connected", comment: ""), subtitle: nil, image: nil, backgroundColor:UIColor.redColor())

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import UIColor_Hex_Swift
 
 protocol toolbarSegmentedDelegate:NSObjectProtocol {
     func didSelectedSegmentedControl(segment:UISegmentedControl)
@@ -23,7 +24,14 @@ class ToolbarView: UIView {
         let segment:UISegmentedControl = UISegmentedControl(items: items)
         segment.frame = CGRectMake(0, 0, self.frame.size.width-30, 29)
         segment.selectedSegmentIndex = 0
-        segment.tintColor = AppTheme.NEVO_SOLAR_YELLOW()
+        let infoDictionary:[String : AnyObject] = NSBundle.mainBundle().infoDictionary!
+        
+        let app_Name:String = infoDictionary["CFBundleName"] as! String
+        if app_Name == "LunaR" {
+            segment.tintColor = UIColor(rgba: "#7ED8D1")
+        }else{
+            segment.tintColor = AppTheme.NEVO_SOLAR_YELLOW()
+        }
         segment.addTarget(self, action: #selector(ToolbarView.segmentAction(_:)), forControlEvents: UIControlEvents.ValueChanged)
 
         let itemSeg:UIBarButtonItem = UIBarButtonItem(customView: segment)

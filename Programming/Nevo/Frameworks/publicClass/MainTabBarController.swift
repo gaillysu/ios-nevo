@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import UIColor_Hex_Swift
 
 class MainTabBarController: UITabBarController,UITabBarControllerDelegate {
 
@@ -17,9 +18,16 @@ class MainTabBarController: UITabBarController,UITabBarControllerDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         self.delegate = self
-        self.tabBar.tintColor = AppTheme.NEVO_SOLAR_YELLOW()
+        let infoDictionary:[String : AnyObject] = NSBundle.mainBundle().infoDictionary!
+        
+        let app_Name:String = infoDictionary["CFBundleName"] as! String
+        if app_Name == "LunaR" {
+            self.tabBar.tintColor = UIColor(rgba: "#7ED8D1")
+        }else{
+            self.tabBar.tintColor = AppTheme.NEVO_SOLAR_YELLOW()
+        }
+        
         // Do any additional setup after loading the view.
         //var nav:UINavigationController!
         let viewArray:[AnyObject] = self.viewControllers!
