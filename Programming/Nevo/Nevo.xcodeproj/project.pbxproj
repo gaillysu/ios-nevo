@@ -423,7 +423,6 @@
 		00EFE04D1D227D5F0066C905 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EFE04C1D227D5F0066C905 /* AppDelegate.swift */; };
 		00EFE0541D227D5F0066C905 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 00EFE0521D227D5F0066C905 /* Main.storyboard */; };
 		00EFE0561D227D5F0066C905 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 00EFE0551D227D5F0066C905 /* Assets.xcassets */; };
-		00EFE0591D227D5F0066C905 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 00EFE0571D227D5F0066C905 /* LaunchScreen.storyboard */; };
 		00EFE0641D227D5F0066C905 /* LunaRTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EFE0631D227D5F0066C905 /* LunaRTests.swift */; };
 		00EFE06F1D227D5F0066C905 /* LunaRUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EFE06E1D227D5F0066C905 /* LunaRUITests.swift */; };
 		00EFE1471D227DCC0066C905 /* AidOtaController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EFE07D1D227DCC0066C905 /* AidOtaController.swift */; };
@@ -949,7 +948,6 @@
 		00EFE04C1D227D5F0066C905 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		00EFE0531D227D5F0066C905 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		00EFE0551D227D5F0066C905 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		00EFE0581D227D5F0066C905 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		00EFE05A1D227D5F0066C905 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00EFE05F1D227D5F0066C905 /* LunaRTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LunaRTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00EFE0631D227D5F0066C905 /* LunaRTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LunaRTests.swift; sourceTree = "<group>"; };
@@ -1942,7 +1940,6 @@
 				00EFE04C1D227D5F0066C905 /* AppDelegate.swift */,
 				00EFE0521D227D5F0066C905 /* Main.storyboard */,
 				00EFE0551D227D5F0066C905 /* Assets.xcassets */,
-				00EFE0571D227D5F0066C905 /* LaunchScreen.storyboard */,
 				00EFE05A1D227D5F0066C905 /* Info.plist */,
 				0037EC1B1D235DCE00502140 /* LunaR-Bridging-Header.h */,
 			);
@@ -2763,7 +2760,6 @@
 				0037EC3C1D235F5300502140 /* clockView600.png in Resources */,
 				007C45531D2B4C73004929E0 /* TutorialFiveViewController.xib in Resources */,
 				00EFE1721D227DCC0066C905 /* NotificationClockCell.xib in Resources */,
-				00EFE0591D227D5F0066C905 /* LaunchScreen.storyboard in Resources */,
 				008AEF1B1D264A4C00B9E4D0 /* ProfileSetupViewController.xib in Resources */,
 				00EFE1BF1D227DCC0066C905 /* UserProfileController.xib in Resources */,
 				00EFE1521D227DCC0066C905 /* AlarmTypeController.xib in Resources */,
@@ -3672,14 +3668,6 @@
 			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
-		00EFE0571D227D5F0066C905 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				00EFE0581D227D5F0066C905 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
@@ -3688,6 +3676,7 @@
 			baseConfigurationReference = 14C4652E23FFFA73733C92C2 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ANALYZER_NONNULL = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -3715,6 +3704,7 @@
 			baseConfigurationReference = A7FD54C20F9E4C504037C449 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ANALYZER_NONNULL = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
