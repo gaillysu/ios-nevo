@@ -3,7 +3,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <customFonts key="customFonts">
         <mutableArray key="Raleway-Regular.ttf">
@@ -21,20 +20,14 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Set time" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jc7-Ij-g1w">
-                    <rect key="frame" x="0.0" y="75" width="375" height="52"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="52" id="tsU-pb-CQH"/>
-                    </constraints>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Set time" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="jc7-Ij-g1w">
+                    <rect key="frame" x="0.0" y="74" width="375" height="41"/>
                     <fontDescription key="fontDescription" name="Raleway" family="Raleway" pointSize="40"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lGd-3f-4uL">
-                    <rect key="frame" x="30" y="130" width="316" height="40"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="40" id="fqu-Xa-9l6"/>
-                    </constraints>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="lGd-3f-4uL">
+                    <rect key="frame" x="0.0" y="120" width="375" height="39"/>
                     <string key="text">Pull out the crown out and turn to set the time on
 your LunaR watch. Be aware that LunaR doesn’t sync
 time with your phone.</string>
@@ -42,43 +35,37 @@ time with your phone.</string>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="set_timer" translatesAutoresizingMaskIntoConstraints="NO" id="59u-7g-cmz">
-                    <rect key="frame" x="13" y="200" width="350" height="350"/>
-                    <constraints>
-                        <constraint firstAttribute="width" secondItem="59u-7g-cmz" secondAttribute="height" multiplier="1:1" id="KL9-Up-Win"/>
-                    </constraints>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" image="set_timer" translatesAutoresizingMaskIntoConstraints="NO" id="59u-7g-cmz">
+                    <rect key="frame" x="33" y="176" width="310" height="316"/>
                 </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SEZ-cJ-qxf">
-                    <rect key="frame" x="0.0" y="587" width="375" height="35"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="35" id="vMh-9b-gXr"/>
-                    </constraints>
+                    <rect key="frame" x="0.0" y="565" width="375" height="43"/>
                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="32"/>
                     <state key="normal" title="Next">
                         <color key="titleColor" red="0.4941176471" green="0.84705882349999995" blue="0.81960784310000001" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
                     <connections>
-                        <action selector="nextAction:" destination="-1" eventType="touchUpInside" id="sdd-rZ-Uhe"/>
+                        <action selector="nextAction:" destination="-1" eventType="touchUpInside" id="NsM-o1-9ps"/>
                     </connections>
                 </button>
             </subviews>
             <color key="backgroundColor" red="0.3294117647" green="0.3411764706" blue="0.35294117650000001" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="jc7-Ij-g1w" firstAttribute="leading" secondItem="LeH-dC-LZT" secondAttribute="leading" id="4dn-Bv-pqU"/>
-                <constraint firstItem="59u-7g-cmz" firstAttribute="top" secondItem="lGd-3f-4uL" secondAttribute="bottom" constant="30" id="7UJ-pn-CP0"/>
                 <constraint firstAttribute="trailing" secondItem="jc7-Ij-g1w" secondAttribute="trailing" id="9o7-tZ-aF2"/>
-                <constraint firstItem="lGd-3f-4uL" firstAttribute="leading" secondItem="LeH-dC-LZT" secondAttribute="leading" constant="30" id="C9O-8S-xeC"/>
+                <constraint firstItem="lGd-3f-4uL" firstAttribute="leading" secondItem="LeH-dC-LZT" secondAttribute="leading" id="C9O-8S-xeC"/>
+                <constraint firstItem="59u-7g-cmz" firstAttribute="height" secondItem="SEZ-cJ-qxf" secondAttribute="height" constant="273" id="HG9-pd-H11"/>
                 <constraint firstAttribute="trailing" secondItem="SEZ-cJ-qxf" secondAttribute="trailing" id="KMY-rH-PiK"/>
-                <constraint firstItem="lGd-3f-4uL" firstAttribute="top" secondItem="jc7-Ij-g1w" secondAttribute="bottom" constant="3" id="Pgv-EI-1JW"/>
+                <constraint firstItem="59u-7g-cmz" firstAttribute="leading" secondItem="LeH-dC-LZT" secondAttribute="leading" constant="33" id="MD3-po-AiI"/>
+                <constraint firstItem="lGd-3f-4uL" firstAttribute="top" secondItem="jc7-Ij-g1w" secondAttribute="bottom" constant="5" id="Pgv-EI-1JW"/>
+                <constraint firstItem="59u-7g-cmz" firstAttribute="top" secondItem="lGd-3f-4uL" secondAttribute="bottom" constant="17" id="UtW-nk-bzX"/>
                 <constraint firstItem="SEZ-cJ-qxf" firstAttribute="leading" secondItem="LeH-dC-LZT" secondAttribute="leading" id="WH9-jO-rYp"/>
-                <constraint firstItem="59u-7g-cmz" firstAttribute="leading" secondItem="LeH-dC-LZT" secondAttribute="leading" constant="13" id="XOh-t1-CwN"/>
-                <constraint firstAttribute="bottom" secondItem="SEZ-cJ-qxf" secondAttribute="bottom" constant="45" id="YeV-nd-1ff"/>
-                <constraint firstItem="SEZ-cJ-qxf" firstAttribute="top" secondItem="59u-7g-cmz" secondAttribute="bottom" constant="37" id="ZKk-0g-VQi"/>
-                <constraint firstItem="jc7-Ij-g1w" firstAttribute="top" secondItem="LeH-dC-LZT" secondAttribute="top" constant="75" id="bkp-TJ-X7C"/>
-                <constraint firstAttribute="trailing" secondItem="lGd-3f-4uL" secondAttribute="trailing" constant="29" id="id9-6c-gc5"/>
-                <constraint firstAttribute="trailing" secondItem="59u-7g-cmz" secondAttribute="trailing" constant="12" id="jOW-Nv-fqL"/>
-                <constraint firstItem="59u-7g-cmz" firstAttribute="centerX" secondItem="LeH-dC-LZT" secondAttribute="centerX" id="kwq-Ob-V4d"/>
-                <constraint firstItem="59u-7g-cmz" firstAttribute="centerY" secondItem="LeH-dC-LZT" secondAttribute="centerY" constant="41.5" id="sQe-N5-Z1U"/>
+                <constraint firstAttribute="bottom" secondItem="SEZ-cJ-qxf" secondAttribute="bottom" constant="59" id="YeV-nd-1ff"/>
+                <constraint firstItem="SEZ-cJ-qxf" firstAttribute="top" secondItem="59u-7g-cmz" secondAttribute="bottom" constant="73" id="ZKk-0g-VQi"/>
+                <constraint firstItem="jc7-Ij-g1w" firstAttribute="top" secondItem="LeH-dC-LZT" secondAttribute="top" constant="74" id="bkp-TJ-X7C"/>
+                <constraint firstAttribute="trailing" secondItem="lGd-3f-4uL" secondAttribute="trailing" id="id9-6c-gc5"/>
+                <constraint firstItem="jc7-Ij-g1w" firstAttribute="height" secondItem="lGd-3f-4uL" secondAttribute="height" constant="2" id="rBe-Gc-Bhd"/>
+                <constraint firstAttribute="trailing" secondItem="59u-7g-cmz" secondAttribute="trailing" constant="32" id="sbg-5w-XLJ"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
             <point key="canvasLocation" x="573.5" y="338.5"/>
