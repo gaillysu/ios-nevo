@@ -6,15 +6,16 @@
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="StepHistoricalViewController" customModule="LunaR" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="StepsHistoryViewController" customModule="LunaR" customModuleProvider="target">
             <connections>
-                <outlet property="stepsHistori" destination="eW0-Ed-FPP" id="fU6-qR-eH5"/>
-                <outlet property="stepsHistortView" destination="i5M-Pr-FkT" id="voQ-yd-yN9"/>
+                <outlet property="chartView" destination="mMJ-ii-LKw" id="OWg-SI-aAG"/>
+                <outlet property="nodataLabel" destination="8yE-Sx-UzZ" id="XG0-Dh-0qc"/>
+                <outlet property="stepsHistory" destination="eW0-Ed-FPP" id="Znd-gU-wq2"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT" customClass="StepHistoricalView" customModule="LunaR" customModuleProvider="target">
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
@@ -27,8 +28,8 @@
                         <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                     </collectionViewFlowLayout>
                     <connections>
-                        <outlet property="dataSource" destination="-1" id="9fU-fZ-Bxs"/>
-                        <outlet property="delegate" destination="-1" id="xwe-tT-j3V"/>
+                        <outlet property="dataSource" destination="-1" id="8Ty-vb-13F"/>
+                        <outlet property="delegate" destination="-1" id="Qix-mj-VWX"/>
                     </connections>
                 </collectionView>
                 <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8yE-Sx-UzZ">
@@ -59,10 +60,6 @@
                 <constraint firstItem="mMJ-ii-LKw" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="pti-i7-c9A"/>
                 <constraint firstItem="mMJ-ii-LKw" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="s36-43-47k"/>
             </constraints>
-            <connections>
-                <outlet property="chartView" destination="mMJ-ii-LKw" id="fDB-mP-lM1"/>
-                <outlet property="nodataLabel" destination="8yE-Sx-UzZ" id="aSC-vh-6Qo"/>
-            </connections>
             <point key="canvasLocation" x="548" y="346"/>
         </view>
     </objects>

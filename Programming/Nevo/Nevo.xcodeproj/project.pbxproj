@@ -505,10 +505,8 @@
 		00EFE1941D227DCC0066C905 /* StepController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EFE0E21D227DCC0066C905 /* StepController.swift */; };
 		00EFE1951D227DCC0066C905 /* StepGoalSetingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EFE0E31D227DCC0066C905 /* StepGoalSetingController.swift */; };
 		00EFE1961D227DCC0066C905 /* StepGoalSetingController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00EFE0E41D227DCC0066C905 /* StepGoalSetingController.xib */; };
-		00EFE1971D227DCC0066C905 /* StepHistoricalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EFE0E51D227DCC0066C905 /* StepHistoricalViewController.swift */; };
-		00EFE1981D227DCC0066C905 /* StepHistoricalViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00EFE0E61D227DCC0066C905 /* StepHistoricalViewController.xib */; };
-		00EFE1991D227DCC0066C905 /* StepGoalSetingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EFE0E81D227DCC0066C905 /* StepGoalSetingView.swift */; };
-		00EFE19A1D227DCC0066C905 /* StepHistoricalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EFE0E91D227DCC0066C905 /* StepHistoricalView.swift */; };
+		00EFE1971D227DCC0066C905 /* StepsHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EFE0E51D227DCC0066C905 /* StepsHistoryViewController.swift */; };
+		00EFE1981D227DCC0066C905 /* StepsHistoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00EFE0E61D227DCC0066C905 /* StepsHistoryViewController.xib */; };
 		00EFE19B1D227DCC0066C905 /* SupportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EFE0EB1D227DCC0066C905 /* SupportViewController.swift */; };
 		00EFE19C1D227DCC0066C905 /* SupportViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00EFE0EC1D227DCC0066C905 /* SupportViewController.xib */; };
 		00EFE1B11D227DCC0066C905 /* HomeTutorialController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EFE1201D227DCC0066C905 /* HomeTutorialController.swift */; };
@@ -1035,10 +1033,8 @@
 		00EFE0E21D227DCC0066C905 /* StepController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepController.swift; sourceTree = "<group>"; };
 		00EFE0E31D227DCC0066C905 /* StepGoalSetingController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepGoalSetingController.swift; sourceTree = "<group>"; };
 		00EFE0E41D227DCC0066C905 /* StepGoalSetingController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StepGoalSetingController.xib; sourceTree = "<group>"; };
-		00EFE0E51D227DCC0066C905 /* StepHistoricalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepHistoricalViewController.swift; sourceTree = "<group>"; };
-		00EFE0E61D227DCC0066C905 /* StepHistoricalViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StepHistoricalViewController.xib; sourceTree = "<group>"; };
-		00EFE0E81D227DCC0066C905 /* StepGoalSetingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepGoalSetingView.swift; sourceTree = "<group>"; };
-		00EFE0E91D227DCC0066C905 /* StepHistoricalView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepHistoricalView.swift; sourceTree = "<group>"; };
+		00EFE0E51D227DCC0066C905 /* StepsHistoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepsHistoryViewController.swift; sourceTree = "<group>"; };
+		00EFE0E61D227DCC0066C905 /* StepsHistoryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StepsHistoryViewController.xib; sourceTree = "<group>"; };
 		00EFE0EB1D227DCC0066C905 /* SupportViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SupportViewController.swift; sourceTree = "<group>"; };
 		00EFE0EC1D227DCC0066C905 /* SupportViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SupportViewController.xib; sourceTree = "<group>"; };
 		00EFE1201D227DCC0066C905 /* HomeTutorialController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTutorialController.swift; sourceTree = "<group>"; };
@@ -2263,20 +2259,10 @@
 				00EFE0E21D227DCC0066C905 /* StepController.swift */,
 				00EFE0E31D227DCC0066C905 /* StepGoalSetingController.swift */,
 				00EFE0E41D227DCC0066C905 /* StepGoalSetingController.xib */,
-				00EFE0E51D227DCC0066C905 /* StepHistoricalViewController.swift */,
-				00EFE0E61D227DCC0066C905 /* StepHistoricalViewController.xib */,
-				00EFE0E71D227DCC0066C905 /* StepView */,
+				00EFE0E51D227DCC0066C905 /* StepsHistoryViewController.swift */,
+				00EFE0E61D227DCC0066C905 /* StepsHistoryViewController.xib */,
 			);
 			path = StepController;
-			sourceTree = "<group>";
-		};
-		00EFE0E71D227DCC0066C905 /* StepView */ = {
-			isa = PBXGroup;
-			children = (
-				00EFE0E81D227DCC0066C905 /* StepGoalSetingView.swift */,
-				00EFE0E91D227DCC0066C905 /* StepHistoricalView.swift */,
-			);
-			path = StepView;
 			sourceTree = "<group>";
 		};
 		00EFE0EA1D227DCC0066C905 /* SupportViewController */ = {
@@ -2806,7 +2792,7 @@
 				00EFE1921D227DCC0066C905 /* SleepTrackingController.xib in Resources */,
 				0037EC4E1D2385DF00502140 /* Raleway-ExtraBold.ttf in Resources */,
 				00EFE1701D227DCC0066C905 /* LineColorCell.xib in Resources */,
-				00EFE1981D227DCC0066C905 /* StepHistoricalViewController.xib in Resources */,
+				00EFE1981D227DCC0066C905 /* StepsHistoryViewController.xib in Resources */,
 				0037EC501D2385DF00502140 /* Raleway-Heavy.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3147,7 +3133,6 @@
 				00EFE14B1D227DCC0066C905 /* AddAlarmSystemCell.swift in Sources */,
 				00EFE1751D227DCC0066C905 /* NotificationViewController.swift in Sources */,
 				00EFE17E1D227DCC0066C905 /* PresetTableViewCell.swift in Sources */,
-				00EFE19A1D227DCC0066C905 /* StepHistoricalView.swift in Sources */,
 				00EFE1941D227DCC0066C905 /* StepController.swift in Sources */,
 				00EFE17B1D227DCC0066C905 /* PresetTableViewController.swift in Sources */,
 				00EFE1831D227DCC0066C905 /* SetingInfoCell.swift in Sources */,
@@ -3205,8 +3190,7 @@
 				00EFE1681D227DCC0066C905 /* MyNevoView.swift in Sources */,
 				00EFE14F1D227DCC0066C905 /* AddAlarmView.swift in Sources */,
 				00EFE15E1D227DCC0066C905 /* ConnectOtherAppsController.swift in Sources */,
-				00EFE1991D227DCC0066C905 /* StepGoalSetingView.swift in Sources */,
-				00EFE1971D227DCC0066C905 /* StepHistoricalViewController.swift in Sources */,
+				00EFE1971D227DCC0066C905 /* StepsHistoryViewController.swift in Sources */,
 				00EFE1471D227DCC0066C905 /* AidOtaController.swift in Sources */,
 				00EFE16A1D227DCC0066C905 /* DeviceScannerView.swift in Sources */,
 				00EFE1731D227DCC0066C905 /* NotificationView.swift in Sources */,

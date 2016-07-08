@@ -13,7 +13,13 @@ let NUMBER_OF_STEPS_GOAL_KEY = "NUMBER_OF_STEPS_GOAL_KEY"
 
 class StepGoalSetingController: PublicClassController,ButtonManagerCallBack,SyncControllerDelegate,ClockRefreshDelegate,UICollectionViewDelegate,UICollectionViewDataSource {
     
-    @IBOutlet var stepGoalView: StepGoalSetingView!
+    @IBOutlet weak var clockBackGroundView: UIView!
+    @IBOutlet weak var collectionView:UICollectionView!
+    //Put all UI operation HomeView inside
+    private var mClockTimerView:ClockView?;//init "ClockView" ,Use the code relative layout
+    var progressView:CircleProgressView = CircleProgressView()
+    var progresValue:CGFloat = 0.0
+    
     let StepsGoalKey:String = "ADYSTEPSGOALKEY"
     
     private var mCurrentGoal:Goal = NumberOfStepsGoal()
@@ -31,18 +37,25 @@ class StepGoalSetingController: PublicClassController,ButtonManagerCallBack,Sync
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         contentTitleArray = [NSLocalizedString("goal", comment: ""), NSLocalizedString("progress", comment: ""), NSLocalizedString("you_reached", comment: "")]
-        ClockRefreshManager.sharedInstance.setRefreshDelegate(self)
 
         let local:LocalNotification = LocalNotification.sharedInstance()
         local.scheduleNotificationWithKey(NevoAllKeys.LocalStartSportKey(), title: "Today's activity", message: "Today's activity level haven't reach your goals", date: NSDate.date(year: NSDate().year, month: NSDate().month, day: NSDate().day, hour: 13, minute: 0, second: 0) , userInfo: nil)
+        
+        ClockRefreshManager.sharedInstance.setRefreshDelegate(self)
     }
 
     override func viewDidLayoutSubviews() {
-        stepGoalView.bulidStepGoalView(self,navigation: self.navigationItem)
-        stepGoalView.collectionView?.delegate = self
-        stepGoalView.collectionView?.dataSource = self
+        super.viewDidLayoutSubviews()
+        let layout:UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+        layout.itemSize = CGSizeMake((UIScreen.mainScreen().bounds.size.width)/3.0, collectionView.frame.size.height)
+        layout.minimumInteritemSpacing = 0
+        layout.minimumLineSpacing = 1
+        collectionView.collectionViewLayout = layout
+        collectionView?.registerClass(UICollectionViewCell.classForCoder(), forCellWithReuseIdentifier: "CollectionViewCell")
+        collectionView?.backgroundColor = UIColor.whiteColor()
+        
+        bulidClockViewandProgressBar()
 
         let dataArray:NSArray = AppTheme.LoadKeyedArchiverName(StepsGoalKey) as! NSArray
         if(dataArray.count>0) {
@@ -53,8 +66,8 @@ class StepGoalSetingController: PublicClassController,ButtonManagerCallBack,Sync
             let dailyStepGoal:Int = NSString(string: contentTArray[0]).integerValue
             let dailySteps:Int = NSString(string: contentTArray[2]).integerValue
             let percent:Float = NSString(string: contentTArray[1].stringByReplacingOccurrencesOfString("%", withString: "")).floatValue/100.0
-            stepGoalView.setProgress(percent, dailySteps: dailySteps, dailyStepGoal: dailyStepGoal)
-            stepGoalView.collectionView.reloadData()
+            self.setProgress(percent, dailySteps: dailySteps, dailyStepGoal: dailyStepGoal)
+            collectionView?.reloadData()
         }
 
     }
@@ -70,12 +83,39 @@ class StepGoalSetingController: PublicClassController,ButtonManagerCallBack,Sync
         }
     }
 
+    func bulidClockViewandProgressBar() {
+        for view in clockBackGroundView.subviews {
+            if view is ClockView {
+                view.removeFromSuperview()
+            }
+        }
+        mClockTimerView = ClockView(frame:CGRectMake(0, 0, clockBackGroundView.bounds.width, clockBackGroundView.bounds.width), hourImage:  UIImage(named: "wacth_hour")!, minuteImage: UIImage(named: "wacth_mint")!, dialImage: UIImage(named: "wacth_dial")!)
+        mClockTimerView?.currentTimer()
+        clockBackGroundView.addSubview(mClockTimerView!)
+        
+        progressView.frame = CGRectMake(clockBackGroundView.frame.origin.x-3, clockBackGroundView.frame.origin.y-3, clockBackGroundView.bounds.width+6, clockBackGroundView.bounds.width+6)
+        progressView.setProgressColor(AppTheme.NEVO_SOLAR_YELLOW())
+        progressView.setProgress(0.0)
+        self.view.layer.addSublayer(progressView)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
 
 
+    /**
+     set the progress of the progressView
+     
+     :param: progress
+     :param: animated
+     */
+    func setProgress(progress: Float,dailySteps:Int,dailyStepGoal:Int){
+        progresValue = CGFloat(progress)
+        progressView.setProgress(progresValue, Steps: dailySteps, GoalStep: dailyStepGoal)
+    }
+    
     // MARK: - ButtonManagerCallBack
     func controllManager(sender:AnyObject) {
 
@@ -83,7 +123,7 @@ class StepGoalSetingController: PublicClassController,ButtonManagerCallBack,Sync
 
     // MARK: - ClockRefreshDelegate
     func clockRefreshAction(){
-        stepGoalView.getClockTimerView().currentTimer()
+        mClockTimerView?.currentTimer()
         if AppDelegate.getAppDelegate().isConnected() {
             if shouldSync{
                 AppDelegate.getAppDelegate().getGoal()
@@ -156,10 +196,10 @@ class StepGoalSetingController: PublicClassController,ButtonManagerCallBack,Sync
             contentTArray.insert(String(format: "%.2f%c", percent*100,37), atIndex: 1)
             contentTArray.insert("\(dailySteps)", atIndex: 2)
 
-            stepGoalView.collectionView?.reloadData()
-            stepGoalView.setProgress(percent, dailySteps: dailySteps, dailyStepGoal: dailyStepGoal)
+            collectionView.reloadData()
+            self.setProgress(percent, dailySteps: dailySteps, dailyStepGoal: dailyStepGoal)
+            
             AppTheme.KeyedArchiverName(StepsGoalKey, andObject: contentTArray)
-
             if(dailySteps>=dailyStepGoal) {
                 LocalNotification.sharedInstance().cancelNotification([NevoAllKeys.LocalEndSportKey()])
                 let local:LocalNotification = LocalNotification.sharedInstance()
@@ -170,10 +210,10 @@ class StepGoalSetingController: PublicClassController,ButtonManagerCallBack,Sync
         if packet.getHeader() == LedLightOnOffNevoRequest.HEADER(){
             AppTheme.DLog("end handshake nevo");
             //blink once Clock
-            self.stepGoalView.getClockTimerView().setClockImage(AppTheme.GET_RESOURCES_IMAGE("clockview600_color"))
+            mClockTimerView?.setClockImage(AppTheme.GET_RESOURCES_IMAGE("clockview600_color"))
             let dispatchTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, Int64(2.0 * Double(NSEC_PER_SEC)))
             dispatch_after(dispatchTime, dispatch_get_main_queue(), {
-                self.stepGoalView.getClockTimerView().setClockImage(AppTheme.GET_RESOURCES_IMAGE("clockView600"))
+                self.mClockTimerView?.setClockImage(AppTheme.GET_RESOURCES_IMAGE("clockView600"))
             })
         }
         

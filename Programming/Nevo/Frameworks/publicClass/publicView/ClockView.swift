@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ClockView: UIControl {
+class ClockView: UIView {
 
     private var mHourImageView:UIImageView!
     private var mMinuteImageView:UIImageView!
@@ -54,6 +54,18 @@ class ClockView: UIControl {
         fatalError("init(coder:) has not been implemented")
     }
 
+    func setClockViewFrame(frame:CGRect) {
+        let dialeRect:CGRect = CGRectMake(0, 0, frame.size.width, frame.size.width)
+        super.frame = dialeRect
+        NSLog("dialeRect:\(dialeRect)")
+        mClockDialView.frame = dialeRect
+        mClockDialView.backgroundColor = UIColor.redColor()
+        mHourImageView.frame = dialeRect
+        mHourImageView.backgroundColor = UIColor.blueColor()
+        mMinuteImageView.frame = dialeRect
+        mMinuteImageView.backgroundColor = UIColor.brownColor()
+    }
+    
     /*
     SET TIMER RADIANS
     */

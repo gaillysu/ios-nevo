@@ -20,7 +20,9 @@ private struct PagingMenuOptions: PagingMenuControllerCustomizable {
     
     private var pagingControllers: [UIViewController] {
         let viewController1 = StepGoalSetingController()
-        let viewController2 = StepHistoricalViewController()
+        viewController1.view.backgroundColor = UIColor.clearColor()
+        let viewController2 = StepsHistoryViewController()
+        viewController2.view.backgroundColor = UIColor.clearColor()
         return [viewController1, viewController2]
     }
 }
@@ -28,7 +30,7 @@ private struct PagingMenuOptions: PagingMenuControllerCustomizable {
 class StepController: PublicClassController,toolbarSegmentedDelegate,UIActionSheetDelegate {
     private var currentVC:UIViewController?
     private var stepGoal:StepGoalSetingController?
-    private var stepHistorical:StepHistoricalViewController?
+    private var stepsHistoriy:StepsHistoryViewController?
     private var rightButton:UIBarButtonItem?
     private var goalArray:[Int] = []
     var viewControllers:[UIViewController] = []
@@ -55,11 +57,12 @@ class StepController: PublicClassController,toolbarSegmentedDelegate,UIActionShe
         super.viewDidLayoutSubviews()
         let options = PagingMenuOptions()
         let pagingMenuController = PagingMenuController(options: options)
-        pagingMenuController.view.backgroundColor = UIColor.clearColor()
+        pagingMenuController.view.backgroundColor = UIColor.redColor()
         pagingMenuController.view.frame = CGRectMake(0, 0, UIScreen.mainScreen().bounds.width, self.view.frame.size.height)
         self.addChildViewController(pagingMenuController)
         view.addSubview(pagingMenuController.view)
         pagingMenuController.didMoveToParentViewController(self)
+        view.backgroundColor = UIColor.redColor()
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -89,7 +92,7 @@ class StepController: PublicClassController,toolbarSegmentedDelegate,UIActionShe
         if((UIDevice.currentDevice().systemVersion as NSString).floatValue >= 8.0){
             
             let actionSheet:UIAlertController = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
-            actionSheet.view.tintColor = AppTheme.NEVO_SOLAR_YELLOW()
+            actionSheet.view.tintColor = UIColor(rgba: "#7ED8D1")
 
             let alertAction:UIAlertAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: UIAlertActionStyle.Cancel, handler: nil)
             actionSheet.addAction(alertAction)
@@ -129,7 +132,7 @@ class StepController: PublicClassController,toolbarSegmentedDelegate,UIActionShe
     func didSelectedSegmentedControl(segment:UISegmentedControl){
         if(segment.isKindOfClass(UISegmentedControl.classForCoder())){
             if(segment.selectedSegmentIndex == 1){
-                self.replaceController(currentVC!, newController: stepHistorical!)
+                self.replaceController(currentVC!, newController: stepsHistoriy!)
             }
 
             if(segment.selectedSegmentIndex == 0){

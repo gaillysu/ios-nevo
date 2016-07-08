@@ -8,12 +8,13 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="StepGoalSetingController" customModule="LunaR" customModuleProvider="target">
             <connections>
-                <outlet property="stepGoalView" destination="i5M-Pr-FkT" id="MzY-hV-1tA"/>
+                <outlet property="clockBackGroundView" destination="6hx-b1-hnx" id="J9H-B9-HJU"/>
+                <outlet property="collectionView" destination="Y0u-3W-BqB" id="WDW-qp-DJf"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT" customClass="StepGoalSetingView" customModule="LunaR" customModuleProvider="target">
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
@@ -25,6 +26,10 @@
                         <size key="footerReferenceSize" width="0.0" height="0.0"/>
                         <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                     </collectionViewFlowLayout>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="rgf-SF-5a7"/>
+                        <outlet property="delegate" destination="-1" id="bF1-9U-RHd"/>
+                    </connections>
                 </collectionView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6hx-b1-hnx">
                     <rect key="frame" x="30" y="25" width="260" height="260"/>
@@ -43,10 +48,6 @@
                 <constraint firstAttribute="bottom" secondItem="Y0u-3W-BqB" secondAttribute="bottom" id="jso-Kf-0U9"/>
                 <constraint firstItem="Y0u-3W-BqB" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="nq5-pe-PeJ"/>
             </constraints>
-            <connections>
-                <outlet property="clockBackGroundView" destination="6hx-b1-hnx" id="nRM-4v-a4O"/>
-                <outlet property="collectionView" destination="Y0u-3W-BqB" id="Dbe-Td-pcu"/>
-            </connections>
             <point key="canvasLocation" x="548" y="346"/>
         </view>
     </objects>

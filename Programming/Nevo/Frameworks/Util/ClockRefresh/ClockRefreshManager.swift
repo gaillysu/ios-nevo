@@ -42,6 +42,11 @@ class ClockRefreshManager: NSObject {
     :param: delegate refresh objects
     */
     func setRefreshDelegate(delegate:ClockRefreshDelegate){
+        for objectDelegate in refreshObject {
+            if objectDelegate is StepsHistoryViewController {
+                return
+            }
+        }
         refreshObject.append(delegate)
     }
 }

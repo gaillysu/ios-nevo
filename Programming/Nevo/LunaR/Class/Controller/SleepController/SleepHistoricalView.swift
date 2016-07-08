@@ -9,6 +9,11 @@
 import UIKit
 import Charts
 
+@objc protocol SelectedChartViewDelegate{
+    optional func didSelectedhighlightValue(xIndex:Int,dataSetIndex: Int, dataSteps:UserSteps)
+    optional func didSleepSelectedhighlightValue(xIndex:Int,dataSetIndex: Int, dataSleep:Sleep)
+}
+
 class SleepHistoricalView: UIView, ChartViewDelegate{
 
     @IBOutlet var chartView:BarChartView?
