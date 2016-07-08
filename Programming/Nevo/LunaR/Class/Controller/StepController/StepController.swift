@@ -27,10 +27,7 @@ private struct PagingMenuOptions: PagingMenuControllerCustomizable {
     }
 }
 
-class StepController: PublicClassController,toolbarSegmentedDelegate,UIActionSheetDelegate {
-    private var currentVC:UIViewController?
-    private var stepGoal:StepGoalSetingController?
-    private var stepsHistoriy:StepsHistoryViewController?
+class StepController: PublicClassController,UIActionSheetDelegate {
     private var rightButton:UIBarButtonItem?
     private var goalArray:[Int] = []
     var viewControllers:[UIViewController] = []
@@ -127,37 +124,32 @@ class StepController: PublicClassController,toolbarSegmentedDelegate,UIActionShe
             actionSheet.showInView(self.view)
         }
     }
-
-    // MARK: - toolbarSegmentedDelegate
-    func didSelectedSegmentedControl(segment:UISegmentedControl){
-        if(segment.isKindOfClass(UISegmentedControl.classForCoder())){
-            if(segment.selectedSegmentIndex == 1){
-                self.replaceController(currentVC!, newController: stepsHistoriy!)
-            }
-
-            if(segment.selectedSegmentIndex == 0){
-                self.replaceController(currentVC!, newController: stepGoal!)
-            }
-        }
-    }
-
-    func replaceController(oldController:UIViewController,newController:UIViewController){
-        self.addChildViewController(newController)
-        self.transitionFromViewController(oldController, toViewController: newController, duration: 0.3, options: UIViewAnimationOptions.AllowAnimatedContent, animations: { (completion) -> Void in
-
-            }) { (finished) -> Void in
-                if (finished) {
-                    newController.didMoveToParentViewController(self)
-                    oldController.willMoveToParentViewController(nil)
-                    oldController.removeFromParentViewController()
-                    self.currentVC = newController;
-                }else{
-                    self.currentVC = oldController;
-
+    
+    func getCurrentVC() -> UIViewController {
+        var result:UIViewController?
+        
+        var window:UIWindow = UIApplication.sharedApplication().keyWindow!
+        if (window.windowLevel != UIWindowLevelNormal){
+            let windows:NSArray = UIApplication.sharedApplication().windows;
+            for tmpWin in windows {
+                if (tmpWin.windowLevel == UIWindowLevelNormal){
+                    window = tmpWin as! UIWindow;
+                    break;
                 }
+            }
         }
+        
+        let frontView:UIView = window.subviews[0]
+        let nextResponder = frontView.nextResponder()
+        
+        if nextResponder!.isKindOfClass(UIViewController.classForCoder()) {
+            result = nextResponder as? UIViewController
+        }else{
+            result = window.rootViewController
+        }
+        
+        return result!;
     }
-
     // MARK: - UIActionSheetDelegate
     func actionSheet(actionSheet: UIActionSheet, clickedButtonAtIndex buttonIndex: Int){
         if(buttonIndex != 0){
@@ -188,14 +180,5 @@ class StepController: PublicClassController,toolbarSegmentedDelegate,UIActionShe
             banner.show(duration: 2.0)
         }
 
-    }
-
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        stepGoal?.shouldSync = true
-    }
-    
-    override func viewWillDisappear(animated: Bool) {
-        stepGoal?.shouldSync = false
     }
 }
