@@ -58,12 +58,6 @@ class ProfileSetupViewController: UIViewController {
             self.dismissViewControllerAnimated(true, completion: nil)
         }
     }
-
-    override func viewWillDisappear(animated: Bool) {
-        super.viewWillDisappear(animated)
-        self.navigationController?.navigationBar.lt_reset()
-        UIApplication.sharedApplication().statusBarStyle = UIStatusBarStyle.Default
-    }
     
     @IBAction func buttonActionManager(sender: AnyObject) {
         

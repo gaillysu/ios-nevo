@@ -1,4 +1,5 @@
 PODS:
+  - ActiveLabel (0.5.1)
   - Alamofire (3.4.1)
   - AutocompleteField (1.1)
   - BRYXBanner (0.5.2):
@@ -59,6 +60,7 @@ PODS:
   - XCGLogger (3.3)
 
 DEPENDENCIES:
+  - ActiveLabel
   - Alamofire
   - AutocompleteField
   - BRYXBanner
@@ -90,6 +92,7 @@ CHECKOUT OPTIONS:
     :git: https://github.com/SwiftyJSON/SwiftyJSON.git
 
 SPEC CHECKSUMS:
+  ActiveLabel: 2360173515b6afabad23610824c222cc626d2166
   Alamofire: 01a82e2f6c0f860ade35534c8dd88be61bdef40c
   AutocompleteField: 212b36bef0218f22c05d80035be2d382acd5a4e2
   BRYXBanner: 5f0911d52e0a77e088f7ea7ddcdebd02afb7828a

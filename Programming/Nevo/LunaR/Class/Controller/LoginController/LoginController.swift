@@ -14,12 +14,14 @@ import XCGLogger
 import LTNavigationBar
 import UIColor_Hex_Swift
 import AutocompleteField
+import ActiveLabel
 
 class LoginController: UIViewController,UITextFieldDelegate {
 
     @IBOutlet weak var userNameTextField: AutocompleteField!
     @IBOutlet weak var passwordTextField: AutocompleteField!
     @IBOutlet weak var logoinButton: UIButton!
+    @IBOutlet weak var registerLabel: ActiveLabel!
     
     var userName:String = ""
     var password:String = ""
@@ -40,12 +42,15 @@ class LoginController: UIViewController,UITextFieldDelegate {
         
         let rightButton:UIBarButtonItem = UIBarButtonItem(title: "Skip Login", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(rightAction(_:)))
         self.navigationItem.rightBarButtonItem = rightButton
+        
+        let tap:UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapAction(_:)))
+        registerLabel.addGestureRecognizer(tap)
+        
     }
     
-    override func viewWillDisappear(animated: Bool) {
-        super.viewWillDisappear(animated)
-        self.navigationController?.navigationBar.lt_reset()
-        UIApplication.sharedApplication().statusBarStyle = UIStatusBarStyle.Default
+    func tapAction(sender:UITapGestureRecognizer) {
+        let register:ProfileSetupViewController = ProfileSetupViewController()
+        self.navigationController?.pushViewController(register, animated: true)
     }
 
     override func didReceiveMemoryWarning() {

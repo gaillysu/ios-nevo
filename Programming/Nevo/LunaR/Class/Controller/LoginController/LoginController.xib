@@ -17,6 +17,7 @@
             <connections>
                 <outlet property="logoinButton" destination="WVZ-VY-fkM" id="Nad-84-SJW"/>
                 <outlet property="passwordTextField" destination="fmC-FL-Zk2" id="tSG-HU-i81"/>
+                <outlet property="registerLabel" destination="4fD-c2-9vf" id="0Zp-bm-dAe"/>
                 <outlet property="userNameTextField" destination="Tnd-gn-9VW" id="ozR-zm-0Mq"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -132,7 +133,7 @@
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                 </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="234" text="Dont't have an account?Register here!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4fD-c2-9vf">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="234" text="Dont't have an account?Register here!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4fD-c2-9vf" customClass="ActiveLabel" customModule="ActiveLabel">
                     <rect key="frame" x="67" y="582" width="240" height="42"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="42" id="JKf-zx-bit"/>

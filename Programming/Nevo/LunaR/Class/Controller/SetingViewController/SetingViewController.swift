@@ -101,9 +101,9 @@ class SetingViewController: UIViewController,SyncControllerDelegate,ButtonManage
         case 0:
             let user:NSArray = UserProfile.getAll()
             if user.count == 0 {
-                let logoin:ProfileSetupViewController = ProfileSetupViewController()
-                logoin.hidesBottomBarWhenPushed = true
-                self.navigationController?.pushViewController(logoin, animated: true)
+                let login:LoginController = LoginController()
+                login.hidesBottomBarWhenPushed = true
+                self.navigationController?.pushViewController(login, animated: true)
             }else{
                 let userprofile:UserProfileController = UserProfileController()
                 userprofile.title = "UserProfile"
