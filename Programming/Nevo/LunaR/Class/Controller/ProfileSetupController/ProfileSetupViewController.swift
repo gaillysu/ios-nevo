@@ -67,6 +67,31 @@ class ProfileSetupViewController: UIViewController {
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         lastNameTextField.resignFirstResponder()
         firstNameTextField.resignFirstResponder()
-
+        email.resignFirstResponder()
+        password.resignFirstResponder()
+        retypePassword.resignFirstResponder()
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        if email.isEqual(textField) {
+            firstNameTextField.becomeFirstResponder()
+        }
+        
+        if firstNameTextField.isEqual(textField) {
+            lastNameTextField.becomeFirstResponder()
+        }
+        
+        if lastNameTextField.isEqual(textField) {
+            password.becomeFirstResponder()
+        }
+        
+        if password.isEqual(textField) {
+            retypePassword.becomeFirstResponder()
+        }
+        
+        if textField.returnKeyType == UIReturnKeyType.Done {
+            textField.resignFirstResponder()
+        }
+        return true
     }
 }
