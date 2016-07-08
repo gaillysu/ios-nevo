@@ -5,8 +5,8 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <customFonts key="customFonts">
-        <mutableArray key="SFCompactDisplay-Light.ttf">
-            <string>SFCompactDisplay-Light</string>
+        <mutableArray key="Raleway-Regular.ttf">
+            <string>Raleway</string>
         </mutableArray>
         <mutableArray key="SFCompactDisplay-Regular.ttf">
             <string>SFCompactDisplay-Regular</string>
@@ -15,6 +15,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LoginController" customModule="LunaR" customModuleProvider="target">
             <connections>
+                <outlet property="logoinButton" destination="WVZ-VY-fkM" id="Nad-84-SJW"/>
+                <outlet property="passwordTextField" destination="fmC-FL-Zk2" id="tSG-HU-i81"/>
+                <outlet property="userNameTextField" destination="Tnd-gn-9VW" id="ozR-zm-0Mq"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -24,17 +27,17 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="lunar_logo" translatesAutoresizingMaskIntoConstraints="NO" id="h44-yr-a8T">
-                    <rect key="frame" x="30" y="156" width="320" height="100"/>
+                    <rect key="frame" x="30" y="156" width="320" height="80"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="100" id="0vn-Kd-CPv"/>
+                        <constraint firstAttribute="height" constant="80" id="0vn-Kd-CPv"/>
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Cloud Platform" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g5g-mC-67u">
-                    <rect key="frame" x="38" y="263" width="300" height="30"/>
+                    <rect key="frame" x="38" y="255" width="300" height="30"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="bHE-u2-GE8"/>
                     </constraints>
-                    <fontDescription key="fontDescription" name="SFCompactDisplay-Light" family="SF Compact Display" pointSize="30"/>
+                    <fontDescription key="fontDescription" name="Raleway" family="Raleway" pointSize="24"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
@@ -69,8 +72,8 @@
                         <constraint firstAttribute="height" constant="50" id="7XH-0N-wd3"/>
                     </constraints>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <textInputTraits key="textInputTraits"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                    <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="number" keyPath="padding">
                             <real key="value" value="10"/>
@@ -99,6 +102,9 @@
                             <integer key="value" value="10"/>
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="buttonAction:" destination="-1" eventType="touchUpInside" id="ZwU-5T-JpB"/>
+                    </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Login with social media" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FG3-Pu-4pM">
                     <rect key="frame" x="55" y="504" width="266" height="21"/>
@@ -155,14 +161,14 @@
                 <constraint firstItem="WVZ-VY-fkM" firstAttribute="leading" secondItem="FG3-Pu-4pM" secondAttribute="leading" id="hyr-sn-mau"/>
                 <constraint firstItem="fmC-FL-Zk2" firstAttribute="trailing" secondItem="WVZ-VY-fkM" secondAttribute="trailing" id="jDA-ig-8zE"/>
                 <constraint firstItem="FG3-Pu-4pM" firstAttribute="top" secondItem="WVZ-VY-fkM" secondAttribute="bottom" constant="10" id="kRH-Eu-1fw"/>
-                <constraint firstItem="Tnd-gn-9VW" firstAttribute="top" secondItem="g5g-mC-67u" secondAttribute="bottom" constant="33" id="mJI-EL-PmA"/>
+                <constraint firstItem="Tnd-gn-9VW" firstAttribute="top" secondItem="g5g-mC-67u" secondAttribute="bottom" constant="41" id="mJI-EL-PmA"/>
                 <constraint firstItem="hbG-eO-XIb" firstAttribute="leading" secondItem="ch2-Af-40M" secondAttribute="trailing" constant="12" id="ncv-s1-nN5"/>
                 <constraint firstItem="4fD-c2-9vf" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="orW-WK-9hN"/>
                 <constraint firstItem="Tnd-gn-9VW" firstAttribute="leading" secondItem="fmC-FL-Zk2" secondAttribute="leading" id="qmD-pa-9Hj"/>
                 <constraint firstItem="WVZ-VY-fkM" firstAttribute="trailing" secondItem="FG3-Pu-4pM" secondAttribute="trailing" id="rpM-x6-CrT"/>
                 <constraint firstItem="4fD-c2-9vf" firstAttribute="top" secondItem="ch2-Af-40M" secondAttribute="bottom" constant="19" id="tqZ-HM-bFk"/>
                 <constraint firstItem="ch2-Af-40M" firstAttribute="bottom" secondItem="hbG-eO-XIb" secondAttribute="bottom" id="tqw-Iy-4oM"/>
-                <constraint firstItem="g5g-mC-67u" firstAttribute="top" secondItem="h44-yr-a8T" secondAttribute="bottom" constant="7" id="yXj-oA-a3M"/>
+                <constraint firstItem="g5g-mC-67u" firstAttribute="top" secondItem="h44-yr-a8T" secondAttribute="bottom" constant="19" id="yXj-oA-a3M"/>
                 <constraint firstItem="h44-yr-a8T" firstAttribute="leading" secondItem="g5g-mC-67u" secondAttribute="leading" constant="-8" id="z2J-jd-mXr"/>
             </constraints>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
