@@ -60,7 +60,22 @@ class ProfileSetupViewController: UIViewController {
     }
     
     @IBAction func buttonActionManager(sender: AnyObject) {
-        
+        if(AppTheme.isNull(email!.text!) || AppTheme.isEmail(email!.text!) || AppTheme.isNull(firstNameTextField!.text!) || AppTheme.isNull(lastNameTextField!.text!) || AppTheme.isPassword(password.text!) || AppTheme.isPassword(retypePassword.text!)) {
+            let banner = Banner(title: NSLocalizedString("One of the fields are empty.", comment: ""), subtitle: nil, image: nil, backgroundColor:UIColor(rgba: "#7ED8D1"))
+            banner.dismissesOnTap = true
+            banner.show(duration: 0.6)
+        }else{
+            if retypePassword.text! == password.text! {
+                let infoDict:[String:String] = ["email":email!.text!,"first_name":firstNameTextField!.text!,"last_name":lastNameTextField!.text!,"password":password.text!]
+                let infomation:InformationController = InformationController()
+                infomation.registerInfor = infoDict
+                self.navigationController?.pushViewController(infomation, animated: true)
+            }else{
+                let banner = Banner(title: NSLocalizedString("Two password is not the same", comment: ""), subtitle: nil, image: nil, backgroundColor:UIColor(rgba: "#7ED8D1"))
+                banner.dismissesOnTap = true
+                banner.show(duration: 0.6)
+            }
+        }
     }
 
 

@@ -16,6 +16,7 @@ import Timepiece
 import Fabric
 import Crashlytics
 import IQKeyboardManagerSwift
+import XCGLogger
 
 let nevoDBDFileURL:String = "nevoDBName";
 let nevoDBNames:String = "nevo.sqlite";
@@ -42,7 +43,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
     private let alertUpdateTag:Int = 9000
 
     let dbQueue:FMDatabaseQueue = FMDatabaseQueue(path: AppDelegate.dbPath())
-    let network = NetworkReachabilityManager(host: "nevo.karljohnchow.com")
+    let network = NetworkReachabilityManager(host: "lunar.karljohnchow.com")
 
     class func getAppDelegate()->AppDelegate {
         return UIApplication.sharedApplication().delegate as! AppDelegate
@@ -79,6 +80,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
         lastSync = userDefaults.doubleForKey(LAST_SYNC_DATE_KEY)
         
         IQKeyboardManager.sharedManager().enable = true
+        
+        network?.listener = { status in
+            XCGLogger.defaultInstance().debug("Network Status Changed: \(status)")
+        }
+        network?.startListening()
         
         return true
     }

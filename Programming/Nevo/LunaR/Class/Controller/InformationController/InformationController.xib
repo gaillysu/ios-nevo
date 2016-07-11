@@ -12,8 +12,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="InformationController" customModule="LunaR" customModuleProvider="target">
             <connections>
+                <outlet property="dateOfbirth" destination="eXR-xK-yaF" id="2sG-sU-mVB"/>
+                <outlet property="heightTextField" destination="lI6-oe-0Ah" id="XDU-rU-Nwk"/>
                 <outlet property="metricsSegment" destination="b7x-G0-dK8" id="PF5-ym-dlF"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="weightTextfield" destination="NTv-do-MVa" id="Tr2-Ly-oGZ"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -68,6 +71,9 @@
                             <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
+                    <connections>
+                        <outlet property="delegate" destination="-1" id="x7h-sq-2Wr"/>
+                    </connections>
                 </textField>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Height" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lI6-oe-0Ah" customClass="AutocompleteField" customModule="AutocompleteField">
                     <rect key="frame" x="56" y="395" width="262" height="60"/>
@@ -89,6 +95,9 @@
                             <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
+                    <connections>
+                        <outlet property="delegate" destination="-1" id="UWr-V3-Dmb"/>
+                    </connections>
                 </textField>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Weight" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NTv-do-MVa" customClass="AutocompleteField" customModule="AutocompleteField">
                     <rect key="frame" x="56" y="460" width="262" height="60"/>
@@ -110,6 +119,9 @@
                             <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
+                    <connections>
+                        <outlet property="delegate" destination="-1" id="KPx-XJ-QvR"/>
+                    </connections>
                 </textField>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b7x-G0-dK8">
                     <rect key="frame" x="56" y="254" width="262" height="36"/>

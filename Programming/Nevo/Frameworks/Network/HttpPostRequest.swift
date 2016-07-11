@@ -12,6 +12,25 @@ import XCGLogger
 
 class HttpPostRequest: NSObject {
 
+    class  func LunaRPostRequest(url: String, data:Dictionary<String,AnyObject>, completion:(result:NSDictionary) -> Void){
+        var finalData: Dictionary<String,AnyObject> = ["token":"Sfz1Nk9Qt3J0dt7jNOLX0x7VHaT83V8h"]
+        finalData["params"] = data;
+        XCGLogger.defaultInstance().debug("\(finalData)")
+        
+        Alamofire.request(Method.POST, url, parameters: finalData, encoding:ParameterEncoding.JSON, headers: ["Authorization": "Basic YXBwczptZWRfYXBwX2RldmVsb3BtZW50","Content-Type":"application/json"]).responseJSON { (response) -> Void in
+            if response.result.isSuccess {
+                XCGLogger.defaultInstance().debug("getJSON: \(response.result.value)")
+                completion(result: response.result.value as! NSDictionary)
+            }else if (response.result.isFailure){
+                if (response.result.value == nil) {
+                    completion(result: NSDictionary(dictionary: ["error" : "request error"]))
+                }else{
+                    completion(result: response.result.value as! NSDictionary)
+                }
+            }
+        }
+    }
+    
     class  func postRequest(url: String, data:Dictionary<String,AnyObject>, completion:(result:NSDictionary) -> Void){
         var finalData: Dictionary<String,AnyObject> = ["token":"SU9gPy5e1d1t7W8FG2fQ6MuT06cY95MB"]
         finalData["params"] = data;
