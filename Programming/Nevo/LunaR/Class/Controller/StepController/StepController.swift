@@ -11,6 +11,7 @@ import BRYXBanner
 import Timepiece
 import UIColor_Hex_Swift
 import PagingMenuController
+import XCGLogger
 
 private struct PagingMenuOptions: PagingMenuControllerCustomizable {
     
@@ -89,9 +90,8 @@ class StepController: PublicClassController,UIActionSheetDelegate {
         if((UIDevice.currentDevice().systemVersion as NSString).floatValue >= 8.0){
             
             let actionSheet:UIAlertController = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
-            actionSheet.view.tintColor = UIColor(rgba: "#7ED8D1")
-
             let alertAction:UIAlertAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: UIAlertActionStyle.Cancel, handler: nil)
+            alertAction.setValue(UIColor(rgba: "#7ED8D1"), forKey: "titleTextColor")
             actionSheet.addAction(alertAction)
 
             let array:NSArray = Presets.getAll()
@@ -105,6 +105,7 @@ class StepController: PublicClassController,UIActionSheetDelegate {
                             self.setGoal(NumberOfStepsGoal(steps: model.steps))
                         }
                     }
+                    alertAction2.setValue(UIColor(rgba: "#7ED8D1"), forKey: "titleTextColor")
                     actionSheet.addAction(alertAction2)
                 }
             }
