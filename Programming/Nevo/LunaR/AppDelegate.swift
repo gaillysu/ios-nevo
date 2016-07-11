@@ -15,6 +15,7 @@ import BRYXBanner
 import Timepiece
 import Fabric
 import Crashlytics
+import IQKeyboardManagerSwift
 
 let nevoDBDFileURL:String = "nevoDBName";
 let nevoDBNames:String = "nevo.sqlite";
@@ -68,17 +69,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
         }else{
             NSUserDefaults.standardUserDefaults().setBool(false, forKey: "firstDatabase")
         }
-        
-        /**
-        *  Initialize the umeng
-        *
-        *  @param umengAppKey umeng AppKey
-        *  @param BATCH       ReportPolicy
-        *  @param ""         channel Id
-        *
-        */
-        UMAnalyticsConfig.sharedInstance().appKey = umengAppKey
-        MobClick.startWithConfigure(UMAnalyticsConfig.sharedInstance())
 
         /**
         Initialize the BLE Manager
@@ -88,18 +78,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
         let userDefaults = NSUserDefaults.standardUserDefaults();
         lastSync = userDefaults.doubleForKey(LAST_SYNC_DATE_KEY)
         
-        //cancel all notifications  PM-13:00, PM 19:00
-        LocalNotification.sharedInstance().cancelNotification([NevoAllKeys.LocalStartSportKey(),NevoAllKeys.LocalEndSportKey()])
-
-        //Rate our app Pop-up
-        iRate.sharedInstance().messageTitle = NSLocalizedString("Rate Nevo", comment: "")
-        iRate.sharedInstance().message = NSLocalizedString("If you like Nevo, please take the time, etc", comment:"");
-        iRate.sharedInstance().cancelButtonLabel = NSLocalizedString("No, Thanks", comment:"");
-        iRate.sharedInstance().remindButtonLabel = NSLocalizedString("Remind Me Later", comment:"");
-        iRate.sharedInstance().rateButtonLabel = NSLocalizedString("Rate It Now", comment:"");
-        iRate.sharedInstance().applicationBundleID = "com.nevowatch.Nevo"
-        iRate.sharedInstance().onlyPromptIfLatestVersion = false
-        iRate.sharedInstance().previewMode = true
+        IQKeyboardManager.sharedManager().enable = true
         
         return true
     }
