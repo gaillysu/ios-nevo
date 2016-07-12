@@ -58,15 +58,16 @@ class LoginController: UIViewController,UITextFieldDelegate {
     }
     
     func rightAction(sender:UIBarButtonItem) {
-        
+        let register:ProfileSetupViewController = ProfileSetupViewController()
+        self.navigationController?.pushViewController(register, animated: true)
     }
 
     @IBAction func buttonAction(sender: AnyObject) {
         if sender.isEqual(logoinButton) {
             self.loginRequest()
         }else{
-            let registerController =  RegisterController()
-            self.navigationController?.pushViewController(registerController, animated: true);
+            let register:ProfileSetupViewController = ProfileSetupViewController()
+            self.navigationController?.pushViewController(register, animated: true)
         }
     }
     
@@ -85,12 +86,11 @@ class LoginController: UIViewController,UITextFieldDelegate {
     
     
     func loginRequest() {
-        
             userName = userNameTextField!.text!
             password = passwordTextField!.text!
         if AppDelegate.getAppDelegate().network!.isReachable {
             XCGLogger.defaultInstance().debug("有网络")
-            if(AppTheme.isNull(userName) || !AppTheme.isEmail(userName)) {
+            if(AppTheme.isNull(userName) || AppTheme.isEmail(userName)) {
                 let banner = Banner(title: NSLocalizedString("Email is not filled in.", comment: ""), subtitle: nil, image: nil, backgroundColor:UIColor.getBaseColor())
                 banner.dismissesOnTap = true
                 banner.show(duration: 1.2)
@@ -108,7 +108,7 @@ class LoginController: UIViewController,UITextFieldDelegate {
             view.setTintColor(UIColor.getBaseColor())
 
             
-            HttpPostRequest.postRequest("http://nevo.karljohnchow.com/user/login", data: ["user":["email":userName,"password":password]]) { (result) in
+            HttpPostRequest.LunaRPostRequest("http://lunar.karljohnchow.com/user/login", data: ["user":["email":userName,"password":password]]) { (result) in
                 MRProgressOverlayView.dismissAllOverlaysForView(self.navigationController!.view, animated: true)
                 
                 let json = JSON(result)

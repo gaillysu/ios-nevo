@@ -52,7 +52,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         Fabric.with([Crashlytics.self])
         // Override point for customization after application launch
-        UINavigationBar.appearance().tintColor = AppTheme.NEVO_SOLAR_YELLOW()
+        UINavigationBar.appearance().tintColor = UIColor.getBaseColor()
         UITabBar.appearance().backgroundImage = UIImage()
         //UITabBar.appearance().shadowImage = UIImage()
         UITabBar.appearance().translucent = false

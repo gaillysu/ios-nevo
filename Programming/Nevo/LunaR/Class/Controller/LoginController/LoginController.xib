@@ -7,9 +7,7 @@
     <customFonts key="customFonts">
         <mutableArray key="Raleway-Regular.ttf">
             <string>Raleway</string>
-        </mutableArray>
-        <mutableArray key="SFCompactDisplay-Regular.ttf">
-            <string>SFCompactDisplay-Regular</string>
+            <string>Raleway</string>
         </mutableArray>
     </customFonts>
     <objects>
@@ -50,7 +48,7 @@
                     </constraints>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <textInputTraits key="textInputTraits"/>
+                    <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="number" keyPath="padding">
                             <real key="value" value="10"/>
@@ -96,7 +94,7 @@
                     <constraints>
                         <constraint firstAttribute="height" constant="50" id="UZu-0u-qtI"/>
                     </constraints>
-                    <fontDescription key="fontDescription" name="SFCompactDisplay-Regular" family="SF Compact Display" pointSize="30"/>
+                    <fontDescription key="fontDescription" name="Raleway" family="Raleway" pointSize="28"/>
                     <state key="normal" title="LOGIN"/>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">

@@ -12,7 +12,7 @@ import UIColor_Hex_Swift
 extension UIColor{
     
     public class func getBaseColor() -> UIColor {
-        return UIColor(red: 209/255.0 , green: 157/255.0, blue: 66/255.0, alpha: 1)
+        return UIColor(rgba: "#7ED8D1")
         
     }
     

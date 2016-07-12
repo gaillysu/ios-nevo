@@ -130,7 +130,7 @@ class InformationController: UIViewController,SMSegmentViewDelegate {
                 MRProgressOverlayView.dismissAllOverlaysForView(self.navigationController!.view, animated: true)
             })
             
-            HttpPostRequest.LunaRPostRequest("http://lunar.karljohnchow.com/user/create", data: registerInfor) { (result) in
+            HttpPostRequest.LunaRPostRequest("http://lunar.karljohnchow.com/user/create", data: ["user":registerInfor]) { (result) in
                 
                 timeout.invalidate()
                 
@@ -159,7 +159,10 @@ class InformationController: UIViewController,SMSegmentViewDelegate {
                     }
                     
                 }else{
-                    message = NSLocalizedString("no_network", comment: "")
+                    if message.isEmpty {
+                        message = NSLocalizedString("no_network", comment: "")
+                    }
+                    
                 }
                 
                 let banner = Banner(title: NSLocalizedString(message, comment: ""), subtitle: nil, image: nil, backgroundColor:UIColor.getBaseColor())
