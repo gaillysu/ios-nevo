@@ -399,6 +399,10 @@
 		00D581441CB50C7500953B8A /* ChangeProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D581421CB50C7500953B8A /* ChangeProfileController.swift */; };
 		00D581451CB50C7500953B8A /* ChangeProfileController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00D581431CB50C7500953B8A /* ChangeProfileController.xib */; };
 		00DBC3A31C435541004B4376 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 00DBC3A21C435541004B4376 /* Main.storyboard */; };
+		00DE86E61D3489350013FFC4 /* StepsTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00DE86E41D3489350013FFC4 /* StepsTitleView.swift */; };
+		00DE86E71D3489350013FFC4 /* StepsTitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00DE86E51D3489350013FFC4 /* StepsTitleView.xib */; };
+		00DE86EA1D34CB160013FFC4 /* StepGoalSetingViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00DE86E81D34CB160013FFC4 /* StepGoalSetingViewCell.swift */; };
+		00DE86EB1D34CB160013FFC4 /* StepGoalSetingViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00DE86E91D34CB160013FFC4 /* StepGoalSetingViewCell.xib */; };
 		00E2BDE21B16CCD0009C757E /* MBProgressHUD+MJ.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E2BDDE1B16CCD0009C757E /* MBProgressHUD+MJ.m */; };
 		00E2BDE31B16CCD0009C757E /* MBProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 00E2BDDF1B16CCD0009C757E /* MBProgressHUD.bundle */; };
 		00E2BDE41B16CCD0009C757E /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E2BDE11B16CCD0009C757E /* MBProgressHUD.m */; };
@@ -879,6 +883,10 @@
 		00D581421CB50C7500953B8A /* ChangeProfileController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangeProfileController.swift; sourceTree = "<group>"; };
 		00D581431CB50C7500953B8A /* ChangeProfileController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChangeProfileController.xib; sourceTree = "<group>"; };
 		00DBC3A21C435541004B4376 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		00DE86E41D3489350013FFC4 /* StepsTitleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepsTitleView.swift; sourceTree = "<group>"; };
+		00DE86E51D3489350013FFC4 /* StepsTitleView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StepsTitleView.xib; sourceTree = "<group>"; };
+		00DE86E81D34CB160013FFC4 /* StepGoalSetingViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepGoalSetingViewCell.swift; sourceTree = "<group>"; };
+		00DE86E91D34CB160013FFC4 /* StepGoalSetingViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StepGoalSetingViewCell.xib; sourceTree = "<group>"; };
 		00E2BDDD1B16CCD0009C757E /* MBProgressHUD+MJ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MBProgressHUD+MJ.h"; sourceTree = "<group>"; };
 		00E2BDDE1B16CCD0009C757E /* MBProgressHUD+MJ.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MBProgressHUD+MJ.m"; sourceTree = "<group>"; };
 		00E2BDDF1B16CCD0009C757E /* MBProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MBProgressHUD.bundle; sourceTree = "<group>"; };
@@ -2256,11 +2264,15 @@
 		00EFE0E11D227DCC0066C905 /* StepController */ = {
 			isa = PBXGroup;
 			children = (
+				00DE86E41D3489350013FFC4 /* StepsTitleView.swift */,
+				00DE86E51D3489350013FFC4 /* StepsTitleView.xib */,
 				00EFE0E21D227DCC0066C905 /* StepController.swift */,
 				00EFE0E31D227DCC0066C905 /* StepGoalSetingController.swift */,
 				00EFE0E41D227DCC0066C905 /* StepGoalSetingController.xib */,
 				00EFE0E51D227DCC0066C905 /* StepsHistoryViewController.swift */,
 				00EFE0E61D227DCC0066C905 /* StepsHistoryViewController.xib */,
+				00DE86E81D34CB160013FFC4 /* StepGoalSetingViewCell.swift */,
+				00DE86E91D34CB160013FFC4 /* StepGoalSetingViewCell.xib */,
 			);
 			path = StepController;
 			sourceTree = "<group>";
@@ -2756,8 +2768,10 @@
 				00EFE17F1D227DCC0066C905 /* PresetTableViewCell.xib in Resources */,
 				0037EC541D2385DF00502140 /* Raleway-SemiBold.ttf in Resources */,
 				00EFE17C1D227DCC0066C905 /* PresetTableViewController.xib in Resources */,
+				00DE86E71D3489350013FFC4 /* StepsTitleView.xib in Resources */,
 				00EFE1781D227DCC0066C905 /* SelectedNotificationTypeController.xib in Resources */,
 				0074CB981D29EEAA00963607 /* InformationController.xib in Resources */,
+				00DE86EB1D34CB160013FFC4 /* StepGoalSetingViewCell.xib in Resources */,
 				00EFE1551D227DCC0066C905 /* NotAlarmView.xib in Resources */,
 				007C453F1D2B4C1F004929E0 /* MorningTutorialController.xib in Resources */,
 				00EFE14A1D227DCC0066C905 /* AddAlarmController.xib in Resources */,
@@ -3103,6 +3117,7 @@
 				0037EBF41D235BD000502140 /* NevoOTARequest.swift in Sources */,
 				0037EBF51D235BD000502140 /* Utility.swift in Sources */,
 				0037EBF61D235BD000502140 /* BatteryLevelNevoPacket.swift in Sources */,
+				00DE86EA1D34CB160013FFC4 /* StepGoalSetingViewCell.swift in Sources */,
 				0037EBF71D235BD000502140 /* DailyStepsNevoPacket.swift in Sources */,
 				0037EBF81D235BD000502140 /* DailyTrackerInfoNevoPacket.swift in Sources */,
 				0037EBF91D235BD000502140 /* DailyTrackerNevoPacket.swift in Sources */,
@@ -3166,6 +3181,7 @@
 				00EFE1791D227DCC0066C905 /* AddPresetViewController.swift in Sources */,
 				00EFE1BB1D227DCC0066C905 /* UserHeader.swift in Sources */,
 				00EFE1B41D227DCC0066C905 /* TutorialFiveViewController.swift in Sources */,
+				00DE86E61D3489350013FFC4 /* StepsTitleView.swift in Sources */,
 				00EFE04D1D227D5F0066C905 /* AppDelegate.swift in Sources */,
 				00EFE1951D227DCC0066C905 /* StepGoalSetingController.swift in Sources */,
 				00EFE1561D227DCC0066C905 /* NewAddAlarmController.swift in Sources */,

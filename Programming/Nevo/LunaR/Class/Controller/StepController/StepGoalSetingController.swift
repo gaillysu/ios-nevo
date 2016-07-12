@@ -48,15 +48,17 @@ class StepGoalSetingController: PublicClassController,ButtonManagerCallBack,Sync
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         let layout:UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSizeMake((UIScreen.mainScreen().bounds.size.width)/3.0, collectionView.frame.size.height)
+        layout.itemSize = CGSizeMake((UIScreen.mainScreen().bounds.size.width)/2.0, 30)
         layout.minimumInteritemSpacing = 0
-        layout.minimumLineSpacing = 1
+        layout.minimumLineSpacing = 0
         collectionView.collectionViewLayout = layout
+        
+        collectionView.registerNib(UINib(nibName: "StepGoalSetingViewCell", bundle: NSBundle.mainBundle()), forCellWithReuseIdentifier: "StepGoalSetingIdentifier")
         collectionView?.registerClass(UICollectionViewCell.classForCoder(), forCellWithReuseIdentifier: "CollectionViewCell")
-        collectionView?.backgroundColor = UIColor.whiteColor()
+        collectionView?.backgroundColor = UIColor(rgba: "#54575a")
         
         bulidClockViewandProgressBar()
-
+        self.view.backgroundColor = UIColor(rgba: "#54575a")
         let dataArray:NSArray = AppTheme.LoadKeyedArchiverName(StepsGoalKey) as! NSArray
         if(dataArray.count>0) {
             let date:NSTimeInterval = (dataArray[1] as! String).dateFromFormat("YYYY/MM/dd")!.timeIntervalSince1970
@@ -137,47 +139,11 @@ class StepGoalSetingController: PublicClassController,ButtonManagerCallBack,Sync
     }
 
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("CollectionViewCell", forIndexPath: indexPath)
-        cell.backgroundColor = UIColor.clearColor()
-        let labelheight:CGFloat = cell.contentView.frame.size.height
-        let titleView = cell.contentView.viewWithTag(1500)
-        let iphone:Bool = AppTheme.GET_IS_iPhone5S()
-        if(titleView == nil){
-            let titleLabel:UILabel = UILabel(frame: CGRectMake(0, 0, cell.contentView.frame.size.width, labelheight/2.0))
-            titleLabel.textAlignment = NSTextAlignment.Center
-            titleLabel.textColor = UIColor.grayColor()
-            titleLabel.backgroundColor = UIColor.clearColor()
-            titleLabel.font = AppTheme.FONT_SFUIDISPLAY_REGULAR(mSize: iphone ? 12:15)
-            titleLabel.tag = 1500
-            titleLabel.text = contentTitleArray[indexPath.row]
-            titleLabel.sizeToFit()
-            cell.contentView.addSubview(titleLabel)
-            titleLabel.center = CGPointMake(cell.contentView.frame.size.width/2.0, labelheight/2.0-titleLabel.frame.size.height)
-        }else {
-            let titleLabel:UILabel = titleView as! UILabel
-            titleLabel.text = contentTitleArray[indexPath.row]
-            titleLabel.sizeToFit()
-            titleLabel.center = CGPointMake(cell.contentView.frame.size.width/2.0, labelheight/2.0-titleLabel.frame.size.height)
-        }
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("StepGoalSetingIdentifier", forIndexPath: indexPath)
+        //cell.backgroundColor = UIColor.clearColor()
+        (cell as! StepGoalSetingViewCell).titleLabel.text = contentTitleArray[indexPath.row]
+        (cell as! StepGoalSetingViewCell).valueLabel.text = "\(contentTArray[indexPath.row])"
 
-        let contentView = cell.contentView.viewWithTag(1700)
-        if(contentView == nil){
-            let contentStepsView:UILabel = UILabel(frame: CGRectMake(0, labelheight/2.0, cell.contentView.frame.size.width, labelheight/2.0))
-            contentStepsView.textAlignment = NSTextAlignment.Center
-            contentStepsView.backgroundColor = UIColor.clearColor()
-            contentStepsView.textColor = UIColor.blackColor()
-            contentStepsView.font = AppTheme.FONT_SFUIDISPLAY_REGULAR(mSize: iphone ? 15:18)
-            contentStepsView.tag = 1700
-            contentStepsView.text = "\(contentTArray[indexPath.row])"
-            contentStepsView.sizeToFit()
-            cell.contentView.addSubview(contentStepsView)
-            contentStepsView.center = CGPointMake(cell.contentView.frame.size.width/2.0,labelheight/2.0+contentStepsView.frame.size.height/2.0)
-        }else {
-            let contentStepsView:UILabel = contentView as! UILabel
-            contentStepsView.text = "\(contentTArray[indexPath.row])"
-            contentStepsView.sizeToFit()
-            contentStepsView.center = CGPointMake(cell.contentView.frame.size.width/2.0,labelheight/2.0+contentStepsView.frame.size.height/2.0)
-        }
         return cell
     }
 

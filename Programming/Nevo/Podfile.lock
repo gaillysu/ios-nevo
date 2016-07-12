@@ -10,6 +10,7 @@ PODS:
   - Charts/Core (2.2.5)
   - Crashlytics (3.7.2):
     - Fabric (~> 1.6.3)
+  - CVCalendar (1.2.9)
   - Fabric (1.6.7)
   - FMDB (2.6.2):
     - FMDB/standard (= 2.6.2)
@@ -67,6 +68,7 @@ DEPENDENCIES:
   - BRYXBanner
   - Charts
   - Crashlytics
+  - CVCalendar
   - Fabric
   - FMDB
   - GSMessages
@@ -100,6 +102,7 @@ SPEC CHECKSUMS:
   BRYXBanner: 5f0911d52e0a77e088f7ea7ddcdebd02afb7828a
   Charts: b48fcc8d7190de910ff9e9748f5360c8ea7856e5
   Crashlytics: 130ab943f8c78cda7a814b434f270b2e2c8a3cba
+  CVCalendar: 0799256e0bc3b43e83b7e86c0729ce9ff0624cb6
   Fabric: caf7580c725e64db144f610ac65cd60956911dc7
   FMDB: 854a0341b4726e53276f2a8996f06f1b80f9259a
   GSMessages: 0816b7e39282f8b5533ea1326edcbafd8c9f8c29

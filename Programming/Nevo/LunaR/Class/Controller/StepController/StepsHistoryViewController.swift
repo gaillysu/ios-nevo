@@ -37,7 +37,7 @@ class StepsHistoryViewController: PublicClassController,UICollectionViewDelegate
         queryArray = UserSteps.getAll()
         self.bulidStepHistoricalChartView(queryArray)
         
-        stepsHistory.backgroundColor = UIColor.whiteColor()
+        stepsHistory.backgroundColor = UIColor(rgba: "#54575a")
         stepsHistory.registerClass(UICollectionViewCell.classForCoder(), forCellWithReuseIdentifier: "StepsHistoryViewCell")
         (stepsHistory.collectionViewLayout as! UICollectionViewFlowLayout).itemSize = CGSizeMake(UIScreen.mainScreen().bounds.size.width/3.0, stepsHistory.frame.size.height)
     }
@@ -56,6 +56,7 @@ class StepsHistoryViewController: PublicClassController,UICollectionViewDelegate
             nodataLabel.hidden = false
             nodataLabel.text = NSLocalizedString("no_data", comment: "");
         }
+        self.view.backgroundColor = UIColor(rgba: "#54575a")
     }
 
     override func didReceiveMemoryWarning() {
@@ -118,6 +119,7 @@ class StepsHistoryViewController: PublicClassController,UICollectionViewDelegate
         sleepArray.removeAllObjects()
         queryModel.addObjectsFromArray(modelArray as [AnyObject])
         // MARK: - chartView?.marker
+        chartView.backgroundColor = UIColor(rgba: "#54575a")
         chartView?.descriptionText = " ";
         chartView?.noDataText = NSLocalizedString("no_step_data", comment: "")
         chartView?.noDataTextDescription = "";
