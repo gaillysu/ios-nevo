@@ -34,7 +34,10 @@ class StepsHistoryViewController: PublicClassController,UICollectionViewDelegate
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        queryArray = UserSteps.getAll()
+        let dayDate:NSDate = NSDate()
+        let dayTime:NSTimeInterval = NSDate.date(year: dayDate.year, month: dayDate.month, day: 7, hour: 0, minute: 0, second: 0).timeIntervalSince1970
+            //NSDate().beginningOfDay.timeIntervalSince1970
+        queryArray = UserSteps.getCriteria("WHERE date = \(dayTime)") //one hour = 3600s
         self.bulidStepHistoricalChartView(queryArray)
         
         stepsHistory.backgroundColor = UIColor(rgba: "#54575a")
@@ -49,6 +52,45 @@ class StepsHistoryViewController: PublicClassController,UICollectionViewDelegate
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+        // MARK: - chartView?.marker
+        chartView.backgroundColor = UIColor(rgba: "#54575a")
+        chartView!.noDataText = NSLocalizedString("no_step_data", comment: "")
+        chartView!.descriptionText = ""
+        chartView!.pinchZoomEnabled = false
+        chartView!.doubleTapToZoomEnabled = false
+        chartView!.legend.enabled = false
+        chartView!.dragEnabled = true
+        chartView!.rightAxis.enabled = true
+        chartView!.setScaleEnabled(false)
+        chartView.delegate = self
+        
+        let xAxis:ChartXAxis = chartView!.xAxis
+        xAxis.labelTextColor = UIColor.whiteColor()
+        xAxis.axisLineColor = UIColor.whiteColor()
+        xAxis.drawAxisLineEnabled = true
+        xAxis.drawGridLinesEnabled = true
+        xAxis.labelPosition = ChartXAxis.LabelPosition.Bottom
+        xAxis.labelFont = UIFont(name: "Helvetica-Light", size: 7)!
+        
+        let yAxis:ChartYAxis = chartView!.leftAxis
+        yAxis.labelTextColor = UIColor.whiteColor()
+        yAxis.axisLineColor = UIColor.whiteColor()
+        yAxis.drawAxisLineEnabled  = true
+        yAxis.drawGridLinesEnabled  = true
+        yAxis.drawLimitLinesBehindDataEnabled = true
+        yAxis.axisMinValue = 0
+        yAxis.setLabelCount(5, force: true)
+        
+        let rightAxis:ChartYAxis = chartView!.rightAxis
+        rightAxis.labelTextColor = UIColor.clearColor()
+        rightAxis.axisLineColor = UIColor.grayColor()
+        rightAxis.drawAxisLineEnabled  = true
+        rightAxis.drawGridLinesEnabled  = true
+        rightAxis.drawLimitLinesBehindDataEnabled = true
+        rightAxis.drawZeroLineEnabled = true
+        
+        chartView!.rightAxis.enabled = false
+        chartView.drawBarShadowEnabled = false
         
         if(queryArray.count>0) {
             nodataLabel.hidden = true
@@ -81,46 +123,6 @@ class StepsHistoryViewController: PublicClassController,UICollectionViewDelegate
         queryModel.removeAllObjects()
         sleepArray.removeAllObjects()
         queryModel.addObjectsFromArray(modelArray as [AnyObject])
-        
-        // MARK: - chartView?.marker
-        chartView.backgroundColor = UIColor(rgba: "#54575a")
-        chartView!.noDataText = NSLocalizedString("no_step_data", comment: "")
-        chartView!.descriptionText = ""
-        chartView!.pinchZoomEnabled = false
-        chartView!.doubleTapToZoomEnabled = false
-        chartView!.legend.enabled = false
-        chartView!.dragEnabled = true
-        chartView!.rightAxis.enabled = true
-        chartView!.setScaleEnabled(false)
-        chartView.delegate = self
-        
-        let xAxis:ChartXAxis = chartView!.xAxis
-        xAxis.labelTextColor = UIColor.grayColor()
-        xAxis.axisLineColor = UIColor.grayColor()
-        xAxis.drawAxisLineEnabled = true
-        xAxis.drawGridLinesEnabled = true
-        xAxis.labelPosition = ChartXAxis.LabelPosition.Bottom
-        xAxis.labelFont = UIFont(name: "Helvetica-Light", size: 7)!
-        
-        let yAxis:ChartYAxis = chartView!.leftAxis
-        yAxis.labelTextColor = UIColor.grayColor()
-        yAxis.axisLineColor = UIColor.grayColor()
-        yAxis.drawAxisLineEnabled  = true
-        yAxis.drawGridLinesEnabled  = true
-        yAxis.drawLimitLinesBehindDataEnabled = true
-        yAxis.axisMinValue = 0
-        yAxis.setLabelCount(5, force: true)
-        
-        let rightAxis:ChartYAxis = chartView!.rightAxis
-        rightAxis.labelTextColor = UIColor.clearColor()
-        rightAxis.axisLineColor = UIColor.grayColor()
-        rightAxis.drawAxisLineEnabled  = true
-        rightAxis.drawGridLinesEnabled  = true
-        rightAxis.drawLimitLinesBehindDataEnabled = true
-        rightAxis.drawZeroLineEnabled = true
-        
-        chartView!.rightAxis.enabled = false
-        chartView.drawBarShadowEnabled = false
         self.slidersValueChanged()
     }
     
@@ -145,34 +147,18 @@ class StepsHistoryViewController: PublicClassController,UICollectionViewDelegate
         
         var xVal:[String] = [];
         var yVal:[BarChartDataEntry] = [];
-        for i in 0 ..< queryModel.count{
-            /**
-             *  Data sorting,Small to large sort
-             */
-            for j in 0 ..< queryModel.count{
-                let iStepsModel:UserSteps = queryModel.objectAtIndex(i) as! UserSteps;
-                let jStepsModel:UserSteps = queryModel.objectAtIndex(j) as! UserSteps;
-                let iStepsDate:Double = iStepsModel.date
-                let jStepsDate:Double = jStepsModel.date
-                if (iStepsDate > jStepsDate){
-                    let temp:UserSteps = queryModel.objectAtIndex(i) as! UserSteps;
-                    queryModel.replaceObjectAtIndex(i, withObject: queryModel[j])
-                    queryModel.replaceObjectAtIndex(j, withObject: temp)
-                    
-                }
-            }
-        }
         
-        for i in 0 ..< queryModel.count{
-            let seleModel:UserSteps = queryModel.objectAtIndex(i) as! UserSteps;
-            let val1:Double  = Double(seleModel.steps);
+        let seleModel:UserSteps = queryModel.objectAtIndex(0) as! UserSteps;
+        let hourlystepsArray:NSArray = AppTheme.jsonToArray(seleModel.hourlysteps)
+        for (index,steps) in hourlystepsArray.enumerate(){
+            let val1:Double  = (steps as! NSNumber).doubleValue;
             let date:NSDate = NSDate(timeIntervalSince1970: seleModel.date)
             var dateString:NSString = date.stringFromFormat("yyyyMMdd")
             if(dateString.length < 8) {
                 dateString = "00000000"
             }
-            xVal.append("\(dateString.substringWithRange(NSMakeRange(6, 2)))/\(dateString.substringWithRange(NSMakeRange(4, 2)))")
-            yVal.append(BarChartDataEntry(values: [val1], xIndex:i))
+            xVal.append("\(index):00")
+            yVal.append(BarChartDataEntry(values: [val1], xIndex:index))
         }
         
         //柱状图表
@@ -181,7 +167,7 @@ class StepsHistoryViewController: PublicClassController,UICollectionViewDelegate
         //每个数据区块的颜色
         set1.colors = [UIColor.getBaseColor()];
         set1.highlightColor = UIColor.getBaseColor()
-        set1.barSpace = 0.05;
+        set1.barSpace = 0.1;
         let dataSets:[BarChartDataSet] = [set1];
         
         let data:BarChartData = BarChartData(xVals: xVal, dataSets: dataSets)
@@ -194,7 +180,8 @@ class StepsHistoryViewController: PublicClassController,UICollectionViewDelegate
     func chartValueSelected(chartView: ChartViewBase, entry: ChartDataEntry, dataSetIndex: Int, highlight: ChartHighlight) {
         chartView.highlightValue(xIndex: entry.xIndex, dataSetIndex: dataSetIndex, callDelegate: false)
         NSLog("chartValueSelected:  %d",entry.xIndex)
-        let stepsModel:UserSteps = queryModel.objectAtIndex(entry.xIndex) as! UserSteps;
+        let stepsModel:UserSteps = queryModel.objectAtIndex(0) as! UserSteps;
+        //let hourlystepsArray:NSArray = AppTheme.jsonToArray(stepsModel.hourlysteps)
         self.didSelectedhighlightValue(entry.xIndex,dataSetIndex: dataSetIndex, dataSteps:stepsModel)
         let array:NSArray = NSArray(array: [entry.xIndex,dataSetIndex,stepsModel])
         AppTheme.KeyedArchiverName(SELECTED_DATA, andObject: array)
