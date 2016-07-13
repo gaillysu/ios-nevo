@@ -27,8 +27,8 @@
                     </tabBar>
                     <connections>
                         <segue destination="rem-vM-ODh" kind="relationship" relationship="viewControllers" id="ZEI-Ns-a4R"/>
-                        <segue destination="55x-5E-ejb" kind="relationship" relationship="viewControllers" id="HJ3-Dv-vlR"/>
                         <segue destination="Hsa-EN-v8Q" kind="relationship" relationship="viewControllers" id="0xI-f4-E6a"/>
+                        <segue destination="55x-5E-ejb" kind="relationship" relationship="viewControllers" id="HJ3-Dv-vlR"/>
                         <segue destination="bGr-qo-zHH" kind="relationship" relationship="viewControllers" id="zui-dx-LpG"/>
                     </connections>
                 </tabBarController>
@@ -61,7 +61,7 @@
         <scene sceneID="QXP-JR-yAP">
             <objects>
                 <navigationController id="rem-vM-ODh" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Steps" image="new_iOS_steps_icon" id="ba1-Wn-XQe"/>
+                    <tabBarItem key="tabBarItem" title="Steps" image="home_icon" id="ba1-Wn-XQe"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="gdh-sX-Da8">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -98,7 +98,7 @@
         <scene sceneID="ct5-Mu-dmL">
             <objects>
                 <navigationController id="Hsa-EN-v8Q" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Alarm" image="new_iOS_alarm_icon" id="dU5-Ty-hhC"/>
+                    <tabBarItem key="tabBarItem" title="Alarm" image="alarm_icon" id="dU5-Ty-hhC"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="0g2-Qz-bFf">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -337,7 +337,7 @@
         <scene sceneID="hvn-OI-PaU">
             <objects>
                 <navigationController useStoryboardIdentifierAsRestorationIdentifier="YES" id="55x-5E-ejb" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Sleep" image="new_iOS_sleepicon" id="QgB-tv-HYG"/>
+                    <tabBarItem key="tabBarItem" title="Sleep" image="analysis_icon" id="QgB-tv-HYG"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="wZ6-1e-Ldn">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -356,9 +356,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="new_iOS_alarm_icon" width="35" height="36"/>
+        <image name="alarm_icon" width="30" height="30"/>
+        <image name="analysis_icon" width="30" height="30"/>
+        <image name="home_icon" width="30" height="30"/>
         <image name="new_iOS_setting_icon" width="35" height="36"/>
-        <image name="new_iOS_sleepicon" width="35" height="36"/>
-        <image name="new_iOS_steps_icon" width="35" height="36"/>
     </resources>
 </document>
