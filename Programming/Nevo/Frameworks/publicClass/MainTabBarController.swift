@@ -24,6 +24,7 @@ class MainTabBarController: UITabBarController,UITabBarControllerDelegate {
         let app_Name:String = infoDictionary["CFBundleName"] as! String
         if app_Name == "LunaR" {
             self.tabBar.tintColor = UIColor(rgba: "#7ED8D1")
+            self.tabBar.barTintColor = UIColor(rgba: "#333333")
         }else{
             self.tabBar.tintColor = AppTheme.NEVO_SOLAR_YELLOW()
         }
