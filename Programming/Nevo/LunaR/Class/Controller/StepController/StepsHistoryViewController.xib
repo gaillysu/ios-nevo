@@ -39,16 +39,16 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mMJ-ii-LKw" customClass="BarChartView" customModule="Charts">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="285"/>
+                    <rect key="frame" x="10" y="0.0" width="300" height="285"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="width" secondItem="mMJ-ii-LKw" secondAttribute="height" multiplier="64:57" id="MZo-js-Cr0"/>
+                        <constraint firstAttribute="width" secondItem="mMJ-ii-LKw" secondAttribute="height" multiplier="64:57" constant="-20" id="MZo-js-Cr0"/>
                     </constraints>
                 </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="mMJ-ii-LKw" secondAttribute="trailing" id="8fe-r5-nii"/>
+                <constraint firstAttribute="trailing" secondItem="mMJ-ii-LKw" secondAttribute="trailing" constant="10" id="8fe-r5-nii"/>
                 <constraint firstAttribute="bottom" secondItem="eW0-Ed-FPP" secondAttribute="bottom" id="HuH-9R-9cW"/>
                 <constraint firstItem="8yE-Sx-UzZ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Nvl-Pg-C8I"/>
                 <constraint firstItem="eW0-Ed-FPP" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="QOg-pt-mf2"/>
@@ -58,7 +58,7 @@
                 <constraint firstItem="8yE-Sx-UzZ" firstAttribute="top" secondItem="mMJ-ii-LKw" secondAttribute="bottom" constant="10" id="jiJ-5H-oGm"/>
                 <constraint firstAttribute="trailing" secondItem="eW0-Ed-FPP" secondAttribute="trailing" id="ppr-sW-GQ3"/>
                 <constraint firstItem="mMJ-ii-LKw" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="pti-i7-c9A"/>
-                <constraint firstItem="mMJ-ii-LKw" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="s36-43-47k"/>
+                <constraint firstItem="mMJ-ii-LKw" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="s36-43-47k"/>
             </constraints>
             <point key="canvasLocation" x="548" y="346"/>
         </view>

@@ -18,8 +18,8 @@ class StepsHistoryViewController: PublicClassController,UICollectionViewDelegate
     let SELECTED_DATA:String = "SELECTED_DATA"
     
     private var queryArray:NSArray = NSArray()
-    private var contentTitleArray:[String] = [NSLocalizedString("goal", comment: ""), NSLocalizedString("progress", comment: ""), NSLocalizedString("you_reached", comment: "")]
-    private var contentTArray:[String] = [NSLocalizedString("--", comment: ""),NSLocalizedString("--", comment: ""),NSLocalizedString("--", comment: "")]
+    private var contentTitleArray:[String] = [NSLocalizedString("CALORIE", comment: ""), NSLocalizedString("STEPS", comment: ""), NSLocalizedString("TIME", comment: ""),NSLocalizedString("KM", comment: "")]
+    private var contentTArray:[String] = [NSLocalizedString("--", comment: ""),NSLocalizedString("--", comment: ""),NSLocalizedString("--", comment: ""),NSLocalizedString("--", comment: "")]
     private var queryModel:NSMutableArray = NSMutableArray()
     private let sleepArray:NSMutableArray = NSMutableArray();
     private let detailArray:NSMutableArray = NSMutableArray(capacity:1);
@@ -38,8 +38,9 @@ class StepsHistoryViewController: PublicClassController,UICollectionViewDelegate
         self.bulidStepHistoricalChartView(queryArray)
         
         stepsHistory.backgroundColor = UIColor(rgba: "#54575a")
+        stepsHistory.registerNib(UINib(nibName: "StepGoalSetingViewCell", bundle: NSBundle.mainBundle()), forCellWithReuseIdentifier: "StepGoalSetingIdentifier")
         stepsHistory.registerClass(UICollectionViewCell.classForCoder(), forCellWithReuseIdentifier: "StepsHistoryViewCell")
-        (stepsHistory.collectionViewLayout as! UICollectionViewFlowLayout).itemSize = CGSizeMake(UIScreen.mainScreen().bounds.size.width/3.0, stepsHistory.frame.size.height)
+        (stepsHistory.collectionViewLayout as! UICollectionViewFlowLayout).itemSize = CGSizeMake(UIScreen.mainScreen().bounds.size.width/2.0, 40.0)
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -70,47 +71,9 @@ class StepsHistoryViewController: PublicClassController,UICollectionViewDelegate
     }
 
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("StepsHistoryViewCell", forIndexPath: indexPath)
-        cell.backgroundColor = UIColor.clearColor()
-        let labelheight:CGFloat = cell.contentView.frame.size.height
-        let titleView = cell.contentView.viewWithTag(1500)
-        let iphone:Bool = AppTheme.GET_IS_iPhone5S()
-        if(titleView == nil){
-            let titleLabel:UILabel = UILabel(frame: CGRectMake(0, 0, cell.contentView.frame.size.width, labelheight/2.0))
-            titleLabel.textAlignment = NSTextAlignment.Center
-            titleLabel.textColor = UIColor.grayColor()
-            titleLabel.backgroundColor = UIColor.clearColor()
-            titleLabel.font = AppTheme.FONT_SFUIDISPLAY_REGULAR(mSize: iphone ? 12:15)
-            titleLabel.tag = 1500
-            titleLabel.text = contentTitleArray[indexPath.row]
-            titleLabel.sizeToFit()
-            cell.contentView.addSubview(titleLabel)
-            titleLabel.center = CGPointMake(cell.contentView.frame.size.width/2.0, labelheight/2.0-titleLabel.frame.size.height)
-        }else {
-            let titleLabel:UILabel = titleView as! UILabel
-            titleLabel.text = contentTitleArray[indexPath.row]
-            titleLabel.sizeToFit()
-            titleLabel.center = CGPointMake(cell.contentView.frame.size.width/2.0, labelheight/2.0-titleLabel.frame.size.height)
-        }
-
-        let contentView = cell.contentView.viewWithTag(1700)
-        if(contentView == nil){
-            let contentStepsView:UILabel = UILabel(frame: CGRectMake(0, labelheight/2.0, cell.contentView.frame.size.width, labelheight/2.0))
-            contentStepsView.textAlignment = NSTextAlignment.Center
-            contentStepsView.backgroundColor = UIColor.clearColor()
-            contentStepsView.textColor = UIColor.blackColor()
-            contentStepsView.font = AppTheme.FONT_SFUIDISPLAY_REGULAR(mSize: iphone ? 15:18)
-            contentStepsView.tag = 1700
-            contentStepsView.text = "\(contentTArray[indexPath.row])"
-            contentStepsView.sizeToFit()
-            cell.contentView.addSubview(contentStepsView)
-            contentStepsView.center = CGPointMake(cell.contentView.frame.size.width/2.0,labelheight/2.0+contentStepsView.frame.size.height/2.0)
-        }else {
-            let contentStepsView:UILabel = contentView as! UILabel
-            contentStepsView.text = "\(contentTArray[indexPath.row])"
-            contentStepsView.sizeToFit()
-            contentStepsView.center = CGPointMake(cell.contentView.frame.size.width/2.0, labelheight/2.0+contentStepsView.frame.size.height/2.0)
-        }
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("StepGoalSetingIdentifier", forIndexPath: indexPath)
+        (cell as! StepGoalSetingViewCell).titleLabel.text = contentTitleArray[indexPath.row]
+        (cell as! StepGoalSetingViewCell).valueLabel.text = "\(contentTArray[indexPath.row])"
         return cell
     }
     
@@ -118,38 +81,46 @@ class StepsHistoryViewController: PublicClassController,UICollectionViewDelegate
         queryModel.removeAllObjects()
         sleepArray.removeAllObjects()
         queryModel.addObjectsFromArray(modelArray as [AnyObject])
+        
         // MARK: - chartView?.marker
         chartView.backgroundColor = UIColor(rgba: "#54575a")
-        chartView?.descriptionText = " ";
-        chartView?.noDataText = NSLocalizedString("no_step_data", comment: "")
-        chartView?.noDataTextDescription = "";
-        chartView?.pinchZoomEnabled = false
-        chartView?.drawGridBackgroundEnabled = false;
-        chartView?.drawBarShadowEnabled = false;
-        let xScale:CGFloat = CGFloat(queryModel.count)/7.0;//integer/integer = integer,float/float = float
-        chartView?.setScaleMinima(xScale, scaleY: 1)
-        chartView?.setScaleEnabled(false);
-        chartView!.drawValueAboveBarEnabled = true;
-        chartView!.doubleTapToZoomEnabled = false;
-        chartView!.setViewPortOffsets(left: 0.0, top: 0.0, right: 0.0, bottom: 0.0)
-        chartView!.delegate = self
+        chartView!.noDataText = NSLocalizedString("no_step_data", comment: "")
+        chartView!.descriptionText = ""
+        chartView!.pinchZoomEnabled = false
+        chartView!.doubleTapToZoomEnabled = false
+        chartView!.legend.enabled = false
+        chartView!.dragEnabled = true
+        chartView!.rightAxis.enabled = true
+        chartView!.setScaleEnabled(false)
+        chartView.delegate = self
         
-        let leftAxis:ChartYAxis = chartView!.leftAxis;
-        leftAxis.valueFormatter = NSNumberFormatter();
-        leftAxis.drawAxisLineEnabled = false;
-        leftAxis.drawGridLinesEnabled = false;
-        leftAxis.enabled = false;
-        leftAxis.spaceTop = 0.6;
+        let xAxis:ChartXAxis = chartView!.xAxis
+        xAxis.labelTextColor = UIColor.grayColor()
+        xAxis.axisLineColor = UIColor.grayColor()
+        xAxis.drawAxisLineEnabled = true
+        xAxis.drawGridLinesEnabled = true
+        xAxis.labelPosition = ChartXAxis.LabelPosition.Bottom
+        xAxis.labelFont = UIFont(name: "Helvetica-Light", size: 7)!
         
-        chartView!.rightAxis.enabled = false;
+        let yAxis:ChartYAxis = chartView!.leftAxis
+        yAxis.labelTextColor = UIColor.grayColor()
+        yAxis.axisLineColor = UIColor.grayColor()
+        yAxis.drawAxisLineEnabled  = true
+        yAxis.drawGridLinesEnabled  = true
+        yAxis.drawLimitLinesBehindDataEnabled = true
+        yAxis.axisMinValue = 0
+        yAxis.setLabelCount(5, force: true)
         
-        let xAxis:ChartXAxis = chartView!.xAxis;
-        xAxis.labelFont = UIFont.systemFontOfSize(8)
-        xAxis.drawAxisLineEnabled = false;
-        xAxis.drawGridLinesEnabled = false;
-        xAxis.labelPosition = ChartXAxis.LabelPosition.BottomInside
+        let rightAxis:ChartYAxis = chartView!.rightAxis
+        rightAxis.labelTextColor = UIColor.clearColor()
+        rightAxis.axisLineColor = UIColor.grayColor()
+        rightAxis.drawAxisLineEnabled  = true
+        rightAxis.drawGridLinesEnabled  = true
+        rightAxis.drawLimitLinesBehindDataEnabled = true
+        rightAxis.drawZeroLineEnabled = true
         
-        chartView!.legend.enabled = false;
+        chartView!.rightAxis.enabled = false
+        chartView.drawBarShadowEnabled = false
         self.slidersValueChanged()
     }
     
@@ -208,8 +179,8 @@ class StepsHistoryViewController: PublicClassController,UICollectionViewDelegate
         //ChartColorTemplates.getDeepSleepColor()
         let set1:BarChartDataSet  = BarChartDataSet(yVals: yVal, label: "")
         //每个数据区块的颜色
-        set1.colors = [AppTheme.getStepsColor()];
-        set1.highlightColor = AppTheme.NEVO_SOLAR_YELLOW()
+        set1.colors = [UIColor.getBaseColor()];
+        set1.highlightColor = UIColor.getBaseColor()
         set1.barSpace = 0.05;
         let dataSets:[BarChartDataSet] = [set1];
         
@@ -231,9 +202,11 @@ class StepsHistoryViewController: PublicClassController,UICollectionViewDelegate
     
     func didSelectedhighlightValue(xIndex:Int,dataSetIndex: Int, dataSteps:UserSteps) {
         contentTArray.removeAll()
-        contentTArray.insert("\(dataSteps.goalsteps)", atIndex: 0)
-        contentTArray.insert(String(format: "%.2f%c", dataSteps.goalreach*100,37), atIndex: 1)
-        contentTArray.insert("\(dataSteps.steps)", atIndex: 2)
+        contentTArray.insert("\(dataSteps.calories)", atIndex: 0)
+        contentTArray.insert("\(dataSteps.steps)", atIndex: 1)
+        contentTArray.insert("\(dataSteps.inactivityTime)", atIndex: 2)
+        //contentTArray.insert(String(format: "%.2f%c", dataSteps.goalreach*100,37), atIndex: 1)
+        contentTArray.insert("\(dataSteps.walking_distance+dataSteps.running_distance)", atIndex: 3)
         stepsHistory.reloadData()
     }
 }

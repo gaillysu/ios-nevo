@@ -24,8 +24,8 @@ class StepGoalSetingController: PublicClassController,ButtonManagerCallBack,Sync
     
     private var mCurrentGoal:Goal = NumberOfStepsGoal()
     private var mVisiable:Bool = true
-    private var contentTitleArray:[String] = []
-    private var contentTArray:[String] = ["0","0","0"]
+    private var contentTitleArray:[String] = [NSLocalizedString("CALORIE", comment: ""), NSLocalizedString("STEPS", comment: ""), NSLocalizedString("TIME", comment: ""),NSLocalizedString("KM", comment: "")]
+    private var contentTArray:[String] = ["0","0","0","0"]
     var shouldSync = false;
     init() {
         super.init(nibName: "StepGoalSetingController", bundle: NSBundle.mainBundle())
@@ -37,8 +37,6 @@ class StepGoalSetingController: PublicClassController,ButtonManagerCallBack,Sync
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        contentTitleArray = [NSLocalizedString("goal", comment: ""), NSLocalizedString("progress", comment: ""), NSLocalizedString("you_reached", comment: "")]
-
         let local:LocalNotification = LocalNotification.sharedInstance()
         local.scheduleNotificationWithKey(NevoAllKeys.LocalStartSportKey(), title: "Today's activity", message: "Today's activity level haven't reach your goals", date: NSDate.date(year: NSDate().year, month: NSDate().month, day: NSDate().day, hour: 13, minute: 0, second: 0) , userInfo: nil)
         
@@ -48,7 +46,7 @@ class StepGoalSetingController: PublicClassController,ButtonManagerCallBack,Sync
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         let layout:UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSizeMake((UIScreen.mainScreen().bounds.size.width)/2.0, 30)
+        layout.itemSize = CGSizeMake((UIScreen.mainScreen().bounds.size.width)/2.0, 40)
         layout.minimumInteritemSpacing = 0
         layout.minimumLineSpacing = 0
         collectionView.collectionViewLayout = layout
