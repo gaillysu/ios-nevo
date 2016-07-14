@@ -441,7 +441,6 @@
 		00EFE1501D227DCC0066C905 /* AlarmClockController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EFE0891D227DCC0066C905 /* AlarmClockController.swift */; };
 		00EFE1511D227DCC0066C905 /* AlarmTypeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EFE08A1D227DCC0066C905 /* AlarmTypeController.swift */; };
 		00EFE1521D227DCC0066C905 /* AlarmTypeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00EFE08B1D227DCC0066C905 /* AlarmTypeController.xib */; };
-		00EFE1531D227DCC0066C905 /* alarmClockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EFE08D1D227DCC0066C905 /* alarmClockView.swift */; };
 		00EFE1541D227DCC0066C905 /* NotAlarmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EFE08E1D227DCC0066C905 /* NotAlarmView.swift */; };
 		00EFE1551D227DCC0066C905 /* NotAlarmView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00EFE08F1D227DCC0066C905 /* NotAlarmView.xib */; };
 		00EFE1561D227DCC0066C905 /* NewAddAlarmController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EFE0901D227DCC0066C905 /* NewAddAlarmController.swift */; };
@@ -973,7 +972,6 @@
 		00EFE0891D227DCC0066C905 /* AlarmClockController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlarmClockController.swift; sourceTree = "<group>"; };
 		00EFE08A1D227DCC0066C905 /* AlarmTypeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlarmTypeController.swift; sourceTree = "<group>"; };
 		00EFE08B1D227DCC0066C905 /* AlarmTypeController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AlarmTypeController.xib; sourceTree = "<group>"; };
-		00EFE08D1D227DCC0066C905 /* alarmClockView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = alarmClockView.swift; sourceTree = "<group>"; };
 		00EFE08E1D227DCC0066C905 /* NotAlarmView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotAlarmView.swift; sourceTree = "<group>"; };
 		00EFE08F1D227DCC0066C905 /* NotAlarmView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NotAlarmView.xib; sourceTree = "<group>"; };
 		00EFE0901D227DCC0066C905 /* NewAddAlarmController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewAddAlarmController.swift; sourceTree = "<group>"; };
@@ -2055,7 +2053,6 @@
 		00EFE08C1D227DCC0066C905 /* AlarmView */ = {
 			isa = PBXGroup;
 			children = (
-				00EFE08D1D227DCC0066C905 /* alarmClockView.swift */,
 				00EFE08E1D227DCC0066C905 /* NotAlarmView.swift */,
 				00EFE08F1D227DCC0066C905 /* NotAlarmView.xib */,
 			);
@@ -3200,7 +3197,6 @@
 				00EFE1611D227DCC0066C905 /* HelpView.swift in Sources */,
 				00EFE1931D227DCC0066C905 /* SleepTrackingView.swift in Sources */,
 				00EFE1891D227DCC0066C905 /* SetingView.swift in Sources */,
-				00EFE1531D227DCC0066C905 /* alarmClockView.swift in Sources */,
 				00EFE18F1D227DCC0066C905 /* SleepHistoricalViewController.swift in Sources */,
 				00EFE16B1D227DCC0066C905 /* NevoOtaView.swift in Sources */,
 				00EFE1681D227DCC0066C905 /* MyNevoView.swift in Sources */,

@@ -42,9 +42,9 @@ class StepController: PublicClassController,UIActionSheetDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationController?.navigationBar.lt_setBackgroundColor(UIColor(rgba: "#54575a"))
+        self.navigationController?.navigationBar.lt_setBackgroundColor(UIColor.getGreyColor())
         UIApplication.sharedApplication().statusBarStyle = UIStatusBarStyle.LightContent
-        self.view.backgroundColor = UIColor(rgba: "#54575a")
+        self.view.backgroundColor = UIColor.getGreyColor()
 
         self.initTitleView()
         
@@ -120,6 +120,32 @@ class StepController: PublicClassController,UIActionSheetDelegate {
                     actionSheet.addAction(alertAction2)
                 }
             }
+//            actionSheet.view.subviews.first?.subviews.first?.backgroundColor = UIColor.redColor()
+            for view in actionSheet.view.subviews {
+                for view2 in view.subviews {
+                    for view3 in view2.subviews {
+                        for view4 in view3.subviews {
+                            XCGLogger.defaultInstance().debug("\(view4)")
+                            for view5 in view4.subviews {
+                                
+                            }
+                            
+                        }
+                        
+                    }
+                }
+                
+            }
+            for view in actionSheet.view.subviews.first!.subviews {
+                
+                for view2 in view.subviews {
+                    for view3 in view2.subviews {
+                        view3.backgroundColor = UIColor(rgba: "#54575A")
+                    }
+                }
+                
+            }
+//            XCGLogger.defaultInstance().debug("actionSheet:\(actionSheet.view.subviews.first?.subviews.first)")
             self.presentViewController(actionSheet, animated: true, completion: nil)
         }else{
             let actionSheet:UIActionSheet = UIActionSheet(title: nil, delegate: self, cancelButtonTitle: "Cancel", destructiveButtonTitle: nil)

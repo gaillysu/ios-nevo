@@ -11,35 +11,42 @@ import BRYXBanner
 import Timepiece
 
 class AlarmClockController: UITableViewController, SyncControllerDelegate,AddAlarmDelegate {
-    @IBOutlet var alarmView: alarmClockView!
 
     private var slectedIndex:Int = -1 //To edit a record the number of rows selected content
     var mAlarmArray:NSMutableArray = NSMutableArray()
+    var mWakeAlarmArray:NSMutableArray = NSMutableArray()
+    var mSleepAlarmArray:NSMutableArray = NSMutableArray()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         initValue()
-
-        alarmView.bulidAlarmView()
         
         AppDelegate.getAppDelegate().startConnect(false, delegate: self)
-        self.editButtonItem().tintColor = AppTheme.NEVO_SOLAR_YELLOW()
+        self.editButtonItem().tintColor = UIColor.getBaseColor()
         self.navigationItem.leftBarButtonItem = self.editButtonItem()
 
         let rightAddButton:UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Add, target: self, action: #selector(controllManager(_:)))
-        rightAddButton.tintColor = AppTheme.NEVO_SOLAR_YELLOW()
+        rightAddButton.tintColor = UIColor.getBaseColor()
         self.navigationItem.rightBarButtonItem = rightAddButton
-
         self.tableView.allowsSelectionDuringEditing = true;
 
     }
 
     func initValue() {
+        self.navigationController?.navigationBar.lt_setBackgroundColor(UIColor.getGreyColor())
+        UIApplication.sharedApplication().statusBarStyle = UIStatusBarStyle.LightContent
+        self.view.backgroundColor = UIColor.getGreyColor()
+        
         let array:NSArray = UserAlarm.getAll()
         for alarmModel in array{
             let useralarm:UserAlarm = alarmModel as! UserAlarm
             mAlarmArray.addObject(useralarm)
+            if useralarm.type == 0 {
+                mWakeAlarmArray.addObject(useralarm)
+            }else{
+                mSleepAlarmArray.addObject(useralarm)
+            }
         }
 
         if(UserAlarm.isExistInTable()){
@@ -435,7 +442,7 @@ class AlarmClockController: UITableViewController, SyncControllerDelegate,AddAla
 
     // MARK: - UITableViewDelegate
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int{
-        return 1
+        return 2
     }
 
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -450,13 +457,29 @@ class AlarmClockController: UITableViewController, SyncControllerDelegate,AddAla
         }else{
              tableView.backgroundView = nil
         }
+        
+        var sleepAlarmCount:Int = 0
+        var dayAlarmCount:Int = 0
+        for alarm in mAlarmArray{
+            let alarmModel:UserAlarm =  alarm as! UserAlarm
+            if(alarmModel.type == 1 && alarmModel.status) {
+                sleepAlarmCount += 1
+            }else if (alarmModel.type == 0 && alarmModel.status){
+                dayAlarmCount += 1
+            }
+        }
+        
+        if section == 0 {
+            return sleepAlarmCount
+        }else if section == 1 {
+            return dayAlarmCount
+        }
         return mAlarmArray.count
     }
 
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String {
-        let titleArray:[String] = ["Sleep Alarm","alarmTitle"]
-        //NSLocalizedString(titleArray[section], comment: "")
-        return ""
+        let titleArray:[String] = ["Sleep Alarm","Wake Alarm"]
+        return NSLocalizedString(titleArray[section], comment: "")
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -485,14 +508,10 @@ class AlarmClockController: UITableViewController, SyncControllerDelegate,AddAla
         return endCell
     }
 
-
-    // Override to support conditional editing of the table view.
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-    // Return false if you do not want the specified item to be editable.
         return true
     }
 
-    // Override to support editing the table view.
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
             // Delete the row from the data source
