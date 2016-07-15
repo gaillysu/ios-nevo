@@ -3,7 +3,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
-        <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
@@ -16,16 +15,10 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" tag="1600" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gUD-3W-AvZ">
-                        <rect key="frame" x="127" y="2" width="120" height="40"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                     <label opaque="NO" userInteractionEnabled="NO" tag="1500" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="6:00 am" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="McE-nd-JrE">
                         <rect key="frame" x="17" y="2" width="100" height="40"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="100" id="bGJ-nT-PwP"/>
+                            <constraint firstAttribute="width" constant="100" id="oaw-3L-hlC"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -35,10 +28,16 @@
                         <rect key="frame" x="117" y="2" width="1" height="40"/>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="1" id="asz-PP-XDy"/>
+                            <constraint firstAttribute="width" constant="1" id="VtR-EY-jyc"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" tag="1600" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gUD-3W-AvZ">
+                        <rect key="frame" x="127" y="2" width="120" height="40"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <switch opaque="NO" tag="1700" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HEi-uX-N6D">
@@ -49,18 +48,19 @@
                 </subviews>
                 <color key="backgroundColor" red="0.2274509804" green="0.2156862745" blue="0.22352941179999999" alpha="1" colorSpace="calibratedRGB"/>
                 <constraints>
-                    <constraint firstItem="LeZ-wW-xdL" firstAttribute="leading" secondItem="McE-nd-JrE" secondAttribute="trailing" id="5Jj-bs-8Y0"/>
-                    <constraint firstItem="McE-nd-JrE" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="9" id="62r-sz-k5i"/>
-                    <constraint firstItem="HEi-uX-N6D" firstAttribute="leading" secondItem="gUD-3W-AvZ" secondAttribute="trailing" constant="8" id="BP3-xF-TI0"/>
-                    <constraint firstItem="McE-nd-JrE" firstAttribute="bottom" secondItem="LeZ-wW-xdL" secondAttribute="bottom" id="Hvh-c9-ooB"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="HEi-uX-N6D" secondAttribute="trailing" constant="8" id="KIP-u8-rIY"/>
-                    <constraint firstItem="gUD-3W-AvZ" firstAttribute="leading" secondItem="LeZ-wW-xdL" secondAttribute="trailing" constant="9" id="Py0-Fd-GMg"/>
-                    <constraint firstItem="gUD-3W-AvZ" firstAttribute="baseline" secondItem="LeZ-wW-xdL" secondAttribute="baseline" id="Un0-hd-9nu"/>
-                    <constraint firstItem="HEi-uX-N6D" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="-3" id="g4K-st-Taq"/>
-                    <constraint firstItem="McE-nd-JrE" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="-6" id="nNe-3K-XzA"/>
-                    <constraint firstItem="LeZ-wW-xdL" firstAttribute="top" secondItem="McE-nd-JrE" secondAttribute="top" id="pcQ-5g-wRz"/>
-                    <constraint firstItem="gUD-3W-AvZ" firstAttribute="firstBaseline" secondItem="LeZ-wW-xdL" secondAttribute="firstBaseline" id="qeS-aY-sJD"/>
-                    <constraint firstItem="McE-nd-JrE" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="vPM-Rs-y9s"/>
+                    <constraint firstItem="LeZ-wW-xdL" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="-6" id="1Ul-hY-yqu"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="HEi-uX-N6D" secondAttribute="trailing" constant="8" id="81N-tg-MMe"/>
+                    <constraint firstItem="gUD-3W-AvZ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="-6" id="DPy-Bm-PYl"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="LeZ-wW-xdL" secondAttribute="bottom" constant="-6.5" id="HyM-5n-ain"/>
+                    <constraint firstItem="gUD-3W-AvZ" firstAttribute="leading" secondItem="LeZ-wW-xdL" secondAttribute="trailing" constant="9" id="MuD-iK-Olr"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="gUD-3W-AvZ" secondAttribute="trailing" constant="65" id="SWI-CD-3AK"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="McE-nd-JrE" secondAttribute="bottom" constant="-6.5" id="Yp0-jh-p2t"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="gUD-3W-AvZ" secondAttribute="bottom" constant="-6.5" id="gbK-j5-EHN"/>
+                    <constraint firstItem="McE-nd-JrE" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="-6" id="gzN-EX-NYJ"/>
+                    <constraint firstItem="McE-nd-JrE" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="9" id="mOX-Ac-tVk"/>
+                    <constraint firstItem="LeZ-wW-xdL" firstAttribute="leading" secondItem="McE-nd-JrE" secondAttribute="trailing" id="pkD-LQ-UfN"/>
+                    <constraint firstItem="HEi-uX-N6D" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" constant="119.5" id="rIB-5B-7wR"/>
+                    <constraint firstItem="HEi-uX-N6D" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" constant="-1.25" id="zCU-XA-Ned"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>

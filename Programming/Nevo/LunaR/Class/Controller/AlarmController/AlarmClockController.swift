@@ -11,7 +11,9 @@ import BRYXBanner
 import Timepiece
 
 class AlarmClockController: UITableViewController, SyncControllerDelegate,AddAlarmDelegate {
-
+    
+    @IBOutlet weak var rightBarButton: UIBarButtonItem!
+    
     private var slectedIndex:Int = -1 //To edit a record the number of rows selected content
     var mWakeAlarmArray:NSMutableArray = NSMutableArray()
     var mSleepAlarmArray:NSMutableArray = NSMutableArray()
@@ -23,11 +25,8 @@ class AlarmClockController: UITableViewController, SyncControllerDelegate,AddAla
         
         AppDelegate.getAppDelegate().startConnect(false, delegate: self)
         self.editButtonItem().tintColor = UIColor.getBaseColor()
-        self.navigationItem.leftBarButtonItem = self.editButtonItem()
+        //self.navigationItem.leftBarButtonItem = self.editButtonItem()
 
-        let rightAddButton:UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Add, target: self, action: #selector(controllManager(_:)))
-        rightAddButton.tintColor = UIColor.getBaseColor()
-        self.navigationItem.rightBarButtonItem = rightAddButton
         self.tableView.allowsSelectionDuringEditing = true;
         
         self.tableView.registerNib(UINib(nibName: "AlarmClockVCell",bundle:nil), forCellReuseIdentifier: "alarmCell")
@@ -39,6 +38,8 @@ class AlarmClockController: UITableViewController, SyncControllerDelegate,AddAla
         self.view.backgroundColor = UIColor.getGreyColor()
         
         let array:NSArray = UserAlarm.getAll()
+        mWakeAlarmArray.removeAllObjects()
+        mSleepAlarmArray.removeAllObjects()
         for alarmModel in array{
             let useralarm:UserAlarm = alarmModel as! UserAlarm
             if useralarm.type == 0 {
@@ -66,17 +67,16 @@ class AlarmClockController: UITableViewController, SyncControllerDelegate,AddAla
     /*
     call back Button Action
     */
-    func controllManager(sender:AnyObject){
+    @IBAction func controllManager(sender:AnyObject){
 
-        if(sender.isKindOfClass(UIBarButtonItem.classForCoder())){
+        if(sender.isEqual(rightBarButton)){
+            
+            self.tableView.setEditing(false, animated: true)
             let addAlarm:NewAddAlarmController = NewAddAlarmController()
             addAlarm.title = NSLocalizedString("add_alarm", comment: "")
             addAlarm.mDelegate = self
             addAlarm.hidesBottomBarWhenPushed = true
             self.navigationController?.pushViewController(addAlarm, animated: true)
-
-            self.editing = false
-            self.tableView.setEditing(false, animated: true)
         }
 
         if(sender.isKindOfClass(UISwitch.classForCoder())){
@@ -217,7 +217,7 @@ class AlarmClockController: UITableViewController, SyncControllerDelegate,AddAla
             addalarm.add({ (id, completion) -> Void in
                 if(completion!){
                     addalarm.id = id!
-                    (alarmType==0 ? self.mSleepAlarmArray:self.mWakeAlarmArray).addObject(addalarm)
+                    (alarmType==1 ? self.mSleepAlarmArray:self.mWakeAlarmArray).addObject(addalarm)
                     self.tableView.reloadData()
 
                     let date:NSDate = NSDate(timeIntervalSince1970: timer)
@@ -288,7 +288,13 @@ class AlarmClockController: UITableViewController, SyncControllerDelegate,AddAla
 
     // MARK: - UITableViewDelegate
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int{
-        return 2
+        if mWakeAlarmArray.count == 0 && mSleepAlarmArray.count == 0 {
+            tableView.backgroundView = NotAlarmView.getNotAlarmView()
+            return 0
+        }else{
+            tableView.backgroundView = nil
+            return 2
+        }
     }
 
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -300,12 +306,6 @@ class AlarmClockController: UITableViewController, SyncControllerDelegate,AddAla
     }
     // MARK: - UITableViewDataSource
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
-        if mWakeAlarmArray.count == 0 && mSleepAlarmArray.count == 0 {
-            tableView.backgroundView = NotAlarmView.getNotAlarmView()
-        }else{
-            tableView.backgroundView = nil
-        }
-        
         if section == 0 {
             return mSleepAlarmArray.count
         }else if section == 1 {
@@ -330,7 +330,6 @@ class AlarmClockController: UITableViewController, SyncControllerDelegate,AddAla
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let endCell:UITableViewCell = tableView.dequeueReusableCellWithIdentifier("alarmCell", forIndexPath: indexPath)
         endCell.selectionStyle = UITableViewCellSelectionStyle.None
-        //AlarmClockVCell
         var alarmModel:UserAlarm?
         if indexPath.section == 0 {
             alarmModel = mSleepAlarmArray[indexPath.row] as? UserAlarm
@@ -345,9 +344,10 @@ class AlarmClockController: UITableViewController, SyncControllerDelegate,AddAla
         (endCell as! AlarmClockVCell).alarmSwicth.tag = indexPath.row
         (endCell as! AlarmClockVCell).alarmSwicth.on = alarmModel!.status
         if indexPath.section == 0 {
-            (endCell as! AlarmClockVCell).alarmSwicth.addTarget(self, action: #selector(controllManager(_:)), forControlEvents: UIControlEvents.ValueChanged)
-        }else{
             (endCell as! AlarmClockVCell).alarmSwicth.addTarget(self, action: #selector(sleepSwitchManager(_:)), forControlEvents: UIControlEvents.ValueChanged)
+        }else{
+            endCell.contentView.backgroundColor = UIColor.getGreyColor()
+            (endCell as! AlarmClockVCell).alarmSwicth.addTarget(self, action: #selector(controllManager(_:)), forControlEvents: UIControlEvents.ValueChanged)
         }
         
         return endCell
@@ -355,6 +355,14 @@ class AlarmClockController: UITableViewController, SyncControllerDelegate,AddAla
 
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         return true
+    }
+    
+    override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]?{
+        let button1 = UITableViewRowAction(style: .Default, title: "Delete", handler: { (action, indexPath) in
+            self.tableView(tableView, commitEditingStyle: .Delete, forRowAtIndexPath: indexPath)
+        })
+        button1.backgroundColor = UIColor.getBaseColor()
+        return [button1]
     }
 
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {

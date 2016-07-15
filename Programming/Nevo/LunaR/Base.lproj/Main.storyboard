@@ -114,7 +114,17 @@
                             <outlet property="delegate" destination="raW-BV-myH" id="J80-0J-Kf6"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Alarm" id="azU-zf-ye7"/>
+                    <navigationItem key="navigationItem" title="Alarm" id="azU-zf-ye7">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="xXW-sh-ng7">
+                            <color key="tintColor" red="0.4941176471" green="0.84705882349999995" blue="0.81960784310000001" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="controllManager:" destination="raW-BV-myH" id="WbI-fU-d2e"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="rightBarButton" destination="xXW-sh-ng7" id="SzJ-Wz-m06"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xca-UZ-q6S" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
