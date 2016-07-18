@@ -125,6 +125,7 @@ class NewAddAlarmController: UITableViewController,ButtonManagerCallBack,UIAlert
             if(indexPath.row == 0){
                 let repeatControll:RepeatViewController = RepeatViewController()
                 repeatControll.selectedDelegate = self
+                repeatControll.selectedIndex = repeatSelectedIndex
                 self.navigationController?.pushViewController(repeatControll, animated: true)
             }
 
@@ -133,7 +134,6 @@ class NewAddAlarmController: UITableViewController,ButtonManagerCallBack,UIAlert
                     let selectedCell:UITableViewCell = tableView.cellForRowAtIndexPath(indexPath)!
 
                     let actionSheet:UIAlertController = UIAlertController(title: NSLocalizedString("add_alarm_label", comment: ""), message: nil, preferredStyle: UIAlertControllerStyle.Alert)
-                    actionSheet.view.tintColor = AppTheme.NEVO_SOLAR_YELLOW()
                     actionSheet.addTextFieldWithConfigurationHandler({ (labelText:UITextField) -> Void in
                         labelText.text = selectedCell.detailTextLabel?.text
                     })
@@ -141,12 +141,14 @@ class NewAddAlarmController: UITableViewController,ButtonManagerCallBack,UIAlert
                     let alertAction:UIAlertAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: UIAlertActionStyle.Cancel, handler: { (action:UIAlertAction) -> Void in
 
                     })
+                    alertAction.setValue(UIColor.getBaseColor(), forKey: "titleTextColor")
                     actionSheet.addAction(alertAction)
 
                     let alertAction1:UIAlertAction = UIAlertAction(title: NSLocalizedString("Add", comment: ""), style: UIAlertActionStyle.Default, handler: { (action:UIAlertAction) -> Void in
                         let labelText:UITextField = actionSheet.textFields![0]
                         selectedCell.detailTextLabel?.text = labelText.text
                     })
+                    alertAction1.setValue(UIColor.getBaseColor(), forKey: "titleTextColor")
                     actionSheet.addAction(alertAction1)
                     self.presentViewController(actionSheet, animated: true, completion: nil)
                 }else{

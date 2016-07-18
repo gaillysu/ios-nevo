@@ -18,6 +18,10 @@ class NewAddAlarmHeader: UITableViewHeaderFooterView {
         actionCallBack?(sender: sender)
     }
     
+    override func awakeFromNib() {
+        let dict:[String : AnyObject] = [NSForegroundColorAttributeName:UIColor.whiteColor()]
+        alarmType.setTitleTextAttributes(dict, forState: UIControlState.Selected)
+    }
     /*
     // Only override drawRect: if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.

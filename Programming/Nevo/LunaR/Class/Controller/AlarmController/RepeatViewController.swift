@@ -16,8 +16,9 @@ protocol SelectedRepeatDelegate {
 
 class RepeatViewController: UIViewController {
 
-    let RepeatDayArray:[String] = ["Disable","Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]
-    private var selectedIndex:Int = 0
+    @IBOutlet weak var tableView: UITableView!
+    let RepeatDayArray:[String] = ["Every Disable","Every Sunday","Every Monday","Every Tuesday","Every Wednesday","Every Thursday","Every Friday","Every Saturday"]
+    var selectedIndex:Int = 0
     var selectedDelegate:SelectedRepeatDelegate?
 
     init() {
@@ -31,6 +32,9 @@ class RepeatViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "Repeat"
+        self.view.backgroundColor = UIColor.getGreyColor()
+        tableView.backgroundColor = UIColor.getGreyColor()
+        tableView.separatorColor = UIColor.getLightBaseColor()
         // Do any additional setup after loading the view.
     }
 
@@ -75,17 +79,25 @@ class RepeatViewController: UIViewController {
         if(cell == nil){
             cell = UITableViewCell(style: UITableViewCellStyle.Value1, reuseIdentifier: "LabelCell")
         }
+        cell?.backgroundColor = UIColor.getGreyColor()
+        cell?.contentView.backgroundColor = UIColor.getGreyColor()
+        cell!.textLabel?.textColor = UIColor.whiteColor()
         cell!.textLabel?.text = NSLocalizedString("\(RepeatDayArray[indexPath.row])", comment: "")
-
+        cell!.preservesSuperviewLayoutMargins = false;
+        cell!.separatorInset = UIEdgeInsetsZero;
+        cell!.layoutMargins = UIEdgeInsetsZero;
+        
         if(indexPath.row == selectedIndex) {
             let view = cell?.contentView.viewWithTag(1500)
             if(view == nil){
                 let selectedImage:UIImageView = UIImageView(frame: CGRectMake(0, 0, 25, 25))
+                selectedImage.tintColor = UIColor.getBaseColor()
                 selectedImage.image = UIImage(named: "notifications_selected_background")
                 selectedImage.tag = 1500
                 cell?.contentView.addSubview(selectedImage)
                 selectedImage.center = CGPointMake(UIScreen.mainScreen().bounds.size.width-(selectedImage.frame.size.width/2.0 + 10), cell!.contentView.frame.size.height/2.0)
             }else{
+                (view as! UIImageView).tintColor = UIColor.getBaseColor()
                 (view as! UIImageView).image = UIImage(named: "notifications_selected_background")
             }
         }
