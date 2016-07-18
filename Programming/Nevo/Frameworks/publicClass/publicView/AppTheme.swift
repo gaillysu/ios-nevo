@@ -471,4 +471,19 @@ class AppTheme {
     class func isNull(object:String)->Bool{
         return object.isEmpty
     }
+    
+    class func getClassCustomPropertyName(anClass:AnyClass,name:String)->String{
+        var outCount:UInt32 = 0;
+        var i:Int = 0;
+        let pProperty = class_copyPropertyList(anClass, &outCount);
+        for (i = Int(outCount)-1; i >= 0; i -= 1){
+            // 循环获取属性的名字   property_getName函数返回一个属性的名称
+            let getPropertyName:String = String(CString: property_getName(pProperty[i]),encoding:NSUTF8StringEncoding)!
+            //let getPropertyNameString:String = String(CString: property_getAttributes(pProperty[i]),encoding:NSUTF8StringEncoding)!
+            if(getPropertyName == name) {
+                return getPropertyName
+            }
+        }
+        return ""
+    }
 }

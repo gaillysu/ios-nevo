@@ -272,6 +272,10 @@
 		0072EACF1C190DCD001EE2C9 /* SFUIDisplay-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0072EAA51C190DCD001EE2C9 /* SFUIDisplay-Regular.ttf */; };
 		0072EADB1C190DCD001EE2C9 /* SFUIText-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0072EAB11C190DCD001EE2C9 /* SFUIText-Regular.ttf */; };
 		0072EAEB1C192210001EE2C9 /* spinner.png in Resources */ = {isa = PBXBuildFile; fileRef = 0072EAEA1C192210001EE2C9 /* spinner.png */; };
+		0073C5DE1D3C67CF00924167 /* NewAddAlarmHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0073C5DD1D3C67CF00924167 /* NewAddAlarmHeader.swift */; };
+		0073C5E01D3C67E700924167 /* NewAddAlarmHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0073C5DF1D3C67E700924167 /* NewAddAlarmHeader.xib */; };
+		0073C5E31D3C7CC200924167 /* AlarmTypeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0073C5E11D3C7CC200924167 /* AlarmTypeCell.swift */; };
+		0073C5E41D3C7CC200924167 /* AlarmTypeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0073C5E21D3C7CC200924167 /* AlarmTypeCell.xib */; };
 		0074CB971D29EEAA00963607 /* InformationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0074CB951D29EEAA00963607 /* InformationController.swift */; };
 		0074CB981D29EEAA00963607 /* InformationController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0074CB961D29EEAA00963607 /* InformationController.xib */; };
 		007C45351D2B4C08004929E0 /* HomeTutorialController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 007C452B1D2B4C08004929E0 /* HomeTutorialController.xib */; };
@@ -715,6 +719,10 @@
 		0072EAA51C190DCD001EE2C9 /* SFUIDisplay-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFUIDisplay-Regular.ttf"; sourceTree = "<group>"; };
 		0072EAB11C190DCD001EE2C9 /* SFUIText-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFUIText-Regular.ttf"; sourceTree = "<group>"; };
 		0072EAEA1C192210001EE2C9 /* spinner.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spinner.png; sourceTree = "<group>"; };
+		0073C5DD1D3C67CF00924167 /* NewAddAlarmHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewAddAlarmHeader.swift; sourceTree = "<group>"; };
+		0073C5DF1D3C67E700924167 /* NewAddAlarmHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewAddAlarmHeader.xib; sourceTree = "<group>"; };
+		0073C5E11D3C7CC200924167 /* AlarmTypeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlarmTypeCell.swift; sourceTree = "<group>"; };
+		0073C5E21D3C7CC200924167 /* AlarmTypeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AlarmTypeCell.xib; sourceTree = "<group>"; };
 		0074CB951D29EEAA00963607 /* InformationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InformationController.swift; sourceTree = "<group>"; };
 		0074CB961D29EEAA00963607 /* InformationController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InformationController.xib; sourceTree = "<group>"; };
 		007C452B1D2B4C08004929E0 /* HomeTutorialController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeTutorialController.xib; sourceTree = "<group>"; };
@@ -2061,6 +2069,10 @@
 			children = (
 				00EFE08E1D227DCC0066C905 /* NotAlarmView.swift */,
 				00EFE08F1D227DCC0066C905 /* NotAlarmView.xib */,
+				0073C5DD1D3C67CF00924167 /* NewAddAlarmHeader.swift */,
+				0073C5DF1D3C67E700924167 /* NewAddAlarmHeader.xib */,
+				0073C5E11D3C7CC200924167 /* AlarmTypeCell.swift */,
+				0073C5E21D3C7CC200924167 /* AlarmTypeCell.xib */,
 			);
 			path = AlarmView;
 			sourceTree = "<group>";
@@ -2750,6 +2762,8 @@
 				0043EDCE1D24EF94007DEBDA /* CheckYourIndoxController.xib in Resources */,
 				007C45351D2B4C08004929E0 /* HomeTutorialController.xib in Resources */,
 				0037EC331D235F5300502140 /* white_hour.png in Resources */,
+				0073C5E01D3C67E700924167 /* NewAddAlarmHeader.xib in Resources */,
+				0073C5E41D3C7CC200924167 /* AlarmTypeCell.xib in Resources */,
 				0037EC341D235F5300502140 /* white_minute.png in Resources */,
 				0037EC351D235F5300502140 /* upgrade_clock.png in Resources */,
 				0037EC361D235F5300502140 /* firmware_clock.png in Resources */,
@@ -3044,6 +3058,7 @@
 				0037EC1C1D235EC400502140 /* FXBlurView.h in Sources */,
 				0037EC1D1D235EC400502140 /* FXBlurView.m in Sources */,
 				0037EC161D235CCA00502140 /* MBProgressHUD+MJ.h in Sources */,
+				0073C5DE1D3C67CF00924167 /* NewAddAlarmHeader.swift in Sources */,
 				0037EC171D235CCA00502140 /* MBProgressHUD+MJ.m in Sources */,
 				0037EC181D235CCA00502140 /* MBProgressHUD.bundle in Sources */,
 				0037EC191D235CCA00502140 /* MBProgressHUD.h in Sources */,
@@ -3117,6 +3132,7 @@
 				0037EBF01D235BD000502140 /* IntelHex2BinConverter.m in Sources */,
 				0037EBF11D235BD000502140 /* NevoOTAControllerProfile.swift in Sources */,
 				0037EBF21D235BD000502140 /* NevoOTAModeProfile.swift in Sources */,
+				0073C5E31D3C7CC200924167 /* AlarmTypeCell.swift in Sources */,
 				0037EBF31D235BD000502140 /* NevoOTAPacketProfile.swift in Sources */,
 				0037EBF41D235BD000502140 /* NevoOTARequest.swift in Sources */,
 				0037EBF51D235BD000502140 /* Utility.swift in Sources */,

@@ -56,6 +56,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
         UITabBar.appearance().backgroundImage = UIImage()
         //UITabBar.appearance().shadowImage = UIImage()
         UITabBar.appearance().translucent = false
+        let dict:[String : AnyObject] = [NSForegroundColorAttributeName:UIColor.whiteColor()]
+        UINavigationBar.appearance().titleTextAttributes = dict
 
         //Start the logo for the first time
         if(!NSUserDefaults.standardUserDefaults().boolForKey("LaunchedDatabase")){
