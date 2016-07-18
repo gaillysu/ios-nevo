@@ -58,6 +58,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
         UITabBar.appearance().translucent = false
         let dict:[String : AnyObject] = [NSForegroundColorAttributeName:UIColor.whiteColor()]
         UINavigationBar.appearance().titleTextAttributes = dict
+        
+        UINavigationBar.appearance().lt_setBackgroundColor(UIColor.getGreyColor())
+        UIApplication.sharedApplication().statusBarStyle = UIStatusBarStyle.LightContent
 
         //Start the logo for the first time
         if(!NSUserDefaults.standardUserDefaults().boolForKey("LaunchedDatabase")){
