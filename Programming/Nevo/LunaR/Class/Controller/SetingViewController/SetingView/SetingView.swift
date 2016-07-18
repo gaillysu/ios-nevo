@@ -20,7 +20,7 @@ class SetingView: UIView {
     func bulidNotificationViewUI(delegate:ButtonManagerCallBack){
         //title.text = NSLocalizedString("Setting", comment: "")
         mDelegate = delegate
-        
+        tableListView.backgroundColor = UIColor.getGreyColor()
     }
 
 
@@ -43,6 +43,7 @@ class SetingView: UIView {
         if (endCell == nil) {
             endCell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: endCellID)
         }
+        endCell?.contentView.backgroundColor = UIColor.getGreyColor()
         if(title == NSLocalizedString("find_my_watch", comment: "") || title == NSLocalizedString("forget_watch", comment: "")) {
             let activity:UIActivityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
             activity.center = CGPointMake(UIScreen.mainScreen().bounds.size.width-activity.frame.size.width, 50/2.0)
@@ -70,7 +71,7 @@ class SetingView: UIView {
         if (endCell == nil) {
             endCell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: endCellID)
         }
-        
+        endCell?.contentView.backgroundColor = UIColor.getGreyColor()
         let view = endCell!.contentView.viewWithTag(NotificationSwitchButtonTAG)
         if view == nil {
             mSendLocalNotificationSwitchButton = UISwitch(frame: CGRectMake(0,0,51,31))

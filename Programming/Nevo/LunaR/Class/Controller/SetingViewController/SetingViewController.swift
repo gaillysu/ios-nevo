@@ -272,6 +272,7 @@ class SetingViewController: UIViewController,SyncControllerDelegate,ButtonManage
             let user:NSArray = UserProfile.getAll()
             if user.count>0 {
                 let cell = tableView.dequeueReusableCellWithIdentifier("SetingInfoIdentifier", forIndexPath: indexPath)
+                cell.contentView.backgroundColor = UIColor.getGreyColor()
                 let user:NSArray = UserProfile.getAll()
                 
                 let userprofile:UserProfile = user[0] as! UserProfile
