@@ -20,7 +20,8 @@ class SetingView: UIView {
     func bulidNotificationViewUI(delegate:ButtonManagerCallBack){
         //title.text = NSLocalizedString("Setting", comment: "")
         mDelegate = delegate
-        tableListView.backgroundColor = UIColor.getGreyColor()
+        tableListView.backgroundColor = UIColor.getLightBaseColor()
+        tableListView.separatorColor = UIColor.getLightBaseColor()
     }
 
 
@@ -43,6 +44,7 @@ class SetingView: UIView {
         if (endCell == nil) {
             endCell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: endCellID)
         }
+        endCell?.backgroundColor = UIColor.getGreyColor()
         endCell?.contentView.backgroundColor = UIColor.getGreyColor()
         if(title == NSLocalizedString("find_my_watch", comment: "") || title == NSLocalizedString("forget_watch", comment: "")) {
             let activity:UIActivityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
@@ -52,6 +54,7 @@ class SetingView: UIView {
             endCell?.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
         }
         endCell?.textLabel?.text = title
+        endCell?.textLabel?.textColor = UIColor.whiteColor()
         endCell?.imageView?.image = UIImage(named: imageName)
         return endCell!
     }
@@ -71,21 +74,23 @@ class SetingView: UIView {
         if (endCell == nil) {
             endCell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: endCellID)
         }
+        endCell?.backgroundColor = UIColor.getGreyColor()
         endCell?.contentView.backgroundColor = UIColor.getGreyColor()
+        endCell?.imageView?.image = UIImage(named: imageName)
+        endCell?.textLabel?.text = title
+        endCell?.textLabel?.textColor = UIColor.whiteColor()
+        
         let view = endCell!.contentView.viewWithTag(NotificationSwitchButtonTAG)
         if view == nil {
             mSendLocalNotificationSwitchButton = UISwitch(frame: CGRectMake(0,0,51,31))
             mSendLocalNotificationSwitchButton.tag = NotificationSwitchButtonTAG
             mSendLocalNotificationSwitchButton?.on = ConnectionManager.sharedInstance.getIsSendLocalMsg()
-            mSendLocalNotificationSwitchButton?.tintColor = AppTheme.NEVO_SOLAR_YELLOW()
-            mSendLocalNotificationSwitchButton?.onTintColor = AppTheme.NEVO_SOLAR_YELLOW()
+            mSendLocalNotificationSwitchButton?.tintColor = UIColor.getBaseColor()
+            mSendLocalNotificationSwitchButton?.onTintColor = UIColor.getBaseColor()
             mSendLocalNotificationSwitchButton?.addTarget(self, action: #selector(SetingView.buttonAction(_:)), forControlEvents: UIControlEvents.ValueChanged)
             mSendLocalNotificationSwitchButton?.center = CGPointMake(UIScreen.mainScreen().bounds.size.width-40, 50.0/2.0)
             endCell?.contentView.addSubview(mSendLocalNotificationSwitchButton!)
         }
-        //endCell?.selectionStyle = UITableViewCellSelectionStyle.None;
-        endCell?.imageView?.image = UIImage(named: imageName)
-        endCell?.textLabel?.text = title
         return endCell!
     }
 

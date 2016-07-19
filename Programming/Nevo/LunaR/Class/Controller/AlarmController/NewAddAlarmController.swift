@@ -83,7 +83,7 @@ class NewAddAlarmController: UITableViewController,ButtonManagerCallBack,UIAlert
                 }
             }
 
-            let indexPaths3:NSIndexPath = NSIndexPath(forRow: 2, inSection: 1)
+            let indexPaths3:NSIndexPath = NSIndexPath(forRow: 1, inSection: 1)
             let timerCell3:UITableViewCell = self.tableView.cellForRowAtIndexPath(indexPaths3)!
             name = (timerCell3.detailTextLabel!.text)!
 

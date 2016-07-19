@@ -272,7 +272,9 @@ class SetingViewController: UIViewController,SyncControllerDelegate,ButtonManage
             let user:NSArray = UserProfile.getAll()
             if user.count>0 {
                 let cell = tableView.dequeueReusableCellWithIdentifier("SetingInfoIdentifier", forIndexPath: indexPath)
-                cell.contentView.backgroundColor = UIColor.getGreyColor()
+                cell.backgroundColor = UIColor.getLightBaseColor()
+                cell.contentView.backgroundColor = UIColor.getLightBaseColor()
+                cell.separatorInset = UIEdgeInsets(top: 0, left: UIScreen.mainScreen().bounds.size.width, bottom: 0, right: 0)
                 let user:NSArray = UserProfile.getAll()
                 
                 let userprofile:UserProfile = user[0] as! UserProfile
@@ -281,6 +283,9 @@ class SetingViewController: UIViewController,SyncControllerDelegate,ButtonManage
                 return cell
             }else{
                 let cell = tableView.dequeueReusableCellWithIdentifier("SetingNotLoginIdentifier", forIndexPath: indexPath)
+                cell.backgroundColor = UIColor.getLightBaseColor()
+                cell.contentView.backgroundColor = UIColor.getLightBaseColor()
+                cell.separatorInset = UIEdgeInsets(top: 0, left: UIScreen.mainScreen().bounds.size.width, bottom: 0, right: 0)
                 return cell
             }
             
