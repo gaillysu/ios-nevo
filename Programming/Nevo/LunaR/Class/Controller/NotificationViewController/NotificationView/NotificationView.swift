@@ -30,10 +30,13 @@ class NotificationView: UITableView {
             endCell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: endCellID)
         }
         endCell?.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
-        //endCell?.selectionStyle = UITableViewCellSelectionStyle.None;
+        endCell?.backgroundColor = UIColor.getGreyColor()
+        endCell?.contentView.backgroundColor = UIColor.getGreyColor()
         endCell?.textLabel?.text = NSLocalizedString(title, comment: "")
+        endCell?.textLabel?.textColor = UIColor.whiteColor()
 
         endCell?.detailTextLabel?.text = NSLocalizedString(detailLabel, comment: "")
+         endCell?.detailTextLabel?.textColor = UIColor.whiteColor()
         endCell?.imageView?.image = UIImage(named: "new_\(title.lowercaseString)")
         return endCell!
     }

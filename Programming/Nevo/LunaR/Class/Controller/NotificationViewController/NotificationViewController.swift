@@ -29,7 +29,7 @@ class NotificationViewController: UITableViewController,SelectedNotificationDele
         super.viewDidLoad()
         initNotificationSettingArray()
         notificationView.bulidNotificationView(self.navigationItem)
-
+        notificationView.backgroundColor = UIColor.getGreyColor()
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
@@ -138,6 +138,11 @@ class NotificationViewController: UITableViewController,SelectedNotificationDele
     }
 
     // MARK: - Table view data source
+    override func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        let headerView:UITableViewHeaderFooterView = view as! UITableViewHeaderFooterView
+        headerView.textLabel?.textColor = UIColor.whiteColor()
+    }
+    
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String{
         if(section == 0) {
             if(mNotificationONArray.count == 0) {
@@ -155,12 +160,10 @@ class NotificationViewController: UITableViewController,SelectedNotificationDele
     }
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return titleHeader.count
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         switch (section){
         case 0:
             return mNotificationONArray.count
