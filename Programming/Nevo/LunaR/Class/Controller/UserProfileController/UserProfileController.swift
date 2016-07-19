@@ -11,8 +11,8 @@ import UIKit
 let userIdentifier:String = "UserProfileIdentifier"
 class UserProfileController: UITableViewController {
 
-    private let titleArray:[String] = ["First name","Last Name","Weight","Length"]
-    private let fieldArray:[String] = ["first_name","last_name","weight","length"]
+    private let titleArray:[String] = ["First name","Last Name","Weight","Height","Date of Birth"]
+    private let fieldArray:[String] = ["first_name","last_name","weight","height","date_birth"]
     var userprofile:NSArray?
     
     init() {
@@ -25,9 +25,13 @@ class UserProfileController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.tableView.sectionHeaderHeight = 90
-        
+        self.tableView.sectionHeaderHeight = 150
+        tableView.backgroundColor = UIColor.getGreyColor()
         self.tableView.registerNib(UINib(nibName: "UserProfileCell", bundle:nil), forCellReuseIdentifier: userIdentifier)
+        self.tableView.registerNib(UINib(nibName: "UserHeader", bundle:nil), forHeaderFooterViewReuseIdentifier: "HeaderViewReuseIdentifier")
+        let header:UITableViewHeaderFooterView = tableView.dequeueReusableHeaderFooterViewWithIdentifier("HeaderViewReuseIdentifier")!
+        header.contentView.backgroundColor = UIColor.getGreyColor()
+        tableView.tableHeaderView = header
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -42,58 +46,41 @@ class UserProfileController: UITableViewController {
 
     // MARK: - Table view data source
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 2
+        return 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 0 {
-            return titleArray.count
-        }else{
-            return 1
-        }
+        return titleArray.count
+    }
+    
+    override func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat{
+        return 5.0
     }
 
-
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        if indexPath.section == 0 {
-            let cell = tableView.dequeueReusableCellWithIdentifier(userIdentifier,forIndexPath: indexPath)
-            cell.selectionStyle = UITableViewCellSelectionStyle.None;
-            cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
-            cell.textLabel?.text = titleArray[indexPath.row]
-            
-            if userprofile != nil {
-                let profile:UserProfile = userprofile?[0] as! UserProfile
-                switch indexPath.row {
-                case 0:
-                    cell.detailTextLabel?.text = profile.first_name
-                case 1:
-                    cell.detailTextLabel?.text = profile.last_name
-                case 2:
-                    cell.detailTextLabel?.text = "\(profile.weight)"
-                case 3:
-                    cell.detailTextLabel?.text = "\(profile.length)"
-                default:
-                    break
-                }
+        let cell = tableView.dequeueReusableCellWithIdentifier(userIdentifier,forIndexPath: indexPath)
+        cell.selectionStyle = UITableViewCellSelectionStyle.None;
+        cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
+        cell.textLabel?.text = titleArray[indexPath.row]
+        
+        if userprofile != nil {
+            let profile:UserProfile = userprofile?[0] as! UserProfile
+            switch indexPath.row {
+            case 0:
+                cell.detailTextLabel?.text = profile.first_name
+            case 1:
+                cell.detailTextLabel?.text = profile.last_name
+            case 2:
+                cell.detailTextLabel?.text = "\(profile.weight)"
+            case 3:
+                cell.detailTextLabel?.text = "\(profile.length)"
+            case 4:
+                cell.detailTextLabel?.text = "\(profile.birthday)"
+            default:
+                break
             }
-            return cell
-        }else {
-            let cell = tableView.dequeueReusableCellWithIdentifier(userIdentifier,forIndexPath: indexPath)
-            cell.selectionStyle = UITableViewCellSelectionStyle.None;
-            cell.accessoryType = UITableViewCellAccessoryType.None
-            cell.backgroundColor = UIColor.redColor()
-            var label = cell.contentView.viewWithTag(1500)
-            if label == nil {
-                label = UILabel(frame: CGRectMake(0,0,UIScreen.mainScreen().bounds.size.width,40))
-                label?.tag = 1500
-                cell.contentView.addSubview(label!)
-            }
-            label?.backgroundColor = UIColor.redColor()
-            (label as! UILabel).textColor = UIColor.whiteColor()
-            (label as! UILabel).textAlignment = NSTextAlignment.Center
-            (label as! UILabel).text = "LogOut"
-            return cell
         }
+        return cell
     }
 
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
