@@ -21,8 +21,11 @@ class MyNevoView: UITableView {
 //        }else{
 //
 //        }
+        endCell?.backgroundColor = UIColor.getGreyColor()
+        endCell?.contentView.backgroundColor = UIColor.getGreyColor()
         endCell?.selectionStyle = UITableViewCellSelectionStyle.None;
         endCell?.textLabel?.text = title
+        endCell?.textLabel?.textColor = UIColor.whiteColor()
         endCell?.detailTextLabel?.text = detailText
         return endCell!
     }

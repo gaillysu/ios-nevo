@@ -33,13 +33,8 @@ class SelectedNotificationTypeController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = NSLocalizedString(titleString!, comment: "")
-
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        tableView.backgroundColor = UIColor.getGreyColor()
+        tableView.registerNib(UINib(nibName: "NotificationClockCell",bundle:nil), forCellReuseIdentifier: "NotificationClock_ReuseIdentifier")
     }
 
     override func didReceiveMemoryWarning() {
@@ -74,7 +69,6 @@ class SelectedNotificationTypeController: UITableViewController {
         case 0:
             return 45.0
         case 1:
-            //let cellHeight:CGFloat = selectedNotificationView.getNotificationClockCell(indexPath, tableView: tableView, title: "").contentView.systemLayoutSizeFittingSize(UILayoutFittingCompressedSize).height
             return 185.0
         case 2:
             return 50.0
@@ -84,9 +78,7 @@ class SelectedNotificationTypeController: UITableViewController {
     }
     
     // MARK: - Table view data source
-
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         if(swicthStates){
             return 3
         }else{
@@ -95,7 +87,6 @@ class SelectedNotificationTypeController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         if(section == 2){
             return colorArray.count
         }

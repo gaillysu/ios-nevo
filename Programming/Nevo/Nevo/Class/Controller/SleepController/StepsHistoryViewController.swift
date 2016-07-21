@@ -9,7 +9,7 @@
 import UIKit
 import Charts
 
-class SleepHistoricalViewController: PublicClassController,ChartViewDelegate,SelectedChartViewDelegate {
+class StepsHistoryViewController: PublicClassController,ChartViewDelegate,SelectedChartViewDelegate {
 
     @IBOutlet var queryView: SleepHistoricalView!
     private var contentTitleArray:[String] = []

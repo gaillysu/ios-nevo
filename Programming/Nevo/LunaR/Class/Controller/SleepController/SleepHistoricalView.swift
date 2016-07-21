@@ -16,7 +16,7 @@ import Charts
 
 class SleepHistoricalView: UIView, ChartViewDelegate{
 
-    @IBOutlet var chartView:BarChartView?
+    @IBOutlet var chartView:AnalysisStepsChartView?
     @IBOutlet weak var detailCollectionView: UICollectionView!
     @IBOutlet weak var nodataLabel: UILabel!
     private var queryModel:NSMutableArray = NSMutableArray()
@@ -32,56 +32,14 @@ class SleepHistoricalView: UIView, ChartViewDelegate{
             mDelegate = delegate
             navigation.title = NSLocalizedString("sleep_history_title", comment: "")
             // MARK: - chartView?.marker
+            //chartView.addDataPoint("\(1)", entry: BarChartDataEntry(value: xVal, xIndex:i))
             chartView?.backgroundColor = AppTheme.NEVO_CUSTOM_COLOR(Red: 25, Green: 31, Blue: 59)
-            chartView?.descriptionText = " ";
-            chartView?.noDataText = NSLocalizedString("no_sleep_data", comment: "")
-            chartView?.noDataTextDescription = "";
-            chartView?.pinchZoomEnabled = false
-            chartView?.drawGridBackgroundEnabled = false;
-            chartView?.drawBarShadowEnabled = false;
-            let xScale:CGFloat = CGFloat(queryModel.count)/7.0;//integer/integer = integer,float/float = float
-            chartView?.setScaleMinima(xScale, scaleY: 1)
-            chartView?.setScaleEnabled(false);
-            chartView?.drawValueAboveBarEnabled = true;
-            chartView?.doubleTapToZoomEnabled = false;
-            chartView?.setViewPortOffsets(left: 0.0, top: 0.0, right: 0.0, bottom: 0.0)
-            chartView?.delegate = self
-
-            let leftAxis:ChartYAxis = chartView!.leftAxis;
-            leftAxis.valueFormatter = NSNumberFormatter();
-            leftAxis.drawAxisLineEnabled = false;
-            leftAxis.drawGridLinesEnabled = false;
-            leftAxis.enabled = false;
-            leftAxis.spaceTop = 0.6;
-
-            chartView!.rightAxis.enabled = false;
-
-            let xAxis:ChartXAxis = chartView!.xAxis;
-            xAxis.labelFont = UIFont.systemFontOfSize(8)
-            xAxis.drawAxisLineEnabled = false;
-            xAxis.drawGridLinesEnabled = false;
-            xAxis.labelPosition = ChartXAxis.LabelPosition.BottomInside
-            chartView!.legend.enabled = false;
+            chartView?.drawSettings(chartView!.xAxis, yAxis: chartView!.leftAxis, rightAxis: chartView!.rightAxis)
         }
-        self.slidersValueChanged()
+        self.setDataCount(queryModel.count)
     }
 
-    func slidersValueChanged(){
-        //[self setDataCount:(_sliderX.value + 1) range:_sliderY.value];
-        self.setDataCount(queryModel.count, Range: 50)
-    }
-
-    func stringFromDate(date:NSDate) -> String {
-        let dateFormatter:NSDateFormatter = NSDateFormatter()
-        dateFormatter.timeZone = NSTimeZone.systemTimeZone()
-        dateFormatter.dateStyle = NSDateFormatterStyle.MediumStyle
-        dateFormatter.timeStyle = NSDateFormatterStyle.ShortStyle
-        dateFormatter.dateFormat = "yyyyMMdd"
-        let dateString:String = dateFormatter.stringFromDate(date)
-        return dateString
-    }
-
-    func setDataCount(count:Int, Range range:Double){
+    func setDataCount(count:Int){
         if(count == 0) {
             return
         }
@@ -192,38 +150,13 @@ class SleepHistoricalView: UIView, ChartViewDelegate{
             }
 
             xVal.append("\(dateString.substringWithRange(NSMakeRange(6, 2)))/\(dateString.substringWithRange(NSMakeRange(4, 2)))")
-
             yVal.append(BarChartDataEntry(values: [val1,val2,val3], xIndex:sleepArray.count))
             sleepArray.addObject(Sleep(weakSleep: val3,lightSleep: val2,deepSleep: val1,startTimer:startTimer , endTimer:endTimer))
+            let dateIndex:String = "\(dateString.substringWithRange(NSMakeRange(6, 2)))/\(dateString.substringWithRange(NSMakeRange(4, 2)))"
+            chartView!.addDataPoint(dateIndex, entry: BarChartDataEntry(values: [val1,val2,val3], xIndex:sleepArray.count))
         }
-
-        //According to at least seven days of data
-        if(yVal.count<7){
-            for s:Int in yVal.count ..< 7 {
-                xVal.append(" ")
-                yVal.append(BarChartDataEntry(values: [0,0,0], xIndex:sleepArray.count))
-                sleepArray.addObject(Sleep(weakSleep: 0,lightSleep: 0,deepSleep: 0,startTimer:0 ,endTimer:0))
-            }
-        }
-
-        //柱状图表
-        let set1:BarChartDataSet  = BarChartDataSet(yVals: yVal, label: "")
         
-        //每个数据区块的颜色
-        set1.colors = [AppTheme.getDeepSleepColor(),AppTheme.getLightSleepColor(),AppTheme.getWakeSleepColor()];
-        //UIColor(red: 239/255.0, green: 239/255.0, blue: 239/255.0, alpha: 1.0)
-        //每个数据块的类别名称,数组形式传递
-        set1.stackLabels = ["Deep sleep","Light sleep","weak sleep"];
-        set1.barSpace = 0.05;
-        set1.highlightColor = AppTheme.NEVO_SOLAR_YELLOW()
-        let dataSets:[BarChartDataSet] = [set1];
-
-        let data:BarChartData = BarChartData(xVals: xVal, dataSets: dataSets)
-        data.setDrawValues(false);//false 显示柱状图数值否则不显示
-
-        chartView?.data = data;
-        chartView?.animate(yAxisDuration: 1.5, easingOption: ChartEasingOption.EaseInOutCirc)
-        chartView?.moveViewToX(CGFloat(yVal.count))
+        chartView!.invalidateChart()
         
         if totalNumber == 0 {
             chartView?.data = nil

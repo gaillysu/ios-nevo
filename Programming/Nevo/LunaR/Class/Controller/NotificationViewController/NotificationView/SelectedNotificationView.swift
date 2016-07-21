@@ -17,21 +17,18 @@ class SelectedNotificationView: UITableView {
     }
 
     func getNotificationClockCell(indexPath:NSIndexPath, tableView:UITableView, title:String, clockIndex: Int)->UITableViewCell {
-        let endCellID:NSString = "NotificationClockCell"
-        var endCell = tableView.dequeueReusableCellWithIdentifier(endCellID as String) as? NotificationClockCell
-
-        if (endCell == nil) {
-            let nibs:NSArray = NSBundle.mainBundle().loadNibNamed("NotificationClockCell", owner: self, options: nil)
-            endCell = nibs.objectAtIndex(0) as? NotificationClockCell;
-        }
-        for view in endCell!.contentView.subviews{
+        let endCellID:String = "NotificationClock_ReuseIdentifier"
+        let endCell = tableView.dequeueReusableCellWithIdentifier(endCellID,forIndexPath:indexPath)
+        endCell.backgroundColor = UIColor.getGreyColor()
+        endCell.contentView.backgroundColor = UIColor.getGreyColor()
+        for view in endCell.contentView.subviews{
             if(view.isKindOfClass(UIImageView.classForCoder())){
                 let clockImage:UIImageView = view as! UIImageView
                 clockImage.image = UIImage(named: "\(clockIndex)_clock_dial")
             }
         }
-        endCell?.selectionStyle = UITableViewCellSelectionStyle.None;
-        return endCell!
+        endCell.selectionStyle = UITableViewCellSelectionStyle.None;
+        return endCell
     }
 
     func getLineColorCell(indexPath:NSIndexPath,tableView:UITableView,cellTitle:String,clockIndex:Int)->UITableViewCell{
@@ -77,8 +74,8 @@ class SelectedNotificationView: UITableView {
             endCell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: endCellID)
             let mSwitch:UISwitch = UISwitch(frame: CGRectMake(0,0,51,31))
             mSwitch.on = state
-            mSwitch.tintColor = AppTheme.NEVO_SOLAR_YELLOW()
-            mSwitch.onTintColor = AppTheme.NEVO_SOLAR_YELLOW()
+            mSwitch.tintColor = UIColor.getBaseColor()
+            mSwitch.onTintColor = UIColor.getBaseColor()
             mSwitch.center = CGPointMake(UIScreen.mainScreen().bounds.size.width-40, (endCell?.contentView.frame.height)!/2)
             endCell?.contentView.addSubview(mSwitch)
         }

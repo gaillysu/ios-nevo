@@ -238,7 +238,7 @@
 		0050D6181C28E0DB004F6F80 /* queryTableviewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0050D5611C28E0DB004F6F80 /* queryTableviewCell.xib */; };
 		0050D6191C28E0DB004F6F80 /* SleepController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0050D5621C28E0DB004F6F80 /* SleepController.swift */; };
 		0050D61A1C28E0DB004F6F80 /* SleepHistoricalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0050D5631C28E0DB004F6F80 /* SleepHistoricalView.swift */; };
-		0050D61B1C28E0DB004F6F80 /* SleepHistoricalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0050D5641C28E0DB004F6F80 /* SleepHistoricalViewController.swift */; };
+		0050D61B1C28E0DB004F6F80 /* StepsHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0050D5641C28E0DB004F6F80 /* StepsHistoryViewController.swift */; };
 		0050D61C1C28E0DB004F6F80 /* SleepHistoricalViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0050D5651C28E0DB004F6F80 /* SleepHistoricalViewController.xib */; };
 		0050D61D1C28E0DB004F6F80 /* SleepTrackingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0050D5661C28E0DB004F6F80 /* SleepTrackingController.swift */; };
 		0050D61E1C28E0DB004F6F80 /* SleepTrackingController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0050D5671C28E0DB004F6F80 /* SleepTrackingController.xib */; };
@@ -264,6 +264,7 @@
 		0058B3EA1CF55D590079A213 /* ConnectOtherAppsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0058B3E81CF55D590079A213 /* ConnectOtherAppsController.swift */; };
 		0058B3EB1CF55D590079A213 /* ConnectOtherAppsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0058B3E91CF55D590079A213 /* ConnectOtherAppsController.xib */; };
 		005BC95F1A88B79F006F9E86 /* FXBlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = 005BC95E1A88B79F006F9E86 /* FXBlurView.m */; };
+		0061243F1D3F0E80005E4E1E /* AnalysisStepsChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0061243E1D3F0E80005E4E1E /* AnalysisStepsChartView.swift */; };
 		006A65D11D10F2DD00DE647A /* SetingLoginCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006A65CF1D10F2DD00DE647A /* SetingLoginCell.swift */; };
 		006A65D21D10F2DD00DE647A /* SetingLoginCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 006A65D01D10F2DD00DE647A /* SetingLoginCell.xib */; };
 		0072EAB51C190DCD001EE2C9 /* SFCompactDisplay-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0072EA8B1C190DCD001EE2C9 /* SFCompactDisplay-Black.ttf */; };
@@ -684,7 +685,7 @@
 		0050D5611C28E0DB004F6F80 /* queryTableviewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = queryTableviewCell.xib; sourceTree = "<group>"; };
 		0050D5621C28E0DB004F6F80 /* SleepController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SleepController.swift; sourceTree = "<group>"; };
 		0050D5631C28E0DB004F6F80 /* SleepHistoricalView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SleepHistoricalView.swift; sourceTree = "<group>"; };
-		0050D5641C28E0DB004F6F80 /* SleepHistoricalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SleepHistoricalViewController.swift; sourceTree = "<group>"; };
+		0050D5641C28E0DB004F6F80 /* StepsHistoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepsHistoryViewController.swift; sourceTree = "<group>"; };
 		0050D5651C28E0DB004F6F80 /* SleepHistoricalViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SleepHistoricalViewController.xib; sourceTree = "<group>"; };
 		0050D5661C28E0DB004F6F80 /* SleepTrackingController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SleepTrackingController.swift; sourceTree = "<group>"; };
 		0050D5671C28E0DB004F6F80 /* SleepTrackingController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SleepTrackingController.xib; sourceTree = "<group>"; };
@@ -711,6 +712,7 @@
 		0058B3E91CF55D590079A213 /* ConnectOtherAppsController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConnectOtherAppsController.xib; sourceTree = "<group>"; };
 		005BC95D1A88B79F006F9E86 /* FXBlurView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FXBlurView.h; sourceTree = "<group>"; };
 		005BC95E1A88B79F006F9E86 /* FXBlurView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FXBlurView.m; sourceTree = "<group>"; };
+		0061243E1D3F0E80005E4E1E /* AnalysisStepsChartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalysisStepsChartView.swift; sourceTree = "<group>"; };
 		006A65CF1D10F2DD00DE647A /* SetingLoginCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetingLoginCell.swift; sourceTree = "<group>"; };
 		006A65D01D10F2DD00DE647A /* SetingLoginCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SetingLoginCell.xib; sourceTree = "<group>"; };
 		006B83691C44A20000E20A0C /* Nevo-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Nevo-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -1426,7 +1428,7 @@
 				0050D55F1C28E0DB004F6F80 /* queryTableviewCell */,
 				0050D5621C28E0DB004F6F80 /* SleepController.swift */,
 				0050D5631C28E0DB004F6F80 /* SleepHistoricalView.swift */,
-				0050D5641C28E0DB004F6F80 /* SleepHistoricalViewController.swift */,
+				0050D5641C28E0DB004F6F80 /* StepsHistoryViewController.swift */,
 				0050D5651C28E0DB004F6F80 /* SleepHistoricalViewController.xib */,
 				0050D5661C28E0DB004F6F80 /* SleepTrackingController.swift */,
 				0050D5671C28E0DB004F6F80 /* SleepTrackingController.xib */,
@@ -1561,6 +1563,22 @@
 			);
 			name = FXBlurView;
 			path = Frameworks/FXBlurView;
+			sourceTree = "<group>";
+		};
+		0061243C1D3F0E80005E4E1E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				0061243D1D3F0E80005E4E1E /* AnalysisStepsChartView */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		0061243D1D3F0E80005E4E1E /* AnalysisStepsChartView */ = {
+			isa = PBXGroup;
+			children = (
+				0061243E1D3F0E80005E4E1E /* AnalysisStepsChartView.swift */,
+			);
+			path = AnalysisStepsChartView;
 			sourceTree = "<group>";
 		};
 		0074CB941D29EE9200963607 /* InformationController */ = {
@@ -1983,6 +2001,7 @@
 		00EFE07A1D227DCC0066C905 /* Class */ = {
 			isa = PBXGroup;
 			children = (
+				0061243C1D3F0E80005E4E1E /* View */,
 				00EFE07B1D227DCC0066C905 /* Controller */,
 			);
 			path = Class;
@@ -3082,6 +3101,7 @@
 				0037EBB91D235BD000502140 /* DailySteps.swift in Sources */,
 				0037EBBA1D235BD000502140 /* DaySleep.swift in Sources */,
 				0037EBBB1D235BD000502140 /* HourlySteps.swift in Sources */,
+				0061243F1D3F0E80005E4E1E /* AnalysisStepsChartView.swift in Sources */,
 				0037EBBC1D235BD000502140 /* RealTimeCountSteps.swift in Sources */,
 				0037EBBD1D235BD000502140 /* RunningToHK.swift in Sources */,
 				0037EBBE1D235BD000502140 /* Alarm.swift in Sources */,
@@ -3393,7 +3413,7 @@
 				0050D6971C28E1CD004F6F80 /* AddAlarmView.swift in Sources */,
 				00D581441CB50C7500953B8A /* ChangeProfileController.swift in Sources */,
 				00F0C34B1C893EE6005888A7 /* AlarmTypeController.swift in Sources */,
-				0050D61B1C28E0DB004F6F80 /* SleepHistoricalViewController.swift in Sources */,
+				0050D61B1C28E0DB004F6F80 /* StepsHistoryViewController.swift in Sources */,
 				00AF8CCA1D224CFA009047AC /* UserNotification.swift in Sources */,
 				0050D6251C28E0DB004F6F80 /* StepGoalSetingView.swift in Sources */,
 				0050D5F41C28E0DB004F6F80 /* NevoOtaController.swift in Sources */,

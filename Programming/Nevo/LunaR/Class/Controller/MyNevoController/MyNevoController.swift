@@ -33,6 +33,14 @@ class MyNevoController: UITableViewController,SyncControllerDelegate,UIAlertView
         buildinFirmwareVersion = AppTheme.GET_FIRMWARE_VERSION()
 
         titleArray = [NSLocalizedString("watch_version", comment: ""),NSLocalizedString("battery", comment: ""),NSLocalizedString("app_version", comment: "")]
+        tableView.backgroundColor = UIColor.getGreyColor()
+        
+        let footLabel:UILabel = UILabel(frame: CGRectMake(0,0,UIScreen.mainScreen().bounds.size.width,80))
+        footLabel.numberOfLines = 0
+        footLabel.font = UIFont.systemFontOfSize(13)
+        footLabel.textColor = UIColor.whiteColor()
+        footLabel.text = "To save battery power, Bluetooth disconnects automatically when away from the phone for more than 2 minutes. You will not receive notifications on LunaR when disconnected."
+        tableView.tableFooterView = footLabel
     }
 
     override func viewDidAppear(animated: Bool) {
@@ -109,7 +117,8 @@ class MyNevoController: UITableViewController,SyncControllerDelegate,UIAlertView
     override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat{
         if(section == 0){
             let headerimage:UIImageView = MyNevoHeaderView.getMyNevoHeaderView()
-            return headerimage.frame.size.height
+            headerimage.frame = CGRectMake(headerimage.frame.origin.x, headerimage.frame.origin.y+30, headerimage.frame.size.width, headerimage.frame.size.height)
+            return headerimage.frame.size.height+50
         }
         return 0
     }
@@ -135,7 +144,7 @@ class MyNevoController: UITableViewController,SyncControllerDelegate,UIAlertView
         let headerimage:UIImageView = MyNevoHeaderView.getMyNevoHeaderView()
         let view:UIView = UIView(frame: CGRectMake(0, 0, UIScreen.mainScreen().bounds.size.width, headerimage.frame.size.height))
         view.addSubview(headerimage)
-        headerimage.center = CGPointMake(view.frame.size.width/2.0, view.frame.size.height/2.0)
+        headerimage.center = CGPointMake(view.frame.size.width/2.0, view.frame.size.height/2.0+30)
         return view
     }
 

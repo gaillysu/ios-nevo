@@ -26,7 +26,9 @@ private struct PagingMenuOptions: PagingMenuControllerCustomizable {
         viewController1.view.backgroundColor = UIColor(rgba: "#54575a")
         let viewController2 = StepsHistoryViewController()
         viewController2.view.backgroundColor = UIColor(rgba: "#54575a")
-        return [viewController1, viewController2]
+        let viewController3 = SleepHistoricalViewController()
+        viewController3.view.backgroundColor = UIColor(rgba: "#54575a")
+        return [viewController1, viewController2,viewController3]
     }
 }
 
