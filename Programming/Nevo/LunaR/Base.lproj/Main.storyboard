@@ -182,7 +182,7 @@
             </objects>
             <point key="canvasLocation" x="214" y="1970"/>
         </scene>
-        <!--Sleep-->
+        <!--Sleep Controller-->
         <scene sceneID="StW-PB-UoJ">
             <objects>
                 <viewController id="9Lf-06-d5f" customClass="SleepController" customModule="LunaR" customModuleProvider="target" sceneMemberID="viewController">
@@ -228,7 +228,7 @@
                             <constraint firstAttribute="leadingMargin" secondItem="Pwt-9o-Y2e" secondAttribute="leading" id="yFb-Xn-0eW"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Sleep" id="bjN-go-kyB"/>
+                    <navigationItem key="navigationItem" id="bjN-go-kyB"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                 </viewController>
@@ -236,11 +236,11 @@
             </objects>
             <point key="canvasLocation" x="-683.5" y="2019.5"/>
         </scene>
-        <!--Sleep-->
+        <!--Analysis-->
         <scene sceneID="hvn-OI-PaU">
             <objects>
                 <navigationController useStoryboardIdentifierAsRestorationIdentifier="YES" id="55x-5E-ejb" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Sleep" image="analysis_icon" id="QgB-tv-HYG"/>
+                    <tabBarItem key="tabBarItem" title="Analysis" image="analysis_icon" id="QgB-tv-HYG"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="wZ6-1e-Ldn">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>

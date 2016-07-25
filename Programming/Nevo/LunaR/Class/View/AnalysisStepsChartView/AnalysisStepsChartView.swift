@@ -12,7 +12,7 @@ import Charts
 class AnalysisStepsChartView: LineChartView {
 
     private var xVals:[String] = [];
-    private var yVals:[ChartDataEntry] = [];
+    private var yVals:[[Double]] = [];
     
     func drawSettings(xAxis:ChartXAxis, yAxis:ChartYAxis, rightAxis:ChartYAxis){
         noDataText = NSLocalizedString("no_sleep_data", comment: "")
@@ -36,8 +36,8 @@ class AnalysisStepsChartView: LineChartView {
         rightAxis.drawLabelsEnabled = false;
         rightAxis.drawZeroLineEnabled = false
         
-        yAxis.axisMaxValue = Double(1000)
-        yAxis.axisMinValue = 0
+        //yAxis.axisMaxValue = Double(1000)
+        //yAxis.axisMinValue = 0
         yAxis.axisLineColor = UIColor.getGreyColor()
         yAxis.drawGridLinesEnabled = false
         
@@ -55,28 +55,38 @@ class AnalysisStepsChartView: LineChartView {
         self.marker = marker;
     }
     
-    func addDataPoint(name:String, entry:ChartDataEntry){
+    func addDataPoint(name:String, entry:[Double]){
         xVals.append(name);
         yVals.append(entry)
     }
     
     func invalidateChart() {
-        let lineChartDataSet = LineChartDataSet(yVals: yVals, label: "");
-        lineChartDataSet.setColor(UIColor.getGreyColor())
-        lineChartDataSet.setCircleColor(UIColor.getGreyColor())
-        lineChartDataSet.lineWidth = 1.5
-        lineChartDataSet.setColor(UIColor.getGreyColor())
-        lineChartDataSet.circleRadius = 5.0
-        lineChartDataSet.drawCircleHoleEnabled = false
-        lineChartDataSet.valueFont = UIFont.systemFontOfSize(9.0)
+        var dataSets:[LineChartDataSet] = []
+        for mIndex in 0..<3 {
+            var chartDataArray:[BarChartDataEntry] = []
+            for (index,vlaue) in yVals.enumerate() {
+                let chartData1:BarChartDataEntry = BarChartDataEntry(value: vlaue[mIndex], xIndex:index)
+                chartDataArray.append(chartData1)
+            }
+            
+            let lineChartDataSet = LineChartDataSet(yVals: chartDataArray, label: "");
+            lineChartDataSet.setColor(UIColor.getGreyColor())
+            lineChartDataSet.setCircleColor(UIColor.getGreyColor())
+            lineChartDataSet.lineWidth = 1.5
+            lineChartDataSet.setColor(UIColor.getGreyColor())
+            lineChartDataSet.circleRadius = 5.0
+            lineChartDataSet.drawCircleHoleEnabled = false
+            lineChartDataSet.valueFont = UIFont.systemFontOfSize(9.0)
+            
+            let gradientColors = [UIColor.getTintColor(),UIColor.getBaseColor(),UIColor.getGreyColor()]
+            lineChartDataSet.fillAlpha = 0.3;
+            lineChartDataSet.fill = ChartFill.fillWithColor(gradientColors[mIndex])
+            lineChartDataSet.drawFilledEnabled = true
+            dataSets.append(lineChartDataSet)
+        }
         
-        let colorLocations:[CGFloat] = [0.0, 1.0]
-        let gradientColors = NSArray(array: [ChartColorTemplates .colorFromString("#D19D42").CGColor,ChartColorTemplates .colorFromString("#552582").CGColor]);
-        let gradient = CGGradientCreateWithColors(CGColorSpaceCreateDeviceRGB(), gradientColors, colorLocations);
-        lineChartDataSet.fillAlpha = 0.5;
-        lineChartDataSet.fill = ChartFill.fillWithLinearGradient(gradient!, angle: CGFloat(90.0))
-        lineChartDataSet.drawFilledEnabled = true
-        let lineChartData = LineChartData(xVals: xVals, dataSet: lineChartDataSet)
+        let lineChartData = LineChartData(xVals: xVals, dataSets: dataSets)
+        lineChartData.setValueFont(UIFont(name: "HelveticaNeue-Light", size: 7.0))
         lineChartData.setDrawValues(false)
         data = lineChartData
         animate(yAxisDuration: 2.0, easingOption: ChartEasingOption.EaseInOutCirc)

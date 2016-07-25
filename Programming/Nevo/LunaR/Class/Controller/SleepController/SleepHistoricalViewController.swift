@@ -27,14 +27,14 @@ class SleepHistoricalViewController: PublicClassController,ChartViewDelegate,Sel
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.navigationItem.title = NSLocalizedString("sleep_history_title", comment: "")
         contentTitleArray = [NSLocalizedString("sleep_duration", comment: ""), NSLocalizedString("sleep_timer", comment: ""), NSLocalizedString("wake_timer", comment: ""), NSLocalizedString("deep_sleep", comment: ""), NSLocalizedString("light_sleep", comment: ""), NSLocalizedString("wake_duration", comment: "")]
 
     }
 
     override func viewWillAppear(animated: Bool) {
         queryArray = UserSleep.getAll()
-        queryView.bulidQueryView(self,modelArray: queryArray!,navigation: self.navigationItem)
+        queryView.bulidQueryView(self,modelArray: queryArray!)
 
         if(queryArray?.count>0) {
             queryView.nodataLabel.hidden = true

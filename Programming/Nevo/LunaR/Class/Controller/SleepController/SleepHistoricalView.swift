@@ -24,13 +24,13 @@ class SleepHistoricalView: UIView, ChartViewDelegate{
     private var mDelegate:SelectedChartViewDelegate?
     private var totalNumber:Double = 0
 
-    func bulidQueryView(delegate:SelectedChartViewDelegate,modelArray:NSArray,navigation:UINavigationItem){
+    func bulidQueryView(delegate:SelectedChartViewDelegate,modelArray:NSArray){
         queryModel.removeAllObjects()
         sleepArray.removeAllObjects()
         queryModel.addObjectsFromArray(modelArray as [AnyObject])
         if(mDelegate == nil) {
             mDelegate = delegate
-            navigation.title = NSLocalizedString("sleep_history_title", comment: "")
+            
             // MARK: - chartView?.marker
             //chartView.addDataPoint("\(1)", entry: BarChartDataEntry(value: xVal, xIndex:i))
             chartView?.backgroundColor = AppTheme.NEVO_CUSTOM_COLOR(Red: 25, Green: 31, Blue: 59)
@@ -153,7 +153,7 @@ class SleepHistoricalView: UIView, ChartViewDelegate{
             yVal.append(BarChartDataEntry(values: [val1,val2,val3], xIndex:sleepArray.count))
             sleepArray.addObject(Sleep(weakSleep: val3,lightSleep: val2,deepSleep: val1,startTimer:startTimer , endTimer:endTimer))
             let dateIndex:String = "\(dateString.substringWithRange(NSMakeRange(6, 2)))/\(dateString.substringWithRange(NSMakeRange(4, 2)))"
-            chartView!.addDataPoint(dateIndex, entry: BarChartDataEntry(values: [val1,val2,val3], xIndex:sleepArray.count))
+            chartView!.addDataPoint(dateIndex, entry: [val1+val2+val3,val1,val2])
         }
         
         chartView!.invalidateChart()

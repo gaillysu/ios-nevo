@@ -37,7 +37,8 @@ class StepsHistoryViewController: PublicClassController,UICollectionViewDelegate
         let dayDate:NSDate = NSDate()
         let dayTime:NSTimeInterval = NSDate.date(year: dayDate.year, month: dayDate.month, day: 7, hour: 0, minute: 0, second: 0).timeIntervalSince1970
             //NSDate().beginningOfDay.timeIntervalSince1970
-        queryArray = UserSteps.getCriteria("WHERE date = \(dayTime)") //one hour = 3600s
+        queryArray = UserSteps.getAll()
+        //getCriteria("WHERE date = \(dayTime)") //one hour = 3600s
         self.bulidStepHistoricalChartView(queryArray)
         
         stepsHistory.backgroundColor = UIColor(rgba: "#54575a")
