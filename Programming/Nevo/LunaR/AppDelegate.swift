@@ -763,6 +763,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                     let alertAction1:UIAlertAction = UIAlertAction(title: cancelString, style: UIAlertActionStyle.Cancel, handler: { ( alert) -> Void in
 
                     })
+                    alertAction1.setValue(UIColor.getBaseColor(), forKey: "titleTextColor")
                     actionSheet.addAction(alertAction1)
 
                     let alertAction2:UIAlertAction = UIAlertAction(title: buttonString, style: UIAlertActionStyle.Default, handler: { ( alert) -> Void in
@@ -771,6 +772,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                         tabVC.presentViewController(navigation, animated: true, completion: nil)
 
                     })
+                    alertAction2.setValue(UIColor.getBaseColor(), forKey: "titleTextColor")
                     actionSheet.addAction(alertAction2)
                     tabVC.presentViewController(actionSheet, animated: true, completion: nil)
                 }else{

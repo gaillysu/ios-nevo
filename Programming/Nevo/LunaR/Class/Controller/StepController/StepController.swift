@@ -33,7 +33,9 @@ private struct PagingMenuOptions: PagingMenuControllerCustomizable {
 }
 
 class StepController: PublicClassController,UIActionSheetDelegate {
-    private var rightButton:UIBarButtonItem?
+    
+    
+    private var rightItem:UIBarButtonItem?
     private var goalArray:[Int] = []
     //var viewControllers:[UIViewController] = []
     var pagingMenuController:PagingMenuController?
@@ -50,9 +52,9 @@ class StepController: PublicClassController,UIActionSheetDelegate {
 
         self.initTitleView()
         
-        rightButton = UIBarButtonItem(image: UIImage(named: "edit_icon"), style: UIBarButtonItemStyle.Plain, target: self, action: #selector(rightBarButtonAction(_:)))
-        rightButton?.tintColor = UIColor(rgba: "#7ED8D1")
-        self.navigationItem.rightBarButtonItem = rightButton
+        rightItem = UIBarButtonItem(image: UIImage(named: "edit_icon"), style: UIBarButtonItemStyle.Plain, target: self, action: #selector(rightBarButtonAction(_:)))
+        rightItem?.tintColor = UIColor(rgba: "#7ED8D1")
+        self.navigationItem.rightBarButtonItem = rightItem
 
 
         if(!AppDelegate.getAppDelegate().isConnected() && AppDelegate.getAppDelegate().getMconnectionController().isBluetoothEnabled()){
@@ -65,13 +67,33 @@ class StepController: PublicClassController,UIActionSheetDelegate {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         let options = PagingMenuOptions()
-        pagingMenuController = PagingMenuController(options: options)
-        pagingMenuController!.view.backgroundColor = UIColor(rgba: "#54575a")
-        pagingMenuController!.view.frame = CGRectMake(0, 0, UIScreen.mainScreen().bounds.width, self.view.frame.size.height)
-        self.addChildViewController(pagingMenuController!)
-        view.addSubview(pagingMenuController!.view)
-        pagingMenuController!.didMoveToParentViewController(self)
-        view.backgroundColor = UIColor(rgba: "#54575a")
+        if pagingMenuController == nil {
+            pagingMenuController = PagingMenuController(options: options)
+            pagingMenuController!.view.backgroundColor = UIColor(rgba: "#54575a")
+            pagingMenuController!.view.frame = CGRectMake(0, 0, UIScreen.mainScreen().bounds.width, self.view.frame.size.height)
+            self.addChildViewController(pagingMenuController!)
+            view.addSubview(pagingMenuController!.view)
+            pagingMenuController!.didMoveToParentViewController(self)
+            view.backgroundColor = UIColor(rgba: "#54575a")
+            
+            let leftButton:UIButton = UIButton(type: UIButtonType.System)
+            leftButton.setImage(UIImage(named: "left_button"), forState: UIControlState.Normal)
+            leftButton.tag = 1900
+            leftButton.frame = CGRectMake(0, 0, 15, 27)
+            leftButton.addTarget(self, action: #selector(slidingAction(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+            pagingMenuController!.view.addSubview(leftButton)
+            leftButton.tintColor = UIColor.getWhiteBaseColor()
+            leftButton.center = CGPointMake(leftButton.frame.size.width/2.0, self.view.frame.size.height/2.0-50)
+            
+            let rightButton:UIButton = UIButton(type: UIButtonType.System)
+            rightButton.setImage(UIImage(named: "right_button"), forState: UIControlState.Normal)
+            rightButton.tag = 1910
+            rightButton.frame = CGRectMake(0, 0, 15, 27)
+            rightButton.addTarget(self, action: #selector(slidingAction(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+            pagingMenuController!.view.addSubview(rightButton)
+            rightButton.tintColor = UIColor.getWhiteBaseColor()
+            rightButton.center = CGPointMake(UIScreen.mainScreen().bounds.size.width-rightButton.frame.size.width/2.0, self.view.frame.size.height/2.0-50)
+        }
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -89,6 +111,18 @@ class StepController: PublicClassController,UIActionSheetDelegate {
         // Dispose of any resources that can be recreated.
     }
 
+    func slidingAction(sender:UIButton) {
+        if sender.tag == 1900 {
+            if pagingMenuController!.currentPage != 0 {
+                pagingMenuController?.moveToMenuPage(pagingMenuController!.currentPage-1)
+            }
+        }
+        
+        if sender.tag == 1910 {
+            pagingMenuController?.moveToMenuPage(pagingMenuController!.currentPage+1)
+        }
+    }
+    
     // MARK: - rightBarButtonAction
     func leftBarButtonAction(leftBar:UIBarButtonItem){
         let videoPlay:VideoPlayController = VideoPlayController();

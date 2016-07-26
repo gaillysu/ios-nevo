@@ -28,9 +28,9 @@ class AnalysisStepsChartView: LineChartView {
         limitLine.lineWidth = 1.5
         limitLine.labelPosition = ChartLimitLine.LabelPosition.LeftTop
         limitLine.valueFont = UIFont(name: "Helvetica-Light", size: 7)!
-        limitLine.lineColor = UIColor.getGreyColor()
+        limitLine.lineColor = UIColor.whiteColor()
         
-        rightAxis.axisLineColor = UIColor.getGreyColor()
+        rightAxis.axisLineColor = UIColor.whiteColor()
         rightAxis.drawGridLinesEnabled = false;
         rightAxis.drawLimitLinesBehindDataEnabled = false
         rightAxis.drawLabelsEnabled = false;
@@ -38,14 +38,14 @@ class AnalysisStepsChartView: LineChartView {
         
         //yAxis.axisMaxValue = Double(1000)
         //yAxis.axisMinValue = 0
-        yAxis.axisLineColor = UIColor.getGreyColor()
+        yAxis.axisLineColor = UIColor.whiteColor()
         yAxis.drawGridLinesEnabled = false
-        
         yAxis.drawLabelsEnabled = false
         yAxis.drawZeroLineEnabled = true
         yAxis.addLimitLine(limitLine)
-        xAxis.labelTextColor = UIColor.getGreyColor();
-        xAxis.axisLineColor = UIColor.getGreyColor()
+        
+        xAxis.labelTextColor = UIColor.whiteColor();
+        xAxis.axisLineColor = UIColor.whiteColor()
         xAxis.drawLimitLinesBehindDataEnabled = false;
         xAxis.labelPosition = ChartXAxis.LabelPosition.Bottom
         xAxis.labelFont = UIFont(name: "Helvetica-Light", size: 7)!
@@ -70,11 +70,9 @@ class AnalysisStepsChartView: LineChartView {
             }
             
             let lineChartDataSet = LineChartDataSet(yVals: chartDataArray, label: "");
-            lineChartDataSet.setColor(UIColor.getGreyColor())
-            lineChartDataSet.setCircleColor(UIColor.getGreyColor())
+            lineChartDataSet.setColor(UIColor.whiteColor())
             lineChartDataSet.lineWidth = 1.5
-            lineChartDataSet.setColor(UIColor.getGreyColor())
-            lineChartDataSet.circleRadius = 5.0
+            lineChartDataSet.circleRadius = 0.0
             lineChartDataSet.drawCircleHoleEnabled = false
             lineChartDataSet.valueFont = UIFont.systemFontOfSize(9.0)
             

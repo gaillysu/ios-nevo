@@ -34,6 +34,7 @@ class SelectedNotificationTypeController: UITableViewController {
         super.viewDidLoad()
         self.navigationItem.title = NSLocalizedString(titleString!, comment: "")
         tableView.backgroundColor = UIColor.getGreyColor()
+        tableView.separatorStyle = UITableViewCellSeparatorStyle.None
         tableView.registerNib(UINib(nibName: "NotificationClockCell",bundle:nil), forCellReuseIdentifier: "NotificationClock_ReuseIdentifier")
     }
 

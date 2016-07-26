@@ -87,6 +87,8 @@ class SelectedNotificationView: UITableView {
         }
         endCell?.selectionStyle = UITableViewCellSelectionStyle.None;
         endCell?.textLabel?.text = title
+        endCell?.textLabel?.textColor = UIColor.whiteColor()
+        endCell?.backgroundColor = UIColor.getGreyColor()
         return endCell!
     }
     /*

@@ -149,13 +149,11 @@ class NevoOtaView: UIView {
     
     func buildView(delegate:ButtonManagerCallBack,otacontroller:AnyObject) {
         mDelegate = delegate
-
+        
         backButton.layer.masksToBounds = true
         backButton.layer.cornerRadius = 10.0
         backButton.layer.borderWidth = 1.0
-        backButton.layer.borderColor = AppTheme.NEVO_SOLAR_YELLOW().CGColor
-
-        self.backgroundColor = AppTheme.NEVO_CUSTOM_COLOR(Red: 239.0, Green: 239.0, Blue: 244.0)
+        backButton.layer.borderColor = UIColor.getBaseColor().CGColor
 
         if(OTAprogressView == nil){
             OTAprogressView = OTAProgress()
@@ -165,7 +163,7 @@ class NevoOtaView: UIView {
             nevoWacthImage.frame = CGRectMake(0, 0, nevoWacthImage.frame.size.width-20, nevoWacthImage.frame.size.width-20)
             nevoWacthImage.center = point
         }
-        OTAprogressView?.setProgressColor(AppTheme.NEVO_SOLAR_YELLOW())
+        OTAprogressView?.setProgressColor(UIColor.getBaseColor())
         OTAprogressView?.frame = CGRectMake(nevoWacthImage.frame.origin.x, nevoWacthImage.frame.origin.y, nevoWacthImage.frame.size.width, nevoWacthImage.frame.size.height)
         OTAprogressView?.setProgress(progresValue)
         self.layer.addSublayer(OTAprogressView!)

@@ -31,7 +31,7 @@
         <scene sceneID="qEP-IN-OCQ">
             <objects>
                 <navigationController useStoryboardIdentifierAsRestorationIdentifier="YES" id="bGr-qo-zHH" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Setting" image="new_iOS_setting_icon" id="FTX-5o-89V"/>
+                    <tabBarItem key="tabBarItem" title="Setting" image="settings_icon" id="FTX-5o-89V"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="p9j-eT-GsY">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -89,7 +89,7 @@
         <scene sceneID="ct5-Mu-dmL">
             <objects>
                 <navigationController id="Hsa-EN-v8Q" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Alarm" image="alarm_icon" id="dU5-Ty-hhC"/>
+                    <tabBarItem key="tabBarItem" title="Alarm" image="new_iOS_alarm_icon" id="dU5-Ty-hhC"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="0g2-Qz-bFf">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -259,9 +259,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="alarm_icon" width="30" height="30"/>
         <image name="analysis_icon" width="30" height="30"/>
         <image name="home_icon" width="30" height="30"/>
-        <image name="new_iOS_setting_icon" width="35" height="36"/>
+        <image name="new_iOS_alarm_icon" width="35" height="36"/>
+        <image name="settings_icon" width="30" height="30"/>
     </resources>
 </document>

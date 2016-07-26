@@ -10,12 +10,16 @@ import UIKit
 
 class OTALineView: UIView {
 
-    /*
-    // Only override drawRect: if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
     override func drawRect(rect: CGRect) {
-        // Drawing code
+        super.drawRect(rect)
+        // 绘制中划线
+        let context = UIGraphicsGetCurrentContext()
+        CGContextMoveToPoint(context, 0, 0)
+        CGContextAddLineToPoint(context, rect.size.width, 0)
+        CGContextSetLineWidth(context, 1);  //线宽
+        CGContextSetAllowsAntialiasing(context, true);
+        CGContextSetRGBStrokeColor(context, 255.0 / 255.0, 255.0 / 255.0, 255.0 / 255.0, 1.0);  //线的颜色
+        CGContextStrokePath(context)
     }
-    */
 
 }
