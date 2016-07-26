@@ -1,14 +1,14 @@
 //
-//  DeviceScannerView.swift
+//  OTALineView.swift
 //  Nevo
 //
-//  Created by ideas on 15/3/13.
-//  Copyright (c) 2015年 Nevo. All rights reserved.
+//  Created by leiyuncun on 16/7/25.
+//  Copyright © 2016年 Nevo. All rights reserved.
 //
 
 import UIKit
 
-class DeviceScannerView: UIView {
+class OTALineView: UIView {
 
     /*
     // Only override drawRect: if you perform custom drawing.

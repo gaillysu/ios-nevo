@@ -402,6 +402,7 @@
 		00AF8D031D224CFA009047AC /* WriteSettingRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8CB21D224CFA009047AC /* WriteSettingRequest.swift */; };
 		00AF8D041D224CFA009047AC /* SyncQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8CB31D224CFA009047AC /* SyncQueue.swift */; };
 		00AF8D061D224D57009047AC /* NevoAllKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8D051D224D57009047AC /* NevoAllKeys.swift */; };
+		00AFDAA21D46131100F4338B /* OTALineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AFDAA11D46131100F4338B /* OTALineView.swift */; };
 		00B606E71D0F9DB800FF5A01 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00B606E61D0F9DB800FF5A01 /* SwiftyJSON.framework */; };
 		00B606EB1D0FCE9200FF5A01 /* MRProgress.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00B606EA1D0FCE9200FF5A01 /* MRProgress.framework */; };
 		00BF2D9A1C7FED2200909316 /* VideoPlayController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00BF2D981C7FED2200909316 /* VideoPlayController.swift */; };
@@ -472,7 +473,6 @@
 		00EFE1671D227DCC0066C905 /* MyNevoHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00EFE0A81D227DCC0066C905 /* MyNevoHeaderView.xib */; };
 		00EFE1681D227DCC0066C905 /* MyNevoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EFE0A91D227DCC0066C905 /* MyNevoView.swift */; };
 		00EFE1691D227DCC0066C905 /* NevoOtaController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EFE0AB1D227DCC0066C905 /* NevoOtaController.swift */; };
-		00EFE16A1D227DCC0066C905 /* DeviceScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EFE0AD1D227DCC0066C905 /* DeviceScannerView.swift */; };
 		00EFE16B1D227DCC0066C905 /* NevoOtaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EFE0AE1D227DCC0066C905 /* NevoOtaView.swift */; };
 		00EFE16C1D227DCC0066C905 /* SelectFileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EFE0AF1D227DCC0066C905 /* SelectFileView.swift */; };
 		00EFE16D1D227DCC0066C905 /* NevoOtaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EFE0B01D227DCC0066C905 /* NevoOtaViewController.swift */; };
@@ -893,6 +893,7 @@
 		00AF8E5C1D224ED8009047AC /* SwiftyTimer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyTimer.framework; path = "../../../../Library/Developer/Xcode/DerivedData/Nevo-cbjnruaifgvemfduxtlzizqanuqy/Build/Products/Debug-iphoneos/SwiftyTimer.framework"; sourceTree = "<group>"; };
 		00AF8E5D1D224ED8009047AC /* TextFieldEffects.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TextFieldEffects.framework; path = "../../../../Library/Developer/Xcode/DerivedData/Nevo-cbjnruaifgvemfduxtlzizqanuqy/Build/Products/Debug-iphoneos/TextFieldEffects.framework"; sourceTree = "<group>"; };
 		00AF8E5E1D224ED8009047AC /* Timepiece.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Timepiece.framework; path = "../../../../Library/Developer/Xcode/DerivedData/Nevo-cbjnruaifgvemfduxtlzizqanuqy/Build/Products/Debug-iphoneos/Timepiece.framework"; sourceTree = "<group>"; };
+		00AFDAA11D46131100F4338B /* OTALineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OTALineView.swift; sourceTree = "<group>"; };
 		00B606E61D0F9DB800FF5A01 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = "../../../../Library/Developer/Xcode/DerivedData/Nevo-cbjnruaifgvemfduxtlzizqanuqy/Build/Products/Debug-iphoneos/SwiftyJSON.framework"; sourceTree = "<group>"; };
 		00B606EA1D0FCE9200FF5A01 /* MRProgress.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MRProgress.framework; path = "Pods/../build/Debug-iphoneos/MRProgress.framework"; sourceTree = "<group>"; };
 		00BF2D981C7FED2200909316 /* VideoPlayController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoPlayController.swift; sourceTree = "<group>"; };
@@ -1011,7 +1012,6 @@
 		00EFE0A81D227DCC0066C905 /* MyNevoHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyNevoHeaderView.xib; sourceTree = "<group>"; };
 		00EFE0A91D227DCC0066C905 /* MyNevoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyNevoView.swift; sourceTree = "<group>"; };
 		00EFE0AB1D227DCC0066C905 /* NevoOtaController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NevoOtaController.swift; sourceTree = "<group>"; };
-		00EFE0AD1D227DCC0066C905 /* DeviceScannerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceScannerView.swift; sourceTree = "<group>"; };
 		00EFE0AE1D227DCC0066C905 /* NevoOtaView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NevoOtaView.swift; sourceTree = "<group>"; };
 		00EFE0AF1D227DCC0066C905 /* SelectFileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectFileView.swift; sourceTree = "<group>"; };
 		00EFE0B01D227DCC0066C905 /* NevoOtaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NevoOtaViewController.swift; sourceTree = "<group>"; };
@@ -2178,9 +2178,9 @@
 		00EFE0AC1D227DCC0066C905 /* NevoOtaView */ = {
 			isa = PBXGroup;
 			children = (
-				00EFE0AD1D227DCC0066C905 /* DeviceScannerView.swift */,
 				00EFE0AE1D227DCC0066C905 /* NevoOtaView.swift */,
 				00EFE0AF1D227DCC0066C905 /* SelectFileView.swift */,
+				00AFDAA11D46131100F4338B /* OTALineView.swift */,
 			);
 			path = NevoOtaView;
 			sourceTree = "<group>";
@@ -3129,6 +3129,7 @@
 				0037EBD41D235BD000502140 /* Goal.swift in Sources */,
 				0037EBD51D235BD000502140 /* NumberOfStepsGoal.swift in Sources */,
 				0037EBD61D235BD000502140 /* NotificationSetting.swift in Sources */,
+				00AFDAA21D46131100F4338B /* OTALineView.swift in Sources */,
 				0037EBD71D235BD000502140 /* TypeModel.swift in Sources */,
 				0037EBD81D235BD000502140 /* ConfigSleepAlarm.swift in Sources */,
 				0037EBD91D235BD000502140 /* Sleep.swift in Sources */,
@@ -3252,7 +3253,6 @@
 				00EFE15E1D227DCC0066C905 /* ConnectOtherAppsController.swift in Sources */,
 				00EFE1971D227DCC0066C905 /* StepsHistoryViewController.swift in Sources */,
 				00EFE1471D227DCC0066C905 /* AidOtaController.swift in Sources */,
-				00EFE16A1D227DCC0066C905 /* DeviceScannerView.swift in Sources */,
 				00EFE1731D227DCC0066C905 /* NotificationView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
