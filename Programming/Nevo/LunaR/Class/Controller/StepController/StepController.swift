@@ -135,11 +135,6 @@ class StepController: PublicClassController,UIActionSheetDelegate {
         if((UIDevice.currentDevice().systemVersion as NSString).floatValue >= 8.0){
             
             let actionSheet:UIAlertController = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
-            let alertAction:UIAlertAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: UIAlertActionStyle.Cancel, handler: nil)
-            alertAction.setValue(UIColor(rgba: "#7ED8D1"), forKey: "titleTextColor")
-            //alertAction.setValue(UIImage(named: "google"), forKey: "Image")
-            //alertAction.setValue(true, forKey: "checked")
-            actionSheet.addAction(alertAction)
 
             let array:NSArray = Presets.getAll()
             for pArray in array {
@@ -156,32 +151,21 @@ class StepController: PublicClassController,UIActionSheetDelegate {
                     actionSheet.addAction(alertAction2)
                 }
             }
-//            actionSheet.view.subviews.first?.subviews.first?.backgroundColor = UIColor.redColor()
-            for view in actionSheet.view.subviews {
-                for view2 in view.subviews {
-                    for view3 in view2.subviews {
-                        for view4 in view3.subviews {
-                            XCGLogger.defaultInstance().debug("\(view4)")
-                            for view5 in view4.subviews {
-                                
-                            }
-                            
-                        }
-                        
-                    }
-                }
-                
-            }
+            
+            let alertAction:UIAlertAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: UIAlertActionStyle.Cancel, handler: nil)
+            alertAction.setValue(UIColor(rgba: "#7ED8D1"), forKey: "titleTextColor")
+            //alertAction.setValue(UIImage(named: "google"), forKey: "Image")
+            //alertAction.setValue(true, forKey: "checked")
+            actionSheet.addAction(alertAction)
+            
             for view in actionSheet.view.subviews.first!.subviews {
-                
                 for view2 in view.subviews {
                     for view3 in view2.subviews {
                         view3.backgroundColor = UIColor(rgba: "#54575A")
                     }
                 }
-                
             }
-//            XCGLogger.defaultInstance().debug("actionSheet:\(actionSheet.view.subviews.first?.subviews.first)")
+            
             self.presentViewController(actionSheet, animated: true, completion: nil)
         }else{
             let actionSheet:UIActionSheet = UIActionSheet(title: nil, delegate: self, cancelButtonTitle: "Cancel", destructiveButtonTitle: nil)

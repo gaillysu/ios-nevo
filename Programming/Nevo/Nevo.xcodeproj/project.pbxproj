@@ -403,6 +403,7 @@
 		00AF8D041D224CFA009047AC /* SyncQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8CB31D224CFA009047AC /* SyncQueue.swift */; };
 		00AF8D061D224D57009047AC /* NevoAllKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8D051D224D57009047AC /* NevoAllKeys.swift */; };
 		00AFDAA21D46131100F4338B /* OTALineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AFDAA11D46131100F4338B /* OTALineView.swift */; };
+		00AFDAA41D47128700F4338B /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AFDAA31D47128700F4338B /* View.swift */; };
 		00B606E71D0F9DB800FF5A01 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00B606E61D0F9DB800FF5A01 /* SwiftyJSON.framework */; };
 		00B606EB1D0FCE9200FF5A01 /* MRProgress.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00B606EA1D0FCE9200FF5A01 /* MRProgress.framework */; };
 		00BF2D9A1C7FED2200909316 /* VideoPlayController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00BF2D981C7FED2200909316 /* VideoPlayController.swift */; };
@@ -894,6 +895,7 @@
 		00AF8E5D1D224ED8009047AC /* TextFieldEffects.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TextFieldEffects.framework; path = "../../../../Library/Developer/Xcode/DerivedData/Nevo-cbjnruaifgvemfduxtlzizqanuqy/Build/Products/Debug-iphoneos/TextFieldEffects.framework"; sourceTree = "<group>"; };
 		00AF8E5E1D224ED8009047AC /* Timepiece.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Timepiece.framework; path = "../../../../Library/Developer/Xcode/DerivedData/Nevo-cbjnruaifgvemfduxtlzizqanuqy/Build/Products/Debug-iphoneos/Timepiece.framework"; sourceTree = "<group>"; };
 		00AFDAA11D46131100F4338B /* OTALineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OTALineView.swift; sourceTree = "<group>"; };
+		00AFDAA31D47128700F4338B /* View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		00B606E61D0F9DB800FF5A01 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = "../../../../Library/Developer/Xcode/DerivedData/Nevo-cbjnruaifgvemfduxtlzizqanuqy/Build/Products/Debug-iphoneos/SwiftyJSON.framework"; sourceTree = "<group>"; };
 		00B606EA1D0FCE9200FF5A01 /* MRProgress.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MRProgress.framework; path = "Pods/../build/Debug-iphoneos/MRProgress.framework"; sourceTree = "<group>"; };
 		00BF2D981C7FED2200909316 /* VideoPlayController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoPlayController.swift; sourceTree = "<group>"; };
@@ -1813,6 +1815,7 @@
 			isa = PBXGroup;
 			children = (
 				00AF8C7C1D224CFA009047AC /* Color.swift */,
+				00AFDAA31D47128700F4338B /* View.swift */,
 				00AF8C7D1D224CFA009047AC /* MainTabBarController.swift */,
 				00AF8C7E1D224CFA009047AC /* PublicClassController.swift */,
 				00AF8C7F1D224CFA009047AC /* PublicClassTableViewController.swift */,
@@ -3212,6 +3215,7 @@
 				00EFE18D1D227DCC0066C905 /* SleepController.swift in Sources */,
 				00EFE1871D227DCC0066C905 /* SetingNotLoginCell.swift in Sources */,
 				00EFE1641D227DCC0066C905 /* MyNevoController.swift in Sources */,
+				00AFDAA41D47128700F4338B /* View.swift in Sources */,
 				00EFE1741D227DCC0066C905 /* SelectedNotificationView.swift in Sources */,
 				00EFE1B31D227DCC0066C905 /* SleepTutorialController.swift in Sources */,
 				00EFE1BA1D227DCC0066C905 /* TutorialTwoViewController.swift in Sources */,
