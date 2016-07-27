@@ -106,14 +106,14 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
                     let alertAction:UIAlertAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: UIAlertActionStyle.Cancel) { (action:UIAlertAction) -> Void in
                         self.dismissViewControllerAnimated(true, completion: nil)
                     }
-                    alertAction.setValue(UIColor(rgba: "#7ED8D1"), forKey: "titleTextColor")
+                    alertAction.setValue(UIColor.getBaseColor(), forKey: "titleTextColor")
                     alert.addAction(alertAction)
 
                     let alertAction2:UIAlertAction = UIAlertAction(title: NSLocalizedString("Enter", comment: ""), style: UIAlertActionStyle.Default) { (action:UIAlertAction) -> Void in
                         self.currentIndex = 0
                         self.uploadPressed()
                     }
-                    alertAction2.setValue(UIColor(rgba: "#7ED8D1"), forKey: "titleTextColor")
+                    alertAction2.setValue(UIColor.getBaseColor(), forKey: "titleTextColor")
                     alert.addAction(alertAction2)
                     self.presentViewController(alert, animated: true, completion: nil)
 
@@ -347,7 +347,7 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
             }
             continueButton.alpha = 0
             self.nevoOtaView.updatingView.hidden = false
-            nevoOtaView.nevoWacthImage.image = UIImage(named: "ota_pointer")
+            nevoOtaView.nevoWacthImage.image = UIImage(named: "ota_dial")
             nevoOtaView.OTAprogressViewHiddenOrNotHidden()
         }
 

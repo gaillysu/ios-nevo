@@ -165,11 +165,11 @@ class StepController: PublicClassController,UIActionSheetDelegate {
                 actionSheet.addButtonWithTitle("\(steps) steps")
             }
             for button:UIView in actionSheet.subviews{
-                button.tintColor = AppTheme.NEVO_SOLAR_YELLOW()
-                button.backgroundColor = AppTheme.NEVO_SOLAR_YELLOW()
+                button.tintColor = UIColor.getBaseColor()
+                button.backgroundColor = UIColor.getBaseColor()
             }
-            actionSheet.layer.backgroundColor = AppTheme.NEVO_SOLAR_YELLOW().CGColor
-            actionSheet.tintColor = AppTheme.NEVO_SOLAR_YELLOW()
+            actionSheet.layer.backgroundColor = UIColor.getBaseColor().CGColor
+            actionSheet.tintColor = UIColor.getBaseColor()
             actionSheet.actionSheetStyle = UIActionSheetStyle.Default;
             actionSheet.showInView(self.view)
         }
