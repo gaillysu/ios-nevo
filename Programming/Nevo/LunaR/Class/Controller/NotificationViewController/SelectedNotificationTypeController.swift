@@ -36,6 +36,7 @@ class SelectedNotificationTypeController: UITableViewController {
         tableView.backgroundColor = UIColor.getGreyColor()
         tableView.separatorStyle = UITableViewCellSeparatorStyle.None
         tableView.registerNib(UINib(nibName: "NotificationClockCell",bundle:nil), forCellReuseIdentifier: "NotificationClock_ReuseIdentifier")
+        tableView.registerNib(UINib(nibName: "SelectedLEDColorCell",bundle:nil), forCellReuseIdentifier: "SelectedLEDColor__ReuseIdentifier")
     }
 
     override func didReceiveMemoryWarning() {
@@ -70,7 +71,7 @@ class SelectedNotificationTypeController: UITableViewController {
         case 0:
             return 45.0
         case 1:
-            return 185.0
+            return 300.0
         case 2:
             return 50.0
         default: return 45.0;
@@ -88,9 +89,7 @@ class SelectedNotificationTypeController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if(section == 2){
-            return colorArray.count
-        }
+
         return 1
     }
 
@@ -109,7 +108,8 @@ class SelectedNotificationTypeController: UITableViewController {
         case 1:
             return selectedNotificationView.getNotificationClockCell(indexPath, tableView: tableView, title: "", clockIndex: clockIndex)
         case 2:
-            let cell = selectedNotificationView.getLineColorCell(indexPath, tableView: tableView, cellTitle: colorArray[indexPath.row], clockIndex: clockIndex)
+            let cell = tableView.dequeueReusableCellWithIdentifier("SelectedLEDColor__ReuseIdentifier", forIndexPath: indexPath)
+            cell.backgroundColor = UIColor.clearColor()
             return cell
         default: return UITableViewCell();
         }

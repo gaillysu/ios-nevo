@@ -265,6 +265,10 @@
 		0058B3EB1CF55D590079A213 /* ConnectOtherAppsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0058B3E91CF55D590079A213 /* ConnectOtherAppsController.xib */; };
 		005BC95F1A88B79F006F9E86 /* FXBlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = 005BC95E1A88B79F006F9E86 /* FXBlurView.m */; };
 		0061243F1D3F0E80005E4E1E /* AnalysisStepsChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0061243E1D3F0E80005E4E1E /* AnalysisStepsChartView.swift */; };
+		006756071D4848A300E8144C /* notification_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 006756061D4848A300E8144C /* notification_background.png */; };
+		006756081D4849D400E8144C /* notification_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 006756061D4848A300E8144C /* notification_background.png */; };
+		0067560B1D484B6F00E8144C /* SelectedLEDColorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006756091D484B6F00E8144C /* SelectedLEDColorCell.swift */; };
+		0067560C1D484B6F00E8144C /* SelectedLEDColorCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0067560A1D484B6F00E8144C /* SelectedLEDColorCell.xib */; };
 		006A65D11D10F2DD00DE647A /* SetingLoginCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006A65CF1D10F2DD00DE647A /* SetingLoginCell.swift */; };
 		006A65D21D10F2DD00DE647A /* SetingLoginCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 006A65D01D10F2DD00DE647A /* SetingLoginCell.xib */; };
 		0072EAB51C190DCD001EE2C9 /* SFCompactDisplay-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0072EA8B1C190DCD001EE2C9 /* SFCompactDisplay-Black.ttf */; };
@@ -714,6 +718,9 @@
 		005BC95D1A88B79F006F9E86 /* FXBlurView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FXBlurView.h; sourceTree = "<group>"; };
 		005BC95E1A88B79F006F9E86 /* FXBlurView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FXBlurView.m; sourceTree = "<group>"; };
 		0061243E1D3F0E80005E4E1E /* AnalysisStepsChartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalysisStepsChartView.swift; sourceTree = "<group>"; };
+		006756061D4848A300E8144C /* notification_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = notification_background.png; sourceTree = "<group>"; };
+		006756091D484B6F00E8144C /* SelectedLEDColorCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectedLEDColorCell.swift; sourceTree = "<group>"; };
+		0067560A1D484B6F00E8144C /* SelectedLEDColorCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SelectedLEDColorCell.xib; sourceTree = "<group>"; };
 		006A65CF1D10F2DD00DE647A /* SetingLoginCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetingLoginCell.swift; sourceTree = "<group>"; };
 		006A65D01D10F2DD00DE647A /* SetingLoginCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SetingLoginCell.xib; sourceTree = "<group>"; };
 		006B83691C44A20000E20A0C /* Nevo-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Nevo-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -1629,6 +1636,7 @@
 		007F79881A878D0B006C89E6 /* image */ = {
 			isa = PBXGroup;
 			children = (
+				006756061D4848A300E8144C /* notification_background.png */,
 				0095DDA61D2E0D7D00F80BFD /* wacth_dial.png */,
 				0095DDA71D2E0D7D00F80BFD /* wacth_hour.png */,
 				0095DDA81D2E0D7D00F80BFD /* wacth_mint.png */,
@@ -2209,6 +2217,8 @@
 				00EFE0B71D227DCC0066C905 /* NotificationClockCell.xib */,
 				00EFE0B81D227DCC0066C905 /* NotificationView.swift */,
 				00EFE0B91D227DCC0066C905 /* SelectedNotificationView.swift */,
+				006756091D484B6F00E8144C /* SelectedLEDColorCell.swift */,
+				0067560A1D484B6F00E8144C /* SelectedLEDColorCell.xib */,
 			);
 			path = NotificationView;
 			sourceTree = "<group>";
@@ -2753,11 +2763,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				006756081D4849D400E8144C /* notification_background.png in Resources */,
 				0095DDAC1D2E0E5500F80BFD /* wacth_dial.png in Resources */,
 				0095DDAD1D2E0E5500F80BFD /* wacth_hour.png in Resources */,
 				0095DDAE1D2E0E5500F80BFD /* wacth_mint.png in Resources */,
 				0037EC1E1D235F5300502140 /* Firmwares in Resources */,
 				0037EC1F1D235F5300502140 /* Localizable.strings in Resources */,
+				0067560C1D484B6F00E8144C /* SelectedLEDColorCell.xib in Resources */,
 				0037EC201D235F5300502140 /* SFCompactDisplay-Black.ttf in Resources */,
 				0037EC211D235F5300502140 /* SFCompactDisplay-Bold.ttf in Resources */,
 				007C456E1D2B4D89004929E0 /* TutorialSevenViewController.xib in Resources */,
@@ -2875,6 +2887,7 @@
 			files = (
 				00AF8CE01D224CFA009047AC /* DatePickerView.xib in Resources */,
 				0072EABA1C190DCD001EE2C9 /* SFCompactDisplay-Regular.ttf in Resources */,
+				006756071D4848A300E8144C /* notification_background.png in Resources */,
 				0050D6921C28E1CD004F6F80 /* AddAlarmController.xib in Resources */,
 				0095DDAB1D2E0D7D00F80BFD /* wacth_mint.png in Resources */,
 				00EC9E111C8583AA00280904 /* TutorialSevenViewController.xib in Resources */,
@@ -3229,6 +3242,7 @@
 				00EFE16C1D227DCC0066C905 /* SelectFileView.swift in Sources */,
 				00EFE15C1D227DCC0066C905 /* ConnectOtherAppsCell.swift in Sources */,
 				00EFE1501D227DCC0066C905 /* AlarmClockController.swift in Sources */,
+				0067560B1D484B6F00E8144C /* SelectedLEDColorCell.swift in Sources */,
 				00EFE1791D227DCC0066C905 /* AddPresetViewController.swift in Sources */,
 				00EFE1B41D227DCC0066C905 /* TutorialFiveViewController.swift in Sources */,
 				00DE86E61D3489350013FFC4 /* StepsTitleView.swift in Sources */,

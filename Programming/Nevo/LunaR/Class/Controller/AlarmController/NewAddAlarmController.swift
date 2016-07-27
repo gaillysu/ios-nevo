@@ -37,22 +37,27 @@ class NewAddAlarmController: UITableViewController,ButtonManagerCallBack,UIAlert
         self.tableView.registerNib(UINib(nibName: "NewAddAlarmHeader", bundle: nil), forHeaderFooterViewReuseIdentifier: "identifier_header")
         self.tableView.registerNib(UINib(nibName: "AlarmTypeCell", bundle: nil), forCellReuseIdentifier: "AlarmType_identifier")
         self.tableView.backgroundColor = UIColor.getGreyColor()
-        let view = UIView()
-        let tipsLabel:UILabel = UILabel(frame: CGRectMake(0,0,UIScreen.mainScreen().bounds.size.width,90))
-        tipsLabel.numberOfLines = 0
-        tipsLabel.textColor = UIColor.whiteColor()
-        tipsLabel.text = "Tips:\nSleep alarm allows you set a timmer that your LunaR can automatic turn on sleep mode."
-        tipsLabel.font = UIFont(name: "Helvetica Neue", size: 13)
-        let attributeDict:[String : AnyObject] = [NSFontAttributeName: UIFont.systemFontOfSize(16)]
-        let AttributedStr:NSMutableAttributedString = NSMutableAttributedString(string: "Tips:\nSleep alarm allows you set a timmer that your LunaR can automatic turn on sleep mode.", attributes: attributeDict)
-        AttributedStr.addAttribute(NSForegroundColorAttributeName, value: UIColor.getBaseColor(), range: NSMakeRange(0, 5))
-        tipsLabel.attributedText = AttributedStr
-        view.addSubview(tipsLabel)
-        self.tableView.tableFooterView = view
         //self.tableView.separatorStyle = UITableViewCellSeparatorStyle.None
         self.tableView.separatorColor = UIColor.getLightBaseColor()
     }
 
+    override func viewDidLayoutSubviews() {
+        if self.tableView.tableFooterView == nil {
+            let view = UIView()
+            let tipsString:String = "Tips:\nSleep alarm allows you set a timmer that your LunaR can automatic turn on sleep mode."
+            let tipsLabel:UILabel = UILabel(frame: CGRectMake(0,0,UIScreen.mainScreen().bounds.size.width,90))
+            tipsLabel.numberOfLines = 0
+            tipsLabel.textColor = UIColor.whiteColor()
+            tipsLabel.text = tipsString
+            tipsLabel.font = UIFont(name: "Helvetica Neue", size: 13)
+            let attributeDict:[String : AnyObject] = [NSFontAttributeName: UIFont.systemFontOfSize(16)]
+            let AttributedStr:NSMutableAttributedString = NSMutableAttributedString(string: tipsString, attributes: attributeDict)
+            AttributedStr.addAttribute(NSForegroundColorAttributeName, value: UIColor.getBaseColor(), range: NSMakeRange(0, 5))
+            tipsLabel.attributedText = AttributedStr
+            view.addSubview(tipsLabel)
+            self.tableView.tableFooterView = view
+        }
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="SelectedLEDColorCell" customModule="LunaR" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Qv-om-h5v">
+                        <rect key="frame" x="11" y="7" width="30" height="30"/>
+                        <state key="normal" image="2 o'clock"/>
+                        <connections>
+                            <action selector="SelectedColorAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="M4a-2o-8oy"/>
+                        </connections>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="37i-nQ-6uc">
+                        <rect key="frame" x="63" y="7" width="30" height="30"/>
+                        <state key="normal" image="4 o'clock"/>
+                        <connections>
+                            <action selector="SelectedColorAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="1pQ-MD-FAw"/>
+                        </connections>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xP4-qE-pmv">
+                        <rect key="frame" x="167" y="7" width="30" height="30"/>
+                        <state key="normal" image="8 o'clock"/>
+                        <connections>
+                            <action selector="SelectedColorAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="D3h-ta-SY6"/>
+                        </connections>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SEb-4T-Z2j">
+                        <rect key="frame" x="219" y="7" width="30" height="30"/>
+                        <state key="normal" image="10 o'clock"/>
+                        <connections>
+                            <action selector="SelectedColorAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="fGO-VQ-zRC"/>
+                        </connections>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wyh-5G-30Z">
+                        <rect key="frame" x="271" y="7" width="30" height="30"/>
+                        <state key="normal" image="12 o'clock"/>
+                        <connections>
+                            <action selector="SelectedColorAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Fkl-Vj-81s"/>
+                        </connections>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6D7-7g-SbR">
+                        <rect key="frame" x="115" y="7" width="30" height="30"/>
+                        <state key="normal" image="6 o'clock"/>
+                        <connections>
+                            <action selector="SelectedColorAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="MWV-YB-dSa"/>
+                        </connections>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="3Qv-om-h5v" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="-1" id="00D-ko-ITH"/>
+                    <constraint firstItem="37i-nQ-6uc" firstAttribute="width" secondItem="6D7-7g-SbR" secondAttribute="width" id="2Lf-0N-NNA"/>
+                    <constraint firstItem="SEb-4T-Z2j" firstAttribute="width" secondItem="Wyh-5G-30Z" secondAttribute="width" id="3tm-Ty-z5U"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="Wyh-5G-30Z" secondAttribute="bottom" constant="-1.5" id="45s-yP-58o"/>
+                    <constraint firstItem="xP4-qE-pmv" firstAttribute="width" secondItem="SEb-4T-Z2j" secondAttribute="width" id="6zr-9w-MCc"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="37i-nQ-6uc" secondAttribute="bottom" constant="-1.5" id="9i9-l0-Dhu"/>
+                    <constraint firstItem="SEb-4T-Z2j" firstAttribute="leading" secondItem="xP4-qE-pmv" secondAttribute="trailing" constant="22" id="AkC-3k-lpk"/>
+                    <constraint firstItem="3Qv-om-h5v" firstAttribute="width" secondItem="37i-nQ-6uc" secondAttribute="width" id="Amt-oK-GP5"/>
+                    <constraint firstItem="xP4-qE-pmv" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="-1" id="HiZ-FI-GcT"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="SEb-4T-Z2j" secondAttribute="bottom" constant="-1.5" id="Ljo-gL-hoh"/>
+                    <constraint firstItem="6D7-7g-SbR" firstAttribute="leading" secondItem="37i-nQ-6uc" secondAttribute="trailing" constant="22" id="MBK-de-Eyr"/>
+                    <constraint firstItem="xP4-qE-pmv" firstAttribute="leading" secondItem="6D7-7g-SbR" secondAttribute="trailing" constant="22" id="Y6x-wa-4Z6"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="Wyh-5G-30Z" secondAttribute="trailing" constant="11" id="Z5Z-pW-3zv"/>
+                    <constraint firstItem="6D7-7g-SbR" firstAttribute="width" secondItem="xP4-qE-pmv" secondAttribute="width" id="dw4-8P-YUw"/>
+                    <constraint firstItem="3Qv-om-h5v" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="3" id="eHR-wE-xrQ"/>
+                    <constraint firstItem="Wyh-5G-30Z" firstAttribute="leading" secondItem="SEb-4T-Z2j" secondAttribute="trailing" constant="22" id="fZe-iP-rB8"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="3Qv-om-h5v" secondAttribute="bottom" constant="-1.5" id="fiP-lt-lwG"/>
+                    <constraint firstItem="37i-nQ-6uc" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="-1" id="hLC-57-7QM"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="xP4-qE-pmv" secondAttribute="bottom" constant="-1.5" id="iN7-Uv-tD1"/>
+                    <constraint firstItem="6D7-7g-SbR" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="-1" id="kZb-7y-Qen"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="6D7-7g-SbR" secondAttribute="bottom" constant="-1.5" id="km0-QC-Cof"/>
+                    <constraint firstItem="Wyh-5G-30Z" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="-1" id="mI8-ek-e4V"/>
+                    <constraint firstItem="SEb-4T-Z2j" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="-1" id="oPL-M9-ktf"/>
+                    <constraint firstItem="37i-nQ-6uc" firstAttribute="leading" secondItem="3Qv-om-h5v" secondAttribute="trailing" constant="22" id="v0X-Eq-b9z"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="Color10Button" destination="SEb-4T-Z2j" id="SeP-dn-hFS"/>
+                <outlet property="Color12Button" destination="Wyh-5G-30Z" id="ylH-I0-mbw"/>
+                <outlet property="Color2Button" destination="3Qv-om-h5v" id="Uma-xC-9tW"/>
+                <outlet property="Color4Button" destination="37i-nQ-6uc" id="8xE-J5-eKR"/>
+                <outlet property="Color6Button" destination="6D7-7g-SbR" id="gaQ-Tz-ahL"/>
+                <outlet property="Color8Button" destination="xP4-qE-pmv" id="KX2-KV-Wzy"/>
+            </connections>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="10 o'clock" width="30" height="30"/>
+        <image name="12 o'clock" width="30" height="30"/>
+        <image name="2 o'clock" width="30" height="30"/>
+        <image name="4 o'clock" width="30" height="30"/>
+        <image name="6 o'clock" width="30" height="30"/>
+        <image name="8 o'clock" width="30" height="30"/>
+    </resources>
+</document>

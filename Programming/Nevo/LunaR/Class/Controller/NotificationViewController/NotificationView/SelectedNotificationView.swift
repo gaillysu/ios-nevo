@@ -24,7 +24,7 @@ class SelectedNotificationView: UITableView {
         for view in endCell.contentView.subviews{
             if(view.isKindOfClass(UIImageView.classForCoder())){
                 let clockImage:UIImageView = view as! UIImageView
-                clockImage.image = UIImage(named: "\(clockIndex)_clock_dial")
+                clockImage.image = AppTheme.GET_RESOURCES_IMAGE("notification_background")
             }
         }
         endCell.selectionStyle = UITableViewCellSelectionStyle.None;
