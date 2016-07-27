@@ -134,7 +134,7 @@ class StepController: PublicClassController,UIActionSheetDelegate {
     func rightBarButtonAction(rightBar:UIBarButtonItem){
         if((UIDevice.currentDevice().systemVersion as NSString).floatValue >= 8.0){
             
-            let actionSheet:UIAlertController = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
+            let actionSheet:ActionSheetView = ActionSheetView(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
 
             let array:NSArray = Presets.getAll()
             for pArray in array {
@@ -158,15 +158,7 @@ class StepController: PublicClassController,UIActionSheetDelegate {
             //alertAction.setValue(true, forKey: "checked")
             actionSheet.addAction(alertAction)
             
-            for view in actionSheet.view.subviews.first!.subviews {
-                for view2 in view.subviews {
-                    for view3 in view2.subviews {
-                        view3.backgroundColor = UIColor(rgba: "#54575A")
-                    }
-                }
-            }
-            
-            self.presentViewController(actionSheet, animated: true, completion: nil)
+            self.presentViewController(actionSheet, animated: true, completion:nil)
         }else{
             let actionSheet:UIActionSheet = UIActionSheet(title: nil, delegate: self, cancelButtonTitle: "Cancel", destructiveButtonTitle: nil)
             for steps in goalArray {

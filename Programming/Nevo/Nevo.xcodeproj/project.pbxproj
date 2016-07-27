@@ -269,6 +269,7 @@
 		006756081D4849D400E8144C /* notification_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 006756061D4848A300E8144C /* notification_background.png */; };
 		0067560B1D484B6F00E8144C /* SelectedLEDColorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006756091D484B6F00E8144C /* SelectedLEDColorCell.swift */; };
 		0067560C1D484B6F00E8144C /* SelectedLEDColorCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0067560A1D484B6F00E8144C /* SelectedLEDColorCell.xib */; };
+		0067560F1D489CF400E8144C /* ActionSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0067560E1D489CF400E8144C /* ActionSheetView.swift */; };
 		006A65D11D10F2DD00DE647A /* SetingLoginCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006A65CF1D10F2DD00DE647A /* SetingLoginCell.swift */; };
 		006A65D21D10F2DD00DE647A /* SetingLoginCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 006A65D01D10F2DD00DE647A /* SetingLoginCell.xib */; };
 		0072EAB51C190DCD001EE2C9 /* SFCompactDisplay-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0072EA8B1C190DCD001EE2C9 /* SFCompactDisplay-Black.ttf */; };
@@ -721,6 +722,7 @@
 		006756061D4848A300E8144C /* notification_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = notification_background.png; sourceTree = "<group>"; };
 		006756091D484B6F00E8144C /* SelectedLEDColorCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectedLEDColorCell.swift; sourceTree = "<group>"; };
 		0067560A1D484B6F00E8144C /* SelectedLEDColorCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SelectedLEDColorCell.xib; sourceTree = "<group>"; };
+		0067560E1D489CF400E8144C /* ActionSheetView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionSheetView.swift; sourceTree = "<group>"; };
 		006A65CF1D10F2DD00DE647A /* SetingLoginCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetingLoginCell.swift; sourceTree = "<group>"; };
 		006A65D01D10F2DD00DE647A /* SetingLoginCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SetingLoginCell.xib; sourceTree = "<group>"; };
 		006B83691C44A20000E20A0C /* Nevo-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Nevo-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -1577,6 +1579,7 @@
 		0061243C1D3F0E80005E4E1E /* View */ = {
 			isa = PBXGroup;
 			children = (
+				0067560D1D489CC500E8144C /* ActionSheetView */,
 				0061243D1D3F0E80005E4E1E /* AnalysisStepsChartView */,
 			);
 			path = View;
@@ -1588,6 +1591,14 @@
 				0061243E1D3F0E80005E4E1E /* AnalysisStepsChartView.swift */,
 			);
 			path = AnalysisStepsChartView;
+			sourceTree = "<group>";
+		};
+		0067560D1D489CC500E8144C /* ActionSheetView */ = {
+			isa = PBXGroup;
+			children = (
+				0067560E1D489CF400E8144C /* ActionSheetView.swift */,
+			);
+			path = ActionSheetView;
 			sourceTree = "<group>";
 		};
 		0074CB941D29EE9200963607 /* InformationController */ = {
@@ -3246,6 +3257,7 @@
 				00EFE1791D227DCC0066C905 /* AddPresetViewController.swift in Sources */,
 				00EFE1B41D227DCC0066C905 /* TutorialFiveViewController.swift in Sources */,
 				00DE86E61D3489350013FFC4 /* StepsTitleView.swift in Sources */,
+				0067560F1D489CF400E8144C /* ActionSheetView.swift in Sources */,
 				00EFE04D1D227D5F0066C905 /* AppDelegate.swift in Sources */,
 				00EFE1951D227DCC0066C905 /* StepGoalSetingController.swift in Sources */,
 				00EFE1561D227DCC0066C905 /* NewAddAlarmController.swift in Sources */,
