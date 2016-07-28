@@ -13,7 +13,9 @@ import UIColor_Hex_Swift
 import PagingMenuController
 import XCGLogger
 import CVCalendar
+import SwiftEventBus
 
+let SELECTED_CALENDAR_NOTIFICATION = "SELECTED_CALENDAR_NOTIFICATION"
 private let CALENDAR_VIEW_TAG = 1800
 private struct PagingMenuOptions: PagingMenuControllerCustomizable {
     
@@ -376,6 +378,9 @@ extension StepController: CVCalendarViewDelegate, CVCalendarMenuViewDelegate {
         dayView.selectionView?.shape = CVShape.Rect
         self.dismissCalendar()
         titleView?.selectedFinishTitleView()
+        let dayDate:NSDate = dayView.date!.convertedDate()!
+        SwiftEventBus.post(SELECTED_CALENDAR_NOTIFICATION, userInfo: ["selectedDate":dayDate])
+        
     }
     
     func dotMarker(shouldShowOnDayView dayView: CVCalendarDayView) -> Bool {

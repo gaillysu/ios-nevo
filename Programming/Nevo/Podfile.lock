@@ -54,6 +54,7 @@ PODS:
   - PagingMenuController (1.1.2)
   - RegexKitLite (4.0)
   - SMSegmentView (1.1)
+  - SwiftEventBus (1.1.0)
   - SwiftyJSON (2.3.2)
   - SwiftyTimer (1.4.0)
   - Timepiece (0.4.3)
@@ -79,6 +80,7 @@ DEPENDENCIES:
   - PagingMenuController
   - RegexKitLite
   - SMSegmentView
+  - SwiftEventBus (from `https://github.com/cesarferreira/SwiftEventBus.git`)
   - SwiftyJSON (from `https://github.com/SwiftyJSON/SwiftyJSON.git`)
   - SwiftyTimer
   - Timepiece
@@ -87,10 +89,15 @@ DEPENDENCIES:
   - XCGLogger
 
 EXTERNAL SOURCES:
+  SwiftEventBus:
+    :git: https://github.com/cesarferreira/SwiftEventBus.git
   SwiftyJSON:
     :git: https://github.com/SwiftyJSON/SwiftyJSON.git
 
 CHECKOUT OPTIONS:
+  SwiftEventBus:
+    :commit: 4b8cbb5a8227b3c29af75e0416689d26178733d8
+    :git: https://github.com/cesarferreira/SwiftEventBus.git
   SwiftyJSON:
     :commit: 73670b94292b8d8496c398a973f56ac67789ba9f
     :git: https://github.com/SwiftyJSON/SwiftyJSON.git
@@ -113,6 +120,7 @@ SPEC CHECKSUMS:
   PagingMenuController: a47a9669760b95f630cc3ef28bdce104f9107d14
   RegexKitLite: c0e4c12e6e7de0769f3a3ed679f0f61604170661
   SMSegmentView: a99862f36ea73478558ae665c209cb80c0d4f059
+  SwiftEventBus: d334f7aecbddbd995c3de5c262cf35c72db550f3
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
   SwiftyTimer: db4458cfaf67fc71e16ad6e4637c60b86f76a649
   Timepiece: b5038887b91d6eb70653173f4270e06b3abeac41

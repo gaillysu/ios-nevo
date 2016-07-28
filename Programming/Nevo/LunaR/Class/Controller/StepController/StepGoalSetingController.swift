@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftEventBus
 
 
 let NUMBER_OF_STEPS_GOAL_KEY = "NUMBER_OF_STEPS_GOAL_KEY"
@@ -41,6 +42,15 @@ class StepGoalSetingController: PublicClassController,ButtonManagerCallBack,Sync
         local.scheduleNotificationWithKey(NevoAllKeys.LocalStartSportKey(), title: "Today's activity", message: "Today's activity level haven't reach your goals", date: NSDate.date(year: NSDate().year, month: NSDate().month, day: NSDate().day, hour: 13, minute: 0, second: 0) , userInfo: nil)
         
         ClockRefreshManager.sharedInstance.setRefreshDelegate(self)
+        
+        SwiftEventBus.onMainThread(self, name: SELECTED_CALENDAR_NOTIFICATION) { (notification) in
+            
+        }
+    }
+    
+    override func viewDidDisappear(animated: Bool) {
+        super.viewDidDisappear(animated)
+        SwiftEventBus.unregister(self, name: SELECTED_CALENDAR_NOTIFICATION)
     }
 
     override func viewDidLayoutSubviews() {
