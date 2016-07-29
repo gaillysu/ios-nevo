@@ -19,9 +19,9 @@ class PresetTableViewCell: UITableViewCell,ButtonManagerCallBack {
     @IBAction func controllManager(sender: AnyObject) {
        delegate?.controllManager(sender)
         if(presetStates.on){
-            self.backgroundColor = UIColor.whiteColor()
+            self.backgroundColor = UIColor.getLightBaseColor()
         }else{
-            self.backgroundColor = UIColor.clearColor()
+            self.backgroundColor = UIColor.getGreyColor()
         }
     }
 

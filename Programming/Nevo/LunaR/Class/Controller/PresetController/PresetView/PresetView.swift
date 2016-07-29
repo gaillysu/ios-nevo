@@ -16,7 +16,7 @@ class PresetView: UITableView {
     func bulidPresetView(navigation:UINavigationItem,delegateB:ButtonManagerCallBack){
         mDelegate = delegateB
         navigation.title = NSLocalizedString("title_goal", comment: "")
-        leftButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Add, target: self, action: Selector("controllManager:"))
+        leftButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Add, target: self, action: #selector(PresetView.controllManager(_:)))
         navigation.rightBarButtonItem = leftButton
     }
 
@@ -35,8 +35,10 @@ class PresetView: UITableView {
         (endCell as! PresetTableViewCell).presetSteps.text = "\(presetModel.steps)"
         (endCell as! PresetTableViewCell).presetName.text = NSLocalizedString("\(presetModel.label)", comment: "")
         (endCell as! PresetTableViewCell).presetStates.on = presetModel.status
-        if(!presetModel.status){
-            (endCell as! PresetTableViewCell).backgroundColor = UIColor.clearColor()
+        if(presetModel.status){
+            (endCell as! PresetTableViewCell).backgroundColor = UIColor.getLightBaseColor()
+        }else{
+            endCell?.backgroundColor = UIColor.getGreyColor()
         }
         endCell?.selectionStyle = UITableViewCellSelectionStyle.None;
         return endCell!
