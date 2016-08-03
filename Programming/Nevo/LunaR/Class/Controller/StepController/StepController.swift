@@ -30,7 +30,10 @@ private struct PagingMenuOptions: PagingMenuControllerCustomizable {
         viewController2.view.backgroundColor = UIColor(rgba: "#54575a")
         let viewController3 = SleepHistoricalViewController()
         viewController3.view.backgroundColor = UIColor(rgba: "#54575a")
-        return [viewController1, viewController2,viewController3]
+        let viewController4 = SolarIndicatorController()
+        viewController4.view.backgroundColor = UIColor(rgba: "#54575a")
+        //
+        return [viewController1, viewController2,viewController3,viewController4]
     }
 }
 
