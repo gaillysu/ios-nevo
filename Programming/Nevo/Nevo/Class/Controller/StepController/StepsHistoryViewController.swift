@@ -1,24 +1,23 @@
 //
-//  QueryHistoricalController.swift
+//  StepHistoricalViewController.swift
 //  Nevo
 //
-//  Created by leiyuncun on 15/8/14.
-//  Copyright (c) 2015年 Nevo. All rights reserved.
+//  Created by leiyuncun on 15/12/2.
+//  Copyright © 2015年 Nevo. All rights reserved.
 //
 
 import UIKit
-import Charts
 
-class StepsHistoryViewController: PublicClassController,ChartViewDelegate,SelectedChartViewDelegate {
+class StepsHistoryViewController: UIViewController,UICollectionViewDelegateFlowLayout,SelectedChartViewDelegate {
 
-    @IBOutlet var queryView: SleepHistoricalView!
+    @IBOutlet weak var stepsHistortView: StepHistoricalView!
+    @IBOutlet weak var stepsHistori: UICollectionView!
+    private var queryArray:NSArray = NSArray()
     private var contentTitleArray:[String] = []
-    private var contentTArray:[String] = [NSLocalizedString("--", comment: ""),NSLocalizedString("--", comment: ""),NSLocalizedString("--", comment: ""),NSLocalizedString("--", comment: ""),NSLocalizedString("--", comment: ""),NSLocalizedString("--", comment: "")]
-
-    private var queryArray:NSArray?
+    private var contentTArray:[String] = [NSLocalizedString("--", comment: ""),NSLocalizedString("--", comment: ""),NSLocalizedString("--", comment: "")]
+    
     init() {
-        super.init(nibName: "SleepHistoricalViewController", bundle: NSBundle.mainBundle())
-
+        super.init(nibName: "StepsHistoryViewController", bundle: NSBundle.mainBundle())
     }
 
     required init(coder aDecoder: NSCoder) {
@@ -28,54 +27,45 @@ class StepsHistoryViewController: PublicClassController,ChartViewDelegate,Select
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        contentTitleArray = [NSLocalizedString("sleep_duration", comment: ""), NSLocalizedString("sleep_timer", comment: ""), NSLocalizedString("wake_timer", comment: ""), NSLocalizedString("deep_sleep", comment: ""), NSLocalizedString("light_sleep", comment: ""), NSLocalizedString("wake_duration", comment: "")]
-
+        if((UIDevice.currentDevice().systemVersion as NSString).floatValue>7.0){
+            self.edgesForExtendedLayout = UIRectEdge.None;
+            self.extendedLayoutIncludesOpaqueBars = false;
+            self.modalPresentationCapturesStatusBarAppearance = false;
+        }
+        contentTitleArray = [NSLocalizedString("goal", comment: ""), NSLocalizedString("progress", comment: ""), NSLocalizedString("you_reached", comment: "")]
     }
 
     override func viewWillAppear(animated: Bool) {
-        queryArray = UserSleep.getAll()
-        queryView.bulidQueryView(self,modelArray: queryArray!,navigation: self.navigationItem)
+        queryArray = UserSteps.getAll()
+        stepsHistortView.bulidStepHistoricalView(self, modelArray: queryArray, navigation: self.navigationItem)
 
-        if(queryArray?.count>0) {
-            queryView.nodataLabel.hidden = true
+        if(queryArray.count>0) {
+            stepsHistortView.nodataLabel.hidden = true
         }else{
-            queryView.nodataLabel.backgroundColor = UIColor.whiteColor()
-            queryView.nodataLabel.hidden = false
-            queryView.nodataLabel.text = NSLocalizedString("no_data", comment: "");
+            stepsHistortView.nodataLabel.backgroundColor = UIColor.whiteColor()
+            stepsHistortView.nodataLabel.hidden = false
+            stepsHistortView.nodataLabel.text = NSLocalizedString("no_data", comment: "");
         }
     }
 
     override func viewDidLayoutSubviews() {
-        queryView.detailCollectionView.backgroundColor = UIColor.whiteColor()
-        queryView.detailCollectionView.registerClass(UICollectionViewCell.classForCoder(), forCellWithReuseIdentifier: "SleepHistoryViewCell")
-        (queryView.detailCollectionView.collectionViewLayout as! UICollectionViewFlowLayout).itemSize = CGSizeMake(UIScreen.mainScreen().bounds.size.width/3.0, queryView.detailCollectionView.frame.size.height/2.0)
+        stepsHistori.backgroundColor = UIColor.whiteColor()
+        stepsHistori.registerClass(UICollectionViewCell.classForCoder(), forCellWithReuseIdentifier: "StepsHistoryViewCell")
+        (stepsHistori.collectionViewLayout as! UICollectionViewFlowLayout).itemSize = CGSizeMake(UIScreen.mainScreen().bounds.size.width/3.0, stepsHistori.frame.size.height)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+
     // MARK: - SelectedChartViewDelegate
-    func didSleepSelectedhighlightValue(xIndex:Int,dataSetIndex: Int, dataSleep:Sleep) {
-        //contentTArray
+    func didSelectedhighlightValue(xIndex:Int,dataSetIndex: Int, dataSteps:UserSteps) {
         contentTArray.removeAll()
-        let startTimer:NSDate = NSDate(timeIntervalSince1970: dataSleep.getStartTimer())
-        let endTimer:NSDate = NSDate(timeIntervalSince1970: dataSleep.getEndTimer())
-        let startString:String = startTimer.stringFromFormat("hh:mm a")
-        let endString:String = endTimer.stringFromFormat("hh:mm a")
-
-        contentTArray.insert(String(format: "%dh%dm", Int(dataSleep.getTotalSleep()),Int((dataSleep.getTotalSleep())*Double(60)%Double(60))), atIndex: 0)
-        contentTArray.insert("\(startString)", atIndex: 1)
-        contentTArray.insert("\(endString)", atIndex: 2)
-        contentTArray.insert(String(format: "%dh%dm", Int(dataSleep.getDeepSleep()),Int((dataSleep.getDeepSleep())*Double(60)%Double(60))), atIndex: 3)
-        contentTArray.insert(String(format: "%dh%dm", Int(dataSleep.getLightSleep()),Int((dataSleep.getLightSleep())*Double(60)%Double(60))), atIndex: 4)
-        contentTArray.insert(String(format: "%dh%dm", Int(dataSleep.getWeakSleep()),Int((dataSleep.getWeakSleep())*Double(60)%Double(60))), atIndex: 5)
-        queryView.detailCollectionView.reloadData()
-    }
-
-    private func calculateMinutes(time:Double) -> (hours:Int,minutes:Int){
-        return (Int(time),Int(60*(time%1)));
+        contentTArray.insert("\(dataSteps.goalsteps)", atIndex: 0)
+        contentTArray.insert(String(format: "%.2f%c", dataSteps.goalreach*100,37), atIndex: 1)
+        contentTArray.insert("\(dataSteps.steps)", atIndex: 2)
+        stepsHistori.reloadData()
     }
 
     // MARK: - UICollectionViewDataSource
@@ -84,7 +74,7 @@ class StepsHistoryViewController: PublicClassController,ChartViewDelegate,Select
     }
 
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("SleepHistoryViewCell", forIndexPath: indexPath)
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("StepsHistoryViewCell", forIndexPath: indexPath)
         cell.backgroundColor = UIColor.clearColor()
         let labelheight:CGFloat = cell.contentView.frame.size.height
         let titleView = cell.contentView.viewWithTag(1500)
@@ -123,11 +113,10 @@ class StepsHistoryViewController: PublicClassController,ChartViewDelegate,Select
             let contentStepsView:UILabel = contentView as! UILabel
             contentStepsView.text = "\(contentTArray[indexPath.row])"
             contentStepsView.sizeToFit()
-            contentStepsView.center = CGPointMake(cell.contentView.frame.size.width/2.0,labelheight/2.0+contentStepsView.frame.size.height/2.0)
+            contentStepsView.center = CGPointMake(cell.contentView.frame.size.width/2.0, labelheight/2.0+contentStepsView.frame.size.height/2.0)
         }
         return cell
     }
-
     /*
     // MARK: - Navigation
 

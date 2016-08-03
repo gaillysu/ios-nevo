@@ -15,10 +15,6 @@
 		001F1B7C1B57777B001DD426 /* nevo_wacth.png in Resources */ = {isa = PBXBuildFile; fileRef = 001F1B7A1B57777B001DD426 /* nevo_wacth.png */; };
 		001F59521D3E107100AAC07B /* UserHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001F59511D3E107100AAC07B /* UserHeader.swift */; };
 		001F59541D3E108900AAC07B /* UserHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 001F59531D3E108900AAC07B /* UserHeader.xib */; };
-		0022650E1D2CF61A0033F981 /* SMSegmentView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 003CD0501D2CE93500494D5A /* SMSegmentView.framework */; };
-		002265101D2CF61A0033F981 /* LTNavigationBar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0022650F1D2CF61A0033F981 /* LTNavigationBar.framework */; };
-		002C44281CFD7D6C00322B46 /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 002C44271CFD7D6C00322B46 /* Charts.framework */; };
-		002C442A1CFD89AA00322B46 /* AutocompleteField.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 002C44291CFD89AA00322B46 /* AutocompleteField.framework */; };
 		00321D6D1C98EBB10069BFCC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00321D6C1C98EBB10069BFCC /* AppDelegate.swift */; };
 		00321D7C1C993C320069BFCC /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00321D771C993C320069BFCC /* LoginController.swift */; };
 		00321D7D1C993C320069BFCC /* LoginController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00321D781C993C320069BFCC /* LoginController.xib */; };
@@ -34,19 +30,6 @@
 		0036EB0A1C48BA8300DCED46 /* tutorialone.png in Resources */ = {isa = PBXBuildFile; fileRef = 0036EB041C48BA8300DCED46 /* tutorialone.png */; };
 		0036EB0D1C48C36700DCED46 /* bluetoothoff_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 0036EB0B1C48C36700DCED46 /* bluetoothoff_background.png */; };
 		0036EB0E1C48C36700DCED46 /* bluetoothoff.png in Resources */ = {isa = PBXBuildFile; fileRef = 0036EB0C1C48C36700DCED46 /* bluetoothoff.png */; };
-		0037EB321D2354C200502140 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00AF8E541D224ED8009047AC /* Alamofire.framework */; };
-		0037EB331D2354C200502140 /* AutocompleteField.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 002C44291CFD89AA00322B46 /* AutocompleteField.framework */; };
-		0037EB341D2354C200502140 /* BRYXBanner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00AF8E551D224ED8009047AC /* BRYXBanner.framework */; };
-		0037EB351D2354C200502140 /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 002C44271CFD7D6C00322B46 /* Charts.framework */; };
-		0037EB371D2354C200502140 /* GSMessages.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00AF8E571D224ED8009047AC /* GSMessages.framework */; };
-		0037EB381D2354C200502140 /* MRProgress.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00AF8E581D224ED8009047AC /* MRProgress.framework */; };
-		0037EB391D2354C200502140 /* NJKWebViewProgress.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00AF8E591D224ED8009047AC /* NJKWebViewProgress.framework */; };
-		0037EB3A1D2354C200502140 /* RegexKitLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00AF8E5B1D224ED8009047AC /* RegexKitLite.framework */; };
-		0037EB3B1D2354C200502140 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00B606E61D0F9DB800FF5A01 /* SwiftyJSON.framework */; };
-		0037EB3C1D2354C200502140 /* SwiftyTimer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00AF8E5C1D224ED8009047AC /* SwiftyTimer.framework */; };
-		0037EB3E1D2354C200502140 /* Timepiece.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00AF8E5E1D224ED8009047AC /* Timepiece.framework */; };
-		0037EB3F1D2354C200502140 /* UIColor_Hex_Swift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0095C0DC1D1274B600331266 /* UIColor_Hex_Swift.framework */; };
-		0037EB401D2354C200502140 /* XCGLogger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0095C0DD1D1274B600331266 /* XCGLogger.framework */; };
 		0037EBB71D235BD000502140 /* NevoAllKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8D051D224D57009047AC /* NevoAllKeys.swift */; };
 		0037EBB81D235BD000502140 /* CaloriesToHK.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C4D1D224CFA009047AC /* CaloriesToHK.swift */; };
 		0037EBB91D235BD000502140 /* DailySteps.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C4E1D224CFA009047AC /* DailySteps.swift */; };
@@ -57,10 +40,6 @@
 		0037EBBE1D235BD000502140 /* Alarm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C541D224CFA009047AC /* Alarm.swift */; };
 		0037EBBF1D235BD000502140 /* NewAlarm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C551D224CFA009047AC /* NewAlarm.swift */; };
 		0037EBC01D235BD000502140 /* BaseEntryDatabaseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C581D224CFA009047AC /* BaseEntryDatabaseHelper.swift */; };
-		0037EBC11D235BD000502140 /* NevoDBHelper.h in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C591D224CFA009047AC /* NevoDBHelper.h */; };
-		0037EBC21D235BD000502140 /* NevoDBHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C5A1D224CFA009047AC /* NevoDBHelper.m */; };
-		0037EBC31D235BD000502140 /* NevoDBModel.h in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C5B1D224CFA009047AC /* NevoDBModel.h */; };
-		0037EBC41D235BD000502140 /* NevoDBModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C5C1D224CFA009047AC /* NevoDBModel.m */; };
 		0037EBC51D235BD000502140 /* UserDatabaseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C5D1D224CFA009047AC /* UserDatabaseHelper.swift */; };
 		0037EBC61D235BD000502140 /* AlarmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C5F1D224CFA009047AC /* AlarmModel.swift */; };
 		0037EBC81D235BD000502140 /* HealthModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C611D224CFA009047AC /* HealthModel.swift */; };
@@ -177,7 +156,6 @@
 		0037EC3A1D235F5300502140 /* clockViewHour.png in Resources */ = {isa = PBXBuildFile; fileRef = 00478F4D1A8F637D00D0DCE2 /* clockViewHour.png */; };
 		0037EC3B1D235F5300502140 /* clockViewMinute.png in Resources */ = {isa = PBXBuildFile; fileRef = 00478F4E1A8F637D00D0DCE2 /* clockViewMinute.png */; };
 		0037EC3C1D235F5300502140 /* clockView600.png in Resources */ = {isa = PBXBuildFile; fileRef = 00C640F51A8DEE0800815CF8 /* clockView600.png */; };
-		0037EC3E1D236A0000502140 /* LTNavigationBar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0037EC3D1D236A0000502140 /* LTNavigationBar.framework */; };
 		0037EC421D2370A200502140 /* ForgotPasswordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0037EC401D2370A200502140 /* ForgotPasswordController.swift */; };
 		0037EC431D2370A200502140 /* ForgotPasswordController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0037EC411D2370A200502140 /* ForgotPasswordController.xib */; };
 		0037EC4D1D2385DF00502140 /* Raleway-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0037EC441D2385DF00502140 /* Raleway-Bold.ttf */; };
@@ -189,7 +167,6 @@
 		0037EC531D2385DF00502140 /* Raleway-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0037EC4A1D2385DF00502140 /* Raleway-Regular.ttf */; };
 		0037EC541D2385DF00502140 /* Raleway-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0037EC4B1D2385DF00502140 /* Raleway-SemiBold.ttf */; };
 		0037EC551D2385DF00502140 /* Raleway-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0037EC4C1D2385DF00502140 /* Raleway-Thin.ttf */; };
-		003CD0511D2CE93500494D5A /* SMSegmentView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 003CD0501D2CE93500494D5A /* SMSegmentView.framework */; };
 		0042C8B21C7DB37200177D3D /* NotAlarmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0042C8B11C7DB37200177D3D /* NotAlarmView.swift */; };
 		0042C8B41C7DB3EF00177D3D /* NotAlarmView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0042C8B31C7DB3EF00177D3D /* NotAlarmView.xib */; };
 		0043EDCD1D24EF94007DEBDA /* CheckYourIndoxController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0043EDCB1D24EF94007DEBDA /* CheckYourIndoxController.swift */; };
@@ -238,7 +215,7 @@
 		0050D6181C28E0DB004F6F80 /* queryTableviewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0050D5611C28E0DB004F6F80 /* queryTableviewCell.xib */; };
 		0050D6191C28E0DB004F6F80 /* SleepController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0050D5621C28E0DB004F6F80 /* SleepController.swift */; };
 		0050D61A1C28E0DB004F6F80 /* SleepHistoricalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0050D5631C28E0DB004F6F80 /* SleepHistoricalView.swift */; };
-		0050D61B1C28E0DB004F6F80 /* StepsHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0050D5641C28E0DB004F6F80 /* StepsHistoryViewController.swift */; };
+		0050D61B1C28E0DB004F6F80 /* SleepHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0050D5641C28E0DB004F6F80 /* SleepHistoryViewController.swift */; };
 		0050D61C1C28E0DB004F6F80 /* SleepHistoricalViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0050D5651C28E0DB004F6F80 /* SleepHistoricalViewController.xib */; };
 		0050D61D1C28E0DB004F6F80 /* SleepTrackingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0050D5661C28E0DB004F6F80 /* SleepTrackingController.swift */; };
 		0050D61E1C28E0DB004F6F80 /* SleepTrackingController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0050D5671C28E0DB004F6F80 /* SleepTrackingController.xib */; };
@@ -246,8 +223,8 @@
 		0050D6201C28E0DB004F6F80 /* StepController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0050D56B1C28E0DB004F6F80 /* StepController.swift */; };
 		0050D6211C28E0DB004F6F80 /* StepGoalSetingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0050D56C1C28E0DB004F6F80 /* StepGoalSetingController.swift */; };
 		0050D6221C28E0DB004F6F80 /* StepGoalSetingController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0050D56D1C28E0DB004F6F80 /* StepGoalSetingController.xib */; };
-		0050D6231C28E0DB004F6F80 /* StepHistoricalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0050D56E1C28E0DB004F6F80 /* StepHistoricalViewController.swift */; };
-		0050D6241C28E0DB004F6F80 /* StepHistoricalViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0050D56F1C28E0DB004F6F80 /* StepHistoricalViewController.xib */; };
+		0050D6231C28E0DB004F6F80 /* StepsHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0050D56E1C28E0DB004F6F80 /* StepsHistoryViewController.swift */; };
+		0050D6241C28E0DB004F6F80 /* StepsHistoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0050D56F1C28E0DB004F6F80 /* StepsHistoryViewController.xib */; };
 		0050D6251C28E0DB004F6F80 /* StepGoalSetingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0050D5711C28E0DB004F6F80 /* StepGoalSetingView.swift */; };
 		0050D6261C28E0DB004F6F80 /* StepHistoricalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0050D5721C28E0DB004F6F80 /* StepHistoricalView.swift */; };
 		0050D6911C28E1CD004F6F80 /* AddAlarmController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0050D6851C28E1CD004F6F80 /* AddAlarmController.swift */; };
@@ -260,7 +237,6 @@
 		0050D6981C28E1CD004F6F80 /* AlarmClockController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0050D68E1C28E1CD004F6F80 /* AlarmClockController.swift */; };
 		0050D6991C28E1CD004F6F80 /* alarmClockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0050D6901C28E1CD004F6F80 /* alarmClockView.swift */; };
 		0050D69B1C2906D8004F6F80 /* Firmwares in Resources */ = {isa = PBXBuildFile; fileRef = 0050D69A1C2906D8004F6F80 /* Firmwares */; };
-		0056DBE01D18D186003D92CE /* SwiftyTimer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0056DBDF1D18D186003D92CE /* SwiftyTimer.framework */; };
 		0058B3EA1CF55D590079A213 /* ConnectOtherAppsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0058B3E81CF55D590079A213 /* ConnectOtherAppsController.swift */; };
 		0058B3EB1CF55D590079A213 /* ConnectOtherAppsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0058B3E91CF55D590079A213 /* ConnectOtherAppsController.xib */; };
 		005BC95F1A88B79F006F9E86 /* FXBlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = 005BC95E1A88B79F006F9E86 /* FXBlurView.m */; };
@@ -303,9 +279,6 @@
 		008AEF1B1D264A4C00B9E4D0 /* ProfileSetupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 008AEF191D264A4C00B9E4D0 /* ProfileSetupViewController.xib */; };
 		0095C0DA1D123E9100331266 /* SetingNotLoginCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0095C0D81D123E9100331266 /* SetingNotLoginCell.swift */; };
 		0095C0DB1D123E9100331266 /* SetingNotLoginCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0095C0D91D123E9100331266 /* SetingNotLoginCell.xib */; };
-		0095C0DE1D1274B600331266 /* UIColor_Hex_Swift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0095C0DC1D1274B600331266 /* UIColor_Hex_Swift.framework */; };
-		0095C0DF1D1274B600331266 /* XCGLogger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0095C0DD1D1274B600331266 /* XCGLogger.framework */; };
-		0095C0E11D12772C00331266 /* RegexKitLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0095C0E01D12772C00331266 /* RegexKitLite.framework */; };
 		0095C0E41D12940C00331266 /* SetingInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0095C0E21D12940C00331266 /* SetingInfoCell.swift */; };
 		0095C0E51D12940C00331266 /* SetingInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0095C0E31D12940C00331266 /* SetingInfoCell.xib */; };
 		0095DDA91D2E0D7D00F80BFD /* wacth_dial.png in Resources */ = {isa = PBXBuildFile; fileRef = 0095DDA61D2E0D7D00F80BFD /* wacth_dial.png */; };
@@ -314,8 +287,6 @@
 		0095DDAC1D2E0E5500F80BFD /* wacth_dial.png in Resources */ = {isa = PBXBuildFile; fileRef = 0095DDA61D2E0D7D00F80BFD /* wacth_dial.png */; };
 		0095DDAD1D2E0E5500F80BFD /* wacth_hour.png in Resources */ = {isa = PBXBuildFile; fileRef = 0095DDA71D2E0D7D00F80BFD /* wacth_hour.png */; };
 		0095DDAE1D2E0E5500F80BFD /* wacth_mint.png in Resources */ = {isa = PBXBuildFile; fileRef = 0095DDA81D2E0D7D00F80BFD /* wacth_mint.png */; };
-		0095DDB51D2E361800F80BFD /* FMDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0095DDB31D2E361800F80BFD /* FMDB.framework */; };
-		0095DDB61D2E361800F80BFD /* PagingMenuController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0095DDB41D2E361800F80BFD /* PagingMenuController.framework */; };
 		009703C21C9BD9D700F2FF0D /* UserProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009703C01C9BD9D700F2FF0D /* UserProfileController.swift */; };
 		009703C31C9BD9D700F2FF0D /* UserProfileController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 009703C11C9BD9D700F2FF0D /* UserProfileController.xib */; };
 		009703C61C9BDB3200F2FF0D /* UserProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009703C41C9BDB3200F2FF0D /* UserProfileCell.swift */; };
@@ -334,11 +305,8 @@
 		00AF8CBA1D224CFA009047AC /* Alarm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C541D224CFA009047AC /* Alarm.swift */; };
 		00AF8CBB1D224CFA009047AC /* NewAlarm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C551D224CFA009047AC /* NewAlarm.swift */; };
 		00AF8CBC1D224CFA009047AC /* BaseEntryDatabaseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C581D224CFA009047AC /* BaseEntryDatabaseHelper.swift */; };
-		00AF8CBD1D224CFA009047AC /* NevoDBHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C5A1D224CFA009047AC /* NevoDBHelper.m */; };
-		00AF8CBE1D224CFA009047AC /* NevoDBModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C5C1D224CFA009047AC /* NevoDBModel.m */; };
 		00AF8CBF1D224CFA009047AC /* UserDatabaseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C5D1D224CFA009047AC /* UserDatabaseHelper.swift */; };
 		00AF8CC01D224CFA009047AC /* AlarmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C5F1D224CFA009047AC /* AlarmModel.swift */; };
-		00AF8CC11D224CFA009047AC /* DaySleepSaveModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C601D224CFA009047AC /* DaySleepSaveModel.swift */; };
 		00AF8CC21D224CFA009047AC /* HealthModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C611D224CFA009047AC /* HealthModel.swift */; };
 		00AF8CC31D224CFA009047AC /* NevoProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C621D224CFA009047AC /* NevoProfileModel.swift */; };
 		00AF8CC41D224CFA009047AC /* NotificationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C631D224CFA009047AC /* NotificationModel.swift */; };
@@ -409,10 +377,10 @@
 		00AF8D061D224D57009047AC /* NevoAllKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8D051D224D57009047AC /* NevoAllKeys.swift */; };
 		00AFDAA21D46131100F4338B /* OTALineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AFDAA11D46131100F4338B /* OTALineView.swift */; };
 		00AFDAA41D47128700F4338B /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AFDAA31D47128700F4338B /* View.swift */; };
-		00B606E71D0F9DB800FF5A01 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00B606E61D0F9DB800FF5A01 /* SwiftyJSON.framework */; };
-		00B606EB1D0FCE9200FF5A01 /* MRProgress.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00B606EA1D0FCE9200FF5A01 /* MRProgress.framework */; };
 		00BF2D9A1C7FED2200909316 /* VideoPlayController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00BF2D981C7FED2200909316 /* VideoPlayController.swift */; };
 		00BF2D9B1C7FED2200909316 /* VideoPlayController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00BF2D991C7FED2200909316 /* VideoPlayController.xib */; };
+		00C254A31D4EE82200F0F85F /* SolarIndicatorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C254A11D4EE82200F0F85F /* SolarIndicatorController.swift */; };
+		00C254A41D4EE82200F0F85F /* SolarIndicatorController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00C254A21D4EE82200F0F85F /* SolarIndicatorController.xib */; };
 		00C640F61A8DEE0800815CF8 /* clockView600.png in Resources */ = {isa = PBXBuildFile; fileRef = 00C640F51A8DEE0800815CF8 /* clockView600.png */; };
 		00D581441CB50C7500953B8A /* ChangeProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D581421CB50C7500953B8A /* ChangeProfileController.swift */; };
 		00D581451CB50C7500953B8A /* ChangeProfileController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00D581431CB50C7500953B8A /* ChangeProfileController.xib */; };
@@ -548,7 +516,8 @@
 		00F0C3531C8993DD005888A7 /* NewAddAlarmController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F0C3511C8993DD005888A7 /* NewAddAlarmController.swift */; };
 		00F0C3541C8993DD005888A7 /* NewAddAlarmController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00F0C3521C8993DD005888A7 /* NewAddAlarmController.xib */; };
 		07BCE82A1B5CAB2200C7F558 /* clockview600_color.png in Resources */ = {isa = PBXBuildFile; fileRef = 07BCE8291B5CAB2100C7F558 /* clockview600_color.png */; };
-		3BC170C4E2BBBDFFADC702A7 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 771461B44CA8D95449687FE6 /* Pods.framework */; };
+		3AF3D240B5808E80F5B2A19E /* Pods_Nevo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C2AEB04A0C7F45FE876ABED /* Pods_Nevo.framework */; };
+		7409DE23002B1D92822E281F /* Pods_LunaR.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2684F108DD80B3F763126280 /* Pods_LunaR.framework */; };
 		9A2D6C3B1A9C6D9F00591BDC /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A2D6C3A1A9C6D9F00591BDC /* HealthKit.framework */; };
 		9A2D6C3E1A9C71E500591BDC /* NevoHK.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2D6C3D1A9C71E500591BDC /* NevoHK.swift */; };
 		9A2D6C401A9C783800591BDC /* NevoHKImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2D6C3F1A9C783800591BDC /* NevoHKImpl.swift */; };
@@ -560,14 +529,6 @@
 		9AD8F9841A6E2C8E00F01014 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD8F9821A6E2C8E00F01014 /* Request.swift */; };
 		9AD8F98D1A6E2D6E00F01014 /* RawPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD8F98C1A6E2D6E00F01014 /* RawPacket.swift */; };
 		9AD8F98F1A6E2EE000F01014 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD8F98E1A6E2EE000F01014 /* Profile.swift */; };
-		9E15EAB11CED5BF6009F129F /* TextFieldEffects.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E15EAB01CED5BF6009F129F /* TextFieldEffects.framework */; };
-		9E15EABB1CED6B33009F129F /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E15EAB41CED6B33009F129F /* Alamofire.framework */; };
-		9E15EABC1CED6B33009F129F /* BRYXBanner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E15EAB51CED6B33009F129F /* BRYXBanner.framework */; };
-		9E15EABE1CED6B33009F129F /* FMDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E15EAB71CED6B33009F129F /* FMDB.framework */; };
-		9E15EABF1CED6B33009F129F /* GSMessages.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E15EAB81CED6B33009F129F /* GSMessages.framework */; };
-		9E15EAC01CED6B33009F129F /* NJKWebViewProgress.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E15EAB91CED6B33009F129F /* NJKWebViewProgress.framework */; };
-		9E15EAC11CED6B33009F129F /* Timepiece.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E15EABA1CED6B33009F129F /* Timepiece.framework */; };
-		9E15EAC31CED6B3A009F129F /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E15EAC21CED6B3A009F129F /* Pods.framework */; };
 		9E98FB291C463A3B00BAB700 /* TutorialOneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E98FB281C463A3B00BAB700 /* TutorialOneViewController.swift */; };
 		9E98FB2B1C463BB200BAB700 /* TutorialTwoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E98FB2A1C463BB200BAB700 /* TutorialTwoViewController.swift */; };
 		9E98FB2D1C463D2A00BAB700 /* TutorialThreeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E98FB2C1C463D2A00BAB700 /* TutorialThreeViewController.swift */; };
@@ -610,9 +571,6 @@
 		001F1B7A1B57777B001DD426 /* nevo_wacth.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nevo_wacth.png; sourceTree = "<group>"; };
 		001F59511D3E107100AAC07B /* UserHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserHeader.swift; sourceTree = "<group>"; };
 		001F59531D3E108900AAC07B /* UserHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserHeader.xib; sourceTree = "<group>"; };
-		0022650F1D2CF61A0033F981 /* LTNavigationBar.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LTNavigationBar.framework; path = "../../../../Library/Developer/Xcode/DerivedData/Nevo-cbjnruaifgvemfduxtlzizqanuqy/Build/Products/Debug-iphoneos/LTNavigationBar.framework"; sourceTree = "<group>"; };
-		002C44271CFD7D6C00322B46 /* Charts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Charts.framework; path = "../../../../Library/Developer/Xcode/DerivedData/Nevo-cbjnruaifgvemfduxtlzizqanuqy/Build/Products/Debug-iphoneos/Charts.framework"; sourceTree = "<group>"; };
-		002C44291CFD89AA00322B46 /* AutocompleteField.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AutocompleteField.framework; path = "../../../../Library/Developer/Xcode/DerivedData/Nevo-cbjnruaifgvemfduxtlzizqanuqy/Build/Products/Debug-iphoneos/AutocompleteField.framework"; sourceTree = "<group>"; };
 		00321D6C1C98EBB10069BFCC /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		00321D771C993C320069BFCC /* LoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		00321D781C993C320069BFCC /* LoginController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginController.xib; sourceTree = "<group>"; };
@@ -629,7 +587,6 @@
 		0036EB0B1C48C36700DCED46 /* bluetoothoff_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bluetoothoff_background.png; sourceTree = "<group>"; };
 		0036EB0C1C48C36700DCED46 /* bluetoothoff.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bluetoothoff.png; sourceTree = "<group>"; };
 		0037EC1B1D235DCE00502140 /* LunaR-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "LunaR-Bridging-Header.h"; sourceTree = "<group>"; };
-		0037EC3D1D236A0000502140 /* LTNavigationBar.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LTNavigationBar.framework; path = "Pods/../build/Debug-iphoneos/LTNavigationBar.framework"; sourceTree = "<group>"; };
 		0037EC401D2370A200502140 /* ForgotPasswordController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordController.swift; sourceTree = "<group>"; };
 		0037EC411D2370A200502140 /* ForgotPasswordController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ForgotPasswordController.xib; sourceTree = "<group>"; };
 		0037EC441D2385DF00502140 /* Raleway-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-Bold.ttf"; sourceTree = "<group>"; };
@@ -641,7 +598,6 @@
 		0037EC4A1D2385DF00502140 /* Raleway-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-Regular.ttf"; sourceTree = "<group>"; };
 		0037EC4B1D2385DF00502140 /* Raleway-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-SemiBold.ttf"; sourceTree = "<group>"; };
 		0037EC4C1D2385DF00502140 /* Raleway-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-Thin.ttf"; sourceTree = "<group>"; };
-		003CD0501D2CE93500494D5A /* SMSegmentView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SMSegmentView.framework; path = "../../../../Library/Developer/Xcode/DerivedData/Nevo-cbjnruaifgvemfduxtlzizqanuqy/Build/Products/Debug-iphoneos/SMSegmentView.framework"; sourceTree = "<group>"; };
 		0042C8B11C7DB37200177D3D /* NotAlarmView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotAlarmView.swift; sourceTree = "<group>"; };
 		0042C8B31C7DB3EF00177D3D /* NotAlarmView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NotAlarmView.xib; sourceTree = "<group>"; };
 		0043EDCB1D24EF94007DEBDA /* CheckYourIndoxController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckYourIndoxController.swift; sourceTree = "<group>"; };
@@ -691,7 +647,7 @@
 		0050D5611C28E0DB004F6F80 /* queryTableviewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = queryTableviewCell.xib; sourceTree = "<group>"; };
 		0050D5621C28E0DB004F6F80 /* SleepController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SleepController.swift; sourceTree = "<group>"; };
 		0050D5631C28E0DB004F6F80 /* SleepHistoricalView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SleepHistoricalView.swift; sourceTree = "<group>"; };
-		0050D5641C28E0DB004F6F80 /* StepsHistoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepsHistoryViewController.swift; sourceTree = "<group>"; };
+		0050D5641C28E0DB004F6F80 /* SleepHistoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SleepHistoryViewController.swift; sourceTree = "<group>"; };
 		0050D5651C28E0DB004F6F80 /* SleepHistoricalViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SleepHistoricalViewController.xib; sourceTree = "<group>"; };
 		0050D5661C28E0DB004F6F80 /* SleepTrackingController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SleepTrackingController.swift; sourceTree = "<group>"; };
 		0050D5671C28E0DB004F6F80 /* SleepTrackingController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SleepTrackingController.xib; sourceTree = "<group>"; };
@@ -699,8 +655,8 @@
 		0050D56B1C28E0DB004F6F80 /* StepController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepController.swift; sourceTree = "<group>"; };
 		0050D56C1C28E0DB004F6F80 /* StepGoalSetingController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepGoalSetingController.swift; sourceTree = "<group>"; };
 		0050D56D1C28E0DB004F6F80 /* StepGoalSetingController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StepGoalSetingController.xib; sourceTree = "<group>"; };
-		0050D56E1C28E0DB004F6F80 /* StepHistoricalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepHistoricalViewController.swift; sourceTree = "<group>"; };
-		0050D56F1C28E0DB004F6F80 /* StepHistoricalViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StepHistoricalViewController.xib; sourceTree = "<group>"; };
+		0050D56E1C28E0DB004F6F80 /* StepsHistoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepsHistoryViewController.swift; sourceTree = "<group>"; };
+		0050D56F1C28E0DB004F6F80 /* StepsHistoryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StepsHistoryViewController.xib; sourceTree = "<group>"; };
 		0050D5711C28E0DB004F6F80 /* StepGoalSetingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepGoalSetingView.swift; sourceTree = "<group>"; };
 		0050D5721C28E0DB004F6F80 /* StepHistoricalView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepHistoricalView.swift; sourceTree = "<group>"; };
 		0050D6851C28E1CD004F6F80 /* AddAlarmController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddAlarmController.swift; sourceTree = "<group>"; };
@@ -713,7 +669,6 @@
 		0050D68E1C28E1CD004F6F80 /* AlarmClockController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlarmClockController.swift; sourceTree = "<group>"; };
 		0050D6901C28E1CD004F6F80 /* alarmClockView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = alarmClockView.swift; sourceTree = "<group>"; };
 		0050D69A1C2906D8004F6F80 /* Firmwares */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Firmwares; sourceTree = "<group>"; };
-		0056DBDF1D18D186003D92CE /* SwiftyTimer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyTimer.framework; path = "Pods/../build/Debug-iphoneos/SwiftyTimer.framework"; sourceTree = "<group>"; };
 		0058B3E81CF55D590079A213 /* ConnectOtherAppsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectOtherAppsController.swift; sourceTree = "<group>"; };
 		0058B3E91CF55D590079A213 /* ConnectOtherAppsController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConnectOtherAppsController.xib; sourceTree = "<group>"; };
 		005BC95D1A88B79F006F9E86 /* FXBlurView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FXBlurView.h; sourceTree = "<group>"; };
@@ -786,16 +741,11 @@
 		008AEF191D264A4C00B9E4D0 /* ProfileSetupViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileSetupViewController.xib; sourceTree = "<group>"; };
 		0095C0D81D123E9100331266 /* SetingNotLoginCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetingNotLoginCell.swift; sourceTree = "<group>"; };
 		0095C0D91D123E9100331266 /* SetingNotLoginCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SetingNotLoginCell.xib; sourceTree = "<group>"; };
-		0095C0DC1D1274B600331266 /* UIColor_Hex_Swift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIColor_Hex_Swift.framework; path = "../../../../Library/Developer/Xcode/DerivedData/Nevo-cbjnruaifgvemfduxtlzizqanuqy/Build/Products/Debug-iphoneos/UIColor_Hex_Swift.framework"; sourceTree = "<group>"; };
-		0095C0DD1D1274B600331266 /* XCGLogger.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCGLogger.framework; path = "../../../../Library/Developer/Xcode/DerivedData/Nevo-cbjnruaifgvemfduxtlzizqanuqy/Build/Products/Debug-iphoneos/XCGLogger.framework"; sourceTree = "<group>"; };
-		0095C0E01D12772C00331266 /* RegexKitLite.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RegexKitLite.framework; path = "Pods/../build/Debug-iphoneos/RegexKitLite.framework"; sourceTree = "<group>"; };
 		0095C0E21D12940C00331266 /* SetingInfoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetingInfoCell.swift; sourceTree = "<group>"; };
 		0095C0E31D12940C00331266 /* SetingInfoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SetingInfoCell.xib; sourceTree = "<group>"; };
 		0095DDA61D2E0D7D00F80BFD /* wacth_dial.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wacth_dial.png; sourceTree = "<group>"; };
 		0095DDA71D2E0D7D00F80BFD /* wacth_hour.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wacth_hour.png; sourceTree = "<group>"; };
 		0095DDA81D2E0D7D00F80BFD /* wacth_mint.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wacth_mint.png; sourceTree = "<group>"; };
-		0095DDB31D2E361800F80BFD /* FMDB.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FMDB.framework; path = "../../../../Library/Developer/Xcode/DerivedData/Nevo-cbjnruaifgvemfduxtlzizqanuqy/Build/Products/Debug-iphoneos/FMDB.framework"; sourceTree = "<group>"; };
-		0095DDB41D2E361800F80BFD /* PagingMenuController.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PagingMenuController.framework; path = "../../../../Library/Developer/Xcode/DerivedData/Nevo-cbjnruaifgvemfduxtlzizqanuqy/Build/Products/Debug-iphoneos/PagingMenuController.framework"; sourceTree = "<group>"; };
 		009703C01C9BD9D700F2FF0D /* UserProfileController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileController.swift; sourceTree = "<group>"; };
 		009703C11C9BD9D700F2FF0D /* UserProfileController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserProfileController.xib; sourceTree = "<group>"; };
 		009703C41C9BDB3200F2FF0D /* UserProfileCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileCell.swift; sourceTree = "<group>"; };
@@ -817,13 +767,8 @@
 		00AF8C541D224CFA009047AC /* Alarm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alarm.swift; sourceTree = "<group>"; };
 		00AF8C551D224CFA009047AC /* NewAlarm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewAlarm.swift; sourceTree = "<group>"; };
 		00AF8C581D224CFA009047AC /* BaseEntryDatabaseHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseEntryDatabaseHelper.swift; sourceTree = "<group>"; };
-		00AF8C591D224CFA009047AC /* NevoDBHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NevoDBHelper.h; sourceTree = "<group>"; };
-		00AF8C5A1D224CFA009047AC /* NevoDBHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NevoDBHelper.m; sourceTree = "<group>"; };
-		00AF8C5B1D224CFA009047AC /* NevoDBModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NevoDBModel.h; sourceTree = "<group>"; };
-		00AF8C5C1D224CFA009047AC /* NevoDBModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NevoDBModel.m; sourceTree = "<group>"; };
 		00AF8C5D1D224CFA009047AC /* UserDatabaseHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDatabaseHelper.swift; sourceTree = "<group>"; };
 		00AF8C5F1D224CFA009047AC /* AlarmModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlarmModel.swift; sourceTree = "<group>"; };
-		00AF8C601D224CFA009047AC /* DaySleepSaveModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DaySleepSaveModel.swift; sourceTree = "<group>"; };
 		00AF8C611D224CFA009047AC /* HealthModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthModel.swift; sourceTree = "<group>"; };
 		00AF8C621D224CFA009047AC /* NevoProfileModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NevoProfileModel.swift; sourceTree = "<group>"; };
 		00AF8C631D224CFA009047AC /* NotificationModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationModel.swift; sourceTree = "<group>"; };
@@ -893,22 +838,12 @@
 		00AF8CB21D224CFA009047AC /* WriteSettingRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WriteSettingRequest.swift; sourceTree = "<group>"; };
 		00AF8CB31D224CFA009047AC /* SyncQueue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncQueue.swift; sourceTree = "<group>"; };
 		00AF8D051D224D57009047AC /* NevoAllKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NevoAllKeys.swift; path = Frameworks/NevoAllKeys.swift; sourceTree = "<group>"; };
-		00AF8E541D224ED8009047AC /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = "../../../../Library/Developer/Xcode/DerivedData/Nevo-cbjnruaifgvemfduxtlzizqanuqy/Build/Products/Debug-iphoneos/Alamofire.framework"; sourceTree = "<group>"; };
-		00AF8E551D224ED8009047AC /* BRYXBanner.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BRYXBanner.framework; path = "../../../../Library/Developer/Xcode/DerivedData/Nevo-cbjnruaifgvemfduxtlzizqanuqy/Build/Products/Debug-iphoneos/BRYXBanner.framework"; sourceTree = "<group>"; };
-		00AF8E571D224ED8009047AC /* GSMessages.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GSMessages.framework; path = "../../../../Library/Developer/Xcode/DerivedData/Nevo-cbjnruaifgvemfduxtlzizqanuqy/Build/Products/Debug-iphoneos/GSMessages.framework"; sourceTree = "<group>"; };
-		00AF8E581D224ED8009047AC /* MRProgress.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MRProgress.framework; path = "../../../../Library/Developer/Xcode/DerivedData/Nevo-cbjnruaifgvemfduxtlzizqanuqy/Build/Products/Debug-iphoneos/MRProgress.framework"; sourceTree = "<group>"; };
-		00AF8E591D224ED8009047AC /* NJKWebViewProgress.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NJKWebViewProgress.framework; path = "../../../../Library/Developer/Xcode/DerivedData/Nevo-cbjnruaifgvemfduxtlzizqanuqy/Build/Products/Debug-iphoneos/NJKWebViewProgress.framework"; sourceTree = "<group>"; };
-		00AF8E5A1D224ED8009047AC /* Pods.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods.framework; path = "../../../../Library/Developer/Xcode/DerivedData/Nevo-cbjnruaifgvemfduxtlzizqanuqy/Build/Products/Debug-iphoneos/Pods.framework"; sourceTree = "<group>"; };
-		00AF8E5B1D224ED8009047AC /* RegexKitLite.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RegexKitLite.framework; path = "../../../../Library/Developer/Xcode/DerivedData/Nevo-cbjnruaifgvemfduxtlzizqanuqy/Build/Products/Debug-iphoneos/RegexKitLite.framework"; sourceTree = "<group>"; };
-		00AF8E5C1D224ED8009047AC /* SwiftyTimer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyTimer.framework; path = "../../../../Library/Developer/Xcode/DerivedData/Nevo-cbjnruaifgvemfduxtlzizqanuqy/Build/Products/Debug-iphoneos/SwiftyTimer.framework"; sourceTree = "<group>"; };
-		00AF8E5D1D224ED8009047AC /* TextFieldEffects.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TextFieldEffects.framework; path = "../../../../Library/Developer/Xcode/DerivedData/Nevo-cbjnruaifgvemfduxtlzizqanuqy/Build/Products/Debug-iphoneos/TextFieldEffects.framework"; sourceTree = "<group>"; };
-		00AF8E5E1D224ED8009047AC /* Timepiece.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Timepiece.framework; path = "../../../../Library/Developer/Xcode/DerivedData/Nevo-cbjnruaifgvemfduxtlzizqanuqy/Build/Products/Debug-iphoneos/Timepiece.framework"; sourceTree = "<group>"; };
 		00AFDAA11D46131100F4338B /* OTALineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OTALineView.swift; sourceTree = "<group>"; };
 		00AFDAA31D47128700F4338B /* View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
-		00B606E61D0F9DB800FF5A01 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = "../../../../Library/Developer/Xcode/DerivedData/Nevo-cbjnruaifgvemfduxtlzizqanuqy/Build/Products/Debug-iphoneos/SwiftyJSON.framework"; sourceTree = "<group>"; };
-		00B606EA1D0FCE9200FF5A01 /* MRProgress.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MRProgress.framework; path = "Pods/../build/Debug-iphoneos/MRProgress.framework"; sourceTree = "<group>"; };
 		00BF2D981C7FED2200909316 /* VideoPlayController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoPlayController.swift; sourceTree = "<group>"; };
 		00BF2D991C7FED2200909316 /* VideoPlayController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VideoPlayController.xib; sourceTree = "<group>"; };
+		00C254A11D4EE82200F0F85F /* SolarIndicatorController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SolarIndicatorController.swift; sourceTree = "<group>"; };
+		00C254A21D4EE82200F0F85F /* SolarIndicatorController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SolarIndicatorController.xib; sourceTree = "<group>"; };
 		00C640F51A8DEE0800815CF8 /* clockView600.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clockView600.png; sourceTree = "<group>"; };
 		00D581421CB50C7500953B8A /* ChangeProfileController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangeProfileController.swift; sourceTree = "<group>"; };
 		00D581431CB50C7500953B8A /* ChangeProfileController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChangeProfileController.xib; sourceTree = "<group>"; };
@@ -1092,8 +1027,12 @@
 		00F0C3511C8993DD005888A7 /* NewAddAlarmController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewAddAlarmController.swift; sourceTree = "<group>"; };
 		00F0C3521C8993DD005888A7 /* NewAddAlarmController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewAddAlarmController.xib; sourceTree = "<group>"; };
 		07BCE8291B5CAB2100C7F558 /* clockview600_color.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clockview600_color.png; sourceTree = "<group>"; };
-		14C4652E23FFFA73733C92C2 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
-		771461B44CA8D95449687FE6 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0C2AEB04A0C7F45FE876ABED /* Pods_Nevo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Nevo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1215057C1EF17F735A5EFDD9 /* Pods-LunaR.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LunaR.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LunaR/Pods-LunaR.debug.xcconfig"; sourceTree = "<group>"; };
+		2684F108DD80B3F763126280 /* Pods_LunaR.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LunaR.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		337909E3A1733589971A3696 /* Pods-Nevo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Nevo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Nevo/Pods-Nevo.debug.xcconfig"; sourceTree = "<group>"; };
+		57C68BE0457DB1BFF58A2389 /* Pods-LunaR.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LunaR.release.xcconfig"; path = "Pods/Target Support Files/Pods-LunaR/Pods-LunaR.release.xcconfig"; sourceTree = "<group>"; };
+		84E3C5A18963C1F2BFFF61CB /* Pods-Nevo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Nevo.release.xcconfig"; path = "Pods/Target Support Files/Pods-Nevo/Pods-Nevo.release.xcconfig"; sourceTree = "<group>"; };
 		9A2D6C391A9C6D9F00591BDC /* Nevo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Nevo.entitlements; sourceTree = "<group>"; };
 		9A2D6C3A1A9C6D9F00591BDC /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		9A2D6C3D1A9C71E500591BDC /* NevoHK.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NevoHK.swift; path = Frameworks/NevoHK/NevoHK.swift; sourceTree = "<group>"; };
@@ -1110,15 +1049,6 @@
 		9AD8F9821A6E2C8E00F01014 /* Request.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Request.swift; path = Frameworks/NevoBT/Request.swift; sourceTree = "<group>"; };
 		9AD8F98C1A6E2D6E00F01014 /* RawPacket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RawPacket.swift; path = Frameworks/NevoBT/RawPacket.swift; sourceTree = "<group>"; };
 		9AD8F98E1A6E2EE000F01014 /* Profile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Profile.swift; path = Frameworks/NevoBT/Profile.swift; sourceTree = "<group>"; };
-		9E15EAB01CED5BF6009F129F /* TextFieldEffects.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TextFieldEffects.framework; path = "../../../../../Library/Developer/Xcode/DerivedData/Nevo-aermbqasljcozldcsamycxhhblpv/Build/Products/Debug-iphonesimulator/TextFieldEffects.framework"; sourceTree = "<group>"; };
-		9E15EAB41CED6B33009F129F /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = "../../../../../Library/Developer/Xcode/DerivedData/Nevo-aermbqasljcozldcsamycxhhblpv/Build/Products/Debug-iphonesimulator/Alamofire.framework"; sourceTree = "<group>"; };
-		9E15EAB51CED6B33009F129F /* BRYXBanner.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BRYXBanner.framework; path = "../../../../../Library/Developer/Xcode/DerivedData/Nevo-aermbqasljcozldcsamycxhhblpv/Build/Products/Debug-iphonesimulator/BRYXBanner.framework"; sourceTree = "<group>"; };
-		9E15EAB61CED6B33009F129F /* Charts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Charts.framework; path = "../../../../../Library/Developer/Xcode/DerivedData/Nevo-aermbqasljcozldcsamycxhhblpv/Build/Products/Debug-iphonesimulator/Charts.framework"; sourceTree = "<group>"; };
-		9E15EAB71CED6B33009F129F /* FMDB.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FMDB.framework; path = "../../../../../Library/Developer/Xcode/DerivedData/Nevo-aermbqasljcozldcsamycxhhblpv/Build/Products/Debug-iphonesimulator/FMDB.framework"; sourceTree = "<group>"; };
-		9E15EAB81CED6B33009F129F /* GSMessages.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GSMessages.framework; path = "../../../../../Library/Developer/Xcode/DerivedData/Nevo-aermbqasljcozldcsamycxhhblpv/Build/Products/Debug-iphonesimulator/GSMessages.framework"; sourceTree = "<group>"; };
-		9E15EAB91CED6B33009F129F /* NJKWebViewProgress.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NJKWebViewProgress.framework; path = "../../../../../Library/Developer/Xcode/DerivedData/Nevo-aermbqasljcozldcsamycxhhblpv/Build/Products/Debug-iphonesimulator/NJKWebViewProgress.framework"; sourceTree = "<group>"; };
-		9E15EABA1CED6B33009F129F /* Timepiece.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Timepiece.framework; path = "../../../../../Library/Developer/Xcode/DerivedData/Nevo-aermbqasljcozldcsamycxhhblpv/Build/Products/Debug-iphonesimulator/Timepiece.framework"; sourceTree = "<group>"; };
-		9E15EAC21CED6B3A009F129F /* Pods.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods.framework; path = "../../../../../Library/Developer/Xcode/DerivedData/Nevo-aermbqasljcozldcsamycxhhblpv/Build/Products/Debug-iphonesimulator/Pods.framework"; sourceTree = "<group>"; };
 		9E98FB281C463A3B00BAB700 /* TutorialOneViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialOneViewController.swift; sourceTree = "<group>"; };
 		9E98FB2A1C463BB200BAB700 /* TutorialTwoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialTwoViewController.swift; sourceTree = "<group>"; };
 		9E98FB2C1C463D2A00BAB700 /* TutorialThreeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialThreeViewController.swift; sourceTree = "<group>"; };
@@ -1126,7 +1056,6 @@
 		9E98FB341C46405800BAB700 /* TutorialFiveViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialFiveViewController.swift; sourceTree = "<group>"; };
 		9E98FB361C4640AF00BAB700 /* TutorialSevenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialSevenViewController.swift; sourceTree = "<group>"; };
 		9E98FB3C1C46434100BAB700 /* TutorialSixViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialSixViewController.swift; sourceTree = "<group>"; };
-		A7FD54C20F9E4C504037C449 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1134,24 +1063,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0095DDB51D2E361800F80BFD /* FMDB.framework in Frameworks */,
-				0095DDB61D2E361800F80BFD /* PagingMenuController.framework in Frameworks */,
-				003CD0511D2CE93500494D5A /* SMSegmentView.framework in Frameworks */,
-				0037EC3E1D236A0000502140 /* LTNavigationBar.framework in Frameworks */,
-				0037EB321D2354C200502140 /* Alamofire.framework in Frameworks */,
-				0037EB331D2354C200502140 /* AutocompleteField.framework in Frameworks */,
-				0037EB341D2354C200502140 /* BRYXBanner.framework in Frameworks */,
-				0037EB351D2354C200502140 /* Charts.framework in Frameworks */,
-				0037EB371D2354C200502140 /* GSMessages.framework in Frameworks */,
-				0037EB381D2354C200502140 /* MRProgress.framework in Frameworks */,
-				0037EB391D2354C200502140 /* NJKWebViewProgress.framework in Frameworks */,
-				0037EB3A1D2354C200502140 /* RegexKitLite.framework in Frameworks */,
-				0037EB3B1D2354C200502140 /* SwiftyJSON.framework in Frameworks */,
-				0037EB3C1D2354C200502140 /* SwiftyTimer.framework in Frameworks */,
-				0037EB3E1D2354C200502140 /* Timepiece.framework in Frameworks */,
-				0037EB3F1D2354C200502140 /* UIColor_Hex_Swift.framework in Frameworks */,
-				0037EB401D2354C200502140 /* XCGLogger.framework in Frameworks */,
-				3BC170C4E2BBBDFFADC702A7 /* Pods.framework in Frameworks */,
+				7409DE23002B1D92822E281F /* Pods_LunaR.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1173,25 +1085,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				002265101D2CF61A0033F981 /* LTNavigationBar.framework in Frameworks */,
-				0022650E1D2CF61A0033F981 /* SMSegmentView.framework in Frameworks */,
-				0056DBE01D18D186003D92CE /* SwiftyTimer.framework in Frameworks */,
-				0095C0E11D12772C00331266 /* RegexKitLite.framework in Frameworks */,
-				0095C0DE1D1274B600331266 /* UIColor_Hex_Swift.framework in Frameworks */,
-				0095C0DF1D1274B600331266 /* XCGLogger.framework in Frameworks */,
-				00B606EB1D0FCE9200FF5A01 /* MRProgress.framework in Frameworks */,
-				00B606E71D0F9DB800FF5A01 /* SwiftyJSON.framework in Frameworks */,
-				002C442A1CFD89AA00322B46 /* AutocompleteField.framework in Frameworks */,
-				002C44281CFD7D6C00322B46 /* Charts.framework in Frameworks */,
-				9E15EAC31CED6B3A009F129F /* Pods.framework in Frameworks */,
-				9E15EABB1CED6B33009F129F /* Alamofire.framework in Frameworks */,
-				9E15EABC1CED6B33009F129F /* BRYXBanner.framework in Frameworks */,
-				9E15EABE1CED6B33009F129F /* FMDB.framework in Frameworks */,
-				9E15EABF1CED6B33009F129F /* GSMessages.framework in Frameworks */,
-				9E15EAC01CED6B33009F129F /* NJKWebViewProgress.framework in Frameworks */,
-				9E15EAC11CED6B33009F129F /* Timepiece.framework in Frameworks */,
-				9E15EAB11CED5BF6009F129F /* TextFieldEffects.framework in Frameworks */,
 				9A2D6C3B1A9C6D9F00591BDC /* HealthKit.framework in Frameworks */,
+				3AF3D240B5808E80F5B2A19E /* Pods_Nevo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1439,7 +1334,7 @@
 				0050D55F1C28E0DB004F6F80 /* queryTableviewCell */,
 				0050D5621C28E0DB004F6F80 /* SleepController.swift */,
 				0050D5631C28E0DB004F6F80 /* SleepHistoricalView.swift */,
-				0050D5641C28E0DB004F6F80 /* StepsHistoryViewController.swift */,
+				0050D5641C28E0DB004F6F80 /* SleepHistoryViewController.swift */,
 				0050D5651C28E0DB004F6F80 /* SleepHistoricalViewController.xib */,
 				0050D5661C28E0DB004F6F80 /* SleepTrackingController.swift */,
 				0050D5671C28E0DB004F6F80 /* SleepTrackingController.xib */,
@@ -1471,8 +1366,8 @@
 				0050D56B1C28E0DB004F6F80 /* StepController.swift */,
 				0050D56C1C28E0DB004F6F80 /* StepGoalSetingController.swift */,
 				0050D56D1C28E0DB004F6F80 /* StepGoalSetingController.xib */,
-				0050D56E1C28E0DB004F6F80 /* StepHistoricalViewController.swift */,
-				0050D56F1C28E0DB004F6F80 /* StepHistoricalViewController.xib */,
+				0050D56E1C28E0DB004F6F80 /* StepsHistoryViewController.swift */,
+				0050D56F1C28E0DB004F6F80 /* StepsHistoryViewController.xib */,
 				0050D5701C28E0DB004F6F80 /* StepView */,
 			);
 			path = StepController;
@@ -1755,10 +1650,6 @@
 			isa = PBXGroup;
 			children = (
 				00AF8C581D224CFA009047AC /* BaseEntryDatabaseHelper.swift */,
-				00AF8C591D224CFA009047AC /* NevoDBHelper.h */,
-				00AF8C5A1D224CFA009047AC /* NevoDBHelper.m */,
-				00AF8C5B1D224CFA009047AC /* NevoDBModel.h */,
-				00AF8C5C1D224CFA009047AC /* NevoDBModel.m */,
 				00AF8C5D1D224CFA009047AC /* UserDatabaseHelper.swift */,
 			);
 			path = DBHelper;
@@ -1768,7 +1659,6 @@
 			isa = PBXGroup;
 			children = (
 				00AF8C5F1D224CFA009047AC /* AlarmModel.swift */,
-				00AF8C601D224CFA009047AC /* DaySleepSaveModel.swift */,
 				00AF8C611D224CFA009047AC /* HealthModel.swift */,
 				00AF8C621D224CFA009047AC /* NevoProfileModel.swift */,
 				00AF8C631D224CFA009047AC /* NotificationModel.swift */,
@@ -1967,6 +1857,15 @@
 			path = VideoPlayController;
 			sourceTree = "<group>";
 		};
+		00C254A01D4EE7EF00F0F85F /* SolarIndicator */ = {
+			isa = PBXGroup;
+			children = (
+				00C254A11D4EE82200F0F85F /* SolarIndicatorController.swift */,
+				00C254A21D4EE82200F0F85F /* SolarIndicatorController.xib */,
+			);
+			path = SolarIndicator;
+			sourceTree = "<group>";
+		};
 		00D581411CB50C5900953B8A /* ChangeProfileController */ = {
 			isa = PBXGroup;
 			children = (
@@ -2032,6 +1931,7 @@
 		00EFE07B1D227DCC0066C905 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				00C254A01D4EE7EF00F0F85F /* SolarIndicator */,
 				0074CB941D29EE9200963607 /* InformationController */,
 				008AEF171D264A4B00B9E4D0 /* ProfileSetupController */,
 				0043EDCA1D24EF7D007DEBDA /* CheckYourIndox */,
@@ -2395,11 +2295,13 @@
 			path = VideoPlayController;
 			sourceTree = "<group>";
 		};
-		2CE56E6C9554D244911B2444 /* Pods */ = {
+		18804AD8CDFA586C01749865 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				14C4652E23FFFA73733C92C2 /* Pods.debug.xcconfig */,
-				A7FD54C20F9E4C504037C449 /* Pods.release.xcconfig */,
+				1215057C1EF17F735A5EFDD9 /* Pods-LunaR.debug.xcconfig */,
+				57C68BE0457DB1BFF58A2389 /* Pods-LunaR.release.xcconfig */,
+				337909E3A1733589971A3696 /* Pods-Nevo.debug.xcconfig */,
+				84E3C5A18963C1F2BFFF61CB /* Pods-Nevo.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -2424,7 +2326,7 @@
 				9AD8F9341A6DF35900F01014 /* Nevo */,
 				9AD8F94D1A6DF35900F01014 /* NevoTests */,
 				9AD8F9331A6DF35900F01014 /* Products */,
-				2CE56E6C9554D244911B2444 /* Pods */,
+				18804AD8CDFA586C01749865 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -2483,43 +2385,11 @@
 		9AD8F95A1A6DFE3400F01014 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				0095DDB31D2E361800F80BFD /* FMDB.framework */,
-				0095DDB41D2E361800F80BFD /* PagingMenuController.framework */,
-				0022650F1D2CF61A0033F981 /* LTNavigationBar.framework */,
-				003CD0501D2CE93500494D5A /* SMSegmentView.framework */,
-				0037EC3D1D236A0000502140 /* LTNavigationBar.framework */,
-				00AF8E541D224ED8009047AC /* Alamofire.framework */,
-				00AF8E551D224ED8009047AC /* BRYXBanner.framework */,
-				00AF8E571D224ED8009047AC /* GSMessages.framework */,
-				00AF8E581D224ED8009047AC /* MRProgress.framework */,
-				00AF8E591D224ED8009047AC /* NJKWebViewProgress.framework */,
-				00AF8E5A1D224ED8009047AC /* Pods.framework */,
-				00AF8E5B1D224ED8009047AC /* RegexKitLite.framework */,
-				00AF8E5C1D224ED8009047AC /* SwiftyTimer.framework */,
-				00AF8E5D1D224ED8009047AC /* TextFieldEffects.framework */,
-				00AF8E5E1D224ED8009047AC /* Timepiece.framework */,
 				00AF8D051D224D57009047AC /* NevoAllKeys.swift */,
 				00AF8C4B1D224CFA009047AC /* Model */,
 				00AF8C781D224CFA009047AC /* Network */,
 				00AF8C7B1D224CFA009047AC /* publicClass */,
 				00AF8C8A1D224CFA009047AC /* Util */,
-				0056DBDF1D18D186003D92CE /* SwiftyTimer.framework */,
-				0095C0E01D12772C00331266 /* RegexKitLite.framework */,
-				0095C0DC1D1274B600331266 /* UIColor_Hex_Swift.framework */,
-				0095C0DD1D1274B600331266 /* XCGLogger.framework */,
-				00B606EA1D0FCE9200FF5A01 /* MRProgress.framework */,
-				00B606E61D0F9DB800FF5A01 /* SwiftyJSON.framework */,
-				002C44291CFD89AA00322B46 /* AutocompleteField.framework */,
-				002C44271CFD7D6C00322B46 /* Charts.framework */,
-				9E15EAC21CED6B3A009F129F /* Pods.framework */,
-				9E15EAB41CED6B33009F129F /* Alamofire.framework */,
-				9E15EAB51CED6B33009F129F /* BRYXBanner.framework */,
-				9E15EAB61CED6B33009F129F /* Charts.framework */,
-				9E15EAB71CED6B33009F129F /* FMDB.framework */,
-				9E15EAB81CED6B33009F129F /* GSMessages.framework */,
-				9E15EAB91CED6B33009F129F /* NJKWebViewProgress.framework */,
-				9E15EABA1CED6B33009F129F /* Timepiece.framework */,
-				9E15EAB01CED5BF6009F129F /* TextFieldEffects.framework */,
 				004ED1EB1CB386CC009D053C /* iRate */,
 				007F1F501CAA1B630021DF1B /* LocalNotification.swift */,
 				00E2BDDC1B16CCD0009C757E /* MBProgressHUD */,
@@ -2527,7 +2397,8 @@
 				9A2D6C3A1A9C6D9F00591BDC /* HealthKit.framework */,
 				005BC95C1A88B79F006F9E86 /* FXBlurView */,
 				9AD8F9601A6E00C000F01014 /* NevoBT */,
-				771461B44CA8D95449687FE6 /* Pods.framework */,
+				2684F108DD80B3F763126280 /* Pods_LunaR.framework */,
+				0C2AEB04A0C7F45FE876ABED /* Pods_Nevo.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -2614,12 +2485,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 00EFE0711D227D5F0066C905 /* Build configuration list for PBXNativeTarget "LunaR" */;
 			buildPhases = (
-				7200B6EC47A37B8605094BD8 /* Check Pods Manifest.lock */,
+				7031D8A6CD34AAE6CA8E6E09 /* [CP] Check Pods Manifest.lock */,
 				00EFE0461D227D5F0066C905 /* Sources */,
 				00EFE0471D227D5F0066C905 /* Frameworks */,
 				00EFE0481D227D5F0066C905 /* Resources */,
-				3C9857F3610B217ACE3A2486 /* Embed Pods Frameworks */,
-				D90C77B8745AD6F6205AC7A4 /* Copy Pods Resources */,
+				31696D40EF69A119AAB9A1E4 /* [CP] Embed Pods Frameworks */,
+				B8F3A8114D1574770B3E7F2B /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -2670,13 +2541,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9AD8F9541A6DF35900F01014 /* Build configuration list for PBXNativeTarget "Nevo" */;
 			buildPhases = (
-				9E80BAAAB461EFC6D6D4E067 /* Check Pods Manifest.lock */,
+				C08F421768D6100F6384CF43 /* [CP] Check Pods Manifest.lock */,
 				9AD8F92E1A6DF35900F01014 /* Sources */,
 				9AD8F92F1A6DF35900F01014 /* Frameworks */,
 				9AD8F9301A6DF35900F01014 /* Resources */,
-				4C6239DA19EE6789A178C38A /* Copy Pods Resources */,
-				D93A79A20D57400E8922FDAC /* Embed Pods Frameworks */,
 				CBF54EAF1C9FBCD50061A356 /* Run Script */,
+				CF7D9AE8AB2C42A81F7511BA /* [CP] Embed Pods Frameworks */,
+				0AF6D3FE5CF0872295E62A94 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -2797,6 +2668,7 @@
 				0037EC291D235F5300502140 /* homeTutorial.png in Resources */,
 				007C45801D2B4DAA004929E0 /* TutorialThreeViewController.xib in Resources */,
 				0037EC2A1D235F5300502140 /* bluetoothoff_background.png in Resources */,
+				00C254A41D4EE82200F0F85F /* SolarIndicatorController.xib in Resources */,
 				0037EC551D2385DF00502140 /* Raleway-Thin.ttf in Resources */,
 				0037EC2B1D235F5300502140 /* bluetoothoff.png in Resources */,
 				0037EC431D2370A200502140 /* ForgotPasswordController.xib in Resources */,
@@ -2940,7 +2812,7 @@
 				0036EB0D1C48C36700DCED46 /* bluetoothoff_background.png in Resources */,
 				0072EAB81C190DCD001EE2C9 /* SFCompactDisplay-Light.ttf in Resources */,
 				0050D61C1C28E0DB004F6F80 /* SleepHistoricalViewController.xib in Resources */,
-				0050D6241C28E0DB004F6F80 /* StepHistoricalViewController.xib in Resources */,
+				0050D6241C28E0DB004F6F80 /* StepsHistoryViewController.xib in Resources */,
 				004ED1F01CB386CC009D053C /* Info.plist in Resources */,
 				001F1B7C1B57777B001DD426 /* nevo_wacth.png in Resources */,
 				0036EB051C48BA8300DCED46 /* connected.png in Resources */,
@@ -2994,64 +2866,79 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		3C9857F3610B217ACE3A2486 /* Embed Pods Frameworks */ = {
+		0AF6D3FE5CF0872295E62A94 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Embed Pods Frameworks";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Nevo/Pods-Nevo-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		4C6239DA19EE6789A178C38A /* Copy Pods Resources */ = {
+		31696D40EF69A119AAB9A1E4 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LunaR/Pods-LunaR-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		7200B6EC47A37B8605094BD8 /* Check Pods Manifest.lock */ = {
+		7031D8A6CD34AAE6CA8E6E09 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		9E80BAAAB461EFC6D6D4E067 /* Check Pods Manifest.lock */ = {
+		B8F3A8114D1574770B3E7F2B /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LunaR/Pods-LunaR-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C08F421768D6100F6384CF43 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		CBF54EAF1C9FBCD50061A356 /* Run Script */ = {
@@ -3068,34 +2955,19 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Fabric/run\" bf39954f177ecf7d9d8a5efe2e1d624856f03464 e3f2da77dd42327a3c13b2223e31674c22e5a7c31ee0b6b80da61d310ae0a329";
 		};
-		D90C77B8745AD6F6205AC7A4 /* Copy Pods Resources */ = {
+		CF7D9AE8AB2C42A81F7511BA /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		D93A79A20D57400E8922FDAC /* Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Nevo/Pods-Nevo-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -3135,10 +3007,6 @@
 				0037EC421D2370A200502140 /* ForgotPasswordController.swift in Sources */,
 				0037EBBF1D235BD000502140 /* NewAlarm.swift in Sources */,
 				0037EBC01D235BD000502140 /* BaseEntryDatabaseHelper.swift in Sources */,
-				0037EBC11D235BD000502140 /* NevoDBHelper.h in Sources */,
-				0037EBC21D235BD000502140 /* NevoDBHelper.m in Sources */,
-				0037EBC31D235BD000502140 /* NevoDBModel.h in Sources */,
-				0037EBC41D235BD000502140 /* NevoDBModel.m in Sources */,
 				0037EBC51D235BD000502140 /* UserDatabaseHelper.swift in Sources */,
 				0037EBC61D235BD000502140 /* AlarmModel.swift in Sources */,
 				0037EBC81D235BD000502140 /* HealthModel.swift in Sources */,
@@ -3172,6 +3040,7 @@
 				0037EBE21D235BD000502140 /* AppTheme.swift in Sources */,
 				0037EBE31D235BD000502140 /* BalloonMarker.swift in Sources */,
 				0037EBE41D235BD000502140 /* ClockView.swift in Sources */,
+				00C254A31D4EE82200F0F85F /* SolarIndicatorController.swift in Sources */,
 				0037EBE71D235BD000502140 /* SyncBar.swift in Sources */,
 				0037EBE81D235BD000502140 /* ToolbarView.swift in Sources */,
 				0037EBE91D235BD000502140 /* Alert.swift in Sources */,
@@ -3360,7 +3229,6 @@
 				00AF8CEC1D224CFA009047AC /* NevoOTAPacketProfile.swift in Sources */,
 				00AF8CF01D224CFA009047AC /* DailyStepsNevoPacket.swift in Sources */,
 				00AF8CFC1D224CFA009047AC /* SetCardioRequest.swift in Sources */,
-				00AF8CBE1D224CFA009047AC /* NevoDBModel.m in Sources */,
 				0050D6131C28E0DB004F6F80 /* SetingView.swift in Sources */,
 				0050D6201C28E0DB004F6F80 /* StepController.swift in Sources */,
 				9E98FB291C463A3B00BAB700 /* TutorialOneViewController.swift in Sources */,
@@ -3394,13 +3262,12 @@
 				00AF8CC71D224CFA009047AC /* SleepModel.swift in Sources */,
 				0050D60D1C28E0DB004F6F80 /* PresetTableViewController.swift in Sources */,
 				00AF8CC51D224CFA009047AC /* Presets.swift in Sources */,
-				0050D6231C28E0DB004F6F80 /* StepHistoricalViewController.swift in Sources */,
+				0050D6231C28E0DB004F6F80 /* StepsHistoryViewController.swift in Sources */,
 				0050D6101C28E0DB004F6F80 /* PresetTableViewCell.swift in Sources */,
 				00AF8CBB1D224CFA009047AC /* NewAlarm.swift in Sources */,
 				00AF8D021D224CFA009047AC /* SetSleepRequest.swift in Sources */,
 				00AF8CE91D224CFA009047AC /* IntelHex2BinConverter.m in Sources */,
 				0050D6001C28E0DB004F6F80 /* NotificationViewController.swift in Sources */,
-				00AF8CC11D224CFA009047AC /* DaySleepSaveModel.swift in Sources */,
 				0095C0E41D12940C00331266 /* SetingInfoCell.swift in Sources */,
 				0050D6171C28E0DB004F6F80 /* queryTableviewCell.swift in Sources */,
 				0050D5E91C28E0DB004F6F80 /* AidOtaController.swift in Sources */,
@@ -3443,7 +3310,7 @@
 				0050D6971C28E1CD004F6F80 /* AddAlarmView.swift in Sources */,
 				00D581441CB50C7500953B8A /* ChangeProfileController.swift in Sources */,
 				00F0C34B1C893EE6005888A7 /* AlarmTypeController.swift in Sources */,
-				0050D61B1C28E0DB004F6F80 /* StepsHistoryViewController.swift in Sources */,
+				0050D61B1C28E0DB004F6F80 /* SleepHistoryViewController.swift in Sources */,
 				00AF8CCA1D224CFA009047AC /* UserNotification.swift in Sources */,
 				0050D6251C28E0DB004F6F80 /* StepGoalSetingView.swift in Sources */,
 				0050D5F41C28E0DB004F6F80 /* NevoOtaController.swift in Sources */,
@@ -3456,7 +3323,6 @@
 				0050D6951C28E1CD004F6F80 /* AddAlarmTableViewCell.swift in Sources */,
 				00AF8CF91D224CFA009047AC /* ReadDailyTracker.swift in Sources */,
 				00AF8CC01D224CFA009047AC /* AlarmModel.swift in Sources */,
-				00AF8CBD1D224CFA009047AC /* NevoDBHelper.m in Sources */,
 				0050D5F31C28E0DB004F6F80 /* MyNevoView.swift in Sources */,
 				00E650941C83D8F400278D3E /* HomeTutorialController.swift in Sources */,
 				9AD8F93B1A6DF35900F01014 /* Nevo.xcdatamodeld in Sources */,
@@ -3747,7 +3613,7 @@
 /* Begin XCBuildConfiguration section */
 		00EFE0721D227D5F0066C905 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 14C4652E23FFFA73733C92C2 /* Pods.debug.xcconfig */;
+			baseConfigurationReference = 1215057C1EF17F735A5EFDD9 /* Pods-LunaR.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -3775,7 +3641,7 @@
 		};
 		00EFE0731D227D5F0066C905 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A7FD54C20F9E4C504037C449 /* Pods.release.xcconfig */;
+			baseConfigurationReference = 57C68BE0457DB1BFF58A2389 /* Pods-LunaR.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -3956,7 +3822,7 @@
 		};
 		9AD8F9551A6DF35900F01014 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 14C4652E23FFFA73733C92C2 /* Pods.debug.xcconfig */;
+			baseConfigurationReference = 337909E3A1733589971A3696 /* Pods-Nevo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -3981,7 +3847,7 @@
 		};
 		9AD8F9561A6DF35900F01014 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A7FD54C20F9E4C504037C449 /* Pods.release.xcconfig */;
+			baseConfigurationReference = 84E3C5A18963C1F2BFFF61CB /* Pods-Nevo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;

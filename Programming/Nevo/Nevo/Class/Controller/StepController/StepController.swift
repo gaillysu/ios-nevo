@@ -13,7 +13,7 @@ import Timepiece
 class StepController: PublicClassController,toolbarSegmentedDelegate,UIActionSheetDelegate {
     private var currentVC:UIViewController?
     private var stepGoal:StepGoalSetingController?
-    private var stepHistorical:StepHistoricalViewController?
+    private var stepHistorical:StepsHistoryViewController?
     private var rightButton:UIBarButtonItem?
     private var goalArray:[Int] = []
     override func viewDidLoad() {
@@ -29,7 +29,7 @@ class StepController: PublicClassController,toolbarSegmentedDelegate,UIActionShe
         self.view.addSubview(stepGoal!.view)
         currentVC = stepGoal
 
-        stepHistorical = StepHistoricalViewController()
+        stepHistorical = StepsHistoryViewController()
         stepHistorical?.view.frame = CGRectMake(0, toolBarHeight, self.view.frame.size.width, self.view.frame.size.height-toolBarHeight-113)
 
         rightButton = UIBarButtonItem(title: NSLocalizedString("set_goal", comment: ""), style: UIBarButtonItemStyle.Done, target: self, action: #selector(StepController.rightBarButtonAction(_:)))

@@ -17,6 +17,7 @@ PODS:
   - FMDB/standard (2.6.2)
   - GSMessages (1.2.1)
   - IQKeyboardManagerSwift (4.0.4)
+  - KDCircularProgress (1.4.1)
   - LTNavigationBar (2.1.2)
   - MRProgress (0.8.3):
     - MRProgress/ActivityIndicator (= 0.8.3)
@@ -74,6 +75,7 @@ DEPENDENCIES:
   - FMDB
   - GSMessages
   - IQKeyboardManagerSwift
+  - KDCircularProgress
   - LTNavigationBar
   - MRProgress
   - NJKWebViewProgress
@@ -114,6 +116,7 @@ SPEC CHECKSUMS:
   FMDB: 854a0341b4726e53276f2a8996f06f1b80f9259a
   GSMessages: 0816b7e39282f8b5533ea1326edcbafd8c9f8c29
   IQKeyboardManagerSwift: e0964d04d6a29b71016fd346dca13ecb80a2823a
+  KDCircularProgress: c931181cbe3fe988a93250ac700c5a0d8b90e2bf
   LTNavigationBar: bfc5fc06a83463009b9d99675f2a32dcbb631b00
   MRProgress: 16de7cc9f347e8846797a770db102a323fe7ef09
   NJKWebViewProgress: f481fd424cb5ecc27eacae11b5397db92fba9a4d
@@ -128,4 +131,6 @@ SPEC CHECKSUMS:
   UMengAnalytics-NO-IDFA: 965a219b05475ff2a4c09a164139a27bbaa0e25b
   XCGLogger: d6e196e78940ff6daab17d6917107876f973fa31
 
-COCOAPODS: 0.39.0
+PODFILE CHECKSUM: e0848947b9edc9de34b69baf94a45a776ac72a9c
+
+COCOAPODS: 1.1.0.beta.1
