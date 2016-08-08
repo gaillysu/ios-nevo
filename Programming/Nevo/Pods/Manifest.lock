@@ -1,5 +1,5 @@
 PODS:
-  - ActiveLabel (0.5.1)
+  - ActiveLabel (0.6.0)
   - Alamofire (3.4.1)
   - AutocompleteField (1.1)
   - BRYXBanner (0.5.2):
@@ -105,7 +105,7 @@ CHECKOUT OPTIONS:
     :git: https://github.com/SwiftyJSON/SwiftyJSON.git
 
 SPEC CHECKSUMS:
-  ActiveLabel: 2360173515b6afabad23610824c222cc626d2166
+  ActiveLabel: ec8c7a0995ab2d789ab74b72b105397dc079ff97
   Alamofire: 01a82e2f6c0f860ade35534c8dd88be61bdef40c
   AutocompleteField: 212b36bef0218f22c05d80035be2d382acd5a4e2
   BRYXBanner: 5f0911d52e0a77e088f7ea7ddcdebd02afb7828a
@@ -131,6 +131,6 @@ SPEC CHECKSUMS:
   UMengAnalytics-NO-IDFA: 965a219b05475ff2a4c09a164139a27bbaa0e25b
   XCGLogger: d6e196e78940ff6daab17d6917107876f973fa31
 
-PODFILE CHECKSUM: e0848947b9edc9de34b69baf94a45a776ac72a9c
+PODFILE CHECKSUM: 15beb6cde98883b6fea238ab89848fbd678036f0
 
 COCOAPODS: 1.1.0.beta.1

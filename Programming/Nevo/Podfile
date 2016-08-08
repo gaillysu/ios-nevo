@@ -30,9 +30,7 @@ target 'Nevo' do
 end
 
 target 'LunaR' do
-    pod 'UMengAnalytics-NO-IDFA', '~> 4.0.3'
     pod 'NJKWebViewProgress'
-    
     pod 'FMDB'
     pod 'Alamofire'
     pod 'GSMessages'

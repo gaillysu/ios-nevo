@@ -43,9 +43,9 @@ class SolarIndicatorController: PublicClassController {
 extension SolarIndicatorController:ChartViewDelegate {
     func updateChartData() {
         pieChartView.data = nil
-        self.setDataCount(4, range: 100)
+        self.setDataCount(2, range: 100)
     }
-    
+
     func setupPieChartView(chartView:PieChartView) {
         chartView.usePercentValuesEnabled = true
         chartView.drawSlicesUnderHoleEnabled = false
@@ -79,13 +79,13 @@ extension SolarIndicatorController:ChartViewDelegate {
     func setDataCount(count:Int,range:Double) {
         let mult:Double = range
         var yVals1:[ChartDataEntry] = []
-        for i:Int in i..<count {
-            yVals1.append(BarChartDataEntry(value: Double(arc4random_uniform(UInt32(mult) + UInt32(mult)/UInt32(5))), xIndex: i))
+        for i:Int in 0..<count {
+            yVals1.append(BarChartDataEntry(value: Double(arc4random_uniform(UInt32(mult) + UInt32(mult/5))), xIndex: i))
         }
         
         var xVals:[String] = []
         
-        for i:Int in i..<count {
+        for i:Int in 0..<count {
             xVals.append("\(i)")
         }
         
