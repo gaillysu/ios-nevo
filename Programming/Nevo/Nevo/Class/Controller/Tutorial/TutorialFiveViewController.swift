@@ -41,7 +41,7 @@ class TutorialFiveViewController: UIViewController,SyncControllerDelegate {
 
     override func viewDidLayoutSubviews() {
         progressView = CircleProgressView()
-        progressView!.setProgressColor(AppTheme.NEVO_SOLAR_YELLOW())
+        progressView!.setProgressColor(UIColor.getNevoBaseColor())
         progressView?.frame = CGRectMake(watchImage!.frame.origin.x-5, watchImage!.frame.origin.y-5, watchImage.bounds.width+10, watchImage.bounds.width+10)
         progressView?.setProgress(0.0)
         self.view.layer.addSublayer(progressView!)
