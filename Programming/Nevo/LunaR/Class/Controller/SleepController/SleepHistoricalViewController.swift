@@ -53,14 +53,14 @@ class SleepHistoricalViewController: PublicClassController,ChartViewDelegate,Sel
         if(queryArray?.count>0) {
             queryView.nodataLabel.hidden = true
         }else{
-            queryView.nodataLabel.backgroundColor = UIColor.whiteColor()
+            queryView.nodataLabel.backgroundColor = UIColor.getGreyColor()
             queryView.nodataLabel.hidden = false
             queryView.nodataLabel.text = NSLocalizedString("no_data", comment: "");
         }
     }
 
     override func viewDidLayoutSubviews() {
-        queryView.detailCollectionView.backgroundColor = UIColor.whiteColor()
+        queryView.detailCollectionView.backgroundColor = UIColor.getGreyColor()
         queryView.detailCollectionView.registerClass(UICollectionViewCell.classForCoder(), forCellWithReuseIdentifier: "SleepHistoryViewCell")
         (queryView.detailCollectionView.collectionViewLayout as! UICollectionViewFlowLayout).itemSize = CGSizeMake(UIScreen.mainScreen().bounds.size.width/3.0, queryView.detailCollectionView.frame.size.height/2.0)
     }
@@ -106,7 +106,7 @@ class SleepHistoricalViewController: PublicClassController,ChartViewDelegate,Sel
         if(titleView == nil){
             let titleLabel:UILabel = UILabel(frame: CGRectMake(0, 0, cell.contentView.frame.size.width, labelheight/2.0))
             titleLabel.textAlignment = NSTextAlignment.Center
-            titleLabel.textColor = UIColor.grayColor()
+            titleLabel.textColor = UIColor.whiteColor()
             titleLabel.backgroundColor = UIColor.clearColor()
             titleLabel.font = AppTheme.FONT_SFUIDISPLAY_REGULAR(mSize: iphone ? 12:15)
             titleLabel.tag = 1500

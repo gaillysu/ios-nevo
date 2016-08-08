@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SolarIndicatorController" customModule="LunaR" customModuleProvider="target">
             <connections>
-                <outlet property="chartView" destination="VLW-8u-fyq" id="ob8-ct-zHD"/>
-                <outlet property="solarProgress" destination="j2C-vS-BTS" id="sQX-pn-QLx"/>
+                <outlet property="pieChartView" destination="j2C-vS-BTS" id="v7s-Gn-ASj"/>
                 <outlet property="textCollection" destination="0ig-73-4dq" id="c99-9L-re4"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -19,66 +17,17 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j2C-vS-BTS" customClass="KDCircularProgress" customModule="KDCircularProgress">
-                    <rect key="frame" x="28" y="91.5" width="317" height="317"/>
-                    <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z9X-D4-iDT">
-                            <rect key="frame" x="107" y="132.5" width="104.5" height="52"/>
-                            <string key="text">SOLAR 
-INDICATOR</string>
-                            <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="22"/>
-                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                    </subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j2C-vS-BTS" customClass="PieChartView" customModule="Charts">
+                    <rect key="frame" x="12" y="80" width="350" height="350"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstItem="Z9X-D4-iDT" firstAttribute="centerX" secondItem="j2C-vS-BTS" secondAttribute="centerX" id="5ej-EW-IeJ"/>
                         <constraint firstAttribute="width" secondItem="j2C-vS-BTS" secondAttribute="height" multiplier="1:1" id="MjZ-LN-6kh"/>
-                        <constraint firstItem="Z9X-D4-iDT" firstAttribute="centerY" secondItem="j2C-vS-BTS" secondAttribute="centerY" id="cie-J6-sMN"/>
-                    </constraints>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="number" keyPath="angle">
-                            <real key="value" value="305"/>
-                        </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="number" keyPath="progressThickness">
-                            <real key="value" value="0.10000000000000001"/>
-                        </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="color" keyPath="trackColor">
-                            <color key="value" red="0.22745098039215686" green="0.21568627450980393" blue="0.22352941176470587" alpha="1" colorSpace="calibratedRGB"/>
-                        </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="color" keyPath="IBColor1">
-                            <color key="value" red="0.36470588235294116" green="0.26666666666666666" blue="0.47843137254901957" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="color" keyPath="IBColor2">
-                            <color key="value" red="0.4941176471" green="0.84705882349999995" blue="0.81960784310000001" alpha="1" colorSpace="calibratedRGB"/>
-                        </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="color" keyPath="IBColor3">
-                            <color key="value" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                        </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="color" keyPath="progressInsideFillColor">
-                            <color key="value" red="0.3294117647" green="0.3411764706" blue="0.35294117650000001" alpha="1" colorSpace="calibratedRGB"/>
-                        </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="boolean" keyPath="roundedCorners" value="NO"/>
-                        <userDefinedRuntimeAttribute type="number" keyPath="startAngle">
-                            <real key="value" value="-90"/>
-                        </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="number" keyPath="trackThickness">
-                            <real key="value" value="1"/>
-                        </userDefinedRuntimeAttribute>
-                    </userDefinedRuntimeAttributes>
-                </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VLW-8u-fyq" customClass="LineChartView" customModule="Charts">
-                    <rect key="frame" x="10" y="428.5" width="355" height="197"/>
-                    <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="197" id="y77-6N-s5l"/>
                     </constraints>
                 </view>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="0ig-73-4dq">
-                    <rect key="frame" x="10" y="0.0" width="355" height="80"/>
+                    <rect key="frame" x="10" y="450" width="355" height="120"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="80" id="3df-LH-EfZ"/>
+                        <constraint firstAttribute="height" constant="120" id="3df-LH-EfZ"/>
                     </constraints>
                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="KGd-Hx-YIh">
                         <size key="itemSize" width="177.5" height="40"/>
@@ -90,16 +39,13 @@ INDICATOR</string>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="0ig-73-4dq" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="2bM-WD-fVf"/>
                 <constraint firstItem="j2C-vS-BTS" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" constant="-1" id="3CP-E7-kTM"/>
-                <constraint firstAttribute="trailing" secondItem="VLW-8u-fyq" secondAttribute="trailing" constant="10" id="9yX-2R-0YV"/>
-                <constraint firstAttribute="trailing" secondItem="0ig-73-4dq" secondAttribute="trailing" constant="10" id="CJ2-2j-KoR"/>
-                <constraint firstItem="j2C-vS-BTS" firstAttribute="top" secondItem="0ig-73-4dq" secondAttribute="bottom" constant="11.5" id="CUI-xa-EnS"/>
-                <constraint firstItem="VLW-8u-fyq" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="Dov-6B-Eml"/>
-                <constraint firstItem="VLW-8u-fyq" firstAttribute="top" secondItem="j2C-vS-BTS" secondAttribute="bottom" constant="20" id="ZbV-pn-DWH"/>
-                <constraint firstItem="0ig-73-4dq" firstAttribute="height" secondItem="j2C-vS-BTS" secondAttribute="height" constant="-237" id="awq-LX-ww9"/>
-                <constraint firstItem="0ig-73-4dq" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="ilW-vK-uiT"/>
-                <constraint firstItem="j2C-vS-BTS" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" constant="-83.5" id="jrt-I1-CNK"/>
+                <constraint firstItem="0ig-73-4dq" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="BWK-yc-USS"/>
+                <constraint firstItem="j2C-vS-BTS" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="12" id="Crv-YD-stk"/>
+                <constraint firstAttribute="trailing" secondItem="j2C-vS-BTS" secondAttribute="trailing" constant="13" id="KKH-LA-Qlx"/>
+                <constraint firstItem="j2C-vS-BTS" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" constant="-78.5" id="jrt-I1-CNK"/>
+                <constraint firstAttribute="trailing" secondItem="0ig-73-4dq" secondAttribute="trailing" constant="10" id="x8P-ty-uRA"/>
+                <constraint firstItem="0ig-73-4dq" firstAttribute="top" secondItem="j2C-vS-BTS" secondAttribute="bottom" constant="20" id="z3H-tX-VSf"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
         </view>

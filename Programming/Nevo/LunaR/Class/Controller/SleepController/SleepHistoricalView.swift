@@ -30,10 +30,10 @@ class SleepHistoricalView: UIView, ChartViewDelegate{
         queryModel.addObjectsFromArray(modelArray as [AnyObject])
         if(mDelegate == nil) {
             mDelegate = delegate
-            
+            self.backgroundColor = UIColor.getGreyColor()
             // MARK: - chartView?.marker
             //chartView.addDataPoint("\(1)", entry: BarChartDataEntry(value: xVal, xIndex:i))
-            chartView?.backgroundColor = AppTheme.NEVO_CUSTOM_COLOR(Red: 25, Green: 31, Blue: 59)
+            chartView?.backgroundColor = UIColor.getGreyColor()
             chartView?.drawSettings(chartView!.xAxis, yAxis: chartView!.leftAxis, rightAxis: chartView!.rightAxis)
         }
         chartView?.reset()
