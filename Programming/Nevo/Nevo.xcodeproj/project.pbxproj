@@ -254,6 +254,8 @@
 		00AF8D031D224CFA009047AC /* WriteSettingRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8CB21D224CFA009047AC /* WriteSettingRequest.swift */; };
 		00AF8D041D224CFA009047AC /* SyncQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8CB31D224CFA009047AC /* SyncQueue.swift */; };
 		00AF8D061D224D57009047AC /* NevoAllKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8D051D224D57009047AC /* NevoAllKeys.swift */; };
+		00BA5ECC1D5978E6004B5438 /* SolarInforViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00BA5ECA1D5978E6004B5438 /* SolarInforViewCell.swift */; };
+		00BA5ECD1D5978E6004B5438 /* SolarInforViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00BA5ECB1D5978E6004B5438 /* SolarInforViewCell.xib */; };
 		00BF2D9A1C7FED2200909316 /* VideoPlayController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00BF2D981C7FED2200909316 /* VideoPlayController.swift */; };
 		00BF2D9B1C7FED2200909316 /* VideoPlayController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00BF2D991C7FED2200909316 /* VideoPlayController.xib */; };
 		00C254A41D4EE82200F0F85F /* SolarIndicatorController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00C254A21D4EE82200F0F85F /* SolarIndicatorController.xib */; };
@@ -836,6 +838,8 @@
 		00AF8D051D224D57009047AC /* NevoAllKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NevoAllKeys.swift; path = Frameworks/NevoAllKeys.swift; sourceTree = "<group>"; };
 		00AFDAA11D46131100F4338B /* OTALineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OTALineView.swift; sourceTree = "<group>"; };
 		00AFDAA31D47128700F4338B /* View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
+		00BA5ECA1D5978E6004B5438 /* SolarInforViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SolarInforViewCell.swift; sourceTree = "<group>"; };
+		00BA5ECB1D5978E6004B5438 /* SolarInforViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SolarInforViewCell.xib; sourceTree = "<group>"; };
 		00BF2D981C7FED2200909316 /* VideoPlayController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoPlayController.swift; sourceTree = "<group>"; };
 		00BF2D991C7FED2200909316 /* VideoPlayController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VideoPlayController.xib; sourceTree = "<group>"; };
 		00C254A11D4EE82200F0F85F /* SolarIndicatorController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SolarIndicatorController.swift; sourceTree = "<group>"; };
@@ -1863,6 +1867,8 @@
 			children = (
 				00C254A11D4EE82200F0F85F /* SolarIndicatorController.swift */,
 				00C254A21D4EE82200F0F85F /* SolarIndicatorController.xib */,
+				00BA5ECA1D5978E6004B5438 /* SolarInforViewCell.swift */,
+				00BA5ECB1D5978E6004B5438 /* SolarInforViewCell.xib */,
 			);
 			path = SolarIndicator;
 			sourceTree = "<group>";
@@ -2725,6 +2731,7 @@
 				00EFE17A1D227DCC0066C905 /* AddPresetViewController.xib in Resources */,
 				00EFE1571D227DCC0066C905 /* NewAddAlarmController.xib in Resources */,
 				0037EC4D1D2385DF00502140 /* Raleway-Bold.ttf in Resources */,
+				00BA5ECD1D5978E6004B5438 /* SolarInforViewCell.xib in Resources */,
 				009BE6231D388D2E00B2B004 /* AlarmClockVCell.xib in Resources */,
 				00EFE1C11D227DCC0066C905 /* VideoPlayController.xib in Resources */,
 				00EFE1961D227DCC0066C905 /* StepGoalSetingController.xib in Resources */,
@@ -3121,6 +3128,7 @@
 				00D474741D586D1600E2447E /* SetGoalRequest.swift in Sources */,
 				00D474751D586D1600E2447E /* SetNewAlarmRequest.swift in Sources */,
 				00D474761D586D1600E2447E /* SetNortificationRequest.swift in Sources */,
+				00BA5ECC1D5978E6004B5438 /* SolarInforViewCell.swift in Sources */,
 				00D474771D586D1600E2447E /* SetProfileRequest.swift in Sources */,
 				00D474781D586D1600E2447E /* SetRTCRequest.swift in Sources */,
 				00D474791D586D1600E2447E /* SetSleepRequest.swift in Sources */,

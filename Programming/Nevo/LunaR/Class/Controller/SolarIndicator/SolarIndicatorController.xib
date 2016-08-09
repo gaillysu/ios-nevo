@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SolarIndicatorController" customModule="LunaR" customModuleProvider="target">
@@ -18,14 +18,12 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j2C-vS-BTS" customClass="PieChartView" customModule="Charts">
-                    <rect key="frame" x="12" y="80" width="350" height="350"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <constraints>
-                        <constraint firstAttribute="width" secondItem="j2C-vS-BTS" secondAttribute="height" multiplier="1:1" id="MjZ-LN-6kh"/>
-                    </constraints>
+                    <rect key="frame" x="12" y="10" width="350" height="470"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </view>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="0ig-73-4dq">
-                    <rect key="frame" x="10" y="450" width="355" height="120"/>
+                    <rect key="frame" x="10" y="510" width="355" height="120"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="120" id="3df-LH-EfZ"/>
                     </constraints>
@@ -35,17 +33,21 @@
                         <size key="footerReferenceSize" width="0.0" height="0.0"/>
                         <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                     </collectionViewFlowLayout>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="6pC-vt-pgx"/>
+                        <outlet property="delegate" destination="-1" id="GoH-on-a14"/>
+                    </connections>
                 </collectionView>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <color key="backgroundColor" red="0.32941176470588235" green="0.3411764705882353" blue="0.3529411764705882" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
-                <constraint firstItem="j2C-vS-BTS" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" constant="-1" id="3CP-E7-kTM"/>
                 <constraint firstItem="0ig-73-4dq" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="BWK-yc-USS"/>
                 <constraint firstItem="j2C-vS-BTS" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="12" id="Crv-YD-stk"/>
                 <constraint firstAttribute="trailing" secondItem="j2C-vS-BTS" secondAttribute="trailing" constant="13" id="KKH-LA-Qlx"/>
-                <constraint firstItem="j2C-vS-BTS" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" constant="-78.5" id="jrt-I1-CNK"/>
+                <constraint firstAttribute="bottom" secondItem="0ig-73-4dq" secondAttribute="bottom" constant="37" id="ZZV-fO-qLC"/>
+                <constraint firstItem="j2C-vS-BTS" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="10" id="pYs-yC-13o"/>
                 <constraint firstAttribute="trailing" secondItem="0ig-73-4dq" secondAttribute="trailing" constant="10" id="x8P-ty-uRA"/>
-                <constraint firstItem="0ig-73-4dq" firstAttribute="top" secondItem="j2C-vS-BTS" secondAttribute="bottom" constant="20" id="z3H-tX-VSf"/>
+                <constraint firstItem="0ig-73-4dq" firstAttribute="top" secondItem="j2C-vS-BTS" secondAttribute="bottom" constant="30" id="z3H-tX-VSf"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
         </view>
