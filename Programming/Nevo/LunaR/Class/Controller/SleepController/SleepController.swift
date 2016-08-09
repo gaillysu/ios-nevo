@@ -8,26 +8,15 @@
 
 import UIKit
 
-class SleepController: PublicClassController,toolbarSegmentedDelegate {
-    var querss:SleepHistoricalViewController?
-    var sleepTrking:SleepTrackingController?
-    private var currentVC:UIViewController?
+class SleepController: PublicClassController {
+    
+    @IBOutlet weak var chartsCollectionView: UICollectionView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        AppTheme.navigationbar(self.navigationController!)
-        let toolBarHeight:CGFloat = 45.0
-        let toolbar:ToolbarView = ToolbarView(frame: CGRectMake( 0, 0, UIScreen.mainScreen().bounds.width, toolBarHeight), items: [NSLocalizedString("last_night", comment: ""),NSLocalizedString("history", comment: "")])
-        toolbar.delegate = self
-        self.view.addSubview(toolbar)
+        chartsCollectionView.backgroundColor = UIColor.clearColor()
+        chartsCollectionView.registerNib(UINib(nibName: "AnalysisRadarViewCell",bundle: nil), forCellWithReuseIdentifier: "AnalysisRadar_Identifier")
 
-        sleepTrking = SleepTrackingController()
-        sleepTrking?.view.frame = CGRectMake(0, toolBarHeight, self.view.frame.size.width, UIScreen.mainScreen().bounds.size.height-toolBarHeight)
-        self.addChildViewController(sleepTrking!)
-        self.view.addSubview(sleepTrking!.view)
-        currentVC = sleepTrking
-
-        querss = SleepHistoricalViewController()
-        querss?.view.frame = CGRectMake(0, toolBarHeight, self.view.frame.size.width, UIScreen.mainScreen().bounds.size.height-toolBarHeight-113)
     }
 
     override func didReceiveMemoryWarning() {
@@ -35,42 +24,20 @@ class SleepController: PublicClassController,toolbarSegmentedDelegate {
         // Dispose of any resources that can be recreated.
     }
 
-    func didSelectedSegmentedControl(segment:UISegmentedControl){
-        if(segment.isKindOfClass(UISegmentedControl.classForCoder())){
-            if(segment.selectedSegmentIndex == 1){
-                self.replaceController(currentVC!, newController: querss!)
-            }
+}
 
-            if(segment.selectedSegmentIndex == 0){
-                self.replaceController(currentVC!, newController: sleepTrking!)
-            }
-        }
+extension SleepController:UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize{
+        return CGSizeMake(collectionView.frame.size.width, collectionView.frame.size.width)
     }
-
-    func replaceController(oldController:UIViewController,newController:UIViewController){
-        self.addChildViewController(newController)
-        self.transitionFromViewController(oldController, toViewController: newController, duration: 0.3, options: UIViewAnimationOptions.AllowAnimatedContent, animations: { (completion) -> Void in
-
-            }) { (finished) -> Void in
-                if (finished) {
-                    newController.didMoveToParentViewController(self)
-                    oldController.willMoveToParentViewController(nil)
-                    oldController.removeFromParentViewController()
-                    self.currentVC = newController;
-                }else{
-                    self.currentVC = oldController;
-                    
-                }
-        }
+    
+    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 2
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    
+    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("AnalysisRadar_Identifier", forIndexPath: indexPath)
+        cell.backgroundColor = UIColor.clearColor()
+        return cell
     }
-    */
-
 }

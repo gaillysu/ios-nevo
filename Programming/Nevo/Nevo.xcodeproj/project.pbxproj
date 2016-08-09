@@ -256,6 +256,9 @@
 		00AF8D061D224D57009047AC /* NevoAllKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8D051D224D57009047AC /* NevoAllKeys.swift */; };
 		00BA5ECC1D5978E6004B5438 /* SolarInforViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00BA5ECA1D5978E6004B5438 /* SolarInforViewCell.swift */; };
 		00BA5ECD1D5978E6004B5438 /* SolarInforViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00BA5ECB1D5978E6004B5438 /* SolarInforViewCell.xib */; };
+		00BA5EDC1D59C1D3004B5438 /* AnalysisRadarChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00BA5EDB1D59C1D3004B5438 /* AnalysisRadarChartView.swift */; };
+		00BA5EE01D59C2A6004B5438 /* AnalysisRadarViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00BA5EDE1D59C2A6004B5438 /* AnalysisRadarViewCell.swift */; };
+		00BA5EE11D59C2A6004B5438 /* AnalysisRadarViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00BA5EDF1D59C2A6004B5438 /* AnalysisRadarViewCell.xib */; };
 		00BF2D9A1C7FED2200909316 /* VideoPlayController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00BF2D981C7FED2200909316 /* VideoPlayController.swift */; };
 		00BF2D9B1C7FED2200909316 /* VideoPlayController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00BF2D991C7FED2200909316 /* VideoPlayController.xib */; };
 		00C254A41D4EE82200F0F85F /* SolarIndicatorController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00C254A21D4EE82200F0F85F /* SolarIndicatorController.xib */; };
@@ -840,6 +843,9 @@
 		00AFDAA31D47128700F4338B /* View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		00BA5ECA1D5978E6004B5438 /* SolarInforViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SolarInforViewCell.swift; sourceTree = "<group>"; };
 		00BA5ECB1D5978E6004B5438 /* SolarInforViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SolarInforViewCell.xib; sourceTree = "<group>"; };
+		00BA5EDB1D59C1D3004B5438 /* AnalysisRadarChartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalysisRadarChartView.swift; sourceTree = "<group>"; };
+		00BA5EDE1D59C2A6004B5438 /* AnalysisRadarViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalysisRadarViewCell.swift; sourceTree = "<group>"; };
+		00BA5EDF1D59C2A6004B5438 /* AnalysisRadarViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AnalysisRadarViewCell.xib; sourceTree = "<group>"; };
 		00BF2D981C7FED2200909316 /* VideoPlayController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoPlayController.swift; sourceTree = "<group>"; };
 		00BF2D991C7FED2200909316 /* VideoPlayController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VideoPlayController.xib; sourceTree = "<group>"; };
 		00C254A11D4EE82200F0F85F /* SolarIndicatorController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SolarIndicatorController.swift; sourceTree = "<group>"; };
@@ -1489,6 +1495,7 @@
 			isa = PBXGroup;
 			children = (
 				0061243E1D3F0E80005E4E1E /* AnalysisStepsChartView.swift */,
+				00BA5EDB1D59C1D3004B5438 /* AnalysisRadarChartView.swift */,
 			);
 			path = AnalysisStepsChartView;
 			sourceTree = "<group>";
@@ -1853,6 +1860,15 @@
 			path = Request;
 			sourceTree = "<group>";
 		};
+		00BA5EDD1D59C28D004B5438 /* ChartView */ = {
+			isa = PBXGroup;
+			children = (
+				00BA5EDE1D59C2A6004B5438 /* AnalysisRadarViewCell.swift */,
+				00BA5EDF1D59C2A6004B5438 /* AnalysisRadarViewCell.xib */,
+			);
+			path = ChartView;
+			sourceTree = "<group>";
+		};
 		00BF2D971C7FEAB400909316 /* VideoPlayController */ = {
 			isa = PBXGroup;
 			children = (
@@ -2189,6 +2205,7 @@
 		00EFE0D51D227DCC0066C905 /* SleepController */ = {
 			isa = PBXGroup;
 			children = (
+				00BA5EDD1D59C28D004B5438 /* ChartView */,
 				00EFE0D61D227DCC0066C905 /* queryTableviewCell */,
 				00EFE0D91D227DCC0066C905 /* SleepController.swift */,
 				00EFE0DA1D227DCC0066C905 /* SleepHistoricalView.swift */,
@@ -2653,6 +2670,7 @@
 				0095DDAC1D2E0E5500F80BFD /* wacth_dial.png in Resources */,
 				0095DDAD1D2E0E5500F80BFD /* wacth_hour.png in Resources */,
 				0095DDAE1D2E0E5500F80BFD /* wacth_mint.png in Resources */,
+				00BA5EE11D59C2A6004B5438 /* AnalysisRadarViewCell.xib in Resources */,
 				0037EC1E1D235F5300502140 /* Firmwares in Resources */,
 				0037EC1F1D235F5300502140 /* Localizable.strings in Resources */,
 				0067560C1D484B6F00E8144C /* SelectedLEDColorCell.xib in Resources */,
@@ -3010,6 +3028,7 @@
 				00D474AC1D586DEA00E2447E /* LineColorCell.swift in Sources */,
 				00D474AD1D586DEA00E2447E /* NotificationClockCell.swift in Sources */,
 				00D474AE1D586DEA00E2447E /* NotificationView.swift in Sources */,
+				00BA5EDC1D59C1D3004B5438 /* AnalysisRadarChartView.swift in Sources */,
 				00D474AF1D586DEA00E2447E /* SelectedNotificationView.swift in Sources */,
 				00D474B01D586DEA00E2447E /* SelectedLEDColorCell.swift in Sources */,
 				00D474B11D586DEA00E2447E /* NotificationViewController.swift in Sources */,
@@ -3127,6 +3146,7 @@
 				00D474731D586D1600E2447E /* SetCardioRequest.swift in Sources */,
 				00D474741D586D1600E2447E /* SetGoalRequest.swift in Sources */,
 				00D474751D586D1600E2447E /* SetNewAlarmRequest.swift in Sources */,
+				00BA5EE01D59C2A6004B5438 /* AnalysisRadarViewCell.swift in Sources */,
 				00D474761D586D1600E2447E /* SetNortificationRequest.swift in Sources */,
 				00BA5ECC1D5978E6004B5438 /* SolarInforViewCell.swift in Sources */,
 				00D474771D586D1600E2447E /* SetProfileRequest.swift in Sources */,

@@ -48,9 +48,15 @@ class MainTabBarController: UITabBarController,UITabBarControllerDelegate {
             }
             
             if contll!.isKindOfClass(SleepController){
-                (nav as! UINavigationController).tabBarItem.title = NSLocalizedString("sleepTitle", comment: "")
-                contll?.title = NSLocalizedString("sleepTitle", comment: "")
-                AppTheme.DLog("SetingViewController:\(contll)")
+                
+                let app_Name:String = infoDictionary["CFBundleName"] as! String
+                if app_Name == "LunaR" {
+                    (nav as! UINavigationController).tabBarItem.title = NSLocalizedString("Analysis", comment: "")
+                    contll?.title = NSLocalizedString("Analysis", comment: "")
+                }else{
+                    (nav as! UINavigationController).tabBarItem.title = NSLocalizedString("sleepTitle", comment: "")
+                    contll?.title = NSLocalizedString("sleepTitle", comment: "")
+                }
             }
 
             if contll!.isKindOfClass(SetingViewController){
