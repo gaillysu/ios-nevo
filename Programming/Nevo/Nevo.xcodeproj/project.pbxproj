@@ -259,6 +259,8 @@
 		00BA5EDC1D59C1D3004B5438 /* AnalysisRadarChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00BA5EDB1D59C1D3004B5438 /* AnalysisRadarChartView.swift */; };
 		00BA5EE01D59C2A6004B5438 /* AnalysisRadarViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00BA5EDE1D59C2A6004B5438 /* AnalysisRadarViewCell.swift */; };
 		00BA5EE11D59C2A6004B5438 /* AnalysisRadarViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00BA5EDF1D59C2A6004B5438 /* AnalysisRadarViewCell.xib */; };
+		00BA5EE41D59DDE3004B5438 /* AnalysisLineChartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00BA5EE21D59DDE3004B5438 /* AnalysisLineChartCell.swift */; };
+		00BA5EE51D59DDE3004B5438 /* AnalysisLineChartCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00BA5EE31D59DDE3004B5438 /* AnalysisLineChartCell.xib */; };
 		00BF2D9A1C7FED2200909316 /* VideoPlayController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00BF2D981C7FED2200909316 /* VideoPlayController.swift */; };
 		00BF2D9B1C7FED2200909316 /* VideoPlayController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00BF2D991C7FED2200909316 /* VideoPlayController.xib */; };
 		00C254A41D4EE82200F0F85F /* SolarIndicatorController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00C254A21D4EE82200F0F85F /* SolarIndicatorController.xib */; };
@@ -846,6 +848,8 @@
 		00BA5EDB1D59C1D3004B5438 /* AnalysisRadarChartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalysisRadarChartView.swift; sourceTree = "<group>"; };
 		00BA5EDE1D59C2A6004B5438 /* AnalysisRadarViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalysisRadarViewCell.swift; sourceTree = "<group>"; };
 		00BA5EDF1D59C2A6004B5438 /* AnalysisRadarViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AnalysisRadarViewCell.xib; sourceTree = "<group>"; };
+		00BA5EE21D59DDE3004B5438 /* AnalysisLineChartCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalysisLineChartCell.swift; sourceTree = "<group>"; };
+		00BA5EE31D59DDE3004B5438 /* AnalysisLineChartCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AnalysisLineChartCell.xib; sourceTree = "<group>"; };
 		00BF2D981C7FED2200909316 /* VideoPlayController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoPlayController.swift; sourceTree = "<group>"; };
 		00BF2D991C7FED2200909316 /* VideoPlayController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VideoPlayController.xib; sourceTree = "<group>"; };
 		00C254A11D4EE82200F0F85F /* SolarIndicatorController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SolarIndicatorController.swift; sourceTree = "<group>"; };
@@ -1865,6 +1869,8 @@
 			children = (
 				00BA5EDE1D59C2A6004B5438 /* AnalysisRadarViewCell.swift */,
 				00BA5EDF1D59C2A6004B5438 /* AnalysisRadarViewCell.xib */,
+				00BA5EE21D59DDE3004B5438 /* AnalysisLineChartCell.swift */,
+				00BA5EE31D59DDE3004B5438 /* AnalysisLineChartCell.xib */,
 			);
 			path = ChartView;
 			sourceTree = "<group>";
@@ -2679,6 +2685,7 @@
 				007C454A1D2B4C60004929E0 /* SleepTutorialController.xib in Resources */,
 				007C45651D2B4D51004929E0 /* TutorialOneViewController.xib in Resources */,
 				0037EC271D235F5300502140 /* nevoWhiteLEDImage.png in Resources */,
+				00BA5EE51D59DDE3004B5438 /* AnalysisLineChartCell.xib in Resources */,
 				0037EC281D235F5300502140 /* nevoFontImage.png in Resources */,
 				0037EC291D235F5300502140 /* homeTutorial.png in Resources */,
 				007C45801D2B4DAA004929E0 /* TutorialThreeViewController.xib in Resources */,
@@ -3040,6 +3047,7 @@
 				00D474B71D586DEA00E2447E /* PresetView.swift in Sources */,
 				00D474B81D586DEA00E2447E /* RegisterController.swift in Sources */,
 				00D474B91D586DEA00E2447E /* SetingInfoCell.swift in Sources */,
+				00BA5EE41D59DDE3004B5438 /* AnalysisLineChartCell.swift in Sources */,
 				00D474BA1D586DEA00E2447E /* SetingLoginCell.swift in Sources */,
 				00D474BB1D586DEA00E2447E /* SetingNotLoginCell.swift in Sources */,
 				00D474BC1D586DEA00E2447E /* SetingView.swift in Sources */,

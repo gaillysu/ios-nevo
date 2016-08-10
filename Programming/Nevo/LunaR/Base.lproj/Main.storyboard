@@ -243,6 +243,7 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="chartsCollectionView" destination="6Bf-4U-ceO" id="kyf-wk-B9W"/>
+                        <outlet property="segmented" destination="gBb-E8-7EA" id="czO-UY-AT9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JGt-zZ-7G3" userLabel="First Responder" sceneMemberID="firstResponder"/>

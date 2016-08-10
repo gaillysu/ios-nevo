@@ -11,6 +11,7 @@ import Charts
 
 class AnalysisRadarViewCell: UICollectionViewCell,ChartViewDelegate {
 
+    @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var radarChartView: RadarChartView!
     
     var parties:[String] = []
