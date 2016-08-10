@@ -625,10 +625,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                 }
 
 
-                savedDailyHistory[Int(currentDay)].TotalSteps = thispacket.getDailySteps()
-                savedDailyHistory[Int(currentDay)].HourlySteps = thispacket.getHourlySteps()
-                savedDailyHistory[Int(currentDay)].TotalCalories = thispacket.getDailyCalories()
-                savedDailyHistory[Int(currentDay)].HourlyCalories = thispacket.getHourlyCalories()
+                //TODO:crash  数组越界
+                do {
+                    try savedDailyHistory[Int(100)].TotalSteps = 0
+                    savedDailyHistory[Int(currentDay)].TotalSteps = thispacket.getDailySteps()
+                    savedDailyHistory[Int(currentDay)].HourlySteps = thispacket.getHourlySteps()
+                    savedDailyHistory[Int(currentDay)].TotalCalories = thispacket.getDailyCalories()
+                    savedDailyHistory[Int(currentDay)].HourlyCalories = thispacket.getHourlyCalories()
+                }catch let error as NSError{
+                    NSLog("array error:\(error.description)")
+                }
+                
+                
                 
                 AppTheme.DLog("Day:\(GmtNSDate2LocaleNSDate(savedDailyHistory[Int(currentDay)].Date)), Daily Steps:\(savedDailyHistory[Int(currentDay)].TotalSteps)")
 
