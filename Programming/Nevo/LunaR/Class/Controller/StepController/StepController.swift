@@ -84,20 +84,22 @@ class StepController: PublicClassController,UIActionSheetDelegate {
             let leftButton:UIButton = UIButton(type: UIButtonType.System)
             leftButton.setImage(UIImage(named: "left_button"), forState: UIControlState.Normal)
             leftButton.tag = 1900
-            leftButton.frame = CGRectMake(0, 0, 15, 27)
+            leftButton.frame = CGRectMake(0, 0, 35, 125)
+            leftButton.imageEdgeInsets = UIEdgeInsets(top: (125.0-30.0)/2.0, left: 10, bottom: (125.0-30.0)/2.0, right: 10)
             leftButton.addTarget(self, action: #selector(slidingAction(_:)), forControlEvents: UIControlEvents.TouchUpInside)
             pagingMenuController!.view.addSubview(leftButton)
             leftButton.tintColor = UIColor.getWhiteBaseColor()
-            leftButton.center = CGPointMake(leftButton.frame.size.width/2.0, self.view.frame.size.height/2.0-50)
+            leftButton.center = CGPointMake(leftButton.frame.size.width/2.0, self.view.frame.size.height/2.0-70)
             
             let rightButton:UIButton = UIButton(type: UIButtonType.System)
             rightButton.setImage(UIImage(named: "right_button"), forState: UIControlState.Normal)
             rightButton.tag = 1910
-            rightButton.frame = CGRectMake(0, 0, 15, 27)
+            rightButton.frame = CGRectMake(0, 0, 35, 125)
+            rightButton.imageEdgeInsets = UIEdgeInsets(top: (125.0-30.0)/2.0, left: 10, bottom: (125.0-30.0)/2.0, right: 10)
             rightButton.addTarget(self, action: #selector(slidingAction(_:)), forControlEvents: UIControlEvents.TouchUpInside)
             pagingMenuController!.view.addSubview(rightButton)
             rightButton.tintColor = UIColor.getWhiteBaseColor()
-            rightButton.center = CGPointMake(UIScreen.mainScreen().bounds.size.width-rightButton.frame.size.width/2.0, self.view.frame.size.height/2.0-50)
+            rightButton.center = CGPointMake(UIScreen.mainScreen().bounds.size.width-rightButton.frame.size.width/2.0, self.view.frame.size.height/2.0-70)
         }
     }
     
