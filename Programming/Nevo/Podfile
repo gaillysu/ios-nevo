@@ -4,7 +4,7 @@ target 'Nevo' do
     pod 'UMengAnalytics-NO-IDFA', '~> 4.0.3'
     pod 'NJKWebViewProgress'
     
-    pod 'FMDB'
+    pod 'FMDB', '~> 2.6.2'
     pod 'Alamofire'
     pod 'GSMessages'
     pod 'BRYXBanner'
@@ -31,7 +31,8 @@ end
 
 target 'LunaR' do
     pod 'NJKWebViewProgress'
-    pod 'FMDB'
+    
+    pod 'FMDB', '~> 2.6.2'
     pod 'Alamofire'
     pod 'GSMessages'
     pod 'BRYXBanner'
