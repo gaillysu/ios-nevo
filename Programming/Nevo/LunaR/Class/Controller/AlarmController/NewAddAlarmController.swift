@@ -44,8 +44,8 @@ class NewAddAlarmController: UITableViewController,ButtonManagerCallBack,UIAlert
     override func viewDidLayoutSubviews() {
         if self.tableView.tableFooterView == nil {
             let view = UIView()
-            let tipsString:String = "Tips:\nSleep alarm allows you set a timmer that your LunaR can automatic turn on sleep mode."
-            let tipsLabel:UILabel = UILabel(frame: CGRectMake(0,0,UIScreen.mainScreen().bounds.size.width,90))
+            let tipsString:String = "Tips:\n    Sleep alarm allows you set a timmer that your LunaR can automatic turn on sleep mode."
+            let tipsLabel:UILabel = UILabel(frame: CGRectMake(10,0,UIScreen.mainScreen().bounds.size.width-20,90))
             tipsLabel.numberOfLines = 0
             tipsLabel.textColor = UIColor.whiteColor()
             tipsLabel.text = tipsString
@@ -151,7 +151,9 @@ class NewAddAlarmController: UITableViewController,ButtonManagerCallBack,UIAlert
 
                     let alertAction1:UIAlertAction = UIAlertAction(title: NSLocalizedString("Add", comment: ""), style: UIAlertActionStyle.Default, handler: { (action:UIAlertAction) -> Void in
                         let labelText:UITextField = actionSheet.textFields![0]
+                        selectedCell.detailTextLabel?.textColor = UIColor.whiteColor()
                         selectedCell.detailTextLabel?.text = labelText.text
+                        selectedCell.layoutSubviews()
                     })
                     alertAction1.setValue(UIColor.getBaseColor(), forKey: "titleTextColor")
                     actionSheet.addAction(alertAction1)
@@ -230,9 +232,10 @@ class NewAddAlarmController: UITableViewController,ButtonManagerCallBack,UIAlert
             cell.preservesSuperviewLayoutMargins = false;
             cell.separatorInset = UIEdgeInsetsZero;
             cell.layoutMargins = UIEdgeInsetsZero;
-            cell.backgroundColor = UIColor.getGreyColor()
-            cell.contentView.backgroundColor = UIColor.getGreyColor()
+            cell.backgroundColor = UIColor.clearColor()
+            cell.contentView.backgroundColor = UIColor.clearColor()
             cell.textLabel?.textColor = UIColor.whiteColor()
+            cell.detailTextLabel?.textColor = UIColor.whiteColor()
             cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
             cell.selectionStyle = UITableViewCellSelectionStyle.None;
             if(indexPath.row == 0) {
