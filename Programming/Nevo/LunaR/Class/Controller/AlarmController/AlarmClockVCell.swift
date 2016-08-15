@@ -13,6 +13,8 @@ class AlarmClockVCell: UITableViewCell {
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var alarmSwicth: UISwitch!
+    @IBOutlet weak var alarmIn: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

@@ -135,6 +135,7 @@
 		0058B3EA1CF55D590079A213 /* ConnectOtherAppsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0058B3E81CF55D590079A213 /* ConnectOtherAppsController.swift */; };
 		0058B3EB1CF55D590079A213 /* ConnectOtherAppsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0058B3E91CF55D590079A213 /* ConnectOtherAppsController.xib */; };
 		005BC95F1A88B79F006F9E86 /* FXBlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = 005BC95E1A88B79F006F9E86 /* FXBlurView.m */; };
+		0062E5EC1D616269008CF692 /* LineLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0062E5EB1D616269008CF692 /* LineLabel.swift */; };
 		006756071D4848A300E8144C /* notification_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 006756061D4848A300E8144C /* notification_background.png */; };
 		006756081D4849D400E8144C /* notification_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 006756061D4848A300E8144C /* notification_background.png */; };
 		0067560C1D484B6F00E8144C /* SelectedLEDColorCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0067560A1D484B6F00E8144C /* SelectedLEDColorCell.xib */; };
@@ -684,6 +685,7 @@
 		005BC95D1A88B79F006F9E86 /* FXBlurView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FXBlurView.h; sourceTree = "<group>"; };
 		005BC95E1A88B79F006F9E86 /* FXBlurView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FXBlurView.m; sourceTree = "<group>"; };
 		0061243E1D3F0E80005E4E1E /* AnalysisStepsChartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalysisStepsChartView.swift; sourceTree = "<group>"; };
+		0062E5EB1D616269008CF692 /* LineLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineLabel.swift; sourceTree = "<group>"; };
 		006756061D4848A300E8144C /* notification_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = notification_background.png; sourceTree = "<group>"; };
 		006756091D484B6F00E8144C /* SelectedLEDColorCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectedLEDColorCell.swift; sourceTree = "<group>"; };
 		0067560A1D484B6F00E8144C /* SelectedLEDColorCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SelectedLEDColorCell.xib; sourceTree = "<group>"; };
@@ -1489,6 +1491,7 @@
 		0061243C1D3F0E80005E4E1E /* View */ = {
 			isa = PBXGroup;
 			children = (
+				0062E5EA1D616252008CF692 /* LineLabel */,
 				0067560D1D489CC500E8144C /* ActionSheetView */,
 				0061243D1D3F0E80005E4E1E /* AnalysisStepsChartView */,
 			);
@@ -1502,6 +1505,14 @@
 				00BA5EDB1D59C1D3004B5438 /* AnalysisRadarChartView.swift */,
 			);
 			path = AnalysisStepsChartView;
+			sourceTree = "<group>";
+		};
+		0062E5EA1D616252008CF692 /* LineLabel */ = {
+			isa = PBXGroup;
+			children = (
+				0062E5EB1D616269008CF692 /* LineLabel.swift */,
+			);
+			path = LineLabel;
 			sourceTree = "<group>";
 		};
 		0067560D1D489CC500E8144C /* ActionSheetView */ = {
@@ -3034,6 +3045,7 @@
 				00D474AB1D586DEA00E2447E /* NevoOtaViewController.swift in Sources */,
 				00D474AC1D586DEA00E2447E /* LineColorCell.swift in Sources */,
 				00D474AD1D586DEA00E2447E /* NotificationClockCell.swift in Sources */,
+				0062E5EC1D616269008CF692 /* LineLabel.swift in Sources */,
 				00D474AE1D586DEA00E2447E /* NotificationView.swift in Sources */,
 				00BA5EDC1D59C1D3004B5438 /* AnalysisRadarChartView.swift in Sources */,
 				00D474AF1D586DEA00E2447E /* SelectedNotificationView.swift in Sources */,

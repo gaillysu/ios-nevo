@@ -46,6 +46,10 @@ class LoginController: UIViewController,UITextFieldDelegate {
         let tap:UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapAction(_:)))
         registerLabel.addGestureRecognizer(tap)
         
+        if AppTheme.GET_IS_iPhone5S()||AppTheme.GET_IS_iPhone4S() {
+            logoinButton.titleLabel?.font = UIFont(name: "Raleway", size: 20)
+        }
+        
     }
     
     func tapAction(sender:UITapGestureRecognizer) {

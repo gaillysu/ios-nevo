@@ -193,8 +193,8 @@ class StepsHistoryViewController: PublicClassController,UICollectionViewDelegate
         let stepsModel:UserSteps = queryModel.objectAtIndex(0) as! UserSteps;
         //let hourlystepsArray:NSArray = AppTheme.jsonToArray(stepsModel.hourlysteps)
         self.didSelectedhighlightValue(entry.xIndex,dataSetIndex: dataSetIndex, dataSteps:stepsModel)
-        let array:NSArray = NSArray(array: [entry.xIndex,dataSetIndex,stepsModel])
-        AppTheme.KeyedArchiverName(SELECTED_DATA, andObject: array)
+//        let array:NSArray = NSArray(array: [entry.xIndex,dataSetIndex,stepsModel])
+//        AppTheme.KeyedArchiverName(SELECTED_DATA, andObject: array)
     }
     
     func didSelectedhighlightValue(xIndex:Int,dataSetIndex: Int, dataSteps:UserSteps) {

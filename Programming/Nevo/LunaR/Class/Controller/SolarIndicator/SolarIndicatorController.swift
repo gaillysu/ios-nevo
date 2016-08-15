@@ -88,7 +88,7 @@ extension SolarIndicatorController:ChartViewDelegate {
         chartView.holeRadiusPercent = 0.0
         chartView.transparentCircleRadiusPercent = 0.0
         chartView.descriptionText = ""
-        chartView.setExtraOffsets(left: 5.0, top: 10.0, right: 5.0, bottom: 5.0)
+//        chartView.setExtraOffsets(left: 5.0, top: 10.0, right: 5.0, bottom: 5.0)
         chartView.drawCenterTextEnabled = true
         let paragraphStyle:NSMutableParagraphStyle = NSParagraphStyle.defaultParagraphStyle().mutableCopy() as! NSMutableParagraphStyle
         paragraphStyle.lineBreakMode = NSLineBreakMode.ByTruncatingTail
@@ -138,7 +138,7 @@ extension SolarIndicatorController:ChartViewDelegate {
         dataSet.colors = colors
         
         let data:PieChartData = PieChartData(xVals: xVals, dataSets: [dataSet])
-        //data.highlightEnabled = false
+        data.highlightEnabled = false
         let pFormatter:NSNumberFormatter = NSNumberFormatter()
         pFormatter.numberStyle = NSNumberFormatterStyle.PercentStyle;
         pFormatter.maximumFractionDigits = 1;
@@ -153,4 +153,7 @@ extension SolarIndicatorController:ChartViewDelegate {
         pieChartView.highlightValues(nil)
     }
 
+    func chartValueSelected(chartView: ChartViewBase, entry: ChartDataEntry, dataSetIndex: Int, highlight: ChartHighlight) {
+    
+    }
 }
