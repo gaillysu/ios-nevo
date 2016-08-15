@@ -344,9 +344,9 @@ class AlarmClockController: UITableViewController, SyncControllerDelegate,AddAla
             endCell.alarmIn.text = "Alarm close"
         }else{
             if alarmModel!.dayOfWeek != NSDate().weekday {
-                endCell.alarmIn.text = "Alarm on \(dayArray[NSDate().weekday-1]) "
+                endCell.alarmIn.text = "Alarm on \(dayArray[alarmModel!.dayOfWeek-1]) "
             }else{
-                if date.hour>=NSDate().hour {
+                if date.hour>=NSDate().hour && date.minute>NSDate().minute {
                     let nowHour:Int = abs(date.hour-NSDate().hour)
                     let noeMinte:Int = abs(date.minute-NSDate().minute)
                     endCell.alarmIn.text = "Alarm in \(nowHour)h \(noeMinte)m"
