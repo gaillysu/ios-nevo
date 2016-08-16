@@ -28,7 +28,9 @@ class MyNevoController: UITableViewController,SyncControllerDelegate,UIAlertView
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = NSLocalizedString("My nevo", comment: "")
+        self.navigationItem.title = NSLocalizedString("My LunaR", comment: "")
+        self.tableView.separatorInset = UIEdgeInsetsZero
+        self.tableView.layoutMargins = UIEdgeInsetsZero
         buildinSoftwareVersion = AppTheme.GET_SOFTWARE_VERSION()
         buildinFirmwareVersion = AppTheme.GET_FIRMWARE_VERSION()
 
@@ -37,12 +39,12 @@ class MyNevoController: UITableViewController,SyncControllerDelegate,UIAlertView
         
         let footLabel:UILabel = UILabel(frame: CGRectMake(0,0,UIScreen.mainScreen().bounds.size.width,80))
         footLabel.numberOfLines = 0
-        footLabel.font = UIFont.systemFontOfSize(13)
+        footLabel.font = UIFont(name: "HelveticaNeue-Light", size: 13)
         footLabel.textColor = UIColor.whiteColor()
         footLabel.text = "To save battery power, Bluetooth disconnects automatically when away from the phone for more than 2 minutes. You will not receive notifications on LunaR when disconnected."
         tableView.tableFooterView = footLabel
     }
-
+    
     override func viewDidAppear(animated: Bool) {
         AppDelegate.getAppDelegate().startConnect(false, delegate: self)
         if AppDelegate.getAppDelegate().isConnected() {

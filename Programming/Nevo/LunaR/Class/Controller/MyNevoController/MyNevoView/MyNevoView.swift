@@ -16,11 +16,13 @@ class MyNevoView: UITableView {
         if (endCell == nil) {
             endCell = UITableViewCell(style: UITableViewCellStyle.Value1, reuseIdentifier: endCellID)
         }
-//        if(indexPath.row == 0) {
-//            endCell?.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
-//        }else{
-//
-//        }
+        if(indexPath.row == 0) {
+            endCell?.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
+        }else{
+
+        }
+        endCell?.layoutMargins = UIEdgeInsetsZero
+        endCell?.separatorInset = UIEdgeInsetsZero
         endCell?.backgroundColor = UIColor.getGreyColor()
         endCell?.contentView.backgroundColor = UIColor.getGreyColor()
         endCell?.selectionStyle = UITableViewCellSelectionStyle.None;

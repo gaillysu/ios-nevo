@@ -45,7 +45,7 @@ class NewAddAlarmController: UITableViewController,ButtonManagerCallBack,UIAlert
         if self.tableView.tableFooterView == nil {
             let view = UIView()
             let tipsString:String = "Tips:\n    Sleep alarm allows you set a timmer that your LunaR can automatic turn on sleep mode."
-            let tipsLabel:UILabel = UILabel(frame: CGRectMake(10,0,UIScreen.mainScreen().bounds.size.width-20,90))
+            let tipsLabel:UILabel = UILabel(frame: CGRectMake(10,0,UIScreen.mainScreen().bounds.size.width-20,120))
             tipsLabel.numberOfLines = 0
             tipsLabel.textColor = UIColor.whiteColor()
             tipsLabel.text = tipsString
