@@ -187,11 +187,11 @@ class SetingViewController: UIViewController,SyncControllerDelegate,ButtonManage
                 if((UIDevice.currentDevice().systemVersion as NSString).floatValue >= 8.0){
 
                     let actionSheet:UIAlertController = UIAlertController(title: NSLocalizedString("forget_watch", comment: ""), message: NSLocalizedString("forget_your_nevo", comment: ""), preferredStyle: UIAlertControllerStyle.Alert)
-                    actionSheet.view.tintColor = AppTheme.NEVO_SOLAR_YELLOW()
 
                     let alertAction:UIAlertAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: UIAlertActionStyle.Cancel, handler: { (alert) -> Void in
 
                     })
+                    alertAction.setValue(UIColor(rgba: "#7ED8D1"), forKey: "titleTextColor")
                     actionSheet.addAction(alertAction)
 
                     let alertAction2:UIAlertAction = UIAlertAction(title: NSLocalizedString("forget", comment: ""), style: UIAlertActionStyle.Default, handler: { ( alert) -> Void in
@@ -201,6 +201,7 @@ class SetingViewController: UIViewController,SyncControllerDelegate,ButtonManage
                         nav.navigationBarHidden = true
                         self.presentViewController(nav, animated: true, completion: nil)
                     })
+                    alertAction2.setValue(UIColor(rgba: "#7ED8D1"), forKey: "titleTextColor")
                     actionSheet.addAction(alertAction2)
 
                     self.presentViewController(actionSheet, animated: true, completion: nil)
@@ -283,7 +284,7 @@ class SetingViewController: UIViewController,SyncControllerDelegate,ButtonManage
             if user.count>0 {
                 let cell = tableView.dequeueReusableCellWithIdentifier("SetingInfoIdentifier", forIndexPath: indexPath)
                 cell.backgroundColor = UIColor.getLightBaseColor()
-                cell.contentView.backgroundColor = UIColor.getLightBaseColor()
+                //cell.contentView.backgroundColor = UIColor.getLightBaseColor()
                 cell.separatorInset = UIEdgeInsets(top: 0, left: UIScreen.mainScreen().bounds.size.width, bottom: 0, right: 0)
                 let user:NSArray = UserProfile.getAll()
                 
@@ -294,7 +295,7 @@ class SetingViewController: UIViewController,SyncControllerDelegate,ButtonManage
             }else{
                 let cell = tableView.dequeueReusableCellWithIdentifier("SetingNotLoginIdentifier", forIndexPath: indexPath)
                 cell.backgroundColor = UIColor.getLightBaseColor()
-                cell.contentView.backgroundColor = UIColor.getLightBaseColor()
+                //cell.contentView.backgroundColor = UIColor.getLightBaseColor()
                 cell.separatorInset = UIEdgeInsets(top: 0, left: UIScreen.mainScreen().bounds.size.width, bottom: 0, right: 0)
                 return cell
             }

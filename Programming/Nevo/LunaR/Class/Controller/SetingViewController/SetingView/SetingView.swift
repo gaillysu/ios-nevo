@@ -45,7 +45,6 @@ class SetingView: UIView {
             endCell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: endCellID)
         }
         endCell?.backgroundColor = UIColor.getGreyColor()
-        endCell?.contentView.backgroundColor = UIColor.getGreyColor()
         if(title == NSLocalizedString("find_my_watch", comment: "") || title == NSLocalizedString("forget_watch", comment: "")) {
             let activity:UIActivityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
             activity.center = CGPointMake(UIScreen.mainScreen().bounds.size.width-activity.frame.size.width, 50/2.0)
@@ -55,6 +54,7 @@ class SetingView: UIView {
         }
         endCell?.textLabel?.text = title
         endCell?.textLabel?.textColor = UIColor.whiteColor()
+        endCell?.textLabel!.backgroundColor = UIColor.clearColor()
         endCell?.imageView?.image = UIImage(named: imageName)
         return endCell!
     }
