@@ -144,6 +144,7 @@
 		0072EAEB1C192210001EE2C9 /* spinner.png in Resources */ = {isa = PBXBuildFile; fileRef = 0072EAEA1C192210001EE2C9 /* spinner.png */; };
 		0073C5E01D3C67E700924167 /* NewAddAlarmHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0073C5DF1D3C67E700924167 /* NewAddAlarmHeader.xib */; };
 		0073C5E41D3C7CC200924167 /* AlarmTypeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0073C5E21D3C7CC200924167 /* AlarmTypeCell.xib */; };
+		00749B8A1D64082C0013B2D9 /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00749B891D64082C0013B2D9 /* PageViewController.swift */; };
 		0074CB981D29EEAA00963607 /* InformationController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0074CB961D29EEAA00963607 /* InformationController.xib */; };
 		007C45351D2B4C08004929E0 /* HomeTutorialController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 007C452B1D2B4C08004929E0 /* HomeTutorialController.xib */; };
 		007C453F1D2B4C1F004929E0 /* MorningTutorialController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 007C45411D2B4C20004929E0 /* MorningTutorialController.xib */; };
@@ -377,7 +378,6 @@
 		00D4748F1D586D1600E2447E /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD8F98E1A6E2EE000F01014 /* Profile.swift */; };
 		00D474901D586D8000E2447E /* AlarmClockController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EFE0891D227DCC0066C905 /* AlarmClockController.swift */; };
 		00D474911D586D8000E2447E /* SleepController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EFE0D91D227DCC0066C905 /* SleepController.swift */; };
-		00D474921D586D8000E2447E /* StepController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EFE0E21D227DCC0066C905 /* StepController.swift */; };
 		00D474931D586DEA00E2447E /* AlarmTypeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009BE61C1D388B1400B2B004 /* AlarmTypeController.swift */; };
 		00D474941D586DEA00E2447E /* AddAlarmController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EFE0801D227DCC0066C905 /* AddAlarmController.swift */; };
 		00D474951D586DEA00E2447E /* AddAlarmSystemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EFE0841D227DCC0066C905 /* AddAlarmSystemCell.swift */; };
@@ -698,6 +698,7 @@
 		0073C5DF1D3C67E700924167 /* NewAddAlarmHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewAddAlarmHeader.xib; sourceTree = "<group>"; };
 		0073C5E11D3C7CC200924167 /* AlarmTypeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlarmTypeCell.swift; sourceTree = "<group>"; };
 		0073C5E21D3C7CC200924167 /* AlarmTypeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AlarmTypeCell.xib; sourceTree = "<group>"; };
+		00749B891D64082C0013B2D9 /* PageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
 		0074CB951D29EEAA00963607 /* InformationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InformationController.swift; sourceTree = "<group>"; };
 		0074CB961D29EEAA00963607 /* InformationController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InformationController.xib; sourceTree = "<group>"; };
 		007C452B1D2B4C08004929E0 /* HomeTutorialController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeTutorialController.xib; sourceTree = "<group>"; };
@@ -1016,7 +1017,6 @@
 		00EFE0DD1D227DCC0066C905 /* SleepTrackingController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SleepTrackingController.swift; sourceTree = "<group>"; };
 		00EFE0DE1D227DCC0066C905 /* SleepTrackingController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SleepTrackingController.xib; sourceTree = "<group>"; };
 		00EFE0E01D227DCC0066C905 /* SleepTrackingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SleepTrackingView.swift; sourceTree = "<group>"; };
-		00EFE0E21D227DCC0066C905 /* StepController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepController.swift; sourceTree = "<group>"; };
 		00EFE0E31D227DCC0066C905 /* StepGoalSetingController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepGoalSetingController.swift; sourceTree = "<group>"; };
 		00EFE0E41D227DCC0066C905 /* StepGoalSetingController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StepGoalSetingController.xib; sourceTree = "<group>"; };
 		00EFE0E51D227DCC0066C905 /* StepsHistoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepsHistoryViewController.swift; sourceTree = "<group>"; };
@@ -1523,6 +1523,14 @@
 			path = ActionSheetView;
 			sourceTree = "<group>";
 		};
+		00749B881D6408160013B2D9 /* PageViewController */ = {
+			isa = PBXGroup;
+			children = (
+				00749B891D64082C0013B2D9 /* PageViewController.swift */,
+			);
+			path = PageViewController;
+			sourceTree = "<group>";
+		};
 		0074CB941D29EE9200963607 /* InformationController */ = {
 			isa = PBXGroup;
 			children = (
@@ -1971,6 +1979,7 @@
 		00EFE07B1D227DCC0066C905 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				00749B881D6408160013B2D9 /* PageViewController */,
 				00C254A01D4EE7EF00F0F85F /* SolarIndicator */,
 				0074CB941D29EE9200963607 /* InformationController */,
 				008AEF171D264A4B00B9E4D0 /* ProfileSetupController */,
@@ -2257,7 +2266,6 @@
 			children = (
 				00DE86E41D3489350013FFC4 /* StepsTitleView.swift */,
 				00DE86E51D3489350013FFC4 /* StepsTitleView.xib */,
-				00EFE0E21D227DCC0066C905 /* StepController.swift */,
 				00EFE0E31D227DCC0066C905 /* StepGoalSetingController.swift */,
 				00EFE0E41D227DCC0066C905 /* StepGoalSetingController.xib */,
 				00EFE0E51D227DCC0066C905 /* StepsHistoryViewController.swift */,
@@ -3090,7 +3098,6 @@
 				00D474D51D586DEB00E2447E /* VideoPlayController.swift in Sources */,
 				00D474901D586D8000E2447E /* AlarmClockController.swift in Sources */,
 				00D474911D586D8000E2447E /* SleepController.swift in Sources */,
-				00D474921D586D8000E2447E /* StepController.swift in Sources */,
 				00D4742B1D586D1600E2447E /* NevoAllKeys.swift in Sources */,
 				00D4742C1D586D1600E2447E /* CaloriesToHK.swift in Sources */,
 				00D4742D1D586D1600E2447E /* DailySteps.swift in Sources */,
@@ -3147,6 +3154,7 @@
 				00D474601D586D1600E2447E /* IntelHex2BinConverter.m in Sources */,
 				00D474611D586D1600E2447E /* NevoOTAControllerProfile.swift in Sources */,
 				00D474621D586D1600E2447E /* NevoOTAModeProfile.swift in Sources */,
+				00749B8A1D64082C0013B2D9 /* PageViewController.swift in Sources */,
 				00D474631D586D1600E2447E /* NevoOTAPacketProfile.swift in Sources */,
 				00D474641D586D1600E2447E /* NevoOTARequest.swift in Sources */,
 				00D474651D586D1600E2447E /* Utility.swift in Sources */,

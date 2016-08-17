@@ -1,27 +1,27 @@
 //
-//  StepController.swift
+//  PageViewController.swift
 //  Nevo
 //
-//  Created by leiyuncun on 15/12/2.
-//  Copyright © 2015年 Nevo. All rights reserved.
+//  Created by leiyuncun on 16/8/17.
+//  Copyright © 2016年 Nevo. All rights reserved.
 //
 
 import UIKit
 import BRYXBanner
 import Timepiece
 import UIColor_Hex_Swift
-import PagingMenuController
 import XCGLogger
 import CVCalendar
 import SwiftEventBus
 
-//let SELECTED_CALENDAR_NOTIFICATION = "SELECTED_CALENDAR_NOTIFICATION"
-//private let CALENDAR_VIEW_TAG = 1800
-private struct PagingMenuOptions: PagingMenuControllerCustomizable {
-    
-    private var componentType: ComponentType {
-        return .PagingController(pagingControllers: pagingControllers)
-    }
+let SELECTED_CALENDAR_NOTIFICATION = "SELECTED_CALENDAR_NOTIFICATION"
+private let CALENDAR_VIEW_TAG = 1800
+
+class PageViewController: UIPageViewController,UIActionSheetDelegate {
+    private var goalArray:[Int] = []
+    var calendarView:CVCalendarView?
+    var menuView:CVCalendarMenuView?
+    var titleView:StepsTitleView?
     
     private var pagingControllers: [UIViewController] {
         let viewController1 = StepGoalSetingController()
@@ -35,61 +35,38 @@ private struct PagingMenuOptions: PagingMenuControllerCustomizable {
         //
         return [viewController1, viewController2,viewController3,viewController4]
     }
-}
-
-class StepController: PublicClassController,UIActionSheetDelegate {
-    
-    
-    private var rightItem:UIBarButtonItem?
-    private var goalArray:[Int] = []
-    //var viewControllers:[UIViewController] = []
-    var pagingMenuController:PagingMenuController?
-    var calendarView:CVCalendarView?
-    var menuView:CVCalendarMenuView?
-    var titleView:StepsTitleView?
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationController?.navigationBar.lt_setBackgroundColor(UIColor.getGreyColor())
-        UIApplication.sharedApplication().statusBarStyle = UIStatusBarStyle.LightContent
-        self.view.backgroundColor = UIColor.getGreyColor()
-
-        self.initTitleView()
+        if((UIDevice.currentDevice().systemVersion as NSString).floatValue>7.0){
+            self.edgesForExtendedLayout = UIRectEdge.None;
+            self.extendedLayoutIncludesOpaqueBars = false;
+            self.modalPresentationCapturesStatusBarAppearance = false;
+        }
+        self.view.backgroundColor = UIColor(rgba: "#54575a")
         
-        rightItem = UIBarButtonItem(image: UIImage(named: "edit_icon"), style: UIBarButtonItemStyle.Plain, target: self, action: #selector(rightBarButtonAction(_:)))
-        rightItem?.tintColor = UIColor(rgba: "#7ED8D1")
+        let rightItem:UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "edit_icon"), style: UIBarButtonItemStyle.Plain, target: self, action: #selector(rightBarButtonAction(_:)))
+        rightItem.tintColor = UIColor(rgba: "#7ED8D1")
         self.navigationItem.rightBarButtonItem = rightItem
-
-
-        if(!AppDelegate.getAppDelegate().isConnected() && AppDelegate.getAppDelegate().getMconnectionController().isBluetoothEnabled()){
-            let banner = Banner(title: NSLocalizedString("nevo_is_not_connected", comment: ""), subtitle: nil, image: nil, backgroundColor:UIColor.redColor())
-            banner.dismissesOnTap = true
-            banner.show(duration: 1.5)
+        
+        self.dataSource = self;
+        self.setViewControllers([pagingControllers[0]], direction: UIPageViewControllerNavigationDirection.Forward, animated: true) { (fines) in
+            
         }
     }
-
+    
     override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        let options = PagingMenuOptions()
-        if pagingMenuController == nil {
-            pagingMenuController = PagingMenuController(options: options)
-            pagingMenuController!.view.backgroundColor = UIColor(rgba: "#54575a")
-            pagingMenuController!.view.frame = CGRectMake(0, 0, UIScreen.mainScreen().bounds.width, self.view.frame.size.height)
-            self.addChildViewController(pagingMenuController!)
-            view.addSubview(pagingMenuController!.view)
-            pagingMenuController!.didMoveToParentViewController(self)
-            view.backgroundColor = UIColor(rgba: "#54575a")
-            
+        if titleView == nil {
+            self.initTitleView()
             let leftButton:UIButton = UIButton(type: UIButtonType.System)
             leftButton.setImage(UIImage(named: "left_button"), forState: UIControlState.Normal)
             leftButton.tag = 1900
             leftButton.frame = CGRectMake(0, 0, 35, 125)
             leftButton.imageEdgeInsets = UIEdgeInsets(top: (125.0-30.0)/2.0, left: 10, bottom: (125.0-30.0)/2.0, right: 10)
             leftButton.addTarget(self, action: #selector(slidingAction(_:)), forControlEvents: UIControlEvents.TouchUpInside)
-            pagingMenuController!.view.addSubview(leftButton)
             leftButton.tintColor = UIColor.getWhiteBaseColor()
             leftButton.center = CGPointMake(leftButton.frame.size.width/2.0, self.view.frame.size.height/2.0-70)
+            self.view.addSubview(leftButton)
             
             let rightButton:UIButton = UIButton(type: UIButtonType.System)
             rightButton.setImage(UIImage(named: "right_button"), forState: UIControlState.Normal)
@@ -97,52 +74,26 @@ class StepController: PublicClassController,UIActionSheetDelegate {
             rightButton.frame = CGRectMake(0, 0, 35, 125)
             rightButton.imageEdgeInsets = UIEdgeInsets(top: (125.0-30.0)/2.0, left: 10, bottom: (125.0-30.0)/2.0, right: 10)
             rightButton.addTarget(self, action: #selector(slidingAction(_:)), forControlEvents: UIControlEvents.TouchUpInside)
-            pagingMenuController!.view.addSubview(rightButton)
             rightButton.tintColor = UIColor.getWhiteBaseColor()
             rightButton.center = CGPointMake(UIScreen.mainScreen().bounds.size.width-rightButton.frame.size.width/2.0, self.view.frame.size.height/2.0-70)
+            self.view.addSubview(rightButton)
         }
     }
     
-    override func viewDidAppear(animated: Bool) {
-        let array:NSArray = Presets.getAll()
-        goalArray.removeAll()
-        for pArray in array {
-            let model:Presets = pArray as! Presets
-            if(model.status){
-                goalArray.append(model.steps)
-            }
-        }
-    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
     func slidingAction(sender:UIButton) {
-        if sender.tag == 1900 {
-            if pagingMenuController!.currentPage != 0 {
-                pagingMenuController?.moveToMenuPage(pagingMenuController!.currentPage-1)
-            }
-        }
         
-        if sender.tag == 1910 {
-            pagingMenuController?.moveToMenuPage(pagingMenuController!.currentPage+1)
-        }
     }
     
-    // MARK: - rightBarButtonAction
-    func leftBarButtonAction(leftBar:UIBarButtonItem){
-        let videoPlay:VideoPlayController = VideoPlayController();
-        self.presentViewController(videoPlay, animated: true) { () -> Void in
-
-        }
-    }
-
     func rightBarButtonAction(rightBar:UIBarButtonItem){
         if((UIDevice.currentDevice().systemVersion as NSString).floatValue >= 8.0){
             
             let actionSheet:ActionSheetView = ActionSheetView(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
-
+            
             let array:NSArray = Presets.getAll()
             for pArray in array {
                 let model:Presets = pArray as! Presets
@@ -182,49 +133,6 @@ class StepController: PublicClassController,UIActionSheetDelegate {
         }
     }
     
-    func getCurrentVC() -> UIViewController {
-        var result:UIViewController?
-        
-        var window:UIWindow = UIApplication.sharedApplication().keyWindow!
-        if (window.windowLevel != UIWindowLevelNormal){
-            let windows:NSArray = UIApplication.sharedApplication().windows;
-            for tmpWin in windows {
-                if (tmpWin.windowLevel == UIWindowLevelNormal){
-                    window = tmpWin as! UIWindow;
-                    break;
-                }
-            }
-        }
-        
-        let frontView:UIView = window.subviews[0]
-        let nextResponder = frontView.nextResponder()
-        
-        if nextResponder!.isKindOfClass(UIViewController.classForCoder()) {
-            result = nextResponder as? UIViewController
-        }else{
-            result = window.rootViewController
-        }
-        
-        return result!;
-    }
-    // MARK: - UIActionSheetDelegate
-    func actionSheet(actionSheet: UIActionSheet, clickedButtonAtIndex buttonIndex: Int){
-        if(buttonIndex != 0){
-            NSUserDefaults.standardUserDefaults().setObject(goalArray[buttonIndex-1], forKey: NUMBER_OF_STEPS_GOAL_KEY)
-            setGoal(NumberOfStepsGoal(steps: goalArray[buttonIndex-1]))
-        }
-    }
-
-    func willPresentActionSheet(actionSheet: UIActionSheet){
-        for subViwe in actionSheet.subviews{
-            subViwe.tintColor = AppTheme.NEVO_SOLAR_YELLOW()
-            if(subViwe.isKindOfClass(UIButton.classForCoder())){
-                let button:UIButton = subViwe as! UIButton
-                button.tintColor = AppTheme.NEVO_SOLAR_YELLOW()
-            }
-        }
-    }
-
     func setGoal(goal:Goal) {
         if(AppDelegate.getAppDelegate().isConnected()){
             let banner = Banner(title: NSLocalizedString("syncing_goal", comment: ""), subtitle: nil, image: nil, backgroundColor: AppTheme.NEVO_SOLAR_YELLOW())
@@ -236,12 +144,42 @@ class StepController: PublicClassController,UIActionSheetDelegate {
             banner.dismissesOnTap = true
             banner.show(duration: 2.0)
         }
+        
+    }
+}
 
+extension PageViewController: UIPageViewControllerDataSource,UIPageViewControllerDelegate {
+    
+    //返回当前页面的下一个页面
+    func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
+        if viewController.isKindOfClass(StepGoalSetingController) {
+            return pagingControllers[1]
+        }else if viewController.isKindOfClass(StepsHistoryViewController) {
+            return pagingControllers[2]
+        }else if viewController.isKindOfClass(SleepHistoricalViewController) {
+            return pagingControllers[3]
+        }
+        
+        return nil
+        
+    }
+    
+    //返回当前页面的上一个页面
+    func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
+        
+        if viewController.isKindOfClass(SolarIndicatorController) {
+            return pagingControllers[2]
+        }else if viewController.isKindOfClass(SleepHistoricalViewController) {
+            return pagingControllers[1]
+        }else if viewController.isKindOfClass(StepsHistoryViewController) {
+            return pagingControllers[0]
+        }
+        return nil
     }
 }
 
 // MARK: - Title View
-extension StepController {
+extension PageViewController {
     
     func initTitleView() {
         titleView = StepsTitleView.getStepsTitleView(CGRectMake(0,0,190,50))
@@ -273,7 +211,7 @@ extension StepController {
             calendarBackGroundView.tag = CALENDAR_VIEW_TAG
             let tap:UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapAction(_:)))
             calendarBackGroundView.addGestureRecognizer(tap)
-            pagingMenuController!.view.addSubview(calendarBackGroundView)
+            self.view.addSubview(calendarBackGroundView)
             
             let fillView:UIView = UIView(frame: CGRectMake(0,0,UIScreen.mainScreen().bounds.size.width,260))
             fillView.backgroundColor = UIColor(rgba: "#3a3739").colorWithAlphaComponent(1)
@@ -320,7 +258,7 @@ extension StepController {
      Finish the selected calendar call
      */
     func dismissCalendar() {
-        let view = pagingMenuController!.view.viewWithTag(CALENDAR_VIEW_TAG)
+        let view = self.view.viewWithTag(CALENDAR_VIEW_TAG)
         if(view != nil) {
             UIView.animateWithDuration(0.2, delay: 0, options: UIViewAnimationOptions.CurveEaseIn, animations: {
                 view?.alpha = 0
@@ -341,7 +279,7 @@ extension StepController {
 }
 
 // MARK: - CVCalendarViewDelegate, CVCalendarMenuViewDelegate
-extension StepController: CVCalendarViewDelegate, CVCalendarMenuViewDelegate {
+extension PageViewController: CVCalendarViewDelegate, CVCalendarMenuViewDelegate {
     
     func delay(delay:Double, closure:()->()) {
         dispatch_after(
@@ -425,7 +363,7 @@ extension StepController: CVCalendarViewDelegate, CVCalendarMenuViewDelegate {
 }
 
 // MARK: - CVCalendarViewAppearanceDelegate
-extension StepController: CVCalendarViewAppearanceDelegate {
+extension PageViewController: CVCalendarViewAppearanceDelegate {
     func dayLabelPresentWeekdayInitallyBold() -> Bool {
         return false
     }
@@ -447,9 +385,9 @@ extension StepController: CVCalendarViewAppearanceDelegate {
         return UIColor.whiteColor()
     }
     
-//    func dayLabelPresentWeekdayTextColor() -> UIColor {
-//        return UIColor.whiteColor()
-//    }
+    //    func dayLabelPresentWeekdayTextColor() -> UIColor {
+    //        return UIColor.whiteColor()
+    //    }
     
     func dayLabelPresentWeekdaySelectedTextColor() -> UIColor {
         return UIColor.whiteColor()

@@ -58,12 +58,22 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="iqE-5u-mSW" kind="relationship" relationship="rootViewController" id="daJ-gb-59R"/>
+                        <segue destination="umO-2D-Ge7" kind="relationship" relationship="rootViewController" id="WJd-gV-BfH"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3yg-Ph-IEs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1165" y="1207"/>
+        </scene>
+        <!--Page View Controller-->
+        <scene sceneID="Wa0-pp-UW0">
+            <objects>
+                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="umO-2D-Ge7" customClass="PageViewController" customModule="LunaR" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="u9o-4v-pzB"/>
+                </pageViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FZX-bq-6Gn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1165" y="1970"/>
         </scene>
         <!--Steps-->
         <scene sceneID="d5l-RI-6Wg">
@@ -83,7 +93,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NbF-OP-8w7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1165" y="1970"/>
+            <point key="canvasLocation" x="-1627" y="1970"/>
         </scene>
         <!--Alarm-->
         <scene sceneID="ct5-Mu-dmL">

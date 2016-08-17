@@ -41,7 +41,7 @@ class MainTabBarController: UITabBarController,UITabBarControllerDelegate {
 
             }
 
-            if contll!.isKindOfClass(StepController){
+            if contll!.isKindOfClass(PageViewController){
                 (nav as! UINavigationController).tabBarItem.title = NSLocalizedString("you_reached", comment: "")
                 contll?.title = NSLocalizedString("you_reached", comment: "")
                 AppTheme.DLog("StepController:\(contll)")
