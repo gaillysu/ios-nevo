@@ -43,6 +43,12 @@ class LoginController: UIViewController,UITextFieldDelegate {
         let rightButton:UIBarButtonItem = UIBarButtonItem(title: "Skip Login", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(rightAction(_:)))
         self.navigationItem.rightBarButtonItem = rightButton
         
+        for controllers:UIViewController in self.navigationController!.viewControllers {
+            if controllers.isKindOfClass(SetingViewController.self) {
+                self.navigationItem.rightBarButtonItem = nil
+            }
+        }
+        
         let tap:UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapAction(_:)))
         registerLabel.addGestureRecognizer(tap)
         

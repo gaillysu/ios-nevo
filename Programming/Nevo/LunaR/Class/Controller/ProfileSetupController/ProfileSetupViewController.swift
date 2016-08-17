@@ -13,6 +13,8 @@ import BRYXBanner
 import SwiftyJSON
 import MRProgress
 import XCGLogger
+import M13Checkbox
+
 
 private let DATEPICKER_TAG:Int = 1280
 private let PICKERVIEW_TAG:Int = 1380
@@ -25,6 +27,7 @@ class ProfileSetupViewController: UIViewController {
     @IBOutlet weak var password: AutocompleteField!
     @IBOutlet weak var retypePassword: AutocompleteField!
     @IBOutlet weak var submitButton: UIButton!
+    @IBOutlet weak var checkBox: M13Checkbox!
 
     private var nameDictionary:Dictionary<String,AnyObject> = ["first_name":"DroneUser","last_name":"User"]
     var account:Dictionary<String,AnyObject> = ["email":"","password":""]

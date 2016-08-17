@@ -19,6 +19,7 @@ PODS:
   - IQKeyboardManagerSwift (4.0.4)
   - KDCircularProgress (1.4.1)
   - LTNavigationBar (2.1.2)
+  - M13Checkbox (2.1.2)
   - MRProgress (0.8.3):
     - MRProgress/ActivityIndicator (= 0.8.3)
     - MRProgress/Blur (= 0.8.3)
@@ -77,6 +78,7 @@ DEPENDENCIES:
   - IQKeyboardManagerSwift
   - KDCircularProgress
   - LTNavigationBar
+  - M13Checkbox
   - MRProgress
   - NJKWebViewProgress
   - PagingMenuController
@@ -118,6 +120,7 @@ SPEC CHECKSUMS:
   IQKeyboardManagerSwift: e0964d04d6a29b71016fd346dca13ecb80a2823a
   KDCircularProgress: c931181cbe3fe988a93250ac700c5a0d8b90e2bf
   LTNavigationBar: bfc5fc06a83463009b9d99675f2a32dcbb631b00
+  M13Checkbox: fbc53145e3ca8ecd1c444a76439bdc0ddb17b008
   MRProgress: 16de7cc9f347e8846797a770db102a323fe7ef09
   NJKWebViewProgress: f481fd424cb5ecc27eacae11b5397db92fba9a4d
   PagingMenuController: a47a9669760b95f630cc3ef28bdce104f9107d14
@@ -131,6 +134,6 @@ SPEC CHECKSUMS:
   UMengAnalytics-NO-IDFA: 965a219b05475ff2a4c09a164139a27bbaa0e25b
   XCGLogger: d6e196e78940ff6daab17d6917107876f973fa31
 
-PODFILE CHECKSUM: d5a37b93a412c87042d7d315c437ebfe3213086e
+PODFILE CHECKSUM: b3e1e528bf138f935fb694cddc6f773222167391
 
 COCOAPODS: 1.1.0.beta.1
