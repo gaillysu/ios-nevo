@@ -106,14 +106,14 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
                     let alertAction:UIAlertAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: UIAlertActionStyle.Cancel) { (action:UIAlertAction) -> Void in
                         self.dismissViewControllerAnimated(true, completion: nil)
                     }
-                    alertAction.setValue(UIColor(rgba: "#7ED8D1"), forKey: "titleTextColor")
+                    alertAction.setValue(UIColor.getBaseColor(), forKey: "titleTextColor")
                     alert.addAction(alertAction)
 
                     let alertAction2:UIAlertAction = UIAlertAction(title: NSLocalizedString("Enter", comment: ""), style: UIAlertActionStyle.Default) { (action:UIAlertAction) -> Void in
                         self.currentIndex = 0
                         self.uploadPressed()
                     }
-                    alertAction2.setValue(UIColor(rgba: "#7ED8D1"), forKey: "titleTextColor")
+                    alertAction2.setValue(UIColor.getBaseColor(), forKey: "titleTextColor")
                     alert.addAction(alertAction2)
                     self.presentViewController(alert, animated: true, completion: nil)
 
@@ -251,6 +251,7 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
                 nevoOtaView.OTAprogressViewHiddenOrNotHidden()
 
                 let titleLabel:UILabel = UILabel(frame: CGRectMake(0,  nevoOtaView.nevoWacthImage.frame.origin.y + nevoOtaView.nevoWacthImage.frame.size.height+10, UIScreen.mainScreen().bounds.size.width, 35))
+                titleLabel.textColor = UIColor.whiteColor()
                 titleLabel.font = UIFont(name:"Helvetica-Light", size: 19)
                 titleLabel.text = NSLocalizedString("press_the_third_button", comment: "")
                 titleLabel.textAlignment = NSTextAlignment.Center
@@ -260,6 +261,7 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
                 let titleLabel2:UILabel = UILabel(frame: CGRectMake(0, 0, UIScreen.mainScreen().bounds.size.width, 50))
                 titleLabel2.center = CGPointMake(UIScreen.mainScreen().bounds.size.width/2.0, (titleLabel.frame.origin.y+titleLabel.frame.size.height)+25)
                 titleLabel2.font = UIFont(name:"Helvetica-Light", size: 16)
+                titleLabel2.textColor = UIColor.whiteColor()
                 titleLabel2.text = NSLocalizedString("in_order_reactivate_bluetooth", comment: "")
                 titleLabel2.numberOfLines = 0
                 titleLabel2.textAlignment = NSTextAlignment.Center
@@ -296,7 +298,7 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
             let alert :UIAlertView = UIAlertView(title: NSLocalizedString("Firmware Upgrade", comment: ""), message: errString as String, delegate: nil, cancelButtonTitle: NSLocalizedString("Ok", comment: ""))
             alert.show()
             self.mNevoOtaController!.reset(false)
-            self.currentTaskNumber--;
+            self.currentTaskNumber -= 1;
         });
 
     }
@@ -347,7 +349,7 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
             }
             continueButton.alpha = 0
             self.nevoOtaView.updatingView.hidden = false
-            nevoOtaView.nevoWacthImage.image = UIImage(named: "ota_pointer")
+            nevoOtaView.nevoWacthImage.image = UIImage(named: "ota_dial")
             nevoOtaView.OTAprogressViewHiddenOrNotHidden()
         }
 

@@ -28,6 +28,7 @@ class AlarmClockController: UITableViewController, SyncControllerDelegate,AddAla
         //self.navigationItem.leftBarButtonItem = self.editButtonItem()
 
         self.tableView.allowsSelectionDuringEditing = true;
+        self.tableView.separatorStyle = UITableViewCellSeparatorStyle.None
         
         self.tableView.registerNib(UINib(nibName: "AlarmClockVCell",bundle:nil), forCellReuseIdentifier: "alarmCell")
     }
@@ -315,7 +316,7 @@ class AlarmClockController: UITableViewController, SyncControllerDelegate,AddAla
     }
     
     override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView {
-        let headerLabel:UILabel = UILabel(frame: CGRectMake(0,0,UIScreen.mainScreen().bounds.size.width,30))
+        let headerLabel:LineLabel = LineLabel(frame: CGRectMake(0,0,UIScreen.mainScreen().bounds.size.width,30))
         headerLabel.backgroundColor = UIColor.getGreyColor()
         let titleArray:[String] = ["Sleep Alarm","Wake Alarm"]
         headerLabel.text = NSLocalizedString(titleArray[section], comment: "")
@@ -328,7 +329,7 @@ class AlarmClockController: UITableViewController, SyncControllerDelegate,AddAla
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let endCell:UITableViewCell = tableView.dequeueReusableCellWithIdentifier("alarmCell", forIndexPath: indexPath)
+        let endCell:AlarmClockVCell = tableView.dequeueReusableCellWithIdentifier("alarmCell", forIndexPath: indexPath) as! AlarmClockVCell
         endCell.selectionStyle = UITableViewCellSelectionStyle.None
         var alarmModel:UserAlarm?
         if indexPath.section == 0 {
@@ -337,17 +338,32 @@ class AlarmClockController: UITableViewController, SyncControllerDelegate,AddAla
             alarmModel = mWakeAlarmArray[indexPath.row] as? UserAlarm
         }
         
+        let dayArray:[String] = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]
         let date:NSDate = NSDate(timeIntervalSince1970: alarmModel!.timer)
-        (endCell as! AlarmClockVCell).dateLabel.text = stringFromDate(date)
-        (endCell as! AlarmClockVCell).titleLabel.text = alarmModel!.label
-        (endCell as! AlarmClockVCell).alarmSwicth.on = alarmModel!.status
-        (endCell as! AlarmClockVCell).alarmSwicth.tag = indexPath.row
-        (endCell as! AlarmClockVCell).alarmSwicth.on = alarmModel!.status
+        if alarmModel?.dayOfWeek == 0 {
+            endCell.alarmIn.text = "Alarm close"
+        }else{
+            if alarmModel!.dayOfWeek != NSDate().weekday {
+                endCell.alarmIn.text = "Alarm on \(dayArray[alarmModel!.dayOfWeek-1]) "
+            }else{
+                if date.hour>=NSDate().hour && date.minute>NSDate().minute {
+                    let nowHour:Int = abs(date.hour-NSDate().hour)
+                    let noeMinte:Int = abs(date.minute-NSDate().minute)
+                    endCell.alarmIn.text = "Alarm in \(nowHour)h \(noeMinte)m"
+                }else{
+                    endCell.alarmIn.text = "Alarm close"
+                }
+            }
+        }
+        endCell.dateLabel.text = stringFromDate(date)
+        endCell.titleLabel.text = alarmModel!.label
+        endCell.alarmSwicth.tag = indexPath.row
+        endCell.alarmSwicth.on = alarmModel!.status
         if indexPath.section == 0 {
-            (endCell as! AlarmClockVCell).alarmSwicth.addTarget(self, action: #selector(sleepSwitchManager(_:)), forControlEvents: UIControlEvents.ValueChanged)
+            endCell.alarmSwicth.addTarget(self, action: #selector(sleepSwitchManager(_:)), forControlEvents: UIControlEvents.ValueChanged)
         }else{
             endCell.contentView.backgroundColor = UIColor.getGreyColor()
-            (endCell as! AlarmClockVCell).alarmSwicth.addTarget(self, action: #selector(controllManager(_:)), forControlEvents: UIControlEvents.ValueChanged)
+            endCell.alarmSwicth.addTarget(self, action: #selector(controllManager(_:)), forControlEvents: UIControlEvents.ValueChanged)
         }
         
         return endCell

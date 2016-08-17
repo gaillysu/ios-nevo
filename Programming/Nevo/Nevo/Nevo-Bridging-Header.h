@@ -12,7 +12,6 @@
 #import "IntelHex2BinConverter.h"
 #import "FXBlurView.h"
 #import "MBProgressHUD+MJ.h"
-#import "NevoDBModel.h"
 #import <UMMobClick/MobClick.h>
 #import <FMDB/FMDB.h>
 #import <CommonCrypto/CommonCrypto.h>

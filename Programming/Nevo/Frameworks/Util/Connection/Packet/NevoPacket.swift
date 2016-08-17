@@ -91,7 +91,7 @@ class NevoPacket {
         }
         if(mPackets.count == 78)
         {
-            for var i:Int = 0 ;i < mPackets.count ; i++
+            for i:Int in 0  ..< mPackets.count 
             {
                 if UInt8(i) != NSData2Bytes(mPackets[i])[0] && i != mPackets.count - 1
                 {

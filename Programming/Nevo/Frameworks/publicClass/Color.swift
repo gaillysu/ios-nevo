@@ -31,6 +31,10 @@ extension UIColor{
         return UIColor(rgba: "#C7C7CC")
     }
 
+    public class func getNevoBaseColor() -> UIColor {
+        return UIColor(rgba: "#A08455")
+    }
+    
     public class func transparent() -> UIColor {
         return UIColor(red: 0/255.0 , green: 0/255.0, blue: 0/255.0, alpha: 0.0)
     }

@@ -13,8 +13,10 @@ import UIColor_Hex_Swift
 import PagingMenuController
 import XCGLogger
 import CVCalendar
+import SwiftEventBus
 
-private let CALENDAR_VIEW_TAG = 1800
+//let SELECTED_CALENDAR_NOTIFICATION = "SELECTED_CALENDAR_NOTIFICATION"
+//private let CALENDAR_VIEW_TAG = 1800
 private struct PagingMenuOptions: PagingMenuControllerCustomizable {
     
     private var componentType: ComponentType {
@@ -28,7 +30,10 @@ private struct PagingMenuOptions: PagingMenuControllerCustomizable {
         viewController2.view.backgroundColor = UIColor(rgba: "#54575a")
         let viewController3 = SleepHistoricalViewController()
         viewController3.view.backgroundColor = UIColor(rgba: "#54575a")
-        return [viewController1, viewController2,viewController3]
+        let viewController4 = SolarIndicatorController()
+        viewController4.view.backgroundColor = UIColor(rgba: "#54575a")
+        //
+        return [viewController1, viewController2,viewController3,viewController4]
     }
 }
 
@@ -79,20 +84,22 @@ class StepController: PublicClassController,UIActionSheetDelegate {
             let leftButton:UIButton = UIButton(type: UIButtonType.System)
             leftButton.setImage(UIImage(named: "left_button"), forState: UIControlState.Normal)
             leftButton.tag = 1900
-            leftButton.frame = CGRectMake(0, 0, 15, 27)
+            leftButton.frame = CGRectMake(0, 0, 35, 125)
+            leftButton.imageEdgeInsets = UIEdgeInsets(top: (125.0-30.0)/2.0, left: 10, bottom: (125.0-30.0)/2.0, right: 10)
             leftButton.addTarget(self, action: #selector(slidingAction(_:)), forControlEvents: UIControlEvents.TouchUpInside)
             pagingMenuController!.view.addSubview(leftButton)
             leftButton.tintColor = UIColor.getWhiteBaseColor()
-            leftButton.center = CGPointMake(leftButton.frame.size.width/2.0, self.view.frame.size.height/2.0-50)
+            leftButton.center = CGPointMake(leftButton.frame.size.width/2.0, self.view.frame.size.height/2.0-70)
             
             let rightButton:UIButton = UIButton(type: UIButtonType.System)
             rightButton.setImage(UIImage(named: "right_button"), forState: UIControlState.Normal)
             rightButton.tag = 1910
-            rightButton.frame = CGRectMake(0, 0, 15, 27)
+            rightButton.frame = CGRectMake(0, 0, 35, 125)
+            rightButton.imageEdgeInsets = UIEdgeInsets(top: (125.0-30.0)/2.0, left: 10, bottom: (125.0-30.0)/2.0, right: 10)
             rightButton.addTarget(self, action: #selector(slidingAction(_:)), forControlEvents: UIControlEvents.TouchUpInside)
             pagingMenuController!.view.addSubview(rightButton)
             rightButton.tintColor = UIColor.getWhiteBaseColor()
-            rightButton.center = CGPointMake(UIScreen.mainScreen().bounds.size.width-rightButton.frame.size.width/2.0, self.view.frame.size.height/2.0-50)
+            rightButton.center = CGPointMake(UIScreen.mainScreen().bounds.size.width-rightButton.frame.size.width/2.0, self.view.frame.size.height/2.0-70)
         }
     }
     
@@ -134,12 +141,7 @@ class StepController: PublicClassController,UIActionSheetDelegate {
     func rightBarButtonAction(rightBar:UIBarButtonItem){
         if((UIDevice.currentDevice().systemVersion as NSString).floatValue >= 8.0){
             
-            let actionSheet:UIAlertController = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
-            let alertAction:UIAlertAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: UIAlertActionStyle.Cancel, handler: nil)
-            alertAction.setValue(UIColor(rgba: "#7ED8D1"), forKey: "titleTextColor")
-            //alertAction.setValue(UIImage(named: "google"), forKey: "Image")
-            //alertAction.setValue(true, forKey: "checked")
-            actionSheet.addAction(alertAction)
+            let actionSheet:ActionSheetView = ActionSheetView(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
 
             let array:NSArray = Presets.getAll()
             for pArray in array {
@@ -156,44 +158,25 @@ class StepController: PublicClassController,UIActionSheetDelegate {
                     actionSheet.addAction(alertAction2)
                 }
             }
-//            actionSheet.view.subviews.first?.subviews.first?.backgroundColor = UIColor.redColor()
-            for view in actionSheet.view.subviews {
-                for view2 in view.subviews {
-                    for view3 in view2.subviews {
-                        for view4 in view3.subviews {
-                            XCGLogger.defaultInstance().debug("\(view4)")
-                            for view5 in view4.subviews {
-                                
-                            }
-                            
-                        }
-                        
-                    }
-                }
-                
-            }
-            for view in actionSheet.view.subviews.first!.subviews {
-                
-                for view2 in view.subviews {
-                    for view3 in view2.subviews {
-                        view3.backgroundColor = UIColor(rgba: "#54575A")
-                    }
-                }
-                
-            }
-//            XCGLogger.defaultInstance().debug("actionSheet:\(actionSheet.view.subviews.first?.subviews.first)")
-            self.presentViewController(actionSheet, animated: true, completion: nil)
+            
+            let alertAction:UIAlertAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: UIAlertActionStyle.Cancel, handler: nil)
+            alertAction.setValue(UIColor(rgba: "#7ED8D1"), forKey: "titleTextColor")
+            //alertAction.setValue(UIImage(named: "google"), forKey: "Image")
+            //alertAction.setValue(true, forKey: "checked")
+            actionSheet.addAction(alertAction)
+            
+            self.presentViewController(actionSheet, animated: true, completion:nil)
         }else{
             let actionSheet:UIActionSheet = UIActionSheet(title: nil, delegate: self, cancelButtonTitle: "Cancel", destructiveButtonTitle: nil)
             for steps in goalArray {
                 actionSheet.addButtonWithTitle("\(steps) steps")
             }
             for button:UIView in actionSheet.subviews{
-                button.tintColor = AppTheme.NEVO_SOLAR_YELLOW()
-                button.backgroundColor = AppTheme.NEVO_SOLAR_YELLOW()
+                button.tintColor = UIColor.getBaseColor()
+                button.backgroundColor = UIColor.getBaseColor()
             }
-            actionSheet.layer.backgroundColor = AppTheme.NEVO_SOLAR_YELLOW().CGColor
-            actionSheet.tintColor = AppTheme.NEVO_SOLAR_YELLOW()
+            actionSheet.layer.backgroundColor = UIColor.getBaseColor().CGColor
+            actionSheet.tintColor = UIColor.getBaseColor()
             actionSheet.actionSheetStyle = UIActionSheetStyle.Default;
             actionSheet.showInView(self.view)
         }
@@ -400,6 +383,9 @@ extension StepController: CVCalendarViewDelegate, CVCalendarMenuViewDelegate {
         dayView.selectionView?.shape = CVShape.Rect
         self.dismissCalendar()
         titleView?.selectedFinishTitleView()
+        let dayDate:NSDate = dayView.date!.convertedDate()!
+        SwiftEventBus.post(SELECTED_CALENDAR_NOTIFICATION, userInfo: ["selectedDate":dayDate])
+        
     }
     
     func dotMarker(shouldShowOnDayView dayView: CVCalendarDayView) -> Bool {

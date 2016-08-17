@@ -8,6 +8,7 @@
 
 import UIKit
 import Charts
+import SwiftEventBus
 
 class StepsHistoryViewController: PublicClassController,UICollectionViewDelegateFlowLayout,ChartViewDelegate {
 
@@ -45,10 +46,17 @@ class StepsHistoryViewController: PublicClassController,UICollectionViewDelegate
         stepsHistory.registerNib(UINib(nibName: "StepGoalSetingViewCell", bundle: NSBundle.mainBundle()), forCellWithReuseIdentifier: "StepGoalSetingIdentifier")
         stepsHistory.registerClass(UICollectionViewCell.classForCoder(), forCellWithReuseIdentifier: "StepsHistoryViewCell")
         (stepsHistory.collectionViewLayout as! UICollectionViewFlowLayout).itemSize = CGSizeMake(UIScreen.mainScreen().bounds.size.width/2.0, 40.0)
+        
+        SwiftEventBus.onMainThread(self, name: SELECTED_CALENDAR_NOTIFICATION) { (notification) in
+            let userinfo:NSDate = notification.userInfo!["selectedDate"] as! NSDate
+            self.queryArray = UserSteps.getCriteria("WHERE date = \(userinfo.beginningOfDay.timeIntervalSince1970)")
+            self.bulidStepHistoricalChartView(self.queryArray)
+        }
     }
 
-    override func viewWillAppear(animated: Bool) {
-        
+    override func viewDidDisappear(animated: Bool) {
+        super.viewDidDisappear(animated)
+        SwiftEventBus.unregister(self, name: SELECTED_CALENDAR_NOTIFICATION)
     }
 
     override func viewDidLayoutSubviews() {
@@ -143,6 +151,7 @@ class StepsHistoryViewController: PublicClassController,UICollectionViewDelegate
     
     func setDataCount(count:Int, Range range:Double){
         if(count == 0) {
+            chartView?.data = nil
             return
         }
         
@@ -184,8 +193,8 @@ class StepsHistoryViewController: PublicClassController,UICollectionViewDelegate
         let stepsModel:UserSteps = queryModel.objectAtIndex(0) as! UserSteps;
         //let hourlystepsArray:NSArray = AppTheme.jsonToArray(stepsModel.hourlysteps)
         self.didSelectedhighlightValue(entry.xIndex,dataSetIndex: dataSetIndex, dataSteps:stepsModel)
-        let array:NSArray = NSArray(array: [entry.xIndex,dataSetIndex,stepsModel])
-        AppTheme.KeyedArchiverName(SELECTED_DATA, andObject: array)
+//        let array:NSArray = NSArray(array: [entry.xIndex,dataSetIndex,stepsModel])
+//        AppTheme.KeyedArchiverName(SELECTED_DATA, andObject: array)
     }
     
     func didSelectedhighlightValue(xIndex:Int,dataSetIndex: Int, dataSteps:UserSteps) {

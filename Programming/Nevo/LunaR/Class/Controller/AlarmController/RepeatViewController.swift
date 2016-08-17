@@ -35,6 +35,9 @@ class RepeatViewController: UIViewController {
         self.view.backgroundColor = UIColor.getGreyColor()
         tableView.backgroundColor = UIColor.getGreyColor()
         tableView.separatorColor = UIColor.getLightBaseColor()
+        tableView.separatorStyle = UITableViewCellSeparatorStyle.SingleLine
+        tableView.tableFooterView = UIView()
+        tableView.contentInset = UIEdgeInsets(top: 30, left: 0, bottom: 0, right: 0)
         // Do any additional setup after loading the view.
     }
 
@@ -79,6 +82,9 @@ class RepeatViewController: UIViewController {
         if(cell == nil){
             cell = UITableViewCell(style: UITableViewCellStyle.Value1, reuseIdentifier: "LabelCell")
         }
+        let selectedView:UIView = UIView()
+        selectedView.backgroundColor = UIColor.getLightBaseColor()
+        cell?.selectedBackgroundView = selectedView
         cell?.backgroundColor = UIColor.getGreyColor()
         cell?.contentView.backgroundColor = UIColor.getGreyColor()
         cell!.textLabel?.textColor = UIColor.whiteColor()
@@ -91,6 +97,7 @@ class RepeatViewController: UIViewController {
             let view = cell?.contentView.viewWithTag(1500)
             if(view == nil){
                 let selectedImage:UIImageView = UIImageView(frame: CGRectMake(0, 0, 25, 25))
+                selectedImage.contentMode = UIViewContentMode.ScaleAspectFit
                 selectedImage.tintColor = UIColor.getBaseColor()
                 selectedImage.image = UIImage(named: "notifications_selected_background")
                 selectedImage.tag = 1500

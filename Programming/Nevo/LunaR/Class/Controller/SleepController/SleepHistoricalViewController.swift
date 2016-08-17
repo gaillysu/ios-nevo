@@ -8,12 +8,14 @@
 
 import UIKit
 import Charts
+import SwiftEventBus
 
 class SleepHistoricalViewController: PublicClassController,ChartViewDelegate,SelectedChartViewDelegate {
 
     @IBOutlet var queryView: SleepHistoricalView!
     private var contentTitleArray:[String] = []
     private var contentTArray:[String] = [NSLocalizedString("--", comment: ""),NSLocalizedString("--", comment: ""),NSLocalizedString("--", comment: ""),NSLocalizedString("--", comment: ""),NSLocalizedString("--", comment: ""),NSLocalizedString("--", comment: "")]
+    private var selectedDate:NSDate = NSDate()
 
     private var queryArray:NSArray?
     init() {
@@ -29,24 +31,36 @@ class SleepHistoricalViewController: PublicClassController,ChartViewDelegate,Sel
         super.viewDidLoad()
         self.navigationItem.title = NSLocalizedString("sleep_history_title", comment: "")
         contentTitleArray = [NSLocalizedString("sleep_duration", comment: ""), NSLocalizedString("sleep_timer", comment: ""), NSLocalizedString("wake_timer", comment: ""), NSLocalizedString("deep_sleep", comment: ""), NSLocalizedString("light_sleep", comment: ""), NSLocalizedString("wake_duration", comment: "")]
+        
+        SwiftEventBus.onMainThread(self, name: SELECTED_CALENDAR_NOTIFICATION) { (notification) in
+            let userinfo:NSDate = notification.userInfo!["selectedDate"] as! NSDate
+            self.selectedDate = userinfo
+            self.queryArray = UserSleep.getCriteria("WHERE date BETWEEN \(userinfo.timeIntervalSince1970-86400) AND \(userinfo.endOfDay.timeIntervalSince1970)")
+            self.queryView.bulidQueryView(self,modelArray: self.queryArray!)
+        }
 
     }
 
+    override func viewDidDisappear(animated: Bool) {
+        super.viewDidDisappear(animated)
+        SwiftEventBus.unregister(self, name: SELECTED_CALENDAR_NOTIFICATION)
+    }
+    
     override func viewWillAppear(animated: Bool) {
-        queryArray = UserSleep.getAll()
+        self.queryArray = UserSleep.getCriteria("WHERE date BETWEEN \(selectedDate.timeIntervalSince1970-86400) AND \(selectedDate.endOfDay.timeIntervalSince1970)")
         queryView.bulidQueryView(self,modelArray: queryArray!)
 
         if(queryArray?.count>0) {
             queryView.nodataLabel.hidden = true
         }else{
-            queryView.nodataLabel.backgroundColor = UIColor.whiteColor()
+            queryView.nodataLabel.backgroundColor = UIColor.getGreyColor()
             queryView.nodataLabel.hidden = false
             queryView.nodataLabel.text = NSLocalizedString("no_data", comment: "");
         }
     }
 
     override func viewDidLayoutSubviews() {
-        queryView.detailCollectionView.backgroundColor = UIColor.whiteColor()
+        queryView.detailCollectionView.backgroundColor = UIColor.getGreyColor()
         queryView.detailCollectionView.registerClass(UICollectionViewCell.classForCoder(), forCellWithReuseIdentifier: "SleepHistoryViewCell")
         (queryView.detailCollectionView.collectionViewLayout as! UICollectionViewFlowLayout).itemSize = CGSizeMake(UIScreen.mainScreen().bounds.size.width/3.0, queryView.detailCollectionView.frame.size.height/2.0)
     }
@@ -92,7 +106,7 @@ class SleepHistoricalViewController: PublicClassController,ChartViewDelegate,Sel
         if(titleView == nil){
             let titleLabel:UILabel = UILabel(frame: CGRectMake(0, 0, cell.contentView.frame.size.width, labelheight/2.0))
             titleLabel.textAlignment = NSTextAlignment.Center
-            titleLabel.textColor = UIColor.grayColor()
+            titleLabel.textColor = UIColor.whiteColor()
             titleLabel.backgroundColor = UIColor.clearColor()
             titleLabel.font = AppTheme.FONT_SFUIDISPLAY_REGULAR(mSize: iphone ? 12:15)
             titleLabel.tag = 1500

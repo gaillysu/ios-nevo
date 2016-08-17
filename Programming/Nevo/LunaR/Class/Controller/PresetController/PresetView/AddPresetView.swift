@@ -17,9 +17,9 @@ class AddPresetView: UIView {
     func bulidAddPresetView(navigation:UINavigationItem,delegate:ButtonManagerCallBack){
         mDelegate = delegate
         navigation.title = NSLocalizedString("add_goal", comment: "")
-        self.backgroundColor = AppTheme.hexStringToColor("#EFEFF4")//AppTheme.NEVO_CUSTOM_COLOR(Red: 241.0, Green: 240.0, Blue: 241.0)
+        self.backgroundColor = UIColor.getGreyColor()//AppTheme.NEVO_CUSTOM_COLOR(Red: 241.0, Green: 240.0, Blue: 241.0)
 
-        let rightButton:UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Save, target: self, action: Selector("controllManager:"))
+        let rightButton:UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Save, target: self, action: #selector(AddPresetView.controllManager(_:)))
         navigation.rightBarButtonItem = rightButton
 
         let rightView:UILabel = UILabel(frame: CGRectMake(0,0,50,presetNumber.frame.size.height))

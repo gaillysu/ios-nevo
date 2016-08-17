@@ -9,7 +9,7 @@
 import UIKit
 
 class SleepController: PublicClassController,toolbarSegmentedDelegate {
-    var querss:SleepHistoricalViewController?
+    var querss:SleepHistoryViewController?
     var sleepTrking:SleepTrackingController?
     private var currentVC:UIViewController?
     override func viewDidLoad() {
@@ -26,7 +26,7 @@ class SleepController: PublicClassController,toolbarSegmentedDelegate {
         self.view.addSubview(sleepTrking!.view)
         currentVC = sleepTrking
 
-        querss = SleepHistoricalViewController()
+        querss = SleepHistoryViewController()
         querss?.view.frame = CGRectMake(0, toolBarHeight, self.view.frame.size.width, UIScreen.mainScreen().bounds.size.height-toolBarHeight-113)
     }
 

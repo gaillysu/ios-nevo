@@ -211,7 +211,7 @@ class NevoOtaView: UIView {
     Upgrade success callback function
     */
     func upgradeSuccessful(){
-        nevoWacthImage.image = AppTheme.GET_RESOURCES_IMAGE("connected");
+        nevoWacthImage.image = UIImage(named: "ota_pointer");
         OTAprogressView!.hidden = true
     }
 

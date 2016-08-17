@@ -30,10 +30,10 @@ class SetingViewController: UIViewController,SyncControllerDelegate,ButtonManage
 
         notificationList.bulidNotificationViewUI(self)
 
-        sources = [NSLocalizedString("Link-Loss Notifications", comment: ""),NSLocalizedString("Notifications", comment: ""),NSLocalizedString("My nevo", comment: ""),NSLocalizedString("Support", comment: ""),NSLocalizedString("Connect to other apps", comment: "")]
-        sourcesImage = ["new_iOS_link_icon","new_iOS_notfications_icon","new_iOS_mynevo_iocn","new_iOS_support_icon","new_iOS_link_icon"]
-        titleArray = [NSLocalizedString("goals", comment: ""),NSLocalizedString("find_my_watch", comment: ""),NSLocalizedString("forget_watch", comment: "")]
-        titleArrayImage = ["new_iOS_goals_icon","new_iOS_findmywatch_icon","forget_watch","iOS_rate"]
+        sources = [NSLocalizedString("Link-Loss Notifications", comment: ""),NSLocalizedString("Notifications", comment: ""),NSLocalizedString("My LunaR", comment: ""),NSLocalizedString("Support", comment: "")]
+        sourcesImage = ["new_iOS_link_icon","new_iOS_notfications_icon","new_iOS_mynevo_iocn","new_iOS_support_icon"]
+        titleArray = [NSLocalizedString("goals", comment: ""),NSLocalizedString("find_my_watch", comment: ""),NSLocalizedString("forget_watch", comment: ""),NSLocalizedString("logout", comment: "")]
+        titleArrayImage = ["new_iOS_goals_icon","new_iOS_findmywatch_icon","forget_watch","logout"]
         
         notificationList.tableListView.registerNib(UINib(nibName:"SetingLoginCell" ,bundle: nil), forCellReuseIdentifier: "SetingLoginIdentifier")
         notificationList.tableListView.registerNib(UINib(nibName:"SetingNotLoginCell" ,bundle: nil), forCellReuseIdentifier: "SetingNotLoginIdentifier")
@@ -106,7 +106,7 @@ class SetingViewController: UIViewController,SyncControllerDelegate,ButtonManage
                 self.navigationController?.pushViewController(login, animated: true)
             }else{
                 let userprofile:UserProfileController = UserProfileController()
-                userprofile.title = "UserProfile"
+                userprofile.title = "Profile"
                 userprofile.hidesBottomBarWhenPushed = true
                 self.navigationController?.pushViewController(userprofile, animated: true)
             }
@@ -118,7 +118,7 @@ class SetingViewController: UIViewController,SyncControllerDelegate,ButtonManage
                 self.navigationController?.pushViewController(notification, animated: true)
             }
 
-            if(isEqualString("\(sources.objectAtIndex(indexPath.row))",string2: NSLocalizedString("My nevo", comment: ""))){
+            if(isEqualString("\(sources.objectAtIndex(indexPath.row))",string2: NSLocalizedString("My LunaR", comment: ""))){
                 if(AppDelegate.getAppDelegate().isConnected()){
                     AppTheme.DLog("My nevo")
                     let mynevo:MyNevoController = MyNevoController()
@@ -187,11 +187,11 @@ class SetingViewController: UIViewController,SyncControllerDelegate,ButtonManage
                 if((UIDevice.currentDevice().systemVersion as NSString).floatValue >= 8.0){
 
                     let actionSheet:UIAlertController = UIAlertController(title: NSLocalizedString("forget_watch", comment: ""), message: NSLocalizedString("forget_your_nevo", comment: ""), preferredStyle: UIAlertControllerStyle.Alert)
-                    actionSheet.view.tintColor = AppTheme.NEVO_SOLAR_YELLOW()
 
                     let alertAction:UIAlertAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: UIAlertActionStyle.Cancel, handler: { (alert) -> Void in
 
                     })
+                    alertAction.setValue(UIColor(rgba: "#7ED8D1"), forKey: "titleTextColor")
                     actionSheet.addAction(alertAction)
 
                     let alertAction2:UIAlertAction = UIAlertAction(title: NSLocalizedString("forget", comment: ""), style: UIAlertActionStyle.Default, handler: { ( alert) -> Void in
@@ -201,6 +201,7 @@ class SetingViewController: UIViewController,SyncControllerDelegate,ButtonManage
                         nav.navigationBarHidden = true
                         self.presentViewController(nav, animated: true, completion: nil)
                     })
+                    alertAction2.setValue(UIColor(rgba: "#7ED8D1"), forKey: "titleTextColor")
                     actionSheet.addAction(alertAction2)
 
                     self.presentViewController(actionSheet, animated: true, completion: nil)
@@ -212,13 +213,23 @@ class SetingViewController: UIViewController,SyncControllerDelegate,ButtonManage
                 }
             }
 
-            if(isEqualString("\(titleArray[indexPath.row])",string2: NSLocalizedString("Rate", comment: ""))){
-                if(AppDelegate.getAppDelegate().getNetworkState()) {
-                    iRate.sharedInstance().openRatingsPageInAppStore()
+            if indexPath.row == 3{
+                let user:NSArray = UserProfile.getAll()
+                if(user.count>0){
+                    let userProfile:UserProfile = user.objectAtIndex(0) as! UserProfile
+                    if(userProfile.remove()){
+                        let tableViewCell: UITableViewCell = tableView.cellForRowAtIndexPath(indexPath)!
+                        tableViewCell.accessoryType = UITableViewCellAccessoryType.None
+                        tableViewCell.textLabel?.text = "Login"
+                    }else{
+                        let loginController:LoginController = LoginController()
+                        loginController.hidesBottomBarWhenPushed = true
+                        self.navigationController?.pushViewController(loginController, animated: true)
+                    }
                 }else{
-                    let banner = Banner(title: NSLocalizedString("Not Internet", comment: ""), subtitle: nil, image: nil, backgroundColor: UIColor.redColor())
-                    banner.dismissesOnTap = true
-                    banner.show(duration: 0.6)
+                    let loginController:LoginController = LoginController()
+                    loginController.hidesBottomBarWhenPushed = true
+                    self.navigationController?.pushViewController(loginController, animated: true)
                 }
             }
             break
@@ -273,7 +284,7 @@ class SetingViewController: UIViewController,SyncControllerDelegate,ButtonManage
             if user.count>0 {
                 let cell = tableView.dequeueReusableCellWithIdentifier("SetingInfoIdentifier", forIndexPath: indexPath)
                 cell.backgroundColor = UIColor.getLightBaseColor()
-                cell.contentView.backgroundColor = UIColor.getLightBaseColor()
+                //cell.contentView.backgroundColor = UIColor.getLightBaseColor()
                 cell.separatorInset = UIEdgeInsets(top: 0, left: UIScreen.mainScreen().bounds.size.width, bottom: 0, right: 0)
                 let user:NSArray = UserProfile.getAll()
                 
@@ -284,7 +295,7 @@ class SetingViewController: UIViewController,SyncControllerDelegate,ButtonManage
             }else{
                 let cell = tableView.dequeueReusableCellWithIdentifier("SetingNotLoginIdentifier", forIndexPath: indexPath)
                 cell.backgroundColor = UIColor.getLightBaseColor()
-                cell.contentView.backgroundColor = UIColor.getLightBaseColor()
+                //cell.contentView.backgroundColor = UIColor.getLightBaseColor()
                 cell.separatorInset = UIEdgeInsets(top: 0, left: UIScreen.mainScreen().bounds.size.width, bottom: 0, right: 0)
                 return cell
             }
@@ -295,28 +306,13 @@ class SetingViewController: UIViewController,SyncControllerDelegate,ButtonManage
             }
             return notificationList.NotificationSystemTableViewCell(indexPath, tableView: tableView, title: sources[indexPath.row] as! String ,imageName:sourcesImage[indexPath.row])
         case 2:
-            return notificationList.NotificationSystemTableViewCell(indexPath, tableView: tableView, title: titleArray[indexPath.row] ,imageName:titleArrayImage[indexPath.row])
-        case 3:
-            let cell = notificationList.NotificationSystemTableViewCell(indexPath, tableView: tableView, title:"" ,imageName:"")
-            cell.accessoryType = UITableViewCellAccessoryType.None
-
-            var loginLabel = cell.contentView.viewWithTag(1900)
-            if(loginLabel == nil){
-                loginLabel = UILabel(frame: CGRectMake(0,0,UIScreen.mainScreen().bounds.size.width,cell.frame.size.height))
-                loginLabel?.backgroundColor = UIColor.clearColor()
-                loginLabel?.tag = 1900
-                (loginLabel as! UILabel).textColor = UIColor.whiteColor()
-                (loginLabel as! UILabel).textAlignment = NSTextAlignment.Center
-                (loginLabel as! UILabel).text = "Login"
-                cell.contentView.addSubview(loginLabel!)
-                cell.backgroundColor=UIColor(red:129.0/255.0, green: 150.0/255.0, blue: 248.0/255.0, alpha: 1.0)
-            }
             let user:NSArray = UserProfile.getAll()
-            if(user.count>0){
-                (loginLabel as! UILabel).text = "Logout"
-                cell.backgroundColor = AppTheme.NEVO_SOLAR_YELLOW()
+            var textString:String = "Logout"
+            if(user.count == 0){
+                textString = "Login"
             }
-            return cell
+            titleArray[3] = textString
+            return notificationList.NotificationSystemTableViewCell(indexPath, tableView: tableView, title: titleArray[indexPath.row] ,imageName:titleArrayImage[indexPath.row])
 
         default: return notificationList.NotificationSystemTableViewCell(indexPath, tableView: tableView, title: sources[1] as! String ,imageName:titleArrayImage[indexPath.row]);
         }

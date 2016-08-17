@@ -1,18 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <mutableArray key="SFCompactDisplay-Bold.ttf">
-            <string>SFCompactDisplay-Bold</string>
-        </mutableArray>
-        <mutableArray key="SFCompactDisplay-Semibold.ttf">
-            <string>SFCompactDisplay-Semibold</string>
-        </mutableArray>
-    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TutorialFiveViewController">
             <connections>
@@ -30,7 +22,7 @@
                     <constraints>
                         <constraint firstAttribute="height" constant="16" id="cXC-Eh-sUb"/>
                     </constraints>
-                    <fontDescription key="fontDescription" name="SFCompactDisplay-Semibold" family="SF Compact Display" pointSize="13"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="11"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
@@ -39,7 +31,7 @@
                     <constraints>
                         <constraint firstAttribute="height" constant="42" id="6nY-vk-gQq"/>
                     </constraints>
-                    <fontDescription key="fontDescription" name="SFCompactDisplay-Bold" family="SF Compact Display" pointSize="35"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="39"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
@@ -50,7 +42,7 @@
                     </constraints>
                 </imageView>
             </subviews>
-            <color key="backgroundColor" red="0.96470588235294119" green="0.96470588235294119" blue="0.96470588235294119" alpha="1" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="wVD-0G-Xmg" firstAttribute="top" secondItem="jOH-fH-NFX" secondAttribute="top" constant="75" id="1IG-Z5-AeF"/>
                 <constraint firstItem="hBX-Kh-EeG" firstAttribute="top" secondItem="wVD-0G-Xmg" secondAttribute="bottom" constant="8" id="YZL-UN-5R8"/>

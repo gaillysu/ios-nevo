@@ -1,9 +1,9 @@
 
 /* Class = "UILabel"; text = "To activate sleeping-mode, push and hold the  first button, until the white LED blinks."; ObjectID = "4nA-h1-L87"; */
-"4nA-h1-L87.text" = "To activate sleeping-mode, push and hold the  first button, until the white LED blinks.";
+"4nA-h1-L87.text" = "激活的睡眠状态,长按第一个按钮,直到白光LED眨眼。";
 
 /* Class = "UIButton"; normalTitle = "Go it!"; ObjectID = "gue-7o-VWB"; */
-"gue-7o-VWB.normalTitle" = "Go it!";
+"gue-7o-VWB.normalTitle" = "去吧!";
 
 /* Class = "UILabel"; text = "Track your sleep"; ObjectID = "vIS-Wv-bD5"; */
-"vIS-Wv-bD5.text" = "Track your sleep";
+"vIS-Wv-bD5.text" = "你的睡眠记录";

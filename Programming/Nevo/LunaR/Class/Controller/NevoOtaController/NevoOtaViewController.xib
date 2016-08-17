@@ -17,7 +17,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ota_ dial" translatesAutoresizingMaskIntoConstraints="NO" id="IS9-SL-jhg">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ota_dial" translatesAutoresizingMaskIntoConstraints="NO" id="IS9-SL-jhg">
                     <rect key="frame" x="30" y="84" width="260" height="260"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="IS9-SL-jhg" secondAttribute="height" multiplier="1:1" id="DBo-RR-sI5"/>
@@ -120,6 +120,6 @@
         </view>
     </objects>
     <resources>
-        <image name="ota_ dial" width="350" height="350"/>
+        <image name="ota_dial" width="350" height="350"/>
     </resources>
 </document>

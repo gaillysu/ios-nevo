@@ -43,8 +43,18 @@ class LoginController: UIViewController,UITextFieldDelegate {
         let rightButton:UIBarButtonItem = UIBarButtonItem(title: "Skip Login", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(rightAction(_:)))
         self.navigationItem.rightBarButtonItem = rightButton
         
+        for controllers:UIViewController in self.navigationController!.viewControllers {
+            if controllers.isKindOfClass(SetingViewController.self) {
+                self.navigationItem.rightBarButtonItem = nil
+            }
+        }
+        
         let tap:UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapAction(_:)))
         registerLabel.addGestureRecognizer(tap)
+        
+        if AppTheme.GET_IS_iPhone5S()||AppTheme.GET_IS_iPhone4S() {
+            logoinButton.titleLabel?.font = UIFont(name: "Raleway", size: 20)
+        }
         
     }
     
