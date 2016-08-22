@@ -221,7 +221,7 @@ extension PageViewController {
             calendarBackGroundView.addSubview(fillView)
             
             self.menuView = CVCalendarMenuView(frame: CGRectMake(10, 20, UIScreen.mainScreen().bounds.size.width - 20, 20))
-            self.menuView?.dayOfWeekTextColor = UIColor.whiteColor()
+            self.menuView?.dayOfWeekTextColor = UIColor.blackColor()
             self.menuView?.dayOfWeekFont = UIFont.systemFontOfSize(15)
             self.menuView?.backgroundColor = UIColor.getCalendarColor()
             self.menuView!.menuViewDelegate = self
@@ -376,11 +376,19 @@ extension PageViewController: CVCalendarViewAppearanceDelegate {
     }
     
     func dayLabelWeekdayInTextColor() -> UIColor {
-        return UIColor.whiteColor()
+        return UIColor.blackColor()
     }
     
     func dayLabelWeekdaySelectedBackgroundColor() -> UIColor {
-        return UIColor(rgba: "#7ED8D1")
+        return AppTheme.NEVO_SOLAR_YELLOW()
+    }
+    
+    func dayLabelPresentWeekdayTextColor() -> UIColor{
+        return AppTheme.NEVO_SOLAR_YELLOW()
+    }
+    
+    func dayLabelPresentWeekdayHighlightedTextColor() -> UIColor {
+        return UIColor.blackColor()
     }
     
     /// Text color.
