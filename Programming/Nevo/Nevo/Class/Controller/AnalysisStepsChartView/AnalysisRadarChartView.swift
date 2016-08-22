@@ -1,19 +1,15 @@
 //
-//  alarmClockView.swift
+//  AnalysisRadarChartView.swift
 //  Nevo
 //
-//  Created by leiyuncun on 15/2/12.
-//  Copyright (c) 2015年 Nevo. All rights reserved.
+//  Created by leiyuncun on 16/8/9.
+//  Copyright © 2016年 Nevo. All rights reserved.
 //
 
 import UIKit
+import Charts
 
-class alarmClockView: UITableView {
-    
-    func bulidAlarmView() {
-        //title.text = NSLocalizedString("alarmTitle", comment: "")
-    }
-
+class AnalysisRadarChartView: RadarChartView {
 
     /*
     // Only override drawRect: if you perform custom drawing.

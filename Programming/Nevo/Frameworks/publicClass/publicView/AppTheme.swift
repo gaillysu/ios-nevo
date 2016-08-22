@@ -17,11 +17,11 @@ Colors, fonts etc...
 class AppTheme {
 
     #if DEBUG
-    class func DLog(message: String, filename: String = __FILE__, function: String = __FUNCTION__, line: Int = __LINE__) {
+    class func DLog(message: String, filename: String = #file, function: String = #function, line: Int = #line) {
         NSLog("[\((filename as NSString).lastPathComponent):\(line)] \(function) - \(message)")
     }
     #else
-    class func DLog(message: String, filename: String = __FILE__, function: String = __FUNCTION__, line: Int = __LINE__) {
+    class func DLog(message: String, filename: String = #file, function: String = #function, line: Int = #line) {
     }
     #endif
     /**
@@ -29,7 +29,7 @@ class AppTheme {
     sRGB value : #ff9933
     */
     class func NEVO_SOLAR_YELLOW() -> UIColor {
-        return UIColor(red: 245/255.0, green: 164/255.0, blue: 28/255.0, alpha: 1)
+        return UIColor(rgba: "#A08455")
     }
 
     class func NEVO_SOLAR_GRAY() -> UIColor {

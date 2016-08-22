@@ -16,6 +16,7 @@ class NotAlarmView: UIView {
         let view:UIView = nibView.objectAtIndex(0) as! UIView
         view.frame = CGRectMake(0, 0, UIScreen.mainScreen().bounds.size.width, UIScreen.mainScreen().bounds.size.height)
         (nibView.objectAtIndex(0) as! NotAlarmView).contentLabel.text = NSLocalizedString("no_alarm_content", comment: "")
+        view.backgroundColor = UIColor.getGreyColor()
         return nibView.objectAtIndex(0) as! UIView
     }
 

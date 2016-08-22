@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="Raleway-Regular.ttf">
+            <string>Raleway</string>
+        </mutableArray>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="StepGoalSetingViewCell" customModule="Nevo" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="160" height="50"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="160" height="50"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.69999999999999996" translatesAutoresizingMaskIntoConstraints="NO" id="Z4Q-r0-R3j">
+                        <rect key="frame" x="25" y="0.0" width="55" height="50"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="17"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BOX-fH-5rm">
+                        <rect key="frame" x="80" y="0.0" width="70" height="50"/>
+                        <fontDescription key="fontDescription" name="Raleway" family="Raleway" pointSize="15"/>
+                        <color key="textColor" red="0.62745098040000002" green="0.51764705879999995" blue="0.33333333329999998" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            </view>
+            <constraints>
+                <constraint firstItem="BOX-fH-5rm" firstAttribute="leading" secondItem="Z4Q-r0-R3j" secondAttribute="trailing" id="2Ev-4B-h34"/>
+                <constraint firstItem="Z4Q-r0-R3j" firstAttribute="width" secondItem="BOX-fH-5rm" secondAttribute="width" constant="-15" id="6YN-w7-4hj"/>
+                <constraint firstItem="Z4Q-r0-R3j" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="25" id="6qN-BO-aqF"/>
+                <constraint firstItem="BOX-fH-5rm" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="Ti2-yN-LU7"/>
+                <constraint firstAttribute="bottom" secondItem="BOX-fH-5rm" secondAttribute="bottom" id="UIx-n3-aUR"/>
+                <constraint firstItem="Z4Q-r0-R3j" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="fqm-D6-7Xq"/>
+                <constraint firstAttribute="trailing" secondItem="BOX-fH-5rm" secondAttribute="trailing" constant="10" id="sNz-Bg-oH1"/>
+                <constraint firstAttribute="bottom" secondItem="Z4Q-r0-R3j" secondAttribute="bottom" id="xku-bc-rdI"/>
+            </constraints>
+            <size key="customSize" width="157" height="50"/>
+            <connections>
+                <outlet property="titleLabel" destination="Z4Q-r0-R3j" id="qxw-Xu-rQM"/>
+                <outlet property="valueLabel" destination="BOX-fH-5rm" id="aHV-5J-5P7"/>
+            </connections>
+            <point key="canvasLocation" x="215" y="193"/>
+        </collectionViewCell>
+    </objects>
+</document>

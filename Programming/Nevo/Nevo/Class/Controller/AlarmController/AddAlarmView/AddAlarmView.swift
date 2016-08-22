@@ -25,11 +25,19 @@ class AddAlarmView: UITableView {
             let nibs:NSArray = NSBundle.mainBundle().loadNibNamed("AddAlarmTableViewCell", owner: self, options: nil)
             endCell = nibs.objectAtIndex(0) as? AddAlarmTableViewCell;
         }
+        endCell?.separatorInset = UIEdgeInsets(top: 0, left: UIScreen.mainScreen().bounds.size.width, bottom: 0, right: 0)
         endCell?.selectionStyle = UITableViewCellSelectionStyle.None;
+        endCell?.backgroundColor = UIColor.getGreyColor()
+        endCell?.contentView.backgroundColor = UIColor.getGreyColor()
         var pickerView:UIDatePicker?
         for view in endCell!.contentView.subviews{
             if(view.isKindOfClass(UIDatePicker.classForCoder())){
                 pickerView = view as? UIDatePicker
+                pickerView?.tintColor = UIColor.whiteColor()
+                let name:String = AppTheme.getClassCustomPropertyName(UIDatePicker.self, name: "textColor")
+                if !name.isEmpty {
+                    pickerView?.setValue(UIColor.whiteColor(), forKey: "textColor")
+                }
                 break
             }
         }

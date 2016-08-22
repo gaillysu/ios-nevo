@@ -15,6 +15,7 @@ import BRYXBanner
 import Timepiece
 import Fabric
 import Crashlytics
+import LTNavigationBar
 
 let nevoDBDFileURL:String = "nevoDBName";
 let nevoDBNames:String = "nevo.sqlite";
@@ -54,7 +55,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
         UITabBar.appearance().backgroundImage = UIImage()
         //UITabBar.appearance().shadowImage = UIImage()
         UITabBar.appearance().translucent = false
-
+        UINavigationBar.appearance().translucent = false
+        UINavigationBar.appearance().lt_setBackgroundColor(UIColor.whiteColor())
+        UIApplication.sharedApplication().statusBarStyle = UIStatusBarStyle.Default
         //Start the logo for the first time
         if(!NSUserDefaults.standardUserDefaults().boolForKey("LaunchedDatabase")){
             NSUserDefaults.standardUserDefaults().setBool(true, forKey: "LaunchedDatabase")

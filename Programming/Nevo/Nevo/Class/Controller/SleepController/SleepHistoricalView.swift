@@ -9,9 +9,14 @@
 import UIKit
 import Charts
 
+@objc protocol SelectedChartViewDelegate{
+    optional func didSelectedhighlightValue(xIndex:Int,dataSetIndex: Int, dataSteps:UserSteps)
+    optional func didSleepSelectedhighlightValue(xIndex:Int,dataSetIndex: Int, dataSleep:Sleep)
+}
+
 class SleepHistoricalView: UIView, ChartViewDelegate{
 
-    @IBOutlet var chartView:BarChartView?
+    @IBOutlet var chartView:AnalysisStepsChartView?
     @IBOutlet weak var detailCollectionView: UICollectionView!
     @IBOutlet weak var nodataLabel: UILabel!
     private var queryModel:NSMutableArray = NSMutableArray()
@@ -19,69 +24,26 @@ class SleepHistoricalView: UIView, ChartViewDelegate{
     private var mDelegate:SelectedChartViewDelegate?
     private var totalNumber:Double = 0
 
-    func bulidQueryView(delegate:SelectedChartViewDelegate,modelArray:NSArray,navigation:UINavigationItem){
+    func bulidQueryView(delegate:SelectedChartViewDelegate,modelArray:NSArray){
         queryModel.removeAllObjects()
         sleepArray.removeAllObjects()
         queryModel.addObjectsFromArray(modelArray as [AnyObject])
         if(mDelegate == nil) {
             mDelegate = delegate
-            navigation.title = NSLocalizedString("sleep_history_title", comment: "")
             // MARK: - chartView?.marker
-            chartView?.backgroundColor = AppTheme.NEVO_CUSTOM_COLOR(Red: 25, Green: 31, Blue: 59)
-            chartView?.descriptionText = " ";
-            chartView?.noDataText = NSLocalizedString("no_sleep_data", comment: "")
-            chartView?.noDataTextDescription = "";
-            chartView?.pinchZoomEnabled = false
-            chartView?.drawGridBackgroundEnabled = false;
-            chartView?.drawBarShadowEnabled = false;
-            let xScale:CGFloat = CGFloat(queryModel.count)/7.0;//integer/integer = integer,float/float = float
-            chartView?.setScaleMinima(xScale, scaleY: 1)
-            chartView?.setScaleEnabled(false);
-            chartView?.drawValueAboveBarEnabled = true;
-            chartView?.doubleTapToZoomEnabled = false;
-            chartView?.setViewPortOffsets(left: 0.0, top: 0.0, right: 0.0, bottom: 0.0)
-            chartView?.delegate = self
-
-            let leftAxis:ChartYAxis = chartView!.leftAxis;
-            leftAxis.valueFormatter = NSNumberFormatter();
-            leftAxis.drawAxisLineEnabled = false;
-            leftAxis.drawGridLinesEnabled = false;
-            leftAxis.enabled = false;
-            leftAxis.spaceTop = 0.6;
-
-            chartView!.rightAxis.enabled = false;
-
-            let xAxis:ChartXAxis = chartView!.xAxis;
-            xAxis.labelFont = UIFont.systemFontOfSize(8)
-            xAxis.drawAxisLineEnabled = false;
-            xAxis.drawGridLinesEnabled = false;
-            xAxis.labelPosition = ChartXAxis.LabelPosition.BottomInside
-            chartView!.legend.enabled = false;
+            //chartView.addDataPoint("\(1)", entry: BarChartDataEntry(value: xVal, xIndex:i))
+            chartView?.backgroundColor = UIColor.whiteColor()
+            chartView?.drawSettings(chartView!.xAxis, yAxis: chartView!.leftAxis, rightAxis: chartView!.rightAxis)
         }
-        self.slidersValueChanged()
+        chartView?.reset()
+        self.setDataCount(queryModel.count)
     }
 
-    func slidersValueChanged(){
-        //[self setDataCount:(_sliderX.value + 1) range:_sliderY.value];
-        self.setDataCount(queryModel.count, Range: 50)
-    }
-
-    func stringFromDate(date:NSDate) -> String {
-        let dateFormatter:NSDateFormatter = NSDateFormatter()
-        dateFormatter.timeZone = NSTimeZone.systemTimeZone()
-        dateFormatter.dateStyle = NSDateFormatterStyle.MediumStyle
-        dateFormatter.timeStyle = NSDateFormatterStyle.ShortStyle
-        dateFormatter.dateFormat = "yyyyMMdd"
-        let dateString:String = dateFormatter.stringFromDate(date)
-        return dateString
-    }
-
-    func setDataCount(count:Int, Range range:Double){
+    func setDataCount(count:Int){
         if(count == 0) {
             return
         }
-        var xVal:[String] = [];
-        var yVal:[BarChartDataEntry] = [];
+
         for i:Int in 0 ..< queryModel.count {
             /**
             *  Data sorting,Small to large sort
@@ -99,11 +61,10 @@ class SleepHistoricalView: UIView, ChartViewDelegate{
                 }
             }
         }
-        //计算睡眠时间以中午12点为计算起点,
         
+        //计算睡眠时间以中午12点为计算起点,
         for i:Int in 0 ..< queryModel.count {
             let seleModel:UserSleep = queryModel.objectAtIndex(i) as! UserSleep;
-
             //当天的数据源(没有跨天的数据源)
             let sleepTimerArray:NSArray = AppTheme.jsonToArray(seleModel.hourlySleepTime as String)
             let wakeTimeTimerArray:NSArray = AppTheme.jsonToArray(seleModel.hourlyWakeTime as String)
@@ -118,7 +79,7 @@ class SleepHistoricalView: UIView, ChartViewDelegate{
             var endTimer:NSTimeInterval = 0
 
             //因为涉及到跨天按照正常习惯一天的睡眠时间包括从睡觉到结束睡觉的这段时间都是前一天的睡眠时间(包括凌晨0点后到中午12点之间的数据)
-            //计算睡眠结束时间
+            //计算睡眠结束时间,完成计算跳出循环
             for (var s:Int = 13; s > 0; s -= 1){
                 if((sleepTimerArray[s] as! NSNumber).integerValue != 0){
                     let date:NSTimeInterval = seleModel.date
@@ -128,6 +89,7 @@ class SleepHistoricalView: UIView, ChartViewDelegate{
                 }
             }
 
+            //计算睡眠开始于凌晨以后的睡眠开始时间,完成计算跳出循环
             for s:Int in 0 ..< sleepTimerArray.count-6 {
                 if((sleepTimerArray[s] as! NSNumber).integerValue != 0){
                     let date:NSTimeInterval = seleModel.date + NSTimeInterval(Double(s*60*60)+Double((60-(sleepTimerArray[s] as! NSNumber).integerValue)*60))
@@ -142,17 +104,20 @@ class SleepHistoricalView: UIView, ChartViewDelegate{
                 wakeTimer = (wakeTimeTimerArray[s] as! NSNumber).integerValue + wakeTimer
                 lightTimer = (lightTimeTimerArray[s] as! NSNumber).integerValue + lightTimer
                 deepTimer = (deepTimeTimerArray[s] as! NSNumber).integerValue + deepTimer
+                if (sleepTimerArray[s] as! NSNumber).integerValue > 0 {
+                    self.chartView!.addDataPoint(self.calculateDate(seleModel.date,hour:s), entry: [(sleepTimerArray[s] as! NSNumber).doubleValue,(lightTimeTimerArray[s] as! NSNumber).doubleValue,(deepTimeTimerArray[s] as! NSNumber).doubleValue])
+                }
             }
 
             if(i != 0){
-                //跨天的睡眠数据源
+                //跨天的睡眠数据源,反向法
                 let nextSeleModel:UserSleep = queryModel.objectAtIndex(i-1) as! UserSleep;//取出前一天的数据
                 let mSleepTimerArray:NSArray = AppTheme.jsonToArray(nextSeleModel.hourlySleepTime as String)
                 let mWakeTimeTimerArray:NSArray = AppTheme.jsonToArray(nextSeleModel.hourlyWakeTime as String)
                 let mLightTimeTimerArray:NSArray = AppTheme.jsonToArray(nextSeleModel.hourlyLightTime as String)
                 let mDeepTimeTimerArray:NSArray = AppTheme.jsonToArray(nextSeleModel.hourlyDeepTime as String)
 
-                //计算睡眠开始时间
+                //计算凌晨以前的睡眠开始时间,完成计算跳出循环
                 for s:Int in 20 ..< mSleepTimerArray.count {
                     if((mSleepTimerArray[s] as! NSNumber).integerValue != 0){
                         let date:NSTimeInterval = nextSeleModel.date + NSTimeInterval(Double(s*60*60)+Double((60-(mSleepTimerArray[s] as! NSNumber).integerValue)*60))
@@ -160,12 +125,14 @@ class SleepHistoricalView: UIView, ChartViewDelegate{
                         break
                     }
                 }
-                //计算在晚上六点以后的睡眠数据
-                for s:Int in 18 ..< mSleepTimerArray.count {
+                //计算在晚上8点以后的睡眠数据
+                for s:Int in 20 ..< mSleepTimerArray.count {
                     sleepTimer = (mSleepTimerArray[s] as! NSNumber).integerValue + sleepTimer
                     wakeTimer = (mWakeTimeTimerArray[s] as! NSNumber).integerValue + wakeTimer
                     lightTimer = (mLightTimeTimerArray[s] as! NSNumber).integerValue + lightTimer
                     deepTimer = (mDeepTimeTimerArray[s] as! NSNumber).integerValue + deepTimer
+                    
+                    chartView!.addDataPoint(calculateDate(seleModel.date,hour:s), entry: [(mSleepTimerArray[s] as! NSNumber).doubleValue,(mLightTimeTimerArray[s] as! NSNumber).doubleValue,(mDeepTimeTimerArray[s] as! NSNumber).doubleValue])
                 }
             }
 
@@ -180,49 +147,23 @@ class SleepHistoricalView: UIView, ChartViewDelegate{
             //Calculate the total sleep time
             totalNumber += val1+val2+val3
             
-            let date:NSDate = NSDate(timeIntervalSince1970: seleModel.date)
-            var dateString:NSString = date.stringFromFormat("yyyyMMdd")
-            if(dateString.length < 8) {
-                dateString = "00000000"
-            }
-
-            xVal.append("\(dateString.substringWithRange(NSMakeRange(6, 2)))/\(dateString.substringWithRange(NSMakeRange(4, 2)))")
-
-            yVal.append(BarChartDataEntry(values: [val1,val2,val3], xIndex:sleepArray.count))
-            sleepArray.addObject(Sleep(weakSleep: val3,lightSleep: val2,deepSleep: val1,startTimer:startTimer , endTimer:endTimer))
+            
         }
-
-        //According to at least seven days of data
-        if(yVal.count<7){
-            for s:Int in yVal.count ..< 7 {
-                xVal.append(" ")
-                yVal.append(BarChartDataEntry(values: [0,0,0], xIndex:sleepArray.count))
-                sleepArray.addObject(Sleep(weakSleep: 0,lightSleep: 0,deepSleep: 0,startTimer:0 ,endTimer:0))
-            }
-        }
-
-        //柱状图表
-        let set1:BarChartDataSet  = BarChartDataSet(yVals: yVal, label: "")
         
-        //每个数据区块的颜色
-        set1.colors = [AppTheme.getDeepSleepColor(),AppTheme.getLightSleepColor(),AppTheme.getWakeSleepColor()];
-        //UIColor(red: 239/255.0, green: 239/255.0, blue: 239/255.0, alpha: 1.0)
-        //每个数据块的类别名称,数组形式传递
-        set1.stackLabels = ["Deep sleep","Light sleep","weak sleep"];
-        set1.barSpace = 0.05;
-        set1.highlightColor = AppTheme.NEVO_SOLAR_YELLOW()
-        let dataSets:[BarChartDataSet] = [set1];
-
-        let data:BarChartData = BarChartData(xVals: xVal, dataSets: dataSets)
-        data.setDrawValues(false);//false 显示柱状图数值否则不显示
-
-        chartView?.data = data;
-        chartView?.animate(yAxisDuration: 1.5, easingOption: ChartEasingOption.EaseInOutCirc)
-        chartView?.moveViewToX(CGFloat(yVal.count))
+        chartView!.invalidateChart()
         
         if totalNumber == 0 {
             chartView?.data = nil
         }
+    }
+    
+    func calculateDate(date:NSTimeInterval,hour:Int)->String {
+        let date:NSDate = NSDate(timeIntervalSince1970: date)
+        var dateString:NSString = date.stringFromFormat("yyyyMMdd")
+        if(dateString.length < 8) {
+            dateString = "00000000"
+        }
+        return "\(hour):00"
     }
     
     func chartValueSelected(chartView: ChartViewBase, entry: ChartDataEntry, dataSetIndex: Int, highlight: ChartHighlight) {

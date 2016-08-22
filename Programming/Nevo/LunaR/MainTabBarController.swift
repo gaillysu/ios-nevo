@@ -26,6 +26,7 @@ class MainTabBarController: UITabBarController,UITabBarControllerDelegate {
             self.tabBar.tintColor = UIColor(rgba: "#7ED8D1")
             self.tabBar.barTintColor = UIColor(rgba: "#333333")
         }else{
+            self.tabBar.tintColor = UIColor(rgba: "#A08455")
             self.tabBar.tintColor = AppTheme.NEVO_SOLAR_YELLOW()
         }
         
@@ -41,11 +42,20 @@ class MainTabBarController: UITabBarController,UITabBarControllerDelegate {
 
             }
 
-            if contll!.isKindOfClass(PageViewController){
-                (nav as! UINavigationController).tabBarItem.title = NSLocalizedString("you_reached", comment: "")
-                contll?.title = NSLocalizedString("you_reached", comment: "")
-                AppTheme.DLog("StepController:\(contll)")
+            if app_Name == "LunaR" {
+                if contll!.isKindOfClass(PageViewController){
+                    (nav as! UINavigationController).tabBarItem.title = NSLocalizedString("you_reached", comment: "")
+                    contll?.title = NSLocalizedString("you_reached", comment: "")
+                    AppTheme.DLog("StepController:\(contll)")
+                }
+            }else{
+                if contll!.isKindOfClass(StepController){
+                    (nav as! UINavigationController).tabBarItem.title = NSLocalizedString("you_reached", comment: "")
+                    contll?.title = NSLocalizedString("you_reached", comment: "")
+                    AppTheme.DLog("StepController:\(contll)")
+                }
             }
+            
             
             if contll!.isKindOfClass(SleepController){
                 
