@@ -11,10 +11,18 @@ import SwiftyJSON
 import MRProgress
 import BRYXBanner
 import XCGLogger
+import LTNavigationBar
+import UIColor_Hex_Swift
+import AutocompleteField
+import ActiveLabel
 
 class LoginController: UIViewController,UITextFieldDelegate {
 
-    @IBOutlet weak var logoinTableview: UITableView!
+    @IBOutlet weak var userNameTextField: AutocompleteField!
+    @IBOutlet weak var passwordTextField: AutocompleteField!
+    @IBOutlet weak var logoinButton: UIButton!
+    @IBOutlet weak var registerLabel: ActiveLabel!
+    
     var userName:String = ""
     var password:String = ""
 
@@ -29,102 +37,46 @@ class LoginController: UIViewController,UITextFieldDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = "Nevo Login"
-        //userNameTextField.text = "1508496092@qq.com"
-        //passwordTextField.text = "123456"
-        logoinTableview.registerNib(UINib(nibName:"SetingLoginCell" ,bundle: nil), forCellReuseIdentifier: "SetingLoginIdentifier")
-        logoinTableview.registerClass(UITableViewCell.classForCoder(), forCellReuseIdentifier: "LoginIdentifier")
+        self.navigationItem.title = "Login"
+        let rightButton:UIBarButtonItem = UIBarButtonItem(title: "Skip Login", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(rightAction(_:)))
+        self.navigationItem.rightBarButtonItem = rightButton
+        
+        for controllers:UIViewController in self.navigationController!.viewControllers {
+            if controllers.isKindOfClass(SetingViewController.self) {
+                self.navigationItem.rightBarButtonItem = nil
+            }
+        }
+        
+        let tap:UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapAction(_:)))
+        registerLabel.addGestureRecognizer(tap)
+        
+        if AppTheme.GET_IS_iPhone5S()||AppTheme.GET_IS_iPhone4S() {
+            logoinButton.titleLabel?.font = UIFont(name: "Raleway", size: 20)
+        }
+        
+    }
+    
+    func tapAction(sender:UITapGestureRecognizer) {
+        let register:ProfileSetupViewController = ProfileSetupViewController()
+        self.navigationController?.pushViewController(register, animated: true)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
-    // MARK: - UITableViewDelegate
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        if indexPath.section == 0 {
-            return 80
-        }
-        return 50.0
-    }
-    
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        switch (indexPath.section){
-        case 0:
-            break
-        case 1:
-            loginRequest()
-            break
-        case 2:
-            
-            break
-        case 3:
-            break
-        default: break
-        }
-        
-    }
-    
-    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if section == 2 {
-            return 60
-        }
-        return 30
-    }
-    
-    func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        if section == 1 {
-            return 30
-        }
-        return 20
-    }
-    func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView {
-        if section == 1 {
-            let clickButton:UIButton = UIButton(type: UIButtonType.System)
-            clickButton.frame = CGRectMake(0, 0, 120, 40)
-            clickButton.setTitle("Forgot password?", forState: UIControlState.Normal)
-            clickButton.titleLabel?.textAlignment = NSTextAlignment.Left
-            clickButton.addTarget(self, action: #selector(forgotPassword(_:)), forControlEvents: UIControlEvents.TouchUpInside)
-            return clickButton
-        }
-        return UILabel(frame: CGRectMake(0,0,120,40))
-    }
-    
-    // MARK: - UITableViewDataSource
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
-        return 1
-    }
-    
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int{
-        return 3
-    }
-    
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        switch indexPath.section {
-        case 0:
-            let cell = tableView.dequeueReusableCellWithIdentifier("SetingLoginIdentifier", forIndexPath: indexPath)
-            (cell as! SetingLoginCell).userEmail.delegate = self
-            (cell as! SetingLoginCell).userPassword.delegate = self
-            return cell
-        case 1:
-            let cell = tableView.dequeueReusableCellWithIdentifier("LoginIdentifier", forIndexPath: indexPath)
-            cell.textLabel?.text = "Login"
-            cell.textLabel?.textColor = AppTheme.NEVO_SOLAR_YELLOW()
-            return cell
-        case 2:
-            let cell = tableView.dequeueReusableCellWithIdentifier("LoginIdentifier", forIndexPath: indexPath)
-            cell.textLabel?.text = "Create a new Nevo account"
-            cell.textLabel?.textColor = AppTheme.NEVO_SOLAR_YELLOW()
-            return cell
-        default:
-            return UITableViewCell()
-        }
+    func rightAction(sender:UIBarButtonItem) {
+        let register:ProfileSetupViewController = ProfileSetupViewController()
+        self.navigationController?.pushViewController(register, animated: true)
     }
 
-    @IBAction func registerButtonAction(sender: AnyObject) {
-        let registerController =  RegisterController()
-        self.navigationController?.pushViewController(registerController, animated: true);
+    @IBAction func buttonAction(sender: AnyObject) {
+        if sender.isEqual(logoinButton) {
+            self.loginRequest()
+        }else{
+            let register:ProfileSetupViewController = ProfileSetupViewController()
+            self.navigationController?.pushViewController(register, animated: true)
+        }
     }
     
     func delay(delay:Double, closure:()->()) {
@@ -140,73 +92,31 @@ class LoginController: UIViewController,UITextFieldDelegate {
         view.endEditing(true)
     }
     
-    // MARK: - UITextFieldDelegate
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
-        if textField.tag == 1500 {
-            if !textField.text!.isEmpty {
-                userName = textField.text!
-            }
-        }
-        
-        if textField.tag == 1600 {
-            if !textField.text!.isEmpty {
-                password = textField.text!
-            }
-        }
-        
-        textField.resignFirstResponder()
-        return true
-    }
-    
-    func textFieldDidBeginEditing(textField: UITextField) {
-        NSLog("textField Did BeginEditing:\(textField.text)")
-    }
-    
-    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
-        NSLog("textField Change:\(textField.text)")
-        if textField.tag == 1500 {
-            if !textField.text!.isEmpty {
-                userName = textField.text!
-            }
-        }
-        
-        if textField.tag == 1600 {
-            if !textField.text!.isEmpty {
-                password = textField.text!
-            }
-        }
-        return true
-    }
-    
-    func forgotPassword(sender:UIButton) {
-        
-    }
     
     func loginRequest() {
-        let usercell:SetingLoginCell = (logoinTableview.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0))!) as! SetingLoginCell
-            userName = usercell.userEmail!.text!
-            password = usercell.userPassword!.text!
+            userName = userNameTextField!.text!
+            password = passwordTextField!.text!
         if AppDelegate.getAppDelegate().network!.isReachable {
             XCGLogger.defaultInstance().debug("有网络")
-            if(AppTheme.isNull(userName) || !AppTheme.isEmail(userName)) {
-                let banner = Banner(title: NSLocalizedString("Email is not filled in.", comment: ""), subtitle: nil, image: nil, backgroundColor:UIColor.getBaseColor())
+            if(AppTheme.isNull(userName) || AppTheme.isEmail(userName)) {
+                let banner = Banner(title: NSLocalizedString("Email is not filled in.", comment: ""), subtitle: nil, image: nil, backgroundColor:AppTheme.NEVO_SOLAR_YELLOW())
                 banner.dismissesOnTap = true
                 banner.show(duration: 1.2)
                 return
             }
             
             if AppTheme.isNull(password) || AppTheme.isPassword(password) {
-                let banner = Banner(title: NSLocalizedString("Password is not filled in.", comment: ""), subtitle: nil, image: nil, backgroundColor:UIColor.getBaseColor())
+                let banner = Banner(title: NSLocalizedString("Password is not filled in.", comment: ""), subtitle: nil, image: nil, backgroundColor:AppTheme.NEVO_SOLAR_YELLOW())
                 banner.dismissesOnTap = true
                 banner.show(duration: 1.2)
                 return
             }
             
             let view = MRProgressOverlayView.showOverlayAddedTo(self.navigationController!.view, title: "Please wait...", mode: MRProgressOverlayViewMode.Indeterminate, animated: true)
-            view.setTintColor(UIColor.getBaseColor())
+            view.setTintColor(AppTheme.NEVO_SOLAR_GRAY())
 
             
-            HttpPostRequest.postRequest("http://nevo.karljohnchow.com/user/login", data: ["user":["email":userName,"password":password]]) { (result) in
+            HttpPostRequest.LunaRPostRequest("http://nevo.karljohnchow.com/user/login", data: ["user":["email":userName,"password":password]]) { (result) in
                 MRProgressOverlayView.dismissAllOverlaysForView(self.navigationController!.view, animated: true)
                 
                 let json = JSON(result)

@@ -20,7 +20,9 @@ class AlarmClockController: UITableViewController, SyncControllerDelegate,AddAla
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.navigationItem.title = "Sleep And Wake"
+        
+        
         initValue()
         
         AppDelegate.getAppDelegate().startConnect(false, delegate: self)
@@ -29,12 +31,11 @@ class AlarmClockController: UITableViewController, SyncControllerDelegate,AddAla
 
         self.tableView.allowsSelectionDuringEditing = true;
         self.tableView.separatorStyle = UITableViewCellSeparatorStyle.None
-        
         self.tableView.registerNib(UINib(nibName: "AlarmClockVCell",bundle:nil), forCellReuseIdentifier: "alarmCell")
     }
 
     func initValue() {
-        self.view.backgroundColor = UIColor.getGreyColor()
+        self.view.backgroundColor = UIColor.whiteColor()
         
         let array:NSArray = UserAlarm.getAll()
         mWakeAlarmArray.removeAllObjects()
@@ -70,6 +71,7 @@ class AlarmClockController: UITableViewController, SyncControllerDelegate,AddAla
 
         if(sender.isEqual(rightBarButton)){
             self.tableView.setEditing(false, animated: true)
+            self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.Plain, target: nil, action: nil)
             let addAlarm:NewAddAlarmController = NewAddAlarmController()
             addAlarm.title = NSLocalizedString("add_alarm", comment: "")
             addAlarm.mDelegate = self
@@ -314,13 +316,14 @@ class AlarmClockController: UITableViewController, SyncControllerDelegate,AddAla
     
     override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView {
         let headerLabel:LineLabel = LineLabel(frame: CGRectMake(0,0,UIScreen.mainScreen().bounds.size.width,30))
-        headerLabel.backgroundColor = UIColor.getGreyColor()
         let titleArray:[String] = ["Sleep Alarm","Wake Alarm"]
         headerLabel.text = NSLocalizedString(titleArray[section], comment: "")
-        headerLabel.textColor = UIColor.whiteColor()
+        headerLabel.textColor = UIColor.blackColor()
         headerLabel.textAlignment = NSTextAlignment.Center
         if section == 0 {
-            headerLabel.backgroundColor = UIColor.getLightBaseColor()
+            headerLabel.backgroundColor = AppTheme.NEVO_SOLAR_GRAY()
+        }else{
+            headerLabel.backgroundColor = UIColor.whiteColor()
         }
         return headerLabel
     }
@@ -328,11 +331,14 @@ class AlarmClockController: UITableViewController, SyncControllerDelegate,AddAla
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let endCell:AlarmClockVCell = tableView.dequeueReusableCellWithIdentifier("alarmCell", forIndexPath: indexPath) as! AlarmClockVCell
         endCell.selectionStyle = UITableViewCellSelectionStyle.None
+
         var alarmModel:UserAlarm?
         if indexPath.section == 0 {
             alarmModel = mSleepAlarmArray[indexPath.row] as? UserAlarm
+            endCell.contentView.backgroundColor = AppTheme.NEVO_SOLAR_GRAY()
         }else{
             alarmModel = mWakeAlarmArray[indexPath.row] as? UserAlarm
+            endCell.contentView.backgroundColor = UIColor.whiteColor()
         }
         
         let dayArray:[String] = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]
@@ -359,7 +365,6 @@ class AlarmClockController: UITableViewController, SyncControllerDelegate,AddAla
         if indexPath.section == 0 {
             endCell.alarmSwicth.addTarget(self, action: #selector(sleepSwitchManager(_:)), forControlEvents: UIControlEvents.ValueChanged)
         }else{
-            endCell.contentView.backgroundColor = UIColor.getGreyColor()
             endCell.alarmSwicth.addTarget(self, action: #selector(controllManager(_:)), forControlEvents: UIControlEvents.ValueChanged)
         }
         
@@ -374,7 +379,7 @@ class AlarmClockController: UITableViewController, SyncControllerDelegate,AddAla
         let button1 = UITableViewRowAction(style: .Default, title: "Delete", handler: { (action, indexPath) in
             self.tableView(tableView, commitEditingStyle: .Delete, forRowAtIndexPath: indexPath)
         })
-        button1.backgroundColor = UIColor.getBaseColor()
+        button1.backgroundColor = AppTheme.NEVO_SOLAR_YELLOW()
         return [button1]
     }
 

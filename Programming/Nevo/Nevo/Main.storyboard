@@ -115,7 +115,16 @@
                             <outlet property="delegate" destination="raW-BV-myH" id="J80-0J-Kf6"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Alarm" id="azU-zf-ye7"/>
+                    <navigationItem key="navigationItem" title="Alarm" id="azU-zf-ye7">
+                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="Vuv-42-H8G">
+                            <connections>
+                                <action selector="controllManager:" destination="raW-BV-myH" id="dh9-ft-OGw"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="rightBarButton" destination="Vuv-42-H8G" id="szw-0U-Hgf"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xca-UZ-q6S" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

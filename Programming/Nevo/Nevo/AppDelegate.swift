@@ -16,6 +16,7 @@ import Timepiece
 import Fabric
 import Crashlytics
 import LTNavigationBar
+import IQKeyboardManagerSwift
 
 let nevoDBDFileURL:String = "nevoDBName";
 let nevoDBNames:String = "nevo.sqlite";
@@ -55,9 +56,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
         UITabBar.appearance().backgroundImage = UIImage()
         //UITabBar.appearance().shadowImage = UIImage()
         UITabBar.appearance().translucent = false
-        UINavigationBar.appearance().translucent = false
+//        UINavigationBar.appearance().translucent = false
         UINavigationBar.appearance().lt_setBackgroundColor(UIColor.whiteColor())
         UIApplication.sharedApplication().statusBarStyle = UIStatusBarStyle.Default
+        
+        IQKeyboardManager.sharedManager().enable = true
+        
         //Start the logo for the first time
         if(!NSUserDefaults.standardUserDefaults().boolForKey("LaunchedDatabase")){
             NSUserDefaults.standardUserDefaults().setBool(true, forKey: "LaunchedDatabase")
@@ -630,8 +634,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
 
                 //TODO:crash  数组越界
                 do {
-                    try savedDailyHistory[Int(100)].TotalSteps = 0
-                    savedDailyHistory[Int(currentDay)].TotalSteps = thispacket.getDailySteps()
+                    try savedDailyHistory[Int(currentDay)].TotalSteps = thispacket.getDailySteps()
                     savedDailyHistory[Int(currentDay)].HourlySteps = thispacket.getHourlySteps()
                     savedDailyHistory[Int(currentDay)].TotalCalories = thispacket.getDailyCalories()
                     savedDailyHistory[Int(currentDay)].HourlyCalories = thispacket.getHourlyCalories()

@@ -8,14 +8,13 @@
 
 import UIKit
 
-class NewAddAlarmController: UITableViewController,ButtonManagerCallBack,UIAlertViewDelegate,SelectedRepeatDelegate,SelectedSleepTypeDelegate {
+class NewAddAlarmController: UITableViewController,ButtonManagerCallBack,SelectedRepeatDelegate,SelectedSleepTypeDelegate {
         
     var mDelegate:AddAlarmDelegate?
 
     var timer:NSTimeInterval = 0.0
     var repeatStatus:Bool = false
     var name:String = ""
-    private var selectedIndexPath:NSIndexPath?
     var repeatSelectedIndex:Int = 0
     var alarmTypeIndex:Int = 0
 
@@ -36,23 +35,26 @@ class NewAddAlarmController: UITableViewController,ButtonManagerCallBack,UIAlert
         
         self.tableView.registerNib(UINib(nibName: "NewAddAlarmHeader", bundle: nil), forHeaderFooterViewReuseIdentifier: "identifier_header")
         self.tableView.registerNib(UINib(nibName: "AlarmTypeCell", bundle: nil), forCellReuseIdentifier: "AlarmType_identifier")
-        self.tableView.backgroundColor = UIColor.getGreyColor()
+        self.tableView.backgroundColor = UIColor.whiteColor()
         //self.tableView.separatorStyle = UITableViewCellSeparatorStyle.None
         self.tableView.separatorColor = UIColor.getLightBaseColor()
     }
-
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+    }
+    
     override func viewDidLayoutSubviews() {
         if self.tableView.tableFooterView == nil {
             let view = UIView()
-            let tipsString:String = "Tips:\n    Sleep alarm allows you set a timmer that your LunaR can automatic turn on sleep mode."
+            let tipsString:String = "Tips:\n    Sleep alarm allows you set a timmer that your Nevo can automatic turn on sleep mode."
             let tipsLabel:UILabel = UILabel(frame: CGRectMake(10,0,UIScreen.mainScreen().bounds.size.width-20,120))
             tipsLabel.numberOfLines = 0
-            tipsLabel.textColor = UIColor.whiteColor()
             tipsLabel.text = tipsString
-            tipsLabel.font = UIFont(name: "Helvetica Neue", size: 13)
+            tipsLabel.font = UIFont(name: "Helvetica Neue", size: 10)
             let attributeDict:[String : AnyObject] = [NSFontAttributeName: UIFont.systemFontOfSize(16)]
             let AttributedStr:NSMutableAttributedString = NSMutableAttributedString(string: tipsString, attributes: attributeDict)
-            AttributedStr.addAttribute(NSForegroundColorAttributeName, value: UIColor.getBaseColor(), range: NSMakeRange(0, 5))
+            AttributedStr.addAttribute(NSForegroundColorAttributeName, value: AppTheme.NEVO_SOLAR_YELLOW(), range: NSMakeRange(0, 5))
             tipsLabel.attributedText = AttributedStr
             view.addSubview(tipsLabel)
             self.tableView.tableFooterView = view
@@ -135,35 +137,27 @@ class NewAddAlarmController: UITableViewController,ButtonManagerCallBack,UIAlert
             }
 
             if(indexPath.row == 1){
-                if((UIDevice.currentDevice().systemVersion as NSString).floatValue >= 8.0){
-                    let selectedCell:UITableViewCell = tableView.cellForRowAtIndexPath(indexPath)!
-
-                    let actionSheet:UIAlertController = UIAlertController(title: NSLocalizedString("add_alarm_label", comment: ""), message: nil, preferredStyle: UIAlertControllerStyle.Alert)
-                    actionSheet.addTextFieldWithConfigurationHandler({ (labelText:UITextField) -> Void in
-                        labelText.text = selectedCell.detailTextLabel?.text
-                    })
-
-                    let alertAction:UIAlertAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: UIAlertActionStyle.Cancel, handler: { (action:UIAlertAction) -> Void in
-
-                    })
-                    alertAction.setValue(UIColor.getBaseColor(), forKey: "titleTextColor")
-                    actionSheet.addAction(alertAction)
-
-                    let alertAction1:UIAlertAction = UIAlertAction(title: NSLocalizedString("Add", comment: ""), style: UIAlertActionStyle.Default, handler: { (action:UIAlertAction) -> Void in
-                        let labelText:UITextField = actionSheet.textFields![0]
-                        selectedCell.detailTextLabel?.textColor = UIColor.whiteColor()
-                        selectedCell.detailTextLabel?.text = labelText.text
-                        selectedCell.layoutSubviews()
-                    })
-                    alertAction1.setValue(UIColor.getBaseColor(), forKey: "titleTextColor")
-                    actionSheet.addAction(alertAction1)
-                    self.presentViewController(actionSheet, animated: true, completion: nil)
-                }else{
-                    selectedIndexPath = indexPath;
-                    let actionSheet:UIAlertView = UIAlertView(title: NSLocalizedString("add_alarm_label", comment: ""), message: "", delegate: self, cancelButtonTitle: NSLocalizedString("Cancel", comment: ""), otherButtonTitles: NSLocalizedString("Add", comment: ""))
-                    actionSheet.alertViewStyle = UIAlertViewStyle.PlainTextInput
-                    actionSheet.show()
-                }
+                let selectedCell:UITableViewCell = tableView.cellForRowAtIndexPath(indexPath)!
+                
+                let actionSheet:UIAlertController = UIAlertController(title: NSLocalizedString("add_alarm_label", comment: ""), message: nil, preferredStyle: UIAlertControllerStyle.Alert)
+                actionSheet.addTextFieldWithConfigurationHandler({ (labelText:UITextField) -> Void in
+                    labelText.text = selectedCell.detailTextLabel?.text
+                })
+                
+                let alertAction:UIAlertAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: UIAlertActionStyle.Cancel, handler: { (action:UIAlertAction) -> Void in
+                    
+                })
+                alertAction.setValue(AppTheme.NEVO_SOLAR_YELLOW(), forKey: "titleTextColor")
+                actionSheet.addAction(alertAction)
+                
+                let alertAction1:UIAlertAction = UIAlertAction(title: NSLocalizedString("Add", comment: ""), style: UIAlertActionStyle.Default, handler: { (action:UIAlertAction) -> Void in
+                    let labelText:UITextField = actionSheet.textFields![0]
+                    selectedCell.detailTextLabel?.text = labelText.text
+                    selectedCell.layoutSubviews()
+                })
+                alertAction1.setValue(AppTheme.NEVO_SOLAR_YELLOW(), forKey: "titleTextColor")
+                actionSheet.addAction(alertAction1)
+                self.presentViewController(actionSheet, animated: true, completion: nil)
             }
 
         default: break
@@ -234,8 +228,6 @@ class NewAddAlarmController: UITableViewController,ButtonManagerCallBack,UIAlert
             cell.layoutMargins = UIEdgeInsetsZero;
             cell.backgroundColor = UIColor.clearColor()
             cell.contentView.backgroundColor = UIColor.clearColor()
-            cell.textLabel?.textColor = UIColor.whiteColor()
-            cell.detailTextLabel?.textColor = UIColor.whiteColor()
             cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
             cell.selectionStyle = UITableViewCellSelectionStyle.None;
             if(indexPath.row == 0) {
@@ -249,14 +241,6 @@ class NewAddAlarmController: UITableViewController,ButtonManagerCallBack,UIAlert
             return cell
         default: return UITableViewCell();
         }
-    }
-
-
-    // MARK: - UIAlertViewDelegate
-    func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int){
-        let selectedCell:UITableViewCell = tableView.cellForRowAtIndexPath(selectedIndexPath!)!
-        let labelText:UITextField = alertView.textFieldAtIndex(0)!
-        selectedCell.detailTextLabel?.text = labelText.text
     }
 
     /*

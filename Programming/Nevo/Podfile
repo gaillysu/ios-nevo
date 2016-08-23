@@ -27,6 +27,7 @@ target 'Nevo' do
     pod 'CVCalendar'
     pod 'SwiftEventBus', :git => 'https://github.com/cesarferreira/SwiftEventBus.git'
     pod 'KDCircularProgress'
+    pod 'M13Checkbox'
 end
 
 target 'LunaR' do

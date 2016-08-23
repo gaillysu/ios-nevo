@@ -104,7 +104,6 @@
 		0050D6101C28E0DB004F6F80 /* PresetTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0050D5551C28E0DB004F6F80 /* PresetTableViewCell.swift */; };
 		0050D6111C28E0DB004F6F80 /* PresetTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0050D5561C28E0DB004F6F80 /* PresetTableViewCell.xib */; };
 		0050D6121C28E0DB004F6F80 /* PresetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0050D5571C28E0DB004F6F80 /* PresetView.swift */; };
-		0050D6131C28E0DB004F6F80 /* SetingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0050D55A1C28E0DB004F6F80 /* SetingView.swift */; };
 		0050D6161C28E0DB004F6F80 /* SetingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0050D55D1C28E0DB004F6F80 /* SetingViewController.swift */; };
 		0050D6911C28E1CD004F6F80 /* AddAlarmController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0050D6851C28E1CD004F6F80 /* AddAlarmController.swift */; };
 		0050D6921C28E1CD004F6F80 /* AddAlarmController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0050D6861C28E1CD004F6F80 /* AddAlarmController.xib */; };
@@ -158,8 +157,6 @@
 		006A62731D6AB44A00458305 /* StepsHistoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 006A626A1D6AB44A00458305 /* StepsHistoryViewController.xib */; };
 		006A62741D6AB44A00458305 /* StepsTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006A626B1D6AB44A00458305 /* StepsTitleView.swift */; };
 		006A62751D6AB44A00458305 /* StepsTitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 006A626C1D6AB44A00458305 /* StepsTitleView.xib */; };
-		006A65D11D10F2DD00DE647A /* SetingLoginCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006A65CF1D10F2DD00DE647A /* SetingLoginCell.swift */; };
-		006A65D21D10F2DD00DE647A /* SetingLoginCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 006A65D01D10F2DD00DE647A /* SetingLoginCell.xib */; };
 		0072EAEB1C192210001EE2C9 /* spinner.png in Resources */ = {isa = PBXBuildFile; fileRef = 0072EAEA1C192210001EE2C9 /* spinner.png */; };
 		0073C5E01D3C67E700924167 /* NewAddAlarmHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0073C5DF1D3C67E700924167 /* NewAddAlarmHeader.xib */; };
 		0073C5E41D3C7CC200924167 /* AlarmTypeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0073C5E21D3C7CC200924167 /* AlarmTypeCell.xib */; };
@@ -178,11 +175,22 @@
 		007E0CAE1D0E5C3E00B0B600 /* ConnectOtherAppsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007E0CAC1D0E5C3E00B0B600 /* ConnectOtherAppsCell.swift */; };
 		007E0CAF1D0E5C3E00B0B600 /* ConnectOtherAppsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 007E0CAD1D0E5C3E00B0B600 /* ConnectOtherAppsCell.xib */; };
 		007F1F511CAA1B630021DF1B /* LocalNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007F1F501CAA1B630021DF1B /* LocalNotification.swift */; };
+		0089B09A1D6BE9410041148A /* CheckYourIndoxController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0089B0901D6BE9410041148A /* CheckYourIndoxController.swift */; };
+		0089B09B1D6BE9410041148A /* CheckYourIndoxController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0089B0911D6BE9410041148A /* CheckYourIndoxController.xib */; };
+		0089B09C1D6BE9410041148A /* ForgotPasswordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0089B0931D6BE9410041148A /* ForgotPasswordController.swift */; };
+		0089B09D1D6BE9410041148A /* ForgotPasswordController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0089B0941D6BE9410041148A /* ForgotPasswordController.xib */; };
+		0089B09E1D6BE9410041148A /* InformationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0089B0961D6BE9410041148A /* InformationController.swift */; };
+		0089B09F1D6BE9410041148A /* InformationController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0089B0971D6BE9410041148A /* InformationController.xib */; };
+		0089B0A31D6BF0CB0041148A /* ProfileSetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0089B0A11D6BF0CB0041148A /* ProfileSetupViewController.swift */; };
+		0089B0A41D6BF0CB0041148A /* ProfileSetupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0089B0A21D6BF0CB0041148A /* ProfileSetupViewController.xib */; };
+		0089B0AD1D6BFF250041148A /* SetingInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0089B0A61D6BFF250041148A /* SetingInfoCell.swift */; };
+		0089B0AE1D6BFF250041148A /* SetingInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0089B0A71D6BFF250041148A /* SetingInfoCell.xib */; };
+		0089B0AF1D6BFF250041148A /* SetingLoginCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0089B0A81D6BFF250041148A /* SetingLoginCell.swift */; };
+		0089B0B01D6BFF250041148A /* SetingLoginCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0089B0A91D6BFF250041148A /* SetingLoginCell.xib */; };
+		0089B0B11D6BFF250041148A /* SetingNotLoginCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0089B0AA1D6BFF250041148A /* SetingNotLoginCell.swift */; };
+		0089B0B21D6BFF250041148A /* SetingNotLoginCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0089B0AB1D6BFF250041148A /* SetingNotLoginCell.xib */; };
+		0089B0B31D6BFF250041148A /* SetingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0089B0AC1D6BFF250041148A /* SetingView.swift */; };
 		008AEF1B1D264A4C00B9E4D0 /* ProfileSetupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 008AEF191D264A4C00B9E4D0 /* ProfileSetupViewController.xib */; };
-		0095C0DA1D123E9100331266 /* SetingNotLoginCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0095C0D81D123E9100331266 /* SetingNotLoginCell.swift */; };
-		0095C0DB1D123E9100331266 /* SetingNotLoginCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0095C0D91D123E9100331266 /* SetingNotLoginCell.xib */; };
-		0095C0E41D12940C00331266 /* SetingInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0095C0E21D12940C00331266 /* SetingInfoCell.swift */; };
-		0095C0E51D12940C00331266 /* SetingInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0095C0E31D12940C00331266 /* SetingInfoCell.xib */; };
 		0095DDA91D2E0D7D00F80BFD /* wacth_dial.png in Resources */ = {isa = PBXBuildFile; fileRef = 0095DDA61D2E0D7D00F80BFD /* wacth_dial.png */; };
 		0095DDAA1D2E0D7D00F80BFD /* wacth_hour.png in Resources */ = {isa = PBXBuildFile; fileRef = 0095DDA71D2E0D7D00F80BFD /* wacth_hour.png */; };
 		0095DDAB1D2E0D7D00F80BFD /* wacth_mint.png in Resources */ = {isa = PBXBuildFile; fileRef = 0095DDA81D2E0D7D00F80BFD /* wacth_mint.png */; };
@@ -476,8 +484,6 @@
 		00D474E11D58732000E2447E /* SFCompactDisplay-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 00D4733B1D581BA400E2447E /* SFCompactDisplay-Thin.ttf */; };
 		00D474E21D58732000E2447E /* SFUIDisplay-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 00D4733C1D581BA400E2447E /* SFUIDisplay-Regular.ttf */; };
 		00D474E31D58732000E2447E /* SFUIText-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 00D4733D1D581BA400E2447E /* SFUIText-Regular.ttf */; };
-		00D581441CB50C7500953B8A /* ChangeProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D581421CB50C7500953B8A /* ChangeProfileController.swift */; };
-		00D581451CB50C7500953B8A /* ChangeProfileController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00D581431CB50C7500953B8A /* ChangeProfileController.xib */; };
 		00DBC3A31C435541004B4376 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 00DBC3A21C435541004B4376 /* Main.storyboard */; };
 		00DE86E71D3489350013FFC4 /* StepsTitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00DE86E51D3489350013FFC4 /* StepsTitleView.xib */; };
 		00DE86EB1D34CB160013FFC4 /* StepGoalSetingViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00DE86E91D34CB160013FFC4 /* StepGoalSetingViewCell.xib */; };
@@ -669,7 +675,6 @@
 		0050D5551C28E0DB004F6F80 /* PresetTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresetTableViewCell.swift; sourceTree = "<group>"; };
 		0050D5561C28E0DB004F6F80 /* PresetTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PresetTableViewCell.xib; sourceTree = "<group>"; };
 		0050D5571C28E0DB004F6F80 /* PresetView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresetView.swift; sourceTree = "<group>"; };
-		0050D55A1C28E0DB004F6F80 /* SetingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetingView.swift; sourceTree = "<group>"; };
 		0050D55D1C28E0DB004F6F80 /* SetingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetingViewController.swift; sourceTree = "<group>"; };
 		0050D6851C28E1CD004F6F80 /* AddAlarmController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddAlarmController.swift; sourceTree = "<group>"; };
 		0050D6861C28E1CD004F6F80 /* AddAlarmController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddAlarmController.xib; sourceTree = "<group>"; };
@@ -726,8 +731,6 @@
 		006A626A1D6AB44A00458305 /* StepsHistoryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StepsHistoryViewController.xib; sourceTree = "<group>"; };
 		006A626B1D6AB44A00458305 /* StepsTitleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepsTitleView.swift; sourceTree = "<group>"; };
 		006A626C1D6AB44A00458305 /* StepsTitleView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StepsTitleView.xib; sourceTree = "<group>"; };
-		006A65CF1D10F2DD00DE647A /* SetingLoginCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetingLoginCell.swift; sourceTree = "<group>"; };
-		006A65D01D10F2DD00DE647A /* SetingLoginCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SetingLoginCell.xib; sourceTree = "<group>"; };
 		006B83691C44A20000E20A0C /* Nevo-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Nevo-Bridging-Header.h"; sourceTree = "<group>"; };
 		0072EAEA1C192210001EE2C9 /* spinner.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spinner.png; sourceTree = "<group>"; };
 		0073C5DD1D3C67CF00924167 /* NewAddAlarmHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewAddAlarmHeader.swift; sourceTree = "<group>"; };
@@ -780,12 +783,23 @@
 		007E0CAD1D0E5C3E00B0B600 /* ConnectOtherAppsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConnectOtherAppsCell.xib; sourceTree = "<group>"; };
 		007F1F501CAA1B630021DF1B /* LocalNotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocalNotification.swift; path = Frameworks/LocalNotification.swift; sourceTree = "<group>"; };
 		0086858F1B40D53C0062F544 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
+		0089B0901D6BE9410041148A /* CheckYourIndoxController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckYourIndoxController.swift; sourceTree = "<group>"; };
+		0089B0911D6BE9410041148A /* CheckYourIndoxController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CheckYourIndoxController.xib; sourceTree = "<group>"; };
+		0089B0931D6BE9410041148A /* ForgotPasswordController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordController.swift; sourceTree = "<group>"; };
+		0089B0941D6BE9410041148A /* ForgotPasswordController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ForgotPasswordController.xib; sourceTree = "<group>"; };
+		0089B0961D6BE9410041148A /* InformationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InformationController.swift; sourceTree = "<group>"; };
+		0089B0971D6BE9410041148A /* InformationController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InformationController.xib; sourceTree = "<group>"; };
+		0089B0A11D6BF0CB0041148A /* ProfileSetupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileSetupViewController.swift; sourceTree = "<group>"; };
+		0089B0A21D6BF0CB0041148A /* ProfileSetupViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileSetupViewController.xib; sourceTree = "<group>"; };
+		0089B0A61D6BFF250041148A /* SetingInfoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetingInfoCell.swift; sourceTree = "<group>"; };
+		0089B0A71D6BFF250041148A /* SetingInfoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SetingInfoCell.xib; sourceTree = "<group>"; };
+		0089B0A81D6BFF250041148A /* SetingLoginCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetingLoginCell.swift; sourceTree = "<group>"; };
+		0089B0A91D6BFF250041148A /* SetingLoginCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SetingLoginCell.xib; sourceTree = "<group>"; };
+		0089B0AA1D6BFF250041148A /* SetingNotLoginCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetingNotLoginCell.swift; sourceTree = "<group>"; };
+		0089B0AB1D6BFF250041148A /* SetingNotLoginCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SetingNotLoginCell.xib; sourceTree = "<group>"; };
+		0089B0AC1D6BFF250041148A /* SetingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetingView.swift; sourceTree = "<group>"; };
 		008AEF181D264A4C00B9E4D0 /* ProfileSetupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileSetupViewController.swift; sourceTree = "<group>"; };
 		008AEF191D264A4C00B9E4D0 /* ProfileSetupViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileSetupViewController.xib; sourceTree = "<group>"; };
-		0095C0D81D123E9100331266 /* SetingNotLoginCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetingNotLoginCell.swift; sourceTree = "<group>"; };
-		0095C0D91D123E9100331266 /* SetingNotLoginCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SetingNotLoginCell.xib; sourceTree = "<group>"; };
-		0095C0E21D12940C00331266 /* SetingInfoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetingInfoCell.swift; sourceTree = "<group>"; };
-		0095C0E31D12940C00331266 /* SetingInfoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SetingInfoCell.xib; sourceTree = "<group>"; };
 		0095DDA61D2E0D7D00F80BFD /* wacth_dial.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wacth_dial.png; sourceTree = "<group>"; };
 		0095DDA71D2E0D7D00F80BFD /* wacth_hour.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wacth_hour.png; sourceTree = "<group>"; };
 		0095DDA81D2E0D7D00F80BFD /* wacth_mint.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wacth_mint.png; sourceTree = "<group>"; };
@@ -901,8 +915,6 @@
 		00D4733B1D581BA400E2447E /* SFCompactDisplay-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFCompactDisplay-Thin.ttf"; sourceTree = "<group>"; };
 		00D4733C1D581BA400E2447E /* SFUIDisplay-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFUIDisplay-Regular.ttf"; sourceTree = "<group>"; };
 		00D4733D1D581BA400E2447E /* SFUIText-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFUIText-Regular.ttf"; sourceTree = "<group>"; };
-		00D581421CB50C7500953B8A /* ChangeProfileController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangeProfileController.swift; sourceTree = "<group>"; };
-		00D581431CB50C7500953B8A /* ChangeProfileController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChangeProfileController.xib; sourceTree = "<group>"; };
 		00DBC3A21C435541004B4376 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		00DE86E41D3489350013FFC4 /* StepsTitleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepsTitleView.swift; sourceTree = "<group>"; };
 		00DE86E51D3489350013FFC4 /* StepsTitleView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StepsTitleView.xib; sourceTree = "<group>"; };
@@ -1221,12 +1233,15 @@
 		0050D5151C28E0DB004F6F80 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				0089B0A01D6BF0CB0041148A /* ProfileSetupController */,
+				0089B08F1D6BE9410041148A /* CheckYourIndox */,
+				0089B0921D6BE9410041148A /* ForgotPasswordController */,
+				0089B0951D6BE9410041148A /* InformationController */,
 				006A625F1D6AA7E300458305 /* AnalysisStepsChartView */,
 				006A62501D6AA75100458305 /* LineLabel */,
 				006A62471D6AA62100458305 /* SolarIndicator */,
 				006A62231D6AA53100458305 /* PageViewController */,
 				0058B3E31CF55CF50079A213 /* ConnectOtherAppsController */,
-				00D581411CB50C5900953B8A /* ChangeProfileController */,
 				009703BF1C9BD98300F2FF0D /* UserProfileController */,
 				00321D761C993C320069BFCC /* LoginController */,
 				00321D791C993C320069BFCC /* RegisterController */,
@@ -1365,24 +1380,10 @@
 		0050D5581C28E0DB004F6F80 /* SetingViewController */ = {
 			isa = PBXGroup;
 			children = (
-				0050D5591C28E0DB004F6F80 /* SetingView */,
+				0089B0A51D6BFF250041148A /* SetingView */,
 				0050D55D1C28E0DB004F6F80 /* SetingViewController.swift */,
 			);
 			path = SetingViewController;
-			sourceTree = "<group>";
-		};
-		0050D5591C28E0DB004F6F80 /* SetingView */ = {
-			isa = PBXGroup;
-			children = (
-				0050D55A1C28E0DB004F6F80 /* SetingView.swift */,
-				006A65CF1D10F2DD00DE647A /* SetingLoginCell.swift */,
-				006A65D01D10F2DD00DE647A /* SetingLoginCell.xib */,
-				0095C0D81D123E9100331266 /* SetingNotLoginCell.swift */,
-				0095C0D91D123E9100331266 /* SetingNotLoginCell.xib */,
-				0095C0E21D12940C00331266 /* SetingInfoCell.swift */,
-				0095C0E31D12940C00331266 /* SetingInfoCell.xib */,
-			);
-			path = SetingView;
 			sourceTree = "<group>";
 		};
 		0050D55E1C28E0DB004F6F80 /* SleepController */ = {
@@ -1693,6 +1694,56 @@
 			path = image;
 			sourceTree = "<group>";
 		};
+		0089B08F1D6BE9410041148A /* CheckYourIndox */ = {
+			isa = PBXGroup;
+			children = (
+				0089B0901D6BE9410041148A /* CheckYourIndoxController.swift */,
+				0089B0911D6BE9410041148A /* CheckYourIndoxController.xib */,
+			);
+			path = CheckYourIndox;
+			sourceTree = "<group>";
+		};
+		0089B0921D6BE9410041148A /* ForgotPasswordController */ = {
+			isa = PBXGroup;
+			children = (
+				0089B0931D6BE9410041148A /* ForgotPasswordController.swift */,
+				0089B0941D6BE9410041148A /* ForgotPasswordController.xib */,
+			);
+			path = ForgotPasswordController;
+			sourceTree = "<group>";
+		};
+		0089B0951D6BE9410041148A /* InformationController */ = {
+			isa = PBXGroup;
+			children = (
+				0089B0961D6BE9410041148A /* InformationController.swift */,
+				0089B0971D6BE9410041148A /* InformationController.xib */,
+			);
+			path = InformationController;
+			sourceTree = "<group>";
+		};
+		0089B0A01D6BF0CB0041148A /* ProfileSetupController */ = {
+			isa = PBXGroup;
+			children = (
+				0089B0A11D6BF0CB0041148A /* ProfileSetupViewController.swift */,
+				0089B0A21D6BF0CB0041148A /* ProfileSetupViewController.xib */,
+			);
+			path = ProfileSetupController;
+			sourceTree = "<group>";
+		};
+		0089B0A51D6BFF250041148A /* SetingView */ = {
+			isa = PBXGroup;
+			children = (
+				0089B0A61D6BFF250041148A /* SetingInfoCell.swift */,
+				0089B0A71D6BFF250041148A /* SetingInfoCell.xib */,
+				0089B0A81D6BFF250041148A /* SetingLoginCell.swift */,
+				0089B0A91D6BFF250041148A /* SetingLoginCell.xib */,
+				0089B0AA1D6BFF250041148A /* SetingNotLoginCell.swift */,
+				0089B0AB1D6BFF250041148A /* SetingNotLoginCell.xib */,
+				0089B0AC1D6BFF250041148A /* SetingView.swift */,
+			);
+			path = SetingView;
+			sourceTree = "<group>";
+		};
 		008AEF171D264A4B00B9E4D0 /* ProfileSetupController */ = {
 			isa = PBXGroup;
 			children = (
@@ -1997,15 +2048,6 @@
 				00BA5ECB1D5978E6004B5438 /* SolarInforViewCell.xib */,
 			);
 			path = SolarIndicator;
-			sourceTree = "<group>";
-		};
-		00D581411CB50C5900953B8A /* ChangeProfileController */ = {
-			isa = PBXGroup;
-			children = (
-				00D581421CB50C7500953B8A /* ChangeProfileController.swift */,
-				00D581431CB50C7500953B8A /* ChangeProfileController.xib */,
-			);
-			path = ChangeProfileController;
 			sourceTree = "<group>";
 		};
 		00E2BDDC1B16CCD0009C757E /* MBProgressHUD */ = {
@@ -2919,7 +2961,6 @@
 				0050D60E1C28E0DB004F6F80 /* PresetTableViewController.xib in Resources */,
 				00EC9DCF1C85833400280904 /* MorningTutorialController.xib in Resources */,
 				0050D6011C28E0DB004F6F80 /* NotificationViewController.xib in Resources */,
-				0095C0E51D12940C00331266 /* SetingInfoCell.xib in Resources */,
 				006A62431D6AA5F200458305 /* SleepHistoricalViewController.xib in Resources */,
 				00E2BDE31B16CCD0009C757E /* MBProgressHUD.bundle in Resources */,
 				006A626F1D6AB44A00458305 /* StepGoalSetingController.xib in Resources */,
@@ -2937,7 +2978,7 @@
 				00D4733F1D581BA400E2447E /* SFCompactDisplay-Bold.ttf in Resources */,
 				00344F5D1C47A86800C2FC7A /* SupportViewController.xib in Resources */,
 				0036EB081C48BA8300DCED46 /* settimer.png in Resources */,
-				00D581451CB50C7500953B8A /* ChangeProfileController.xib in Resources */,
+				0089B09B1D6BE9410041148A /* CheckYourIndoxController.xib in Resources */,
 				004ED1F11CB386CC009D053C /* iRate.bundle in Resources */,
 				00F0C3541C8993DD005888A7 /* NewAddAlarmController.xib in Resources */,
 				0036EB071C48BA8300DCED46 /* searching.png in Resources */,
@@ -2946,12 +2987,15 @@
 				00478F4F1A8F637D00D0DCE2 /* clockViewHour.png in Resources */,
 				006A624D1D6AA62100458305 /* SolarIndicatorController.xib in Resources */,
 				0050D6111C28E0DB004F6F80 /* PresetTableViewCell.xib in Resources */,
+				0089B09D1D6BE9410041148A /* ForgotPasswordController.xib in Resources */,
 				000CB3291C3E436000B4ABEC /* white_hour.png in Resources */,
 				0050D5FB1C28E0DB004F6F80 /* LineColorCell.xib in Resources */,
 				0058B3EB1CF55D590079A213 /* ConnectOtherAppsController.xib in Resources */,
 				0050D5F91C28E0DB004F6F80 /* NevoOtaViewController.xib in Resources */,
+				0089B0AE1D6BFF250041148A /* SetingInfoCell.xib in Resources */,
 				00EC9DB91C85830F00280904 /* HomeTutorialController.xib in Resources */,
 				0036EB0D1C48C36700DCED46 /* bluetoothoff_background.png in Resources */,
+				0089B0A41D6BF0CB0041148A /* ProfileSetupViewController.xib in Resources */,
 				004ED1F01CB386CC009D053C /* Info.plist in Resources */,
 				00D473421D581BA400E2447E /* SFCompactDisplay-Thin.ttf in Resources */,
 				001F1B7C1B57777B001DD426 /* nevo_wacth.png in Resources */,
@@ -2974,13 +3018,14 @@
 				0050D6941C28E1CD004F6F80 /* AddAlarmSystemCell.xib in Resources */,
 				0036EB0A1C48BA8300DCED46 /* tutorialone.png in Resources */,
 				00EC9DFB1C85838900280904 /* TutorialFiveViewController.xib in Resources */,
+				0089B0B01D6BFF250041148A /* SetingLoginCell.xib in Resources */,
 				00EC9DDA1C85834F00280904 /* TutorialTwoViewController.xib in Resources */,
 				00E650971C83DA8000278D3E /* homeTutorial.png in Resources */,
+				0089B09F1D6BE9410041148A /* InformationController.xib in Resources */,
 				00D473441D581BA400E2447E /* SFUIText-Regular.ttf in Resources */,
 				0036EB061C48BA8300DCED46 /* connected1.png in Resources */,
 				0050D6961C28E1CD004F6F80 /* AddAlarmTableViewCell.xib in Resources */,
 				00D473411D581BA400E2447E /* SFCompactDisplay-Regular.ttf in Resources */,
-				0095C0DB1D123E9100331266 /* SetingNotLoginCell.xib in Resources */,
 				0050D69B1C2906D8004F6F80 /* Firmwares in Resources */,
 				00E650991C83DD9000278D3E /* nevoFontImage.png in Resources */,
 				0050D60C1C28E0DB004F6F80 /* AddPresetViewController.xib in Resources */,
@@ -2995,10 +3040,10 @@
 				006A624F1D6AA62100458305 /* SolarInforViewCell.xib in Resources */,
 				000CB3281C3E436000B4ABEC /* white_clock.png in Resources */,
 				00D473431D581BA400E2447E /* SFUIDisplay-Regular.ttf in Resources */,
+				0089B0B21D6BFF250041148A /* SetingNotLoginCell.xib in Resources */,
 				00C640F61A8DEE0800815CF8 /* clockView600.png in Resources */,
 				00321D7D1C993C320069BFCC /* LoginController.xib in Resources */,
 				00BF2D9B1C7FED2200909316 /* VideoPlayController.xib in Resources */,
-				006A65D21D10F2DD00DE647A /* SetingLoginCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3345,9 +3390,9 @@
 				006A62411D6AA5F200458305 /* SleepHistoricalView.swift in Sources */,
 				00AF8CC41D224CFA009047AC /* NotificationModel.swift in Sources */,
 				00AF8CFB1D224CFA009047AC /* SetAlarmRequest.swift in Sources */,
+				0089B0B11D6BFF250041148A /* SetingNotLoginCell.swift in Sources */,
 				00AF8CDA1D224CFA009047AC /* PublicClassTableViewController.swift in Sources */,
 				00321D7C1C993C320069BFCC /* LoginController.swift in Sources */,
-				0095C0DA1D123E9100331266 /* SetingNotLoginCell.swift in Sources */,
 				006A62521D6AA75100458305 /* LineLabel.swift in Sources */,
 				0050D60B1C28E0DB004F6F80 /* AddPresetViewController.swift in Sources */,
 				00AF8CD61D224CFA009047AC /* ValidicRequest.swift in Sources */,
@@ -3365,6 +3410,7 @@
 				0050D5FC1C28E0DB004F6F80 /* NotificationClockCell.swift in Sources */,
 				00AF8CE41D224CFA009047AC /* ClockRefreshManager.swift in Sources */,
 				007E0CAE1D0E5C3E00B0B600 /* ConnectOtherAppsCell.swift in Sources */,
+				0089B0AF1D6BFF250041148A /* SetingLoginCell.swift in Sources */,
 				006A62421D6AA5F200458305 /* SleepHistoricalViewController.swift in Sources */,
 				00BF2D9A1C7FED2200909316 /* VideoPlayController.swift in Sources */,
 				00AF8CD11D224CFA009047AC /* TypeModel.swift in Sources */,
@@ -3375,18 +3421,17 @@
 				00AF8D001D224CFA009047AC /* SetProfileRequest.swift in Sources */,
 				0050D5ED1C28E0DB004F6F80 /* HelpViewController.swift in Sources */,
 				0050D5EA1C28E0DB004F6F80 /* AidOtaViewController.swift in Sources */,
-				006A65D11D10F2DD00DE647A /* SetingLoginCell.swift in Sources */,
 				006A62221D6A9F1500458305 /* MainTabBarController.swift in Sources */,
 				00AF8CB71D224CFA009047AC /* HourlySteps.swift in Sources */,
 				00AF8CE21D224CFA009047AC /* ToolbarView.swift in Sources */,
 				00AF8CD71D224CFA009047AC /* Color.swift in Sources */,
 				9AD8F98D1A6E2D6E00F01014 /* RawPacket.swift in Sources */,
+				0089B0A31D6BF0CB0041148A /* ProfileSetupViewController.swift in Sources */,
 				9AD8F9621A6E00E800F01014 /* NevoBTimpl.swift in Sources */,
 				006A624C1D6AA62100458305 /* SolarIndicatorController.swift in Sources */,
 				00AF8CEC1D224CFA009047AC /* NevoOTAPacketProfile.swift in Sources */,
 				00AF8CF01D224CFA009047AC /* DailyStepsNevoPacket.swift in Sources */,
 				00AF8CFC1D224CFA009047AC /* SetCardioRequest.swift in Sources */,
-				0050D6131C28E0DB004F6F80 /* SetingView.swift in Sources */,
 				9E98FB291C463A3B00BAB700 /* TutorialOneViewController.swift in Sources */,
 				0050D5F11C28E0DB004F6F80 /* MyNevoHeaderView.swift in Sources */,
 				00E6509C1C83EE6700278D3E /* SleepTutorialController.swift in Sources */,
@@ -3420,18 +3465,19 @@
 				00AF8CDE1D224CFA009047AC /* ClockView.swift in Sources */,
 				9E98FB351C46405800BAB700 /* TutorialFiveViewController.swift in Sources */,
 				006A625D1D6AA79E00458305 /* AlarmClockVCell.swift in Sources */,
+				0089B09A1D6BE9410041148A /* CheckYourIndoxController.swift in Sources */,
 				006A62621D6AA7E300458305 /* AnalysisRadarChartView.swift in Sources */,
 				00AF8CF81D224CFA009047AC /* ReadBatteryLevelNevoRequest.swift in Sources */,
 				006A62571D6AA76C00458305 /* AlarmTypeCell.swift in Sources */,
 				00AF8CC71D224CFA009047AC /* SleepModel.swift in Sources */,
 				0050D60D1C28E0DB004F6F80 /* PresetTableViewController.swift in Sources */,
 				00AF8CC51D224CFA009047AC /* Presets.swift in Sources */,
+				0089B09E1D6BE9410041148A /* InformationController.swift in Sources */,
 				0050D6101C28E0DB004F6F80 /* PresetTableViewCell.swift in Sources */,
 				00AF8CBB1D224CFA009047AC /* NewAlarm.swift in Sources */,
 				00AF8D021D224CFA009047AC /* SetSleepRequest.swift in Sources */,
 				00AF8CE91D224CFA009047AC /* IntelHex2BinConverter.m in Sources */,
 				0050D6001C28E0DB004F6F80 /* NotificationViewController.swift in Sources */,
-				0095C0E41D12940C00331266 /* SetingInfoCell.swift in Sources */,
 				006A62461D6AA5F200458305 /* SleepTrackingView.swift in Sources */,
 				0050D5E91C28E0DB004F6F80 /* AidOtaController.swift in Sources */,
 				00AF8CEB1D224CFA009047AC /* NevoOTAModeProfile.swift in Sources */,
@@ -3448,14 +3494,17 @@
 				9AD8F98F1A6E2EE000F01014 /* Profile.swift in Sources */,
 				00AF8CFD1D224CFA009047AC /* SetGoalRequest.swift in Sources */,
 				006A62441D6AA5F200458305 /* SleepTrackingController.swift in Sources */,
+				0089B0B31D6BFF250041148A /* SetingView.swift in Sources */,
 				006A62401D6AA5F200458305 /* SleepController.swift in Sources */,
 				00AF8CCE1D224CFA009047AC /* Goal.swift in Sources */,
+				0089B0AD1D6BFF250041148A /* SetingInfoCell.swift in Sources */,
 				00AF8CE81D224CFA009047AC /* NevoProfile.swift in Sources */,
 				9A2D6C401A9C783800591BDC /* NevoHKImpl.swift in Sources */,
 				00E650A01C840FD500278D3E /* MorningTutorialController.swift in Sources */,
 				00AF8CB81D224CFA009047AC /* RealTimeCountSteps.swift in Sources */,
 				00AF8CD21D224CFA009047AC /* ConfigSleepAlarm.swift in Sources */,
 				00AF8CB51D224CFA009047AC /* DailySteps.swift in Sources */,
+				0089B09C1D6BE9410041148A /* ForgotPasswordController.swift in Sources */,
 				0050D5FA1C28E0DB004F6F80 /* LineColorCell.swift in Sources */,
 				00AF8CD51D224CFA009047AC /* HttpPostRequest.swift in Sources */,
 				00AF8CF41D224CFA009047AC /* GetActivityRequest.swift in Sources */,
@@ -3472,7 +3521,6 @@
 				00AF8CDD1D224CFA009047AC /* BalloonMarker.swift in Sources */,
 				00AF8D031D224CFA009047AC /* WriteSettingRequest.swift in Sources */,
 				0050D6971C28E1CD004F6F80 /* AddAlarmView.swift in Sources */,
-				00D581441CB50C7500953B8A /* ChangeProfileController.swift in Sources */,
 				00F0C34B1C893EE6005888A7 /* AlarmTypeController.swift in Sources */,
 				00AF8CCA1D224CFA009047AC /* UserNotification.swift in Sources */,
 				0050D5F41C28E0DB004F6F80 /* NevoOtaController.swift in Sources */,

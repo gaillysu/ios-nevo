@@ -28,7 +28,8 @@ class LineLabel: UILabel {
         let ctx = UIGraphicsGetCurrentContext()
         CGContextMoveToPoint(ctx, 0, rect.size.height-2)
         CGContextAddLineToPoint(ctx, rect.size.width, rect.size.height - 2)
-        CGContextSetStrokeColorWithColor(ctx, UIColor.grayColor().CGColor)
+        CGContextSetStrokeColorWithColor(ctx, UIColor.lightGrayColor().CGColor)
+        CGContextSetLineWidth(ctx, 2);  //线宽
         CGContextStrokePath(ctx)
     }
 
