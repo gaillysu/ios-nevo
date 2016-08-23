@@ -33,12 +33,12 @@ class SolarIndicatorController: PublicClassController {
         pieChartView.delegate = self
         self.updateChartData()
         pieChartView.animate(xAxisDuration: 1.4, easingOption: ChartEasingOption.EaseOutBack)
-        pieChartView.backgroundColor = UIColor.getGreyColor()
+        pieChartView.backgroundColor = UIColor.whiteColor()
 
     }
     
     override func viewWillAppear(animated: Bool) {
-        self.view.backgroundColor = UIColor.getGreyColor()
+        
         
     }
 
@@ -88,7 +88,7 @@ extension SolarIndicatorController:ChartViewDelegate {
         chartView.holeRadiusPercent = 0.0
         chartView.transparentCircleRadiusPercent = 0.0
         chartView.descriptionText = ""
-//        chartView.setExtraOffsets(left: 5.0, top: 10.0, right: 5.0, bottom: 5.0)
+        chartView.setExtraOffsets(left: 0, top: 0, right: 0, bottom: 0)
         chartView.drawCenterTextEnabled = true
         let paragraphStyle:NSMutableParagraphStyle = NSParagraphStyle.defaultParagraphStyle().mutableCopy() as! NSMutableParagraphStyle
         paragraphStyle.lineBreakMode = NSLineBreakMode.ByTruncatingTail
@@ -133,12 +133,12 @@ extension SolarIndicatorController:ChartViewDelegate {
         let dataSet:PieChartDataSet = PieChartDataSet(yVals: yVals1, label: "Election Results")
         dataSet.sliceSpace = 2.0;
         var colors:[UIColor] = [];
-        colors.append(UIColor(red: 179/255, green: 126/255, blue: 189/255, alpha: 1))
-        colors.append(UIColor.getBaseColor())
+        colors.append(AppTheme.NEVO_SOLAR_YELLOW())
+        colors.append(AppTheme.NEVO_SOLAR_DARK_GRAY())
         dataSet.colors = colors
         
         let data:PieChartData = PieChartData(xVals: xVals, dataSets: [dataSet])
-        data.highlightEnabled = false
+        //data.highlightEnabled = false
         let pFormatter:NSNumberFormatter = NSNumberFormatter()
         pFormatter.numberStyle = NSNumberFormatterStyle.PercentStyle;
         pFormatter.maximumFractionDigits = 1;

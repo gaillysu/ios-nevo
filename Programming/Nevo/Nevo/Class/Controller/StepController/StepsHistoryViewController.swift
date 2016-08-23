@@ -42,7 +42,7 @@ class StepsHistoryViewController: PublicClassController,UICollectionViewDelegate
         //getCriteria("WHERE date = \(dayTime)") //one hour = 3600s
         self.bulidStepHistoricalChartView(queryArray)
         
-        stepsHistory.backgroundColor = UIColor(rgba: "#54575a")
+        stepsHistory.backgroundColor = UIColor.whiteColor()
         stepsHistory.registerNib(UINib(nibName: "StepGoalSetingViewCell", bundle: NSBundle.mainBundle()), forCellWithReuseIdentifier: "StepGoalSetingIdentifier")
         stepsHistory.registerClass(UICollectionViewCell.classForCoder(), forCellWithReuseIdentifier: "StepsHistoryViewCell")
         (stepsHistory.collectionViewLayout as! UICollectionViewFlowLayout).itemSize = CGSizeMake(UIScreen.mainScreen().bounds.size.width/2.0, 40.0)
@@ -62,7 +62,7 @@ class StepsHistoryViewController: PublicClassController,UICollectionViewDelegate
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         // MARK: - chartView?.marker
-        chartView.backgroundColor = UIColor(rgba: "#54575a")
+        //chartView.backgroundColor = AppTheme.NEVO_SOLAR_GRAY()
         chartView!.noDataText = NSLocalizedString("no_step_data", comment: "")
         chartView!.descriptionText = ""
         chartView!.pinchZoomEnabled = false
@@ -74,16 +74,16 @@ class StepsHistoryViewController: PublicClassController,UICollectionViewDelegate
         chartView.delegate = self
         
         let xAxis:ChartXAxis = chartView!.xAxis
-        xAxis.labelTextColor = UIColor.whiteColor()
-        xAxis.axisLineColor = UIColor.whiteColor()
+        xAxis.labelTextColor = UIColor.blackColor()
+        xAxis.axisLineColor = UIColor.blackColor()
         xAxis.drawAxisLineEnabled = true
         xAxis.drawGridLinesEnabled = true
         xAxis.labelPosition = ChartXAxis.LabelPosition.Bottom
         xAxis.labelFont = UIFont(name: "Helvetica-Light", size: 7)!
         
         let yAxis:ChartYAxis = chartView!.leftAxis
-        yAxis.labelTextColor = UIColor.whiteColor()
-        yAxis.axisLineColor = UIColor.whiteColor()
+        yAxis.labelTextColor = UIColor.blackColor()
+        yAxis.axisLineColor = UIColor.blackColor()
         yAxis.drawAxisLineEnabled  = true
         yAxis.drawGridLinesEnabled  = true
         yAxis.drawLimitLinesBehindDataEnabled = true
@@ -92,7 +92,7 @@ class StepsHistoryViewController: PublicClassController,UICollectionViewDelegate
         
         let rightAxis:ChartYAxis = chartView!.rightAxis
         rightAxis.labelTextColor = UIColor.clearColor()
-        rightAxis.axisLineColor = UIColor.grayColor()
+        rightAxis.axisLineColor = UIColor.blackColor()
         rightAxis.drawAxisLineEnabled  = true
         rightAxis.drawGridLinesEnabled  = true
         rightAxis.drawLimitLinesBehindDataEnabled = true
@@ -108,7 +108,6 @@ class StepsHistoryViewController: PublicClassController,UICollectionViewDelegate
             nodataLabel.hidden = false
             nodataLabel.text = NSLocalizedString("no_data", comment: "");
         }
-        self.view.backgroundColor = UIColor(rgba: "#54575a")
     }
 
     override func didReceiveMemoryWarning() {
@@ -123,6 +122,7 @@ class StepsHistoryViewController: PublicClassController,UICollectionViewDelegate
 
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("StepGoalSetingIdentifier", forIndexPath: indexPath)
+        cell.backgroundColor = UIColor.whiteColor()
         (cell as! StepGoalSetingViewCell).titleLabel.text = contentTitleArray[indexPath.row]
         (cell as! StepGoalSetingViewCell).valueLabel.text = "\(contentTArray[indexPath.row])"
         return cell
@@ -175,8 +175,8 @@ class StepsHistoryViewController: PublicClassController,UICollectionViewDelegate
         //ChartColorTemplates.getDeepSleepColor()
         let set1:BarChartDataSet  = BarChartDataSet(yVals: yVal, label: "")
         //每个数据区块的颜色
-        set1.colors = [UIColor.getBaseColor()];
-        set1.highlightColor = UIColor.getBaseColor()
+        set1.colors = [AppTheme.NEVO_SOLAR_YELLOW()];
+        set1.highlightColor = AppTheme.NEVO_SOLAR_YELLOW()
         set1.barSpace = 0.1;
         let dataSets:[BarChartDataSet] = [set1];
         

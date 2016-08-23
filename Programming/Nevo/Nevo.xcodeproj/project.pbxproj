@@ -190,6 +190,8 @@
 		0089B0B11D6BFF250041148A /* SetingNotLoginCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0089B0AA1D6BFF250041148A /* SetingNotLoginCell.swift */; };
 		0089B0B21D6BFF250041148A /* SetingNotLoginCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0089B0AB1D6BFF250041148A /* SetingNotLoginCell.xib */; };
 		0089B0B31D6BFF250041148A /* SetingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0089B0AC1D6BFF250041148A /* SetingView.swift */; };
+		0089B0B61D6C4BDC0041148A /* SleepHistoryViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0089B0B41D6C4BDC0041148A /* SleepHistoryViewCell.swift */; };
+		0089B0B71D6C4BDC0041148A /* SleepHistoryViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0089B0B51D6C4BDC0041148A /* SleepHistoryViewCell.xib */; };
 		008AEF1B1D264A4C00B9E4D0 /* ProfileSetupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 008AEF191D264A4C00B9E4D0 /* ProfileSetupViewController.xib */; };
 		0095DDA91D2E0D7D00F80BFD /* wacth_dial.png in Resources */ = {isa = PBXBuildFile; fileRef = 0095DDA61D2E0D7D00F80BFD /* wacth_dial.png */; };
 		0095DDAA1D2E0D7D00F80BFD /* wacth_hour.png in Resources */ = {isa = PBXBuildFile; fileRef = 0095DDA71D2E0D7D00F80BFD /* wacth_hour.png */; };
@@ -798,6 +800,8 @@
 		0089B0AA1D6BFF250041148A /* SetingNotLoginCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetingNotLoginCell.swift; sourceTree = "<group>"; };
 		0089B0AB1D6BFF250041148A /* SetingNotLoginCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SetingNotLoginCell.xib; sourceTree = "<group>"; };
 		0089B0AC1D6BFF250041148A /* SetingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetingView.swift; sourceTree = "<group>"; };
+		0089B0B41D6C4BDC0041148A /* SleepHistoryViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SleepHistoryViewCell.swift; sourceTree = "<group>"; };
+		0089B0B51D6C4BDC0041148A /* SleepHistoryViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SleepHistoryViewCell.xib; sourceTree = "<group>"; };
 		008AEF181D264A4C00B9E4D0 /* ProfileSetupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileSetupViewController.swift; sourceTree = "<group>"; };
 		008AEF191D264A4C00B9E4D0 /* ProfileSetupViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileSetupViewController.xib; sourceTree = "<group>"; };
 		0095DDA61D2E0D7D00F80BFD /* wacth_dial.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wacth_dial.png; sourceTree = "<group>"; };
@@ -1393,6 +1397,8 @@
 				006A622F1D6AA5F100458305 /* queryTableviewCell */,
 				006A62321D6AA5F100458305 /* SleepController.swift */,
 				006A62331D6AA5F100458305 /* SleepHistoricalView.swift */,
+				0089B0B41D6C4BDC0041148A /* SleepHistoryViewCell.swift */,
+				0089B0B51D6C4BDC0041148A /* SleepHistoryViewCell.xib */,
 				006A62341D6AA5F200458305 /* SleepHistoricalViewController.swift */,
 				006A62351D6AA5F200458305 /* SleepHistoricalViewController.xib */,
 				006A62361D6AA5F200458305 /* SleepTrackingController.swift */,
@@ -3044,6 +3050,7 @@
 				00C640F61A8DEE0800815CF8 /* clockView600.png in Resources */,
 				00321D7D1C993C320069BFCC /* LoginController.xib in Resources */,
 				00BF2D9B1C7FED2200909316 /* VideoPlayController.xib in Resources */,
+				0089B0B71D6C4BDC0041148A /* SleepHistoryViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3532,6 +3539,7 @@
 				0050D6121C28E0DB004F6F80 /* PresetView.swift in Sources */,
 				0050D6951C28E1CD004F6F80 /* AddAlarmTableViewCell.swift in Sources */,
 				00AF8CF91D224CFA009047AC /* ReadDailyTracker.swift in Sources */,
+				0089B0B61D6C4BDC0041148A /* SleepHistoryViewCell.swift in Sources */,
 				00AF8CC01D224CFA009047AC /* AlarmModel.swift in Sources */,
 				0050D5F31C28E0DB004F6F80 /* MyNevoView.swift in Sources */,
 				00E650941C83D8F400278D3E /* HomeTutorialController.swift in Sources */,

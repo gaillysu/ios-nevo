@@ -36,7 +36,12 @@ class AppTheme {
         
         return UIColor(rgba: "#E5E4E2")
     }
-
+    
+    class func NEVO_SOLAR_DARK_GRAY() -> UIColor {
+        
+        return UIColor(rgba: "#BCBCBC")
+    }
+    
     /**
     Custom colors
 

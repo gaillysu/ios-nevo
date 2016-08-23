@@ -32,11 +32,13 @@ class SleepHistoricalViewController: PublicClassController,ChartViewDelegate,Sel
         self.navigationItem.title = NSLocalizedString("sleep_history_title", comment: "")
         contentTitleArray = [NSLocalizedString("sleep_duration", comment: ""), NSLocalizedString("sleep_timer", comment: ""), NSLocalizedString("wake_timer", comment: ""), NSLocalizedString("deep_sleep", comment: ""), NSLocalizedString("light_sleep", comment: ""), NSLocalizedString("wake_duration", comment: "")]
         
+        queryView.detailCollectionView.registerNib(UINib(nibName:"SleepHistoryViewCell",bundle: nil) , forCellWithReuseIdentifier: "SleepHistoryValue_Identifier")
+        
         SwiftEventBus.onMainThread(self, name: SELECTED_CALENDAR_NOTIFICATION) { (notification) in
             let userinfo:NSDate = notification.userInfo!["selectedDate"] as! NSDate
             self.selectedDate = userinfo
             self.queryArray = UserSleep.getCriteria("WHERE date BETWEEN \(userinfo.timeIntervalSince1970-86400) AND \(userinfo.endOfDay.timeIntervalSince1970)")
-            self.queryView.bulidQueryView(self,modelArray: self.queryArray!)
+            //self.queryView.bulidQueryView(self,modelArray: self.queryArray!)
         }
 
     }
@@ -60,7 +62,6 @@ class SleepHistoricalViewController: PublicClassController,ChartViewDelegate,Sel
     }
 
     override func viewDidLayoutSubviews() {
-        queryView.detailCollectionView.registerClass(UICollectionViewCell.classForCoder(), forCellWithReuseIdentifier: "SleepHistoryViewCell")
         (queryView.detailCollectionView.collectionViewLayout as! UICollectionViewFlowLayout).itemSize = CGSizeMake(UIScreen.mainScreen().bounds.size.width/3.0, queryView.detailCollectionView.frame.size.height/2.0)
     }
 
@@ -71,7 +72,6 @@ class SleepHistoricalViewController: PublicClassController,ChartViewDelegate,Sel
     
     // MARK: - SelectedChartViewDelegate
     func didSleepSelectedhighlightValue(xIndex:Int,dataSetIndex: Int, dataSleep:Sleep) {
-        //contentTArray
         contentTArray.removeAll()
         let startTimer:NSDate = NSDate(timeIntervalSince1970: dataSleep.getStartTimer())
         let endTimer:NSDate = NSDate(timeIntervalSince1970: dataSleep.getEndTimer())
@@ -97,47 +97,10 @@ class SleepHistoricalViewController: PublicClassController,ChartViewDelegate,Sel
     }
 
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("SleepHistoryViewCell", forIndexPath: indexPath)
-        cell.backgroundColor = UIColor.clearColor()
-        let labelheight:CGFloat = cell.contentView.frame.size.height
-        let titleView = cell.contentView.viewWithTag(1500)
-        let iphone:Bool = AppTheme.GET_IS_iPhone5S()
-        if(titleView == nil){
-            let titleLabel:UILabel = UILabel(frame: CGRectMake(0, 0, cell.contentView.frame.size.width, labelheight/2.0))
-            titleLabel.textAlignment = NSTextAlignment.Center
-            titleLabel.textColor = UIColor.whiteColor()
-            titleLabel.backgroundColor = UIColor.clearColor()
-            titleLabel.font = AppTheme.FONT_SFUIDISPLAY_REGULAR(mSize: iphone ? 12:15)
-            titleLabel.tag = 1500
-            titleLabel.text = contentTitleArray[indexPath.row]
-            titleLabel.sizeToFit()
-            cell.contentView.addSubview(titleLabel)
-            titleLabel.center = CGPointMake(cell.contentView.frame.size.width/2.0, labelheight/2.0-titleLabel.frame.size.height)
-        }else {
-            let titleLabel:UILabel = titleView as! UILabel
-            titleLabel.text = contentTitleArray[indexPath.row]
-            titleLabel.sizeToFit()
-            titleLabel.center = CGPointMake(cell.contentView.frame.size.width/2.0, labelheight/2.0-titleLabel.frame.size.height)
-        }
-
-        let contentView = cell.contentView.viewWithTag(1700)
-        if(contentView == nil){
-            let contentStepsView:UILabel = UILabel(frame: CGRectMake(0, labelheight/2.0, cell.contentView.frame.size.width, labelheight/2.0))
-            contentStepsView.textAlignment = NSTextAlignment.Center
-            contentStepsView.backgroundColor = UIColor.clearColor()
-            contentStepsView.textColor = UIColor.blackColor()
-            contentStepsView.font = AppTheme.FONT_SFUIDISPLAY_REGULAR(mSize: iphone ? 15:18)
-            contentStepsView.tag = 1700
-            contentStepsView.text = "\(contentTArray[indexPath.row])"
-            contentStepsView.sizeToFit()
-            cell.contentView.addSubview(contentStepsView)
-            contentStepsView.center = CGPointMake(cell.contentView.frame.size.width/2.0,labelheight/2.0+contentStepsView.frame.size.height/2.0)
-        }else {
-            let contentStepsView:UILabel = contentView as! UILabel
-            contentStepsView.text = "\(contentTArray[indexPath.row])"
-            contentStepsView.sizeToFit()
-            contentStepsView.center = CGPointMake(cell.contentView.frame.size.width/2.0,labelheight/2.0+contentStepsView.frame.size.height/2.0)
-        }
+        let cell:SleepHistoryViewCell = collectionView.dequeueReusableCellWithReuseIdentifier("SleepHistoryValue_Identifier", forIndexPath: indexPath) as! SleepHistoryViewCell
+        cell.titleLabel.text = contentTitleArray[indexPath.row]
+        cell.valueLabel.text = "\(contentTArray[indexPath.row])"
+        cell.backgroundColor = UIColor.whiteColor()
         return cell
     }
 
