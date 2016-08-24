@@ -24,8 +24,8 @@ class AddPresetViewController: UIViewController,ButtonManagerCallBack {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        addPresetView.backgroundColor = UIColor.whiteColor()
         addPresetView.bulidAddPresetView(self.navigationItem, delegate: self)
-        
     }
 
     override func didReceiveMemoryWarning() {

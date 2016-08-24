@@ -28,6 +28,7 @@ class PresetTableViewController: UITableViewController,ButtonManagerCallBack,Add
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        presetView.backgroundColor = UIColor.whiteColor()
         presetView.bulidPresetView(self.navigationItem,delegateB: self)
 
         let array:NSArray = Presets.getAll()
@@ -77,12 +78,10 @@ class PresetTableViewController: UITableViewController,ButtonManagerCallBack,Add
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         return prestArray.count
     }
 
@@ -92,29 +91,30 @@ class PresetTableViewController: UITableViewController,ButtonManagerCallBack,Add
         return presetView.getPresetTableViewCell(indexPath, tableView: tableView,presetArray: prestArray, delegate: self)
     }
 
-
-    // Override to support conditional editing of the table view.
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
         return true
     }
-
-
-
+    
+    override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]?{
+        let button1 = UITableViewRowAction(style: .Default, title: "Delete", handler: { (action, indexPath) in
+            self.tableView(tableView, commitEditingStyle: .Delete, forRowAtIndexPath: indexPath)
+        })
+        button1.backgroundColor = AppTheme.NEVO_SOLAR_YELLOW()
+        return [button1]
+    }
+    
     // Override to support editing the table view.
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
-            // Delete the row from the data source
             let preModel:Presets = prestArray[indexPath.row]
             _ = preModel.remove()
             prestArray.removeAtIndex(indexPath.row)
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
         } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+
         }    
     }
-
-
+    
     // Override to support rearranging the table view.
     override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
 
@@ -122,18 +122,7 @@ class PresetTableViewController: UITableViewController,ButtonManagerCallBack,Add
 
     // Override to support conditional rearranging of the table view.
     override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
         return true
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
     
 }
