@@ -9,7 +9,6 @@
 import UIKit
 
 class SelectedNotificationView: UITableView {
-    let checkTag:Int = 1560
 
     func bulidSelectedNotificationView(navigationItem:UINavigationItem){
 

@@ -32,6 +32,7 @@ class SleepHistoricalViewController: PublicClassController,ChartViewDelegate,Sel
         self.navigationItem.title = NSLocalizedString("sleep_history_title", comment: "")
         contentTitleArray = [NSLocalizedString("sleep_duration", comment: ""), NSLocalizedString("sleep_timer", comment: ""), NSLocalizedString("wake_timer", comment: ""), NSLocalizedString("deep_sleep", comment: ""), NSLocalizedString("light_sleep", comment: ""), NSLocalizedString("wake_duration", comment: "")]
         
+        queryView.detailCollectionView.backgroundColor = UIColor.whiteColor()
         queryView.detailCollectionView.registerNib(UINib(nibName:"SleepHistoryViewCell",bundle: nil) , forCellWithReuseIdentifier: "SleepHistoryValue_Identifier")
         
         SwiftEventBus.onMainThread(self, name: SELECTED_CALENDAR_NOTIFICATION) { (notification) in
@@ -62,7 +63,7 @@ class SleepHistoricalViewController: PublicClassController,ChartViewDelegate,Sel
     }
 
     override func viewDidLayoutSubviews() {
-        (queryView.detailCollectionView.collectionViewLayout as! UICollectionViewFlowLayout).itemSize = CGSizeMake(UIScreen.mainScreen().bounds.size.width/3.0, queryView.detailCollectionView.frame.size.height/2.0)
+        (queryView.detailCollectionView.collectionViewLayout as! UICollectionViewFlowLayout).itemSize = CGSizeMake(UIScreen.mainScreen().bounds.size.width/3.0, 50)
     }
 
     override func didReceiveMemoryWarning() {

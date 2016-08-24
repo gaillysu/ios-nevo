@@ -93,47 +93,31 @@ class PageViewController: UIPageViewController,UIActionSheetDelegate {
     }
     
     func rightBarButtonAction(rightBar:UIBarButtonItem){
-        if((UIDevice.currentDevice().systemVersion as NSString).floatValue >= 8.0){
-            
-            let actionSheet:UIAlertController = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
-            
-            let array:NSArray = Presets.getAll()
-            for pArray in array {
-                let model:Presets = pArray as! Presets
-                if(model.status){
-                    let titleString:String = " \(model.steps) " + NSLocalizedString("steps_unit", comment: "")
-                    let alertAction2:UIAlertAction = UIAlertAction(title: titleString, style: UIAlertActionStyle.Default) { (action:UIAlertAction) -> Void in
-                        if((action.title! as NSString).isEqualToString(titleString)){
-                            NSUserDefaults.standardUserDefaults().setObject(model.steps, forKey: NUMBER_OF_STEPS_GOAL_KEY)
-                            self.setGoal(NumberOfStepsGoal(steps: model.steps))
-                        }
+        let actionSheet:UIAlertController = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
+        
+        let array:NSArray = Presets.getAll()
+        for pArray in array {
+            let model:Presets = pArray as! Presets
+            if(model.status){
+                let titleString:String = " \(model.steps) " + NSLocalizedString("steps_unit", comment: "")
+                let alertAction2:UIAlertAction = UIAlertAction(title: titleString, style: UIAlertActionStyle.Default) { (action:UIAlertAction) -> Void in
+                    if((action.title! as NSString).isEqualToString(titleString)){
+                        NSUserDefaults.standardUserDefaults().setObject(model.steps, forKey: NUMBER_OF_STEPS_GOAL_KEY)
+                        self.setGoal(NumberOfStepsGoal(steps: model.steps))
                     }
-                    alertAction2.setValue(AppTheme.NEVO_SOLAR_YELLOW(), forKey: "titleTextColor")
-                    actionSheet.addAction(alertAction2)
                 }
+                alertAction2.setValue(AppTheme.NEVO_SOLAR_YELLOW(), forKey: "titleTextColor")
+                actionSheet.addAction(alertAction2)
             }
-            
-            let alertAction:UIAlertAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: UIAlertActionStyle.Cancel, handler: nil)
-            alertAction.setValue(AppTheme.NEVO_SOLAR_YELLOW(), forKey: "titleTextColor")
-            //alertAction.setValue(UIImage(named: "google"), forKey: "Image")
-            //alertAction.setValue(true, forKey: "checked")
-            actionSheet.addAction(alertAction)
-            
-            self.presentViewController(actionSheet, animated: true, completion:nil)
-        }else{
-            let actionSheet:UIActionSheet = UIActionSheet(title: nil, delegate: self, cancelButtonTitle: "Cancel", destructiveButtonTitle: nil)
-            for steps in goalArray {
-                actionSheet.addButtonWithTitle("\(steps) steps")
-            }
-            for button:UIView in actionSheet.subviews{
-                button.tintColor = UIColor.getBaseColor()
-                button.backgroundColor = UIColor.getBaseColor()
-            }
-            actionSheet.layer.backgroundColor = UIColor.getBaseColor().CGColor
-            actionSheet.tintColor = UIColor.getBaseColor()
-            actionSheet.actionSheetStyle = UIActionSheetStyle.Default;
-            actionSheet.showInView(self.view)
         }
+        
+        let alertAction:UIAlertAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: UIAlertActionStyle.Cancel, handler: nil)
+        alertAction.setValue(AppTheme.NEVO_SOLAR_YELLOW(), forKey: "titleTextColor")
+        //alertAction.setValue(UIImage(named: "google"), forKey: "Image")
+        //alertAction.setValue(true, forKey: "checked")
+        actionSheet.addAction(alertAction)
+        
+        self.presentViewController(actionSheet, animated: true, completion:nil)
     }
     
     func setGoal(goal:Goal) {

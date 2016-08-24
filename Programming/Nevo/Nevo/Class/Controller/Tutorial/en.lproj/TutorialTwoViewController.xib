@@ -54,7 +54,7 @@
                         <action selector="turnBluetoothOnAction:" destination="-1" eventType="touchUpInside" id="ON2-hj-cjc"/>
                     </connections>
                 </button>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bluetoothoff.png" translatesAutoresizingMaskIntoConstraints="NO" id="6Kz-DZ-PCL">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bluetoothoff" translatesAutoresizingMaskIntoConstraints="NO" id="6Kz-DZ-PCL">
                     <rect key="frame" x="173" y="163" width="254" height="254"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="6Kz-DZ-PCL" secondAttribute="height" multiplier="1:1" id="TIA-2y-QRk"/>
@@ -81,6 +81,6 @@
         </view>
     </objects>
     <resources>
-        <image name="bluetoothoff.png" width="550" height="550"/>
+        <image name="bluetoothoff" width="275" height="275"/>
     </resources>
 </document>

@@ -42,8 +42,8 @@ class MainTabBarController: UITabBarController,UITabBarControllerDelegate {
             
             if contll!.isKindOfClass(SleepController){
                 
-                (nav as! UINavigationController).tabBarItem.title = NSLocalizedString("sleepTitle", comment: "")
-                contll?.title = NSLocalizedString("sleepTitle", comment: "")
+                (nav as! UINavigationController).tabBarItem.title = NSLocalizedString("Analysis", comment: "")
+                contll?.title = NSLocalizedString("Analysis", comment: "")
             }
 
             if contll!.isKindOfClass(SetingViewController){

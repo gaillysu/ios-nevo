@@ -84,8 +84,8 @@ class StepGoalSetingController: PublicClassController,ButtonManagerCallBack,Sync
 
     override func viewWillAppear(animated: Bool) {
         if(!AppDelegate.getAppDelegate().hasSavedAddress()) {
-            let tutrorial:HomeTutorialController = HomeTutorialController()
-            let nav:UINavigationController = UINavigationController(rootViewController: tutrorial)
+            let tutorialOne:TutorialOneViewController = TutorialOneViewController()
+            let nav:UINavigationController = UINavigationController(rootViewController: tutorialOne)
             nav.navigationBarHidden = true
             self.presentViewController(nav, animated: true, completion: nil)
         }else{

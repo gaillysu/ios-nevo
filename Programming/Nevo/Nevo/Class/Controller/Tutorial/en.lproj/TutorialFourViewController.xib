@@ -9,9 +9,6 @@
         <mutableArray key="Raleway-Regular.ttf">
             <string>Raleway</string>
         </mutableArray>
-        <mutableArray key="SFCompactDisplay-Semibold.ttf">
-            <string>SFCompactDisplay-Semibold</string>
-        </mutableArray>
     </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TutorialFourViewControllerr">
@@ -55,7 +52,7 @@
                     <constraints>
                         <constraint firstAttribute="height" constant="35" id="ooz-Oq-Jf9"/>
                     </constraints>
-                    <fontDescription key="fontDescription" name="SFCompactDisplay-Semibold" family="SF Compact Display" pointSize="20"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="32"/>
                     <state key="normal" title="Next">
                         <color key="titleColor" red="0.62745098040000002" green="0.51764705879999995" blue="0.33333333329999998" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
@@ -64,6 +61,7 @@
                     </connections>
                 </button>
             </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="0QV-eh-GuQ" firstAttribute="centerY" secondItem="dbG-VB-Rga" secondAttribute="centerY" constant="27" id="0m6-QO-OD3"/>
                 <constraint firstAttribute="trailing" secondItem="xse-Xf-xhk" secondAttribute="trailing" id="1vF-Uu-lSW"/>

@@ -35,12 +35,12 @@
                     <constraints>
                         <constraint firstAttribute="height" constant="47" id="fqu-Xa-9l6"/>
                     </constraints>
-                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="12"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="settimer.png" translatesAutoresizingMaskIntoConstraints="NO" id="59u-7g-cmz">
-                    <rect key="frame" x="173" y="220" width="254" height="254"/>
+                    <rect key="frame" x="0.0" y="220" width="254" height="254"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="59u-7g-cmz" secondAttribute="height" multiplier="1:1" id="KL9-Up-Win"/>
                     </constraints>
@@ -71,7 +71,7 @@
                 <constraint firstAttribute="bottom" secondItem="SEZ-cJ-qxf" secondAttribute="bottom" constant="45" id="YeV-nd-1ff"/>
                 <constraint firstItem="jc7-Ij-g1w" firstAttribute="top" secondItem="LeH-dC-LZT" secondAttribute="top" constant="75" id="bkp-TJ-X7C"/>
                 <constraint firstAttribute="trailing" secondItem="lGd-3f-4uL" secondAttribute="trailing" constant="29" id="id9-6c-gc5"/>
-                <constraint firstItem="59u-7g-cmz" firstAttribute="centerX" secondItem="LeH-dC-LZT" secondAttribute="centerX" id="kwq-Ob-V4d"/>
+                <constraint firstItem="59u-7g-cmz" firstAttribute="leading" secondItem="LeH-dC-LZT" secondAttribute="leading" id="qG5-kh-QnU"/>
                 <constraint firstItem="59u-7g-cmz" firstAttribute="centerY" secondItem="LeH-dC-LZT" secondAttribute="centerY" constant="47" id="sQe-N5-Z1U"/>
             </constraints>
             <point key="canvasLocation" x="574" y="339"/>

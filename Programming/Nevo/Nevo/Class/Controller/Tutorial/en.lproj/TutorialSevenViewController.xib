@@ -6,8 +6,8 @@
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <customFonts key="customFonts">
-        <mutableArray key="SFCompactDisplay-Semibold.ttf">
-            <string>SFCompactDisplay-Semibold</string>
+        <mutableArray key="Raleway-Regular.ttf">
+            <string>Raleway</string>
         </mutableArray>
     </customFonts>
     <objects>
@@ -27,7 +27,7 @@
                     <constraints>
                         <constraint firstAttribute="height" constant="42" id="XsR-Xa-BG8"/>
                     </constraints>
-                    <fontDescription key="fontDescription" name="SFCompactDisplay-Semibold" family="SF Compact Display" pointSize="35"/>
+                    <fontDescription key="fontDescription" name="Raleway" family="Raleway" pointSize="39"/>
                     <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Make sure the blue LED on the nevo is blinking and try again." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mVz-rf-Ylf">
@@ -85,6 +85,6 @@
         </view>
     </objects>
     <resources>
-        <image name="bluetoothoff" width="250" height="250"/>
+        <image name="bluetoothoff" width="275" height="275"/>
     </resources>
 </document>

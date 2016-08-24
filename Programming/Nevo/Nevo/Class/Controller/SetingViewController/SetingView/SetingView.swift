@@ -86,7 +86,7 @@ class SetingView: UIView {
             mSendLocalNotificationSwitchButton.tag = NotificationSwitchButtonTAG
             mSendLocalNotificationSwitchButton?.on = ConnectionManager.sharedInstance.getIsSendLocalMsg()
             mSendLocalNotificationSwitchButton?.tintColor = AppTheme.NEVO_SOLAR_GRAY()
-            mSendLocalNotificationSwitchButton?.onTintColor = AppTheme.NEVO_SOLAR_GRAY()
+            mSendLocalNotificationSwitchButton?.onTintColor = AppTheme.NEVO_SOLAR_YELLOW()
             mSendLocalNotificationSwitchButton?.addTarget(self, action: #selector(SetingView.buttonAction(_:)), forControlEvents: UIControlEvents.ValueChanged)
             mSendLocalNotificationSwitchButton?.center = CGPointMake(UIScreen.mainScreen().bounds.size.width-40, 50.0/2.0)
             endCell?.contentView.addSubview(mSendLocalNotificationSwitchButton!)

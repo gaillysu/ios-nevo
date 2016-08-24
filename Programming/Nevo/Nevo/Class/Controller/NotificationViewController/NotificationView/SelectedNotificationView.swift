@@ -9,7 +9,6 @@
 import UIKit
 
 class SelectedNotificationView: UITableView {
-    let checkTag:Int = 1560
 
     func bulidSelectedNotificationView(navigationItem:UINavigationItem){
 
@@ -35,30 +34,15 @@ class SelectedNotificationView: UITableView {
     }
 
     func getLineColorCell(indexPath:NSIndexPath,tableView:UITableView,cellTitle:String,clockIndex:Int)->UITableViewCell{
-        let endCellID:String = "LineColorCell"
-        var endCell = tableView.dequeueReusableCellWithIdentifier(endCellID)
-
-        if (endCell == nil) {
-            endCell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: endCellID)
-            let selectedView:UIImageView = UIImageView(frame: CGRectMake(0, 0, endCell!.frame.size.height - 25, endCell!.frame.size.height - 25))
-            selectedView.backgroundColor = UIColor.clearColor()
-            selectedView.image = UIImage(named: "notifications_selected_background")
-            selectedView.center = CGPointMake(UIScreen.mainScreen().bounds.size.width-(endCell!.frame.size.height - 25), endCell!.frame.size.height/2.0)
-            selectedView.tag = checkTag
-            selectedView.hidden = true
-            endCell?.contentView.addSubview(selectedView)
-        }
+        let endCell:LineColorCell = tableView.dequeueReusableCellWithIdentifier("LineColor_Identifier" ,forIndexPath: indexPath) as! LineColorCell
+        endCell.imageName.image = UIImage(named: "notifications_check")
+        endCell.imageName.hidden = true
+        endCell.imageView?.image = UIImage(named: cellTitle)
         if((clockIndex/2 - 1) == indexPath.row){
-            let checkView = endCell?.contentView.viewWithTag(checkTag)
-            if(checkView != nil){
-                checkView?.hidden = false
-            }
+            endCell.imageName.hidden = false
         }
 
-        //endCell?.selectionStyle = UITableViewCellSelectionStyle.Blue;
-        //endCell?.textLabel?.text = cellTitle
-        endCell?.imageView?.image = UIImage(named: cellTitle)
-        return endCell!
+        return endCell
     }
 
     /**

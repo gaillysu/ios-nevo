@@ -30,7 +30,7 @@ class SetingViewController: UIViewController,SyncControllerDelegate,ButtonManage
 
         notificationList.bulidNotificationViewUI(self)
 
-        sources = [NSLocalizedString("Link-Loss Notifications", comment: ""),NSLocalizedString("Notifications", comment: ""),NSLocalizedString("My LunaR", comment: ""),NSLocalizedString("Support", comment: "")]
+        sources = [NSLocalizedString("Link-Loss Notifications", comment: ""),NSLocalizedString("Notifications", comment: ""),NSLocalizedString("My Nevo", comment: ""),NSLocalizedString("Support", comment: "")]
         sourcesImage = ["new_iOS_link_icon","new_iOS_notfications_icon","new_iOS_mynevo_iocn","new_iOS_support_icon"]
         titleArray = [NSLocalizedString("goals", comment: ""),NSLocalizedString("find_my_watch", comment: ""),NSLocalizedString("forget_watch", comment: ""),NSLocalizedString("logout", comment: "")]
         titleArrayImage = ["new_iOS_goals_icon","new_iOS_findmywatch_icon","forget_watch","logout"]
@@ -118,7 +118,7 @@ class SetingViewController: UIViewController,SyncControllerDelegate,ButtonManage
                 self.navigationController?.pushViewController(notification, animated: true)
             }
 
-            if(isEqualString("\(sources.objectAtIndex(indexPath.row))",string2: NSLocalizedString("My LunaR", comment: ""))){
+            if(isEqualString("\(sources.objectAtIndex(indexPath.row))",string2: NSLocalizedString("My Nevo", comment: ""))){
                 if(AppDelegate.getAppDelegate().isConnected()){
                     AppTheme.DLog("My nevo")
                     let mynevo:MyNevoController = MyNevoController()
@@ -196,7 +196,7 @@ class SetingViewController: UIViewController,SyncControllerDelegate,ButtonManage
 
                     let alertAction2:UIAlertAction = UIAlertAction(title: NSLocalizedString("forget", comment: ""), style: UIAlertActionStyle.Default, handler: { ( alert) -> Void in
                         AppDelegate.getAppDelegate().forgetSavedAddress()
-                        let tutrorial:HomeTutorialController = HomeTutorialController()
+                        let tutrorial:TutorialOneViewController = TutorialOneViewController()
                         let nav:UINavigationController = UINavigationController(rootViewController: tutrorial)
                         nav.navigationBarHidden = true
                         self.presentViewController(nav, animated: true, completion: nil)

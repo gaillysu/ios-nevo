@@ -33,13 +33,9 @@ class SelectedNotificationTypeController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = NSLocalizedString(titleString!, comment: "")
-
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        self.view.backgroundColor = UIColor.whiteColor()
+        self.tableView.registerNib(UINib(nibName: "LineColorCell",bundle: nil), forCellReuseIdentifier: "LineColor_Identifier")
+        self.tableView.separatorStyle = UITableViewCellSeparatorStyle.None
     }
 
     override func didReceiveMemoryWarning() {
@@ -86,7 +82,6 @@ class SelectedNotificationTypeController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         if(swicthStates){
             return 3
         }else{
@@ -95,7 +90,6 @@ class SelectedNotificationTypeController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         if(section == 2){
             return colorArray.count
         }
@@ -126,17 +120,8 @@ class SelectedNotificationTypeController: UITableViewController {
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         if(indexPath.section == 2){
-            let cell = tableView.cellForRowAtIndexPath(indexPath)
-            for view in tableView.visibleCells{
-                let image = view.viewWithTag((tableView as! SelectedNotificationView).checkTag)
-                if(image != nil){
-                    if(cell!.isEqual(view)){
-                        image?.hidden = false
-                    }else{
-                        image?.hidden = true
-                    }
-                }
-            }
+            let cell:LineColorCell = tableView.cellForRowAtIndexPath(indexPath) as! LineColorCell
+            cell.imageName.hidden = false
             
             let mNotificationArray:NSArray =  UserNotification.getAll()
             for model in mNotificationArray{
@@ -146,6 +131,7 @@ class SelectedNotificationTypeController: UITableViewController {
                     let reloadIndexPath:NSIndexPath = NSIndexPath(forRow: 0, inSection: 1)
                     selectedDelegate?.didSelectedNotificationDelegate((indexPath.row+1)*2, ntSwitchState: notificationModel.status,notificationType:notificationModel.NotificationType)
                     tableView.reloadRowsAtIndexPaths([reloadIndexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
+                    tableView.reloadSections(NSIndexSet(index: 2), withRowAnimation: UITableViewRowAnimation.Automatic)
                     break
                 }
             }
