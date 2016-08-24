@@ -45,12 +45,20 @@ class PageViewController: UIPageViewController,UIActionSheetDelegate {
             self.modalPresentationCapturesStatusBarAppearance = false;
         }
         self.view.backgroundColor = UIColor.whiteColor()
-        self.navigationController?.navigationBar.translucent = false
-        self.navigationController?.navigationBar.lt_setBackgroundColor(UIColor.whiteColor())
         
         let rightItem:UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "edit_icon"), style: UIBarButtonItemStyle.Plain, target: self, action: #selector(rightBarButtonAction(_:)))
         rightItem.tintColor = AppTheme.NEVO_SOLAR_YELLOW()
-        self.navigationItem.rightBarButtonItem = rightItem
+        
+        let rightSpacer:UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FixedSpace, target: nil, action: nil)
+        rightSpacer.width = -10;
+        self.navigationItem.rightBarButtonItems = [rightSpacer,rightItem]
+        
+        let leftItem:UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "new_radio"), style: UIBarButtonItemStyle.Plain, target: self, action: #selector(leftBarButtonAction(_:)))
+        leftItem.tintColor = AppTheme.NEVO_SOLAR_YELLOW()
+        
+        let leftSpacer:UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FixedSpace, target: nil, action: nil)
+        leftSpacer.width = -10;
+        self.navigationItem.leftBarButtonItems = [leftSpacer,leftItem]
         
         self.dataSource = self;
         self.setViewControllers([pagingControllers[0]], direction: UIPageViewControllerNavigationDirection.Forward, animated: true) { (fines) in
@@ -90,6 +98,11 @@ class PageViewController: UIPageViewController,UIActionSheetDelegate {
     
     func slidingAction(sender:UIButton) {
         
+    }
+    
+    func leftBarButtonAction(rightBar:UIBarButtonItem) {
+        let videoPlay:VideoPlayController = VideoPlayController()
+        self.presentViewController(videoPlay, animated: true, completion: nil)
     }
     
     func rightBarButtonAction(rightBar:UIBarButtonItem){

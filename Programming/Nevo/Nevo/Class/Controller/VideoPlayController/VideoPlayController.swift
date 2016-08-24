@@ -14,23 +14,18 @@ class VideoPlayController: AVPlayerViewController,AVPlayerViewControllerDelegate
 
     private let session:AVAudioSession = AVAudioSession.sharedInstance()
 
+    init() {
+        super.init(nibName: "VideoPlayController", bundle: NSBundle.mainBundle())
+    }
+    
+    required init(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        UIApplication.sharedApplication().setStatusBarOrientation(UIInterfaceOrientation.LandscapeRight, animated: true)
-        UIView.beginAnimations(nil, context: nil)
-        UIView.setAnimationDuration(0.2)
-        self.view.transform = CGAffineTransformIdentity
-        self.view.transform = CGAffineTransformMakeRotation(CGFloat(M_PI*(90)/180.0));
-        self.view.bounds = CGRectMake(0, 0, UIScreen.mainScreen().bounds.height, UIScreen.mainScreen().bounds.width);
-        UIView.commitAnimations()
-
-
-
         self.view.backgroundColor = UIColor.blackColor()
 
-        
-        // Do any additional setup after loading the view.
         do {
             try session.setCategory(AVAudioSessionCategoryPlayback)
         }catch {
@@ -65,8 +60,18 @@ class VideoPlayController: AVPlayerViewController,AVPlayerViewControllerDelegate
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
 
+    override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
+        return UIInterfaceOrientationMask.AllButUpsideDown
+    }
+    
+    override func willRotateToInterfaceOrientation(toInterfaceOrientation:UIInterfaceOrientation,duration:NSTimeInterval) {
+        if(toInterfaceOrientation == UIInterfaceOrientation.LandscapeLeft ||
+            toInterfaceOrientation == UIInterfaceOrientation.LandscapeRight){
+            //self.navigationController!.navigationBarHidden = true;
+        }
+    }
+    
     func playerViewControllerWillStartPictureInPicture(playerViewController: AVPlayerViewController) {
         NSLog("%s", #function);
     }
