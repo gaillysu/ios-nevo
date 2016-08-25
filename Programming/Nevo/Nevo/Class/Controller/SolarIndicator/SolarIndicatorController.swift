@@ -126,10 +126,8 @@ extension SolarIndicatorController:ChartViewDelegate {
         
         var xVals:[String] = []
         
-        for i:Int in 0..<count {
-            xVals.append("\(i)")
-        }
-        
+        xVals.append("Solar")
+        xVals.append("Battery")
         let dataSet:PieChartDataSet = PieChartDataSet(yVals: yVals1, label: "Election Results")
         dataSet.sliceSpace = 2.0;
         var colors:[UIColor] = [];

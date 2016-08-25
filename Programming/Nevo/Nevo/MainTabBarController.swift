@@ -40,7 +40,7 @@ class MainTabBarController: UITabBarController,UITabBarControllerDelegate {
                 AppTheme.DLog("StepController:\(contll)")
             }
             
-            if contll!.isKindOfClass(SleepController){
+            if contll!.isKindOfClass(AnalysisController){
                 
                 (nav as! UINavigationController).tabBarItem.title = NSLocalizedString("Analysis", comment: "")
                 contll?.title = NSLocalizedString("Analysis", comment: "")

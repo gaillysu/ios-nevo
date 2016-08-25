@@ -30,7 +30,7 @@ class SleepHistoricalViewController: PublicClassController,ChartViewDelegate,Sel
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = NSLocalizedString("sleep_history_title", comment: "")
-        contentTitleArray = [NSLocalizedString("sleep_duration", comment: ""), NSLocalizedString("sleep_timer", comment: ""), NSLocalizedString("wake_timer", comment: ""), NSLocalizedString("deep_sleep", comment: ""), NSLocalizedString("light_sleep", comment: ""), NSLocalizedString("wake_duration", comment: "")]
+        contentTitleArray = [NSLocalizedString("sleep_timer", comment: ""), NSLocalizedString("wake_timer", comment: ""), NSLocalizedString("quality", comment: ""), NSLocalizedString("duration", comment: "")]
         
         queryView.detailCollectionView.backgroundColor = UIColor.whiteColor()
         queryView.detailCollectionView.registerNib(UINib(nibName:"SleepHistoryViewCell",bundle: nil) , forCellWithReuseIdentifier: "SleepHistoryValue_Identifier")
@@ -40,6 +40,17 @@ class SleepHistoricalViewController: PublicClassController,ChartViewDelegate,Sel
             self.selectedDate = userinfo
             self.queryArray = UserSleep.getCriteria("WHERE date BETWEEN \(userinfo.timeIntervalSince1970-86400) AND \(userinfo.endOfDay.timeIntervalSince1970)")
             //self.queryView.bulidQueryView(self,modelArray: self.queryArray!)
+        }
+        
+        SwiftEventBus.onMainThread(self, name: EVENT_BUS_END_BIG_SYNCACTIVITY) { (notification) in
+            self.queryArray = UserSleep.getCriteria("WHERE date BETWEEN \(NSDate().timeIntervalSince1970-86400) AND \(NSDate().endOfDay.timeIntervalSince1970)")
+            
+            self.contentTArray.removeAll()
+            //contentTArray.insert("\(startString)", atIndex: 0)
+            //contentTArray.insert("\(endString)", atIndex: 1)
+            //self.contentTArray.insert(String(format: "%100"), atIndex: 2)
+            //contentTArray.insert(String(format: "%dh%dm", Int(dataSleep.getWeakSleep()),Int((dataSleep.getWeakSleep())*Double(60)%Double(60))), atIndex: 3)
+            //self.queryView.detailCollectionView.reloadData()
         }
 
     }
@@ -63,7 +74,7 @@ class SleepHistoricalViewController: PublicClassController,ChartViewDelegate,Sel
     }
 
     override func viewDidLayoutSubviews() {
-        (queryView.detailCollectionView.collectionViewLayout as! UICollectionViewFlowLayout).itemSize = CGSizeMake(UIScreen.mainScreen().bounds.size.width/3.0, 50)
+        (queryView.detailCollectionView.collectionViewLayout as! UICollectionViewFlowLayout).itemSize = CGSizeMake(UIScreen.mainScreen().bounds.size.width/2.0, 40)
     }
 
     override func didReceiveMemoryWarning() {
@@ -78,13 +89,11 @@ class SleepHistoricalViewController: PublicClassController,ChartViewDelegate,Sel
         let endTimer:NSDate = NSDate(timeIntervalSince1970: dataSleep.getEndTimer())
         let startString:String = startTimer.stringFromFormat("hh:mm a")
         let endString:String = endTimer.stringFromFormat("hh:mm a")
-
-        contentTArray.insert(String(format: "%dh%dm", Int(dataSleep.getTotalSleep()),Int((dataSleep.getTotalSleep())*Double(60)%Double(60))), atIndex: 0)
-        contentTArray.insert("\(startString)", atIndex: 1)
-        contentTArray.insert("\(endString)", atIndex: 2)
-        contentTArray.insert(String(format: "%dh%dm", Int(dataSleep.getDeepSleep()),Int((dataSleep.getDeepSleep())*Double(60)%Double(60))), atIndex: 3)
-        contentTArray.insert(String(format: "%dh%dm", Int(dataSleep.getLightSleep()),Int((dataSleep.getLightSleep())*Double(60)%Double(60))), atIndex: 4)
-        contentTArray.insert(String(format: "%dh%dm", Int(dataSleep.getWeakSleep()),Int((dataSleep.getWeakSleep())*Double(60)%Double(60))), atIndex: 5)
+        
+        contentTArray.insert("\(startString)", atIndex: 0)
+        contentTArray.insert("\(endString)", atIndex: 1)
+        contentTArray.insert(String(format: "%100"), atIndex: 2)
+        contentTArray.insert(String(format: "%dh%dm", Int(dataSleep.getWeakSleep()),Int((dataSleep.getWeakSleep())*Double(60)%Double(60))), atIndex: 3)
         queryView.detailCollectionView.reloadData()
     }
 

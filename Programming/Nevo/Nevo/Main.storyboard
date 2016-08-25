@@ -202,10 +202,10 @@
             </objects>
             <point key="canvasLocation" x="-684" y="1207"/>
         </scene>
-        <!--Sleep Controller-->
+        <!--Analysis Controller-->
         <scene sceneID="7EE-eb-hD2">
             <objects>
-                <viewController id="P6X-gZ-BTj" customClass="SleepController" customModule="Nevo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="P6X-gZ-BTj" customClass="AnalysisController" customModule="Nevo" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Lgi-Nz-jfp"/>
                         <viewControllerLayoutGuide type="bottom" id="CdT-nP-iHX"/>
@@ -246,16 +246,46 @@
                                     <outlet property="delegate" destination="P6X-gZ-BTj" id="rXR-OR-u1F"/>
                                 </connections>
                             </collectionView>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="vct-D8-ynQ">
+                                <rect key="frame" x="0.0" y="500" width="375" height="118"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="118" id="v26-Nd-pS9"/>
+                                </constraints>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="KKw-1Q-8qq">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="Maq-Xo-AHP">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="P6X-gZ-BTj" id="iEi-qe-mdf"/>
+                                    <outlet property="delegate" destination="P6X-gZ-BTj" id="jwu-pW-a0S"/>
+                                </connections>
+                            </collectionView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="6WP-73-h7Z" firstAttribute="top" secondItem="Lgi-Nz-jfp" secondAttribute="bottom" constant="8" symbolic="YES" id="0Hs-ex-KRG"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="vct-D8-ynQ" secondAttribute="trailing" constant="-16" id="1we-rc-4NJ"/>
                             <constraint firstAttribute="trailingMargin" secondItem="6WP-73-h7Z" secondAttribute="trailing" id="Nak-7o-58l"/>
                             <constraint firstAttribute="leadingMargin" secondItem="6WP-73-h7Z" secondAttribute="leading" id="RfB-U8-Apy"/>
+                            <constraint firstItem="vct-D8-ynQ" firstAttribute="top" secondItem="rTJ-8y-ijY" secondAttribute="bottom" id="giT-Ra-xLh"/>
+                            <constraint firstItem="vct-D8-ynQ" firstAttribute="leading" secondItem="sbM-i3-4xT" secondAttribute="leadingMargin" constant="-16" id="kDP-Gq-KLa"/>
                             <constraint firstAttribute="trailingMargin" secondItem="rTJ-8y-ijY" secondAttribute="trailing" constant="-12" id="kiG-qU-EhN"/>
+                            <constraint firstItem="CdT-nP-iHX" firstAttribute="top" secondItem="vct-D8-ynQ" secondAttribute="bottom" id="ows-3H-39y"/>
                             <constraint firstItem="rTJ-8y-ijY" firstAttribute="top" secondItem="6WP-73-h7Z" secondAttribute="bottom" constant="10" id="tfL-Ds-KiE"/>
                             <constraint firstItem="rTJ-8y-ijY" firstAttribute="leading" secondItem="sbM-i3-4xT" secondAttribute="leadingMargin" constant="-12" id="wVG-wO-a9X"/>
-                            <constraint firstItem="CdT-nP-iHX" firstAttribute="top" secondItem="rTJ-8y-ijY" secondAttribute="bottom" constant="118" id="xZq-ba-Nv8"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Iq0-xp-xDD"/>
@@ -263,6 +293,7 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="chartsCollectionView" destination="rTJ-8y-ijY" id="JXX-MP-IhZ"/>
+                        <outlet property="contentCollectionView" destination="vct-D8-ynQ" id="BHu-6g-J5n"/>
                         <outlet property="segmented" destination="6WP-73-h7Z" id="s4X-zb-WAc"/>
                     </connections>
                 </viewController>
