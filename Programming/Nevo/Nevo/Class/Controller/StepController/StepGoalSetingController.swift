@@ -12,7 +12,7 @@ import SwiftEventBus
 
 let NUMBER_OF_STEPS_GOAL_KEY = "NUMBER_OF_STEPS_GOAL_KEY"
 
-class StepGoalSetingController: PublicClassController,ButtonManagerCallBack,SyncControllerDelegate,ClockRefreshDelegate,UICollectionViewDelegate,UICollectionViewDataSource {
+class StepGoalSetingController: PublicClassController,ButtonManagerCallBack,ClockRefreshDelegate,UICollectionViewDelegate,UICollectionViewDataSource {
     
     @IBOutlet weak var clockBackGroundView: UIView!
     @IBOutlet weak var collectionView:UICollectionView!
@@ -43,6 +43,29 @@ class StepGoalSetingController: PublicClassController,ButtonManagerCallBack,Sync
         
         ClockRefreshManager.sharedInstance.setRefreshDelegate(self)
         
+        SwiftEventBus.onMainThread(self, name: EVENT_BUS_BEGIN_SMALL_SYNCACTIVITY) { (notification) in
+            let dict:[String:AnyObject] = notification.object as! [String:AnyObject]
+            let dailySteps:Int = dict["STEPS"] as! Int
+            let dailyStepGoal:Int = dict["GOAL"] as! Int
+            let percent :Float = dict["PERCENT"] as! Float
+            
+            AppTheme.DLog("get Daily Steps is: \(dailySteps), getDaily Goal is: \(dailyStepGoal),percent is: \(percent)")
+            
+            self.setProgress(percent, dailySteps: dailySteps, dailyStepGoal: dailyStepGoal)
+            
+            if(dailySteps>=dailyStepGoal) {
+                LocalNotification.sharedInstance().cancelNotification([NevoAllKeys.LocalEndSportKey()])
+                let local:LocalNotification = LocalNotification.sharedInstance()
+                local.scheduleNotificationWithKey(NevoAllKeys.LocalEndSportKey(), title: "Today's activity", message: "Today's activity level has reached your preset goals", date: NSDate.date(year: NSDate().year, month: NSDate().month, day: NSDate().day, hour: 19, minute: 0, second: 0) , userInfo: nil)
+            }
+            
+        }
+        
+        SwiftEventBus.onMainThread(self, name: EVENT_BUS_END_BIG_SYNCACTIVITY) { (notification) in
+            self.saveContentTArray()
+
+        }
+        
         SwiftEventBus.onMainThread(self, name: SELECTED_CALENDAR_NOTIFICATION) { (notification) in
             
         }
@@ -50,9 +73,10 @@ class StepGoalSetingController: PublicClassController,ButtonManagerCallBack,Sync
     
     override func viewDidDisappear(animated: Bool) {
         super.viewDidDisappear(animated)
-        SwiftEventBus.unregister(self, name: SELECTED_CALENDAR_NOTIFICATION)
+        //SwiftEventBus.unregister(self, name: SELECTED_CALENDAR_NOTIFICATION)
+        //SwiftEventBus.unregister(self, name: EVENT_BUS_BEGIN_SMALL_SYNCACTIVITY)
     }
-
+    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         let layout:UICollectionViewFlowLayout = UICollectionViewFlowLayout()
@@ -67,21 +91,9 @@ class StepGoalSetingController: PublicClassController,ButtonManagerCallBack,Sync
         
         bulidClockViewandProgressBar()
         
-        let dataArray:NSArray = AppTheme.LoadKeyedArchiverName(StepsGoalKey) as! NSArray
-        if(dataArray.count>0) {
-            let date:NSTimeInterval = (dataArray[1] as! String).dateFromFormat("YYYY/MM/dd")!.timeIntervalSince1970
-            if(date != NSDate.date(year: NSDate().year, month: NSDate().month, day: NSDate().day).timeIntervalSince1970){ return }
-
-            contentTArray = (AppTheme.LoadKeyedArchiverName(StepsGoalKey) as! NSArray)[0] as! [String]
-            let dailyStepGoal:Int = NSString(string: contentTArray[0]).integerValue
-            let dailySteps:Int = NSString(string: contentTArray[2]).integerValue
-            let percent:Float = NSString(string: contentTArray[1].stringByReplacingOccurrencesOfString("%", withString: "")).floatValue/100.0
-            self.setProgress(percent, dailySteps: dailySteps, dailyStepGoal: dailyStepGoal)
-            collectionView?.reloadData()
-        }
-
+        self.getContentTArray()
     }
-
+    
     override func viewWillAppear(animated: Bool) {
         if(!AppDelegate.getAppDelegate().hasSavedAddress()) {
             let tutorialOne:TutorialOneViewController = TutorialOneViewController()
@@ -92,13 +104,56 @@ class StepGoalSetingController: PublicClassController,ButtonManagerCallBack,Sync
             AppDelegate.getAppDelegate().startConnect(false, delegate: self)
         }
     }
+    
+    /**
+     GET Archiver "contentTArray"
+     */
+    func getContentTArray() {
+        let dataArray:NSArray = AppTheme.LoadKeyedArchiverName(StepsGoalKey) as! NSArray
+        if(dataArray.count>0) {
+            let date:NSTimeInterval = (dataArray[1] as! String).dateFromFormat("YYYY/MM/dd")!.timeIntervalSince1970
+            if(date != NSDate.date(year: NSDate().year, month: NSDate().month, day: NSDate().day).timeIntervalSince1970){ return }
+            
+            contentTArray = (AppTheme.LoadKeyedArchiverName(StepsGoalKey) as! NSArray)[0] as! [String]
+            let dailyStepGoal:Int = NSString(string: contentTArray[1]).integerValue
+            let dailySteps:Int = NSString(string: contentTArray[2]).integerValue
+            let percent :Float = Float(dailySteps)/Float(dailyStepGoal)
+            
+            self.setProgress(percent, dailySteps: dailySteps, dailyStepGoal: dailyStepGoal)
+            collectionView?.reloadData()
+        }
+    }
+    
+    /**
+     Archiver "contentTArray"
+     */
+    func saveContentTArray() {
+        //Only for today's data
+        let array:NSArray = UserSteps.getCriteria("WHERE date = \(NSDate().beginningOfDay.timeIntervalSince1970)")
+        if array.count>0 {
+            let dataSteps:UserSteps = array[0] as! UserSteps
+            
+            self.contentTArray.removeAll()
+            self.contentTArray.insert("\(dataSteps.calories)", atIndex: 0)
+            self.contentTArray.insert("\(dataSteps.steps)", atIndex: 1)
+            self.contentTArray.insert("\(dataSteps.goalsteps)", atIndex: 2)
+            self.contentTArray.insert("\(dataSteps.walking_distance+dataSteps.running_distance)", atIndex: 3)
+            self.collectionView.reloadData()
+            
+            AppTheme.KeyedArchiverName(self.StepsGoalKey, andObject: self.contentTArray)
+        }
+    }
 
+    /**
+     bulid in clockView
+     */
     func bulidClockViewandProgressBar() {
         for view in clockBackGroundView.subviews {
             if view is ClockView {
                 view.removeFromSuperview()
             }
         }
+        
         mClockTimerView = ClockView(frame:CGRectMake(0, 0, clockBackGroundView.bounds.width, clockBackGroundView.bounds.width), hourImage:  UIImage(named: "clockViewHour")!, minuteImage: UIImage(named: "clockViewMinute")!, dialImage: UIImage(named: "clockView600")!)
         mClockTimerView?.currentTimer()
         clockBackGroundView.addSubview(mClockTimerView!)
@@ -135,9 +190,7 @@ class StepGoalSetingController: PublicClassController,ButtonManagerCallBack,Sync
     func clockRefreshAction(){
         mClockTimerView?.currentTimer()
         if AppDelegate.getAppDelegate().isConnected() {
-            if shouldSync{
-                AppDelegate.getAppDelegate().getGoal()
-            }
+            AppDelegate.getAppDelegate().getGoal()
         }
     }
 
@@ -148,13 +201,17 @@ class StepGoalSetingController: PublicClassController,ButtonManagerCallBack,Sync
 
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("StepGoalSetingIdentifier", forIndexPath: indexPath)
-        //cell.backgroundColor = UIColor.clearColor()
         (cell as! StepGoalSetingViewCell).titleLabel.text = contentTitleArray[indexPath.row]
         (cell as! StepGoalSetingViewCell).valueLabel.text = "\(contentTArray[indexPath.row])"
 
         return cell
     }
 
+
+}
+
+// MARK: - SyncControllerDelegate
+extension StepGoalSetingController:SyncControllerDelegate {
     // MARK: - SyncControllerDelegate
     func packetReceived(packet:NevoPacket) {
         //Do nothing
@@ -163,32 +220,11 @@ class StepGoalSetingController: PublicClassController,ButtonManagerCallBack,Sync
             let dailySteps:Int = thispacket.getDailySteps()
             let dailyStepGoal:Int = thispacket.getDailyStepsGoal()
             let percent :Float = Float(dailySteps)/Float(dailyStepGoal)
-
-            AppTheme.DLog("get Daily Steps is: \(dailySteps), getDaily Goal is: \(dailyStepGoal),percent is: \(percent)")
-            contentTArray.removeAll()
-            contentTArray.insert("\(dailyStepGoal)", atIndex: 0)
-            contentTArray.insert(String(format: "%.2f%c", percent*100,37), atIndex: 1)
-            contentTArray.insert("\(dailySteps)", atIndex: 2)
-
-            collectionView.reloadData()
-            self.setProgress(percent, dailySteps: dailySteps, dailyStepGoal: dailyStepGoal)
-            
-            AppTheme.KeyedArchiverName(StepsGoalKey, andObject: contentTArray)
-            if(dailySteps>=dailyStepGoal) {
-                LocalNotification.sharedInstance().cancelNotification([NevoAllKeys.LocalEndSportKey()])
-                let local:LocalNotification = LocalNotification.sharedInstance()
-                local.scheduleNotificationWithKey(NevoAllKeys.LocalEndSportKey(), title: "Today's activity", message: "Today's activity level has reached your preset goals", date: NSDate.date(year: NSDate().year, month: NSDate().month, day: NSDate().day, hour: 19, minute: 0, second: 0) , userInfo: nil)
-            }
         }
-
+        
         if packet.getHeader() == LedLightOnOffNevoRequest.HEADER(){
             AppTheme.DLog("end handshake nevo");
             //blink once Clock
-            mClockTimerView?.setClockImage(AppTheme.GET_RESOURCES_IMAGE("clockview600_color"))
-            let dispatchTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, Int64(2.0 * Double(NSEC_PER_SEC)))
-            dispatch_after(dispatchTime, dispatch_get_main_queue(), {
-                self.mClockTimerView?.setClockImage(AppTheme.GET_RESOURCES_IMAGE("clockView600"))
-            })
         }
         
     }
@@ -202,21 +238,21 @@ class StepGoalSetingController: PublicClassController,ButtonManagerCallBack,Sync
      *  Receiving the current device signal strength value
      */
     func receivedRSSIValue(number:NSNumber){
-
+        
     }
     /**
      *  Data synchronization is complete callback
      */
     func syncFinished(){
-
+        
     }
-
+    
     // MARK: - StepGoalSetingController function
     /**
-    Checks if any device is currently connected
-    */
+     Checks if any device is currently connected
+     */
     func checkConnection() {
-
+        
         if !AppDelegate.getAppDelegate().isConnected() {
             //We are currently not connected
             AppDelegate.getAppDelegate().connect()

@@ -35,11 +35,13 @@ class StepsHistoryViewController: PublicClassController,UICollectionViewDelegate
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.configChartView()
+        
         let dayDate:NSDate = NSDate()
-        let dayTime:NSTimeInterval = NSDate.date(year: dayDate.year, month: dayDate.month, day: 7, hour: 0, minute: 0, second: 0).timeIntervalSince1970
+        let dayTime:NSTimeInterval = NSDate.date(year: dayDate.year, month: dayDate.month, day: dayDate.day, hour: 0, minute: 0, second: 0).timeIntervalSince1970
             //NSDate().beginningOfDay.timeIntervalSince1970
-        queryArray = UserSteps.getAll()
-        //getCriteria("WHERE date = \(dayTime)") //one hour = 3600s
+        queryArray = UserSteps.getCriteria("WHERE date = \(dayTime)") //one hour = 3600s
         self.bulidStepHistoricalChartView(queryArray)
         
         stepsHistory.backgroundColor = UIColor.whiteColor()
@@ -52,17 +54,52 @@ class StepsHistoryViewController: PublicClassController,UICollectionViewDelegate
             self.queryArray = UserSteps.getCriteria("WHERE date = \(userinfo.beginningOfDay.timeIntervalSince1970)")
             self.bulidStepHistoricalChartView(self.queryArray)
         }
+        
+        SwiftEventBus.onMainThread(self, name: EVENT_BUS_BEGIN_SMALL_SYNCACTIVITY) { (notification) in
+            let dict:[String:AnyObject] = notification.object as! [String:AnyObject]
+            let dailySteps:Int = dict["STEPS"] as! Int
+            let dailyStepGoal:Int = dict["GOAL"] as! Int
+            let percent :Float = dict["PERCENT"] as! Float
+            //self.contentTArray.insert("\(dataSteps.calories)", atIndex: 0)
+            self.contentTArray.replaceRange(Range(1..<2), with: ["\(dailySteps)"])
+            self.stepsHistory.reloadData()
+        }
+        
+        SwiftEventBus.onMainThread(self, name: EVENT_BUS_END_BIG_SYNCACTIVITY) { (notification) in
+            let array:NSArray = UserSteps.getCriteria("WHERE date = \(NSDate().beginningOfDay.timeIntervalSince1970)")
+            if array.count>0 {
+                let dataSteps:UserSteps = array[0] as! UserSteps
+                self.contentTArray.removeAll()
+                self.contentTArray.insert("\(dataSteps.calories)", atIndex: 0)
+                self.contentTArray.insert("\(dataSteps.steps)", atIndex: 1)
+                self.contentTArray.insert("\(dataSteps.inactivityTime/60)m", atIndex: 2)
+                self.contentTArray.insert(String(format: "%.2f",(dataSteps.walking_distance+dataSteps.running_distance)/1000), atIndex: 3)
+                self.stepsHistory.reloadData()
+            }
+        }
     }
 
     override func viewDidDisappear(animated: Bool) {
         super.viewDidDisappear(animated)
         SwiftEventBus.unregister(self, name: SELECTED_CALENDAR_NOTIFICATION)
+        SwiftEventBus.unregister(self, name: EVENT_BUS_BEGIN_SMALL_SYNCACTIVITY)
+        SwiftEventBus.unregister(self, name: EVENT_BUS_BEGIN_BIG_SYNCACTIVITY)
     }
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         // MARK: - chartView?.marker
-        //chartView.backgroundColor = AppTheme.NEVO_SOLAR_GRAY()
+        if(queryArray.count>0) {
+            nodataLabel.hidden = true
+        }else{
+            nodataLabel.backgroundColor = UIColor.whiteColor()
+            nodataLabel.hidden = false
+            nodataLabel.text = NSLocalizedString("no_data", comment: "");
+        }
+    }
+    
+    // MARK: - ConfigChartView
+    func configChartView() {
         chartView!.noDataText = NSLocalizedString("no_step_data", comment: "")
         chartView!.descriptionText = ""
         chartView!.pinchZoomEnabled = false
@@ -100,14 +137,6 @@ class StepsHistoryViewController: PublicClassController,UICollectionViewDelegate
         
         chartView!.rightAxis.enabled = false
         chartView.drawBarShadowEnabled = false
-        
-        if(queryArray.count>0) {
-            nodataLabel.hidden = true
-        }else{
-            nodataLabel.backgroundColor = UIColor.whiteColor()
-            nodataLabel.hidden = false
-            nodataLabel.text = NSLocalizedString("no_data", comment: "");
-        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -198,12 +227,26 @@ class StepsHistoryViewController: PublicClassController,UICollectionViewDelegate
     }
     
     func didSelectedhighlightValue(xIndex:Int,dataSetIndex: Int, dataSteps:UserSteps) {
-        contentTArray.removeAll()
-        contentTArray.insert("\(dataSteps.calories)", atIndex: 0)
-        contentTArray.insert("\(dataSteps.steps)", atIndex: 1)
-        contentTArray.insert("\(dataSteps.inactivityTime)", atIndex: 2)
-        //contentTArray.insert(String(format: "%.2f%c", dataSteps.goalreach*100,37), atIndex: 1)
-        contentTArray.insert("\(dataSteps.walking_distance+dataSteps.running_distance)", atIndex: 3)
-        stepsHistory.reloadData()
+        
+        self.contentTArray.removeAll()
+        self.contentTArray.insert("\(dataSteps.calories)", atIndex: 0)
+        self.contentTArray.insert("\(dataSteps.steps)", atIndex: 1)
+        self.contentTArray.insert("\(dataSteps.inactivityTime/60)m", atIndex: 2)
+        self.contentTArray.insert(String(format: "%.2f km",(dataSteps.walking_distance+dataSteps.running_distance)/1000), atIndex: 3)
+        self.stepsHistory.reloadData()
+    }
+}
+
+// MARK: - Data calculation
+extension StepsHistoryViewController {
+    
+    func calculationData(activeTimer:Int,steps:Int,completionData:((miles:String,calories:String) -> Void)) {
+        let profile:NSArray = UserProfile.getAll()
+        let userProfile:UserProfile = profile.objectAtIndex(0) as! UserProfile
+        let strideLength:Double = Double(userProfile.length)*0.415/100
+        let miles:Double = strideLength*Double(steps)/1000
+        //Formula's = (2.0 X persons KG X 3.5)/200 = calories per minute
+        let calories:Double = (2.0*Double(userProfile.weight)*3.5)/200*Double(activeTimer)
+        completionData(miles: String(format: "%.2f",miles), calories: String(format: "%.2f",calories))
     }
 }

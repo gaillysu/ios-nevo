@@ -25,17 +25,13 @@ class ForgotPasswordController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationController?.navigationBar.lt_setBackgroundColor(UIColor(rgba: "#54575a"))
-        UIApplication.sharedApplication().statusBarStyle = UIStatusBarStyle.LightContent
-        
         let leftButton:UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "cancel_lunar"), style: UIBarButtonItemStyle.Plain, target: self, action: #selector(leftCancelAction(_:)))
         self.navigationItem.leftBarButtonItem = leftButton
     }
 
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
-        self.navigationController?.navigationBar.lt_reset()
-        UIApplication.sharedApplication().statusBarStyle = UIStatusBarStyle.Default
+
     }
     
     override func didReceiveMemoryWarning() {

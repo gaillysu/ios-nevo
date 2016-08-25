@@ -20,7 +20,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="eW0-Ed-FPP">
-                    <rect key="frame" x="0.0" y="328" width="320" height="240"/>
+                    <rect key="frame" x="0.0" y="336" width="320" height="232"/>
                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="Mf2-aB-35s">
                         <size key="itemSize" width="105" height="50"/>
                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -33,13 +33,13 @@
                     </connections>
                 </collectionView>
                 <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8yE-Sx-UzZ">
-                    <rect key="frame" x="0.0" y="328" width="320" height="240"/>
+                    <rect key="frame" x="0.0" y="336" width="320" height="232"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mMJ-ii-LKw" customClass="BarChartView" customModule="Charts">
-                    <rect key="frame" x="30" y="55" width="260" height="230"/>
+                    <rect key="frame" x="20" y="45" width="280" height="248"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="mMJ-ii-LKw" secondAttribute="height" multiplier="64:57" constant="1.7543859649122737" id="MZo-js-Cr0"/>
@@ -48,7 +48,7 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="mMJ-ii-LKw" secondAttribute="trailing" constant="30" id="8fe-r5-nii"/>
+                <constraint firstAttribute="trailing" secondItem="mMJ-ii-LKw" secondAttribute="trailing" constant="20" id="8fe-r5-nii"/>
                 <constraint firstAttribute="bottom" secondItem="eW0-Ed-FPP" secondAttribute="bottom" id="HuH-9R-9cW"/>
                 <constraint firstItem="8yE-Sx-UzZ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Nvl-Pg-C8I"/>
                 <constraint firstItem="eW0-Ed-FPP" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="QOg-pt-mf2"/>
@@ -57,8 +57,8 @@
                 <constraint firstAttribute="trailing" secondItem="8yE-Sx-UzZ" secondAttribute="trailing" id="bR1-id-7cN"/>
                 <constraint firstItem="8yE-Sx-UzZ" firstAttribute="top" secondItem="mMJ-ii-LKw" secondAttribute="bottom" constant="43" id="jiJ-5H-oGm"/>
                 <constraint firstAttribute="trailing" secondItem="eW0-Ed-FPP" secondAttribute="trailing" id="ppr-sW-GQ3"/>
-                <constraint firstItem="mMJ-ii-LKw" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="55" id="pti-i7-c9A"/>
-                <constraint firstItem="mMJ-ii-LKw" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="30" id="s36-43-47k"/>
+                <constraint firstItem="mMJ-ii-LKw" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="45" id="pti-i7-c9A"/>
+                <constraint firstItem="mMJ-ii-LKw" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="s36-43-47k"/>
             </constraints>
             <point key="canvasLocation" x="548" y="346"/>
         </view>

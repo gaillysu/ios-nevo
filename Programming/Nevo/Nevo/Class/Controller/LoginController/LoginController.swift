@@ -25,6 +25,7 @@ class LoginController: UIViewController,UITextFieldDelegate {
     
     var userName:String = ""
     var password:String = ""
+    private var pErrorNumber:Int = 0
 
     init() {
         super.init(nibName: "LoginController", bundle: NSBundle.mainBundle())
@@ -113,7 +114,7 @@ class LoginController: UIViewController,UITextFieldDelegate {
             }
             
             let view = MRProgressOverlayView.showOverlayAddedTo(self.navigationController!.view, title: "Please wait...", mode: MRProgressOverlayViewMode.Indeterminate, animated: true)
-            view.setTintColor(AppTheme.NEVO_SOLAR_GRAY())
+            view.setTintColor(AppTheme.NEVO_SOLAR_YELLOW())
 
             
             HttpPostRequest.LunaRPostRequest("http://nevo.karljohnchow.com/user/login", data: ["user":["email":userName,"password":password]]) { (result) in
@@ -123,7 +124,7 @@ class LoginController: UIViewController,UITextFieldDelegate {
                 let message = json["message"].stringValue.isEmpty ? NSLocalizedString("not_login", comment: ""):json["message"].stringValue
                 let status = json["status"].intValue
                 
-                let banner = Banner(title: NSLocalizedString(message, comment: ""), subtitle: nil, image: nil, backgroundColor: status > 0 ? UIColor.getBaseColor():UIColor.getBaseColor())
+                let banner = Banner(title: NSLocalizedString(message, comment: ""), subtitle: nil, image: nil, backgroundColor: AppTheme.NEVO_SOLAR_YELLOW())
                 banner.dismissesOnTap = true
                 banner.show(duration: 1.2)
                 
@@ -147,6 +148,23 @@ class LoginController: UIViewController,UITextFieldDelegate {
                         XCGLogger.defaultInstance().debug("Added? id = \(id)")
                     })
                     self.navigationController?.popViewControllerAnimated(true)
+                }else{
+                    if self.pErrorNumber>=3{
+                        let forgetPassword:UIAlertController = UIAlertController(title: "忘记密码吗?", message: "如果忘记密码可以点击确定找回密码", preferredStyle: UIAlertControllerStyle.Alert)
+                        let alertAction:UIAlertAction = UIAlertAction(title: "确定", style: UIAlertActionStyle.Default, handler: { (action) in
+                            let forget:ForgotPasswordController = ForgotPasswordController()
+                            self.navigationController?.pushViewController(forget, animated: true)
+                        })
+                        forgetPassword.addAction(alertAction)
+                        
+                        let alertAction2:UIAlertAction = UIAlertAction(title: "取消", style: UIAlertActionStyle.Cancel, handler: { (action) in
+                            
+                        })
+                        forgetPassword.addAction(alertAction2)
+                        
+                        self.presentViewController(forgetPassword, animated: true, completion: nil)
+                    }
+                    self.pErrorNumber += 1
                 }
                
             }

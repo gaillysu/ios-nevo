@@ -17,6 +17,7 @@ import Fabric
 import Crashlytics
 import LTNavigationBar
 import IQKeyboardManagerSwift
+import SwiftEventBus
 
 let nevoDBDFileURL:String = "nevoDBName";
 let nevoDBNames:String = "nevo.sqlite";
@@ -551,7 +552,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                     "hourlycalories":AppTheme.toJSONString(thispacket.getHourlyCalories()),
                     "inZoneTime":thispacket.getInZoneTime(),
                     "outZoneTime":thispacket.getOutZoneTime(),
-                    "inactivityTime":thispacket.getInactivityTime(),
+                    "inactivityTime":thispacket.getDailyRunningTimer()+thispacket.getDailyWalkingTimer(),
                     "goalreach":Double(thispacket.getDailySteps())/Double(thispacket.getStepsGoal()),
                     "date":timerInter,
                     "createDate":timeStr,
@@ -703,6 +704,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                 //end save
                 currentDay += 1
                 if(currentDay < UInt8(savedDailyHistory.count)) {
+                    if currentDay == 1 {
+                        SwiftEventBus.post(EVENT_BUS_BEGIN_BIG_SYNCACTIVITY, sender:nil)
+                    }
                     self.getDailyTracker(currentDay)
                 }else {
                     currentDay = 0
@@ -710,12 +714,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                     for delegate in mDelegates {
                         delegate.syncFinished()
                     }
+                    SwiftEventBus.post(EVENT_BUS_END_BIG_SYNCACTIVITY, sender:nil)
                 }
             }
 
             if(packet.getHeader() == GetStepsGoalRequest.HEADER()) {
-                _ = packet.copy() as DailyStepsNevoPacket
                 //refresh current hourly steps changing in the healthkit
+                let thispacket = packet.copy() as DailyStepsNevoPacket
+                let dailySteps:Int = thispacket.getDailySteps()
+                let dailyStepGoal:Int = thispacket.getDailyStepsGoal()
+                let percent :Float = Float(dailySteps)/Float(dailyStepGoal)
+                SwiftEventBus.post(EVENT_BUS_BEGIN_SMALL_SYNCACTIVITY, sender:["STEPS":dailySteps,"GOAL":dailyStepGoal,"PERCENT":percent])
             }
             
             //find Phone
@@ -729,7 +738,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
 
     func connectionStateChanged(isConnected : Bool) {
         //send local notification
-
+        SwiftEventBus.post(EVENT_BUS_CONNECTION_STATE_CHANGED_KEY, sender:isConnected)
+        
         for delegate in mDelegates {
             delegate.connectionStateChanged(isConnected)
         }
