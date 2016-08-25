@@ -33,26 +33,27 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
         llXAxis.labelPosition = ChartLimitLine.LabelPosition.RightBottom;
         llXAxis.valueFont = UIFont.systemFontOfSize(10.0)
         
-        let ll1:ChartLimitLine = ChartLimitLine(limit: 130.0, label: "Nevo Goal Limit")
+        let ll1:ChartLimitLine = ChartLimitLine(limit: 15000.0, label: "Goal: 15000")
         ll1.lineWidth = 2.0;
         ll1.lineDashLengths = [0.0, 0.0];
+        ll1.lineColor = UIColor.blackColor()
         ll1.labelPosition = ChartLimitLine.LabelPosition.LeftTop;
         ll1.valueFont = UIFont.systemFontOfSize(10.0)
         
         let leftAxis:ChartYAxis = lineChartView.leftAxis;
-        //leftAxis.removeAllLimitLines()
-        //leftAxis.addLimitLine(ll1)
-        leftAxis.axisMaxValue = 220.0;
+        leftAxis.removeAllLimitLines()
+        leftAxis.addLimitLine(ll1)
+        leftAxis.axisMaxValue = 22000.0;
         leftAxis.axisMinValue = 0.0;
         leftAxis.gridLineDashLengths = [0.0, 0.0];
-        leftAxis.labelTextColor = AppTheme.NEVO_SOLAR_GRAY()
+        leftAxis.labelTextColor = UIColor.blackColor()
         //leftAxis.axisLineColor = UIColor.whiteColor()
         //leftAxis.gridColor = UIColor.whiteColor()
         leftAxis.drawZeroLineEnabled = true;
         leftAxis.drawLimitLinesBehindDataEnabled = true;
-        leftAxis.drawGridLinesEnabled = false
-        leftAxis.drawLabelsEnabled = false
-        lineChartView.rightAxis.enabled = false;
+        leftAxis.drawGridLinesEnabled = true
+        leftAxis.drawLabelsEnabled = true
+        lineChartView.rightAxis.enabled = true;
         
         let rightAxis:ChartYAxis = lineChartView.rightAxis;
         rightAxis.drawZeroLineEnabled = false;
@@ -96,8 +97,8 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
         var yVals:[ChartDataEntry] = []
         
         for i:Int in 0..<count {
-            let mult:Double = range + 1.0
-            let val:Double = Double(arc4random_uniform(UInt32(mult)) + 3)
+            let mult:Double = range + 10000.0
+            let val:Double = Double(arc4random_uniform(UInt32(mult)) + 3000)
             yVals.append(ChartDataEntry(value: val, xIndex: i))
         }
         
@@ -112,12 +113,15 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
             set1 = LineChartDataSet(yVals: yVals, label: "")
             set1?.lineDashLengths = [0.0, 0];
             set1?.highlightLineDashLengths = [0.0, 0.0];
-            set1?.setColor(AppTheme.NEVO_SOLAR_GRAY())
+            set1?.setColor(AppTheme.NEVO_SOLAR_YELLOW())
             set1?.setCircleColor(AppTheme.NEVO_SOLAR_GRAY())
             set1?.valueTextColor = UIColor.blackColor()
             set1?.lineWidth = 1.0;
-            set1?.circleRadius = 3.0;
+            set1?.circleRadius = 0.0;
+            //set1?.drawCirclesEnabled = false;
+            set1?.drawValuesEnabled = false
             set1?.drawCircleHoleEnabled = false;
+            
             set1?.valueFont = UIFont.systemFontOfSize(9.0)
             
             let gradientColors:[CGColor] = [AppTheme.NEVO_SOLAR_YELLOW().CGColor,AppTheme.NEVO_SOLAR_GRAY().CGColor];
