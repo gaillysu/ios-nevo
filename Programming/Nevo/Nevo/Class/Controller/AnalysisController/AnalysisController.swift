@@ -16,6 +16,7 @@ class AnalysisController: PublicClassController {
     let titleArray:[String] = ["This week","Last week","Last 30 Day"]
     private var contentTitleArray:[String] = [NSLocalizedString("Avg Steps", comment: ""), NSLocalizedString("Total Steps", comment: ""), NSLocalizedString("Avg Calories", comment: ""),NSLocalizedString("Avg Time", comment: "")]
     private var contentTArray:[String] = [NSLocalizedString("--", comment: ""),NSLocalizedString("--", comment: ""),NSLocalizedString("--", comment: ""),NSLocalizedString("--", comment: "")]
+    private var dataArray:NSMutableArray = NSMutableArray(capacity:3)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,7 +29,7 @@ class AnalysisController: PublicClassController {
         chartsCollectionView.registerNib(UINib(nibName: "AnalysisLineChartCell",bundle: nil), forCellWithReuseIdentifier: "AnalysisLineChart_Identifier")
         chartsCollectionView.registerClass(UICollectionReusableView.classForCoder(), forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "ChartsViewHeader_Identifier")
         contentCollectionView.registerNib(UINib(nibName: "AnalysisValueCell",bundle: nil), forCellWithReuseIdentifier: "AnalysisValue_Identifier")
-        
+        dataArray.addObjectsFromArray(self.getStepsData())
     }
 
     override func didReceiveMemoryWarning() {
@@ -41,11 +42,40 @@ class AnalysisController: PublicClassController {
 extension AnalysisController {
     @IBAction func segmentedAction(sender: AnyObject) {
         let segment:UISegmentedControl = sender as! UISegmentedControl
+        dataArray.removeAllObjects()
         if segment.selectedSegmentIndex == 0 {
-            
+            dataArray.addObjectsFromArray(self.getStepsData())
+            chartsCollectionView.reloadData()
+        }else if segment.selectedSegmentIndex == 1 {
+            dataArray.addObjectsFromArray(self.getSleepData())
+            chartsCollectionView.reloadData()
         }else{
-        
+            chartsCollectionView.reloadData()
         }
+    }
+    
+    func getStepsData()->[NSArray] {
+        let dayDate:NSDate = NSDate()
+        let thisWeekArray:NSArray = UserSteps.getCriteria("WHERE date BETWEEN \(dayDate.beginningOfWeek.timeIntervalSince1970-1) AND \(dayDate.endOfWeek.timeIntervalSince1970)")
+        let lastWeekArray:NSArray = UserSteps.getCriteria("WHERE date BETWEEN \(dayDate.beginningOfWeek.timeIntervalSince1970-(86400.0*7)-1) AND \(dayDate.beginningOfWeek.timeIntervalSince1970)")
+        let last30DayArray:NSArray = UserSteps.getCriteria("WHERE date BETWEEN \(dayDate.beginningOfDay.timeIntervalSince1970-(86400.0*30)) AND \(dayDate.endOfDay.timeIntervalSince1970)")
+        return [thisWeekArray,lastWeekArray,last30DayArray]
+    }
+    
+    func getSleepData()->[NSArray] {
+        let dayDate:NSDate = NSDate()
+        let thisWeekArray:NSArray = UserSleep.getCriteria("WHERE date BETWEEN \(dayDate.beginningOfWeek.timeIntervalSince1970-1) AND \(dayDate.endOfWeek.timeIntervalSince1970)")
+        let lastWeekArray:NSArray = UserSleep.getCriteria("WHERE date BETWEEN \(dayDate.beginningOfWeek.timeIntervalSince1970-(86400.0*7)-1) AND \(dayDate.beginningOfWeek.timeIntervalSince1970)")
+        let last30DayArray:NSArray = UserSleep.getCriteria("WHERE date BETWEEN \(dayDate.beginningOfDay.timeIntervalSince1970-(86400.0*30)) AND \(dayDate.endOfDay.timeIntervalSince1970)")
+        return [thisWeekArray,lastWeekArray,last30DayArray]
+    }
+    
+    func getSolarData()->[NSArray] {
+        let dayDate:NSDate = NSDate()
+        let thisWeekArray:NSArray = UserSteps.getCriteria("WHERE date BETWEEN \(dayDate.beginningOfWeek.timeIntervalSince1970-1) AND \(dayDate.endOfWeek.timeIntervalSince1970)")
+        let lastWeekArray:NSArray = UserSteps.getCriteria("WHERE date BETWEEN \(dayDate.beginningOfWeek.timeIntervalSince1970-(86400.0*7)-1) AND \(dayDate.beginningOfWeek.timeIntervalSince1970)")
+        let last30DayArray:NSArray = UserSteps.getCriteria("WHERE date BETWEEN \(dayDate.beginningOfDay.timeIntervalSince1970-(86400.0*30)) AND \(dayDate.endOfDay.timeIntervalSince1970)")
+        return [thisWeekArray,lastWeekArray,last30DayArray]
     }
 }
 
@@ -69,9 +99,11 @@ extension AnalysisController:UICollectionViewDelegate,UICollectionViewDataSource
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         if collectionView.isEqual(chartsCollectionView) {
-            let cell = collectionView.dequeueReusableCellWithReuseIdentifier("AnalysisLineChart_Identifier", forIndexPath: indexPath)
+            let cell:AnalysisLineChartCell = collectionView.dequeueReusableCellWithReuseIdentifier("AnalysisLineChart_Identifier", forIndexPath: indexPath) as! AnalysisLineChartCell
             cell.backgroundColor = UIColor.clearColor()
-            (cell as! AnalysisLineChartCell).setTitle(titleArray[indexPath.row])
+            cell.setTitle(titleArray[indexPath.row])
+            //dataArray
+            cell.updateChartData(dataArray[indexPath.row] as! NSArray,chartType: 0);
             return cell
         }else{
             let cell:AnalysisValueCell = collectionView.dequeueReusableCellWithReuseIdentifier("AnalysisValue_Identifier", forIndexPath: indexPath) as! AnalysisValueCell
