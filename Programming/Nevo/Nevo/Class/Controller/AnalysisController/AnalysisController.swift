@@ -14,7 +14,7 @@ class AnalysisController: PublicClassController {
     @IBOutlet weak var chartsCollectionView: UICollectionView!
     @IBOutlet weak var contentCollectionView: UICollectionView!
     let titleArray:[String] = ["This week","Last week","Last 30 Day"]
-    private var contentTitleArray:[String] = [NSLocalizedString("AVG Steps", comment: ""), NSLocalizedString("Total Steps", comment: ""), NSLocalizedString("AVG Calories", comment: ""),NSLocalizedString("AVG Time", comment: "")]
+    private var contentTitleArray:[String] = [NSLocalizedString("Avg Steps", comment: ""), NSLocalizedString("Total Steps", comment: ""), NSLocalizedString("Avg Calories", comment: ""),NSLocalizedString("Avg Time", comment: "")]
     private var contentTArray:[String] = [NSLocalizedString("--", comment: ""),NSLocalizedString("--", comment: ""),NSLocalizedString("--", comment: ""),NSLocalizedString("--", comment: "")]
     
     override func viewDidLoad() {
@@ -36,6 +36,17 @@ class AnalysisController: PublicClassController {
         // Dispose of any resources that can be recreated.
     }
 
+}
+
+extension AnalysisController {
+    @IBAction func segmentedAction(sender: AnyObject) {
+        let segment:UISegmentedControl = sender as! UISegmentedControl
+        if segment.selectedSegmentIndex == 0 {
+            
+        }else{
+        
+        }
+    }
 }
 
 extension AnalysisController:UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {

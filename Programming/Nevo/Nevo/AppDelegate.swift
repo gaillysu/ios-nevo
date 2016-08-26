@@ -106,8 +106,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
         iRate.sharedInstance().remindButtonLabel = NSLocalizedString("Remind Me Later", comment:"");
         iRate.sharedInstance().rateButtonLabel = NSLocalizedString("Rate It Now", comment:"");
         iRate.sharedInstance().applicationBundleID = "com.nevowatch.Nevo"
-        iRate.sharedInstance().onlyPromptIfLatestVersion = false
+        iRate.sharedInstance().onlyPromptIfLatestVersion = true
+        iRate.sharedInstance().usesPerWeekForPrompt = 1
         iRate.sharedInstance().previewMode = true
+        iRate.sharedInstance().promptAtLaunch = false
         
         return true
     }

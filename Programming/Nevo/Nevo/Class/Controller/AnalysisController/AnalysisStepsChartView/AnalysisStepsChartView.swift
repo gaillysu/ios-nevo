@@ -50,7 +50,7 @@ class AnalysisStepsChartView: LineChartView {
         xAxis.labelPosition = ChartXAxis.LabelPosition.Bottom
         xAxis.labelFont = UIFont(name: "Helvetica-Light", size: 7)!
         
-        let marker:BalloonMarker = BalloonMarker(color: UIColor.getBaseColor(), font: UIFont(name: "Helvetica-Light", size: 11)!, insets: UIEdgeInsetsMake(8.0, 8.0, 15.0, 8.0))
+        let marker:BalloonMarker = BalloonMarker(color: AppTheme.NEVO_SOLAR_YELLOW(), font: UIFont(name: "Helvetica-Light", size: 11)!, insets: UIEdgeInsetsMake(8.0, 8.0, 15.0, 8.0))
         marker.minimumSize = CGSizeMake(60, 25);
         self.marker = marker;
     }
@@ -76,8 +76,8 @@ class AnalysisStepsChartView: LineChartView {
             lineChartDataSet.drawCircleHoleEnabled = false
             lineChartDataSet.valueFont = UIFont.systemFontOfSize(9.0)
             
-            let gradientColors = [UIColor.getTintColor(),UIColor.getBaseColor(),UIColor.getGreyColor()]
-            lineChartDataSet.fillAlpha = 0.3;
+            let gradientColors = [AppTheme.NEVO_SOLAR_DARK_GRAY(),AppTheme.NEVO_SOLAR_YELLOW(),UIColor.getGreyColor()]
+            lineChartDataSet.fillAlpha = 0.5;
             lineChartDataSet.fill = ChartFill.fillWithColor(gradientColors[mIndex])
             lineChartDataSet.drawFilledEnabled = true
             dataSets.append(lineChartDataSet)

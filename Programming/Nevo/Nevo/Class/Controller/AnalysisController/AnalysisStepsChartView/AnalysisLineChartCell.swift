@@ -16,14 +16,17 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
         lineChartView.delegate = self;
         
         lineChartView.descriptionText = "";
         lineChartView.noDataTextDescription = "You need to provide data for the chart.";
         
-        lineChartView.dragEnabled = true;
+        lineChartView.dragEnabled = false;
         lineChartView.setScaleEnabled(false)
         lineChartView.pinchZoomEnabled = false;
+        lineChartView.legend.enabled = false
+        lineChartView.rightAxis.enabled = true
         lineChartView.drawGridBackgroundEnabled = false;
         
         // x-axis limit line
@@ -65,7 +68,7 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
         rightAxis.drawZeroLineEnabled = false
         
         let xAxis:ChartXAxis = lineChartView.xAxis
-        xAxis.labelTextColor = AppTheme.NEVO_SOLAR_GRAY();
+        xAxis.labelTextColor = UIColor.blackColor();
         xAxis.axisLineColor = AppTheme.NEVO_SOLAR_GRAY()
         xAxis.drawLimitLinesBehindDataEnabled = false;
         xAxis.labelPosition = ChartXAxis.LabelPosition.Bottom
@@ -75,7 +78,7 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
         marker.minimumSize = CGSizeMake(80.0, 40.0);
         lineChartView.marker = marker;
         lineChartView.legend.form = ChartLegend.Form.Line
-        self.updateChartData()
+        self.updateChartData(NSArray())
         lineChartView.animate(xAxisDuration: 2.5, easingOption: ChartEasingOption.EaseInOutQuart)
     }
 
@@ -83,7 +86,7 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
         titleLabel.text = title
     }
     
-    func updateChartData() {
+    func updateChartData(dataArray:NSArray) {
         lineChartView.data = nil
         self.setDataCount(10, range: 100)
     }

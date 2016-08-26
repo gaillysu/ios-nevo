@@ -99,11 +99,7 @@ class UserProfileController: UITableViewController {
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         if indexPath.section == 0 {
-            let changeProfile:ChangeProfileController = ChangeProfileController()
-            changeProfile.title = titleArray[indexPath.row]
-            changeProfile.changeName = titleArray[indexPath.row]
-            changeProfile.changeField = fieldArray[indexPath.row]
-            self.navigationController?.pushViewController(changeProfile, animated: true)
+
         }else {
             let profile:NSArray = UserProfile.getAll()
             let userprofile:UserProfile = profile[0] as! UserProfile
