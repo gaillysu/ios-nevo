@@ -14,12 +14,19 @@ class AnalysisController: PublicClassController {
     @IBOutlet weak var chartsCollectionView: UICollectionView!
     @IBOutlet weak var contentCollectionView: UICollectionView!
     let titleArray:[String] = ["This week","Last week","Last 30 Day"]
-    private var contentTitleArray:[String] = [NSLocalizedString("Avg Steps", comment: ""), NSLocalizedString("Total Steps", comment: ""), NSLocalizedString("Avg Calories", comment: ""),NSLocalizedString("Avg Time", comment: "")]
+    private var contentTitleArray:[String] = [NSLocalizedString("Average Steps", comment: ""), NSLocalizedString("Total Steps", comment: ""), NSLocalizedString("Average Calories", comment: ""),NSLocalizedString("Average Time", comment: "")]
     private var contentTArray:[String] = [NSLocalizedString("--", comment: ""),NSLocalizedString("--", comment: ""),NSLocalizedString("--", comment: ""),NSLocalizedString("--", comment: "")]
     private var dataArray:NSMutableArray = NSMutableArray(capacity:3)
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let titleLabel:UILabel = UILabel(frame: CGRectMake(0,0,320,35))
+        titleLabel.textAlignment = NSTextAlignment.Center
+        titleLabel.text = "Analysis"
+        titleLabel.font = UIFont(name: "Raleway-Thin.ttf", size: 18)
+        self.navigationItem.titleView = titleLabel
+        
         let dict:[String : AnyObject] = [NSForegroundColorAttributeName:UIColor.whiteColor()]
         segmented.setTitleTextAttributes(dict, forState: UIControlState.Selected)
         
@@ -50,7 +57,7 @@ extension AnalysisController {
             dataArray.addObjectsFromArray(self.getSleepData())
             chartsCollectionView.reloadData()
         }else{
-            chartsCollectionView.reloadData()
+            //chartsCollectionView.reloadData()
         }
     }
     
