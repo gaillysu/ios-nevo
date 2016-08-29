@@ -256,7 +256,7 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
 
                 let titleLabel:UILabel = UILabel(frame: CGRectMake(0,  nevoOtaView.nevoWacthImage.frame.origin.y + nevoOtaView.nevoWacthImage.frame.size.height+10, UIScreen.mainScreen().bounds.size.width, 35))
                 //titleLabel.center = CGPointMake(UIScreen.mainScreen().bounds.size.width/2.0, UIScreen.mainScreen().bounds.size.height-100)
-                titleLabel.font = AppTheme.FONT_SFCOMPACTDISPLAY_BOLD(mSize: 19)
+                titleLabel.font = UIFont.systemFontOfSize(19)
                 titleLabel.text = NSLocalizedString("press_the_third_button", comment: "")
                 titleLabel.textAlignment = NSTextAlignment.Center
                 titleLabel.tag = 1360
@@ -264,7 +264,7 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
 
                 let titleLabel2:UILabel = UILabel(frame: CGRectMake(0, 0, UIScreen.mainScreen().bounds.size.width, 50))
                 titleLabel2.center = CGPointMake(UIScreen.mainScreen().bounds.size.width/2.0, (titleLabel.frame.origin.y+titleLabel.frame.size.height)+25)
-                titleLabel2.font = AppTheme.FONT_SFCOMPACTDISPLAY_LIGHT(mSize: 16)
+                titleLabel2.font = UIFont.systemFontOfSize(16)
                 titleLabel2.text = NSLocalizedString("in_order_reactivate_bluetooth", comment: "")
                 titleLabel2.numberOfLines = 0
                 titleLabel2.textAlignment = NSTextAlignment.Center

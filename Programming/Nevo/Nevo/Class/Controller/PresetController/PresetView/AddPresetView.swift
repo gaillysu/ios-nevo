@@ -25,12 +25,12 @@ class AddPresetView: UIView {
         let rightView:UILabel = UILabel(frame: CGRectMake(0,0,50,presetNumber.frame.size.height))
         rightView.text = NSLocalizedString("steps_unit", comment: "")
         rightView.textAlignment = NSTextAlignment.Center
-        rightView.font = AppTheme.SYSTEMFONTOFSIZE(mSize: 18)
+        rightView.font = UIFont.systemFontOfSize(18)
         rightView.textColor = UIColor.grayColor()
         presetNumber.rightView = rightView
         presetNumber.rightViewMode = UITextFieldViewMode.Always
         presetNumber.textAlignment = NSTextAlignment.Right
-        presetNumber.font = AppTheme.SYSTEMFONTOFSIZE(mSize: 18)
+        presetNumber.font = UIFont.systemFontOfSize(18)
         presetNumber.keyboardType = UIKeyboardType.NumberPad
         presetNumber.layer.cornerRadius = 8
         presetNumber.layer.masksToBounds = true

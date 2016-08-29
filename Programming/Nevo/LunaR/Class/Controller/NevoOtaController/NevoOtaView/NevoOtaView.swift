@@ -216,52 +216,6 @@ class NevoOtaView: UIView {
     }
 
     /**
-    Prevent OTA disconnect tip
-    */
-    func tipTextView(){
-        tipView = FXBlurView(frame: CGRectMake(0, 0, self.frame.size.width, self.frame.size.height))
-        tipView!.dynamic = false
-        tipView!.blurRadius = 12
-        tipView!.contentMode = UIViewContentMode.Bottom;
-        tipView!.tintColor = UIColor.clearColor()
-        self.addSubview(tipView!)
-
-        let cancelTip:UIButton = UIButton(frame: CGRectMake(self.frame.size.width-60, 0, 45, 45))
-        cancelTip.setImage(UIImage(named: "cancelicon"), forState: UIControlState.Normal)
-        cancelTip.addTarget(self, action: Selector("tipAction:"), forControlEvents: UIControlEvents.TouchUpInside)
-        cancelTip.tag = 5200
-        tipView!.addSubview(cancelTip)
-
-        let textView:UITextView = UITextView(frame: CGRectMake(5, 30, self.frame.size.width-10, 250))
-        textView.center = CGPointMake(self.frame.size.width/2.0, self.frame.size.height/2.0)
-        textView.editable = false
-        textView.font = AppTheme.FONT_SFCOMPACTDISPLAY_LIGHT(mSize: 18)
-        textView.textAlignment = NSTextAlignment.Center
-        textView.backgroundColor = UIColor.clearColor()
-        textView.text = NSLocalizedString("otahelp",comment:"")
-        tipView!.addSubview(textView)
-
-        let attentionLabel:UILabel = UILabel(frame: CGRectMake(0, textView.frame.origin.y-40, self.frame.size.width, 40))
-        attentionLabel.font = AppTheme.FONT_SFCOMPACTDISPLAY_LIGHT(mSize: 30)
-        attentionLabel.backgroundColor = UIColor.clearColor()
-        attentionLabel.textAlignment = NSTextAlignment.Center
-        attentionLabel.text = NSLocalizedString("Attention!", comment: "")
-        tipView!.addSubview(attentionLabel)
-
-        tipView!.updateAsynchronously(true, completion: { () -> Void in
-            self.tipView!.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)
-            self.tipView!.center = CGPointMake(self.frame.size.width/2.0, self.frame.size.height/2.0)
-        })
-
-        let popAnimation:CAKeyframeAnimation = CAKeyframeAnimation(keyPath: "transform")
-        popAnimation.duration = 0.4;
-        popAnimation.values = [NSValue(CATransform3D: CATransform3DMakeScale(0.01, 0.01, 1.0)),NSValue(CATransform3D: CATransform3DMakeScale(1.1, 1.1, 1.0)),NSValue(CATransform3D: CATransform3DMakeScale(0.9, 0.9, 1.0)),NSValue(CATransform3D: CATransform3DIdentity)]
-        popAnimation.keyTimes = [0.2, 0.5, 0.75, 1.0];
-        popAnimation.timingFunctions = [CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut),CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut),CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)]
-        tipView!.layer.addAnimation(popAnimation , forKey: "")
-    }
-
-    /**
     Close the OTA attention function
     */
     func closeTipView(){

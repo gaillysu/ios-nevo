@@ -12,7 +12,7 @@ import SwiftEventBus
 
 let NUMBER_OF_STEPS_GOAL_KEY = "NUMBER_OF_STEPS_GOAL_KEY"
 
-class StepGoalSetingController: PublicClassController,ButtonManagerCallBack,ClockRefreshDelegate,UICollectionViewDelegate,UICollectionViewDataSource {
+class StepGoalSetingController: PublicClassController,ButtonManagerCallBack,ClockRefreshDelegate {
     
     @IBOutlet weak var clockBackGroundView: UIView!
     @IBOutlet weak var collectionView:UICollectionView!
@@ -115,8 +115,8 @@ class StepGoalSetingController: PublicClassController,ButtonManagerCallBack,Cloc
             if(date != NSDate.date(year: NSDate().year, month: NSDate().month, day: NSDate().day).timeIntervalSince1970){ return }
             
             contentTArray = (AppTheme.LoadKeyedArchiverName(StepsGoalKey) as! NSArray)[0] as! [String]
-            let dailyStepGoal:Int = NSString(string: contentTArray[1]).integerValue
-            let dailySteps:Int = NSString(string: contentTArray[2]).integerValue
+            let dailyStepGoal:Int = NSString(string: contentTArray[2]).integerValue
+            let dailySteps:Int = NSString(string: contentTArray[1]).integerValue
             let percent :Float = Float(dailySteps)/Float(dailyStepGoal)
             
             self.setProgress(percent, dailySteps: dailySteps, dailyStepGoal: dailyStepGoal)
@@ -194,20 +194,6 @@ class StepGoalSetingController: PublicClassController,ButtonManagerCallBack,Cloc
         }
     }
 
-     // MARK: - UICollectionViewDataSource
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return contentTitleArray.count
-    }
-
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("StepGoalSetingIdentifier", forIndexPath: indexPath)
-        (cell as! StepGoalSetingViewCell).titleLabel.text = contentTitleArray[indexPath.row]
-        (cell as! StepGoalSetingViewCell).valueLabel.text = "\(contentTArray[indexPath.row])"
-
-        return cell
-    }
-
-
 }
 
 // MARK: - SyncControllerDelegate
@@ -257,5 +243,20 @@ extension StepGoalSetingController:SyncControllerDelegate {
             //We are currently not connected
             AppDelegate.getAppDelegate().connect()
         }
+    }
+}
+
+extension StepGoalSetingController:UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout{
+    // MARK: - UICollectionViewDataSource
+    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return contentTitleArray.count
+    }
+    
+    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("StepGoalSetingIdentifier", forIndexPath: indexPath)
+        (cell as! StepGoalSetingViewCell).titleLabel.text = contentTitleArray[indexPath.row]
+        (cell as! StepGoalSetingViewCell).valueLabel.text = "\(contentTArray[indexPath.row])"
+        
+        return cell
     }
 }

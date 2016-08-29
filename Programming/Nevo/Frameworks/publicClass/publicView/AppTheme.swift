@@ -54,33 +54,6 @@ class AppTheme {
     class func NEVO_CUSTOM_COLOR(Red reds:CGFloat = 186, Green greens:CGFloat = 185, Blue blue:CGFloat = 182) -> UIColor {
         return UIColor(red: reds/255.0 , green: greens/255.0, blue: blue/255.0, alpha: 1)
     }
-
-    class func SYSTEMFONTOFSIZE(mSize size:CGFloat = 25) -> UIFont {
-        return UIFont.systemFontOfSize(size)
-    }
-    class func FONT_SFCOMPACTDISPLAY_BOLD(mSize size:CGFloat = 26) -> UIFont {
-        return UIFont(name:"SFCompactDisplay-Bold", size: size)!
-    }
-
-    class func FONT_SFCOMPACTDISPLAY_LIGHT(mSize size:CGFloat = 26) -> UIFont {
-        return UIFont(name:"SFCompactDisplay-Light", size: size)!
-    }
-
-    class func FONT_SFCOMPACTDISPLAY_THIN(mSize size:CGFloat = 26) -> UIFont {
-        return UIFont(name:"SFCompactDisplay-Thin", size: size)!//Uniform
-    }
-
-    class func FONT_SFCOMPACTDISPLAY_REGULAR(mSize size:CGFloat = 26) -> UIFont {
-        return UIFont(name:"SFCompactDisplay-Regular", size: size)!//Uniform
-    }
-
-    class func FONT_SFUITEXT_REGULAR(mSize size:CGFloat = 26) -> UIFont {
-        return UIFont(name:"SFUIText-Regular", size: size)!//Uniform
-    }
-
-    class func FONT_SFUIDISPLAY_REGULAR(mSize size:CGFloat = 26) -> UIFont {
-        return UIFont(name:"SFUIDisplay-Regular", size: size)!//Uniform
-    }
     
     class func PALETTE_BAGGROUND_COLOR() -> UIColor {
         return UIColor(red: 10/255.0, green: 255/255.0, blue: 178/255.0, alpha: 1)//Uniform
