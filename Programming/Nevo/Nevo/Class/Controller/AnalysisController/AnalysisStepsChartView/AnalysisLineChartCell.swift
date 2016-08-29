@@ -18,7 +18,10 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
+        self.initChartView()
+    }
+
+    private func initChartView() {
         lineChartView.delegate = self;
         
         lineChartView.descriptionText = "";
@@ -48,7 +51,7 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
         let leftAxis:ChartYAxis = lineChartView.leftAxis;
         leftAxis.removeAllLimitLines()
         leftAxis.addLimitLine(ll1)
-        leftAxis.axisMaxValue = 22000.0;
+        leftAxis.axisMaxValue = 9000.0;
         leftAxis.axisMinValue = 0.0;
         leftAxis.gridLineDashLengths = [0.0, 0.0];
         leftAxis.labelTextColor = UIColor.blackColor()
@@ -75,37 +78,40 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
         xAxis.drawLimitLinesBehindDataEnabled = false;
         xAxis.labelPosition = ChartXAxis.LabelPosition.Bottom
         xAxis.labelFont = UIFont(name: "Helvetica-Light", size: 7)!
-
+        
         let marker:BalloonMarker = BalloonMarker(color: AppTheme.NEVO_SOLAR_YELLOW(), font: UIFont.systemFontOfSize(12.0), insets: UIEdgeInsetsMake(8.0, 8.0, 20.0, 8.0))
         marker.minimumSize = CGSizeMake(80.0, 40.0);
         lineChartView.marker = marker;
         lineChartView.legend.form = ChartLegend.Form.Line
         lineChartView.animate(xAxisDuration: 2.5, easingOption: ChartEasingOption.EaseInOutQuart)
     }
-
+    
     func setTitle(title:String) {
         titleLabel.text = title
     }
     
     func updateChartData(dataArray:NSArray,chartType:Int) {
         lineChartView.data = nil
+        //self.initChartView()
         
         switch chartType {
         case 0:
-            self.setStepsDataCount(dataArray, range: 100)
+            self.setStepsDataCount(dataArray, type: chartType)
         case 1:
-            self.setStepsDataCount(dataArray, range: 100)
+            self.setStepsDataCount(dataArray, type: chartType)
         case 2:
-            self.setStepsDataCount(dataArray, range: 100)
+            self.setStepsDataCount(dataArray, type: chartType)
         default: break
         }
     }
     
-    func setStepsDataCount(countArray:NSArray,range:Double) {
+    func setStepsDataCount(countArray:NSArray,type:Int) {
         var xVals:[String] = []
         var yVals:[ChartDataEntry] = []
+        sortArray.removeAllObjects()
         sortArray.addObjectsFromArray(countArray as [AnyObject])
         
+        var maxValue:Int = 0
         for i:Int in 0 ..< countArray.count {
             /**
              *  Data sorting,Small to large sort
@@ -115,11 +121,28 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
                 let jSteps:UserSteps = sortArray.objectAtIndex(j) as! UserSteps;
                 let iStepsDate:Double = iSteps.date
                 let jStepsDate:Double = jSteps.date
+                let iStepsValue:Int = iSteps.steps
+                
+                //Calculate the maximum
+                if iStepsValue>maxValue {
+                    maxValue = iStepsValue
+                }
+                
+                //Time has sorted
                 if (iStepsDate > jStepsDate){
                     let temp:UserSteps = sortArray.objectAtIndex(i) as! UserSteps;
                     sortArray.replaceObjectAtIndex(i, withObject: sortArray[j])
                     sortArray.replaceObjectAtIndex(j, withObject: temp)
                 }
+            }
+            
+            //chart the maximum
+            if i == countArray.count-1 {
+                let leftAxis:ChartYAxis = lineChartView.leftAxis;
+                leftAxis.axisMaxValue = Double(maxValue);
+                leftAxis.axisMinValue = 0.0;
+                leftAxis.gridLineDashLengths = [0.0, 0.0];
+                leftAxis.labelTextColor = UIColor.blackColor()
             }
         }
         
@@ -135,45 +158,35 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
             NSLog("steps:\(steps)")
             yVals.append(ChartDataEntry(value: steps, xIndex: i))
             xVals.append(dateString)
-            //let mult:Double = range + 10000.0
-            //let val:Double = Double(arc4random_uniform(UInt32(mult)) + 3000)
         }
         
         var set1:LineChartDataSet?
-        if lineChartView.data?.dataSetCount>0 {
-            set1 = lineChartView.data?.dataSets[0] as? LineChartDataSet
-            set1?.yVals = yVals
-            lineChartView.data?.xValsObjc = xVals
-            lineChartView.data?.notifyDataChanged()
-            lineChartView.notifyDataSetChanged()
-        }else{
-            set1 = LineChartDataSet(yVals: yVals, label: "")
-            set1?.lineDashLengths = [0.0, 0];
-            set1?.highlightLineDashLengths = [0.0, 0.0];
-            set1?.setColor(AppTheme.NEVO_SOLAR_YELLOW())
-            set1?.setCircleColor(AppTheme.NEVO_SOLAR_GRAY())
-            set1?.valueTextColor = UIColor.blackColor()
-            set1?.lineWidth = 1.0;
-            set1?.circleRadius = 0.0;
-            //set1?.drawCirclesEnabled = false;
-            set1?.drawValuesEnabled = false
-            set1?.drawCircleHoleEnabled = false;
-            
-            set1?.valueFont = UIFont.systemFontOfSize(9.0)
-            
-            let gradientColors:[CGColor] = [AppTheme.NEVO_SOLAR_YELLOW().CGColor,AppTheme.NEVO_SOLAR_GRAY().CGColor];
-            let gradient:CGGradientRef = CGGradientCreateWithColors(nil, gradientColors, nil)!
-            set1?.fillAlpha = 1.0;
-            set1?.fill = ChartFill.fillWithLinearGradient(gradient, angle: 90.0)
-            set1?.drawFilledEnabled = true;
-            
-            
-            var dataSets:[LineChartDataSet] = [];
-            dataSets.append(set1!)
-            
-            let data:LineChartData = LineChartData(xVals: xVals, dataSets: dataSets)
-            lineChartView.data = data;
-        }
+        set1 = LineChartDataSet(yVals: yVals, label: "")
+        set1?.lineDashLengths = [0.0, 0];
+        set1?.highlightLineDashLengths = [0.0, 0.0];
+        set1?.setColor(AppTheme.NEVO_SOLAR_YELLOW())
+        set1?.setCircleColor(AppTheme.NEVO_SOLAR_GRAY())
+        set1?.valueTextColor = UIColor.blackColor()
+        set1?.lineWidth = 1.0;
+        set1?.circleRadius = 0.0;
+        //set1?.drawCirclesEnabled = false;
+        set1?.drawValuesEnabled = false
+        set1?.drawCircleHoleEnabled = false;
+        
+        set1?.valueFont = UIFont.systemFontOfSize(9.0)
+        
+        let gradientColors:[CGColor] = [AppTheme.NEVO_SOLAR_YELLOW().CGColor,AppTheme.NEVO_SOLAR_GRAY().CGColor];
+        let gradient:CGGradientRef = CGGradientCreateWithColors(nil, gradientColors, nil)!
+        set1?.fillAlpha = 1.0;
+        set1?.fill = ChartFill.fillWithLinearGradient(gradient, angle: 90.0)
+        set1?.drawFilledEnabled = true;
+        
+        
+        var dataSets:[LineChartDataSet] = [];
+        dataSets.append(set1!)
+        
+        let data:LineChartData = LineChartData(xVals: xVals, dataSets: dataSets)
+        lineChartView.data = data;
     }
 
     func setSleepDataCount(count:Int,range:Double) {
