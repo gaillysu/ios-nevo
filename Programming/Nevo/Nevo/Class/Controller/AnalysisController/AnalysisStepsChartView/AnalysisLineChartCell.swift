@@ -98,7 +98,7 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
         case 0:
             self.setStepsDataCount(dataArray, type: chartType)
         case 1:
-            self.setStepsDataCount(dataArray, type: chartType)
+            self.setSleepDataCount(dataArray, type: chartType)
         case 2:
             self.setStepsDataCount(dataArray, type: chartType)
         default: break
@@ -189,19 +189,72 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
         lineChartView.data = data;
     }
 
-    func setSleepDataCount(count:Int,range:Double) {
+    func setSleepDataCount(countArray:NSArray,type:Int) {
         var xVals:[String] = []
-        for i:Int in 0..<count {
-            xVals.append("\(i)")
-        }
-        
         var yVals:[ChartDataEntry] = []
+        sortArray.removeAllObjects()
+        sortArray.addObjectsFromArray(countArray as [AnyObject])
         
-        for i:Int in 0..<count {
-            let mult:Double = range + 10000.0
-            let val:Double = Double(arc4random_uniform(UInt32(mult)) + 3000)
-            yVals.append(ChartDataEntry(value: val, xIndex: i))
+        var maxValue:Int = 0
+        for i:Int in 0 ..< countArray.count {
+            /**
+             *  Data sorting,Small to large sort
+             */
+            for j:Int in i ..< countArray.count {
+                let iSleeps:UserSleep = sortArray.objectAtIndex(i) as! UserSleep;
+                let jSleep:UserSleep = sortArray.objectAtIndex(j) as! UserSleep;
+                let iSleepDate:Double = iSleeps.date
+                let jSleepDate:Double = jSleep.date
+                //Time has sorted
+                if (iSleepDate > jSleepDate){
+                    let temp:UserSleep = sortArray.objectAtIndex(i) as! UserSleep;
+                    sortArray.replaceObjectAtIndex(i, withObject: sortArray[j])
+                    sortArray.replaceObjectAtIndex(j, withObject: temp)
+                }
+            }
+            
+            for (index,sleeps) in sortArray.enumerate() {
+                var iStepsValue:Int = 0
+                let mSleeps:UserSleep = sleeps as! UserSleep
+                let sleepsValue:NSArray = AppTheme.jsonToArray(mSleeps.hourlySleepTime)
+                NSLog("hourlySleep:%@", mSleeps.hourlySleepTime)
+                
+                let date:NSDate = NSDate(timeIntervalSince1970: mSleeps.date)
+                let dateString:String = date.stringFromFormat("dd/MM")
+                
+                if index>0 {
+                    let kSleeps:UserSleep = sortArray[index-1] as! UserSleep
+                    let value2:NSArray = AppTheme.jsonToArray(kSleeps.hourlySleepTime)
+                    for (index2,value) in value2.enumerate() {
+                        if index2>18 {
+                            iStepsValue += (value as! NSNumber).integerValue
+                        }
+                    }
+                }
+                
+                for (index2,value) in sleepsValue.enumerate() {
+                    if index2<12 {
+                        iStepsValue += (value as! NSNumber).integerValue
+                    }
+                }
+                //Calculate the maximum
+                if iStepsValue>maxValue {
+                    maxValue = iStepsValue
+                }
+                xVals.append(dateString)
+                yVals.append(ChartDataEntry(value: Double(iStepsValue), xIndex: index))
+            }
+            
+            //chart the maximum
+            if i == countArray.count-1 {
+                let leftAxis:ChartYAxis = lineChartView.leftAxis;
+                leftAxis.axisMaxValue = Double(maxValue);
+                leftAxis.axisMinValue = 0.0;
+                leftAxis.gridLineDashLengths = [0.0, 0.0];
+                leftAxis.labelTextColor = UIColor.blackColor()
+            }
         }
+    
         
         var set1:LineChartDataSet?
         if lineChartView.data?.dataSetCount>0 {

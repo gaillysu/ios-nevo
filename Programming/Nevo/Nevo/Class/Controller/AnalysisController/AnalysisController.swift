@@ -63,10 +63,12 @@ extension AnalysisController {
     }
     
     func getSleepData()->[NSArray] {
+        let nextDay:Double = 86401
+        
         let dayDate:NSDate = NSDate()
-        let thisWeekArray:NSArray = UserSleep.getCriteria("WHERE date BETWEEN \(dayDate.beginningOfWeek.timeIntervalSince1970-1) AND \(dayDate.endOfWeek.timeIntervalSince1970)")
-        let lastWeekArray:NSArray = UserSleep.getCriteria("WHERE date BETWEEN \(dayDate.beginningOfWeek.timeIntervalSince1970-(86400.0*7)-1) AND \(dayDate.beginningOfWeek.timeIntervalSince1970)")
-        let last30DayArray:NSArray = UserSleep.getCriteria("WHERE date BETWEEN \(dayDate.beginningOfDay.timeIntervalSince1970-(86400.0*30)) AND \(dayDate.endOfDay.timeIntervalSince1970)")
+        let thisWeekArray:NSArray = UserSleep.getCriteria("WHERE date BETWEEN \(dayDate.beginningOfWeek.timeIntervalSince1970-nextDay) AND \(dayDate.endOfWeek.timeIntervalSince1970+nextDay)")
+        let lastWeekArray:NSArray = UserSleep.getCriteria("WHERE date BETWEEN \(dayDate.beginningOfWeek.timeIntervalSince1970-(86400.0*7)-nextDay) AND \(dayDate.beginningOfWeek.timeIntervalSince1970+nextDay)")
+        let last30DayArray:NSArray = UserSleep.getCriteria("WHERE date BETWEEN \(dayDate.beginningOfDay.timeIntervalSince1970-(86400.0*30)-nextDay) AND \(dayDate.endOfDay.timeIntervalSince1970+nextDay)")
         return [thisWeekArray,lastWeekArray,last30DayArray]
     }
     
@@ -103,7 +105,7 @@ extension AnalysisController:UICollectionViewDelegate,UICollectionViewDataSource
             cell.backgroundColor = UIColor.clearColor()
             cell.setTitle(titleArray[indexPath.row])
             //dataArray
-            cell.updateChartData(dataArray[indexPath.row] as! NSArray,chartType: 0);
+            cell.updateChartData(dataArray[indexPath.row] as! NSArray,chartType: segmented.selectedSegmentIndex);
             return cell
         }else{
             let cell:AnalysisValueCell = collectionView.dequeueReusableCellWithReuseIdentifier("AnalysisValue_Identifier", forIndexPath: indexPath) as! AnalysisValueCell
