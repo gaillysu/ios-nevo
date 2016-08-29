@@ -41,14 +41,14 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="turnonnevo.png" translatesAutoresizingMaskIntoConstraints="NO" id="0QV-eh-GuQ">
-                    <rect key="frame" x="0.0" y="200" width="254" height="254"/>
+                    <rect key="frame" x="0.0" y="220" width="254" height="254"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="0QV-eh-GuQ" secondAttribute="height" multiplier="1:1" id="70g-K7-rvj"/>
                     </constraints>
                 </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N2N-3j-L2h">
-                    <rect key="frame" x="0.0" y="510" width="600" height="35"/>
+                    <rect key="frame" x="0.0" y="520" width="600" height="35"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="35" id="ooz-Oq-Jf9"/>
                     </constraints>
@@ -63,7 +63,7 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="0QV-eh-GuQ" firstAttribute="centerY" secondItem="dbG-VB-Rga" secondAttribute="centerY" constant="27" id="0m6-QO-OD3"/>
+                <constraint firstItem="0QV-eh-GuQ" firstAttribute="centerY" secondItem="dbG-VB-Rga" secondAttribute="centerY" constant="47" id="0m6-QO-OD3"/>
                 <constraint firstAttribute="trailing" secondItem="xse-Xf-xhk" secondAttribute="trailing" id="1vF-Uu-lSW"/>
                 <constraint firstAttribute="trailing" secondItem="N2N-3j-L2h" secondAttribute="trailing" id="8dd-cZ-p0v"/>
                 <constraint firstItem="K0B-J6-Yzh" firstAttribute="leading" secondItem="dbG-VB-Rga" secondAttribute="leading" constant="15" id="8wt-gB-nrH"/>
@@ -75,7 +75,7 @@
                 <constraint firstAttribute="trailing" secondItem="K0B-J6-Yzh" secondAttribute="trailing" constant="15" id="ZaC-nf-NK3"/>
                 <constraint firstItem="0QV-eh-GuQ" firstAttribute="width" secondItem="dbG-VB-Rga" secondAttribute="height" multiplier="127:300" id="tbl-do-At7"/>
                 <constraint firstItem="0QV-eh-GuQ" firstAttribute="centerX" secondItem="dbG-VB-Rga" secondAttribute="centerX" constant="-173" id="vva-kg-gP8"/>
-                <constraint firstAttribute="bottom" secondItem="N2N-3j-L2h" secondAttribute="bottom" constant="55" id="yoQ-iG-adY"/>
+                <constraint firstAttribute="bottom" secondItem="N2N-3j-L2h" secondAttribute="bottom" constant="45" id="yoQ-iG-adY"/>
             </constraints>
             <point key="canvasLocation" x="-332" y="303"/>
         </view>
