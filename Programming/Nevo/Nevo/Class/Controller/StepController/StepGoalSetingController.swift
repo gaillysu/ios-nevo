@@ -136,8 +136,8 @@ class StepGoalSetingController: PublicClassController,ButtonManagerCallBack,Cloc
             self.contentTArray.removeAll()
             self.contentTArray.insert("\(dataSteps.calories)", atIndex: 0)
             self.contentTArray.insert("\(dataSteps.steps)", atIndex: 1)
-            self.contentTArray.insert("\(dataSteps.goalsteps)", atIndex: 2)
-            self.contentTArray.insert("\(dataSteps.walking_distance+dataSteps.running_distance)", atIndex: 3)
+            self.contentTArray.insert(String(format: "%.2f", Float(dataSteps.walking_duration+dataSteps.running_duration)/60.0), atIndex: 2)
+            self.contentTArray.insert(String(format: "%.2f", Float(dataSteps.walking_distance+dataSteps.running_distance)/1000.0), atIndex: 3)
             self.collectionView.reloadData()
             
             AppTheme.KeyedArchiverName(self.StepsGoalKey, andObject: self.contentTArray)
@@ -253,9 +253,26 @@ extension StepGoalSetingController:UICollectionViewDelegate,UICollectionViewData
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("StepGoalSetingIdentifier", forIndexPath: indexPath)
-        (cell as! StepGoalSetingViewCell).titleLabel.text = contentTitleArray[indexPath.row]
-        (cell as! StepGoalSetingViewCell).valueLabel.text = "\(contentTArray[indexPath.row])"
+        let cell:StepGoalSetingViewCell = collectionView.dequeueReusableCellWithReuseIdentifier("StepGoalSetingIdentifier", forIndexPath: indexPath) as! StepGoalSetingViewCell
+        cell.titleLabel.text = contentTitleArray[indexPath.row]
+        switch indexPath.row {
+        case 0:
+            cell.valueLabel.text = "\(contentTArray[indexPath.row]) Cal"
+            break;
+        case 1:
+            cell.valueLabel.text = "\(contentTArray[indexPath.row])"
+            break;
+        case 2:
+            cell.valueLabel.text = "\(contentTArray[indexPath.row]) H"
+            break;
+        case 3:
+            cell.valueLabel.text = "\(contentTArray[indexPath.row]) KM"
+            break;
+        default:
+            break;
+        }
+        
+        
         
         return cell
     }

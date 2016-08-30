@@ -21,9 +21,9 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="1Fw-eX-ASE" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="30" id="3v3-6r-HNx"/>
                 <constraint firstAttribute="bottom" secondItem="1Fw-eX-ASE" secondAttribute="bottom" id="SZf-jc-tsR"/>
-                <constraint firstItem="1Fw-eX-ASE" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" constant="15" id="m1q-gC-U7W"/>
-                <constraint firstItem="1Fw-eX-ASE" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="mrc-79-uwC"/>
+                <constraint firstItem="1Fw-eX-ASE" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="fZj-w4-WGj"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="348.5" y="378"/>

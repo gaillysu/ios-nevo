@@ -36,7 +36,7 @@ class NotificationModel: UserDatabaseHelper {
             while (resultSet.next()) {
                 let model:NotificationModel = NotificationModel()
 
-                for (var i:Int = 0; i < model.columeNames.count; i++) {
+                for i:Int in 0 ..< model.columeNames.count {
                     let columeName:NSString = (model.columeNames.objectAtIndex(i) as! NSString)
                     let columeType:NSString = (model.columeTypes.objectAtIndex(i) as! NSString)
                     if (columeType.isEqualToString(SQLTEXT)) {
