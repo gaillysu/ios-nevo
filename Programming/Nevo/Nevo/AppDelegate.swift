@@ -54,7 +54,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
         Fabric.with([Crashlytics.self])
         // Override point for customization after application launch
         UINavigationBar.appearance().tintColor = AppTheme.NEVO_SOLAR_YELLOW()
-        UITabBar.appearance().backgroundImage = UIImage()
+        //UITabBar.appearance().backgroundImage = UIImage()
         //UITabBar.appearance().shadowImage = UIImage()
         UITabBar.appearance().translucent = false
         UINavigationBar.appearance().lt_setBackgroundColor(UIColor.whiteColor())

@@ -13,7 +13,6 @@ import SwiftEventBus
 class StepsHistoryViewController: PublicClassController,UICollectionViewDelegateFlowLayout,ChartViewDelegate {
 
     @IBOutlet weak var stepsHistory: UICollectionView!
-    @IBOutlet weak var nodataLabel: UILabel!
     @IBOutlet weak var chartView: BarChartView!
     
     let SELECTED_DATA:String = "SELECTED_DATA"
@@ -88,14 +87,6 @@ class StepsHistoryViewController: PublicClassController,UICollectionViewDelegate
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        // MARK: - chartView?.marker
-        if(queryArray.count>0) {
-            nodataLabel.hidden = true
-        }else{
-            nodataLabel.backgroundColor = UIColor.whiteColor()
-            nodataLabel.hidden = false
-            nodataLabel.text = NSLocalizedString("no_data", comment: "");
-        }
     }
     
     // MARK: - ConfigChartView

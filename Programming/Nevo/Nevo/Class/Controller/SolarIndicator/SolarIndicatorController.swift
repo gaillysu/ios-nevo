@@ -26,6 +26,7 @@ class SolarIndicatorController: PublicClassController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        textCollection.backgroundColor = UIColor.whiteColor()
         textCollection.registerNib(UINib(nibName: "SolarInforViewCell",bundle: nil), forCellWithReuseIdentifier: "SolarInfor_Identifier")
         
         self.setupPieChartView(pieChartView)
@@ -65,7 +66,7 @@ extension SolarIndicatorController:UICollectionViewDelegate,UICollectionViewData
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("SolarInfor_Identifier", forIndexPath: indexPath)
-        cell.backgroundColor = UIColor.clearColor()
+        cell.backgroundColor = UIColor.whiteColor()
         (cell as! SolarInforViewCell).titleLabel.text = onTitle[indexPath.row]
         if onValue.count>0 {
             (cell as! SolarInforViewCell).valueLabel.text = String(format: "%dh %dmin", Int(onValue[indexPath.row])/60,Int(onValue[indexPath.row])%60)
@@ -145,8 +146,8 @@ extension SolarIndicatorController:ChartViewDelegate {
         
         
         data.setValueFormatter(pFormatter)
-        data.setValueFont(UIFont(name: "HelveticaNeue-Light", size: 11.0))
-        data.setValueTextColor(UIColor.blackColor())
+        data.setValueFont(UIFont(name: "HelveticaNeue-Light", size: 16.0))
+        data.setValueTextColor(UIColor.whiteColor())
         pieChartView.data = data;
         pieChartView.highlightValues(nil)
     }

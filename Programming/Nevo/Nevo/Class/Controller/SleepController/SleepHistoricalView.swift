@@ -18,7 +18,6 @@ class SleepHistoricalView: UIView, ChartViewDelegate{
 
     @IBOutlet var chartView:AnalysisStepsChartView?
     @IBOutlet weak var detailCollectionView: UICollectionView!
-    @IBOutlet weak var nodataLabel: UILabel!
     private var queryModel:NSMutableArray = NSMutableArray()
     private let sleepArray:NSMutableArray = NSMutableArray();
     private var mDelegate:SelectedChartViewDelegate?

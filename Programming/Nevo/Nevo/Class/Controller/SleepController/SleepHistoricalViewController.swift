@@ -14,7 +14,7 @@ class SleepHistoricalViewController: PublicClassController,ChartViewDelegate,Sel
 
     @IBOutlet var queryView: SleepHistoricalView!
     private var contentTitleArray:[String] = []
-    private var contentTArray:[String] = [NSLocalizedString("--", comment: ""),NSLocalizedString("--", comment: ""),NSLocalizedString("--", comment: ""),NSLocalizedString("--", comment: ""),NSLocalizedString("--", comment: ""),NSLocalizedString("--", comment: "")]
+    private var contentTArray:[String] = [NSLocalizedString("--", comment: ""),NSLocalizedString("--", comment: ""),NSLocalizedString("--", comment: ""),NSLocalizedString("--", comment: "")]
     private var selectedDate:NSDate = NSDate()
 
     private var queryArray:NSArray?
@@ -30,7 +30,7 @@ class SleepHistoricalViewController: PublicClassController,ChartViewDelegate,Sel
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = NSLocalizedString("sleep_history_title", comment: "")
-        contentTitleArray = [NSLocalizedString("sleep_timer", comment: ""), NSLocalizedString("wake_timer", comment: ""), NSLocalizedString("quality", comment: ""), NSLocalizedString("duration", comment: "")]
+        contentTitleArray = [NSLocalizedString("sleep_timer", comment: ""), NSLocalizedString("wake_timer", comment: ""), NSLocalizedString("Quality", comment: ""), NSLocalizedString("Duration", comment: "")]
         
         queryView.detailCollectionView.backgroundColor = UIColor.whiteColor()
         queryView.detailCollectionView.registerNib(UINib(nibName:"SleepHistoryViewCell",bundle: nil) , forCellWithReuseIdentifier: "SleepHistoryValue_Identifier")
@@ -63,14 +63,6 @@ class SleepHistoricalViewController: PublicClassController,ChartViewDelegate,Sel
     override func viewWillAppear(animated: Bool) {
         self.queryArray = UserSleep.getCriteria("WHERE date BETWEEN \(selectedDate.timeIntervalSince1970-86400) AND \(selectedDate.endOfDay.timeIntervalSince1970)")
         queryView.bulidQueryView(self,modelArray: queryArray!)
-
-        if(queryArray?.count>0) {
-            queryView.nodataLabel.hidden = true
-        }else{
-            //queryView.nodataLabel.backgroundColor = UIColor.getGreyColor()
-            queryView.nodataLabel.hidden = false
-            queryView.nodataLabel.text = NSLocalizedString("no_data", comment: "");
-        }
     }
 
     override func viewDidLayoutSubviews() {
@@ -108,7 +100,7 @@ class SleepHistoricalViewController: PublicClassController,ChartViewDelegate,Sel
 
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell:SleepHistoryViewCell = collectionView.dequeueReusableCellWithReuseIdentifier("SleepHistoryValue_Identifier", forIndexPath: indexPath) as! SleepHistoryViewCell
-        cell.titleLabel.text = contentTitleArray[indexPath.row]
+        cell.titleLabel.text = contentTitleArray[indexPath.row].uppercaseString
         cell.valueLabel.text = "\(contentTArray[indexPath.row])"
         cell.backgroundColor = UIColor.whiteColor()
         return cell
