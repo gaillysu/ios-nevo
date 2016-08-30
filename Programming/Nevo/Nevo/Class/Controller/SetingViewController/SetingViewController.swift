@@ -221,10 +221,11 @@ class SetingViewController: UIViewController,SyncControllerDelegate,ButtonManage
                         let tableViewCell: UITableViewCell = tableView.cellForRowAtIndexPath(indexPath)!
                         tableViewCell.accessoryType = UITableViewCellAccessoryType.None
                         tableViewCell.textLabel?.text = "Login"
+                        tableView.reloadData()
                     }else{
-                        let loginController:LoginController = LoginController()
-                        loginController.hidesBottomBarWhenPushed = true
-                        self.navigationController?.pushViewController(loginController, animated: true)
+                        let banner = Banner(title: NSLocalizedString("Logout_error", comment: ""), subtitle: nil, image: nil, backgroundColor: AppTheme.NEVO_SOLAR_YELLOW())
+                        banner.dismissesOnTap = true
+                        banner.show(duration: 1.2)
                     }
                 }else{
                     let loginController:LoginController = LoginController()
@@ -270,7 +271,12 @@ class SetingViewController: UIViewController,SyncControllerDelegate,ButtonManage
         case 1:
             return sources.count
         case 2:
-            return titleArray.count
+            let user:NSArray = UserProfile.getAll()
+            if user.count>0{
+                return titleArray.count
+            }else{
+                return titleArray.count-1
+            }
         case 3:
             return 1
         default: return 1;
@@ -283,8 +289,6 @@ class SetingViewController: UIViewController,SyncControllerDelegate,ButtonManage
             let user:NSArray = UserProfile.getAll()
             if user.count>0 {
                 let cell = tableView.dequeueReusableCellWithIdentifier("SetingInfoIdentifier", forIndexPath: indexPath)
-                cell.backgroundColor = AppTheme.NEVO_SOLAR_GRAY()
-                //cell.contentView.backgroundColor = UIColor.getLightBaseColor()
                 cell.separatorInset = UIEdgeInsets(top: 0, left: UIScreen.mainScreen().bounds.size.width, bottom: 0, right: 0)
                 let user:NSArray = UserProfile.getAll()
                 
@@ -294,8 +298,6 @@ class SetingViewController: UIViewController,SyncControllerDelegate,ButtonManage
                 return cell
             }else{
                 let cell = tableView.dequeueReusableCellWithIdentifier("SetingNotLoginIdentifier", forIndexPath: indexPath)
-                cell.backgroundColor = AppTheme.NEVO_SOLAR_GRAY()
-                //cell.contentView.backgroundColor = UIColor.getLightBaseColor()
                 cell.separatorInset = UIEdgeInsets(top: 0, left: UIScreen.mainScreen().bounds.size.width, bottom: 0, right: 0)
                 return cell
             }

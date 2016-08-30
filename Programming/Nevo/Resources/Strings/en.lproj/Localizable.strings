@@ -113,3 +113,4 @@
 "forget_your_password"="Do you want to forget your Password?";
 "login_success"="Login Successful";
 "login_error"="User does not exist or password is wrong.";
+"Logout_error"="Logout error";

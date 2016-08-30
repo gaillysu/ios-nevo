@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -17,16 +17,26 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="usericon" translatesAutoresizingMaskIntoConstraints="NO" id="GXs-an-rXf">
-                        <rect key="frame" x="125" y="5" width="70" height="70"/>
+                        <rect key="frame" x="9" y="5" width="70" height="70"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="GXs-an-rXf" secondAttribute="height" multiplier="1:1" id="EhB-hf-8bs"/>
                         </constraints>
                     </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Login" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zdP-bP-N2c">
+                        <rect key="frame" x="87" y="16" width="190" height="48"/>
+                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="GXs-an-rXf" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="1" id="860-UK-9SH"/>
                     <constraint firstItem="GXs-an-rXf" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="-3" id="Aaa-v2-gfc"/>
-                    <constraint firstItem="GXs-an-rXf" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="O1r-MG-adf"/>
-                    <constraint firstItem="GXs-an-rXf" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="kxW-Ea-lOS"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="GXs-an-rXf" secondAttribute="bottom" constant="-3.5" id="AlK-5q-cl2"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="zdP-bP-N2c" secondAttribute="bottom" constant="7.5" id="Syh-2V-LwF"/>
+                    <constraint firstItem="zdP-bP-N2c" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="8" id="e3n-OQ-JAJ"/>
+                    <constraint firstItem="zdP-bP-N2c" firstAttribute="leading" secondItem="GXs-an-rXf" secondAttribute="trailing" constant="8" id="qZB-Bf-7ln"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="zdP-bP-N2c" secondAttribute="trailing" constant="35" id="vCI-YG-aCy"/>
                 </constraints>
             </tableViewCellContentView>
         </tableViewCell>
