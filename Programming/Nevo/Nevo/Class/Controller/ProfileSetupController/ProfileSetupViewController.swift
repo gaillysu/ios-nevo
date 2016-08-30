@@ -56,7 +56,7 @@ class ProfileSetupViewController: UIViewController {
 
     func leftCancelAction(sender:UIBarButtonItem) {
         let viewController = self.navigationController?.popViewControllerAnimated(true)
-        if viewController != nil {
+        if viewController == nil {
             self.dismissViewControllerAnimated(true, completion: nil)
         }
     }

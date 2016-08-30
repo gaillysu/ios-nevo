@@ -113,3 +113,11 @@
 "no_alarm_content"="你没有设置一个闹钟,可以点击右上角的加好按钮添加一个闹钟";
 "An_update_is_available_for_your_watch"="你的手表有可用的更新";
 "goal_must_bigger_1000"="目标值必须是大于1000";
+//new Nevo
+"register_success"="注册成功!";
+"signup_failed"="注册失败!";
+"user_exist"="用户已存在!";
+"access_denied"="你的访问授权过期或者失效!";
+"forget_your_password"="你想重置你的密码么?";
+"login_success"="登陆成功";
+"login_error"="密码错误或者用户不存在!";

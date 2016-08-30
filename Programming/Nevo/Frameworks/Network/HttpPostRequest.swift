@@ -13,7 +13,7 @@ import XCGLogger
 class HttpPostRequest: NSObject {
 
     class  func LunaRPostRequest(url: String, data:Dictionary<String,AnyObject>, completion:(result:NSDictionary) -> Void){
-        var finalData: Dictionary<String,AnyObject> = ["token":"Sfz1Nk9Qt3J0dt7jNOLX0x7VHaT83V8h"]
+        var finalData: Dictionary<String,AnyObject> = ["token":"SU9gPy5e1d1t7W8FG2fQ6MuT06cY95MB"]
         finalData["params"] = data;
         XCGLogger.defaultInstance().debug("\(finalData)")
         

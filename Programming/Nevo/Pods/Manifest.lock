@@ -8,6 +8,7 @@ PODS:
   - Charts (2.2.5):
     - Charts/Core (= 2.2.5)
   - Charts/Core (2.2.5)
+  - CircleProgressView (1.0.11)
   - Crashlytics (3.7.2):
     - Fabric (~> 1.6.3)
   - CVCalendar (1.2.9)
@@ -70,6 +71,7 @@ DEPENDENCIES:
   - AutocompleteField
   - BRYXBanner
   - Charts
+  - CircleProgressView (from `https://github.com/CardinalNow/iOS-CircleProgressView.git`)
   - Crashlytics
   - CVCalendar
   - Fabric
@@ -93,12 +95,17 @@ DEPENDENCIES:
   - XCGLogger
 
 EXTERNAL SOURCES:
+  CircleProgressView:
+    :git: https://github.com/CardinalNow/iOS-CircleProgressView.git
   SwiftEventBus:
     :git: https://github.com/cesarferreira/SwiftEventBus.git
   SwiftyJSON:
     :git: https://github.com/SwiftyJSON/SwiftyJSON.git
 
 CHECKOUT OPTIONS:
+  CircleProgressView:
+    :commit: 51cbf218c4b417aed925d0d30e0c03dbff9b98cd
+    :git: https://github.com/CardinalNow/iOS-CircleProgressView.git
   SwiftEventBus:
     :commit: 4b8cbb5a8227b3c29af75e0416689d26178733d8
     :git: https://github.com/cesarferreira/SwiftEventBus.git
@@ -112,6 +119,7 @@ SPEC CHECKSUMS:
   AutocompleteField: 212b36bef0218f22c05d80035be2d382acd5a4e2
   BRYXBanner: 5f0911d52e0a77e088f7ea7ddcdebd02afb7828a
   Charts: b48fcc8d7190de910ff9e9748f5360c8ea7856e5
+  CircleProgressView: 3e7e26454ad9a93e310fe9cd612af6d779deb0c1
   Crashlytics: 130ab943f8c78cda7a814b434f270b2e2c8a3cba
   CVCalendar: 0799256e0bc3b43e83b7e86c0729ce9ff0624cb6
   Fabric: caf7580c725e64db144f610ac65cd60956911dc7
@@ -134,6 +142,6 @@ SPEC CHECKSUMS:
   UMengAnalytics-NO-IDFA: 965a219b05475ff2a4c09a164139a27bbaa0e25b
   XCGLogger: d6e196e78940ff6daab17d6917107876f973fa31
 
-PODFILE CHECKSUM: 77c8d495738859ddab0cd6e7d3de82d44928fbc0
+PODFILE CHECKSUM: 16affcabf42cb2d56339e5e0bd2388af2e9e0c69
 
 COCOAPODS: 1.1.0.beta.1

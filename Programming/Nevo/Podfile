@@ -28,6 +28,7 @@ target 'Nevo' do
     pod 'SwiftEventBus', :git => 'https://github.com/cesarferreira/SwiftEventBus.git'
     pod 'KDCircularProgress'
     pod 'M13Checkbox'
+    pod 'CircleProgressView', :git => 'https://github.com/CardinalNow/iOS-CircleProgressView.git'
 end
 
 target 'LunaR' do

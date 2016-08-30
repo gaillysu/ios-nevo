@@ -59,7 +59,7 @@ class LoginController: UIViewController,UITextFieldDelegate {
     
     func tapAction(sender:UITapGestureRecognizer) {
         let register:ProfileSetupViewController = ProfileSetupViewController()
-        self.navigationController?.pushViewController(register, animated: true)
+        self.presentViewController(UINavigationController(rootViewController: register), animated: true, completion: nil)
     }
 
     override func didReceiveMemoryWarning() {
@@ -76,7 +76,7 @@ class LoginController: UIViewController,UITextFieldDelegate {
             self.loginRequest()
         }else{
             let register:ProfileSetupViewController = ProfileSetupViewController()
-            self.navigationController?.pushViewController(register, animated: true)
+            self.presentViewController(UINavigationController(rootViewController: register), animated: true, completion: nil)
         }
     }
     
@@ -121,8 +121,16 @@ class LoginController: UIViewController,UITextFieldDelegate {
                 MRProgressOverlayView.dismissAllOverlaysForView(self.navigationController!.view, animated: true)
                 
                 let json = JSON(result)
-                let message = json["message"].stringValue.isEmpty ? NSLocalizedString("not_login", comment: ""):json["message"].stringValue
+                var message = json["message"].stringValue
                 let status = json["status"].intValue
+                
+                switch status {
+                case 1: message = NSLocalizedString("login_success", comment: "")
+                case -1:message = NSLocalizedString("login_error", comment: "");
+                case -2:break;
+                case -3:message = NSLocalizedString("access_denied", comment: "");
+                default:break;
+                }
                 
                 let banner = Banner(title: NSLocalizedString(message, comment: ""), subtitle: nil, image: nil, backgroundColor: AppTheme.NEVO_SOLAR_YELLOW())
                 banner.dismissesOnTap = true
@@ -150,14 +158,14 @@ class LoginController: UIViewController,UITextFieldDelegate {
                     self.navigationController?.popViewControllerAnimated(true)
                 }else{
                     if self.pErrorNumber>=3{
-                        let forgetPassword:UIAlertController = UIAlertController(title: "忘记密码吗?", message: "如果忘记密码可以点击确定找回密码", preferredStyle: UIAlertControllerStyle.Alert)
-                        let alertAction:UIAlertAction = UIAlertAction(title: "确定", style: UIAlertActionStyle.Default, handler: { (action) in
+                        let forgetPassword:UIAlertController = UIAlertController(title: "Forget PassWord?", message: NSLocalizedString("forget_your_password", comment: ""), preferredStyle: UIAlertControllerStyle.Alert)
+                        let alertAction:UIAlertAction = UIAlertAction(title: NSLocalizedString("forget", comment: ""), style: UIAlertActionStyle.Default, handler: { (action) in
                             let forget:ForgotPasswordController = ForgotPasswordController()
                             self.navigationController?.pushViewController(forget, animated: true)
                         })
                         forgetPassword.addAction(alertAction)
                         
-                        let alertAction2:UIAlertAction = UIAlertAction(title: "取消", style: UIAlertActionStyle.Cancel, handler: { (action) in
+                        let alertAction2:UIAlertAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: UIAlertActionStyle.Cancel, handler: { (action) in
                             
                         })
                         forgetPassword.addAction(alertAction2)

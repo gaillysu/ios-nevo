@@ -57,8 +57,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
         UITabBar.appearance().backgroundImage = UIImage()
         //UITabBar.appearance().shadowImage = UIImage()
         UITabBar.appearance().translucent = false
-//        UINavigationBar.appearance().translucent = false
         UINavigationBar.appearance().lt_setBackgroundColor(UIColor.whiteColor())
+        //设置导航栏文字颜色和字体
+        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName:UIColor.blackColor(),NSFontAttributeName:UIFont(name: "Raleway", size: 20)!]
         UIApplication.sharedApplication().statusBarStyle = UIStatusBarStyle.Default
         
         IQKeyboardManager.sharedManager().enable = true

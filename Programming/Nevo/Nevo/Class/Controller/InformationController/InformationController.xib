@@ -68,7 +68,7 @@
                         <outlet property="delegate" destination="-1" id="x7h-sq-2Wr"/>
                     </connections>
                 </textField>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Height" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lI6-oe-0Ah" customClass="AutocompleteField" customModule="AutocompleteField">
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Height(100-250 CM)" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lI6-oe-0Ah" customClass="AutocompleteField" customModule="AutocompleteField">
                     <rect key="frame" x="56" y="395" width="262" height="60"/>
                     <color key="backgroundColor" red="0.8980392157" green="0.89411764709999997" blue="0.8862745098" alpha="1" colorSpace="calibratedRGB"/>
                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
@@ -88,7 +88,7 @@
                         <outlet property="delegate" destination="-1" id="UWr-V3-Dmb"/>
                     </connections>
                 </textField>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Weight" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NTv-do-MVa" customClass="AutocompleteField" customModule="AutocompleteField">
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Weight(35-150 KG)" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NTv-do-MVa" customClass="AutocompleteField" customModule="AutocompleteField">
                     <rect key="frame" x="56" y="460" width="262" height="60"/>
                     <color key="backgroundColor" red="0.8980392157" green="0.89411764709999997" blue="0.8862745098" alpha="1" colorSpace="calibratedRGB"/>
                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>

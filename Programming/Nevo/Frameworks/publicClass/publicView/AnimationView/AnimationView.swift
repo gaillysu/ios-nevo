@@ -19,7 +19,7 @@ class AnimationView: UIView {
 
 }
 
-class CircleProgressView: CAShapeLayer {
+class NevoCircleProgressView: CAShapeLayer {
 
     private let progressLimit:CGFloat = 1.0 //The overall progress of the progress bar
     private var progress:CGFloat = 0 //The progress bar target schedule

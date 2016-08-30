@@ -21,12 +21,6 @@ class AnalysisController: PublicClassController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let titleLabel:UILabel = UILabel(frame: CGRectMake(0,0,320,35))
-        titleLabel.textAlignment = NSTextAlignment.Center
-        titleLabel.text = "Analysis"
-        titleLabel.font = UIFont(name: "Raleway-Thin.ttf", size: 18)
-        self.navigationItem.titleView = titleLabel
-        
         let dict:[String : AnyObject] = [NSForegroundColorAttributeName:UIColor.whiteColor()]
         segmented.setTitleTextAttributes(dict, forState: UIControlState.Selected)
         

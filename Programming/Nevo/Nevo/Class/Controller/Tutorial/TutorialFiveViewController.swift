@@ -7,14 +7,15 @@
 //
 
 import Foundation
+import CircleProgressView
 
 class TutorialFiveViewController: UIViewController,SyncControllerDelegate {
 
-    var progressView:CircleProgressView?
-    var progresValue:CGFloat = 0.0
+    var progresValue:Double = 0.0
     var timer:NSTimer?
 
     @IBOutlet weak var watchImage: UIImageView!
+    @IBOutlet weak var progressBar: CircleProgressView!
     
     init() {
         super.init(nibName: "TutorialFiveViewController", bundle: NSBundle.mainBundle())
@@ -35,21 +36,17 @@ class TutorialFiveViewController: UIViewController,SyncControllerDelegate {
         }else {
             timer = nil
             timer = NSTimer.scheduledTimerWithTimeInterval(2, target: self, selector: #selector(TutorialFiveViewController.timerAction(_:)), userInfo: nil, repeats: true)
-            progressView?.setProgress(0.0)
+            progressBar.setProgress(0, animated: true)
         }
     }
 
     override func viewDidLayoutSubviews() {
-        progressView = CircleProgressView()
-        progressView!.setProgressColor(UIColor.getNevoBaseColor())
-        progressView?.frame = CGRectMake(watchImage!.frame.origin.x-15, watchImage!.frame.origin.y-13, watchImage.bounds.width+20, watchImage.bounds.width+20)
-        progressView?.setProgress(0.0)
-        self.view.layer.addSublayer(progressView!)
+
     }
 
     func timerAction(action:NSTimer) {
         progresValue+=0.1
-        setProgress(progresValue)
+        progressBar.setProgress(progresValue, animated: true)
         if(progresValue > 1){
             action.valid ? action.invalidate():()
             if(AppDelegate.getAppDelegate().isConnected()){
@@ -69,7 +66,7 @@ class TutorialFiveViewController: UIViewController,SyncControllerDelegate {
                 }
                 if(res) {
                     progresValue = 0.0
-                    setProgress(0.0)
+                    progressBar.setProgress(progresValue, animated: true)
                     let tutorial:TutorialSevenViewController = TutorialSevenViewController()
                     self.navigationController?.pushViewController(tutorial, animated: true)
                 }
@@ -86,15 +83,6 @@ class TutorialFiveViewController: UIViewController,SyncControllerDelegate {
         }
     }
 
-    /**
-     set the progress of the progressView
-
-     :param: progress
-     :param: animated
-     */
-    func setProgress(progress: CGFloat){
-        progressView?.setProgress(progress, Steps: 0, GoalStep: 0)
-    }
     
     func delay(delay:Double, closure:()->()) {
         dispatch_after(

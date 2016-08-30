@@ -10,6 +10,17 @@
 		000CB3281C3E436000B4ABEC /* white_clock.png in Resources */ = {isa = PBXBuildFile; fileRef = 000CB3251C3E436000B4ABEC /* white_clock.png */; };
 		000CB3291C3E436000B4ABEC /* white_hour.png in Resources */ = {isa = PBXBuildFile; fileRef = 000CB3261C3E436000B4ABEC /* white_hour.png */; };
 		000CB32A1C3E436000B4ABEC /* white_minute.png in Resources */ = {isa = PBXBuildFile; fileRef = 000CB3271C3E436000B4ABEC /* white_minute.png */; };
+		00120E771D7550D500CE0C32 /* UserHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00120E751D7550D500CE0C32 /* UserHeader.swift */; };
+		00120E781D7550D500CE0C32 /* UserHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00120E761D7550D500CE0C32 /* UserHeader.xib */; };
+		00120E791D7559D500CE0C32 /* Raleway-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0037EC441D2385DF00502140 /* Raleway-Bold.ttf */; };
+		00120E7A1D7559D500CE0C32 /* Raleway-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0037EC451D2385DF00502140 /* Raleway-ExtraBold.ttf */; };
+		00120E7B1D7559D500CE0C32 /* Raleway-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0037EC461D2385DF00502140 /* Raleway-ExtraLight.ttf */; };
+		00120E7C1D7559D500CE0C32 /* Raleway-Heavy.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0037EC471D2385DF00502140 /* Raleway-Heavy.ttf */; };
+		00120E7D1D7559D500CE0C32 /* Raleway-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0037EC481D2385DF00502140 /* Raleway-Light.ttf */; };
+		00120E7E1D7559D500CE0C32 /* Raleway-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0037EC491D2385DF00502140 /* Raleway-Medium.ttf */; };
+		00120E7F1D7559D500CE0C32 /* Raleway-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0037EC4A1D2385DF00502140 /* Raleway-Regular.ttf */; };
+		00120E801D7559D500CE0C32 /* Raleway-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0037EC4B1D2385DF00502140 /* Raleway-SemiBold.ttf */; };
+		00120E811D7559D500CE0C32 /* Raleway-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0037EC4C1D2385DF00502140 /* Raleway-Thin.ttf */; };
 		0017DC111C8812640058A065 /* RepeatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0017DC0F1C8812640058A065 /* RepeatViewController.swift */; };
 		0017DC121C8812640058A065 /* RepeatViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0017DC101C8812640058A065 /* RepeatViewController.xib */; };
 		001F1B7C1B57777B001DD426 /* nevo_wacth.png in Resources */ = {isa = PBXBuildFile; fileRef = 001F1B7A1B57777B001DD426 /* nevo_wacth.png */; };
@@ -17,8 +28,6 @@
 		00321D6D1C98EBB10069BFCC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00321D6C1C98EBB10069BFCC /* AppDelegate.swift */; };
 		00321D7C1C993C320069BFCC /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00321D771C993C320069BFCC /* LoginController.swift */; };
 		00321D7D1C993C320069BFCC /* LoginController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00321D781C993C320069BFCC /* LoginController.xib */; };
-		00321D7E1C993C320069BFCC /* RegisterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00321D7A1C993C320069BFCC /* RegisterController.swift */; };
-		00321D7F1C993C320069BFCC /* RegisterController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00321D7B1C993C320069BFCC /* RegisterController.xib */; };
 		00344F5C1C47A86800C2FC7A /* SupportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00344F5A1C47A86800C2FC7A /* SupportViewController.swift */; };
 		00344F5D1C47A86800C2FC7A /* SupportViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00344F5B1C47A86800C2FC7A /* SupportViewController.xib */; };
 		0036EB051C48BA8300DCED46 /* connected.png in Resources */ = {isa = PBXBuildFile; fileRef = 0036EAFF1C48BA8300DCED46 /* connected.png */; };
@@ -578,6 +587,8 @@
 		000CB3251C3E436000B4ABEC /* white_clock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = white_clock.png; sourceTree = "<group>"; };
 		000CB3261C3E436000B4ABEC /* white_hour.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = white_hour.png; sourceTree = "<group>"; };
 		000CB3271C3E436000B4ABEC /* white_minute.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = white_minute.png; sourceTree = "<group>"; };
+		00120E751D7550D500CE0C32 /* UserHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserHeader.swift; sourceTree = "<group>"; };
+		00120E761D7550D500CE0C32 /* UserHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserHeader.xib; sourceTree = "<group>"; };
 		0017DC0F1C8812640058A065 /* RepeatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepeatViewController.swift; sourceTree = "<group>"; };
 		0017DC101C8812640058A065 /* RepeatViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RepeatViewController.xib; sourceTree = "<group>"; };
 		001F1B7A1B57777B001DD426 /* nevo_wacth.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nevo_wacth.png; sourceTree = "<group>"; };
@@ -586,8 +597,6 @@
 		00321D6C1C98EBB10069BFCC /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		00321D771C993C320069BFCC /* LoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		00321D781C993C320069BFCC /* LoginController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginController.xib; sourceTree = "<group>"; };
-		00321D7A1C993C320069BFCC /* RegisterController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterController.swift; sourceTree = "<group>"; };
-		00321D7B1C993C320069BFCC /* RegisterController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RegisterController.xib; sourceTree = "<group>"; };
 		00344F5A1C47A86800C2FC7A /* SupportViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SupportViewController.swift; sourceTree = "<group>"; };
 		00344F5B1C47A86800C2FC7A /* SupportViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SupportViewController.xib; sourceTree = "<group>"; };
 		0036EAFF1C48BA8300DCED46 /* connected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = connected.png; sourceTree = "<group>"; };
@@ -1135,15 +1144,6 @@
 			path = LoginController;
 			sourceTree = "<group>";
 		};
-		00321D791C993C320069BFCC /* RegisterController */ = {
-			isa = PBXGroup;
-			children = (
-				00321D7A1C993C320069BFCC /* RegisterController.swift */,
-				00321D7B1C993C320069BFCC /* RegisterController.xib */,
-			);
-			path = RegisterController;
-			sourceTree = "<group>";
-		};
 		00344F591C47A79600C2FC7A /* SupportViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -1214,7 +1214,6 @@
 				0058B3E31CF55CF50079A213 /* ConnectOtherAppsController */,
 				009703BF1C9BD98300F2FF0D /* UserProfileController */,
 				00321D761C993C320069BFCC /* LoginController */,
-				00321D791C993C320069BFCC /* RegisterController */,
 				00BF2D971C7FEAB400909316 /* VideoPlayController */,
 				00344F591C47A79600C2FC7A /* SupportViewController */,
 				0050D6841C28E1CD004F6F80 /* AlarmController */,
@@ -1680,6 +1679,8 @@
 		009703BF1C9BD98300F2FF0D /* UserProfileController */ = {
 			isa = PBXGroup;
 			children = (
+				00120E751D7550D500CE0C32 /* UserHeader.swift */,
+				00120E761D7550D500CE0C32 /* UserHeader.xib */,
 				009703C01C9BD9D700F2FF0D /* UserProfileController.swift */,
 				009703C11C9BD9D700F2FF0D /* UserProfileController.xib */,
 				009703C41C9BDB3200F2FF0D /* UserProfileCell.swift */,
@@ -2862,6 +2863,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				00120E791D7559D500CE0C32 /* Raleway-Bold.ttf in Resources */,
+				00120E7A1D7559D500CE0C32 /* Raleway-ExtraBold.ttf in Resources */,
+				00120E7B1D7559D500CE0C32 /* Raleway-ExtraLight.ttf in Resources */,
+				00120E7C1D7559D500CE0C32 /* Raleway-Heavy.ttf in Resources */,
+				00120E7D1D7559D500CE0C32 /* Raleway-Light.ttf in Resources */,
+				00120E7E1D7559D500CE0C32 /* Raleway-Medium.ttf in Resources */,
+				00120E7F1D7559D500CE0C32 /* Raleway-Regular.ttf in Resources */,
+				00120E801D7559D500CE0C32 /* Raleway-SemiBold.ttf in Resources */,
+				00120E811D7559D500CE0C32 /* Raleway-Thin.ttf in Resources */,
 				00AF8CE01D224CFA009047AC /* DatePickerView.xib in Resources */,
 				006756071D4848A300E8144C /* notification_background.png in Resources */,
 				006A625A1D6AA76C00458305 /* NewAddAlarmHeader.xib in Resources */,
@@ -2923,7 +2933,6 @@
 				00E650A31C8425E600278D3E /* nevoWhiteLEDImage.png in Resources */,
 				0050D6031C28E0DB004F6F80 /* SelectedNotificationTypeController.xib in Resources */,
 				0095DDA91D2E0D7D00F80BFD /* wacth_dial.png in Resources */,
-				00321D7F1C993C320069BFCC /* RegisterController.xib in Resources */,
 				0050D6941C28E1CD004F6F80 /* AddAlarmSystemCell.xib in Resources */,
 				0036EB0A1C48BA8300DCED46 /* tutorialone.png in Resources */,
 				00EC9DFB1C85838900280904 /* TutorialFiveViewController.xib in Resources */,
@@ -2931,6 +2940,7 @@
 				00EC9DDA1C85834F00280904 /* TutorialTwoViewController.xib in Resources */,
 				00E650971C83DA8000278D3E /* homeTutorial.png in Resources */,
 				0089B09F1D6BE9410041148A /* InformationController.xib in Resources */,
+				00120E781D7550D500CE0C32 /* UserHeader.xib in Resources */,
 				0036EB061C48BA8300DCED46 /* connected1.png in Resources */,
 				0050D6961C28E1CD004F6F80 /* AddAlarmTableViewCell.xib in Resources */,
 				0050D69B1C2906D8004F6F80 /* Firmwares in Resources */,
@@ -3285,7 +3295,6 @@
 				00AF8CBC1D224CFA009047AC /* BaseEntryDatabaseHelper.swift in Sources */,
 				00AF8CB61D224CFA009047AC /* DaySleep.swift in Sources */,
 				0050D60F1C28E0DB004F6F80 /* AddPresetView.swift in Sources */,
-				00321D7E1C993C320069BFCC /* RegisterController.swift in Sources */,
 				00321D6D1C98EBB10069BFCC /* AppDelegate.swift in Sources */,
 				00AF8CC81D224CFA009047AC /* StepsModel.swift in Sources */,
 				0050D5FF1C28E0DB004F6F80 /* SelectedNotificationView.swift in Sources */,
@@ -3362,6 +3371,7 @@
 				00AF8CFA1D224CFA009047AC /* ReadDailyTrackerInfo.swift in Sources */,
 				0050D6931C28E1CD004F6F80 /* AddAlarmSystemCell.swift in Sources */,
 				00AF8CDF1D224CFA009047AC /* DatePickerView.swift in Sources */,
+				00120E771D7550D500CE0C32 /* UserHeader.swift in Sources */,
 				9E98FB2D1C463D2A00BAB700 /* TutorialThreeViewController.swift in Sources */,
 				00AF8CF21D224CFA009047AC /* DailyTrackerNevoPacket.swift in Sources */,
 				0058B3EA1CF55D590079A213 /* ConnectOtherAppsController.swift in Sources */,

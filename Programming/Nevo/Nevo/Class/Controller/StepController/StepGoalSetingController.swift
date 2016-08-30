@@ -18,7 +18,7 @@ class StepGoalSetingController: PublicClassController,ButtonManagerCallBack,Cloc
     @IBOutlet weak var collectionView:UICollectionView!
     //Put all UI operation HomeView inside
     private var mClockTimerView:ClockView?;//init "ClockView" ,Use the code relative layout
-    var progressView:CircleProgressView = CircleProgressView()
+    var progressView:NevoCircleProgressView = NevoCircleProgressView()
     var progresValue:CGFloat = 0.0
     
     let StepsGoalKey:String = "ADYSTEPSGOALKEY"

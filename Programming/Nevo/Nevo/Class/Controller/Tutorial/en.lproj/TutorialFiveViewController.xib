@@ -13,6 +13,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TutorialFiveViewController">
             <connections>
+                <outlet property="progressBar" destination="Wxo-st-kiY" id="vfa-z3-ndn"/>
                 <outlet property="view" destination="jOH-fH-NFX" id="ZZB-0Z-mdH"/>
                 <outlet property="watchImage" destination="aI1-f3-dYG" id="64T-Ew-1Zm"/>
             </connections>
@@ -40,6 +41,25 @@
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wxo-st-kiY" customClass="CircleProgressView" customModule="CircleProgressView">
+                    <rect key="frame" x="160" y="160" width="280" height="280"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="progress">
+                            <real key="value" value="0.10000000000000001"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="trackWidth">
+                            <real key="value" value="5"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="clockwise" value="YES"/>
+                        <userDefinedRuntimeAttribute type="color" keyPath="trackFillColor">
+                            <color key="value" red="0.62745098040000002" green="0.51764705879999995" blue="0.33333333329999998" alpha="1" colorSpace="calibratedRGB"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="trackBackgroundColor">
+                            <color key="value" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tutorialone.png" translatesAutoresizingMaskIntoConstraints="NO" id="aI1-f3-dYG">
                     <rect key="frame" x="173" y="173" width="254" height="254"/>
                     <constraints>
@@ -50,13 +70,17 @@
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="wVD-0G-Xmg" firstAttribute="top" secondItem="jOH-fH-NFX" secondAttribute="top" constant="75" id="1IG-Z5-AeF"/>
+                <constraint firstItem="Wxo-st-kiY" firstAttribute="top" secondItem="aI1-f3-dYG" secondAttribute="top" constant="-13" id="Hef-qT-UXY"/>
                 <constraint firstItem="hBX-Kh-EeG" firstAttribute="top" secondItem="wVD-0G-Xmg" secondAttribute="bottom" constant="8" id="YZL-UN-5R8"/>
                 <constraint firstItem="aI1-f3-dYG" firstAttribute="centerX" secondItem="jOH-fH-NFX" secondAttribute="centerX" id="bJG-kA-Vgq"/>
+                <constraint firstItem="Wxo-st-kiY" firstAttribute="trailing" secondItem="aI1-f3-dYG" secondAttribute="trailing" constant="13" id="fN6-ZC-aUf"/>
                 <constraint firstAttribute="trailing" secondItem="wVD-0G-Xmg" secondAttribute="trailing" id="jbX-mA-Sfv"/>
                 <constraint firstItem="aI1-f3-dYG" firstAttribute="width" secondItem="jOH-fH-NFX" secondAttribute="height" multiplier="127:300" id="nR9-n3-Emd"/>
                 <constraint firstItem="wVD-0G-Xmg" firstAttribute="leading" secondItem="jOH-fH-NFX" secondAttribute="leading" id="ndF-VP-9rf"/>
                 <constraint firstItem="hBX-Kh-EeG" firstAttribute="leading" secondItem="jOH-fH-NFX" secondAttribute="leading" id="rg2-8y-eqy"/>
                 <constraint firstAttribute="trailing" secondItem="hBX-Kh-EeG" secondAttribute="trailing" id="uo2-y5-vMY"/>
+                <constraint firstItem="Wxo-st-kiY" firstAttribute="bottom" secondItem="aI1-f3-dYG" secondAttribute="bottom" constant="13" id="wpJ-z4-OfW"/>
+                <constraint firstItem="Wxo-st-kiY" firstAttribute="leading" secondItem="aI1-f3-dYG" secondAttribute="leading" constant="-13" id="ycg-nD-Wdo"/>
                 <constraint firstItem="aI1-f3-dYG" firstAttribute="centerY" secondItem="jOH-fH-NFX" secondAttribute="centerY" id="zMk-Jn-wjT"/>
             </constraints>
             <point key="canvasLocation" x="575" y="340"/>

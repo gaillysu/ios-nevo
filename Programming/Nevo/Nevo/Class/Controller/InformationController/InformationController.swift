@@ -43,11 +43,11 @@ class InformationController: UIViewController,SMSegmentViewDelegate {
         
         let datePicker:UIDatePicker = UIDatePicker()
         datePicker.datePickerMode = UIDatePickerMode.Date
+        datePicker.backgroundColor = UIColor.whiteColor()
         dateOfbirth.inputView = datePicker
         datePicker.addTarget(self, action: #selector(selectedDateAction(_:)), forControlEvents: UIControlEvents.ValueChanged)
         
-        
-        heightTextField.keyboardType = UIKeyboardType.NumberPad
+        heightTextField.keyboardType = UIKeyboardType.NumberPad;
         weightTextfield.keyboardType = UIKeyboardType.NumberPad
     }
     
@@ -90,11 +90,6 @@ class InformationController: UIViewController,SMSegmentViewDelegate {
         self.registerRequest()
     }
     
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
-
-        return true
-    }
-    
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         dateOfbirth.resignFirstResponder()
         heightTextField.resignFirstResponder()
@@ -109,7 +104,7 @@ class InformationController: UIViewController,SMSegmentViewDelegate {
     func registerRequest() {
         if AppDelegate.getAppDelegate().network!.isReachable {
             if(AppTheme.isNull(dateOfbirth!.text!) || AppTheme.isNull(heightTextField.text!) || AppTheme.isNull(weightTextfield.text!)) {
-                let banner = Banner(title: NSLocalizedString("One of the fields are empty.", comment: ""), subtitle: nil, image: nil, backgroundColor:UIColor.getBaseColor())
+                let banner = Banner(title: NSLocalizedString("One of the fields are empty.", comment: ""), subtitle: nil, image: nil, backgroundColor:AppTheme.NEVO_SOLAR_YELLOW())
                 banner.dismissesOnTap = true
                 banner.show(duration: 0.6)
                 return
@@ -151,10 +146,25 @@ class InformationController: UIViewController,SMSegmentViewDelegate {
                     let birthday = dateFormatter.stringFromDate(birthdayDate!)
                     let sex = user["sex"]!.intValue == 1 ? true : false;
                     if(status > 0 && UserProfile.getAll().count == 0) {
+                        message = NSLocalizedString("register_success", comment: "");
                         let userprofile:UserProfile = UserProfile(keyDict: ["id":user["id"]!.intValue,"first_name":user["first_name"]!.stringValue,"last_name":user["last_name"]!.stringValue,"length":user["length"]!.intValue,"email":user["email"]!.stringValue,"sex": sex, "weight":(user["weight"]?.floatValue)!, "birthday":birthday])
                         userprofile.add({ (id, completion) in
                         })
                         self.navigationController?.popViewControllerAnimated(true)
+                    }else{
+                        
+                        
+                        switch status {
+                        case -1:
+                            message = NSLocalizedString("access_denied", comment: "");
+                        case -2:
+                            message = "";
+                        case -3:
+                            message = NSLocalizedString("user_exist", comment: "");
+                            break
+                        
+                        default: message = NSLocalizedString("signup_failed", comment: "")
+                        }
                     }
                     
                 }else{
@@ -164,7 +174,7 @@ class InformationController: UIViewController,SMSegmentViewDelegate {
                     
                 }
                 
-                let banner = Banner(title: NSLocalizedString(message, comment: ""), subtitle: nil, image: nil, backgroundColor:UIColor.getBaseColor())
+                let banner = Banner(title: NSLocalizedString(message, comment: ""), subtitle: nil, image: nil, backgroundColor:AppTheme.NEVO_SOLAR_YELLOW())
                 banner.dismissesOnTap = true
                 banner.show(duration: 1.2)
             }
@@ -172,9 +182,35 @@ class InformationController: UIViewController,SMSegmentViewDelegate {
             XCGLogger.defaultInstance().debug("注册的时候没有网络")
             let view = MRProgressOverlayView.showOverlayAddedTo(self.navigationController!.view, title: "No internet", mode: MRProgressOverlayViewMode.Cross, animated: true)
             view.setTintColor(UIColor.getBaseColor())
-            let timeout:NSTimer = NSTimer.after(0.6.seconds, {
+            NSTimer.after(0.6.seconds, {
                 MRProgressOverlayView.dismissAllOverlaysForView(self.navigationController!.view, animated: true)
             })
         }
+    }
+}
+
+extension InformationController:UITextFieldDelegate {
+    func textFieldDidEndEditing(textField: UITextField) {
+        if textField.text == nil {
+            return;
+        }
+        if textField.isEqual(heightTextField) {
+            NSLog("heightTextField:\(textField.text)")
+            let banner = Banner(title: NSLocalizedString("heightTextField", comment: ""), subtitle: nil, image: nil, backgroundColor:AppTheme.NEVO_SOLAR_YELLOW())
+            banner.dismissesOnTap = true
+            banner.show(duration: 1.2)
+        }
+        
+        if textField.isEqual(weightTextfield) {
+            NSLog("weightTextfield:\(textField.text)")
+            let banner = Banner(title: NSLocalizedString("weightTextfield", comment: ""), subtitle: nil, image: nil, backgroundColor:AppTheme.NEVO_SOLAR_YELLOW())
+            banner.dismissesOnTap = true
+            banner.show(duration: 1.2)
+        }
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        
+        return true
     }
 }
