@@ -30,9 +30,7 @@ class UserProfileController: UITableViewController {
         tableView.backgroundColor = UIColor.whiteColor()
         self.tableView.registerNib(UINib(nibName: "UserProfileCell", bundle:nil), forCellReuseIdentifier: userIdentifier)
         self.tableView.registerNib(UINib(nibName: "UserHeader", bundle:nil), forHeaderFooterViewReuseIdentifier: "HeaderViewReuseIdentifier")
-        let header:UITableViewHeaderFooterView = tableView.dequeueReusableHeaderFooterViewWithIdentifier("HeaderViewReuseIdentifier")!
-        header.contentView.backgroundColor = UIColor.getGreyColor()
-        tableView.tableHeaderView = header
+
         tableView.separatorStyle = UITableViewCellSeparatorStyle.None
     }
 
@@ -46,6 +44,15 @@ class UserProfileController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 150;
+    }
+    
+    override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView {
+        let header:UITableViewHeaderFooterView = tableView.dequeueReusableHeaderFooterViewWithIdentifier("HeaderViewReuseIdentifier")!
+        return header;
+    }
+    
     // MARK: - Table view data source
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
