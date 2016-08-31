@@ -9,7 +9,7 @@
 import Foundation
 import CircleProgressView
 
-class TutorialFiveViewController: UIViewController,SyncControllerDelegate {
+class TutorialFiveViewController: UIViewController {
 
     var progresValue:Double = 0.0
     var timer:NSTimer?
@@ -93,30 +93,4 @@ class TutorialFiveViewController: UIViewController,SyncControllerDelegate {
             dispatch_get_main_queue(), closure)
     }
 
-    /**
-     Called when a packet is received from the device
-     */
-    func packetReceived(packet: NevoPacket) {
-
-    }
-    /**
-     Called when a peripheral connects or disconnects
-     */
-    func connectionStateChanged(isConnected : Bool) {
-        if(isConnected) {
-
-        }
-    }
-    /**
-     *  Receiving the current device signal strength value
-     */
-    func receivedRSSIValue(number:NSNumber) {
-
-    }
-    /**
-     *  Data synchronization is complete callback
-     */
-    func syncFinished() {
-
-    }
 }

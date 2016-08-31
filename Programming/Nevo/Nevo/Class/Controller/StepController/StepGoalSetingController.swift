@@ -38,9 +38,6 @@ class StepGoalSetingController: PublicClassController,ButtonManagerCallBack,Cloc
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let local:LocalNotification = LocalNotification.sharedInstance()
-        local.scheduleNotificationWithKey(NevoAllKeys.LocalStartSportKey(), title: "Today's activity", message: "Today's activity level haven't reach your goals", date: NSDate.date(year: NSDate().year, month: NSDate().month, day: NSDate().day, hour: 13, minute: 0, second: 0) , userInfo: nil)
-        
         ClockRefreshManager.sharedInstance.setRefreshDelegate(self)
         
         SwiftEventBus.onMainThread(self, name: EVENT_BUS_BEGIN_SMALL_SYNCACTIVITY) { (notification) in
@@ -68,6 +65,27 @@ class StepGoalSetingController: PublicClassController,ButtonManagerCallBack,Cloc
         
         SwiftEventBus.onMainThread(self, name: SELECTED_CALENDAR_NOTIFICATION) { (notification) in
             
+        }
+        
+        //RAWPACKET DATA
+        SwiftEventBus.onMainThread(self, name: EVENT_BUS_RAWPACKET_DATA_KEY) { (notification) in
+            let packet = notification.object as! NevoPacket
+            //Do nothing
+            if packet.getHeader() == GetStepsGoalRequest.HEADER(){
+                let thispacket = packet.copy() as DailyStepsNevoPacket
+                let dailySteps:Int = thispacket.getDailySteps()
+                let dailyStepGoal:Int = thispacket.getDailyStepsGoal()
+                let percent :Float = Float(dailySteps)/Float(dailyStepGoal)
+            }
+            
+            if packet.getHeader() == LedLightOnOffNevoRequest.HEADER(){
+                AppTheme.DLog("end handshake nevo");
+                //blink once Clock
+            }
+        }
+        
+        SwiftEventBus.onMainThread(self, name: EVENT_BUS_CONNECTION_STATE_CHANGED_KEY) { (notification) in
+            self.checkConnection()
         }
     }
     
@@ -101,7 +119,7 @@ class StepGoalSetingController: PublicClassController,ButtonManagerCallBack,Cloc
             nav.navigationBarHidden = true
             self.presentViewController(nav, animated: true, completion: nil)
         }else{
-            AppDelegate.getAppDelegate().startConnect(false, delegate: self)
+            AppDelegate.getAppDelegate().startConnect(false)
         }
     }
     
@@ -161,7 +179,7 @@ class StepGoalSetingController: PublicClassController,ButtonManagerCallBack,Cloc
         progressView.frame = CGRectMake(clockBackGroundView.frame.origin.x-3, clockBackGroundView.frame.origin.y-3, clockBackGroundView.bounds.width+6, clockBackGroundView.bounds.width+6)
         progressView.setProgressColor(AppTheme.NEVO_SOLAR_YELLOW())
         progressView.setProgress(0.0)
-        self.view.layer.addSublayer(progressView)
+        //self.view.layer.addSublayer(progressView)
     }
     
     override func didReceiveMemoryWarning() {
@@ -191,48 +209,14 @@ class StepGoalSetingController: PublicClassController,ButtonManagerCallBack,Cloc
         mClockTimerView?.currentTimer()
         if AppDelegate.getAppDelegate().isConnected() {
             AppDelegate.getAppDelegate().getGoal()
+            NSLog("getGoalRequest")
         }
     }
 
 }
 
 // MARK: - SyncControllerDelegate
-extension StepGoalSetingController:SyncControllerDelegate {
-    // MARK: - SyncControllerDelegate
-    func packetReceived(packet:NevoPacket) {
-        //Do nothing
-        if packet.getHeader() == GetStepsGoalRequest.HEADER(){
-            let thispacket = packet.copy() as DailyStepsNevoPacket
-            let dailySteps:Int = thispacket.getDailySteps()
-            let dailyStepGoal:Int = thispacket.getDailyStepsGoal()
-            let percent :Float = Float(dailySteps)/Float(dailyStepGoal)
-        }
-        
-        if packet.getHeader() == LedLightOnOffNevoRequest.HEADER(){
-            AppTheme.DLog("end handshake nevo");
-            //blink once Clock
-        }
-        
-    }
-    
-    func connectionStateChanged(isConnected : Bool) {
-        //Maybe we just got disconnected, let's check
-        checkConnection()
-    }
-    
-    /**
-     *  Receiving the current device signal strength value
-     */
-    func receivedRSSIValue(number:NSNumber){
-        
-    }
-    /**
-     *  Data synchronization is complete callback
-     */
-    func syncFinished(){
-        
-    }
-    
+extension StepGoalSetingController {
     // MARK: - StepGoalSetingController function
     /**
      Checks if any device is currently connected
@@ -271,8 +255,6 @@ extension StepGoalSetingController:UICollectionViewDelegate,UICollectionViewData
         default:
             break;
         }
-        
-        
         
         return cell
     }

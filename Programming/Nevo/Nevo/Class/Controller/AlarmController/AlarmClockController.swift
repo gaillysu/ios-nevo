@@ -10,7 +10,7 @@ import UIKit
 import BRYXBanner
 import Timepiece
 
-class AlarmClockController: UITableViewController, SyncControllerDelegate,AddAlarmDelegate {
+class AlarmClockController: UITableViewController,AddAlarmDelegate {
     
     @IBOutlet weak var rightBarButton: UIBarButtonItem!
     
@@ -22,10 +22,8 @@ class AlarmClockController: UITableViewController, SyncControllerDelegate,AddAla
         super.viewDidLoad()
         self.navigationItem.title = "Sleep And Wake"
         
-        
         initValue()
-        
-        AppDelegate.getAppDelegate().startConnect(false, delegate: self)
+        AppDelegate.getAppDelegate().startConnect(false)
         self.editButtonItem().tintColor = UIColor.getBaseColor()
         //self.navigationItem.leftBarButtonItem = self.editButtonItem()
 
@@ -237,27 +235,6 @@ class AlarmClockController: UITableViewController, SyncControllerDelegate,AddAla
                 }
             })
         }
-    }
-
-    // MARK: - SyncControllerDelegate
-    func receivedRSSIValue(number:NSNumber){
-
-    }
-
-    func packetReceived(packet:NevoPacket) {
-    
-    }
-
-    func connectionStateChanged(isConnected : Bool) {
-
-        //Maybe we just got disconnected, let's check
-
-        //checkConnection()
-
-    }
-
-    func syncFinished(){
-
     }
 
     func stringFromDate(date:NSDate) -> String {

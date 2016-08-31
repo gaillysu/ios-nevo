@@ -45,7 +45,7 @@ class SleepHistoricalViewController: PublicClassController,ChartViewDelegate,Sel
         SwiftEventBus.onMainThread(self, name: EVENT_BUS_END_BIG_SYNCACTIVITY) { (notification) in
             self.queryArray = UserSleep.getCriteria("WHERE date BETWEEN \(NSDate().timeIntervalSince1970-86400) AND \(NSDate().endOfDay.timeIntervalSince1970)")
             
-            self.contentTArray.removeAll()
+            //self.contentTArray.removeAll()
             //contentTArray.insert("\(startString)", atIndex: 0)
             //contentTArray.insert("\(endString)", atIndex: 1)
             //self.contentTArray.insert(String(format: "%100"), atIndex: 2)

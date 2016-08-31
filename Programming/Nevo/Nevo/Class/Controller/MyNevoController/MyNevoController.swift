@@ -8,8 +8,9 @@
 
 import UIKit
 import BRYXBanner
+import SwiftEventBus
 
-class MyNevoController: UITableViewController,SyncControllerDelegate,UIAlertViewDelegate {
+class MyNevoController: UITableViewController,UIAlertViewDelegate {
 
     private var currentBattery:Int = 0
     private var rssialert :UIAlertView?
@@ -33,68 +34,64 @@ class MyNevoController: UITableViewController,SyncControllerDelegate,UIAlertView
         buildinFirmwareVersion = AppTheme.GET_FIRMWARE_VERSION()
 
         titleArray = [NSLocalizedString("watch_version", comment: ""),NSLocalizedString("battery", comment: ""),NSLocalizedString("app_version", comment: "")]
+        
+        SwiftEventBus.onMainThread(self, name: EVENT_BUS_RSSI_VALUE) { (notification) in
+            let number:NSNumber = notification.object as! NSNumber
+            AppTheme.DLog("Red RSSI Value:\(number)")
+            if(number.integerValue < -85){
+                if(self.rssialert==nil){
+                    self.rssialert = UIAlertView(title: NSLocalizedString("Unstable connection ensure", comment: ""), message:NSLocalizedString("Unstable connection ensure nevo is on and in range", comment: "") , delegate: nil, cancelButtonTitle: nil)
+                    self.rssialert?.show()
+                }
+            }else{
+                self.rssialert?.dismissWithClickedButtonIndex(1, animated: true)
+                self.rssialert = nil
+            }
+        }
+        
+        //RAWPACKET DATA
+        SwiftEventBus.onMainThread(self, name: EVENT_BUS_RAWPACKET_DATA_KEY) { (notification) in
+            let packet = notification.object as! NevoPacket
+            //Do nothing
+            let thispacket:BatteryLevelNevoPacket = packet.copy() as BatteryLevelNevoPacket
+            if(thispacket.isReadBatteryCommand(packet.getPackets())){
+                let batteryValue:Int = thispacket.getBatteryLevel()
+                self.currentBattery = batteryValue
+                let indexPath:NSIndexPath = NSIndexPath(forRow: 1, inSection: 0)
+                self.tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
+            }
+        }
+        
+        SwiftEventBus.onMainThread(self, name: EVENT_BUS_CONNECTION_STATE_CHANGED_KEY) { (notification) in
+            let isConnected:Bool = notification.object as! Bool
+            if(isConnected){
+                AppDelegate.getAppDelegate().ReadBatteryLevel()
+            }else{
+                self.rssialert?.dismissWithClickedButtonIndex(1, animated: true)
+                self.rssialert = nil
+            }
+        }
     }
 
     override func viewDidAppear(animated: Bool) {
-        AppDelegate.getAppDelegate().startConnect(false, delegate: self)
+        AppDelegate.getAppDelegate().startConnect(false)
         if AppDelegate.getAppDelegate().isConnected() {
             AppDelegate.getAppDelegate().ReadBatteryLevel()
         }
         let indexPath:NSIndexPath = NSIndexPath(forRow: 0, inSection: 0)
         self.tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
-
     }
     
     override func viewDidDisappear(animated: Bool) {
-        AppDelegate.getAppDelegate().removeMyNevoDelegate()
         rssialert?.dismissWithClickedButtonIndex(1, animated: true)
+        SwiftEventBus.unregister(self, name: EVENT_BUS_RSSI_VALUE)
+        SwiftEventBus.unregister(self, name: EVENT_BUS_CONNECTION_STATE_CHANGED_KEY)
+        SwiftEventBus.unregister(self, name: EVENT_BUS_RAWPACKET_DATA_KEY)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-
-    // MARK: - SyncControllerDelegate
-    /**
-    See SyncControllerDelegate
-    */
-    func receivedRSSIValue(number:NSNumber){
-        AppTheme.DLog("Red RSSI Value:\(number)")
-        if(number.integerValue < -85){
-            if(rssialert==nil){
-                rssialert = UIAlertView(title: NSLocalizedString("Unstable connection ensure", comment: ""), message:NSLocalizedString("Unstable connection ensure nevo is on and in range", comment: "") , delegate: nil, cancelButtonTitle: nil)
-                rssialert?.show()
-            }
-        }else{
-            rssialert?.dismissWithClickedButtonIndex(1, animated: true)
-            rssialert = nil
-        }
-
-    }
-
-
-    func packetReceived(packet:NevoPacket){
-        let thispacket:BatteryLevelNevoPacket = packet.copy() as BatteryLevelNevoPacket
-        if(thispacket.isReadBatteryCommand(packet.getPackets())){
-            let batteryValue:Int = thispacket.getBatteryLevel()
-            currentBattery = batteryValue
-            let indexPath:NSIndexPath = NSIndexPath(forRow: 1, inSection: 0)
-            self.tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
-        }
-    }
-
-    func connectionStateChanged(isConnected : Bool){
-        if(isConnected){
-            AppDelegate.getAppDelegate().ReadBatteryLevel()
-        }else{
-            rssialert?.dismissWithClickedButtonIndex(1, animated: true)
-            rssialert = nil
-        }
-    }
-
-    func syncFinished(){
-
     }
 
     func reconnect() {

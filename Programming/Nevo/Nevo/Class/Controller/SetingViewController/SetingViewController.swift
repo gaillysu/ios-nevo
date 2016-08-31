@@ -8,8 +8,9 @@
 
 import UIKit
 import BRYXBanner
+import SwiftEventBus
 
-class SetingViewController: UIViewController,SyncControllerDelegate,ButtonManagerCallBack,UIAlertViewDelegate {
+class SetingViewController: UIViewController,ButtonManagerCallBack,UIAlertViewDelegate {
 
     @IBOutlet var notificationList: SetingView!
 
@@ -38,10 +39,15 @@ class SetingViewController: UIViewController,SyncControllerDelegate,ButtonManage
         notificationList.tableListView.registerNib(UINib(nibName:"SetingLoginCell" ,bundle: nil), forCellReuseIdentifier: "SetingLoginIdentifier")
         notificationList.tableListView.registerNib(UINib(nibName:"SetingNotLoginCell" ,bundle: nil), forCellReuseIdentifier: "SetingNotLoginIdentifier")
         notificationList.tableListView.registerNib(UINib(nibName:"SetingInfoCell" ,bundle: nil), forCellReuseIdentifier: "SetingInfoIdentifier")
+        
+        SwiftEventBus.onMainThread(self, name: EVENT_BUS_CONNECTION_STATE_CHANGED_KEY) { (notification) in
+            self.checkConnection()
+        }
+        
     }
     
     override func viewDidAppear(animated: Bool) {
-        AppDelegate.getAppDelegate().startConnect(false, delegate: self)
+        AppDelegate.getAppDelegate().startConnect(false)
         
         notificationList.tableListView.reloadData()
     }
@@ -61,24 +67,6 @@ class SetingViewController: UIViewController,SyncControllerDelegate,ButtonManage
             AppTheme.DLog("setIsSendLocalMsg \(notificationList.mSendLocalNotificationSwitchButton.on)")
             ConnectionManager.sharedInstance.setIsSendLocalMsg(notificationList.mSendLocalNotificationSwitchButton.on)
         }
-
-    }
-
-    // MARK: - SyncControllerDelegate
-    func receivedRSSIValue(number:NSNumber){
-
-    }
-
-    func packetReceived(packet:NevoPacket) {
-
-    }
-
-    func connectionStateChanged(isConnected : Bool) {
-        //Maybe we just got disconnected, let's check
-        checkConnection()
-    }
-
-    func syncFinished(){
 
     }
 

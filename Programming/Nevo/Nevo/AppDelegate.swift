@@ -31,7 +31,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
     let SYNC_INTERVAL:NSTimeInterval = 1*30*60 //unit is second in iOS, every 30min, do sync
     let LAST_SYNC_DATE_KEY = "LAST_SYNC_DATE_KEY"
     var lastSync = 0.0
-    private var mDelegates:[SyncControllerDelegate] = []
     private var mConnectionController : ConnectionControllerImpl?
     private var mPacketsbuffer:[NSData] = []
     private let mHealthKitStore:HKHealthStore = HKHealthStore()
@@ -236,18 +235,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
         sendRequest(LedLightOnOffNevoRequest(ledpattern: ledpattern, motorOnOff: motorOnOff))
     }
 
-    func startConnect(forceScan:Bool,delegate:SyncControllerDelegate){
-        AppTheme.DLog("New delegate : \(delegate)")
-        var res:Bool = true
-        for value in mDelegates{
-            if(value.isEqual(delegate)) {
-                res = false
-            }
-        }
-
-        if(res) {
-            mDelegates.append(delegate)
-        }
+    func startConnect(forceScan:Bool){
         if forceScan{
             mConnectionController?.forgetSavedAddress()
         }
@@ -314,17 +302,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
         userDefaults.synchronize()
     }
 
-    /**
-     Remove MyNevoDelegate
-     */
-    func removeMyNevoDelegate(){
-        for i in 0 ..< mDelegates.count{
-            if mDelegates[i] is MyNevoController{
-                mDelegates.removeAtIndex(i)
-            }
-        }
-    }
-
     // MARK: - UIAlertViewDelegate
     /**
     See UIAlertViewDelegate
@@ -386,9 +363,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
             } )
         }else {
             //tell caller
-            for delegate in mDelegates {
-                delegate.connectionStateChanged(false)
-            }
+            SwiftEventBus.post(EVENT_BUS_CONNECTION_STATE_CHANGED_KEY, sender:false)
         }
     }
 
@@ -406,10 +381,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                 mPacketsbuffer = []
                 return;
             }
-
-            for delegate in mDelegates {
-                delegate.packetReceived(packet)
-            }
+            SwiftEventBus.post(EVENT_BUS_RAWPACKET_DATA_KEY, sender: packet)
 
             //We just received a full response, so we can safely send the next request
             SyncQueue.sharedInstance.next()
@@ -453,12 +425,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                 var alarmArray:[Alarm] = []
                 let array:NSArray = UserAlarm.getAll()
 
-                if(AppDelegate.getAppDelegate().getSoftwareVersion().integerValue > 18){
-                    for index in 0 ..< mDelegates.count{
+                if(self.getSoftwareVersion().integerValue > 18){
+                    for index in 0 ..< array.count{
                         let date:NSDate = NSDate()
                         let newAlarm:NewAlarm = NewAlarm(alarmhour: date.hour, alarmmin: date.minute, alarmNumber: index, alarmWeekday: 0)
-                        if(AppDelegate.getAppDelegate().isConnected()){
-                            AppDelegate.getAppDelegate().setNewAlarm(newAlarm)
+                        if(self.isConnected()){
+                            self.setNewAlarm(newAlarm)
                         }
                     }
 
@@ -470,8 +442,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                             let date:NSDate = NSDate(timeIntervalSince1970: alarmModel.timer)
                             let newAlarm:NewAlarm = NewAlarm(alarmhour: date.hour, alarmmin: date.minute, alarmNumber: sleepAlarmCount, alarmWeekday: alarmModel.dayOfWeek)
 
-                            if(AppDelegate.getAppDelegate().isConnected()){
-                                AppDelegate.getAppDelegate().setNewAlarm(newAlarm)
+                            if(self.isConnected()){
+                               self.setNewAlarm(newAlarm)
                             }
 
                             sleepAlarmCount+=1
@@ -479,8 +451,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                             let date:NSDate = NSDate(timeIntervalSince1970: alarmModel.timer)
                             let newAlarm:NewAlarm = NewAlarm(alarmhour: date.hour, alarmmin: date.minute, alarmNumber: dayAlarmCount, alarmWeekday: alarmModel.dayOfWeek)
 
-                            if(AppDelegate.getAppDelegate().isConnected()){
-                                AppDelegate.getAppDelegate().setNewAlarm(newAlarm)
+                            if(self.isConnected()){
+                                self.setNewAlarm(newAlarm)
                             }
 
                             dayAlarmCount += 1
@@ -714,9 +686,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                 }else {
                     currentDay = 0
                     self.syncFinished()
-                    for delegate in mDelegates {
-                        delegate.syncFinished()
-                    }
                     SwiftEventBus.post(EVENT_BUS_END_BIG_SYNCACTIVITY, sender:nil)
                 }
             }
@@ -742,10 +711,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
     func connectionStateChanged(isConnected : Bool) {
         //send local notification
         SwiftEventBus.post(EVENT_BUS_CONNECTION_STATE_CHANGED_KEY, sender:isConnected)
-        
-        for delegate in mDelegates {
-            delegate.connectionStateChanged(isConnected)
-        }
 
         if(isConnected) {
             if(self.hasSavedAddress()){
@@ -826,11 +791,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
      *  Receiving the current device signal strength value
      */
     func receivedRSSIValue(number:NSNumber){
-        for delegate in mDelegates {
-            if delegate is MyNevoController{
-                delegate.receivedRSSIValue(number)
-            }
-        }
+        SwiftEventBus.post(EVENT_BUS_RSSI_VALUE, sender: number)
     }
 
     func bluetoothEnabled(enabled:Bool) {
@@ -848,24 +809,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
             banner.show(duration: 1.5)
         }
     }
-}
-
-protocol SyncControllerDelegate:NSObjectProtocol {
-
-    /**
-     Called when a packet is received from the device
-     */
-    func packetReceived(packet: NevoPacket)
-    /**
-     Called when a peripheral connects or disconnects
-     */
-    func connectionStateChanged(isConnected : Bool)
-    /**
-     *  Receiving the current device signal strength value
-     */
-    func receivedRSSIValue(number:NSNumber)
-    /**
-     *  Data synchronization is complete callback
-     */
-    func syncFinished()
 }

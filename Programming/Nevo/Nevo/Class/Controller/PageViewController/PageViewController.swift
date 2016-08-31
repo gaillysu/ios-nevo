@@ -24,7 +24,11 @@ class PageViewController: UIPageViewController,UIActionSheetDelegate {
     var menuView:CVCalendarMenuView?
     var titleView:StepsTitleView?
     
-    private var pagingControllers: [UIViewController] {
+    private var pagingControllers: [UIViewController] = []
+
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
         let viewController1 = StepGoalSetingController()
         viewController1.view.backgroundColor = UIColor.whiteColor()
         let viewController2 = StepsHistoryViewController()
@@ -33,12 +37,8 @@ class PageViewController: UIPageViewController,UIActionSheetDelegate {
         viewController3.view.backgroundColor = UIColor.whiteColor()
         let viewController4 = SolarIndicatorController()
         viewController4.view.backgroundColor = UIColor.whiteColor()
-        //
-        return [viewController1, viewController2,viewController3,viewController4]
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
+        pagingControllers = [viewController1, viewController2,viewController3,viewController4]
+        
         if((UIDevice.currentDevice().systemVersion as NSString).floatValue>7.0){
             self.edgesForExtendedLayout = UIRectEdge.None;
             self.extendedLayoutIncludesOpaqueBars = false;
