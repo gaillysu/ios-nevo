@@ -236,7 +236,6 @@
 		00AF8CCF1D224CFA009047AC /* NumberOfStepsGoal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C6F1D224CFA009047AC /* NumberOfStepsGoal.swift */; };
 		00AF8CD01D224CFA009047AC /* NotificationSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C711D224CFA009047AC /* NotificationSetting.swift */; };
 		00AF8CD11D224CFA009047AC /* TypeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C721D224CFA009047AC /* TypeModel.swift */; };
-		00AF8CD21D224CFA009047AC /* ConfigSleepAlarm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C741D224CFA009047AC /* ConfigSleepAlarm.swift */; };
 		00AF8CD31D224CFA009047AC /* Sleep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C751D224CFA009047AC /* Sleep.swift */; };
 		00AF8CD41D224CFA009047AC /* TestMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C771D224CFA009047AC /* TestMode.swift */; };
 		00AF8CD51D224CFA009047AC /* HttpPostRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C791D224CFA009047AC /* HttpPostRequest.swift */; };
@@ -283,7 +282,6 @@
 		00AF8CFF1D224CFA009047AC /* SetNortificationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8CAE1D224CFA009047AC /* SetNortificationRequest.swift */; };
 		00AF8D001D224CFA009047AC /* SetProfileRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8CAF1D224CFA009047AC /* SetProfileRequest.swift */; };
 		00AF8D011D224CFA009047AC /* SetRTCRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8CB01D224CFA009047AC /* SetRTCRequest.swift */; };
-		00AF8D021D224CFA009047AC /* SetSleepRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8CB11D224CFA009047AC /* SetSleepRequest.swift */; };
 		00AF8D031D224CFA009047AC /* WriteSettingRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8CB21D224CFA009047AC /* WriteSettingRequest.swift */; };
 		00AF8D041D224CFA009047AC /* SyncQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8CB31D224CFA009047AC /* SyncQueue.swift */; };
 		00AF8D061D224D57009047AC /* NevoAllKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8D051D224D57009047AC /* NevoAllKeys.swift */; };
@@ -327,7 +325,6 @@
 		00D474441D586D1600E2447E /* NumberOfStepsGoal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C6F1D224CFA009047AC /* NumberOfStepsGoal.swift */; };
 		00D474451D586D1600E2447E /* NotificationSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C711D224CFA009047AC /* NotificationSetting.swift */; };
 		00D474461D586D1600E2447E /* TypeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C721D224CFA009047AC /* TypeModel.swift */; };
-		00D474471D586D1600E2447E /* ConfigSleepAlarm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C741D224CFA009047AC /* ConfigSleepAlarm.swift */; };
 		00D474481D586D1600E2447E /* Sleep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C751D224CFA009047AC /* Sleep.swift */; };
 		00D474491D586D1600E2447E /* TestMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C771D224CFA009047AC /* TestMode.swift */; };
 		00D4744A1D586D1600E2447E /* HttpPostRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C791D224CFA009047AC /* HttpPostRequest.swift */; };
@@ -376,7 +373,6 @@
 		00D474761D586D1600E2447E /* SetNortificationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8CAE1D224CFA009047AC /* SetNortificationRequest.swift */; };
 		00D474771D586D1600E2447E /* SetProfileRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8CAF1D224CFA009047AC /* SetProfileRequest.swift */; };
 		00D474781D586D1600E2447E /* SetRTCRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8CB01D224CFA009047AC /* SetRTCRequest.swift */; };
-		00D474791D586D1600E2447E /* SetSleepRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8CB11D224CFA009047AC /* SetSleepRequest.swift */; };
 		00D4747A1D586D1600E2447E /* WriteSettingRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8CB21D224CFA009047AC /* WriteSettingRequest.swift */; };
 		00D4747B1D586D1600E2447E /* SyncQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8CB31D224CFA009047AC /* SyncQueue.swift */; };
 		00D4747C1D586D1600E2447E /* Info.plist in Sources */ = {isa = PBXBuildFile; fileRef = 004ED1EC1CB386CC009D053C /* Info.plist */; };
@@ -829,7 +825,6 @@
 		00AF8C6F1D224CFA009047AC /* NumberOfStepsGoal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumberOfStepsGoal.swift; sourceTree = "<group>"; };
 		00AF8C711D224CFA009047AC /* NotificationSetting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationSetting.swift; sourceTree = "<group>"; };
 		00AF8C721D224CFA009047AC /* TypeModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TypeModel.swift; sourceTree = "<group>"; };
-		00AF8C741D224CFA009047AC /* ConfigSleepAlarm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigSleepAlarm.swift; sourceTree = "<group>"; };
 		00AF8C751D224CFA009047AC /* Sleep.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sleep.swift; sourceTree = "<group>"; };
 		00AF8C771D224CFA009047AC /* TestMode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestMode.swift; sourceTree = "<group>"; };
 		00AF8C791D224CFA009047AC /* HttpPostRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpPostRequest.swift; sourceTree = "<group>"; };
@@ -877,7 +872,6 @@
 		00AF8CAE1D224CFA009047AC /* SetNortificationRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetNortificationRequest.swift; sourceTree = "<group>"; };
 		00AF8CAF1D224CFA009047AC /* SetProfileRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetProfileRequest.swift; sourceTree = "<group>"; };
 		00AF8CB01D224CFA009047AC /* SetRTCRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetRTCRequest.swift; sourceTree = "<group>"; };
-		00AF8CB11D224CFA009047AC /* SetSleepRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetSleepRequest.swift; sourceTree = "<group>"; };
 		00AF8CB21D224CFA009047AC /* WriteSettingRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WriteSettingRequest.swift; sourceTree = "<group>"; };
 		00AF8CB31D224CFA009047AC /* SyncQueue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncQueue.swift; sourceTree = "<group>"; };
 		00AF8D051D224D57009047AC /* NevoAllKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NevoAllKeys.swift; path = Frameworks/NevoAllKeys.swift; sourceTree = "<group>"; };
@@ -1799,7 +1793,6 @@
 		00AF8C731D224CFA009047AC /* Sleep */ = {
 			isa = PBXGroup;
 			children = (
-				00AF8C741D224CFA009047AC /* ConfigSleepAlarm.swift */,
 				00AF8C751D224CFA009047AC /* Sleep.swift */,
 			);
 			path = Sleep;
@@ -1944,7 +1937,6 @@
 				00AF8CAE1D224CFA009047AC /* SetNortificationRequest.swift */,
 				00AF8CAF1D224CFA009047AC /* SetProfileRequest.swift */,
 				00AF8CB01D224CFA009047AC /* SetRTCRequest.swift */,
-				00AF8CB11D224CFA009047AC /* SetSleepRequest.swift */,
 				00AF8CB21D224CFA009047AC /* WriteSettingRequest.swift */,
 			);
 			path = Request;
@@ -3197,7 +3189,6 @@
 				00D474441D586D1600E2447E /* NumberOfStepsGoal.swift in Sources */,
 				00D474451D586D1600E2447E /* NotificationSetting.swift in Sources */,
 				00D474461D586D1600E2447E /* TypeModel.swift in Sources */,
-				00D474471D586D1600E2447E /* ConfigSleepAlarm.swift in Sources */,
 				00D474481D586D1600E2447E /* Sleep.swift in Sources */,
 				00D474491D586D1600E2447E /* TestMode.swift in Sources */,
 				00D4744A1D586D1600E2447E /* HttpPostRequest.swift in Sources */,
@@ -3249,7 +3240,6 @@
 				00BA5ECC1D5978E6004B5438 /* SolarInforViewCell.swift in Sources */,
 				00D474771D586D1600E2447E /* SetProfileRequest.swift in Sources */,
 				00D474781D586D1600E2447E /* SetRTCRequest.swift in Sources */,
-				00D474791D586D1600E2447E /* SetSleepRequest.swift in Sources */,
 				00D4747A1D586D1600E2447E /* WriteSettingRequest.swift in Sources */,
 				00D4747B1D586D1600E2447E /* SyncQueue.swift in Sources */,
 				00D4747C1D586D1600E2447E /* Info.plist in Sources */,
@@ -3395,7 +3385,6 @@
 				0050D6101C28E0DB004F6F80 /* PresetTableViewCell.swift in Sources */,
 				006DA3181D6ED6670011E09C /* AnalysisRadarViewCell.swift in Sources */,
 				00AF8CBB1D224CFA009047AC /* NewAlarm.swift in Sources */,
-				00AF8D021D224CFA009047AC /* SetSleepRequest.swift in Sources */,
 				00AF8CE91D224CFA009047AC /* IntelHex2BinConverter.m in Sources */,
 				0050D6001C28E0DB004F6F80 /* NotificationViewController.swift in Sources */,
 				0050D5E91C28E0DB004F6F80 /* AidOtaController.swift in Sources */,
@@ -3419,7 +3408,6 @@
 				9A2D6C401A9C783800591BDC /* NevoHKImpl.swift in Sources */,
 				00E650A01C840FD500278D3E /* MorningTutorialController.swift in Sources */,
 				00AF8CB81D224CFA009047AC /* RealTimeCountSteps.swift in Sources */,
-				00AF8CD21D224CFA009047AC /* ConfigSleepAlarm.swift in Sources */,
 				00AF8CB51D224CFA009047AC /* DailySteps.swift in Sources */,
 				0089B09C1D6BE9410041148A /* ForgotPasswordController.swift in Sources */,
 				0050D5FA1C28E0DB004F6F80 /* LineColorCell.swift in Sources */,

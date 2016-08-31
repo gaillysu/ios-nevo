@@ -217,9 +217,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
         sendRequest(SetNewAlarmRequest(alarm:alarm))
     }
 
-    func setSleepStartAlarm(sleepAlarm:ConfigSleepAlarm) {
-        sendRequest(SetSleepRequest(sleepAlarm: sleepAlarm))
-    }
 
     func SetNortification(settingArray:[NotificationSetting]) {
         AppTheme.DLog("SetNortification")

@@ -79,36 +79,52 @@ class AlarmClockController: UITableViewController,AddAlarmDelegate {
 
         if(sender.isKindOfClass(UISwitch.classForCoder())){
             let mSwitch:UISwitch = sender as! UISwitch
-            saveNewAlarmSwicthData(mWakeAlarmArray,index: mSwitch.tag)
+            updateNewAlarmSwicthData(mWakeAlarmArray,index: mSwitch.tag,status:mSwitch.on)
         }
     }
 
     func sleepSwitchManager(sender:UISwitch) {
-        saveNewAlarmSwicthData(mSleepAlarmArray,index: sender.tag)
+        updateNewAlarmSwicthData(mSleepAlarmArray,index: sender.tag,status:sender.on)
     }
     
-    func saveNewAlarmSwicthData(mAlarmArray:NSArray,index:Int) {
-        var alarmCount:Int = 0
+    func updateNewAlarmSwicthData(mAlarmArray:NSArray,index:Int,status:Bool) {
+        var weakAlarmCount:Int = 0
+        var sleepAlarmCount:Int = 0
+        var weakOpenNumber:Int = 0
+        var sleepOpenNumber:Int = 0
         for alarm in mAlarmArray{
             let alarmModel:UserAlarm =  alarm as! UserAlarm
-            if (alarmModel.status){
-                alarmCount += 1
+            if (alarmModel.type == 0){
+                if alarmModel.status {
+                    weakOpenNumber += 1
+                }
+                weakAlarmCount += 1
+            }else{
+                if alarmModel.status {
+                    sleepOpenNumber += 1
+                }
+                sleepAlarmCount += 1
             }
         }
 
         var isStatus:Bool = false
-        if(alarmCount < 7){
+        if(weakOpenNumber < 7 && sleepOpenNumber<7){
             isStatus = true
         }
 
         let alarmModel:UserAlarm =  mAlarmArray[index] as! UserAlarm
         if(isStatus) {
-            let addalarm:UserAlarm = UserAlarm(keyDict: ["id":alarmModel.id,"timer":alarmModel.timer,"label":"\(alarmModel.label)","status":isStatus,"repeatStatus":false,"dayOfWeek":alarmModel.dayOfWeek,"type":alarmModel.type])
+            let addalarm:UserAlarm = UserAlarm(keyDict: ["id":alarmModel.id,"timer":alarmModel.timer,"label":"\(alarmModel.label)","status":status ? isStatus:status,"repeatStatus":false,"dayOfWeek":alarmModel.dayOfWeek,"type":alarmModel.type])
             let res:Bool = addalarm.update()
             let date:NSDate = NSDate(timeIntervalSince1970: addalarm.timer)
-            let newAlarm:NewAlarm = NewAlarm(alarmhour: date.hour, alarmmin: date.minute, alarmNumber: Bool(addalarm.type) ? alarmCount:alarmCount, alarmWeekday: addalarm.dayOfWeek)
+            let newAlarm:NewAlarm = NewAlarm(alarmhour: date.hour, alarmmin: date.minute, alarmNumber: Bool(addalarm.type) ? (index+7):index, alarmWeekday: status ? addalarm.dayOfWeek:0)
             if(AppDelegate.getAppDelegate().isConnected() && res){
                 AppDelegate.getAppDelegate().setNewAlarm(newAlarm)
+                if newAlarm.getAlarmNumber()<7 {
+                    mWakeAlarmArray.replaceObjectAtIndex(index, withObject: addalarm)
+                }else{
+                    mSleepAlarmArray.replaceObjectAtIndex(index, withObject: addalarm)
+                }
                 self.SyncAlarmAlertView()
             }else{
                 self.willSyncAlarmAlertView()
@@ -117,23 +133,14 @@ class AlarmClockController: UITableViewController,AddAlarmDelegate {
             let titleString:String = NSLocalizedString("alarmTitle", comment: "")
             let msg:String = NSLocalizedString("Nevo supports only 7 alarms for now.", comment: "")
             let buttonString:String = NSLocalizedString("Ok", comment: "")
-
-            if((UIDevice.currentDevice().systemVersion as NSString).floatValue >= 8.0){
-
-                let actionSheet:UIAlertController = UIAlertController(title: titleString, message: msg, preferredStyle: UIAlertControllerStyle.Alert)
-                actionSheet.view.tintColor = AppTheme.NEVO_SOLAR_YELLOW()
-                let alertAction:UIAlertAction = UIAlertAction(title: buttonString, style: UIAlertActionStyle.Default, handler: { ( alert) -> Void in
-
-                })
-                actionSheet.addAction(alertAction)
-
-                self.presentViewController(actionSheet, animated: true, completion: nil)
-            }else{
-                let actionSheet:UIAlertView = UIAlertView(title: titleString, message: msg, delegate: nil, cancelButtonTitle: buttonString)
-                actionSheet.layer.backgroundColor = AppTheme.NEVO_SOLAR_YELLOW().CGColor
-                actionSheet.tintColor = AppTheme.NEVO_SOLAR_YELLOW()
-                actionSheet.show()
-            }
+            let actionSheet:UIAlertController = UIAlertController(title: titleString, message: msg, preferredStyle: UIAlertControllerStyle.Alert)
+            actionSheet.view.tintColor = AppTheme.NEVO_SOLAR_YELLOW()
+            let alertAction:UIAlertAction = UIAlertAction(title: buttonString, style: UIAlertActionStyle.Default, handler: { ( alert) -> Void in
+                
+            })
+            actionSheet.addAction(alertAction)
+            
+            self.presentViewController(actionSheet, animated: true, completion: nil)
         }
 
     }
@@ -189,14 +196,12 @@ class AlarmClockController: UITableViewController,AddAlarmDelegate {
 
                 let date:NSDate = NSDate(timeIntervalSince1970: timer)
                 let newAlarm:NewAlarm = NewAlarm(alarmhour: date.hour, alarmmin: date.minute, alarmNumber: Bool(alarmType) ? sleepAlarmCount:dayAlarmCount, alarmWeekday: repeatNumber)
-
                 if(AppDelegate.getAppDelegate().isConnected()){
                     AppDelegate.getAppDelegate().setNewAlarm(newAlarm)
                     SyncAlarmAlertView()
                 }else{
                     willSyncAlarmAlertView()
                 }
-
                 slectedIndex = -1
             }
         }else{
