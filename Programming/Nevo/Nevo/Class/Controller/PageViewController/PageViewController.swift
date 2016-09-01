@@ -207,7 +207,7 @@ extension PageViewController {
         if(view == nil) {
             let calendarBackGroundView:UIView = UIView(frame: CGRectMake(0,0,UIScreen.mainScreen().bounds.size.width,self.view.frame.size.height))
             calendarBackGroundView.alpha = 0
-            calendarBackGroundView.backgroundColor = UIColor.clearColor()
+            calendarBackGroundView.backgroundColor = UIColor(white: 120/255.0, alpha: 0.5)
             calendarBackGroundView.tag = CALENDAR_VIEW_TAG
             let tap:UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapAction(_:)))
             calendarBackGroundView.addGestureRecognizer(tap)
