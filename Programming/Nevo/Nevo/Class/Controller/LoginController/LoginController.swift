@@ -168,6 +168,7 @@ class LoginController: UIViewController,UITextFieldDelegate {
                         let forgetPassword:UIAlertController = UIAlertController(title: "Forget PassWord?", message: NSLocalizedString("forget_your_password", comment: ""), preferredStyle: UIAlertControllerStyle.Alert)
                         let alertAction:UIAlertAction = UIAlertAction(title: NSLocalizedString("forget", comment: ""), style: UIAlertActionStyle.Default, handler: { (action) in
                             let forget:ForgotPasswordController = ForgotPasswordController()
+                            forget.userEmail = self.userName
                             let nav:UINavigationController = UINavigationController(rootViewController: forget)
                             self.presentViewController(nav, animated: true, completion: nil)
                         })
