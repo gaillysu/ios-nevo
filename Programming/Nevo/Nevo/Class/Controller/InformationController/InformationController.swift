@@ -150,7 +150,8 @@ class InformationController: UIViewController,SMSegmentViewDelegate {
                         let userprofile:UserProfile = UserProfile(keyDict: ["id":user["id"]!.intValue,"first_name":user["first_name"]!.stringValue,"last_name":user["last_name"]!.stringValue,"length":user["length"]!.intValue,"email":user["email"]!.stringValue,"sex": sex, "weight":(user["weight"]?.floatValue)!, "birthday":birthday])
                         userprofile.add({ (id, completion) in
                         })
-                        self.navigationController?.popViewControllerAnimated(true)
+                        self.dismissViewControllerAnimated(true, completion: nil)
+                        //self.navigationController?.popViewControllerAnimated(true)
                     }else{
                         
                         
@@ -195,17 +196,11 @@ extension InformationController:UITextFieldDelegate {
             return;
         }
         if textField.isEqual(heightTextField) {
-            NSLog("heightTextField:\(textField.text)")
-            let banner = Banner(title: NSLocalizedString("heightTextField", comment: ""), subtitle: nil, image: nil, backgroundColor:AppTheme.NEVO_SOLAR_YELLOW())
-            banner.dismissesOnTap = true
-            banner.show(duration: 1.2)
+            
         }
         
         if textField.isEqual(weightTextfield) {
-            NSLog("weightTextfield:\(textField.text)")
-            let banner = Banner(title: NSLocalizedString("weightTextfield", comment: ""), subtitle: nil, image: nil, backgroundColor:AppTheme.NEVO_SOLAR_YELLOW())
-            banner.dismissesOnTap = true
-            banner.show(duration: 1.2)
+            
         }
     }
     

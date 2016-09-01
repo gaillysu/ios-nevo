@@ -56,6 +56,13 @@ class LoginController: UIViewController,UITextFieldDelegate {
         }
         
     }
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        let user:NSArray = UserProfile.getAll()
+        if user.count>0 {
+            self.navigationController?.popViewControllerAnimated(true)
+        }
+    }
     
     func tapAction(sender:UITapGestureRecognizer) {
         let register:ProfileSetupViewController = ProfileSetupViewController()
@@ -161,7 +168,8 @@ class LoginController: UIViewController,UITextFieldDelegate {
                         let forgetPassword:UIAlertController = UIAlertController(title: "Forget PassWord?", message: NSLocalizedString("forget_your_password", comment: ""), preferredStyle: UIAlertControllerStyle.Alert)
                         let alertAction:UIAlertAction = UIAlertAction(title: NSLocalizedString("forget", comment: ""), style: UIAlertActionStyle.Default, handler: { (action) in
                             let forget:ForgotPasswordController = ForgotPasswordController()
-                            self.navigationController?.pushViewController(forget, animated: true)
+                            let nav:UINavigationController = UINavigationController(rootViewController: forget)
+                            self.presentViewController(nav, animated: true, completion: nil)
                         })
                         forgetPassword.addAction(alertAction)
                         
