@@ -187,6 +187,7 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
         
         let data:LineChartData = LineChartData(xVals: xVals, dataSets: dataSets)
         lineChartView.data = data;
+        lineChartView.animate(xAxisDuration:2.5, easingOption: ChartEasingOption.EaseInOutQuart)
     }
 
     func setSleepDataCount(countArray:NSArray,type:Int) {
@@ -290,6 +291,7 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
             
             let data:LineChartData = LineChartData(xVals: xVals, dataSets: dataSets)
             lineChartView.data = data;
+            lineChartView.animate(xAxisDuration: 1.4, easingOption: ChartEasingOption.EaseOutQuart)
         }
     }
     

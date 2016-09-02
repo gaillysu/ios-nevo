@@ -49,13 +49,6 @@ class StepGoalSetingController: PublicClassController,ButtonManagerCallBack,Cloc
             AppTheme.DLog("get Daily Steps is: \(dailySteps), getDaily Goal is: \(dailyStepGoal),percent is: \(percent)")
             
             self.setProgress(percent, dailySteps: dailySteps, dailyStepGoal: dailyStepGoal)
-            
-            if(dailySteps>=dailyStepGoal) {
-                LocalNotification.sharedInstance().cancelNotification([NevoAllKeys.LocalEndSportKey()])
-                let local:LocalNotification = LocalNotification.sharedInstance()
-                local.scheduleNotificationWithKey(NevoAllKeys.LocalEndSportKey(), title: "Today's activity", message: "Today's activity level has reached your preset goals", date: NSDate.date(year: NSDate().year, month: NSDate().month, day: NSDate().day, hour: 19, minute: 0, second: 0) , userInfo: nil)
-            }
-            
         }
         
         SwiftEventBus.onMainThread(self, name: EVENT_BUS_END_BIG_SYNCACTIVITY) { (notification) in
@@ -91,8 +84,8 @@ class StepGoalSetingController: PublicClassController,ButtonManagerCallBack,Cloc
     
     override func viewDidDisappear(animated: Bool) {
         super.viewDidDisappear(animated)
-        //SwiftEventBus.unregister(self, name: SELECTED_CALENDAR_NOTIFICATION)
-        //SwiftEventBus.unregister(self, name: EVENT_BUS_BEGIN_SMALL_SYNCACTIVITY)
+        SwiftEventBus.unregister(self, name: SELECTED_CALENDAR_NOTIFICATION)
+        SwiftEventBus.unregister(self, name: EVENT_BUS_BEGIN_SMALL_SYNCACTIVITY)
     }
     
     override func viewDidLayoutSubviews() {

@@ -96,7 +96,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hbG-eO-XIb">
-                    <rect key="frame" x="183" y="533" width="30" height="30"/>
+                    <rect key="frame" x="193" y="533" width="30" height="30"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="30" id="Kl9-0G-mSa"/>
                     </constraints>
@@ -106,7 +106,7 @@
                     </state>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ch2-Af-40M">
-                    <rect key="frame" x="141" y="533" width="30" height="30"/>
+                    <rect key="frame" x="151" y="533" width="30" height="30"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="30" id="niE-GO-upf"/>
                     </constraints>
@@ -139,7 +139,7 @@
                 <constraint firstItem="h44-yr-a8T" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="30" id="WVP-Jb-SdA"/>
                 <constraint firstItem="fmC-FL-Zk2" firstAttribute="top" secondItem="Tnd-gn-9VW" secondAttribute="bottom" constant="7" id="aYj-KM-WQT"/>
                 <constraint firstItem="h44-yr-a8T" firstAttribute="height" secondItem="g5g-mC-67u" secondAttribute="height" constant="57" id="adw-5v-gH2"/>
-                <constraint firstItem="ch2-Af-40M" firstAttribute="centerX" secondItem="FG3-Pu-4pM" secondAttribute="centerX" constant="-32" id="cJv-FV-LdM"/>
+                <constraint firstItem="ch2-Af-40M" firstAttribute="centerX" secondItem="FG3-Pu-4pM" secondAttribute="centerX" constant="-22" id="cJv-FV-LdM"/>
                 <constraint firstItem="h44-yr-a8T" firstAttribute="trailing" secondItem="g5g-mC-67u" secondAttribute="trailing" constant="12" id="dUA-gh-0RA"/>
                 <constraint firstItem="Tnd-gn-9VW" firstAttribute="trailing" secondItem="fmC-FL-Zk2" secondAttribute="trailing" id="efa-Qy-kOK"/>
                 <constraint firstItem="g5g-mC-67u" firstAttribute="leading" secondItem="Tnd-gn-9VW" secondAttribute="leading" constant="-17" id="efl-sG-e4L"/>

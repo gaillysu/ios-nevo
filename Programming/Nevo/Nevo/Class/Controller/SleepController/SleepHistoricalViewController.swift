@@ -14,7 +14,7 @@ class SleepHistoricalViewController: PublicClassController,ChartViewDelegate,Sel
 
     @IBOutlet var queryView: SleepHistoricalView!
     private var contentTitleArray:[String] = []
-    private var contentTArray:[String] = [NSLocalizedString("--", comment: ""),NSLocalizedString("--", comment: ""),NSLocalizedString("--", comment: ""),NSLocalizedString("--", comment: "")]
+    private var contentTArray:[String] = [NSLocalizedString("24:00", comment: ""),NSLocalizedString("24:00", comment: ""),NSLocalizedString("24:00", comment: ""),NSLocalizedString("24:00", comment: "")]
     private var selectedDate:NSDate = NSDate()
 
     private var queryArray:NSArray?
@@ -43,14 +43,7 @@ class SleepHistoricalViewController: PublicClassController,ChartViewDelegate,Sel
         }
         
         SwiftEventBus.onMainThread(self, name: EVENT_BUS_END_BIG_SYNCACTIVITY) { (notification) in
-            self.queryArray = UserSleep.getCriteria("WHERE date BETWEEN \(NSDate().timeIntervalSince1970-86400) AND \(NSDate().endOfDay.timeIntervalSince1970)")
-            
-            //self.contentTArray.removeAll()
-            //contentTArray.insert("\(startString)", atIndex: 0)
-            //contentTArray.insert("\(endString)", atIndex: 1)
-            //self.contentTArray.insert(String(format: "%100"), atIndex: 2)
-            //contentTArray.insert(String(format: "%dh%dm", Int(dataSleep.getWeakSleep()),Int((dataSleep.getWeakSleep())*Double(60)%Double(60))), atIndex: 3)
-            //self.queryView.detailCollectionView.reloadData()
+            self.AnalysisSleepData()
         }
 
     }
@@ -60,9 +53,50 @@ class SleepHistoricalViewController: PublicClassController,ChartViewDelegate,Sel
         SwiftEventBus.unregister(self, name: SELECTED_CALENDAR_NOTIFICATION)
     }
     
-    override func viewWillAppear(animated: Bool) {
-        self.queryArray = UserSleep.getCriteria("WHERE date BETWEEN \(selectedDate.timeIntervalSince1970-86400) AND \(selectedDate.endOfDay.timeIntervalSince1970)")
+    func AnalysisSleepData() {
+        self.queryArray = UserSleep.getCriteria("WHERE date BETWEEN \(NSDate.yesterday().beginningOfDay.timeIntervalSince1970) AND \(selectedDate.endOfDay.timeIntervalSince1970)")
         queryView.bulidQueryView(self,modelArray: queryArray!)
+        
+        if queryView.chartView!.getYVals().count > 0 {
+            var sleepTime:Double = 0
+            var deepTime:Double = 0
+            for (index,vlaue) in queryView.chartView!.getYVals().enumerate() {
+                sleepTime += vlaue[0]+vlaue[1]+vlaue[2]
+                deepTime += vlaue[2]
+                if index == 0 {
+                    let sleep:Double = 60-(vlaue[0]+vlaue[1]+vlaue[2])
+                    var reString:String = queryView.chartView!.getXVals()[0]
+                    let subRange = Range(reString.endIndex.advancedBy(-2)..<reString.endIndex)
+                    if NSString(format:"\(Int(sleep))").length == 1 {
+                        reString.replaceRange(subRange, with: "0\(Int(sleep))")
+                    }else{
+                        reString.replaceRange(subRange, with: "\(Int(sleep))")
+                    }
+                    contentTArray.replaceRange(Range(0..<1), with: [reString])
+                }
+                
+                if index == queryView.chartView!.getYVals().count - 1 {
+                    let endSleep:Double = vlaue[0]+vlaue[1]+vlaue[2]
+                    var reString:String = queryView.chartView!.getXVals()[queryView.chartView!.getXVals().count-1]
+                    let subRange = Range(reString.endIndex.advancedBy(-2)..<reString.endIndex)
+                    
+                    if NSString(format:"\(Int(endSleep))").length == 1 {
+                        reString.replaceRange(subRange, with: "0\(Int(endSleep))")
+                    }else{
+                        reString.replaceRange(subRange, with: "\(Int(endSleep))")
+                    }
+                    contentTArray.replaceRange(Range(1..<2), with: [reString])
+                }
+            }
+            let quality:String = "\(Int(deepTime/sleepTime*100))%"
+            contentTArray.replaceRange(Range(2..<3), with: [quality])
+            contentTArray.replaceRange(Range(3..<4), with: ["\(Int(sleepTime/60)) h"])
+            self.queryView.detailCollectionView.reloadData()
+        }
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        AnalysisSleepData()
     }
 
     override func viewDidLayoutSubviews() {

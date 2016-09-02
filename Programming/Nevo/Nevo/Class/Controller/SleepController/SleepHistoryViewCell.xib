@@ -19,13 +19,13 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.80000000000000004" translatesAutoresizingMaskIntoConstraints="NO" id="XLg-py-bFt">
-                        <rect key="frame" x="0.0" y="0.0" width="160" height="50"/>
+                        <rect key="frame" x="15" y="0.0" width="152.5" height="50"/>
                         <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="17"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FF3-Sx-tfv">
-                        <rect key="frame" x="160" y="0.0" width="160" height="50"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="24:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FF3-Sx-tfv">
+                        <rect key="frame" x="167.5" y="0.0" width="152.5" height="50"/>
                         <fontDescription key="fontDescription" name="Raleway" family="Raleway" pointSize="15"/>
                         <color key="textColor" red="0.62745098040000002" green="0.51764705879999995" blue="0.33333333329999998" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -35,7 +35,7 @@
             </view>
             <constraints>
                 <constraint firstItem="XLg-py-bFt" firstAttribute="width" secondItem="FF3-Sx-tfv" secondAttribute="width" id="3lJ-ZX-a0t"/>
-                <constraint firstItem="XLg-py-bFt" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="7zZ-A8-vNq"/>
+                <constraint firstItem="XLg-py-bFt" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="15" id="7zZ-A8-vNq"/>
                 <constraint firstItem="FF3-Sx-tfv" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="LXp-fe-loE"/>
                 <constraint firstAttribute="bottom" secondItem="XLg-py-bFt" secondAttribute="bottom" id="NtE-cf-SiI"/>
                 <constraint firstItem="XLg-py-bFt" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="Y6x-fZ-5Tm"/>
