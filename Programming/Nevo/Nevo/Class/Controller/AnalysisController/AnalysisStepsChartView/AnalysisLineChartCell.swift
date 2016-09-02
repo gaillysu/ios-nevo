@@ -90,6 +90,10 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
         titleLabel.text = title
     }
     
+    func setContentValue(title:String) {
+        titleLabel.text = title
+    }
+    
     func updateChartData(dataArray:NSArray,chartType:Int) {
         lineChartView.data = nil
         //self.initChartView()

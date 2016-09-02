@@ -53,7 +53,7 @@ class AnalysisStepsChartView: LineChartView {
             ll1.lineDashLengths = [0.0, 0.0];
             ll1.lineColor = UIColor.blackColor()
             ll1.labelPosition = ChartLimitLine.LabelPosition.LeftTop;
-            ll1.valueFont = UIFont.systemFontOfSize(6.0)
+            ll1.valueFont = UIFont.systemFontOfSize(10.0)
             leftAxis.addLimitLine(ll1)
         }
         

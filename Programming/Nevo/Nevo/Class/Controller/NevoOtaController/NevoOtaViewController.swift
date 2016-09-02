@@ -121,13 +121,6 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
                     alert.addButtonWithTitle(NSLocalizedString("Enter", comment: ""))
                     alert.show()
                 }
-            }else {
-
-                #if DEBUG
-                    //nevoOtaView.ReUpgradeButton?.hidden = false
-                #else
-                    //nevoOtaView.ReUpgradeButton?.hidden = true
-                #endif
             }
         }
     }

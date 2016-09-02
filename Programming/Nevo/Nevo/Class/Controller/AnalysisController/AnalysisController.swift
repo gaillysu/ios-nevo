@@ -105,13 +105,42 @@ extension AnalysisController:UICollectionViewDelegate,UICollectionViewDataSource
             let cell:AnalysisLineChartCell = collectionView.dequeueReusableCellWithReuseIdentifier("AnalysisLineChart_Identifier", forIndexPath: indexPath) as! AnalysisLineChartCell
             cell.backgroundColor = UIColor.clearColor()
             cell.setTitle(titleArray[indexPath.row])
-            //dataArray
-            cell.updateChartData(dataArray[indexPath.row] as! NSArray,chartType: segmented.selectedSegmentIndex);
+            if segmented.selectedSegmentIndex != 2 {
+                var avgNumber:Int = 0
+                if indexPath.row == 0 || indexPath.row == 1 {
+                    avgNumber = 7
+                }else{
+                    avgNumber = 30
+                }
+                var avgSteps:Int = 0
+                var totalSteps:Int = 0
+                var avgCalores:Int = 0
+                var avgTime:Int = 0
+                
+                if segmented.selectedSegmentIndex == 0 {
+                    for (index,value) in (dataArray[indexPath.row] as! NSArray).enumerate() {
+                        let usersteps:UserSteps = value as! UserSteps
+                        avgSteps += usersteps.steps
+                        totalSteps = usersteps.steps
+                        avgCalores += Int(usersteps.calories)
+                        avgTime += (usersteps.walking_duration+usersteps.running_duration)
+                    }
+                }
+                
+                contentTArray.replaceRange(Range(0..<1), with: ["\(avgSteps/avgNumber)"])
+                contentTArray.replaceRange(Range(1..<2), with: ["\(totalSteps)"])
+                contentTArray.replaceRange(Range(2..<3), with: ["\(avgCalores/avgNumber)"])
+                contentTArray.replaceRange(Range(3..<4), with: ["\(avgTime/avgNumber)"])
+                cell.updateChartData(dataArray[indexPath.row] as! NSArray,chartType: segmented.selectedSegmentIndex);
+                contentCollectionView.reloadData()
+            }
+            
             return cell
         }else{
             let cell:AnalysisValueCell = collectionView.dequeueReusableCellWithReuseIdentifier("AnalysisValue_Identifier", forIndexPath: indexPath) as! AnalysisValueCell
             cell.backgroundColor = UIColor.clearColor()
             cell.titleLabel.text = contentTitleArray[indexPath.row]
+            cell.valueLabel.text = contentTArray[indexPath.row]
             return cell
         }
     }
