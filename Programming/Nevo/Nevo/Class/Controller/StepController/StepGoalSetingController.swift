@@ -39,21 +39,43 @@ class StepGoalSetingController: PublicClassController,ButtonManagerCallBack,Cloc
     override func viewDidLoad() {
         super.viewDidLoad()
         ClockRefreshManager.sharedInstance.setRefreshDelegate(self)
+    }
+    
+    override func viewDidDisappear(animated: Bool) {
+        super.viewDidDisappear(animated)
+        SwiftEventBus.unregister(self, name: SELECTED_CALENDAR_NOTIFICATION)
+        SwiftEventBus.unregister(self, name: EVENT_BUS_BEGIN_SMALL_SYNCACTIVITY)
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        let layout:UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+        layout.itemSize = CGSizeMake((UIScreen.mainScreen().bounds.size.width)/2.0, 40)
+        layout.minimumInteritemSpacing = 0
+        layout.minimumLineSpacing = 0
+        collectionView.collectionViewLayout = layout
+        
+        collectionView.registerNib(UINib(nibName: "StepGoalSetingViewCell", bundle: NSBundle.mainBundle()), forCellWithReuseIdentifier: "StepGoalSetingIdentifier")
+        collectionView?.registerClass(UICollectionViewCell.classForCoder(), forCellWithReuseIdentifier: "CollectionViewCell")
+        collectionView?.backgroundColor = UIColor.whiteColor()
+        bulidClockViewandProgressBar()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        
+        saveContentTArray()
         
         SwiftEventBus.onMainThread(self, name: EVENT_BUS_BEGIN_SMALL_SYNCACTIVITY) { (notification) in
             let dict:[String:AnyObject] = notification.object as! [String:AnyObject]
             let dailySteps:Int = dict["STEPS"] as! Int
-            let dailyStepGoal:Int = dict["GOAL"] as! Int
-            let percent :Float = dict["PERCENT"] as! Float
-            
-            AppTheme.DLog("get Daily Steps is: \(dailySteps), getDaily Goal is: \(dailyStepGoal),percent is: \(percent)")
-            
-            self.setProgress(percent, dailySteps: dailySteps, dailyStepGoal: dailyStepGoal)
+            //let dailyStepGoal:Int = dict["GOAL"] as! Int
+            //let percent :Float = dict["PERCENT"] as! Float
+            self.contentTArray.replaceRange(Range(1..<2), with: ["\(dailySteps)"])
+            self.collectionView.reloadData()
         }
         
         SwiftEventBus.onMainThread(self, name: EVENT_BUS_END_BIG_SYNCACTIVITY) { (notification) in
             self.saveContentTArray()
-
         }
         
         SwiftEventBus.onMainThread(self, name: SELECTED_CALENDAR_NOTIFICATION) { (notification) in
@@ -80,32 +102,7 @@ class StepGoalSetingController: PublicClassController,ButtonManagerCallBack,Cloc
         SwiftEventBus.onMainThread(self, name: EVENT_BUS_CONNECTION_STATE_CHANGED_KEY) { (notification) in
             self.checkConnection()
         }
-    }
-    
-    override func viewDidDisappear(animated: Bool) {
-        super.viewDidDisappear(animated)
-        SwiftEventBus.unregister(self, name: SELECTED_CALENDAR_NOTIFICATION)
-        SwiftEventBus.unregister(self, name: EVENT_BUS_BEGIN_SMALL_SYNCACTIVITY)
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        let layout:UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSizeMake((UIScreen.mainScreen().bounds.size.width)/2.0, 40)
-        layout.minimumInteritemSpacing = 0
-        layout.minimumLineSpacing = 0
-        collectionView.collectionViewLayout = layout
         
-        collectionView.registerNib(UINib(nibName: "StepGoalSetingViewCell", bundle: NSBundle.mainBundle()), forCellWithReuseIdentifier: "StepGoalSetingIdentifier")
-        collectionView?.registerClass(UICollectionViewCell.classForCoder(), forCellWithReuseIdentifier: "CollectionViewCell")
-        collectionView?.backgroundColor = UIColor.whiteColor()
-        
-        bulidClockViewandProgressBar()
-        
-        self.getContentTArray()
-    }
-    
-    override func viewWillAppear(animated: Bool) {
         if(!AppDelegate.getAppDelegate().hasSavedAddress()) {
             let tutorialOne:TutorialOneViewController = TutorialOneViewController()
             let nav:UINavigationController = UINavigationController(rootViewController: tutorialOne)
@@ -143,15 +140,13 @@ class StepGoalSetingController: PublicClassController,ButtonManagerCallBack,Cloc
         let array:NSArray = UserSteps.getCriteria("WHERE date = \(NSDate().beginningOfDay.timeIntervalSince1970)")
         if array.count>0 {
             let dataSteps:UserSteps = array[0] as! UserSteps
-            
-            self.contentTArray.removeAll()
-            self.contentTArray.insert("\(dataSteps.calories)", atIndex: 0)
-            self.contentTArray.insert("\(dataSteps.steps)", atIndex: 1)
-            self.contentTArray.insert(String(format: "%.2f", Float(dataSteps.walking_duration+dataSteps.running_duration)/60.0), atIndex: 2)
-            self.contentTArray.insert(String(format: "%.2f", Float(dataSteps.walking_distance+dataSteps.running_distance)/1000.0), atIndex: 3)
+
+            self.contentTArray.replaceRange(Range(0..<1), with: ["\(dataSteps.calories)"])
+            self.contentTArray.replaceRange(Range(1..<2), with: ["\(dataSteps.steps)"])
+             self.contentTArray.replaceRange(Range(2..<3), with: [String(format: "%.2f", (Float(dataSteps.walking_duration+dataSteps.running_duration)/60.0)/60)])
+            self.contentTArray.replaceRange(Range(3..<4), with: [String(format: "%.2f", Float(dataSteps.walking_distance+dataSteps.running_distance)/1000.0)])
             self.collectionView.reloadData()
-            
-            AppTheme.KeyedArchiverName(self.StepsGoalKey, andObject: self.contentTArray)
+            //AppTheme.KeyedArchiverName(self.StepsGoalKey, andObject: self.contentTArray)
         }
     }
 

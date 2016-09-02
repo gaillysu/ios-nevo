@@ -47,6 +47,12 @@ class StepsHistoryViewController: PublicClassController,UICollectionViewDelegate
         stepsHistory.registerNib(UINib(nibName: "StepGoalSetingViewCell", bundle: NSBundle.mainBundle()), forCellWithReuseIdentifier: "StepGoalSetingIdentifier")
         stepsHistory.registerClass(UICollectionViewCell.classForCoder(), forCellWithReuseIdentifier: "StepsHistoryViewCell")
         (stepsHistory.collectionViewLayout as! UICollectionViewFlowLayout).itemSize = CGSizeMake(UIScreen.mainScreen().bounds.size.width/2.0, 40.0)
+    }
+
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        saveContentTArray()
         
         SwiftEventBus.onMainThread(self, name: SELECTED_CALENDAR_NOTIFICATION) { (notification) in
             let userinfo:NSDate = notification.userInfo!["selectedDate"] as! NSDate
@@ -65,19 +71,10 @@ class StepsHistoryViewController: PublicClassController,UICollectionViewDelegate
         }
         
         SwiftEventBus.onMainThread(self, name: EVENT_BUS_END_BIG_SYNCACTIVITY) { (notification) in
-            let array:NSArray = UserSteps.getCriteria("WHERE date = \(NSDate().beginningOfDay.timeIntervalSince1970)")
-            if array.count>0 {
-                let dataSteps:UserSteps = array[0] as! UserSteps
-                self.contentTArray.removeAll()
-                self.contentTArray.insert("\(dataSteps.calories)", atIndex: 0)
-                self.contentTArray.insert("\(dataSteps.steps)", atIndex: 1)
-                self.contentTArray.insert("\(dataSteps.inactivityTime/60)m", atIndex: 2)
-                self.contentTArray.insert(String(format: "%.2f",(dataSteps.walking_distance+dataSteps.running_distance)/1000), atIndex: 3)
-                self.stepsHistory.reloadData()
-            }
+            self.saveContentTArray()
         }
     }
-
+    
     override func viewDidDisappear(animated: Bool) {
         super.viewDidDisappear(animated)
         SwiftEventBus.unregister(self, name: SELECTED_CALENDAR_NOTIFICATION)
@@ -87,6 +84,24 @@ class StepsHistoryViewController: PublicClassController,UICollectionViewDelegate
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+    }
+    
+    /**
+     Archiver "contentTArray"
+     */
+    func saveContentTArray() {
+        //Only for today's data
+        let array:NSArray = UserSteps.getCriteria("WHERE date = \(NSDate().beginningOfDay.timeIntervalSince1970)")
+        if array.count>0 {
+            let dataSteps:UserSteps = array[0] as! UserSteps
+            
+            self.contentTArray.replaceRange(Range(0..<1), with: ["\(dataSteps.calories)"])
+            self.contentTArray.replaceRange(Range(1..<2), with: ["\(dataSteps.steps)"])
+            self.contentTArray.replaceRange(Range(2..<3), with: [String(format: "%.2f", (Float(dataSteps.walking_duration+dataSteps.running_duration)/60.0)/60)])
+            self.contentTArray.replaceRange(Range(3..<4), with: [String(format: "%.2f", Float(dataSteps.walking_distance+dataSteps.running_distance)/1000.0)])
+            self.stepsHistory.reloadData()
+            //AppTheme.KeyedArchiverName(self.StepsGoalKey, andObject: self.contentTArray)
+        }
     }
     
     // MARK: - ConfigChartView
@@ -141,10 +156,27 @@ class StepsHistoryViewController: PublicClassController,UICollectionViewDelegate
     }
 
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("StepGoalSetingIdentifier", forIndexPath: indexPath)
+        let cell:StepGoalSetingViewCell = collectionView.dequeueReusableCellWithReuseIdentifier("StepGoalSetingIdentifier", forIndexPath: indexPath) as! StepGoalSetingViewCell
         cell.backgroundColor = UIColor.whiteColor()
-        (cell as! StepGoalSetingViewCell).titleLabel.text = contentTitleArray[indexPath.row]
-        (cell as! StepGoalSetingViewCell).valueLabel.text = "\(contentTArray[indexPath.row])"
+        cell.titleLabel.text = contentTitleArray[indexPath.row]
+        
+        switch indexPath.row {
+        case 0:
+            cell.valueLabel.text = "\(contentTArray[indexPath.row]) Cal"
+            break;
+        case 1:
+            cell.valueLabel.text = "\(contentTArray[indexPath.row])"
+            break;
+        case 2:
+            cell.valueLabel.text = "\(contentTArray[indexPath.row]) H"
+            break;
+        case 3:
+            cell.valueLabel.text = "\(contentTArray[indexPath.row]) KM"
+            break;
+        default:
+            break;
+        }
+        
         return cell
     }
     
@@ -208,13 +240,11 @@ class StepsHistoryViewController: PublicClassController,UICollectionViewDelegate
     }
     
     func chartValueSelected(chartView: ChartViewBase, entry: ChartDataEntry, dataSetIndex: Int, highlight: ChartHighlight) {
-        chartView.highlightValue(xIndex: entry.xIndex, dataSetIndex: dataSetIndex, callDelegate: false)
-        NSLog("chartValueSelected:  %d",entry.xIndex)
-        let stepsModel:UserSteps = queryModel.objectAtIndex(0) as! UserSteps;
-        //let hourlystepsArray:NSArray = AppTheme.jsonToArray(stepsModel.hourlysteps)
-        self.didSelectedhighlightValue(entry.xIndex,dataSetIndex: dataSetIndex, dataSteps:stepsModel)
-//        let array:NSArray = NSArray(array: [entry.xIndex,dataSetIndex,stepsModel])
-//        AppTheme.KeyedArchiverName(SELECTED_DATA, andObject: array)
+        //chartView.highlightValue(xIndex: entry.xIndex, dataSetIndex: dataSetIndex, callDelegate: false)
+        //NSLog("chartValueSelected:  %d",entry.xIndex)
+        //let stepsModel:UserSteps = queryModel.objectAtIndex(0) as! UserSteps;
+        //self.didSelectedhighlightValue(entry.xIndex,dataSetIndex: dataSetIndex, dataSteps:stepsModel)
+
     }
     
     func didSelectedhighlightValue(xIndex:Int,dataSetIndex: Int, dataSteps:UserSteps) {
