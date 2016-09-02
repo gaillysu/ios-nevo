@@ -61,7 +61,7 @@ class ForgotPasswordController: UIViewController {
         let view = MRProgressOverlayView.showOverlayAddedTo(self.navigationController!.view, title: "Please wait...", mode: MRProgressOverlayViewMode.Indeterminate, animated: true)
         view.setTintColor(AppTheme.NEVO_SOLAR_YELLOW())
         
-        HttpPostRequest.postRequest("http://nevo.karljohnchow.com/user/request_password_token", data: ["user":["email":emailTextField.text!]]) { (result) in
+        HttpPostRequest.LunaRPostRequest("http://nevo.karljohnchow.com/user/request_password_token", data: ["user":["email":emailTextField.text!]]) { (result) in
             MRProgressOverlayView.dismissAllOverlaysForView(self.navigationController!.view, animated: true)
             
             let json = JSON(result)

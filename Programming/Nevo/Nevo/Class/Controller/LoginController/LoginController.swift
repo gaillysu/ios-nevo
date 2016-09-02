@@ -190,6 +190,9 @@ class LoginController: UIViewController,UITextFieldDelegate {
             XCGLogger.defaultInstance().debug("没有网络")
             let view = MRProgressOverlayView.showOverlayAddedTo(self.navigationController!.view, title: "No internet", mode: MRProgressOverlayViewMode.Cross, animated: true)
             view.setTintColor(UIColor.getBaseColor())
+            NSTimer.after(1, { 
+                MRProgressOverlayView.dismissAllOverlaysForView(self.navigationController!.view, animated: true)
+            })
         }
         
     }
