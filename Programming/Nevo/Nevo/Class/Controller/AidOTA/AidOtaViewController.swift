@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import XCGLogger
 
 class AidOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonManagerCallBack,UIAlertViewDelegate  {
 
@@ -159,7 +160,7 @@ class AidOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMan
     See SyncControllerDelegate
     */
     func receivedRSSIValue(number:NSNumber){
-        AppTheme.DLog("Red RSSI Value:\(number)")
+        XCGLogger.defaultInstance().debug("Red RSSI Value:\(number)")
         if(number.integerValue < -85){
             if(rssialert==nil){
                 rssialert = UIAlertView(title: NSLocalizedString("Unstable connection ensure", comment: ""), message:NSLocalizedString("Unstable connection ensure phone is on and in range", comment: "") , delegate: nil, cancelButtonTitle: nil)
@@ -173,13 +174,13 @@ class AidOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMan
 
     //below is delegate function
     func onDFUStarted(){
-        AppTheme.DLog("onDFUStarted");
+        XCGLogger.defaultInstance().debug("onDFUStarted");
         //here enable upload button
     }
 
     //user cancel
     func onDFUCancelled(){
-        AppTheme.DLog("onDFUCancelled");
+        XCGLogger.defaultInstance().debug("onDFUCancelled");
         //reset OTA view controller 's some data, such as progress bar and upload button text/status
         initValue()
         mAidOtaController!.reset(false)

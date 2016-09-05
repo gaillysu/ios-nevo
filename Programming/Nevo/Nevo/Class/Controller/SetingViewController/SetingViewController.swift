@@ -9,6 +9,7 @@
 import UIKit
 import BRYXBanner
 import SwiftEventBus
+import XCGLogger
 
 class SetingViewController: UIViewController,ButtonManagerCallBack,UIAlertViewDelegate {
 
@@ -64,7 +65,7 @@ class SetingViewController: UIViewController,ButtonManagerCallBack,UIAlertViewDe
     // MARK: - ButtonManagerCallBack
     func controllManager(sender:AnyObject){
         if sender.isEqual(notificationList.mSendLocalNotificationSwitchButton){
-            AppTheme.DLog("setIsSendLocalMsg \(notificationList.mSendLocalNotificationSwitchButton.on)")
+            XCGLogger.defaultInstance().debug("setIsSendLocalMsg \(self.notificationList.mSendLocalNotificationSwitchButton.on)")
             ConnectionManager.sharedInstance.setIsSendLocalMsg(notificationList.mSendLocalNotificationSwitchButton.on)
         }
 
@@ -100,7 +101,7 @@ class SetingViewController: UIViewController,ButtonManagerCallBack,UIAlertViewDe
             }
         case 1:
             if(isEqualString("\(sources.objectAtIndex(indexPath.row))",string2: NSLocalizedString("Notifications", comment: ""))){
-                AppTheme.DLog("Notifications")
+                XCGLogger.defaultInstance().debug("Notifications")
                 let notification:NotificationViewController = NotificationViewController()
                 notification.hidesBottomBarWhenPushed = true
                 self.navigationController?.pushViewController(notification, animated: true)
@@ -108,7 +109,7 @@ class SetingViewController: UIViewController,ButtonManagerCallBack,UIAlertViewDe
 
             if(isEqualString("\(sources.objectAtIndex(indexPath.row))",string2: NSLocalizedString("My Nevo", comment: ""))){
                 if(AppDelegate.getAppDelegate().isConnected()){
-                    AppTheme.DLog("My nevo")
+                    XCGLogger.defaultInstance().debug("My nevo")
                     let mynevo:MyNevoController = MyNevoController()
                     mynevo.hidesBottomBarWhenPushed = true
                     self.navigationController?.pushViewController(mynevo, animated: true)
@@ -120,7 +121,7 @@ class SetingViewController: UIViewController,ButtonManagerCallBack,UIAlertViewDe
             }
 
             if(isEqualString("\(sources[indexPath.row])",string2: NSLocalizedString("Support", comment: ""))){
-                AppTheme.DLog("Support")
+                XCGLogger.defaultInstance().debug("Support")
                 let supportView:SupportViewController = SupportViewController()
                 supportView.hidesBottomBarWhenPushed = true
                 self.navigationController?.pushViewController(supportView, animated: true)
@@ -134,7 +135,7 @@ class SetingViewController: UIViewController,ButtonManagerCallBack,UIAlertViewDe
                     logoin.hidesBottomBarWhenPushed = true
                     self.navigationController?.pushViewController(logoin, animated: true)
                 }else{
-                    AppTheme.DLog("Connect to other apps")
+                    XCGLogger.defaultInstance().debug("Connect to other apps")
                     let supportView:ConnectOtherAppsController = ConnectOtherAppsController()
                     supportView.hidesBottomBarWhenPushed = true
                     self.navigationController?.pushViewController(supportView, animated: true)
@@ -143,7 +144,7 @@ class SetingViewController: UIViewController,ButtonManagerCallBack,UIAlertViewDe
             break
         case 2:
             if(isEqualString("\(titleArray[indexPath.row])",string2: NSLocalizedString("find_my_watch", comment: ""))){
-                AppTheme.DLog("find_my_watch")
+                XCGLogger.defaultInstance().debug("find_my_watch")
                 findMydevice()
                 let cellView = tableView.cellForRowAtIndexPath(indexPath)
                 if(cellView != nil){
@@ -164,14 +165,14 @@ class SetingViewController: UIViewController,ButtonManagerCallBack,UIAlertViewDe
             }
 
             if(isEqualString("\(titleArray[indexPath.row])",string2: NSLocalizedString("goals", comment: ""))){
-                AppTheme.DLog("Preset-goals")
+                XCGLogger.defaultInstance().debug("Preset-goals")
                 let presetView:PresetTableViewController = PresetTableViewController()
                 presetView.hidesBottomBarWhenPushed = true
                 self.navigationController?.pushViewController(presetView, animated: true)
             }
 
             if(isEqualString("\(titleArray[indexPath.row])",string2: NSLocalizedString("forget_watch", comment: ""))){
-                AppTheme.DLog("forget_watch")
+                XCGLogger.defaultInstance().debug("forget_watch")
                 if((UIDevice.currentDevice().systemVersion as NSString).floatValue >= 8.0){
 
                     let actionSheet:UIAlertController = UIAlertController(title: NSLocalizedString("forget_watch", comment: ""), message: NSLocalizedString("forget_your_nevo", comment: ""), preferredStyle: UIAlertControllerStyle.Alert)
@@ -313,7 +314,7 @@ class SetingViewController: UIViewController,ButtonManagerCallBack,UIAlertViewDe
     func findMydevice(){
         let minDelay:Double = 6
         let offset:Double = (NSDate().timeIntervalSince1970 - mFindMydeviceDatetime.timeIntervalSince1970)
-        AppTheme.DLog("findMydevice offset:\(offset)")
+        XCGLogger.defaultInstance().debug("findMydevice offset:\(offset)")
         if (offset < minDelay) {
             return
         }

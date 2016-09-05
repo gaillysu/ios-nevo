@@ -17,6 +17,7 @@ mNevoOtaController = NevoOtaController(controller: self)
 */
 
 import Foundation
+import XCGLogger
 
 
 class NevoOtaController : NSObject,ConnectionControllerDelegate {
@@ -80,14 +81,14 @@ class NevoOtaController : NSObject,ConnectionControllerDelegate {
         let selectedFileName:NSString  = fileURL.lastPathComponent!
         let filetype:NSString = selectedFileName.substringFromIndex(selectedFileName.length - 3)
         
-        AppTheme.DLog("selected file extension is \(filetype)")
+        XCGLogger.defaultInstance().debug("selected file extension is \(filetype)")
         
         if filetype == "hex"{
             let hexFileData :NSData = NSData(contentsOfURL: fileURL)!;
             if (hexFileData.length > 0) {
                 convertHexFileToBin(hexFileData)
             }else{
-                AppTheme.DLog("Error: file is empty!");
+                XCGLogger.defaultInstance().debug("Error: file is empty!");
                 let errorMessage = "Error on openning file\n Message: file is empty or not exist";
                 mDelegate?.onError(errorMessage)
             }
@@ -98,7 +99,7 @@ class NevoOtaController : NSObject,ConnectionControllerDelegate {
     
     private func convertHexFileToBin(hexFileData:NSData){
         binFileData = IntelHex2BinConverter.convert(hexFileData)
-        AppTheme.DLog("HexFileSize: \(hexFileData.length) and BinFileSize: \(binFileData?.length)")
+        XCGLogger.defaultInstance().debug("HexFileSize: \(hexFileData.length) and BinFileSize: \(self.binFileData?.length)")
         numberOfPackets =  (binFileData?.length)! / enumPacketOption.PACKET_SIZE.rawValue
         bytesInLastPacket = ((binFileData?.length)! % enumPacketOption.PACKET_SIZE.rawValue);
         if (bytesInLastPacket == 0) {
@@ -106,7 +107,7 @@ class NevoOtaController : NSObject,ConnectionControllerDelegate {
         }else{
             numberOfPackets = numberOfPackets + 1
         }
-        AppTheme.DLog("Number of Packets \(numberOfPackets) Bytes in last Packet \(bytesInLastPacket)")
+        XCGLogger.defaultInstance().debug("Number of Packets \(self.numberOfPackets) Bytes in last Packet \(self.bytesInLastPacket)")
         writingPacketNumber = 0
 
         binFileSize = (binFileData?.length)!
@@ -117,35 +118,35 @@ class NevoOtaController : NSObject,ConnectionControllerDelegate {
         var percentage :Int = 0;
         for index:Int in 0 ..< Int(enumPacketOption.PACKETS_NOTIFICATION_INTERVAL.rawValue) {
             if (self.writingPacketNumber > self.numberOfPackets-2) {
-                AppTheme.DLog("writing last packet");
+                XCGLogger.defaultInstance().debug("writing last packet");
                 let dataRange : NSRange = NSMakeRange(self.writingPacketNumber*enumPacketOption.PACKET_SIZE.rawValue, self.bytesInLastPacket);
                 let nextPacketData : NSData = (binFileData?.subdataWithRange(dataRange))!
 
-                AppTheme.DLog("writing packet number \(self.writingPacketNumber+1) ...");
-                AppTheme.DLog("packet data: \(nextPacketData)");
+                XCGLogger.defaultInstance().debug("writing packet number \(self.writingPacketNumber+1) ...");
+                XCGLogger.defaultInstance().debug("packet data: \(nextPacketData)");
 
                 mConnectionController.sendRequest(OnePacketRequest(packetdata: nextPacketData ))
                 progress = 100.0
                 percentage = Int(progress)
-                AppTheme.DLog("DFUOperations: onTransferPercentage \(percentage)");
+                XCGLogger.defaultInstance().debug("DFUOperations: onTransferPercentage \(percentage)");
                 mDelegate?.onTransferPercentage(percentage)
                 self.writingPacketNumber++;
                 mTimeoutTimer?.invalidate()
-                AppTheme.DLog("DFUOperations: onAllPacketsTransfered");
+                XCGLogger.defaultInstance().debug("DFUOperations: onAllPacketsTransfered");
                 break;
 
             }
             let dataRange : NSRange = NSMakeRange(self.writingPacketNumber*enumPacketOption.PACKET_SIZE.rawValue, enumPacketOption.PACKET_SIZE.rawValue);
 
             let    nextPacketData : NSData  = (self.binFileData?.subdataWithRange(dataRange))!
-            AppTheme.DLog("writing packet number \(self.writingPacketNumber+1) ...");
-            AppTheme.DLog("packet data: \(nextPacketData)");
+            XCGLogger.defaultInstance().debug("writing packet number \(self.writingPacketNumber+1) ...");
+            XCGLogger.defaultInstance().debug("packet data: \(nextPacketData)");
 
             mConnectionController.sendRequest(OnePacketRequest(packetdata: nextPacketData ))
             progress = Double(self.writingPacketNumber * enumPacketOption.PACKET_SIZE.rawValue) / Double(self.binFileSize) * 100.0
             percentage = Int(progress)
 
-            AppTheme.DLog("DFUOperations: onTransferPercentage \(percentage)");
+            XCGLogger.defaultInstance().debug("DFUOperations: onTransferPercentage \(percentage)");
             mDelegate?.onTransferPercentage(percentage)
             
             self.writingPacketNumber++;
@@ -153,9 +154,9 @@ class NevoOtaController : NSObject,ConnectionControllerDelegate {
     }
 
     private func startSendingFile(){
-        AppTheme.DLog("DFUOperationsdetails enablePacketNotification");
+        XCGLogger.defaultInstance().debug("DFUOperationsdetails enablePacketNotification");
         mConnectionController.sendRequest(EnablePacketNotifyRequest())
-        AppTheme.DLog("DFUOperationsdetails receiveFirmwareImage");
+        XCGLogger.defaultInstance().debug("DFUOperationsdetails receiveFirmwareImage");
         mConnectionController.sendRequest(ReceiveFirmwareImageRequest())
   
         writeNextPacket()
@@ -164,17 +165,17 @@ class NevoOtaController : NSObject,ConnectionControllerDelegate {
     }
     
     private func resetSystem(){
-        AppTheme.DLog("DFUOperationsDetails resetSystem");
+        XCGLogger.defaultInstance().debug("DFUOperationsDetails resetSystem");
         mConnectionController.sendRequest(ResetSystemRequest())
     }
     
     private func validateFirmware(){
-        AppTheme.DLog("DFUOperationsDetails validateFirmware");
+        XCGLogger.defaultInstance().debug("DFUOperationsDetails validateFirmware");
         mConnectionController.sendRequest(ValidateFirmwareRequest())
     }
 
     private func activateAndReset(){
-        AppTheme.DLog("DFUOperationsDetails activateAndReset");
+        XCGLogger.defaultInstance().debug("DFUOperationsDetails activateAndReset");
         mConnectionController.sendRequest(ActivateAndResetRequest())
     }
 
@@ -202,42 +203,42 @@ class NevoOtaController : NSObject,ConnectionControllerDelegate {
     }
     
     private func processRequestedCode(){
-        AppTheme.DLog("processsRequestedCode");
+        XCGLogger.defaultInstance().debug("processsRequestedCode");
         switch (dfuResponse.requestedCode) {
         case DfuOperations.START_DFU_REQUEST.rawValue:
-            AppTheme.DLog("Requested code is StartDFU now processing response status");
+            XCGLogger.defaultInstance().debug("Requested code is StartDFU now processing response status");
             processStartDFUResponseStatus()
             break;
         case DfuOperations.RECEIVE_FIRMWARE_IMAGE_REQUEST.rawValue:
-            AppTheme.DLog("Requested code is Receive Firmware Image now processing response status");
+            XCGLogger.defaultInstance().debug("Requested code is Receive Firmware Image now processing response status");
             processReceiveFirmwareResponseStatus()
             break;
         case DfuOperations.VALIDATE_FIRMWARE_REQUEST.rawValue:
-            AppTheme.DLog("Requested code is Validate Firmware now processing response status");
+            XCGLogger.defaultInstance().debug("Requested code is Validate Firmware now processing response status");
             processValidateFirmwareResponseStatus()
             break;
 
         default:
-            AppTheme.DLog("invalid Requested code in DFU Response \(dfuResponse.requestedCode)");
+            XCGLogger.defaultInstance().debug("invalid Requested code in DFU Response \(self.dfuResponse.requestedCode)");
             break;
         }
     }
     
     private func processStartDFUResponseStatus(){
-        AppTheme.DLog("processStartDFUResponseStatus");
+        XCGLogger.defaultInstance().debug("processStartDFUResponseStatus");
         let errorMessage:NSString = "Error on StartDFU\n Message: \(responseErrorMessage(dfuResponse.responseStatus))"
         switch (dfuResponse.responseStatus) {
         case DfuOperationStatus.OPERATION_SUCCESSFUL_RESPONSE.rawValue:
-            AppTheme.DLog("successfully received startDFU notification");
+            XCGLogger.defaultInstance().debug("successfully received startDFU notification");
             startSendingFile()
             break;
         case DfuOperationStatus.OPERATION_NOT_SUPPORTED_RESPONSE.rawValue:
-            AppTheme.DLog("device has old DFU. switching to old DFU ...");
+            XCGLogger.defaultInstance().debug("device has old DFU. switching to old DFU ...");
             performOldDFUOnFile()
             break;
 
         default:
-            AppTheme.DLog("StartDFU failed, Error Status: \(responseErrorMessage(dfuResponse.responseStatus))");
+            XCGLogger.defaultInstance().debug("StartDFU failed, Error Status: \(self.responseErrorMessage(self.dfuResponse.responseStatus))");
             mDelegate?.onError(errorMessage)
             resetSystem()
             break;
@@ -246,12 +247,12 @@ class NevoOtaController : NSObject,ConnectionControllerDelegate {
     }
     
     private func processReceiveFirmwareResponseStatus(){
-        AppTheme.DLog("processReceiveFirmwareResponseStatus");
+        XCGLogger.defaultInstance().debug("processReceiveFirmwareResponseStatus");
         if (dfuResponse.responseStatus == DfuOperationStatus.OPERATION_SUCCESSFUL_RESPONSE.rawValue) {
-            AppTheme.DLog("successfully received notification for whole File transfer");
+            XCGLogger.defaultInstance().debug("successfully received notification for whole File transfer");
             validateFirmware()
         }else {
-            AppTheme.DLog("Firmware Image failed, Error Status: \(responseErrorMessage(dfuResponse.responseStatus))");
+            XCGLogger.defaultInstance().debug("Firmware Image failed, Error Status: \(self.responseErrorMessage(self.dfuResponse.responseStatus))");
             let errorMessage = "Error on Receive Firmware Image\n Message: \(responseErrorMessage(dfuResponse.responseStatus))";
             mDelegate?.onError(errorMessage)
             resetSystem()
@@ -260,13 +261,13 @@ class NevoOtaController : NSObject,ConnectionControllerDelegate {
     }
     
     private func processValidateFirmwareResponseStatus(){
-        AppTheme.DLog("processValidateFirmwareResponseStatus");
+        XCGLogger.defaultInstance().debug("processValidateFirmwareResponseStatus");
         if (dfuResponse.responseStatus == DfuOperationStatus.OPERATION_SUCCESSFUL_RESPONSE.rawValue) {
-            AppTheme.DLog("succesfully received notification for ValidateFirmware");
+            XCGLogger.defaultInstance().debug("succesfully received notification for ValidateFirmware");
             activateAndReset()
             mDelegate?.onSuccessfulFileTranferred()
         }else {
-            AppTheme.DLog("Firmware validate failed, Error Status: \( responseErrorMessage(dfuResponse.responseStatus))");
+            XCGLogger.defaultInstance().debug("Firmware validate failed, Error Status: \( self.responseErrorMessage(self.dfuResponse.responseStatus))");
             let errorMessage = "Error on Validate Firmware Request\n Message: \(responseErrorMessage(dfuResponse.responseStatus))";
             mDelegate?.onError(errorMessage)
             resetSystem()
@@ -274,7 +275,7 @@ class NevoOtaController : NSObject,ConnectionControllerDelegate {
     }
     
     private func processPacketNotification(){
-        AppTheme.DLog("received Packet Received Notification");
+        XCGLogger.defaultInstance().debug("received Packet Received Notification");
         if (writingPacketNumber < numberOfPackets) {
             writeNextPacket()
         }
@@ -287,7 +288,7 @@ class NevoOtaController : NSObject,ConnectionControllerDelegate {
     }
     
     private func processDFUResponse(data :[UInt8]){
-        AppTheme.DLog("processDFUResponse");
+        XCGLogger.defaultInstance().debug("processDFUResponse");
         setDFUResponseStruct(data)
         
         if (dfuResponse.responseCode == DfuOperations.RESPONSE_CODE.rawValue) {
@@ -350,7 +351,7 @@ class NevoOtaController : NSObject,ConnectionControllerDelegate {
 
                     let dispatchTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, Int64(1.0 * Double(NSEC_PER_SEC)))
                     dispatch_after(dispatchTime, dispatch_get_main_queue(), {
-                        AppTheme.DLog("***********again set OTA mode,forget it firstly,and scan DFU service*******")
+                        XCGLogger.defaultInstance().debug("***********again set OTA mode,forget it firstly,and scan DFU service*******")
                         //when switch to DFU mode, the identifier has changed another one
                         self.mConnectionController.forgetSavedAddress()
                         self.mConnectionController.setOTAMode(true,Disconnect:false)
@@ -469,7 +470,7 @@ class NevoOtaController : NSObject,ConnectionControllerDelegate {
             {
                 self.mcu_broken_state = DFUControllerState.INIT
             }
-            AppTheme.DLog("* * * OTA timeout * * *")
+            XCGLogger.defaultInstance().debug("* * * OTA timeout * * *")
             let errorMessage = NSLocalizedString("ota_timeout",comment: "") as NSString
             mDelegate?.onError(errorMessage)
 
@@ -491,7 +492,7 @@ class NevoOtaController : NSObject,ConnectionControllerDelegate {
     }
     
     func cancelDFU(){
-        AppTheme.DLog("cancelDFU");
+        XCGLogger.defaultInstance().debug("cancelDFU");
         if (self.dfuFirmwareType == DfuFirmwareTypes.APPLICATION){
             resetSystem()
         }
@@ -530,12 +531,12 @@ class NevoOtaController : NSObject,ConnectionControllerDelegate {
             checksum = checksum + Int(byte)
         }
 
-        AppTheme.DLog("Set firmware with size \(binFileData!.length), notificationPacketInterval: \(notificationPacketInterval), totalpage: \(totalpage),Checksum: \(checksum)")
+        XCGLogger.defaultInstance().debug("Set firmware with size \(self.binFileData!.length), notificationPacketInterval: \(self.notificationPacketInterval), totalpage: \(self.totalpage),Checksum: \(self.checksum)")
 
     }
     
     func MCU_sendFirmwareChunk(){
-        AppTheme.DLog("sendFirmwareData")
+        XCGLogger.defaultInstance().debug("sendFirmwareData")
         //define one page request  object
         let Onepage:Mcu_OnePageRequest = Mcu_OnePageRequest()
 
@@ -590,7 +591,7 @@ class NevoOtaController : NSObject,ConnectionControllerDelegate {
             sendRequest(Onepage)
             progress = 100.0*Double(firmwareDataBytesSent) / Double(binFileSize);
             mDelegate?.onTransferPercentage(Int(progress))
-            AppTheme.DLog("didWriteDataPacket")
+            XCGLogger.defaultInstance().debug("didWriteDataPacket")
 
             if (state == DFUControllerState.SEND_FIRMWARE_DATA){
                 curpage++
@@ -602,15 +603,15 @@ class NevoOtaController : NSObject,ConnectionControllerDelegate {
             progress = 100.0
             mDelegate?.onTransferPercentage(Int(progress))
             sendRequest(Mcu_CheckSumPacketRequest(totalpage: totalpage, checksum: checksum))        
-            AppTheme.DLog("sendEndPacket, totalpage =\(totalpage), checksum = \(checksum), checksum-Lowbyte = \(checksum&0xFF)")
+            XCGLogger.defaultInstance().debug("sendEndPacket, totalpage =\(self.totalpage), checksum = \(self.checksum), checksum-Lowbyte = \(self.checksum&0xFF)")
             mTimeoutTimer?.invalidate()
             return
         }
-        AppTheme.DLog("Sent \(self.firmwareDataBytesSent) bytes, pageno: \(curpage).")
+        XCGLogger.defaultInstance().debug("Sent \(self.firmwareDataBytesSent) bytes, pageno: \(self.curpage).")
     }
     
     func MCU_processDFUResponse(packet:RawPacket){
-        AppTheme.DLog("didReceiveReceipt")
+        XCGLogger.defaultInstance().debug("didReceiveReceipt")
         mPacketsbuffer.append(packet.getRawData())
         var databyte:[UInt8] = NSData2Bytes(packet.getRawData())
         
@@ -635,10 +636,10 @@ class NevoOtaController : NSObject,ConnectionControllerDelegate {
                     if (databyte1[4] == TotalPageLo
                         && databyte1[5] == TotalPageHi){
                         //Check sum match ,OTA over.
-                        AppTheme.DLog("Checksum match ,OTA get success!");
+                        XCGLogger.defaultInstance().debug("Checksum match ,OTA get success!");
                         mDelegate?.onSuccessfulFileTranferred()
                     }else{
-                        AppTheme.DLog("Checksum error ,OTA get failure!");
+                        XCGLogger.defaultInstance().debug("Checksum error ,OTA get failure!");
                         mDelegate?.onError(NSString(string:"Checksum error ,OTA get failure!"))
                     }
                 }

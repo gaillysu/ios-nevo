@@ -29,6 +29,7 @@ target 'Nevo' do
     pod 'KDCircularProgress'
     pod 'M13Checkbox'
     pod 'CircleProgressView', :git => 'https://github.com/CardinalNow/iOS-CircleProgressView.git'
+    pod 'XCGLogger'
 end
 
 target 'LunaR' do
@@ -58,4 +59,5 @@ target 'LunaR' do
     pod 'SwiftEventBus', :git => 'https://github.com/cesarferreira/SwiftEventBus.git'
     pod 'KDCircularProgress'
     pod 'M13Checkbox'
+    pod 'XCGLogger'
 end

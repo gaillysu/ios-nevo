@@ -8,6 +8,7 @@
 
 import UIKit
 import BRYXBanner
+import XCGLogger
 
 class NotificationViewController: UITableViewController,SelectedNotificationDelegate {
     private var mNotificationOFFArray:[NotificationSetting] = []
@@ -72,7 +73,7 @@ class NotificationViewController: UITableViewController,SelectedNotificationDele
 
     // MARK: - SelectedNotificationDelegate
     func didSelectedNotificationDelegate(clockIndex:Int,ntSwitchState:Bool,notificationType:String){
-        AppTheme.DLog("clockIndex····:\(clockIndex),ntSwitchState·····:\(ntSwitchState)")
+        XCGLogger.defaultInstance().debug("clockIndex····:\(clockIndex),ntSwitchState·····:\(ntSwitchState)")
         for model in mNotificationArray {
             let notModel:UserNotification = model as! UserNotification
             if(notModel.NotificationType == notificationType){

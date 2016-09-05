@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import XCGLogger
 
 /*
 See ConnectionController
@@ -65,7 +66,7 @@ class ConnectionControllerImpl : NSObject, ConnectionController, NevoBTDelegate 
     See ConnectionController protocol
     */
     func setDelegate(delegate:ConnectionControllerDelegate) {
-        AppTheme.DLog("New delegate : \(delegate)")
+        XCGLogger.defaultInstance().debug("New delegate : \(delegate)")
         
         mDelegate = delegate
     }
@@ -86,7 +87,7 @@ class ConnectionControllerImpl : NSObject, ConnectionController, NevoBTDelegate 
         //We're not connected, let's connect
         if hasSavedAddress() {
             
-            AppTheme.DLog("We have a saved address, let's connect to it directly : \(NSUserDefaults.standardUserDefaults().objectForKey(SAVED_ADDRESS_KEY))")
+            XCGLogger.defaultInstance().debug("We have a saved address, let's connect to it directly : \(NSUserDefaults.standardUserDefaults().objectForKey(self.SAVED_ADDRESS_KEY))")
 
             mNevoBT?.connectToAddress(
                 NSUUID(UUIDString:
@@ -96,7 +97,7 @@ class ConnectionControllerImpl : NSObject, ConnectionController, NevoBTDelegate 
 
         } else {
             
-            AppTheme.DLog("We don't have a saved address, let's scan for nearby devices.")
+            XCGLogger.defaultInstance().debug("We don't have a saved address, let's scan for nearby devices.")
 
             mNevoBT?.scanAndConnect()
         }
@@ -214,11 +215,11 @@ class ConnectionControllerImpl : NSObject, ConnectionController, NevoBTDelegate 
         if(getOTAMode() && (request.getTargetProfile().CONTROL_SERVICE != NevoOTAModeProfile().CONTROL_SERVICE
                         && request.getTargetProfile().CONTROL_SERVICE != NevoOTAControllerProfile().CONTROL_SERVICE))
         {
-            AppTheme.DLog("ERROR ! The ConnectionController is in OTA mode, impossible to send a normal nevo request !")
+            XCGLogger.defaultInstance().debug("ERROR ! The ConnectionController is in OTA mode, impossible to send a normal nevo request !")
             
         } else if (!getOTAMode() && request.getTargetProfile().CONTROL_SERVICE != NevoProfile().CONTROL_SERVICE) {
             
-            AppTheme.DLog("ERROR ! The ConnectionController is NOT in OTA mode, impossible to send an OTA nevo request !")
+            XCGLogger.defaultInstance().debug("ERROR ! The ConnectionController is NOT in OTA mode, impossible to send an OTA nevo request !")
             
         }
         mNevoBT?.sendRequest(request)
@@ -317,7 +318,7 @@ class ConnectionControllerImpl : NSObject, ConnectionController, NevoBTDelegate 
                 
             }
             
-            AppTheme.DLog("Connection lost detected ! Retrying in : \(SCAN_PROCEDURE[mScanProcedureStatus])")
+            XCGLogger.defaultInstance().debug("Connection lost detected ! Retrying in : \(self.SCAN_PROCEDURE[self.mScanProcedureStatus])")
         }
         
         

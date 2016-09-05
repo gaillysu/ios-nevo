@@ -18,6 +18,7 @@ import Crashlytics
 import LTNavigationBar
 import IQKeyboardManagerSwift
 import SwiftEventBus
+import XCGLogger
 
 let nevoDBDFileURL:String = "nevoDBName";
 let nevoDBNames:String = "nevo.sqlite";
@@ -219,7 +220,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
 
 
     func SetNortification(settingArray:[NotificationSetting]) {
-        AppTheme.DLog("SetNortification")
+        XCGLogger.defaultInstance().debug("SetNortification")
         sendRequest(SetNortificationRequest(settingArray: settingArray))
     }
     /**
@@ -276,7 +277,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
 
         if( NSDate().timeIntervalSince1970-lastSync > SYNC_INTERVAL) {
             //We haven't synched for a while, let's sync now !
-            AppTheme.DLog("*** Sync started ! ***")
+            XCGLogger.defaultInstance().debug("*** Sync started ! ***")
             self.getDailyTrackerInfo()
             if(isConnected()) {
                 let banner = Banner(title: NSLocalizedString("syncing_data", comment: ""), subtitle: nil, image: nil, backgroundColor: AppTheme.NEVO_SOLAR_YELLOW())
@@ -374,7 +375,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
         if(packet.isLastPacket()) {
             let packet:NevoPacket = NevoPacket(packets:mPacketsbuffer)
             if(!packet.isVaildPacket()) {
-                AppTheme.DLog("Invaild packet............\(packet.getPackets().count)")
+                XCGLogger.defaultInstance().debug("Invaild packet............\(packet.getPackets().count)")
                 mPacketsbuffer = []
                 return;
             }
@@ -489,7 +490,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                 let thispacket = packet.copy() as DailyTrackerInfoNevoPacket
                 currentDay = 0
                 savedDailyHistory = thispacket.getDailyTrackerInfo()
-                AppTheme.DLog("History Total Days:\(savedDailyHistory.count),Today is \(GmtNSDate2LocaleNSDate(NSDate()))")
+                XCGLogger.defaultInstance().debug("History Total Days:\(self.savedDailyHistory.count),Today is \(GmtNSDate2LocaleNSDate(NSDate()))")
                 if savedDailyHistory.count > 0 {
                     self.getDailyTracker(currentDay)
                 }
@@ -541,7 +542,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                 if(stepsArray.count>0) {
                     let step:UserSteps = stepsArray[0] as! UserSteps
                     if(step.steps < thispacket.getDailySteps()) {
-                        AppTheme.DLog("Data that has been saved····")
+                        XCGLogger.defaultInstance().debug("Data that has been saved····")
                         stepsModel.id = step.id
                         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,0), { () -> Void in
                             stepsModel.update()
@@ -617,9 +618,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                 
                 
                 
-                AppTheme.DLog("Day:\(GmtNSDate2LocaleNSDate(savedDailyHistory[Int(currentDay)].Date)), Daily Steps:\(savedDailyHistory[Int(currentDay)].TotalSteps)")
+                XCGLogger.defaultInstance().debug("Day:\(GmtNSDate2LocaleNSDate(self.savedDailyHistory[Int(self.currentDay)].Date)), Daily Steps:\(self.savedDailyHistory[Int(self.currentDay)].TotalSteps)")
 
-                AppTheme.DLog("Day:\(GmtNSDate2LocaleNSDate(savedDailyHistory[Int(currentDay)].Date)), Hourly Steps:\(savedDailyHistory[Int(currentDay)].HourlySteps)")
+                XCGLogger.defaultInstance().debug("Day:\(GmtNSDate2LocaleNSDate(self.savedDailyHistory[Int(self.currentDay)].Date)), Hourly Steps:\(self.savedDailyHistory[Int(self.currentDay)].HourlySteps)")
 
                 //save to health kit
                 let hk = NevoHKImpl()
@@ -646,9 +647,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
 
                         hk.writeDataPoint(CaloriesToHK(calories: Double(savedDailyHistory[Int(currentDay)].HourlyCalories[index]), date: NSDate.date(year: saveDay.year, month: saveDay.month, day: saveDay.day, hour: index, minute: 0, second: 0)), resultHandler: { (result, error) in
                             if (result != true) {
-                                AppTheme.DLog("Save Hourly Calories error\(index),\(error)")
+                                XCGLogger.defaultInstance().debug("Save Hourly Calories error\(index),\(error)")
                             }else{
-                                AppTheme.DLog("Save Hourly Calories OK")
+                                XCGLogger.defaultInstance().debug("Save Hourly Calories OK")
                             }
                         })
                     }
@@ -665,9 +666,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                         !nowDate.isEqualToDate(saveDate){
                         hk.writeDataPoint(HourlySteps(numberOfSteps: savedDailyHistory[Int(currentDay)].HourlySteps[i],date: savedDailyHistory[Int(currentDay)].Date,hour:i,update: false), resultHandler: { (result, error) -> Void in
                             if (result != true) {
-                                AppTheme.DLog("Save Hourly steps error\(i),\(error)")
+                                XCGLogger.defaultInstance().debug("Save Hourly steps error\(i),\(error)")
                             }else{
-                                AppTheme.DLog("Save Hourly steps OK")
+                                XCGLogger.defaultInstance().debug("Save Hourly steps OK")
                             }
                         })
                     }
@@ -742,7 +743,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
         let mcuver = AppTheme.GET_SOFTWARE_VERSION()
         let blever = AppTheme.GET_FIRMWARE_VERSION()
 
-        AppTheme.DLog("Build in software version: \(mcuver), firmware version: \(blever)")
+        XCGLogger.defaultInstance().debug("Build in software version: \(mcuver), firmware version: \(blever)")
 
         if ((whichfirmware == DfuFirmwareTypes.SOFTDEVICE  && version.integerValue < mcuver)
             || (whichfirmware == DfuFirmwareTypes.APPLICATION  && version.integerValue < blever)) {

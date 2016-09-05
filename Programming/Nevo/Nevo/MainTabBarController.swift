@@ -8,6 +8,7 @@
 
 import UIKit
 import UIColor_Hex_Swift
+import XCGLogger
 
 class MainTabBarController: UITabBarController,UITabBarControllerDelegate {
 
@@ -30,14 +31,14 @@ class MainTabBarController: UITabBarController,UITabBarControllerDelegate {
             if contll!.isKindOfClass(AlarmClockController){
                 (nav as! UINavigationController).tabBarItem.title = NSLocalizedString("alarmTitle", comment: "")
                 contll?.title = NSLocalizedString("alarmTitle", comment: "")
-                AppTheme.DLog("AlarmClockController:\(contll)")
+                XCGLogger.defaultInstance().debug("AlarmClockController:\(contll)")
 
             }
 
             if contll!.isKindOfClass(PageViewController){
                 (nav as! UINavigationController).tabBarItem.title = NSLocalizedString("Dashboard", comment: "")
                 contll?.title = NSLocalizedString("Dashboard", comment: "")
-                AppTheme.DLog("StepController:\(contll)")
+                XCGLogger.defaultInstance().debug("StepController:\(contll)")
             }
             
             if contll!.isKindOfClass(AnalysisController){
@@ -49,7 +50,7 @@ class MainTabBarController: UITabBarController,UITabBarControllerDelegate {
             if contll!.isKindOfClass(SetingViewController){
                 (nav as! UINavigationController).tabBarItem.title = NSLocalizedString("Setting", comment: "")
                 contll?.title = NSLocalizedString("Setting", comment: "")
-                AppTheme.DLog("SetingViewController:\(contll)")
+                XCGLogger.defaultInstance().debug("SetingViewController:\(contll)")
             }
 
         }
