@@ -94,22 +94,41 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
         titleLabel.text = title
     }
     
-    func updateChartData(dataArray:NSArray,chartType:Int) {
+    func updateChartData(dataArray:NSArray,chartType:Int,rowIndex:Int,completionData:((totalValue:Float,totalCalores:Int,totalTime:Int) -> Void)) {
         lineChartView.data = nil
-        //self.initChartView()
-        
         switch chartType {
         case 0:
-            self.setStepsDataCount(dataArray, type: chartType)
+            var totalSteps:Int = 0
+            var totalCalores:Int = 0
+            var totalTime:Int = 0
+            for value in dataArray {
+                let usersteps:UserSteps = value as! UserSteps
+                NSLog("usersteps.steps:\(usersteps.steps)")
+                totalSteps += usersteps.steps
+                totalCalores += Int(usersteps.calories)
+                totalTime += (usersteps.walking_duration+usersteps.running_duration)
+            }
+            completionData(totalValue: Float(totalSteps), totalCalores: totalCalores, totalTime: totalTime)
+            self.setStepsDataCount(dataArray, type: chartType,rowIndex:rowIndex)
         case 1:
-            self.setSleepDataCount(dataArray, type: chartType)
+            var totalValue:Int = 0
+            for value in dataArray {
+                let usersteps:UserSleep = value as! UserSleep
+                let sleepTime:[Int] = AppTheme.jsonToArray(usersteps.hourlySleepTime) as! [Int]
+                for value2 in sleepTime {
+                    totalValue+=value2
+                }
+            }
+            NSLog("UserSleep Time:\(totalValue)")
+            completionData(totalValue: Float(totalValue)/60.0, totalCalores: 0, totalTime: 0)
+            self.setSleepDataCount(dataArray, type: chartType,rowIndex:rowIndex)
         case 2:
-            self.setStepsDataCount(dataArray, type: chartType)
+            self.setStepsDataCount(dataArray, type: chartType,rowIndex:rowIndex)
         default: break
         }
     }
     
-    func setStepsDataCount(countArray:NSArray,type:Int) {
+    func setStepsDataCount(countArray:NSArray,type:Int,rowIndex:Int) {
         var xVals:[String] = []
         var yVals:[ChartDataEntry] = []
         sortArray.removeAllObjects()
@@ -190,15 +209,16 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
         dataSets.append(set1!)
         
         let data:LineChartData = LineChartData(xVals: xVals, dataSets: dataSets)
+        data.setDrawValues(false)
         lineChartView.data = data;
         lineChartView.animate(xAxisDuration:2.5, easingOption: ChartEasingOption.EaseInOutQuart)
     }
 
-    func setSleepDataCount(countArray:NSArray,type:Int) {
-        var xVals:[String] = []
-        var yVals:[ChartDataEntry] = []
+    func setSleepDataCount(countArray:NSArray,type:Int,rowIndex:Int) {
         sortArray.removeAllObjects()
         sortArray.addObjectsFromArray(countArray as [AnyObject])
+        var xVals:[String] = []
+        var yVals:[ChartDataEntry] = []
         
         var maxValue:Int = 0
         for i:Int in 0 ..< countArray.count {
@@ -217,50 +237,78 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
                     sortArray.replaceObjectAtIndex(j, withObject: temp)
                 }
             }
+        }
+    
+        for (index,sleeps) in sortArray.enumerate() {
+            var sleepTimeValue:Int = 0
+            let mSleeps:UserSleep = sleeps as! UserSleep
+            let sleepsValue:NSArray = AppTheme.jsonToArray(mSleeps.hourlySleepTime)
             
-            for (index,sleeps) in sortArray.enumerate() {
-                var iStepsValue:Int = 0
-                let mSleeps:UserSleep = sleeps as! UserSleep
-                let sleepsValue:NSArray = AppTheme.jsonToArray(mSleeps.hourlySleepTime)
-                NSLog("hourlySleep:%@", mSleeps.hourlySleepTime)
-                
-                let date:NSDate = NSDate(timeIntervalSince1970: mSleeps.date)
-                let dateString:String = date.stringFromFormat("dd/MM")
-                
-                if index>0 {
-                    let kSleeps:UserSleep = sortArray[index-1] as! UserSleep
-                    let value2:NSArray = AppTheme.jsonToArray(kSleeps.hourlySleepTime)
-                    for (index2,value) in value2.enumerate() {
-                        if index2>18 {
-                            iStepsValue += (value as! NSNumber).integerValue
-                        }
+            let date:NSDate = NSDate(timeIntervalSince1970: mSleeps.date)
+            let dateString:String = date.stringFromFormat("dd/MM")
+            
+            if index>0 {
+                let kSleeps:UserSleep = sortArray[index-1] as! UserSleep
+                let value2:NSArray = AppTheme.jsonToArray(kSleeps.hourlySleepTime)
+                for (index2,value) in value2.enumerate() {
+                    if index2>18 {
+                        sleepTimeValue += (value as! NSNumber).integerValue
                     }
                 }
-                
-                for (index2,value) in sleepsValue.enumerate() {
-                    if index2<12 {
-                        iStepsValue += (value as! NSNumber).integerValue
-                    }
+            }
+            
+            for (index2,value) in sleepsValue.enumerate() {
+                if index2<12 {
+                    sleepTimeValue += (value as! NSNumber).integerValue
                 }
-                //Calculate the maximum
-                if iStepsValue>maxValue {
-                    maxValue = iStepsValue
-                }
-                xVals.append(dateString)
-                yVals.append(ChartDataEntry(value: Double(iStepsValue), xIndex: index))
+            }
+            //Calculate the maximum
+            if sleepTimeValue>maxValue {
+                maxValue = sleepTimeValue
             }
             
             //chart the maximum
-            if i == countArray.count-1 {
+            if index == countArray.count-1 {
                 let leftAxis:ChartYAxis = lineChartView.leftAxis;
                 leftAxis.axisMaxValue = Double(maxValue);
                 leftAxis.axisMinValue = 0.0;
                 leftAxis.gridLineDashLengths = [0.0, 0.0];
                 leftAxis.labelTextColor = UIColor.blackColor()
             }
+            
+            xVals.append(dateString)
+            NSLog("index----:\(index),\(sleepTimeValue),\(dateString)")
+            yVals.append(ChartDataEntry(value: Double(sleepTimeValue), xIndex: index))
         }
-    
         
+        if rowIndex == 0 {
+            if xVals.count<7 {
+                for index:Int in (7-xVals.count)..<7 {
+                    xVals.append("")
+                    yVals.append(ChartDataEntry(value: 0, xIndex: index))
+                }
+            }
+        }
+        
+        if rowIndex == 1 {
+            if xVals.count<7 {
+                for index:Int in (7-xVals.count)..<7 {
+                    xVals.append("")
+                    yVals.append(ChartDataEntry(value: 0, xIndex: index))
+                }
+            }
+        }
+        
+        if rowIndex == 2 {
+            if xVals.count<30 {
+                for index:Int in (30-xVals.count)..<30 {
+                    xVals.append("")
+                    yVals.append(ChartDataEntry(value: 0, xIndex: index))
+                    NSLog("yVals index:\(index)")
+                }
+            }
+        }
+
         var set1:LineChartDataSet?
         if lineChartView.data?.dataSetCount>0 {
             set1 = lineChartView.data?.dataSets[0] as? LineChartDataSet
@@ -270,8 +318,8 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
             lineChartView.notifyDataSetChanged()
         }else{
             set1 = LineChartDataSet(yVals: yVals, label: "")
-            set1?.lineDashLengths = [0.0, 0];
-            set1?.highlightLineDashLengths = [0.0, 0.0];
+            // set1?.lineDashLengths = [0.0, 0];
+            //set1?.highlightLineDashLengths = [0.0, 0.0];
             set1?.setColor(AppTheme.NEVO_SOLAR_YELLOW())
             set1?.setCircleColor(AppTheme.NEVO_SOLAR_GRAY())
             set1?.valueTextColor = UIColor.blackColor()
@@ -280,6 +328,7 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
             //set1?.drawCirclesEnabled = false;
             set1?.drawValuesEnabled = false
             set1?.drawCircleHoleEnabled = false;
+            
             
             set1?.valueFont = UIFont.systemFontOfSize(9.0)
             
@@ -295,7 +344,7 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
             
             let data:LineChartData = LineChartData(xVals: xVals, dataSets: dataSets)
             lineChartView.data = data;
-            lineChartView.animate(xAxisDuration: 1.4, easingOption: ChartEasingOption.EaseOutQuart)
+            lineChartView.animate(xAxisDuration: 1.4, easingOption: ChartEasingOption.EaseInOutCirc)
         }
     }
     

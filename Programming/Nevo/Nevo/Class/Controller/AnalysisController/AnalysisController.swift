@@ -105,33 +105,32 @@ extension AnalysisController:UICollectionViewDelegate,UICollectionViewDataSource
             let cell:AnalysisLineChartCell = collectionView.dequeueReusableCellWithReuseIdentifier("AnalysisLineChart_Identifier", forIndexPath: indexPath) as! AnalysisLineChartCell
             cell.backgroundColor = UIColor.clearColor()
             cell.setTitle(titleArray[indexPath.row])
+            if segmented.selectedSegmentIndex == 0 {
+                contentTitleArray = [NSLocalizedString("Average Steps", comment: ""), NSLocalizedString("Total Steps", comment: ""), NSLocalizedString("Average Calories", comment: ""),NSLocalizedString("Average Time", comment: "")]
+            }
+            if segmented.selectedSegmentIndex == 1 {
+                contentTitleArray = [NSLocalizedString("Average Sleep", comment: ""), NSLocalizedString("Total Sleep", comment: ""), NSLocalizedString("Average Wake", comment: ""),NSLocalizedString("Quality", comment: "")]
+            }
+            
             if segmented.selectedSegmentIndex != 2 {
-                var avgNumber:Int = 0
+                var avgNumber:Float = 0
                 if indexPath.row == 0 || indexPath.row == 1 {
                     avgNumber = 7
                 }else{
                     avgNumber = 30
                 }
-                var avgSteps:Int = 0
-                var totalSteps:Int = 0
-                var avgCalores:Int = 0
-                var avgTime:Int = 0
                 
-                if segmented.selectedSegmentIndex == 0 {
-                    for (index,value) in (dataArray[indexPath.row] as! NSArray).enumerate() {
-                        let usersteps:UserSteps = value as! UserSteps
-                        avgSteps += usersteps.steps
-                        totalSteps = usersteps.steps
-                        avgCalores += Int(usersteps.calories)
-                        avgTime += (usersteps.walking_duration+usersteps.running_duration)
+                cell.updateChartData(dataArray[indexPath.row] as! NSArray, chartType: segmented.selectedSegmentIndex,rowIndex:indexPath.row, completionData: { (totalValue, totalCalores, totalTime) in
+                    
+                    let number:Float = Float((self.dataArray[indexPath.row] as! NSArray).count)
+                    if number<30 {
+                        avgNumber = number
                     }
-                }
-                
-                contentTArray.replaceRange(Range(0..<1), with: ["\(avgSteps/avgNumber)"])
-                contentTArray.replaceRange(Range(1..<2), with: ["\(totalSteps)"])
-                contentTArray.replaceRange(Range(2..<3), with: ["\(avgCalores/avgNumber)"])
-                contentTArray.replaceRange(Range(3..<4), with: ["\(avgTime/avgNumber)"])
-                cell.updateChartData(dataArray[indexPath.row] as! NSArray,chartType: segmented.selectedSegmentIndex);
+                    self.contentTArray.replaceRange(Range(0..<1), with: [String(format: "%.1f",totalValue/avgNumber)])
+                    self.contentTArray.replaceRange(Range(1..<2), with: [String(format: "%.1f",totalValue)])
+                    self.contentTArray.replaceRange(Range(2..<3), with: [String(format: "%.1f",totalCalores/Int(avgNumber))])
+                    self.contentTArray.replaceRange(Range(3..<4), with: [String(format: "%.1f",totalTime/Int(avgNumber))])
+                });
                 contentCollectionView.reloadData()
             }
             
@@ -140,7 +139,27 @@ extension AnalysisController:UICollectionViewDelegate,UICollectionViewDataSource
             let cell:AnalysisValueCell = collectionView.dequeueReusableCellWithReuseIdentifier("AnalysisValue_Identifier", forIndexPath: indexPath) as! AnalysisValueCell
             cell.backgroundColor = UIColor.clearColor()
             cell.titleLabel.text = contentTitleArray[indexPath.row]
-            cell.valueLabel.text = contentTArray[indexPath.row]
+            var unit:String = ""
+            if segmented.selectedSegmentIndex == 1 {
+                switch indexPath.row {
+                case 0:
+                    unit = "h"
+                    break
+                case 1:
+                    unit = "h"
+                    break
+                case 2:
+                    unit = "h"
+                    break
+                case 3:
+                    unit = "%"
+                    break
+                default:
+                    break
+                }
+            }
+            //cell.valueLabel.text = contentTArray[indexPath.row]+" "+unit
+            cell.updateLabel(contentTArray[indexPath.row]+" "+unit)
             return cell
         }
     }
