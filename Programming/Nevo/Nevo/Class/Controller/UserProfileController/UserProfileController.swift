@@ -67,24 +67,25 @@ class UserProfileController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(userIdentifier,forIndexPath: indexPath)
+        let cell:UserProfileCell = tableView.dequeueReusableCellWithIdentifier(userIdentifier,forIndexPath: indexPath) as! UserProfileCell
         cell.selectionStyle = UITableViewCellSelectionStyle.None;
-        //cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
-        cell.textLabel?.text = titleArray[indexPath.row]
+        cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
+        //cell.titleLabel.text = titleArray[indexPath.row]
+        cell.updateLabel(titleArray[indexPath.row])
         
         if userprofile != nil {
             let profile:UserProfile = userprofile?[0] as! UserProfile
             switch indexPath.row {
             case 0:
-                cell.detailTextLabel?.text = profile.first_name
+                cell.valueTextField.text = profile.first_name
             case 1:
-                cell.detailTextLabel?.text = profile.last_name
+                cell.valueTextField.text = profile.last_name
             case 2:
-                cell.detailTextLabel?.text = "\(profile.weight)"
+                cell.valueTextField.text = "\(profile.weight)"
             case 3:
-                cell.detailTextLabel?.text = "\(profile.length)"
+                cell.valueTextField.text = "\(profile.length)"
             case 4:
-                cell.detailTextLabel?.text = "\(profile.birthday)"
+                cell.valueTextField.text = "\(profile.birthday)"
             default:
                 break
             }

@@ -63,10 +63,9 @@ class StepsHistoryViewController: PublicClassController,UICollectionViewDelegate
         SwiftEventBus.onMainThread(self, name: EVENT_BUS_BEGIN_SMALL_SYNCACTIVITY) { (notification) in
             let dict:[String:AnyObject] = notification.object as! [String:AnyObject]
             let dailySteps:Int = dict["STEPS"] as! Int
-            let dailyStepGoal:Int = dict["GOAL"] as! Int
-            let percent :Float = dict["PERCENT"] as! Float
-            //self.contentTArray.insert("\(dataSteps.calories)", atIndex: 0)
-            self.contentTArray.replaceRange(Range(1..<2), with: ["\(dailySteps)"])
+            self.calculationData(0, steps: dailySteps, completionData: { (miles, calories) in
+                self.contentTArray.replaceRange(Range(3..<4), with: ["\(miles)"])
+            })
             self.stepsHistory.reloadData()
         }
         
@@ -98,7 +97,9 @@ class StepsHistoryViewController: PublicClassController,UICollectionViewDelegate
             self.contentTArray.replaceRange(Range(0..<1), with: ["\(dataSteps.calories)"])
             self.contentTArray.replaceRange(Range(1..<2), with: ["\(dataSteps.steps)"])
             self.contentTArray.replaceRange(Range(2..<3), with: [String(format: "%.2f", (Float(dataSteps.walking_duration+dataSteps.running_duration)/60.0)/60)])
-            self.contentTArray.replaceRange(Range(3..<4), with: [String(format: "%.2f", Float(dataSteps.walking_distance+dataSteps.running_distance)/1000.0)])
+            self.calculationData(0, steps: dataSteps.steps, completionData: { (miles, calories) in
+                self.contentTArray.replaceRange(Range(3..<4), with: ["\(miles)"])
+            })
             self.stepsHistory.reloadData()
             //AppTheme.KeyedArchiverName(self.StepsGoalKey, andObject: self.contentTArray)
         }
@@ -253,7 +254,9 @@ class StepsHistoryViewController: PublicClassController,UICollectionViewDelegate
         self.contentTArray.insert("\(dataSteps.calories)", atIndex: 0)
         self.contentTArray.insert("\(dataSteps.steps)", atIndex: 1)
         self.contentTArray.insert("\(dataSteps.inactivityTime/60)m", atIndex: 2)
-        self.contentTArray.insert(String(format: "%.2f km",(dataSteps.walking_distance+dataSteps.running_distance)/1000), atIndex: 3)
+        self.calculationData(0, steps: dataSteps.steps, completionData: { (miles, calories) in
+            self.contentTArray.replaceRange(Range(3..<4), with: ["\(miles)"])
+        })
         self.stepsHistory.reloadData()
     }
 }
@@ -263,11 +266,21 @@ extension StepsHistoryViewController {
     
     func calculationData(activeTimer:Int,steps:Int,completionData:((miles:String,calories:String) -> Void)) {
         let profile:NSArray = UserProfile.getAll()
-        let userProfile:UserProfile = profile.objectAtIndex(0) as! UserProfile
-        let strideLength:Double = Double(userProfile.length)*0.415/100
+        var userProfile:UserProfile?
+        var strideLength:Double = 0
+        var userWeight:Double = 0
+        if profile.count>0 {
+            userProfile = profile.objectAtIndex(0) as? UserProfile
+            strideLength = Double(userProfile!.length)*0.415/100
+            userWeight = Double(userProfile!.weight)
+        }else{
+            strideLength = Double(170)*0.415/100
+            userWeight = 65
+        }
+        
         let miles:Double = strideLength*Double(steps)/1000
         //Formula's = (2.0 X persons KG X 3.5)/200 = calories per minute
-        let calories:Double = (2.0*Double(userProfile.weight)*3.5)/200*Double(activeTimer)
+        let calories:Double = (2.0*userWeight*3.5)/200*Double(activeTimer)
         completionData(miles: String(format: "%.2f",miles), calories: String(format: "%.2f",calories))
     }
 }
