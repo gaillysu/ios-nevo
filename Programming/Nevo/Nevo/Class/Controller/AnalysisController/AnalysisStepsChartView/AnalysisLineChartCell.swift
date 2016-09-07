@@ -135,7 +135,7 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
             //chart the maximum
             if i == countArray.count-1 {
                 let leftAxis:ChartYAxis = lineChartView.leftAxis;
-                leftAxis.axisMaxValue = Double(maxValue);
+                leftAxis.axisMaxValue = Double(maxValue+500);
                 leftAxis.axisMinValue = 0.0;
                 leftAxis.gridLineDashLengths = [0.0, 0.0];
                 leftAxis.labelTextColor = UIColor.blackColor()
@@ -183,7 +183,7 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
         set1?.fillAlpha = 1.0;
         set1?.fill = ChartFill.fillWithLinearGradient(gradient, angle: 90.0)
         set1?.drawFilledEnabled = true;
-        
+        set1?.mode = LineChartDataSet.Mode.CubicBezier
         
         var dataSets:[LineChartDataSet] = [];
         dataSets.append(set1!)
@@ -308,9 +308,8 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
             //set1?.drawCirclesEnabled = false;
             set1?.drawValuesEnabled = false
             set1?.drawCircleHoleEnabled = false;
-            //set1?.mode = LineChartDataSet.Mode.CubicBezier
-            
             set1?.valueFont = UIFont.systemFontOfSize(9.0)
+            set1?.mode = LineChartDataSet.Mode.CubicBezier
             
             let gradientColors:[CGColor] = [AppTheme.NEVO_SOLAR_YELLOW().CGColor,AppTheme.NEVO_SOLAR_GRAY().CGColor];
             let gradient:CGGradientRef = CGGradientCreateWithColors(nil, gradientColors, nil)!
@@ -383,8 +382,8 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
             //set1?.drawCirclesEnabled = false;
             set1?.drawValuesEnabled = false
             set1?.drawCircleHoleEnabled = false;
-            
             set1?.valueFont = UIFont.systemFontOfSize(9.0)
+            set1?.mode = LineChartDataSet.Mode.CubicBezier
             
             let gradientColors:[CGColor] = [AppTheme.NEVO_SOLAR_YELLOW().CGColor,AppTheme.NEVO_SOLAR_GRAY().CGColor];
             let gradient:CGGradientRef = CGGradientCreateWithColors(nil, gradientColors, nil)!

@@ -7,13 +7,16 @@
 //
 
 import UIKit
+import XCGLogger
 
 let userIdentifier:String = "UserProfileIdentifier"
-class UserProfileController: UITableViewController {
-
+class UserProfileController: UIViewController,UITableViewDelegate,UITableViewDataSource {
+    
+    @IBOutlet weak var userInfoTableView: UITableView!
+    
     private let titleArray:[String] = ["First name","Last Name","Weight","Height","Date of Birth"]
     private let fieldArray:[String] = ["first_name","last_name","weight","height","date_birth"]
-    var userprofile:NSArray?
+    var userprofile:UserProfile?
     
     init() {
         super.init(nibName: "UserProfileController", bundle: NSBundle.mainBundle())
@@ -26,47 +29,65 @@ class UserProfileController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.tableView.sectionHeaderHeight = 150
-        tableView.backgroundColor = UIColor.whiteColor()
-        self.tableView.registerNib(UINib(nibName: "UserProfileCell", bundle:nil), forCellReuseIdentifier: userIdentifier)
-        self.tableView.registerNib(UINib(nibName: "UserHeader", bundle:nil), forHeaderFooterViewReuseIdentifier: "HeaderViewReuseIdentifier")
+        userInfoTableView.sectionHeaderHeight = 150
+        userInfoTableView.backgroundColor = UIColor.whiteColor()
+        userInfoTableView.registerNib(UINib(nibName: "UserProfileCell", bundle:nil), forCellReuseIdentifier: userIdentifier)
+        userInfoTableView.registerNib(UINib(nibName: "UserHeader", bundle:nil), forHeaderFooterViewReuseIdentifier: "HeaderViewReuseIdentifier")
 
-        tableView.separatorStyle = UITableViewCellSeparatorStyle.None
+        userInfoTableView.separatorStyle = UITableViewCellSeparatorStyle.None
+        
+        let rightItem:UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Save, target: self, action: #selector(saveProfileAction(_:)))
+        self.navigationItem.rightBarButtonItem = rightItem
     }
 
     override func viewWillAppear(animated: Bool) {
-        userprofile = UserProfile.getAll()
-        self.tableView.reloadData()
+        let userArray:NSArray = UserProfile.getAll()
+        if userArray.count>0 {
+            userprofile = userArray[0] as? UserProfile
+        }
+        
+        userInfoTableView.reloadData()
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    func saveProfileAction(sender:AnyObject) {
+        if userprofile != nil {
+            if userprofile!.update() {
+                self.navigationController?.popViewControllerAnimated(true)
+            }
+        }
+    }
 
-    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 150;
     }
     
-    override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView {
+    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header:UITableViewHeaderFooterView = tableView.dequeueReusableHeaderFooterViewWithIdentifier("HeaderViewReuseIdentifier")!
         return header;
     }
     
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 50;
+    }
     // MARK: - Table view data source
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return titleArray.count
     }
     
-    override func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat{
+    func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat{
         return 5.0
     }
 
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell:UserProfileCell = tableView.dequeueReusableCellWithIdentifier(userIdentifier,forIndexPath: indexPath) as! UserProfileCell
         cell.selectionStyle = UITableViewCellSelectionStyle.None;
         cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
@@ -74,26 +95,61 @@ class UserProfileController: UITableViewController {
         cell.updateLabel(titleArray[indexPath.row])
         
         if userprofile != nil {
-            let profile:UserProfile = userprofile?[0] as! UserProfile
+            
             switch indexPath.row {
             case 0:
-                cell.valueTextField.text = profile.first_name
+                cell.valueTextField.text = userprofile!.first_name
             case 1:
-                cell.valueTextField.text = profile.last_name
+                cell.valueTextField.text = userprofile!.last_name
             case 2:
-                cell.valueTextField.text = "\(profile.weight)"
+                cell.valueTextField.text = "\(userprofile!.weight) KG"
+                cell.setInputVariables(self.generatePickerData(35, rangeEnd: 150, interval: 0))
+                cell.setType(.Numeric)
+                cell.textPostFix = " KG"
             case 3:
-                cell.valueTextField.text = "\(profile.length)"
+                cell.valueTextField.text = "\(userprofile!.length) CM"
+                cell.setInputVariables(self.generatePickerData(100, rangeEnd: 250, interval: 0))
+                cell.setType(.Numeric)
+                cell.textPostFix = " CM"
+                
             case 4:
-                cell.valueTextField.text = "\(profile.birthday)"
+                cell.valueTextField.text = "\(userprofile!.birthday)"
+                cell.valueTextField.placeholder = "Birthday: "
+                cell.setType(.Date)
+                cell.textPreFix = "Birthday: "
             default:
                 break
             }
         }
+        
+        cell.cellIndex = indexPath.row
+        cell.editCellTextField = {
+            (index,text) -> Void in
+            XCGLogger.defaultInstance().debug("Profile TextField\(index)")
+            switch index {
+            case 0:
+                self.userprofile!.first_name = text
+            case 1:
+                self.userprofile!.last_name = text
+            case 3:
+                if Int(text) != nil {
+                    self.userprofile!.length = Int(text)!
+                }
+            case 2:
+                if Int(text) != nil {
+                    self.userprofile!.weight = Int(text)!
+                }
+            case 4:
+                self.userprofile!.birthday = text
+            default:
+                break
+            }
+        }
+
         return cell
     }
 
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         if indexPath.section == 0 {
             
@@ -106,5 +162,19 @@ class UserProfileController: UITableViewController {
             }
             
         }
+    }
+    
+    private func generatePickerData(rangeBegin: Int,rangeEnd: Int, interval: Int)->NSMutableArray{
+        let data:NSMutableArray = NSMutableArray();
+        for i in rangeBegin...rangeEnd{
+            if(interval > 0){
+                if i % interval == 0 {
+                    data.addObject("\(i)")
+                }
+            }else{
+                data.addObject("\(i)")
+            }
+        }
+        return data;
     }
 }

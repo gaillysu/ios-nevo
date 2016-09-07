@@ -11,6 +11,8 @@ import UIKit
 class UserHeader: UITableViewHeaderFooterView {
 
     @IBAction func uploadAction(sender: AnyObject) {
+        return
+        
         let alert:UIAlertController = UIAlertController(title: "Choose picture source", message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
         let action1:UIAlertAction = UIAlertAction(title: "Choose from library", style: UIAlertActionStyle.Default) { (action) in
             
