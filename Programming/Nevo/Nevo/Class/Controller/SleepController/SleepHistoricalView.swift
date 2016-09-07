@@ -34,6 +34,7 @@ class SleepHistoricalView: UIView, ChartViewDelegate{
             chartView?.backgroundColor = UIColor.whiteColor()
             chartView?.drawSettings(chartView!.xAxis, yAxis: chartView!.leftAxis, rightAxis: chartView!.rightAxis)
         }
+        chartView?.data = nil
         chartView?.reset()
         self.setDataCount(queryModel.count)
     }
@@ -66,55 +67,40 @@ class SleepHistoricalView: UIView, ChartViewDelegate{
         for i:Int in 0 ..< queryModel.count {
             let seleModel:UserSleep = queryModel.objectAtIndex(i) as! UserSleep;
             //当天的数据源(没有跨天的数据源)
-            let sleepTimerArray:NSArray = AppTheme.jsonToArray(seleModel.hourlySleepTime as String)
-            let wakeTimeTimerArray:NSArray = AppTheme.jsonToArray(seleModel.hourlyWakeTime as String)
-            let lightTimeTimerArray:NSArray = AppTheme.jsonToArray(seleModel.hourlyLightTime as String)
-            let deepTimeTimerArray:NSArray = AppTheme.jsonToArray(seleModel.hourlyDeepTime as String)
+            let sleepTimeArray:NSArray = AppTheme.jsonToArray(seleModel.hourlySleepTime as String)
+            let wakeTimeTimeArray:NSArray = AppTheme.jsonToArray(seleModel.hourlyWakeTime as String)
+            let lightTimeTimeArray:NSArray = AppTheme.jsonToArray(seleModel.hourlyLightTime as String)
+            let deepTimeTimeArray:NSArray = AppTheme.jsonToArray(seleModel.hourlyDeepTime as String)
 
             var sleepTimer:Int  = 0
             var wakeTimer:Int  = 0
             var lightTimer:Int  = 0
             var deepTimer:Int  = 0
 
-            if(i != 0){
-                //跨天的睡眠数据源,反向法
-                let nextSeleModel:UserSleep = queryModel.objectAtIndex(i-1) as! UserSleep;//取出前一天的数据
-                let mSleepTimerArray:NSArray = AppTheme.jsonToArray(nextSeleModel.hourlySleepTime as String)
-                let mWakeTimeTimerArray:NSArray = AppTheme.jsonToArray(nextSeleModel.hourlyWakeTime as String)
-                let mLightTimeTimerArray:NSArray = AppTheme.jsonToArray(nextSeleModel.hourlyLightTime as String)
-                let mDeepTimeTimerArray:NSArray = AppTheme.jsonToArray(nextSeleModel.hourlyDeepTime as String)
-                
+            if(i == 0){
                 //计算在晚上8点以后的睡眠数据
-                for s:Int in 20 ..< mSleepTimerArray.count {
-                    sleepTimer = (mSleepTimerArray[s] as! NSNumber).integerValue + sleepTimer
-                    wakeTimer = (mWakeTimeTimerArray[s] as! NSNumber).integerValue + wakeTimer
-                    lightTimer = (mLightTimeTimerArray[s] as! NSNumber).integerValue + lightTimer
-                    deepTimer = (mDeepTimeTimerArray[s] as! NSNumber).integerValue + deepTimer
-                    if (mSleepTimerArray[s] as! NSNumber).integerValue > 0 {
-                        sleepEntry.append(["\(s):00":[(mSleepTimerArray[s] as! NSNumber).doubleValue,(mLightTimeTimerArray[s] as! NSNumber).doubleValue,(mDeepTimeTimerArray[s] as! NSNumber).doubleValue]])
+                for s:Int in 20 ..< sleepTimeArray.count {
+                    sleepTimer = (sleepTimeArray[s] as! NSNumber).integerValue + sleepTimer
+                    wakeTimer = (wakeTimeTimeArray[s] as! NSNumber).integerValue + wakeTimer
+                    lightTimer = (lightTimeTimeArray[s] as! NSNumber).integerValue + lightTimer
+                    deepTimer = (deepTimeTimeArray[s] as! NSNumber).integerValue + deepTimer
+                    if (sleepTimeArray[s] as! NSNumber).integerValue > 0 {
+                        sleepEntry.append(["\(s):00":[(sleepTimeArray[s] as! NSNumber).doubleValue,(lightTimeTimeArray[s] as! NSNumber).doubleValue,(deepTimeTimeArray[s] as! NSNumber).doubleValue]])
                     }
                     
                 }
-            }
-            
-            for s:Int in 0 ..< sleepTimerArray.count-6 {
-                //计算一天中后12小时的数据,
-                sleepTimer = (sleepTimerArray[s] as! NSNumber).integerValue + sleepTimer
-                wakeTimer = (wakeTimeTimerArray[s] as! NSNumber).integerValue + wakeTimer
-                lightTimer = (lightTimeTimerArray[s] as! NSNumber).integerValue + lightTimer
-                deepTimer = (deepTimeTimerArray[s] as! NSNumber).integerValue + deepTimer
-                if (sleepTimerArray[s] as! NSNumber).integerValue > 0 {
-                    sleepEntry.append(["\(s):00":[(wakeTimeTimerArray[s] as! NSNumber).doubleValue,(lightTimeTimerArray[s] as! NSNumber).doubleValue,(deepTimeTimerArray[s] as! NSNumber).doubleValue]])
+            }else{
+                for s:Int in 0 ..< sleepTimeArray.count-10 {
+                    //计算一天中后12小时的数据,
+                    sleepTimer = (sleepTimeArray[s] as! NSNumber).integerValue + sleepTimer
+                    wakeTimer = (wakeTimeTimeArray[s] as! NSNumber).integerValue + wakeTimer
+                    lightTimer = (lightTimeTimeArray[s] as! NSNumber).integerValue + lightTimer
+                    deepTimer = (deepTimeTimeArray[s] as! NSNumber).integerValue + deepTimer
+                    if (sleepTimeArray[s] as! NSNumber).integerValue > 0 {
+                        sleepEntry.append(["\(s):00":[(wakeTimeTimeArray[s] as! NSNumber).doubleValue,(lightTimeTimeArray[s] as! NSNumber).doubleValue,(deepTimeTimeArray[s] as! NSNumber).doubleValue]])
+                    }
                 }
             }
-            
-            for value in sleepEntry{
-                for (key,value2) in value {
-                    chartView!.addDataPoint(key, entry: value2)
-                }
-            }
-            
-            
             
             //获取源数据睡眠时间单位是分钟,转换成小时为单位给画图数据源
             let val1:Double  = Double(deepTimer)/60;//深睡画图数据源
@@ -128,6 +114,13 @@ class SleepHistoricalView: UIView, ChartViewDelegate{
             totalNumber += val1+val2+val3
             
             
+        }
+        
+        for value in sleepEntry{
+            for (key,value2) in value {
+                NSLog("value2:\(value2),\(key)")
+                chartView!.addDataPoint(key, entry: value2)
+            }
         }
         
         chartView!.invalidateChart()
