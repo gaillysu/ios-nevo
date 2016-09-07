@@ -51,7 +51,7 @@ extension AnalysisController {
             dataArray.addObjectsFromArray(self.getSleepData())
             chartsCollectionView.reloadData()
         }else{
-            //chartsCollectionView.reloadData()
+            chartsCollectionView.reloadData()
         }
     }
     
@@ -88,6 +88,9 @@ extension AnalysisController:UICollectionViewDelegate,UICollectionViewDataSource
         if collectionView.isEqual(chartsCollectionView) {
             return CGSizeMake(collectionView.frame.size.width, collectionView.frame.size.height)
         }else{
+            if segmented.selectedSegmentIndex == 2 {
+                return CGSizeMake(collectionView.frame.size.width, collectionView.frame.size.height/2.0)
+            }
             return CGSizeMake(collectionView.frame.size.width/2.0, collectionView.frame.size.height/2.0)
         }
     }
@@ -112,6 +115,10 @@ extension AnalysisController:UICollectionViewDelegate,UICollectionViewDataSource
                 contentTitleArray = [NSLocalizedString("Average Sleep", comment: ""), NSLocalizedString("Total Sleep", comment: ""), NSLocalizedString("Average Wake", comment: ""),NSLocalizedString("Quality", comment: "")]
             }
             
+            if segmented.selectedSegmentIndex == 2 {
+                contentTitleArray = [NSLocalizedString("Average Timer on Battery", comment: ""), NSLocalizedString("Average Timer on Solar", comment: "")]
+            }
+            
             if segmented.selectedSegmentIndex != 2 {
                 var avgNumber:Float = 0
                 if indexPath.row == 0 || indexPath.row == 1 {
@@ -130,6 +137,14 @@ extension AnalysisController:UICollectionViewDelegate,UICollectionViewDataSource
                     self.contentTArray.replaceRange(Range(1..<2), with: [String(format: "%.1f",totalValue)])
                     self.contentTArray.replaceRange(Range(2..<3), with: [String(format: "%.1f",totalCalores/Int(avgNumber))])
                     self.contentTArray.replaceRange(Range(3..<4), with: [String(format: "%.1f",totalTime/Int(avgNumber))])
+                });
+                contentCollectionView.reloadData()
+            }else{
+                self.contentTArray.replaceRange(Range(0..<1), with: [String(format: "6.3")])
+                self.contentTArray.replaceRange(Range(1..<2), with: [String(format: "5.6")])
+                
+                cell.updateChartData(NSArray(), chartType: segmented.selectedSegmentIndex,rowIndex:indexPath.row, completionData: { (totalValue, totalCalores, totalTime) in
+                
                 });
                 contentCollectionView.reloadData()
             }
