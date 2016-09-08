@@ -97,7 +97,7 @@ class StepsHistoryViewController: PublicClassController,UICollectionViewDelegate
             self.contentTArray.replaceRange(Range(0..<1), with: ["\(dataSteps.calories)"])
             self.contentTArray.replaceRange(Range(1..<2), with: ["\(dataSteps.steps)"])
             self.contentTArray.replaceRange(Range(2..<3), with: [String(format: "%.2f", Float(dataSteps.walking_duration+dataSteps.running_duration)/60)])
-            self.calculationData(0, steps: dataSteps.steps, completionData: { (miles, calories) in
+            self.calculationData((dataSteps.walking_duration+dataSteps.running_duration), steps: dataSteps.steps, completionData: { (miles, calories) in
                 self.contentTArray.replaceRange(Range(0..<1), with: ["\(calories)"])
                 self.contentTArray.replaceRange(Range(3..<4), with: ["\(miles)"])
             })

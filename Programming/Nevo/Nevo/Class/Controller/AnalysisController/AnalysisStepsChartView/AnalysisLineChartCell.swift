@@ -34,17 +34,6 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
         lineChartView.rightAxis.enabled = true
         lineChartView.drawGridBackgroundEnabled = false;
         
-        let leftAxis:ChartYAxis = lineChartView.leftAxis;
-        leftAxis.axisMaxValue = 9000.0;
-        leftAxis.axisMinValue = 0.0;
-        leftAxis.gridLineDashLengths = [0.0, 0.0];
-        leftAxis.labelTextColor = UIColor.blackColor()
-        //leftAxis.axisLineColor = UIColor.whiteColor()
-        //leftAxis.gridColor = UIColor.whiteColor()
-        leftAxis.drawZeroLineEnabled = true;
-        leftAxis.drawLimitLinesBehindDataEnabled = true;
-        leftAxis.drawGridLinesEnabled = true
-        leftAxis.drawLabelsEnabled = true
         lineChartView.rightAxis.enabled = false;
         
         let xAxis:ChartXAxis = lineChartView.xAxis
@@ -97,7 +86,6 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
             completionData(totalValue: Float(totalValue)/60.0, totalCalores: 0, totalTime: 0)
             self.setSleepDataCount(dataArray, type: chartType,rowIndex:rowIndex)
         case 2:
-            //self.setStepsDataCount(dataArray, type: chartType,rowIndex:rowIndex)
             self.setSloarDataCount(7, range: 50)
         default: break
         }
@@ -134,18 +122,7 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
             }
             //chart the maximum
             if i == countArray.count-1 {
-                let leftAxis:ChartYAxis = lineChartView.leftAxis;
-                leftAxis.axisMaxValue = Double(maxValue+500);
-                leftAxis.axisMinValue = 0.0;
-                leftAxis.gridLineDashLengths = [0.0, 0.0];
-                leftAxis.labelTextColor = UIColor.blackColor()
-
-                leftAxis.valueFormatter = NSNumberFormatter();
-                leftAxis.valueFormatter!.maximumFractionDigits = 1;
-                leftAxis.valueFormatter!.negativeSuffix = "";
-                leftAxis.valueFormatter!.positiveSuffix = "";
-                leftAxis.labelPosition = ChartYAxis.LabelPosition.OutsideChart
-                leftAxis.spaceTop = 0.15;
+                self.setChartViewLeftAxis(Double(maxValue+500), unitString: "")
             }
         }
         
@@ -158,7 +135,7 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
             for value in stepsArray {
                 steps += Double((value as! NSNumber).doubleValue)
             }
-            NSLog("steps:\(steps)")
+            
             yVals.append(ChartDataEntry(value: steps, xIndex: i))
             xVals.append(dateString)
         }
@@ -166,8 +143,6 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
         if rowIndex == 0 || rowIndex == 1{
             if xVals.count<7 {
                 for index:Int in xVals.count..<7 {
-                    //let mult:Double = (600 + 1);
-                    //let val:Double = Double(arc4random_uniform(UInt32(mult))) + 3;
                     xVals.append("")
                     yVals.append(ChartDataEntry(value: 0, xIndex: index))
                 }
@@ -183,32 +158,27 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
             }
         }
         
-        var set1:LineChartDataSet?
-        set1 = LineChartDataSet(yVals: yVals, label: "")
-        set1?.lineDashLengths = [0.0, 0];
-        set1?.highlightLineDashLengths = [0.0, 0.0];
-        set1?.setColor(AppTheme.NEVO_SOLAR_YELLOW())
-        set1?.setCircleColor(AppTheme.NEVO_SOLAR_GRAY())
-        set1?.valueTextColor = UIColor.blackColor()
-        set1?.lineWidth = 1.0;
-        set1?.circleRadius = 0.0;
+        let set1:LineChartDataSet = LineChartDataSet(yVals: yVals, label: "")
+        set1.lineDashLengths = [0.0, 0];
+        set1.highlightLineDashLengths = [0.0, 0.0];
+        set1.setColor(AppTheme.NEVO_SOLAR_YELLOW())
+        set1.setCircleColor(AppTheme.NEVO_SOLAR_GRAY())
+        set1.valueTextColor = UIColor.blackColor()
+        set1.lineWidth = 1.0;
+        set1.circleRadius = 0.0;
         //set1?.drawCirclesEnabled = false;
-        set1?.drawValuesEnabled = false
-        set1?.drawCircleHoleEnabled = false;
-        
-        set1?.valueFont = UIFont.systemFontOfSize(9.0)
+        set1.drawValuesEnabled = false
+        set1.drawCircleHoleEnabled = false;
+        set1.valueFont = UIFont.systemFontOfSize(9.0)
         
         let gradientColors:[CGColor] = [AppTheme.NEVO_SOLAR_YELLOW().CGColor,AppTheme.NEVO_SOLAR_GRAY().CGColor];
         let gradient:CGGradientRef = CGGradientCreateWithColors(nil, gradientColors, nil)!
-        set1?.fillAlpha = 1.0;
-        set1?.fill = ChartFill.fillWithLinearGradient(gradient, angle: 90.0)
-        set1?.drawFilledEnabled = true;
-        set1?.mode = LineChartDataSet.Mode.CubicBezier
-        
-        var dataSets:[LineChartDataSet] = [];
-        dataSets.append(set1!)
-        
-        let data:LineChartData = LineChartData(xVals: xVals, dataSets: dataSets)
+        set1.fillAlpha = 1.0;
+        set1.fill = ChartFill.fillWithLinearGradient(gradient, angle: 90.0)
+        set1.drawFilledEnabled = true;
+        set1.mode = LineChartDataSet.Mode.CubicBezier
+
+        let data:LineChartData = LineChartData(xVals: xVals, dataSets: [set1])
         data.setDrawValues(false)
         lineChartView.data = data;
         lineChartView.animate(xAxisDuration:2.5, easingOption: ChartEasingOption.EaseInOutQuart)
@@ -269,31 +239,16 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
             
             //chart the maximum
             if index == countArray.count-1 {
-                let leftAxis:ChartYAxis = lineChartView.leftAxis;
-                leftAxis.axisMaxValue = Double(maxValue/60+2);
-                leftAxis.axisMinValue = 0.0;
-                leftAxis.gridLineDashLengths = [0.0, 0.0];
-                leftAxis.labelTextColor = UIColor.blackColor()
-                
-                leftAxis.labelCount = 5;
-                leftAxis.valueFormatter = NSNumberFormatter();
-                leftAxis.valueFormatter!.maximumFractionDigits = 1;
-                leftAxis.valueFormatter!.negativeSuffix = " hours";
-                leftAxis.valueFormatter!.positiveSuffix = " hours";
-                leftAxis.labelPosition = ChartYAxis.LabelPosition.OutsideChart
-                leftAxis.spaceTop = 0.15;
+                self.setChartViewLeftAxis(Double(maxValue/60+2), unitString: " hours")
             }
             
             xVals.append(dateString)
-            NSLog("index----:\(index),\(sleepTimeValue),\(dateString)")
             yVals.append(ChartDataEntry(value: Double(sleepTimeValue)/60, xIndex: index))
         }
         
         if rowIndex == 0 || rowIndex == 1{
             if xVals.count<7 {
                 for index:Int in xVals.count..<7 {
-                    //let mult:Double = (600 + 1);
-                    //let val:Double = Double(arc4random_uniform(UInt32(mult))) + 3;
                     xVals.append("")
                     yVals.append(ChartDataEntry(value: 0, xIndex: index))
                 }
@@ -367,19 +322,7 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
             }
             //chart the maximum
             if i == count-1 {
-                let leftAxis:ChartYAxis = lineChartView.leftAxis;
-                leftAxis.axisMaxValue = Double(maxValue/60+2);
-                leftAxis.axisMinValue = 0.0;
-                leftAxis.gridLineDashLengths = [0.0, 0.0];
-                leftAxis.labelTextColor = UIColor.blackColor()
-                
-                leftAxis.labelCount = 5;
-                leftAxis.valueFormatter = NSNumberFormatter();
-                leftAxis.valueFormatter!.maximumFractionDigits = 1;
-                leftAxis.valueFormatter!.negativeSuffix = " hours";
-                leftAxis.valueFormatter!.positiveSuffix = " hours";
-                leftAxis.labelPosition = ChartYAxis.LabelPosition.OutsideChart
-                leftAxis.spaceTop = 0.15;
+                self.setChartViewLeftAxis(Double(maxValue/60+2), unitString: " hours")
             }
         }
         
@@ -418,5 +361,21 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
             let data:LineChartData = LineChartData(xVals: xVals, dataSets: dataSets)
             lineChartView.data = data;
         }
+    }
+    
+    func setChartViewLeftAxis(maxValue:Double,unitString:String) {
+        let leftAxis:ChartYAxis = lineChartView.leftAxis;
+        leftAxis.axisMaxValue = maxValue;
+        leftAxis.axisMinValue = 0.0;
+        leftAxis.gridLineDashLengths = [0.0, 0.0];
+        leftAxis.labelTextColor = UIColor.blackColor()
+        
+        leftAxis.labelCount = 5;
+        leftAxis.valueFormatter = NSNumberFormatter();
+        leftAxis.valueFormatter!.maximumFractionDigits = 1;
+        leftAxis.valueFormatter!.negativeSuffix = unitString;
+        leftAxis.valueFormatter!.positiveSuffix = unitString;
+        leftAxis.labelPosition = ChartYAxis.LabelPosition.OutsideChart
+        leftAxis.spaceTop = 0.15;
     }
 }

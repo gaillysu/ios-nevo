@@ -63,7 +63,7 @@ class StepGoalSetingController: PublicClassController,ButtonManagerCallBack,Cloc
     
     override func viewWillAppear(animated: Bool) {
         
-        saveContentTArray()
+        saveContentTArray(NSDate().beginningOfDay.timeIntervalSince1970)
         
         SwiftEventBus.onMainThread(self, name: EVENT_BUS_BEGIN_SMALL_SYNCACTIVITY) { (notification) in
             let dict:[String:AnyObject] = notification.object as! [String:AnyObject]
@@ -76,11 +76,12 @@ class StepGoalSetingController: PublicClassController,ButtonManagerCallBack,Cloc
         }
         
         SwiftEventBus.onMainThread(self, name: EVENT_BUS_END_BIG_SYNCACTIVITY) { (notification) in
-            self.saveContentTArray()
+            self.saveContentTArray(NSDate().beginningOfDay.timeIntervalSince1970)
         }
         
         SwiftEventBus.onMainThread(self, name: SELECTED_CALENDAR_NOTIFICATION) { (notification) in
-            
+            let userinfo:NSDate = notification.userInfo!["selectedDate"] as! NSDate
+            self.saveContentTArray(userinfo.beginningOfDay.timeIntervalSince1970)
         }
         
         //RAWPACKET DATA
@@ -136,9 +137,9 @@ class StepGoalSetingController: PublicClassController,ButtonManagerCallBack,Cloc
     /**
      Archiver "contentTArray"
      */
-    func saveContentTArray() {
+    func saveContentTArray(beginningDate:NSTimeInterval) {
         //Only for today's data
-        let array:NSArray = UserSteps.getCriteria("WHERE date = \(NSDate().beginningOfDay.timeIntervalSince1970)")
+        let array:NSArray = UserSteps.getCriteria("WHERE date = \(beginningDate)")
         if array.count>0 {
             let dataSteps:UserSteps = array[0] as! UserSteps
             

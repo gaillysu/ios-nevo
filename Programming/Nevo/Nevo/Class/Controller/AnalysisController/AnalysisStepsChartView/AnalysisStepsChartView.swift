@@ -43,7 +43,6 @@ class AnalysisStepsChartView: LineChartView {
         // x-axis limit line
         let leftAxis:ChartYAxis = self.leftAxis;
         leftAxis.labelCount = 3
-        
         leftAxis.removeAllLimitLines()
         
         let valueString:[String] = ["Deep Sleep","Light Sleep","Awake"]
@@ -52,7 +51,7 @@ class AnalysisStepsChartView: LineChartView {
             ll1.lineWidth = 0.5;
             ll1.lineDashLengths = [0.0, 0.0];
             ll1.lineColor = UIColor.blackColor()
-            ll1.labelPosition = ChartLimitLine.LabelPosition.LeftTop;
+            ll1.labelPosition = ChartLimitLine.LabelPosition.RightTop;
             ll1.valueFont = UIFont.systemFontOfSize(10.0)
             leftAxis.addLimitLine(ll1)
         }
@@ -82,9 +81,10 @@ class AnalysisStepsChartView: LineChartView {
         lineChartDataSet.mode = LineChartDataSet.Mode.CubicBezier
         lineChartDataSet.drawCircleHoleEnabled = false
         lineChartDataSet.valueFont = UIFont.systemFontOfSize(9.0)
-
+        let gradientColors:[CGColor] = [AppTheme.NEVO_SOLAR_YELLOW().CGColor,AppTheme.NEVO_SOLAR_GRAY().CGColor];
+        let gradient:CGGradientRef = CGGradientCreateWithColors(nil, gradientColors, nil)!
         lineChartDataSet.fillAlpha = 1;
-        lineChartDataSet.fill = ChartFill.fillWithColor(AppTheme.NEVO_SOLAR_YELLOW())
+        lineChartDataSet.fill = ChartFill.fillWithLinearGradient(gradient, angle: 90.0)
         lineChartDataSet.drawFilledEnabled = true
         dataSets.append(lineChartDataSet)
         
