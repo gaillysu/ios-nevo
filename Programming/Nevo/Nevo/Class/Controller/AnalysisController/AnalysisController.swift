@@ -128,11 +128,6 @@ extension AnalysisController:UICollectionViewDelegate,UICollectionViewDataSource
                 }
                 
                 cell.updateChartData(dataArray[indexPath.row] as! NSArray, chartType: segmented.selectedSegmentIndex,rowIndex:indexPath.row, completionData: { (totalValue, totalCalores, totalTime) in
-                    
-                    let number:Float = Float((self.dataArray[indexPath.row] as! NSArray).count)
-                    if number<30 {
-                        avgNumber = number
-                    }
                     self.contentTArray.replaceRange(Range(0..<1), with: [String(format: "%.1f",totalValue/avgNumber)])
                     self.contentTArray.replaceRange(Range(1..<2), with: [String(format: "%.1f",totalValue)])
                     self.contentTArray.replaceRange(Range(2..<3), with: [String(format: "%.1f",totalCalores/Int(avgNumber))])

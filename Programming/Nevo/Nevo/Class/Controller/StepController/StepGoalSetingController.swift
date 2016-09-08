@@ -141,11 +141,11 @@ class StepGoalSetingController: PublicClassController,ButtonManagerCallBack,Cloc
         let array:NSArray = UserSteps.getCriteria("WHERE date = \(NSDate().beginningOfDay.timeIntervalSince1970)")
         if array.count>0 {
             let dataSteps:UserSteps = array[0] as! UserSteps
-
-            self.contentTArray.replaceRange(Range(0..<1), with: ["\(dataSteps.calories)"])
+            
             self.contentTArray.replaceRange(Range(1..<2), with: ["\(dataSteps.steps)"])
-             self.contentTArray.replaceRange(Range(2..<3), with: [String(format: "%.2f", (Float(dataSteps.walking_duration+dataSteps.running_duration)/60.0)/60)])
-            self.calculationData(0, steps: dataSteps.steps, completionData: { (miles, calories) in
+             self.contentTArray.replaceRange(Range(2..<3), with: [String(format: "%.2f", Float(dataSteps.walking_duration+dataSteps.running_duration)/60.0)])
+            self.calculationData((dataSteps.walking_duration+dataSteps.running_duration), steps: dataSteps.steps, completionData: { (miles, calories) in
+                self.contentTArray.replaceRange(Range(0..<1), with: ["\(calories)"])
                 self.contentTArray.replaceRange(Range(3..<4), with: ["\(miles)"])
             })
             self.collectionView.reloadData()

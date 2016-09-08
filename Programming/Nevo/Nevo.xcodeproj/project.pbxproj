@@ -162,6 +162,7 @@
 		006DA3171D6ED6670011E09C /* AnalysisLineChartCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 006DA3131D6ED6670011E09C /* AnalysisLineChartCell.xib */; };
 		006DA3181D6ED6670011E09C /* AnalysisRadarViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006DA3141D6ED6670011E09C /* AnalysisRadarViewCell.swift */; };
 		006DA3191D6ED6670011E09C /* AnalysisRadarViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 006DA3151D6ED6670011E09C /* AnalysisRadarViewCell.xib */; };
+		006DA9FE1D80F2A600B70C0F /* AppDelegate-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006DA9FD1D80F2A600B70C0F /* AppDelegate-Extension.swift */; };
 		0073C5E01D3C67E700924167 /* NewAddAlarmHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0073C5DF1D3C67E700924167 /* NewAddAlarmHeader.xib */; };
 		0073C5E41D3C7CC200924167 /* AlarmTypeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0073C5E21D3C7CC200924167 /* AlarmTypeCell.xib */; };
 		00749B8A1D64082C0013B2D9 /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00749B891D64082C0013B2D9 /* PageViewController.swift */; };
@@ -715,6 +716,7 @@
 		006DA3131D6ED6670011E09C /* AnalysisLineChartCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AnalysisLineChartCell.xib; sourceTree = "<group>"; };
 		006DA3141D6ED6670011E09C /* AnalysisRadarViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalysisRadarViewCell.swift; sourceTree = "<group>"; };
 		006DA3151D6ED6670011E09C /* AnalysisRadarViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AnalysisRadarViewCell.xib; sourceTree = "<group>"; };
+		006DA9FD1D80F2A600B70C0F /* AppDelegate-Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AppDelegate-Extension.swift"; sourceTree = "<group>"; };
 		0073C5DD1D3C67CF00924167 /* NewAddAlarmHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewAddAlarmHeader.swift; sourceTree = "<group>"; };
 		0073C5DF1D3C67E700924167 /* NewAddAlarmHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewAddAlarmHeader.xib; sourceTree = "<group>"; };
 		0073C5E11D3C7CC200924167 /* AlarmTypeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlarmTypeCell.swift; sourceTree = "<group>"; };
@@ -2440,6 +2442,7 @@
 				00DBC3A21C435541004B4376 /* Main.storyboard */,
 				006B83691C44A20000E20A0C /* Nevo-Bridging-Header.h */,
 				00321D6C1C98EBB10069BFCC /* AppDelegate.swift */,
+				006DA9FD1D80F2A600B70C0F /* AppDelegate-Extension.swift */,
 				006A62211D6A9F1500458305 /* MainTabBarController.swift */,
 				9AD8F9411A6DF35900F01014 /* Images.xcassets */,
 				9AD8F9391A6DF35900F01014 /* Nevo.xcdatamodeld */,
@@ -3422,6 +3425,7 @@
 				00AF8D041D224CFA009047AC /* SyncQueue.swift in Sources */,
 				00AF8CC61D224CFA009047AC /* PresetsModel.swift in Sources */,
 				0050D6161C28E0DB004F6F80 /* SetingViewController.swift in Sources */,
+				006DA9FE1D80F2A600B70C0F /* AppDelegate-Extension.swift in Sources */,
 				00AF8CF31D224CFA009047AC /* NevoPacket.swift in Sources */,
 				00AF8CDD1D224CFA009047AC /* BalloonMarker.swift in Sources */,
 				00AF8D031D224CFA009047AC /* WriteSettingRequest.swift in Sources */,

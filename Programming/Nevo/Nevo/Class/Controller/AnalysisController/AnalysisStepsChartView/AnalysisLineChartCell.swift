@@ -163,6 +163,26 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
             xVals.append(dateString)
         }
         
+        if rowIndex == 0 || rowIndex == 1{
+            if xVals.count<7 {
+                for index:Int in xVals.count..<7 {
+                    //let mult:Double = (600 + 1);
+                    //let val:Double = Double(arc4random_uniform(UInt32(mult))) + 3;
+                    xVals.append("")
+                    yVals.append(ChartDataEntry(value: 0, xIndex: index))
+                }
+            }
+        }
+        
+        if rowIndex == 2 {
+            if xVals.count<30 {
+                for index:Int in xVals.count..<30 {
+                    xVals.append("")
+                    yVals.append(ChartDataEntry(value: 0, xIndex: index))
+                }
+            }
+        }
+        
         var set1:LineChartDataSet?
         set1 = LineChartDataSet(yVals: yVals, label: "")
         set1?.lineDashLengths = [0.0, 0];

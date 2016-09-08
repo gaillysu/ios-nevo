@@ -22,6 +22,23 @@ class DailyTrackerNevoPacket: NevoPacket {
         stepGoal =  stepGoal + Int(NSData2Bytes(getPackets()[0])[9] )<<24
         return stepGoal;
     }
+    
+    func getDistanceGoal()->Int {
+        var goal:Int = Int(NSData2Bytes(getPackets()[0])[10])
+        goal += Int(NSData2Bytes(getPackets()[0])[11])
+        goal += Int(NSData2Bytes(getPackets()[0])[12])
+        goal += Int(NSData2Bytes(getPackets()[0])[13])
+        return goal
+    }
+    
+    func getCaloriesGoal()->Int{
+        var goal:Int = Int(NSData2Bytes(getPackets()[0])[14])
+        goal += Int(NSData2Bytes(getPackets()[0])[15])
+        goal += Int(NSData2Bytes(getPackets()[0])[16])
+        goal += Int(NSData2Bytes(getPackets()[0])[17])
+        return goal
+    }
+    
     /**
     return History Daily steps
     */
@@ -380,7 +397,7 @@ class DailyTrackerNevoPacket: NevoPacket {
 
      :returns: daily Running Timer
      */
-    func getDailyRunningTimer()->Int {
+    func getDailyRunningDuration()->Int {
         let packetno = 3
         let offset = 4
         var dailyTimer:Int = Int(NSData2Bytes(getPackets()[packetno])[offset] )
@@ -395,9 +412,9 @@ class DailyTrackerNevoPacket: NevoPacket {
 
      :returns: daily Walking Timer
      */
-    func getDailyWalkingTimer()->Int {
-        let packetno = 2
-        let offset = 10
+    func getDailyWalkingDuration()->Int {
+        let packetno = 3
+        let offset = 8
         var dailyWalkingTimer:Int = Int(NSData2Bytes(getPackets()[packetno])[offset] )
         dailyWalkingTimer =  dailyWalkingTimer + Int(NSData2Bytes(getPackets()[packetno])[offset+1] )<<8
         dailyWalkingTimer =  dailyWalkingTimer + Int(NSData2Bytes(getPackets()[packetno])[offset+2] )<<16
@@ -432,5 +449,4 @@ class DailyTrackerNevoPacket: NevoPacket {
         dailyDistance =  dailyDistance + Int(NSData2Bytes(getPackets()[packetno])[offset+3] )<<24
         return dailyDistance/100
     }
-
 }

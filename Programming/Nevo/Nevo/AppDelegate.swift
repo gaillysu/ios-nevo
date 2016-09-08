@@ -39,7 +39,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
     private var currentDay:UInt8 = 0
     private var mAlertUpdateFW = false
 
-    private var todaySleepData:NSMutableArray = NSMutableArray(capacity: 2)
     private var disConnectAlert:UIAlertView?
     private let alertUpdateTag:Int = 9000
 
@@ -261,10 +260,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
 
     func ReadBatteryLevel() {
         sendRequest(ReadBatteryLevelNevoRequest())
-    }
-
-    func GET_TodaySleepData()->NSArray{
-        return todaySleepData;
     }
 
     // MARK: -AppDelegate syncActivityData
@@ -525,15 +520,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                     "hourlycalories":AppTheme.toJSONString(thispacket.getHourlyCalories()),
                     "inZoneTime":thispacket.getInZoneTime(),
                     "outZoneTime":thispacket.getOutZoneTime(),
-                    "inactivityTime":thispacket.getDailyRunningTimer()+thispacket.getDailyWalkingTimer(),
+                    "inactivityTime":thispacket.getDailyRunningDuration()+thispacket.getDailyWalkingDuration(),
                     "goalreach":Double(thispacket.getDailySteps())/Double(thispacket.getStepsGoal()),
                     "date":timerInter,
                     "createDate":timeStr,
                     "walking_distance":thispacket.getDailyWalkingDistance(),
-                    "walking_duration":thispacket.getDailyWalkingTimer(),
+                    "walking_duration":thispacket.getDailyWalkingDuration(),
                     "walking_calories":thispacket.getDailyCalories(),
                     "running_distance":thispacket.getRunningDistance(),
-                    "running_duration":thispacket.getDailyRunningTimer(),
+                    "running_duration":thispacket.getDailyRunningDuration(),
                     "running_calories":thispacket.getDailyCalories()])
                 
                 //upload steps data to validic
@@ -557,30 +552,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
 
                 //save sleep data for every hour.
                 //save format: first write wake, then write sleep(light&deep)
-                if(currentDateStr.integerValue == thispacket.getDateTimer()){
-                    let dataArray:[[Int]] = [thispacket.getHourlySleepTime(),thispacket.getHourlyWakeTime(),thispacket.getHourlyLightTime(),thispacket.getHourlyDeepTime()]
-                    if(todaySleepData.count==0){
-                        todaySleepData.addObject(dataArray)
-                    }else{
-                        todaySleepData.insertObject(dataArray, atIndex: 1)
-                    }
-                }
-
-                let yesterdayDateStr:NSString = dateFormatter.stringFromDate(NSDate.yesterday())
-                if(yesterdayDateStr.integerValue == thispacket.getDateTimer()) {
-                    let dataArray:[[Int]] = [thispacket.getHourlySleepTime(),thispacket.getHourlyWakeTime(),thispacket.getHourlyLightTime(),thispacket.getHourlyDeepTime()]
-                    if(todaySleepData.count==0) {
-                        todaySleepData.addObject(dataArray)
-                    }else {
-                        todaySleepData.insertObject(dataArray, atIndex: 0)
-                    }
-                }
-
                 let sleepArray = UserSleep.getCriteria("WHERE date = \(timerInterval.timeIntervalSince1970)")
                 let model:UserSleep = UserSleep(keyDict: [
                     "id": 0,
                     "date":timerInterval.timeIntervalSince1970,
-                    "totalSleepTime":0,
+                    "totalSleepTime":thispacket.getDailySleepTime(),
                     "hourlySleepTime":"\(AppTheme.toJSONString(thispacket.getHourlySleepTime()))",
                     "totalWakeTime":0,
                     "hourlyWakeTime":"\(AppTheme.toJSONString(thispacket.getHourlyWakeTime()))" ,
@@ -594,10 +570,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                 
                 if(sleepArray.count>0) {
                     let sleep:UserSleep = sleepArray[0] as! UserSleep
-                    model.id = sleep.id
-                    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,0), { () -> Void in
-                        model.update()
-                    })
+                    let localSleepArray:[Int] = AppTheme.jsonToArray(sleep.hourlySleepTime) as! [Int]
+                    var localTime:Int = 0
+                    
+                    for value in localSleepArray {
+                        localTime+=value
+                    }
+                    
+                    let currentSleepArray:[Int] = thispacket.getHourlySleepTime()
+                    var currentSleepTime:Int = 0
+                    for value in currentSleepArray {
+                        currentSleepTime+=value
+                    }
+                    
+                    if currentSleepTime>localTime {
+                        model.id = sleep.id
+                        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,0), { () -> Void in
+                            model.update()
+                        })
+                    }
                 }else {
                     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,0), { () -> Void in
                         model.add({ (id, completion) -> Void in

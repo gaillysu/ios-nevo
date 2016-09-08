@@ -46,7 +46,7 @@ class AnalysisStepsChartView: LineChartView {
         
         leftAxis.removeAllLimitLines()
         
-        let valueString:[String] = ["Deep Sleep","Light Sleep","Anwake"]
+        let valueString:[String] = ["Deep Sleep","Light Sleep","Awake"]
         for index in 0..<3 {
             let ll1:ChartLimitLine = ChartLimitLine(limit: Double(index*25), label: valueString[index])
             ll1.lineWidth = 0.5;

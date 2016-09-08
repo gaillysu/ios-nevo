@@ -96,8 +96,9 @@ class StepsHistoryViewController: PublicClassController,UICollectionViewDelegate
             
             self.contentTArray.replaceRange(Range(0..<1), with: ["\(dataSteps.calories)"])
             self.contentTArray.replaceRange(Range(1..<2), with: ["\(dataSteps.steps)"])
-            self.contentTArray.replaceRange(Range(2..<3), with: [String(format: "%.2f", (Float(dataSteps.walking_duration+dataSteps.running_duration)/60.0)/60)])
+            self.contentTArray.replaceRange(Range(2..<3), with: [String(format: "%.2f", Float(dataSteps.walking_duration+dataSteps.running_duration)/60)])
             self.calculationData(0, steps: dataSteps.steps, completionData: { (miles, calories) in
+                self.contentTArray.replaceRange(Range(0..<1), with: ["\(calories)"])
                 self.contentTArray.replaceRange(Range(3..<4), with: ["\(miles)"])
             })
             self.stepsHistory.reloadData()
@@ -250,11 +251,11 @@ class StepsHistoryViewController: PublicClassController,UICollectionViewDelegate
     
     func didSelectedhighlightValue(xIndex:Int,dataSetIndex: Int, dataSteps:UserSteps) {
         
-        self.contentTArray.removeAll()
-        self.contentTArray.insert("\(dataSteps.calories)", atIndex: 0)
-        self.contentTArray.insert("\(dataSteps.steps)", atIndex: 1)
-        self.contentTArray.insert("\(dataSteps.inactivityTime/60)m", atIndex: 2)
+        self.contentTArray.replaceRange(Range(0..<1), with: ["\(dataSteps.calories)"])
+        self.contentTArray.replaceRange(Range(1..<2), with: ["\(dataSteps.steps)"])
+        self.contentTArray.replaceRange(Range(2..<3), with: ["\(dataSteps.walking_duration+dataSteps.running_duration)m"])
         self.calculationData(0, steps: dataSteps.steps, completionData: { (miles, calories) in
+            self.contentTArray.replaceRange(Range(0..<1), with: ["\(calories)"])
             self.contentTArray.replaceRange(Range(3..<4), with: ["\(miles)"])
         })
         self.stepsHistory.reloadData()
