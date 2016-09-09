@@ -45,7 +45,7 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
         
         let marker:BalloonMarker = BalloonMarker(color: AppTheme.NEVO_SOLAR_YELLOW(), font: UIFont.systemFontOfSize(12.0), insets: UIEdgeInsetsMake(8.0, 8.0, 20.0, 8.0))
         marker.minimumSize = CGSizeMake(80.0, 40.0);
-        //lineChartView.marker = marker;
+        lineChartView.marker = marker;
         
         lineChartView.legend.form = ChartLegend.Form.Line
         lineChartView.animate(xAxisDuration: 2.5, easingOption: ChartEasingOption.EaseInOutQuart)
@@ -188,7 +188,9 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
         sortArray.removeAllObjects()
         sortArray.addObjectsFromArray(countArray as [AnyObject])
         var xVals:[String] = []
-        var yVals:[ChartDataEntry] = []
+        var weakeYVals:[ChartDataEntry] = []
+        var lightYVals:[ChartDataEntry] = []
+        var deepYVals:[ChartDataEntry] = []
         
         var maxValue:Int = 0
         for i:Int in 0 ..< countArray.count {
@@ -210,31 +212,49 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
         }
     
         for (index,sleeps) in sortArray.enumerate() {
-            var sleepTimeValue:Int = 0
+            
+            var sleepValue:Int = 0
+            var weakeValue:Int = 0
+            var lightValue:Int = 0
+            var deepValue:Int = 0
+            
             let mSleeps:UserSleep = sleeps as! UserSleep
-            let sleepsValue:NSArray = AppTheme.jsonToArray(mSleeps.hourlySleepTime)
+            let sleepsValue1:[Int] = AppTheme.jsonToArray(mSleeps.hourlySleepTime) as! [Int]
+            let sleepsValue2:[Int] = AppTheme.jsonToArray(mSleeps.hourlyWakeTime) as! [Int]
+            let sleepsValue3:[Int] = AppTheme.jsonToArray(mSleeps.hourlyLightTime) as! [Int]
+            let sleepsValue4:[Int] = AppTheme.jsonToArray(mSleeps.hourlyDeepTime) as! [Int]
             
             let date:NSDate = NSDate(timeIntervalSince1970: mSleeps.date)
             let dateString:String = date.stringFromFormat("dd/MM")
             
             if index>0 {
                 let kSleeps:UserSleep = sortArray[index-1] as! UserSleep
-                let value2:NSArray = AppTheme.jsonToArray(kSleeps.hourlySleepTime)
-                for (index2,value) in value2.enumerate() {
+                let value1:[Int] = AppTheme.jsonToArray(kSleeps.hourlySleepTime) as! [Int]
+                let value2:[Int] = AppTheme.jsonToArray(kSleeps.hourlyWakeTime) as! [Int]
+                let value3:[Int] = AppTheme.jsonToArray(kSleeps.hourlyLightTime) as! [Int]
+                let value4:[Int] = AppTheme.jsonToArray(kSleeps.hourlyDeepTime) as! [Int]
+                
+                for (index2,value) in value1.enumerate() {
                     if index2>18 {
-                        sleepTimeValue += (value as! NSNumber).integerValue
+                        sleepValue += value
+                        weakeValue += value2[index2]
+                        lightValue += value3[index2]
+                        deepValue += value4[index2]
                     }
                 }
             }
             
-            for (index2,value) in sleepsValue.enumerate() {
+            for (index2,value) in sleepsValue1.enumerate() {
                 if index2<12 {
-                    sleepTimeValue += (value as! NSNumber).integerValue
+                    sleepValue += value
+                    weakeValue += sleepsValue2[index2]
+                    lightValue += sleepsValue3[index2]
+                    deepValue += sleepsValue4[index2]
                 }
             }
             //Calculate the maximum
-            if sleepTimeValue>maxValue {
-                maxValue = sleepTimeValue
+            if sleepValue>maxValue {
+                maxValue = sleepValue
             }
             
             //chart the maximum
@@ -243,14 +263,18 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
             }
             
             xVals.append(dateString)
-            yVals.append(ChartDataEntry(value: Double(sleepTimeValue)/60, xIndex: index))
+            weakeYVals.append(ChartDataEntry(value: Double(weakeValue)/60, xIndex: index))
+            lightYVals.append(ChartDataEntry(value: Double(lightValue)/60, xIndex: index))
+            deepYVals.append(ChartDataEntry(value: Double(deepValue)/60, xIndex: index))
         }
         
         if rowIndex == 0 || rowIndex == 1{
             if xVals.count<7 {
                 for index:Int in xVals.count..<7 {
                     xVals.append("")
-                    yVals.append(ChartDataEntry(value: 0, xIndex: index))
+                    weakeYVals.append(ChartDataEntry(value: 0, xIndex: index))
+                    lightYVals.append(ChartDataEntry(value: 0, xIndex: index))
+                    deepYVals.append(ChartDataEntry(value: 0, xIndex: index))
                 }
             }
         }
@@ -259,48 +283,43 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
             if xVals.count<30 {
                 for index:Int in xVals.count..<30 {
                     xVals.append("")
-                    yVals.append(ChartDataEntry(value: 0, xIndex: index))
+                    weakeYVals.append(ChartDataEntry(value: 0, xIndex: index))
+                    lightYVals.append(ChartDataEntry(value: 0, xIndex: index))
+                    deepYVals.append(ChartDataEntry(value: 0, xIndex: index))
                 }
             }
         }
-
-        var set1:LineChartDataSet?
-        if lineChartView.data?.dataSetCount>0 {
-            set1 = lineChartView.data?.dataSets[0] as? LineChartDataSet
-            set1?.yVals = yVals
-            lineChartView.data?.xValsObjc = xVals
-            lineChartView.data?.notifyDataChanged()
-            lineChartView.notifyDataSetChanged()
-        }else{
-            set1 = LineChartDataSet(yVals: yVals, label: "")
-            set1?.lineDashLengths = [0.0, 0];
-            set1?.highlightLineDashLengths = [0.0, 0.0];
-            set1?.setColor(AppTheme.NEVO_SOLAR_YELLOW())
-            set1?.setCircleColor(AppTheme.NEVO_SOLAR_GRAY())
-            set1?.valueTextColor = UIColor.blackColor()
-            set1?.lineWidth = 1.0;
-            set1?.circleRadius = 0.0;
+        
+        let dataArray:[[ChartDataEntry]] = [weakeYVals,lightYVals,deepYVals]
+        var dataSets:[LineChartDataSet] = [];
+        
+        for (index,values) in dataArray.enumerate() {
+            let set1:LineChartDataSet = LineChartDataSet(yVals: values, label: "")
+            set1.lineDashLengths = [0.0, 0];
+            set1.highlightLineDashLengths = [0.0, 0.0];
+            set1.setColor(AppTheme.NEVO_SOLAR_YELLOW())
+            set1.setCircleColor(AppTheme.NEVO_SOLAR_GRAY())
+            set1.valueTextColor = UIColor.blackColor()
+            set1.lineWidth = 1.0;
+            set1.circleRadius = 0.0;
             //set1?.drawCirclesEnabled = false;
-            set1?.drawValuesEnabled = false
-            set1?.drawCircleHoleEnabled = false;
-            set1?.valueFont = UIFont.systemFontOfSize(9.0)
-            set1?.mode = LineChartDataSet.Mode.CubicBezier
+            set1.drawValuesEnabled = false
+            set1.drawCircleHoleEnabled = false;
+            set1.valueFont = UIFont.systemFontOfSize(9.0)
+            //set1.mode = LineChartDataSet.Mode.CubicBezier
             
-            let gradientColors:[CGColor] = [AppTheme.NEVO_SOLAR_YELLOW().CGColor,AppTheme.NEVO_SOLAR_GRAY().CGColor];
-            let gradient:CGGradientRef = CGGradientCreateWithColors(nil, gradientColors, nil)!
-            set1?.fillAlpha = 1.0;
-            set1?.fill = ChartFill.fillWithLinearGradient(gradient, angle: 90.0)
-            set1?.drawFilledEnabled = true;
-            
-            
-            var dataSets:[LineChartDataSet] = [];
-            dataSets.append(set1!)
-            
-            let data:LineChartData = LineChartData(xVals: xVals, dataSets: dataSets)
-            lineChartView.data = data;
-            lineChartView.legend.form = ChartLegend.Form.Line
-            lineChartView.animate(xAxisDuration: 1.4, easingOption: ChartEasingOption.EaseInOutCirc)
+            let gradientColors:[NSUIColor] = [UIColor.lightGrayColor(),AppTheme.NEVO_SOLAR_YELLOW(),AppTheme.NEVO_SOLAR_GRAY()];
+            set1.fillAlpha = 0.5;
+            set1.fill = ChartFill.fillWithColor(gradientColors[index])
+            //fillWithLinearGradient(gradient, angle: 90.0)
+            set1.drawFilledEnabled = true;
+            dataSets.append(set1)
         }
+        
+        let data:LineChartData = LineChartData(xVals: xVals, dataSets: dataSets)
+        lineChartView.data = data;
+        lineChartView.legend.form = ChartLegend.Form.Line
+        lineChartView.animate(xAxisDuration: 1.4, easingOption: ChartEasingOption.EaseInOutCirc)
     }
     
     func setSloarDataCount(count:Int,range:Double) {
@@ -326,41 +345,32 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
             }
         }
         
-        var set1:LineChartDataSet?
-        if lineChartView.data?.dataSetCount>0 {
-            set1 = lineChartView.data?.dataSets[0] as? LineChartDataSet
-            set1?.yVals = yVals
-            lineChartView.data?.xValsObjc = xVals
-            lineChartView.data?.notifyDataChanged()
-            lineChartView.notifyDataSetChanged()
-        }else{
-            set1 = LineChartDataSet(yVals: yVals, label: "")
-            set1?.lineDashLengths = [0.0, 0];
-            set1?.highlightLineDashLengths = [0.0, 0.0];
-            set1?.setColor(AppTheme.NEVO_SOLAR_YELLOW())
-            set1?.setCircleColor(AppTheme.NEVO_SOLAR_GRAY())
-            set1?.valueTextColor = UIColor.blackColor()
-            set1?.lineWidth = 1.0;
-            set1?.circleRadius = 0.0;
-            //set1?.drawCirclesEnabled = false;
-            set1?.drawValuesEnabled = false
-            set1?.drawCircleHoleEnabled = false;
-            set1?.valueFont = UIFont.systemFontOfSize(9.0)
-            set1?.mode = LineChartDataSet.Mode.CubicBezier
-            
-            let gradientColors:[CGColor] = [AppTheme.NEVO_SOLAR_YELLOW().CGColor,AppTheme.NEVO_SOLAR_GRAY().CGColor];
-            let gradient:CGGradientRef = CGGradientCreateWithColors(nil, gradientColors, nil)!
-            set1?.fillAlpha = 1.0;
-            set1?.fill = ChartFill.fillWithLinearGradient(gradient, angle: 90.0)
-            set1?.drawFilledEnabled = true;
-            
-            
-            var dataSets:[LineChartDataSet] = [];
-            dataSets.append(set1!)
-            
-            let data:LineChartData = LineChartData(xVals: xVals, dataSets: dataSets)
-            lineChartView.data = data;
-        }
+        let set1:LineChartDataSet = LineChartDataSet(yVals: yVals, label: "")
+        set1.lineDashLengths = [0.0, 0];
+        set1.highlightLineDashLengths = [0.0, 0.0];
+        set1.setColor(AppTheme.NEVO_SOLAR_YELLOW())
+        set1.setCircleColor(AppTheme.NEVO_SOLAR_GRAY())
+        set1.valueTextColor = UIColor.blackColor()
+        set1.lineWidth = 1.0;
+        set1.circleRadius = 0.0;
+        //set1?.drawCirclesEnabled = false;
+        set1.drawValuesEnabled = false
+        set1.drawCircleHoleEnabled = false;
+        set1.valueFont = UIFont.systemFontOfSize(9.0)
+        set1.mode = LineChartDataSet.Mode.CubicBezier
+        
+        let gradientColors:[CGColor] = [AppTheme.NEVO_SOLAR_YELLOW().CGColor,AppTheme.NEVO_SOLAR_GRAY().CGColor];
+        let gradient:CGGradientRef = CGGradientCreateWithColors(nil, gradientColors, nil)!
+        set1.fillAlpha = 1.0;
+        set1.fill = ChartFill.fillWithLinearGradient(gradient, angle: 90.0)
+        set1.drawFilledEnabled = true;
+        
+        
+        var dataSets:[LineChartDataSet] = [];
+        dataSets.append(set1)
+        
+        let data:LineChartData = LineChartData(xVals: xVals, dataSets: dataSets)
+        lineChartView.data = data;
     }
     
     func setChartViewLeftAxis(maxValue:Double,unitString:String) {

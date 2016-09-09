@@ -30,7 +30,6 @@ class SleepHistoricalView: UIView, ChartViewDelegate{
         if(mDelegate == nil) {
             mDelegate = delegate
             // MARK: - chartView?.marker
-            //chartView.addDataPoint("\(1)", entry: BarChartDataEntry(value: xVal, xIndex:i))
             chartView?.backgroundColor = UIColor.whiteColor()
             chartView?.drawSettings(chartView!.xAxis, yAxis: chartView!.leftAxis, rightAxis: chartView!.rightAxis)
         }

@@ -12,12 +12,12 @@ import SwiftEventBus
 
 class SleepHistoricalViewController: PublicClassController,ChartViewDelegate,SelectedChartViewDelegate {
 
-    @IBOutlet var queryView: SleepHistoricalView!
+    @IBOutlet weak var queryView: SleepHistoricalView!
     private var contentTitleArray:[String] = []
     private var contentTArray:[String] = [NSLocalizedString("--", comment: ""),NSLocalizedString("--", comment: ""),NSLocalizedString("--", comment: ""),NSLocalizedString("--", comment: "")]
     private var selectedDate:NSDate = NSDate()
 
-    private var queryArray:NSArray?
+    private var todaySleepArray:NSArray = UserSleep.getCriteria("WHERE date BETWEEN \(NSDate.yesterday().beginningOfDay.timeIntervalSince1970) AND \(NSDate().endOfDay.timeIntervalSince1970)")
     init() {
         super.init(nibName: "SleepHistoricalViewController", bundle: NSBundle.mainBundle())
 
@@ -34,28 +34,37 @@ class SleepHistoricalViewController: PublicClassController,ChartViewDelegate,Sel
         
         queryView.detailCollectionView.backgroundColor = UIColor.whiteColor()
         queryView.detailCollectionView.registerNib(UINib(nibName:"SleepHistoryViewCell",bundle: nil) , forCellWithReuseIdentifier: "SleepHistoryValue_Identifier")
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        todaySleepArray = UserSleep.getCriteria("WHERE date BETWEEN \(NSDate.yesterday().beginningOfDay.timeIntervalSince1970) AND \(NSDate().endOfDay.timeIntervalSince1970)")
+        AnalysisSleepData(todaySleepArray)
         
         SwiftEventBus.onMainThread(self, name: SELECTED_CALENDAR_NOTIFICATION) { (notification) in
             let userinfo:NSDate = notification.userInfo!["selectedDate"] as! NSDate
             self.selectedDate = userinfo
-            self.queryArray = UserSleep.getCriteria("WHERE date BETWEEN \(userinfo.timeIntervalSince1970-86400) AND \(userinfo.endOfDay.timeIntervalSince1970)")
-            //self.queryView.bulidQueryView(self,modelArray: self.queryArray!)
+            let selectedSleepArray = UserSleep.getCriteria("WHERE date BETWEEN \(userinfo.timeIntervalSince1970-86400) AND \(userinfo.endOfDay.timeIntervalSince1970)")
+            self.AnalysisSleepData(selectedSleepArray)
         }
         
         SwiftEventBus.onMainThread(self, name: EVENT_BUS_END_BIG_SYNCACTIVITY) { (notification) in
-            self.AnalysisSleepData()
+            let syncArray:NSArray = UserSleep.getCriteria("WHERE date BETWEEN \(NSDate.yesterday().beginningOfDay.timeIntervalSince1970) AND \(NSDate().endOfDay.timeIntervalSince1970)")
+            self.AnalysisSleepData(syncArray)
         }
-
     }
-
+    
+    override func viewDidLayoutSubviews() {
+        (queryView.detailCollectionView.collectionViewLayout as! UICollectionViewFlowLayout).itemSize = CGSizeMake(UIScreen.mainScreen().bounds.size.width/2.0, 40)
+    }
+    
     override func viewDidDisappear(animated: Bool) {
         super.viewDidDisappear(animated)
         SwiftEventBus.unregister(self, name: SELECTED_CALENDAR_NOTIFICATION)
+        SwiftEventBus.unregister(self, name: EVENT_BUS_END_BIG_SYNCACTIVITY)
     }
     
-    func AnalysisSleepData() {
-        self.queryArray = UserSleep.getCriteria("WHERE date BETWEEN \(NSDate.yesterday().beginningOfDay.timeIntervalSince1970) AND \(selectedDate.endOfDay.timeIntervalSince1970)")
-        queryView.bulidQueryView(self,modelArray: queryArray!)
+    func AnalysisSleepData(array:NSArray) {
+        queryView.bulidQueryView(self,modelArray: array)
         
         if queryView.chartView!.getYVals().count > 0 {
             var sleepTime:Double = 0
@@ -93,14 +102,6 @@ class SleepHistoricalViewController: PublicClassController,ChartViewDelegate,Sel
             contentTArray.replaceRange(Range(3..<4), with: ["\(Int(sleepTime/60)) h"])
             self.queryView.detailCollectionView.reloadData()
         }
-    }
-    
-    override func viewWillAppear(animated: Bool) {
-        AnalysisSleepData()
-    }
-
-    override func viewDidLayoutSubviews() {
-        (queryView.detailCollectionView.collectionViewLayout as! UICollectionViewFlowLayout).itemSize = CGSizeMake(UIScreen.mainScreen().bounds.size.width/2.0, 40)
     }
 
     override func didReceiveMemoryWarning() {
