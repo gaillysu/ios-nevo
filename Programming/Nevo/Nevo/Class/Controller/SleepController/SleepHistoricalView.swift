@@ -85,7 +85,7 @@ class SleepHistoricalView: UIView, ChartViewDelegate{
                     lightTimer = (lightTimeTimeArray[s] as! NSNumber).integerValue + lightTimer
                     deepTimer = (deepTimeTimeArray[s] as! NSNumber).integerValue + deepTimer
                     if (sleepTimeArray[s] as! NSNumber).integerValue > 0 {
-                        sleepEntry.append(["\(s):00":[(sleepTimeArray[s] as! NSNumber).doubleValue,(lightTimeTimeArray[s] as! NSNumber).doubleValue,(deepTimeTimeArray[s] as! NSNumber).doubleValue]])
+                        sleepEntry.append(["\(s):00":[(wakeTimeTimeArray[s] as! NSNumber).doubleValue,(lightTimeTimeArray[s] as! NSNumber).doubleValue,(deepTimeTimeArray[s] as! NSNumber).doubleValue]])
                     }
                     
                 }

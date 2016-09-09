@@ -14,7 +14,7 @@ class SleepHistoricalViewController: PublicClassController,ChartViewDelegate,Sel
 
     @IBOutlet var queryView: SleepHistoricalView!
     private var contentTitleArray:[String] = []
-    private var contentTArray:[String] = [NSLocalizedString("24:00", comment: ""),NSLocalizedString("24:00", comment: ""),NSLocalizedString("24:00", comment: ""),NSLocalizedString("24:00", comment: "")]
+    private var contentTArray:[String] = [NSLocalizedString("--", comment: ""),NSLocalizedString("--", comment: ""),NSLocalizedString("--", comment: ""),NSLocalizedString("--", comment: "")]
     private var selectedDate:NSDate = NSDate()
 
     private var queryArray:NSArray?
