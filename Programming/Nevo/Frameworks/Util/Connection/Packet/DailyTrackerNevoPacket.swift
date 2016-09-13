@@ -449,4 +449,38 @@ class DailyTrackerNevoPacket: NevoPacket {
         dailyDistance =  dailyDistance + Int(NSData2Bytes(getPackets()[packetno])[offset+3] )<<24
         return dailyDistance/100
     }
+    
+    func getTotalSwimTime()-> Int {
+        let packetno = 3
+        let offset = 12
+        var totalSwim:Int = Int(NSData2Bytes(getPackets()[packetno])[offset])
+        totalSwim += Int(NSData2Bytes(getPackets()[packetno])[offset+1] )<<8
+        totalSwim += Int(NSData2Bytes(getPackets()[packetno])[offset+2] )<<16
+        totalSwim += Int(NSData2Bytes(getPackets()[packetno])[offset+3] )<<24
+        return totalSwim/60
+    }
+    
+    func getHourlySwimTime()-> [Int] {
+        var hourlySwim = [Int](count: 24, repeatedValue: 0)
+        let HEADERLENGTH:Int = 6
+        var hourlySwimTime:Int = 0
+        
+        for i:Int in 0 ..< 24 {
+            let packetno = HEADERLENGTH+i*3+1;
+            let offset = 10;
+            hourlySwimTime = 0
+            for l:Int in 0..<2 {
+                let value = NSData2Bytes(getPackets()[packetno])[offset+l]
+                if value != 0xFF {
+                    if l==0 {
+                        hourlySwimTime += Int(value)
+                    }else{
+                        hourlySwimTime += Int(NSData2Bytes(getPackets()[packetno])[offset+1])<<8
+                    }
+                }
+            }
+            hourlySwim.replaceRange(i..<i+1, with: [hourlySwimTime/60])
+        }
+        return hourlySwim
+    }
 }
