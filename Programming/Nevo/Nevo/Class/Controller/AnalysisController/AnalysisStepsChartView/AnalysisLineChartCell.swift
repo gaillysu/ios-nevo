@@ -16,6 +16,9 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
     @IBOutlet weak var lineChartView: LineChartView!
     private var sortArray:NSMutableArray = NSMutableArray()
     
+    private var xVals:[String] = []
+    private var yVals:[ChartDataEntry] = []
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         self.initChartView()
@@ -48,7 +51,7 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
         lineChartView.marker = marker;
         
         lineChartView.legend.form = ChartLegend.Form.Line
-        lineChartView.animate(xAxisDuration: 2.5, easingOption: ChartEasingOption.EaseInOutQuart)
+        lineChartView.animate(xAxisDuration: 2.5, easingOption: ChartEasingOption.EaseInOutCirc)
     }
     
     func setTitle(title:String) {
@@ -61,6 +64,9 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
     
     func updateChartData(dataArray:NSArray,chartType:Int,rowIndex:Int,completionData:((totalValue:Float,totalCalores:Int,totalTime:Int) -> Void)) {
         lineChartView.data = nil
+        xVals = []
+        yVals = []
+        
         switch chartType {
         case 0:
             var totalSteps:Int = 0
@@ -92,8 +98,6 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
     }
     
     func setStepsDataCount(countArray:NSArray,type:Int,rowIndex:Int) {
-        var xVals:[String] = []
-        var yVals:[ChartDataEntry] = []
         sortArray.removeAllObjects()
         sortArray.addObjectsFromArray(countArray as [AnyObject])
         
@@ -135,28 +139,11 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
             for value in stepsArray {
                 steps += Double((value as! NSNumber).doubleValue)
             }
-            
             yVals.append(ChartDataEntry(value: steps, xIndex: i))
             xVals.append(dateString)
         }
         
-        if rowIndex == 0 || rowIndex == 1{
-            if xVals.count<7 {
-                for index:Int in xVals.count..<7 {
-                    xVals.append("")
-                    yVals.append(ChartDataEntry(value: 0, xIndex: index))
-                }
-            }
-        }
-        
-        if rowIndex == 2 {
-            if xVals.count<30 {
-                for index:Int in xVals.count..<30 {
-                    xVals.append("")
-                    yVals.append(ChartDataEntry(value: 0, xIndex: index))
-                }
-            }
-        }
+        self.setYvalueData(rowIndex)
         
         let set1:LineChartDataSet = LineChartDataSet(yVals: yVals, label: "")
         set1.lineDashLengths = [0.0, 0];
@@ -171,17 +158,18 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
         set1.drawCircleHoleEnabled = false;
         set1.valueFont = UIFont.systemFontOfSize(9.0)
         
-        let gradientColors:[CGColor] = [AppTheme.NEVO_SOLAR_YELLOW().CGColor,AppTheme.NEVO_SOLAR_GRAY().CGColor];
+        let gradientColors:[CGColor] = [AppTheme.NEVO_SOLAR_GRAY().CGColor,AppTheme.NEVO_SOLAR_YELLOW().CGColor];
         let gradient:CGGradientRef = CGGradientCreateWithColors(nil, gradientColors, nil)!
-        set1.fillAlpha = 1.0;
-        set1.fill = ChartFill.fillWithLinearGradient(gradient, angle: 90.0)
-        set1.drawFilledEnabled = true;
+        set1.fillAlpha = 1;
+        set1.fill = ChartFill.fillWithLinearGradient(gradient, angle: 80.0)
+        set1.drawFilledEnabled = true
         set1.mode = LineChartDataSet.Mode.CubicBezier
-
+        
         let data:LineChartData = LineChartData(xVals: xVals, dataSets: [set1])
         data.setDrawValues(false)
         lineChartView.data = data;
-        lineChartView.animate(xAxisDuration:2.5, easingOption: ChartEasingOption.EaseInOutQuart)
+        //lineChartView.animate(xAxisDuration: 2.5, easingOption: ChartEasingOption.EaseInOutCirc)
+        lineChartView.animate(xAxisDuration: 2.0, yAxisDuration: 2.0, easingOption: ChartEasingOption.EaseInOutCirc)
     }
 
     func setSleepDataCount(countArray:NSArray,type:Int,rowIndex:Int) {
@@ -302,7 +290,6 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
             set1.valueTextColor = UIColor.blackColor()
             set1.lineWidth = 1.0;
             set1.circleRadius = 0.0;
-            //set1?.drawCirclesEnabled = false;
             set1.drawValuesEnabled = false
             set1.drawCircleHoleEnabled = false;
             set1.valueFont = UIFont.systemFontOfSize(9.0)
@@ -319,16 +306,15 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
         let data:LineChartData = LineChartData(xVals: xVals, dataSets: dataSets)
         lineChartView.data = data;
         lineChartView.legend.form = ChartLegend.Form.Line
-        lineChartView.animate(xAxisDuration: 1.4, easingOption: ChartEasingOption.EaseInOutCirc)
+        lineChartView.animate(xAxisDuration: 2.0, yAxisDuration: 2.0, easingOption: ChartEasingOption.EaseInOutCirc)
     }
     
     func setSloarDataCount(count:Int,range:Double) {
         var xVals:[String] = []
+        var yVals:[ChartDataEntry] = []
         for i:Int in 0..<count {
             xVals.append("\(i)")
         }
-        
-        var yVals:[ChartDataEntry] = []
         
         var maxValue:Double = 0
         
@@ -353,7 +339,6 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
         set1.valueTextColor = UIColor.blackColor()
         set1.lineWidth = 1.0;
         set1.circleRadius = 0.0;
-        //set1?.drawCirclesEnabled = false;
         set1.drawValuesEnabled = false
         set1.drawCircleHoleEnabled = false;
         set1.valueFont = UIFont.systemFontOfSize(9.0)
@@ -365,12 +350,9 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
         set1.fill = ChartFill.fillWithLinearGradient(gradient, angle: 90.0)
         set1.drawFilledEnabled = true;
         
-        
-        var dataSets:[LineChartDataSet] = [];
-        dataSets.append(set1)
-        
-        let data:LineChartData = LineChartData(xVals: xVals, dataSets: dataSets)
+        let data:LineChartData = LineChartData(xVals: xVals, dataSets: [set1])
         lineChartView.data = data;
+        lineChartView.animate(xAxisDuration: 2.0, yAxisDuration: 2.0, easingOption: ChartEasingOption.EaseInOutCirc)
     }
     
     func setChartViewLeftAxis(maxValue:Double,unitString:String) {
@@ -387,5 +369,80 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
         leftAxis.valueFormatter!.positiveSuffix = unitString;
         leftAxis.labelPosition = ChartYAxis.LabelPosition.OutsideChart
         leftAxis.spaceTop = 0.15;
+    }
+    
+    func setYvalueData(rowIndex:Int) {
+        if rowIndex == 0{
+            if xVals.count<7 {
+                if xVals.count == 0 {
+                    let dateString:String = NSDate().beginningOfWeek.stringFromFormat("dd/MM")
+                    xVals.append(dateString)
+                    yVals.append(ChartDataEntry(value: 0, xIndex: 0))
+                }
+                for index:Int in xVals.count..<7 {
+                    let date:NSDate = xVals[xVals.count-1].dateFromFormat("dd/MM")!
+                    let date2:NSDate = NSDate.date(year: NSDate().year, month: NSDate().month, day:date.day+1)
+                    let dateString:String = date2.stringFromFormat("dd/MM")
+                    xVals.append(dateString)
+                    yVals.append(ChartDataEntry(value: 0, xIndex: index))
+                }
+            }
+        }
+        
+        if rowIndex == 1{
+            let startTimeInterval:NSTimeInterval = NSDate().timeIntervalSince1970-(86400.0*7)
+            if xVals.count<7 {
+                for index:Int in 1..<7 {
+                    if xVals.count==0 {
+                        let dateString:String = NSDate(timeIntervalSince1970: startTimeInterval).stringFromFormat("dd/MM")
+                        xVals.append(dateString)
+                        yVals.append(ChartDataEntry(value: 0, xIndex: index))
+                    }
+                    let startDate1:NSDate = xVals[index-1].dateFromFormat("dd/MM")!
+                    let date2:NSDate = NSDate.date(year: NSDate().year, month: NSDate().month, day:startDate1.day+1)
+                    if xVals.count == index {
+                        let dateString:String = date2.stringFromFormat("dd/MM")
+                        xVals.append(dateString)
+                        yVals.insert(ChartDataEntry(value: 0, xIndex: index), atIndex: index)
+                    }else{
+                        let pDate:NSDate = xVals[index].dateFromFormat("dd/MM")!
+                        
+                        if pDate.day != date2.day{
+                            let dateString:String = date2.stringFromFormat("dd/MM")
+                            xVals.append(dateString)
+                            yVals.insert(ChartDataEntry(value: 0, xIndex: index), atIndex: index)
+                        }
+                    }
+                }
+            }
+        }
+        
+        if rowIndex == 2 {
+            let startTimeInterval:NSTimeInterval = NSDate().timeIntervalSince1970-(86400.0*30)
+            if xVals.count<30 {
+                for index:Int in 1..<30 {
+                    if xVals.count==0 {
+                        let dateString:String = NSDate(timeIntervalSince1970: startTimeInterval).stringFromFormat("dd/MM")
+                        xVals.append(dateString)
+                        yVals.append(ChartDataEntry(value: 0, xIndex: index))
+                    }
+                    let startDate1:NSDate = xVals[index-1].dateFromFormat("dd/MM")!
+                    let date2:NSDate = NSDate.date(year: NSDate().year, month: NSDate().month, day:startDate1.day+1)
+                    if xVals.count == index {
+                        let dateString:String = date2.stringFromFormat("dd/MM")
+                        xVals.append(dateString)
+                        yVals.insert(ChartDataEntry(value: 0, xIndex: index), atIndex: index)
+                    }else{
+                        let pDate:NSDate = xVals[index].dateFromFormat("dd/MM")!
+                        
+                        if pDate.day != date2.day{
+                            let dateString:String = date2.stringFromFormat("dd/MM")
+                            xVals.append(dateString)
+                            yVals.insert(ChartDataEntry(value: 0, xIndex: index), atIndex: index)
+                        }
+                    }
+                }
+            }
+        }
     }
 }
