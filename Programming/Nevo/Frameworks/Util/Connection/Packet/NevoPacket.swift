@@ -82,6 +82,12 @@ class NevoPacket {
     {
         return BatteryLevelNevoPacket(packets: mPackets)
     }
+    
+    func copy()->WatchNamePacket
+    {
+        return WatchNamePacket(packets: mPackets)
+    }
+    
     //only two types packets: 2/78 count
     func isVaildPacket() ->Bool
     {

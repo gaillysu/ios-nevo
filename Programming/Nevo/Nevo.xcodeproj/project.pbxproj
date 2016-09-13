@@ -126,6 +126,7 @@
 		0058B3EB1CF55D590079A213 /* ConnectOtherAppsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0058B3E91CF55D590079A213 /* ConnectOtherAppsController.xib */; };
 		005BC95F1A88B79F006F9E86 /* FXBlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = 005BC95E1A88B79F006F9E86 /* FXBlurView.m */; };
 		005E468A1D879FB5009B6E4C /* GetWatchName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005E46891D879FB5009B6E4C /* GetWatchName.swift */; };
+		005E468C1D87DBE1009B6E4C /* WatchNamePacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005E468B1D87DBE1009B6E4C /* WatchNamePacket.swift */; };
 		0062E5EC1D616269008CF692 /* LineLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0062E5EB1D616269008CF692 /* LineLabel.swift */; };
 		006756071D4848A300E8144C /* notification_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 006756061D4848A300E8144C /* notification_background.png */; };
 		006756081D4849D400E8144C /* notification_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 006756061D4848A300E8144C /* notification_background.png */; };
@@ -678,6 +679,7 @@
 		005BC95D1A88B79F006F9E86 /* FXBlurView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FXBlurView.h; sourceTree = "<group>"; };
 		005BC95E1A88B79F006F9E86 /* FXBlurView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FXBlurView.m; sourceTree = "<group>"; };
 		005E46891D879FB5009B6E4C /* GetWatchName.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetWatchName.swift; sourceTree = "<group>"; };
+		005E468B1D87DBE1009B6E4C /* WatchNamePacket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchNamePacket.swift; sourceTree = "<group>"; };
 		0061243E1D3F0E80005E4E1E /* AnalysisStepsChartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalysisStepsChartView.swift; sourceTree = "<group>"; };
 		0062E5EB1D616269008CF692 /* LineLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineLabel.swift; sourceTree = "<group>"; };
 		006756061D4848A300E8144C /* notification_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = notification_background.png; sourceTree = "<group>"; };
@@ -1920,6 +1922,7 @@
 				00AF8C9F1D224CFA009047AC /* DailyTrackerInfoNevoPacket.swift */,
 				00AF8CA01D224CFA009047AC /* DailyTrackerNevoPacket.swift */,
 				00AF8CA11D224CFA009047AC /* NevoPacket.swift */,
+				005E468B1D87DBE1009B6E4C /* WatchNamePacket.swift */,
 			);
 			path = Packet;
 			sourceTree = "<group>";
@@ -3319,6 +3322,7 @@
 				00AF8CEE1D224CFA009047AC /* Utility.swift in Sources */,
 				00AF8CDB1D224CFA009047AC /* AnimationView.swift in Sources */,
 				006A62591D6AA76C00458305 /* NewAddAlarmHeader.swift in Sources */,
+				005E468C1D87DBE1009B6E4C /* WatchNamePacket.swift in Sources */,
 				00AF8CF61D224CFA009047AC /* LedLightOnOffNevoRequest.swift in Sources */,
 				00AF8CC91D224CFA009047AC /* UserAlarm.swift in Sources */,
 				00AF8CE61D224CFA009047AC /* ConnectionControllerImpl.swift in Sources */,

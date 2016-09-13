@@ -41,6 +41,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
 
     private var disConnectAlert:UIAlertView?
     private let alertUpdateTag:Int = 9000
+    
+    private var watchID:Int = 1
+    private var watchName:String = "Nevo"
+    private var watchModelNumber:Int = 1
+    private var watchModel:String = "Paris"
 
     let dbQueue:FMDatabaseQueue = FMDatabaseQueue(path: AppDelegate.dbPath())
     let network = NetworkReachabilityManager(host: "drone.karljohnchow.com")
@@ -261,6 +266,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
     func ReadBatteryLevel() {
         sendRequest(ReadBatteryLevelNevoRequest())
     }
+    
+    func getWatchName() {
+        sendRequest(GetWatchName())
+    }
 
     // MARK: -AppDelegate syncActivityData
     /**
@@ -274,6 +283,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
             //We haven't synched for a while, let's sync now !
             XCGLogger.defaultInstance().debug("*** Sync started ! ***")
             self.getDailyTrackerInfo()
+            lastSync = NSDate().timeIntervalSince1970
             if(isConnected()) {
                 let banner = Banner(title: NSLocalizedString("syncing_data", comment: ""), subtitle: nil, image: nil, backgroundColor: AppTheme.NEVO_SOLAR_YELLOW())
                 banner.dismissesOnTap = true
@@ -322,6 +332,56 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
         return isConnected() ? self.mConnectionController!.getSoftwareVersion() : NSString()
     }
 
+    func getWatchNameInfo() -> [String:Int] {
+        return [watchName:watchID];
+    }
+    
+    func getWatchModel() -> [String:Int] {
+        return [watchModel:watchModelNumber];
+    }
+    
+    func setWatchInfo(id:Int,model:Int) {
+        //1-Nevo,2-Nevo Solar,3-Lunar,0xff-Nevo
+        switch id {
+        case 1:
+            watchID = 1
+            watchName = "Nevo"
+            break
+        case 2:
+            watchID = 2
+            watchName = "Nevo Solar"
+            break
+        case 3:
+            watchID = 3
+            watchName = "Lunar"
+            break
+        default:
+            watchID = 1
+            watchName = "Nevo"
+            break
+        }
+        
+        //1 - Paris,2 - New York,3 - ShangHai
+        switch model {
+        case 1:
+            watchModelNumber = 1
+            watchModel = "Paris"
+            break
+        case 2:
+            watchModelNumber = 2
+            watchModel = "New York"
+            break
+        case 3:
+            watchModelNumber = 3
+            watchModel = "ShangHai"
+            break
+        default:
+            watchModelNumber = 1
+            watchModel = "Paris"
+            break
+        }
+    }
+    
     func connect() {
         self.mConnectionController?.connect()
     }
@@ -454,6 +514,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
             }
 
             if(packet.getHeader() == SetAlarmRequest.HEADER()) {
+                self.getWatchName()
+            }
+            
+            if(packet.getHeader() == GetWatchName.HEADER()) {
+                let watchpacket = packet.copy() as WatchNamePacket
+                self.setWatchInfo(watchpacket.getWatchID(), model: watchpacket.getModelNumber())
                 //start sync data
                 self.syncActivityData()
             }
