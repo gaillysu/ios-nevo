@@ -55,6 +55,11 @@ PODS:
   - NJKWebViewProgress/Core (0.2.3)
   - NJKWebViewProgress/ProgressView (0.2.3)
   - PagingMenuController (1.1.2)
+  - Realm (1.0.2):
+    - Realm/Headers (= 1.0.2)
+  - Realm/Headers (1.0.2)
+  - RealmSwift (1.0.2):
+    - Realm (= 1.0.2)
   - RegexKitLite (4.0)
   - SMSegmentView (1.1)
   - SwiftEventBus (1.1.0)
@@ -84,6 +89,7 @@ DEPENDENCIES:
   - MRProgress
   - NJKWebViewProgress
   - PagingMenuController
+  - RealmSwift
   - RegexKitLite
   - SMSegmentView
   - SwiftEventBus (from `https://github.com/cesarferreira/SwiftEventBus.git`)
@@ -132,6 +138,8 @@ SPEC CHECKSUMS:
   MRProgress: 16de7cc9f347e8846797a770db102a323fe7ef09
   NJKWebViewProgress: f481fd424cb5ecc27eacae11b5397db92fba9a4d
   PagingMenuController: a47a9669760b95f630cc3ef28bdce104f9107d14
+  Realm: 9d5c46a4d7d27958530a8dfc58f63a99e5c2cba3
+  RealmSwift: 82f3ac5e24530143dddfde2033acc0d308f27d96
   RegexKitLite: c0e4c12e6e7de0769f3a3ed679f0f61604170661
   SMSegmentView: a99862f36ea73478558ae665c209cb80c0d4f059
   SwiftEventBus: d334f7aecbddbd995c3de5c262cf35c72db550f3
@@ -142,6 +150,6 @@ SPEC CHECKSUMS:
   UMengAnalytics-NO-IDFA: 965a219b05475ff2a4c09a164139a27bbaa0e25b
   XCGLogger: 94829865eea6fcc1f9a49e23bdc9f120a6848f30
 
-PODFILE CHECKSUM: 09a545c0c8a2803b1b6756cf3f55d34b20ccff27
+PODFILE CHECKSUM: d2289a24a7c045ca0829fce19590890ded00cbc7
 
 COCOAPODS: 1.1.0.beta.1
