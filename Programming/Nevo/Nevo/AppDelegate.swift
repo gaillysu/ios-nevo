@@ -415,70 +415,47 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
             }
 
             if(packet.getHeader() == SetNortificationRequest.HEADER()) {
-                var alarmArray:[Alarm] = []
-                let array:NSArray = UserAlarm.getAll()
-
-                if(self.getSoftwareVersion().integerValue > 18){
-                    for index in 0 ..< array.count{
-                        let date:NSDate = NSDate()
-                        let newAlarm:NewAlarm = NewAlarm(alarmhour: date.hour, alarmmin: date.minute, alarmNumber: index, alarmWeekday: 0)
-                        if(self.isConnected()){
+                let weakAlarm:NSArray = UserAlarm.getCriteria("WHERE type = \(0)")
+                let sleepAlarm:NSArray = UserAlarm.getCriteria("WHERE type = \(1)")
+                
+                for index in 0 ..< 14{
+                    let date:NSDate = NSDate()
+                    let newAlarm:NewAlarm = NewAlarm(alarmhour: date.hour, alarmmin: date.minute, alarmNumber: index, alarmWeekday: 0)
+                    if(self.isConnected()){
+                        self.setNewAlarm(newAlarm)
+                    }
+                }
+                
+                let date:NSDate = NSDate()
+                for (index,Value) in weakAlarm.enumerate() {
+                    let alarm:UserAlarm = Value as! UserAlarm
+                    let alarmDay:NSDate = NSDate(timeIntervalSince1970: alarm.timer)
+                    if alarm.status {
+                        let newAlarm:NewAlarm = NewAlarm(alarmhour: alarmDay.hour, alarmmin: alarmDay.minute, alarmNumber: index, alarmWeekday: alarm.dayOfWeek)
+                        self.setNewAlarm(newAlarm)
+                    }
+                }
+                
+                for (index,Value) in sleepAlarm.enumerate() {
+                    let alarm:UserAlarm = Value as! UserAlarm
+                    let alarmDay:NSDate = NSDate(timeIntervalSince1970: alarm.timer)
+                    if alarm.type == 1 && alarm.status && alarm.dayOfWeek == date.weekday{
+                        let newAlarm:NewAlarm = NewAlarm(alarmhour: alarmDay.hour, alarmmin: alarmDay.minute, alarmNumber: index+7, alarmWeekday: 0)
+                        self.setNewAlarm(newAlarm)
+                    }else{
+                        if alarm.status {
+                            let newAlarm:NewAlarm = NewAlarm(alarmhour: alarmDay.hour, alarmmin: alarmDay.minute, alarmNumber: index+7, alarmWeekday: alarm.dayOfWeek)
                             self.setNewAlarm(newAlarm)
                         }
                     }
-
-                    var sleepAlarmCount:Int = 7
-                    var dayAlarmCount:Int = 0
-                    for alarm in array{
-                        let alarmModel:UserAlarm =  alarm as! UserAlarm
-                        if(alarmModel.type == 1 && alarmModel.status) {
-                            let date:NSDate = NSDate(timeIntervalSince1970: alarmModel.timer)
-                            let newAlarm:NewAlarm = NewAlarm(alarmhour: date.hour, alarmmin: date.minute, alarmNumber: sleepAlarmCount, alarmWeekday: alarmModel.dayOfWeek)
-
-                            if(self.isConnected()){
-                               self.setNewAlarm(newAlarm)
-                            }
-
-                            sleepAlarmCount+=1
-                        }else if (alarmModel.type == 0 && alarmModel.status){
-                            let date:NSDate = NSDate(timeIntervalSince1970: alarmModel.timer)
-                            let newAlarm:NewAlarm = NewAlarm(alarmhour: date.hour, alarmmin: date.minute, alarmNumber: dayAlarmCount, alarmWeekday: alarmModel.dayOfWeek)
-
-                            if(self.isConnected()){
-                                self.setNewAlarm(newAlarm)
-                            }
-
-                            dayAlarmCount += 1
-                        }
-                    }
-
-                    //start sync data
-                    self.syncActivityData()
-
-                }else{
-                    for index in 0 ..< array.count{
-                        let useralarm:UserAlarm = array[index] as! UserAlarm
-                        let date:NSDate = NSDate(timeIntervalSince1970: useralarm.timer)
-                        if(useralarm.status) {
-                            let alarm:Alarm = Alarm(index:index, hour: date.hour, minute: date.minute, enable: useralarm.status)
-                            alarmArray.append(alarm)
-                        }
-                    }
-
-                    for index in 0 ..< 3{
-                        let date:NSDate = NSDate()
-                        let alarm:Alarm = Alarm(index:index, hour: date.hour, minute: date.minute, enable: false)
-                        alarmArray.append(alarm)
-                    }
-                    setAlarm(alarmArray)
                 }
+                //start sync data
+                //self.syncActivityData()
             }
 
             if(packet.getHeader() == SetAlarmRequest.HEADER()) {
-                if(AppDelegate.getAppDelegate().getSoftwareVersion().integerValue <= 18){
-                    //start sync data
-                    self.syncActivityData()
-                }
+                //start sync data
+                self.syncActivityData()
             }
 
             if(packet.getHeader() == ReadDailyTrackerInfo.HEADER()) {
