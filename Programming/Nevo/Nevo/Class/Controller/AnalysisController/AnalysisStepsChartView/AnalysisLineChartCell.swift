@@ -255,6 +255,7 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
             }
             
             xVals.append(dateString)
+            yVals.append(ChartDataEntry(value: 0, xIndex: index))
             weakeYVals.append(ChartDataEntry(value: Double(weakeValue)/60, xIndex: index))
             lightYVals.append(ChartDataEntry(value: Double(lightValue)/60, xIndex: index))
             deepYVals.append(ChartDataEntry(value: Double(deepValue)/60, xIndex: index))
