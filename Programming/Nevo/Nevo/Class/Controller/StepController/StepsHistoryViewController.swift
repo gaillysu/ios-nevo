@@ -91,6 +91,9 @@ class StepsHistoryViewController: PublicClassController,UICollectionViewDelegate
     func saveContentTArray() {
         //Only for today's data
         let array:NSArray = UserSteps.getCriteria("WHERE date = \(NSDate().beginningOfDay.timeIntervalSince1970)")
+        self.queryArray = array
+        self.bulidStepHistoricalChartView(array)
+        
         if array.count>0 {
             let dataSteps:UserSteps = array[0] as! UserSteps
             
