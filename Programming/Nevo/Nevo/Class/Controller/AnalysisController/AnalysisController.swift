@@ -51,6 +51,7 @@ extension AnalysisController {
             dataArray.addObjectsFromArray(self.getSleepData())
             chartsCollectionView.reloadData()
         }else{
+            dataArray.addObjectsFromArray(self.getStepsData())
             chartsCollectionView.reloadData()
         }
     }
@@ -135,10 +136,10 @@ extension AnalysisController:UICollectionViewDelegate,UICollectionViewDataSource
                 });
                 contentCollectionView.reloadData()
             }else{
-                self.contentTArray.replaceRange(Range(0..<1), with: [String(format: "6.3")])
-                self.contentTArray.replaceRange(Range(1..<2), with: [String(format: "5.6")])
+                self.contentTArray.replaceRange(Range(0..<1), with: [String(format: "0")])
+                self.contentTArray.replaceRange(Range(1..<2), with: [String(format: "0")])
                 
-                cell.updateChartData(NSArray(), chartType: segmented.selectedSegmentIndex,rowIndex:indexPath.row, completionData: { (totalValue, totalCalores, totalTime) in
+                cell.updateChartData(dataArray[indexPath.row] as! NSArray, chartType: segmented.selectedSegmentIndex,rowIndex:indexPath.row, completionData: { (totalValue, totalCalores, totalTime) in
                 
                 });
                 contentCollectionView.reloadData()

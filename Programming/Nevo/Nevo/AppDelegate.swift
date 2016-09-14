@@ -514,7 +514,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
             }
 
             if(packet.getHeader() == SetAlarmRequest.HEADER()) {
-                self.getWatchName()
+                //start sync data
+                self.syncActivityData()
+                //self.getWatchName()
             }
             
             if(packet.getHeader() == GetWatchName.HEADER()) {

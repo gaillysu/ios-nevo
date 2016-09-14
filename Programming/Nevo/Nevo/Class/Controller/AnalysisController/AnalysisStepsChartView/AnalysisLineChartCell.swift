@@ -92,8 +92,7 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
             completionData(totalValue: Float(totalValue)/60.0, totalCalores: 0, totalTime: 0)
             self.setSleepDataCount(dataArray, type: chartType,rowIndex:rowIndex)
         case 2:
-            break
-            //self.setSloarDataCount(7, range: 50)
+            self.setSloarDataCount(dataArray, type: chartType,rowIndex:rowIndex)
         default: break
         }
     }
@@ -347,23 +346,20 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
             }
             //chart the maximum
             if i == countArray.count-1 {
-                self.setChartViewLeftAxis(Double(maxValue+500), unitString: "")
+                self.setChartViewLeftAxis(Double(maxValue+7), unitString: " hours")
             }
         }
         
         if sortArray.count == 0 {
-            self.setChartViewLeftAxis(Double(maxValue+500), unitString: "")
+            self.setChartViewLeftAxis(Double(maxValue+7), unitString: " hours")
         }
         
         for i:Int in 0..<sortArray.count {
             let usersteps:UserSteps = sortArray[i] as! UserSteps
             let date:NSDate = "\(usersteps.createDate)".dateFromFormat("yyyyMMdd")!
             let dateString:String = date.stringFromFormat("dd/MM")
-            let stepsArray = AppTheme.jsonToArray(usersteps.hourlysteps)
-            var steps:Double = 0
-            for value in stepsArray {
-                steps += Double((value as! NSNumber).doubleValue)
-            }
+            
+            let steps:Double = 0
             yVals.append(ChartDataEntry(value: steps, xIndex: i))
             xVals.append(dateString)
         }
@@ -397,7 +393,7 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
         lineChartView.animate(xAxisDuration: 2.0, yAxisDuration: 2.0, easingOption: ChartEasingOption.EaseInOutCirc)
     }
     
-    func moveToWindow(count:Int,range:Double) {
+    func testSloarDataCount(count:Int,range:Double) {
         var xVals:[String] = []
         var yVals:[ChartDataEntry] = []
         for i:Int in 0..<count {
@@ -527,20 +523,8 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
                             yVals.insert(ChartDataEntry(value: 0, xIndex: index), atIndex: index)
                         }
                     }
+
                     
-//                    if xVals.count == index {
-//                        let dateString:String = date2.stringFromFormat("dd/MM")
-//                        xVals.append(dateString)
-//                        yVals.insert(ChartDataEntry(value: 0, xIndex: index), atIndex: index)
-//                    }else{
-//                        let pDate:NSDate = xVals[index].dateFromFormat("dd/MM")!
-//                        
-//                        if pDate.day != date2.day{
-//                            let dateString:String = date2.stringFromFormat("dd/MM")
-//                            xVals.append(dateString)
-//                            yVals.insert(ChartDataEntry(value: 0, xIndex: index), atIndex: index)
-//                        }
-//                    }
                 }
             }
         }
