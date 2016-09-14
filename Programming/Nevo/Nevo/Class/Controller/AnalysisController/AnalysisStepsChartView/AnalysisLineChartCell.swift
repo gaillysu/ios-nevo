@@ -510,27 +510,37 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
         if rowIndex == 2 {
             let startTimeInterval:NSTimeInterval = NSDate().timeIntervalSince1970-(86400.0*30)
             if xVals.count<30 {
-                for index:Int in 1..<30 {
+                for index:Int in 0..<30 {
                     if xVals.count==0 {
                         let dateString:String = NSDate(timeIntervalSince1970: startTimeInterval).stringFromFormat("dd/MM")
                         xVals.append(dateString)
                         yVals.append(ChartDataEntry(value: 0, xIndex: index))
                     }
-                    let startDate1:NSDate = xVals[index-1].dateFromFormat("dd/MM")!
-                    let date2:NSDate = NSDate(timeIntervalSince1970: startDate1.timeIntervalSince1970+dayTime)
-                    if xVals.count == index {
-                        let dateString:String = date2.stringFromFormat("dd/MM")
-                        xVals.append(dateString)
-                        yVals.insert(ChartDataEntry(value: 0, xIndex: index), atIndex: index)
-                    }else{
-                        let pDate:NSDate = xVals[index].dateFromFormat("dd/MM")!
-                        
-                        if pDate.day != date2.day{
+                    
+                    if index != 0 {
+                        let startDate1:NSDate = xVals[index-1].dateFromFormat("dd/MM")!
+                        let date2:NSDate = NSDate(timeIntervalSince1970:startTimeInterval+dayTime*Double(index))
+                        let date3:NSDate = NSDate(timeIntervalSince1970:startDate1.timeIntervalSince1970+dayTime)
+                        if !date2.isEqualToDate(date3) {
                             let dateString:String = date2.stringFromFormat("dd/MM")
                             xVals.append(dateString)
                             yVals.insert(ChartDataEntry(value: 0, xIndex: index), atIndex: index)
                         }
                     }
+                    
+//                    if xVals.count == index {
+//                        let dateString:String = date2.stringFromFormat("dd/MM")
+//                        xVals.append(dateString)
+//                        yVals.insert(ChartDataEntry(value: 0, xIndex: index), atIndex: index)
+//                    }else{
+//                        let pDate:NSDate = xVals[index].dateFromFormat("dd/MM")!
+//                        
+//                        if pDate.day != date2.day{
+//                            let dateString:String = date2.stringFromFormat("dd/MM")
+//                            xVals.append(dateString)
+//                            yVals.insert(ChartDataEntry(value: 0, xIndex: index), atIndex: index)
+//                        }
+//                    }
                 }
             }
         }
