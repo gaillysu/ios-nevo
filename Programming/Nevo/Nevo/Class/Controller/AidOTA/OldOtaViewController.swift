@@ -9,7 +9,7 @@
 import UIKit
 import XCGLogger
 
-class AidOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonManagerCallBack,UIAlertViewDelegate  {
+class OldOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonManagerCallBack,UIAlertViewDelegate  {
 
     @IBOutlet var nevoOtaView: NevoOtaView!
 
@@ -75,6 +75,29 @@ class AidOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMan
                 allTaskNumber+=1;
                 break
             }
+        }
+        
+        let updateTitle:String = NSLocalizedString("do_not_exit_this_screen", comment: "")
+        let updatemsg:String = NSLocalizedString("please_follow_the_update_has_been_finished", comment: "")
+        if((UIDevice.currentDevice().systemVersion as NSString).floatValue>8.0){
+            let alert :UIAlertController = UIAlertController(title: updateTitle, message: updatemsg, preferredStyle: UIAlertControllerStyle.Alert)
+            alert.view.tintColor = AppTheme.NEVO_SOLAR_YELLOW()
+            let alertAction:UIAlertAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: UIAlertActionStyle.Cancel) { (action:UIAlertAction) -> Void in
+                self.dismissViewControllerAnimated(true, completion: nil)
+            }
+            alert.addAction(alertAction)
+            
+            let alertAction2:UIAlertAction = UIAlertAction(title: NSLocalizedString("Enter", comment: ""), style: UIAlertActionStyle.Default) { (action:UIAlertAction) -> Void in
+                self.currentIndex = 0
+                self.uploadPressed()
+            }
+            alert.addAction(alertAction2)
+            self.presentViewController(alert, animated: true, completion: nil)
+            
+        }else{
+            let alert :UIAlertView = UIAlertView(title: updateTitle, message: updatemsg, delegate: self, cancelButtonTitle: NSLocalizedString("Cancel", comment: ""))
+            alert.addButtonWithTitle(NSLocalizedString("Enter", comment: ""))
+            alert.show()
         }
 
     }
@@ -272,7 +295,7 @@ class AidOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMan
         }else{
             hudView = MBProgressHUD.showMessage("Please later, in the connection.")
             hudView?.hide(true, afterDelay: 8)
-            mTimeoutTimer = NSTimer.scheduledTimerWithTimeInterval(Double(1), target: self, selector:#selector(AidOtaViewController.timeroutProc(_:)), userInfo: nil, repeats: true)
+            mTimeoutTimer = NSTimer.scheduledTimerWithTimeInterval(Double(1), target: self, selector:#selector(timeroutProc(_:)), userInfo: nil, repeats: true)
             mAidOtaController?.mConnectionController?.setOTAMode(true, Disconnect: true)
             // no connected nevo, disable update
         }
