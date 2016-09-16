@@ -279,10 +279,9 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
                 let weakeDataentry:ChartDataEntry = weakeYVals[yvalsIndex]
                 let lightDataentry:ChartDataEntry = lightYVals[yvalsIndex]
                 let deepDataentry:ChartDataEntry = deepYVals[yvalsIndex]
-                weakeYVals.replaceRange(rowIndex..<rowIndex+1, with: [ChartDataEntry(value: weakeDataentry.value, xIndex: yvalsIndex)])
-                lightYVals.replaceRange(rowIndex..<rowIndex+1, with: [ChartDataEntry(value: lightDataentry.value, xIndex: yvalsIndex)])
-                deepYVals.replaceRange(rowIndex..<rowIndex+1, with: [ChartDataEntry(value: deepDataentry.value, xIndex: yvalsIndex)])
-                NSLog("xVals:\(self.xVals[yvalsIndex]) [weake:\(weakeDataentry) count:\(weakeYVals.count)],[light:\(lightDataentry) count:\(lightYVals.count)],[deep:\(deepDataentry) count:\(deepYVals.count)]")
+                weakeYVals.replaceRange(yvalsIndex..<yvalsIndex+1, with: [ChartDataEntry(value: weakeDataentry.value, xIndex: yvalsIndex)])
+                lightYVals.replaceRange(yvalsIndex..<yvalsIndex+1, with: [ChartDataEntry(value: lightDataentry.value, xIndex: yvalsIndex)])
+                deepYVals.replaceRange(yvalsIndex..<yvalsIndex+1, with: [ChartDataEntry(value: deepDataentry.value, xIndex: yvalsIndex)])
             }else{
                 weakeYVals.insert(ChartDataEntry(value: 0, xIndex: yvalsIndex), atIndex: yvalsIndex)
                 lightYVals.insert(ChartDataEntry(value: 0, xIndex: yvalsIndex), atIndex: yvalsIndex)
@@ -452,35 +451,39 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
         }
         
         if rowIndex == 1{
-            let startTimeInterval:NSTimeInterval = NSDate().timeIntervalSince1970-(86400.0*7)
+            let startTimeInterval:NSTimeInterval = NSDate().beginningOfDay.timeIntervalSince1970-(86400.0*7+1)
             if xVals.count<7 {
-                for index:Int in 1..<7 {
+                for index:Int in 0..<7 {
                     if xVals.count==0 {
                         let dateString:String = NSDate(timeIntervalSince1970: startTimeInterval).stringFromFormat("dd/MM")
                         xVals.append(dateString)
                         yVals.append(ChartDataEntry(value: 0, xIndex: index))
                     }
                     
-                    let startDate1:NSDate = xVals[index-1].dateFromFormat("dd/MM")!
+                    var getIndex:Int = index
+                    if index>=xVals.count {
+                        getIndex = index-1
+                    }
+                    let startDate1:NSDate = xVals[getIndex].dateFromFormat("dd/MM")!
                     let date2:NSDate = NSDate(timeIntervalSince1970:startTimeInterval+dayTime*Double(index))
                     let dateString1:String = startDate1.stringFromFormat("dd/MM")
                     let dateString2:String = date2.stringFromFormat("dd/MM")
-                    if index != 0 {
-                        if dateString1 != dateString2 {
-                            xVals.insert(dateString2, atIndex: index-1)
-                            yVals.insert(ChartDataEntry(value: 0, xIndex: index-1), atIndex: index-1)
-                        }else{
-                            let dataentry:ChartDataEntry = yVals[index]
-                            yVals.replaceRange(index-1..<index, with: [ChartDataEntry(value: dataentry.value, xIndex: index)])
-                        }
-                        
+                    
+                    if dateString1 != dateString2 {
+                        xVals.insert(dateString2, atIndex: index)
+                        yVals.insert(ChartDataEntry(value: 0, xIndex: index), atIndex: index)
+                        completionData?(yvalsIndex: index,replace:false)
+                    }else{
+                        let dataentry:ChartDataEntry = yVals[index]
+                        yVals.replaceRange(index..<index+1, with: [ChartDataEntry(value: dataentry.value, xIndex: index)])
+                        completionData?(yvalsIndex: index,replace:true)
                     }
                 }
             }
         }
         
         if rowIndex == 2 {
-            let startTimeInterval:NSTimeInterval = NSDate().timeIntervalSince1970-(dayTime*30)
+            let startTimeInterval:NSTimeInterval = NSDate().beginningOfDay.timeIntervalSince1970-(dayTime*30)
             if xVals.count<30 {
                 for index:Int in 0..<30 {
                     if xVals.count==0 {
