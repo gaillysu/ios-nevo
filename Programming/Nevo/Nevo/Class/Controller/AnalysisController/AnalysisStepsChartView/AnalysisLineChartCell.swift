@@ -147,7 +147,7 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
             xVals.append(dateString)
         }
         
-        self.setYvalueData(rowIndex)
+        self.setYvalueData(rowIndex,completionData: nil)
         
         let set1:LineChartDataSet = LineChartDataSet(yVals: yVals, label: "")
         set1.lineDashLengths = [0.0, 0];
@@ -254,10 +254,10 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
             }
             
             xVals.append(dateString)
-            yVals.append(ChartDataEntry(value: 0, xIndex: index))
             weakeYVals.append(ChartDataEntry(value: Double(weakeValue)/60, xIndex: index))
             lightYVals.append(ChartDataEntry(value: Double(lightValue)/60, xIndex: index))
             deepYVals.append(ChartDataEntry(value: Double(deepValue)/60, xIndex: index))
+            yVals.append(ChartDataEntry(value: 0, xIndex: index))
         }
         
         if sortArray.count == 0 {
@@ -274,17 +274,21 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
             }
         }
         
-        if rowIndex == 2 {
-            if xVals.count<30 {
-                for index:Int in xVals.count..<30 {
-                    weakeYVals.append(ChartDataEntry(value: 0, xIndex: index))
-                    lightYVals.append(ChartDataEntry(value: 0, xIndex: index))
-                    deepYVals.append(ChartDataEntry(value: 0, xIndex: index))
-                }
+        self.setYvalueData(rowIndex) { (yvalsIndex, replace) in
+            if replace {
+                let weakeDataentry:ChartDataEntry = weakeYVals[yvalsIndex]
+                let lightDataentry:ChartDataEntry = lightYVals[yvalsIndex]
+                let deepDataentry:ChartDataEntry = deepYVals[yvalsIndex]
+                weakeYVals.replaceRange(rowIndex..<rowIndex+1, with: [ChartDataEntry(value: weakeDataentry.value, xIndex: yvalsIndex)])
+                lightYVals.replaceRange(rowIndex..<rowIndex+1, with: [ChartDataEntry(value: lightDataentry.value, xIndex: yvalsIndex)])
+                deepYVals.replaceRange(rowIndex..<rowIndex+1, with: [ChartDataEntry(value: deepDataentry.value, xIndex: yvalsIndex)])
+                NSLog("xVals:\(self.xVals[yvalsIndex]) [weake:\(weakeDataentry) count:\(weakeYVals.count)],[light:\(lightDataentry) count:\(lightYVals.count)],[deep:\(deepDataentry) count:\(deepYVals.count)]")
+            }else{
+                weakeYVals.insert(ChartDataEntry(value: 0, xIndex: yvalsIndex), atIndex: yvalsIndex)
+                lightYVals.insert(ChartDataEntry(value: 0, xIndex: yvalsIndex), atIndex: yvalsIndex)
+                deepYVals.insert(ChartDataEntry(value: 0, xIndex: yvalsIndex), atIndex: yvalsIndex)
             }
         }
-        
-        self.setYvalueData(rowIndex)
         
         let dataArray:[[ChartDataEntry]] = [weakeYVals,lightYVals,deepYVals]
         var dataSets:[LineChartDataSet] = [];
@@ -317,6 +321,13 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
         lineChartView.animate(xAxisDuration: 2.0, yAxisDuration: 2.0, easingOption: ChartEasingOption.EaseInOutCirc)
     }
     
+    /**
+     Set sloar chart data
+     
+     - parameter countArray: data
+     - parameter type:       chart type(this week,last week)
+     - parameter rowIndex:   chart index
+     */
     func setSloarDataCount(countArray:NSArray,type:Int,rowIndex:Int){
         sortArray.removeAllObjects()
         sortArray.addObjectsFromArray(countArray as [AnyObject])
@@ -335,7 +346,7 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
                 
                 //Calculate the maximum
                 if iStepsValue>maxValue {
-                    maxValue = iStepsValue
+                    maxValue = 0
                 }
                 //Time has sorted
                 if (iStepsDate > jStepsDate){
@@ -364,7 +375,7 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
             xVals.append(dateString)
         }
         
-        self.setYvalueData(rowIndex)
+        self.setYvalueData(rowIndex,completionData:nil)
         
         let set1:LineChartDataSet = LineChartDataSet(yVals: yVals, label: "")
         set1.lineDashLengths = [0.0, 0];
@@ -393,52 +404,12 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
         lineChartView.animate(xAxisDuration: 2.0, yAxisDuration: 2.0, easingOption: ChartEasingOption.EaseInOutCirc)
     }
     
-    func testSloarDataCount(count:Int,range:Double) {
-        var xVals:[String] = []
-        var yVals:[ChartDataEntry] = []
-        for i:Int in 0..<count {
-            xVals.append("\(i)")
-        }
-        
-        var maxValue:Double = 0
-        
-        for i:Int in 0..<count {
-            let mult:Double = range + 100.0
-            let val:Double = Double(arc4random_uniform(UInt32(mult)) + 30)
-            yVals.append(ChartDataEntry(value: val/60, xIndex: i))
-            if val>maxValue {
-                maxValue = val;
-            }
-            //chart the maximum
-            if i == count-1 {
-                self.setChartViewLeftAxis(Double(maxValue/60+2), unitString: " hours")
-            }
-        }
-        
-        let set1:LineChartDataSet = LineChartDataSet(yVals: yVals, label: "")
-        set1.lineDashLengths = [0.0, 0];
-        set1.highlightLineDashLengths = [0.0, 0.0];
-        set1.setColor(AppTheme.NEVO_SOLAR_YELLOW())
-        set1.setCircleColor(AppTheme.NEVO_SOLAR_GRAY())
-        set1.valueTextColor = UIColor.blackColor()
-        set1.lineWidth = 1.0;
-        set1.circleRadius = 0.0;
-        set1.drawValuesEnabled = false
-        set1.drawCircleHoleEnabled = false;
-        set1.valueFont = UIFont.systemFontOfSize(9.0)
-        set1.mode = LineChartDataSet.Mode.CubicBezier
-        
-        let gradientColors:[CGColor] = [AppTheme.NEVO_SOLAR_GRAY().CGColor,AppTheme.NEVO_SOLAR_YELLOW().CGColor];
-        let gradient:CGGradientRef = CGGradientCreateWithColors(nil, gradientColors, nil)!
-        set1.fillAlpha = 1;
-        set1.fill = ChartFill.fillWithLinearGradient(gradient, angle: 80.0)
-        set1.drawFilledEnabled = true;
-        
-        let data:LineChartData = LineChartData(xVals: xVals, dataSets: [set1])
-        lineChartView.data = data;
-        lineChartView.animate(xAxisDuration: 2.0, yAxisDuration: 2.0, easingOption: ChartEasingOption.EaseInOutCirc)
-    }
-    
+    /**
+     Set on the left side of the Chart data units
+     
+     - parameter maxValue:   Max value
+     - parameter unitString: unit
+     */
     func setChartViewLeftAxis(maxValue:Double,unitString:String) {
         let leftAxis:ChartYAxis = lineChartView.leftAxis;
         leftAxis.axisMaxValue = maxValue;
@@ -455,7 +426,12 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
         leftAxis.spaceTop = 0.15;
     }
     
-    func setYvalueData(rowIndex:Int) {
+    /**
+     set Chart Yvalue
+     
+     - parameter rowIndex: Which one Chart
+     */
+    func setYvalueData(rowIndex:Int,completionData:((yvalsIndex:Int,replace:Bool) -> Void)?) {
         let dayTime:Double = 86400
         
         if rowIndex == 0{
@@ -484,27 +460,27 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
                         xVals.append(dateString)
                         yVals.append(ChartDataEntry(value: 0, xIndex: index))
                     }
+                    
                     let startDate1:NSDate = xVals[index-1].dateFromFormat("dd/MM")!
-                    let date2:NSDate = NSDate(timeIntervalSince1970: startDate1.timeIntervalSince1970+dayTime)
-                    if xVals.count == index {
-                        let dateString:String = date2.stringFromFormat("dd/MM")
-                        xVals.append(dateString)
-                        yVals.insert(ChartDataEntry(value: 0, xIndex: index), atIndex: index)
-                    }else{
-                        let pDate:NSDate = xVals[index].dateFromFormat("dd/MM")!
-                        
-                        if pDate.day != date2.day{
-                            let dateString:String = date2.stringFromFormat("dd/MM")
-                            xVals.append(dateString)
-                            yVals.insert(ChartDataEntry(value: 0, xIndex: index), atIndex: index)
+                    let date2:NSDate = NSDate(timeIntervalSince1970:startTimeInterval+dayTime*Double(index))
+                    let dateString1:String = startDate1.stringFromFormat("dd/MM")
+                    let dateString2:String = date2.stringFromFormat("dd/MM")
+                    if index != 0 {
+                        if dateString1 != dateString2 {
+                            xVals.insert(dateString2, atIndex: index-1)
+                            yVals.insert(ChartDataEntry(value: 0, xIndex: index-1), atIndex: index-1)
+                        }else{
+                            let dataentry:ChartDataEntry = yVals[index]
+                            yVals.replaceRange(index-1..<index, with: [ChartDataEntry(value: dataentry.value, xIndex: index)])
                         }
+                        
                     }
                 }
             }
         }
         
         if rowIndex == 2 {
-            let startTimeInterval:NSTimeInterval = NSDate().timeIntervalSince1970-(86400.0*30)
+            let startTimeInterval:NSTimeInterval = NSDate().timeIntervalSince1970-(dayTime*30)
             if xVals.count<30 {
                 for index:Int in 0..<30 {
                     if xVals.count==0 {
@@ -513,17 +489,24 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
                         yVals.append(ChartDataEntry(value: 0, xIndex: index))
                     }
                     
-                    if index != 0 {
-                        let startDate1:NSDate = xVals[index-1].dateFromFormat("dd/MM")!
-                        let date2:NSDate = NSDate(timeIntervalSince1970:startTimeInterval+dayTime*Double(index))
-                        let date3:NSDate = NSDate(timeIntervalSince1970:startDate1.timeIntervalSince1970+dayTime)
-                        if !date2.isEqualToDate(date3) {
-                            let dateString:String = date2.stringFromFormat("dd/MM")
-                            xVals.append(dateString)
-                            yVals.insert(ChartDataEntry(value: 0, xIndex: index), atIndex: index)
-                        }
+                    var getIndex:Int = index
+                    if index>=xVals.count {
+                        getIndex = index-1
                     }
-
+                    let startDate1:NSDate = xVals[getIndex].dateFromFormat("dd/MM")!
+                    let date2:NSDate = NSDate(timeIntervalSince1970:startTimeInterval+dayTime*Double(index))
+                    let dateString1:String = startDate1.stringFromFormat("dd/MM")
+                    let dateString2:String = date2.stringFromFormat("dd/MM")
+                    
+                    if dateString1 != dateString2 {
+                        xVals.insert(dateString2, atIndex: index)
+                        yVals.insert(ChartDataEntry(value: 0, xIndex: index), atIndex: index)
+                        completionData?(yvalsIndex: index,replace:false)
+                    }else{
+                        let dataentry:ChartDataEntry = yVals[index]
+                        yVals.replaceRange(index..<index+1, with: [ChartDataEntry(value: dataentry.value, xIndex: index)])
+                        completionData?(yvalsIndex: index,replace:true)
+                    }
                     
                 }
             }

@@ -77,6 +77,9 @@
 		0043EDCE1D24EF94007DEBDA /* CheckYourIndoxController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0043EDCC1D24EF94007DEBDA /* CheckYourIndoxController.xib */; };
 		00478F4F1A8F637D00D0DCE2 /* clockViewHour.png in Resources */ = {isa = PBXBuildFile; fileRef = 00478F4D1A8F637D00D0DCE2 /* clockViewHour.png */; };
 		00478F501A8F637D00D0DCE2 /* clockViewMinute.png in Resources */ = {isa = PBXBuildFile; fileRef = 00478F4E1A8F637D00D0DCE2 /* clockViewMinute.png */; };
+		004AB4F21D8A3ACB008800E6 /* ActionSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0067560E1D489CF400E8144C /* ActionSheetView.swift */; };
+		004AB4F41D8A3C08008800E6 /* AlertAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004AB4F31D8A3C08008800E6 /* AlertAction.swift */; };
+		004AB4F51D8A3C17008800E6 /* AlertAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004AB4F31D8A3C08008800E6 /* AlertAction.swift */; };
 		004ED1F01CB386CC009D053C /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 004ED1EC1CB386CC009D053C /* Info.plist */; };
 		004ED1F11CB386CC009D053C /* iRate.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 004ED1ED1CB386CC009D053C /* iRate.bundle */; };
 		004ED1F21CB386CC009D053C /* iRate.m in Sources */ = {isa = PBXBuildFile; fileRef = 004ED1EF1CB386CC009D053C /* iRate.m */; };
@@ -628,6 +631,7 @@
 		0043EDCC1D24EF94007DEBDA /* CheckYourIndoxController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CheckYourIndoxController.xib; sourceTree = "<group>"; };
 		00478F4D1A8F637D00D0DCE2 /* clockViewHour.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clockViewHour.png; sourceTree = "<group>"; };
 		00478F4E1A8F637D00D0DCE2 /* clockViewMinute.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clockViewMinute.png; sourceTree = "<group>"; };
+		004AB4F31D8A3C08008800E6 /* AlertAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertAction.swift; sourceTree = "<group>"; };
 		004ED1EC1CB386CC009D053C /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		004ED1ED1CB386CC009D053C /* iRate.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = iRate.bundle; sourceTree = "<group>"; };
 		004ED1EE1CB386CC009D053C /* iRate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iRate.h; sourceTree = "<group>"; };
@@ -1493,6 +1497,7 @@
 			isa = PBXGroup;
 			children = (
 				0067560E1D489CF400E8144C /* ActionSheetView.swift */,
+				004AB4F31D8A3C08008800E6 /* AlertAction.swift */,
 			);
 			path = ActionSheetView;
 			sourceTree = "<group>";
@@ -3209,6 +3214,7 @@
 				00D474511D586D1600E2447E /* AnimationView.swift in Sources */,
 				00D474521D586D1600E2447E /* AppTheme.swift in Sources */,
 				00D474531D586D1600E2447E /* BalloonMarker.swift in Sources */,
+				004AB4F41D8A3C08008800E6 /* AlertAction.swift in Sources */,
 				00D474541D586D1600E2447E /* ClockView.swift in Sources */,
 				00D474551D586D1600E2447E /* DatePickerView.swift in Sources */,
 				00D474561D586D1600E2447E /* DatePickerView.xib in Sources */,
@@ -3295,6 +3301,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				004AB4F51D8A3C17008800E6 /* AlertAction.swift in Sources */,
+				004AB4F21D8A3ACB008800E6 /* ActionSheetView.swift in Sources */,
 				9AD8F9841A6E2C8E00F01014 /* Request.swift in Sources */,
 				006A624E1D6AA62100458305 /* SolarInforViewCell.swift in Sources */,
 				0050D6981C28E1CD004F6F80 /* AlarmClockController.swift in Sources */,

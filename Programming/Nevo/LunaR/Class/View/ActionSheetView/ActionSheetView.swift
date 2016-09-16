@@ -9,13 +9,19 @@
 import UIKit
 
 class ActionSheetView: UIAlertController {
-
+    var isSetSubView:Bool = false
     override func viewDidLoad() {
         super.viewDidLoad()
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        if isSetSubView {
+            self.setSubView()
+        }
+    }
+    
+    func setSubView() {
         for view in self.view.subviews.first!.subviews {
             //NSLog("第一个循环几次")
             for view2 in view.subviews {
@@ -34,6 +40,10 @@ class ActionSheetView: UIAlertController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func setValue(value: AnyObject?, forUndefinedKey key: String) {
+        
     }
 
 }
