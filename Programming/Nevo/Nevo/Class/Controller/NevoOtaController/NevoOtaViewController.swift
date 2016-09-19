@@ -14,21 +14,21 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
     @IBOutlet var nevoOtaView: NevoOtaView!
 
     var isTransferring:Bool = false
-    var enumFirmwareType:DfuFirmwareTypes = DfuFirmwareTypes.APPLICATION
-    var selectedFileURL:NSURL?
+    var enumFirmwareType:DfuFirmwareTypes = DfuFirmwareTypes.application
+    var selectedFileURL:URL?
     //save the build-in firmware version, it should be the latest FW version
     var buildinSoftwareVersion:Int  = 0
     var buildinFirmwareVersion:Int  = 0
-    var firmwareURLs:[NSURL] = []
+    var firmwareURLs:[URL] = []
     var currentIndex = 0
     var mNevoOtaController : NevoOtaController?
-    private var allTaskNumber:NSInteger = 0;//计算所有OTA任务数量
-    private var currentTaskNumber:NSInteger = 0;//当前在第几个任务
-    private var rssialert:UIAlertView?
-    private var continueButton:UIButton = UIButton(type: UIButtonType.Custom)
+    fileprivate var allTaskNumber:NSInteger = 0;//计算所有OTA任务数量
+    fileprivate var currentTaskNumber:NSInteger = 0;//当前在第几个任务
+    fileprivate var rssialert:UIAlertView?
+    fileprivate var continueButton:UIButton = UIButton(type: UIButtonType.custom)
 
     init() {
-        super.init(nibName: "NevoOtaViewController", bundle: NSBundle.mainBundle())
+        super.init(nibName: "NevoOtaViewController", bundle: Bundle.main)
 
     }
 
@@ -39,7 +39,7 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        UIApplication.sharedApplication().idleTimerDisabled = true
+        UIApplication.shared.isIdleTimerDisabled = true
         self.navigationItem.title = NSLocalizedString("Upgrade", comment:"")
         //init the ota
         mNevoOtaController = NevoOtaController(controller: self)
@@ -54,7 +54,7 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
         nevoOtaView.buildView(self,otacontroller: mNevoOtaController!)
     }
 
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         mNevoOtaController!.setConnectControllerDelegate2Self()
         if(mNevoOtaController!.isConnected()) {
             let currentSoftwareVersion:NSString = mNevoOtaController!.getSoftwareVersion()
@@ -69,7 +69,7 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
 
             if(currentFirmwareVersion.integerValue < buildinFirmwareVersion && currentSoftwareVersion.integerValue != 0) {
                 for tmpfile in fileArray {
-                    let selectedFile = tmpfile as! NSURL
+                    let selectedFile = tmpfile as! URL
                     let fileExtension:String? = selectedFile.pathExtension
                     if fileExtension == "hex"{
                         firmwareURLs.append(selectedFile)
@@ -81,7 +81,7 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
 
             if(currentSoftwareVersion.integerValue < buildinSoftwareVersion) {
                 for tmpfile in fileArray {
-                    let selectedFile = tmpfile as! NSURL
+                    let selectedFile = tmpfile as! URL
                     let fileExtension:String? = selectedFile.pathExtension
 
                     if fileExtension == "bin"{
@@ -102,32 +102,32 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
             if(currentSoftwareVersion.integerValue < buildinSoftwareVersion || currentFirmwareVersion.integerValue < buildinFirmwareVersion ) {
                 let updateTitle:String = NSLocalizedString("do_not_exit_this_screen", comment: "")
                 let updatemsg:String = NSLocalizedString("please_follow_the_update_has_been_finished", comment: "")
-                if((UIDevice.currentDevice().systemVersion as NSString).floatValue>8.0){
-                    let alert :UIAlertController = UIAlertController(title: updateTitle, message: updatemsg, preferredStyle: UIAlertControllerStyle.Alert)
+                if((UIDevice.current.systemVersion as NSString).floatValue>8.0){
+                    let alert :UIAlertController = UIAlertController(title: updateTitle, message: updatemsg, preferredStyle: UIAlertControllerStyle.alert)
                     alert.view.tintColor = AppTheme.NEVO_SOLAR_YELLOW()
-                    let alertAction:UIAlertAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: UIAlertActionStyle.Cancel) { (action:UIAlertAction) -> Void in
-                        self.dismissViewControllerAnimated(true, completion: nil)
+                    let alertAction:UIAlertAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: UIAlertActionStyle.cancel) { (action:UIAlertAction) -> Void in
+                        self.dismiss(animated: true, completion: nil)
                     }
                     alert.addAction(alertAction)
 
-                    let alertAction2:UIAlertAction = UIAlertAction(title: NSLocalizedString("Enter", comment: ""), style: UIAlertActionStyle.Default) { (action:UIAlertAction) -> Void in
+                    let alertAction2:UIAlertAction = UIAlertAction(title: NSLocalizedString("Enter", comment: ""), style: UIAlertActionStyle.default) { (action:UIAlertAction) -> Void in
                         self.currentIndex = 0
                         self.uploadPressed()
                     }
                     alert.addAction(alertAction2)
-                    self.presentViewController(alert, animated: true, completion: nil)
+                    self.present(alert, animated: true, completion: nil)
 
                 }else{
                     let alert :UIAlertView = UIAlertView(title: updateTitle, message: updatemsg, delegate: self, cancelButtonTitle: NSLocalizedString("Cancel", comment: ""))
-                    alert.addButtonWithTitle(NSLocalizedString("Enter", comment: ""))
+                    alert.addButton(withTitle: NSLocalizedString("Enter", comment: ""))
                     alert.show()
                 }
             }
         }
     }
 
-    override func viewDidDisappear(animated: Bool) {
-        UIApplication.sharedApplication().idleTimerDisabled = false
+    override func viewDidDisappear(_ animated: Bool) {
+        UIApplication.shared.isIdleTimerDisabled = false
         if (!self.isTransferring) {
             mNevoOtaController!.reset(true)
         }
@@ -139,20 +139,20 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
     }
 
     //MARK: - UIAlertViewDelegate
-    func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int) {
+    func alertView(_ alertView: UIAlertView, clickedButtonAt buttonIndex: Int) {
         if(buttonIndex==1) {
             currentIndex = 0
             uploadPressed()
         }
 
         if(buttonIndex==0) {
-            self.dismissViewControllerAnimated(true, completion: nil)
+            self.dismiss(animated: true, completion: nil)
         }
     }
 
     //MARK: -
     //init data function
-    private func initValue() {
+    fileprivate func initValue() {
         isTransferring = false
     }
 
@@ -169,15 +169,15 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
             return
         }
 
-        currentTaskNumber++;
+        currentTaskNumber += 1;
         selectedFileURL = firmwareURLs[currentIndex]
         let fileExtension:String? = selectedFileURL!.pathExtension
         if fileExtension == "bin" {
-            enumFirmwareType = DfuFirmwareTypes.SOFTDEVICE
+            enumFirmwareType = DfuFirmwareTypes.softdevice
             nevoOtaView.setProgress(0.0, currentTask: currentTaskNumber,allTask: allTaskNumber, progressString: "Mcu")
         }
         if fileExtension == "hex" {
-            enumFirmwareType = DfuFirmwareTypes.APPLICATION
+            enumFirmwareType = DfuFirmwareTypes.application
             nevoOtaView.setProgress(0.0, currentTask: currentTaskNumber,allTask: allTaskNumber, progressString: "BLE")
         }
         isTransferring = true
@@ -196,15 +196,15 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
     /**
     See SyncControllerDelegate
     */
-    func receivedRSSIValue(number:NSNumber) {
+    func receivedRSSIValue(_ number:NSNumber) {
         //AppTheme.DLog("Red RSSI Value:\(number)")
-        if(number.integerValue < -85) {
+        if(number.intValue < -85) {
             if(rssialert==nil) {
                 rssialert = UIAlertView(title: NSLocalizedString("Unstable connection ensure", comment: ""), message:NSLocalizedString("Unstable connection ensure phone is on and in range", comment: "") , delegate: nil, cancelButtonTitle: nil)
                 rssialert?.show()
             }
         }else {
-            rssialert?.dismissWithClickedButtonIndex(1, animated: true)
+            rssialert?.dismiss(withClickedButtonIndex: 1, animated: true)
             rssialert = nil
         }
     }
@@ -213,15 +213,15 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
     func onDFUCancelled() {
         XCGLogger.defaultInstance().debug("onDFUCancelled");
         //reset OTA view controller 's some data, such as progress bar and upload button text/status
-        dispatch_async(dispatch_get_main_queue(), {
+        DispatchQueue.main.async(execute: {
             self.initValue()
             self.mNevoOtaController!.reset(false)
         });
     }
 
     //percent is[0..100]
-    func onTransferPercentage(percent:Int) {
-        nevoOtaView.setProgress((Float(percent)/100.0), currentTask: currentTaskNumber, allTask: allTaskNumber, progressString: enumFirmwareType == DfuFirmwareTypes.APPLICATION ? "BLE":"Mcu")
+    func onTransferPercentage(_ percent:Int) {
+        nevoOtaView.setProgress((Float(percent)/100.0), currentTask: currentTaskNumber, allTask: allTaskNumber, progressString: enumFirmwareType == DfuFirmwareTypes.application ? "BLE":"Mcu")
     }
 
     //successfully
@@ -231,11 +231,11 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
             initValue()
             self.nevoOtaView.upgradeSuccessful()
             self.mNevoOtaController!.reset(false)
-            nevoOtaView.updatingView.hidden = true
-            nevoOtaView.backView.hidden = false
+            nevoOtaView.updatingView.isHidden = true
+            nevoOtaView.backView.isHidden = false
 
         }else{
-            mNevoOtaController!.setStatus(DFUControllerState.SEND_RESET)
+            mNevoOtaController!.setStatus(DFUControllerState.send_RESET)
 
             initValue()
 
@@ -245,40 +245,40 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
                 alertTip.show()
 
                 nevoOtaView.nevoWacthImage.image = UIImage(named: "4_clock_dial")
-                self.nevoOtaView.updatingView.hidden = true
+                self.nevoOtaView.updatingView.isHidden = true
                 nevoOtaView.OTAprogressViewHiddenOrNotHidden()
 
-                let titleLabel:UILabel = UILabel(frame: CGRectMake(0,  nevoOtaView.nevoWacthImage.frame.origin.y + nevoOtaView.nevoWacthImage.frame.size.height+10, UIScreen.mainScreen().bounds.size.width, 35))
+                let titleLabel:UILabel = UILabel(frame: CGRect(x: 0,  y: nevoOtaView.nevoWacthImage.frame.origin.y + nevoOtaView.nevoWacthImage.frame.size.height+10, width: UIScreen.main.bounds.size.width, height: 35))
                 //titleLabel.center = CGPointMake(UIScreen.mainScreen().bounds.size.width/2.0, UIScreen.mainScreen().bounds.size.height-100)
-                titleLabel.font = UIFont.systemFontOfSize(19)
+                titleLabel.font = UIFont.systemFont(ofSize: 19)
                 titleLabel.text = NSLocalizedString("press_the_third_button", comment: "")
-                titleLabel.textAlignment = NSTextAlignment.Center
+                titleLabel.textAlignment = NSTextAlignment.center
                 titleLabel.tag = 1360
                 self.view.addSubview(titleLabel)
 
-                let titleLabel2:UILabel = UILabel(frame: CGRectMake(0, 0, UIScreen.mainScreen().bounds.size.width, 50))
-                titleLabel2.center = CGPointMake(UIScreen.mainScreen().bounds.size.width/2.0, (titleLabel.frame.origin.y+titleLabel.frame.size.height)+25)
-                titleLabel2.font = UIFont.systemFontOfSize(16)
+                let titleLabel2:UILabel = UILabel(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: 50))
+                titleLabel2.center = CGPoint(x: UIScreen.main.bounds.size.width/2.0, y: (titleLabel.frame.origin.y+titleLabel.frame.size.height)+25)
+                titleLabel2.font = UIFont.systemFont(ofSize: 16)
                 titleLabel2.text = NSLocalizedString("in_order_reactivate_bluetooth", comment: "")
                 titleLabel2.numberOfLines = 0
-                titleLabel2.textAlignment = NSTextAlignment.Center
+                titleLabel2.textAlignment = NSTextAlignment.center
                 titleLabel2.tag = 1361
                 self.view.addSubview(titleLabel2)
 
-                continueButton.setTitle(NSLocalizedString("Continue", comment: ""), forState: UIControlState.Normal)
-                continueButton.setTitleColor(AppTheme.NEVO_SOLAR_YELLOW(), forState: UIControlState.Normal)
-                continueButton.frame = CGRectMake(0, 0, 135, 35)
-                continueButton.center = CGPointMake(UIScreen.mainScreen().bounds.size.width/2.0, (titleLabel2.frame.origin.y+titleLabel2.frame.size.height)+17)
-                continueButton.addTarget(self, action: Selector("controllManager:"), forControlEvents: UIControlEvents.TouchUpInside)
-                continueButton.hidden = true
+                continueButton.setTitle(NSLocalizedString("Continue", comment: ""), for: UIControlState())
+                continueButton.setTitleColor(AppTheme.NEVO_SOLAR_YELLOW(), for: UIControlState())
+                continueButton.frame = CGRect(x: 0, y: 0, width: 135, height: 35)
+                continueButton.center = CGPoint(x: UIScreen.main.bounds.size.width/2.0, y: (titleLabel2.frame.origin.y+titleLabel2.frame.size.height)+17)
+                continueButton.addTarget(self, action: #selector(NevoOtaViewController.controllManager(_:)), for: UIControlEvents.touchUpInside)
+                continueButton.isHidden = true
                 continueButton.layer.masksToBounds = true
                 continueButton.layer.cornerRadius = 8.0
                 continueButton.layer.borderWidth = 1.0
-                continueButton.layer.borderColor = AppTheme.NEVO_SOLAR_YELLOW().CGColor
+                continueButton.layer.borderColor = AppTheme.NEVO_SOLAR_YELLOW().cgColor
                 self.view.addSubview(continueButton)
             }
-            let dispatchTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, Int64(3.0 * Double(NSEC_PER_SEC)))
-            dispatch_after(dispatchTime, dispatch_get_main_queue(), {
+            let dispatchTime: DispatchTime = DispatchTime.now() + Double(Int64(3.0 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
+            DispatchQueue.main.asyncAfter(deadline: dispatchTime, execute: {
                 self.mNevoOtaController!.reset(false)
                 //self.uploadPressed()
             })
@@ -286,21 +286,21 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
 
     }
     //Error happen
-    func onError(errString : NSString){
+    func onError(_ errString : NSString){
 
-        dispatch_async(dispatch_get_main_queue(), {
+        DispatchQueue.main.async(execute: {
 
             self.initValue()
 
             let alert :UIAlertView = UIAlertView(title: NSLocalizedString("Firmware Upgrade", comment: ""), message: errString as String, delegate: nil, cancelButtonTitle: NSLocalizedString("Ok", comment: ""))
             alert.show()
             self.mNevoOtaController!.reset(false)
-            self.currentTaskNumber--;
+            self.currentTaskNumber -= 1;
         });
 
     }
 
-    func connectionStateChanged(isConnected : Bool) {
+    func connectionStateChanged(_ isConnected : Bool) {
 
         //Maybe we just got disconnected, let's check
         checkConnection()
@@ -310,10 +310,10 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
     /**
      see NevoOtaControllerDelegate
      */
-    func firmwareVersionReceived(whichfirmware:DfuFirmwareTypes, version:NSString)
+    func firmwareVersionReceived(_ whichfirmware:DfuFirmwareTypes, version:NSString)
     {
         XCGLogger.defaultInstance().debug("version :  \(version)")
-        continueButton.hidden = false
+        continueButton.isHidden = false
     }
 
     /**
@@ -331,27 +331,27 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
 
 
     // MARK: - ButtonManagerCallBack
-    func controllManager(sender:AnyObject) {
+    func controllManager(_ sender:AnyObject) {
         if(continueButton.isEqual(sender)){
             let SAVED_ADDRESS_KEY = "SAVED_ADDRESS"
-            NSUserDefaults.standardUserDefaults().removeObjectForKey(SAVED_ADDRESS_KEY)
+            UserDefaults.standard.removeObject(forKey: SAVED_ADDRESS_KEY)
             self.mNevoOtaController!.reset(false)
             uploadPressed()
 
-            for(var index:Int = 0; index<2; index++) {
+            for(index:Int in 0 ..< 2) {
                 let view  = self.view.viewWithTag(1360+index)
                 if(view != nil) {
-                    view?.hidden = true
+                    view?.isHidden = true
                 }
             }
             continueButton.alpha = 0
-            self.nevoOtaView.updatingView.hidden = false
+            self.nevoOtaView.updatingView.isHidden = false
             nevoOtaView.nevoWacthImage.image = UIImage(named: "upgrade_clock.png")
             nevoOtaView.OTAprogressViewHiddenOrNotHidden()
         }
 
         if(nevoOtaView.backButton.isEqual(sender)) {
-            self.dismissViewControllerAnimated(true, completion: nil)
+            self.dismiss(animated: true, completion: nil)
         }
     }
 
@@ -360,7 +360,7 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
 
      :param: path <#path description#>
      */
-    func onFileSelected(selectedFile:NSURL) {
+    func onFileSelected(_ selectedFile:URL) {
         XCGLogger.defaultInstance().debug("onFileSelected")
         if (selectedFile.path != nil) {
             let fileExtension:String? = selectedFile.pathExtension
@@ -368,11 +368,11 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
 
             selectedFileURL = selectedFile
             if fileExtension == "bin" {
-                enumFirmwareType = DfuFirmwareTypes.SOFTDEVICE
+                enumFirmwareType = DfuFirmwareTypes.softdevice
             }
 
             if fileExtension == "hex" {
-                enumFirmwareType = DfuFirmwareTypes.APPLICATION
+                enumFirmwareType = DfuFirmwareTypes.application
             }
         }
     }
@@ -380,5 +380,5 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
 }
 
 protocol PtlSelectFile {
-    func onFileSelected(selectedFile:NSURL)
+    func onFileSelected(_ selectedFile:URL)
 }

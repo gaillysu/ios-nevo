@@ -11,7 +11,7 @@ import UIKit
 class SleepTutorialController: UIViewController {
 
     init() {
-        super.init(nibName: "SleepTutorialController", bundle: NSBundle.mainBundle())
+        super.init(nibName: "SleepTutorialController", bundle: Bundle.main)
     }
 
     required init(coder aDecoder: NSCoder) {
@@ -29,12 +29,12 @@ class SleepTutorialController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func buttonManager(sender: AnyObject) {
+    @IBAction func buttonManager(_ sender: AnyObject) {
 //        let nav:MorningTutorialController = MorningTutorialController()
 //        self.presentViewController(nav, animated: true) { () -> Void in
 //
 //        }
-        self.dismissViewControllerAnimated(true) { () -> Void in
+        self.dismiss(animated: true) { () -> Void in
             
         }
     }

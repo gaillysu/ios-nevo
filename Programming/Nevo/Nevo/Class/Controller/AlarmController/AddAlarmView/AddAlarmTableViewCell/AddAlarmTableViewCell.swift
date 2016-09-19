@@ -15,15 +15,15 @@ class AddAlarmTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        datePicker.datePickerMode = UIDatePickerMode.Time;
-        datePicker.addTarget(self, action: #selector(AddAlarmTableViewCell.selectedTimerAction(_:)), forControlEvents: UIControlEvents.ValueChanged)
+        datePicker.datePickerMode = UIDatePickerMode.time;
+        datePicker.addTarget(self, action: #selector(AddAlarmTableViewCell.selectedTimerAction(_:)), for: UIControlEvents.valueChanged)
     }
 
-    func selectedTimerAction(timer:UIDatePicker){
+    func selectedTimerAction(_ timer:UIDatePicker){
 
     }
 
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state

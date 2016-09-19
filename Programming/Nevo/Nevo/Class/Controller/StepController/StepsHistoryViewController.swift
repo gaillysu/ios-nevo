@@ -17,15 +17,15 @@ class StepsHistoryViewController: PublicClassController,UICollectionViewDelegate
     
     let SELECTED_DATA:String = "SELECTED_DATA"
     
-    private var queryArray:NSArray = NSArray()
-    private var contentTitleArray:[String] = [NSLocalizedString("CALORIE", comment: ""), NSLocalizedString("STEPS", comment: ""), NSLocalizedString("TIME", comment: ""),NSLocalizedString("KM", comment: "")]
-    private var contentTArray:[String] = [NSLocalizedString("--", comment: ""),NSLocalizedString("--", comment: ""),NSLocalizedString("--", comment: ""),NSLocalizedString("--", comment: "")]
-    private var queryModel:NSMutableArray = NSMutableArray()
-    private let sleepArray:NSMutableArray = NSMutableArray();
-    private let detailArray:NSMutableArray = NSMutableArray(capacity:1);
+    fileprivate var queryArray:NSArray = NSArray()
+    fileprivate var contentTitleArray:[String] = [NSLocalizedString("CALORIE", comment: ""), NSLocalizedString("STEPS", comment: ""), NSLocalizedString("TIME", comment: ""),NSLocalizedString("KM", comment: "")]
+    fileprivate var contentTArray:[String] = [NSLocalizedString("--", comment: ""),NSLocalizedString("--", comment: ""),NSLocalizedString("--", comment: ""),NSLocalizedString("--", comment: "")]
+    fileprivate var queryModel:NSMutableArray = NSMutableArray()
+    fileprivate let sleepArray:NSMutableArray = NSMutableArray();
+    fileprivate let detailArray:NSMutableArray = NSMutableArray(capacity:1);
     
     init() {
-        super.init(nibName: "StepsHistoryViewController", bundle: NSBundle.mainBundle())
+        super.init(nibName: "StepsHistoryViewController", bundle: Bundle.main)
     }
 
     required init(coder aDecoder: NSCoder) {
@@ -37,19 +37,19 @@ class StepsHistoryViewController: PublicClassController,UICollectionViewDelegate
         
         self.configChartView()
         
-        let dayDate:NSDate = NSDate()
-        let dayTime:NSTimeInterval = NSDate.date(year: dayDate.year, month: dayDate.month, day: dayDate.day, hour: 0, minute: 0, second: 0).timeIntervalSince1970
+        let dayDate:Date = Date()
+        let dayTime:TimeInterval = Date.date(year: dayDate.year, month: dayDate.month, day: dayDate.day, hour: 0, minute: 0, second: 0).timeIntervalSince1970
             //NSDate().beginningOfDay.timeIntervalSince1970
         queryArray = UserSteps.getCriteria("WHERE date = \(dayTime)") //one hour = 3600s
         self.bulidStepHistoricalChartView(queryArray)
         
-        stepsHistory.backgroundColor = UIColor.whiteColor()
-        stepsHistory.registerNib(UINib(nibName: "StepGoalSetingViewCell", bundle: NSBundle.mainBundle()), forCellWithReuseIdentifier: "StepGoalSetingIdentifier")
-        stepsHistory.registerClass(UICollectionViewCell.classForCoder(), forCellWithReuseIdentifier: "StepsHistoryViewCell")
-        (stepsHistory.collectionViewLayout as! UICollectionViewFlowLayout).itemSize = CGSizeMake(UIScreen.mainScreen().bounds.size.width/2.0, 40.0)
+        stepsHistory.backgroundColor = UIColor.white
+        stepsHistory.register(UINib(nibName: "StepGoalSetingViewCell", bundle: Bundle.main), forCellWithReuseIdentifier: "StepGoalSetingIdentifier")
+        stepsHistory.register(UICollectionViewCell.classForCoder(), forCellWithReuseIdentifier: "StepsHistoryViewCell")
+        (stepsHistory.collectionViewLayout as! UICollectionViewFlowLayout).itemSize = CGSize(width: UIScreen.main.bounds.size.width/2.0, height: 40.0)
     }
 
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         saveContentTArray()
@@ -74,7 +74,7 @@ class StepsHistoryViewController: PublicClassController,UICollectionViewDelegate
         }
     }
     
-    override func viewDidDisappear(animated: Bool) {
+    override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         SwiftEventBus.unregister(self, name: SELECTED_CALENDAR_NOTIFICATION)
         SwiftEventBus.unregister(self, name: EVENT_BUS_BEGIN_SMALL_SYNCACTIVITY)
@@ -90,19 +90,19 @@ class StepsHistoryViewController: PublicClassController,UICollectionViewDelegate
      */
     func saveContentTArray() {
         //Only for today's data
-        let array:NSArray = UserSteps.getCriteria("WHERE date = \(NSDate().beginningOfDay.timeIntervalSince1970)")
+        let array:NSArray = UserSteps.getCriteria("WHERE date = \(Date().beginningOfDay.timeIntervalSince1970)")
         self.queryArray = array
         self.bulidStepHistoricalChartView(array)
         
         if array.count>0 {
             let dataSteps:UserSteps = array[0] as! UserSteps
             
-            self.contentTArray.replaceRange(Range(0..<1), with: ["\(dataSteps.calories)"])
-            self.contentTArray.replaceRange(Range(1..<2), with: ["\(dataSteps.steps)"])
-            self.contentTArray.replaceRange(Range(2..<3), with: [String(format: "%.2f", Float(dataSteps.walking_duration+dataSteps.running_duration)/60)])
+            self.contentTArray.replaceSubrange(Range(0..<1), with: ["\(dataSteps.calories)"])
+            self.contentTArray.replaceSubrange(Range(1..<2), with: ["\(dataSteps.steps)"])
+            self.contentTArray.replaceSubrange(Range(2..<3), with: [String(format: "%.2f", Float(dataSteps.walking_duration+dataSteps.running_duration)/60)])
             self.calculationData((dataSteps.walking_duration+dataSteps.running_duration), steps: dataSteps.steps, completionData: { (miles, calories) in
-                self.contentTArray.replaceRange(Range(0..<1), with: ["\(calories)"])
-                self.contentTArray.replaceRange(Range(3..<4), with: ["\(miles)"])
+                self.contentTArray.replaceSubrange(Range(0..<1), with: ["\(calories)"])
+                self.contentTArray.replaceSubrange(Range(3..<4), with: ["\(miles)"])
             })
             self.stepsHistory.reloadData()
             //AppTheme.KeyedArchiverName(self.StepsGoalKey, andObject: self.contentTArray)
@@ -156,27 +156,27 @@ class StepsHistoryViewController: PublicClassController,UICollectionViewDelegate
     }
     
     // MARK: - UICollectionViewDataSource
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return contentTitleArray.count
     }
 
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell:StepGoalSetingViewCell = collectionView.dequeueReusableCellWithReuseIdentifier("StepGoalSetingIdentifier", forIndexPath: indexPath) as! StepGoalSetingViewCell
-        cell.backgroundColor = UIColor.whiteColor()
-        cell.titleLabel.text = contentTitleArray[indexPath.row]
+    func collectionView(_ collectionView: UICollectionView, cellForItemAtIndexPath indexPath: IndexPath) -> UICollectionViewCell {
+        let cell:StepGoalSetingViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "StepGoalSetingIdentifier", for: indexPath) as! StepGoalSetingViewCell
+        cell.backgroundColor = UIColor.white
+        cell.titleLabel.text = contentTitleArray[(indexPath as NSIndexPath).row]
         
-        switch indexPath.row {
+        switch (indexPath as NSIndexPath).row {
         case 0:
-            cell.valueLabel.text = "\(contentTArray[indexPath.row]) Cal"
+            cell.valueLabel.text = "\(contentTArray[(indexPath as NSIndexPath).row]) Cal"
             break;
         case 1:
-            cell.valueLabel.text = "\(contentTArray[indexPath.row])"
+            cell.valueLabel.text = "\(contentTArray[(indexPath as NSIndexPath).row])"
             break;
         case 2:
-            cell.valueLabel.text = "\(contentTArray[indexPath.row]) H"
+            cell.valueLabel.text = "\(contentTArray[(indexPath as NSIndexPath).row]) H"
             break;
         case 3:
-            cell.valueLabel.text = "\(contentTArray[indexPath.row]) KM"
+            cell.valueLabel.text = "\(contentTArray[(indexPath as NSIndexPath).row]) KM"
             break;
         default:
             break;
@@ -185,10 +185,10 @@ class StepsHistoryViewController: PublicClassController,UICollectionViewDelegate
         return cell
     }
     
-    func bulidStepHistoricalChartView(modelArray:NSArray){
+    func bulidStepHistoricalChartView(_ modelArray:NSArray){
         queryModel.removeAllObjects()
         sleepArray.removeAllObjects()
-        queryModel.addObjectsFromArray(modelArray as [AnyObject])
+        queryModel.addObjects(from: modelArray as [AnyObject])
         self.slidersValueChanged()
     }
     
@@ -196,17 +196,17 @@ class StepsHistoryViewController: PublicClassController,UICollectionViewDelegate
         self.setDataCount(queryModel.count, Range: 50)
     }
 
-    func stringFromDate(date:NSDate) -> String {
-        let dateFormatter:NSDateFormatter = NSDateFormatter()
-        dateFormatter.timeZone = NSTimeZone.systemTimeZone()
-        dateFormatter.dateStyle = NSDateFormatterStyle.MediumStyle
-        dateFormatter.timeStyle = NSDateFormatterStyle.ShortStyle
+    func stringFromDate(_ date:Date) -> String {
+        let dateFormatter:DateFormatter = DateFormatter()
+        dateFormatter.timeZone = TimeZone.current
+        dateFormatter.dateStyle = DateFormatter.Style.medium
+        dateFormatter.timeStyle = DateFormatter.Style.short
         dateFormatter.dateFormat = "yyyyMMdd"
-        let dateString:String = dateFormatter.stringFromDate(date)
+        let dateString:String = dateFormatter.string(from: date)
         return dateString
     }
     
-    func setDataCount(count:Int, Range range:Double){
+    func setDataCount(_ count:Int, Range range:Double){
         if(count == 0) {
             chartView?.data = nil
             return
@@ -215,11 +215,11 @@ class StepsHistoryViewController: PublicClassController,UICollectionViewDelegate
         var xVal:[String] = [];
         var yVal:[BarChartDataEntry] = [];
         
-        let seleModel:UserSteps = queryModel.objectAtIndex(0) as! UserSteps;
+        let seleModel:UserSteps = queryModel.object(at: 0) as! UserSteps;
         let hourlystepsArray:NSArray = AppTheme.jsonToArray(seleModel.hourlysteps)
-        for (index,steps) in hourlystepsArray.enumerate(){
+        for (index,steps) in hourlystepsArray.enumerated(){
             let val1:Double  = (steps as! NSNumber).doubleValue;
-            let date:NSDate = NSDate(timeIntervalSince1970: seleModel.date)
+            let date:Date = Date(timeIntervalSince1970: seleModel.date)
             var dateString:NSString = date.stringFromFormat("yyyyMMdd")
             if(dateString.length < 8) {
                 dateString = "00000000"
@@ -244,7 +244,7 @@ class StepsHistoryViewController: PublicClassController,UICollectionViewDelegate
         chartView?.moveViewToX(CGFloat(yVal.count))
     }
     
-    func chartValueSelected(chartView: ChartViewBase, entry: ChartDataEntry, dataSetIndex: Int, highlight: ChartHighlight) {
+    func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, dataSetIndex: Int, highlight: ChartHighlight) {
         //chartView.highlightValue(xIndex: entry.xIndex, dataSetIndex: dataSetIndex, callDelegate: false)
         //NSLog("chartValueSelected:  %d",entry.xIndex)
         //let stepsModel:UserSteps = queryModel.objectAtIndex(0) as! UserSteps;
@@ -252,14 +252,14 @@ class StepsHistoryViewController: PublicClassController,UICollectionViewDelegate
 
     }
     
-    func didSelectedhighlightValue(xIndex:Int,dataSetIndex: Int, dataSteps:UserSteps) {
+    func didSelectedhighlightValue(_ xIndex:Int,dataSetIndex: Int, dataSteps:UserSteps) {
         
-        self.contentTArray.replaceRange(Range(0..<1), with: ["\(dataSteps.calories)"])
-        self.contentTArray.replaceRange(Range(1..<2), with: ["\(dataSteps.steps)"])
-        self.contentTArray.replaceRange(Range(2..<3), with: ["\(dataSteps.walking_duration+dataSteps.running_duration)m"])
+        self.contentTArray.replaceSubrange(Range(0..<1), with: ["\(dataSteps.calories)"])
+        self.contentTArray.replaceSubrange(Range(1..<2), with: ["\(dataSteps.steps)"])
+        self.contentTArray.replaceSubrange(Range(2..<3), with: ["\(dataSteps.walking_duration+dataSteps.running_duration)m"])
         self.calculationData(0, steps: dataSteps.steps, completionData: { (miles, calories) in
-            self.contentTArray.replaceRange(Range(0..<1), with: ["\(calories)"])
-            self.contentTArray.replaceRange(Range(3..<4), with: ["\(miles)"])
+            self.contentTArray.replaceSubrange(Range(0..<1), with: ["\(calories)"])
+            self.contentTArray.replaceSubrange(Range(3..<4), with: ["\(miles)"])
         })
         self.stepsHistory.reloadData()
     }
@@ -268,13 +268,13 @@ class StepsHistoryViewController: PublicClassController,UICollectionViewDelegate
 // MARK: - Data calculation
 extension StepsHistoryViewController {
     
-    func calculationData(activeTimer:Int,steps:Int,completionData:((miles:String,calories:String) -> Void)) {
+    func calculationData(_ activeTimer:Int,steps:Int,completionData:((_ miles:String,_ calories:String) -> Void)) {
         let profile:NSArray = UserProfile.getAll()
         var userProfile:UserProfile?
         var strideLength:Double = 0
         var userWeight:Double = 0
         if profile.count>0 {
-            userProfile = profile.objectAtIndex(0) as? UserProfile
+            userProfile = profile.object(at: 0) as? UserProfile
             strideLength = Double(userProfile!.length)*0.415/100
             userWeight = Double(userProfile!.weight)
         }else{
@@ -285,6 +285,6 @@ extension StepsHistoryViewController {
         let miles:Double = strideLength*Double(steps)/1000
         //Formula's = (2.0 X persons KG X 3.5)/200 = calories per minute
         let calories:Double = (2.0*userWeight*3.5)/200*Double(activeTimer)
-        completionData(miles: String(format: "%.2f",miles), calories: String(format: "%.2f",calories))
+        completionData(String(format: "%.2f",miles), String(format: "%.2f",calories))
     }
 }

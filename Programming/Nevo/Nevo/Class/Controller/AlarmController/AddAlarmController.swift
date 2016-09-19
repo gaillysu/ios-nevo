@@ -9,8 +9,8 @@
 import UIKit
 
 protocol AddAlarmDelegate {
-    func onDidAddAlarmAction(timer:NSTimeInterval,repeatStatus:Bool,name:String)
-    func onDidAddAlarmAction(timer:NSTimeInterval,name:String,repeatNumber:Int,alarmType:Int)
+    func onDidAddAlarmAction(_ timer:TimeInterval,repeatStatus:Bool,name:String)
+    func onDidAddAlarmAction(_ timer:TimeInterval,name:String,repeatNumber:Int,alarmType:Int)
 }
 
 class AddAlarmController: UITableViewController,ButtonManagerCallBack,UIAlertViewDelegate {
@@ -18,13 +18,13 @@ class AddAlarmController: UITableViewController,ButtonManagerCallBack,UIAlertVie
     @IBOutlet weak var adTableView: AddAlarmView!
     var mDelegate:AddAlarmDelegate?
 
-    var timer:NSTimeInterval = 0.0
+    var timer:TimeInterval = 0.0
     var repeatStatus:Bool = false
     var name:String = ""
-    private var selectedIndexPath:NSIndexPath?
+    fileprivate var selectedIndexPath:IndexPath?
 
     init() {
-        super.init(nibName: "AddAlarmController", bundle: NSBundle.mainBundle())
+        super.init(nibName: "AddAlarmController", bundle: Bundle.main)
 
     }
 
@@ -37,21 +37,21 @@ class AddAlarmController: UITableViewController,ButtonManagerCallBack,UIAlertVie
 
         adTableView.bulidAdTableView(self.navigationItem)
 
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Save, target: self, action: #selector(controllManager(_:)))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.save, target: self, action: #selector(controllManager(_:)))
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
 
-    func controllManager(sender:AnyObject) {
-        if(sender.isKindOfClass(UISwitch.classForCoder())){
+    func controllManager(_ sender:AnyObject) {
+        if(sender.isKind(of: UISwitch.classForCoder())){
             
         }else{
-            let indexPaths:NSIndexPath = NSIndexPath(forRow: 0, inSection: 0)
-            let timerCell:UITableViewCell = self.tableView.cellForRowAtIndexPath(indexPaths)!
+            let indexPaths:IndexPath = IndexPath(row: 0, section: 0)
+            let timerCell:UITableViewCell = self.tableView.cellForRow(at: indexPaths)!
             for datePicker in timerCell.contentView.subviews{
-                if(datePicker.isKindOfClass(UIDatePicker.classForCoder())){
+                if(datePicker.isKind(of: UIDatePicker.classForCoder())){
                     let picker:UIDatePicker = datePicker as! UIDatePicker
                     timer = picker.date.timeIntervalSince1970
                     NSLog("UIDatePicker______%@,\(timer)", picker.date)
@@ -59,58 +59,58 @@ class AddAlarmController: UITableViewController,ButtonManagerCallBack,UIAlertVie
                 }
             }
 
-            let indexPaths2:NSIndexPath = NSIndexPath(forRow: 0, inSection: 1)
-            let timerCell2:UITableViewCell = self.tableView.cellForRowAtIndexPath(indexPaths2)!
+            let indexPaths2:IndexPath = IndexPath(row: 0, section: 1)
+            let timerCell2:UITableViewCell = self.tableView.cellForRow(at: indexPaths2)!
             for datePicker in timerCell2.contentView.subviews{
-                if(datePicker.isKindOfClass(UISwitch.classForCoder())){
+                if(datePicker.isKind(of: UISwitch.classForCoder())){
                     let repeatSwicth:UISwitch = datePicker as! UISwitch
-                    repeatStatus = repeatSwicth.on
+                    repeatStatus = repeatSwicth.isOn
                     NSLog("repeatStatus______%@", repeatStatus)
 
                 }
             }
 
-            let indexPaths3:NSIndexPath = NSIndexPath(forRow: 1, inSection: 1)
-            let timerCell3:UITableViewCell = self.tableView.cellForRowAtIndexPath(indexPaths3)!
+            let indexPaths3:IndexPath = IndexPath(row: 1, section: 1)
+            let timerCell3:UITableViewCell = self.tableView.cellForRow(at: indexPaths3)!
             name = (timerCell3.detailTextLabel!.text)!
 
             mDelegate?.onDidAddAlarmAction(timer, repeatStatus: repeatStatus, name: name)
-            self.navigationController?.popViewControllerAnimated(true)
+            self.navigationController?.popViewController(animated: true)
         }
 
     }
 
     // MARK: - Table view data source
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
-        switch (indexPath.section){
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
+        switch ((indexPath as NSIndexPath).section){
         case 0: break
 
         case 1:
-            if(indexPath.row == 1){
-                if((UIDevice.currentDevice().systemVersion as NSString).floatValue >= 8.0){
-                    let selectedCell:UITableViewCell = tableView.cellForRowAtIndexPath(indexPath)!
+            if((indexPath as NSIndexPath).row == 1){
+                if((UIDevice.current.systemVersion as NSString).floatValue >= 8.0){
+                    let selectedCell:UITableViewCell = tableView.cellForRow(at: indexPath)!
 
-                    let actionSheet:UIAlertController = UIAlertController(title: NSLocalizedString("add_alarm_label", comment: ""), message: nil, preferredStyle: UIAlertControllerStyle.Alert)
+                    let actionSheet:UIAlertController = UIAlertController(title: NSLocalizedString("add_alarm_label", comment: ""), message: nil, preferredStyle: UIAlertControllerStyle.alert)
                     actionSheet.view.tintColor = AppTheme.NEVO_SOLAR_YELLOW()
-                    actionSheet.addTextFieldWithConfigurationHandler({ (labelText:UITextField) -> Void in
+                    actionSheet.addTextField(configurationHandler: { (labelText:UITextField) -> Void in
                         labelText.text = selectedCell.detailTextLabel?.text
                     })
 
-                    let alertAction:UIAlertAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: UIAlertActionStyle.Cancel, handler: { (action:UIAlertAction) -> Void in
+                    let alertAction:UIAlertAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: UIAlertActionStyle.cancel, handler: { (action:UIAlertAction) -> Void in
 
                     })
                     actionSheet.addAction(alertAction)
 
-                    let alertAction1:UIAlertAction = UIAlertAction(title: NSLocalizedString("Add", comment: ""), style: UIAlertActionStyle.Default, handler: { (action:UIAlertAction) -> Void in
+                    let alertAction1:UIAlertAction = UIAlertAction(title: NSLocalizedString("Add", comment: ""), style: UIAlertActionStyle.default, handler: { (action:UIAlertAction) -> Void in
                         let labelText:UITextField = actionSheet.textFields![0]
                         selectedCell.detailTextLabel?.text = labelText.text
                     })
                     actionSheet.addAction(alertAction1)
-                    self.presentViewController(actionSheet, animated: true, completion: nil)
+                    self.present(actionSheet, animated: true, completion: nil)
                 }else{
                     selectedIndexPath = indexPath;
                     let actionSheet:UIAlertView = UIAlertView(title: NSLocalizedString("add_alarm_label", comment: ""), message: "", delegate: self, cancelButtonTitle: NSLocalizedString("Cancel", comment: ""), otherButtonTitles: NSLocalizedString("Add", comment: ""))
-                    actionSheet.alertViewStyle = UIAlertViewStyle.PlainTextInput
+                    actionSheet.alertViewStyle = UIAlertViewStyle.plainTextInput
                     actionSheet.show()
                 }
             }
@@ -119,12 +119,12 @@ class AddAlarmController: UITableViewController,ButtonManagerCallBack,UIAlertVie
         }
     }
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 2
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         switch (section){
         case 0:
@@ -135,9 +135,9 @@ class AddAlarmController: UITableViewController,ButtonManagerCallBack,UIAlertVie
         }
     }
 
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat{
-        if(indexPath.section == 0){
-            let cellHeight:CGFloat = AddAlarmView.addAlarmTimerTableViewCell(indexPath, tableView: tableView, timer:timer).contentView.systemLayoutSizeFittingSize(UILayoutFittingCompressedSize).height
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat{
+        if((indexPath as NSIndexPath).section == 0){
+            let cellHeight:CGFloat = AddAlarmView.addAlarmTimerTableViewCell(indexPath, tableView: tableView, timer:timer).contentView.systemLayoutSizeFitting(UILayoutFittingCompressedSize).height
             return cellHeight
         }else{
             return 45.0
@@ -145,21 +145,21 @@ class AddAlarmController: UITableViewController,ButtonManagerCallBack,UIAlertVie
 
     }
 
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        switch (indexPath.section){
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        switch ((indexPath as NSIndexPath).section){
         case 0:
             return AddAlarmView.addAlarmTimerTableViewCell(indexPath, tableView: tableView, timer:timer)
         case 1:
             let titleArray:[String] = ["Repeat","Label"]
-            if(indexPath.row == 0){
-                let cell = AddAlarmView.systemTableViewCell(indexPath, tableView: tableView, title: titleArray[indexPath.row],delegate: self)
+            if((indexPath as NSIndexPath).row == 0){
+                let cell = AddAlarmView.systemTableViewCell(indexPath, tableView: tableView, title: titleArray[(indexPath as NSIndexPath).row],delegate: self)
                 return cell
-            }else if(indexPath.row == 1) {
-                let cell = UITableViewCell(style: UITableViewCellStyle.Value1, reuseIdentifier: "SystemLabelCell")
-                cell.textLabel?.text = NSLocalizedString("\(titleArray[indexPath.row])", comment: "")
+            }else if((indexPath as NSIndexPath).row == 1) {
+                let cell = UITableViewCell(style: UITableViewCellStyle.value1, reuseIdentifier: "SystemLabelCell")
+                cell.textLabel?.text = NSLocalizedString("\(titleArray[(indexPath as NSIndexPath).row])", comment: "")
                 cell.detailTextLabel?.text = name
-                cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
-                cell.selectionStyle = UITableViewCellSelectionStyle.None;
+                cell.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
+                cell.selectionStyle = UITableViewCellSelectionStyle.none;
                 return cell
             }
         default: return UITableViewCell();
@@ -169,9 +169,9 @@ class AddAlarmController: UITableViewController,ButtonManagerCallBack,UIAlertVie
 
 
     // MARK: - UIAlertViewDelegate
-    func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int){
-        let selectedCell:UITableViewCell = tableView.cellForRowAtIndexPath(selectedIndexPath!)!
-        let labelText:UITextField = alertView.textFieldAtIndex(0)!
+    func alertView(_ alertView: UIAlertView, clickedButtonAt buttonIndex: Int){
+        let selectedCell:UITableViewCell = tableView.cellForRow(at: selectedIndexPath!)!
+        let labelText:UITextField = alertView.textField(at: 0)!
         selectedCell.detailTextLabel?.text = labelText.text
     }
 

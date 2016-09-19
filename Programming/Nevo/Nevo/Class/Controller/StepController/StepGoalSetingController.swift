@@ -17,19 +17,19 @@ class StepGoalSetingController: PublicClassController,ButtonManagerCallBack,Cloc
     @IBOutlet weak var clockBackGroundView: UIView!
     @IBOutlet weak var collectionView:UICollectionView!
     //Put all UI operation HomeView inside
-    private var mClockTimerView:ClockView?;//init "ClockView" ,Use the code relative layout
+    fileprivate var mClockTimerView:ClockView?;//init "ClockView" ,Use the code relative layout
     var progressView:NevoCircleProgressView = NevoCircleProgressView()
     var progresValue:CGFloat = 0.0
     
     let StepsGoalKey:String = "ADYSTEPSGOALKEY"
     
-    private var mCurrentGoal:Goal = NumberOfStepsGoal()
-    private var mVisiable:Bool = true
-    private var contentTitleArray:[String] = [NSLocalizedString("CALORIE", comment: ""), NSLocalizedString("STEPS", comment: ""), NSLocalizedString("TIME", comment: ""),NSLocalizedString("KM", comment: "")]
-    private var contentTArray:[String] = ["0","0","0","0"]
+    fileprivate var mCurrentGoal:Goal = NumberOfStepsGoal()
+    fileprivate var mVisiable:Bool = true
+    fileprivate var contentTitleArray:[String] = [NSLocalizedString("CALORIE", comment: ""), NSLocalizedString("STEPS", comment: ""), NSLocalizedString("TIME", comment: ""),NSLocalizedString("KM", comment: "")]
+    fileprivate var contentTArray:[String] = ["0","0","0","0"]
     var shouldSync = false;
     init() {
-        super.init(nibName: "StepGoalSetingController", bundle: NSBundle.mainBundle())
+        super.init(nibName: "StepGoalSetingController", bundle: Bundle.main)
     }
 
     required init(coder aDecoder: NSCoder) {
@@ -41,7 +41,7 @@ class StepGoalSetingController: PublicClassController,ButtonManagerCallBack,Cloc
         ClockRefreshManager.sharedInstance.setRefreshDelegate(self)
     }
     
-    override func viewDidDisappear(animated: Bool) {
+    override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         SwiftEventBus.unregister(self, name: SELECTED_CALENDAR_NOTIFICATION)
         SwiftEventBus.unregister(self, name: EVENT_BUS_BEGIN_SMALL_SYNCACTIVITY)
@@ -50,20 +50,20 @@ class StepGoalSetingController: PublicClassController,ButtonManagerCallBack,Cloc
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         let layout:UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSizeMake((UIScreen.mainScreen().bounds.size.width)/2.0, 40)
+        layout.itemSize = CGSize(width: (UIScreen.main.bounds.size.width)/2.0, height: 40)
         layout.minimumInteritemSpacing = 0
         layout.minimumLineSpacing = 0
         collectionView.collectionViewLayout = layout
         
-        collectionView.registerNib(UINib(nibName: "StepGoalSetingViewCell", bundle: NSBundle.mainBundle()), forCellWithReuseIdentifier: "StepGoalSetingIdentifier")
-        collectionView?.registerClass(UICollectionViewCell.classForCoder(), forCellWithReuseIdentifier: "CollectionViewCell")
-        collectionView?.backgroundColor = UIColor.whiteColor()
+        collectionView.register(UINib(nibName: "StepGoalSetingViewCell", bundle: Bundle.main), forCellWithReuseIdentifier: "StepGoalSetingIdentifier")
+        collectionView?.register(UICollectionViewCell.classForCoder(), forCellWithReuseIdentifier: "CollectionViewCell")
+        collectionView?.backgroundColor = UIColor.white
         bulidClockViewandProgressBar()
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         
-        saveContentTArray(NSDate().beginningOfDay.timeIntervalSince1970)
+        saveContentTArray(Date().beginningOfDay.timeIntervalSince1970)
         
         SwiftEventBus.onMainThread(self, name: EVENT_BUS_BEGIN_SMALL_SYNCACTIVITY) { (notification) in
             let dict:[String:AnyObject] = notification.object as! [String:AnyObject]
@@ -76,7 +76,7 @@ class StepGoalSetingController: PublicClassController,ButtonManagerCallBack,Cloc
         }
         
         SwiftEventBus.onMainThread(self, name: EVENT_BUS_END_BIG_SYNCACTIVITY) { (notification) in
-            self.saveContentTArray(NSDate().beginningOfDay.timeIntervalSince1970)
+            self.saveContentTArray(Date().beginningOfDay.timeIntervalSince1970)
         }
         
         SwiftEventBus.onMainThread(self, name: SELECTED_CALENDAR_NOTIFICATION) { (notification) in
@@ -108,8 +108,8 @@ class StepGoalSetingController: PublicClassController,ButtonManagerCallBack,Cloc
         if(!AppDelegate.getAppDelegate().hasSavedAddress()) {
             let tutorialOne:TutorialOneViewController = TutorialOneViewController()
             let nav:UINavigationController = UINavigationController(rootViewController: tutorialOne)
-            nav.navigationBarHidden = true
-            self.presentViewController(nav, animated: true, completion: nil)
+            nav.isNavigationBarHidden = true
+            self.present(nav, animated: true, completion: nil)
         }else{
             AppDelegate.getAppDelegate().startConnect(false)
         }
@@ -121,8 +121,8 @@ class StepGoalSetingController: PublicClassController,ButtonManagerCallBack,Cloc
     func getContentTArray() {
         let dataArray:NSArray = AppTheme.LoadKeyedArchiverName(StepsGoalKey) as! NSArray
         if(dataArray.count>0) {
-            let date:NSTimeInterval = (dataArray[1] as! String).dateFromFormat("YYYY/MM/dd")!.timeIntervalSince1970
-            if(date != NSDate.date(year: NSDate().year, month: NSDate().month, day: NSDate().day).timeIntervalSince1970){ return }
+            let date:TimeInterval = (dataArray[1] as! String).dateFromFormat("YYYY/MM/dd")!.timeIntervalSince1970
+            if(date != Date.date(year: Date().year, month: Date().month, day: Date().day).timeIntervalSince1970){ return }
             
             contentTArray = (AppTheme.LoadKeyedArchiverName(StepsGoalKey) as! NSArray)[0] as! [String]
             let dailyStepGoal:Int = NSString(string: contentTArray[2]).integerValue
@@ -137,17 +137,17 @@ class StepGoalSetingController: PublicClassController,ButtonManagerCallBack,Cloc
     /**
      Archiver "contentTArray"
      */
-    func saveContentTArray(beginningDate:NSTimeInterval) {
+    func saveContentTArray(_ beginningDate:TimeInterval) {
         //Only for today's data
         let array:NSArray = UserSteps.getCriteria("WHERE date = \(beginningDate)")
         if array.count>0 {
             let dataSteps:UserSteps = array[0] as! UserSteps
             
-            self.contentTArray.replaceRange(Range(1..<2), with: ["\(dataSteps.steps)"])
-             self.contentTArray.replaceRange(Range(2..<3), with: [String(format: "%.2f", Float(dataSteps.walking_duration+dataSteps.running_duration)/60.0)])
+            self.contentTArray.replaceSubrange(Range(1..<2), with: ["\(dataSteps.steps)"])
+             self.contentTArray.replaceSubrange(Range(2..<3), with: [String(format: "%.2f", Float(dataSteps.walking_duration+dataSteps.running_duration)/60.0)])
             self.calculationData((dataSteps.walking_duration+dataSteps.running_duration), steps: dataSteps.steps, completionData: { (miles, calories) in
-                self.contentTArray.replaceRange(Range(0..<1), with: ["\(calories)"])
-                self.contentTArray.replaceRange(Range(3..<4), with: ["\(miles)"])
+                self.contentTArray.replaceSubrange(Range(0..<1), with: ["\(calories)"])
+                self.contentTArray.replaceSubrange(Range(3..<4), with: ["\(miles)"])
             })
             self.collectionView.reloadData()
             //AppTheme.KeyedArchiverName(self.StepsGoalKey, andObject: self.contentTArray)
@@ -164,11 +164,11 @@ class StepGoalSetingController: PublicClassController,ButtonManagerCallBack,Cloc
             }
         }
         
-        mClockTimerView = ClockView(frame:CGRectMake(0, 0, clockBackGroundView.bounds.width, clockBackGroundView.bounds.width), hourImage:  UIImage(named: "clockViewHour")!, minuteImage: UIImage(named: "clockViewMinute")!, dialImage: UIImage(named: "clockView600")!)
+        mClockTimerView = ClockView(frame:CGRect(x: 0, y: 0, width: clockBackGroundView.bounds.width, height: clockBackGroundView.bounds.width), hourImage:  UIImage(named: "clockViewHour")!, minuteImage: UIImage(named: "clockViewMinute")!, dialImage: UIImage(named: "clockView600")!)
         mClockTimerView?.currentTimer()
         clockBackGroundView.addSubview(mClockTimerView!)
         
-        progressView.frame = CGRectMake(clockBackGroundView.frame.origin.x-3, clockBackGroundView.frame.origin.y-3, clockBackGroundView.bounds.width+6, clockBackGroundView.bounds.width+6)
+        progressView.frame = CGRect(x: clockBackGroundView.frame.origin.x-3, y: clockBackGroundView.frame.origin.y-3, width: clockBackGroundView.bounds.width+6, height: clockBackGroundView.bounds.width+6)
         progressView.setProgressColor(AppTheme.NEVO_SOLAR_YELLOW())
         progressView.setProgress(0.0)
         //self.view.layer.addSublayer(progressView)
@@ -186,13 +186,13 @@ class StepGoalSetingController: PublicClassController,ButtonManagerCallBack,Cloc
      :param: progress
      :param: animated
      */
-    func setProgress(progress: Float,dailySteps:Int,dailyStepGoal:Int){
+    func setProgress(_ progress: Float,dailySteps:Int,dailyStepGoal:Int){
         progresValue = CGFloat(progress)
         progressView.setProgress(progresValue, Steps: dailySteps, GoalStep: dailyStepGoal)
     }
     
     // MARK: - ButtonManagerCallBack
-    func controllManager(sender:AnyObject) {
+    func controllManager(_ sender:AnyObject) {
 
     }
 
@@ -210,13 +210,13 @@ class StepGoalSetingController: PublicClassController,ButtonManagerCallBack,Cloc
 // MARK: - Data calculation
 extension StepGoalSetingController {
     
-    func calculationData(activeTimer:Int,steps:Int,completionData:((miles:String,calories:String) -> Void)) {
+    func calculationData(_ activeTimer:Int,steps:Int,completionData:((_ miles:String,_ calories:String) -> Void)) {
         let profile:NSArray = UserProfile.getAll()
         var userProfile:UserProfile?
         var strideLength:Double = 0
         var userWeight:Double = 0
         if profile.count>0 {
-            userProfile = profile.objectAtIndex(0) as? UserProfile
+            userProfile = profile.object(at: 0) as? UserProfile
             strideLength = Double(userProfile!.length)*0.415/100
             userWeight = Double(userProfile!.weight)
         }else{
@@ -227,7 +227,7 @@ extension StepGoalSetingController {
         let miles:Double = strideLength*Double(steps)/1000
         //Formula's = (2.0 X persons KG X 3.5)/200 = calories per minute
         let calories:Double = (2.0*userWeight*3.5)/200*Double(activeTimer)
-        completionData(miles: String(format: "%.2f",miles), calories: String(format: "%.2f",calories))
+        completionData(String(format: "%.2f",miles), String(format: "%.2f",calories))
     }
 }
 
@@ -248,25 +248,25 @@ extension StepGoalSetingController {
 
 extension StepGoalSetingController:UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout{
     // MARK: - UICollectionViewDataSource
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return contentTitleArray.count
     }
     
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell:StepGoalSetingViewCell = collectionView.dequeueReusableCellWithReuseIdentifier("StepGoalSetingIdentifier", forIndexPath: indexPath) as! StepGoalSetingViewCell
-        cell.titleLabel.text = contentTitleArray[indexPath.row]
-        switch indexPath.row {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell:StepGoalSetingViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "StepGoalSetingIdentifier", for: indexPath) as! StepGoalSetingViewCell
+        cell.titleLabel.text = contentTitleArray[(indexPath as NSIndexPath).row]
+        switch (indexPath as NSIndexPath).row {
         case 0:
-            cell.valueLabel.text = "\(contentTArray[indexPath.row]) Cal"
+            cell.valueLabel.text = "\(contentTArray[(indexPath as NSIndexPath).row]) Cal"
             break;
         case 1:
-            cell.valueLabel.text = "\(contentTArray[indexPath.row])"
+            cell.valueLabel.text = "\(contentTArray[(indexPath as NSIndexPath).row])"
             break;
         case 2:
-            cell.valueLabel.text = "\(contentTArray[indexPath.row]) H"
+            cell.valueLabel.text = "\(contentTArray[(indexPath as NSIndexPath).row]) H"
             break;
         case 3:
-            cell.valueLabel.text = "\(contentTArray[indexPath.row]) KM"
+            cell.valueLabel.text = "\(contentTArray[(indexPath as NSIndexPath).row]) KM"
             break;
         default:
             break;

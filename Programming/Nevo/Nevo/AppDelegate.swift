@@ -29,49 +29,49 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
 
     var window: UIWindow?
     //Let's sync every days
-    let SYNC_INTERVAL:NSTimeInterval = 1*30*60 //unit is second in iOS, every 30min, do sync
+    let SYNC_INTERVAL:TimeInterval = 1*30*60 //unit is second in iOS, every 30min, do sync
     let LAST_SYNC_DATE_KEY = "LAST_SYNC_DATE_KEY"
     var lastSync = 0.0
-    private var mConnectionController : ConnectionControllerImpl?
-    private var mPacketsbuffer:[NSData] = []
-    private let mHealthKitStore:HKHealthStore = HKHealthStore()
-    private var savedDailyHistory:[NevoPacket.DailyHistory] = []
-    private var currentDay:UInt8 = 0
-    private var mAlertUpdateFW = false
+    fileprivate var mConnectionController : ConnectionControllerImpl?
+    fileprivate var mPacketsbuffer:[Data] = []
+    fileprivate let mHealthKitStore:HKHealthStore = HKHealthStore()
+    fileprivate var savedDailyHistory:[NevoPacket.DailyHistory] = []
+    fileprivate var currentDay:UInt8 = 0
+    fileprivate var mAlertUpdateFW = false
 
-    private var disConnectAlert:UIAlertView?
-    private let alertUpdateTag:Int = 9000
+    fileprivate var disConnectAlert:UIAlertView?
+    fileprivate let alertUpdateTag:Int = 9000
     
-    private var watchID:Int = 1
-    private var watchName:String = "Nevo"
-    private var watchModelNumber:Int = 1
-    private var watchModel:String = "Paris"
+    fileprivate var watchID:Int = 1
+    fileprivate var watchName:String = "Nevo"
+    fileprivate var watchModelNumber:Int = 1
+    fileprivate var watchModel:String = "Paris"
 
     let dbQueue:FMDatabaseQueue = FMDatabaseQueue(path: AppDelegate.dbPath())
     let network = NetworkReachabilityManager(host: "drone.karljohnchow.com")
 
     class func getAppDelegate()->AppDelegate {
-        return UIApplication.sharedApplication().delegate as! AppDelegate
+        return UIApplication.shared.delegate as! AppDelegate
     }
 
-    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         Fabric.with([Crashlytics.self])
         // Override point for customization after application launch
         UINavigationBar.appearance().tintColor = AppTheme.NEVO_SOLAR_YELLOW()
         //UITabBar.appearance().backgroundImage = UIImage()
         //UITabBar.appearance().shadowImage = UIImage()
-        UITabBar.appearance().translucent = false
-        UINavigationBar.appearance().lt_setBackgroundColor(UIColor.whiteColor())
+        UITabBar.appearance().isTranslucent = false
+        UINavigationBar.appearance().lt_setBackgroundColor(UIColor.white)
         //设置导航栏文字颜色和字体
-        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName:UIColor.blackColor(),NSFontAttributeName:UIFont(name: "Raleway", size: 20)!]
-        UIApplication.sharedApplication().statusBarStyle = UIStatusBarStyle.Default
+        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName:UIColor.black,NSFontAttributeName:UIFont(name: "Raleway", size: 20)!]
+        UIApplication.shared.statusBarStyle = UIStatusBarStyle.default
         
         IQKeyboardManager.sharedManager().enable = true
         
         //Start the logo for the first time
-        if(!NSUserDefaults.standardUserDefaults().boolForKey("LaunchedDatabase")){
-            NSUserDefaults.standardUserDefaults().setBool(true, forKey: "LaunchedDatabase")
-            NSUserDefaults.standardUserDefaults().setBool(true, forKey: "firstDatabase")
+        if(!UserDefaults.standard.bool(forKey: "LaunchedDatabase")){
+            UserDefaults.standard.set(true, forKey: "LaunchedDatabase")
+            UserDefaults.standard.set(true, forKey: "firstDatabase")
             /**
             *  Initialize the database
             */
@@ -79,7 +79,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
             UserAlarm.defaultAlarm()
             UserNotification.defaultNotificationColor()
         }else{
-            NSUserDefaults.standardUserDefaults().setBool(false, forKey: "firstDatabase")
+            UserDefaults.standard.set(false, forKey: "firstDatabase")
         }
         
         /**
@@ -98,8 +98,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
         */
         mConnectionController = ConnectionControllerImpl()
         mConnectionController?.setDelegate(self)
-        let userDefaults = NSUserDefaults.standardUserDefaults();
-        lastSync = userDefaults.doubleForKey(LAST_SYNC_DATE_KEY)
+        let userDefaults = UserDefaults.standard;
+        lastSync = userDefaults.double(forKey: LAST_SYNC_DATE_KEY)
         
         //cancel all notifications  PM-13:00, PM 19:00
         LocalNotification.sharedInstance().cancelNotification([NevoAllKeys.LocalStartSportKey(),NevoAllKeys.LocalEndSportKey()])
@@ -119,32 +119,32 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
         return true
     }
 
-    func applicationWillResignActive(application: UIApplication) {
+    func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
     }
 
-    func applicationDidEnterBackground(application: UIApplication) {
-        UIApplication.sharedApplication().beginBackgroundTaskWithExpirationHandler { () -> Void in }
+    func applicationDidEnterBackground(_ application: UIApplication) {
+        UIApplication.shared.beginBackgroundTask (expirationHandler: { () -> Void in })
         
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
     }
 
-    func applicationWillEnterForeground(application: UIApplication) {
+    func applicationWillEnterForeground(_ application: UIApplication) {
         // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
     }
 
-    func applicationDidBecomeActive(application: UIApplication) {
+    func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     }
 
-    func applicationWillTerminate(application: UIApplication) {
+    func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
         // Saves changes in the application's managed object context before the application terminates.
     }
 
-    func application(application: UIApplication , didReceiveLocalNotification notification: UILocalNotification ) {
+    func application(_ application: UIApplication , didReceive notification: UILocalNotification ) {
         if (disConnectAlert == nil) {
             disConnectAlert = UIAlertView(title: NSLocalizedString("BLE_LOST_TITLE", comment: ""), message: NSLocalizedString("BLE_CONNECTION_LOST", comment: ""), delegate: nil, cancelButtonTitle: NSLocalizedString("Ok", comment: ""))
             disConnectAlert?.show()
@@ -153,20 +153,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
 
     // MARK: -dbPath
     class func dbPath()->String{
-        var docsdir:String = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true).last!
-        let filemanage:NSFileManager = NSFileManager.defaultManager()
+        var docsdir:String = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true).last!
+        let filemanage:FileManager = FileManager.default
         //nevoDBDFileURL
-        docsdir = docsdir.stringByAppendingFormat("%@%@/", "/",nevoDBDFileURL)
+        docsdir = docsdir.appendingFormat("%@%@/", "/",nevoDBDFileURL)
         var isDir : ObjCBool = false
-        let exit:Bool = filemanage.fileExistsAtPath(docsdir, isDirectory:&isDir )
+        let exit:Bool = filemanage.fileExists(atPath: docsdir, isDirectory:&isDir )
         if (!exit || !isDir) {
             do{
-                try filemanage.createDirectoryAtPath(docsdir, withIntermediateDirectories: true, attributes: nil)
+                try filemanage.createDirectory(atPath: docsdir, withIntermediateDirectories: true, attributes: nil)
             }catch let error as NSError{
                 NSLog("failed: \(error.localizedDescription)")
             }
         }
-        let dbpath:String = docsdir.stringByAppendingString(nevoDBNames)
+        let dbpath:String = docsdir + nevoDBNames
         return dbpath;
     }
 
@@ -180,7 +180,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
      :param: requestURL    请求目的的URL 字符串
      :param: resultHandler 请求后返回的数据块
      */
-    func getRequestNetwork(requestURL:String,parameters:AnyObject,resultHandler:((result:AnyObject?,error:NSError?) -> Void)){
+    func getRequestNetwork(_ requestURL:String,parameters:AnyObject,resultHandler:@escaping ((_ result:AnyObject?,_ error:NSError?) -> Void)){
         Alamofire.request(.POST, requestURL, parameters: parameters as? [String : AnyObject] ,encoding: .URL).responseJSON { (response) -> Void in
             if response.result.isSuccess {
                 NSLog("getJSON: \(response.result.value!)")
@@ -210,20 +210,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
         sendRequest(WriteSettingRequest())
     }
 
-    func setGoal(goal:Goal) {
+    func setGoal(_ goal:Goal) {
         sendRequest(SetGoalRequest(goal: goal))
     }
 
-    func setAlarm(alarm:[Alarm]) {
+    func setAlarm(_ alarm:[Alarm]) {
         sendRequest(SetAlarmRequest(alarm:alarm))
     }
 
-    func setNewAlarm(alarm:NewAlarm) {
+    func setNewAlarm(_ alarm:NewAlarm) {
         sendRequest(SetNewAlarmRequest(alarm:alarm))
     }
 
 
-    func SetNortification(settingArray:[NotificationSetting]) {
+    func SetNortification(_ settingArray:[NotificationSetting]) {
         XCGLogger.defaultInstance().debug("SetNortification")
         sendRequest(SetNortificationRequest(settingArray: settingArray))
     }
@@ -233,11 +233,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
      other value, light on the related led
      @motorOnOff, vibrator true or flase
      */
-    func SetLedOnOffandVibrator(ledpattern:UInt32,  motorOnOff:Bool) {
+    func SetLedOnOffandVibrator(_ ledpattern:UInt32,  motorOnOff:Bool) {
         sendRequest(LedLightOnOffNevoRequest(ledpattern: ledpattern, motorOnOff: motorOnOff))
     }
 
-    func startConnect(forceScan:Bool){
+    func startConnect(_ forceScan:Bool){
         if forceScan{
             mConnectionController?.forgetSavedAddress()
         }
@@ -254,7 +254,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
         sendRequest(ReadDailyTrackerInfo())
     }
 
-    func  getDailyTracker(trackerno:UInt8){
+    func  getDailyTracker(_ trackerno:UInt8){
         sendRequest(ReadDailyTracker(trackerno:trackerno))
     }
 
@@ -279,11 +279,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
      */
     func syncActivityData() {
 
-        if( NSDate().timeIntervalSince1970-lastSync > SYNC_INTERVAL) {
+        if( Date().timeIntervalSince1970-lastSync > SYNC_INTERVAL) {
             //We haven't synched for a while, let's sync now !
             XCGLogger.defaultInstance().debug("*** Sync started ! ***")
             self.getDailyTrackerInfo()
-            lastSync = NSDate().timeIntervalSince1970
+            lastSync = Date().timeIntervalSince1970
             if(isConnected()) {
                 let banner = Banner(title: NSLocalizedString("syncing_data", comment: ""), subtitle: nil, image: nil, backgroundColor: AppTheme.NEVO_SOLAR_YELLOW())
                 banner.dismissesOnTap = true
@@ -299,9 +299,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
         let banner = Banner(title: NSLocalizedString("sync_finished", comment: ""), subtitle: nil, image: nil, backgroundColor: AppTheme.hexStringToColor("#0dac67"))
         banner.dismissesOnTap = true
         banner.show(duration: 1.5)
-        lastSync = NSDate().timeIntervalSince1970
-        let userDefaults = NSUserDefaults.standardUserDefaults();
-        userDefaults.setObject(NSDate().timeIntervalSince1970,forKey:LAST_SYNC_DATE_KEY)
+        lastSync = Date().timeIntervalSince1970
+        let userDefaults = UserDefaults.standard;
+        userDefaults.set(Date().timeIntervalSince1970,forKey:LAST_SYNC_DATE_KEY)
         userDefaults.synchronize()
     }
 
@@ -309,13 +309,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
     /**
     See UIAlertViewDelegate
     */
-    func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int){
+    func alertView(_ alertView: UIAlertView, clickedButtonAt buttonIndex: Int){
         if(alertView.tag == alertUpdateTag) {
             if(buttonIndex == 1) {
                 let tabVC:UITabBarController = self.window?.rootViewController as! UITabBarController
                 let otaCont:NevoOtaViewController = NevoOtaViewController()
                 let navigation:UINavigationController = UINavigationController(rootViewController: otaCont)
-                tabVC.presentViewController(navigation, animated: true, completion: nil)
+                tabVC.present(navigation, animated: true, completion: nil)
             }
         }else{
             disConnectAlert = nil
@@ -340,7 +340,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
         return [watchModel:watchModelNumber];
     }
     
-    func setWatchInfo(id:Int,model:Int) {
+    func setWatchInfo(_ id:Int,model:Int) {
         //1-Nevo,2-Nevo Solar,3-Lunar,0xff-Nevo
         switch id {
         case 1:
@@ -407,7 +407,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
 
     }
 
-    func sendRequest(r:Request) {
+    func sendRequest(_ r:Request) {
         if(isConnected()){
             SyncQueue.sharedInstance.post( { (Void) -> (Void) in
 
@@ -424,9 +424,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
     /**
      Called when a packet is received from the device
      */
-    func packetReceived(packet: RawPacket) {
+    func packetReceived(_ packet: RawPacket) {
 
-        mPacketsbuffer.append(packet.getRawData())
+        mPacketsbuffer.append(packet.getRawData() as Data)
         if(packet.isLastPacket()) {
             let packet:NevoPacket = NevoPacket(packets:mPacketsbuffer)
             if(!packet.isVaildPacket()) {
@@ -458,11 +458,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                 //step5: sync the notification setting, if remove nevo's battery, the nevo notification reset, so here need sync it
                 var mNotificationSettingArray:[NotificationSetting] = []
                 let notArray:NSArray = UserNotification.getAll()
-                let notificationTypeArray:[NotificationType] = [NotificationType.CALL, NotificationType.EMAIL, NotificationType.FACEBOOK, NotificationType.SMS, NotificationType.WECHAT]
+                let notificationTypeArray:[NotificationType] = [NotificationType.call, NotificationType.email, NotificationType.facebook, NotificationType.sms, NotificationType.wechat]
                 for notificationType in notificationTypeArray {
                     for model in notArray{
                         let notification:UserNotification = model as! UserNotification
-                        if(notification.NotificationType == notificationType.rawValue){
+                        if(notification.NotificationType == notificationType.rawValue as String){
                             let setting:NotificationSetting = NotificationSetting(type: notificationType, clock: notification.clock, color: 0, states:notification.status)
                             mNotificationSettingArray.append(setting)
                             break
@@ -479,26 +479,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                 let sleepAlarm:NSArray = UserAlarm.getCriteria("WHERE type = \(1)")
                 
                 for index in 0 ..< 14{
-                    let date:NSDate = NSDate()
+                    let date:Date = Date()
                     let newAlarm:NewAlarm = NewAlarm(alarmhour: date.hour, alarmmin: date.minute, alarmNumber: index, alarmWeekday: 0)
                     if(self.isConnected()){
                         self.setNewAlarm(newAlarm)
                     }
                 }
                 
-                let date:NSDate = NSDate()
-                for (index,Value) in weakAlarm.enumerate() {
+                let date:Date = Date()
+                for (index,Value) in weakAlarm.enumerated() {
                     let alarm:UserAlarm = Value as! UserAlarm
-                    let alarmDay:NSDate = NSDate(timeIntervalSince1970: alarm.timer)
+                    let alarmDay:Date = Date(timeIntervalSince1970: alarm.timer)
                     if alarm.status {
                         let newAlarm:NewAlarm = NewAlarm(alarmhour: alarmDay.hour, alarmmin: alarmDay.minute, alarmNumber: index, alarmWeekday: alarm.dayOfWeek)
                         self.setNewAlarm(newAlarm)
                     }
                 }
                 
-                for (index,Value) in sleepAlarm.enumerate() {
+                for (index,Value) in sleepAlarm.enumerated() {
                     let alarm:UserAlarm = Value as! UserAlarm
-                    let alarmDay:NSDate = NSDate(timeIntervalSince1970: alarm.timer)
+                    let alarmDay:Date = Date(timeIntervalSince1970: alarm.timer)
                     if alarm.type == 1 && alarm.status && alarm.dayOfWeek == date.weekday{
                         let newAlarm:NewAlarm = NewAlarm(alarmhour: alarmDay.hour, alarmmin: alarmDay.minute, alarmNumber: index+7, alarmWeekday: 0)
                         self.setNewAlarm(newAlarm)
@@ -530,7 +530,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                 let thispacket = packet.copy() as DailyTrackerInfoNevoPacket
                 currentDay = 0
                 savedDailyHistory = thispacket.getDailyTrackerInfo()
-                XCGLogger.defaultInstance().debug("History Total Days:\(self.savedDailyHistory.count),Today is \(GmtNSDate2LocaleNSDate(NSDate()))")
+                XCGLogger.defaultInstance().debug("History Total Days:\(self.savedDailyHistory.count),Today is \(GmtNSDate2LocaleNSDate(Date()))")
                 if savedDailyHistory.count > 0 {
                     self.getDailyTracker(currentDay)
                 }
@@ -538,20 +538,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
 
             if(packet.getHeader() == ReadDailyTracker.HEADER()) {
                 let thispacket:DailyTrackerNevoPacket = packet.copy() as DailyTrackerNevoPacket
-                let today:NSDate  = NSDate()
-                let dateFormatter:NSDateFormatter = NSDateFormatter()
+                let today:Date  = Date()
+                let dateFormatter:DateFormatter = DateFormatter()
                 dateFormatter.dateFormat = "yyyyMMdd"
-                let currentDateStr:NSString = dateFormatter.stringFromDate(today)
+                let currentDateStr:NSString = dateFormatter.string(from: today) as NSString
 
-                let timeStr:NSString = NSString(format: "\(thispacket.getDateTimer())")
+                let timeStr:NSString = NSString(format: "\(thispacket.getDateTimer())" as NSString)
                 if(timeStr.length < 8 ) {
                     return
                 }
-                let year:NSString = timeStr.substringWithRange(NSMakeRange(0,4)) as NSString
-                let month:NSString = timeStr.substringWithRange(NSMakeRange(4,2)) as NSString
-                let day:NSString = timeStr.substringWithRange(NSMakeRange(6,2)) as NSString
-                let timerInterval:NSDate = NSDate.date(year: year.integerValue, month: month.integerValue, day: day.integerValue)
-                let timerInter:NSTimeInterval = timerInterval.timeIntervalSince1970
+                let year:NSString = timeStr.substring(with: NSMakeRange(0,4)) as NSString
+                let month:NSString = timeStr.substring(with: NSMakeRange(4,2)) as NSString
+                let day:NSString = timeStr.substring(with: NSMakeRange(6,2)) as NSString
+                let timerInterval:Date = Date.date(year: year.integerValue, month: month.integerValue, day: day.integerValue)
+                let timerInter:TimeInterval = timerInterval.timeIntervalSince1970
 
                 let stepsArray = UserSteps.getCriteria("WHERE createDate = \(timeStr)")
                 let stepsModel:UserSteps = UserSteps(keyDict: [
@@ -584,12 +584,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                     if(step.steps < thispacket.getDailySteps()) {
                         XCGLogger.defaultInstance().debug("Data that has been saved····")
                         stepsModel.id = step.id
-                        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,0), { () -> Void in
+                        DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.default).async(execute: { () -> Void in
                             stepsModel.update()
                         })
                     }
                 }else {
-                    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,0), { () -> Void in
+                    DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.default).async(execute: { () -> Void in
                         stepsModel.add({ (id, completion) -> Void in
                         })
                     })
@@ -630,12 +630,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                     
                     if currentSleepTime>localTime {
                         model.id = sleep.id
-                        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,0), { () -> Void in
+                        DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.default).async(execute: { () -> Void in
                             model.update()
                         })
                     }
                 }else {
-                    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,0), { () -> Void in
+                    DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.default).async(execute: { () -> Void in
                         model.add({ (id, completion) -> Void in
                         })
                     })
@@ -662,15 +662,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                 let hk = NevoHKImpl()
                 hk.requestPermission()
 
-                let now:NSDate = NSDate()
-                let saveDay:NSDate = savedDailyHistory[Int(currentDay)].Date
-                let nowDate:NSDate = NSDate.date(year: now.year, month: now.month, day: now.day, hour: now.hour, minute: 0, second: 0)
-                let saveDate:NSDate = NSDate.date(year: saveDay.year, month: saveDay.month, day: saveDay.day, hour: saveDay.hour, minute: 0, second: 0)
+                let now:Date = Date()
+                let saveDay:Date = savedDailyHistory[Int(currentDay)].Date as Date
+                let nowDate:Date = Date.date(year: now.year, month: now.month, day: now.day, hour: now.hour, minute: 0, second: 0)
+                let saveDate:Date = Date.date(year: saveDay.year, month: saveDay.month, day: saveDay.day, hour: saveDay.hour, minute: 0, second: 0)
 
                 // to HK Running
                 for index:Int in 0 ..< thispacket.getHourlyRunningDistance().count {
                     if(thispacket.getHourlyRunningDistance()[index] > 0) {
-                        hk.writeDataPoint(RunningToHK(distance:Double(thispacket.getHourlyRunningDistance()[index]), date:NSDate.date(year: saveDay.year, month: saveDay.month, day: saveDay.day, hour: index, minute: 0, second: 0)), resultHandler: { (result, error) in
+                        hk.writeDataPoint(RunningToHK(distance:Double(thispacket.getHourlyRunningDistance()[index]), date:Date.date(year: saveDay.year, month: saveDay.month, day: saveDay.day, hour: index, minute: 0, second: 0)), resultHandler: { (result, error) in
 
                         })
                     }
@@ -679,9 +679,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                 // to HK Calories
                 for index:Int in 0 ..< thispacket.getHourlyCalories().count {
                     if savedDailyHistory[Int(currentDay)].HourlyCalories[index] > 0 && index == now.hour &&
-                        !nowDate.isEqualToDate(saveDate){
+                        (nowDate != saveDate){
 
-                        hk.writeDataPoint(CaloriesToHK(calories: Double(savedDailyHistory[Int(currentDay)].HourlyCalories[index]), date: NSDate.date(year: saveDay.year, month: saveDay.month, day: saveDay.day, hour: index, minute: 0, second: 0)), resultHandler: { (result, error) in
+                        hk.writeDataPoint(CaloriesToHK(calories: Double(savedDailyHistory[Int(currentDay)].HourlyCalories[index]), date: Date.date(year: saveDay.year, month: saveDay.month, day: saveDay.day, hour: index, minute: 0, second: 0)), resultHandler: { (result, error) in
                             if (result != true) {
                                 XCGLogger.defaultInstance().debug("Save Hourly Calories error\(index),\(error)")
                             }else{
@@ -699,7 +699,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                     //user can see 10:00AM data when 11:20 do a big sync, the value should be 400 steps
                     //that is to say, user can't see current hour 's step in healthkit, he can see it by waiting one hour
                     if savedDailyHistory[Int(currentDay)].HourlySteps[i] > 0 &&
-                        !nowDate.isEqualToDate(saveDate){
+                        (nowDate != saveDate){
                         hk.writeDataPoint(HourlySteps(numberOfSteps: savedDailyHistory[Int(currentDay)].HourlySteps[i],date: savedDailyHistory[Int(currentDay)].Date,hour:i,update: false), resultHandler: { (result, error) -> Void in
                             if (result != true) {
                                 XCGLogger.defaultInstance().debug("Save Hourly steps error\(i),\(error)")
@@ -742,7 +742,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
         }
     }
 
-    func connectionStateChanged(isConnected : Bool) {
+    func connectionStateChanged(_ isConnected : Bool) {
         //send local notification
         SwiftEventBus.post(EVENT_BUS_CONNECTION_STATE_CHANGED_KEY, sender:isConnected)
 
@@ -755,8 +755,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
 
             ConnectionManager.sharedInstance.checkConnectSendNotification(ConnectionManager.Const.connectionStatus.connected)
 
-            let dispatchTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, Int64(1.0 * Double(NSEC_PER_SEC)))
-            dispatch_after(dispatchTime, dispatch_get_main_queue(), {
+            let dispatchTime: DispatchTime = DispatchTime.now() + Double(Int64(1.0 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
+            DispatchQueue.main.asyncAfter(deadline: dispatchTime, execute: {
                 //setp1: cmd 0x01, set RTC, for every connected Nevo
                 self.mPacketsbuffer = []
                 self.setRTC()
@@ -764,7 +764,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
 
         }else {
             if(self.hasSavedAddress()){
-                let banner = Banner(title: NSLocalizedString("Disconnected", comment: ""), subtitle: nil, image: nil, backgroundColor: UIColor.redColor())
+                let banner = Banner(title: NSLocalizedString("Disconnected", comment: ""), subtitle: nil, image: nil, backgroundColor: UIColor.red)
                 banner.dismissesOnTap = true
                 banner.show(duration: 1.5)
             }
@@ -775,14 +775,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
         }
     }
 
-    func firmwareVersionReceived(whichfirmware:DfuFirmwareTypes, version:NSString) {
+    func firmwareVersionReceived(_ whichfirmware:DfuFirmwareTypes, version:NSString) {
         let mcuver = AppTheme.GET_SOFTWARE_VERSION()
         let blever = AppTheme.GET_FIRMWARE_VERSION()
 
         XCGLogger.defaultInstance().debug("Build in software version: \(mcuver), firmware version: \(blever)")
 
-        if ((whichfirmware == DfuFirmwareTypes.SOFTDEVICE  && version.integerValue < mcuver)
-            || (whichfirmware == DfuFirmwareTypes.APPLICATION  && version.integerValue < blever)) {
+        if ((whichfirmware == DfuFirmwareTypes.softdevice  && version.integerValue < mcuver)
+            || (whichfirmware == DfuFirmwareTypes.application  && version.integerValue < blever)) {
             //for tutorial screen, don't popup update dialog
             if !mAlertUpdateFW {
                 mAlertUpdateFW = true
@@ -791,27 +791,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                 let buttonString:String = NSLocalizedString("Update", comment: "")
                 let cancelString:String = NSLocalizedString("Cancel", comment: "")
 
-                if((UIDevice.currentDevice().systemVersion as NSString).floatValue >= 8.0){
+                if((UIDevice.current.systemVersion as NSString).floatValue >= 8.0){
                     let tabVC:UITabBarController = self.window?.rootViewController as! UITabBarController
 
-                    let actionSheet:UIAlertController = UIAlertController(title: titleString, message: msg, preferredStyle: UIAlertControllerStyle.Alert)
+                    let actionSheet:UIAlertController = UIAlertController(title: titleString, message: msg, preferredStyle: UIAlertControllerStyle.alert)
                     actionSheet.view.tintColor = AppTheme.NEVO_SOLAR_YELLOW()
-                    let alertAction1:UIAlertAction = UIAlertAction(title: cancelString, style: UIAlertActionStyle.Cancel, handler: { ( alert) -> Void in
+                    let alertAction1:UIAlertAction = UIAlertAction(title: cancelString, style: UIAlertActionStyle.cancel, handler: { ( alert) -> Void in
 
                     })
                     actionSheet.addAction(alertAction1)
 
-                    let alertAction2:UIAlertAction = UIAlertAction(title: buttonString, style: UIAlertActionStyle.Default, handler: { ( alert) -> Void in
+                    let alertAction2:UIAlertAction = UIAlertAction(title: buttonString, style: UIAlertActionStyle.default, handler: { ( alert) -> Void in
                         let otaCont:NevoOtaViewController = NevoOtaViewController()
                         let navigation:UINavigationController = UINavigationController(rootViewController: otaCont)
-                        tabVC.presentViewController(navigation, animated: true, completion: nil)
+                        tabVC.present(navigation, animated: true, completion: nil)
 
                     })
                     actionSheet.addAction(alertAction2)
-                    tabVC.presentViewController(actionSheet, animated: true, completion: nil)
+                    tabVC.present(actionSheet, animated: true, completion: nil)
                 }else{
                     let actionSheet:UIAlertView = UIAlertView(title: titleString, message: msg, delegate: self, cancelButtonTitle: cancelString, otherButtonTitles: buttonString)
-                    actionSheet.layer.backgroundColor = AppTheme.NEVO_SOLAR_YELLOW().CGColor
+                    actionSheet.layer.backgroundColor = AppTheme.NEVO_SOLAR_YELLOW().cgColor
                     actionSheet.tintColor = AppTheme.NEVO_SOLAR_YELLOW()
                     actionSheet.tag = alertUpdateTag
                     actionSheet.show()
@@ -824,13 +824,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
     /**
      *  Receiving the current device signal strength value
      */
-    func receivedRSSIValue(number:NSNumber){
+    func receivedRSSIValue(_ number:NSNumber){
         SwiftEventBus.post(EVENT_BUS_RSSI_VALUE, sender: number)
     }
 
-    func bluetoothEnabled(enabled:Bool) {
+    func bluetoothEnabled(_ enabled:Bool) {
         if(!enabled && self.hasSavedAddress()) {
-            let banner = Banner(title: NSLocalizedString("bluetooth_turned_off_enable", comment: ""), subtitle: nil, image: nil, backgroundColor: UIColor.redColor())
+            let banner = Banner(title: NSLocalizedString("bluetooth_turned_off_enable", comment: ""), subtitle: nil, image: nil, backgroundColor: UIColor.red)
             banner.dismissesOnTap = true
             banner.show(duration: 1.5)
         }

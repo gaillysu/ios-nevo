@@ -17,16 +17,16 @@ It will receive different Closures and will run them when appropriate
 */
 class SyncQueue : NSObject {
     /** The max lock time before timeout. */
-    private let MAX_LOCK_TIME = 5
+    fileprivate let MAX_LOCK_TIME = 5
     
     /** The stored commands, that are waiting to be executed. */
-    private var mQueue:[ (Void) -> (Void) ]=[]
+    fileprivate var mQueue:[ (Void) -> (Void) ]=[]
     
     /** If this is true, then we are currently waiting for something before we can continue*/
-    private var mLock:Bool = false
+    fileprivate var mLock:Bool = false
     
     /** This Runnable, is the Timeout task. It's timer is set to 0 every time we put a new lock */
-    private var mTimeoutTimer:NSTimer?
+    fileprivate var mTimeoutTimer:Timer?
     
     /**
     A classic singelton pattern
@@ -49,7 +49,7 @@ class SyncQueue : NSObject {
     /**
     No initialisation outside of this class, this is a singleton
     */
-    private override init() {
+    fileprivate override init() {
         
     }
     
@@ -58,7 +58,7 @@ class SyncQueue : NSObject {
     *
     * @param r the runnable
     */
-    func post(task:  (Void) -> (Void) ){
+    func post(_ task:  @escaping (Void) -> (Void) ){
     
         //Let's check if we are locked (e.g. have a pending request
         if(mLock == true){
@@ -83,7 +83,7 @@ class SyncQueue : NSObject {
         unlock()
     
         if(mQueue.count>=1){
-            post(mQueue.removeAtIndex(0))
+            post(mQueue.remove(at: 0))
         }
     }
     
@@ -99,21 +99,21 @@ class SyncQueue : NSObject {
     /**
     * Locks the handler
     */
-    private func lock(){
+    fileprivate func lock(){
         XCGLogger.defaultInstance().debug("SyncController : Waiting for a response...")
         mLock = true
     
         //Here we reset the Timeout timer
         mTimeoutTimer?.invalidate()
         
-        mTimeoutTimer = NSTimer.scheduledTimerWithTimeInterval(Double(MAX_LOCK_TIME), target: self, selector:#selector(SyncQueue.next), userInfo: nil, repeats: false)
+        mTimeoutTimer = Timer.scheduledTimer(timeInterval: Double(MAX_LOCK_TIME), target: self, selector:#selector(SyncQueue.next), userInfo: nil, repeats: false)
     
     }
     
     /**
     * Unlocks the handler.
     */
-    private func unlock(){
+    fileprivate func unlock(){
         XCGLogger.defaultInstance().debug("SyncController : Response received or timeout")
         mLock = false
     

@@ -15,7 +15,7 @@ class AddPresetViewController: UIViewController,ButtonManagerCallBack {
     var addDelegate:AddPresetDelegate?
     
     init() {
-        super.init(nibName: "AddPresetViewController", bundle: NSBundle.mainBundle())
+        super.init(nibName: "AddPresetViewController", bundle: Bundle.main)
     }
 
     required init(coder aDecoder: NSCoder) {
@@ -24,7 +24,7 @@ class AddPresetViewController: UIViewController,ButtonManagerCallBack {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        addPresetView.backgroundColor = UIColor.whiteColor()
+        addPresetView.backgroundColor = UIColor.white
         addPresetView.bulidAddPresetView(self.navigationItem, delegate: self)
     }
 
@@ -34,30 +34,30 @@ class AddPresetViewController: UIViewController,ButtonManagerCallBack {
     }
 
     // MARK: - ButtonManagerDelegate
-    func controllManager(sender:AnyObject){
+    func controllManager(_ sender:AnyObject){
         let number:NSString = addPresetView.presetNumber.text! as NSString
         let length:Int = number.length
         if(length >= 4){
             addDelegate?.onAddPresetNumber(Int(addPresetView.presetNumber.text!)!, name: addPresetView.presetName.text!)
-            self.navigationController?.popViewControllerAnimated(true)
+            self.navigationController?.popViewController(animated: true)
         }else{
-            if((UIDevice.currentDevice().systemVersion as NSString).floatValue >= 8.0){
-                let actionSheet:UIAlertController = UIAlertController(title: "", message: NSLocalizedString("goal_must_bigger_1000", comment: ""), preferredStyle: UIAlertControllerStyle.Alert)
+            if((UIDevice.current.systemVersion as NSString).floatValue >= 8.0){
+                let actionSheet:UIAlertController = UIAlertController(title: "", message: NSLocalizedString("goal_must_bigger_1000", comment: ""), preferredStyle: UIAlertControllerStyle.alert)
                 actionSheet.view.tintColor = AppTheme.NEVO_SOLAR_YELLOW()
-                let alertAction:UIAlertAction = UIAlertAction(title: NSLocalizedString("Ok", comment: ""), style: UIAlertActionStyle.Default, handler: { (action:UIAlertAction) -> Void in
+                let alertAction:UIAlertAction = UIAlertAction(title: NSLocalizedString("Ok", comment: ""), style: UIAlertActionStyle.default, handler: { (action:UIAlertAction) -> Void in
 
                 })
                 actionSheet.addAction(alertAction)
-                self.presentViewController(actionSheet, animated: true, completion: nil)
+                self.present(actionSheet, animated: true, completion: nil)
             }else{
                 let actionSheet:UIAlertView = UIAlertView(title: "", message: NSLocalizedString("goal_must_bigger_1000", comment: ""), delegate: nil, cancelButtonTitle: NSLocalizedString("Cancel", comment: ""), otherButtonTitles: NSLocalizedString("Ok", comment: ""))
-                actionSheet.alertViewStyle = UIAlertViewStyle.PlainTextInput
+                actionSheet.alertViewStyle = UIAlertViewStyle.plainTextInput
                 actionSheet.show()
             }
         }
     }
 
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         addPresetView.presetName.resignFirstResponder()
         addPresetView.presetNumber.resignFirstResponder()
     }

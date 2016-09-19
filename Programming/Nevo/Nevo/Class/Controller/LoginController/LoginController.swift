@@ -25,10 +25,10 @@ class LoginController: UIViewController,UITextFieldDelegate {
     
     var userName:String = ""
     var password:String = ""
-    private var pErrorNumber:Int = 0
+    fileprivate var pErrorNumber:Int = 0
 
     init() {
-        super.init(nibName: "LoginController", bundle: NSBundle.mainBundle())
+        super.init(nibName: "LoginController", bundle: Bundle.main)
     }
 
     required init(coder aDecoder: NSCoder) {
@@ -39,11 +39,11 @@ class LoginController: UIViewController,UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "Login"
-        let rightButton:UIBarButtonItem = UIBarButtonItem(title: "Skip Login", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(rightAction(_:)))
+        let rightButton:UIBarButtonItem = UIBarButtonItem(title: "Skip Login", style: UIBarButtonItemStyle.plain, target: self, action: #selector(rightAction(_:)))
         self.navigationItem.rightBarButtonItem = rightButton
         
         for controllers:UIViewController in self.navigationController!.viewControllers {
-            if controllers.isKindOfClass(SetingViewController.self) {
+            if controllers.isKind(of: SetingViewController.self) {
                 self.navigationItem.rightBarButtonItem = nil
             }
         }
@@ -56,47 +56,43 @@ class LoginController: UIViewController,UITextFieldDelegate {
         }
         
     }
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         let user:NSArray = UserProfile.getAll()
         if user.count>0 {
-            self.navigationController?.popViewControllerAnimated(true)
+            self.navigationController?.popViewController(animated: true)
         }
     }
     
-    func tapAction(sender:UITapGestureRecognizer) {
+    func tapAction(_ sender:UITapGestureRecognizer) {
         let register:ProfileSetupViewController = ProfileSetupViewController()
-        self.presentViewController(UINavigationController(rootViewController: register), animated: true, completion: nil)
+        self.present(UINavigationController(rootViewController: register), animated: true, completion: nil)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
-    func rightAction(sender:UIBarButtonItem) {
+    func rightAction(_ sender:UIBarButtonItem) {
         let register:ProfileSetupViewController = ProfileSetupViewController()
         self.navigationController?.pushViewController(register, animated: true)
     }
 
-    @IBAction func buttonAction(sender: AnyObject) {
+    @IBAction func buttonAction(_ sender: AnyObject) {
         if sender.isEqual(logoinButton) {
             self.loginRequest()
         }else{
             let register:ProfileSetupViewController = ProfileSetupViewController()
-            self.presentViewController(UINavigationController(rootViewController: register), animated: true, completion: nil)
+            self.present(UINavigationController(rootViewController: register), animated: true, completion: nil)
         }
     }
     
-    func delay(delay:Double, closure:()->()) {
-        dispatch_after(
-            dispatch_time(
-                DISPATCH_TIME_NOW,
-                Int64(delay * Double(NSEC_PER_SEC))
-            ),
-            dispatch_get_main_queue(), closure)
+    func delay(_ delay:Double, closure:@escaping ()->()) {
+        DispatchQueue.main.asyncAfter(
+            deadline: DispatchTime.now() + Double(Int64(delay * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC), execute: closure)
     }
 
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         view.endEditing(true)
     }
     
@@ -120,12 +116,12 @@ class LoginController: UIViewController,UITextFieldDelegate {
                 return
             }
             
-            let view = MRProgressOverlayView.showOverlayAddedTo(self.navigationController!.view, title: "Please wait...", mode: MRProgressOverlayViewMode.Indeterminate, animated: true)
-            view.setTintColor(AppTheme.NEVO_SOLAR_YELLOW())
+            let view = MRProgressOverlayView.showOverlayAdded(to: self.navigationController!.view, title: "Please wait...", mode: MRProgressOverlayViewMode.indeterminate, animated: true)
+            view?.setTintColor(AppTheme.NEVO_SOLAR_YELLOW())
 
             
             HttpPostRequest.LunaRPostRequest("http://nevo.karljohnchow.com/user/login", data: ["user":["email":userName,"password":password]]) { (result) in
-                MRProgressOverlayView.dismissAllOverlaysForView(self.navigationController!.view, animated: true)
+                MRProgressOverlayView.dismissAllOverlays(for: self.navigationController!.view, animated: true)
                 
                 let json = JSON(result)
                 var message = json["message"].stringValue
@@ -150,36 +146,36 @@ class LoginController: UIViewController,UITextFieldDelegate {
                     let dateString: String = jsonBirthday["date"].stringValue
                     var birthday:String = ""
                     if !jsonBirthday.isEmpty || !dateString.isEmpty {
-                        let dateFormatter = NSDateFormatter()
+                        let dateFormatter = DateFormatter()
                         dateFormatter.dateFormat = "y-M-d h:m:s.000000"
                         
-                        let birthdayDate = dateFormatter.dateFromString(dateString)
+                        let birthdayDate = dateFormatter.date(from: dateString)
                         dateFormatter.dateFormat = "y-M-d"
-                        birthday = dateFormatter.stringFromDate(birthdayDate!)
+                        birthday = dateFormatter.string(from: birthdayDate!)
                     }
                     
                     let userprofile:UserProfile = UserProfile(keyDict: ["id":user["id"].intValue,"first_name":user["first_name"].stringValue,"last_name":user["last_name"].stringValue,"birthday":birthday,"length":user["length"].intValue,"email":user["email"].stringValue, "weight":user["weight"].floatValue])
                     userprofile.add({ (id, completion) in
                         XCGLogger.defaultInstance().debug("Added? id = \(id)")
                     })
-                    self.navigationController?.popViewControllerAnimated(true)
+                    self.navigationController?.popViewController(animated: true)
                 }else{
                     if self.pErrorNumber>=3{
-                        let forgetPassword:UIAlertController = UIAlertController(title: "Forget PassWord?", message: NSLocalizedString("forget_your_password", comment: ""), preferredStyle: UIAlertControllerStyle.Alert)
-                        let alertAction:UIAlertAction = UIAlertAction(title: NSLocalizedString("forget", comment: ""), style: UIAlertActionStyle.Default, handler: { (action) in
+                        let forgetPassword:UIAlertController = UIAlertController(title: "Forget PassWord?", message: NSLocalizedString("forget_your_password", comment: ""), preferredStyle: UIAlertControllerStyle.alert)
+                        let alertAction:UIAlertAction = UIAlertAction(title: NSLocalizedString("forget", comment: ""), style: UIAlertActionStyle.default, handler: { (action) in
                             let forget:ForgotPasswordController = ForgotPasswordController()
                             forget.userEmail = self.userName
                             let nav:UINavigationController = UINavigationController(rootViewController: forget)
-                            self.presentViewController(nav, animated: true, completion: nil)
+                            self.present(nav, animated: true, completion: nil)
                         })
                         forgetPassword.addAction(alertAction)
                         
-                        let alertAction2:UIAlertAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: UIAlertActionStyle.Cancel, handler: { (action) in
+                        let alertAction2:UIAlertAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: UIAlertActionStyle.cancel, handler: { (action) in
                             
                         })
                         forgetPassword.addAction(alertAction2)
                         
-                        self.presentViewController(forgetPassword, animated: true, completion: nil)
+                        self.present(forgetPassword, animated: true, completion: nil)
                     }
                     self.pErrorNumber += 1
                 }
@@ -188,10 +184,10 @@ class LoginController: UIViewController,UITextFieldDelegate {
         }else{
             
             XCGLogger.defaultInstance().debug("没有网络")
-            let view = MRProgressOverlayView.showOverlayAddedTo(self.navigationController!.view, title: "No internet", mode: MRProgressOverlayViewMode.Cross, animated: true)
-            view.setTintColor(UIColor.getBaseColor())
-            NSTimer.after(1, { 
-                MRProgressOverlayView.dismissAllOverlaysForView(self.navigationController!.view, animated: true)
+            let view = MRProgressOverlayView.showOverlayAdded(to: self.navigationController!.view, title: "No internet", mode: MRProgressOverlayViewMode.cross, animated: true)
+            view?.setTintColor(UIColor.getBaseColor())
+            Timer.after(1, { 
+                MRProgressOverlayView.dismissAllOverlays(for: self.navigationController!.view, animated: true)
             })
         }
         

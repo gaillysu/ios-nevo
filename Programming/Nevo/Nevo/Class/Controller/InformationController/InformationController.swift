@@ -27,7 +27,7 @@ class InformationController: UIViewController,SMSegmentViewDelegate {
     var registerInfor:[String:String] = [:]
     
     init() {
-        super.init(nibName: "InformationController", bundle: NSBundle.mainBundle())
+        super.init(nibName: "InformationController", bundle: Bundle.main)
     }
     
     required init(coder aDecoder: NSCoder) {
@@ -38,27 +38,27 @@ class InformationController: UIViewController,SMSegmentViewDelegate {
         super.viewDidLoad()
         self.navigationItem.title = "Register"
         
-        let leftButton:UIBarButtonItem = UIBarButtonItem(title: "Next", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(rightAction(_:)))
+        let leftButton:UIBarButtonItem = UIBarButtonItem(title: "Next", style: UIBarButtonItemStyle.plain, target: self, action: #selector(rightAction(_:)))
         self.navigationItem.rightBarButtonItem = leftButton
         
         let datePicker:UIDatePicker = UIDatePicker()
-        datePicker.datePickerMode = UIDatePickerMode.Date
-        datePicker.backgroundColor = UIColor.whiteColor()
+        datePicker.datePickerMode = UIDatePickerMode.date
+        datePicker.backgroundColor = UIColor.white
         dateOfbirth.inputView = datePicker
-        datePicker.addTarget(self, action: #selector(selectedDateAction(_:)), forControlEvents: UIControlEvents.ValueChanged)
+        datePicker.addTarget(self, action: #selector(selectedDateAction(_:)), for: UIControlEvents.valueChanged)
         
-        heightTextField.keyboardType = UIKeyboardType.NumberPad;
-        weightTextfield.keyboardType = UIKeyboardType.NumberPad
+        heightTextField.keyboardType = UIKeyboardType.numberPad;
+        weightTextfield.keyboardType = UIKeyboardType.numberPad
     }
     
     override func viewDidLayoutSubviews() {
         //super.viewDidLayoutSubviews()
-        let segmentProperties = ["OnSelectionBackgroundColour": AppTheme.NEVO_SOLAR_YELLOW(),"OffSelectionBackgroundColour": UIColor.whiteColor(),"OnSelectionTextColour": UIColor.whiteColor(),"OffSelectionTextColour": AppTheme.NEVO_SOLAR_YELLOW()]
+        let segmentProperties = ["OnSelectionBackgroundColour": AppTheme.NEVO_SOLAR_YELLOW(),"OffSelectionBackgroundColour": UIColor.white,"OnSelectionTextColour": UIColor.white,"OffSelectionTextColour": AppTheme.NEVO_SOLAR_YELLOW()]
         if segmentView == nil {
             let segmentFrame = CGRect(x: 0, y: 0, width: metricsSegment.frame.size.width, height: metricsSegment.frame.size.height)
             segmentView = SMSegmentView(frame: segmentFrame, separatorColour: UIColor(white: 0.95, alpha: 0.3), separatorWidth: 1.0, segmentProperties: segmentProperties)
             segmentView!.delegate = self
-            segmentView!.layer.borderColor = AppTheme.NEVO_SOLAR_YELLOW().CGColor
+            segmentView!.layer.borderColor = AppTheme.NEVO_SOLAR_YELLOW().cgColor
             segmentView!.layer.borderWidth = 1.0
             segmentView?.layer.cornerRadius = 10
             
@@ -71,13 +71,13 @@ class InformationController: UIViewController,SMSegmentViewDelegate {
         
     }
 
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
 
     }
     
     // MARK: - SMSegmentViewDelegate
-    func segmentView(segmentView: SMBasicSegmentView, didSelectSegmentAtIndex index: Int) {
+    func segmentView(_ segmentView: SMBasicSegmentView, didSelectSegmentAtIndex index: Int) {
         debugPrint("Select segment at index: \(index)")
     }
     
@@ -86,17 +86,17 @@ class InformationController: UIViewController,SMSegmentViewDelegate {
 
     }
     
-    func rightAction(sender:UIBarButtonItem) {
+    func rightAction(_ sender:UIBarButtonItem) {
         self.registerRequest()
     }
     
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         dateOfbirth.resignFirstResponder()
         heightTextField.resignFirstResponder()
         weightTextfield.resignFirstResponder()
     }
     
-    func selectedDateAction(date:UIDatePicker) {
+    func selectedDateAction(_ date:UIDatePicker) {
         NSLog("date:\(date.date)")
         dateOfbirth.text = date.date.stringFromFormat("yyyy-MM-dd")
     }
@@ -116,19 +116,19 @@ class InformationController: UIViewController,SMSegmentViewDelegate {
             registerInfor["weight"] = weightTextfield!.text!
             registerInfor["sex"] = "\(sex)"
             
-            let view = MRProgressOverlayView.showOverlayAddedTo(self.navigationController!.view, title: "Please wait...", mode: MRProgressOverlayViewMode.Indeterminate, animated: true)
-            view.setTintColor(AppTheme.NEVO_SOLAR_YELLOW())
+            let view = MRProgressOverlayView.showOverlayAdded(to: self.navigationController!.view, title: "Please wait...", mode: MRProgressOverlayViewMode.indeterminate, animated: true)
+            view?.setTintColor(AppTheme.NEVO_SOLAR_YELLOW())
             
             //timeout
-            let timeout:NSTimer = NSTimer.after(50.seconds, {
-                MRProgressOverlayView.dismissAllOverlaysForView(self.navigationController!.view, animated: true)
+            let timeout:Timer = Timer.after(50.seconds, {
+                MRProgressOverlayView.dismissAllOverlays(for: self.navigationController!.view, animated: true)
             })
             
             HttpPostRequest.LunaRPostRequest("http://nevo.karljohnchow.com/user/create", data: ["user":registerInfor]) { (result) in
                 
                 timeout.invalidate()
                 
-                MRProgressOverlayView.dismissAllOverlaysForView(self.navigationController!.view, animated: true)
+                MRProgressOverlayView.dismissAllOverlays(for: self.navigationController!.view, animated: true)
                 
                 let json = JSON(result)
                 var message = json["message"].stringValue
@@ -136,21 +136,21 @@ class InformationController: UIViewController,SMSegmentViewDelegate {
                 let user:[String : JSON] = json["user"].dictionaryValue
                 
                 if(user.count>0) {
-                    let dateFormatter = NSDateFormatter()
+                    let dateFormatter = DateFormatter()
                     dateFormatter.dateFormat = "y-M-d h:m:s.000000"
                     let birthdayJSON = user["birthday"]
                     let birthdayBeforeParsed = birthdayJSON!["date"].stringValue
                     
-                    let birthdayDate = dateFormatter.dateFromString(birthdayBeforeParsed)
+                    let birthdayDate = dateFormatter.date(from: birthdayBeforeParsed)
                     dateFormatter.dateFormat = "y-M-d"
-                    let birthday = dateFormatter.stringFromDate(birthdayDate!)
+                    let birthday = dateFormatter.string(from: birthdayDate!)
                     let sex = user["sex"]!.intValue == 1 ? true : false;
                     if(status > 0 && UserProfile.getAll().count == 0) {
                         message = NSLocalizedString("register_success", comment: "");
                         let userprofile:UserProfile = UserProfile(keyDict: ["id":user["id"]!.intValue,"first_name":user["first_name"]!.stringValue,"last_name":user["last_name"]!.stringValue,"length":user["length"]!.intValue,"email":user["email"]!.stringValue,"sex": sex, "weight":(user["weight"]?.floatValue)!, "birthday":birthday])
                         userprofile.add({ (id, completion) in
                         })
-                        self.dismissViewControllerAnimated(true, completion: nil)
+                        self.dismiss(animated: true, completion: nil)
                         //self.navigationController?.popViewControllerAnimated(true)
                     }else{
                         
@@ -181,17 +181,17 @@ class InformationController: UIViewController,SMSegmentViewDelegate {
             }
         }else{
             XCGLogger.defaultInstance().debug("注册的时候没有网络")
-            let view = MRProgressOverlayView.showOverlayAddedTo(self.navigationController!.view, title: "No internet", mode: MRProgressOverlayViewMode.Cross, animated: true)
-            view.setTintColor(UIColor.getBaseColor())
-            NSTimer.after(0.6.seconds, {
-                MRProgressOverlayView.dismissAllOverlaysForView(self.navigationController!.view, animated: true)
+            let view = MRProgressOverlayView.showOverlayAdded(to: self.navigationController!.view, title: "No internet", mode: MRProgressOverlayViewMode.cross, animated: true)
+            view?.setTintColor(UIColor.getBaseColor())
+            Timer.after(0.6.seconds, {
+                MRProgressOverlayView.dismissAllOverlays(for: self.navigationController!.view, animated: true)
             })
         }
     }
 }
 
 extension InformationController:UITextFieldDelegate {
-    func textFieldDidEndEditing(textField: UITextField) {
+    func textFieldDidEndEditing(_ textField: UITextField) {
         if textField.text == nil {
             return;
         }
@@ -204,7 +204,7 @@ extension InformationController:UITextFieldDelegate {
         }
     }
     
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
         return true
     }

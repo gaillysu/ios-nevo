@@ -21,7 +21,7 @@ class ForgotPasswordController: UIViewController {
     var userEmail:String = ""
     
     init() {
-        super.init(nibName: "ForgotPasswordController", bundle: NSBundle.mainBundle())
+        super.init(nibName: "ForgotPasswordController", bundle: Bundle.main)
     }
     
     required init(coder aDecoder: NSCoder) {
@@ -32,11 +32,11 @@ class ForgotPasswordController: UIViewController {
         super.viewDidLoad()
         emailTextField.text = userEmail
         
-        let leftButton:UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "cancel_lunar"), style: UIBarButtonItemStyle.Plain, target: self, action: #selector(leftCancelAction(_:)))
+        let leftButton:UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "cancel_lunar"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(leftCancelAction(_:)))
         self.navigationItem.leftBarButtonItem = leftButton
     }
 
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
 
     }
@@ -46,23 +46,23 @@ class ForgotPasswordController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func leftCancelAction(sender:UIBarButtonItem) {
-        let viewController = self.navigationController?.popViewControllerAnimated(true)
+    func leftCancelAction(_ sender:UIBarButtonItem) {
+        let viewController = self.navigationController?.popViewController(animated: true)
         if viewController == nil {
-            self.dismissViewControllerAnimated(true, completion: nil)
+            self.dismiss(animated: true, completion: nil)
         }
     }
 
-    @IBAction func buttonAction(sender: AnyObject) {
+    @IBAction func buttonAction(_ sender: AnyObject) {
         self.forgotPasswordRequest()
     }
     
     func forgotPasswordRequest() {
-        let view = MRProgressOverlayView.showOverlayAddedTo(self.navigationController!.view, title: "Please wait...", mode: MRProgressOverlayViewMode.Indeterminate, animated: true)
-        view.setTintColor(AppTheme.NEVO_SOLAR_YELLOW())
+        let view = MRProgressOverlayView.showOverlayAdded(to: self.navigationController!.view, title: "Please wait...", mode: MRProgressOverlayViewMode.indeterminate, animated: true)
+        view?.setTintColor(AppTheme.NEVO_SOLAR_YELLOW())
         
         HttpPostRequest.LunaRPostRequest("http://nevo.karljohnchow.com/user/request_password_token", data: ["user":["email":emailTextField.text!]]) { (result) in
-            MRProgressOverlayView.dismissAllOverlaysForView(self.navigationController!.view, animated: true)
+            MRProgressOverlayView.dismissAllOverlays(for: self.navigationController!.view, animated: true)
             
             let json = JSON(result)
             let status:Int = json["status"].intValue
@@ -70,18 +70,18 @@ class ForgotPasswordController: UIViewController {
                 let token:String = json["user"].dictionaryValue["password_token"]!.stringValue
                 let email:String = json["user"].dictionaryValue["email"]!.stringValue
                 let id:Int = json["user"].dictionaryValue["id"]!.intValue
-                let alert:UIAlertController = UIAlertController(title: "Change Password", message: nil, preferredStyle: UIAlertControllerStyle.Alert)
-                alert.addTextFieldWithConfigurationHandler({ (newPassword1:UITextField) in
+                let alert:UIAlertController = UIAlertController(title: "Change Password", message: nil, preferredStyle: UIAlertControllerStyle.alert)
+                alert.addTextField(configurationHandler: { (newPassword1:UITextField) in
                     newPassword1.placeholder = "News Password"
-                    newPassword1.secureTextEntry = true
+                    newPassword1.isSecureTextEntry = true
                 })
                 
-                alert.addTextFieldWithConfigurationHandler({ (newPassword2:UITextField) in
+                alert.addTextField(configurationHandler: { (newPassword2:UITextField) in
                     newPassword2.placeholder = "Confirm new password"
-                    newPassword2.secureTextEntry = true
+                    newPassword2.isSecureTextEntry = true
                 })
                 
-                let alertAction:UIAlertAction = UIAlertAction(title: "Change", style: .Default, handler: { (action) in
+                let alertAction:UIAlertAction = UIAlertAction(title: "Change", style: .default, handler: { (action) in
                     let textField:[UITextField] = alert.textFields!
                     if textField[0].text == nil || textField[1].text == nil {
                         let banner = Banner(title: NSLocalizedString("Please enter a new password", comment: ""), subtitle: nil, image: nil, backgroundColor:AppTheme.NEVO_SOLAR_YELLOW())
@@ -90,17 +90,17 @@ class ForgotPasswordController: UIViewController {
                         return
                     }
                     if textField[0].text! == textField[1].text! {
-                        let view = MRProgressOverlayView.showOverlayAddedTo(self.navigationController!.view, title: "Please wait...", mode: MRProgressOverlayViewMode.Indeterminate, animated: true)
+                        let view = MRProgressOverlayView.showOverlayAdded(to: self.navigationController!.view, title: "Please wait...", mode: MRProgressOverlayViewMode.indeterminate, animated: true)
                         view.setTintColor(AppTheme.NEVO_SOLAR_YELLOW())
                         HttpPostRequest.postRequest("http://nevo.karljohnchow.com/user/forget_password", data: ["user":["password_token":token,"email":email,"password":textField[0].text!,"id":id]], completion: { (result) in
-                            MRProgressOverlayView.dismissAllOverlaysForView(self.navigationController!.view, animated: true)
+                            MRProgressOverlayView.dismissAllOverlays(for: self.navigationController!.view, animated: true)
                             let json = JSON(result)
                             let status:Int = json["status"].intValue
                             if status != -3 {
                                 let banner = Banner(title: NSLocalizedString("Password is changed", comment: ""), subtitle: nil, image: nil, backgroundColor:AppTheme.NEVO_SOLAR_YELLOW())
                                 banner.dismissesOnTap = true
                                 banner.show(duration: 1.2)
-                                self.dismissViewControllerAnimated(true, completion: nil)
+                                self.dismiss(animated: true, completion: nil)
                             }
                         })
                     }else{
@@ -111,11 +111,11 @@ class ForgotPasswordController: UIViewController {
                 })
                 alert.addAction(alertAction)
                 
-                let alertAction2:UIAlertAction = UIAlertAction(title: "Cancel", style: .Default, handler: { (action) in
+                let alertAction2:UIAlertAction = UIAlertAction(title: "Cancel", style: .default, handler: { (action) in
                     
                 })
                 alert.addAction(alertAction2)
-                self.presentViewController(alert, animated: true, completion: nil)
+                self.present(alert, animated: true, completion: nil)
             }
         }
         

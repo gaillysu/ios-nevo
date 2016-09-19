@@ -29,18 +29,18 @@ class ProfileSetupViewController: UIViewController {
     @IBOutlet weak var submitButton: UIButton!
     @IBOutlet weak var checkBox: M13Checkbox!
 
-    private var nameDictionary:Dictionary<String,AnyObject> = ["first_name":"DroneUser","last_name":"User"]
-    var account:Dictionary<String,AnyObject> = ["email":"","password":""]
+    fileprivate var nameDictionary:Dictionary<String,AnyObject> = ["first_name":"DroneUser" as AnyObject,"last_name":"User" as AnyObject]
+    var account:Dictionary<String,AnyObject> = ["email":"" as AnyObject,"password":"" as AnyObject]
 
-    private var selectedTextField: AutocompleteField?
-    private var lengthArray:[Int] = []
-    private var weightArray:[Int] = []
-    private var weightFloatArray:[Int] = []
-    private var selectedRow:Int = 0
-    private var selectedRow2:Int = 0
+    fileprivate var selectedTextField: AutocompleteField?
+    fileprivate var lengthArray:[Int] = []
+    fileprivate var weightArray:[Int] = []
+    fileprivate var weightFloatArray:[Int] = []
+    fileprivate var selectedRow:Int = 0
+    fileprivate var selectedRow2:Int = 0
 
     init() {
-        super.init(nibName: "ProfileSetupViewController", bundle: NSBundle.mainBundle())
+        super.init(nibName: "ProfileSetupViewController", bundle: Bundle.main)
     }
 
     required init(coder aDecoder: NSCoder) {
@@ -50,18 +50,18 @@ class ProfileSetupViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "Register"
-        let leftButton:UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "cancel_lunar"), style: UIBarButtonItemStyle.Plain, target: self, action: #selector(leftCancelAction(_:)))
+        let leftButton:UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "cancel_lunar"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(leftCancelAction(_:)))
         self.navigationItem.leftBarButtonItem = leftButton
     }
 
-    func leftCancelAction(sender:UIBarButtonItem) {
-        let viewController = self.navigationController?.popViewControllerAnimated(true)
+    func leftCancelAction(_ sender:UIBarButtonItem) {
+        let viewController = self.navigationController?.popViewController(animated: true)
         if viewController == nil {
-            self.dismissViewControllerAnimated(true, completion: nil)
+            self.dismiss(animated: true, completion: nil)
         }
     }
     
-    @IBAction func buttonActionManager(sender: AnyObject) {
+    @IBAction func buttonActionManager(_ sender: AnyObject) {
         if(AppTheme.isNull(email!.text!) || AppTheme.isEmail(email!.text!) || AppTheme.isNull(firstNameTextField!.text!) || AppTheme.isNull(lastNameTextField!.text!) || AppTheme.isPassword(password.text!) || AppTheme.isPassword(retypePassword.text!)) {
             let banner = Banner(title: NSLocalizedString("One of the fields are empty.", comment: ""), subtitle: nil, image: nil, backgroundColor:AppTheme.NEVO_SOLAR_YELLOW())
             banner.dismissesOnTap = true
@@ -81,7 +81,7 @@ class ProfileSetupViewController: UIViewController {
     }
 
 
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         lastNameTextField.resignFirstResponder()
         firstNameTextField.resignFirstResponder()
         email.resignFirstResponder()
@@ -89,7 +89,7 @@ class ProfileSetupViewController: UIViewController {
         retypePassword.resignFirstResponder()
     }
     
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if email.isEqual(textField) {
             firstNameTextField.becomeFirstResponder()
         }
@@ -106,7 +106,7 @@ class ProfileSetupViewController: UIViewController {
             retypePassword.becomeFirstResponder()
         }
         
-        if textField.returnKeyType == UIReturnKeyType.Done {
+        if textField.returnKeyType == UIReturnKeyType.done {
             textField.resignFirstResponder()
         }
         return true

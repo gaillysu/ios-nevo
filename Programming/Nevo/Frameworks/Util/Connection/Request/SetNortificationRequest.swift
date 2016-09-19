@@ -40,88 +40,88 @@ class SetNortificationRequest: NevoRequest {
         static let WHITE_11_LED:UInt32 = 0x000400
     }
     
-    private var call_vib_number:UInt8 = 0
-    private var call_led_pattern:UInt32 = 0
+    fileprivate var call_vib_number:UInt8 = 0
+    fileprivate var call_led_pattern:UInt32 = 0
     
-    private var sms_vib_number:UInt8 = 0
-    private var sms_led_pattern:UInt32 = 0
+    fileprivate var sms_vib_number:UInt8 = 0
+    fileprivate var sms_led_pattern:UInt32 = 0
     
-    private var email_vib_number:UInt8 = 0
-    private var email_led_pattern:UInt32 = 0
+    fileprivate var email_vib_number:UInt8 = 0
+    fileprivate var email_led_pattern:UInt32 = 0
     
-    private var facebook_vib_number:UInt8 = 0
-    private var facebook_led_pattern:UInt32 = 0
+    fileprivate var facebook_vib_number:UInt8 = 0
+    fileprivate var facebook_led_pattern:UInt32 = 0
     
-    private var calendar_vib_number:UInt8 = 0
-    private var calendar_led_pattern:UInt32 = 0
+    fileprivate var calendar_vib_number:UInt8 = 0
+    fileprivate var calendar_led_pattern:UInt32 = 0
     
-    private var whatsapp_vib_number:UInt8 = 0
-    private var whatsapp_led_pattern:UInt32 = 0
+    fileprivate var whatsapp_vib_number:UInt8 = 0
+    fileprivate var whatsapp_led_pattern:UInt32 = 0
     
-    private var wechat_vib_number:UInt8 = 0
-    private var wechat_led_pattern:UInt32 = 0
+    fileprivate var wechat_vib_number:UInt8 = 0
+    fileprivate var wechat_led_pattern:UInt32 = 0
     
     
     init(settingArray:[NotificationSetting]) {
         super.init()
         //We set each colors, one by one. In case a color is chosen, we turn on the vibration
-        if let setting = self.indexOfObjectAtType(settingArray, type: NotificationType.CALL) {
+        if let setting = self.indexOfObjectAtType(settingArray, type: NotificationType.call) {
             call_vib_number = setting.getStates() ? SetNortificationRequestValues.VIBRATION_ON : SetNortificationRequestValues.VIBRATION_OFF
-            call_led_pattern = setting.getColor().unsignedIntValue
+            call_led_pattern = setting.getColor().uint32Value
             if call_vib_number == SetNortificationRequestValues.VIBRATION_ON
             {
                 call_led_pattern = call_led_pattern | SetNortificationRequestValues.VIB_MOTOR
             }
         }
 
-        if let setting = self.indexOfObjectAtType(settingArray, type: NotificationType.SMS) {
+        if let setting = self.indexOfObjectAtType(settingArray, type: NotificationType.sms) {
             sms_vib_number = setting.getStates() ? SetNortificationRequestValues.VIBRATION_ON : SetNortificationRequestValues.VIBRATION_OFF
-            sms_led_pattern = setting.getColor().unsignedIntValue
+            sms_led_pattern = setting.getColor().uint32Value
             if sms_vib_number == SetNortificationRequestValues.VIBRATION_ON
             {
                 sms_led_pattern = sms_led_pattern | SetNortificationRequestValues.VIB_MOTOR
             }
         }
         
-        if let setting = self.indexOfObjectAtType(settingArray, type: NotificationType.EMAIL) {
+        if let setting = self.indexOfObjectAtType(settingArray, type: NotificationType.email) {
             email_vib_number = setting.getStates() ? SetNortificationRequestValues.VIBRATION_ON : SetNortificationRequestValues.VIBRATION_OFF
-            email_led_pattern = setting.getColor().unsignedIntValue
+            email_led_pattern = setting.getColor().uint32Value
             if email_vib_number == SetNortificationRequestValues.VIBRATION_ON
             {
                 email_led_pattern = email_led_pattern | SetNortificationRequestValues.VIB_MOTOR
             }
         }
 
-        if let setting = self.indexOfObjectAtType(settingArray, type: NotificationType.FACEBOOK) {
+        if let setting = self.indexOfObjectAtType(settingArray, type: NotificationType.facebook) {
             facebook_vib_number = setting.getStates() ? SetNortificationRequestValues.VIBRATION_ON : SetNortificationRequestValues.VIBRATION_OFF
-            facebook_led_pattern = setting.getColor().unsignedIntValue
+            facebook_led_pattern = setting.getColor().uint32Value
             if facebook_vib_number == SetNortificationRequestValues.VIBRATION_ON
             {
                 facebook_led_pattern = facebook_led_pattern | SetNortificationRequestValues.VIB_MOTOR
             }
         }
 
-        if let setting = self.indexOfObjectAtType(settingArray, type: NotificationType.CALENDAR) {
+        if let setting = self.indexOfObjectAtType(settingArray, type: NotificationType.calendar) {
             calendar_vib_number = setting.getStates() ? SetNortificationRequestValues.VIBRATION_ON : SetNortificationRequestValues.VIBRATION_OFF
-            calendar_led_pattern = setting.getColor().unsignedIntValue
+            calendar_led_pattern = setting.getColor().uint32Value
             if calendar_vib_number == SetNortificationRequestValues.VIBRATION_ON
             {
                 calendar_led_pattern = calendar_led_pattern | SetNortificationRequestValues.VIB_MOTOR
             }
         }
 
-        if let setting = self.indexOfObjectAtType(settingArray, type: NotificationType.WECHAT) {
+        if let setting = self.indexOfObjectAtType(settingArray, type: NotificationType.wechat) {
             wechat_vib_number = setting.getStates() ? SetNortificationRequestValues.VIBRATION_ON : SetNortificationRequestValues.VIBRATION_OFF
-            wechat_led_pattern = setting.getColor().unsignedIntValue
+            wechat_led_pattern = setting.getColor().uint32Value
             if wechat_vib_number == SetNortificationRequestValues.VIBRATION_ON
             {
                 wechat_led_pattern = wechat_led_pattern | SetNortificationRequestValues.VIB_MOTOR
             }
         }
 
-        if let setting = self.indexOfObjectAtType(settingArray, type: NotificationType.WHATSAPP) {
+        if let setting = self.indexOfObjectAtType(settingArray, type: NotificationType.whatsapp) {
             whatsapp_vib_number = setting.getStates() ? SetNortificationRequestValues.VIBRATION_ON : SetNortificationRequestValues.VIBRATION_OFF
-            whatsapp_led_pattern = setting.getColor().unsignedIntValue
+            whatsapp_led_pattern = setting.getColor().uint32Value
             if whatsapp_vib_number == SetNortificationRequestValues.VIBRATION_ON
             {
                 whatsapp_led_pattern = whatsapp_led_pattern | SetNortificationRequestValues.VIB_MOTOR
@@ -130,7 +130,7 @@ class SetNortificationRequest: NevoRequest {
 
     }
 
-    private func indexOfObjectAtType(settingArray:[NotificationSetting], type:NotificationType) -> NotificationSetting?{
+    fileprivate func indexOfObjectAtType(_ settingArray:[NotificationSetting], type:NotificationType) -> NotificationSetting?{
         for setting in settingArray {
             if setting.getType() == type {
                 return setting
@@ -183,7 +183,7 @@ class SetNortificationRequest: NevoRequest {
             0,0,0,0,0,0,0,0]
         
         
-        return NSArray(array: [NSData(bytes: values1, length: values1.count)
-            ,NSData(bytes: values2, length: values2.count)])
+        return NSArray(array: [Data(bytes: UnsafePointer<UInt8>(values1), count: values1.count)
+            ,Data(bytes: UnsafePointer<UInt8>(values2), count: values2.count)])
     }
 }

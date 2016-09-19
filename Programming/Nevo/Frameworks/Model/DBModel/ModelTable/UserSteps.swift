@@ -21,7 +21,7 @@ class UserSteps: NSObject,BaseEntryDatabaseHelper {
     var outZoneTime:Int = 0;
     var inactivityTime:Int = 0;
     var goalreach:Double = 0.0;
-    var date:NSTimeInterval = 0
+    var date:TimeInterval = 0
     var createDate:String = ""
     var walking_distance:Int = 0
     var walking_duration:Int = 0
@@ -31,59 +31,59 @@ class UserSteps: NSObject,BaseEntryDatabaseHelper {
     var running_calories:Int = 0
     var validic_id:String = ""
     
-    private var stepsModel:StepsModel = StepsModel()
+    fileprivate var stepsModel:StepsModel = StepsModel()
 
     // MARK: - NSCoding
-    func encodeWithCoder(aCoder:NSCoder) {
-        aCoder.encodeObject(id, forKey: "id")
-        aCoder.encodeObject(steps, forKey: "steps")
-        aCoder.encodeObject(goalsteps, forKey: "goalsteps")
-        aCoder.encodeObject(distance, forKey: "distance")
-        aCoder.encodeObject(hourlysteps, forKey: "hourlysteps")
-        aCoder.encodeObject(hourlydistance, forKey: "hourlydistance")
-        aCoder.encodeObject(calories, forKey: "calories")
-        aCoder.encodeObject(hourlycalories, forKey: "hourlycalories")
-        aCoder.encodeObject(inZoneTime, forKey: "inZoneTime")
-        aCoder.encodeObject(outZoneTime, forKey: "outZoneTime")
-        aCoder.encodeObject(inactivityTime, forKey: "inactivityTime")
-        aCoder.encodeObject(goalreach, forKey: "goalreach")
-        aCoder.encodeObject(date, forKey: "date")
-        aCoder.encodeObject(createDate, forKey: "createDate")
-        aCoder.encodeObject(walking_distance, forKey: "walking_distance")
-        aCoder.encodeObject(walking_duration, forKey: "walking_distance")
-        aCoder.encodeObject(walking_calories, forKey: "walking_calories")
-        aCoder.encodeObject(running_distance, forKey: "running_distance")
-        aCoder.encodeObject(running_duration, forKey: "running_duration")
-        aCoder.encodeObject(running_calories, forKey: "running_calories")
+    func encodeWithCoder(_ aCoder:NSCoder) {
+        aCoder.encode(id, forKey: "id")
+        aCoder.encode(steps, forKey: "steps")
+        aCoder.encode(goalsteps, forKey: "goalsteps")
+        aCoder.encode(distance, forKey: "distance")
+        aCoder.encode(hourlysteps, forKey: "hourlysteps")
+        aCoder.encode(hourlydistance, forKey: "hourlydistance")
+        aCoder.encode(calories, forKey: "calories")
+        aCoder.encode(hourlycalories, forKey: "hourlycalories")
+        aCoder.encode(inZoneTime, forKey: "inZoneTime")
+        aCoder.encode(outZoneTime, forKey: "outZoneTime")
+        aCoder.encode(inactivityTime, forKey: "inactivityTime")
+        aCoder.encode(goalreach, forKey: "goalreach")
+        aCoder.encode(date, forKey: "date")
+        aCoder.encode(createDate, forKey: "createDate")
+        aCoder.encode(walking_distance, forKey: "walking_distance")
+        aCoder.encode(walking_duration, forKey: "walking_distance")
+        aCoder.encode(walking_calories, forKey: "walking_calories")
+        aCoder.encode(running_distance, forKey: "running_distance")
+        aCoder.encode(running_duration, forKey: "running_duration")
+        aCoder.encode(running_calories, forKey: "running_calories")
     }
 
     init(aDecoder:NSCoder) {
         super.init()
-        aDecoder.decodeObjectForKey( "id")
-        aDecoder.decodeObjectForKey("steps")
-        aDecoder.decodeObjectForKey("goalsteps")
-        aDecoder.decodeObjectForKey("distance")
-        aDecoder.decodeObjectForKey("hourlysteps")
-        aDecoder.decodeObjectForKey("hourlydistance")
-        aDecoder.decodeObjectForKey("calories")
-        aDecoder.decodeObjectForKey("hourlycalories")
-        aDecoder.decodeObjectForKey("inZoneTime")
-        aDecoder.decodeObjectForKey("outZoneTime")
-        aDecoder.decodeObjectForKey("inactivityTime")
-        aDecoder.decodeObjectForKey("goalreach")
-        aDecoder.decodeObjectForKey("date")
-        aDecoder.decodeObjectForKey("createDate")
-        aDecoder.decodeObjectForKey("walking_distance")
-        aDecoder.decodeObjectForKey("walking_distance")
-        aDecoder.decodeObjectForKey("walking_calories")
-        aDecoder.decodeObjectForKey("running_distance")
-        aDecoder.decodeObjectForKey("running_duration")
-        aDecoder.decodeObjectForKey("running_calories")
+        aDecoder.decodeObject( forKey: "id")
+        aDecoder.decodeObject(forKey: "steps")
+        aDecoder.decodeObject(forKey: "goalsteps")
+        aDecoder.decodeObject(forKey: "distance")
+        aDecoder.decodeObject(forKey: "hourlysteps")
+        aDecoder.decodeObject(forKey: "hourlydistance")
+        aDecoder.decodeObject(forKey: "calories")
+        aDecoder.decodeObject(forKey: "hourlycalories")
+        aDecoder.decodeObject(forKey: "inZoneTime")
+        aDecoder.decodeObject(forKey: "outZoneTime")
+        aDecoder.decodeObject(forKey: "inactivityTime")
+        aDecoder.decodeObject(forKey: "goalreach")
+        aDecoder.decodeObject(forKey: "date")
+        aDecoder.decodeObject(forKey: "createDate")
+        aDecoder.decodeObject(forKey: "walking_distance")
+        aDecoder.decodeObject(forKey: "walking_distance")
+        aDecoder.decodeObject(forKey: "walking_calories")
+        aDecoder.decodeObject(forKey: "running_distance")
+        aDecoder.decodeObject(forKey: "running_duration")
+        aDecoder.decodeObject(forKey: "running_calories")
     }
 
     init(keyDict:NSDictionary) {
         super.init()
-        keyDict.enumerateKeysAndObjectsUsingBlock { (key, value, stop) -> Void in
+        keyDict.enumerateKeysAndObjects { (key, value, stop) -> Void in
             self.setValue(value, forKey: key as! String)
         }
     }
@@ -95,15 +95,15 @@ class UserSteps: NSObject,BaseEntryDatabaseHelper {
         var outCount:UInt32 = 0, _:UInt32 = 0;
         let properties:UnsafeMutablePointer = class_copyPropertyList(self,&outCount)
         for i in 0 ..< outCount{
-            let property:objc_property_t = properties[Int(i)];
+            let property:objc_property_t = properties[Int(i)]!;
             //获取属性名
-            let propertyName:NSString = NSString(CString: property_getName(property), encoding: NSUTF8StringEncoding)!
-            if (theTransients.containsObject(propertyName)) {
+            let propertyName:NSString = NSString(cString: property_getName(property), encoding: String.Encoding.utf8.rawValue)!
+            if (theTransients.contains(propertyName)) {
                 continue;
             }
-            proNames.addObject(propertyName)
+            proNames.add(propertyName)
             //获取属性类型等参数
-            let propertyType:NSString = NSString(CString: property_getAttributes(property), encoding: NSUTF8StringEncoding)!
+            let propertyType:NSString = NSString(cString: property_getAttributes(property), encoding: String.Encoding.utf8.rawValue)!
             /*
              c char         C unsigned char
              i int          I unsigned int
@@ -120,28 +120,28 @@ class UserSteps: NSObject,BaseEntryDatabaseHelper {
              SQLite 默认支持五种数据类型TEXT、INTEGER、REAL、BLOB、NULL
              */
             if (propertyType.hasPrefix("T@")) {
-                proTypes.addObject(SQLTEXT)
+                proTypes.add(SQLTEXT)
             } else if (propertyType.hasPrefix("Ti")||propertyType.hasPrefix("TI")||propertyType.hasPrefix("Ts")||propertyType.hasPrefix("TS")||propertyType.hasPrefix("TB")) {
-                proTypes.addObject(SQLINTEGER)
+                proTypes.add(SQLINTEGER)
             } else {
-                proTypes.addObject(SQLREAL)
+                proTypes.add(SQLREAL)
             }
         }
         free(properties)
         return NSDictionary(dictionary: ["name":proNames,"type":proTypes])
     }
     
-    func add(result:((id:Int?,completion:Bool?) -> Void)){
+    func add(_ result:@escaping ((_ id:Int?,_ completion:Bool?) -> Void)){
         if StepsModel.isExistInTable() {
             StepsModel.updateTable()
         }
-        let keyName:NSArray = UserSteps.getPropertys().objectForKey("name") as! NSArray
+        let keyName:NSArray = UserSteps.getPropertys().object(forKey: "name") as! NSArray
         for value in keyName {
             let key:String = value as! String
-            stepsModel.setValue(self.valueForKey(key), forKey: key)
+            stepsModel.setValue(self.value(forKey: key), forKey: key)
         }
         stepsModel.add { (id, completion) -> Void in
-            result(id: id, completion: completion)
+            result(id, completion)
         }
     }
 
@@ -149,10 +149,10 @@ class UserSteps: NSObject,BaseEntryDatabaseHelper {
         if StepsModel.isExistInTable() {
             StepsModel.updateTable()
         }
-        let keyName:NSArray = UserSteps.getPropertys().objectForKey("name") as! NSArray
+        let keyName:NSArray = UserSteps.getPropertys().object(forKey: "name") as! NSArray
         for value in keyName {
             let key:String = value as! String
-            stepsModel.setValue(self.valueForKey(key), forKey: key)
+            stepsModel.setValue(self.value(forKey: key), forKey: key)
         }
         return stepsModel.update()
     }
@@ -166,20 +166,20 @@ class UserSteps: NSObject,BaseEntryDatabaseHelper {
         return StepsModel.removeAll()
     }
 
-    class func getCriteria(criteria:String)->NSArray{
+    class func getCriteria(_ criteria:String)->NSArray{
         let modelArray:NSArray = StepsModel.getCriteria(criteria)
         let allArray:NSMutableArray = NSMutableArray()
         for model in modelArray {
             let stepsModel:StepsModel = model as! StepsModel
-            let keyName:NSArray = StepsModel.getAllProperties().objectForKey("name") as! NSArray
+            let keyName:NSArray = StepsModel.getAllProperties().object(forKey: "name") as! NSArray
             var keyDict:[String:AnyObject] = [:]
             for value in keyName {
                 let key:String = value as! String
-                keyDict[key] = stepsModel.valueForKey(key)
+                keyDict[key] = stepsModel.value(forKey: key) as AnyObject?
             }
             
-            let presets:UserSteps = UserSteps(keyDict: keyDict)
-            allArray.addObject(presets)
+            let presets:UserSteps = UserSteps(keyDict: keyDict as NSDictionary)
+            allArray.add(presets)
         }
         return allArray
     }
@@ -189,18 +189,18 @@ class UserSteps: NSObject,BaseEntryDatabaseHelper {
         let allArray:NSMutableArray = NSMutableArray()
         for model in modelArray {
             let stepsModel:StepsModel = model as! StepsModel
-            let keyName:NSArray = StepsModel.getAllProperties().objectForKey("name") as! NSArray
+            let keyName:NSArray = StepsModel.getAllProperties().object(forKey: "name") as! NSArray
             var keyDict:[String:AnyObject] = [:]
             for value in keyName {
                 let key:String = value as! String
-                keyDict[key] = stepsModel.valueForKey(key)
+                keyDict[key] = stepsModel.value(forKey: key) as AnyObject?
             }
             
-            let presets:UserSteps = UserSteps(keyDict: keyDict)
-            allArray.addObject(presets)
+            let presets:UserSteps = UserSteps(keyDict: keyDict as NSDictionary)
+            allArray.add(presets)
         }
         return allArray
     }
     
-    override func setValue(value: AnyObject?, forUndefinedKey key: String) {}
+    override func setValue(_ value: Any?, forUndefinedKey key: String) {}
 }

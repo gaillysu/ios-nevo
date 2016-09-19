@@ -14,7 +14,7 @@ class LedLightOnOffNevoRequest: NevoRequest {
     0 means the led light off, 1 means the led light on
     @see SetNortificationRequest.SetNortificationRequestValues
     */
-    private var mLedpattern:UInt32?
+    fileprivate var mLedpattern:UInt32?
     
     /*
     This header is the key by which this kind of packet is called.
@@ -50,8 +50,8 @@ class LedLightOnOffNevoRequest: NevoRequest {
             0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
         
         
-        return NSArray(array: [NSData(bytes: values1, length: values1.count)
-            ,NSData(bytes: values2, length: values2.count)])
+        return NSArray(array: [Data(bytes: UnsafePointer<UInt8>(values1), count: values1.count)
+            ,Data(bytes: UnsafePointer<UInt8>(values2), count: values2.count)])
     }
 
 }

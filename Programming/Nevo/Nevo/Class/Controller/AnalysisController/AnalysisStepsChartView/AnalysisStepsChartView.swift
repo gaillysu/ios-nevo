@@ -11,10 +11,10 @@ import Charts
 
 class AnalysisStepsChartView: LineChartView {
 
-    private var xVals:[String] = [];
-    private var yVals:[[Double]] = [];
+    fileprivate var xVals:[String] = [];
+    fileprivate var yVals:[[Double]] = [];
     
-    func drawSettings(xAxis:ChartXAxis, yAxis:ChartYAxis, rightAxis:ChartYAxis){
+    func drawSettings(_ xAxis:ChartXAxis, yAxis:ChartYAxis, rightAxis:ChartYAxis){
         noDataText = NSLocalizedString("no_sleep_data", comment: "")
         descriptionText = ""
         dragEnabled = false
@@ -47,7 +47,7 @@ class AnalysisStepsChartView: LineChartView {
         //self.marker = marker;
     }
     
-    func addDataPoint(name:String, entry:[Double]){
+    func addDataPoint(_ name:String, entry:[Double]){
         xVals.append(name);
         yVals.append(entry)
     }
@@ -56,7 +56,7 @@ class AnalysisStepsChartView: LineChartView {
         var dataSets:[LineChartDataSet] = []
         var chartDataArray:[BarChartDataEntry] = []
         var maxValue:Double = 0
-        for (index,vlaue) in yVals.enumerate() {
+        for (index,vlaue) in yVals.enumerated() {
             let chartData1:BarChartDataEntry = BarChartDataEntry(value: 60-vlaue[2], xIndex:index)
             chartDataArray.append(chartData1)
             
@@ -88,7 +88,7 @@ class AnalysisStepsChartView: LineChartView {
         animate(yAxisDuration: 2.0, easingOption: ChartEasingOption.EaseInOutCirc)
     }
     
-    private func setLeftAxisLimitLine(max:Double) {
+    fileprivate func setLeftAxisLimitLine(_ max:Double) {
         // x-axis limit line
         let leftAxis:ChartYAxis = self.leftAxis;
         leftAxis.labelCount = 3

@@ -10,7 +10,7 @@ import UIKit
 import UIColor_Hex_Swift
 
 protocol toolbarSegmentedDelegate:NSObjectProtocol {
-    func didSelectedSegmentedControl(segment:UISegmentedControl)
+    func didSelectedSegmentedControl(_ segment:UISegmentedControl)
 }
 
 class ToolbarView: UIView {
@@ -19,12 +19,12 @@ class ToolbarView: UIView {
 
     init(frame: CGRect,items:[String]) {
         super.init(frame: frame)
-        self.backgroundColor = UIColor.clearColor()
+        self.backgroundColor = UIColor.clear
 
         let segment:UISegmentedControl = UISegmentedControl(items: items)
-        segment.frame = CGRectMake(0, 0, self.frame.size.width-30, 29)
+        segment.frame = CGRect(x: 0, y: 0, width: self.frame.size.width-30, height: 29)
         segment.selectedSegmentIndex = 0
-        let infoDictionary:[String : AnyObject] = NSBundle.mainBundle().infoDictionary!
+        let infoDictionary:[String : AnyObject] = Bundle.main.infoDictionary! as [String : AnyObject]
         
         let app_Name:String = infoDictionary["CFBundleName"] as! String
         if app_Name == "LunaR" {
@@ -32,20 +32,20 @@ class ToolbarView: UIView {
         }else{
             segment.tintColor = AppTheme.NEVO_SOLAR_YELLOW()
         }
-        segment.addTarget(self, action: #selector(ToolbarView.segmentAction(_:)), forControlEvents: UIControlEvents.ValueChanged)
+        segment.addTarget(self, action: #selector(ToolbarView.segmentAction(_:)), for: UIControlEvents.valueChanged)
 
         let itemSeg:UIBarButtonItem = UIBarButtonItem(customView: segment)
-        itemSeg.style = UIBarButtonItemStyle.Done
+        itemSeg.style = UIBarButtonItemStyle.done
         itemSeg.action = nil
 
-        let flexible:UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: self, action: nil)
+        let flexible:UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: self, action: nil)
 
-        let navToolbar:UIToolbar = UIToolbar(frame:  CGRectMake( 0, 0, self.frame.size.width, 35))
-        navToolbar.shadowImageForToolbarPosition(UIBarPosition.Any)
-        let imageView:UIImageView = UIImageView(frame: CGRectMake(0, -20, 420, 64))
+        let navToolbar:UIToolbar = UIToolbar(frame:  CGRect( x: 0, y: 0, width: self.frame.size.width, height: 35))
+        navToolbar.shadowImage(forToolbarPosition: UIBarPosition.any)
+        let imageView:UIImageView = UIImageView(frame: CGRect(x: 0, y: -20, width: 420, height: 64))
         imageView.backgroundColor = AppTheme.NEVO_CUSTOM_COLOR(Red: 247.0, Green: 247.0, Blue: 247.0)
         navToolbar.addSubview(imageView)
-        navToolbar.sendSubviewToBack(imageView)
+        navToolbar.sendSubview(toBack: imageView)
         navToolbar.setItems([flexible,itemSeg,flexible], animated: true)
         self.addSubview(navToolbar)
 
@@ -55,29 +55,29 @@ class ToolbarView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func segmentAction(segment:UISegmentedControl){
+    func segmentAction(_ segment:UISegmentedControl){
         delegate?.didSelectedSegmentedControl(segment)
     }
 
 
     // Only override drawRect: if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.
-    override func drawRect(rect: CGRect) {
+    override func draw(_ rect: CGRect) {
         let bezierPath = UIBezierPath()
         //确定组成绘画的点
-        let topLeft = CGPointMake(0,self.frame.size.height-0.3)
-        let topRight = CGPointMake(self.frame.size.width,self.frame.size.height-0.3)
+        let topLeft = CGPoint(x: 0,y: self.frame.size.height-0.3)
+        let topRight = CGPoint(x: self.frame.size.width,y: self.frame.size.height-0.3)
 
         //开始绘制
-        bezierPath.moveToPoint(topLeft)
-        bezierPath.addLineToPoint(topRight)
+        bezierPath.move(to: topLeft)
+        bezierPath.addLine(to: topRight)
 
         //使路径闭合，结束绘制
-        bezierPath.closePath()
+        bezierPath.close()
 
         //设定颜色，并绘制它们
-        UIColor.grayColor().setFill()
-        UIColor.grayColor().setStroke()
+        UIColor.gray.setFill()
+        UIColor.gray.setStroke()
 
         bezierPath.lineWidth = 0.3
         bezierPath.fill()

@@ -13,23 +13,23 @@ class CheckYourIndoxController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.lt_setBackgroundColor(UIColor(rgba: "#54575a"))
-        UIApplication.sharedApplication().statusBarStyle = UIStatusBarStyle.LightContent
+        UIApplication.shared.statusBarStyle = UIStatusBarStyle.lightContent
         
-        let leftButton:UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "cancel_lunar"), style: UIBarButtonItemStyle.Plain, target: self, action: #selector(leftCancelAction(_:)))
+        let leftButton:UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "cancel_lunar"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(leftCancelAction(_:)))
         self.navigationItem.leftBarButtonItem = leftButton
 
     }
     
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         self.navigationController?.navigationBar.lt_reset()
-        UIApplication.sharedApplication().statusBarStyle = UIStatusBarStyle.Default
+        UIApplication.shared.statusBarStyle = UIStatusBarStyle.default
     }
 
-    func leftCancelAction(sender:UIBarButtonItem) {
-        let viewController = self.navigationController?.popViewControllerAnimated(true)
+    func leftCancelAction(_ sender:UIBarButtonItem) {
+        let viewController = self.navigationController?.popViewController(animated: true)
         if viewController != nil {
-            self.dismissViewControllerAnimated(true, completion: nil)
+            self.dismiss(animated: true, completion: nil)
         }
     }
     

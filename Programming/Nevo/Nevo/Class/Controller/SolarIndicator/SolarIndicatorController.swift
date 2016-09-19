@@ -13,11 +13,11 @@ class SolarIndicatorController: PublicClassController {
 
     @IBOutlet weak var textCollection: UICollectionView!
     @IBOutlet weak var pieChartView: PieChartView!
-    private var onTitle:[String] = ["Timer on Battery","Timer on Solar"]
-    private var onValue:[Double] = [130,250]
+    fileprivate var onTitle:[String] = ["Timer on Battery","Timer on Solar"]
+    fileprivate var onValue:[Double] = [130,250]
     
     init() {
-        super.init(nibName: "SolarIndicatorController", bundle: NSBundle.mainBundle())
+        super.init(nibName: "SolarIndicatorController", bundle: Bundle.main)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -26,8 +26,8 @@ class SolarIndicatorController: PublicClassController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        textCollection.backgroundColor = UIColor.whiteColor()
-        textCollection.registerNib(UINib(nibName: "SolarInforViewCell",bundle: nil), forCellWithReuseIdentifier: "SolarInfor_Identifier")
+        textCollection.backgroundColor = UIColor.white
+        textCollection.register(UINib(nibName: "SolarInforViewCell",bundle: nil), forCellWithReuseIdentifier: "SolarInfor_Identifier")
         
         self.setupPieChartView(pieChartView)
         pieChartView.legend.enabled = false;
@@ -38,12 +38,12 @@ class SolarIndicatorController: PublicClassController {
 
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         
         
     }
 
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         pieChartView.animate(xAxisDuration: 1.4, easingOption: ChartEasingOption.EaseOutBack)
     }
     override func didReceiveMemoryWarning() {
@@ -56,23 +56,23 @@ class SolarIndicatorController: PublicClassController {
 // MARK: - UICollectionViewDelegate
 extension SolarIndicatorController:UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
     
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        return CGSizeMake(collectionView.frame.size.width, 40)
+        return CGSize(width: collectionView.frame.size.width, height: 40)
     }
     
     
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return onTitle.count
     }
     
     
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("SolarInfor_Identifier", forIndexPath: indexPath)
-        cell.backgroundColor = UIColor.whiteColor()
-        (cell as! SolarInforViewCell).titleLabel.text = onTitle[indexPath.row]
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SolarInfor_Identifier", for: indexPath)
+        cell.backgroundColor = UIColor.white
+        (cell as! SolarInforViewCell).titleLabel.text = onTitle[(indexPath as NSIndexPath).row]
         if onValue.count>0 {
-            (cell as! SolarInforViewCell).valueLabel.text = String(format: "%dh %dmin", Int(onValue[indexPath.row])/60,Int(onValue[indexPath.row])%60)
+            (cell as! SolarInforViewCell).valueLabel.text = String(format: "%dh %dmin", Int(onValue[(indexPath as NSIndexPath).row])/60,Int(onValue[(indexPath as NSIndexPath).row])%60)
         }
         return cell
     }
@@ -85,7 +85,7 @@ extension SolarIndicatorController:ChartViewDelegate {
         self.setDataCount(2, range: 100)
     }
 
-    func setupPieChartView(chartView:PieChartView) {
+    func setupPieChartView(_ chartView:PieChartView) {
         
         chartView.usePercentValuesEnabled = true
         chartView.drawSlicesUnderHoleEnabled = false
@@ -94,13 +94,13 @@ extension SolarIndicatorController:ChartViewDelegate {
         chartView.descriptionText = ""
         chartView.setExtraOffsets(left: 0, top: 0, right: 0, bottom: 0)
         chartView.drawCenterTextEnabled = true
-        let paragraphStyle:NSMutableParagraphStyle = NSParagraphStyle.defaultParagraphStyle().mutableCopy() as! NSMutableParagraphStyle
-        paragraphStyle.lineBreakMode = NSLineBreakMode.ByTruncatingTail
-        paragraphStyle.alignment = NSTextAlignment.Center
+        let paragraphStyle:NSMutableParagraphStyle = NSParagraphStyle.default.mutableCopy() as! NSMutableParagraphStyle
+        paragraphStyle.lineBreakMode = NSLineBreakMode.byTruncatingTail
+        paragraphStyle.alignment = NSTextAlignment.center
         let centerText:NSMutableAttributedString = NSMutableAttributedString(string: "Charts\nby Daniel Cohen Gindi")
         
         centerText.setAttributes([NSFontAttributeName:UIFont(name: "HelveticaNeue-Light", size: 13.0)!], range: NSMakeRange(0, centerText.length))
-        centerText.addAttributes([NSFontAttributeName:UIFont(name: "HelveticaNeue-Light", size: 11.0)!,NSForegroundColorAttributeName:UIColor.grayColor()], range: NSMakeRange(10, centerText.length - 10))
+        centerText.addAttributes([NSFontAttributeName:UIFont(name: "HelveticaNeue-Light", size: 11.0)!,NSForegroundColorAttributeName:UIColor.gray], range: NSMakeRange(10, centerText.length - 10))
         centerText.addAttributes([NSFontAttributeName:UIFont(name: "HelveticaNeue-LightItalic", size: 11.0)!,NSForegroundColorAttributeName:UIColor(red: 51.0/255.0, green: 181.0/255.0, blue: 229.0/255.0, alpha: 1.0)], range: NSMakeRange(centerText.length - 19, 19))
         //let marker:BalloonMarker = BalloonMarker(color: UIColor.getBaseColor(), font: UIFont(name: "Helvetica-Light", size: 11)!, insets: UIEdgeInsetsMake(8.0, 8.0, 15.0, 8.0))
         //marker.minimumSize = CGSizeMake(60, 25);
@@ -120,7 +120,7 @@ extension SolarIndicatorController:ChartViewDelegate {
         
     }
     
-    func setDataCount(count:Int,range:Double) {
+    func setDataCount(_ count:Int,range:Double) {
         let mult:Double = range
         var yVals1:[ChartDataEntry] = []
         for i:Int in 0..<count {
@@ -141,8 +141,8 @@ extension SolarIndicatorController:ChartViewDelegate {
         
         let data:PieChartData = PieChartData(xVals: xVals, dataSets: [dataSet])
         //data.highlightEnabled = false
-        let pFormatter:NSNumberFormatter = NSNumberFormatter()
-        pFormatter.numberStyle = NSNumberFormatterStyle.PercentStyle;
+        let pFormatter:NumberFormatter = NumberFormatter()
+        pFormatter.numberStyle = NumberFormatter.Style.percent;
         pFormatter.maximumFractionDigits = 1;
         pFormatter.multiplier = 1.0;
         pFormatter.percentSymbol = " %";
@@ -155,7 +155,7 @@ extension SolarIndicatorController:ChartViewDelegate {
         pieChartView.highlightValues(nil)
     }
 
-    func chartValueSelected(chartView: ChartViewBase, entry: ChartDataEntry, dataSetIndex: Int, highlight: ChartHighlight) {
+    func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, dataSetIndex: Int, highlight: ChartHighlight) {
     
     }
 }

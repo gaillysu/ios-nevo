@@ -19,49 +19,49 @@ let SELECTED_CALENDAR_NOTIFICATION = "SELECTED_CALENDAR_NOTIFICATION"
 private let CALENDAR_VIEW_TAG = 1800
 
 class PageViewController: UIPageViewController,UIActionSheetDelegate {
-    private var goalArray:[Int] = []
+    fileprivate var goalArray:[Int] = []
     var calendarView:CVCalendarView?
     var menuView:CVCalendarMenuView?
     var titleView:StepsTitleView?
     
-    private var pagingControllers: [UIViewController] = []
+    fileprivate var pagingControllers: [UIViewController] = []
 
     
     override func viewDidLoad() {
         super.viewDidLoad()
         let viewController1 = StepGoalSetingController()
-        viewController1.view.backgroundColor = UIColor.whiteColor()
+        viewController1.view.backgroundColor = UIColor.white
         let viewController2 = StepsHistoryViewController()
-        viewController2.view.backgroundColor = UIColor.whiteColor()
+        viewController2.view.backgroundColor = UIColor.white
         let viewController3 = SleepHistoricalViewController()
-        viewController3.view.backgroundColor = UIColor.whiteColor()
+        viewController3.view.backgroundColor = UIColor.white
         let viewController4 = SolarIndicatorController()
-        viewController4.view.backgroundColor = UIColor.whiteColor()
+        viewController4.view.backgroundColor = UIColor.white
         pagingControllers = [viewController1, viewController2,viewController3,viewController4]
         
-        if((UIDevice.currentDevice().systemVersion as NSString).floatValue>7.0){
-            self.edgesForExtendedLayout = UIRectEdge.None;
+        if((UIDevice.current.systemVersion as NSString).floatValue>7.0){
+            self.edgesForExtendedLayout = UIRectEdge();
             self.extendedLayoutIncludesOpaqueBars = false;
             self.modalPresentationCapturesStatusBarAppearance = false;
         }
-        self.view.backgroundColor = UIColor.whiteColor()
+        self.view.backgroundColor = UIColor.white
         
-        let rightItem:UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "edit_icon"), style: UIBarButtonItemStyle.Plain, target: self, action: #selector(rightBarButtonAction(_:)))
+        let rightItem:UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "edit_icon"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(rightBarButtonAction(_:)))
         rightItem.tintColor = AppTheme.NEVO_SOLAR_YELLOW()
         
-        let rightSpacer:UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FixedSpace, target: nil, action: nil)
+        let rightSpacer:UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.fixedSpace, target: nil, action: nil)
         rightSpacer.width = -10;
         self.navigationItem.rightBarButtonItems = [rightSpacer,rightItem]
         
-        let leftItem:UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "new_radio"), style: UIBarButtonItemStyle.Plain, target: self, action: #selector(leftBarButtonAction(_:)))
+        let leftItem:UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "new_radio"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(leftBarButtonAction(_:)))
         leftItem.tintColor = AppTheme.NEVO_SOLAR_YELLOW()
         
-        let leftSpacer:UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FixedSpace, target: nil, action: nil)
+        let leftSpacer:UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.fixedSpace, target: nil, action: nil)
         leftSpacer.width = -10;
         self.navigationItem.leftBarButtonItems = [leftSpacer,leftItem]
         
         self.dataSource = self;
-        self.setViewControllers([pagingControllers[0]], direction: UIPageViewControllerNavigationDirection.Forward, animated: true) { (fines) in
+        self.setViewControllers([pagingControllers[0]], direction: UIPageViewControllerNavigationDirection.forward, animated: true) { (fines) in
             
         }
     }
@@ -69,24 +69,24 @@ class PageViewController: UIPageViewController,UIActionSheetDelegate {
     override func viewDidLayoutSubviews() {
         if titleView == nil {
             self.initTitleView()
-            let leftButton:UIButton = UIButton(type: UIButtonType.System)
-            leftButton.setImage(UIImage(named: "left_button"), forState: UIControlState.Normal)
+            let leftButton:UIButton = UIButton(type: UIButtonType.system)
+            leftButton.setImage(UIImage(named: "left_button"), for: UIControlState())
             leftButton.tag = 1900
-            leftButton.frame = CGRectMake(0, 0, 35, 125)
+            leftButton.frame = CGRect(x: 0, y: 0, width: 35, height: 125)
             leftButton.imageEdgeInsets = UIEdgeInsets(top: (125.0-30.0)/2.0, left: 10, bottom: (125.0-30.0)/2.0, right: 10)
-            leftButton.addTarget(self, action: #selector(slidingAction(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+            leftButton.addTarget(self, action: #selector(slidingAction(_:)), for: UIControlEvents.touchUpInside)
             leftButton.tintColor = UIColor.getWhiteBaseColor()
-            leftButton.center = CGPointMake(leftButton.frame.size.width/2.0, self.view.frame.size.height/2.0-70)
+            leftButton.center = CGPoint(x: leftButton.frame.size.width/2.0, y: self.view.frame.size.height/2.0-70)
             self.view.addSubview(leftButton)
             
-            let rightButton:UIButton = UIButton(type: UIButtonType.System)
-            rightButton.setImage(UIImage(named: "right_button"), forState: UIControlState.Normal)
+            let rightButton:UIButton = UIButton(type: UIButtonType.system)
+            rightButton.setImage(UIImage(named: "right_button"), for: UIControlState())
             rightButton.tag = 1910
-            rightButton.frame = CGRectMake(0, 0, 35, 125)
+            rightButton.frame = CGRect(x: 0, y: 0, width: 35, height: 125)
             rightButton.imageEdgeInsets = UIEdgeInsets(top: (125.0-30.0)/2.0, left: 10, bottom: (125.0-30.0)/2.0, right: 10)
-            rightButton.addTarget(self, action: #selector(slidingAction(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+            rightButton.addTarget(self, action: #selector(slidingAction(_:)), for: UIControlEvents.touchUpInside)
             rightButton.tintColor = UIColor.getWhiteBaseColor()
-            rightButton.center = CGPointMake(UIScreen.mainScreen().bounds.size.width-rightButton.frame.size.width/2.0, self.view.frame.size.height/2.0-70)
+            rightButton.center = CGPoint(x: UIScreen.main.bounds.size.width-rightButton.frame.size.width/2.0, y: self.view.frame.size.height/2.0-70)
             self.view.addSubview(rightButton)
         }
     }
@@ -96,26 +96,26 @@ class PageViewController: UIPageViewController,UIActionSheetDelegate {
         // Dispose of any resources that can be recreated.
     }
     
-    func slidingAction(sender:UIButton) {
+    func slidingAction(_ sender:UIButton) {
         
     }
     
-    func leftBarButtonAction(rightBar:UIBarButtonItem) {
+    func leftBarButtonAction(_ rightBar:UIBarButtonItem) {
         let videoPlay:VideoPlayController = VideoPlayController()
-        self.presentViewController(videoPlay, animated: true, completion: nil)
+        self.present(videoPlay, animated: true, completion: nil)
     }
     
-    func rightBarButtonAction(rightBar:UIBarButtonItem){
-        let actionSheet:UIAlertController = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
+    func rightBarButtonAction(_ rightBar:UIBarButtonItem){
+        let actionSheet:UIAlertController = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.actionSheet)
         
         let array:NSArray = Presets.getAll()
         for pArray in array {
             let model:Presets = pArray as! Presets
             if(model.status){
                 let titleString:String = " \(model.steps) " + NSLocalizedString("steps_unit", comment: "")
-                let alertAction2:UIAlertAction = UIAlertAction(title: titleString, style: UIAlertActionStyle.Default) { (action:UIAlertAction) -> Void in
-                    if((action.title! as NSString).isEqualToString(titleString)){
-                        NSUserDefaults.standardUserDefaults().setObject(model.steps, forKey: NUMBER_OF_STEPS_GOAL_KEY)
+                let alertAction2:UIAlertAction = UIAlertAction(title: titleString, style: UIAlertActionStyle.default) { (action:UIAlertAction) -> Void in
+                    if((action.title! as NSString).isEqual(to: titleString)){
+                        UserDefaults.standard.set(model.steps, forKey: NUMBER_OF_STEPS_GOAL_KEY)
                         self.setGoal(NumberOfStepsGoal(steps: model.steps))
                     }
                 }
@@ -124,16 +124,16 @@ class PageViewController: UIPageViewController,UIActionSheetDelegate {
             }
         }
         
-        let alertAction:UIAlertAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: UIAlertActionStyle.Cancel, handler: nil)
+        let alertAction:UIAlertAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: UIAlertActionStyle.cancel, handler: nil)
         alertAction.setValue(AppTheme.NEVO_SOLAR_YELLOW(), forKey: "titleTextColor")
         //alertAction.setValue(UIImage(named: "google"), forKey: "Image")
         //alertAction.setValue(true, forKey: "checked")
         actionSheet.addAction(alertAction)
         
-        self.presentViewController(actionSheet, animated: true, completion:nil)
+        self.present(actionSheet, animated: true, completion:nil)
     }
     
-    func setGoal(goal:Goal) {
+    func setGoal(_ goal:Goal) {
         if(AppDelegate.getAppDelegate().isConnected()){
             let banner = Banner(title: NSLocalizedString("syncing_goal", comment: ""), subtitle: nil, image: nil, backgroundColor: AppTheme.NEVO_SOLAR_YELLOW())
             banner.dismissesOnTap = true
@@ -151,12 +151,12 @@ class PageViewController: UIPageViewController,UIActionSheetDelegate {
 extension PageViewController: UIPageViewControllerDataSource,UIPageViewControllerDelegate {
     
     //返回当前页面的下一个页面
-    func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
-        if viewController.isKindOfClass(StepGoalSetingController) {
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
+        if viewController.isKind(of: StepGoalSetingController.self) {
             return pagingControllers[1]
-        }else if viewController.isKindOfClass(StepsHistoryViewController) {
+        }else if viewController.isKind(of: StepsHistoryViewController.self) {
             return pagingControllers[2]
-        }else if viewController.isKindOfClass(SleepHistoricalViewController) {
+        }else if viewController.isKind(of: SleepHistoricalViewController.self) {
             return pagingControllers[3]
         }
         
@@ -165,13 +165,13 @@ extension PageViewController: UIPageViewControllerDataSource,UIPageViewControlle
     }
     
     //返回当前页面的上一个页面
-    func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         
-        if viewController.isKindOfClass(SolarIndicatorController) {
+        if viewController.isKind(of: SolarIndicatorController.self) {
             return pagingControllers[2]
-        }else if viewController.isKindOfClass(SleepHistoricalViewController) {
+        }else if viewController.isKind(of: SleepHistoricalViewController.self) {
             return pagingControllers[1]
-        }else if viewController.isKindOfClass(StepsHistoryViewController) {
+        }else if viewController.isKind(of: StepsHistoryViewController.self) {
             return pagingControllers[0]
         }
         return nil
@@ -182,17 +182,17 @@ extension PageViewController: UIPageViewControllerDataSource,UIPageViewControlle
 extension PageViewController {
     
     func initTitleView() {
-        titleView = StepsTitleView.getStepsTitleView(CGRectMake(0,0,190,50))
-        let formatter = NSDateFormatter()
+        titleView = StepsTitleView.getStepsTitleView(CGRect(x: 0,y: 0,width: 190,height: 50))
+        let formatter = DateFormatter()
         formatter.dateFormat = "MMM"
-        let dateString = "\(formatter.stringFromDate(NSDate())), \(NSDate().day)"
+        let dateString = "\(formatter.string(from: Date())), \(Date().day)"
         titleView?.setCalendarButtonTitle(dateString)
         self.navigationItem.titleView = titleView
         titleView!.buttonResultHandler = { result -> Void in
             let clickButton:UIButton = result as! UIButton
-            if (result!.isEqual(self.titleView!.calendarButton) && clickButton.selected) {
+            if (result!.isEqual(self.titleView!.calendarButton) && clickButton.isSelected) {
                 self.showCalendar()
-            }else if (result!.isEqual(self.titleView!.calendarButton) && !clickButton.selected) {
+            }else if (result!.isEqual(self.titleView!.calendarButton) && !clickButton.isSelected) {
                 self.dismissCalendar()
             }else if (result!.isEqual(self.titleView!.nextButton)) {
                 self.calendarView!.loadNextView()
@@ -205,7 +205,7 @@ extension PageViewController {
     func showCalendar() {
         let view = self.view.viewWithTag(CALENDAR_VIEW_TAG)
         if(view == nil) {
-            let calendarBackGroundView:UIView = UIView(frame: CGRectMake(0,0,UIScreen.mainScreen().bounds.size.width,self.view.frame.size.height))
+            let calendarBackGroundView:UIView = UIView(frame: CGRect(x: 0,y: 0,width: UIScreen.main.bounds.size.width,height: self.view.frame.size.height))
             calendarBackGroundView.alpha = 0
             calendarBackGroundView.backgroundColor = UIColor(white: 120/255.0, alpha: 0.5)
             calendarBackGroundView.tag = CALENDAR_VIEW_TAG
@@ -213,21 +213,21 @@ extension PageViewController {
             calendarBackGroundView.addGestureRecognizer(tap)
             self.view.addSubview(calendarBackGroundView)
             
-            let fillView:UIView = UIView(frame: CGRectMake(0,0,UIScreen.mainScreen().bounds.size.width,260))
+            let fillView:UIView = UIView(frame: CGRect(x: 0,y: 0,width: UIScreen.main.bounds.size.width,height: 260))
             fillView.backgroundColor = UIColor.getCalendarColor()
             calendarBackGroundView.addSubview(fillView)
             
-            self.menuView = CVCalendarMenuView(frame: CGRectMake(10, 20, UIScreen.mainScreen().bounds.size.width - 20, 20))
-            self.menuView?.dayOfWeekTextColor = UIColor.blackColor()
-            self.menuView?.dayOfWeekFont = UIFont.systemFontOfSize(15)
+            self.menuView = CVCalendarMenuView(frame: CGRect(x: 10, y: 20, width: UIScreen.main.bounds.size.width - 20, height: 20))
+            self.menuView?.dayOfWeekTextColor = UIColor.black
+            self.menuView?.dayOfWeekFont = UIFont.systemFont(ofSize: 15)
             self.menuView?.backgroundColor = UIColor.getCalendarColor()
             self.menuView!.menuViewDelegate = self
             fillView.addSubview(menuView!)
             
             // CVCalendarView initialization with frame
-            self.calendarView = CVCalendarView(frame: CGRectMake(10, 40, UIScreen.mainScreen().bounds.size.width - 20, 220))
+            self.calendarView = CVCalendarView(frame: CGRect(x: 10, y: 40, width: UIScreen.main.bounds.size.width - 20, height: 220))
             self.calendarView?.backgroundColor = UIColor.getCalendarColor()
-            calendarView?.hidden = false
+            calendarView?.isHidden = false
             fillView.addSubview(calendarView!)
             self.calendarView!.calendarAppearanceDelegate = self
             self.calendarView!.animatorDelegate = self
@@ -239,15 +239,15 @@ extension PageViewController {
             
             calendarView?.coordinator.selectedDayView?.selectionView?.shape = CVShape.Rect
             
-            UIView.animateWithDuration(0.2, delay: 0, options: UIViewAnimationOptions.CurveEaseIn, animations: {
+            UIView.animate(withDuration: 0.2, delay: 0, options: UIViewAnimationOptions.curveEaseIn, animations: {
                 calendarBackGroundView.alpha = 1
             }) { (finish) in
                 
             }
             
         }else {
-            view?.hidden = false
-            UIView.animateWithDuration(0.2, delay: 0, options: UIViewAnimationOptions.CurveEaseIn, animations: {
+            view?.isHidden = false
+            UIView.animate(withDuration: 0.2, delay: 0, options: UIViewAnimationOptions.curveEaseIn, animations: {
                 view?.alpha = 1
             }) { (finish) in
             }
@@ -260,10 +260,10 @@ extension PageViewController {
     func dismissCalendar() {
         let view = self.view.viewWithTag(CALENDAR_VIEW_TAG)
         if(view != nil) {
-            UIView.animateWithDuration(0.2, delay: 0, options: UIViewAnimationOptions.CurveEaseIn, animations: {
+            UIView.animate(withDuration: 0.2, delay: 0, options: UIViewAnimationOptions.curveEaseIn, animations: {
                 view?.alpha = 0
             }) { (finish) in
-                view?.hidden = true
+                view?.isHidden = true
             }
         }
     }
@@ -272,7 +272,7 @@ extension PageViewController {
      Click on the calendar the blanks
      - parameter recognizer: recognizer description
      */
-    func tapAction(recognizer:UITapGestureRecognizer) {
+    func tapAction(_ recognizer:UITapGestureRecognizer) {
         self.dismissCalendar()
         titleView?.selectedFinishTitleView()
     }
@@ -281,13 +281,9 @@ extension PageViewController {
 // MARK: - CVCalendarViewDelegate, CVCalendarMenuViewDelegate
 extension PageViewController: CVCalendarViewDelegate, CVCalendarMenuViewDelegate {
     
-    func delay(delay:Double, closure:()->()) {
-        dispatch_after(
-            dispatch_time(
-                DISPATCH_TIME_NOW,
-                Int64(delay * Double(NSEC_PER_SEC))
-            ),
-            dispatch_get_main_queue(), closure)
+    func delay(_ delay:Double, closure:@escaping ()->()) {
+        DispatchQueue.main.asyncAfter(
+            deadline: DispatchTime.now() + Double(Int64(delay * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC), execute: closure)
     }
     
     /// Required method to implement!
@@ -316,12 +312,12 @@ extension PageViewController: CVCalendarViewDelegate, CVCalendarMenuViewDelegate
         return false
     }
     
-    func didSelectDayView(dayView: CVCalendarDayView, animationDidFinish: Bool) {
+    func didSelectDayView(_ dayView: CVCalendarDayView, animationDidFinish: Bool) {
         print("\(dayView.date.commonDescription) is selected!")
         dayView.selectionView?.shape = CVShape.Rect
         self.dismissCalendar()
         titleView?.selectedFinishTitleView()
-        let dayDate:NSDate = dayView.date!.convertedDate()!
+        let dayDate:Date = dayView.date!.convertedDate()!
         SwiftEventBus.post(SELECTED_CALENDAR_NOTIFICATION, userInfo: ["selectedDate":dayDate])
         
     }
@@ -341,10 +337,10 @@ extension PageViewController: CVCalendarViewDelegate, CVCalendarMenuViewDelegate
         return false
     }
     
-    func presentedDateUpdated(date: CVDate) {
-        let formatter = NSDateFormatter()
+    func presentedDateUpdated(_ date: CVDate) {
+        let formatter = DateFormatter()
         formatter.dateFormat = "MMM"
-        let dateString = "\(formatter.stringFromDate(date.convertedDate()!)), \(date.day)"
+        let dateString = "\(formatter.string(from: date.convertedDate()!)), \(date.day)"
         titleView?.setCalendarButtonTitle(dateString)
     }
     
@@ -373,7 +369,7 @@ extension PageViewController: CVCalendarViewAppearanceDelegate {
     }
     
     func dayLabelWeekdayInTextColor() -> UIColor {
-        return UIColor.blackColor()
+        return UIColor.black
     }
     
     func dayLabelWeekdaySelectedBackgroundColor() -> UIColor {
@@ -385,12 +381,12 @@ extension PageViewController: CVCalendarViewAppearanceDelegate {
     }
     
     func dayLabelPresentWeekdayHighlightedTextColor() -> UIColor {
-        return UIColor.blackColor()
+        return UIColor.black
     }
     
     /// Text color.
     func dayLabelWeekdaySelectedTextColor() -> UIColor {
-        return UIColor.whiteColor()
+        return UIColor.white
     }
     
     //    func dayLabelPresentWeekdayTextColor() -> UIColor {
@@ -398,6 +394,6 @@ extension PageViewController: CVCalendarViewAppearanceDelegate {
     //    }
     
     func dayLabelPresentWeekdaySelectedTextColor() -> UIColor {
-        return UIColor.whiteColor()
+        return UIColor.white
     }
 }

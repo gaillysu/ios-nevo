@@ -13,12 +13,12 @@ class PublicClassController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        if((UIDevice.currentDevice().systemVersion as NSString).floatValue>7.0){
-            self.edgesForExtendedLayout = UIRectEdge.None;
+        if((UIDevice.current.systemVersion as NSString).floatValue>7.0){
+            self.edgesForExtendedLayout = UIRectEdge();
             self.extendedLayoutIncludesOpaqueBars = false;
             self.modalPresentationCapturesStatusBarAppearance = false;
         }
-        let infoDictionary:[String : AnyObject] = NSBundle.mainBundle().infoDictionary!
+        let infoDictionary:[String : AnyObject] = Bundle.main.infoDictionary! as [String : AnyObject]
         
         let app_Name:String = infoDictionary["CFBundleName"] as! String
         if app_Name == "LunaR" {

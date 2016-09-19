@@ -14,7 +14,7 @@ class UserNotification: NSObject,BaseEntryDatabaseHelper {
     var NotificationType:String = ""
     var status:Bool = false
 
-    private var notificationModel:NotificationModel = NotificationModel()
+    fileprivate var notificationModel:NotificationModel = NotificationModel()
 
     /**
      When it is the first time you install and use must be implemented
@@ -24,8 +24,8 @@ class UserNotification: NSObject,BaseEntryDatabaseHelper {
         let array = NotificationModel.getAll()
         if(array.count == 0){
             let notificationTypeArray:[String] = ["Calendar", "Facebook", "EMAIL", "CALL", "SMS","WeChat"]
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,0), { () -> Void in
-                for (var index:Int = 0; index < notificationTypeArray.count ; index++) {
+            DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.default).async(execute: { () -> Void in
+                for (index:Int in 0 ..< notificationTypeArray.count ) {
                     let notification:UserNotification = UserNotification(keyDict: ["id":index,"clock":(index+1)*2,"NotificationType":notificationTypeArray[index],"status":false])
                     notification.add({ (id, completion) -> Void in
 
@@ -38,18 +38,18 @@ class UserNotification: NSObject,BaseEntryDatabaseHelper {
 
     init(keyDict:NSDictionary) {
         super.init()
-        self.setValue(keyDict.objectForKey("id"), forKey: "id")
-        self.setValue(keyDict.objectForKey("clock"), forKey: "clock")
-        self.setValue(keyDict.objectForKey("NotificationType"), forKey: "NotificationType")
-        self.setValue(keyDict.objectForKey("status"), forKey: "status")
+        self.setValue(keyDict.object(forKey: "id"), forKey: "id")
+        self.setValue(keyDict.object(forKey: "clock"), forKey: "clock")
+        self.setValue(keyDict.object(forKey: "NotificationType"), forKey: "NotificationType")
+        self.setValue(keyDict.object(forKey: "status"), forKey: "status")
     }
 
-    func add(result:((id:Int?,completion:Bool?) -> Void)){
+    func add(_ result:@escaping ((_ id:Int?,_ completion:Bool?) -> Void)){
         notificationModel.clock = clock
         notificationModel.NotificationType = NotificationType
         notificationModel.status = status
         notificationModel.add { (id, completion) -> Void in
-            result(id: id, completion: completion)
+            result(id, completion)
         }
     }
 
@@ -70,13 +70,13 @@ class UserNotification: NSObject,BaseEntryDatabaseHelper {
         return NotificationModel.removeAll()
     }
 
-    class func getCriteria(criteria:String)->NSArray{
+    class func getCriteria(_ criteria:String)->NSArray{
         let modelArray:NSArray = NotificationModel.getCriteria(criteria)
         let allArray:NSMutableArray = NSMutableArray()
         for model in modelArray {
             let notificationModel:NotificationModel = model as! NotificationModel
             let notification:UserNotification = UserNotification(keyDict: ["id":notificationModel.id,"clock":notificationModel.clock,"NotificationType":notificationModel.NotificationType,"status":notificationModel.status])
-            allArray.addObject(notification)
+            allArray.add(notification)
         }
         return allArray
     }
@@ -87,7 +87,7 @@ class UserNotification: NSObject,BaseEntryDatabaseHelper {
         for model in modelArray {
             let notificationModel:NotificationModel = model as! NotificationModel
             let notification:UserNotification = UserNotification(keyDict: ["id":notificationModel.id,"clock":notificationModel.clock,"NotificationType":notificationModel.NotificationType,"status":notificationModel.status])
-            allArray.addObject(notification)
+            allArray.add(notification)
         }
         return allArray
     }

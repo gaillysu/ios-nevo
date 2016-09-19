@@ -11,11 +11,11 @@ import SwiftyJSON
 import MRProgress
 
 class ConnectOtherAppsController: UITableViewController {
-    private let licenseApp:[String] = ["Validic"]
+    fileprivate let licenseApp:[String] = ["Validic"]
     //"HealthKit"
     
     init() {
-        super.init(nibName: "ConnectOtherAppsController", bundle: NSBundle.mainBundle())
+        super.init(nibName: "ConnectOtherAppsController", bundle: Bundle.main)
     }
     
     required init(coder aDecoder: NSCoder) {
@@ -25,7 +25,7 @@ class ConnectOtherAppsController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "App Authorized"
-        self.tableView.registerNib(UINib(nibName: "ConnectOtherAppsCell", bundle:nil), forCellReuseIdentifier: "reuseIdentifier")
+        self.tableView.register(UINib(nibName: "ConnectOtherAppsCell", bundle:nil), forCellReuseIdentifier: "reuseIdentifier")
         UPDATE_VALIDIC_REQUEST.updateToValidic(nil)
     }
 
@@ -35,30 +35,30 @@ class ConnectOtherAppsController: UITableViewController {
     }
 
     // MARK: - Table view data source
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return licenseApp.count
     }
 
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier" ,forIndexPath: indexPath)
-        cell.selectionStyle = UITableViewCellSelectionStyle.None
-        (cell as! ConnectOtherAppsCell).appNameLabel.text = licenseApp[indexPath.row]
-        (cell as! ConnectOtherAppsCell).appSwitch.tag = indexPath.row
-        (cell as! ConnectOtherAppsCell).appSwitch.addTarget(self, action: #selector(appAuthorizedAction(_:)), forControlEvents: UIControlEvents.TouchUpInside)
-        if "Validic" ==  licenseApp[indexPath.row]{
-            if (NSUserDefaults.standardUserDefaults().objectForKey(ValidicAuthorizedKey) != nil) {
-                (cell as! ConnectOtherAppsCell).appSwitch.on = true
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier" ,for: indexPath)
+        cell.selectionStyle = UITableViewCellSelectionStyle.none
+        (cell as! ConnectOtherAppsCell).appNameLabel.text = licenseApp[(indexPath as NSIndexPath).row]
+        (cell as! ConnectOtherAppsCell).appSwitch.tag = (indexPath as NSIndexPath).row
+        (cell as! ConnectOtherAppsCell).appSwitch.addTarget(self, action: #selector(appAuthorizedAction(_:)), for: UIControlEvents.touchUpInside)
+        if "Validic" ==  licenseApp[(indexPath as NSIndexPath).row]{
+            if (UserDefaults.standard.object(forKey: ValidicAuthorizedKey) != nil) {
+                (cell as! ConnectOtherAppsCell).appSwitch.isOn = true
             }
         }
         return cell
     }
     
-    func appAuthorizedAction(sender:UISwitch) {
+    func appAuthorizedAction(_ sender:UISwitch) {
         switch sender.tag {
         case 0:
             self.checkPinCode(sender)
@@ -72,33 +72,33 @@ class ConnectOtherAppsController: UITableViewController {
         }
     }
 
-    func checkPinCode(switchView:UISwitch) {
-        if switchView.on {
-            UIApplication.sharedApplication().openURL(NSURL(string:"https://partner.validic.com/applications/47/test/marketplace")!)
-            let alert:UIAlertController = UIAlertController(title: "Please enter the PIN code", message: nil, preferredStyle: UIAlertControllerStyle.Alert)
-            alert.addTextFieldWithConfigurationHandler { (testField:UITextField) in
+    func checkPinCode(_ switchView:UISwitch) {
+        if switchView.isOn {
+            UIApplication.shared.openURL(URL(string:"https://partner.validic.com/applications/47/test/marketplace")!)
+            let alert:UIAlertController = UIAlertController(title: "Please enter the PIN code", message: nil, preferredStyle: UIAlertControllerStyle.alert)
+            alert.addTextField { (testField:UITextField) in
             }
             
-            alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: UIAlertActionStyle.Cancel) { (action) in
+            alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: UIAlertActionStyle.cancel) { (action) in
                 switchView.setOn(false, animated: true)
                 })
             
-            alert.addAction(UIAlertAction(title: NSLocalizedString("Ok", comment: ""), style: UIAlertActionStyle.Default) { (action) in
-                let view = MRProgressOverlayView.showOverlayAddedTo(self.navigationController!.view, title: "Please wait...", mode: MRProgressOverlayViewMode.Indeterminate, animated: true)
-                view.setTintColor(UIColor.getBaseColor())
+            alert.addAction(UIAlertAction(title: NSLocalizedString("Ok", comment: ""), style: UIAlertActionStyle.default) { (action) in
+                let view = MRProgressOverlayView.showOverlayAdded(to: self.navigationController!.view, title: "Please wait...", mode: MRProgressOverlayViewMode.indeterminate, animated: true)
+                view?.setTintColor(UIColor.getBaseColor())
                 let textfield:UITextField = alert.textFields![0]
                 let userprofile:UserProfile = UserProfile.getAll()[0] as! UserProfile
                 var finalData: [String : AnyObject] = [:]
-                let params: [String: AnyObject] = ["uid":"\(userprofile.id)"];
-                finalData["user"] = params
-                finalData["pin"] = textfield.text!
-                finalData["access_token"] = OrganizationAccessToken
+                let params: [String: AnyObject] = ["uid":"\(userprofile.id)" as AnyObject];
+                finalData["user"] = params as AnyObject?
+                finalData["pin"] = textfield.text! as AnyObject?
+                finalData["access_token"] = OrganizationAccessToken as AnyObject?
                 ValidicRequest.validicPostJSONRequest("https://api.validic.com/v1/organizations/\(ValidicOrganizationID)/authorization/new_user", data: finalData, completion: { (result) in
-                    MRProgressOverlayView.dismissAllOverlaysForView(self.navigationController!.view, animated: true)
+                    MRProgressOverlayView.dismissAllOverlays(for: self.navigationController!.view, animated: true)
                     let resultJson = JSON(result)
                     if (resultJson["code"].intValue == 201 || resultJson["code"].intValue == 200) {
-                        let userdefalut:NSUserDefaults = NSUserDefaults.standardUserDefaults()
-                        userdefalut.setObject(resultJson["user"].dictionaryObject, forKey: ValidicAuthorizedKey)
+                        let userdefalut:UserDefaults = UserDefaults.standard
+                        userdefalut.set(resultJson["user"].dictionaryObject, forKey: ValidicAuthorizedKey)
                         userdefalut.synchronize()
                         //download validic data
                         UPDATE_VALIDIC_REQUEST.downloadValidicData()
@@ -109,12 +109,12 @@ class ConnectOtherAppsController: UITableViewController {
                 
                 })
             
-            self.presentViewController(alert, animated: true) {
+            self.present(alert, animated: true) {
                 
             }
             
         }else{
-            NSUserDefaults.standardUserDefaults().removeObjectForKey(ValidicAuthorizedKey)
+            UserDefaults.standard.removeObject(forKey: ValidicAuthorizedKey)
         }
     }
     

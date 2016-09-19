@@ -14,23 +14,23 @@ class AnalysisController: PublicClassController {
     @IBOutlet weak var chartsCollectionView: UICollectionView!
     @IBOutlet weak var contentCollectionView: UICollectionView!
     let titleArray:[String] = ["This week","Last week","Last 30 Day"]
-    private var contentTitleArray:[String] = [NSLocalizedString("Average Steps", comment: ""), NSLocalizedString("Total Steps", comment: ""), NSLocalizedString("Average Calories", comment: ""),NSLocalizedString("Average Time", comment: "")]
-    private var contentTArray:[String] = [NSLocalizedString("--", comment: ""),NSLocalizedString("--", comment: ""),NSLocalizedString("--", comment: ""),NSLocalizedString("--", comment: "")]
-    private var dataArray:NSMutableArray = NSMutableArray(capacity:3)
+    fileprivate var contentTitleArray:[String] = [NSLocalizedString("Average Steps", comment: ""), NSLocalizedString("Total Steps", comment: ""), NSLocalizedString("Average Calories", comment: ""),NSLocalizedString("Average Time", comment: "")]
+    fileprivate var contentTArray:[String] = [NSLocalizedString("--", comment: ""),NSLocalizedString("--", comment: ""),NSLocalizedString("--", comment: ""),NSLocalizedString("--", comment: "")]
+    fileprivate var dataArray:NSMutableArray = NSMutableArray(capacity:3)
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let dict:[String : AnyObject] = [NSForegroundColorAttributeName:UIColor.whiteColor()]
-        segmented.setTitleTextAttributes(dict, forState: UIControlState.Selected)
+        let dict:[String : AnyObject] = [NSForegroundColorAttributeName:UIColor.white]
+        segmented.setTitleTextAttributes(dict, for: UIControlState.selected)
         
-        contentCollectionView.backgroundColor = UIColor.whiteColor()
-        chartsCollectionView.backgroundColor = UIColor.clearColor()
-        chartsCollectionView.registerNib(UINib(nibName: "AnalysisRadarViewCell",bundle: nil), forCellWithReuseIdentifier: "AnalysisRadar_Identifier")
-        chartsCollectionView.registerNib(UINib(nibName: "AnalysisLineChartCell",bundle: nil), forCellWithReuseIdentifier: "AnalysisLineChart_Identifier")
-        chartsCollectionView.registerClass(UICollectionReusableView.classForCoder(), forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "ChartsViewHeader_Identifier")
-        contentCollectionView.registerNib(UINib(nibName: "AnalysisValueCell",bundle: nil), forCellWithReuseIdentifier: "AnalysisValue_Identifier")
-        dataArray.addObjectsFromArray(self.getStepsData())
+        contentCollectionView.backgroundColor = UIColor.white
+        chartsCollectionView.backgroundColor = UIColor.clear
+        chartsCollectionView.register(UINib(nibName: "AnalysisRadarViewCell",bundle: nil), forCellWithReuseIdentifier: "AnalysisRadar_Identifier")
+        chartsCollectionView.register(UINib(nibName: "AnalysisLineChartCell",bundle: nil), forCellWithReuseIdentifier: "AnalysisLineChart_Identifier")
+        chartsCollectionView.register(UICollectionReusableView.classForCoder(), forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "ChartsViewHeader_Identifier")
+        contentCollectionView.register(UINib(nibName: "AnalysisValueCell",bundle: nil), forCellWithReuseIdentifier: "AnalysisValue_Identifier")
+        dataArray.addObjects(from: self.getStepsData())
     }
 
     override func didReceiveMemoryWarning() {
@@ -41,23 +41,23 @@ class AnalysisController: PublicClassController {
 }
 
 extension AnalysisController {
-    @IBAction func segmentedAction(sender: AnyObject) {
+    @IBAction func segmentedAction(_ sender: AnyObject) {
         let segment:UISegmentedControl = sender as! UISegmentedControl
         dataArray.removeAllObjects()
         if segment.selectedSegmentIndex == 0 {
-            dataArray.addObjectsFromArray(self.getStepsData())
+            dataArray.addObjects(from: self.getStepsData())
             chartsCollectionView.reloadData()
         }else if segment.selectedSegmentIndex == 1 {
-            dataArray.addObjectsFromArray(self.getSleepData())
+            dataArray.addObjects(from: self.getSleepData())
             chartsCollectionView.reloadData()
         }else{
-            dataArray.addObjectsFromArray(self.getStepsData())
+            dataArray.addObjects(from: self.getStepsData())
             chartsCollectionView.reloadData()
         }
     }
     
     func getStepsData()->[NSArray] {
-        let dayDate:NSDate = NSDate()
+        let dayDate:Date = Date()
         let thisWeekArray:NSArray = UserSteps.getCriteria("WHERE date BETWEEN \(dayDate.beginningOfWeek.timeIntervalSince1970) AND \(dayDate.endOfWeek.timeIntervalSince1970)")
         let lastWeekArray:NSArray = UserSteps.getCriteria("WHERE date BETWEEN \(dayDate.beginningOfWeek.timeIntervalSince1970-(86400.0*7+1)) AND \(dayDate.beginningOfWeek.timeIntervalSince1970+1)")
         let last30DayArray:NSArray = UserSteps.getCriteria("WHERE date BETWEEN \(dayDate.beginningOfDay.timeIntervalSince1970-(86400.0*30)) AND \(dayDate.endOfDay.timeIntervalSince1970)")
@@ -67,7 +67,7 @@ extension AnalysisController {
     func getSleepData()->[NSArray] {
         let nextDay:Double = 86401
         
-        let dayDate:NSDate = NSDate()
+        let dayDate:Date = Date()
         let thisWeekArray:NSArray = UserSleep.getCriteria("WHERE date BETWEEN \(dayDate.beginningOfWeek.timeIntervalSince1970-nextDay) AND \(dayDate.endOfWeek.timeIntervalSince1970+nextDay)")
         let lastWeekArray:NSArray = UserSleep.getCriteria("WHERE date BETWEEN \(dayDate.beginningOfWeek.timeIntervalSince1970-(86400.0*7)-nextDay) AND \(dayDate.beginningOfWeek.timeIntervalSince1970+nextDay)")
         let last30DayArray:NSArray = UserSleep.getCriteria("WHERE date BETWEEN \(dayDate.beginningOfDay.timeIntervalSince1970-(86400.0*30)-nextDay) AND \(dayDate.endOfDay.timeIntervalSince1970+nextDay)")
@@ -75,7 +75,7 @@ extension AnalysisController {
     }
     
     func getSolarData()->[NSArray] {
-        let dayDate:NSDate = NSDate()
+        let dayDate:Date = Date()
         let thisWeekArray:NSArray = UserSteps.getCriteria("WHERE date BETWEEN \(dayDate.beginningOfWeek.timeIntervalSince1970-1) AND \(dayDate.endOfWeek.timeIntervalSince1970)")
         let lastWeekArray:NSArray = UserSteps.getCriteria("WHERE date BETWEEN \(dayDate.beginningOfWeek.timeIntervalSince1970-(86400.0*7)-1) AND \(dayDate.beginningOfWeek.timeIntervalSince1970)")
         let last30DayArray:NSArray = UserSteps.getCriteria("WHERE date BETWEEN \(dayDate.beginningOfDay.timeIntervalSince1970-(86400.0*30)) AND \(dayDate.endOfDay.timeIntervalSince1970)")
@@ -85,18 +85,18 @@ extension AnalysisController {
 
 extension AnalysisController:UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
     
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize{
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize{
         if collectionView.isEqual(chartsCollectionView) {
-            return CGSizeMake(collectionView.frame.size.width, collectionView.frame.size.height)
+            return CGSize(width: collectionView.frame.size.width, height: collectionView.frame.size.height)
         }else{
             if segmented.selectedSegmentIndex == 2 {
-                return CGSizeMake(collectionView.frame.size.width, collectionView.frame.size.height/2.0)
+                return CGSize(width: collectionView.frame.size.width, height: collectionView.frame.size.height/2.0)
             }
-            return CGSizeMake(collectionView.frame.size.width/2.0, collectionView.frame.size.height/2.0)
+            return CGSize(width: collectionView.frame.size.width/2.0, height: collectionView.frame.size.height/2.0)
         }
     }
     
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView.isEqual(chartsCollectionView){
             return titleArray.count
         }else{
@@ -104,11 +104,11 @@ extension AnalysisController:UICollectionViewDelegate,UICollectionViewDataSource
         }
     }
     
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView.isEqual(chartsCollectionView) {
-            let cell:AnalysisLineChartCell = collectionView.dequeueReusableCellWithReuseIdentifier("AnalysisLineChart_Identifier", forIndexPath: indexPath) as! AnalysisLineChartCell
-            cell.backgroundColor = UIColor.clearColor()
-            cell.setTitle(titleArray[indexPath.row])
+            let cell:AnalysisLineChartCell = collectionView.dequeueReusableCell(withReuseIdentifier: "AnalysisLineChart_Identifier", for: indexPath) as! AnalysisLineChartCell
+            cell.backgroundColor = UIColor.clear
+            cell.setTitle(titleArray[(indexPath as NSIndexPath).row])
             if segmented.selectedSegmentIndex == 0 {
                 contentTitleArray = [NSLocalizedString("Average Steps", comment: ""), NSLocalizedString("Total Steps", comment: ""), NSLocalizedString("Average Calories", comment: ""),NSLocalizedString("Average Time", comment: "")]
             }
@@ -122,24 +122,24 @@ extension AnalysisController:UICollectionViewDelegate,UICollectionViewDataSource
             
             if segmented.selectedSegmentIndex != 2 {
                 var avgNumber:Float = 0
-                if indexPath.row == 0 || indexPath.row == 1 {
+                if (indexPath as NSIndexPath).row == 0 || (indexPath as NSIndexPath).row == 1 {
                     avgNumber = 7
                 }else{
                     avgNumber = 30
                 }
                 
-                cell.updateChartData(dataArray[indexPath.row] as! NSArray, chartType: segmented.selectedSegmentIndex,rowIndex:indexPath.row, completionData: { (totalValue, totalCalores, totalTime) in
-                    self.contentTArray.replaceRange(Range(0..<1), with: [String(format: "%.1f",totalValue/avgNumber)])
-                    self.contentTArray.replaceRange(Range(1..<2), with: [String(format: "%.1f",totalValue)])
-                    self.contentTArray.replaceRange(Range(2..<3), with: [String(format: "%.1f",totalCalores/Int(avgNumber))])
-                    self.contentTArray.replaceRange(Range(3..<4), with: [String(format: "%.1f",totalTime/Int(avgNumber))])
+                cell.updateChartData(dataArray[(indexPath as NSIndexPath).row] as! NSArray, chartType: segmented.selectedSegmentIndex,rowIndex:(indexPath as NSIndexPath).row, completionData: { (totalValue, totalCalores, totalTime) in
+                    self.contentTArray.replaceSubrange(Range(0..<1), with: [String(format: "%.1f",totalValue/avgNumber)])
+                    self.contentTArray.replaceSubrange(Range(1..<2), with: [String(format: "%.1f",totalValue)])
+                    self.contentTArray.replaceSubrange(Range(2..<3), with: [String(format: "%.1f",totalCalores/Int(avgNumber))])
+                    self.contentTArray.replaceSubrange(Range(3..<4), with: [String(format: "%.1f",totalTime/Int(avgNumber))])
                 });
                 contentCollectionView.reloadData()
             }else{
-                self.contentTArray.replaceRange(Range(0..<1), with: [String(format: "0")])
-                self.contentTArray.replaceRange(Range(1..<2), with: [String(format: "0")])
+                self.contentTArray.replaceSubrange(Range(0..<1), with: [String(format: "0")])
+                self.contentTArray.replaceSubrange(Range(1..<2), with: [String(format: "0")])
                 
-                cell.updateChartData(dataArray[indexPath.row] as! NSArray, chartType: segmented.selectedSegmentIndex,rowIndex:indexPath.row, completionData: { (totalValue, totalCalores, totalTime) in
+                cell.updateChartData(dataArray[(indexPath as NSIndexPath).row] as! NSArray, chartType: segmented.selectedSegmentIndex,rowIndex:(indexPath as NSIndexPath).row, completionData: { (totalValue, totalCalores, totalTime) in
                 
                 });
                 contentCollectionView.reloadData()
@@ -147,12 +147,12 @@ extension AnalysisController:UICollectionViewDelegate,UICollectionViewDataSource
             
             return cell
         }else{
-            let cell:AnalysisValueCell = collectionView.dequeueReusableCellWithReuseIdentifier("AnalysisValue_Identifier", forIndexPath: indexPath) as! AnalysisValueCell
-            cell.backgroundColor = UIColor.clearColor()
-            cell.titleLabel.text = contentTitleArray[indexPath.row]
+            let cell:AnalysisValueCell = collectionView.dequeueReusableCell(withReuseIdentifier: "AnalysisValue_Identifier", for: indexPath) as! AnalysisValueCell
+            cell.backgroundColor = UIColor.clear
+            cell.titleLabel.text = contentTitleArray[(indexPath as NSIndexPath).row]
             var unit:String = ""
             if segmented.selectedSegmentIndex == 1 {
-                switch indexPath.row {
+                switch (indexPath as NSIndexPath).row {
                 case 0:
                     unit = "h"
                     break
@@ -170,7 +170,7 @@ extension AnalysisController:UICollectionViewDelegate,UICollectionViewDataSource
                 }
             }
             //cell.valueLabel.text = contentTArray[indexPath.row]+" "+unit
-            cell.updateLabel(contentTArray[indexPath.row]+" "+unit)
+            cell.updateLabel(contentTArray[(indexPath as NSIndexPath).row]+" "+unit)
             return cell
         }
     }

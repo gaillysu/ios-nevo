@@ -20,16 +20,16 @@ class SetRTCRequest: NevoRequest {
     override func getRawDataEx() -> NSArray {
         
         
-        let now:NSDate = NSDate()
-        let cal:NSCalendar = NSCalendar.currentCalendar()
-        let dd:NSDateComponents = cal.components([NSCalendarUnit.Year, NSCalendarUnit.Month, NSCalendarUnit.Day ,NSCalendarUnit.Hour, NSCalendarUnit.Minute, NSCalendarUnit.Second,], fromDate: now);
+        let now:Date = Date()
+        let cal:Calendar = Calendar.current
+        let dd:DateComponents = (cal as NSCalendar).components([NSCalendar.Unit.year, NSCalendar.Unit.month, NSCalendar.Unit.day ,NSCalendar.Unit.hour, NSCalendar.Unit.minute, NSCalendar.Unit.second,], from: now);
         
-        let year:NSInteger = dd.year;
-        let month:NSInteger = dd.month;
-        let day:NSInteger = dd.day;
-        let hour:NSInteger = dd.hour;
-        let min:NSInteger = dd.minute;
-        let sec:NSInteger = dd.second;
+        let year:NSInteger = dd.year!;
+        let month:NSInteger = dd.month!;
+        let day:NSInteger = dd.day!;
+        let hour:NSInteger = dd.hour!;
+        let min:NSInteger = dd.minute!;
+        let sec:NSInteger = dd.second!;
         
         let values1 :[UInt8] = [0x00,SetRTCRequest.HEADER(),
             UInt8(year&0xFF),
@@ -45,8 +45,8 @@ class SetRTCRequest: NevoRequest {
             0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
         
         
-        return NSArray(array: [NSData(bytes: values1, length: values1.count)
-            ,NSData(bytes: values2, length: values2.count)])
+        return NSArray(array: [Data(bytes: UnsafePointer<UInt8>(values1), count: values1.count)
+            ,Data(bytes: UnsafePointer<UInt8>(values2), count: values2.count)])
     }
 
 }

@@ -23,22 +23,22 @@ class AidOtaController : NSObject,ConnectionControllerDelegate {
     let mDelegate : NevoOtaControllerDelegate?
     let mConnectionController : ConnectionController?
 
-    var dfuFirmwareType : DfuFirmwareTypes = DfuFirmwareTypes.APPLICATION
-    private var mPacketsbuffer:[NSData]=[]
-    private var binFileSize:Int = 0
-    private var uploadTimeInSeconds:Int = 0
-    private var firmwareFile :NSURL?
-    private var dfuResponse:DFUResponse
+    var dfuFirmwareType : DfuFirmwareTypes = DfuFirmwareTypes.application
+    fileprivate var mPacketsbuffer:[Data]=[]
+    fileprivate var binFileSize:Int = 0
+    fileprivate var uploadTimeInSeconds:Int = 0
+    fileprivate var firmwareFile :URL?
+    fileprivate var dfuResponse:DFUResponse
 
-    private var binFileData:NSData?
-    private var numberOfPackets:Int = 0
-    private var bytesInLastPacket:Int = 0
-    private var writingPacketNumber :Int = 0
+    fileprivate var binFileData:Data?
+    fileprivate var numberOfPackets:Int = 0
+    fileprivate var bytesInLastPacket:Int = 0
+    fileprivate var writingPacketNumber :Int = 0
 
     /** check the OTA is doing or stop */
-    private var mTimeoutTimer:NSTimer?
-    private let MAX_TIME = 30
-    private var lastprogress = 0.0
+    fileprivate var mTimeoutTimer:Timer?
+    fileprivate let MAX_TIME = 30
+    fileprivate var lastprogress = 0.0
     //added for MCU OTA
 
     /**
@@ -59,12 +59,12 @@ class AidOtaController : NSObject,ConnectionControllerDelegate {
     let DFUCONTROLLER_PAGE_SIZE = 64
     //one page has 5 packets
     let notificationPacketInterval = 5
-    private var state:DFUControllerState = DFUControllerState.INIT
-    private var firmwareDataBytesSent:Int = 0
-    private var progress = 0.0
-    private var curpage:Int = 0
-    private var totalpage:Int = 0
-    private  var checksum:Int = 0
+    fileprivate var state:DFUControllerState = DFUControllerState
+    fileprivate var firmwareDataBytesSent:Int = 0
+    fileprivate var progress = 0.0
+    fileprivate var curpage:Int = 0
+    fileprivate var totalpage:Int = 0
+    fileprivate  var checksum:Int = 0
     //end added
 
     init(controller : AnyObject) {
@@ -78,16 +78,16 @@ class AidOtaController : NSObject,ConnectionControllerDelegate {
         mConnectionController?.connect()
 
     }
-    private func openFile(fileURL:NSURL)
+    fileprivate func openFile(_ fileURL:URL)
     {
-        let selectedFileName:NSString  = fileURL.lastPathComponent!
-        let filetype:NSString = selectedFileName.substringFromIndex(selectedFileName.length - 3)
+        let selectedFileName:NSString  = fileURL.lastPathComponent as NSString
+        let filetype:NSString = selectedFileName.substring(from: selectedFileName.length - 3) as NSString
 
         XCGLogger.defaultInstance().debug("selected file extension is \(filetype)")
 
         if filetype == "hex"{
-            let hexFileData :NSData = NSData(contentsOfURL: fileURL)!;
-            if (hexFileData.length > 0) {
+            let hexFileData :Data = try! Data(contentsOf: fileURL);
+            if (hexFileData.count > 0) {
                 convertHexFileToBin(hexFileData)
             }else {
                 XCGLogger.defaultInstance().debug("Error: file is empty!");
@@ -99,15 +99,15 @@ class AidOtaController : NSObject,ConnectionControllerDelegate {
         }
     }
 
-    private func convertHexFileToBin(hexFileData:NSData){
+    fileprivate func convertHexFileToBin(_ hexFileData:Data){
         binFileData = IntelHex2BinConverter.convert(hexFileData)
         XCGLogger.defaultInstance().debug("HexFileSize: \(hexFileData.length) and BinFileSize: \(self.binFileData?.length)")
 
-        numberOfPackets =  (binFileData?.length)! / enumPacketOption.PACKET_SIZE.rawValue
+        numberOfPackets =  (binFileData?.count)! / enumPacketOption.packet_SIZE.rawValue
 
-        bytesInLastPacket = ((binFileData?.length)! % enumPacketOption.PACKET_SIZE.rawValue);
+        bytesInLastPacket = ((binFileData?.count)! % enumPacketOption.packet_SIZE.rawValue);
         if (bytesInLastPacket == 0) {
-            bytesInLastPacket = enumPacketOption.PACKET_SIZE.rawValue;
+            bytesInLastPacket = enumPacketOption.packet_SIZE.rawValue;
         }
         else
         {
@@ -116,19 +116,19 @@ class AidOtaController : NSObject,ConnectionControllerDelegate {
         XCGLogger.defaultInstance().debug("Number of Packets \(self.numberOfPackets) Bytes in last Packet \(self.bytesInLastPacket)")
         writingPacketNumber = 0
 
-        binFileSize = (binFileData?.length)!
-        dfuFirmwareType = DfuFirmwareTypes.APPLICATION
-        state = DFUControllerState.DISCOVERING
+        binFileSize = (binFileData?.count)!
+        dfuFirmwareType = DfuFirmwareTypes.application
+        state = DFUControllerState.discovering
         connectionStateChanged(true)
     }
 
-    private func writeNextPacket(){
+    fileprivate func writeNextPacket(){
         var percentage :Int = 0;
-            for _ in 0..<Int(enumPacketOption.PACKETS_NOTIFICATION_INTERVAL.rawValue){
+            for _ in 0..<Int(enumPacketOption.packets_NOTIFICATION_INTERVAL.rawValue){
             if (self.writingPacketNumber > self.numberOfPackets-2) {
                 XCGLogger.defaultInstance().debug("writing last packet");
-                let dataRange : NSRange = NSMakeRange(self.writingPacketNumber*enumPacketOption.PACKET_SIZE.rawValue, self.bytesInLastPacket);
-                let nextPacketData : NSData = (binFileData?.subdataWithRange(dataRange))!
+                let dataRange : NSRange = NSMakeRange(self.writingPacketNumber*enumPacketOption.packet_SIZE.rawValue, self.bytesInLastPacket);
+                let nextPacketData : Data = (binFileData?.subdata(with: dataRange))!
 
                 XCGLogger.defaultInstance().debug("writing packet number \(self.writingPacketNumber+1) ...");
                 XCGLogger.defaultInstance().debug("packet data: \(nextPacketData)");
@@ -144,14 +144,14 @@ class AidOtaController : NSObject,ConnectionControllerDelegate {
                 break;
 
             }
-            let dataRange : NSRange = NSMakeRange(self.writingPacketNumber*enumPacketOption.PACKET_SIZE.rawValue, enumPacketOption.PACKET_SIZE.rawValue);
+            let dataRange : NSRange = NSMakeRange(self.writingPacketNumber*enumPacketOption.packet_SIZE.rawValue, enumPacketOption.packet_SIZE.rawValue);
 
-            let nextPacketData : NSData  = (self.binFileData?.subdataWithRange(dataRange))!
+            let nextPacketData : Data  = (self.binFileData?.subdata(with: dataRange))!
             XCGLogger.defaultInstance().debug("writing packet number \(self.writingPacketNumber+1) ...");
             XCGLogger.defaultInstance().debug("packet data: \(nextPacketData)");
 
             mConnectionController?.sendRequest(OnePacketRequest(packetdata: nextPacketData ))
-            progress = Double(self.writingPacketNumber * enumPacketOption.PACKET_SIZE.rawValue) / Double(self.binFileSize) * 100.0
+            progress = Double(self.writingPacketNumber * enumPacketOption.packet_SIZE.rawValue) / Double(self.binFileSize) * 100.0
             percentage = Int(progress)
 
             XCGLogger.defaultInstance().debug("DFUOperations: onTransferPercentage \(percentage)");
@@ -163,7 +163,7 @@ class AidOtaController : NSObject,ConnectionControllerDelegate {
 
     }
 
-    private func startSendingFile(){
+    fileprivate func startSendingFile(){
         XCGLogger.defaultInstance().debug("DFUOperationsdetails enablePacketNotification");
         mConnectionController?.sendRequest(EnablePacketNotifyRequest())
         XCGLogger.defaultInstance().debug("DFUOperationsdetails receiveFirmwareImage");
@@ -174,36 +174,36 @@ class AidOtaController : NSObject,ConnectionControllerDelegate {
         mDelegate?.onDFUStarted()
     }
 
-    private func resetSystem(){
+    fileprivate func resetSystem(){
         XCGLogger.defaultInstance().debug("DFUOperationsDetails resetSystem");
         mConnectionController?.sendRequest(ResetSystemRequest())
     }
 
-    private func validateFirmware(){
+    fileprivate func validateFirmware(){
         XCGLogger.defaultInstance().debug("DFUOperationsDetails validateFirmware");
         mConnectionController?.sendRequest(ValidateFirmwareRequest())
     }
 
-    private func activateAndReset(){
+    fileprivate func activateAndReset(){
         XCGLogger.defaultInstance().debug("DFUOperationsDetails activateAndReset");
         mConnectionController?.sendRequest(ActivateAndResetRequest())
     }
 
-    private func responseErrorMessage(errorCode:DfuOperationStatus.RawValue) ->NSString{
+    fileprivate func responseErrorMessage(_ errorCode:DfuOperationStatus.RawValue) ->NSString{
         switch (errorCode) {
-        case DfuOperationStatus.OPERATION_FAILED_RESPONSE.rawValue:
+        case DfuOperationStatus.operation_FAILED_RESPONSE.rawValue:
             return NSString(string:"Operation Failed");
 
-        case DfuOperationStatus.OPERATION_INVALID_RESPONSE.rawValue:
+        case DfuOperationStatus.operation_INVALID_RESPONSE.rawValue:
             return NSString(string:"Invalid Response");
 
-        case DfuOperationStatus.OPERATION_NOT_SUPPORTED_RESPONSE.rawValue:
+        case DfuOperationStatus.operation_NOT_SUPPORTED_RESPONSE.rawValue:
             return NSString(string:"Operation Not Supported");
 
-        case DfuOperationStatus.DATA_SIZE_EXCEEDS_LIMIT_RESPONSE.rawValue:
+        case DfuOperationStatus.data_SIZE_EXCEEDS_LIMIT_RESPONSE.rawValue:
             return NSString(string:"Data Size Exceeds");
 
-        case DfuOperationStatus.CRC_ERROR_RESPONSE.rawValue:
+        case DfuOperationStatus.crc_ERROR_RESPONSE.rawValue:
             return NSString(string:"CRC Error");
 
         default:
@@ -212,18 +212,18 @@ class AidOtaController : NSObject,ConnectionControllerDelegate {
         }
     }
 
-    private func processRequestedCode(){
+    fileprivate func processRequestedCode(){
         XCGLogger.defaultInstance().debug("processsRequestedCode");
         switch (dfuResponse.requestedCode) {
-        case DfuOperations.START_DFU_REQUEST.rawValue:
+        case DfuOperations.start_DFU_REQUEST.rawValue:
             XCGLogger.defaultInstance().debug("Requested code is StartDFU now processing response status");
             processStartDFUResponseStatus()
             break;
-        case DfuOperations.RECEIVE_FIRMWARE_IMAGE_REQUEST.rawValue:
+        case DfuOperations.receive_FIRMWARE_IMAGE_REQUEST.rawValue:
             XCGLogger.defaultInstance().debug("Requested code is Receive Firmware Image now processing response status");
             processReceiveFirmwareResponseStatus()
             break;
-        case DfuOperations.VALIDATE_FIRMWARE_REQUEST.rawValue:
+        case DfuOperations.validate_FIRMWARE_REQUEST.rawValue:
             XCGLogger.defaultInstance().debug("Requested code is Validate Firmware now processing response status");
             processValidateFirmwareResponseStatus()
             break;
@@ -234,15 +234,15 @@ class AidOtaController : NSObject,ConnectionControllerDelegate {
         }
     }
 
-    private func processStartDFUResponseStatus(){
+    fileprivate func processStartDFUResponseStatus(){
         XCGLogger.defaultInstance().debug("processStartDFUResponseStatus");
-        let errorMessage:NSString = "Error on StartDFU\n Message: \(responseErrorMessage(dfuResponse.responseStatus))"
+        let errorMessage:NSString = "Error on StartDFU\n Message: \(responseErrorMessage(dfuResponse.responseStatus))" as NSString
         switch (dfuResponse.responseStatus) {
-        case DfuOperationStatus.OPERATION_SUCCESSFUL_RESPONSE.rawValue:
+        case DfuOperationStatus.operation_SUCCESSFUL_RESPONSE.rawValue:
             XCGLogger.defaultInstance().debug("successfully received startDFU notification");
             startSendingFile()
             break;
-        case DfuOperationStatus.OPERATION_NOT_SUPPORTED_RESPONSE.rawValue:
+        case DfuOperationStatus.operation_NOT_SUPPORTED_RESPONSE.rawValue:
             XCGLogger.defaultInstance().debug("device has old DFU. switching to old DFU ...");
             performOldDFUOnFile()
             break;
@@ -255,9 +255,9 @@ class AidOtaController : NSObject,ConnectionControllerDelegate {
         }
     }
 
-    private func processReceiveFirmwareResponseStatus(){
+    fileprivate func processReceiveFirmwareResponseStatus(){
         XCGLogger.defaultInstance().debug("processReceiveFirmwareResponseStatus");
-        if (dfuResponse.responseStatus == DfuOperationStatus.OPERATION_SUCCESSFUL_RESPONSE.rawValue){
+        if (dfuResponse.responseStatus == DfuOperationStatus.operation_SUCCESSFUL_RESPONSE.rawValue){
             XCGLogger.defaultInstance().debug("successfully received notification for whole File transfer");
             validateFirmware()
         }else{
@@ -268,9 +268,9 @@ class AidOtaController : NSObject,ConnectionControllerDelegate {
         }
     }
 
-    private func processValidateFirmwareResponseStatus(){
+    fileprivate func processValidateFirmwareResponseStatus(){
         XCGLogger.defaultInstance().debug("processValidateFirmwareResponseStatus");
-        if (dfuResponse.responseStatus == DfuOperationStatus.OPERATION_SUCCESSFUL_RESPONSE.rawValue) {
+        if (dfuResponse.responseStatus == DfuOperationStatus.operation_SUCCESSFUL_RESPONSE.rawValue) {
             XCGLogger.defaultInstance().debug("succesfully received notification for ValidateFirmware");
             activateAndReset()
             mDelegate?.onSuccessfulFileTranferred()
@@ -282,26 +282,26 @@ class AidOtaController : NSObject,ConnectionControllerDelegate {
         }
     }
 
-    private func processPacketNotification(){
+    fileprivate func processPacketNotification(){
         XCGLogger.defaultInstance().debug("received Packet Received Notification");
         if (writingPacketNumber < numberOfPackets) {
             writeNextPacket()
         }
     }
 
-    private func setDFUResponseStruct(data:[UInt8]){
+    fileprivate func setDFUResponseStruct(_ data:[UInt8]){
         dfuResponse.responseCode = data[0]
         dfuResponse.requestedCode = data[1]
         dfuResponse.responseStatus = data[2]
     }
 
-    private func processDFUResponse(data :[UInt8]){
+    fileprivate func processDFUResponse(_ data :[UInt8]){
         XCGLogger.defaultInstance().debug("processDFUResponse");
         setDFUResponseStruct(data)
 
-        if (dfuResponse.responseCode == DfuOperations.RESPONSE_CODE.rawValue) {
+        if (dfuResponse.responseCode == DfuOperations.response_CODE.rawValue) {
             processRequestedCode()
-        }else if(dfuResponse.responseCode == DfuOperations.PACKET_RECEIPT_NOTIFICATION_RESPONSE.rawValue) {
+        }else if(dfuResponse.responseCode == DfuOperations.packet_RECEIPT_NOTIFICATION_RESPONSE.rawValue) {
             processPacketNotification()
         }
     }
@@ -309,19 +309,19 @@ class AidOtaController : NSObject,ConnectionControllerDelegate {
     /*
     see ConnectionControllerDelegate protocol
     */
-    func receivedRSSIValue(number:NSNumber){
+    func receivedRSSIValue(_ number:NSNumber){
 
     }
 
     /*
     see ConnectionControllerDelegate protocol
     */
-    func packetReceived(packet:RawPacket) {
+    func packetReceived(_ packet:RawPacket) {
         //dicard those packets from  NevoProfile
         if !(packet.getSourceProfile() is NevoProfile){
-            if(dfuFirmwareType == DfuFirmwareTypes.APPLICATION && mConnectionController?.getOTAMode() == true){
+            if(dfuFirmwareType == DfuFirmwareTypes.application && mConnectionController?.getOTAMode() == true){
                 processDFUResponse(NSData2Bytes(packet.getRawData()))
-            }else if(dfuFirmwareType == DfuFirmwareTypes.SOFTDEVICE){
+            }else if(dfuFirmwareType == DfuFirmwareTypes.softdevice){
                 SyncQueue.sharedInstance_ota.next()
                 MCU_processDFUResponse(packet)
             }
@@ -330,23 +330,23 @@ class AidOtaController : NSObject,ConnectionControllerDelegate {
     /*
     see ConnectionControllerDelegate protocol
     */
-    func connectionStateChanged(isConnected : Bool) {
+    func connectionStateChanged(_ isConnected : Bool) {
 
         mDelegate?.connectionStateChanged(isConnected)
         //only BLE OTA run below code
-        if(dfuFirmwareType == DfuFirmwareTypes.APPLICATION ){
+        if(dfuFirmwareType == DfuFirmwareTypes.application ){
             if isConnected{
-                if state == DFUControllerState.SEND_RECONNECT{
-                    state = DFUControllerState.SEND_START_COMMAND
-                    let dispatchTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, Int64(1.0 * Double(NSEC_PER_SEC)))
-                    dispatch_after(dispatchTime, dispatch_get_main_queue(), {
+                if state == DFUControllerState.send_RECONNECT{
+                    state = DFUControllerState.send_START_COMMAND
+                    let dispatchTime: DispatchTime = DispatchTime.now() + Double(Int64(1.0 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
+                    DispatchQueue.main.asyncAfter(deadline: dispatchTime, execute: {
                         self.mConnectionController!.sendRequest(SetOTAModeRequest())
                     })
 
-                }else if state == DFUControllerState.DISCOVERING{
-                    state = DFUControllerState.SEND_FIRMWARE_DATA
-                    let dispatchTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, Int64(1.0 * Double(NSEC_PER_SEC)))
-                    dispatch_after(dispatchTime, dispatch_get_main_queue(), {
+                }else if state == DFUControllerState.discovering{
+                    state = DFUControllerState.send_FIRMWARE_DATA
+                    let dispatchTime: DispatchTime = DispatchTime.now() + Double(Int64(1.0 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
+                    DispatchQueue.main.asyncAfter(deadline: dispatchTime, execute: {
                         self.mConnectionController!.sendRequest(StartOTARequest())
                         self.mConnectionController!.sendRequest(writeFileSizeRequest(filelength: self.binFileSize))
                     })
@@ -354,20 +354,20 @@ class AidOtaController : NSObject,ConnectionControllerDelegate {
                 }
 
             }else{
-                if state == DFUControllerState.IDLE{
-                    self.state = DFUControllerState.SEND_RECONNECT
+                if state == DFUControllerState.idle{
+                    self.state = DFUControllerState.send_RECONNECT
 
-                    let dispatchTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, Int64(1.0 * Double(NSEC_PER_SEC)))
-                    dispatch_after(dispatchTime, dispatch_get_main_queue(), {
+                    let dispatchTime: DispatchTime = DispatchTime.now() + Double(Int64(1.0 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
+                    DispatchQueue.main.asyncAfter(deadline: dispatchTime, execute: {
                         self.mConnectionController!.connect()
                     })
-                }else if state == DFUControllerState.SEND_START_COMMAND{
-                    self.state = DFUControllerState.DISCOVERING
+                }else if state == DFUControllerState.send_START_COMMAND{
+                    self.state = DFUControllerState.discovering
                     //reset it by BLE peer disconnect
                     self.mConnectionController!.setOTAMode(false,Disconnect:false)
 
-                    let dispatchTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, Int64(1.0 * Double(NSEC_PER_SEC)))
-                    dispatch_after(dispatchTime, dispatch_get_main_queue(), {
+                    let dispatchTime: DispatchTime = DispatchTime.now() + Double(Int64(1.0 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
+                    DispatchQueue.main.asyncAfter(deadline: dispatchTime, execute: {
                         XCGLogger.defaultInstance().debug("***********again set OTA mode,forget it firstly,and scan DFU service*******")
                         //when switch to DFU mode, the identifier has changed another one
                         self.mConnectionController!.forgetSavedAddress()
@@ -381,19 +381,19 @@ class AidOtaController : NSObject,ConnectionControllerDelegate {
             //only MCU OTA run below code
         else{
             if(isConnected){
-                if self.state == DFUControllerState.SEND_RECONNECT{
-                    self.state = DFUControllerState.SEND_START_COMMAND
-                    let dispatchTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, Int64(1.0 * Double(NSEC_PER_SEC)))
-                    dispatch_after(dispatchTime, dispatch_get_main_queue(), {
+                if self.state == DFUControllerState.send_RECONNECT{
+                    self.state = DFUControllerState.send_START_COMMAND
+                    let dispatchTime: DispatchTime = DispatchTime.now() + Double(Int64(1.0 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
+                    DispatchQueue.main.asyncAfter(deadline: dispatchTime, execute: {
                         self.mConnectionController!.sendRequest(Mcu_SetOTAModeRequest())
                     })
                 }
 
             }else{
-                if self.state == DFUControllerState.IDLE {
-                    self.state = DFUControllerState.SEND_RECONNECT
-                    let dispatchTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, Int64(1.0 * Double(NSEC_PER_SEC)))
-                    dispatch_after(dispatchTime, dispatch_get_main_queue(), {
+                if self.state == DFUControllerState.idle {
+                    self.state = DFUControllerState.send_RECONNECT
+                    let dispatchTime: DispatchTime = DispatchTime.now() + Double(Int64(1.0 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
+                    DispatchQueue.main.asyncAfter(deadline: dispatchTime, execute: {
 
                         self.mConnectionController!.connect()
                     })
@@ -402,7 +402,7 @@ class AidOtaController : NSObject,ConnectionControllerDelegate {
         }
     }
 
-    func bluetoothEnabled(enabled:Bool) {
+    func bluetoothEnabled(_ enabled:Bool) {
 
     }
 
@@ -413,7 +413,7 @@ class AidOtaController : NSObject,ConnectionControllerDelegate {
     /**
     See ConnectionControllerDelegate
     */
-    func firmwareVersionReceived(whichfirmware:DfuFirmwareTypes, version:NSString)
+    func firmwareVersionReceived(_ whichfirmware:DfuFirmwareTypes, version:NSString)
     {
         mDelegate?.firmwareVersionReceived(whichfirmware, version: version)
     }
@@ -423,32 +423,32 @@ class AidOtaController : NSObject,ConnectionControllerDelegate {
         mConnectionController?.setDelegate(self)
     }
 
-    func performDFUOnFile(firmwareURL:NSURL , firmwareType:DfuFirmwareTypes)
+    func performDFUOnFile(_ firmwareURL:URL , firmwareType:DfuFirmwareTypes)
     {
         lastprogress = 0.0
         progress = 0.0
         mTimeoutTimer?.invalidate()
-        mTimeoutTimer = NSTimer.scheduledTimerWithTimeInterval(Double(MAX_TIME), target: self, selector:#selector(AidOtaController.timeroutProc(_:)), userInfo: nil, repeats: true)
+        mTimeoutTimer = Timer.scheduledTimer(timeInterval: Double(MAX_TIME), target: self, selector:#selector(AidOtaController.timeroutProc(_:)), userInfo: nil, repeats: true)
 
         mConnectionController?.setDelegate(self)
-        state = DFUControllerState.IDLE
+        state = DFUControllerState.idle
         dfuFirmwareType = firmwareType
         firmwareFile = firmwareURL
         //Hex to bin and read it to buffer
         openFile(firmwareURL)
         //enable it done after doing discover service
         //[dfuRequests enableNotification];
-        if(dfuFirmwareType == DfuFirmwareTypes.APPLICATION )
+        if(dfuFirmwareType == DfuFirmwareTypes.application )
         {
             mConnectionController?.setOTAMode(true,Disconnect:true)
         }
-        else if(dfuFirmwareType == DfuFirmwareTypes.SOFTDEVICE)
+        else if(dfuFirmwareType == DfuFirmwareTypes.softdevice)
         {
             mConnectionController?.setOTAMode(true,Disconnect:true)
         }
     }
 
-    func timeroutProc(timer:NSTimer)
+    func timeroutProc(_ timer:Timer)
     {
         if lastprogress == progress  && progress != 100.0
         {
@@ -463,9 +463,9 @@ class AidOtaController : NSObject,ConnectionControllerDelegate {
         }
     }
 
-    private func performOldDFUOnFile()
+    fileprivate func performOldDFUOnFile()
     {
-        if (self.dfuFirmwareType == DfuFirmwareTypes.APPLICATION)
+        if (self.dfuFirmwareType == DfuFirmwareTypes.application)
         {
             openFile(firmwareFile!)
             mConnectionController?.sendRequest(StartOTAOldRequest())
@@ -485,15 +485,15 @@ class AidOtaController : NSObject,ConnectionControllerDelegate {
     {
         XCGLogger.defaultInstance().debug("cancelDFU");
 
-        if (self.dfuFirmwareType == DfuFirmwareTypes.APPLICATION)
+        if (self.dfuFirmwareType == DfuFirmwareTypes.application)
         { resetSystem() }
 
         mDelegate?.onDFUCancelled()
     }
 
-    func sendRequest(r:Request) {
+    func sendRequest(_ r:Request) {
         //for MCU OTA, use send queue to control it
-        if (self.dfuFirmwareType == DfuFirmwareTypes.SOFTDEVICE)
+        if (self.dfuFirmwareType == DfuFirmwareTypes.softdevice)
         {
             SyncQueue.sharedInstance_ota.post( { (Void) -> (Void) in
 
@@ -508,21 +508,21 @@ class AidOtaController : NSObject,ConnectionControllerDelegate {
 
     //added for MCU OTA
 
-    func MCU_openfirmware(firmwareURL:NSURL)
+    func MCU_openfirmware(_ firmwareURL:URL)
     {
-        let locData:NSData = NSData(contentsOfURL: firmwareURL)!;
+        let locData:Data = try! Data(contentsOf: firmwareURL);
         //remove first 16K bytes, remain 48k bytes
-        let currentRange :NSRange =  NSMakeRange(16*1024, locData.length - 16 * 1024);
+        let currentRange :NSRange =  NSMakeRange(16*1024, locData.count - 16 * 1024);
 
         firmwareDataBytesSent = 0
         curpage = 0
-        binFileData = locData.subdataWithRange(currentRange)
-        binFileSize = binFileData!.length
-        totalpage = binFileData!.length/DFUCONTROLLER_PAGE_SIZE;
+        binFileData = locData.subdata(in: currentRange)
+        binFileSize = binFileData!.count
+        totalpage = binFileData!.count/DFUCONTROLLER_PAGE_SIZE;
         checksum = 0
-        dfuFirmwareType = DfuFirmwareTypes.SOFTDEVICE
+        dfuFirmwareType = DfuFirmwareTypes.softdevice
 
-        let bytes = UnsafeBufferPointer<UInt8>(start: UnsafePointer(binFileData!.bytes), count:binFileData!.length)
+        let bytes = UnsafeBufferPointer<UInt8>(start: (binFileData! as NSData).bytes.bindMemory(to: UInt8.self, capacity: binFileData!.count), count:binFileData!.count)
 
         for  byte in bytes {
             checksum = checksum + Int(byte)
@@ -539,7 +539,7 @@ class AidOtaController : NSObject,ConnectionControllerDelegate {
         for var i:Int = 0; i < notificationPacketInterval && firmwareDataBytesSent < binFileSize; i+=1
         {
             var length = DFUCONTROLLER_MAX_PACKET_SIZE;
-            var pagePacket : NSData;
+            var pagePacket : Data;
             if( i == 0)
             {
                 //LSB format
@@ -551,7 +551,7 @@ class AidOtaController : NSObject,ConnectionControllerDelegate {
                     UInt8((totalpage>>8) & 0xFF),
                     00,00,00,00,00,00,00,00,00,00,00,00,00,00]
 
-                pagePacket = NSData(bytes: pagehead, length: pagehead.count)
+                pagePacket = Data(bytes: UnsafePointer<UInt8>(pagehead), count: pagehead.count)
             }
             else
             {
@@ -566,27 +566,27 @@ class AidOtaController : NSObject,ConnectionControllerDelegate {
 
                 let currentRange:NSRange = NSMakeRange(self.firmwareDataBytesSent, length)
 
-                let currentData:NSData =  binFileData!.subdataWithRange(currentRange)
+                let currentData:Data =  binFileData!.subdata(in: currentRange)
 
                 let fulldata:NSMutableData = NSMutableData()
 
                 if i == self.notificationPacketInterval - 1
                 {
-                    fulldata.appendBytes([0xFF,0x71] as [UInt8], length: 2)
+                    fulldata.append([0xFF,0x71] as [UInt8], length: 2)
                 }
                 else
                 {
-                    fulldata.appendBytes([UInt8(i),0x71] as [UInt8], length: 2)
+                    fulldata.append([UInt8(i),0x71] as [UInt8], length: 2)
                 }
 
-                fulldata.appendData(currentData)
+                fulldata.append(currentData)
 
                 //last packet of the page, remains 8 bytes,fill 0
                 if(i == (notificationPacketInterval - 1))
                 {
-                    fulldata.appendBytes([0,0,0,0,0,0,0,0] as [UInt8], length: 8)
+                    fulldata.append([0,0,0,0,0,0,0,0] as [UInt8], length: 8)
                 }
-                pagePacket = fulldata
+                pagePacket = fulldata as Data
 
                 firmwareDataBytesSent += length;
             }
@@ -600,16 +600,16 @@ class AidOtaController : NSObject,ConnectionControllerDelegate {
             mDelegate?.onTransferPercentage(Int(progress))
             XCGLogger.defaultInstance().debug("didWriteDataPacket")
 
-            if (state == DFUControllerState.SEND_FIRMWARE_DATA)
+            if (state == DFUControllerState.send_FIRMWARE_DATA)
             {
                 curpage+=1
-                state = DFUControllerState.WAIT_RECEIPT
+                state = DFUControllerState.wait_RECEIPT
             }
 
         }
         else
         {
-            state = DFUControllerState.FINISHED
+            state = DFUControllerState.finished
             progress = 100.0
             mDelegate?.onTransferPercentage(Int(progress))
             sendRequest(Mcu_CheckSumPacketRequest(totalpage: totalpage, checksum: checksum))
@@ -621,10 +621,10 @@ class AidOtaController : NSObject,ConnectionControllerDelegate {
 
     }
 
-    func MCU_processDFUResponse(packet:RawPacket)
+    func MCU_processDFUResponse(_ packet:RawPacket)
     {
         XCGLogger.defaultInstance().debug("didReceiveReceipt")
-        mPacketsbuffer.append(packet.getRawData())
+        mPacketsbuffer.append(packet.getRawData() as Data)
         var databyte:[UInt8] = NSData2Bytes(packet.getRawData())
 
         if(databyte[0] == 0xFF)
@@ -633,10 +633,10 @@ class AidOtaController : NSObject,ConnectionControllerDelegate {
             {
                 //first Packet  as header get successful response!
                 progress = Double(firmwareDataBytesSent) / Double(binFileSize)
-                self.state = DFUControllerState.SEND_FIRMWARE_DATA
+                self.state = DFUControllerState.send_FIRMWARE_DATA
 
             }
-            if( databyte[1] == 0x71 && self.state == DFUControllerState.FINISHED)
+            if( databyte[1] == 0x71 && self.state == DFUControllerState.finished)
             {
                 var databyte1:[UInt8] = NSData2Bytes(mPacketsbuffer[0])
 
@@ -665,13 +665,13 @@ class AidOtaController : NSObject,ConnectionControllerDelegate {
 
             mPacketsbuffer = []
 
-            if (self.state == DFUControllerState.SEND_FIRMWARE_DATA)
+            if (self.state == DFUControllerState.send_FIRMWARE_DATA)
             {
                 MCU_sendFirmwareChunk()
             }
-            else if(self.state == DFUControllerState.WAIT_RECEIPT)
+            else if(self.state == DFUControllerState.wait_RECEIPT)
             {
-                self.state = DFUControllerState.SEND_FIRMWARE_DATA;
+                self.state = DFUControllerState.send_FIRMWARE_DATA;
                 MCU_sendFirmwareChunk()
             }
         }
@@ -681,7 +681,7 @@ class AidOtaController : NSObject,ConnectionControllerDelegate {
     func isConnected() -> Bool{
         return mConnectionController!.isConnected()
     }
-    func setStatus(state:DFUControllerState)
+    func setStatus(_ state:DFUControllerState)
     {
         self.state = state
     }
@@ -701,13 +701,13 @@ class AidOtaController : NSObject,ConnectionControllerDelegate {
     because MCU/BLE ota, user has done one of them, perhaps do another one,
     so no need make syncController handle connectionController
     */
-    func reset(switch2SyncController:Bool)
+    func reset(_ switch2SyncController:Bool)
     {
         mTimeoutTimer?.invalidate()
         //reset it to INIT status !!!IMPORTANT!!!
-        self.state = DFUControllerState.INIT
+        self.state = DFUControllerState
         
-        if(dfuFirmwareType == DfuFirmwareTypes.APPLICATION ){
+        if(dfuFirmwareType == DfuFirmwareTypes.application ){
             self.mConnectionController!.restoreSavedAddress()
         }
 

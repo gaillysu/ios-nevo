@@ -10,7 +10,7 @@ import UIKit
 import FMDB
 
 class AlarmModel: UserDatabaseHelper {
-    var timer:NSTimeInterval = 0.0
+    var timer:TimeInterval = 0.0
     var label:String = ""
     var status:Bool = false
     var repeatStatus:Bool = false
@@ -27,27 +27,27 @@ class AlarmModel: UserDatabaseHelper {
      @param criteria To find the condition
      @param returns Returns the find results
      */
-    override class func getCriteria(criteria:String)->NSArray {
+    override class func getCriteria(_ criteria:String)->NSArray {
         let dbQueue:FMDatabaseQueue = AppDelegate.getAppDelegate().dbQueue
         let alarm:NSMutableArray = NSMutableArray()
         dbQueue.inDatabase { (db) -> Void in
             var tableName:String =  NSStringFromClass(self.classForCoder())
-            tableName = tableName.stringByReplacingOccurrencesOfString(".", withString: "")
+            tableName = tableName.replacingOccurrences(of: ".", with: "")
             let sql:String = "SELECT * FROM \(tableName) \(criteria)"
-            let resultSet:FMResultSet = db.executeQuery(sql, withArgumentsInArray: nil)
+            let resultSet:FMResultSet = db!.executeQuery(sql, withArgumentsIn: nil)
             while (resultSet.next()) {
                 let model:AlarmModel = AlarmModel()
 
                 for i:Int in 0 ..< model.columeNames.count {
-                    let columeName:NSString = (model.columeNames.objectAtIndex(i) as! NSString)
-                    let columeType:NSString = (model.columeTypes.objectAtIndex(i) as! NSString)
-                    if (columeType.isEqualToString(SQLTEXT)) {
-                        model.setValue(resultSet.stringForColumn("\(columeName)"), forKey: "\(columeName)")
+                    let columeName:NSString = (model.columeNames.object(at: i) as! NSString)
+                    let columeType:NSString = (model.columeTypes.object(at: i) as! NSString)
+                    if (columeType.isEqual(to: SQLTEXT)) {
+                        model.setValue(resultSet.string(forColumn: "\(columeName)"), forKey: "\(columeName)")
                     } else {
-                        model.setValue(NSNumber(longLong: resultSet.longLongIntForColumn("\(columeName)")), forKey: "\(columeName)")
+                        model.setValue(NSNumber(value: resultSet.longLongInt(forColumn: "\(columeName)") as Int64), forKey: "\(columeName)")
                     }
                 }
-                alarm.addObject(model)
+                alarm.add(model)
             }
         }
         return alarm;
@@ -62,23 +62,23 @@ class AlarmModel: UserDatabaseHelper {
         let dbQueue:FMDatabaseQueue = AppDelegate.getAppDelegate().dbQueue
         let alarm:NSMutableArray = NSMutableArray()
         dbQueue.inDatabase { (db) -> Void in
-            var tableName:NSString = NSStringFromClass(self.classForCoder())
-            tableName = tableName.stringByReplacingOccurrencesOfString(".", withString: "")
+            var tableName:NSString = NSStringFromClass(self.classForCoder()) as NSString
+            tableName = tableName.replacingOccurrences(of: ".", with: "") as NSString
             let sql:String = "SELECT * FROM \(tableName)"
-            let resultSet:FMResultSet = db.executeQuery(sql, withArgumentsInArray: nil)
+            let resultSet:FMResultSet = db!.executeQuery(sql, withArgumentsIn: nil)
             while (resultSet.next()) {
                 let model:AlarmModel = AlarmModel()
 
                 for i:Int in 0 ..< model.columeNames.count {
-                    let columeName:NSString = model.columeNames.objectAtIndex(i) as! NSString
-                    let columeType:NSString = model.columeTypes.objectAtIndex(i) as! NSString
-                    if (columeType.isEqualToString(SQLTEXT)) {
-                        model.setValue(resultSet.stringForColumn("\(columeName)"), forKey: "\(columeName)")
+                    let columeName:NSString = model.columeNames.object(at: i) as! NSString
+                    let columeType:NSString = model.columeTypes.object(at: i) as! NSString
+                    if (columeType.isEqual(to: SQLTEXT)) {
+                        model.setValue(resultSet.string(forColumn: "\(columeName)"), forKey: "\(columeName)")
                     } else {
-                        model.setValue(NSNumber(longLong: resultSet.longLongIntForColumn("\(columeName)")), forKey: "\(columeName)")
+                        model.setValue(NSNumber(value: resultSet.longLongInt(forColumn: "\(columeName)") as Int64), forKey: "\(columeName)")
                     }
                 }
-                alarm.addObject(model)
+                alarm.add(model)
             }
             
         }
@@ -89,9 +89,9 @@ class AlarmModel: UserDatabaseHelper {
         var res:Bool = false
         let dbQueue:FMDatabaseQueue = AppDelegate.getAppDelegate().dbQueue
         dbQueue.inDatabase { (db) -> Void in
-            var tableName:NSString = NSStringFromClass(self.classForCoder())
-            tableName = tableName.stringByReplacingOccurrencesOfString(".", withString: "")
-            res = db.tableExists("\(tableName)")
+            var tableName:NSString = NSStringFromClass(self.classForCoder()) as NSString
+            tableName = tableName.replacingOccurrences(of: ".", with: "") as NSString
+            res = (db?.tableExists("\(tableName)"))!
         }
         return res
     }
@@ -107,24 +107,24 @@ class AlarmModel: UserDatabaseHelper {
             return false;
         }
 
-        var tableName:NSString = NSStringFromClass(self.classForCoder())
-        tableName = tableName.stringByReplacingOccurrencesOfString(".", withString: "")
+        var tableName:NSString = NSStringFromClass(self.classForCoder()) as NSString
+        tableName = tableName.replacingOccurrences(of: ".", with: "") as NSString
         let columns:NSMutableArray = NSMutableArray()
         let resultSet:FMResultSet = db.getTableSchema(tableName as String)
         while (resultSet.next()) {
-            let column:NSString = resultSet.stringForColumn("name")
-            columns.addObject(column)
+            let column:NSString = resultSet.string(forColumn: "name") as NSString
+            columns.add(column)
         }
 
         let dict:NSDictionary = self.getAllProperties();
-        let properties:NSArray = dict.objectForKey("name") as! NSArray
+        let properties:NSArray = dict.object(forKey: "name") as! NSArray
         let filterPredicate:NSPredicate = NSPredicate(format: "NOT (SELF IN %@)",columns)
         //过滤数组
-        let resultArray:NSArray = properties.filteredArrayUsingPredicate(filterPredicate)
+        let resultArray:NSArray = properties.filtered(using: filterPredicate) as NSArray
 
         for column in resultArray {
-            let index:Int = properties.indexOfObject(column)
-            let proType:String = (dict.objectForKey("type") as! NSArray).objectAtIndex(index) as! String
+            let index:Int = properties.index(of: column)
+            let proType:String = (dict.object(forKey: "type") as! NSArray).object(at: index) as! String
             let fieldSql:String = "\(column) \(proType)"
             //[NSString stringWithFormat:@"%@ %@",column,proType];
             let sql:String = String(format: "ALTER TABLE %@ ADD COLUMN %@ ",tableName,fieldSql)

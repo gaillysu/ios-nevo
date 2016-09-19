@@ -11,7 +11,7 @@ import UIKit
 
 protocol ButtonManagerCallBack {
 
-    func controllManager(sender:AnyObject)
+    func controllManager(_ sender:AnyObject)
     
 }
 
@@ -21,28 +21,28 @@ class AnimationView: UIView {
 
 class NevoCircleProgressView: CAShapeLayer {
 
-    private let progressLimit:CGFloat = 1.0 //The overall progress of the progress bar
-    private var progress:CGFloat = 0 //The progress bar target schedule
-    private var percent:CGFloat {
+    fileprivate let progressLimit:CGFloat = 1.0 //The overall progress of the progress bar
+    fileprivate var progress:CGFloat = 0 //The progress bar target schedule
+    fileprivate var percent:CGFloat {
         //Calculating the percentage of the current value
         return CGFloat(calculatePercent(progress, toProgress: progressLimit))
     }
-    private let progressWidth:CGFloat  = 2.0
-    private var initialProgress:CGFloat!
-    private var progressLayer:CAShapeLayer! //The progress bar object
-    private var progressColor:UIColor = UIColor.greenColor() //The background color of the progress bar
+    fileprivate let progressWidth:CGFloat  = 2.0
+    fileprivate var initialProgress:CGFloat!
+    fileprivate var progressLayer:CAShapeLayer! //The progress bar object
+    fileprivate var progressColor:UIColor = UIColor.green //The background color of the progress bar
 
     override init(){
         super.init()
         //self.path = drawPathWithArcCenter()
-        self.fillColor = UIColor.clearColor().CGColor
+        self.fillColor = UIColor.clear.cgColor
         //self.strokeColor = UIColor(red: 0.56, green: 0.56, blue: 0.56, alpha: 0.4).CGColor
         //self.lineWidth = 5
 
         progressLayer = CAShapeLayer()
         progressLayer.path = drawPathWithArcCenter()
-        progressLayer.fillColor = UIColor.clearColor().CGColor
-        progressLayer.strokeColor = progressColor.CGColor
+        progressLayer.fillColor = UIColor.clear.cgColor
+        progressLayer.strokeColor = progressColor.cgColor
         progressLayer.lineWidth = progressWidth
 
         self.addSublayer(progressLayer)
@@ -61,7 +61,7 @@ class NevoCircleProgressView: CAShapeLayer {
     /*
     Used to calculate the rotate degree
     */
-    private func DegreesToRadians(degrees:CGFloat) -> CGFloat {
+    fileprivate func DegreesToRadians(_ degrees:CGFloat) -> CGFloat {
 
         return (degrees * CGFloat(M_PI))/180.0;
     }
@@ -71,10 +71,10 @@ class NevoCircleProgressView: CAShapeLayer {
 
     :returns: Returns the drawing need path
     */
-    func drawPathWithArcCenter()->CGPathRef{
+    func drawPathWithArcCenter()->CGPath{
         let position_y:CGFloat = self.frame.size.height/2.0
         let position_x:CGFloat = self.frame.size.width/2.0
-        let path:CGPathRef = UIBezierPath(arcCenter: CGPointMake(position_x, position_y), radius: position_y, startAngle: CGFloat(-M_PI/90), endAngle: CGFloat(4*M_PI/2), clockwise: true).CGPath
+        let path:CGPath = UIBezierPath(arcCenter: CGPoint(x: position_x, y: position_y), radius: position_y, startAngle: CGFloat(-M_PI/90), endAngle: CGFloat(4*M_PI/2), clockwise: true).cgPath
         return path
     }
 
@@ -83,7 +83,7 @@ class NevoCircleProgressView: CAShapeLayer {
 
     :param: Sprogress You need to set up the current progress
     */
-    func setProgress(Sprogress:CGFloat,Steps steps:Int = 0,GoalStep goalstep:Int = 0) {
+    func setProgress(_ Sprogress:CGFloat,Steps steps:Int = 0,GoalStep goalstep:Int = 0) {
         initialProgress = CGFloat(calculatePercent(progress, toProgress: progressLimit))
 
         progress = Sprogress
@@ -97,12 +97,12 @@ class NevoCircleProgressView: CAShapeLayer {
 
     :param: mProgressColor The current progress
     */
-    func setProgressColor(mProgressColor:UIColor) {
+    func setProgressColor(_ mProgressColor:UIColor) {
         progressColor = mProgressColor
-        self.progressLayer.strokeColor = progressColor.CGColor;
+        self.progressLayer.strokeColor = progressColor.cgColor;
     }
 
-    private func calculatePercent(fromProgress:CGFloat,toProgress:CGFloat)->Double {
+    fileprivate func calculatePercent(_ fromProgress:CGFloat,toProgress:CGFloat)->Double {
         if ((toProgress > 0) && (fromProgress > 0)) {
 
             var progress:CGFloat = 0;
@@ -122,31 +122,31 @@ class NevoCircleProgressView: CAShapeLayer {
     /**
     Implementation of the animation function
     */
-    private func startAnimation() {
+    fileprivate func startAnimation() {
         let pathAnimation:CABasicAnimation = CABasicAnimation(keyPath: "strokeEnd")
         pathAnimation.duration = 1.0
         pathAnimation.fromValue = initialProgress;
         pathAnimation.toValue = percent;
-        pathAnimation.removedOnCompletion = true;
-        progressLayer.addAnimation(pathAnimation, forKey: nil)
+        pathAnimation.isRemovedOnCompletion = true;
+        progressLayer.add(pathAnimation, forKey: nil)
     }
 }
 
 class CircleSleepProgressView: CAShapeLayer {
-    private let progressLimit:CGFloat = 1.0 //The overall progress of the progress bar
-    private var progress:CGFloat = 1.0 //The progress bar target schedule
-    private var percent:CGFloat {
+    fileprivate let progressLimit:CGFloat = 1.0 //The overall progress of the progress bar
+    fileprivate var progress:CGFloat = 1.0 //The progress bar target schedule
+    fileprivate var percent:CGFloat {
         //Calculating the percentage of the current value
         return CGFloat(calculatePercent(progress, toProgress: progressLimit))
     }
-    private let progressWidth:CGFloat  = 2.0
-    private var initialProgress:CGFloat!
-    private var progressColor:UIColor = UIColor.greenColor() //The background color of the progress bar
+    fileprivate let progressWidth:CGFloat  = 2.0
+    fileprivate var initialProgress:CGFloat!
+    fileprivate var progressColor:UIColor = UIColor.green //The background color of the progress bar
 
     override init(){
         super.init()
-        self.path = drawPathWithArcCenter(NSDate(),endtimer:NSDate())
-        self.fillColor = UIColor.clearColor().CGColor
+        self.path = drawPathWithArcCenter(Date(),endtimer:Date())
+        self.fillColor = UIColor.clear.cgColor
     }
 
     required init(coder aDecoder: NSCoder) {
@@ -160,7 +160,7 @@ class CircleSleepProgressView: CAShapeLayer {
     /*
     Used to calculate the rotate degree
     */
-    private func DegreesToRadians(degrees:Double) -> Double {
+    fileprivate func DegreesToRadians(_ degrees:Double) -> Double {
 
         //#define DEGREES_TO_RADIANS(angle) ((angle) / 180.0 * M_PI)  (degrees * M_PI)/180.0;
         return (degrees/180.0*M_PI);
@@ -171,22 +171,22 @@ class CircleSleepProgressView: CAShapeLayer {
 
     :returns: Returns the drawing need path
     */
-    func drawPathWithArcCenter(startTimer:NSDate,endtimer:NSDate)->CGPathRef{
-        let now:NSDate = startTimer
-        let cal:NSCalendar = NSCalendar.currentCalendar()
-        let comps:NSDateComponents = cal.components([NSCalendarUnit.Year, NSCalendarUnit.Month, NSCalendarUnit.Day ,NSCalendarUnit.Hour, NSCalendarUnit.Minute, NSCalendarUnit.Second,], fromDate: now);
-        comps.timeZone = NSTimeZone.localTimeZone()
-        var hour:NSInteger = comps.hour;
-        let minute:NSInteger = comps.minute;
-        let second:NSInteger = comps.second
+    func drawPathWithArcCenter(_ startTimer:Date,endtimer:Date)->CGPath{
+        let now:Date = startTimer
+        let cal:Calendar = Calendar.current
+        let comps:DateComponents = (cal as NSCalendar).components([NSCalendar.Unit.year, NSCalendar.Unit.month, NSCalendar.Unit.day ,NSCalendar.Unit.hour, NSCalendar.Unit.minute, NSCalendar.Unit.second,], from: now);
+        (comps as NSDateComponents).timeZone = TimeZone.autoupdatingCurrent
+        var hour:NSInteger = comps.hour!;
+        let minute:NSInteger = comps.minute!;
+        let second:NSInteger = comps.second!
         hour = hour > 12 ? hour-12:hour
 
-        let endNow:NSDate = endtimer
-        let endcal:NSCalendar = NSCalendar.currentCalendar()
-        let endcomps:NSDateComponents = endcal.components([NSCalendarUnit.Year, NSCalendarUnit.Month, NSCalendarUnit.Day ,NSCalendarUnit.Hour, NSCalendarUnit.Minute, NSCalendarUnit.Second,], fromDate: endNow);
-        var endhour:NSInteger = endcomps.hour;
-        let endminute:NSInteger = endcomps.minute;
-        let endsecond:NSInteger = endcomps.second
+        let endNow:Date = endtimer
+        let endcal:Calendar = Calendar.current
+        let endcomps:DateComponents = (endcal as NSCalendar).components([NSCalendar.Unit.year, NSCalendar.Unit.month, NSCalendar.Unit.day ,NSCalendar.Unit.hour, NSCalendar.Unit.minute, NSCalendar.Unit.second,], from: endNow);
+        var endhour:NSInteger = endcomps.hour!;
+        let endminute:NSInteger = endcomps.minute!;
+        let endsecond:NSInteger = endcomps.second!
         endhour = endhour > 12 ? endhour-12:endhour
 
         var startangle:Double = Double(Double(second)/120.0 + Double(minute)/60.0+Double(hour))*Double(2.0/12.0)-0.5
@@ -197,7 +197,7 @@ class CircleSleepProgressView: CAShapeLayer {
         let position_x:CGFloat = self.frame.size.width/2.0
 
         if(startangle == endangle){
-            return UIBezierPath(arcCenter: CGPointMake(position_x, position_y), radius: position_y, startAngle: 0, endAngle: 0, clockwise: true).CGPath
+            return UIBezierPath(arcCenter: CGPoint(x: position_x, y: position_y), radius: position_y, startAngle: 0, endAngle: 0, clockwise: true).cgPath
         }
         if(startangle >= 2){
             startangle = startangle-2
@@ -215,31 +215,31 @@ class CircleSleepProgressView: CAShapeLayer {
             endangle = 1.5+(endangle+0.5)
         }
         //AppTheme.DLog("startSecond___\(second,minute,hour)___startangle\(startangle) or endsecond______\(endsecond,endminute,endhour)_____\(endangle)")
-        let path:CGPathRef = UIBezierPath(arcCenter: CGPointMake(position_x, position_y), radius: position_y, startAngle: CGFloat(M_PI*startangle), endAngle: CGFloat(M_PI*endangle), clockwise: true).CGPath
+        let path:CGPath = UIBezierPath(arcCenter: CGPoint(x: position_x, y: position_y), radius: position_y, startAngle: CGFloat(M_PI*startangle), endAngle: CGFloat(M_PI*endangle), clockwise: true).cgPath
         return path
     }
 
-    func setSleepProgress(sleepArray:NSArray,resulSleep:((dataSleep:Sleep) -> Void)){
+    func setSleepProgress(_ sleepArray:NSArray,resulSleep:((_ dataSleep:Sleep) -> Void)){
         let sleepChartArray = CircleSleepProgressView.combiningSleepData(sleepArray)
-        let arrayCount:Int = (sleepChartArray[0] as! [[NSDate]]).count
-        var startDate:NSDate = NSDate()
-        var endDate:NSDate = NSDate()
+        let arrayCount:Int = (sleepChartArray[0] as! [[Date]]).count
+        var startDate:Date = Date()
+        var endDate:Date = Date()
 
-        var sleepTimer:NSTimeInterval  = 0
-        var wakeTimer:NSTimeInterval  = 0
-        var lightTimer:NSTimeInterval  = 0
-        var deepTimer:NSTimeInterval  = 0
-        var startTimer:NSTimeInterval = 0
-        var endTimer:NSTimeInterval = 0
+        var sleepTimer:TimeInterval  = 0
+        var wakeTimer:TimeInterval  = 0
+        var lightTimer:TimeInterval  = 0
+        var deepTimer:TimeInterval  = 0
+        var startTimer:TimeInterval = 0
+        var endTimer:TimeInterval = 0
 
         for l:Int in 0 ..< arrayCount {
             initialProgress = CGFloat(calculatePercent(1.0, toProgress: progressLimit))
             let pLayer:CAShapeLayer = CAShapeLayer()
-            startDate = ((sleepChartArray[0] as! [[NSDate]])[l][0]) //[l][0]
-            endDate = ((sleepChartArray[0] as! [[NSDate]])[l][1])
+            startDate = ((sleepChartArray[0] as! [[Date]])[l][0]) //[l][0]
+            endDate = ((sleepChartArray[0] as! [[Date]])[l][1])
             //AppTheme.DLog("startDate____\(startDate) or endDate______\(endDate)")
             pLayer.path = drawPathWithArcCenter(startDate,endtimer:endDate)
-            pLayer.fillColor = UIColor.clearColor().CGColor
+            pLayer.fillColor = UIColor.clear.cgColor
             pLayer.strokeColor = (sleepChartArray[1] as! [CGColor])[l]//sleepChartColorArray[l]
             pLayer.lineWidth = progressWidth
             pLayer.strokeEnd = percent
@@ -256,10 +256,10 @@ class CircleSleepProgressView: CAShapeLayer {
         }
 
         for i:Int in 0 ..< sleepArray.count {
-            let sleepTimerArray:[Int] = sleepArray.objectAtIndex(i).objectAtIndex(0) as! [Int]
-            let weakTimerArray:[Int] = sleepArray.objectAtIndex(i).objectAtIndex(1) as! [Int]
-            let lightTimerArray:[Int] = sleepArray.objectAtIndex(i).objectAtIndex(2) as! [Int]
-            let deepTimerArray:[Int] = sleepArray.objectAtIndex(i).objectAtIndex(3) as! [Int]
+            let sleepTimerArray:[Int] = (sleepArray.object(at: i) as AnyObject).object(0) as! [Int]
+            let weakTimerArray:[Int] = (sleepArray.object(at: i) as AnyObject).object(1) as! [Int]
+            let lightTimerArray:[Int] = (sleepArray.object(at: i) as AnyObject).object(2) as! [Int]
+            let deepTimerArray:[Int] = (sleepArray.object(at: i) as AnyObject).object(3) as! [Int]
 
             if(i == 0){
                 for s:Int in 18 ..< sleepTimerArray.count {
@@ -278,7 +278,7 @@ class CircleSleepProgressView: CAShapeLayer {
             }
         }
 
-        resulSleep(dataSleep: Sleep(weakSleep: wakeTimer, lightSleep: lightTimer, deepSleep: deepTimer, startTimer: startTimer, endTimer: endTimer))
+        resulSleep(Sleep(weakSleep: wakeTimer, lightSleep: lightTimer, deepSleep: deepTimer, startTimer: startTimer, endTimer: endTimer))
     }
 
     /**
@@ -288,19 +288,19 @@ class CircleSleepProgressView: CAShapeLayer {
 
     :returns: 返回解析后的数据
     */
-    class func combiningSleepData(array:NSArray) -> NSArray {
-        let cal:NSCalendar = NSCalendar.currentCalendar()
+    class func combiningSleepData(_ array:NSArray) -> NSArray {
+        let cal:Calendar = Calendar.current
         var lastTimer:Int = 0
-        var startDate:NSDate?
-        var endDate:NSDate?
-        var sleepChartArray:[[NSDate]] = []
+        var startDate:Date?
+        var endDate:Date?
+        var sleepChartArray:[[Date]] = []
         var sleepChartColorArray:[CGColor] = []
-        let todayDate:NSDate = GmtNSDate2LocaleNSDate(NSDate())
+        let todayDate:Date = GmtNSDate2LocaleNSDate(Date())
         for(var i:Int = 23; i>=12;i -= 1){
-            let sleepTimerArray:[Int] = array.objectAtIndex(0).objectAtIndex(0) as! [Int]
-            let weakTimerArray:[Int] = array.objectAtIndex(0).objectAtIndex(1) as! [Int]
-            let lightTimerArray:[Int] = array.objectAtIndex(0).objectAtIndex(2) as! [Int]
-            let deepTimerArray:[Int] = array.objectAtIndex(0).objectAtIndex(3) as! [Int]
+            let sleepTimerArray:[Int] = (array.object(at: 0) as AnyObject).object(0) as! [Int]
+            let weakTimerArray:[Int] = (array.object(at: 0) as AnyObject).object(1) as! [Int]
+            let lightTimerArray:[Int] = (array.object(at: 0) as AnyObject).object(2) as! [Int]
+            let deepTimerArray:[Int] = (array.object(at: 0) as AnyObject).object(3) as! [Int]
 
             if(sleepTimerArray[i] == 0 && i == 23){
                 break
@@ -309,32 +309,32 @@ class CircleSleepProgressView: CAShapeLayer {
             if(sleepTimerArray[i]==0 && i != 23){
                 for l:Int in i+1 ..< sleepTimerArray.count {
                     lastTimer = 60-sleepTimerArray[l]
-                    startDate = cal.dateBySettingHour(l, minute: lastTimer , second:0, ofDate: todayDate, options: NSCalendarOptions())!
+                    startDate = (cal as NSCalendar).date(bySettingHour: l, minute: lastTimer , second:0, of: todayDate, options: NSCalendar.Options())!
                     if(lastTimer+weakTimerArray[l]+lightTimerArray[l] == 60){
                         if(l == 23){
-                            endDate = NSDate.date(year: todayDate.year, month: todayDate.month, day: todayDate.day, hour: 0, minute: 0, second: 0)
+                            endDate = Date.date(year: todayDate.year, month: todayDate.month, day: todayDate.day, hour: 0, minute: 0, second: 0)
                         }else{
-                            endDate = NSDate.date(year: todayDate.year, month: todayDate.month, day: todayDate.day, hour: l+1, minute: 0, second: 0)
+                            endDate = Date.date(year: todayDate.year, month: todayDate.month, day: todayDate.day, hour: l+1, minute: 0, second: 0)
                         }
 
                     }else{
-                        endDate = NSDate.date(year: todayDate.year, month: todayDate.month, day: todayDate.day, hour: l, minute: lastTimer+weakTimerArray[l]+lightTimerArray[l], second: 0)
+                        endDate = Date.date(year: todayDate.year, month: todayDate.month, day: todayDate.day, hour: l, minute: lastTimer+weakTimerArray[l]+lightTimerArray[l], second: 0)
                     }
                     sleepChartArray.append([startDate!,endDate!])
-                    sleepChartColorArray.append(AppTheme.getLightSleepColor().CGColor)
+                    sleepChartColorArray.append(AppTheme.getLightSleepColor().cgColor)
                     //AppTheme.DLog("Light startDate____\(startDate) or endDate______\(endDate)")
                     startDate = endDate
                     if(lastTimer+weakTimerArray[l]+lightTimerArray[l]+deepTimerArray[l] == 60){
                         if(l == 23){
-                            endDate = NSDate.date(year: todayDate.year, month: todayDate.month, day: todayDate.day, hour: 0, minute: 0, second: 0)
+                            endDate = Date.date(year: todayDate.year, month: todayDate.month, day: todayDate.day, hour: 0, minute: 0, second: 0)
                         }else{
-                            endDate = NSDate.date(year: todayDate.year, month: todayDate.month, day: todayDate.day, hour: l+1, minute: 0, second: 0)
+                            endDate = Date.date(year: todayDate.year, month: todayDate.month, day: todayDate.day, hour: l+1, minute: 0, second: 0)
                         }
                     }else{
-                        endDate = NSDate.date(year: todayDate.year, month: todayDate.month, day: todayDate.day, hour: l, minute: lastTimer+weakTimerArray[l]+lightTimerArray[l]+deepTimerArray[l], second: 0)
+                        endDate = Date.date(year: todayDate.year, month: todayDate.month, day: todayDate.day, hour: l, minute: lastTimer+weakTimerArray[l]+lightTimerArray[l]+deepTimerArray[l], second: 0)
                     }
                     sleepChartArray.append([startDate!,endDate!])
-                    sleepChartColorArray.append(AppTheme.getDeepSleepColor().CGColor)
+                    sleepChartColorArray.append(AppTheme.getDeepSleepColor().cgColor)
                     //AppTheme.DLog("Deep startDate____\(startDate) or endDate______\(endDate)")
                 }
                 break
@@ -342,10 +342,10 @@ class CircleSleepProgressView: CAShapeLayer {
         }
         if(sleepChartArray.count != 0){
             //计算跨天睡眠(前一天有睡眠数据)
-            let sleepTimerArray:[Int] = array.objectAtIndex(1).objectAtIndex(0) as! [Int]
-            let weakTimerArray:[Int] = array.objectAtIndex(1).objectAtIndex(1) as! [Int]
-            let lightTimerArray:[Int] = array.objectAtIndex(1).objectAtIndex(2) as! [Int]
-            let deepTimerArray:[Int] = array.objectAtIndex(1).objectAtIndex(3) as! [Int]
+            let sleepTimerArray:[Int] = (array.object(at: 1) as AnyObject).object(0) as! [Int]
+            let weakTimerArray:[Int] = (array.object(at: 1) as AnyObject).object(1) as! [Int]
+            let lightTimerArray:[Int] = (array.object(at: 1) as AnyObject).object(2) as! [Int]
+            let deepTimerArray:[Int] = (array.object(at: 1) as AnyObject).object(3) as! [Int]
 
             for l:Int in 0 ..< sleepTimerArray.count-12 {
                 if(sleepTimerArray[l] == 0){
@@ -353,29 +353,29 @@ class CircleSleepProgressView: CAShapeLayer {
                 }
                 startDate = endDate
                 if(lightTimerArray[l]+weakTimerArray[l] == 60){
-                    endDate = NSDate.date(year: todayDate.year, month: todayDate.month, day: todayDate.day, hour: l+1, minute: 0, second: 0)
+                    endDate = Date.date(year: todayDate.year, month: todayDate.month, day: todayDate.day, hour: l+1, minute: 0, second: 0)
                 }else{
-                    endDate = NSDate.date(year: todayDate.year, month: todayDate.month, day: todayDate.day, hour: l, minute: lightTimerArray[l]+weakTimerArray[l], second: 0)
+                    endDate = Date.date(year: todayDate.year, month: todayDate.month, day: todayDate.day, hour: l, minute: lightTimerArray[l]+weakTimerArray[l], second: 0)
                 }
                 sleepChartArray.append([startDate!,endDate!])
-                sleepChartColorArray.append(AppTheme.getLightSleepColor().CGColor)
+                sleepChartColorArray.append(AppTheme.getLightSleepColor().cgColor)
                 //AppTheme.DLog("Light startDate____\(startDate) or endDate______\(endDate)")
 
                 startDate = endDate
                 if(lightTimerArray[l]+weakTimerArray[l]+deepTimerArray[l] == 60){
-                    endDate = NSDate.date(year: todayDate.year, month: todayDate.month, day: todayDate.day, hour: l+1, minute: 0, second: 0)
+                    endDate = Date.date(year: todayDate.year, month: todayDate.month, day: todayDate.day, hour: l+1, minute: 0, second: 0)
                 }else{
-                    endDate = NSDate.date(year: todayDate.year, month: todayDate.month, day: todayDate.day, hour: l, minute: lightTimerArray[l]+weakTimerArray[l]+deepTimerArray[l], second: 0)
+                    endDate = Date.date(year: todayDate.year, month: todayDate.month, day: todayDate.day, hour: l, minute: lightTimerArray[l]+weakTimerArray[l]+deepTimerArray[l], second: 0)
                 }
                 sleepChartArray.append([startDate!,endDate!])
-                sleepChartColorArray.append(AppTheme.getDeepSleepColor().CGColor)
+                sleepChartColorArray.append(AppTheme.getDeepSleepColor().cgColor)
             }
         }else{
             //跨天后的睡眠计算(前一天无睡眠数据)
-            let sleepTimerArray:[Int] = array.objectAtIndex(1).objectAtIndex(0) as! [Int]
-            let weakTimerArray:[Int] = array.objectAtIndex(1).objectAtIndex(1) as! [Int]
-            let lightTimerArray:[Int] = array.objectAtIndex(1).objectAtIndex(2) as! [Int]
-            let deepTimerArray:[Int] = array.objectAtIndex(1).objectAtIndex(3) as! [Int]
+            let sleepTimerArray:[Int] = (array.object(at: 1) as AnyObject).object(0) as! [Int]
+            let weakTimerArray:[Int] = (array.object(at: 1) as AnyObject).object(1) as! [Int]
+            let lightTimerArray:[Int] = (array.object(at: 1) as AnyObject).object(2) as! [Int]
+            let deepTimerArray:[Int] = (array.object(at: 1) as AnyObject).object(3) as! [Int]
 
             for l:Int in 0 ..< sleepTimerArray.count-12 {
                 if(sleepTimerArray[l] == 0){
@@ -383,42 +383,42 @@ class CircleSleepProgressView: CAShapeLayer {
                 }
                 lastTimer = 60-sleepTimerArray[l]
                 if(sleepChartArray.count==0){
-                    startDate = NSDate.date(year: todayDate.year, month: todayDate.month, day: todayDate.day, hour: l, minute: lastTimer, second: 0)
+                    startDate = Date.date(year: todayDate.year, month: todayDate.month, day: todayDate.day, hour: l, minute: lastTimer, second: 0)
                 }else{
-                    startDate = NSDate.date(year: todayDate.year, month: todayDate.month, day: todayDate.day, hour: l, minute: 0, second: 0)
+                    startDate = Date.date(year: todayDate.year, month: todayDate.month, day: todayDate.day, hour: l, minute: 0, second: 0)
                 }
                 if(lastTimer+lightTimerArray[l]+weakTimerArray[l] == 60){
                     if(sleepChartArray.count == 0 || lightTimerArray[l]+weakTimerArray[l] == 60){
-                        endDate = NSDate.date(year: todayDate.year, month: todayDate.month, day: todayDate.day, hour: l+1, minute: 0, second: 0)
+                        endDate = Date.date(year: todayDate.year, month: todayDate.month, day: todayDate.day, hour: l+1, minute: 0, second: 0)
                     }else{
-                        endDate = NSDate.date(year: todayDate.year, month: todayDate.month, day: todayDate.day, hour: l, minute: lightTimerArray[l]+weakTimerArray[l], second: 0)
+                        endDate = Date.date(year: todayDate.year, month: todayDate.month, day: todayDate.day, hour: l, minute: lightTimerArray[l]+weakTimerArray[l], second: 0)
                     }
 
                 }else{
-                    endDate = NSDate.date(year: todayDate.year, month: todayDate.month, day: todayDate.day, hour: l, minute: lightTimerArray[l]+weakTimerArray[l], second: 0)
+                    endDate = Date.date(year: todayDate.year, month: todayDate.month, day: todayDate.day, hour: l, minute: lightTimerArray[l]+weakTimerArray[l], second: 0)
                 }
                 sleepChartArray.append([startDate!,endDate!])
-                sleepChartColorArray.append(AppTheme.getLightSleepColor().CGColor)
+                sleepChartColorArray.append(AppTheme.getLightSleepColor().cgColor)
 
                 startDate = endDate
                 if(lightTimerArray[l]+weakTimerArray[l]+deepTimerArray[l] == 60){
-                    endDate = NSDate.date(year: todayDate.year, month: todayDate.month, day: todayDate.day, hour: l+1, minute: 0, second: 0)
+                    endDate = Date.date(year: todayDate.year, month: todayDate.month, day: todayDate.day, hour: l+1, minute: 0, second: 0)
                 }else{
                     if(sleepChartArray.count==1){
-                        endDate = NSDate.date(year: todayDate.year, month: todayDate.month, day: todayDate.day, hour: l+1, minute: 0, second: 0)
+                        endDate = Date.date(year: todayDate.year, month: todayDate.month, day: todayDate.day, hour: l+1, minute: 0, second: 0)
                     }else{
-                        endDate = NSDate.date(year: todayDate.year, month: todayDate.month, day: todayDate.day, hour: l, minute: lightTimerArray[l]+weakTimerArray[l]+deepTimerArray[l], second: 0)
+                        endDate = Date.date(year: todayDate.year, month: todayDate.month, day: todayDate.day, hour: l, minute: lightTimerArray[l]+weakTimerArray[l]+deepTimerArray[l], second: 0)
                     }
                 }
                 sleepChartArray.append([startDate!,endDate!])
-                sleepChartColorArray.append(AppTheme.getDeepSleepColor().CGColor)
+                sleepChartColorArray.append(AppTheme.getDeepSleepColor().cgColor)
             }
         }
 
         return NSArray(array: [sleepChartArray,sleepChartColorArray]);
     }
 
-    private func calculatePercent(fromProgress:CGFloat,toProgress:CGFloat)->Double {
+    fileprivate func calculatePercent(_ fromProgress:CGFloat,toProgress:CGFloat)->Double {
         if ((toProgress > 0) && (fromProgress > 0)) {
 
             var progress:CGFloat = 0;
@@ -438,12 +438,12 @@ class CircleSleepProgressView: CAShapeLayer {
     /**
     Implementation of the animation function
     */
-    private func startSleepAnimation(layer:CAShapeLayer) {
+    fileprivate func startSleepAnimation(_ layer:CAShapeLayer) {
         let pathAnimation:CABasicAnimation = CABasicAnimation(keyPath: "strokeSleepEnd.scale")
         pathAnimation.duration = 1
         pathAnimation.fromValue = initialProgress;
         pathAnimation.toValue = percent;
-        pathAnimation.removedOnCompletion = true;
-        layer.addAnimation(pathAnimation, forKey: nil)
+        pathAnimation.isRemovedOnCompletion = true;
+        layer.add(pathAnimation, forKey: nil)
     }
 }

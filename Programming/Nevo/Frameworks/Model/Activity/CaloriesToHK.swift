@@ -11,24 +11,24 @@ import HealthKit
 
 class CaloriesToHK: NevoHKDataPoint {
     
-    private var mCalories:Double
-    private var mCalories_Date:NSDate
-    private var lateNight:NSDate
+    fileprivate var mCalories:Double
+    fileprivate var mCalories_Date:Date
+    fileprivate var lateNight:Date
 
-    init(calories:Double, date:NSDate) {
+    init(calories:Double, date:Date) {
         mCalories=calories
 
-        mCalories_Date = NSDate().change(year: date.year, month: date.month, day: date.day, hour: 0, minute: 0, second: 0)
+        mCalories_Date = Date().change(year: date.year, month: date.month, day: date.day, hour: 0, minute: 0, second: 0)
         //A daily data point if from 00AM to 23:59:59
-        lateNight = NSDate().change(year: date.year, month: date.month, day: date.day, hour: date.hour, minute: 59, second: 59)
+        lateNight = Date().change(year: date.year, month: date.month, day: date.day, hour: date.hour, minute: 59, second: 59)
     }
 
     @objc func toHKQuantitySample() -> HKQuantitySample {
 
-        let stepCountQuantity = HKQuantity(unit:HKUnit.kilocalorieUnit(), doubleValue: mCalories)
-        return HKQuantitySample(type: HKQuantityType.quantityTypeForIdentifier(HKQuantityTypeIdentifierActiveEnergyBurned)!,
+        let stepCountQuantity = HKQuantity(unit:HKUnit.kilocalorie(), doubleValue: mCalories)
+        return HKQuantitySample(type: HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.activeEnergyBurned)!,
             quantity: stepCountQuantity,
-            startDate: mCalories_Date, endDate: lateNight)
+            start: mCalories_Date, end: lateNight)
     }
 
     @objc func isUpdate()->Bool {return false}

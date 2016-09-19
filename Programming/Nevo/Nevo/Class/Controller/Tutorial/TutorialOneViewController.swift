@@ -11,7 +11,7 @@ import Foundation
 class TutorialOneViewController: UIViewController{
 
     init() {
-        super.init(nibName: "TutorialOneViewController", bundle: NSBundle.mainBundle())
+        super.init(nibName: "TutorialOneViewController", bundle: Bundle.mainBundle())
     }
 
     required init(coder aDecoder: NSCoder) {
@@ -21,7 +21,7 @@ class TutorialOneViewController: UIViewController{
     override func viewDidLoad() {   
     }
     
-    @IBAction func activateYourNevoAction(sender: AnyObject) {
+    @IBAction func activateYourNevoAction(_ sender: AnyObject) {
         let btEnabled = AppDelegate.getAppDelegate().getMconnectionController().isBluetoothEnabled()
         if(btEnabled){
             let tutorialThree = TutorialThreeViewController()

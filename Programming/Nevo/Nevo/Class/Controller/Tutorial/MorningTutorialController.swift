@@ -11,7 +11,7 @@ import UIKit
 class MorningTutorialController: UIViewController {
 
     init() {
-        super.init(nibName: "MorningTutorialController", bundle: NSBundle.mainBundle())
+        super.init(nibName: "MorningTutorialController", bundle: Bundle.main)
     }
 
     required init(coder aDecoder: NSCoder) {

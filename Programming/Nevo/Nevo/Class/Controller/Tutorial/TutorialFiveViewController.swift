@@ -12,13 +12,13 @@ import CircleProgressView
 class TutorialFiveViewController: UIViewController {
 
     var progresValue:Double = 0.0
-    var timer:NSTimer?
+    var timer:Timer?
 
     @IBOutlet weak var watchImage: UIImageView!
     @IBOutlet weak var progressBar: CircleProgressView!
     
     init() {
-        super.init(nibName: "TutorialFiveViewController", bundle: NSBundle.mainBundle())
+        super.init(nibName: "TutorialFiveViewController", bundle: Bundle.main)
     }
 
     required init(coder aDecoder: NSCoder) {
@@ -30,12 +30,12 @@ class TutorialFiveViewController: UIViewController {
 
     }
 
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         if(timer == nil) {
-            timer = NSTimer.scheduledTimerWithTimeInterval(2, target: self, selector: #selector(TutorialFiveViewController.timerAction(_:)), userInfo: nil, repeats: true)
+            timer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(TutorialFiveViewController.timerAction(_:)), userInfo: nil, repeats: true)
         }else {
             timer = nil
-            timer = NSTimer.scheduledTimerWithTimeInterval(2, target: self, selector: #selector(TutorialFiveViewController.timerAction(_:)), userInfo: nil, repeats: true)
+            timer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(TutorialFiveViewController.timerAction(_:)), userInfo: nil, repeats: true)
             progressBar.setProgress(0, animated: true)
         }
     }
@@ -44,11 +44,11 @@ class TutorialFiveViewController: UIViewController {
 
     }
 
-    func timerAction(action:NSTimer) {
+    func timerAction(_ action:Timer) {
         progresValue+=0.1
         progressBar.setProgress(progresValue, animated: true)
         if(progresValue > 1){
-            action.valid ? action.invalidate():()
+            action.isValid ? action.invalidate():()
             if(AppDelegate.getAppDelegate().isConnected()){
                 delay(1.0) {
                     AppDelegate.getAppDelegate().restoreSavedAddress()
@@ -74,7 +74,7 @@ class TutorialFiveViewController: UIViewController {
 
         }else{
             if(AppDelegate.getAppDelegate().isConnected()){
-                action.valid ? action.invalidate():()
+                action.isValid ? action.invalidate():()
                 delay(1.0) {
                     let tutorialSix = TutorialSixViewController()
                     self.navigationController?.pushViewController(tutorialSix, animated: true)
@@ -84,13 +84,9 @@ class TutorialFiveViewController: UIViewController {
     }
 
     
-    func delay(delay:Double, closure:()->()) {
-        dispatch_after(
-            dispatch_time(
-                DISPATCH_TIME_NOW,
-                Int64(delay * Double(NSEC_PER_SEC))
-            ),
-            dispatch_get_main_queue(), closure)
+    func delay(_ delay:Double, closure:@escaping ()->()) {
+        DispatchQueue.main.asyncAfter(
+            deadline: DispatchTime.now() + Double(Int64(delay * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC), execute: closure)
     }
 
 }

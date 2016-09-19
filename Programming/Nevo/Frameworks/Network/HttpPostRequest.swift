@@ -12,9 +12,9 @@ import XCGLogger
 
 class HttpPostRequest: NSObject {
 
-    class  func LunaRPostRequest(url: String, data:Dictionary<String,AnyObject>, completion:(result:NSDictionary) -> Void){
-        var finalData: Dictionary<String,AnyObject> = ["token":"SU9gPy5e1d1t7W8FG2fQ6MuT06cY95MB"]
-        finalData["params"] = data;
+    class  func LunaRPostRequest(_ url: String, data:Dictionary<String,AnyObject>, completion:@escaping (_ result:NSDictionary) -> Void){
+        var finalData: Dictionary<String,AnyObject> = ["token":"SU9gPy5e1d1t7W8FG2fQ6MuT06cY95MB" as AnyObject]
+        finalData["params"] = data as AnyObject?;
         XCGLogger.defaultInstance().debug("\(finalData)")
         
         Alamofire.request(Method.POST, url, parameters: finalData, encoding:ParameterEncoding.JSON, headers: ["Authorization": "Basic YXBwczptZWRfYXBwX2RldmVsb3BtZW50","Content-Type":"application/json"]).responseJSON { (response) -> Void in
@@ -31,9 +31,9 @@ class HttpPostRequest: NSObject {
         }
     }
     
-    class  func postRequest(url: String, data:Dictionary<String,AnyObject>, completion:(result:NSDictionary) -> Void){
-        var finalData: Dictionary<String,AnyObject> = ["token":"SU9gPy5e1d1t7W8FG2fQ6MuT06cY95MB"]
-        finalData["params"] = data;
+    class  func postRequest(_ url: String, data:Dictionary<String,AnyObject>, completion:@escaping (_ result:NSDictionary) -> Void){
+        var finalData: Dictionary<String,AnyObject> = ["token":"SU9gPy5e1d1t7W8FG2fQ6MuT06cY95MB" as AnyObject]
+        finalData["params"] = data as AnyObject?;
         XCGLogger.defaultInstance().debug("\(finalData)")
         
         Alamofire.request(Method.POST, url, parameters: finalData, encoding:ParameterEncoding.JSON, headers: ["Authorization": "Basic YXBwczptZWRfYXBwX2RldmVsb3BtZW50","Content-Type":"application/json"]).responseJSON { (response) -> Void in
@@ -50,9 +50,9 @@ class HttpPostRequest: NSObject {
         }
     }
 
-    class  func putRequest(url: String, data:Dictionary<String,AnyObject>, completion:(result:NSDictionary) -> Void){
-        var finalData: Dictionary<String,AnyObject> = ["token":"SU9gPy5e1d1t7W8FG2fQ6MuT06cY95MB"]
-        finalData["params"] = data;
+    class  func putRequest(_ url: String, data:Dictionary<String,AnyObject>, completion:@escaping (_ result:NSDictionary) -> Void){
+        var finalData: Dictionary<String,AnyObject> = ["token":"SU9gPy5e1d1t7W8FG2fQ6MuT06cY95MB" as AnyObject]
+        finalData["params"] = data as AnyObject?;
         XCGLogger.defaultInstance().debug("\(finalData)")
         Alamofire.request(Method.PUT, url, parameters: finalData, encoding:ParameterEncoding.JSON, headers: ["Authorization": "Basic YXBwczptZWRfYXBwX2RldmVsb3BtZW50","Content-Type":"application/json"]).responseJSON { (response) -> Void in
             if response.result.isSuccess {
@@ -71,15 +71,15 @@ class HttpPostRequest: NSObject {
     }
     
     static func getCommonParams() -> (md5: String,time: Int){
-        let time = Int(NSDate().timeIntervalSince1970);
+        let time = Int(Date().timeIntervalSince1970);
         
         let key = String(format: "%d-nevo2015medappteam",time)
         return (md5: md5(string:key),time: time);
     }
     
-    private static func md5(string string: String) -> String {
+    fileprivate static func md5(string: String) -> String {
         var digest = [UInt8](count: Int(CC_MD5_DIGEST_LENGTH), repeatedValue: 0)
-        if let data = string.dataUsingEncoding(NSUTF8StringEncoding) {
+        if let data = string.data(using: String.Encoding.utf8) {
             CC_MD5(data.bytes, CC_LONG(data.length), &digest)
         }
         

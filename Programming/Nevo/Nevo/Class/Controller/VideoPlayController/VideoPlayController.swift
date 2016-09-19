@@ -12,10 +12,10 @@ import AVFoundation
 
 class VideoPlayController: AVPlayerViewController,AVPlayerViewControllerDelegate {
 
-    private let session:AVAudioSession = AVAudioSession.sharedInstance()
+    fileprivate let session:AVAudioSession = AVAudioSession.sharedInstance()
 
     init() {
-        super.init(nibName: "VideoPlayController", bundle: NSBundle.mainBundle())
+        super.init(nibName: "VideoPlayController", bundle: Bundle.main)
     }
     
     required init(coder aDecoder: NSCoder) {
@@ -24,7 +24,7 @@ class VideoPlayController: AVPlayerViewController,AVPlayerViewControllerDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = UIColor.blackColor()
+        self.view.backgroundColor = UIColor.black
 
         do {
             try session.setCategory(AVAudioSessionCategoryPlayback)
@@ -32,7 +32,7 @@ class VideoPlayController: AVPlayerViewController,AVPlayerViewControllerDelegate
 
         }
 
-        self.player = AVPlayer(URL: NSURL(string: "http://nevowatch.com/wp-content/uploads/2016/03/video.mp4")!);
+        self.player = AVPlayer(url: URL(string: "http://nevowatch.com/wp-content/uploads/2016/03/video.mp4")!);
         self.videoGravity = AVLayerVideoGravityResizeAspect;
         if #available(iOS 9.0, *) {
             self.delegate = self
@@ -61,45 +61,45 @@ class VideoPlayController: AVPlayerViewController,AVPlayerViewControllerDelegate
         // Dispose of any resources that can be recreated.
     }
 
-    override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
-        return UIInterfaceOrientationMask.AllButUpsideDown
+    override var supportedInterfaceOrientations : UIInterfaceOrientationMask {
+        return UIInterfaceOrientationMask.allButUpsideDown
     }
     
-    override func willRotateToInterfaceOrientation(toInterfaceOrientation:UIInterfaceOrientation,duration:NSTimeInterval) {
-        if(toInterfaceOrientation == UIInterfaceOrientation.LandscapeLeft ||
-            toInterfaceOrientation == UIInterfaceOrientation.LandscapeRight){
+    override func willRotate(to toInterfaceOrientation:UIInterfaceOrientation,duration:TimeInterval) {
+        if(toInterfaceOrientation == UIInterfaceOrientation.landscapeLeft ||
+            toInterfaceOrientation == UIInterfaceOrientation.landscapeRight){
             //self.navigationController!.navigationBarHidden = true;
         }
     }
     
-    func playerViewControllerWillStartPictureInPicture(playerViewController: AVPlayerViewController) {
+    func playerViewControllerWillStartPictureInPicture(_ playerViewController: AVPlayerViewController) {
         NSLog("%s", #function);
     }
 
-    func playerViewControllerDidStartPictureInPicture(playerViewController: AVPlayerViewController) {
-        NSLog("%s", #function);
-    }
-
-
-    func playerViewController(playerViewController: AVPlayerViewController, failedToStartPictureInPictureWithError error: NSError) {
-        NSLog("%s", #function);
-    }
-
-    func playerViewControllerWillStopPictureInPicture(playerViewController: AVPlayerViewController) {
+    func playerViewControllerDidStartPictureInPicture(_ playerViewController: AVPlayerViewController) {
         NSLog("%s", #function);
     }
 
 
-    func playerViewControllerDidStopPictureInPicture(playerViewController: AVPlayerViewController) {
+    func playerViewController(_ playerViewController: AVPlayerViewController, failedToStartPictureInPictureWithError error: Error) {
         NSLog("%s", #function);
     }
 
-    func playerViewControllerShouldAutomaticallyDismissAtPictureInPictureStart(playerViewController: AVPlayerViewController) -> Bool {
+    func playerViewControllerWillStopPictureInPicture(_ playerViewController: AVPlayerViewController) {
+        NSLog("%s", #function);
+    }
+
+
+    func playerViewControllerDidStopPictureInPicture(_ playerViewController: AVPlayerViewController) {
+        NSLog("%s", #function);
+    }
+
+    func playerViewControllerShouldAutomaticallyDismissAtPictureInPictureStart(_ playerViewController: AVPlayerViewController) -> Bool {
         return true;
     }
 
 
-    func playerViewController(playerViewController: AVPlayerViewController, restoreUserInterfaceForPictureInPictureStopWithCompletionHandler completionHandler: (Bool) -> Void) {
+    func playerViewController(_ playerViewController: AVPlayerViewController, restoreUserInterfaceForPictureInPictureStopWithCompletionHandler completionHandler: @escaping (Bool) -> Void) {
         NSLog("%s", #function);
     }
 

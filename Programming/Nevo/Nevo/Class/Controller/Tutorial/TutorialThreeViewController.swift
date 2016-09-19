@@ -11,7 +11,7 @@ import Foundation
 class TutorialThreeViewController: UIViewController {
 
     init() {
-        super.init(nibName: "TutorialThreeViewController", bundle: NSBundle.mainBundle())
+        super.init(nibName: "TutorialThreeViewController", bundle: Bundle.mainBundle())
     }
 
     required init(coder aDecoder: NSCoder) {
@@ -22,7 +22,7 @@ class TutorialThreeViewController: UIViewController {
         
     }
     
-    @IBAction func nextAction(sender: AnyObject) {
+    @IBAction func nextAction(_ sender: AnyObject) {
         let tutorialFour = TutorialFourViewController()
         self.navigationController?.pushViewController(tutorialFour, animated: true)
 

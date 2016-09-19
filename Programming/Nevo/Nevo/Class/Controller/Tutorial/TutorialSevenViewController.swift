@@ -13,7 +13,7 @@ class TutorialSevenViewController: UIViewController {
     @IBOutlet weak var tryAgainButton: UIButton!
 
     init() {
-        super.init(nibName: "TutorialSevenViewController", bundle: NSBundle.mainBundle())
+        super.init(nibName: "TutorialSevenViewController", bundle: Bundle.mainBundle())
     }
 
     required init(coder aDecoder: NSCoder) {
@@ -23,7 +23,7 @@ class TutorialSevenViewController: UIViewController {
     override func viewDidLoad() {
         
     }
-    @IBAction func tryAgainAction(sender: AnyObject) {
+    @IBAction func tryAgainAction(_ sender: AnyObject) {
         self.navigationController?.popViewControllerAnimated(true)
     }
 }

@@ -24,7 +24,7 @@ class DailyTrackerInfoNevoPacket: NevoPacket {
             var day:Int = 0
             
             for i:Int in 0 ..< total {
-                let format:NSDateFormatter = NSDateFormatter()
+                let format:DateFormatter = DateFormatter()
                 format.dateFormat = "yyyyMMddHHmmss"
                 
                 if (i<=3) {
@@ -50,7 +50,7 @@ class DailyTrackerInfoNevoPacket: NevoPacket {
                 {
                     //20150316
                     let mdata:String = String(format: "\(year)%02d%02d000000",month,day)
-                    let date:NSDate = format.dateFromString(mdata)!
+                    let date:Date = format.date(from: mdata)!
                     days.append(DailyHistory(date:date))
                 }
                 

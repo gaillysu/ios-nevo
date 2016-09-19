@@ -15,7 +15,7 @@ protocol DatePickerViewDelegate:NSObjectProtocol {
     *  @param date 日期
     *  @param type 时间选择器状态
     */
-    func getSelectDate(index:Int,date:NSArray)
+    func getSelectDate(_ index:Int,date:NSArray)
 }
 
 class DatePickerView: UIViewController,UIPickerViewDataSource,UIPickerViewDelegate {
@@ -29,9 +29,9 @@ class DatePickerView: UIViewController,UIPickerViewDataSource,UIPickerViewDelega
 
     var delegate:DatePickerViewDelegate?
 
-    private var startDate:NSMutableArray = NSMutableArray(array: [0,0])
-    private var endDate:NSMutableArray =  NSMutableArray(array: [0,0])
-    private var week:NSMutableArray = NSMutableArray(array: [0])
+    fileprivate var startDate:NSMutableArray = NSMutableArray(array: [0,0])
+    fileprivate var endDate:NSMutableArray =  NSMutableArray(array: [0,0])
+    fileprivate var week:NSMutableArray = NSMutableArray(array: [0])
 
     var index:Int = 0
 
@@ -40,7 +40,7 @@ class DatePickerView: UIViewController,UIPickerViewDataSource,UIPickerViewDelega
     let weekArray:[String] = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]
 
     init() {
-        super.init(nibName: "DatePickerView", bundle: NSBundle.mainBundle())
+        super.init(nibName: "DatePickerView", bundle: Bundle.main)
 
     }
 
@@ -51,49 +51,49 @@ class DatePickerView: UIViewController,UIPickerViewDataSource,UIPickerViewDelega
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        selectDate.insertObject(startDate, atIndex: 0)
-        selectDate.insertObject(endDate, atIndex: 1)
-        selectDate.insertObject(week, atIndex: 2)
-        selectDate.insertObject(true, atIndex: 3)
+        selectDate.insert(startDate, at: 0)
+        selectDate.insert(endDate, at: 1)
+        selectDate.insert(week, at: 2)
+        selectDate.insert(true, at: 3)
 
         /**确定*/
-        doneButton.setTitleColor(AppTheme.NEVO_SOLAR_YELLOW(), forState: UIControlState.Normal)
-        doneButton.setTitleColor(AppTheme.NEVO_SOLAR_YELLOW(), forState: UIControlState.Selected)
-        doneButton.setTitleColor(AppTheme.NEVO_SOLAR_YELLOW(), forState: UIControlState.Highlighted)
+        doneButton.setTitleColor(AppTheme.NEVO_SOLAR_YELLOW(), for: UIControlState())
+        doneButton.setTitleColor(AppTheme.NEVO_SOLAR_YELLOW(), for: UIControlState.selected)
+        doneButton.setTitleColor(AppTheme.NEVO_SOLAR_YELLOW(), for: UIControlState.highlighted)
         doneButton.layer.cornerRadius = 3;
         doneButton.layer.borderWidth = 1;
-        doneButton.layer.borderColor = UIColor.grayColor().CGColor;
+        doneButton.layer.borderColor = UIColor.gray.cgColor;
         doneButton.layer.masksToBounds = true;
 
         /**取消按钮*/
-        cancelButton.setTitleColor(AppTheme.NEVO_SOLAR_YELLOW(), forState: UIControlState.Normal)
-        cancelButton.setTitleColor(AppTheme.NEVO_SOLAR_YELLOW(), forState: UIControlState.Selected)
-        cancelButton.setTitleColor(AppTheme.NEVO_SOLAR_YELLOW(), forState: UIControlState.Highlighted)
+        cancelButton.setTitleColor(AppTheme.NEVO_SOLAR_YELLOW(), for: UIControlState())
+        cancelButton.setTitleColor(AppTheme.NEVO_SOLAR_YELLOW(), for: UIControlState.selected)
+        cancelButton.setTitleColor(AppTheme.NEVO_SOLAR_YELLOW(), for: UIControlState.highlighted)
         cancelButton.layer.cornerRadius = 3;
         cancelButton.layer.borderWidth = 1;
-        cancelButton.layer.borderColor = UIColor.grayColor().CGColor;
+        cancelButton.layer.borderColor = UIColor.gray.cgColor;
         cancelButton.layer.masksToBounds = true;
     }
 
 
-    @IBAction func buttonManage(sender: AnyObject) {
+    @IBAction func buttonManage(_ sender: AnyObject) {
         if(sender.isEqual(cancelButton)) {
-            self.dismissViewControllerAnimated(true, completion: nil)
+            self.dismiss(animated: true, completion: nil)
         }
 
         if(sender.isEqual(doneButton)) {
             //self.selectDate = [self timeFormat];
             self.delegate?.getSelectDate(index, date: self.selectDate)
-            self.dismissViewControllerAnimated(true, completion: nil)
+            self.dismiss(animated: true, completion: nil)
         }
     }
 
 
-    func pickerView(pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
+    func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
         return 40.0
     }
 
-    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
         if(pickerView.isEqual(datePicker)) {
             return 2;
         }
@@ -108,7 +108,7 @@ class DatePickerView: UIViewController,UIPickerViewDataSource,UIPickerViewDelega
         return 1;
     }
 
-    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         if(pickerView.isEqual(datePicker)) {
             switch (component){
             case 0:
@@ -139,7 +139,7 @@ class DatePickerView: UIViewController,UIPickerViewDataSource,UIPickerViewDelega
         return 1;
     }
 
-    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         if(pickerView.isEqual(datePicker)) {
             switch (component){
             case 0:
@@ -186,34 +186,34 @@ class DatePickerView: UIViewController,UIPickerViewDataSource,UIPickerViewDelega
         return "0";
     }
 
-    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if(pickerView.isEqual(datePicker)) {
             if(component == 0) {
-                startDate.replaceObjectAtIndex(0, withObject: row)
+                startDate.replaceObject(at: 0, with: row)
             }
 
             if(component == 1) {
-                startDate.replaceObjectAtIndex(1, withObject: row)
+                startDate.replaceObject(at: 1, with: row)
             }
-            selectDate.replaceObjectAtIndex(0, withObject: startDate)
+            selectDate.replaceObject(at: 0, with: startDate)
         }
 
         if(pickerView.isEqual(endDatePicker)) {
             if(component == 0) {
-                endDate.replaceObjectAtIndex(0, withObject: row)
+                endDate.replaceObject(at: 0, with: row)
             }
 
             if(component == 1) {
-                endDate.replaceObjectAtIndex(1, withObject: row)
+                endDate.replaceObject(at: 1, with: row)
             }
-            selectDate.replaceObjectAtIndex(1, withObject: endDate)
+            selectDate.replaceObject(at: 1, with: endDate)
         }
 
         if(pickerView.isEqual(weekDatePicker)) {
             if(component == 0) {
-                week.replaceObjectAtIndex(0, withObject: row)
+                week.replaceObject(at: 0, with: row)
             }
-            selectDate.replaceObjectAtIndex(2, withObject: week)
+            selectDate.replaceObject(at: 2, with: week)
         }
     }
     /*

@@ -22,7 +22,7 @@ class ValidicRequest: NSObject {
     var sleepIndex:Int = 1
     
     // MARK: - Request func
-    class func validicPostJSONRequest(url: String, data:Dictionary<String,AnyObject>, completion:(result:NSDictionary) -> Void){
+    class func validicPostJSONRequest(_ url: String, data:Dictionary<String,AnyObject>, completion:@escaping (_ result:NSDictionary) -> Void){
         debugPrint("accessData:\(data)")
         Alamofire.request(.POST, url, parameters: data ,encoding: .JSON, headers: ["Content-Type":"application/json"]).responseJSON { (response) -> Void in
             if response.result.isSuccess {
@@ -37,7 +37,7 @@ class ValidicRequest: NSObject {
         }
     }
     
-    class func deleteValidicRequest(url: String, data:Dictionary<String,AnyObject>, completion:(result:NSDictionary) -> Void){
+    class func deleteValidicRequest(_ url: String, data:Dictionary<String,AnyObject>, completion:@escaping (_ result:NSDictionary) -> Void){
         //debugPrint("accessData:\(data)")
         Alamofire.request(.DELETE, url, parameters: data ,encoding: .JSON, headers: ["Content-Type":"application/json"]).responseJSON { (response) -> Void in
             if response.result.isSuccess {
@@ -53,7 +53,7 @@ class ValidicRequest: NSObject {
     }
     
     
-    class func getValidicRequest(url: String, data:Dictionary<String,AnyObject>?, completion:(result:NSDictionary) -> Void){
+    class func getValidicRequest(_ url: String, data:Dictionary<String,AnyObject>?, completion:@escaping (_ result:NSDictionary) -> Void){
         //debugPrint("accessData:\(data)")
         Alamofire.request(.GET, url, parameters: data ,encoding: .JSON).responseJSON { (response) -> Void in
             if response.result.isSuccess {
@@ -68,26 +68,26 @@ class ValidicRequest: NSObject {
         }
     }
     
-    class func formatterDate(date:NSDate)->String {
-        let dateArray = "\(date.beginningOfDay)".componentsSeparatedByString(" ")
-        let startIndex = dateArray[2].startIndex.advancedBy(0)
-        let endIndex = dateArray[2].startIndex.advancedBy(3)
-        let dateString = dateArray[0]+"T"+dateArray[1]+dateArray[2].substringWithRange(Range(startIndex..<endIndex))
+    class func formatterDate(_ date:Date)->String {
+        let dateArray = "\(date.beginningOfDay)".components(separatedBy: " ")
+        let startIndex = dateArray[2].characters.index(dateArray[2].startIndex, offsetBy: 0)
+        let endIndex = dateArray[2].characters.index(dateArray[2].startIndex, offsetBy: 3)
+        let dateString = dateArray[0]+"T"+dateArray[1]+dateArray[2].substring(with: Range(startIndex..<endIndex))
         return dateString+":"+"00"
     }
     
-    class func formatterUTCOffset(timeZone:Int)->String {
+    class func formatterUTCOffset(_ timeZone:Int)->String {
         if timeZone>0{
-            if "\(timeZone)".lengthOfBytesUsingEncoding(NSUTF8StringEncoding)==1 {
+            if "\(timeZone)".lengthOfBytes(using: String.Encoding.utf8)==1 {
                 return "+0\(timeZone):00"
             }else{
                 return "+\(timeZone):00"
             }
             
         }else{
-            if "\(timeZone)".lengthOfBytesUsingEncoding(NSUTF8StringEncoding)==2 {
+            if "\(timeZone)".lengthOfBytes(using: String.Encoding.utf8)==2 {
                 var string:String = "\(timeZone):00"
-                string.insert("0", atIndex: string.startIndex.advancedBy(1))
+                string.insert("0", at: string.characters.index(string.startIndex, offsetBy: 1))
                 return string
             }else{
                 return "\(timeZone):00"
@@ -101,7 +101,7 @@ class ValidicRequest: NSObject {
      - returns: authorization state
      */
     class func isValidicAuthorization()->Bool {
-        if NSUserDefaults.standardUserDefaults().objectForKey(ValidicAuthorizedKey) != nil {
+        if UserDefaults.standard.object(forKey: ValidicAuthorizedKey) != nil {
             return true
         }else{
             return false
@@ -113,7 +113,7 @@ class ValidicRequest: NSObject {
      */
     class func cancelAuthorization() {
         if ValidicRequest.isValidicAuthorization() {
-            NSUserDefaults.standardUserDefaults().removeObjectForKey(ValidicAuthorizedKey)
+            UserDefaults.standard.removeObject(forKey: ValidicAuthorizedKey)
         }
     }
     
@@ -123,7 +123,7 @@ class ValidicRequest: NSObject {
      
      - parameter array: <#array description#>
      */
-    func updateToValidic(array:NSArray?) {
+    func updateToValidic(_ array:NSArray?) {
         var stepsArray:NSArray = NSArray()
         if array == nil {
             stepsArray = UserSteps.getAll()
@@ -132,7 +132,7 @@ class ValidicRequest: NSObject {
         }
         
         var array:[[String : AnyObject]] = []
-        let timeZone: Int = NSTimeZone.systemTimeZone().secondsFromGMT/3600
+        let timeZone: Int = NSTimeZone.system.secondsFromGMT()/3600
         
         for steps in stepsArray{
             let userSteps:UserSteps = steps as! UserSteps
@@ -142,23 +142,23 @@ class ValidicRequest: NSObject {
             var stepsValue:Int = 0
             var distanceValue:Int = 0
             var caloriesValue:Int = 0
-            for (index,value) in hourlySteps.enumerate() {
-                if (value as! NSNumber).integerValue != 0 {
-                    stepsValue += (value as! NSNumber).integerValue
-                    distanceValue += (hourlyDistance[index] as! NSNumber).integerValue
-                    caloriesValue += (hourlyCalories[index] as! NSNumber).integerValue
+            for (index,value) in hourlySteps.enumerated() {
+                if (value as! NSNumber).intValue != 0 {
+                    stepsValue += (value as! NSNumber).intValue
+                    distanceValue += (hourlyDistance[index] as! NSNumber).intValue
+                    caloriesValue += (hourlyCalories[index] as! NSNumber).intValue
                 }
             }
             
             let timeInterval = userSteps.date
             var detail:[String : AnyObject] = [:]
-            detail["timestamp"] = ValidicRequest.formatterDate(NSDate(timeIntervalSince1970: timeInterval))
-            detail["utc_offset"] = ValidicRequest.formatterUTCOffset(timeZone)
-            detail["steps"] = stepsValue
-            detail["distance"] = distanceValue
-            detail["floors"] = 0
-            detail["elevation"] = 0
-            detail["calories_burned"] = caloriesValue
+            detail["timestamp"] = ValidicRequest.formatterDate(Date(timeIntervalSince1970: timeInterval))
+            detail["utc_offset"] = ValidicRequest.formatterUTCOffset(timeZone) as AnyObject?
+            detail["steps"] = stepsValue as AnyObject?
+            detail["distance"] = distanceValue as AnyObject?
+            detail["floors"] = 0 as AnyObject?
+            detail["elevation"] = 0 as AnyObject?
+            detail["calories_burned"] = caloriesValue as AnyObject?
             detail["activity_id"] = "\(timeInterval)"
             array.append(detail)
         }
@@ -167,7 +167,7 @@ class ValidicRequest: NSObject {
         var URL = ""
         
         if ValidicRequest.isValidicAuthorization() {
-            _id = "\((NSUserDefaults.standardUserDefaults().objectForKey(ValidicAuthorizedKey) as! NSDictionary).objectForKey("_id")!)"
+            _id = "\((UserDefaults.standard.object(forKey: ValidicAuthorizedKey) as! NSDictionary).object(forKey: "_id")!)"
             URL = "https://api.validic.com/v1/organizations/\(ValidicOrganizationID)/users/\(_id)/routine.json"
         }else{
             //If there is validic no authorization is not upload data
@@ -175,25 +175,25 @@ class ValidicRequest: NSObject {
         }
         
         //create steps network global queue
-        let queue:dispatch_queue_t = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
-        let group = dispatch_group_create()
+        let queue:DispatchQueue = DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.default)
+        let group = DispatchGroup()
         
         for object in array{
-            dispatch_group_async(group, queue, {
-                let data = ["routine":object,"access_token":"\(OrganizationAccessToken)"]
+            queue.async(group: group, execute: {
+                let data = ["routine":object,"access_token":"\(OrganizationAccessToken)"] as [String : Any]
                 self.updateValidicData(URL,data: data as! Dictionary<String, AnyObject>, completion: { (result) in
                     XCGLogger.defaultInstance().debug("updateValidicData: \(result)")
                 })
             })
         }
         
-        dispatch_group_notify(group, queue, {
+        group.notify(queue: queue, execute: {
             XCGLogger.defaultInstance().debug("create steps completed")
             self.updateSleepDataToValidic(nil)
         })
     }
     
-    func updateSleepDataToValidic(array:NSArray?) {
+    func updateSleepDataToValidic(_ array:NSArray?) {
         var sleepArray:NSArray = NSArray()
         if array == nil {
             sleepArray = UserSleep.getAll()
@@ -202,7 +202,7 @@ class ValidicRequest: NSObject {
         }
         
         var array:[[String : AnyObject]] = []
-        let timeZone: Int = NSTimeZone.systemTimeZone().secondsFromGMT/3600
+        let timeZone: Int = NSTimeZone.system.secondsFromGMT()/3600
         
         for steps in sleepArray{
             let userSleep:UserSleep = steps as! UserSleep
@@ -216,27 +216,27 @@ class ValidicRequest: NSObject {
             var light:Int = 0
             var totalSleep:Int = 0
             
-            for (index,value) in hourlySleep.enumerate() {
-                if (value as! NSNumber).integerValue != 0 {
-                    totalSleep += (value as! NSNumber).integerValue
-                    awake = (hourlyWakeTime[index] as! NSNumber).integerValue
-                    deep = (hourlyDeepTime[index] as! NSNumber).integerValue
-                    light = (hourlyLightTime[index] as! NSNumber).integerValue
+            for (index,value) in hourlySleep.enumerated() {
+                if (value as! NSNumber).intValue != 0 {
+                    totalSleep += (value as! NSNumber).intValue
+                    awake = (hourlyWakeTime[index] as! NSNumber).intValue
+                    deep = (hourlyDeepTime[index] as! NSNumber).intValue
+                    light = (hourlyLightTime[index] as! NSNumber).intValue
                 }
             }
             let timeInterval = userSleep.date
             var detail:[String : AnyObject] = [:]
-            detail["timestamp"] = ValidicRequest.formatterDate(NSDate(timeIntervalSince1970: timeInterval))
-            detail["utc_offset"] = ValidicRequest.formatterUTCOffset(timeZone)
-            detail["awake"] = awake
-            detail["deep"] = deep
-            detail["light"] = light
-            detail["rem"] = 0
-            detail["times_woken"] = 0
-            detail["total_sleep"] = "\(totalSleep)"
+            detail["timestamp"] = ValidicRequest.formatterDate(Date(timeIntervalSince1970: timeInterval))
+            detail["utc_offset"] = ValidicRequest.formatterUTCOffset(timeZone) as AnyObject?
+            detail["awake"] = awake as AnyObject?
+            detail["deep"] = deep as AnyObject?
+            detail["light"] = light as AnyObject?
+            detail["rem"] = 0 as AnyObject?
+            detail["times_woken"] = 0 as AnyObject?
+            detail["total_sleep"] = "\(totalSleep)" as AnyObject?
             detail["activity_id"] = "\(timeInterval)"
-            detail["validated"] = false
-            detail["device"] = ""
+            detail["validated"] = false as AnyObject?
+            detail["device"] = "" as AnyObject?
             array.append(detail)
         }
         
@@ -244,7 +244,7 @@ class ValidicRequest: NSObject {
         var URL = ""
         
         if ValidicRequest.isValidicAuthorization() {
-            _id = "\((NSUserDefaults.standardUserDefaults().objectForKey(ValidicAuthorizedKey) as! NSDictionary).objectForKey("_id")!)"
+            _id = "\((UserDefaults.standard.object(forKey: ValidicAuthorizedKey) as! NSDictionary).object(forKey: "_id")!)"
             URL = "https://api.validic.com/v1/organizations/\(ValidicOrganizationID)/users/\(_id)/sleep.json"
         }else{
             //If there is validic no authorization is not upload data
@@ -252,34 +252,34 @@ class ValidicRequest: NSObject {
         }
         
         //create steps network global queue
-        let queue:dispatch_queue_t = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
-        let group = dispatch_group_create()
+        let queue:DispatchQueue = DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.default)
+        let group = DispatchGroup()
         
         for object in array{
-            dispatch_group_async(group, queue, {
-                let data = ["routine":object,"access_token":"\(OrganizationAccessToken)"]
+            queue.async(group: group, execute: {
+                let data = ["routine":object,"access_token":"\(OrganizationAccessToken)"] as [String : Any]
                 self.updateValidicData(URL,data: data as! Dictionary<String, AnyObject>, completion: { (result) in
                     XCGLogger.defaultInstance().debug("updateValidicData: \(result)")
                 })
             })
         }
         
-        dispatch_group_notify(group, queue, {
+        group.notify(queue: queue, execute: {
             XCGLogger.defaultInstance().debug("create steps completed")
         })
     }
     
-    private func updateValidicData(URL:String,data:Dictionary<String,AnyObject>,completion:(result:NSDictionary) -> Void)  {
+    fileprivate func updateValidicData(_ URL:String,data:Dictionary<String,AnyObject>,completion:@escaping (_ result:NSDictionary) -> Void)  {
         ValidicRequest.validicPostJSONRequest(URL, data: data) { (result) in
-            completion(result: result)
+            completion(result)
         }
     }
     
     func downloadValidicData() {
         if ValidicRequest.isValidicAuthorization() {
-            let _id:String = "\((NSUserDefaults.standardUserDefaults().objectForKey(ValidicAuthorizedKey) as! NSDictionary).objectForKey("_id")!)"
-            let startDate:NSDate = NSDate(timeIntervalSince1970: NSDate().beginningOfDay.timeIntervalSince1970-365*86400)
-            let endDate:NSDate = NSDate().endOfDay
+            let _id:String = "\((UserDefaults.standard.object(forKey: ValidicAuthorizedKey) as! NSDictionary).object(forKey: "_id")!)"
+            let startDate:Date = Date(timeIntervalSince1970: Date().beginningOfDay.timeIntervalSince1970-365*86400)
+            let endDate:Date = Date().endOfDay
             let URL:String = "https://api.validic.com/v1/organizations/\(ValidicOrganizationID)/users/\(_id)/routine/latest.json?access_token=\(OrganizationAccessToken)&start_date=\(ValidicRequest.formatterDate(startDate))&end_date=\(ValidicRequest.formatterDate(endDate))&limit=200&page=\(index)"
             
             ValidicRequest.getValidicRequest(URL, data: nil) { (result) in
@@ -301,9 +301,9 @@ class ValidicRequest: NSObject {
     
     func downloadValidicSleepData() {
         if ValidicRequest.isValidicAuthorization() {
-            let _id:String = "\((NSUserDefaults.standardUserDefaults().objectForKey(ValidicAuthorizedKey) as! NSDictionary).objectForKey("_id")!)"
-            let startDate:NSDate = NSDate(timeIntervalSince1970: NSDate().beginningOfDay.timeIntervalSince1970-365*86400)
-            let endDate:NSDate = NSDate().endOfDay
+            let _id:String = "\((UserDefaults.standard.object(forKey: ValidicAuthorizedKey) as! NSDictionary).object(forKey: "_id")!)"
+            let startDate:Date = Date(timeIntervalSince1970: Date().beginningOfDay.timeIntervalSince1970-365*86400)
+            let endDate:Date = Date().endOfDay
             let URL:String = "https://api.validic.com/v1/organizations/\(ValidicOrganizationID)/users/\(_id)/sleep/latest.json?access_token=\(OrganizationAccessToken)&start_date=\(ValidicRequest.formatterDate(startDate))&end_date=\(ValidicRequest.formatterDate(endDate))&limit=200&page=\(index)"
             
             ValidicRequest.getValidicRequest(URL, data: nil) { (result) in
@@ -322,7 +322,7 @@ class ValidicRequest: NSObject {
         }
     }
     
-    func deleteValidicUser(uid:String) {
+    func deleteValidicUser(_ uid:String) {
         let URL = "https://api.validic.com/v1/organizations/\(ValidicOrganizationID)/users.json"
         let data = ["uid":uid,"access_token":"\(OrganizationAccessToken)"]
         ValidicRequest.deleteValidicRequest(URL,data: data, completion: { (result) in
@@ -330,10 +330,10 @@ class ValidicRequest: NSObject {
         })
     }
     
-    func analyticalData(object:JSON) {
+    func analyticalData(_ object:JSON) {
         XCGLogger.defaultInstance().debug("\(object)")
-        var timer = object["timestamp"].stringValue.stringByReplacingOccurrencesOfString("T", withString: " ")
-        timer = timer.stringByReplacingOccurrencesOfString("+00:00", withString: "")
+        var timer = object["timestamp"].stringValue.replacingOccurrences(of: "T", with: " ")
+        timer = timer.replacingOccurrences(of: "+00:00", with: "")
         let date = GmtNSDate2LocaleNSDate(timer.dateFromFormat("yyyy-MM-dd HH:mm:ss'UTC'")!)
         var steps:[String:AnyObject] = [:]
         steps["steps"] = object["steps"].intValue
@@ -347,17 +347,17 @@ class ValidicRequest: NSObject {
         steps["validic_id"] = object["_id"].stringValue
         let userSteps:NSArray = UserSteps.getCriteria("WHERE createDate = \(steps["createDate"]!)")
         if userSteps.count == 0 {
-            let userSteps:UserSteps = UserSteps(keyDict: steps)
+            let userSteps:UserSteps = UserSteps(keyDict: steps as NSDictionary)
             userSteps.add { (id, completion) in
                 
             }
         }
     }
     
-    func analyticalSleepData(object:JSON) {
+    func analyticalSleepData(_ object:JSON) {
         XCGLogger.defaultInstance().debug("\(object)")
-        var timer = object["timestamp"].stringValue.stringByReplacingOccurrencesOfString("T", withString: " ")
-        timer = timer.stringByReplacingOccurrencesOfString("+00:00", withString: "")
+        var timer = object["timestamp"].stringValue.replacingOccurrences(of: "T", with: " ")
+        timer = timer.replacingOccurrences(of: "+00:00", with: "")
         let date = GmtNSDate2LocaleNSDate(timer.dateFromFormat("yyyy-MM-dd HH:mm:ss'UTC'")!)
         
         let awakeSleep:Int = object["awake"].intValue
@@ -369,15 +369,15 @@ class ValidicRequest: NSObject {
         sleep["date"] = date.timeIntervalSince1970
         sleep["totalSleepTime"] = object["total_sleep"].intValue
         sleep["hourlySleepTime"] = "[0,\(object["total_sleep"].intValue),0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]"
-        sleep["totalWakeTime"] = awakeSleep
-        sleep["hourlyWakeTime"] = "[0,\(awakeSleep),0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]"
-        sleep["totalLightTime"] = lightSleep
-        sleep["hourlyLightTime"] = "[0,\(lightSleep),0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]"
-        sleep["totalDeepTime"] = awakeDeep
-        sleep["hourlyDeepTime"] = "[0,\(awakeDeep),0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]"
+        sleep["totalWakeTime"] = awakeSleep as AnyObject?
+        sleep["hourlyWakeTime"] = "[0,\(awakeSleep),0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]" as AnyObject?
+        sleep["totalLightTime"] = lightSleep as AnyObject?
+        sleep["hourlyLightTime"] = "[0,\(lightSleep),0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]" as AnyObject?
+        sleep["totalDeepTime"] = awakeDeep as AnyObject?
+        sleep["hourlyDeepTime"] = "[0,\(awakeDeep),0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]" as AnyObject?
         let userSteps:NSArray = UserSleep.getCriteria("WHERE createDate = \(sleep["createDate"]!)")
         if userSteps.count == 0 {
-            let userSteps:UserSleep = UserSleep(keyDict: sleep)
+            let userSteps:UserSleep = UserSleep(keyDict: sleep as NSDictionary)
             userSteps.add { (id, completion) in
                 
             }

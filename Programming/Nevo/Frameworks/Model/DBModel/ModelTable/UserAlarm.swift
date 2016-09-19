@@ -10,27 +10,27 @@ import UIKit
 
 class UserAlarm: NSObject,BaseEntryDatabaseHelper {
     var id:Int = 0
-    var timer:NSTimeInterval = 0.0
+    var timer:TimeInterval = 0.0
     var label:String = ""
     var status:Bool = false
     var repeatStatus:Bool = false
     var dayOfWeek:Int = 0
     var type:Int = 0 //0-1
 
-    private var alarmModel:AlarmModel = AlarmModel()
+    fileprivate var alarmModel:AlarmModel = AlarmModel()
 
     init(keyDict:NSDictionary) {
         super.init()
-        self.setValue(keyDict.objectForKey("id"), forKey: "id")
-        self.setValue(keyDict.objectForKey("timer"), forKey: "timer")
-        self.setValue(keyDict.objectForKey("label"), forKey: "label")
-        self.setValue(keyDict.objectForKey("status"), forKey: "status")
-        self.setValue(keyDict.objectForKey("repeatStatus"), forKey: "repeatStatus")
-        self.setValue(keyDict.objectForKey("dayOfWeek"), forKey: "dayOfWeek")
-        self.setValue(keyDict.objectForKey("type"), forKey: "type")
+        self.setValue(keyDict.object(forKey: "id"), forKey: "id")
+        self.setValue(keyDict.object(forKey: "timer"), forKey: "timer")
+        self.setValue(keyDict.object(forKey: "label"), forKey: "label")
+        self.setValue(keyDict.object(forKey: "status"), forKey: "status")
+        self.setValue(keyDict.object(forKey: "repeatStatus"), forKey: "repeatStatus")
+        self.setValue(keyDict.object(forKey: "dayOfWeek"), forKey: "dayOfWeek")
+        self.setValue(keyDict.object(forKey: "type"), forKey: "type")
     }
 
-    func add(result:((id:Int?,completion:Bool?) -> Void)){
+    func add(_ result:@escaping ((_ id:Int?,_ completion:Bool?) -> Void)){
         alarmModel.timer = timer
         alarmModel.label = label
         alarmModel.status = status
@@ -38,7 +38,7 @@ class UserAlarm: NSObject,BaseEntryDatabaseHelper {
         alarmModel.dayOfWeek = dayOfWeek
         alarmModel.type = type
         alarmModel.add { (id, completion) -> Void in
-            result(id: id, completion: completion)
+            result(id, completion)
         }
     }
 
@@ -62,13 +62,13 @@ class UserAlarm: NSObject,BaseEntryDatabaseHelper {
         return AlarmModel.removeAll()
     }
 
-    class func getCriteria(criteria:String)->NSArray{
+    class func getCriteria(_ criteria:String)->NSArray{
         let modelArray:NSArray = AlarmModel.getCriteria(criteria)
         let allArray:NSMutableArray = NSMutableArray()
         for model in modelArray {
             let alarmModel:AlarmModel = model as! AlarmModel
             let presets:UserAlarm = UserAlarm(keyDict: ["id":alarmModel.id,"timer":alarmModel.timer,"label":"\(alarmModel.label)","status":alarmModel.status,"repeatStatus":alarmModel.repeatStatus,"dayOfWeek":alarmModel.dayOfWeek,"type":alarmModel.type])
-            allArray.addObject(presets)
+            allArray.add(presets)
         }
         return allArray
     }
@@ -79,7 +79,7 @@ class UserAlarm: NSObject,BaseEntryDatabaseHelper {
         for model in modelArray {
             let alarmModel:AlarmModel = model as! AlarmModel
             let presets:UserAlarm = UserAlarm(keyDict: ["id":alarmModel.id,"timer":alarmModel.timer,"label":"\(alarmModel.label)","status":alarmModel.status,"repeatStatus":alarmModel.repeatStatus,"dayOfWeek":alarmModel.dayOfWeek,"type":alarmModel.type])
-            allArray.addObject(presets)
+            allArray.add(presets)
         }
         return allArray
     }
@@ -99,13 +99,13 @@ class UserAlarm: NSObject,BaseEntryDatabaseHelper {
     class func defaultAlarm(){
         let array = AlarmModel.getAll()
         if(array.count == 0){
-            let currentDate:NSDate = NSDate()
-            let date1:NSDate = NSDate.date(year: currentDate.year, month: currentDate.minute, day: currentDate.day, hour: 8, minute: 0, second: 0)
-            let date2:NSDate = NSDate.date(year: currentDate.year, month: currentDate.minute, day: currentDate.day, hour: 9, minute: 0, second: 0)
-            let dateArray:[NSTimeInterval] = [date1.timeIntervalSince1970,date2.timeIntervalSince1970]
+            let currentDate:Date = Date()
+            let date1:Date = Date.date(year: currentDate.year, month: currentDate.minute, day: currentDate.day, hour: 8, minute: 0, second: 0)
+            let date2:Date = Date.date(year: currentDate.year, month: currentDate.minute, day: currentDate.day, hour: 9, minute: 0, second: 0)
+            let dateArray:[TimeInterval] = [date1.timeIntervalSince1970,date2.timeIntervalSince1970]
             let nameArray:[String] = ["Alarm 1","Alarm 2"]
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,0), { () -> Void in
-                for (var index:Int = 0; index < dateArray.count ; index++) {
+            DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.default).async(execute: { () -> Void in
+                for (index:Int in 0 ..< dateArray.count ) {
                     let alarm:UserAlarm = UserAlarm(keyDict: ["id":index,"timer":dateArray[index],"label":nameArray[index],"status":false,"repeatStatus":true,"dayOfWeek":0,"type":0])
                     alarm.add({ (id, completion) -> Void in
 

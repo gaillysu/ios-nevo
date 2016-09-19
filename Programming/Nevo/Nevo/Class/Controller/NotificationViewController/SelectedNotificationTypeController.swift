@@ -10,7 +10,7 @@ import UIKit
 
 protocol SelectedNotificationDelegate {
 
-    func didSelectedNotificationDelegate(clockIndex:Int,ntSwitchState:Bool,notificationType:String)
+    func didSelectedNotificationDelegate(_ clockIndex:Int,ntSwitchState:Bool,notificationType:String)
 }
 
 class SelectedNotificationTypeController: UITableViewController {
@@ -23,7 +23,7 @@ class SelectedNotificationTypeController: UITableViewController {
     var selectedDelegate:SelectedNotificationDelegate?
 
     init() {
-        super.init(nibName: "SelectedNotificationTypeController", bundle: NSBundle.mainBundle())
+        super.init(nibName: "SelectedNotificationTypeController", bundle: Bundle.main)
     }
 
     required init(coder aDecoder: NSCoder) {
@@ -33,9 +33,9 @@ class SelectedNotificationTypeController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = NSLocalizedString(titleString!, comment: "")
-        self.view.backgroundColor = UIColor.whiteColor()
-        self.tableView.registerNib(UINib(nibName: "LineColorCell",bundle: nil), forCellReuseIdentifier: "LineColor_Identifier")
-        self.tableView.separatorStyle = UITableViewCellSeparatorStyle.None
+        self.view.backgroundColor = UIColor.white
+        self.tableView.register(UINib(nibName: "LineColorCell",bundle: nil), forCellReuseIdentifier: "LineColor_Identifier")
+        self.tableView.separatorStyle = UITableViewCellSeparatorStyle.none
     }
 
     override func didReceiveMemoryWarning() {
@@ -43,16 +43,16 @@ class SelectedNotificationTypeController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    func buttonManager(sender:AnyObject){
-        if(sender.isKindOfClass(UISwitch.classForCoder())){
+    func buttonManager(_ sender:AnyObject){
+        if(sender.isKind(of: UISwitch.classForCoder())){
             NSLog(" UISwitch 开关")
             let switchView:UISwitch = sender as! UISwitch
             let mNotificationArray:NSArray =  UserNotification.getAll()
             for model in mNotificationArray{
                 let notificationModel:UserNotification = model as! UserNotification
                 if(titleString == notificationModel.NotificationType){
-                    selectedDelegate?.didSelectedNotificationDelegate(notificationModel.clock, ntSwitchState: switchView.on,notificationType:notificationModel.NotificationType)
-                    if(switchView.on) {
+                    selectedDelegate?.didSelectedNotificationDelegate(notificationModel.clock, ntSwitchState: switchView.isOn,notificationType:notificationModel.NotificationType)
+                    if(switchView.isOn) {
                         swicthStates = true
                     }else {
                         swicthStates = false
@@ -65,8 +65,8 @@ class SelectedNotificationTypeController: UITableViewController {
 
     }
 
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat{
-        switch (indexPath.section){
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat{
+        switch ((indexPath as NSIndexPath).section){
         case 0:
             return 45.0
         case 1:
@@ -81,7 +81,7 @@ class SelectedNotificationTypeController: UITableViewController {
     
     // MARK: - Table view data source
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         if(swicthStates){
             return 3
         }else{
@@ -89,7 +89,7 @@ class SelectedNotificationTypeController: UITableViewController {
         }
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if(section == 2){
             return colorArray.count
         }
@@ -97,41 +97,41 @@ class SelectedNotificationTypeController: UITableViewController {
     }
 
 
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        switch (indexPath.section){
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        switch ((indexPath as NSIndexPath).section){
         case 0:
             let cell = selectedNotificationView.AllowNotificationsTableViewCell(indexPath, tableView: tableView, title: NSLocalizedString("Allow_Notifications", comment: ""), state:swicthStates)
             for swicthView in cell.contentView.subviews{
-                if(swicthView.isKindOfClass(UISwitch.classForCoder())){
+                if(swicthView.isKind(of: UISwitch.classForCoder())){
                     let mSwitch:UISwitch = swicthView as! UISwitch
-                    mSwitch.addTarget(self, action: #selector(SelectedNotificationTypeController.buttonManager(_:)), forControlEvents: UIControlEvents.ValueChanged)
+                    mSwitch.addTarget(self, action: #selector(SelectedNotificationTypeController.buttonManager(_:)), for: UIControlEvents.valueChanged)
                 }
             }
             return cell
         case 1:
             return selectedNotificationView.getNotificationClockCell(indexPath, tableView: tableView, title: "", clockIndex: clockIndex)
         case 2:
-            let cell = selectedNotificationView.getLineColorCell(indexPath, tableView: tableView, cellTitle: colorArray[indexPath.row], clockIndex: clockIndex)
+            let cell = selectedNotificationView.getLineColorCell(indexPath, tableView: tableView, cellTitle: colorArray[(indexPath as NSIndexPath).row], clockIndex: clockIndex)
             return cell
         default: return UITableViewCell();
         }
     }
 
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        if(indexPath.section == 2){
-            let cell:LineColorCell = tableView.cellForRowAtIndexPath(indexPath) as! LineColorCell
-            cell.imageName.hidden = false
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
+        tableView.deselectRow(at: indexPath, animated: true)
+        if((indexPath as NSIndexPath).section == 2){
+            let cell:LineColorCell = tableView.cellForRow(at: indexPath) as! LineColorCell
+            cell.imageName.isHidden = false
             
             let mNotificationArray:NSArray =  UserNotification.getAll()
             for model in mNotificationArray{
                 let notificationModel:UserNotification = model as! UserNotification
                 if(titleString == notificationModel.NotificationType){
-                    clockIndex = (indexPath.row+1)*2
-                    let reloadIndexPath:NSIndexPath = NSIndexPath(forRow: 0, inSection: 1)
-                    selectedDelegate?.didSelectedNotificationDelegate((indexPath.row+1)*2, ntSwitchState: notificationModel.status,notificationType:notificationModel.NotificationType)
-                    tableView.reloadRowsAtIndexPaths([reloadIndexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
-                    tableView.reloadSections(NSIndexSet(index: 2), withRowAnimation: UITableViewRowAnimation.Automatic)
+                    clockIndex = ((indexPath as NSIndexPath).row+1)*2
+                    let reloadIndexPath:IndexPath = IndexPath(row: 0, section: 1)
+                    selectedDelegate?.didSelectedNotificationDelegate(((indexPath as NSIndexPath).row+1)*2, ntSwitchState: notificationModel.status,notificationType:notificationModel.NotificationType)
+                    tableView.reloadRows(at: [reloadIndexPath], with: UITableViewRowAnimation.automatic)
+                    tableView.reloadSections(IndexSet(integer: 2), with: UITableViewRowAnimation.automatic)
                     break
                 }
             }

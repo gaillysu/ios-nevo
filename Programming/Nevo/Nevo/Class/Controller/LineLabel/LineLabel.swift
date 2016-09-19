@@ -22,15 +22,15 @@ class LineLabel: UILabel {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func drawRect(rect: CGRect) {
+    override func draw(_ rect: CGRect) {
         // Drawing code
-        super.drawRect(rect)
+        super.draw(rect)
         let ctx = UIGraphicsGetCurrentContext()
-        CGContextMoveToPoint(ctx, 0, rect.size.height-2)
-        CGContextAddLineToPoint(ctx, rect.size.width, rect.size.height - 2)
-        CGContextSetStrokeColorWithColor(ctx, UIColor.lightGrayColor().CGColor)
-        CGContextSetLineWidth(ctx, 2);  //线宽
-        CGContextStrokePath(ctx)
+        ctx?.move(to: CGPoint(x: 0, y: rect.size.height-2))
+        ctx?.addLine(to: CGPoint(x: rect.size.width, y: rect.size.height - 2))
+        ctx?.setStrokeColor(UIColor.lightGray.cgColor)
+        ctx?.setLineWidth(2);  //线宽
+        ctx?.strokePath()
     }
 
 }

@@ -10,28 +10,28 @@ import UIKit
 
 class OTAProgress: CAShapeLayer {
 
-    private let progressLimit:CGFloat = 1.0 //The overall progress of the progress bar
-    private var progress:CGFloat = 0 //The progress bar target schedule
-    private var percent:CGFloat {
+    fileprivate let progressLimit:CGFloat = 1.0 //The overall progress of the progress bar
+    fileprivate var progress:CGFloat = 0 //The progress bar target schedule
+    fileprivate var percent:CGFloat {
         //Calculating the percentage of the current value
         return CGFloat(calculatePercent(progress, toProgress: progressLimit))
     }
-    private var initialProgress:CGFloat!
-    private var progressLayer:CAShapeLayer! //The progress bar object
-    private var progressColor:UIColor = UIColor.greenColor() //The background color of the progress bar
+    fileprivate var initialProgress:CGFloat!
+    fileprivate var progressLayer:CAShapeLayer! //The progress bar object
+    fileprivate var progressColor:UIColor = UIColor.green //The background color of the progress bar
 
 
     override init(){
         super.init()
         self.path = drawPathWithArcCenter()
-        self.fillColor = UIColor.clearColor().CGColor
-        self.strokeColor = UIColor.clearColor().CGColor//UIColor(red: 0.56, green: 0.56, blue: 0.56, alpha: 0.4).CGColor
+        self.fillColor = UIColor.clear.cgColor
+        self.strokeColor = UIColor.clear.cgColor//UIColor(red: 0.56, green: 0.56, blue: 0.56, alpha: 0.4).CGColor
         self.lineWidth = 5
 
         progressLayer = CAShapeLayer()
         progressLayer.path = drawPathWithArcCenter()
-        progressLayer.fillColor = UIColor.clearColor().CGColor
-        progressLayer.strokeColor = progressColor.CGColor
+        progressLayer.fillColor = UIColor.clear.cgColor
+        progressLayer.strokeColor = progressColor.cgColor
         progressLayer.lineWidth = 5
 
         self.addSublayer(progressLayer)
@@ -51,7 +51,7 @@ class OTAProgress: CAShapeLayer {
     /*
     Used to calculate the rotate degree
     */
-    private func DegreesToRadians(degrees:CGFloat) -> CGFloat {
+    fileprivate func DegreesToRadians(_ degrees:CGFloat) -> CGFloat {
 
         return (degrees * CGFloat(M_PI))/180.0;
     }
@@ -61,10 +61,10 @@ class OTAProgress: CAShapeLayer {
 
     :returns: Returns the drawing need path
     */
-    func drawPathWithArcCenter()->CGPathRef{
+    func drawPathWithArcCenter()->CGPath{
         let position_y:CGFloat = self.frame.size.height/2.0
         let position_x:CGFloat = self.frame.size.width/2.0
-        let path:CGPathRef = UIBezierPath(arcCenter: CGPointMake(position_x, position_y), radius: position_y, startAngle: CGFloat(-M_PI/90), endAngle: CGFloat(4*M_PI/2), clockwise: true).CGPath
+        let path:CGPath = UIBezierPath(arcCenter: CGPoint(x: position_x, y: position_y), radius: position_y, startAngle: CGFloat(-M_PI/90), endAngle: CGFloat(4*M_PI/2), clockwise: true).cgPath
         return path
     }
 
@@ -73,7 +73,7 @@ class OTAProgress: CAShapeLayer {
 
     :param: Sprogress You need to set up the current progress
     */
-    func setProgress(Sprogress:CGFloat) {
+    func setProgress(_ Sprogress:CGFloat) {
         initialProgress = CGFloat(calculatePercent(progress, toProgress: progressLimit))
         progress = Sprogress
 
@@ -86,7 +86,7 @@ class OTAProgress: CAShapeLayer {
 
     :param: string
     */
-    func setLatestVersion(string:String){
+    func setLatestVersion(_ string:String){
         //valueLabel.text = string
         //valueLabel.font = AppTheme.FONT_RALEWAY_LIGHT(mSize: 23)
     }
@@ -96,12 +96,12 @@ class OTAProgress: CAShapeLayer {
 
     :param: mProgressColor The current progress
     */
-    func setProgressColor(mProgressColor:UIColor) {
+    func setProgressColor(_ mProgressColor:UIColor) {
         progressColor = mProgressColor
-        self.progressLayer.strokeColor = progressColor.CGColor;
+        self.progressLayer.strokeColor = progressColor.cgColor;
     }
 
-    private func calculatePercent(fromProgress:CGFloat,toProgress:CGFloat)->Double {
+    fileprivate func calculatePercent(_ fromProgress:CGFloat,toProgress:CGFloat)->Double {
         if ((toProgress > 0) && (fromProgress > 0)) {
 
             var progress:CGFloat = 0;
@@ -121,13 +121,13 @@ class OTAProgress: CAShapeLayer {
     /**
     Implementation of the animation function
     */
-    private func startAnimation() {
+    fileprivate func startAnimation() {
         let pathAnimation:CABasicAnimation = CABasicAnimation(keyPath: "strokeEnd")
         pathAnimation.duration = 1.0
         pathAnimation.fromValue = initialProgress;
         pathAnimation.toValue = percent;
-        pathAnimation.removedOnCompletion = true;
-        progressLayer.addAnimation(pathAnimation, forKey: nil)
+        pathAnimation.isRemovedOnCompletion = true;
+        progressLayer.add(pathAnimation, forKey: nil)
     }
 }
 
@@ -141,19 +141,19 @@ class NevoOtaView: UIView {
     @IBOutlet weak var updatingView: UIView!
 
 
-    private var mDelegate:ButtonManagerCallBack?
-    private var tipView:FXBlurView?;
-    private var mOTADelegate:NevoOtaController?//OTA for watch version number object
-    private var OTAprogressView:OTAProgress?//OTA upgrade progress bar object
+    fileprivate var mDelegate:ButtonManagerCallBack?
+    fileprivate var tipView:FXBlurView?;
+    fileprivate var mOTADelegate:NevoOtaController?//OTA for watch version number object
+    fileprivate var OTAprogressView:OTAProgress?//OTA upgrade progress bar object
     var progresValue:CGFloat = 0.0//OTA upgrade progress bar default value
     
-    func buildView(delegate:ButtonManagerCallBack,otacontroller:AnyObject) {
+    func buildView(_ delegate:ButtonManagerCallBack,otacontroller:AnyObject) {
         mDelegate = delegate
 
         backButton.layer.masksToBounds = true
         backButton.layer.cornerRadius = 10.0
         backButton.layer.borderWidth = 1.0
-        backButton.layer.borderColor = AppTheme.NEVO_SOLAR_YELLOW().CGColor
+        backButton.layer.borderColor = AppTheme.NEVO_SOLAR_YELLOW().cgColor
 
         self.backgroundColor = AppTheme.NEVO_CUSTOM_COLOR(Red: 239.0, Green: 239.0, Blue: 244.0)
 
@@ -162,17 +162,17 @@ class NevoOtaView: UIView {
         }
         if(AppTheme.GET_IS_iPhone4S()) {
             let point:CGPoint = nevoWacthImage.center
-            nevoWacthImage.frame = CGRectMake(0, 0, nevoWacthImage.frame.size.width-20, nevoWacthImage.frame.size.width-20)
+            nevoWacthImage.frame = CGRect(x: 0, y: 0, width: nevoWacthImage.frame.size.width-20, height: nevoWacthImage.frame.size.width-20)
             nevoWacthImage.center = point
         }
         OTAprogressView?.setProgressColor(AppTheme.NEVO_SOLAR_YELLOW())
-        OTAprogressView?.frame = CGRectMake(nevoWacthImage.frame.origin.x, nevoWacthImage.frame.origin.y, nevoWacthImage.frame.size.width, nevoWacthImage.frame.size.height)
+        OTAprogressView?.frame = CGRect(x: nevoWacthImage.frame.origin.x, y: nevoWacthImage.frame.origin.y, width: nevoWacthImage.frame.size.width, height: nevoWacthImage.frame.size.height)
         OTAprogressView?.setProgress(progresValue)
         self.layer.addSublayer(OTAprogressView!)
     }
     
 
-    @IBAction func buttonAction(sender: AnyObject) {
+    @IBAction func buttonAction(_ sender: AnyObject) {
         mDelegate?.controllManager(sender)
     }
 
@@ -181,7 +181,7 @@ class NevoOtaView: UIView {
 
     :param: progress Progress value
     */
-    func setProgress(progress: Float, currentTask:NSInteger, allTask:NSInteger, progressString:String){
+    func setProgress(_ progress: Float, currentTask:NSInteger, allTask:NSInteger, progressString:String){
         progresValue = CGFloat(progress)
         OTAprogressView?.setProgress(progresValue)
         progresLabel.text = String(format: "%.0f%c", progresValue*100,37)
@@ -189,10 +189,10 @@ class NevoOtaView: UIView {
     }
 
     func OTAprogressViewHiddenOrNotHidden() {
-        if(OTAprogressView!.hidden) {
-            OTAprogressView!.hidden = false
+        if(OTAprogressView!.isHidden) {
+            OTAprogressView!.isHidden = false
         }else{
-            OTAprogressView!.hidden = true
+            OTAprogressView!.isHidden = true
         }
     }
 
@@ -201,7 +201,7 @@ class NevoOtaView: UIView {
 
     :param: string
     */
-    func setLatestVersion(string:String){
+    func setLatestVersion(_ string:String){
         let messageS:String  = string
         //taskLabel.font = AppTheme.FONT_RALEWAY_LIGHT(mSize: 15)
         //let labelframe:CGRect  = AppTheme.getWidthLabelSize(messageS, andObject: taskLabel.frame,andFont: AppTheme.FONT_RALEWAY_LIGHT(mSize: 15))
@@ -214,7 +214,7 @@ class NevoOtaView: UIView {
     */
     func upgradeSuccessful(){
         nevoWacthImage.image = AppTheme.GET_RESOURCES_IMAGE("connected");
-        OTAprogressView!.hidden = true
+        OTAprogressView!.isHidden = true
     }
 
     /**
@@ -222,7 +222,7 @@ class NevoOtaView: UIView {
     */
     func closeTipView(){
         UIView.animateWithDuration(0.25, animations: { () -> Void in
-            self.tipView!.transform = CGAffineTransformMakeScale(0.05, 0.05);
+            self.tipView!.transform = CGAffineTransform(scaleX: 0.05, y: 0.05);
         }) { (Bool) -> Void in
             self.tipView!.removeFromSuperview()
         }

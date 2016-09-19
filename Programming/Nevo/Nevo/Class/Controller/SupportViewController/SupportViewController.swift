@@ -17,7 +17,7 @@ class SupportViewController: UIViewController,NJKWebViewProgressDelegate,UIWebVi
     var progressProxy:NJKWebViewProgress?
 
     init() {
-        super.init(nibName: "SupportViewController", bundle: NSBundle.mainBundle())
+        super.init(nibName: "SupportViewController", bundle: Bundle.main)
     }
 
     required init(coder aDecoder: NSCoder) {
@@ -35,21 +35,21 @@ class SupportViewController: UIViewController,NJKWebViewProgressDelegate,UIWebVi
 
         let progressBarHeight:CGFloat = 2.0;
         let navigationBarBounds:CGRect = self.navigationController!.navigationBar.bounds;
-        let barFrame:CGRect = CGRectMake(0, navigationBarBounds.size.height - progressBarHeight, navigationBarBounds.size.width, progressBarHeight);
+        let barFrame:CGRect = CGRect(x: 0, y: navigationBarBounds.size.height - progressBarHeight, width: navigationBarBounds.size.width, height: progressBarHeight);
         progressView = NJKWebViewProgressView(frame: barFrame);
-        progressView!.autoresizingMask = [UIViewAutoresizing.FlexibleWidth ,UIViewAutoresizing.FlexibleTopMargin]
+        progressView!.autoresizingMask = [UIViewAutoresizing.flexibleWidth ,UIViewAutoresizing.flexibleTopMargin]
 
 
-        let request:NSURLRequest = NSURLRequest(URL: NSURL(string:"http://support.nevowatch.com/support/home")!)
+        let request:URLRequest = URLRequest(url: URL(string:"http://support.nevowatch.com/support/home")!)
         supportWebview.loadRequest(request)
     }
 
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         //[self.navigationController.navigationBar addSubview:_progressView];
         self.navigationController!.navigationBar.addSubview(progressView!)
     }
 
-    override func viewWillDisappear(animated: Bool)  {
+    override func viewWillDisappear(_ animated: Bool)  {
         progressView?.removeFromSuperview()
     }
 
@@ -58,11 +58,11 @@ class SupportViewController: UIViewController,NJKWebViewProgressDelegate,UIWebVi
         // Dispose of any resources that can be recreated.
     }
 
-    func webViewProgress(webViewProgress:NJKWebViewProgress ,updateProgress progress:Float) {
+    func webViewProgress(_ webViewProgress:NJKWebViewProgress ,updateProgress progress:Float) {
         //[_progressView setProgress:progress animated:YES];
         //self.title = [_webView stringByEvaluatingJavaScriptFromString:@"document.title"];
         progressView?.setProgress(progress, animated: true)
-        self.navigationItem.title = supportWebview.stringByEvaluatingJavaScriptFromString("document.title")
+        self.navigationItem.title = supportWebview.stringByEvaluatingJavaScript(from: "document.title")
     }
 
     /*

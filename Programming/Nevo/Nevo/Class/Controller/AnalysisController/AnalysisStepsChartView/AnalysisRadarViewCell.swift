@@ -33,8 +33,8 @@ class AnalysisRadarViewCell: UICollectionViewCell,ChartViewDelegate {
         radarChartView.innerWebLineWidth = 0.375;
         radarChartView.webAlpha = 1.0;
         
-        let marker:BalloonMarker = BalloonMarker(color: UIColor(white: 180/255.0, alpha: 1.0), font: UIFont.systemFontOfSize(12.0), insets: UIEdgeInsetsMake(8.0, 8.0, 20.0, 8.0))
-        marker.minimumSize = CGSizeMake(80.0, 40.0);
+        let marker:BalloonMarker = BalloonMarker(color: UIColor(white: 180/255.0, alpha: 1.0), font: UIFont.systemFont(ofSize: 12.0), insets: UIEdgeInsetsMake(8.0, 8.0, 20.0, 8.0))
+        marker.minimumSize = CGSize(width: 80.0, height: 40.0);
         radarChartView.marker = marker;
         
         let xAxis:ChartXAxis = radarChartView.xAxis;

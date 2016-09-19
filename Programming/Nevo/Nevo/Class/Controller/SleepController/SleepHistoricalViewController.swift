@@ -13,13 +13,13 @@ import SwiftEventBus
 class SleepHistoricalViewController: PublicClassController,ChartViewDelegate,SelectedChartViewDelegate {
 
     @IBOutlet weak var queryView: SleepHistoricalView!
-    private var contentTitleArray:[String] = []
-    private var contentTArray:[String] = [NSLocalizedString("--", comment: ""),NSLocalizedString("--", comment: ""),NSLocalizedString("--", comment: ""),NSLocalizedString("--", comment: "")]
-    private var selectedDate:NSDate = NSDate()
+    fileprivate var contentTitleArray:[String] = []
+    fileprivate var contentTArray:[String] = [NSLocalizedString("--", comment: ""),NSLocalizedString("--", comment: ""),NSLocalizedString("--", comment: ""),NSLocalizedString("--", comment: "")]
+    fileprivate var selectedDate:Date = Date()
 
-    private var todaySleepArray:NSArray = UserSleep.getCriteria("WHERE date BETWEEN \(NSDate.yesterday().beginningOfDay.timeIntervalSince1970) AND \(NSDate().endOfDay.timeIntervalSince1970)")
+    fileprivate var todaySleepArray:NSArray = UserSleep.getCriteria("WHERE date BETWEEN \(Date.yesterday().beginningOfDay.timeIntervalSince1970) AND \(Date().endOfDay.timeIntervalSince1970)")
     init() {
-        super.init(nibName: "SleepHistoricalViewController", bundle: NSBundle.mainBundle())
+        super.init(nibName: "SleepHistoricalViewController", bundle: Bundle.main)
 
     }
 
@@ -32,12 +32,12 @@ class SleepHistoricalViewController: PublicClassController,ChartViewDelegate,Sel
         self.navigationItem.title = NSLocalizedString("sleep_history_title", comment: "")
         contentTitleArray = [NSLocalizedString("sleep_timer", comment: ""), NSLocalizedString("wake_timer", comment: ""), NSLocalizedString("Quality", comment: ""), NSLocalizedString("Duration", comment: "")]
         
-        queryView.detailCollectionView.backgroundColor = UIColor.whiteColor()
-        queryView.detailCollectionView.registerNib(UINib(nibName:"SleepHistoryViewCell",bundle: nil) , forCellWithReuseIdentifier: "SleepHistoryValue_Identifier")
+        queryView.detailCollectionView.backgroundColor = UIColor.white
+        queryView.detailCollectionView.register(UINib(nibName:"SleepHistoryViewCell",bundle: nil) , forCellWithReuseIdentifier: "SleepHistoryValue_Identifier")
     }
     
-    override func viewWillAppear(animated: Bool) {
-        todaySleepArray = UserSleep.getCriteria("WHERE date BETWEEN \(NSDate.yesterday().beginningOfDay.timeIntervalSince1970) AND \(NSDate().endOfDay.timeIntervalSince1970)")
+    override func viewWillAppear(_ animated: Bool) {
+        todaySleepArray = UserSleep.getCriteria("WHERE date BETWEEN \(Date.yesterday().beginningOfDay.timeIntervalSince1970) AND \(Date().endOfDay.timeIntervalSince1970)")
         AnalysisSleepData(todaySleepArray)
         
         SwiftEventBus.onMainThread(self, name: SELECTED_CALENDAR_NOTIFICATION) { (notification) in
@@ -54,52 +54,52 @@ class SleepHistoricalViewController: PublicClassController,ChartViewDelegate,Sel
     }
     
     override func viewDidLayoutSubviews() {
-        (queryView.detailCollectionView.collectionViewLayout as! UICollectionViewFlowLayout).itemSize = CGSizeMake(UIScreen.mainScreen().bounds.size.width/2.0, 40)
+        (queryView.detailCollectionView.collectionViewLayout as! UICollectionViewFlowLayout).itemSize = CGSize(width: UIScreen.main.bounds.size.width/2.0, height: 40)
     }
     
-    override func viewDidDisappear(animated: Bool) {
+    override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         SwiftEventBus.unregister(self, name: SELECTED_CALENDAR_NOTIFICATION)
         SwiftEventBus.unregister(self, name: EVENT_BUS_END_BIG_SYNCACTIVITY)
     }
     
-    func AnalysisSleepData(array:NSArray) {
+    func AnalysisSleepData(_ array:NSArray) {
         queryView.bulidQueryView(self,modelArray: array)
         
         if queryView.chartView!.getYVals().count > 0 {
             var sleepTime:Double = 0
             var deepTime:Double = 0
-            for (index,vlaue) in queryView.chartView!.getYVals().enumerate() {
+            for (index,vlaue) in queryView.chartView!.getYVals().enumerated() {
                 sleepTime += vlaue[0]+vlaue[1]+vlaue[2]
                 deepTime += vlaue[2]
                 if index == 0 {
                     let sleep:Double = 60-(vlaue[0]+vlaue[1]+vlaue[2])
                     var reString:String = queryView.chartView!.getXVals()[0]
-                    let subRange = Range(reString.endIndex.advancedBy(-2)..<reString.endIndex)
-                    if NSString(format:"\(Int(sleep))").length == 1 {
-                        reString.replaceRange(subRange, with: "0\(Int(sleep))")
+                    let subRange = Range(reString.characters.index(reString.endIndex, offsetBy: -2)..<reString.endIndex)
+                    if NSString(format:"\(Int(sleep))" as NSString).length == 1 {
+                        reString.replaceSubrange(subRange, with: "0\(Int(sleep))")
                     }else{
-                        reString.replaceRange(subRange, with: "\(Int(sleep))")
+                        reString.replaceSubrange(subRange, with: "\(Int(sleep))")
                     }
-                    contentTArray.replaceRange(Range(0..<1), with: [reString])
+                    contentTArray.replaceSubrange(Range(0..<1), with: [reString])
                 }
                 
                 if index == queryView.chartView!.getYVals().count - 1 {
                     let endSleep:Double = vlaue[0]+vlaue[1]+vlaue[2]
                     var reString:String = queryView.chartView!.getXVals()[queryView.chartView!.getXVals().count-1]
-                    let subRange = Range(reString.endIndex.advancedBy(-2)..<reString.endIndex)
+                    let subRange = Range(reString.characters.index(reString.endIndex, offsetBy: -2)..<reString.endIndex)
                     
-                    if NSString(format:"\(Int(endSleep))").length == 1 {
-                        reString.replaceRange(subRange, with: "0\(Int(endSleep))")
+                    if NSString(format:"\(Int(endSleep))" as NSString).length == 1 {
+                        reString.replaceSubrange(subRange, with: "0\(Int(endSleep))")
                     }else{
-                        reString.replaceRange(subRange, with: "\(Int(endSleep))")
+                        reString.replaceSubrange(subRange, with: "\(Int(endSleep))")
                     }
-                    contentTArray.replaceRange(Range(1..<2), with: [reString])
+                    contentTArray.replaceSubrange(Range(1..<2), with: [reString])
                 }
             }
             let quality:String = "\(Int(deepTime/sleepTime*100))%"
-            contentTArray.replaceRange(Range(2..<3), with: [quality])
-            contentTArray.replaceRange(Range(3..<4), with: ["\(Int(sleepTime/60)) h"])
+            contentTArray.replaceSubrange(Range(2..<3), with: [quality])
+            contentTArray.replaceSubrange(Range(3..<4), with: ["\(Int(sleepTime/60)) h"])
             self.queryView.detailCollectionView.reloadData()
         }
     }
@@ -110,34 +110,34 @@ class SleepHistoricalViewController: PublicClassController,ChartViewDelegate,Sel
     }
     
     // MARK: - SelectedChartViewDelegate
-    func didSleepSelectedhighlightValue(xIndex:Int,dataSetIndex: Int, dataSleep:Sleep) {
+    func didSleepSelectedhighlightValue(_ xIndex:Int,dataSetIndex: Int, dataSleep:Sleep) {
         contentTArray.removeAll()
-        let startTimer:NSDate = NSDate(timeIntervalSince1970: dataSleep.getStartTimer())
-        let endTimer:NSDate = NSDate(timeIntervalSince1970: dataSleep.getEndTimer())
+        let startTimer:Date = Date(timeIntervalSince1970: dataSleep.getStartTimer())
+        let endTimer:Date = Date(timeIntervalSince1970: dataSleep.getEndTimer())
         let startString:String = startTimer.stringFromFormat("hh:mm a")
         let endString:String = endTimer.stringFromFormat("hh:mm a")
         
-        contentTArray.insert("\(startString)", atIndex: 0)
-        contentTArray.insert("\(endString)", atIndex: 1)
-        contentTArray.insert(String(format: "%100"), atIndex: 2)
-        contentTArray.insert(String(format: "%dh%dm", Int(dataSleep.getWeakSleep()),Int((dataSleep.getWeakSleep())*Double(60)%Double(60))), atIndex: 3)
+        contentTArray.insert("\(startString)", at: 0)
+        contentTArray.insert("\(endString)", at: 1)
+        contentTArray.insert(String(format: "%100"), at: 2)
+        contentTArray.insert(String(format: "%dh%dm", Int(dataSleep.getWeakSleep()),Int(((dataSleep.getWeakSleep())*Double(60)).truncatingRemainder(dividingBy: Double(60)))), at: 3)
         queryView.detailCollectionView.reloadData()
     }
 
-    private func calculateMinutes(time:Double) -> (hours:Int,minutes:Int){
-        return (Int(time),Int(60*(time%1)));
+    fileprivate func calculateMinutes(_ time:Double) -> (hours:Int,minutes:Int){
+        return (Int(time),Int(60*(time.truncatingRemainder(dividingBy: 1))));
     }
 
     // MARK: - UICollectionViewDataSource
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return contentTitleArray.count
     }
 
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell:SleepHistoryViewCell = collectionView.dequeueReusableCellWithReuseIdentifier("SleepHistoryValue_Identifier", forIndexPath: indexPath) as! SleepHistoryViewCell
-        cell.titleLabel.text = contentTitleArray[indexPath.row].uppercaseString
-        cell.valueLabel.text = "\(contentTArray[indexPath.row])"
-        cell.backgroundColor = UIColor.whiteColor()
+    func collectionView(_ collectionView: UICollectionView, cellForItemAtIndexPath indexPath: IndexPath) -> UICollectionViewCell {
+        let cell:SleepHistoryViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "SleepHistoryValue_Identifier", for: indexPath) as! SleepHistoryViewCell
+        cell.titleLabel.text = contentTitleArray[(indexPath as NSIndexPath).row].uppercased()
+        cell.valueLabel.text = "\(contentTArray[(indexPath as NSIndexPath).row])"
+        cell.backgroundColor = UIColor.white
         return cell
     }
 

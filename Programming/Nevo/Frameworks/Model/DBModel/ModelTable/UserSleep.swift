@@ -11,7 +11,7 @@ import UIKit
 class UserSleep: NSObject,BaseEntryDatabaseHelper {
 
     var id:Int = 0
-    var date:NSTimeInterval = 0
+    var date:TimeInterval = 0
     var totalSleepTime:Int = 0;
     var hourlySleepTime:String = "";
     var totalWakeTime:Int = 0;
@@ -21,7 +21,7 @@ class UserSleep: NSObject,BaseEntryDatabaseHelper {
     var totalDeepTime:Int = 0;
     var hourlyDeepTime:String = "";
     var _id:String = "0"
-    private var sleepModel:SleepModel = SleepModel()
+    fileprivate var sleepModel:SleepModel = SleepModel()
 
     override init() {
         
@@ -29,23 +29,23 @@ class UserSleep: NSObject,BaseEntryDatabaseHelper {
 
     init(keyDict:NSDictionary) {
         super.init()
-        keyDict.enumerateKeysAndObjectsUsingBlock { (key, value, stop) -> Void in
+        keyDict.enumerateKeysAndObjects { (key, value, stop) -> Void in
             self.setValue(value, forKey: key as! String)
         }
     }
 
-    func add(result:((id:Int?,completion:Bool?) -> Void)){
+    func add(_ result:@escaping ((_ id:Int?,_ completion:Bool?) -> Void)){
         if SleepModel.isExistInTable() {
             SleepModel.updateTable()
         }
-        let keyName:NSArray = UserSleep.getPropertys().objectForKey("name") as! NSArray
+        let keyName:NSArray = UserSleep.getPropertys().object(forKey: "name") as! NSArray
         for value in keyName {
             let key:String = value as! String
-            sleepModel.setValue(self.valueForKey(key), forKey: key)
+            sleepModel.setValue(self.value(forKey: key), forKey: key)
         }
 
         sleepModel.add { (id, completion) -> Void in
-            result(id: id, completion: completion)
+            result(id, completion)
         }
     }
 
@@ -53,10 +53,10 @@ class UserSleep: NSObject,BaseEntryDatabaseHelper {
         if SleepModel.isExistInTable() {
             SleepModel.updateTable()
         }
-        let keyName:NSArray = UserSleep.getPropertys().objectForKey("name") as! NSArray
+        let keyName:NSArray = UserSleep.getPropertys().object(forKey: "name") as! NSArray
         for value in keyName {
             let key:String = value as! String
-            sleepModel.setValue(self.valueForKey(key), forKey: key)
+            sleepModel.setValue(self.value(forKey: key), forKey: key)
         }
         return sleepModel.update()
     }
@@ -70,20 +70,20 @@ class UserSleep: NSObject,BaseEntryDatabaseHelper {
         return SleepModel.removeAll()
     }
 
-    class func getCriteria(criteria:String)->NSArray{
+    class func getCriteria(_ criteria:String)->NSArray{
         let modelArray:NSArray = SleepModel.getCriteria(criteria)
         let allArray:NSMutableArray = NSMutableArray()
         for model in modelArray {
             let stepsModel:SleepModel = model as! SleepModel
-            let keyName:NSArray = SleepModel.getAllProperties().objectForKey("name") as! NSArray
+            let keyName:NSArray = SleepModel.getAllProperties().object(forKey: "name") as! NSArray
             var keyDict:[String:AnyObject] = [:]
             for value in keyName {
                 let key:String = value as! String
-                keyDict[key] = stepsModel.valueForKey(key)
+                keyDict[key] = stepsModel.value(forKey: key) as AnyObject?
             }
             
-            let presets:UserSleep = UserSleep(keyDict: keyDict)
-            allArray.addObject(presets)
+            let presets:UserSleep = UserSleep(keyDict: keyDict as NSDictionary)
+            allArray.add(presets)
         }
         return allArray
     }
@@ -93,15 +93,15 @@ class UserSleep: NSObject,BaseEntryDatabaseHelper {
         let allArray:NSMutableArray = NSMutableArray()
         for model in modelArray {
             let stepsModel:SleepModel = model as! SleepModel
-            let keyName:NSArray = SleepModel.getAllProperties().objectForKey("name") as! NSArray
+            let keyName:NSArray = SleepModel.getAllProperties().object(forKey: "name") as! NSArray
             var keyDict:[String:AnyObject] = [:]
             for value in keyName {
                 let key:String = value as! String
-                keyDict[key] = stepsModel.valueForKey(key)
+                keyDict[key] = stepsModel.value(forKey: key) as AnyObject?
             }
             
-            let presets:UserSleep = UserSleep(keyDict: keyDict)
-            allArray.addObject(presets)
+            let presets:UserSleep = UserSleep(keyDict: keyDict as NSDictionary)
+            allArray.add(presets)
         }
         return allArray
     }
@@ -113,15 +113,15 @@ class UserSleep: NSObject,BaseEntryDatabaseHelper {
         var outCount:UInt32 = 0, _:UInt32 = 0;
         let properties:UnsafeMutablePointer = class_copyPropertyList(self,&outCount)
         for i in 0 ..< outCount{
-            let property:objc_property_t = properties[Int(i)];
+            let property:objc_property_t = properties[Int(i)]!;
             //获取属性名
-            let propertyName:NSString = NSString(CString: property_getName(property), encoding: NSUTF8StringEncoding)!
-            if (theTransients.containsObject(propertyName)) {
+            let propertyName:NSString = NSString(cString: property_getName(property), encoding: String.Encoding.utf8.rawValue)!
+            if (theTransients.contains(propertyName)) {
                 continue;
             }
-            proNames.addObject(propertyName)
+            proNames.add(propertyName)
             //获取属性类型等参数
-            let propertyType:NSString = NSString(CString: property_getAttributes(property), encoding: NSUTF8StringEncoding)!
+            let propertyType:NSString = NSString(cString: property_getAttributes(property), encoding: String.Encoding.utf8.rawValue)!
             /*
              c char         C unsigned char
              i int          I unsigned int
@@ -138,11 +138,11 @@ class UserSleep: NSObject,BaseEntryDatabaseHelper {
              SQLite 默认支持五种数据类型TEXT、INTEGER、REAL、BLOB、NULL
              */
             if (propertyType.hasPrefix("T@")) {
-                proTypes.addObject(SQLTEXT)
+                proTypes.add(SQLTEXT)
             } else if (propertyType.hasPrefix("Ti")||propertyType.hasPrefix("TI")||propertyType.hasPrefix("Ts")||propertyType.hasPrefix("TS")||propertyType.hasPrefix("TB")) {
-                proTypes.addObject(SQLINTEGER)
+                proTypes.add(SQLINTEGER)
             } else {
-                proTypes.addObject(SQLREAL)
+                proTypes.add(SQLREAL)
             }
         }
         free(properties)

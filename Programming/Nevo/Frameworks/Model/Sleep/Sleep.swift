@@ -10,13 +10,13 @@ import Foundation
 
 class Sleep:NSObject{
     
-    private var weakSleep:Double;
-    private var lightSleep:Double;
-    private var deepSleep:Double;
-    private var startTimer:NSTimeInterval = 0;
-    private var endTimer:NSTimeInterval = 0;
+    fileprivate var weakSleep:Double;
+    fileprivate var lightSleep:Double;
+    fileprivate var deepSleep:Double;
+    fileprivate var startTimer:TimeInterval = 0;
+    fileprivate var endTimer:TimeInterval = 0;
     
-    init(weakSleep: Double, lightSleep:Double , deepSleep:Double , startTimer:NSTimeInterval , endTimer:NSTimeInterval){
+    init(weakSleep: Double, lightSleep:Double , deepSleep:Double , startTimer:TimeInterval , endTimer:TimeInterval){
         self.deepSleep  = deepSleep;
         self.lightSleep = lightSleep;
         self.weakSleep = weakSleep;

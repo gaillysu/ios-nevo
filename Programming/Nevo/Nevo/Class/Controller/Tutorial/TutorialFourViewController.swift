@@ -13,7 +13,7 @@ class TutorialFourViewController: UIViewController{
     @IBOutlet weak var nextButton: UIButton!
 
     init() {
-        super.init(nibName: "TutorialFourViewController", bundle: NSBundle.mainBundle())
+        super.init(nibName: "TutorialFourViewController", bundle: Bundle.mainBundle())
     }
 
     required init(coder aDecoder: NSCoder) {
@@ -24,7 +24,7 @@ class TutorialFourViewController: UIViewController{
         
     }
 
-    @IBAction func nextAction(sender: AnyObject) {
+    @IBAction func nextAction(_ sender: AnyObject) {
         let tutorialFive = TutorialFiveViewController()
         self.navigationController?.pushViewController(tutorialFive, animated: true)
     }

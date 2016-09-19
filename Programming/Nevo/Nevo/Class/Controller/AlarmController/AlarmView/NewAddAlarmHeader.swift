@@ -11,16 +11,16 @@ import UIKit
 class NewAddAlarmHeader: UITableViewHeaderFooterView {
 
     @IBOutlet weak var alarmType: UISegmentedControl!
-    var actionCallBack:((sender:AnyObject) -> Void)?
+    var actionCallBack:((_ sender:AnyObject) -> Void)?
     
     
-    @IBAction func alarmTypeAction(sender: AnyObject) {
-        actionCallBack?(sender: sender)
+    @IBAction func alarmTypeAction(_ sender: AnyObject) {
+        actionCallBack?(sender)
     }
     
     override func awakeFromNib() {
-        let dict:[String : AnyObject] = [NSForegroundColorAttributeName:UIColor.whiteColor()]
-        alarmType.setTitleTextAttributes(dict, forState: UIControlState.Selected)
+        let dict:[String : AnyObject] = [NSForegroundColorAttributeName:UIColor.white]
+        alarmType.setTitleTextAttributes(dict, for: UIControlState.selected)
     }
     /*
     // Only override drawRect: if you perform custom drawing.

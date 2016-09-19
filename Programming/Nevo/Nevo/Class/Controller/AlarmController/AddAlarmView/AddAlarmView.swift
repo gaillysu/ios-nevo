@@ -18,27 +18,27 @@ class AddAlarmView: UITableView {
 
      :returns: time zone TableViewCell selector
      */
-    class func addAlarmTimerTableViewCell(indexPath:NSIndexPath,tableView:UITableView,timer:NSTimeInterval)->UITableViewCell {
+    class func addAlarmTimerTableViewCell(_ indexPath:IndexPath,tableView:UITableView,timer:TimeInterval)->UITableViewCell {
         let endCellID:String = "AddAlarmCell"
-        var endCell = tableView.dequeueReusableCellWithIdentifier(endCellID)
+        var endCell = tableView.dequeueReusableCell(withIdentifier: endCellID)
         if (endCell == nil) {
-            let nibs:NSArray = NSBundle.mainBundle().loadNibNamed("AddAlarmTableViewCell", owner: self, options: nil)
-            endCell = nibs.objectAtIndex(0) as? AddAlarmTableViewCell;
+            let nibs:NSArray = Bundle.main.loadNibNamed("AddAlarmTableViewCell", owner: self, options: nil)
+            endCell = nibs.object(at: 0) as? AddAlarmTableViewCell;
         }
-        endCell?.separatorInset = UIEdgeInsets(top: 0, left: UIScreen.mainScreen().bounds.size.width, bottom: 0, right: 0)
-        endCell?.selectionStyle = UITableViewCellSelectionStyle.None;
-        endCell?.backgroundColor = UIColor.whiteColor()
-        endCell?.contentView.backgroundColor = UIColor.whiteColor()
+        endCell?.separatorInset = UIEdgeInsets(top: 0, left: UIScreen.main.bounds.size.width, bottom: 0, right: 0)
+        endCell?.selectionStyle = UITableViewCellSelectionStyle.none;
+        endCell?.backgroundColor = UIColor.white
+        endCell?.contentView.backgroundColor = UIColor.white
         var pickerView:UIDatePicker?
         for view in endCell!.contentView.subviews{
-            if(view.isKindOfClass(UIDatePicker.classForCoder())){
+            if(view.isKind(of: UIDatePicker.classForCoder())){
                 pickerView = view as? UIDatePicker
                 break
             }
         }
 
         if(timer > 0){
-            pickerView!.date = NSDate(timeIntervalSince1970: timer)
+            pickerView!.date = Date(timeIntervalSince1970: timer)
         }
         return endCell!
     }
@@ -52,12 +52,12 @@ class AddAlarmView: UITableView {
 
      :returns: UITableViewCell
      */
-    class func systemTableViewCell(indexPath:NSIndexPath,tableView:UITableView,title:String,delegate:ButtonManagerCallBack)->UITableViewCell {
+    class func systemTableViewCell(_ indexPath:IndexPath,tableView:UITableView,title:String,delegate:ButtonManagerCallBack)->UITableViewCell {
         let endCellID:String = "SystemCell"
-        var endCell = tableView.dequeueReusableCellWithIdentifier(endCellID)
+        var endCell = tableView.dequeueReusableCell(withIdentifier: endCellID)
         if (endCell == nil) {
-            let nibs:NSArray = NSBundle.mainBundle().loadNibNamed("AddAlarmSystemCell", owner: self, options: nil)
-            endCell = nibs.objectAtIndex(0) as? AddAlarmSystemCell;
+            let nibs:NSArray = Bundle.main.loadNibNamed("AddAlarmSystemCell", owner: self, options: nil)
+            endCell = nibs.object(at: 0) as? AddAlarmSystemCell;
         }
         (endCell as! AddAlarmSystemCell).mDelegate = delegate
         if(title == "Repeat"){
@@ -65,21 +65,21 @@ class AddAlarmView: UITableView {
         }
 
         if(title == "Label"){
-            (endCell as! AddAlarmSystemCell).repeatSwicth.hidden = true
+            (endCell as! AddAlarmSystemCell).repeatSwicth.isHidden = true
             //(endCell as! AddAlarmSystemCell).repeatSwicth.removeFromSuperview()
-            endCell?.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
+            endCell?.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
         }
 
-        endCell?.selectionStyle = UITableViewCellSelectionStyle.None;
+        endCell?.selectionStyle = UITableViewCellSelectionStyle.none;
         (endCell as! AddAlarmSystemCell).systemTitle.text = NSLocalizedString("\(title)", comment: "")
         return endCell!
     }
 
-    func bulidAdTableView(navigation:UINavigationItem){
+    func bulidAdTableView(_ navigation:UINavigationItem){
         
     }
 
-    func buttonManage(sender:AnyObject){
+    func buttonManage(_ sender:AnyObject){
         NSLog("------------")
     }
     /*

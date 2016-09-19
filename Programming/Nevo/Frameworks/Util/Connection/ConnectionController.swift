@@ -21,7 +21,7 @@ protocol ConnectionController {
     Layer struct: L1(NevoBT) -->L2 (ConnectionController,Single instance) -->L3 (syncController, single instance)
     -->L4(UI viewController), L1 is the base Layer, L4 is the top layer
     */
-    func setDelegate(connectionDelegate: ConnectionControllerDelegate)
+    func setDelegate(_ connectionDelegate: ConnectionControllerDelegate)
     
     /**
     Tries to connect to a Nevo
@@ -57,14 +57,14 @@ protocol ConnectionController {
     /**
     Tries to send a request, you can't be sure that it will effectively be sent
     */
-    func sendRequest(request: Request)
+    func sendRequest(_ request: Request)
     
     /**
     Enters the OTA mode. In this mode, it searchs for OTA enabled Nevo
     It won't connect to other Nevo and will stop sending regular nevo querries
     add second parameter, when BLE ota, auto disconnect by BLE peer, so no need disconnect it again
     */
-    func setOTAMode(OTAMode:Bool,Disconnect:Bool)
+    func setOTAMode(_ OTAMode:Bool,Disconnect:Bool)
 
     /**
     Checks whether the connection controller is in OTA mode
@@ -94,26 +94,26 @@ protocol ConnectionControllerDelegate {
     /**
     Called when a packet is received from the device
     */
-    func packetReceived(rawPacket: RawPacket)
+    func packetReceived(_ rawPacket: RawPacket)
     
     /**
     Called when a peripheral connects or disconnects
     */
-    func connectionStateChanged(isConnected : Bool)
+    func connectionStateChanged(_ isConnected : Bool)
     
     /**
     Call when finish reading Firmware
     @parameter whichfirmware, firmware type
     @parameter version, return the version
     */
-    func firmwareVersionReceived(whichfirmware:DfuFirmwareTypes, version:NSString)
+    func firmwareVersionReceived(_ whichfirmware:DfuFirmwareTypes, version:NSString)
 
     /**
     *  Receiving the current device signal strength value
     */
-    func receivedRSSIValue(number:NSNumber)
+    func receivedRSSIValue(_ number:NSNumber)
 
-    func bluetoothEnabled(enabled:Bool)
+    func bluetoothEnabled(_ enabled:Bool)
 
     func scanAndConnect()
 }

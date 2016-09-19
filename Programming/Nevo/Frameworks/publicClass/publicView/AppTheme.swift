@@ -58,8 +58,8 @@ class AppTheme {
 
     :returns: Return to obtain images of the object
     */
-    class func GET_RESOURCES_IMAGE(imageName:String) -> UIImage {
-        let imagePath:String = NSBundle.mainBundle().pathForResource(imageName, ofType: "png")!
+    class func GET_RESOURCES_IMAGE(_ imageName:String) -> UIImage {
+        let imagePath:String = Bundle.main.path(forResource: imageName, ofType: "png")!
         return UIImage(contentsOfFile: imagePath)!
 
     }
@@ -69,7 +69,7 @@ class AppTheme {
     :returns: If it returns true or false
     */
     class func GET_IS_iPhone5S() -> Bool {
-        let isiPhone5S:Bool = (UIScreen.instancesRespondToSelector(Selector("currentMode")) ? CGSizeEqualToSize(CGSizeMake(640, 1136), UIScreen.mainScreen().currentMode!.size) : false)
+        let isiPhone5S:Bool = (UIScreen.instancesRespond(to: #selector(getter: RunLoop.currentMode)) ? CGSize(width: 640, height: 1136).equalTo(UIScreen.main.currentMode!.size) : false)
         return isiPhone5S
     }
 
@@ -78,7 +78,7 @@ class AppTheme {
      :returns: If it returns true or false
      */
     class func GET_IS_iPhone4S() -> Bool {
-        let isiPhone4S:Bool = (UIScreen.instancesRespondToSelector(Selector("currentMode")) ? CGSizeEqualToSize(CGSizeMake(640, 960), UIScreen.mainScreen().currentMode!.size) : false)
+        let isiPhone4S:Bool = (UIScreen.instancesRespond(to: #selector(getter: RunLoop.currentMode)) ? CGSize(width: 640, height: 960).equalTo(UIScreen.main.currentMode!.size) : false)
         return isiPhone4S
     }
 
@@ -88,24 +88,24 @@ class AppTheme {
 
     :param: string Inform the content
     */
-    class func LocalNotificationBody(string:NSString, delay:Double=0) -> UILocalNotification {
-        if (UIDevice.currentDevice().systemVersion as NSString).floatValue >= 8.0 {
+    class func LocalNotificationBody(_ string:NSString, delay:Double=0) -> UILocalNotification {
+        if (UIDevice.current.systemVersion as NSString).floatValue >= 8.0 {
             let categorys:UIMutableUserNotificationCategory = UIMutableUserNotificationCategory()
             categorys.identifier = "alert";
             //UIUserNotificationType.Badge|UIUserNotificationType.Sound|UIUserNotificationType.Alert
-            let localUns:UIUserNotificationSettings = UIUserNotificationSettings(forTypes: [UIUserNotificationType.Badge,UIUserNotificationType.Sound,UIUserNotificationType.Alert], categories: Set(arrayLiteral: categorys))
-            UIApplication.sharedApplication().registerUserNotificationSettings(localUns)
+            let localUns:UIUserNotificationSettings = UIUserNotificationSettings(types: [UIUserNotificationType.badge,UIUserNotificationType.sound,UIUserNotificationType.alert], categories: Set(arrayLiteral: categorys))
+            UIApplication.shared.registerUserNotificationSettings(localUns)
         }
 
         
         let notification:UILocalNotification=UILocalNotification()
-        notification.timeZone = NSTimeZone.defaultTimeZone()
-        notification.fireDate = NSDate().dateByAddingTimeInterval(delay)
+        notification.timeZone = TimeZone.current
+        notification.fireDate = Date().addingTimeInterval(delay)
         notification.alertBody=string as String;
         notification.applicationIconBadgeNumber = 0;
         notification.soundName = UILocalNotificationDefaultSoundName;
         notification.category = "invite"
-        UIApplication.sharedApplication().scheduleLocalNotification(notification)
+        UIApplication.shared.scheduleLocalNotification(notification)
         return notification
     }
 
@@ -117,20 +117,20 @@ class AppTheme {
     *	@brief	The archive All current data
     *
     */
-    class func KeyedArchiverName(name:NSString,andObject object:AnyObject) ->Bool{
-        var objectArray:[AnyObject] = [object.copy()]
-        let senddate:NSDate = NSDate()
-        let dateformatter:NSDateFormatter = NSDateFormatter()
+    class func KeyedArchiverName(_ name:NSString,andObject object:AnyObject) ->Bool{
+        var objectArray:[AnyObject] = [object.copy]
+        let senddate:Date = Date()
+        let dateformatter:DateFormatter = DateFormatter()
 
         dateformatter.dateFormat = "YYYY/MM/dd"// HH:mm:ss
-        let locationString:NSString = dateformatter.stringFromDate(senddate)
+        let locationString:NSString = dateformatter.string(from: senddate) as NSString
         objectArray.append(locationString)
         NSLog("locationString:%@",locationString);
 
-        let pathArray = NSSearchPathForDirectoriesInDomains(.DocumentDirectory,.UserDomainMask,true)
-        let Path:NSString = (pathArray as NSArray).objectAtIndex(0) as! NSString
+        let pathArray = NSSearchPathForDirectoriesInDomains(.documentDirectory,.userDomainMask,true)
+        let Path:NSString = (pathArray as NSArray).object(at: 0) as! NSString
 
-        let filename:NSString = Path.stringByAppendingPathComponent(name as String)
+        let filename:NSString = Path.appendingPathComponent(name as String) as NSString
         let iswrite:Bool = NSKeyedArchiver.archiveRootObject(objectArray, toFile: filename as String)
         return iswrite
     }
@@ -143,16 +143,16 @@ class AppTheme {
 
      :returns: Archiver data
      */
-    class func LoadKeyedArchiverName(name:NSString) ->AnyObject{
-        let pathArray = NSSearchPathForDirectoriesInDomains(.DocumentDirectory,.UserDomainMask,true)
-        let Path:NSString = (pathArray as NSArray).objectAtIndex(0) as! NSString
+    class func LoadKeyedArchiverName(_ name:NSString) ->AnyObject{
+        let pathArray = NSSearchPathForDirectoriesInDomains(.documentDirectory,.userDomainMask,true)
+        let Path:NSString = (pathArray as NSArray).object(at: 0) as! NSString
 
-        let filename:NSString = Path.stringByAppendingPathComponent(name as String)
+        let filename:NSString = Path.appendingPathComponent(name as String) as NSString
 
-        let flierManager:Bool = NSFileManager.defaultManager().fileExistsAtPath(filename as String)
+        let flierManager:Bool = FileManager.default.fileExists(atPath: filename as String)
         if(flierManager){
-            let objectArr = NSKeyedUnarchiver.unarchiveObjectWithFile(filename as String)!
-            return objectArr
+            let objectArr = NSKeyedUnarchiver.unarchiveObject(withFile: filename as String)!
+            return objectArr as AnyObject
         }
         return []
     }
@@ -165,11 +165,11 @@ class AppTheme {
 
     :returns: Returns the modified position and size of the source object
     */
-    class func getLabelSize(string:String , andObject object:CGRect, andFont font:UIFont) ->CGRect{
+    class func getLabelSize(_ string:String , andObject object:CGRect, andFont font:UIFont) ->CGRect{
         var frame:CGRect = object
         let loclString:NSString = string as NSString
         //NSStringDrawingOptions.UsesLineFragmentOrigin|NSStringDrawingOptions.UsesFontLeading,
-        var labelSize:CGSize = loclString.boundingRectWithSize(CGSizeMake(frame.size.width, 1000), options: NSStringDrawingOptions.UsesLineFragmentOrigin, attributes: [NSFontAttributeName:font], context: nil).size
+        var labelSize:CGSize = loclString.boundingRect(with: CGSize(width: frame.size.width, height: 1000), options: NSStringDrawingOptions.usesLineFragmentOrigin, attributes: [NSFontAttributeName:font], context: nil).size
         labelSize.height = ceil(labelSize.height);
         labelSize.width = ceil(labelSize.width);
 
@@ -179,11 +179,11 @@ class AppTheme {
         return frame
     }
     
-    class func getWidthLabelSize(string:String , andObject object:CGRect, andFont font:UIFont) ->CGRect{
+    class func getWidthLabelSize(_ string:String , andObject object:CGRect, andFont font:UIFont) ->CGRect{
         let frame:CGRect = object
         let loclString:NSString = string as NSString
         //NSStringDrawingOptions.UsesLineFragmentOrigin|NSStringDrawingOptions.UsesFontLeading
-        var labelSize:CGSize = loclString.boundingRectWithSize(CGSizeMake(1000, frame.size.height), options: NSStringDrawingOptions.UsesLineFragmentOrigin, attributes: [NSFontAttributeName:font], context: nil).size
+        var labelSize:CGSize = loclString.boundingRect(with: CGSize(width: 1000, height: frame.size.height), options: NSStringDrawingOptions.usesLineFragmentOrigin, attributes: [NSFontAttributeName:font], context: nil).size
         labelSize.height = ceil(labelSize.height);
         labelSize.width = ceil(labelSize.width);
         
@@ -199,11 +199,11 @@ class AppTheme {
     */
     class func getPreferredLanguage()->NSString{
 
-        let defaults:NSUserDefaults = NSUserDefaults.standardUserDefaults()
+        let defaults:UserDefaults = UserDefaults.standard
 
-        let allLanguages:NSArray = defaults.objectForKey("AppleLanguages") as! NSArray
+        let allLanguages:NSArray = defaults.object(forKey: "AppleLanguages") as! NSArray
 
-        let preferredLang:NSString = allLanguages.objectAtIndex(0) as! NSString
+        let preferredLang:NSString = allLanguages.object(at: 0) as! NSString
         return preferredLang;
     
     }
@@ -214,7 +214,7 @@ class AppTheme {
     :returns: <#return value description#>
     */
     class func getLoclAppStoreVersion()->String{
-        let loclString:String = (NSBundle.mainBundle().infoDictionary! as NSDictionary).objectForKey("CFBundleShortVersionString") as! String
+        let loclString:String = (Bundle.main.infoDictionary! as NSDictionary).object(forKey: "CFBundleShortVersionString") as! String
         return loclString
     }
 
@@ -222,7 +222,7 @@ class AppTheme {
     Go to AppStore updating links
     */
     class func toOpenUpdateURL() {
-        UIApplication.sharedApplication().openURL(NSURL(string: "https://itunes.apple.com/app/nevo-watch/id977526892?mt=8")!)
+        UIApplication.shared.openURL(URL(string: "https://itunes.apple.com/app/nevo-watch/id977526892?mt=8")!)
     }
 
 
@@ -248,13 +248,13 @@ class AppTheme {
 
     :returns: 返回转换后的json字符串
     */
-    class func toJSONString(object:AnyObject!)->NSString{
+    class func toJSONString(_ object:AnyObject!)->NSString{
 
         do{
-            let data = try NSJSONSerialization.dataWithJSONObject(object, options: NSJSONWritingOptions.PrettyPrinted)
-            var strJson=NSString(data: data, encoding: NSUTF8StringEncoding)
-            strJson = strJson?.stringByReplacingOccurrencesOfString("\n", withString: "")
-            strJson = strJson?.stringByReplacingOccurrencesOfString(" ", withString: "")
+            let data = try JSONSerialization.data(withJSONObject: object, options: JSONSerialization.WritingOptions.prettyPrinted)
+            var strJson=NSString(data: data, encoding: String.Encoding.utf8.rawValue)
+            strJson = strJson?.replacingOccurrences(of: "\n", with: "") as NSString?
+            strJson = strJson?.replacingOccurrences(of: " ", with: "") as NSString?
             return strJson!
         }catch{
             return ""
@@ -268,10 +268,10 @@ class AppTheme {
 
     :returns: 返回转换后的数组
     */
-    class func jsonToArray(object:String)->NSArray{
+    class func jsonToArray(_ object:String)->NSArray{
         do{
-            let data:NSData = object.dataUsingEncoding(NSUTF8StringEncoding)!
-            let array:AnyObject = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers)
+            let data:Data = object.data(using: String.Encoding.utf8)!
+            let array:AnyObject = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.mutableContainers)
             let JsonToArray = array as! NSArray
             return JsonToArray
         }catch{
@@ -282,48 +282,48 @@ class AppTheme {
     /**
     *Hexadecimal color string into UIColor (HTML color values)
     */
-    class func hexStringToColor(stringToConvert:String)->UIColor{
-        var cString:NSString = stringToConvert.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()).uppercaseString
-        if (cString.length < 6){ return UIColor.blackColor()}
+    class func hexStringToColor(_ stringToConvert:String)->UIColor{
+        var cString:NSString = stringToConvert.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()).uppercased()
+        if (cString.length < 6){ return UIColor.black}
         // strip 0X if it appears
-        if (cString.hasPrefix("0X")){ cString = cString.substringFromIndex(2)}
-        if (cString.hasPrefix("#")){ cString = cString.substringFromIndex(1)}
-        if (cString.length != 6){ return UIColor.blackColor()}
+        if (cString.hasPrefix("0X")){ cString = cString.substring(from: 2) as NSString}
+        if (cString.hasPrefix("#")){ cString = cString.substring(from: 1) as NSString}
+        if (cString.length != 6){ return UIColor.black}
         // Separate into r, g, b substrings
 
         var range:NSRange = NSRange()
         range.location = 0;
         range.length = 2;
-        let rString:NSString = cString.substringWithRange(range)
+        let rString:NSString = cString.substring(with: range) as NSString
         range.location = 2;
-        let gString:NSString = cString.substringWithRange(range)
+        let gString:NSString = cString.substring(with: range) as NSString
         range.location = 4;
-        let bString:NSString  = cString.substringWithRange(range)
+        let bString:NSString  = cString.substring(with: range) as NSString
         // Scan values
         var r:UInt32 = 0
         var g:UInt32 = 0
         var b:UInt32 = 0
-        NSScanner(string: rString as String).scanHexInt(&r)
-        NSScanner(string: gString as String).scanHexInt(&g)
-        NSScanner(string: bString as String).scanHexInt(&b)
+        Scanner(string: rString as String).scanHexInt32(&r)
+        Scanner(string: gString as String).scanHexInt32(&g)
+        Scanner(string: bString as String).scanHexInt32(&b)
         return UIColor(red: CGFloat(r)/255.0, green:  CGFloat(g)/255.0, blue:  CGFloat(b)/255.0, alpha: 1)
     }
 
-    class func navigationbar(navigation:UINavigationController) {
-        if(navigation.navigationBar.respondsToSelector(#selector(UINavigationBar.setBackgroundImage(_:forBarMetrics:)))){
-            let list:NSArray = navigation.navigationBar.subviews
+    class func navigationbar(_ navigation:UINavigationController) {
+        if(navigation.navigationBar.responds(to: #selector(UINavigationBar.setBackgroundImage(_:`for`:)(_:forBarMetrics:)))){
+            let list:NSArray = navigation.navigationBar.subviews as NSArray
             for obj in list{
-                if(obj.isKindOfClass(UIImageView.classForCoder())){
+                if((obj as AnyObject).isKind(of: UIImageView.classForCoder())){
                     let imageView:UIImageView = obj as! UIImageView
-                    imageView.hidden = true
+                    imageView.isHidden = true
                 }
             }
-            navigation.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
+            navigation.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
             navigation.navigationBar.shadowImage = UIImage()
-            let imageView:UIImageView = UIImageView(frame: CGRectMake(0, -20, 420, 64))
+            let imageView:UIImageView = UIImageView(frame: CGRect(x: 0, y: -20, width: 420, height: 64))
             imageView.backgroundColor = AppTheme.NEVO_CUSTOM_COLOR(Red: 247.0, Green: 247.0, Blue: 247.0)
             navigation.navigationBar.addSubview(imageView)
-            navigation.navigationBar.sendSubviewToBack(imageView)
+            navigation.navigationBar.sendSubview(toBack: imageView)
         }
     }
 
@@ -337,15 +337,15 @@ class AppTheme {
         var buildinFirmwareVersion:Int  = 0
         let fileArray = GET_FIRMWARE_FILES("Firmwares")
         for tmpfile in fileArray {
-            let selectedFile:NSURL = tmpfile as! NSURL
-            let fileName:NSString? = (selectedFile.path! as NSString).lastPathComponent
+            let selectedFile:URL = tmpfile as! URL
+            let fileName:NSString? = (selectedFile.path as NSString).lastPathComponent as NSString?
             let fileExtension:String? = selectedFile.pathExtension
 
             if fileExtension == "hex"
             {
-                let ran:NSRange = fileName!.rangeOfString("_v")
-                let ran2:NSRange = fileName!.rangeOfString(".hex")
-                let string:String = fileName!.substringWithRange(NSRange(location: ran.location + ran.length,length: ran2.location-ran.location-ran.length))
+                let ran:NSRange = fileName!.range(of: "_v")
+                let ran2:NSRange = fileName!.range(of: ".hex")
+                let string:String = fileName!.substring(with: NSRange(location: ran.location + ran.length,length: ran2.location-ran.location-ran.length))
                 buildinFirmwareVersion = Int(string)!
                 break
             }
@@ -362,14 +362,14 @@ class AppTheme {
         var buildinSoftwareVersion:Int  = 0
         let fileArray = GET_FIRMWARE_FILES("Firmwares")
         for tmpfile in fileArray {
-            let selectedFile = tmpfile as! NSURL
-            let fileName:NSString? = (selectedFile.path! as NSString).lastPathComponent
+            let selectedFile = tmpfile as! URL
+            let fileName:NSString? = (selectedFile.path as NSString).lastPathComponent as NSString?
             let fileExtension:String? = selectedFile.pathExtension
 
             if fileExtension == "bin" {
-                let ran:NSRange = fileName!.rangeOfString("_v")
-                let ran2:NSRange = fileName!.rangeOfString(".bin")
-                let string:String = fileName!.substringWithRange(NSRange(location: ran.location + ran.length,length: ran2.location-ran.location-ran.length))
+                let ran:NSRange = fileName!.range(of: "_v")
+                let ran2:NSRange = fileName!.range(of: ".bin")
+                let string:String = fileName!.substring(with: NSRange(location: ran.location + ran.length,length: ran2.location-ran.location-ran.length))
                 buildinSoftwareVersion = Int(string)!
                 break
             }
@@ -384,21 +384,21 @@ class AppTheme {
 
      :returns: Return path array
      */
-    class func GET_FIRMWARE_FILES(folderName:String) -> NSArray {
+    class func GET_FIRMWARE_FILES(_ folderName:String) -> NSArray {
 
         let AllFilesNames:NSMutableArray = NSMutableArray()
-        let appPath:NSString  = NSBundle.mainBundle().resourcePath!
-        let firmwaresDirectoryPath:NSString = appPath.stringByAppendingPathComponent(folderName)
+        let appPath:NSString  = Bundle.main.resourcePath! as NSString
+        let firmwaresDirectoryPath:NSString = appPath.appendingPathComponent(folderName) as NSString
 
         var  fileNames:[String] = []
         do {
-            fileNames = try NSFileManager.defaultManager().contentsOfDirectoryAtPath(firmwaresDirectoryPath as String)
+            fileNames = try FileManager.default.contentsOfDirectory(atPath: firmwaresDirectoryPath as String)
             XCGLogger.defaultInstance().debug("number of files in directory \(fileNames.count)");
             for fileName in fileNames {
                 XCGLogger.defaultInstance().debug("Found file in directory: \(fileName)");
-                let filePath:String = firmwaresDirectoryPath.stringByAppendingPathComponent(fileName)
-                let fileURL:NSURL = NSURL.fileURLWithPath(filePath)
-                AllFilesNames.addObject(fileURL)
+                let filePath:String = firmwaresDirectoryPath.appendingPathComponent(fileName)
+                let fileURL:URL = URL(fileURLWithPath: filePath)
+                AllFilesNames.add(fileURL)
             }
             return AllFilesNames.copy() as! NSArray
         }catch{
@@ -407,7 +407,7 @@ class AppTheme {
         }
     }
 
-    class func on_ios_simulator(@noescape fun: () -> Void){
+    class func on_ios_simulator(_ fun: () -> Void){
         #if (arch(x86_64) || arch(i386)) && os(iOS)
             
         #else
@@ -431,25 +431,25 @@ class AppTheme {
         return UIColor(red: 179.0/255.0, green: 179.0/255.0, blue: 179.0/255.0, alpha: 1.0)
     }
     
-    class func isEmail(email:String)->Bool{
-        return !email.isMatchedByRegex("[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}")
+    class func isEmail(_ email:String)->Bool{
+        return !email.isMatched(byRegex: "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}")
     }
     
-    class func isPassword(password:String)->Bool{
-        return password.isMatchedByRegex("^[a-zA-Z]w{5,17}$")
+    class func isPassword(_ password:String)->Bool{
+        return password.isMatched(byRegex: "^[a-zA-Z]w{5,17}$")
     }
     
-    class func isNull(object:String)->Bool{
+    class func isNull(_ object:String)->Bool{
         return object.isEmpty
     }
     
-    class func getClassCustomPropertyName(anClass:AnyClass,name:String)->String{
+    class func getClassCustomPropertyName(_ anClass:AnyClass,name:String)->String{
         var outCount:UInt32 = 0;
         var i:Int = 0;
         let pProperty = class_copyPropertyList(anClass, &outCount);
         for (i = Int(outCount)-1; i >= 0; i -= 1){
             // 循环获取属性的名字   property_getName函数返回一个属性的名称
-            let getPropertyName:String = String(CString: property_getName(pProperty[i]),encoding:NSUTF8StringEncoding)!
+            let getPropertyName:String = String(CString: property_getName(pProperty![i]),encoding:String.Encoding.utf8)
             //let getPropertyNameString:String = String(CString: property_getAttributes(pProperty[i]),encoding:NSUTF8StringEncoding)!
             if(getPropertyName == name) {
                 return getPropertyName

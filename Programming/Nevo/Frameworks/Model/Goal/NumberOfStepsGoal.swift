@@ -18,7 +18,7 @@ class NumberOfStepsGoal : Goal {
 
     let HIGH_INTENSITY_STEPS = 20000
     
-    private var mSteps:Int
+    fileprivate var mSteps:Int
     
     init(steps:Int=0) {
 
@@ -30,15 +30,15 @@ class NumberOfStepsGoal : Goal {
         
         mSteps = 0
         
-        if(intensity==GoalIntensity.LOW) {
+        if(intensity==GoalIntensity.low) {
             mSteps = LOW_INTENSITY_STEPS
         }
         
-        if(intensity==GoalIntensity.MEDIUM) {
+        if(intensity==GoalIntensity.medium) {
             mSteps = MEDIUM_INTENSITY_STEPS
         }
         
-        if(intensity==GoalIntensity.HIGH) {
+        if(intensity==GoalIntensity.high) {
             mSteps = HIGH_INTENSITY_STEPS
         }
     }
@@ -49,14 +49,14 @@ class NumberOfStepsGoal : Goal {
     
     func getGoalIntensity() -> GoalIntensity {
         if(mSteps<=LOW_INTENSITY_STEPS) {
-            return GoalIntensity.LOW
+            return GoalIntensity.low
         }
         
         if(mSteps<=MEDIUM_INTENSITY_STEPS) {
-            return GoalIntensity.MEDIUM
+            return GoalIntensity.medium
         }
         
-        return GoalIntensity.HIGH
+        return GoalIntensity.high
 
     }
     

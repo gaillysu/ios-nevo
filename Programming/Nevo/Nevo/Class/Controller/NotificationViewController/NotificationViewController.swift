@@ -11,15 +11,15 @@ import BRYXBanner
 import XCGLogger
 
 class NotificationViewController: UITableViewController,SelectedNotificationDelegate {
-    private var mNotificationOFFArray:[NotificationSetting] = []
-    private var mNotificationONArray:[NotificationSetting] = []
-    private let titleHeader:[String] = ["ACTIVE_NOTIFICATIONS","INACTIVE_NOTIFICATIONS"]
-    private var mNotificationArray:NSArray = NSArray()
+    fileprivate var mNotificationOFFArray:[NotificationSetting] = []
+    fileprivate var mNotificationONArray:[NotificationSetting] = []
+    fileprivate let titleHeader:[String] = ["ACTIVE_NOTIFICATIONS","INACTIVE_NOTIFICATIONS"]
+    fileprivate var mNotificationArray:NSArray = NSArray()
 
     @IBOutlet weak var notificationView: NotificationView!
 
     init() {
-        super.init(nibName: "NotificationViewController", bundle: NSBundle.mainBundle())
+        super.init(nibName: "NotificationViewController", bundle: Bundle.main)
     }
 
     required init(coder aDecoder: NSCoder) {
@@ -30,7 +30,7 @@ class NotificationViewController: UITableViewController,SelectedNotificationDele
         super.viewDidLoad()
         initNotificationSettingArray()
         notificationView.bulidNotificationView(self.navigationItem)
-        notificationView.backgroundColor = UIColor.whiteColor()
+        notificationView.backgroundColor = UIColor.white
     }
 
     override func didReceiveMemoryWarning() {
@@ -49,16 +49,16 @@ class NotificationViewController: UITableViewController,SelectedNotificationDele
         mNotificationArray = UserNotification.getAll()
         
         let notificationTypeArray:[NotificationType] = [
-            NotificationType.CALL,
-            NotificationType.EMAIL,
-            NotificationType.FACEBOOK,
-            NotificationType.SMS,
-            NotificationType.WECHAT,
-            NotificationType.CALENDAR]
+            NotificationType.call,
+            NotificationType.email,
+            NotificationType.facebook,
+            NotificationType.sms,
+            NotificationType.wechat,
+            NotificationType.calendar]
         for notificationType in notificationTypeArray {
             for model in mNotificationArray{
                 let notification:UserNotification = model as! UserNotification
-                if(notification.NotificationType == notificationType.rawValue){
+                if(notification.NotificationType == notificationType.rawValue as String){
                     let setting:NotificationSetting = NotificationSetting(type: notificationType, clock: notification.clock, color: 0, states:notification.status)
                     if(notification.status) {
                         mNotificationONArray.append(setting)
@@ -72,7 +72,7 @@ class NotificationViewController: UITableViewController,SelectedNotificationDele
     }
 
     // MARK: - SelectedNotificationDelegate
-    func didSelectedNotificationDelegate(clockIndex:Int,ntSwitchState:Bool,notificationType:String){
+    func didSelectedNotificationDelegate(_ clockIndex:Int,ntSwitchState:Bool,notificationType:String){
         XCGLogger.defaultInstance().debug("clockIndex····:\(clockIndex),ntSwitchState·····:\(ntSwitchState)")
         for model in mNotificationArray {
             let notModel:UserNotification = model as! UserNotification
@@ -99,27 +99,27 @@ class NotificationViewController: UITableViewController,SelectedNotificationDele
     }
 
     // MARK: - Table view Delegate
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat{
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat{
         return 45.0
     }
 
-    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat{
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat{
         return 40.0
     }
 
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
+        tableView.deselectRow(at: indexPath, animated: true)
         var titleString:String = ""
         var clockIndex:Int = 0
         var state:Bool = false
-        switch (indexPath.section){
+        switch ((indexPath as NSIndexPath).section){
         case 0:
-            let notificationseting:NotificationSetting = mNotificationONArray[indexPath.row]
+            let notificationseting:NotificationSetting = mNotificationONArray[(indexPath as NSIndexPath).row]
             titleString = notificationseting.typeName
             clockIndex = notificationseting.getClock()
             state = notificationseting.getStates()
         case 1:
-            let notificationseting:NotificationSetting = mNotificationOFFArray[indexPath.row]
+            let notificationseting:NotificationSetting = mNotificationOFFArray[(indexPath as NSIndexPath).row]
             titleString = notificationseting.typeName
             clockIndex = notificationseting.getClock()
             state = notificationseting.getStates()
@@ -135,7 +135,7 @@ class NotificationViewController: UITableViewController,SelectedNotificationDele
     }
 
     // MARK: - Table view data source
-    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String{
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String{
         if(section == 0) {
             if(mNotificationONArray.count == 0) {
                 return ""
@@ -151,12 +151,12 @@ class NotificationViewController: UITableViewController,SelectedNotificationDele
         }
     }
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return titleHeader.count
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         switch (section){
         case 0:
@@ -168,15 +168,15 @@ class NotificationViewController: UITableViewController,SelectedNotificationDele
     }
 
 
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        switch (indexPath.section){
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        switch ((indexPath as NSIndexPath).section){
         case 0:
-            let notificationseting:NotificationSetting = mNotificationONArray[indexPath.row]
+            let notificationseting:NotificationSetting = mNotificationONArray[(indexPath as NSIndexPath).row]
             var detailString:String = ""
             notificationseting.getStates() ? (detailString = notificationseting.getColorName()) : (detailString = NSLocalizedString("turned_off", comment: ""))
             return NotificationView.NotificationSystemTableViewCell(indexPath, tableView: tableView, title: notificationseting.typeName, detailLabel:detailString)
         case 1:
-            let notificationseting:NotificationSetting = mNotificationOFFArray[indexPath.row]
+            let notificationseting:NotificationSetting = mNotificationOFFArray[(indexPath as NSIndexPath).row]
             var detailString:String = ""
             notificationseting.getStates() ? (detailString = notificationseting.getColorName()) : (detailString = NSLocalizedString("turned_off", comment: ""))
             return NotificationView.NotificationSystemTableViewCell(indexPath, tableView: tableView, title: notificationseting.typeName, detailLabel:detailString)

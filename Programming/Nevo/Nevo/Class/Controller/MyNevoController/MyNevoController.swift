@@ -13,15 +13,15 @@ import XCGLogger
 
 class MyNevoController: UITableViewController,UIAlertViewDelegate {
 
-    private var currentBattery:Int = 0
-    private var rssialert :UIAlertView?
-    private var buildinSoftwareVersion:Int = 0
-    private var buildinFirmwareVersion:Int = 0
+    fileprivate var currentBattery:Int = 0
+    fileprivate var rssialert :UIAlertView?
+    fileprivate var buildinSoftwareVersion:Int = 0
+    fileprivate var buildinFirmwareVersion:Int = 0
 
     var titleArray:[String] = []
 
     init() {
-        super.init(nibName: "MyNevoController", bundle: NSBundle.mainBundle())
+        super.init(nibName: "MyNevoController", bundle: Bundle.main)
     }
 
     required init(coder aDecoder: NSCoder) {
@@ -74,17 +74,17 @@ class MyNevoController: UITableViewController,UIAlertViewDelegate {
         }
     }
 
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         AppDelegate.getAppDelegate().startConnect(false)
         if AppDelegate.getAppDelegate().isConnected() {
             AppDelegate.getAppDelegate().ReadBatteryLevel()
         }
-        let indexPath:NSIndexPath = NSIndexPath(forRow: 0, inSection: 0)
-        self.tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
+        let indexPath:IndexPath = IndexPath(row: 0, section: 0)
+        self.tableView.reloadRows(at: [indexPath], with: UITableViewRowAnimation.automatic)
     }
     
-    override func viewDidDisappear(animated: Bool) {
-        rssialert?.dismissWithClickedButtonIndex(1, animated: true)
+    override func viewDidDisappear(_ animated: Bool) {
+        rssialert?.dismiss(withClickedButtonIndex: 1, animated: true)
         SwiftEventBus.unregister(self, name: EVENT_BUS_RSSI_VALUE)
         SwiftEventBus.unregister(self, name: EVENT_BUS_CONNECTION_STATE_CHANGED_KEY)
         SwiftEventBus.unregister(self, name: EVENT_BUS_RAWPACKET_DATA_KEY)
@@ -100,11 +100,11 @@ class MyNevoController: UITableViewController,UIAlertViewDelegate {
     }
 
     // MARK: - UITableViewDelegate
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 45.0
     }
 
-    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat{
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat{
         if(section == 0){
             let headerimage:UIImageView = MyNevoHeaderView.getMyNevoHeaderView()
             return headerimage.frame.size.height
@@ -112,9 +112,9 @@ class MyNevoController: UITableViewController,UIAlertViewDelegate {
         return 0
     }
 
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        if(indexPath.row == 0){
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
+        tableView.deselectRow(at: indexPath, animated: true)
+        if((indexPath as NSIndexPath).row == 0){
             if(AppDelegate.getAppDelegate().getSoftwareVersion().integerValue >= buildinSoftwareVersion && AppDelegate.getAppDelegate().getFirmwareVersion().integerValue >= buildinFirmwareVersion){
                 let banner = Banner(title: NSLocalizedString("is_watch_version", comment: ""), subtitle: nil, image: nil, backgroundColor: AppTheme.NEVO_SOLAR_YELLOW())
                 banner.dismissesOnTap = true
@@ -124,32 +124,32 @@ class MyNevoController: UITableViewController,UIAlertViewDelegate {
             if(buildinSoftwareVersion==0&&buildinFirmwareVersion==0){return}
             let otaCont:NevoOtaViewController = NevoOtaViewController()
             let navigation:UINavigationController = UINavigationController(rootViewController: otaCont)
-            self.presentViewController(navigation, animated: true, completion: nil)
+            self.present(navigation, animated: true, completion: nil)
         }
 
     }
 
-    override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView{
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView{
         let headerimage:UIImageView = MyNevoHeaderView.getMyNevoHeaderView()
-        let view:UIView = UIView(frame: CGRectMake(0, 0, UIScreen.mainScreen().bounds.size.width, headerimage.frame.size.height))
+        let view:UIView = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: headerimage.frame.size.height))
         view.addSubview(headerimage)
-        headerimage.center = CGPointMake(view.frame.size.width/2.0, view.frame.size.height/2.0)
+        headerimage.center = CGPoint(x: view.frame.size.width/2.0, y: view.frame.size.height/2.0)
         return view
     }
 
     // MARK: - UITableViewDataSource
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int{
+    override func numberOfSections(in tableView: UITableView) -> Int{
         return 1
 
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
         return titleArray.count
     }
 
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var detailString:String = ""
-        switch (indexPath.row){
+        switch ((indexPath as NSIndexPath).row){
         case 0:
            detailString = "MCU:\(AppDelegate.getAppDelegate().getSoftwareVersion()) BLE:\(AppDelegate.getAppDelegate().getFirmwareVersion())"
            //buildinSoftwareVersion:Int = 0 buildinFirmwareVersion:Int = 0
@@ -164,11 +164,11 @@ class MyNevoController: UITableViewController,UIAlertViewDelegate {
             default: detailString = NSLocalizedString("", comment: "")
             }
         case 2:
-            let loclString:String = (NSBundle.mainBundle().infoDictionary! as NSDictionary).objectForKey("CFBundleShortVersionString") as! String
+            let loclString:String = (Bundle.main.infoDictionary! as NSDictionary).object(forKey: "CFBundleShortVersionString") as! String
             detailString = loclString
         default: detailString = NSLocalizedString("", comment: "")
         }
-        return MyNevoView.getMyNevoViewTableViewCell(indexPath, tableView: tableView, title: titleArray[indexPath.row], detailText: detailString)
+        return MyNevoView.getMyNevoViewTableViewCell(indexPath, tableView: tableView, title: titleArray[(indexPath as NSIndexPath).row], detailText: detailString)
     }
     /*
     // MARK: - Navigation

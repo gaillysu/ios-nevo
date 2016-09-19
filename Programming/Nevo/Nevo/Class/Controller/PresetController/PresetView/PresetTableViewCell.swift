@@ -16,12 +16,12 @@ class PresetTableViewCell: UITableViewCell,ButtonManagerCallBack {
     var delegate:ButtonManagerCallBack?
 
 
-    @IBAction func controllManager(sender: AnyObject) {
+    @IBAction func controllManager(_ sender: AnyObject) {
        delegate?.controllManager(sender)
-        if(presetStates.on){
-            self.backgroundColor = UIColor.whiteColor()
+        if(presetStates.isOn){
+            self.backgroundColor = UIColor.white
         }else{
-            self.backgroundColor = UIColor.clearColor()
+            self.backgroundColor = UIColor.clear
         }
     }
 
@@ -30,7 +30,7 @@ class PresetTableViewCell: UITableViewCell,ButtonManagerCallBack {
         // Initialization code
     }
 
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state

@@ -55,7 +55,7 @@ class DailyTrackerNevoPacket: NevoPacket {
     */
     func getHourlySteps() ->[Int]
     {
-        var HourlySteps = [Int](count: 24, repeatedValue: 0)
+        var HourlySteps = [Int](repeating: 0, count: 24)
         let HEADERLENGTH:Int = 6
         var hourlySteps:Int = 0
         
@@ -95,7 +95,7 @@ class DailyTrackerNevoPacket: NevoPacket {
     */
     func getHourlyDist() ->[Int]
     {
-        var HourlyDist = [Int](count: 24, repeatedValue: 0)
+        var HourlyDist = [Int](repeating: 0, count: 24)
         let HEADERLENGTH:Int = 6
         var hourlyDisc:Int = 0
         
@@ -145,7 +145,7 @@ class DailyTrackerNevoPacket: NevoPacket {
     */
     func getHourlyCalories() ->[Int]
     {
-        var HourlyCalories = [Int](count: 24, repeatedValue: 0)
+        var HourlyCalories = [Int](repeating: 0, count: 24)
         let HEADERLENGTH:Int = 6
         var hourlyCalories:Int = 0
         
@@ -182,7 +182,7 @@ class DailyTrackerNevoPacket: NevoPacket {
     */
     func getHourlySleepTime() ->[Int]
     {
-        var HourlySleepTime = [Int](count: 24, repeatedValue: 0)
+        var HourlySleepTime = [Int](repeating: 0, count: 24)
         let HEADERLENGTH:Int = 6
         var hourlySleepTime:Int = 0
         
@@ -212,7 +212,7 @@ class DailyTrackerNevoPacket: NevoPacket {
     */
     func getHourlyWakeTime() ->[Int]
     {
-        var HourlyWakeTime = [Int](count: 24, repeatedValue: 0)
+        var HourlyWakeTime = [Int](repeating: 0, count: 24)
         let HEADERLENGTH:Int = 6
         var hourlyWakeTime:Int = 0
         
@@ -243,7 +243,7 @@ class DailyTrackerNevoPacket: NevoPacket {
     */
     func getHourlyLightTime() ->[Int]
     {
-        var HourlyLightTime = [Int](count: 24, repeatedValue: 0)
+        var HourlyLightTime = [Int](repeating: 0, count: 24)
         let HEADERLENGTH:Int = 6
         var hourlyLightTime:Int = 0
         
@@ -273,7 +273,7 @@ class DailyTrackerNevoPacket: NevoPacket {
     */
     func getHourlyDeepTime() ->[Int]
     {
-        var HourlyDeepTime = [Int](count: 24, repeatedValue: 0)
+        var HourlyDeepTime = [Int](repeating: 0, count: 24)
         let HEADERLENGTH:Int = 6
         var hourlyDeepTime:Int = 0
         
@@ -336,7 +336,7 @@ class DailyTrackerNevoPacket: NevoPacket {
         month = month.length >= 2 ? NSString(format: "\(NSData2Bytes(getPackets()[0])[4])") : NSString(format: "0\(NSData2Bytes(getPackets()[0])[4])")
         var day:NSString = NSString(format: "\(NSData2Bytes(getPackets()[0])[5])")
         day = day.length >= 2 ? NSString(format: "\(NSData2Bytes(getPackets()[0])[5])") : NSString(format: "0\(NSData2Bytes(getPackets()[0])[5])")
-        return NSString(format: "\(year)%@%@",month,day).integerValue
+        return NSString(format: "\(year)%@%@" as NSString,month,day).integerValue
     }
 
 
@@ -374,7 +374,7 @@ class DailyTrackerNevoPacket: NevoPacket {
      - returns: hour running distance array
      */
     func getHourlyRunningDistance()->[Int] {
-        var HourlyRunningDistance = [Int](count: 24, repeatedValue: 0)
+        var HourlyRunningDistance = [Int](repeating: 0, count: 24)
         let HEADERLENGTH:Int = 6
         var hourlyRunningTime:Int = 0
 
@@ -461,7 +461,7 @@ class DailyTrackerNevoPacket: NevoPacket {
     }
     
     func getHourlySwimTime()-> [Int] {
-        var hourlySwim = [Int](count: 24, repeatedValue: 0)
+        var hourlySwim = [Int](repeating: 0, count: 24)
         let HEADERLENGTH:Int = 6
         var hourlySwimTime:Int = 0
         
@@ -479,7 +479,7 @@ class DailyTrackerNevoPacket: NevoPacket {
                     }
                 }
             }
-            hourlySwim.replaceRange(i..<i+1, with: [hourlySwimTime/60])
+            hourlySwim.replaceSubrange(i..<i+1, with: [hourlySwimTime/60])
         }
         return hourlySwim
     }

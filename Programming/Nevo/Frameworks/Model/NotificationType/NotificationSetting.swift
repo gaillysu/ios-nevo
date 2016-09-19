@@ -9,10 +9,10 @@
 import UIKit
 
 class NotificationSetting: NSObject {
-    private var mStates:Bool = true
-    private let mType:NotificationType
-    private var mClock:Int = 0
-    private var mColor:NSNumber = 0
+    fileprivate var mStates:Bool = true
+    fileprivate let mType:NotificationType
+    fileprivate var mClock:Int = 0
+    fileprivate var mColor:NSNumber = 0
     var typeName:String {
         get {
             return self.mType.rawValue as String
@@ -23,11 +23,11 @@ class NotificationSetting: NSObject {
         mType = type
         super.init()
         mClock = clock
-        mColor = NSNumber(unsignedInt: self.replaceColor(clock))
+        mColor = NSNumber(value: self.replaceColor(clock) as UInt32)
         mStates = states
     }
 
-    private func replaceColor(clock:Int)->UInt32{
+    fileprivate func replaceColor(_ clock:Int)->UInt32{
         // default value
         var ledColor:UInt32
         switch clock {
@@ -51,7 +51,7 @@ class NotificationSetting: NSObject {
         return ledColor
     }
 
-    func updateValue(clock:Int, states:Bool){
+    func updateValue(_ clock:Int, states:Bool){
         mClock = clock
         mStates = states
     }
@@ -70,11 +70,11 @@ class NotificationSetting: NSObject {
         return mColor
     }
     
-    func setColor(color:Int) {
-        mColor = color
+    func setColor(_ color:Int) {
+        mColor = NSNumber(color)
     }
 
-    func setClock(clock:Int) {
+    func setClock(_ clock:Int) {
         mClock = clock
     }
     
@@ -82,7 +82,7 @@ class NotificationSetting: NSObject {
         return mStates
     }
     
-    func setStates(states:Bool) {
+    func setStates(_ states:Bool) {
         mStates = states
     }
     /**
@@ -117,13 +117,13 @@ class NotificationSetting: NSObject {
 }
 
 enum NotificationType:NSString {
-    case CALL = "CALL"
-    case SMS = "SMS"
-    case EMAIL = "EMAIL"
-    case FACEBOOK = "Facebook"
-    case CALENDAR = "Calendar"
-    case WECHAT = "WeChat"
-    case WHATSAPP = "Whatsapp"
+    case call = "CALL"
+    case sms = "SMS"
+    case email = "EMAIL"
+    case facebook = "Facebook"
+    case calendar = "Calendar"
+    case wechat = "WeChat"
+    case whatsapp = "Whatsapp"
     
-    static let allValues:[NotificationType] = [CALL, SMS, EMAIL, FACEBOOK, CALENDAR, WECHAT, WHATSAPP]
+    static let allValues:[NotificationType] = [call, sms, email, facebook, calendar, wechat, whatsapp]
 }

@@ -10,20 +10,20 @@ import UIKit
 
 
 protocol CancelSelectorDelegate:NSObjectProtocol {
-    func cancelSelectorItem(sender:AnyObject)
+    func cancelSelectorItem(_ sender:AnyObject)
 }
 
 class SyncBar: NSObject,CancelSelectorDelegate {
 
     class hudLoader: UIView {
-        var statusLabel:UILabel = UILabel(frame: CGRectMake(0,0,60,60))
+        var statusLabel:UILabel = UILabel(frame: CGRect(x: 0,y: 0,width: 60,height: 60))
         //var spinnerImage:UIImageView = UIImageView(frame: CGRectMake(0,0,60,60))
-        var cancelButton:UIButton = UIButton(type: UIButtonType.Custom)
+        var cancelButton:UIButton = UIButton(type: UIButtonType.custom)
         var BGColor:UIColor = AppTheme.hexStringToColor("#000000") //default black
         var cancelDelegate:CancelSelectorDelegate?
         override init(frame: CGRect) {
             super.init(frame: frame)
-            self.backgroundColor = UIColor.blackColor()
+            self.backgroundColor = UIColor.black
             self.LoadView()
         }
 
@@ -31,10 +31,10 @@ class SyncBar: NSObject,CancelSelectorDelegate {
             fatalError("init(coder:) has not been implemented")
         }
 
-        private func LoadView(){
-            statusLabel = UILabel(frame: CGRectMake(0,0,self.frame.size.width-30,30))
-            statusLabel.backgroundColor = UIColor.clearColor()
-            statusLabel.textAlignment = NSTextAlignment.Center
+        fileprivate func LoadView(){
+            statusLabel = UILabel(frame: CGRect(x: 0,y: 0,width: self.frame.size.width-30,height: 30))
+            statusLabel.backgroundColor = UIColor.clear
+            statusLabel.textAlignment = NSTextAlignment.center
             self.addSubview(statusLabel)
 
             //spinnerImage = UIImageView(frame: CGRectMake(statusLabel.frame.origin.x+statusLabel.frame.size.width, 0, 30, 30))
@@ -42,13 +42,13 @@ class SyncBar: NSObject,CancelSelectorDelegate {
             //spinnerImage.image = UIImage(named: "spinner")
            // self.addSubview(spinnerImage)
 
-            cancelButton.setImage(UIImage(named: "syncBar_cancel"), forState: UIControlState.Normal)
-            cancelButton.frame = CGRectMake(self.frame.size.width-30,0,30,30)
-            cancelButton.addTarget(self, action: #selector(hudLoader.cancelAction(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+            cancelButton.setImage(UIImage(named: "syncBar_cancel"), for: UIControlState())
+            cancelButton.frame = CGRect(x: self.frame.size.width-30,y: 0,width: 30,height: 30)
+            cancelButton.addTarget(self, action: #selector(hudLoader.cancelAction(_:)), for: UIControlEvents.touchUpInside)
             self.addSubview(cancelButton)
         }
 
-        func cancelAction(sender:UIButton){
+        func cancelAction(_ sender:UIButton){
             cancelDelegate?.cancelSelectorItem(sender)
         }
         
@@ -59,11 +59,11 @@ class SyncBar: NSObject,CancelSelectorDelegate {
         return syncBar
     }
 
-    private var statusText:String = ""
-    var hud:hudLoader = hudLoader(frame: CGRectMake(0, 0, UIScreen.mainScreen().bounds.size.width, 30))
+    fileprivate var statusText:String = ""
+    var hud:hudLoader = hudLoader(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: 30))
     var currentView:UIView?
 
-    private override init() {
+    fileprivate override init() {
         super.init()
     }
 
@@ -71,7 +71,7 @@ class SyncBar: NSObject,CancelSelectorDelegate {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func cancelSelectorItem(sender:AnyObject){
+    func cancelSelectorItem(_ sender:AnyObject){
         self.hideFromView(currentView!)
     }
 
@@ -88,48 +88,49 @@ class SyncBar: NSObject,CancelSelectorDelegate {
         return false
     }
 
-    func setStatusLabel(label:String) {
+    func setStatusLabel(_ label:String) {
         statusText = label
         hud.statusLabel.text = statusText
-        hud.statusLabel.textColor = UIColor.whiteColor()
+        hud.statusLabel.textColor = UIColor.white
     }
 
-    func showHudAddedToView(view:UIView){
+    func showHudAddedToView(_ view:UIView){
         currentView = view;
-        hud = hudLoader(frame: CGRectMake(0, 0, UIScreen.mainScreen().bounds.size.width, 0))
+        hud = hudLoader(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: 0))
         hud.cancelDelegate = self
         hud.statusLabel.text = statusText
-        hud.statusLabel.textColor = UIColor.whiteColor()
+        hud.statusLabel.textColor = UIColor.white
         view.addSubview(hud)
         //self.spinnerRotate()
-        UIView.animateWithDuration(1, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0.0, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
-            self.hud.frame = CGRectMake(0, 0, UIScreen.mainScreen().bounds.size.width, 30)
+        UIView.animate(withDuration: 1, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0.0, options: UIViewAnimationOptions(), animations: { () -> Void in
+            self.hud.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: 30)
             }) { (completion:Bool) -> Void in
 
         }
 
     }
 
-    func hideFromView(view:UIView){
+    func hideFromView(_ view:UIView){
         self.hide(hud, from: view)
     }
 
-    private func spinnerRotate(){
+    fileprivate func spinnerRotate(){
         let fullRotation:CABasicAnimation = CABasicAnimation(keyPath: "transform.rotation")
-        fullRotation.fromValue = NSNumber(float: 0)
-        fullRotation.toValue = NSNumber(float: Float((Double(360.0)*M_PI)/Double(180.0)))
+        fullRotation.fromValue = NSNumber(value: 0 as Float)
+        fullRotation.toValue = NSNumber(value: Float((Double(360.0)*M_PI)/Double(180.0)) as Float)
         fullRotation.duration = 1.15
         fullRotation.repeatCount = .infinity
         //hud.spinnerImage.layer.addAnimation(fullRotation, forKey: "360")
     }
 
-    private func hide(var presentHud:hudLoader,from view:UIView){
+    private func hide(_ presentHud:hudLoader,from view:UIView){
+        var presentHud = presentHud
         //hud.spinnerImage.removeFromSuperview()
         //hud.backgroundColor = AppTheme.hexStringToColor("#FF0000")
         presentHud = hud
         presentHud.statusLabel.text = statusText
-        UIView .animateWithDuration(1, delay: 0.2, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: UIViewAnimationOptions.CurveEaseOut, animations: { () -> Void in
-            presentHud.frame = CGRectMake(0,0, view.frame.size.width,0);
+        UIView .animate(withDuration: 1, delay: 0.2, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: UIViewAnimationOptions.curveEaseOut, animations: { () -> Void in
+            presentHud.frame = CGRect(x: 0,y: 0, width: view.frame.size.width,height: 0);
             }) { (finished:Bool) -> Void in
                 presentHud.removeFromSuperview()
         }

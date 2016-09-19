@@ -8,9 +8,9 @@
 
 import Foundation
 
-public class Alert: NSObject {
+open class Alert: NSObject {
     
-    class func Warning(delegate: UIViewController, message: String) {
+    class func Warning(_ delegate: UIViewController, message: String) {
         let alert = UIAlertController(title: "Warning", message: message, preferredStyle: UIAlertControllerStyle.Alert)
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
         delegate.presentViewController(alert, animated: true, completion: nil)

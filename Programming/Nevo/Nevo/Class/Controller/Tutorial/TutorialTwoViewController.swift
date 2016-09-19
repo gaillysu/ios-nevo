@@ -13,7 +13,7 @@ class TutorialTwoViewController: UIViewController {
     @IBOutlet weak var turnBluetoothOnButton: UIButton!
 
     init() {
-        super.init(nibName: "TutorialTwoViewController", bundle: NSBundle.mainBundle())
+        super.init(nibName: "TutorialTwoViewController", bundle: Bundle.mainBundle())
     }
 
     required init(coder aDecoder: NSCoder) {
@@ -24,7 +24,7 @@ class TutorialTwoViewController: UIViewController {
         
     }
     
-    @IBAction func turnBluetoothOnAction(sender: AnyObject) {
+    @IBAction func turnBluetoothOnAction(_ sender: AnyObject) {
         let tutorialTwo = TutorialThreeViewController()
         self.navigationController?.pushViewController(tutorialTwo, animated: true)
     }

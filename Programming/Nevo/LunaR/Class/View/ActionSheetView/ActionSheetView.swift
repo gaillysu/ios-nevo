@@ -14,7 +14,7 @@ class ActionSheetView: UIAlertController {
         super.viewDidLoad()
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if isSetSubView {
             self.setSubView()
@@ -42,7 +42,7 @@ class ActionSheetView: UIAlertController {
         // Dispose of any resources that can be recreated.
     }
     
-    override func setValue(value: AnyObject?, forUndefinedKey key: String) {
+    override func setValue(_ value: Any?, forUndefinedKey key: String) {
         
     }
 

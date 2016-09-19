@@ -14,41 +14,41 @@ class AddPresetView: UIView {
     @IBOutlet weak var presetNumber: UITextField!
     @IBOutlet weak var presetName: UITextField!
 
-    func bulidAddPresetView(navigation:UINavigationItem,delegate:ButtonManagerCallBack){
+    func bulidAddPresetView(_ navigation:UINavigationItem,delegate:ButtonManagerCallBack){
         mDelegate = delegate
         navigation.title = NSLocalizedString("add_goal", comment: "")
         //self.backgroundColor = AppTheme.hexStringToColor("#EFEFF4")//AppTheme.NEVO_CUSTOM_COLOR(Red: 241.0, Green: 240.0, Blue: 241.0)
 
-        let rightButton:UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Save, target: self, action: #selector(AddPresetView.controllManager(_:)))
+        let rightButton:UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.save, target: self, action: #selector(AddPresetView.controllManager(_:)))
         navigation.rightBarButtonItem = rightButton
 
-        let rightView:UILabel = UILabel(frame: CGRectMake(0,0,50,presetNumber.frame.size.height))
+        let rightView:UILabel = UILabel(frame: CGRect(x: 0,y: 0,width: 50,height: presetNumber.frame.size.height))
         rightView.text = NSLocalizedString("steps_unit", comment: "")
-        rightView.textAlignment = NSTextAlignment.Center
-        rightView.font = UIFont.systemFontOfSize(18)
-        rightView.textColor = UIColor.grayColor()
+        rightView.textAlignment = NSTextAlignment.center
+        rightView.font = UIFont.systemFont(ofSize: 18)
+        rightView.textColor = UIColor.gray
         presetNumber.rightView = rightView
-        presetNumber.rightViewMode = UITextFieldViewMode.Always
-        presetNumber.textAlignment = NSTextAlignment.Right
-        presetNumber.font = UIFont.systemFontOfSize(18)
-        presetNumber.keyboardType = UIKeyboardType.NumberPad
+        presetNumber.rightViewMode = UITextFieldViewMode.always
+        presetNumber.textAlignment = NSTextAlignment.right
+        presetNumber.font = UIFont.systemFont(ofSize: 18)
+        presetNumber.keyboardType = UIKeyboardType.numberPad
         presetNumber.layer.cornerRadius = 8
         presetNumber.layer.masksToBounds = true
         presetNumber.layer.borderWidth = 1
-        presetNumber.layer.borderColor = UIColor.grayColor().CGColor
-        presetNumber.backgroundColor = UIColor.whiteColor()
+        presetNumber.layer.borderColor = UIColor.gray.cgColor
+        presetNumber.backgroundColor = UIColor.white
 
-        presetName.leftView = UILabel(frame: CGRectMake(0,0,10,presetName.frame.size.height))
-        presetName.leftViewMode = UITextFieldViewMode.Always
+        presetName.leftView = UILabel(frame: CGRect(x: 0,y: 0,width: 10,height: presetName.frame.size.height))
+        presetName.leftViewMode = UITextFieldViewMode.always
         presetName.layer.cornerRadius = 8
         presetName.layer.masksToBounds = true
         presetName.layer.borderWidth = 1
-        presetName.layer.borderColor = UIColor.whiteColor().CGColor
+        presetName.layer.borderColor = UIColor.white.cgColor
         presetName.placeholder = NSLocalizedString("goal_name", comment: "")
         presetName.backgroundColor = AppTheme.NEVO_SOLAR_GRAY()
     }
 
-    func controllManager(sender:AnyObject){
+    func controllManager(_ sender:AnyObject){
         mDelegate?.controllManager(sender)
     }
     /*

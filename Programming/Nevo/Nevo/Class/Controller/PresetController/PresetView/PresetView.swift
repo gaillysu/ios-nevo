@@ -13,36 +13,36 @@ class PresetView: UITableView {
     var mDelegate:ButtonManagerCallBack?
     var leftButton:UIBarButtonItem?
 
-    func bulidPresetView(navigation:UINavigationItem,delegateB:ButtonManagerCallBack){
+    func bulidPresetView(_ navigation:UINavigationItem,delegateB:ButtonManagerCallBack){
         mDelegate = delegateB
         navigation.title = NSLocalizedString("title_goal", comment: "")
-        leftButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Add, target: self, action: Selector("controllManager:"))
+        leftButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.add, target: self, action: #selector(PresetView.controllManager(_:)))
         navigation.rightBarButtonItem = leftButton
     }
 
-    func getPresetTableViewCell(indexPath:NSIndexPath,tableView:UITableView,presetArray:[Presets],delegate:ButtonManagerCallBack)->UITableViewCell{
+    func getPresetTableViewCell(_ indexPath:IndexPath,tableView:UITableView,presetArray:[Presets],delegate:ButtonManagerCallBack)->UITableViewCell{
         let endCellID:String = "PresetTableViewCell"
-        var endCell = tableView.dequeueReusableCellWithIdentifier(endCellID)
+        var endCell = tableView.dequeueReusableCell(withIdentifier: endCellID)
         if (endCell == nil) {
-            let nibs:NSArray = NSBundle.mainBundle().loadNibNamed("PresetTableViewCell", owner: self, options: nil)
-            endCell = nibs.objectAtIndex(0) as? PresetTableViewCell;
+            let nibs:NSArray = Bundle.main.loadNibNamed("PresetTableViewCell", owner: self, options: nil)
+            endCell = nibs.object(at: 0) as? PresetTableViewCell;
 
         }
         (endCell as! PresetTableViewCell).delegate = delegate
-        (endCell as! PresetTableViewCell).presetStates.tag = indexPath.row
+        (endCell as! PresetTableViewCell).presetStates.tag = (indexPath as NSIndexPath).row
 
-        let presetModel:Presets = presetArray[indexPath.row]
+        let presetModel:Presets = presetArray[(indexPath as NSIndexPath).row]
         (endCell as! PresetTableViewCell).presetSteps.text = "\(presetModel.steps)"
         (endCell as! PresetTableViewCell).presetName.text = NSLocalizedString("\(presetModel.label)", comment: "")
-        (endCell as! PresetTableViewCell).presetStates.on = presetModel.status
+        (endCell as! PresetTableViewCell).presetStates.isOn = presetModel.status
         if(!presetModel.status){
-            (endCell as! PresetTableViewCell).backgroundColor = UIColor.clearColor()
+            (endCell as! PresetTableViewCell).backgroundColor = UIColor.clear
         }
-        endCell?.selectionStyle = UITableViewCellSelectionStyle.None;
+        endCell?.selectionStyle = UITableViewCellSelectionStyle.none;
         return endCell!
     }
 
-    func controllManager(sender:AnyObject){
+    func controllManager(_ sender:AnyObject){
         mDelegate?.controllManager(sender)
     }
 

@@ -28,26 +28,26 @@ class MainTabBarController: UITabBarController,UITabBarControllerDelegate {
         let viewArray:[AnyObject] = self.viewControllers!
         for nav in viewArray {
             let contll = (nav as! UINavigationController).topViewController
-            if contll!.isKindOfClass(AlarmClockController){
+            if contll!.isKind(of: AlarmClockController.self){
                 (nav as! UINavigationController).tabBarItem.title = NSLocalizedString("alarmTitle", comment: "")
                 contll?.title = NSLocalizedString("alarmTitle", comment: "")
                 XCGLogger.defaultInstance().debug("AlarmClockController:\(contll)")
 
             }
 
-            if contll!.isKindOfClass(PageViewController){
+            if contll!.isKind(of: PageViewController.self){
                 (nav as! UINavigationController).tabBarItem.title = NSLocalizedString("Dashboard", comment: "")
                 contll?.title = NSLocalizedString("Dashboard", comment: "")
                 XCGLogger.defaultInstance().debug("StepController:\(contll)")
             }
             
-            if contll!.isKindOfClass(AnalysisController){
+            if contll!.isKind(of: AnalysisController.self){
                 
                 (nav as! UINavigationController).tabBarItem.title = NSLocalizedString("Analysis", comment: "")
                 contll?.title = NSLocalizedString("Analysis", comment: "")
             }
 
-            if contll!.isKindOfClass(SetingViewController){
+            if contll!.isKind(of: SetingViewController.self){
                 (nav as! UINavigationController).tabBarItem.title = NSLocalizedString("Setting", comment: "")
                 contll?.title = NSLocalizedString("Setting", comment: "")
                 XCGLogger.defaultInstance().debug("SetingViewController:\(contll)")
@@ -56,7 +56,7 @@ class MainTabBarController: UITabBarController,UITabBarControllerDelegate {
         }
     }
 
-    func tabBarController(tabBarController: UITabBarController, didSelectViewController viewController: UIViewController){
+    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController){
 
     }
 

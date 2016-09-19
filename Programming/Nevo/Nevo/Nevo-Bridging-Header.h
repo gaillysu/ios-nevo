@@ -12,7 +12,6 @@
 #import "IntelHex2BinConverter.h"
 #import "FXBlurView.h"
 #import "MBProgressHUD+MJ.h"
-#import <UMMobClick/MobClick.h>
 #import <CommonCrypto/CommonCrypto.h>
 #import "iRate.h"
 #endif

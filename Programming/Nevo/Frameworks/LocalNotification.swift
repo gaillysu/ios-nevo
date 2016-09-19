@@ -16,43 +16,43 @@ class LocalNotification: NSObject {
     
     // MARK: - Schedule Notification
     
-    func scheduleNotificationWithKey(key: String, title: String, message: String, seconds: Double, userInfo: [NSObject: AnyObject]?) {
-        let date = NSDate(timeIntervalSinceNow: NSTimeInterval(seconds))
+    func scheduleNotificationWithKey(_ key: String, title: String, message: String, seconds: Double, userInfo: [AnyHashable: Any]?) {
+        let date = Date(timeIntervalSinceNow: TimeInterval(seconds))
         let notification = notificationWithTitle(key, title: title, message: message, date: date, userInfo: userInfo, soundName: nil, hasAction: true)
         notification.category = LOCAL_NOTIFICATION_CATEGORY
-        UIApplication.sharedApplication().scheduleLocalNotification(notification)
+        UIApplication.shared.scheduleLocalNotification(notification)
     }
     
-    func scheduleNotificationWithKey(key: String, title: String, message: String, date: NSDate, userInfo: [NSObject: AnyObject]?){
+    func scheduleNotificationWithKey(_ key: String, title: String, message: String, date: Date, userInfo: [AnyHashable: Any]?){
         let notification = notificationWithTitle(key, title: title, message: message, date: date, userInfo: ["key": key], soundName: nil, hasAction: true)
         notification.category = LOCAL_NOTIFICATION_CATEGORY
-        UIApplication.sharedApplication().scheduleLocalNotification(notification)
+        UIApplication.shared.scheduleLocalNotification(notification)
     }
     
-    func scheduleNotificationWithKey(key: String, title: String, message: String, seconds: Double, soundName: String, userInfo: [NSObject: AnyObject]?){
-        let date = NSDate(timeIntervalSinceNow: NSTimeInterval(seconds))
+    func scheduleNotificationWithKey(_ key: String, title: String, message: String, seconds: Double, soundName: String, userInfo: [AnyHashable: Any]?){
+        let date = Date(timeIntervalSinceNow: TimeInterval(seconds))
         let notification = notificationWithTitle(key, title: title, message: message, date: date, userInfo: ["key": key], soundName: soundName, hasAction: true)
-        UIApplication.sharedApplication().scheduleLocalNotification(notification)
+        UIApplication.shared.scheduleLocalNotification(notification)
     }
     
-    func scheduleNotificationWithKey(key: String, title: String, message: String, date: NSDate, soundName: String, userInfo: [NSObject: AnyObject]?){
+    func scheduleNotificationWithKey(_ key: String, title: String, message: String, date: Date, soundName: String, userInfo: [AnyHashable: Any]?){
         let notification = notificationWithTitle(key, title: title, message: message, date: date, userInfo: ["key": key], soundName: soundName, hasAction: true)
-        UIApplication.sharedApplication().scheduleLocalNotification(notification)
+        UIApplication.shared.scheduleLocalNotification(notification)
     }
     
     // MARK: - Present Notification
     
-    func presentNotificationWithKey(key: String, title: String, message: String, soundName: String, userInfo: [NSObject: AnyObject]?) {
+    func presentNotificationWithKey(_ key: String, title: String, message: String, soundName: String, userInfo: [AnyHashable: Any]?) {
         let notification = notificationWithTitle(key, title: title, message: message, date: nil, userInfo: ["key": key], soundName: nil, hasAction: true)
-        UIApplication.sharedApplication().presentLocalNotificationNow(notification)
+        UIApplication.shared.presentLocalNotificationNow(notification)
     }
     
     // MARK: - Create Notification
     
-    func notificationWithTitle(key : String, title: String, message: String, date: NSDate?, userInfo: [NSObject: AnyObject]?, soundName: String?, hasAction: Bool) -> UILocalNotification {
+    func notificationWithTitle(_ key : String, title: String, message: String, date: Date?, userInfo: [AnyHashable: Any]?, soundName: String?, hasAction: Bool) -> UILocalNotification {
         
         var dct : Dictionary<String,AnyObject> = userInfo as! Dictionary<String,AnyObject>
-        dct["key"] = NSString(string: key) as String
+        dct["key"] = NSString(string: key) as String as String as AnyObject?
         
         let notification = UILocalNotification()
         notification.alertAction = title
@@ -60,16 +60,16 @@ class LocalNotification: NSObject {
         notification.userInfo = dct
         notification.soundName = soundName ?? UILocalNotificationDefaultSoundName
         notification.fireDate = date
-        notification.repeatInterval = NSCalendarUnit.Day
+        notification.repeatInterval = NSCalendar.Unit.day
         notification.hasAction = hasAction
         return notification
     }
     
-    func getNotificationWithKey(key : String) -> UILocalNotification {
+    func getNotificationWithKey(_ key : String) -> UILocalNotification {
         
         var notif : UILocalNotification?
         
-        for notification in UIApplication.sharedApplication().scheduledLocalNotifications! where notification.userInfo!["key"] as! String == key{
+        for notification in UIApplication.shared.scheduledLocalNotifications! where notification.userInfo!["key"] as! String == key{
             notif = notification
             break
         }
@@ -77,49 +77,49 @@ class LocalNotification: NSObject {
         return notif!
     }
     
-    func cancelNotification(keyArray : [String]){
+    func cancelNotification(_ keyArray : [String]){
 
         for key in keyArray{
-            for notification in UIApplication.sharedApplication().scheduledLocalNotifications! where notification.userInfo!["key"] as! String == key{
-                UIApplication.sharedApplication().cancelLocalNotification(notification)
+            for notification in UIApplication.shared.scheduledLocalNotifications! where notification.userInfo!["key"] as! String == key{
+                UIApplication.shared.cancelLocalNotification(notification)
                 break
             }
         }
     }
     
     func getAllNotifications() -> [UILocalNotification]? {
-        return UIApplication.sharedApplication().scheduledLocalNotifications
+        return UIApplication.shared.scheduledLocalNotifications
     }
     
     func cancelAllNotifications() {
-        UIApplication.sharedApplication().cancelAllLocalNotifications()
+        UIApplication.shared.cancelAllLocalNotifications()
     }
     
-    func registerUserNotificationWithActionButtons(actions actions : [UIUserNotificationAction]){
+    func registerUserNotificationWithActionButtons(actions : [UIUserNotificationAction]){
         
         let category = UIMutableUserNotificationCategory()
         category.identifier = LOCAL_NOTIFICATION_CATEGORY
         
-        category.setActions(actions, forContext: UIUserNotificationActionContext.Default)
+        category.setActions(actions, for: UIUserNotificationActionContext.default)
         
-        let settings = UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: NSSet(object: category) as? Set<UIUserNotificationCategory>)
-        UIApplication.sharedApplication().registerUserNotificationSettings(settings)
+        let settings = UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: NSSet(object: category) as? Set<UIUserNotificationCategory>)
+        UIApplication.shared.registerUserNotificationSettings(settings)
     }
     
     func registerUserNotification(){
         
-        let settings = UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil)
-        UIApplication.sharedApplication().registerUserNotificationSettings(settings)
+        let settings = UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
+        UIApplication.shared.registerUserNotificationSettings(settings)
     }
     
-    func createUserNotificationActionButton(identifier identifier : String, title : String) -> UIUserNotificationAction{
+    func createUserNotificationActionButton(identifier : String, title : String) -> UIUserNotificationAction{
         
         let actionButton = UIMutableUserNotificationAction()
         actionButton.identifier = identifier
         actionButton.title = title
-        actionButton.activationMode = UIUserNotificationActivationMode.Background
-        actionButton.authenticationRequired = true
-        actionButton.destructive = false
+        actionButton.activationMode = UIUserNotificationActivationMode.background
+        actionButton.isAuthenticationRequired = true
+        actionButton.isDestructive = false
         
         return actionButton
     }

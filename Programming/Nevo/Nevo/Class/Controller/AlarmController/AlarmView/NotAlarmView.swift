@@ -12,12 +12,12 @@ class NotAlarmView: UIView {
     @IBOutlet weak var contentLabel: UILabel!
 
     class func getNotAlarmView()->UIView {
-        let nibView:NSArray = NSBundle.mainBundle().loadNibNamed("NotAlarmView", owner: nil, options: nil)
-        let view:UIView = nibView.objectAtIndex(0) as! UIView
-        view.frame = CGRectMake(0, 0, UIScreen.mainScreen().bounds.size.width, UIScreen.mainScreen().bounds.size.height)
-        (nibView.objectAtIndex(0) as! NotAlarmView).contentLabel.text = NSLocalizedString("no_alarm_content", comment: "")
+        let nibView:NSArray = Bundle.main.loadNibNamed("NotAlarmView", owner: nil, options: nil)
+        let view:UIView = nibView.object(at: 0) as! UIView
+        view.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height)
+        (nibView.object(at: 0) as! NotAlarmView).contentLabel.text = NSLocalizedString("no_alarm_content", comment: "")
         view.backgroundColor = UIColor.getGreyColor()
-        return nibView.objectAtIndex(0) as! UIView
+        return nibView.object(at: 0) as! UIView
     }
 
     /*

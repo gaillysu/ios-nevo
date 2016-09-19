@@ -10,7 +10,7 @@ import UIKit
 
 class NotificationView: UITableView {
 
-    func bulidNotificationView(navigation:UINavigationItem){
+    func bulidNotificationView(_ navigation:UINavigationItem){
         navigation.title = NSLocalizedString("Notifications", comment: "")
     }
 
@@ -23,19 +23,19 @@ class NotificationView: UITableView {
 
      :returns: UITableViewCell
      */
-    class func NotificationSystemTableViewCell(indexPath:NSIndexPath,tableView:UITableView,title:String,detailLabel:String)->UITableViewCell {
+    class func NotificationSystemTableViewCell(_ indexPath:IndexPath,tableView:UITableView,title:String,detailLabel:String)->UITableViewCell {
         let endCellID:String = "NotificationSystemTableViewCell"
-        var endCell = tableView.dequeueReusableCellWithIdentifier(endCellID)
+        var endCell = tableView.dequeueReusableCell(withIdentifier: endCellID)
         if (endCell == nil) {
-            endCell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: endCellID)
+            endCell = UITableViewCell(style: UITableViewCellStyle.subtitle, reuseIdentifier: endCellID)
         }
-        endCell?.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
+        endCell?.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
         //endCell?.selectionStyle = UITableViewCellSelectionStyle.None;
         endCell?.textLabel?.text = NSLocalizedString(title, comment: "")
 
         endCell?.detailTextLabel?.text = NSLocalizedString(detailLabel, comment: "")
-        endCell?.detailTextLabel?.font = UIFont.systemFontOfSize(13)
-        endCell?.imageView?.image = UIImage(named: "new_\(title.lowercaseString)")
+        endCell?.detailTextLabel?.font = UIFont.systemFont(ofSize: 13)
+        endCell?.imageView?.image = UIImage(named: "new_\(title.lowercased())")
         return endCell!
     }
 

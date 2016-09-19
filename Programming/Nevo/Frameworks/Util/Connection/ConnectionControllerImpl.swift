@@ -14,8 +14,8 @@ See ConnectionController
 🚧🚧🚧Backbone Class : Modify with care🚧🚧🚧
 */
 class ConnectionControllerImpl : NSObject, ConnectionController, NevoBTDelegate {
-    private var mNevoBT:NevoBT?
-    private var mDelegate:ConnectionControllerDelegate?
+    fileprivate var mNevoBT:NevoBT?
+    fileprivate var mDelegate:ConnectionControllerDelegate?
 
     let SAVED_ADDRESS_KEY = "SAVED_ADDRESS"
     
@@ -39,18 +39,18 @@ class ConnectionControllerImpl : NSObject, ConnectionController, NevoBTDelegate 
     /**
     This status is used to search in SCAN_PROCEDURE to know when is the next time we should scan
     */
-    private var mScanProcedureStatus = 0
+    fileprivate var mScanProcedureStatus = 0
     
     /**
     This time handles the retry procedure
     */
-    private var mRetryTimer:NSTimer?
+    fileprivate var mRetryTimer:Timer?
     
     /**
     this parameter saved old BLE 's  address, when doing BLE OTA, the address has been changed to another one
     so, after finisned BLE ota, must restore it to normal 's address
     */
-    private var savedAddress:String?
+    fileprivate var savedAddress:String?
     
     /**
     No initialisation outside of this class, this is a singleton
@@ -65,7 +65,7 @@ class ConnectionControllerImpl : NSObject, ConnectionController, NevoBTDelegate 
     /**
     See ConnectionController protocol
     */
-    func setDelegate(delegate:ConnectionControllerDelegate) {
+    func setDelegate(_ delegate:ConnectionControllerDelegate) {
         XCGLogger.defaultInstance().debug("New delegate : \(delegate)")
         
         mDelegate = delegate
@@ -87,11 +87,11 @@ class ConnectionControllerImpl : NSObject, ConnectionController, NevoBTDelegate 
         //We're not connected, let's connect
         if hasSavedAddress() {
             
-            XCGLogger.defaultInstance().debug("We have a saved address, let's connect to it directly : \(NSUserDefaults.standardUserDefaults().objectForKey(self.SAVED_ADDRESS_KEY))")
+            XCGLogger.defaultInstance().debug("We have a saved address, let's connect to it directly : \(UserDefaults.standardUserDefaults().objectForKey(self.SAVED_ADDRESS_KEY))")
 
             mNevoBT?.connectToAddress(
-                NSUUID(UUIDString:
-                    NSUserDefaults.standardUserDefaults().objectForKey(SAVED_ADDRESS_KEY) as! String
+                UUID(uuidString:
+                    UserDefaults.standard.object(forKey: SAVED_ADDRESS_KEY) as! String
                     )!
             )
 
@@ -107,11 +107,11 @@ class ConnectionControllerImpl : NSObject, ConnectionController, NevoBTDelegate 
     /**
     See NevoBTDelegate
     */
-    func bluetoothEnabled(enabled:Bool){
+    func bluetoothEnabled(_ enabled:Bool){
         mDelegate?.bluetoothEnabled(enabled)
     }
 
-    func connectionStateChanged(isConnected : Bool, fromAddress : NSUUID!) {
+    func connectionStateChanged(_ isConnected : Bool, fromAddress : UUID!) {
 
       
         mDelegate?.connectionStateChanged(isConnected)
@@ -122,11 +122,11 @@ class ConnectionControllerImpl : NSObject, ConnectionController, NevoBTDelegate 
         } else {
             //Let's save this address
             
-            if let address = fromAddress?.UUIDString {
+            if let address = fromAddress?.uuidString {
                 
-                let userDefaults = NSUserDefaults.standardUserDefaults();
+                let userDefaults = UserDefaults.standard;
                 
-                userDefaults.setObject(address,forKey:SAVED_ADDRESS_KEY)
+                userDefaults.set(address,forKey:SAVED_ADDRESS_KEY)
                 
                 userDefaults.synchronize()
                 
@@ -139,7 +139,7 @@ class ConnectionControllerImpl : NSObject, ConnectionController, NevoBTDelegate 
     /**
     See NevoBTDelegate
     */
-    func firmwareVersionReceived(whichfirmware:DfuFirmwareTypes, version:NSString)
+    func firmwareVersionReceived(_ whichfirmware:DfuFirmwareTypes, version:NSString)
     {
        mDelegate?.firmwareVersionReceived(whichfirmware, version: version)
     }
@@ -149,7 +149,7 @@ class ConnectionControllerImpl : NSObject, ConnectionController, NevoBTDelegate 
 
     :param: number, Signal strength value
     */
-    func receivedRSSIValue(number:NSNumber){
+    func receivedRSSIValue(_ number:NSNumber){
         //AppTheme.DLog("Red RSSI Value:\(number)")
         mDelegate?.receivedRSSIValue(number)
     }
@@ -171,11 +171,11 @@ class ConnectionControllerImpl : NSObject, ConnectionController, NevoBTDelegate 
     func forgetSavedAddress() {
         
         if hasSavedAddress() {
-            savedAddress = NSUserDefaults.standardUserDefaults().objectForKey(SAVED_ADDRESS_KEY) as? String
+            savedAddress = UserDefaults.standard.object(forKey: SAVED_ADDRESS_KEY) as? String
         }
 
-        NSUserDefaults.standardUserDefaults().removeObjectForKey(SAVED_ADDRESS_KEY);
-        NSUserDefaults.standardUserDefaults().synchronize()
+        UserDefaults.standard.removeObject(forKey: SAVED_ADDRESS_KEY);
+        UserDefaults.standard.synchronize()
 
     }
     /**
@@ -183,8 +183,8 @@ class ConnectionControllerImpl : NSObject, ConnectionController, NevoBTDelegate 
     */
     func restoreSavedAddress() {
         if( savedAddress != nil) {
-            let userDefaults = NSUserDefaults.standardUserDefaults();
-            userDefaults.setObject(savedAddress,forKey:SAVED_ADDRESS_KEY)
+            let userDefaults = UserDefaults.standard;
+            userDefaults.set(savedAddress,forKey:SAVED_ADDRESS_KEY)
             userDefaults.synchronize()
         }
     }
@@ -201,7 +201,7 @@ class ConnectionControllerImpl : NSObject, ConnectionController, NevoBTDelegate 
     */
     func hasSavedAddress() -> Bool {
         
-        if let saved = NSUserDefaults.standardUserDefaults().objectForKey(SAVED_ADDRESS_KEY) as? String {
+        if let saved = UserDefaults.standard.object(forKey: SAVED_ADDRESS_KEY) as? String {
             return !saved.isEmpty
         }
         
@@ -211,7 +211,7 @@ class ConnectionControllerImpl : NSObject, ConnectionController, NevoBTDelegate 
     /**
     See ConnectionController protocol
     */
-    func sendRequest(request:Request) {
+    func sendRequest(_ request:Request) {
         if(getOTAMode() && (request.getTargetProfile().CONTROL_SERVICE != NevoOTAModeProfile().CONTROL_SERVICE
                         && request.getTargetProfile().CONTROL_SERVICE != NevoOTAControllerProfile().CONTROL_SERVICE))
         {
@@ -245,7 +245,7 @@ class ConnectionControllerImpl : NSObject, ConnectionController, NevoBTDelegate 
     /**
     See NevoBTDelegate
     */
-    func packetReceived(packet:RawPacket, fromAddress : NSUUID) {
+    func packetReceived(_ packet:RawPacket, fromAddress : UUID) {
         mDelegate?.packetReceived(packet)
     }
 
@@ -256,7 +256,7 @@ class ConnectionControllerImpl : NSObject, ConnectionController, NevoBTDelegate 
     /**
     See ConnectionController
     */
-    func setOTAMode(OTAMode:Bool,Disconnect:Bool) {
+    func setOTAMode(_ OTAMode:Bool,Disconnect:Bool) {
         
         //No need to change the mode if we are already in OTA Mode
         if getOTAMode() == OTAMode {
@@ -281,7 +281,7 @@ class ConnectionControllerImpl : NSObject, ConnectionController, NevoBTDelegate 
 
     }
     
-    private func initRetryTimer() {
+    fileprivate func initRetryTimer() {
         if mRetryTimer != nil {
             //If we already have initialised it, no need to continue
             return;
@@ -289,7 +289,7 @@ class ConnectionControllerImpl : NSObject, ConnectionController, NevoBTDelegate 
         
         mScanProcedureStatus = 0
         
-        mRetryTimer = NSTimer.scheduledTimerWithTimeInterval(SCAN_PROCEDURE[mScanProcedureStatus], target: self, selector:#selector(retryTimer), userInfo: nil, repeats: false)
+        mRetryTimer = Timer.scheduledTimer(timeInterval: SCAN_PROCEDURE[mScanProcedureStatus], target: self, selector:#selector(retryTimer), userInfo: nil, repeats: false)
         
     }
     
@@ -325,7 +325,7 @@ class ConnectionControllerImpl : NSObject, ConnectionController, NevoBTDelegate 
         //Ok, let's launch the retry timer
         mRetryTimer?.invalidate()
         
-        mRetryTimer = NSTimer.scheduledTimerWithTimeInterval(SCAN_PROCEDURE[mScanProcedureStatus], target: self, selector:#selector(retryTimer), userInfo: nil, repeats: false)
+        mRetryTimer = Timer.scheduledTimer(timeInterval: SCAN_PROCEDURE[mScanProcedureStatus], target: self, selector:#selector(retryTimer), userInfo: nil, repeats: false)
         
     }
     

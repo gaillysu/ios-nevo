@@ -13,7 +13,7 @@ class TutorialSixViewController: UIViewController{
     @IBOutlet weak var tapToContinueButton: UIButton!
 
     init() {
-        super.init(nibName: "TutorialSixViewController", bundle: NSBundle.mainBundle())
+        super.init(nibName: "TutorialSixViewController", bundle: Bundle.mainBundle())
     }
 
     required init(coder aDecoder: NSCoder) {
@@ -24,7 +24,7 @@ class TutorialSixViewController: UIViewController{
         print("LOLOL")
     }
     
-    @IBAction func tapToContinueAction(sender: AnyObject) {
+    @IBAction func tapToContinueAction(_ sender: AnyObject) {
         //self.navigationController?.popToRootViewControllerAnimated(true)
         //let tutorialPageSeven = TutorialSevenViewController();
         //self.navigationController?.pushViewController(tutorialPageSeven, animated: true)

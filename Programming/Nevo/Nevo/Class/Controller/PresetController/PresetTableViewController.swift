@@ -9,7 +9,7 @@
 import UIKit
 
 protocol AddPresetDelegate {
-    func onAddPresetNumber(number:Int,name:String)
+    func onAddPresetNumber(_ number:Int,name:String)
 
 }
 
@@ -19,7 +19,7 @@ class PresetTableViewController: UITableViewController,ButtonManagerCallBack,Add
     var prestArray:[Presets] = []
 
     init() {
-        super.init(nibName: "PresetTableViewController", bundle: NSBundle.mainBundle())
+        super.init(nibName: "PresetTableViewController", bundle: Bundle.main)
     }
 
     required init(coder aDecoder: NSCoder) {
@@ -28,7 +28,7 @@ class PresetTableViewController: UITableViewController,ButtonManagerCallBack,Add
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        presetView.backgroundColor = UIColor.whiteColor()
+        presetView.backgroundColor = UIColor.white
         presetView.bulidPresetView(self.navigationItem,delegateB: self)
 
         let array:NSArray = Presets.getAll()
@@ -48,7 +48,7 @@ class PresetTableViewController: UITableViewController,ButtonManagerCallBack,Add
     }
 
     // MARK: - AddPresetDelegate
-    func onAddPresetNumber(number:Int,name:String){
+    func onAddPresetNumber(_ number:Int,name:String){
         NSLog("onAddPresetNumber:\(number),name:\(name)")
         let prestModel:Presets = Presets(keyDict: ["id":0,"steps":number,"label":"\(name)","status":true])
         prestModel.add { (id, completion) -> Void in
@@ -59,7 +59,7 @@ class PresetTableViewController: UITableViewController,ButtonManagerCallBack,Add
     }
 
     // MARK: - ButtonManagerCallBack
-    func controllManager(sender:AnyObject){
+    func controllManager(_ sender:AnyObject){
         if(sender.isEqual(presetView.leftButton)){
             //let removeAll:Bool = Presets.removeAll()
             let addPreset:AddPresetViewController = AddPresetViewController()
@@ -67,61 +67,61 @@ class PresetTableViewController: UITableViewController,ButtonManagerCallBack,Add
             self.navigationController?.pushViewController(addPreset, animated: true)
         }
 
-        if(sender.isKindOfClass(UISwitch.classForCoder())){
+        if(sender.isKind(of: UISwitch.classForCoder())){
             let switchSender:UISwitch = sender as! UISwitch
             let preModel:Presets = prestArray[switchSender.tag]
-            preModel.status = switchSender.on
+            preModel.status = switchSender.isOn
             _ = preModel.update()
         }
     }
 
     // MARK: - Table view data source
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return prestArray.count
     }
 
 
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
         return presetView.getPresetTableViewCell(indexPath, tableView: tableView,presetArray: prestArray, delegate: self)
     }
 
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
     }
     
-    override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]?{
-        let button1 = UITableViewRowAction(style: .Default, title: "Delete", handler: { (action, indexPath) in
-            self.tableView(tableView, commitEditingStyle: .Delete, forRowAtIndexPath: indexPath)
+    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]?{
+        let button1 = UITableViewRowAction(style: .default, title: "Delete", handler: { (action, indexPath) in
+            self.tableView(tableView, commit: .delete, forRowAt: indexPath)
         })
         button1.backgroundColor = AppTheme.NEVO_SOLAR_YELLOW()
         return [button1]
     }
     
     // Override to support editing the table view.
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            let preModel:Presets = prestArray[indexPath.row]
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let preModel:Presets = prestArray[(indexPath as NSIndexPath).row]
             _ = preModel.remove()
-            prestArray.removeAtIndex(indexPath.row)
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
+            prestArray.remove(at: (indexPath as NSIndexPath).row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        } else if editingStyle == .insert {
 
         }    
     }
     
     // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to toIndexPath: IndexPath) {
 
     }
 
     // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
         return true
     }
     

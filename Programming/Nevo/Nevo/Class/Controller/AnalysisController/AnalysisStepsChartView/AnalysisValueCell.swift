@@ -20,10 +20,10 @@ class AnalysisValueCell: UICollectionViewCell {
         // Initialization code
     }
 
-    func updateLabel(labelText: String){
+    func updateLabel(_ labelText: String){
         let contentDict:[String:AnyObject] = [NSFontAttributeName:titleLabel.font]
         valueLabel.text = labelText
-        let statusLabelSize = labelText.sizeWithAttributes(contentDict)
+        let statusLabelSize = labelText.size(attributes: contentDict)
         labelWidthConstraint.constant = statusLabelSize.width + 5
         layoutIfNeeded()
     }

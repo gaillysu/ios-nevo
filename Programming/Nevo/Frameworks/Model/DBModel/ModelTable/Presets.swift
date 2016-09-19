@@ -13,22 +13,22 @@ class Presets: NSObject,BaseEntryDatabaseHelper {
     var steps:Int = 0
     var label:String = ""
     var status:Bool = false
-    private var presetsModel:PresetsModel = PresetsModel()
+    fileprivate var presetsModel:PresetsModel = PresetsModel()
 
     init(keyDict:NSDictionary) {
         super.init()
-        self.setValue(keyDict.objectForKey("id"), forKey: "id")
-        self.setValue(keyDict.objectForKey("steps"), forKey: "steps")
-        self.setValue(keyDict.objectForKey("label"), forKey: "label")
-        self.setValue(keyDict.objectForKey("status"), forKey: "status")
+        self.setValue(keyDict.object(forKey: "id"), forKey: "id")
+        self.setValue(keyDict.object(forKey: "steps"), forKey: "steps")
+        self.setValue(keyDict.object(forKey: "label"), forKey: "label")
+        self.setValue(keyDict.object(forKey: "status"), forKey: "status")
     }
 
-    func add(result:((id:Int?,completion:Bool?) -> Void)){
+    func add(_ result:@escaping ((_ id:Int?,_ completion:Bool?) -> Void)){
         presetsModel.steps = steps
         presetsModel.label = label
         presetsModel.status = status
         presetsModel.add { (id, completion) -> Void in
-           result(id: id!, completion: completion!)
+           result(id!, completion!)
         }
     }
 
@@ -49,13 +49,13 @@ class Presets: NSObject,BaseEntryDatabaseHelper {
         return PresetsModel.removeAll()
     }
 
-    class func getCriteria(criteria:String)->NSArray{
+    class func getCriteria(_ criteria:String)->NSArray{
         let modelArray:NSArray = PresetsModel.getCriteria(criteria)
         let allArray:NSMutableArray = NSMutableArray()
         for model in modelArray {
             let presetsModel:PresetsModel = model as! PresetsModel
             let presets:Presets = Presets(keyDict: ["steps":"\(presetsModel.steps)","label":"\(presetsModel.label)","status":"\(presetsModel.status)"])
-            allArray.addObject(presets)
+            allArray.add(presets)
         }
         return allArray
     }
@@ -66,7 +66,7 @@ class Presets: NSObject,BaseEntryDatabaseHelper {
         for model in modelArray {
             let presetsModel:PresetsModel = model as! PresetsModel
             let presets:Presets = Presets(keyDict: ["id":presetsModel.id,"steps":presetsModel.steps,"label":"\(presetsModel.label)","status":presetsModel.status])
-            allArray.addObject(presets)
+            allArray.add(presets)
         }
         return allArray
     }
@@ -84,8 +84,8 @@ class Presets: NSObject,BaseEntryDatabaseHelper {
         if(array.count == 0){
             let presetGoal:[Int] = [7000, 10000, 20000]
             let label:[String] = ["Light","Moderate","Heavy"]
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,0), { () -> Void in
-                for (var index:Int = 0; index < presetGoal.count ; index++) {
+            DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.default).async(execute: { () -> Void in
+                for (index:Int in 0 ..< presetGoal.count ) {
                     let presets:Presets = Presets(keyDict: ["id":index,"steps":presetGoal[index],"label":"\(label[index])","status":true])
                     presets.add({ (id, completion) -> Void in
 
