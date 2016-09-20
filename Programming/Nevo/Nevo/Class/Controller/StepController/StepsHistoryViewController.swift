@@ -122,16 +122,16 @@ class StepsHistoryViewController: PublicClassController,UICollectionViewDelegate
         chartView.delegate = self
         
         let xAxis:ChartXAxis = chartView!.xAxis
-        xAxis.labelTextColor = UIColor.blackColor()
-        xAxis.axisLineColor = UIColor.blackColor()
+        xAxis.labelTextColor = UIColor.black
+        xAxis.axisLineColor = UIColor.black
         xAxis.drawAxisLineEnabled = true
         xAxis.drawGridLinesEnabled = true
-        xAxis.labelPosition = ChartXAxis.LabelPosition.Bottom
+        xAxis.labelPosition = ChartXAxis.LabelPosition.bottom
         xAxis.labelFont = UIFont(name: "Helvetica-Light", size: 7)!
         
         let yAxis:ChartYAxis = chartView!.leftAxis
-        yAxis.labelTextColor = UIColor.blackColor()
-        yAxis.axisLineColor = UIColor.blackColor()
+        yAxis.labelTextColor = UIColor.black
+        yAxis.axisLineColor = UIColor.black
         yAxis.drawAxisLineEnabled  = true
         yAxis.drawGridLinesEnabled  = true
         yAxis.drawLimitLinesBehindDataEnabled = true
@@ -139,8 +139,8 @@ class StepsHistoryViewController: PublicClassController,UICollectionViewDelegate
         yAxis.setLabelCount(5, force: true)
         
         let rightAxis:ChartYAxis = chartView!.rightAxis
-        rightAxis.labelTextColor = UIColor.clearColor()
-        rightAxis.axisLineColor = UIColor.blackColor()
+        rightAxis.labelTextColor = UIColor.clear
+        rightAxis.axisLineColor = UIColor.black
         rightAxis.drawAxisLineEnabled  = true
         rightAxis.drawGridLinesEnabled  = true
         rightAxis.drawLimitLinesBehindDataEnabled = true
@@ -240,7 +240,7 @@ class StepsHistoryViewController: PublicClassController,UICollectionViewDelegate
         let data:BarChartData = BarChartData(xVals: xVal, dataSets: dataSets)
         data.setDrawValues(false);//false 显示柱状图数值否则不显示
         chartView?.data = data;
-        chartView?.animate(yAxisDuration: 2.0, easingOption: ChartEasingOption.EaseInOutCirc)
+        chartView?.animate(yAxisDuration: 2.0, easingOption: ChartEasingOption.easeInOutCirc)
         chartView?.moveViewToX(CGFloat(yVal.count))
     }
     

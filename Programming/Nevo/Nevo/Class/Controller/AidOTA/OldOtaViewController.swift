@@ -184,7 +184,7 @@ class OldOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMan
     */
     func receivedRSSIValue(_ number:NSNumber){
         XCGLogger.defaultInstance().debug("Red RSSI Value:\(number)")
-        if(number.intValue < -85){
+        if(number.int32Value < -85){
             if(rssialert==nil){
                 rssialert = UIAlertView(title: NSLocalizedString("Unstable connection ensure", comment: ""), message:NSLocalizedString("Unstable connection ensure phone is on and in range", comment: "") , delegate: nil, cancelButtonTitle: nil)
                 rssialert?.show()

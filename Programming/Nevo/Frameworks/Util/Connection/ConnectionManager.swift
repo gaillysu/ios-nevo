@@ -90,7 +90,7 @@ class ConnectionManager: NSObject {
             if let preDisconnectTime = ConnectionManager.Const.disconnectTime {
                 if nowTime - preDisconnectTime > Int(ConnectionManager.Const.maxReconnectTime) {
                     XCGLogger.defaultInstance().debug("show the connected msg")
-                    let connectedMsg = AppTheme.LocalNotificationBody(NSLocalizedString(ConnectionManager.Const.connectionStatus.connected.rawValue,comment: ""))
+                    let connectedMsg = AppTheme.LocalNotificationBody(NSLocalizedString(ConnectionManager.Const.connectionStatus.connected.rawValue,comment: "") as NSString)
                     mConnectedLocalMsg.append(connectedMsg)
                 }
             }
@@ -150,7 +150,7 @@ class ConnectionManager: NSObject {
         if let connectedTime = ConnectionManager.Const.connectedTime {
             XCGLogger.defaultInstance().debug("checkConnectSendNotification disconnected time \(timeInter) offset: \(timeInter - connectedTime)")
         }
-        let disconnectMsg = AppTheme.LocalNotificationBody(NSLocalizedString(ConnectionManager.Const.connectionStatus.disconnected.rawValue,comment: ""), delay: ConnectionManager.Const.maxReconnectTime)
+        let disconnectMsg = AppTheme.LocalNotificationBody(NSLocalizedString(ConnectionManager.Const.connectionStatus.disconnected.rawValue,comment: "") as NSString, delay: ConnectionManager.Const.maxReconnectTime)
         //NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("aWindowBecameMain"), name: UILocalNotificationDefaultSoundName, object: nil)
         //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(aWindowBecameMain:) name:NSWindowDidBecomeMainNotification object:nil];
         //UIApplicationLaunchOptionsLocalNotificationKey

@@ -119,12 +119,12 @@ class StepGoalSetingController: PublicClassController,ButtonManagerCallBack,Cloc
      GET Archiver "contentTArray"
      */
     func getContentTArray() {
-        let dataArray:NSArray = AppTheme.LoadKeyedArchiverName(StepsGoalKey) as! NSArray
+        let dataArray:NSArray = AppTheme.LoadKeyedArchiverName(StepsGoalKey as NSString) as! NSArray
         if(dataArray.count>0) {
             let date:TimeInterval = (dataArray[1] as! String).dateFromFormat("YYYY/MM/dd")!.timeIntervalSince1970
             if(date != Date.date(year: Date().year, month: Date().month, day: Date().day).timeIntervalSince1970){ return }
             
-            contentTArray = (AppTheme.LoadKeyedArchiverName(StepsGoalKey) as! NSArray)[0] as! [String]
+            contentTArray = (AppTheme.LoadKeyedArchiverName(StepsGoalKey as NSString) as! NSArray)[0] as! [String]
             let dailyStepGoal:Int = NSString(string: contentTArray[2]).integerValue
             let dailySteps:Int = NSString(string: contentTArray[1]).integerValue
             let percent :Float = Float(dailySteps)/Float(dailyStepGoal)

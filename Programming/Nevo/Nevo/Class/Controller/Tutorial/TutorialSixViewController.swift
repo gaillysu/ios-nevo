@@ -13,7 +13,7 @@ class TutorialSixViewController: UIViewController{
     @IBOutlet weak var tapToContinueButton: UIButton!
 
     init() {
-        super.init(nibName: "TutorialSixViewController", bundle: Bundle.mainBundle())
+        super.init(nibName: "TutorialSixViewController", bundle: Bundle.main)
     }
 
     required init(coder aDecoder: NSCoder) {
@@ -28,6 +28,6 @@ class TutorialSixViewController: UIViewController{
         //self.navigationController?.popToRootViewControllerAnimated(true)
         //let tutorialPageSeven = TutorialSevenViewController();
         //self.navigationController?.pushViewController(tutorialPageSeven, animated: true)
-        self.dismissViewControllerAnimated(true, completion: nil)
+        self.dismiss(animated: true, completion: nil)
     }
 }

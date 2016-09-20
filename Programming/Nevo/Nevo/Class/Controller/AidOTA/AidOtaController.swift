@@ -92,7 +92,7 @@ class AidOtaController : NSObject,ConnectionControllerDelegate {
             }else {
                 XCGLogger.defaultInstance().debug("Error: file is empty!");
                 let errorMessage = "Error on openning file\n Message: file is empty or not exist";
-                mDelegate?.onError(errorMessage)
+                mDelegate?.onError(errorMessage as NSString)
             }
         }else{
             MCU_openfirmware(fileURL)
@@ -128,7 +128,7 @@ class AidOtaController : NSObject,ConnectionControllerDelegate {
             if (self.writingPacketNumber > self.numberOfPackets-2) {
                 XCGLogger.defaultInstance().debug("writing last packet");
                 let dataRange : NSRange = NSMakeRange(self.writingPacketNumber*enumPacketOption.packet_SIZE.rawValue, self.bytesInLastPacket);
-                let nextPacketData : Data = (binFileData?.subdata(with: dataRange))!
+                let nextPacketData : Data = (binFileData?.subdata(in: dataRange))!
 
                 XCGLogger.defaultInstance().debug("writing packet number \(self.writingPacketNumber+1) ...");
                 XCGLogger.defaultInstance().debug("packet data: \(nextPacketData)");
@@ -146,7 +146,7 @@ class AidOtaController : NSObject,ConnectionControllerDelegate {
             }
             let dataRange : NSRange = NSMakeRange(self.writingPacketNumber*enumPacketOption.packet_SIZE.rawValue, enumPacketOption.packet_SIZE.rawValue);
 
-            let nextPacketData : Data  = (self.binFileData?.subdata(with: dataRange))!
+            let nextPacketData : Data  = (self.binFileData?.subdata(in: dataRange))!
             XCGLogger.defaultInstance().debug("writing packet number \(self.writingPacketNumber+1) ...");
             XCGLogger.defaultInstance().debug("packet data: \(nextPacketData)");
 
@@ -263,7 +263,7 @@ class AidOtaController : NSObject,ConnectionControllerDelegate {
         }else{
             XCGLogger.defaultInstance().debug("Firmware Image failed, Error Status: \(self.responseErrorMessage(self.dfuResponse.responseStatus))");
             let errorMessage = "Error on Receive Firmware Image\n Message: \(responseErrorMessage(dfuResponse.responseStatus))";
-            mDelegate?.onError(errorMessage)
+            mDelegate?.onError(errorMessage as NSString)
             resetSystem()
         }
     }
@@ -277,7 +277,7 @@ class AidOtaController : NSObject,ConnectionControllerDelegate {
         }else {
             XCGLogger.defaultInstance().debug("Firmware validate failed, Error Status: \( self.responseErrorMessage(self.dfuResponse.responseStatus))");
             let errorMessage = "Error on Validate Firmware Request\n Message: \(responseErrorMessage(dfuResponse.responseStatus))";
-            mDelegate?.onError(errorMessage)
+            mDelegate?.onError(errorMessage as NSString)
             resetSystem()
         }
     }
@@ -522,7 +522,7 @@ class AidOtaController : NSObject,ConnectionControllerDelegate {
         checksum = 0
         dfuFirmwareType = DfuFirmwareTypes.softdevice
 
-        let bytes = UnsafeBufferPointer<UInt8>(start: (binFileData! as NSData).bytes.bindMemory(to: UInt8.self, capacity: binFileData!.count), count:binFileData!.count)
+        let bytes = UnsafeBufferPointer<UInt8>(start: (binFileData! as Data).bytes.bindMemory(to: UInt8.self, capacity: binFileData!.count), count:binFileData!.count)
 
         for  byte in bytes {
             checksum = checksum + Int(byte)

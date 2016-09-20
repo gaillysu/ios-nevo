@@ -559,10 +559,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                     "steps":thispacket.getDailySteps(),
                     "goalsteps":thispacket.getStepsGoal(),
                     "distance":thispacket.getDailyDist(),
-                    "hourlysteps":AppTheme.toJSONString(thispacket.getHourlySteps()),
-                    "hourlydistance":AppTheme.toJSONString(thispacket.getHourlyDist()),
+                    "hourlysteps":AppTheme.toJSONString(thispacket.getHourlySteps() as AnyObject!),
+                    "hourlydistance":AppTheme.toJSONString(thispacket.getHourlyDist() as AnyObject!),
                     "calories":thispacket.getDailyCalories() ,
-                    "hourlycalories":AppTheme.toJSONString(thispacket.getHourlyCalories()),
+                    "hourlycalories":AppTheme.toJSONString(thispacket.getHourlyCalories() as AnyObject!),
                     "inZoneTime":thispacket.getInZoneTime(),
                     "outZoneTime":thispacket.getOutZoneTime(),
                     "inactivityTime":thispacket.getDailyRunningDuration()+thispacket.getDailyWalkingDuration(),
@@ -602,13 +602,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                     "id": 0,
                     "date":timerInterval.timeIntervalSince1970,
                     "totalSleepTime":thispacket.getDailySleepTime(),
-                    "hourlySleepTime":"\(AppTheme.toJSONString(thispacket.getHourlySleepTime()))",
+                    "hourlySleepTime":"\(AppTheme.toJSONString(thispacket.getHourlySleepTime() as AnyObject!))",
                     "totalWakeTime":0,
-                    "hourlyWakeTime":"\(AppTheme.toJSONString(thispacket.getHourlyWakeTime()))" ,
+                    "hourlyWakeTime":"\(AppTheme.toJSONString(thispacket.getHourlyWakeTime() as AnyObject!))" ,
                     "totalLightTime":0,
-                    "hourlyLightTime":"\(AppTheme.toJSONString(thispacket.getHourlyLightTime()))",
+                    "hourlyLightTime":"\(AppTheme.toJSONString(thispacket.getHourlyLightTime() as AnyObject!))",
                     "totalDeepTime":0,
-                    "hourlyDeepTime":"\(AppTheme.toJSONString(thispacket.getHourlyDeepTime()))"])
+                    "hourlyDeepTime":"\(AppTheme.toJSONString(thispacket.getHourlyDeepTime() as AnyObject!))"])
                 
                 //upload sleep data to validic
                 //UPDATE_VALIDIC_REQUEST.updateSleepDataToValidic(NSArray(arrayLiteral: stepsModel))

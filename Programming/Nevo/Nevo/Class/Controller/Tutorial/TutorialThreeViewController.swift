@@ -11,7 +11,7 @@ import Foundation
 class TutorialThreeViewController: UIViewController {
 
     init() {
-        super.init(nibName: "TutorialThreeViewController", bundle: Bundle.mainBundle())
+        super.init(nibName: "TutorialThreeViewController", bundle: Bundle.main)
     }
 
     required init(coder aDecoder: NSCoder) {

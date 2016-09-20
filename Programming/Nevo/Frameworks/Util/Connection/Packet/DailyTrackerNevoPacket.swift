@@ -332,10 +332,10 @@ class DailyTrackerNevoPacket: NevoPacket {
     func getDateTimer()->Int{
         var year:Int = Int(NSData2Bytes(getPackets()[0])[2] )
         year = year + Int(NSData2Bytes(getPackets()[0])[3] )<<8
-        var month:NSString = NSString(format: "\(NSData2Bytes(getPackets()[0])[4])")
-        month = month.length >= 2 ? NSString(format: "\(NSData2Bytes(getPackets()[0])[4])") : NSString(format: "0\(NSData2Bytes(getPackets()[0])[4])")
-        var day:NSString = NSString(format: "\(NSData2Bytes(getPackets()[0])[5])")
-        day = day.length >= 2 ? NSString(format: "\(NSData2Bytes(getPackets()[0])[5])") : NSString(format: "0\(NSData2Bytes(getPackets()[0])[5])")
+        var month:NSString = NSString(format: "\(NSData2Bytes(getPackets()[0])[4])" as NSString)
+        month = month.length >= 2 ? NSString(format: "\(NSData2Bytes(getPackets()[0])[4])" as NSString) : NSString(format: "0\(NSData2Bytes(getPackets()[0])[4])" as NSString)
+        var day:NSString = NSString(format: "\(NSData2Bytes(getPackets()[0])[5])" as NSString)
+        day = day.length >= 2 ? NSString(format: "\(NSData2Bytes(getPackets()[0])[5])" as NSString) : NSString(format: "0\(NSData2Bytes(getPackets()[0])[5])" as NSString)
         return NSString(format: "\(year)%@%@" as NSString,month,day).integerValue
     }
 

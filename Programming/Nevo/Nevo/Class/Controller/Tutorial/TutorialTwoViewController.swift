@@ -13,7 +13,7 @@ class TutorialTwoViewController: UIViewController {
     @IBOutlet weak var turnBluetoothOnButton: UIButton!
 
     init() {
-        super.init(nibName: "TutorialTwoViewController", bundle: Bundle.mainBundle())
+        super.init(nibName: "TutorialTwoViewController", bundle: Bundle.main)
     }
 
     required init(coder aDecoder: NSCoder) {

@@ -33,8 +33,8 @@ class SolarIndicatorController: PublicClassController {
         pieChartView.legend.enabled = false;
         pieChartView.delegate = self
         self.updateChartData()
-        pieChartView.animate(xAxisDuration: 1.4, easingOption: ChartEasingOption.EaseOutBack)
-        pieChartView.backgroundColor = UIColor.whiteColor()
+        pieChartView.animate(xAxisDuration: 1.4, easingOption: ChartEasingOption.easeOutBack)
+        pieChartView.backgroundColor = UIColor.white
 
     }
     
@@ -44,7 +44,7 @@ class SolarIndicatorController: PublicClassController {
     }
 
     override func viewDidAppear(_ animated: Bool) {
-        pieChartView.animate(xAxisDuration: 1.4, easingOption: ChartEasingOption.EaseOutBack)
+        pieChartView.animate(xAxisDuration: 1.4, easingOption: ChartEasingOption.easeOutBack)
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -113,7 +113,7 @@ extension SolarIndicatorController:ChartViewDelegate {
         chartView.highlightPerTapEnabled = true;
         
         let l:ChartLegend = chartView.legend;
-        l.position = ChartLegend.Position.RightOfChart;
+        l.position = ChartLegend.Position.rightOfChart;
         l.xEntrySpace = 7.0;
         l.yEntrySpace = 0.0;
         l.yOffset = 0.0;
@@ -150,7 +150,7 @@ extension SolarIndicatorController:ChartViewDelegate {
         
         data.setValueFormatter(pFormatter)
         data.setValueFont(UIFont(name: "HelveticaNeue-Light", size: 16.0))
-        data.setValueTextColor(UIColor.whiteColor())
+        data.setValueTextColor(UIColor.white)
         pieChartView.data = data;
         pieChartView.highlightValues(nil)
     }

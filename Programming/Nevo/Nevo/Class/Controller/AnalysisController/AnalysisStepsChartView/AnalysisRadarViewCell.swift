@@ -39,22 +39,22 @@ class AnalysisRadarViewCell: UICollectionViewCell,ChartViewDelegate {
         
         let xAxis:ChartXAxis = radarChartView.xAxis;
         xAxis.labelFont = UIFont(name: "HelveticaNeue-Light", size: 9.0)!
-        xAxis.labelTextColor = UIColor.whiteColor()
+        xAxis.labelTextColor = UIColor.white
         
         let yAxis:ChartYAxis = radarChartView.yAxis;
         yAxis.labelFont = UIFont(name: "HelveticaNeue-Light", size: 9.0)!
-        yAxis.labelTextColor = UIColor.whiteColor()
+        yAxis.labelTextColor = UIColor.white
         yAxis.labelCount = 5;
         yAxis.axisMinValue = 0.0;
         
         let l:ChartLegend = radarChartView.legend;
-        l.position = ChartLegend.Position.RightOfChart;
+        l.position = ChartLegend.Position.rightOfChart;
         l.font = UIFont(name: "HelveticaNeue-Light", size: 10.0)!
         l.xEntrySpace = 7.0;
         l.yEntrySpace = 5.0;
         
         self.updateChartData()
-        radarChartView.animate(xAxisDuration: 1.4, easingOption: ChartEasingOption.EaseOutBack)
+        radarChartView.animate(xAxisDuration: 1.4, easingOption: ChartEasingOption.easeOutBack)
 
     }
 
@@ -95,7 +95,7 @@ class AnalysisRadarViewCell: UICollectionViewCell,ChartViewDelegate {
         set2.lineWidth = 0.3;
         
         let data:RadarChartData = RadarChartData(xVals: xVals, dataSets: [set1, set2])
-        data.setValueTextColor(UIColor.whiteColor())
+        data.setValueTextColor(UIColor.white)
         data.setValueFont(UIFont(name: "HelveticaNeue-Light", size: 8.0))
         data.setDrawValues(false)
         radarChartView.data = data;

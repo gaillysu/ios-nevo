@@ -11,7 +11,7 @@ import Foundation
 class TutorialOneViewController: UIViewController{
 
     init() {
-        super.init(nibName: "TutorialOneViewController", bundle: Bundle.mainBundle())
+        super.init(nibName: "TutorialOneViewController", bundle: Bundle.main)
     }
 
     required init(coder aDecoder: NSCoder) {

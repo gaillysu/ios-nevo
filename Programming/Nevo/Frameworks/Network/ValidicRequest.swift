@@ -132,7 +132,7 @@ class ValidicRequest: NSObject {
         }
         
         var array:[[String : AnyObject]] = []
-        let timeZone: Int = NSTimeZone.system.secondsFromGMT()/3600
+        let timeZone: Int = TimeZone.system.secondsFromGMT()/3600
         
         for steps in stepsArray{
             let userSteps:UserSteps = steps as! UserSteps
@@ -152,14 +152,14 @@ class ValidicRequest: NSObject {
             
             let timeInterval = userSteps.date
             var detail:[String : AnyObject] = [:]
-            detail["timestamp"] = ValidicRequest.formatterDate(Date(timeIntervalSince1970: timeInterval))
+            detail["timestamp"] = ValidicRequest.formatterDate(Date(timeIntervalSince1970: timeInterval)) as AnyObject?
             detail["utc_offset"] = ValidicRequest.formatterUTCOffset(timeZone) as AnyObject?
             detail["steps"] = stepsValue as AnyObject?
             detail["distance"] = distanceValue as AnyObject?
             detail["floors"] = 0 as AnyObject?
             detail["elevation"] = 0 as AnyObject?
             detail["calories_burned"] = caloriesValue as AnyObject?
-            detail["activity_id"] = "\(timeInterval)"
+            detail["activity_id"] = "\(timeInterval)" as AnyObject?
             array.append(detail)
         }
         
@@ -202,7 +202,7 @@ class ValidicRequest: NSObject {
         }
         
         var array:[[String : AnyObject]] = []
-        let timeZone: Int = NSTimeZone.system.secondsFromGMT()/3600
+        let timeZone: Int = TimeZone.system.secondsFromGMT()/3600
         
         for steps in sleepArray{
             let userSleep:UserSleep = steps as! UserSleep
@@ -226,7 +226,7 @@ class ValidicRequest: NSObject {
             }
             let timeInterval = userSleep.date
             var detail:[String : AnyObject] = [:]
-            detail["timestamp"] = ValidicRequest.formatterDate(Date(timeIntervalSince1970: timeInterval))
+            detail["timestamp"] = ValidicRequest.formatterDate(Date(timeIntervalSince1970: timeInterval)) as AnyObject?
             detail["utc_offset"] = ValidicRequest.formatterUTCOffset(timeZone) as AnyObject?
             detail["awake"] = awake as AnyObject?
             detail["deep"] = deep as AnyObject?
@@ -234,7 +234,7 @@ class ValidicRequest: NSObject {
             detail["rem"] = 0 as AnyObject?
             detail["times_woken"] = 0 as AnyObject?
             detail["total_sleep"] = "\(totalSleep)" as AnyObject?
-            detail["activity_id"] = "\(timeInterval)"
+            detail["activity_id"] = "\(timeInterval)" as AnyObject?
             detail["validated"] = false as AnyObject?
             detail["device"] = "" as AnyObject?
             array.append(detail)

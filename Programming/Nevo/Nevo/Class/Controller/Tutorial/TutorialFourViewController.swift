@@ -13,7 +13,7 @@ class TutorialFourViewController: UIViewController{
     @IBOutlet weak var nextButton: UIButton!
 
     init() {
-        super.init(nibName: "TutorialFourViewController", bundle: Bundle.mainBundle())
+        super.init(nibName: "TutorialFourViewController", bundle: Bundle.main)
     }
 
     required init(coder aDecoder: NSCoder) {

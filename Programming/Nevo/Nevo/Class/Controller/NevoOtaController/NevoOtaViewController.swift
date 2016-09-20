@@ -73,7 +73,7 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
                     let fileExtension:String? = selectedFile.pathExtension
                     if fileExtension == "hex"{
                         firmwareURLs.append(selectedFile)
-                        allTaskNumber++
+                        allTaskNumber += 1
                         break
                     }
                 }
@@ -86,7 +86,7 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
 
                     if fileExtension == "bin"{
                         firmwareURLs.append(selectedFile)
-                        allTaskNumber++
+                        allTaskNumber += 1
                         break
                     }
                 }
@@ -198,7 +198,7 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
     */
     func receivedRSSIValue(_ number:NSNumber) {
         //AppTheme.DLog("Red RSSI Value:\(number)")
-        if(number.intValue < -85) {
+        if(number.int32Value < -85) {
             if(rssialert==nil) {
                 rssialert = UIAlertView(title: NSLocalizedString("Unstable connection ensure", comment: ""), message:NSLocalizedString("Unstable connection ensure phone is on and in range", comment: "") , delegate: nil, cancelButtonTitle: nil)
                 rssialert?.show()

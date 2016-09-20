@@ -74,13 +74,13 @@ class HttpPostRequest: NSObject {
         let time = Int(Date().timeIntervalSince1970);
         
         let key = String(format: "%d-nevo2015medappteam",time)
-        return (md5: md5(string:key),time: time);
+        return (md5: md5(key),time: time);
     }
     
-    fileprivate static func md5(string: String) -> String {
-        var digest = [UInt8](count: Int(CC_MD5_DIGEST_LENGTH), repeatedValue: 0)
+    fileprivate static func md5(_ string: String) -> String {
+        var digest = [UInt8](repeating: 0, count: Int(CC_MD5_DIGEST_LENGTH))
         if let data = string.data(using: String.Encoding.utf8) {
-            CC_MD5(data.bytes, CC_LONG(data.length), &digest)
+            CC_MD5(data.bytes, CC_LONG(data.count), &digest)
         }
         
         var digestHex = ""

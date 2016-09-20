@@ -309,7 +309,7 @@ class CircleSleepProgressView: CAShapeLayer {
             if(sleepTimerArray[i]==0 && i != 23){
                 for l:Int in i+1 ..< sleepTimerArray.count {
                     lastTimer = 60-sleepTimerArray[l]
-                    startDate = (cal as NSCalendar).date(bySettingHour: l, minute: lastTimer , second:0, of: todayDate, options: NSCalendar.Options())!
+                    startDate = (cal as NSCalendar).date(bySettingHour: l, minute: lastTimer , second:0, of: todayDate, options: Calendar.Options())!
                     if(lastTimer+weakTimerArray[l]+lightTimerArray[l] == 60){
                         if(l == 23){
                             endDate = Date.date(year: todayDate.year, month: todayDate.month, day: todayDate.day, hour: 0, minute: 0, second: 0)

@@ -31,7 +31,7 @@ class UserHeader: UITableViewHeaderFooterView {
         }
         action3.setValue(AppTheme.NEVO_SOLAR_YELLOW(), forKey: "titleTextColor")
         alert.addAction(action3)
-        viewController()?.presentViewController(alert, animated: true, completion: nil)
+        viewController()?.present(alert, animated: true, completion: nil)
         
     }
     /*

@@ -221,7 +221,7 @@ class NevoOtaView: UIView {
     Close the OTA attention function
     */
     func closeTipView(){
-        UIView.animateWithDuration(0.25, animations: { () -> Void in
+        UIView.animate(withDuration: 0.25, animations: { () -> Void in
             self.tipView!.transform = CGAffineTransform(scaleX: 0.05, y: 0.05);
         }) { (Bool) -> Void in
             self.tipView!.removeFromSuperview()

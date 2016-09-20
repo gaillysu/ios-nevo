@@ -30,7 +30,7 @@ class SleepHistoricalView: UIView, ChartViewDelegate{
         if(mDelegate == nil) {
             mDelegate = delegate
             // MARK: - chartView?.marker
-            chartView?.backgroundColor = UIColor.whiteColor()
+            chartView?.backgroundColor = UIColor.white
             chartView?.drawSettings(chartView!.xAxis, yAxis: chartView!.leftAxis, rightAxis: chartView!.rightAxis)
         }
         chartView?.data = nil
@@ -83,7 +83,7 @@ class SleepHistoricalView: UIView, ChartViewDelegate{
                     wakeTimer = (wakeTimeTimeArray[s] as! NSNumber).intValue + wakeTimer
                     lightTimer = (lightTimeTimeArray[s] as! NSNumber).intValue + lightTimer
                     deepTimer = (deepTimeTimeArray[s] as! NSNumber).intValue + deepTimer
-                    if (sleepTimeArray[s] as! NSNumber).intValue > 0 {
+                    if (sleepTimeArray[s] as! NSNumber).int32Value > 0 {
                         sleepEntry.append(["\(s):00":[(wakeTimeTimeArray[s] as! NSNumber).doubleValue,(lightTimeTimeArray[s] as! NSNumber).doubleValue,(deepTimeTimeArray[s] as! NSNumber).doubleValue]])
                     }
                     
@@ -95,7 +95,7 @@ class SleepHistoricalView: UIView, ChartViewDelegate{
                     wakeTimer = (wakeTimeTimeArray[s] as! NSNumber).intValue + wakeTimer
                     lightTimer = (lightTimeTimeArray[s] as! NSNumber).intValue + lightTimer
                     deepTimer = (deepTimeTimeArray[s] as! NSNumber).intValue + deepTimer
-                    if (sleepTimeArray[s] as! NSNumber).intValue > 0 {
+                    if (sleepTimeArray[s] as! NSNumber).int32Value > 0 {
                         sleepEntry.append(["\(s):00":[(wakeTimeTimeArray[s] as! NSNumber).doubleValue,(lightTimeTimeArray[s] as! NSNumber).doubleValue,(deepTimeTimeArray[s] as! NSNumber).doubleValue]])
                     }
                 }
@@ -140,7 +140,7 @@ class SleepHistoricalView: UIView, ChartViewDelegate{
     
     func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, dataSetIndex: Int, highlight: ChartHighlight) {
 
-        let sleep:Sleep = self.sleepArray.objectAtIndex(entry.xIndex) as! Sleep;
+        let sleep:Sleep = self.sleepArray.object(at: entry.xIndex) as! Sleep;
         chartView.highlightValue(xIndex: entry.xIndex, dataSetIndex: dataSetIndex, callDelegate: false)
         mDelegate?.didSleepSelectedhighlightValue!(entry.xIndex, dataSetIndex: dataSetIndex, dataSleep: sleep)
     }

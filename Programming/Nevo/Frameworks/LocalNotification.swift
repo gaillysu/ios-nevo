@@ -60,7 +60,7 @@ class LocalNotification: NSObject {
         notification.userInfo = dct
         notification.soundName = soundName ?? UILocalNotificationDefaultSoundName
         notification.fireDate = date
-        notification.repeatInterval = NSCalendar.Unit.day
+        notification.repeatInterval = Calendar.Unit.day
         notification.hasAction = hasAction
         return notification
     }
@@ -95,7 +95,7 @@ class LocalNotification: NSObject {
         UIApplication.shared.cancelAllLocalNotifications()
     }
     
-    func registerUserNotificationWithActionButtons(actions : [UIUserNotificationAction]){
+    func registerUserNotificationWithActionButtons(_ actions : [UIUserNotificationAction]){
         
         let category = UIMutableUserNotificationCategory()
         category.identifier = LOCAL_NOTIFICATION_CATEGORY
@@ -112,7 +112,7 @@ class LocalNotification: NSObject {
         UIApplication.shared.registerUserNotificationSettings(settings)
     }
     
-    func createUserNotificationActionButton(identifier : String, title : String) -> UIUserNotificationAction{
+    func createUserNotificationActionButton(_ identifier : String, title : String) -> UIUserNotificationAction{
         
         let actionButton = UIMutableUserNotificationAction()
         actionButton.identifier = identifier

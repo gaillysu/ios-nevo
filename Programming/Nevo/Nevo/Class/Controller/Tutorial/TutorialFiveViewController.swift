@@ -58,7 +58,7 @@ class TutorialFiveViewController: UIViewController {
             }else{
                 var res:Bool = true
                 for nvc:UIViewController in self.navigationController!.viewControllers {
-                    if(nvc.isKindOfClass(TutorialSevenViewController.classForCoder())) {
+                    if(nvc.isKind(of: TutorialSevenViewController.classForCoder())) {
                         res = false
                         self.navigationController?.popToViewController(nvc, animated: true)
                         return;

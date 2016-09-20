@@ -120,7 +120,7 @@ class NevoOtaController : NSObject,ConnectionControllerDelegate {
             if (self.writingPacketNumber > self.numberOfPackets-2) {
                 XCGLogger.defaultInstance().debug("writing last packet");
                 let dataRange : NSRange = NSMakeRange(self.writingPacketNumber*enumPacketOption.packet_SIZE.rawValue, self.bytesInLastPacket);
-                let nextPacketData : Data = (binFileData?.subdata(with: dataRange))!
+                let nextPacketData : Data = (binFileData?.subdata(in: dataRange))!
 
                 XCGLogger.defaultInstance().debug("writing packet number \(self.writingPacketNumber+1) ...");
                 XCGLogger.defaultInstance().debug("packet data: \(nextPacketData)");
@@ -130,7 +130,7 @@ class NevoOtaController : NSObject,ConnectionControllerDelegate {
                 percentage = Int(progress)
                 XCGLogger.defaultInstance().debug("DFUOperations: onTransferPercentage \(percentage)");
                 mDelegate?.onTransferPercentage(percentage)
-                self.writingPacketNumber++;
+                self.writingPacketNumber += 1;
                 mTimeoutTimer?.invalidate()
                 XCGLogger.defaultInstance().debug("DFUOperations: onAllPacketsTransfered");
                 break;
@@ -138,7 +138,7 @@ class NevoOtaController : NSObject,ConnectionControllerDelegate {
             }
             let dataRange : NSRange = NSMakeRange(self.writingPacketNumber*enumPacketOption.packet_SIZE.rawValue, enumPacketOption.packet_SIZE.rawValue);
 
-            let    nextPacketData : Data  = (self.binFileData?.subdata(with: dataRange))!
+            let    nextPacketData : Data  = (self.binFileData?.subdata(in: dataRange))!
             XCGLogger.defaultInstance().debug("writing packet number \(self.writingPacketNumber+1) ...");
             XCGLogger.defaultInstance().debug("packet data: \(nextPacketData)");
 
@@ -149,7 +149,7 @@ class NevoOtaController : NSObject,ConnectionControllerDelegate {
             XCGLogger.defaultInstance().debug("DFUOperations: onTransferPercentage \(percentage)");
             mDelegate?.onTransferPercentage(percentage)
             
-            self.writingPacketNumber++;
+            self.writingPacketNumber += 1;
         }
     }
 
@@ -525,7 +525,7 @@ class NevoOtaController : NSObject,ConnectionControllerDelegate {
         checksum = 0
         dfuFirmwareType = DfuFirmwareTypes.softdevice
 
-        let bytes = UnsafeBufferPointer<UInt8>(start: (binFileData! as NSData).bytes.bindMemory(to: UInt8.self, capacity: binFileData!.count), count:binFileData!.count)
+        let bytes = UnsafeBufferPointer<UInt8>(start: (binFileData! as Data).bytes.bindMemory(to: UInt8.self, capacity: binFileData!.count), count:binFileData!.count)
 
         for  byte in bytes {
             checksum = checksum + Int(byte)
