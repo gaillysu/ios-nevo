@@ -22,8 +22,8 @@ class AddAlarmView: UITableView {
         let endCellID:String = "AddAlarmCell"
         var endCell = tableView.dequeueReusableCell(withIdentifier: endCellID)
         if (endCell == nil) {
-            let nibs:NSArray = Bundle.main.loadNibNamed("AddAlarmTableViewCell", owner: self, options: nil)
-            endCell = nibs.object(at: 0) as? AddAlarmTableViewCell;
+            let nibs:[Any] = Bundle.main.loadNibNamed("AddAlarmTableViewCell", owner: self, options: nil)
+            endCell = nibs[0] as? AddAlarmTableViewCell;
         }
         endCell?.separatorInset = UIEdgeInsets(top: 0, left: UIScreen.main.bounds.size.width, bottom: 0, right: 0)
         endCell?.selectionStyle = UITableViewCellSelectionStyle.none;

@@ -48,10 +48,9 @@ enum DfuOperationStatus:UInt8{
     
 }
 
-enum DFUControllerState
+enum DFUControllerState:Int
 {
-    case `init`,
-    discovering,
+    case discovering = 1,
     idle,
     send_NOTIFICATION_REQUEST,
     send_START_COMMAND,
@@ -87,37 +86,6 @@ func NSData2Bytes(_ data:Data) -> [UInt8]
     return ret
 }
 
-func NSString2NSData(_ string:NSString) -> Data
-{
-    let mString = string
-    let trimmedString:String = mString.trimmingCharacters(in: CharacterSet(charactersIn: "<> ")).replacingOccurrences(of: " ", with: "")
-    
-    // make sure the cleaned up string consists solely of hex digits, and that we have even number of them
-    
-    var regex:NSRegularExpression?
-    do {
-        regex = try NSRegularExpression(pattern: "^[0-9a-f]*$", options: .caseInsensitive)
-    } catch {
-        // deal with not exist
-    }
-
-    let found = regex!.firstMatch(in: trimmedString, options: NSRegularExpression.MatchingOptions.anchored, range: NSMakeRange(0, trimmedString.characters.count))
-    if found == nil || found?.range.location == NSNotFound || trimmedString.characters.count % 2 != 0 {
-        return Data()
-    }
-    
-    // everything ok, so now let's build NSData
-    
-    let data = NSMutableData(capacity: trimmedString.characters.count / 2)
-    
-    for var index = trimmedString.startIndex; index < trimmedString.endIndex; index = <#T##Collection corresponding to your index##Collection#>.index(after: <#T##Collection corresponding to `index`##Collection#>.index(after: index)) {
-        let byteString = trimmedString.substring(with: (index ..< <#T##Collection corresponding to your index##Collection#>.index(after: <#T##Collection corresponding to `index`##Collection#>.index(after: index))))
-        let num = UInt8(byteString.withCString { strtoul($0, nil, 16) })
-        data?.append([num] as [UInt8], length: 1)
-    }
-    
-    return data! as Data
-}
 
 func NSData2NSString(_ data:Data) -> NSString {
     let str:NSMutableString = NSMutableString()

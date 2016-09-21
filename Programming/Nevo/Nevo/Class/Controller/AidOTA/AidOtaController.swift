@@ -17,7 +17,6 @@ mNevoOtaController = NevoOtaController(controller: self)
 */
 
 import Foundation
-import XCGLogger
 
 class AidOtaController : NSObject,ConnectionControllerDelegate {
     let mDelegate : NevoOtaControllerDelegate?
@@ -101,7 +100,7 @@ class AidOtaController : NSObject,ConnectionControllerDelegate {
 
     fileprivate func convertHexFileToBin(_ hexFileData:Data){
         binFileData = IntelHex2BinConverter.convert(hexFileData)
-        XCGLogger.defaultInstance().debug("HexFileSize: \(hexFileData.length) and BinFileSize: \(self.binFileData?.length)")
+        XCGLogger.defaultInstance().debug("HexFileSize: \(hexFileData.count) and BinFileSize: \(self.binFileData?.count)")
 
         numberOfPackets =  (binFileData?.count)! / enumPacketOption.packet_SIZE.rawValue
 
@@ -528,7 +527,7 @@ class AidOtaController : NSObject,ConnectionControllerDelegate {
             checksum = checksum + Int(byte)
         }
 
-        XCGLogger.defaultInstance().debug("Set firmware with size \(self.binFileData!.length), notificationPacketInterval: \(self.notificationPacketInterval), totalpage: \(self.totalpage),Checksum: \(self.checksum)")
+        XCGLogger.defaultInstance().debug("Set firmware with size \(self.binFileData!.count), notificationPacketInterval: \(self.notificationPacketInterval), totalpage: \(self.totalpage),Checksum: \(self.checksum)")
     }
 
     func MCU_sendFirmwareChunk()

@@ -256,10 +256,10 @@ class CircleSleepProgressView: CAShapeLayer {
         }
 
         for i:Int in 0 ..< sleepArray.count {
-            let sleepTimerArray:[Int] = (sleepArray.object(at: i) as AnyObject).object(0) as! [Int]
-            let weakTimerArray:[Int] = (sleepArray.object(at: i) as AnyObject).object(1) as! [Int]
-            let lightTimerArray:[Int] = (sleepArray.object(at: i) as AnyObject).object(2) as! [Int]
-            let deepTimerArray:[Int] = (sleepArray.object(at: i) as AnyObject).object(3) as! [Int]
+            let sleepTimerArray:[Int] = (sleepArray.object(at: i) as! Array)[0]
+            let weakTimerArray:[Int] = (sleepArray.object(at: i) as! Array)[1]
+            let lightTimerArray:[Int] = (sleepArray.object(at: i) as! Array)[2]
+            let deepTimerArray:[Int] = (sleepArray.object(at: i) as! Array)[3]
 
             if(i == 0){
                 for s:Int in 18 ..< sleepTimerArray.count {

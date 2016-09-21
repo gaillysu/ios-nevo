@@ -8,8 +8,6 @@
 
 import UIKit
 import Alamofire
-import SwiftyJSON
-import XCGLogger
 
 let ValidicOrganizationID = "56d3b075407e010001000000"
 let OrganizationAccessToken = "b85dcb3b85e925200f3fd4cafe6dce92295f449d9596b137941de7e9e2c3e7ae"
@@ -24,29 +22,38 @@ class ValidicRequest: NSObject {
     // MARK: - Request func
     class func validicPostJSONRequest(_ url: String, data:Dictionary<String,AnyObject>, completion:@escaping (_ result:NSDictionary) -> Void){
         debugPrint("accessData:\(data)")
-        Alamofire.request(.POST, url, parameters: data ,encoding: .JSON, headers: ["Content-Type":"application/json"]).responseJSON { (response) -> Void in
+        let urls = URL(string: url)!
+        let parameters: Parameters = data
+        let encode:ParameterEncoding = JSONEncoding.default
+        
+        Alamofire.request(urls, method: .post, parameters: parameters, encoding: encode, headers: ["Content-Type":"application/json"]).responseJSON { (response) in
             if response.result.isSuccess {
-                completion(result: response.result.value! as! NSDictionary)
+                completion(response.result.value! as! NSDictionary)
             }else if (response.result.isFailure){
                 if response.result.value != nil {
-                    completion(result: response.result.value! as! NSDictionary)
+                    completion(response.result.value! as! NSDictionary)
                 }else{
-                    completion(result: NSDictionary(dictionary: ["code": 500,"message": "Authorized",]))
+                    completion(NSDictionary(dictionary: ["code": 500,"message": "Authorized",]))
                 }
             }
         }
+
     }
     
     class func deleteValidicRequest(_ url: String, data:Dictionary<String,AnyObject>, completion:@escaping (_ result:NSDictionary) -> Void){
         //debugPrint("accessData:\(data)")
-        Alamofire.request(.DELETE, url, parameters: data ,encoding: .JSON, headers: ["Content-Type":"application/json"]).responseJSON { (response) -> Void in
+        let urls = URL(string: url)!
+        let parameters: Parameters = data
+        let encode:ParameterEncoding = JSONEncoding.default
+        
+        Alamofire.request(urls, method: .delete, parameters: parameters, encoding: encode, headers: ["Content-Type":"application/json"]).responseJSON { (response) in
             if response.result.isSuccess {
-                completion(result: response.result.value! as! NSDictionary)
+                completion(response.result.value! as! NSDictionary)
             }else if (response.result.isFailure){
                 if response.result.value != nil {
-                    completion(result: response.result.value! as! NSDictionary)
+                    completion(response.result.value! as! NSDictionary)
                 }else{
-                    completion(result: NSDictionary(dictionary: ["code": 500,"message": "Authorized",]))
+                    completion(NSDictionary(dictionary: ["code": 500,"message": "Authorized",]))
                 }
             }
         }
@@ -55,14 +62,18 @@ class ValidicRequest: NSObject {
     
     class func getValidicRequest(_ url: String, data:Dictionary<String,AnyObject>?, completion:@escaping (_ result:NSDictionary) -> Void){
         //debugPrint("accessData:\(data)")
-        Alamofire.request(.GET, url, parameters: data ,encoding: .JSON).responseJSON { (response) -> Void in
+        let urls = URL(string: url)!
+        let parameters: Parameters = data!
+        let encode:ParameterEncoding = JSONEncoding.default
+        
+        Alamofire.request(urls, method: .get, parameters: parameters, encoding: encode, headers: ["Content-Type":"application/json"]).responseJSON { (response) in
             if response.result.isSuccess {
-                completion(result: response.result.value! as! NSDictionary)
+                completion(response.result.value! as! NSDictionary)
             }else if (response.result.isFailure){
                 if response.result.value != nil {
-                    completion(result: response.result.value! as! NSDictionary)
+                    completion(response.result.value! as! NSDictionary)
                 }else{
-                    completion(result: NSDictionary(dictionary: ["code": 500,"message": "Authorized",]))
+                    completion(NSDictionary(dictionary: ["code": 500,"message": "Authorized",]))
                 }
             }
         }
@@ -132,7 +143,8 @@ class ValidicRequest: NSObject {
         }
         
         var array:[[String : AnyObject]] = []
-        let timeZone: Int = TimeZone.system.secondsFromGMT()/3600
+        let timeZone: Int = NSTimeZone.system.secondsFromGMT()/3600
+        //TimeZone.secondsFromGMT(<#T##TimeZone#>)
         
         for steps in stepsArray{
             let userSteps:UserSteps = steps as! UserSteps
@@ -181,7 +193,7 @@ class ValidicRequest: NSObject {
         for object in array{
             queue.async(group: group, execute: {
                 let data = ["routine":object,"access_token":"\(OrganizationAccessToken)"] as [String : Any]
-                self.updateValidicData(URL,data: data as! Dictionary<String, AnyObject>, completion: { (result) in
+                self.updateValidicData(URL,data: data as Dictionary<String, AnyObject>, completion: { (result) in
                     XCGLogger.defaultInstance().debug("updateValidicData: \(result)")
                 })
             })
@@ -202,8 +214,8 @@ class ValidicRequest: NSObject {
         }
         
         var array:[[String : AnyObject]] = []
-        let timeZone: Int = TimeZone.system.secondsFromGMT()/3600
-        
+        let timeZone: Int = NSTimeZone.system.secondsFromGMT()/3600
+
         for steps in sleepArray{
             let userSleep:UserSleep = steps as! UserSleep
             let hourlySleep = AppTheme.jsonToArray(userSleep.hourlySleepTime)
@@ -258,7 +270,7 @@ class ValidicRequest: NSObject {
         for object in array{
             queue.async(group: group, execute: {
                 let data = ["routine":object,"access_token":"\(OrganizationAccessToken)"] as [String : Any]
-                self.updateValidicData(URL,data: data as! Dictionary<String, AnyObject>, completion: { (result) in
+                self.updateValidicData(URL,data: data as Dictionary<String, AnyObject>, completion: { (result) in
                     XCGLogger.defaultInstance().debug("updateValidicData: \(result)")
                 })
             })
@@ -325,7 +337,7 @@ class ValidicRequest: NSObject {
     func deleteValidicUser(_ uid:String) {
         let URL = "https://api.validic.com/v1/organizations/\(ValidicOrganizationID)/users.json"
         let data = ["uid":uid,"access_token":"\(OrganizationAccessToken)"]
-        ValidicRequest.deleteValidicRequest(URL,data: data, completion: { (result) in
+        ValidicRequest.deleteValidicRequest(URL,data: data as Dictionary<String, AnyObject>, completion: { (result) in
             XCGLogger.defaultInstance().debug("deleteValidic User: \(result)")
         })
     }
@@ -336,15 +348,15 @@ class ValidicRequest: NSObject {
         timer = timer.replacingOccurrences(of: "+00:00", with: "")
         let date = GmtNSDate2LocaleNSDate(timer.dateFromFormat("yyyy-MM-dd HH:mm:ss'UTC'")!)
         var steps:[String:AnyObject] = [:]
-        steps["steps"] = object["steps"].intValue
-        steps["hourlysteps"] = "[0,0,0,0,0,0,0,0,\(object["steps"].intValue),0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]"
-        steps["distance"] = object["distance"].intValue
-        steps["hourlydistance"] = "[0,0,0,0,0,0,0,0,\(object["distance"].intValue),0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]"
-        steps["calories"] = object["calories_burned"].doubleValue
-        steps["hourlycalories"] = "[0,0,0,0,0,0,0,0,\(object["calories_burned"].intValue),0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]"
-        steps["date"] = date.timeIntervalSince1970
-        steps["createDate"] = date.stringFromFormat("yyyyMMdd")
-        steps["validic_id"] = object["_id"].stringValue
+        steps["steps"] = object["steps"].intValue as AnyObject?
+        steps["hourlysteps"] = "[0,0,0,0,0,0,0,0,\(object["steps"].intValue),0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]" as AnyObject?
+        steps["distance"] = object["distance"].intValue as AnyObject?
+        steps["hourlydistance"] = "[0,0,0,0,0,0,0,0,\(object["distance"].intValue),0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]" as AnyObject?
+        steps["calories"] = object["calories_burned"].doubleValue as AnyObject?
+        steps["hourlycalories"] = "[0,0,0,0,0,0,0,0,\(object["calories_burned"].intValue),0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]" as AnyObject?
+        steps["date"] = date.timeIntervalSince1970 as AnyObject?
+        steps["createDate"] = date.stringFromFormat("yyyyMMdd") as AnyObject?
+        steps["validic_id"] = object["_id"].stringValue as AnyObject?
         let userSteps:NSArray = UserSteps.getCriteria("WHERE createDate = \(steps["createDate"]!)")
         if userSteps.count == 0 {
             let userSteps:UserSteps = UserSteps(keyDict: steps as NSDictionary)
@@ -365,10 +377,10 @@ class ValidicRequest: NSObject {
         let lightSleep:Int = object["light"].intValue
         
         var sleep:[String:AnyObject] = [:]
-        sleep["_id"] = object["_id"].stringValue
-        sleep["date"] = date.timeIntervalSince1970
-        sleep["totalSleepTime"] = object["total_sleep"].intValue
-        sleep["hourlySleepTime"] = "[0,\(object["total_sleep"].intValue),0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]"
+        sleep["_id"] = object["_id"].stringValue as AnyObject?
+        sleep["date"] = date.timeIntervalSince1970 as AnyObject?
+        sleep["totalSleepTime"] = object["total_sleep"].intValue as AnyObject?
+        sleep["hourlySleepTime"] = "[0,\(object["total_sleep"].intValue),0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]" as AnyObject?
         sleep["totalWakeTime"] = awakeSleep as AnyObject?
         sleep["hourlyWakeTime"] = "[0,\(awakeSleep),0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]" as AnyObject?
         sleep["totalLightTime"] = lightSleep as AnyObject?

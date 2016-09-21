@@ -7,8 +7,6 @@
 //
 
 import UIKit
-import AutocompleteField
-import SwiftyJSON
 import BRYXBanner
 import MRProgress
 
@@ -61,7 +59,7 @@ class ForgotPasswordController: UIViewController {
         let view = MRProgressOverlayView.showOverlayAdded(to: self.navigationController!.view, title: "Please wait...", mode: MRProgressOverlayViewMode.indeterminate, animated: true)
         view?.setTintColor(AppTheme.NEVO_SOLAR_YELLOW())
         
-        HttpPostRequest.LunaRPostRequest("http://nevo.karljohnchow.com/user/request_password_token", data: ["user":["email":emailTextField.text!]]) { (result) in
+        HttpPostRequest.LunaRPostRequest("http://nevo.karljohnchow.com/user/request_password_token", data: ["user":["email":emailTextField.text!] as AnyObject]) { (result) in
             MRProgressOverlayView.dismissAllOverlays(for: self.navigationController!.view, animated: true)
             
             let json = JSON(result)
@@ -91,8 +89,8 @@ class ForgotPasswordController: UIViewController {
                     }
                     if textField[0].text! == textField[1].text! {
                         let view = MRProgressOverlayView.showOverlayAdded(to: self.navigationController!.view, title: "Please wait...", mode: MRProgressOverlayViewMode.indeterminate, animated: true)
-                        view.setTintColor(AppTheme.NEVO_SOLAR_YELLOW())
-                        HttpPostRequest.postRequest("http://nevo.karljohnchow.com/user/forget_password", data: ["user":["password_token":token,"email":email,"password":textField[0].text!,"id":id]], completion: { (result) in
+                        view?.setTintColor(AppTheme.NEVO_SOLAR_YELLOW())
+                        HttpPostRequest.postRequest("http://nevo.karljohnchow.com/user/forget_password", data: ["user":["password_token":token,"email":email,"password":textField[0].text!,"id":id] as AnyObject], completion: { (result) in
                             MRProgressOverlayView.dismissAllOverlays(for: self.navigationController!.view, animated: true)
                             let json = JSON(result)
                             let status:Int = json["status"].intValue

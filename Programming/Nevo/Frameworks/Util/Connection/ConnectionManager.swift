@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import XCGLogger
 
 class ConnectionManager: NSObject {
     fileprivate var mConnectedLocalMsg:[UILocalNotification] = []

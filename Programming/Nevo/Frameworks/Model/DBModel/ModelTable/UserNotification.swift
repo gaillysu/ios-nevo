@@ -8,7 +8,7 @@
 
 import UIKit
 
-class UserNotification: NSObject,BaseEntryDatabaseHelper {
+class UserNotification:NSObject {
     var id:Int = 0
     var clock:Int = 0
     var NotificationType:String = ""
@@ -25,7 +25,7 @@ class UserNotification: NSObject,BaseEntryDatabaseHelper {
         if(array.count == 0){
             let notificationTypeArray:[String] = ["Calendar", "Facebook", "EMAIL", "CALL", "SMS","WeChat"]
             DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.default).async(execute: { () -> Void in
-                for (index:Int in 0 ..< notificationTypeArray.count ) {
+                for index:Int in 0..<notificationTypeArray.count {
                     let notification:UserNotification = UserNotification(keyDict: ["id":index,"clock":(index+1)*2,"NotificationType":notificationTypeArray[index],"status":false])
                     notification.add({ (id, completion) -> Void in
 

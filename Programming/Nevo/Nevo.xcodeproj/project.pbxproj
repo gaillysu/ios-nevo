@@ -172,6 +172,39 @@
 		0073C5E41D3C7CC200924167 /* AlarmTypeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0073C5E21D3C7CC200924167 /* AlarmTypeCell.xib */; };
 		00749B8A1D64082C0013B2D9 /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00749B891D64082C0013B2D9 /* PageViewController.swift */; };
 		0074CB981D29EEAA00963607 /* InformationController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0074CB961D29EEAA00963607 /* InformationController.xib */; };
+		007865B91D90DBAF00F33AEA /* AutocompleteField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007865B61D90DBAF00F33AEA /* AutocompleteField.swift */; };
+		007865BA1D90DBAF00F33AEA /* CircleProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007865B81D90DBAF00F33AEA /* CircleProgressView.swift */; };
+		007865CE1D90DC3100F33AEA /* M13Checkbox+IB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007865BC1D90DC3100F33AEA /* M13Checkbox+IB.swift */; };
+		007865CF1D90DC3100F33AEA /* M13Checkbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007865BD1D90DC3100F33AEA /* M13Checkbox.swift */; };
+		007865D01D90DC3100F33AEA /* M13CheckboxAnimationPresets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007865BE1D90DC3100F33AEA /* M13CheckboxAnimationPresets.swift */; };
+		007865D11D90DC3100F33AEA /* M13CheckboxGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007865BF1D90DC3100F33AEA /* M13CheckboxGestureRecognizer.swift */; };
+		007865D21D90DC3100F33AEA /* M13CheckboxManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007865C01D90DC3100F33AEA /* M13CheckboxManager.swift */; };
+		007865D31D90DC3100F33AEA /* M13CheckboxPathPresets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007865C11D90DC3100F33AEA /* M13CheckboxPathPresets.swift */; };
+		007865D41D90DC3100F33AEA /* M13CheckboxBounceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007865C31D90DC3100F33AEA /* M13CheckboxBounceManager.swift */; };
+		007865D51D90DC3100F33AEA /* M13CheckboxDotManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007865C41D90DC3100F33AEA /* M13CheckboxDotManager.swift */; };
+		007865D61D90DC3100F33AEA /* M13CheckboxExpandManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007865C51D90DC3100F33AEA /* M13CheckboxExpandManager.swift */; };
+		007865D71D90DC3100F33AEA /* M13CheckboxFadeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007865C61D90DC3100F33AEA /* M13CheckboxFadeManager.swift */; };
+		007865D81D90DC3100F33AEA /* M13CheckboxFillManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007865C71D90DC3100F33AEA /* M13CheckboxFillManager.swift */; };
+		007865D91D90DC3100F33AEA /* M13CheckboxFlatManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007865C81D90DC3100F33AEA /* M13CheckboxFlatManager.swift */; };
+		007865DA1D90DC3100F33AEA /* M13CheckboxSpiralManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007865C91D90DC3100F33AEA /* M13CheckboxSpiralManager.swift */; };
+		007865DB1D90DC3100F33AEA /* M13CheckboxStrokeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007865CA1D90DC3100F33AEA /* M13CheckboxStrokeManager.swift */; };
+		007865DC1D90DC3100F33AEA /* M13CheckboxDotPathPresets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007865CC1D90DC3100F33AEA /* M13CheckboxDotPathPresets.swift */; };
+		007865DD1D90DC3100F33AEA /* M13CheckboxSpiralPathPresets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007865CD1D90DC3100F33AEA /* M13CheckboxSpiralPathPresets.swift */; };
+		007865E11D90E7A000F33AEA /* XCGLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007865E01D90E7A000F33AEA /* XCGLogger.swift */; };
+		007865F31D91006F00F33AEA /* SMAlphaImageSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007865E31D91006F00F33AEA /* SMAlphaImageSegment.swift */; };
+		007865F41D91006F00F33AEA /* SMBasicSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007865E41D91006F00F33AEA /* SMBasicSegment.swift */; };
+		007865F51D91006F00F33AEA /* SMBasicSegmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007865E51D91006F00F33AEA /* SMBasicSegmentView.swift */; };
+		007865F61D91006F00F33AEA /* SMSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007865E61D91006F00F33AEA /* SMSegment.swift */; };
+		007865F71D91006F00F33AEA /* SMSegmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007865E71D91006F00F33AEA /* SMSegmentView.swift */; };
+		007865F81D91006F00F33AEA /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007865E91D91006F00F33AEA /* SwiftyJSON.swift */; };
+		007865F91D91006F00F33AEA /* Duration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007865EB1D91006F00F33AEA /* Duration.swift */; };
+		007865FA1D91006F00F33AEA /* Int+Timepiece.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007865EC1D91006F00F33AEA /* Int+Timepiece.swift */; };
+		007865FB1D91006F00F33AEA /* NSCalendar+Timepiece.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007865ED1D91006F00F33AEA /* NSCalendar+Timepiece.swift */; };
+		007865FC1D91006F00F33AEA /* CalendarComponent+Timepiece.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007865EE1D91006F00F33AEA /* CalendarComponent+Timepiece.swift */; };
+		007865FD1D91006F00F33AEA /* NSDate+Timepiece.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007865EF1D91006F00F33AEA /* NSDate+Timepiece.swift */; };
+		007865FE1D91006F00F33AEA /* NSDateComponents+Timepiece.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007865F01D91006F00F33AEA /* NSDateComponents+Timepiece.swift */; };
+		007865FF1D91006F00F33AEA /* NSTimeInterval+Timepiece.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007865F11D91006F00F33AEA /* NSTimeInterval+Timepiece.swift */; };
+		007866001D91006F00F33AEA /* String+Timepiece.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007865F21D91006F00F33AEA /* String+Timepiece.swift */; };
 		007C45351D2B4C08004929E0 /* HomeTutorialController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 007C452B1D2B4C08004929E0 /* HomeTutorialController.xib */; };
 		007C453F1D2B4C1F004929E0 /* MorningTutorialController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 007C45411D2B4C20004929E0 /* MorningTutorialController.xib */; };
 		007C454A1D2B4C60004929E0 /* SleepTutorialController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 007C454C1D2B4C60004929E0 /* SleepTutorialController.xib */; };
@@ -544,6 +577,7 @@
 		07BCE82A1B5CAB2200C7F558 /* clockview600_color.png in Resources */ = {isa = PBXBuildFile; fileRef = 07BCE8291B5CAB2100C7F558 /* clockview600_color.png */; };
 		3AF3D240B5808E80F5B2A19E /* Pods_Nevo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C2AEB04A0C7F45FE876ABED /* Pods_Nevo.framework */; };
 		7409DE23002B1D92822E281F /* Pods_LunaR.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2684F108DD80B3F763126280 /* Pods_LunaR.framework */; };
+		8A84EC52F1052F0497E54CB5 /* Pods_NevoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7689D6188FDF6CDBFBD84C51 /* Pods_NevoTests.framework */; };
 		9A2D6C3B1A9C6D9F00591BDC /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A2D6C3A1A9C6D9F00591BDC /* HealthKit.framework */; };
 		9A2D6C3E1A9C71E500591BDC /* NevoHK.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2D6C3D1A9C71E500591BDC /* NevoHK.swift */; };
 		9A2D6C401A9C783800591BDC /* NevoHKImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2D6C3F1A9C783800591BDC /* NevoHKImpl.swift */; };
@@ -562,6 +596,7 @@
 		9E98FB351C46405800BAB700 /* TutorialFiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E98FB341C46405800BAB700 /* TutorialFiveViewController.swift */; };
 		9E98FB371C4640AF00BAB700 /* TutorialSevenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E98FB361C4640AF00BAB700 /* TutorialSevenViewController.swift */; };
 		9E98FB3D1C46434100BAB700 /* TutorialSixViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E98FB3C1C46434100BAB700 /* TutorialSixViewController.swift */; };
+		9F6F01453E52BF45E9BB889E /* Pods_LunaRTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5FD7E1EDAFE477B32142D3E /* Pods_LunaRTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -734,6 +769,40 @@
 		00749B8D1D6434420013B2D9 /* LunaR.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = LunaR.entitlements; sourceTree = "<group>"; };
 		0074CB951D29EEAA00963607 /* InformationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InformationController.swift; sourceTree = "<group>"; };
 		0074CB961D29EEAA00963607 /* InformationController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InformationController.xib; sourceTree = "<group>"; };
+		007865B61D90DBAF00F33AEA /* AutocompleteField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutocompleteField.swift; sourceTree = "<group>"; };
+		007865B81D90DBAF00F33AEA /* CircleProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleProgressView.swift; sourceTree = "<group>"; };
+		007865BC1D90DC3100F33AEA /* M13Checkbox+IB.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "M13Checkbox+IB.swift"; sourceTree = "<group>"; };
+		007865BD1D90DC3100F33AEA /* M13Checkbox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = M13Checkbox.swift; sourceTree = "<group>"; };
+		007865BE1D90DC3100F33AEA /* M13CheckboxAnimationPresets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = M13CheckboxAnimationPresets.swift; sourceTree = "<group>"; };
+		007865BF1D90DC3100F33AEA /* M13CheckboxGestureRecognizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = M13CheckboxGestureRecognizer.swift; sourceTree = "<group>"; };
+		007865C01D90DC3100F33AEA /* M13CheckboxManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = M13CheckboxManager.swift; sourceTree = "<group>"; };
+		007865C11D90DC3100F33AEA /* M13CheckboxPathPresets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = M13CheckboxPathPresets.swift; sourceTree = "<group>"; };
+		007865C31D90DC3100F33AEA /* M13CheckboxBounceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = M13CheckboxBounceManager.swift; sourceTree = "<group>"; };
+		007865C41D90DC3100F33AEA /* M13CheckboxDotManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = M13CheckboxDotManager.swift; sourceTree = "<group>"; };
+		007865C51D90DC3100F33AEA /* M13CheckboxExpandManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = M13CheckboxExpandManager.swift; sourceTree = "<group>"; };
+		007865C61D90DC3100F33AEA /* M13CheckboxFadeManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = M13CheckboxFadeManager.swift; sourceTree = "<group>"; };
+		007865C71D90DC3100F33AEA /* M13CheckboxFillManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = M13CheckboxFillManager.swift; sourceTree = "<group>"; };
+		007865C81D90DC3100F33AEA /* M13CheckboxFlatManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = M13CheckboxFlatManager.swift; sourceTree = "<group>"; };
+		007865C91D90DC3100F33AEA /* M13CheckboxSpiralManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = M13CheckboxSpiralManager.swift; sourceTree = "<group>"; };
+		007865CA1D90DC3100F33AEA /* M13CheckboxStrokeManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = M13CheckboxStrokeManager.swift; sourceTree = "<group>"; };
+		007865CC1D90DC3100F33AEA /* M13CheckboxDotPathPresets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = M13CheckboxDotPathPresets.swift; sourceTree = "<group>"; };
+		007865CD1D90DC3100F33AEA /* M13CheckboxSpiralPathPresets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = M13CheckboxSpiralPathPresets.swift; sourceTree = "<group>"; };
+		007865DF1D90E7A000F33AEA /* XCGLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XCGLogger.h; sourceTree = "<group>"; };
+		007865E01D90E7A000F33AEA /* XCGLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XCGLogger.swift; sourceTree = "<group>"; };
+		007865E31D91006F00F33AEA /* SMAlphaImageSegment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMAlphaImageSegment.swift; sourceTree = "<group>"; };
+		007865E41D91006F00F33AEA /* SMBasicSegment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMBasicSegment.swift; sourceTree = "<group>"; };
+		007865E51D91006F00F33AEA /* SMBasicSegmentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMBasicSegmentView.swift; sourceTree = "<group>"; };
+		007865E61D91006F00F33AEA /* SMSegment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMSegment.swift; sourceTree = "<group>"; };
+		007865E71D91006F00F33AEA /* SMSegmentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMSegmentView.swift; sourceTree = "<group>"; };
+		007865E91D91006F00F33AEA /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
+		007865EB1D91006F00F33AEA /* Duration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Duration.swift; sourceTree = "<group>"; };
+		007865EC1D91006F00F33AEA /* Int+Timepiece.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Int+Timepiece.swift"; sourceTree = "<group>"; };
+		007865ED1D91006F00F33AEA /* NSCalendar+Timepiece.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSCalendar+Timepiece.swift"; sourceTree = "<group>"; };
+		007865EE1D91006F00F33AEA /* CalendarComponent+Timepiece.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CalendarComponent+Timepiece.swift"; sourceTree = "<group>"; };
+		007865EF1D91006F00F33AEA /* NSDate+Timepiece.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+Timepiece.swift"; sourceTree = "<group>"; };
+		007865F01D91006F00F33AEA /* NSDateComponents+Timepiece.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDateComponents+Timepiece.swift"; sourceTree = "<group>"; };
+		007865F11D91006F00F33AEA /* NSTimeInterval+Timepiece.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSTimeInterval+Timepiece.swift"; sourceTree = "<group>"; };
+		007865F21D91006F00F33AEA /* String+Timepiece.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Timepiece.swift"; sourceTree = "<group>"; };
 		007C452B1D2B4C08004929E0 /* HomeTutorialController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeTutorialController.xib; sourceTree = "<group>"; };
 		007C45401D2B4C20004929E0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MorningTutorialController.xib; sourceTree = "<group>"; };
 		007C45431D2B4C4D004929E0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/MorningTutorialController.strings; sourceTree = "<group>"; };
@@ -1075,9 +1144,13 @@
 		0C2AEB04A0C7F45FE876ABED /* Pods_Nevo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Nevo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1215057C1EF17F735A5EFDD9 /* Pods-LunaR.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LunaR.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LunaR/Pods-LunaR.debug.xcconfig"; sourceTree = "<group>"; };
 		2684F108DD80B3F763126280 /* Pods_LunaR.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LunaR.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		32FD66A73B338A8998018E2C /* Pods-NevoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NevoTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-NevoTests/Pods-NevoTests.release.xcconfig"; sourceTree = "<group>"; };
 		337909E3A1733589971A3696 /* Pods-Nevo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Nevo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Nevo/Pods-Nevo.debug.xcconfig"; sourceTree = "<group>"; };
+		4D889843ECCF8C9F30888205 /* Pods-LunaRTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LunaRTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-LunaRTests/Pods-LunaRTests.release.xcconfig"; sourceTree = "<group>"; };
 		57C68BE0457DB1BFF58A2389 /* Pods-LunaR.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LunaR.release.xcconfig"; path = "Pods/Target Support Files/Pods-LunaR/Pods-LunaR.release.xcconfig"; sourceTree = "<group>"; };
+		7689D6188FDF6CDBFBD84C51 /* Pods_NevoTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NevoTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		84E3C5A18963C1F2BFFF61CB /* Pods-Nevo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Nevo.release.xcconfig"; path = "Pods/Target Support Files/Pods-Nevo/Pods-Nevo.release.xcconfig"; sourceTree = "<group>"; };
+		8FE857CD8B2EE737CB25062E /* Pods-NevoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NevoTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NevoTests/Pods-NevoTests.debug.xcconfig"; sourceTree = "<group>"; };
 		9A2D6C391A9C6D9F00591BDC /* Nevo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Nevo.entitlements; sourceTree = "<group>"; };
 		9A2D6C3A1A9C6D9F00591BDC /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		9A2D6C3D1A9C71E500591BDC /* NevoHK.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NevoHK.swift; path = Frameworks/NevoHK/NevoHK.swift; sourceTree = "<group>"; };
@@ -1101,6 +1174,8 @@
 		9E98FB341C46405800BAB700 /* TutorialFiveViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialFiveViewController.swift; sourceTree = "<group>"; };
 		9E98FB361C4640AF00BAB700 /* TutorialSevenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialSevenViewController.swift; sourceTree = "<group>"; };
 		9E98FB3C1C46434100BAB700 /* TutorialSixViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialSixViewController.swift; sourceTree = "<group>"; };
+		A5FD7E1EDAFE477B32142D3E /* Pods_LunaRTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LunaRTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CBB9BF1C2FA9FD4C9B4E48BC /* Pods-LunaRTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LunaRTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LunaRTests/Pods-LunaRTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1116,6 +1191,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9F6F01453E52BF45E9BB889E /* Pods_LunaRTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1139,6 +1215,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8A84EC52F1052F0497E54CB5 /* Pods_NevoTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1571,6 +1648,112 @@
 				0074CB961D29EEAA00963607 /* InformationController.xib */,
 			);
 			path = InformationController;
+			sourceTree = "<group>";
+		};
+		007865B51D90DBAF00F33AEA /* AutocompleteField */ = {
+			isa = PBXGroup;
+			children = (
+				007865B61D90DBAF00F33AEA /* AutocompleteField.swift */,
+			);
+			name = AutocompleteField;
+			path = Frameworks/AutocompleteField;
+			sourceTree = "<group>";
+		};
+		007865B71D90DBAF00F33AEA /* CircleProgressView */ = {
+			isa = PBXGroup;
+			children = (
+				007865B81D90DBAF00F33AEA /* CircleProgressView.swift */,
+			);
+			name = CircleProgressView;
+			path = Frameworks/CircleProgressView;
+			sourceTree = "<group>";
+		};
+		007865BB1D90DC3100F33AEA /* M13Checkbox */ = {
+			isa = PBXGroup;
+			children = (
+				007865BC1D90DC3100F33AEA /* M13Checkbox+IB.swift */,
+				007865BD1D90DC3100F33AEA /* M13Checkbox.swift */,
+				007865BE1D90DC3100F33AEA /* M13CheckboxAnimationPresets.swift */,
+				007865BF1D90DC3100F33AEA /* M13CheckboxGestureRecognizer.swift */,
+				007865C01D90DC3100F33AEA /* M13CheckboxManager.swift */,
+				007865C11D90DC3100F33AEA /* M13CheckboxPathPresets.swift */,
+				007865C21D90DC3100F33AEA /* Managers */,
+				007865CB1D90DC3100F33AEA /* Presets */,
+			);
+			name = M13Checkbox;
+			path = Frameworks/M13Checkbox;
+			sourceTree = "<group>";
+		};
+		007865C21D90DC3100F33AEA /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				007865C31D90DC3100F33AEA /* M13CheckboxBounceManager.swift */,
+				007865C41D90DC3100F33AEA /* M13CheckboxDotManager.swift */,
+				007865C51D90DC3100F33AEA /* M13CheckboxExpandManager.swift */,
+				007865C61D90DC3100F33AEA /* M13CheckboxFadeManager.swift */,
+				007865C71D90DC3100F33AEA /* M13CheckboxFillManager.swift */,
+				007865C81D90DC3100F33AEA /* M13CheckboxFlatManager.swift */,
+				007865C91D90DC3100F33AEA /* M13CheckboxSpiralManager.swift */,
+				007865CA1D90DC3100F33AEA /* M13CheckboxStrokeManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		007865CB1D90DC3100F33AEA /* Presets */ = {
+			isa = PBXGroup;
+			children = (
+				007865CC1D90DC3100F33AEA /* M13CheckboxDotPathPresets.swift */,
+				007865CD1D90DC3100F33AEA /* M13CheckboxSpiralPathPresets.swift */,
+			);
+			path = Presets;
+			sourceTree = "<group>";
+		};
+		007865DE1D90E79F00F33AEA /* XCGLogger */ = {
+			isa = PBXGroup;
+			children = (
+				007865DF1D90E7A000F33AEA /* XCGLogger.h */,
+				007865E01D90E7A000F33AEA /* XCGLogger.swift */,
+			);
+			name = XCGLogger;
+			path = Frameworks/XCGLogger;
+			sourceTree = "<group>";
+		};
+		007865E21D91006F00F33AEA /* SMSegmentView */ = {
+			isa = PBXGroup;
+			children = (
+				007865E31D91006F00F33AEA /* SMAlphaImageSegment.swift */,
+				007865E41D91006F00F33AEA /* SMBasicSegment.swift */,
+				007865E51D91006F00F33AEA /* SMBasicSegmentView.swift */,
+				007865E61D91006F00F33AEA /* SMSegment.swift */,
+				007865E71D91006F00F33AEA /* SMSegmentView.swift */,
+			);
+			name = SMSegmentView;
+			path = Frameworks/SMSegmentView;
+			sourceTree = "<group>";
+		};
+		007865E81D91006F00F33AEA /* SwiftyJSON */ = {
+			isa = PBXGroup;
+			children = (
+				007865E91D91006F00F33AEA /* SwiftyJSON.swift */,
+			);
+			name = SwiftyJSON;
+			path = Frameworks/SwiftyJSON;
+			sourceTree = "<group>";
+		};
+		007865EA1D91006F00F33AEA /* Timepiece */ = {
+			isa = PBXGroup;
+			children = (
+				007865EB1D91006F00F33AEA /* Duration.swift */,
+				007865EC1D91006F00F33AEA /* Int+Timepiece.swift */,
+				007865ED1D91006F00F33AEA /* NSCalendar+Timepiece.swift */,
+				007865EE1D91006F00F33AEA /* CalendarComponent+Timepiece.swift */,
+				007865EF1D91006F00F33AEA /* NSDate+Timepiece.swift */,
+				007865F01D91006F00F33AEA /* NSDateComponents+Timepiece.swift */,
+				007865F11D91006F00F33AEA /* NSTimeInterval+Timepiece.swift */,
+				007865F21D91006F00F33AEA /* String+Timepiece.swift */,
+			);
+			name = Timepiece;
+			path = Frameworks/Timepiece;
 			sourceTree = "<group>";
 		};
 		007F79731A878D0B006C89E6 /* Resources */ = {
@@ -2408,6 +2591,10 @@
 				57C68BE0457DB1BFF58A2389 /* Pods-LunaR.release.xcconfig */,
 				337909E3A1733589971A3696 /* Pods-Nevo.debug.xcconfig */,
 				84E3C5A18963C1F2BFFF61CB /* Pods-Nevo.release.xcconfig */,
+				CBB9BF1C2FA9FD4C9B4E48BC /* Pods-LunaRTests.debug.xcconfig */,
+				4D889843ECCF8C9F30888205 /* Pods-LunaRTests.release.xcconfig */,
+				8FE857CD8B2EE737CB25062E /* Pods-NevoTests.debug.xcconfig */,
+				32FD66A73B338A8998018E2C /* Pods-NevoTests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -2493,6 +2680,13 @@
 		9AD8F95A1A6DFE3400F01014 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				007865E21D91006F00F33AEA /* SMSegmentView */,
+				007865E81D91006F00F33AEA /* SwiftyJSON */,
+				007865EA1D91006F00F33AEA /* Timepiece */,
+				007865DE1D90E79F00F33AEA /* XCGLogger */,
+				007865BB1D90DC3100F33AEA /* M13Checkbox */,
+				007865B51D90DBAF00F33AEA /* AutocompleteField */,
+				007865B71D90DBAF00F33AEA /* CircleProgressView */,
 				00AF8D051D224D57009047AC /* NevoAllKeys.swift */,
 				00AF8C4B1D224CFA009047AC /* Model */,
 				00AF8C781D224CFA009047AC /* Network */,
@@ -2507,6 +2701,8 @@
 				9AD8F9601A6E00C000F01014 /* NevoBT */,
 				2684F108DD80B3F763126280 /* Pods_LunaR.framework */,
 				0C2AEB04A0C7F45FE876ABED /* Pods_Nevo.framework */,
+				A5FD7E1EDAFE477B32142D3E /* Pods_LunaRTests.framework */,
+				7689D6188FDF6CDBFBD84C51 /* Pods_NevoTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -2613,9 +2809,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 00EFE0741D227D5F0066C905 /* Build configuration list for PBXNativeTarget "LunaRTests" */;
 			buildPhases = (
+				64E5A60CAE77018E275E3C0F /* [CP] Check Pods Manifest.lock */,
 				00EFE05B1D227D5F0066C905 /* Sources */,
 				00EFE05C1D227D5F0066C905 /* Frameworks */,
 				00EFE05D1D227D5F0066C905 /* Resources */,
+				F935D71A108E977A2B2FCE06 /* [CP] Embed Pods Frameworks */,
+				8F3E1C68FADAF48A37834A2A /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -2670,9 +2869,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9AD8F9571A6DF35900F01014 /* Build configuration list for PBXNativeTarget "NevoTests" */;
 			buildPhases = (
+				A82B3BB9F620E3880AC4AEF0 /* [CP] Check Pods Manifest.lock */,
 				9AD8F9461A6DF35900F01014 /* Sources */,
 				9AD8F9471A6DF35900F01014 /* Frameworks */,
 				9AD8F9481A6DF35900F01014 /* Resources */,
+				01526F7507CBE3820EEB20F8 /* [CP] Embed Pods Frameworks */,
+				1AC48C18A798BC74D26857A7 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -2717,6 +2919,7 @@
 					9AD8F9311A6DF35900F01014 = {
 						CreatedOnToolsVersion = 6.1.1;
 						DevelopmentTeam = WEGPWR9LDA;
+						LastSwiftMigration = 0800;
 						SystemCapabilities = {
 							com.apple.HealthKit = {
 								enabled = 1;
@@ -2726,6 +2929,7 @@
 					9AD8F9491A6DF35900F01014 = {
 						CreatedOnToolsVersion = 6.1.1;
 						DevelopmentTeam = WEGPWR9LDA;
+						LastSwiftMigration = 0800;
 						TestTargetID = 9AD8F9311A6DF35900F01014;
 					};
 				};
@@ -2989,6 +3193,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		01526F7507CBE3820EEB20F8 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-NevoTests/Pods-NevoTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		0AF6D3FE5CF0872295E62A94 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -3002,6 +3221,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Nevo/Pods-Nevo-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		1AC48C18A798BC74D26857A7 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-NevoTests/Pods-NevoTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		31696D40EF69A119AAB9A1E4 /* [CP] Embed Pods Frameworks */ = {
@@ -3019,7 +3253,52 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LunaR/Pods-LunaR-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		64E5A60CAE77018E275E3C0F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
 		7031D8A6CD34AAE6CA8E6E09 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		8F3E1C68FADAF48A37834A2A /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LunaRTests/Pods-LunaRTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A82B3BB9F620E3880AC4AEF0 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -3091,6 +3370,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Nevo/Pods-Nevo-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F935D71A108E977A2B2FCE06 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LunaRTests/Pods-LunaRTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -3309,14 +3603,18 @@
 				004AB4F21D8A3ACB008800E6 /* ActionSheetView.swift in Sources */,
 				9AD8F9841A6E2C8E00F01014 /* Request.swift in Sources */,
 				006A624E1D6AA62100458305 /* SolarInforViewCell.swift in Sources */,
+				007865F71D91006F00F33AEA /* SMSegmentView.swift in Sources */,
 				0050D6981C28E1CD004F6F80 /* AlarmClockController.swift in Sources */,
 				00AF8CBC1D224CFA009047AC /* BaseEntryDatabaseHelper.swift in Sources */,
 				00AF8CB61D224CFA009047AC /* DaySleep.swift in Sources */,
 				0050D60F1C28E0DB004F6F80 /* AddPresetView.swift in Sources */,
 				00321D6D1C98EBB10069BFCC /* AppDelegate.swift in Sources */,
 				00AF8CC81D224CFA009047AC /* StepsModel.swift in Sources */,
+				007865D11D90DC3100F33AEA /* M13CheckboxGestureRecognizer.swift in Sources */,
+				007865FD1D91006F00F33AEA /* NSDate+Timepiece.swift in Sources */,
 				0050D5FF1C28E0DB004F6F80 /* SelectedNotificationView.swift in Sources */,
 				00AF8CE51D224CFA009047AC /* ConnectionController.swift in Sources */,
+				007865B91D90DBAF00F33AEA /* AutocompleteField.swift in Sources */,
 				00AF8CCB1D224CFA009047AC /* UserProfile.swift in Sources */,
 				00AF8CFF1D224CFA009047AC /* SetNortificationRequest.swift in Sources */,
 				006A62411D6AA5F200458305 /* SleepHistoricalView.swift in Sources */,
@@ -3324,7 +3622,10 @@
 				00AF8CFB1D224CFA009047AC /* SetAlarmRequest.swift in Sources */,
 				0089B0B11D6BFF250041148A /* SetingNotLoginCell.swift in Sources */,
 				00AF8CDA1D224CFA009047AC /* PublicClassTableViewController.swift in Sources */,
+				007865FF1D91006F00F33AEA /* NSTimeInterval+Timepiece.swift in Sources */,
 				00321D7C1C993C320069BFCC /* LoginController.swift in Sources */,
+				007865DC1D90DC3100F33AEA /* M13CheckboxDotPathPresets.swift in Sources */,
+				007866001D91006F00F33AEA /* String+Timepiece.swift in Sources */,
 				006DA3101D6ED5C40011E09C /* AnalysisValueCell.swift in Sources */,
 				006A62521D6AA75100458305 /* LineLabel.swift in Sources */,
 				0050D60B1C28E0DB004F6F80 /* AddPresetViewController.swift in Sources */,
@@ -3333,7 +3634,9 @@
 				0050D6021C28E0DB004F6F80 /* SelectedNotificationTypeController.swift in Sources */,
 				00AF8CEE1D224CFA009047AC /* Utility.swift in Sources */,
 				00AF8CDB1D224CFA009047AC /* AnimationView.swift in Sources */,
+				007865FC1D91006F00F33AEA /* CalendarComponent+Timepiece.swift in Sources */,
 				006A62591D6AA76C00458305 /* NewAddAlarmHeader.swift in Sources */,
+				007865D81D90DC3100F33AEA /* M13CheckboxFillManager.swift in Sources */,
 				005E468C1D87DBE1009B6E4C /* WatchNamePacket.swift in Sources */,
 				00AF8CF61D224CFA009047AC /* LedLightOnOffNevoRequest.swift in Sources */,
 				00AF8CC91D224CFA009047AC /* UserAlarm.swift in Sources */,
@@ -3345,6 +3648,7 @@
 				00AF8CE41D224CFA009047AC /* ClockRefreshManager.swift in Sources */,
 				007E0CAE1D0E5C3E00B0B600 /* ConnectOtherAppsCell.swift in Sources */,
 				0089B0AF1D6BFF250041148A /* SetingLoginCell.swift in Sources */,
+				007865E11D90E7A000F33AEA /* XCGLogger.swift in Sources */,
 				006A62421D6AA5F200458305 /* SleepHistoricalViewController.swift in Sources */,
 				00BF2D9A1C7FED2200909316 /* VideoPlayController.swift in Sources */,
 				00AF8CD11D224CFA009047AC /* TypeModel.swift in Sources */,
@@ -3356,16 +3660,19 @@
 				0050D5EA1C28E0DB004F6F80 /* OldOtaViewController.swift in Sources */,
 				006A62221D6A9F1500458305 /* MainTabBarController.swift in Sources */,
 				00AF8CB71D224CFA009047AC /* HourlySteps.swift in Sources */,
+				007865BA1D90DBAF00F33AEA /* CircleProgressView.swift in Sources */,
 				00AF8CE21D224CFA009047AC /* ToolbarView.swift in Sources */,
 				00AF8CD71D224CFA009047AC /* Color.swift in Sources */,
 				9AD8F98D1A6E2D6E00F01014 /* RawPacket.swift in Sources */,
 				0089B0A31D6BF0CB0041148A /* ProfileSetupViewController.swift in Sources */,
+				007865CF1D90DC3100F33AEA /* M13Checkbox.swift in Sources */,
 				9AD8F9621A6E00E800F01014 /* NevoBTimpl.swift in Sources */,
 				006A624C1D6AA62100458305 /* SolarIndicatorController.swift in Sources */,
 				00AF8CEC1D224CFA009047AC /* NevoOTAPacketProfile.swift in Sources */,
 				00AF8CF01D224CFA009047AC /* DailyStepsNevoPacket.swift in Sources */,
 				00AF8CFC1D224CFA009047AC /* SetCardioRequest.swift in Sources */,
 				9E98FB291C463A3B00BAB700 /* TutorialOneViewController.swift in Sources */,
+				007865F81D91006F00F33AEA /* SwiftyJSON.swift in Sources */,
 				0050D5F11C28E0DB004F6F80 /* MyNevoHeaderView.swift in Sources */,
 				00E6509C1C83EE6700278D3E /* SleepTutorialController.swift in Sources */,
 				00AF8CC21D224CFA009047AC /* HealthModel.swift in Sources */,
@@ -3387,8 +3694,10 @@
 				005BC95F1A88B79F006F9E86 /* FXBlurView.m in Sources */,
 				006A62741D6AB44A00458305 /* StepsTitleView.swift in Sources */,
 				00AF8CD31D224CFA009047AC /* Sleep.swift in Sources */,
+				007865F61D91006F00F33AEA /* SMSegment.swift in Sources */,
 				00AF8CFA1D224CFA009047AC /* ReadDailyTrackerInfo.swift in Sources */,
 				0050D6931C28E1CD004F6F80 /* AddAlarmSystemCell.swift in Sources */,
+				007865D91D90DC3100F33AEA /* M13CheckboxFlatManager.swift in Sources */,
 				00AF8CDF1D224CFA009047AC /* DatePickerView.swift in Sources */,
 				00120E771D7550D500CE0C32 /* UserHeader.swift in Sources */,
 				9E98FB2D1C463D2A00BAB700 /* TutorialThreeViewController.swift in Sources */,
@@ -3398,13 +3707,16 @@
 				9E98FB351C46405800BAB700 /* TutorialFiveViewController.swift in Sources */,
 				006A625D1D6AA79E00458305 /* AlarmClockVCell.swift in Sources */,
 				0089B09A1D6BE9410041148A /* CheckYourIndoxController.swift in Sources */,
+				007865F31D91006F00F33AEA /* SMAlphaImageSegment.swift in Sources */,
 				00AF8CF81D224CFA009047AC /* ReadBatteryLevelNevoRequest.swift in Sources */,
+				007865D51D90DC3100F33AEA /* M13CheckboxDotManager.swift in Sources */,
 				006A62571D6AA76C00458305 /* AlarmTypeCell.swift in Sources */,
 				00AF8CC71D224CFA009047AC /* SleepModel.swift in Sources */,
 				0050D60D1C28E0DB004F6F80 /* PresetTableViewController.swift in Sources */,
 				00AF8CC51D224CFA009047AC /* Presets.swift in Sources */,
 				0089B09E1D6BE9410041148A /* InformationController.swift in Sources */,
 				0050D6101C28E0DB004F6F80 /* PresetTableViewCell.swift in Sources */,
+				007865FA1D91006F00F33AEA /* Int+Timepiece.swift in Sources */,
 				006DA3181D6ED6670011E09C /* AnalysisRadarViewCell.swift in Sources */,
 				00AF8CBB1D224CFA009047AC /* NewAlarm.swift in Sources */,
 				00AF8CE91D224CFA009047AC /* IntelHex2BinConverter.m in Sources */,
@@ -3413,17 +3725,21 @@
 				00AF8CEB1D224CFA009047AC /* NevoOTAModeProfile.swift in Sources */,
 				00AF8CE71D224CFA009047AC /* ConnectionManager.swift in Sources */,
 				0050D5EF1C28E0DB004F6F80 /* MyNevoController.swift in Sources */,
+				007865FE1D91006F00F33AEA /* NSDateComponents+Timepiece.swift in Sources */,
+				007865F41D91006F00F33AEA /* SMBasicSegment.swift in Sources */,
 				00AF8CB41D224CFA009047AC /* CaloriesToHK.swift in Sources */,
 				9E98FB3D1C46434100BAB700 /* TutorialSixViewController.swift in Sources */,
 				00E2BDE41B16CCD0009C757E /* MBProgressHUD.m in Sources */,
 				00AF8CD41D224CFA009047AC /* TestMode.swift in Sources */,
 				006DA30D1D6ED5910011E09C /* AnalysisStepsChartView.swift in Sources */,
+				007865F51D91006F00F33AEA /* SMBasicSegmentView.swift in Sources */,
 				00AF8CC31D224CFA009047AC /* NevoProfileModel.swift in Sources */,
 				00AF8D011D224CFA009047AC /* SetRTCRequest.swift in Sources */,
 				00F0C3531C8993DD005888A7 /* NewAddAlarmController.swift in Sources */,
 				9AD8F98F1A6E2EE000F01014 /* Profile.swift in Sources */,
 				00AF8CFD1D224CFA009047AC /* SetGoalRequest.swift in Sources */,
 				0089B0B31D6BFF250041148A /* SetingView.swift in Sources */,
+				007865D61D90DC3100F33AEA /* M13CheckboxExpandManager.swift in Sources */,
 				00AF8CCE1D224CFA009047AC /* Goal.swift in Sources */,
 				0089B0AD1D6BFF250041148A /* SetingInfoCell.swift in Sources */,
 				00AF8CE81D224CFA009047AC /* NevoProfile.swift in Sources */,
@@ -3437,26 +3753,33 @@
 				00AF8CF41D224CFA009047AC /* GetActivityRequest.swift in Sources */,
 				00AF8CDC1D224CFA009047AC /* AppTheme.swift in Sources */,
 				00AF8CED1D224CFA009047AC /* NevoOTARequest.swift in Sources */,
+				007865D31D90DC3100F33AEA /* M13CheckboxPathPresets.swift in Sources */,
 				00AF8CF11D224CFA009047AC /* DailyTrackerInfoNevoPacket.swift in Sources */,
 				0050D5F81C28E0DB004F6F80 /* NevoOtaViewController.swift in Sources */,
 				00AF8CBA1D224CFA009047AC /* Alarm.swift in Sources */,
 				9E98FB371C4640AF00BAB700 /* TutorialSevenViewController.swift in Sources */,
 				00AF8D041D224CFA009047AC /* SyncQueue.swift in Sources */,
 				00AF8CC61D224CFA009047AC /* PresetsModel.swift in Sources */,
+				007865D21D90DC3100F33AEA /* M13CheckboxManager.swift in Sources */,
 				0050D6161C28E0DB004F6F80 /* SetingViewController.swift in Sources */,
 				006DA9FE1D80F2A600B70C0F /* AppDelegate-Extension.swift in Sources */,
 				005E468A1D879FB5009B6E4C /* GetWatchName.swift in Sources */,
 				00AF8CF31D224CFA009047AC /* NevoPacket.swift in Sources */,
+				007865FB1D91006F00F33AEA /* NSCalendar+Timepiece.swift in Sources */,
 				00AF8CDD1D224CFA009047AC /* BalloonMarker.swift in Sources */,
+				007865D01D90DC3100F33AEA /* M13CheckboxAnimationPresets.swift in Sources */,
 				00AF8D031D224CFA009047AC /* WriteSettingRequest.swift in Sources */,
+				007865F91D91006F00F33AEA /* Duration.swift in Sources */,
 				0050D6971C28E1CD004F6F80 /* AddAlarmView.swift in Sources */,
 				00F0C34B1C893EE6005888A7 /* AlarmTypeController.swift in Sources */,
 				00AF8CCA1D224CFA009047AC /* UserNotification.swift in Sources */,
 				0050D5F41C28E0DB004F6F80 /* NevoOtaController.swift in Sources */,
 				00344F5C1C47A86800C2FC7A /* SupportViewController.swift in Sources */,
 				9E98FB2F1C463E1C00BAB700 /* TutorialFourViewController.swift in Sources */,
+				007865DD1D90DC3100F33AEA /* M13CheckboxSpiralPathPresets.swift in Sources */,
 				9E98FB2B1C463BB200BAB700 /* TutorialTwoViewController.swift in Sources */,
 				0050D5FE1C28E0DB004F6F80 /* NotificationView.swift in Sources */,
+				007865DA1D90DC3100F33AEA /* M13CheckboxSpiralManager.swift in Sources */,
 				9A2D6C3E1A9C71E500591BDC /* NevoHK.swift in Sources */,
 				0050D6121C28E0DB004F6F80 /* PresetView.swift in Sources */,
 				0050D6951C28E1CD004F6F80 /* AddAlarmTableViewCell.swift in Sources */,
@@ -3466,6 +3789,7 @@
 				00AF8CC01D224CFA009047AC /* AlarmModel.swift in Sources */,
 				006DA3161D6ED6670011E09C /* AnalysisLineChartCell.swift in Sources */,
 				00120E841D75763D00CE0C32 /* RepeatViewCell.swift in Sources */,
+				007865D41D90DC3100F33AEA /* M13CheckboxBounceManager.swift in Sources */,
 				0050D5F31C28E0DB004F6F80 /* MyNevoView.swift in Sources */,
 				9AD8F93B1A6DF35900F01014 /* Nevo.xcdatamodeld in Sources */,
 				00AF8CD91D224CFA009047AC /* PublicClassController.swift in Sources */,
@@ -3474,8 +3798,11 @@
 				003DBF771D6D93C400E45244 /* EventBusKeys.swift in Sources */,
 				00AF8CF71D224CFA009047AC /* NevoRequest.swift in Sources */,
 				00AF8CF51D224CFA009047AC /* GetStepsGoalRequest.swift in Sources */,
+				007865DB1D90DC3100F33AEA /* M13CheckboxStrokeManager.swift in Sources */,
+				007865D71D90DC3100F33AEA /* M13CheckboxFadeManager.swift in Sources */,
 				00AF8CD01D224CFA009047AC /* NotificationSetting.swift in Sources */,
 				007F1F511CAA1B630021DF1B /* LocalNotification.swift in Sources */,
+				007865CE1D90DC3100F33AEA /* M13Checkbox+IB.swift in Sources */,
 				00AF8CFE1D224CFA009047AC /* SetNewAlarmRequest.swift in Sources */,
 				0050D5F51C28E0DB004F6F80 /* DeviceScannerView.swift in Sources */,
 			);
@@ -3759,7 +4086,7 @@
 				);
 				GCC_NO_COMMON_BLOCKS = YES;
 				INFOPLIST_FILE = LunaR/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.medcorp.LunaR;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -3787,7 +4114,7 @@
 				);
 				GCC_NO_COMMON_BLOCKS = YES;
 				INFOPLIST_FILE = LunaR/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.medcorp.LunaR;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -3798,6 +4125,7 @@
 		};
 		00EFE0751D227D5F0066C905 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CBB9BF1C2FA9FD4C9B4E48BC /* Pods-LunaRTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
@@ -3815,6 +4143,7 @@
 		};
 		00EFE0761D227D5F0066C905 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4D889843ECCF8C9F30888205 /* Pods-LunaRTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
@@ -3902,7 +4231,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				PROVISIONING_PROFILE = "1e4a840c-f839-4957-9051-5736de9e653b";
@@ -3940,7 +4269,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PROVISIONING_PROFILE = "1e4a840c-f839-4957-9051-5736de9e653b";
 				SDKROOT = iphoneos;
@@ -3963,13 +4292,14 @@
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
 				);
 				INFOPLIST_FILE = Nevo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_SWIFT_FLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.nevowatch.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Nevo/Nevo-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -3988,18 +4318,20 @@
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
 				);
 				INFOPLIST_FILE = Nevo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_SWIFT_FLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.nevowatch.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Nevo/Nevo-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
 		9AD8F9581A6DF35900F01014 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8FE857CD8B2EE737CB25062E /* Pods-NevoTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -4017,12 +4349,14 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.nevowatch.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Nevo.app/Nevo";
 			};
 			name = Debug;
 		};
 		9AD8F9591A6DF35900F01014 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 32FD66A73B338A8998018E2C /* Pods-NevoTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -4036,6 +4370,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.nevowatch.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Nevo.app/Nevo";
 			};
 			name = Release;

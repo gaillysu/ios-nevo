@@ -9,7 +9,6 @@
 import Foundation
 import AudioToolbox
 import RegexKitLite
-import XCGLogger
 
 /**
 This class holds all app-wide constants.
@@ -118,7 +117,7 @@ class AppTheme {
     *
     */
     class func KeyedArchiverName(_ name:NSString,andObject object:AnyObject) ->Bool{
-        var objectArray:[AnyObject] = [object.copy]
+        var objectArray:[AnyObject] = [object]
         let senddate:Date = Date()
         let dateformatter:DateFormatter = DateFormatter()
 
@@ -154,7 +153,7 @@ class AppTheme {
             let objectArr = NSKeyedUnarchiver.unarchiveObject(withFile: filename as String)!
             return objectArr as AnyObject
         }
-        return []
+        return [] as AnyObject
     }
 
     /**
@@ -271,7 +270,7 @@ class AppTheme {
     class func jsonToArray(_ object:String)->NSArray{
         do{
             let data:Data = object.data(using: String.Encoding.utf8)!
-            let array:AnyObject = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.mutableContainers)
+            let array = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.mutableContainers)
             let JsonToArray = array as! NSArray
             return JsonToArray
         }catch{
@@ -279,38 +278,9 @@ class AppTheme {
         }
     }
 
-    /**
-    *Hexadecimal color string into UIColor (HTML color values)
-    */
-    class func hexStringToColor(_ stringToConvert:String)->UIColor{
-        var cString:NSString = stringToConvert.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()).uppercased()
-        if (cString.length < 6){ return UIColor.black}
-        // strip 0X if it appears
-        if (cString.hasPrefix("0X")){ cString = cString.substring(from: 2) as NSString}
-        if (cString.hasPrefix("#")){ cString = cString.substring(from: 1) as NSString}
-        if (cString.length != 6){ return UIColor.black}
-        // Separate into r, g, b substrings
-
-        var range:NSRange = NSRange()
-        range.location = 0;
-        range.length = 2;
-        let rString:NSString = cString.substring(with: range) as NSString
-        range.location = 2;
-        let gString:NSString = cString.substring(with: range) as NSString
-        range.location = 4;
-        let bString:NSString  = cString.substring(with: range) as NSString
-        // Scan values
-        var r:UInt32 = 0
-        var g:UInt32 = 0
-        var b:UInt32 = 0
-        Scanner(string: rString as String).scanHexInt32(&r)
-        Scanner(string: gString as String).scanHexInt32(&g)
-        Scanner(string: bString as String).scanHexInt32(&b)
-        return UIColor(red: CGFloat(r)/255.0, green:  CGFloat(g)/255.0, blue:  CGFloat(b)/255.0, alpha: 1)
-    }
-
     class func navigationbar(_ navigation:UINavigationController) {
-        if(navigation.navigationBar.responds(to: #selector(UINavigationBar.setBackgroundImage(_:`for`:)(_:forBarMetrics:)))){
+        
+        if(navigation.navigationBar.responds(to: #selector(UINavigationBar.setBackgroundImage(_:for:barMetrics:)))){
             let list:NSArray = navigation.navigationBar.subviews as NSArray
             for obj in list{
                 if((obj as AnyObject).isKind(of: UIImageView.classForCoder())){
@@ -441,20 +411,5 @@ class AppTheme {
     
     class func isNull(_ object:String)->Bool{
         return object.isEmpty
-    }
-    
-    class func getClassCustomPropertyName(_ anClass:AnyClass,name:String)->String{
-        var outCount:UInt32 = 0;
-        var i:Int = 0;
-        let pProperty = class_copyPropertyList(anClass, &outCount);
-        for (i = Int(outCount)-1; i >= 0; i -= 1){
-            // 循环获取属性的名字   property_getName函数返回一个属性的名称
-            let getPropertyName:String = String(CString: property_getName(pProperty![i]),encoding:String.Encoding.utf8)
-            //let getPropertyNameString:String = String(CString: property_getAttributes(pProperty[i]),encoding:NSUTF8StringEncoding)!
-            if(getPropertyName == name) {
-                return getPropertyName
-            }
-        }
-        return ""
     }
 }

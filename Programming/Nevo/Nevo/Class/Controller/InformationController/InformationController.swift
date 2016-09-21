@@ -7,14 +7,9 @@
 //
 
 import UIKit
-import SMSegmentView
-import AutocompleteField
-import Timepiece
-import XCGLogger
 import BRYXBanner
 import MRProgress
 import SwiftyTimer
-import SwiftyJSON
 
 class InformationController: UIViewController,SMSegmentViewDelegate {
 

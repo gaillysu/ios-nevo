@@ -48,7 +48,7 @@ class NevoHKImpl {
             let error = NSError(domain: "com.nevowatch.nevo", code: 2, userInfo: [NSLocalizedDescriptionKey:"HealthKit is not available in this Device"])
             if( completion != nil )
             {
-                completion(success:false, error:error)
+                completion(false, error)
             }
             return;
         }

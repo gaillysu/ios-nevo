@@ -18,9 +18,9 @@ class CaloriesToHK: NevoHKDataPoint {
     init(calories:Double, date:Date) {
         mCalories=calories
 
-        mCalories_Date = Date().change(year: date.year, month: date.month, day: date.day, hour: 0, minute: 0, second: 0)
+        mCalories_Date = Date().change(date.year, month: date.month, day: date.day, hour: 0, minute: 0, second: 0)
         //A daily data point if from 00AM to 23:59:59
-        lateNight = Date().change(year: date.year, month: date.month, day: date.day, hour: date.hour, minute: 59, second: 59)
+        lateNight = Date().change(date.year, month: date.month, day: date.day, hour: date.hour, minute: 59, second: 59)
     }
 
     @objc func toHKQuantitySample() -> HKQuantitySample {

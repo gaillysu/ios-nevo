@@ -8,7 +8,6 @@
 
 import UIKit
 import UIColor_Hex_Swift
-import XCGLogger
 
 class MainTabBarController: UITabBarController,UITabBarControllerDelegate {
 

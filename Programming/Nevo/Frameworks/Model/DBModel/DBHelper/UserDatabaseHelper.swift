@@ -9,7 +9,6 @@
 
 import UIKit
 import FMDB
-import XCGLogger
 
 /** SQLite Five types of data */
 let SQLTEXT = "TEXT"
@@ -21,7 +20,7 @@ let SQLNULL = "NULL"
 let PrimaryKey = "primary key"
 let primaryId = "id"
 
-class UserDatabaseHelper:NSObject,BaseEntryDatabaseHelper {
+class UserDatabaseHelper:NSObject {
 
     /** 主键 id */
     var id:Int = 0;

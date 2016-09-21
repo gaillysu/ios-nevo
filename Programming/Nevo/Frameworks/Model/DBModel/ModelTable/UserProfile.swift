@@ -24,14 +24,14 @@ class UserProfile: NSObject {
 
     init(keyDict:NSDictionary) {
         super.init()
-        keyDict.enumerateKeysAndObjects { (key, value, stop) in
+        keyDict.enumerateKeysAndObjects(options: NSEnumerationOptions.concurrent) { (key, value, stop) in
             self.setValue(value, forKey: key as! String)
         }
     }
 
     func add(_ result:@escaping ((_ id:Int?,_ completion:Bool?) -> Void)){
         if NevoProfileModel.isExistInTable() {
-            NevoProfileModel.updateTable()
+            _ = NevoProfileModel.updateTable()
         }
         let keyName:NSArray = UserProfile.getPropertys().object(forKey: "name") as! NSArray
         for value in keyName {
@@ -45,7 +45,7 @@ class UserProfile: NSObject {
 
     func update()->Bool{
         if NevoProfileModel.isExistInTable() {
-            NevoProfileModel.updateTable()
+           _ = NevoProfileModel.updateTable()
         }
         let keyName:NSArray = UserProfile.getPropertys().object(forKey: "name") as! NSArray
         for value in keyName {

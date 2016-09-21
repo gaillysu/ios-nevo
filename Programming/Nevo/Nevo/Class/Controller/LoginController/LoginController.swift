@@ -7,13 +7,10 @@
 //
 
 import UIKit
-import SwiftyJSON
 import MRProgress
 import BRYXBanner
-import XCGLogger
 import LTNavigationBar
 import UIColor_Hex_Swift
-import AutocompleteField
 import ActiveLabel
 
 class LoginController: UIViewController,UITextFieldDelegate {
@@ -120,7 +117,7 @@ class LoginController: UIViewController,UITextFieldDelegate {
             view?.setTintColor(AppTheme.NEVO_SOLAR_YELLOW())
 
             
-            HttpPostRequest.LunaRPostRequest("http://nevo.karljohnchow.com/user/login", data: ["user":["email":userName,"password":password]]) { (result) in
+            HttpPostRequest.LunaRPostRequest("http://nevo.karljohnchow.com/user/login", data: (["user":["email":userName,"password":password]] as AnyObject) as! Dictionary<String, AnyObject>) { (result) in
                 MRProgressOverlayView.dismissAllOverlays(for: self.navigationController!.view, animated: true)
                 
                 let json = JSON(result)

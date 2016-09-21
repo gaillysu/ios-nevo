@@ -55,7 +55,7 @@ class StepsHistoryViewController: PublicClassController,UICollectionViewDelegate
         saveContentTArray()
         
         SwiftEventBus.onMainThread(self, name: SELECTED_CALENDAR_NOTIFICATION) { (notification) in
-            let userinfo:NSDate = notification.userInfo!["selectedDate"] as! NSDate
+            let userinfo:Date = notification.userInfo!["selectedDate"] as! Date
             self.queryArray = UserSteps.getCriteria("WHERE date = \(userinfo.beginningOfDay.timeIntervalSince1970)")
             self.bulidStepHistoricalChartView(self.queryArray)
         }
@@ -64,7 +64,7 @@ class StepsHistoryViewController: PublicClassController,UICollectionViewDelegate
             let dict:[String:AnyObject] = notification.object as! [String:AnyObject]
             let dailySteps:Int = dict["STEPS"] as! Int
             self.calculationData(0, steps: dailySteps, completionData: { (miles, calories) in
-                self.contentTArray.replaceRange(Range(3..<4), with: ["\(miles)"])
+                self.contentTArray.replaceSubrange(Range(3..<4), with: ["\(miles)"])
             })
             self.stepsHistory.reloadData()
         }
@@ -220,7 +220,7 @@ class StepsHistoryViewController: PublicClassController,UICollectionViewDelegate
         for (index,steps) in hourlystepsArray.enumerated(){
             let val1:Double  = (steps as! NSNumber).doubleValue;
             let date:Date = Date(timeIntervalSince1970: seleModel.date)
-            var dateString:NSString = date.stringFromFormat("yyyyMMdd")
+            var dateString:NSString = date.stringFromFormat("yyyyMMdd") as NSString
             if(dateString.length < 8) {
                 dateString = "00000000"
             }

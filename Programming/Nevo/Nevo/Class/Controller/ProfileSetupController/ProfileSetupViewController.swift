@@ -7,13 +7,9 @@
 //
 
 import UIKit
-import AutocompleteField
 import UIColor_Hex_Swift
 import BRYXBanner
-import SwiftyJSON
 import MRProgress
-import XCGLogger
-import M13Checkbox
 
 
 private let DATEPICKER_TAG:Int = 1280

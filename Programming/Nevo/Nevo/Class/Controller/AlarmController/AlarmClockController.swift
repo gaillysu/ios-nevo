@@ -8,7 +8,6 @@
 
 import UIKit
 import BRYXBanner
-import Timepiece
 
 class AlarmClockController: UITableViewController,AddAlarmDelegate {
     
@@ -117,7 +116,7 @@ class AlarmClockController: UITableViewController,AddAlarmDelegate {
             let addalarm:UserAlarm = UserAlarm(keyDict: ["id":alarmModel.id,"timer":alarmModel.timer,"label":"\(alarmModel.label)","status":status ? isStatus:status,"repeatStatus":false,"dayOfWeek":alarmModel.dayOfWeek,"type":alarmModel.type])
             let res:Bool = addalarm.update()
             let date:Date = Date(timeIntervalSince1970: addalarm.timer)
-            let newAlarm:NewAlarm = NewAlarm(alarmhour: date.hour, alarmmin: date.minute, alarmNumber: Bool(addalarm.type) ? (index+7):index, alarmWeekday: status ? addalarm.dayOfWeek:0)
+            let newAlarm:NewAlarm = NewAlarm(alarmhour: date.hour, alarmmin: date.minute, alarmNumber: addalarm.type == 1 ? (index+7):index, alarmWeekday: status ? addalarm.dayOfWeek:0)
             if(AppDelegate.getAppDelegate().isConnected() && res){
                 AppDelegate.getAppDelegate().setNewAlarm(newAlarm)
                 if newAlarm.getAlarmNumber()<7 {
@@ -195,7 +194,7 @@ class AlarmClockController: UITableViewController,AddAlarmDelegate {
                 self.tableView.reloadData()
 
                 let date:Date = Date(timeIntervalSince1970: timer)
-                let newAlarm:NewAlarm = NewAlarm(alarmhour: date.hour, alarmmin: date.minute, alarmNumber: Bool(alarmType) ? sleepAlarmCount:dayAlarmCount, alarmWeekday: repeatNumber)
+                let newAlarm:NewAlarm = NewAlarm(alarmhour: date.hour, alarmmin: date.minute, alarmNumber: alarmType == 1 ? sleepAlarmCount:dayAlarmCount, alarmWeekday: repeatNumber)
                 if(AppDelegate.getAppDelegate().isConnected()){
                     AppDelegate.getAppDelegate().setNewAlarm(newAlarm)
                     SyncAlarmAlertView()
@@ -215,7 +214,7 @@ class AlarmClockController: UITableViewController,AddAlarmDelegate {
                 isSleepStatus = true
             }
 
-            let switchStatus:Bool = Bool(alarmType) ? isSleepStatus:isDayStatus
+            let switchStatus:Bool = (alarmType == 1) ? isSleepStatus:isDayStatus
             let addalarm:UserAlarm = UserAlarm(keyDict: ["id":0,"timer":timer,"label":"\(name)","status":switchStatus ,"repeatStatus":false,"dayOfWeek":repeatNumber,"type":alarmType])
             addalarm.add({ (id, completion) -> Void in
                 if(completion!){
@@ -224,7 +223,7 @@ class AlarmClockController: UITableViewController,AddAlarmDelegate {
                     self.tableView.reloadData()
 
                     let date:Date = Date(timeIntervalSince1970: timer)
-                    let newAlarm:NewAlarm = NewAlarm(alarmhour: date.hour, alarmmin: date.minute, alarmNumber: Bool(alarmType) ? sleepAlarmCount:dayAlarmCount, alarmWeekday: repeatNumber)
+                    let newAlarm:NewAlarm = NewAlarm(alarmhour: date.hour, alarmmin: date.minute, alarmNumber: (alarmType == 1) ? sleepAlarmCount:dayAlarmCount, alarmWeekday: repeatNumber)
 
                     if(switchStatus) {
                         if(AppDelegate.getAppDelegate().isConnected()){

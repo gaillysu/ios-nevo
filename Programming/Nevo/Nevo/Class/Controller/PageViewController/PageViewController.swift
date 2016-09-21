@@ -8,9 +8,7 @@
 
 import UIKit
 import BRYXBanner
-import Timepiece
 import UIColor_Hex_Swift
-import XCGLogger
 import CVCalendar
 import SwiftEventBus
 import LTNavigationBar
@@ -237,7 +235,7 @@ extension PageViewController {
             self.calendarView!.commitCalendarViewUpdate()
             self.menuView!.commitMenuViewUpdate()
             
-            calendarView?.coordinator.selectedDayView?.selectionView?.shape = CVShape.Rect
+            calendarView?.coordinator.selectedDayView?.selectionView?.shape = CVShape.rect
             
             UIView.animate(withDuration: 0.2, delay: 0, options: UIViewAnimationOptions.curveEaseIn, animations: {
                 calendarBackGroundView.alpha = 1
@@ -288,12 +286,12 @@ extension PageViewController: CVCalendarViewDelegate, CVCalendarMenuViewDelegate
     
     /// Required method to implement!
     func presentationMode() -> CalendarMode {
-        return .MonthView
+        return .monthView
     }
     
     /// Required method to implement!
     func firstWeekday() -> Weekday {
-        return .Sunday
+        return .sunday
     }
     
     func dayOfWeekTextUppercase() -> Bool {
@@ -314,7 +312,7 @@ extension PageViewController: CVCalendarViewDelegate, CVCalendarMenuViewDelegate
     
     func didSelectDayView(_ dayView: CVCalendarDayView, animationDidFinish: Bool) {
         print("\(dayView.date.commonDescription) is selected!")
-        dayView.selectionView?.shape = CVShape.Rect
+        dayView.selectionView?.shape = CVShape.rect
         self.dismissCalendar()
         titleView?.selectedFinishTitleView()
         let dayDate:Date = dayView.date!.convertedDate()!
@@ -323,17 +321,17 @@ extension PageViewController: CVCalendarViewDelegate, CVCalendarMenuViewDelegate
     }
     
     func dotMarker(shouldShowOnDayView dayView: CVCalendarDayView) -> Bool {
-        dayView.selectionView?.shape = CVShape.Rect
+        dayView.selectionView?.shape = CVShape.rect
         return false
     }
     
     func dotMarker(shouldMoveOnHighlightingOnDayView dayView: CVCalendarDayView) -> Bool {
-        dayView.selectionView?.shape = CVShape.Rect
+        dayView.selectionView?.shape = CVShape.rect
         return true
     }
     
     func preliminaryView(shouldDisplayOnDayView dayView: DayView) -> Bool {
-        dayView.selectionView?.shape = CVShape.Rect
+        dayView.selectionView?.shape = CVShape.rect
         return false
     }
     
@@ -345,12 +343,12 @@ extension PageViewController: CVCalendarViewDelegate, CVCalendarMenuViewDelegate
     }
     
     func topMarker(shouldDisplayOnDayView dayView: CVCalendarDayView) -> Bool {
-        dayView.selectionView?.shape = CVShape.Rect
+        dayView.selectionView?.shape = CVShape.rect
         return false
     }
     
     func weekdaySymbolType() -> WeekdaySymbolType {
-        return .VeryShort
+        return .veryShort
     }
     
     func shouldShowCustomSingleSelection() -> Bool {

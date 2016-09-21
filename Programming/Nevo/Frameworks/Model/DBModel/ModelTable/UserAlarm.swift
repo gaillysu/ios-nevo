@@ -8,7 +8,7 @@
 
 import UIKit
 
-class UserAlarm: NSObject,BaseEntryDatabaseHelper {
+class UserAlarm: NSObject {
     var id:Int = 0
     var timer:TimeInterval = 0.0
     var label:String = ""
@@ -100,12 +100,12 @@ class UserAlarm: NSObject,BaseEntryDatabaseHelper {
         let array = AlarmModel.getAll()
         if(array.count == 0){
             let currentDate:Date = Date()
-            let date1:Date = Date.date(year: currentDate.year, month: currentDate.minute, day: currentDate.day, hour: 8, minute: 0, second: 0)
-            let date2:Date = Date.date(year: currentDate.year, month: currentDate.minute, day: currentDate.day, hour: 9, minute: 0, second: 0)
+            let date1:Date = Date.date(currentDate.year, month: currentDate.minute, day: currentDate.day, hour: 8, minute: 0, second: 0)
+            let date2:Date = Date.date(currentDate.year, month: currentDate.minute, day: currentDate.day, hour: 9, minute: 0, second: 0)
             let dateArray:[TimeInterval] = [date1.timeIntervalSince1970,date2.timeIntervalSince1970]
             let nameArray:[String] = ["Alarm 1","Alarm 2"]
             DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.default).async(execute: { () -> Void in
-                for (index:Int in 0 ..< dateArray.count ) {
+                for index:Int in 0..<dateArray.count {
                     let alarm:UserAlarm = UserAlarm(keyDict: ["id":index,"timer":dateArray[index],"label":nameArray[index],"status":false,"repeatStatus":true,"dayOfWeek":0,"type":0])
                     alarm.add({ (id, completion) -> Void in
 

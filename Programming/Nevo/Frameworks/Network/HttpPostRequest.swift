@@ -8,7 +8,6 @@
 
 import UIKit
 import Alamofire
-import XCGLogger
 
 class HttpPostRequest: NSObject {
 
@@ -17,15 +16,19 @@ class HttpPostRequest: NSObject {
         finalData["params"] = data as AnyObject?;
         XCGLogger.defaultInstance().debug("\(finalData)")
         
-        Alamofire.request(Method.POST, url, parameters: finalData, encoding:ParameterEncoding.JSON, headers: ["Authorization": "Basic YXBwczptZWRfYXBwX2RldmVsb3BtZW50","Content-Type":"application/json"]).responseJSON { (response) -> Void in
+        let urls = URL(string: url)!
+        let parameters: Parameters = data
+        let encode:ParameterEncoding = JSONEncoding.default
+        
+        Alamofire.request(urls, method: .post, parameters: parameters, encoding: encode, headers: ["Authorization": "Basic YXBwczptZWRfYXBwX2RldmVsb3BtZW50","Content-Type":"application/json"]).responseJSON { (response) in
             if response.result.isSuccess {
                 XCGLogger.defaultInstance().debug("getJSON: \(response.result.value)")
-                completion(result: response.result.value as! NSDictionary)
+                completion(response.result.value as! NSDictionary)
             }else if (response.result.isFailure){
                 if (response.result.value == nil) {
-                    completion(result: NSDictionary(dictionary: ["error" : "request error"]))
+                    completion(NSDictionary(dictionary: ["error" : "request error"]))
                 }else{
-                    completion(result: response.result.value as! NSDictionary)
+                    completion(response.result.value as! NSDictionary)
                 }
             }
         }
@@ -36,15 +39,19 @@ class HttpPostRequest: NSObject {
         finalData["params"] = data as AnyObject?;
         XCGLogger.defaultInstance().debug("\(finalData)")
         
-        Alamofire.request(Method.POST, url, parameters: finalData, encoding:ParameterEncoding.JSON, headers: ["Authorization": "Basic YXBwczptZWRfYXBwX2RldmVsb3BtZW50","Content-Type":"application/json"]).responseJSON { (response) -> Void in
+        let urls = URL(string: url)!
+        let parameters: Parameters = data
+        let encode:ParameterEncoding = JSONEncoding.default
+        
+        Alamofire.request(urls, method: .post, parameters: parameters, encoding: encode, headers: ["Authorization": "Basic YXBwczptZWRfYXBwX2RldmVsb3BtZW50","Content-Type":"application/json"]).responseJSON { (response) in
             if response.result.isSuccess {
                 XCGLogger.defaultInstance().debug("getJSON: \(response.result.value)")
-                completion(result: response.result.value as! NSDictionary)
+                completion(response.result.value as! NSDictionary)
             }else if (response.result.isFailure){
                 if (response.result.value == nil) {
-                    completion(result: NSDictionary(dictionary: ["error" : "request error"]))
+                    completion(NSDictionary(dictionary: ["error" : "request error"]))
                 }else{
-                    completion(result: response.result.value as! NSDictionary)
+                    completion(response.result.value as! NSDictionary)
                 }
             }
         }
@@ -54,40 +61,26 @@ class HttpPostRequest: NSObject {
         var finalData: Dictionary<String,AnyObject> = ["token":"SU9gPy5e1d1t7W8FG2fQ6MuT06cY95MB" as AnyObject]
         finalData["params"] = data as AnyObject?;
         XCGLogger.defaultInstance().debug("\(finalData)")
-        Alamofire.request(Method.PUT, url, parameters: finalData, encoding:ParameterEncoding.JSON, headers: ["Authorization": "Basic YXBwczptZWRfYXBwX2RldmVsb3BtZW50","Content-Type":"application/json"]).responseJSON { (response) -> Void in
+        
+        let urls = URL(string: url)!
+        let parameters: Parameters = data
+        let encode:ParameterEncoding = JSONEncoding.default
+        
+        Alamofire.request(urls, method: .put, parameters: parameters, encoding: encode, headers: ["Authorization": "Basic YXBwczptZWRfYXBwX2RldmVsb3BtZW50","Content-Type":"application/json"]).responseJSON { (response) in
             if response.result.isSuccess {
                 XCGLogger.defaultInstance().debug("getJSON: \(response.result.value)")
-                completion(result: response.result.value as! NSDictionary)
+                completion(response.result.value as! NSDictionary)
             }else if (response.result.isFailure){
                 print(response.result.description)
                 print(response.result.debugDescription)
                 if (response.result.value == nil) {
-                    completion(result: NSDictionary(dictionary: ["error" : "request error"]))
+                    completion(NSDictionary(dictionary: ["error" : "request error"]))
                 }else{
-                    completion(result: response.result.value as! NSDictionary)
+                    completion(response.result.value as! NSDictionary)
                 }
             }
         }
+
     }
     
-    static func getCommonParams() -> (md5: String,time: Int){
-        let time = Int(Date().timeIntervalSince1970);
-        
-        let key = String(format: "%d-nevo2015medappteam",time)
-        return (md5: md5(key),time: time);
-    }
-    
-    fileprivate static func md5(_ string: String) -> String {
-        var digest = [UInt8](repeating: 0, count: Int(CC_MD5_DIGEST_LENGTH))
-        if let data = string.data(using: String.Encoding.utf8) {
-            CC_MD5(data.bytes, CC_LONG(data.count), &digest)
-        }
-        
-        var digestHex = ""
-        for index in 0..<Int(CC_MD5_DIGEST_LENGTH) {
-            digestHex += String(format: "%02x", digest[index])
-        }
-        
-        return digestHex
-    }
 }

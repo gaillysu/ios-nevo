@@ -8,7 +8,6 @@
 
 import UIKit
 import BRYXBanner
-import XCGLogger
 
 class NotificationViewController: UITableViewController,SelectedNotificationDelegate {
     fileprivate var mNotificationOFFArray:[NotificationSetting] = []

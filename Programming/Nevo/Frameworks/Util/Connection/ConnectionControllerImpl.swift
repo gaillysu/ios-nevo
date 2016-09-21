@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import XCGLogger
 
 /*
 See ConnectionController
@@ -87,7 +86,7 @@ class ConnectionControllerImpl : NSObject, ConnectionController, NevoBTDelegate 
         //We're not connected, let's connect
         if hasSavedAddress() {
             
-            XCGLogger.defaultInstance().debug("We have a saved address, let's connect to it directly : \(UserDefaults.standardUserDefaults().objectForKey(self.SAVED_ADDRESS_KEY))")
+            XCGLogger.defaultInstance().debug("We have a saved address, let's connect to it directly : \(UserDefaults.standard.object(forKey: self.SAVED_ADDRESS_KEY))")
 
             mNevoBT?.connectToAddress(
                 UUID(uuidString:

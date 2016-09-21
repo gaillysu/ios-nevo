@@ -8,7 +8,7 @@
 
 import UIKit
 import SwiftEventBus
-import XCGLogger
+
 
 let NUMBER_OF_STEPS_GOAL_KEY = "NUMBER_OF_STEPS_GOAL_KEY"
 
@@ -68,19 +68,24 @@ class StepGoalSetingController: PublicClassController,ButtonManagerCallBack,Cloc
         SwiftEventBus.onMainThread(self, name: EVENT_BUS_BEGIN_SMALL_SYNCACTIVITY) { (notification) in
             let dict:[String:AnyObject] = notification.object as! [String:AnyObject]
             let dailySteps:Int = dict["STEPS"] as! Int
-            self.contentTArray.replaceRange(Range(1..<2), with: ["\(dailySteps)"])
+            self.contentTArray.replaceSubrange(Range(1..<2), with: ["\(dailySteps)"])
             self.calculationData(0, steps: dailySteps, completionData: { (miles, calories) in
-                self.contentTArray.replaceRange(Range(3..<4), with: ["\(miles)"])
+                self.contentTArray.replaceSubrange(Range(3..<4), with: ["\(miles)"])
             })
             self.collectionView.reloadData()
         }
         
         SwiftEventBus.onMainThread(self, name: EVENT_BUS_END_BIG_SYNCACTIVITY) { (notification) in
+            
+        }
+        
+        SwiftEventBus.onMainThread(self, name: EVENT_BUS_END_BIG_SYNCACTIVITY) { (notification) in
+            
             self.saveContentTArray(Date().beginningOfDay.timeIntervalSince1970)
         }
         
         SwiftEventBus.onMainThread(self, name: SELECTED_CALENDAR_NOTIFICATION) { (notification) in
-            let userinfo:NSDate = notification.userInfo!["selectedDate"] as! NSDate
+            let userinfo:Date = notification.userInfo!["selectedDate"] as! Date
             self.saveContentTArray(userinfo.beginningOfDay.timeIntervalSince1970)
         }
         
@@ -122,7 +127,7 @@ class StepGoalSetingController: PublicClassController,ButtonManagerCallBack,Cloc
         let dataArray:NSArray = AppTheme.LoadKeyedArchiverName(StepsGoalKey as NSString) as! NSArray
         if(dataArray.count>0) {
             let date:TimeInterval = (dataArray[1] as! String).dateFromFormat("YYYY/MM/dd")!.timeIntervalSince1970
-            if(date != Date.date(year: Date().year, month: Date().month, day: Date().day).timeIntervalSince1970){ return }
+            if(date != Date.date(Date().year, month: Date().month, day: Date().day).timeIntervalSince1970){ return }
             
             contentTArray = (AppTheme.LoadKeyedArchiverName(StepsGoalKey as NSString) as! NSArray)[0] as! [String]
             let dailyStepGoal:Int = NSString(string: contentTArray[2]).integerValue

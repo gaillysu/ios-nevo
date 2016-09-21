@@ -20,8 +20,8 @@ class SelectedNotificationView: UITableView {
         var endCell = tableView.dequeueReusableCell(withIdentifier: endCellID as String) as? NotificationClockCell
 
         if (endCell == nil) {
-            let nibs:NSArray = Bundle.main.loadNibNamed("NotificationClockCell", owner: self, options: nil)
-            endCell = nibs.object(at: 0) as? NotificationClockCell;
+            let nibs:[Any] = Bundle.main.loadNibNamed("NotificationClockCell", owner: self, options: nil)!
+            endCell = nibs[0] as? NotificationClockCell;
         }
         for view in endCell!.contentView.subviews{
             if(view.isKind(of: UIImageView.classForCoder())){

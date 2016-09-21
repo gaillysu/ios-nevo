@@ -8,7 +8,7 @@
 
 import UIKit
 
-class Presets: NSObject,BaseEntryDatabaseHelper {
+class Presets:NSObject {
     var id:Int = 0
     var steps:Int = 0
     var label:String = ""
@@ -85,7 +85,7 @@ class Presets: NSObject,BaseEntryDatabaseHelper {
             let presetGoal:[Int] = [7000, 10000, 20000]
             let label:[String] = ["Light","Moderate","Heavy"]
             DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.default).async(execute: { () -> Void in
-                for (index:Int in 0 ..< presetGoal.count ) {
+                for index:Int in 0..<presetGoal.count {
                     let presets:Presets = Presets(keyDict: ["id":index,"steps":presetGoal[index],"label":"\(label[index])","status":true])
                     presets.add({ (id, completion) -> Void in
 

@@ -41,14 +41,14 @@ class SleepHistoricalViewController: PublicClassController,ChartViewDelegate,Sel
         AnalysisSleepData(todaySleepArray)
         
         SwiftEventBus.onMainThread(self, name: SELECTED_CALENDAR_NOTIFICATION) { (notification) in
-            let userinfo:NSDate = notification.userInfo!["selectedDate"] as! NSDate
-            self.selectedDate = userinfo
+            let userinfo:Date = notification.userInfo!["selectedDate"] as! Date
+            self.selectedDate = userinfo as Date
             let selectedSleepArray = UserSleep.getCriteria("WHERE date BETWEEN \(userinfo.timeIntervalSince1970-86400) AND \(userinfo.endOfDay.timeIntervalSince1970)")
             self.AnalysisSleepData(selectedSleepArray)
         }
         
         SwiftEventBus.onMainThread(self, name: EVENT_BUS_END_BIG_SYNCACTIVITY) { (notification) in
-            let syncArray:NSArray = UserSleep.getCriteria("WHERE date BETWEEN \(NSDate.yesterday().beginningOfDay.timeIntervalSince1970) AND \(NSDate().endOfDay.timeIntervalSince1970)")
+            let syncArray:NSArray = UserSleep.getCriteria("WHERE date BETWEEN \(Date.yesterday().beginningOfDay.timeIntervalSince1970) AND \(Date().endOfDay.timeIntervalSince1970)")
             self.AnalysisSleepData(syncArray)
         }
     }

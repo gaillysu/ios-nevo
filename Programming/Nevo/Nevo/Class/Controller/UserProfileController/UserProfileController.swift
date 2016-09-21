@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import XCGLogger
+
 
 let userIdentifier:String = "UserProfileIdentifier"
 class UserProfileController: UIViewController,UITableViewDelegate,UITableViewDataSource {

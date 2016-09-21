@@ -8,7 +8,6 @@
 
 import UIKit
 import Charts
-import Timepiece
 
 class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
 
@@ -279,13 +278,13 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
                 let weakeDataentry:ChartDataEntry = weakeYVals[yvalsIndex]
                 let lightDataentry:ChartDataEntry = lightYVals[yvalsIndex]
                 let deepDataentry:ChartDataEntry = deepYVals[yvalsIndex]
-                weakeYVals.replaceRange(yvalsIndex..<yvalsIndex+1, with: [ChartDataEntry(value: weakeDataentry.value, xIndex: yvalsIndex)])
-                lightYVals.replaceRange(yvalsIndex..<yvalsIndex+1, with: [ChartDataEntry(value: lightDataentry.value, xIndex: yvalsIndex)])
-                deepYVals.replaceRange(yvalsIndex..<yvalsIndex+1, with: [ChartDataEntry(value: deepDataentry.value, xIndex: yvalsIndex)])
+                weakeYVals.replaceSubrange(yvalsIndex..<yvalsIndex+1, with: [ChartDataEntry(value: weakeDataentry.value, xIndex: yvalsIndex)])
+                lightYVals.replaceSubrange(yvalsIndex..<yvalsIndex+1, with: [ChartDataEntry(value: lightDataentry.value, xIndex: yvalsIndex)])
+                deepYVals.replaceSubrange(yvalsIndex..<yvalsIndex+1, with: [ChartDataEntry(value: deepDataentry.value, xIndex: yvalsIndex)])
             }else{
-                weakeYVals.insert(ChartDataEntry(value: 0, xIndex: yvalsIndex), atIndex: yvalsIndex)
-                lightYVals.insert(ChartDataEntry(value: 0, xIndex: yvalsIndex), atIndex: yvalsIndex)
-                deepYVals.insert(ChartDataEntry(value: 0, xIndex: yvalsIndex), atIndex: yvalsIndex)
+                weakeYVals.insert(ChartDataEntry(value: 0, xIndex: yvalsIndex), at: yvalsIndex)
+                lightYVals.insert(ChartDataEntry(value: 0, xIndex: yvalsIndex), at: yvalsIndex)
+                deepYVals.insert(ChartDataEntry(value: 0, xIndex: yvalsIndex), at: yvalsIndex)
             }
         }
         

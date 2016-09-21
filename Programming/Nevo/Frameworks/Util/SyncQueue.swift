@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import XCGLogger
 
 /**
 We shouldn't send two packets before receiving hte answer from the first one.

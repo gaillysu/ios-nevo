@@ -12,13 +12,12 @@ import HealthKit
 import FMDB
 import Alamofire
 import BRYXBanner
-import Timepiece
 import Fabric
 import Crashlytics
 import LTNavigationBar
 import IQKeyboardManagerSwift
 import SwiftEventBus
-import XCGLogger
+import UIColor_Hex_Swift
 
 let nevoDBDFileURL:String = "nevoDBName";
 let nevoDBNames:String = "nevo.sqlite";
@@ -81,17 +80,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
         }else{
             UserDefaults.standard.set(false, forKey: "firstDatabase")
         }
-        
-        /**
-        *  Initialize the umeng
-        *
-        *  @param umengAppKey umeng AppKey
-        *  @param BATCH       ReportPolicy
-        *  @param ""         channel Id
-        *
-        */
-        UMAnalyticsConfig.sharedInstance().appKey = umengAppKey
-        MobClick.startWithConfigure(UMAnalyticsConfig.sharedInstance())
 
         /**
         Initialize the BLE Manager
@@ -157,9 +145,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
         let filemanage:FileManager = FileManager.default
         //nevoDBDFileURL
         docsdir = docsdir.appendingFormat("%@%@/", "/",nevoDBDFileURL)
-        var isDir : ObjCBool = false
+        var isDir : ObjCBool = ObjCBool(false)
         let exit:Bool = filemanage.fileExists(atPath: docsdir, isDirectory:&isDir )
-        if (!exit || !isDir) {
+        if (!exit || !isDir.boolValue) {
             do{
                 try filemanage.createDirectory(atPath: docsdir, withIntermediateDirectories: true, attributes: nil)
             }catch let error as NSError{
@@ -170,29 +158,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
         return dbpath;
     }
 
-    func getNetworkState()->Bool {
-        return false;
-    }
-
-    /**
-     获取网络数据函数,对AFNetworking的二次封装
-
-     :param: requestURL    请求目的的URL 字符串
-     :param: resultHandler 请求后返回的数据块
-     */
-    func getRequestNetwork(_ requestURL:String,parameters:AnyObject,resultHandler:@escaping ((_ result:AnyObject?,_ error:NSError?) -> Void)){
-        Alamofire.request(.POST, requestURL, parameters: parameters as? [String : AnyObject] ,encoding: .URL).responseJSON { (response) -> Void in
-            if response.result.isSuccess {
-                NSLog("getJSON: \(response.result.value!)")
-                resultHandler(result: response.result.value, error: nil)
-            }else if (response.result.isFailure){
-                resultHandler(result: response.result.value, error: NSError(domain: "error", code: 403, userInfo: nil))
-            }else{
-                resultHandler(result: nil, error: NSError(domain: "unknown error", code: 404, userInfo: nil))
-            }
-        }
-
-    }
     // MARK: -AppDelegate SET Function
     func setRTC() {
         sendRequest(SetRTCRequest())
@@ -296,7 +261,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
      When the sync process is finished, le't refresh the date of sync
      */
     func syncFinished() {
-        let banner = Banner(title: NSLocalizedString("sync_finished", comment: ""), subtitle: nil, image: nil, backgroundColor: AppTheme.hexStringToColor("#0dac67"))
+        let banner = Banner(title: NSLocalizedString("sync_finished", comment: ""), subtitle: nil, image: nil, backgroundColor: UIColor(rgba:"#0dac67"))
         banner.dismissesOnTap = true
         banner.show(duration: 1.5)
         lastSync = Date().timeIntervalSince1970
@@ -416,7 +381,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
             } )
         }else {
             //tell caller
-            SwiftEventBus.post(EVENT_BUS_CONNECTION_STATE_CHANGED_KEY, sender:false)
+            SwiftEventBus.post(EVENT_BUS_CONNECTION_STATE_CHANGED_KEY, sender:false as AnyObject)
         }
     }
 
@@ -550,7 +515,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                 let year:NSString = timeStr.substring(with: NSMakeRange(0,4)) as NSString
                 let month:NSString = timeStr.substring(with: NSMakeRange(4,2)) as NSString
                 let day:NSString = timeStr.substring(with: NSMakeRange(6,2)) as NSString
-                let timerInterval:Date = Date.date(year: year.integerValue, month: month.integerValue, day: day.integerValue)
+                let timerInterval:Date = Date.date(year.integerValue, month: month.integerValue, day: day.integerValue)
                 let timerInter:TimeInterval = timerInterval.timeIntervalSince1970
 
                 let stepsArray = UserSteps.getCriteria("WHERE createDate = \(timeStr)")
@@ -664,13 +629,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
 
                 let now:Date = Date()
                 let saveDay:Date = savedDailyHistory[Int(currentDay)].Date as Date
-                let nowDate:Date = Date.date(year: now.year, month: now.month, day: now.day, hour: now.hour, minute: 0, second: 0)
-                let saveDate:Date = Date.date(year: saveDay.year, month: saveDay.month, day: saveDay.day, hour: saveDay.hour, minute: 0, second: 0)
+                let nowDate:Date = Date.date(now.year, month: now.month, day: now.day, hour: now.hour, minute: 0, second: 0)
+                let saveDate:Date = Date.date(saveDay.year, month: saveDay.month, day: saveDay.day, hour: saveDay.hour, minute: 0, second: 0)
 
                 // to HK Running
                 for index:Int in 0 ..< thispacket.getHourlyRunningDistance().count {
                     if(thispacket.getHourlyRunningDistance()[index] > 0) {
-                        hk.writeDataPoint(RunningToHK(distance:Double(thispacket.getHourlyRunningDistance()[index]), date:Date.date(year: saveDay.year, month: saveDay.month, day: saveDay.day, hour: index, minute: 0, second: 0)), resultHandler: { (result, error) in
+                        hk.writeDataPoint(RunningToHK(distance:Double(thispacket.getHourlyRunningDistance()[index]), date:Date.date(saveDay.year, month: saveDay.month, day: saveDay.day, hour: index, minute: 0, second: 0)), resultHandler: { (result, error) in
 
                         })
                     }
@@ -681,7 +646,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                     if savedDailyHistory[Int(currentDay)].HourlyCalories[index] > 0 && index == now.hour &&
                         (nowDate != saveDate){
 
-                        hk.writeDataPoint(CaloriesToHK(calories: Double(savedDailyHistory[Int(currentDay)].HourlyCalories[index]), date: Date.date(year: saveDay.year, month: saveDay.month, day: saveDay.day, hour: index, minute: 0, second: 0)), resultHandler: { (result, error) in
+                        hk.writeDataPoint(CaloriesToHK(calories: Double(savedDailyHistory[Int(currentDay)].HourlyCalories[index]), date: Date.date(saveDay.year, month: saveDay.month, day: saveDay.day, hour: index, minute: 0, second: 0)), resultHandler: { (result, error) in
                             if (result != true) {
                                 XCGLogger.defaultInstance().debug("Save Hourly Calories error\(index),\(error)")
                             }else{
@@ -730,7 +695,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                 let dailySteps:Int = thispacket.getDailySteps()
                 let dailyStepGoal:Int = thispacket.getDailyStepsGoal()
                 let percent :Float = Float(dailySteps)/Float(dailyStepGoal)
-                SwiftEventBus.post(EVENT_BUS_BEGIN_SMALL_SYNCACTIVITY, sender:["STEPS":dailySteps,"GOAL":dailyStepGoal,"PERCENT":percent])
+                SwiftEventBus.post(EVENT_BUS_BEGIN_SMALL_SYNCACTIVITY, sender:["STEPS":dailySteps,"GOAL":dailyStepGoal,"PERCENT":percent] as AnyObject)
             }
             
             //find Phone
@@ -744,11 +709,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
 
     func connectionStateChanged(_ isConnected : Bool) {
         //send local notification
-        SwiftEventBus.post(EVENT_BUS_CONNECTION_STATE_CHANGED_KEY, sender:isConnected)
+        SwiftEventBus.post(EVENT_BUS_CONNECTION_STATE_CHANGED_KEY, sender:isConnected as AnyObject)
 
         if(isConnected) {
             if(self.hasSavedAddress()){
-                let banner = Banner(title: NSLocalizedString("Connected", comment: ""), subtitle: nil, image: nil, backgroundColor:AppTheme.hexStringToColor("#0dac67"))
+                let banner = Banner(title: NSLocalizedString("Connected", comment: ""), subtitle: nil, image: nil, backgroundColor:UIColor(rgba: "#0dac67"))
                 banner.dismissesOnTap = true
                 banner.show(duration: 1.5)
             }

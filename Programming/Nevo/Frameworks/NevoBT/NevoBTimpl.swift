@@ -8,7 +8,6 @@
 
 import Foundation
 import CoreBluetooth
-import XCGLogger
 
 /*
 See NevoBT protocol
@@ -167,7 +166,7 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
         if let services:[CBService] = aPeripheral.services{
         
             for aService:CBService in services {
-                XCGLogger.defaultInstance().debug("Service found with UUID : \(aService.UUID.UUIDString)")
+                XCGLogger.defaultInstance().debug("Service found with UUID : \(aService.uuid.uuidString)")
     
                 if (aService.uuid == mProfile?.CONTROL_SERVICE) {
                     aPeripheral.discoverCharacteristics(nil,for:aService)
@@ -178,7 +177,7 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
                 }
             }
         } else {
-            XCGLogger.defaultInstance().debug("No services found for \(aPeripheral.identifier.UUIDString), connection impossible")
+            XCGLogger.defaultInstance().debug("No services found for \(aPeripheral.identifier.uuidString), connection impossible")
         }
     }
     
@@ -189,7 +188,7 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
     */
     func peripheral(_ aPeripheral:CBPeripheral, didDiscoverCharacteristicsFor service:CBService, error :Error?) {
     
-        XCGLogger.defaultInstance().debug("Service : \(service.UUID.UUIDString)")
+        XCGLogger.defaultInstance().debug("Service : \(service.uuid.uuidString)")
     
         if let characteristics:[CBCharacteristic] = service.characteristics {
             for aChar:CBCharacteristic in characteristics {
@@ -197,21 +196,21 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
                 if(aChar.uuid==mProfile?.CALLBACK_CHARACTERISTIC ) {
                     mPeripheral?.setNotifyValue(true,for:aChar)
             
-                    XCGLogger.defaultInstance().debug("Callback char : \(aChar.UUID.UUIDString)")
+                    XCGLogger.defaultInstance().debug("Callback char : \(aChar.uuid.uuidString)")
                     mDelegate?.connectionStateChanged(true, fromAddress: aPeripheral.identifier)
                 }
                 
                 else if(aChar.uuid==CBUUID(string: "00002a26-0000-1000-8000-00805f9b34fb")) {
                     mPeripheral?.readValue(for: aChar)
-                    XCGLogger.defaultInstance().debug("read firmware version char : \(aChar.UUID.UUIDString)")
+                    XCGLogger.defaultInstance().debug("read firmware version char : \(aChar.uuid.uuidString)")
                 }
                 else if(aChar.uuid==CBUUID(string: "00002a28-0000-1000-8000-00805f9b34fb")) {
                     mPeripheral?.readValue(for: aChar)
-                    XCGLogger.defaultInstance().debug("read software version char : \(aChar.UUID.UUIDString)")
+                    XCGLogger.defaultInstance().debug("read software version char : \(aChar.uuid.uuidString)")
                 }
             }
         } else {
-            XCGLogger.defaultInstance().debug("No characteristics found for \(service.UUID.UUIDString), can't listen to notifications")
+            XCGLogger.defaultInstance().debug("No characteristics found for \(service.uuid.uuidString), can't listen to notifications")
         }
       
     
@@ -227,7 +226,7 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
         {
             
             if error == nil && characteristic.value != nil {
-                XCGLogger.defaultInstance().debug("Received : \(characteristic.UUID.UUIDString) \(self.hexString(characteristic.value!))")
+                XCGLogger.defaultInstance().debug("Received : \(characteristic.uuid.uuidString) \(self.hexString(characteristic.value!))")
                 
                 /* It is valid data, let's return it to our delegate */
                 mDelegate?.packetReceived( RawPacketImpl(data: characteristic.value! , profile: mProfile!) ,  fromAddress : aPeripheral.identifier )
@@ -237,7 +236,7 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
         
         else if(characteristic.uuid==CBUUID(string: "00002a26-0000-1000-8000-00805f9b34fb")) {
             mFirmwareVersion = NSString(data: characteristic.value!, encoding: String.Encoding.utf8.rawValue)
-            XCGLogger.defaultInstance().debug("get firmware version char : \(characteristic.UUID.UUIDString), version : \(self.mFirmwareVersion)")
+            XCGLogger.defaultInstance().debug("get firmware version char : \(characteristic.uuid.uuidString), version : \(self.mFirmwareVersion)")
             //tell OTA new version
             mDelegate?.firmwareVersionReceived(DfuFirmwareTypes.application, version: mFirmwareVersion!)
         }
@@ -246,7 +245,7 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
                 mSoftwareVersion = NSString(data: characteristic.value!, encoding: String.Encoding.utf8.rawValue)
             }
 
-            XCGLogger.defaultInstance().debug("get software version char : \(characteristic.UUID.UUIDString), version : \(self.mSoftwareVersion)")
+            XCGLogger.defaultInstance().debug("get software version char : \(characteristic.uuid.uuidString), version : \(self.mSoftwareVersion)")
             mDelegate?.firmwareVersionReceived(DfuFirmwareTypes.softdevice, version: mSoftwareVersion!)
         }
 
@@ -338,10 +337,7 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
         //We can't be sure if the Manager is ready, so let's try
         if(self.isBluetoothEnabled()) {
 
-
-            XCGLogger.defaultInstance().debug("Connecting to : \(peripheralAddress.UUIDString)")
-
-
+            XCGLogger.defaultInstance().debug("Connecting to : \(peripheralAddress.uuidString)")
             //Here, we try to retreive the given peripheral
             if let potentialMatches:[CBPeripheral] = mManager?.retrievePeripherals(withIdentifiers: [peripheralAddress]){
 
@@ -414,7 +410,7 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
                             }
                         }
                     } else {
-                        XCGLogger.defaultInstance().debug("No Characteristics found for : \(service.UUID.UUIDString), can't send packet")
+                        XCGLogger.defaultInstance().debug("No Characteristics found for : \(service.uuid.uuidString), can't send packet")
                     }
                     
                 }

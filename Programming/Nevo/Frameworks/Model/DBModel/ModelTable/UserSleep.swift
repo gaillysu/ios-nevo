@@ -8,7 +8,7 @@
 
 import UIKit
 
-class UserSleep: NSObject,BaseEntryDatabaseHelper {
+class UserSleep: NSObject {
 
     var id:Int = 0
     var date:TimeInterval = 0
@@ -29,14 +29,14 @@ class UserSleep: NSObject,BaseEntryDatabaseHelper {
 
     init(keyDict:NSDictionary) {
         super.init()
-        keyDict.enumerateKeysAndObjects { (key, value, stop) -> Void in
+        keyDict.enumerateKeysAndObjects(options: NSEnumerationOptions.concurrent) { (key, value, stop) in
             self.setValue(value, forKey: key as! String)
         }
     }
 
     func add(_ result:@escaping ((_ id:Int?,_ completion:Bool?) -> Void)){
         if SleepModel.isExistInTable() {
-            SleepModel.updateTable()
+            _ = SleepModel.updateTable()
         }
         let keyName:NSArray = UserSleep.getPropertys().object(forKey: "name") as! NSArray
         for value in keyName {
@@ -51,7 +51,7 @@ class UserSleep: NSObject,BaseEntryDatabaseHelper {
 
     func update()->Bool{
         if SleepModel.isExistInTable() {
-            SleepModel.updateTable()
+            _ = SleepModel.updateTable()
         }
         let keyName:NSArray = UserSleep.getPropertys().object(forKey: "name") as! NSArray
         for value in keyName {

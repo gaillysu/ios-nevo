@@ -9,7 +9,6 @@
 import UIKit
 import BRYXBanner
 import SwiftEventBus
-import XCGLogger
 
 class SetingViewController: UIViewController,ButtonManagerCallBack,UIAlertViewDelegate {
 
@@ -65,7 +64,7 @@ class SetingViewController: UIViewController,ButtonManagerCallBack,UIAlertViewDe
     // MARK: - ButtonManagerCallBack
     func controllManager(_ sender:AnyObject){
         if sender.isEqual(notificationList.mSendLocalNotificationSwitchButton){
-            XCGLogger.defaultInstance().debug("setIsSendLocalMsg \(self.notificationList.mSendLocalNotificationSwitchButton.on)")
+            XCGLogger.defaultInstance().debug("setIsSendLocalMsg \(self.notificationList.mSendLocalNotificationSwitchButton.isOn)")
             ConnectionManager.sharedInstance.setIsSendLocalMsg(notificationList.mSendLocalNotificationSwitchButton.isOn)
         }
 

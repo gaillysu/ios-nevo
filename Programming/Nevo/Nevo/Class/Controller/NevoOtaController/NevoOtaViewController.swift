@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import XCGLogger
 
 class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonManagerCallBack,PtlSelectFile,UIAlertViewDelegate  {
 
@@ -338,7 +337,7 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
             self.mNevoOtaController!.reset(false)
             uploadPressed()
 
-            for(index:Int in 0 ..< 2) {
+            for index:Int in 0..<2 {
                 let view  = self.view.viewWithTag(1360+index)
                 if(view != nil) {
                     view?.isHidden = true

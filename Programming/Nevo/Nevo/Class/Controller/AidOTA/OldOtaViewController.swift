@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import XCGLogger
 
 class OldOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonManagerCallBack,UIAlertViewDelegate  {
 

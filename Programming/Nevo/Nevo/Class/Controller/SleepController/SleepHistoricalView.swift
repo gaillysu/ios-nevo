@@ -131,7 +131,7 @@ class SleepHistoricalView: UIView, ChartViewDelegate{
     
     func calculateDate(_ date:TimeInterval,hour:Int)->String {
         let date:Date = Date(timeIntervalSince1970: date)
-        var dateString:NSString = date.stringFromFormat("yyyyMMdd")
+        var dateString:NSString = date.stringFromFormat("yyyyMMdd") as NSString
         if(dateString.length < 8) {
             dateString = "00000000"
         }

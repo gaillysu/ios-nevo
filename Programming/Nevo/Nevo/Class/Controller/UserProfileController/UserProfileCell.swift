@@ -7,10 +7,10 @@
 //
 
 import UIKit
-import AutocompleteField
+
 
 class UserProfileCell: UITableViewCell,UIPickerViewDelegate,UIPickerViewDataSource {
-    enum Type{
+    enum `Type`{
         case numeric
         case text
         case email
