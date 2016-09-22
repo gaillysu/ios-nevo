@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <mutableArray key="Raleway-Regular.ttf">
+        <array key="Raleway-Regular.ttf">
             <string>Raleway</string>
-        </mutableArray>
+        </array>
     </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="InformationController" customModule="Nevo" customModuleProvider="target">
@@ -25,7 +25,6 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your information" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="L3v-JU-xKx">
-                    <rect key="frame" x="48" y="115" width="280" height="40"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="foj-aA-b8V"/>
                     </constraints>
@@ -33,24 +32,20 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter your information below." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="7" translatesAutoresizingMaskIntoConstraints="NO" id="LIq-Cx-bHC">
-                    <rect key="frame" x="47" y="155" width="280" height="15"/>
                     <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="14"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Don't worry, it is completely private to you and your phone." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="7" translatesAutoresizingMaskIntoConstraints="NO" id="Hvc-CB-RzI">
-                    <rect key="frame" x="47" y="171" width="280" height="35"/>
                     <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="14"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Check our private policy." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I93-0k-cdB">
-                    <rect key="frame" x="47" y="221" width="280" height="15"/>
                     <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="12"/>
-                    <color key="textColor" red="0.62745098040000002" green="0.51764705879999995" blue="0.33333333329999998" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="textColor" red="0.62745098040000002" green="0.51764705879999995" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Date of Birth" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eXR-xK-yaF" customClass="AutocompleteField" customModule="AutocompleteField">
-                    <rect key="frame" x="56" y="330" width="262" height="60"/>
-                    <color key="backgroundColor" red="0.8980392157" green="0.89411764709999997" blue="0.8862745098" alpha="1" colorSpace="calibratedRGB"/>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Date of Birth" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eXR-xK-yaF" customClass="AutocompleteField" customModule="Nevo" customModuleProvider="target">
+                    <color key="backgroundColor" red="0.8980392157" green="0.89411764709999997" blue="0.8862745098" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                     <textInputTraits key="textInputTraits"/>
                     <userDefinedRuntimeAttributes>
@@ -61,16 +56,15 @@
                             <integer key="value" value="10"/>
                         </userDefinedRuntimeAttribute>
                         <userDefinedRuntimeAttribute type="color" keyPath="placeholderLabel.textColor">
-                            <color key="value" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="value" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                     <connections>
                         <outlet property="delegate" destination="-1" id="x7h-sq-2Wr"/>
                     </connections>
                 </textField>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Height(100-250 CM)" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lI6-oe-0Ah" customClass="AutocompleteField" customModule="AutocompleteField">
-                    <rect key="frame" x="56" y="395" width="262" height="60"/>
-                    <color key="backgroundColor" red="0.8980392157" green="0.89411764709999997" blue="0.8862745098" alpha="1" colorSpace="calibratedRGB"/>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Height(100-250 CM)" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lI6-oe-0Ah" customClass="AutocompleteField" customModule="Nevo" customModuleProvider="target">
+                    <color key="backgroundColor" red="0.8980392157" green="0.89411764709999997" blue="0.8862745098" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                     <textInputTraits key="textInputTraits"/>
                     <userDefinedRuntimeAttributes>
@@ -81,16 +75,15 @@
                             <integer key="value" value="10"/>
                         </userDefinedRuntimeAttribute>
                         <userDefinedRuntimeAttribute type="color" keyPath="placeholderLabel.textColor">
-                            <color key="value" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="value" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                     <connections>
                         <outlet property="delegate" destination="-1" id="UWr-V3-Dmb"/>
                     </connections>
                 </textField>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Weight(35-150 KG)" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NTv-do-MVa" customClass="AutocompleteField" customModule="AutocompleteField">
-                    <rect key="frame" x="56" y="460" width="262" height="60"/>
-                    <color key="backgroundColor" red="0.8980392157" green="0.89411764709999997" blue="0.8862745098" alpha="1" colorSpace="calibratedRGB"/>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Weight(35-150 KG)" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NTv-do-MVa" customClass="AutocompleteField" customModule="Nevo" customModuleProvider="target">
+                    <color key="backgroundColor" red="0.8980392157" green="0.89411764709999997" blue="0.8862745098" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                     <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation"/>
                     <userDefinedRuntimeAttributes>
@@ -101,7 +94,7 @@
                             <integer key="value" value="10"/>
                         </userDefinedRuntimeAttribute>
                         <userDefinedRuntimeAttribute type="color" keyPath="placeholderLabel.textColor">
-                            <color key="value" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="value" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                     <connections>
@@ -109,11 +102,10 @@
                     </connections>
                 </textField>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b7x-G0-dK8">
-                    <rect key="frame" x="56" y="254" width="262" height="36"/>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                 </view>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="b7x-G0-dK8" firstAttribute="top" secondItem="I93-0k-cdB" secondAttribute="bottom" constant="18" id="0rz-4x-gQw"/>
                 <constraint firstItem="L3v-JU-xKx" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="115" id="3jT-XX-3ZK"/>
@@ -148,7 +140,6 @@
                 <constraint firstItem="lI6-oe-0Ah" firstAttribute="height" secondItem="NTv-do-MVa" secondAttribute="height" id="zHx-IW-tH6"/>
             </constraints>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
-            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
         </view>
     </objects>
 </document>

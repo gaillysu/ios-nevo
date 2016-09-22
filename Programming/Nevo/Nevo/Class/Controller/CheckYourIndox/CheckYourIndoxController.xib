@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <mutableArray key="Raleway-Regular.ttf">
+        <array key="Raleway-Regular.ttf">
             <string>Raleway</string>
-        </mutableArray>
+        </array>
     </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CheckYourIndoxController" customModule="Nevo" customModuleProvider="target">
@@ -21,7 +21,6 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Check your inbox!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="txS-Pa-wKd">
-                    <rect key="frame" x="38" y="155" width="300" height="40"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="zIP-kb-sNk"/>
                     </constraints>
@@ -29,25 +28,21 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="nevo_checkemail" translatesAutoresizingMaskIntoConstraints="NO" id="lkb-d2-EHU">
-                    <rect key="frame" x="135" y="242" width="100" height="100"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="100" id="5DY-5c-KND"/>
                         <constraint firstAttribute="height" constant="100" id="yzt-uG-UmH"/>
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A email has been sent to:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aki-dS-XxV">
-                    <rect key="frame" x="37" y="385" width="300" height="25"/>
                     <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="21"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cloud@med-corp.net" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yLU-Jd-CgS">
-                    <rect key="frame" x="37" y="410" width="300" height="25"/>
                     <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="21"/>
-                    <color key="textColor" red="0.62745098040000002" green="0.51764705879999995" blue="0.33333333329999998" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="textColor" red="0.62745098040000002" green="0.51764705879999995" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please open the link we've sent and verify your email address" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="11" translatesAutoresizingMaskIntoConstraints="NO" id="9PZ-Hf-wqb">
-                    <rect key="frame" x="37" y="465" width="295" height="55"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="55" id="NPn-7L-qud"/>
                     </constraints>
@@ -55,7 +50,7 @@
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="9PZ-Hf-wqb" firstAttribute="top" secondItem="yLU-Jd-CgS" secondAttribute="bottom" constant="30" id="12d-lp-Hld"/>
                 <constraint firstAttribute="trailing" secondItem="9PZ-Hf-wqb" secondAttribute="trailing" constant="43" id="Dyq-7j-cQa"/>
@@ -73,7 +68,6 @@
                 <constraint firstItem="txS-Pa-wKd" firstAttribute="trailing" secondItem="aki-dS-XxV" secondAttribute="trailing" constant="1" id="nzW-3W-zbg"/>
             </constraints>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
-            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
         </view>
     </objects>
     <resources>
