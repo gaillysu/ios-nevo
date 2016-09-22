@@ -7,6 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0008EE871D93C39A005E127C /* M13Checkbox+IB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0008EE751D93C39A005E127C /* M13Checkbox+IB.swift */; };
+		0008EE881D93C39A005E127C /* M13Checkbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0008EE761D93C39A005E127C /* M13Checkbox.swift */; };
+		0008EE891D93C39A005E127C /* M13CheckboxAnimationPresets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0008EE771D93C39A005E127C /* M13CheckboxAnimationPresets.swift */; };
+		0008EE8A1D93C39A005E127C /* M13CheckboxGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0008EE781D93C39A005E127C /* M13CheckboxGestureRecognizer.swift */; };
+		0008EE8B1D93C39A005E127C /* M13CheckboxManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0008EE791D93C39A005E127C /* M13CheckboxManager.swift */; };
+		0008EE8C1D93C39A005E127C /* M13CheckboxPathPresets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0008EE7A1D93C39A005E127C /* M13CheckboxPathPresets.swift */; };
+		0008EE8D1D93C39A005E127C /* M13CheckboxBounceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0008EE7C1D93C39A005E127C /* M13CheckboxBounceManager.swift */; };
+		0008EE8E1D93C39A005E127C /* M13CheckboxDotManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0008EE7D1D93C39A005E127C /* M13CheckboxDotManager.swift */; };
+		0008EE8F1D93C39A005E127C /* M13CheckboxExpandManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0008EE7E1D93C39A005E127C /* M13CheckboxExpandManager.swift */; };
+		0008EE901D93C39A005E127C /* M13CheckboxFadeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0008EE7F1D93C39A005E127C /* M13CheckboxFadeManager.swift */; };
+		0008EE911D93C39A005E127C /* M13CheckboxFillManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0008EE801D93C39A005E127C /* M13CheckboxFillManager.swift */; };
+		0008EE921D93C39A005E127C /* M13CheckboxFlatManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0008EE811D93C39A005E127C /* M13CheckboxFlatManager.swift */; };
+		0008EE931D93C39A005E127C /* M13CheckboxSpiralManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0008EE821D93C39A005E127C /* M13CheckboxSpiralManager.swift */; };
+		0008EE941D93C39A005E127C /* M13CheckboxStrokeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0008EE831D93C39A005E127C /* M13CheckboxStrokeManager.swift */; };
+		0008EE951D93C39A005E127C /* M13CheckboxDotPathPresets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0008EE851D93C39A005E127C /* M13CheckboxDotPathPresets.swift */; };
+		0008EE961D93C39A005E127C /* M13CheckboxSpiralPathPresets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0008EE861D93C39A005E127C /* M13CheckboxSpiralPathPresets.swift */; };
+		0008EE981D93C5AA005E127C /* NevoCircleProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0008EE971D93C5AA005E127C /* NevoCircleProgressView.swift */; };
 		000CB3281C3E436000B4ABEC /* white_clock.png in Resources */ = {isa = PBXBuildFile; fileRef = 000CB3251C3E436000B4ABEC /* white_clock.png */; };
 		000CB3291C3E436000B4ABEC /* white_hour.png in Resources */ = {isa = PBXBuildFile; fileRef = 000CB3261C3E436000B4ABEC /* white_hour.png */; };
 		000CB32A1C3E436000B4ABEC /* white_minute.png in Resources */ = {isa = PBXBuildFile; fileRef = 000CB3271C3E436000B4ABEC /* white_minute.png */; };
@@ -174,22 +191,6 @@
 		0074CB981D29EEAA00963607 /* InformationController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0074CB961D29EEAA00963607 /* InformationController.xib */; };
 		007865B91D90DBAF00F33AEA /* AutocompleteField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007865B61D90DBAF00F33AEA /* AutocompleteField.swift */; };
 		007865BA1D90DBAF00F33AEA /* CircleProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007865B81D90DBAF00F33AEA /* CircleProgressView.swift */; };
-		007865CE1D90DC3100F33AEA /* M13Checkbox+IB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007865BC1D90DC3100F33AEA /* M13Checkbox+IB.swift */; };
-		007865CF1D90DC3100F33AEA /* M13Checkbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007865BD1D90DC3100F33AEA /* M13Checkbox.swift */; };
-		007865D01D90DC3100F33AEA /* M13CheckboxAnimationPresets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007865BE1D90DC3100F33AEA /* M13CheckboxAnimationPresets.swift */; };
-		007865D11D90DC3100F33AEA /* M13CheckboxGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007865BF1D90DC3100F33AEA /* M13CheckboxGestureRecognizer.swift */; };
-		007865D21D90DC3100F33AEA /* M13CheckboxManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007865C01D90DC3100F33AEA /* M13CheckboxManager.swift */; };
-		007865D31D90DC3100F33AEA /* M13CheckboxPathPresets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007865C11D90DC3100F33AEA /* M13CheckboxPathPresets.swift */; };
-		007865D41D90DC3100F33AEA /* M13CheckboxBounceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007865C31D90DC3100F33AEA /* M13CheckboxBounceManager.swift */; };
-		007865D51D90DC3100F33AEA /* M13CheckboxDotManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007865C41D90DC3100F33AEA /* M13CheckboxDotManager.swift */; };
-		007865D61D90DC3100F33AEA /* M13CheckboxExpandManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007865C51D90DC3100F33AEA /* M13CheckboxExpandManager.swift */; };
-		007865D71D90DC3100F33AEA /* M13CheckboxFadeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007865C61D90DC3100F33AEA /* M13CheckboxFadeManager.swift */; };
-		007865D81D90DC3100F33AEA /* M13CheckboxFillManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007865C71D90DC3100F33AEA /* M13CheckboxFillManager.swift */; };
-		007865D91D90DC3100F33AEA /* M13CheckboxFlatManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007865C81D90DC3100F33AEA /* M13CheckboxFlatManager.swift */; };
-		007865DA1D90DC3100F33AEA /* M13CheckboxSpiralManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007865C91D90DC3100F33AEA /* M13CheckboxSpiralManager.swift */; };
-		007865DB1D90DC3100F33AEA /* M13CheckboxStrokeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007865CA1D90DC3100F33AEA /* M13CheckboxStrokeManager.swift */; };
-		007865DC1D90DC3100F33AEA /* M13CheckboxDotPathPresets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007865CC1D90DC3100F33AEA /* M13CheckboxDotPathPresets.swift */; };
-		007865DD1D90DC3100F33AEA /* M13CheckboxSpiralPathPresets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007865CD1D90DC3100F33AEA /* M13CheckboxSpiralPathPresets.swift */; };
 		007865F31D91006F00F33AEA /* SMAlphaImageSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007865E31D91006F00F33AEA /* SMAlphaImageSegment.swift */; };
 		007865F41D91006F00F33AEA /* SMBasicSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007865E41D91006F00F33AEA /* SMBasicSegment.swift */; };
 		007865F51D91006F00F33AEA /* SMBasicSegmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007865E51D91006F00F33AEA /* SMBasicSegmentView.swift */; };
@@ -280,7 +281,6 @@
 		00AF8CD71D224CFA009047AC /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C7C1D224CFA009047AC /* Color.swift */; };
 		00AF8CD91D224CFA009047AC /* PublicClassController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C7E1D224CFA009047AC /* PublicClassController.swift */; };
 		00AF8CDA1D224CFA009047AC /* PublicClassTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C7F1D224CFA009047AC /* PublicClassTableViewController.swift */; };
-		00AF8CDB1D224CFA009047AC /* AnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C821D224CFA009047AC /* AnimationView.swift */; };
 		00AF8CDC1D224CFA009047AC /* AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C831D224CFA009047AC /* AppTheme.swift */; };
 		00AF8CDD1D224CFA009047AC /* BalloonMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C841D224CFA009047AC /* BalloonMarker.swift */; };
 		00AF8CDE1D224CFA009047AC /* ClockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C851D224CFA009047AC /* ClockView.swift */; };
@@ -370,7 +370,6 @@
 		00D4744D1D586D1600E2447E /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AFDAA31D47128700F4338B /* View.swift */; };
 		00D4744F1D586D1600E2447E /* PublicClassController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C7E1D224CFA009047AC /* PublicClassController.swift */; };
 		00D474501D586D1600E2447E /* PublicClassTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C7F1D224CFA009047AC /* PublicClassTableViewController.swift */; };
-		00D474511D586D1600E2447E /* AnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C821D224CFA009047AC /* AnimationView.swift */; };
 		00D474521D586D1600E2447E /* AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C831D224CFA009047AC /* AppTheme.swift */; };
 		00D474531D586D1600E2447E /* BalloonMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C841D224CFA009047AC /* BalloonMarker.swift */; };
 		00D474541D586D1600E2447E /* ClockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C851D224CFA009047AC /* ClockView.swift */; };
@@ -620,6 +619,23 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0008EE751D93C39A005E127C /* M13Checkbox+IB.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "M13Checkbox+IB.swift"; sourceTree = "<group>"; };
+		0008EE761D93C39A005E127C /* M13Checkbox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = M13Checkbox.swift; sourceTree = "<group>"; };
+		0008EE771D93C39A005E127C /* M13CheckboxAnimationPresets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = M13CheckboxAnimationPresets.swift; sourceTree = "<group>"; };
+		0008EE781D93C39A005E127C /* M13CheckboxGestureRecognizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = M13CheckboxGestureRecognizer.swift; sourceTree = "<group>"; };
+		0008EE791D93C39A005E127C /* M13CheckboxManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = M13CheckboxManager.swift; sourceTree = "<group>"; };
+		0008EE7A1D93C39A005E127C /* M13CheckboxPathPresets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = M13CheckboxPathPresets.swift; sourceTree = "<group>"; };
+		0008EE7C1D93C39A005E127C /* M13CheckboxBounceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = M13CheckboxBounceManager.swift; sourceTree = "<group>"; };
+		0008EE7D1D93C39A005E127C /* M13CheckboxDotManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = M13CheckboxDotManager.swift; sourceTree = "<group>"; };
+		0008EE7E1D93C39A005E127C /* M13CheckboxExpandManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = M13CheckboxExpandManager.swift; sourceTree = "<group>"; };
+		0008EE7F1D93C39A005E127C /* M13CheckboxFadeManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = M13CheckboxFadeManager.swift; sourceTree = "<group>"; };
+		0008EE801D93C39A005E127C /* M13CheckboxFillManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = M13CheckboxFillManager.swift; sourceTree = "<group>"; };
+		0008EE811D93C39A005E127C /* M13CheckboxFlatManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = M13CheckboxFlatManager.swift; sourceTree = "<group>"; };
+		0008EE821D93C39A005E127C /* M13CheckboxSpiralManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = M13CheckboxSpiralManager.swift; sourceTree = "<group>"; };
+		0008EE831D93C39A005E127C /* M13CheckboxStrokeManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = M13CheckboxStrokeManager.swift; sourceTree = "<group>"; };
+		0008EE851D93C39A005E127C /* M13CheckboxDotPathPresets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = M13CheckboxDotPathPresets.swift; sourceTree = "<group>"; };
+		0008EE861D93C39A005E127C /* M13CheckboxSpiralPathPresets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = M13CheckboxSpiralPathPresets.swift; sourceTree = "<group>"; };
+		0008EE971D93C5AA005E127C /* NevoCircleProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NevoCircleProgressView.swift; sourceTree = "<group>"; };
 		000CB3251C3E436000B4ABEC /* white_clock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = white_clock.png; sourceTree = "<group>"; };
 		000CB3261C3E436000B4ABEC /* white_hour.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = white_hour.png; sourceTree = "<group>"; };
 		000CB3271C3E436000B4ABEC /* white_minute.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = white_minute.png; sourceTree = "<group>"; };
@@ -767,22 +783,6 @@
 		0074CB961D29EEAA00963607 /* InformationController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InformationController.xib; sourceTree = "<group>"; };
 		007865B61D90DBAF00F33AEA /* AutocompleteField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutocompleteField.swift; sourceTree = "<group>"; };
 		007865B81D90DBAF00F33AEA /* CircleProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleProgressView.swift; sourceTree = "<group>"; };
-		007865BC1D90DC3100F33AEA /* M13Checkbox+IB.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "M13Checkbox+IB.swift"; sourceTree = "<group>"; };
-		007865BD1D90DC3100F33AEA /* M13Checkbox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = M13Checkbox.swift; sourceTree = "<group>"; };
-		007865BE1D90DC3100F33AEA /* M13CheckboxAnimationPresets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = M13CheckboxAnimationPresets.swift; sourceTree = "<group>"; };
-		007865BF1D90DC3100F33AEA /* M13CheckboxGestureRecognizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = M13CheckboxGestureRecognizer.swift; sourceTree = "<group>"; };
-		007865C01D90DC3100F33AEA /* M13CheckboxManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = M13CheckboxManager.swift; sourceTree = "<group>"; };
-		007865C11D90DC3100F33AEA /* M13CheckboxPathPresets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = M13CheckboxPathPresets.swift; sourceTree = "<group>"; };
-		007865C31D90DC3100F33AEA /* M13CheckboxBounceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = M13CheckboxBounceManager.swift; sourceTree = "<group>"; };
-		007865C41D90DC3100F33AEA /* M13CheckboxDotManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = M13CheckboxDotManager.swift; sourceTree = "<group>"; };
-		007865C51D90DC3100F33AEA /* M13CheckboxExpandManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = M13CheckboxExpandManager.swift; sourceTree = "<group>"; };
-		007865C61D90DC3100F33AEA /* M13CheckboxFadeManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = M13CheckboxFadeManager.swift; sourceTree = "<group>"; };
-		007865C71D90DC3100F33AEA /* M13CheckboxFillManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = M13CheckboxFillManager.swift; sourceTree = "<group>"; };
-		007865C81D90DC3100F33AEA /* M13CheckboxFlatManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = M13CheckboxFlatManager.swift; sourceTree = "<group>"; };
-		007865C91D90DC3100F33AEA /* M13CheckboxSpiralManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = M13CheckboxSpiralManager.swift; sourceTree = "<group>"; };
-		007865CA1D90DC3100F33AEA /* M13CheckboxStrokeManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = M13CheckboxStrokeManager.swift; sourceTree = "<group>"; };
-		007865CC1D90DC3100F33AEA /* M13CheckboxDotPathPresets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = M13CheckboxDotPathPresets.swift; sourceTree = "<group>"; };
-		007865CD1D90DC3100F33AEA /* M13CheckboxSpiralPathPresets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = M13CheckboxSpiralPathPresets.swift; sourceTree = "<group>"; };
 		007865E31D91006F00F33AEA /* SMAlphaImageSegment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMAlphaImageSegment.swift; sourceTree = "<group>"; };
 		007865E41D91006F00F33AEA /* SMBasicSegment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMBasicSegment.swift; sourceTree = "<group>"; };
 		007865E51D91006F00F33AEA /* SMBasicSegmentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMBasicSegmentView.swift; sourceTree = "<group>"; };
@@ -905,7 +905,6 @@
 		00AF8C7C1D224CFA009047AC /* Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		00AF8C7E1D224CFA009047AC /* PublicClassController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PublicClassController.swift; sourceTree = "<group>"; };
 		00AF8C7F1D224CFA009047AC /* PublicClassTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PublicClassTableViewController.swift; sourceTree = "<group>"; };
-		00AF8C821D224CFA009047AC /* AnimationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimationView.swift; sourceTree = "<group>"; };
 		00AF8C831D224CFA009047AC /* AppTheme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppTheme.swift; sourceTree = "<group>"; };
 		00AF8C841D224CFA009047AC /* BalloonMarker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BalloonMarker.swift; sourceTree = "<group>"; };
 		00AF8C851D224CFA009047AC /* ClockView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClockView.swift; sourceTree = "<group>"; };
@@ -1214,6 +1213,46 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0008EE741D93C39A005E127C /* M13Checkbox */ = {
+			isa = PBXGroup;
+			children = (
+				0008EE751D93C39A005E127C /* M13Checkbox+IB.swift */,
+				0008EE761D93C39A005E127C /* M13Checkbox.swift */,
+				0008EE771D93C39A005E127C /* M13CheckboxAnimationPresets.swift */,
+				0008EE781D93C39A005E127C /* M13CheckboxGestureRecognizer.swift */,
+				0008EE791D93C39A005E127C /* M13CheckboxManager.swift */,
+				0008EE7A1D93C39A005E127C /* M13CheckboxPathPresets.swift */,
+				0008EE7B1D93C39A005E127C /* Managers */,
+				0008EE841D93C39A005E127C /* Presets */,
+			);
+			name = M13Checkbox;
+			path = Frameworks/M13Checkbox;
+			sourceTree = "<group>";
+		};
+		0008EE7B1D93C39A005E127C /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				0008EE7C1D93C39A005E127C /* M13CheckboxBounceManager.swift */,
+				0008EE7D1D93C39A005E127C /* M13CheckboxDotManager.swift */,
+				0008EE7E1D93C39A005E127C /* M13CheckboxExpandManager.swift */,
+				0008EE7F1D93C39A005E127C /* M13CheckboxFadeManager.swift */,
+				0008EE801D93C39A005E127C /* M13CheckboxFillManager.swift */,
+				0008EE811D93C39A005E127C /* M13CheckboxFlatManager.swift */,
+				0008EE821D93C39A005E127C /* M13CheckboxSpiralManager.swift */,
+				0008EE831D93C39A005E127C /* M13CheckboxStrokeManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		0008EE841D93C39A005E127C /* Presets */ = {
+			isa = PBXGroup;
+			children = (
+				0008EE851D93C39A005E127C /* M13CheckboxDotPathPresets.swift */,
+				0008EE861D93C39A005E127C /* M13CheckboxSpiralPathPresets.swift */,
+			);
+			path = Presets;
+			sourceTree = "<group>";
+		};
 		00321D761C993C320069BFCC /* LoginController */ = {
 			isa = PBXGroup;
 			children = (
@@ -1660,46 +1699,6 @@
 			path = Frameworks/CircleProgressView;
 			sourceTree = "<group>";
 		};
-		007865BB1D90DC3100F33AEA /* M13Checkbox */ = {
-			isa = PBXGroup;
-			children = (
-				007865BC1D90DC3100F33AEA /* M13Checkbox+IB.swift */,
-				007865BD1D90DC3100F33AEA /* M13Checkbox.swift */,
-				007865BE1D90DC3100F33AEA /* M13CheckboxAnimationPresets.swift */,
-				007865BF1D90DC3100F33AEA /* M13CheckboxGestureRecognizer.swift */,
-				007865C01D90DC3100F33AEA /* M13CheckboxManager.swift */,
-				007865C11D90DC3100F33AEA /* M13CheckboxPathPresets.swift */,
-				007865C21D90DC3100F33AEA /* Managers */,
-				007865CB1D90DC3100F33AEA /* Presets */,
-			);
-			name = M13Checkbox;
-			path = Frameworks/M13Checkbox;
-			sourceTree = "<group>";
-		};
-		007865C21D90DC3100F33AEA /* Managers */ = {
-			isa = PBXGroup;
-			children = (
-				007865C31D90DC3100F33AEA /* M13CheckboxBounceManager.swift */,
-				007865C41D90DC3100F33AEA /* M13CheckboxDotManager.swift */,
-				007865C51D90DC3100F33AEA /* M13CheckboxExpandManager.swift */,
-				007865C61D90DC3100F33AEA /* M13CheckboxFadeManager.swift */,
-				007865C71D90DC3100F33AEA /* M13CheckboxFillManager.swift */,
-				007865C81D90DC3100F33AEA /* M13CheckboxFlatManager.swift */,
-				007865C91D90DC3100F33AEA /* M13CheckboxSpiralManager.swift */,
-				007865CA1D90DC3100F33AEA /* M13CheckboxStrokeManager.swift */,
-			);
-			path = Managers;
-			sourceTree = "<group>";
-		};
-		007865CB1D90DC3100F33AEA /* Presets */ = {
-			isa = PBXGroup;
-			children = (
-				007865CC1D90DC3100F33AEA /* M13CheckboxDotPathPresets.swift */,
-				007865CD1D90DC3100F33AEA /* M13CheckboxSpiralPathPresets.swift */,
-			);
-			path = Presets;
-			sourceTree = "<group>";
-		};
 		007865E21D91006F00F33AEA /* SMSegmentView */ = {
 			isa = PBXGroup;
 			children = (
@@ -2002,7 +2001,7 @@
 		00AF8C801D224CFA009047AC /* publicView */ = {
 			isa = PBXGroup;
 			children = (
-				00AF8C811D224CFA009047AC /* AnimationView */,
+				0008EE971D93C5AA005E127C /* NevoCircleProgressView.swift */,
 				00AF8C831D224CFA009047AC /* AppTheme.swift */,
 				00AF8C841D224CFA009047AC /* BalloonMarker.swift */,
 				00AF8C851D224CFA009047AC /* ClockView.swift */,
@@ -2011,14 +2010,6 @@
 				00AF8C891D224CFA009047AC /* ToolbarView.swift */,
 			);
 			path = publicView;
-			sourceTree = "<group>";
-		};
-		00AF8C811D224CFA009047AC /* AnimationView */ = {
-			isa = PBXGroup;
-			children = (
-				00AF8C821D224CFA009047AC /* AnimationView.swift */,
-			);
-			path = AnimationView;
 			sourceTree = "<group>";
 		};
 		00AF8C8A1D224CFA009047AC /* Util */ = {
@@ -2652,9 +2643,9 @@
 		9AD8F95A1A6DFE3400F01014 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0008EE741D93C39A005E127C /* M13Checkbox */,
 				007865E21D91006F00F33AEA /* SMSegmentView */,
 				007865EA1D91006F00F33AEA /* Timepiece */,
-				007865BB1D90DC3100F33AEA /* M13Checkbox */,
 				007865B51D90DBAF00F33AEA /* AutocompleteField */,
 				007865B71D90DBAF00F33AEA /* CircleProgressView */,
 				00AF8D051D224D57009047AC /* NevoAllKeys.swift */,
@@ -3479,7 +3470,6 @@
 				00D4744D1D586D1600E2447E /* View.swift in Sources */,
 				00D4744F1D586D1600E2447E /* PublicClassController.swift in Sources */,
 				00D474501D586D1600E2447E /* PublicClassTableViewController.swift in Sources */,
-				00D474511D586D1600E2447E /* AnimationView.swift in Sources */,
 				00D474521D586D1600E2447E /* AppTheme.swift in Sources */,
 				00D474531D586D1600E2447E /* BalloonMarker.swift in Sources */,
 				004AB4F41D8A3C08008800E6 /* AlertAction.swift in Sources */,
@@ -3568,6 +3558,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0008EE881D93C39A005E127C /* M13Checkbox.swift in Sources */,
 				004AB4F51D8A3C17008800E6 /* AlertAction.swift in Sources */,
 				004AB4F21D8A3ACB008800E6 /* ActionSheetView.swift in Sources */,
 				9AD8F9841A6E2C8E00F01014 /* Request.swift in Sources */,
@@ -3579,7 +3570,6 @@
 				0050D60F1C28E0DB004F6F80 /* AddPresetView.swift in Sources */,
 				00321D6D1C98EBB10069BFCC /* AppDelegate.swift in Sources */,
 				00AF8CC81D224CFA009047AC /* StepsModel.swift in Sources */,
-				007865D11D90DC3100F33AEA /* M13CheckboxGestureRecognizer.swift in Sources */,
 				007865FD1D91006F00F33AEA /* NSDate+Timepiece.swift in Sources */,
 				0050D5FF1C28E0DB004F6F80 /* SelectedNotificationView.swift in Sources */,
 				00AF8CE51D224CFA009047AC /* ConnectionController.swift in Sources */,
@@ -3593,7 +3583,6 @@
 				00AF8CDA1D224CFA009047AC /* PublicClassTableViewController.swift in Sources */,
 				007865FF1D91006F00F33AEA /* NSTimeInterval+Timepiece.swift in Sources */,
 				00321D7C1C993C320069BFCC /* LoginController.swift in Sources */,
-				007865DC1D90DC3100F33AEA /* M13CheckboxDotPathPresets.swift in Sources */,
 				007866001D91006F00F33AEA /* String+Timepiece.swift in Sources */,
 				006DA3101D6ED5C40011E09C /* AnalysisValueCell.swift in Sources */,
 				006A62521D6AA75100458305 /* LineLabel.swift in Sources */,
@@ -3602,10 +3591,9 @@
 				00AF8CD61D224CFA009047AC /* ValidicRequest.swift in Sources */,
 				0050D6021C28E0DB004F6F80 /* SelectedNotificationTypeController.swift in Sources */,
 				00AF8CEE1D224CFA009047AC /* Utility.swift in Sources */,
-				00AF8CDB1D224CFA009047AC /* AnimationView.swift in Sources */,
 				007865FC1D91006F00F33AEA /* CalendarComponent+Timepiece.swift in Sources */,
+				0008EE941D93C39A005E127C /* M13CheckboxStrokeManager.swift in Sources */,
 				006A62591D6AA76C00458305 /* NewAddAlarmHeader.swift in Sources */,
-				007865D81D90DC3100F33AEA /* M13CheckboxFillManager.swift in Sources */,
 				005E468C1D87DBE1009B6E4C /* WatchNamePacket.swift in Sources */,
 				00AF8CF61D224CFA009047AC /* LedLightOnOffNevoRequest.swift in Sources */,
 				00AF8CC91D224CFA009047AC /* UserAlarm.swift in Sources */,
@@ -3613,10 +3601,12 @@
 				00AF8CBF1D224CFA009047AC /* UserDatabaseHelper.swift in Sources */,
 				00AF8CCC1D224CFA009047AC /* UserSleep.swift in Sources */,
 				006A62251D6AA53100458305 /* PageViewController.swift in Sources */,
+				0008EE8A1D93C39A005E127C /* M13CheckboxGestureRecognizer.swift in Sources */,
 				0050D5FC1C28E0DB004F6F80 /* NotificationClockCell.swift in Sources */,
 				00AF8CE41D224CFA009047AC /* ClockRefreshManager.swift in Sources */,
 				007E0CAE1D0E5C3E00B0B600 /* ConnectOtherAppsCell.swift in Sources */,
 				0089B0AF1D6BFF250041148A /* SetingLoginCell.swift in Sources */,
+				0008EE901D93C39A005E127C /* M13CheckboxFadeManager.swift in Sources */,
 				006A62421D6AA5F200458305 /* SleepHistoricalViewController.swift in Sources */,
 				00BF2D9A1C7FED2200909316 /* VideoPlayController.swift in Sources */,
 				00AF8CD11D224CFA009047AC /* TypeModel.swift in Sources */,
@@ -3631,22 +3621,29 @@
 				007865BA1D90DBAF00F33AEA /* CircleProgressView.swift in Sources */,
 				00AF8CE21D224CFA009047AC /* ToolbarView.swift in Sources */,
 				00AF8CD71D224CFA009047AC /* Color.swift in Sources */,
+				0008EE8E1D93C39A005E127C /* M13CheckboxDotManager.swift in Sources */,
 				9AD8F98D1A6E2D6E00F01014 /* RawPacket.swift in Sources */,
+				0008EE981D93C5AA005E127C /* NevoCircleProgressView.swift in Sources */,
 				0089B0A31D6BF0CB0041148A /* ProfileSetupViewController.swift in Sources */,
-				007865CF1D90DC3100F33AEA /* M13Checkbox.swift in Sources */,
 				9AD8F9621A6E00E800F01014 /* NevoBTimpl.swift in Sources */,
 				006A624C1D6AA62100458305 /* SolarIndicatorController.swift in Sources */,
 				00AF8CEC1D224CFA009047AC /* NevoOTAPacketProfile.swift in Sources */,
+				0008EE871D93C39A005E127C /* M13Checkbox+IB.swift in Sources */,
 				00AF8CF01D224CFA009047AC /* DailyStepsNevoPacket.swift in Sources */,
 				00AF8CFC1D224CFA009047AC /* SetCardioRequest.swift in Sources */,
+				0008EE8B1D93C39A005E127C /* M13CheckboxManager.swift in Sources */,
 				9E98FB291C463A3B00BAB700 /* TutorialOneViewController.swift in Sources */,
 				0050D5F11C28E0DB004F6F80 /* MyNevoHeaderView.swift in Sources */,
 				00E6509C1C83EE6700278D3E /* SleepTutorialController.swift in Sources */,
 				00AF8CC21D224CFA009047AC /* HealthModel.swift in Sources */,
+				0008EE8F1D93C39A005E127C /* M13CheckboxExpandManager.swift in Sources */,
 				9AD8F9791A6E05F700F01014 /* NevoBT.swift in Sources */,
+				0008EE891D93C39A005E127C /* M13CheckboxAnimationPresets.swift in Sources */,
 				006A626E1D6AB44A00458305 /* StepGoalSetingController.swift in Sources */,
+				0008EE951D93C39A005E127C /* M13CheckboxDotPathPresets.swift in Sources */,
 				00AF8CEA1D224CFA009047AC /* NevoOTAControllerProfile.swift in Sources */,
 				0050D5F71C28E0DB004F6F80 /* SelectFileView.swift in Sources */,
+				0008EE8D1D93C39A005E127C /* M13CheckboxBounceManager.swift in Sources */,
 				00AF8CCD1D224CFA009047AC /* UserSteps.swift in Sources */,
 				004ED1F21CB386CC009D053C /* iRate.m in Sources */,
 				009703C21C9BD9D700F2FF0D /* UserProfileController.swift in Sources */,
@@ -3663,7 +3660,6 @@
 				007865F61D91006F00F33AEA /* SMSegment.swift in Sources */,
 				00AF8CFA1D224CFA009047AC /* ReadDailyTrackerInfo.swift in Sources */,
 				0050D6931C28E1CD004F6F80 /* AddAlarmSystemCell.swift in Sources */,
-				007865D91D90DC3100F33AEA /* M13CheckboxFlatManager.swift in Sources */,
 				00AF8CDF1D224CFA009047AC /* DatePickerView.swift in Sources */,
 				00120E771D7550D500CE0C32 /* UserHeader.swift in Sources */,
 				9E98FB2D1C463D2A00BAB700 /* TutorialThreeViewController.swift in Sources */,
@@ -3675,7 +3671,6 @@
 				0089B09A1D6BE9410041148A /* CheckYourIndoxController.swift in Sources */,
 				007865F31D91006F00F33AEA /* SMAlphaImageSegment.swift in Sources */,
 				00AF8CF81D224CFA009047AC /* ReadBatteryLevelNevoRequest.swift in Sources */,
-				007865D51D90DC3100F33AEA /* M13CheckboxDotManager.swift in Sources */,
 				006A62571D6AA76C00458305 /* AlarmTypeCell.swift in Sources */,
 				00AF8CC71D224CFA009047AC /* SleepModel.swift in Sources */,
 				0050D60D1C28E0DB004F6F80 /* PresetTableViewController.swift in Sources */,
@@ -3692,6 +3687,7 @@
 				00AF8CE71D224CFA009047AC /* ConnectionManager.swift in Sources */,
 				0050D5EF1C28E0DB004F6F80 /* MyNevoController.swift in Sources */,
 				007865FE1D91006F00F33AEA /* NSDateComponents+Timepiece.swift in Sources */,
+				0008EE931D93C39A005E127C /* M13CheckboxSpiralManager.swift in Sources */,
 				007865F41D91006F00F33AEA /* SMBasicSegment.swift in Sources */,
 				00AF8CB41D224CFA009047AC /* CaloriesToHK.swift in Sources */,
 				9E98FB3D1C46434100BAB700 /* TutorialSixViewController.swift in Sources */,
@@ -3705,12 +3701,12 @@
 				9AD8F98F1A6E2EE000F01014 /* Profile.swift in Sources */,
 				00AF8CFD1D224CFA009047AC /* SetGoalRequest.swift in Sources */,
 				0089B0B31D6BFF250041148A /* SetingView.swift in Sources */,
-				007865D61D90DC3100F33AEA /* M13CheckboxExpandManager.swift in Sources */,
 				00AF8CCE1D224CFA009047AC /* Goal.swift in Sources */,
 				0089B0AD1D6BFF250041148A /* SetingInfoCell.swift in Sources */,
 				00AF8CE81D224CFA009047AC /* NevoProfile.swift in Sources */,
 				9A2D6C401A9C783800591BDC /* NevoHKImpl.swift in Sources */,
 				00E650A01C840FD500278D3E /* MorningTutorialController.swift in Sources */,
+				0008EE911D93C39A005E127C /* M13CheckboxFillManager.swift in Sources */,
 				00AF8CB81D224CFA009047AC /* RealTimeCountSteps.swift in Sources */,
 				00AF8CB51D224CFA009047AC /* DailySteps.swift in Sources */,
 				0089B09C1D6BE9410041148A /* ForgotPasswordController.swift in Sources */,
@@ -3719,56 +3715,50 @@
 				00AF8CF41D224CFA009047AC /* GetActivityRequest.swift in Sources */,
 				00AF8CDC1D224CFA009047AC /* AppTheme.swift in Sources */,
 				00AF8CED1D224CFA009047AC /* NevoOTARequest.swift in Sources */,
-				007865D31D90DC3100F33AEA /* M13CheckboxPathPresets.swift in Sources */,
 				00AF8CF11D224CFA009047AC /* DailyTrackerInfoNevoPacket.swift in Sources */,
 				0050D5F81C28E0DB004F6F80 /* NevoOtaViewController.swift in Sources */,
 				00AF8CBA1D224CFA009047AC /* Alarm.swift in Sources */,
 				9E98FB371C4640AF00BAB700 /* TutorialSevenViewController.swift in Sources */,
 				00AF8D041D224CFA009047AC /* SyncQueue.swift in Sources */,
 				00AF8CC61D224CFA009047AC /* PresetsModel.swift in Sources */,
-				007865D21D90DC3100F33AEA /* M13CheckboxManager.swift in Sources */,
 				0050D6161C28E0DB004F6F80 /* SetingViewController.swift in Sources */,
 				006DA9FE1D80F2A600B70C0F /* AppDelegate-Extension.swift in Sources */,
 				005E468A1D879FB5009B6E4C /* GetWatchName.swift in Sources */,
 				00AF8CF31D224CFA009047AC /* NevoPacket.swift in Sources */,
 				007865FB1D91006F00F33AEA /* NSCalendar+Timepiece.swift in Sources */,
 				00AF8CDD1D224CFA009047AC /* BalloonMarker.swift in Sources */,
-				007865D01D90DC3100F33AEA /* M13CheckboxAnimationPresets.swift in Sources */,
 				00AF8D031D224CFA009047AC /* WriteSettingRequest.swift in Sources */,
 				007865F91D91006F00F33AEA /* Duration.swift in Sources */,
 				0050D6971C28E1CD004F6F80 /* AddAlarmView.swift in Sources */,
 				00F0C34B1C893EE6005888A7 /* AlarmTypeController.swift in Sources */,
+				0008EE8C1D93C39A005E127C /* M13CheckboxPathPresets.swift in Sources */,
 				00AF8CCA1D224CFA009047AC /* UserNotification.swift in Sources */,
 				0050D5F41C28E0DB004F6F80 /* NevoOtaController.swift in Sources */,
 				00344F5C1C47A86800C2FC7A /* SupportViewController.swift in Sources */,
 				9E98FB2F1C463E1C00BAB700 /* TutorialFourViewController.swift in Sources */,
-				007865DD1D90DC3100F33AEA /* M13CheckboxSpiralPathPresets.swift in Sources */,
 				9E98FB2B1C463BB200BAB700 /* TutorialTwoViewController.swift in Sources */,
 				0050D5FE1C28E0DB004F6F80 /* NotificationView.swift in Sources */,
-				007865DA1D90DC3100F33AEA /* M13CheckboxSpiralManager.swift in Sources */,
 				9A2D6C3E1A9C71E500591BDC /* NevoHK.swift in Sources */,
 				0050D6121C28E0DB004F6F80 /* PresetView.swift in Sources */,
 				0050D6951C28E1CD004F6F80 /* AddAlarmTableViewCell.swift in Sources */,
 				00AF8CF91D224CFA009047AC /* ReadDailyTracker.swift in Sources */,
+				0008EE961D93C39A005E127C /* M13CheckboxSpiralPathPresets.swift in Sources */,
 				0089B0B61D6C4BDC0041148A /* SleepHistoryViewCell.swift in Sources */,
 				006DA30C1D6ED5910011E09C /* AnalysisRadarChartView.swift in Sources */,
 				00AF8CC01D224CFA009047AC /* AlarmModel.swift in Sources */,
 				006DA3161D6ED6670011E09C /* AnalysisLineChartCell.swift in Sources */,
 				00120E841D75763D00CE0C32 /* RepeatViewCell.swift in Sources */,
-				007865D41D90DC3100F33AEA /* M13CheckboxBounceManager.swift in Sources */,
 				0050D5F31C28E0DB004F6F80 /* MyNevoView.swift in Sources */,
 				9AD8F93B1A6DF35900F01014 /* Nevo.xcdatamodeld in Sources */,
 				00AF8CD91D224CFA009047AC /* PublicClassController.swift in Sources */,
 				0017DC111C8812640058A065 /* RepeatViewController.swift in Sources */,
 				0050D6911C28E1CD004F6F80 /* AddAlarmController.swift in Sources */,
+				0008EE921D93C39A005E127C /* M13CheckboxFlatManager.swift in Sources */,
 				003DBF771D6D93C400E45244 /* EventBusKeys.swift in Sources */,
 				00AF8CF71D224CFA009047AC /* NevoRequest.swift in Sources */,
 				00AF8CF51D224CFA009047AC /* GetStepsGoalRequest.swift in Sources */,
-				007865DB1D90DC3100F33AEA /* M13CheckboxStrokeManager.swift in Sources */,
-				007865D71D90DC3100F33AEA /* M13CheckboxFadeManager.swift in Sources */,
 				00AF8CD01D224CFA009047AC /* NotificationSetting.swift in Sources */,
 				007F1F511CAA1B630021DF1B /* LocalNotification.swift in Sources */,
-				007865CE1D90DC3100F33AEA /* M13Checkbox+IB.swift in Sources */,
 				00AF8CFE1D224CFA009047AC /* SetNewAlarmRequest.swift in Sources */,
 				0050D5F51C28E0DB004F6F80 /* DeviceScannerView.swift in Sources */,
 			);
@@ -4203,6 +4193,7 @@
 				PROVISIONING_PROFILE = "1e4a840c-f839-4957-9051-5736de9e653b";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -4239,6 +4230,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PROVISIONING_PROFILE = "1e4a840c-f839-4957-9051-5736de9e653b";
 				SDKROOT = iphoneos;
+				SWIFT_VERSION = 3.0;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -4265,6 +4257,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Nevo/Nevo-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -4290,6 +4283,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Nevo/Nevo-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
