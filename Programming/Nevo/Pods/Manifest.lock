@@ -1,26 +1,19 @@
 PODS:
-  - ActiveLabel (0.6.1)
-  - Alamofire (3.4.2)
-  - AutocompleteField (1.1)
-  - BRYXBanner (0.5.2):
-    - BRYXBanner/Core (= 0.5.2)
-  - BRYXBanner/Core (0.5.2)
+  - ActiveLabel (0.6.2)
+  - Alamofire (4.0.0)
+  - BRYXBanner (0.7.0)
   - Charts (2.2.5):
     - Charts/Core (= 2.2.5)
   - Charts/Core (2.2.5)
-  - CircleProgressView (1.0.11)
-  - Crashlytics (3.8.0):
+  - Crashlytics (3.8.1):
     - Fabric (~> 1.6.3)
-  - CVCalendar (1.3.0)
+  - CVCalendar (1.4.0)
   - Fabric (1.6.8)
   - FMDB (2.6.2):
     - FMDB/standard (= 2.6.2)
   - FMDB/standard (2.6.2)
-  - GSMessages (1.2.3)
-  - IQKeyboardManagerSwift (4.0.5)
-  - KDCircularProgress (1.4.1)
+  - IQKeyboardManagerSwift (4.0.6)
   - LTNavigationBar (2.1.6)
-  - M13Checkbox (2.1.2)
   - MRProgress (0.8.3):
     - MRProgress/ActivityIndicator (= 0.8.3)
     - MRProgress/Blur (= 0.8.3)
@@ -54,102 +47,97 @@ PODS:
     - NJKWebViewProgress/ProgressView (= 0.2.3)
   - NJKWebViewProgress/Core (0.2.3)
   - NJKWebViewProgress/ProgressView (0.2.3)
-  - PagingMenuController (1.1.2)
-  - Realm (1.0.2):
-    - Realm/Headers (= 1.0.2)
-  - Realm/Headers (1.0.2)
-  - RealmSwift (1.0.2):
-    - Realm (= 1.0.2)
+  - Realm (1.1.0):
+    - Realm/Headers (= 1.1.0)
+  - Realm/Headers (1.1.0)
+  - RealmSwift (1.1.0):
+    - Realm (= 1.1.0)
   - RegexKitLite (4.0)
-  - SMSegmentView (1.1)
-  - SwiftEventBus (1.1.0)
-  - SwiftyJSON (2.3.2)
-  - SwiftyTimer (1.4.1)
-  - Timepiece (0.4.3)
+  - SwiftEventBus (2.1.0)
+  - SwiftyJSON (3.0.0)
+  - SwiftyTimer (1.4.0)
   - UIColor_Hex_Swift (2.1)
-  - UMengAnalytics-NO-IDFA (4.0.5)
-  - XCGLogger (3.5.1)
+  - XCGLogger (4.0.0):
+    - XCGLogger/Core (= 4.0.0)
+  - XCGLogger/Core (4.0.0)
 
 DEPENDENCIES:
-  - ActiveLabel
+  - ActiveLabel (from `https://github.com/optonaut/ActiveLabel.swift.git`, branch `swift-3`)
   - Alamofire
-  - AutocompleteField
   - BRYXBanner
-  - Charts
-  - CircleProgressView (from `https://github.com/CardinalNow/iOS-CircleProgressView.git`)
+  - Charts (from `https://github.com/danielgindi/Charts.git`, branch `Chart2.2.5-Swift3.0`)
   - Crashlytics
-  - CVCalendar
+  - CVCalendar (~> 1.4.0)
   - Fabric
   - FMDB (~> 2.6.2)
-  - GSMessages
-  - IQKeyboardManagerSwift
-  - KDCircularProgress
+  - IQKeyboardManagerSwift (~> 4.0.6)
   - LTNavigationBar
-  - M13Checkbox
   - MRProgress
   - NJKWebViewProgress
-  - PagingMenuController
   - RealmSwift
   - RegexKitLite
-  - SMSegmentView
-  - SwiftEventBus (from `https://github.com/cesarferreira/SwiftEventBus.git`)
-  - SwiftyJSON (from `https://github.com/SwiftyJSON/SwiftyJSON.git`)
-  - SwiftyTimer
-  - Timepiece
-  - UIColor_Hex_Swift
-  - UMengAnalytics-NO-IDFA (~> 4.0.3)
-  - XCGLogger
+  - SwiftEventBus (from `https://github.com/cesarferreira/SwiftEventBus.git`, tag `2.1.0`)
+  - SwiftyJSON
+  - SwiftyTimer (from `https://github.com/radex/SwiftyTimer.git`, branch `swift3`)
+  - UIColor_Hex_Swift (from `https://github.com/yeahdongcn/UIColor-Hex-Swift.git`, branch `Swift-3.0`)
+  - XCGLogger (~> 4.0.0)
 
 EXTERNAL SOURCES:
-  CircleProgressView:
-    :git: https://github.com/CardinalNow/iOS-CircleProgressView.git
+  ActiveLabel:
+    :branch: swift-3
+    :git: https://github.com/optonaut/ActiveLabel.swift.git
+  Charts:
+    :branch: Chart2.2.5-Swift3.0
+    :git: https://github.com/danielgindi/Charts.git
   SwiftEventBus:
     :git: https://github.com/cesarferreira/SwiftEventBus.git
-  SwiftyJSON:
-    :git: https://github.com/SwiftyJSON/SwiftyJSON.git
+    :tag: 2.1.0
+  SwiftyTimer:
+    :branch: swift3
+    :git: https://github.com/radex/SwiftyTimer.git
+  UIColor_Hex_Swift:
+    :branch: Swift-3.0
+    :git: https://github.com/yeahdongcn/UIColor-Hex-Swift.git
 
 CHECKOUT OPTIONS:
-  CircleProgressView:
-    :commit: 51cbf218c4b417aed925d0d30e0c03dbff9b98cd
-    :git: https://github.com/CardinalNow/iOS-CircleProgressView.git
+  ActiveLabel:
+    :commit: 80fae948262087ebf9006d5d7c454c969aa88427
+    :git: https://github.com/optonaut/ActiveLabel.swift.git
+  Charts:
+    :commit: ab3bb619df2c2d165b41736b6bc25a4218833252
+    :git: https://github.com/danielgindi/Charts.git
   SwiftEventBus:
-    :commit: 4b8cbb5a8227b3c29af75e0416689d26178733d8
     :git: https://github.com/cesarferreira/SwiftEventBus.git
-  SwiftyJSON:
-    :commit: 73670b94292b8d8496c398a973f56ac67789ba9f
-    :git: https://github.com/SwiftyJSON/SwiftyJSON.git
+    :tag: 2.1.0
+  SwiftyTimer:
+    :commit: 8cb3860bfef05fc86860b73398a02b96ae0b789b
+    :git: https://github.com/radex/SwiftyTimer.git
+  UIColor_Hex_Swift:
+    :commit: ee72a082b3532a01d93425a91cd48767fb913ab6
+    :git: https://github.com/yeahdongcn/UIColor-Hex-Swift.git
 
 SPEC CHECKSUMS:
-  ActiveLabel: c5b2381df6ca46d8f0cd1ed81280e09d7687e729
-  Alamofire: 6aa33201d20d069e1598891cf928883ff1888c7a
-  AutocompleteField: 212b36bef0218f22c05d80035be2d382acd5a4e2
-  BRYXBanner: 5f0911d52e0a77e088f7ea7ddcdebd02afb7828a
+  ActiveLabel: f1670bbd4d6bba563ffeec423120f6d708c4784f
+  Alamofire: fef59f00388f267e52d9b432aa5d93dc97190f14
+  BRYXBanner: 732f576bf9cc1f3f6138d81e8a048666af1c49db
   Charts: b48fcc8d7190de910ff9e9748f5360c8ea7856e5
-  CircleProgressView: 3e7e26454ad9a93e310fe9cd612af6d779deb0c1
-  Crashlytics: 8601d9c74a4c4d28f3e7f408bf4c0e490c70e8b4
-  CVCalendar: 160faf4e1797132875ba7df4a15a3bc9759af4f1
+  Crashlytics: 4391d8df0b125345e9f209c5db6e7f40a6a8435d
+  CVCalendar: ec1a06a508f99d8e5067258754f811a8a1433a3f
   Fabric: 5755268d0171435ab167e3d0878a28a777deaf10
   FMDB: 854a0341b4726e53276f2a8996f06f1b80f9259a
-  GSMessages: 6c92295aaac87b96d746c1838e72ed0a2b51ac9a
-  IQKeyboardManagerSwift: 41fd3a45a2cdb2a0e031af697708a95b865068a1
-  KDCircularProgress: c931181cbe3fe988a93250ac700c5a0d8b90e2bf
+  IQKeyboardManagerSwift: b3015e819559ca76381f87a0833f44d178564603
   LTNavigationBar: 9ef51488bf289b1f65dbcb17ac92888c4ae23e30
-  M13Checkbox: fbc53145e3ca8ecd1c444a76439bdc0ddb17b008
   MRProgress: 16de7cc9f347e8846797a770db102a323fe7ef09
   NJKWebViewProgress: f481fd424cb5ecc27eacae11b5397db92fba9a4d
-  PagingMenuController: a47a9669760b95f630cc3ef28bdce104f9107d14
-  Realm: 9d5c46a4d7d27958530a8dfc58f63a99e5c2cba3
-  RealmSwift: 82f3ac5e24530143dddfde2033acc0d308f27d96
+  Realm: ceecf1a4540c4ce9efe196fe73fa9855bce05bd8
+  RealmSwift: 838058b2db95b12cb86bd0cf209df642c33fb60a
   RegexKitLite: c0e4c12e6e7de0769f3a3ed679f0f61604170661
-  SMSegmentView: a99862f36ea73478558ae665c209cb80c0d4f059
-  SwiftEventBus: d334f7aecbddbd995c3de5c262cf35c72db550f3
-  SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
-  SwiftyTimer: 4d25b60ebdbdc5c34782663ab6a5974424f9095e
-  Timepiece: b5038887b91d6eb70653173f4270e06b3abeac41
+  SwiftEventBus: 03fb72b65f3ae11912dec2591567b89e5908a781
+  SwiftyJSON: f57b2b44bc166617372d1c70773591fe9f0f5fd4
+  SwiftyTimer: db4458cfaf67fc71e16ad6e4637c60b86f76a649
   UIColor_Hex_Swift: e91dc51f6bf252ec7bf74c8704ceedeeb7640c1c
-  UMengAnalytics-NO-IDFA: 965a219b05475ff2a4c09a164139a27bbaa0e25b
-  XCGLogger: 94829865eea6fcc1f9a49e23bdc9f120a6848f30
+  XCGLogger: 38063ea89b4c8b23232d18efd2e12eb0005f3ea4
 
-PODFILE CHECKSUM: d2289a24a7c045ca0829fce19590890ded00cbc7
+PODFILE CHECKSUM: 3b5735dbba1c6141af3c9816b2da3df7b3819901
 
 COCOAPODS: 1.1.0.beta.2

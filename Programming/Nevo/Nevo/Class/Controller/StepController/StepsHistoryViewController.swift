@@ -38,7 +38,7 @@ class StepsHistoryViewController: PublicClassController,UICollectionViewDelegate
         self.configChartView()
         
         let dayDate:Date = Date()
-        let dayTime:TimeInterval = Date.date(year: dayDate.year, month: dayDate.month, day: dayDate.day, hour: 0, minute: 0, second: 0).timeIntervalSince1970
+        let dayTime:TimeInterval = Date.date(dayDate.year, month: dayDate.month, day: dayDate.day, hour: 0, minute: 0, second: 0).timeIntervalSince1970
             //NSDate().beginningOfDay.timeIntervalSince1970
         queryArray = UserSteps.getCriteria("WHERE date = \(dayTime)") //one hour = 3600s
         self.bulidStepHistoricalChartView(queryArray)

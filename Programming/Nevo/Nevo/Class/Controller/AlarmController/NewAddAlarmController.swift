@@ -6,6 +6,7 @@
 //  Copyright © 2016年 Nevo. All rights reserved.
 //
 
+import Foundation
 import UIKit
 
 class NewAddAlarmController: UITableViewController,ButtonManagerCallBack,SelectedRepeatDelegate,SelectedSleepTypeDelegate {
@@ -75,7 +76,7 @@ class NewAddAlarmController: UITableViewController,ButtonManagerCallBack,Selecte
                 if(datePicker.isKind(of: UIDatePicker.classForCoder())){
                     let picker:UIDatePicker = datePicker as! UIDatePicker
                     timer = picker.date.timeIntervalSince1970
-                    NSLog("UIDatePicker______%@,\(timer)", picker.date)
+                    debugPrint("UIDatePicker______%@,\(timer)", picker.date)
                 }
             }
 
@@ -85,7 +86,7 @@ class NewAddAlarmController: UITableViewController,ButtonManagerCallBack,Selecte
                 if(datePicker.isKind(of: UISwitch.classForCoder())){
                     let repeatSwicth:UISwitch = datePicker as! UISwitch
                     repeatStatus = repeatSwicth.isOn
-                    NSLog("repeatStatus______%@", repeatStatus)
+                    debugPrint("repeatStatus______%@", repeatStatus)
 
                 }
             }

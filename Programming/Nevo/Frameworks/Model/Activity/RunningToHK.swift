@@ -20,7 +20,7 @@ class RunningToHK: NevoHKDataPoint {
 
         mRunning_Date = date
         //A daily data point if from 00AM to 23:59:59
-        lateNight = Date().change(year: date.year, month: date.month, day: date.day, hour: date.hour, minute: 59, second: 59)
+        lateNight = Date().change(date.year, month: date.month, day: date.day, hour: date.hour, minute: 59, second: 59)
     }
 
     @objc func toHKQuantitySample() -> HKQuantitySample {

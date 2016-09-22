@@ -58,7 +58,7 @@ class NevoHKImpl {
             
             if( completion != nil )
             {
-                completion(success:success,error:error)
+                completion(success as Bool,error as! NSError)
             }
         }
     }

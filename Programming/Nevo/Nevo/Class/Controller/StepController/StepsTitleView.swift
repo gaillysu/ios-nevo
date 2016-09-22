@@ -19,10 +19,10 @@ class StepsTitleView: UIView {
     var buttonResultHandler:((_ result:AnyObject?) -> Void)?
 
     class func getStepsTitleView(_ frame:CGRect)->StepsTitleView {
-        let nibView:NSArray = Bundle.main.loadNibNamed("StepsTitleView", owner: nil, options: nil)
-        let view:UIView = nibView.object(at: 0) as! UIView
+        let nibView:[Any] = Bundle.main.loadNibNamed("StepsTitleView", owner: nil, options: nil)!
+        let view:UIView = nibView[0] as! UIView
         view.frame = frame
-        let stepsView:StepsTitleView = nibView.object(at: 0) as! StepsTitleView
+        let stepsView:StepsTitleView = nibView[0] as! StepsTitleView
 //        stepsView.calendarButton.tintColor = AppTheme.NEVO_SOLAR_YELLOW()
 //        stepsView.calendarButton.imageEdgeInsets = UIEdgeInsetsMake(10, 10, 10, stepsView.calendarButton.imageEdgeInsets.right+10)
         return stepsView

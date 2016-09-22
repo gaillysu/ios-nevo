@@ -9,20 +9,18 @@
 import UIKit
 
 class ClockRefreshManager: NSObject {
-    fileprivate static var __once: () = {
-            Static.instance = ClockRefreshManager()
-        }()
     fileprivate var refreshObject:[ClockRefreshDelegate] = []
 
+    /**
+     A classic singelton pattern
+     */
     class var sharedInstance : ClockRefreshManager {
-        struct Static {
-            static var onceToken : Int = 0
-            static var instance : ClockRefreshManager? = nil
+        struct Singleton {
+            static let instance = ClockRefreshManager()
         }
-        _ = ClockRefreshManager.__once
-        return Static.instance!
+        return Singleton.instance
     }
-
+    
     override init() {
         super.init()
         /**

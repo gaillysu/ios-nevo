@@ -17,6 +17,8 @@ target 'LunaR' do
     pod 'IQKeyboardManagerSwift', '~> 4.0.6'
     pod 'CVCalendar', '~> 1.4.0'
     pod 'SwiftEventBus', :tag => '2.1.0', :git => 'https://github.com/cesarferreira/SwiftEventBus.git'
+    pod 'XCGLogger', '~> 4.0.0'
+    pod 'SwiftyJSON'
   target 'LunaRTests' do
     inherit! :search_paths
     # Pods for testing
@@ -44,7 +46,8 @@ target 'Nevo' do
     pod 'CVCalendar', '~> 1.4.0'
     pod 'RealmSwift'
     pod 'SwiftEventBus', :tag => '2.1.0', :git => 'https://github.com/cesarferreira/SwiftEventBus.git'
-
+    pod 'XCGLogger', '~> 4.0.0'
+    pod 'SwiftyJSON'
   target 'NevoTests' do
     inherit! :search_paths
     # Pods for testing

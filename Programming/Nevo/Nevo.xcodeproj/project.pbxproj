@@ -190,13 +190,11 @@
 		007865DB1D90DC3100F33AEA /* M13CheckboxStrokeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007865CA1D90DC3100F33AEA /* M13CheckboxStrokeManager.swift */; };
 		007865DC1D90DC3100F33AEA /* M13CheckboxDotPathPresets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007865CC1D90DC3100F33AEA /* M13CheckboxDotPathPresets.swift */; };
 		007865DD1D90DC3100F33AEA /* M13CheckboxSpiralPathPresets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007865CD1D90DC3100F33AEA /* M13CheckboxSpiralPathPresets.swift */; };
-		007865E11D90E7A000F33AEA /* XCGLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007865E01D90E7A000F33AEA /* XCGLogger.swift */; };
 		007865F31D91006F00F33AEA /* SMAlphaImageSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007865E31D91006F00F33AEA /* SMAlphaImageSegment.swift */; };
 		007865F41D91006F00F33AEA /* SMBasicSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007865E41D91006F00F33AEA /* SMBasicSegment.swift */; };
 		007865F51D91006F00F33AEA /* SMBasicSegmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007865E51D91006F00F33AEA /* SMBasicSegmentView.swift */; };
 		007865F61D91006F00F33AEA /* SMSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007865E61D91006F00F33AEA /* SMSegment.swift */; };
 		007865F71D91006F00F33AEA /* SMSegmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007865E71D91006F00F33AEA /* SMSegmentView.swift */; };
-		007865F81D91006F00F33AEA /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007865E91D91006F00F33AEA /* SwiftyJSON.swift */; };
 		007865F91D91006F00F33AEA /* Duration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007865EB1D91006F00F33AEA /* Duration.swift */; };
 		007865FA1D91006F00F33AEA /* Int+Timepiece.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007865EC1D91006F00F33AEA /* Int+Timepiece.swift */; };
 		007865FB1D91006F00F33AEA /* NSCalendar+Timepiece.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007865ED1D91006F00F33AEA /* NSCalendar+Timepiece.swift */; };
@@ -288,7 +286,6 @@
 		00AF8CDE1D224CFA009047AC /* ClockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C851D224CFA009047AC /* ClockView.swift */; };
 		00AF8CDF1D224CFA009047AC /* DatePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C861D224CFA009047AC /* DatePickerView.swift */; };
 		00AF8CE01D224CFA009047AC /* DatePickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00AF8C871D224CFA009047AC /* DatePickerView.xib */; };
-		00AF8CE11D224CFA009047AC /* SyncBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C881D224CFA009047AC /* SyncBar.swift */; };
 		00AF8CE21D224CFA009047AC /* ToolbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C891D224CFA009047AC /* ToolbarView.swift */; };
 		00AF8CE31D224CFA009047AC /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C8B1D224CFA009047AC /* Alert.swift */; };
 		00AF8CE41D224CFA009047AC /* ClockRefreshManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C8D1D224CFA009047AC /* ClockRefreshManager.swift */; };
@@ -379,7 +376,6 @@
 		00D474541D586D1600E2447E /* ClockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C851D224CFA009047AC /* ClockView.swift */; };
 		00D474551D586D1600E2447E /* DatePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C861D224CFA009047AC /* DatePickerView.swift */; };
 		00D474561D586D1600E2447E /* DatePickerView.xib in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C871D224CFA009047AC /* DatePickerView.xib */; };
-		00D474571D586D1600E2447E /* SyncBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C881D224CFA009047AC /* SyncBar.swift */; };
 		00D474581D586D1600E2447E /* ToolbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C891D224CFA009047AC /* ToolbarView.swift */; };
 		00D474591D586D1600E2447E /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C8B1D224CFA009047AC /* Alert.swift */; };
 		00D4745A1D586D1600E2447E /* ClockRefreshManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C8D1D224CFA009047AC /* ClockRefreshManager.swift */; };
@@ -787,14 +783,11 @@
 		007865CA1D90DC3100F33AEA /* M13CheckboxStrokeManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = M13CheckboxStrokeManager.swift; sourceTree = "<group>"; };
 		007865CC1D90DC3100F33AEA /* M13CheckboxDotPathPresets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = M13CheckboxDotPathPresets.swift; sourceTree = "<group>"; };
 		007865CD1D90DC3100F33AEA /* M13CheckboxSpiralPathPresets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = M13CheckboxSpiralPathPresets.swift; sourceTree = "<group>"; };
-		007865DF1D90E7A000F33AEA /* XCGLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XCGLogger.h; sourceTree = "<group>"; };
-		007865E01D90E7A000F33AEA /* XCGLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XCGLogger.swift; sourceTree = "<group>"; };
 		007865E31D91006F00F33AEA /* SMAlphaImageSegment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMAlphaImageSegment.swift; sourceTree = "<group>"; };
 		007865E41D91006F00F33AEA /* SMBasicSegment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMBasicSegment.swift; sourceTree = "<group>"; };
 		007865E51D91006F00F33AEA /* SMBasicSegmentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMBasicSegmentView.swift; sourceTree = "<group>"; };
 		007865E61D91006F00F33AEA /* SMSegment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMSegment.swift; sourceTree = "<group>"; };
 		007865E71D91006F00F33AEA /* SMSegmentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMSegmentView.swift; sourceTree = "<group>"; };
-		007865E91D91006F00F33AEA /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 		007865EB1D91006F00F33AEA /* Duration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Duration.swift; sourceTree = "<group>"; };
 		007865EC1D91006F00F33AEA /* Int+Timepiece.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Int+Timepiece.swift"; sourceTree = "<group>"; };
 		007865ED1D91006F00F33AEA /* NSCalendar+Timepiece.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSCalendar+Timepiece.swift"; sourceTree = "<group>"; };
@@ -918,7 +911,6 @@
 		00AF8C851D224CFA009047AC /* ClockView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClockView.swift; sourceTree = "<group>"; };
 		00AF8C861D224CFA009047AC /* DatePickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePickerView.swift; sourceTree = "<group>"; };
 		00AF8C871D224CFA009047AC /* DatePickerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DatePickerView.xib; sourceTree = "<group>"; };
-		00AF8C881D224CFA009047AC /* SyncBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncBar.swift; sourceTree = "<group>"; };
 		00AF8C891D224CFA009047AC /* ToolbarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToolbarView.swift; sourceTree = "<group>"; };
 		00AF8C8B1D224CFA009047AC /* Alert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
 		00AF8C8D1D224CFA009047AC /* ClockRefreshManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClockRefreshManager.swift; sourceTree = "<group>"; };
@@ -1708,16 +1700,6 @@
 			path = Presets;
 			sourceTree = "<group>";
 		};
-		007865DE1D90E79F00F33AEA /* XCGLogger */ = {
-			isa = PBXGroup;
-			children = (
-				007865DF1D90E7A000F33AEA /* XCGLogger.h */,
-				007865E01D90E7A000F33AEA /* XCGLogger.swift */,
-			);
-			name = XCGLogger;
-			path = Frameworks/XCGLogger;
-			sourceTree = "<group>";
-		};
 		007865E21D91006F00F33AEA /* SMSegmentView */ = {
 			isa = PBXGroup;
 			children = (
@@ -1729,15 +1711,6 @@
 			);
 			name = SMSegmentView;
 			path = Frameworks/SMSegmentView;
-			sourceTree = "<group>";
-		};
-		007865E81D91006F00F33AEA /* SwiftyJSON */ = {
-			isa = PBXGroup;
-			children = (
-				007865E91D91006F00F33AEA /* SwiftyJSON.swift */,
-			);
-			name = SwiftyJSON;
-			path = Frameworks/SwiftyJSON;
 			sourceTree = "<group>";
 		};
 		007865EA1D91006F00F33AEA /* Timepiece */ = {
@@ -2035,7 +2008,6 @@
 				00AF8C851D224CFA009047AC /* ClockView.swift */,
 				00AF8C861D224CFA009047AC /* DatePickerView.swift */,
 				00AF8C871D224CFA009047AC /* DatePickerView.xib */,
-				00AF8C881D224CFA009047AC /* SyncBar.swift */,
 				00AF8C891D224CFA009047AC /* ToolbarView.swift */,
 			);
 			path = publicView;
@@ -2681,9 +2653,7 @@
 			isa = PBXGroup;
 			children = (
 				007865E21D91006F00F33AEA /* SMSegmentView */,
-				007865E81D91006F00F33AEA /* SwiftyJSON */,
 				007865EA1D91006F00F33AEA /* Timepiece */,
-				007865DE1D90E79F00F33AEA /* XCGLogger */,
 				007865BB1D90DC3100F33AEA /* M13Checkbox */,
 				007865B51D90DBAF00F33AEA /* AutocompleteField */,
 				007865B71D90DBAF00F33AEA /* CircleProgressView */,
@@ -3516,7 +3486,6 @@
 				00D474541D586D1600E2447E /* ClockView.swift in Sources */,
 				00D474551D586D1600E2447E /* DatePickerView.swift in Sources */,
 				00D474561D586D1600E2447E /* DatePickerView.xib in Sources */,
-				00D474571D586D1600E2447E /* SyncBar.swift in Sources */,
 				00D474581D586D1600E2447E /* ToolbarView.swift in Sources */,
 				00D474591D586D1600E2447E /* Alert.swift in Sources */,
 				00D4745A1D586D1600E2447E /* ClockRefreshManager.swift in Sources */,
@@ -3648,7 +3617,6 @@
 				00AF8CE41D224CFA009047AC /* ClockRefreshManager.swift in Sources */,
 				007E0CAE1D0E5C3E00B0B600 /* ConnectOtherAppsCell.swift in Sources */,
 				0089B0AF1D6BFF250041148A /* SetingLoginCell.swift in Sources */,
-				007865E11D90E7A000F33AEA /* XCGLogger.swift in Sources */,
 				006A62421D6AA5F200458305 /* SleepHistoricalViewController.swift in Sources */,
 				00BF2D9A1C7FED2200909316 /* VideoPlayController.swift in Sources */,
 				00AF8CD11D224CFA009047AC /* TypeModel.swift in Sources */,
@@ -3672,7 +3640,6 @@
 				00AF8CF01D224CFA009047AC /* DailyStepsNevoPacket.swift in Sources */,
 				00AF8CFC1D224CFA009047AC /* SetCardioRequest.swift in Sources */,
 				9E98FB291C463A3B00BAB700 /* TutorialOneViewController.swift in Sources */,
-				007865F81D91006F00F33AEA /* SwiftyJSON.swift in Sources */,
 				0050D5F11C28E0DB004F6F80 /* MyNevoHeaderView.swift in Sources */,
 				00E6509C1C83EE6700278D3E /* SleepTutorialController.swift in Sources */,
 				00AF8CC21D224CFA009047AC /* HealthModel.swift in Sources */,
@@ -3690,7 +3657,6 @@
 				0050D5F61C28E0DB004F6F80 /* NevoOtaView.swift in Sources */,
 				00E2BDE21B16CCD0009C757E /* MBProgressHUD+MJ.m in Sources */,
 				006A62701D6AB44A00458305 /* StepGoalSetingViewCell.swift in Sources */,
-				00AF8CE11D224CFA009047AC /* SyncBar.swift in Sources */,
 				005BC95F1A88B79F006F9E86 /* FXBlurView.m in Sources */,
 				006A62741D6AB44A00458305 /* StepsTitleView.swift in Sources */,
 				00AF8CD31D224CFA009047AC /* Sleep.swift in Sources */,
@@ -4299,7 +4265,6 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Nevo/Nevo-Bridging-Header.h";
-				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -4325,7 +4290,6 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Nevo/Nevo-Bridging-Header.h";
-				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -4349,7 +4313,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.nevowatch.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Nevo.app/Nevo";
 			};
 			name = Debug;
@@ -4370,7 +4333,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.nevowatch.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Nevo.app/Nevo";
 			};
 			name = Release;

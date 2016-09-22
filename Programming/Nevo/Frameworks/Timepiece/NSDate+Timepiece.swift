@@ -123,7 +123,7 @@ public extension Date {
         Initialize a date by changing the time zone of receiver.
     */
     func change(_ timeZone: TimeZone) -> Date! {
-        let originalTimeZone = calendar.timeZone
+        _ = calendar.timeZone
         
         let newDate = calendar.date(from: components)!
         objc_setAssociatedObject(newDate, &AssociatedKeys.TimeZone, timeZone, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)

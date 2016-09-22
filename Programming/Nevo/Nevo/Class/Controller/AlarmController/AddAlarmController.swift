@@ -54,7 +54,7 @@ class AddAlarmController: UITableViewController,ButtonManagerCallBack,UIAlertVie
                 if(datePicker.isKind(of: UIDatePicker.classForCoder())){
                     let picker:UIDatePicker = datePicker as! UIDatePicker
                     timer = picker.date.timeIntervalSince1970
-                    NSLog("UIDatePicker______%@,\(timer)", picker.date)
+                    debugPrint("UIDatePicker______%@,\(timer)", picker.date)
 
                 }
             }
@@ -65,8 +65,6 @@ class AddAlarmController: UITableViewController,ButtonManagerCallBack,UIAlertVie
                 if(datePicker.isKind(of: UISwitch.classForCoder())){
                     let repeatSwicth:UISwitch = datePicker as! UISwitch
                     repeatStatus = repeatSwicth.isOn
-                    NSLog("repeatStatus______%@", repeatStatus)
-
                 }
             }
 

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class UserSteps: NSObject,BaseEntryDatabaseHelper {
+class UserSteps: NSObject {
     var id:Int = 0
     var steps:Int = 0
     var goalsteps:Int = 0
@@ -83,7 +83,7 @@ class UserSteps: NSObject,BaseEntryDatabaseHelper {
 
     init(keyDict:NSDictionary) {
         super.init()
-        keyDict.enumerateKeysAndObjects { (key, value, stop) -> Void in
+        keyDict.enumerateKeysAndObjects(options: NSEnumerationOptions.reverse) { (key, value, stop) in
             self.setValue(value, forKey: key as! String)
         }
     }

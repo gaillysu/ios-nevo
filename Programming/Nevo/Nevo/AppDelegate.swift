@@ -699,7 +699,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
             }
             
             //find Phone
-            if (TestMode.shareInstance(packet.getPackets()).isTestModel()) {
+            if (TestMode.sharedInstance(packet.getPackets()).isTestModel()) {
                 AppTheme.playSound()
             }
             

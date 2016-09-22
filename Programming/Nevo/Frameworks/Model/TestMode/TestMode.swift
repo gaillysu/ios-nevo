@@ -29,22 +29,19 @@ fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
 
 
 class TestMode: NSObject {
-    fileprivate static var __once: () = {
-            TestModeSingleton.instance=TestMode()
-            }()
+
     fileprivate var packetData:[Data]?//所属按键数据包
     fileprivate var pressedData:[Data]?//松开按键接收数据包
 
-    class func shareInstance(_ datas:[Data])->TestMode{
-        struct TestModeSingleton{
+    class func sharedInstance(_ datas:[Data])-> TestMode {
+        struct TestModeSingleton {
             static var predicate:Int = 0
-            static var instance:TestMode?
+            static var instance:TestMode = TestMode()
         }
-        _ = TestMode.__once
-        TestModeSingleton.instance?.setPacketData(datas)
-        return TestModeSingleton.instance!
+        TestModeSingleton.instance.setPacketData(datas)
+        return TestModeSingleton.instance
     }
-
+    
     override init() {
 
     }

@@ -58,7 +58,7 @@ class AidOtaController : NSObject,ConnectionControllerDelegate {
     let DFUCONTROLLER_PAGE_SIZE = 64
     //one page has 5 packets
     let notificationPacketInterval = 5
-    fileprivate var state:DFUControllerState = DFUControllerState
+    fileprivate var state:DFUControllerState = DFUControllerState.discovering
     fileprivate var firmwareDataBytesSent:Int = 0
     fileprivate var progress = 0.0
     fileprivate var curpage:Int = 0
@@ -126,7 +126,8 @@ class AidOtaController : NSObject,ConnectionControllerDelegate {
             for _ in 0..<Int(enumPacketOption.packets_NOTIFICATION_INTERVAL.rawValue){
             if (self.writingPacketNumber > self.numberOfPackets-2) {
                 XCGLogger.defaultInstance().debug("writing last packet");
-                let dataRange : NSRange = NSMakeRange(self.writingPacketNumber*enumPacketOption.packet_SIZE.rawValue, self.bytesInLastPacket);
+                let dataRange: Range = self.writingPacketNumber*enumPacketOption.packet_SIZE.rawValue..<(self.writingPacketNumber*enumPacketOption.packet_SIZE.rawValue + self.bytesInLastPacket)
+                    //NSMakeRange(self.writingPacketNumber*enumPacketOption.packet_SIZE.rawValue, self.bytesInLastPacket);
                 let nextPacketData : Data = (binFileData?.subdata(in: dataRange))!
 
                 XCGLogger.defaultInstance().debug("writing packet number \(self.writingPacketNumber+1) ...");
@@ -143,7 +144,8 @@ class AidOtaController : NSObject,ConnectionControllerDelegate {
                 break;
 
             }
-            let dataRange : NSRange = NSMakeRange(self.writingPacketNumber*enumPacketOption.packet_SIZE.rawValue, enumPacketOption.packet_SIZE.rawValue);
+            let dataRange : Range = self.writingPacketNumber*enumPacketOption.packet_SIZE.rawValue..<(self.writingPacketNumber*enumPacketOption.packet_SIZE.rawValue+enumPacketOption.packet_SIZE.rawValue)
+                //NSMakeRange(self.writingPacketNumber*enumPacketOption.packet_SIZE.rawValue, enumPacketOption.packet_SIZE.rawValue);
 
             let nextPacketData : Data  = (self.binFileData?.subdata(in: dataRange))!
             XCGLogger.defaultInstance().debug("writing packet number \(self.writingPacketNumber+1) ...");
@@ -511,8 +513,8 @@ class AidOtaController : NSObject,ConnectionControllerDelegate {
     {
         let locData:Data = try! Data(contentsOf: firmwareURL);
         //remove first 16K bytes, remain 48k bytes
-        let currentRange :NSRange =  NSMakeRange(16*1024, locData.count - 16 * 1024);
-
+        let currentRange :Range = (16*1024)..<((16*1024)+(locData.count - 16 * 1024))
+            //NSMakeRange(16*1024, locData.count - 16 * 1024);
         firmwareDataBytesSent = 0
         curpage = 0
         binFileData = locData.subdata(in: currentRange)
@@ -521,9 +523,12 @@ class AidOtaController : NSObject,ConnectionControllerDelegate {
         checksum = 0
         dfuFirmwareType = DfuFirmwareTypes.softdevice
 
-        let bytes = UnsafeBufferPointer<UInt8>(start: (binFileData! as Data).bytes.bindMemory(to: UInt8.self, capacity: binFileData!.count), count:binFileData!.count)
+        let bytes = binFileData?.withUnsafeBytes { (ptr: UnsafePointer<UInt8>) -> [UInt8] in
+            return [ptr.pointee]
+        }
+        //let bytes = UnsafeBufferPointer<UInt8>(start: (binFileData)?.bytes.bindMemory(to: UInt8.self, capacity: binFileData!.count), count:binFileData!.count)
 
-        for  byte in bytes {
+        for  byte in bytes! {
             checksum = checksum + Int(byte)
         }
 
@@ -535,63 +540,60 @@ class AidOtaController : NSObject,ConnectionControllerDelegate {
         XCGLogger.defaultInstance().debug("sendFirmwareData")
         //define one page request  object
         let Onepage:Mcu_OnePageRequest = Mcu_OnePageRequest()
-        for var i:Int = 0; i < notificationPacketInterval && firmwareDataBytesSent < binFileSize; i+=1
-        {
-            var length = DFUCONTROLLER_MAX_PACKET_SIZE;
-            var pagePacket : Data;
-            if( i == 0)
-            {
-                //LSB format
-                let pagehead :[UInt8] = [
-                    00,0x71,
-                    UInt8(curpage & 0xFF),
-                    UInt8((curpage>>8) & 0xFF),
-                    UInt8(totalpage & 0xFF),
-                    UInt8((totalpage>>8) & 0xFF),
-                    00,00,00,00,00,00,00,00,00,00,00,00,00,00]
-
-                pagePacket = Data(bytes: UnsafePointer<UInt8>(pagehead), count: pagehead.count)
+        for i:Int in 0..<notificationPacketInterval {
+            if firmwareDataBytesSent < binFileSize {
+                var length = DFUCONTROLLER_MAX_PACKET_SIZE;
+                var pagePacket: Data;
+                if( i == 0) {
+                    //LSB format
+                    let pagehead: [UInt8] = [
+                        00,0x71,
+                        UInt8(curpage & 0xFF),
+                        UInt8((curpage>>8) & 0xFF),
+                        UInt8(totalpage & 0xFF),
+                        UInt8((totalpage>>8) & 0xFF),
+                        00,00,00,00,00,00,00,00,00,00,00,00,00,00]
+                    
+                    pagePacket = Data(bytes: UnsafePointer<UInt8>(pagehead), count: pagehead.count)
+                } else{
+                    if( i != (notificationPacketInterval - 1)) {
+                        length = DFUCONTROLLER_MAX_PACKET_SIZE;
+                    }else {
+                        length = DFUCONTROLLER_PAGE_SIZE%DFUCONTROLLER_MAX_PACKET_SIZE;
+                    }
+                    
+                    let currentRange:Range = self.firmwareDataBytesSent..<(length+self.firmwareDataBytesSent)
+                    //NSMakeRange(self.firmwareDataBytesSent, length)
+                    
+                    let currentData:Data =  binFileData!.subdata(in: currentRange)
+                    
+                    let fulldata:NSMutableData = NSMutableData()
+                    
+                    if i == self.notificationPacketInterval - 1
+                    {
+                        fulldata.append([0xFF,0x71] as [UInt8], length: 2)
+                    }
+                    else
+                    {
+                        fulldata.append([UInt8(i),0x71] as [UInt8], length: 2)
+                    }
+                    
+                    fulldata.append(currentData)
+                    
+                    //last packet of the page, remains 8 bytes,fill 0
+                    if(i == (notificationPacketInterval - 1))
+                    {
+                        fulldata.append([0,0,0,0,0,0,0,0] as [UInt8], length: 8)
+                    }
+                    pagePacket = fulldata as Data
+                    
+                    firmwareDataBytesSent += length;
+                }
+                
+                Onepage.addPacket(Mcu_OnePacketRequest(packetdata: pagePacket ))
             }
-            else
-            {
-                if( i != (notificationPacketInterval - 1))
-                {
-                    length = DFUCONTROLLER_MAX_PACKET_SIZE;
-                }
-                else
-                {
-                    length = DFUCONTROLLER_PAGE_SIZE%DFUCONTROLLER_MAX_PACKET_SIZE;
-                }
-
-                let currentRange:NSRange = NSMakeRange(self.firmwareDataBytesSent, length)
-
-                let currentData:Data =  binFileData!.subdata(in: currentRange)
-
-                let fulldata:NSMutableData = NSMutableData()
-
-                if i == self.notificationPacketInterval - 1
-                {
-                    fulldata.append([0xFF,0x71] as [UInt8], length: 2)
-                }
-                else
-                {
-                    fulldata.append([UInt8(i),0x71] as [UInt8], length: 2)
-                }
-
-                fulldata.append(currentData)
-
-                //last packet of the page, remains 8 bytes,fill 0
-                if(i == (notificationPacketInterval - 1))
-                {
-                    fulldata.append([0,0,0,0,0,0,0,0] as [UInt8], length: 8)
-                }
-                pagePacket = fulldata as Data
-
-                firmwareDataBytesSent += length;
-            }
-
-            Onepage.addPacket(Mcu_OnePacketRequest(packetdata: pagePacket ))
         }
+
         if(curpage < totalpage)
         {
             sendRequest(Onepage)
@@ -704,7 +706,7 @@ class AidOtaController : NSObject,ConnectionControllerDelegate {
     {
         mTimeoutTimer?.invalidate()
         //reset it to INIT status !!!IMPORTANT!!!
-        self.state = DFUControllerState
+        self.state = DFUControllerState.discovering
         
         if(dfuFirmwareType == DfuFirmwareTypes.application ){
             self.mConnectionController!.restoreSavedAddress()

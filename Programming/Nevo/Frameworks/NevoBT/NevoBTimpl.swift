@@ -546,30 +546,32 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
             return false
         }
 
-        switch (mManager!.state)
-        {
-
-        case CBCentralManagerState.poweredOn:
-            return true
-
-        case CBCentralManagerState.unsupported:
-            XCGLogger.defaultInstance().debug("The platform/hardware doesn't support Bluetooth Low Energy.")
-            break
-
-        case CBCentralManagerState.unauthorized:
-            XCGLogger.defaultInstance().debug("The app is not authorized to use Bluetooth Low Energy.")
-            break
-
-        case CBCentralManagerState.poweredOff:
-            XCGLogger.defaultInstance().debug("Bluetooth is currently powered off.")
-            break
-
-        default:
-            XCGLogger.defaultInstance().debug("Unknown device state")
-            break
-
+        if #available(iOS 10.0, *) {
+            switch (mManager!.state)
+            {
+            case CBManagerState.poweredOn:
+                return true
+                
+            case CBManagerState.unsupported:
+                XCGLogger.defaultInstance().debug("The platform/hardware doesn't support Bluetooth Low Energy.")
+                break
+                
+            case CBManagerState.unauthorized:
+                XCGLogger.defaultInstance().debug("The app is not authorized to use Bluetooth Low Energy.")
+                break
+                
+            case CBManagerState.poweredOff:
+                XCGLogger.defaultInstance().debug("Bluetooth is currently powered off.")
+                break
+                
+            default:
+                XCGLogger.defaultInstance().debug("Unknown device state")
+                break
+            }
+        } else {
+            // Fallback on earlier versions
+            
         }
-
 
         return false
     }

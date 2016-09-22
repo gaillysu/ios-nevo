@@ -43,7 +43,7 @@ open class BalloonMarker: ChartMarker
     
     open override var size: CGSize { return _size; }
 
-    open override func draw(_ context: CGContext?, point: CGPoint) {
+    open override func draw(context: CGContext?, point: CGPoint) {
         if (labelns == nil)
         {
             return
@@ -79,7 +79,7 @@ open class BalloonMarker: ChartMarker
         context?.restoreGState()
     }
     
-    open override func refreshContent(_ entry: ChartDataEntry, highlight: ChartHighlight)
+    open override func refreshContent(entry: ChartDataEntry, highlight: ChartHighlight)
     {
         let label = entry.value.description
         labelns = label as NSString

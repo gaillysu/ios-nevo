@@ -71,7 +71,7 @@ class NotificationSetting: NSObject {
     }
     
     func setColor(_ color:Int) {
-        mColor = NSNumber(color)
+        mColor = NSNumber(value: color)
     }
 
     func setClock(_ clock:Int) {

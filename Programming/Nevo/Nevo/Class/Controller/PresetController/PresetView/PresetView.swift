@@ -24,8 +24,8 @@ class PresetView: UITableView {
         let endCellID:String = "PresetTableViewCell"
         var endCell = tableView.dequeueReusableCell(withIdentifier: endCellID)
         if (endCell == nil) {
-            let nibs:NSArray = Bundle.main.loadNibNamed("PresetTableViewCell", owner: self, options: nil)
-            endCell = nibs.object(at: 0) as? PresetTableViewCell;
+            let nibs:[Any] = Bundle.main.loadNibNamed("PresetTableViewCell", owner: self, options: nil)!
+            endCell = nibs[0] as? PresetTableViewCell;
 
         }
         (endCell as! PresetTableViewCell).delegate = delegate

@@ -60,7 +60,7 @@ class LocalNotification: NSObject {
         notification.userInfo = dct
         notification.soundName = soundName ?? UILocalNotificationDefaultSoundName
         notification.fireDate = date
-        notification.repeatInterval = Calendar.Unit.day
+        notification.repeatInterval = Calendar.Component.day
         notification.hasAction = hasAction
         return notification
     }

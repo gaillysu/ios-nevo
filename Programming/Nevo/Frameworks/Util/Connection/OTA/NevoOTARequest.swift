@@ -86,8 +86,7 @@ class writeFileSizeRequest: Request {
     
     func getRawData() -> Data {
         let fileSizeCollection :[UInt32] = [0,0,UInt32(mFilelength!)];
-        
-        return Data(bytes: UnsafePointer<UInt8>(fileSizeCollection), count: fileSizeCollection.count * MemoryLayout<UInt32>.size)
+        return Data(bytes: UnsafeRawPointer(fileSizeCollection), count: fileSizeCollection.count * MemoryLayout<UInt32>.size)
     }
     func getRawDataEx() -> NSArray {
         return NSArray()
@@ -109,7 +108,7 @@ class writeFileSizeOldRequest: Request {
     func getRawData() -> Data {
         let fileSizeCollection :[UInt32] = [0,0,UInt32(mFilelength!)];
         
-        return Data(bytes: UnsafePointer<UInt8>(fileSizeCollection), count: fileSizeCollection.count * MemoryLayout<UInt32>.size)
+        return Data(bytes: UnsafeRawPointer(fileSizeCollection), count: fileSizeCollection.count * MemoryLayout<UInt32>.size)
     }
     func getRawDataEx() -> NSArray {
         return NSArray()
