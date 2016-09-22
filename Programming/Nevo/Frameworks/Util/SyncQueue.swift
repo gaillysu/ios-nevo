@@ -1,12 +1,5 @@
-//
-//  SyncQueue.swift
-//  Nevo
-//
-//  Created by Hugo Garcia-Cotte on 9/3/15.
-//  Copyright (c) 2015 Nevo. All rights reserved.
-//
-
 import Foundation
+import XCGLogger
 
 /**
 We shouldn't send two packets before receiving hte answer from the first one.
@@ -99,7 +92,7 @@ class SyncQueue : NSObject {
     * Locks the handler
     */
     fileprivate func lock(){
-        XCGLogger.defaultInstance().debug("SyncController : Waiting for a response...")
+        XCGLogger.default.debug("SyncController : Waiting for a response...")
         mLock = true
     
         //Here we reset the Timeout timer
@@ -113,7 +106,7 @@ class SyncQueue : NSObject {
     * Unlocks the handler.
     */
     fileprivate func unlock(){
-        XCGLogger.defaultInstance().debug("SyncController : Response received or timeout")
+        XCGLogger.default.debug("SyncController : Response received or timeout")
         mLock = false
     
         //Here we reset the Timeout timer

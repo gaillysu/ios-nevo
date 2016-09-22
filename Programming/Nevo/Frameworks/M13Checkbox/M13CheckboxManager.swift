@@ -26,7 +26,7 @@ internal class M13CheckboxManager {
     var animations: M13CheckboxAnimationPresets = M13CheckboxAnimationPresets()
     
     /// The current state of the checkbox.
-    var state: M13Checkbox.CheckState = .Unchecked
+    var state: M13Checkbox.CheckState = .unchecked
     
     /// The current tint color.
     /// - Note: Subclasses should override didSet to update the layers when this value changes.

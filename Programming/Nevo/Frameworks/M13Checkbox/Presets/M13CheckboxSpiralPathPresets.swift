@@ -56,19 +56,19 @@ internal class M13CheckboxSpiralPathPresets: M13CheckboxPathPresets {
     
     final func pathForLongMark(_ state: M13Checkbox.CheckState) -> UIBezierPath {
             switch state {
-            case .Unchecked:
-                if markType == .Checkmark {
+            case .unchecked:
+                if markType == .checkmark {
                     return pathForLongCheckmark()
                 } else {
                     return pathForLongRadioMark()
                 }
-            case .Checked:
-                if markType == .Checkmark {
+            case .checked:
+                if markType == .checkmark {
                     return pathForLongCheckmark()
                 } else {
                     return pathForLongRadioMark()
                 }
-            case .Mixed:
+            case .mixed:
                 return pathForLongMixedMark()
             }
     }

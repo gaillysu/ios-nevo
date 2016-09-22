@@ -8,6 +8,7 @@
 
 import UIKit
 import SwiftEventBus
+import XCGLogger
 
 
 let NUMBER_OF_STEPS_GOAL_KEY = "NUMBER_OF_STEPS_GOAL_KEY"
@@ -101,7 +102,7 @@ class StepGoalSetingController: PublicClassController,ButtonManagerCallBack,Cloc
             }
             
             if packet.getHeader() == LedLightOnOffNevoRequest.HEADER(){
-                XCGLogger.defaultInstance().debug("end handshake nevo");
+                XCGLogger.default.debug("end handshake nevo");
                 //blink once Clock
             }
         }
@@ -206,7 +207,7 @@ class StepGoalSetingController: PublicClassController,ButtonManagerCallBack,Cloc
         mClockTimerView?.currentTimer()
         if AppDelegate.getAppDelegate().isConnected() {
             AppDelegate.getAppDelegate().getGoal()
-            XCGLogger.defaultInstance().debug("getGoalRequest")
+            XCGLogger.default.debug("getGoalRequest")
         }
     }
 

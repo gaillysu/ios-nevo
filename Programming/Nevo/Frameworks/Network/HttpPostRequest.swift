@@ -8,13 +8,14 @@
 
 import UIKit
 import Alamofire
+import XCGLogger
 
 class HttpPostRequest: NSObject {
 
     class  func LunaRPostRequest(_ url: String, data:Dictionary<String,AnyObject>, completion:@escaping (_ result:NSDictionary) -> Void){
         var finalData: Dictionary<String,AnyObject> = ["token":"SU9gPy5e1d1t7W8FG2fQ6MuT06cY95MB" as AnyObject]
         finalData["params"] = data as AnyObject?;
-        XCGLogger.defaultInstance().debug("\(finalData)")
+        XCGLogger.default.debug("\(finalData)")
         
         let urls = URL(string: url)!
         let parameters: Parameters = data
@@ -22,7 +23,7 @@ class HttpPostRequest: NSObject {
         
         Alamofire.request(urls, method: .post, parameters: parameters, encoding: encode, headers: ["Authorization": "Basic YXBwczptZWRfYXBwX2RldmVsb3BtZW50","Content-Type":"application/json"]).responseJSON { (response) in
             if response.result.isSuccess {
-                XCGLogger.defaultInstance().debug("getJSON: \(response.result.value)")
+                XCGLogger.default.debug("getJSON: \(response.result.value)")
                 completion(response.result.value as! NSDictionary)
             }else if (response.result.isFailure){
                 if (response.result.value == nil) {
@@ -37,7 +38,7 @@ class HttpPostRequest: NSObject {
     class  func postRequest(_ url: String, data:Dictionary<String,AnyObject>, completion:@escaping (_ result:NSDictionary) -> Void){
         var finalData: Dictionary<String,AnyObject> = ["token":"SU9gPy5e1d1t7W8FG2fQ6MuT06cY95MB" as AnyObject]
         finalData["params"] = data as AnyObject?;
-        XCGLogger.defaultInstance().debug("\(finalData)")
+        XCGLogger.default.debug("\(finalData)")
         
         let urls = URL(string: url)!
         let parameters: Parameters = data
@@ -45,7 +46,7 @@ class HttpPostRequest: NSObject {
         
         Alamofire.request(urls, method: .post, parameters: parameters, encoding: encode, headers: ["Authorization": "Basic YXBwczptZWRfYXBwX2RldmVsb3BtZW50","Content-Type":"application/json"]).responseJSON { (response) in
             if response.result.isSuccess {
-                XCGLogger.defaultInstance().debug("getJSON: \(response.result.value)")
+                XCGLogger.default.debug("getJSON: \(response.result.value)")
                 completion(response.result.value as! NSDictionary)
             }else if (response.result.isFailure){
                 if (response.result.value == nil) {
@@ -60,7 +61,7 @@ class HttpPostRequest: NSObject {
     class  func putRequest(_ url: String, data:Dictionary<String,AnyObject>, completion:@escaping (_ result:NSDictionary) -> Void){
         var finalData: Dictionary<String,AnyObject> = ["token":"SU9gPy5e1d1t7W8FG2fQ6MuT06cY95MB" as AnyObject]
         finalData["params"] = data as AnyObject?;
-        XCGLogger.defaultInstance().debug("\(finalData)")
+        XCGLogger.default.debug("\(finalData)")
         
         let urls = URL(string: url)!
         let parameters: Parameters = data
@@ -68,7 +69,7 @@ class HttpPostRequest: NSObject {
         
         Alamofire.request(urls, method: .put, parameters: parameters, encoding: encode, headers: ["Authorization": "Basic YXBwczptZWRfYXBwX2RldmVsb3BtZW50","Content-Type":"application/json"]).responseJSON { (response) in
             if response.result.isSuccess {
-                XCGLogger.defaultInstance().debug("getJSON: \(response.result.value)")
+                XCGLogger.default.debug("getJSON: \(response.result.value)")
                 completion(response.result.value as! NSDictionary)
             }else if (response.result.isFailure){
                 print(response.result.description)

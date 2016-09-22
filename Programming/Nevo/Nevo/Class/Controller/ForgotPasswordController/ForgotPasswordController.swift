@@ -9,6 +9,7 @@
 import UIKit
 import BRYXBanner
 import MRProgress
+import SwiftyJSON
 
 class ForgotPasswordController: UIViewController {
 

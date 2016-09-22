@@ -12,6 +12,8 @@ import BRYXBanner
 import LTNavigationBar
 import UIColor_Hex_Swift
 import ActiveLabel
+import XCGLogger
+import SwiftyJSON
 
 class LoginController: UIViewController,UITextFieldDelegate {
 
@@ -98,7 +100,7 @@ class LoginController: UIViewController,UITextFieldDelegate {
             userName = userNameTextField!.text!
             password = passwordTextField!.text!
         if AppDelegate.getAppDelegate().network!.isReachable {
-            XCGLogger.defaultInstance().debug("有网络")
+            XCGLogger.default.debug("有网络")
             if(AppTheme.isNull(userName) || AppTheme.isEmail(userName)) {
                 let banner = Banner(title: NSLocalizedString("Email is not filled in.", comment: ""), subtitle: nil, image: nil, backgroundColor:AppTheme.NEVO_SOLAR_YELLOW())
                 banner.dismissesOnTap = true
@@ -153,7 +155,7 @@ class LoginController: UIViewController,UITextFieldDelegate {
                     
                     let userprofile:UserProfile = UserProfile(keyDict: ["id":user["id"].intValue,"first_name":user["first_name"].stringValue,"last_name":user["last_name"].stringValue,"birthday":birthday,"length":user["length"].intValue,"email":user["email"].stringValue, "weight":user["weight"].floatValue])
                     userprofile.add({ (id, completion) in
-                        XCGLogger.defaultInstance().debug("Added? id = \(id)")
+                        XCGLogger.default.debug("Added? id = \(id)")
                     })
                     self.navigationController?.popViewController(animated: true)
                 }else{
@@ -180,7 +182,7 @@ class LoginController: UIViewController,UITextFieldDelegate {
             }
         }else{
             
-            XCGLogger.defaultInstance().debug("没有网络")
+            XCGLogger.default.debug("没有网络")
             let view = MRProgressOverlayView.showOverlayAdded(to: self.navigationController!.view, title: "No internet", mode: MRProgressOverlayViewMode.cross, animated: true)
             view?.setTintColor(UIColor.getBaseColor())
             Timer.after(1, { 

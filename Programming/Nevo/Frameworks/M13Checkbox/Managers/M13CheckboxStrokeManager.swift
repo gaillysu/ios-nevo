@@ -100,7 +100,7 @@ internal class M13CheckboxStrokeManager: M13CheckboxManager {
     override func animate(_ fromState: M13Checkbox.CheckState, toState: M13Checkbox.CheckState) {
         super.animate(fromState, toState: toState)
         
-        if toState == .Unchecked {
+        if toState == .unchecked {
             let strokeAnimation = animations.strokeAnimation(true)
             let quickOpacityAnimation = animations.quickOpacityAnimation(true)
             
@@ -117,7 +117,7 @@ internal class M13CheckboxStrokeManager: M13CheckboxManager {
             CATransaction.commit()
             
         } else {
-            if fromState == .Unchecked {
+            if fromState == .unchecked {
                 markLayer.path = paths.path(toState)?.cgPath
                 
                 let strokeAnimation = animations.strokeAnimation(false)
@@ -135,7 +135,7 @@ internal class M13CheckboxStrokeManager: M13CheckboxManager {
                 
                 CATransaction.commit()
             } else {
-                if paths.markType != .Radio {
+                if paths.markType != .radio {
                     let fromPath = paths.path(fromState)
                     let toPath = paths.path(toState)
                     
@@ -152,7 +152,7 @@ internal class M13CheckboxStrokeManager: M13CheckboxManager {
                 } else {
                     
                     var compressionAnimation: CAAnimation? = nil
-                    if toState == .Mixed {
+                    if toState == .mixed {
                         let toPath = paths.path(fromState)
                         let scale: CGFloat = 0.5 / 0.665
                         toPath?.apply(CGAffineTransform(scaleX: scale, y: 0.002))
@@ -215,14 +215,14 @@ internal class M13CheckboxStrokeManager: M13CheckboxManager {
         markLayer.strokeColor = tintColor.cgColor
         markLayer.lineWidth = paths.checkmarkLineWidth
         
-        if state == .Unchecked {
+        if state == .unchecked {
             selectedBoxLayer.opacity = 0.0
             selectedBoxLayer.strokeEnd = 0.0
             
             markLayer.opacity = 0.0
             markLayer.strokeEnd = 0.0
             
-        } else if state == .Checked {
+        } else if state == .checked {
             selectedBoxLayer.opacity = 1.0
             selectedBoxLayer.strokeEnd = 1.0
             

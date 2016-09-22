@@ -8,6 +8,7 @@
 
 import Foundation
 import CoreBluetooth
+import XCGLogger
 
 /*
 See NevoBT protocol
@@ -115,7 +116,7 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
     */
     func centralManager(_ central: CBCentralManager, didConnect aPeripheral: CBPeripheral) {
         
-        XCGLogger.defaultInstance().debug("***Peripheral connected : \(aPeripheral.name)***")
+        XCGLogger.default.info(userInfo: ["***Peripheral connected : \(aPeripheral.name)***":""])
         
         //We save this periphral for later use
         setPeripheral(aPeripheral)
@@ -138,10 +139,10 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
     */
     func centralManager(_ central: CBCentralManager, didDisconnectPeripheral aPeripheral: CBPeripheral, error : Error?) {
 
-        XCGLogger.defaultInstance().debug("***Peripheral disconnected : \(aPeripheral.name)***")
+        XCGLogger.default.debug("***Peripheral disconnected : \(aPeripheral.name)***")
 
         if(error != nil) {
-            XCGLogger.defaultInstance().debug("Error : \(error!.localizedDescription) for peripheral : \(aPeripheral.name)")
+            XCGLogger.default.debug("Error : \(error!.localizedDescription) for peripheral : \(aPeripheral.name)")
         }
 
 
@@ -166,7 +167,7 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
         if let services:[CBService] = aPeripheral.services{
         
             for aService:CBService in services {
-                XCGLogger.defaultInstance().debug("Service found with UUID : \(aService.uuid.uuidString)")
+                XCGLogger.default.debug("Service found with UUID : \(aService.uuid.uuidString)")
     
                 if (aService.uuid == mProfile?.CONTROL_SERVICE) {
                     aPeripheral.discoverCharacteristics(nil,for:aService)
@@ -177,7 +178,7 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
                 }
             }
         } else {
-            XCGLogger.defaultInstance().debug("No services found for \(aPeripheral.identifier.uuidString), connection impossible")
+            XCGLogger.default.debug("No services found for \(aPeripheral.identifier.uuidString), connection impossible")
         }
     }
     
@@ -188,7 +189,7 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
     */
     func peripheral(_ aPeripheral:CBPeripheral, didDiscoverCharacteristicsFor service:CBService, error :Error?) {
     
-        XCGLogger.defaultInstance().debug("Service : \(service.uuid.uuidString)")
+        XCGLogger.default.debug("Service : \(service.uuid.uuidString)")
     
         if let characteristics:[CBCharacteristic] = service.characteristics {
             for aChar:CBCharacteristic in characteristics {
@@ -196,21 +197,21 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
                 if(aChar.uuid==mProfile?.CALLBACK_CHARACTERISTIC ) {
                     mPeripheral?.setNotifyValue(true,for:aChar)
             
-                    XCGLogger.defaultInstance().debug("Callback char : \(aChar.uuid.uuidString)")
+                    XCGLogger.default.debug("Callback char : \(aChar.uuid.uuidString)")
                     mDelegate?.connectionStateChanged(true, fromAddress: aPeripheral.identifier)
                 }
                 
                 else if(aChar.uuid==CBUUID(string: "00002a26-0000-1000-8000-00805f9b34fb")) {
                     mPeripheral?.readValue(for: aChar)
-                    XCGLogger.defaultInstance().debug("read firmware version char : \(aChar.uuid.uuidString)")
+                    XCGLogger.default.debug("read firmware version char : \(aChar.uuid.uuidString)")
                 }
                 else if(aChar.uuid==CBUUID(string: "00002a28-0000-1000-8000-00805f9b34fb")) {
                     mPeripheral?.readValue(for: aChar)
-                    XCGLogger.defaultInstance().debug("read software version char : \(aChar.uuid.uuidString)")
+                    XCGLogger.default.debug("read software version char : \(aChar.uuid.uuidString)")
                 }
             }
         } else {
-            XCGLogger.defaultInstance().debug("No characteristics found for \(service.uuid.uuidString), can't listen to notifications")
+            XCGLogger.default.debug("No characteristics found for \(service.uuid.uuidString), can't listen to notifications")
         }
       
     
@@ -226,7 +227,7 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
         {
             
             if error == nil && characteristic.value != nil {
-                XCGLogger.defaultInstance().debug("Received : \(characteristic.uuid.uuidString) \(self.hexString(characteristic.value!))")
+                XCGLogger.default.debug("Received : \(characteristic.uuid.uuidString) \(self.hexString(characteristic.value!))")
                 
                 /* It is valid data, let's return it to our delegate */
                 mDelegate?.packetReceived( RawPacketImpl(data: characteristic.value! , profile: mProfile!) ,  fromAddress : aPeripheral.identifier )
@@ -236,7 +237,7 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
         
         else if(characteristic.uuid==CBUUID(string: "00002a26-0000-1000-8000-00805f9b34fb")) {
             mFirmwareVersion = NSString(data: characteristic.value!, encoding: String.Encoding.utf8.rawValue)
-            XCGLogger.defaultInstance().debug("get firmware version char : \(characteristic.uuid.uuidString), version : \(self.mFirmwareVersion)")
+            XCGLogger.default.debug("get firmware version char : \(characteristic.uuid.uuidString), version : \(self.mFirmwareVersion)")
             //tell OTA new version
             mDelegate?.firmwareVersionReceived(DfuFirmwareTypes.application, version: mFirmwareVersion!)
         }
@@ -245,7 +246,7 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
                 mSoftwareVersion = NSString(data: characteristic.value!, encoding: String.Encoding.utf8.rawValue)
             }
 
-            XCGLogger.defaultInstance().debug("get software version char : \(characteristic.uuid.uuidString), version : \(self.mSoftwareVersion)")
+            XCGLogger.default.debug("get software version char : \(characteristic.uuid.uuidString), version : \(self.mSoftwareVersion)")
             mDelegate?.firmwareVersionReceived(DfuFirmwareTypes.softdevice, version: mSoftwareVersion!)
         }
 
@@ -257,9 +258,9 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
     func peripheral(_ _peripheral:CBPeripheral, didWriteValueFor characteristic:CBCharacteristic, error :Error?) {
     
         if (error != nil) {
-            XCGLogger.defaultInstance().debug("Failed to write value for characteristic \(characteristic), reason: \(error)")
+            XCGLogger.default.debug("Failed to write value for characteristic \(characteristic), reason: \(error)")
         } else {
-            XCGLogger.defaultInstance().debug("Did write value for characterstic \(characteristic), new value: \(characteristic.value)")
+            XCGLogger.default.debug("Did write value for characterstic \(characteristic), new value: \(characteristic.value)")
         }
 
     }
@@ -290,7 +291,7 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
             //We can't just search for all services, because that's not allowed when the app is in the background
             mManager?.scanForPeripherals(withServices: services,options:nil)
 
-            XCGLogger.defaultInstance().debug("Scan started.")
+            XCGLogger.default.debug("Scan started.")
 
 
             //The scan will stop X sec later
@@ -319,7 +320,7 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
 
         } else {
             //Maybe the Manager is not ready yet, let's try again after a delay
-            XCGLogger.defaultInstance().debug("Bluetooth Manager unavailable or not initialised, let's retry after a delay")
+            XCGLogger.default.debug("Bluetooth Manager unavailable or not initialised, let's retry after a delay")
 
             let dispatchTime: DispatchTime = DispatchTime.now() + Double(Int64(RETRY_DURATION * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
             DispatchQueue.main.asyncAfter(deadline: dispatchTime, execute: {
@@ -337,7 +338,7 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
         //We can't be sure if the Manager is ready, so let's try
         if(self.isBluetoothEnabled()) {
 
-            XCGLogger.defaultInstance().debug("Connecting to : \(peripheralAddress.uuidString)")
+            XCGLogger.default.debug("Connecting to : \(peripheralAddress.uuidString)")
             //Here, we try to retreive the given peripheral
             if let potentialMatches:[CBPeripheral] = mManager?.retrievePeripherals(withIdentifiers: [peripheralAddress]){
 
@@ -356,7 +357,7 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
 
         } else {
             //Maybe the Manager is not ready yet, let's try again after a delay
-            XCGLogger.defaultInstance().debug("Bluetooth Manager unavailable or not initialised, let's retry after a delay")
+            XCGLogger.default.debug("Bluetooth Manager unavailable or not initialised, let's retry after a delay")
 
             let dispatchTime: DispatchTime = DispatchTime.now() + Double(Int64(RETRY_DURATION * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
             DispatchQueue.main.asyncAfter(deadline: dispatchTime, execute: {
@@ -374,7 +375,7 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
             
             if( mProfile?.CALLBACK_CHARACTERISTIC != request.getTargetProfile().CALLBACK_CHARACTERISTIC ) {
                 //We didn't subscribe to this profile's CallbackCharacteristic, there have to be a mistake somewhere
-                XCGLogger.defaultInstance().debug("The target profile is incompatible with the profile given on this NevoBT's initalisation.")
+                XCGLogger.default.debug("The target profile is incompatible with the profile given on this NevoBT's initalisation.")
                 return ;
             }
     
@@ -391,7 +392,7 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
     
                                 if request.getRawDataEx().count == 0
                                 {
-                                    XCGLogger.defaultInstance().debug("Request raw data :\(request.getRawData())")
+                                    XCGLogger.default.debug("Request raw data :\(request.getRawData())")
                                     //OTA control CHAR, need a response
                                     if mProfile is NevoOTAControllerProfile && request.getTargetProfile().CONTROL_CHARACTERISTIC == mProfile?.CONTROL_CHARACTERISTIC
                                     {
@@ -403,14 +404,14 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
                                     }
                                 }else{
                                     for data in request.getRawDataEx() {
-                                        XCGLogger.defaultInstance().debug("Request raw data Ex:\(data)")
+                                        XCGLogger.default.debug("Request raw data Ex:\(data)")
                                         mPeripheral?.writeValue(data as! Data,for:charac,type:CBCharacteristicWriteType.withoutResponse)
                                     }
                                 }
                             }
                         }
                     } else {
-                        XCGLogger.defaultInstance().debug("No Characteristics found for : \(service.uuid.uuidString), can't send packet")
+                        XCGLogger.default.debug("No Characteristics found for : \(service.uuid.uuidString), can't send packet")
                     }
                     
                 }
@@ -419,9 +420,9 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
         } else {
             
             if(mPeripheral != nil) {
-                XCGLogger.defaultInstance().debug("No services found for : \(self.mPeripheral), can't send packet")
+                XCGLogger.default.debug("No services found for : \(self.mPeripheral), can't send packet")
             } else {
-                XCGLogger.defaultInstance().debug("No peripheral connected, can't send packet")
+                XCGLogger.default.debug("No peripheral connected, can't send packet")
             }
         }
     }
@@ -481,7 +482,7 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
     */
     fileprivate func matchingPeripheralFound( _ aPeripheral : CBPeripheral ){
 
-        XCGLogger.defaultInstance().debug("Connecting to :\(aPeripheral.description)")
+        XCGLogger.default.debug("Connecting to :\(aPeripheral.description)")
 
         //If it's not connected already, let's connect to it
         if(aPeripheral.state==CBPeripheralState.disconnected){
@@ -527,7 +528,7 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
     func stopScan() {
         mManager?.stopScan()
 
-        XCGLogger.defaultInstance().debug("Scan stopped.")
+        XCGLogger.default.debug("Scan stopped.")
 
     }
 
@@ -553,19 +554,19 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
                 return true
                 
             case CBManagerState.unsupported:
-                XCGLogger.defaultInstance().debug("The platform/hardware doesn't support Bluetooth Low Energy.")
+                XCGLogger.default.debug("The platform/hardware doesn't support Bluetooth Low Energy.")
                 break
                 
             case CBManagerState.unauthorized:
-                XCGLogger.defaultInstance().debug("The app is not authorized to use Bluetooth Low Energy.")
+                XCGLogger.default.debug("The app is not authorized to use Bluetooth Low Energy.")
                 break
                 
             case CBManagerState.poweredOff:
-                XCGLogger.defaultInstance().debug("Bluetooth is currently powered off.")
+                XCGLogger.default.debug("Bluetooth is currently powered off.")
                 break
                 
             default:
-                XCGLogger.defaultInstance().debug("Unknown device state")
+                XCGLogger.default.debug("Unknown device state")
                 break
             }
         } else {

@@ -8,6 +8,7 @@
 
 import UIKit
 import MRProgress
+import SwiftyJSON
 
 class ConnectOtherAppsController: UITableViewController {
     fileprivate let licenseApp:[String] = ["Validic"]

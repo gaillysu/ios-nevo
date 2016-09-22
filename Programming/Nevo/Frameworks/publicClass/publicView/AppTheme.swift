@@ -9,6 +9,7 @@
 import Foundation
 import AudioToolbox
 import RegexKitLite
+import XCGLogger
 
 /**
 This class holds all app-wide constants.
@@ -363,16 +364,16 @@ class AppTheme {
         var  fileNames:[String] = []
         do {
             fileNames = try FileManager.default.contentsOfDirectory(atPath: firmwaresDirectoryPath as String)
-            XCGLogger.defaultInstance().debug("number of files in directory \(fileNames.count)");
+            XCGLogger.default.debug("number of files in directory \(fileNames.count)");
             for fileName in fileNames {
-                XCGLogger.defaultInstance().debug("Found file in directory: \(fileName)");
+                XCGLogger.default.debug("Found file in directory: \(fileName)");
                 let filePath:String = firmwaresDirectoryPath.appendingPathComponent(fileName)
                 let fileURL:URL = URL(fileURLWithPath: filePath)
                 AllFilesNames.add(fileURL)
             }
             return AllFilesNames.copy() as! NSArray
         }catch{
-            XCGLogger.defaultInstance().debug("error in opening directory path: \(firmwaresDirectoryPath)");
+            XCGLogger.default.debug("error in opening directory path: \(firmwaresDirectoryPath)");
             return NSArray()
         }
     }

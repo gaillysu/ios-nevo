@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import XCGLogger
 
 class ConnectionManager: NSObject {
     fileprivate var mConnectedLocalMsg:[UILocalNotification] = []
@@ -88,7 +89,7 @@ class ConnectionManager: NSObject {
             //if disconnecttime and connectedtime not more than 20 seconds, not show the connected msg
             if let preDisconnectTime = ConnectionManager.Const.disconnectTime {
                 if nowTime - preDisconnectTime > Int(ConnectionManager.Const.maxReconnectTime) {
-                    XCGLogger.defaultInstance().debug("show the connected msg")
+                    XCGLogger.default.debug("show the connected msg")
                     let connectedMsg = AppTheme.LocalNotificationBody(NSLocalizedString(ConnectionManager.Const.connectionStatus.connected.rawValue,comment: "") as NSString)
                     mConnectedLocalMsg.append(connectedMsg)
                 }
@@ -98,12 +99,12 @@ class ConnectionManager: NSObject {
         
         //if disconnecttime and connectedtime not more than 20 seconds, cancel the disconnect msg
         if let preDisconnectedTime = ConnectionManager.Const.disconnectTime {
-            XCGLogger.defaultInstance().debug("checkConnectSendNotification connected time \(nowTime) offset: \(nowTime - preDisconnectedTime)")
+            XCGLogger.default.debug("checkConnectSendNotification connected time \(nowTime) offset: \(nowTime - preDisconnectedTime)")
             if nowTime - preDisconnectedTime < Int(ConnectionManager.Const.maxReconnectTime) {
                 var arrayIndex = 0
                 for disMsg in mDisconnectedLocalMsg {
                     let disMsgTimer:Date = disMsg.fireDate!
-                    XCGLogger.defaultInstance().debug("cancel disconnect msg \(disMsgTimer.timeIntervalSince1970)")
+                    XCGLogger.default.debug("cancel disconnect msg \(disMsgTimer.timeIntervalSince1970)")
                     //if the msg is not show , cancel it
                     if Date().timeIntervalSince1970 - disMsgTimer.timeIntervalSince1970 < 0 {
                         UIApplication.shared.cancelLocalNotification(disMsg)
@@ -147,7 +148,7 @@ class ConnectionManager: NSObject {
         removeAllConnectionMsgBefore(ConnectionManager.Const.connectionLocalMsgType.disconnected)
         ConnectionManager.Const.disconnectTime = timeInter
         if let connectedTime = ConnectionManager.Const.connectedTime {
-            XCGLogger.defaultInstance().debug("checkConnectSendNotification disconnected time \(timeInter) offset: \(timeInter - connectedTime)")
+            XCGLogger.default.debug("checkConnectSendNotification disconnected time \(timeInter) offset: \(timeInter - connectedTime)")
         }
         let disconnectMsg = AppTheme.LocalNotificationBody(NSLocalizedString(ConnectionManager.Const.connectionStatus.disconnected.rawValue,comment: "") as NSString, delay: ConnectionManager.Const.maxReconnectTime)
         //NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("aWindowBecameMain"), name: UILocalNotificationDefaultSoundName, object: nil)
@@ -165,16 +166,16 @@ class ConnectionManager: NSObject {
     func checkConnectSendNotification(_ type:ConnectionManager.Const.connectionStatus){
         //if not open the send local notification , not go on
         if getIsSendLocalMsg() == false {
-            XCGLogger.defaultInstance().debug("checkConnectSendNotification local notification not open")
+            XCGLogger.default.debug("checkConnectSendNotification local notification not open")
             return
         }
         let nowTime = Int(Date().timeIntervalSince1970)
         switch type {
         case .connected:
-            XCGLogger.defaultInstance().debug("checkConnectSendNotification connected time \(nowTime)")
+            XCGLogger.default.debug("checkConnectSendNotification connected time \(nowTime)")
             setConnectedTime(nowTime)
         case .disconnected:
-            XCGLogger.defaultInstance().debug("checkConnectSendNotification disconnected time \(nowTime)")
+            XCGLogger.default.debug("checkConnectSendNotification disconnected time \(nowTime)")
             setDisconnectTime(nowTime)
         }
     }

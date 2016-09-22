@@ -7,6 +7,11 @@
 //
 
 import UIKit
+import XCGLogger
+
+protocol ButtonManagerCallBack {
+    func controllManager(_ sender:AnyObject)
+}
 
 class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonManagerCallBack,PtlSelectFile,UIAlertViewDelegate  {
 
@@ -187,7 +192,7 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
     //below is delegate function
 
     func onDFUStarted() {
-        XCGLogger.defaultInstance().debug("onDFUStarted");
+        XCGLogger.default.debug("onDFUStarted");
         //here enable upload button
     }
 
@@ -210,7 +215,7 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
 
     //user cancel
     func onDFUCancelled() {
-        XCGLogger.defaultInstance().debug("onDFUCancelled");
+        XCGLogger.default.debug("onDFUCancelled");
         //reset OTA view controller 's some data, such as progress bar and upload button text/status
         DispatchQueue.main.async(execute: {
             self.initValue()
@@ -311,7 +316,7 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
      */
     func firmwareVersionReceived(_ whichfirmware:DfuFirmwareTypes, version:NSString)
     {
-        XCGLogger.defaultInstance().debug("version :  \(version)")
+        XCGLogger.default.debug("version :  \(version)")
         continueButton.isHidden = false
     }
 
@@ -360,7 +365,7 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
      :param: path <#path description#>
      */
     func onFileSelected(_ selectedFile:URL) {
-        XCGLogger.defaultInstance().debug("onFileSelected")
+        XCGLogger.default.debug("onFileSelected")
         if (selectedFile.path != nil) {
             let fileExtension:String? = selectedFile.pathExtension
             //set the file information

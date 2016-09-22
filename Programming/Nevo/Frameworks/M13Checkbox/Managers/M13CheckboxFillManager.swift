@@ -105,7 +105,7 @@ internal class M13CheckboxFillManager: M13CheckboxManager {
     override func animate(_ fromState: M13Checkbox.CheckState, toState: M13Checkbox.CheckState) {
         super.animate(fromState, toState: toState)
         
-        if toState == .Unchecked {
+        if toState == .unchecked {
             
             let wiggleAnimation = animations.fillAnimation(1, amplitude: 0.18, reverse: true)
             let opacityAnimation = animations.opacityAnimation(true)
@@ -121,7 +121,7 @@ internal class M13CheckboxFillManager: M13CheckboxManager {
             CATransaction.commit()
             
         } else {
-            if fromState == .Unchecked {
+            if fromState == .unchecked {
                 markLayer.path = paths.path(toState)?.cgPath
                 
                 let wiggleAnimation = animations.fillAnimation(1, amplitude: 0.18, reverse: false)
@@ -137,7 +137,7 @@ internal class M13CheckboxFillManager: M13CheckboxManager {
                 
                 CATransaction.commit()
             } else {
-                if paths.markType != .Radio {
+                if paths.markType != .radio {
                     let fromPath = paths.path(fromState)
                     let toPath = paths.path(toState)
                     
@@ -154,7 +154,7 @@ internal class M13CheckboxFillManager: M13CheckboxManager {
                 } else {
                     
                     var compressionAnimation: CAAnimation? = nil
-                    if toState == .Mixed {
+                    if toState == .mixed {
                         let toPath = paths.path(fromState)
                         let scale: CGFloat = 0.5 / 0.665
                         toPath?.apply(CGAffineTransform(scaleX: scale, y: 0.002))
@@ -219,10 +219,10 @@ internal class M13CheckboxFillManager: M13CheckboxManager {
         markLayer.strokeColor = secondaryCheckmarkTintColor?.cgColor
         markLayer.lineWidth = paths.checkmarkLineWidth
         
-        if state == .Unchecked {
+        if state == .unchecked {
             selectedBoxLayer.transform = CATransform3DMakeScale(0.0, 0.0, 0.0)
             markLayer.opacity = 0.0
-        } else if state == .Checked {
+        } else if state == .checked {
             selectedBoxLayer.transform = CATransform3DMakeScale(1.0, 1.0, 1.0)
             markLayer.opacity = 1.0
         } else {

@@ -22,7 +22,7 @@ internal class M13CheckboxFlatManager: M13CheckboxManager {
     override var tintColor: UIColor {
         didSet {
             selectedBoxLayer.strokeColor = tintColor.cgColor
-            if style == .Stroke {
+            if style == .stroke {
                 markLayer.strokeColor = tintColor.cgColor
             } else {
                 selectedBoxLayer.fillColor = tintColor.cgColor
@@ -38,7 +38,7 @@ internal class M13CheckboxFlatManager: M13CheckboxManager {
     
     override var secondaryCheckmarkTintColor: UIColor? {
         didSet {
-            if style == .Fill {
+            if style == .fill {
                 markLayer.strokeColor = secondaryCheckmarkTintColor?.cgColor
             }
         }
@@ -51,7 +51,7 @@ internal class M13CheckboxFlatManager: M13CheckboxManager {
         }
     }
     
-    fileprivate var style: M13Checkbox.AnimationStyle = .Stroke
+    fileprivate var style: M13Checkbox.AnimationStyle = .stroke
     
     init(style: M13Checkbox.AnimationStyle) {
         self.style = style
@@ -123,7 +123,7 @@ internal class M13CheckboxFlatManager: M13CheckboxManager {
     override func animate(_ fromState: M13Checkbox.CheckState, toState: M13Checkbox.CheckState) {
         super.animate(fromState, toState: toState)
         
-        if toState == .Unchecked {
+        if toState == .unchecked {
             let morphAnimation = animations.morphAnimation(paths.pathForMark(), toPath: paths.pathForMixedMark())
             morphAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseIn)
             let opacityAnimation = animations.opacityAnimation(true)
@@ -139,7 +139,7 @@ internal class M13CheckboxFlatManager: M13CheckboxManager {
             })
             
             selectedBoxLayer.add(opacityAnimation, forKey: "opacity")
-            if fromState != .Mixed {
+            if fromState != .mixed {
                 markLayer.add(morphAnimation, forKey: "path")
             }
             markLayer.add(quickOpacityAnimation, forKey: "opacity")
@@ -147,7 +147,7 @@ internal class M13CheckboxFlatManager: M13CheckboxManager {
             CATransaction.commit()
             
         } else {
-            if fromState == .Unchecked {
+            if fromState == .unchecked {
                 markLayer.path = paths.pathForMixedMark().cgPath
                 
                 let morphAnimation = animations.morphAnimation(paths.pathForMixedMark(), toPath: paths.pathForMark())
@@ -165,14 +165,14 @@ internal class M13CheckboxFlatManager: M13CheckboxManager {
                 })
                 
                 selectedBoxLayer.add(opacityAnimation, forKey: "opacity")
-                if toState != .Mixed {
+                if toState != .mixed {
                     markLayer.add(morphAnimation, forKey: "path")
                 }
                 markLayer.add(quickOpacityAnimation, forKey: "opacity")
                 
                 CATransaction.commit()
             } else {
-                if paths.markType != .Radio {
+                if paths.markType != .radio {
                     let fromPath = paths.path(fromState)
                     let toPath = paths.path(toState)
                     
@@ -189,7 +189,7 @@ internal class M13CheckboxFlatManager: M13CheckboxManager {
                 } else {
                     
                     var compressionAnimation: CAAnimation? = nil
-                    if toState == .Mixed {
+                    if toState == .mixed {
                         let toPath = paths.path(fromState)
                         let scale: CGFloat = 0.5 / 0.665
                         toPath?.apply(CGAffineTransform(scaleX: scale, y: 0.002))
@@ -229,7 +229,7 @@ internal class M13CheckboxFlatManager: M13CheckboxManager {
         // Paths
         unselectedBoxLayer.path = paths.pathForBox().cgPath
         selectedBoxLayer.path = paths.pathForBox().cgPath
-        if state == .Unchecked {
+        if state == .unchecked {
             markLayer.path = paths.pathForMixedMark().cgPath
         } else {
             markLayer.path = paths.pathForMixedMark().cgPath
@@ -254,10 +254,10 @@ internal class M13CheckboxFlatManager: M13CheckboxManager {
         selectedBoxLayer.strokeColor = tintColor.cgColor
         selectedBoxLayer.lineWidth = paths.boxLineWidth
         
-        if style == .Stroke {
+        if style == .stroke {
             selectedBoxLayer.fillColor = nil
             markLayer.strokeColor = tintColor.cgColor
-            if paths.markType == .Checkmark {
+            if paths.markType == .checkmark {
                 markLayer.fillColor = nil
             } else {
                 markLayer.fillColor = tintColor.cgColor
@@ -269,11 +269,11 @@ internal class M13CheckboxFlatManager: M13CheckboxManager {
         
         markLayer.lineWidth = paths.checkmarkLineWidth
         
-        if state == .Unchecked {
+        if state == .unchecked {
             selectedBoxLayer.opacity = 0.0
             markLayer.opacity = 0.0
             markLayer.path = paths.pathForMixedMark().cgPath
-        } else if state == .Checked {
+        } else if state == .checked {
             selectedBoxLayer.opacity = 1.0
             markLayer.opacity = 1.0
             markLayer.path = paths.pathForCheckmark().cgPath

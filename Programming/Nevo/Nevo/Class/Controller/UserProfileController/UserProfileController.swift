@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import XCGLogger
 
 let userIdentifier:String = "UserProfileIdentifier"
 class UserProfileController: UIViewController,UITableViewDelegate,UITableViewDataSource {
@@ -125,7 +125,7 @@ class UserProfileController: UIViewController,UITableViewDelegate,UITableViewDat
         cell.cellIndex = (indexPath as NSIndexPath).row
         cell.editCellTextField = {
             (index,text) -> Void in
-            XCGLogger.defaultInstance().debug("Profile TextField\(index)")
+            XCGLogger.default.debug("Profile TextField\(index)")
             switch index {
             case 0:
                 self.userprofile!.first_name = text

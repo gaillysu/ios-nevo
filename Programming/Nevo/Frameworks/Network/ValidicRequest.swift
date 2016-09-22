@@ -8,6 +8,8 @@
 
 import UIKit
 import Alamofire
+import XCGLogger
+import SwiftyJSON
 
 let ValidicOrganizationID = "56d3b075407e010001000000"
 let OrganizationAccessToken = "b85dcb3b85e925200f3fd4cafe6dce92295f449d9596b137941de7e9e2c3e7ae"
@@ -194,13 +196,13 @@ class ValidicRequest: NSObject {
             queue.async(group: group, execute: {
                 let data = ["routine":object,"access_token":"\(OrganizationAccessToken)"] as [String : Any]
                 self.updateValidicData(URL,data: data as Dictionary<String, AnyObject>, completion: { (result) in
-                    XCGLogger.defaultInstance().debug("updateValidicData: \(result)")
+                    XCGLogger.default.debug("updateValidicData: \(result)")
                 })
             })
         }
         
         group.notify(queue: queue, execute: {
-            XCGLogger.defaultInstance().debug("create steps completed")
+            XCGLogger.default.debug("create steps completed")
             self.updateSleepDataToValidic(nil)
         })
     }
@@ -271,13 +273,13 @@ class ValidicRequest: NSObject {
             queue.async(group: group, execute: {
                 let data = ["routine":object,"access_token":"\(OrganizationAccessToken)"] as [String : Any]
                 self.updateValidicData(URL,data: data as Dictionary<String, AnyObject>, completion: { (result) in
-                    XCGLogger.defaultInstance().debug("updateValidicData: \(result)")
+                    XCGLogger.default.debug("updateValidicData: \(result)")
                 })
             })
         }
         
         group.notify(queue: queue, execute: {
-            XCGLogger.defaultInstance().debug("create steps completed")
+            XCGLogger.default.debug("create steps completed")
         })
     }
     
@@ -338,12 +340,12 @@ class ValidicRequest: NSObject {
         let URL = "https://api.validic.com/v1/organizations/\(ValidicOrganizationID)/users.json"
         let data = ["uid":uid,"access_token":"\(OrganizationAccessToken)"]
         ValidicRequest.deleteValidicRequest(URL,data: data as Dictionary<String, AnyObject>, completion: { (result) in
-            XCGLogger.defaultInstance().debug("deleteValidic User: \(result)")
+            XCGLogger.default.debug("deleteValidic User: \(result)")
         })
     }
     
     func analyticalData(_ object:JSON) {
-        XCGLogger.defaultInstance().debug("\(object)")
+        XCGLogger.default.debug("\(object)")
         var timer = object["timestamp"].stringValue.replacingOccurrences(of: "T", with: " ")
         timer = timer.replacingOccurrences(of: "+00:00", with: "")
         let date = GmtNSDate2LocaleNSDate(timer.dateFromFormat("yyyy-MM-dd HH:mm:ss'UTC'")!)
@@ -367,7 +369,7 @@ class ValidicRequest: NSObject {
     }
     
     func analyticalSleepData(_ object:JSON) {
-        XCGLogger.defaultInstance().debug("\(object)")
+        XCGLogger.default.debug("\(object)")
         var timer = object["timestamp"].stringValue.replacingOccurrences(of: "T", with: " ")
         timer = timer.replacingOccurrences(of: "+00:00", with: "")
         let date = GmtNSDate2LocaleNSDate(timer.dateFromFormat("yyyy-MM-dd HH:mm:ss'UTC'")!)

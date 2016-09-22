@@ -9,7 +9,7 @@
 import UIKit
 import BRYXBanner
 import SwiftEventBus
-
+import XCGLogger
 
 class MyNevoController: UITableViewController,UIAlertViewDelegate {
 
@@ -38,7 +38,7 @@ class MyNevoController: UITableViewController,UIAlertViewDelegate {
         
         SwiftEventBus.onMainThread(self, name: EVENT_BUS_RSSI_VALUE) { (notification) in
             let number:NSNumber = notification.object as! NSNumber
-            XCGLogger.defaultInstance().debug("Red RSSI Value:\(number)")
+            XCGLogger.default.debug("Red RSSI Value:\(number)")
             if(number.intValue < -85){
                 if(self.rssialert==nil){
                     self.rssialert = UIAlertView(title: NSLocalizedString("Unstable connection ensure", comment: ""), message:NSLocalizedString("Unstable connection ensure nevo is on and in range", comment: "") , delegate: nil, cancelButtonTitle: nil)

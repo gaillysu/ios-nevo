@@ -9,6 +9,7 @@
 
 import UIKit
 import FMDB
+import XCGLogger
 
 /** SQLite Five types of data */
 let SQLTEXT = "TEXT"
@@ -217,7 +218,7 @@ class UserDatabaseHelper:NSObject {
             let sql:NSString = NSString(format: "INSERT INTO %@(%@) VALUES (%@);", tableName, keyString, valueString)
             res = (db?.executeUpdate("\(sql)", withArgumentsIn: insertValues as [AnyObject]))!
             self.id = res ? NSNumber(value: (db?.lastInsertRowId())! as Int64).intValue : 0
-            XCGLogger.defaultInstance().debug("\(res ? "Insert success" : "Insert failed"),SQL:\(sql)");
+            XCGLogger.default.debug("\(res ? "Insert success" : "Insert failed"),SQL:\(sql)");
             result(self.id,res)
         }
     }
