@@ -28,7 +28,6 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
     var mNevoOtaController : NevoOtaController?
     fileprivate var allTaskNumber:NSInteger = 0;//计算所有OTA任务数量
     fileprivate var currentTaskNumber:NSInteger = 0;//当前在第几个任务
-    fileprivate var rssialert:UIAlertView?
     fileprivate var continueButton:UIButton = UIButton(type: UIButtonType.custom)
 
     init() {
@@ -186,7 +185,6 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
         }
         isTransferring = true
         mNevoOtaController?.performDFUOnFile(selectedFileURL!, firmwareType: enumFirmwareType)
-
     }
 
     //below is delegate function
@@ -203,13 +201,9 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
     func receivedRSSIValue(_ number:NSNumber) {
         //AppTheme.DLog("Red RSSI Value:\(number)")
         if(number.int32Value < -85) {
-            if(rssialert==nil) {
-                rssialert = UIAlertView(title: NSLocalizedString("Unstable connection ensure", comment: ""), message:NSLocalizedString("Unstable connection ensure phone is on and in range", comment: "") , delegate: nil, cancelButtonTitle: nil)
-                rssialert?.show()
-            }
+            
         }else {
-            rssialert?.dismiss(withClickedButtonIndex: 1, animated: true)
-            rssialert = nil
+            
         }
     }
 

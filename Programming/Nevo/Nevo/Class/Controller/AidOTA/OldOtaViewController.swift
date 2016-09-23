@@ -9,6 +9,7 @@
 import UIKit
 import XCGLogger
 
+
 class OldOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonManagerCallBack,UIAlertViewDelegate  {
 
     @IBOutlet var nevoOtaView: NevoOtaView!
@@ -39,13 +40,13 @@ class OldOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMan
         super.viewDidLoad()
         UIApplication.shared.isIdleTimerDisabled = true
         
-        let alert :UIAlertController = UIAlertController(title: "Use warnings", message: "In the use of first aid mode, please forget all relevant Nevo pairing in the system Bluetooth settings", preferredStyle: UIAlertControllerStyle.alert)
-        self.present(alert, animated: true, completion: nil)
-
+        let leftItem:UIBarButtonItem = UIBarButtonItem(image:UIImage(named:"left_button") , style: UIBarButtonItemStyle.plain, target: self, action: #selector(backAction(_:)))
+        self.navigationItem.leftBarButtonItem = leftItem
+        
         //init the ota
         mAidOtaController = AidOtaController(controller: self)
-        mAidOtaController?.mConnectionController?.setOTAMode(true, Disconnect: false)
-
+        self.mAidOtaController?.mConnectionController?.setOTAMode(true, Disconnect: false)
+        
         initValue()
         
         checkConnection()
@@ -76,23 +77,41 @@ class OldOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMan
             }
         }
         
-        let updateTitle:String = NSLocalizedString("do_not_exit_this_screen", comment: "")
-        let updatemsg:String = NSLocalizedString("please_follow_the_update_has_been_finished", comment: "")
+        let hud:MBProgressHUD = MBProgressHUD.showAdded(to: UIApplication.shared.windows.last, animated: true)
+        hud.detailsLabelText = "In the use of first aid mode, please forget all relevant Nevo pairing in the system Bluetooth settings"
+        hud.removeFromSuperViewOnHide = true;
+        hud.dimBackground = true;
+        hud.hide(true, afterDelay: 1.9)
         
-        let alertView :UIAlertController = UIAlertController(title: updateTitle, message: updatemsg, preferredStyle: UIAlertControllerStyle.alert)
-        alertView.view.tintColor = AppTheme.NEVO_SOLAR_YELLOW()
-        let alertAction:UIAlertAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: UIAlertActionStyle.cancel) { (action:UIAlertAction) -> Void in
-            self.dismiss(animated: true, completion: nil)
-        }
-        alertView.addAction(alertAction)
-        
-        let alertAction2:UIAlertAction = UIAlertAction(title: NSLocalizedString("Enter", comment: ""), style: UIAlertActionStyle.default) { (action:UIAlertAction) -> Void in
-            self.currentIndex = 0
-            self.uploadPressed()
-        }
-        alertView.addAction(alertAction2)
-        self.present(alertView, animated: true, completion: nil)
+        let dispatchTime: DispatchTime = DispatchTime.now() + Double(Int64(2 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
+        DispatchQueue.main.asyncAfter(deadline: dispatchTime, execute: {
+            let updateTitle:String = NSLocalizedString("do_not_exit_this_screen", comment: "")
+            let updatemsg:String = NSLocalizedString("please_follow_the_update_has_been_finished", comment: "")
+            
+            let alertView :UIAlertController = UIAlertController(title: updateTitle, message: updatemsg, preferredStyle: UIAlertControllerStyle.alert)
+            alertView.view.tintColor = AppTheme.NEVO_SOLAR_YELLOW()
+            let alertAction:UIAlertAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: UIAlertActionStyle.cancel) { (action:UIAlertAction) -> Void in
+                self.dismiss(animated: true, completion: nil)
+            }
+            alertView.addAction(alertAction)
+            
+            let alertAction2:UIAlertAction = UIAlertAction(title: NSLocalizedString("Enter", comment: ""), style: UIAlertActionStyle.default) { (action:UIAlertAction) -> Void in
+                
+                self.currentIndex = 0
+                let SAVED_ADDRESS_KEY = "SAVED_ADDRESS"
+                UserDefaults.standard.removeObject(forKey: SAVED_ADDRESS_KEY)
+                self.currentTaskNumber = self.currentIndex;
+                
+                self.uploadPressed()
+            }
+            alertView.addAction(alertAction2)
+            self.present(alertView, animated: true, completion: nil)
+        })
 
+    }
+    
+    func backAction(_ sender:AnyObject) {
+        self.dismiss(animated: true, completion: nil)
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -160,15 +179,6 @@ class OldOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMan
             // enable upPress button
         }
         
-    }
-
-    //MARK: - UIAlertViewDelegate
-    func alertView(_ alertView: UIAlertView, clickedButtonAt buttonIndex: Int){
-
-        if(buttonIndex==1){
-            currentIndex = 0
-            self.uploadPressed()
-        }
     }
 
     //MARK: - NevoOtaControllerDelegate

@@ -78,8 +78,8 @@ class AidOtaController : NSObject,ConnectionControllerDelegate {
         mConnectionController?.connect()
 
     }
-    fileprivate func openFile(_ fileURL:URL)
-    {
+    
+    fileprivate func openFile(_ fileURL:URL) {
         let selectedFileName:NSString  = fileURL.lastPathComponent as NSString
         let filetype:NSString = selectedFileName.substring(from: selectedFileName.length - 3) as NSString
 
@@ -425,8 +425,7 @@ class AidOtaController : NSObject,ConnectionControllerDelegate {
         mConnectionController?.setDelegate(self)
     }
 
-    func performDFUOnFile(_ firmwareURL:URL , firmwareType:DfuFirmwareTypes)
-    {
+    func performDFUOnFile(_ firmwareURL:URL , firmwareType:DfuFirmwareTypes) {
         lastprogress = 0.0
         progress = 0.0
         mTimeoutTimer?.invalidate()
@@ -439,52 +438,37 @@ class AidOtaController : NSObject,ConnectionControllerDelegate {
         //Hex to bin and read it to buffer
         openFile(firmwareURL)
         //enable it done after doing discover service
-        //[dfuRequests enableNotification];
-        if(dfuFirmwareType == DfuFirmwareTypes.application )
-        {
+        if(dfuFirmwareType == DfuFirmwareTypes.application ) {
             mConnectionController?.setOTAMode(true,Disconnect:true)
-        }
-        else if(dfuFirmwareType == DfuFirmwareTypes.softdevice)
-        {
+        } else if(dfuFirmwareType == DfuFirmwareTypes.softdevice) {
             mConnectionController?.setOTAMode(true,Disconnect:true)
         }
     }
 
-    func timeroutProc(_ timer:Timer)
-    {
-        if lastprogress == progress  && progress != 100.0
-        {
+    func timeroutProc(_ timer:Timer) {
+        if lastprogress == progress  && progress != 100.0 {
             XCGLogger.default.debug("* * * OTA timeout * * *")
             let errorMessage = NSLocalizedString("ota_timeout",comment: "") as NSString
             mDelegate?.onError(errorMessage)
 
-        }
-        else
-        {
+        }else {
             lastprogress = progress
         }
     }
 
-    fileprivate func performOldDFUOnFile()
-    {
-        if (self.dfuFirmwareType == DfuFirmwareTypes.application)
-        {
+    fileprivate func performOldDFUOnFile() {
+        if (self.dfuFirmwareType == DfuFirmwareTypes.application) {
             openFile(firmwareFile!)
             mConnectionController?.sendRequest(StartOTAOldRequest())
             mConnectionController?.sendRequest(writeFileSizeOldRequest(filelength: binFileSize))
-        }
-        else
-        {
+        } else {
             let errorMessage :NSString  = "Old DFU only supports Application upload"
             mDelegate?.onError(errorMessage)
             resetSystem()
         }
-
-
     }
 
-    func cancelDFU()
-    {
+    func cancelDFU() {
         XCGLogger.default.debug("cancelDFU");
 
         if (self.dfuFirmwareType == DfuFirmwareTypes.application)
@@ -495,8 +479,7 @@ class AidOtaController : NSObject,ConnectionControllerDelegate {
 
     func sendRequest(_ r:Request) {
         //for MCU OTA, use send queue to control it
-        if (self.dfuFirmwareType == DfuFirmwareTypes.softdevice)
-        {
+        if (self.dfuFirmwareType == DfuFirmwareTypes.softdevice) {
             SyncQueue.sharedInstance_ota.post( { (Void) -> (Void) in
 
                 self.mConnectionController?.sendRequest(r)
@@ -514,7 +497,7 @@ class AidOtaController : NSObject,ConnectionControllerDelegate {
     {
         let locData:Data = try! Data(contentsOf: firmwareURL);
         //remove first 16K bytes, remain 48k bytes
-        let currentRange :Range = (16*1024)..<((16*1024)+(locData.count - 16 * 1024))
+        let currentRange :Range = (16*1024)..<locData.count
             //NSMakeRange(16*1024, locData.count - 16 * 1024);
         firmwareDataBytesSent = 0
         curpage = 0

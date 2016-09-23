@@ -18,7 +18,17 @@ class TutorialOneViewController: UIViewController{
         fatalError("init(coder:) has not been implemented")
     }   
 
-    override func viewDidLoad() {   
+    override func viewDidLoad() {
+        
+        //controllManager(_:)
+        let logPress:UILongPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(TutorialOneViewController.logPressAction(_:)))
+        self.view.addGestureRecognizer(logPress)
+    }
+    
+    func logPressAction(_ sender:UITapGestureRecognizer) {
+        let otaCont:OldOtaViewController = OldOtaViewController()
+        let navigation:UINavigationController = UINavigationController(rootViewController: otaCont)
+        self.present(navigation, animated: true, completion: nil)
     }
     
     @IBAction func activateYourNevoAction(_ sender: AnyObject) {
