@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="VSL-Nt-5H3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES" initialViewController="VSL-Nt-5H3">
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Main Tab Bar Controller-->
@@ -14,7 +14,7 @@
                     <tabBar key="tabBar" contentMode="scaleToFill" id="7hv-Kv-cDO">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBar>
                     <connections>
                         <segue destination="rem-vM-ODh" kind="relationship" relationship="viewControllers" id="ZEI-Ns-a4R"/>
@@ -32,7 +32,7 @@
             <objects>
                 <navigationController useStoryboardIdentifierAsRestorationIdentifier="YES" id="bGr-qo-zHH" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Setting" image="new_iOS_setting_icon" id="FTX-5o-89V"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="p9j-eT-GsY">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="p9j-eT-GsY">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -53,7 +53,7 @@
             <objects>
                 <navigationController id="rem-vM-ODh" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Dashboard" image="home_icon" id="ba1-Wn-XQe"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="gdh-sX-Da8">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="gdh-sX-Da8">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -74,9 +74,9 @@
                         <viewControllerLayoutGuide type="bottom" id="b4f-8n-7a5"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="esU-rF-t9Y">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <navigationItem key="navigationItem" title="Steps" id="VUx-V6-WUk"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
@@ -107,9 +107,9 @@
             <objects>
                 <tableViewController id="raW-BV-myH" customClass="AlarmClockController" customModule="Nevo" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="50" sectionHeaderHeight="15" sectionFooterHeight="1" id="E11-Lg-dGI" customClass="alarmClockView" customModule="Nevo" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <connections>
                             <outlet property="dataSource" destination="raW-BV-myH" id="BKk-TH-mk2"/>
                             <outlet property="delegate" destination="raW-BV-myH" id="J80-0J-Kf6"/>
@@ -139,18 +139,17 @@
                         <viewControllerLayoutGuide type="bottom" id="Btq-vY-5HU"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="h7L-SF-lkB" customClass="SetingView" customModule="Nevo" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="Zx4-WI-sxC">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SetingCell" id="jy6-2o-7Tg">
-                                        <rect key="frame" x="0.0" y="113.5" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="120" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jy6-2o-7Tg" id="Hea-sY-zN0">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                                            <frame key="frameInset" width="375" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -161,7 +160,7 @@
                                 </connections>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="Zx4-WI-sxC" firstAttribute="top" secondItem="h7L-SF-lkB" secondAttribute="top" id="5nb-id-3av"/>
                             <constraint firstItem="Zx4-WI-sxC" firstAttribute="centerX" secondItem="h7L-SF-lkB" secondAttribute="centerX" id="9n8-MP-ac0"/>
@@ -186,7 +185,7 @@
             <objects>
                 <navigationController useStoryboardIdentifierAsRestorationIdentifier="YES" id="55x-5E-ejb" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Analysis" image="analysis_icon" id="QgB-tv-HYG"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="wZ6-1e-Ldn">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="wZ6-1e-Ldn">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -215,19 +214,17 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="6WP-73-h7Z">
-                                <rect key="frame" x="16" y="72" width="343" height="29"/>
                                 <segments>
                                     <segment title="Steps"/>
                                     <segment title="Sleep"/>
                                     <segment title="Solar"/>
                                 </segments>
-                                <color key="tintColor" red="0.62745098040000002" green="0.51764705879999995" blue="0.33333333329999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="tintColor" red="0.62745098040000002" green="0.51764705879999995" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <action selector="segmentedAction:" destination="P6X-gZ-BTj" eventType="valueChanged" id="9aM-iZ-8eg"/>
                                 </connections>
                             </segmentedControl>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="rTJ-8y-ijY">
-                                <rect key="frame" x="4" y="110" width="367" height="390"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="ZOG-CO-66Z">
                                     <size key="itemSize" width="367" height="360"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -241,7 +238,6 @@
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="367" height="360"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                     </collectionViewCell>
                                 </cells>
@@ -251,7 +247,6 @@
                                 </connections>
                             </collectionView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="vct-D8-ynQ">
-                                <rect key="frame" x="0.0" y="500" width="375" height="118"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="118" id="v26-Nd-pS9"/>
                                 </constraints>
@@ -268,7 +263,6 @@
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                     </collectionViewCell>
                                 </cells>
@@ -278,7 +272,7 @@
                                 </connections>
                             </collectionView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="6WP-73-h7Z" firstAttribute="top" secondItem="Lgi-Nz-jfp" secondAttribute="bottom" constant="8" symbolic="YES" id="0Hs-ex-KRG"/>
                             <constraint firstAttribute="trailingMargin" secondItem="vct-D8-ynQ" secondAttribute="trailing" constant="-16" id="1we-rc-4NJ"/>
@@ -294,7 +288,6 @@
                     </view>
                     <navigationItem key="navigationItem" id="Iq0-xp-xDD"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="chartsCollectionView" destination="rTJ-8y-ijY" id="JXX-MP-IhZ"/>
                         <outlet property="contentCollectionView" destination="vct-D8-ynQ" id="BHu-6g-J5n"/>
@@ -322,4 +315,9 @@
         <image name="new_iOS_alarm_icon" width="35" height="36"/>
         <image name="new_iOS_setting_icon" width="35" height="36"/>
     </resources>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4_7.fullscreen"/>
+    </simulatedMetricsContainer>
 </document>

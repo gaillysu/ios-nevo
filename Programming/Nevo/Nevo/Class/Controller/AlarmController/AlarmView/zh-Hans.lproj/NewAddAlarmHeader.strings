@@ -1,0 +1,6 @@
+
+/* Class = "UISegmentedControl"; NOQ-Nf-xTE.segmentTitles[0] = "Awake"; ObjectID = "NOQ-Nf-xTE"; */
+"NOQ-Nf-xTE.segmentTitles[0]" = "起床";
+
+/* Class = "UISegmentedControl"; NOQ-Nf-xTE.segmentTitles[1] = "Sleep"; ObjectID = "NOQ-Nf-xTE"; */
+"NOQ-Nf-xTE.segmentTitles[1]" = "入睡";

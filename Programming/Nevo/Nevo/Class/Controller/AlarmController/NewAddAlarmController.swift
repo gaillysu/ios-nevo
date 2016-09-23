@@ -30,7 +30,7 @@ class NewAddAlarmController: UITableViewController,ButtonManagerCallBack,Selecte
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = "Add Alarm"
+        self.navigationItem.title = NSLocalizedString("add_alarm", comment: "")
         
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.save, target: self, action: #selector(controllManager(_:)))
         
@@ -48,7 +48,7 @@ class NewAddAlarmController: UITableViewController,ButtonManagerCallBack,Selecte
     override func viewDidLayoutSubviews() {
         if self.tableView.tableFooterView == nil {
             let view = UIView()
-            let tipsString:String = "Tips:\n    Sleep alarm allows you set a timmer that your Nevo can automatic turn on sleep mode."
+            let tipsString:String = NSLocalizedString("tips_content", comment: "")
             let tipsLabel:UILabel = UILabel(frame: CGRect(x: 10,y: 0,width: UIScreen.main.bounds.size.width-20,height: 120))
             tipsLabel.numberOfLines = 0
             tipsLabel.text = tipsString
@@ -76,7 +76,6 @@ class NewAddAlarmController: UITableViewController,ButtonManagerCallBack,Selecte
                 if(datePicker.isKind(of: UIDatePicker.classForCoder())){
                     let picker:UIDatePicker = datePicker as! UIDatePicker
                     timer = picker.date.timeIntervalSince1970
-                    debugPrint("UIDatePicker______%@,\(timer)", picker.date)
                 }
             }
 
@@ -86,8 +85,6 @@ class NewAddAlarmController: UITableViewController,ButtonManagerCallBack,Selecte
                 if(datePicker.isKind(of: UISwitch.classForCoder())){
                     let repeatSwicth:UISwitch = datePicker as! UISwitch
                     repeatStatus = repeatSwicth.isOn
-                    debugPrint("repeatStatus______%@", repeatStatus)
-
                 }
             }
 
@@ -97,14 +94,13 @@ class NewAddAlarmController: UITableViewController,ButtonManagerCallBack,Selecte
 
             mDelegate?.onDidAddAlarmAction(timer, name: name, repeatNumber: repeatSelectedIndex, alarmType: alarmTypeIndex)
 
-            self.navigationController?.popViewController(animated: true)
+            self.navigationController!.popViewController(animated: true)
         }
 
     }
 
     // MARK: - SelectedRepeatDelegate
     func onSelectedRepeatAction(_ value:Int,name:String){
-        NSLog("onSelectedRepeatAction:value:\(value),name:\(name)")
         let indexPath:IndexPath = IndexPath(row: 0, section: 1)
         let cell = self.tableView.cellForRow(at: indexPath)
         if(cell != nil) {
@@ -115,7 +111,6 @@ class NewAddAlarmController: UITableViewController,ButtonManagerCallBack,Selecte
 
     // MARK: - SelectedSleepTypeDelegate
     func onSelectedSleepTypeAction(_ value:Int,name:String){
-        NSLog("onSelectedSleepTypeAction:\(value),name:\(name)")
         let indexPath:IndexPath = IndexPath(row: 0, section: 1)
         let cell = self.tableView.cellForRow(at: indexPath)
         if(cell != nil) {
@@ -208,7 +203,6 @@ class NewAddAlarmController: UITableViewController,ButtonManagerCallBack,Selecte
             headerCell.actionCallBack = {
                 (sender) -> Void in
                 let segment:UISegmentedControl = sender as! UISegmentedControl
-                NSLog("选择器发送实例第几个:\(segment.selectedSegmentIndex)")
                 self.alarmTypeIndex = segment.selectedSegmentIndex
             }
             return headerCell
@@ -233,7 +227,15 @@ class NewAddAlarmController: UITableViewController,ButtonManagerCallBack,Selecte
             cell.selectionStyle = UITableViewCellSelectionStyle.none;
             if((indexPath as NSIndexPath).row == 0) {
                 cell.textLabel?.text = NSLocalizedString("\(titleArray[(indexPath as NSIndexPath).row])", comment: "")
-                let repeatDayArray:[String] = ["Disable","Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]
+                let repeatDayArray:[String] = [
+                    NSLocalizedString("Disable", comment: ""),
+                    NSLocalizedString("Sunday", comment: ""),
+                    NSLocalizedString("Monday", comment: ""),
+                    NSLocalizedString("Tuesday", comment: ""),
+                    NSLocalizedString("Wednesday", comment: ""),
+                    NSLocalizedString("Thursday", comment: ""),
+                    NSLocalizedString("Friday", comment: ""),
+                    NSLocalizedString("Saturday", comment: "")]
                 cell.detailTextLabel?.text = repeatDayArray[repeatSelectedIndex]
             }else if((indexPath as NSIndexPath).row == 1) {
                 cell.textLabel?.text = NSLocalizedString("\(titleArray[(indexPath as NSIndexPath).row])", comment: "")

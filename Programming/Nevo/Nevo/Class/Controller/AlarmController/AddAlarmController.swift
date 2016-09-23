@@ -54,8 +54,6 @@ class AddAlarmController: UITableViewController,ButtonManagerCallBack,UIAlertVie
                 if(datePicker.isKind(of: UIDatePicker.classForCoder())){
                     let picker:UIDatePicker = datePicker as! UIDatePicker
                     timer = picker.date.timeIntervalSince1970
-                    debugPrint("UIDatePicker______%@,\(timer)", picker.date)
-
                 }
             }
 

@@ -164,7 +164,6 @@
 		006A62571D6AA76C00458305 /* AlarmTypeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006A62531D6AA76C00458305 /* AlarmTypeCell.swift */; };
 		006A62581D6AA76C00458305 /* AlarmTypeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 006A62541D6AA76C00458305 /* AlarmTypeCell.xib */; };
 		006A62591D6AA76C00458305 /* NewAddAlarmHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006A62551D6AA76C00458305 /* NewAddAlarmHeader.swift */; };
-		006A625A1D6AA76C00458305 /* NewAddAlarmHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 006A62561D6AA76C00458305 /* NewAddAlarmHeader.xib */; };
 		006A625D1D6AA79E00458305 /* AlarmClockVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006A625B1D6AA79E00458305 /* AlarmClockVCell.swift */; };
 		006A625E1D6AA79E00458305 /* AlarmClockVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 006A625C1D6AA79E00458305 /* AlarmClockVCell.xib */; };
 		006A626E1D6AB44A00458305 /* StepGoalSetingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006A62651D6AB44A00458305 /* StepGoalSetingController.swift */; };
@@ -235,6 +234,8 @@
 		0089B0B61D6C4BDC0041148A /* SleepHistoryViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0089B0B41D6C4BDC0041148A /* SleepHistoryViewCell.swift */; };
 		0089B0B71D6C4BDC0041148A /* SleepHistoryViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0089B0B51D6C4BDC0041148A /* SleepHistoryViewCell.xib */; };
 		008AEF1B1D264A4C00B9E4D0 /* ProfileSetupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 008AEF191D264A4C00B9E4D0 /* ProfileSetupViewController.xib */; };
+		0091EB1F1D9513F90079EC39 /* NewAddAlarmHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0091EB211D9513F90079EC39 /* NewAddAlarmHeader.xib */; };
+		0091EB391D951D9E0079EC39 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0091EB3B1D951D9E0079EC39 /* Main.storyboard */; };
 		0095DDA91D2E0D7D00F80BFD /* wacth_dial.png in Resources */ = {isa = PBXBuildFile; fileRef = 0095DDA61D2E0D7D00F80BFD /* wacth_dial.png */; };
 		0095DDAA1D2E0D7D00F80BFD /* wacth_hour.png in Resources */ = {isa = PBXBuildFile; fileRef = 0095DDA71D2E0D7D00F80BFD /* wacth_hour.png */; };
 		0095DDAB1D2E0D7D00F80BFD /* wacth_mint.png in Resources */ = {isa = PBXBuildFile; fileRef = 0095DDA81D2E0D7D00F80BFD /* wacth_mint.png */; };
@@ -506,7 +507,6 @@
 		00D474DA1D586E1000E2447E /* ForgotPasswordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0037EC401D2370A200502140 /* ForgotPasswordController.swift */; };
 		00D474DB1D586E2300E2447E /* InformationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0074CB951D29EEAA00963607 /* InformationController.swift */; };
 		00D474DC1D586EBF00E2447E /* SolarIndicatorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C254A11D4EE82200F0F85F /* SolarIndicatorController.swift */; };
-		00DBC3A31C435541004B4376 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 00DBC3A21C435541004B4376 /* Main.storyboard */; };
 		00DE86E71D3489350013FFC4 /* StepsTitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00DE86E51D3489350013FFC4 /* StepsTitleView.xib */; };
 		00DE86EB1D34CB160013FFC4 /* StepGoalSetingViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00DE86E91D34CB160013FFC4 /* StepGoalSetingViewCell.xib */; };
 		00E2BDE21B16CCD0009C757E /* MBProgressHUD+MJ.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E2BDDE1B16CCD0009C757E /* MBProgressHUD+MJ.m */; };
@@ -751,7 +751,6 @@
 		006A62531D6AA76C00458305 /* AlarmTypeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlarmTypeCell.swift; sourceTree = "<group>"; };
 		006A62541D6AA76C00458305 /* AlarmTypeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AlarmTypeCell.xib; sourceTree = "<group>"; };
 		006A62551D6AA76C00458305 /* NewAddAlarmHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewAddAlarmHeader.swift; sourceTree = "<group>"; };
-		006A62561D6AA76C00458305 /* NewAddAlarmHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewAddAlarmHeader.xib; sourceTree = "<group>"; };
 		006A625B1D6AA79E00458305 /* AlarmClockVCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlarmClockVCell.swift; sourceTree = "<group>"; };
 		006A625C1D6AA79E00458305 /* AlarmClockVCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AlarmClockVCell.xib; sourceTree = "<group>"; };
 		006A62651D6AB44A00458305 /* StepGoalSetingController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepGoalSetingController.swift; sourceTree = "<group>"; };
@@ -857,6 +856,18 @@
 		0089B0B51D6C4BDC0041148A /* SleepHistoryViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SleepHistoryViewCell.xib; sourceTree = "<group>"; };
 		008AEF181D264A4C00B9E4D0 /* ProfileSetupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileSetupViewController.swift; sourceTree = "<group>"; };
 		008AEF191D264A4C00B9E4D0 /* ProfileSetupViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileSetupViewController.xib; sourceTree = "<group>"; };
+		0091EB201D9513F90079EC39 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/NewAddAlarmHeader.xib; sourceTree = "<group>"; };
+		0091EB231D9514000079EC39 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/NewAddAlarmHeader.strings; sourceTree = "<group>"; };
+		0091EB251D9514020079EC39 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/NewAddAlarmHeader.strings; sourceTree = "<group>"; };
+		0091EB271D9514040079EC39 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/NewAddAlarmHeader.strings"; sourceTree = "<group>"; };
+		0091EB291D9514060079EC39 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/NewAddAlarmHeader.strings"; sourceTree = "<group>"; };
+		0091EB2B1D9514090079EC39 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/NewAddAlarmHeader.strings; sourceTree = "<group>"; };
+		0091EB3A1D951D9E0079EC39 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		0091EB3D1D951DA20079EC39 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
+		0091EB3F1D951DA40079EC39 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Main.strings; sourceTree = "<group>"; };
+		0091EB411D951DA50079EC39 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
+		0091EB431D951DA70079EC39 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Main.strings"; sourceTree = "<group>"; };
+		0091EB451D951DA90079EC39 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
 		0095DDA61D2E0D7D00F80BFD /* wacth_dial.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wacth_dial.png; sourceTree = "<group>"; };
 		0095DDA71D2E0D7D00F80BFD /* wacth_hour.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wacth_hour.png; sourceTree = "<group>"; };
 		0095DDA81D2E0D7D00F80BFD /* wacth_mint.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wacth_mint.png; sourceTree = "<group>"; };
@@ -961,7 +972,6 @@
 		00C254A21D4EE82200F0F85F /* SolarIndicatorController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SolarIndicatorController.xib; sourceTree = "<group>"; };
 		00C640F51A8DEE0800815CF8 /* clockView600.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clockView600.png; sourceTree = "<group>"; };
 		00C8C8161D8B950A00621162 /* OldOtaViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OldOtaViewController.xib; sourceTree = "<group>"; };
-		00DBC3A21C435541004B4376 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		00DE86E41D3489350013FFC4 /* StepsTitleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepsTitleView.swift; sourceTree = "<group>"; };
 		00DE86E51D3489350013FFC4 /* StepsTitleView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StepsTitleView.xib; sourceTree = "<group>"; };
 		00DE86E81D34CB160013FFC4 /* StepGoalSetingViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepGoalSetingViewCell.swift; sourceTree = "<group>"; };
@@ -1549,7 +1559,7 @@
 				006A62531D6AA76C00458305 /* AlarmTypeCell.swift */,
 				006A62541D6AA76C00458305 /* AlarmTypeCell.xib */,
 				006A62551D6AA76C00458305 /* NewAddAlarmHeader.swift */,
-				006A62561D6AA76C00458305 /* NewAddAlarmHeader.xib */,
+				0091EB211D9513F90079EC39 /* NewAddAlarmHeader.xib */,
 				0042C8B11C7DB37200177D3D /* NotAlarmView.swift */,
 				0042C8B31C7DB3EF00177D3D /* NotAlarmView.xib */,
 			);
@@ -2603,7 +2613,7 @@
 			children = (
 				0050D5141C28E0DB004F6F80 /* Class */,
 				9A2D6C391A9C6D9F00591BDC /* Nevo.entitlements */,
-				00DBC3A21C435541004B4376 /* Main.storyboard */,
+				0091EB3B1D951D9E0079EC39 /* Main.storyboard */,
 				006B83691C44A20000E20A0C /* Nevo-Bridging-Header.h */,
 				00321D6C1C98EBB10069BFCC /* AppDelegate.swift */,
 				006DA9FD1D80F2A600B70C0F /* AppDelegate-Extension.swift */,
@@ -3054,7 +3064,7 @@
 				00120E811D7559D500CE0C32 /* Raleway-Thin.ttf in Resources */,
 				00AF8CE01D224CFA009047AC /* DatePickerView.xib in Resources */,
 				006756071D4848A300E8144C /* notification_background.png in Resources */,
-				006A625A1D6AA76C00458305 /* NewAddAlarmHeader.xib in Resources */,
+				0091EB1F1D9513F90079EC39 /* NewAddAlarmHeader.xib in Resources */,
 				0050D6921C28E1CD004F6F80 /* AddAlarmController.xib in Resources */,
 				0095DDAB1D2E0D7D00F80BFD /* wacth_mint.png in Resources */,
 				00EC9E111C8583AA00280904 /* TutorialSevenViewController.xib in Resources */,
@@ -3062,7 +3072,7 @@
 				00E759141C23E83200372529 /* firmware_clock.png in Resources */,
 				0095DDAA1D2E0D7D00F80BFD /* wacth_hour.png in Resources */,
 				004F74DF1D800EAA0048BA09 /* UserProfileController.xib in Resources */,
-				00DBC3A31C435541004B4376 /* Main.storyboard in Resources */,
+				0091EB391D951D9E0079EC39 /* Main.storyboard in Resources */,
 				0050D5F21C28E0DB004F6F80 /* MyNevoHeaderView.xib in Resources */,
 				0050D60E1C28E0DB004F6F80 /* PresetTableViewController.xib in Resources */,
 				00EC9DCF1C85833400280904 /* MorningTutorialController.xib in Resources */,
@@ -3891,6 +3901,32 @@
 				007C45911D2B4DC1004929E0 /* de */,
 			);
 			name = TutorialTwoViewController.xib;
+			sourceTree = "<group>";
+		};
+		0091EB211D9513F90079EC39 /* NewAddAlarmHeader.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0091EB201D9513F90079EC39 /* Base */,
+				0091EB231D9514000079EC39 /* en */,
+				0091EB251D9514020079EC39 /* fr */,
+				0091EB271D9514040079EC39 /* zh-Hans */,
+				0091EB291D9514060079EC39 /* zh-Hant */,
+				0091EB2B1D9514090079EC39 /* de */,
+			);
+			name = NewAddAlarmHeader.xib;
+			sourceTree = "<group>";
+		};
+		0091EB3B1D951D9E0079EC39 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0091EB3A1D951D9E0079EC39 /* Base */,
+				0091EB3D1D951DA20079EC39 /* en */,
+				0091EB3F1D951DA40079EC39 /* fr */,
+				0091EB411D951DA50079EC39 /* zh-Hans */,
+				0091EB431D951DA70079EC39 /* zh-Hant */,
+				0091EB451D951DA90079EC39 /* de */,
+			);
+			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 		00A773911A88562F0018E121 /* Localizable.strings */ = {

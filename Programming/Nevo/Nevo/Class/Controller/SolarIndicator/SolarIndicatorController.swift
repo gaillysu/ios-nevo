@@ -13,7 +13,8 @@ class SolarIndicatorController: PublicClassController {
 
     @IBOutlet weak var textCollection: UICollectionView!
     @IBOutlet weak var pieChartView: PieChartView!
-    fileprivate var onTitle:[String] = ["Timer on Battery","Timer on Solar"]
+
+    fileprivate var onTitle:[String] = [NSLocalizedString("timer_on_battery", comment: ""),NSLocalizedString("timer_on_solar", comment: "")]
     fileprivate var onValue:[Double] = [130,250]
     
     init() {
@@ -130,9 +131,9 @@ extension SolarIndicatorController:ChartViewDelegate {
         
         var xVals:[String] = []
         
-        xVals.append("Solar")
-        xVals.append("Battery")
-        let dataSet:PieChartDataSet = PieChartDataSet(yVals: yVals1, label: "Election Results")
+        xVals.append(NSLocalizedString("Solar", comment: ""))
+        xVals.append(NSLocalizedString("Battery", comment: ""))
+        let dataSet:PieChartDataSet = PieChartDataSet(yVals: yVals1, label: "")
         dataSet.sliceSpace = 2.0;
         var colors:[UIColor] = [];
         colors.append(AppTheme.NEVO_SOLAR_YELLOW())

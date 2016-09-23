@@ -13,8 +13,9 @@ class AnalysisController: PublicClassController {
     @IBOutlet weak var segmented: UISegmentedControl!
     @IBOutlet weak var chartsCollectionView: UICollectionView!
     @IBOutlet weak var contentCollectionView: UICollectionView!
-    let titleArray:[String] = ["This week","Last week","Last 30 Day"]
-    fileprivate var contentTitleArray:[String] = [NSLocalizedString("Average Steps", comment: ""), NSLocalizedString("Total Steps", comment: ""), NSLocalizedString("Average Calories", comment: ""),NSLocalizedString("Average Time", comment: "")]
+
+    let titleArray:[String] = [NSLocalizedString("this_week", comment: ""),NSLocalizedString("last_week", comment: ""),NSLocalizedString("last_30_day", comment: "")]
+    fileprivate var contentTitleArray:[String] = [NSLocalizedString("average_steps", comment: ""), NSLocalizedString("total_steps", comment: ""), NSLocalizedString("average_calories", comment: ""),NSLocalizedString("average_time", comment: "")]
     fileprivate var contentTArray:[String] = [NSLocalizedString("--", comment: ""),NSLocalizedString("--", comment: ""),NSLocalizedString("--", comment: ""),NSLocalizedString("--", comment: "")]
     fileprivate var dataArray:NSMutableArray = NSMutableArray(capacity:3)
     
@@ -109,15 +110,26 @@ extension AnalysisController:UICollectionViewDelegate,UICollectionViewDataSource
             let cell:AnalysisLineChartCell = collectionView.dequeueReusableCell(withReuseIdentifier: "AnalysisLineChart_Identifier", for: indexPath) as! AnalysisLineChartCell
             cell.backgroundColor = UIColor.clear
             cell.setTitle(titleArray[(indexPath as NSIndexPath).row])
+
             if segmented.selectedSegmentIndex == 0 {
-                contentTitleArray = [NSLocalizedString("Average Steps", comment: ""), NSLocalizedString("Total Steps", comment: ""), NSLocalizedString("Average Calories", comment: ""),NSLocalizedString("Average Time", comment: "")]
+                contentTitleArray = [
+                    NSLocalizedString("average_steps", comment: ""),
+                    NSLocalizedString("total_steps", comment: ""),
+                    NSLocalizedString("average_calories", comment: ""),
+                    NSLocalizedString("average_time", comment: "")]
             }
             if segmented.selectedSegmentIndex == 1 {
-                contentTitleArray = [NSLocalizedString("Average Sleep", comment: ""), NSLocalizedString("Total Sleep", comment: ""), NSLocalizedString("Average Wake", comment: ""),NSLocalizedString("Quality", comment: "")]
+                contentTitleArray = [
+                    NSLocalizedString("average_sleep", comment: ""),
+                    NSLocalizedString("total_sleep", comment: ""),
+                    NSLocalizedString("average_wake", comment: ""),
+                    NSLocalizedString("Quality", comment: "")]
             }
             
             if segmented.selectedSegmentIndex == 2 {
-                contentTitleArray = [NSLocalizedString("Average Timer on Battery", comment: ""), NSLocalizedString("Average Timer on Solar", comment: "")]
+                contentTitleArray = [
+                    NSLocalizedString("timer_on_battery", comment: ""),
+                    NSLocalizedString("timer_on_solar", comment: "")]
             }
             
             if segmented.selectedSegmentIndex != 2 {

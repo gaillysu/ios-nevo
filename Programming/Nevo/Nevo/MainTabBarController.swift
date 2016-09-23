@@ -31,14 +31,11 @@ class MainTabBarController: UITabBarController,UITabBarControllerDelegate {
             if contll!.isKind(of: AlarmClockController.self){
                 (nav as! UINavigationController).tabBarItem.title = NSLocalizedString("alarmTitle", comment: "")
                 contll?.title = NSLocalizedString("alarmTitle", comment: "")
-                XCGLogger.default.debug("AlarmClockController:\(contll)")
-
             }
 
             if contll!.isKind(of: PageViewController.self){
                 (nav as! UINavigationController).tabBarItem.title = NSLocalizedString("Dashboard", comment: "")
                 contll?.title = NSLocalizedString("Dashboard", comment: "")
-                XCGLogger.default.debug("StepController:\(contll)")
             }
             
             if contll!.isKind(of: AnalysisController.self){
@@ -50,7 +47,6 @@ class MainTabBarController: UITabBarController,UITabBarControllerDelegate {
             if contll!.isKind(of: SetingViewController.self){
                 (nav as! UINavigationController).tabBarItem.title = NSLocalizedString("Setting", comment: "")
                 contll?.title = NSLocalizedString("Setting", comment: "")
-                XCGLogger.default.debug("SetingViewController:\(contll)")
             }
 
         }

@@ -47,7 +47,7 @@ class AlarmClockController: UITableViewController,AddAlarmDelegate {
         }
 
         if(UserAlarm.isExistInTable()){
-            UserAlarm.updateTable()
+            _ = UserAlarm.updateTable()
         }
     }
 

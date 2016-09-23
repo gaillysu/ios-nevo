@@ -17,7 +17,15 @@ protocol SelectedRepeatDelegate {
 class RepeatViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
-    let RepeatDayArray:[String] = ["Every Disable","Every Sunday","Every Monday","Every Tuesday","Every Wednesday","Every Thursday","Every Friday","Every Saturday"]
+    let RepeatDayArray:[String] = [
+        NSLocalizedString("Disable", comment: ""),
+        NSLocalizedString("Sunday", comment: ""),
+        NSLocalizedString("Monday", comment: ""),
+        NSLocalizedString("Tuesday", comment: ""),
+        NSLocalizedString("Wednesday", comment: ""),
+        NSLocalizedString("Thursday", comment: ""),
+        NSLocalizedString("Friday", comment: ""),
+        NSLocalizedString("Saturday", comment: "")]
     var selectedIndex:Int = 0
     var selectedDelegate:SelectedRepeatDelegate?
 
@@ -31,7 +39,7 @@ class RepeatViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = "Repeat"
+        self.navigationItem.title = NSLocalizedString("Repeat", comment: "")
         self.view.backgroundColor = UIColor.white
         tableView.backgroundColor = UIColor.white
         tableView.separatorColor = UIColor.getLightBaseColor()
@@ -63,7 +71,7 @@ class RepeatViewController: UIViewController {
             selectedImage.image = UIImage(named: "notifications_check")
             cell?.accessoryView = selectedImage
         }
-        self.navigationController?.popViewController(animated: true)
+        self.navigationController!.popViewController(animated: true)
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
