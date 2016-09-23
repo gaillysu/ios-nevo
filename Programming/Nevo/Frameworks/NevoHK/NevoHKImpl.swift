@@ -43,8 +43,7 @@ class NevoHKImpl {
         let healthKitTypesToWrite = NSSet(array:[HKObjectType.quantityType(forIdentifier: HKQuantityTypeIdentifier.stepCount)!,HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.activeEnergyBurned)!,HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.distanceWalkingRunning)!])
         
         // 3. If the store is not available (for instance, iPad) return an error and don't go on.
-        if !HKHealthStore.isHealthDataAvailable()
-        {
+        if !HKHealthStore.isHealthDataAvailable() {
             let error = NSError(domain: "com.nevowatch.nevo", code: 2, userInfo: [NSLocalizedDescriptionKey:"HealthKit is not available in this Device"])
             if( completion != nil )
             {
@@ -56,9 +55,8 @@ class NevoHKImpl {
         // 4.  Request HealthKit authorization
         mHealthKitStore.requestAuthorization(toShare: healthKitTypesToWrite as? Set<HKSampleType>, read: healthKitTypesToRead as! Set<HKSampleType>) { (success, error) -> Void in
             
-            if( completion != nil )
-            {
-                completion(success as Bool,error as! NSError)
+            if( completion != nil ){
+                completion(success as Bool,error as? NSError)
             }
         }
     }

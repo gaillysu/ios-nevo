@@ -477,6 +477,12 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
                         yVals.replaceSubrange(index..<index+1, with: [ChartDataEntry(value: dataentry.value, xIndex: index)])
                         completionData?(index,true)
                     }
+                    
+                    if index == 6 {
+                        let dataentry:ChartDataEntry = yVals[yVals.count-1]
+                        yVals.replaceSubrange(yVals.count-1..<yVals.count, with: [ChartDataEntry(value: dataentry.value, xIndex: yVals.count-1)])
+                        completionData?(yVals.count-1,true)
+                    }
                 }
             }
         }
@@ -510,6 +516,11 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
                         completionData?(index,true)
                     }
                     
+                    if index == 29 {
+                        let dataentry:ChartDataEntry = yVals[yVals.count-1]
+                        yVals.replaceSubrange(yVals.count-1..<yVals.count, with: [ChartDataEntry(value: dataentry.value, xIndex: yVals.count-1)])
+                        completionData?(yVals.count-1,true)
+                    }
                 }
             }
         }

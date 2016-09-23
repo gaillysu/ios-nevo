@@ -30,8 +30,6 @@ class OldOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMan
 
     fileprivate var hudView:MBProgressHUD?
 
-    fileprivate var rssialert :UIAlertView?
-
     override func viewDidLayoutSubviews(){
         //init the view
         nevoOtaView.buildView(self,otacontroller: mAidOtaController!)
@@ -40,9 +38,10 @@ class OldOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMan
     override func viewDidLoad() {
         super.viewDidLoad()
         UIApplication.shared.isIdleTimerDisabled = true
-        //
-        let alert :UIAlertView = UIAlertView(title: "Use warnings", message: "In the use of first aid mode, please forget all relevant Nevo pairing in the system Bluetooth settings", delegate: nil, cancelButtonTitle: "OK")
-        alert.show()
+        
+        let alert :UIAlertController = UIAlertController(title: "Use warnings", message: "In the use of first aid mode, please forget all relevant Nevo pairing in the system Bluetooth settings", preferredStyle: UIAlertControllerStyle.alert)
+        self.present(alert, animated: true, completion: nil)
+
         //init the ota
         mAidOtaController = AidOtaController(controller: self)
         mAidOtaController?.mConnectionController?.setOTAMode(true, Disconnect: false)
@@ -79,26 +78,20 @@ class OldOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMan
         
         let updateTitle:String = NSLocalizedString("do_not_exit_this_screen", comment: "")
         let updatemsg:String = NSLocalizedString("please_follow_the_update_has_been_finished", comment: "")
-        if((UIDevice.current.systemVersion as NSString).floatValue>8.0){
-            let alert :UIAlertController = UIAlertController(title: updateTitle, message: updatemsg, preferredStyle: UIAlertControllerStyle.alert)
-            alert.view.tintColor = AppTheme.NEVO_SOLAR_YELLOW()
-            let alertAction:UIAlertAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: UIAlertActionStyle.cancel) { (action:UIAlertAction) -> Void in
-                self.dismiss(animated: true, completion: nil)
-            }
-            alert.addAction(alertAction)
-            
-            let alertAction2:UIAlertAction = UIAlertAction(title: NSLocalizedString("Enter", comment: ""), style: UIAlertActionStyle.default) { (action:UIAlertAction) -> Void in
-                self.currentIndex = 0
-                self.uploadPressed()
-            }
-            alert.addAction(alertAction2)
-            self.present(alert, animated: true, completion: nil)
-            
-        }else{
-            let alert :UIAlertView = UIAlertView(title: updateTitle, message: updatemsg, delegate: self, cancelButtonTitle: NSLocalizedString("Cancel", comment: ""))
-            alert.addButton(withTitle: NSLocalizedString("Enter", comment: ""))
-            alert.show()
+        
+        let alertView :UIAlertController = UIAlertController(title: updateTitle, message: updatemsg, preferredStyle: UIAlertControllerStyle.alert)
+        alertView.view.tintColor = AppTheme.NEVO_SOLAR_YELLOW()
+        let alertAction:UIAlertAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: UIAlertActionStyle.cancel) { (action:UIAlertAction) -> Void in
+            self.dismiss(animated: true, completion: nil)
         }
+        alertView.addAction(alertAction)
+        
+        let alertAction2:UIAlertAction = UIAlertAction(title: NSLocalizedString("Enter", comment: ""), style: UIAlertActionStyle.default) { (action:UIAlertAction) -> Void in
+            self.currentIndex = 0
+            self.uploadPressed()
+        }
+        alertView.addAction(alertAction2)
+        self.present(alertView, animated: true, completion: nil)
 
     }
 
@@ -185,13 +178,7 @@ class OldOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMan
     func receivedRSSIValue(_ number:NSNumber){
         XCGLogger.default.debug("Red RSSI Value:\(number)")
         if(number.int32Value < -85){
-            if(rssialert==nil){
-                rssialert = UIAlertView(title: NSLocalizedString("Unstable connection ensure", comment: ""), message:NSLocalizedString("Unstable connection ensure phone is on and in range", comment: "") , delegate: nil, cancelButtonTitle: nil)
-                rssialert?.show()
-            }
-        }else{
-            rssialert?.dismiss(withClickedButtonIndex: 1, animated: true)
-            rssialert = nil
+           
         }
     }
 

@@ -571,7 +571,6 @@
 		00F0C3541C8993DD005888A7 /* NewAddAlarmController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00F0C3521C8993DD005888A7 /* NewAddAlarmController.xib */; };
 		07BCE82A1B5CAB2200C7F558 /* clockview600_color.png in Resources */ = {isa = PBXBuildFile; fileRef = 07BCE8291B5CAB2100C7F558 /* clockview600_color.png */; };
 		3AF3D240B5808E80F5B2A19E /* Pods_Nevo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C2AEB04A0C7F45FE876ABED /* Pods_Nevo.framework */; };
-		7409DE23002B1D92822E281F /* Pods_LunaR.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2684F108DD80B3F763126280 /* Pods_LunaR.framework */; };
 		8A84EC52F1052F0497E54CB5 /* Pods_NevoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7689D6188FDF6CDBFBD84C51 /* Pods_NevoTests.framework */; };
 		9A2D6C3B1A9C6D9F00591BDC /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A2D6C3A1A9C6D9F00591BDC /* HealthKit.framework */; };
 		9A2D6C3E1A9C71E500591BDC /* NevoHK.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2D6C3D1A9C71E500591BDC /* NevoHK.swift */; };
@@ -591,7 +590,6 @@
 		9E98FB351C46405800BAB700 /* TutorialFiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E98FB341C46405800BAB700 /* TutorialFiveViewController.swift */; };
 		9E98FB371C4640AF00BAB700 /* TutorialSevenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E98FB361C4640AF00BAB700 /* TutorialSevenViewController.swift */; };
 		9E98FB3D1C46434100BAB700 /* TutorialSixViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E98FB3C1C46434100BAB700 /* TutorialSixViewController.swift */; };
-		9F6F01453E52BF45E9BB889E /* Pods_LunaRTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5FD7E1EDAFE477B32142D3E /* Pods_LunaRTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1134,7 +1132,6 @@
 		07BCE8291B5CAB2100C7F558 /* clockview600_color.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clockview600_color.png; sourceTree = "<group>"; };
 		0C2AEB04A0C7F45FE876ABED /* Pods_Nevo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Nevo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1215057C1EF17F735A5EFDD9 /* Pods-LunaR.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LunaR.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LunaR/Pods-LunaR.debug.xcconfig"; sourceTree = "<group>"; };
-		2684F108DD80B3F763126280 /* Pods_LunaR.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LunaR.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		32FD66A73B338A8998018E2C /* Pods-NevoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NevoTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-NevoTests/Pods-NevoTests.release.xcconfig"; sourceTree = "<group>"; };
 		337909E3A1733589971A3696 /* Pods-Nevo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Nevo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Nevo/Pods-Nevo.debug.xcconfig"; sourceTree = "<group>"; };
 		4D889843ECCF8C9F30888205 /* Pods-LunaRTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LunaRTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-LunaRTests/Pods-LunaRTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -1165,7 +1162,6 @@
 		9E98FB341C46405800BAB700 /* TutorialFiveViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialFiveViewController.swift; sourceTree = "<group>"; };
 		9E98FB361C4640AF00BAB700 /* TutorialSevenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialSevenViewController.swift; sourceTree = "<group>"; };
 		9E98FB3C1C46434100BAB700 /* TutorialSixViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialSixViewController.swift; sourceTree = "<group>"; };
-		A5FD7E1EDAFE477B32142D3E /* Pods_LunaRTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LunaRTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CBB9BF1C2FA9FD4C9B4E48BC /* Pods-LunaRTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LunaRTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LunaRTests/Pods-LunaRTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -1174,7 +1170,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7409DE23002B1D92822E281F /* Pods_LunaR.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1182,7 +1177,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9F6F01453E52BF45E9BB889E /* Pods_LunaRTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2660,9 +2654,7 @@
 				9A2D6C3A1A9C6D9F00591BDC /* HealthKit.framework */,
 				005BC95C1A88B79F006F9E86 /* FXBlurView */,
 				9AD8F9601A6E00C000F01014 /* NevoBT */,
-				2684F108DD80B3F763126280 /* Pods_LunaR.framework */,
 				0C2AEB04A0C7F45FE876ABED /* Pods_Nevo.framework */,
-				A5FD7E1EDAFE477B32142D3E /* Pods_LunaRTests.framework */,
 				7689D6188FDF6CDBFBD84C51 /* Pods_NevoTests.framework */,
 			);
 			name = Frameworks;
