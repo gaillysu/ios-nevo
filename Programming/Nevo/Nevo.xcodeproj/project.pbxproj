@@ -763,6 +763,10 @@
 		0063BC571D98D64B000BAB44 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/ProfileSetupViewController.strings"; sourceTree = "<group>"; };
 		0063BC591D98D64C000BAB44 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/ProfileSetupViewController.strings"; sourceTree = "<group>"; };
 		0063BC5B1D98D64E000BAB44 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/ProfileSetupViewController.strings; sourceTree = "<group>"; };
+		0063BC5D1D98FFDB000BAB44 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/TutorialFourViewController.strings; sourceTree = "<group>"; };
+		0063BC5F1D98FFDF000BAB44 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/TutorialFourViewController.strings"; sourceTree = "<group>"; };
+		0063BC611D98FFE3000BAB44 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/TutorialFourViewController.strings"; sourceTree = "<group>"; };
+		0063BC631D98FFE7000BAB44 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/TutorialFourViewController.strings; sourceTree = "<group>"; };
 		006756061D4848A300E8144C /* notification_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = notification_background.png; sourceTree = "<group>"; };
 		006756091D484B6F00E8144C /* SelectedLEDColorCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectedLEDColorCell.swift; sourceTree = "<group>"; };
 		0067560A1D484B6F00E8144C /* SelectedLEDColorCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SelectedLEDColorCell.xib; sourceTree = "<group>"; };
@@ -1039,10 +1043,6 @@
 		00EC9DED1C85836400280904 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/TutorialThreeViewController.strings"; sourceTree = "<group>"; };
 		00EC9DEF1C85836600280904 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/TutorialThreeViewController.strings; sourceTree = "<group>"; };
 		00EC9DF11C85837500280904 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/TutorialFourViewController.xib; sourceTree = "<group>"; };
-		00EC9DF41C85837700280904 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/TutorialFourViewController.strings; sourceTree = "<group>"; };
-		00EC9DF61C85837800280904 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/TutorialFourViewController.strings"; sourceTree = "<group>"; };
-		00EC9DF81C85837900280904 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/TutorialFourViewController.strings"; sourceTree = "<group>"; };
-		00EC9DFA1C85837B00280904 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/TutorialFourViewController.strings; sourceTree = "<group>"; };
 		00EC9DFC1C85838900280904 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/TutorialFiveViewController.xib; sourceTree = "<group>"; };
 		00EC9DFF1C85838C00280904 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/TutorialFiveViewController.strings; sourceTree = "<group>"; };
 		00EC9E011C85838E00280904 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/TutorialFiveViewController.strings"; sourceTree = "<group>"; };
@@ -4095,10 +4095,10 @@
 			isa = PBXVariantGroup;
 			children = (
 				00EC9DF11C85837500280904 /* en */,
-				00EC9DF41C85837700280904 /* fr */,
-				00EC9DF61C85837800280904 /* zh-Hans */,
-				00EC9DF81C85837900280904 /* zh-Hant */,
-				00EC9DFA1C85837B00280904 /* de */,
+				0063BC5D1D98FFDB000BAB44 /* fr */,
+				0063BC5F1D98FFDF000BAB44 /* zh-Hans */,
+				0063BC611D98FFE3000BAB44 /* zh-Hant */,
+				0063BC631D98FFE7000BAB44 /* de */,
 			);
 			name = TutorialFourViewController.xib;
 			sourceTree = "<group>";

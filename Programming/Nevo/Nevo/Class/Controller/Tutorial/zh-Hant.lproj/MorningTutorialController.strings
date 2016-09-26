@@ -1,9 +1,9 @@
 
 /* Class = "UILabel"; text = "You just finished tracking your first night of sleep with your nevo. To start tracking your daily routine,\npush and hold the third button, untill the white LED blinks"; ObjectID = "3BL-lP-3ac"; */
-"3BL-lP-3ac.text" = "You just finished tracking your first night of sleep with your nevo. To start tracking your daily routine,\npush and hold the third button, untill the white LED blinks";
+"3BL-lP-3ac.text" = "你刚刚在Nevo完成跟踪第一个晚上的睡眠。开始跟踪你的日常工作,推动并举行第三次按钮,直到白色LED闪烁";
 
 /* Class = "UIButton"; normalTitle = "Go it!"; ObjectID = "GdL-Xs-p2M"; */
-"GdL-Xs-p2M.normalTitle" = "Go it!";
+"GdL-Xs-p2M.normalTitle" = "去吧!";
 
 /* Class = "UILabel"; text = "Good morning!"; ObjectID = "fAF-Mx-toD"; */
-"fAF-Mx-toD.text" = "Good morning!";
+"fAF-Mx-toD.text" = "早上好!";

@@ -1,6 +1,6 @@
 
 /* Class = "UIButton"; normalTitle = "Tap to continue"; ObjectID = "Lk4-Tf-XDL"; */
-"Lk4-Tf-XDL.normalTitle" = "Tap to continue";
+"Lk4-Tf-XDL.normalTitle" = "点击继续";
 
 /* Class = "UILabel"; text = "Connected"; ObjectID = "doG-bJ-q3v"; */
-"doG-bJ-q3v.text" = "Connected";
+"doG-bJ-q3v.text" = "已连接";
