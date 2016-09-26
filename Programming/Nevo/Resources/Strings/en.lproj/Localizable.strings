@@ -24,8 +24,8 @@
 "no_sleep_data"="No sleep tracking data";
 "select_date"="Select a date";
 "sleep_duration"="sleep duration";
-"deep_sleep"="deep sleep";
-"light_sleep"="light sleep";
+"deep_sleep"="Deep sleep";
+"light_sleep"="Light Sleep";
 "sleep_timer"="sleep time";
 "wake_timer"="wake time";
 "wake_duration"="wake duration";
@@ -150,3 +150,4 @@
 "average_sleep"="Average Sleep";
 "total_sleep"="Total Sleep";
 "average_wake"="Average Wake";
+"hours"="hours";

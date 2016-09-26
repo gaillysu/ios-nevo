@@ -33,8 +33,8 @@
 "no_sleep_data"="没有睡眠数据";
 "select_date"="选择一个时间";
 "sleep_duration"="睡眠总时长";
-"deep_sleep"="深睡时长";
-"light_sleep"="浅睡时长";
+"deep_sleep"="深睡";
+"light_sleep"="浅睡";
 "sleep_timer"="入睡时间";
 "wake_timer"="醒来时间";
 "wake_duration"="醒来时长";
@@ -158,3 +158,4 @@
 "average_sleep"="平均睡眠时间";
 "total_sleep"="睡眠总时间";
 "average_wake"="平均醒来时间";
+"hours"="小时";

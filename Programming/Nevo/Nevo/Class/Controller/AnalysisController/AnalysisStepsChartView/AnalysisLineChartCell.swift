@@ -249,7 +249,7 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
             
             //chart the maximum
             if index == countArray.count-1 {
-                self.setChartViewLeftAxis(Double(maxValue/60+2), unitString: " hours")
+                self.setChartViewLeftAxis(Double(maxValue/60+2), unitString: " "+NSLocalizedString("hours", comment: ""))
             }
             
             xVals.append(dateString)
@@ -260,7 +260,7 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
         }
         
         if sortArray.count == 0 {
-            self.setChartViewLeftAxis(Double(maxValue+7), unitString: " hours")
+            self.setChartViewLeftAxis(Double(maxValue+7), unitString: " "+NSLocalizedString("hours", comment: ""))
         }
         
         if rowIndex == 0 || rowIndex == 1{
@@ -355,12 +355,12 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
             }
             //chart the maximum
             if i == countArray.count-1 {
-                self.setChartViewLeftAxis(Double(maxValue+7), unitString: " hours")
+                self.setChartViewLeftAxis(Double(maxValue+7), unitString: " "+NSLocalizedString("hours", comment: ""))
             }
         }
         
         if sortArray.count == 0 {
-            self.setChartViewLeftAxis(Double(maxValue+7), unitString: " hours")
+            self.setChartViewLeftAxis(Double(maxValue+7), unitString: " "+NSLocalizedString("hours", comment: ""))
         }
         
         for i:Int in 0..<sortArray.count {

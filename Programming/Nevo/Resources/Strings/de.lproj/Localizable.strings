@@ -33,7 +33,7 @@
 "no_sleep_data"="Keine Schlaf Tracking-Daten";
 "select_date"="Ein Datum wählen";
 "sleep_duration"="Schlafdauer";
-"deep_sleep"="Tiefschlaf";
+"Deep_sleep"="Tiefschlaf";
 "light_sleep"="leichter Schlaf";
 "sleep_timer"="Schlafzeit";
 "wake_timer"="Wachzeit";
@@ -160,3 +160,4 @@
 "average_sleep"="Average Sleep";
 "total_sleep"="Total Sleep";
 "average_wake"="Average Wake";
+"hours"="hours";

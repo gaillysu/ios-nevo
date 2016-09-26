@@ -93,7 +93,7 @@ class AnalysisStepsChartView: LineChartView {
         let leftAxis:ChartYAxis = self.leftAxis;
         leftAxis.labelCount = 3
         leftAxis.removeAllLimitLines()
-        let valueString:[String] = ["Deep Sleep","Light Sleep","Awake"]
+        let valueString:[String] = [NSLocalizedString("deep_sleep", comment: ""),NSLocalizedString("light_sleep", comment: ""),NSLocalizedString("Awake", comment: "")]
         
         let ll1:ChartLimitLine = ChartLimitLine(limit: Double(5), label: valueString[0])
         ll1.lineWidth = 0.5;
@@ -103,7 +103,7 @@ class AnalysisStepsChartView: LineChartView {
         ll1.valueFont = UIFont.systemFont(ofSize: 10.0)
         leftAxis.addLimitLine(ll1)
         
-        let ll2:ChartLimitLine = ChartLimitLine(limit: max/2.0+5, label: valueString[1])
+        let ll2:ChartLimitLine = ChartLimitLine(limit: max/2.0-5, label: valueString[1])
         ll2.lineWidth = 0.5;
         ll2.lineDashLengths = [0.0, 0.0];
         ll2.lineColor = UIColor.black
@@ -111,7 +111,7 @@ class AnalysisStepsChartView: LineChartView {
         ll2.valueFont = UIFont.systemFont(ofSize: 10.0)
         leftAxis.addLimitLine(ll2)
         
-        let ll3:ChartLimitLine = ChartLimitLine(limit: max/2.0+5, label: valueString[1])
+        let ll3:ChartLimitLine = ChartLimitLine(limit: max-5, label: valueString[2])
         ll3.lineWidth = 0.5;
         ll3.lineDashLengths = [0.0, 0.0];
         ll3.lineColor = UIColor.black

@@ -161,7 +161,8 @@ extension AnalysisController:UICollectionViewDelegate,UICollectionViewDataSource
         }else{
             let cell:AnalysisValueCell = collectionView.dequeueReusableCell(withReuseIdentifier: "AnalysisValue_Identifier", for: indexPath) as! AnalysisValueCell
             cell.backgroundColor = UIColor.clear
-            cell.titleLabel.text = contentTitleArray[(indexPath as NSIndexPath).row]
+            //cell.titleLabel.text = contentTitleArray[(indexPath as NSIndexPath).row]
+            cell.updateTitleLabel(contentTitleArray[(indexPath as NSIndexPath).row])
             var unit:String = ""
             if segmented.selectedSegmentIndex == 1 {
                 switch (indexPath as NSIndexPath).row {
