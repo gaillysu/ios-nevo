@@ -1,9 +1,9 @@
 
 /* Class = "UILabel"; text = "Push and hold the third button, until the blue LED blinks."; ObjectID = "K0B-J6-Yzh"; */
-"K0B-J6-Yzh.text" = "按下第三个按钮,直到蓝色LED眨眼。";
+"K0B-J6-Yzh.text" = "Push and hold the third button, until the blue LED blinks.";
 
 /* Class = "UIButton"; normalTitle = "Next"; ObjectID = "N2N-3j-L2h"; */
-"N2N-3j-L2h.normalTitle" = "下一步";
+"N2N-3j-L2h.normalTitle" = "Next";
 
 /* Class = "UILabel"; text = "Turn on nevo"; ObjectID = "xse-Xf-xhk"; */
-"xse-Xf-xhk.text" = "打开Nevo";
+"xse-Xf-xhk.text" = "Turn on nevo";

@@ -3,7 +3,7 @@
 "HV3-5H-8VR.text" = "点击设置按钮,打开蓝牙。";
 
 /* Class = "UIButton"; normalTitle = "Turn Bluetooth on"; ObjectID = "Vgc-yf-hly"; */
-"Vgc-yf-hly.normalTitle" = "打开蓝牙";
+"Vgc-yf-hly.normalTitle" = "蓝牙已打开";
 
 /* Class = "UILabel"; text = "Turn on Bluetooth"; ObjectID = "WkS-nm-Wd3"; */
-"WkS-nm-Wd3.text" = "蓝牙已打开";
+"WkS-nm-Wd3.text" = "打开蓝牙";
