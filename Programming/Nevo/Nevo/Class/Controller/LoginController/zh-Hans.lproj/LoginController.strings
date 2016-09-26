@@ -1,0 +1,18 @@
+
+/* Class = "UILabel"; text = "Get help with sign in"; ObjectID = "4fD-c2-9vf"; */
+"4fD-c2-9vf.text" = "获取帮助和登陆";
+
+/* Class = "UILabel"; text = "Login with social media"; ObjectID = "FG3-Pu-4pM"; */
+"FG3-Pu-4pM.text" = "使用社交账号登陆";
+
+/* Class = "UITextField"; placeholder = "User Name"; ObjectID = "Tnd-gn-9VW"; */
+"Tnd-gn-9VW.placeholder" = "用户名";
+
+/* Class = "UIButton"; normalTitle = "LOGIN"; ObjectID = "WVZ-VY-fkM"; */
+"WVZ-VY-fkM.normalTitle" = "登陆";
+
+/* Class = "UITextField"; placeholder = "Password"; ObjectID = "fmC-FL-Zk2"; */
+"fmC-FL-Zk2.placeholder" = "密码";
+
+/* Class = "UILabel"; text = "Cloud Platform"; ObjectID = "g5g-mC-67u"; */
+"g5g-mC-67u.text" = "云平台";

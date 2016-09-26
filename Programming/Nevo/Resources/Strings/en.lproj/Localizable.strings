@@ -151,3 +151,12 @@
 "total_sleep"="Total Sleep";
 "average_wake"="Average Wake";
 "hours"="hours";
+"Login"="Login";
+"Skip Login"="Skip Login";
+"Register"="Register";
+"Next"="Next";
+"Male"="Male";
+"Female"="Female";
+"one_of_the_fields_are_empty"="One of the fields are empty.";
+"two_password_is_not_the_same"="Two password is not the same";
+"please_wait"="Please wait...";

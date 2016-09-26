@@ -1,0 +1,18 @@
+
+/* Class = "UILabel"; text = "Get help with sign in"; ObjectID = "4fD-c2-9vf"; */
+"4fD-c2-9vf.text" = "Get help with sign in";
+
+/* Class = "UILabel"; text = "Login with social media"; ObjectID = "FG3-Pu-4pM"; */
+"FG3-Pu-4pM.text" = "Login with social media";
+
+/* Class = "UITextField"; placeholder = "User Name"; ObjectID = "Tnd-gn-9VW"; */
+"Tnd-gn-9VW.placeholder" = "User Name";
+
+/* Class = "UIButton"; normalTitle = "LOGIN"; ObjectID = "WVZ-VY-fkM"; */
+"WVZ-VY-fkM.normalTitle" = "LOGIN";
+
+/* Class = "UITextField"; placeholder = "Password"; ObjectID = "fmC-FL-Zk2"; */
+"fmC-FL-Zk2.placeholder" = "Password";
+
+/* Class = "UILabel"; text = "Cloud Platform"; ObjectID = "g5g-mC-67u"; */
+"g5g-mC-67u.text" = "Cloud Platform";

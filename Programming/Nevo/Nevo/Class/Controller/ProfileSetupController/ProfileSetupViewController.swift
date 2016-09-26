@@ -45,7 +45,7 @@ class ProfileSetupViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = "Register"
+        self.navigationItem.title = NSLocalizedString("Register", comment: "")
         let leftButton:UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "cancel_lunar"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(leftCancelAction(_:)))
         self.navigationItem.leftBarButtonItem = leftButton
     }
@@ -59,7 +59,7 @@ class ProfileSetupViewController: UIViewController {
     
     @IBAction func buttonActionManager(_ sender: AnyObject) {
         if(AppTheme.isNull(email!.text!) || AppTheme.isEmail(email!.text!) || AppTheme.isNull(firstNameTextField!.text!) || AppTheme.isNull(lastNameTextField!.text!) || AppTheme.isPassword(password.text!) || AppTheme.isPassword(retypePassword.text!)) {
-            let banner = Banner(title: NSLocalizedString("One of the fields are empty.", comment: ""), subtitle: nil, image: nil, backgroundColor:AppTheme.NEVO_SOLAR_YELLOW())
+            let banner = Banner(title: NSLocalizedString("one_of_the_fields_are_empty", comment: ""), subtitle: nil, image: nil, backgroundColor:AppTheme.NEVO_SOLAR_YELLOW())
             banner.dismissesOnTap = true
             banner.show(duration: 0.6)
         }else{
@@ -69,7 +69,7 @@ class ProfileSetupViewController: UIViewController {
                 infomation.registerInfor = infoDict
                 self.navigationController?.pushViewController(infomation, animated: true)
             }else{
-                let banner = Banner(title: NSLocalizedString("Two password is not the same", comment: ""), subtitle: nil, image: nil, backgroundColor:AppTheme.NEVO_SOLAR_YELLOW())
+                let banner = Banner(title: NSLocalizedString("two_password_is_not_the_same", comment: ""), subtitle: nil, image: nil, backgroundColor:AppTheme.NEVO_SOLAR_YELLOW())
                 banner.dismissesOnTap = true
                 banner.show(duration: 0.6)
             }

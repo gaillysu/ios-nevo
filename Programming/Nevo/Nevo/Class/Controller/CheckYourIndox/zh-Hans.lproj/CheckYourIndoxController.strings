@@ -1,0 +1,12 @@
+
+/* Class = "UILabel"; text = "Please open the link we've sent and verify your email address"; ObjectID = "9PZ-Hf-wqb"; */
+"9PZ-Hf-wqb.text" = "我们已经发送验证邮件到你的邮箱,请打开链接并验证您的电子邮件地址";
+
+/* Class = "UILabel"; text = "A email has been sent to:"; ObjectID = "aki-dS-XxV"; */
+"aki-dS-XxV.text" = "电子邮件已发送到:";
+
+/* Class = "UILabel"; text = "Check your inbox!"; ObjectID = "txS-Pa-wKd"; */
+"txS-Pa-wKd.text" = "检查你的邮件收件箱!";
+
+/* Class = "UILabel"; text = "Cloud@med-corp.net"; ObjectID = "yLU-Jd-CgS"; */
+"yLU-Jd-CgS.text" = "Cloud@med-corp.net";

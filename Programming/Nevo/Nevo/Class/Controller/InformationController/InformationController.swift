@@ -33,9 +33,9 @@ class InformationController: UIViewController,SMSegmentViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = "Register"
+        self.navigationItem.title = NSLocalizedString("Register", comment: "")
         
-        let leftButton:UIBarButtonItem = UIBarButtonItem(title: "Next", style: UIBarButtonItemStyle.plain, target: self, action: #selector(rightAction(_:)))
+        let leftButton:UIBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Next", comment: ""), style: UIBarButtonItemStyle.plain, target: self, action: #selector(rightAction(_:)))
         self.navigationItem.rightBarButtonItem = leftButton
         
         let datePicker:UIDatePicker = UIDatePicker()
@@ -59,9 +59,8 @@ class InformationController: UIViewController,SMSegmentViewDelegate {
             segmentView!.layer.borderWidth = 1.0
             segmentView?.layer.cornerRadius = 10
             
-            // Add segments
-            segmentView!.addSegmentWithTitle("Male", onSelectionImage: nil, offSelectionImage: nil)
-            segmentView!.addSegmentWithTitle("Female", onSelectionImage: nil, offSelectionImage: nil)
+            segmentView!.addSegmentWithTitle(NSLocalizedString("Male", comment: ""), onSelectionImage: nil, offSelectionImage: nil)
+            segmentView!.addSegmentWithTitle(NSLocalizedString("Female", comment: ""), onSelectionImage: nil, offSelectionImage: nil)
             segmentView?.selectSegmentAtIndex(0)
             metricsSegment.addSubview(segmentView!)
         }
@@ -101,7 +100,11 @@ class InformationController: UIViewController,SMSegmentViewDelegate {
     func registerRequest() {
         if AppDelegate.getAppDelegate().network!.isReachable {
             if(AppTheme.isNull(dateOfbirth!.text!) || AppTheme.isNull(heightTextField.text!) || AppTheme.isNull(weightTextfield.text!)) {
-                let banner = Banner(title: NSLocalizedString("One of the fields are empty.", comment: ""), subtitle: nil, image: nil, backgroundColor:AppTheme.NEVO_SOLAR_YELLOW())
+                // Add segments
+                //"one_of_the_fields_are_empty."
+                //"two_password_is_not_the_same"
+                //"please_wait"
+                let banner = Banner(title: NSLocalizedString("one_of_the_fields_are_empty", comment: ""), subtitle: nil, image: nil, backgroundColor:AppTheme.NEVO_SOLAR_YELLOW())
                 banner.dismissesOnTap = true
                 banner.show(duration: 0.6)
                 return
@@ -113,7 +116,7 @@ class InformationController: UIViewController,SMSegmentViewDelegate {
             registerInfor["weight"] = weightTextfield!.text!
             registerInfor["sex"] = "\(sex)"
             
-            let view = MRProgressOverlayView.showOverlayAdded(to: self.navigationController!.view, title: "Please wait...", mode: MRProgressOverlayViewMode.indeterminate, animated: true)
+            let view = MRProgressOverlayView.showOverlayAdded(to: self.navigationController!.view, title: NSLocalizedString("please_wait", comment: ""), mode: MRProgressOverlayViewMode.indeterminate, animated: true)
             view?.setTintColor(AppTheme.NEVO_SOLAR_YELLOW())
             
             //timeout

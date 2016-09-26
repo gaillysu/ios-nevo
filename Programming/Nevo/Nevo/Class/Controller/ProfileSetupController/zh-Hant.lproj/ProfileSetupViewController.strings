@@ -1,0 +1,27 @@
+
+/* Class = "UIButton"; normalTitle = "Submit"; ObjectID = "3Be-Vc-bMx"; */
+"3Be-Vc-bMx.normalTitle" = "提交";
+
+/* Class = "UILabel"; text = "Sign Up"; ObjectID = "5hK-yO-jRt"; */
+"5hK-yO-jRt.text" = "注册";
+
+/* Class = "UITextField"; placeholder = "Password"; ObjectID = "98S-al-o4l"; */
+"98S-al-o4l.placeholder" = "密码";
+
+/* Class = "UITextField"; placeholder = "Email"; ObjectID = "Gaa-7s-BJh"; */
+"Gaa-7s-BJh.placeholder" = "邮箱";
+
+/* Class = "UITextField"; placeholder = "Last name"; ObjectID = "Goa-Bq-FHb"; */
+"Goa-Bq-FHb.placeholder" = "姓氏";
+
+/* Class = "UITextField"; placeholder = "First name"; ObjectID = "Lfz-FT-0BM"; */
+"Lfz-FT-0BM.placeholder" = "名字";
+
+/* Class = "UILabel"; text = "Terms & Conditions"; ObjectID = "LkM-Zg-6Zv"; */
+"LkM-Zg-6Zv.text" = "条款和条件";
+
+/* Class = "UITextField"; placeholder = "Re-type Password"; ObjectID = "M6l-WV-9Jl"; */
+"M6l-WV-9Jl.placeholder" = "重新输入密码";
+
+/* Class = "UILabel"; text = "I agree to the terms and conditions"; ObjectID = "VU0-vW-bBF"; */
+"VU0-vW-bBF.text" = "我同意本条款和条件";

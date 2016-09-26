@@ -46,7 +46,6 @@
 		001F59541D3E108900AAC07B /* UserHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 001F59531D3E108900AAC07B /* UserHeader.xib */; };
 		00321D6D1C98EBB10069BFCC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00321D6C1C98EBB10069BFCC /* AppDelegate.swift */; };
 		00321D7C1C993C320069BFCC /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00321D771C993C320069BFCC /* LoginController.swift */; };
-		00321D7D1C993C320069BFCC /* LoginController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00321D781C993C320069BFCC /* LoginController.xib */; };
 		00344F5C1C47A86800C2FC7A /* SupportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00344F5A1C47A86800C2FC7A /* SupportViewController.swift */; };
 		00344F5D1C47A86800C2FC7A /* SupportViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00344F5B1C47A86800C2FC7A /* SupportViewController.xib */; };
 		0036EB051C48BA8300DCED46 /* connected.png in Resources */ = {isa = PBXBuildFile; fileRef = 0036EAFF1C48BA8300DCED46 /* connected.png */; };
@@ -148,6 +147,11 @@
 		005E468A1D879FB5009B6E4C /* GetWatchName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005E46891D879FB5009B6E4C /* GetWatchName.swift */; };
 		005E468C1D87DBE1009B6E4C /* WatchNamePacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005E468B1D87DBE1009B6E4C /* WatchNamePacket.swift */; };
 		0062E5EC1D616269008CF692 /* LineLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0062E5EB1D616269008CF692 /* LineLabel.swift */; };
+		0063BC1B1D98CE85000BAB44 /* LoginController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0063BC1D1D98CE85000BAB44 /* LoginController.xib */; };
+		0063BC281D98D456000BAB44 /* ForgotPasswordController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0063BC2A1D98D456000BAB44 /* ForgotPasswordController.xib */; };
+		0063BC351D98D4EC000BAB44 /* InformationController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0063BC371D98D4EC000BAB44 /* InformationController.xib */; };
+		0063BC421D98D59F000BAB44 /* CheckYourIndoxController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0063BC441D98D59F000BAB44 /* CheckYourIndoxController.xib */; };
+		0063BC4F1D98D641000BAB44 /* ProfileSetupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0063BC511D98D641000BAB44 /* ProfileSetupViewController.xib */; };
 		006756071D4848A300E8144C /* notification_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 006756061D4848A300E8144C /* notification_background.png */; };
 		006756081D4849D400E8144C /* notification_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 006756061D4848A300E8144C /* notification_background.png */; };
 		0067560C1D484B6F00E8144C /* SelectedLEDColorCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0067560A1D484B6F00E8144C /* SelectedLEDColorCell.xib */; };
@@ -217,13 +221,9 @@
 		007E0CAF1D0E5C3E00B0B600 /* ConnectOtherAppsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 007E0CAD1D0E5C3E00B0B600 /* ConnectOtherAppsCell.xib */; };
 		007F1F511CAA1B630021DF1B /* LocalNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007F1F501CAA1B630021DF1B /* LocalNotification.swift */; };
 		0089B09A1D6BE9410041148A /* CheckYourIndoxController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0089B0901D6BE9410041148A /* CheckYourIndoxController.swift */; };
-		0089B09B1D6BE9410041148A /* CheckYourIndoxController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0089B0911D6BE9410041148A /* CheckYourIndoxController.xib */; };
 		0089B09C1D6BE9410041148A /* ForgotPasswordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0089B0931D6BE9410041148A /* ForgotPasswordController.swift */; };
-		0089B09D1D6BE9410041148A /* ForgotPasswordController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0089B0941D6BE9410041148A /* ForgotPasswordController.xib */; };
 		0089B09E1D6BE9410041148A /* InformationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0089B0961D6BE9410041148A /* InformationController.swift */; };
-		0089B09F1D6BE9410041148A /* InformationController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0089B0971D6BE9410041148A /* InformationController.xib */; };
 		0089B0A31D6BF0CB0041148A /* ProfileSetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0089B0A11D6BF0CB0041148A /* ProfileSetupViewController.swift */; };
-		0089B0A41D6BF0CB0041148A /* ProfileSetupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0089B0A21D6BF0CB0041148A /* ProfileSetupViewController.xib */; };
 		0089B0AD1D6BFF250041148A /* SetingInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0089B0A61D6BFF250041148A /* SetingInfoCell.swift */; };
 		0089B0AE1D6BFF250041148A /* SetingInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0089B0A71D6BFF250041148A /* SetingInfoCell.xib */; };
 		0089B0AF1D6BFF250041148A /* SetingLoginCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0089B0A81D6BFF250041148A /* SetingLoginCell.swift */; };
@@ -650,7 +650,6 @@
 		001F59531D3E108900AAC07B /* UserHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserHeader.xib; sourceTree = "<group>"; };
 		00321D6C1C98EBB10069BFCC /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		00321D771C993C320069BFCC /* LoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
-		00321D781C993C320069BFCC /* LoginController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginController.xib; sourceTree = "<group>"; };
 		00344F5A1C47A86800C2FC7A /* SupportViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SupportViewController.swift; sourceTree = "<group>"; };
 		00344F5B1C47A86800C2FC7A /* SupportViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SupportViewController.xib; sourceTree = "<group>"; };
 		0036EAFF1C48BA8300DCED46 /* connected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = connected.png; sourceTree = "<group>"; };
@@ -734,6 +733,36 @@
 		005E468B1D87DBE1009B6E4C /* WatchNamePacket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchNamePacket.swift; sourceTree = "<group>"; };
 		0061243E1D3F0E80005E4E1E /* AnalysisStepsChartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalysisStepsChartView.swift; sourceTree = "<group>"; };
 		0062E5EB1D616269008CF692 /* LineLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineLabel.swift; sourceTree = "<group>"; };
+		0063BC1C1D98CE85000BAB44 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LoginController.xib; sourceTree = "<group>"; };
+		0063BC1F1D98CE8A000BAB44 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/LoginController.strings; sourceTree = "<group>"; };
+		0063BC211D98CE8C000BAB44 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/LoginController.strings; sourceTree = "<group>"; };
+		0063BC231D98CEB7000BAB44 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LoginController.strings"; sourceTree = "<group>"; };
+		0063BC251D98CEB8000BAB44 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/LoginController.strings"; sourceTree = "<group>"; };
+		0063BC271D98CEBA000BAB44 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/LoginController.strings; sourceTree = "<group>"; };
+		0063BC291D98D456000BAB44 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/ForgotPasswordController.xib; sourceTree = "<group>"; };
+		0063BC2C1D98D45A000BAB44 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/ForgotPasswordController.strings; sourceTree = "<group>"; };
+		0063BC2E1D98D45C000BAB44 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/ForgotPasswordController.strings; sourceTree = "<group>"; };
+		0063BC301D98D45D000BAB44 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/ForgotPasswordController.strings"; sourceTree = "<group>"; };
+		0063BC321D98D45F000BAB44 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/ForgotPasswordController.strings"; sourceTree = "<group>"; };
+		0063BC341D98D461000BAB44 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/ForgotPasswordController.strings; sourceTree = "<group>"; };
+		0063BC361D98D4EC000BAB44 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/InformationController.xib; sourceTree = "<group>"; };
+		0063BC391D98D4EF000BAB44 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InformationController.strings; sourceTree = "<group>"; };
+		0063BC3B1D98D4F1000BAB44 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/InformationController.strings; sourceTree = "<group>"; };
+		0063BC3D1D98D4F3000BAB44 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InformationController.strings"; sourceTree = "<group>"; };
+		0063BC3F1D98D4F5000BAB44 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/InformationController.strings"; sourceTree = "<group>"; };
+		0063BC411D98D4F8000BAB44 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InformationController.strings; sourceTree = "<group>"; };
+		0063BC431D98D59F000BAB44 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/CheckYourIndoxController.xib; sourceTree = "<group>"; };
+		0063BC461D98D5A2000BAB44 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/CheckYourIndoxController.strings; sourceTree = "<group>"; };
+		0063BC481D98D5A3000BAB44 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/CheckYourIndoxController.strings; sourceTree = "<group>"; };
+		0063BC4A1D98D5A6000BAB44 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/CheckYourIndoxController.strings"; sourceTree = "<group>"; };
+		0063BC4C1D98D5A7000BAB44 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/CheckYourIndoxController.strings"; sourceTree = "<group>"; };
+		0063BC4E1D98D5AA000BAB44 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/CheckYourIndoxController.strings; sourceTree = "<group>"; };
+		0063BC501D98D641000BAB44 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/ProfileSetupViewController.xib; sourceTree = "<group>"; };
+		0063BC531D98D646000BAB44 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/ProfileSetupViewController.strings; sourceTree = "<group>"; };
+		0063BC551D98D648000BAB44 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/ProfileSetupViewController.strings; sourceTree = "<group>"; };
+		0063BC571D98D64B000BAB44 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/ProfileSetupViewController.strings"; sourceTree = "<group>"; };
+		0063BC591D98D64C000BAB44 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/ProfileSetupViewController.strings"; sourceTree = "<group>"; };
+		0063BC5B1D98D64E000BAB44 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/ProfileSetupViewController.strings; sourceTree = "<group>"; };
 		006756061D4848A300E8144C /* notification_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = notification_background.png; sourceTree = "<group>"; };
 		006756091D484B6F00E8144C /* SelectedLEDColorCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectedLEDColorCell.swift; sourceTree = "<group>"; };
 		0067560A1D484B6F00E8144C /* SelectedLEDColorCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SelectedLEDColorCell.xib; sourceTree = "<group>"; };
@@ -838,13 +867,9 @@
 		007F1F501CAA1B630021DF1B /* LocalNotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocalNotification.swift; path = Frameworks/LocalNotification.swift; sourceTree = "<group>"; };
 		0086858F1B40D53C0062F544 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		0089B0901D6BE9410041148A /* CheckYourIndoxController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckYourIndoxController.swift; sourceTree = "<group>"; };
-		0089B0911D6BE9410041148A /* CheckYourIndoxController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CheckYourIndoxController.xib; sourceTree = "<group>"; };
 		0089B0931D6BE9410041148A /* ForgotPasswordController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordController.swift; sourceTree = "<group>"; };
-		0089B0941D6BE9410041148A /* ForgotPasswordController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ForgotPasswordController.xib; sourceTree = "<group>"; };
 		0089B0961D6BE9410041148A /* InformationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InformationController.swift; sourceTree = "<group>"; };
-		0089B0971D6BE9410041148A /* InformationController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InformationController.xib; sourceTree = "<group>"; };
 		0089B0A11D6BF0CB0041148A /* ProfileSetupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileSetupViewController.swift; sourceTree = "<group>"; };
-		0089B0A21D6BF0CB0041148A /* ProfileSetupViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileSetupViewController.xib; sourceTree = "<group>"; };
 		0089B0A61D6BFF250041148A /* SetingInfoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetingInfoCell.swift; sourceTree = "<group>"; };
 		0089B0A71D6BFF250041148A /* SetingInfoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SetingInfoCell.xib; sourceTree = "<group>"; };
 		0089B0A81D6BFF250041148A /* SetingLoginCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetingLoginCell.swift; sourceTree = "<group>"; };
@@ -1267,7 +1292,7 @@
 			isa = PBXGroup;
 			children = (
 				00321D771C993C320069BFCC /* LoginController.swift */,
-				00321D781C993C320069BFCC /* LoginController.xib */,
+				0063BC1D1D98CE85000BAB44 /* LoginController.xib */,
 			);
 			path = LoginController;
 			sourceTree = "<group>";
@@ -1800,7 +1825,7 @@
 			isa = PBXGroup;
 			children = (
 				0089B0901D6BE9410041148A /* CheckYourIndoxController.swift */,
-				0089B0911D6BE9410041148A /* CheckYourIndoxController.xib */,
+				0063BC441D98D59F000BAB44 /* CheckYourIndoxController.xib */,
 			);
 			path = CheckYourIndox;
 			sourceTree = "<group>";
@@ -1809,7 +1834,7 @@
 			isa = PBXGroup;
 			children = (
 				0089B0931D6BE9410041148A /* ForgotPasswordController.swift */,
-				0089B0941D6BE9410041148A /* ForgotPasswordController.xib */,
+				0063BC2A1D98D456000BAB44 /* ForgotPasswordController.xib */,
 			);
 			path = ForgotPasswordController;
 			sourceTree = "<group>";
@@ -1818,7 +1843,7 @@
 			isa = PBXGroup;
 			children = (
 				0089B0961D6BE9410041148A /* InformationController.swift */,
-				0089B0971D6BE9410041148A /* InformationController.xib */,
+				0063BC371D98D4EC000BAB44 /* InformationController.xib */,
 			);
 			path = InformationController;
 			sourceTree = "<group>";
@@ -1827,7 +1852,7 @@
 			isa = PBXGroup;
 			children = (
 				0089B0A11D6BF0CB0041148A /* ProfileSetupViewController.swift */,
-				0089B0A21D6BF0CB0041148A /* ProfileSetupViewController.xib */,
+				0063BC511D98D641000BAB44 /* ProfileSetupViewController.xib */,
 			);
 			path = ProfileSetupController;
 			sourceTree = "<group>";
@@ -3089,7 +3114,7 @@
 				000CB32A1C3E436000B4ABEC /* white_minute.png in Resources */,
 				00344F5D1C47A86800C2FC7A /* SupportViewController.xib in Resources */,
 				0036EB081C48BA8300DCED46 /* settimer.png in Resources */,
-				0089B09B1D6BE9410041148A /* CheckYourIndoxController.xib in Resources */,
+				0063BC421D98D59F000BAB44 /* CheckYourIndoxController.xib in Resources */,
 				004ED1F11CB386CC009D053C /* iRate.bundle in Resources */,
 				00120E851D75763D00CE0C32 /* RepeatViewCell.xib in Resources */,
 				00C8C8171D8B950A00621162 /* OldOtaViewController.xib in Resources */,
@@ -3100,14 +3125,14 @@
 				00478F4F1A8F637D00D0DCE2 /* clockViewHour.png in Resources */,
 				006A624D1D6AA62100458305 /* SolarIndicatorController.xib in Resources */,
 				0050D6111C28E0DB004F6F80 /* PresetTableViewCell.xib in Resources */,
-				0089B09D1D6BE9410041148A /* ForgotPasswordController.xib in Resources */,
+				0063BC281D98D456000BAB44 /* ForgotPasswordController.xib in Resources */,
 				000CB3291C3E436000B4ABEC /* white_hour.png in Resources */,
 				0050D5FB1C28E0DB004F6F80 /* LineColorCell.xib in Resources */,
 				0058B3EB1CF55D590079A213 /* ConnectOtherAppsController.xib in Resources */,
 				0050D5F91C28E0DB004F6F80 /* NevoOtaViewController.xib in Resources */,
 				0089B0AE1D6BFF250041148A /* SetingInfoCell.xib in Resources */,
 				0036EB0D1C48C36700DCED46 /* bluetoothoff_background.png in Resources */,
-				0089B0A41D6BF0CB0041148A /* ProfileSetupViewController.xib in Resources */,
+				0063BC4F1D98D641000BAB44 /* ProfileSetupViewController.xib in Resources */,
 				004ED1F01CB386CC009D053C /* Info.plist in Resources */,
 				001F1B7C1B57777B001DD426 /* nevo_wacth.png in Resources */,
 				0036EB051C48BA8300DCED46 /* connected.png in Resources */,
@@ -3131,7 +3156,7 @@
 				0089B0B01D6BFF250041148A /* SetingLoginCell.xib in Resources */,
 				00EC9DDA1C85834F00280904 /* TutorialTwoViewController.xib in Resources */,
 				00E650971C83DA8000278D3E /* homeTutorial.png in Resources */,
-				0089B09F1D6BE9410041148A /* InformationController.xib in Resources */,
+				0063BC351D98D4EC000BAB44 /* InformationController.xib in Resources */,
 				00120E781D7550D500CE0C32 /* UserHeader.xib in Resources */,
 				0036EB061C48BA8300DCED46 /* connected1.png in Resources */,
 				0050D6961C28E1CD004F6F80 /* AddAlarmTableViewCell.xib in Resources */,
@@ -3148,7 +3173,7 @@
 				000CB3281C3E436000B4ABEC /* white_clock.png in Resources */,
 				0089B0B21D6BFF250041148A /* SetingNotLoginCell.xib in Resources */,
 				00C640F61A8DEE0800815CF8 /* clockView600.png in Resources */,
-				00321D7D1C993C320069BFCC /* LoginController.xib in Resources */,
+				0063BC1B1D98CE85000BAB44 /* LoginController.xib in Resources */,
 				00BF2D9B1C7FED2200909316 /* VideoPlayController.xib in Resources */,
 				0089B0B71D6C4BDC0041148A /* SleepHistoryViewCell.xib in Resources */,
 			);
@@ -3803,6 +3828,71 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		0063BC1D1D98CE85000BAB44 /* LoginController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0063BC1C1D98CE85000BAB44 /* Base */,
+				0063BC1F1D98CE8A000BAB44 /* en */,
+				0063BC211D98CE8C000BAB44 /* fr */,
+				0063BC231D98CEB7000BAB44 /* zh-Hans */,
+				0063BC251D98CEB8000BAB44 /* zh-Hant */,
+				0063BC271D98CEBA000BAB44 /* de */,
+			);
+			name = LoginController.xib;
+			sourceTree = "<group>";
+		};
+		0063BC2A1D98D456000BAB44 /* ForgotPasswordController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0063BC291D98D456000BAB44 /* Base */,
+				0063BC2C1D98D45A000BAB44 /* en */,
+				0063BC2E1D98D45C000BAB44 /* fr */,
+				0063BC301D98D45D000BAB44 /* zh-Hans */,
+				0063BC321D98D45F000BAB44 /* zh-Hant */,
+				0063BC341D98D461000BAB44 /* de */,
+			);
+			name = ForgotPasswordController.xib;
+			sourceTree = "<group>";
+		};
+		0063BC371D98D4EC000BAB44 /* InformationController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0063BC361D98D4EC000BAB44 /* Base */,
+				0063BC391D98D4EF000BAB44 /* en */,
+				0063BC3B1D98D4F1000BAB44 /* fr */,
+				0063BC3D1D98D4F3000BAB44 /* zh-Hans */,
+				0063BC3F1D98D4F5000BAB44 /* zh-Hant */,
+				0063BC411D98D4F8000BAB44 /* de */,
+			);
+			name = InformationController.xib;
+			sourceTree = "<group>";
+		};
+		0063BC441D98D59F000BAB44 /* CheckYourIndoxController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0063BC431D98D59F000BAB44 /* Base */,
+				0063BC461D98D5A2000BAB44 /* en */,
+				0063BC481D98D5A3000BAB44 /* fr */,
+				0063BC4A1D98D5A6000BAB44 /* zh-Hans */,
+				0063BC4C1D98D5A7000BAB44 /* zh-Hant */,
+				0063BC4E1D98D5AA000BAB44 /* de */,
+			);
+			name = CheckYourIndoxController.xib;
+			sourceTree = "<group>";
+		};
+		0063BC511D98D641000BAB44 /* ProfileSetupViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0063BC501D98D641000BAB44 /* Base */,
+				0063BC531D98D646000BAB44 /* en */,
+				0063BC551D98D648000BAB44 /* fr */,
+				0063BC571D98D64B000BAB44 /* zh-Hans */,
+				0063BC591D98D64C000BAB44 /* zh-Hant */,
+				0063BC5B1D98D64E000BAB44 /* de */,
+			);
+			name = ProfileSetupViewController.xib;
+			sourceTree = "<group>";
+		};
 		007C45411D2B4C20004929E0 /* MorningTutorialController.xib */ = {
 			isa = PBXVariantGroup;
 			children = (

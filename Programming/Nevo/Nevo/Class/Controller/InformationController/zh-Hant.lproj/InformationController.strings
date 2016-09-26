@@ -1,0 +1,21 @@
+
+/* Class = "UILabel"; text = "Don't worry, it is completely private to you and your phone."; ObjectID = "Hvc-CB-RzI"; */
+"Hvc-CB-RzI.text" = "你不用担心,你的个人信息是私密的,未经你的授权是无法查看的";
+
+/* Class = "UILabel"; text = "Check our private policy."; ObjectID = "I93-0k-cdB"; */
+"I93-0k-cdB.text" = "查看我们的隐私政策";
+
+/* Class = "UILabel"; text = "Your information"; ObjectID = "L3v-JU-xKx"; */
+"L3v-JU-xKx.text" = "你的个人信息";
+
+/* Class = "UILabel"; text = "Enter your information below."; ObjectID = "LIq-Cx-bHC"; */
+"LIq-Cx-bHC.text" = "确认你输入的信息";
+
+/* Class = "UITextField"; placeholder = "Weight(35-150 KG)"; ObjectID = "NTv-do-MVa"; */
+"NTv-do-MVa.placeholder" = "重量(35-150 KG)";
+
+/* Class = "UITextField"; placeholder = "Date of Birth"; ObjectID = "eXR-xK-yaF"; */
+"eXR-xK-yaF.placeholder" = "出生日期";
+
+/* Class = "UITextField"; placeholder = "Height(100-250 CM)"; ObjectID = "lI6-oe-0Ah"; */
+"lI6-oe-0Ah.placeholder" = "身高(100-250 CM)";

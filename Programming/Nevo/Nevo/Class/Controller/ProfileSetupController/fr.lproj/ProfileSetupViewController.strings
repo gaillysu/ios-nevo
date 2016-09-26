@@ -1,0 +1,27 @@
+
+/* Class = "UIButton"; normalTitle = "Submit"; ObjectID = "3Be-Vc-bMx"; */
+"3Be-Vc-bMx.normalTitle" = "Submit";
+
+/* Class = "UILabel"; text = "Sign Up"; ObjectID = "5hK-yO-jRt"; */
+"5hK-yO-jRt.text" = "Sign Up";
+
+/* Class = "UITextField"; placeholder = "Password"; ObjectID = "98S-al-o4l"; */
+"98S-al-o4l.placeholder" = "Password";
+
+/* Class = "UITextField"; placeholder = "Email"; ObjectID = "Gaa-7s-BJh"; */
+"Gaa-7s-BJh.placeholder" = "Email";
+
+/* Class = "UITextField"; placeholder = "Last name"; ObjectID = "Goa-Bq-FHb"; */
+"Goa-Bq-FHb.placeholder" = "Last name";
+
+/* Class = "UITextField"; placeholder = "First name"; ObjectID = "Lfz-FT-0BM"; */
+"Lfz-FT-0BM.placeholder" = "First name";
+
+/* Class = "UILabel"; text = "Terms & Conditions"; ObjectID = "LkM-Zg-6Zv"; */
+"LkM-Zg-6Zv.text" = "Terms & Conditions";
+
+/* Class = "UITextField"; placeholder = "Re-type Password"; ObjectID = "M6l-WV-9Jl"; */
+"M6l-WV-9Jl.placeholder" = "Re-type Password";
+
+/* Class = "UILabel"; text = "I agree to the terms and conditions"; ObjectID = "VU0-vW-bBF"; */
+"VU0-vW-bBF.text" = "I agree to the terms and conditions";

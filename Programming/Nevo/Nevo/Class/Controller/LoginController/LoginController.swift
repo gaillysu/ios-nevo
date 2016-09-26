@@ -37,8 +37,8 @@ class LoginController: UIViewController,UITextFieldDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = "Login"
-        let rightButton:UIBarButtonItem = UIBarButtonItem(title: "Skip Login", style: UIBarButtonItemStyle.plain, target: self, action: #selector(rightAction(_:)))
+        self.navigationItem.title = NSLocalizedString("Login", comment: "")
+        let rightButton:UIBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Skip Login", comment: ""), style: UIBarButtonItemStyle.plain, target: self, action: #selector(rightAction(_:)))
         self.navigationItem.rightBarButtonItem = rightButton
         
         for controllers:UIViewController in self.navigationController!.viewControllers {
