@@ -88,7 +88,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
         mConnectionController = ConnectionControllerImpl()
         mConnectionController?.setDelegate(self)
         let userDefaults = UserDefaults.standard;
-        lastSync = userDefaults.double(forKey: LAST_SYNC_DATE_KEY)
+        //lastSync = userDefaults.double(forKey: LAST_SYNC_DATE_KEY)
         
         //cancel all notifications  PM-13:00, PM 19:00
         LocalNotification.sharedInstance().cancelNotification([NevoAllKeys.LocalStartSportKey(),NevoAllKeys.LocalEndSportKey()])
