@@ -142,7 +142,7 @@
 "Awake"="Awake";
 "Sleep"="Sleep";
 "tips_content"="Tips:\n    Sleep alarm allows you set a timmer that your Nevo can automatic turn on sleep mode.";
-"Disable"="Every Disable";
+"Disable"="Disabled";
 "Sunday"="Every Sunday";
 "Monday"="Every Monday";
 "Tuesday"="Every Tuesday";
@@ -153,13 +153,13 @@
 "this_week"="This week";
 "last_week"="Last week";
 "last_30_day"="Last 30 Day";
-"average_steps"="Average Steps";
+"average_steps"="Avg Steps";
 "total_steps"="Total Steps";
-"average_calories"="Average Calories";
-"average_time"="Average Time";
-"average_sleep"="Average Sleep";
+"average_calories"="Avg Calories";
+"average_time"="Avg Time";
+"average_sleep"="Avg Sleep";
 "total_sleep"="Total Sleep";
-"average_wake"="Average Wake";
+"average_wake"="Avg Wake";
 "hours"="hours";
 "Login"="Login";
 "Skip Login"="Skip Login";

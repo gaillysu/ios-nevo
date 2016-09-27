@@ -23,8 +23,8 @@ class AnalysisValueCell: UICollectionViewCell {
     func updateTitleLabel(_ labelText: String){
         let contentDict:[String:AnyObject] = [NSFontAttributeName:titleLabel.font]
         titleLabel.text = labelText
-        let statusLabelSize = labelText.size(attributes: contentDict)
-        labelWidthConstraint.constant = statusLabelSize.width+5
+        //let statusLabelSize = labelText.size(attributes: contentDict)
+        labelWidthConstraint.constant = 90
         layoutIfNeeded()
     }
     

@@ -135,7 +135,7 @@ class SleepHistoricalViewController: PublicClassController,ChartViewDelegate,Sel
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAtIndexPath indexPath: IndexPath) -> UICollectionViewCell {
         let cell:SleepHistoryViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "SleepHistoryValue_Identifier", for: indexPath) as! SleepHistoryViewCell
-        cell.titleLabel.text = contentTitleArray[(indexPath as NSIndexPath).row].uppercased()
+        cell.updateTitleLabel(contentTitleArray[(indexPath as NSIndexPath).row].uppercased())
         cell.valueLabel.text = "\(contentTArray[(indexPath as NSIndexPath).row])"
         cell.backgroundColor = UIColor.white
         return cell

@@ -19,12 +19,15 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.80000000000000004" translatesAutoresizingMaskIntoConstraints="NO" id="XLg-py-bFt">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XLg-py-bFt">
+                        <constraints>
+                            <constraint firstAttribute="width" constant="150" id="wvd-6g-zaN"/>
+                        </constraints>
                         <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="17"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="24:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FF3-Sx-tfv">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="24:00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FF3-Sx-tfv">
                         <fontDescription key="fontDescription" name="Raleway" family="Raleway" pointSize="15"/>
                         <color key="textColor" red="0.62745098040000002" green="0.51764705879999995" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
@@ -32,17 +35,17 @@
                 </subviews>
             </view>
             <constraints>
-                <constraint firstItem="XLg-py-bFt" firstAttribute="width" secondItem="FF3-Sx-tfv" secondAttribute="width" id="3lJ-ZX-a0t"/>
-                <constraint firstItem="XLg-py-bFt" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="15" id="7zZ-A8-vNq"/>
+                <constraint firstItem="XLg-py-bFt" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="10" id="7zZ-A8-vNq"/>
                 <constraint firstItem="FF3-Sx-tfv" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="LXp-fe-loE"/>
                 <constraint firstAttribute="bottom" secondItem="XLg-py-bFt" secondAttribute="bottom" id="NtE-cf-SiI"/>
                 <constraint firstItem="XLg-py-bFt" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="Y6x-fZ-5Tm"/>
                 <constraint firstAttribute="trailing" secondItem="FF3-Sx-tfv" secondAttribute="trailing" id="gfC-qZ-sJt"/>
-                <constraint firstItem="FF3-Sx-tfv" firstAttribute="leading" secondItem="XLg-py-bFt" secondAttribute="trailing" id="p1T-im-ZWj"/>
+                <constraint firstItem="FF3-Sx-tfv" firstAttribute="leading" secondItem="XLg-py-bFt" secondAttribute="trailing" constant="10" id="p1T-im-ZWj"/>
                 <constraint firstAttribute="bottom" secondItem="FF3-Sx-tfv" secondAttribute="bottom" id="qap-6z-S1q"/>
             </constraints>
             <size key="customSize" width="320" height="50"/>
             <connections>
+                <outlet property="labelWidth" destination="wvd-6g-zaN" id="D97-tJ-vDb"/>
                 <outlet property="titleLabel" destination="XLg-py-bFt" id="r9y-vw-R3Q"/>
                 <outlet property="valueLabel" destination="FF3-Sx-tfv" id="XeB-lJ-pcP"/>
             </connections>

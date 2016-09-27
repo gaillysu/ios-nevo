@@ -43,9 +43,9 @@
                 <constraint firstItem="j2C-vS-BTS" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="Crv-YD-stk"/>
                 <constraint firstAttribute="trailing" secondItem="j2C-vS-BTS" secondAttribute="trailing" constant="10" id="KKH-LA-Qlx"/>
                 <constraint firstItem="0ig-73-4dq" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="kB8-2z-6r2"/>
-                <constraint firstItem="j2C-vS-BTS" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="25" id="pYs-yC-13o"/>
+                <constraint firstItem="j2C-vS-BTS" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="66" id="pYs-yC-13o"/>
                 <constraint firstAttribute="bottom" secondItem="0ig-73-4dq" secondAttribute="bottom" id="sun-vd-NPi"/>
-                <constraint firstItem="0ig-73-4dq" firstAttribute="top" secondItem="j2C-vS-BTS" secondAttribute="bottom" constant="43" id="ue7-p7-6ee"/>
+                <constraint firstItem="0ig-73-4dq" firstAttribute="top" secondItem="j2C-vS-BTS" secondAttribute="bottom" constant="33" id="ue7-p7-6ee"/>
             </constraints>
         </view>
     </objects>

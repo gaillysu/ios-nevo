@@ -157,7 +157,7 @@
 "average_time"="平均步行时间";
 "average_sleep"="平均睡眠时间";
 "total_sleep"="睡眠总时间";
-"average_wake"="平均醒来时间";
+"average_wake"="平均醒着时间";
 "hours"="小时";
 "Login"="登陆";
 "Skip Login"="跳过登陆";

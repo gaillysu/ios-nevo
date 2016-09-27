@@ -13,9 +13,19 @@ class SleepHistoryViewCell: UICollectionViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var valueLabel: UILabel!
     
+    @IBOutlet weak var labelWidth: NSLayoutConstraint!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+    }
+    
+    func updateTitleLabel(_ labelText: String){
+        let contentDict:[String:AnyObject] = [NSFontAttributeName:titleLabel.font]
+        titleLabel.text = labelText
+        //let statusLabelSize = labelText.size(attributes: contentDict)
+        labelWidth.constant = 90
+        layoutIfNeeded()
     }
 
 }
