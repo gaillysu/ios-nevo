@@ -40,7 +40,15 @@ class SleepHistoricalView: UIView, ChartViewDelegate{
 
     func setDataCount(_ count:Int){
         if(count == 0) {
-            return
+            for i:Int in 0..<2 {
+                let seleModel:UserSleep = UserSleep()
+                seleModel.date = Date.yesterday().beginningOfDay.timeIntervalSince1970+Double(i*86400)
+                seleModel.hourlySleepTime = "[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]";
+                seleModel.hourlyWakeTime = "[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]";
+                seleModel.hourlyLightTime = "[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]";
+                seleModel.hourlyDeepTime = "[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]";
+                queryModel.add(seleModel)
+            }
         }
         
         var sleepEntry:[[String:[Double]]] = []
@@ -111,8 +119,6 @@ class SleepHistoricalView: UIView, ChartViewDelegate{
             
             //Calculate the total sleep time
             totalNumber += val1+val2+val3
-            
-            
         }
         
         for value in sleepEntry{
@@ -122,11 +128,14 @@ class SleepHistoricalView: UIView, ChartViewDelegate{
             }
         }
         
-        chartView!.invalidateChart()
-        
-        if totalNumber == 0 {
-            chartView?.data = nil
+        if sleepEntry.count == 0 {
+            for i:Int in 0..<8 {
+                NSLog("value2:\(0),\(i)")
+                chartView!.addDataPoint("\(i):00", entry: [0,0,60])
+            }
         }
+        
+        chartView!.invalidateChart()
     }
     
     func calculateDate(_ date:TimeInterval,hour:Int)->String {

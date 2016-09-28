@@ -19,7 +19,7 @@ class StepsHistoryViewController: PublicClassController,ChartViewDelegate {
     
     fileprivate var queryArray:NSArray = NSArray()
     fileprivate var contentTitleArray:[String] = [NSLocalizedString("CALORIE", comment: ""), NSLocalizedString("STEPS", comment: ""), NSLocalizedString("TIME", comment: ""),NSLocalizedString("KM", comment: "")]
-    fileprivate var contentTArray:[String] = [NSLocalizedString("--", comment: ""),NSLocalizedString("--", comment: ""),NSLocalizedString("--", comment: ""),NSLocalizedString("--", comment: "")]
+    fileprivate var contentTArray:[String] = ["0","0","0","0"]
     fileprivate var queryModel:NSMutableArray = NSMutableArray()
     fileprivate let sleepArray:NSMutableArray = NSMutableArray();
     fileprivate let detailArray:NSMutableArray = NSMutableArray(capacity:1);
@@ -135,6 +135,7 @@ class StepsHistoryViewController: PublicClassController,ChartViewDelegate {
         yAxis.drawAxisLineEnabled  = true
         yAxis.drawGridLinesEnabled  = true
         yAxis.drawLimitLinesBehindDataEnabled = true
+        yAxis.axisMaxValue = 500;
         yAxis.axisMinValue = 0
         yAxis.setLabelCount(5, force: true)
         
@@ -190,6 +191,8 @@ class StepsHistoryViewController: PublicClassController,ChartViewDelegate {
         var xVal:[String] = [];
         var yVal:[BarChartDataEntry] = [];
         
+        var maxValue:Double = 0;
+        
         let stepsModel:UserSteps = queryModel.object(at: 0) as! UserSteps;
         let hourlystepsArray:NSArray = AppTheme.jsonToArray(stepsModel.hourlysteps)
         for (index,steps) in hourlystepsArray.enumerated(){
@@ -201,6 +204,13 @@ class StepsHistoryViewController: PublicClassController,ChartViewDelegate {
             }
             xVal.append("\(index):00")
             yVal.append(BarChartDataEntry(values: [val1], xIndex:index))
+            
+            if val1>500 {
+                if val1>maxValue{
+                    maxValue = val1
+                    chartView!.leftAxis.axisMaxValue = val1+100
+                }
+            }
         }
         
         //柱状图表

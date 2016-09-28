@@ -14,7 +14,7 @@ class SleepHistoricalViewController: PublicClassController,ChartViewDelegate,Sel
 
     @IBOutlet weak var queryView: SleepHistoricalView!
     fileprivate var contentTitleArray:[String] = []
-    fileprivate var contentTArray:[String] = [NSLocalizedString("--", comment: ""),NSLocalizedString("--", comment: ""),NSLocalizedString("--", comment: ""),NSLocalizedString("--", comment: "")]
+    fileprivate var contentTArray:[String] = ["0","0","0","0"]
     fileprivate var selectedDate:Date = Date()
 
     fileprivate var todaySleepArray:NSArray = UserSleep.getCriteria("WHERE date BETWEEN \(Date.yesterday().beginningOfDay.timeIntervalSince1970) AND \(Date().endOfDay.timeIntervalSince1970)")

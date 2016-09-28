@@ -30,6 +30,8 @@ class AnalysisStepsChartView: LineChartView {
         rightAxis.drawLabelsEnabled = false;
         rightAxis.drawZeroLineEnabled = false
 
+        yAxis.axisMaxValue = 65
+        yAxis.axisMinValue = 0
         yAxis.axisLineColor = UIColor.white
         yAxis.drawGridLinesEnabled = false
         yAxis.drawLabelsEnabled = false
@@ -59,13 +61,13 @@ class AnalysisStepsChartView: LineChartView {
         for (index,vlaue) in yVals.enumerated() {
             let chartData1:BarChartDataEntry = BarChartDataEntry(value: 60-vlaue[2], xIndex:index)
             chartDataArray.append(chartData1)
-            
+
             if maxValue < 60-vlaue[2]{
                maxValue = 60-vlaue[2]
             }
         }
         
-        self.setLeftAxisLimitLine(maxValue)
+        self.setLeftAxisLimitLine(65)
         
         let lineChartDataSet = LineChartDataSet(yVals: chartDataArray, label: "");
         lineChartDataSet.setColor(UIColor.white)
