@@ -97,7 +97,8 @@ class SleepHistoricalViewController: PublicClassController,ChartViewDelegate,Sel
                     contentTArray.replaceSubrange(Range(1..<2), with: [reString])
                 }
             }
-            let quality:String = "\(Int(deepTime/sleepTime*100))%"
+            let isNan = (deepTime/sleepTime).isNaN
+            let quality:String = "\(isNan ? 0:Int(deepTime/sleepTime*100))%"
             contentTArray.replaceSubrange(Range(2..<3), with: [quality])
             contentTArray.replaceSubrange(Range(3..<4), with: ["\(Int(sleepTime/60)) h"])
             self.queryView.detailCollectionView.reloadData()
@@ -128,27 +129,24 @@ class SleepHistoricalViewController: PublicClassController,ChartViewDelegate,Sel
         return (Int(time),Int(60*(time.truncatingRemainder(dividingBy: 1))));
     }
 
+}
+
+extension SleepHistoricalViewController:UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout{
+    // MARK: - UICollectionViewDelegateFlowLayout
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize{
+        return CGSize(width: (UIScreen.main.bounds.size.width)/2.0, height: collectionView.frame.size.height/2 - 10)
+    }
+    
     // MARK: - UICollectionViewDataSource
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return contentTitleArray.count
     }
-
-    func collectionView(_ collectionView: UICollectionView, cellForItemAtIndexPath indexPath: IndexPath) -> UICollectionViewCell {
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell:SleepHistoryViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "SleepHistoryValue_Identifier", for: indexPath) as! SleepHistoryViewCell
         cell.updateTitleLabel(contentTitleArray[(indexPath as NSIndexPath).row].uppercased())
         cell.valueLabel.text = "\(contentTArray[(indexPath as NSIndexPath).row])"
         cell.backgroundColor = UIColor.white
         return cell
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

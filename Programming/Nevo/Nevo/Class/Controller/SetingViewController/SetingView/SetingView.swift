@@ -20,7 +20,7 @@ class SetingView: UIView {
     func bulidNotificationViewUI(_ delegate:ButtonManagerCallBack){
         //title.text = NSLocalizedString("Setting", comment: "")
         mDelegate = delegate
-        tableListView.backgroundColor = UIColor.white
+        //tableListView.backgroundColor = UIColor.white
         tableListView.separatorColor = UIColor.lightGray
     }
 

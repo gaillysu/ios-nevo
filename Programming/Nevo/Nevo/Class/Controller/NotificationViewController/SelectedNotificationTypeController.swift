@@ -33,7 +33,7 @@ class SelectedNotificationTypeController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = NSLocalizedString(titleString!, comment: "")
-        self.view.backgroundColor = UIColor.white
+        //self.view.backgroundColor = UIColor.white
         self.tableView.register(UINib(nibName: "LineColorCell",bundle: nil), forCellReuseIdentifier: "LineColor_Identifier")
         self.tableView.separatorStyle = UITableViewCellSeparatorStyle.none
     }

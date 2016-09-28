@@ -32,7 +32,7 @@ class AlarmClockController: UITableViewController,AddAlarmDelegate {
     }
 
     func initValue() {
-        self.view.backgroundColor = UIColor.white
+        //self.view.backgroundColor = UIColor.white
         
         let array:NSArray = UserAlarm.getAll()
         mWakeAlarmArray.removeAllObjects()

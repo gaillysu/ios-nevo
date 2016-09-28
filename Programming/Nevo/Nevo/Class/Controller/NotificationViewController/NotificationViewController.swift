@@ -30,7 +30,7 @@ class NotificationViewController: UITableViewController,SelectedNotificationDele
         super.viewDidLoad()
         initNotificationSettingArray()
         notificationView.bulidNotificationView(self.navigationItem)
-        notificationView.backgroundColor = UIColor.white
+        //notificationView.backgroundColor = UIColor.white
     }
 
     override func didReceiveMemoryWarning() {

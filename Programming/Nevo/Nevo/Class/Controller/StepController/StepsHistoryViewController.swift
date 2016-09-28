@@ -10,7 +10,7 @@ import UIKit
 import Charts
 import SwiftEventBus
 
-class StepsHistoryViewController: PublicClassController,UICollectionViewDelegateFlowLayout,ChartViewDelegate {
+class StepsHistoryViewController: PublicClassController,ChartViewDelegate {
 
     @IBOutlet weak var stepsHistory: UICollectionView!
     @IBOutlet weak var chartView: BarChartView!
@@ -155,36 +155,6 @@ class StepsHistoryViewController: PublicClassController,UICollectionViewDelegate
         // Dispose of any resources that can be recreated.
     }
     
-    // MARK: - UICollectionViewDataSource
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return contentTitleArray.count
-    }
-
-    func collectionView(_ collectionView: UICollectionView, cellForItemAtIndexPath indexPath: IndexPath) -> UICollectionViewCell {
-        let cell:StepGoalSetingViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "StepGoalSetingIdentifier", for: indexPath) as! StepGoalSetingViewCell
-        cell.backgroundColor = UIColor.white
-        cell.titleLabel.text = contentTitleArray[(indexPath as NSIndexPath).row]
-        
-        switch (indexPath as NSIndexPath).row {
-        case 0:
-            cell.valueLabel.text = "\(contentTArray[(indexPath as NSIndexPath).row]) Cal"
-            break;
-        case 1:
-            cell.valueLabel.text = "\(contentTArray[(indexPath as NSIndexPath).row])"
-            break;
-        case 2:
-            cell.valueLabel.text = "\(contentTArray[(indexPath as NSIndexPath).row]) H"
-            break;
-        case 3:
-            cell.valueLabel.text = "\(contentTArray[(indexPath as NSIndexPath).row]) KM"
-            break;
-        default:
-            break;
-        }
-        
-        return cell
-    }
-    
     func bulidStepHistoricalChartView(_ modelArray:NSArray){
         queryModel.removeAllObjects()
         sleepArray.removeAllObjects()
@@ -208,18 +178,23 @@ class StepsHistoryViewController: PublicClassController,UICollectionViewDelegate
     
     func setDataCount(_ count:Int, Range range:Double){
         if(count == 0) {
-            chartView?.data = nil
-            return
+            let stepsModel:UserSteps = UserSteps()
+            stepsModel.date = Date().timeIntervalSince1970
+            stepsModel.createDate = Date().stringFromFormat("yyyyMMdd")
+            stepsModel.hourlysteps = "[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]"
+            stepsModel.hourlydistance = "[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]"
+            stepsModel.hourlycalories = "[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]"
+            queryModel.add(stepsModel)
         }
         
         var xVal:[String] = [];
         var yVal:[BarChartDataEntry] = [];
         
-        let seleModel:UserSteps = queryModel.object(at: 0) as! UserSteps;
-        let hourlystepsArray:NSArray = AppTheme.jsonToArray(seleModel.hourlysteps)
+        let stepsModel:UserSteps = queryModel.object(at: 0) as! UserSteps;
+        let hourlystepsArray:NSArray = AppTheme.jsonToArray(stepsModel.hourlysteps)
         for (index,steps) in hourlystepsArray.enumerated(){
             let val1:Double  = (steps as! NSNumber).doubleValue;
-            let date:Date = Date(timeIntervalSince1970: seleModel.date)
+            let date:Date = Date(timeIntervalSince1970: stepsModel.date)
             var dateString:NSString = date.stringFromFormat("yyyyMMdd") as NSString
             if(dateString.length < 8) {
                 dateString = "00000000"
@@ -286,5 +261,42 @@ extension StepsHistoryViewController {
         //Formula's = (2.0 X persons KG X 3.5)/200 = calories per minute
         let calories:Double = (2.0*userWeight*3.5)/200*Double(activeTimer)
         completionData(String(format: "%.2f",miles), String(format: "%.2f",calories))
+    }
+}
+
+extension StepsHistoryViewController:UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout{
+    // MARK: - UICollectionViewDelegateFlowLayout
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize{
+        return CGSize(width: (UIScreen.main.bounds.size.width)/2.0, height: collectionView.frame.size.height/2 - 10)
+    }
+    
+    // MARK: - UICollectionViewDataSource
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return contentTitleArray.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell:StepGoalSetingViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "StepGoalSetingIdentifier", for: indexPath) as! StepGoalSetingViewCell
+        cell.backgroundColor = UIColor.white
+        cell.titleLabel.text = contentTitleArray[(indexPath as NSIndexPath).row]
+        
+        switch (indexPath as NSIndexPath).row {
+        case 0:
+            cell.valueLabel.text = "\(contentTArray[(indexPath as NSIndexPath).row]) Cal"
+            break;
+        case 1:
+            cell.valueLabel.text = "\(contentTArray[(indexPath as NSIndexPath).row])"
+            break;
+        case 2:
+            cell.valueLabel.text = "\(contentTArray[(indexPath as NSIndexPath).row]) H"
+            break;
+        case 3:
+            cell.valueLabel.text = "\(contentTArray[(indexPath as NSIndexPath).row]) KM"
+            break;
+        default:
+            break;
+        }
+        
+        return cell
     }
 }

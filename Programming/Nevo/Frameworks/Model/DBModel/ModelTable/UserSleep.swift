@@ -24,7 +24,7 @@ class UserSleep: NSObject {
     fileprivate var sleepModel:SleepModel = SleepModel()
 
     override init() {
-        
+        super.init()
     }
 
     init(keyDict:NSDictionary) {

@@ -36,7 +36,7 @@ class NewAddAlarmController: UITableViewController,ButtonManagerCallBack,Selecte
         
         self.tableView.register(UINib(nibName: "NewAddAlarmHeader", bundle: nil), forHeaderFooterViewReuseIdentifier: "identifier_header")
         self.tableView.register(UINib(nibName: "AlarmTypeCell", bundle: nil), forCellReuseIdentifier: "AlarmType_identifier")
-        self.tableView.backgroundColor = UIColor.white
+        //self.tableView.backgroundColor = UIColor.white
         //self.tableView.separatorStyle = UITableViewCellSeparatorStyle.None
         self.tableView.separatorColor = UIColor.getLightBaseColor()
     }
@@ -52,8 +52,9 @@ class NewAddAlarmController: UITableViewController,ButtonManagerCallBack,Selecte
             let tipsLabel:UILabel = UILabel(frame: CGRect(x: 10,y: 0,width: UIScreen.main.bounds.size.width-20,height: 120))
             tipsLabel.numberOfLines = 0
             tipsLabel.text = tipsString
-            tipsLabel.font = UIFont(name: "Helvetica Neue", size: 10)
-            let attributeDict:[String : AnyObject] = [NSFontAttributeName: UIFont.systemFont(ofSize: 16)]
+            
+            tipsLabel.font = UIFont(name: "HelveticaNeue-Thin", size: 16)
+            let attributeDict:[String : AnyObject] = [NSFontAttributeName: UIFont(name: "HelveticaNeue-Thin", size: 16)!]
             let AttributedStr:NSMutableAttributedString = NSMutableAttributedString(string: tipsString, attributes: attributeDict)
             AttributedStr.addAttribute(NSForegroundColorAttributeName, value: AppTheme.NEVO_SOLAR_YELLOW(), range: NSMakeRange(0, 5))
             tipsLabel.attributedText = AttributedStr

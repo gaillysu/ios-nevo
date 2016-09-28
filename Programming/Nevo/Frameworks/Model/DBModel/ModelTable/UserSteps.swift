@@ -87,6 +87,10 @@ class UserSteps: NSObject {
             self.setValue(value, forKey: key as! String)
         }
     }
+    
+    override init() {
+        super.init()
+    }
 
     class func getPropertys()->NSDictionary {
         let proNames:NSMutableArray = NSMutableArray()
