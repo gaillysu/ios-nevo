@@ -220,6 +220,7 @@
 		007E0CAE1D0E5C3E00B0B600 /* ConnectOtherAppsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007E0CAC1D0E5C3E00B0B600 /* ConnectOtherAppsCell.swift */; };
 		007E0CAF1D0E5C3E00B0B600 /* ConnectOtherAppsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 007E0CAD1D0E5C3E00B0B600 /* ConnectOtherAppsCell.xib */; };
 		007F1F511CAA1B630021DF1B /* LocalNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007F1F501CAA1B630021DF1B /* LocalNotification.swift */; };
+		0084CB161D9BC68A0047DF39 /* Double+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0084CB151D9BC68A0047DF39 /* Double+Extension.swift */; };
 		0089B09A1D6BE9410041148A /* CheckYourIndoxController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0089B0901D6BE9410041148A /* CheckYourIndoxController.swift */; };
 		0089B09C1D6BE9410041148A /* ForgotPasswordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0089B0931D6BE9410041148A /* ForgotPasswordController.swift */; };
 		0089B09E1D6BE9410041148A /* InformationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0089B0961D6BE9410041148A /* InformationController.swift */; };
@@ -907,6 +908,7 @@
 		007E0CAC1D0E5C3E00B0B600 /* ConnectOtherAppsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectOtherAppsCell.swift; sourceTree = "<group>"; };
 		007E0CAD1D0E5C3E00B0B600 /* ConnectOtherAppsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConnectOtherAppsCell.xib; sourceTree = "<group>"; };
 		007F1F501CAA1B630021DF1B /* LocalNotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocalNotification.swift; path = Frameworks/LocalNotification.swift; sourceTree = "<group>"; };
+		0084CB151D9BC68A0047DF39 /* Double+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Double+Extension.swift"; sourceTree = "<group>"; };
 		0086858F1B40D53C0062F544 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		0089B0901D6BE9410041148A /* CheckYourIndoxController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckYourIndoxController.swift; sourceTree = "<group>"; };
 		0089B0931D6BE9410041148A /* ForgotPasswordController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordController.swift; sourceTree = "<group>"; };
@@ -1326,6 +1328,7 @@
 			isa = PBXGroup;
 			children = (
 				003DBF761D6D93C400E45244 /* EventBusKeys.swift */,
+				0084CB151D9BC68A0047DF39 /* Double+Extension.swift */,
 			);
 			path = Global;
 			sourceTree = "<group>";
@@ -3740,6 +3743,7 @@
 				00AF8CC31D224CFA009047AC /* NevoProfileModel.swift in Sources */,
 				00AF8D011D224CFA009047AC /* SetRTCRequest.swift in Sources */,
 				00F0C3531C8993DD005888A7 /* NewAddAlarmController.swift in Sources */,
+				0084CB161D9BC68A0047DF39 /* Double+Extension.swift in Sources */,
 				9AD8F98F1A6E2EE000F01014 /* Profile.swift in Sources */,
 				00AF8CFD1D224CFA009047AC /* SetGoalRequest.swift in Sources */,
 				0089B0B31D6BFF250041148A /* SetingView.swift in Sources */,

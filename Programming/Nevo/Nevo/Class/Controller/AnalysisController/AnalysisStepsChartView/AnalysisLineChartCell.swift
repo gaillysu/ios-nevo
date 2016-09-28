@@ -253,9 +253,9 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
             }
             
             xVals.append(dateString)
-            weakeYVals.append(ChartDataEntry(value: Double(weakeValue)/60, xIndex: index))
-            lightYVals.append(ChartDataEntry(value: Double(lightValue)/60, xIndex: index))
-            deepYVals.append(ChartDataEntry(value: Double(deepValue)/60, xIndex: index))
+            weakeYVals.append(ChartDataEntry(value: (Double(weakeValue)/60).to2Double(), xIndex: index))
+            lightYVals.append(ChartDataEntry(value: (Double(lightValue)/60).to2Double(), xIndex: index))
+            deepYVals.append(ChartDataEntry(value: (Double(deepValue)/60).to2Double(), xIndex: index))
             yVals.append(ChartDataEntry(value: 0, xIndex: index))
         }
         
@@ -278,9 +278,9 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
                 let weakeDataentry:ChartDataEntry = weakeYVals[yvalsIndex]
                 let lightDataentry:ChartDataEntry = lightYVals[yvalsIndex]
                 let deepDataentry:ChartDataEntry = deepYVals[yvalsIndex]
-                weakeYVals.replaceSubrange(yvalsIndex..<yvalsIndex+1, with: [ChartDataEntry(value: weakeDataentry.value, xIndex: yvalsIndex)])
-                lightYVals.replaceSubrange(yvalsIndex..<yvalsIndex+1, with: [ChartDataEntry(value: lightDataentry.value, xIndex: yvalsIndex)])
-                deepYVals.replaceSubrange(yvalsIndex..<yvalsIndex+1, with: [ChartDataEntry(value: deepDataentry.value, xIndex: yvalsIndex)])
+                weakeYVals.replaceSubrange(yvalsIndex..<yvalsIndex+1, with: [ChartDataEntry(value: weakeDataentry.value.to2Double(), xIndex: yvalsIndex)])
+                lightYVals.replaceSubrange(yvalsIndex..<yvalsIndex+1, with: [ChartDataEntry(value: lightDataentry.value.to2Double(), xIndex: yvalsIndex)])
+                deepYVals.replaceSubrange(yvalsIndex..<yvalsIndex+1, with: [ChartDataEntry(value: deepDataentry.value.to2Double(), xIndex: yvalsIndex)])
             }else{
                 weakeYVals.insert(ChartDataEntry(value: 0, xIndex: yvalsIndex), at: yvalsIndex)
                 lightYVals.insert(ChartDataEntry(value: 0, xIndex: yvalsIndex), at: yvalsIndex)
@@ -474,13 +474,13 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
                         completionData?(index,false)
                     }else{
                         let dataentry:ChartDataEntry = yVals[index]
-                        yVals.replaceSubrange(index..<index+1, with: [ChartDataEntry(value: dataentry.value, xIndex: index)])
+                        yVals.replaceSubrange(index..<index+1, with: [ChartDataEntry(value: dataentry.value.to2Double(), xIndex: index)])
                         completionData?(index,true)
                     }
                     
                     if index == 6 {
                         let dataentry:ChartDataEntry = yVals[yVals.count-1]
-                        yVals.replaceSubrange(yVals.count-1..<yVals.count, with: [ChartDataEntry(value: dataentry.value, xIndex: yVals.count-1)])
+                        yVals.replaceSubrange(yVals.count-1..<yVals.count, with: [ChartDataEntry(value: dataentry.value.to2Double(), xIndex: yVals.count-1)])
                         completionData?(yVals.count-1,true)
                     }
                 }
@@ -512,13 +512,13 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
                         completionData?(index,false)
                     }else{
                         let dataentry:ChartDataEntry = yVals[index]
-                        yVals.replaceSubrange(index..<index+1, with: [ChartDataEntry(value: dataentry.value, xIndex: index)])
+                        yVals.replaceSubrange(index..<index+1, with: [ChartDataEntry(value: dataentry.value.to2Double(), xIndex: index)])
                         completionData?(index,true)
                     }
                     
                     if index == 29 {
                         let dataentry:ChartDataEntry = yVals[yVals.count-1]
-                        yVals.replaceSubrange(yVals.count-1..<yVals.count, with: [ChartDataEntry(value: dataentry.value, xIndex: yVals.count-1)])
+                        yVals.replaceSubrange(yVals.count-1..<yVals.count, with: [ChartDataEntry(value: dataentry.value.to2Double(), xIndex: yVals.count-1)])
                         completionData?(yVals.count-1,true)
                     }
                 }
