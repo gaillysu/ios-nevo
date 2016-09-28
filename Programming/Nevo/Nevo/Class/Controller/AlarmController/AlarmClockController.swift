@@ -25,7 +25,7 @@ class AlarmClockController: UITableViewController,AddAlarmDelegate {
         AppDelegate.getAppDelegate().startConnect(false)
         self.editButtonItem.tintColor = UIColor.getBaseColor()
         //self.navigationItem.leftBarButtonItem = self.editButtonItem()
-
+        self.tableView.sectionFooterHeight = 20
         self.tableView.allowsSelectionDuringEditing = true;
         self.tableView.separatorStyle = UITableViewCellSeparatorStyle.none
         self.tableView.register(UINib(nibName: "AlarmClockVCell",bundle:nil), forCellReuseIdentifier: "alarmCell")
@@ -285,6 +285,7 @@ class AlarmClockController: UITableViewController,AddAlarmDelegate {
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 60
     }
+    
     // MARK: - UITableViewDataSource
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
         if section == 0 {
@@ -301,11 +302,7 @@ class AlarmClockController: UITableViewController,AddAlarmDelegate {
         headerLabel.text = NSLocalizedString(titleArray[section], comment: "")
         headerLabel.textColor = UIColor.black
         headerLabel.textAlignment = NSTextAlignment.center
-        if section == 0 {
-            headerLabel.backgroundColor = AppTheme.NEVO_SOLAR_GRAY()
-        }else{
-            headerLabel.backgroundColor = UIColor.white
-        }
+        headerLabel.backgroundColor = UIColor.white
         return headerLabel
     }
 
@@ -316,7 +313,7 @@ class AlarmClockController: UITableViewController,AddAlarmDelegate {
         var alarmModel:UserAlarm?
         if (indexPath as NSIndexPath).section == 0 {
             alarmModel = mSleepAlarmArray[(indexPath as NSIndexPath).row] as? UserAlarm
-            endCell.contentView.backgroundColor = AppTheme.NEVO_SOLAR_GRAY()
+            endCell.contentView.backgroundColor = UIColor.white
         }else{
             alarmModel = mWakeAlarmArray[(indexPath as NSIndexPath).row] as? UserAlarm
             endCell.contentView.backgroundColor = UIColor.white
@@ -325,17 +322,17 @@ class AlarmClockController: UITableViewController,AddAlarmDelegate {
         let dayArray:[String] = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]
         let date:Date = Date(timeIntervalSince1970: alarmModel!.timer)
         if alarmModel?.dayOfWeek == 0 {
-            endCell.alarmIn.text = "Alarm close"
+            endCell.alarmIn.text = NSLocalizedString("alarm_disabled", comment: "")
         }else{
             if alarmModel!.dayOfWeek != Date().weekday {
-                endCell.alarmIn.text = "Alarm on \(dayArray[alarmModel!.dayOfWeek-1]) "
+                endCell.alarmIn.text = NSLocalizedString("alarm_on", comment: "")+"\(dayArray[alarmModel!.dayOfWeek-1])"
             }else{
                 if date.hour>=Date().hour && date.minute>Date().minute {
                     let nowHour:Int = abs(date.hour-Date().hour)
                     let noeMinte:Int = abs(date.minute-Date().minute)
-                    endCell.alarmIn.text = "Alarm in \(nowHour)h \(noeMinte)m"
+                    endCell.alarmIn.text = NSLocalizedString("alarm_in", comment: "")+"\(nowHour)h \(noeMinte)m"
                 }else{
-                    endCell.alarmIn.text = "Alarm close"
+                    endCell.alarmIn.text = NSLocalizedString("alarm_disabled", comment: "")
                 }
             }
         }

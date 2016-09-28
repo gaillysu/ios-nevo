@@ -170,3 +170,6 @@
 "one_of_the_fields_are_empty"="One of the fields are empty.";
 "two_password_is_not_the_same"="Two password is not the same";
 "please_wait"="Please wait...";
+"alarm_disabled"="Alarm disabled";
+"alarm_on"="Alarm on";
+"alarm_in"="Alarm in";

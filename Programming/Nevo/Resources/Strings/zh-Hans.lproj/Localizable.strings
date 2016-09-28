@@ -168,3 +168,6 @@
 "one_of_the_fields_are_empty"="有一个信息是空的";
 "two_password_is_not_the_same"="两次密码输入不一致";
 "please_wait"="请等待...";
+"alarm_disabled"="闹钟已禁用";
+"alarm_on"="闹钟在";
+"alarm_in"="距离开始";

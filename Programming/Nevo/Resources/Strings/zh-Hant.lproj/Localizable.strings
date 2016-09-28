@@ -162,8 +162,11 @@
 "Skip Login"="跳过登陆";
 "Register"="注册";
 "Next"="下一步";
-"Male"="Male";
-"Female"="Female";
-"one_of_the_fields_are_empty"="One of the fields are empty.";
-"two_password_is_not_the_same"="Two password is not the same";
-"please_wait"="Please wait...";
+"Male"="男";
+"Female"="女";
+"one_of_the_fields_are_empty"="有一个信息是空的";
+"two_password_is_not_the_same"="两次密码输入不一致";
+"please_wait"="请等待...";
+"alarm_disabled"="闹钟已禁用";
+"alarm_on"="闹钟在";
+"alarm_in"="距离开始";
