@@ -609,20 +609,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
 
 
                 //TODO:crash  数组越界
-                do {
-                    try savedDailyHistory[Int(currentDay)].TotalSteps = thispacket.getDailySteps()
+                if Int(currentDay)<savedDailyHistory.count {
+                    savedDailyHistory[Int(currentDay)].TotalSteps = thispacket.getDailySteps()
                     savedDailyHistory[Int(currentDay)].HourlySteps = thispacket.getHourlySteps()
                     savedDailyHistory[Int(currentDay)].TotalCalories = thispacket.getDailyCalories()
                     savedDailyHistory[Int(currentDay)].HourlyCalories = thispacket.getHourlyCalories()
-                }catch let error as NSError{
-                    NSLog("array error:\(error.description)")
                 }
-                
-                
-                
-                XCGLogger.default.debug("Day:\(GmtNSDate2LocaleNSDate(self.savedDailyHistory[Int(self.currentDay)].Date)), Daily Steps:\(self.savedDailyHistory[Int(self.currentDay)].TotalSteps)")
-
-                XCGLogger.default.debug("Day:\(GmtNSDate2LocaleNSDate(self.savedDailyHistory[Int(self.currentDay)].Date)), Hourly Steps:\(self.savedDailyHistory[Int(self.currentDay)].HourlySteps)")
 
                 //save to health kit
                 let hk = NevoHKImpl()
