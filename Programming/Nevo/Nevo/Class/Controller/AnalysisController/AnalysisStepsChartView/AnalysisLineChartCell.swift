@@ -125,12 +125,12 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
             }
             //chart the maximum
             if i == countArray.count-1 {
-                self.setChartViewLeftAxis(Double(maxValue+500), unitString: "")
+                self.setChartViewLeftAxis(Double(maxValue+1000), unitString: "")
             }
         }
         
         if sortArray.count == 0 {
-            self.setChartViewLeftAxis(Double(maxValue+500), unitString: "")
+            self.setChartViewLeftAxis(Double(maxValue+1000), unitString: "")
         }
         
         for i:Int in 0..<sortArray.count {
@@ -275,12 +275,20 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
         
         self.setYvalueData(rowIndex) { (yvalsIndex, replace) in
             if replace {
-                let weakeDataentry:ChartDataEntry = weakeYVals[yvalsIndex]
-                let lightDataentry:ChartDataEntry = lightYVals[yvalsIndex]
-                let deepDataentry:ChartDataEntry = deepYVals[yvalsIndex]
-                weakeYVals.replaceSubrange(yvalsIndex..<yvalsIndex+1, with: [ChartDataEntry(value: weakeDataentry.value.to2Double(), xIndex: yvalsIndex)])
-                lightYVals.replaceSubrange(yvalsIndex..<yvalsIndex+1, with: [ChartDataEntry(value: lightDataentry.value.to2Double(), xIndex: yvalsIndex)])
-                deepYVals.replaceSubrange(yvalsIndex..<yvalsIndex+1, with: [ChartDataEntry(value: deepDataentry.value.to2Double(), xIndex: yvalsIndex)])
+                //CRASH crash
+                if weakeYVals.count > 0{
+                    let weakeDataentry:ChartDataEntry = weakeYVals[yvalsIndex]
+                    let lightDataentry:ChartDataEntry = lightYVals[yvalsIndex]
+                    let deepDataentry:ChartDataEntry = deepYVals[yvalsIndex]
+                    weakeYVals.replaceSubrange(yvalsIndex..<yvalsIndex+1, with: [ChartDataEntry(value: weakeDataentry.value.to2Double(), xIndex: yvalsIndex)])
+                    lightYVals.replaceSubrange(yvalsIndex..<yvalsIndex+1, with: [ChartDataEntry(value: lightDataentry.value.to2Double(), xIndex: yvalsIndex)])
+                    deepYVals.replaceSubrange(yvalsIndex..<yvalsIndex+1, with: [ChartDataEntry(value: deepDataentry.value.to2Double(), xIndex: yvalsIndex)])
+                }else{
+                    weakeYVals.insert(ChartDataEntry(value: 0, xIndex: yvalsIndex), at: yvalsIndex)
+                    lightYVals.insert(ChartDataEntry(value: 0, xIndex: yvalsIndex), at: yvalsIndex)
+                    deepYVals.insert(ChartDataEntry(value: 0, xIndex: yvalsIndex), at: yvalsIndex)
+                }
+                
             }else{
                 weakeYVals.insert(ChartDataEntry(value: 0, xIndex: yvalsIndex), at: yvalsIndex)
                 lightYVals.insert(ChartDataEntry(value: 0, xIndex: yvalsIndex), at: yvalsIndex)
@@ -415,7 +423,7 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
         leftAxis.gridLineDashLengths = [0.0, 0.0];
         leftAxis.labelTextColor = UIColor.black
         
-        leftAxis.labelCount = 5;
+        //leftAxis.labelCount = 5;
         leftAxis.valueFormatter = NumberFormatter();
         leftAxis.valueFormatter!.maximumFractionDigits = 1;
         leftAxis.valueFormatter!.negativeSuffix = unitString;
