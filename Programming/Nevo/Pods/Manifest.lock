@@ -12,6 +12,8 @@ PODS:
   - FMDB (2.6.2):
     - FMDB/standard (= 2.6.2)
   - FMDB/standard (2.6.2)
+  - iOSDFULibrary (1.0.11):
+    - Zip (~> 0.6)
   - IQKeyboardManagerSwift (4.0.6)
   - LTNavigationBar (2.1.6)
   - MRProgress (0.8.3):
@@ -60,6 +62,7 @@ PODS:
   - XCGLogger (4.0.0):
     - XCGLogger/Core (= 4.0.0)
   - XCGLogger/Core (4.0.0)
+  - Zip (0.6.0)
 
 DEPENDENCIES:
   - ActiveLabel (from `https://github.com/optonaut/ActiveLabel.swift.git`, branch `swift-3`)
@@ -70,6 +73,7 @@ DEPENDENCIES:
   - CVCalendar (~> 1.4.0)
   - Fabric
   - FMDB (~> 2.6.2)
+  - iOSDFULibrary (from `https://github.com/NordicSemiconductor/IOS-Pods-DFU-Library.git`, branch `swift3`)
   - IQKeyboardManagerSwift (~> 4.0.6)
   - LTNavigationBar
   - MRProgress
@@ -89,6 +93,9 @@ EXTERNAL SOURCES:
   Charts:
     :branch: Chart2.2.5-Swift3.0
     :git: https://github.com/danielgindi/Charts.git
+  iOSDFULibrary:
+    :branch: swift3
+    :git: https://github.com/NordicSemiconductor/IOS-Pods-DFU-Library.git
   SwiftEventBus:
     :git: https://github.com/cesarferreira/SwiftEventBus.git
     :tag: 2.1.0
@@ -106,6 +113,9 @@ CHECKOUT OPTIONS:
   Charts:
     :commit: ab3bb619df2c2d165b41736b6bc25a4218833252
     :git: https://github.com/danielgindi/Charts.git
+  iOSDFULibrary:
+    :commit: 72194a80c667245b10af1e4c5f54379cabe0ebc6
+    :git: https://github.com/NordicSemiconductor/IOS-Pods-DFU-Library.git
   SwiftEventBus:
     :git: https://github.com/cesarferreira/SwiftEventBus.git
     :tag: 2.1.0
@@ -125,6 +135,7 @@ SPEC CHECKSUMS:
   CVCalendar: ec1a06a508f99d8e5067258754f811a8a1433a3f
   Fabric: 5755268d0171435ab167e3d0878a28a777deaf10
   FMDB: 854a0341b4726e53276f2a8996f06f1b80f9259a
+  iOSDFULibrary: bba594c017769ab19cd5101d41faf8e904c48412
   IQKeyboardManagerSwift: b3015e819559ca76381f87a0833f44d178564603
   LTNavigationBar: 9ef51488bf289b1f65dbcb17ac92888c4ae23e30
   MRProgress: 16de7cc9f347e8846797a770db102a323fe7ef09
@@ -137,7 +148,8 @@ SPEC CHECKSUMS:
   SwiftyTimer: db4458cfaf67fc71e16ad6e4637c60b86f76a649
   UIColor_Hex_Swift: e91dc51f6bf252ec7bf74c8704ceedeeb7640c1c
   XCGLogger: 38063ea89b4c8b23232d18efd2e12eb0005f3ea4
+  Zip: 805fc2fa9d2f05bbb7762d982d7a42ccdcc51f42
 
-PODFILE CHECKSUM: c1def3a818b63e41b4e4cc5d6db423d14f6f2272
+PODFILE CHECKSUM: c95681f624a22a65697c0dad274336540daf4b4a
 
 COCOAPODS: 1.1.0.beta.2
