@@ -25,9 +25,16 @@ class LineLabel: UILabel {
     override func draw(_ rect: CGRect) {
         // Drawing code
         super.draw(rect)
+
         let ctx = UIGraphicsGetCurrentContext()
-        ctx?.move(to: CGPoint(x: 0, y: rect.size.height-2))
-        ctx?.addLine(to: CGPoint(x: rect.size.width, y: rect.size.height - 2))
+        if rect.origin.y<0 {
+            ctx?.move(to: CGPoint(x: 0, y: rect.size.height-(rect.size.height-60-rect.origin.y-2)))
+            ctx?.addLine(to: CGPoint(x: rect.size.width, y: rect.size.height - (rect.size.height-60-rect.origin.y-2)))
+        }else{
+            ctx?.move(to: CGPoint(x: 0, y: rect.size.height-2))
+            ctx?.addLine(to: CGPoint(x: rect.size.width, y: rect.size.height - 2))
+        }
+        
         ctx?.setStrokeColor(UIColor.lightGray.cgColor)
         ctx?.setLineWidth(2);  //线宽
         ctx?.strokePath()

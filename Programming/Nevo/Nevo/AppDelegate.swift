@@ -504,43 +504,46 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
 
             if(packet.getHeader() == ReadDailyTracker.HEADER()) {
                 let thispacket:DailyTrackerNevoPacket = packet.copy() as DailyTrackerNevoPacket
-                let today:Date  = Date()
-                let dateFormatter:DateFormatter = DateFormatter()
-                dateFormatter.dateFormat = "yyyyMMdd"
-                let currentDateStr:NSString = dateFormatter.string(from: today) as NSString
 
-                let timeStr:NSString = NSString(format: "\(thispacket.getDateTimer())" as NSString)
-                if(timeStr.length < 8 ) {
+                let timeStr:String = String(format: "%d" ,thispacket.getDateTimer())
+                if(timeStr.length() < 8 ) {
                     return
                 }
-                let year:NSString = timeStr.substring(with: NSMakeRange(0,4)) as NSString
-                let month:NSString = timeStr.substring(with: NSMakeRange(4,2)) as NSString
-                let day:NSString = timeStr.substring(with: NSMakeRange(6,2)) as NSString
-                let timerInterval:Date = Date.date(year.integerValue, month: month.integerValue, day: day.integerValue)
+                
+                 let index = timeStr.index(timeStr.startIndex, offsetBy: 4)
+                let year:String = timeStr.substring(to: index)
+                
+                let range: Range = timeStr.index(timeStr.startIndex, offsetBy: 4)..<timeStr.index(timeStr.startIndex, offsetBy: 6)
+                let month:String = timeStr.substring(with: range)
+                
+                let range2: Range = timeStr.index(timeStr.startIndex, offsetBy: 6)..<timeStr.index(timeStr.startIndex, offsetBy: 8)
+                let day:String = timeStr.substring(with: range2)
+                
+                let timerInterval:Date = Date.date(year.toInt(), month: month.toInt(), day: day.toInt())
                 let timerInter:TimeInterval = timerInterval.timeIntervalSince1970
 
                 let stepsArray = UserSteps.getCriteria("WHERE createDate = \(timeStr)")
-                let stepsModel:UserSteps = UserSteps(keyDict: [
-                    "id":0,
-                    "steps":thispacket.getDailySteps(),
-                    "goalsteps":thispacket.getStepsGoal(),
-                    "distance":thispacket.getDailyDist(),
-                    "hourlysteps":AppTheme.toJSONString(thispacket.getHourlySteps() as AnyObject!),
-                    "hourlydistance":AppTheme.toJSONString(thispacket.getHourlyDist() as AnyObject!),
-                    "calories":thispacket.getDailyCalories() ,
-                    "hourlycalories":AppTheme.toJSONString(thispacket.getHourlyCalories() as AnyObject!),
-                    "inZoneTime":thispacket.getInZoneTime(),
-                    "outZoneTime":thispacket.getOutZoneTime(),
-                    "inactivityTime":thispacket.getDailyRunningDuration()+thispacket.getDailyWalkingDuration(),
-                    "goalreach":Double(thispacket.getDailySteps())/Double(thispacket.getStepsGoal()),
-                    "date":timerInter,
-                    "createDate":timeStr,
-                    "walking_distance":thispacket.getDailyWalkingDistance(),
-                    "walking_duration":thispacket.getDailyWalkingDuration(),
-                    "walking_calories":thispacket.getDailyCalories(),
-                    "running_distance":thispacket.getRunningDistance(),
-                    "running_duration":thispacket.getDailyRunningDuration(),
-                    "running_calories":thispacket.getDailyCalories()])
+                let stepsModel:UserSteps = UserSteps()
+                stepsModel.id = 0
+                stepsModel.steps = thispacket.getDailySteps()
+                stepsModel.goalsteps = thispacket.getStepsGoal()
+                stepsModel.distance = thispacket.getDailyDist()
+                stepsModel.hourlysteps = "\(AppTheme.toJSONString(thispacket.getHourlySteps() as AnyObject!))"
+                stepsModel.hourlydistance = "\(AppTheme.toJSONString(thispacket.getHourlyDist() as AnyObject!))"
+                stepsModel.calories = Double(thispacket.getDailyCalories())
+                stepsModel.hourlycalories = "\(AppTheme.toJSONString(thispacket.getHourlyCalories() as AnyObject!))"
+                stepsModel.inZoneTime = thispacket.getInZoneTime()
+                stepsModel.outZoneTime = thispacket.getOutZoneTime()
+                stepsModel.inactivityTime = thispacket.getDailyRunningDuration()+thispacket.getDailyWalkingDuration()
+                stepsModel.goalreach = Double(thispacket.getDailySteps())/Double(thispacket.getStepsGoal())
+                stepsModel.date = timerInter
+                stepsModel.createDate = "\(timeStr)"
+                stepsModel.walking_distance = thispacket.getDailyWalkingDistance()
+                stepsModel.walking_duration = thispacket.getDailyWalkingDuration()
+                stepsModel.walking_calories = thispacket.getDailyCalories()
+                stepsModel.running_distance = thispacket.getRunningDistance()
+                stepsModel.running_duration = thispacket.getDailyRunningDuration()
+                stepsModel.running_calories = thispacket.getDailyCalories()
                 
                 //upload steps data to validic
                 UPDATE_VALIDIC_REQUEST.updateToValidic(NSArray(arrayLiteral: stepsModel))
@@ -564,17 +567,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                 //save sleep data for every hour.
                 //save format: first write wake, then write sleep(light&deep)
                 let sleepArray = UserSleep.getCriteria("WHERE date = \(timerInterval.timeIntervalSince1970)")
-                let model:UserSleep = UserSleep(keyDict: [
-                    "id": 0,
-                    "date":timerInterval.timeIntervalSince1970,
-                    "totalSleepTime":thispacket.getDailySleepTime(),
-                    "hourlySleepTime":"\(AppTheme.toJSONString(thispacket.getHourlySleepTime() as AnyObject!))",
-                    "totalWakeTime":0,
-                    "hourlyWakeTime":"\(AppTheme.toJSONString(thispacket.getHourlyWakeTime() as AnyObject!))" ,
-                    "totalLightTime":0,
-                    "hourlyLightTime":"\(AppTheme.toJSONString(thispacket.getHourlyLightTime() as AnyObject!))",
-                    "totalDeepTime":0,
-                    "hourlyDeepTime":"\(AppTheme.toJSONString(thispacket.getHourlyDeepTime() as AnyObject!))"])
+                let model:UserSleep = UserSleep()
+                model.id = 0
+                model.date = timerInterval.timeIntervalSince1970
+                model.totalSleepTime = thispacket.getDailySleepTime()
+                model.hourlySleepTime = "\(AppTheme.toJSONString(thispacket.getHourlySleepTime() as AnyObject!))"
+                model.totalWakeTime = 0
+                model.hourlyWakeTime = "\(AppTheme.toJSONString(thispacket.getHourlyWakeTime() as AnyObject!))"
+                model.totalLightTime = 0
+                model.hourlyLightTime = "\(AppTheme.toJSONString(thispacket.getHourlyLightTime() as AnyObject!))"
+                model.totalDeepTime = 0
+                model.hourlyDeepTime = "\(AppTheme.toJSONString(thispacket.getHourlyDeepTime() as AnyObject!))"
                 
                 //upload sleep data to validic
                 //UPDATE_VALIDIC_REQUEST.updateSleepDataToValidic(NSArray(arrayLiteral: stepsModel))
@@ -597,16 +600,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                     if currentSleepTime>localTime {
                         model.id = sleep.id
                         DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.default).async(execute: { () -> Void in
-                            model.update()
+                            _ = model.update()
                         })
                     }
                 }else {
                     DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.default).async(execute: { () -> Void in
-                        model.add({ (id, completion) -> Void in
+                        _ = model.add({ (id, completion) -> Void in
                         })
                     })
                 }
-
 
                 //TODO:crash  数组越界
                 if Int(currentDay)<savedDailyHistory.count {

@@ -115,7 +115,7 @@ class StepGoalSetingController: PublicClassController,ButtonManagerCallBack,Cloc
             let tutorialOne:TutorialOneViewController = TutorialOneViewController()
             let nav:UINavigationController = UINavigationController(rootViewController: tutorialOne)
             nav.isNavigationBarHidden = true
-            //self.present(nav, animated: true, completion: nil)
+            self.present(nav, animated: true, completion: nil)
         }else{
             AppDelegate.getAppDelegate().startConnect(false)
         }

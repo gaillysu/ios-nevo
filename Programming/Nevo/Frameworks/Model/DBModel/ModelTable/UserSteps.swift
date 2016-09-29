@@ -149,6 +149,7 @@ class UserSteps: NSObject {
         }
     }
 
+    @discardableResult
     func update()->Bool{
         if StepsModel.isExistInTable() {
             StepsModel.updateTable()
@@ -161,11 +162,13 @@ class UserSteps: NSObject {
         return stepsModel.update()
     }
 
+    @discardableResult
     func remove()->Bool{
         stepsModel.id = id
         return stepsModel.remove()
     }
 
+    @discardableResult
     class func removeAll()->Bool{
         return StepsModel.removeAll()
     }

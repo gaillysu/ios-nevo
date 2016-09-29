@@ -362,6 +362,7 @@ class UserDatabaseHelper:NSObject {
      * update Table
      * succes return true, failure return false
      */
+    @discardableResult
     class func updateTable()->Bool {
         let db:FMDatabase = FMDatabase(path: AppDelegate.dbPath())
         if(!db.open()) {
