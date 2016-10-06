@@ -53,8 +53,16 @@ class StepsTitleView: UIView {
      */
     func setCalendarButtonTitle(_ title:String) {
         calendarButton.titleLabel?.font = UIFont.systemFont(ofSize: 14)
-        calendarButton.setTitle(title, for: UIControlState())
+        calendarButton.setTitle(title, for: UIControlState.normal)
         calendarButton.setTitle(title, for: UIControlState.selected)
+        if !AppTheme.isTargetLunaR_OR_Nevo(){
+            calendarButton.setTitleColor(UIColor.getBaseColor(), for: UIControlState.normal)
+            calendarButton.setTitleColor(UIColor.getBaseColor(), for: UIControlState.selected)
+            nextButton.setTitleColor(UIColor.getBaseColor(), for: UIControlState.normal)
+            nextButton.setTitleColor(UIColor.getBaseColor(), for: UIControlState.selected)
+            backButton.setTitleColor(UIColor.getBaseColor(), for: UIControlState.normal)
+            nextButton.setTitleColor(UIColor.getBaseColor(), for: UIControlState.selected)
+        }
     }
 
     /*

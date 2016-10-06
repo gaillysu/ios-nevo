@@ -83,6 +83,11 @@ class StepsHistoryViewController: PublicClassController,ChartViewDelegate {
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+        if !AppTheme.isTargetLunaR_OR_Nevo(){
+            self.view.backgroundColor = UIColor.getGreyColor()
+            stepsHistory.backgroundColor = UIColor.getGreyColor()
+            chartView.backgroundColor = UIColor.getGreyColor()
+        }
     }
     
     /**
@@ -289,6 +294,11 @@ extension StepsHistoryViewController:UICollectionViewDelegate,UICollectionViewDa
         let cell:StepGoalSetingViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "StepGoalSetingIdentifier", for: indexPath) as! StepGoalSetingViewCell
         cell.backgroundColor = UIColor.white
         cell.titleLabel.text = contentTitleArray[(indexPath as NSIndexPath).row]
+        if !AppTheme.isTargetLunaR_OR_Nevo(){
+            cell.backgroundColor = UIColor.getGreyColor()
+            cell.valueLabel.textColor = UIColor.getBaseColor()
+            cell.titleLabel.textColor = UIColor.white
+        }
         
         switch (indexPath as NSIndexPath).row {
         case 0:

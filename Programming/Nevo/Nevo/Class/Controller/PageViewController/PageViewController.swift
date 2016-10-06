@@ -42,7 +42,6 @@ class PageViewController: UIPageViewController,UIActionSheetDelegate {
             self.extendedLayoutIncludesOpaqueBars = false;
             self.modalPresentationCapturesStatusBarAppearance = false;
         }
-        self.view.backgroundColor = UIColor.white
         
         let rightItem:UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "edit_icon"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(rightBarButtonAction(_:)))
         rightItem.tintColor = AppTheme.NEVO_SOLAR_YELLOW()
@@ -61,6 +60,14 @@ class PageViewController: UIPageViewController,UIActionSheetDelegate {
         self.dataSource = self;
         self.setViewControllers([pagingControllers[0]], direction: UIPageViewControllerNavigationDirection.forward, animated: true) { (fines) in
             
+        }
+        
+        if !AppTheme.isTargetLunaR_OR_Nevo(){
+            self.view.backgroundColor = UIColor.getGreyColor()
+            leftItem.tintColor = UIColor.getBaseColor()
+            rightItem.tintColor = UIColor.getBaseColor()
+        }else{
+            self.view.backgroundColor = UIColor.white
         }
     }
     
@@ -81,26 +88,36 @@ class PageViewController: UIPageViewController,UIActionSheetDelegate {
     }
     
     func rightBarButtonAction(_ rightBar:UIBarButtonItem){
-        let actionSheet:UIAlertController = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.actionSheet)
+        let actionSheet:ActionSheetView = ActionSheetView(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.actionSheet)
+        actionSheet.isSetSubView = true;
         
         let array:NSArray = Presets.getAll()
         for pArray in array {
             let model:Presets = pArray as! Presets
             if(model.status){
                 let titleString:String = " \(model.steps) " + NSLocalizedString("steps_unit", comment: "")
-                let alertAction2:UIAlertAction = UIAlertAction(title: titleString, style: UIAlertActionStyle.default) { (action:UIAlertAction) -> Void in
+                let alertAction2:AlertAction = AlertAction(title: titleString, style: UIAlertActionStyle.default) { (action:UIAlertAction) -> Void in
                     if((action.title! as NSString).isEqual(to: titleString)){
                         UserDefaults.standard.set(model.steps, forKey: NUMBER_OF_STEPS_GOAL_KEY)
                         self.setGoal(NumberOfStepsGoal(steps: model.steps))
                     }
                 }
-                alertAction2.setValue(AppTheme.NEVO_SOLAR_YELLOW(), forKey: "titleTextColor")
+                if !AppTheme.isTargetLunaR_OR_Nevo() {
+                    alertAction2.setValue(UIColor.getBaseColor(), forKey: "titleTextColor")
+                }else{
+                    alertAction2.setValue(AppTheme.NEVO_SOLAR_YELLOW(), forKey: "titleTextColor")
+                }
                 actionSheet.addAction(alertAction2)
             }
         }
         
-        let alertAction:UIAlertAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: UIAlertActionStyle.cancel, handler: nil)
-        alertAction.setValue(AppTheme.NEVO_SOLAR_YELLOW(), forKey: "titleTextColor")
+        let alertAction:AlertAction = AlertAction(title: NSLocalizedString("Cancel", comment: ""), style: UIAlertActionStyle.cancel, handler: nil)
+        
+        if !AppTheme.isTargetLunaR_OR_Nevo() {
+            alertAction.setValue(UIColor.getBaseColor(), forKey: "titleTextColor")
+        }else{
+            alertAction.setValue(AppTheme.NEVO_SOLAR_YELLOW(), forKey: "titleTextColor")
+        }
         //alertAction.setValue(UIImage(named: "google"), forKey: "Image")
         //alertAction.setValue(true, forKey: "checked")
         actionSheet.addAction(alertAction)

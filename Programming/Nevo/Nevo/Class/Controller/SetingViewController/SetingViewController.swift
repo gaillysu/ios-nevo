@@ -310,7 +310,8 @@ class SetingViewController: UIViewController,ButtonManagerCallBack,UIAlertViewDe
         if (offset < minDelay) {
             return
         }
-        AppDelegate.getAppDelegate().SetLedOnOffandVibrator(0x3F0000, motorOnOff: true)
+        AppDelegate.getAppDelegate().sendRequest(FindWatchRequest())
+        //SetLedOnOffandVibrator(0x3F0000, motorOnOff: true)
         mFindMydeviceDatetime = Date()
     }
 

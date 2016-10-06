@@ -175,7 +175,14 @@ class StepGoalSetingController: PublicClassController,ButtonManagerCallBack,Cloc
             }
         }
         
-        mClockTimerView = ClockView(frame:CGRect(x: 0, y: 0, width: clockBackGroundView.bounds.width, height: clockBackGroundView.bounds.width), hourImage:  UIImage(named: "clockViewHour")!, minuteImage: UIImage(named: "clockViewMinute")!, dialImage: UIImage(named: "clockView600")!)
+        if !AppTheme.isTargetLunaR_OR_Nevo(){
+            clockBackGroundView.backgroundColor = UIColor.getGreyColor()
+            mClockTimerView = ClockView(frame:CGRect(x: 0, y: 0, width: clockBackGroundView.bounds.width, height: clockBackGroundView.bounds.width), hourImage:  UIImage(named: "wacth_hour")!, minuteImage: UIImage(named: "wacth_mint")!, dialImage: UIImage(named: "wacth_dial")!)
+        }else{
+            mClockTimerView = ClockView(frame:CGRect(x: 0, y: 0, width: clockBackGroundView.bounds.width, height: clockBackGroundView.bounds.width), hourImage:  UIImage(named: "clockViewHour")!, minuteImage: UIImage(named: "clockViewMinute")!, dialImage: UIImage(named: "clockView600")!)
+        }
+        
+        
         mClockTimerView?.currentTimer()
         clockBackGroundView.addSubview(mClockTimerView!)
         
@@ -183,10 +190,6 @@ class StepGoalSetingController: PublicClassController,ButtonManagerCallBack,Cloc
         progressView.setProgressColor(AppTheme.NEVO_SOLAR_YELLOW())
         progressView.setProgress(0.0)
         //self.view.layer.addSublayer(progressView)
-        
-        if !AppTheme.isTargetLunaR_OR_Nevo(){
-            clockBackGroundView.backgroundColor = UIColor.getGreyColor()
-        }
     }
     
     override func didReceiveMemoryWarning() {

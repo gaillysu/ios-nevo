@@ -19,6 +19,7 @@ class ActionSheetView: UIAlertController {
         if isSetSubView {
             self.setSubView()
         }
+        
     }
     
     func setSubView() {
@@ -30,7 +31,7 @@ class ActionSheetView: UIAlertController {
                     //NSLog("第三个循环几次")
                     for view4 in view3.subviews {
                         //NSLog("第四个循环几次")
-                        view4.backgroundColor = UIColor(rgba: "#54575A")
+                        view4.backgroundColor = UIColor.getGreyColor()
                     }
                 }
             }
