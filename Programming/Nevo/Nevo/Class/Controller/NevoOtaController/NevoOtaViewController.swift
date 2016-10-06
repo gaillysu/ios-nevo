@@ -54,7 +54,7 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
     }
 
     override func viewDidLayoutSubviews() {
-        nevoOtaView.buildView(self,otacontroller: mNevoOtaController!)
+        nevoOtaView.buildView(self)
     }
 
     override func viewDidAppear(_ animated: Bool) {

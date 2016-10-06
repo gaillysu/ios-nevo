@@ -8,32 +8,26 @@
 
 import UIKit
 import XCGLogger
+import iOSDFULibrary
+import CoreBluetooth
+import PopupController
 
-
-class OldOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonManagerCallBack,UIAlertViewDelegate  {
+class OldOtaViewController: UIViewController  {
 
     @IBOutlet var nevoOtaView: NevoOtaView!
-
-
-    var isTransferring:Bool = false
-    var enumFirmwareType:DfuFirmwareTypes = DfuFirmwareTypes.application
-    var selectedFileURL:URL?
-    //save the build-in firmware version, it should be the latest FW version
-    var buildinSoftwareVersion:Int  = 0
-    var buildinFirmwareVersion:Int  = 0
-    var firmwareURLs:[URL] = []
-    var currentIndex = 0
-    var mAidOtaController : AidOtaController?
-    fileprivate var allTaskNumber:NSInteger = 0;//计算所有OTA任务数量
-    fileprivate var currentTaskNumber:NSInteger = 0;//当前在第几个任务
-
-    fileprivate var mTimeoutTimer:Timer?
-
-    fileprivate var hudView:MBProgressHUD?
-
+ 
+    //MARK: - Class Properties
+    fileprivate var dfuPeripheral    : CBPeripheral?
+    fileprivate var dfuController    : DFUServiceController?
+    fileprivate var centralManager   : CBCentralManager?
+    fileprivate var selectedFirmware : DFUFirmware?
+    fileprivate var selectedFileURL  : URL?
+    fileprivate var secureDFU        : Bool?
+    fileprivate var popupView:PopupController?
+    
     override func viewDidLayoutSubviews(){
         //init the view
-        nevoOtaView.buildView(self,otacontroller: mAidOtaController!)
+        nevoOtaView.buildView(nil)
     }
 
     override func viewDidLoad() {
@@ -41,42 +35,13 @@ class OldOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMan
         UIApplication.shared.isIdleTimerDisabled = true
         
         let leftItem:UIBarButtonItem = UIBarButtonItem(image:UIImage(named:"left_button") , style: UIBarButtonItemStyle.plain, target: self, action: #selector(backAction(_:)))
+        leftItem.tintColor = UIColor.black
         self.navigationItem.leftBarButtonItem = leftItem
         
-        //init the ota
-        mAidOtaController = AidOtaController(controller: self)
-        self.mAidOtaController?.mConnectionController?.setOTAMode(true, Disconnect: false)
-        
-        initValue()
-        
-        checkConnection()
+        let rightItem:UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.add, target: self, action: #selector(scanAction(_:)))
+        rightItem.tintColor = UIColor.black
+        self.navigationItem.rightBarButtonItem = rightItem
 
-        let fileArray = AppTheme.GET_FIRMWARE_FILES("Firmwares")
-        for tmpfile in fileArray {
-            let selectedFile = tmpfile as! URL
-            //let fileName:String? = (selectedFile.path! as NSString).lastPathComponent
-            let fileExtension:String? = selectedFile.pathExtension
-            if fileExtension == "hex"
-            {
-                firmwareURLs.append(selectedFile)
-                allTaskNumber+=1;
-                break
-            }
-        }
-
-        for tmpfile in fileArray {
-            let selectedFile = tmpfile as! URL
-            //let fileName:String? = (selectedFile.path! as NSString).lastPathComponent
-            let fileExtension:String? = selectedFile.pathExtension
-
-            if fileExtension == "bin"
-            {
-                firmwareURLs.append(selectedFile)
-                allTaskNumber+=1;
-                break
-            }
-        }
-        
         let hud:MBProgressHUD = MBProgressHUD.showAdded(to: UIApplication.shared.windows.last, animated: true)
         hud.detailsLabelText = "In the use of first aid mode, please forget all relevant Nevo pairing in the system Bluetooth settings"
         hud.removeFromSuperViewOnHide = true;
@@ -85,231 +50,218 @@ class OldOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMan
         
         let dispatchTime: DispatchTime = DispatchTime.now() + Double(Int64(2 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
         DispatchQueue.main.asyncAfter(deadline: dispatchTime, execute: {
-            let updateTitle:String = NSLocalizedString("do_not_exit_this_screen", comment: "")
-            let updatemsg:String = NSLocalizedString("please_follow_the_update_has_been_finished", comment: "")
             
-            let alertView :UIAlertController = UIAlertController(title: updateTitle, message: updatemsg, preferredStyle: UIAlertControllerStyle.alert)
-            alertView.view.tintColor = AppTheme.NEVO_SOLAR_YELLOW()
-            let alertAction:UIAlertAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: UIAlertActionStyle.cancel) { (action:UIAlertAction) -> Void in
-                self.dismiss(animated: true, completion: nil)
-            }
-            alertView.addAction(alertAction)
-            
-            let alertAction2:UIAlertAction = UIAlertAction(title: NSLocalizedString("Enter", comment: ""), style: UIAlertActionStyle.default) { (action:UIAlertAction) -> Void in
-                
-                self.currentIndex = 0
-                let SAVED_ADDRESS_KEY = "SAVED_ADDRESS"
-                UserDefaults.standard.removeObject(forKey: SAVED_ADDRESS_KEY)
-                self.currentTaskNumber = self.currentIndex;
-                
-                self.uploadPressed()
-            }
-            alertView.addAction(alertAction2)
-            self.present(alertView, animated: true, completion: nil)
+            //popup.dismiss() // dismiss popup
         })
-
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        if dfuController != nil {
+            dfuController?.abort()
+        }
     }
     
     func backAction(_ sender:AnyObject) {
         self.dismiss(animated: true, completion: nil)
     }
-
-    override func viewDidAppear(_ animated: Bool) {
-        mAidOtaController!.setConnectControllerDelegate2Self()
-    }
-
-    override func viewDidDisappear(_ animated: Bool) {
-        UIApplication.shared.isIdleTimerDisabled = false
-        if (!self.isTransferring){
-            mAidOtaController!.reset(true)
-        }
+    
+    func scanAction(_ sender:AnyObject) {
+        let scannerController:ScannerViewController = ScannerViewController()
+        scannerController.didDelegate = self
+        popupView = PopupController
+            .create(self)
+            .customize(
+                [
+                    .animation(.fadeIn),
+                    .scrollable(false),
+                    .backgroundStyle(.blackFilter(alpha: 0.7))
+                ]
+            )
+            .didShowHandler { popup in
+                print("showed popup!")
+            }
+            .didCloseHandler { _ in
+                print("closed popup!")
+            }
+            .show(scannerController) // show popup
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+}
 
-    //init data function
-    fileprivate func initValue(){
-        isTransferring = false
-
+//MARK: - CBCentralManagerDelegate
+extension OldOtaViewController:CBCentralManagerDelegate, CBPeripheralDelegate {
+    func centralManagerDidUpdateState(_ central: CBCentralManager) {
+        logWith(LogLevel.verbose, message: "UpdatetState: \(centralManager?.state.rawValue)")
+    }
+    
+    func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
+        print("Connected to peripheral: \(peripheral.name)")
+    }
+    
+    func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: Error?) {
+        print("Disconnected from peripheral: \(peripheral.name)")
     }
 
-    //upload button function
-    func uploadPressed(){
-        if currentIndex >= firmwareURLs.count  || firmwareURLs.count == 0 {
-            onError(NSLocalizedString("checking_firmware", comment: "") as NSString)
-            return
-        }
+}
 
-        if(!mAidOtaController!.isConnected()){
-            //onError(NSLocalizedString("update_error_noconnect", comment: "") as NSString)
-            mAidOtaController!.reset(false)
-            return
-        }
-
-        currentTaskNumber += 1;
-        selectedFileURL = firmwareURLs[currentIndex]
-        let fileExtension:String? = selectedFileURL!.pathExtension
-        if fileExtension == "bin"{
-            enumFirmwareType = DfuFirmwareTypes.softdevice
-        }
-        if fileExtension == "hex"{
-            enumFirmwareType = DfuFirmwareTypes.application
-        }
-
-        nevoOtaView.setProgress(0.0,currentTask: currentTaskNumber,allTask: allTaskNumber, progressString: "BLE")
-        nevoOtaView.setLatestVersion(NSLocalizedString("Please wait...", comment: ""))
-        isTransferring = true
-        //when doing OTA, disable Cancel/Back button, enable them by callback function invoke initValue()/checkConnection()
-        mAidOtaController?.performDFUOnFile(selectedFileURL!, firmwareType: enumFirmwareType)
-
-    }
-
-    /**
-    Checks if any device is currently connected
-    */
-
-    func checkConnection() {
-
-        if (mAidOtaController != nil && !(mAidOtaController!.isConnected() ) || isTransferring) {
-            //disable upPress button
-        }else{
-            // enable upPress button
+//MARK: - DFUServiceDelegate
+extension OldOtaViewController:DFUServiceDelegate {
+    func didStateChangedTo(_ state:DFUState) {
+        switch state {
+        case .aborted:
+            //self.dfuActivityIndicator.stopAnimating()
+            //self.dfuUploadProgressView.setProgress(0, animated: true)
+            //self.stopProcessButton.isEnabled = false
+            nevoOtaView.setProgress(0, currentTask: 1, allTask: 1, progressString: nil)
+            break
+        case .signatureMismatch:
+            //self.dfuActivityIndicator.stopAnimating()
+            //self.dfuUploadProgressView.setProgress(0, animated: true)
+            //self.stopProcessButton.isEnabled = false
+            nevoOtaView.setProgress(0, currentTask: 1, allTask: 1, progressString: nil)
+            break
+        case .completed:
+            //self.dfuActivityIndicator.stopAnimating()
+            //self.dfuUploadProgressView.setProgress(0, animated: true)
+            //self.stopProcessButton.isEnabled = false
+            nevoOtaView.setProgress(0, currentTask: 1, allTask: 1, progressString: nil)
+            break
+        case .connecting:
+            //self.stopProcessButton.isEnabled = true
+            break
+        case .disconnecting:
+            //self.dfuUploadProgressView.setProgress(0, animated: true)
+            //self.dfuActivityIndicator.stopAnimating()
+            //self.stopProcessButton.isEnabled = false
+            nevoOtaView.setProgress(0, currentTask: 1, allTask: 1, progressString: nil)
+            break
+        case .enablingDfuMode:
+            //self.stopProcessButton.isEnabled = true
+            break
+        case .starting:
+            //self.stopProcessButton.isEnabled = true
+            break
+        case .uploading:
+            //self.stopProcessButton.isEnabled = true
+            break
+        case .validating:
+            //self.stopProcessButton.isEnabled = true
+            break
+        case .operationNotPermitted:
+            //self.stopProcessButton.isEnabled = true
+            break
+        case .failed:
+            //self.stopProcessButton.isEnabled = true
+            break
         }
         
+        //self.dfuStatusLabel.text = state.description()
+        logWith(LogLevel.info, message: "Changed state to: \(state.description())")
     }
+    
+    func didErrorOccur(_ error: DFUError, withMessage message: String) {
+        //self.dfuStatusLabel.text = "Error: \(message)"
+        //self.dfuActivityIndicator.stopAnimating()
+        //self.dfuUploadProgressView.setProgress(0, animated: true)
+        nevoOtaView.setProgress(0, currentTask: 1, allTask: 1, progressString: message)
+        logWith(LogLevel.error, message: message)
+    }
+}
 
-    //MARK: - NevoOtaControllerDelegate
-    /**
-    See SyncControllerDelegate
-    */
-    func receivedRSSIValue(_ number:NSNumber){
-        XCGLogger.default.debug("Red RSSI Value:\(number)")
-        if(number.int32Value < -85){
-           
+//MARK: - DFUProgressDelegate
+extension OldOtaViewController:DFUProgressDelegate{
+    func onUploadProgress(_ part: Int, totalParts: Int, progress: Int, currentSpeedBytesPerSecond: Double, avgSpeedBytesPerSecond: Double) {
+        //self.dfuUploadProgressView.setProgress(Float(progress)/100.0, animated: true)
+        //self.dfuUploadStatus.text = "Speed : \(String(format:"%.1f", avgSpeedBytesPerSecond/1024)) Kbps, pt. \(part)/\(totalParts)"
+        nevoOtaView.setProgress(Float(progress), currentTask: 1, allTask: 1, progressString: "Speed : \(String(format:"%.1f", avgSpeedBytesPerSecond/1024)) Kbps, pt. \(part)/\(totalParts)")
+    }
+}
+
+//MARK: - LoggerDelegate
+extension OldOtaViewController:LoggerDelegate{
+    func logWith(_ level:LogLevel, message:String){
+        print("\(level.name()) : \(message)")
+    }
+}
+
+//MARK: - Class Implementation
+extension OldOtaViewController {
+    
+    func showAlertView() {
+        let updateTitle:String = NSLocalizedString("do_not_exit_this_screen", comment: "")
+        let updatemsg:String = NSLocalizedString("please_follow_the_update_has_been_finished", comment: "")
+        
+        let alertView :UIAlertController = UIAlertController(title: updateTitle, message: updatemsg, preferredStyle: UIAlertControllerStyle.alert)
+        alertView.view.tintColor = AppTheme.NEVO_SOLAR_YELLOW()
+        let alertAction:UIAlertAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: UIAlertActionStyle.cancel) { (action:UIAlertAction) -> Void in
+            self.dismiss(animated: true, completion: nil)
         }
+        alertView.addAction(alertAction)
+        
+        let alertAction2:UIAlertAction = UIAlertAction(title: NSLocalizedString("Enter", comment: ""), style: UIAlertActionStyle.default) { (action:UIAlertAction) -> Void in
+            self.startDFUProcess()
+        }
+        alertView.addAction(alertAction2)
+        self.present(alertView, animated: true, completion: nil)
     }
-
-    //below is delegate function
-    func onDFUStarted(){
-        XCGLogger.default.debug("onDFUStarted");
-        //here enable upload button
+    
+    func secureDFUMode(_ secureDFU : Bool) {
+        self.secureDFU = secureDFU
     }
-
-    //user cancel
-    func onDFUCancelled(){
-        XCGLogger.default.debug("onDFUCancelled");
-        //reset OTA view controller 's some data, such as progress bar and upload button text/status
-        initValue()
-        mAidOtaController!.reset(false)
-    }
-
-    //percent is[0..100]
-    func onTransferPercentage(_ percent:Int){
-        nevoOtaView.setProgress((Float(percent)/100.0), currentTask: currentTaskNumber,allTask: allTaskNumber, progressString: "BLE")
-    }
-
-    //successfully
-    func onSuccessfulFileTranferred(){
-        currentIndex = currentIndex + 1
-        if currentIndex == firmwareURLs.count {
-            initValue()
-            var message = NSLocalizedString("UpdateSuccess1", comment: "")
-            if enumFirmwareType == DfuFirmwareTypes.application{
-                message = NSLocalizedString("UpdateSuccess2", comment: "")
-            }
-            let alert :UIAlertView = UIAlertView(title: "Firmware Upgrade", message: message, delegate: nil, cancelButtonTitle: "OK")
-            alert.show()
-            nevoOtaView.upgradeSuccessful()
-            mAidOtaController!.reset(false)
-            let dispatchTime: DispatchTime = DispatchTime.now() + Double(Int64(3.0 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
-            DispatchQueue.main.asyncAfter(deadline: dispatchTime, execute: {
-                self.dismiss(animated: true, completion: nil)
-            })
+    
+    func getBundledFirmwareURLHelper() -> URL {
+        if self.secureDFU! {
+            return Bundle.main.url(forResource: "MCUFile", withExtension: "zip")!
         }else{
-            //mAidOtaController!.reset(false)
-            //请确保重新点击配对按钮后再点击继续MCU升级,否则在升级的过程中会中断!
-            let alert :UIAlertView = UIAlertView(title: "Firmware Upgrade", message: "Please make sure that the re click on the pairing button is clicked and then click on the MCU upgrade, otherwise it will be interrupted in the process of upgrading!", delegate: nil, cancelButtonTitle: "OK")
-            alert.show()
-            //nevoOtaView.ReUpgradeButton?.hidden = false
-            //nevoOtaView.ReUpgradeButton?.setTitle("Upgrade the Ble", forState: UIControlState.Normal)
-            if(mAidOtaController!.isConnected()){
-                //nevoOtaView.ReUpgradeButton?.setTitle("Continue MCU", forState: UIControlState.Normal)
-            }else{
-                //nevoOtaView.ReUpgradeButton?.setTitle("Try to reconnect", forState: UIControlState.Normal)
-                let dispatchTime: DispatchTime = DispatchTime.now() + Double(Int64(3.0 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
-                DispatchQueue.main.asyncAfter(deadline: dispatchTime, execute: {
-                    self.mAidOtaController?.mConnectionController?.setOTAMode(true,Disconnect:true)
-                })
-            }
+            return Bundle.main.url(forResource: "OtaFile", withExtension: "zip")!
         }
     }
-    //Error happen
-    func onError(_ errString : NSString){
-
-        initValue()
-        let alert :UIAlertView = UIAlertView(title: "Firmware Upgrade", message: errString as String, delegate: nil, cancelButtonTitle: "OK")
-        alert.show()
-        mAidOtaController!.reset(false)
+    
+    func setCentralManager(centralManager aCentralManager : CBCentralManager){
+        self.centralManager = aCentralManager
     }
-
-    func connectionStateChanged(_ isConnected : Bool) {
-
-        //Maybe we just got disconnected, let's check
-        if(!isConnected){
-            let SAVED_ADDRESS_KEY = "SAVED_ADDRESS"
-            UserDefaults.standard.removeObject(forKey: SAVED_ADDRESS_KEY)
-            //nevoOtaView.ReUpgradeButton?.setTitle("Search Nevo", forState: UIControlState.Normal)
-        }else{
-            //MBProgressHUD.showSuccess("Nevo has been connected, you can upgrade")
-            if(currentIndex != 0){
-                //nevoOtaView.ReUpgradeButton?.setTitle("Continue MCU", forState: UIControlState.Normal)
-            }else{
-                //nevoOtaView.ReUpgradeButton?.setTitle("Search Nevo", forState: UIControlState.Normal)
-            }
+    
+    func setTargetPeripheral(aPeripheral targetPeripheral : CBPeripheral) {
+        self.dfuPeripheral = targetPeripheral
+    }
+    
+    func startDFUProcess() {
+        
+        guard dfuPeripheral != nil else {
+            print("No DFU peripheral was set")
+            return
         }
-
+        
+        selectedFileURL  = self.getBundledFirmwareURLHelper()
+        selectedFirmware = DFUFirmware(urlToZipFile: selectedFileURL!)
+        
+        let dfuInitiator = DFUServiceInitiator(centralManager: centralManager!, target: dfuPeripheral!)
+        _ = dfuInitiator.withFirmwareFile(selectedFirmware!)
+        dfuInitiator.delegate = self
+        dfuInitiator.progressDelegate = self
+        dfuInitiator.logger = self
+        dfuController = dfuInitiator.start()
     }
+}
 
-    /**
-    see NevoOtaControllerDelegate
-    */
-    func firmwareVersionReceived(_ whichfirmware:DfuFirmwareTypes, version:NSString)
-    {
-        //nevoOtaView.setVersionLbael(mNevoOtaController!.getSoftwareVersion(), bleNumber: mNevoOtaController!.getFirmwareVersion())
+//MARK: - SelectPeripheralDelegate
+extension OldOtaViewController:SelectPeripheralDelegate {
+    func onDidSelectPeripheral(_ dFUMode:Bool,_ peripheral:CBPeripheral, _ manager:CBCentralManager){
+        popupView?.dismiss()
+        self.secureDFUMode(dFUMode)
+        self.setTargetPeripheral(aPeripheral: peripheral)
+        self.setCentralManager(centralManager: manager)
+        //self.startDFUProcess()
+        self.showAlertView()
     }
-
-    // MARK: - ButtonManagerCallBack
-    func controllManager(_ sender:AnyObject) {
-        let SAVED_ADDRESS_KEY = "SAVED_ADDRESS"
-        UserDefaults.standard.removeObject(forKey: SAVED_ADDRESS_KEY)
-        currentTaskNumber = currentIndex;
-        if(mAidOtaController!.isConnected()){
-            // reUpdate all firmwares
-            uploadPressed()
-        }else{
-            hudView = MBProgressHUD.showMessage("Please later, in the connection.")
-            hudView?.hide(true, afterDelay: 8)
-            mTimeoutTimer = Timer.scheduledTimer(timeInterval: Double(1), target: self, selector:#selector(timeroutProc(_:)), userInfo: nil, repeats: true)
-            mAidOtaController?.mConnectionController?.setOTAMode(true, Disconnect: true)
-            // no connected nevo, disable update
-        }
-
-    }
-
-    func timeroutProc(_ timer:Timer){
-        if(mAidOtaController!.isConnected()){
-            timer.invalidate()
-            //[[UIApplication sharedApplication].windows lastObject]
-            hudView?.hide(true)
-        }else{
-            uploadPressed()
-            //mAidOtaController?.setStatus(DFUControllerState.IDLE)
-            //mAidOtaController?.mConnectionController?.setOTAMode(true, Disconnect: true)
-        }
-
-    }
-
 }

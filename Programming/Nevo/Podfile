@@ -49,6 +49,7 @@ target 'Nevo' do
     pod 'XCGLogger', '~> 4.0.0'
     pod 'SwiftyJSON'
     pod 'iOSDFULibrary',branch:'swift3',:git => 'https://github.com/NordicSemiconductor/IOS-Pods-DFU-Library.git'
+    pod 'PopupController'
   target 'NevoTests' do
     inherit! :search_paths
     # Pods for testing

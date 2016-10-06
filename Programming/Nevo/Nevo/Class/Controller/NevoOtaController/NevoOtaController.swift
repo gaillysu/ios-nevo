@@ -18,7 +18,7 @@ mNevoOtaController = NevoOtaController(controller: self)
 
 import Foundation
 import XCGLogger
-
+import iOSDFULibrary
 
 class NevoOtaController : NSObject,ConnectionControllerDelegate {
     var mDelegate : NevoOtaControllerDelegate?

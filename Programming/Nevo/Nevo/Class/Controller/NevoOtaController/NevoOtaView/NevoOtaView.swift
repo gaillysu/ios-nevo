@@ -147,7 +147,7 @@ class NevoOtaView: UIView {
     fileprivate var OTAprogressView:OTAProgress?//OTA upgrade progress bar object
     var progresValue:CGFloat = 0.0//OTA upgrade progress bar default value
     
-    func buildView(_ delegate:ButtonManagerCallBack,otacontroller:AnyObject) {
+    func buildView(_ delegate:ButtonManagerCallBack?) {
         mDelegate = delegate
 
         backButton.layer.masksToBounds = true
@@ -181,11 +181,15 @@ class NevoOtaView: UIView {
 
     :param: progress Progress value
     */
-    func setProgress(_ progress: Float, currentTask:NSInteger, allTask:NSInteger, progressString:String){
+    func setProgress(_ progress: Float, currentTask:NSInteger, allTask:NSInteger, progressString:String?){
         progresValue = CGFloat(progress)
         OTAprogressView?.setProgress(progresValue)
         progresLabel.text = String(format: "%.0f%c", progresValue*100,37)
-        messageLabel.text = NSLocalizedString("Updating", comment: "") + " \(progressString) " + "(\(currentTask)/\(allTask))"
+        if progressString == nil {
+            messageLabel.text = NSLocalizedString("Updating", comment: "") + " \(progressString) " + "(\(currentTask)/\(allTask))"
+        }else{
+            messageLabel.text = progressString!
+        }
     }
 
     func OTAprogressViewHiddenOrNotHidden() {

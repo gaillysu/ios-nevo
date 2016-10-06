@@ -49,6 +49,7 @@ PODS:
     - NJKWebViewProgress/ProgressView (= 0.2.3)
   - NJKWebViewProgress/Core (0.2.3)
   - NJKWebViewProgress/ProgressView (0.2.3)
+  - PopupController (0.2.0)
   - Realm (1.1.0):
     - Realm/Headers (= 1.1.0)
   - Realm/Headers (1.1.0)
@@ -78,6 +79,7 @@ DEPENDENCIES:
   - LTNavigationBar
   - MRProgress
   - NJKWebViewProgress
+  - PopupController
   - RealmSwift
   - RegexKitLite
   - SwiftEventBus (from `https://github.com/cesarferreira/SwiftEventBus.git`, tag `2.1.0`)
@@ -140,6 +142,7 @@ SPEC CHECKSUMS:
   LTNavigationBar: 9ef51488bf289b1f65dbcb17ac92888c4ae23e30
   MRProgress: 16de7cc9f347e8846797a770db102a323fe7ef09
   NJKWebViewProgress: f481fd424cb5ecc27eacae11b5397db92fba9a4d
+  PopupController: 0b69fdf11cbeaa807789a8c3992599083640988f
   Realm: ceecf1a4540c4ce9efe196fe73fa9855bce05bd8
   RealmSwift: 838058b2db95b12cb86bd0cf209df642c33fb60a
   RegexKitLite: c0e4c12e6e7de0769f3a3ed679f0f61604170661
@@ -150,6 +153,6 @@ SPEC CHECKSUMS:
   XCGLogger: 38063ea89b4c8b23232d18efd2e12eb0005f3ea4
   Zip: 805fc2fa9d2f05bbb7762d982d7a42ccdcc51f42
 
-PODFILE CHECKSUM: c95681f624a22a65697c0dad274336540daf4b4a
+PODFILE CHECKSUM: 56be46c5fcc0ad1527870d9105b193fb8392ffd0
 
 COCOAPODS: 1.1.0.beta.2
