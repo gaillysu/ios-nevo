@@ -1,5 +1,5 @@
 //
-//  FindWatchRequest.swift
+//  PVADCRequest.swift
 //  Nevo
 //
 //  Created by leiyuncun on 2016/10/6.
@@ -8,19 +8,15 @@
 
 import UIKit
 
-class FindWatchRequest: NevoRequest {
-    /*
-     This header is the key by which this kind of packet is called.
-     */
+class PVADCRequest: NevoRequest {
     class func HEADER() -> UInt8 {
-        return 0x44
+        return 0xF4
     }
     
     override func getRawDataEx() -> NSArray {
         
-        let values1 :[UInt8] = [0x00,FindWatchRequest.HEADER(),0xFF,0xFF,0x00,0x00,0x00,0,0,0,0,0,0,0,0,0,0,0,0,0]
-        
-        let values2 :[UInt8] = [0xFF,FindWatchRequest.HEADER(),0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        let values1 :[UInt8] = [0x00,PVADCRequest.HEADER(),0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        let values2 :[UInt8] = [0xFF,PVADCRequest.HEADER(),0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
         return NSArray(array: [Data(bytes: UnsafePointer<UInt8>(values1), count: values1.count)
             ,Data(bytes: UnsafePointer<UInt8>(values2), count: values2.count)])
     }

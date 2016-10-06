@@ -43,7 +43,12 @@ class AnalysisStepsChartView: LineChartView {
         xAxis.labelPosition = ChartXAxis.LabelPosition.bottom
         xAxis.labelFont = UIFont(name: "Helvetica-Light", size: 7)!
         
-        
+        if !AppTheme.isTargetLunaR_OR_Nevo() {
+            xAxis.labelTextColor = UIColor.white;
+            xAxis.axisLineColor = UIColor.white
+            yAxis.axisLineColor = UIColor.white
+            yAxis.labelTextColor = UIColor.white
+        }
         //let marker:BalloonMarker = BalloonMarker(color: AppTheme.NEVO_SOLAR_YELLOW(), font: UIFont(name: "Helvetica-Light", size: 11)!, insets: UIEdgeInsetsMake(8.0, 8.0, 15.0, 8.0))
         //marker.minimumSize = CGSizeMake(60, 25);
         //self.marker = marker;
@@ -76,7 +81,11 @@ class AnalysisStepsChartView: LineChartView {
         lineChartDataSet.mode = LineChartDataSet.Mode.cubicBezier
         lineChartDataSet.drawCircleHoleEnabled = false
         lineChartDataSet.valueFont = UIFont.systemFont(ofSize: 9.0)
-        let gradientColors:[CGColor] = [AppTheme.NEVO_SOLAR_GRAY().cgColor,AppTheme.NEVO_SOLAR_YELLOW().cgColor];
+        var gradientColors:[CGColor] = [AppTheme.NEVO_SOLAR_GRAY().cgColor,AppTheme.NEVO_SOLAR_YELLOW().cgColor];
+        if !AppTheme.isTargetLunaR_OR_Nevo() {
+            gradientColors = [UIColor.getBaseColor().cgColor,UIColor.getGreyColor().cgColor];
+        }
+        
         let gradient:CGGradient = CGGradient(colorsSpace: nil, colors: gradientColors as CFArray, locations: nil)!
         lineChartDataSet.fillAlpha = 1;
         lineChartDataSet.fill = ChartFill.fillWithLinearGradient(gradient, angle: 80.0)
@@ -121,6 +130,11 @@ class AnalysisStepsChartView: LineChartView {
         ll3.valueFont = UIFont.systemFont(ofSize: 10.0)
         leftAxis.addLimitLine(ll3)
         
+        if !AppTheme.isTargetLunaR_OR_Nevo() {
+            ll1.lineColor = UIColor.white
+            ll2.lineColor = UIColor.white
+            ll2.lineColor = UIColor.white
+        }
     }
     
     func getYVals()->[[Double]]{

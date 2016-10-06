@@ -146,7 +146,14 @@ extension SleepHistoricalViewController:UICollectionViewDelegate,UICollectionVie
         let cell:SleepHistoryViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "SleepHistoryValue_Identifier", for: indexPath) as! SleepHistoryViewCell
         cell.updateTitleLabel(contentTitleArray[(indexPath as NSIndexPath).row].uppercased())
         cell.valueLabel.text = "\(contentTArray[(indexPath as NSIndexPath).row])"
-        cell.backgroundColor = UIColor.white
+        
+        if !AppTheme.isTargetLunaR_OR_Nevo() {
+            cell.backgroundColor = UIColor.getGreyColor()
+            cell.valueLabel.textColor = UIColor.getBaseColor()
+            cell.titleLabel.textColor = UIColor.white
+        }else{
+            cell.backgroundColor = UIColor.white
+        }
         return cell
     }
 }

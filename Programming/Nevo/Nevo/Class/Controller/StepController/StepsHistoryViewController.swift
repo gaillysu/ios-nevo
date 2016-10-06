@@ -154,6 +154,15 @@ class StepsHistoryViewController: PublicClassController,ChartViewDelegate {
         
         chartView!.rightAxis.enabled = false
         chartView.drawBarShadowEnabled = false
+        
+        if !AppTheme.isTargetLunaR_OR_Nevo() {
+            xAxis.labelTextColor = UIColor.white
+            xAxis.axisLineColor = UIColor.white
+            
+            yAxis.labelTextColor = UIColor.white
+            yAxis.axisLineColor = UIColor.white
+            rightAxis.axisLineColor = UIColor.white
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -222,8 +231,14 @@ class StepsHistoryViewController: PublicClassController,ChartViewDelegate {
         //ChartColorTemplates.getDeepSleepColor()
         let set1:BarChartDataSet  = BarChartDataSet(yVals: yVal, label: "")
         //每个数据区块的颜色
-        set1.colors = [AppTheme.NEVO_SOLAR_YELLOW()];
-        set1.highlightColor = AppTheme.NEVO_SOLAR_YELLOW()
+        if !AppTheme.isTargetLunaR_OR_Nevo() {
+            set1.colors = [UIColor.getBaseColor()];
+            set1.highlightColor = UIColor.getBaseColor()
+        }else{
+            set1.colors = [AppTheme.NEVO_SOLAR_YELLOW()];
+            set1.highlightColor = AppTheme.NEVO_SOLAR_YELLOW()
+        }
+        
         set1.barSpace = 0.1;
         let dataSets:[BarChartDataSet] = [set1];
         

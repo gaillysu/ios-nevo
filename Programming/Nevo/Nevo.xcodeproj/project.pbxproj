@@ -43,6 +43,7 @@
 		0017DC111C8812640058A065 /* RepeatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0017DC0F1C8812640058A065 /* RepeatViewController.swift */; };
 		0017DC121C8812640058A065 /* RepeatViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0017DC101C8812640058A065 /* RepeatViewController.xib */; };
 		001F1B7C1B57777B001DD426 /* nevo_wacth.png in Resources */ = {isa = PBXBuildFile; fileRef = 001F1B7A1B57777B001DD426 /* nevo_wacth.png */; };
+		0023C0AD1DA64DD400FB33A4 /* PVADCRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0023C0AC1DA64DD400FB33A4 /* PVADCRequest.swift */; };
 		00321D6D1C98EBB10069BFCC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00321D6C1C98EBB10069BFCC /* AppDelegate.swift */; };
 		00321D7C1C993C320069BFCC /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00321D771C993C320069BFCC /* LoginController.swift */; };
 		00344F5C1C47A86800C2FC7A /* SupportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00344F5A1C47A86800C2FC7A /* SupportViewController.swift */; };
@@ -729,6 +730,7 @@
 		0017DC0F1C8812640058A065 /* RepeatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepeatViewController.swift; sourceTree = "<group>"; };
 		0017DC101C8812640058A065 /* RepeatViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RepeatViewController.xib; sourceTree = "<group>"; };
 		001F1B7A1B57777B001DD426 /* nevo_wacth.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nevo_wacth.png; sourceTree = "<group>"; };
+		0023C0AC1DA64DD400FB33A4 /* PVADCRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PVADCRequest.swift; sourceTree = "<group>"; };
 		00321D6C1C98EBB10069BFCC /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		00321D771C993C320069BFCC /* LoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		00344F5A1C47A86800C2FC7A /* SupportViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SupportViewController.swift; sourceTree = "<group>"; };
@@ -2066,6 +2068,7 @@
 				00C827161DA6137300ECECEE /* SetRTCRequest.swift */,
 				00C827171DA6137300ECECEE /* WriteSettingRequest.swift */,
 				00C8272E1DA61CAF00ECECEE /* FindWatchRequest.swift */,
+				0023C0AC1DA64DD400FB33A4 /* PVADCRequest.swift */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -3064,6 +3067,7 @@
 				00C826B71DA5E04000ECECEE /* TutorialFiveViewController.swift in Sources */,
 				00C826B81DA5E04000ECECEE /* TutorialSixViewController.swift in Sources */,
 				00C826B91DA5E04000ECECEE /* TutorialSevenViewController.swift in Sources */,
+				0023C0AD1DA64DD400FB33A4 /* PVADCRequest.swift in Sources */,
 				00C826BA1DA5E04000ECECEE /* SleepTutorialController.swift in Sources */,
 				00C826BB1DA5E04000ECECEE /* MorningTutorialController.swift in Sources */,
 				00C8261F1DA5E01B00ECECEE /* M13Checkbox+IB.swift in Sources */,

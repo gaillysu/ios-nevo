@@ -16,13 +16,6 @@ class ActionSheetView: UIAlertController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        if isSetSubView {
-            self.setSubView()
-        }
-        
-    }
-    
-    func setSubView() {
         for view in self.view.subviews.first!.subviews {
             //NSLog("第一个循环几次")
             for view2 in view.subviews {
@@ -30,13 +23,16 @@ class ActionSheetView: UIAlertController {
                 for view3 in view2.subviews {
                     //NSLog("第三个循环几次")
                     for view4 in view3.subviews {
-                        //NSLog("第四个循环几次")
-                        view4.backgroundColor = UIColor.getGreyColor()
+                        NSLog("第四个循环几次:=====:\(view4)")
+                        if !AppTheme.isTargetLunaR_OR_Nevo() {
+                            view4.backgroundColor = UIColor.getGreyColor();
+                        }
                     }
                 }
             }
         }
     }
+
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

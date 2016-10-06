@@ -20,7 +20,7 @@ class LedLightOnOffNevoRequest: NevoRequest {
     This header is the key by which this kind of packet is called.
     */
     class func HEADER() -> UInt8 {
-        return 0xF0
+        return 0x44
     }
     /**
     @ledpattern, define Led light pattern
@@ -41,10 +41,11 @@ class LedLightOnOffNevoRequest: NevoRequest {
     override func getRawDataEx() -> NSArray {
       
         let values1 :[UInt8] = [0x00,LedLightOnOffNevoRequest.HEADER(),
-            UInt8(mLedpattern!&0xFF),
-            UInt8((mLedpattern!>>8)&0xFF),
-            UInt8((mLedpattern!>>16)&0xFF),
-            0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+            0xFF,
+            0xFF,
+            0x00,
+            0x00,
+            0x00,0,0,0,0,0,0,0,0,0,0,0,0,0]
         
         let values2 :[UInt8] = [0xFF,LedLightOnOffNevoRequest.HEADER(),
             0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]

@@ -30,7 +30,14 @@ class SleepHistoricalView: UIView, ChartViewDelegate{
         if(mDelegate == nil) {
             mDelegate = delegate
             // MARK: - chartView?.marker
-            chartView?.backgroundColor = UIColor.white
+            if !AppTheme.isTargetLunaR_OR_Nevo() {
+                chartView?.backgroundColor = UIColor.getGreyColor()
+                self.backgroundColor = UIColor.getGreyColor()
+                detailCollectionView.backgroundColor = UIColor.getGreyColor()
+            }else{
+                chartView?.backgroundColor = UIColor.white
+            }
+            
             chartView?.drawSettings(chartView!.xAxis, yAxis: chartView!.leftAxis, rightAxis: chartView!.rightAxis)
         }
         chartView?.data = nil

@@ -8,14 +8,17 @@
 
 import UIKit
 import Charts
+import SwiftEventBus
+import XCGLogger
 
 class SolarIndicatorController: PublicClassController {
 
     @IBOutlet weak var textCollection: UICollectionView!
     @IBOutlet weak var pieChartView: PieChartView!
 
+    @IBOutlet weak var valueLabel: UILabel!
     fileprivate var onTitle:[String] = [NSLocalizedString("timer_on_battery", comment: ""),NSLocalizedString("timer_on_solar", comment: "")]
-    fileprivate var onValue:[Double] = [130,250]
+    fileprivate var onValue:[Double] = [130,00]
     
     init() {
         super.init(nibName: "SolarIndicatorController", bundle: Bundle.main)
@@ -27,7 +30,8 @@ class SolarIndicatorController: PublicClassController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        textCollection.backgroundColor = UIColor.white
+        valueLabel.text = "Amount of ADC:"
+        
         textCollection.register(UINib(nibName: "SolarInforViewCell",bundle: nil), forCellWithReuseIdentifier: "SolarInfor_Identifier")
         
         self.setupPieChartView(pieChartView)
@@ -35,12 +39,39 @@ class SolarIndicatorController: PublicClassController {
         pieChartView.delegate = self
         self.updateChartData()
         pieChartView.animate(xAxisDuration: 1.4, easingOption: ChartEasingOption.easeOutBack)
-        pieChartView.backgroundColor = UIColor.white
+        
+        Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(pvadcAction(_:)), userInfo: nil, repeats: true)
+        
+        //EVENT_BUS_RAWPACKET_DATA_KEY
+        SwiftEventBus.onMainThread(self, name: EVENT_BUS_RAWPACKET_DATA_KEY) { (notification) in
+            let packet = notification.object as! NevoPacket
+            
+            //Do nothing
+            if packet.getHeader() == PVADCRequest.HEADER(){
+                var pvadcValue:Int = Int(NSData2Bytes(packet.getPackets()[0])[4])
+                pvadcValue =  pvadcValue + Int(NSData2Bytes(packet.getPackets()[0])[5] )<<8
 
+                var batteryAdcValue:Int = Int(NSData2Bytes(packet.getPackets()[0])[2])
+                batteryAdcValue =  batteryAdcValue + Int(NSData2Bytes(packet.getPackets()[0])[3] )<<8
+                self.valueLabel.text = "Amount of ADC:\(pvadcValue)"
+                XCGLogger.default.debug("pvadc packet............\(pvadcValue)")
+            }
+        }
+    }
+    
+    func pvadcAction(_ timer:Timer) {
+        AppDelegate.getAppDelegate().sendRequest(PVADCRequest())
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
+        if !AppTheme.isTargetLunaR_OR_Nevo() {
+            textCollection.backgroundColor = UIColor.getGreyColor()
+            pieChartView.backgroundColor = UIColor.getGreyColor()
+            self.view.backgroundColor = UIColor.getGreyColor()
+        }else{
+            textCollection.backgroundColor = UIColor.white
+            pieChartView.backgroundColor = UIColor.white
+        }
         
     }
 
@@ -71,8 +102,18 @@ extension SolarIndicatorController:UICollectionViewDelegate,UICollectionViewData
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SolarInfor_Identifier", for: indexPath)
         cell.backgroundColor = UIColor.white
         (cell as! SolarInforViewCell).titleLabel.text = onTitle[(indexPath as NSIndexPath).row]
-        if onValue.count>0 {
-            (cell as! SolarInforViewCell).valueLabel.text = String(format: "%dh %dmin", Int(onValue[(indexPath as NSIndexPath).row])/60,Int(onValue[(indexPath as NSIndexPath).row])%60)
+        if indexPath.row == 0 {
+            (cell as! SolarInforViewCell).valueLabel.text = String(format: "%dh %dmin", Date().hour,Date().minute)
+        }
+        
+        if indexPath.row == 1 {
+            (cell as! SolarInforViewCell).valueLabel.text = String(format: "0h 0min")
+        }
+        
+        if !AppTheme.isTargetLunaR_OR_Nevo() {
+            (cell as! SolarInforViewCell).valueLabel.textColor = UIColor.getBaseColor()
+            (cell as! SolarInforViewCell).titleLabel.textColor = UIColor.white
+            cell.backgroundColor = UIColor.getGreyColor()
         }
         return cell
     }
@@ -135,8 +176,14 @@ extension SolarIndicatorController:ChartViewDelegate {
         let dataSet:PieChartDataSet = PieChartDataSet(yVals: yVals1, label: "")
         dataSet.sliceSpace = 2.0;
         var colors:[UIColor] = [];
-        colors.append(AppTheme.NEVO_SOLAR_YELLOW())
-        colors.append(AppTheme.NEVO_SOLAR_DARK_GRAY())
+        if !AppTheme.isTargetLunaR_OR_Nevo() {
+            //B37EBD
+            colors.append(UIColor.getBaseColor())
+            colors.append(UIColor.getTintColor())
+        }else{
+            colors.append(AppTheme.NEVO_SOLAR_YELLOW())
+            colors.append(AppTheme.NEVO_SOLAR_DARK_GRAY())
+        }
         dataSet.colors = colors
         
         let data:PieChartData = PieChartData(xVals: xVals, dataSets: [dataSet])
