@@ -1,9 +1,0 @@
-
-/* Class = "UILabel"; text = "To activate sleeping-mode, push and hold the third button, \nuntil the blue LED blinks. "; ObjectID = "4nA-h1-L87"; */
-"4nA-h1-L87.text" = "To activate sleeping-mode, push and hold the third button, \nuntil the blue LED blinks. ";
-
-/* Class = "UIButton"; normalTitle = "Go it!"; ObjectID = "gue-7o-VWB"; */
-"gue-7o-VWB.normalTitle" = "Go it!";
-
-/* Class = "UILabel"; text = "Sleep Mode"; ObjectID = "vIS-Wv-bD5"; */
-"vIS-Wv-bD5.text" = "Sleep Mode";

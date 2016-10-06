@@ -413,4 +413,14 @@ class AppTheme {
     class func isNull(_ object:String)->Bool{
         return object.isEmpty
     }
+    
+    class func isTargetLunaR_OR_Nevo()->Bool {
+        let infoDictionary:[String : AnyObject] = Bundle.main.infoDictionary! as [String : AnyObject]
+        let app_Name:String = infoDictionary["CFBundleName"] as! String
+        if app_Name == "LunaR" {
+            return false
+        }else{
+            return true
+        }
+    }
 }

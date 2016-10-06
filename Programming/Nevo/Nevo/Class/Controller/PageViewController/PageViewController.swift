@@ -67,35 +67,12 @@ class PageViewController: UIPageViewController,UIActionSheetDelegate {
     override func viewDidLayoutSubviews() {
         if titleView == nil {
             self.initTitleView()
-            let leftButton:UIButton = UIButton(type: UIButtonType.system)
-            leftButton.setImage(UIImage(named: "left_button"), for: UIControlState())
-            leftButton.tag = 1900
-            leftButton.frame = CGRect(x: 0, y: 0, width: 35, height: 125)
-            leftButton.imageEdgeInsets = UIEdgeInsets(top: (125.0-30.0)/2.0, left: 10, bottom: (125.0-30.0)/2.0, right: 10)
-            leftButton.addTarget(self, action: #selector(slidingAction(_:)), for: UIControlEvents.touchUpInside)
-            leftButton.tintColor = UIColor.getWhiteBaseColor()
-            leftButton.center = CGPoint(x: leftButton.frame.size.width/2.0, y: self.view.frame.size.height/2.0-70)
-            self.view.addSubview(leftButton)
-            
-            let rightButton:UIButton = UIButton(type: UIButtonType.system)
-            rightButton.setImage(UIImage(named: "right_button"), for: UIControlState())
-            rightButton.tag = 1910
-            rightButton.frame = CGRect(x: 0, y: 0, width: 35, height: 125)
-            rightButton.imageEdgeInsets = UIEdgeInsets(top: (125.0-30.0)/2.0, left: 10, bottom: (125.0-30.0)/2.0, right: 10)
-            rightButton.addTarget(self, action: #selector(slidingAction(_:)), for: UIControlEvents.touchUpInside)
-            rightButton.tintColor = UIColor.getWhiteBaseColor()
-            rightButton.center = CGPoint(x: UIScreen.main.bounds.size.width-rightButton.frame.size.width/2.0, y: self.view.frame.size.height/2.0-70)
-            self.view.addSubview(rightButton)
         }
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-    
-    func slidingAction(_ sender:UIButton) {
-        
     }
     
     func leftBarButtonAction(_ rightBar:UIBarButtonItem) {

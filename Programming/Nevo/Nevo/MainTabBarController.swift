@@ -20,9 +20,11 @@ class MainTabBarController: UITabBarController,UITabBarControllerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.delegate = self
-        self.tabBar.tintColor = UIColor(rgba: "#A08455")
         self.tabBar.tintColor = AppTheme.NEVO_SOLAR_YELLOW()
-        
+        if !AppTheme.isTargetLunaR_OR_Nevo() {
+            self.tabBar.tintColor = UIColor.getBaseColor()
+            self.tabBar.barTintColor = UIColor.getGreyColor()
+        }
         // Do any additional setup after loading the view.
         //var nav:UINavigationController!
         let viewArray:[AnyObject] = self.viewControllers!

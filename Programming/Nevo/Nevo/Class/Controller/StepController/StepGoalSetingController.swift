@@ -58,8 +58,13 @@ class StepGoalSetingController: PublicClassController,ButtonManagerCallBack,Cloc
         
         collectionView.register(UINib(nibName: "StepGoalSetingViewCell", bundle: Bundle.main), forCellWithReuseIdentifier: "StepGoalSetingIdentifier")
         collectionView?.register(UICollectionViewCell.classForCoder(), forCellWithReuseIdentifier: "CollectionViewCell")
-        collectionView?.backgroundColor = UIColor.white
         bulidClockViewandProgressBar()
+        if !AppTheme.isTargetLunaR_OR_Nevo(){
+            collectionView.backgroundColor = UIColor.getGreyColor()
+            self.view.backgroundColor = UIColor.getGreyColor()
+        }else{
+            collectionView?.backgroundColor = UIColor.white
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -178,6 +183,10 @@ class StepGoalSetingController: PublicClassController,ButtonManagerCallBack,Cloc
         progressView.setProgressColor(AppTheme.NEVO_SOLAR_YELLOW())
         progressView.setProgress(0.0)
         //self.view.layer.addSublayer(progressView)
+        
+        if !AppTheme.isTargetLunaR_OR_Nevo(){
+            clockBackGroundView.backgroundColor = UIColor.getGreyColor()
+        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -265,6 +274,11 @@ extension StepGoalSetingController:UICollectionViewDelegate,UICollectionViewData
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell:StepGoalSetingViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "StepGoalSetingIdentifier", for: indexPath) as! StepGoalSetingViewCell
+        if !AppTheme.isTargetLunaR_OR_Nevo() {
+            cell.backgroundColor = UIColor.getGreyColor()
+            cell.titleLabel.textColor = UIColor.white
+            cell.valueLabel.textColor = UIColor.getBaseColor()
+        }
         cell.titleLabel.text = contentTitleArray[(indexPath as NSIndexPath).row]
         switch (indexPath as NSIndexPath).row {
         case 0:

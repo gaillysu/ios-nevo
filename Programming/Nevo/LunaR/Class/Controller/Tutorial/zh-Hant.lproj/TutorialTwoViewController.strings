@@ -1,9 +1,0 @@
-
-/* Class = "UILabel"; text = "swipe up and go to control centre, or go to settings to turn on bluetooth."; ObjectID = "HV3-5H-8VR"; */
-"HV3-5H-8VR.text" = "swipe up and go to control centre, or go to settings to turn on bluetooth.";
-
-/* Class = "UIButton"; normalTitle = "Turn Bluetooth on"; ObjectID = "Vgc-yf-hly"; */
-"Vgc-yf-hly.normalTitle" = "Turn Bluetooth on";
-
-/* Class = "UILabel"; text = "Get connected"; ObjectID = "WkS-nm-Wd3"; */
-"WkS-nm-Wd3.text" = "Get connected";
