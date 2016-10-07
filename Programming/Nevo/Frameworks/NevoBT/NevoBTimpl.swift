@@ -259,8 +259,8 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
     
         if (error != nil) {
             XCGLogger.default.debug("Failed to write value for characteristic \(characteristic), reason: \(error)")
-        } else {
-            XCGLogger.default.debug("Did write value for characterstic \(characteristic), new value: \(characteristic.value)")
+        }else {
+            //XCGLogger.default.debug("Did write value for characterstic \(characteristic), new value: \(characteristic.value)")
         }
 
     }
@@ -571,7 +571,16 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
             }
         } else {
             // Fallback on earlier versions
-            
+            switch mManager!.state.rawValue {
+            case 3: // CBCentralManagerState.unauthorized :
+                XCGLogger.default.debug("This app is not authorised to use Bluetooth low energy")
+            case 4: // CBCentralManagerState.poweredOff:
+                XCGLogger.default.debug("Bluetooth is currently powered off.")
+            case 5: //CBCentralManagerState.poweredOn:
+                XCGLogger.default.debug("Bluetooth is currently powered on and available to use.")
+                return true
+            default:break
+            }
         }
 
         return false
