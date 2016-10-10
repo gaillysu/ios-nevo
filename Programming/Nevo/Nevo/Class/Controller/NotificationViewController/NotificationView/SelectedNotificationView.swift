@@ -11,7 +11,6 @@ import UIKit
 class SelectedNotificationView: UITableView {
 
     func bulidSelectedNotificationView(_ navigationItem:UINavigationItem){
-
         
     }
 
@@ -41,7 +40,10 @@ class SelectedNotificationView: UITableView {
         if((clockIndex/2 - 1) == (indexPath as NSIndexPath).row){
             endCell.imageName.isHidden = false
         }
-
+        
+        endCell.textLabel?.text = cellTitle
+        endCell.textLabel?.backgroundColor = UIColor.clear
+        
         return endCell
     }
 
