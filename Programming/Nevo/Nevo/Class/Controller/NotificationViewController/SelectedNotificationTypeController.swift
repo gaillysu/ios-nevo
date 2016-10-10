@@ -125,6 +125,7 @@ class SelectedNotificationTypeController: UITableViewController {
                 cell.backgroundColor = UIColor.clear
                 cell.isUserInteractionEnabled = false;
             }
+            
             return cell
         default: return UITableViewCell();
         }

@@ -24,6 +24,9 @@ class ProfileSetupViewController: UIViewController {
     @IBOutlet weak var retypePassword: AutocompleteField!
     @IBOutlet weak var submitButton: UIButton!
     @IBOutlet weak var checkBox: M13Checkbox!
+    
+
+    
 
     fileprivate var nameDictionary:Dictionary<String,AnyObject> = ["first_name":"DroneUser" as AnyObject,"last_name":"User" as AnyObject]
     var account:Dictionary<String,AnyObject> = ["email":"" as AnyObject,"password":"" as AnyObject]
@@ -58,20 +61,36 @@ class ProfileSetupViewController: UIViewController {
     }
     
     @IBAction func buttonActionManager(_ sender: AnyObject) {
-        if(AppTheme.isNull(email!.text!) || AppTheme.isEmail(email!.text!) || AppTheme.isNull(firstNameTextField!.text!) || AppTheme.isNull(lastNameTextField!.text!) || AppTheme.isPassword(password.text!) || AppTheme.isPassword(retypePassword.text!)) {
+        
+        if AppTheme.isEmail(email!.text!) {
+            let banner = Banner(title: NSLocalizedString("The format of your E-mail address seems to be wrong. :(", comment: ""), subtitle: nil, image: nil, backgroundColor:AppTheme.NEVO_SOLAR_YELLOW())
+            banner.dismissesOnTap = true
+            banner.show(duration: 0.6)
+            return
+        }
+        
+        if(AppTheme.isNull(email!.text!) || AppTheme.isNull(firstNameTextField!.text!) || AppTheme.isNull(lastNameTextField!.text!) || AppTheme.isPassword(password.text!) || AppTheme.isPassword(retypePassword.text!)) {
             let banner = Banner(title: NSLocalizedString("one_of_the_fields_are_empty", comment: ""), subtitle: nil, image: nil, backgroundColor:AppTheme.NEVO_SOLAR_YELLOW())
             banner.dismissesOnTap = true
             banner.show(duration: 0.6)
+            
         }else{
-            if retypePassword.text! == password.text! {
-                let infoDict:[String:String] = ["email":email!.text!,"first_name":firstNameTextField!.text!,"last_name":lastNameTextField!.text!,"password":password.text!]
-                let infomation:InformationController = InformationController()
-                infomation.registerInfor = infoDict
-                self.navigationController?.pushViewController(infomation, animated: true)
-            }else{
+            if retypePassword.text! != password.text! {
                 let banner = Banner(title: NSLocalizedString("two_password_is_not_the_same", comment: ""), subtitle: nil, image: nil, backgroundColor:AppTheme.NEVO_SOLAR_YELLOW())
                 banner.dismissesOnTap = true
                 banner.show(duration: 0.6)
+            }else{
+                if checkBox.checkState == .unchecked {
+                    // TODO: 字符串本地化
+                    let banner = Banner(title: NSLocalizedString("The terms and conditions were not agreed. :(", comment: ""), subtitle: nil, image: nil, backgroundColor:AppTheme.NEVO_SOLAR_YELLOW())
+                    banner.dismissesOnTap = true
+                    banner.show(duration: 0.6)
+                } else {
+                    let infoDict:[String:String] = ["email":email!.text!,"first_name":firstNameTextField!.text!,"last_name":lastNameTextField!.text!,"password":password.text!]
+                    let infomation:InformationController = InformationController()
+                    infomation.registerInfor = infoDict
+                    self.navigationController?.pushViewController(infomation, animated: true)
+                }
             }
         }
     }
@@ -105,6 +124,7 @@ class ProfileSetupViewController: UIViewController {
         if textField.returnKeyType == UIReturnKeyType.done {
             textField.resignFirstResponder()
         }
+        
         return true
     }
 }

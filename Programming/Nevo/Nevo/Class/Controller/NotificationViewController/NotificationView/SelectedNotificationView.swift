@@ -41,8 +41,8 @@ class SelectedNotificationView: UITableView {
             endCell.imageName.isHidden = false
         }
         
-        endCell.textLabel?.text = cellTitle
-        endCell.textLabel?.backgroundColor = UIColor.clear
+        endCell.textLabel!.text = cellTitle
+        endCell.textLabel!.backgroundColor = UIColor.clear
         
         return endCell
     }
