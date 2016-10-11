@@ -22,6 +22,13 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
         super.awakeFromNib()
         self.initChartView()
     }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        if !AppTheme.isTargetLunaR_OR_Nevo() {
+            titleLabel.textColor = UIColor.white
+        }
+    }
 
     fileprivate func initChartView() {
         lineChartView.delegate = self;
@@ -51,6 +58,10 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
         
         lineChartView.legend.form = ChartLegend.Form.line
         lineChartView.animate(xAxisDuration: 2.5, easingOption: ChartEasingOption.easeInOutCirc)
+        
+        if !AppTheme.isTargetLunaR_OR_Nevo() {
+            xAxis.labelTextColor = UIColor.white;
+        }
     }
     
     func setTitle(_ title:String) {
@@ -161,7 +172,10 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
         set1.drawCircleHoleEnabled = false;
         set1.valueFont = UIFont.systemFont(ofSize: 9.0)
         
-        let gradientColors:[CGColor] = [AppTheme.NEVO_SOLAR_GRAY().cgColor,AppTheme.NEVO_SOLAR_YELLOW().cgColor];
+        var gradientColors:[CGColor] = [AppTheme.NEVO_SOLAR_YELLOW().cgColor,AppTheme.NEVO_SOLAR_GRAY().cgColor];
+        if !AppTheme.isTargetLunaR_OR_Nevo() {
+            gradientColors = [UIColor.getTintColor().cgColor,UIColor.getBaseColor().cgColor];
+        }
         let gradient:CGGradient = CGGradient(colorsSpace: nil, colors: gradientColors as CFArray, locations: nil)!
         set1.fillAlpha = 1;
         set1.fill = ChartFill.fillWithLinearGradient(gradient, angle: 80.0)
@@ -313,7 +327,10 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
             set1.valueFont = UIFont.systemFont(ofSize: 9.0)
             //set1.mode = LineChartDataSet.Mode.CubicBezier
             
-            let gradientColors:[NSUIColor] = [UIColor.lightGray,AppTheme.NEVO_SOLAR_YELLOW(),AppTheme.NEVO_SOLAR_GRAY()];
+            var gradientColors:[UIColor] = [UIColor.lightGray,AppTheme.NEVO_SOLAR_YELLOW(),AppTheme.NEVO_SOLAR_GRAY()];
+            if !AppTheme.isTargetLunaR_OR_Nevo() {
+                gradientColors = [UIColor.lightGray,UIColor.getTintColor(),UIColor.getBaseColor()];
+            }
             set1.fillAlpha = 0.5;
             set1.fill = ChartFill.fillWithColor(gradientColors[index])
             //fillWithLinearGradient(gradient, angle: 90.0)
@@ -396,7 +413,11 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
         set1.drawCircleHoleEnabled = false;
         set1.valueFont = UIFont.systemFont(ofSize: 9.0)
         
-        let gradientColors:[CGColor] = [AppTheme.NEVO_SOLAR_GRAY().cgColor,AppTheme.NEVO_SOLAR_YELLOW().cgColor];
+        var gradientColors:[CGColor] = [AppTheme.NEVO_SOLAR_GRAY().cgColor,AppTheme.NEVO_SOLAR_YELLOW().cgColor];
+        if !AppTheme.isTargetLunaR_OR_Nevo() {
+            gradientColors = [UIColor.getBaseColor().cgColor,UIColor.getTintColor().cgColor];
+        }
+        
         let gradient:CGGradient = CGGradient(colorsSpace: nil, colors: gradientColors as CFArray, locations: nil)!
         set1.fillAlpha = 1;
         set1.fill = ChartFill.fillWithLinearGradient(gradient, angle: 80.0)
@@ -430,6 +451,10 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
         leftAxis.valueFormatter!.positiveSuffix = unitString;
         leftAxis.labelPosition = ChartYAxis.LabelPosition.outsideChart
         leftAxis.spaceTop = 0.15;
+        
+        if !AppTheme.isTargetLunaR_OR_Nevo() {
+            leftAxis.labelTextColor = UIColor.white;
+        }
     }
     
     /**

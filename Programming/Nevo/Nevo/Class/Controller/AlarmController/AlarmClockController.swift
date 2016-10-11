@@ -29,6 +29,10 @@ class AlarmClockController: UITableViewController,AddAlarmDelegate {
         self.tableView.allowsSelectionDuringEditing = true;
         self.tableView.separatorStyle = UITableViewCellSeparatorStyle.none
         self.tableView.register(UINib(nibName: "AlarmClockVCell",bundle:nil), forCellReuseIdentifier: "alarmCell")
+        
+        if !AppTheme.isTargetLunaR_OR_Nevo() {
+            self.tableView.backgroundColor = UIColor.getLightBaseColor()
+        }
     }
 
     func initValue() {
@@ -303,6 +307,10 @@ class AlarmClockController: UITableViewController,AddAlarmDelegate {
         headerLabel.textColor = UIColor.black
         headerLabel.textAlignment = NSTextAlignment.center
         headerLabel.backgroundColor = UIColor.white
+        if !AppTheme.isTargetLunaR_OR_Nevo() {
+            headerLabel.backgroundColor = UIColor.getGreyColor()
+            headerLabel.textColor = UIColor.white
+        }
         return headerLabel
     }
 
@@ -313,10 +321,17 @@ class AlarmClockController: UITableViewController,AddAlarmDelegate {
         var alarmModel:UserAlarm?
         if (indexPath as NSIndexPath).section == 0 {
             alarmModel = mSleepAlarmArray[(indexPath as NSIndexPath).row] as? UserAlarm
-            endCell.contentView.backgroundColor = UIColor.white
         }else{
             alarmModel = mWakeAlarmArray[(indexPath as NSIndexPath).row] as? UserAlarm
-            endCell.contentView.backgroundColor = UIColor.white
+        }
+        endCell.contentView.backgroundColor = UIColor.white
+        if !AppTheme.isTargetLunaR_OR_Nevo() {
+            endCell.backgroundColor = UIColor.getGreyColor()
+            endCell.contentView.backgroundColor = UIColor.getGreyColor()
+            endCell.dateLabel.textColor = UIColor.white
+            endCell.titleLabel.textColor = UIColor.white
+            endCell.alarmIn.textColor = UIColor.white
+            endCell.alarmSwicth.onTintColor = UIColor.getBaseColor()
         }
         
         let dayArray:[String] = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]

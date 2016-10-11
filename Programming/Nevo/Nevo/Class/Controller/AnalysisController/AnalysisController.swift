@@ -32,6 +32,12 @@ class AnalysisController: PublicClassController {
         chartsCollectionView.register(UICollectionReusableView.classForCoder(), forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "ChartsViewHeader_Identifier")
         contentCollectionView.register(UINib(nibName: "AnalysisValueCell",bundle: nil), forCellWithReuseIdentifier: "AnalysisValue_Identifier")
         dataArray.addObjects(from: self.getStepsData())
+        
+        if !AppTheme.isTargetLunaR_OR_Nevo() {
+            contentCollectionView.backgroundColor = UIColor.getGreyColor()
+            chartsCollectionView.backgroundColor = UIColor.getGreyColor()
+            segmented.tintColor = UIColor.getBaseColor()
+        }
     }
 
     override func didReceiveMemoryWarning() {

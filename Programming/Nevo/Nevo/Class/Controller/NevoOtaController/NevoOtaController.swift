@@ -509,7 +509,7 @@ class NevoOtaController : NSObject,ConnectionControllerDelegate {
     func MCU_openfirmware(_ firmwareURL:URL){
         let locData:Data = try! Data(contentsOf: firmwareURL);
         //remove first 16K bytes, remain 48k bytes
-        let currentRange :Range = (16*1024)..<((16*1024)+(locData.count - 16 * 1024))
+        let currentRange :Range = (16*1024)..<locData.count
             //NSMakeRange(16*1024, locData.count - 16 * 1024);
 
         firmwareDataBytesSent = 0
@@ -538,11 +538,6 @@ class NevoOtaController : NSObject,ConnectionControllerDelegate {
         //define one page request  object
         let Onepage:Mcu_OnePageRequest = Mcu_OnePageRequest()
 
-        for i:Int in 0..<notificationPacketInterval {
-            if firmwareDataBytesSent < binFileSize {
-                
-            }
-        }
         for i:Int in 0..<notificationPacketInterval {
             if firmwareDataBytesSent < binFileSize {
                 continue;

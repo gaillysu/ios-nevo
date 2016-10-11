@@ -38,6 +38,7 @@ class NewAddAlarmController: UITableViewController,ButtonManagerCallBack,Selecte
         //self.tableView.backgroundColor = UIColor.white
         //self.tableView.separatorStyle = UITableViewCellSeparatorStyle.None
         self.tableView.separatorColor = UIColor.getLightBaseColor()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -49,14 +50,25 @@ class NewAddAlarmController: UITableViewController,ButtonManagerCallBack,Selecte
             let view = UIView()
             let tipsString:String = NSLocalizedString("tips_content", comment: "")
             let tipsLabel:UILabel = UILabel(frame: CGRect(x: 10,y: 0,width: UIScreen.main.bounds.size.width-20,height: 120))
+            tipsLabel.backgroundColor = UIColor.clear
             tipsLabel.numberOfLines = 0
             tipsLabel.text = tipsString
-            
             tipsLabel.font = UIFont(name: "HelveticaNeue-Thin", size: 16)
-            let attributeDict:[String : AnyObject] = [NSFontAttributeName: UIFont(name: "HelveticaNeue-Thin", size: 16)!]
-            let AttributedStr:NSMutableAttributedString = NSMutableAttributedString(string: tipsString, attributes: attributeDict)
-            AttributedStr.addAttribute(NSForegroundColorAttributeName, value: AppTheme.NEVO_SOLAR_YELLOW(), range: NSMakeRange(0, 5))
-            tipsLabel.attributedText = AttributedStr
+            
+            if !AppTheme.isTargetLunaR_OR_Nevo() {
+                self.tableView.backgroundColor = UIColor.getGreyColor()
+                tipsLabel.textColor = UIColor.white
+                let attributeDict:[String : AnyObject] = [NSFontAttributeName: UIFont(name: "HelveticaNeue-Thin", size: 16)!]
+                let AttributedStr:NSMutableAttributedString = NSMutableAttributedString(string: tipsString, attributes: attributeDict)
+                AttributedStr.addAttribute(NSForegroundColorAttributeName, value: UIColor.getBaseColor(), range: NSMakeRange(0, 5))
+                tipsLabel.attributedText = AttributedStr
+            }else{
+                let attributeDict:[String : AnyObject] = [NSFontAttributeName: UIFont(name: "HelveticaNeue-Thin", size: 16)!]
+                let AttributedStr:NSMutableAttributedString = NSMutableAttributedString(string: tipsString, attributes: attributeDict)
+                AttributedStr.addAttribute(NSForegroundColorAttributeName, value: AppTheme.NEVO_SOLAR_YELLOW(), range: NSMakeRange(0, 5))
+                tipsLabel.attributedText = AttributedStr
+            }
+            
             view.addSubview(tipsLabel)
             self.tableView.tableFooterView = view
         }
