@@ -124,6 +124,7 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
                     let alert :UIAlertView = UIAlertView(title: updateTitle, message: updatemsg, delegate: self, cancelButtonTitle: NSLocalizedString("Cancel", comment: ""))
                     alert.addButton(withTitle: NSLocalizedString("Enter", comment: ""))
                     alert.show()
+                    
                 }
             }
         }

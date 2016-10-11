@@ -38,7 +38,7 @@ class ScannerViewController: UIViewController, CBCentralManagerDelegate, UITable
         centralManager = CBCentralManager()
         legacyDfuServiceUUID    = CBUUID(string: "00001530-1212-EFDE-1523-785FEABCD123")
         secureDfuServiceUUID    = CBUUID(string: "FE59")
-        super.init(nibName: "AddressManagerController", bundle: Bundle.main)
+        super.init(nibName: "ScannerViewController", bundle: Bundle.main)
         centralManager.delegate = self
         discoveredPeripherals = [CBPeripheral]()
         securePeripheralMarkers = [Bool]()
@@ -48,9 +48,14 @@ class ScannerViewController: UIViewController, CBCentralManagerDelegate, UITable
         fatalError("init(coder:) has not been implemented")
     }
 
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+    }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
+        discoveredPeripheralsTableView.register(UITableViewCell.self, forCellReuseIdentifier: "peripheralCell")
+        //peripheralCell
     }
     
     //MARK: - CBCentralManagerDelegate
@@ -111,7 +116,9 @@ class ScannerViewController: UIViewController, CBCentralManagerDelegate, UITable
         self.selectedPeripheral = discoveredPeripherals![(indexPath as NSIndexPath).row]
         self.selectedPeripheralIsSecure = securePeripheralMarkers![(indexPath as NSIndexPath).row]
 
-        didDelegate?.onDidSelectPeripheral!(self.selectedPeripheralIsSecure!, self.selectedPeripheral!, centralManager)
+        self.dismiss(animated: true) { 
+            self.didDelegate?.onDidSelectPeripheral!(self.selectedPeripheralIsSecure!, self.selectedPeripheral!, self.centralManager)
+        }
         //didDelegate?.onDidSelectPeripheral(nil)
     }
 }

@@ -74,22 +74,24 @@ class OldOtaViewController: UIViewController  {
     func scanAction(_ sender:AnyObject) {
         let scannerController:ScannerViewController = ScannerViewController()
         scannerController.didDelegate = self
-        popupView = PopupController
-            .create(self)
-            .customize(
-                [
-                    .animation(.fadeIn),
-                    .scrollable(false),
-                    .backgroundStyle(.blackFilter(alpha: 0.7))
-                ]
-            )
-            .didShowHandler { popup in
-                print("showed popup!")
-            }
-            .didCloseHandler { _ in
-                print("closed popup!")
-            }
-            .show(scannerController) // show popup
+        self.present(scannerController, animated: true, completion: nil)
+//
+//        popupView = PopupController
+//            .create(self)
+//            .customize(
+//                [
+//                    .animation(.fadeIn),
+//                    .scrollable(false),
+//                    .backgroundStyle(.blackFilter(alpha: 0.7))
+//                ]
+//            )
+//            .didShowHandler { popup in
+//                print("showed popup!")
+//            }
+//            .didCloseHandler { _ in
+//                print("closed popup!")
+//            }
+//            .show(scannerController) // show popup
     }
 
     override func didReceiveMemoryWarning() {
@@ -183,7 +185,7 @@ extension OldOtaViewController:DFUProgressDelegate{
     func onUploadProgress(_ part: Int, totalParts: Int, progress: Int, currentSpeedBytesPerSecond: Double, avgSpeedBytesPerSecond: Double) {
         //self.dfuUploadProgressView.setProgress(Float(progress)/100.0, animated: true)
         //self.dfuUploadStatus.text = "Speed : \(String(format:"%.1f", avgSpeedBytesPerSecond/1024)) Kbps, pt. \(part)/\(totalParts)"
-        nevoOtaView.setProgress(Float(progress), currentTask: 1, allTask: 1, progressString: "Speed : \(String(format:"%.1f", avgSpeedBytesPerSecond/1024)) Kbps, pt. \(part)/\(totalParts)")
+        nevoOtaView.setProgress(Float(progress/100), currentTask: 1, allTask: 1, progressString: "Speed : \(String(format:"%.1f", avgSpeedBytesPerSecond/1024)) Kbps, pt. \(part)/\(totalParts)")
     }
 }
 
@@ -221,9 +223,9 @@ extension OldOtaViewController {
     
     func getBundledFirmwareURLHelper() -> URL {
         if self.secureDFU! {
-            return Bundle.main.url(forResource: "MCUFile", withExtension: "zip")!
+            return Bundle.main.url(forResource: "iMaze_v26", withExtension: "bin")!
         }else{
-            return Bundle.main.url(forResource: "OtaFile", withExtension: "zip")!
+            return Bundle.main.url(forResource: "iMaze_v26", withExtension: "bin")!
         }
     }
     
@@ -243,7 +245,7 @@ extension OldOtaViewController {
         }
         
         selectedFileURL  = self.getBundledFirmwareURLHelper()
-        selectedFirmware = DFUFirmware(urlToZipFile: selectedFileURL!)
+        selectedFirmware = DFUFirmware(urlToBinOrHexFile: selectedFileURL!, urlToDatFile: nil, type: DFUFirmwareType.softdevice)
         
         let dfuInitiator = DFUServiceInitiator(centralManager: centralManager!, target: dfuPeripheral!)
         _ = dfuInitiator.withFirmwareFile(selectedFirmware!)
