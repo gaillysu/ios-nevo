@@ -25,3 +25,16 @@ class SetingInfoCell: UITableViewCell {
     }
     
 }
+
+
+// MARK: - Style Evolve
+extension SetingInfoCell {
+    fileprivate func styleEvolve() {
+        // if lunar
+        if !AppTheme.isTargetLunaR_OR_Nevo() {
+            contentView.backgroundColor = UIColor.getGreyColor()
+            emailLabel.textColor = UIColor.white
+            userName.textColor = UIColor.white
+        }
+    }
+}
