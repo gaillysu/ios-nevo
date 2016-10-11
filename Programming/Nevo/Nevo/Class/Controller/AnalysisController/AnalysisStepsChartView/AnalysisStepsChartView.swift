@@ -132,8 +132,11 @@ class AnalysisStepsChartView: LineChartView {
         
         if !AppTheme.isTargetLunaR_OR_Nevo() {
             ll1.lineColor = UIColor.white
+            ll1.valueTextColor = UIColor.white
             ll2.lineColor = UIColor.white
-            ll2.lineColor = UIColor.white
+            ll2.valueTextColor = UIColor.white
+            ll3.lineColor = UIColor.white
+            ll3.valueTextColor = UIColor.white
         }
     }
     
