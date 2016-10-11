@@ -18,10 +18,9 @@ class NewAddAlarmController: UITableViewController,ButtonManagerCallBack,Selecte
     var name:String = ""
     var repeatSelectedIndex:Int = 0
     var alarmTypeIndex:Int = 0
-
+    
     init() {
         super.init(nibName: "NewAddAlarmController", bundle: Bundle.main)
-
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -190,8 +189,18 @@ class NewAddAlarmController: UITableViewController,ButtonManagerCallBack,Selecte
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat{
         if((indexPath as NSIndexPath).section == 0){
-            let cellHeight:CGFloat = AddAlarmView.addAlarmTimerTableViewCell(indexPath, tableView: tableView, timer:timer).contentView.systemLayoutSizeFitting(UILayoutFittingCompressedSize).height
-            return cellHeight
+            
+            var height:CGFloat = CGFloat(UserDefaults.standard.double(forKey: "k\(#file)HeightForDatePickerView"))
+            if height != 0 {
+            } else {
+                height = AddAlarmView.addAlarmTimerTableViewCell(indexPath, tableView: tableView, timer:timer).contentView.systemLayoutSizeFitting(UILayoutFittingCompressedSize).height
+                UserDefaults.standard.set(Double(height), forKey: "k\(#file)HeightForDatePickerView")
+            }
+            
+            return height
+            
+//            let cellHeight:CGFloat = AddAlarmView.addAlarmTimerTableViewCell(indexPath, tableView: tableView, timer:timer).contentView.systemLayoutSizeFitting(UILayoutFittingCompressedSize).height
+//            return cellHeight
         }else{
             return 45.0
         }

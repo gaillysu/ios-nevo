@@ -117,6 +117,7 @@ class SelectedNotificationTypeController: UITableViewController {
             return cell
         case 2:
             let cell = selectedNotificationView.getLineColorCell(indexPath, tableView: tableView, cellTitle: colorArray[(indexPath as NSIndexPath).row], clockIndex: clockIndex)
+            
             if swicthStates {
                 cell.backgroundColor = UIColor.white
                 cell.isUserInteractionEnabled = true;
@@ -124,6 +125,7 @@ class SelectedNotificationTypeController: UITableViewController {
                 cell.backgroundColor = UIColor.clear
                 cell.isUserInteractionEnabled = false;
             }
+            
             return cell
         default: return UITableViewCell();
         }
