@@ -23,7 +23,8 @@ class SetingView: UIView {
         //tableListView.backgroundColor = UIColor.white
         tableListView.separatorColor = UIColor.lightGray
         if !AppTheme.isTargetLunaR_OR_Nevo() {
-            tableListView.backgroundColor = UIColor.getGreyColor()
+            tableListView.backgroundColor = UIColor.getLightBaseColor()
+            tableListView.separatorColor = UIColor.getLightBaseColor()
         }
     }
 
@@ -59,6 +60,13 @@ class SetingView: UIView {
         endCell?.textLabel?.textColor = UIColor.black
         endCell?.textLabel!.backgroundColor = UIColor.clear
         endCell?.imageView?.image = UIImage(named: imageName)
+        
+        if !AppTheme.isTargetLunaR_OR_Nevo() {
+            endCell?.backgroundColor = UIColor.getGreyColor()
+            mSendLocalNotificationSwitchButton?.onTintColor = UIColor.getBaseColor()
+            endCell?.textLabel?.textColor = UIColor.white
+        }
+        
         return endCell!
     }
 
@@ -88,11 +96,17 @@ class SetingView: UIView {
             mSendLocalNotificationSwitchButton = UISwitch(frame: CGRect(x: 0,y: 0,width: 51,height: 31))
             mSendLocalNotificationSwitchButton.tag = NotificationSwitchButtonTAG
             mSendLocalNotificationSwitchButton?.isOn = ConnectionManager.sharedInstance.getIsSendLocalMsg()
-            mSendLocalNotificationSwitchButton?.tintColor = AppTheme.NEVO_SOLAR_GRAY()
             mSendLocalNotificationSwitchButton?.onTintColor = AppTheme.NEVO_SOLAR_YELLOW()
             mSendLocalNotificationSwitchButton?.addTarget(self, action: #selector(SetingView.buttonAction(_:)), for: UIControlEvents.valueChanged)
             mSendLocalNotificationSwitchButton?.center = CGPoint(x: UIScreen.main.bounds.size.width-40, y: 50.0/2.0)
             endCell?.contentView.addSubview(mSendLocalNotificationSwitchButton!)
+        }
+        
+        if !AppTheme.isTargetLunaR_OR_Nevo() {
+            endCell?.backgroundColor = UIColor.getGreyColor()
+            endCell?.contentView.backgroundColor = UIColor.getGreyColor()
+            mSendLocalNotificationSwitchButton?.onTintColor = UIColor.getBaseColor()
+            endCell?.textLabel?.textColor = UIColor.white
         }
         return endCell!
     }

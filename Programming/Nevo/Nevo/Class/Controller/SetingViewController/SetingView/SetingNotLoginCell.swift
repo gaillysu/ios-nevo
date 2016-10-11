@@ -10,6 +10,7 @@ import UIKit
 
 class SetingNotLoginCell: UITableViewCell {
 
+    @IBOutlet weak var notLoginlabel: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -21,4 +22,10 @@ class SetingNotLoginCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        if !AppTheme.isTargetLunaR_OR_Nevo() {
+            notLoginlabel.textColor = UIColor.white
+        }
+    }
 }

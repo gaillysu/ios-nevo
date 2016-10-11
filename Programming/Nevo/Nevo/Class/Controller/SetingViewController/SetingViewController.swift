@@ -276,10 +276,14 @@ class SetingViewController: UIViewController,ButtonManagerCallBack,UIAlertViewDe
                 let userprofile:UserProfile = user[0] as! UserProfile
                 (cell as! SetingInfoCell).emailLabel.text = userprofile.email
                 (cell as! SetingInfoCell).userName.text = userprofile.first_name + userprofile.last_name
+                
                 return cell
             }else{
                 let cell = tableView.dequeueReusableCell(withIdentifier: "SetingNotLoginIdentifier", for: indexPath)
                 cell.separatorInset = UIEdgeInsets(top: 0, left: UIScreen.main.bounds.size.width, bottom: 0, right: 0)
+                if !AppTheme.isTargetLunaR_OR_Nevo() {
+                    cell.backgroundColor = UIColor.getGreyColor()
+                }
                 return cell
             }
             

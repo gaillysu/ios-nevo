@@ -19,6 +19,14 @@ class AnalysisValueCell: UICollectionViewCell {
         super.awakeFromNib()
         // Initialization code
     }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        if !AppTheme.isTargetLunaR_OR_Nevo() {
+            titleLabel.textColor = UIColor.white
+            valueLabel.textColor = UIColor.getBaseColor()
+        }
+    }
 
     func updateTitleLabel(_ labelText: String){
         let contentDict:[String:AnyObject] = [NSFontAttributeName:titleLabel.font]

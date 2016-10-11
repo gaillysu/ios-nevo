@@ -37,6 +37,9 @@
                     <constraint firstAttribute="trailingMargin" secondItem="zdP-bP-N2c" secondAttribute="trailing" constant="35" id="vCI-YG-aCy"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="notLoginlabel" destination="zdP-bP-N2c" id="WUc-Ac-bZF"/>
+            </connections>
         </tableViewCell>
     </objects>
     <resources>

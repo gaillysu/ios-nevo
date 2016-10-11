@@ -24,4 +24,11 @@ class SetingInfoCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        if !AppTheme.isTargetLunaR_OR_Nevo() {
+            emailLabel.textColor = UIColor.white
+            userName.textColor = UIColor.white
+        }
+    }
 }

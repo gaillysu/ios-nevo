@@ -331,6 +331,7 @@ class AlarmClockController: UITableViewController,AddAlarmDelegate {
             endCell.dateLabel.textColor = UIColor.white
             endCell.titleLabel.textColor = UIColor.white
             endCell.alarmIn.textColor = UIColor.white
+            endCell.alarmSwicth.onTintColor = UIColor.getBaseColor()
         }
         
         let dayArray:[String] = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]
