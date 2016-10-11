@@ -414,6 +414,7 @@ class AppTheme {
         return object.isEmpty
     }
     
+    /// - returns: LunaR -> false, Nevo -> true
     class func isTargetLunaR_OR_Nevo()->Bool {
         let infoDictionary:[String : AnyObject] = Bundle.main.infoDictionary! as [String : AnyObject]
         let app_Name:String = infoDictionary["CFBundleName"] as! String
