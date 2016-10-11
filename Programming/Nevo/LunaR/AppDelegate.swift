@@ -68,14 +68,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
         
         if !AppTheme.isTargetLunaR_OR_Nevo() {
             UINavigationBar.appearance().lt_setBackgroundColor(UIColor.getGreyColor())
+            
+            UINavigationBar.appearance().tintColor = UIColor.getBaseColor()
+            
             UITabBar.appearance().backgroundColor = UIColor.getGreyColor()
             UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName:UIColor.white,NSFontAttributeName:UIFont(name: "Raleway", size: 20)!]
-            UIApplication.shared.statusBarStyle = UIStatusBarStyle.default
+            
+            UIApplication.shared.statusBarStyle = .lightContent
         }else{
             UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName:UIColor.black,NSFontAttributeName:UIFont(name: "Raleway", size: 20)!]
             UIApplication.shared.statusBarStyle = UIStatusBarStyle.default
         }
-        
         
         IQKeyboardManager.sharedManager().enable = true
         
@@ -518,7 +521,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                     return
                 }
                 
-                 let index = timeStr.index(timeStr.startIndex, offsetBy: 4)
+                let index = timeStr.index(timeStr.startIndex, offsetBy: 4)
                 let year:String = timeStr.substring(to: index)
                 
                 let range: Range = timeStr.index(timeStr.startIndex, offsetBy: 4)..<timeStr.index(timeStr.startIndex, offsetBy: 6)

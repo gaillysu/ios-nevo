@@ -32,7 +32,7 @@
             <objects>
                 <navigationController useStoryboardIdentifierAsRestorationIdentifier="YES" id="bGr-qo-zHH" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Setting" image="new_iOS_setting_icon" id="FTX-5o-89V"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="p9j-eT-GsY">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="p9j-eT-GsY">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -53,7 +53,7 @@
             <objects>
                 <navigationController id="rem-vM-ODh" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Dashboard" image="home_icon" id="ba1-Wn-XQe"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="gdh-sX-Da8">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="gdh-sX-Da8">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -70,7 +70,7 @@
             <objects>
                 <navigationController id="Hsa-EN-v8Q" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Alarm" image="new_iOS_alarm_icon" id="dU5-Ty-hhC"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="0g2-Qz-bFf">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="0g2-Qz-bFf">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -126,10 +126,10 @@
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SetingCell" id="jy6-2o-7Tg">
-                                        <rect key="frame" x="0.0" y="119.5" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="120" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jy6-2o-7Tg" id="Hea-sY-zN0">
-                                            <frame key="frameInset" width="375" height="43.5"/>
+                                            <frame key="frameInset" width="375" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -164,7 +164,7 @@
             <objects>
                 <navigationController useStoryboardIdentifierAsRestorationIdentifier="YES" id="55x-5E-ejb" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Analysis" image="analysis_icon" id="QgB-tv-HYG"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="wZ6-1e-Ldn">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="wZ6-1e-Ldn">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -292,7 +292,7 @@
         <image name="analysis_icon" width="30" height="30"/>
         <image name="home_icon" width="30" height="30"/>
         <image name="new_iOS_alarm_icon" width="35" height="36"/>
-        <image name="new_iOS_setting_icon" width="35" height="36"/>
+        <image name="new_iOS_setting_icon" width="30" height="30"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

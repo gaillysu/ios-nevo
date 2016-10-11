@@ -128,3 +128,11 @@ class ProfileSetupViewController: UIViewController {
         return true
     }
 }
+
+
+// MARK: - SYSTEM CALLBACK
+extension ProfileSetupViewController {
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+    }
+}
