@@ -465,11 +465,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                 for (index,Value) in sleepAlarm.enumerated() {
                     let alarm:UserAlarm = Value as! UserAlarm
                     let alarmDay:Date = Date(timeIntervalSince1970: alarm.timer)
+                    print("alarmDay:\(alarmDay),alarm:\(alarm.type,alarm.status,alarm.dayOfWeek,date.weekday)")
                     if alarm.type == 1 && alarm.status && alarm.dayOfWeek == date.weekday{
                         let newAlarm:NewAlarm = NewAlarm(alarmhour: alarmDay.hour, alarmmin: alarmDay.minute, alarmNumber: index+7, alarmWeekday: 0)
                         self.setNewAlarm(newAlarm)
                     }else{
-                        if alarm.status {
+                        if alarm.status && alarm.dayOfWeek >= date.weekday{
                             let newAlarm:NewAlarm = NewAlarm(alarmhour: alarmDay.hour, alarmmin: alarmDay.minute, alarmNumber: index+7, alarmWeekday: alarm.dayOfWeek)
                             self.setNewAlarm(newAlarm)
                         }
