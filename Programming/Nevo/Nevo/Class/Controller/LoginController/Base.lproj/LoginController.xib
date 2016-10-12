@@ -12,8 +12,13 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LoginController" customModule="LunaR" customModuleProvider="target">
             <connections>
+                <outlet property="facebookButton" destination="hbG-eO-XIb" id="GYw-jL-heA"/>
+                <outlet property="googleButton" destination="ch2-Af-40M" id="Cja-Kw-3cL"/>
+                <outlet property="iconImage" destination="h44-yr-a8T" id="w2L-rG-FH1"/>
                 <outlet property="logoinButton" destination="WVZ-VY-fkM" id="Nad-84-SJW"/>
+                <outlet property="mediaLabel" destination="FG3-Pu-4pM" id="kNa-lL-Tb0"/>
                 <outlet property="passwordTextField" destination="fmC-FL-Zk2" id="tSG-HU-i81"/>
+                <outlet property="platformLabel" destination="g5g-mC-67u" id="RnN-WI-9Ft"/>
                 <outlet property="registerLabel" destination="4fD-c2-9vf" id="0Zp-bm-dAe"/>
                 <outlet property="userNameTextField" destination="Tnd-gn-9VW" id="ozR-zm-0Mq"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
