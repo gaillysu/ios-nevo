@@ -73,6 +73,9 @@ class LoginController: UIViewController,UITextFieldDelegate {
             registerLabel.textColor = UIColor.getBaseColor()
             googleButton.setImage(UIImage(named:"google"), for: UIControlState.normal)
             facebookButton.setImage(UIImage(named:"facebook"), for: UIControlState.normal)
+            
+            userNameTextField.textColor = UIColor.white
+            passwordTextField.textColor = UIColor.white
         }
         
     }

@@ -71,6 +71,12 @@ class ProfileSetupViewController: UIViewController {
             checkBox.setValue(UIColor.getBaseColor(), forKeyPath: "secondaryTintColor")
             checkBox.setValue(UIColor.getBaseColor(), forKeyPath: "secondaryCheckmarkTintColor")
             submitButton.backgroundColor = UIColor.getBaseColor()
+            
+            email.textColor = UIColor.white
+            firstNameTextField.textColor = UIColor.white
+            lastNameTextField.textColor = UIColor.white
+            password.textColor = UIColor.white
+            retypePassword.textColor = UIColor.white
         }
     }
 
