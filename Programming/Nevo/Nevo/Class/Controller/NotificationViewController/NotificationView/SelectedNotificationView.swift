@@ -43,7 +43,6 @@ class SelectedNotificationView: UITableView {
         
         endCell.textLabel!.text = cellTitle
         endCell.textLabel!.backgroundColor = UIColor.clear
-        
         return endCell
     }
 
@@ -76,6 +75,10 @@ class SelectedNotificationView: UITableView {
         }
         endCell?.selectionStyle = UITableViewCellSelectionStyle.none;
         endCell?.textLabel?.text = title
+        
+        if !AppTheme.isTargetLunaR_OR_Nevo() {
+            endCell?.textLabel?.textColor = UIColor.white
+        }
         return endCell!
     }
     /*

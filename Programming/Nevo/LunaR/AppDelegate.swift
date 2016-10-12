@@ -767,18 +767,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
 
                     let actionSheet:UIAlertController = UIAlertController(title: titleString, message: msg, preferredStyle: UIAlertControllerStyle.alert)
                     actionSheet.view.tintColor = AppTheme.NEVO_SOLAR_YELLOW()
-                    let alertAction1:UIAlertAction = UIAlertAction(title: cancelString, style: UIAlertActionStyle.cancel, handler: { ( alert) -> Void in
+                    let alertAction1:AlertAction = AlertAction(title: cancelString, style: UIAlertActionStyle.cancel, handler: { ( alert) -> Void in
 
                     })
                     actionSheet.addAction(alertAction1)
 
-                    let alertAction2:UIAlertAction = UIAlertAction(title: buttonString, style: UIAlertActionStyle.default, handler: { ( alert) -> Void in
+                    let alertAction2:AlertAction = AlertAction(title: buttonString, style: UIAlertActionStyle.default, handler: { ( alert) -> Void in
                         let otaCont:NevoOtaViewController = NevoOtaViewController()
                         let navigation:UINavigationController = UINavigationController(rootViewController: otaCont)
                         tabVC.present(navigation, animated: true, completion: nil)
 
                     })
                     actionSheet.addAction(alertAction2)
+                    
+                    if !AppTheme.isTargetLunaR_OR_Nevo() {
+                        alertAction1.setValue(UIColor.getBaseColor(), forKey: "titleTextColor")
+                        alertAction2.setValue(UIColor.getBaseColor(), forKey: "titleTextColor")
+                    }
                     tabVC.present(actionSheet, animated: true, completion: nil)
                 }else{
                     let actionSheet:UIAlertView = UIAlertView(title: titleString, message: msg, delegate: self, cancelButtonTitle: cancelString, otherButtonTitles: buttonString)

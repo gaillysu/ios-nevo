@@ -36,6 +36,12 @@ class NotificationView: UITableView {
         endCell?.detailTextLabel?.text = NSLocalizedString(detailLabel, comment: "")
         endCell?.detailTextLabel?.font = UIFont.systemFont(ofSize: 13)
         endCell?.imageView?.image = UIImage(named: "new_\(title.lowercased())")
+        
+        if !AppTheme.isTargetLunaR_OR_Nevo() {
+            endCell?.backgroundColor = UIColor.getGreyColor()
+            endCell?.textLabel?.textColor = UIColor.white
+            endCell?.detailTextLabel?.textColor = UIColor.white
+        }
         return endCell!
     }
 

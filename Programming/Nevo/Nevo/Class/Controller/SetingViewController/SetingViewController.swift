@@ -173,12 +173,11 @@ class SetingViewController: UIViewController,ButtonManagerCallBack,UIAlertViewDe
 
             if(isEqualString("\(titleArray[(indexPath as NSIndexPath).row])",string2: NSLocalizedString("forget_watch", comment: ""))){
                 XCGLogger.default.debug("forget_watch")
-                let actionSheet:ActionSheetView = ActionSheetView(title: NSLocalizedString("forget_watch", comment: ""), message: NSLocalizedString("forget_your_nevo", comment: ""), preferredStyle: UIAlertControllerStyle.alert)
+                let actionSheet:UIAlertController = UIAlertController(title: NSLocalizedString("forget_watch", comment: ""), message: NSLocalizedString("forget_your_nevo", comment: ""), preferredStyle: UIAlertControllerStyle.alert)
                 
                 let alertAction:AlertAction = AlertAction(title: NSLocalizedString("Cancel", comment: ""), style: UIAlertActionStyle.cancel, handler: { (alert) -> Void in
                     
                 })
-                alertAction.setValue(AppTheme.NEVO_SOLAR_YELLOW(), forKey: "titleTextColor")
                 actionSheet.addAction(alertAction)
                 
                 let alertAction2:AlertAction = AlertAction(title: NSLocalizedString("forget", comment: ""), style: UIAlertActionStyle.default, handler: { ( alert) -> Void in
@@ -188,8 +187,15 @@ class SetingViewController: UIViewController,ButtonManagerCallBack,UIAlertViewDe
                     nav.isNavigationBarHidden = true
                     self.present(nav, animated: true, completion: nil)
                 })
-                alertAction2.setValue(AppTheme.NEVO_SOLAR_YELLOW(), forKey: "titleTextColor")
                 actionSheet.addAction(alertAction2)
+                
+                if !AppTheme.isTargetLunaR_OR_Nevo() {
+                    alertAction.setValue(UIColor.getBaseColor(), forKey: "titleTextColor")
+                    alertAction2.setValue(UIColor.getBaseColor(), forKey: "titleTextColor")
+                }else{
+                    alertAction.setValue(AppTheme.NEVO_SOLAR_YELLOW(), forKey: "titleTextColor")
+                    alertAction2.setValue(AppTheme.NEVO_SOLAR_YELLOW(), forKey: "titleTextColor")
+                }
                 
                 self.present(actionSheet, animated: true, completion: nil)
             }

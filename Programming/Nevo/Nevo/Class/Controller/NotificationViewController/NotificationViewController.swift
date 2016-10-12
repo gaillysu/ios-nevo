@@ -31,6 +31,10 @@ class NotificationViewController: UITableViewController,SelectedNotificationDele
         initNotificationSettingArray()
         notificationView.bulidNotificationView(self.navigationItem)
         //notificationView.backgroundColor = UIColor.white
+        
+        if !AppTheme.isTargetLunaR_OR_Nevo() {
+            self.tableView.backgroundColor = UIColor.getGreyColor()
+        }
     }
 
     override func didReceiveMemoryWarning() {

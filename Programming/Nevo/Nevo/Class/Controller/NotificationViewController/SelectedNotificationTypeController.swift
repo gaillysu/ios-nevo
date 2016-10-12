@@ -36,6 +36,11 @@ class SelectedNotificationTypeController: UITableViewController {
         //self.view.backgroundColor = UIColor.white
         self.tableView.register(UINib(nibName: "LineColorCell",bundle: nil), forCellReuseIdentifier: "LineColor_Identifier")
         self.tableView.separatorStyle = UITableViewCellSeparatorStyle.none
+        
+        if !AppTheme.isTargetLunaR_OR_Nevo() {
+            self.tableView.backgroundColor = UIColor.getLightBaseColor()
+            
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -102,14 +107,23 @@ class SelectedNotificationTypeController: UITableViewController {
                 if(swicthView.isKind(of: UISwitch.classForCoder())){
                     let mSwitch:UISwitch = swicthView as! UISwitch
                     mSwitch.addTarget(self, action: #selector(SelectedNotificationTypeController.buttonManager(_:)), for: UIControlEvents.valueChanged)
+                    if !AppTheme.isTargetLunaR_OR_Nevo() {
+                        cell.backgroundColor = UIColor.getGreyColor()
+                        mSwitch.onTintColor = UIColor.getBaseColor()
+                        mSwitch.tintColor = UIColor.white
+                    }
                 }
             }
+            
             return cell
         case 1:
             let cell = selectedNotificationView.getNotificationClockCell(indexPath, tableView: tableView, title: "", clockIndex: clockIndex)
             if swicthStates {
                 cell.backgroundColor = UIColor.white
                 cell.isUserInteractionEnabled = true;
+                if !AppTheme.isTargetLunaR_OR_Nevo() {
+                    cell.backgroundColor = UIColor.getGreyColor()
+                }
             }else{
                 cell.backgroundColor = UIColor.clear
                 cell.isUserInteractionEnabled = false;
@@ -121,6 +135,9 @@ class SelectedNotificationTypeController: UITableViewController {
             if swicthStates {
                 cell.backgroundColor = UIColor.white
                 cell.isUserInteractionEnabled = true;
+                if !AppTheme.isTargetLunaR_OR_Nevo() {
+                    cell.backgroundColor = UIColor.getGreyColor()
+                }
             }else{
                 cell.backgroundColor = UIColor.clear
                 cell.isUserInteractionEnabled = false;
