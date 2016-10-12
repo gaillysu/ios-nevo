@@ -155,6 +155,11 @@ class NotificationViewController: UITableViewController,SelectedNotificationDele
         }
     }
 
+    override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        let headView = view as! UITableViewHeaderFooterView
+        headView.textLabel?.textColor = UIColor.white
+    }
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return titleHeader.count
