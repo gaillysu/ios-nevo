@@ -21,4 +21,12 @@ class AlarmTypeCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        if !AppTheme.isTargetLunaR_OR_Nevo() {
+            self.textLabel?.textColor = UIColor.white
+            self.detailTextLabel?.textColor = UIColor.white
+        }
+    }
+    
 }

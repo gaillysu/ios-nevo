@@ -18,6 +18,15 @@ class AddAlarmTableViewCell: UITableViewCell {
         datePicker.datePickerMode = UIDatePickerMode.time;
         datePicker.addTarget(self, action: #selector(AddAlarmTableViewCell.selectedTimerAction(_:)), for: UIControlEvents.valueChanged)
     }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        if !AppTheme.isTargetLunaR_OR_Nevo() {
+            datePicker.backgroundColor = UIColor.getGreyColor()
+            datePicker.tintColor = UIColor.white
+            datePicker.setValue(UIColor.white, forKey: "textColor")
+        }
+    }
 
     func selectedTimerAction(_ timer:UIDatePicker){
 
