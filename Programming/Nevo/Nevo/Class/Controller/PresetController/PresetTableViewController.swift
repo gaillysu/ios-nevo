@@ -136,6 +136,7 @@ extension PresetTableViewController {
     fileprivate func styleEvolve() {
         if !AppTheme.isTargetLunaR_OR_Nevo() {
             presetView.backgroundColor = UIColor.getLightBaseColor()
+            presetView.separatorColor = UIColor.getLightBaseColor()
         }
     }
 }

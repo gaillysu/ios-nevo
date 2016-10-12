@@ -13,6 +13,9 @@ class PresetTableViewCell: UITableViewCell,ButtonManagerCallBack {
     @IBOutlet weak var presetSteps: UILabel!
     @IBOutlet weak var presetName: UILabel!
     @IBOutlet weak var presetStates: UISwitch!
+    
+    @IBOutlet weak var separatorLineLabel: UILabel!
+    
     var delegate:ButtonManagerCallBack?
 
 
@@ -32,6 +35,10 @@ class PresetTableViewCell: UITableViewCell,ButtonManagerCallBack {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        
+        if !AppTheme.isTargetLunaR_OR_Nevo() {
+            separatorLineLabel.backgroundColor = UIColor.getLightBaseColor()
+        }
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
