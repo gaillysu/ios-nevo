@@ -33,7 +33,7 @@ class AnalysisValueCell: UICollectionViewCell {
         titleLabel.text = labelText
         let statusLabelSize = labelText.size(attributes: contentDict)
         if statusLabelSize.width>90 {
-            labelWidthConstraint.constant = 110+5;
+            labelWidthConstraint.constant = statusLabelSize.width+5;
         }else{
             labelWidthConstraint.constant = 90
         }

@@ -17,10 +17,15 @@ import SwiftyJSON
 
 class LoginController: UIViewController,UITextFieldDelegate {
 
+    @IBOutlet weak var iconImage: UIImageView!
     @IBOutlet weak var userNameTextField: AutocompleteField!
     @IBOutlet weak var passwordTextField: AutocompleteField!
     @IBOutlet weak var logoinButton: UIButton!
     @IBOutlet weak var registerLabel: ActiveLabel!
+    @IBOutlet weak var platformLabel: UILabel!
+    @IBOutlet weak var googleButton: UIButton!
+    @IBOutlet weak var facebookButton: UIButton!
+    @IBOutlet weak var mediaLabel: UILabel!
     
     var userName:String = ""
     var password:String = ""
@@ -52,6 +57,22 @@ class LoginController: UIViewController,UITextFieldDelegate {
         
         if AppTheme.GET_IS_iPhone5S()||AppTheme.GET_IS_iPhone4S() {
             logoinButton.titleLabel?.font = UIFont(name: "Raleway", size: 20)
+        }
+        
+        if !AppTheme.isTargetLunaR_OR_Nevo() {
+            iconImage.image = UIImage(named: "lunar_logo")
+            self.view.backgroundColor = UIColor.getGreyColor()
+            logoinButton.backgroundColor = UIColor.getBaseColor()
+            platformLabel.textColor = UIColor.white
+            userNameTextField.backgroundColor = UIColor.getLightBaseColor()
+            passwordTextField.backgroundColor = UIColor.getLightBaseColor()
+            userNameTextField.setValue(UIColor.white, forKeyPath: "placeholderLabel.textColor")
+            passwordTextField.setValue(UIColor.white, forKeyPath: "placeholderLabel.textColor")
+            
+            mediaLabel.textColor = UIColor.white
+            registerLabel.textColor = UIColor.getBaseColor()
+            googleButton.setImage(UIImage(named:"google"), for: UIControlState.normal)
+            facebookButton.setImage(UIImage(named:"facebook"), for: UIControlState.normal)
         }
         
     }

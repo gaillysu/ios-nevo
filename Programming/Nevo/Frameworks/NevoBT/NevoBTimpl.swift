@@ -236,7 +236,11 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
     
         
         else if(characteristic.uuid==CBUUID(string: "00002a26-0000-1000-8000-00805f9b34fb")) {
-            mFirmwareVersion = NSString(data: characteristic.value!, encoding: String.Encoding.utf8.rawValue)
+            if characteristic.value == nil {
+                mFirmwareVersion = "0"
+            }else{
+                mFirmwareVersion = NSString(data: characteristic.value!, encoding: String.Encoding.utf8.rawValue)
+            }
             XCGLogger.default.debug("get firmware version char : \(characteristic.uuid.uuidString), version : \(self.mFirmwareVersion)")
             //tell OTA new version
             mDelegate?.firmwareVersionReceived(DfuFirmwareTypes.application, version: mFirmwareVersion!)
