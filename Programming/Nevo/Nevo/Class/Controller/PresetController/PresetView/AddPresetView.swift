@@ -48,6 +48,9 @@ class AddPresetView: UIView {
         presetName.backgroundColor = AppTheme.NEVO_SOLAR_GRAY()
         
         if !AppTheme.isTargetLunaR_OR_Nevo() {
+            
+            rightView.textColor = UIColor.white
+            
             presetNumber.textColor = UIColor.white
             presetNumber.backgroundColor = UIColor.getLightBaseColor()
             presetNumber.setValue(UIColor.white, forKeyPath: "_placeholderLabel.textColor")
