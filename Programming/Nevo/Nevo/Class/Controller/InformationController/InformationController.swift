@@ -20,6 +20,12 @@ class InformationController: UIViewController,SMSegmentViewDelegate {
     @IBOutlet weak var heightTextField: AutocompleteField!
     @IBOutlet weak var weightTextfield: AutocompleteField!
     
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var detailLabel: UILabel!
+    @IBOutlet weak var detailLabel2: UILabel!
+    
+    @IBOutlet weak var policyLabel: UILabel!
+    
     var segmentView:SMSegmentView?
     var registerInfor:[String:String] = [:]
     
@@ -46,6 +52,29 @@ class InformationController: UIViewController,SMSegmentViewDelegate {
         
         heightTextField.keyboardType = UIKeyboardType.numberPad;
         weightTextfield.keyboardType = UIKeyboardType.numberPad
+        
+        if !AppTheme.isTargetLunaR_OR_Nevo() {
+            view.backgroundColor = UIColor.getGreyColor()
+            titleLabel.backgroundColor = UIColor.clear
+            titleLabel.textColor = UIColor.white
+            detailLabel.backgroundColor = UIColor.clear
+            detailLabel.textColor = UIColor.white
+            detailLabel2.backgroundColor = UIColor.clear
+            detailLabel2.textColor = UIColor.white
+            
+            policyLabel.backgroundColor = UIColor.clear
+            policyLabel.textColor = UIColor.getBaseColor()
+            
+            dateOfbirth.backgroundColor = UIColor.getLightBaseColor()
+            dateOfbirth.setValue(UIColor.white, forKeyPath: "placeholderLabel.textColor")
+            dateOfbirth.textColor = UIColor.white
+            heightTextField.backgroundColor = UIColor.getLightBaseColor()
+            heightTextField.setValue(UIColor.white, forKeyPath: "placeholderLabel.textColor")
+            heightTextField.textColor = UIColor.white
+            weightTextfield.backgroundColor = UIColor.getLightBaseColor()
+            weightTextfield.setValue(UIColor.white, forKeyPath: "placeholderLabel.textColor")
+            weightTextfield.textColor = UIColor.white
+        }
     }
     
     override func viewDidLayoutSubviews() {
@@ -63,6 +92,16 @@ class InformationController: UIViewController,SMSegmentViewDelegate {
             segmentView!.addSegmentWithTitle(NSLocalizedString("Female", comment: ""), onSelectionImage: nil, offSelectionImage: nil)
             segmentView?.selectSegmentAtIndex(0)
             metricsSegment.addSubview(segmentView!)
+            
+            if !AppTheme.isTargetLunaR_OR_Nevo() {
+                segmentView?.layer.borderColor = UIColor.getBaseColor().cgColor
+                
+                segmentView?.segmentOnSelectionColour = UIColor.getBaseColor()
+                segmentView?.segmentOffSelectionColour = UIColor.getGreyColor()
+                segmentView?.segmentOnSelectionTextColour = UIColor.white
+                segmentView?.segmentOffSelectionTextColour = UIColor.getBaseColor()
+
+            }
         }
         
     }
