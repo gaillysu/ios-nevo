@@ -251,7 +251,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
             self.getDailyTrackerInfo()
             lastSync = Date().timeIntervalSince1970
             if(isConnected()) {
-                let banner = Banner(title: NSLocalizedString("syncing_data", comment: ""), subtitle: nil, image: nil, backgroundColor: AppTheme.NEVO_SOLAR_YELLOW())
+                let banner = MEDBanner(title: NSLocalizedString("syncing_data", comment: ""), subtitle: nil, image: nil, backgroundColor: AppTheme.NEVO_SOLAR_YELLOW())
                 banner.dismissesOnTap = true
                 banner.show(duration: 1.5)
             }
@@ -262,7 +262,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
      When the sync process is finished, le't refresh the date of sync
      */
     func syncFinished() {
-        let banner = Banner(title: NSLocalizedString("sync_finished", comment: ""), subtitle: nil, image: nil, backgroundColor: UIColor(rgba:"#0dac67"))
+        let banner = MEDBanner(title: NSLocalizedString("sync_finished", comment: ""), subtitle: nil, image: nil, backgroundColor: UIColor(rgba:"#0dac67"))
         banner.dismissesOnTap = true
         banner.show(duration: 1.5)
         lastSync = Date().timeIntervalSince1970
@@ -709,7 +709,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
 
         if(isConnected) {
             if(self.hasSavedAddress()){
-                let banner = Banner(title: NSLocalizedString("Connected", comment: ""), subtitle: nil, image: nil, backgroundColor:UIColor(rgba: "#0dac67"))
+                let banner = MEDBanner(title: NSLocalizedString("Connected", comment: ""), subtitle: nil, image: nil, backgroundColor:UIColor(rgba: "#0dac67"))
                 banner.dismissesOnTap = true
                 banner.show(duration: 1.5)
             }
@@ -725,7 +725,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
 
         }else {
             if(self.hasSavedAddress()){
-                let banner = Banner(title: NSLocalizedString("Disconnected", comment: ""), subtitle: nil, image: nil, backgroundColor: UIColor.red)
+                let banner = MEDBanner(title: NSLocalizedString("Disconnected", comment: ""), subtitle: nil, image: nil, backgroundColor: UIColor.red)
                 banner.dismissesOnTap = true
                 banner.show(duration: 1.5)
             }
@@ -791,7 +791,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
 
     func bluetoothEnabled(_ enabled:Bool) {
         if(!enabled && self.hasSavedAddress()) {
-            let banner = Banner(title: NSLocalizedString("bluetooth_turned_off_enable", comment: ""), subtitle: nil, image: nil, backgroundColor: UIColor.red)
+            let banner = MEDBanner(title: NSLocalizedString("bluetooth_turned_off_enable", comment: ""), subtitle: nil, image: nil, backgroundColor: UIColor.red)
             banner.dismissesOnTap = true
             banner.show(duration: 1.5)
         }
@@ -799,7 +799,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
 
     func scanAndConnect(){
         if(self.hasSavedAddress()) {
-            let banner = Banner(title: NSLocalizedString("search_for_nevo", comment: ""), subtitle: nil, image: nil, backgroundColor: AppTheme.NEVO_SOLAR_YELLOW())
+            let banner = MEDBanner(title: NSLocalizedString("search_for_nevo", comment: ""), subtitle: nil, image: nil, backgroundColor: AppTheme.NEVO_SOLAR_YELLOW())
             banner.dismissesOnTap = true
             banner.show(duration: 1.5)
         }

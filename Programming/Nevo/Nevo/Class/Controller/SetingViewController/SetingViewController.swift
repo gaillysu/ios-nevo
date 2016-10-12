@@ -114,7 +114,7 @@ class SetingViewController: UIViewController,ButtonManagerCallBack,UIAlertViewDe
                     mynevo.hidesBottomBarWhenPushed = true
                     self.navigationController?.pushViewController(mynevo, animated: true)
                 }else{
-                    let banner = Banner(title: NSLocalizedString("nevo_is_not_connected", comment: ""), subtitle: nil, image: nil, backgroundColor: AppTheme.NEVO_SOLAR_YELLOW())
+                    let banner = MEDBanner(title: NSLocalizedString("nevo_is_not_connected", comment: ""), subtitle: nil, image: nil, backgroundColor: AppTheme.NEVO_SOLAR_YELLOW())
                     banner.dismissesOnTap = true
                     banner.show(duration: 1.5)
                 }
@@ -204,7 +204,7 @@ class SetingViewController: UIViewController,ButtonManagerCallBack,UIAlertViewDe
                         tableViewCell.textLabel?.text = "Login"
                         tableView.reloadData()
                     }else{
-                        let banner = Banner(title: NSLocalizedString("Logout_error", comment: ""), subtitle: nil, image: nil, backgroundColor: AppTheme.NEVO_SOLAR_YELLOW())
+                        let banner = MEDBanner(title: NSLocalizedString("Logout_error", comment: ""), subtitle: nil, image: nil, backgroundColor: AppTheme.NEVO_SOLAR_YELLOW())
                         banner.dismissesOnTap = true
                         banner.show(duration: 1.2)
                     }

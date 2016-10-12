@@ -116,7 +116,7 @@ class MyNevoController: UITableViewController,UIAlertViewDelegate {
         tableView.deselectRow(at: indexPath, animated: true)
         if((indexPath as NSIndexPath).row == 0){
             if(AppDelegate.getAppDelegate().getSoftwareVersion().integerValue >= buildinSoftwareVersion && AppDelegate.getAppDelegate().getFirmwareVersion().integerValue >= buildinFirmwareVersion){
-                let banner = Banner(title: NSLocalizedString("is_watch_version", comment: ""), subtitle: nil, image: nil, backgroundColor: AppTheme.NEVO_SOLAR_YELLOW())
+                let banner = MEDBanner(title: NSLocalizedString("is_watch_version", comment: ""), subtitle: nil, image: nil, backgroundColor: AppTheme.NEVO_SOLAR_YELLOW())
                 banner.dismissesOnTap = true
                 banner.show(duration: 1.5)
                 return

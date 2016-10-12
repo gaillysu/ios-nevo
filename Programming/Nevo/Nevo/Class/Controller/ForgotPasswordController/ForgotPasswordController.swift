@@ -83,7 +83,7 @@ class ForgotPasswordController: UIViewController {
                 let alertAction:UIAlertAction = UIAlertAction(title: "Change", style: .default, handler: { (action) in
                     let textField:[UITextField] = alert.textFields!
                     if textField[0].text == nil || textField[1].text == nil {
-                        let banner = Banner(title: NSLocalizedString("Please enter a new password", comment: ""), subtitle: nil, image: nil, backgroundColor:AppTheme.NEVO_SOLAR_YELLOW())
+                        let banner = MEDBanner(title: NSLocalizedString("Please enter a new password", comment: ""), subtitle: nil, image: nil, backgroundColor:AppTheme.NEVO_SOLAR_YELLOW())
                         banner.dismissesOnTap = true
                         banner.show(duration: 1.2)
                         return
@@ -96,14 +96,14 @@ class ForgotPasswordController: UIViewController {
                             let json = JSON(result)
                             let status:Int = json["status"].intValue
                             if status != -3 {
-                                let banner = Banner(title: NSLocalizedString("Password is changed", comment: ""), subtitle: nil, image: nil, backgroundColor:AppTheme.NEVO_SOLAR_YELLOW())
+                                let banner = MEDBanner(title: NSLocalizedString("Password is changed", comment: ""), subtitle: nil, image: nil, backgroundColor:AppTheme.NEVO_SOLAR_YELLOW())
                                 banner.dismissesOnTap = true
                                 banner.show(duration: 1.2)
                                 self.dismiss(animated: true, completion: nil)
                             }
                         })
                     }else{
-                        let banner = Banner(title: NSLocalizedString("Passwords don't match", comment: ""), subtitle: nil, image: nil, backgroundColor:AppTheme.NEVO_SOLAR_YELLOW())
+                        let banner = MEDBanner(title: NSLocalizedString("Passwords don't match", comment: ""), subtitle: nil, image: nil, backgroundColor:AppTheme.NEVO_SOLAR_YELLOW())
                         banner.dismissesOnTap = true
                         banner.show(duration: 1.2)
                     }

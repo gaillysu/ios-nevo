@@ -104,7 +104,7 @@ class InformationController: UIViewController,SMSegmentViewDelegate {
                 //"one_of_the_fields_are_empty."
                 //"two_password_is_not_the_same"
                 //"please_wait"
-                let banner = Banner(title: NSLocalizedString("one_of_the_fields_are_empty", comment: ""), subtitle: nil, image: nil, backgroundColor:AppTheme.NEVO_SOLAR_YELLOW())
+                let banner = MEDBanner(title: NSLocalizedString("one_of_the_fields_are_empty", comment: ""), subtitle: nil, image: nil, backgroundColor:AppTheme.NEVO_SOLAR_YELLOW())
                 banner.dismissesOnTap = true
                 banner.show(duration: 0.6)
                 return
@@ -175,7 +175,7 @@ class InformationController: UIViewController,SMSegmentViewDelegate {
                     
                 }
                 
-                let banner = Banner(title: NSLocalizedString(message, comment: ""), subtitle: nil, image: nil, backgroundColor:AppTheme.NEVO_SOLAR_YELLOW())
+                let banner = MEDBanner(title: NSLocalizedString(message, comment: ""), subtitle: nil, image: nil, backgroundColor:AppTheme.NEVO_SOLAR_YELLOW())
                 banner.dismissesOnTap = true
                 banner.show(duration: 1.2)
             }

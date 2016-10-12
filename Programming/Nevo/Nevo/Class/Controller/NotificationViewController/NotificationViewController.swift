@@ -84,11 +84,11 @@ class NotificationViewController: UITableViewController,SelectedNotificationDele
                     let allArray:[NotificationSetting] = mNotificationOFFArray + mNotificationONArray
                     if(AppDelegate.getAppDelegate().isConnected()){
                         AppDelegate.getAppDelegate().SetNortification(allArray)
-                        let banner = Banner(title: NSLocalizedString("sync_notifications", comment: ""), subtitle: nil, image: nil, backgroundColor: AppTheme.NEVO_SOLAR_YELLOW())
+                        let banner = MEDBanner(title: NSLocalizedString("sync_notifications", comment: ""), subtitle: nil, image: nil, backgroundColor: AppTheme.NEVO_SOLAR_YELLOW())
                         banner.dismissesOnTap = true
                         banner.show(duration: 2.0)
                     }else{
-                        let banner = Banner(title: NSLocalizedString("no_watch_connected", comment: ""), subtitle: nil, image: nil, backgroundColor: AppTheme.NEVO_SOLAR_YELLOW())
+                        let banner = MEDBanner(title: NSLocalizedString("no_watch_connected", comment: ""), subtitle: nil, image: nil, backgroundColor: AppTheme.NEVO_SOLAR_YELLOW())
                         banner.dismissesOnTap = true
                         banner.show(duration: 2.0)
                     }

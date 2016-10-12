@@ -153,7 +153,7 @@ class AlarmClockController: UITableViewController,AddAlarmDelegate {
      Will sync when nevo is connected
      */
     func willSyncAlarmAlertView() {
-        let banner = Banner(title: NSLocalizedString("no_watch_connected", comment: ""), subtitle: nil, image: nil, backgroundColor: AppTheme.NEVO_SOLAR_YELLOW())
+        let banner = MEDBanner(title: NSLocalizedString("no_watch_connected", comment: ""), subtitle: nil, image: nil, backgroundColor: AppTheme.NEVO_SOLAR_YELLOW())
         banner.dismissesOnTap = true
         banner.show(duration: 1.5)
     }
@@ -162,7 +162,7 @@ class AlarmClockController: UITableViewController,AddAlarmDelegate {
      Syncing alarm
      */
     func SyncAlarmAlertView() {
-        let banner = Banner(title: NSLocalizedString("syncing_Alarm", comment: ""), subtitle: nil, image: nil, backgroundColor: AppTheme.NEVO_SOLAR_YELLOW())
+        let banner = MEDBanner(title: NSLocalizedString("syncing_Alarm", comment: ""), subtitle: nil, image: nil, backgroundColor: AppTheme.NEVO_SOLAR_YELLOW())
         banner.dismissesOnTap = true
         banner.show(duration: 1.5)
     }
