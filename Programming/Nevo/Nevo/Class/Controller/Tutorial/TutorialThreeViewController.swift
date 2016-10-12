@@ -18,7 +18,6 @@ class TutorialThreeViewController: UIViewController {
     
     init() {
         super.init(nibName: "TutorialThreeViewController", bundle: Bundle.main)
-        styleEvolve()
     }
 
     required init(coder aDecoder: NSCoder) {
@@ -26,7 +25,7 @@ class TutorialThreeViewController: UIViewController {
     }
 
     override func viewDidLoad() {
-        
+        styleEvolve()
     }
     
     @IBAction func nextAction(_ sender: AnyObject) {

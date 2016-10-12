@@ -17,7 +17,6 @@ class MorningTutorialController: UIViewController {
     
     init() {
         super.init(nibName: "MorningTutorialController", bundle: Bundle.main)
-        styleEvolve()
     }
 
     required init(coder aDecoder: NSCoder) {
@@ -27,6 +26,7 @@ class MorningTutorialController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        styleEvolve()
         // Do any additional setup after loading the view.
     }
 

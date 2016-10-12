@@ -17,7 +17,6 @@ class SleepTutorialController: UIViewController {
     
     init() {
         super.init(nibName: "SleepTutorialController", bundle: Bundle.main)
-        styleEvolve()
     }
 
     required init(coder aDecoder: NSCoder) {
@@ -27,6 +26,7 @@ class SleepTutorialController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        styleEvolve()
         // Do any additional setup after loading the view.
     }
 

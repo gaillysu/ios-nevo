@@ -18,7 +18,6 @@ class TutorialSevenViewController: UIViewController {
 
     init() {
         super.init(nibName: "TutorialSevenViewController", bundle: Bundle.main)
-        styleEvolve()
     }
 
     required init(coder aDecoder: NSCoder) {
@@ -26,7 +25,7 @@ class TutorialSevenViewController: UIViewController {
     }
 
     override func viewDidLoad() {
-        
+        styleEvolve()
     }
     @IBAction func tryAgainAction(_ sender: AnyObject) {
         self.navigationController?.popViewController(animated: true)

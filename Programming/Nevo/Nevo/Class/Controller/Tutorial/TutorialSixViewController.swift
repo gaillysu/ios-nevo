@@ -16,7 +16,6 @@ class TutorialSixViewController: UIViewController{
     
     init() {
         super.init(nibName: "TutorialSixViewController", bundle: Bundle.main)
-        styleEvolve()
     }
 
     required init(coder aDecoder: NSCoder) {
@@ -25,6 +24,8 @@ class TutorialSixViewController: UIViewController{
 
     override func viewDidLoad() {
         print("LOLOL")
+        
+        styleEvolve()
     }
     
     @IBAction func tapToContinueAction(_ sender: AnyObject) {
