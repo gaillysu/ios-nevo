@@ -24,9 +24,9 @@ class ProfileSetupViewController: UIViewController {
     @IBOutlet weak var retypePassword: AutocompleteField!
     @IBOutlet weak var submitButton: UIButton!
     @IBOutlet weak var checkBox: M13Checkbox!
-    
-
-    
+    @IBOutlet weak var signupLabel: UILabel!
+    @IBOutlet weak var termsLabel: UILabel!
+    @IBOutlet weak var agreeLabel: UILabel!
 
     fileprivate var nameDictionary:Dictionary<String,AnyObject> = ["first_name":"DroneUser" as AnyObject,"last_name":"User" as AnyObject]
     var account:Dictionary<String,AnyObject> = ["email":"" as AnyObject,"password":"" as AnyObject]
@@ -51,6 +51,27 @@ class ProfileSetupViewController: UIViewController {
         self.navigationItem.title = NSLocalizedString("Register", comment: "")
         let leftButton:UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "cancel_lunar"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(leftCancelAction(_:)))
         self.navigationItem.leftBarButtonItem = leftButton
+        
+        if !AppTheme.isTargetLunaR_OR_Nevo() {
+            self.view.backgroundColor = UIColor.getGreyColor()
+            signupLabel.textColor = UIColor.white
+            email.backgroundColor = UIColor.getLightBaseColor()
+            email.setValue(UIColor.white, forKeyPath: "placeholderLabel.textColor")
+            firstNameTextField.backgroundColor = UIColor.getLightBaseColor()
+            firstNameTextField.setValue(UIColor.white, forKeyPath: "placeholderLabel.textColor")
+            lastNameTextField.backgroundColor = UIColor.getLightBaseColor()
+            lastNameTextField.setValue(UIColor.white, forKeyPath: "placeholderLabel.textColor")
+            password.backgroundColor = UIColor.getLightBaseColor()
+            password.setValue(UIColor.white, forKeyPath: "placeholderLabel.textColor")
+            retypePassword.backgroundColor = UIColor.getLightBaseColor()
+            retypePassword.setValue(UIColor.white, forKeyPath: "placeholderLabel.textColor")
+            termsLabel.textColor = UIColor.getBaseColor()
+            agreeLabel.textColor = UIColor.white
+            checkBox.tintColor = UIColor.getBaseColor()
+            checkBox.setValue(UIColor.getBaseColor(), forKeyPath: "secondaryTintColor")
+            checkBox.setValue(UIColor.getBaseColor(), forKeyPath: "secondaryCheckmarkTintColor")
+            submitButton.backgroundColor = UIColor.getBaseColor()
+        }
     }
 
     func leftCancelAction(_ sender:UIBarButtonItem) {
