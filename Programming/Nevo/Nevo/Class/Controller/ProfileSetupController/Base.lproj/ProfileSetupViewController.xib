@@ -12,13 +12,16 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ProfileSetupViewController" customModule="LunaR" customModuleProvider="target">
             <connections>
+                <outlet property="agreeLabel" destination="VU0-vW-bBF" id="XwZ-8e-1IE"/>
                 <outlet property="checkBox" destination="xjf-sh-1ci" id="mro-Lb-Ta4"/>
                 <outlet property="email" destination="Gaa-7s-BJh" id="fEK-cd-5rq"/>
                 <outlet property="firstNameTextField" destination="Lfz-FT-0BM" id="spa-Vf-a6j"/>
                 <outlet property="lastNameTextField" destination="Goa-Bq-FHb" id="mDx-xA-RP7"/>
                 <outlet property="password" destination="98S-al-o4l" id="EwZ-kH-lw5"/>
                 <outlet property="retypePassword" destination="M6l-WV-9Jl" id="11y-cM-575"/>
+                <outlet property="signupLabel" destination="5hK-yO-jRt" id="Z4c-Oh-cGJ"/>
                 <outlet property="submitButton" destination="3Be-Vc-bMx" id="lbu-KC-bmD"/>
+                <outlet property="termsLabel" destination="LkM-Zg-6Zv" id="4V4-Re-zjI"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
