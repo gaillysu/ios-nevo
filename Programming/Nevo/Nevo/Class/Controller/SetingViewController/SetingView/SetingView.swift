@@ -56,12 +56,16 @@ class SetingView: UIView {
         }else{
             endCell?.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
         }
+        
         endCell?.textLabel?.text = title
         endCell?.textLabel?.textColor = UIColor.black
         endCell?.textLabel!.backgroundColor = UIColor.clear
         endCell?.imageView?.image = UIImage(named: imageName)
         
         if !AppTheme.isTargetLunaR_OR_Nevo() {
+            if title == "My Nevo" {
+             endCell?.textLabel?.text = "My LunaR";
+            }
             endCell?.backgroundColor = UIColor.getGreyColor()
             mSendLocalNotificationSwitchButton?.onTintColor = UIColor.getBaseColor()
             endCell?.textLabel?.textColor = UIColor.white

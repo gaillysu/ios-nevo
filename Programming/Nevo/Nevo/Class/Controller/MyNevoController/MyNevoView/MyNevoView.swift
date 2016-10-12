@@ -22,8 +22,16 @@ class MyNevoView: UITableView {
 //
 //        }
         endCell?.selectionStyle = UITableViewCellSelectionStyle.none;
+        endCell?.textLabel?.backgroundColor = UIColor.clear
         endCell?.textLabel?.text = title
+        endCell?.detailTextLabel?.backgroundColor = UIColor.clear
         endCell?.detailTextLabel?.text = detailText
+        
+        if !AppTheme.isTargetLunaR_OR_Nevo() {
+            endCell?.backgroundColor = UIColor.getGreyColor()
+            endCell?.textLabel?.textColor = UIColor.white
+            endCell?.detailTextLabel?.textColor = UIColor.white
+        }
         return endCell!
     }
 }
