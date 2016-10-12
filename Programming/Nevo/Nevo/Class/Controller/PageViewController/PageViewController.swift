@@ -206,19 +206,16 @@ extension PageViewController {
             self.view.addSubview(calendarBackGroundView)
             
             let fillView:UIView = UIView(frame: CGRect(x: 0,y: 0,width: UIScreen.main.bounds.size.width,height: 260))
-            fillView.backgroundColor = UIColor.getCalendarColor()
             calendarBackGroundView.addSubview(fillView)
             
             self.menuView = CVCalendarMenuView(frame: CGRect(x: 10, y: 20, width: UIScreen.main.bounds.size.width - 20, height: 20))
-            self.menuView?.dayOfWeekTextColor = UIColor.black
             self.menuView?.dayOfWeekFont = UIFont.systemFont(ofSize: 15)
-            self.menuView?.backgroundColor = UIColor.getCalendarColor()
             self.menuView!.menuViewDelegate = self
             fillView.addSubview(menuView!)
             
             // CVCalendarView initialization with frame
             self.calendarView = CVCalendarView(frame: CGRect(x: 10, y: 40, width: UIScreen.main.bounds.size.width - 20, height: 220))
-            self.calendarView?.backgroundColor = UIColor.getCalendarColor()
+            
             calendarView?.isHidden = false
             fillView.addSubview(calendarView!)
             self.calendarView!.calendarAppearanceDelegate = self
@@ -228,6 +225,18 @@ extension PageViewController {
             // Commit frames' updates
             self.calendarView!.commitCalendarViewUpdate()
             self.menuView!.commitMenuViewUpdate()
+            
+            if !AppTheme.isTargetLunaR_OR_Nevo() {
+                self.calendarView?.backgroundColor = UIColor.getLightBaseColor()
+                fillView.backgroundColor = UIColor.getLightBaseColor()
+                self.menuView?.backgroundColor = UIColor.getLightBaseColor()
+                self.menuView?.dayOfWeekTextColor = UIColor.white
+            }else{
+                fillView.backgroundColor = UIColor.getCalendarColor()
+                self.calendarView?.backgroundColor = UIColor.getCalendarColor()
+                self.menuView?.backgroundColor = UIColor.getCalendarColor()
+                self.menuView?.dayOfWeekTextColor = UIColor.black
+            }
             
             calendarView?.coordinator.selectedDayView?.selectionView?.shape = CVShape.rect
             
@@ -276,6 +285,14 @@ extension PageViewController: CVCalendarViewDelegate, CVCalendarMenuViewDelegate
     func delay(_ delay:Double, closure:@escaping ()->()) {
         DispatchQueue.main.asyncAfter(
             deadline: DispatchTime.now() + Double(Int64(delay * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC), execute: closure)
+    }
+    
+    func dayOfWeekTextColor() -> UIColor{
+        if !AppTheme.isTargetLunaR_OR_Nevo() {
+            return UIColor.white
+        }else{
+            return UIColor.gray
+        }
     }
     
     /// Required method to implement!
@@ -361,19 +378,35 @@ extension PageViewController: CVCalendarViewAppearanceDelegate {
     }
     
     func dayLabelWeekdayInTextColor() -> UIColor {
-        return UIColor.black
+        if !AppTheme.isTargetLunaR_OR_Nevo() {
+            return UIColor.white
+        }else{
+            return UIColor.black
+        }
     }
     
     func dayLabelWeekdaySelectedBackgroundColor() -> UIColor {
-        return AppTheme.NEVO_SOLAR_YELLOW()
+        if !AppTheme.isTargetLunaR_OR_Nevo() {
+            return UIColor.getBaseColor()
+        }else{
+            return AppTheme.NEVO_SOLAR_YELLOW()
+        }
     }
     
     func dayLabelPresentWeekdayTextColor() -> UIColor{
-        return AppTheme.NEVO_SOLAR_YELLOW()
+        if !AppTheme.isTargetLunaR_OR_Nevo() {
+            return UIColor.getBaseColor()
+        }else{
+            return AppTheme.NEVO_SOLAR_YELLOW()
+        }
     }
     
     func dayLabelPresentWeekdayHighlightedTextColor() -> UIColor {
-        return UIColor.black
+        if !AppTheme.isTargetLunaR_OR_Nevo() {
+            return UIColor.white
+        }else{
+            return UIColor.black
+        }
     }
     
     /// Text color.
