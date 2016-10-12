@@ -13,6 +13,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TutorialSevenViewController">
             <connections>
+                <outlet property="centerImageView" destination="2uY-pO-QtG" id="e9s-ig-zTR"/>
+                <outlet property="detailLabel" destination="mVz-rf-Ylf" id="3rT-5B-cXj"/>
+                <outlet property="titleLabel" destination="uOQ-nw-fA7" id="gcm-DI-7jL"/>
                 <outlet property="tryAgainButton" destination="Dnl-L7-kCN" id="fxm-f2-iRf"/>
                 <outlet property="view" destination="7zr-Tf-uIq" id="4aB-yS-xri"/>
             </connections>

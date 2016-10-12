@@ -12,8 +12,11 @@ class TutorialSixViewController: UIViewController{
     
     @IBOutlet weak var tapToContinueButton: UIButton!
 
+    @IBOutlet weak var titleLabel: UILabel!
+    
     init() {
         super.init(nibName: "TutorialSixViewController", bundle: Bundle.main)
+        styleEvolve()
     }
 
     required init(coder aDecoder: NSCoder) {
@@ -29,5 +32,16 @@ class TutorialSixViewController: UIViewController{
         //let tutorialPageSeven = TutorialSevenViewController();
         //self.navigationController?.pushViewController(tutorialPageSeven, animated: true)
         self.dismiss(animated: true, completion: nil)
+    }
+}
+
+extension TutorialSixViewController {
+    fileprivate func styleEvolve() {
+        if !AppTheme.isTargetLunaR_OR_Nevo() {
+            view.backgroundColor = UIColor.getGreyColor()
+            titleLabel.backgroundColor = UIColor.clear
+            titleLabel.textColor = UIColor.white
+            tapToContinueButton.backgroundColor = UIColor.getBaseColor()
+        }
     }
 }

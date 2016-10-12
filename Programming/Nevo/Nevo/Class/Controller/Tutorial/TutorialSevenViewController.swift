@@ -11,9 +11,14 @@ import Foundation
 class TutorialSevenViewController: UIViewController {
     
     @IBOutlet weak var tryAgainButton: UIButton!
+    
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var detailLabel: UILabel!
+    @IBOutlet weak var centerImageView: UIImageView!
 
     init() {
         super.init(nibName: "TutorialSevenViewController", bundle: Bundle.main)
+        styleEvolve()
     }
 
     required init(coder aDecoder: NSCoder) {
@@ -25,5 +30,18 @@ class TutorialSevenViewController: UIViewController {
     }
     @IBAction func tryAgainAction(_ sender: AnyObject) {
         self.navigationController?.popViewController(animated: true)
+    }
+}
+
+extension TutorialSevenViewController {
+    fileprivate func styleEvolve() {
+        if !AppTheme.isTargetLunaR_OR_Nevo() {
+            view.backgroundColor = UIColor.getGreyColor()
+            titleLabel.backgroundColor = UIColor.clear
+            titleLabel.textColor = UIColor.white
+            detailLabel.backgroundColor = UIColor.clear
+            detailLabel.textColor = UIColor.white
+            tryAgainButton.backgroundColor = UIColor.getBaseColor()
+        }
     }
 }

@@ -12,8 +12,8 @@ import BRYXBanner
 class MEDBanner:Banner {
     public required init(title: String? = nil, subtitle: String? = nil, image: UIImage? = nil, backgroundColor: UIColor = UIColor.black, didTapBlock: (() -> ())? = nil) {
         super.init(title: title, subtitle: subtitle, image: image, backgroundColor: backgroundColor, didTapBlock: didTapBlock)
-        if !AppTheme.isTargetLunaR_OR_Nevo() {
-            self.backgroundColor = UIColor.getGreyColor()            
+        if !AppTheme.isTargetLunaR_OR_Nevo() && backgroundColor != UIColor.red {
+            self.backgroundColor = UIColor.getBaseColor()
         }
     }
     

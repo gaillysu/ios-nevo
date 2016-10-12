@@ -16,8 +16,12 @@ class TutorialFiveViewController: UIViewController {
     @IBOutlet weak var watchImage: UIImageView!
     @IBOutlet weak var progressBar: CircleProgressView!
     
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var detailLabel: UILabel!
+    
     init() {
         super.init(nibName: "TutorialFiveViewController", bundle: Bundle.main)
+        styleEvolve()
     }
 
     required init(coder aDecoder: NSCoder) {
@@ -88,4 +92,17 @@ class TutorialFiveViewController: UIViewController {
             deadline: DispatchTime.now() + Double(Int64(delay * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC), execute: closure)
     }
 
+}
+
+extension TutorialFiveViewController {
+    fileprivate func styleEvolve() {
+        if !AppTheme.isTargetLunaR_OR_Nevo() {
+            view.backgroundColor = UIColor.getGreyColor()
+            titleLabel.backgroundColor = UIColor.clear
+            titleLabel.textColor = UIColor.white
+            detailLabel.backgroundColor = UIColor.clear
+            detailLabel.textColor = UIColor.white
+            progressBar.backgroundColor = UIColor.clear
+        }
+    }
 }

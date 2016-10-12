@@ -10,8 +10,14 @@ import UIKit
 
 class MorningTutorialController: UIViewController {
 
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var detailLabel: UILabel!
+    @IBOutlet weak var centerImageView: UIImageView!
+    @IBOutlet weak var nextStepButton: UIButton!
+    
     init() {
         super.init(nibName: "MorningTutorialController", bundle: Bundle.main)
+        styleEvolve()
     }
 
     required init(coder aDecoder: NSCoder) {
@@ -40,4 +46,17 @@ class MorningTutorialController: UIViewController {
     }
     */
 
+}
+
+extension MorningTutorialController {
+    fileprivate func styleEvolve() {
+        if !AppTheme.isTargetLunaR_OR_Nevo() {
+            view.backgroundColor = UIColor.getGreyColor()
+            titleLabel.backgroundColor = UIColor.clear
+            titleLabel.textColor = UIColor.white
+            detailLabel.backgroundColor = UIColor.clear
+            detailLabel.textColor = UIColor.white
+            nextStepButton.setTitleColor(UIColor.getBaseColor(), for: .normal)
+        }
+    }
 }

@@ -12,8 +12,14 @@ class TutorialTwoViewController: UIViewController {
 
     @IBOutlet weak var turnBluetoothOnButton: UIButton!
 
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var detailLabel: UILabel!
+    @IBOutlet weak var centerImageView: UIImageView!
+    
+    
     init() {
         super.init(nibName: "TutorialTwoViewController", bundle: Bundle.main)
+        styleEvolve()
     }
 
     required init(coder aDecoder: NSCoder) {
@@ -27,5 +33,19 @@ class TutorialTwoViewController: UIViewController {
     @IBAction func turnBluetoothOnAction(_ sender: AnyObject) {
         let tutorialTwo = TutorialThreeViewController()
         self.navigationController?.pushViewController(tutorialTwo, animated: true)
+    }
+}
+
+extension TutorialTwoViewController {
+    fileprivate func styleEvolve() {
+        if !AppTheme.isTargetLunaR_OR_Nevo() {
+            view.backgroundColor = UIColor.getGreyColor()
+            titleLabel.backgroundColor = UIColor.clear
+            titleLabel.textColor = UIColor.white
+            detailLabel.backgroundColor = UIColor.clear
+            detailLabel.textColor = UIColor.white
+            turnBluetoothOnButton.backgroundColor = UIColor.getBaseColor()
+            turnBluetoothOnButton.setTitleColor(UIColor.white, for: .normal)
+        }
     }
 }

@@ -10,8 +10,14 @@ import Foundation
 
 class TutorialOneViewController: UIViewController{
 
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var detailLabel: UILabel!
+    @IBOutlet weak var nextStepButton: UIButton!
+    @IBOutlet weak var centerImageView: UIImageView!
+    
     init() {
         super.init(nibName: "TutorialOneViewController", bundle: Bundle.main)
+        styleEvolve()
     }
 
     required init(coder aDecoder: NSCoder) {
@@ -28,6 +34,8 @@ class TutorialOneViewController: UIViewController{
     func logPressAction(_ sender:UITapGestureRecognizer) {
         let otaCont:OldOtaViewController = OldOtaViewController()
         let navigation:UINavigationController = UINavigationController(rootViewController: otaCont)
+        
+        // TODO
         self.present(navigation, animated: true, completion: nil)
     }
     
@@ -39,6 +47,21 @@ class TutorialOneViewController: UIViewController{
         }else{
             let tutorialTwo = TutorialTwoViewController()
             self.navigationController?.pushViewController(tutorialTwo, animated: true)
+        }
+    }
+}
+
+
+extension TutorialOneViewController {
+    fileprivate func styleEvolve() {
+        if !AppTheme.isTargetLunaR_OR_Nevo() {
+            view.backgroundColor = UIColor.getGreyColor()
+            titleLabel.backgroundColor = UIColor.clear
+            titleLabel.textColor = UIColor.white
+            detailLabel.backgroundColor = UIColor.clear
+            detailLabel.textColor = UIColor.white
+            nextStepButton.backgroundColor = UIColor.getBaseColor()
+            nextStepButton.setTitleColor(UIColor.white, for: .normal)
         }
     }
 }
