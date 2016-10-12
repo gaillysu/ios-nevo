@@ -39,6 +39,16 @@ class PresetView: UITableView {
             (endCell as! PresetTableViewCell).backgroundColor = UIColor.clear
         }
         endCell?.selectionStyle = UITableViewCellSelectionStyle.none;
+        
+        if !AppTheme.isTargetLunaR_OR_Nevo() {
+            let cell = endCell as! PresetTableViewCell
+            cell.backgroundColor = UIColor.getGreyColor()
+            cell.contentView.backgroundColor = UIColor.getGreyColor()
+            cell.presetSteps.textColor = UIColor.white
+            cell.presetName.textColor = UIColor.white
+            cell.presetStates.onTintColor = UIColor.getBaseColor()
+        }
+        
         return endCell!
     }
 

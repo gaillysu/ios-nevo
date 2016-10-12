@@ -17,7 +17,6 @@ class TutorialOneViewController: UIViewController{
     
     init() {
         super.init(nibName: "TutorialOneViewController", bundle: Bundle.main)
-        styleEvolve()
     }
 
     required init(coder aDecoder: NSCoder) {
@@ -25,6 +24,8 @@ class TutorialOneViewController: UIViewController{
     }   
 
     override func viewDidLoad() {
+        
+        styleEvolve()
         
         //controllManager(_:)
         let logPress:UILongPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(TutorialOneViewController.logPressAction(_:)))

@@ -19,7 +19,11 @@ class PresetTableViewCell: UITableViewCell,ButtonManagerCallBack {
     @IBAction func controllManager(_ sender: AnyObject) {
        delegate?.controllManager(sender)
         if(presetStates.isOn){
-            self.backgroundColor = UIColor.white
+            if AppTheme.isTargetLunaR_OR_Nevo() {
+                self.backgroundColor = UIColor.white
+            } else {
+            }
+            
         }else{
             self.backgroundColor = UIColor.clear
         }

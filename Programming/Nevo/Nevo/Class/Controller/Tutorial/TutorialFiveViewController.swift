@@ -21,7 +21,6 @@ class TutorialFiveViewController: UIViewController {
     
     init() {
         super.init(nibName: "TutorialFiveViewController", bundle: Bundle.main)
-        styleEvolve()
     }
 
     required init(coder aDecoder: NSCoder) {
@@ -30,7 +29,7 @@ class TutorialFiveViewController: UIViewController {
 
     override func viewDidLoad() {
         AppDelegate.getAppDelegate().connect()
-
+        styleEvolve()
     }
 
     override func viewWillAppear(_ animated: Bool) {

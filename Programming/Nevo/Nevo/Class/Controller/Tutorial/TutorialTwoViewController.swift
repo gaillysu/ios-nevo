@@ -19,7 +19,6 @@ class TutorialTwoViewController: UIViewController {
     
     init() {
         super.init(nibName: "TutorialTwoViewController", bundle: Bundle.main)
-        styleEvolve()
     }
 
     required init(coder aDecoder: NSCoder) {
@@ -27,7 +26,7 @@ class TutorialTwoViewController: UIViewController {
     }
 
     override func viewDidLoad() {
-        
+        styleEvolve()
     }
     
     @IBAction func turnBluetoothOnAction(_ sender: AnyObject) {

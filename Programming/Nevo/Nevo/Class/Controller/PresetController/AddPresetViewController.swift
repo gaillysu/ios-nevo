@@ -16,6 +16,7 @@ class AddPresetViewController: UIViewController,ButtonManagerCallBack {
     
     init() {
         super.init(nibName: "AddPresetViewController", bundle: Bundle.main)
+        styleEvolve()
     }
 
     required init(coder aDecoder: NSCoder) {
@@ -71,4 +72,12 @@ class AddPresetViewController: UIViewController,ButtonManagerCallBack {
     }
     */
 
+}
+
+extension AddPresetViewController {
+    fileprivate func styleEvolve() {
+        if !AppTheme.isTargetLunaR_OR_Nevo() {
+            view.backgroundColor = UIColor.getGreyColor()
+        }
+    }
 }

@@ -46,6 +46,19 @@ class AddPresetView: UIView {
         presetName.layer.borderColor = UIColor.white.cgColor
         presetName.placeholder = NSLocalizedString("goal_name", comment: "")
         presetName.backgroundColor = AppTheme.NEVO_SOLAR_GRAY()
+        
+        if !AppTheme.isTargetLunaR_OR_Nevo() {
+            presetNumber.textColor = UIColor.white
+            presetNumber.backgroundColor = UIColor.getLightBaseColor()
+            presetNumber.setValue(UIColor.white, forKeyPath: "_placeholderLabel.textColor")
+            presetNumber.tintColor = UIColor.white
+            
+            presetName.textColor = UIColor.white
+            presetName.backgroundColor = UIColor.getLightBaseColor()
+            presetName.layer.borderColor = UIColor.gray.cgColor
+            presetName.setValue(UIColor.gray, forKeyPath: "_placeholderLabel.textColor")
+            presetName.tintColor = UIColor.white
+        }
     }
 
     func controllManager(_ sender:AnyObject){

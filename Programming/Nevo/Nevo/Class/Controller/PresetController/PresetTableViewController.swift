@@ -28,13 +28,19 @@ class PresetTableViewController: UITableViewController,ButtonManagerCallBack,Add
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         presetView.backgroundColor = UIColor.white
         presetView.bulidPresetView(self.navigationItem,delegateB: self)
+        
+        presetView.separatorColor = UIColor.lightGray
 
         let array:NSArray = Presets.getAll()
         for pArray in array {
             prestArray.append(pArray as! Presets)
         }
+        
+        styleEvolve()
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -124,5 +130,12 @@ class PresetTableViewController: UITableViewController,ButtonManagerCallBack,Add
     override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
         return true
     }
-    
+}
+
+extension PresetTableViewController {
+    fileprivate func styleEvolve() {
+        if !AppTheme.isTargetLunaR_OR_Nevo() {
+            presetView.backgroundColor = UIColor.getLightBaseColor()
+        }
+    }
 }
