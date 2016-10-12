@@ -13,8 +13,12 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="InformationController" customModule="LunaR" customModuleProvider="target">
             <connections>
                 <outlet property="dateOfbirth" destination="eXR-xK-yaF" id="2sG-sU-mVB"/>
+                <outlet property="detailLabel" destination="LIq-Cx-bHC" id="Ud3-02-cAD"/>
+                <outlet property="detailLabel2" destination="Hvc-CB-RzI" id="EuW-b2-sel"/>
                 <outlet property="heightTextField" destination="lI6-oe-0Ah" id="XDU-rU-Nwk"/>
                 <outlet property="metricsSegment" destination="b7x-G0-dK8" id="PF5-ym-dlF"/>
+                <outlet property="policyLabel" destination="I93-0k-cdB" id="b6N-sg-0nZ"/>
+                <outlet property="titleLabel" destination="L3v-JU-xKx" id="6jl-hL-pFs"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="weightTextfield" destination="NTv-do-MVa" id="Tr2-Ly-oGZ"/>
             </connections>
