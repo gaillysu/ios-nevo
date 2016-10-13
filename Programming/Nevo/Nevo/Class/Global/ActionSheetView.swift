@@ -38,10 +38,8 @@ class ActionSheetView: UIAlertController {
         
         if !AppTheme.isTargetLunaR_OR_Nevo() {
             //         _UIAlertControlleriOSActionSheetCancelBackgroundView
-            let cancelButtonBackgroundView = findView(aClass: NSClassFromString("_UIAlertControlleriOSActionSheetCancelBackgroundView"), inView: UIApplication.shared.keyWindow!)
-            if cancelButtonBackgroundView != nil {
-                let view = cancelButtonBackgroundView!
-                totallyTransparent(view: view)
+            if let cancelButtonBackgroundView = findView(aClass: NSClassFromString("_UIAlertControlleriOSActionSheetCancelBackgroundView"), inView: UIApplication.shared.keyWindow!) {
+                totallyTransparent(view: cancelButtonBackgroundView)
             }
         }
     }
@@ -69,8 +67,7 @@ extension ActionSheetView {
         }
         
         for subView in inView.subviews {
-            let result = findView(aClass: aClass, inView: subView)
-            if result != nil {
+            if let result = findView(aClass: aClass, inView: subView) {
                 return result
             }
         }
