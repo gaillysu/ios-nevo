@@ -365,15 +365,12 @@ class NevoOtaController : NSObject,ConnectionControllerDelegate {
                         self.mcu_broken_state = DFUControllerState.discovering
                         self.state = DFUControllerState.send_FIRMWARE_DATA
                         //resend current page
-                        if(curpage>0)
-                        {
+                        if(curpage>0) {
                             curpage = curpage - 1
                             firmwareDataBytesSent = firmwareDataBytesSent - DFUCONTROLLER_PAGE_SIZE
                         }
                         MCU_sendFirmwareChunk()
-                    }
-                    else
-                    {
+                    }else{
                         //MCU got broken is more than 30s, app will get timeout and retry connect again,
                         //when got connected, will send restart OTA cmd and retry do OTA from page No.0
                         self.state = DFUControllerState.send_START_COMMAND
