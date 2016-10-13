@@ -33,6 +33,18 @@ class ActionSheetView: UIAlertController {
         }
     }
 
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        
+        if !AppTheme.isTargetLunaR_OR_Nevo() {
+            //         _UIAlertControlleriOSActionSheetCancelBackgroundView
+            let cancelButtonBackgroundView = findView(aClass: NSClassFromString("_UIAlertControlleriOSActionSheetCancelBackgroundView"), inView: UIApplication.shared.keyWindow!)
+            if cancelButtonBackgroundView != nil {
+                let view = cancelButtonBackgroundView!
+                totallyTransparent(view: view)
+            }
+        }
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -43,4 +55,38 @@ class ActionSheetView: UIAlertController {
         
     }
 
+}
+
+// MARK: - private function
+extension ActionSheetView {
+    fileprivate func findView(aClass:AnyClass?, inView:UIView) -> UIView? {
+        if inView.classForCoder == aClass {
+            return inView
+        }
+        
+        guard inView.subviews.count != 0 else {
+            return nil
+        }
+        
+        for subView in inView.subviews {
+            let result = findView(aClass: aClass, inView: subView)
+            if result != nil {
+                return result
+            }
+        }
+        
+        return nil
+    }
+    
+    fileprivate func totallyTransparent(view:UIView) {
+        view.backgroundColor = UIColor.clear
+        
+        guard view.subviews.count != 0 else {
+            return
+        }
+        
+        for subView in view.subviews {
+            totallyTransparent(view: subView)
+        }
+    }
 }
