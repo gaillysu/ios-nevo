@@ -275,6 +275,10 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
         
         if sortArray.count == 0 {
             self.setChartViewLeftAxis(Double(maxValue+7), unitString: " "+NSLocalizedString("hours", comment: ""))
+        }else{
+            if maxValue == 0 {
+                self.setChartViewLeftAxis(Double(maxValue+7), unitString: " "+NSLocalizedString("hours", comment: ""))
+            }
         }
         
         if rowIndex == 0 || rowIndex == 1{
