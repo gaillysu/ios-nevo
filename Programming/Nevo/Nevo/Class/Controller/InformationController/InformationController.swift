@@ -163,7 +163,7 @@ class InformationController: UIViewController,SMSegmentViewDelegate {
                 MRProgressOverlayView.dismissAllOverlays(for: self.navigationController!.view, animated: true)
             })
             
-            HttpPostRequest.LunaRPostRequest("http://nevo.karljohnchow.com/user/create", data: ["user":registerInfor as AnyObject]) { (result) in
+            HttpPostRequest.postRequest("user/create", data: ["user":registerInfor as AnyObject]) { (result) in
                 
                 timeout.invalidate()
                 

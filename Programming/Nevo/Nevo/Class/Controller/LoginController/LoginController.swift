@@ -142,8 +142,7 @@ class LoginController: UIViewController,UITextFieldDelegate {
             let view = MRProgressOverlayView.showOverlayAdded(to: self.navigationController!.view, title: "Please wait...", mode: MRProgressOverlayViewMode.indeterminate, animated: true)
             view?.setTintColor(AppTheme.NEVO_SOLAR_YELLOW())
 
-            
-            HttpPostRequest.LunaRPostRequest("http://nevo.karljohnchow.com/user/login", data: (["user":["email":userName,"password":password]] as AnyObject) as! Dictionary<String, AnyObject>) { (result) in
+            HttpPostRequest.postRequest("user/login", data: (["user":["email":userName,"password":password]] as AnyObject) as! Dictionary<String, AnyObject>) { (result) in
                 MRProgressOverlayView.dismissAllOverlays(for: self.navigationController!.view, animated: true)
                 
                 let json = JSON(result)

@@ -660,6 +660,7 @@
 		61623DB11DAC77F100C45B19 /* iMaze_v26.bin in Resources */ = {isa = PBXBuildFile; fileRef = 61623DB01DAC77F100C45B19 /* iMaze_v26.bin */; };
 		665E331E1DADCD8A00D0E36D /* MEDBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 665E331D1DADCD8A00D0E36D /* MEDBanner.swift */; };
 		665E331F1DADCD8A00D0E36D /* MEDBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 665E331D1DADCD8A00D0E36D /* MEDBanner.swift */; };
+		666F60F11DAF264B0011F3C5 /* AppDelegate-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006DA9FD1D80F2A600B70C0F /* AppDelegate-Extension.swift */; };
 		813518AB3D92E43573F28717 /* Pods_LunaR.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E068CB5F57F135B038B3A10 /* Pods_LunaR.framework */; };
 		8A84EC52F1052F0497E54CB5 /* Pods_NevoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7689D6188FDF6CDBFBD84C51 /* Pods_NevoTests.framework */; };
 		9A2D6C3B1A9C6D9F00591BDC /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A2D6C3A1A9C6D9F00591BDC /* HealthKit.framework */; };
@@ -3145,6 +3146,7 @@
 				00D474371D586D1600E2447E /* HealthModel.swift in Sources */,
 				00D474381D586D1600E2447E /* NevoProfileModel.swift in Sources */,
 				00D474391D586D1600E2447E /* NotificationModel.swift in Sources */,
+				666F60F11DAF264B0011F3C5 /* AppDelegate-Extension.swift in Sources */,
 				00D4743A1D586D1600E2447E /* Presets.swift in Sources */,
 				00D4743B1D586D1600E2447E /* PresetsModel.swift in Sources */,
 				00D4743C1D586D1600E2447E /* SleepModel.swift in Sources */,

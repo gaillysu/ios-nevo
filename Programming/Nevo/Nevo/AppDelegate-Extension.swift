@@ -8,8 +8,10 @@
 
 import Foundation
 
-
+// MARK: - LAUNCH LOGIC
 extension AppDelegate {
-    
-
+    func adjustLaunchLogic() {
+        let loginController = LoginController()
+        self.window?.rootViewController = loginController
+    }
 }

@@ -13,7 +13,7 @@ import XCGLogger
 class HttpPostRequest: NSObject {
 
     class  func LunaRPostRequest(_ url: String, data:Dictionary<String,AnyObject>, completion:@escaping (_ result:NSDictionary) -> Void){
-        var finalData: Dictionary<String,AnyObject> = ["token":"SU9gPy5e1d1t7W8FG2fQ6MuT06cY95MB" as AnyObject]
+        var finalData: Dictionary<String,AnyObject> = ["token":"YXBwczptZWRfYXBwX2RldmVsb3BtZW50" as AnyObject]
         finalData["params"] = data as AnyObject?;
         XCGLogger.default.debug("\(finalData)")
         
@@ -36,15 +36,30 @@ class HttpPostRequest: NSObject {
     }
     
     class  func postRequest(_ url: String, data:Dictionary<String,AnyObject>, completion:@escaping (_ result:NSDictionary) -> Void){
-        var finalData: Dictionary<String,AnyObject> = ["token":"SU9gPy5e1d1t7W8FG2fQ6MuT06cY95MB" as AnyObject]
-        finalData["params"] = data as AnyObject?;
-        XCGLogger.default.debug("\(finalData)")
+        var mURL:String = ""
+        var TOKEN:String = ""
+        var paramsToken:String = ""
         
-        let urls = URL(string: url)!
-        let parameters: Parameters = data
+        if !AppTheme.isTargetLunaR_OR_Nevo() {
+            mURL = "http://lunar.karljohnchow.com/"
+            TOKEN = "Basic YXBwczptZWRfYXBwX2RldmVsb3BtZW50"
+            paramsToken = "Sfz1Nk9Qt3J0dt7jNOLX0x7VHaT83V8h"
+        }else{
+            mURL = "http://nevo.karljohnchow.com/"
+//            TOKEN = "Basic SU9gPy5e1d1t7W8FG2fQ6MuT06cY95MB"
+//            paramsToken = "Sfz1Nk9Qt3J0dt7jNOLX0x7VHaT83V8h"
+            TOKEN = "Basic YXBwczptZWRfYXBwX2RldmVsb3BtZW50"
+            paramsToken = "SU9gPy5e1d1t7W8FG2fQ6MuT06cY95MB"
+        }
+        
+        var finalData: Dictionary<String,Any> = ["token":paramsToken]
+        finalData["params"] = data;
+        
+        let urls = URL(string: mURL+url)!
+        let parameters: Parameters = finalData
         let encode:ParameterEncoding = JSONEncoding.default
-        
-        Alamofire.request(urls, method: .post, parameters: parameters, encoding: encode, headers: ["Authorization": "Basic YXBwczptZWRfYXBwX2RldmVsb3BtZW50","Content-Type":"application/json"]).responseJSON { (response) in
+
+        Alamofire.request(urls, method: .post, parameters: parameters, encoding: encode, headers: ["Authorization": TOKEN,"Content-Type":"application/json"]).responseJSON { (response) in
             if response.result.isSuccess {
                 XCGLogger.default.debug("getJSON: \(response.result.value)")
                 completion(response.result.value as! NSDictionary)
