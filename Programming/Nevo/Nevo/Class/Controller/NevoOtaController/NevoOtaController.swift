@@ -52,8 +52,8 @@ class NevoOtaController : NSObject,ConnectionControllerDelegate {
     let DFUCONTROLLER_PAGE_SIZE = 64
     //one page has 5 packets
     let notificationPacketInterval = 5
-    fileprivate var state:DFUControllerState = DFUControllerState.discovering
-    fileprivate var mcu_broken_state:DFUControllerState = DFUControllerState.discovering
+    fileprivate var state:DFUControllerState = DFUControllerState.inittialize
+    fileprivate var mcu_broken_state:DFUControllerState = DFUControllerState.inittialize
     fileprivate var firmwareDataBytesSent:Int = 0
     fileprivate var progress = 0.0
     fileprivate var curpage:Int = 0
@@ -362,7 +362,7 @@ class NevoOtaController : NSObject,ConnectionControllerDelegate {
                     || self.mcu_broken_state == DFUControllerState.wait_RECEIPT
                     {
                         //reset it
-                        self.mcu_broken_state = DFUControllerState.discovering
+                        self.mcu_broken_state = DFUControllerState.inittialize
                         self.state = DFUControllerState.send_FIRMWARE_DATA
                         //resend current page
                         if(curpage>0) {
@@ -459,7 +459,7 @@ class NevoOtaController : NSObject,ConnectionControllerDelegate {
             //when MCU got broken and got timeout(30s), reset mcu_broken_state
             if(dfuFirmwareType == DfuFirmwareTypes.softdevice)
             {
-                self.mcu_broken_state = DFUControllerState.discovering
+                self.mcu_broken_state = DFUControllerState.inittialize
             }
             XCGLogger.default.debug("* * * OTA timeout * * *")
             let errorMessage = NSLocalizedString("ota_timeout",comment: "") as NSString
@@ -537,52 +537,51 @@ class NevoOtaController : NSObject,ConnectionControllerDelegate {
 
         for i:Int in 0..<notificationPacketInterval {
             if firmwareDataBytesSent < binFileSize {
-                continue;
-            }
-            var length = DFUCONTROLLER_MAX_PACKET_SIZE;
-            var pagePacket : Data;
-            if( i == 0){
-                //LSB format
-                let pagehead :[UInt8] = [
-                    00,0x71,
-                    UInt8(curpage & 0xFF),
-                    UInt8((curpage>>8) & 0xFF),
-                    UInt8(totalpage & 0xFF),
-                    UInt8((totalpage>>8) & 0xFF),
-                    00,00,00,00,00,00,00,00,00,00,00,00,00,00]
-
-                pagePacket = Data(bytes: UnsafePointer<UInt8>(pagehead), count: pagehead.count)
-            }else {
-                if( i != (notificationPacketInterval - 1)){
-                    length = DFUCONTROLLER_MAX_PACKET_SIZE;
-                }else{
-                    length = DFUCONTROLLER_PAGE_SIZE%DFUCONTROLLER_MAX_PACKET_SIZE;
-                }
-
-                let currentRange:Range = self.firmwareDataBytesSent..<(self.firmwareDataBytesSent+length)
+                var length = DFUCONTROLLER_MAX_PACKET_SIZE;
+                var pagePacket : Data;
+                if( i == 0){
+                    //LSB format
+                    let pagehead :[UInt8] = [
+                        00,0x71,
+                        UInt8(curpage & 0xFF),
+                        UInt8((curpage>>8) & 0xFF),
+                        UInt8(totalpage & 0xFF),
+                        UInt8((totalpage>>8) & 0xFF),
+                        00,00,00,00,00,00,00,00,00,00,00,00,00,00]
+                    
+                    pagePacket = Data(bytes: UnsafePointer<UInt8>(pagehead), count: pagehead.count)
+                }else {
+                    if( i != (notificationPacketInterval - 1)){
+                        length = DFUCONTROLLER_MAX_PACKET_SIZE;
+                    }else{
+                        length = DFUCONTROLLER_PAGE_SIZE%DFUCONTROLLER_MAX_PACKET_SIZE;
+                    }
+                    
+                    let currentRange:Range = self.firmwareDataBytesSent..<(self.firmwareDataBytesSent+length)
                     //NSMakeRange(self.firmwareDataBytesSent, length)
-                let currentData:Data =  binFileData!.subdata(in: currentRange)
-
-                let fulldata:NSMutableData = NSMutableData()
-
-                if i == self.notificationPacketInterval - 1{
-                    fulldata.append([0xFF,0x71] as [UInt8], length: 2)
-                }else{
-                    fulldata.append([UInt8(i),0x71] as [UInt8], length: 2)
+                    let currentData:Data =  binFileData!.subdata(in: currentRange)
+                    
+                    let fulldata:NSMutableData = NSMutableData()
+                    
+                    if i == self.notificationPacketInterval - 1{
+                        fulldata.append([0xFF,0x71] as [UInt8], length: 2)
+                    }else{
+                        fulldata.append([UInt8(i),0x71] as [UInt8], length: 2)
+                    }
+                    
+                    fulldata.append(currentData)
+                    
+                    //last packet of the page, remains 8 bytes,fill 0
+                    if(i == (notificationPacketInterval - 1)){
+                        fulldata.append([0,0,0,0,0,0,0,0] as [UInt8], length: 8)
+                    }
+                    pagePacket = fulldata as Data
+                    
+                    firmwareDataBytesSent += length;
                 }
-
-                fulldata.append(currentData)
-
-                //last packet of the page, remains 8 bytes,fill 0
-                if(i == (notificationPacketInterval - 1)){
-                    fulldata.append([0,0,0,0,0,0,0,0] as [UInt8], length: 8)
-                }
-                pagePacket = fulldata as Data
-
-                firmwareDataBytesSent += length;
+                
+                Onepage.addPacket(Mcu_OnePacketRequest(packetdata: pagePacket ))
             }
-
-            Onepage.addPacket(Mcu_OnePacketRequest(packetdata: pagePacket ))
         }
 
         if(curpage < totalpage){
@@ -610,7 +609,7 @@ class NevoOtaController : NSObject,ConnectionControllerDelegate {
     
     func MCU_processDFUResponse(_ packet:RawPacket){
         XCGLogger.default.debug("didReceiveReceipt")
-        mPacketsbuffer.append(packet.getRawData() as Data)
+        mPacketsbuffer.append(packet.getRawData())
         var databyte:[UInt8] = NSData2Bytes(packet.getRawData())
         
         if(databyte[0] == 0xFF){
@@ -681,7 +680,7 @@ class NevoOtaController : NSObject,ConnectionControllerDelegate {
     func reset(_ switch2SyncController:Bool){
         mTimeoutTimer?.invalidate()
         //reset it to INIT status !!!IMPORTANT!!!
-        self.state = DFUControllerState.discovering
+        self.state = DFUControllerState.inittialize
         
         if(dfuFirmwareType == DfuFirmwareTypes.application ){
             self.mConnectionController.restoreSavedAddress()

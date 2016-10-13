@@ -101,7 +101,6 @@
 		0050D5F11C28E0DB004F6F80 /* MyNevoHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0050D52F1C28E0DB004F6F80 /* MyNevoHeaderView.swift */; };
 		0050D5F21C28E0DB004F6F80 /* MyNevoHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0050D5301C28E0DB004F6F80 /* MyNevoHeaderView.xib */; };
 		0050D5F31C28E0DB004F6F80 /* MyNevoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0050D5311C28E0DB004F6F80 /* MyNevoView.swift */; };
-		0050D5F41C28E0DB004F6F80 /* NevoOtaController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0050D5331C28E0DB004F6F80 /* NevoOtaController.swift */; };
 		0050D5F51C28E0DB004F6F80 /* DeviceScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0050D5351C28E0DB004F6F80 /* DeviceScannerView.swift */; };
 		0050D5F61C28E0DB004F6F80 /* NevoOtaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0050D5361C28E0DB004F6F80 /* NevoOtaView.swift */; };
 		0050D5F71C28E0DB004F6F80 /* SelectFileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0050D5371C28E0DB004F6F80 /* SelectFileView.swift */; };
@@ -405,7 +404,6 @@
 		00C826831DA5E04000ECECEE /* MyNevoHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0050D52F1C28E0DB004F6F80 /* MyNevoHeaderView.swift */; };
 		00C826841DA5E04000ECECEE /* MyNevoHeaderView.xib in Sources */ = {isa = PBXBuildFile; fileRef = 0050D5301C28E0DB004F6F80 /* MyNevoHeaderView.xib */; };
 		00C826851DA5E04000ECECEE /* MyNevoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0050D5311C28E0DB004F6F80 /* MyNevoView.swift */; };
-		00C826861DA5E04000ECECEE /* NevoOtaController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0050D5331C28E0DB004F6F80 /* NevoOtaController.swift */; };
 		00C826871DA5E04000ECECEE /* DeviceScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0050D5351C28E0DB004F6F80 /* DeviceScannerView.swift */; };
 		00C826881DA5E04000ECECEE /* NevoOtaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0050D5361C28E0DB004F6F80 /* NevoOtaView.swift */; };
 		00C826891DA5E04000ECECEE /* SelectFileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0050D5371C28E0DB004F6F80 /* SelectFileView.swift */; };
@@ -658,6 +656,7 @@
 		615F6E201DA7510D00216D1A /* FindWatchRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C8272E1DA61CAF00ECECEE /* FindWatchRequest.swift */; };
 		615F6E211DA7514200216D1A /* PVADCRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0023C0AC1DA64DD400FB33A4 /* PVADCRequest.swift */; };
 		61623DB11DAC77F100C45B19 /* iMaze_v26.bin in Resources */ = {isa = PBXBuildFile; fileRef = 61623DB01DAC77F100C45B19 /* iMaze_v26.bin */; };
+		61F85F501DAF5BF300F341B5 /* NevoOtaController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61F85F4F1DAF5BF300F341B5 /* NevoOtaController.swift */; };
 		665E331E1DADCD8A00D0E36D /* MEDBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 665E331D1DADCD8A00D0E36D /* MEDBanner.swift */; };
 		665E331F1DADCD8A00D0E36D /* MEDBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 665E331D1DADCD8A00D0E36D /* MEDBanner.swift */; };
 		666F60F11DAF264B0011F3C5 /* AppDelegate-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006DA9FD1D80F2A600B70C0F /* AppDelegate-Extension.swift */; };
@@ -774,7 +773,6 @@
 		0050D52F1C28E0DB004F6F80 /* MyNevoHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyNevoHeaderView.swift; sourceTree = "<group>"; };
 		0050D5301C28E0DB004F6F80 /* MyNevoHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyNevoHeaderView.xib; sourceTree = "<group>"; };
 		0050D5311C28E0DB004F6F80 /* MyNevoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyNevoView.swift; sourceTree = "<group>"; };
-		0050D5331C28E0DB004F6F80 /* NevoOtaController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NevoOtaController.swift; sourceTree = "<group>"; };
 		0050D5351C28E0DB004F6F80 /* DeviceScannerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceScannerView.swift; sourceTree = "<group>"; };
 		0050D5361C28E0DB004F6F80 /* NevoOtaView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NevoOtaView.swift; sourceTree = "<group>"; };
 		0050D5371C28E0DB004F6F80 /* SelectFileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectFileView.swift; sourceTree = "<group>"; };
@@ -1132,6 +1130,7 @@
 		4D889843ECCF8C9F30888205 /* Pods-LunaRTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LunaRTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-LunaRTests/Pods-LunaRTests.release.xcconfig"; sourceTree = "<group>"; };
 		57C68BE0457DB1BFF58A2389 /* Pods-LunaR.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LunaR.release.xcconfig"; path = "Pods/Target Support Files/Pods-LunaR/Pods-LunaR.release.xcconfig"; sourceTree = "<group>"; };
 		61623DB01DAC77F100C45B19 /* iMaze_v26.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = iMaze_v26.bin; sourceTree = "<group>"; };
+		61F85F4F1DAF5BF300F341B5 /* NevoOtaController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NevoOtaController.swift; sourceTree = "<group>"; };
 		665E331D1DADCD8A00D0E36D /* MEDBanner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MEDBanner.swift; sourceTree = "<group>"; };
 		7689D6188FDF6CDBFBD84C51 /* Pods_NevoTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NevoTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		84E3C5A18963C1F2BFFF61CB /* Pods-Nevo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Nevo.release.xcconfig"; path = "Pods/Target Support Files/Pods-Nevo/Pods-Nevo.release.xcconfig"; sourceTree = "<group>"; };
@@ -1363,7 +1362,7 @@
 		0050D5321C28E0DB004F6F80 /* NevoOtaController */ = {
 			isa = PBXGroup;
 			children = (
-				0050D5331C28E0DB004F6F80 /* NevoOtaController.swift */,
+				61F85F4F1DAF5BF300F341B5 /* NevoOtaController.swift */,
 				0050D5341C28E0DB004F6F80 /* NevoOtaView */,
 				0050D5381C28E0DB004F6F80 /* NevoOtaViewController.swift */,
 				0050D5391C28E0DB004F6F80 /* NevoOtaViewController.xib */,
@@ -3030,7 +3029,6 @@
 				00C826841DA5E04000ECECEE /* MyNevoHeaderView.xib in Sources */,
 				00C826851DA5E04000ECECEE /* MyNevoView.swift in Sources */,
 				665E331F1DADCD8A00D0E36D /* MEDBanner.swift in Sources */,
-				00C826861DA5E04000ECECEE /* NevoOtaController.swift in Sources */,
 				00C826871DA5E04000ECECEE /* DeviceScannerView.swift in Sources */,
 				00C827271DA6137300ECECEE /* SetCardioRequest.swift in Sources */,
 				00C826881DA5E04000ECECEE /* NevoOtaView.swift in Sources */,
@@ -3413,8 +3411,8 @@
 				0050D6971C28E1CD004F6F80 /* AddAlarmView.swift in Sources */,
 				00F0C34B1C893EE6005888A7 /* AlarmTypeController.swift in Sources */,
 				0008EE8C1D93C39A005E127C /* M13CheckboxPathPresets.swift in Sources */,
+				61F85F501DAF5BF300F341B5 /* NevoOtaController.swift in Sources */,
 				00AF8CCA1D224CFA009047AC /* UserNotification.swift in Sources */,
-				0050D5F41C28E0DB004F6F80 /* NevoOtaController.swift in Sources */,
 				00344F5C1C47A86800C2FC7A /* SupportViewController.swift in Sources */,
 				9E98FB2F1C463E1C00BAB700 /* TutorialFourViewController.swift in Sources */,
 				665E331E1DADCD8A00D0E36D /* MEDBanner.swift in Sources */,

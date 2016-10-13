@@ -50,7 +50,8 @@ enum DfuOperationStatus:UInt8{
 
 enum DFUControllerState:Int
 {
-    case discovering = 1,
+    case inittialize = 0,
+    discovering,
     idle,
     send_NOTIFICATION_REQUEST,
     send_START_COMMAND,
