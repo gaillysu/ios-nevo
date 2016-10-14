@@ -88,7 +88,8 @@ class LoginController: UIViewController,UITextFieldDelegate {
         super.viewDidAppear(animated)
         let user:NSArray = UserProfile.getAll()
         if user.count>0 {
-            if AppDelegate.getAppDelegate().window?.rootViewController?.classForCoder == UINavigationController.classForCoder() {
+            if self.navigationController?.isNavigationBarHidden == true {
+                AppDelegate.getAppDelegate().window? = UIWindow(frame: UIScreen.main.bounds)
                 AppDelegate.getAppDelegate().window?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
                 AppDelegate.getAppDelegate().window?.makeKeyAndVisible()
             } else {
@@ -191,7 +192,8 @@ class LoginController: UIViewController,UITextFieldDelegate {
                         XCGLogger.default.debug("Added? id = \(id)")
                     })
 //                    self.navigationController?.popViewController(animated: true)
-                    if AppDelegate.getAppDelegate().window?.rootViewController?.classForCoder == UINavigationController.classForCoder() {
+                    if self.navigationController?.isNavigationBarHidden == true {
+                        AppDelegate.getAppDelegate().window? = UIWindow(frame: UIScreen.main.bounds)
                         AppDelegate.getAppDelegate().window?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
                         AppDelegate.getAppDelegate().window?.makeKeyAndVisible()
                     } else {
@@ -234,6 +236,7 @@ class LoginController: UIViewController,UITextFieldDelegate {
     @IBAction func skipButtonClick(_ sender: AnyObject) {
         let hasWatch:Bool = AppDelegate.getAppDelegate().hasSavedAddress()
         if hasWatch {
+            AppDelegate.getAppDelegate().window? = UIWindow(frame: UIScreen.main.bounds)
             AppDelegate.getAppDelegate().window?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
             AppDelegate.getAppDelegate().window?.makeKeyAndVisible()
         } else {
