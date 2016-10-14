@@ -50,6 +50,7 @@ class LoginController: UIViewController,UITextFieldDelegate {
 
         // Skip Login
         self.skipButton.setTitle(NSLocalizedString("Skip Login", comment: ""), for: .normal)
+        self.skipButton.sizeToFit()
         
         for controllers:UIViewController in self.navigationController!.viewControllers {
             if controllers.isKind(of: SetingViewController.self) {
