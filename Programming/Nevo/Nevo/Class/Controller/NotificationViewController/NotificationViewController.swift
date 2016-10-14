@@ -156,8 +156,11 @@ class NotificationViewController: UITableViewController,SelectedNotificationDele
     }
 
     override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        let headView = view as! UITableViewHeaderFooterView
-        headView.textLabel?.textColor = UIColor.white
+        if let headView = view as? UITableViewHeaderFooterView {
+            if !AppTheme.isTargetLunaR_OR_Nevo() {
+                headView.textLabel?.textColor = UIColor.white
+            }
+        }
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
