@@ -173,3 +173,7 @@
 "alarm_disabled"="Alarm disabled";
 "alarm_on"="Alarm on";
 "alarm_in"="Alarm in";
+
+"change_password"="Change Password";
+"new_password"="new password";
+"new_password_confirm"="confirm new password";

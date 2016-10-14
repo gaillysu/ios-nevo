@@ -69,18 +69,19 @@ class ForgotPasswordController: UIViewController {
                 let token:String = json["user"].dictionaryValue["password_token"]!.stringValue
                 let email:String = json["user"].dictionaryValue["email"]!.stringValue
                 let id:Int = json["user"].dictionaryValue["id"]!.intValue
-                let alert:UIAlertController = UIAlertController(title: "Change Password", message: nil, preferredStyle: UIAlertControllerStyle.alert)
+                let alert:UIAlertController = UIAlertController(title: NSLocalizedString("change_password", comment: ""), message: nil, preferredStyle: UIAlertControllerStyle.alert)
+                alert.view.tintColor = AppTheme.NEVO_SOLAR_YELLOW()
                 alert.addTextField(configurationHandler: { (newPassword1:UITextField) in
-                    newPassword1.placeholder = "News Password"
+                    newPassword1.placeholder = NSLocalizedString("new_password", comment: "")
                     newPassword1.isSecureTextEntry = true
                 })
                 
                 alert.addTextField(configurationHandler: { (newPassword2:UITextField) in
-                    newPassword2.placeholder = "Confirm new password"
+                    newPassword2.placeholder = NSLocalizedString("new_password_confirm", comment: "")
                     newPassword2.isSecureTextEntry = true
                 })
                 
-                let alertAction:UIAlertAction = UIAlertAction(title: "Change", style: .default, handler: { (action) in
+                let alertAction:UIAlertAction = UIAlertAction(title: NSLocalizedString("Enter", comment: ""), style: .default, handler: { (action) in
                     let textField:[UITextField] = alert.textFields!
                     if textField[0].text == nil || textField[1].text == nil {
                         let banner = MEDBanner(title: NSLocalizedString("Please enter a new password", comment: ""), subtitle: nil, image: nil, backgroundColor:AppTheme.NEVO_SOLAR_YELLOW())
@@ -110,8 +111,7 @@ class ForgotPasswordController: UIViewController {
                 })
                 alert.addAction(alertAction)
                 
-                let alertAction2:UIAlertAction = UIAlertAction(title: "Cancel", style: .default, handler: { (action) in
-                    
+                let alertAction2:UIAlertAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .default, handler: { (action) in
                 })
                 alert.addAction(alertAction2)
                 self.present(alert, animated: true, completion: nil)

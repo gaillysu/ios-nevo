@@ -171,3 +171,7 @@
 "alarm_disabled"="闹钟已禁用";
 "alarm_on"="闹钟在";
 "alarm_in"="距离开始";
+
+"change_password"="修改密码";
+"new_password"="新密码";
+"new_password_confirm"="新密码确认";

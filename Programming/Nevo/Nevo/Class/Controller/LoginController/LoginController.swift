@@ -198,8 +198,10 @@ class LoginController: UIViewController,UITextFieldDelegate {
                     }
                 }else{
                     if self.pErrorNumber>=3{
-                        let forgetPassword:UIAlertController = UIAlertController(title: "Forget PassWord?", message: NSLocalizedString("forget_your_password", comment: ""), preferredStyle: UIAlertControllerStyle.alert)
-                        let alertAction:UIAlertAction = UIAlertAction(title: NSLocalizedString("forget", comment: ""), style: UIAlertActionStyle.default, handler: { (action) in
+                        let forgetPassword:UIAlertController = UIAlertController(title: NSLocalizedString("forget_your_password", comment: ""), message: nil, preferredStyle: UIAlertControllerStyle.alert)
+                        forgetPassword.view.tintColor = AppTheme.NEVO_SOLAR_YELLOW()
+                        
+                        let alertAction:UIAlertAction = UIAlertAction(title: NSLocalizedString("Enter", comment: ""), style: UIAlertActionStyle.default, handler: { (action) in
                             let forget:ForgotPasswordController = ForgotPasswordController()
                             forget.userEmail = self.userName
                             let nav:UINavigationController = UINavigationController(rootViewController: forget)
