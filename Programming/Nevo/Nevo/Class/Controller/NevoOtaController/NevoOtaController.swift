@@ -517,12 +517,13 @@ class NevoOtaController : NSObject,ConnectionControllerDelegate {
         checksum = 0
         dfuFirmwareType = DfuFirmwareTypes.softdevice
 
-        let bytes = binFileData?.withUnsafeBytes { (ptr: UnsafePointer<UInt8>) -> [UInt8] in
-            return [ptr.pointee]
-        }
+//        let bytes = binFileData?.withUnsafeBytes { (ptr: UnsafePointer<UInt8>) -> [UInt8] in
+//            return [ptr.pointee]
+//        }
         //let bytes = UnsafeBufferPointer<UInt8>(start: (binFileData! as Data).bytes.bindMemory(to: UInt8.self, capacity: binFileData!.count), count:binFileData!.count)
+        let bytes = UnsafeBufferPointer<UInt8>(start: (binFileData! as NSData).bytes.bindMemory(to: UInt8.self, capacity: binFileData!.count), count:binFileData!.count)
 
-        for  byte in bytes! {
+        for  byte in bytes {
             checksum = checksum + Int(byte)
         }
 
