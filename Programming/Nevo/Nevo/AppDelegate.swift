@@ -90,6 +90,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
         let userDefaults = UserDefaults.standard;
         //lastSync = userDefaults.double(forKey: LAST_SYNC_DATE_KEY)
         
+        adjustLaunchLogic()
+        
         //cancel all notifications  PM-13:00, PM 19:00
         LocalNotification.sharedInstance().cancelNotification([NevoAllKeys.LocalStartSportKey(),NevoAllKeys.LocalEndSportKey()])
 
@@ -753,7 +755,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                 let cancelString:String = NSLocalizedString("Cancel", comment: "")
 
                 if((UIDevice.current.systemVersion as NSString).floatValue >= 8.0){
-                    let tabVC:UITabBarController = self.window?.rootViewController as! UITabBarController
+                    // is this necessary? i have to change the rootViewController's Class during launch, maybe...
+//                    let tabVC:UITabBarController = self.window?.rootViewController as! UITabBarController
+                    let tabVC = self.window?.rootViewController
 
                     let actionSheet:UIAlertController = UIAlertController(title: titleString, message: msg, preferredStyle: UIAlertControllerStyle.alert)
                     actionSheet.view.tintColor = AppTheme.NEVO_SOLAR_YELLOW()
@@ -765,11 +769,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                     let alertAction2:UIAlertAction = UIAlertAction(title: buttonString, style: UIAlertActionStyle.default, handler: { ( alert) -> Void in
                         let otaCont:NevoOtaViewController = NevoOtaViewController()
                         let navigation:UINavigationController = UINavigationController(rootViewController: otaCont)
-                        tabVC.present(navigation, animated: true, completion: nil)
+                        tabVC?.present(navigation, animated: true, completion: nil)
 
                     })
                     actionSheet.addAction(alertAction2)
-                    tabVC.present(actionSheet, animated: true, completion: nil)
+                    tabVC?.present(actionSheet, animated: true, completion: nil)
                 }else{
                     let actionSheet:UIAlertView = UIAlertView(title: titleString, message: msg, delegate: self, cancelButtonTitle: cancelString, otherButtonTitles: buttonString)
                     actionSheet.layer.backgroundColor = AppTheme.NEVO_SOLAR_YELLOW().cgColor
