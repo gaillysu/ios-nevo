@@ -50,6 +50,7 @@ class LoginController: UIViewController,UITextFieldDelegate {
 
         // Skip Login
         self.skipButton.setTitle(NSLocalizedString("Skip Login", comment: ""), for: .normal)
+        self.skipButton.sizeToFit()
         
         for controllers:UIViewController in self.navigationController!.viewControllers {
             if controllers.isKind(of: SetingViewController.self) {
@@ -89,9 +90,7 @@ class LoginController: UIViewController,UITextFieldDelegate {
         let user:NSArray = UserProfile.getAll()
         if user.count>0 {
             if self.navigationController?.isNavigationBarHidden == true {
-                AppDelegate.getAppDelegate().window? = UIWindow(frame: UIScreen.main.bounds)
-                AppDelegate.getAppDelegate().window?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
-                AppDelegate.getAppDelegate().window?.makeKeyAndVisible()
+                UIApplication.shared.keyWindow?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
             } else {
                 self.navigationController?.popViewController(animated: true)
             }
@@ -193,9 +192,7 @@ class LoginController: UIViewController,UITextFieldDelegate {
                     })
 //                    self.navigationController?.popViewController(animated: true)
                     if self.navigationController?.isNavigationBarHidden == true {
-                        AppDelegate.getAppDelegate().window? = UIWindow(frame: UIScreen.main.bounds)
-                        AppDelegate.getAppDelegate().window?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
-                        AppDelegate.getAppDelegate().window?.makeKeyAndVisible()
+                        UIApplication.shared.keyWindow?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
                     } else {
                         self.navigationController?.popViewController(animated: true)
                     }
@@ -236,9 +233,8 @@ class LoginController: UIViewController,UITextFieldDelegate {
     @IBAction func skipButtonClick(_ sender: AnyObject) {
         let hasWatch:Bool = AppDelegate.getAppDelegate().hasSavedAddress()
         if hasWatch {
-            AppDelegate.getAppDelegate().window? = UIWindow(frame: UIScreen.main.bounds)
-            AppDelegate.getAppDelegate().window?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
-            AppDelegate.getAppDelegate().window?.makeKeyAndVisible()
+            
+            UIApplication.shared.keyWindow?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
         } else {
 
             let naviController:UINavigationController = UINavigationController(rootViewController: TutorialOneViewController())
