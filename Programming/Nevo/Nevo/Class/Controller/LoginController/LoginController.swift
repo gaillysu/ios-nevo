@@ -27,6 +27,8 @@ class LoginController: UIViewController,UITextFieldDelegate {
     @IBOutlet weak var facebookButton: UIButton!
     @IBOutlet weak var mediaLabel: UILabel!
     
+    @IBOutlet weak var skipButton: UIButton!
+    
     var userName:String = ""
     var password:String = ""
     fileprivate var pErrorNumber:Int = 0
@@ -45,6 +47,9 @@ class LoginController: UIViewController,UITextFieldDelegate {
         self.navigationItem.title = NSLocalizedString("Login", comment: "")
         let rightButton:UIBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Skip Login", comment: ""), style: UIBarButtonItemStyle.plain, target: self, action: #selector(rightAction(_:)))
         self.navigationItem.rightBarButtonItem = rightButton
+
+        // Skip Login
+        self.skipButton.setTitle(NSLocalizedString("Skip Login", comment: ""), for: .normal)
         
         for controllers:UIViewController in self.navigationController!.viewControllers {
             if controllers.isKind(of: SetingViewController.self) {
@@ -83,7 +88,12 @@ class LoginController: UIViewController,UITextFieldDelegate {
         super.viewDidAppear(animated)
         let user:NSArray = UserProfile.getAll()
         if user.count>0 {
-            self.navigationController?.popViewController(animated: true)
+            if AppDelegate.getAppDelegate().window?.rootViewController?.classForCoder == UINavigationController.classForCoder() {
+                AppDelegate.getAppDelegate().window?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
+                AppDelegate.getAppDelegate().window?.makeKeyAndVisible()
+            } else {
+                self.navigationController?.popViewController(animated: true)
+            }
         }
     }
     
@@ -180,7 +190,13 @@ class LoginController: UIViewController,UITextFieldDelegate {
                     userprofile.add({ (id, completion) in
                         XCGLogger.default.debug("Added? id = \(id)")
                     })
-                    self.navigationController?.popViewController(animated: true)
+//                    self.navigationController?.popViewController(animated: true)
+                    if AppDelegate.getAppDelegate().window?.rootViewController?.classForCoder == UINavigationController.classForCoder() {
+                        AppDelegate.getAppDelegate().window?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
+                        AppDelegate.getAppDelegate().window?.makeKeyAndVisible()
+                    } else {
+                        self.navigationController?.popViewController(animated: true)
+                    }
                 }else{
                     if self.pErrorNumber>=3{
                         let forgetPassword:UIAlertController = UIAlertController(title: "Forget PassWord?", message: NSLocalizedString("forget_your_password", comment: ""), preferredStyle: UIAlertControllerStyle.alert)
@@ -215,4 +231,17 @@ class LoginController: UIViewController,UITextFieldDelegate {
         
     }
 
+    @IBAction func skipButtonClick(_ sender: AnyObject) {
+        let hasWatch:Bool = AppDelegate.getAppDelegate().hasSavedAddress()
+        if hasWatch {
+            AppDelegate.getAppDelegate().window?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
+            AppDelegate.getAppDelegate().window?.makeKeyAndVisible()
+        } else {
+
+            let naviController:UINavigationController = UINavigationController(rootViewController: TutorialOneViewController())
+            naviController.isNavigationBarHidden = true
+            present(naviController, animated: true)
+        }
+    }
+    
 }

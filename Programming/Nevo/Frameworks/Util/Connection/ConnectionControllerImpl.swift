@@ -198,6 +198,8 @@ class ConnectionControllerImpl : NSObject, ConnectionController, NevoBTDelegate 
     /**
     See ConnectionController protocol
     */
+    
+    // 如果没有该key,返回false; 如果有该key,但值为空字符串,返回false
     func hasSavedAddress() -> Bool {
         
         if let saved = UserDefaults.standard.object(forKey: SAVED_ADDRESS_KEY) as? String {

@@ -20,6 +20,7 @@
                 <outlet property="passwordTextField" destination="fmC-FL-Zk2" id="tSG-HU-i81"/>
                 <outlet property="platformLabel" destination="g5g-mC-67u" id="RnN-WI-9Ft"/>
                 <outlet property="registerLabel" destination="4fD-c2-9vf" id="0Zp-bm-dAe"/>
+                <outlet property="skipButton" destination="dqF-V1-gJR" id="s2i-DT-0uI"/>
                 <outlet property="userNameTextField" destination="Tnd-gn-9VW" id="ozR-zm-0Mq"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -119,6 +120,14 @@
                     <color key="textColor" red="0.62745098040000002" green="0.51764705879999995" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dqF-V1-gJR">
+                    <state key="normal" title="skip">
+                        <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <connections>
+                        <action selector="skipButtonClick:" destination="-1" eventType="touchUpInside" id="7fy-58-A54"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
@@ -132,6 +141,7 @@
                 <constraint firstItem="fmC-FL-Zk2" firstAttribute="leading" secondItem="WVZ-VY-fkM" secondAttribute="leading" id="NHL-B0-f7Y"/>
                 <constraint firstItem="ch2-Af-40M" firstAttribute="top" secondItem="FG3-Pu-4pM" secondAttribute="bottom" constant="8" id="T87-4M-Wof"/>
                 <constraint firstItem="h44-yr-a8T" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="30" id="WVP-Jb-SdA"/>
+                <constraint firstItem="dqF-V1-gJR" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="25" id="Yk4-E7-veL"/>
                 <constraint firstItem="fmC-FL-Zk2" firstAttribute="top" secondItem="Tnd-gn-9VW" secondAttribute="bottom" constant="7" id="aYj-KM-WQT"/>
                 <constraint firstItem="h44-yr-a8T" firstAttribute="height" secondItem="g5g-mC-67u" secondAttribute="height" constant="57" id="adw-5v-gH2"/>
                 <constraint firstItem="ch2-Af-40M" firstAttribute="centerX" secondItem="FG3-Pu-4pM" secondAttribute="centerX" constant="-22" id="cJv-FV-LdM"/>
@@ -144,6 +154,7 @@
                 <constraint firstItem="fmC-FL-Zk2" firstAttribute="trailing" secondItem="WVZ-VY-fkM" secondAttribute="trailing" id="jDA-ig-8zE"/>
                 <constraint firstItem="FG3-Pu-4pM" firstAttribute="top" secondItem="WVZ-VY-fkM" secondAttribute="bottom" constant="10" id="kRH-Eu-1fw"/>
                 <constraint firstItem="Tnd-gn-9VW" firstAttribute="top" secondItem="g5g-mC-67u" secondAttribute="bottom" constant="36" id="mJI-EL-PmA"/>
+                <constraint firstAttribute="trailing" secondItem="dqF-V1-gJR" secondAttribute="trailing" constant="20" id="mtM-r9-Yr8"/>
                 <constraint firstItem="hbG-eO-XIb" firstAttribute="leading" secondItem="ch2-Af-40M" secondAttribute="trailing" constant="12" id="ncv-s1-nN5"/>
                 <constraint firstItem="Tnd-gn-9VW" firstAttribute="leading" secondItem="fmC-FL-Zk2" secondAttribute="leading" id="qmD-pa-9Hj"/>
                 <constraint firstItem="WVZ-VY-fkM" firstAttribute="trailing" secondItem="FG3-Pu-4pM" secondAttribute="trailing" id="rpM-x6-CrT"/>
