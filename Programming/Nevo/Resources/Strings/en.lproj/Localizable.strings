@@ -167,3 +167,11 @@
 "change_password"="Change Password";
 "new_password"="new password";
 "new_password_confirm"="confirm new password";
+"log_out"="log out";
+//"Logout_error"="登出错误";
+"Please agree the terms and conditions first"="Please agree the terms and conditions first";
+"The format of your E-mail address seems to be wrong"="The format of your E-mail address seems to be wrong";
+"Email is not filled in"="Email is not filled in";
+"Password is not filled in"="Password is not filled in";
+"Password is changed"="Password is changed";
+"Please enter a new password"="Please enter a new password";
