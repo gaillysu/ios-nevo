@@ -151,9 +151,7 @@
 		006A62251D6AA53100458305 /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006A62241D6AA53100458305 /* PageViewController.swift */; };
 		006A62411D6AA5F200458305 /* SleepHistoricalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006A62331D6AA5F100458305 /* SleepHistoricalView.swift */; };
 		006A62421D6AA5F200458305 /* SleepHistoricalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006A62341D6AA5F200458305 /* SleepHistoricalViewController.swift */; };
-		006A62431D6AA5F200458305 /* SleepHistoricalViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 006A62351D6AA5F200458305 /* SleepHistoricalViewController.xib */; };
 		006A624C1D6AA62100458305 /* SolarIndicatorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006A62481D6AA62100458305 /* SolarIndicatorController.swift */; };
-		006A624D1D6AA62100458305 /* SolarIndicatorController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 006A62491D6AA62100458305 /* SolarIndicatorController.xib */; };
 		006A624E1D6AA62100458305 /* SolarInforViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006A624A1D6AA62100458305 /* SolarInforViewCell.swift */; };
 		006A624F1D6AA62100458305 /* SolarInforViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 006A624B1D6AA62100458305 /* SolarInforViewCell.xib */; };
 		006A62521D6AA75100458305 /* LineLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006A62511D6AA75100458305 /* LineLabel.swift */; };
@@ -167,7 +165,6 @@
 		006A62701D6AB44A00458305 /* StepGoalSetingViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006A62671D6AB44A00458305 /* StepGoalSetingViewCell.swift */; };
 		006A62711D6AB44A00458305 /* StepGoalSetingViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 006A62681D6AB44A00458305 /* StepGoalSetingViewCell.xib */; };
 		006A62721D6AB44A00458305 /* StepsHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006A62691D6AB44A00458305 /* StepsHistoryViewController.swift */; };
-		006A62731D6AB44A00458305 /* StepsHistoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 006A626A1D6AB44A00458305 /* StepsHistoryViewController.xib */; };
 		006A62741D6AB44A00458305 /* StepsTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006A626B1D6AB44A00458305 /* StepsTitleView.swift */; };
 		006A62751D6AB44A00458305 /* StepsTitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 006A626C1D6AB44A00458305 /* StepsTitleView.xib */; };
 		006DA3081D6EC89F0011E09C /* AnalysisController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006DA3071D6EC89F0011E09C /* AnalysisController.swift */; };
@@ -469,7 +466,6 @@
 		00C826C71DA5ECA700ECECEE /* CheckYourIndoxController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0063BC441D98D59F000BAB44 /* CheckYourIndoxController.xib */; };
 		00C826C81DA5ECA700ECECEE /* ForgotPasswordController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0063BC2A1D98D456000BAB44 /* ForgotPasswordController.xib */; };
 		00C826C91DA5ECA700ECECEE /* InformationController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0063BC371D98D4EC000BAB44 /* InformationController.xib */; };
-		00C826CA1DA5ECA700ECECEE /* SolarIndicatorController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 006A62491D6AA62100458305 /* SolarIndicatorController.xib */; };
 		00C826CB1DA5ECA700ECECEE /* SolarInforViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 006A624B1D6AA62100458305 /* SolarInforViewCell.xib */; };
 		00C826CC1DA5ECA700ECECEE /* ConnectOtherAppsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0058B3E91CF55D590079A213 /* ConnectOtherAppsController.xib */; };
 		00C826CD1DA5ECA700ECECEE /* ConnectOtherAppsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 007E0CAD1D0E5C3E00B0B600 /* ConnectOtherAppsCell.xib */; };
@@ -506,10 +502,8 @@
 		00C826EC1DA5ECA700ECECEE /* SetingLoginCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0089B0A91D6BFF250041148A /* SetingLoginCell.xib */; };
 		00C826ED1DA5ECA700ECECEE /* SetingNotLoginCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0089B0AB1D6BFF250041148A /* SetingNotLoginCell.xib */; };
 		00C826EE1DA5ECA700ECECEE /* SleepHistoryViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0089B0B51D6C4BDC0041148A /* SleepHistoryViewCell.xib */; };
-		00C826EF1DA5ECA700ECECEE /* SleepHistoricalViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 006A62351D6AA5F200458305 /* SleepHistoricalViewController.xib */; };
 		00C826F01DA5ECA700ECECEE /* StepGoalSetingController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 006A62661D6AB44A00458305 /* StepGoalSetingController.xib */; };
 		00C826F11DA5ECA700ECECEE /* StepGoalSetingViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 006A62681D6AB44A00458305 /* StepGoalSetingViewCell.xib */; };
-		00C826F21DA5ECA700ECECEE /* StepsHistoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 006A626A1D6AB44A00458305 /* StepsHistoryViewController.xib */; };
 		00C826F31DA5ECA700ECECEE /* StepsTitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 006A626C1D6AB44A00458305 /* StepsTitleView.xib */; };
 		00C826F41DA5ECA700ECECEE /* TutorialOneViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00EC9DB01C8582E400280904 /* TutorialOneViewController.xib */; };
 		00C826F51DA5ECA700ECECEE /* TutorialTwoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00EC9DDC1C85834F00280904 /* TutorialTwoViewController.xib */; };
@@ -656,6 +650,12 @@
 		615F6E201DA7510D00216D1A /* FindWatchRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C8272E1DA61CAF00ECECEE /* FindWatchRequest.swift */; };
 		615F6E211DA7514200216D1A /* PVADCRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0023C0AC1DA64DD400FB33A4 /* PVADCRequest.swift */; };
 		61623DB11DAC77F100C45B19 /* iMaze_v26.bin in Resources */ = {isa = PBXBuildFile; fileRef = 61623DB01DAC77F100C45B19 /* iMaze_v26.bin */; };
+		6173DEF31DB0E90C002DF6AF /* SolarIndicatorController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6173DEF61DB0E90C002DF6AF /* SolarIndicatorController.xib */; };
+		6173DEF41DB0E90C002DF6AF /* SolarIndicatorController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6173DEF61DB0E90C002DF6AF /* SolarIndicatorController.xib */; };
+		6173DEFF1DB0E93D002DF6AF /* SleepHistoricalViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6173DF021DB0E93D002DF6AF /* SleepHistoricalViewController.xib */; };
+		6173DF001DB0E93D002DF6AF /* SleepHistoricalViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6173DF021DB0E93D002DF6AF /* SleepHistoricalViewController.xib */; };
+		6173DF091DB0E993002DF6AF /* StepsHistoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6173DF0C1DB0E993002DF6AF /* StepsHistoryViewController.xib */; };
+		6173DF0A1DB0E993002DF6AF /* StepsHistoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6173DF0C1DB0E993002DF6AF /* StepsHistoryViewController.xib */; };
 		61F85F501DAF5BF300F341B5 /* NevoOtaController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61F85F4F1DAF5BF300F341B5 /* NevoOtaController.swift */; };
 		665E331E1DADCD8A00D0E36D /* MEDBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 665E331D1DADCD8A00D0E36D /* MEDBanner.swift */; };
 		665E331F1DADCD8A00D0E36D /* MEDBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 665E331D1DADCD8A00D0E36D /* MEDBanner.swift */; };
@@ -890,9 +890,9 @@
 		006A62241D6AA53100458305 /* PageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
 		006A62331D6AA5F100458305 /* SleepHistoricalView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SleepHistoricalView.swift; sourceTree = "<group>"; };
 		006A62341D6AA5F200458305 /* SleepHistoricalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SleepHistoricalViewController.swift; sourceTree = "<group>"; };
-		006A62351D6AA5F200458305 /* SleepHistoricalViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SleepHistoricalViewController.xib; sourceTree = "<group>"; };
+		006A62351D6AA5F200458305 /* SleepHistoricalViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SleepHistoricalViewController.xib; path = "/Users/Cloud/Desktop/nevo-ios/Programming/Nevo/Nevo/Class/Controller/SleepController/SleepHistoricalViewController.xib"; sourceTree = "<absolute>"; };
 		006A62481D6AA62100458305 /* SolarIndicatorController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SolarIndicatorController.swift; sourceTree = "<group>"; };
-		006A62491D6AA62100458305 /* SolarIndicatorController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SolarIndicatorController.xib; sourceTree = "<group>"; };
+		006A62491D6AA62100458305 /* SolarIndicatorController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SolarIndicatorController.xib; path = "/Users/Cloud/Desktop/nevo-ios/Programming/Nevo/Nevo/Class/Controller/SolarIndicator/SolarIndicatorController.xib"; sourceTree = "<absolute>"; };
 		006A624A1D6AA62100458305 /* SolarInforViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SolarInforViewCell.swift; sourceTree = "<group>"; };
 		006A624B1D6AA62100458305 /* SolarInforViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SolarInforViewCell.xib; sourceTree = "<group>"; };
 		006A62511D6AA75100458305 /* LineLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineLabel.swift; sourceTree = "<group>"; };
@@ -906,7 +906,7 @@
 		006A62671D6AB44A00458305 /* StepGoalSetingViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepGoalSetingViewCell.swift; sourceTree = "<group>"; };
 		006A62681D6AB44A00458305 /* StepGoalSetingViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StepGoalSetingViewCell.xib; sourceTree = "<group>"; };
 		006A62691D6AB44A00458305 /* StepsHistoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepsHistoryViewController.swift; sourceTree = "<group>"; };
-		006A626A1D6AB44A00458305 /* StepsHistoryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StepsHistoryViewController.xib; sourceTree = "<group>"; };
+		006A626A1D6AB44A00458305 /* StepsHistoryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = StepsHistoryViewController.xib; path = "/Users/Cloud/Desktop/nevo-ios/Programming/Nevo/Nevo/Class/Controller/StepController/StepsHistoryViewController.xib"; sourceTree = "<absolute>"; };
 		006A626B1D6AB44A00458305 /* StepsTitleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepsTitleView.swift; sourceTree = "<group>"; };
 		006A626C1D6AB44A00458305 /* StepsTitleView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StepsTitleView.xib; sourceTree = "<group>"; };
 		006B83691C44A20000E20A0C /* Nevo-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Nevo-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -1130,6 +1130,18 @@
 		4D889843ECCF8C9F30888205 /* Pods-LunaRTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LunaRTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-LunaRTests/Pods-LunaRTests.release.xcconfig"; sourceTree = "<group>"; };
 		57C68BE0457DB1BFF58A2389 /* Pods-LunaR.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LunaR.release.xcconfig"; path = "Pods/Target Support Files/Pods-LunaR/Pods-LunaR.release.xcconfig"; sourceTree = "<group>"; };
 		61623DB01DAC77F100C45B19 /* iMaze_v26.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = iMaze_v26.bin; sourceTree = "<group>"; };
+		6173DEF51DB0E90C002DF6AF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/SolarIndicatorController.xib; sourceTree = "<group>"; };
+		6173DEF81DB0E911002DF6AF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/SolarIndicatorController.strings; sourceTree = "<group>"; };
+		6173DEFC1DB0E91A002DF6AF /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/SolarIndicatorController.strings"; sourceTree = "<group>"; };
+		6173DEFE1DB0E91B002DF6AF /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/SolarIndicatorController.strings"; sourceTree = "<group>"; };
+		6173DF011DB0E93D002DF6AF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/SleepHistoricalViewController.xib; sourceTree = "<group>"; };
+		6173DF041DB0E940002DF6AF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/SleepHistoricalViewController.strings; sourceTree = "<group>"; };
+		6173DF061DB0E942002DF6AF /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/SleepHistoricalViewController.strings"; sourceTree = "<group>"; };
+		6173DF081DB0E944002DF6AF /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/SleepHistoricalViewController.strings"; sourceTree = "<group>"; };
+		6173DF0B1DB0E993002DF6AF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/StepsHistoryViewController.xib; sourceTree = "<group>"; };
+		6173DF0E1DB0E99F002DF6AF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/StepsHistoryViewController.strings; sourceTree = "<group>"; };
+		6173DF101DB0E9A1002DF6AF /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/StepsHistoryViewController.strings"; sourceTree = "<group>"; };
+		6173DF121DB0E9A3002DF6AF /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/StepsHistoryViewController.strings"; sourceTree = "<group>"; };
 		61F85F4F1DAF5BF300F341B5 /* NevoOtaController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NevoOtaController.swift; sourceTree = "<group>"; };
 		665E331D1DADCD8A00D0E36D /* MEDBanner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MEDBanner.swift; sourceTree = "<group>"; };
 		7689D6188FDF6CDBFBD84C51 /* Pods_NevoTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NevoTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1444,7 +1456,7 @@
 				0089B0B41D6C4BDC0041148A /* SleepHistoryViewCell.swift */,
 				0089B0B51D6C4BDC0041148A /* SleepHistoryViewCell.xib */,
 				006A62341D6AA5F200458305 /* SleepHistoricalViewController.swift */,
-				006A62351D6AA5F200458305 /* SleepHistoricalViewController.xib */,
+				6173DF021DB0E93D002DF6AF /* SleepHistoricalViewController.xib */,
 			);
 			path = SleepController;
 			sourceTree = "<group>";
@@ -1457,7 +1469,7 @@
 				006A62671D6AB44A00458305 /* StepGoalSetingViewCell.swift */,
 				006A62681D6AB44A00458305 /* StepGoalSetingViewCell.xib */,
 				006A62691D6AB44A00458305 /* StepsHistoryViewController.swift */,
-				006A626A1D6AB44A00458305 /* StepsHistoryViewController.xib */,
+				6173DF0C1DB0E993002DF6AF /* StepsHistoryViewController.xib */,
 				006A626B1D6AB44A00458305 /* StepsTitleView.swift */,
 				006A626C1D6AB44A00458305 /* StepsTitleView.xib */,
 			);
@@ -1570,7 +1582,7 @@
 			isa = PBXGroup;
 			children = (
 				006A62481D6AA62100458305 /* SolarIndicatorController.swift */,
-				006A62491D6AA62100458305 /* SolarIndicatorController.xib */,
+				6173DEF61DB0E90C002DF6AF /* SolarIndicatorController.xib */,
 				006A624A1D6AA62100458305 /* SolarInforViewCell.swift */,
 				006A624B1D6AA62100458305 /* SolarInforViewCell.xib */,
 			);
@@ -2525,7 +2537,7 @@
 				00C826C71DA5ECA700ECECEE /* CheckYourIndoxController.xib in Resources */,
 				00C826C81DA5ECA700ECECEE /* ForgotPasswordController.xib in Resources */,
 				00C826C91DA5ECA700ECECEE /* InformationController.xib in Resources */,
-				00C826CA1DA5ECA700ECECEE /* SolarIndicatorController.xib in Resources */,
+				6173DEF41DB0E90C002DF6AF /* SolarIndicatorController.xib in Resources */,
 				00C826CB1DA5ECA700ECECEE /* SolarInforViewCell.xib in Resources */,
 				00C826CC1DA5ECA700ECECEE /* ConnectOtherAppsController.xib in Resources */,
 				00C826CD1DA5ECA700ECECEE /* ConnectOtherAppsCell.xib in Resources */,
@@ -2562,10 +2574,10 @@
 				00C826EC1DA5ECA700ECECEE /* SetingLoginCell.xib in Resources */,
 				00C826ED1DA5ECA700ECECEE /* SetingNotLoginCell.xib in Resources */,
 				00C826EE1DA5ECA700ECECEE /* SleepHistoryViewCell.xib in Resources */,
-				00C826EF1DA5ECA700ECECEE /* SleepHistoricalViewController.xib in Resources */,
+				6173DF001DB0E93D002DF6AF /* SleepHistoricalViewController.xib in Resources */,
 				00C826F01DA5ECA700ECECEE /* StepGoalSetingController.xib in Resources */,
 				00C826F11DA5ECA700ECECEE /* StepGoalSetingViewCell.xib in Resources */,
-				00C826F21DA5ECA700ECECEE /* StepsHistoryViewController.xib in Resources */,
+				6173DF0A1DB0E993002DF6AF /* StepsHistoryViewController.xib in Resources */,
 				00C826F31DA5ECA700ECECEE /* StepsTitleView.xib in Resources */,
 				00C826F41DA5ECA700ECECEE /* TutorialOneViewController.xib in Resources */,
 				00C826F51DA5ECA700ECECEE /* TutorialTwoViewController.xib in Resources */,
@@ -2658,7 +2670,7 @@
 				0050D60E1C28E0DB004F6F80 /* PresetTableViewController.xib in Resources */,
 				00EC9DCF1C85833400280904 /* MorningTutorialController.xib in Resources */,
 				0050D6011C28E0DB004F6F80 /* NotificationViewController.xib in Resources */,
-				006A62431D6AA5F200458305 /* SleepHistoricalViewController.xib in Resources */,
+				6173DEFF1DB0E93D002DF6AF /* SleepHistoricalViewController.xib in Resources */,
 				00E2BDE31B16CCD0009C757E /* MBProgressHUD.bundle in Resources */,
 				006A626F1D6AB44A00458305 /* StepGoalSetingController.xib in Resources */,
 				00EC9E061C85839A00280904 /* TutorialSixViewController.xib in Resources */,
@@ -2682,7 +2694,7 @@
 				007E0CAF1D0E5C3E00B0B600 /* ConnectOtherAppsCell.xib in Resources */,
 				00EC9DAE1C8582E400280904 /* TutorialOneViewController.xib in Resources */,
 				00478F4F1A8F637D00D0DCE2 /* clockViewHour.png in Resources */,
-				006A624D1D6AA62100458305 /* SolarIndicatorController.xib in Resources */,
+				6173DEF31DB0E90C002DF6AF /* SolarIndicatorController.xib in Resources */,
 				0050D6111C28E0DB004F6F80 /* PresetTableViewCell.xib in Resources */,
 				0063BC281D98D456000BAB44 /* ForgotPasswordController.xib in Resources */,
 				000CB3291C3E436000B4ABEC /* white_hour.png in Resources */,
@@ -2704,7 +2716,7 @@
 				0042C8B41C7DB3EF00177D3D /* NotAlarmView.xib in Resources */,
 				07BCE82A1B5CAB2200C7F558 /* clockview600_color.png in Resources */,
 				006A625E1D6AA79E00458305 /* AlarmClockVCell.xib in Resources */,
-				006A62731D6AB44A00458305 /* StepsHistoryViewController.xib in Resources */,
+				6173DF091DB0E993002DF6AF /* StepsHistoryViewController.xib in Resources */,
 				9AD8F9421A6DF35900F01014 /* Images.xcassets in Resources */,
 				00EC9DC41C85832300280904 /* SleepTutorialController.xib in Resources */,
 				00E650A31C8425E600278D3E /* nevoWhiteLEDImage.png in Resources */,
@@ -3689,6 +3701,39 @@
 				0063BCAB1D991933000BAB44 /* en */,
 			);
 			name = TutorialSevenViewController.xib;
+			sourceTree = "<group>";
+		};
+		6173DEF61DB0E90C002DF6AF /* SolarIndicatorController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6173DEF51DB0E90C002DF6AF /* Base */,
+				6173DEF81DB0E911002DF6AF /* en */,
+				6173DEFC1DB0E91A002DF6AF /* zh-Hans */,
+				6173DEFE1DB0E91B002DF6AF /* zh-Hant */,
+			);
+			name = SolarIndicatorController.xib;
+			sourceTree = "<group>";
+		};
+		6173DF021DB0E93D002DF6AF /* SleepHistoricalViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6173DF011DB0E93D002DF6AF /* Base */,
+				6173DF041DB0E940002DF6AF /* en */,
+				6173DF061DB0E942002DF6AF /* zh-Hans */,
+				6173DF081DB0E944002DF6AF /* zh-Hant */,
+			);
+			name = SleepHistoricalViewController.xib;
+			sourceTree = "<group>";
+		};
+		6173DF0C1DB0E993002DF6AF /* StepsHistoryViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6173DF0B1DB0E993002DF6AF /* Base */,
+				6173DF0E1DB0E99F002DF6AF /* en */,
+				6173DF101DB0E9A1002DF6AF /* zh-Hans */,
+				6173DF121DB0E9A3002DF6AF /* zh-Hant */,
+			);
+			name = StepsHistoryViewController.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

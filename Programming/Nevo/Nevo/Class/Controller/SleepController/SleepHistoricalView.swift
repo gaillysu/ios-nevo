@@ -145,6 +145,10 @@ class SleepHistoricalView: UIView, ChartViewDelegate{
         chartView!.invalidateChart()
     }
     
+    func getTotalSleepNumber()->Double {
+        return totalNumber;
+    }
+    
     func calculateDate(_ date:TimeInterval,hour:Int)->String {
         let date:Date = Date(timeIntervalSince1970: date)
         var dateString:NSString = date.stringFromFormat("yyyyMMdd") as NSString

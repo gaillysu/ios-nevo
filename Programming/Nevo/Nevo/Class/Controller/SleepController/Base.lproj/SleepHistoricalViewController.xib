@@ -5,10 +5,16 @@
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Raleway-Regular.ttf">
+            <string>Raleway</string>
+        </array>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SleepHistoricalViewController" customModule="LunaR" customModuleProvider="target">
             <connections>
                 <outlet property="queryView" destination="i5M-Pr-FkT" id="i1D-33-sZt"/>
+                <outlet property="titleLabel" destination="EV4-cE-sgs" id="B4E-SL-j0Z"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -35,22 +41,31 @@
                         <outlet property="delegate" destination="-1" id="yAq-y8-cwj"/>
                     </connections>
                 </collectionView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sleep Tracking" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EV4-cE-sgs">
+                    <fontDescription key="fontDescription" name="Raleway" family="Raleway" pointSize="30"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="4sA-Zz-9hO" secondAttribute="trailing" constant="20" id="3qi-Si-P4b"/>
+                <constraint firstAttribute="trailing" secondItem="EV4-cE-sgs" secondAttribute="trailing" constant="20" id="NOg-fc-4c2"/>
                 <constraint firstItem="4sA-Zz-9hO" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="Wg8-lh-7cw"/>
                 <constraint firstItem="CWK-RV-oKL" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="kEn-eB-aiN"/>
+                <constraint firstItem="EV4-cE-sgs" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="20" id="nQG-cL-eBw"/>
                 <constraint firstItem="CWK-RV-oKL" firstAttribute="top" secondItem="4sA-Zz-9hO" secondAttribute="bottom" constant="43" id="o5Z-LK-sUc"/>
                 <constraint firstItem="4sA-Zz-9hO" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="66" id="rTZ-Y6-f5i"/>
+                <constraint firstItem="EV4-cE-sgs" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="snH-iA-fzs"/>
                 <constraint firstAttribute="bottom" secondItem="CWK-RV-oKL" secondAttribute="bottom" id="vGR-fJ-GSn"/>
                 <constraint firstAttribute="trailing" secondItem="CWK-RV-oKL" secondAttribute="trailing" id="x3Q-33-9Qx"/>
+                <constraint firstItem="4sA-Zz-9hO" firstAttribute="top" secondItem="EV4-cE-sgs" secondAttribute="bottom" constant="6" id="z5v-go-MgO"/>
             </constraints>
             <connections>
                 <outlet property="chartView" destination="4sA-Zz-9hO" id="9CS-Cz-UfW"/>
                 <outlet property="detailCollectionView" destination="CWK-RV-oKL" id="ahz-Ar-Cdh"/>
             </connections>
-            <point key="canvasLocation" x="588" y="280"/>
+            <point key="canvasLocation" x="587.5" y="279.5"/>
         </view>
     </objects>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
