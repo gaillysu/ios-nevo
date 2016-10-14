@@ -35,7 +35,8 @@ class SelectedNotificationTypeController: UITableViewController {
         self.navigationItem.title = NSLocalizedString(titleString!, comment: "")
         //self.view.backgroundColor = UIColor.white
         self.tableView.register(UINib(nibName: "LineColorCell",bundle: nil), forCellReuseIdentifier: "LineColor_Identifier")
-        self.tableView.separatorStyle = UITableViewCellSeparatorStyle.none
+        
+        tableView.separatorStyle = swicthStates ? .singleLine : .none
         
         if !AppTheme.isTargetLunaR_OR_Nevo() {
             self.tableView.backgroundColor = UIColor.getLightBaseColor()
@@ -62,6 +63,9 @@ class SelectedNotificationTypeController: UITableViewController {
                     }else {
                         swicthStates = false
                     }
+                    
+                    tableView.separatorStyle = swicthStates ? .singleLine : .none
+                    
                     selectedNotificationView.reloadData()
                     break
                 }

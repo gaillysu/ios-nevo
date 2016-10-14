@@ -90,7 +90,7 @@ class ProfileSetupViewController: UIViewController {
     @IBAction func buttonActionManager(_ sender: AnyObject) {
         
         if AppTheme.isEmail(email!.text!) {
-            let banner = MEDBanner(title: NSLocalizedString("The format of your E-mail address seems to be wrong. :(", comment: ""), subtitle: nil, image: nil, backgroundColor:AppTheme.NEVO_SOLAR_YELLOW())
+            let banner = MEDBanner(title: NSLocalizedString("The format of your E-mail address seems to be wrong.", comment: ""), subtitle: nil, image: nil, backgroundColor:AppTheme.NEVO_SOLAR_YELLOW())
             banner.dismissesOnTap = true
             banner.show(duration: 0.6)
             return
@@ -109,7 +109,7 @@ class ProfileSetupViewController: UIViewController {
             }else{
                 if checkBox.checkState == .unchecked {
                     // TODO: 字符串本地化
-                    let banner = MEDBanner(title: NSLocalizedString("The terms and conditions were not agreed. :(", comment: ""), subtitle: nil, image: nil, backgroundColor:AppTheme.NEVO_SOLAR_YELLOW())
+                    let banner = MEDBanner(title: NSLocalizedString("Please agree the terms and conditions first.", comment: ""), subtitle: nil, image: nil, backgroundColor:AppTheme.NEVO_SOLAR_YELLOW())
                     banner.dismissesOnTap = true
                     banner.show(duration: 0.6)
                 } else {

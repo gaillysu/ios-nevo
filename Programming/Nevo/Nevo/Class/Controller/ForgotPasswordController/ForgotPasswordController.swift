@@ -104,7 +104,7 @@ class ForgotPasswordController: UIViewController {
                             }
                         })
                     }else{
-                        let banner = MEDBanner(title: NSLocalizedString("Passwords don't match", comment: ""), subtitle: nil, image: nil, backgroundColor:AppTheme.NEVO_SOLAR_YELLOW())
+                        let banner = MEDBanner(title: NSLocalizedString("two_password_is_not_the_same", comment: ""), subtitle: nil, image: nil, backgroundColor:AppTheme.NEVO_SOLAR_YELLOW())
                         banner.dismissesOnTap = true
                         banner.show(duration: 1.2)
                     }

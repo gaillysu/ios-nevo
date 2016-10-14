@@ -300,9 +300,9 @@ class SetingViewController: UIViewController,ButtonManagerCallBack,UIAlertViewDe
             return notificationList.NotificationSystemTableViewCell(indexPath, tableView: tableView, title: sources[(indexPath as NSIndexPath).row] as! String ,imageName:sourcesImage[(indexPath as NSIndexPath).row])
         case 2:
             let user:NSArray = UserProfile.getAll()
-            var textString:String = "Logout"
+            var textString:String = NSLocalizedString("log_out", comment: "")
             if(user.count == 0){
-                textString = "Login"
+                textString = NSLocalizedString("Login", comment: "")
             }
             titleArray[3] = textString
             return notificationList.NotificationSystemTableViewCell(indexPath, tableView: tableView, title: titleArray[(indexPath as NSIndexPath).row] ,imageName:titleArrayImage[(indexPath as NSIndexPath).row])

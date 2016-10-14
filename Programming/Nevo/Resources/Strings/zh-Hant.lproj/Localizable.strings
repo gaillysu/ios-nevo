@@ -174,3 +174,11 @@
 "change_password"="修改密码";
 "new_password"="新密码";
 "new_password_confirm"="新密码确认";
+"log_out"="注销登录";
+"Logout_error"="登出错误";
+"Please agree the terms and conditions first"="请先同意我们的注册条款";
+"The format of your E-mail address seems to be wrong"="您输入的邮箱格式似乎有问题";
+"Email is not filled in"="请输入您的邮箱地址";
+"Password is not filled in"="请输入您的密码";
+"Password is changed"="密码修改成功";
+"Please enter a new password"="请输入一个新密码";
