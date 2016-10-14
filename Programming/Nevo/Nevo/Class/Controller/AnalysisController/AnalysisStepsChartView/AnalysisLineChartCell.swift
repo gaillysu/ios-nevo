@@ -65,7 +65,7 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
     }
     
     func setTitle(_ title:String) {
-        titleLabel.text = title
+        titleLabel.text = title.uppercased()
     }
     
     func setContentValue(_ title:String) {
