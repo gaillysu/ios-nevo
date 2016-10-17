@@ -12,10 +12,10 @@
 "LIq-Cx-bHC.text" = "确认你输入的信息";
 
 /* Class = "UITextField"; placeholder = "Weight(35-150 KG)"; ObjectID = "NTv-do-MVa"; */
-"NTv-do-MVa.placeholder" = "重量(35-150 KG)";
+"NTv-do-MVa.placeholder" = "重量(KG)";
 
 /* Class = "UITextField"; placeholder = "Date of Birth"; ObjectID = "eXR-xK-yaF"; */
 "eXR-xK-yaF.placeholder" = "出生日期";
 
 /* Class = "UITextField"; placeholder = "Height(100-250 CM)"; ObjectID = "lI6-oe-0Ah"; */
-"lI6-oe-0Ah.placeholder" = "身高(100-250 CM)";
+"lI6-oe-0Ah.placeholder" = "身高(CM)";

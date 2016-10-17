@@ -3,7 +3,7 @@
 "Hvc-CB-RzI.text" = "Don't worry, it is completely private to you and your phone.";
 
 /* Class = "UILabel"; text = "Check our private policy."; ObjectID = "I93-0k-cdB"; */
-"I93-0k-cdB.text" = "Check our private policy.";
+"I93-0k-cdB.text" = "Check our privacy policy.";
 
 /* Class = "UILabel"; text = "Your information"; ObjectID = "L3v-JU-xKx"; */
 "L3v-JU-xKx.text" = "Your information";
@@ -12,10 +12,10 @@
 "LIq-Cx-bHC.text" = "Enter your information below.";
 
 /* Class = "UITextField"; placeholder = "Weight(35-150 KG)"; ObjectID = "NTv-do-MVa"; */
-"NTv-do-MVa.placeholder" = "Weight(35-150 KG)";
+"NTv-do-MVa.placeholder" = "Weight(KG)";
 
 /* Class = "UITextField"; placeholder = "Date of Birth"; ObjectID = "eXR-xK-yaF"; */
 "eXR-xK-yaF.placeholder" = "Date of Birth";
 
 /* Class = "UITextField"; placeholder = "Height(100-250 CM)"; ObjectID = "lI6-oe-0Ah"; */
-"lI6-oe-0Ah.placeholder" = "Height(100-250 CM)";
+"lI6-oe-0Ah.placeholder" = "Height(CM)";
