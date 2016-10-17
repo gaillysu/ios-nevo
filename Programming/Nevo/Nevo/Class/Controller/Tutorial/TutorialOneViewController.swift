@@ -36,7 +36,6 @@ class TutorialOneViewController: UIViewController{
         let otaCont:OldOtaViewController = OldOtaViewController()
         let navigation:UINavigationController = UINavigationController(rootViewController: otaCont)
         
-        // TODO
         self.present(navigation, animated: true, completion: nil)
     }
     

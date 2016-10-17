@@ -680,6 +680,12 @@
 		9E98FB351C46405800BAB700 /* TutorialFiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E98FB341C46405800BAB700 /* TutorialFiveViewController.swift */; };
 		9E98FB371C4640AF00BAB700 /* TutorialSevenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E98FB361C4640AF00BAB700 /* TutorialSevenViewController.swift */; };
 		9E98FB3D1C46434100BAB700 /* TutorialSixViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E98FB3C1C46434100BAB700 /* TutorialSixViewController.swift */; };
+		CB0566C61DB4A63B0091EC53 /* AlarmRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB0566C51DB4A63B0091EC53 /* AlarmRealm.swift */; };
+		CB0566C81DB4B3490091EC53 /* Steps.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB0566C71DB4B3490091EC53 /* Steps.swift */; };
+		CB0566CA1DB4BECE0091EC53 /* Migratable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB0566C91DB4BECE0091EC53 /* Migratable.swift */; };
+		CB0566CC1DB4C7AC0091EC53 /* HourlyIntData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB0566CB1DB4C7AC0091EC53 /* HourlyIntData.swift */; };
+		CB0566D01DB4CF4C0091EC53 /* SleepRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB0566CF1DB4CF4C0091EC53 /* SleepRealm.swift */; };
+		CB0566D21DB4D43F0091EC53 /* GoalPresets.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB0566D11DB4D43F0091EC53 /* GoalPresets.swift */; };
 		F5A58EFCE1AF535DD4D667CB /* Pods_LunaRTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA6756A2314165C2C74201E8 /* Pods_LunaRTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -1171,6 +1177,12 @@
 		9E98FB361C4640AF00BAB700 /* TutorialSevenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialSevenViewController.swift; sourceTree = "<group>"; };
 		9E98FB3C1C46434100BAB700 /* TutorialSixViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialSixViewController.swift; sourceTree = "<group>"; };
 		AA6756A2314165C2C74201E8 /* Pods_LunaRTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LunaRTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CB0566C51DB4A63B0091EC53 /* AlarmRealm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlarmRealm.swift; sourceTree = "<group>"; };
+		CB0566C71DB4B3490091EC53 /* Steps.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Steps.swift; sourceTree = "<group>"; };
+		CB0566C91DB4BECE0091EC53 /* Migratable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Migratable.swift; sourceTree = "<group>"; };
+		CB0566CB1DB4C7AC0091EC53 /* HourlyIntData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HourlyIntData.swift; sourceTree = "<group>"; };
+		CB0566CF1DB4CF4C0091EC53 /* SleepRealm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SleepRealm.swift; sourceTree = "<group>"; };
+		CB0566D11DB4D43F0091EC53 /* GoalPresets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoalPresets.swift; sourceTree = "<group>"; };
 		CBB9BF1C2FA9FD4C9B4E48BC /* Pods-LunaRTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LunaRTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LunaRTests/Pods-LunaRTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -1869,6 +1881,12 @@
 				00AF8C6A1D224CFA009047AC /* UserProfile.swift */,
 				00AF8C6B1D224CFA009047AC /* UserSleep.swift */,
 				00AF8C6C1D224CFA009047AC /* UserSteps.swift */,
+				CB0566C51DB4A63B0091EC53 /* AlarmRealm.swift */,
+				CB0566C71DB4B3490091EC53 /* Steps.swift */,
+				CB0566CF1DB4CF4C0091EC53 /* SleepRealm.swift */,
+				CB0566C91DB4BECE0091EC53 /* Migratable.swift */,
+				CB0566CB1DB4C7AC0091EC53 /* HourlyIntData.swift */,
+				CB0566D11DB4D43F0091EC53 /* GoalPresets.swift */,
 			);
 			path = ModelTable;
 			sourceTree = "<group>";
@@ -3256,6 +3274,7 @@
 				00AF8CB61D224CFA009047AC /* DaySleep.swift in Sources */,
 				0050D60F1C28E0DB004F6F80 /* AddPresetView.swift in Sources */,
 				00321D6D1C98EBB10069BFCC /* AppDelegate.swift in Sources */,
+				CB0566D21DB4D43F0091EC53 /* GoalPresets.swift in Sources */,
 				00AF8CC81D224CFA009047AC /* StepsModel.swift in Sources */,
 				007865FD1D91006F00F33AEA /* NSDate+Timepiece.swift in Sources */,
 				0050D5FF1C28E0DB004F6F80 /* SelectedNotificationView.swift in Sources */,
@@ -3311,6 +3330,7 @@
 				007865BA1D90DBAF00F33AEA /* CircleProgressView.swift in Sources */,
 				00AF8CE21D224CFA009047AC /* ToolbarView.swift in Sources */,
 				00AF8CD71D224CFA009047AC /* Color.swift in Sources */,
+				CB0566CC1DB4C7AC0091EC53 /* HourlyIntData.swift in Sources */,
 				0008EE8E1D93C39A005E127C /* M13CheckboxDotManager.swift in Sources */,
 				9AD8F98D1A6E2D6E00F01014 /* RawPacket.swift in Sources */,
 				0008EE981D93C5AA005E127C /* NevoCircleProgressView.swift in Sources */,
@@ -3333,6 +3353,7 @@
 				0008EE951D93C39A005E127C /* M13CheckboxDotPathPresets.swift in Sources */,
 				00AF8CEA1D224CFA009047AC /* NevoOTAControllerProfile.swift in Sources */,
 				0050D5F71C28E0DB004F6F80 /* SelectFileView.swift in Sources */,
+				CB0566D01DB4CF4C0091EC53 /* SleepRealm.swift in Sources */,
 				0058CBF91D9CC897003CE7DC /* String+Extension.swift in Sources */,
 				0008EE8D1D93C39A005E127C /* M13CheckboxBounceManager.swift in Sources */,
 				00AF8CCD1D224CFA009047AC /* UserSteps.swift in Sources */,
@@ -3382,10 +3403,12 @@
 				00AF8CB41D224CFA009047AC /* CaloriesToHK.swift in Sources */,
 				9E98FB3D1C46434100BAB700 /* TutorialSixViewController.swift in Sources */,
 				00E2BDE41B16CCD0009C757E /* MBProgressHUD.m in Sources */,
+				CB0566CA1DB4BECE0091EC53 /* Migratable.swift in Sources */,
 				00AF8CD41D224CFA009047AC /* TestMode.swift in Sources */,
 				006DA30D1D6ED5910011E09C /* AnalysisStepsChartView.swift in Sources */,
 				007865F51D91006F00F33AEA /* SMBasicSegmentView.swift in Sources */,
 				00AF8CC31D224CFA009047AC /* NevoProfileModel.swift in Sources */,
+				CB0566C81DB4B3490091EC53 /* Steps.swift in Sources */,
 				00AF8D011D224CFA009047AC /* SetRTCRequest.swift in Sources */,
 				00F0C3531C8993DD005888A7 /* NewAddAlarmController.swift in Sources */,
 				0084CB161D9BC68A0047DF39 /* Double+Extension.swift in Sources */,
@@ -3409,6 +3432,7 @@
 				00AF8CF11D224CFA009047AC /* DailyTrackerInfoNevoPacket.swift in Sources */,
 				0050D5F81C28E0DB004F6F80 /* NevoOtaViewController.swift in Sources */,
 				00AF8CBA1D224CFA009047AC /* Alarm.swift in Sources */,
+				CB0566C61DB4A63B0091EC53 /* AlarmRealm.swift in Sources */,
 				9E98FB371C4640AF00BAB700 /* TutorialSevenViewController.swift in Sources */,
 				00AF8D041D224CFA009047AC /* SyncQueue.swift in Sources */,
 				00AF8CC61D224CFA009047AC /* PresetsModel.swift in Sources */,

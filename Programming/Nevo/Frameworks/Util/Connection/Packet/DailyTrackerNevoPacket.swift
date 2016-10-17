@@ -330,6 +330,7 @@ class DailyTrackerNevoPacket: NevoPacket {
     :returns: timer/Year,Month,Day
     */
     func getDateTimer()->Int{
+        // TODO This is completely wrong. Date problem with 201698 or 20160908
         var year:Int = Int(NSData2Bytes(getPackets()[0])[2] )
         year = year + Int(NSData2Bytes(getPackets()[0])[3] )<<8
         var month:NSString = NSString(format: "\(NSData2Bytes(getPackets()[0])[4])" as NSString)

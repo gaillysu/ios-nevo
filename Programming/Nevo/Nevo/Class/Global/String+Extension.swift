@@ -7,6 +7,8 @@
 //
 
 import Foundation
+import RealmSwift
+import SwiftyJSON
 
 extension String {
     func toInt() -> Int {
@@ -15,5 +17,16 @@ extension String {
     
     func length() ->Int {
         return NSString(format: "%@", self).length
+    }
+    
+    func hourlyDataListForRealm() -> [HourlyIntData]{
+        let json = JSON.parse(self)
+        var list:[HourlyIntData] = []
+        for element in json {
+            let data = HourlyIntData()
+            data.hourlyIntData = element.0.toInt()
+            list.append(data)
+        }
+        return list
     }
 }
