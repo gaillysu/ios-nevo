@@ -5,6 +5,11 @@
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Raleway-Regular.ttf">
+            <string>Raleway</string>
+        </array>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="StepsHistoryViewController" customModule="LunaR" customModuleProvider="target">
             <connections>
@@ -36,13 +41,22 @@
                         <outlet property="delegate" destination="-1" id="Qix-mj-VWX"/>
                     </connections>
                 </collectionView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Steps" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PEL-ww-Web">
+                    <fontDescription key="fontDescription" name="Raleway" family="Raleway" pointSize="30"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstItem="mMJ-ii-LKw" firstAttribute="top" secondItem="PEL-ww-Web" secondAttribute="bottom" constant="6" id="8OF-FC-3CY"/>
                 <constraint firstAttribute="trailing" secondItem="mMJ-ii-LKw" secondAttribute="trailing" constant="20" id="8fe-r5-nii"/>
                 <constraint firstAttribute="bottom" secondItem="eW0-Ed-FPP" secondAttribute="bottom" id="HuH-9R-9cW"/>
+                <constraint firstAttribute="trailing" secondItem="PEL-ww-Web" secondAttribute="trailing" constant="20" id="JLc-cs-JEo"/>
+                <constraint firstItem="PEL-ww-Web" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="N4v-Y3-jQv"/>
                 <constraint firstItem="eW0-Ed-FPP" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="QOg-pt-mf2"/>
                 <constraint firstItem="eW0-Ed-FPP" firstAttribute="top" secondItem="mMJ-ii-LKw" secondAttribute="bottom" constant="43" id="UgS-4h-rLg"/>
+                <constraint firstItem="PEL-ww-Web" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="20" id="cgL-6x-0Cw"/>
                 <constraint firstAttribute="trailing" secondItem="eW0-Ed-FPP" secondAttribute="trailing" id="ppr-sW-GQ3"/>
                 <constraint firstItem="mMJ-ii-LKw" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="66" id="pti-i7-c9A"/>
                 <constraint firstItem="mMJ-ii-LKw" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="s36-43-47k"/>

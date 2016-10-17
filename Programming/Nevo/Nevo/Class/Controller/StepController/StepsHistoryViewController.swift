@@ -308,7 +308,8 @@ extension StepsHistoryViewController:UICollectionViewDelegate,UICollectionViewDa
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell:StepGoalSetingViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "StepGoalSetingIdentifier", for: indexPath) as! StepGoalSetingViewCell
         cell.backgroundColor = UIColor.white
-        cell.titleLabel.text = contentTitleArray[(indexPath as NSIndexPath).row]
+        let titleString:String = contentTitleArray[(indexPath as NSIndexPath).row]
+        cell.titleLabel.text = titleString.capitalized(with: Locale.current)
         if !AppTheme.isTargetLunaR_OR_Nevo(){
             cell.backgroundColor = UIColor.getGreyColor()
             cell.valueLabel.textColor = UIColor.getBaseColor()

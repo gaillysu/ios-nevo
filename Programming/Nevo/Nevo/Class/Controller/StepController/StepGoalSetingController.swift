@@ -282,7 +282,8 @@ extension StepGoalSetingController:UICollectionViewDelegate,UICollectionViewData
             cell.titleLabel.textColor = UIColor.white
             cell.valueLabel.textColor = UIColor.getBaseColor()
         }
-        cell.titleLabel.text = contentTitleArray[(indexPath as NSIndexPath).row]
+        let titleString:String = contentTitleArray[(indexPath as NSIndexPath).row]
+        cell.titleLabel.text = titleString.capitalized(with: Locale.current)
         switch (indexPath as NSIndexPath).row {
         case 0:
             cell.valueLabel.text = "\(contentTArray[(indexPath as NSIndexPath).row]) Cal"

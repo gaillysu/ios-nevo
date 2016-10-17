@@ -16,7 +16,6 @@ class SolarIndicatorController: PublicClassController {
     @IBOutlet weak var textCollection: UICollectionView!
     @IBOutlet weak var pieChartView: PieChartView!
 
-    @IBOutlet weak var valueLabel: UILabel!
     fileprivate var onTitle:[String] = [NSLocalizedString("timer_on_battery", comment: ""),NSLocalizedString("timer_on_solar", comment: "")]
     fileprivate var onValue:[Double] = [130,00]
     
@@ -30,7 +29,6 @@ class SolarIndicatorController: PublicClassController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        valueLabel.text = "Amount of ADC:"
         
         textCollection.register(UINib(nibName: "SolarInforViewCell",bundle: nil), forCellWithReuseIdentifier: "SolarInfor_Identifier")
         
@@ -53,7 +51,7 @@ class SolarIndicatorController: PublicClassController {
 
                 var batteryAdcValue:Int = Int(NSData2Bytes(packet.getPackets()[0])[2])
                 batteryAdcValue =  batteryAdcValue + Int(NSData2Bytes(packet.getPackets()[0])[3] )<<8
-                self.valueLabel.text = "Amount of ADC:\(pvadcValue)"
+                //self.valueLabel.text = "Amount of ADC:\(pvadcValue)"
                 XCGLogger.default.debug("pvadc packet............\(pvadcValue)")
             }
         }

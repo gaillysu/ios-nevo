@@ -13,6 +13,8 @@ import SwiftEventBus
 class SleepHistoricalViewController: PublicClassController,ChartViewDelegate,SelectedChartViewDelegate {
 
     @IBOutlet weak var queryView: SleepHistoricalView!
+    @IBOutlet weak var titleLabel: UILabel!
+    
     fileprivate var contentTitleArray:[String] = []
     fileprivate var contentTArray:[String] = ["0","0","0","0"]
     fileprivate var selectedDate:Date = Date()
@@ -86,6 +88,7 @@ class SleepHistoricalViewController: PublicClassController,ChartViewDelegate,Sel
                 
                 if index == queryView.chartView!.getYVals().count - 1 {
                     let endSleep:Double = vlaue[0]+vlaue[1]+vlaue[2]
+
                     var reString:String = queryView.chartView!.getXVals()[queryView.chartView!.getXVals().count-1]
                     let subRange = Range(reString.characters.index(reString.endIndex, offsetBy: -2)..<reString.endIndex)
                     
@@ -94,13 +97,24 @@ class SleepHistoricalViewController: PublicClassController,ChartViewDelegate,Sel
                     }else{
                         reString.replaceSubrange(subRange, with: "\(Int(endSleep))")
                     }
-                    contentTArray.replaceSubrange(Range(1..<2), with: [reString])
+                    if queryView.getTotalSleepNumber() == 0 {
+                        contentTArray.replaceSubrange(Range(1..<2), with: ["0"])
+                    }else{
+                        contentTArray.replaceSubrange(Range(1..<2), with: [reString])
+                    }
+                    
                 }
             }
+            
+            let sleepValue = queryView.getTotalSleepNumber()
             let isNan = (deepTime/sleepTime).isNaN
-            let quality:String = "\(isNan ? 0:Int(deepTime/sleepTime*100))%"
+            var quality:String = "\(isNan ? 0:Int(deepTime/sleepTime*100))%"
+            if sleepValue == 0 {
+                quality = "0%"
+            }
+            
             contentTArray.replaceSubrange(Range(2..<3), with: [quality])
-            contentTArray.replaceSubrange(Range(3..<4), with: ["\(Int(sleepTime/60)) h"])
+            contentTArray.replaceSubrange(Range(3..<4), with: ["\(Int(sleepValue/60)) h"])
             self.queryView.detailCollectionView.reloadData()
         }
     }
@@ -144,7 +158,7 @@ extension SleepHistoricalViewController:UICollectionViewDelegate,UICollectionVie
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell:SleepHistoryViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "SleepHistoryValue_Identifier", for: indexPath) as! SleepHistoryViewCell
-        cell.updateTitleLabel(contentTitleArray[(indexPath as NSIndexPath).row].uppercased())
+        cell.updateTitleLabel(contentTitleArray[(indexPath as NSIndexPath).row])
         cell.valueLabel.text = "\(contentTArray[(indexPath as NSIndexPath).row])"
         
         if !AppTheme.isTargetLunaR_OR_Nevo() {
