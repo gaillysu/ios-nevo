@@ -285,9 +285,9 @@ extension InformationController:UIPickerViewDataSource, UIPickerViewDelegate {
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if pickerView == heightTextField.inputView {
-            heightTextField.text = "\(row + 50)CM"
+            heightTextField.text = "\(row + 50)"
         } else {
-            weightTextfield.text = "\(row + 30)KG"
+            weightTextfield.text = "\(row + 30)"
         }
     }
 }
@@ -301,9 +301,9 @@ extension InformationController:UITextFieldDelegate {
         if textField.isEqual(heightTextField) {
             if let height = textField.text?.toInt() {
                 if height > 300 {
-                    textField.text = "300CM"
+                    textField.text = "300"
                 } else if height < 50 {
-                    textField.text = "50CM"
+                    textField.text = "50"
                 }
             }
         }
@@ -311,9 +311,9 @@ extension InformationController:UITextFieldDelegate {
         if textField.isEqual(weightTextfield) {
             if let weight = textField.text?.toInt() {
                 if weight > 150 {
-                    textField.text = "150KG"
+                    textField.text = "150"
                 } else if weight < 30 {
-                    textField.text = "30KG"
+                    textField.text = "30"
                 }
             }
         }
