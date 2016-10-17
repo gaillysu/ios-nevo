@@ -145,6 +145,8 @@ extension AppDelegate {
     
     func setWatchInfo(_ id:Int,model:Int) {
         //1-Nevo,2-Nevo Solar,3-Lunar,0xff-Nevo
+        UserDefaults.standard.set(id, forKey: "WATCHNAME_KEY")
+        UserDefaults.standard.synchronize()
         switch id {
         case 1:
             self.setWactnID(1)

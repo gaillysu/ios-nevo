@@ -19,6 +19,7 @@ import IQKeyboardManagerSwift
 import SwiftEventBus
 import UIColor_Hex_Swift
 import XCGLogger
+import SwiftyTimer
 
 let nevoDBDFileURL:String = "nevoDBName";
 let nevoDBNames:String = "nevo.sqlite";
@@ -47,6 +48,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
     fileprivate var watchModelNumber:Int = 1
     fileprivate var watchModel:String = "Paris"
     fileprivate var isSync:Bool = true; // syc state
+    fileprivate var getWacthNameTimer:Timer?
 
     let dbQueue:FMDatabaseQueue = FMDatabaseQueue(path: AppDelegate.dbPath())
     let network = NetworkReachabilityManager(host: "drone.karljohnchow.com")
@@ -220,7 +222,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
 
             //We just received a full response, so we can safely send the next request
             SyncQueue.sharedInstance.next()
-
+            
+            if(packet.getHeader() == GetWatchName.HEADER()) {
+                let watchpacket = packet.copy() as WatchNamePacket
+                self.setWatchInfo(watchpacket.getWatchID(), model: watchpacket.getModelNumber())
+                //start sync data
+                //self.syncActivityData()
+                if getWacthNameTimer!.isValid {
+                    getWacthNameTimer?.invalidate()
+                    getWacthNameTimer = nil
+                }
+                self.setRTC()
+            }
+            
             if(packet.getHeader() == SetRTCRequest.HEADER()) {
                 //setp2:start set user profile
                 self.SetProfile()
@@ -300,13 +314,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                 //start sync data
                 self.syncActivityData()
                 //self.getWatchName()
-            }
-            
-            if(packet.getHeader() == GetWatchName.HEADER()) {
-                let watchpacket = packet.copy() as WatchNamePacket
-                self.setWatchInfo(watchpacket.getWatchID(), model: watchpacket.getModelNumber())
-                //start sync data
-                self.syncActivityData()
             }
 
             if(packet.getHeader() == ReadDailyTrackerInfo.HEADER()) {
@@ -433,57 +440,57 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                     savedDailyHistory[Int(currentDay)].HourlySteps = thispacket.getHourlySteps()
                     savedDailyHistory[Int(currentDay)].TotalCalories = thispacket.getDailyCalories()
                     savedDailyHistory[Int(currentDay)].HourlyCalories = thispacket.getHourlyCalories()
-                }
-
-                //save to health kit
-                let hk = NevoHKImpl()
-                hk.requestPermission()
-
-                let now:Date = Date()
-                let saveDay:Date = savedDailyHistory[Int(currentDay)].Date as Date
-                let nowDate:Date = Date.date(now.year, month: now.month, day: now.day, hour: now.hour, minute: 0, second: 0)
-                let saveDate:Date = Date.date(saveDay.year, month: saveDay.month, day: saveDay.day, hour: saveDay.hour, minute: 0, second: 0)
-
-                // to HK Running
-                for index:Int in 0 ..< thispacket.getHourlyRunningDistance().count {
-                    if(thispacket.getHourlyRunningDistance()[index] > 0) {
-                        hk.writeDataPoint(RunningToHK(distance:Double(thispacket.getHourlyRunningDistance()[index]), date:Date.date(saveDay.year, month: saveDay.month, day: saveDay.day, hour: index, minute: 0, second: 0)), resultHandler: { (result, error) in
-
-                        })
+                    
+                    //save to health kit
+                    let hk = NevoHKImpl()
+                    hk.requestPermission()
+                    
+                    let now:Date = Date()
+                    let saveDay:Date = savedDailyHistory[Int(currentDay)].Date as Date
+                    let nowDate:Date = Date.date(now.year, month: now.month, day: now.day, hour: now.hour, minute: 0, second: 0)
+                    let saveDate:Date = Date.date(saveDay.year, month: saveDay.month, day: saveDay.day, hour: saveDay.hour, minute: 0, second: 0)
+                    
+                    // to HK Running
+                    for index:Int in 0 ..< thispacket.getHourlyRunningDistance().count {
+                        if(thispacket.getHourlyRunningDistance()[index] > 0) {
+                            hk.writeDataPoint(RunningToHK(distance:Double(thispacket.getHourlyRunningDistance()[index]), date:Date.date(saveDay.year, month: saveDay.month, day: saveDay.day, hour: index, minute: 0, second: 0)), resultHandler: { (result, error) in
+                                
+                            })
+                        }
                     }
-                }
-
-                // to HK Calories
-                for index:Int in 0 ..< thispacket.getHourlyCalories().count {
-                    if savedDailyHistory[Int(currentDay)].HourlyCalories[index] > 0 && index == now.hour &&
-                        (nowDate != saveDate){
-
-                        hk.writeDataPoint(CaloriesToHK(calories: Double(savedDailyHistory[Int(currentDay)].HourlyCalories[index]), date: Date.date(saveDay.year, month: saveDay.month, day: saveDay.day, hour: index, minute: 0, second: 0)), resultHandler: { (result, error) in
-                            if (result != true) {
-                                XCGLogger.default.debug("Save Hourly Calories error\(index),\(error)")
-                            }else{
-                                XCGLogger.default.debug("Save Hourly Calories OK")
-                            }
-                        })
+                    
+                    // to HK Calories
+                    for index:Int in 0 ..< thispacket.getHourlyCalories().count {
+                        if savedDailyHistory[Int(currentDay)].HourlyCalories[index] > 0 && index == now.hour &&
+                            (nowDate != saveDate){
+                            
+                            hk.writeDataPoint(CaloriesToHK(calories: Double(savedDailyHistory[Int(currentDay)].HourlyCalories[index]), date: Date.date(saveDay.year, month: saveDay.month, day: saveDay.day, hour: index, minute: 0, second: 0)), resultHandler: { (result, error) in
+                                if (result != true) {
+                                    XCGLogger.default.debug("Save Hourly Calories error\(index),\(error)")
+                                }else{
+                                    XCGLogger.default.debug("Save Hourly Calories OK")
+                                }
+                            })
+                        }
                     }
-                }   
-
-                for i:Int in 0 ..< savedDailyHistory[Int(currentDay)].HourlySteps.count {
-                    //only save vaild hourly steps for every day, include today.
-                    //exclude update current hour step, due to current hour not end
-                    //for example: at 10:20~ 10:25AM, walk 100 steps, 10:50~10:59, walk 300 steps
-                    //user can't see the 10:00AM record data at 10:XX clock
-                    //user can see 10:00AM data when 11:20 do a big sync, the value should be 400 steps
-                    //that is to say, user can't see current hour 's step in healthkit, he can see it by waiting one hour
-                    if savedDailyHistory[Int(currentDay)].HourlySteps[i] > 0 &&
-                        (nowDate != saveDate){
-                        hk.writeDataPoint(HourlySteps(numberOfSteps: savedDailyHistory[Int(currentDay)].HourlySteps[i],date: savedDailyHistory[Int(currentDay)].Date,hour:i,update: false), resultHandler: { (result, error) -> Void in
-                            if (result != true) {
-                                XCGLogger.default.debug("Save Hourly steps error\(i),\(error)")
-                            }else{
-                                XCGLogger.default.debug("Save Hourly steps OK")
-                            }
-                        })
+                    
+                    for i:Int in 0 ..< savedDailyHistory[Int(currentDay)].HourlySteps.count {
+                        //only save vaild hourly steps for every day, include today.
+                        //exclude update current hour step, due to current hour not end
+                        //for example: at 10:20~ 10:25AM, walk 100 steps, 10:50~10:59, walk 300 steps
+                        //user can't see the 10:00AM record data at 10:XX clock
+                        //user can see 10:00AM data when 11:20 do a big sync, the value should be 400 steps
+                        //that is to say, user can't see current hour 's step in healthkit, he can see it by waiting one hour
+                        if savedDailyHistory[Int(currentDay)].HourlySteps[i] > 0 &&
+                            (nowDate != saveDate){
+                            hk.writeDataPoint(HourlySteps(numberOfSteps: savedDailyHistory[Int(currentDay)].HourlySteps[i],date: savedDailyHistory[Int(currentDay)].Date,hour:i,update: false), resultHandler: { (result, error) -> Void in
+                                if (result != true) {
+                                    XCGLogger.default.debug("Save Hourly steps error\(i),\(error)")
+                                }else{
+                                    XCGLogger.default.debug("Save Hourly steps OK")
+                                }
+                            })
+                        }
                     }
                 }
 
@@ -537,7 +544,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
             DispatchQueue.main.asyncAfter(deadline: dispatchTime, execute: {
                 //setp1: cmd 0x01, set RTC, for every connected Nevo
                 self.mPacketsbuffer = []
-                self.setRTC()
+
+                self.getWatchNameRequest()
+                
+                self.getWacthNameTimer = Timer.after(5, {
+                    self.setRTC()
+                })
             })
 
         }else {

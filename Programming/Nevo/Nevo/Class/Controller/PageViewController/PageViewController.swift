@@ -33,9 +33,16 @@ class PageViewController: UIPageViewController,UIActionSheetDelegate {
         viewController2.view.backgroundColor = UIColor.white
         let viewController3 = SleepHistoricalViewController()
         viewController3.view.backgroundColor = UIColor.white
-        let viewController4 = SolarIndicatorController()
-        viewController4.view.backgroundColor = UIColor.white
-        pagingControllers = [viewController1, viewController2,viewController3,viewController4]
+         pagingControllers = [viewController1, viewController2,viewController3]
+        
+        if UserDefaults.standard.objectIsForced(forKey: "WATCHNAME_KEY") {
+            let value:Int = UserDefaults.standard.object(forKey: "WATCHNAME_KEY") as! Int
+            if value>1 {
+                let viewController4 = SolarIndicatorController()
+                viewController4.view.backgroundColor = UIColor.white
+                pagingControllers.append(viewController4)
+            }
+        }
         
         if((UIDevice.current.systemVersion as NSString).floatValue>7.0){
             self.edgesForExtendedLayout = UIRectEdge();
@@ -149,7 +156,10 @@ extension PageViewController: UIPageViewControllerDataSource,UIPageViewControlle
         }else if viewController.isKind(of: StepsHistoryViewController.self) {
             return pagingControllers[2]
         }else if viewController.isKind(of: SleepHistoricalViewController.self) {
-            return pagingControllers[3]
+            if pagingControllers.count>3 {
+                return pagingControllers[3]
+            }
+            return nil
         }
         
         return nil

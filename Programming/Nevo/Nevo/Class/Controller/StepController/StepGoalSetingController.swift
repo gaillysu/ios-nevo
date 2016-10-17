@@ -87,7 +87,8 @@ class StepGoalSetingController: PublicClassController,ButtonManagerCallBack,Cloc
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        if AppDelegate.getAppDelegate().isSyncState() {
+        //sync today data
+        if !AppDelegate.getAppDelegate().isSyncState() {
             AppDelegate.getAppDelegate().getTodayTracker()
         }
         
