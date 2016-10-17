@@ -49,6 +49,7 @@ class InformationController: UIViewController,SMSegmentViewDelegate {
         datePicker.backgroundColor = UIColor.white
         dateOfbirth.inputView = datePicker
         datePicker.addTarget(self, action: #selector(selectedDateAction(_:)), for: UIControlEvents.valueChanged)
+        datePicker.maximumDate = NSDate() as Date
         
 //        heightTextField.keyboardType = UIKeyboardType.numberPad;
 //        weightTextfield.keyboardType = UIKeyboardType.numberPad
@@ -146,8 +147,9 @@ class InformationController: UIViewController,SMSegmentViewDelegate {
         dateOfbirth.text = date.date.stringFromFormat("yyyy-MM-dd")
         
         let languages = NSLocale.preferredLanguages
+        print(languages)
         if let currentLang = languages.first {
-            let langsArray = ["zh", "zh-Hans", "zh-Hant"]
+            let langsArray = ["zh", "zh-Hans", "zh-Hant", "zh-Hans-CN", "zh-Hant-CN"]
             if langsArray.contains(currentLang) {
                 dateOfbirth.text = date.date.stringFromFormat("yyyy-MM-dd")
             } else {
@@ -171,8 +173,11 @@ class InformationController: UIViewController,SMSegmentViewDelegate {
             
             let sex:Int = self.segmentView?.indexOfSelectedSegment == 0 ? 1 : 0
             registerInfor["birthday"] = dateOfbirth!.text!
-            registerInfor["length"] = heightTextField!.text!
-            registerInfor["weight"] = weightTextfield!.text!
+            
+            // 字典中的数据格式原来是没有单位的数字
+            registerInfor["length"] = "\(heightTextField!.text!.toInt())"
+            registerInfor["weight"] = "\(weightTextfield!.text!.toInt())"
+            
             registerInfor["sex"] = "\(sex)"
             
             let view = MRProgressOverlayView.showOverlayAdded(to: self.navigationController!.view, title: NSLocalizedString("please_wait", comment: ""), mode: MRProgressOverlayViewMode.indeterminate, animated: true)
@@ -285,9 +290,9 @@ extension InformationController:UIPickerViewDataSource, UIPickerViewDelegate {
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if pickerView == heightTextField.inputView {
-            heightTextField.text = "\(row + 50)"
+            heightTextField.text = "\(row + 50)  CM"
         } else {
-            weightTextfield.text = "\(row + 30)"
+            weightTextfield.text = "\(row + 30)  KG"
         }
     }
 }
@@ -301,9 +306,9 @@ extension InformationController:UITextFieldDelegate {
         if textField.isEqual(heightTextField) {
             if let height = textField.text?.toInt() {
                 if height > 300 {
-                    textField.text = "300"
+                    textField.text = "300  CM"
                 } else if height < 50 {
-                    textField.text = "50"
+                    textField.text = "50  CM"
                 }
             }
         }
@@ -311,9 +316,9 @@ extension InformationController:UITextFieldDelegate {
         if textField.isEqual(weightTextfield) {
             if let weight = textField.text?.toInt() {
                 if weight > 150 {
-                    textField.text = "150"
+                    textField.text = "150  KG"
                 } else if weight < 30 {
-                    textField.text = "30"
+                    textField.text = "30  KG"
                 }
             }
         }

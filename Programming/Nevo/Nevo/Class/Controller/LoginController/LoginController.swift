@@ -235,7 +235,8 @@ class LoginController: UIViewController,UITextFieldDelegate {
 
             let naviController:UINavigationController = UINavigationController(rootViewController: TutorialOneViewController())
             naviController.isNavigationBarHidden = true
-            present(naviController, animated: true)
+            
+            UIApplication.shared.keyWindow?.rootViewController = naviController
         }
     }
     
