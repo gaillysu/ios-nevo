@@ -161,10 +161,6 @@ class InformationController: UIViewController,SMSegmentViewDelegate {
     func registerRequest() {
         if AppDelegate.getAppDelegate().network!.isReachable {
             if(AppTheme.isNull(dateOfbirth!.text!) || AppTheme.isNull(heightTextField.text!) || AppTheme.isNull(weightTextfield.text!)) {
-                // Add segments
-                //"one_of_the_fields_are_empty."
-                //"two_password_is_not_the_same"
-                //"please_wait"
                 let banner = MEDBanner(title: NSLocalizedString("one_of_the_fields_are_empty", comment: ""), subtitle: nil, image: nil, backgroundColor:AppTheme.NEVO_SOLAR_YELLOW())
                 banner.dismissesOnTap = true
                 banner.show(duration: 0.6)
@@ -199,6 +195,17 @@ class InformationController: UIViewController,SMSegmentViewDelegate {
                 let status = json["status"].intValue
                 let user:[String : JSON] = json["user"].dictionaryValue
                 
+                switch status {
+                case -1:
+                    message = NSLocalizedString("access_denied", comment: "");
+                case -2:
+                    message = "";
+                case -3:
+                    message = NSLocalizedString("user_exist", comment: "");
+                default:
+                    message = NSLocalizedString("signup_failed", comment: "")
+                }
+                
                 if(user.count>0) {
                     let dateFormatter = DateFormatter()
                     dateFormatter.dateFormat = "y-M-d h:m:s.000000"
@@ -216,34 +223,11 @@ class InformationController: UIViewController,SMSegmentViewDelegate {
                         })
                         self.dismiss(animated: true, completion: nil)
                         //self.navigationController?.popViewControllerAnimated(true)
-                    }else{
-                        switch status {
-                        case -1:
-                            message = NSLocalizedString("access_denied", comment: "");
-                        case -2:
-                            message = "";
-                        case -3:
-                            message = NSLocalizedString("user_exist", comment: "");
-                            break
-                        default:
-                            message = NSLocalizedString("signup_failed", comment: "")
-                        }
                     }
                     
                 }else{
                     if message.isEmpty {
                         message = NSLocalizedString("no_network", comment: "")
-                    } else {
-                        switch status {
-                        case -1:
-                            message = NSLocalizedString("access_denied", comment: "");
-                        case -2:
-                            message = "";
-                        case -3:
-                            message = NSLocalizedString("user_exist", comment: "");
-                        default:
-                            message = NSLocalizedString("signup_failed", comment: "")
-                        }
                     }
                     
                 }
