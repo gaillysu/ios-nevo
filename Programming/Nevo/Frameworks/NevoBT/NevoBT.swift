@@ -74,7 +74,9 @@ protocol NevoBT {
     Get the current connection device of RSSI values
     */
     func getRSSI()
-
+    
+    //Based on the specified UUID returns whether the device is matched
+    func isPairingPeripheral(_ peripheralAddress : UUID) -> Bool
 }
 
 protocol NevoBTDelegate {
@@ -107,4 +109,7 @@ protocol NevoBTDelegate {
     func bluetoothEnabled(_ enabled:Bool)
 
     func scanAndConnect()
+    
+    //Based on the specified UUID returns whether the device is matched
+    func isPairingPeripheral() -> Bool
 }

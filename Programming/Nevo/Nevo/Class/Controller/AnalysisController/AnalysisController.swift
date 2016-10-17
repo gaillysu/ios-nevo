@@ -27,6 +27,7 @@ class AnalysisController: PublicClassController {
         
         contentCollectionView.backgroundColor = UIColor.white
         chartsCollectionView.backgroundColor = UIColor.clear
+        chartsCollectionView.bounces = false;
         chartsCollectionView.register(UINib(nibName: "AnalysisRadarViewCell",bundle: nil), forCellWithReuseIdentifier: "AnalysisRadar_Identifier")
         chartsCollectionView.register(UINib(nibName: "AnalysisLineChartCell",bundle: nil), forCellWithReuseIdentifier: "AnalysisLineChart_Identifier")
         chartsCollectionView.register(UICollectionReusableView.classForCoder(), forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "ChartsViewHeader_Identifier")
@@ -116,7 +117,41 @@ extension AnalysisController:UICollectionViewDelegate,UICollectionViewDataSource
             let cell:AnalysisLineChartCell = collectionView.dequeueReusableCell(withReuseIdentifier: "AnalysisLineChart_Identifier", for: indexPath) as! AnalysisLineChartCell
             cell.backgroundColor = UIColor.clear
             cell.setTitle(titleArray[(indexPath as NSIndexPath).row])
-
+            return cell
+        }else{
+            let cell:AnalysisValueCell = collectionView.dequeueReusableCell(withReuseIdentifier: "AnalysisValue_Identifier", for: indexPath) as! AnalysisValueCell
+            cell.backgroundColor = UIColor.clear
+            //cell.titleLabel.text = contentTitleArray[(indexPath as NSIndexPath).row]
+            cell.updateTitleLabel(contentTitleArray[(indexPath as NSIndexPath).row])
+            var unit:String = ""
+            if segmented.selectedSegmentIndex == 1 {
+                switch (indexPath as NSIndexPath).row {
+                case 0:
+                    unit = "h"
+                    break
+                case 1:
+                    unit = "h"
+                    break
+                case 2:
+                    unit = "h"
+                    break
+                case 3:
+                    unit = "%"
+                    break
+                default:
+                    break
+                }
+            }
+            //cell.valueLabel.text = contentTArray[indexPath.row]+" "+unit
+            cell.updateLabel(contentTArray[(indexPath as NSIndexPath).row]+" "+unit)
+            return cell
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath){
+        if collectionView.isEqual(chartsCollectionView) {
+            print("indexPath===\(indexPath.row)")
+            let analysisCell:AnalysisLineChartCell = cell as! AnalysisLineChartCell
             if segmented.selectedSegmentIndex == 0 {
                 contentTitleArray = [
                     NSLocalizedString("average_steps", comment: ""),
@@ -146,51 +181,21 @@ extension AnalysisController:UICollectionViewDelegate,UICollectionViewDataSource
                     avgNumber = 30
                 }
                 
-                cell.updateChartData(dataArray[(indexPath as NSIndexPath).row] as! NSArray, chartType: segmented.selectedSegmentIndex,rowIndex:(indexPath as NSIndexPath).row, completionData: { (totalValue, totalCalores, totalTime) in
+                analysisCell.updateChartData(dataArray[indexPath.row] as! NSArray, chartType: segmented.selectedSegmentIndex,rowIndex:indexPath.row, completionData: { (totalValue, totalCalores, totalTime) in
                     self.contentTArray.replaceSubrange(Range(0..<1), with: [String(format: "%.1f",totalValue/avgNumber)])
                     self.contentTArray.replaceSubrange(Range(1..<2), with: [String(format: "%.1f",totalValue)])
                     self.contentTArray.replaceSubrange(Range(2..<3), with: [String(format: "%.1f",totalCalores/Int(avgNumber))])
                     self.contentTArray.replaceSubrange(Range(3..<4), with: [String(format: "%.1f",totalTime/Int(avgNumber))])
                 });
-                contentCollectionView.reloadData()
             }else{
                 self.contentTArray.replaceSubrange(Range(0..<1), with: [String(format: "0")])
                 self.contentTArray.replaceSubrange(Range(1..<2), with: [String(format: "0")])
                 
-                cell.updateChartData(dataArray[(indexPath as NSIndexPath).row] as! NSArray, chartType: segmented.selectedSegmentIndex,rowIndex:(indexPath as NSIndexPath).row, completionData: { (totalValue, totalCalores, totalTime) in
-                
+                analysisCell.updateChartData(dataArray[indexPath.row] as! NSArray, chartType: segmented.selectedSegmentIndex,rowIndex:indexPath.row, completionData: { (totalValue, totalCalores, totalTime) in
+                    
                 });
-                contentCollectionView.reloadData()
             }
-            
-            return cell
-        }else{
-            let cell:AnalysisValueCell = collectionView.dequeueReusableCell(withReuseIdentifier: "AnalysisValue_Identifier", for: indexPath) as! AnalysisValueCell
-            cell.backgroundColor = UIColor.clear
-            //cell.titleLabel.text = contentTitleArray[(indexPath as NSIndexPath).row]
-            cell.updateTitleLabel(contentTitleArray[(indexPath as NSIndexPath).row])
-            var unit:String = ""
-            if segmented.selectedSegmentIndex == 1 {
-                switch (indexPath as NSIndexPath).row {
-                case 0:
-                    unit = "h"
-                    break
-                case 1:
-                    unit = "h"
-                    break
-                case 2:
-                    unit = "h"
-                    break
-                case 3:
-                    unit = "%"
-                    break
-                default:
-                    break
-                }
-            }
-            //cell.valueLabel.text = contentTArray[indexPath.row]+" "+unit
-            cell.updateLabel(contentTArray[(indexPath as NSIndexPath).row]+" "+unit)
-            return cell
+            contentCollectionView.reloadData()
         }
     }
 }

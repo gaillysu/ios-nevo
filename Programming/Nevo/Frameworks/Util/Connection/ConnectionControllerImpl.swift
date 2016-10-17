@@ -344,4 +344,12 @@ class ConnectionControllerImpl : NSObject, ConnectionController, NevoBTDelegate 
         return false
     }
     
+    //Get to hold the UUID returns whether pairing，true = pairing ,false = not pairing
+    func isPairingPeripheral() -> Bool{
+        let profile = mNevoBT?.isPairingPeripheral(UUID(uuidString:
+            UserDefaults.standard.object(forKey: SAVED_ADDRESS_KEY) as! String
+            )!)
+        return profile!
+    }
+    
 }

@@ -589,5 +589,14 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
 
         return false
     }
+    
+    // true = pairing， false = not pair
+    func isPairingPeripheral(_ peripheralAddress : UUID) -> Bool {
+        if let potentialMatches:[CBPeripheral] = mManager?.retrievePeripherals(withIdentifiers: [peripheralAddress]){
+            return true
+        }else{
+            return false
+        }
+    }
 
 }

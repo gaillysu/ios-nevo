@@ -232,7 +232,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                     getWacthNameTimer?.invalidate()
                     getWacthNameTimer = nil
                 }
-                self.setRTC()
+                
+                if !self.getMconnectionController()!.isPairingPeripheral() {
+                    self.setRTC()
+                }else{
+                    self.SetProfile()
+                }
             }
             
             if(packet.getHeader() == SetRTCRequest.HEADER()) {
@@ -548,7 +553,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                 self.getWatchNameRequest()
                 
                 self.getWacthNameTimer = Timer.after(5, {
-                    self.setRTC()
+                    if !self.getMconnectionController()!.isPairingPeripheral() {
+                        self.setRTC()
+                    }else{
+                        self.SetProfile()
+                    }
                 })
             })
 
