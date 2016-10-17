@@ -217,8 +217,6 @@ class InformationController: UIViewController,SMSegmentViewDelegate {
                         self.dismiss(animated: true, completion: nil)
                         //self.navigationController?.popViewControllerAnimated(true)
                     }else{
-                        
-                        
                         switch status {
                         case -1:
                             message = NSLocalizedString("access_denied", comment: "");
@@ -227,19 +225,30 @@ class InformationController: UIViewController,SMSegmentViewDelegate {
                         case -3:
                             message = NSLocalizedString("user_exist", comment: "");
                             break
-                        
-                        default: message = NSLocalizedString("signup_failed", comment: "")
+                        default:
+                            message = NSLocalizedString("signup_failed", comment: "")
                         }
                     }
                     
                 }else{
                     if message.isEmpty {
                         message = NSLocalizedString("no_network", comment: "")
+                    } else {
+                        switch status {
+                        case -1:
+                            message = NSLocalizedString("access_denied", comment: "");
+                        case -2:
+                            message = "";
+                        case -3:
+                            message = NSLocalizedString("user_exist", comment: "");
+                        default:
+                            message = NSLocalizedString("signup_failed", comment: "")
+                        }
                     }
                     
                 }
                 
-                let banner = MEDBanner(title: message, subtitle: nil, image: nil, backgroundColor:AppTheme.NEVO_SOLAR_YELLOW())
+                let banner = MEDBanner(title: NSLocalizedString(message, comment: ""), subtitle: nil, image: nil, backgroundColor:AppTheme.NEVO_SOLAR_YELLOW())
                 banner.dismissesOnTap = true
                 banner.show(duration: 1.2)
             }
