@@ -50,8 +50,17 @@ class InformationController: UIViewController,SMSegmentViewDelegate {
         dateOfbirth.inputView = datePicker
         datePicker.addTarget(self, action: #selector(selectedDateAction(_:)), for: UIControlEvents.valueChanged)
         
-        heightTextField.keyboardType = UIKeyboardType.numberPad;
-        weightTextfield.keyboardType = UIKeyboardType.numberPad
+//        heightTextField.keyboardType = UIKeyboardType.numberPad;
+//        weightTextfield.keyboardType = UIKeyboardType.numberPad
+        let heightPickerView = UIPickerView()
+        heightPickerView.dataSource = self
+        heightPickerView.delegate = self
+        heightTextField.inputView = heightPickerView
+        let weightPickerView = UIPickerView()
+        weightPickerView.dataSource = self
+        weightPickerView.delegate = self
+        weightTextfield.inputView = weightPickerView
+        
         
         if !AppTheme.isTargetLunaR_OR_Nevo() {
             view.backgroundColor = UIColor.getGreyColor()
@@ -133,7 +142,18 @@ class InformationController: UIViewController,SMSegmentViewDelegate {
     
     func selectedDateAction(_ date:UIDatePicker) {
         NSLog("date:\(date.date)")
+        
         dateOfbirth.text = date.date.stringFromFormat("yyyy-MM-dd")
+        
+        let languages = NSLocale.preferredLanguages
+        if let currentLang = languages.first {
+            let langsArray = ["zh", "zh-Hans", "zh-Hant"]
+            if langsArray.contains(currentLang) {
+                dateOfbirth.text = date.date.stringFromFormat("yyyy-MM-dd")
+            } else {
+                dateOfbirth.text = date.date.stringFromFormat("dd-MM-yyyy")
+            }
+        }
     }
     
     func registerRequest() {
@@ -229,17 +249,73 @@ class InformationController: UIViewController,SMSegmentViewDelegate {
     }
 }
 
+// MARK: - PICKERVIEW
+extension InformationController:UIPickerViewDataSource, UIPickerViewDelegate {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 2
+    }
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        if component == 0 {
+            if pickerView == heightTextField.inputView {
+                return 251
+            } else {
+                return 121
+            }
+            
+        } else {
+            return 1
+        }
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        if component == 1 {
+            if pickerView == heightTextField.inputView {
+                return "CM"
+            } else {
+                return "KG"
+            }
+        } else {
+            if pickerView == heightTextField.inputView {
+                return "\(row + 50)"
+            } else {
+                return "\(row + 30)"
+            }
+        }
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        if pickerView == heightTextField.inputView {
+            heightTextField.text = "\(row + 50)CM"
+        } else {
+            weightTextfield.text = "\(row + 30)KG"
+        }
+    }
+}
+
+
 extension InformationController:UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
         if textField.text == nil {
             return;
         }
         if textField.isEqual(heightTextField) {
-            
+            if let height = textField.text?.toInt() {
+                if height > 300 {
+                    textField.text = "300CM"
+                } else if height < 50 {
+                    textField.text = "50CM"
+                }
+            }
         }
         
         if textField.isEqual(weightTextfield) {
-            
+            if let weight = textField.text?.toInt() {
+                if weight > 150 {
+                    textField.text = "150KG"
+                } else if weight < 30 {
+                    textField.text = "30KG"
+                }
+            }
         }
     }
     
