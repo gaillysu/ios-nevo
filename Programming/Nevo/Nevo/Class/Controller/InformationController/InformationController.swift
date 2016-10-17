@@ -241,7 +241,6 @@ class InformationController: UIViewController,SMSegmentViewDelegate {
                             message = "";
                         case -3:
                             message = NSLocalizedString("user_exist", comment: "");
-                            break
                         default:
                             message = NSLocalizedString("signup_failed", comment: "")
                         }
