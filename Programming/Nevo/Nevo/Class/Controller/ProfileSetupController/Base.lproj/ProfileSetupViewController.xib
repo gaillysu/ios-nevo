@@ -27,7 +27,7 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign Up" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="16" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5hK-yO-jRt">
@@ -195,11 +195,11 @@
                 <constraint firstAttribute="trailing" secondItem="Goa-Bq-FHb" secondAttribute="trailing" constant="37" id="94O-d0-BrS"/>
                 <constraint firstItem="VU0-vW-bBF" firstAttribute="leading" secondItem="xjf-sh-1ci" secondAttribute="trailing" constant="8" id="9V5-rw-cuf"/>
                 <constraint firstItem="LkM-Zg-6Zv" firstAttribute="height" secondItem="VU0-vW-bBF" secondAttribute="height" id="9XC-Dx-T79"/>
-                <constraint firstItem="xjf-sh-1ci" firstAttribute="top" secondItem="M6l-WV-9Jl" secondAttribute="bottom" constant="74" id="9uU-sh-oId"/>
                 <constraint firstItem="98S-al-o4l" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="38" id="Cex-S5-eF2"/>
                 <constraint firstItem="98S-al-o4l" firstAttribute="height" secondItem="M6l-WV-9Jl" secondAttribute="height" id="EX8-Wd-QBO"/>
                 <constraint firstItem="LkM-Zg-6Zv" firstAttribute="top" secondItem="M6l-WV-9Jl" secondAttribute="bottom" constant="40" id="EhA-dy-EvH"/>
                 <constraint firstItem="5hK-yO-jRt" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="100" id="FBM-MY-L86"/>
+                <constraint firstItem="xjf-sh-1ci" firstAttribute="centerY" secondItem="VU0-vW-bBF" secondAttribute="centerY" id="Ffm-E1-nb3"/>
                 <constraint firstItem="LkM-Zg-6Zv" firstAttribute="leading" secondItem="VU0-vW-bBF" secondAttribute="leading" id="Fjl-KF-SIk"/>
                 <constraint firstItem="Goa-Bq-FHb" firstAttribute="height" secondItem="98S-al-o4l" secondAttribute="height" id="HqG-vK-kOl"/>
                 <constraint firstAttribute="trailing" secondItem="M6l-WV-9Jl" secondAttribute="trailing" constant="38" id="Hzg-yc-bOu"/>

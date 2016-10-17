@@ -23,9 +23,6 @@ class LoginController: UIViewController,UITextFieldDelegate {
     @IBOutlet weak var logoinButton: UIButton!
     @IBOutlet weak var registerLabel: ActiveLabel!
     @IBOutlet weak var platformLabel: UILabel!
-    @IBOutlet weak var googleButton: UIButton!
-    @IBOutlet weak var facebookButton: UIButton!
-    @IBOutlet weak var mediaLabel: UILabel!
     
     @IBOutlet weak var skipButton: UIButton!
     
@@ -74,11 +71,8 @@ class LoginController: UIViewController,UITextFieldDelegate {
             passwordTextField.backgroundColor = UIColor.getLightBaseColor()
             userNameTextField.setValue(UIColor.white, forKeyPath: "placeholderLabel.textColor")
             passwordTextField.setValue(UIColor.white, forKeyPath: "placeholderLabel.textColor")
-            
-            mediaLabel.textColor = UIColor.white
+
             registerLabel.textColor = UIColor.getBaseColor()
-            googleButton.setImage(UIImage(named:"google"), for: UIControlState.normal)
-            facebookButton.setImage(UIImage(named:"facebook"), for: UIControlState.normal)
             
             userNameTextField.textColor = UIColor.white
             passwordTextField.textColor = UIColor.white
