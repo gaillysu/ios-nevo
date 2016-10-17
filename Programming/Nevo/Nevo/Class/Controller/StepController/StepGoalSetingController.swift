@@ -121,6 +121,7 @@ class StepGoalSetingController: PublicClassController,ButtonManagerCallBack,Cloc
                 let dailySteps:Int = thispacket.getDailySteps()
                 let dailyStepGoal:Int = thispacket.getDailyStepsGoal()
                 let percent :Float = Float(dailySteps)/Float(dailyStepGoal)
+                self.progressView.setProgress(CGFloat(percent))
             }
             
             if packet.getHeader() == LedLightOnOffNevoRequest.HEADER(){
@@ -196,7 +197,7 @@ class StepGoalSetingController: PublicClassController,ButtonManagerCallBack,Cloc
         progressView.frame = CGRect(x: clockBackGroundView.frame.origin.x-3, y: clockBackGroundView.frame.origin.y-3, width: clockBackGroundView.bounds.width+6, height: clockBackGroundView.bounds.width+6)
         progressView.setProgressColor(AppTheme.NEVO_SOLAR_YELLOW())
         progressView.setProgress(0.0)
-        //self.view.layer.addSublayer(progressView)
+        self.view.layer.addSublayer(progressView)
     }
     
     override func didReceiveMemoryWarning() {
