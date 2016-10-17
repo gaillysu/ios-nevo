@@ -29,23 +29,15 @@ class PresetTableViewController: UITableViewController,ButtonManagerCallBack,Add
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        presetView.backgroundColor = UIColor.white
         presetView.bulidPresetView(self.navigationItem,delegateB: self)
-        
         presetView.separatorColor = UIColor.lightGray
 
         let array:NSArray = Presets.getAll()
         for pArray in array {
             prestArray.append(pArray as! Presets)
         }
-        
         styleEvolve()
-        
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
 
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
 
     override func didReceiveMemoryWarning() {
@@ -137,6 +129,8 @@ extension PresetTableViewController {
         if !AppTheme.isTargetLunaR_OR_Nevo() {
             presetView.backgroundColor = UIColor.getLightBaseColor()
             presetView.separatorColor = UIColor.getLightBaseColor()
+        }else{
+            //presetView.backgroundColor = UIColor.getLightBaseColor()
         }
     }
 }
