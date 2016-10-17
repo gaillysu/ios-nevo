@@ -164,6 +164,7 @@
 "alarm_on"="Alarm on";
 "alarm_in"="Alarm in";
 
+// 2016-10-14
 "change_password"="Change Password";
 "new_password"="new password";
 "new_password_confirm"="confirm new password";
@@ -173,5 +174,8 @@
 "The format of your E-mail address seems to be wrong"="The format of your E-mail address seems to be wrong";
 "Email is not filled in"="Email is not filled in";
 "Password is not filled in"="Password is not filled in";
-"Password is changed"="Password is changed";
+"Password has been changed"="Password has been changed";
 "Please enter a new password"="Please enter a new password";
+
+// 2016-10-17
+"no_network"="No network";

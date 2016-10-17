@@ -84,7 +84,7 @@ class ConnectOtherAppsController: UITableViewController {
                 })
             
             alert.addAction(UIAlertAction(title: NSLocalizedString("Ok", comment: ""), style: UIAlertActionStyle.default) { (action) in
-                let view = MRProgressOverlayView.showOverlayAdded(to: self.navigationController!.view, title: "Please wait...", mode: MRProgressOverlayViewMode.indeterminate, animated: true)
+                let view = MRProgressOverlayView.showOverlayAdded(to: self.navigationController!.view, title: NSLocalizedString("please_wait", comment: ""), mode: MRProgressOverlayViewMode.indeterminate, animated: true)
                 view?.setTintColor(UIColor.getBaseColor())
                 let textfield:UITextField = alert.textFields![0]
                 let userprofile:UserProfile = UserProfile.getAll()[0] as! UserProfile

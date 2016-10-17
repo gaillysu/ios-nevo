@@ -180,5 +180,8 @@
 "The format of your E-mail address seems to be wrong"="您输入的邮箱格式似乎有问题";
 "Email is not filled in"="请输入您的邮箱地址";
 "Password is not filled in"="请输入您的密码";
-"Password is changed"="密码修改成功";
+"Password has been changed"="密码修改成功";
 "Please enter a new password"="请输入一个新密码";
+
+// 2016-10-17
+"no_network"="无网络";

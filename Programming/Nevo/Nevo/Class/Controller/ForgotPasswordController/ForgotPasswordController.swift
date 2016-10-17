@@ -57,7 +57,7 @@ class ForgotPasswordController: UIViewController {
     }
     
     func forgotPasswordRequest() {
-        let view = MRProgressOverlayView.showOverlayAdded(to: self.navigationController!.view, title: "Please wait...", mode: MRProgressOverlayViewMode.indeterminate, animated: true)
+        let view = MRProgressOverlayView.showOverlayAdded(to: self.navigationController!.view, title: NSLocalizedString("please_wait", comment: ""), mode: MRProgressOverlayViewMode.indeterminate, animated: true)
         view?.setTintColor(AppTheme.NEVO_SOLAR_YELLOW())
         
         HttpPostRequest.postRequest("user/request_password_token", data: ["user":["email":emailTextField.text!] as AnyObject]) { (result) in
@@ -90,14 +90,14 @@ class ForgotPasswordController: UIViewController {
                         return
                     }
                     if textField[0].text! == textField[1].text! {
-                        let view = MRProgressOverlayView.showOverlayAdded(to: self.navigationController!.view, title: "Please wait...", mode: MRProgressOverlayViewMode.indeterminate, animated: true)
+                        let view = MRProgressOverlayView.showOverlayAdded(to: self.navigationController!.view, title: NSLocalizedString("please_wait", comment: ""), mode: MRProgressOverlayViewMode.indeterminate, animated: true)
                         view?.setTintColor(AppTheme.NEVO_SOLAR_YELLOW())
                         HttpPostRequest.postRequest("user/forget_password", data: ["user":["password_token":token,"email":email,"password":textField[0].text!,"id":id] as AnyObject], completion: { (result) in
                             MRProgressOverlayView.dismissAllOverlays(for: self.navigationController!.view, animated: true)
                             let json = JSON(result)
                             let status:Int = json["status"].intValue
                             if status != -3 {
-                                let banner = MEDBanner(title: NSLocalizedString("Password is changed", comment: ""), subtitle: nil, image: nil, backgroundColor:AppTheme.NEVO_SOLAR_YELLOW())
+                                let banner = MEDBanner(title: NSLocalizedString("Password has been changed", comment: ""), subtitle: nil, image: nil, backgroundColor:AppTheme.NEVO_SOLAR_YELLOW())
                                 banner.dismissesOnTap = true
                                 banner.show(duration: 1.2)
                                 self.dismiss(animated: true, completion: nil)
