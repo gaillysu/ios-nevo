@@ -185,7 +185,9 @@ class SetingViewController: UIViewController,ButtonManagerCallBack,UIAlertViewDe
                     let tutrorial:TutorialOneViewController = TutorialOneViewController()
                     let nav:UINavigationController = UINavigationController(rootViewController: tutrorial)
                     nav.isNavigationBarHidden = true
-                    self.present(nav, animated: true, completion: nil)
+//                    self.present(nav, animated: true, completion: nil)
+                    
+                    UIApplication.shared.keyWindow?.rootViewController = nav
                 })
                 actionSheet.addAction(alertAction2)
                 

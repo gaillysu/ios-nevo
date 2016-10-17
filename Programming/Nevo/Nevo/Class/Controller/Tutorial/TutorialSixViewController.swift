@@ -32,7 +32,10 @@ class TutorialSixViewController: UIViewController{
         //self.navigationController?.popToRootViewControllerAnimated(true)
         //let tutorialPageSeven = TutorialSevenViewController();
         //self.navigationController?.pushViewController(tutorialPageSeven, animated: true)
-        self.dismiss(animated: true, completion: nil)
+//        self.dismiss(animated: true, completion: nil)
+        if let mainController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController() {
+            UIApplication.shared.keyWindow?.rootViewController = mainController
+        }
     }
 }
 
