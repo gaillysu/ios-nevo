@@ -51,29 +51,32 @@ class StepsHistoryViewController: PublicClassController,ChartViewDelegate {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
         saveContentTArray()
-        
-        SwiftEventBus.onMainThread(self, name: SELECTED_CALENDAR_NOTIFICATION) { (notification) in
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        _ = SwiftEventBus.onMainThread(self, name: SELECTED_CALENDAR_NOTIFICATION) { (notification) in
             let userinfo:Date = notification.userInfo!["selectedDate"] as! Date
             self.queryArray = UserSteps.getCriteria("WHERE date = \(userinfo.beginningOfDay.timeIntervalSince1970)")
             self.bulidStepHistoricalChartView(self.queryArray)
         }
         
-        SwiftEventBus.onMainThread(self, name: EVENT_BUS_BEGIN_SMALL_SYNCACTIVITY) { (notification) in
+        _ = SwiftEventBus.onMainThread(self, name: EVENT_BUS_BEGIN_SMALL_SYNCACTIVITY) { (notification) in
             let dict:[String:AnyObject] = notification.object as! [String:AnyObject]
             let dailySteps:Int = dict["STEPS"] as! Int
+            /*
             self.calculationData(0, steps: dailySteps, completionData: { (miles, calories) in
                 self.contentTArray.replaceSubrange(Range(3..<4), with: ["\(miles)"])
             })
-            self.stepsHistory.reloadData()
+             */
+            //self.stepsHistory.reloadData()
         }
         
-        SwiftEventBus.onMainThread(self, name: EVENT_BUS_END_BIG_SYNCACTIVITY) { (notification) in
+        _ = SwiftEventBus.onMainThread(self, name: EVENT_BUS_END_BIG_SYNCACTIVITY) { (notification) in
             self.saveContentTArray()
         }
     }
-    
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         SwiftEventBus.unregister(self, name: SELECTED_CALENDAR_NOTIFICATION)

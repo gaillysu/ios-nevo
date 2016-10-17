@@ -50,7 +50,7 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
         xAxis.axisLineColor = AppTheme.NEVO_SOLAR_GRAY()
         xAxis.drawLimitLinesBehindDataEnabled = false;
         xAxis.labelPosition = ChartXAxis.LabelPosition.bottom
-        xAxis.labelFont = UIFont(name: "Helvetica-Light", size: 7)!
+        xAxis.labelFont = UIFont(name: "Raleway", size: 7)!
         
         let marker:BalloonMarker = BalloonMarker(color: AppTheme.NEVO_SOLAR_YELLOW(), font: UIFont.systemFont(ofSize: 12.0), insets: UIEdgeInsetsMake(8.0, 8.0, 20.0, 8.0))
         marker.minimumSize = CGSize(width: 80.0, height: 40.0);
@@ -447,6 +447,7 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
         leftAxis.axisMinValue = 0.0;
         leftAxis.gridLineDashLengths = [0.0, 0.0];
         leftAxis.labelTextColor = UIColor.black
+        leftAxis.labelFont = UIFont(name: "Raleway", size: 10)!
         
         //leftAxis.labelCount = 5;
         leftAxis.valueFormatter = NumberFormatter();
