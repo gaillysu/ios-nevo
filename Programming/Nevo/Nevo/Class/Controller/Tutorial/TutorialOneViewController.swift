@@ -41,7 +41,7 @@ class TutorialOneViewController: UIViewController{
     }
     
     @IBAction func activateYourNevoAction(_ sender: AnyObject) {
-        let btEnabled = AppDelegate.getAppDelegate().getMconnectionController().isBluetoothEnabled()
+        let btEnabled = AppDelegate.getAppDelegate().getMconnectionController()!.isBluetoothEnabled()
         if(btEnabled){
             let tutorialThree = TutorialThreeViewController()
             self.navigationController?.pushViewController(tutorialThree, animated: true)

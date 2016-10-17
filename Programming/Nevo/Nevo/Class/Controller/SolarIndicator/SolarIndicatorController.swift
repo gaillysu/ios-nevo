@@ -75,7 +75,9 @@ class SolarIndicatorController: PublicClassController {
 
     override func viewDidAppear(_ animated: Bool) {
         pieChartView.animate(xAxisDuration: 1.4, easingOption: ChartEasingOption.easeOutBack)
+        textCollection.reloadData()
     }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -99,7 +101,7 @@ extension SolarIndicatorController:UICollectionViewDelegate,UICollectionViewData
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SolarInfor_Identifier", for: indexPath)
         cell.backgroundColor = UIColor.white
-        (cell as! SolarInforViewCell).titleLabel.text = onTitle[(indexPath as NSIndexPath).row]
+        (cell as! SolarInforViewCell).updateTitleLabel(onTitle[(indexPath as NSIndexPath).row])
         if indexPath.row == 0 {
             (cell as! SolarInforViewCell).valueLabel.text = String(format: "%dh %dmin", Date().hour,Date().minute)
         }

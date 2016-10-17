@@ -387,9 +387,9 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
                 self.setChartViewLeftAxis(Double(maxValue+7), unitString: " "+NSLocalizedString("hours", comment: ""))
             }
         }
-        
+         
         if sortArray.count == 0 {
-            self.setChartViewLeftAxis(Double(maxValue+7), unitString: " "+NSLocalizedString("hours", comment: ""))
+            self.setChartViewLeftAxis(Double(maxValue+1), unitString: " "+NSLocalizedString("hours", comment: ""))
         }
         
         for i:Int in 0..<sortArray.count {

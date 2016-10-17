@@ -161,233 +161,42 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
         return dbpath;
     }
 
-    // MARK: -AppDelegate SET Function
-    func setRTC() {
-        sendRequest(SetRTCRequest())
-    }
-
-    func SetProfile() {
-        sendRequest(SetProfileRequest())
-    }
-
-    func SetCardio() {
-        sendRequest(SetCardioRequest())
-    }
-
-    func WriteSetting() {
-        sendRequest(WriteSettingRequest())
-    }
-
-    func setGoal(_ goal:Goal) {
-        sendRequest(SetGoalRequest(goal: goal))
-    }
-
-    func setAlarm(_ alarm:[Alarm]) {
-        sendRequest(SetAlarmRequest(alarm:alarm))
-    }
-
-    func setNewAlarm(_ alarm:NewAlarm) {
-        sendRequest(SetNewAlarmRequest(alarm:alarm))
-    }
-
-
-    func SetNortification(_ settingArray:[NotificationSetting]) {
-        XCGLogger.default.debug("SetNortification")
-        sendRequest(SetNortificationRequest(settingArray: settingArray))
-    }
-    /**
-     @ledpattern, define Led light pattern, 0 means off all led, 0xFFFFFF means light on all led( include color and white)
-     0x7FF means light on all white led (bit0~bit10), 0x3F0000 means light on all color led (bit16~bit21)
-     other value, light on the related led
-     @motorOnOff, vibrator true or flase
-     */
-    func SetLedOnOffandVibrator(_ ledpattern:UInt32,  motorOnOff:Bool) {
-        sendRequest(LedLightOnOffNevoRequest(ledpattern: ledpattern, motorOnOff: motorOnOff))
-    }
-
-    func startConnect(_ forceScan:Bool){
-        if forceScan{
-            mConnectionController?.forgetSavedAddress()
-        }
-        mConnectionController?.connect()
-    }
-
-    // MARK: -AppDelegate GET Function
-
-    func getMconnectionController()->ConnectionControllerImpl{
-        return mConnectionController!
-    }
-
-    func  getDailyTrackerInfo(){
-        sendRequest(ReadDailyTrackerInfo())
-    }
-
-    func  getDailyTracker(_ trackerno:UInt8){
-        sendRequest(ReadDailyTracker(trackerno:trackerno))
-    }
-
-    func getGoal(){
-        sendRequest(GetStepsGoalRequest())
-    }
-
-
-    func ReadBatteryLevel() {
-        sendRequest(ReadBatteryLevelNevoRequest())
+    func getMconnectionController()->ConnectionControllerImpl?{
+        return mConnectionController
     }
     
-    func getWatchName() {
-        sendRequest(GetWatchName())
-    }
-
-    // MARK: -AppDelegate syncActivityData
-    /**
-     This function will syncrhonise activity data with the watch.
-     It is a long process and hence shouldn't be done too often, so we save the date of previous sync.
-     The watch should be emptied after all data have been saved.
-     */
-    func syncActivityData() {
-
-        if( Date().timeIntervalSince1970-lastSync > SYNC_INTERVAL) {
-            //We haven't synched for a while, let's sync now !
-            XCGLogger.default.debug("*** Sync started ! ***")
-            self.getDailyTrackerInfo()
-            lastSync = Date().timeIntervalSince1970
-            if(isConnected()) {
-                let banner = MEDBanner(title: NSLocalizedString("syncing_data", comment: ""), subtitle: nil, image: nil, backgroundColor: AppTheme.NEVO_SOLAR_YELLOW())
-                banner.dismissesOnTap = true
-                banner.show(duration: 1.5)
-            }
-        }
-    }
-
-    /**
-     When the sync process is finished, le't refresh the date of sync
-     */
-    func syncFinished() {
-        let banner = MEDBanner(title: NSLocalizedString("sync_finished", comment: ""), subtitle: nil, image: nil, backgroundColor: UIColor(rgba:"#0dac67"))
-        banner.dismissesOnTap = true
-        banner.show(duration: 1.5)
-        lastSync = Date().timeIntervalSince1970
-        let userDefaults = UserDefaults.standard;
-        userDefaults.set(Date().timeIntervalSince1970,forKey:LAST_SYNC_DATE_KEY)
-        userDefaults.synchronize()
-    }
-
-    // MARK: - UIAlertViewDelegate
-    /**
-    See UIAlertViewDelegate
-    */
-    func alertView(_ alertView: UIAlertView, clickedButtonAt buttonIndex: Int){
-        if(alertView.tag == alertUpdateTag) {
-            if(buttonIndex == 1) {
-                let tabVC:UITabBarController = self.window?.rootViewController as! UITabBarController
-                let otaCont:NevoOtaViewController = NevoOtaViewController()
-                let navigation:UINavigationController = UINavigationController(rootViewController: otaCont)
-                tabVC.present(navigation, animated: true, completion: nil)
-            }
-        }else{
-            disConnectAlert = nil
-        }
-
-    }
-
-    // MARK: - ConnectionController protocol
-    func  getFirmwareVersion() -> NSString{
-        return isConnected() ? self.mConnectionController!.getFirmwareVersion() : NSString()
-    }
-
-    func  getSoftwareVersion() -> NSString{
-        return isConnected() ? self.mConnectionController!.getSoftwareVersion() : NSString()
-    }
-
-    func getWatchNameInfo() -> [String:Int] {
-        return [watchName:watchID];
+    func setWactnID(_ id:Int) {
+        watchID = id
     }
     
-    func getWatchModel() -> [String:Int] {
-        return [watchModel:watchModelNumber];
+    func getWactnID()->Int {
+         return watchID
     }
     
-    func setWatchInfo(_ id:Int,model:Int) {
-        //1-Nevo,2-Nevo Solar,3-Lunar,0xff-Nevo
-        switch id {
-        case 1:
-            watchID = 1
-            watchName = "Nevo"
-            break
-        case 2:
-            watchID = 2
-            watchName = "Nevo Solar"
-            break
-        case 3:
-            watchID = 3
-            watchName = "Lunar"
-            break
-        default:
-            watchID = 1
-            watchName = "Nevo"
-            break
-        }
-        
-        //1 - Paris,2 - New York,3 - ShangHai
-        switch model {
-        case 1:
-            watchModelNumber = 1
-            watchModel = "Paris"
-            break
-        case 2:
-            watchModelNumber = 2
-            watchModel = "New York"
-            break
-        case 3:
-            watchModelNumber = 3
-            watchModel = "ShangHai"
-            break
-        default:
-            watchModelNumber = 1
-            watchModel = "Paris"
-            break
-        }
+    func setWatchName(_ name:String) {
+        watchName = name
     }
     
-    func connect() {
-        self.mConnectionController?.connect()
+    func getWatchName() ->String {
+        return watchName;
     }
-
-    func disconnect() {
-        self.mConnectionController?.disconnect()
+    
+    func setWatchModelNumber(_ number:Int) {
+        watchModelNumber = number
     }
-
-    func forgetSavedAddress() {
-        self.mConnectionController?.forgetSavedAddress()
+    
+    func getWatchModelNumber()->Int {
+        return watchModelNumber
     }
-
-    func hasSavedAddress()->Bool {
-        return self.mConnectionController!.hasSavedAddress()
+    
+    func setWatchModel(_ model:String) {
+        watchModel = model;
     }
-
-    func restoreSavedAddress() {
-        self.mConnectionController?.restoreSavedAddress()
+    
+    func getWatchModel() -> String {
+        return watchModel
     }
-
-    func isConnected() -> Bool{
-        return mConnectionController!.isConnected()
-
-    }
-
-    func sendRequest(_ r:Request) {
-        if(isConnected()){
-            SyncQueue.sharedInstance.post( { (Void) -> (Void) in
-
-                self.mConnectionController?.sendRequest(r)
-
-            } )
-        }else {
-            //tell caller
-            SwiftEventBus.post(EVENT_BUS_CONNECTION_STATE_CHANGED_KEY, sender:false as AnyObject)
-        }
-    }
-
+    
     // MARK: - ConnectionControllerDelegate
     /**
      Called when a packet is received from the device

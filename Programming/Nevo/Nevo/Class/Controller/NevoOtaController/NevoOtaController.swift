@@ -14,7 +14,7 @@ import iOSDFULibrary
 
 class NevoOtaController : NSObject,ConnectionControllerDelegate {
     var mDelegate : NevoOtaControllerDelegate?
-    let mConnectionController : ConnectionController = AppDelegate.getAppDelegate().getMconnectionController()
+    let mConnectionController : ConnectionController = AppDelegate.getAppDelegate().getMconnectionController()!
     
     var dfuFirmwareType : DfuFirmwareTypes = DfuFirmwareTypes.application
     fileprivate var mPacketsbuffer:[Data]=[]
