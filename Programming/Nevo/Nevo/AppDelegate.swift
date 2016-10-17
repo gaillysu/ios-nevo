@@ -46,6 +46,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
     fileprivate var watchName:String = "Nevo"
     fileprivate var watchModelNumber:Int = 1
     fileprivate var watchModel:String = "Paris"
+    fileprivate var isSync:Bool = true; // syc state
 
     let dbQueue:FMDatabaseQueue = FMDatabaseQueue(path: AppDelegate.dbPath())
     let network = NetworkReachabilityManager(host: "drone.karljohnchow.com")
@@ -161,6 +162,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
         return dbpath;
     }
 
+    func isSyncState()-> Bool {
+        return isSync
+    }
+    
     func getMconnectionController()->ConnectionControllerImpl?{
         return mConnectionController
     }
@@ -490,7 +495,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                     }
                     self.getDailyTracker(currentDay)
                 }else {
-                    currentDay = 0
+                    //currentDay = 0
+                    isSync = false
                     self.syncFinished()
                     SwiftEventBus.post(EVENT_BUS_END_BIG_SYNCACTIVITY, sender:nil)
                 }
@@ -540,6 +546,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                 banner.dismissesOnTap = true
                 banner.show(duration: 1.5)
             }
+            
+            isSync = false
 
             ConnectionManager.sharedInstance.checkConnectSendNotification(ConnectionManager.Const.connectionStatus.disconnected)
             SyncQueue.sharedInstance.clear()

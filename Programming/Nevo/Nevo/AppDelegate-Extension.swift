@@ -12,6 +12,7 @@ import SwiftEventBus
 
 // MARK: - LAUNCH LOGIC
 extension AppDelegate {
+    
     // MARK: -AppDelegate SET Function
     func setRTC() {
         sendRequest(SetRTCRequest())
@@ -65,6 +66,9 @@ extension AppDelegate {
     }
     
     // MARK: -AppDelegate GET Function
+    func getTodayTracker() {
+        sendRequest(ReadDailyTracker(trackerno:0))
+    }
     
     func  getDailyTrackerInfo(){
         sendRequest(ReadDailyTrackerInfo())

@@ -23,11 +23,7 @@ class SolarInforViewCell: UICollectionViewCell {
         let contentDict:[String:AnyObject] = [NSFontAttributeName:titleLabel.font]
         titleLabel.text = labelText.capitalized(with: Locale.current)
         let statusLabelSize = labelText.size(attributes: contentDict)
-        if statusLabelSize.width<111 {
-            labelWidth.constant = 115
-        }else{
-            labelWidth.constant = statusLabelSize.width+5;
-        }
+        labelWidth.constant = 115
         layoutIfNeeded()
     }
 }

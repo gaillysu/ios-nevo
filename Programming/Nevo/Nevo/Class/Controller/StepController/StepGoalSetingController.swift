@@ -46,6 +46,9 @@ class StepGoalSetingController: PublicClassController,ButtonManagerCallBack,Cloc
         super.viewDidDisappear(animated)
         SwiftEventBus.unregister(self, name: SELECTED_CALENDAR_NOTIFICATION)
         SwiftEventBus.unregister(self, name: EVENT_BUS_BEGIN_SMALL_SYNCACTIVITY)
+        SwiftEventBus.unregister(self, name: EVENT_BUS_END_BIG_SYNCACTIVITY)
+        SwiftEventBus.unregister(self, name: EVENT_BUS_RAWPACKET_DATA_KEY)
+        SwiftEventBus.unregister(self, name: EVENT_BUS_CONNECTION_STATE_CHANGED_KEY)
     }
     
     override func viewDidLayoutSubviews() {
@@ -71,7 +74,24 @@ class StepGoalSetingController: PublicClassController,ButtonManagerCallBack,Cloc
         
         saveContentTArray(Date().beginningOfDay.timeIntervalSince1970)
         
-        SwiftEventBus.onMainThread(self, name: EVENT_BUS_BEGIN_SMALL_SYNCACTIVITY) { (notification) in
+        if(!AppDelegate.getAppDelegate().hasSavedAddress()) {
+            let tutorialOne:TutorialOneViewController = TutorialOneViewController()
+            let nav:UINavigationController = UINavigationController(rootViewController: tutorialOne)
+            nav.isNavigationBarHidden = true
+            self.present(nav, animated: true, completion: nil)
+        }else{
+            AppDelegate.getAppDelegate().startConnect(false)
+        }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        if AppDelegate.getAppDelegate().isSyncState() {
+            AppDelegate.getAppDelegate().getTodayTracker()
+        }
+        
+        _ = SwiftEventBus.onMainThread(self, name: EVENT_BUS_BEGIN_SMALL_SYNCACTIVITY) { (notification) in
             let dict:[String:AnyObject] = notification.object as! [String:AnyObject]
             let dailySteps:Int = dict["STEPS"] as! Int
             self.contentTArray.replaceSubrange(Range(1..<2), with: ["\(dailySteps)"])
@@ -81,22 +101,18 @@ class StepGoalSetingController: PublicClassController,ButtonManagerCallBack,Cloc
             self.collectionView.reloadData()
         }
         
-        SwiftEventBus.onMainThread(self, name: EVENT_BUS_END_BIG_SYNCACTIVITY) { (notification) in
-            
-        }
-        
-        SwiftEventBus.onMainThread(self, name: EVENT_BUS_END_BIG_SYNCACTIVITY) { (notification) in
+        _ = SwiftEventBus.onMainThread(self, name: EVENT_BUS_END_BIG_SYNCACTIVITY) { (notification) in
             
             self.saveContentTArray(Date().beginningOfDay.timeIntervalSince1970)
         }
         
-        SwiftEventBus.onMainThread(self, name: SELECTED_CALENDAR_NOTIFICATION) { (notification) in
+        _ = SwiftEventBus.onMainThread(self, name: SELECTED_CALENDAR_NOTIFICATION) { (notification) in
             let userinfo:Date = notification.userInfo!["selectedDate"] as! Date
             self.saveContentTArray(userinfo.beginningOfDay.timeIntervalSince1970)
         }
         
         //RAWPACKET DATA
-        SwiftEventBus.onMainThread(self, name: EVENT_BUS_RAWPACKET_DATA_KEY) { (notification) in
+        _ = SwiftEventBus.onMainThread(self, name: EVENT_BUS_RAWPACKET_DATA_KEY) { (notification) in
             let packet = notification.object as! NevoPacket
             //Do nothing
             if packet.getHeader() == GetStepsGoalRequest.HEADER(){
@@ -112,20 +128,10 @@ class StepGoalSetingController: PublicClassController,ButtonManagerCallBack,Cloc
             }
         }
         
-        SwiftEventBus.onMainThread(self, name: EVENT_BUS_CONNECTION_STATE_CHANGED_KEY) { (notification) in
+        _ = SwiftEventBus.onMainThread(self, name: EVENT_BUS_CONNECTION_STATE_CHANGED_KEY) { (notification) in
             self.checkConnection()
         }
-        
-        if(!AppDelegate.getAppDelegate().hasSavedAddress()) {
-            let tutorialOne:TutorialOneViewController = TutorialOneViewController()
-            let nav:UINavigationController = UINavigationController(rootViewController: tutorialOne)
-            nav.isNavigationBarHidden = true
-            self.present(nav, animated: true, completion: nil)
-        }else{
-            AppDelegate.getAppDelegate().startConnect(false)
-        }
     }
-    
     /**
      GET Archiver "contentTArray"
      */
