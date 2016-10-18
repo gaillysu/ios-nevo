@@ -27,7 +27,7 @@ class AlarmClockController: UITableViewController,AddAlarmDelegate {
         //self.navigationItem.leftBarButtonItem = self.editButtonItem()
         self.tableView.sectionFooterHeight = 20
         self.tableView.allowsSelectionDuringEditing = true;
-        self.tableView.separatorStyle = UITableViewCellSeparatorStyle.none
+        self.tableView.separatorStyle = UITableViewCellSeparatorStyle.singleLine
         self.tableView.register(UINib(nibName: "AlarmClockVCell",bundle:nil), forCellReuseIdentifier: "alarmCell")
         
         if !AppTheme.isTargetLunaR_OR_Nevo() {
