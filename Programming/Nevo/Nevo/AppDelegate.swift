@@ -49,6 +49,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
     fileprivate var watchModel:String = "Paris"
     fileprivate var isSync:Bool = true; // syc state
     fileprivate var getWacthNameTimer:Timer?
+    
+    var isFirsttimeLaunch: Bool {
+        get {
+            let result = UserDefaults.standard.bool(forKey: "kIsNotFirstTimeLaunch")
+            UserDefaults.standard.set(true, forKey: "kIsNotFirstTimeLaunch")
+            return !result
+        }
+    }
 
     let dbQueue:FMDatabaseQueue = FMDatabaseQueue(path: AppDelegate.dbPath())
     let network = NetworkReachabilityManager(host: "drone.karljohnchow.com")

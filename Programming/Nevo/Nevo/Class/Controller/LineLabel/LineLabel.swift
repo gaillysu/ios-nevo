@@ -36,7 +36,7 @@ class LineLabel: UILabel {
         }
         
         ctx?.setStrokeColor(UIColor.lightGray.cgColor)
-        ctx?.setLineWidth(2);  //线宽
+        ctx?.setLineWidth(0);  //线宽
         ctx?.strokePath()
     }
 

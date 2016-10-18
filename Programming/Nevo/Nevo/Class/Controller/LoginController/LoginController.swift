@@ -227,17 +227,10 @@ class LoginController: UIViewController,UITextFieldDelegate {
     }
 
     @IBAction func skipButtonClick(_ sender: AnyObject) {
-        let hasWatch:Bool = AppDelegate.getAppDelegate().hasSavedAddress()
-        if hasWatch {
-            
-            UIApplication.shared.keyWindow?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
-        } else {
-
-            let naviController:UINavigationController = UINavigationController(rootViewController: TutorialOneViewController())
-            naviController.isNavigationBarHidden = true
-            
-            UIApplication.shared.keyWindow?.rootViewController = naviController
-        }
+        let naviController:UINavigationController = UINavigationController(rootViewController: TutorialOneViewController())
+        naviController.isNavigationBarHidden = true
+        
+        UIApplication.shared.keyWindow?.rootViewController = naviController
     }
     
 }
