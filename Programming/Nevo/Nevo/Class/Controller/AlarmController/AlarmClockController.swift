@@ -287,7 +287,17 @@ class AlarmClockController: UITableViewController,AddAlarmDelegate {
     }
 
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 60
+        return 50.0
+    }
+    
+    override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        if let headerView = view as? LineLabel {
+            if section == 0 {
+                headerView.addLineView(position: .bottom)
+            } else {
+                headerView.addLineView(position: .top)
+            }
+        }
     }
     
     // MARK: - UITableViewDataSource
@@ -340,7 +350,7 @@ class AlarmClockController: UITableViewController,AddAlarmDelegate {
             endCell.alarmIn.text = NSLocalizedString("alarm_disabled", comment: "")
         }else{
             if alarmModel!.dayOfWeek != Date().weekday {
-                endCell.alarmIn.text = NSLocalizedString("alarm_on", comment: "")+"\(dayArray[alarmModel!.dayOfWeek-1])"
+                endCell.alarmIn.text = NSLocalizedString("alarm_on", comment: "")+NSLocalizedString(dayArray[alarmModel!.dayOfWeek-1], comment: "")
             }else{
                 if date.hour>=Date().hour && date.minute>Date().minute {
                     let nowHour:Int = abs(date.hour-Date().hour)
@@ -353,6 +363,10 @@ class AlarmClockController: UITableViewController,AddAlarmDelegate {
         }
         endCell.dateLabel.text = stringFromDate(date)
         endCell.titleLabel.text = alarmModel!.label
+        if alarmModel?.label.characters.count == 0 {
+            endCell.titleLabel.text = NSLocalizedString("alarmTitle", comment: "")
+        }
+        
         endCell.alarmSwicth.tag = (indexPath as NSIndexPath).row
         endCell.alarmSwicth.isOn = alarmModel!.status
         if (indexPath as NSIndexPath).section == 0 {
