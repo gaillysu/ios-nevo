@@ -25,6 +25,8 @@ class AddAlarmTableViewCell: UITableViewCell {
             datePicker.backgroundColor = UIColor.getGreyColor()
             datePicker.tintColor = UIColor.white
             datePicker.setValue(UIColor.white, forKey: "textColor")
+        }else{
+            datePicker.backgroundColor = UIColor.clear
         }
     }
 

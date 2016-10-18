@@ -40,14 +40,19 @@ class RepeatViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = NSLocalizedString("Repeat", comment: "")
-        self.view.backgroundColor = UIColor.white
-        tableView.backgroundColor = UIColor.white
+        
         tableView.separatorColor = UIColor.getLightBaseColor()
         tableView.separatorStyle = UITableViewCellSeparatorStyle.singleLine
         tableView.tableFooterView = UIView()
         tableView.contentInset = UIEdgeInsets(top: 30, left: 0, bottom: 0, right: 0)
         
         tableView.register(UINib(nibName: "RepeatViewCell",bundle: nil), forCellReuseIdentifier: "RepeatView_Identifier")
+        if !AppTheme.isTargetLunaR_OR_Nevo() {
+            self.view.backgroundColor = UIColor.white
+            tableView.backgroundColor = UIColor.white
+        }else{
+            
+        }
     }
 
     override func didReceiveMemoryWarning() {
