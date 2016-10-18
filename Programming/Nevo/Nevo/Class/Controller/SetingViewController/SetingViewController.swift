@@ -185,8 +185,6 @@ class SetingViewController: UIViewController,ButtonManagerCallBack,UIAlertViewDe
                     let tutrorial:TutorialOneViewController = TutorialOneViewController()
                     let nav:UINavigationController = UINavigationController(rootViewController: tutrorial)
                     nav.isNavigationBarHidden = true
-//                    self.present(nav, animated: true, completion: nil)
-                    
                     UIApplication.shared.keyWindow?.rootViewController = nav
                 })
                 actionSheet.addAction(alertAction2)
@@ -322,7 +320,14 @@ class SetingViewController: UIViewController,ButtonManagerCallBack,UIAlertViewDe
         if (offset < minDelay) {
             return
         }
-        AppDelegate.getAppDelegate().sendRequest(FindWatchRequest())
+        
+        //NSLog("FirmwareVersion:\(AppDelegate.getAppDelegate().getMconnectionController()!.getFirmwareVersion()),SoftwareVersion:\(AppDelegate.getAppDelegate().getMconnectionController()!.getSoftwareVersion())")
+        if AppDelegate.getAppDelegate().getMconnectionController()!.getSoftwareVersion().integerValue > 25 {
+            AppDelegate.getAppDelegate().sendRequest(FindWatchRequest())
+        }else{
+            AppDelegate.getAppDelegate().sendRequest(LedLightOnOffNevoRequest(ledpattern: 0x3F0000, motorOnOff: true))
+        }
+        
         //SetLedOnOffandVibrator(0x3F0000, motorOnOff: true)
         mFindMydeviceDatetime = Date()
     }

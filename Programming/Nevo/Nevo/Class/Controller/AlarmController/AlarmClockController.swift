@@ -23,8 +23,8 @@ class AlarmClockController: UITableViewController,AddAlarmDelegate {
         
         initValue()
         AppDelegate.getAppDelegate().startConnect(false)
-        self.editButtonItem.tintColor = UIColor.getBaseColor()
-        //self.navigationItem.leftBarButtonItem = self.editButtonItem()
+
+        self.navigationItem.leftBarButtonItem = self.editButtonItem
         self.tableView.sectionFooterHeight = 20
         self.tableView.allowsSelectionDuringEditing = true;
         self.tableView.separatorStyle = UITableViewCellSeparatorStyle.singleLine
@@ -444,6 +444,7 @@ class AlarmClockController: UITableViewController,AddAlarmDelegate {
             }else{
                 alarmModel = mWakeAlarmArray[(indexPath as NSIndexPath).row] as? UserAlarm
             }
+            self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.plain, target: nil, action: nil)
 
             let addAlarm:NewAddAlarmController = NewAddAlarmController()
             addAlarm.title = NSLocalizedString("edit_alarm", comment: "")
