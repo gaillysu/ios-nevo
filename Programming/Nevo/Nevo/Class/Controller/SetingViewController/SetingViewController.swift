@@ -283,7 +283,7 @@ class SetingViewController: UIViewController,ButtonManagerCallBack,UIAlertViewDe
                 
                 let userprofile:UserProfile = user[0] as! UserProfile
                 (cell as! SetingInfoCell).emailLabel.text = userprofile.email
-                (cell as! SetingInfoCell).userName.text = userprofile.first_name + userprofile.last_name
+                (cell as! SetingInfoCell).userName.text = "\(userprofile.first_name) \(userprofile.last_name)"
                 
                 return cell
             }else{

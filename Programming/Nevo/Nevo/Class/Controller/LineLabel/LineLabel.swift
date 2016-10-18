@@ -20,7 +20,7 @@ class LineLabel: UILabel {
     // An empty implementation adversely affects performance during animation.
     override init(frame: CGRect) {
         super.init(frame: frame)
-        font = UIFont(name: "HelveticaNeue-Bold", size: 17)!
+        font = UIFont(name: "HelveticaNeue", size: 17)!
     }
     
     required init?(coder aDecoder: NSCoder) {
