@@ -19,7 +19,7 @@ protocol Request {
     NOTE : The target profile 's Control characteristic can be different than the one used to initiate the NevoBT
     But the Callback Characteristic should be the same. Or the packet will be rejected for incompatibility.
     */
-    func getTargetProfile() -> Profile
+    func getTargetProfile() -> BluetoothProfile
     
     /**
     Returns the raw packet to be sent via bluetooth

@@ -15,7 +15,7 @@ It is used to send OTA Packets while doing OTA
 This Profile doesn't expect responses
 🚧🚧🚧Backbone Class : Modify with care🚧🚧🚧
 */
-class NevoOTAPacketProfile : Profile {
+class NevoOTAPacketProfile : BluetoothProfile {
     
     var CONTROL_SERVICE:CBUUID {
         return CBUUID(string: "00001530-1212-EFDE-1523-785FEABCD123");

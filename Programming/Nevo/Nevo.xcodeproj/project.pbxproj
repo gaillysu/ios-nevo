@@ -616,7 +616,7 @@
 		00D4748C1D586D1600E2447E /* NevoBTimpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD8F9611A6E00E800F01014 /* NevoBTimpl.swift */; };
 		00D4748D1D586D1600E2447E /* NevoBT.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD8F9781A6E05F700F01014 /* NevoBT.swift */; };
 		00D4748E1D586D1600E2447E /* RawPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD8F98C1A6E2D6E00F01014 /* RawPacket.swift */; };
-		00D4748F1D586D1600E2447E /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD8F98E1A6E2EE000F01014 /* Profile.swift */; };
+		00D4748F1D586D1600E2447E /* BluetoothProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD8F98E1A6E2EE000F01014 /* BluetoothProfile.swift */; };
 		00E2BDE21B16CCD0009C757E /* MBProgressHUD+MJ.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E2BDDE1B16CCD0009C757E /* MBProgressHUD+MJ.m */; };
 		00E2BDE31B16CCD0009C757E /* MBProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 00E2BDDF1B16CCD0009C757E /* MBProgressHUD.bundle */; };
 		00E2BDE41B16CCD0009C757E /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E2BDE11B16CCD0009C757E /* MBProgressHUD.m */; };
@@ -672,7 +672,7 @@
 		9AD8F9791A6E05F700F01014 /* NevoBT.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD8F9781A6E05F700F01014 /* NevoBT.swift */; };
 		9AD8F9841A6E2C8E00F01014 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD8F9821A6E2C8E00F01014 /* Request.swift */; };
 		9AD8F98D1A6E2D6E00F01014 /* RawPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD8F98C1A6E2D6E00F01014 /* RawPacket.swift */; };
-		9AD8F98F1A6E2EE000F01014 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD8F98E1A6E2EE000F01014 /* Profile.swift */; };
+		9AD8F98F1A6E2EE000F01014 /* BluetoothProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD8F98E1A6E2EE000F01014 /* BluetoothProfile.swift */; };
 		9E98FB291C463A3B00BAB700 /* TutorialOneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E98FB281C463A3B00BAB700 /* TutorialOneViewController.swift */; };
 		9E98FB2B1C463BB200BAB700 /* TutorialTwoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E98FB2A1C463BB200BAB700 /* TutorialTwoViewController.swift */; };
 		9E98FB2D1C463D2A00BAB700 /* TutorialThreeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E98FB2C1C463D2A00BAB700 /* TutorialThreeViewController.swift */; };
@@ -686,6 +686,8 @@
 		CB0566CC1DB4C7AC0091EC53 /* HourlyIntData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB0566CB1DB4C7AC0091EC53 /* HourlyIntData.swift */; };
 		CB0566D01DB4CF4C0091EC53 /* SleepRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB0566CF1DB4CF4C0091EC53 /* SleepRealm.swift */; };
 		CB0566D21DB4D43F0091EC53 /* GoalPresets.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB0566D11DB4D43F0091EC53 /* GoalPresets.swift */; };
+		CB0566D41DB5BAAE0091EC53 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB0566D31DB5BAAE0091EC53 /* Profile.swift */; };
+		CBAE557F1DB6013800EE35BD /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBAE557E1DB6013800EE35BD /* Notifications.swift */; };
 		F5A58EFCE1AF535DD4D667CB /* Pods_LunaRTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA6756A2314165C2C74201E8 /* Pods_LunaRTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -1168,7 +1170,7 @@
 		9AD8F9781A6E05F700F01014 /* NevoBT.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NevoBT.swift; path = Frameworks/NevoBT/NevoBT.swift; sourceTree = "<group>"; };
 		9AD8F9821A6E2C8E00F01014 /* Request.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Request.swift; path = Frameworks/NevoBT/Request.swift; sourceTree = "<group>"; };
 		9AD8F98C1A6E2D6E00F01014 /* RawPacket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RawPacket.swift; path = Frameworks/NevoBT/RawPacket.swift; sourceTree = "<group>"; };
-		9AD8F98E1A6E2EE000F01014 /* Profile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Profile.swift; path = Frameworks/NevoBT/Profile.swift; sourceTree = "<group>"; };
+		9AD8F98E1A6E2EE000F01014 /* BluetoothProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BluetoothProfile.swift; path = Frameworks/NevoBT/BluetoothProfile.swift; sourceTree = "<group>"; };
 		9E98FB281C463A3B00BAB700 /* TutorialOneViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialOneViewController.swift; sourceTree = "<group>"; };
 		9E98FB2A1C463BB200BAB700 /* TutorialTwoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialTwoViewController.swift; sourceTree = "<group>"; };
 		9E98FB2C1C463D2A00BAB700 /* TutorialThreeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialThreeViewController.swift; sourceTree = "<group>"; };
@@ -1183,6 +1185,8 @@
 		CB0566CB1DB4C7AC0091EC53 /* HourlyIntData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HourlyIntData.swift; sourceTree = "<group>"; };
 		CB0566CF1DB4CF4C0091EC53 /* SleepRealm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SleepRealm.swift; sourceTree = "<group>"; };
 		CB0566D11DB4D43F0091EC53 /* GoalPresets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoalPresets.swift; sourceTree = "<group>"; };
+		CB0566D31DB5BAAE0091EC53 /* Profile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
+		CBAE557E1DB6013800EE35BD /* Notifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
 		CBB9BF1C2FA9FD4C9B4E48BC /* Pods-LunaRTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LunaRTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LunaRTests/Pods-LunaRTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -1887,6 +1891,8 @@
 				CB0566C91DB4BECE0091EC53 /* Migratable.swift */,
 				CB0566CB1DB4C7AC0091EC53 /* HourlyIntData.swift */,
 				CB0566D11DB4D43F0091EC53 /* GoalPresets.swift */,
+				CB0566D31DB5BAAE0091EC53 /* Profile.swift */,
+				CBAE557E1DB6013800EE35BD /* Notifications.swift */,
 			);
 			path = ModelTable;
 			sourceTree = "<group>";
@@ -2294,7 +2300,7 @@
 				9AD8F9611A6E00E800F01014 /* NevoBTimpl.swift */,
 				9AD8F9781A6E05F700F01014 /* NevoBT.swift */,
 				9AD8F98C1A6E2D6E00F01014 /* RawPacket.swift */,
-				9AD8F98E1A6E2EE000F01014 /* Profile.swift */,
+				9AD8F98E1A6E2EE000F01014 /* BluetoothProfile.swift */,
 			);
 			name = NevoBT;
 			sourceTree = "<group>";
@@ -2473,7 +2479,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0710;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = Nevo;
 				TargetAttributes = {
 					00EFE0491D227D5F0066C905 = {
@@ -3238,7 +3244,7 @@
 				00D4748C1D586D1600E2447E /* NevoBTimpl.swift in Sources */,
 				00D4748D1D586D1600E2447E /* NevoBT.swift in Sources */,
 				00D4748E1D586D1600E2447E /* RawPacket.swift in Sources */,
-				00D4748F1D586D1600E2447E /* Profile.swift in Sources */,
+				00D4748F1D586D1600E2447E /* BluetoothProfile.swift in Sources */,
 				00D4742A1D586CCA00E2447E /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3412,7 +3418,7 @@
 				00AF8D011D224CFA009047AC /* SetRTCRequest.swift in Sources */,
 				00F0C3531C8993DD005888A7 /* NewAddAlarmController.swift in Sources */,
 				0084CB161D9BC68A0047DF39 /* Double+Extension.swift in Sources */,
-				9AD8F98F1A6E2EE000F01014 /* Profile.swift in Sources */,
+				9AD8F98F1A6E2EE000F01014 /* BluetoothProfile.swift in Sources */,
 				00AF8CFD1D224CFA009047AC /* SetGoalRequest.swift in Sources */,
 				0089B0B31D6BFF250041148A /* SetingView.swift in Sources */,
 				00AF8CCE1D224CFA009047AC /* Goal.swift in Sources */,
@@ -3444,6 +3450,7 @@
 				00AF8CDD1D224CFA009047AC /* BalloonMarker.swift in Sources */,
 				00AF8D031D224CFA009047AC /* WriteSettingRequest.swift in Sources */,
 				007865F91D91006F00F33AEA /* Duration.swift in Sources */,
+				CB0566D41DB5BAAE0091EC53 /* Profile.swift in Sources */,
 				0050D6971C28E1CD004F6F80 /* AddAlarmView.swift in Sources */,
 				00F0C34B1C893EE6005888A7 /* AlarmTypeController.swift in Sources */,
 				0008EE8C1D93C39A005E127C /* M13CheckboxPathPresets.swift in Sources */,
@@ -3454,6 +3461,7 @@
 				665E331E1DADCD8A00D0E36D /* MEDBanner.swift in Sources */,
 				9E98FB2B1C463BB200BAB700 /* TutorialTwoViewController.swift in Sources */,
 				0050D5FE1C28E0DB004F6F80 /* NotificationView.swift in Sources */,
+				CBAE557F1DB6013800EE35BD /* Notifications.swift in Sources */,
 				9A2D6C3E1A9C71E500591BDC /* NevoHK.swift in Sources */,
 				0050D6121C28E0DB004F6F80 /* PresetView.swift in Sources */,
 				0050D6951C28E1CD004F6F80 /* AddAlarmTableViewCell.swift in Sources */,
@@ -3767,6 +3775,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 1215057C1EF17F735A5EFDD9 /* Pods-LunaR.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -3795,6 +3804,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 57C68BE0457DB1BFF58A2389 /* Pods-LunaR.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -3896,6 +3906,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -3905,8 +3916,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: MED Enterprises Limited (WEGPWR9LDA)";
@@ -3916,6 +3929,7 @@
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -3942,6 +3956,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -3951,8 +3966,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: MED Enterprises Limited (WEGPWR9LDA)";
@@ -3961,6 +3978,7 @@
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -3971,6 +3989,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PROVISIONING_PROFILE = "1e4a840c-f839-4957-9051-5736de9e653b";
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 3.0;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -3980,6 +3999,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 337909E3A1733589971A3696 /* Pods-Nevo.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = Nevo/Nevo.entitlements;
@@ -4009,6 +4029,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 84E3C5A18963C1F2BFFF61CB /* Pods-Nevo.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = Nevo/Nevo.entitlements;

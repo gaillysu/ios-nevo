@@ -14,7 +14,7 @@ A Profile is a set of GATT values that defines a device
 🚧🚧🚧Backbone Class : Modify with care🚧🚧🚧
 */
 
-protocol Profile {
+protocol BluetoothProfile {
     /**
     The control Service is a GATT service that contains several charactersitics
     */

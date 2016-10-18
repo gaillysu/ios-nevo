@@ -26,7 +26,7 @@ class SetOTAModeRequest : Request {
     
     let values :[UInt8] = [0x00,0x72,0xA0,0x8A,0x7D,0xDE,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
     let values2 :[UInt8] = [0xFF,0x72,0x00,0x00,0x00,0x00,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-    func getTargetProfile() -> Profile {
+    func getTargetProfile() -> BluetoothProfile {
         return NevoOTAModeProfile()
     }
     
@@ -44,7 +44,7 @@ class StartOTARequest: Request {
     
     let values :[UInt8] = [DfuOperations.start_DFU_REQUEST.rawValue,DfuFirmwareTypes.application.rawValue]
     
-    func getTargetProfile() -> Profile {
+    func getTargetProfile() -> BluetoothProfile {
         return NevoOTAControllerProfile()
     }
     
@@ -60,7 +60,7 @@ class StartOTAOldRequest: Request {
     
     let values :[UInt8] = [DfuOperations.start_DFU_REQUEST.rawValue,DfuFirmwareTypes.application.rawValue]
     
-    func getTargetProfile() -> Profile {
+    func getTargetProfile() -> BluetoothProfile {
         return NevoOTAControllerProfile()
     }
     
@@ -80,7 +80,7 @@ class writeFileSizeRequest: Request {
     {
         mFilelength = filelength
     }
-    func getTargetProfile() -> Profile {
+    func getTargetProfile() -> BluetoothProfile {
         return NevoOTAPacketProfile()
     }
     
@@ -101,7 +101,7 @@ class writeFileSizeOldRequest: Request {
     {
         mFilelength = filelength
     }
-    func getTargetProfile() -> Profile {
+    func getTargetProfile() -> BluetoothProfile {
         return NevoOTAPacketProfile()
     }
     
@@ -120,7 +120,7 @@ class ResetSystemRequest:Request {
     
     let values :[UInt8] = [DfuOperations.reset_SYSTEM.rawValue]
     
-    func getTargetProfile() -> Profile {
+    func getTargetProfile() -> BluetoothProfile {
         return NevoOTAControllerProfile()
     }
     
@@ -136,7 +136,7 @@ class EnablePacketNotifyRequest:Request {
     
     let values :[UInt8] = [DfuOperations.packet_RECEIPT_NOTIFICATION_REQUEST.rawValue, UInt8(enumPacketOption.packets_NOTIFICATION_INTERVAL.rawValue),0]
     
-    func getTargetProfile() -> Profile {
+    func getTargetProfile() -> BluetoothProfile {
         return NevoOTAControllerProfile()
     }
     
@@ -152,7 +152,7 @@ class ReceiveFirmwareImageRequest:Request {
     
     let values :[UInt8] = [DfuOperations.receive_FIRMWARE_IMAGE_REQUEST.rawValue]
     
-    func getTargetProfile() -> Profile {
+    func getTargetProfile() -> BluetoothProfile {
         return NevoOTAControllerProfile()
     }
     
@@ -168,7 +168,7 @@ class ValidateFirmwareRequest:Request {
     
     let values :[UInt8] = [DfuOperations.validate_FIRMWARE_REQUEST.rawValue]
     
-    func getTargetProfile() -> Profile {
+    func getTargetProfile() -> BluetoothProfile {
         return NevoOTAControllerProfile()
     }
     
@@ -184,7 +184,7 @@ class ActivateAndResetRequest:Request {
     
     let values :[UInt8] = [DfuOperations.activate_AND_RESET_REQUEST.rawValue]
     
-    func getTargetProfile() -> Profile {
+    func getTargetProfile() -> BluetoothProfile {
         return NevoOTAControllerProfile()
     }
     
@@ -204,7 +204,7 @@ class OnePacketRequest: Request {
     {
         mPacketData = NSData(data: packetdata) as Data
     }
-    func getTargetProfile() -> Profile {
+    func getTargetProfile() -> BluetoothProfile {
         return NevoOTAPacketProfile()
     }
     
@@ -226,7 +226,7 @@ class Mcu_SetOTAModeRequest : Request {
     let values :[UInt8] = [0x00,0x70,0xA0,0x8A,0x7D,0xDE,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
     let values2 :[UInt8] = [0xFF,0x70,0x00,0x00,0x00,0x00,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
     
-    func getTargetProfile() -> Profile {
+    func getTargetProfile() -> BluetoothProfile {
         return NevoOTAModeProfile()
     }
     
@@ -247,7 +247,7 @@ class Mcu_OnePacketRequest: Request {
     {
         mPacketData = NSData(data: packetdata) as Data
     }
-    func getTargetProfile() -> Profile {
+    func getTargetProfile() -> BluetoothProfile {
         return NevoOTAModeProfile()
     }
     
@@ -271,7 +271,7 @@ class Mcu_OnePageRequest: Request {
     {
         mOnePage.append(packet)
     }
-    func getTargetProfile() -> Profile {
+    func getTargetProfile() -> BluetoothProfile {
         return NevoOTAModeProfile()
     }
     
@@ -299,7 +299,7 @@ class Mcu_CheckSumPacketRequest: Request {
         mTotalpage = totalpage
         mChecksum  = checksum
     }
-    func getTargetProfile() -> Profile {
+    func getTargetProfile() -> BluetoothProfile {
         return NevoOTAModeProfile()
     }
     

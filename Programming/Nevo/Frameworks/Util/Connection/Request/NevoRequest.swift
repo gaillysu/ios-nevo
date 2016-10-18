@@ -13,7 +13,7 @@ All requests that should be sent to nevo have to extend this class
 🚧🚧🚧Backbone Class : Modify with care🚧🚧🚧
 */
 class NevoRequest : Request {
-    func getTargetProfile() -> Profile {
+    func getTargetProfile() -> BluetoothProfile {
         return NevoProfile()
     }
     

@@ -18,7 +18,7 @@ protocol RawPacket {
     /**
     The service and Char that sent packet
     */
-    func getSourceProfile() -> Profile
+    func getSourceProfile() -> BluetoothProfile
     
     /**
     The raw packet data
@@ -42,15 +42,15 @@ protocol RawPacket {
 
 class RawPacketImpl : RawPacket {
     fileprivate var mData:Data
-    fileprivate var mProfile:Profile
+    fileprivate var mProfile:BluetoothProfile
     
     
-    init( data:Data, profile:Profile ) {
+    init( data:Data, profile:BluetoothProfile ) {
         mData=data
         mProfile=profile
     }
     
-    func getSourceProfile() -> Profile {
+    func getSourceProfile() -> BluetoothProfile {
         return mProfile
     }
     

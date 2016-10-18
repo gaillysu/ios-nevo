@@ -131,7 +131,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                         let goalPreset = GoalPresets()
                         goalPreset.fromGoalModel(presetsModel: presetsModel)
                         try! realm.write ({
-                            realm.add(goalPresets)
+                            realm.add(goalPreset)
                         })
                         _ = presetsModel.remove()
                     }else{

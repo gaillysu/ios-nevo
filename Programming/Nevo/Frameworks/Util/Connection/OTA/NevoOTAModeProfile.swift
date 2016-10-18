@@ -15,7 +15,7 @@ It sends a request to the Nevo watch and force it to change to OTA mode
 This profile doesn't expect a callback
 🚧🚧🚧Backbone Class : Modify with care🚧🚧🚧
 */
-class NevoOTAModeProfile : Profile {
+class NevoOTAModeProfile : BluetoothProfile {
     
     var CONTROL_SERVICE:CBUUID {
         return CBUUID(string: "F0BA3020-6CAC-4C99-9089-4B0A1DF45002");

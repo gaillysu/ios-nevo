@@ -52,7 +52,7 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
     /**
     The GATT profile we are looking for
     */
-    fileprivate var mProfile : Profile?
+    fileprivate var mProfile : BluetoothProfile?
     
     /**
     The Stop scan timer
@@ -73,7 +73,7 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
     /**
     Basic constructor, just a Delegate handsake
     */
-    init(externalDelegate : NevoBTDelegate, acceptableDevice : Profile) {
+    init(externalDelegate : NevoBTDelegate, acceptableDevice : BluetoothProfile) {
         
         mDelegate = externalDelegate
         
@@ -457,7 +457,7 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
     /**
     See NevoBT protocol
     */
-    func getProfile() -> Profile {
+    func getProfile() -> BluetoothProfile {
         return mProfile!
     }
 

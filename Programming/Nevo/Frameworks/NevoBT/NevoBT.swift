@@ -53,7 +53,7 @@ protocol NevoBT {
     Gets the currently saved profile
     Note that if you want to register a new profile, you have to delete this Nevo Object and recreate a new one
     */
-    func getProfile() -> Profile
+    func getProfile() -> BluetoothProfile
     
     /**
     Checks if the Bluetooth is avaikabke and enabled
