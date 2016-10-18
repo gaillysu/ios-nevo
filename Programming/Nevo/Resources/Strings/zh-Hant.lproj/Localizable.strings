@@ -153,9 +153,9 @@
 "average_steps"="平均步数";
 "total_steps"="总步数";
 "average_calories"="平均卡路里";
-"average_time"="平均步行时间";
+"average_time"="平均时间";
 "average_sleep"="平均睡眠时间";
-"total_sleep"="睡眠总时间";
+"total_sleep"="睡眠时间";
 "average_wake"="平均醒来时间";
 "hours"="小时";
 "Login"="登陆";
