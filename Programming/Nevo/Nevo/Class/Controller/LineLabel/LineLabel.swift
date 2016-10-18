@@ -8,6 +8,11 @@
 
 import UIKit
 
+public enum LineLabelPosition {
+    case top
+    case bottom
+}
+
 class LineLabel: UILabel {
 
     
@@ -39,5 +44,17 @@ class LineLabel: UILabel {
         ctx?.setLineWidth(0);  //线宽
         ctx?.strokePath()
     }
-
+    
+    func addLineView(position:LineLabelPosition) {
+        let lineView = UIView(frame: frame)
+        addSubview(lineView)
+        lineView.backgroundColor = UIColor.lightGray
+        lineView.frame.size.height = 0.3
+        
+        if position == .top {
+            lineView.frame.origin.y = -0.3
+        } else if position == .bottom {
+            lineView.frame.origin.y = frame.height
+        }
+    }
 }

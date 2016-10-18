@@ -41,6 +41,7 @@ class RepeatViewController: UIViewController {
         super.viewDidLoad()
         self.navigationItem.title = NSLocalizedString("Repeat", comment: "")
         
+        self.automaticallyAdjustsScrollViewInsets = false
         tableView.separatorColor = UIColor.getLightBaseColor()
         tableView.separatorStyle = UITableViewCellSeparatorStyle.singleLine
         tableView.tableFooterView = UIView()

@@ -62,7 +62,7 @@ class PageViewController: UIPageViewController,UIActionSheetDelegate {
         
         let leftSpacer:UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.fixedSpace, target: nil, action: nil)
         leftSpacer.width = -10;
-        self.navigationItem.leftBarButtonItems = [leftSpacer,leftItem]
+//        self.navigationItem.leftBarButtonItems = [leftSpacer,leftItem]
         
         self.dataSource = self;
         self.setViewControllers([pagingControllers[0]], direction: UIPageViewControllerNavigationDirection.forward, animated: true) { (fines) in

@@ -168,8 +168,8 @@
 "two_password_is_not_the_same"="两次密码输入不一致";
 "please_wait"="请稍待...";
 "alarm_disabled"="闹钟已禁用";
-"alarm_on"="闹钟在";
-"alarm_in"="距离开始";
+"alarm_on"="闹钟在 ";
+"alarm_in"="距离开始 ";
 
 "change_password"="修改密码";
 "new_password"="新密码";
