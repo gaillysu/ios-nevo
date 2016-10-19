@@ -39,6 +39,10 @@ extension UIColor{
         return UIColor(rgba: "#E5E4E2")
     }
     
+    public class func getBarColor() -> UIColor {
+        return UIColor(rgba: "#EFEFEF")
+    }
+    
     public class func transparent() -> UIColor {
         return UIColor(red: 0/255.0 , green: 0/255.0, blue: 0/255.0, alpha: 0.0)
     }

@@ -12,6 +12,7 @@ import UIColor_Hex_Swift
 import CVCalendar
 import SwiftEventBus
 import LTNavigationBar
+import SnapKit
 
 let SELECTED_CALENDAR_NOTIFICATION = "SELECTED_CALENDAR_NOTIFICATION"
 private let CALENDAR_VIEW_TAG = 1800
@@ -28,10 +29,13 @@ class PageViewController: UIPageViewController,UIActionSheetDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         let viewController1 = StepGoalSetingController()
+        viewController1.view.tag = 0
         viewController1.view.backgroundColor = UIColor.white
         let viewController2 = StepsHistoryViewController()
+        viewController2.view.tag = 1
         viewController2.view.backgroundColor = UIColor.white
         let viewController3 = SleepHistoricalViewController()
+        viewController3.view.tag = 2
         viewController3.view.backgroundColor = UIColor.white
          pagingControllers = [viewController1, viewController2,viewController3]
         
@@ -39,6 +43,7 @@ class PageViewController: UIPageViewController,UIActionSheetDelegate {
             let value:Int = UserDefaults.standard.object(forKey: "WATCHNAME_KEY") as! Int
             if value>1 {
                 let viewController4 = SolarIndicatorController()
+                viewController4.view.tag = 3
                 viewController4.view.backgroundColor = UIColor.white
                 pagingControllers.append(viewController4)
             }
@@ -81,6 +86,7 @@ class PageViewController: UIPageViewController,UIActionSheetDelegate {
     override func viewDidLayoutSubviews() {
         if titleView == nil {
             self.initTitleView()
+            self.bulidPageControl()
         }
     }
     
@@ -147,10 +153,44 @@ class PageViewController: UIPageViewController,UIActionSheetDelegate {
     }
 }
 
+extension PageViewController {
+    func bulidPageControl() {
+        let pageControl = UIPageControl(frame: CGRect(x: 100, y: UIScreen.main.bounds.size.height-44, width: 100, height: 20))
+        pageControl.numberOfPages = 3
+        pageControl.currentPage = 0
+        pageControl.pageIndicatorTintColor = UIColor.getBarColor()
+        pageControl.currentPageIndicatorTintColor = UIColor.gray
+        pageControl.size(forNumberOfPages: 8)
+        pageControl.addTarget(self, action: #selector(pageAction(_ :)), for: UIControlEvents.valueChanged)
+        self.view.addSubview(pageControl)
+        
+        pageControl.snp.makeConstraints { (make) -> Void in
+            make.bottom.equalTo(self.view).offset(0)
+            make.left.equalTo(self.view).offset(20)
+            make.right.equalTo(self.view).offset(-20)
+        }
+    }
+    
+    func setCurrentPageIndex(_ index:Int) {
+        for view in self.view.subviews {
+            if view is  UIPageControl{
+                let page:UIPageControl = view as! UIPageControl
+                page.currentPage = index
+                break
+            }
+        }
+    }
+    
+    func pageAction(_ pageControl: UIPageControl) {
+        print("currentPage is \(pageControl.currentPage)")
+    }
+}
+
 extension PageViewController: UIPageViewControllerDataSource,UIPageViewControllerDelegate {
     
     //返回当前页面的下一个页面
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
+        self.setCurrentPageIndex(viewController.view.tag)
         if viewController.isKind(of: StepGoalSetingController.self) {
             return pagingControllers[1]
         }else if viewController.isKind(of: StepsHistoryViewController.self) {
@@ -168,7 +208,7 @@ extension PageViewController: UIPageViewControllerDataSource,UIPageViewControlle
     
     //返回当前页面的上一个页面
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
-        
+        self.setCurrentPageIndex(viewController.view.tag)
         if viewController.isKind(of: SolarIndicatorController.self) {
             return pagingControllers[2]
         }else if viewController.isKind(of: SleepHistoricalViewController.self) {

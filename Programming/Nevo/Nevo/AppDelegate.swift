@@ -69,11 +69,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
         Fabric.with([Crashlytics.self])
         // Override point for customization after application launch
         UINavigationBar.appearance().tintColor = AppTheme.NEVO_SOLAR_YELLOW()
-        //UITabBar.appearance().backgroundImage = UIImage()
-        //UITabBar.appearance().shadowImage = UIImage()
-        UITabBar.appearance().isTranslucent = false
-        UINavigationBar.appearance().lt_setBackgroundColor(UIColor.white)
-        //设置导航栏文字颜色和字体
+        UITabBar.appearance().isTranslucent = true
+         UITabBar.appearance().backgroundColor = UIColor.getBarColor()
+        UINavigationBar.appearance().lt_setBackgroundColor(UIColor.getBarColor())
+        //set navigationBar font style and font color
         UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName:UIColor.black,NSFontAttributeName:UIFont(name: "Raleway", size: 20)!]
         UIApplication.shared.statusBarStyle = UIStatusBarStyle.default
         

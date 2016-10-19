@@ -56,6 +56,7 @@ PODS:
   - RealmSwift (1.1.0):
     - Realm (= 1.1.0)
   - RegexKitLite (4.0)
+  - SnapKit (3.0.1)
   - SwiftEventBus (2.1.0)
   - SwiftyJSON (3.0.0)
   - SwiftyTimer (1.4.0)
@@ -82,6 +83,7 @@ DEPENDENCIES:
   - PopupController
   - RealmSwift
   - RegexKitLite
+  - SnapKit (~> 3.0.1)
   - SwiftEventBus (from `https://github.com/cesarferreira/SwiftEventBus.git`, tag `2.1.0`)
   - SwiftyJSON
   - SwiftyTimer (from `https://github.com/radex/SwiftyTimer.git`, branch `swift3`)
@@ -146,6 +148,7 @@ SPEC CHECKSUMS:
   Realm: ceecf1a4540c4ce9efe196fe73fa9855bce05bd8
   RealmSwift: 838058b2db95b12cb86bd0cf209df642c33fb60a
   RegexKitLite: c0e4c12e6e7de0769f3a3ed679f0f61604170661
+  SnapKit: f818b8326d45b4e1c777d0ab27b5c0a3624bfdeb
   SwiftEventBus: 03fb72b65f3ae11912dec2591567b89e5908a781
   SwiftyJSON: f57b2b44bc166617372d1c70773591fe9f0f5fd4
   SwiftyTimer: db4458cfaf67fc71e16ad6e4637c60b86f76a649
@@ -153,6 +156,6 @@ SPEC CHECKSUMS:
   XCGLogger: 38063ea89b4c8b23232d18efd2e12eb0005f3ea4
   Zip: 805fc2fa9d2f05bbb7762d982d7a42ccdcc51f42
 
-PODFILE CHECKSUM: eb0474798c2a4778f0acdb112c2c2846fad0712e
+PODFILE CHECKSUM: 08da2765ed463e9dce48b5ccb3c6827418e51e85
 
 COCOAPODS: 1.0.1
