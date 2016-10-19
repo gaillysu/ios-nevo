@@ -106,7 +106,7 @@ class SleepHistoricalViewController: PublicClassController,ChartViewDelegate,Sel
                 }
             }
             
-            let sleepValue = queryView.getTotalSleepNumber()
+            let sleepValue:Double = queryView.getTotalSleepNumber()
             let isNan = (deepTime/sleepTime).isNaN
             var quality:String = "\(isNan ? 0:Int(deepTime/sleepTime*100))%"
             if sleepValue == 0 {
@@ -114,7 +114,7 @@ class SleepHistoricalViewController: PublicClassController,ChartViewDelegate,Sel
             }
             
             contentTArray.replaceSubrange(Range(2..<3), with: [quality])
-            contentTArray.replaceSubrange(Range(3..<4), with: ["\(Int(sleepValue/60)) h"])
+            contentTArray.replaceSubrange(Range(3..<4), with: [String(format:"%.1f h",sleepValue)])
             self.queryView.detailCollectionView.reloadData()
         }
     }

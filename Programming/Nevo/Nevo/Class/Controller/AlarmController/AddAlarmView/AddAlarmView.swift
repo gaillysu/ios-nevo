@@ -19,28 +19,15 @@ class AddAlarmView: UITableView {
      :returns: time zone TableViewCell selector
      */
     class func addAlarmTimerTableViewCell(_ indexPath:IndexPath,tableView:UITableView,timer:TimeInterval)->UITableViewCell {
-        let endCellID:String = "AddAlarmCell"
-        var endCell = tableView.dequeueReusableCell(withIdentifier: endCellID)
-        if (endCell == nil) {
-            let nibs:[Any] = Bundle.main.loadNibNamed("AddAlarmTableViewCell", owner: self, options: nil)!
-            endCell = nibs[0] as? AddAlarmTableViewCell;
-        }
-        endCell?.separatorInset = UIEdgeInsets(top: 0, left: UIScreen.main.bounds.size.width, bottom: 0, right: 0)
-        endCell?.selectionStyle = UITableViewCellSelectionStyle.none;
-        endCell?.backgroundColor = UIColor.white
-        endCell?.contentView.backgroundColor = UIColor.white
-        var pickerView:UIDatePicker?
-        for view in endCell!.contentView.subviews{
-            if(view.isKind(of: UIDatePicker.classForCoder())){
-                pickerView = view as? UIDatePicker
-                break
-            }
-        }
-
+        let endCell:AddAlarmTableViewCell = tableView.dequeueReusableCell(withIdentifier: "AddAlarm_Date_identifier", for: indexPath) as! AddAlarmTableViewCell
+        endCell.separatorInset = UIEdgeInsets(top: 0, left: UIScreen.main.bounds.size.width, bottom: 0, right: 0)
+        endCell.selectionStyle = UITableViewCellSelectionStyle.none;
+        endCell.backgroundColor = UIColor.clear
+        endCell.contentView.backgroundColor = UIColor.clear
         if(timer > 0){
-            pickerView!.date = Date(timeIntervalSince1970: timer)
+            endCell.datePicker.date = Date(timeIntervalSince1970: timer)
         }
-        return endCell!
+        return endCell
     }
 
     /**

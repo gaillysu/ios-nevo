@@ -141,6 +141,23 @@ extension AnalysisController:UICollectionViewDelegate,UICollectionViewDataSource
                 default:
                     break
                 }
+            }else if segmented.selectedSegmentIndex == 0 {
+                switch (indexPath as NSIndexPath).row {
+                case 0:
+                    unit = ""
+                    break
+                case 1:
+                    unit = ""
+                    break
+                case 2:
+                    unit = ""
+                    break
+                case 3:
+                    unit = "h"
+                    break
+                default:
+                    break
+                }
             }
             //cell.valueLabel.text = contentTArray[indexPath.row]+" "+unit
             cell.updateLabel(contentTArray[(indexPath as NSIndexPath).row]+" "+unit)
@@ -182,10 +199,16 @@ extension AnalysisController:UICollectionViewDelegate,UICollectionViewDataSource
                 }
                 
                 analysisCell.updateChartData(dataArray[indexPath.row] as! NSArray, chartType: segmented.selectedSegmentIndex,rowIndex:indexPath.row, completionData: { (totalValue, totalCalores, totalTime) in
-                    self.contentTArray.replaceSubrange(Range(0..<1), with: [String(format: "%.1f",totalValue/avgNumber)])
+                    var stepsOrSleepValue1:String = ""
+                    if segmented.selectedSegmentIndex == 0 {
+                        stepsOrSleepValue1 = String(format: "%.0f",totalValue/avgNumber)
+                    }else{
+                        stepsOrSleepValue1 = String(format: "%.1f",totalValue/avgNumber)
+                    }
+                    self.contentTArray.replaceSubrange(Range(0..<1), with: [stepsOrSleepValue1])
                     self.contentTArray.replaceSubrange(Range(1..<2), with: [String(format: "%.1f",totalValue)])
-                    self.contentTArray.replaceSubrange(Range(2..<3), with: [String(format: "%.1f",totalCalores/Int(avgNumber))])
-                    self.contentTArray.replaceSubrange(Range(3..<4), with: [String(format: "%.1f",totalTime/Int(avgNumber))])
+                    self.contentTArray.replaceSubrange(Range(2..<3), with: [String(format: "%.1f",Float(totalCalores)/Float(avgNumber))])
+                    self.contentTArray.replaceSubrange(Range(3..<4), with: [String(format: "%.1f",Float(totalTime)/Float(avgNumber))])
                 });
             }else{
                 self.contentTArray.replaceSubrange(Range(0..<1), with: [String(format: "0")])

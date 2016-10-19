@@ -35,6 +35,7 @@ class NewAddAlarmController: UITableViewController,ButtonManagerCallBack,Selecte
         
         self.tableView.register(UINib(nibName: "NewAddAlarmHeader", bundle: nil), forHeaderFooterViewReuseIdentifier: "identifier_header")
         self.tableView.register(UINib(nibName: "AlarmTypeCell", bundle: nil), forCellReuseIdentifier: "AlarmType_identifier")
+        self.tableView.register(UINib(nibName:"AddAlarmTableViewCell", bundle: nil), forCellReuseIdentifier: "AddAlarm_Date_identifier")
         //self.tableView.backgroundColor = UIColor.white
         //self.tableView.separatorStyle = UITableViewCellSeparatorStyle.None
         self.tableView.separatorColor = UIColor.getLightBaseColor()
@@ -210,14 +211,11 @@ class NewAddAlarmController: UITableViewController,ButtonManagerCallBack,Selecte
             var height:CGFloat = CGFloat(UserDefaults.standard.double(forKey: "k\(#file)HeightForDatePickerView"))
             if height != 0 {
             } else {
-                height = AddAlarmView.addAlarmTimerTableViewCell(indexPath, tableView: tableView, timer:timer).contentView.systemLayoutSizeFitting(UILayoutFittingCompressedSize).height
+                height =  tableView.dequeueReusableCell(withIdentifier: "AddAlarm_Date_identifier", for: indexPath).contentView.systemLayoutSizeFitting(UILayoutFittingCompressedSize).height
                 UserDefaults.standard.set(Double(height), forKey: "k\(#file)HeightForDatePickerView")
             }
             
             return height
-            
-//            let cellHeight:CGFloat = AddAlarmView.addAlarmTimerTableViewCell(indexPath, tableView: tableView, timer:timer).contentView.systemLayoutSizeFitting(UILayoutFittingCompressedSize).height
-//            return cellHeight
         }else{
             return 45.0
         }
@@ -245,14 +243,22 @@ class NewAddAlarmController: UITableViewController,ButtonManagerCallBack,Selecte
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch ((indexPath as NSIndexPath).section){
         case 0:
-            return AddAlarmView.addAlarmTimerTableViewCell(indexPath, tableView: tableView, timer:timer)
+            let cell:AddAlarmTableViewCell = tableView.dequeueReusableCell(withIdentifier: "AddAlarm_Date_identifier", for: indexPath) as! AddAlarmTableViewCell
+            cell.separatorInset = UIEdgeInsets(top: 0, left: UIScreen.main.bounds.size.width, bottom: 0, right: 0)
+            cell.selectionStyle = UITableViewCellSelectionStyle.none;
+            cell.backgroundColor = UIColor.clear
+            cell.contentView.backgroundColor = UIColor.clear
+            if(timer > 0){
+                cell.datePicker.date = Date(timeIntervalSince1970: timer)
+            }
+            return cell
         case 1:
             let titleArray:[String] = ["Repeat","Label"]
             let cell = tableView.dequeueReusableCell(withIdentifier: "AlarmType_identifier",for: indexPath)
             cell.preservesSuperviewLayoutMargins = false;
             cell.separatorInset = UIEdgeInsets.zero;
             cell.layoutMargins = UIEdgeInsets.zero;
-            cell.backgroundColor = UIColor.clear
+            cell.backgroundColor = UIColor.white
             cell.contentView.backgroundColor = UIColor.clear
             cell.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
             cell.selectionStyle = UITableViewCellSelectionStyle.none;
