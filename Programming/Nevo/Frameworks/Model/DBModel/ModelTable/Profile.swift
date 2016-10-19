@@ -31,7 +31,7 @@ class Profile: Object {
 
     dynamic var email:String = ""
     
-    func fromUserProfile(nevoProfileModel:NevoProfileModel){
+    func fromUserProfile(nevoProfileModel:UserProfile){
         self.firstName = nevoProfileModel.first_name
         self.lastName = nevoProfileModel.last_name
         

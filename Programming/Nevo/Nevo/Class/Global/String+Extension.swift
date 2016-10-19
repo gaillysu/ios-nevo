@@ -20,6 +20,9 @@ extension String {
     }
     
     func hourlyDataListForRealm() -> [HourlyIntData]{
+        if self == "" {
+            return []
+        }
         let json = JSON.parse(self)
         var list:[HourlyIntData] = []
         for element in json {

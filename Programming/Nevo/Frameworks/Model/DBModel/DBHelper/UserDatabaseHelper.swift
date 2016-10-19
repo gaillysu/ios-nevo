@@ -218,7 +218,7 @@ class UserDatabaseHelper:NSObject {
             let sql:NSString = NSString(format: "INSERT INTO %@(%@) VALUES (%@);", tableName, keyString, valueString)
             res = (db?.executeUpdate("\(sql)", withArgumentsIn: insertValues as [AnyObject]))!
             self.id = res ? NSNumber(value: (db?.lastInsertRowId())! as Int64).intValue : 0
-            XCGLogger.default.debug("\(res ? "Insert success" : "Insert failed"),SQL:\(sql)");
+//            XCGLogger.default.debug("\(res ? "Insert success" : "Insert failed"),SQL:\(sql)");
             result(self.id,res)
         }
     }
@@ -278,7 +278,7 @@ class UserDatabaseHelper:NSObject {
             }
             let sql:String = "DELETE FROM \(tableName) WHERE \(primaryId) = ?"
             res = (db?.executeUpdate(sql, withArgumentsIn: [primaryValue!]))!
-            NSLog("\(res ? "Delete the success" : "Delete failed")");
+//            NSLog("\(res ? "Delete the success" : "Delete failed")");
         }
         return res;
     }

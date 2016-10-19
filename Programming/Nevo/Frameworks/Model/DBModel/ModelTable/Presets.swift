@@ -14,7 +14,11 @@ class Presets:NSObject {
     var label:String = ""
     var status:Bool = false
     fileprivate var presetsModel:PresetsModel = PresetsModel()
-
+    
+    override init(){
+        super.init()
+    }
+    
     init(keyDict:NSDictionary) {
         super.init()
         self.setValue(keyDict.object(forKey: "id"), forKey: "id")

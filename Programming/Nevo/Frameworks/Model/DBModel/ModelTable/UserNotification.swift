@@ -15,7 +15,11 @@ class UserNotification:NSObject {
     var status:Bool = false
 
     fileprivate var notificationModel:NotificationModel = NotificationModel()
-
+    
+    override init(){
+        super.init()
+    }
+    
     /**
      When it is the first time you install and use must be implemented
      *在用户第一次安装使用的时候必须实现

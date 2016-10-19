@@ -9,7 +9,7 @@
 import UIKit
 import RealmSwift
 
-class GoalPresets: Object {
+class PresetsRealm: Object {
 
     dynamic var steps:Int = 0
     
@@ -17,7 +17,7 @@ class GoalPresets: Object {
     
     dynamic var enabled:Bool = false
     
-    func fromGoalModel(presetsModel:PresetsModel){
+    func fromPresetsModel(presetsModel:Presets){
         self.name = presetsModel.label
         self.enabled = presetsModel.status
         self.steps = presetsModel.steps

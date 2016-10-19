@@ -68,52 +68,53 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
         //设置导航栏文字颜色和字体
         UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName:UIColor.black,NSFontAttributeName:UIFont(name: "Raleway", size: 20)!]
         UIApplication.shared.statusBarStyle = UIStatusBarStyle.default
-        
-        IQKeyboardManager.sharedManager().enable = true
-        
-        //Start the logo for the first time
-        if(!UserDefaults.standard.bool(forKey: "LaunchedDatabase")){
-            UserDefaults.standard.set(true, forKey: "LaunchedDatabase")
-            UserDefaults.standard.set(true, forKey: "firstDatabase")
-            /**
-            *  Initialize the database
-            */
-            Presets.defaultPresetsGoal()
-            UserAlarm.defaultAlarm()
-            UserNotification.defaultNotificationColor()
-        }else{
-            UserDefaults.standard.set(false, forKey: "firstDatabase")
-            
-            if(!UserDefaults.standard.bool(forKey: "migration")){
+//        
+//        IQKeyboardManager.sharedManager().enable = true
+//        
+//        //Start the logo for the first time
+//        if(!UserDefaults.standard.bool(forKey: "LaunchedDatabase")){
+//            UserDefaults.standard.set(true, forKey: "LaunchedDatabase")
+//            UserDefaults.standard.set(true, forKey: "firstDatabase")
+//            /**
+//            *  Initialize the database
+//            */
+//            Presets.defaultPresetsGoal()
+//            UserAlarm.defaultAlarm()
+//            UserNotification.defaultNotificationColor()
+//        }else{
+//            UserDefaults.standard.set(false, forKey: "firstDatabase")
+//            
+//            if(!UserDefaults.standard.bool(forKey: "migration")){
+                addDummyData()
                 migrateDatabase()
-                UserDefaults.standard.set(true, forKey: "migration")
-            }
-        }
-
-        /**
-        Initialize the BLE Manager
-        */
-        mConnectionController = ConnectionControllerImpl()
-        mConnectionController?.setDelegate(self)
-        //lastSync = userDefaults.double(forKey: LAST_SYNC_DATE_KEY)
-        
-        adjustLaunchLogic()
-        
-        //cancel all notifications  PM-13:00, PM 19:00
-        LocalNotification.sharedInstance().cancelNotification([NevoAllKeys.LocalStartSportKey(),NevoAllKeys.LocalEndSportKey()])
-
-        //Rate our app Pop-up
-        iRate.sharedInstance().messageTitle = NSLocalizedString("Rate Nevo", comment: "")
-        iRate.sharedInstance().message = NSLocalizedString("If you like Nevo, please take the time, etc", comment:"");
-        iRate.sharedInstance().cancelButtonLabel = NSLocalizedString("No, Thanks", comment:"");
-        iRate.sharedInstance().remindButtonLabel = NSLocalizedString("Remind Me Later", comment:"");
-        iRate.sharedInstance().rateButtonLabel = NSLocalizedString("Rate It Now", comment:"");
-        iRate.sharedInstance().applicationBundleID = "com.nevowatch.Nevo"
-        iRate.sharedInstance().onlyPromptIfLatestVersion = true
-        iRate.sharedInstance().usesPerWeekForPrompt = 1
-        iRate.sharedInstance().previewMode = true
-        iRate.sharedInstance().promptAtLaunch = false
-        
+//                UserDefaults.standard.set(true, forKey: "migration")
+//            }
+//        }
+//
+//        /**
+//        Initialize the BLE Manager
+//        */
+//        mConnectionController = ConnectionControllerImpl()
+//        mConnectionController?.setDelegate(self)
+//        //lastSync = userDefaults.double(forKey: LAST_SYNC_DATE_KEY)
+//        
+//        adjustLaunchLogic()
+//        
+//        //cancel all notifications  PM-13:00, PM 19:00
+//        LocalNotification.sharedInstance().cancelNotification([NevoAllKeys.LocalStartSportKey(),NevoAllKeys.LocalEndSportKey()])
+//
+//        //Rate our app Pop-up
+//        iRate.sharedInstance().messageTitle = NSLocalizedString("Rate Nevo", comment: "")
+//        iRate.sharedInstance().message = NSLocalizedString("If you like Nevo, please take the time, etc", comment:"");
+//        iRate.sharedInstance().cancelButtonLabel = NSLocalizedString("No, Thanks", comment:"");
+//        iRate.sharedInstance().remindButtonLabel = NSLocalizedString("Remind Me Later", comment:"");
+//        iRate.sharedInstance().rateButtonLabel = NSLocalizedString("Rate It Now", comment:"");
+//        iRate.sharedInstance().applicationBundleID = "com.nevowatch.Nevo"
+//        iRate.sharedInstance().onlyPromptIfLatestVersion = true
+//        iRate.sharedInstance().usesPerWeekForPrompt = 1
+//        iRate.sharedInstance().previewMode = true
+//        iRate.sharedInstance().promptAtLaunch = false
+//        
         return true
     }
 
@@ -642,13 +643,120 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
 
 // Only used for migration for database.
 extension AppDelegate{
+    
+    func addDummyData(){
+        for i in 0..<10 {
+            let userAlarm = UserAlarm()
+            userAlarm.dayOfWeek = i
+            userAlarm.label = "Alarm \(i)"
+            userAlarm.repeatStatus = false
+            userAlarm.status = true
+            userAlarm.timer = 12.50
+            userAlarm.type = i % 2 == 0 ? 0 : 1
+            userAlarm.add({ (_, success) in
+                print("Added Alarm = \(success)")
+            })
+        }
+        
+        for _ in 0..<10{
+            let userSteps = UserSteps()
+            userSteps.steps = 2000
+            userSteps.goalsteps = 7000
+            userSteps.distance = 1000
+            userSteps.hourlysteps = "[100,100,100,100,100,100,100,100,100,100,0,0,100,100,100,100,100,100,100,100,100,100,0,0]"
+            userSteps.hourlydistance = "[50,50,50,50,50,50,50,50,50,50,0,0,50,50,50,50,50,50,50,50,50,50,0,0]"
+            userSteps.calories = 1000
+            userSteps.hourlycalories = "[50,50,50,50,50,50,50,50,50,50,0,0,50,50,50,50,50,50,50,50,50,50,0,0]"
+            userSteps.inZoneTime = 100;
+            userSteps.outZoneTime = 200;
+            userSteps.inactivityTime = 300;
+            userSteps.goalreach = 0.0;
+            userSteps.date = 0
+            userSteps.createDate = "20161019"
+            userSteps.walking_distance = 100
+            userSteps.walking_duration = 200
+            userSteps.walking_calories = 300
+            userSteps.running_distance = 100
+            userSteps.running_duration = 200
+            userSteps.running_calories = 300
+            userSteps.validic_id = ""
+            userSteps.add({ (_, success) in
+                print("Added Steps = \(success)")
+            })
+        }
+        
+        for _ in 0..<10{
+            let userSleep = UserSleep()
+            userSleep.date = 0
+            userSleep.totalSleepTime = 300;
+            userSleep.hourlySleepTime = "[300]";
+            userSleep.totalWakeTime = 100;
+            userSleep.hourlyWakeTime = "[100]";
+            userSleep.totalLightTime = 100;
+            userSleep.hourlyLightTime = "[100]";
+            userSleep.totalDeepTime = 100;
+            userSleep.hourlyDeepTime = "[100]";
+            userSleep.add({ (_, success) in
+                print("Added Sleep = \(success)")
+            })
+        }
+        
+        for _ in 0..<10{
+            let presets = Presets()
+            presets.steps = 1000
+            presets.label = "My Goal"
+            presets.status = true
+            presets.add({ (_, success) in
+                print("Presets Presets = \(success)")
+            })
+        }
+        let notificationTypeArray:[String] = ["Calendar", "Facebook", "EMAIL", "CALL", "SMS","WeChat"]
+        for i in 0..<6{
+            let notification = UserNotification()
+            notification.clock = i
+            notification.NotificationType = "\(notificationTypeArray[i])"
+            notification.status = true
+            notification.add({ (_, success) in
+                print("Notification Notification = \(success)")
+            })
+        }
+        
+        let profile = UserProfile()
+        profile.first_name = "Karl-John"
+        profile.last_name = "Chow"
+        profile.birthday = "1992-09-14"
+        profile.gender = true
+        profile.weight = 70
+        profile.length = 175
+        profile.metricORimperial = false
+        profile.created = Date().timeIntervalSince1970
+        profile.email = "karl.chow92@gmail.com"
+        profile.add({ (_, success) in
+            print("Notification Notification = \(success)")
+        })
+        
+        
+        
+        print("\(UserAlarm.getAll().count)")
+        print("\(UserSteps.getAll().count)")
+        print("\(UserSleep.getAll().count)")
+        print("\(Presets.getAll().count)")
+        print("\(UserNotification.getAll().count)")
+    }
+    
+    
     func migrateDatabase(){
         let realm:Realm = try! Realm()
-        realm.deleteAll()
+        try! realm.write ({
+            realm.deleteAll()
+        })
+        
+        print("Migrating User Alarm")
         for object in UserAlarm.getAll(){
-            if let alarmModel:AlarmModel = object as? AlarmModel {
+            if let alarmModel = object as? UserAlarm {
                 let alarm = AlarmRealm()
                 alarm.fromAlarmModel(alarmModel: alarmModel)
+                
                 try! realm.write ({
                     realm.add(alarm)
                 })
@@ -657,9 +765,9 @@ extension AppDelegate{
                 print("Alarm migration went wrong, strangely")
             }
         }
-        
+        print("Migrating User Steps")
         for object in UserSteps.getAll() {
-            if let stepsModel:StepsModel = object as? StepsModel {
+            if let stepsModel = object as? UserSteps {
                 let steps = Steps()
                 steps.fromStepsModel(userSteps: stepsModel)
                 try! realm.write ({
@@ -671,8 +779,9 @@ extension AppDelegate{
             }
         }
         
+        print("Migrating User Sleep")
         for object in UserSleep.getAll() {
-            if let sleepModel:SleepModel = object as? SleepModel {
+            if let sleepModel = object as? UserSleep {
                 let sleep = SleepRealm()
                 sleep.fromSleepModel(sleepModel: sleepModel)
                 try! realm.write ({
@@ -684,12 +793,13 @@ extension AppDelegate{
             }
         }
         
+        print("Migrating User Presets")
         for object in Presets.getAll() {
-            if let presetsModel:PresetsModel = object as? PresetsModel {
-                let goalPreset = GoalPresets()
-                goalPreset.fromGoalModel(presetsModel: presetsModel)
+            if let presetsModel = object as? Presets {
+                let presets = PresetsRealm()
+                presets.fromPresetsModel(presetsModel: presetsModel)
                 try! realm.write ({
-                    realm.add(goalPreset)
+                    realm.add(presets)
                 })
                 _ = presetsModel.remove()
             }else{
@@ -697,8 +807,9 @@ extension AppDelegate{
             }
         }
         
+        print("Migrating User Notifications")
         for object in UserNotification.getAll(){
-            if let notificationModel = object as? NotificationModel{
+            if let notificationModel = object as? UserNotification{
                 let notifications = Notifications()
                 notifications.fromNotificationModel(notificationModel: notificationModel)
                 try! realm.write ({
@@ -709,5 +820,27 @@ extension AppDelegate{
                 print("Notification migration went wrong, strangely")
             }
         }
+        
+        for object in UserProfile.getAll(){
+            if let userProfile = object as? UserProfile{
+                let profile = Profile()
+                profile.fromUserProfile(nevoProfileModel: userProfile)
+                try! realm.write ({
+                    realm.add(profile)
+                })
+                _ = userProfile.remove()
+            }else{
+                print("Notification migration went wrong, strangely")
+            }
+        }
+        
+        
+        print("Alarm count = \(realm.objects(AlarmRealm.self).count)")
+        print("Step count = \(realm.objects(Steps.self).count)")
+        print("Sleep count = \(realm.objects(SleepRealm.self).count)")
+        print("Presets count = \(realm.objects(PresetsRealm.self).count)")
+        print("Profile count = \(realm.objects(Profile.self).count)")
+        print("Notifications count = \(realm.objects(Notifications.self).count)")
+        
     }
 }

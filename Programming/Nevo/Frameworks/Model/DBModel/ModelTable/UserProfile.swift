@@ -21,7 +21,11 @@ class UserProfile: NSObject {
     var email:String = ""
 
     fileprivate var profileModel:NevoProfileModel = NevoProfileModel()
-
+    
+    override init(){
+        super.init()
+    }
+    
     init(keyDict:NSDictionary) {
         super.init()
         keyDict.enumerateKeysAndObjects(options: NSEnumerationOptions.concurrent) { (key, value, stop) in

@@ -17,7 +17,7 @@ class Notifications: Object {
     
     dynamic var enabled = false
 
-    func fromNotificationModel (notificationModel: NotificationModel){
+    func fromNotificationModel (notificationModel: UserNotification){
         self.clock = notificationModel.clock
         self.notificationType = notificationModel.NotificationType
         self.enabled = notificationModel.status

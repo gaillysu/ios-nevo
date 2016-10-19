@@ -27,7 +27,7 @@ class AlarmRealm: Object{
     dynamic var type = 0
     
     // This function is only used for migration from the old DB. 
-    func fromAlarmModel(alarmModel:AlarmModel){
+    func fromAlarmModel(alarmModel:UserAlarm){
         self.name = alarmModel.label
         self.hour = Int(alarmModel.timer.hour)
         self.minute = Int(alarmModel.timer.minute)

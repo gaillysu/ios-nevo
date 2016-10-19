@@ -53,7 +53,7 @@ class Steps: Object {
     
     dynamic var validicId:String = ""
     
-    func fromStepsModel(userSteps :StepsModel){
+    func fromStepsModel(userSteps :UserSteps){
         self.steps = userSteps.steps
         self.goal = userSteps.goalsteps
         self.distance = userSteps.distance

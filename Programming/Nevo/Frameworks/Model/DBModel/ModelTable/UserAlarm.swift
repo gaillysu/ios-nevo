@@ -19,6 +19,10 @@ class UserAlarm: NSObject {
 
     fileprivate var alarmModel:AlarmModel = AlarmModel()
 
+    override init(){
+        super.init()
+    }
+    
     init(keyDict:NSDictionary) {
         super.init()
         self.setValue(keyDict.object(forKey: "id"), forKey: "id")

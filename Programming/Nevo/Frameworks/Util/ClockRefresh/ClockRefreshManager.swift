@@ -30,9 +30,9 @@ class ClockRefreshManager: NSObject {
     }
 
     func refreshTimerAction(_ timer:Timer){
-        for delegate in refreshObject {
-            delegate.clockRefreshAction()
-        }
+//        for delegate in refreshObject {
+//            delegate.clockRefreshAction()
+//        }
     }
 
     /**

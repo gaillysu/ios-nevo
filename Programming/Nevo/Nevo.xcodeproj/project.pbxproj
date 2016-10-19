@@ -232,7 +232,6 @@
 		00AF8CBC1D224CFA009047AC /* BaseEntryDatabaseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C581D224CFA009047AC /* BaseEntryDatabaseHelper.swift */; };
 		00AF8CBF1D224CFA009047AC /* UserDatabaseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C5D1D224CFA009047AC /* UserDatabaseHelper.swift */; };
 		00AF8CC01D224CFA009047AC /* AlarmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C5F1D224CFA009047AC /* AlarmModel.swift */; };
-		00AF8CC21D224CFA009047AC /* HealthModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C611D224CFA009047AC /* HealthModel.swift */; };
 		00AF8CC31D224CFA009047AC /* NevoProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C621D224CFA009047AC /* NevoProfileModel.swift */; };
 		00AF8CC41D224CFA009047AC /* NotificationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C631D224CFA009047AC /* NotificationModel.swift */; };
 		00AF8CC51D224CFA009047AC /* Presets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C641D224CFA009047AC /* Presets.swift */; };
@@ -553,7 +552,6 @@
 		00D474341D586D1600E2447E /* BaseEntryDatabaseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C581D224CFA009047AC /* BaseEntryDatabaseHelper.swift */; };
 		00D474351D586D1600E2447E /* UserDatabaseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C5D1D224CFA009047AC /* UserDatabaseHelper.swift */; };
 		00D474361D586D1600E2447E /* AlarmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C5F1D224CFA009047AC /* AlarmModel.swift */; };
-		00D474371D586D1600E2447E /* HealthModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C611D224CFA009047AC /* HealthModel.swift */; };
 		00D474381D586D1600E2447E /* NevoProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C621D224CFA009047AC /* NevoProfileModel.swift */; };
 		00D474391D586D1600E2447E /* NotificationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C631D224CFA009047AC /* NotificationModel.swift */; };
 		00D4743A1D586D1600E2447E /* Presets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C641D224CFA009047AC /* Presets.swift */; };
@@ -685,7 +683,7 @@
 		CB0566CA1DB4BECE0091EC53 /* Migratable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB0566C91DB4BECE0091EC53 /* Migratable.swift */; };
 		CB0566CC1DB4C7AC0091EC53 /* HourlyIntData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB0566CB1DB4C7AC0091EC53 /* HourlyIntData.swift */; };
 		CB0566D01DB4CF4C0091EC53 /* SleepRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB0566CF1DB4CF4C0091EC53 /* SleepRealm.swift */; };
-		CB0566D21DB4D43F0091EC53 /* GoalPresets.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB0566D11DB4D43F0091EC53 /* GoalPresets.swift */; };
+		CB0566D21DB4D43F0091EC53 /* PresetsRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB0566D11DB4D43F0091EC53 /* PresetsRealm.swift */; };
 		CB0566D41DB5BAAE0091EC53 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB0566D31DB5BAAE0091EC53 /* Profile.swift */; };
 		CBAE557F1DB6013800EE35BD /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBAE557E1DB6013800EE35BD /* Notifications.swift */; };
 		F5A58EFCE1AF535DD4D667CB /* Pods_LunaRTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA6756A2314165C2C74201E8 /* Pods_LunaRTests.framework */; };
@@ -994,7 +992,6 @@
 		00AF8C581D224CFA009047AC /* BaseEntryDatabaseHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseEntryDatabaseHelper.swift; sourceTree = "<group>"; };
 		00AF8C5D1D224CFA009047AC /* UserDatabaseHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDatabaseHelper.swift; sourceTree = "<group>"; };
 		00AF8C5F1D224CFA009047AC /* AlarmModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlarmModel.swift; sourceTree = "<group>"; };
-		00AF8C611D224CFA009047AC /* HealthModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthModel.swift; sourceTree = "<group>"; };
 		00AF8C621D224CFA009047AC /* NevoProfileModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NevoProfileModel.swift; sourceTree = "<group>"; };
 		00AF8C631D224CFA009047AC /* NotificationModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationModel.swift; sourceTree = "<group>"; };
 		00AF8C641D224CFA009047AC /* Presets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Presets.swift; sourceTree = "<group>"; };
@@ -1184,7 +1181,7 @@
 		CB0566C91DB4BECE0091EC53 /* Migratable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Migratable.swift; sourceTree = "<group>"; };
 		CB0566CB1DB4C7AC0091EC53 /* HourlyIntData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HourlyIntData.swift; sourceTree = "<group>"; };
 		CB0566CF1DB4CF4C0091EC53 /* SleepRealm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SleepRealm.swift; sourceTree = "<group>"; };
-		CB0566D11DB4D43F0091EC53 /* GoalPresets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoalPresets.swift; sourceTree = "<group>"; };
+		CB0566D11DB4D43F0091EC53 /* PresetsRealm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresetsRealm.swift; sourceTree = "<group>"; };
 		CB0566D31DB5BAAE0091EC53 /* Profile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		CBAE557E1DB6013800EE35BD /* Notifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
 		CBB9BF1C2FA9FD4C9B4E48BC /* Pods-LunaRTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LunaRTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LunaRTests/Pods-LunaRTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -1872,8 +1869,8 @@
 		00AF8C5E1D224CFA009047AC /* ModelTable */ = {
 			isa = PBXGroup;
 			children = (
+				CB3261D41DB7503D00433D30 /* Realm */,
 				00AF8C5F1D224CFA009047AC /* AlarmModel.swift */,
-				00AF8C611D224CFA009047AC /* HealthModel.swift */,
 				00AF8C621D224CFA009047AC /* NevoProfileModel.swift */,
 				00AF8C631D224CFA009047AC /* NotificationModel.swift */,
 				00AF8C641D224CFA009047AC /* Presets.swift */,
@@ -1885,14 +1882,6 @@
 				00AF8C6A1D224CFA009047AC /* UserProfile.swift */,
 				00AF8C6B1D224CFA009047AC /* UserSleep.swift */,
 				00AF8C6C1D224CFA009047AC /* UserSteps.swift */,
-				CB0566C51DB4A63B0091EC53 /* AlarmRealm.swift */,
-				CB0566C71DB4B3490091EC53 /* Steps.swift */,
-				CB0566CF1DB4CF4C0091EC53 /* SleepRealm.swift */,
-				CB0566C91DB4BECE0091EC53 /* Migratable.swift */,
-				CB0566CB1DB4C7AC0091EC53 /* HourlyIntData.swift */,
-				CB0566D11DB4D43F0091EC53 /* GoalPresets.swift */,
-				CB0566D31DB5BAAE0091EC53 /* Profile.swift */,
-				CBAE557E1DB6013800EE35BD /* Notifications.swift */,
 			);
 			path = ModelTable;
 			sourceTree = "<group>";
@@ -2366,6 +2355,21 @@
 				9E98FB361C4640AF00BAB700 /* TutorialSevenViewController.swift */,
 			);
 			name = Seven;
+			sourceTree = "<group>";
+		};
+		CB3261D41DB7503D00433D30 /* Realm */ = {
+			isa = PBXGroup;
+			children = (
+				CB0566C51DB4A63B0091EC53 /* AlarmRealm.swift */,
+				CB0566C71DB4B3490091EC53 /* Steps.swift */,
+				CB0566CF1DB4CF4C0091EC53 /* SleepRealm.swift */,
+				CB0566C91DB4BECE0091EC53 /* Migratable.swift */,
+				CB0566CB1DB4C7AC0091EC53 /* HourlyIntData.swift */,
+				CB0566D11DB4D43F0091EC53 /* PresetsRealm.swift */,
+				CB0566D31DB5BAAE0091EC53 /* Profile.swift */,
+				CBAE557E1DB6013800EE35BD /* Notifications.swift */,
+			);
+			name = Realm;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -3177,7 +3181,6 @@
 				00D474351D586D1600E2447E /* UserDatabaseHelper.swift in Sources */,
 				00C8271E1DA6137300ECECEE /* GetActivityRequest.swift in Sources */,
 				00D474361D586D1600E2447E /* AlarmModel.swift in Sources */,
-				00D474371D586D1600E2447E /* HealthModel.swift in Sources */,
 				00D474381D586D1600E2447E /* NevoProfileModel.swift in Sources */,
 				00D474391D586D1600E2447E /* NotificationModel.swift in Sources */,
 				666F60F11DAF264B0011F3C5 /* AppDelegate-Extension.swift in Sources */,
@@ -3280,7 +3283,7 @@
 				00AF8CB61D224CFA009047AC /* DaySleep.swift in Sources */,
 				0050D60F1C28E0DB004F6F80 /* AddPresetView.swift in Sources */,
 				00321D6D1C98EBB10069BFCC /* AppDelegate.swift in Sources */,
-				CB0566D21DB4D43F0091EC53 /* GoalPresets.swift in Sources */,
+				CB0566D21DB4D43F0091EC53 /* PresetsRealm.swift in Sources */,
 				00AF8CC81D224CFA009047AC /* StepsModel.swift in Sources */,
 				007865FD1D91006F00F33AEA /* NSDate+Timepiece.swift in Sources */,
 				0050D5FF1C28E0DB004F6F80 /* SelectedNotificationView.swift in Sources */,
@@ -3351,7 +3354,6 @@
 				9E98FB291C463A3B00BAB700 /* TutorialOneViewController.swift in Sources */,
 				0050D5F11C28E0DB004F6F80 /* MyNevoHeaderView.swift in Sources */,
 				00E6509C1C83EE6700278D3E /* SleepTutorialController.swift in Sources */,
-				00AF8CC21D224CFA009047AC /* HealthModel.swift in Sources */,
 				0008EE8F1D93C39A005E127C /* M13CheckboxExpandManager.swift in Sources */,
 				9AD8F9791A6E05F700F01014 /* NevoBT.swift in Sources */,
 				0008EE891D93C39A005E127C /* M13CheckboxAnimationPresets.swift in Sources */,

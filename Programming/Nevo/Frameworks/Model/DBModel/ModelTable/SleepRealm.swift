@@ -29,7 +29,7 @@ class SleepRealm: Object {
     
     let hourlyDeepTime = List<HourlyIntData>()
 
-    func fromSleepModel(sleepModel:SleepModel){
+    func fromSleepModel(sleepModel:UserSleep){
         self.date = NSDate(timeIntervalSince1970: sleepModel.date)
         self.totalSleepTime = sleepModel.totalSleepTime
         for element in sleepModel.hourlySleepTime.hourlyDataListForRealm(){
