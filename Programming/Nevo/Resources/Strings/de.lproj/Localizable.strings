@@ -185,6 +185,7 @@
 "Password is not filled in"="Password is not filled in";
 "Password has been changed"="Password has been changed";
 "Please enter a new password"="Please enter a new password";
+"Are you sure you want to log out?"="Are you sure you want to log out?";
 
 // 2016-10-17
 "no_network"="There seems to be some problems with your network";

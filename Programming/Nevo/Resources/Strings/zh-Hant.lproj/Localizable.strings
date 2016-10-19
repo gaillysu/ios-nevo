@@ -182,6 +182,7 @@
 "Password is not filled in"="请输入您的密码";
 "Password has been changed"="密码修改成功";
 "Please enter a new password"="请输入一个新密码";
+"Are you sure you want to log out?"="确定退出登录吗？";
 
 // 2016-10-17
 "no_network"="您的网络连接似乎有些问题...";

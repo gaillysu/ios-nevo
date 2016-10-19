@@ -201,24 +201,42 @@ class SetingViewController: UIViewController,ButtonManagerCallBack,UIAlertViewDe
             }
 
             if (indexPath as NSIndexPath).row == 3{
-                let user:NSArray = UserProfile.getAll()
-                if(user.count>0){
-                    let userProfile:UserProfile = user.object(at: 0) as! UserProfile
-                    if(userProfile.remove()){
-                        let tableViewCell: UITableViewCell = tableView.cellForRow(at: indexPath)!
-                        tableViewCell.accessoryType = UITableViewCellAccessoryType.none
-                        tableViewCell.textLabel?.text = "Login"
-                        tableView.reloadData()
+                
+                let dialogController = UIAlertController(title: NSLocalizedString("Are you sure you want to log out?", comment: ""), message: nil, preferredStyle: .alert)
+                let confirmAction = AlertAction(title: NSLocalizedString("Enter", comment: ""), style: .default, handler: { (_) in
+                    let user:NSArray = UserProfile.getAll()
+                    if(user.count>0){
+                        let userProfile:UserProfile = user.object(at: 0) as! UserProfile
+                        if(userProfile.remove()){
+                            let tableViewCell: UITableViewCell = tableView.cellForRow(at: indexPath)!
+                            tableViewCell.accessoryType = UITableViewCellAccessoryType.none
+                            tableViewCell.textLabel?.text = "Login"
+                            tableView.reloadData()
+                        }else{
+                            let banner = MEDBanner(title: NSLocalizedString("Logout_error", comment: ""), subtitle: nil, image: nil, backgroundColor: AppTheme.NEVO_SOLAR_YELLOW())
+                            banner.dismissesOnTap = true
+                            banner.show(duration: 1.2)
+                        }
                     }else{
-                        let banner = MEDBanner(title: NSLocalizedString("Logout_error", comment: ""), subtitle: nil, image: nil, backgroundColor: AppTheme.NEVO_SOLAR_YELLOW())
-                        banner.dismissesOnTap = true
-                        banner.show(duration: 1.2)
+                        let loginController:LoginController = LoginController()
+                        loginController.hidesBottomBarWhenPushed = true
+                        self.navigationController?.pushViewController(loginController, animated: true)
                     }
+                    
+                })
+                dialogController.addAction(confirmAction)
+                
+                let cancelAction = AlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil)
+                dialogController.addAction(cancelAction)
+                
+                if !AppTheme.isTargetLunaR_OR_Nevo() {
+                    confirmAction.setValue(UIColor.getBaseColor(), forKey: "titleTextColor")
+                    cancelAction.setValue(UIColor.getBaseColor(), forKey: "titleTextColor")
                 }else{
-                    let loginController:LoginController = LoginController()
-                    loginController.hidesBottomBarWhenPushed = true
-                    self.navigationController?.pushViewController(loginController, animated: true)
+                    confirmAction.setValue(AppTheme.NEVO_SOLAR_YELLOW(), forKey: "titleTextColor")
+                    cancelAction.setValue(AppTheme.NEVO_SOLAR_YELLOW(), forKey: "titleTextColor")
                 }
+                self.present(dialogController, animated: true, completion: nil)
             }
             break
         case 3:
