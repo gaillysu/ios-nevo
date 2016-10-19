@@ -23,8 +23,8 @@ class SleepHistoryViewCell: UICollectionViewCell {
     func updateTitleLabel(_ labelText: String){
         let contentDict:[String:AnyObject] = [NSFontAttributeName:titleLabel.font]
         titleLabel.text = labelText.capitalized(with: Locale.current)
-        //let statusLabelSize = labelText.size(attributes: contentDict)
-        labelWidth.constant = 90
+        let statusLabelSize = labelText.size(attributes: contentDict)
+        labelWidth.constant = 80
         layoutIfNeeded()
     }
 

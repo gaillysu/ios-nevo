@@ -72,7 +72,7 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
         titleLabel.text = title
     }
     
-    func updateChartData(_ dataArray:NSArray,chartType:Int,rowIndex:Int,completionData:((_ totalValue:Float,_ totalCalores:Int,_ totalTime:Int) -> Void)) {
+    func updateChartData(_ dataArray:NSArray,chartType:Int,rowIndex:Int,completionData:((_ totalValue:Float,_ totalCalores:Int,_ totalTime:Double) -> Void)) {
         lineChartView.data = nil
         xVals = []
         yVals = []
@@ -88,18 +88,37 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
                 totalCalores += Int(usersteps.calories)
                 totalTime += (usersteps.walking_duration+usersteps.running_duration)
             }
-            completionData(Float(totalSteps), totalCalores, totalTime)
+            completionData(Float(totalSteps), totalCalores, Double(totalTime)/60.0)
             self.setStepsDataCount(dataArray, type: chartType,rowIndex:rowIndex)
         case 1:
             var totalValue:Int = 0
+            var weakeValue:Int = 0
+            var deepValue:Int = 0
             for value in dataArray {
-                let usersteps:UserSleep = value as! UserSleep
-                let sleepTime:[Int] = AppTheme.jsonToArray(usersteps.hourlySleepTime) as! [Int]
+                let userSleep:UserSleep = value as! UserSleep
+                let sleepTime:[Int] = AppTheme.jsonToArray(userSleep.hourlySleepTime) as! [Int]
+                let weakeSleepTime:[Int] = AppTheme.jsonToArray(userSleep.hourlyWakeTime) as! [Int]
+                let deepSleepTime:[Int] = AppTheme.jsonToArray(userSleep.hourlyDeepTime) as! [Int]
                 for value2 in sleepTime {
                     totalValue+=value2
                 }
+                
+                for value3 in weakeSleepTime {
+                    weakeValue+=value3
+                }
+                
+                for value4 in deepSleepTime {
+                    deepValue+=value4
+                }
             }
-            completionData(Float(totalValue)/60.0, 0, 0)
+
+            let isNan = (Double(deepValue)/Double(totalValue)).isNaN
+            var quality:Double = isNan ? 0:(Double(deepValue)/Double(totalValue))*100
+            if totalValue == 0 {
+                quality = 0
+            }
+            
+            completionData(Float(totalValue)/60.0, weakeValue, quality)
             self.setSleepDataCount(dataArray, type: chartType,rowIndex:rowIndex)
         case 2:
             self.setSloarDataCount(dataArray, type: chartType,rowIndex:rowIndex)
