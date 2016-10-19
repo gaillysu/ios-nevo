@@ -53,7 +53,6 @@ class NotificationViewController: UITableViewController,SelectedNotificationDele
         
         initNotificationSettingArray()
         
-        // xcode is sucks
         let indexSet:NSIndexSet = NSIndexSet(indexesIn: NSMakeRange(0, 1))
         tableView.reloadSections(indexSet as IndexSet, with: .automatic)
         tableView.reloadData()
