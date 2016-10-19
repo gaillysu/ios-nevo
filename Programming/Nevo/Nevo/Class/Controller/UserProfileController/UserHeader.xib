@@ -29,7 +29,7 @@
                 <constraint firstItem="3Tm-eT-h1m" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="lNY-N0-G93"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="348.5" y="378"/>
+            <point key="canvasLocation" x="18" y="360"/>
         </view>
     </objects>
     <resources>

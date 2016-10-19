@@ -29,12 +29,12 @@ class UserProfileController: UIViewController,UITableViewDelegate,UITableViewDat
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        userInfoTableView.sectionHeaderHeight = 150
-        userInfoTableView.backgroundColor = UIColor.white
+//        userInfoTableView.sectionHeaderHeight = 150
+//        userInfoTableView.backgroundColor = UIColor.white
         userInfoTableView.register(UINib(nibName: "UserProfileCell", bundle:nil), forCellReuseIdentifier: userIdentifier)
         userInfoTableView.register(UINib(nibName: "UserHeader", bundle:nil), forHeaderFooterViewReuseIdentifier: "HeaderViewReuseIdentifier")
 
-        userInfoTableView.separatorStyle = UITableViewCellSeparatorStyle.none
+        userInfoTableView.separatorStyle = .singleLine
         
         let rightItem:UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.save, target: self, action: #selector(saveProfileAction(_:)))
         self.navigationItem.rightBarButtonItem = rightItem
@@ -63,12 +63,19 @@ class UserProfileController: UIViewController,UITableViewDelegate,UITableViewDat
     }
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 150;
+        return section == 0 ? 150 : 0;
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let header:UITableViewHeaderFooterView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "HeaderViewReuseIdentifier")!
+        var header:UITableViewHeaderFooterView? = nil
+        if section == 0 {
+            header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "HeaderViewReuseIdentifier")!
+        }
         return header;
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        view.backgroundColor = UIColor.white
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -76,24 +83,23 @@ class UserProfileController: UIViewController,UITableViewDelegate,UITableViewDat
     }
     // MARK: - Table view data source
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return 2
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return titleArray.count
+        return section == 0 ? 0 : titleArray.count
     }
     
-    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat{
-        return 5.0
-    }
+//    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat{
+//        return 0
+//    }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell:UserProfileCell = tableView.dequeueReusableCell(withIdentifier: userIdentifier,for: indexPath) as! UserProfileCell
         cell.selectionStyle = UITableViewCellSelectionStyle.none;
         cell.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
         //cell.titleLabel.text = titleArray[indexPath.row]
-        cell.updateLabel(titleArray[(indexPath as NSIndexPath).row])
-        
+        cell.updateLabel(NSLocalizedString(fieldArray[(indexPath as NSIndexPath).row], comment: ""))
         if userprofile != nil {
             
             switch (indexPath as NSIndexPath).row {
@@ -116,7 +122,8 @@ class UserProfileController: UIViewController,UITableViewDelegate,UITableViewDat
                 cell.valueTextField.text = "\(userprofile!.birthday)"
                 cell.valueTextField.placeholder = "Birthday: "
                 cell.setType(.date)
-                cell.textPreFix = "Birthday: "
+//                cell.textPreFix = "Birthday: "
+                cell.textPreFix == ""
             default:
                 break
             }

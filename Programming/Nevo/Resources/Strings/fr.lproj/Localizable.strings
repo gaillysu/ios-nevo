@@ -189,3 +189,10 @@
 
 // 2016-10-17
 "no_network"="There seems to be some problems with your network";
+
+// 2016-10-19
+"first_name"="Firs tname";
+"last_name"="Last name";
+"weight"="Weight";
+"height"="Height";
+"date_birth"="Birthday";

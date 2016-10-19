@@ -12,11 +12,6 @@ import XCGLogger
 
 class MainTabBarController: UITabBarController,UITabBarControllerDelegate {
 
-    var items:NSMutableArray!
-    var selectedItem:UIButton!
-    let FONT_RALEWAY_BOLD:UIFont! = UIFont(name:"Raleway-Thin", size: 23);
-    var itemView:UIView?
-
     override func viewDidLoad() {
         super.viewDidLoad()
         self.delegate = self

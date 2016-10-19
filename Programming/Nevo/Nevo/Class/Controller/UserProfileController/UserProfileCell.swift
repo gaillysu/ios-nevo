@@ -106,15 +106,19 @@ class UserProfileCell: UITableViewCell,UIPickerViewDelegate,UIPickerViewDataSour
     
     // MARK: - UIPickerViewDataSource
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
+        return 2
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return inputVariables.count
+        return component == 0 ? inputVariables.count : 1
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return "\(inputVariables[row])"+"\(textPostFix)"
+        if component == 0 {
+            return "\(inputVariables[row])"
+        } else {
+            return "\(textPostFix)"
+        }
     }
     
     // MARK: - UIPickerViewDelegate
@@ -125,8 +129,19 @@ class UserProfileCell: UITableViewCell,UIPickerViewDelegate,UIPickerViewDataSour
     
     func selectedDateAction(_ date:UIDatePicker) {
         NSLog("date:\(date.date)")
-        valueTextField.text = "\(textPreFix)"+self.dateFormattedStringWithFormat("yyyy-MM-dd", fromDate: date.date)
-        editCellTextField?(cellIndex,self.dateFormattedStringWithFormat("yyyy-MM-dd", fromDate: date.date))
+        
+        var dateFormatStr = ""
+        let languages = NSLocale.preferredLanguages
+        if let currentLang = languages.first {
+            let langsArray = ["zh", "zh-Hans", "zh-Hant", "zh-Hans-CN", "zh-Hant-CN"]
+            if langsArray.contains(currentLang) {
+                dateFormatStr = "yyyy-MM-dd"
+            } else {
+                dateFormatStr = "dd-MM-yyyy"
+            }
+        }
+        valueTextField.text = "\(textPreFix)"+self.dateFormattedStringWithFormat(dateFormatStr, fromDate: date.date)
+        editCellTextField?(cellIndex,self.dateFormattedStringWithFormat(dateFormatStr, fromDate: date.date))
     }
     
     func dateFormattedStringWithFormat(_ format: String, fromDate date: Date) -> String {
