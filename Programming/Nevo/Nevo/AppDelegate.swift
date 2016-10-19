@@ -85,59 +85,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
             UserDefaults.standard.set(false, forKey: "firstDatabase")
             
             if(!UserDefaults.standard.bool(forKey: "migration")){
-                let realm:Realm = try! Realm()
-                realm.deleteAll()
-                for object in UserAlarm.getAll(){
-                    if let alarmModel:AlarmModel = object as? AlarmModel {
-                        let alarm = AlarmRealm()
-                        alarm.fromAlarmModel(alarmModel: alarmModel)
-                        try! realm.write ({
-                            realm.add(alarm)
-                        })
-                        _ = alarmModel.remove()
-                    }else{
-                        print("Alarm migration went wrong, strangely")
-                    }
-                }
-                
-                for object in UserSteps.getAll() {
-                    if let stepsModel:StepsModel = object as? StepsModel {
-                        let steps = Steps()
-                        steps.fromStepsModel(userSteps: stepsModel)
-                        try! realm.write ({
-                            realm.add(steps)
-                        })
-                        _ = stepsModel.remove()
-                    }else{
-                        print("Steps migration went wrong, strangely")
-                    }
-                }
-                
-                for object in UserSleep.getAll() {
-                    if let sleepModel:SleepModel = object as? SleepModel {
-                        let sleep = SleepRealm()
-                        sleep.fromSleepModel(sleepModel: sleepModel)
-                        try! realm.write ({
-                            realm.add(sleep)
-                        })
-                        _ = sleepModel.remove()
-                    }else{
-                        print("Sleep migration went wrong, strangely")
-                    }
-                }
-                
-                for object in Presets.getAll() {
-                    if let presetsModel:PresetsModel = object as? PresetsModel {
-                        let goalPreset = GoalPresets()
-                        goalPreset.fromGoalModel(presetsModel: presetsModel)
-                        try! realm.write ({
-                            realm.add(goalPreset)
-                        })
-                        _ = presetsModel.remove()
-                    }else{
-                        print("Goal migration went wrong, strangely")
-                    }
-                }
+                migrateDatabase()
                 UserDefaults.standard.set(true, forKey: "migration")
             }
         }
@@ -501,7 +449,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                     for index:Int in 0 ..< thispacket.getHourlyRunningDistance().count {
                         if(thispacket.getHourlyRunningDistance()[index] > 0) {
                             hk.writeDataPoint(RunningToHK(distance:Double(thispacket.getHourlyRunningDistance()[index]), date:Date.date(saveDay.year, month: saveDay.month, day: saveDay.day, hour: index, minute: 0, second: 0)), resultHandler: { (result, error) in
-                                
                             })
                         }
                     }
@@ -692,3 +639,75 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
     }
 }
 
+
+// Only used for migration for database.
+extension AppDelegate{
+    func migrateDatabase(){
+        let realm:Realm = try! Realm()
+        realm.deleteAll()
+        for object in UserAlarm.getAll(){
+            if let alarmModel:AlarmModel = object as? AlarmModel {
+                let alarm = AlarmRealm()
+                alarm.fromAlarmModel(alarmModel: alarmModel)
+                try! realm.write ({
+                    realm.add(alarm)
+                })
+                _ = alarmModel.remove()
+            }else{
+                print("Alarm migration went wrong, strangely")
+            }
+        }
+        
+        for object in UserSteps.getAll() {
+            if let stepsModel:StepsModel = object as? StepsModel {
+                let steps = Steps()
+                steps.fromStepsModel(userSteps: stepsModel)
+                try! realm.write ({
+                    realm.add(steps)
+                })
+                _ = stepsModel.remove()
+            }else{
+                print("Steps migration went wrong, strangely")
+            }
+        }
+        
+        for object in UserSleep.getAll() {
+            if let sleepModel:SleepModel = object as? SleepModel {
+                let sleep = SleepRealm()
+                sleep.fromSleepModel(sleepModel: sleepModel)
+                try! realm.write ({
+                    realm.add(sleep)
+                })
+                _ = sleepModel.remove()
+            }else{
+                print("Sleep migration went wrong, strangely")
+            }
+        }
+        
+        for object in Presets.getAll() {
+            if let presetsModel:PresetsModel = object as? PresetsModel {
+                let goalPreset = GoalPresets()
+                goalPreset.fromGoalModel(presetsModel: presetsModel)
+                try! realm.write ({
+                    realm.add(goalPreset)
+                })
+                _ = presetsModel.remove()
+            }else{
+                print("Goal migration went wrong, strangely")
+            }
+        }
+        
+        for object in UserNotification.getAll(){
+            if let notificationModel = object as? NotificationModel{
+                let notifications = Notifications()
+                notifications.fromNotificationModel(notificationModel: notificationModel)
+                try! realm.write ({
+                    realm.add(notifications)
+                })
+                _ = notificationModel.remove()
+            }else{
+                print("Notification migration went wrong, strangely")
+            }
+        }
+    }
+}
