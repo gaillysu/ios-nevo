@@ -16,6 +16,17 @@ class NotificationViewController: UITableViewController,SelectedNotificationDele
     fileprivate let titleHeader:[String] = ["ACTIVE_NOTIFICATIONS","INACTIVE_NOTIFICATIONS"]
     fileprivate var mNotificationArray:NSArray = NSArray()
 
+    var hasNotiOFF:Bool {
+        get {
+            return self.mNotificationOFFArray.count != 0
+        }
+    }
+    var hasNotiON:Bool {
+        get {
+            return self.mNotificationONArray.count != 0
+        }
+    }
+    
     @IBOutlet weak var notificationView: NotificationView!
 
     init() {
@@ -36,7 +47,17 @@ class NotificationViewController: UITableViewController,SelectedNotificationDele
             self.tableView.backgroundColor = UIColor.getGreyColor()
         }
     }
-
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        initNotificationSettingArray()
+        
+        let indexSet:NSIndexSet = NSIndexSet(indexesIn: NSMakeRange(0, 1))
+        tableView.reloadSections(indexSet as IndexSet, with: .automatic)
+        tableView.reloadData()
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -59,6 +80,7 @@ class NotificationViewController: UITableViewController,SelectedNotificationDele
             NotificationType.sms,
             NotificationType.wechat,
             NotificationType.calendar]
+        
         for notificationType in notificationTypeArray {
             for model in mNotificationArray{
                 let notification:UserNotification = model as! UserNotification
@@ -116,20 +138,29 @@ class NotificationViewController: UITableViewController,SelectedNotificationDele
         var titleString:String = ""
         var clockIndex:Int = 0
         var state:Bool = false
-        switch ((indexPath as NSIndexPath).section){
-        case 0:
-            let notificationseting:NotificationSetting = mNotificationONArray[(indexPath as NSIndexPath).row]
-            titleString = notificationseting.typeName
-            clockIndex = notificationseting.getClock()
-            state = notificationseting.getStates()
-        case 1:
-            let notificationseting:NotificationSetting = mNotificationOFFArray[(indexPath as NSIndexPath).row]
-            titleString = notificationseting.typeName
-            clockIndex = notificationseting.getClock()
-            state = notificationseting.getStates()
-        default: break;
+        
+        var noti:NotificationSetting?
+        if hasNotiON && hasNotiOFF {
+            switch indexPath.section {
+            case 0:
+                noti = mNotificationONArray[indexPath.row]
+            default:
+                noti = mNotificationOFFArray[indexPath.row]
+            }
+        } else {
+            if hasNotiON {
+                noti = mNotificationONArray[indexPath.row]
+            } else {
+                noti = mNotificationOFFArray[indexPath.row]
+            }
         }
-
+        
+        if let noti = noti {
+            titleString = noti.typeName
+            clockIndex = noti.getClock()
+            state = noti.getStates()
+        }
+        
         let selectedNot:SelectedNotificationTypeController = SelectedNotificationTypeController()
         selectedNot.titleString = titleString
         selectedNot.clockIndex = clockIndex
@@ -140,17 +171,13 @@ class NotificationViewController: UITableViewController,SelectedNotificationDele
 
     // MARK: - Table view data source
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String{
-        if(section == 0) {
-            if(mNotificationONArray.count == 0) {
-                return ""
-            }else{
-                return NSLocalizedString(titleHeader[section], comment: "")
-            }
-        }else{
-            if(mNotificationOFFArray.count == 0) {
-                return ""
-            }else{
-                return NSLocalizedString(titleHeader[section], comment: "")
+        if hasNotiON && hasNotiOFF {
+            return NSLocalizedString(titleHeader[section], comment: "")
+        } else {
+            if hasNotiON {
+                return NSLocalizedString(titleHeader[1], comment: "")
+            } else {
+                return NSLocalizedString(titleHeader[0], comment: "")
             }
         }
     }
@@ -164,36 +191,59 @@ class NotificationViewController: UITableViewController,SelectedNotificationDele
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return titleHeader.count
+        if hasNotiON && hasNotiOFF {
+            return 2
+        } else {
+            return 1
+        }
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        switch (section){
-        case 0:
+        if hasNotiON && hasNotiOFF {
+            switch (section){
+            case 0:
+                return mNotificationONArray.count
+            case 1:
+                return mNotificationOFFArray.count
+            default:
+                return 1;
+            }
+        }
+        
+        if hasNotiON {
             return mNotificationONArray.count
-        case 1:
+        } else {
             return mNotificationOFFArray.count
-        default: return 1;
         }
     }
 
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        switch ((indexPath as NSIndexPath).section){
-        case 0:
-            let notificationseting:NotificationSetting = mNotificationONArray[(indexPath as NSIndexPath).row]
-            var detailString:String = ""
-            notificationseting.getStates() ? (detailString = notificationseting.getColorName()) : (detailString = NSLocalizedString("turned_off", comment: ""))
-            return NotificationView.NotificationSystemTableViewCell(indexPath, tableView: tableView, title: notificationseting.typeName, detailLabel:detailString)
-        case 1:
-            let notificationseting:NotificationSetting = mNotificationOFFArray[(indexPath as NSIndexPath).row]
-            var detailString:String = ""
-            notificationseting.getStates() ? (detailString = notificationseting.getColorName()) : (detailString = NSLocalizedString("turned_off", comment: ""))
-            return NotificationView.NotificationSystemTableViewCell(indexPath, tableView: tableView, title: notificationseting.typeName, detailLabel:detailString)
-        default: return UITableViewCell();
+        var noti:NotificationSetting? = nil
+        if hasNotiON && hasNotiOFF {
+            switch indexPath.section {
+            case 0:
+                noti = mNotificationONArray[(indexPath as NSIndexPath).row]
+            default:
+                noti = mNotificationOFFArray[(indexPath as NSIndexPath).row]
+            }
+        } else {
+            if hasNotiON {
+                noti = mNotificationONArray[(indexPath as NSIndexPath).row]
+            } else {
+                noti = mNotificationOFFArray[(indexPath as NSIndexPath).row]
+            }
         }
-    }
+        
+        if let noti = noti {
+            var detailString:String = ""
+            noti.getStates() ? (detailString = noti.getColorName()) : (detailString = NSLocalizedString("turned_off", comment: ""))
+            return NotificationView.NotificationSystemTableViewCell(indexPath, tableView: tableView, title: noti.typeName, detailLabel:detailString)
+        }
+        
+        return UITableViewCell()
+}
 
 
     /*
