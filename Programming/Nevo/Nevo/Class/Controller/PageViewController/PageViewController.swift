@@ -158,9 +158,8 @@ extension PageViewController {
         let pageControl = UIPageControl(frame: CGRect(x: 100, y: UIScreen.main.bounds.size.height-44, width: 100, height: 20))
         pageControl.numberOfPages = 3
         pageControl.currentPage = 0
-        pageControl.pageIndicatorTintColor = UIColor.getBarColor()
-        pageControl.currentPageIndicatorTintColor = UIColor.gray
-        pageControl.size(forNumberOfPages: 8)
+        pageControl.pageIndicatorTintColor = UIColor.lightGray
+        pageControl.currentPageIndicatorTintColor = AppTheme.NEVO_SOLAR_YELLOW()
         pageControl.addTarget(self, action: #selector(pageAction(_ :)), for: UIControlEvents.valueChanged)
         self.view.addSubview(pageControl)
         
@@ -176,6 +175,7 @@ extension PageViewController {
             if view is  UIPageControl{
                 let page:UIPageControl = view as! UIPageControl
                 page.currentPage = index
+                page.size(forNumberOfPages: index)
                 break
             }
         }
