@@ -6,7 +6,7 @@
 "FG3-Pu-4pM.text" = "使用社交账号登陆";
 
 /* Class = "UITextField"; placeholder = "User Name"; ObjectID = "Tnd-gn-9VW"; */
-"Tnd-gn-9VW.placeholder" = "用户名";
+"Tnd-gn-9VW.placeholder" = "邮箱";
 
 /* Class = "UIButton"; normalTitle = "LOGIN"; ObjectID = "WVZ-VY-fkM"; */
 "WVZ-VY-fkM.normalTitle" = "登陆";
