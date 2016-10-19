@@ -41,6 +41,7 @@ class LoginController: UIViewController,UITextFieldDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         self.navigationItem.title = NSLocalizedString("Login", comment: "")
         let rightButton:UIBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Skip Login", comment: ""), style: UIBarButtonItemStyle.plain, target: self, action: #selector(rightAction(_:)))
         self.navigationItem.rightBarButtonItem = rightButton
@@ -48,6 +49,9 @@ class LoginController: UIViewController,UITextFieldDelegate {
         // Skip Login
         self.skipButton.setTitle(NSLocalizedString("Skip Login", comment: ""), for: .normal)
         self.skipButton.sizeToFit()
+        
+        let judgeRootViewController = NSStringFromClass((UIApplication.shared.keyWindow?.rootViewController?.classForCoder)!) == "Nevo.MainTabBarController"
+        self.skipButton.isHidden = judgeRootViewController
         
         for controllers:UIViewController in self.navigationController!.viewControllers {
             if controllers.isKind(of: SetingViewController.self) {
@@ -83,10 +87,12 @@ class LoginController: UIViewController,UITextFieldDelegate {
         super.viewDidAppear(animated)
         let user:NSArray = UserProfile.getAll()
         if user.count>0 {
-            if self.navigationController?.isNavigationBarHidden == true {
-                UIApplication.shared.keyWindow?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
+            let judgeRootViewController = NSStringFromClass((UIApplication.shared.keyWindow?.rootViewController?.classForCoder)!) == "Nevo.MainTabBarController"
+            
+            if judgeRootViewController {
+                self.dismiss(animated: true, completion: nil)
             } else {
-                self.navigationController?.popViewController(animated: true)
+                UIApplication.shared.keyWindow?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
             }
         }
     }
@@ -184,11 +190,13 @@ class LoginController: UIViewController,UITextFieldDelegate {
                     userprofile.add({ (id, completion) in
                         XCGLogger.default.debug("Added? id = \(id)")
                     })
-//                    self.navigationController?.popViewController(animated: true)
-                    if self.navigationController?.isNavigationBarHidden == true {
-                        UIApplication.shared.keyWindow?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
+                    
+                    let judgeRootViewController = NSStringFromClass((UIApplication.shared.keyWindow?.rootViewController?.classForCoder)!) == "Nevo.MainTabBarController"
+                    
+                    if judgeRootViewController {
+                        self.dismiss(animated: true, completion: nil)
                     } else {
-                        self.navigationController?.popViewController(animated: true)
+                        UIApplication.shared.keyWindow?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
                     }
                 }else{
                     if self.pErrorNumber>=3{

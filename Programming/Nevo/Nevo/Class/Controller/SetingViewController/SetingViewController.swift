@@ -91,8 +91,12 @@ class SetingViewController: UIViewController,ButtonManagerCallBack,UIAlertViewDe
             let user:NSArray = UserProfile.getAll()
             if user.count == 0 {
                 let login:LoginController = LoginController()
-                login.hidesBottomBarWhenPushed = true
-                self.navigationController?.pushViewController(login, animated: true)
+//                login.skipButton.isHidden = true
+//                login.hidesBottomBarWhenPushed = true
+//                self.navigationController?.pushViewController(login, animated: true)
+                let naviController = UINavigationController(rootViewController: login)
+                naviController.isNavigationBarHidden = true
+                self.present(naviController, animated: true, completion: nil)
             }else{
                 let userprofile:UserProfileController = UserProfileController()
                 userprofile.title = "Profile"
