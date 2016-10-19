@@ -189,7 +189,25 @@ class SetingViewController: UIViewController,ButtonManagerCallBack,UIAlertViewDe
                     let tutrorial:TutorialOneViewController = TutorialOneViewController()
                     let nav:UINavigationController = UINavigationController(rootViewController: tutrorial)
                     nav.isNavigationBarHidden = true
-                    UIApplication.shared.keyWindow?.rootViewController = nav
+                    
+//                    nav.transitioningDelegate = self
+//                    nav.modalPresentationStyle = UIModalPresentationStyle.custom
+                    
+//                    self.view.addSubview(nav.view)
+//                    nav.view.frame.origin.y = self.view.frame.size.height
+//                    UIView.animate(withDuration: 1, animations: {
+//                        nav.view.frame.origin.y = 0
+//                    }, completion: { (_) in
+//                        AppDelegate.getAppDelegate().window? = UIWindow(frame: UIScreen.main.bounds)
+//                        AppDelegate.getAppDelegate().window?.rootViewController = nav
+//                        AppDelegate.getAppDelegate().window?.makeKeyAndVisible()
+//                    })
+                    
+//                    UIApplication.shared.keyWindow?.rootViewController = nav
+                    
+                    self.present(nav, animated: true, completion: { 
+                        UIApplication.shared.keyWindow?.rootViewController = nav
+                    })
                 })
                 actionSheet.addAction(alertAction2)
                 
@@ -397,4 +415,34 @@ class SetingViewController: UIViewController,ButtonManagerCallBack,UIAlertViewDe
 
     }
 
+}
+
+extension SetingViewController:UIViewControllerTransitioningDelegate, UIViewControllerAnimatedTransitioning {
+    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return self
+    }
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return self
+    }
+    
+    func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
+        return 3
+    }
+    
+    func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
+        if let toView = transitionContext.view(forKey: UITransitionContextViewKey.to) {
+            transitionContext.containerView.addSubview(self.view)
+            toView.frame = CGRect(x: 0, y: 0, width: 0, height: 0)
+            self.view.frame = CGRect(x: 0, y: 0, width: 0, height: 0)
+            
+            UIView.animate(withDuration: 3, animations: {
+                self.view.frame = transitionContext.containerView.frame
+                toView.frame = UIScreen.main.bounds
+                }, completion: { (_) in
+                    self.view.removeFromSuperview()
+                    transitionContext.containerView.addSubview(toView)
+                    transitionContext.completeTransition(true)
+            })
+        }
+    }
 }

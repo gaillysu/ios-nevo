@@ -75,10 +75,10 @@ class StepGoalSetingController: PublicClassController,ButtonManagerCallBack,Cloc
         saveContentTArray(Date().beginningOfDay.timeIntervalSince1970)
         
         if(!AppDelegate.getAppDelegate().hasSavedAddress()) {
-            let tutorialOne:TutorialOneViewController = TutorialOneViewController()
-            let nav:UINavigationController = UINavigationController(rootViewController: tutorialOne)
-            nav.isNavigationBarHidden = true
-            self.present(nav, animated: true, completion: nil)
+//            let tutorialOne:TutorialOneViewController = TutorialOneViewController()
+//            let nav:UINavigationController = UINavigationController(rootViewController: tutorialOne)
+//            nav.isNavigationBarHidden = true
+//            self.present(nav, animated: true, completion: nil)
         }else{
             AppDelegate.getAppDelegate().startConnect(false)
         }
