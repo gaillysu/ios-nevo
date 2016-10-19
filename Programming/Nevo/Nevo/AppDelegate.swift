@@ -236,16 +236,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                 self.setWatchInfo(watchpacket.getWatchID(), model: watchpacket.getModelNumber())
                 //start sync data
                 //self.syncActivityData()
-                if getWacthNameTimer!.isValid {
+                if let timer = getWacthNameTimer?.isValid {
                     getWacthNameTimer?.invalidate()
                     getWacthNameTimer = nil
                 }
-                
-                if !self.getMconnectionController()!.isPairingPeripheral() {
-                    self.setRTC()
-                }else{
-                    self.SetProfile()
-                }
+                self.setRTC()
             }
             
             if(packet.getHeader() == SetRTCRequest.HEADER()) {
@@ -561,11 +556,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                 self.getWatchNameRequest()
                 
                 self.getWacthNameTimer = Timer.after(5, {
-                    if !self.getMconnectionController()!.isPairingPeripheral() {
-                        self.setRTC()
-                    }else{
-                        self.SetProfile()
-                    }
+                    self.setRTC()
                 })
             })
 

@@ -21,7 +21,7 @@ class SleepHistoricalView: UIView, ChartViewDelegate{
     fileprivate var queryModel:NSMutableArray = NSMutableArray()
     fileprivate let sleepArray:NSMutableArray = NSMutableArray();
     fileprivate var mDelegate:SelectedChartViewDelegate?
-    fileprivate var totalNumber:Double = 0
+    fileprivate var totalNumber:Double = 0 //The unit is hour
 
     func bulidQueryView(_ delegate:SelectedChartViewDelegate,modelArray:NSArray){
         queryModel.removeAllObjects()
@@ -46,6 +46,8 @@ class SleepHistoricalView: UIView, ChartViewDelegate{
     }
 
     func setDataCount(_ count:Int){
+        totalNumber = 0
+        
         if(count == 0) {
             for i:Int in 0..<2 {
                 let seleModel:UserSleep = UserSleep()
