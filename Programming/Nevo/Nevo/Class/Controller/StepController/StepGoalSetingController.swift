@@ -97,7 +97,7 @@ class StepGoalSetingController: PublicClassController,ButtonManagerCallBack,Cloc
             let dailySteps:Int = dict["STEPS"] as! Int
             self.contentTArray.replaceSubrange(Range(1..<2), with: ["\(dailySteps)"])
             StepGoalSetingController.calculationData(0, steps: dailySteps, completionData: { (miles, calories) in
-                self.contentTArray.replaceSubrange(Range(3..<4), with: ["\(miles)"])
+                self.contentTArray.replaceSubrange(Range(3..<4), with: [String(format: "%.2f", miles)])
             })
             self.collectionView.reloadData()
         }
@@ -166,8 +166,8 @@ class StepGoalSetingController: PublicClassController,ButtonManagerCallBack,Cloc
             self.contentTArray.replaceSubrange(Range(1..<2), with: ["\(dataSteps.steps)"])
              self.contentTArray.replaceSubrange(Range(2..<3), with: [AppTheme.timerFormatValue(value: Double(timerValue/60.0))])
             StepGoalSetingController.calculationData((dataSteps.walking_duration+dataSteps.running_duration), steps: dataSteps.steps, completionData: { (miles, calories) in
-                self.contentTArray.replaceSubrange(Range(0..<1), with: ["\(calories)"])
-                self.contentTArray.replaceSubrange(Range(3..<4), with: ["\(miles)"])
+                self.contentTArray.replaceSubrange(Range(0..<1), with: [String(format: "%.2f", calories)])
+                self.contentTArray.replaceSubrange(Range(3..<4), with: [String(format: "%.2f", miles)])
             })
             self.collectionView.reloadData()
             //AppTheme.KeyedArchiverName(self.StepsGoalKey, andObject: self.contentTArray)
