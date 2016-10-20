@@ -487,7 +487,13 @@ class AlarmClockController: UITableViewController,AddAlarmDelegate {
                     }
                 }
                 
-                tableView.deleteRows(at: [indexPath], with: .fade)
+                // 如果删除某一个闹钟后, 有需要删除 tableview 中 section 的操作, 就需要执行 deleteSections 方法
+                if !hasWakeAlarmArray || !hasSleepAlarmArray {
+                    tableView.deleteSections(IndexSet(indexPath.section..<indexPath.section + 1), with: .automatic)
+                } else {
+                    tableView.deleteRows(at: [indexPath], with: .fade)
+                }
+                
                 var alarmArray:[NewAlarm] = []
                 
                 var array:NSArray = []

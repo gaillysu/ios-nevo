@@ -28,8 +28,11 @@ class AddPresetViewController: UIViewController,ButtonManagerCallBack {
 //        addPresetView.backgroundColor = UIColor.white
         addPresetView.bulidAddPresetView(self.navigationItem, delegate: self)
         
-        view.backgroundColor = UIColor(red: 239/255.0, green: 239/255.0, blue: 244/255.0, alpha: 1.0)
-        addPresetView.backgroundColor = UIColor(red: 239/255.0, green: 239/255.0, blue: 244/255.0, alpha: 1.0)
+//        view.backgroundColor = UIColor(red: 239/255.0, green: 239/255.0, blue: 244/255.0, alpha: 1.0)
+//        addPresetView.backgroundColor = UIColor(red: 239/255.0, green: 239/255.0, blue: 244/255.0, alpha: 1.0)
+        view.backgroundColor = UIColor(rgba: "#EFEFF4")
+        addPresetView.backgroundColor = UIColor(rgba: "#EFEFF4")
+        
         addPresetView.presetName.backgroundColor = UIColor.white
     }
 

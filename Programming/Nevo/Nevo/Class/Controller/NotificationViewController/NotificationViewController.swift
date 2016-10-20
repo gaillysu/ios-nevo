@@ -175,9 +175,9 @@ class NotificationViewController: UITableViewController,SelectedNotificationDele
             return NSLocalizedString(titleHeader[section], comment: "")
         } else {
             if hasNotiON {
-                return NSLocalizedString(titleHeader[1], comment: "")
-            } else {
                 return NSLocalizedString(titleHeader[0], comment: "")
+            } else {
+                return NSLocalizedString(titleHeader[1], comment: "")
             }
         }
     }
