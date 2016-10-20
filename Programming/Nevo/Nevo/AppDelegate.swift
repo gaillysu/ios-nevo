@@ -525,7 +525,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                 SwiftEventBus.post(EVENT_BUS_BEGIN_SMALL_SYNCACTIVITY, sender:["STEPS":dailySteps,"GOAL":dailyStepGoal,"PERCENT":percent] as AnyObject)
             }
             
-            //find Phone
+            //new find Phone
+            if (packet.getHeader() == FindPhonePacket.HEADER()) {
+                AppTheme.playSound()
+            }
+            
+            //old find Phone
             if (TestMode.sharedInstance(packet.getPackets()).isTestModel()) {
                 AppTheme.playSound()
             }
