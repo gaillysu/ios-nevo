@@ -41,6 +41,8 @@ class UserProfileController: UIViewController,UITableViewDelegate,UITableViewDat
     }
 
     override func viewWillAppear(_ animated: Bool) {
+        navigationItem.title = NSLocalizedString("Profile", comment: "")
+        
         let userArray:NSArray = UserProfile.getAll()
         if userArray.count>0 {
             userprofile = userArray[0] as? UserProfile

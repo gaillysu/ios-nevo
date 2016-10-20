@@ -198,7 +198,7 @@
                 <constraint firstItem="98S-al-o4l" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="38" id="Cex-S5-eF2"/>
                 <constraint firstItem="98S-al-o4l" firstAttribute="height" secondItem="M6l-WV-9Jl" secondAttribute="height" id="EX8-Wd-QBO"/>
                 <constraint firstItem="LkM-Zg-6Zv" firstAttribute="top" secondItem="M6l-WV-9Jl" secondAttribute="bottom" constant="40" id="EhA-dy-EvH"/>
-                <constraint firstItem="5hK-yO-jRt" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="100" id="FBM-MY-L86"/>
+                <constraint firstItem="5hK-yO-jRt" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="80" id="FBM-MY-L86"/>
                 <constraint firstItem="xjf-sh-1ci" firstAttribute="centerY" secondItem="VU0-vW-bBF" secondAttribute="centerY" id="Ffm-E1-nb3"/>
                 <constraint firstItem="LkM-Zg-6Zv" firstAttribute="leading" secondItem="VU0-vW-bBF" secondAttribute="leading" id="Fjl-KF-SIk"/>
                 <constraint firstItem="Goa-Bq-FHb" firstAttribute="height" secondItem="98S-al-o4l" secondAttribute="height" id="HqG-vK-kOl"/>
@@ -216,7 +216,7 @@
                 <constraint firstAttribute="trailing" secondItem="5hK-yO-jRt" secondAttribute="trailing" constant="42" id="d6X-fd-qhC"/>
                 <constraint firstItem="M6l-WV-9Jl" firstAttribute="top" secondItem="98S-al-o4l" secondAttribute="bottom" constant="10" id="dgV-Wv-m9n"/>
                 <constraint firstItem="5hK-yO-jRt" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="43" id="ib7-Hx-pqS"/>
-                <constraint firstItem="Gaa-7s-BJh" firstAttribute="top" secondItem="5hK-yO-jRt" secondAttribute="bottom" constant="15" id="idi-wg-LuO"/>
+                <constraint firstItem="Gaa-7s-BJh" firstAttribute="top" secondItem="5hK-yO-jRt" secondAttribute="bottom" constant="30" id="idi-wg-LuO"/>
                 <constraint firstItem="LkM-Zg-6Zv" firstAttribute="trailing" secondItem="VU0-vW-bBF" secondAttribute="trailing" id="k00-xz-87x"/>
                 <constraint firstItem="98S-al-o4l" firstAttribute="top" secondItem="Goa-Bq-FHb" secondAttribute="bottom" constant="10" id="keE-86-GiM"/>
                 <constraint firstItem="VU0-vW-bBF" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="78" id="l1E-l8-H0B"/>

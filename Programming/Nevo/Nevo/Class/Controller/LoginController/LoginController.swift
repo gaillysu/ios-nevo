@@ -24,8 +24,6 @@ class LoginController: UIViewController,UITextFieldDelegate {
     @IBOutlet weak var registerLabel: ActiveLabel!
     @IBOutlet weak var platformLabel: UILabel!
     
-    @IBOutlet weak var skipButton: UIButton!
-    
 //    fileprivate var backButton:UIButton?
     
     var userName:String = ""
@@ -45,34 +43,25 @@ class LoginController: UIViewController,UITextFieldDelegate {
         super.viewDidLoad()
         
         self.navigationItem.title = NSLocalizedString("Login", comment: "")
-        let rightButton:UIBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Skip Login", comment: ""), style: UIBarButtonItemStyle.plain, target: self, action: #selector(rightAction(_:)))
+        let rightButton:UIBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Skip Login", comment: ""), style: UIBarButtonItemStyle.plain, target: self, action: #selector(skipButtonClick(_:)))
         self.navigationItem.rightBarButtonItem = rightButton
-
-        // Skip Login
-        self.skipButton.setTitle(NSLocalizedString("Skip Login", comment: ""), for: .normal)
-        self.skipButton.sizeToFit()
+        
+        let leftButton:UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "cancel_lunar"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(backButtonClick(_:)))
+        self.navigationItem.leftBarButtonItem = leftButton
         
         let judgeRootViewController = NSStringFromClass((UIApplication.shared.keyWindow?.rootViewController?.classForCoder)!) == "Nevo.MainTabBarController"
-        self.skipButton.isHidden = judgeRootViewController
         
         if judgeRootViewController {
-//            navigationController?.isNavigationBarHidden = false
-//            AppTheme.navigationbar(navigationController)
-            let backButton:UIButton = UIButton()
-            backButton.setTitle(NSLocalizedString("Back", comment: ""), for: .normal)
-            backButton.setTitleColor(UIColor.black, for: .normal)
-            backButton.sizeToFit()
-            backButton.addTarget(self, action: #selector(backButtonClick(_:)), for: .touchUpInside)
-            view.addSubview(backButton)
-            backButton.frame.origin.x = 15
-            backButton.frame.origin.y = 25
+            self.navigationItem.rightBarButtonItem = nil
+        } else {
+            self.navigationItem.leftBarButtonItem = nil
         }
         
-        for controllers:UIViewController in self.navigationController!.viewControllers {
-            if controllers.isKind(of: SetingViewController.self) {
-                self.navigationItem.rightBarButtonItem = nil
-            }
-        }
+//        for controllers:UIViewController in self.navigationController!.viewControllers {
+//            if controllers.isKind(of: SetingViewController.self) {
+//                self.navigationItem.rightBarButtonItem = nil
+//            }
+//        }
         
         let tap:UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapAction(_:)))
         registerLabel.addGestureRecognizer(tap)
@@ -98,6 +87,18 @@ class LoginController: UIViewController,UITextFieldDelegate {
         }
         
     }
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        navigationController?.navigationBar.lt_setBackgroundColor(UIColor.clear)
+        navigationItem.title = nil
+        if let view = findBottomLineView(inView: navigationController?.navigationBar) {
+            view.isHidden = true
+        }
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         let user:NSArray = UserProfile.getAll()
@@ -260,5 +261,25 @@ class LoginController: UIViewController,UITextFieldDelegate {
     
     @objc fileprivate func backButtonClick(_ sender: AnyObject) {
         self.dismiss(animated: true, completion: nil)
+    }
+}
+
+extension LoginController {
+    func findBottomLineView(inView:UIView?) -> UIView? {
+        if inView?.frame.height == 0.5 {
+            return inView
+        }
+        
+        if inView?.subviews.count == 0 {
+            return nil
+        }
+        
+        for subView in (inView?.subviews)! {
+            if let result = findBottomLineView(inView: subView) {
+                print("=====================\r\n")
+                return result
+            }
+        }
+        return nil
     }
 }

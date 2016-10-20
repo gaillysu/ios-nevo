@@ -17,7 +17,6 @@
                 <outlet property="passwordTextField" destination="fmC-FL-Zk2" id="tSG-HU-i81"/>
                 <outlet property="platformLabel" destination="g5g-mC-67u" id="RnN-WI-9Ft"/>
                 <outlet property="registerLabel" destination="4fD-c2-9vf" id="0Zp-bm-dAe"/>
-                <outlet property="skipButton" destination="dqF-V1-gJR" id="s2i-DT-0uI"/>
                 <outlet property="userNameTextField" destination="Tnd-gn-9VW" id="ozR-zm-0Mq"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -94,14 +93,6 @@
                         <action selector="buttonAction:" destination="-1" eventType="touchUpInside" id="ZwU-5T-JpB"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dqF-V1-gJR">
-                    <state key="normal" title="skip">
-                        <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    </state>
-                    <connections>
-                        <action selector="skipButtonClick:" destination="-1" eventType="touchUpInside" id="7fy-58-A54"/>
-                    </connections>
-                </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="234" text="Register" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4fD-c2-9vf" customClass="ActiveLabel" customModule="ActiveLabel">
                     <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="24"/>
                     <color key="textColor" red="0.62745098040000002" green="0.51764705879999995" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -120,13 +111,11 @@
                 <constraint firstItem="fmC-FL-Zk2" firstAttribute="top" secondItem="Tnd-gn-9VW" secondAttribute="bottom" constant="10" id="XDR-wD-9bE"/>
                 <constraint firstItem="4fD-c2-9vf" firstAttribute="centerX" secondItem="WVZ-VY-fkM" secondAttribute="centerX" id="Xhb-Lq-p0g"/>
                 <constraint firstItem="4fD-c2-9vf" firstAttribute="width" secondItem="WVZ-VY-fkM" secondAttribute="width" id="Xhm-KL-eq9"/>
-                <constraint firstItem="dqF-V1-gJR" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="25" id="Yk4-E7-veL"/>
                 <constraint firstItem="WVZ-VY-fkM" firstAttribute="width" secondItem="fmC-FL-Zk2" secondAttribute="width" id="Z4l-i4-Dd5"/>
                 <constraint firstItem="Tnd-gn-9VW" firstAttribute="top" secondItem="g5g-mC-67u" secondAttribute="bottom" constant="40" id="cgn-1p-Dnf"/>
                 <constraint firstItem="h44-yr-a8T" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="75" id="eYE-P0-P4c"/>
                 <constraint firstAttribute="trailing" secondItem="Tnd-gn-9VW" secondAttribute="trailing" constant="40" id="eyh-OR-Hz6"/>
                 <constraint firstItem="fmC-FL-Zk2" firstAttribute="height" secondItem="Tnd-gn-9VW" secondAttribute="height" id="gXt-rV-fxU"/>
-                <constraint firstAttribute="trailing" secondItem="dqF-V1-gJR" secondAttribute="trailing" constant="15" id="mtM-r9-Yr8"/>
                 <constraint firstItem="g5g-mC-67u" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="v9q-Zg-raT"/>
                 <constraint firstItem="WVZ-VY-fkM" firstAttribute="height" secondItem="fmC-FL-Zk2" secondAttribute="height" id="vFi-Zg-jam"/>
                 <constraint firstItem="Tnd-gn-9VW" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="40" id="wgs-gt-jhX"/>

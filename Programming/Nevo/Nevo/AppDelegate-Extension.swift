@@ -235,7 +235,7 @@ extension AppDelegate {
         
         if isFirsttimeLaunch {
             let naviController = UINavigationController(rootViewController: LoginController())
-            naviController.isNavigationBarHidden = true
+//            naviController.isNavigationBarHidden = true
             AppDelegate.getAppDelegate().window? = UIWindow(frame: UIScreen.main.bounds)
             AppDelegate.getAppDelegate().window?.rootViewController = naviController
             AppDelegate.getAppDelegate().window?.makeKeyAndVisible()

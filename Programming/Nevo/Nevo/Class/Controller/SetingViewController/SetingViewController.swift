@@ -95,7 +95,7 @@ class SetingViewController: UIViewController,ButtonManagerCallBack,UIAlertViewDe
 //                login.hidesBottomBarWhenPushed = true
 //                self.navigationController?.pushViewController(login, animated: true)
                 let naviController = UINavigationController(rootViewController: login)
-                naviController.isNavigationBarHidden = true
+//                naviController.isNavigationBarHidden = true
                 self.present(naviController, animated: true, completion: nil)
             }else{
                 let userprofile:UserProfileController = UserProfileController()

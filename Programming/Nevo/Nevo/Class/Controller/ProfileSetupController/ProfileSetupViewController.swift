@@ -79,7 +79,17 @@ class ProfileSetupViewController: UIViewController {
             retypePassword.textColor = UIColor.white
         }
     }
-
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        navigationItem.title = nil
+        navigationController?.navigationBar.lt_setBackgroundColor(UIColor.clear)
+        if let view = findBottomLineView(inView: navigationController?.navigationBar) {
+            view.isHidden = true
+        }
+    }
+    
     func leftCancelAction(_ sender:UIBarButtonItem) {
         let viewController = self.navigationController?.popViewController(animated: true)
         if viewController == nil {
@@ -159,7 +169,21 @@ class ProfileSetupViewController: UIViewController {
 
 // MARK: - SYSTEM CALLBACK
 extension ProfileSetupViewController {
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+    func findBottomLineView(inView:UIView?) -> UIView? {
+        if inView?.frame.height == 0.5 {
+            return inView
+        }
+        
+        if inView?.subviews.count == 0 {
+            return nil
+        }
+        
+        for subView in (inView?.subviews)! {
+            if let result = findBottomLineView(inView: subView) {
+                print("=====================\r\n")
+                return result
+            }
+        }
+        return nil
     }
 }
