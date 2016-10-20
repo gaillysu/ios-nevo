@@ -26,7 +26,7 @@ class LoginController: UIViewController,UITextFieldDelegate {
     
     @IBOutlet weak var skipButton: UIButton!
     
-//    fileprivate var backButton;
+//    fileprivate var backButton:UIButton?
     
     var userName:String = ""
     var password:String = ""
@@ -56,13 +56,16 @@ class LoginController: UIViewController,UITextFieldDelegate {
         self.skipButton.isHidden = judgeRootViewController
         
         if judgeRootViewController {
-            navigationController?.isNavigationBarHidden = false
-            AppTheme.navigationbar(navigationController)
+//            navigationController?.isNavigationBarHidden = false
+//            AppTheme.navigationbar(navigationController)
             let backButton:UIButton = UIButton()
             backButton.setTitle(NSLocalizedString("Back", comment: ""), for: .normal)
+            backButton.setTitleColor(UIColor.black, for: .normal)
             backButton.sizeToFit()
             backButton.addTarget(self, action: #selector(backButtonClick(_:)), for: .touchUpInside)
             view.addSubview(backButton)
+            backButton.frame.origin.x = 10
+            backButton.frame.origin.y = 25
         }
         
         for controllers:UIViewController in self.navigationController!.viewControllers {
@@ -253,7 +256,7 @@ class LoginController: UIViewController,UITextFieldDelegate {
         UIApplication.shared.keyWindow?.rootViewController = naviController
     }
     
-    fileprivate func backButtonClick(_ sender: AnyObject) {
+    @objc fileprivate func backButtonClick(_ sender: AnyObject) {
         self.dismiss(animated: true, completion: nil)
     }
 }

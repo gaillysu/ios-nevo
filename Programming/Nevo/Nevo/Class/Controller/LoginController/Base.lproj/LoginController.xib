@@ -135,7 +135,7 @@
                 <constraint firstItem="4fD-c2-9vf" firstAttribute="height" secondItem="WVZ-VY-fkM" secondAttribute="height" id="ybN-sU-j7W"/>
                 <constraint firstItem="WVZ-VY-fkM" firstAttribute="centerX" secondItem="fmC-FL-Zk2" secondAttribute="centerX" id="ygz-1N-t1n"/>
             </constraints>
-            <point key="canvasLocation" x="560.5" y="302.5"/>
+            <point key="canvasLocation" x="163" y="243"/>
         </view>
     </objects>
     <resources>

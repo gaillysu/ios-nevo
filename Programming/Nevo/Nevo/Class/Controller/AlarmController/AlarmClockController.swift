@@ -30,7 +30,7 @@ class AlarmClockController: UITableViewController,AddAlarmDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = "Sleep And Wake"
+        self.navigationItem.title = NSLocalizedString("sleep_and_wake", comment:"")
         
         initValue()
         AppDelegate.getAppDelegate().startConnect(false)
