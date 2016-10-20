@@ -23,7 +23,7 @@ class SyncStepsToServiceRequest: NSObject {
                 XCGLogger.default.debug("create steps ok")
                 completion(true,status)
             }else{
-                completion(true,status);
+                completion(false,status);
             }
         }
     }
@@ -37,7 +37,7 @@ class SyncStepsToServiceRequest: NSObject {
                 XCGLogger.default.debug("update steps ok")
                 completion(true,status)
             }else{
-                completion(true,status);
+                completion(false,status);
             }
         }
     }

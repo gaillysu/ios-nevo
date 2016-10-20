@@ -22,7 +22,7 @@ class SyncSleepToServiceRequest: NSObject {
                 XCGLogger.default.debug("create sleep ok")
                 completion(true,status)
             }else{
-                completion(true,status);
+                completion(false,status);
             }
         }
     }
@@ -36,7 +36,7 @@ class SyncSleepToServiceRequest: NSObject {
                 XCGLogger.default.debug("update steps ok")
                 completion(true,status)
             }else{
-                completion(true,status);
+                completion(false,status);
             }
         }
     }
