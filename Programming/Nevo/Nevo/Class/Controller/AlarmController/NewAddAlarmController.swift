@@ -44,6 +44,9 @@ class NewAddAlarmController: UITableViewController,ButtonManagerCallBack,Selecte
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        if let view = findBottomLineView(inView: self.navigationController?.navigationBar) {
+            view.isHidden = true
+        }
     }
     
     override func viewDidLayoutSubviews() {
@@ -293,4 +296,24 @@ class NewAddAlarmController: UITableViewController,ButtonManagerCallBack,Selecte
     }
     */
     
+}
+
+extension NewAddAlarmController {
+    func findBottomLineView(inView:UIView?) -> UIView? {
+        if inView?.frame.height == 0.5 {
+            return inView
+        }
+        
+        if inView?.subviews.count == 0 {
+            return nil
+        }
+        
+        for subView in (inView?.subviews)! {
+            if let result = findBottomLineView(inView: subView) {
+                print("=====================\r\n")
+                return result
+            }
+        }
+        return nil
+    }
 }
