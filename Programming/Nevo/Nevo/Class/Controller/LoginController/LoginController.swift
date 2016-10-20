@@ -26,6 +26,8 @@ class LoginController: UIViewController,UITextFieldDelegate {
     
     @IBOutlet weak var skipButton: UIButton!
     
+//    fileprivate var backButton;
+    
     var userName:String = ""
     var password:String = ""
     fileprivate var pErrorNumber:Int = 0
@@ -52,6 +54,16 @@ class LoginController: UIViewController,UITextFieldDelegate {
         
         let judgeRootViewController = NSStringFromClass((UIApplication.shared.keyWindow?.rootViewController?.classForCoder)!) == "Nevo.MainTabBarController"
         self.skipButton.isHidden = judgeRootViewController
+        
+        if judgeRootViewController {
+            navigationController?.isNavigationBarHidden = false
+            AppTheme.navigationbar(navigationController)
+            let backButton:UIButton = UIButton()
+            backButton.setTitle(NSLocalizedString("Back", comment: ""), for: .normal)
+            backButton.sizeToFit()
+            backButton.addTarget(self, action: #selector(backButtonClick(_:)), for: .touchUpInside)
+            view.addSubview(backButton)
+        }
         
         for controllers:UIViewController in self.navigationController!.viewControllers {
             if controllers.isKind(of: SetingViewController.self) {
@@ -241,4 +253,7 @@ class LoginController: UIViewController,UITextFieldDelegate {
         UIApplication.shared.keyWindow?.rootViewController = naviController
     }
     
+    fileprivate func backButtonClick(_ sender: AnyObject) {
+        self.dismiss(animated: true, completion: nil)
+    }
 }
