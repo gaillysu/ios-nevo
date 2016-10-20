@@ -162,8 +162,9 @@ class StepGoalSetingController: PublicClassController,ButtonManagerCallBack,Cloc
         if array.count>0 {
             let dataSteps:UserSteps = array[0] as! UserSteps
             
+            let timerValue:Double = Double(dataSteps.walking_duration+dataSteps.running_duration)
             self.contentTArray.replaceSubrange(Range(1..<2), with: ["\(dataSteps.steps)"])
-             self.contentTArray.replaceSubrange(Range(2..<3), with: [String(format: "%.2f", Float(dataSteps.walking_duration+dataSteps.running_duration)/60.0)])
+             self.contentTArray.replaceSubrange(Range(2..<3), with: [AppTheme.timerFormatValue(value: Double(timerValue/60.0))])
             self.calculationData((dataSteps.walking_duration+dataSteps.running_duration), steps: dataSteps.steps, completionData: { (miles, calories) in
                 self.contentTArray.replaceSubrange(Range(0..<1), with: ["\(calories)"])
                 self.contentTArray.replaceSubrange(Range(3..<4), with: ["\(miles)"])
@@ -300,7 +301,7 @@ extension StepGoalSetingController:UICollectionViewDelegate,UICollectionViewData
             cell.valueLabel.text = "\(contentTArray[(indexPath as NSIndexPath).row])"
             break;
         case 2:
-            cell.valueLabel.text = "\(contentTArray[(indexPath as NSIndexPath).row]) H"
+            cell.valueLabel.text = "\(contentTArray[(indexPath as NSIndexPath).row])"
             break;
         case 3:
             cell.valueLabel.text = "\(contentTArray[(indexPath as NSIndexPath).row]) KM"

@@ -123,44 +123,8 @@ extension AnalysisController:UICollectionViewDelegate,UICollectionViewDataSource
             cell.backgroundColor = UIColor.clear
             //cell.titleLabel.text = contentTitleArray[(indexPath as NSIndexPath).row]
             cell.updateTitleLabel(contentTitleArray[(indexPath as NSIndexPath).row])
-            var unit:String = ""
-            if segmented.selectedSegmentIndex == 1 {
-                switch (indexPath as NSIndexPath).row {
-                case 0:
-                    unit = "h"
-                    break
-                case 1:
-                    unit = "h"
-                    break
-                case 2:
-                    unit = "h"
-                    break
-                case 3:
-                    unit = "%"
-                    break
-                default:
-                    break
-                }
-            }else if segmented.selectedSegmentIndex == 0 {
-                switch (indexPath as NSIndexPath).row {
-                case 0:
-                    unit = ""
-                    break
-                case 1:
-                    unit = ""
-                    break
-                case 2:
-                    unit = ""
-                    break
-                case 3:
-                    unit = "h"
-                    break
-                default:
-                    break
-                }
-            }
             //cell.valueLabel.text = contentTArray[indexPath.row]+" "+unit
-            cell.updateLabel(contentTArray[(indexPath as NSIndexPath).row]+" "+unit)
+            cell.updateLabel(contentTArray[(indexPath as NSIndexPath).row])
             return cell
         }
     }
@@ -202,13 +166,18 @@ extension AnalysisController:UICollectionViewDelegate,UICollectionViewDataSource
                     var stepsOrSleepValue1:String = ""
                     if segmented.selectedSegmentIndex == 0 {
                         stepsOrSleepValue1 = String(format: "%.0f",totalValue/avgNumber)
+                        self.contentTArray.replaceSubrange(Range(0..<1), with: [stepsOrSleepValue1])
+                        self.contentTArray.replaceSubrange(Range(1..<2), with: [String(format: "%.1f",totalValue)])
+                        self.contentTArray.replaceSubrange(Range(2..<3), with: [String(format: "%.1f",Float(totalCalores)/Float(avgNumber))])
+                        self.contentTArray.replaceSubrange(Range(3..<4), with: [AppTheme.timerFormatValue(value: Double(totalTime)/Double(avgNumber))])
                     }else{
-                        stepsOrSleepValue1 = String(format: "%.1f",totalValue/avgNumber)
+                        stepsOrSleepValue1 = AppTheme.timerFormatValue(value: Double(totalValue/avgNumber))
+                        self.contentTArray.replaceSubrange(Range(0..<1), with: [stepsOrSleepValue1])
+                        self.contentTArray.replaceSubrange(Range(1..<2), with: [AppTheme.timerFormatValue(value: Double(totalValue))])
+                        self.contentTArray.replaceSubrange(Range(2..<3), with: [AppTheme.timerFormatValue(value: Double(totalCalores)/Double(avgNumber))])
+                        self.contentTArray.replaceSubrange(Range(3..<4), with: [String(format: "%.0f%c",totalTime,37)])
                     }
-                    self.contentTArray.replaceSubrange(Range(0..<1), with: [stepsOrSleepValue1])
-                    self.contentTArray.replaceSubrange(Range(1..<2), with: [String(format: "%.1f",totalValue)])
-                    self.contentTArray.replaceSubrange(Range(2..<3), with: [String(format: "%.1f",Float(totalCalores)/Float(avgNumber))])
-                    self.contentTArray.replaceSubrange(Range(3..<4), with: [String(format: "%.1f",Float(totalTime)/Float(avgNumber))])
+                    
                 });
             }else{
                 self.contentTArray.replaceSubrange(Range(0..<1), with: [String(format: "0")])
