@@ -96,7 +96,7 @@ class StepGoalSetingController: PublicClassController,ButtonManagerCallBack,Cloc
             let dict:[String:AnyObject] = notification.object as! [String:AnyObject]
             let dailySteps:Int = dict["STEPS"] as! Int
             self.contentTArray.replaceSubrange(Range(1..<2), with: ["\(dailySteps)"])
-            self.calculationData(0, steps: dailySteps, completionData: { (miles, calories) in
+            StepGoalSetingController.calculationData(0, steps: dailySteps, completionData: { (miles, calories) in
                 self.contentTArray.replaceSubrange(Range(3..<4), with: ["\(miles)"])
             })
             self.collectionView.reloadData()
@@ -165,7 +165,7 @@ class StepGoalSetingController: PublicClassController,ButtonManagerCallBack,Cloc
             let timerValue:Double = Double(dataSteps.walking_duration+dataSteps.running_duration)
             self.contentTArray.replaceSubrange(Range(1..<2), with: ["\(dataSteps.steps)"])
              self.contentTArray.replaceSubrange(Range(2..<3), with: [AppTheme.timerFormatValue(value: Double(timerValue/60.0))])
-            self.calculationData((dataSteps.walking_duration+dataSteps.running_duration), steps: dataSteps.steps, completionData: { (miles, calories) in
+            StepGoalSetingController.calculationData((dataSteps.walking_duration+dataSteps.running_duration), steps: dataSteps.steps, completionData: { (miles, calories) in
                 self.contentTArray.replaceSubrange(Range(0..<1), with: ["\(calories)"])
                 self.contentTArray.replaceSubrange(Range(3..<4), with: ["\(miles)"])
             })
@@ -237,7 +237,7 @@ class StepGoalSetingController: PublicClassController,ButtonManagerCallBack,Cloc
 // MARK: - Data calculation
 extension StepGoalSetingController {
     
-    func calculationData(_ activeTimer:Int,steps:Int,completionData:((_ miles:String,_ calories:String) -> Void)) {
+    class func calculationData(_ activeTimer:Int,steps:Int,completionData:((_ miles:Double,_ calories:Double) -> Void)) {
         let profile:NSArray = UserProfile.getAll()
         var userProfile:UserProfile?
         var strideLength:Double = 0
@@ -252,9 +252,8 @@ extension StepGoalSetingController {
         }
         
         let miles:Double = strideLength*Double(steps)/1000
-        //Formula's = (2.0 X persons KG X 3.5)/200 = calories per minute
         let calories:Double = (2.0*userWeight*3.5)/200*Double(activeTimer)
-        completionData(String(format: "%.2f",miles), String(format: "%.2f",calories))
+        completionData(miles, calories)
     }
 }
 

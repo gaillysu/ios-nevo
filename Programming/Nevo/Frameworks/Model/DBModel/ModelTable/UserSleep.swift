@@ -10,6 +10,7 @@ import UIKit
 
 class UserSleep: NSObject {
 
+    var uid:Int = 0
     var id:Int = 0
     var date:TimeInterval = 0
     var totalSleepTime:Int = 0;

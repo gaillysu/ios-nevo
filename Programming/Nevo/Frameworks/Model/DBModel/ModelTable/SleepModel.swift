@@ -11,6 +11,7 @@ import FMDB
 
 class SleepModel: UserDatabaseHelper {
 
+    var uid:Int = 0
     var date:TimeInterval = 0
     var totalSleepTime:Int = 0;
     var hourlySleepTime:String = "";

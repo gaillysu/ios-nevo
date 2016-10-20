@@ -11,6 +11,7 @@ import FMDB
 
 class StepsModel: UserDatabaseHelper {
 
+    var uid:Int = 0
     var steps:Int = 0
     var goalsteps:Int = 0
     var distance:Int = 0
