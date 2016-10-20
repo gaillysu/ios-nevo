@@ -28,6 +28,10 @@ class UserProfile: NSObject {
             self.setValue(value, forKey: key as! String)
         }
     }
+    
+    override init() {
+        super.init()
+    }
 
     func add(_ result:@escaping ((_ id:Int?,_ completion:Bool?) -> Void)){
         if NevoProfileModel.isExistInTable() {

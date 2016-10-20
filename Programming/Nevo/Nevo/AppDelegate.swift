@@ -390,6 +390,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                     })
                     
                     let value:[String:Any] = ["steps":["uid":profile.id,"steps":stepsModel.hourlysteps,"date":dateString,"calories":caloriesValue,"active_time":stepsModel.walking_duration+stepsModel.running_duration,"distance":milesValue]]
+                    stepsModel.isUpload = true
                     UPDATE_SERVICE_STEPS_REQUEST.syncStepsToService(paramsValue: value, completion: { (result, status) in
                         
                     })
@@ -433,6 +434,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                     let profile:UserProfile = login[0] as! UserProfile
                     let dateString:String = timerInterval.stringFromFormat("yyy-MM-dd")
                     let value:[String:Any] = ["sleep":["uid":profile.id,"deep_sleep":model.hourlyDeepTime,"light_sleep":model.hourlyLightTime,"wake_time":model.hourlyWakeTime,"date":dateString]]
+                    model.isUpload = true
                     UPDATE_SERVICE_SLEEP_REQUEST.syncCreateSleepToService(paramsValue:value,completion:{(result,errorid) in
                         
                     })

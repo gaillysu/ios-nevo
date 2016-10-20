@@ -10,6 +10,7 @@ import UIKit
 
 class UserSteps: NSObject {
     var uid:Int = 0
+    var isUpload:Bool = false;
     var id:Int = 0
     var steps:Int = 0
     var goalsteps:Int = 0
