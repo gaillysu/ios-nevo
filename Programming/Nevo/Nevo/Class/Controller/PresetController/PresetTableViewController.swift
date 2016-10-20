@@ -46,9 +46,22 @@ class PresetTableViewController: UITableViewController,ButtonManagerCallBack,Add
     }
 
     // MARK: - AddPresetDelegate
-    func onAddPresetNumber(_ number:Int,name:String){
-        NSLog("onAddPresetNumber:\(number),name:\(name)")
-        let prestModel:Presets = Presets(keyDict: ["id":0,"steps":number,"label":"\(name)","status":true])
+    func onAddPresetNumber(_ number:Int, name:String){
+        var _name = name
+//        NSLog("onAddPresetNumber:\(number),name:\(name)")
+        
+        if _name.length() == 0 {
+            _name = nameIncrease(name: "\(NSLocalizedString("title_goal", comment: ""))", startNum: 1, array: prestArray)
+        }
+        var suffixNumber = 1
+        for goal in prestArray {
+            if _name.appending("\(suffixNumber)") == goal.label {
+                suffixNumber += 1
+            }
+        }
+        
+        
+        let prestModel:Presets = Presets(keyDict: ["id":0,"steps":number,"label":"\(_name)","status":true])
         prestModel.add { (id, completion) -> Void in
             prestModel.id = id!
             self.prestArray.append(prestModel)
@@ -132,5 +145,15 @@ extension PresetTableViewController {
         }else{
             //presetView.backgroundColor = UIColor.getLightBaseColor()
         }
+    }
+    
+    fileprivate func nameIncrease(name:String, startNum:Int, array:[Presets]) -> String {
+        let _name = "\(name)\(startNum)"
+        for perset in array {
+            if _name == perset.label {
+                return nameIncrease(name: name, startNum: (startNum + 1), array: array)
+            }
+        }
+        return _name
     }
 }

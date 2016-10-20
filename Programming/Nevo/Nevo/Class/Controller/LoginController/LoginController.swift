@@ -64,7 +64,7 @@ class LoginController: UIViewController,UITextFieldDelegate {
             backButton.sizeToFit()
             backButton.addTarget(self, action: #selector(backButtonClick(_:)), for: .touchUpInside)
             view.addSubview(backButton)
-            backButton.frame.origin.x = 10
+            backButton.frame.origin.x = 15
             backButton.frame.origin.y = 25
         }
         
@@ -114,7 +114,9 @@ class LoginController: UIViewController,UITextFieldDelegate {
     
     func tapAction(_ sender:UITapGestureRecognizer) {
         let register:ProfileSetupViewController = ProfileSetupViewController()
-        self.present(UINavigationController(rootViewController: register), animated: true, completion: nil)
+        let naviController:UINavigationController = UINavigationController(rootViewController: register)
+        
+        self.present(naviController, animated: true, completion: nil)
     }
 
     override func didReceiveMemoryWarning() {
