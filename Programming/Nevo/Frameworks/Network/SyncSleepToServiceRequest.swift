@@ -13,6 +13,7 @@ import  XCGLogger
 let UPDATE_SERVICE_SLEEP_REQUEST:SyncSleepToServiceRequest = SyncSleepToServiceRequest()
 class SyncSleepToServiceRequest: NSObject {
     func syncCreateSleepToService(paramsValue:[String:Any],completion:@escaping (_ result:Bool,_ errorid:Int) -> Void) {
+        XCGLogger.default.debug("create sleep start")
         HttpPostRequest.postRequest("sleep/create", data: paramsValue as Dictionary<String, AnyObject>) { (result) in
             let json = JSON(result)
             var message = json["message"].stringValue

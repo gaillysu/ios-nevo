@@ -210,5 +210,13 @@ class UserSteps: NSObject {
         return allArray
     }
     
+    class func updateTable()->Bool {
+        var res:Bool = false
+        if StepsModel.isExistInTable() {
+            res = StepsModel.updateTable()
+        }
+        return res
+    }
+    
     override func setValue(_ value: Any?, forUndefinedKey key: String) {}
 }

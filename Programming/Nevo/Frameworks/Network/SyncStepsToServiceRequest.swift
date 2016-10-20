@@ -14,6 +14,7 @@ let UPDATE_SERVICE_STEPS_REQUEST:SyncStepsToServiceRequest = SyncStepsToServiceR
 class SyncStepsToServiceRequest: NSObject {
 
     func syncStepsToService(paramsValue:[String:Any],completion:@escaping (_ result:Bool,_ errorid:Int) -> Void) {
+        XCGLogger.default.debug("create steps start")
         HttpPostRequest.postRequest("steps/create", data: paramsValue as Dictionary<String, AnyObject>) { (result) in
             let json = JSON(result)
             var message = json["message"].stringValue

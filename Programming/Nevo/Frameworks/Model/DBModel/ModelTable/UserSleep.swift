@@ -150,4 +150,11 @@ class UserSleep: NSObject {
         return NSDictionary(dictionary: ["name":proNames,"type":proTypes])
     }
 
+    class func updateTable()->Bool {
+        var res:Bool = false
+        if SleepModel.isExistInTable() {
+            res = SleepModel.updateTable()
+        }
+        return res
+    }
 }
