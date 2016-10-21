@@ -225,7 +225,8 @@ class StepsHistoryViewController: PublicClassController,ChartViewDelegate {
             if val1>500 {
                 if val1>maxValue{
                     maxValue = val1
-                    chartView!.leftAxis.axisMaxValue = val1+100
+                    let inNumber:Double = val1.truncatingRemainder(dividingBy: 2.0)
+                    chartView!.leftAxis.axisMaxValue = (val1-inNumber)+300
                 }
             }
         }

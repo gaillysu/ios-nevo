@@ -85,8 +85,9 @@ open class BalloonMarker: ChartMarker
         labelns = label as NSString
         
         _drawAttributes.removeAll()
-        _drawAttributes[NSFontAttributeName] = self.font
+        _drawAttributes[NSFontAttributeName] = UIFont(name: "Raleway", size: 10)!
         _drawAttributes[NSParagraphStyleAttributeName] = _paragraphStyle
+        _drawAttributes[NSForegroundColorAttributeName] = UIColor.white
         
         _labelSize = labelns?.size(attributes: _drawAttributes) ?? CGSize.zero
         _size.width = _labelSize.width + self.insets.left + self.insets.right
