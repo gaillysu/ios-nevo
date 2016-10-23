@@ -642,6 +642,8 @@
 		00FA93E71D9DF32300CB6691 /* ScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FA93E61D9DF32300CB6691 /* ScannerViewController.swift */; };
 		00FA93E91D9DF33800CB6691 /* ScannerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00FA93E81D9DF33800CB6691 /* ScannerViewController.xib */; };
 		07BCE82A1B5CAB2200C7F558 /* clockview600_color.png in Resources */ = {isa = PBXBuildFile; fileRef = 07BCE8291B5CAB2100C7F558 /* clockview600_color.png */; };
+		1C3712D71DBC5BF2007DC349 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C3712D61DBC5BF2007DC349 /* UIView+Extension.swift */; };
+		1C3712D81DBC5BF2007DC349 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C3712D61DBC5BF2007DC349 /* UIView+Extension.swift */; };
 		3AF3D240B5808E80F5B2A19E /* Pods_Nevo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C2AEB04A0C7F45FE876ABED /* Pods_Nevo.framework */; };
 		615F6E201DA7510D00216D1A /* FindWatchRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C8272E1DA61CAF00ECECEE /* FindWatchRequest.swift */; };
 		615F6E211DA7514200216D1A /* PVADCRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0023C0AC1DA64DD400FB33A4 /* PVADCRequest.swift */; };
@@ -1122,6 +1124,7 @@
 		0C2AEB04A0C7F45FE876ABED /* Pods_Nevo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Nevo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0E068CB5F57F135B038B3A10 /* Pods_LunaR.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LunaR.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1215057C1EF17F735A5EFDD9 /* Pods-LunaR.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LunaR.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LunaR/Pods-LunaR.debug.xcconfig"; sourceTree = "<group>"; };
+		1C3712D61DBC5BF2007DC349 /* UIView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		32FD66A73B338A8998018E2C /* Pods-NevoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NevoTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-NevoTests/Pods-NevoTests.release.xcconfig"; sourceTree = "<group>"; };
 		337909E3A1733589971A3696 /* Pods-Nevo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Nevo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Nevo/Pods-Nevo.debug.xcconfig"; sourceTree = "<group>"; };
 		4D889843ECCF8C9F30888205 /* Pods-LunaRTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LunaRTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-LunaRTests/Pods-LunaRTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -2156,6 +2159,15 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		1C3712D51DBC5BD9007DC349 /* MEDExtension */ = {
+			isa = PBXGroup;
+			children = (
+				1C3712D61DBC5BF2007DC349 /* UIView+Extension.swift */,
+			);
+			name = MEDExtension;
+			path = Frameworks/MEDExtension;
+			sourceTree = "<group>";
+		};
 		665E331C1DADCD7600D0E36D /* MEDWrapper */ = {
 			isa = PBXGroup;
 			children = (
@@ -2246,6 +2258,7 @@
 		9AD8F95A1A6DFE3400F01014 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1C3712D51DBC5BD9007DC349 /* MEDExtension */,
 				665E331C1DADCD7600D0E36D /* MEDWrapper */,
 				0008EE741D93C39A005E127C /* M13Checkbox */,
 				007865E21D91006F00F33AEA /* SMSegmentView */,
@@ -2993,6 +3006,7 @@
 				00C826571DA5E04000ECECEE /* ConnectOtherAppsController.swift in Sources */,
 				00C8271F1DA6137300ECECEE /* GetStepsGoalRequest.swift in Sources */,
 				00C826581DA5E04000ECECEE /* ConnectOtherAppsController.xib in Sources */,
+				1C3712D81DBC5BF2007DC349 /* UIView+Extension.swift in Sources */,
 				00C826591DA5E04000ECECEE /* ConnectOtherAppsCell.swift in Sources */,
 				00C8265A1DA5E04000ECECEE /* ConnectOtherAppsCell.xib in Sources */,
 				00C8265B1DA5E04000ECECEE /* UserHeader.swift in Sources */,
@@ -3324,6 +3338,7 @@
 				00AF8CFC1D224CFA009047AC /* SetCardioRequest.swift in Sources */,
 				0008EE8B1D93C39A005E127C /* M13CheckboxManager.swift in Sources */,
 				9E98FB291C463A3B00BAB700 /* TutorialOneViewController.swift in Sources */,
+				1C3712D71DBC5BF2007DC349 /* UIView+Extension.swift in Sources */,
 				0050D5F11C28E0DB004F6F80 /* MyNevoHeaderView.swift in Sources */,
 				00E6509C1C83EE6700278D3E /* SleepTutorialController.swift in Sources */,
 				00AF8CC21D224CFA009047AC /* HealthModel.swift in Sources */,
