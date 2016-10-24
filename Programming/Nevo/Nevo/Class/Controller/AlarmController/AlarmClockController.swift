@@ -316,14 +316,8 @@ class AlarmClockController: UITableViewController,AddAlarmDelegate {
     
     override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         if let headerView = view as? LineLabel {
-            if hasWakeAlarmArray && hasSleepAlarmArray {
-                if section == 0 {
-                    headerView.addLineView(position: .bottom)
-                } else {
-                    headerView.addLineView(position: .top)
-                }
-            } else {
-            }
+            headerView.addLineView(position: .top)
+            headerView.addLineView(position: .bottom)
         }
     }
     
@@ -429,7 +423,7 @@ class AlarmClockController: UITableViewController,AddAlarmDelegate {
         
         endCell.alarmSwicth.tag = (indexPath as NSIndexPath).row
         endCell.alarmSwicth.isOn = alarmModel!.status
-        if (indexPath as NSIndexPath).section == 0 {
+        if alarmModel!.type == 1 {
             endCell.alarmSwicth.addTarget(self, action: #selector(sleepSwitchManager(_:)), for: UIControlEvents.valueChanged)
         }else{
             endCell.alarmSwicth.addTarget(self, action: #selector(controllManager(_:)), for: UIControlEvents.valueChanged)
