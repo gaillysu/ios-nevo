@@ -52,10 +52,6 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
         xAxis.labelPosition = ChartXAxis.LabelPosition.bottom
         xAxis.labelFont = UIFont(name: "Raleway", size: 7)!
         
-        let marker:BalloonMarker = BalloonMarker(color: AppTheme.NEVO_SOLAR_YELLOW(), font: UIFont.systemFont(ofSize: 12.0), insets: UIEdgeInsetsMake(8.0, 8.0, 20.0, 8.0))
-        marker.minimumSize = CGSize(width: 80.0, height: 40.0);
-        lineChartView.marker = marker;
-        
         lineChartView.legend.form = ChartLegend.Form.line
         lineChartView.animate(xAxisDuration: 2.5, easingOption: ChartEasingOption.easeInOutCirc)
         
@@ -79,6 +75,10 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
         
         switch chartType {
         case 0:
+            let marker:BalloonMarker = BalloonMarker(color: AppTheme.NEVO_SOLAR_YELLOW(), font: UIFont.systemFont(ofSize: 12.0), insets: UIEdgeInsetsMake(8.0, 8.0, 20.0, 8.0))
+            marker.minimumSize = CGSize(width: 80.0, height: 40.0);
+            marker.markerType = .stepsChartType
+            lineChartView.marker = marker;
             var totalSteps:Int = 0
             var totalCalores:Int = 0
             var totalTime:Int = 0
@@ -91,6 +91,10 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
             completionData(Float(totalSteps), totalCalores, Double(totalTime)/60.0)
             self.setStepsDataCount(dataArray, type: chartType,rowIndex:rowIndex)
         case 1:
+            let marker:BalloonMarker = BalloonMarker(color: AppTheme.NEVO_SOLAR_YELLOW(), font: UIFont.systemFont(ofSize: 12.0), insets: UIEdgeInsetsMake(8.0, 8.0, 20.0, 8.0))
+            marker.minimumSize = CGSize(width: 80.0, height: 40.0);
+            marker.markerType = .sleepChartType
+            lineChartView.marker = marker;
             var totalValue:Int = 0
             var weakeValue:Int = 0
             var deepValue:Int = 0

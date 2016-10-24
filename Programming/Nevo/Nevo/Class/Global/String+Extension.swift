@@ -13,6 +13,10 @@ extension String {
         return NSString(format: "%@", self).integerValue
     }
     
+    func toDouble() -> Double {
+        return NSString(format: "%@", self).doubleValue
+    }
+    
     func length() ->Int {
         return NSString(format: "%@", self).length
     }

@@ -76,6 +76,7 @@ class AnalysisStepsChartView: LineChartView {
         
         let lineChartDataSet = LineChartDataSet(yVals: chartDataArray, label: "");
         lineChartDataSet.setColor(UIColor.white)
+        lineChartDataSet.highlightColor = AppTheme.NEVO_SOLAR_YELLOW()
         lineChartDataSet.lineWidth = 1.5
         lineChartDataSet.circleRadius = 0.0
         lineChartDataSet.mode = LineChartDataSet.Mode.cubicBezier

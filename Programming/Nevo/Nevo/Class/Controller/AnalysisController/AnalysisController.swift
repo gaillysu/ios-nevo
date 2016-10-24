@@ -121,9 +121,7 @@ extension AnalysisController:UICollectionViewDelegate,UICollectionViewDataSource
         }else{
             let cell:AnalysisValueCell = collectionView.dequeueReusableCell(withReuseIdentifier: "AnalysisValue_Identifier", for: indexPath) as! AnalysisValueCell
             cell.backgroundColor = UIColor.clear
-            //cell.titleLabel.text = contentTitleArray[(indexPath as NSIndexPath).row]
             cell.updateTitleLabel(contentTitleArray[(indexPath as NSIndexPath).row])
-            //cell.valueLabel.text = contentTArray[indexPath.row]+" "+unit
             cell.updateLabel(contentTArray[(indexPath as NSIndexPath).row])
             return cell
         }
@@ -167,8 +165,8 @@ extension AnalysisController:UICollectionViewDelegate,UICollectionViewDataSource
                     if segmented.selectedSegmentIndex == 0 {
                         stepsOrSleepValue1 = String(format: "%.0f",totalValue/avgNumber)
                         self.contentTArray.replaceSubrange(Range(0..<1), with: [stepsOrSleepValue1])
-                        self.contentTArray.replaceSubrange(Range(1..<2), with: [String(format: "%.1f",totalValue)])
-                        self.contentTArray.replaceSubrange(Range(2..<3), with: [String(format: "%.1f",Float(totalCalores)/Float(avgNumber))])
+                        self.contentTArray.replaceSubrange(Range(1..<2), with: [String(format: "%.0f",totalValue)])
+                        self.contentTArray.replaceSubrange(Range(2..<3), with: [String(format: "%.0f",Float(totalCalores)/Float(avgNumber))])
                         self.contentTArray.replaceSubrange(Range(3..<4), with: [AppTheme.timerFormatValue(value: Double(totalTime)/Double(avgNumber))])
                     }else{
                         stepsOrSleepValue1 = AppTheme.timerFormatValue(value: Double(totalValue/avgNumber))

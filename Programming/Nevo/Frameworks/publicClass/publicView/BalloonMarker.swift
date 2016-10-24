@@ -15,15 +15,21 @@ import Foundation
 import UIKit
 import Charts
 
+enum ChartMarkerType:Int{
+    case stepsChartType = 0,
+    sleepChartType = 1
+}
+
 open class BalloonMarker: ChartMarker
 {
+    var markerType:ChartMarkerType?
     open var color: UIColor?
     open var arrowSize = CGSize(width: 15, height: 11)
     open var font: UIFont?
     open var insets = UIEdgeInsets()
     open var minimumSize = CGSize()
     
-    fileprivate var labelns: NSString?
+    fileprivate var labelns: String?
     fileprivate var _labelSize: CGSize = CGSize()
     fileprivate var _size: CGSize = CGSize()
     fileprivate var _paragraphStyle: NSMutableParagraphStyle?
@@ -82,7 +88,11 @@ open class BalloonMarker: ChartMarker
     open override func refreshContent(entry: ChartDataEntry, highlight: ChartHighlight)
     {
         let label = entry.value.description
-        labelns = label as NSString
+        if markerType == .stepsChartType {
+            labelns = String(format: "%d", label.toInt())
+        }else{
+            labelns = String(format: "%@", AppTheme.timerFormatValue(value: label.toDouble()))
+        }
         
         _drawAttributes.removeAll()
         _drawAttributes[NSFontAttributeName] = UIFont(name: "Raleway", size: 10)!
