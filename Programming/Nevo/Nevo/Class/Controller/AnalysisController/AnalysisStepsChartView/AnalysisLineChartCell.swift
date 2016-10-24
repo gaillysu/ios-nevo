@@ -144,22 +144,13 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
                 let jSteps:UserSteps = sortArray.object(at: j) as! UserSteps;
                 let iStepsDate:Double = iSteps.date
                 let jStepsDate:Double = jSteps.date
-                let iStepsValue:Int = iSteps.steps
                 
-                //Calculate the maximum
-                if iStepsValue>maxValue {
-                    maxValue = iStepsValue
-                }
                 //Time has sorted
                 if (iStepsDate > jStepsDate){
                     let temp:UserSteps = sortArray.object(at: i) as! UserSteps;
                     sortArray.replaceObject(at: i, with: sortArray[j])
                     sortArray.replaceObject(at: j, with: temp)
                 }
-            }
-            //chart the maximum
-            if i == countArray.count-1 {
-                self.setChartViewLeftAxis(Double(maxValue+1000), unitString: "")
             }
         }
         
@@ -178,7 +169,15 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
             }
             yVals.append(ChartDataEntry(value: steps, xIndex: i))
             xVals.append(dateString)
+            
+            let iStepsValue:Int = Int(steps)
+            //Calculate the maximum
+            if iStepsValue>maxValue {
+                maxValue = iStepsValue
+            }
         }
+        
+        self.setChartViewLeftAxis(Double(maxValue-(maxValue%2)+800), unitString: "")
         
         self.setYvalueData(rowIndex,completionData: nil)
         
