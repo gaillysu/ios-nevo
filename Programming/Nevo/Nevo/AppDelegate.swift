@@ -353,9 +353,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                 let timerInterval:Date = Date.date(year.toInt(), month: month.toInt(), day: day.toInt())
                 let timerInter:TimeInterval = timerInterval.timeIntervalSince1970
 
+                _ = UserSteps.updateTable()
                 let stepsArray = UserSteps.getCriteria("WHERE createDate = \(timeStr)")
                 let stepsModel:UserSteps = UserSteps()
-                stepsModel.id = 0
+                stepsModel.uid = 0
                 stepsModel.steps = thispacket.getDailySteps()
                 stepsModel.goalsteps = thispacket.getStepsGoal()
                 stepsModel.distance = thispacket.getDailyDist()
@@ -376,9 +377,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                 stepsModel.running_duration = thispacket.getDailyRunningDuration()
                 stepsModel.running_calories = thispacket.getDailyCalories()
                 
-                //upload steps data to validic
-                UPDATE_VALIDIC_REQUEST.updateToValidic(NSArray(arrayLiteral: stepsModel))
-                
+                //upload steps data to Nevo service
+                let login:NSArray = UserProfile.getAll()
+                if login.count>0 {
+                    let profile:UserProfile = login[0] as! UserProfile
+                    let dateString:String = timerInterval.stringFromFormat("yyy-MM-dd")
+                    var caloriesValue:Int = 0
+                    var milesValue:Int = 0
+                    StepGoalSetingController.calculationData((stepsModel.walking_duration+stepsModel.running_duration), steps: stepsModel.steps, completionData: { (miles, calories) in
+                        caloriesValue = Int(calories)
+                        milesValue = Int(miles)
+                    })
+                    
+                    let value:[String:Any] = ["steps":["uid":profile.id,"steps":stepsModel.hourlysteps,"date":dateString,"calories":caloriesValue,"active_time":stepsModel.walking_duration+stepsModel.running_duration,"distance":milesValue]]
+                    stepsModel.isUpload = true
+                    UPDATE_SERVICE_STEPS_REQUEST.syncStepsToService(paramsValue: value, completion: { (result, status) in
+                        
+                    })
+                }
                 if(stepsArray.count>0) {
                     let step:UserSteps = stepsArray[0] as! UserSteps
                     if(step.steps < thispacket.getDailySteps()) {
@@ -392,11 +408,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                     DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.default).async(execute: { () -> Void in
                         stepsModel.add({ (id, completion) -> Void in
                         })
+                        
                     })
                 }
 
                 //save sleep data for every hour.
                 //save format: first write wake, then write sleep(light&deep)
+                _ = UserSleep.updateTable()
                 let sleepArray = UserSleep.getCriteria("WHERE date = \(timerInterval.timeIntervalSince1970)")
                 let model:UserSleep = UserSleep()
                 model.id = 0
@@ -412,6 +430,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                 
                 //upload sleep data to validic
                 //UPDATE_VALIDIC_REQUEST.updateSleepDataToValidic(NSArray(arrayLiteral: stepsModel))
+                if login.count>0 {
+                    let profile:UserProfile = login[0] as! UserProfile
+                    let dateString:String = timerInterval.stringFromFormat("yyy-MM-dd")
+                    let value:[String:Any] = ["sleep":["uid":profile.id,"deep_sleep":model.hourlyDeepTime,"light_sleep":model.hourlyLightTime,"wake_time":model.hourlyWakeTime,"date":dateString]]
+                    model.isUpload = true
+                    UPDATE_SERVICE_SLEEP_REQUEST.syncCreateSleepToService(paramsValue:value,completion:{(result,errorid) in
+                        
+                    })
+                }
                 
                 if(sleepArray.count>0) {
                     let sleep:UserSleep = sleepArray[0] as! UserSleep
@@ -438,6 +465,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                     DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.default).async(execute: { () -> Void in
                         _ = model.add({ (id, completion) -> Void in
                         })
+                        
                     })
                 }
 

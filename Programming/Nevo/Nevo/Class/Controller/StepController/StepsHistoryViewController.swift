@@ -51,7 +51,7 @@ class StepsHistoryViewController: PublicClassController,ChartViewDelegate {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        saveContentTArray()
+        saveContentTArray(stepsArray: queryArray)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -60,6 +60,7 @@ class StepsHistoryViewController: PublicClassController,ChartViewDelegate {
             let userinfo:Date = notification.userInfo!["selectedDate"] as! Date
             self.queryArray = UserSteps.getCriteria("WHERE date = \(userinfo.beginningOfDay.timeIntervalSince1970)")
             self.bulidStepHistoricalChartView(self.queryArray)
+            self.saveContentTArray(stepsArray: self.queryArray)
         }
         
         _ = SwiftEventBus.onMainThread(self, name: EVENT_BUS_BEGIN_SMALL_SYNCACTIVITY) { (notification) in
@@ -74,7 +75,8 @@ class StepsHistoryViewController: PublicClassController,ChartViewDelegate {
         }
         
         _ = SwiftEventBus.onMainThread(self, name: EVENT_BUS_END_BIG_SYNCACTIVITY) { (notification) in
-            self.saveContentTArray()
+            self.queryArray = UserSteps.getCriteria("WHERE date = \(Date().beginningOfDay.timeIntervalSince1970)")
+            self.saveContentTArray(stepsArray: self.queryArray)
         }
     }
     override func viewDidDisappear(_ animated: Bool) {
@@ -96,9 +98,9 @@ class StepsHistoryViewController: PublicClassController,ChartViewDelegate {
     /**
      Archiver "contentTArray"
      */
-    func saveContentTArray() {
+    func saveContentTArray(stepsArray:NSArray) {
         //Only for today's data
-        let array:NSArray = UserSteps.getCriteria("WHERE date = \(Date().beginningOfDay.timeIntervalSince1970)")
+        let array:NSArray = stepsArray
         self.queryArray = array
         self.bulidStepHistoricalChartView(array)
         

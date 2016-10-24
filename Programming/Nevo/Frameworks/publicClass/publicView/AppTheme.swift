@@ -279,7 +279,7 @@ class AppTheme {
         }
     }
 
-    class func navigationbar(_ navigation:UINavigationController) {
+    class func navigationbar(_ navigation:UINavigationController, reset:Bool) {
         
         if(navigation.navigationBar.responds(to: #selector(UINavigationBar.setBackgroundImage(_:for:barMetrics:)))){
             let list:NSArray = navigation.navigationBar.subviews as NSArray
@@ -287,14 +287,19 @@ class AppTheme {
                 if((obj as AnyObject).isKind(of: UIImageView.classForCoder())){
                     let imageView:UIImageView = obj as! UIImageView
                     imageView.isHidden = true
+                    if reset {
+                        imageView.removeFromSuperview()
+                    }
                 }
             }
-            navigation.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
-            navigation.navigationBar.shadowImage = UIImage()
-            let imageView:UIImageView = UIImageView(frame: CGRect(x: 0, y: -20, width: 420, height: 64))
-            imageView.backgroundColor = AppTheme.NEVO_CUSTOM_COLOR(Red: 247.0, Green: 247.0, Blue: 247.0)
-            navigation.navigationBar.addSubview(imageView)
-            navigation.navigationBar.sendSubview(toBack: imageView)
+            if !reset {
+                navigation.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+                navigation.navigationBar.shadowImage = UIImage()
+                let imageView:UIImageView = UIImageView(frame: CGRect(x: 0, y: -20, width: 420, height: 64))
+                imageView.backgroundColor = UIColor.getBarColor()
+                navigation.navigationBar.addSubview(imageView)
+                navigation.navigationBar.sendSubview(toBack: imageView)
+            }
         }
     }
 

@@ -9,6 +9,8 @@
 import UIKit
 
 class UserSteps: NSObject {
+    var uid:Int = 0
+    var isUpload:Bool = false;
     var id:Int = 0
     var steps:Int = 0
     var goalsteps:Int = 0
@@ -35,7 +37,7 @@ class UserSteps: NSObject {
 
     // MARK: - NSCoding
     func encodeWithCoder(_ aCoder:NSCoder) {
-        aCoder.encode(id, forKey: "id")
+        aCoder.encode(uid, forKey: "uid")
         aCoder.encode(steps, forKey: "steps")
         aCoder.encode(goalsteps, forKey: "goalsteps")
         aCoder.encode(distance, forKey: "distance")
@@ -59,7 +61,7 @@ class UserSteps: NSObject {
 
     init(aDecoder:NSCoder) {
         super.init()
-        aDecoder.decodeObject( forKey: "id")
+        aDecoder.decodeObject( forKey: "uid")
         aDecoder.decodeObject(forKey: "steps")
         aDecoder.decodeObject(forKey: "goalsteps")
         aDecoder.decodeObject(forKey: "distance")
@@ -207,6 +209,14 @@ class UserSteps: NSObject {
             allArray.add(presets)
         }
         return allArray
+    }
+    
+    class func updateTable()->Bool {
+        var res:Bool = false
+        if StepsModel.isExistInTable() {
+            res = StepsModel.updateTable()
+        }
+        return res
     }
     
     override func setValue(_ value: Any?, forUndefinedKey key: String) {}

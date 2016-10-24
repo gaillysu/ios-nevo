@@ -655,6 +655,11 @@
 		6173DF091DB0E993002DF6AF /* StepsHistoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6173DF0C1DB0E993002DF6AF /* StepsHistoryViewController.xib */; };
 		6173DF0A1DB0E993002DF6AF /* StepsHistoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6173DF0C1DB0E993002DF6AF /* StepsHistoryViewController.xib */; };
 		61E4DF1D1DB85C9800DDA737 /* FindPhonePacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E4DF1C1DB85C9800DDA737 /* FindPhonePacket.swift */; };
+		61E4DF1F1DB8749700DDA737 /* SyncStepsToServiceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E4DF1E1DB8749700DDA737 /* SyncStepsToServiceRequest.swift */; };
+		61E4DF211DB898F700DDA737 /* SyncSleepToServiceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E4DF201DB898F700DDA737 /* SyncSleepToServiceRequest.swift */; };
+		61E4DF231DB8C20800DDA737 /* LoginRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E4DF221DB8C20800DDA737 /* LoginRequest.swift */; };
+		61E4DF261DB8C2D500DDA737 /* ForgotPasswordRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E4DF241DB8C2D500DDA737 /* ForgotPasswordRequest.swift */; };
+		61E4DF271DB8C2D500DDA737 /* UserCreateRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E4DF251DB8C2D500DDA737 /* UserCreateRequest.swift */; };
 		61F85F501DAF5BF300F341B5 /* NevoOtaController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61F85F4F1DAF5BF300F341B5 /* NevoOtaController.swift */; };
 		665E331E1DADCD8A00D0E36D /* MEDBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 665E331D1DADCD8A00D0E36D /* MEDBanner.swift */; };
 		665E331F1DADCD8A00D0E36D /* MEDBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 665E331D1DADCD8A00D0E36D /* MEDBanner.swift */; };
@@ -1143,6 +1148,11 @@
 		6173DF101DB0E9A1002DF6AF /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/StepsHistoryViewController.strings"; sourceTree = "<group>"; };
 		6173DF121DB0E9A3002DF6AF /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/StepsHistoryViewController.strings"; sourceTree = "<group>"; };
 		61E4DF1C1DB85C9800DDA737 /* FindPhonePacket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindPhonePacket.swift; sourceTree = "<group>"; };
+		61E4DF1E1DB8749700DDA737 /* SyncStepsToServiceRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncStepsToServiceRequest.swift; sourceTree = "<group>"; };
+		61E4DF201DB898F700DDA737 /* SyncSleepToServiceRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncSleepToServiceRequest.swift; sourceTree = "<group>"; };
+		61E4DF221DB8C20800DDA737 /* LoginRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginRequest.swift; sourceTree = "<group>"; };
+		61E4DF241DB8C2D500DDA737 /* ForgotPasswordRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordRequest.swift; sourceTree = "<group>"; };
+		61E4DF251DB8C2D500DDA737 /* UserCreateRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCreateRequest.swift; sourceTree = "<group>"; };
 		61F85F4F1DAF5BF300F341B5 /* NevoOtaController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NevoOtaController.swift; sourceTree = "<group>"; };
 		665E331D1DADCD8A00D0E36D /* MEDBanner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MEDBanner.swift; sourceTree = "<group>"; };
 		6690DF0B1DB8A84C0042FB9E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/SetingNotLoginCell.xib; sourceTree = "<group>"; };
@@ -1917,8 +1927,13 @@
 		00AF8C781D224CFA009047AC /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				61E4DF241DB8C2D500DDA737 /* ForgotPasswordRequest.swift */,
+				61E4DF251DB8C2D500DDA737 /* UserCreateRequest.swift */,
 				00AF8C791D224CFA009047AC /* HttpPostRequest.swift */,
 				00AF8C7A1D224CFA009047AC /* ValidicRequest.swift */,
+				61E4DF1E1DB8749700DDA737 /* SyncStepsToServiceRequest.swift */,
+				61E4DF201DB898F700DDA737 /* SyncSleepToServiceRequest.swift */,
+				61E4DF221DB8C20800DDA737 /* LoginRequest.swift */,
 			);
 			name = Network;
 			path = Frameworks/Network;
@@ -3350,6 +3365,7 @@
 				00AF8CEA1D224CFA009047AC /* NevoOTAControllerProfile.swift in Sources */,
 				0050D5F71C28E0DB004F6F80 /* SelectFileView.swift in Sources */,
 				0058CBF91D9CC897003CE7DC /* String+Extension.swift in Sources */,
+				61E4DF211DB898F700DDA737 /* SyncSleepToServiceRequest.swift in Sources */,
 				0008EE8D1D93C39A005E127C /* M13CheckboxBounceManager.swift in Sources */,
 				00AF8CCD1D224CFA009047AC /* UserSteps.swift in Sources */,
 				004ED1F21CB386CC009D053C /* iRate.m in Sources */,
@@ -3438,9 +3454,11 @@
 				00AF8D031D224CFA009047AC /* WriteSettingRequest.swift in Sources */,
 				007865F91D91006F00F33AEA /* Duration.swift in Sources */,
 				0050D6971C28E1CD004F6F80 /* AddAlarmView.swift in Sources */,
+				61E4DF261DB8C2D500DDA737 /* ForgotPasswordRequest.swift in Sources */,
 				00F0C34B1C893EE6005888A7 /* AlarmTypeController.swift in Sources */,
 				0008EE8C1D93C39A005E127C /* M13CheckboxPathPresets.swift in Sources */,
 				61F85F501DAF5BF300F341B5 /* NevoOtaController.swift in Sources */,
+				61E4DF271DB8C2D500DDA737 /* UserCreateRequest.swift in Sources */,
 				00AF8CCA1D224CFA009047AC /* UserNotification.swift in Sources */,
 				00344F5C1C47A86800C2FC7A /* SupportViewController.swift in Sources */,
 				9E98FB2F1C463E1C00BAB700 /* TutorialFourViewController.swift in Sources */,
@@ -3464,12 +3482,14 @@
 				0050D6911C28E1CD004F6F80 /* AddAlarmController.swift in Sources */,
 				0008EE921D93C39A005E127C /* M13CheckboxFlatManager.swift in Sources */,
 				003DBF771D6D93C400E45244 /* EventBusKeys.swift in Sources */,
+				61E4DF1F1DB8749700DDA737 /* SyncStepsToServiceRequest.swift in Sources */,
 				00AF8CF71D224CFA009047AC /* NevoRequest.swift in Sources */,
 				00AF8CF51D224CFA009047AC /* GetStepsGoalRequest.swift in Sources */,
 				00AF8CD01D224CFA009047AC /* NotificationSetting.swift in Sources */,
 				007F1F511CAA1B630021DF1B /* LocalNotification.swift in Sources */,
 				00AF8CFE1D224CFA009047AC /* SetNewAlarmRequest.swift in Sources */,
 				0050D5F51C28E0DB004F6F80 /* DeviceScannerView.swift in Sources */,
+				61E4DF231DB8C20800DDA737 /* LoginRequest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -170,44 +170,49 @@ class LoginController: UIViewController,UITextFieldDelegate {
             let view = MRProgressOverlayView.showOverlayAdded(to: self.navigationController!.view, title: NSLocalizedString("please_wait", comment: ""), mode: MRProgressOverlayViewMode.indeterminate, animated: true)
             view?.setTintColor(AppTheme.NEVO_SOLAR_YELLOW())
 
-            HttpPostRequest.postRequest("user/login", data: (["user":["email":userName,"password":password]] as AnyObject) as! Dictionary<String, AnyObject>) { (result) in
+            LOGIN_NEVO_SERVICE_REQUEST.loginAction(userName, password: password, completion: { (result, status) in
                 MRProgressOverlayView.dismissAllOverlays(for: self.navigationController!.view, animated: true)
-                
-                let json = JSON(result)
-                var message = json["message"].stringValue
-                let status = json["status"].intValue
-                
-                switch status {
-                case 1: message = NSLocalizedString("login_success", comment: "")
-                case -1:message = NSLocalizedString("login_error", comment: "");
-                case -2:break;
-                case -3:message = NSLocalizedString("access_denied", comment: "");
-                default:break;
-                }
-                
-                let banner = MEDBanner(title: NSLocalizedString(message, comment: ""), subtitle: nil, image: nil, backgroundColor: AppTheme.NEVO_SOLAR_YELLOW())
-                banner.dismissesOnTap = true
-                banner.show(duration: 1.2)
-                
-                //status > 0 login success or login fail
-                if(status > 0 && UserProfile.getAll().count == 0) {
-                    let user = json["user"]
-                    let jsonBirthday = user["birthday"];
-                    let dateString: String = jsonBirthday["date"].stringValue
-                    var birthday:String = ""
-                    if !jsonBirthday.isEmpty || !dateString.isEmpty {
-                        let dateFormatter = DateFormatter()
-                        dateFormatter.dateFormat = "y-M-d h:m:s.000000"
-                        
-                        let birthdayDate = dateFormatter.date(from: dateString)
-                        dateFormatter.dateFormat = "y-M-d"
-                        birthday = dateFormatter.string(from: birthdayDate!)
-                    }
+                if result {
                     
-                    let userprofile:UserProfile = UserProfile(keyDict: ["id":user["id"].intValue,"first_name":user["first_name"].stringValue,"last_name":user["last_name"].stringValue,"birthday":birthday,"length":user["length"].intValue,"email":user["email"].stringValue, "weight":user["weight"].floatValue])
-                    userprofile.add({ (id, completion) in
-                        XCGLogger.default.debug("Added? id = \(id)")
-                    })
+                    let dayDate:Date = Date()
+                    let stepsArray:NSArray = UserSteps.getCriteria("WHERE date BETWEEN \(Date().beginningOfWeek.timeIntervalSince1970-864000*30) AND \(dayDate.endOfWeek.timeIntervalSince1970)")
+                    let sleepArray:NSArray = UserSleep.getCriteria("WHERE date BETWEEN \(Date().beginningOfWeek.timeIntervalSince1970-864000*30) AND \(dayDate.endOfWeek.timeIntervalSince1970)")
+                    let login:NSArray = UserProfile.getAll()
+                    if login.count>0 {
+                        for stepsValue in stepsArray{
+                            let stepsModel:UserSteps = stepsValue as! UserSteps
+                            let profile:UserProfile = login[0] as! UserProfile
+                            let dateString:String = Date(timeIntervalSince1970: stepsModel.date).stringFromFormat("yyy-MM-dd")
+                            var caloriesValue:Int = 0
+                            var milesValue:Int = 0
+                            StepGoalSetingController.calculationData((stepsModel.walking_duration+stepsModel.running_duration), steps: stepsModel.steps, completionData: { (miles, calories) in
+                                caloriesValue = Int(calories)
+                                milesValue = Int(miles)
+                            })
+                            
+                            let value:[String:Any] = ["steps":["uid":profile.id,"steps":stepsModel.hourlysteps,"date":dateString,"calories":caloriesValue,"active_time":stepsModel.walking_duration+stepsModel.running_duration,"distance":milesValue]]
+                            stepsModel.isUpload = true
+                            UPDATE_SERVICE_STEPS_REQUEST.syncStepsToService(paramsValue: value, completion: { (result, status) in
+                                
+                            })
+                        }
+                        
+                        for sleepValue in sleepArray{
+                            let sleepModel:UserSleep = sleepValue as! UserSleep
+                            let profile:UserProfile = login[0] as! UserProfile
+                            let dateString:String = Date(timeIntervalSince1970: sleepModel.date).stringFromFormat("yyy-MM-dd")
+                            let value:[String:Any] = ["sleep":["uid":profile.id,"deep_sleep":sleepModel.hourlyDeepTime,"light_sleep":sleepModel.hourlyLightTime,"wake_time":sleepModel.hourlyWakeTime,"date":dateString]]
+                            
+                            if !sleepModel.isUpload {
+                                sleepModel.isUpload = true
+                                UPDATE_SERVICE_SLEEP_REQUEST.syncCreateSleepToService(paramsValue:value,completion:{(result,errorid) in
+                                    
+                                })
+                                _ = sleepModel.update()
+                            }
+                        }
+                        
+                    }
                     
                     let judgeRootViewController = NSStringFromClass((UIApplication.shared.keyWindow?.rootViewController?.classForCoder)!) == "Nevo.MainTabBarController"
                     
@@ -216,6 +221,7 @@ class LoginController: UIViewController,UITextFieldDelegate {
                     } else {
                         UIApplication.shared.keyWindow?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
                     }
+                    
                 }else{
                     if self.pErrorNumber>=3{
                         let forgetPassword:UIAlertController = UIAlertController(title: NSLocalizedString("forget_your_password", comment: ""), message: nil, preferredStyle: UIAlertControllerStyle.alert)
@@ -238,8 +244,8 @@ class LoginController: UIViewController,UITextFieldDelegate {
                     }
                     self.pErrorNumber += 1
                 }
-               
-            }
+            })
+
         }else{
             
             XCGLogger.default.debug("没有网络")

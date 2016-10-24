@@ -10,6 +10,8 @@ import UIKit
 
 class UserSleep: NSObject {
 
+    var isUpload:Bool = false;
+    var uid:Int = 0
     var id:Int = 0
     var date:TimeInterval = 0
     var totalSleepTime:Int = 0;
@@ -149,4 +151,11 @@ class UserSleep: NSObject {
         return NSDictionary(dictionary: ["name":proNames,"type":proTypes])
     }
 
+    class func updateTable()->Bool {
+        var res:Bool = false
+        if SleepModel.isExistInTable() {
+            res = SleepModel.updateTable()
+        }
+        return res
+    }
 }
