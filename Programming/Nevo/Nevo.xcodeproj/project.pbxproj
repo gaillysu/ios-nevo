@@ -266,7 +266,6 @@
 		00AF8CE61D224CFA009047AC /* ConnectionControllerImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C901D224CFA009047AC /* ConnectionControllerImpl.swift */; };
 		00AF8CE71D224CFA009047AC /* ConnectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C911D224CFA009047AC /* ConnectionManager.swift */; };
 		00AF8CE81D224CFA009047AC /* NevoProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C921D224CFA009047AC /* NevoProfile.swift */; };
-		00AF8CE91D224CFA009047AC /* IntelHex2BinConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C961D224CFA009047AC /* IntelHex2BinConverter.m */; };
 		00AF8CEA1D224CFA009047AC /* NevoOTAControllerProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C971D224CFA009047AC /* NevoOTAControllerProfile.swift */; };
 		00AF8CEB1D224CFA009047AC /* NevoOTAModeProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C981D224CFA009047AC /* NevoOTAModeProfile.swift */; };
 		00AF8CEC1D224CFA009047AC /* NevoOTAPacketProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C991D224CFA009047AC /* NevoOTAPacketProfile.swift */; };
@@ -3404,7 +3403,6 @@
 				007865FA1D91006F00F33AEA /* Int+Timepiece.swift in Sources */,
 				006DA3181D6ED6670011E09C /* AnalysisRadarViewCell.swift in Sources */,
 				00AF8CBB1D224CFA009047AC /* NewAlarm.swift in Sources */,
-				00AF8CE91D224CFA009047AC /* IntelHex2BinConverter.m in Sources */,
 				0050D6001C28E0DB004F6F80 /* NotificationViewController.swift in Sources */,
 				00AF8CEB1D224CFA009047AC /* NevoOTAModeProfile.swift in Sources */,
 				00AF8CE71D224CFA009047AC /* ConnectionManager.swift in Sources */,
