@@ -219,7 +219,12 @@ class LoginController: UIViewController,UITextFieldDelegate {
                     if judgeRootViewController {
                         self.dismiss(animated: true, completion: nil)
                     } else {
-                        UIApplication.shared.keyWindow?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
+//                        UIApplication.shared.keyWindow?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
+                        let naviController:UINavigationController = UINavigationController(rootViewController: TutorialOneViewController())
+                        naviController.isNavigationBarHidden = true
+                        
+                        self.present(naviController, animated: true, completion: {
+                        })
                     }
                     
                 }else{
@@ -282,7 +287,7 @@ extension LoginController {
         
         for subView in (inView?.subviews)! {
             if let result = findBottomLineView(inView: subView) {
-                print("=====================\r\n")
+//                print("=====================\r\n")
                 return result
             }
         }

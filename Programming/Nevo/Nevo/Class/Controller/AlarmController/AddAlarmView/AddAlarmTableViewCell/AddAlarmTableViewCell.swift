@@ -29,7 +29,11 @@ class AddAlarmTableViewCell: UITableViewCell {
             datePicker.backgroundColor = UIColor.clear
         }
     }
-
+    
+    class func factory() -> AddAlarmTableViewCell{
+        return (Bundle.main.loadNibNamed("AddAlarmTableViewCell", owner: nil, options: nil)?.first as! AddAlarmTableViewCell)
+    }
+    
     func selectedTimerAction(_ timer:UIDatePicker){
 
     }

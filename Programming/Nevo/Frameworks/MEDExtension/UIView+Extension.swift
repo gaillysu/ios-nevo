@@ -17,7 +17,8 @@ private let stringPointer = UnsafeMutablePointer<String>.allocate(capacity: 1)
 
 // MARK: - Find views
 extension UIView {
-    open func viewsConformCondition(condition:(UIView) -> (Bool)) -> [UIView] {
+    /// Find all views in this view's hierarchy tree, include itself, that can satisfy the condition
+    open func viewsSatisfyCondition(condition:(UIView) -> (Bool)) -> [UIView] {
         var resultViews:[UIView] = []
         let allViews = allSubViewsByRecursion()
         for view in allViews {
@@ -28,16 +29,17 @@ extension UIView {
         return resultViews
     }
     
-    open func viewsConformCondition(condition:(UIView) -> (Bool), operation:(UIView) -> ()) {
-        let views = viewsConformCondition(condition: condition)
+    /// Find all views in this view's hierarchy tree, include itself, that can satisfy the condition, then let them do an operation
+    open func viewsSatisfyCondition(condition:(UIView) -> (Bool), operation:(UIView) -> ()) {
+        let views = viewsSatisfyCondition(condition: condition)
         for view in views {
             operation(view)
         }
     }
     
-    /// Catch all views of this view's hierarchy(include itself)
+    /// Catch all views of this view's hierarchy tree, include itself
     ///
-    /// - returns:  an array of views, contained all subviews.
+    /// - returns:  an array of views, contained all "subviews"
     open func allSubViewsByRecursion() -> [UIView] {
         var views:[UIView] = []
         allSubViewsByRecursion(views: &views)
@@ -47,6 +49,7 @@ extension UIView {
 
 // MARK: - More api
 extension UIView {
+    /// Find the view's controller, if this view is not a view of one controller, then go up by its responder-chain
     open func parentController() -> UIViewController? {
         var responder = next
         while (responder != nil) {
@@ -61,7 +64,7 @@ extension UIView {
 
 // MARK: - Private Function
 extension UIView {
-    /// Catch all views of this view's hierarchy(include itself)
+    /// Catch all views of this view's hierarchy tree, include itself
     ///
     /// - parameters:
     ///     - views:  an array to append all subviews

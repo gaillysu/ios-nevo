@@ -469,27 +469,42 @@ class AlarmClockController: UITableViewController,AddAlarmDelegate {
                 } else {
                 }
             }
+            
+            var mSleepAlarmIsGoingNone:Bool = false
+            var mWakeAlarmIsGoingNone:Bool = false
 
             if(willAlarm!.remove()){
-                
                 if hasWakeAlarmArray && hasSleepAlarmArray {
                     if (indexPath as NSIndexPath).section == 0 {
+                        if mSleepAlarmArray.count == 1 {
+                            mSleepAlarmIsGoingNone = true
+                        }
                         mSleepAlarmArray.removeObject(at: (indexPath as NSIndexPath).row)
                     }else{
+                        if mWakeAlarmArray.count == 1 {
+                            mWakeAlarmIsGoingNone = true
+                        }
                         mWakeAlarmArray.removeObject(at: (indexPath as NSIndexPath).row)
                     }
                 } else {
                     if hasSleepAlarmArray {
+                        if mSleepAlarmArray.count == 1 {
+                            mSleepAlarmIsGoingNone = true
+                        }
                         mSleepAlarmArray.removeObject(at: (indexPath as NSIndexPath).row)
                     } else if hasWakeAlarmArray {
+                        if mWakeAlarmArray.count == 1 {
+                            mWakeAlarmIsGoingNone = true
+                        }
                         mWakeAlarmArray.removeObject(at: (indexPath as NSIndexPath).row)
                     } else {
                     }
                 }
                 
-                // 如果删除某一个闹钟后, 有需要删除 tableview 中 section 的操作, 就需要执行 deleteSections 方法
-                if !hasWakeAlarmArray || !hasSleepAlarmArray {
-                    tableView.deleteSections(IndexSet(indexPath.section..<indexPath.section + 1), with: .automatic)
+                // 如果删除某一个闹钟后, 如果需要删除 tableview 中 section, 就需要执行 deleteSections 方法
+                // if you delete the last one of one section, you need use "deleteSections" instead of "deleteRows"
+                if mWakeAlarmIsGoingNone || mSleepAlarmIsGoingNone {
+                    tableView.deleteSections(IndexSet(indexPath.section..<indexPath.section + 1), with: .fade)
                 } else {
                     tableView.deleteRows(at: [indexPath], with: .fade)
                 }
@@ -593,7 +608,7 @@ extension AlarmClockController {
         
         for subView in (inView?.subviews)! {
             if let result = findBottomLineView(inView: subView) {
-                print("=====================\r\n")
+//                print("=====================\r\n")
                 return result
             }
         }

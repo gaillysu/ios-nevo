@@ -211,14 +211,14 @@ class NewAddAlarmController: UITableViewController,ButtonManagerCallBack,Selecte
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat{
         if((indexPath as NSIndexPath).section == 0){
             
-            var height:CGFloat = CGFloat(UserDefaults.standard.double(forKey: "k\(#file)HeightForDatePickerView"))
-            if height != 0 {
+            var cellHeight:CGFloat = CGFloat(UserDefaults.standard.double(forKey: "k\(#file)HeightForDatePickerView"))
+            if cellHeight != 0 {
             } else {
-                height =  tableView.dequeueReusableCell(withIdentifier: "AddAlarm_Date_identifier", for: indexPath).contentView.systemLayoutSizeFitting(UILayoutFittingCompressedSize).height
-                UserDefaults.standard.set(Double(height), forKey: "k\(#file)HeightForDatePickerView")
+//                cellHeight =  tableView.dequeueReusableCell(withIdentifier: "AddAlarm_Date_identifier", for: indexPath).contentView.systemLayoutSizeFitting(UILayoutFittingCompressedSize).height
+                cellHeight = AddAlarmTableViewCell.factory().frame.height
+                UserDefaults.standard.set(Double(cellHeight), forKey: "k\(#file)HeightForDatePickerView")
             }
-            
-            return height
+            return cellHeight
         }else{
             return 45.0
         }
@@ -310,7 +310,7 @@ extension NewAddAlarmController {
         
         for subView in (inView?.subviews)! {
             if let result = findBottomLineView(inView: subView) {
-                print("=====================\r\n")
+//                print("=====================\r\n")
                 return result
             }
         }
