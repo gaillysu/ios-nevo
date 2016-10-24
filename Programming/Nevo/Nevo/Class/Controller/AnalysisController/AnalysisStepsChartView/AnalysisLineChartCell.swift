@@ -184,6 +184,7 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
         set1.setColor(AppTheme.NEVO_SOLAR_YELLOW())
         set1.setCircleColor(AppTheme.NEVO_SOLAR_GRAY())
         set1.valueTextColor = UIColor.black
+        set1.highlightColor = AppTheme.NEVO_SOLAR_YELLOW()
         set1.lineWidth = 1.0;
         set1.circleRadius = 0.0;
         //set1?.drawCirclesEnabled = false;
@@ -343,6 +344,7 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
             set1.setColor(AppTheme.NEVO_SOLAR_YELLOW())
             set1.setCircleColor(AppTheme.NEVO_SOLAR_GRAY())
             set1.valueTextColor = UIColor.black
+            set1.highlightColor = AppTheme.NEVO_SOLAR_YELLOW()
             set1.lineWidth = 1.0;
             set1.circleRadius = 0.0;
             set1.drawValuesEnabled = false
