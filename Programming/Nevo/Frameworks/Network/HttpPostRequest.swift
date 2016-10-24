@@ -22,7 +22,7 @@ class HttpPostRequest: NSObject {
             TOKEN = "Basic YXBwczptZWRfYXBwX2RldmVsb3BtZW50"
             paramsToken = "Sfz1Nk9Qt3J0dt7jNOLX0x7VHaT83V8h"
         }else{
-            mURL = "http://nevo.karljohnchow.com/"
+            mURL = "http://cloud.nevowatch.com/"
             TOKEN = "Basic YXBwczptZWRfYXBwX2RldmVsb3BtZW50"
             paramsToken = "SU9gPy5e1d1t7W8FG2fQ6MuT06cY95MB"
         }
