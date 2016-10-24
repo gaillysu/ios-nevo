@@ -316,15 +316,8 @@ class AlarmClockController: UITableViewController,AddAlarmDelegate {
     
     override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         if let headerView = view as? LineLabel {
-            if hasWakeAlarmArray && hasSleepAlarmArray {
-                if section == 0 {
-                    headerView.addLineView(position: .bottom)
-                    headerView.addLineView(position: .top)
-                } else {
-                    headerView.addLineView(position: .top)
-                }
-            } else {
-            }
+            headerView.addLineView(position: .top)
+            headerView.addLineView(position: .bottom)
         }
     }
     
