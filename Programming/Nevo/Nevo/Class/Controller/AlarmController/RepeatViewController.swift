@@ -42,10 +42,10 @@ class RepeatViewController: UIViewController {
         self.navigationItem.title = NSLocalizedString("Repeat", comment: "")
         
         self.automaticallyAdjustsScrollViewInsets = false
-        tableView.separatorColor = UIColor.getLightBaseColor()
+//        tableView.separatorColor = UIColor.getLightBaseColor()
         tableView.separatorStyle = UITableViewCellSeparatorStyle.singleLine
         tableView.tableFooterView = UIView()
-        tableView.contentInset = UIEdgeInsets(top: 30, left: 0, bottom: 0, right: 0)
+        tableView.contentInset = UIEdgeInsets(top: 50, left: 0, bottom: 0, right: 0)
         
         tableView.register(UINib(nibName: "RepeatViewCell",bundle: nil), forCellReuseIdentifier: "RepeatView_Identifier")
         if !AppTheme.isTargetLunaR_OR_Nevo() {
@@ -56,6 +56,14 @@ class RepeatViewController: UIViewController {
         }
     }
 
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if let view = findBottomLineView(inView: self.navigationController?.navigationBar) {
+            view.isHidden = false
+        }
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -105,4 +113,24 @@ class RepeatViewController: UIViewController {
         return cell
     }
 
+}
+
+extension RepeatViewController {
+    func findBottomLineView(inView:UIView?) -> UIView? {
+        if inView?.frame.height == 0.5 {
+            return inView
+        }
+        
+        if inView?.subviews.count == 0 {
+            return nil
+        }
+        
+        for subView in (inView?.subviews)! {
+            if let result = findBottomLineView(inView: subView) {
+                //                print("=====================\r\n")
+                return result
+            }
+        }
+        return nil
+    }
 }

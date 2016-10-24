@@ -15,6 +15,8 @@ class UserAlarm: NSObject {
     var status:Bool = false
     var repeatStatus:Bool = false
     var dayOfWeek:Int = 0
+    
+    // 0 -> wake; 1 -> sleep
     var type:Int = 0 //0-1
 
     fileprivate var alarmModel:AlarmModel = AlarmModel()

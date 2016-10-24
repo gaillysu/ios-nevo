@@ -38,8 +38,7 @@ class NewAddAlarmController: UITableViewController,ButtonManagerCallBack,Selecte
         self.tableView.register(UINib(nibName:"AddAlarmTableViewCell", bundle: nil), forCellReuseIdentifier: "AddAlarm_Date_identifier")
         //self.tableView.backgroundColor = UIColor.white
         //self.tableView.separatorStyle = UITableViewCellSeparatorStyle.None
-        self.tableView.separatorColor = UIColor.getLightBaseColor()
-        
+//        self.tableView.separatorColor = UIColor.getLightBaseColor()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -249,7 +248,7 @@ class NewAddAlarmController: UITableViewController,ButtonManagerCallBack,Selecte
             let cell:AddAlarmTableViewCell = tableView.dequeueReusableCell(withIdentifier: "AddAlarm_Date_identifier", for: indexPath) as! AddAlarmTableViewCell
             cell.separatorInset = UIEdgeInsets(top: 0, left: UIScreen.main.bounds.size.width, bottom: 0, right: 0)
             cell.selectionStyle = UITableViewCellSelectionStyle.none;
-            cell.backgroundColor = UIColor.clear
+            cell.backgroundColor = UIColor.white
             cell.contentView.backgroundColor = UIColor.clear
             if(timer > 0){
                 cell.datePicker.date = Date(timeIntervalSince1970: timer)
