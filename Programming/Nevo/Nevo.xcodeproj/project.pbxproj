@@ -580,8 +580,6 @@
 		00D4745C1D586D1600E2447E /* ConnectionControllerImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C901D224CFA009047AC /* ConnectionControllerImpl.swift */; };
 		00D4745D1D586D1600E2447E /* ConnectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C911D224CFA009047AC /* ConnectionManager.swift */; };
 		00D4745E1D586D1600E2447E /* NevoProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C921D224CFA009047AC /* NevoProfile.swift */; };
-		00D4745F1D586D1600E2447E /* IntelHex2BinConverter.h in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C951D224CFA009047AC /* IntelHex2BinConverter.h */; };
-		00D474601D586D1600E2447E /* IntelHex2BinConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C961D224CFA009047AC /* IntelHex2BinConverter.m */; };
 		00D474611D586D1600E2447E /* NevoOTAControllerProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C971D224CFA009047AC /* NevoOTAControllerProfile.swift */; };
 		00D474621D586D1600E2447E /* NevoOTAModeProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C981D224CFA009047AC /* NevoOTAModeProfile.swift */; };
 		00D474631D586D1600E2447E /* NevoOTAPacketProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C991D224CFA009047AC /* NevoOTAPacketProfile.swift */; };
@@ -1019,8 +1017,6 @@
 		00AF8C901D224CFA009047AC /* ConnectionControllerImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectionControllerImpl.swift; sourceTree = "<group>"; };
 		00AF8C911D224CFA009047AC /* ConnectionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectionManager.swift; sourceTree = "<group>"; };
 		00AF8C921D224CFA009047AC /* NevoProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NevoProfile.swift; sourceTree = "<group>"; };
-		00AF8C951D224CFA009047AC /* IntelHex2BinConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntelHex2BinConverter.h; sourceTree = "<group>"; };
-		00AF8C961D224CFA009047AC /* IntelHex2BinConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntelHex2BinConverter.m; sourceTree = "<group>"; };
 		00AF8C971D224CFA009047AC /* NevoOTAControllerProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NevoOTAControllerProfile.swift; sourceTree = "<group>"; };
 		00AF8C981D224CFA009047AC /* NevoOTAModeProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NevoOTAModeProfile.swift; sourceTree = "<group>"; };
 		00AF8C991D224CFA009047AC /* NevoOTAPacketProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NevoOTAPacketProfile.swift; sourceTree = "<group>"; };
@@ -1990,7 +1986,6 @@
 		00AF8C931D224CFA009047AC /* OTA */ = {
 			isa = PBXGroup;
 			children = (
-				00AF8C941D224CFA009047AC /* IntelHex2BinConverter */,
 				00AF8C971D224CFA009047AC /* NevoOTAControllerProfile.swift */,
 				00AF8C981D224CFA009047AC /* NevoOTAModeProfile.swift */,
 				00AF8C991D224CFA009047AC /* NevoOTAPacketProfile.swift */,
@@ -1998,15 +1993,6 @@
 				00AF8C9B1D224CFA009047AC /* Utility.swift */,
 			);
 			path = OTA;
-			sourceTree = "<group>";
-		};
-		00AF8C941D224CFA009047AC /* IntelHex2BinConverter */ = {
-			isa = PBXGroup;
-			children = (
-				00AF8C951D224CFA009047AC /* IntelHex2BinConverter.h */,
-				00AF8C961D224CFA009047AC /* IntelHex2BinConverter.m */,
-			);
-			path = IntelHex2BinConverter;
 			sourceTree = "<group>";
 		};
 		00AF8C9C1D224CFA009047AC /* Packet */ = {
@@ -3202,8 +3188,6 @@
 				00D4745C1D586D1600E2447E /* ConnectionControllerImpl.swift in Sources */,
 				00D4745D1D586D1600E2447E /* ConnectionManager.swift in Sources */,
 				00D4745E1D586D1600E2447E /* NevoProfile.swift in Sources */,
-				00D4745F1D586D1600E2447E /* IntelHex2BinConverter.h in Sources */,
-				00D474601D586D1600E2447E /* IntelHex2BinConverter.m in Sources */,
 				00C827231DA6137300ECECEE /* ReadBatteryLevelNevoRequest.swift in Sources */,
 				00D474611D586D1600E2447E /* NevoOTAControllerProfile.swift in Sources */,
 				00D474621D586D1600E2447E /* NevoOTAModeProfile.swift in Sources */,
