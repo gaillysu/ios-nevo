@@ -230,9 +230,9 @@ class StepsHistoryViewController: PublicClassController,ChartViewDelegate {
         let steps:Int = 500
         let remaining = Double(steps - (Int(tempMaxValue) % steps))
         var maxValue = remaining + tempMaxValue
-        var labelCount = Int(round(maxValue/500)) + 1
+        var labelCount = Int(round(maxValue/steps)) + 1
         if maxValue < 50 {
-            maxValue += 500
+            maxValue += steps
             labelCount += 1
         }
         
