@@ -21,6 +21,7 @@ import UIColor_Hex_Swift
 import XCGLogger
 import SwiftyTimer
 import CoreLocation
+import Solar
 
 
 let nevoDBDFileURL:String = "nevoDBName";
@@ -51,6 +52,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
     fileprivate var watchModel:String = "Paris"
     fileprivate var isSync:Bool = true; // syc state
     fileprivate var getWacthNameTimer:Timer?
+    
+    fileprivate var longitude:Double = 0
+    fileprivate var latitude:Double = 0
     
     var isFirsttimeLaunch: Bool {
         get {
@@ -132,6 +136,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
         iRate.sharedInstance().usesPerWeekForPrompt = 1
         iRate.sharedInstance().previewMode = true
         iRate.sharedInstance().promptAtLaunch = false
+        
+        //start Location
+        self.startLocation()
         return true
     }
     
@@ -337,6 +344,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                 //start sync data
                 self.syncActivityData()
                 //self.getWatchName()
+                self.setSolar()
             }
             
             if(packet.getHeader() == ReadDailyTrackerInfo.HEADER()) {
@@ -715,17 +723,25 @@ extension AppDelegate {
             LOCATION_MANAGER.didUpdateLocations = { location in
                 let locationArray = location as [CLLocation]
                 XCGLogger.default.debug("Location didUpdateLocations:\(locationArray)")
-                /*
-                 CLLocation *currLocation=[locations lastObject];
-                 location.strLatitude=[NSString stringWithFormat:@"%f",currLocation.coordinate.latitude];
-                 location.strLongitude=[NSString stringWithFormat:@"%f",currLocation.coordinate.longitude];
-                 NSLog(@"la---%f, lo---%f",currLocation.coordinate.latitude,currLocation.coordinate.longitude);
-                 */
+                self.longitude = locationArray.last!.coordinate.longitude
+                self.latitude = locationArray.last!.coordinate.latitude
+                NSLog("longitude:\(self.longitude),latitude:\(self.latitude)")
+                
             }
             
             LOCATION_MANAGER.didFailWithError = { error in
                 XCGLogger.default.debug("Location didFailWithError:\(error)")
             }
+        }
+    }
+    
+    func setSolar() {
+        if longitude != 0 && latitude != 0 {
+            let solar = Solar(latitude: latitude,
+                              longitude: longitude)
+            let sunrise = solar!.sunrise
+            let sunset = solar!.sunset
+            self.setSunriseAndSunset(sunrise: sunrise!, sunset: sunset!)
         }
     }
 }

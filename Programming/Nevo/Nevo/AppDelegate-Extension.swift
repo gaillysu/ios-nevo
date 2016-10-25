@@ -48,6 +48,10 @@ extension AppDelegate {
         sendRequest(SetNortificationRequest(settingArray: settingArray))
     }
     
+    func setSunriseAndSunset(sunrise:Date,sunset:Date) {
+        sendRequest(SetSunriseAndSunsetRequest(sunrise: sunrise, sunset: sunset))
+    }
+    
     /**
      @ledpattern, define Led light pattern, 0 means off all led, 0xFFFFFF means light on all led( include color and white)
      0x7FF means light on all white led (bit0~bit10), 0x3F0000 means light on all color led (bit16~bit21)
