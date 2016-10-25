@@ -9,7 +9,6 @@
 #ifndef Nevo_Nevo_Bridging_Header_h
 #define Nevo_Nevo_Bridging_Header_h
 
-#import "IntelHex2BinConverter.h"
 #import "FXBlurView.h"
 #import "MBProgressHUD+MJ.h"
 //#import <UMMobClick/MobClick.h>

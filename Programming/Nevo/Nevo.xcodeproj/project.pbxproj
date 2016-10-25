@@ -342,7 +342,6 @@
 		00C826501DA5E04000ECECEE /* InformationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0089B0961D6BE9410041148A /* InformationController.swift */; };
 		00C826511DA5E04000ECECEE /* LineLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006A62511D6AA75100458305 /* LineLabel.swift */; };
 		00C826521DA5E04000ECECEE /* SolarIndicatorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006A62481D6AA62100458305 /* SolarIndicatorController.swift */; };
-		00C826531DA5E04000ECECEE /* SolarIndicatorController.xib in Sources */ = {isa = PBXBuildFile; fileRef = 006A62491D6AA62100458305 /* SolarIndicatorController.xib */; };
 		00C826541DA5E04000ECECEE /* SolarInforViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006A624A1D6AA62100458305 /* SolarInforViewCell.swift */; };
 		00C826551DA5E04000ECECEE /* SolarInforViewCell.xib in Sources */ = {isa = PBXBuildFile; fileRef = 006A624B1D6AA62100458305 /* SolarInforViewCell.xib */; };
 		00C826561DA5E04000ECECEE /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006A62241D6AA53100458305 /* PageViewController.swift */; };
@@ -421,20 +420,17 @@
 		00C826A01DA5E04000ECECEE /* SetingLoginCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0089B0A81D6BFF250041148A /* SetingLoginCell.swift */; };
 		00C826A11DA5E04000ECECEE /* SetingLoginCell.xib in Sources */ = {isa = PBXBuildFile; fileRef = 0089B0A91D6BFF250041148A /* SetingLoginCell.xib */; };
 		00C826A21DA5E04000ECECEE /* SetingNotLoginCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0089B0AA1D6BFF250041148A /* SetingNotLoginCell.swift */; };
-		00C826A31DA5E04000ECECEE /* SetingNotLoginCell.xib in Sources */ = {isa = PBXBuildFile; fileRef = 0089B0AB1D6BFF250041148A /* SetingNotLoginCell.xib */; };
 		00C826A41DA5E04000ECECEE /* SetingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0089B0AC1D6BFF250041148A /* SetingView.swift */; };
 		00C826A51DA5E04000ECECEE /* SetingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0050D55D1C28E0DB004F6F80 /* SetingViewController.swift */; };
 		00C826A61DA5E04000ECECEE /* SleepHistoricalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006A62331D6AA5F100458305 /* SleepHistoricalView.swift */; };
 		00C826A71DA5E04000ECECEE /* SleepHistoryViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0089B0B41D6C4BDC0041148A /* SleepHistoryViewCell.swift */; };
 		00C826A81DA5E04000ECECEE /* SleepHistoryViewCell.xib in Sources */ = {isa = PBXBuildFile; fileRef = 0089B0B51D6C4BDC0041148A /* SleepHistoryViewCell.xib */; };
 		00C826A91DA5E04000ECECEE /* SleepHistoricalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006A62341D6AA5F200458305 /* SleepHistoricalViewController.swift */; };
-		00C826AA1DA5E04000ECECEE /* SleepHistoricalViewController.xib in Sources */ = {isa = PBXBuildFile; fileRef = 006A62351D6AA5F200458305 /* SleepHistoricalViewController.xib */; };
 		00C826AB1DA5E04000ECECEE /* StepGoalSetingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006A62651D6AB44A00458305 /* StepGoalSetingController.swift */; };
 		00C826AC1DA5E04000ECECEE /* StepGoalSetingController.xib in Sources */ = {isa = PBXBuildFile; fileRef = 006A62661D6AB44A00458305 /* StepGoalSetingController.xib */; };
 		00C826AD1DA5E04000ECECEE /* StepGoalSetingViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006A62671D6AB44A00458305 /* StepGoalSetingViewCell.swift */; };
 		00C826AE1DA5E04000ECECEE /* StepGoalSetingViewCell.xib in Sources */ = {isa = PBXBuildFile; fileRef = 006A62681D6AB44A00458305 /* StepGoalSetingViewCell.xib */; };
 		00C826AF1DA5E04000ECECEE /* StepsHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006A62691D6AB44A00458305 /* StepsHistoryViewController.swift */; };
-		00C826B01DA5E04000ECECEE /* StepsHistoryViewController.xib in Sources */ = {isa = PBXBuildFile; fileRef = 006A626A1D6AB44A00458305 /* StepsHistoryViewController.xib */; };
 		00C826B11DA5E04000ECECEE /* StepsTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006A626B1D6AB44A00458305 /* StepsTitleView.swift */; };
 		00C826B21DA5E04000ECECEE /* StepsTitleView.xib in Sources */ = {isa = PBXBuildFile; fileRef = 006A626C1D6AB44A00458305 /* StepsTitleView.xib */; };
 		00C826B31DA5E04000ECECEE /* TutorialOneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E98FB281C463A3B00BAB700 /* TutorialOneViewController.swift */; };
@@ -507,28 +503,6 @@
 		00C826FC1DA5ECA700ECECEE /* MorningTutorialController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00EC9DD11C85833400280904 /* MorningTutorialController.xib */; };
 		00C826FD1DA5ECA700ECECEE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0091EB3B1D951D9E0079EC39 /* Main.storyboard */; };
 		00C826FF1DA5EDFD00ECECEE /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A2D6C3A1A9C6D9F00591BDC /* HealthKit.framework */; };
-		00C827181DA6137300ECECEE /* BatteryLevelNevoPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C827011DA6137300ECECEE /* BatteryLevelNevoPacket.swift */; };
-		00C827191DA6137300ECECEE /* DailyStepsNevoPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C827021DA6137300ECECEE /* DailyStepsNevoPacket.swift */; };
-		00C8271A1DA6137300ECECEE /* DailyTrackerInfoNevoPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C827031DA6137300ECECEE /* DailyTrackerInfoNevoPacket.swift */; };
-		00C8271B1DA6137300ECECEE /* DailyTrackerNevoPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C827041DA6137300ECECEE /* DailyTrackerNevoPacket.swift */; };
-		00C8271C1DA6137300ECECEE /* NevoPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C827051DA6137300ECECEE /* NevoPacket.swift */; };
-		00C8271D1DA6137300ECECEE /* WatchNamePacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C827061DA6137300ECECEE /* WatchNamePacket.swift */; };
-		00C8271E1DA6137300ECECEE /* GetActivityRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C827081DA6137300ECECEE /* GetActivityRequest.swift */; };
-		00C8271F1DA6137300ECECEE /* GetStepsGoalRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C827091DA6137300ECECEE /* GetStepsGoalRequest.swift */; };
-		00C827201DA6137300ECECEE /* GetWatchName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C8270A1DA6137300ECECEE /* GetWatchName.swift */; };
-		00C827211DA6137300ECECEE /* LedLightOnOffNevoRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C8270B1DA6137300ECECEE /* LedLightOnOffNevoRequest.swift */; };
-		00C827221DA6137300ECECEE /* NevoRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C8270C1DA6137300ECECEE /* NevoRequest.swift */; };
-		00C827231DA6137300ECECEE /* ReadBatteryLevelNevoRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C8270D1DA6137300ECECEE /* ReadBatteryLevelNevoRequest.swift */; };
-		00C827241DA6137300ECECEE /* ReadDailyTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C8270E1DA6137300ECECEE /* ReadDailyTracker.swift */; };
-		00C827251DA6137300ECECEE /* ReadDailyTrackerInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C8270F1DA6137300ECECEE /* ReadDailyTrackerInfo.swift */; };
-		00C827261DA6137300ECECEE /* SetAlarmRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C827101DA6137300ECECEE /* SetAlarmRequest.swift */; };
-		00C827271DA6137300ECECEE /* SetCardioRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C827111DA6137300ECECEE /* SetCardioRequest.swift */; };
-		00C827281DA6137300ECECEE /* SetGoalRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C827121DA6137300ECECEE /* SetGoalRequest.swift */; };
-		00C827291DA6137300ECECEE /* SetNewAlarmRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C827131DA6137300ECECEE /* SetNewAlarmRequest.swift */; };
-		00C8272A1DA6137300ECECEE /* SetNortificationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C827141DA6137300ECECEE /* SetNortificationRequest.swift */; };
-		00C8272B1DA6137400ECECEE /* SetProfileRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C827151DA6137300ECECEE /* SetProfileRequest.swift */; };
-		00C8272C1DA6137400ECECEE /* SetRTCRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C827161DA6137300ECECEE /* SetRTCRequest.swift */; };
-		00C8272D1DA6137400ECECEE /* WriteSettingRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C827171DA6137300ECECEE /* WriteSettingRequest.swift */; };
 		00C8272F1DA61CAF00ECECEE /* FindWatchRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C8272E1DA61CAF00ECECEE /* FindWatchRequest.swift */; };
 		00C8C8171D8B950A00621162 /* OldOtaViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00C8C8161D8B950A00621162 /* OldOtaViewController.xib */; };
 		00D4742A1D586CCA00E2447E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EFE04C1D227D5F0066C905 /* AppDelegate.swift */; };
@@ -640,7 +614,6 @@
 		615F6E211DA7514200216D1A /* PVADCRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0023C0AC1DA64DD400FB33A4 /* PVADCRequest.swift */; };
 		61623DB11DAC77F100C45B19 /* iMaze_v26.bin in Resources */ = {isa = PBXBuildFile; fileRef = 61623DB01DAC77F100C45B19 /* iMaze_v26.bin */; };
 		6173DEF31DB0E90C002DF6AF /* SolarIndicatorController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6173DEF61DB0E90C002DF6AF /* SolarIndicatorController.xib */; };
-		6173DEF41DB0E90C002DF6AF /* SolarIndicatorController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6173DEF61DB0E90C002DF6AF /* SolarIndicatorController.xib */; };
 		6173DEFF1DB0E93D002DF6AF /* SleepHistoricalViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6173DF021DB0E93D002DF6AF /* SleepHistoricalViewController.xib */; };
 		6173DF001DB0E93D002DF6AF /* SleepHistoricalViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6173DF021DB0E93D002DF6AF /* SleepHistoricalViewController.xib */; };
 		6173DF091DB0E993002DF6AF /* StepsHistoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6173DF0C1DB0E993002DF6AF /* StepsHistoryViewController.xib */; };
@@ -652,11 +625,41 @@
 		61E4DF261DB8C2D500DDA737 /* ForgotPasswordRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E4DF241DB8C2D500DDA737 /* ForgotPasswordRequest.swift */; };
 		61E4DF271DB8C2D500DDA737 /* UserCreateRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E4DF251DB8C2D500DDA737 /* UserCreateRequest.swift */; };
 		61F85F501DAF5BF300F341B5 /* NevoOtaController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61F85F4F1DAF5BF300F341B5 /* NevoOtaController.swift */; };
+		665BD6A51DBEF186008C2623 /* NevoOtaController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61F85F4F1DAF5BF300F341B5 /* NevoOtaController.swift */; };
+		665BD6A61DBEF1D0008C2623 /* ForgotPasswordRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E4DF241DB8C2D500DDA737 /* ForgotPasswordRequest.swift */; };
+		665BD6A71DBEF1D0008C2623 /* UserCreateRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E4DF251DB8C2D500DDA737 /* UserCreateRequest.swift */; };
+		665BD6A81DBEF1D0008C2623 /* SyncStepsToServiceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E4DF1E1DB8749700DDA737 /* SyncStepsToServiceRequest.swift */; };
+		665BD6A91DBEF1D0008C2623 /* SyncSleepToServiceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E4DF201DB898F700DDA737 /* SyncSleepToServiceRequest.swift */; };
+		665BD6AA1DBEF1D0008C2623 /* LoginRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E4DF221DB8C20800DDA737 /* LoginRequest.swift */; };
+		665BD6AB1DBEF1D0008C2623 /* BatteryLevelNevoPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C9D1D224CFA009047AC /* BatteryLevelNevoPacket.swift */; };
+		665BD6AC1DBEF1D0008C2623 /* DailyStepsNevoPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C9E1D224CFA009047AC /* DailyStepsNevoPacket.swift */; };
+		665BD6AD1DBEF1D0008C2623 /* DailyTrackerInfoNevoPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C9F1D224CFA009047AC /* DailyTrackerInfoNevoPacket.swift */; };
+		665BD6AE1DBEF1D0008C2623 /* DailyTrackerNevoPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8CA01D224CFA009047AC /* DailyTrackerNevoPacket.swift */; };
+		665BD6AF1DBEF1D0008C2623 /* NevoPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8CA11D224CFA009047AC /* NevoPacket.swift */; };
+		665BD6B01DBEF1D0008C2623 /* WatchNamePacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005E468B1D87DBE1009B6E4C /* WatchNamePacket.swift */; };
+		665BD6B11DBEF1D0008C2623 /* FindPhonePacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E4DF1C1DB85C9800DDA737 /* FindPhonePacket.swift */; };
+		665BD6B21DBEF1D0008C2623 /* GetActivityRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8CA31D224CFA009047AC /* GetActivityRequest.swift */; };
+		665BD6B31DBEF1D0008C2623 /* GetStepsGoalRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8CA41D224CFA009047AC /* GetStepsGoalRequest.swift */; };
+		665BD6B41DBEF1D0008C2623 /* LedLightOnOffNevoRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8CA51D224CFA009047AC /* LedLightOnOffNevoRequest.swift */; };
+		665BD6B51DBEF1D0008C2623 /* NevoRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8CA61D224CFA009047AC /* NevoRequest.swift */; };
+		665BD6B61DBEF1D0008C2623 /* ReadBatteryLevelNevoRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8CA71D224CFA009047AC /* ReadBatteryLevelNevoRequest.swift */; };
+		665BD6B71DBEF1D0008C2623 /* ReadDailyTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8CA81D224CFA009047AC /* ReadDailyTracker.swift */; };
+		665BD6B81DBEF1D0008C2623 /* ReadDailyTrackerInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8CA91D224CFA009047AC /* ReadDailyTrackerInfo.swift */; };
+		665BD6B91DBEF1D0008C2623 /* SetAlarmRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8CAA1D224CFA009047AC /* SetAlarmRequest.swift */; };
+		665BD6BA1DBEF1D0008C2623 /* SetCardioRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8CAB1D224CFA009047AC /* SetCardioRequest.swift */; };
+		665BD6BB1DBEF1D0008C2623 /* SetGoalRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8CAC1D224CFA009047AC /* SetGoalRequest.swift */; };
+		665BD6BC1DBEF1D0008C2623 /* SetNewAlarmRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8CAD1D224CFA009047AC /* SetNewAlarmRequest.swift */; };
+		665BD6BD1DBEF1D0008C2623 /* SetNortificationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8CAE1D224CFA009047AC /* SetNortificationRequest.swift */; };
+		665BD6BE1DBEF1D0008C2623 /* SetProfileRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8CAF1D224CFA009047AC /* SetProfileRequest.swift */; };
+		665BD6BF1DBEF1D0008C2623 /* SetRTCRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8CB01D224CFA009047AC /* SetRTCRequest.swift */; };
+		665BD6C01DBEF1D0008C2623 /* WriteSettingRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8CB21D224CFA009047AC /* WriteSettingRequest.swift */; };
+		665BD6C11DBEF1D0008C2623 /* GetWatchName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005E46891D879FB5009B6E4C /* GetWatchName.swift */; };
+		665BD6C21DBEF3C2008C2623 /* SolarIndicatorController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6173DEF61DB0E90C002DF6AF /* SolarIndicatorController.xib */; };
+		665BD6C51DBEF4C7008C2623 /* SetingNotLoginCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6690DF0C1DB8A84C0042FB9E /* SetingNotLoginCell.xib */; };
 		665E331E1DADCD8A00D0E36D /* MEDBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 665E331D1DADCD8A00D0E36D /* MEDBanner.swift */; };
 		665E331F1DADCD8A00D0E36D /* MEDBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 665E331D1DADCD8A00D0E36D /* MEDBanner.swift */; };
 		666F60F11DAF264B0011F3C5 /* AppDelegate-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006DA9FD1D80F2A600B70C0F /* AppDelegate-Extension.swift */; };
 		6690DF091DB8A84C0042FB9E /* SetingNotLoginCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6690DF0C1DB8A84C0042FB9E /* SetingNotLoginCell.xib */; };
-		6690DF0A1DB8A84C0042FB9E /* SetingNotLoginCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6690DF0C1DB8A84C0042FB9E /* SetingNotLoginCell.xib */; };
 		813518AB3D92E43573F28717 /* Pods_LunaR.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E068CB5F57F135B038B3A10 /* Pods_LunaR.framework */; };
 		8A84EC52F1052F0497E54CB5 /* Pods_NevoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7689D6188FDF6CDBFBD84C51 /* Pods_NevoTests.framework */; };
 		9A2D6C3B1A9C6D9F00591BDC /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A2D6C3A1A9C6D9F00591BDC /* HealthKit.framework */; };
@@ -886,9 +889,7 @@
 		006A62241D6AA53100458305 /* PageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
 		006A62331D6AA5F100458305 /* SleepHistoricalView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SleepHistoricalView.swift; sourceTree = "<group>"; };
 		006A62341D6AA5F200458305 /* SleepHistoricalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SleepHistoricalViewController.swift; sourceTree = "<group>"; };
-		006A62351D6AA5F200458305 /* SleepHistoricalViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SleepHistoricalViewController.xib; path = "/Users/Cloud/Desktop/nevo-ios/Programming/Nevo/Nevo/Class/Controller/SleepController/SleepHistoricalViewController.xib"; sourceTree = "<absolute>"; };
 		006A62481D6AA62100458305 /* SolarIndicatorController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SolarIndicatorController.swift; sourceTree = "<group>"; };
-		006A62491D6AA62100458305 /* SolarIndicatorController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SolarIndicatorController.xib; path = "/Users/Cloud/Desktop/nevo-ios/Programming/Nevo/Nevo/Class/Controller/SolarIndicator/SolarIndicatorController.xib"; sourceTree = "<absolute>"; };
 		006A624A1D6AA62100458305 /* SolarInforViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SolarInforViewCell.swift; sourceTree = "<group>"; };
 		006A624B1D6AA62100458305 /* SolarInforViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SolarInforViewCell.xib; sourceTree = "<group>"; };
 		006A62511D6AA75100458305 /* LineLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineLabel.swift; sourceTree = "<group>"; };
@@ -902,7 +903,6 @@
 		006A62671D6AB44A00458305 /* StepGoalSetingViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepGoalSetingViewCell.swift; sourceTree = "<group>"; };
 		006A62681D6AB44A00458305 /* StepGoalSetingViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StepGoalSetingViewCell.xib; sourceTree = "<group>"; };
 		006A62691D6AB44A00458305 /* StepsHistoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepsHistoryViewController.swift; sourceTree = "<group>"; };
-		006A626A1D6AB44A00458305 /* StepsHistoryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = StepsHistoryViewController.xib; path = "/Users/Cloud/Desktop/nevo-ios/Programming/Nevo/Nevo/Class/Controller/StepController/StepsHistoryViewController.xib"; sourceTree = "<absolute>"; };
 		006A626B1D6AB44A00458305 /* StepsTitleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepsTitleView.swift; sourceTree = "<group>"; };
 		006A626C1D6AB44A00458305 /* StepsTitleView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StepsTitleView.xib; sourceTree = "<group>"; };
 		006B83691C44A20000E20A0C /* Nevo-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Nevo-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -945,7 +945,6 @@
 		0089B0A81D6BFF250041148A /* SetingLoginCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetingLoginCell.swift; sourceTree = "<group>"; };
 		0089B0A91D6BFF250041148A /* SetingLoginCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SetingLoginCell.xib; sourceTree = "<group>"; };
 		0089B0AA1D6BFF250041148A /* SetingNotLoginCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetingNotLoginCell.swift; sourceTree = "<group>"; };
-		0089B0AB1D6BFF250041148A /* SetingNotLoginCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SetingNotLoginCell.xib; path = /Users/quentin/Desktop/MED/ios_nevo/Programming/Nevo/Nevo/Class/Controller/SetingViewController/SetingView/SetingNotLoginCell.xib; sourceTree = "<absolute>"; };
 		0089B0AC1D6BFF250041148A /* SetingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetingView.swift; sourceTree = "<group>"; };
 		0089B0B41D6C4BDC0041148A /* SleepHistoryViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SleepHistoryViewCell.swift; sourceTree = "<group>"; };
 		0089B0B51D6C4BDC0041148A /* SleepHistoryViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SleepHistoryViewCell.xib; sourceTree = "<group>"; };
@@ -1051,28 +1050,6 @@
 		00C826BD1DA5E9BD00ECECEE /* ActionSheetView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionSheetView.swift; sourceTree = "<group>"; };
 		00C826C01DA5EA5700ECECEE /* AlertAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertAction.swift; sourceTree = "<group>"; };
 		00C826FE1DA5EDFD00ECECEE /* LunaR.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LunaR.entitlements; sourceTree = "<group>"; };
-		00C827011DA6137300ECECEE /* BatteryLevelNevoPacket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BatteryLevelNevoPacket.swift; sourceTree = "<group>"; };
-		00C827021DA6137300ECECEE /* DailyStepsNevoPacket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DailyStepsNevoPacket.swift; sourceTree = "<group>"; };
-		00C827031DA6137300ECECEE /* DailyTrackerInfoNevoPacket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DailyTrackerInfoNevoPacket.swift; sourceTree = "<group>"; };
-		00C827041DA6137300ECECEE /* DailyTrackerNevoPacket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DailyTrackerNevoPacket.swift; sourceTree = "<group>"; };
-		00C827051DA6137300ECECEE /* NevoPacket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NevoPacket.swift; sourceTree = "<group>"; };
-		00C827061DA6137300ECECEE /* WatchNamePacket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchNamePacket.swift; sourceTree = "<group>"; };
-		00C827081DA6137300ECECEE /* GetActivityRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetActivityRequest.swift; sourceTree = "<group>"; };
-		00C827091DA6137300ECECEE /* GetStepsGoalRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetStepsGoalRequest.swift; sourceTree = "<group>"; };
-		00C8270A1DA6137300ECECEE /* GetWatchName.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetWatchName.swift; sourceTree = "<group>"; };
-		00C8270B1DA6137300ECECEE /* LedLightOnOffNevoRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LedLightOnOffNevoRequest.swift; sourceTree = "<group>"; };
-		00C8270C1DA6137300ECECEE /* NevoRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NevoRequest.swift; sourceTree = "<group>"; };
-		00C8270D1DA6137300ECECEE /* ReadBatteryLevelNevoRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReadBatteryLevelNevoRequest.swift; sourceTree = "<group>"; };
-		00C8270E1DA6137300ECECEE /* ReadDailyTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReadDailyTracker.swift; sourceTree = "<group>"; };
-		00C8270F1DA6137300ECECEE /* ReadDailyTrackerInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReadDailyTrackerInfo.swift; sourceTree = "<group>"; };
-		00C827101DA6137300ECECEE /* SetAlarmRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetAlarmRequest.swift; sourceTree = "<group>"; };
-		00C827111DA6137300ECECEE /* SetCardioRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetCardioRequest.swift; sourceTree = "<group>"; };
-		00C827121DA6137300ECECEE /* SetGoalRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetGoalRequest.swift; sourceTree = "<group>"; };
-		00C827131DA6137300ECECEE /* SetNewAlarmRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetNewAlarmRequest.swift; sourceTree = "<group>"; };
-		00C827141DA6137300ECECEE /* SetNortificationRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetNortificationRequest.swift; sourceTree = "<group>"; };
-		00C827151DA6137300ECECEE /* SetProfileRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetProfileRequest.swift; sourceTree = "<group>"; };
-		00C827161DA6137300ECECEE /* SetRTCRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetRTCRequest.swift; sourceTree = "<group>"; };
-		00C827171DA6137300ECECEE /* WriteSettingRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WriteSettingRequest.swift; sourceTree = "<group>"; };
 		00C8272E1DA61CAF00ECECEE /* FindWatchRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindWatchRequest.swift; sourceTree = "<group>"; };
 		00C8C8161D8B950A00621162 /* OldOtaViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OldOtaViewController.xib; sourceTree = "<group>"; };
 		00E2BDDD1B16CCD0009C757E /* MBProgressHUD+MJ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MBProgressHUD+MJ.h"; sourceTree = "<group>"; };
@@ -2049,38 +2026,9 @@
 			path = VideoPlayController;
 			sourceTree = "<group>";
 		};
-		00C827001DA6137300ECECEE /* Packet */ = {
-			isa = PBXGroup;
-			children = (
-				00C827011DA6137300ECECEE /* BatteryLevelNevoPacket.swift */,
-				00C827021DA6137300ECECEE /* DailyStepsNevoPacket.swift */,
-				00C827031DA6137300ECECEE /* DailyTrackerInfoNevoPacket.swift */,
-				00C827041DA6137300ECECEE /* DailyTrackerNevoPacket.swift */,
-				00C827051DA6137300ECECEE /* NevoPacket.swift */,
-				00C827061DA6137300ECECEE /* WatchNamePacket.swift */,
-			);
-			path = Packet;
-			sourceTree = "<group>";
-		};
 		00C827071DA6137300ECECEE /* Request */ = {
 			isa = PBXGroup;
 			children = (
-				00C827081DA6137300ECECEE /* GetActivityRequest.swift */,
-				00C827091DA6137300ECECEE /* GetStepsGoalRequest.swift */,
-				00C8270A1DA6137300ECECEE /* GetWatchName.swift */,
-				00C8270B1DA6137300ECECEE /* LedLightOnOffNevoRequest.swift */,
-				00C8270C1DA6137300ECECEE /* NevoRequest.swift */,
-				00C8270D1DA6137300ECECEE /* ReadBatteryLevelNevoRequest.swift */,
-				00C8270E1DA6137300ECECEE /* ReadDailyTracker.swift */,
-				00C8270F1DA6137300ECECEE /* ReadDailyTrackerInfo.swift */,
-				00C827101DA6137300ECECEE /* SetAlarmRequest.swift */,
-				00C827111DA6137300ECECEE /* SetCardioRequest.swift */,
-				00C827121DA6137300ECECEE /* SetGoalRequest.swift */,
-				00C827131DA6137300ECECEE /* SetNewAlarmRequest.swift */,
-				00C827141DA6137300ECECEE /* SetNortificationRequest.swift */,
-				00C827151DA6137300ECECEE /* SetProfileRequest.swift */,
-				00C827161DA6137300ECECEE /* SetRTCRequest.swift */,
-				00C827171DA6137300ECECEE /* WriteSettingRequest.swift */,
 				00C8272E1DA61CAF00ECECEE /* FindWatchRequest.swift */,
 				0023C0AC1DA64DD400FB33A4 /* PVADCRequest.swift */,
 			);
@@ -2103,7 +2051,6 @@
 		00EFE04B1D227D5F0066C905 /* LunaR */ = {
 			isa = PBXGroup;
 			children = (
-				00C827001DA6137300ECECEE /* Packet */,
 				00C827071DA6137300ECECEE /* Request */,
 				00C826FE1DA5EDFD00ECECEE /* LunaR.entitlements */,
 				00EFE04C1D227D5F0066C905 /* AppDelegate.swift */,
@@ -2541,7 +2488,6 @@
 				00C826C71DA5ECA700ECECEE /* CheckYourIndoxController.xib in Resources */,
 				00C826C81DA5ECA700ECECEE /* ForgotPasswordController.xib in Resources */,
 				00C826C91DA5ECA700ECECEE /* InformationController.xib in Resources */,
-				6173DEF41DB0E90C002DF6AF /* SolarIndicatorController.xib in Resources */,
 				00C826CB1DA5ECA700ECECEE /* SolarInforViewCell.xib in Resources */,
 				00C826CC1DA5ECA700ECECEE /* ConnectOtherAppsController.xib in Resources */,
 				00C826CD1DA5ECA700ECECEE /* ConnectOtherAppsCell.xib in Resources */,
@@ -2576,7 +2522,6 @@
 				00C826EA1DA5ECA700ECECEE /* PresetTableViewCell.xib in Resources */,
 				00C826EB1DA5ECA700ECECEE /* SetingInfoCell.xib in Resources */,
 				00C826EC1DA5ECA700ECECEE /* SetingLoginCell.xib in Resources */,
-				6690DF0A1DB8A84C0042FB9E /* SetingNotLoginCell.xib in Resources */,
 				00C826EE1DA5ECA700ECECEE /* SleepHistoryViewCell.xib in Resources */,
 				6173DF001DB0E93D002DF6AF /* SleepHistoricalViewController.xib in Resources */,
 				00C826F01DA5ECA700ECECEE /* StepGoalSetingController.xib in Resources */,
@@ -2603,6 +2548,7 @@
 				0037EC281D235F5300502140 /* nevoFontImage.png in Resources */,
 				0037EC2A1D235F5300502140 /* bluetoothoff_background.png in Resources */,
 				0037EC551D2385DF00502140 /* Raleway-Thin.ttf in Resources */,
+				665BD6C51DBEF4C7008C2623 /* SetingNotLoginCell.xib in Resources */,
 				0037EC2C1D235F5300502140 /* connected.png in Resources */,
 				0037EC2D1D235F5300502140 /* connected1.png in Resources */,
 				0037EC2F1D235F5300502140 /* settimer.png in Resources */,
@@ -2610,6 +2556,7 @@
 				0037EC311D235F5300502140 /* tutorialone.png in Resources */,
 				0037EC321D235F5300502140 /* white_clock.png in Resources */,
 				0037EC331D235F5300502140 /* white_hour.png in Resources */,
+				665BD6C21DBEF3C2008C2623 /* SolarIndicatorController.xib in Resources */,
 				0037EC341D235F5300502140 /* white_minute.png in Resources */,
 				0037EC351D235F5300502140 /* upgrade_clock.png in Resources */,
 				0037EC361D235F5300502140 /* firmware_clock.png in Resources */,
@@ -2958,6 +2905,35 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				665BD6A61DBEF1D0008C2623 /* ForgotPasswordRequest.swift in Sources */,
+				665BD6A71DBEF1D0008C2623 /* UserCreateRequest.swift in Sources */,
+				665BD6A81DBEF1D0008C2623 /* SyncStepsToServiceRequest.swift in Sources */,
+				665BD6A91DBEF1D0008C2623 /* SyncSleepToServiceRequest.swift in Sources */,
+				665BD6AA1DBEF1D0008C2623 /* LoginRequest.swift in Sources */,
+				665BD6AB1DBEF1D0008C2623 /* BatteryLevelNevoPacket.swift in Sources */,
+				665BD6AC1DBEF1D0008C2623 /* DailyStepsNevoPacket.swift in Sources */,
+				665BD6AD1DBEF1D0008C2623 /* DailyTrackerInfoNevoPacket.swift in Sources */,
+				665BD6AE1DBEF1D0008C2623 /* DailyTrackerNevoPacket.swift in Sources */,
+				665BD6AF1DBEF1D0008C2623 /* NevoPacket.swift in Sources */,
+				665BD6B01DBEF1D0008C2623 /* WatchNamePacket.swift in Sources */,
+				665BD6B11DBEF1D0008C2623 /* FindPhonePacket.swift in Sources */,
+				665BD6B21DBEF1D0008C2623 /* GetActivityRequest.swift in Sources */,
+				665BD6B31DBEF1D0008C2623 /* GetStepsGoalRequest.swift in Sources */,
+				665BD6B41DBEF1D0008C2623 /* LedLightOnOffNevoRequest.swift in Sources */,
+				665BD6B51DBEF1D0008C2623 /* NevoRequest.swift in Sources */,
+				665BD6B61DBEF1D0008C2623 /* ReadBatteryLevelNevoRequest.swift in Sources */,
+				665BD6B71DBEF1D0008C2623 /* ReadDailyTracker.swift in Sources */,
+				665BD6B81DBEF1D0008C2623 /* ReadDailyTrackerInfo.swift in Sources */,
+				665BD6B91DBEF1D0008C2623 /* SetAlarmRequest.swift in Sources */,
+				665BD6BA1DBEF1D0008C2623 /* SetCardioRequest.swift in Sources */,
+				665BD6BB1DBEF1D0008C2623 /* SetGoalRequest.swift in Sources */,
+				665BD6BC1DBEF1D0008C2623 /* SetNewAlarmRequest.swift in Sources */,
+				665BD6BD1DBEF1D0008C2623 /* SetNortificationRequest.swift in Sources */,
+				665BD6BE1DBEF1D0008C2623 /* SetProfileRequest.swift in Sources */,
+				665BD6BF1DBEF1D0008C2623 /* SetRTCRequest.swift in Sources */,
+				665BD6C01DBEF1D0008C2623 /* WriteSettingRequest.swift in Sources */,
+				665BD6C11DBEF1D0008C2623 /* GetWatchName.swift in Sources */,
+				665BD6A51DBEF186008C2623 /* NevoOtaController.swift in Sources */,
 				00C826C21DA5EA9000ECECEE /* AlertAction.swift in Sources */,
 				00C826BF1DA5E9E000ECECEE /* ActionSheetView.swift in Sources */,
 				00C826BC1DA5E05100ECECEE /* MainTabBarController.swift in Sources */,
@@ -2971,8 +2947,6 @@
 				00C826481DA5E04000ECECEE /* AnalysisRadarChartView.swift in Sources */,
 				00C826491DA5E04000ECECEE /* AnalysisStepsChartView.swift in Sources */,
 				00C8264A1DA5E04000ECECEE /* AnalysisValueCell.swift in Sources */,
-				00C827221DA6137300ECECEE /* NevoRequest.swift in Sources */,
-				00C8272B1DA6137400ECECEE /* SetProfileRequest.swift in Sources */,
 				00C8264B1DA5E04000ECECEE /* AnalysisValueCell.xib in Sources */,
 				00C8264C1DA5E04000ECECEE /* AnalysisController.swift in Sources */,
 				00C8264D1DA5E04000ECECEE /* ProfileSetupViewController.swift in Sources */,
@@ -2981,12 +2955,10 @@
 				00C826501DA5E04000ECECEE /* InformationController.swift in Sources */,
 				00C826511DA5E04000ECECEE /* LineLabel.swift in Sources */,
 				00C826521DA5E04000ECECEE /* SolarIndicatorController.swift in Sources */,
-				00C826531DA5E04000ECECEE /* SolarIndicatorController.xib in Sources */,
 				00C826541DA5E04000ECECEE /* SolarInforViewCell.swift in Sources */,
 				00C826551DA5E04000ECECEE /* SolarInforViewCell.xib in Sources */,
 				00C826561DA5E04000ECECEE /* PageViewController.swift in Sources */,
 				00C826571DA5E04000ECECEE /* ConnectOtherAppsController.swift in Sources */,
-				00C8271F1DA6137300ECECEE /* GetStepsGoalRequest.swift in Sources */,
 				00C826581DA5E04000ECECEE /* ConnectOtherAppsController.xib in Sources */,
 				1C3712D81DBC5BF2007DC349 /* UIView+Extension.swift in Sources */,
 				00C826591DA5E04000ECECEE /* ConnectOtherAppsCell.swift in Sources */,
@@ -2997,7 +2969,6 @@
 				00C8265E1DA5E04000ECECEE /* UserProfileController.xib in Sources */,
 				00C8265F1DA5E04000ECECEE /* UserProfileCell.swift in Sources */,
 				00C826601DA5E04000ECECEE /* UserProfileCell.xib in Sources */,
-				00C827281DA6137300ECECEE /* SetGoalRequest.swift in Sources */,
 				00C826611DA5E04000ECECEE /* LoginController.swift in Sources */,
 				00C826621DA5E04000ECECEE /* VideoPlayController.swift in Sources */,
 				00C826631DA5E04000ECECEE /* VideoPlayController.xib in Sources */,
@@ -3008,11 +2979,9 @@
 				00C826681DA5E04000ECECEE /* AlarmClockVCell.swift in Sources */,
 				00C826691DA5E04000ECECEE /* AlarmClockVCell.xib in Sources */,
 				00C8266A1DA5E04000ECECEE /* AlarmTypeController.swift in Sources */,
-				00C827291DA6137300ECECEE /* SetNewAlarmRequest.swift in Sources */,
 				00C8266B1DA5E04000ECECEE /* AlarmTypeController.xib in Sources */,
 				00C8266C1DA5E04000ECECEE /* RepeatViewController.swift in Sources */,
 				00C8266D1DA5E04000ECECEE /* RepeatViewController.xib in Sources */,
-				00C8272D1DA6137400ECECEE /* WriteSettingRequest.swift in Sources */,
 				00C8266E1DA5E04000ECECEE /* AddAlarmController.swift in Sources */,
 				00C8266F1DA5E04000ECECEE /* AddAlarmController.xib in Sources */,
 				00C826701DA5E04000ECECEE /* NewAddAlarmController.swift in Sources */,
@@ -3039,10 +3008,8 @@
 				00C826851DA5E04000ECECEE /* MyNevoView.swift in Sources */,
 				665E331F1DADCD8A00D0E36D /* MEDBanner.swift in Sources */,
 				00C826871DA5E04000ECECEE /* DeviceScannerView.swift in Sources */,
-				00C827271DA6137300ECECEE /* SetCardioRequest.swift in Sources */,
 				00C826881DA5E04000ECECEE /* NevoOtaView.swift in Sources */,
 				00C826891DA5E04000ECECEE /* SelectFileView.swift in Sources */,
-				00C827261DA6137300ECECEE /* SetAlarmRequest.swift in Sources */,
 				00C8268A1DA5E04000ECECEE /* NevoOtaViewController.swift in Sources */,
 				00C8268B1DA5E04000ECECEE /* NevoOtaViewController.xib in Sources */,
 				00C8268C1DA5E04000ECECEE /* LineColorCell.swift in Sources */,
@@ -3068,27 +3035,20 @@
 				00C826A01DA5E04000ECECEE /* SetingLoginCell.swift in Sources */,
 				00C826A11DA5E04000ECECEE /* SetingLoginCell.xib in Sources */,
 				00C826A21DA5E04000ECECEE /* SetingNotLoginCell.swift in Sources */,
-				00C826A31DA5E04000ECECEE /* SetingNotLoginCell.xib in Sources */,
 				00C826A41DA5E04000ECECEE /* SetingView.swift in Sources */,
 				00C826A51DA5E04000ECECEE /* SetingViewController.swift in Sources */,
 				00C826A61DA5E04000ECECEE /* SleepHistoricalView.swift in Sources */,
 				00C826A71DA5E04000ECECEE /* SleepHistoryViewCell.swift in Sources */,
 				00C826A81DA5E04000ECECEE /* SleepHistoryViewCell.xib in Sources */,
-				00C827251DA6137300ECECEE /* ReadDailyTrackerInfo.swift in Sources */,
 				00C826A91DA5E04000ECECEE /* SleepHistoricalViewController.swift in Sources */,
-				00C826AA1DA5E04000ECECEE /* SleepHistoricalViewController.xib in Sources */,
 				00C826AB1DA5E04000ECECEE /* StepGoalSetingController.swift in Sources */,
 				00C826AC1DA5E04000ECECEE /* StepGoalSetingController.xib in Sources */,
-				00C827191DA6137300ECECEE /* DailyStepsNevoPacket.swift in Sources */,
 				00C826AD1DA5E04000ECECEE /* StepGoalSetingViewCell.swift in Sources */,
 				00C826AE1DA5E04000ECECEE /* StepGoalSetingViewCell.xib in Sources */,
 				00C826AF1DA5E04000ECECEE /* StepsHistoryViewController.swift in Sources */,
-				00C826B01DA5E04000ECECEE /* StepsHistoryViewController.xib in Sources */,
 				00C826B11DA5E04000ECECEE /* StepsTitleView.swift in Sources */,
-				00C827181DA6137300ECECEE /* BatteryLevelNevoPacket.swift in Sources */,
 				00C826B21DA5E04000ECECEE /* StepsTitleView.xib in Sources */,
 				00C826B31DA5E04000ECECEE /* TutorialOneViewController.swift in Sources */,
-				00C8271B1DA6137300ECECEE /* DailyTrackerNevoPacket.swift in Sources */,
 				00C826B41DA5E04000ECECEE /* TutorialTwoViewController.swift in Sources */,
 				00C826B51DA5E04000ECECEE /* TutorialThreeViewController.swift in Sources */,
 				00C826B61DA5E04000ECECEE /* TutorialFourViewController.swift in Sources */,
@@ -3103,7 +3063,6 @@
 				00C826211DA5E01B00ECECEE /* M13CheckboxAnimationPresets.swift in Sources */,
 				00C826221DA5E01B00ECECEE /* M13CheckboxGestureRecognizer.swift in Sources */,
 				00C826231DA5E01C00ECECEE /* M13CheckboxManager.swift in Sources */,
-				00C827241DA6137300ECECEE /* ReadDailyTracker.swift in Sources */,
 				00C826241DA5E01C00ECECEE /* M13CheckboxPathPresets.swift in Sources */,
 				00C826251DA5E01C00ECECEE /* M13CheckboxBounceManager.swift in Sources */,
 				00C8272F1DA61CAF00ECECEE /* FindWatchRequest.swift in Sources */,
@@ -3112,8 +3071,6 @@
 				00C826281DA5E01C00ECECEE /* M13CheckboxFadeManager.swift in Sources */,
 				00C826291DA5E01C00ECECEE /* M13CheckboxFillManager.swift in Sources */,
 				00C8262A1DA5E01C00ECECEE /* M13CheckboxFlatManager.swift in Sources */,
-				00C8271C1DA6137300ECECEE /* NevoPacket.swift in Sources */,
-				00C827201DA6137300ECECEE /* GetWatchName.swift in Sources */,
 				00C8262B1DA5E01C00ECECEE /* M13CheckboxSpiralManager.swift in Sources */,
 				00C8262C1DA5E01C00ECECEE /* M13CheckboxStrokeManager.swift in Sources */,
 				00C8262D1DA5E01C00ECECEE /* M13CheckboxDotPathPresets.swift in Sources */,
@@ -3121,7 +3078,6 @@
 				00C8262F1DA5E01C00ECECEE /* SMAlphaImageSegment.swift in Sources */,
 				00C826301DA5E01C00ECECEE /* SMBasicSegment.swift in Sources */,
 				00C826311DA5E01C00ECECEE /* SMBasicSegmentView.swift in Sources */,
-				00C827211DA6137300ECECEE /* LedLightOnOffNevoRequest.swift in Sources */,
 				00C826321DA5E01C00ECECEE /* SMSegment.swift in Sources */,
 				00C826331DA5E01C00ECECEE /* SMSegmentView.swift in Sources */,
 				00C826341DA5E01C00ECECEE /* Duration.swift in Sources */,
@@ -3135,7 +3091,6 @@
 				00C8263C1DA5E01C00ECECEE /* AutocompleteField.swift in Sources */,
 				00C8263D1DA5E01C00ECECEE /* CircleProgressView.swift in Sources */,
 				00C8263E1DA5E01C00ECECEE /* NevoCircleProgressView.swift in Sources */,
-				00C8271D1DA6137300ECECEE /* WatchNamePacket.swift in Sources */,
 				00D4742B1D586D1600E2447E /* NevoAllKeys.swift in Sources */,
 				00D4742C1D586D1600E2447E /* CaloriesToHK.swift in Sources */,
 				00D4742D1D586D1600E2447E /* DailySteps.swift in Sources */,
@@ -3146,9 +3101,7 @@
 				00D474321D586D1600E2447E /* Alarm.swift in Sources */,
 				00D474331D586D1600E2447E /* NewAlarm.swift in Sources */,
 				00D474341D586D1600E2447E /* BaseEntryDatabaseHelper.swift in Sources */,
-				00C8271A1DA6137300ECECEE /* DailyTrackerInfoNevoPacket.swift in Sources */,
 				00D474351D586D1600E2447E /* UserDatabaseHelper.swift in Sources */,
-				00C8271E1DA6137300ECECEE /* GetActivityRequest.swift in Sources */,
 				00D474361D586D1600E2447E /* AlarmModel.swift in Sources */,
 				00D474371D586D1600E2447E /* HealthModel.swift in Sources */,
 				00D474381D586D1600E2447E /* NevoProfileModel.swift in Sources */,
@@ -3165,7 +3118,6 @@
 				00D474421D586D1600E2447E /* UserSteps.swift in Sources */,
 				00D474431D586D1600E2447E /* Goal.swift in Sources */,
 				00D474441D586D1600E2447E /* NumberOfStepsGoal.swift in Sources */,
-				00C8272C1DA6137400ECECEE /* SetRTCRequest.swift in Sources */,
 				00D474451D586D1600E2447E /* NotificationSetting.swift in Sources */,
 				00D474461D586D1600E2447E /* TypeModel.swift in Sources */,
 				00D474481D586D1600E2447E /* Sleep.swift in Sources */,
@@ -3188,10 +3140,8 @@
 				00D4745C1D586D1600E2447E /* ConnectionControllerImpl.swift in Sources */,
 				00D4745D1D586D1600E2447E /* ConnectionManager.swift in Sources */,
 				00D4745E1D586D1600E2447E /* NevoProfile.swift in Sources */,
-				00C827231DA6137300ECECEE /* ReadBatteryLevelNevoRequest.swift in Sources */,
 				00D474611D586D1600E2447E /* NevoOTAControllerProfile.swift in Sources */,
 				00D474621D586D1600E2447E /* NevoOTAModeProfile.swift in Sources */,
-				00C8272A1DA6137300ECECEE /* SetNortificationRequest.swift in Sources */,
 				00D474631D586D1600E2447E /* NevoOTAPacketProfile.swift in Sources */,
 				00D474641D586D1600E2447E /* NevoOTARequest.swift in Sources */,
 				00D474651D586D1600E2447E /* Utility.swift in Sources */,
