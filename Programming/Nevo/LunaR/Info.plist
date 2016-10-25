@@ -47,6 +47,8 @@
 	<string>Whether to allow the App to share health data?</string>
 	<key>NSHealthUpdateUsageDescription</key>
 	<string>Whether to allow the App to update the health data?</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Whether to allow the use your location information when using the application?</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Raleway-Bold.ttf</string>

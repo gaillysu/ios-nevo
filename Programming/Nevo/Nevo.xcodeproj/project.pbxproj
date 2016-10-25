@@ -610,6 +610,7 @@
 		1C3712D71DBC5BF2007DC349 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C3712D61DBC5BF2007DC349 /* UIView+Extension.swift */; };
 		1C3712D81DBC5BF2007DC349 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C3712D61DBC5BF2007DC349 /* UIView+Extension.swift */; };
 		3AF3D240B5808E80F5B2A19E /* Pods_Nevo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C2AEB04A0C7F45FE876ABED /* Pods_Nevo.framework */; };
+		615BCC771DBF0F5B000FED20 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615BCC761DBF0F5B000FED20 /* LocationManager.swift */; };
 		615F6E201DA7510D00216D1A /* FindWatchRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C8272E1DA61CAF00ECECEE /* FindWatchRequest.swift */; };
 		615F6E211DA7514200216D1A /* PVADCRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0023C0AC1DA64DD400FB33A4 /* PVADCRequest.swift */; };
 		61623DB11DAC77F100C45B19 /* iMaze_v26.bin in Resources */ = {isa = PBXBuildFile; fileRef = 61623DB01DAC77F100C45B19 /* iMaze_v26.bin */; };
@@ -1097,6 +1098,7 @@
 		337909E3A1733589971A3696 /* Pods-Nevo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Nevo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Nevo/Pods-Nevo.debug.xcconfig"; sourceTree = "<group>"; };
 		4D889843ECCF8C9F30888205 /* Pods-LunaRTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LunaRTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-LunaRTests/Pods-LunaRTests.release.xcconfig"; sourceTree = "<group>"; };
 		57C68BE0457DB1BFF58A2389 /* Pods-LunaR.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LunaR.release.xcconfig"; path = "Pods/Target Support Files/Pods-LunaR/Pods-LunaR.release.xcconfig"; sourceTree = "<group>"; };
+		615BCC761DBF0F5B000FED20 /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		61623DB01DAC77F100C45B19 /* iMaze_v26.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = iMaze_v26.bin; sourceTree = "<group>"; };
 		6173DEF51DB0E90C002DF6AF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/SolarIndicatorController.xib; sourceTree = "<group>"; };
 		6173DEF81DB0E911002DF6AF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/SolarIndicatorController.strings; sourceTree = "<group>"; };
@@ -2051,6 +2053,7 @@
 		00EFE04B1D227D5F0066C905 /* LunaR */ = {
 			isa = PBXGroup;
 			children = (
+				615BCC751DBF0F4F000FED20 /* LocationManager */,
 				00C827071DA6137300ECECEE /* Request */,
 				00C826FE1DA5EDFD00ECECEE /* LunaR.entitlements */,
 				00EFE04C1D227D5F0066C905 /* AppDelegate.swift */,
@@ -2101,6 +2104,14 @@
 			);
 			name = MEDExtension;
 			path = Frameworks/MEDExtension;
+			sourceTree = "<group>";
+		};
+		615BCC751DBF0F4F000FED20 /* LocationManager */ = {
+			isa = PBXGroup;
+			children = (
+				615BCC761DBF0F5B000FED20 /* LocationManager.swift */,
+			);
+			path = LocationManager;
 			sourceTree = "<group>";
 		};
 		665E331C1DADCD7600D0E36D /* MEDWrapper */ = {
@@ -2998,6 +3009,7 @@
 				00C8267B1DA5E04000ECECEE /* NotAlarmView.swift in Sources */,
 				00C8267C1DA5E04000ECECEE /* NotAlarmView.xib in Sources */,
 				00C8267D1DA5E04000ECECEE /* ScannerViewController.swift in Sources */,
+				615BCC771DBF0F5B000FED20 /* LocationManager.swift in Sources */,
 				00C8267E1DA5E04000ECECEE /* ScannerViewController.xib in Sources */,
 				00C8267F1DA5E04000ECECEE /* OldOtaViewController.swift in Sources */,
 				00C826801DA5E04000ECECEE /* OldOtaViewController.xib in Sources */,
