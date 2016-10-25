@@ -9,23 +9,18 @@
 import RealmSwift
 import UIKit
 
-class AddWorldClockViewController: BaseViewController, UITableViewDelegate, UITableViewDataSource,UISearchControllerDelegate,UISearchResultsUpdating {
-
+class AddWorldClockViewController: UIViewController, UITableViewDelegate, UITableViewDataSource,UISearchControllerDelegate,UISearchResultsUpdating {
+    
     fileprivate let indexes:[String]
     fileprivate var cities:[String:[City]] = [:]
     fileprivate var searchController:UISearchController?
     fileprivate var searchList:[String:[(name:String, id:Int)]] = [:]
-    fileprivate var searchCityController:SearchCityController = SearchCityController()
+    fileprivate var searchCityController:SearchCityViewController = SearchCityViewController()
     @IBOutlet weak var cityTableView: UITableView!
     fileprivate let realm:Realm
     
     init() {
-        realm = try! Realm()
-            /* TODO:
-        - Fix search
-        - Sort cities by name in cities
-        - Dismiss whenever selected a city, also in search.
-        */
+        realm = try! Realm() 
         for city:City in Array(realm.objects(City.self)) {
             let character:String = String(city.name[city.name.startIndex]).uppercased()
             if var list = cities[character] {
@@ -48,21 +43,27 @@ class AddWorldClockViewController: BaseViewController, UITableViewDelegate, UITa
         self.navigationItem.title = "Choose a city"
         definesPresentationContext = true
         cityTableView.separatorColor = UIColor.white
+        cityTableView.sectionIndexBackgroundColor = UIColor.transparent()
         cityTableView.sectionIndexColor = UIColor.white
-        
-        self.addCloseButton(#selector(close))
-        
+        cityTableView.backgroundColor = UIColor.getGreyColor()
         searchController = UISearchController(searchResultsController: searchCityController)
         searchCityController.mDelegate = self
         searchController?.delegate = self
         searchController?.searchResultsUpdater = self;
         searchController?.searchBar.tintColor = UIColor.white
-        searchController?.searchBar.barTintColor = UIColor(patternImage: UIImage(named: "gradually")!)
+        searchController?.searchBar.barTintColor = UIColor.getGreyColor()
         searchController?.hidesNavigationBarDuringPresentation = false;
         let searchView:UIView = UIView(frame: CGRect(x: 0,y: 0,width: UIScreen.main.bounds.size.width,height: searchController!.searchBar.frame.size.height))
-        searchView.backgroundColor = UIColor(patternImage: UIImage(named: "gradually")!)
+        searchView.backgroundColor = UIColor.getTintColor()
         searchView.addSubview(searchController!.searchBar)
         cityTableView.tableHeaderView = searchView
+        
+        
+        let button: UIButton = UIButton(type: UIButtonType.custom)
+        button.setImage(UIImage(named: "cancel_lunar")!, for: UIControlState())
+        button.addTarget(self, action: #selector(close), for: UIControlEvents.touchUpInside)
+        button.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: button)
     }
     
     func close(){
@@ -72,7 +73,7 @@ class AddWorldClockViewController: BaseViewController, UITableViewDelegate, UITa
     func sectionIndexTitles(for tableView: UITableView) -> [String]? {
         return indexes
     }
-    
+    // Label Sleep/Wake Alarm: Fri
     // MARK: - UISearchControllerDelegate
     func willPresentSearchController(_ searchController: UISearchController) {
         NSLog("willPresentSearchController")
@@ -162,7 +163,7 @@ class AddWorldClockViewController: BaseViewController, UITableViewDelegate, UITa
         }
         cell?.textLabel?.font = UIFont(name: "Helvetica-Light", size: 15.0)
         cell?.textLabel?.textColor = UIColor.white
-        cell?.backgroundColor = UIColor.getLightBaseColor()
+        cell?.backgroundColor = UIColor.getGreyColor()
         return cell!;
     }
     
@@ -176,8 +177,8 @@ class AddWorldClockViewController: BaseViewController, UITableViewDelegate, UITa
 }
 
 // MARK: DidSelectedDelegate
-extension AddWorldClockViewController:DidSelectedDelegate {
-
+extension AddWorldClockViewController:WorldClockDidSelectedDelegate {
+    
     func didSelectedLocalTimeZone(_ cityId:Int) {
         let city = realm.objects(City.self).filter("id = \(cityId)")
         if(city.count != 1){
@@ -189,29 +190,15 @@ extension AddWorldClockViewController:DidSelectedDelegate {
     
     fileprivate func addCity(_ city:City){
         let selectedCities = realm.objects(City.self).filter("selected = true")
-        if selectedCities.count < 5 {
-            for selectedCity:City in selectedCities {
-                if city.id == selectedCity.id {
-                    let alert:UIAlertController = UIAlertController(title: "Add City", message: NSLocalizedString("add_city", comment: ""), preferredStyle: UIAlertControllerStyle.alert)
-                    alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: { (action) in
-                    }))
-                    self.searchController?.isActive = false
-                    self.present(alert, animated: true, completion:nil)
-                    return
-                }
-            }
+        for selectedCity:City in selectedCities {
             try! realm.write({
-                city.selected = true
+                selectedCity.selected = false
             })
-            AppDelegate.getAppDelegate().setWorldClock(Array(selectedCities))
-            self.searchController?.isActive = false
-            dismiss(animated: true, completion: nil)
-        } else{
-            let alert:UIAlertController = UIAlertController(title: "World Clock", message: NSLocalizedString("only_5_world_clock", comment: ""), preferredStyle: UIAlertControllerStyle.alert)
-            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: { (action) in
-                
-            }))
-            self.present(alert, animated: true, completion: nil)
         }
+        try! realm.write({
+            city.selected = true
+        })
+        self.searchController?.isActive = false
+        dismiss(animated: true, completion: nil)
     }
 }

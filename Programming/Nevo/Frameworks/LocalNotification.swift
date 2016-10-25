@@ -79,7 +79,6 @@ class LocalNotification: NSObject {
     }
     
     func cancelNotification(_ keyArray : [String]){
-
         for key in keyArray{
             for notification in UIApplication.shared.scheduledLocalNotifications! where notification.userInfo!["key"] as! String == key{
                 UIApplication.shared.cancelLocalNotification(notification)

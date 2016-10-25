@@ -105,6 +105,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
             UserDefaults.standard.set(false, forKey: "firstDatabase")
         }
         
+        WorldClockDatabaseHelper().setup()
+        
         /**
          Initialize the BLE Manager
          */
@@ -116,7 +118,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
         adjustLaunchLogic()
         
         //cancel all notifications  PM-13:00, PM 19:00
-        LocalNotification.sharedInstance().cancelNotification([NevoAllKeys.LocalStartSportKey(),NevoAllKeys.LocalEndSportKey()])
         
         //Rate our app Pop-up
         iRate.sharedInstance().messageTitle = NSLocalizedString("Rate Nevo", comment: "")
@@ -129,7 +130,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
         iRate.sharedInstance().usesPerWeekForPrompt = 1
         iRate.sharedInstance().previewMode = true
         iRate.sharedInstance().promptAtLaunch = false
-        
         return true
     }
     

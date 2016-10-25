@@ -90,7 +90,7 @@ class Timezone: Object {
         if dstTimeOffset > 0 {
             let startDate = WorldClockUtil.getStartDateForDST(self)
             let stopDate = WorldClockUtil.getStopDateForDST(self)
-            if startDate < Date() && stopDate > Date() {
+            if startDate.timeIntervalSince1970 < Date().timeIntervalSince1970 && stopDate.timeIntervalSince1970 > Date().timeIntervalSince1970 {
                 return gmtTimeOffset + dstTimeOffset
             }
         }
