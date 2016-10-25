@@ -28,6 +28,11 @@ class StepGoalSetingController: PublicClassController,ButtonManagerCallBack,Cloc
     fileprivate var mVisiable:Bool = true
     fileprivate var contentTitleArray:[String] = [NSLocalizedString("CALORIE", comment: ""), NSLocalizedString("STEPS", comment: ""), NSLocalizedString("TIME", comment: ""),NSLocalizedString("KM", comment: "")]
     fileprivate var contentTArray:[String] = ["0","0","0","0"]
+    
+    fileprivate let SYNC_INTERVAL:TimeInterval = 1*3*60 //unit is second in iOS, every 3min, do sync
+    fileprivate let TODAY_SYNC_DATE_KEY = "TODAY_SYNC_DATE_KEY"
+    var lastSync = 0.0
+    
     var shouldSync = false;
     init() {
         super.init(nibName: "StepGoalSetingController", bundle: Bundle.main)
@@ -74,12 +79,7 @@ class StepGoalSetingController: PublicClassController,ButtonManagerCallBack,Cloc
         
         saveContentTArray(Date().beginningOfDay.timeIntervalSince1970)
         
-        if(!AppDelegate.getAppDelegate().hasSavedAddress()) {
-//            let tutorialOne:TutorialOneViewController = TutorialOneViewController()
-//            let nav:UINavigationController = UINavigationController(rootViewController: tutorialOne)
-//            nav.isNavigationBarHidden = true
-//            self.present(nav, animated: true, completion: nil)
-        }else{
+        if(AppDelegate.getAppDelegate().hasSavedAddress()) {
             AppDelegate.getAppDelegate().startConnect(false)
         }
     }
@@ -89,7 +89,13 @@ class StepGoalSetingController: PublicClassController,ButtonManagerCallBack,Cloc
         
         //sync today data
         if !AppDelegate.getAppDelegate().isSyncState() {
-            AppDelegate.getAppDelegate().getTodayTracker()
+            let userDefaults = UserDefaults.standard;
+            lastSync = userDefaults.double(forKey: TODAY_SYNC_DATE_KEY)
+            if( Date().timeIntervalSince1970-lastSync > SYNC_INTERVAL) {
+                AppDelegate.getAppDelegate().getTodayTracker();
+                UserDefaults.standard.set(Date().timeIntervalSince1970,forKey:TODAY_SYNC_DATE_KEY)
+                UserDefaults.standard.synchronize()
+            }
         }
         
         _ = SwiftEventBus.onMainThread(self, name: EVENT_BUS_BEGIN_SMALL_SYNCACTIVITY) { (notification) in
