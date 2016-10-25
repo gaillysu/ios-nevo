@@ -611,6 +611,13 @@
 		1C3712D81DBC5BF2007DC349 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C3712D61DBC5BF2007DC349 /* UIView+Extension.swift */; };
 		3AF3D240B5808E80F5B2A19E /* Pods_Nevo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C2AEB04A0C7F45FE876ABED /* Pods_Nevo.framework */; };
 		615BCC771DBF0F5B000FED20 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615BCC761DBF0F5B000FED20 /* LocationManager.swift */; };
+		615BCC7B1DBF3FB9000FED20 /* AddWorldClockController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 615BCC791DBF3FB9000FED20 /* AddWorldClockController.xib */; };
+		615BCC7C1DBF3FB9000FED20 /* AddWorldClockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615BCC7A1DBF3FB9000FED20 /* AddWorldClockViewController.swift */; };
+		615BCC811DBF410E000FED20 /* cities.json in Resources */ = {isa = PBXBuildFile; fileRef = 615BCC7F1DBF410E000FED20 /* cities.json */; };
+		615BCC821DBF410E000FED20 /* timezones.json in Resources */ = {isa = PBXBuildFile; fileRef = 615BCC801DBF410E000FED20 /* timezones.json */; };
+		615BCC881DBF414C000FED20 /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615BCC861DBF414C000FED20 /* City.swift */; };
+		615BCC891DBF414C000FED20 /* Timezone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615BCC871DBF414C000FED20 /* Timezone.swift */; };
+		615BCC8D1DBF4177000FED20 /* WorldClockDatabaseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615BCC8C1DBF4177000FED20 /* WorldClockDatabaseHelper.swift */; };
 		615F6E201DA7510D00216D1A /* FindWatchRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C8272E1DA61CAF00ECECEE /* FindWatchRequest.swift */; };
 		615F6E211DA7514200216D1A /* PVADCRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0023C0AC1DA64DD400FB33A4 /* PVADCRequest.swift */; };
 		61623DB11DAC77F100C45B19 /* iMaze_v26.bin in Resources */ = {isa = PBXBuildFile; fileRef = 61623DB01DAC77F100C45B19 /* iMaze_v26.bin */; };
@@ -1099,6 +1106,13 @@
 		4D889843ECCF8C9F30888205 /* Pods-LunaRTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LunaRTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-LunaRTests/Pods-LunaRTests.release.xcconfig"; sourceTree = "<group>"; };
 		57C68BE0457DB1BFF58A2389 /* Pods-LunaR.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LunaR.release.xcconfig"; path = "Pods/Target Support Files/Pods-LunaR/Pods-LunaR.release.xcconfig"; sourceTree = "<group>"; };
 		615BCC761DBF0F5B000FED20 /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		615BCC791DBF3FB9000FED20 /* AddWorldClockController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddWorldClockController.xib; sourceTree = "<group>"; };
+		615BCC7A1DBF3FB9000FED20 /* AddWorldClockViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddWorldClockViewController.swift; sourceTree = "<group>"; };
+		615BCC7F1DBF410E000FED20 /* cities.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = cities.json; sourceTree = "<group>"; };
+		615BCC801DBF410E000FED20 /* timezones.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = timezones.json; sourceTree = "<group>"; };
+		615BCC861DBF414C000FED20 /* City.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
+		615BCC871DBF414C000FED20 /* Timezone.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Timezone.swift; sourceTree = "<group>"; };
+		615BCC8C1DBF4177000FED20 /* WorldClockDatabaseHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorldClockDatabaseHelper.swift; sourceTree = "<group>"; };
 		61623DB01DAC77F100C45B19 /* iMaze_v26.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = iMaze_v26.bin; sourceTree = "<group>"; };
 		6173DEF51DB0E90C002DF6AF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/SolarIndicatorController.xib; sourceTree = "<group>"; };
 		6173DEF81DB0E911002DF6AF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/SolarIndicatorController.strings; sourceTree = "<group>"; };
@@ -1653,6 +1667,7 @@
 		007F79731A878D0B006C89E6 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				615BCC7E1DBF40F4000FED20 /* Worldclock */,
 				00B7075B1D9D29DF00AAB63F /* DFUFirmware */,
 				0050D69A1C2906D8004F6F80 /* Firmwares */,
 				00A773901A88562F0018E121 /* Strings */,
@@ -2053,7 +2068,10 @@
 		00EFE04B1D227D5F0066C905 /* LunaR */ = {
 			isa = PBXGroup;
 			children = (
+				615BCC781DBF3FB9000FED20 /* AddWorldClockViewController */,
+				615BCC8B1DBF4177000FED20 /* Database */,
 				615BCC751DBF0F4F000FED20 /* LocationManager */,
+				615BCC851DBF414C000FED20 /* Model */,
 				00C827071DA6137300ECECEE /* Request */,
 				00C826FE1DA5EDFD00ECECEE /* LunaR.entitlements */,
 				00EFE04C1D227D5F0066C905 /* AppDelegate.swift */,
@@ -2112,6 +2130,41 @@
 				615BCC761DBF0F5B000FED20 /* LocationManager.swift */,
 			);
 			path = LocationManager;
+			sourceTree = "<group>";
+		};
+		615BCC781DBF3FB9000FED20 /* AddWorldClockViewController */ = {
+			isa = PBXGroup;
+			children = (
+				615BCC791DBF3FB9000FED20 /* AddWorldClockController.xib */,
+				615BCC7A1DBF3FB9000FED20 /* AddWorldClockViewController.swift */,
+			);
+			path = AddWorldClockViewController;
+			sourceTree = "<group>";
+		};
+		615BCC7E1DBF40F4000FED20 /* Worldclock */ = {
+			isa = PBXGroup;
+			children = (
+				615BCC7F1DBF410E000FED20 /* cities.json */,
+				615BCC801DBF410E000FED20 /* timezones.json */,
+			);
+			path = Worldclock;
+			sourceTree = "<group>";
+		};
+		615BCC851DBF414C000FED20 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				615BCC861DBF414C000FED20 /* City.swift */,
+				615BCC871DBF414C000FED20 /* Timezone.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		615BCC8B1DBF4177000FED20 /* Database */ = {
+			isa = PBXGroup;
+			children = (
+				615BCC8C1DBF4177000FED20 /* WorldClockDatabaseHelper.swift */,
+			);
+			path = Database;
 			sourceTree = "<group>";
 		};
 		665E331C1DADCD7600D0E36D /* MEDWrapper */ = {
@@ -2499,8 +2552,10 @@
 				00C826C71DA5ECA700ECECEE /* CheckYourIndoxController.xib in Resources */,
 				00C826C81DA5ECA700ECECEE /* ForgotPasswordController.xib in Resources */,
 				00C826C91DA5ECA700ECECEE /* InformationController.xib in Resources */,
+				615BCC7B1DBF3FB9000FED20 /* AddWorldClockController.xib in Resources */,
 				00C826CB1DA5ECA700ECECEE /* SolarInforViewCell.xib in Resources */,
 				00C826CC1DA5ECA700ECECEE /* ConnectOtherAppsController.xib in Resources */,
+				615BCC821DBF410E000FED20 /* timezones.json in Resources */,
 				00C826CD1DA5ECA700ECECEE /* ConnectOtherAppsCell.xib in Resources */,
 				00C826CE1DA5ECA700ECECEE /* UserHeader.xib in Resources */,
 				00C826CF1DA5ECA700ECECEE /* UserProfileController.xib in Resources */,
@@ -2545,6 +2600,7 @@
 				00C826F71DA5ECA700ECECEE /* TutorialFourViewController.xib in Resources */,
 				00C826F81DA5ECA700ECECEE /* TutorialFiveViewController.xib in Resources */,
 				00C826F91DA5ECA700ECECEE /* TutorialSixViewController.xib in Resources */,
+				615BCC811DBF410E000FED20 /* cities.json in Resources */,
 				00C826FA1DA5ECA700ECECEE /* TutorialSevenViewController.xib in Resources */,
 				00C826FB1DA5ECA700ECECEE /* SleepTutorialController.xib in Resources */,
 				00C826FC1DA5ECA700ECECEE /* MorningTutorialController.xib in Resources */,
@@ -2934,6 +2990,7 @@
 				665BD6B51DBEF1D0008C2623 /* NevoRequest.swift in Sources */,
 				665BD6B61DBEF1D0008C2623 /* ReadBatteryLevelNevoRequest.swift in Sources */,
 				665BD6B71DBEF1D0008C2623 /* ReadDailyTracker.swift in Sources */,
+				615BCC891DBF414C000FED20 /* Timezone.swift in Sources */,
 				665BD6B81DBEF1D0008C2623 /* ReadDailyTrackerInfo.swift in Sources */,
 				665BD6B91DBEF1D0008C2623 /* SetAlarmRequest.swift in Sources */,
 				665BD6BA1DBEF1D0008C2623 /* SetCardioRequest.swift in Sources */,
@@ -3044,13 +3101,16 @@
 				00C8269D1DA5E04000ECECEE /* PresetView.swift in Sources */,
 				00C8269E1DA5E04000ECECEE /* SetingInfoCell.swift in Sources */,
 				00C8269F1DA5E04000ECECEE /* SetingInfoCell.xib in Sources */,
+				615BCC7C1DBF3FB9000FED20 /* AddWorldClockViewController.swift in Sources */,
 				00C826A01DA5E04000ECECEE /* SetingLoginCell.swift in Sources */,
+				615BCC8D1DBF4177000FED20 /* WorldClockDatabaseHelper.swift in Sources */,
 				00C826A11DA5E04000ECECEE /* SetingLoginCell.xib in Sources */,
 				00C826A21DA5E04000ECECEE /* SetingNotLoginCell.swift in Sources */,
 				00C826A41DA5E04000ECECEE /* SetingView.swift in Sources */,
 				00C826A51DA5E04000ECECEE /* SetingViewController.swift in Sources */,
 				00C826A61DA5E04000ECECEE /* SleepHistoricalView.swift in Sources */,
 				00C826A71DA5E04000ECECEE /* SleepHistoryViewCell.swift in Sources */,
+				615BCC881DBF414C000FED20 /* City.swift in Sources */,
 				00C826A81DA5E04000ECECEE /* SleepHistoryViewCell.xib in Sources */,
 				00C826A91DA5E04000ECECEE /* SleepHistoricalViewController.swift in Sources */,
 				00C826AB1DA5E04000ECECEE /* StepGoalSetingController.swift in Sources */,

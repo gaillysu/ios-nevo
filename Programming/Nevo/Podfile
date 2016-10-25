@@ -55,7 +55,8 @@ target 'Nevo' do
     pod 'SwiftyJSON'
     pod 'iOSDFULibrary',branch:'swift3',:git => 'https://github.com/NordicSemiconductor/IOS-Pods-DFU-Library.git'
     pod 'PopupController'
-      pod 'SnapKit', '~> 3.0.1'
+    pod 'SnapKit', '~> 3.0.1'
+    pod 'Solar'
   target 'NevoTests' do
     inherit! :search_paths
     # Pods for testing
