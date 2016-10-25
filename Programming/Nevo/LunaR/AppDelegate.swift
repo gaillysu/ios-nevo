@@ -75,8 +75,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
         //set navigationBar font style and font color
         UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName:UIColor.black,NSFontAttributeName:UIFont(name: "Raleway", size: 20)!]
         UIApplication.shared.statusBarStyle = UIStatusBarStyle.default
-        
         IQKeyboardManager.sharedManager().enable = true
+        
+        if !AppTheme.isTargetLunaR_OR_Nevo() {
+            UINavigationBar.appearance().lt_setBackgroundColor(UIColor.getGreyColor())
+            
+            UINavigationBar.appearance().tintColor = UIColor.getBaseColor()
+            
+            UITabBar.appearance().backgroundColor = UIColor.getGreyColor()
+            UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName:UIColor.white,NSFontAttributeName:UIFont(name: "Raleway", size: 20)!]
+            
+            UIApplication.shared.statusBarStyle = .lightContent
+        }else{
+            UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName:UIColor.black,NSFontAttributeName:UIFont(name: "Raleway", size: 20)!]
+            UIApplication.shared.statusBarStyle = UIStatusBarStyle.default
+        }
         
         //Start the logo for the first time
         if(!UserDefaults.standard.bool(forKey: "LaunchedDatabase")){
@@ -92,6 +105,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
             UserDefaults.standard.set(false, forKey: "firstDatabase")
         }
         
+        WorldClockDatabaseHelper().setup()
+        
         /**
          Initialize the BLE Manager
          */
@@ -103,7 +118,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
         adjustLaunchLogic()
         
         //cancel all notifications  PM-13:00, PM 19:00
-        LocalNotification.sharedInstance().cancelNotification([NevoAllKeys.LocalStartSportKey(),NevoAllKeys.LocalEndSportKey()])
         
         //Rate our app Pop-up
         iRate.sharedInstance().messageTitle = NSLocalizedString("Rate Nevo", comment: "")
@@ -116,7 +130,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
         iRate.sharedInstance().usesPerWeekForPrompt = 1
         iRate.sharedInstance().previewMode = true
         iRate.sharedInstance().promptAtLaunch = false
-        
         return true
     }
     

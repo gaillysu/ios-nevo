@@ -169,7 +169,9 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
             }
             yVals.append(ChartDataEntry(value: steps, xIndex: i))
             xVals.append(dateString)
-            
+            NSLog("createDate:%@", usersteps.createDate)
+            NSLog("Date:%@", Date(timeIntervalSince1970: usersteps.date).stringFromFormat("yy-MM-dd"))
+            NSLog("index:\(i)")
             let iStepsValue:Int = Int(steps)
             //Calculate the maximum
             if iStepsValue>maxValue {
@@ -512,7 +514,7 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
         }
         
         if rowIndex == 1{
-            let startTimeInterval:TimeInterval = Date().beginningOfDay.timeIntervalSince1970-(86400.0*7+1)
+            let startTimeInterval:TimeInterval = Date().beginningOfDay.timeIntervalSince1970-(86400.0*7)
             if xVals.count<7 {
                 for index:Int in 0..<7 {
                     if xVals.count==0 {

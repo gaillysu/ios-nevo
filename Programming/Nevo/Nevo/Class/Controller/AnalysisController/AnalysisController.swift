@@ -67,7 +67,7 @@ extension AnalysisController {
     func getStepsData()->[NSArray] {
         let dayDate:Date = Date()
         let thisWeekArray:NSArray = UserSteps.getCriteria("WHERE date BETWEEN \(dayDate.beginningOfWeek.timeIntervalSince1970) AND \(dayDate.endOfWeek.timeIntervalSince1970)")
-        let lastWeekArray:NSArray = UserSteps.getCriteria("WHERE date BETWEEN \(dayDate.beginningOfWeek.timeIntervalSince1970-(86400.0*7+1)) AND \(dayDate.beginningOfWeek.timeIntervalSince1970+1)")
+        let lastWeekArray:NSArray = UserSteps.getCriteria("WHERE date BETWEEN \(dayDate.beginningOfDay.timeIntervalSince1970-(86400.0*7)-1) AND \(dayDate.beginningOfDay.timeIntervalSince1970)")
         let last30DayArray:NSArray = UserSteps.getCriteria("WHERE date BETWEEN \(dayDate.beginningOfDay.timeIntervalSince1970-(86400.0*30)) AND \(dayDate.endOfDay.timeIntervalSince1970)")
         return [thisWeekArray,lastWeekArray,last30DayArray]
     }

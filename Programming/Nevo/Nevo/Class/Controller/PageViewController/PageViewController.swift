@@ -168,6 +168,12 @@ extension PageViewController {
             make.left.equalTo(self.view).offset(20)
             make.right.equalTo(self.view).offset(-20)
         }
+        
+        if !AppTheme.isTargetLunaR_OR_Nevo() {
+            pageControl.currentPageIndicatorTintColor = UIColor.getBaseColor()
+        }else{
+            pageControl.currentPageIndicatorTintColor = AppTheme.NEVO_SOLAR_YELLOW()
+        }
     }
     
     func setCurrentPageIndex(_ index:Int) {

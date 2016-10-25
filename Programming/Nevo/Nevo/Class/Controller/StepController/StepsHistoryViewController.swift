@@ -51,6 +51,9 @@ class StepsHistoryViewController: PublicClassController,ChartViewDelegate {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        let dayDate:Date = Date()
+        let dayTime:TimeInterval = Date.date(dayDate.year, month: dayDate.month, day: dayDate.day, hour: 0, minute: 0, second: 0).timeIntervalSince1970
+        queryArray = UserSteps.getCriteria("WHERE date = \(dayTime)")
         saveContentTArray(stepsArray: queryArray)
     }
     
