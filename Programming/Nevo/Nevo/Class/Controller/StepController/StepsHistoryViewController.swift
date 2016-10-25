@@ -210,12 +210,15 @@ class StepsHistoryViewController: PublicClassController,ChartViewDelegate {
         var xVal:[String] = [];
         var yVal:[BarChartDataEntry] = [];
         
-        var maxValue:Double = 0;
+        var tempMaxValue:Double = 0;
         
         let stepsModel:UserSteps = queryModel.object(at: 0) as! UserSteps;
         let hourlystepsArray:NSArray = AppTheme.jsonToArray(stepsModel.hourlysteps)
         for (index,steps) in hourlystepsArray.enumerated(){
             let val1:Double  = (steps as! NSNumber).doubleValue;
+            if tempMaxValue < val1 {
+                tempMaxValue = val1
+            }
             let date:Date = Date(timeIntervalSince1970: stepsModel.date)
             var dateString:NSString = date.stringFromFormat("yyyyMMdd") as NSString
             if(dateString.length < 8) {
@@ -223,18 +226,18 @@ class StepsHistoryViewController: PublicClassController,ChartViewDelegate {
             }
             xVal.append("\(index):00")
             yVal.append(BarChartDataEntry(values: [val1], xIndex:index))
-            
-            if val1>500 {
-                if val1>maxValue{
-                    maxValue = val1
-                    let inNumber:Double = val1.truncatingRemainder(dividingBy: 2.0)
-                    chartView!.leftAxis.axisMaxValue = (val1-inNumber)+300
-                }else{
-                    let inNumber:Double = maxValue.truncatingRemainder(dividingBy: 2.0)
-                    chartView!.leftAxis.axisMaxValue = (maxValue-inNumber)+300
-                }
-            }
         }
+        let steps:Int = 500
+        let remaining = Double(steps - (Int(tempMaxValue) % steps))
+        var maxValue = remaining + tempMaxValue
+        var labelCount = Int(round(maxValue/Double(steps))) + 1
+        if maxValue < 50 {
+            maxValue += Double(steps)
+            labelCount += 1
+        }
+        
+        chartView!.leftAxis.setLabelCount(labelCount, force: true)
+        chartView!.leftAxis.axisMaxValue = maxValue
         
         //柱状图表
         //ChartColorTemplates.getDeepSleepColor()
