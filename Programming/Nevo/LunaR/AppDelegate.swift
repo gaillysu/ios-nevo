@@ -20,6 +20,8 @@ import SwiftEventBus
 import UIColor_Hex_Swift
 import XCGLogger
 import SwiftyTimer
+import CoreLocation
+
 
 let nevoDBDFileURL:String = "nevoDBName";
 let nevoDBNames:String = "nevo.sqlite";
@@ -256,6 +258,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
             }
             
             if(packet.getHeader() == SetRTCRequest.HEADER()) {
+                //SetSunriseAndSunsetRequest
                 //setp2:start set user profile
                 self.SetProfile()
             }
@@ -694,6 +697,35 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
             let banner = MEDBanner(title: NSLocalizedString("search_for_nevo", comment: ""), subtitle: nil, image: nil, backgroundColor: AppTheme.NEVO_SOLAR_YELLOW())
             banner.dismissesOnTap = true
             banner.show(duration: 1.5)
+        }
+    }
+}
+
+extension AppDelegate {
+
+    func startLocation() {
+        NSLog("AuthorizationStatus:\(LOCATION_MANAGER.gpsAuthorizationStatus)")
+        if LOCATION_MANAGER.gpsAuthorizationStatus>2 {
+            LOCATION_MANAGER.startLocation()
+            LOCATION_MANAGER.didChangeAuthorization = { status in
+                let states:CLAuthorizationStatus = status as CLAuthorizationStatus
+                XCGLogger.default.debug("Location didChangeAuthorization:\(states.rawValue)")
+            }
+            
+            LOCATION_MANAGER.didUpdateLocations = { location in
+                let locationArray = location as [CLLocation]
+                XCGLogger.default.debug("Location didUpdateLocations:\(locationArray)")
+                /*
+                 CLLocation *currLocation=[locations lastObject];
+                 location.strLatitude=[NSString stringWithFormat:@"%f",currLocation.coordinate.latitude];
+                 location.strLongitude=[NSString stringWithFormat:@"%f",currLocation.coordinate.longitude];
+                 NSLog(@"la---%f, lo---%f",currLocation.coordinate.latitude,currLocation.coordinate.longitude);
+                 */
+            }
+            
+            LOCATION_MANAGER.didFailWithError = { error in
+                XCGLogger.default.debug("Location didFailWithError:\(error)")
+            }
         }
     }
 }
