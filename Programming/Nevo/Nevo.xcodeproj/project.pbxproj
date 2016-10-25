@@ -313,14 +313,6 @@
 		00C826311DA5E01C00ECECEE /* SMBasicSegmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007865E51D91006F00F33AEA /* SMBasicSegmentView.swift */; };
 		00C826321DA5E01C00ECECEE /* SMSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007865E61D91006F00F33AEA /* SMSegment.swift */; };
 		00C826331DA5E01C00ECECEE /* SMSegmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007865E71D91006F00F33AEA /* SMSegmentView.swift */; };
-		00C826341DA5E01C00ECECEE /* Duration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007865EB1D91006F00F33AEA /* Duration.swift */; };
-		00C826351DA5E01C00ECECEE /* Int+Timepiece.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007865EC1D91006F00F33AEA /* Int+Timepiece.swift */; };
-		00C826361DA5E01C00ECECEE /* NSCalendar+Timepiece.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007865ED1D91006F00F33AEA /* NSCalendar+Timepiece.swift */; };
-		00C826371DA5E01C00ECECEE /* CalendarComponent+Timepiece.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007865EE1D91006F00F33AEA /* CalendarComponent+Timepiece.swift */; };
-		00C826381DA5E01C00ECECEE /* NSDate+Timepiece.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007865EF1D91006F00F33AEA /* NSDate+Timepiece.swift */; };
-		00C826391DA5E01C00ECECEE /* NSDateComponents+Timepiece.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007865F01D91006F00F33AEA /* NSDateComponents+Timepiece.swift */; };
-		00C8263A1DA5E01C00ECECEE /* NSTimeInterval+Timepiece.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007865F11D91006F00F33AEA /* NSTimeInterval+Timepiece.swift */; };
-		00C8263B1DA5E01C00ECECEE /* String+Timepiece.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007865F21D91006F00F33AEA /* String+Timepiece.swift */; };
 		00C8263C1DA5E01C00ECECEE /* AutocompleteField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007865B61D90DBAF00F33AEA /* AutocompleteField.swift */; };
 		00C8263D1DA5E01C00ECECEE /* CircleProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007865B81D90DBAF00F33AEA /* CircleProgressView.swift */; };
 		00C8263E1DA5E01C00ECECEE /* NevoCircleProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0008EE971D93C5AA005E127C /* NevoCircleProgressView.swift */; };
@@ -613,7 +605,6 @@
 		615093391DBF5BC800E52970 /* SetSunriseAndSunsetRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615093371DBF5BC800E52970 /* SetSunriseAndSunsetRequest.swift */; };
 		6150933A1DBF5BC800E52970 /* SetWorldClockRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615093381DBF5BC800E52970 /* SetWorldClockRequest.swift */; };
 		615BCC771DBF0F5B000FED20 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615BCC761DBF0F5B000FED20 /* LocationManager.swift */; };
-		615BCC7B1DBF3FB9000FED20 /* AddWorldClockController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 615BCC791DBF3FB9000FED20 /* AddWorldClockController.xib */; };
 		615BCC7C1DBF3FB9000FED20 /* AddWorldClockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615BCC7A1DBF3FB9000FED20 /* AddWorldClockViewController.swift */; };
 		615BCC811DBF410E000FED20 /* cities.json in Resources */ = {isa = PBXBuildFile; fileRef = 615BCC7F1DBF410E000FED20 /* cities.json */; };
 		615BCC821DBF410E000FED20 /* timezones.json in Resources */ = {isa = PBXBuildFile; fileRef = 615BCC801DBF410E000FED20 /* timezones.json */; };
@@ -690,6 +681,20 @@
 		9E98FB351C46405800BAB700 /* TutorialFiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E98FB341C46405800BAB700 /* TutorialFiveViewController.swift */; };
 		9E98FB371C4640AF00BAB700 /* TutorialSevenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E98FB361C4640AF00BAB700 /* TutorialSevenViewController.swift */; };
 		9E98FB3D1C46434100BAB700 /* TutorialSixViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E98FB3C1C46434100BAB700 /* TutorialSixViewController.swift */; };
+		CB690E3B1DBF44B5003AD46C /* AddWorldClockViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CB690E3A1DBF44B5003AD46C /* AddWorldClockViewController.xib */; };
+		CB690E3F1DBF4714003AD46C /* SearchCityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB690E3D1DBF4714003AD46C /* SearchCityViewController.swift */; };
+		CB690E401DBF4714003AD46C /* SearchCityViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CB690E3E1DBF4714003AD46C /* SearchCityViewController.xib */; };
+		CB690E431DBF4822003AD46C /* WorldClockDidSelectedDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB690E421DBF4822003AD46C /* WorldClockDidSelectedDelegate.swift */; };
+		CB690E5D1DBF4DC6003AD46C /* Duration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007865EB1D91006F00F33AEA /* Duration.swift */; };
+		CB690E5F1DBF4DD1003AD46C /* Int+Timepiece.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007865EC1D91006F00F33AEA /* Int+Timepiece.swift */; };
+		CB690E601DBF4DD1003AD46C /* NSCalendar+Timepiece.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007865ED1D91006F00F33AEA /* NSCalendar+Timepiece.swift */; };
+		CB690E611DBF4DD1003AD46C /* CalendarComponent+Timepiece.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007865EE1D91006F00F33AEA /* CalendarComponent+Timepiece.swift */; };
+		CB690E621DBF4DD1003AD46C /* NSDate+Timepiece.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007865EF1D91006F00F33AEA /* NSDate+Timepiece.swift */; };
+		CB690E631DBF4DD1003AD46C /* NSDateComponents+Timepiece.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007865F01D91006F00F33AEA /* NSDateComponents+Timepiece.swift */; };
+		CB690E641DBF4DD1003AD46C /* NSTimeInterval+Timepiece.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007865F11D91006F00F33AEA /* NSTimeInterval+Timepiece.swift */; };
+		CB690E651DBF4DD1003AD46C /* String+Timepiece.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007865F21D91006F00F33AEA /* String+Timepiece.swift */; };
+		CB690E661DBF4E4E003AD46C /* WorldClockUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB690E451DBF48C7003AD46C /* WorldClockUtil.swift */; };
+		CB690E671DBF4E4F003AD46C /* WorldClockUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB690E451DBF48C7003AD46C /* WorldClockUtil.swift */; };
 		F5A58EFCE1AF535DD4D667CB /* Pods_LunaRTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA6756A2314165C2C74201E8 /* Pods_LunaRTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -1110,7 +1115,6 @@
 		615093371DBF5BC800E52970 /* SetSunriseAndSunsetRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetSunriseAndSunsetRequest.swift; sourceTree = "<group>"; };
 		615093381DBF5BC800E52970 /* SetWorldClockRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetWorldClockRequest.swift; sourceTree = "<group>"; };
 		615BCC761DBF0F5B000FED20 /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
-		615BCC791DBF3FB9000FED20 /* AddWorldClockController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddWorldClockController.xib; sourceTree = "<group>"; };
 		615BCC7A1DBF3FB9000FED20 /* AddWorldClockViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddWorldClockViewController.swift; sourceTree = "<group>"; };
 		615BCC7F1DBF410E000FED20 /* cities.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = cities.json; sourceTree = "<group>"; };
 		615BCC801DBF410E000FED20 /* timezones.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = timezones.json; sourceTree = "<group>"; };
@@ -1171,6 +1175,11 @@
 		9E98FB361C4640AF00BAB700 /* TutorialSevenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialSevenViewController.swift; sourceTree = "<group>"; };
 		9E98FB3C1C46434100BAB700 /* TutorialSixViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialSixViewController.swift; sourceTree = "<group>"; };
 		AA6756A2314165C2C74201E8 /* Pods_LunaRTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LunaRTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CB690E3A1DBF44B5003AD46C /* AddWorldClockViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddWorldClockViewController.xib; sourceTree = "<group>"; };
+		CB690E3D1DBF4714003AD46C /* SearchCityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchCityViewController.swift; sourceTree = "<group>"; };
+		CB690E3E1DBF4714003AD46C /* SearchCityViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchCityViewController.xib; sourceTree = "<group>"; };
+		CB690E421DBF4822003AD46C /* WorldClockDidSelectedDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorldClockDidSelectedDelegate.swift; sourceTree = "<group>"; };
+		CB690E451DBF48C7003AD46C /* WorldClockUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorldClockUtil.swift; sourceTree = "<group>"; };
 		CBB9BF1C2FA9FD4C9B4E48BC /* Pods-LunaRTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LunaRTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LunaRTests/Pods-LunaRTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -2074,6 +2083,9 @@
 		00EFE04B1D227D5F0066C905 /* LunaR */ = {
 			isa = PBXGroup;
 			children = (
+				CB690E441DBF48B9003AD46C /* Util */,
+				CB690E411DBF47FE003AD46C /* WorldClockDidSelectDelegate */,
+				CB690E3C1DBF4708003AD46C /* SearchCityViewController */,
 				615BCC781DBF3FB9000FED20 /* AddWorldClockViewController */,
 				615BCC8B1DBF4177000FED20 /* Database */,
 				615BCC751DBF0F4F000FED20 /* LocationManager */,
@@ -2141,7 +2153,7 @@
 		615BCC781DBF3FB9000FED20 /* AddWorldClockViewController */ = {
 			isa = PBXGroup;
 			children = (
-				615BCC791DBF3FB9000FED20 /* AddWorldClockController.xib */,
+				CB690E3A1DBF44B5003AD46C /* AddWorldClockViewController.xib */,
 				615BCC7A1DBF3FB9000FED20 /* AddWorldClockViewController.swift */,
 			);
 			path = AddWorldClockViewController;
@@ -2365,6 +2377,31 @@
 			name = Seven;
 			sourceTree = "<group>";
 		};
+		CB690E3C1DBF4708003AD46C /* SearchCityViewController */ = {
+			isa = PBXGroup;
+			children = (
+				CB690E3D1DBF4714003AD46C /* SearchCityViewController.swift */,
+				CB690E3E1DBF4714003AD46C /* SearchCityViewController.xib */,
+			);
+			name = SearchCityViewController;
+			sourceTree = "<group>";
+		};
+		CB690E411DBF47FE003AD46C /* WorldClockDidSelectDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				CB690E421DBF4822003AD46C /* WorldClockDidSelectedDelegate.swift */,
+			);
+			name = WorldClockDidSelectDelegate;
+			sourceTree = "<group>";
+		};
+		CB690E441DBF48B9003AD46C /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				CB690E451DBF48C7003AD46C /* WorldClockUtil.swift */,
+			);
+			name = Util;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -2558,7 +2595,6 @@
 				00C826C71DA5ECA700ECECEE /* CheckYourIndoxController.xib in Resources */,
 				00C826C81DA5ECA700ECECEE /* ForgotPasswordController.xib in Resources */,
 				00C826C91DA5ECA700ECECEE /* InformationController.xib in Resources */,
-				615BCC7B1DBF3FB9000FED20 /* AddWorldClockController.xib in Resources */,
 				00C826CB1DA5ECA700ECECEE /* SolarInforViewCell.xib in Resources */,
 				00C826CC1DA5ECA700ECECEE /* ConnectOtherAppsController.xib in Resources */,
 				615BCC821DBF410E000FED20 /* timezones.json in Resources */,
@@ -2612,6 +2648,7 @@
 				00C826FC1DA5ECA700ECECEE /* MorningTutorialController.xib in Resources */,
 				00C826FD1DA5ECA700ECECEE /* Main.storyboard in Resources */,
 				006756081D4849D400E8144C /* notification_background.png in Resources */,
+				CB690E401DBF4714003AD46C /* SearchCityViewController.xib in Resources */,
 				0095DDAC1D2E0E5500F80BFD /* wacth_dial.png in Resources */,
 				0095DDAD1D2E0E5500F80BFD /* wacth_hour.png in Resources */,
 				0095DDAE1D2E0E5500F80BFD /* wacth_mint.png in Resources */,
@@ -2625,6 +2662,7 @@
 				0037EC2C1D235F5300502140 /* connected.png in Resources */,
 				0037EC2D1D235F5300502140 /* connected1.png in Resources */,
 				0037EC2F1D235F5300502140 /* settimer.png in Resources */,
+				CB690E3B1DBF44B5003AD46C /* AddWorldClockViewController.xib in Resources */,
 				0037EC301D235F5300502140 /* turnonnevo.png in Resources */,
 				0037EC311D235F5300502140 /* tutorialone.png in Resources */,
 				0037EC321D235F5300502140 /* white_clock.png in Resources */,
@@ -2849,7 +2887,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		7031D8A6CD34AAE6CA8E6E09 /* [CP] Check Pods Manifest.lock */ = {
@@ -2864,7 +2902,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		8F3E1C68FADAF48A37834A2A /* [CP] Copy Pods Resources */ = {
@@ -2894,7 +2932,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		B8F3A8114D1574770B3E7F2B /* [CP] Copy Pods Resources */ = {
@@ -2924,7 +2962,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		CBF54EAF1C9FBCD50061A356 /* Run Script */ = {
@@ -2978,6 +3016,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CB690E651DBF4DD1003AD46C /* String+Timepiece.swift in Sources */,
 				665BD6A61DBEF1D0008C2623 /* ForgotPasswordRequest.swift in Sources */,
 				665BD6A71DBEF1D0008C2623 /* UserCreateRequest.swift in Sources */,
 				665BD6A81DBEF1D0008C2623 /* SyncStepsToServiceRequest.swift in Sources */,
@@ -2993,6 +3032,7 @@
 				665BD6B21DBEF1D0008C2623 /* GetActivityRequest.swift in Sources */,
 				665BD6B31DBEF1D0008C2623 /* GetStepsGoalRequest.swift in Sources */,
 				665BD6B41DBEF1D0008C2623 /* LedLightOnOffNevoRequest.swift in Sources */,
+				CB690E431DBF4822003AD46C /* WorldClockDidSelectedDelegate.swift in Sources */,
 				665BD6B51DBEF1D0008C2623 /* NevoRequest.swift in Sources */,
 				665BD6B61DBEF1D0008C2623 /* ReadBatteryLevelNevoRequest.swift in Sources */,
 				665BD6B71DBEF1D0008C2623 /* ReadDailyTracker.swift in Sources */,
@@ -3041,6 +3081,7 @@
 				00C8265C1DA5E04000ECECEE /* UserHeader.xib in Sources */,
 				00C8265D1DA5E04000ECECEE /* UserProfileController.swift in Sources */,
 				00C8265E1DA5E04000ECECEE /* UserProfileController.xib in Sources */,
+				CB690E671DBF4E4F003AD46C /* WorldClockUtil.swift in Sources */,
 				00C8265F1DA5E04000ECECEE /* UserProfileCell.swift in Sources */,
 				00C826601DA5E04000ECECEE /* UserProfileCell.xib in Sources */,
 				00C826611DA5E04000ECECEE /* LoginController.swift in Sources */,
@@ -3076,6 +3117,7 @@
 				615BCC771DBF0F5B000FED20 /* LocationManager.swift in Sources */,
 				00C8267E1DA5E04000ECECEE /* ScannerViewController.xib in Sources */,
 				00C8267F1DA5E04000ECECEE /* OldOtaViewController.swift in Sources */,
+				CB690E611DBF4DD1003AD46C /* CalendarComponent+Timepiece.swift in Sources */,
 				00C826801DA5E04000ECECEE /* OldOtaViewController.xib in Sources */,
 				00C826811DA5E04000ECECEE /* MyNevoController.swift in Sources */,
 				00C826821DA5E04000ECECEE /* MyNevoController.xib in Sources */,
@@ -3100,6 +3142,7 @@
 				00C826951DA5E04000ECECEE /* SelectedNotificationTypeController.xib in Sources */,
 				00C826961DA5E04000ECECEE /* AddPresetViewController.swift in Sources */,
 				00C826971DA5E04000ECECEE /* AddPresetViewController.xib in Sources */,
+				CB690E641DBF4DD1003AD46C /* NSTimeInterval+Timepiece.swift in Sources */,
 				00C826981DA5E04000ECECEE /* PresetTableViewController.swift in Sources */,
 				00C826991DA5E04000ECECEE /* PresetTableViewController.xib in Sources */,
 				00C8269A1DA5E04000ECECEE /* AddPresetView.swift in Sources */,
@@ -3121,12 +3164,14 @@
 				00C826A81DA5E04000ECECEE /* SleepHistoryViewCell.xib in Sources */,
 				00C826A91DA5E04000ECECEE /* SleepHistoricalViewController.swift in Sources */,
 				00C826AB1DA5E04000ECECEE /* StepGoalSetingController.swift in Sources */,
+				CB690E601DBF4DD1003AD46C /* NSCalendar+Timepiece.swift in Sources */,
 				00C826AC1DA5E04000ECECEE /* StepGoalSetingController.xib in Sources */,
 				00C826AD1DA5E04000ECECEE /* StepGoalSetingViewCell.swift in Sources */,
 				00C826AE1DA5E04000ECECEE /* StepGoalSetingViewCell.xib in Sources */,
 				00C826AF1DA5E04000ECECEE /* StepsHistoryViewController.swift in Sources */,
 				00C826B11DA5E04000ECECEE /* StepsTitleView.swift in Sources */,
 				00C826B21DA5E04000ECECEE /* StepsTitleView.xib in Sources */,
+				CB690E3F1DBF4714003AD46C /* SearchCityViewController.swift in Sources */,
 				00C826B31DA5E04000ECECEE /* TutorialOneViewController.swift in Sources */,
 				00C826B41DA5E04000ECECEE /* TutorialTwoViewController.swift in Sources */,
 				00C826B51DA5E04000ECECEE /* TutorialThreeViewController.swift in Sources */,
@@ -3159,19 +3204,13 @@
 				00C826311DA5E01C00ECECEE /* SMBasicSegmentView.swift in Sources */,
 				00C826321DA5E01C00ECECEE /* SMSegment.swift in Sources */,
 				00C826331DA5E01C00ECECEE /* SMSegmentView.swift in Sources */,
-				00C826341DA5E01C00ECECEE /* Duration.swift in Sources */,
-				00C826351DA5E01C00ECECEE /* Int+Timepiece.swift in Sources */,
-				00C826361DA5E01C00ECECEE /* NSCalendar+Timepiece.swift in Sources */,
-				00C826371DA5E01C00ECECEE /* CalendarComponent+Timepiece.swift in Sources */,
-				00C826381DA5E01C00ECECEE /* NSDate+Timepiece.swift in Sources */,
-				00C826391DA5E01C00ECECEE /* NSDateComponents+Timepiece.swift in Sources */,
-				00C8263A1DA5E01C00ECECEE /* NSTimeInterval+Timepiece.swift in Sources */,
-				00C8263B1DA5E01C00ECECEE /* String+Timepiece.swift in Sources */,
 				00C8263C1DA5E01C00ECECEE /* AutocompleteField.swift in Sources */,
 				00C8263D1DA5E01C00ECECEE /* CircleProgressView.swift in Sources */,
+				CB690E5F1DBF4DD1003AD46C /* Int+Timepiece.swift in Sources */,
 				00C8263E1DA5E01C00ECECEE /* NevoCircleProgressView.swift in Sources */,
 				00D4742B1D586D1600E2447E /* NevoAllKeys.swift in Sources */,
 				00D4742C1D586D1600E2447E /* CaloriesToHK.swift in Sources */,
+				CB690E5D1DBF4DC6003AD46C /* Duration.swift in Sources */,
 				00D4742D1D586D1600E2447E /* DailySteps.swift in Sources */,
 				00D4742E1D586D1600E2447E /* DaySleep.swift in Sources */,
 				00D4742F1D586D1600E2447E /* HourlySteps.swift in Sources */,
@@ -3212,6 +3251,7 @@
 				00D474531D586D1600E2447E /* BalloonMarker.swift in Sources */,
 				00D474541D586D1600E2447E /* ClockView.swift in Sources */,
 				00D474551D586D1600E2447E /* DatePickerView.swift in Sources */,
+				CB690E631DBF4DD1003AD46C /* NSDateComponents+Timepiece.swift in Sources */,
 				00D474561D586D1600E2447E /* DatePickerView.xib in Sources */,
 				00D474581D586D1600E2447E /* ToolbarView.swift in Sources */,
 				00D474591D586D1600E2447E /* Alert.swift in Sources */,
@@ -3320,6 +3360,7 @@
 				00C826C11DA5EA5700ECECEE /* AlertAction.swift in Sources */,
 				00AF8CE41D224CFA009047AC /* ClockRefreshManager.swift in Sources */,
 				007E0CAE1D0E5C3E00B0B600 /* ConnectOtherAppsCell.swift in Sources */,
+				CB690E661DBF4E4E003AD46C /* WorldClockUtil.swift in Sources */,
 				0089B0AF1D6BFF250041148A /* SetingLoginCell.swift in Sources */,
 				0008EE901D93C39A005E127C /* M13CheckboxFadeManager.swift in Sources */,
 				006A62421D6AA5F200458305 /* SleepHistoricalViewController.swift in Sources */,
