@@ -83,6 +83,18 @@ class ClockView: UIView {
         let angleOfMinute:CGFloat = (CGFloat(minute) + CGFloat(seconds)/60.0) * 6.0;
         mMinuteImageView.transform = CGAffineTransform.identity.rotated(by: DegreesToRadians(CGFloat(angleOfMinute)));
     }
+    
+    func setWorldTime(dateConponents:DateComponents) {
+        let seconds:NSInteger = dateConponents.second!
+        let hour:NSInteger = dateConponents.hour!;
+        let minute:NSInteger = dateConponents.minute!;
+        
+        let angleOfHour:CGFloat = (CGFloat(hour).truncatingRemainder(dividingBy: 12))*30.0 + ((CGFloat(minute) + CGFloat(seconds)/60.0 )/60.0)*30.0;
+        mHourImageView.transform = CGAffineTransform.identity.rotated(by: DegreesToRadians(CGFloat(angleOfHour)));
+        
+        let angleOfMinute:CGFloat = (CGFloat(minute) + CGFloat(seconds)/60.0) * 6.0;
+        mMinuteImageView.transform = CGAffineTransform.identity.rotated(by: DegreesToRadians(CGFloat(angleOfMinute)));
+    }
 
     /*
     Used to calculate the rotate degree

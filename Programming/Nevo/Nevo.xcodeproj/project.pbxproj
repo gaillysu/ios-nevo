@@ -656,10 +656,27 @@
 		665BD6C11DBEF1D0008C2623 /* GetWatchName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005E46891D879FB5009B6E4C /* GetWatchName.swift */; };
 		665BD6C21DBEF3C2008C2623 /* SolarIndicatorController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6173DEF61DB0E90C002DF6AF /* SolarIndicatorController.xib */; };
 		665BD6C51DBEF4C7008C2623 /* SetingNotLoginCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6690DF0C1DB8A84C0042FB9E /* SetingNotLoginCell.xib */; };
+		665BD6CC1DBEF9AC008C2623 /* SunriseSetController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 665BD6CB1DBEF9AC008C2623 /* SunriseSetController.swift */; };
+		665BD6D01DBEFDFC008C2623 /* SunriseSetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 665BD6CF1DBEFDFC008C2623 /* SunriseSetView.swift */; };
+		665BD6D21DBEFE08008C2623 /* SunriseSetView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 665BD6D11DBEFE08008C2623 /* SunriseSetView.xib */; };
+		665BD6D41DBEFE6D008C2623 /* lunar_dial_2016-10-25.png in Resources */ = {isa = PBXBuildFile; fileRef = 665BD6D31DBEFE6D008C2623 /* lunar_dial_2016-10-25.png */; };
+		665BD6D61DBF102F008C2623 /* SunriseSetButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 665BD6D51DBF102F008C2623 /* SunriseSetButton.swift */; };
+		665BD6D91DBF1297008C2623 /* sunrise.png in Resources */ = {isa = PBXBuildFile; fileRef = 665BD6D71DBF1297008C2623 /* sunrise.png */; };
+		665BD6DA1DBF1297008C2623 /* sunset.png in Resources */ = {isa = PBXBuildFile; fileRef = 665BD6D81DBF1297008C2623 /* sunset.png */; };
+		665BD6DD1DBF357D008C2623 /* lunar_dial_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 665BD6DB1DBF357D008C2623 /* lunar_dial_bg.png */; };
+		665BD6DE1DBF357D008C2623 /* lunar_dial_f.png in Resources */ = {isa = PBXBuildFile; fileRef = 665BD6DC1DBF357D008C2623 /* lunar_dial_f.png */; };
+		665BD6E01DBF43FC008C2623 /* WorldClockCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 665BD6DF1DBF43FC008C2623 /* WorldClockCell.xib */; };
+		665BD6E21DBF441C008C2623 /* WorldClockCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 665BD6E11DBF441C008C2623 /* WorldClockCell.swift */; };
 		665E331E1DADCD8A00D0E36D /* MEDBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 665E331D1DADCD8A00D0E36D /* MEDBanner.swift */; };
 		665E331F1DADCD8A00D0E36D /* MEDBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 665E331D1DADCD8A00D0E36D /* MEDBanner.swift */; };
 		666F60F11DAF264B0011F3C5 /* AppDelegate-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006DA9FD1D80F2A600B70C0F /* AppDelegate-Extension.swift */; };
 		6690DF091DB8A84C0042FB9E /* SetingNotLoginCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6690DF0C1DB8A84C0042FB9E /* SetingNotLoginCell.xib */; };
+		66AC4E5B1DBF537500E431BE /* lunar_dial_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 665BD6DB1DBF357D008C2623 /* lunar_dial_bg.png */; };
+		66AC4E5C1DBF537500E431BE /* lunar_dial_f.png in Resources */ = {isa = PBXBuildFile; fileRef = 665BD6DC1DBF357D008C2623 /* lunar_dial_f.png */; };
+		66AC4E5D1DBF537500E431BE /* sunrise.png in Resources */ = {isa = PBXBuildFile; fileRef = 665BD6D71DBF1297008C2623 /* sunrise.png */; };
+		66AC4E5E1DBF537500E431BE /* sunset.png in Resources */ = {isa = PBXBuildFile; fileRef = 665BD6D81DBF1297008C2623 /* sunset.png */; };
+		66AC4E5F1DBF537A00E431BE /* lunar_dial_2016-10-25.png in Resources */ = {isa = PBXBuildFile; fileRef = 665BD6D31DBEFE6D008C2623 /* lunar_dial_2016-10-25.png */; };
+		66AC4E8E1DBF61BD00E431BE /* WorldClockItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66AC4E8D1DBF61BD00E431BE /* WorldClockItem.swift */; };
 		813518AB3D92E43573F28717 /* Pods_LunaR.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E068CB5F57F135B038B3A10 /* Pods_LunaR.framework */; };
 		8A84EC52F1052F0497E54CB5 /* Pods_NevoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7689D6188FDF6CDBFBD84C51 /* Pods_NevoTests.framework */; };
 		9A2D6C3B1A9C6D9F00591BDC /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A2D6C3A1A9C6D9F00591BDC /* HealthKit.framework */; };
@@ -1117,6 +1134,17 @@
 		61E4DF241DB8C2D500DDA737 /* ForgotPasswordRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordRequest.swift; sourceTree = "<group>"; };
 		61E4DF251DB8C2D500DDA737 /* UserCreateRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCreateRequest.swift; sourceTree = "<group>"; };
 		61F85F4F1DAF5BF300F341B5 /* NevoOtaController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NevoOtaController.swift; sourceTree = "<group>"; };
+		665BD6CB1DBEF9AC008C2623 /* SunriseSetController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SunriseSetController.swift; sourceTree = "<group>"; };
+		665BD6CF1DBEFDFC008C2623 /* SunriseSetView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SunriseSetView.swift; sourceTree = "<group>"; };
+		665BD6D11DBEFE08008C2623 /* SunriseSetView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SunriseSetView.xib; sourceTree = "<group>"; };
+		665BD6D31DBEFE6D008C2623 /* lunar_dial_2016-10-25.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lunar_dial_2016-10-25.png"; sourceTree = "<group>"; };
+		665BD6D51DBF102F008C2623 /* SunriseSetButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SunriseSetButton.swift; sourceTree = "<group>"; };
+		665BD6D71DBF1297008C2623 /* sunrise.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sunrise.png; sourceTree = "<group>"; };
+		665BD6D81DBF1297008C2623 /* sunset.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sunset.png; sourceTree = "<group>"; };
+		665BD6DB1DBF357D008C2623 /* lunar_dial_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lunar_dial_bg.png; sourceTree = "<group>"; };
+		665BD6DC1DBF357D008C2623 /* lunar_dial_f.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lunar_dial_f.png; sourceTree = "<group>"; };
+		665BD6DF1DBF43FC008C2623 /* WorldClockCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WorldClockCell.xib; sourceTree = "<group>"; };
+		665BD6E11DBF441C008C2623 /* WorldClockCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorldClockCell.swift; sourceTree = "<group>"; };
 		665E331D1DADCD8A00D0E36D /* MEDBanner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MEDBanner.swift; sourceTree = "<group>"; };
 		6690DF0B1DB8A84C0042FB9E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/SetingNotLoginCell.xib; sourceTree = "<group>"; };
 		6690DF0E1DB8A8560042FB9E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/SetingNotLoginCell.strings; sourceTree = "<group>"; };
@@ -1124,6 +1152,7 @@
 		6690DF121DB8A8590042FB9E /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/SetingNotLoginCell.strings"; sourceTree = "<group>"; };
 		6690DF141DB8A85A0042FB9E /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/SetingNotLoginCell.strings"; sourceTree = "<group>"; };
 		6690DF161DB8A85B0042FB9E /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/SetingNotLoginCell.strings; sourceTree = "<group>"; };
+		66AC4E8D1DBF61BD00E431BE /* WorldClockItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorldClockItem.swift; sourceTree = "<group>"; };
 		7689D6188FDF6CDBFBD84C51 /* Pods_NevoTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NevoTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		84E3C5A18963C1F2BFFF61CB /* Pods-Nevo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Nevo.release.xcconfig"; path = "Pods/Target Support Files/Pods-Nevo/Pods-Nevo.release.xcconfig"; sourceTree = "<group>"; };
 		8FE857CD8B2EE737CB25062E /* Pods-NevoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NevoTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NevoTests/Pods-NevoTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -1679,6 +1708,10 @@
 		007F79881A878D0B006C89E6 /* image */ = {
 			isa = PBXGroup;
 			children = (
+				665BD6DB1DBF357D008C2623 /* lunar_dial_bg.png */,
+				665BD6DC1DBF357D008C2623 /* lunar_dial_f.png */,
+				665BD6D71DBF1297008C2623 /* sunrise.png */,
+				665BD6D81DBF1297008C2623 /* sunset.png */,
 				006756061D4848A300E8144C /* notification_background.png */,
 				0095DDA61D2E0D7D00F80BFD /* wacth_dial.png */,
 				0095DDA71D2E0D7D00F80BFD /* wacth_hour.png */,
@@ -1691,6 +1724,7 @@
 				0036EB021C48BA8300DCED46 /* settimer.png */,
 				0036EB031C48BA8300DCED46 /* turnonnevo.png */,
 				0036EB041C48BA8300DCED46 /* tutorialone.png */,
+				665BD6D31DBEFE6D008C2623 /* lunar_dial_2016-10-25.png */,
 				000CB3251C3E436000B4ABEC /* white_clock.png */,
 				000CB3261C3E436000B4ABEC /* white_hour.png */,
 				000CB3271C3E436000B4ABEC /* white_minute.png */,
@@ -2051,6 +2085,7 @@
 		00EFE04B1D227D5F0066C905 /* LunaR */ = {
 			isa = PBXGroup;
 			children = (
+				665BD6C61DBEF8E5008C2623 /* Classes */,
 				00C827071DA6137300ECECEE /* Request */,
 				00C826FE1DA5EDFD00ECECEE /* LunaR.entitlements */,
 				00EFE04C1D227D5F0066C905 /* AppDelegate.swift */,
@@ -2103,6 +2138,44 @@
 			path = Frameworks/MEDExtension;
 			sourceTree = "<group>";
 		};
+		665BD6C61DBEF8E5008C2623 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				665BD6C81DBEF954008C2623 /* Sunrise&set */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		665BD6C81DBEF954008C2623 /* Sunrise&set */ = {
+			isa = PBXGroup;
+			children = (
+				66AC4E8C1DBF61AB00E431BE /* Model */,
+				665BD6CA1DBEF97A008C2623 /* Controllers */,
+				665BD6C91DBEF971008C2623 /* Views */,
+			);
+			path = "Sunrise&set";
+			sourceTree = "<group>";
+		};
+		665BD6C91DBEF971008C2623 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				665BD6CF1DBEFDFC008C2623 /* SunriseSetView.swift */,
+				665BD6D11DBEFE08008C2623 /* SunriseSetView.xib */,
+				665BD6E11DBF441C008C2623 /* WorldClockCell.swift */,
+				665BD6DF1DBF43FC008C2623 /* WorldClockCell.xib */,
+				665BD6D51DBF102F008C2623 /* SunriseSetButton.swift */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		665BD6CA1DBEF97A008C2623 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				665BD6CB1DBEF9AC008C2623 /* SunriseSetController.swift */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
 		665E331C1DADCD7600D0E36D /* MEDWrapper */ = {
 			isa = PBXGroup;
 			children = (
@@ -2110,6 +2183,14 @@
 			);
 			name = MEDWrapper;
 			path = Frameworks/MEDWrapper;
+			sourceTree = "<group>";
+		};
+		66AC4E8C1DBF61AB00E431BE /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				66AC4E8D1DBF61BD00E431BE /* WorldClockItem.swift */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 		9A2D6C3C1A9C717E00591BDC /* NevoHK */ = {
@@ -2484,6 +2565,7 @@
 				00C826C31DA5ECA700ECECEE /* AnalysisLineChartCell.xib in Resources */,
 				00C826C41DA5ECA700ECECEE /* AnalysisRadarViewCell.xib in Resources */,
 				00C826C51DA5ECA700ECECEE /* AnalysisValueCell.xib in Resources */,
+				665BD6D41DBEFE6D008C2623 /* lunar_dial_2016-10-25.png in Resources */,
 				00C826C61DA5ECA700ECECEE /* ProfileSetupViewController.xib in Resources */,
 				00C826C71DA5ECA700ECECEE /* CheckYourIndoxController.xib in Resources */,
 				00C826C81DA5ECA700ECECEE /* ForgotPasswordController.xib in Resources */,
@@ -2493,6 +2575,7 @@
 				00C826CD1DA5ECA700ECECEE /* ConnectOtherAppsCell.xib in Resources */,
 				00C826CE1DA5ECA700ECECEE /* UserHeader.xib in Resources */,
 				00C826CF1DA5ECA700ECECEE /* UserProfileController.xib in Resources */,
+				665BD6E01DBF43FC008C2623 /* WorldClockCell.xib in Resources */,
 				00C826D01DA5ECA700ECECEE /* UserProfileCell.xib in Resources */,
 				00C826D11DA5ECA700ECECEE /* LoginController.xib in Resources */,
 				00C826D21DA5ECA700ECECEE /* VideoPlayController.xib in Resources */,
@@ -2504,12 +2587,14 @@
 				00C826D81DA5ECA700ECECEE /* AddAlarmController.xib in Resources */,
 				00C826D91DA5ECA700ECECEE /* NewAddAlarmController.xib in Resources */,
 				00C826DA1DA5ECA700ECECEE /* AddAlarmSystemCell.xib in Resources */,
+				665BD6D21DBEFE08008C2623 /* SunriseSetView.xib in Resources */,
 				00C826DB1DA5ECA700ECECEE /* AddAlarmTableViewCell.xib in Resources */,
 				00C826DC1DA5ECA700ECECEE /* AlarmTypeCell.xib in Resources */,
 				00C826DD1DA5ECA700ECECEE /* NewAddAlarmHeader.xib in Resources */,
 				00C826DE1DA5ECA700ECECEE /* NotAlarmView.xib in Resources */,
 				00C826DF1DA5ECA700ECECEE /* ScannerViewController.xib in Resources */,
 				00C826E01DA5ECA700ECECEE /* OldOtaViewController.xib in Resources */,
+				665BD6DA1DBF1297008C2623 /* sunset.png in Resources */,
 				00C826E11DA5ECA700ECECEE /* MyNevoController.xib in Resources */,
 				00C826E21DA5ECA700ECECEE /* MyNevoHeaderView.xib in Resources */,
 				00C826E31DA5ECA700ECECEE /* NevoOtaViewController.xib in Resources */,
@@ -2541,8 +2626,10 @@
 				006756081D4849D400E8144C /* notification_background.png in Resources */,
 				0095DDAC1D2E0E5500F80BFD /* wacth_dial.png in Resources */,
 				0095DDAD1D2E0E5500F80BFD /* wacth_hour.png in Resources */,
+				665BD6DE1DBF357D008C2623 /* lunar_dial_f.png in Resources */,
 				0095DDAE1D2E0E5500F80BFD /* wacth_mint.png in Resources */,
 				0037EC1E1D235F5300502140 /* Firmwares in Resources */,
+				665BD6DD1DBF357D008C2623 /* lunar_dial_bg.png in Resources */,
 				0037EC1F1D235F5300502140 /* Localizable.strings in Resources */,
 				0037EC271D235F5300502140 /* nevoWhiteLEDImage.png in Resources */,
 				0037EC281D235F5300502140 /* nevoFontImage.png in Resources */,
@@ -2552,6 +2639,7 @@
 				0037EC2C1D235F5300502140 /* connected.png in Resources */,
 				0037EC2D1D235F5300502140 /* connected1.png in Resources */,
 				0037EC2F1D235F5300502140 /* settimer.png in Resources */,
+				665BD6D91DBF1297008C2623 /* sunrise.png in Resources */,
 				0037EC301D235F5300502140 /* turnonnevo.png in Resources */,
 				0037EC311D235F5300502140 /* tutorialone.png in Resources */,
 				0037EC321D235F5300502140 /* white_clock.png in Resources */,
@@ -2617,6 +2705,7 @@
 				0050D5F21C28E0DB004F6F80 /* MyNevoHeaderView.xib in Resources */,
 				0050D60E1C28E0DB004F6F80 /* PresetTableViewController.xib in Resources */,
 				00EC9DCF1C85833400280904 /* MorningTutorialController.xib in Resources */,
+				66AC4E5B1DBF537500E431BE /* lunar_dial_bg.png in Resources */,
 				0050D6011C28E0DB004F6F80 /* NotificationViewController.xib in Resources */,
 				6173DEFF1DB0E93D002DF6AF /* SleepHistoricalViewController.xib in Resources */,
 				00E2BDE31B16CCD0009C757E /* MBProgressHUD.bundle in Resources */,
@@ -2636,8 +2725,11 @@
 				00FA93E91D9DF33800CB6691 /* ScannerViewController.xib in Resources */,
 				00C8C8171D8B950A00621162 /* OldOtaViewController.xib in Resources */,
 				00F0C3541C8993DD005888A7 /* NewAddAlarmController.xib in Resources */,
+				66AC4E5D1DBF537500E431BE /* sunrise.png in Resources */,
+				66AC4E5E1DBF537500E431BE /* sunset.png in Resources */,
 				007E0CAF1D0E5C3E00B0B600 /* ConnectOtherAppsCell.xib in Resources */,
 				00EC9DAE1C8582E400280904 /* TutorialOneViewController.xib in Resources */,
+				66AC4E5F1DBF537A00E431BE /* lunar_dial_2016-10-25.png in Resources */,
 				00478F4F1A8F637D00D0DCE2 /* clockViewHour.png in Resources */,
 				6173DEF31DB0E90C002DF6AF /* SolarIndicatorController.xib in Resources */,
 				0050D6111C28E0DB004F6F80 /* PresetTableViewCell.xib in Resources */,
@@ -2672,6 +2764,7 @@
 				0089B0B01D6BFF250041148A /* SetingLoginCell.xib in Resources */,
 				00EC9DDA1C85834F00280904 /* TutorialTwoViewController.xib in Resources */,
 				0063BC351D98D4EC000BAB44 /* InformationController.xib in Resources */,
+				66AC4E5C1DBF537500E431BE /* lunar_dial_f.png in Resources */,
 				00120E781D7550D500CE0C32 /* UserHeader.xib in Resources */,
 				0036EB061C48BA8300DCED46 /* connected1.png in Resources */,
 				0050D6961C28E1CD004F6F80 /* AddAlarmTableViewCell.xib in Resources */,
@@ -2926,6 +3019,7 @@
 				665BD6B81DBEF1D0008C2623 /* ReadDailyTrackerInfo.swift in Sources */,
 				665BD6B91DBEF1D0008C2623 /* SetAlarmRequest.swift in Sources */,
 				665BD6BA1DBEF1D0008C2623 /* SetCardioRequest.swift in Sources */,
+				66AC4E8E1DBF61BD00E431BE /* WorldClockItem.swift in Sources */,
 				665BD6BB1DBEF1D0008C2623 /* SetGoalRequest.swift in Sources */,
 				665BD6BC1DBEF1D0008C2623 /* SetNewAlarmRequest.swift in Sources */,
 				665BD6BD1DBEF1D0008C2623 /* SetNortificationRequest.swift in Sources */,
@@ -2985,6 +3079,7 @@
 				00C8266E1DA5E04000ECECEE /* AddAlarmController.swift in Sources */,
 				00C8266F1DA5E04000ECECEE /* AddAlarmController.xib in Sources */,
 				00C826701DA5E04000ECECEE /* NewAddAlarmController.swift in Sources */,
+				665BD6D61DBF102F008C2623 /* SunriseSetButton.swift in Sources */,
 				00C826711DA5E04000ECECEE /* NewAddAlarmController.xib in Sources */,
 				00C826721DA5E04000ECECEE /* AlarmClockController.swift in Sources */,
 				00C826731DA5E04000ECECEE /* AddAlarmSystemCell.swift in Sources */,
@@ -3043,11 +3138,13 @@
 				00C826A91DA5E04000ECECEE /* SleepHistoricalViewController.swift in Sources */,
 				00C826AB1DA5E04000ECECEE /* StepGoalSetingController.swift in Sources */,
 				00C826AC1DA5E04000ECECEE /* StepGoalSetingController.xib in Sources */,
+				665BD6D01DBEFDFC008C2623 /* SunriseSetView.swift in Sources */,
 				00C826AD1DA5E04000ECECEE /* StepGoalSetingViewCell.swift in Sources */,
 				00C826AE1DA5E04000ECECEE /* StepGoalSetingViewCell.xib in Sources */,
 				00C826AF1DA5E04000ECECEE /* StepsHistoryViewController.swift in Sources */,
 				00C826B11DA5E04000ECECEE /* StepsTitleView.swift in Sources */,
 				00C826B21DA5E04000ECECEE /* StepsTitleView.xib in Sources */,
+				665BD6E21DBF441C008C2623 /* WorldClockCell.swift in Sources */,
 				00C826B31DA5E04000ECECEE /* TutorialOneViewController.swift in Sources */,
 				00C826B41DA5E04000ECECEE /* TutorialTwoViewController.swift in Sources */,
 				00C826B51DA5E04000ECECEE /* TutorialThreeViewController.swift in Sources */,
@@ -3125,6 +3222,7 @@
 				00D4744A1D586D1600E2447E /* HttpPostRequest.swift in Sources */,
 				00D4744B1D586D1600E2447E /* ValidicRequest.swift in Sources */,
 				00D4744C1D586D1600E2447E /* Color.swift in Sources */,
+				665BD6CC1DBEF9AC008C2623 /* SunriseSetController.swift in Sources */,
 				00D4744D1D586D1600E2447E /* View.swift in Sources */,
 				00D4744F1D586D1600E2447E /* PublicClassController.swift in Sources */,
 				00D474501D586D1600E2447E /* PublicClassTableViewController.swift in Sources */,
