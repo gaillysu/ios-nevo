@@ -17,4 +17,8 @@ class NevoAllKeys: NSObject {
     class func LocalEndSportKey()->String {
         return "END_SPORT_KEY"
     }
+    
+    class func MEDAvatarKey()->String {
+        return "MEDAvatarKey"
+    }
 }

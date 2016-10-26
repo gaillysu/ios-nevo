@@ -42,6 +42,7 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="avatarImageView" destination="Ucc-tr-d4F" id="yb3-mM-aQ4"/>
                 <outlet property="emailLabel" destination="Dqb-H0-6hV" id="Kzt-6L-wTy"/>
                 <outlet property="userName" destination="iY7-7z-xVF" id="fDu-cY-QOW"/>
             </connections>

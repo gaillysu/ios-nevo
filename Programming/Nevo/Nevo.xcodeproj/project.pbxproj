@@ -704,6 +704,12 @@
 		66AC4E5E1DBF537500E431BE /* sunset.png in Resources */ = {isa = PBXBuildFile; fileRef = 665BD6D81DBF1297008C2623 /* sunset.png */; };
 		66AC4E5F1DBF537A00E431BE /* lunar_dial_2016-10-25.png in Resources */ = {isa = PBXBuildFile; fileRef = 665BD6D31DBEFE6D008C2623 /* lunar_dial_2016-10-25.png */; };
 		66AC4E8E1DBF61BD00E431BE /* WorldClockItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66AC4E8D1DBF61BD00E431BE /* WorldClockItem.swift */; };
+		66D45E7C1DC0C14C0007B5D0 /* icn_back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 66D45E741DC0C14C0007B5D0 /* icn_back@2x.png */; };
+		66D45E7D1DC0C14C0007B5D0 /* icn_back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 66D45E741DC0C14C0007B5D0 /* icn_back@2x.png */; };
+		66D45E7E1DC0C14C0007B5D0 /* UIImage+Crop.m in Sources */ = {isa = PBXBuildFile; fileRef = 66D45E7A1DC0C14C0007B5D0 /* UIImage+Crop.m */; };
+		66D45E7F1DC0C14C0007B5D0 /* UIImage+Crop.m in Sources */ = {isa = PBXBuildFile; fileRef = 66D45E7A1DC0C14C0007B5D0 /* UIImage+Crop.m */; };
+		66D45E801DC0C14C0007B5D0 /* WLHCropper.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 66D45E7B1DC0C14C0007B5D0 /* WLHCropper.a */; };
+		66D45E811DC0C14C0007B5D0 /* WLHCropper.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 66D45E7B1DC0C14C0007B5D0 /* WLHCropper.a */; };
 		813518AB3D92E43573F28717 /* Pods_LunaR.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E068CB5F57F135B038B3A10 /* Pods_LunaR.framework */; };
 		8A84EC52F1052F0497E54CB5 /* Pods_NevoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7689D6188FDF6CDBFBD84C51 /* Pods_NevoTests.framework */; };
 		9A2D6C3B1A9C6D9F00591BDC /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A2D6C3A1A9C6D9F00591BDC /* HealthKit.framework */; };
@@ -1190,6 +1196,11 @@
 		66A0E0791DBF6C08001C0C67 /* SearchCityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchCityViewController.swift; sourceTree = "<group>"; };
 		66A0E07A1DBF6C08001C0C67 /* SearchCityViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchCityViewController.xib; sourceTree = "<group>"; };
 		66AC4E8D1DBF61BD00E431BE /* WorldClockItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorldClockItem.swift; sourceTree = "<group>"; };
+		66D45E741DC0C14C0007B5D0 /* icn_back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icn_back@2x.png"; sourceTree = "<group>"; };
+		66D45E781DC0C14C0007B5D0 /* PhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoViewController.h; sourceTree = "<group>"; };
+		66D45E791DC0C14C0007B5D0 /* UIImage+Crop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Crop.h"; sourceTree = "<group>"; };
+		66D45E7A1DC0C14C0007B5D0 /* UIImage+Crop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Crop.m"; sourceTree = "<group>"; };
+		66D45E7B1DC0C14C0007B5D0 /* WLHCropper.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = WLHCropper.a; sourceTree = "<group>"; };
 		7689D6188FDF6CDBFBD84C51 /* Pods_NevoTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NevoTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		84E3C5A18963C1F2BFFF61CB /* Pods-Nevo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Nevo.release.xcconfig"; path = "Pods/Target Support Files/Pods-Nevo/Pods-Nevo.release.xcconfig"; sourceTree = "<group>"; };
 		8FE857CD8B2EE737CB25062E /* Pods-NevoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NevoTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NevoTests/Pods-NevoTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -1225,6 +1236,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				66D45E811DC0C14C0007B5D0 /* WLHCropper.a in Frameworks */,
 				813518AB3D92E43573F28717 /* Pods_LunaR.framework in Frameworks */,
 				00C826FF1DA5EDFD00ECECEE /* HealthKit.framework in Frameworks */,
 			);
@@ -1249,6 +1261,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				66D45E801DC0C14C0007B5D0 /* WLHCropper.a in Frameworks */,
 				9A2D6C3B1A9C6D9F00591BDC /* HealthKit.framework in Frameworks */,
 				3AF3D240B5808E80F5B2A19E /* Pods_Nevo.framework in Frameworks */,
 			);
@@ -1816,6 +1829,7 @@
 		009703BF1C9BD98300F2FF0D /* UserProfileController */ = {
 			isa = PBXGroup;
 			children = (
+				66D45E731DC0C14C0007B5D0 /* Cropper */,
 				00120E751D7550D500CE0C32 /* UserHeader.swift */,
 				00120E761D7550D500CE0C32 /* UserHeader.xib */,
 				009703C01C9BD9D700F2FF0D /* UserProfileController.swift */,
@@ -2288,6 +2302,42 @@
 			name = Model;
 			sourceTree = "<group>";
 		};
+		66D45E731DC0C14C0007B5D0 /* Cropper */ = {
+			isa = PBXGroup;
+			children = (
+				66D45E741DC0C14C0007B5D0 /* icn_back@2x.png */,
+				66D45E751DC0C14C0007B5D0 /* usr */,
+				66D45E7B1DC0C14C0007B5D0 /* WLHCropper.a */,
+			);
+			path = Cropper;
+			sourceTree = "<group>";
+		};
+		66D45E751DC0C14C0007B5D0 /* usr */ = {
+			isa = PBXGroup;
+			children = (
+				66D45E761DC0C14C0007B5D0 /* local */,
+			);
+			path = usr;
+			sourceTree = "<group>";
+		};
+		66D45E761DC0C14C0007B5D0 /* local */ = {
+			isa = PBXGroup;
+			children = (
+				66D45E771DC0C14C0007B5D0 /* include */,
+			);
+			path = local;
+			sourceTree = "<group>";
+		};
+		66D45E771DC0C14C0007B5D0 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				66D45E781DC0C14C0007B5D0 /* PhotoViewController.h */,
+				66D45E791DC0C14C0007B5D0 /* UIImage+Crop.h */,
+				66D45E7A1DC0C14C0007B5D0 /* UIImage+Crop.m */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
 		9A2D6C3C1A9C717E00591BDC /* NevoHK */ = {
 			isa = PBXGroup;
 			children = (
@@ -2736,6 +2786,7 @@
 				0037EC281D235F5300502140 /* nevoFontImage.png in Resources */,
 				0037EC2A1D235F5300502140 /* bluetoothoff_background.png in Resources */,
 				0037EC551D2385DF00502140 /* Raleway-Thin.ttf in Resources */,
+				66D45E7D1DC0C14C0007B5D0 /* icn_back@2x.png in Resources */,
 				665BD6C51DBEF4C7008C2623 /* SetingNotLoginCell.xib in Resources */,
 				0037EC2C1D235F5300502140 /* connected.png in Resources */,
 				0037EC2D1D235F5300502140 /* connected1.png in Resources */,
@@ -2790,6 +2841,7 @@
 				00120E7C1D7559D500CE0C32 /* Raleway-Heavy.ttf in Resources */,
 				00120E7D1D7559D500CE0C32 /* Raleway-Light.ttf in Resources */,
 				00120E7E1D7559D500CE0C32 /* Raleway-Medium.ttf in Resources */,
+				66D45E7C1DC0C14C0007B5D0 /* icn_back@2x.png in Resources */,
 				00120E7F1D7559D500CE0C32 /* Raleway-Regular.ttf in Resources */,
 				00120E801D7559D500CE0C32 /* Raleway-SemiBold.ttf in Resources */,
 				00120E811D7559D500CE0C32 /* Raleway-Thin.ttf in Resources */,
@@ -3295,6 +3347,7 @@
 				00C8262E1DA5E01C00ECECEE /* M13CheckboxSpiralPathPresets.swift in Sources */,
 				00C8262F1DA5E01C00ECECEE /* SMAlphaImageSegment.swift in Sources */,
 				00C826301DA5E01C00ECECEE /* SMBasicSegment.swift in Sources */,
+				66D45E7F1DC0C14C0007B5D0 /* UIImage+Crop.m in Sources */,
 				00C826311DA5E01C00ECECEE /* SMBasicSegmentView.swift in Sources */,
 				00C826321DA5E01C00ECECEE /* SMSegment.swift in Sources */,
 				00C826331DA5E01C00ECECEE /* SMSegmentView.swift in Sources */,
@@ -3580,6 +3633,7 @@
 				00AF8CC61D224CFA009047AC /* PresetsModel.swift in Sources */,
 				0050D6161C28E0DB004F6F80 /* SetingViewController.swift in Sources */,
 				006DA9FE1D80F2A600B70C0F /* AppDelegate-Extension.swift in Sources */,
+				66D45E7E1DC0C14C0007B5D0 /* UIImage+Crop.m in Sources */,
 				005E468A1D879FB5009B6E4C /* GetWatchName.swift in Sources */,
 				00AF8CF31D224CFA009047AC /* NevoPacket.swift in Sources */,
 				00AF8CDD1D224CFA009047AC /* BalloonMarker.swift in Sources */,
@@ -3944,6 +3998,10 @@
 				INFOPLIST_FILE = LunaR/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Nevo/Class/Controller/UserProfileController/Cropper",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.medcorp.LunaR;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -3973,6 +4031,10 @@
 				INFOPLIST_FILE = LunaR/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Nevo/Class/Controller/UserProfileController/Cropper",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.medcorp.LunaR;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -4155,6 +4217,10 @@
 				INFOPLIST_FILE = Nevo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Nevo/Class/Controller/UserProfileController/Cropper",
+				);
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_SWIFT_FLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.nevowatch.$(PRODUCT_NAME:rfc1034identifier)";
@@ -4184,6 +4250,10 @@
 				INFOPLIST_FILE = Nevo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Nevo/Class/Controller/UserProfileController/Cropper",
+				);
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_SWIFT_FLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.nevowatch.$(PRODUCT_NAME:rfc1034identifier)";

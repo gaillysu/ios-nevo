@@ -75,9 +75,17 @@ class UserProfileController: UIViewController,UITableViewDelegate,UITableViewDat
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        var header:UITableViewHeaderFooterView? = nil
+        var header:UserHeader? = nil
         if section == 0 {
-            header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "HeaderViewReuseIdentifier")!
+            header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "HeaderViewReuseIdentifier") as! UserHeader
+            
+            // contentTArray = (AppTheme.LoadKeyedArchiverName(StepsGoalKey as NSString) as! NSArray)[0] as! [String]
+            let resultArray:NSArray = AppTheme.LoadKeyedArchiverName(NevoAllKeys.MEDAvatarKey() as NSString) as! NSArray
+            if resultArray.count > 0 {
+                if let avatar = resultArray.object(at: 0) as? UIImage {
+                    header?.avatarView.setImage(avatar, for: .normal)
+                }
+            }
         }
         
         // MARK: - APPTHEME ADJUST

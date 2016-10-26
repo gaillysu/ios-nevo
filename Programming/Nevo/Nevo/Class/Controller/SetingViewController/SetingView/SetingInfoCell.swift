@@ -13,6 +13,7 @@ class SetingInfoCell: UITableViewCell {
     @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var userName: UILabel!
     
+    @IBOutlet weak var avatarImageView: UIImageView!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -26,6 +27,10 @@ class SetingInfoCell: UITableViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
+        
+        avatarImageView.layer.cornerRadius = 0.5 * avatarImageView.layer.frame.width
+        avatarImageView.layer.masksToBounds = true
+        
         if !AppTheme.isTargetLunaR_OR_Nevo() {
             emailLabel.textColor = UIColor.white
             userName.textColor = UIColor.white

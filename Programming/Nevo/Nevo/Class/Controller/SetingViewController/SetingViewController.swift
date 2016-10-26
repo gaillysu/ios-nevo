@@ -177,7 +177,7 @@ class SetingViewController: UIViewController,ButtonManagerCallBack,UIAlertViewDe
 
             if(isEqualString("\(titleArray[(indexPath as NSIndexPath).row])",string2: NSLocalizedString("forget_watch", comment: ""))){
                 XCGLogger.default.debug("forget_watch")
-                let actionSheet:UIAlertController = UIAlertController(title: NSLocalizedString("forget_watch", comment: ""), message: NSLocalizedString("forget_your_nevo", comment: ""), preferredStyle: UIAlertControllerStyle.alert)
+                let actionSheet:ActionSheetView = ActionSheetView(title: NSLocalizedString("forget_watch", comment: ""), message: NSLocalizedString("forget_your_nevo", comment: ""), preferredStyle: UIAlertControllerStyle.alert)
                 
                 let alertAction:AlertAction = AlertAction(title: NSLocalizedString("Cancel", comment: ""), style: UIAlertActionStyle.cancel, handler: { (alert) -> Void in
                     
@@ -321,6 +321,14 @@ class SetingViewController: UIViewController,ButtonManagerCallBack,UIAlertViewDe
                 let userprofile:UserProfile = user[0] as! UserProfile
                 (cell as! SetingInfoCell).emailLabel.text = userprofile.email
                 (cell as! SetingInfoCell).userName.text = "\(userprofile.first_name) \(userprofile.last_name)"
+                
+                let resultArray:NSArray = AppTheme.LoadKeyedArchiverName(NevoAllKeys.MEDAvatarKey() as NSString) as! NSArray
+                
+                if resultArray.count > 0 {
+                    if let avatar = resultArray.object(at: 0) as? UIImage {
+                        (cell as! SetingInfoCell).avatarImageView.image = avatar
+                    }
+                }
                 
                 // MARK: - APPTHEME ADJUST
                 if !AppTheme.isTargetLunaR_OR_Nevo() {
