@@ -443,7 +443,7 @@ class AlarmClockController: UITableViewController,AddAlarmDelegate {
         
         // MARK: - APPTHEME ADJUST
         if !AppTheme.isTargetLunaR_OR_Nevo() {
-            button1.backgroundColor = UIColor.red
+            button1.backgroundColor = UIColor.getBaseColor()
         } else {
             button1.backgroundColor = AppTheme.NEVO_SOLAR_YELLOW()
         }
