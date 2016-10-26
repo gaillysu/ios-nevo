@@ -48,9 +48,11 @@ class RepeatViewController: UIViewController {
         tableView.contentInset = UIEdgeInsets(top: 50, left: 0, bottom: 0, right: 0)
         
         tableView.register(UINib(nibName: "RepeatViewCell",bundle: nil), forCellReuseIdentifier: "RepeatView_Identifier")
+        
+        // MARK: - APPTHEME ADJUST
         if !AppTheme.isTargetLunaR_OR_Nevo() {
-            self.view.backgroundColor = UIColor.white
-            tableView.backgroundColor = UIColor.white
+            self.view.backgroundColor = UIColor.getLightBaseColor()
+            tableView.backgroundColor = UIColor.getLightBaseColor()
         }else{
             
         }
@@ -102,6 +104,12 @@ class RepeatViewController: UIViewController {
         cell.preservesSuperviewLayoutMargins = false;
         cell.separatorInset = UIEdgeInsets.zero;
         cell.layoutMargins = UIEdgeInsets.zero;
+        
+        // MARK: - APPTHEME ADJUST
+        if !AppTheme.isTargetLunaR_OR_Nevo() {
+            cell.backgroundColor = UIColor.getGreyColor()
+            cell.textLabel?.textColor = UIColor.white
+        }
         
         if((indexPath as NSIndexPath).row == selectedIndex) {
             let selectedImage:UIImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 30, height: 23))

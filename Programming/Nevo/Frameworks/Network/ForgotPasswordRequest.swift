@@ -44,6 +44,10 @@ class ForgotPasswordRequest: NSObject {
                     if textField[0].text! == textField[1].text! {
                         let view = MRProgressOverlayView.showOverlayAdded(to: UIApplication.shared.keyWindow, title: "Please wait...", mode: MRProgressOverlayViewMode.indeterminate, animated: true)
                         view?.setTintColor(AppTheme.NEVO_SOLAR_YELLOW())
+                        if !AppTheme.isTargetLunaR_OR_Nevo() {
+                            view?.setTintColor(UIColor.getBaseColor())
+                        }
+                        
                         HttpPostRequest.postRequest("user/forget_password", data: ["user":["password_token":token,"email":email,"password":textField[0].text!,"id":id] as AnyObject], completion: { (result) in
                             MRProgressOverlayView.dismissAllOverlays(for: UIApplication.shared.keyWindow, animated: true)
                             let json = JSON(result)

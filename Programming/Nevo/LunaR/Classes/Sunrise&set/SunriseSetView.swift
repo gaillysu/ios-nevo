@@ -26,13 +26,12 @@ class SunriseSetView:UIView {
     }
     
     let WorldClockCellReuseID = "WorldClockCellReuseID"
-    let dialViewHeight:CGFloat = 250
     
     weak var clockView:ClockView? = nil
     
     override func layoutSubviews() {
+        super.layoutSubviews()
         self.backgroundColor =  UIColor.getGreyColor()
-        clockView?.frame = dialImageView.frame
     }
     
     override func awakeFromNib() {
@@ -44,6 +43,7 @@ class SunriseSetView:UIView {
         worldClocksTableView.dataSource = self
         
         worldClocksTableView.backgroundColor = UIColor.getGreyColor()
+        worldClocksTableView.allowsSelection = false
         worldClocksTableView.isScrollEnabled = false
         worldClocksTableView.separatorStyle = .none
         
@@ -79,17 +79,16 @@ extension SunriseSetView:UITableViewDataSource, UITableViewDelegate {
 
 extension SunriseSetView {
     fileprivate func addClockView() {
-        let hourImage = AppTheme.GET_RESOURCES_IMAGE("wacth_hour")
-        let minuteImage = AppTheme.GET_RESOURCES_IMAGE("wacth_mint")
-        let dialImage = AppTheme.GET_RESOURCES_IMAGE("lunar_dial_f")
+        let hourImage = AppTheme.GET_RESOURCES_IMAGE("lunar_hour")
+        let minuteImage = AppTheme.GET_RESOURCES_IMAGE("lunar_Minute")
+        let dialImage = AppTheme.GET_RESOURCES_IMAGE("lunar_dial")
         
-        let clockViewHeight:CGFloat = dialViewHeight
-        let clockViewX:CGFloat = (UIScreen.main.bounds.width - clockViewHeight) / 2
-        let clockViewFrame:CGRect = CGRect(x: clockViewX, y: 0, width: clockViewHeight, height: clockViewHeight)
+        // 
+        let dialViewHeight = (UIScreen.main.bounds.height - 121 - 64 - 49) / 2
         
-        let clockV:ClockView = ClockView(frame: clockViewFrame, hourImage: hourImage, minuteImage: minuteImage, dialImage: dialImage)
+        let clockV:ClockView = ClockView(frame: CGRect(x: 0, y: 0, width: dialViewHeight, height: dialViewHeight), hourImage: hourImage, minuteImage: minuteImage, dialImage: dialImage)
         
-        dialView.addSubview(clockV)
+        dialImageView.addSubview(clockV)
         
         clockView = clockV
     }

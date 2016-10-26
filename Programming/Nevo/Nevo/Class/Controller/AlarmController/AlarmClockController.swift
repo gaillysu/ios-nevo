@@ -440,7 +440,13 @@ class AlarmClockController: UITableViewController,AddAlarmDelegate {
         let button1 = UITableViewRowAction(style: .default, title: "Delete", handler: { (action, indexPath) in
             self.tableView(tableView, commit: .delete, forRowAt: indexPath)
         })
-        button1.backgroundColor = AppTheme.NEVO_SOLAR_YELLOW()
+        
+        // MARK: - APPTHEME ADJUST
+        if !AppTheme.isTargetLunaR_OR_Nevo() {
+            button1.backgroundColor = UIColor.red
+        } else {
+            button1.backgroundColor = AppTheme.NEVO_SOLAR_YELLOW()
+        }
         return [button1]
     }
 

@@ -19,7 +19,6 @@ class WorldClockCell: UITableViewCell {
         contentView.backgroundColor = UIColor.clear
     }
     
-    
     func setTime(worldTime:String, sunriseTime:String, sunsetTime:String) {
         worldTimeLabel.text = worldTime
         sunriseLabel.text = sunriseTime

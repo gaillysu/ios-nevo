@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="Raleway-Bold.ttf">
-            <string>Raleway-Bold</string>
+        <array key="Raleway-Regular.ttf">
+            <string>Raleway</string>
         </array>
     </customFonts>
     <objects>
@@ -21,19 +21,19 @@
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="J8F-6y-LlZ"/>
                     </constraints>
-                    <fontDescription key="fontDescription" name="Raleway-Bold" family="Raleway" pointSize="25"/>
+                    <fontDescription key="fontDescription" name="Raleway" family="Raleway" pointSize="25"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vQm-cw-Rul">
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Yesterday" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UOg-nL-ThS">
-                            <fontDescription key="fontDescription" name="Raleway-Bold" family="Raleway" pointSize="20"/>
+                            <fontDescription key="fontDescription" name="Raleway" family="Raleway" pointSize="20"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Saturday,15  October,2016" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ErA-U2-5uH">
-                            <fontDescription key="fontDescription" name="Raleway-Bold" family="Raleway" pointSize="17"/>
+                            <fontDescription key="fontDescription" name="Raleway" family="Raleway" pointSize="17"/>
                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
@@ -81,8 +81,8 @@
                 <constraint firstAttribute="trailing" secondItem="vQm-cw-Rul" secondAttribute="trailing" id="cGI-vp-jd9"/>
                 <constraint firstItem="2v0-ci-act" firstAttribute="top" secondItem="ITZ-QK-Ag0" secondAttribute="bottom" constant="15" id="doK-MN-6Uv"/>
                 <constraint firstItem="vQm-cw-Rul" firstAttribute="top" secondItem="IeO-N2-aId" secondAttribute="bottom" constant="10" id="hOA-7e-LVx"/>
-                <constraint firstItem="IeO-N2-aId" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="5" id="kdz-jz-6of"/>
-                <constraint firstItem="ITZ-QK-Ag0" firstAttribute="top" secondItem="vQm-cw-Rul" secondAttribute="bottom" id="lTh-6f-F8c"/>
+                <constraint firstItem="IeO-N2-aId" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="kdz-jz-6of"/>
+                <constraint firstItem="ITZ-QK-Ag0" firstAttribute="top" secondItem="vQm-cw-Rul" secondAttribute="bottom" constant="8" id="lTh-6f-F8c"/>
                 <constraint firstItem="vQm-cw-Rul" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="mkC-02-NaD"/>
                 <constraint firstItem="IeO-N2-aId" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="pud-bU-Tfg"/>
                 <constraint firstItem="2v0-ci-act" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="stX-IU-Gj0"/>

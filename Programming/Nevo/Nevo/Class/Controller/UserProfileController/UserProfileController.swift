@@ -38,6 +38,12 @@ class UserProfileController: UIViewController,UITableViewDelegate,UITableViewDat
         
         let rightItem:UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.save, target: self, action: #selector(saveProfileAction(_:)))
         self.navigationItem.rightBarButtonItem = rightItem
+        
+        // MARK: - APPTHEME ADJUST
+        if !AppTheme.isTargetLunaR_OR_Nevo() {
+            view.backgroundColor = UIColor.getLightBaseColor()
+            userInfoTableView.backgroundColor = UIColor.getLightBaseColor()
+        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -72,6 +78,11 @@ class UserProfileController: UIViewController,UITableViewDelegate,UITableViewDat
         var header:UITableViewHeaderFooterView? = nil
         if section == 0 {
             header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "HeaderViewReuseIdentifier")!
+        }
+        
+        // MARK: - APPTHEME ADJUST
+        if !AppTheme.isTargetLunaR_OR_Nevo() {
+            header?.backgroundColor = UIColor.getGreyColor()
         }
         return header;
     }
@@ -125,7 +136,7 @@ class UserProfileController: UIViewController,UITableViewDelegate,UITableViewDat
                 cell.valueTextField.placeholder = "Birthday: "
                 cell.setType(.date)
 //                cell.textPreFix = "Birthday: "
-                cell.textPreFix == ""
+//                cell.textPreFix == ""
             default:
                 break
             }
@@ -153,6 +164,13 @@ class UserProfileController: UIViewController,UITableViewDelegate,UITableViewDat
             default:
                 break
             }
+        }
+        
+        // MARK: - APPTHEME ADJUST
+        if !AppTheme.isTargetLunaR_OR_Nevo() {
+            cell.backgroundColor = UIColor.getGreyColor()
+            cell.titleLabel.textColor = UIColor.white
+            cell.valueTextField.textColor = UIColor.getBaseColor()
         }
 
         return cell

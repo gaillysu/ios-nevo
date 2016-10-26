@@ -13,6 +13,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="StepsHistoryViewController" customModule="LunaR" customModuleProvider="target">
             <connections>
+                <outlet property="centerTitleLabel" destination="PEL-ww-Web" id="TPH-pE-Hi3"/>
                 <outlet property="chartView" destination="mMJ-ii-LKw" id="OWg-SI-aAG"/>
                 <outlet property="stepsHistory" destination="eW0-Ed-FPP" id="Znd-gU-wq2"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>

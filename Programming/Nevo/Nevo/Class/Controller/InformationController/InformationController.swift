@@ -179,6 +179,10 @@ class InformationController: UIViewController,SMSegmentViewDelegate {
             let view = MRProgressOverlayView.showOverlayAdded(to: self.navigationController!.view, title: NSLocalizedString("please_wait", comment: ""), mode: MRProgressOverlayViewMode.indeterminate, animated: true)
             view?.setTintColor(AppTheme.NEVO_SOLAR_YELLOW())
             
+            if !AppTheme.isTargetLunaR_OR_Nevo() {
+                view?.setTintColor(UIColor.getBaseColor())
+            }
+            
             //timeout
             let timeout:Timer = Timer.after(50.seconds, {
                 MRProgressOverlayView.dismissAllOverlays(for: self.navigationController!.view, animated: true)

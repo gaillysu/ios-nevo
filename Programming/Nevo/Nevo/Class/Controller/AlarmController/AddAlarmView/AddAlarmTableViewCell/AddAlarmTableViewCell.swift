@@ -21,6 +21,7 @@ class AddAlarmTableViewCell: UITableViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
+        // MAKR: - APPTHEME ADJUST
         if !AppTheme.isTargetLunaR_OR_Nevo() {
             datePicker.backgroundColor = UIColor.getGreyColor()
             datePicker.tintColor = UIColor.white

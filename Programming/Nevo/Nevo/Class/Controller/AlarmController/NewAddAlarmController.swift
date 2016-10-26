@@ -58,8 +58,11 @@ class NewAddAlarmController: UITableViewController,ButtonManagerCallBack,Selecte
             tipsLabel.text = tipsString
             tipsLabel.font = UIFont(name: "HelveticaNeue-Thin", size: 16)
             
+            
+            // MARK:- THEME ADJUST
             if !AppTheme.isTargetLunaR_OR_Nevo() {
-                self.tableView.backgroundColor = UIColor.getGreyColor()
+//                self.tableView.backgroundColor = UIColor.getGreyColor()
+                self.tableView.backgroundColor = UIColor.getLightBaseColor()
                 tipsLabel.textColor = UIColor.white
                 let attributeDict:[String : AnyObject] = [NSFontAttributeName: UIFont(name: "HelveticaNeue-Thin", size: 16)!]
                 let AttributedStr:NSMutableAttributedString = NSMutableAttributedString(string: tipsString, attributes: attributeDict)
@@ -150,7 +153,7 @@ class NewAddAlarmController: UITableViewController,ButtonManagerCallBack,Selecte
             if((indexPath as NSIndexPath).row == 1){
                 let selectedCell:UITableViewCell = tableView.cellForRow(at: indexPath)!
                 
-                let actionSheet:UIAlertController = UIAlertController(title: NSLocalizedString("add_alarm_label", comment: ""), message: nil, preferredStyle: UIAlertControllerStyle.alert)
+                let actionSheet:ActionSheetView = ActionSheetView(title: NSLocalizedString("add_alarm_label", comment: ""), message: nil, preferredStyle: UIAlertControllerStyle.alert)
                 actionSheet.addTextField(configurationHandler: { (labelText:UITextField) -> Void in
                     labelText.text = selectedCell.detailTextLabel?.text
                 })
@@ -165,6 +168,7 @@ class NewAddAlarmController: UITableViewController,ButtonManagerCallBack,Selecte
                     selectedCell.detailTextLabel?.text = labelText.text
                     selectedCell.layoutSubviews()
                 })
+                // MARK: - APPTHEME ADJUST
                 if !AppTheme.isTargetLunaR_OR_Nevo() {
                     alertAction.setValue(UIColor.getBaseColor(), forKey: "titleTextColor")
                     alertAction1.setValue(UIColor.getBaseColor(), forKey: "titleTextColor")
@@ -229,6 +233,9 @@ class NewAddAlarmController: UITableViewController,ButtonManagerCallBack,Selecte
             let  headerCell:NewAddAlarmHeader = tableView.dequeueReusableHeaderFooterView(withIdentifier: "identifier_header") as! NewAddAlarmHeader
             if !AppTheme.isTargetLunaR_OR_Nevo() {
                 headerCell.alarmType.tintColor = UIColor.getBaseColor()
+                headerCell.backgroundColor = UIColor.getGreyColor()
+                headerCell.contentView.backgroundColor = UIColor.getGreyColor()
+                headerCell.alarmType.backgroundColor = UIColor.getGreyColor()
             }
             
             headerCell.actionCallBack = {
@@ -240,6 +247,9 @@ class NewAddAlarmController: UITableViewController,ButtonManagerCallBack,Selecte
         }else{
             return nil
         }
+    }
+    
+    override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -260,8 +270,7 @@ class NewAddAlarmController: UITableViewController,ButtonManagerCallBack,Selecte
             cell.preservesSuperviewLayoutMargins = false;
             cell.separatorInset = UIEdgeInsets.zero;
             cell.layoutMargins = UIEdgeInsets.zero;
-            cell.backgroundColor = UIColor.white
-            cell.contentView.backgroundColor = UIColor.clear
+            
             cell.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
             cell.selectionStyle = UITableViewCellSelectionStyle.none;
             if((indexPath as NSIndexPath).row == 0) {
@@ -280,6 +289,19 @@ class NewAddAlarmController: UITableViewController,ButtonManagerCallBack,Selecte
                 cell.textLabel?.text = NSLocalizedString("\(titleArray[(indexPath as NSIndexPath).row])", comment: "")
                 cell.detailTextLabel?.text = name
             }
+            
+            // MARK: - APPTHEME ADJUST
+            if !AppTheme.isTargetLunaR_OR_Nevo() {
+                cell.backgroundColor = UIColor.getGreyColor()
+                cell.contentView.backgroundColor = UIColor.getGreyColor()
+                
+                cell.textLabel?.textColor = UIColor.white
+                cell.detailTextLabel?.textColor = UIColor.white
+            } else {
+                cell.backgroundColor = UIColor.white
+                cell.contentView.backgroundColor = UIColor.clear
+            }
+            
             return cell
         default: return UITableViewCell();
         }

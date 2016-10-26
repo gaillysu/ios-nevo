@@ -21,6 +21,10 @@ class AppTheme {
     sRGB value : #ff9933
     */
     class func NEVO_SOLAR_YELLOW() -> UIColor {
+        if !AppTheme.isTargetLunaR_OR_Nevo() {
+            return UIColor.getBaseColor()
+        }
+        
         return UIColor(rgba: "#A08455")
     }
 

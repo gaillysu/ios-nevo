@@ -49,9 +49,17 @@ class LoginController: UIViewController,UITextFieldDelegate {
         let leftButton:UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "cancel_lunar"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(backButtonClick(_:)))
         self.navigationItem.leftBarButtonItem = leftButton
         
-        let judgeRootViewController = NSStringFromClass((UIApplication.shared.keyWindow?.rootViewController?.classForCoder)!) == "Nevo.MainTabBarController"
+        var targetName:String = ""
         
-        if judgeRootViewController {
+        if AppTheme.isTargetLunaR_OR_Nevo() {
+            targetName = "Nevo"
+        } else {
+            targetName = "Lunar"
+        }
+        
+        let judgeRootViewController = UIApplication.shared.keyWindow?.rootViewController?.isKind(of: UITabBarController.classForCoder())
+        
+        if judgeRootViewController! {
             self.navigationItem.rightBarButtonItem = nil
         } else {
             self.navigationItem.leftBarButtonItem = nil
@@ -103,9 +111,9 @@ class LoginController: UIViewController,UITextFieldDelegate {
         super.viewDidAppear(animated)
         let user:NSArray = UserProfile.getAll()
         if user.count>0 {
-            let judgeRootViewController = NSStringFromClass((UIApplication.shared.keyWindow?.rootViewController?.classForCoder)!) == "Nevo.MainTabBarController"
+            let judgeRootViewController = UIApplication.shared.keyWindow?.rootViewController?.isKind(of: UITabBarController.classForCoder())
             
-            if judgeRootViewController {
+            if judgeRootViewController! {
                 self.dismiss(animated: true, completion: nil)
             } else {
                 UIApplication.shared.keyWindow?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
@@ -170,6 +178,10 @@ class LoginController: UIViewController,UITextFieldDelegate {
             let view = MRProgressOverlayView.showOverlayAdded(to: self.navigationController!.view, title: NSLocalizedString("please_wait", comment: ""), mode: MRProgressOverlayViewMode.indeterminate, animated: true)
             view?.setTintColor(AppTheme.NEVO_SOLAR_YELLOW())
 
+            if !AppTheme.isTargetLunaR_OR_Nevo() {
+                view?.setTintColor(UIColor.getBaseColor())
+            }
+            
             LOGIN_NEVO_SERVICE_REQUEST.loginAction(userName, password: password, completion: { (result, status) in
                 MRProgressOverlayView.dismissAllOverlays(for: self.navigationController!.view, animated: true)
                 if result {
@@ -214,9 +226,9 @@ class LoginController: UIViewController,UITextFieldDelegate {
                         
                     }
                     
-                    let judgeRootViewController = NSStringFromClass((UIApplication.shared.keyWindow?.rootViewController?.classForCoder)!) == "Nevo.MainTabBarController"
+                    let judgeRootViewController = UIApplication.shared.keyWindow?.rootViewController?.isKind(of: UITabBarController.classForCoder())
                     
-                    if judgeRootViewController {
+                    if judgeRootViewController! {
                         self.dismiss(animated: true, completion: nil)
                     } else {
 //                        UIApplication.shared.keyWindow?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()

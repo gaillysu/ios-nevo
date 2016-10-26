@@ -59,8 +59,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
     
     var isFirsttimeLaunch: Bool {
         get {
-            let result = UserDefaults.standard.bool(forKey: "kIsNotFirstTimeLaunch")
-            UserDefaults.standard.set(true, forKey: "kIsNotFirstTimeLaunch")
+            let result = UserDefaults.standard.bool(forKey: "kLunarIsNotFirstTimeLaunch")
+            UserDefaults.standard.set(true, forKey: "kLunarIsNotFirstTimeLaunch")
             return !result
         }
     }
@@ -655,7 +655,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                     //                    let tabVC:UITabBarController = self.window?.rootViewController as! UITabBarController
                     let tabVC = self.window?.rootViewController
                     
-                    let actionSheet:UIAlertController = UIAlertController(title: titleString, message: msg, preferredStyle: UIAlertControllerStyle.alert)
+                    let actionSheet:ActionSheetView = ActionSheetView(title: titleString, message: msg, preferredStyle: UIAlertControllerStyle.alert)
                     let alertAction1:AlertAction = AlertAction(title: cancelString, style: UIAlertActionStyle.cancel, handler: { ( alert) -> Void in
                         
                     })

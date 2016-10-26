@@ -60,6 +60,10 @@ class ForgotPasswordController: UIViewController {
         let view = MRProgressOverlayView.showOverlayAdded(to: self.navigationController!.view, title: NSLocalizedString("please_wait", comment: ""), mode: MRProgressOverlayViewMode.indeterminate, animated: true)
         view?.setTintColor(AppTheme.NEVO_SOLAR_YELLOW())
         
+        if !AppTheme.isTargetLunaR_OR_Nevo() {
+            view?.setTintColor(UIColor.getBaseColor())
+        }
+        
         HttpPostRequest.postRequest("user/request_password_token", data: ["user":["email":emailTextField.text!] as AnyObject]) { (result) in
             MRProgressOverlayView.dismissAllOverlays(for: self.navigationController!.view, animated: true)
             
@@ -92,6 +96,11 @@ class ForgotPasswordController: UIViewController {
                     if textField[0].text! == textField[1].text! {
                         let view = MRProgressOverlayView.showOverlayAdded(to: self.navigationController!.view, title: NSLocalizedString("please_wait", comment: ""), mode: MRProgressOverlayViewMode.indeterminate, animated: true)
                         view?.setTintColor(AppTheme.NEVO_SOLAR_YELLOW())
+                        
+                        if !AppTheme.isTargetLunaR_OR_Nevo() {
+                            view?.setTintColor(UIColor.getBaseColor())
+                        }
+                        
                         HttpPostRequest.postRequest("user/forget_password", data: ["user":["password_token":token,"email":email,"password":textField[0].text!,"id":id] as AnyObject], completion: { (result) in
                             MRProgressOverlayView.dismissAllOverlays(for: self.navigationController!.view, animated: true)
                             let json = JSON(result)
