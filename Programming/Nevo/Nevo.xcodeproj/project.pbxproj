@@ -613,6 +613,12 @@
 		61E4DF261DB8C2D500DDA737 /* ForgotPasswordRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E4DF241DB8C2D500DDA737 /* ForgotPasswordRequest.swift */; };
 		61E4DF271DB8C2D500DDA737 /* UserCreateRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E4DF251DB8C2D500DDA737 /* UserCreateRequest.swift */; };
 		61F85F501DAF5BF300F341B5 /* NevoOtaController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61F85F4F1DAF5BF300F341B5 /* NevoOtaController.swift */; };
+		6633057A1DC07EEE0090216F /* lunar_hour.png in Resources */ = {isa = PBXBuildFile; fileRef = 663305771DC07EEE0090216F /* lunar_hour.png */; };
+		6633057B1DC07EEE0090216F /* lunar_hour.png in Resources */ = {isa = PBXBuildFile; fileRef = 663305771DC07EEE0090216F /* lunar_hour.png */; };
+		6633057C1DC07EEE0090216F /* lunar_dial.png in Resources */ = {isa = PBXBuildFile; fileRef = 663305781DC07EEE0090216F /* lunar_dial.png */; };
+		6633057D1DC07EEE0090216F /* lunar_dial.png in Resources */ = {isa = PBXBuildFile; fileRef = 663305781DC07EEE0090216F /* lunar_dial.png */; };
+		6633057E1DC07EEE0090216F /* lunar_Minute.png in Resources */ = {isa = PBXBuildFile; fileRef = 663305791DC07EEE0090216F /* lunar_Minute.png */; };
+		6633057F1DC07EEE0090216F /* lunar_Minute.png in Resources */ = {isa = PBXBuildFile; fileRef = 663305791DC07EEE0090216F /* lunar_Minute.png */; };
 		665BD6A51DBEF186008C2623 /* NevoOtaController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61F85F4F1DAF5BF300F341B5 /* NevoOtaController.swift */; };
 		665BD6A61DBEF1D0008C2623 /* ForgotPasswordRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E4DF241DB8C2D500DDA737 /* ForgotPasswordRequest.swift */; };
 		665BD6A71DBEF1D0008C2623 /* UserCreateRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E4DF251DB8C2D500DDA737 /* UserCreateRequest.swift */; };
@@ -1125,6 +1131,9 @@
 		61E4DF241DB8C2D500DDA737 /* ForgotPasswordRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordRequest.swift; sourceTree = "<group>"; };
 		61E4DF251DB8C2D500DDA737 /* UserCreateRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCreateRequest.swift; sourceTree = "<group>"; };
 		61F85F4F1DAF5BF300F341B5 /* NevoOtaController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NevoOtaController.swift; sourceTree = "<group>"; };
+		663305771DC07EEE0090216F /* lunar_hour.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lunar_hour.png; sourceTree = "<group>"; };
+		663305781DC07EEE0090216F /* lunar_dial.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lunar_dial.png; sourceTree = "<group>"; };
+		663305791DC07EEE0090216F /* lunar_Minute.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lunar_Minute.png; sourceTree = "<group>"; };
 		665BD6CB1DBEF9AC008C2623 /* SunriseSetController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SunriseSetController.swift; sourceTree = "<group>"; };
 		665BD6CF1DBEFDFC008C2623 /* SunriseSetView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SunriseSetView.swift; sourceTree = "<group>"; };
 		665BD6D11DBEFE08008C2623 /* SunriseSetView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SunriseSetView.xib; sourceTree = "<group>"; };
@@ -1693,6 +1702,9 @@
 		007F79881A878D0B006C89E6 /* image */ = {
 			isa = PBXGroup;
 			children = (
+				663305771DC07EEE0090216F /* lunar_hour.png */,
+				663305781DC07EEE0090216F /* lunar_dial.png */,
+				663305791DC07EEE0090216F /* lunar_Minute.png */,
 				665BD6DB1DBF357D008C2623 /* lunar_dial_bg.png */,
 				665BD6DC1DBF357D008C2623 /* lunar_dial_f.png */,
 				665BD6D71DBF1297008C2623 /* sunrise.png */,
@@ -2621,9 +2633,11 @@
 				00C826D41DA5ECA700ECECEE /* RepeatViewCell.xib in Resources */,
 				00C826D51DA5ECA700ECECEE /* AlarmClockVCell.xib in Resources */,
 				00C826D61DA5ECA700ECECEE /* AlarmTypeController.xib in Resources */,
+				6633057D1DC07EEE0090216F /* lunar_dial.png in Resources */,
 				00C826D71DA5ECA700ECECEE /* RepeatViewController.xib in Resources */,
 				00C826D81DA5ECA700ECECEE /* AddAlarmController.xib in Resources */,
 				00C826D91DA5ECA700ECECEE /* NewAddAlarmController.xib in Resources */,
+				6633057B1DC07EEE0090216F /* lunar_hour.png in Resources */,
 				00C826DA1DA5ECA700ECECEE /* AddAlarmSystemCell.xib in Resources */,
 				665BD6D21DBEFE08008C2623 /* SunriseSetView.xib in Resources */,
 				00C826DB1DA5ECA700ECECEE /* AddAlarmTableViewCell.xib in Resources */,
@@ -2690,6 +2704,7 @@
 				0037EC3A1D235F5300502140 /* clockViewHour.png in Resources */,
 				0037EC3B1D235F5300502140 /* clockViewMinute.png in Resources */,
 				0037EC3C1D235F5300502140 /* clockView600.png in Resources */,
+				6633057F1DC07EEE0090216F /* lunar_Minute.png in Resources */,
 				0037EC541D2385DF00502140 /* Raleway-SemiBold.ttf in Resources */,
 				0037EC4F1D2385DF00502140 /* Raleway-ExtraLight.ttf in Resources */,
 				00EFE0561D227D5F0066C905 /* Assets.xcassets in Resources */,
@@ -2740,6 +2755,7 @@
 				0095DDAA1D2E0D7D00F80BFD /* wacth_hour.png in Resources */,
 				004F74DF1D800EAA0048BA09 /* UserProfileController.xib in Resources */,
 				0091EB391D951D9E0079EC39 /* Main.storyboard in Resources */,
+				6633057C1DC07EEE0090216F /* lunar_dial.png in Resources */,
 				0050D5F21C28E0DB004F6F80 /* MyNevoHeaderView.xib in Resources */,
 				0050D60E1C28E0DB004F6F80 /* PresetTableViewController.xib in Resources */,
 				00EC9DCF1C85833400280904 /* MorningTutorialController.xib in Resources */,
@@ -2806,12 +2822,14 @@
 				00120E781D7550D500CE0C32 /* UserHeader.xib in Resources */,
 				0036EB061C48BA8300DCED46 /* connected1.png in Resources */,
 				0050D6961C28E1CD004F6F80 /* AddAlarmTableViewCell.xib in Resources */,
+				6633057E1DC07EEE0090216F /* lunar_Minute.png in Resources */,
 				0050D69B1C2906D8004F6F80 /* Firmwares in Resources */,
 				00E650991C83DD9000278D3E /* nevoFontImage.png in Resources */,
 				0050D60C1C28E0DB004F6F80 /* AddPresetViewController.xib in Resources */,
 				006A62581D6AA76C00458305 /* AlarmTypeCell.xib in Resources */,
 				00E759181C2406E600372529 /* upgrade_clock.png in Resources */,
 				0017DC121C8812640058A065 /* RepeatViewController.xib in Resources */,
+				6633057A1DC07EEE0090216F /* lunar_hour.png in Resources */,
 				00EC9DE51C85835F00280904 /* TutorialThreeViewController.xib in Resources */,
 				006A62711D6AB44A00458305 /* StepGoalSetingViewCell.xib in Resources */,
 				00478F501A8F637D00D0DCE2 /* clockViewMinute.png in Resources */,
