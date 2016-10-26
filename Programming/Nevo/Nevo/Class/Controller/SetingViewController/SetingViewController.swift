@@ -224,7 +224,7 @@ class SetingViewController: UIViewController,ButtonManagerCallBack,UIAlertViewDe
 
             if (indexPath as NSIndexPath).row == 3{
                 
-                let dialogController = UIAlertController(title: NSLocalizedString("Are you sure you want to log out?", comment: ""), message: nil, preferredStyle: .alert)
+                let dialogController = ActionSheetView(title: NSLocalizedString("Are you sure you want to log out?", comment: ""), message: nil, preferredStyle: .alert)
                 let confirmAction = AlertAction(title: NSLocalizedString("Enter", comment: ""), style: .default, handler: { (_) in
                     let user:NSArray = UserProfile.getAll()
                     if(user.count>0){
@@ -318,10 +318,15 @@ class SetingViewController: UIViewController,ButtonManagerCallBack,UIAlertViewDe
                 let cell = tableView.dequeueReusableCell(withIdentifier: "SetingInfoIdentifier", for: indexPath)
                 cell.separatorInset = UIEdgeInsets(top: 0, left: UIScreen.main.bounds.size.width, bottom: 0, right: 0)
                 let user:NSArray = UserProfile.getAll()
-                
                 let userprofile:UserProfile = user[0] as! UserProfile
                 (cell as! SetingInfoCell).emailLabel.text = userprofile.email
                 (cell as! SetingInfoCell).userName.text = "\(userprofile.first_name) \(userprofile.last_name)"
+                
+                // MARK: - APPTHEME ADJUST
+                if !AppTheme.isTargetLunaR_OR_Nevo() {
+                    cell.backgroundColor = UIColor.getGreyColor()
+                    cell.contentView.backgroundColor = UIColor.getGreyColor()
+                }
                 
                 return cell
             }else{

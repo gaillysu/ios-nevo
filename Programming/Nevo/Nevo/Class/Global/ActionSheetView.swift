@@ -16,6 +16,7 @@ class ActionSheetView: UIAlertController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
         for view in self.view.subviews.first!.subviews {
             //NSLog("第一个循环几次")
             for view2 in view.subviews {
@@ -40,6 +41,41 @@ class ActionSheetView: UIAlertController {
             //         _UIAlertControlleriOSActionSheetCancelBackgroundView
             if let cancelButtonBackgroundView = findView(aClass: NSClassFromString("_UIAlertControlleriOSActionSheetCancelBackgroundView"), inView: UIApplication.shared.keyWindow!) {
                 totallyTransparent(view: cancelButtonBackgroundView)
+            }
+            
+            
+            
+            // 标题白色
+            view.viewsSatisfyCondition(condition: { (v) -> (Bool) in
+                if v.isKind(of: UILabel.classForCoder()) {
+                    if (v as! UILabel).text == self.title {
+                        return true
+                    }
+                }
+                return false
+            }) { (v) in
+                (v as! UILabel).textColor = UIColor.white
+            }
+            
+            // 副标题白色
+            view.viewsSatisfyCondition(condition: { (v) -> (Bool) in
+                if v.isKind(of: UILabel.classForCoder()) {
+                    if (v as! UILabel).text == self.message {
+                        return true
+                    }
+                }
+                return false
+            }) { (v) in
+                (v as! UILabel).textColor = UIColor.white
+            }
+            
+            view.viewsSatisfyCondition(condition: { (v) -> (Bool) in
+                if v.backgroundColor == UIColor.black {
+                    return true
+                }
+                return false
+            }) { (v) in
+                v.backgroundColor = UIColor.white
             }
         }
     }

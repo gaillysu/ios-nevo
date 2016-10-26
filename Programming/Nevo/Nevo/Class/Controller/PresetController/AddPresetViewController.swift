@@ -28,12 +28,20 @@ class AddPresetViewController: UIViewController,ButtonManagerCallBack {
 //        addPresetView.backgroundColor = UIColor.white
         addPresetView.bulidAddPresetView(self.navigationItem, delegate: self)
         
-//        view.backgroundColor = UIColor(red: 239/255.0, green: 239/255.0, blue: 244/255.0, alpha: 1.0)
-//        addPresetView.backgroundColor = UIColor(red: 239/255.0, green: 239/255.0, blue: 244/255.0, alpha: 1.0)
-        view.backgroundColor = UIColor(rgba: "#EFEFF4")
-        addPresetView.backgroundColor = UIColor(rgba: "#EFEFF4")
         
-        addPresetView.presetName.backgroundColor = UIColor.white
+        // MARK: - APPTHEME ADJUST
+        
+        if !AppTheme.isTargetLunaR_OR_Nevo() {
+            view.backgroundColor = UIColor.getGreyColor()
+            addPresetView.backgroundColor = UIColor.getGreyColor()
+            addPresetView.presetNumber.backgroundColor = UIColor.getLightBaseColor()
+            addPresetView.presetName.backgroundColor = UIColor.getLightBaseColor()
+        } else {
+            view.backgroundColor = UIColor(rgba: "#EFEFF4")
+            addPresetView.backgroundColor = UIColor(rgba: "#EFEFF4")
+            addPresetView.presetNumber.backgroundColor = UIColor.white
+            addPresetView.presetName.backgroundColor = UIColor.white
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -84,7 +92,7 @@ class AddPresetViewController: UIViewController,ButtonManagerCallBack {
 extension AddPresetViewController {
     fileprivate func styleEvolve() {
         if !AppTheme.isTargetLunaR_OR_Nevo() {
-            view.backgroundColor = UIColor.getGreyColor()
+//            view.backgroundColor = UIColor.getGreyColor()
         }
     }
 }

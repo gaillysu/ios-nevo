@@ -248,5 +248,11 @@ extension AppDelegate {
                 AppDelegate.getAppDelegate().window?.makeKeyAndVisible()
             }
         }
+        
+        /****🌹🌹🌹🌹🌹🌹🌹🌹🌹🌹🌹🌹🌹  TEST  🌹🌹🌹🌹🌹🌹🌹🌹🌹🌹🌹🌹🌹🌹🌹*****/
+//        AppDelegate.getAppDelegate().window? = UIWindow(frame: UIScreen.main.bounds)
+//        AppDelegate.getAppDelegate().window?.rootViewController = SunriseSetController()
+//        AppDelegate.getAppDelegate().window?.makeKeyAndVisible()
+        /*****🌹🌹🌹🌹🌹🌹🌹🌹🌹🌹🌹🌹🌹🌹🌹🌹🌹🌹🌹🌹🌹🌹🌹🌹🌹🌹🌹🌹🌹*****/
     }
 }

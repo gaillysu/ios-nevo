@@ -31,6 +31,11 @@ class SleepHistoricalViewController: PublicClassController,ChartViewDelegate,Sel
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if !AppTheme.isTargetLunaR_OR_Nevo(){
+            titleLabel.textColor = UIColor.white
+        }
+        
         self.navigationItem.title = NSLocalizedString("sleep_history_title", comment: "")
         contentTitleArray = [NSLocalizedString("sleep_timer", comment: ""), NSLocalizedString("wake_timer", comment: ""), NSLocalizedString("Quality", comment: ""), NSLocalizedString("Duration", comment: "")]
         

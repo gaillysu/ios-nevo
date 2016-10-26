@@ -15,6 +15,8 @@ class StepsHistoryViewController: PublicClassController,ChartViewDelegate {
     @IBOutlet weak var stepsHistory: UICollectionView!
     @IBOutlet weak var chartView: BarChartView!
     
+    @IBOutlet weak var centerTitleLabel: UILabel!
+    
     let SELECTED_DATA:String = "SELECTED_DATA"
     
     fileprivate var queryArray:NSArray = NSArray()
@@ -35,8 +37,12 @@ class StepsHistoryViewController: PublicClassController,ChartViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.configChartView()
         
+        if !AppTheme.isTargetLunaR_OR_Nevo(){
+            centerTitleLabel.textColor = UIColor.white
+        }
+        
+        self.configChartView()
         let dayDate:Date = Date()
         let dayTime:TimeInterval = Date.date(dayDate.year, month: dayDate.month, day: dayDate.day, hour: 0, minute: 0, second: 0).timeIntervalSince1970
             //NSDate().beginningOfDay.timeIntervalSince1970
