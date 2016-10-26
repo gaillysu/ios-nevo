@@ -10,8 +10,11 @@ import UIKit
 
 class UserHeader: UITableViewHeaderFooterView {
 
+    @IBOutlet weak var avatarView: UIButton!
+    
+    
+    
     @IBAction func uploadAction(_ sender: AnyObject) {
-        return
         
         let alert:UIAlertController = UIAlertController(title: "Choose picture source", message: nil, preferredStyle: UIAlertControllerStyle.actionSheet)
         let action1:UIAlertAction = UIAlertAction(title: "Choose from library", style: UIAlertActionStyle.default) { (action) in
