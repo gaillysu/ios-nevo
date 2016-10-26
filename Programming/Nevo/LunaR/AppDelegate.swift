@@ -22,6 +22,7 @@ import XCGLogger
 import SwiftyTimer
 import CoreLocation
 import Solar
+import Timepiece
 
 
 let nevoDBDFileURL:String = "nevoDBName";
@@ -374,7 +375,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                 let range2: Range = timeStr.index(timeStr.startIndex, offsetBy: 6)..<timeStr.index(timeStr.startIndex, offsetBy: 8)
                 let day:String = timeStr.substring(with: range2)
                 
-                let timerInterval:Date = Date.date(year.toInt(), month: month.toInt(), day: day.toInt())
+                let timerInterval:Date = Date.date(year: year.toInt(), month: month.toInt(), day: day.toInt())
                 let timerInter:TimeInterval = timerInterval.timeIntervalSince1970
                 
                 _ = UserSteps.updateTable()
@@ -506,13 +507,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                     
                     let now:Date = Date()
                     let saveDay:Date = savedDailyHistory[Int(currentDay)].Date as Date
-                    let nowDate:Date = Date.date(now.year, month: now.month, day: now.day, hour: now.hour, minute: 0, second: 0)
-                    let saveDate:Date = Date.date(saveDay.year, month: saveDay.month, day: saveDay.day, hour: saveDay.hour, minute: 0, second: 0)
+                    let nowDate:Date = Date.date(year: now.year, month: now.month, day: now.day, hour: now.hour, minute: 0, second: 0)
+                    let saveDate:Date = Date.date(year: saveDay.year, month: saveDay.month, day: saveDay.day, hour: saveDay.hour, minute: 0, second: 0)
                     
                     // to HK Running
                     for index:Int in 0 ..< thispacket.getHourlyRunningDistance().count {
                         if(thispacket.getHourlyRunningDistance()[index] > 0) {
-                            hk.writeDataPoint(RunningToHK(distance:Double(thispacket.getHourlyRunningDistance()[index]), date:Date.date(saveDay.year, month: saveDay.month, day: saveDay.day, hour: index, minute: 0, second: 0)), resultHandler: { (result, error) in
+                            hk.writeDataPoint(RunningToHK(distance:Double(thispacket.getHourlyRunningDistance()[index]), date:Date.date(year: saveDay.year, month: saveDay.month, day: saveDay.day, hour: index, minute: 0, second: 0)), resultHandler: { (result, error) in
                                 
                             })
                         }
@@ -523,7 +524,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                         if savedDailyHistory[Int(currentDay)].HourlyCalories[index] > 0 && index == now.hour &&
                             (nowDate != saveDate){
                             
-                            hk.writeDataPoint(CaloriesToHK(calories: Double(savedDailyHistory[Int(currentDay)].HourlyCalories[index]), date: Date.date(saveDay.year, month: saveDay.month, day: saveDay.day, hour: index, minute: 0, second: 0)), resultHandler: { (result, error) in
+                            hk.writeDataPoint(CaloriesToHK(calories: Double(savedDailyHistory[Int(currentDay)].HourlyCalories[index]), date: Date.date(year: saveDay.year, month: saveDay.month, day: saveDay.day, hour: index, minute: 0, second: 0)), resultHandler: { (result, error) in
                                 if (result != true) {
                                     XCGLogger.default.debug("Save Hourly Calories error\(index),\(error)")
                                 }else{

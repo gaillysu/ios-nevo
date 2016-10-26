@@ -61,6 +61,7 @@ PODS:
   - SwiftEventBus (2.1.0)
   - SwiftyJSON (3.0.0)
   - SwiftyTimer (1.4.0)
+  - Timepiece (0.6.0)
   - UIColor_Hex_Swift (2.1)
   - XCGLogger (4.0.0):
     - XCGLogger/Core (= 4.0.0)
@@ -89,6 +90,7 @@ DEPENDENCIES:
   - SwiftEventBus (from `https://github.com/cesarferreira/SwiftEventBus.git`, tag `2.1.0`)
   - SwiftyJSON
   - SwiftyTimer (from `https://github.com/radex/SwiftyTimer.git`, branch `swift3`)
+  - Timepiece
   - UIColor_Hex_Swift (from `https://github.com/yeahdongcn/UIColor-Hex-Swift.git`, branch `Swift-3.0`)
   - XCGLogger (~> 4.0.0)
 
@@ -155,10 +157,11 @@ SPEC CHECKSUMS:
   SwiftEventBus: 03fb72b65f3ae11912dec2591567b89e5908a781
   SwiftyJSON: f57b2b44bc166617372d1c70773591fe9f0f5fd4
   SwiftyTimer: db4458cfaf67fc71e16ad6e4637c60b86f76a649
+  Timepiece: 63b761b41d392f7a5b97e454376167d03bdcc6c2
   UIColor_Hex_Swift: e91dc51f6bf252ec7bf74c8704ceedeeb7640c1c
   XCGLogger: 38063ea89b4c8b23232d18efd2e12eb0005f3ea4
   Zip: 805fc2fa9d2f05bbb7762d982d7a42ccdcc51f42
 
-PODFILE CHECKSUM: 795949c4fefc4596a26ee6b794bd0ba6ae8d4eb3
+PODFILE CHECKSUM: a5262645dbc1c3c847a9b93e8f6089244aa47311
 
-COCOAPODS: 1.1.0.rc.2
+COCOAPODS: 1.0.1

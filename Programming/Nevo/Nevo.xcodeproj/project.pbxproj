@@ -180,14 +180,6 @@
 		007865F51D91006F00F33AEA /* SMBasicSegmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007865E51D91006F00F33AEA /* SMBasicSegmentView.swift */; };
 		007865F61D91006F00F33AEA /* SMSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007865E61D91006F00F33AEA /* SMSegment.swift */; };
 		007865F71D91006F00F33AEA /* SMSegmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007865E71D91006F00F33AEA /* SMSegmentView.swift */; };
-		007865F91D91006F00F33AEA /* Duration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007865EB1D91006F00F33AEA /* Duration.swift */; };
-		007865FA1D91006F00F33AEA /* Int+Timepiece.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007865EC1D91006F00F33AEA /* Int+Timepiece.swift */; };
-		007865FB1D91006F00F33AEA /* NSCalendar+Timepiece.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007865ED1D91006F00F33AEA /* NSCalendar+Timepiece.swift */; };
-		007865FC1D91006F00F33AEA /* CalendarComponent+Timepiece.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007865EE1D91006F00F33AEA /* CalendarComponent+Timepiece.swift */; };
-		007865FD1D91006F00F33AEA /* NSDate+Timepiece.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007865EF1D91006F00F33AEA /* NSDate+Timepiece.swift */; };
-		007865FE1D91006F00F33AEA /* NSDateComponents+Timepiece.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007865F01D91006F00F33AEA /* NSDateComponents+Timepiece.swift */; };
-		007865FF1D91006F00F33AEA /* NSTimeInterval+Timepiece.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007865F11D91006F00F33AEA /* NSTimeInterval+Timepiece.swift */; };
-		007866001D91006F00F33AEA /* String+Timepiece.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007865F21D91006F00F33AEA /* String+Timepiece.swift */; };
 		007E0CAE1D0E5C3E00B0B600 /* ConnectOtherAppsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007E0CAC1D0E5C3E00B0B600 /* ConnectOtherAppsCell.swift */; };
 		007E0CAF1D0E5C3E00B0B600 /* ConnectOtherAppsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 007E0CAD1D0E5C3E00B0B600 /* ConnectOtherAppsCell.xib */; };
 		007F1F511CAA1B630021DF1B /* LocalNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007F1F501CAA1B630021DF1B /* LocalNotification.swift */; };
@@ -313,14 +305,6 @@
 		00C826311DA5E01C00ECECEE /* SMBasicSegmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007865E51D91006F00F33AEA /* SMBasicSegmentView.swift */; };
 		00C826321DA5E01C00ECECEE /* SMSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007865E61D91006F00F33AEA /* SMSegment.swift */; };
 		00C826331DA5E01C00ECECEE /* SMSegmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007865E71D91006F00F33AEA /* SMSegmentView.swift */; };
-		00C826341DA5E01C00ECECEE /* Duration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007865EB1D91006F00F33AEA /* Duration.swift */; };
-		00C826351DA5E01C00ECECEE /* Int+Timepiece.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007865EC1D91006F00F33AEA /* Int+Timepiece.swift */; };
-		00C826361DA5E01C00ECECEE /* NSCalendar+Timepiece.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007865ED1D91006F00F33AEA /* NSCalendar+Timepiece.swift */; };
-		00C826371DA5E01C00ECECEE /* CalendarComponent+Timepiece.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007865EE1D91006F00F33AEA /* CalendarComponent+Timepiece.swift */; };
-		00C826381DA5E01C00ECECEE /* NSDate+Timepiece.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007865EF1D91006F00F33AEA /* NSDate+Timepiece.swift */; };
-		00C826391DA5E01C00ECECEE /* NSDateComponents+Timepiece.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007865F01D91006F00F33AEA /* NSDateComponents+Timepiece.swift */; };
-		00C8263A1DA5E01C00ECECEE /* NSTimeInterval+Timepiece.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007865F11D91006F00F33AEA /* NSTimeInterval+Timepiece.swift */; };
-		00C8263B1DA5E01C00ECECEE /* String+Timepiece.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007865F21D91006F00F33AEA /* String+Timepiece.swift */; };
 		00C8263C1DA5E01C00ECECEE /* AutocompleteField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007865B61D90DBAF00F33AEA /* AutocompleteField.swift */; };
 		00C8263D1DA5E01C00ECECEE /* CircleProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007865B81D90DBAF00F33AEA /* CircleProgressView.swift */; };
 		00C8263E1DA5E01C00ECECEE /* NevoCircleProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0008EE971D93C5AA005E127C /* NevoCircleProgressView.swift */; };
@@ -612,14 +596,6 @@
 		3AF3D240B5808E80F5B2A19E /* Pods_Nevo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C2AEB04A0C7F45FE876ABED /* Pods_Nevo.framework */; };
 		615093391DBF5BC800E52970 /* SetSunriseAndSunsetRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615093371DBF5BC800E52970 /* SetSunriseAndSunsetRequest.swift */; };
 		6150933A1DBF5BC800E52970 /* SetWorldClockRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615093381DBF5BC800E52970 /* SetWorldClockRequest.swift */; };
-		6150933B1DBF669900E52970 /* NSDate+Timepiece.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007865EF1D91006F00F33AEA /* NSDate+Timepiece.swift */; };
-		615BCC771DBF0F5B000FED20 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615BCC761DBF0F5B000FED20 /* LocationManager.swift */; };
-		615BCC7C1DBF3FB9000FED20 /* AddWorldClockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615BCC7A1DBF3FB9000FED20 /* AddWorldClockViewController.swift */; };
-		615BCC811DBF410E000FED20 /* cities.json in Resources */ = {isa = PBXBuildFile; fileRef = 615BCC7F1DBF410E000FED20 /* cities.json */; };
-		615BCC821DBF410E000FED20 /* timezones.json in Resources */ = {isa = PBXBuildFile; fileRef = 615BCC801DBF410E000FED20 /* timezones.json */; };
-		615BCC881DBF414C000FED20 /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615BCC861DBF414C000FED20 /* City.swift */; };
-		615BCC891DBF414C000FED20 /* Timezone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615BCC871DBF414C000FED20 /* Timezone.swift */; };
-		615BCC8D1DBF4177000FED20 /* WorldClockDatabaseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615BCC8C1DBF4177000FED20 /* WorldClockDatabaseHelper.swift */; };
 		615F6E201DA7510D00216D1A /* FindWatchRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C8272E1DA61CAF00ECECEE /* FindWatchRequest.swift */; };
 		615F6E211DA7514200216D1A /* PVADCRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0023C0AC1DA64DD400FB33A4 /* PVADCRequest.swift */; };
 		61623DB11DAC77F100C45B19 /* iMaze_v26.bin in Resources */ = {isa = PBXBuildFile; fileRef = 61623DB01DAC77F100C45B19 /* iMaze_v26.bin */; };
@@ -628,6 +604,7 @@
 		6173DF001DB0E93D002DF6AF /* SleepHistoricalViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6173DF021DB0E93D002DF6AF /* SleepHistoricalViewController.xib */; };
 		6173DF091DB0E993002DF6AF /* StepsHistoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6173DF0C1DB0E993002DF6AF /* StepsHistoryViewController.xib */; };
 		6173DF0A1DB0E993002DF6AF /* StepsHistoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6173DF0C1DB0E993002DF6AF /* StepsHistoryViewController.xib */; };
+		61879C291DC03BBD0089F1E5 /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66A0E0761DBF6C08001C0C67 /* City.swift */; };
 		61E4DF1D1DB85C9800DDA737 /* FindPhonePacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E4DF1C1DB85C9800DDA737 /* FindPhonePacket.swift */; };
 		61E4DF1F1DB8749700DDA737 /* SyncStepsToServiceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E4DF1E1DB8749700DDA737 /* SyncStepsToServiceRequest.swift */; };
 		61E4DF211DB898F700DDA737 /* SyncSleepToServiceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E4DF201DB898F700DDA737 /* SyncSleepToServiceRequest.swift */; };
@@ -687,7 +664,6 @@
 		66A0E07C1DBF6C08001C0C67 /* AddWorldClockViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 66A0E0701DBF6C08001C0C67 /* AddWorldClockViewController.xib */; };
 		66A0E07D1DBF6C08001C0C67 /* WorldClockDatabaseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66A0E0721DBF6C08001C0C67 /* WorldClockDatabaseHelper.swift */; };
 		66A0E07E1DBF6C08001C0C67 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66A0E0741DBF6C08001C0C67 /* LocationManager.swift */; };
-		66A0E07F1DBF6C08001C0C67 /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66A0E0761DBF6C08001C0C67 /* City.swift */; };
 		66A0E0801DBF6C08001C0C67 /* Timezone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66A0E0771DBF6C08001C0C67 /* Timezone.swift */; };
 		66A0E0811DBF6C08001C0C67 /* SearchCityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66A0E0791DBF6C08001C0C67 /* SearchCityViewController.swift */; };
 		66A0E0821DBF6C08001C0C67 /* SearchCityViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 66A0E07A1DBF6C08001C0C67 /* SearchCityViewController.xib */; };
@@ -717,19 +693,6 @@
 		9E98FB351C46405800BAB700 /* TutorialFiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E98FB341C46405800BAB700 /* TutorialFiveViewController.swift */; };
 		9E98FB371C4640AF00BAB700 /* TutorialSevenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E98FB361C4640AF00BAB700 /* TutorialSevenViewController.swift */; };
 		9E98FB3D1C46434100BAB700 /* TutorialSixViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E98FB3C1C46434100BAB700 /* TutorialSixViewController.swift */; };
-		CB690E3B1DBF44B5003AD46C /* AddWorldClockViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CB690E3A1DBF44B5003AD46C /* AddWorldClockViewController.xib */; };
-		CB690E3F1DBF4714003AD46C /* SearchCityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB690E3D1DBF4714003AD46C /* SearchCityViewController.swift */; };
-		CB690E401DBF4714003AD46C /* SearchCityViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CB690E3E1DBF4714003AD46C /* SearchCityViewController.xib */; };
-		CB690E431DBF4822003AD46C /* WorldClockDidSelectedDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB690E421DBF4822003AD46C /* WorldClockDidSelectedDelegate.swift */; };
-		CB690E5D1DBF4DC6003AD46C /* Duration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007865EB1D91006F00F33AEA /* Duration.swift */; };
-		CB690E5F1DBF4DD1003AD46C /* Int+Timepiece.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007865EC1D91006F00F33AEA /* Int+Timepiece.swift */; };
-		CB690E601DBF4DD1003AD46C /* NSCalendar+Timepiece.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007865ED1D91006F00F33AEA /* NSCalendar+Timepiece.swift */; };
-		CB690E611DBF4DD1003AD46C /* CalendarComponent+Timepiece.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007865EE1D91006F00F33AEA /* CalendarComponent+Timepiece.swift */; };
-		CB690E631DBF4DD1003AD46C /* NSDateComponents+Timepiece.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007865F01D91006F00F33AEA /* NSDateComponents+Timepiece.swift */; };
-		CB690E641DBF4DD1003AD46C /* NSTimeInterval+Timepiece.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007865F11D91006F00F33AEA /* NSTimeInterval+Timepiece.swift */; };
-		CB690E651DBF4DD1003AD46C /* String+Timepiece.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007865F21D91006F00F33AEA /* String+Timepiece.swift */; };
-		CB690E661DBF4E4E003AD46C /* WorldClockUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB690E451DBF48C7003AD46C /* WorldClockUtil.swift */; };
-		CB690E671DBF4E4F003AD46C /* WorldClockUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB690E451DBF48C7003AD46C /* WorldClockUtil.swift */; };
 		F5A58EFCE1AF535DD4D667CB /* Pods_LunaRTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA6756A2314165C2C74201E8 /* Pods_LunaRTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -973,14 +936,6 @@
 		007865E51D91006F00F33AEA /* SMBasicSegmentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMBasicSegmentView.swift; sourceTree = "<group>"; };
 		007865E61D91006F00F33AEA /* SMSegment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMSegment.swift; sourceTree = "<group>"; };
 		007865E71D91006F00F33AEA /* SMSegmentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMSegmentView.swift; sourceTree = "<group>"; };
-		007865EB1D91006F00F33AEA /* Duration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Duration.swift; sourceTree = "<group>"; };
-		007865EC1D91006F00F33AEA /* Int+Timepiece.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Int+Timepiece.swift"; sourceTree = "<group>"; };
-		007865ED1D91006F00F33AEA /* NSCalendar+Timepiece.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSCalendar+Timepiece.swift"; sourceTree = "<group>"; };
-		007865EE1D91006F00F33AEA /* CalendarComponent+Timepiece.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CalendarComponent+Timepiece.swift"; sourceTree = "<group>"; };
-		007865EF1D91006F00F33AEA /* NSDate+Timepiece.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+Timepiece.swift"; sourceTree = "<group>"; };
-		007865F01D91006F00F33AEA /* NSDateComponents+Timepiece.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDateComponents+Timepiece.swift"; sourceTree = "<group>"; };
-		007865F11D91006F00F33AEA /* NSTimeInterval+Timepiece.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSTimeInterval+Timepiece.swift"; sourceTree = "<group>"; };
-		007865F21D91006F00F33AEA /* String+Timepiece.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Timepiece.swift"; sourceTree = "<group>"; };
 		007E0CAC1D0E5C3E00B0B600 /* ConnectOtherAppsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectOtherAppsCell.swift; sourceTree = "<group>"; };
 		007E0CAD1D0E5C3E00B0B600 /* ConnectOtherAppsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConnectOtherAppsCell.xib; sourceTree = "<group>"; };
 		007F1F501CAA1B630021DF1B /* LocalNotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocalNotification.swift; path = Frameworks/LocalNotification.swift; sourceTree = "<group>"; };
@@ -1149,13 +1104,6 @@
 		57C68BE0457DB1BFF58A2389 /* Pods-LunaR.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LunaR.release.xcconfig"; path = "Pods/Target Support Files/Pods-LunaR/Pods-LunaR.release.xcconfig"; sourceTree = "<group>"; };
 		615093371DBF5BC800E52970 /* SetSunriseAndSunsetRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetSunriseAndSunsetRequest.swift; sourceTree = "<group>"; };
 		615093381DBF5BC800E52970 /* SetWorldClockRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetWorldClockRequest.swift; sourceTree = "<group>"; };
-		615BCC761DBF0F5B000FED20 /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
-		615BCC7A1DBF3FB9000FED20 /* AddWorldClockViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddWorldClockViewController.swift; sourceTree = "<group>"; };
-		615BCC7F1DBF410E000FED20 /* cities.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = cities.json; sourceTree = "<group>"; };
-		615BCC801DBF410E000FED20 /* timezones.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = timezones.json; sourceTree = "<group>"; };
-		615BCC861DBF414C000FED20 /* City.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
-		615BCC871DBF414C000FED20 /* Timezone.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Timezone.swift; sourceTree = "<group>"; };
-		615BCC8C1DBF4177000FED20 /* WorldClockDatabaseHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorldClockDatabaseHelper.swift; sourceTree = "<group>"; };
 		61623DB01DAC77F100C45B19 /* iMaze_v26.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = iMaze_v26.bin; sourceTree = "<group>"; };
 		6173DEF51DB0E90C002DF6AF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/SolarIndicatorController.xib; sourceTree = "<group>"; };
 		6173DEF81DB0E911002DF6AF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/SolarIndicatorController.strings; sourceTree = "<group>"; };
@@ -1711,22 +1659,6 @@
 			);
 			name = SMSegmentView;
 			path = Frameworks/SMSegmentView;
-			sourceTree = "<group>";
-		};
-		007865EA1D91006F00F33AEA /* Timepiece */ = {
-			isa = PBXGroup;
-			children = (
-				007865EB1D91006F00F33AEA /* Duration.swift */,
-				007865EC1D91006F00F33AEA /* Int+Timepiece.swift */,
-				007865ED1D91006F00F33AEA /* NSCalendar+Timepiece.swift */,
-				007865EE1D91006F00F33AEA /* CalendarComponent+Timepiece.swift */,
-				007865EF1D91006F00F33AEA /* NSDate+Timepiece.swift */,
-				007865F01D91006F00F33AEA /* NSDateComponents+Timepiece.swift */,
-				007865F11D91006F00F33AEA /* NSTimeInterval+Timepiece.swift */,
-				007865F21D91006F00F33AEA /* String+Timepiece.swift */,
-			);
-			name = Timepiece;
-			path = Frameworks/Timepiece;
 			sourceTree = "<group>";
 		};
 		007F79731A878D0B006C89E6 /* Resources */ = {
@@ -2382,7 +2314,6 @@
 				665E331C1DADCD7600D0E36D /* MEDWrapper */,
 				0008EE741D93C39A005E127C /* M13Checkbox */,
 				007865E21D91006F00F33AEA /* SMSegmentView */,
-				007865EA1D91006F00F33AEA /* Timepiece */,
 				007865B51D90DBAF00F33AEA /* AutocompleteField */,
 				007865B71D90DBAF00F33AEA /* CircleProgressView */,
 				00AF8D051D224D57009047AC /* NevoAllKeys.swift */,
@@ -3121,6 +3052,7 @@
 				665BD6B41DBEF1D0008C2623 /* LedLightOnOffNevoRequest.swift in Sources */,
 				665BD6B51DBEF1D0008C2623 /* NevoRequest.swift in Sources */,
 				665BD6B61DBEF1D0008C2623 /* ReadBatteryLevelNevoRequest.swift in Sources */,
+				61879C291DC03BBD0089F1E5 /* City.swift in Sources */,
 				665BD6B71DBEF1D0008C2623 /* ReadDailyTracker.swift in Sources */,
 				665BD6B81DBEF1D0008C2623 /* ReadDailyTrackerInfo.swift in Sources */,
 				665BD6B91DBEF1D0008C2623 /* SetAlarmRequest.swift in Sources */,
@@ -3245,8 +3177,6 @@
 				00C826A51DA5E04000ECECEE /* SetingViewController.swift in Sources */,
 				00C826A61DA5E04000ECECEE /* SleepHistoricalView.swift in Sources */,
 				00C826A71DA5E04000ECECEE /* SleepHistoryViewCell.swift in Sources */,
-				6150933B1DBF669900E52970 /* NSDate+Timepiece.swift in Sources */,
-				615BCC881DBF414C000FED20 /* City.swift in Sources */,
 				00C826A81DA5E04000ECECEE /* SleepHistoryViewCell.xib in Sources */,
 				00C826A91DA5E04000ECECEE /* SleepHistoricalViewController.swift in Sources */,
 				00C826AB1DA5E04000ECECEE /* StepGoalSetingController.swift in Sources */,
@@ -3276,7 +3206,6 @@
 				00C826211DA5E01B00ECECEE /* M13CheckboxAnimationPresets.swift in Sources */,
 				00C826221DA5E01B00ECECEE /* M13CheckboxGestureRecognizer.swift in Sources */,
 				00C826231DA5E01C00ECECEE /* M13CheckboxManager.swift in Sources */,
-				66A0E07F1DBF6C08001C0C67 /* City.swift in Sources */,
 				00C826241DA5E01C00ECECEE /* M13CheckboxPathPresets.swift in Sources */,
 				00C826251DA5E01C00ECECEE /* M13CheckboxBounceManager.swift in Sources */,
 				00C8272F1DA61CAF00ECECEE /* FindWatchRequest.swift in Sources */,
@@ -3294,14 +3223,6 @@
 				00C826311DA5E01C00ECECEE /* SMBasicSegmentView.swift in Sources */,
 				00C826321DA5E01C00ECECEE /* SMSegment.swift in Sources */,
 				00C826331DA5E01C00ECECEE /* SMSegmentView.swift in Sources */,
-				00C826341DA5E01C00ECECEE /* Duration.swift in Sources */,
-				00C826351DA5E01C00ECECEE /* Int+Timepiece.swift in Sources */,
-				00C826361DA5E01C00ECECEE /* NSCalendar+Timepiece.swift in Sources */,
-				00C826371DA5E01C00ECECEE /* CalendarComponent+Timepiece.swift in Sources */,
-				00C826381DA5E01C00ECECEE /* NSDate+Timepiece.swift in Sources */,
-				00C826391DA5E01C00ECECEE /* NSDateComponents+Timepiece.swift in Sources */,
-				00C8263A1DA5E01C00ECECEE /* NSTimeInterval+Timepiece.swift in Sources */,
-				00C8263B1DA5E01C00ECECEE /* String+Timepiece.swift in Sources */,
 				00C8263C1DA5E01C00ECECEE /* AutocompleteField.swift in Sources */,
 				00C8263D1DA5E01C00ECECEE /* CircleProgressView.swift in Sources */,
 				00C8263E1DA5E01C00ECECEE /* NevoCircleProgressView.swift in Sources */,
@@ -3418,7 +3339,6 @@
 				0050D60F1C28E0DB004F6F80 /* AddPresetView.swift in Sources */,
 				00321D6D1C98EBB10069BFCC /* AppDelegate.swift in Sources */,
 				00AF8CC81D224CFA009047AC /* StepsModel.swift in Sources */,
-				007865FD1D91006F00F33AEA /* NSDate+Timepiece.swift in Sources */,
 				0050D5FF1C28E0DB004F6F80 /* SelectedNotificationView.swift in Sources */,
 				00AF8CE51D224CFA009047AC /* ConnectionController.swift in Sources */,
 				007865B91D90DBAF00F33AEA /* AutocompleteField.swift in Sources */,
@@ -3431,9 +3351,7 @@
 				0089B0B11D6BFF250041148A /* SetingNotLoginCell.swift in Sources */,
 				00AF8CDA1D224CFA009047AC /* PublicClassTableViewController.swift in Sources */,
 				00C826BE1DA5E9BD00ECECEE /* ActionSheetView.swift in Sources */,
-				007865FF1D91006F00F33AEA /* NSTimeInterval+Timepiece.swift in Sources */,
 				00321D7C1C993C320069BFCC /* LoginController.swift in Sources */,
-				007866001D91006F00F33AEA /* String+Timepiece.swift in Sources */,
 				006DA3101D6ED5C40011E09C /* AnalysisValueCell.swift in Sources */,
 				006A62521D6AA75100458305 /* LineLabel.swift in Sources */,
 				0050D60B1C28E0DB004F6F80 /* AddPresetViewController.swift in Sources */,
@@ -3441,7 +3359,6 @@
 				00AF8CD61D224CFA009047AC /* ValidicRequest.swift in Sources */,
 				0050D6021C28E0DB004F6F80 /* SelectedNotificationTypeController.swift in Sources */,
 				00AF8CEE1D224CFA009047AC /* Utility.swift in Sources */,
-				007865FC1D91006F00F33AEA /* CalendarComponent+Timepiece.swift in Sources */,
 				0008EE941D93C39A005E127C /* M13CheckboxStrokeManager.swift in Sources */,
 				006A62591D6AA76C00458305 /* NewAddAlarmHeader.swift in Sources */,
 				005E468C1D87DBE1009B6E4C /* WatchNamePacket.swift in Sources */,
@@ -3532,14 +3449,12 @@
 				00AF8CC51D224CFA009047AC /* Presets.swift in Sources */,
 				0089B09E1D6BE9410041148A /* InformationController.swift in Sources */,
 				0050D6101C28E0DB004F6F80 /* PresetTableViewCell.swift in Sources */,
-				007865FA1D91006F00F33AEA /* Int+Timepiece.swift in Sources */,
 				006DA3181D6ED6670011E09C /* AnalysisRadarViewCell.swift in Sources */,
 				00AF8CBB1D224CFA009047AC /* NewAlarm.swift in Sources */,
 				0050D6001C28E0DB004F6F80 /* NotificationViewController.swift in Sources */,
 				00AF8CEB1D224CFA009047AC /* NevoOTAModeProfile.swift in Sources */,
 				00AF8CE71D224CFA009047AC /* ConnectionManager.swift in Sources */,
 				0050D5EF1C28E0DB004F6F80 /* MyNevoController.swift in Sources */,
-				007865FE1D91006F00F33AEA /* NSDateComponents+Timepiece.swift in Sources */,
 				0008EE931D93C39A005E127C /* M13CheckboxSpiralManager.swift in Sources */,
 				007865F41D91006F00F33AEA /* SMBasicSegment.swift in Sources */,
 				00AF8CB41D224CFA009047AC /* CaloriesToHK.swift in Sources */,
@@ -3579,10 +3494,8 @@
 				006DA9FE1D80F2A600B70C0F /* AppDelegate-Extension.swift in Sources */,
 				005E468A1D879FB5009B6E4C /* GetWatchName.swift in Sources */,
 				00AF8CF31D224CFA009047AC /* NevoPacket.swift in Sources */,
-				007865FB1D91006F00F33AEA /* NSCalendar+Timepiece.swift in Sources */,
 				00AF8CDD1D224CFA009047AC /* BalloonMarker.swift in Sources */,
 				00AF8D031D224CFA009047AC /* WriteSettingRequest.swift in Sources */,
-				007865F91D91006F00F33AEA /* Duration.swift in Sources */,
 				0050D6971C28E1CD004F6F80 /* AddAlarmView.swift in Sources */,
 				61E4DF261DB8C2D500DDA737 /* ForgotPasswordRequest.swift in Sources */,
 				00F0C34B1C893EE6005888A7 /* AlarmTypeController.swift in Sources */,

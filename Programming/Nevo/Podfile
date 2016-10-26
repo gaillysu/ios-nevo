@@ -23,7 +23,8 @@ target 'LunaR' do
   pod 'iOSDFULibrary',branch:'swift3',:git => 'https://github.com/NordicSemiconductor/IOS-Pods-DFU-Library.git'
   pod 'PopupController'
   pod 'SnapKit', '~> 3.0.1'
-  
+  pod 'Solar'
+  pod 'Timepiece'
   target 'LunaRTests' do
       
     inherit! :search_paths
@@ -58,6 +59,7 @@ target 'Nevo' do
     pod 'PopupController'
     pod 'SnapKit', '~> 3.0.1'
     pod 'Solar'
+    pod 'Timepiece'
   target 'NevoTests' do
     inherit! :search_paths
     # Pods for testing
