@@ -7,7 +7,9 @@
 //
 
 import UIKit
-
+import Solar
+import RealmSwift
+import Timepiece
 
 /// see the document commn
 class SunriseSetView:UIView {
@@ -58,6 +60,10 @@ class SunriseSetView:UIView {
         weekdayLabel.text = weekday
         dateLabel.text = date
     }
+    
+    func worldClocksReload() {
+        worldClocksTableView.reloadData()
+    }
 }
 
 extension SunriseSetView:UITableViewDataSource, UITableViewDelegate {
@@ -68,12 +74,42 @@ extension SunriseSetView:UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell:WorldClockCell = tableView.dequeueReusableCell(withIdentifier: WorldClockCellReuseID, for: indexPath) as! WorldClockCell
-        cell.setTime(worldTime: "Shanghai 05:00", sunriseTime: "05:00 AM", sunsetTime: "05:00 PM")
+        let realm = try! Realm()
+        if indexPath.row == 1 {
+            let citiesArray:[City] = Array(realm.objects(City.self).filter("selected = true"))
+            let city = citiesArray[0]
+            
+            let solar = Solar(latitude: city.lat,longitude: city.lng)
+            let sunrise = solar!.sunrise
+            let sunset = solar!.sunset
+            
+            let sunriseString:String = sunrise!.stringFromFormat("HH:mm a")
+            let sunsetString:String = sunset!.stringFromFormat("HH:mm a")
+            
+            cell.setTime(worldTime: city.name, sunriseTime: sunriseString, sunsetTime: sunsetString)
+        }else{
+            
+            let solar = Solar(latitude: AppDelegate.getAppDelegate().getLatitude(),longitude: AppDelegate.getAppDelegate().getLongitude())
+            let sunrise = solar!.sunrise
+            let sunset = solar!.sunset
+            
+            let sunriseString:String = sunrise!.stringFromFormat("HH:mm a")
+            let sunsetString:String = sunset!.stringFromFormat("HH:mm a")
+            
+            let now = Date()
+            let timeZoneNameData = now.timeZone.name.characters.split{$0 == "/"}.map(String.init)
+            if timeZoneNameData.count >= 2 {
+                cell.setTime(worldTime: timeZoneNameData[1].replacingOccurrences(of: "_", with: " "), sunriseTime: sunriseString, sunsetTime: sunsetString)
+            }
+            
+            
+        }
+        
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 80
+        return 60
     }
 }
 

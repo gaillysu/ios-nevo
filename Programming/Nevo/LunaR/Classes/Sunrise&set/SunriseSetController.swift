@@ -26,4 +26,9 @@ class SunriseSetController: PublicClassController {
         newView.setDialTime(dateComponents: dd)
         newView.setTime(weekday: "Yesterday", date: "Saturday, 15 October, 2016")
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        newView.worldClocksReload()
+    }
 }
