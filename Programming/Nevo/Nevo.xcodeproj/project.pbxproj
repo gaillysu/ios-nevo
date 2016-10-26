@@ -605,6 +605,7 @@
 		6173DF091DB0E993002DF6AF /* StepsHistoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6173DF0C1DB0E993002DF6AF /* StepsHistoryViewController.xib */; };
 		6173DF0A1DB0E993002DF6AF /* StepsHistoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6173DF0C1DB0E993002DF6AF /* StepsHistoryViewController.xib */; };
 		61879C291DC03BBD0089F1E5 /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66A0E0761DBF6C08001C0C67 /* City.swift */; };
+		61879C2A1DC044D80089F1E5 /* SearchCityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66A0E0791DBF6C08001C0C67 /* SearchCityViewController.swift */; };
 		61E4DF1D1DB85C9800DDA737 /* FindPhonePacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E4DF1C1DB85C9800DDA737 /* FindPhonePacket.swift */; };
 		61E4DF1F1DB8749700DDA737 /* SyncStepsToServiceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E4DF1E1DB8749700DDA737 /* SyncStepsToServiceRequest.swift */; };
 		61E4DF211DB898F700DDA737 /* SyncSleepToServiceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E4DF201DB898F700DDA737 /* SyncSleepToServiceRequest.swift */; };
@@ -3429,6 +3430,7 @@
 				006A62741D6AB44A00458305 /* StepsTitleView.swift in Sources */,
 				00AF8CD31D224CFA009047AC /* Sleep.swift in Sources */,
 				007865F61D91006F00F33AEA /* SMSegment.swift in Sources */,
+				61879C2A1DC044D80089F1E5 /* SearchCityViewController.swift in Sources */,
 				00AF8CFA1D224CFA009047AC /* ReadDailyTrackerInfo.swift in Sources */,
 				0050D6931C28E1CD004F6F80 /* AddAlarmSystemCell.swift in Sources */,
 				00AF8CDF1D224CFA009047AC /* DatePickerView.swift in Sources */,
