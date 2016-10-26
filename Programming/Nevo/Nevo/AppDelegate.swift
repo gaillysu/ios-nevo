@@ -20,6 +20,9 @@ import SwiftEventBus
 import UIColor_Hex_Swift
 import XCGLogger
 import SwiftyTimer
+import CoreLocation
+import Solar
+import Timepiece
 
 let nevoDBDFileURL:String = "nevoDBName";
 let nevoDBNames:String = "nevo.sqlite";
@@ -49,6 +52,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
     fileprivate var watchModel:String = "Paris"
     fileprivate var isSync:Bool = true; // syc state
     fileprivate var getWacthNameTimer:Timer?
+    
+    fileprivate var longitude:Double = 0
+    fileprivate var latitude:Double = 0
     
     var isFirsttimeLaunch: Bool {
         get {
@@ -684,3 +690,50 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
         }
     }
 }
+
+extension AppDelegate {
+    
+    func startLocation() {
+        NSLog("AuthorizationStatus:\(LOCATION_MANAGER.gpsAuthorizationStatus)")
+        if LOCATION_MANAGER.gpsAuthorizationStatus>2 {
+            LOCATION_MANAGER.startLocation()
+            LOCATION_MANAGER.didChangeAuthorization = { status in
+                let states:CLAuthorizationStatus = status as CLAuthorizationStatus
+                XCGLogger.default.debug("Location didChangeAuthorization:\(states.rawValue)")
+            }
+            
+            LOCATION_MANAGER.didUpdateLocations = { location in
+                let locationArray = location as [CLLocation]
+                XCGLogger.default.debug("Location didUpdateLocations:\(locationArray)")
+                self.longitude = locationArray.last!.coordinate.longitude
+                self.latitude = locationArray.last!.coordinate.latitude
+                NSLog("longitude:\(self.longitude),latitude:\(self.latitude)")
+                self.setSolar()
+                
+            }
+            
+            LOCATION_MANAGER.didFailWithError = { error in
+                XCGLogger.default.debug("Location didFailWithError:\(error)")
+            }
+        }
+    }
+    
+    func setSolar() {
+        if longitude != 0 && latitude != 0 {
+            let solar = Solar(latitude: latitude,
+                              longitude: longitude)
+            let sunrise = solar!.sunrise
+            let sunset = solar!.sunset
+            self.setSunriseAndSunset(sunrise: sunrise!, sunset: sunset!)
+        }
+    }
+    
+    func getLongitude() -> Double {
+        return longitude;
+    }
+    
+    func getLatitude() -> Double {
+        return latitude;
+    }
+}
+
