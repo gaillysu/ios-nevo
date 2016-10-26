@@ -18,6 +18,8 @@ class AddWorldClockViewController: UIViewController, UITableViewDelegate, UITabl
     fileprivate var searchCityController:SearchCityViewController = SearchCityViewController()
     @IBOutlet weak var cityTableView: UITableView!
     fileprivate let realm:Realm
+    var didSeletedCityDelegate:WorldClockDidSelectedDelegate?
+    
     
     init() {
         realm = try! Realm() 
@@ -199,6 +201,7 @@ extension AddWorldClockViewController:WorldClockDidSelectedDelegate {
             city.selected = true
         })
         self.searchController?.isActive = false
+        didSeletedCityDelegate?.didSelectedLocalTimeZone(city.id)
         dismiss(animated: true, completion: nil)
     }
 }

@@ -112,7 +112,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
             UserDefaults.standard.set(false, forKey: "firstDatabase")
         }
         
-        WorldClockDatabaseHelper().setup()
+        DispatchQueue.global(qos: .background).async {
+            WorldClockDatabaseHelper().setup()
+        }
         
         /**
          Initialize the BLE Manager

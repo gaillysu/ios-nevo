@@ -362,7 +362,7 @@ class SetingViewController: UIViewController,ButtonManagerCallBack,UIAlertViewDe
         }
 
         if AppDelegate.getAppDelegate().getMconnectionController()!.getSoftwareVersion().integerValue > 25 {
-            AppDelegate.getAppDelegate().sendRequest(FindWatchRequest(ledtype: FindWatchLEDType.allColorLED, motorOnOff: true))
+            AppDelegate.getAppDelegate().sendRequest(FindWatchRequest(ledtype: FindWatchLEDType.allWhiteLED, motorOnOff: true))
         }else{
             AppDelegate.getAppDelegate().sendRequest(LedLightOnOffNevoRequest(ledpattern: 0x3F0000, motorOnOff: true))
         }

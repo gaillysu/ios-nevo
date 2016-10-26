@@ -13,22 +13,28 @@ import CVCalendar
 import SwiftEventBus
 import LTNavigationBar
 import SnapKit
+import RealmSwift
+import Solar
 
 let SELECTED_CALENDAR_NOTIFICATION = "SELECTED_CALENDAR_NOTIFICATION"
 private let CALENDAR_VIEW_TAG = 1800
 
 class PageViewController: UIPageViewController,UIActionSheetDelegate {
+    fileprivate var realm:Realm?
     fileprivate var goalArray:[Int] = []
     var calendarView:CVCalendarView?
     var menuView:CVCalendarMenuView?
     var titleView:StepsTitleView?
     fileprivate var controllerIndex:Int = 0
+    fileprivate var selectedController:UIViewController?
     
     fileprivate var pagingControllers: [UIViewController] = []
 
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        realm = try! Realm()
+        
         let viewController1 = StepGoalSetingController()
         viewController1.view.tag = 0
         viewController1.view.backgroundColor = UIColor.white
@@ -43,6 +49,7 @@ class PageViewController: UIPageViewController,UIActionSheetDelegate {
         viewController4.view.backgroundColor = UIColor.white
         
         pagingControllers = [viewController1, viewController2,viewController3,viewController4]
+        selectedController = pagingControllers[controllerIndex]
         
         if UserDefaults.standard.objectIsForced(forKey: "WATCHNAME_KEY") {
             let value:Int = UserDefaults.standard.object(forKey: "WATCHNAME_KEY") as! Int
@@ -77,7 +84,6 @@ class PageViewController: UIPageViewController,UIActionSheetDelegate {
         self.delegate = self
         self.dataSource = self;
         self.setViewControllers([pagingControllers[0]], direction: UIPageViewControllerNavigationDirection.forward, animated: true) { (fines) in
-            
         }
         
         if !AppTheme.isTargetLunaR_OR_Nevo(){
@@ -107,41 +113,50 @@ class PageViewController: UIPageViewController,UIActionSheetDelegate {
     }
     
     func rightBarButtonAction(_ rightBar:UIBarButtonItem){
-        let actionSheet:ActionSheetView = ActionSheetView(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.actionSheet)
-        actionSheet.isSetSubView = true;
-        
-        let array:NSArray = Presets.getAll()
-        for pArray in array {
-            let model:Presets = pArray as! Presets
-            if(model.status){
-                let titleString:String = " \(model.steps) " + NSLocalizedString("steps_unit", comment: "")
-                let alertAction2:AlertAction = AlertAction(title: titleString, style: UIAlertActionStyle.default) { (action:UIAlertAction) -> Void in
-                    if((action.title! as NSString).isEqual(to: titleString)){
-                        UserDefaults.standard.set(model.steps, forKey: NUMBER_OF_STEPS_GOAL_KEY)
-                        self.setGoal(NumberOfStepsGoal(steps: model.steps))
-                    }
-                }
-                if !AppTheme.isTargetLunaR_OR_Nevo() {
-                    alertAction2.setValue(UIColor.getBaseColor(), forKey: "titleTextColor")
-                }else{
-                    alertAction2.setValue(AppTheme.NEVO_SOLAR_YELLOW(), forKey: "titleTextColor")
-                }
-                actionSheet.addAction(alertAction2)
-            }
-        }
-        
-        let alertAction:AlertAction = AlertAction(title: NSLocalizedString("Cancel", comment: ""), style: UIAlertActionStyle.cancel, handler: nil)
-        
-        if !AppTheme.isTargetLunaR_OR_Nevo() {
-            alertAction.setValue(UIColor.getBaseColor(), forKey: "titleTextColor")
+        if selectedController!.isKind(of: SunriseSetController.self) {
+            let addWorldClock:AddWorldClockViewController = AddWorldClockViewController()
+            addWorldClock.didSeletedCityDelegate = self
+            addWorldClock.hidesBottomBarWhenPushed = true
+            let nav:UINavigationController = UINavigationController(rootViewController: addWorldClock)
+            self.present(nav, animated: true, completion: nil)
+            //self.navigationController?.pushViewController(addWorldClock, animated: true)
         }else{
-            alertAction.setValue(AppTheme.NEVO_SOLAR_YELLOW(), forKey: "titleTextColor")
+            let actionSheet:ActionSheetView = ActionSheetView(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.actionSheet)
+            actionSheet.isSetSubView = true;
+            
+            let array:NSArray = Presets.getAll()
+            for pArray in array {
+                let model:Presets = pArray as! Presets
+                if(model.status){
+                    let titleString:String = " \(model.steps) " + NSLocalizedString("steps_unit", comment: "")
+                    let alertAction2:AlertAction = AlertAction(title: titleString, style: UIAlertActionStyle.default) { (action:UIAlertAction) -> Void in
+                        if((action.title! as NSString).isEqual(to: titleString)){
+                            UserDefaults.standard.set(model.steps, forKey: NUMBER_OF_STEPS_GOAL_KEY)
+                            self.setGoal(NumberOfStepsGoal(steps: model.steps))
+                        }
+                    }
+                    if !AppTheme.isTargetLunaR_OR_Nevo() {
+                        alertAction2.setValue(UIColor.getBaseColor(), forKey: "titleTextColor")
+                    }else{
+                        alertAction2.setValue(AppTheme.NEVO_SOLAR_YELLOW(), forKey: "titleTextColor")
+                    }
+                    actionSheet.addAction(alertAction2)
+                }
+            }
+            
+            let alertAction:AlertAction = AlertAction(title: NSLocalizedString("Cancel", comment: ""), style: UIAlertActionStyle.cancel, handler: nil)
+            
+            if !AppTheme.isTargetLunaR_OR_Nevo() {
+                alertAction.setValue(UIColor.getBaseColor(), forKey: "titleTextColor")
+            }else{
+                alertAction.setValue(AppTheme.NEVO_SOLAR_YELLOW(), forKey: "titleTextColor")
+            }
+            //alertAction.setValue(UIImage(named: "google"), forKey: "Image")
+            //alertAction.setValue(true, forKey: "checked")
+            actionSheet.addAction(alertAction)
+            
+            self.present(actionSheet, animated: true, completion:nil)
         }
-        //alertAction.setValue(UIImage(named: "google"), forKey: "Image")
-        //alertAction.setValue(true, forKey: "checked")
-        actionSheet.addAction(alertAction)
-        
-        self.present(actionSheet, animated: true, completion:nil)
     }
     
     func setGoal(_ goal:Goal) {
@@ -154,6 +169,26 @@ class PageViewController: UIPageViewController,UIActionSheetDelegate {
             let banner = MEDBanner(title: NSLocalizedString("no_watch_connected", comment: ""), subtitle: nil, image: nil, backgroundColor: AppTheme.NEVO_SOLAR_YELLOW())
             banner.dismissesOnTap = true
             banner.show(duration: 2.0)
+        }
+        
+    }
+}
+
+extension PageViewController:WorldClockDidSelectedDelegate{
+    func didSelectedLocalTimeZone(_ cityId:Int){
+        let citiesArray:[City] = Array(realm!.objects(City.self).filter("selected = true"))
+        let city = citiesArray[0]
+        
+        let solar = Solar(latitude: city.lat,
+                          longitude: city.lng)
+        let sunrise = solar!.sunrise
+        let sunset = solar!.sunset
+        let sunriseString:String = sunrise!.stringFromFormat("yyyy-MM-dd HH-mm-ss")
+        let sunsetString:String = sunset!.stringFromFormat("yyyy-MM-dd HH-mm-ss")
+        let offset = String(format: "%.0f", (sunrise!.timeIntervalSince1970-sunset!.timeIntervalSince1970)/3600)
+        if AppDelegate.getAppDelegate().isConnected() {
+            let setWordClock:SetWorldClockRequest = SetWorldClockRequest(offset: offset.toInt())
+            AppDelegate.getAppDelegate().sendRequest(setWordClock)
         }
         
     }
@@ -199,26 +234,27 @@ extension PageViewController {
 }
 
 extension PageViewController: UIPageViewControllerDataSource,UIPageViewControllerDelegate {
-    func pageViewController(_ pageViewController: UIPageViewController, willTransitionTo pendingViewControllers: [UIViewController]){
-        NSLog("pendingViewControllers:\(pendingViewControllers)")
-    }
-    
     func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool){
-        NSLog("transitionCompleted:\(completed)")
+        selectedController = previousViewControllers.first
     }
     
     //返回当前页面的下一个页面
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
+        controllerIndex+=1
         self.setCurrentPageIndex(viewController.view.tag)
         if viewController.isKind(of: StepGoalSetingController.self) {
-            return pagingControllers[1]
+            selectedController = pagingControllers[1]
+            return selectedController
         }else if viewController.isKind(of: StepsHistoryViewController.self) {
-            return pagingControllers[2]
+            selectedController = pagingControllers[2]
+            return selectedController
         }else if viewController.isKind(of: SleepHistoricalViewController.self) {
-            return pagingControllers[3]
+            selectedController = pagingControllers[3]
+            return selectedController
         }else if viewController.isKind(of: SunriseSetController.self) {
             if pagingControllers.count>4 {
-                return pagingControllers[4]
+                selectedController = pagingControllers[4]
+                return selectedController
             }
             return nil
         }
@@ -229,15 +265,20 @@ extension PageViewController: UIPageViewControllerDataSource,UIPageViewControlle
     
     //返回当前页面的上一个页面
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
+        controllerIndex-=1
         self.setCurrentPageIndex(viewController.view.tag)
         if viewController.isKind(of: SolarIndicatorController.self){
-            return pagingControllers[3]
+            selectedController = pagingControllers[3]
+            return selectedController
         }else if viewController.isKind(of: SunriseSetController.self) {
-            return pagingControllers[2]
+            selectedController = pagingControllers[2]
+            return selectedController
         }else if viewController.isKind(of: SleepHistoricalViewController.self) {
-            return pagingControllers[1]
+            selectedController = pagingControllers[1]
+            return selectedController
         }else if viewController.isKind(of: StepsHistoryViewController.self) {
-            return pagingControllers[0]
+            selectedController = pagingControllers[0]
+            return selectedController
         }
         return nil
     }
