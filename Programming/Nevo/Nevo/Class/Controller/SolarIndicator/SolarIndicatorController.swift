@@ -15,6 +15,7 @@ class SolarIndicatorController: PublicClassController {
 
     @IBOutlet weak var textCollection: UICollectionView!
     @IBOutlet weak var pieChartView: PieChartView!
+    @IBOutlet weak var titleLabel: UILabel!
 
     fileprivate var onTitle:[String] = [NSLocalizedString("timer_on_battery", comment: ""),NSLocalizedString("timer_on_solar", comment: "")]
     fileprivate var onValue:[Double] = [130,00]
@@ -66,6 +67,7 @@ class SolarIndicatorController: PublicClassController {
             textCollection.backgroundColor = UIColor.getGreyColor()
             pieChartView.backgroundColor = UIColor.getGreyColor()
             self.view.backgroundColor = UIColor.getGreyColor()
+            titleLabel.textColor = UIColor.white
         }else{
             textCollection.backgroundColor = UIColor.white
             pieChartView.backgroundColor = UIColor.white

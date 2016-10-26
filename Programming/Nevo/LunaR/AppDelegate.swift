@@ -280,10 +280,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
             
             if(packet.getHeader() == WriteSettingRequest.HEADER()) {
                 //step4:
-                self.SetCardio()
+                self.setSolar()
             }
             
-            if(packet.getHeader() == SetCardioRequest.HEADER()) {
+            if(packet.getHeader() == SetSunriseAndSunsetRequest.HEADER()) {
                 //step5: sync the notification setting, if remove nevo's battery, the nevo notification reset, so here need sync it
                 var mNotificationSettingArray:[NotificationSetting] = []
                 let notArray:NSArray = UserNotification.getAll()
@@ -346,8 +346,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
             if(packet.getHeader() == SetAlarmRequest.HEADER()) {
                 //start sync data
                 self.syncActivityData()
-                //self.getWatchName()
-                self.setSolar()
             }
             
             if(packet.getHeader() == ReadDailyTrackerInfo.HEADER()) {
@@ -729,6 +727,7 @@ extension AppDelegate {
                 self.longitude = locationArray.last!.coordinate.longitude
                 self.latitude = locationArray.last!.coordinate.latitude
                 NSLog("longitude:\(self.longitude),latitude:\(self.latitude)")
+                self.setSolar()
                 
             }
             
@@ -746,5 +745,13 @@ extension AppDelegate {
             let sunset = solar!.sunset
             self.setSunriseAndSunset(sunrise: sunrise!, sunset: sunset!)
         }
+    }
+    
+    func getLongitude() -> Double {
+        return longitude;
+    }
+    
+    func getLatitude() -> Double {
+        return latitude;
     }
 }

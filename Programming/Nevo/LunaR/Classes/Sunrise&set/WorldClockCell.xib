@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -13,18 +13,18 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="164" id="jAc-Ez-7Cj" customClass="WorldClockCell" customModule="LunaR" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="456" height="164"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="86" id="jAc-Ez-7Cj" customClass="WorldClockCell" customModule="LunaR" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="456" height="86"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jAc-Ez-7Cj" id="szy-ey-EXR">
-                <frame key="frameInset" width="456" height="163"/>
+                <frame key="frameInset" width="456" height="85"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Local Time:  05:30" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WOR-In-b2T">
                         <constraints>
-                            <constraint firstAttribute="height" constant="25" id="7eb-zd-Aju"/>
+                            <constraint firstAttribute="height" constant="20" id="7eb-zd-Aju"/>
                         </constraints>
-                        <fontDescription key="fontDescription" name="Raleway" family="Raleway" pointSize="23"/>
+                        <fontDescription key="fontDescription" name="Raleway" family="Raleway" pointSize="17"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -33,7 +33,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ctm-HR-Z5Z">
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="05:44 AM" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rEs-xb-Nwh">
-                                        <fontDescription key="fontDescription" name="Raleway" family="Raleway" pointSize="23"/>
+                                        <fontDescription key="fontDescription" name="Raleway" family="Raleway" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -56,7 +56,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="J5g-oa-q2V">
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="05:39 PM" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qmf-aT-L78">
-                                        <fontDescription key="fontDescription" name="Raleway" family="Raleway" pointSize="23"/>
+                                        <fontDescription key="fontDescription" name="Raleway" family="Raleway" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -106,7 +106,7 @@
                 <outlet property="sunsetLabel" destination="Qmf-aT-L78" id="kJR-bQ-6TN"/>
                 <outlet property="worldTimeLabel" destination="WOR-In-b2T" id="76p-Lh-0j9"/>
             </connections>
-            <point key="canvasLocation" x="51" y="56"/>
+            <point key="canvasLocation" x="51" y="17"/>
         </tableViewCell>
     </objects>
     <resources>

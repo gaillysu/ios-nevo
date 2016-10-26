@@ -25,14 +25,18 @@ class PageViewController: UIPageViewController,UIActionSheetDelegate {
     var calendarView:CVCalendarView?
     var menuView:CVCalendarMenuView?
     var titleView:StepsTitleView?
-    fileprivate var controllerIndex:Int = 0
     fileprivate var selectedController:UIViewController?
-    
     fileprivate var pagingControllers: [UIViewController] = []
 
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        if((UIDevice.current.systemVersion as NSString).floatValue>7.0){
+            self.edgesForExtendedLayout = UIRectEdge();
+            self.extendedLayoutIncludesOpaqueBars = false;
+            self.modalPresentationCapturesStatusBarAppearance = false;
+        }
+        
         realm = try! Realm()
         
         let viewController1 = StepGoalSetingController()
@@ -49,22 +53,16 @@ class PageViewController: UIPageViewController,UIActionSheetDelegate {
         viewController4.view.backgroundColor = UIColor.white
         
         pagingControllers = [viewController1, viewController2,viewController3,viewController4]
-        selectedController = pagingControllers[controllerIndex]
+        selectedController = pagingControllers[0]
         
-        if UserDefaults.standard.objectIsForced(forKey: "WATCHNAME_KEY") {
+        if UserDefaults.standard.object(forKey: "WATCHNAME_KEY") != nil {
             let value:Int = UserDefaults.standard.object(forKey: "WATCHNAME_KEY") as! Int
             if value>1 {
                 let viewController5 = SolarIndicatorController()
                 viewController5.view.tag = 4
                 viewController5.view.backgroundColor = UIColor.white
-                pagingControllers.append(viewController4)
+                pagingControllers.append(viewController5)
             }
-        }
-        
-        if((UIDevice.current.systemVersion as NSString).floatValue>7.0){
-            self.edgesForExtendedLayout = UIRectEdge();
-            self.extendedLayoutIncludesOpaqueBars = false;
-            self.modalPresentationCapturesStatusBarAppearance = false;
         }
         
         let rightItem:UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "edit_icon"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(rightBarButtonAction(_:)))
@@ -183,8 +181,6 @@ extension PageViewController:WorldClockDidSelectedDelegate{
                           longitude: city.lng)
         let sunrise = solar!.sunrise
         let sunset = solar!.sunset
-        let sunriseString:String = sunrise!.stringFromFormat("yyyy-MM-dd HH-mm-ss")
-        let sunsetString:String = sunset!.stringFromFormat("yyyy-MM-dd HH-mm-ss")
         let offset = String(format: "%.0f", (sunrise!.timeIntervalSince1970-sunset!.timeIntervalSince1970)/3600)
         if AppDelegate.getAppDelegate().isConnected() {
             let setWordClock:SetWorldClockRequest = SetWorldClockRequest(offset: offset.toInt())
@@ -197,7 +193,7 @@ extension PageViewController:WorldClockDidSelectedDelegate{
 extension PageViewController {
     func bulidPageControl() {
         let pageControl = UIPageControl(frame: CGRect(x: 100, y: UIScreen.main.bounds.size.height-44, width: 100, height: 20))
-        pageControl.numberOfPages = 4
+        pageControl.numberOfPages = pagingControllers.count
         pageControl.currentPage = 0
         pageControl.pageIndicatorTintColor = UIColor.lightGray
         pageControl.currentPageIndicatorTintColor = AppTheme.NEVO_SOLAR_YELLOW()
@@ -240,7 +236,6 @@ extension PageViewController: UIPageViewControllerDataSource,UIPageViewControlle
     
     //返回当前页面的下一个页面
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
-        controllerIndex+=1
         self.setCurrentPageIndex(viewController.view.tag)
         if viewController.isKind(of: StepGoalSetingController.self) {
             selectedController = pagingControllers[1]
@@ -265,7 +260,6 @@ extension PageViewController: UIPageViewControllerDataSource,UIPageViewControlle
     
     //返回当前页面的上一个页面
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
-        controllerIndex-=1
         self.setCurrentPageIndex(viewController.view.tag)
         if viewController.isKind(of: SolarIndicatorController.self){
             selectedController = pagingControllers[3]
