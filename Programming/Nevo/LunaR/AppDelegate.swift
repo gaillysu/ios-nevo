@@ -20,6 +20,10 @@ import SwiftEventBus
 import UIColor_Hex_Swift
 import XCGLogger
 import SwiftyTimer
+import CoreLocation
+import Solar
+import Timepiece
+
 
 let nevoDBDFileURL:String = "nevoDBName";
 let nevoDBNames:String = "nevo.sqlite";
@@ -49,6 +53,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
     fileprivate var watchModel:String = "Paris"
     fileprivate var isSync:Bool = true; // syc state
     fileprivate var getWacthNameTimer:Timer?
+    
+    fileprivate var longitude:Double = 0
+    fileprivate var latitude:Double = 0
     
     var isFirsttimeLaunch: Bool {
         get {
@@ -130,6 +137,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
         iRate.sharedInstance().usesPerWeekForPrompt = 1
         iRate.sharedInstance().previewMode = true
         iRate.sharedInstance().promptAtLaunch = false
+        
+        //start Location
+        self.startLocation()
         return true
     }
     
@@ -256,6 +266,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
             }
             
             if(packet.getHeader() == SetRTCRequest.HEADER()) {
+                //SetSunriseAndSunsetRequest
                 //setp2:start set user profile
                 self.SetProfile()
             }
@@ -334,6 +345,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                 //start sync data
                 self.syncActivityData()
                 //self.getWatchName()
+                self.setSolar()
             }
             
             if(packet.getHeader() == ReadDailyTrackerInfo.HEADER()) {
@@ -363,7 +375,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                 let range2: Range = timeStr.index(timeStr.startIndex, offsetBy: 6)..<timeStr.index(timeStr.startIndex, offsetBy: 8)
                 let day:String = timeStr.substring(with: range2)
                 
-                let timerInterval:Date = Date.date(year.toInt(), month: month.toInt(), day: day.toInt())
+                let timerInterval:Date = Date.date(year: year.toInt(), month: month.toInt(), day: day.toInt())
                 let timerInter:TimeInterval = timerInterval.timeIntervalSince1970
                 
                 _ = UserSteps.updateTable()
@@ -495,13 +507,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                     
                     let now:Date = Date()
                     let saveDay:Date = savedDailyHistory[Int(currentDay)].Date as Date
-                    let nowDate:Date = Date.date(now.year, month: now.month, day: now.day, hour: now.hour, minute: 0, second: 0)
-                    let saveDate:Date = Date.date(saveDay.year, month: saveDay.month, day: saveDay.day, hour: saveDay.hour, minute: 0, second: 0)
+                    let nowDate:Date = Date.date(year: now.year, month: now.month, day: now.day, hour: now.hour, minute: 0, second: 0)
+                    let saveDate:Date = Date.date(year: saveDay.year, month: saveDay.month, day: saveDay.day, hour: saveDay.hour, minute: 0, second: 0)
                     
                     // to HK Running
                     for index:Int in 0 ..< thispacket.getHourlyRunningDistance().count {
                         if(thispacket.getHourlyRunningDistance()[index] > 0) {
-                            hk.writeDataPoint(RunningToHK(distance:Double(thispacket.getHourlyRunningDistance()[index]), date:Date.date(saveDay.year, month: saveDay.month, day: saveDay.day, hour: index, minute: 0, second: 0)), resultHandler: { (result, error) in
+                            hk.writeDataPoint(RunningToHK(distance:Double(thispacket.getHourlyRunningDistance()[index]), date:Date.date(year: saveDay.year, month: saveDay.month, day: saveDay.day, hour: index, minute: 0, second: 0)), resultHandler: { (result, error) in
                                 
                             })
                         }
@@ -512,7 +524,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                         if savedDailyHistory[Int(currentDay)].HourlyCalories[index] > 0 && index == now.hour &&
                             (nowDate != saveDate){
                             
-                            hk.writeDataPoint(CaloriesToHK(calories: Double(savedDailyHistory[Int(currentDay)].HourlyCalories[index]), date: Date.date(saveDay.year, month: saveDay.month, day: saveDay.day, hour: index, minute: 0, second: 0)), resultHandler: { (result, error) in
+                            hk.writeDataPoint(CaloriesToHK(calories: Double(savedDailyHistory[Int(currentDay)].HourlyCalories[index]), date: Date.date(year: saveDay.year, month: saveDay.month, day: saveDay.day, hour: index, minute: 0, second: 0)), resultHandler: { (result, error) in
                                 if (result != true) {
                                     XCGLogger.default.debug("Save Hourly Calories error\(index),\(error)")
                                 }else{
@@ -694,6 +706,43 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
             let banner = MEDBanner(title: NSLocalizedString("search_for_nevo", comment: ""), subtitle: nil, image: nil, backgroundColor: AppTheme.NEVO_SOLAR_YELLOW())
             banner.dismissesOnTap = true
             banner.show(duration: 1.5)
+        }
+    }
+}
+
+extension AppDelegate {
+
+    func startLocation() {
+        NSLog("AuthorizationStatus:\(LOCATION_MANAGER.gpsAuthorizationStatus)")
+        if LOCATION_MANAGER.gpsAuthorizationStatus>2 {
+            LOCATION_MANAGER.startLocation()
+            LOCATION_MANAGER.didChangeAuthorization = { status in
+                let states:CLAuthorizationStatus = status as CLAuthorizationStatus
+                XCGLogger.default.debug("Location didChangeAuthorization:\(states.rawValue)")
+            }
+            
+            LOCATION_MANAGER.didUpdateLocations = { location in
+                let locationArray = location as [CLLocation]
+                XCGLogger.default.debug("Location didUpdateLocations:\(locationArray)")
+                self.longitude = locationArray.last!.coordinate.longitude
+                self.latitude = locationArray.last!.coordinate.latitude
+                NSLog("longitude:\(self.longitude),latitude:\(self.latitude)")
+                
+            }
+            
+            LOCATION_MANAGER.didFailWithError = { error in
+                XCGLogger.default.debug("Location didFailWithError:\(error)")
+            }
+        }
+    }
+    
+    func setSolar() {
+        if longitude != 0 && latitude != 0 {
+            let solar = Solar(latitude: latitude,
+                              longitude: longitude)
+            let sunrise = solar!.sunrise
+            let sunset = solar!.sunset
+            self.setSunriseAndSunset(sunrise: sunrise!, sunset: sunset!)
         }
     }
 }

@@ -31,6 +31,7 @@ class SunriseSetView:UIView {
     weak var clockView:ClockView? = nil
     
     override func layoutSubviews() {
+        self.backgroundColor =  UIColor.getGreyColor()
         clockView?.frame = dialImageView.frame
     }
     
@@ -42,7 +43,7 @@ class SunriseSetView:UIView {
         worldClocksTableView.delegate = self
         worldClocksTableView.dataSource = self
         
-        worldClocksTableView.backgroundColor = UIColor.clear
+        worldClocksTableView.backgroundColor = UIColor.getGreyColor()
         worldClocksTableView.isScrollEnabled = false
         worldClocksTableView.separatorStyle = .none
         

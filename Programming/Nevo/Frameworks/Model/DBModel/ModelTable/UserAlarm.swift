@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Timepiece
 
 class UserAlarm: NSObject {
     var id:Int = 0
@@ -102,8 +103,8 @@ class UserAlarm: NSObject {
         let array = AlarmModel.getAll()
         if(array.count == 0){
             let currentDate:Date = Date()
-            let date1:Date = Date.date(currentDate.year, month: currentDate.minute, day: currentDate.day, hour: 8, minute: 0, second: 0)
-            let date2:Date = Date.date(currentDate.year, month: currentDate.minute, day: currentDate.day, hour: 9, minute: 0, second: 0)
+            let date1:Date = Date.date(year: currentDate.year, month: currentDate.minute, day: currentDate.day, hour: 8, minute: 0, second: 0)
+            let date2:Date = Date.date(year: currentDate.year, month: currentDate.minute, day: currentDate.day, hour: 9, minute: 0, second: 0)
             let dateArray:[TimeInterval] = [date1.timeIntervalSince1970,date2.timeIntervalSince1970]
             let nameArray:[String] = ["Alarm 1","Alarm 2"]
             DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.default).async(execute: { () -> Void in

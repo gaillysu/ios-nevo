@@ -9,7 +9,7 @@
 import UIKit
 import SwiftEventBus
 import XCGLogger
-
+import Timepiece
 
 let NUMBER_OF_STEPS_GOAL_KEY = "NUMBER_OF_STEPS_GOAL_KEY"
 
@@ -147,7 +147,7 @@ class StepGoalSetingController: PublicClassController,ButtonManagerCallBack,Cloc
         let dataArray:NSArray = AppTheme.LoadKeyedArchiverName(StepsGoalKey as NSString) as! NSArray
         if(dataArray.count>0) {
             let date:TimeInterval = (dataArray[1] as! String).dateFromFormat("YYYY/MM/dd")!.timeIntervalSince1970
-            if(date != Date.date(Date().year, month: Date().month, day: Date().day).timeIntervalSince1970){ return }
+            if(date != Date.date(year: Date().year, month: Date().month, day: Date().day).timeIntervalSince1970){ return }
             
             contentTArray = (AppTheme.LoadKeyedArchiverName(StepsGoalKey as NSString) as! NSArray)[0] as! [String]
             let dailyStepGoal:Int = NSString(string: contentTArray[2]).integerValue

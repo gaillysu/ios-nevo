@@ -8,7 +8,7 @@
 
 import Foundation
 
-class SunriseSetController: UIViewController {
+class SunriseSetController: PublicClassController {
     lazy var newView:SunriseSetView = {
         let newView = Bundle.main.loadNibNamed("SunriseSetView", owner: nil, options: nil)?.first as! SunriseSetView
         newView.frame = UIScreen.main.bounds

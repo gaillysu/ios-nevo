@@ -29,6 +29,10 @@ class LocationManager: NSObject {
             return Int(CLAuthorizationStatus.restricted.rawValue)
         case CLAuthorizationStatus.denied:
             return Int(CLAuthorizationStatus.denied.rawValue)
+        case CLAuthorizationStatus.authorizedAlways:
+            return Int(CLAuthorizationStatus.authorizedAlways.rawValue)
+        case CLAuthorizationStatus.authorizedWhenInUse:
+            return Int(CLAuthorizationStatus.authorizedWhenInUse.rawValue)
         default:
             return -1
         }

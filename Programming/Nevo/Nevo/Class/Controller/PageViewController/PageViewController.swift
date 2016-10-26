@@ -22,6 +22,7 @@ class PageViewController: UIPageViewController,UIActionSheetDelegate {
     var calendarView:CVCalendarView?
     var menuView:CVCalendarMenuView?
     var titleView:StepsTitleView?
+    fileprivate var controllerIndex:Int = 0
     
     fileprivate var pagingControllers: [UIViewController] = []
 
@@ -37,14 +38,18 @@ class PageViewController: UIPageViewController,UIActionSheetDelegate {
         let viewController3 = SleepHistoricalViewController()
         viewController3.view.tag = 2
         viewController3.view.backgroundColor = UIColor.white
-         pagingControllers = [viewController1, viewController2,viewController3]
+        let viewController4 = SunriseSetController()
+        viewController4.view.tag = 3
+        viewController4.view.backgroundColor = UIColor.white
+        
+        pagingControllers = [viewController1, viewController2,viewController3,viewController4]
         
         if UserDefaults.standard.objectIsForced(forKey: "WATCHNAME_KEY") {
             let value:Int = UserDefaults.standard.object(forKey: "WATCHNAME_KEY") as! Int
             if value>1 {
-                let viewController4 = SolarIndicatorController()
-                viewController4.view.tag = 3
-                viewController4.view.backgroundColor = UIColor.white
+                let viewController5 = SolarIndicatorController()
+                viewController5.view.tag = 4
+                viewController5.view.backgroundColor = UIColor.white
                 pagingControllers.append(viewController4)
             }
         }
@@ -69,6 +74,7 @@ class PageViewController: UIPageViewController,UIActionSheetDelegate {
         leftSpacer.width = -10;
 //        self.navigationItem.leftBarButtonItems = [leftSpacer,leftItem]
         
+        self.delegate = self
         self.dataSource = self;
         self.setViewControllers([pagingControllers[0]], direction: UIPageViewControllerNavigationDirection.forward, animated: true) { (fines) in
             
@@ -156,7 +162,7 @@ class PageViewController: UIPageViewController,UIActionSheetDelegate {
 extension PageViewController {
     func bulidPageControl() {
         let pageControl = UIPageControl(frame: CGRect(x: 100, y: UIScreen.main.bounds.size.height-44, width: 100, height: 20))
-        pageControl.numberOfPages = 3
+        pageControl.numberOfPages = 4
         pageControl.currentPage = 0
         pageControl.pageIndicatorTintColor = UIColor.lightGray
         pageControl.currentPageIndicatorTintColor = AppTheme.NEVO_SOLAR_YELLOW()
@@ -193,6 +199,13 @@ extension PageViewController {
 }
 
 extension PageViewController: UIPageViewControllerDataSource,UIPageViewControllerDelegate {
+    func pageViewController(_ pageViewController: UIPageViewController, willTransitionTo pendingViewControllers: [UIViewController]){
+        NSLog("pendingViewControllers:\(pendingViewControllers)")
+    }
+    
+    func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool){
+        NSLog("transitionCompleted:\(completed)")
+    }
     
     //返回当前页面的下一个页面
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
@@ -202,8 +215,10 @@ extension PageViewController: UIPageViewControllerDataSource,UIPageViewControlle
         }else if viewController.isKind(of: StepsHistoryViewController.self) {
             return pagingControllers[2]
         }else if viewController.isKind(of: SleepHistoricalViewController.self) {
-            if pagingControllers.count>3 {
-                return pagingControllers[3]
+            return pagingControllers[3]
+        }else if viewController.isKind(of: SunriseSetController.self) {
+            if pagingControllers.count>4 {
+                return pagingControllers[4]
             }
             return nil
         }
@@ -215,7 +230,9 @@ extension PageViewController: UIPageViewControllerDataSource,UIPageViewControlle
     //返回当前页面的上一个页面
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         self.setCurrentPageIndex(viewController.view.tag)
-        if viewController.isKind(of: SolarIndicatorController.self) {
+        if viewController.isKind(of: SolarIndicatorController.self){
+            return pagingControllers[3]
+        }else if viewController.isKind(of: SunriseSetController.self) {
             return pagingControllers[2]
         }else if viewController.isKind(of: SleepHistoricalViewController.self) {
             return pagingControllers[1]
