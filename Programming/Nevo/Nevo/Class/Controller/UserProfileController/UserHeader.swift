@@ -10,6 +10,8 @@ import UIKit
 
 class UserHeader: UITableViewHeaderFooterView,MEDSelectedImagePickerDelegate {
 
+    @IBOutlet weak var avatarView: UIButton!
+    
     @IBAction func uploadAction(_ sender: AnyObject) {
 
         let alert:ActionSheetView = ActionSheetView(title: "Choose picture source", message: nil, preferredStyle: UIAlertControllerStyle.actionSheet)

@@ -178,17 +178,6 @@ class UserProfileController: UIViewController,UITableViewDelegate,UITableViewDat
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        if (indexPath as NSIndexPath).section == 0 {
-            
-        }else {
-            let profile:NSArray = UserProfile.getAll()
-            let userprofile:UserProfile = profile[0] as! UserProfile
-            if userprofile.remove() {
-                ValidicRequest.cancelAuthorization()
-               self.navigationController?.popViewController(animated: true)
-            }
-            
-        }
     }
     
     fileprivate func generatePickerData(_ rangeBegin: Int,rangeEnd: Int, interval: Int)->NSMutableArray{
