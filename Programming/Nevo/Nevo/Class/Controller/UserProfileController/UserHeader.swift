@@ -8,25 +8,28 @@
 
 import UIKit
 
-class UserHeader: UITableViewHeaderFooterView {
+class UserHeader: UITableViewHeaderFooterView,MEDSelectedImagePickerDelegate {
 
     @IBAction func uploadAction(_ sender: AnyObject) {
-        return
-        
-        let alert:UIAlertController = UIAlertController(title: "Choose picture source", message: nil, preferredStyle: UIAlertControllerStyle.actionSheet)
+
+        let alert:ActionSheetView = ActionSheetView(title: "Choose picture source", message: nil, preferredStyle: UIAlertControllerStyle.actionSheet)
         let action1:UIAlertAction = UIAlertAction(title: "Choose from library", style: UIAlertActionStyle.default) { (action) in
-            
+            let imagePicker:ImagePickerController = ImagePickerController(self.viewController()!)
+            imagePicker.delegate = self
+            imagePicker.openPicLibrary()
         }
         action1.setValue(AppTheme.NEVO_SOLAR_YELLOW(), forKey: "titleTextColor")
         alert.addAction(action1)
         
-        let action2:UIAlertAction = UIAlertAction(title: "Choose from Camera", style: UIAlertActionStyle.default) { (action) in
-            
+        let action2:AlertAction = AlertAction(title: "Choose from Camera", style: UIAlertActionStyle.default) { (action) in
+            let imagePicker:ImagePickerController = ImagePickerController(self.viewController()!)
+            imagePicker.delegate = self
+            imagePicker.openCamera()
         }
         action2.setValue(AppTheme.NEVO_SOLAR_YELLOW(), forKey: "titleTextColor")
         alert.addAction(action2)
         
-        let action3:UIAlertAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel) { (action) in
+        let action3:AlertAction = AlertAction(title: "Cancel", style: UIAlertActionStyle.cancel) { (action) in
             
         }
         action3.setValue(AppTheme.NEVO_SOLAR_YELLOW(), forKey: "titleTextColor")
@@ -34,12 +37,8 @@ class UserHeader: UITableViewHeaderFooterView {
         viewController()?.present(alert, animated: true, completion: nil)
         
     }
-    /*
-    // Only override drawRect: if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func drawRect(rect: CGRect) {
-        // Drawing code
+    
+    func selectedImagePicker(_ imageData:Data){
+        print("imageData:\(imageData)");
     }
-    */
-
 }
