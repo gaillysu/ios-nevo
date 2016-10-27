@@ -51,7 +51,15 @@ class NewAddAlarmController: UITableViewController,ButtonManagerCallBack,Selecte
     override func viewDidLayoutSubviews() {
         if self.tableView.tableFooterView == nil {
             let view = UIView()
-            let tipsString:String = NSLocalizedString("tips_content", comment: "")
+            
+            var tempString:String = ""
+            if AppTheme.isTargetLunaR_OR_Nevo() {
+                tempString = "tips_content"
+            } else {
+                tempString = "tips_content_lunar"
+            }
+            
+            let tipsString:String = NSLocalizedString(tempString, comment: "")
             let tipsLabel:UILabel = UILabel(frame: CGRect(x: 10,y: 0,width: UIScreen.main.bounds.size.width-20,height: 120))
             tipsLabel.backgroundColor = UIColor.clear
             tipsLabel.numberOfLines = 0

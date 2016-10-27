@@ -623,6 +623,8 @@
 		61E4DF261DB8C2D500DDA737 /* ForgotPasswordRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E4DF241DB8C2D500DDA737 /* ForgotPasswordRequest.swift */; };
 		61E4DF271DB8C2D500DDA737 /* UserCreateRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E4DF251DB8C2D500DDA737 /* UserCreateRequest.swift */; };
 		61F85F501DAF5BF300F341B5 /* NevoOtaController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61F85F4F1DAF5BF300F341B5 /* NevoOtaController.swift */; };
+		662887511DC1E8BC00EC0983 /* MEDMRProgressOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 662887501DC1E8BC00EC0983 /* MEDMRProgressOverlayView.swift */; };
+		662887521DC1E8BC00EC0983 /* MEDMRProgressOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 662887501DC1E8BC00EC0983 /* MEDMRProgressOverlayView.swift */; };
 		6633057A1DC07EEE0090216F /* lunar_hour.png in Resources */ = {isa = PBXBuildFile; fileRef = 663305771DC07EEE0090216F /* lunar_hour.png */; };
 		6633057B1DC07EEE0090216F /* lunar_hour.png in Resources */ = {isa = PBXBuildFile; fileRef = 663305771DC07EEE0090216F /* lunar_hour.png */; };
 		6633057C1DC07EEE0090216F /* lunar_dial.png in Resources */ = {isa = PBXBuildFile; fileRef = 663305781DC07EEE0090216F /* lunar_dial.png */; };
@@ -710,8 +712,6 @@
 		66D45E7F1DC0C14C0007B5D0 /* UIImage+Crop.m in Sources */ = {isa = PBXBuildFile; fileRef = 66D45E7A1DC0C14C0007B5D0 /* UIImage+Crop.m */; };
 		66D45E801DC0C14C0007B5D0 /* WLHCropper.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 66D45E7B1DC0C14C0007B5D0 /* WLHCropper.a */; };
 		66D45E811DC0C14C0007B5D0 /* WLHCropper.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 66D45E7B1DC0C14C0007B5D0 /* WLHCropper.a */; };
-		66E5C3F71DC1AF9900550C30 /* MRProgressOverlayView+MEDExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 66E5C3F61DC1AF9900550C30 /* MRProgressOverlayView+MEDExtension.m */; };
-		66E5C3F81DC1AF9900550C30 /* MRProgressOverlayView+MEDExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 66E5C3F61DC1AF9900550C30 /* MRProgressOverlayView+MEDExtension.m */; };
 		813518AB3D92E43573F28717 /* Pods_LunaR.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E068CB5F57F135B038B3A10 /* Pods_LunaR.framework */; };
 		8A84EC52F1052F0497E54CB5 /* Pods_NevoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7689D6188FDF6CDBFBD84C51 /* Pods_NevoTests.framework */; };
 		9A2D6C3B1A9C6D9F00591BDC /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A2D6C3A1A9C6D9F00591BDC /* HealthKit.framework */; };
@@ -1174,6 +1174,7 @@
 		61E4DF241DB8C2D500DDA737 /* ForgotPasswordRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordRequest.swift; sourceTree = "<group>"; };
 		61E4DF251DB8C2D500DDA737 /* UserCreateRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCreateRequest.swift; sourceTree = "<group>"; };
 		61F85F4F1DAF5BF300F341B5 /* NevoOtaController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NevoOtaController.swift; sourceTree = "<group>"; };
+		662887501DC1E8BC00EC0983 /* MEDMRProgressOverlayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MEDMRProgressOverlayView.swift; sourceTree = "<group>"; };
 		663305771DC07EEE0090216F /* lunar_hour.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lunar_hour.png; sourceTree = "<group>"; };
 		663305781DC07EEE0090216F /* lunar_dial.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lunar_dial.png; sourceTree = "<group>"; };
 		663305791DC07EEE0090216F /* lunar_Minute.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lunar_Minute.png; sourceTree = "<group>"; };
@@ -1209,8 +1210,6 @@
 		66D45E791DC0C14C0007B5D0 /* UIImage+Crop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Crop.h"; sourceTree = "<group>"; };
 		66D45E7A1DC0C14C0007B5D0 /* UIImage+Crop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Crop.m"; sourceTree = "<group>"; };
 		66D45E7B1DC0C14C0007B5D0 /* WLHCropper.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = WLHCropper.a; sourceTree = "<group>"; };
-		66E5C3F51DC1AF9900550C30 /* MRProgressOverlayView+MEDExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MRProgressOverlayView+MEDExtension.h"; sourceTree = "<group>"; };
-		66E5C3F61DC1AF9900550C30 /* MRProgressOverlayView+MEDExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MRProgressOverlayView+MEDExtension.m"; sourceTree = "<group>"; };
 		7689D6188FDF6CDBFBD84C51 /* Pods_NevoTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NevoTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		84E3C5A18963C1F2BFFF61CB /* Pods-Nevo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Nevo.release.xcconfig"; path = "Pods/Target Support Files/Pods-Nevo/Pods-Nevo.release.xcconfig"; sourceTree = "<group>"; };
 		8FE857CD8B2EE737CB25062E /* Pods-NevoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NevoTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NevoTests/Pods-NevoTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -2256,8 +2255,7 @@
 			isa = PBXGroup;
 			children = (
 				665E331D1DADCD8A00D0E36D /* MEDBanner.swift */,
-				66E5C3F51DC1AF9900550C30 /* MRProgressOverlayView+MEDExtension.h */,
-				66E5C3F61DC1AF9900550C30 /* MRProgressOverlayView+MEDExtension.m */,
+				662887501DC1E8BC00EC0983 /* MEDMRProgressOverlayView.swift */,
 			);
 			name = MEDWrapper;
 			path = Frameworks/MEDWrapper;
@@ -3363,13 +3361,13 @@
 				00C826311DA5E01C00ECECEE /* SMBasicSegmentView.swift in Sources */,
 				00C826321DA5E01C00ECECEE /* SMSegment.swift in Sources */,
 				00C826331DA5E01C00ECECEE /* SMSegmentView.swift in Sources */,
-				66E5C3F81DC1AF9900550C30 /* MRProgressOverlayView+MEDExtension.m in Sources */,
 				00C8263C1DA5E01C00ECECEE /* AutocompleteField.swift in Sources */,
 				00C8263D1DA5E01C00ECECEE /* CircleProgressView.swift in Sources */,
 				00C8263E1DA5E01C00ECECEE /* NevoCircleProgressView.swift in Sources */,
 				00D4742B1D586D1600E2447E /* NevoAllKeys.swift in Sources */,
 				00D4742C1D586D1600E2447E /* CaloriesToHK.swift in Sources */,
 				00D4742D1D586D1600E2447E /* DailySteps.swift in Sources */,
+				662887521DC1E8BC00EC0983 /* MEDMRProgressOverlayView.swift in Sources */,
 				00D4742E1D586D1600E2447E /* DaySleep.swift in Sources */,
 				00D4742F1D586D1600E2447E /* HourlySteps.swift in Sources */,
 				00D474301D586D1600E2447E /* RealTimeCountSteps.swift in Sources */,
@@ -3488,6 +3486,7 @@
 				00AF8CCB1D224CFA009047AC /* UserProfile.swift in Sources */,
 				00AF8CFF1D224CFA009047AC /* SetNortificationRequest.swift in Sources */,
 				00FA93E71D9DF32300CB6691 /* ScannerViewController.swift in Sources */,
+				662887511DC1E8BC00EC0983 /* MEDMRProgressOverlayView.swift in Sources */,
 				006A62411D6AA5F200458305 /* SleepHistoricalView.swift in Sources */,
 				00AF8CC41D224CFA009047AC /* NotificationModel.swift in Sources */,
 				00AF8CFB1D224CFA009047AC /* SetAlarmRequest.swift in Sources */,
@@ -3546,7 +3545,6 @@
 				00AF8CF01D224CFA009047AC /* DailyStepsNevoPacket.swift in Sources */,
 				00AF8CFC1D224CFA009047AC /* SetCardioRequest.swift in Sources */,
 				0008EE8B1D93C39A005E127C /* M13CheckboxManager.swift in Sources */,
-				66E5C3F71DC1AF9900550C30 /* MRProgressOverlayView+MEDExtension.m in Sources */,
 				663305B81DC0A8F70090216F /* SunriseSetButton.swift in Sources */,
 				9E98FB291C463A3B00BAB700 /* TutorialOneViewController.swift in Sources */,
 				1C3712D71DBC5BF2007DC349 /* UIView+MEDExtension.swift in Sources */,
