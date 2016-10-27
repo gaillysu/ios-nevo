@@ -22,7 +22,7 @@
     MRProgressOverlayView *newView = [MRProgressOverlayView MEDShowOverlayAddedTo:view title:title mode:mode animated:animated];
     NSDictionary *infoDict = [NSBundle mainBundle].infoDictionary;
     NSString *appName = infoDict[@"CFBundleName"];
-    if ([appName isEqual: @"LunaR"]) {
+    if ([appName isEqualToString: @"LunaR"]) {
         newView.titleLabel.textColor = [UIColor whiteColor];
         UIView *subview = [[UIView alloc] init];
         for (subview in newView.subviews) {
