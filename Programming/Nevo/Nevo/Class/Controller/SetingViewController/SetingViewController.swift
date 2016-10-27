@@ -322,7 +322,7 @@ class SetingViewController: UIViewController,ButtonManagerCallBack,UIAlertViewDe
                 (cell as! SetingInfoCell).emailLabel.text = userprofile.email
                 (cell as! SetingInfoCell).userName.text = "\(userprofile.first_name) \(userprofile.last_name)"
                 
-                let resultArray:NSArray = AppTheme.LoadKeyedArchiverName(NevoAllKeys.MEDAvatarKey() as NSString) as! NSArray
+                let resultArray:NSArray = AppTheme.LoadKeyedArchiverName(NevoAllKeys.MEDAvatarKeyAfterSave() as NSString) as! NSArray
                 
                 if resultArray.count > 0 {
                     if let avatar = resultArray.object(at: 0) as? UIImage {

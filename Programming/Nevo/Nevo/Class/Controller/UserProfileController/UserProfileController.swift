@@ -14,6 +14,8 @@ class UserProfileController: UIViewController,UITableViewDelegate,UITableViewDat
     
     @IBOutlet weak var userInfoTableView: UITableView!
     
+    open var isNewPush:Bool = true
+    
     fileprivate let titleArray:[String] = ["First name","Last Name","Weight","Height","Date of Birth"]
     fileprivate let fieldArray:[String] = ["first_name","last_name","weight","height","date_birth"]
     var userprofile:UserProfile?
@@ -29,8 +31,6 @@ class UserProfileController: UIViewController,UITableViewDelegate,UITableViewDat
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        userInfoTableView.sectionHeaderHeight = 150
-//        userInfoTableView.backgroundColor = UIColor.white
         userInfoTableView.register(UINib(nibName: "UserProfileCell", bundle:nil), forCellReuseIdentifier: userIdentifier)
         userInfoTableView.register(UINib(nibName: "UserHeader", bundle:nil), forHeaderFooterViewReuseIdentifier: "HeaderViewReuseIdentifier")
 
@@ -56,17 +56,16 @@ class UserProfileController: UIViewController,UITableViewDelegate,UITableViewDat
         
         userInfoTableView.reloadData()
     }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
+
     func saveProfileAction(_ sender:AnyObject) {
         if userprofile != nil {
             if userprofile!.update() {
                 self.navigationController?.popViewController(animated: true)
             }
+        }
+        
+        if let avatarImage = (userInfoTableView.headerView(forSection: 0) as! UserHeader).avatarView.image(for: .normal) {
+            AppTheme.KeyedArchiverName((NevoAllKeys.MEDAvatarKeyAfterSave() as NSString), andObject: avatarImage)
         }
     }
 
@@ -79,8 +78,14 @@ class UserProfileController: UIViewController,UITableViewDelegate,UITableViewDat
         if section == 0 {
             header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "HeaderViewReuseIdentifier") as! UserHeader
             
-            // contentTArray = (AppTheme.LoadKeyedArchiverName(StepsGoalKey as NSString) as! NSArray)[0] as! [String]
-            let resultArray:NSArray = AppTheme.LoadKeyedArchiverName(NevoAllKeys.MEDAvatarKey() as NSString) as! NSArray
+            var avatarKey:NSString = ""
+            if isNewPush {
+                avatarKey = NevoAllKeys.MEDAvatarKeyAfterSave() as NSString
+            } else {
+                avatarKey = NevoAllKeys.MEDAvatarKeyBeforeSave() as NSString
+            }
+            
+            let resultArray:NSArray = AppTheme.LoadKeyedArchiverName(avatarKey) as! NSArray
             if resultArray.count > 0 {
                 if let avatar = resultArray.object(at: 0) as? UIImage {
                     header?.avatarView.setImage(avatar, for: .normal)
@@ -110,10 +115,6 @@ class UserProfileController: UIViewController,UITableViewDelegate,UITableViewDat
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return section == 0 ? 0 : titleArray.count
     }
-    
-//    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat{
-//        return 0
-//    }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell:UserProfileCell = tableView.dequeueReusableCell(withIdentifier: userIdentifier,for: indexPath) as! UserProfileCell
