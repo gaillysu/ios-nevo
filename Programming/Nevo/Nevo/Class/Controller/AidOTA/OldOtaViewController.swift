@@ -223,9 +223,9 @@ extension OldOtaViewController {
     
     func getBundledFirmwareURLHelper() -> URL {
         if self.secureDFU! {
-            return Bundle.main.url(forResource: "iMaze_v26", withExtension: "bin")!
+            return Bundle.main.url(forResource: "lunar_20161011_v3", withExtension: "zip")!
         }else{
-            return Bundle.main.url(forResource: "iMaze_v26", withExtension: "bin")!
+            return Bundle.main.url(forResource: "lunar_20161011_v3", withExtension: "zip")!
         }
     }
     
@@ -245,7 +245,7 @@ extension OldOtaViewController {
         }
         
         selectedFileURL  = self.getBundledFirmwareURLHelper()
-        selectedFirmware = DFUFirmware(urlToBinOrHexFile: selectedFileURL!, urlToDatFile: nil, type: DFUFirmwareType.softdevice)
+        selectedFirmware = DFUFirmware(urlToZipFile: selectedFileURL!)
         
         let dfuInitiator = DFUServiceInitiator(centralManager: centralManager!, target: dfuPeripheral!)
         _ = dfuInitiator.withFirmwareFile(selectedFirmware!)

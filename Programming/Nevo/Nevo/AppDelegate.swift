@@ -94,6 +94,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
             Presets.defaultPresetsGoal()
             UserAlarm.defaultAlarm()
             UserNotification.defaultNotificationColor()
+            //search not watch = -1
+            self.setWatchInfo(-1, model: -1)
         }else{
             UserDefaults.standard.set(false, forKey: "firstDatabase")
         }

@@ -602,7 +602,6 @@
 		6150933A1DBF5BC800E52970 /* SetWorldClockRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615093381DBF5BC800E52970 /* SetWorldClockRequest.swift */; };
 		615F6E201DA7510D00216D1A /* FindWatchRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C8272E1DA61CAF00ECECEE /* FindWatchRequest.swift */; };
 		615F6E211DA7514200216D1A /* PVADCRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0023C0AC1DA64DD400FB33A4 /* PVADCRequest.swift */; };
-		61623DB11DAC77F100C45B19 /* iMaze_v26.bin in Resources */ = {isa = PBXBuildFile; fileRef = 61623DB01DAC77F100C45B19 /* iMaze_v26.bin */; };
 		6173DEF31DB0E90C002DF6AF /* SolarIndicatorController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6173DEF61DB0E90C002DF6AF /* SolarIndicatorController.xib */; };
 		6173DEFF1DB0E93D002DF6AF /* SleepHistoricalViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6173DF021DB0E93D002DF6AF /* SleepHistoricalViewController.xib */; };
 		6173DF001DB0E93D002DF6AF /* SleepHistoricalViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6173DF021DB0E93D002DF6AF /* SleepHistoricalViewController.xib */; };
@@ -616,6 +615,7 @@
 		61879C321DC05C430089F1E5 /* timezones.json in Resources */ = {isa = PBXBuildFile; fileRef = 61879C2D1DC05B850089F1E5 /* timezones.json */; };
 		61879C351DC0A8B80089F1E5 /* ImagePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61879C341DC0A8B80089F1E5 /* ImagePickerController.swift */; };
 		61879C361DC0ABCF0089F1E5 /* ImagePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61879C341DC0A8B80089F1E5 /* ImagePickerController.swift */; };
+		6198EE251DC1EE5200FDD850 /* lunar_20161011_v3.zip in Resources */ = {isa = PBXBuildFile; fileRef = 6198EE241DC1EE5200FDD850 /* lunar_20161011_v3.zip */; };
 		61E4DF1D1DB85C9800DDA737 /* FindPhonePacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E4DF1C1DB85C9800DDA737 /* FindPhonePacket.swift */; };
 		61E4DF1F1DB8749700DDA737 /* SyncStepsToServiceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E4DF1E1DB8749700DDA737 /* SyncStepsToServiceRequest.swift */; };
 		61E4DF211DB898F700DDA737 /* SyncSleepToServiceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E4DF201DB898F700DDA737 /* SyncSleepToServiceRequest.swift */; };
@@ -1151,7 +1151,6 @@
 		61318B361DC19E210028E170 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/WorldClockCell.strings"; sourceTree = "<group>"; };
 		615093371DBF5BC800E52970 /* SetSunriseAndSunsetRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetSunriseAndSunsetRequest.swift; sourceTree = "<group>"; };
 		615093381DBF5BC800E52970 /* SetWorldClockRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetWorldClockRequest.swift; sourceTree = "<group>"; };
-		61623DB01DAC77F100C45B19 /* iMaze_v26.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = iMaze_v26.bin; sourceTree = "<group>"; };
 		6173DEF51DB0E90C002DF6AF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/SolarIndicatorController.xib; sourceTree = "<group>"; };
 		6173DEF81DB0E911002DF6AF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/SolarIndicatorController.strings; sourceTree = "<group>"; };
 		6173DEFC1DB0E91A002DF6AF /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/SolarIndicatorController.strings"; sourceTree = "<group>"; };
@@ -1167,6 +1166,7 @@
 		61879C2C1DC05B850089F1E5 /* cities.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = cities.json; sourceTree = "<group>"; };
 		61879C2D1DC05B850089F1E5 /* timezones.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = timezones.json; sourceTree = "<group>"; };
 		61879C341DC0A8B80089F1E5 /* ImagePickerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePickerController.swift; sourceTree = "<group>"; };
+		6198EE241DC1EE5200FDD850 /* lunar_20161011_v3.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = lunar_20161011_v3.zip; sourceTree = "<group>"; };
 		61E4DF1C1DB85C9800DDA737 /* FindPhonePacket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindPhonePacket.swift; sourceTree = "<group>"; };
 		61E4DF1E1DB8749700DDA737 /* SyncStepsToServiceRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncStepsToServiceRequest.swift; sourceTree = "<group>"; };
 		61E4DF201DB898F700DDA737 /* SyncSleepToServiceRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncSleepToServiceRequest.swift; sourceTree = "<group>"; };
@@ -2095,7 +2095,7 @@
 		00B7075B1D9D29DF00AAB63F /* DFUFirmware */ = {
 			isa = PBXGroup;
 			children = (
-				61623DB01DAC77F100C45B19 /* iMaze_v26.bin */,
+				6198EE241DC1EE5200FDD850 /* lunar_20161011_v3.zip */,
 			);
 			path = DFUFirmware;
 			sourceTree = "<group>";
@@ -2874,6 +2874,7 @@
 				00EC9DCF1C85833400280904 /* MorningTutorialController.xib in Resources */,
 				66AC4E5B1DBF537500E431BE /* lunar_dial_bg.png in Resources */,
 				0050D6011C28E0DB004F6F80 /* NotificationViewController.xib in Resources */,
+				6198EE251DC1EE5200FDD850 /* lunar_20161011_v3.zip in Resources */,
 				6173DEFF1DB0E93D002DF6AF /* SleepHistoricalViewController.xib in Resources */,
 				00E2BDE31B16CCD0009C757E /* MBProgressHUD.bundle in Resources */,
 				006A626F1D6AB44A00458305 /* StepGoalSetingController.xib in Resources */,
@@ -2907,7 +2908,6 @@
 				0050D5FB1C28E0DB004F6F80 /* LineColorCell.xib in Resources */,
 				0058B3EB1CF55D590079A213 /* ConnectOtherAppsController.xib in Resources */,
 				0050D5F91C28E0DB004F6F80 /* NevoOtaViewController.xib in Resources */,
-				61623DB11DAC77F100C45B19 /* iMaze_v26.bin in Resources */,
 				0089B0AE1D6BFF250041148A /* SetingInfoCell.xib in Resources */,
 				0036EB0D1C48C36700DCED46 /* bluetoothoff_background.png in Resources */,
 				0063BC4F1D98D641000BAB44 /* ProfileSetupViewController.xib in Resources */,
