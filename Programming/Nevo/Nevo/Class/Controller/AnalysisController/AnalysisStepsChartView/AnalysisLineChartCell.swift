@@ -291,10 +291,10 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
                 self.setChartViewLeftAxis(Double(maxValue/60+2), unitString: " "+NSLocalizedString("hours", comment: ""))
             }
             
-            xVals.append(dateString)
             weakeYVals.append(ChartDataEntry(value: (Double(weakeValue)/60).to2Double(), xIndex: index))
             lightYVals.append(ChartDataEntry(value: (Double(lightValue)/60).to2Double(), xIndex: index))
             deepYVals.append(ChartDataEntry(value: (Double(deepValue)/60).to2Double(), xIndex: index))
+            xVals.append(dateString)
             yVals.append(ChartDataEntry(value: 0, xIndex: index))
         }
         
@@ -316,9 +316,11 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
             }
         }
         
+        /*
+         重新排列数据，因为数据库得到的数据可能是不连续的，如果是不连续的还需要重新构造元素，元素需要重新加入数组排列
+         */
         self.setYvalueData(rowIndex) { (yvalsIndex, replace) in
             if replace {
-                //CRASH crash
                 if weakeYVals.count > 0{
                     let weakeDataentry:ChartDataEntry = weakeYVals[yvalsIndex]
                     let lightDataentry:ChartDataEntry = lightYVals[yvalsIndex]
@@ -336,6 +338,33 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
                 weakeYVals.insert(ChartDataEntry(value: 0, xIndex: yvalsIndex), at: yvalsIndex)
                 lightYVals.insert(ChartDataEntry(value: 0, xIndex: yvalsIndex), at: yvalsIndex)
                 deepYVals.insert(ChartDataEntry(value: 0, xIndex: yvalsIndex), at: yvalsIndex)
+            }
+        }
+        
+        /*
+         *此方法只适用于睡眠数据排序*
+         由于计算数据排序，有可能会有重复多余数据，因此在这里只要删除和对应个数不同，数组最后的元素即可.
+         rowIndex:代表当前对应的第几个图表，rowIndex == 0 || rowIndex == 1 (数组的元素个数应该为7), rowIndex == 2 数组的元素个数为30
+         */
+        if rowIndex == 0 || rowIndex == 1{
+            if weakeYVals.count>7 && lightYVals.count>7 && deepYVals.count>7{
+                var valueIndex:Int = 0
+                for atIndex in 7..<weakeYVals.count {
+                    weakeYVals.remove(at: atIndex-valueIndex)
+                    lightYVals.remove(at: atIndex-valueIndex)
+                    deepYVals.remove(at: atIndex-valueIndex)
+                    valueIndex+=1
+                }
+            }
+        }else{
+            if weakeYVals.count>30 && lightYVals.count>30 && deepYVals.count>30{
+                var valueIndex:Int = 0
+                for atIndex in 30..<weakeYVals.count {
+                    weakeYVals.remove(at: atIndex-valueIndex)
+                    lightYVals.remove(at: atIndex-valueIndex)
+                    deepYVals.remove(at: atIndex-valueIndex)
+                    valueIndex+=1
+                }
             }
         }
         
@@ -514,7 +543,7 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
         }
         
         if rowIndex == 1{
-            let startTimeInterval:TimeInterval = Date().beginningOfDay.timeIntervalSince1970-(86400.0*7)
+            let startTimeInterval:TimeInterval = Date().beginningOfDay.timeIntervalSince1970-(86400.0*7)-1
             if xVals.count<7 {
                 for index:Int in 0..<7 {
                     if xVals.count==0 {
@@ -543,6 +572,14 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
                     }
                     
                     if index == 6 {
+                        if yVals.count>7 {
+                            var valueIndex:Int = 0
+                            for atIndex in 7..<yVals.count {
+                                xVals.remove(at: atIndex-valueIndex)
+                                yVals.remove(at: atIndex-valueIndex)
+                                valueIndex+=1
+                            }
+                        }
                         let dataentry:ChartDataEntry = yVals[yVals.count-1]
                         yVals.replaceSubrange(yVals.count-1..<yVals.count, with: [ChartDataEntry(value: dataentry.value.to2Double(), xIndex: yVals.count-1)])
                         completionData?(yVals.count-1,true)
@@ -560,7 +597,6 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
                         xVals.append(dateString)
                         yVals.append(ChartDataEntry(value: 0, xIndex: index))
                     }
-                    var indexValue:Int = index
                     var getIndex:Int = index
                     if index>=xVals.count {
                         getIndex = index-1
@@ -581,6 +617,14 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
                     }
                     
                     if index == 29 {
+                        if yVals.count>30 {
+                            var valueIndex:Int = 0
+                            for atIndex in 30..<yVals.count {
+                                xVals.remove(at: atIndex-valueIndex)
+                                yVals.remove(at: atIndex-valueIndex)
+                                valueIndex+=1
+                            }
+                        }
                         let dataentry:ChartDataEntry = yVals[yVals.count-1]
                         yVals.replaceSubrange(yVals.count-1..<yVals.count, with: [ChartDataEntry(value: dataentry.value.to2Double(), xIndex: yVals.count-1)])
                         completionData?(yVals.count-1,true)
