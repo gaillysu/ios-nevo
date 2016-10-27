@@ -15,9 +15,8 @@ class UserHeader: UITableViewHeaderFooterView {
     var _sourceType:UIImagePickerControllerSourceType? = nil
     
     @IBAction func uploadAction(_ sender: AnyObject) {
-
-        let alert:ActionSheetView = ActionSheetView(title: "Choose picture source", message: nil, preferredStyle: UIAlertControllerStyle.actionSheet)
-        let action1:UIAlertAction = UIAlertAction(title: "Choose from library", style: UIAlertActionStyle.default) { (action) in
+        let alert:ActionSheetView = ActionSheetView(title: NSLocalizedString("Choose picture source", comment: ""), message: nil, preferredStyle: UIAlertControllerStyle.actionSheet)
+        let action1:UIAlertAction = UIAlertAction(title: NSLocalizedString("Choose from library", comment: ""), style: UIAlertActionStyle.default) { (action) in
             let imagepicker = UIImagePickerController()
             imagepicker.navigationBar.backgroundColor =  UIColor.black
             imagepicker.delegate = self
@@ -28,7 +27,7 @@ class UserHeader: UITableViewHeaderFooterView {
         action1.setValue(AppTheme.NEVO_SOLAR_YELLOW(), forKey: "titleTextColor")
         alert.addAction(action1)
         
-        let action2:AlertAction = AlertAction(title: "Choose from Camera", style: UIAlertActionStyle.default) { (action) in
+        let action2:AlertAction = AlertAction(title: NSLocalizedString("Choose from Camera", comment: ""), style: UIAlertActionStyle.default) { (action) in
             let sourceType:UIImagePickerControllerSourceType = .camera
             self._sourceType = sourceType
             if UIImagePickerController.isSourceTypeAvailable(.camera) {
@@ -44,7 +43,7 @@ class UserHeader: UITableViewHeaderFooterView {
         action2.setValue(AppTheme.NEVO_SOLAR_YELLOW(), forKey: "titleTextColor")
         alert.addAction(action2)
         
-        let action3:AlertAction = AlertAction(title: "Cancel", style: UIAlertActionStyle.cancel) { (action) in
+        let action3:AlertAction = AlertAction(title: NSLocalizedString("Cancel", comment: ""), style: UIAlertActionStyle.cancel) { (action) in
             self.viewController()?.dismiss(animated: true, completion: nil)
         }
         action3.setValue(AppTheme.NEVO_SOLAR_YELLOW(), forKey: "titleTextColor")
@@ -60,16 +59,46 @@ extension UserHeader:PhotoViewControllerDelegate, UIImagePickerControllerDelegat
         let photoVC = PhotoViewController()
         photoVC.oldImage = newImage
         photoVC.mode = .viewModeSquare
-        photoVC.cropWidth = 250
-        photoVC.cropHeight = 250
+        photoVC.cropWidth = 300
+        photoVC.cropHeight = 300
         photoVC.delegate = self
+        
+        //*******//
+        photoVC.view.viewsDo { (v) in
+            if v is UILabel {
+                let label = v as! UILabel
+                if label.text == "移动和缩放" {
+                    label.text = NSLocalizedString("move_&_zoom", comment: "")
+                }
+            } else {
+                return
+            }
+        }
+        
+        photoVC.view.viewsDo { (v) in
+            if v is UIButton {
+                let button = v as! UIButton
+                if button.title(for: .normal) == "确定" {
+                    button.setTitle(NSLocalizedString("Enter", comment: ""), for: .normal)
+                    button.superview?.viewsDo(operation: { (v) in
+                        v.backgroundColor = UIColor.clear
+                    })
+                    button.superview?.backgroundColor = UIColor.getGreyColor()
+                }
+            }
+        }
+        
+        //*******//
+        
         picker.pushViewController(photoVC, animated: true)
     }
     
     func imageCropper(_ cropperViewController: PhotoViewController!, didFinished editedImage: UIImage!) {
         self.viewController()?.dismiss(animated: true, completion: nil)
         avatarView.setImage(editedImage, for: .normal)
-        AppTheme.KeyedArchiverName(NevoAllKeys.MEDAvatarKey() as NSString, andObject: editedImage)
+        AppTheme.KeyedArchiverName(NevoAllKeys.MEDAvatarKeyBeforeSave() as NSString, andObject: editedImage)
+        
+        (self.viewController() as! UserProfileController).isNewPush = false
     }
     
     func imageCropperDidCancel(_ cropperViewController: PhotoViewController!) {

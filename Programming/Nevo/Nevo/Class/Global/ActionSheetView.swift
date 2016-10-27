@@ -68,14 +68,6 @@ class ActionSheetView: UIAlertController {
                 (v as! UILabel).textColor = UIColor.white
             }
             
-            view.viewsSatisfyCondition(condition: { (v) -> (Bool) in
-                if v.backgroundColor == UIColor.black {
-                    return true
-                }
-                return false
-            }) { (v) in
-                v.backgroundColor = UIColor.white
-            }
         }
     }
 

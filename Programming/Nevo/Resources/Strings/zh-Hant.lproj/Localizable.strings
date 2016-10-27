@@ -197,4 +197,11 @@
 // 2016-10-20
 "Back"="返回";
 "Profile"="个人资料";
+
+// 2016-10-27
+"Choose picture source"="选择照片来源";
+"Choose from library"="资源库";
+"Choose from Camera"="相机";
+
+"move_&_zoom"="移动和缩放";
 "Yesterday"="昨天";

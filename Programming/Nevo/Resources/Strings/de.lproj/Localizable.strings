@@ -200,4 +200,11 @@
 // 2016-10-20
 "Back"="Back";
 "Profile"="Profile";
-"Yesterday"="昨天";
+
+// 2016-10-27
+"Choose picture source"="Choose picture source";
+"Choose from library"="Choose from library";
+"Choose from Camera"="Choose from Camera";
+
+"move_&_zoom"="Move & Zoom";
+"Yesterday"="Yesterday";
