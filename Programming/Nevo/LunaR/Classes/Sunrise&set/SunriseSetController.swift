@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Timepiece
 
 class SunriseSetController: PublicClassController {
     lazy var newView:SunriseSetView = {
@@ -24,7 +25,8 @@ class SunriseSetController: PublicClassController {
         
         /// Usages
         newView.setDialTime(dateComponents: dd)
-        newView.setTime(weekday: "Yesterday", date: "Saturday, 15 October, 2016")
+        
+        newView.setTime(weekday: NSLocalizedString("Yesterday", comment: ""), date: Date.yesterday().stringFromFormat("EEEE,dd,MMMM,yyyy"))
     }
     
     override func viewDidAppear(_ animated: Bool) {

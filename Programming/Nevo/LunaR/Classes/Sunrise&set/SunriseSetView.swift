@@ -77,16 +77,19 @@ extension SunriseSetView:UITableViewDataSource, UITableViewDelegate {
         let realm = try! Realm()
         if indexPath.row == 1 {
             let citiesArray:[City] = Array(realm.objects(City.self).filter("selected = true"))
-            let city = citiesArray[0]
+            if citiesArray.count>0 {
+                let city = citiesArray[0]
+                
+                let solar = Solar(latitude: city.lat,longitude: city.lng)
+                let sunrise = solar!.sunrise
+                let sunset = solar!.sunset
+                
+                let sunriseString:String = sunrise!.stringFromFormat("HH:mm a")
+                let sunsetString:String = sunset!.stringFromFormat("HH:mm a")
+                
+                cell.setTime(worldTime: city.name, sunriseTime: sunriseString, sunsetTime: sunsetString)
+            }
             
-            let solar = Solar(latitude: city.lat,longitude: city.lng)
-            let sunrise = solar!.sunrise
-            let sunset = solar!.sunset
-            
-            let sunriseString:String = sunrise!.stringFromFormat("HH:mm a")
-            let sunsetString:String = sunset!.stringFromFormat("HH:mm a")
-            
-            cell.setTime(worldTime: city.name, sunriseTime: sunriseString, sunsetTime: sunsetString)
         }else{
             
             let solar = Solar(latitude: AppDelegate.getAppDelegate().getLatitude(),longitude: AppDelegate.getAppDelegate().getLongitude())

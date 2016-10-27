@@ -552,7 +552,7 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
         }
         
         if rowIndex == 2 {
-            let startTimeInterval:TimeInterval = Date().beginningOfDay.timeIntervalSince1970-(dayTime*30)
+            let startTimeInterval:TimeInterval = Date().beginningOfDay.timeIntervalSince1970-(dayTime*30)-1
             if xVals.count<30 {
                 for index:Int in 0..<30 {
                     if xVals.count==0 {
@@ -560,7 +560,7 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
                         xVals.append(dateString)
                         yVals.append(ChartDataEntry(value: 0, xIndex: index))
                     }
-                    
+                    var indexValue:Int = index
                     var getIndex:Int = index
                     if index>=xVals.count {
                         getIndex = index-1

@@ -48,16 +48,19 @@ class PageViewController: UIPageViewController,UIActionSheetDelegate {
         let viewController3 = SleepHistoricalViewController()
         viewController3.view.tag = 2
         viewController3.view.backgroundColor = UIColor.white
-        let viewController4 = SunriseSetController()
-        viewController4.view.tag = 3
-        viewController4.view.backgroundColor = UIColor.white
         
-        pagingControllers = [viewController1, viewController2,viewController3,viewController4]
+        
+        pagingControllers = [viewController1, viewController2,viewController3]
         selectedController = pagingControllers[0]
         
         if UserDefaults.standard.object(forKey: "WATCHNAME_KEY") != nil {
             let value:Int = UserDefaults.standard.object(forKey: "WATCHNAME_KEY") as! Int
             if value>1 {
+                let viewController4 = SunriseSetController()
+                viewController4.view.tag = 3
+                viewController4.view.backgroundColor = UIColor.white
+                pagingControllers.append(viewController4)
+                
                 let viewController5 = SolarIndicatorController()
                 viewController5.view.tag = 4
                 viewController5.view.backgroundColor = UIColor.white
@@ -244,8 +247,11 @@ extension PageViewController: UIPageViewControllerDataSource,UIPageViewControlle
             selectedController = pagingControllers[2]
             return selectedController
         }else if viewController.isKind(of: SleepHistoricalViewController.self) {
-            selectedController = pagingControllers[3]
-            return selectedController
+            if pagingControllers.count>3 {
+                selectedController = pagingControllers[3]
+                return selectedController
+            }
+            return nil
         }else if viewController.isKind(of: SunriseSetController.self) {
             if pagingControllers.count>4 {
                 selectedController = pagingControllers[4]
