@@ -64,20 +64,26 @@ extension AnalysisController {
         }
     }
     
+    /*
+     Get steps data
+     */
     func getStepsData()->[NSArray] {
         let dayDate:Date = Date()
         let thisWeekArray:NSArray = UserSteps.getCriteria("WHERE date BETWEEN \(dayDate.beginningOfWeek.timeIntervalSince1970) AND \(dayDate.endOfWeek.timeIntervalSince1970)")
-        let lastWeekArray:NSArray = UserSteps.getCriteria("WHERE date BETWEEN \(dayDate.beginningOfDay.timeIntervalSince1970-(86400.0*7)-1) AND \(dayDate.beginningOfDay.timeIntervalSince1970)")
-        let last30DayArray:NSArray = UserSteps.getCriteria("WHERE date BETWEEN \(dayDate.beginningOfDay.timeIntervalSince1970-(86400.0*30)) AND \(dayDate.endOfDay.timeIntervalSince1970)")
+        let lastWeekArray:NSArray = UserSteps.getCriteria("WHERE date BETWEEN \(dayDate.endOfDay.timeIntervalSince1970-(86400.0*7)) AND \(dayDate.beginningOfDay.timeIntervalSince1970+1)")
+        let last30DayArray:NSArray = UserSteps.getCriteria("WHERE date BETWEEN \(dayDate.endOfDay.timeIntervalSince1970-(86400.0*30)) AND \(dayDate.beginningOfDay.timeIntervalSince1970+1)")
         return [thisWeekArray,lastWeekArray,last30DayArray]
     }
     
+    /*
+     Get sleep data
+     */
     func getSleepData()->[NSArray] {
         let nextDay:Double = 86401
         
         let dayDate:Date = Date()
         let thisWeekArray:NSArray = UserSleep.getCriteria("WHERE date BETWEEN \(dayDate.beginningOfWeek.timeIntervalSince1970-nextDay) AND \(dayDate.endOfWeek.timeIntervalSince1970+nextDay)")
-        let lastWeekArray:NSArray = UserSleep.getCriteria("WHERE date BETWEEN \(dayDate.beginningOfWeek.timeIntervalSince1970-(86400.0*7)-nextDay) AND \(dayDate.beginningOfWeek.timeIntervalSince1970+nextDay)")
+        let lastWeekArray:NSArray = UserSleep.getCriteria("WHERE date BETWEEN \(dayDate.beginningOfDay.timeIntervalSince1970-(86400.0*7)-nextDay) AND \(dayDate.endOfDay.timeIntervalSince1970+nextDay)")
         let last30DayArray:NSArray = UserSleep.getCriteria("WHERE date BETWEEN \(dayDate.beginningOfDay.timeIntervalSince1970-(86400.0*30)-nextDay) AND \(dayDate.endOfDay.timeIntervalSince1970+nextDay)")
         return [thisWeekArray,lastWeekArray,last30DayArray]
     }
