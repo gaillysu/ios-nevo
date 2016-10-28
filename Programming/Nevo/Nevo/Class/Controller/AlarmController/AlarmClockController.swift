@@ -405,16 +405,16 @@ class AlarmClockController: UITableViewController,AddAlarmDelegate {
 //            endCell.alarmIn.text = NSLocalizedString("alarm_disabled", comment: "")
 //        }else{
         
-        
-        // MARK: - 如果应用崩在这里, 提示原因是数组越界, 请卸载后重新编译调试
-        // MARK: - if app is crashed here, hint that there is a out-of-range thing happend, please uninstall the app and rebuild the project
-            if alarmModel!.dayOfWeek != Date().weekday {
-                endCell.alarmIn.text = NSLocalizedString("alarm_on", comment: "")+NSLocalizedString(dayArray[alarmModel!.dayOfWeek-1], comment: "")
-            }else{
-                let nowHour:Int = abs(date.hour-Date().hour)
-                let noeMinte:Int = abs(date.minute-Date().minute)
-                endCell.alarmIn.text = NSLocalizedString("alarm_in", comment: "")+"\(nowHour)h \(noeMinte)m"
-            }
+        if alarmModel?.dayOfWeek == 0 {
+            alarmModel?.dayOfWeek = 2
+        }
+        if alarmModel!.dayOfWeek != Date().weekday {
+            endCell.alarmIn.text = NSLocalizedString("alarm_on", comment: "")+NSLocalizedString(dayArray[alarmModel!.dayOfWeek-1], comment: "")
+        }else{
+            let nowHour:Int = abs(date.hour-Date().hour)
+            let noeMinte:Int = abs(date.minute-Date().minute)
+            endCell.alarmIn.text = NSLocalizedString("alarm_in", comment: "")+"\(nowHour)h \(noeMinte)m"
+        }
 //        }
         endCell.dateLabel.text = stringFromDate(date)
         endCell.titleLabel.text = alarmModel!.label
