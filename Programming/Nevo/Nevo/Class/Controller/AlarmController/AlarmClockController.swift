@@ -87,7 +87,7 @@ class AlarmClockController: UITableViewController,AddAlarmDelegate {
     call back Button Action
     */
     @IBAction func controllManager(_ sender:AnyObject){
-
+        self.tableView.reloadData()
         if(sender.isEqual(rightBarButton)){
             self.tableView.setEditing(false, animated: true)
             self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.plain, target: nil, action: nil)
@@ -106,6 +106,7 @@ class AlarmClockController: UITableViewController,AddAlarmDelegate {
 
     func sleepSwitchManager(_ sender:UISwitch) {
         updateNewAlarmSwicthData(mSleepAlarmArray,index: sender.tag,status:sender.isOn)
+        self.tableView.reloadData()
     }
     
     func updateNewAlarmSwicthData(_ mAlarmArray:NSArray,index:Int,status:Bool) {
@@ -400,21 +401,21 @@ class AlarmClockController: UITableViewController,AddAlarmDelegate {
         
         let dayArray:[String] = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]
         let date:Date = Date(timeIntervalSince1970: alarmModel!.timer)
-        if alarmModel?.dayOfWeek == 0 {
-            endCell.alarmIn.text = NSLocalizedString("alarm_disabled", comment: "")
-        }else{
-            if alarmModel!.dayOfWeek != Date().weekday {
-                endCell.alarmIn.text = NSLocalizedString("alarm_on", comment: "")+NSLocalizedString(dayArray[alarmModel!.dayOfWeek-1], comment: "")
-            }else{
-                if date.hour>=Date().hour && date.minute>Date().minute {
-                    let nowHour:Int = abs(date.hour-Date().hour)
-                    let noeMinte:Int = abs(date.minute-Date().minute)
-                    endCell.alarmIn.text = NSLocalizedString("alarm_in", comment: "")+"\(nowHour)h \(noeMinte)m"
-                }else{
-                    endCell.alarmIn.text = NSLocalizedString("alarm_disabled", comment: "")
-                }
+//        if alarmModel?.dayOfWeek == 0 {
+//            endCell.alarmIn.text = NSLocalizedString("alarm_disabled", comment: "")
+//        }else{
+        
+        if alarmModel!.dayOfWeek != Date().weekday {
+            if alarmModel?.dayOfWeek == 0 {
+                alarmModel?.dayOfWeek = 2
             }
+            endCell.alarmIn.text = NSLocalizedString("alarm_on", comment: "")+NSLocalizedString(dayArray[alarmModel!.dayOfWeek-1], comment: "")
+        }else{
+            let nowHour:Int = abs(date.hour-Date().hour)
+            let noeMinte:Int = abs(date.minute-Date().minute)
+            endCell.alarmIn.text = NSLocalizedString("alarm_in", comment: "")+"\(nowHour)h \(noeMinte)m"
         }
+//        }
         endCell.dateLabel.text = stringFromDate(date)
         endCell.titleLabel.text = alarmModel!.label
         if alarmModel?.label.characters.count == 0 {
@@ -423,6 +424,12 @@ class AlarmClockController: UITableViewController,AddAlarmDelegate {
         
         endCell.alarmSwicth.tag = (indexPath as NSIndexPath).row
         endCell.alarmSwicth.isOn = alarmModel!.status
+        
+        if !endCell.alarmSwicth.isOn {
+            endCell.alarmIn.text = NSLocalizedString("alarm_disabled", comment: "")
+        }
+        
+        
         if alarmModel!.type == 1 {
             endCell.alarmSwicth.addTarget(self, action: #selector(sleepSwitchManager(_:)), for: UIControlEvents.valueChanged)
         }else{
@@ -437,7 +444,7 @@ class AlarmClockController: UITableViewController,AddAlarmDelegate {
     }
     
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]?{
-        let button1 = UITableViewRowAction(style: .default, title: "Delete", handler: { (action, indexPath) in
+        let button1 = UITableViewRowAction(style: .default, title: NSLocalizedString("Delete", comment:""), handler: { (action, indexPath) in
             self.tableView(tableView, commit: .delete, forRowAt: indexPath)
         })
         
