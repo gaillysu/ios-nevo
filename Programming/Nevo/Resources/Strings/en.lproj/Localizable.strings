@@ -131,7 +131,7 @@
 "Wake Alarm"="Wake Alarm";
 "Awake"="Awake";
 "Sleep"="Sleep";
-"tips_content"="Tips:\nSleep alarm allows you set a timmer that your Nevo can automatic turn on sleep mode.";
+"tips_content"="Tips:\nSleep alarm allows you set a timer that your Nevo can automatic turn on sleep mode.";
 "Disable"="Disabled";
 "Sunday"="Every Sunday";
 "Monday"="Every Monday";
@@ -200,4 +200,4 @@
 "move_&_zoom"="Move & Zoom";
 "Yesterday"="Yesterday";
 
-"tips_content_lunar"="Tips:\nSleep alarm allows you set a timmer that your LunaR can automatic turn on sleep mode.";
+"tips_content_lunar"="Tips:\nSleep alarm allows you set a timer that your LunaR can automatic turn on sleep mode.";
