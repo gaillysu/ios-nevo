@@ -94,6 +94,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
             Presets.defaultPresetsGoal()
             UserAlarm.defaultAlarm()
             UserNotification.defaultNotificationColor()
+            //search not watch = -1
+            self.setWatchInfo(-1, model: -1)
         }else{
             UserDefaults.standard.set(false, forKey: "firstDatabase")
         }
@@ -594,6 +596,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                 self.getWatchNameRequest()
                 
                 self.getWacthNameTimer = Timer.after(5, {
+                    //如果超时说明是一个普通的Nevo,Watch Info 要重新配置
+                    self.setWatchInfo(1, model: 1)
                     self.setRTC()
                 })
             })

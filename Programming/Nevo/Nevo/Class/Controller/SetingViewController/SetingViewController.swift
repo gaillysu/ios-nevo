@@ -185,25 +185,15 @@ class SetingViewController: UIViewController,ButtonManagerCallBack,UIAlertViewDe
                 actionSheet.addAction(alertAction)
                 
                 let alertAction2:AlertAction = AlertAction(title: NSLocalizedString("forget", comment: ""), style: UIAlertActionStyle.default, handler: { ( alert) -> Void in
+                    
                     AppDelegate.getAppDelegate().forgetSavedAddress()
+                    
+                    //forget watch set wacthid= -1
+                    AppDelegate.getAppDelegate().setWatchInfo(-1, model: -1)
+                    
                     let tutrorial:TutorialOneViewController = TutorialOneViewController()
                     let nav:UINavigationController = UINavigationController(rootViewController: tutrorial)
                     nav.isNavigationBarHidden = true
-                    
-//                    nav.transitioningDelegate = self
-//                    nav.modalPresentationStyle = UIModalPresentationStyle.custom
-                    
-//                    self.view.addSubview(nav.view)
-//                    nav.view.frame.origin.y = self.view.frame.size.height
-//                    UIView.animate(withDuration: 1, animations: {
-//                        nav.view.frame.origin.y = 0
-//                    }, completion: { (_) in
-//                        AppDelegate.getAppDelegate().window? = UIWindow(frame: UIScreen.main.bounds)
-//                        AppDelegate.getAppDelegate().window?.rootViewController = nav
-//                        AppDelegate.getAppDelegate().window?.makeKeyAndVisible()
-//                    })
-                    
-//                    UIApplication.shared.keyWindow?.rootViewController = nav
                     
                     self.present(nav, animated: true, completion: { 
                         UIApplication.shared.keyWindow?.rootViewController = nav

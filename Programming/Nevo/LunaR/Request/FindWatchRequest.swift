@@ -15,7 +15,7 @@ enum FindWatchLEDType:Int{
 
 class FindWatchRequest: NevoRequest {
     fileprivate let allLED:UInt32 = 0x3F0000
-    fileprivate let whiteLED:UInt32 = 0xFFFF00
+    fileprivate let whiteLED:UInt32 = 0xFFFFFF
     /**
      0nly use bit0..23,  every bit match one led light, bit23 is used vibrator on/off
      0 means the led light off, 1 means the led light on
