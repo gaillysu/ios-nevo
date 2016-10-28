@@ -39,7 +39,7 @@ class SolarIndicatorController: PublicClassController {
         self.updateChartData()
         pieChartView.animate(xAxisDuration: 1.4, easingOption: ChartEasingOption.easeOutBack)
         
-        Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(pvadcAction(_:)), userInfo: nil, repeats: true)
+        //Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(pvadcAction(_:)), userInfo: nil, repeats: true)
         
         //EVENT_BUS_RAWPACKET_DATA_KEY
         SwiftEventBus.onMainThread(self, name: EVENT_BUS_RAWPACKET_DATA_KEY) { (notification) in

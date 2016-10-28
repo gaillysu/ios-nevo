@@ -244,7 +244,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
         
         mPacketsbuffer.append(packet.getRawData() as Data)
         if(packet.isLastPacket()) {
-            let packet:NevoPacket = NevoPacket(packets:mPacketsbuffer)
+            let packet:LunaRPacket = LunaRPacket(packets:mPacketsbuffer)
             if(!packet.isVaildPacket()) {
                 XCGLogger.default.debug("Invaild packet............\(packet.getPackets().count)")
                 mPacketsbuffer = []
@@ -256,7 +256,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
             SyncQueue.sharedInstance.next()
             
             if(packet.getHeader() == GetWatchName.HEADER()) {
-                let watchpacket = packet.copy() as WatchNamePacket
+                let watchpacket = packet.copy() as LunaRWatchNamePacket
                 self.setWatchInfo(watchpacket.getWatchID(), model: watchpacket.getModelNumber())
                 //start sync data
                 //self.syncActivityData()
@@ -349,7 +349,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
             }
             
             if(packet.getHeader() == ReadDailyTrackerInfo.HEADER()) {
-                let thispacket = packet.copy() as DailyTrackerInfoNevoPacket
+                let thispacket = packet.copy() as LunaRDailyTrackerInfoPacket
                 currentDay = 0
                 savedDailyHistory = thispacket.getDailyTrackerInfo()
                 XCGLogger.default.debug("History Total Days:\(self.savedDailyHistory.count),Today is \(GmtNSDate2LocaleNSDate(Date()))")
@@ -359,7 +359,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
             }
             
             if(packet.getHeader() == ReadDailyTracker.HEADER()) {
-                let thispacket:DailyTrackerNevoPacket = packet.copy() as DailyTrackerNevoPacket
+                let thispacket:LunaRDailyTrackerPacket = packet.copy() as LunaRDailyTrackerPacket
                 
                 let timeStr:String = String(format: "%d" ,thispacket.getDateTimer())
                 if(timeStr.length() < 8 ) {
@@ -382,9 +382,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                 let stepsArray = UserSteps.getCriteria("WHERE createDate = \(timeStr)")
                 let stepsModel:UserSteps = UserSteps()
                 stepsModel.uid = 0
-                stepsModel.steps = thispacket.getDailySteps()
+                stepsModel.steps = thispacket.getTotalSteps()
                 stepsModel.goalsteps = thispacket.getStepsGoal()
-                stepsModel.distance = thispacket.getDailyDist()
+                stepsModel.distance = thispacket.getTotalDistance()
                 stepsModel.hourlysteps = "\(AppTheme.toJSONString(thispacket.getHourlySteps() as AnyObject!))"
                 stepsModel.hourlydistance = "\(AppTheme.toJSONString(thispacket.getHourlyDist() as AnyObject!))"
                 stepsModel.calories = Double(thispacket.getDailyCalories())
