@@ -405,10 +405,10 @@ class AlarmClockController: UITableViewController,AddAlarmDelegate {
 //            endCell.alarmIn.text = NSLocalizedString("alarm_disabled", comment: "")
 //        }else{
         
-        if alarmModel?.dayOfWeek == 0 {
-            alarmModel?.dayOfWeek = 2
-        }
         if alarmModel!.dayOfWeek != Date().weekday {
+            if alarmModel?.dayOfWeek == 0 {
+                alarmModel?.dayOfWeek = 2
+            }
             endCell.alarmIn.text = NSLocalizedString("alarm_on", comment: "")+NSLocalizedString(dayArray[alarmModel!.dayOfWeek-1], comment: "")
         }else{
             let nowHour:Int = abs(date.hour-Date().hour)
