@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES" initialViewController="VSL-Nt-5H3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES" initialViewController="VSL-Nt-5H3">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -126,10 +126,10 @@
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SetingCell" id="jy6-2o-7Tg">
-                                        <rect key="frame" x="0.0" y="119" width="1000" height="44"/>
+                                        <rect key="frame" x="0.0" y="119" width="383" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jy6-2o-7Tg" id="Hea-sY-zN0">
-                                            <frame key="frameInset" width="1000" height="43"/>
+                                            <frame key="frameInset" width="383" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -143,8 +143,8 @@
                         <constraints>
                             <constraint firstItem="Btq-vY-5HU" firstAttribute="top" secondItem="Zx4-WI-sxC" secondAttribute="bottom" constant="-29" id="BR2-SY-pgl"/>
                             <constraint firstItem="Zx4-WI-sxC" firstAttribute="top" secondItem="3iy-c3-UnN" secondAttribute="bottom" constant="-44" id="Rmz-Qc-TM4"/>
-                            <constraint firstItem="Zx4-WI-sxC" firstAttribute="leading" secondItem="h7L-SF-lkB" secondAttribute="leadingMargin" constant="-16" id="a3Z-Od-cep"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="Zx4-WI-sxC" secondAttribute="trailing" constant="-16" id="tS6-Yl-R2X"/>
+                            <constraint firstItem="Zx4-WI-sxC" firstAttribute="leading" secondItem="h7L-SF-lkB" secondAttribute="leadingMargin" constant="-20" id="a3Z-Od-cep"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Zx4-WI-sxC" secondAttribute="trailing" constant="-20" id="tS6-Yl-R2X"/>
                         </constraints>
                         <connections>
                             <outlet property="tableListView" destination="Zx4-WI-sxC" id="Czw-V2-Naa"/>
@@ -211,7 +211,7 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="5K1-IL-E6r">
-                                        <rect key="frame" x="0.0" y="0.0" width="367" height="360"/>
+                                        <rect key="frame" x="0.0" y="-1" width="367" height="360"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="367" height="360"/>
