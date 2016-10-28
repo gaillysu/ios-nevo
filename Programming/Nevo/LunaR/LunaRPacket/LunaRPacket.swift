@@ -9,7 +9,7 @@ class LunaRPacket {
     fileprivate var mHeader:UInt8 = 0
     let endFlag:UInt8 = 0xFF
     
-    struct DailyHistory
+    struct TotalHistory
     {
         var TotalSteps:Int = 0;
         var HourlySteps:[Int] = [];
@@ -55,8 +55,8 @@ class LunaRPacket {
         return mPackets
     }
     
-    func copy()->LunaRDailyStepsPacket {
-        return LunaRDailyStepsPacket(packets: mPackets)
+    func copy()->LunaRStepsGoalPacket {
+        return LunaRStepsGoalPacket(packets: mPackets)
     }
     
     func copy()->LunaRDailyTrackerInfoPacket {
@@ -67,8 +67,8 @@ class LunaRPacket {
         return LunaRDailyTrackerPacket(packets: mPackets)
     }
     
-    func copy()->WatchNamePacket {
-        return WatchNamePacket(packets: mPackets)
+    func copy()->LunaRWatchNamePacket {
+        return LunaRWatchNamePacket(packets: mPackets)
     }
     
     func isVaildPacket() ->Bool {
@@ -76,7 +76,7 @@ class LunaRPacket {
            return false
         }
         
-        for i:Int in 0  ..< mPackets.count {
+        for i:Int in 0..<mPackets.count-1 {
             if UInt8(i) != NSData2Bytes(mPackets[i])[0]{
                 return false
             }

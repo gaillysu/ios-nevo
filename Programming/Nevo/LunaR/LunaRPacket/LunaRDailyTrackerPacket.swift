@@ -157,7 +157,7 @@ class LunaRDailyTrackerPacket: LunaRPacket {
      *
      * @return the harvesting of solar per day, unit is in minutes
      */
-    func getSolarHarvestingTime() ->  {
+    func getSolarHarvestingTime() ->Int  {
         let packetno = 3
         let offset = 8
         
@@ -165,7 +165,7 @@ class LunaRDailyTrackerPacket: LunaRPacket {
         harvestingTime += Int(NSData2Bytes(getPackets()[packetno])[offset+1] )<<8
         harvestingTime += Int(NSData2Bytes(getPackets()[packetno])[offset+2] )<<8
         harvestingTime += Int(NSData2Bytes(getPackets()[packetno])[offset+3] )<<8
-        return totalDeepTime/60
+        return harvestingTime/60
     }
     
     /**
@@ -222,7 +222,7 @@ class LunaRDailyTrackerPacket: LunaRPacket {
      */
     func getHourlyWalkDist() -> [Int] {
         var HourlyWalkDist:[Int] = [];
-        var hourlyWalkDistValue =0;
+        var hourlyWalkDistValue:Int = 0;
         for index:Int in 0..<24 {
             let packetno = HEADERLENGTH+index*HOURLYPACKETSNUMBER;
             let offset = 2;
@@ -245,7 +245,7 @@ class LunaRDailyTrackerPacket: LunaRPacket {
      */
     func getHourlyRunDist() -> [Int] {
         var HourlyRunDist:[Int] = [];
-        var hourlyRunDistValue =0;
+        var hourlyRunDistValue = 0;
         for index:Int in 0..<24 {
             let packetno = HEADERLENGTH+index*HOURLYPACKETSNUMBER;
             let offset = 6;
@@ -268,11 +268,11 @@ class LunaRDailyTrackerPacket: LunaRPacket {
      */
     func getHourlyCalories() -> [Int] {
         var HourlyCalories:[Int] = [];
-        var hourlyCaloriesValue =0;
+        var hourlyCaloriesValue:Int = 0;
         for index:Int in 0..<24 {
             let packetno = HEADERLENGTH+index*HOURLYPACKETSNUMBER;
             let offset = 10;
-            hourlyRunDistValue = 0;
+            hourlyCaloriesValue = 0;
             if NSData2Bytes(getPackets()[packetno])[offset] != 0xFF
                 && NSData2Bytes(getPackets()[packetno])[offset+1] != 0xFF && NSData2Bytes(getPackets()[packetno])[offset+2] != 0xFF && NSData2Bytes(getPackets()[packetno])[offset+3] != 0xFF{
                 hourlyCaloriesValue = Int(NSData2Bytes(getPackets()[packetno])[offset])
@@ -286,14 +286,14 @@ class LunaRDailyTrackerPacket: LunaRPacket {
     }
     
     /**
-     *@return History Hourly steps
+     *@return hourly walk steps
      */
-    func getHourlySteps() ->[Int] {
+    func getHourlyWalkSteps() ->[Int] {
         var hourlyStepsArray:[Int] = []
         var hourlySteps:Int = 0
         
         //get every hour Steps:
-        for index:Int in 0..< 24 {
+        for index:Int in 0..<24 {
             let packetno = HEADERLENGTH+index*HOURLYPACKETSNUMBER;
             let offset = 15;
             hourlySteps = 0
@@ -314,7 +314,7 @@ class LunaRDailyTrackerPacket: LunaRPacket {
         var hourlyRunStepsArray:[Int] = []
         var hourlyRunSteps:Int = 0
         //get every hour run Steps:
-        for index:Int in 0..< 24 {
+        for index:Int in 0..<24 {
             let packetno = HEADERLENGTH+index*HOURLYPACKETSNUMBER;
             let offset = 17;
             hourlyRunSteps = 0
@@ -335,7 +335,7 @@ class LunaRDailyTrackerPacket: LunaRPacket {
         var hourlyWalkTimeArray:[Int] = []
         var hourlyWalkTimeValue:Int = 0
         //get every hour run Steps:
-        for index:Int in 0..< 24 {
+        for index:Int in 0..<24 {
             let packetno = HEADERLENGTH+index*HOURLYPACKETSNUMBER;
             let offset = 18;
             hourlyWalkTimeValue = 0
@@ -356,7 +356,7 @@ class LunaRDailyTrackerPacket: LunaRPacket {
         var hourlyRunTimeArray:[Int] = []
         var hourlyRunTimeValue:Int = 0
         //get every hour run Steps:
-        for index:Int in 0..< 24 {
+        for index:Int in 0..<24 {
             let packetno = HEADERLENGTH+index*HOURLYPACKETSNUMBER+1;
             let offset = 2;
             hourlyRunTimeValue = 0
@@ -367,7 +367,7 @@ class LunaRDailyTrackerPacket: LunaRPacket {
             }
             hourlyRunTimeArray.append(hourlyRunTimeValue)
         }
-        return hourlyWalkTimeArray
+        return hourlyRunTimeArray
     }
     
     /**
@@ -376,18 +376,18 @@ class LunaRDailyTrackerPacket: LunaRPacket {
      */
     func getHourlyHarvestTime() ->[Int] {
         var HourlyHarvestTime:[Int] = [];
-        var hourlyHarvestTimeValue =0;
+        var hourlyHarvestTimeValue:Int = 0;
         //get every hour swim time:
         for index:Int in 0..<24 {
             let packetno = HEADERLENGTH+index*HOURLYPACKETSNUMBER+1;
             let offset = 4;
-            hourlyHarvestTime = 0;
+            hourlyHarvestTimeValue = 0;
             if NSData2Bytes(getPackets()[packetno])[offset] != 0xFF
                 && NSData2Bytes(getPackets()[packetno])[offset+1] != 0xFF{
                 hourlyHarvestTimeValue = Int(NSData2Bytes(getPackets()[packetno])[offset] )
-                hourlyHarvestTimeValue = hourlySteps + Int(NSData2Bytes(getPackets()[packetno])[offset+1] )<<8
+                hourlyHarvestTimeValue += Int(NSData2Bytes(getPackets()[packetno])[offset+1] )<<8
             }
-            HourlyHarvestTime.append(hourlyHarvestTime/60)
+            HourlyHarvestTime.append(hourlyHarvestTimeValue/60)
         }
         return HourlyHarvestTime;
     }
@@ -399,7 +399,7 @@ class LunaRDailyTrackerPacket: LunaRPacket {
         var hourlySleepTimeArray:[Int] = []
         var hourlySleepTimeValue:Int = 0
         //get every hour run Steps:
-        for index:Int in 0..< 24 {
+        for index:Int in 0..<24 {
             let packetno = HEADERLENGTH+index*HOURLYPACKETSNUMBER+1;
             let offset = 6;
             hourlySleepTimeValue = 0
@@ -418,12 +418,12 @@ class LunaRDailyTrackerPacket: LunaRPacket {
         var hourlyWeakSleepTimeArray:[Int] = []
         var hourlyWeakSleepTimeValue:Int = 0
         //get every hour run Steps:
-        for index:Int in 0..< 24 {
+        for index:Int in 0..<24 {
             let packetno = HEADERLENGTH+index*HOURLYPACKETSNUMBER+1;
             let offset = 7;
             hourlyWeakSleepTimeValue = 0
             if NSData2Bytes(getPackets()[packetno])[offset] != 0xFF {
-                hourlySleepTimeValue = Int(NSData2Bytes(getPackets()[packetno])[offset])
+                hourlyWeakSleepTimeValue = Int(NSData2Bytes(getPackets()[packetno])[offset])
             }
             hourlyWeakSleepTimeArray.append(hourlyWeakSleepTimeValue)
         }
@@ -437,7 +437,7 @@ class LunaRDailyTrackerPacket: LunaRPacket {
         var hourlyLightSleepTimeArray:[Int] = []
         var hourlyLightSleepTimeValue:Int = 0
         //get every hour run Steps:
-        for index:Int in 0..< 24 {
+        for index:Int in 0..<24 {
             let packetno = HEADERLENGTH+index*HOURLYPACKETSNUMBER+1;
             let offset = 8;
             hourlyLightSleepTimeValue = 0
@@ -456,7 +456,7 @@ class LunaRDailyTrackerPacket: LunaRPacket {
         var hourlyDeepSleepTimeArray:[Int] = []
         var hourlyDeepSleepTimeValue:Int = 0
         //get every hour run Steps:
-        for index:Int in 0..< 24 {
+        for index:Int in 0..<24 {
             let packetno = HEADERLENGTH+index*HOURLYPACKETSNUMBER+1;
             let offset = 8;
             hourlyDeepSleepTimeValue = 0
@@ -467,17 +467,5 @@ class LunaRDailyTrackerPacket: LunaRPacket {
         }
         return hourlyDeepSleepTimeArray
     }
-    
-    /**
-    get in zone time,minute
-    */
-    func getInZoneTime() ->Int
-    {
-        var value:Int = Int(NSData2Bytes(getPackets()[4])[2] )
-        value =  value + Int(NSData2Bytes(getPackets()[4])[3] )<<8
-        value =  value + Int(NSData2Bytes(getPackets()[4])[4] )<<16
-        value =  value + Int(NSData2Bytes(getPackets()[4])[5] )<<24
-        return value
 
-    }
 }

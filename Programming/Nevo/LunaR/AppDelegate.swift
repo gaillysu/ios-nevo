@@ -40,7 +40,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
     fileprivate var mConnectionController : ConnectionControllerImpl?
     fileprivate var mPacketsbuffer:[Data] = []
     fileprivate let mHealthKitStore:HKHealthStore = HKHealthStore()
-    fileprivate var savedDailyHistory:[NevoPacket.DailyHistory] = []
+    fileprivate var savedDailyHistory:[LunaRPacket.TotalHistory] = []
     fileprivate var currentDay:UInt8 = 0
     fileprivate var mAlertUpdateFW = false
     
@@ -268,7 +268,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
             }
             
             if(packet.getHeader() == SetRTCRequest.HEADER()) {
-                //SetSunriseAndSunsetRequest
                 //setp2:start set user profile
                 self.SetProfile()
             }
@@ -351,7 +350,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
             if(packet.getHeader() == ReadDailyTrackerInfo.HEADER()) {
                 let thispacket = packet.copy() as LunaRDailyTrackerInfoPacket
                 currentDay = 0
-                savedDailyHistory = thispacket.getDailyTrackerInfo()
+                savedDailyHistory = thispacket.getTotalTrackerInfo()
                 XCGLogger.default.debug("History Total Days:\(self.savedDailyHistory.count),Today is \(GmtNSDate2LocaleNSDate(Date()))")
                 if savedDailyHistory.count > 0 {
                     self.getDailyTracker(currentDay)
@@ -361,7 +360,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
             if(packet.getHeader() == ReadDailyTracker.HEADER()) {
                 let thispacket:LunaRDailyTrackerPacket = packet.copy() as LunaRDailyTrackerPacket
                 
-                let timeStr:String = String(format: "%d" ,thispacket.getDateTimer())
+                let timeStr:String = String(format: "%d" ,thispacket.getDate())
                 if(timeStr.length() < 8 ) {
                     return
                 }
@@ -385,22 +384,34 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                 stepsModel.steps = thispacket.getTotalSteps()
                 stepsModel.goalsteps = thispacket.getStepsGoal()
                 stepsModel.distance = thispacket.getTotalDistance()
-                stepsModel.hourlysteps = "\(AppTheme.toJSONString(thispacket.getHourlySteps() as AnyObject!))"
-                stepsModel.hourlydistance = "\(AppTheme.toJSONString(thispacket.getHourlyDist() as AnyObject!))"
-                stepsModel.calories = Double(thispacket.getDailyCalories())
+                
+                let stepsWalkValue = thispacket.getHourlyWalkSteps()
+                let stepsRunValue = thispacket.getHourlyRunSteps()
+                var hourlyStepsValue:[Int] = [Int](repeating: 0, count: 24)
+                for (index,value) in stepsWalkValue.enumerated() {
+                    let runValue:Int = stepsRunValue[index]
+                    hourlyStepsValue.replaceSubrange(index..<index+1, with: [value+runValue])
+                }
+                stepsModel.hourlysteps = "\(AppTheme.toJSONString(hourlyStepsValue as AnyObject!))"
+                
+                let distanceWalkVlaue = thispacket.getHourlyWalkDist()
+                let distanceRunVlaue = thispacket.getHourlyRunDist()
+                var hourlyDistanceValue:[Int] = [Int](repeating: 0, count: 24)
+                for (index,value) in distanceWalkVlaue.enumerated() {
+                    let distanceValue:Int = distanceRunVlaue[index]
+                    hourlyDistanceValue.replaceSubrange(index..<index+1, with: [distanceValue+value])
+                }
+                stepsModel.hourlydistance = "\(AppTheme.toJSONString(hourlyDistanceValue as AnyObject!))"
+                stepsModel.calories = Double(thispacket.getTotalCalories())
                 stepsModel.hourlycalories = "\(AppTheme.toJSONString(thispacket.getHourlyCalories() as AnyObject!))"
-                stepsModel.inZoneTime = thispacket.getInZoneTime()
-                stepsModel.outZoneTime = thispacket.getOutZoneTime()
-                stepsModel.inactivityTime = thispacket.getDailyRunningDuration()+thispacket.getDailyWalkingDuration()
-                stepsModel.goalreach = Double(thispacket.getDailySteps())/Double(thispacket.getStepsGoal())
+                stepsModel.inactivityTime = thispacket.getInactivityTime()
+                stepsModel.goalreach = Double(thispacket.getTotalSteps())/Double(thispacket.getStepsGoal())
                 stepsModel.date = timerInter
                 stepsModel.createDate = "\(timeStr)"
-                stepsModel.walking_distance = thispacket.getDailyWalkingDistance()
-                stepsModel.walking_duration = thispacket.getDailyWalkingDuration()
-                stepsModel.walking_calories = thispacket.getDailyCalories()
-                stepsModel.running_distance = thispacket.getRunningDistance()
-                stepsModel.running_duration = thispacket.getDailyRunningDuration()
-                stepsModel.running_calories = thispacket.getDailyCalories()
+                stepsModel.walking_distance = thispacket.getTotalWalkDistance()
+                stepsModel.walking_duration = thispacket.getTotalWalkTime()
+                stepsModel.running_distance = thispacket.getTotalRunDistance()
+                stepsModel.running_duration = thispacket.getTotalRunTime()
                 
                 //upload steps data to Nevo service
                 let login:NSArray = UserProfile.getAll()
@@ -422,7 +433,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                 }
                 if(stepsArray.count>0) {
                     let step:UserSteps = stepsArray[0] as! UserSteps
-                    if(step.steps < thispacket.getDailySteps()) {
+                    if(step.steps < thispacket.getTotalSteps()) {
                         XCGLogger.default.debug("Data that has been saved····")
                         stepsModel.id = step.id
                         DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.default).async(execute: { () -> Void in
@@ -444,14 +455,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                 let model:UserSleep = UserSleep()
                 model.id = 0
                 model.date = timerInterval.timeIntervalSince1970
-                model.totalSleepTime = thispacket.getDailySleepTime()
+                model.totalSleepTime = thispacket.getTotalSleepTime()
                 model.hourlySleepTime = "\(AppTheme.toJSONString(thispacket.getHourlySleepTime() as AnyObject!))"
-                model.totalWakeTime = 0
-                model.hourlyWakeTime = "\(AppTheme.toJSONString(thispacket.getHourlyWakeTime() as AnyObject!))"
-                model.totalLightTime = 0
-                model.hourlyLightTime = "\(AppTheme.toJSONString(thispacket.getHourlyLightTime() as AnyObject!))"
-                model.totalDeepTime = 0
-                model.hourlyDeepTime = "\(AppTheme.toJSONString(thispacket.getHourlyDeepTime() as AnyObject!))"
+                model.totalWakeTime = thispacket.getTotalWakeTime()
+                model.hourlyWakeTime = "\(AppTheme.toJSONString(thispacket.getHourlyWakeSleepTime() as AnyObject!))"
+                model.totalLightTime = thispacket.getTotalWakeTime()
+                model.hourlyLightTime = "\(AppTheme.toJSONString(thispacket.getHourlyLightSleepTime() as AnyObject!))"
+                model.totalDeepTime = thispacket.getTotalDeepTime()
+                model.hourlyDeepTime = "\(AppTheme.toJSONString(thispacket.getHourlyDeepSleepTime() as AnyObject!))"
                 
                 //upload sleep data to validic
                 //UPDATE_VALIDIC_REQUEST.updateSleepDataToValidic(NSArray(arrayLiteral: stepsModel))
@@ -496,9 +507,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                 
                 //TODO:crash  数组越界
                 if Int(currentDay)<savedDailyHistory.count {
-                    savedDailyHistory[Int(currentDay)].TotalSteps = thispacket.getDailySteps()
-                    savedDailyHistory[Int(currentDay)].HourlySteps = thispacket.getHourlySteps()
-                    savedDailyHistory[Int(currentDay)].TotalCalories = thispacket.getDailyCalories()
+                    savedDailyHistory[Int(currentDay)].TotalSteps = thispacket.getTotalSteps()
+                    savedDailyHistory[Int(currentDay)].HourlySteps = hourlyStepsValue
+                    savedDailyHistory[Int(currentDay)].TotalCalories = thispacket.getTotalCalories()
                     savedDailyHistory[Int(currentDay)].HourlyCalories = thispacket.getHourlyCalories()
                     
                     //save to health kit
@@ -511,9 +522,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                     let saveDate:Date = Date.date(year: saveDay.year, month: saveDay.month, day: saveDay.day, hour: saveDay.hour, minute: 0, second: 0)
                     
                     // to HK Running
-                    for index:Int in 0 ..< thispacket.getHourlyRunningDistance().count {
-                        if(thispacket.getHourlyRunningDistance()[index] > 0) {
-                            hk.writeDataPoint(RunningToHK(distance:Double(thispacket.getHourlyRunningDistance()[index]), date:Date.date(year: saveDay.year, month: saveDay.month, day: saveDay.day, hour: index, minute: 0, second: 0)), resultHandler: { (result, error) in
+                    for index:Int in 0 ..< thispacket.getHourlyRunDist().count {
+                        let runValue = thispacket.getHourlyRunDist()[index]
+                        if(runValue > 0) {
+                            hk.writeDataPoint(RunningToHK(distance:Double(runValue), date:Date.date(year: saveDay.year, month: saveDay.month, day: saveDay.day, hour: index, minute: 0, second: 0)), resultHandler: { (result, error) in
                                 
                             })
                         }
@@ -571,7 +583,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
             
             if(packet.getHeader() == GetStepsGoalRequest.HEADER()) {
                 //refresh current hourly steps changing in the healthkit
-                let thispacket = packet.copy() as DailyStepsNevoPacket
+                let thispacket = packet.copy() as LunaRStepsGoalPacket
                 let dailySteps:Int = thispacket.getDailySteps()
                 let dailyStepGoal:Int = thispacket.getDailyStepsGoal()
                 let percent :Float = Float(dailySteps)/Float(dailyStepGoal)

@@ -51,15 +51,19 @@ class MyNevoController: UITableViewController,UIAlertViewDelegate {
         }
         
         //RAWPACKET DATA
-        SwiftEventBus.onMainThread(self, name: EVENT_BUS_RAWPACKET_DATA_KEY) { (notification) in
-            let packet = notification.object as! NevoPacket
-            //Do nothing
-            let thispacket:BatteryLevelNevoPacket = packet.copy() as BatteryLevelNevoPacket
-            if(thispacket.isReadBatteryCommand(packet.getPackets())){
-                let batteryValue:Int = thispacket.getBatteryLevel()
-                self.currentBattery = batteryValue
-                let indexPath:NSIndexPath = NSIndexPath(row: 1, section: 0)
-                self.tableView.reloadRows(at: [indexPath as IndexPath], with: UITableViewRowAnimation.automatic)
+        _ = SwiftEventBus.onMainThread(self, name: EVENT_BUS_RAWPACKET_DATA_KEY) { (notification) in
+            if AppTheme.isTargetLunaR_OR_Nevo() {
+                let packet = notification.object as! NevoPacket;
+                //Do nothing
+                let thispacket:BatteryLevelNevoPacket = packet.copy() as BatteryLevelNevoPacket
+                if(thispacket.isReadBatteryCommand(packet.getPackets())){
+                    let batteryValue:Int = thispacket.getBatteryLevel()
+                    self.currentBattery = batteryValue
+                    let indexPath:NSIndexPath = NSIndexPath(row: 1, section: 0)
+                    self.tableView.reloadRows(at: [indexPath as IndexPath], with: UITableViewRowAnimation.automatic)
+                }
+            }else{
+            
             }
         }
         

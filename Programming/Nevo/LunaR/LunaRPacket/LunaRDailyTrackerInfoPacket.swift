@@ -6,9 +6,9 @@ class LunaRDailyTrackerInfoPacket: LunaRPacket {
     return Tracker history summary infomation, MAX total 7 days(include Today)
     the actually days is saved by [DailyHistory].count
     */
-    func getDailyTrackerInfo() ->[DailyHistory]
+    func getTotalTrackerInfo() ->[TotalHistory]
     {
-            var days:[DailyHistory] = []
+            var days:[TotalHistory] = []
         
             let total:Int = Int(NSData2Bytes(getPackets()[1])[12])
             var year:Int = 0
@@ -43,13 +43,10 @@ class LunaRDailyTrackerInfoPacket: LunaRPacket {
                     //20150316
                     let mdata:String = String(format: "\(year)%02d%02d000000",month,day)
                     let date:Date = format.date(from: mdata)!
-                    days.append(DailyHistory(date:date))
+                    days.append(TotalHistory(date:date))
                 }
                 
             }
-            
-            
-        
         return days
     }
    

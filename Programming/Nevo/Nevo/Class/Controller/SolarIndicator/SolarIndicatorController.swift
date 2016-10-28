@@ -42,19 +42,32 @@ class SolarIndicatorController: PublicClassController {
         //Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(pvadcAction(_:)), userInfo: nil, repeats: true)
         
         //EVENT_BUS_RAWPACKET_DATA_KEY
-        SwiftEventBus.onMainThread(self, name: EVENT_BUS_RAWPACKET_DATA_KEY) { (notification) in
-            let packet = notification.object as! NevoPacket
-            
-            //Do nothing
-            if packet.getHeader() == PVADCRequest.HEADER(){
-                var pvadcValue:Int = Int(NSData2Bytes(packet.getPackets()[0])[4])
-                pvadcValue =  pvadcValue + Int(NSData2Bytes(packet.getPackets()[0])[5] )<<8
-
-                var batteryAdcValue:Int = Int(NSData2Bytes(packet.getPackets()[0])[2])
-                batteryAdcValue =  batteryAdcValue + Int(NSData2Bytes(packet.getPackets()[0])[3] )<<8
-                //self.valueLabel.text = "Amount of ADC:\(pvadcValue)"
-                XCGLogger.default.debug("pvadc packet............\(pvadcValue)")
+        _ = SwiftEventBus.onMainThread(self, name: EVENT_BUS_RAWPACKET_DATA_KEY) { (notification) in
+            if AppTheme.isTargetLunaR_OR_Nevo() {
+                let packet = notification.object as! NevoPacket
+                //Do nothing
+                if packet.getHeader() == PVADCRequest.HEADER(){
+                    var pvadcValue:Int = Int(NSData2Bytes(packet.getPackets()[0])[4])
+                    pvadcValue =  pvadcValue + Int(NSData2Bytes(packet.getPackets()[0])[5] )<<8
+                    
+                    var batteryAdcValue:Int = Int(NSData2Bytes(packet.getPackets()[0])[2])
+                    batteryAdcValue =  batteryAdcValue + Int(NSData2Bytes(packet.getPackets()[0])[3] )<<8
+                    //self.valueLabel.text = "Amount of ADC:\(pvadcValue)"
+                    XCGLogger.default.debug("pvadc packet............\(pvadcValue)")
+                }
+            }else{
+                let packet = notification.object as! LunaRPacket
+                //Do nothing
+                if packet.getHeader() == PVADCRequest.HEADER(){
+                    var pvadcValue:Int = Int(NSData2Bytes(packet.getPackets()[0])[4])
+                    pvadcValue =  pvadcValue + Int(NSData2Bytes(packet.getPackets()[0])[5] )<<8
+                    var batteryAdcValue:Int = Int(NSData2Bytes(packet.getPackets()[0])[2])
+                    batteryAdcValue =  batteryAdcValue + Int(NSData2Bytes(packet.getPackets()[0])[3] )<<8
+                    //self.valueLabel.text = "Amount of ADC:\(pvadcValue)"
+                    XCGLogger.default.debug("pvadc packet............\(pvadcValue)")
+                }
             }
+            
         }
     }
     

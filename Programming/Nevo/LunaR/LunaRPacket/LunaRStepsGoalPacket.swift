@@ -1,6 +1,6 @@
 import UIKit
 
-class LunaRDailyStepsPacket: LunaRPacket {
+class LunaRStepsGoalPacket: LunaRPacket {
     
     /**
     return the Current Daily steps

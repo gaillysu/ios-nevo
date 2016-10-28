@@ -120,20 +120,28 @@ class StepGoalSetingController: PublicClassController,ButtonManagerCallBack,Cloc
         
         //RAWPACKET DATA
         _ = SwiftEventBus.onMainThread(self, name: EVENT_BUS_RAWPACKET_DATA_KEY) { (notification) in
-            let packet = notification.object as! NevoPacket
-            //Do nothing
-            if packet.getHeader() == GetStepsGoalRequest.HEADER(){
-                let thispacket = packet.copy() as DailyStepsNevoPacket
-                let dailySteps:Int = thispacket.getDailySteps()
-                let dailyStepGoal:Int = thispacket.getDailyStepsGoal()
-                let percent :Float = Float(dailySteps)/Float(dailyStepGoal)
-                self.progressView.setProgress(CGFloat(percent))
+            var percent:Float = 0
+            if AppTheme.isTargetLunaR_OR_Nevo() {
+                let packet = notification.object as! NevoPacket
+                //Do nothing
+                if packet.getHeader() == GetStepsGoalRequest.HEADER(){
+                    let thispacket = packet.copy() as DailyStepsNevoPacket
+                    let dailySteps:Int = thispacket.getDailySteps()
+                    let dailyStepGoal:Int = thispacket.getDailyStepsGoal()
+                    percent = Float(dailySteps)/Float(dailyStepGoal)
+                    
+                }
+            }else{
+                let packet = notification.object as! LunaRPacket
+                //Do nothing
+                if packet.getHeader() == GetStepsGoalRequest.HEADER(){
+                    let thispacket = packet.copy() as LunaRStepsGoalPacket
+                    let dailySteps:Int = thispacket.getDailySteps()
+                    let dailyStepGoal:Int = thispacket.getDailyStepsGoal()
+                    percent = Float(dailySteps)/Float(dailyStepGoal)
+                }
             }
-            
-            if packet.getHeader() == LedLightOnOffNevoRequest.HEADER(){
-                XCGLogger.default.debug("end handshake nevo");
-                //blink once Clock
-            }
+            self.progressView.setProgress(CGFloat(percent))
         }
         
         _ = SwiftEventBus.onMainThread(self, name: EVENT_BUS_CONNECTION_STATE_CHANGED_KEY) { (notification) in
