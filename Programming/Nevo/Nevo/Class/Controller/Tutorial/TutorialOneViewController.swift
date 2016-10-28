@@ -27,6 +27,10 @@ class TutorialOneViewController: UIViewController{
         
         styleEvolve()
         
+        if !AppTheme.isTargetLunaR_OR_Nevo() {
+            centerImageView.image = UIImage(named: "tutorial_lunar 1")
+        }
+        
         //controllManager(_:)
         let logPress:UILongPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(TutorialOneViewController.logPressAction(_:)))
         self.view.addGestureRecognizer(logPress)

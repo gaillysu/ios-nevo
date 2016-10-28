@@ -27,6 +27,9 @@ class TutorialTwoViewController: UIViewController {
 
     override func viewDidLoad() {
         styleEvolve()
+        if !AppTheme.isTargetLunaR_OR_Nevo() {
+//            centerImageView.image = AppTheme.GET_RESOURCES_IMAGE("tutorial_lunar_2")
+        }
     }
     
     @IBAction func turnBluetoothOnAction(_ sender: AnyObject) {

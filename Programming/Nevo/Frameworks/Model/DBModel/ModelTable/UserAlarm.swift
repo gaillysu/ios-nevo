@@ -106,10 +106,10 @@ class UserAlarm: NSObject {
             let date1:Date = Date.date(year: currentDate.year, month: currentDate.minute, day: currentDate.day, hour: 8, minute: 0, second: 0)
             let date2:Date = Date.date(year: currentDate.year, month: currentDate.minute, day: currentDate.day, hour: 9, minute: 0, second: 0)
             let dateArray:[TimeInterval] = [date1.timeIntervalSince1970,date2.timeIntervalSince1970]
-            let nameArray:[String] = ["Alarm 1","Alarm 2"]
+            let nameArray:[String] = [NSLocalizedString("sleep_and_wake", comment: ""),NSLocalizedString("sleep_and_wake", comment: "")]
             DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.default).async(execute: { () -> Void in
                 for index:Int in 0..<dateArray.count {
-                    let alarm:UserAlarm = UserAlarm(keyDict: ["id":index,"timer":dateArray[index],"label":nameArray[index],"status":false,"repeatStatus":true,"dayOfWeek":0,"type":0])
+                    let alarm:UserAlarm = UserAlarm(keyDict: ["id":index,"timer":dateArray[index],"label":nameArray[index],"status":false,"repeatStatus":true,"dayOfWeek":2,"type":0])
                     alarm.add({ (id, completion) -> Void in
 
                     })

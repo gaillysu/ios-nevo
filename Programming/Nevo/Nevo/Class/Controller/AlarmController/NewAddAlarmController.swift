@@ -19,6 +19,10 @@ class NewAddAlarmController: UITableViewController,ButtonManagerCallBack,Selecte
     var repeatSelectedIndex:Int = 0
     var alarmTypeIndex:Int = 0
     
+    var appearDate:Date = Date()
+    
+    var isOverdue:Bool = false
+    
     init() {
         super.init(nibName: "NewAddAlarmController", bundle: Bundle.main)
     }
@@ -43,8 +47,22 @@ class NewAddAlarmController: UITableViewController,ButtonManagerCallBack,Selecte
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
         if let view = findBottomLineView(inView: self.navigationController?.navigationBar) {
             view.isHidden = true
+        }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        let indexPaths:IndexPath = IndexPath(row: 0, section: 0)
+        let timerCell:UITableViewCell = self.tableView.cellForRow(at: indexPaths)!
+        for datePicker in timerCell.contentView.subviews{
+            if(datePicker.isKind(of: UIDatePicker.classForCoder())){
+                let picker:UIDatePicker = datePicker as! UIDatePicker
+                self.appearDate = picker.date
+            }
         }
     }
     
@@ -52,14 +70,7 @@ class NewAddAlarmController: UITableViewController,ButtonManagerCallBack,Selecte
         if self.tableView.tableFooterView == nil {
             let view = UIView()
             
-            var tempString:String = ""
-            if AppTheme.isTargetLunaR_OR_Nevo() {
-                tempString = "tips_content"
-            } else {
-                tempString = "tips_content_lunar"
-            }
-            
-            let tipsString:String = NSLocalizedString(tempString, comment: "")
+            let tipsString:String = NSLocalizedString(AppTheme.isTargetLunaR_OR_Nevo() ? "tips_content" : "tips_content_lunar", comment: "")
             let tipsLabel:UILabel = UILabel(frame: CGRect(x: 10,y: 0,width: UIScreen.main.bounds.size.width-20,height: 120))
             tipsLabel.backgroundColor = UIColor.clear
             tipsLabel.numberOfLines = 0
@@ -118,8 +129,19 @@ class NewAddAlarmController: UITableViewController,ButtonManagerCallBack,Selecte
             let timerCell3:UITableViewCell = self.tableView.cellForRow(at: indexPaths3)!
             name = (timerCell3.detailTextLabel!.text)!
 
+            // 2016-10-28 new feature, adjust the alarm's logic
+            let nowDate:Date = Date()
+            let nowDateTime:Int = nowDate.hour * 60 + nowDate.minute
+            let pickerDate:Date = Date(timeIntervalSince1970: timer)
+            let pickerTimer:Int = pickerDate.hour * 60 + pickerDate.minute
+            
+            if nowDateTime > pickerTimer {
+                repeatSelectedIndex = Date.tomorrow().weekday
+            } else {
+                repeatSelectedIndex = nowDate.weekday
+            }
+            
             mDelegate?.onDidAddAlarmAction(timer, name: name, repeatNumber: repeatSelectedIndex, alarmType: alarmTypeIndex)
-
             self.navigationController!.popViewController(animated: true)
         }
 
