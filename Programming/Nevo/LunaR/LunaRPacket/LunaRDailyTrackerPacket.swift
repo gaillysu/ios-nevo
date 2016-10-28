@@ -1,7 +1,23 @@
 import UIKit
 
 class LunaRDailyTrackerPacket: LunaRPacket {
-
+    fileprivate let HEADERLENGTH:Int = 5;
+    fileprivate let HOURLYPACKETSNUMBER:Int = 2;
+    /**
+     get Packet data timer
+     
+     :returns: timer/Year,Month,Day
+     */
+    func getDate()->Int{
+        var year:Int = Int(NSData2Bytes(getPackets()[0])[2] )
+        year = year + Int(NSData2Bytes(getPackets()[0])[3] )<<8
+        var month:NSString = NSString(format: "\(NSData2Bytes(getPackets()[0])[4])" as NSString)
+        month = month.length >= 2 ? NSString(format: "\(NSData2Bytes(getPackets()[0])[4])" as NSString) : NSString(format: "0\(NSData2Bytes(getPackets()[0])[4])" as NSString)
+        var day:NSString = NSString(format: "\(NSData2Bytes(getPackets()[0])[5])" as NSString)
+        day = day.length >= 2 ? NSString(format: "\(NSData2Bytes(getPackets()[0])[5])" as NSString) : NSString(format: "0\(NSData2Bytes(getPackets()[0])[5])" as NSString)
+        return NSString(format: "\(year)%@%@" as NSString,month,day).integerValue
+    }
+    
     /**
      return Steps goal
 
@@ -9,289 +25,449 @@ class LunaRDailyTrackerPacket: LunaRPacket {
      */
     func getStepsGoal()->Int {
         var stepGoal:Int = Int(NSData2Bytes(getPackets()[0])[6])
-        stepGoal =  stepGoal + Int(NSData2Bytes(getPackets()[0])[7] )<<8
-        stepGoal =  stepGoal + Int(NSData2Bytes(getPackets()[0])[8] )<<16
-        stepGoal =  stepGoal + Int(NSData2Bytes(getPackets()[0])[9] )<<24
+        stepGoal += Int(NSData2Bytes(getPackets()[0])[7] )<<8
+        stepGoal += Int(NSData2Bytes(getPackets()[0])[8] )<<16
+        stepGoal += Int(NSData2Bytes(getPackets()[0])[9] )<<24
         return stepGoal;
     }
     
     func getDistanceGoal()->Int {
-        var goal:Int = Int(NSData2Bytes(getPackets()[0])[10])
-        goal += Int(NSData2Bytes(getPackets()[0])[11])
-        goal += Int(NSData2Bytes(getPackets()[0])[12])
-        goal += Int(NSData2Bytes(getPackets()[0])[13])
-        return goal
+        var goalDistance:Int = Int(NSData2Bytes(getPackets()[0])[10])
+        goalDistance += Int(NSData2Bytes(getPackets()[0])[11])
+        goalDistance += Int(NSData2Bytes(getPackets()[0])[12])
+        goalDistance += Int(NSData2Bytes(getPackets()[0])[13])
+        return goalDistance
     }
     
     func getCaloriesGoal()->Int{
-        var goal:Int = Int(NSData2Bytes(getPackets()[0])[14])
-        goal += Int(NSData2Bytes(getPackets()[0])[15])
-        goal += Int(NSData2Bytes(getPackets()[0])[16])
-        goal += Int(NSData2Bytes(getPackets()[0])[17])
-        return goal
+        var goalCalories:Int = Int(NSData2Bytes(getPackets()[0])[14])
+        goalCalories += Int(NSData2Bytes(getPackets()[0])[15])
+        goalCalories += Int(NSData2Bytes(getPackets()[0])[16])
+        goalCalories += Int(NSData2Bytes(getPackets()[0])[17])
+        return goalCalories
     }
     
     /**
     return History Daily steps
     */
-    func getDailySteps() ->Int
-    {
-        var dailySteps:Int = Int(NSData2Bytes(getPackets()[1])[4] )
-        dailySteps =  dailySteps + Int(NSData2Bytes(getPackets()[1])[5] )<<8
-        dailySteps =  dailySteps + Int(NSData2Bytes(getPackets()[1])[6] )<<16
-        dailySteps =  dailySteps + Int(NSData2Bytes(getPackets()[1])[7] )<<24
-        return dailySteps
+    func getTotalSteps()->Int {
+        var totalSteps:Int = Int(NSData2Bytes(getPackets()[1])[4] )
+        totalSteps += Int(NSData2Bytes(getPackets()[1])[5] )<<8
+        totalSteps += Int(NSData2Bytes(getPackets()[1])[6] )<<16
+        totalSteps += Int(NSData2Bytes(getPackets()[1])[7] )<<24
+        return totalSteps
     }
+    
+    /*
+     total walk steps
+     */
+    func getTotalWalkSteps()->Int {
+        var totalWalkSteps:Int = Int(NSData2Bytes(getPackets()[8])[4] )
+        totalWalkSteps += Int(NSData2Bytes(getPackets()[1])[9] )<<8
+        totalWalkSteps += Int(NSData2Bytes(getPackets()[1])[10] )<<16
+        totalWalkSteps += Int(NSData2Bytes(getPackets()[1])[11] )<<24
+        return totalWalkSteps
+    }
+    
+    func getTotalRunSteps()->Int {
+        var totalRunSteps:Int = Int(NSData2Bytes(getPackets()[12])[4] )
+        totalRunSteps += Int(NSData2Bytes(getPackets()[1])[13] )<<8
+        totalRunSteps += Int(NSData2Bytes(getPackets()[1])[14] )<<16
+        totalRunSteps += Int(NSData2Bytes(getPackets()[1])[15] )<<24
+        return totalRunSteps
+    }
+    
+    func getTotalDistance() -> Int {
+        var totalDist:Int = Int(NSData2Bytes(getPackets()[16])[4] )
+        totalDist += Int(NSData2Bytes(getPackets()[1])[17] )<<8
+        totalDist += Int(NSData2Bytes(getPackets()[1])[18] )<<16
+        totalDist += Int(NSData2Bytes(getPackets()[1])[19] )<<24
+        return totalDist
+    }
+    
+    func getTotalWalkDistance() -> Int {
+        let packetno = 2
+        let offset = 2
+        var totalWalkDistance:Int = Int(NSData2Bytes(getPackets()[packetno])[offset] )
+        totalWalkDistance += Int(NSData2Bytes(getPackets()[packetno])[offset+1])<<8
+        totalWalkDistance += Int(NSData2Bytes(getPackets()[packetno])[offset+2])<<16
+        totalWalkDistance += Int(NSData2Bytes(getPackets()[packetno])[offset+3])<<24
+        return totalWalkDistance/100
+    }
+    
     /**
-    return History Hourly steps
-    */
-    func getHourlySteps() ->[Int]
-    {
-        var HourlySteps = [Int](repeating: 0, count: 24)
-        let HEADERLENGTH:Int = 6
+     daily Running Distance
+     
+     :returns: daily Running Distance
+     */
+    func getTotalRunDistance()->Int {
+        let packetno = 2
+        let offset = 6
+        var totalRunDistance:Int = Int(NSData2Bytes(getPackets()[packetno])[offset] )
+        totalRunDistance += Int(NSData2Bytes(getPackets()[packetno])[offset+1])<<8
+        totalRunDistance += Int(NSData2Bytes(getPackets()[packetno])[offset+2])<<16
+        totalRunDistance += Int(NSData2Bytes(getPackets()[packetno])[offset+3])<<24
+        return totalRunDistance/100
+    }
+    
+    func getTotalCalories() -> Int {
+        let packetno = 2
+        let offset = 10
+        var totalCalories:Int = Int(NSData2Bytes(getPackets()[packetno])[offset] )
+        totalCalories += Int(NSData2Bytes(getPackets()[packetno])[offset+1])<<8
+        totalCalories += Int(NSData2Bytes(getPackets()[packetno])[offset+2])<<16
+        totalCalories += Int(NSData2Bytes(getPackets()[packetno])[offset+3])<<24
+        return totalCalories/1000
+    }
+    
+    func getTotalRunTime() -> Int {
+        let packetno = 2
+        let offset = 14
+        var totalRunTime:Int = Int(NSData2Bytes(getPackets()[packetno])[offset] )
+        totalRunTime += Int(NSData2Bytes(getPackets()[packetno])[offset+1])<<8
+        totalRunTime += Int(NSData2Bytes(getPackets()[packetno])[offset+2])<<16
+        totalRunTime += Int(NSData2Bytes(getPackets()[packetno])[offset+3])<<24
+        return totalRunTime/60
+    }
+    
+    func getTotalWalkTime() -> Int {
+        let packetno = 2
+        let offset = 18
+        var totalWalkTime:Int = Int(NSData2Bytes(getPackets()[packetno])[offset] )
+        totalWalkTime += Int(NSData2Bytes(getPackets()[packetno])[offset+1])<<8
+        totalWalkTime += Int(NSData2Bytes(getPackets()[packetno+1])[2])
+        totalWalkTime += Int(NSData2Bytes(getPackets()[packetno+1])[3])<<8
+        return totalWalkTime/60
+    }
+    
+    /**
+     get inactivity time, minute
+     */
+    func getInactivityTime() ->Int {
+        let packetno = 3
+        let offset = 4
+        var value:Int = Int(NSData2Bytes(getPackets()[packetno])[offset] )
+        value =  value + Int(NSData2Bytes(getPackets()[packetno])[offset+1] )<<8
+        value =  value + Int(NSData2Bytes(getPackets()[packetno])[offset+2] )<<16
+        value =  value + Int(NSData2Bytes(getPackets()[packetno])[offset+3] )<<24
+        return value
+    }
+    
+    /**
+     *
+     * @return the harvesting of solar per day, unit is in minutes
+     */
+    func getSolarHarvestingTime() ->  {
+        let packetno = 3
+        let offset = 8
+        
+        var harvestingTime:Int = Int(NSData2Bytes(getPackets()[packetno])[offset] )
+        harvestingTime += Int(NSData2Bytes(getPackets()[packetno])[offset+1] )<<8
+        harvestingTime += Int(NSData2Bytes(getPackets()[packetno])[offset+2] )<<8
+        harvestingTime += Int(NSData2Bytes(getPackets()[packetno])[offset+3] )<<8
+        return totalDeepTime/60
+    }
+    
+    /**
+     *@return total sleep time, minute
+     */
+    func getTotalSleepTime() -> Int {
+        let packetno = 3
+        let offset = 12
+
+        var totalSleep:Int = Int(NSData2Bytes(getPackets()[packetno])[offset] )
+        totalSleep += Int(NSData2Bytes(getPackets()[packetno])[offset+1] )<<8
+        return totalSleep
+    }
+    
+    /**
+     *@return total wake sleep time, minute
+     */
+    func getTotalWakeTime() -> Int {
+        let packetno = 3
+        let offset = 14
+        
+        var totalWakeTime:Int = Int(NSData2Bytes(getPackets()[packetno])[offset] )
+        totalWakeTime += Int(NSData2Bytes(getPackets()[packetno])[offset+1] )<<8
+        return totalWakeTime
+    }
+    
+    /**
+     *@return total light sleep time, minute
+     */
+    func getTotalLightTime() -> Int {
+        let packetno = 3
+        let offset = 16
+        
+        var totalLightTime:Int = Int(NSData2Bytes(getPackets()[packetno])[offset] )
+        totalLightTime += Int(NSData2Bytes(getPackets()[packetno])[offset+1] )<<8
+        return totalLightTime
+    }
+    
+    /**
+     *@return total deep sleep time, minute
+     */
+    func getTotalDeepTime() -> Int {
+        let packetno = 3
+        let offset = 18
+        
+        var totalDeepTime:Int = Int(NSData2Bytes(getPackets()[packetno])[offset] )
+        totalDeepTime += Int(NSData2Bytes(getPackets()[packetno])[offset+1] )<<8
+        return totalDeepTime
+    }
+    
+    /**
+     *
+     * @return  the hourly walkDis
+     */
+    func getHourlyWalkDist() -> [Int] {
+        var HourlyWalkDist:[Int] = [];
+        var hourlyWalkDistValue =0;
+        for index:Int in 0..<24 {
+            let packetno = HEADERLENGTH+index*HOURLYPACKETSNUMBER;
+            let offset = 2;
+            hourlyWalkDistValue = 0;
+            if NSData2Bytes(getPackets()[packetno])[offset] != 0xFF
+                && NSData2Bytes(getPackets()[packetno])[offset+1] != 0xFF && NSData2Bytes(getPackets()[packetno])[offset+2] != 0xFF && NSData2Bytes(getPackets()[packetno])[offset+3] != 0xFF{
+                hourlyWalkDistValue = Int(NSData2Bytes(getPackets()[packetno])[offset])
+                hourlyWalkDistValue += Int(NSData2Bytes(getPackets()[packetno])[offset+1])<<8
+                hourlyWalkDistValue += Int(NSData2Bytes(getPackets()[packetno])[offset+2])<<16
+                hourlyWalkDistValue += Int(NSData2Bytes(getPackets()[packetno])[offset+3])<<24
+            }
+            HourlyWalkDist.append(hourlyWalkDistValue/100)
+        }
+        return HourlyWalkDist;
+    }
+    
+    /**
+     *
+     * @return  the hourly run dist
+     */
+    func getHourlyRunDist() -> [Int] {
+        var HourlyRunDist:[Int] = [];
+        var hourlyRunDistValue =0;
+        for index:Int in 0..<24 {
+            let packetno = HEADERLENGTH+index*HOURLYPACKETSNUMBER;
+            let offset = 6;
+            hourlyRunDistValue = 0;
+            if NSData2Bytes(getPackets()[packetno])[offset] != 0xFF
+                && NSData2Bytes(getPackets()[packetno])[offset+1] != 0xFF && NSData2Bytes(getPackets()[packetno])[offset+2] != 0xFF && NSData2Bytes(getPackets()[packetno])[offset+3] != 0xFF{
+                hourlyRunDistValue = Int(NSData2Bytes(getPackets()[packetno])[offset])
+                hourlyRunDistValue += Int(NSData2Bytes(getPackets()[packetno])[offset+1])<<8
+                hourlyRunDistValue += Int(NSData2Bytes(getPackets()[packetno])[offset+2])<<16
+                hourlyRunDistValue += Int(NSData2Bytes(getPackets()[packetno])[offset+3])<<24
+            }
+            HourlyRunDist.append(hourlyRunDistValue/100)
+        }
+        return HourlyRunDist;
+    }
+    
+    /**
+     *
+     * @return  the hourly run dist
+     */
+    func getHourlyCalories() -> [Int] {
+        var HourlyCalories:[Int] = [];
+        var hourlyCaloriesValue =0;
+        for index:Int in 0..<24 {
+            let packetno = HEADERLENGTH+index*HOURLYPACKETSNUMBER;
+            let offset = 10;
+            hourlyRunDistValue = 0;
+            if NSData2Bytes(getPackets()[packetno])[offset] != 0xFF
+                && NSData2Bytes(getPackets()[packetno])[offset+1] != 0xFF && NSData2Bytes(getPackets()[packetno])[offset+2] != 0xFF && NSData2Bytes(getPackets()[packetno])[offset+3] != 0xFF{
+                hourlyCaloriesValue = Int(NSData2Bytes(getPackets()[packetno])[offset])
+                hourlyCaloriesValue += Int(NSData2Bytes(getPackets()[packetno])[offset+1])<<8
+                hourlyCaloriesValue += Int(NSData2Bytes(getPackets()[packetno])[offset+2])<<16
+                hourlyCaloriesValue += Int(NSData2Bytes(getPackets()[packetno])[offset+3])<<24
+            }
+            HourlyCalories.append(hourlyCaloriesValue/100)
+        }
+        return HourlyCalories;
+    }
+    
+    /**
+     *@return History Hourly steps
+     */
+    func getHourlySteps() ->[Int] {
+        var hourlyStepsArray:[Int] = []
         var hourlySteps:Int = 0
         
         //get every hour Steps:
-        for i:Int in 0 ..< 24 {
-                if NSData2Bytes(getPackets()[HEADERLENGTH+i*3])[18] != 0xFF
-                    && NSData2Bytes(getPackets()[HEADERLENGTH+i*3])[19] != 0xFF
-                    && NSData2Bytes(getPackets()[HEADERLENGTH+i*3+1])[2] != 0xFF
-                    && NSData2Bytes(getPackets()[HEADERLENGTH+i*3+1])[3] != 0xFF
-                {
-                    hourlySteps = Int(NSData2Bytes(getPackets()[HEADERLENGTH+i*3])[18] )
-                    hourlySteps = hourlySteps + Int(NSData2Bytes(getPackets()[HEADERLENGTH+i*3])[19] )<<8
-                    hourlySteps = hourlySteps + Int(NSData2Bytes(getPackets()[HEADERLENGTH+i*3+1])[2] )
-                    hourlySteps = hourlySteps + Int(NSData2Bytes(getPackets()[HEADERLENGTH+i*3+1])[3] )<<8
-                    HourlySteps[i] = hourlySteps
-                }
-                
-        }        
-        return HourlySteps
-    }
-    
-    //new added from APP:v1.2.2,FW:v18/v31
-    
-    /**
-    return History Daily Dist, meter
-    */
-    func getDailyDist() ->Int
-    {
-        var dailyDist:Int = Int(NSData2Bytes(getPackets()[2])[2] )
-        dailyDist =  dailyDist + Int(NSData2Bytes(getPackets()[2])[3] )<<8
-        dailyDist =  dailyDist + Int(NSData2Bytes(getPackets()[2])[4] )<<16
-        dailyDist =  dailyDist + Int(NSData2Bytes(getPackets()[2])[5] )<<24
-        return dailyDist/100
-    }
-    /**
-    return History Hourly Disc, meter
-    */
-    func getHourlyDist() ->[Int]
-    {
-        var HourlyDist = [Int](repeating: 0, count: 24)
-        let HEADERLENGTH:Int = 6
-        var hourlyDisc:Int = 0
-        
-        //get every hour Disc:
-        for i:Int in 0 ..< 24 {
-            hourlyDisc = 0
-            if NSData2Bytes(getPackets()[HEADERLENGTH+i*3])[2] != 0xFF
-               && NSData2Bytes(getPackets()[HEADERLENGTH+i*3])[3] != 0xFF
-               && NSData2Bytes(getPackets()[HEADERLENGTH+i*3])[4] != 0xFF
-               && NSData2Bytes(getPackets()[HEADERLENGTH+i*3])[5] != 0xFF
-            {
-            //walk
-                hourlyDisc = Int(NSData2Bytes(getPackets()[HEADERLENGTH+i*3])[2] )
-                hourlyDisc = hourlyDisc + Int(NSData2Bytes(getPackets()[HEADERLENGTH+i*3])[3] )<<8
-                hourlyDisc = hourlyDisc + Int(NSData2Bytes(getPackets()[HEADERLENGTH+i*3])[4] )<<16
-                hourlyDisc = hourlyDisc + Int(NSData2Bytes(getPackets()[HEADERLENGTH+i*3])[5] )<<24
+        for index:Int in 0..< 24 {
+            let packetno = HEADERLENGTH+index*HOURLYPACKETSNUMBER;
+            let offset = 15;
+            hourlySteps = 0
+            if NSData2Bytes(getPackets()[packetno])[offset] != 0xFF
+                && NSData2Bytes(getPackets()[packetno])[offset+1] != 0xFF {
+                hourlySteps = Int(NSData2Bytes(getPackets()[packetno])[offset])
+                hourlySteps += Int(NSData2Bytes(getPackets()[packetno])[offset])<<8
             }
-            if NSData2Bytes(getPackets()[HEADERLENGTH+i*3])[6] != 0xFF
-                && NSData2Bytes(getPackets()[HEADERLENGTH+i*3])[7] != 0xFF
-                && NSData2Bytes(getPackets()[HEADERLENGTH+i*3])[8] != 0xFF
-                && NSData2Bytes(getPackets()[HEADERLENGTH+i*3])[9] != 0xFF
-            {
-            //run
-                hourlyDisc = hourlyDisc + Int(NSData2Bytes(getPackets()[HEADERLENGTH+i*3])[6] )
-                hourlyDisc = hourlyDisc + Int(NSData2Bytes(getPackets()[HEADERLENGTH+i*3])[7] )<<8
-                hourlyDisc = hourlyDisc + Int(NSData2Bytes(getPackets()[HEADERLENGTH+i*3])[8] )<<16
-                hourlyDisc = hourlyDisc + Int(NSData2Bytes(getPackets()[HEADERLENGTH+i*3])[9] )<<24
-            }
-            HourlyDist[i] = hourlyDisc/100
+            hourlyStepsArray.append(hourlySteps)
         }
-        return HourlyDist
+        return hourlyStepsArray
     }
 
     /**
-    return History Daily Calories, kcal
-    */
-    func getDailyCalories() ->Int
-    {
-        var dailyCalories:Int = Int(NSData2Bytes(getPackets()[2])[18] )
-        dailyCalories =  dailyCalories + Int(NSData2Bytes(getPackets()[2])[19] )<<8
-        dailyCalories =  dailyCalories + Int(NSData2Bytes(getPackets()[3])[2] )<<16
-        dailyCalories =  dailyCalories + Int(NSData2Bytes(getPackets()[3])[3] )<<24
-        return dailyCalories/1000
-    }
-    /**
-    return History Hourly Calories, kcal
-    */
-    func getHourlyCalories() ->[Int]
-    {
-        var HourlyCalories = [Int](repeating: 0, count: 24)
-        let HEADERLENGTH:Int = 6
-        var hourlyCalories:Int = 0
-        
-        //get every hour Calories:
-        for i:Int in 0 ..< 24 {
-            hourlyCalories = 0
-            if NSData2Bytes(getPackets()[HEADERLENGTH+i*3])[14] != 0xFF
-                && NSData2Bytes(getPackets()[HEADERLENGTH+i*3])[15] != 0xFF
-                && NSData2Bytes(getPackets()[HEADERLENGTH+i*3])[16] != 0xFF
-                && NSData2Bytes(getPackets()[HEADERLENGTH+i*3])[17] != 0xFF
-            {
-            hourlyCalories = Int(NSData2Bytes(getPackets()[HEADERLENGTH+i*3])[14] )
-            hourlyCalories = hourlyCalories + Int(NSData2Bytes(getPackets()[HEADERLENGTH+i*3])[15] )<<8
-            hourlyCalories = hourlyCalories + Int(NSData2Bytes(getPackets()[HEADERLENGTH+i*3])[16] )<<16
-            hourlyCalories = hourlyCalories + Int(NSData2Bytes(getPackets()[HEADERLENGTH+i*3])[17] )<<24
+     *@return Hourly Run steps
+     */
+    func getHourlyRunSteps() ->[Int] {
+        var hourlyRunStepsArray:[Int] = []
+        var hourlyRunSteps:Int = 0
+        //get every hour run Steps:
+        for index:Int in 0..< 24 {
+            let packetno = HEADERLENGTH+index*HOURLYPACKETSNUMBER;
+            let offset = 17;
+            hourlyRunSteps = 0
+            if NSData2Bytes(getPackets()[packetno])[offset] != 0xFF
+                && NSData2Bytes(getPackets()[packetno])[offset+1] != 0xFF {
+                hourlyRunSteps = Int(NSData2Bytes(getPackets()[packetno])[offset])
+                hourlyRunSteps += Int(NSData2Bytes(getPackets()[packetno])[offset])<<8
             }
-            HourlyCalories[i] = hourlyCalories/100
+            hourlyRunStepsArray.append(hourlyRunSteps)
         }
-        return HourlyCalories
-    }
-    
-    
-    /**
-    return History Daily sleep time, minute
-    */
-    func getDailySleepTime() ->Int
-    {
-        var dailySleepTime:Int = Int(NSData2Bytes(getPackets()[4])[10] )
-        dailySleepTime =  dailySleepTime + Int(NSData2Bytes(getPackets()[4])[11] )<<8
-        return dailySleepTime
-    }
-    /**
-    return History Hourly sleep time, minute
-    */
-    func getHourlySleepTime() ->[Int]
-    {
-        var HourlySleepTime = [Int](repeating: 0, count: 24)
-        let HEADERLENGTH:Int = 6
-        var hourlySleepTime:Int = 0
-        
-        //get every hour SleepTime:
-        for i:Int in 0 ..< 24 {
-            hourlySleepTime = 0
-            if NSData2Bytes(getPackets()[HEADERLENGTH+i*3+1])[18] != 0xFF
-            {
-            hourlySleepTime = Int(NSData2Bytes(getPackets()[HEADERLENGTH+i*3+1])[18] )
-            }
-            HourlySleepTime[i] = hourlySleepTime
-        }
-        return HourlySleepTime
+        return hourlyRunStepsArray
     }
     
     /**
-    return History Daily wake time, minute
-    */
-    func getDailyWakeTime() ->Int
-    {
-        var dailyWakeTime:Int = Int(NSData2Bytes(getPackets()[4])[12] )
-        dailyWakeTime =  dailyWakeTime + Int(NSData2Bytes(getPackets()[4])[13] )<<8
-        return dailyWakeTime
-    }
-    /**
-    return History Hourly wake time, minute
-    */
-    func getHourlyWakeTime() ->[Int]
-    {
-        var HourlyWakeTime = [Int](repeating: 0, count: 24)
-        let HEADERLENGTH:Int = 6
-        var hourlyWakeTime:Int = 0
-        
-        //get every hour wake Time:
-        for i:Int in 0 ..< 24 {
-            hourlyWakeTime = 0
-            if NSData2Bytes(getPackets()[HEADERLENGTH+i*3+1])[19] != 0xFF
-            {
-            hourlyWakeTime = Int(NSData2Bytes(getPackets()[HEADERLENGTH+i*3+1])[19] )
+     *@return Hourly walk time
+     */
+    func getHourlyWalkTime() ->[Int] {
+        var hourlyWalkTimeArray:[Int] = []
+        var hourlyWalkTimeValue:Int = 0
+        //get every hour run Steps:
+        for index:Int in 0..< 24 {
+            let packetno = HEADERLENGTH+index*HOURLYPACKETSNUMBER;
+            let offset = 18;
+            hourlyWalkTimeValue = 0
+            if NSData2Bytes(getPackets()[packetno])[offset] != 0xFF
+                && NSData2Bytes(getPackets()[packetno])[offset+1] != 0xFF {
+                hourlyWalkTimeValue = Int(NSData2Bytes(getPackets()[packetno])[offset])
+                hourlyWalkTimeValue += Int(NSData2Bytes(getPackets()[packetno])[offset])<<8
             }
-            HourlyWakeTime[i] = hourlyWakeTime
+            hourlyWalkTimeArray.append(hourlyWalkTimeValue)
         }
-        return HourlyWakeTime
+        return hourlyWalkTimeArray
     }
     
+    /**
+     *@return Hourly run time
+     */
+    func getHourlyRunTime() ->[Int] {
+        var hourlyRunTimeArray:[Int] = []
+        var hourlyRunTimeValue:Int = 0
+        //get every hour run Steps:
+        for index:Int in 0..< 24 {
+            let packetno = HEADERLENGTH+index*HOURLYPACKETSNUMBER+1;
+            let offset = 2;
+            hourlyRunTimeValue = 0
+            if NSData2Bytes(getPackets()[packetno])[offset] != 0xFF
+                && NSData2Bytes(getPackets()[packetno])[offset+1] != 0xFF {
+                hourlyRunTimeValue = Int(NSData2Bytes(getPackets()[packetno])[offset])
+                hourlyRunTimeValue += Int(NSData2Bytes(getPackets()[packetno])[offset])<<8
+            }
+            hourlyRunTimeArray.append(hourlyRunTimeValue)
+        }
+        return hourlyWalkTimeArray
+    }
     
     /**
-    return History Daily light time, minute
-    */
-    func getDailyLightTime() ->Int
-    {
-        var dailyLightTime:Int = Int(NSData2Bytes(getPackets()[4])[14] )
-        dailyLightTime =  dailyLightTime + Int(NSData2Bytes(getPackets()[4])[15] )<<8
-        return dailyLightTime
-    }
-    /**
-    return History Hourly light time, minute
-    */
-    func getHourlyLightTime() ->[Int]
-    {
-        var HourlyLightTime = [Int](repeating: 0, count: 24)
-        let HEADERLENGTH:Int = 6
-        var hourlyLightTime:Int = 0
-        
-        //get every hour light Time:
-        for i:Int in 0 ..< 24 {
-            hourlyLightTime = 0
-            if NSData2Bytes(getPackets()[HEADERLENGTH+i*3+2])[2] != 0xFF
-            {
-            hourlyLightTime = Int(NSData2Bytes(getPackets()[HEADERLENGTH+i*3+2])[2] )
+     *
+     * @return  the harvesting of solar per hour, unit is in minutes
+     */
+    func getHourlyHarvestTime() ->[Int] {
+        var HourlyHarvestTime:[Int] = [];
+        var hourlyHarvestTimeValue =0;
+        //get every hour swim time:
+        for index:Int in 0..<24 {
+            let packetno = HEADERLENGTH+index*HOURLYPACKETSNUMBER+1;
+            let offset = 4;
+            hourlyHarvestTime = 0;
+            if NSData2Bytes(getPackets()[packetno])[offset] != 0xFF
+                && NSData2Bytes(getPackets()[packetno])[offset+1] != 0xFF{
+                hourlyHarvestTimeValue = Int(NSData2Bytes(getPackets()[packetno])[offset] )
+                hourlyHarvestTimeValue = hourlySteps + Int(NSData2Bytes(getPackets()[packetno])[offset+1] )<<8
             }
-            HourlyLightTime[i] = hourlyLightTime
+            HourlyHarvestTime.append(hourlyHarvestTime/60)
         }
-        return HourlyLightTime
+        return HourlyHarvestTime;
     }
-
+    
     /**
-    return History Daily deep time, minute
-    */
-    func getDailyDeepTime() ->Int
-    {
-        var dailyDeepTime:Int = Int(NSData2Bytes(getPackets()[4])[16] )
-        dailyDeepTime =  dailyDeepTime + Int(NSData2Bytes(getPackets()[4])[17] )<<8
-        return dailyDeepTime
-    }
-    /**
-    return History Hourly deep time, minute
-    */
-    func getHourlyDeepTime() ->[Int]
-    {
-        var HourlyDeepTime = [Int](repeating: 0, count: 24)
-        let HEADERLENGTH:Int = 6
-        var hourlyDeepTime:Int = 0
-        
-        //get every hour deep Time:
-        for i:Int in 0 ..< 24 {
-            hourlyDeepTime = 0
-            if NSData2Bytes(getPackets()[HEADERLENGTH+i*3+2])[3] != 0xFF
-            {
-            hourlyDeepTime = Int(NSData2Bytes(getPackets()[HEADERLENGTH+i*3+2])[3] )
+     *@return Hourly sleep time
+     */
+    func getHourlySleepTime() ->[Int] {
+        var hourlySleepTimeArray:[Int] = []
+        var hourlySleepTimeValue:Int = 0
+        //get every hour run Steps:
+        for index:Int in 0..< 24 {
+            let packetno = HEADERLENGTH+index*HOURLYPACKETSNUMBER+1;
+            let offset = 6;
+            hourlySleepTimeValue = 0
+            if NSData2Bytes(getPackets()[packetno])[offset] != 0xFF {
+                hourlySleepTimeValue = Int(NSData2Bytes(getPackets()[packetno])[offset])
             }
-            HourlyDeepTime[i] = hourlyDeepTime
+            hourlySleepTimeArray.append(hourlySleepTimeValue)
         }
-        return HourlyDeepTime
+        return hourlySleepTimeArray
     }
-
+    
     /**
-    get inactivity time, minute
-    */
-    func getInactivityTime() ->Int
-    {
-        var value:Int = Int(NSData2Bytes(getPackets()[3])[16] )
-        value =  value + Int(NSData2Bytes(getPackets()[3])[17] )<<8
-        value =  value + Int(NSData2Bytes(getPackets()[3])[18] )<<16
-        value =  value + Int(NSData2Bytes(getPackets()[3])[19] )<<24
-        return value
+     *@return Hourly weak sleep time
+     */
+    func getHourlyWakeSleepTime() ->[Int] {
+        var hourlyWeakSleepTimeArray:[Int] = []
+        var hourlyWeakSleepTimeValue:Int = 0
+        //get every hour run Steps:
+        for index:Int in 0..< 24 {
+            let packetno = HEADERLENGTH+index*HOURLYPACKETSNUMBER+1;
+            let offset = 7;
+            hourlyWeakSleepTimeValue = 0
+            if NSData2Bytes(getPackets()[packetno])[offset] != 0xFF {
+                hourlySleepTimeValue = Int(NSData2Bytes(getPackets()[packetno])[offset])
+            }
+            hourlyWeakSleepTimeArray.append(hourlyWeakSleepTimeValue)
+        }
+        return hourlyWeakSleepTimeArray
     }
+    
+    /**
+     *@return Hourly light sleep time
+     */
+    func getHourlyLightSleepTime() ->[Int] {
+        var hourlyLightSleepTimeArray:[Int] = []
+        var hourlyLightSleepTimeValue:Int = 0
+        //get every hour run Steps:
+        for index:Int in 0..< 24 {
+            let packetno = HEADERLENGTH+index*HOURLYPACKETSNUMBER+1;
+            let offset = 8;
+            hourlyLightSleepTimeValue = 0
+            if NSData2Bytes(getPackets()[packetno])[offset] != 0xFF {
+                hourlyLightSleepTimeValue = Int(NSData2Bytes(getPackets()[packetno])[offset])
+            }
+            hourlyLightSleepTimeArray.append(hourlyLightSleepTimeValue)
+        }
+        return hourlyLightSleepTimeArray
+    }
+    
+    /**
+     *@return Hourly light sleep time
+     */
+    func getHourlyDeepSleepTime() ->[Int] {
+        var hourlyDeepSleepTimeArray:[Int] = []
+        var hourlyDeepSleepTimeValue:Int = 0
+        //get every hour run Steps:
+        for index:Int in 0..< 24 {
+            let packetno = HEADERLENGTH+index*HOURLYPACKETSNUMBER+1;
+            let offset = 8;
+            hourlyDeepSleepTimeValue = 0
+            if NSData2Bytes(getPackets()[packetno])[offset] != 0xFF {
+                hourlyDeepSleepTimeValue = Int(NSData2Bytes(getPackets()[packetno])[offset])
+            }
+            hourlyDeepSleepTimeArray.append(hourlyDeepSleepTimeValue)
+        }
+        return hourlyDeepSleepTimeArray
+    }
+    
     /**
     get in zone time,minute
     */
@@ -303,176 +479,5 @@ class LunaRDailyTrackerPacket: LunaRPacket {
         value =  value + Int(NSData2Bytes(getPackets()[4])[5] )<<24
         return value
 
-    }
-    /**
-    get out zone time,minute
-    */
-    func getOutZoneTime() ->Int
-    {
-        var value:Int = Int(NSData2Bytes(getPackets()[4])[6] )
-        value =  value + Int(NSData2Bytes(getPackets()[4])[7] )<<8
-        value =  value + Int(NSData2Bytes(getPackets()[4])[8] )<<16
-        value =  value + Int(NSData2Bytes(getPackets()[4])[9] )<<24
-        return value
-    }
-
-    /**
-    get Packet data timer
-
-    :returns: timer/Year,Month,Day
-    */
-    func getDate()->Int{
-        var year:Int = Int(NSData2Bytes(getPackets()[0])[2] )
-        year = year + Int(NSData2Bytes(getPackets()[0])[3] )<<8
-        var month:NSString = NSString(format: "\(NSData2Bytes(getPackets()[0])[4])" as NSString)
-        month = month.length >= 2 ? NSString(format: "\(NSData2Bytes(getPackets()[0])[4])" as NSString) : NSString(format: "0\(NSData2Bytes(getPackets()[0])[4])" as NSString)
-        var day:NSString = NSString(format: "\(NSData2Bytes(getPackets()[0])[5])" as NSString)
-        day = day.length >= 2 ? NSString(format: "\(NSData2Bytes(getPackets()[0])[5])" as NSString) : NSString(format: "0\(NSData2Bytes(getPackets()[0])[5])" as NSString)
-        return NSString(format: "\(year)%@%@" as NSString,month,day).integerValue
-    }
-
-
-    /**
-     daily Running Steps
-
-     :returns: daily Running Steps
-     */
-    func getDailyRunningSteps()->Int {
-        var total_run_steps:Int = Int(NSData2Bytes(getPackets()[1])[12] )
-        total_run_steps =  total_run_steps + Int(NSData2Bytes(getPackets()[1])[13] )<<8
-        total_run_steps =  total_run_steps + Int(NSData2Bytes(getPackets()[1])[14] )<<16
-        total_run_steps =  total_run_steps + Int(NSData2Bytes(getPackets()[1])[15] )<<24
-        return total_run_steps
-    }
-
-    /**
-     daily Running Distance
-
-     :returns: daily Running Distance
-     */
-    func getRunningDistance()->Int {
-        let packetno = 2
-        let offset = 10
-        var dailyDist:Int = Int(NSData2Bytes(getPackets()[packetno])[offset] )
-        dailyDist =  dailyDist + Int(NSData2Bytes(getPackets()[packetno])[packetno+1])<<8
-        dailyDist =  dailyDist + Int(NSData2Bytes(getPackets()[packetno])[packetno+2])<<16
-        dailyDist =  dailyDist + Int(NSData2Bytes(getPackets()[packetno])[packetno+3])<<24
-        return dailyDist/100
-    }
-
-    /**
-     hour running distance
-
-     - returns: hour running distance array
-     */
-    func getHourlyRunningDistance()->[Int] {
-        var HourlyRunningDistance = [Int](repeating: 0, count: 24)
-        let HEADERLENGTH:Int = 6
-        var hourlyRunningTime:Int = 0
-
-        //get every hour running distance:
-        for i:Int in 0 ..< 24 {
-            hourlyRunningTime = 0
-            for x:Int in 0 ..< 4 {
-                let value:UInt8 = NSData2Bytes(getPackets()[HEADERLENGTH+i*3])[6+x]
-                if value != 0xFF {
-                    hourlyRunningTime = hourlyRunningTime + Int(value) << (8*x)
-                }
-            }
-            HourlyRunningDistance[i] = hourlyRunningTime/100
-        }
-        return HourlyRunningDistance
-    }
-
-    /**
-     daily Running Timer
-
-     :returns: daily Running Timer
-     */
-    func getDailyRunningDuration()->Int {
-        let packetno = 3
-        let offset = 4
-        var dailyTimer:Int = Int(NSData2Bytes(getPackets()[packetno])[offset] )
-        dailyTimer =  dailyTimer + Int(NSData2Bytes(getPackets()[packetno])[offset+1] )<<8
-        dailyTimer =  dailyTimer + Int(NSData2Bytes(getPackets()[packetno])[offset+2] )<<16
-        dailyTimer =  dailyTimer + Int(NSData2Bytes(getPackets()[packetno])[offset+3] )<<24
-        return dailyTimer/60
-    }
-
-    /**
-     daily Walking Timer
-
-     :returns: daily Walking Timer
-     */
-    func getDailyWalkingDuration()->Int {
-        let packetno = 3
-        let offset = 8
-        var dailyWalkingTimer:Int = Int(NSData2Bytes(getPackets()[packetno])[offset] )
-        dailyWalkingTimer =  dailyWalkingTimer + Int(NSData2Bytes(getPackets()[packetno])[offset+1] )<<8
-        dailyWalkingTimer =  dailyWalkingTimer + Int(NSData2Bytes(getPackets()[packetno])[offset+2] )<<16
-        dailyWalkingTimer =  dailyWalkingTimer + Int(NSData2Bytes(getPackets()[packetno])[offset+3] )<<24
-        return dailyWalkingTimer/60
-    }
-
-    /**
-     daily Walking Steps
-
-     :returns: aily Walking Steps
-     */
-    func getWalkingSteps()->Int {
-        var dailyCalories:Int = Int(NSData2Bytes(getPackets()[1])[8] )
-        dailyCalories =  dailyCalories + Int(NSData2Bytes(getPackets()[1])[9] )<<8
-        dailyCalories =  dailyCalories + Int(NSData2Bytes(getPackets()[1])[10] )<<16
-        dailyCalories =  dailyCalories + Int(NSData2Bytes(getPackets()[1])[11] )<<24
-        return dailyCalories
-    }
-
-    /**
-     daily Walking Distance
-
-     :returns: dailyDistance
-     */
-    func getDailyWalkingDistance()->Int {
-        let packetno = 2
-        let offset = 6
-        var dailyDistance:Int = Int(NSData2Bytes(getPackets()[packetno])[offset] )
-        dailyDistance =  dailyDistance + Int(NSData2Bytes(getPackets()[packetno])[offset+1] )<<8
-        dailyDistance =  dailyDistance + Int(NSData2Bytes(getPackets()[packetno])[offset+2] )<<16
-        dailyDistance =  dailyDistance + Int(NSData2Bytes(getPackets()[packetno])[offset+3] )<<24
-        return dailyDistance/100
-    }
-    
-    func getTotalSwimTime()-> Int {
-        let packetno = 3
-        let offset = 12
-        var totalSwim:Int = Int(NSData2Bytes(getPackets()[packetno])[offset])
-        totalSwim += Int(NSData2Bytes(getPackets()[packetno])[offset+1] )<<8
-        totalSwim += Int(NSData2Bytes(getPackets()[packetno])[offset+2] )<<16
-        totalSwim += Int(NSData2Bytes(getPackets()[packetno])[offset+3] )<<24
-        return totalSwim/60
-    }
-    
-    func getHourlySwimTime()-> [Int] {
-        var hourlySwim = [Int](repeating: 0, count: 24)
-        let HEADERLENGTH:Int = 6
-        var hourlySwimTime:Int = 0
-        
-        for i:Int in 0 ..< 24 {
-            let packetno = HEADERLENGTH+i*3+1;
-            let offset = 10;
-            hourlySwimTime = 0
-            for l:Int in 0..<2 {
-                let value = NSData2Bytes(getPackets()[packetno])[offset+l]
-                if value != 0xFF {
-                    if l==0 {
-                        hourlySwimTime += Int(value)
-                    }else{
-                        hourlySwimTime += Int(NSData2Bytes(getPackets()[packetno])[offset+1])<<8
-                    }
-                }
-            }
-            hourlySwim.replaceSubrange(i..<i+1, with: [hourlySwimTime/60])
-        }
-        return hourlySwim
     }
 }
