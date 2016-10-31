@@ -85,9 +85,12 @@ class ProfileSetupViewController: UIViewController {
         
         navigationItem.title = nil
         navigationController?.navigationBar.lt_setBackgroundColor(UIColor.clear)
-        if let view = findBottomLineView(inView: navigationController?.navigationBar) {
-            view.isHidden = true
-        }
+        
+        navigationController?.navigationBar.subviewsSatisfy(theCondition: { (v) -> (Bool) in
+            return v.frame.height == 0.5
+            }, do: { (v) in
+                v.isHidden = true
+        })
     }
     
     func leftCancelAction(_ sender:UIBarButtonItem) {
@@ -163,27 +166,5 @@ class ProfileSetupViewController: UIViewController {
         }
         
         return true
-    }
-}
-
-
-// MARK: - SYSTEM CALLBACK
-extension ProfileSetupViewController {
-    func findBottomLineView(inView:UIView?) -> UIView? {
-        if inView?.frame.height == 0.5 {
-            return inView
-        }
-        
-        if inView?.subviews.count == 0 {
-            return nil
-        }
-        
-        for subView in (inView?.subviews)! {
-            if let result = findBottomLineView(inView: subView) {
-                print("=====================\r\n")
-                return result
-            }
-        }
-        return nil
     }
 }

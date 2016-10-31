@@ -42,32 +42,29 @@ class ActionSheetView: UIAlertController {
                 totallyTransparent(view: cancelButtonBackgroundView)
             }
             
-            
-            
             // 标题白色
-            view.viewsSatisfyCondition(condition: { (v) -> (Bool) in
+            view.subviewsSatisfy(theCondition: { (v) -> (Bool) in
                 if v.isKind(of: UILabel.classForCoder()) {
                     if (v as! UILabel).text == self.title {
                         return true
                     }
                 }
                 return false
-            }) { (v) in
+            }, do: { (v) in
                 (v as! UILabel).textColor = UIColor.white
-            }
+            })
             
             // 副标题白色
-            view.viewsSatisfyCondition(condition: { (v) -> (Bool) in
+            view.subviewsSatisfy(theCondition: { (v) -> (Bool) in
                 if v.isKind(of: UILabel.classForCoder()) {
                     if (v as! UILabel).text == self.message {
                         return true
                     }
                 }
                 return false
-            }) { (v) in
+            }, do: { (v) in
                 (v as! UILabel).textColor = UIColor.white
-            }
-            
+            })
         }
     }
 

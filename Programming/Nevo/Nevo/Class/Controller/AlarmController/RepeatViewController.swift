@@ -61,9 +61,11 @@ class RepeatViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        if let view = findBottomLineView(inView: self.navigationController?.navigationBar) {
-            view.isHidden = false
-        }
+        navigationController?.navigationBar.subviewsSatisfy(theCondition: { (v) -> (Bool) in
+            return v.frame.height == 0.5
+        }, do: { (v) in
+                v.isHidden = false
+        })
     }
     
     override func didReceiveMemoryWarning() {
@@ -123,22 +125,3 @@ class RepeatViewController: UIViewController {
 
 }
 
-extension RepeatViewController {
-    func findBottomLineView(inView:UIView?) -> UIView? {
-        if inView?.frame.height == 0.5 {
-            return inView
-        }
-        
-        if inView?.subviews.count == 0 {
-            return nil
-        }
-        
-        for subView in (inView?.subviews)! {
-            if let result = findBottomLineView(inView: subView) {
-                //                print("=====================\r\n")
-                return result
-            }
-        }
-        return nil
-    }
-}

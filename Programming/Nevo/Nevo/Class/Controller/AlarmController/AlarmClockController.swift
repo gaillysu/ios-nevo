@@ -72,9 +72,11 @@ class AlarmClockController: UITableViewController,AddAlarmDelegate {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        if let view = findBottomLineView(inView: self.navigationController?.navigationBar) {
-            view.isHidden = false
-        }
+        navigationController?.navigationBar.subviewsSatisfy(theCondition: { (v) -> (Bool) in
+            return v.frame.height == 0.5
+            }, do: { (v) in
+                v.isHidden = false
+        })
     }
     
     override func didReceiveMemoryWarning() {
@@ -600,25 +602,5 @@ class AlarmClockController: UITableViewController,AddAlarmDelegate {
     override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
         // Return false if you do not want the item to be re-orderable.
         return true
-    }
-}
-
-extension AlarmClockController {
-    func findBottomLineView(inView:UIView?) -> UIView? {
-        if inView?.frame.height == 0.5 {
-            return inView
-        }
-        
-        if inView?.subviews.count == 0 {
-            return nil
-        }
-        
-        for subView in (inView?.subviews)! {
-            if let result = findBottomLineView(inView: subView) {
-//                print("=====================\r\n")
-                return result
-            }
-        }
-        return nil
     }
 }

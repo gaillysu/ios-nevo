@@ -64,7 +64,7 @@ extension UserHeader:PhotoViewControllerDelegate, UIImagePickerControllerDelegat
         photoVC.delegate = self
         
         //*******//
-        photoVC.view.viewsDo { (v) in
+        photoVC.view.allSubviews { (v) in
             if v is UILabel {
                 let label = v as! UILabel
                 if label.text == "移动和缩放" {
@@ -75,12 +75,12 @@ extension UserHeader:PhotoViewControllerDelegate, UIImagePickerControllerDelegat
             }
         }
         
-        photoVC.view.viewsDo { (v) in
+        photoVC.view.allSubviews { (v) in
             if v is UIButton {
                 let button = v as! UIButton
                 if button.title(for: .normal) == "确定" {
                     button.setTitle(NSLocalizedString("Enter", comment: ""), for: .normal)
-                    button.superview?.viewsDo(operation: { (v) in
+                    button.superview?.allSubviews(do: { (v) in
                         v.backgroundColor = UIColor.clear
                     })
                     button.superview?.backgroundColor = UIColor.getGreyColor()
