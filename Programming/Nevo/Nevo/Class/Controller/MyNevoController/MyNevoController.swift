@@ -124,16 +124,23 @@ class MyNevoController: UITableViewController,UIAlertViewDelegate {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
         tableView.deselectRow(at: indexPath, animated: true)
         if((indexPath as NSIndexPath).row == 0){
-            if(AppDelegate.getAppDelegate().getSoftwareVersion().integerValue >= buildinSoftwareVersion && AppDelegate.getAppDelegate().getFirmwareVersion().integerValue >= buildinFirmwareVersion){
-                let banner = MEDBanner(title: NSLocalizedString("is_watch_version", comment: ""), subtitle: nil, image: nil, backgroundColor: AppTheme.NEVO_SOLAR_YELLOW())
-                banner.dismissesOnTap = true
-                banner.show(duration: 1.5)
-                return
+            if !AppTheme.isTargetLunaR_OR_Nevo() {
+                let lunar:LunaROTAController = LunaROTAController()
+                let navigation:UINavigationController = UINavigationController(rootViewController: lunar)
+                self.present(navigation, animated: true, completion: nil)
+            }else{
+                if(AppDelegate.getAppDelegate().getSoftwareVersion().integerValue >= buildinSoftwareVersion && AppDelegate.getAppDelegate().getFirmwareVersion().integerValue >= buildinFirmwareVersion){
+                    let banner = MEDBanner(title: NSLocalizedString("is_watch_version", comment: ""), subtitle: nil, image: nil, backgroundColor: AppTheme.NEVO_SOLAR_YELLOW())
+                    banner.dismissesOnTap = true
+                    banner.show(duration: 1.5)
+                    return
+                }
+                if(buildinSoftwareVersion==0&&buildinFirmwareVersion==0){return}
+                let otaCont:NevoOtaViewController = NevoOtaViewController()
+                let navigation:UINavigationController = UINavigationController(rootViewController: otaCont)
+                self.present(navigation, animated: true, completion: nil)
             }
-            if(buildinSoftwareVersion==0&&buildinFirmwareVersion==0){return}
-            let otaCont:NevoOtaViewController = NevoOtaViewController()
-            let navigation:UINavigationController = UINavigationController(rootViewController: otaCont)
-            self.present(navigation, animated: true, completion: nil)
+            
         }
 
     }
