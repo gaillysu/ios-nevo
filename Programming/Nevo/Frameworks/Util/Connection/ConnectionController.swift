@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CoreBluetooth
 
 /*
 The connection controller handles all the high level connection related tasks
@@ -87,6 +88,8 @@ protocol ConnectionController {
     */
     func  getSoftwareVersion() -> NSString!
     
+    // BLE Manager bject
+    func getBLECentralManager() -> CBCentralManager?
 }
 
 protocol ConnectionControllerDelegate {

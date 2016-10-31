@@ -8,6 +8,7 @@
 
 import Foundation
 import XCGLogger
+import CoreBluetooth
 /*
 See ConnectionController
 🚧🚧🚧Backbone Class : Modify with care🚧🚧🚧
@@ -352,4 +353,7 @@ class ConnectionControllerImpl : NSObject, ConnectionController, NevoBTDelegate 
         return profile!
     }
     
+    func getBLECentralManager() -> CBCentralManager? {
+        return mNevoBT?.getBLECentralManager()
+    }
 }

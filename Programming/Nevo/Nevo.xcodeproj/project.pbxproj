@@ -644,6 +644,7 @@
 		6199192C1DC6F00B00C75AE7 /* WorldClockCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 619918FD1DC6E2B600C75AE7 /* WorldClockCell.xib */; };
 		619919321DC6F02800C75AE7 /* SunriseSetView.strings in Resources */ = {isa = PBXBuildFile; fileRef = 619918FF1DC6E2B600C75AE7 /* SunriseSetView.strings */; };
 		619919331DC6F02D00C75AE7 /* WorldClockCell.strings in Resources */ = {isa = PBXBuildFile; fileRef = 619919011DC6E2B600C75AE7 /* WorldClockCell.strings */; };
+		619919361DC764EB00C75AE7 /* lunar_20161011_v3.zip in Resources */ = {isa = PBXBuildFile; fileRef = 6198EE241DC1EE5200FDD850 /* lunar_20161011_v3.zip */; };
 		61E4DF1D1DB85C9800DDA737 /* FindPhonePacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E4DF1C1DB85C9800DDA737 /* FindPhonePacket.swift */; };
 		61E4DF1F1DB8749700DDA737 /* SyncStepsToServiceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E4DF1E1DB8749700DDA737 /* SyncStepsToServiceRequest.swift */; };
 		61E4DF211DB898F700DDA737 /* SyncSleepToServiceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E4DF201DB898F700DDA737 /* SyncSleepToServiceRequest.swift */; };
@@ -2809,6 +2810,7 @@
 				00C826F61DA5ECA700ECECEE /* TutorialThreeViewController.xib in Resources */,
 				00C826F71DA5ECA700ECECEE /* TutorialFourViewController.xib in Resources */,
 				00C826F81DA5ECA700ECECEE /* TutorialFiveViewController.xib in Resources */,
+				619919361DC764EB00C75AE7 /* lunar_20161011_v3.zip in Resources */,
 				00C826F91DA5ECA700ECECEE /* TutorialSixViewController.xib in Resources */,
 				00C826FA1DA5ECA700ECECEE /* TutorialSevenViewController.xib in Resources */,
 				00C826FB1DA5ECA700ECECEE /* SleepTutorialController.xib in Resources */,

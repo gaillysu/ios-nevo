@@ -598,5 +598,9 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
             return false
         }
     }
-
+    
+    func getBLECentralManager() -> CBCentralManager? {
+        return mManager
+    }
+    
 }
