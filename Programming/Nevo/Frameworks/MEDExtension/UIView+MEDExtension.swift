@@ -18,19 +18,19 @@ private let stringPointer = UnsafeMutablePointer<String>.allocate(capacity: 1)
 // MARK: - Find views
 extension UIView {
     /// Find all views in this view's hierarchy tree, then let them do an operation
-    open func viewsDo(operation:(UIView) -> ()) {
+    open func allSubviews(do theOperation:(UIView) -> ()) {
         let allViews = allSubViewsByRecursion()
         for view in allViews {
-            operation(view)
+            theOperation(view)
         }
     }
     
     /// Find all views in this view's hierarchy tree, include itself, that can satisfy the condition
-    open func viewsSatisfyCondition(condition:(UIView) -> (Bool)) -> [UIView] {
+    open func subviewsSatisfy(theCondition:(UIView) -> (Bool)) -> [UIView] {
         var resultViews:[UIView] = []
         let allViews = allSubViewsByRecursion()
         for view in allViews {
-            if condition(view) {
+            if theCondition(view) {
                 resultViews.append(view)
             }
         }
@@ -39,10 +39,10 @@ extension UIView {
     }
     
     /// Find all views in this view's hierarchy tree, include itself, that can satisfy the condition, then let them do an operation
-    open func viewsSatisfyCondition(condition:(UIView) -> (Bool), operation:(UIView) -> ()) {
-        let views = viewsSatisfyCondition(condition: condition)
+    open func subviewsSatisfy(theCondition:(UIView) -> (Bool), do theOperation:(UIView) -> ()) {
+        let views = subviewsSatisfy(theCondition: theCondition)
         for view in views {
-            operation(view)
+            theOperation(view)
         }
     }
     
