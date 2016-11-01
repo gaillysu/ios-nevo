@@ -45,9 +45,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
     fileprivate var currentDay:UInt8 = 0
     fileprivate var mAlertUpdateFW = false
     
-    fileprivate var disConnectAlert:UIAlertView?
-    fileprivate let alertUpdateTag:Int = 9000
-    
     fileprivate var watchID:Int = 1
     fileprivate var watchName:String = "Nevo"
     fileprivate var watchModelNumber:Int = 1
@@ -174,10 +171,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
     }
     
     func application(_ application: UIApplication , didReceive notification: UILocalNotification ) {
-        if (disConnectAlert == nil) {
-            disConnectAlert = UIAlertView(title: NSLocalizedString("BLE_LOST_TITLE", comment: ""), message: NSLocalizedString("BLE_CONNECTION_LOST", comment: ""), delegate: nil, cancelButtonTitle: NSLocalizedString("Ok", comment: ""))
-            disConnectAlert?.show()
-        }
+        
     }
     
     // MARK: -dbPath
@@ -535,40 +529,31 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                 let buttonString:String = NSLocalizedString("Update", comment: "")
                 let cancelString:String = NSLocalizedString("Cancel", comment: "")
                 
-                if((UIDevice.current.systemVersion as NSString).floatValue >= 8.0){
-                    // is this necessary? i have to change the rootViewController's Class during launch, maybe...
-                    //                    let tabVC:UITabBarController = self.window?.rootViewController as! UITabBarController
-                    let tabVC = self.window?.rootViewController
-                    
-                    let actionSheet:ActionSheetView = ActionSheetView(title: titleString, message: msg, preferredStyle: UIAlertControllerStyle.alert)
-                    let alertAction1:AlertAction = AlertAction(title: cancelString, style: UIAlertActionStyle.cancel, handler: { ( alert) -> Void in
-                        
-                    })
-                    actionSheet.addAction(alertAction1)
-                    
-                    let alertAction2:AlertAction = AlertAction(title: buttonString, style: UIAlertActionStyle.default, handler: { ( alert) -> Void in
-                        let otaCont:NevoOtaViewController = NevoOtaViewController()
-                        let navigation:UINavigationController = UINavigationController(rootViewController: otaCont)
-                        tabVC?.present(navigation, animated: true, completion: nil)
-                        
-                    })
-                    actionSheet.addAction(alertAction2)
-                    if !AppTheme.isTargetLunaR_OR_Nevo() {
-                        alertAction1.setValue(UIColor.getBaseColor(), forKey: "titleTextColor")
-                        alertAction2.setValue(UIColor.getBaseColor(), forKey: "titleTextColor")
-                    }else{
-                        alertAction1.setValue(AppTheme.NEVO_SOLAR_YELLOW(), forKey: "titleTextColor")
-                        alertAction2.setValue(AppTheme.NEVO_SOLAR_YELLOW(), forKey: "titleTextColor")
-                    }
-                    tabVC?.present(actionSheet, animated: true, completion: nil)
-                }else{
-                    let actionSheet:UIAlertView = UIAlertView(title: titleString, message: msg, delegate: self, cancelButtonTitle: cancelString, otherButtonTitles: buttonString)
-                    actionSheet.layer.backgroundColor = AppTheme.NEVO_SOLAR_YELLOW().cgColor
-                    actionSheet.tintColor = AppTheme.NEVO_SOLAR_YELLOW()
-                    actionSheet.tag = alertUpdateTag
-                    actionSheet.show()
-                }
+                // is this necessary? i have to change the rootViewController's Class during launch, maybe...
+                //                    let tabVC:UITabBarController = self.window?.rootViewController as! UITabBarController
+                let tabVC = self.window?.rootViewController
                 
+                let actionSheet:ActionSheetView = ActionSheetView(title: titleString, message: msg, preferredStyle: UIAlertControllerStyle.alert)
+                let alertAction1:AlertAction = AlertAction(title: cancelString, style: UIAlertActionStyle.cancel, handler: { ( alert) -> Void in
+                    
+                })
+                actionSheet.addAction(alertAction1)
+                
+                let alertAction2:AlertAction = AlertAction(title: buttonString, style: UIAlertActionStyle.default, handler: { ( alert) -> Void in
+                    let otaCont:NevoOtaViewController = NevoOtaViewController()
+                    let navigation:UINavigationController = UINavigationController(rootViewController: otaCont)
+                    tabVC?.present(navigation, animated: true, completion: nil)
+                    
+                })
+                actionSheet.addAction(alertAction2)
+                if !AppTheme.isTargetLunaR_OR_Nevo() {
+                    alertAction1.setValue(UIColor.getBaseColor(), forKey: "titleTextColor")
+                    alertAction2.setValue(UIColor.getBaseColor(), forKey: "titleTextColor")
+                }else{
+                    alertAction1.setValue(AppTheme.NEVO_SOLAR_YELLOW(), forKey: "titleTextColor")
+                    alertAction2.setValue(AppTheme.NEVO_SOLAR_YELLOW(), forKey: "titleTextColor")
+                }
+                tabVC?.present(actionSheet, animated: true, completion: nil)
             }
         }
     }

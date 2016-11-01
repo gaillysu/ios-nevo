@@ -596,6 +596,7 @@
 		3AF3D240B5808E80F5B2A19E /* Pods_Nevo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C2AEB04A0C7F45FE876ABED /* Pods_Nevo.framework */; };
 		6104D9C51DC86C7C00663D31 /* Int+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6104D9C41DC86C7C00663D31 /* Int+Extension.swift */; };
 		6104D9C61DC86D4D00663D31 /* Int+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6104D9C41DC86C7C00663D31 /* Int+Extension.swift */; };
+		6104D9C71DC87D9F00663D31 /* SolarHarvest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 610E43F91DC84337001FD1B8 /* SolarHarvest.swift */; };
 		610E43FA1DC84337001FD1B8 /* SolarHarvest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 610E43F91DC84337001FD1B8 /* SolarHarvest.swift */; };
 		611E2E051DC3405D004CD45B /* LunaRStepsGoalPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 611E2E041DC3405D004CD45B /* LunaRStepsGoalPacket.swift */; };
 		615093391DBF5BC800E52970 /* SetSunriseAndSunsetRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615093371DBF5BC800E52970 /* SetSunriseAndSunsetRequest.swift */; };
@@ -3650,6 +3651,7 @@
 				663305BA1DC0A9130090216F /* Timezone.swift in Sources */,
 				0050D60D1C28E0DB004F6F80 /* PresetTableViewController.swift in Sources */,
 				00AF8CC51D224CFA009047AC /* Presets.swift in Sources */,
+				6104D9C71DC87D9F00663D31 /* SolarHarvest.swift in Sources */,
 				0089B09E1D6BE9410041148A /* InformationController.swift in Sources */,
 				0050D6101C28E0DB004F6F80 /* PresetTableViewCell.swift in Sources */,
 				006DA3181D6ED6670011E09C /* AnalysisRadarViewCell.swift in Sources */,
