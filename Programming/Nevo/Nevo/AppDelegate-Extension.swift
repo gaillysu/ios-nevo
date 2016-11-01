@@ -229,17 +229,10 @@ extension AppDelegate {
     }
     
     func adjustLaunchLogic() {
-        
-//        let user:NSArray = UserProfile.getAll()
-//        let hasUser:Bool = user.count > 0
-        
         let hasWatch:Bool = AppDelegate.getAppDelegate().hasSavedAddress()
-        
         let isFirsttimeLaunch = AppDelegate.getAppDelegate().isFirsttimeLaunch
-        
         if isFirsttimeLaunch {
             let naviController = UINavigationController(rootViewController: LoginController())
-//            naviController.isNavigationBarHidden = true
             AppDelegate.getAppDelegate().window? = UIWindow(frame: UIScreen.main.bounds)
             AppDelegate.getAppDelegate().window?.rootViewController = naviController
             AppDelegate.getAppDelegate().window?.makeKeyAndVisible()

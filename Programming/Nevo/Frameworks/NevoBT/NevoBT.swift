@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CoreBluetooth
 
 /*
 NevoBT should do one thing : control the Core Bluetooth classes.
@@ -77,6 +78,8 @@ protocol NevoBT {
     
     //Based on the specified UUID returns whether the device is matched
     func isPairingPeripheral(_ peripheralAddress : UUID) -> Bool
+    
+    func getBLECentralManager() -> CBCentralManager?
 }
 
 protocol NevoBTDelegate {

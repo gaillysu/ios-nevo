@@ -134,8 +134,6 @@ class LunaROtaView: UIView {
 
 
     fileprivate var mDelegate:ButtonManagerCallBack?
-    fileprivate var tipView:FXBlurView?;
-    fileprivate var mOTADelegate:NevoOtaController?//OTA for watch version number object
     fileprivate var OTAprogressView:LunaROTAProgress?//OTA upgrade progress bar object
     var progresValue:CGFloat = 0.0//OTA upgrade progress bar default value
     
@@ -192,45 +190,17 @@ class LunaROtaView: UIView {
         }
     }
 
-    /**
-    Is the latest edition of the display function
-
-    :param: string
-    */
-    func setLatestVersion(_ string:String){
-        let messageS:String  = string
-        //taskLabel.font = AppTheme.FONT_RALEWAY_LIGHT(mSize: 15)
-        //let labelframe:CGRect  = AppTheme.getWidthLabelSize(messageS, andObject: taskLabel.frame,andFont: AppTheme.FONT_RALEWAY_LIGHT(mSize: 15))
-        //taskLabel.frame = labelframe
-        //taskLabel.text = string
-    }
-
-    /**
-    Upgrade success callback function
-    */
     func upgradeSuccessful(){
         nevoWacthImage.image = AppTheme.GET_RESOURCES_IMAGE("connected");
         OTAprogressView!.isHidden = true
+        updatingView.isHidden = true
+        backView.isHidden = false
     }
-
-    /**
-    Close the OTA attention function
-    */
-    func closeTipView(){
-        UIView.animate(withDuration: 0.25, animations: { () -> Void in
-            self.tipView!.transform = CGAffineTransform(scaleX: 0.05, y: 0.05);
-        }) { (Bool) -> Void in
-            self.tipView!.removeFromSuperview()
-        }
-
+    
+    func upgradeError(){
+        nevoWacthImage.image = AppTheme.GET_RESOURCES_IMAGE("connected");
+        OTAprogressView!.isHidden = true
+        updatingView.isHidden = true
+        backView.isHidden = false
     }
-
-    /*
-    // Only override drawRect: if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func drawRect(rect: CGRect) {
-        // Drawing code
-    }
-    */
-
 }

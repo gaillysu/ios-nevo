@@ -10,13 +10,16 @@ import UIKit
 import Charts
 import SwiftEventBus
 import XCGLogger
+import RealmSwift
 
 class SolarIndicatorController: PublicClassController {
 
     @IBOutlet weak var textCollection: UICollectionView!
     @IBOutlet weak var pieChartView: PieChartView!
     @IBOutlet weak var titleLabel: UILabel!
-
+    
+    fileprivate let realm:Realm = try! Realm()
+    
     fileprivate var onTitle:[String] = [NSLocalizedString("timer_on_battery", comment: ""),NSLocalizedString("timer_on_solar", comment: "")]
     fileprivate var onValue:[Double] = [130,00]
     
@@ -36,8 +39,6 @@ class SolarIndicatorController: PublicClassController {
         self.setupPieChartView(pieChartView)
         pieChartView.legend.enabled = false;
         pieChartView.delegate = self
-        self.updateChartData()
-        pieChartView.animate(xAxisDuration: 1.4, easingOption: ChartEasingOption.easeOutBack)
         
         //Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(pvadcAction(_:)), userInfo: nil, repeats: true)
         
@@ -89,6 +90,7 @@ class SolarIndicatorController: PublicClassController {
     }
 
     override func viewDidAppear(_ animated: Bool) {
+        self.updateChartData()
         pieChartView.animate(xAxisDuration: 1.4, easingOption: ChartEasingOption.easeOutBack)
         textCollection.reloadData()
     }
@@ -98,6 +100,19 @@ class SolarIndicatorController: PublicClassController {
         // Dispose of any resources that can be recreated.
     }
 
+}
+
+extension SolarIndicatorController{
+
+    func getSolarData()->[SolarHarvest] {
+        
+        let solar = realm.objects(SolarHarvest.self).filter("date = \(Date().beginningOfDay.timeIntervalSince1970)")
+        var solarData:[SolarHarvest] = []
+        for value in solar {
+            solarData.append(value as SolarHarvest)
+        }
+        return solarData
+    }
 }
 
 extension SolarIndicatorController:UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
@@ -117,13 +132,7 @@ extension SolarIndicatorController:UICollectionViewDelegate,UICollectionViewData
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SolarInfor_Identifier", for: indexPath)
         cell.backgroundColor = UIColor.white
         (cell as! SolarInforViewCell).updateTitleLabel(onTitle[(indexPath as NSIndexPath).row])
-        if indexPath.row == 0 {
-            (cell as! SolarInforViewCell).valueLabel.text = String(format: "%dh %dmin", Date().hour,Date().minute)
-        }
-        
-        if indexPath.row == 1 {
-            (cell as! SolarInforViewCell).valueLabel.text = String(format: "0h 0min")
-        }
+        (cell as! SolarInforViewCell).valueLabel.text = AppTheme.timerFormatValue(value: onValue[indexPath.row])
         
         if !AppTheme.isTargetLunaR_OR_Nevo() {
             (cell as! SolarInforViewCell).valueLabel.textColor = UIColor.getBaseColor()
@@ -138,7 +147,17 @@ extension SolarIndicatorController:UICollectionViewDelegate,UICollectionViewData
 extension SolarIndicatorController:ChartViewDelegate {
     func updateChartData() {
         pieChartView.data = nil
-        self.setDataCount(2, range: 100)
+        var solarValue = self.getSolarData()
+        if solarValue.count>0 {
+            self.setDataCount(solarValue)
+        }else{
+            let solar:SolarHarvest = SolarHarvest()
+            solar.date = Date().beginningOfDay.timeIntervalSince1970
+            solar.solarTotalTime = 0
+            solar.solarHourlyTime = "[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]"
+            solarValue.append(solar)
+            self.setDataCount(solarValue)
+        }
     }
 
     func setupPieChartView(_ chartView:PieChartView) {
@@ -176,23 +195,26 @@ extension SolarIndicatorController:ChartViewDelegate {
         
     }
     
-    func setDataCount(_ count:Int,range:Double) {
-        let mult:Double = range
+    func setDataCount(_ solarValue:[SolarHarvest]) {
         var yVals1:[ChartDataEntry] = []
-        for i:Int in 0..<count {
-            let value:Double = Double(arc4random_uniform(UInt32(mult) + UInt32(mult/5)))
-            yVals1.append(BarChartDataEntry(value: value , xIndex: i))
-        }
+        
+        let solarData:SolarHarvest = solarValue[0]
+        let value:Double = Double(solarData.solarTotalTime)/60.0
+        yVals1.append(BarChartDataEntry(value: value , xIndex: 0))
+        yVals1.append(BarChartDataEntry(value: 24.0-value , xIndex: 1))
+        
+        onValue.replaceSubrange(0..<1, with: [24.0-value])
+        onValue.replaceSubrange(1..<2, with: [value])
+        textCollection.reloadData();
         
         var xVals:[String] = []
-        
         xVals.append(NSLocalizedString("Solar", comment: ""))
         xVals.append(NSLocalizedString("Battery", comment: ""))
+        
         let dataSet:PieChartDataSet = PieChartDataSet(yVals: yVals1, label: "")
         dataSet.sliceSpace = 2.0;
         var colors:[UIColor] = [];
         if !AppTheme.isTargetLunaR_OR_Nevo() {
-            //B37EBD
             colors.append(UIColor.getBaseColor())
             colors.append(UIColor.getTintColor())
         }else{
