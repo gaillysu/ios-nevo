@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftEventBus
 
 class AnalysisController: PublicClassController {
     
@@ -38,6 +39,12 @@ class AnalysisController: PublicClassController {
             contentCollectionView.backgroundColor = UIColor.getGreyColor()
             chartsCollectionView.backgroundColor = UIColor.getGreyColor()
             segmented.tintColor = UIColor.getBaseColor()
+        }
+        
+        
+        // MARK: - SET WATCH_ID NOTIFICATION
+        _ = SwiftEventBus.onMainThread(self, name: EVENT_BUS_WATCHID_DIDCHANGE_KEY) { (notification) in
+            let dict:[String:Int] = notification.userInfo as! [String : Int]
         }
     }
 

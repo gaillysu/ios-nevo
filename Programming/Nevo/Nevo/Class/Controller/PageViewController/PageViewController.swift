@@ -94,6 +94,11 @@ class PageViewController: UIPageViewController,UIActionSheetDelegate {
         }else{
             self.view.backgroundColor = UIColor.white
         }
+        
+        // MARK: - SET WATCH_ID NOTIFICATION
+        _ = SwiftEventBus.onMainThread(self, name: EVENT_BUS_WATCHID_DIDCHANGE_KEY) { (notification) in
+            let dict:[String:Int] = notification.userInfo as! [String : Int]
+        }
     }
     
     override func viewDidLayoutSubviews() {
@@ -201,6 +206,9 @@ extension PageViewController {
         pageControl.pageIndicatorTintColor = UIColor.lightGray
         pageControl.currentPageIndicatorTintColor = AppTheme.NEVO_SOLAR_YELLOW()
         pageControl.addTarget(self, action: #selector(pageAction(_ :)), for: UIControlEvents.valueChanged)
+        
+        pageControl.isUserInteractionEnabled = false
+        
         self.view.addSubview(pageControl)
         
         pageControl.snp.makeConstraints { (make) -> Void in
