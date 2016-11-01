@@ -211,3 +211,4 @@
 
 // 2016-10-28
 "Delete"="删除";
+"ota_error_signature_mismatch"="升级文件签名错误";

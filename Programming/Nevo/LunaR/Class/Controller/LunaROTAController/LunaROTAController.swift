@@ -11,10 +11,11 @@ import XCGLogger
 import iOSDFULibrary
 import CoreBluetooth
 import PopupController
+import MRProgress
 
-class LunaROTAController: UIViewController  {
+class LunaROTAController: UIViewController,ButtonManagerCallBack  {
 
-    @IBOutlet var nevoOtaView: LunaROtaView!
+    @IBOutlet var lunarOtaView: LunaROtaView!
  
     //MARK: - Class Properties
     fileprivate var dfuPeripheral    : CBPeripheral?
@@ -22,7 +23,6 @@ class LunaROTAController: UIViewController  {
     fileprivate var centralManager   : CBCentralManager?
     fileprivate var selectedFirmware : DFUFirmware?
     fileprivate var selectedFileURL  : URL?
-    fileprivate var secureDFU        : Bool?
 
     var dfuFirmwareType : DfuFirmwareTypes = DfuFirmwareTypes.application
     fileprivate var state:DFUControllerState = DFUControllerState.inittialize
@@ -44,7 +44,7 @@ class LunaROTAController: UIViewController  {
     
     override func viewDidLayoutSubviews(){
         //init the view
-        nevoOtaView.buildView(nil)
+        lunarOtaView.buildView(self)
     }
 
     override func viewDidLoad() {
@@ -53,17 +53,8 @@ class LunaROTAController: UIViewController  {
         
         AppDelegate.getAppDelegate().getMconnectionController()?.setDelegate(self)
         
-        let leftItem:UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.cancel, target: self, action: #selector(backAction(_:)))
-        //leftItem.tintColor = UIColor.black
-        self.navigationItem.leftBarButtonItem = leftItem
-        
         self.showAlertView()
         
-        let dispatchTime: DispatchTime = DispatchTime.now() + Double(Int64(3 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
-        DispatchQueue.main.asyncAfter(deadline: dispatchTime, execute: {
-            //AppDelegate.getAppDelegate().getMconnectionController()?.setOTAMode(true, Disconnect: true)
-            
-        })
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -76,12 +67,15 @@ class LunaROTAController: UIViewController  {
         if dfuController != nil {
             dfuController?.abort()
         }
-    }
-    
-    func backAction(_ sender:AnyObject) {
-        self.dismiss(animated: true, completion: nil)
+        cancelOTAMode()
     }
 
+    func controllManager(_ sender:AnyObject){
+        if(lunarOtaView.backButton.isEqual(sender)) {
+            self.dismiss(animated: true, completion: nil)
+        }
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -105,9 +99,8 @@ extension LunaROTAController:CBCentralManagerDelegate, CBPeripheralDelegate {
     func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
         if advertisementData[CBAdvertisementDataServiceUUIDsKey] != nil {
             //Secure DFU UUID
-            let secureUUIDString = CBUUID(string: "FE59").uuidString
             let advertisedUUIDstring = ((advertisementData[CBAdvertisementDataServiceUUIDsKey]!) as AnyObject).firstObject as! CBUUID
-            if advertisedUUIDstring.uuidString  == secureUUIDString {
+            if advertisedUUIDstring.uuidString  == legacyDfuServiceUUID.uuidString {
                 print("Found Secure Peripheral: \(peripheral.name!)")
                 if self.discoveredPeripherals?.contains(peripheral) == false {
                     self.discoveredPeripherals?.append(peripheral)
@@ -138,18 +131,20 @@ extension LunaROTAController:DFUServiceDelegate {
     func didStateChangedTo(_ state:DFUState) {
         switch state {
         case .aborted:
-            nevoOtaView.setProgress(0, currentTask: 1, allTask: 1, progressString: nil)
+            lunarOtaView.setProgress(0, currentTask: 1, allTask: 1, progressString: nil)
             break
         case .signatureMismatch:
-            nevoOtaView.setProgress(0, currentTask: 1, allTask: 1, progressString: nil)
+            lunarOtaView.setProgress(0, currentTask: 1, allTask: 1, progressString: NSLocalizedString("ota_error_signature_mismatch", comment: ""))
+            self.lunarOtaView.upgradeError()
             break
         case .completed:
-            nevoOtaView.setProgress(0, currentTask: 1, allTask: 1, progressString: nil)
+            lunarOtaView.setProgress(1, currentTask: 1, allTask: 1, progressString: NSLocalizedString("UpdateSuccess1", comment: ""))
+            self.lunarOtaView.upgradeSuccessful()
             break
         case .connecting:
             break
         case .disconnecting:
-            nevoOtaView.setProgress(0, currentTask: 1, allTask: 1, progressString: nil)
+            lunarOtaView.setProgress(0, currentTask: 1, allTask: 1, progressString: nil)
             break
         case .enablingDfuMode:
             break
@@ -170,7 +165,7 @@ extension LunaROTAController:DFUServiceDelegate {
     }
     
     func didErrorOccur(_ error: DFUError, withMessage message: String) {
-        nevoOtaView.setProgress(0, currentTask: 1, allTask: 1, progressString: message)
+        lunarOtaView.setProgress(0, currentTask: 1, allTask: 1, progressString: message)
         logWith(LogLevel.error, message: message)
     }
 }
@@ -178,14 +173,15 @@ extension LunaROTAController:DFUServiceDelegate {
 //MARK: - DFUProgressDelegate
 extension LunaROTAController:DFUProgressDelegate{
     func onUploadProgress(_ part: Int, totalParts: Int, progress: Int, currentSpeedBytesPerSecond: Double, avgSpeedBytesPerSecond: Double) {
-        nevoOtaView.setProgress(Float(progress/100), currentTask: 1, allTask: 1, progressString: "Speed : \(String(format:"%.1f", avgSpeedBytesPerSecond/1024)) Kbps, pt. \(part)/\(totalParts)")
+        lunarOtaView.setProgress(Float(progress) / 100.0, currentTask: 1, allTask: 1, progressString: "Speed : \(String(format:"%.1f", avgSpeedBytesPerSecond/1024)) Kbps, pt. \(part)/\(totalParts)")
+        XCGLogger.default.debug("progress:\(progress)"+"Speed : \(String(format:"%.1f", avgSpeedBytesPerSecond/1024)) Kbps, pt. \(part)/\(totalParts)")
     }
 }
 
 //MARK: - LoggerDelegate
 extension LunaROTAController:LoggerDelegate{
     func logWith(_ level:LogLevel, message:String){
-        print("\(level.name()) : \(message)")
+        XCGLogger.default.debug("\(level),\(level.name()) : \(message)")
     }
 }
 
@@ -206,27 +202,15 @@ extension LunaROTAController {
         let alertAction2:UIAlertAction = UIAlertAction(title: NSLocalizedString("Enter", comment: ""), style: UIAlertActionStyle.default) { (action:UIAlertAction) -> Void in
             //self.startDFUProcess()
             self.state = DFUControllerState.idle
-            if(self.dfuFirmwareType == DfuFirmwareTypes.application ){
-                self.setOTAMode()
-            }else if(self.dfuFirmwareType == DfuFirmwareTypes.softdevice){
-                self.setOTAMode()
-            }
+            self.setOTAMode()
         }
         alertView.addAction(alertAction2)
         self.present(alertView, animated: true, completion: nil)
     }
     
-    func secureDFUMode(_ secureDFU : Bool) {
-        self.secureDFU = secureDFU
-    }
     
     func getBundledFirmwareURLHelper() -> URL {
-        if self.secureDFU! {
-            return Bundle.main.url(forResource: "lunar_20161011_v3", withExtension: "zip")!
-        }else{
-            let urlString:URL = Bundle.main.url(forResource: "lunar_20161011_v3", withExtension: "zip")!
-            return Bundle.main.url(forResource: "lunar_20161011_v3", withExtension: "zip")!
-        }
+        return Bundle.main.url(forResource: "lunar_20161011_v3", withExtension: "zip")!
     }
     
     func setCentralManager(centralManager aCentralManager : CBCentralManager){
@@ -259,18 +243,26 @@ extension LunaROTAController {
 //MARK: - SelectPeripheralDelegate
 extension LunaROTAController:SelectPeripheralDelegate {
     func onDidSelectPeripheral(_ dFUMode:Bool,_ peripheral:CBPeripheral, _ manager:CBCentralManager){
-        self.secureDFUMode(dFUMode)
         self.setTargetPeripheral(aPeripheral: peripheral)
         self.setCentralManager(centralManager: manager)
         self.showAlertView()
     }
     
     func setOTAMode(){
+        let view = MRProgressOverlayView.showOverlayAdded(to: self.navigationController!.view, title: NSLocalizedString("please_wait", comment: ""), mode: MRProgressOverlayViewMode.indeterminate, animated: true)
+        view?.setTintColor(UIColor.getBaseColor())
         AppDelegate.getAppDelegate().getMconnectionController()?.setOTAMode(true, Disconnect: true)
     }
     
+    func cancelOTAMode() {
+        AppDelegate.getAppDelegate().getMconnectionController()?.restoreSavedAddress()
+        AppDelegate.getAppDelegate().getMconnectionController()?.setOTAMode(false, Disconnect: false)
+        AppDelegate.getAppDelegate().getMconnectionController()?.setDelegate(AppDelegate.getAppDelegate())
+        AppDelegate.getAppDelegate().getMconnectionController()?.connect()
+    }
+    
     func startOTA(_ mode:Bool,peripheral:CBPeripheral,manager:CBCentralManager) {
-        self.secureDFUMode(mode)
+        MRProgressOverlayView.dismissAllOverlays(for: self.navigationController!.view, animated: true)
         self.setTargetPeripheral(aPeripheral: peripheral)
         self.startDFUProcess()
     }
@@ -283,19 +275,16 @@ extension LunaROTAController:ConnectionControllerDelegate {
             if isConnected{
                 if state == DFUControllerState.send_RECONNECT{
                     state = DFUControllerState.send_START_COMMAND
-                    let dispatchTime: DispatchTime = DispatchTime.now() + Double(Int64(1.0 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
+                    let dispatchTime: DispatchTime = DispatchTime.now() + Double(Int64(0.8 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
                     DispatchQueue.main.asyncAfter(deadline: dispatchTime, execute: {
                         AppDelegate.getAppDelegate().getMconnectionController()?.sendRequest(SetOTAModeRequest())
-                        
                     })
-                    
                 }else if state == DFUControllerState.discovering{
                     state = DFUControllerState.send_FIRMWARE_DATA
                     AppDelegate.getAppDelegate().getMconnectionController()?.disconnect()
                     self.centralManager = AppDelegate.getAppDelegate().getMconnectionController()!.getBLECentralManager()!
                     self.centralManager?.delegate = self
                     self.startDiscovery()
-                    //self.startOTA(false, peripheral: AppDelegate.getAppDelegate().getMconnectionController()!.getConnectPeripheral()!, manager: AppDelegate.getAppDelegate().getMconnectionController()!.getBLECentralManager()!)
                 }
             }else{
                 if state == DFUControllerState.idle{

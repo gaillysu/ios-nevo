@@ -22,7 +22,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LunaROTAController" customModule="LunaR" customModuleProvider="target">
             <connections>
-                <outlet property="nevoOtaView" destination="i5M-Pr-FkT" id="O2D-UY-RAJ"/>
+                <outlet property="lunarOtaView" destination="i5M-Pr-FkT" id="ZRp-Yl-i61"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
