@@ -594,6 +594,9 @@
 		1C3712D71DBC5BF2007DC349 /* UIView+MEDExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C3712D61DBC5BF2007DC349 /* UIView+MEDExtension.swift */; };
 		1C3712D81DBC5BF2007DC349 /* UIView+MEDExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C3712D61DBC5BF2007DC349 /* UIView+MEDExtension.swift */; };
 		3AF3D240B5808E80F5B2A19E /* Pods_Nevo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C2AEB04A0C7F45FE876ABED /* Pods_Nevo.framework */; };
+		6104D9C51DC86C7C00663D31 /* Int+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6104D9C41DC86C7C00663D31 /* Int+Extension.swift */; };
+		6104D9C61DC86D4D00663D31 /* Int+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6104D9C41DC86C7C00663D31 /* Int+Extension.swift */; };
+		610E43FA1DC84337001FD1B8 /* SolarHarvest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 610E43F91DC84337001FD1B8 /* SolarHarvest.swift */; };
 		611E2E051DC3405D004CD45B /* LunaRStepsGoalPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 611E2E041DC3405D004CD45B /* LunaRStepsGoalPacket.swift */; };
 		615093391DBF5BC800E52970 /* SetSunriseAndSunsetRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615093371DBF5BC800E52970 /* SetSunriseAndSunsetRequest.swift */; };
 		6150933A1DBF5BC800E52970 /* SetWorldClockRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615093381DBF5BC800E52970 /* SetWorldClockRequest.swift */; };
@@ -1149,6 +1152,8 @@
 		337909E3A1733589971A3696 /* Pods-Nevo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Nevo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Nevo/Pods-Nevo.debug.xcconfig"; sourceTree = "<group>"; };
 		4D889843ECCF8C9F30888205 /* Pods-LunaRTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LunaRTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-LunaRTests/Pods-LunaRTests.release.xcconfig"; sourceTree = "<group>"; };
 		57C68BE0457DB1BFF58A2389 /* Pods-LunaR.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LunaR.release.xcconfig"; path = "Pods/Target Support Files/Pods-LunaR/Pods-LunaR.release.xcconfig"; sourceTree = "<group>"; };
+		6104D9C41DC86C7C00663D31 /* Int+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Int+Extension.swift"; sourceTree = "<group>"; };
+		610E43F91DC84337001FD1B8 /* SolarHarvest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SolarHarvest.swift; sourceTree = "<group>"; };
 		611E2E041DC3405D004CD45B /* LunaRStepsGoalPacket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LunaRStepsGoalPacket.swift; sourceTree = "<group>"; };
 		615093371DBF5BC800E52970 /* SetSunriseAndSunsetRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetSunriseAndSunsetRequest.swift; sourceTree = "<group>"; };
 		615093381DBF5BC800E52970 /* SetWorldClockRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetWorldClockRequest.swift; sourceTree = "<group>"; };
@@ -1375,6 +1380,7 @@
 				003DBF761D6D93C400E45244 /* EventBusKeys.swift */,
 				0084CB151D9BC68A0047DF39 /* Double+Extension.swift */,
 				0058CBF81D9CC897003CE7DC /* String+Extension.swift */,
+				6104D9C41DC86C7C00663D31 /* Int+Extension.swift */,
 			);
 			path = Global;
 			sourceTree = "<group>";
@@ -2340,6 +2346,7 @@
 			children = (
 				66A0E0761DBF6C08001C0C67 /* City.swift */,
 				66A0E0771DBF6C08001C0C67 /* Timezone.swift */,
+				610E43F91DC84337001FD1B8 /* SolarHarvest.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -3396,6 +3403,7 @@
 				6198EE281DC204BF00FDD850 /* LunaRPacket.swift in Sources */,
 				00C8262C1DA5E01C00ECECEE /* M13CheckboxStrokeManager.swift in Sources */,
 				00C8262D1DA5E01C00ECECEE /* M13CheckboxDotPathPresets.swift in Sources */,
+				6104D9C61DC86D4D00663D31 /* Int+Extension.swift in Sources */,
 				00C8262E1DA5E01C00ECECEE /* M13CheckboxSpiralPathPresets.swift in Sources */,
 				00C8262F1DA5E01C00ECECEE /* SMAlphaImageSegment.swift in Sources */,
 				00C826301DA5E01C00ECECEE /* SMBasicSegment.swift in Sources */,
@@ -3424,6 +3432,7 @@
 				00D474391D586D1600E2447E /* NotificationModel.swift in Sources */,
 				666F60F11DAF264B0011F3C5 /* AppDelegate-Extension.swift in Sources */,
 				00D4743A1D586D1600E2447E /* Presets.swift in Sources */,
+				610E43FA1DC84337001FD1B8 /* SolarHarvest.swift in Sources */,
 				00D4743B1D586D1600E2447E /* PresetsModel.swift in Sources */,
 				00D4743C1D586D1600E2447E /* SleepModel.swift in Sources */,
 				00D4743D1D586D1600E2447E /* StepsModel.swift in Sources */,
@@ -3516,6 +3525,7 @@
 				0008EE881D93C39A005E127C /* M13Checkbox.swift in Sources */,
 				9AD8F9841A6E2C8E00F01014 /* Request.swift in Sources */,
 				006A624E1D6AA62100458305 /* SolarInforViewCell.swift in Sources */,
+				6104D9C51DC86C7C00663D31 /* Int+Extension.swift in Sources */,
 				007865F71D91006F00F33AEA /* SMSegmentView.swift in Sources */,
 				0050D6981C28E1CD004F6F80 /* AlarmClockController.swift in Sources */,
 				00AF8CBC1D224CFA009047AC /* BaseEntryDatabaseHelper.swift in Sources */,
