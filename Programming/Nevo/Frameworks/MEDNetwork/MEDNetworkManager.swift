@@ -37,7 +37,7 @@ class MEDNetworkManager: NSObject {
                 return (true, json, nil)
             }else{
                 print("Request was successful but, status was smaller then 0.")
-                return (false,nil, nil)
+                return (false,json, nil)
             }
             
         case .failure(let error):

@@ -122,6 +122,14 @@ class LoginController: UIViewController,UITextFieldDelegate {
                 UIApplication.shared.keyWindow?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
             }
         }
+        
+        if let email_pw = UserDefaults.standard.object(forKey: InformationController.MED_kISFromRegisterController) as? [String : String] {
+            userNameTextField.text = email_pw["email"]!
+            passwordTextField.text = email_pw["password"]!
+            
+            UserDefaults.standard.set(nil, forKey: InformationController.MED_kISFromRegisterController)
+            loginRequest()
+        }
     }
     
     func tapAction(_ sender:UITapGestureRecognizer) {

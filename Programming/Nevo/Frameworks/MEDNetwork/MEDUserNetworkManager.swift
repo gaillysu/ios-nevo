@@ -10,12 +10,29 @@ import UIKit
 import SwiftyJSON
 import Alamofire
 
+public enum CREATE_USER_STATUS {
+    case SIGNUP_FAILED
+    case USER_EXIST
+    case SUCCESS
+}
+
 class MEDUserNetworkManager: NSObject {
-    
-    class func createUser(firstName: String, lastName: String, email: String, password: String, birthday: String, length: String, weight: String, sex: Int, completion:@escaping (_ created:Bool) -> Void){
+    class func createUser(firstName: String, lastName: String, email: String, password: String, birthday: String, length: String, weight: String, sex: Int, completion:@escaping (_ result:CREATE_USER_STATUS) -> Void) {
         
         MEDNetworkManager.execute(request: MEDUserCreateRequest(firstName: firstName, lastName: lastName, email: email, password: password, birthday: birthday, length: length, weight: weight, sex: sex, responseBlock: { (success, optionalJson, optionalError) in
-            completion(success)
+            if let json = optionalJson {
+                switch json["status"] {
+                case 1:
+                    completion(.SUCCESS)
+                case -2:
+                    completion(.USER_EXIST)
+                default:
+                    completion(.SIGNUP_FAILED)
+                }
+            }else{
+                completion(.SIGNUP_FAILED)
+            }
+            
         }))
     }
     
@@ -34,10 +51,8 @@ class MEDUserNetworkManager: NSObject {
         loggedIn:Bool, _ user:UserProfile?) -> Void){
         MEDNetworkManager.execute(request: MEDLoginRequest(email: email, password: password, responseBlock: { (success, optionalJson, optionalError) in
             if success, let json = optionalJson{
-                DispatchQueue.global().async {
-                    let user:UserProfile = jsonToUser(user: json["user"])
-                    completion(true, user)
-                }
+                let user:UserProfile = jsonToUser(user: json["user"])
+                completion(true, user)
             }else{
                 completion(false, nil)
             }

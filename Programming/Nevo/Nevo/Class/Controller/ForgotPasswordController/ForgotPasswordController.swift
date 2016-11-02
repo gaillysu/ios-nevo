@@ -64,15 +64,11 @@ class ForgotPasswordController: UIViewController {
             view?.setTintColor(UIColor.getBaseColor())
         }
         
-        HttpPostRequest.postRequest("user/request_password_token", data: ["user":["email":emailTextField.text!] as AnyObject]) { (result) in
+        
+        MEDUserNetworkManager.requestPassword(email: emailTextField.text!) { (success:Bool, token:String, id:Int) in
             MRProgressOverlayView.dismissAllOverlays(for: self.navigationController!.view, animated: true)
             
-            let json = JSON(result)
-            let status:Int = json["status"].intValue
-            if status == 1 {
-                let token:String = json["user"].dictionaryValue["password_token"]!.stringValue
-                let email:String = json["user"].dictionaryValue["email"]!.stringValue
-                let id:Int = json["user"].dictionaryValue["id"]!.intValue
+            if success {
                 let alert:UIAlertController = UIAlertController(title: NSLocalizedString("change_password", comment: ""), message: nil, preferredStyle: UIAlertControllerStyle.alert)
                 alert.view.tintColor = AppTheme.NEVO_SOLAR_YELLOW()
                 alert.addTextField(configurationHandler: { (newPassword1:UITextField) in
@@ -101,16 +97,15 @@ class ForgotPasswordController: UIViewController {
                             view?.setTintColor(UIColor.getBaseColor())
                         }
                         
-                        HttpPostRequest.postRequest("user/forget_password", data: ["user":["password_token":token,"email":email,"password":textField[0].text!,"id":id] as AnyObject], completion: { (result) in
+                        MEDUserNetworkManager.forgetPassword(email: self.emailTextField.text!, password: textField[0].text!, id: id, token: token, completion: { (changeSuccess: Bool) in
                             MRProgressOverlayView.dismissAllOverlays(for: self.navigationController!.view, animated: true)
-                            let json = JSON(result)
-                            let status:Int = json["status"].intValue
-                            if status != -3 {
+                            if changeSuccess {
                                 let banner = MEDBanner(title: NSLocalizedString("Password has been changed", comment: ""), subtitle: nil, image: nil, backgroundColor:AppTheme.NEVO_SOLAR_YELLOW())
                                 banner.dismissesOnTap = true
                                 banner.show(duration: 1.2)
                                 self.dismiss(animated: true, completion: nil)
                             }
+                            
                         })
                     }else{
                         let banner = MEDBanner(title: NSLocalizedString("two_password_is_not_the_same", comment: ""), subtitle: nil, image: nil, backgroundColor:AppTheme.NEVO_SOLAR_YELLOW())
@@ -126,7 +121,6 @@ class ForgotPasswordController: UIViewController {
                 self.present(alert, animated: true, completion: nil)
             }
         }
-        
     }
 
 }
