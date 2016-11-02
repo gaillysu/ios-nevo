@@ -23,7 +23,10 @@ class MEDBaseNetworkRequest: MEDNetworkRequest {
         if let authorizationHeader = Alamofire.Request.authorizationHeader(user: "apps", password: "med_app_development") {
             headers?[authorizationHeader.key] = authorizationHeader.value
         }
-        self.parameters = ["token":"ZQpFYPBMqFbUQq8E99FztS2x6yQ2v1Ei"]
+        
+        let token: String = AppTheme.isTargetLunaR_OR_Nevo() ? "SU9gPy5e1d1t7W8FG2fQ6MuT06cY95MB" : "Sfz1Nk9Qt3J0dt7jNOLX0x7VHaT83V8h"
+        
+        self.parameters = ["token":token]
         self.response = response
     }
 }

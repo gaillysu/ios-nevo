@@ -2391,9 +2391,9 @@
 		6688A67C1DC981A50078E636 /* BaseRequest */ = {
 			isa = PBXGroup;
 			children = (
+				6688A6481DC981980078E636 /* MEDBaseNetworkRequest.swift */,
 				6688A6461DC981980078E636 /* MEDBaseDeleteRequest.swift */,
 				6688A6471DC981980078E636 /* MEDBaseGetRequest.swift */,
-				6688A6481DC981980078E636 /* MEDBaseNetworkRequest.swift */,
 				6688A6491DC981980078E636 /* MEDBasePostRequest.swift */,
 				6688A64A1DC981980078E636 /* MEDBasePutRequest.swift */,
 				6688A64F1DC981980078E636 /* MEDNetworkRequest.swift */,
