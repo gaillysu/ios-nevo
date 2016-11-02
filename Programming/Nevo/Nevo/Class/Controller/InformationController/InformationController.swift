@@ -15,6 +15,8 @@ import XCGLogger
 
 class InformationController: UIViewController,SMSegmentViewDelegate {
 
+    static let MED_kISFromRegisterController: String = "MED_kISFromRegisterController"
+    
     @IBOutlet weak var metricsSegment: UIView!
     @IBOutlet weak var dateOfbirth: AutocompleteField!
     @IBOutlet weak var heightTextField: AutocompleteField!
@@ -27,7 +29,7 @@ class InformationController: UIViewController,SMSegmentViewDelegate {
     @IBOutlet weak var policyLabel: UILabel!
     
     var segmentView:SMSegmentView?
-    var registerInfor:[String:String] = [:]
+    var registerInfo:[String:String] = [:]
     
     init() {
         super.init(nibName: "InformationController", bundle: Bundle.main)
@@ -168,13 +170,13 @@ class InformationController: UIViewController,SMSegmentViewDelegate {
             }
             
             let sex:Int = self.segmentView?.indexOfSelectedSegment == 0 ? 1 : 0
-            registerInfor["birthday"] = dateOfbirth!.text!
+            registerInfo["birthday"] = dateOfbirth!.text!
             
             // 字典中的数据格式原来是没有单位的数字
-            registerInfor["length"] = "\(heightTextField!.text!.toInt())"
-            registerInfor["weight"] = "\(weightTextfield!.text!.toInt())"
+            registerInfo["length"] = "\(heightTextField!.text!.toInt())"
+            registerInfo["weight"] = "\(weightTextfield!.text!.toInt())"
             
-            registerInfor["sex"] = "\(sex)"
+            registerInfo["sex"] = "\(sex)"
             
             let view = MRProgressOverlayView.showOverlayAdded(to: self.navigationController!.view, title: NSLocalizedString("please_wait", comment: ""), mode: MRProgressOverlayViewMode.indeterminate, animated: true)
             view?.setTintColor(AppTheme.NEVO_SOLAR_YELLOW())
@@ -188,7 +190,9 @@ class InformationController: UIViewController,SMSegmentViewDelegate {
                 MRProgressOverlayView.dismissAllOverlays(for: self.navigationController!.view, animated: true)
             })
             
-            HttpPostRequest.postRequest("user/create", data: ["user":registerInfor as AnyObject]) { (result) in
+            
+            
+            HttpPostRequest.postRequest("user/create", data: ["user":registerInfo as AnyObject]) { (result) in
                 
                 timeout.invalidate()
                 
@@ -240,6 +244,32 @@ class InformationController: UIViewController,SMSegmentViewDelegate {
                 banner.dismissesOnTap = true
                 banner.show(duration: 1.2)
             }
+            
+//            // let infoDict:[String:String] = ["email":email!.text!,"first_name":firstNameTextField!.text!,"last_name":lastNameTextField!.text!,"password":password.text!]
+            MEDUserNetworkManager.createUser(firstName: registerInfo["first_name"]!, lastName: registerInfo["last_name"]!, email: registerInfo["email"]!, password: registerInfo["password"]!, birthday: registerInfo["birthday"]!, length: registerInfo["length"]!, weight: registerInfo["weight"]!, sex: sex, completion: { (status) in
+                
+                timeout.invalidate()
+                MRProgressOverlayView.dismissAllOverlays(for: self.navigationController!.view, animated: true)
+                
+                var message: String = ""
+                switch status {
+                case .SUCCESS:
+                    message = NSLocalizedString("register_success", comment: "")
+                    UserDefaults.standard.set(["email" : "\(self.registerInfo["email"])", "password" : "\(self.registerInfo["password"])"], forKey: InformationController.MED_kISFromRegisterController)
+                    self.dismiss(animated: true, completion: nil)
+                case .USER_EXIST:
+                    message = NSLocalizedString("user_exist", comment: "")
+                case .SIGNUP_FAILED:
+                    message = NSLocalizedString("signup_failed", comment: "")
+                }
+                
+                let banner = MEDBanner(title: NSLocalizedString(message, comment: ""), subtitle: nil, image: nil, backgroundColor:AppTheme.NEVO_SOLAR_YELLOW())
+                banner.dismissesOnTap = true
+                banner.show(duration: 1.2)
+            })
+            
+            
+            /// 🚧🚧🚧
         }else{
             XCGLogger.default.debug("注册的时候没有网络")
             let view = MRProgressOverlayView.showOverlayAdded(to: self.navigationController!.view, title: "No internet", mode: MRProgressOverlayViewMode.cross, animated: true)

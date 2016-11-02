@@ -128,7 +128,7 @@ class ProfileSetupViewController: UIViewController {
                 } else {
                     let infoDict:[String:String] = ["email":email!.text!,"first_name":firstNameTextField!.text!,"last_name":lastNameTextField!.text!,"password":password.text!]
                     let infomation:InformationController = InformationController()
-                    infomation.registerInfor = infoDict
+                    infomation.registerInfo = infoDict
                     self.navigationController?.pushViewController(infomation, animated: true)
                 }
             }
