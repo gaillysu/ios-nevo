@@ -24,17 +24,17 @@ class LunaROTAController: UIViewController,ButtonManagerCallBack  {
     fileprivate var selectedFirmware : DFUFirmware?
     fileprivate var selectedFileURL  : URL?
 
-    var dfuFirmwareType : DfuFirmwareTypes = DfuFirmwareTypes.application
+    fileprivate var dfuFirmwareType : DfuFirmwareTypes = DfuFirmwareTypes.application
     fileprivate var state:DFUControllerState = DFUControllerState.inittialize
     
-    var legacyDfuServiceUUID        : CBUUID = CBUUID(string: "00001530-1212-EFDE-1523-785FEABCD123")
-    var secureDfuServiceUUID        : CBUUID = CBUUID(string: "FE59")
-    var discoveredPeripherals       : [CBPeripheral]?
-    var securePeripheralMarkers     : [Bool]?
+    fileprivate var legacyDfuServiceUUID        : CBUUID = CBUUID(string: "00001530-1212-EFDE-1523-785FEABCD123")
+    fileprivate var secureDfuServiceUUID        : CBUUID = CBUUID(string: "FE59")
+    fileprivate var discoveredPeripherals       : [CBPeripheral]?
+    fileprivate var securePeripheralMarkers     : [Bool]?
     
     init() {
         super.init(nibName: "LunaROTAController", bundle: Bundle.main)
-        discoveredPeripherals = [CBPeripheral]()
+        discoveredPeripherals = []
     }
     
     
@@ -51,6 +51,7 @@ class LunaROTAController: UIViewController,ButtonManagerCallBack  {
         super.viewDidLoad()
         UIApplication.shared.isIdleTimerDisabled = true
         
+        self.navigationItem.title = "Upgrade Firmwares"
         AppDelegate.getAppDelegate().getMconnectionController()?.setDelegate(self)
         
         self.showAlertView()
@@ -173,7 +174,7 @@ extension LunaROTAController:DFUServiceDelegate {
 //MARK: - DFUProgressDelegate
 extension LunaROTAController:DFUProgressDelegate{
     func onUploadProgress(_ part: Int, totalParts: Int, progress: Int, currentSpeedBytesPerSecond: Double, avgSpeedBytesPerSecond: Double) {
-        lunarOtaView.setProgress(Float(progress) / 100.0, currentTask: 1, allTask: 1, progressString: "Speed : \(String(format:"%.1f", avgSpeedBytesPerSecond/1024)) Kbps, pt. \(part)/\(totalParts)")
+        lunarOtaView.setProgress(Float(progress) / 100.0, currentTask: 1, allTask: 1, progressString: "Updating :\(part)/\(totalParts)")
         XCGLogger.default.debug("progress:\(progress)"+"Speed : \(String(format:"%.1f", avgSpeedBytesPerSecond/1024)) Kbps, pt. \(part)/\(totalParts)")
     }
 }
