@@ -103,17 +103,12 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
                 let sleepTime:[Int] = AppTheme.jsonToArray(userSleep.hourlySleepTime) as! [Int]
                 let weakeSleepTime:[Int] = AppTheme.jsonToArray(userSleep.hourlyWakeTime) as! [Int]
                 let deepSleepTime:[Int] = AppTheme.jsonToArray(userSleep.hourlyDeepTime) as! [Int]
-                for value2 in sleepTime {
-                    totalValue+=value2
-                }
                 
-                for value3 in weakeSleepTime {
-                    weakeValue+=value3
-                }
+                totalValue +=  sleepTime.reduce(0, {$0 + $1})
                 
-                for value4 in deepSleepTime {
-                    deepValue+=value4
-                }
+                weakeValue += weakeSleepTime.reduce(0, {$0 + $1})
+                
+                deepValue += deepSleepTime.reduce(0, {$0 + $1})
             }
 
             let isNan = (Double(deepValue)/Double(totalValue)).isNaN
@@ -125,6 +120,11 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
             completionData(Float(totalValue)/60.0, weakeValue, quality)
             self.setSleepDataCount(dataArray, type: chartType,rowIndex:rowIndex)
         case 2:
+            let marker:BalloonMarker = BalloonMarker(color: AppTheme.NEVO_SOLAR_YELLOW(), font: UIFont.systemFont(ofSize: 12.0), insets: UIEdgeInsetsMake(8.0, 8.0, 20.0, 8.0))
+            marker.minimumSize = CGSize(width: 80.0, height: 40.0);
+            marker.markerType = .stepsChartType
+            lineChartView.marker = marker;
+            
             self.setSloarDataCount(dataArray, type: chartType,rowIndex:rowIndex)
         default: break
         }
@@ -135,47 +135,32 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
         sortArray.addObjects(from: countArray as [AnyObject])
         
         var maxValue:Int = 0
+        var stepsValue:[UserSteps] = []
+        
         for i:Int in 0 ..< countArray.count {
-            /**
-             *  Data sorting,Small to large sort
-             */
-            for j:Int in i ..< countArray.count {
-                let iSteps:UserSteps = sortArray.object(at: i) as! UserSteps;
-                let jSteps:UserSteps = sortArray.object(at: j) as! UserSteps;
-                let iStepsDate:Double = iSteps.date
-                let jStepsDate:Double = jSteps.date
-                
-                //Time has sorted
-                if (iStepsDate > jStepsDate){
-                    let temp:UserSteps = sortArray.object(at: i) as! UserSteps;
-                    sortArray.replaceObject(at: i, with: sortArray[j])
-                    sortArray.replaceObject(at: j, with: temp)
-                }
-            }
+            let steps:UserSteps = countArray.object(at: i) as! UserSteps;
+            stepsValue.append(steps)
         }
         
-        if sortArray.count == 0 {
+        stepsValue = stepsValue.sorted(by: {$0.date < $1.date })
+        
+        if stepsValue.count == 0 {
             self.setChartViewLeftAxis(Double(maxValue+1000), unitString: "")
         }
         
-        for i:Int in 0..<sortArray.count {
+        for i:Int in 0..<stepsValue.count {
             let usersteps:UserSteps = sortArray[i] as! UserSteps
-            let date:Date = "\(usersteps.createDate)".dateFromFormat("yyyyMMdd")!
+            let date:Date = "\(usersteps.createDate)".dateFromFormat("yyyyMMdd",locale: DateFormatter().locale)!
             let dateString:String = date.stringFromFormat("dd/MM")
-            let stepsArray = AppTheme.jsonToArray(usersteps.hourlysteps)
-            var steps:Double = 0
-            for value in stepsArray {
-                steps += Double((value as! NSNumber).doubleValue)
-            }
-            yVals.append(ChartDataEntry(value: steps, xIndex: i))
+            let stepsArray:[Int] = AppTheme.jsonToArray(usersteps.hourlysteps) as! [Int]
+            let totalSteps:Int = stepsArray.reduce(0, {$0 + $1})
+            
+            yVals.append(ChartDataEntry(value: Double(totalSteps), xIndex: i))
             xVals.append(dateString)
-            NSLog("createDate:%@", usersteps.createDate)
-            NSLog("Date:%@", Date(timeIntervalSince1970: usersteps.date).stringFromFormat("yy-MM-dd"))
-            NSLog("index:\(i)")
-            let iStepsValue:Int = Int(steps)
+            
             //Calculate the maximum
-            if iStepsValue>maxValue {
-                maxValue = iStepsValue
+            if totalSteps>maxValue {
+                maxValue = totalSteps
             }
         }
         
@@ -222,36 +207,29 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
         var deepYVals:[ChartDataEntry] = []
         
         var maxValue:Int = 0
+        var sleepValue:[UserSleep] = []
+        
         for i:Int in 0 ..< countArray.count {
-            /**
-             *  Data sorting,Small to large sort
-             */
-            for j:Int in i ..< countArray.count {
-                let iSleeps:UserSleep = sortArray.object(at: i) as! UserSleep;
-                let jSleep:UserSleep = sortArray.object(at: j) as! UserSleep;
-                let iSleepDate:Double = iSleeps.date
-                let jSleepDate:Double = jSleep.date
-                //Time has sorted
-                if (iSleepDate > jSleepDate){
-                    let temp:UserSleep = sortArray.object(at: i) as! UserSleep;
-                    sortArray.replaceObject(at: i, with: sortArray[j])
-                    sortArray.replaceObject(at: j, with: temp)
-                }
-            }
+            let sleep:UserSleep = countArray.object(at: i) as! UserSleep;
+            sleepValue.append(sleep)
         }
         
-        for (index,sleeps) in sortArray.enumerated() {
+        sleepValue = sleepValue.sorted(by: {$0.date < $1.date })
+
+        
+        for (index,sleep) in sleepValue.enumerated() {
             
             var sleepValue:Int = 0
             var weakeValue:Int = 0
             var lightValue:Int = 0
             var deepValue:Int = 0
             
-            let mSleeps:UserSleep = sleeps as! UserSleep
+            let mSleeps:UserSleep = sleep
+            
             let sleepsValue1:[Int] = AppTheme.jsonToArray(mSleeps.hourlySleepTime) as! [Int]
-            let sleepsValue2:[Int] = AppTheme.jsonToArray(mSleeps.hourlyWakeTime) as! [Int]
-            let sleepsValue3:[Int] = AppTheme.jsonToArray(mSleeps.hourlyLightTime) as! [Int]
-            let sleepsValue4:[Int] = AppTheme.jsonToArray(mSleeps.hourlyDeepTime) as! [Int]
+            let wakeSleep:[Int] = AppTheme.jsonToArray(mSleeps.hourlyWakeTime) as! [Int]
+            let lightSleep:[Int] = AppTheme.jsonToArray(mSleeps.hourlyLightTime) as! [Int]
+            let deepSleep:[Int] = AppTheme.jsonToArray(mSleeps.hourlyDeepTime) as! [Int]
             
             let date:Date = Date(timeIntervalSince1970: mSleeps.date)
             let dateString:String = date.stringFromFormat("dd/MM")
@@ -263,24 +241,20 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
                 let value3:[Int] = AppTheme.jsonToArray(kSleeps.hourlyLightTime) as! [Int]
                 let value4:[Int] = AppTheme.jsonToArray(kSleeps.hourlyDeepTime) as! [Int]
                 
-                for (index2,value) in value1.enumerated() {
-                    if index2>18 {
-                        sleepValue += value
-                        weakeValue += value2[index2]
-                        lightValue += value3[index2]
-                        deepValue += value4[index2]
-                    }
-                }
+                
+                sleepValue = value1.dropFirst(18).reduce(0, {$0 + $1})
+                weakeValue = value2.dropFirst(18).reduce(0, {$0 + $1})
+                lightValue = value3.dropFirst(18).reduce(0, {$0 + $1})
+                deepValue = value4.dropFirst(18).reduce(0, {$0 + $1})
+
             }
             
-            for (index2,value) in sleepsValue1.enumerated() {
-                if index2<12 {
-                    sleepValue += value
-                    weakeValue += sleepsValue2[index2]
-                    lightValue += sleepsValue3[index2]
-                    deepValue += sleepsValue4[index2]
-                }
-            }
+            sleepValue += sleepsValue1.prefix(12).reduce(0, {$0 + $1})
+            weakeValue += wakeSleep.prefix(12).reduce(0, {$0 + $1})
+            lightValue += lightSleep.prefix(12).reduce(0, {$0 + $1})
+            deepValue += deepSleep.prefix(12).reduce(0, {$0 + $1})
+            
+            
             //Calculate the maximum
             if sleepValue>maxValue {
                 maxValue = sleepValue
@@ -414,48 +388,38 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
         sortArray.removeAllObjects()
         sortArray.addObjects(from: countArray as [AnyObject])
         
+        var sloarValue:[SolarHarvest] = []
         var maxValue:Int = 0
+        
         for i:Int in 0 ..< countArray.count {
-            /**
-             *  Data sorting,Small to large sort
-             */
-            for j:Int in i ..< countArray.count {
-                let iSteps:UserSteps = sortArray.object(at: i) as! UserSteps;
-                let jSteps:UserSteps = sortArray.object(at: j) as! UserSteps;
-                let iStepsDate:Double = iSteps.date
-                let jStepsDate:Double = jSteps.date
-                let iStepsValue:Int = iSteps.steps
-                
-                //Calculate the maximum
-                if iStepsValue>maxValue {
-                    maxValue = 0
-                }
-                //Time has sorted
-                if (iStepsDate > jStepsDate){
-                    let temp:UserSteps = sortArray.object(at: i) as! UserSteps;
-                    sortArray.replaceObject(at: i, with: sortArray[j])
-                    sortArray.replaceObject(at: j, with: temp)
-                }
-            }
+            let sloar:SolarHarvest = countArray.object(at: i) as! SolarHarvest;
+            sloarValue.append(sloar)
             //chart the maximum
-            if i == countArray.count-1 {
-                self.setChartViewLeftAxis(Double(maxValue+7), unitString: " "+NSLocalizedString("hours", comment: ""))
-            }
-        }
-         
-        if sortArray.count == 0 {
-            self.setChartViewLeftAxis(Double(maxValue+1), unitString: " "+NSLocalizedString("hours", comment: ""))
         }
         
-        for i:Int in 0..<sortArray.count {
-            let usersteps:UserSteps = sortArray[i] as! UserSteps
-            let date:Date = "\(usersteps.createDate)".dateFromFormat("yyyyMMdd")!
+        sloarValue = sloarValue.sorted(by: {$0.date < $1.date })
+         
+        if sloarValue.count == 0 {
+            self.setChartViewLeftAxis(Double(maxValue+1), unitString: "")
+        }
+        
+        for (index,value) in sloarValue.enumerated() {
+            let sloarValue:SolarHarvest = value
+            let date:Date = Date(timeIntervalSince1970: sloarValue.date)
             let dateString:String = date.stringFromFormat("dd/MM")
             
-            let steps:Double = 0
-            yVals.append(ChartDataEntry(value: steps, xIndex: i))
+            let sloarTime:Double = Double(sloarValue.solarTotalTime)
+            yVals.append(ChartDataEntry(value: sloarTime, xIndex: index))
             xVals.append(dateString)
+            
+            let iSloarValue:Int = sloarValue.solarTotalTime
+            //Calculate the maximum
+            if iSloarValue>maxValue {
+                maxValue = iSloarValue
+            }
         }
+        
+        self.setChartViewLeftAxis(Double(maxValue-(maxValue%2)+800), unitString: "")
         
         self.setYvalueData(rowIndex,completionData:nil)
         
@@ -486,7 +450,6 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
         let data:LineChartData = LineChartData(xVals: xVals, dataSets: [set1])
         data.setDrawValues(false)
         lineChartView.data = data;
-        //lineChartView.animate(xAxisDuration: 2.5, easingOption: ChartEasingOption.EaseInOutCirc)
         lineChartView.animate(xAxisDuration: 2.0, yAxisDuration: 2.0, easingOption: ChartEasingOption.easeInOutCirc)
     }
     
@@ -526,6 +489,7 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
         let dayTime:Double = 86400
         
         if rowIndex == 0{
+            let startTimeInterval:TimeInterval = Date().beginningOfWeek.timeIntervalSince1970
             if xVals.count<7 {
                 if xVals.count == 0 {
                     let dateString:String = Date().beginningOfWeek.stringFromFormat("dd/MM")
@@ -533,11 +497,39 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
                     yVals.append(ChartDataEntry(value: 0, xIndex: 0))
                 }
                 for index:Int in xVals.count..<7 {
-                    let date:Date = xVals[xVals.count-1].dateFromFormat("dd/MM")!
-                    let date2:Date = Date(timeIntervalSince1970: date.timeIntervalSince1970+dayTime)
-                    let dateString:String = date2.stringFromFormat("dd/MM")
-                    xVals.append(dateString)
-                    yVals.append(ChartDataEntry(value: 0, xIndex: index))
+                    var getIndex:Int = index
+                    if index>=xVals.count {
+                        getIndex = index-1
+                    }
+                    
+                    let startDate1:Date = xVals[getIndex].dateFromFormat("dd/MM",locale: DateFormatter().locale)!
+                    let date2:Date = Date(timeIntervalSince1970:startTimeInterval+dayTime*Double(index))
+                    let dateString1:String = startDate1.stringFromFormat("dd/MM")
+                    let dateString2:String = date2.stringFromFormat("dd/MM")
+                    
+                    if dateString1 != dateString2 {
+                        xVals.insert(dateString2, at: index)
+                        yVals.insert(ChartDataEntry(value: 0, xIndex: index), at: index)
+                        completionData?(index,false)
+                    }else{
+                        let dataentry:ChartDataEntry = yVals[index]
+                        yVals.replaceSubrange(index..<index+1, with: [ChartDataEntry(value: dataentry.value.to2Double(), xIndex: index)])
+                        completionData?(index,true)
+                    }
+                    
+                    if index == 6 {
+                        if yVals.count>7 {
+                            var valueIndex:Int = 0
+                            for atIndex in 7..<yVals.count {
+                                xVals.remove(at: atIndex-valueIndex)
+                                yVals.remove(at: atIndex-valueIndex)
+                                valueIndex+=1
+                            }
+                        }
+                        let dataentry:ChartDataEntry = yVals[yVals.count-1]
+                        yVals.replaceSubrange(yVals.count-1..<yVals.count, with: [ChartDataEntry(value: dataentry.value.to2Double(), xIndex: yVals.count-1)])
+                        completionData?(yVals.count-1,true)
+                    }
                 }
             }
         }
@@ -556,7 +548,7 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
                     if index>=xVals.count {
                         getIndex = index-1
                     }
-                    let startDate1:Date = xVals[getIndex].dateFromFormat("dd/MM")!
+                    let startDate1:Date = xVals[getIndex].dateFromFormat("dd/MM",locale: DateFormatter().locale)!
                     let date2:Date = Date(timeIntervalSince1970:startTimeInterval+dayTime*Double(index))
                     let dateString1:String = startDate1.stringFromFormat("dd/MM")
                     let dateString2:String = date2.stringFromFormat("dd/MM")
@@ -601,7 +593,7 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
                     if index>=xVals.count {
                         getIndex = index-1
                     }
-                    let startDate1:Date = xVals[getIndex].dateFromFormat("dd/MM")!
+                    let startDate1:Date = xVals[getIndex].dateFromFormat("dd/MM",locale: DateFormatter().locale)!
                     let date2:Date = Date(timeIntervalSince1970:startTimeInterval+dayTime*Double(index))
                     let dateString1:String = startDate1.stringFromFormat("dd/MM")
                     let dateString2:String = date2.stringFromFormat("dd/MM")

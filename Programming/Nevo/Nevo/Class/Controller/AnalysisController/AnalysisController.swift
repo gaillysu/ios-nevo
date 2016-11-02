@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class AnalysisController: PublicClassController {
     
@@ -18,6 +19,8 @@ class AnalysisController: PublicClassController {
     fileprivate var contentTitleArray:[String] = [NSLocalizedString("average_steps", comment: ""), NSLocalizedString("total_steps", comment: ""), NSLocalizedString("average_calories", comment: ""),NSLocalizedString("average_time", comment: "")]
     fileprivate var contentTArray:[String] = [NSLocalizedString("--", comment: ""),NSLocalizedString("--", comment: ""),NSLocalizedString("--", comment: ""),NSLocalizedString("--", comment: "")]
     fileprivate var dataArray:NSMutableArray = NSMutableArray(capacity:3)
+    fileprivate let realm:Realm = try! Realm()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,6 +41,7 @@ class AnalysisController: PublicClassController {
             contentCollectionView.backgroundColor = UIColor.getGreyColor()
             chartsCollectionView.backgroundColor = UIColor.getGreyColor()
             segmented.tintColor = UIColor.getBaseColor()
+            segmented.insertSegment(withTitle: NSLocalizedString("Solar", comment: ""), at: segmented.numberOfSegments, animated: false)
         }
     }
 
@@ -59,7 +63,7 @@ extension AnalysisController {
             dataArray.addObjects(from: self.getSleepData())
             chartsCollectionView.reloadData()
         }else{
-            dataArray.addObjects(from: self.getStepsData())
+            dataArray.addObjects(from: self.getSolarData())
             chartsCollectionView.reloadData()
         }
     }
@@ -88,13 +92,29 @@ extension AnalysisController {
         return [thisWeekArray,lastWeekArray,last30DayArray]
     }
     
-    func getSolarData()->[NSArray] {
+    func getSolarData()->[[SolarHarvest]] {
         let dayDate:Date = Date()
-        let thisWeekArray:NSArray = UserSteps.getCriteria("WHERE date BETWEEN \(dayDate.beginningOfWeek.timeIntervalSince1970-1) AND \(dayDate.endOfWeek.timeIntervalSince1970)")
-        let lastWeekArray:NSArray = UserSteps.getCriteria("WHERE date BETWEEN \(dayDate.beginningOfWeek.timeIntervalSince1970-(86400.0*7)-1) AND \(dayDate.beginningOfWeek.timeIntervalSince1970)")
-        let last30DayArray:NSArray = UserSteps.getCriteria("WHERE date BETWEEN \(dayDate.beginningOfDay.timeIntervalSince1970-(86400.0*30)) AND \(dayDate.endOfDay.timeIntervalSince1970)")
-        return [thisWeekArray,lastWeekArray,last30DayArray]
+        let thisWeekSolar = realm.objects(SolarHarvest.self).filter("date > \(dayDate.beginningOfWeek.timeIntervalSince1970-1) AND date < \(dayDate.endOfWeek.timeIntervalSince1970)")
+        var thisWeekData:[SolarHarvest] = []
+        for value in thisWeekSolar {
+            thisWeekData.append(value as SolarHarvest)
+        }
+
+        let lastWeekSolar = realm.objects(SolarHarvest.self).filter("date > \(dayDate.beginningOfWeek.timeIntervalSince1970-(86400.0*7)-1) AND date < \(dayDate.beginningOfWeek.timeIntervalSince1970)")
+        var lastWeekData:[SolarHarvest] = []
+        for value in lastWeekSolar {
+            lastWeekData.append(value as SolarHarvest)
+        }
+        
+        let last30DaySolar = realm.objects(SolarHarvest.self).filter("date > \(dayDate.beginningOfDay.timeIntervalSince1970-(86400.0*30)) AND date < \(dayDate.endOfDay.timeIntervalSince1970)")
+        var last30DayData:[SolarHarvest] = []
+        for value in last30DaySolar {
+            last30DayData.append(value as SolarHarvest)
+        }
+        
+        return [thisWeekData,lastWeekData,last30DayData]
     }
+    
 }
 
 extension AnalysisController:UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
