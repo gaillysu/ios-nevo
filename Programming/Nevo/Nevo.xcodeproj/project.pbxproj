@@ -743,6 +743,19 @@
 		6688A6791DC981990078E636 /* MEDUserNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6688A6561DC981980078E636 /* MEDUserNetworkManager.swift */; };
 		6688A67A1DC981990078E636 /* MEDUserUpdateRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6688A6571DC981980078E636 /* MEDUserUpdateRequest.swift */; };
 		6688A67B1DC981990078E636 /* MEDUserUpdateRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6688A6571DC981980078E636 /* MEDUserUpdateRequest.swift */; };
+		6688A68B1DC997A60078E636 /* WorldClockDidSelectedDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 619919071DC6E2B600C75AE7 /* WorldClockDidSelectedDelegate.swift */; };
+		6688A68C1DC998300078E636 /* LunaRPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6198EE271DC204BF00FDD850 /* LunaRPacket.swift */; };
+		6688A68D1DC998660078E636 /* SunriseSetController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 619919041DC6E2B600C75AE7 /* SunriseSetController.swift */; };
+		6688A68E1DC998A20078E636 /* SunriseSetView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 619918FB1DC6E2B600C75AE7 /* SunriseSetView.xib */; };
+		6688A68F1DC998B40078E636 /* SunriseSetButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 619919031DC6E2B600C75AE7 /* SunriseSetButton.swift */; };
+		6688A6901DC998B90078E636 /* SunriseSetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 619919051DC6E2B600C75AE7 /* SunriseSetView.swift */; };
+		6688A6911DC998BC0078E636 /* WorldClockCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 619919061DC6E2B600C75AE7 /* WorldClockCell.swift */; };
+		6688A6921DC998C10078E636 /* WorldClockItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 619919081DC6E2B600C75AE7 /* WorldClockItem.swift */; };
+		6688A6931DC998C40078E636 /* WorldClockUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 619919091DC6E2B600C75AE7 /* WorldClockUtil.swift */; };
+		6688A6941DC998D90078E636 /* LunaRStepsGoalPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 611E2E041DC3405D004CD45B /* LunaRStepsGoalPacket.swift */; };
+		6688A6951DC998DC0078E636 /* LunaRDailyTrackerInfoPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6198EE2A1DC2090700FDD850 /* LunaRDailyTrackerInfoPacket.swift */; };
+		6688A6961DC998E10078E636 /* LunaRDailyTrackerPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6198EE2B1DC2090700FDD850 /* LunaRDailyTrackerPacket.swift */; };
+		6688A6971DC998E50078E636 /* LunaRWatchNamePacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6198EE2F1DC3008A00FDD850 /* LunaRWatchNamePacket.swift */; };
 		6690DF091DB8A84C0042FB9E /* SetingNotLoginCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6690DF0C1DB8A84C0042FB9E /* SetingNotLoginCell.xib */; };
 		66A0E07D1DBF6C08001C0C67 /* WorldClockDatabaseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66A0E0721DBF6C08001C0C67 /* WorldClockDatabaseHelper.swift */; };
 		66A0E07E1DBF6C08001C0C67 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66A0E0741DBF6C08001C0C67 /* LocationManager.swift */; };
@@ -3098,6 +3111,7 @@
 				00478F501A8F637D00D0DCE2 /* clockViewMinute.png in Resources */,
 				006A624F1D6AA62100458305 /* SolarInforViewCell.xib in Resources */,
 				000CB3281C3E436000B4ABEC /* white_clock.png in Resources */,
+				6688A68E1DC998A20078E636 /* SunriseSetView.xib in Resources */,
 				6690DF091DB8A84C0042FB9E /* SetingNotLoginCell.xib in Resources */,
 				00C640F61A8DEE0800815CF8 /* clockView600.png in Resources */,
 				0063BC1B1D98CE85000BAB44 /* LoginController.xib in Resources */,
@@ -3698,6 +3712,7 @@
 				007E0CAE1D0E5C3E00B0B600 /* ConnectOtherAppsCell.swift in Sources */,
 				0089B0AF1D6BFF250041148A /* SetingLoginCell.swift in Sources */,
 				0008EE901D93C39A005E127C /* M13CheckboxFadeManager.swift in Sources */,
+				6688A6951DC998DC0078E636 /* LunaRDailyTrackerInfoPacket.swift in Sources */,
 				006A62421D6AA5F200458305 /* SleepHistoricalViewController.swift in Sources */,
 				00BF2D9A1C7FED2200909316 /* VideoPlayController.swift in Sources */,
 				00AF8CD11D224CFA009047AC /* TypeModel.swift in Sources */,
@@ -3718,6 +3733,7 @@
 				0008EE981D93C5AA005E127C /* NevoCircleProgressView.swift in Sources */,
 				0089B0A31D6BF0CB0041148A /* ProfileSetupViewController.swift in Sources */,
 				9AD8F9621A6E00E800F01014 /* NevoBTimpl.swift in Sources */,
+				6688A6961DC998E10078E636 /* LunaRDailyTrackerPacket.swift in Sources */,
 				006A624C1D6AA62100458305 /* SolarIndicatorController.swift in Sources */,
 				619919271DC6EEF700C75AE7 /* AddWorldClockViewController.swift in Sources */,
 				00AF8CEC1D224CFA009047AC /* NevoOTAPacketProfile.swift in Sources */,
@@ -3733,11 +3749,13 @@
 				0008EE8F1D93C39A005E127C /* M13CheckboxExpandManager.swift in Sources */,
 				663305C11DC0A9340090216F /* SetWorldClockRequest.swift in Sources */,
 				9AD8F9791A6E05F700F01014 /* NevoBT.swift in Sources */,
+				6688A6921DC998C10078E636 /* WorldClockItem.swift in Sources */,
 				0008EE891D93C39A005E127C /* M13CheckboxAnimationPresets.swift in Sources */,
 				006A626E1D6AB44A00458305 /* StepGoalSetingController.swift in Sources */,
 				6688A6681DC981990078E636 /* MEDNetworkManager.swift in Sources */,
 				0008EE951D93C39A005E127C /* M13CheckboxDotPathPresets.swift in Sources */,
 				00AF8CEA1D224CFA009047AC /* NevoOTAControllerProfile.swift in Sources */,
+				6688A6911DC998BC0078E636 /* WorldClockCell.swift in Sources */,
 				0050D5F71C28E0DB004F6F80 /* SelectFileView.swift in Sources */,
 				0058CBF91D9CC897003CE7DC /* String+Extension.swift in Sources */,
 				61E4DF211DB898F700DDA737 /* SyncSleepToServiceRequest.swift in Sources */,
@@ -3749,6 +3767,7 @@
 				00AF8D061D224D57009047AC /* NevoAllKeys.swift in Sources */,
 				00AF8CB91D224CFA009047AC /* RunningToHK.swift in Sources */,
 				009703C61C9BDB3200F2FF0D /* UserProfileCell.swift in Sources */,
+				6688A68F1DC998B40078E636 /* SunriseSetButton.swift in Sources */,
 				0042C8B21C7DB37200177D3D /* NotAlarmView.swift in Sources */,
 				0050D5F61C28E0DB004F6F80 /* NevoOtaView.swift in Sources */,
 				6688A6781DC981990078E636 /* MEDUserNetworkManager.swift in Sources */,
@@ -3759,6 +3778,7 @@
 				00AF8CD31D224CFA009047AC /* Sleep.swift in Sources */,
 				007865F61D91006F00F33AEA /* SMSegment.swift in Sources */,
 				00AF8CFA1D224CFA009047AC /* ReadDailyTrackerInfo.swift in Sources */,
+				6688A68B1DC997A60078E636 /* WorldClockDidSelectedDelegate.swift in Sources */,
 				663305C01DC0A9320090216F /* SetSunriseAndSunsetRequest.swift in Sources */,
 				663305BB1DC0A9150090216F /* City.swift in Sources */,
 				0050D6931C28E1CD004F6F80 /* AddAlarmSystemCell.swift in Sources */,
@@ -3800,10 +3820,12 @@
 				00AF8CC31D224CFA009047AC /* NevoProfileModel.swift in Sources */,
 				00AF8D011D224CFA009047AC /* SetRTCRequest.swift in Sources */,
 				00F0C3531C8993DD005888A7 /* NewAddAlarmController.swift in Sources */,
+				6688A6901DC998B90078E636 /* SunriseSetView.swift in Sources */,
 				0084CB161D9BC68A0047DF39 /* Double+Extension.swift in Sources */,
 				9AD8F98F1A6E2EE000F01014 /* Profile.swift in Sources */,
 				00AF8CFD1D224CFA009047AC /* SetGoalRequest.swift in Sources */,
 				0089B0B31D6BFF250041148A /* SetingView.swift in Sources */,
+				6688A68C1DC998300078E636 /* LunaRPacket.swift in Sources */,
 				619919251DC6E53900C75AE7 /* LunaROTAController.swift in Sources */,
 				00AF8CCE1D224CFA009047AC /* Goal.swift in Sources */,
 				0089B0AD1D6BFF250041148A /* SetingInfoCell.swift in Sources */,
@@ -3828,6 +3850,7 @@
 				00AF8D041D224CFA009047AC /* SyncQueue.swift in Sources */,
 				00AF8CC61D224CFA009047AC /* PresetsModel.swift in Sources */,
 				0050D6161C28E0DB004F6F80 /* SetingViewController.swift in Sources */,
+				6688A6971DC998E50078E636 /* LunaRWatchNamePacket.swift in Sources */,
 				006DA9FE1D80F2A600B70C0F /* AppDelegate-Extension.swift in Sources */,
 				6688A6601DC981980078E636 /* MEDBasePutRequest.swift in Sources */,
 				66D45E7E1DC0C14C0007B5D0 /* UIImage+Crop.m in Sources */,
@@ -3848,6 +3871,7 @@
 				6688A6621DC981980078E636 /* MEDForgetPasswordRequest.swift in Sources */,
 				9E98FB2B1C463BB200BAB700 /* TutorialTwoViewController.swift in Sources */,
 				0050D5FE1C28E0DB004F6F80 /* NotificationView.swift in Sources */,
+				6688A6931DC998C40078E636 /* WorldClockUtil.swift in Sources */,
 				619919291DC6EEFE00C75AE7 /* SearchCityViewController.swift in Sources */,
 				9A2D6C3E1A9C71E500591BDC /* NevoHK.swift in Sources */,
 				0050D6121C28E0DB004F6F80 /* PresetView.swift in Sources */,
@@ -3870,6 +3894,8 @@
 				0008EE921D93C39A005E127C /* M13CheckboxFlatManager.swift in Sources */,
 				003DBF771D6D93C400E45244 /* EventBusKeys.swift in Sources */,
 				61E4DF1F1DB8749700DDA737 /* SyncStepsToServiceRequest.swift in Sources */,
+				6688A68D1DC998660078E636 /* SunriseSetController.swift in Sources */,
+				6688A6941DC998D90078E636 /* LunaRStepsGoalPacket.swift in Sources */,
 				00AF8CF71D224CFA009047AC /* NevoRequest.swift in Sources */,
 				00AF8CF51D224CFA009047AC /* GetStepsGoalRequest.swift in Sources */,
 				00AF8CD01D224CFA009047AC /* NotificationSetting.swift in Sources */,
