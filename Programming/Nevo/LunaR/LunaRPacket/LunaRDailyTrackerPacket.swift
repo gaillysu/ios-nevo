@@ -459,7 +459,7 @@ class LunaRDailyTrackerPacket: LunaRPacket {
         //get every hour run Steps:
         for index:Int in 0..<24 {
             let packetno = HEADERLENGTH+index*HOURLYPACKETSNUMBER+1;
-            let offset = 8;
+            let offset = 9;
             hourlyDeepSleepTimeValue = 0
             if NSData2Bytes(getPackets()[packetno])[offset] != 0xFF {
                 hourlyDeepSleepTimeValue = Int(NSData2Bytes(getPackets()[packetno])[offset])

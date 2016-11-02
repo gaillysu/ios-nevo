@@ -131,25 +131,22 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
     }
     
     func setStepsDataCount(_ countArray:NSArray,type:Int,rowIndex:Int) {
-        sortArray.removeAllObjects()
-        sortArray.addObjects(from: countArray as [AnyObject])
-        
         var maxValue:Int = 0
-        var stepsValue:[UserSteps] = []
+        var userStepsArray:[UserSteps] = []
         
         for i:Int in 0 ..< countArray.count {
             let steps:UserSteps = countArray.object(at: i) as! UserSteps;
-            stepsValue.append(steps)
+            userStepsArray.append(steps)
         }
         
-        stepsValue = stepsValue.sorted(by: {$0.date < $1.date })
+        userStepsArray = userStepsArray.sorted(by: {$0.date < $1.date })
         
-        if stepsValue.count == 0 {
+        if userStepsArray.count == 0 {
             self.setChartViewLeftAxis(Double(maxValue+1000), unitString: "")
         }
         
-        for i:Int in 0..<stepsValue.count {
-            let usersteps:UserSteps = sortArray[i] as! UserSteps
+        for i:Int in 0..<userStepsArray.count {
+            let usersteps:UserSteps = userStepsArray[i]
             let date:Date = "\(usersteps.createDate)".dateFromFormat("yyyyMMdd",locale: DateFormatter().locale)!
             let dateString:String = date.stringFromFormat("dd/MM")
             let stepsArray:[Int] = AppTheme.jsonToArray(usersteps.hourlysteps) as! [Int]
@@ -200,24 +197,22 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
     }
 
     func setSleepDataCount(_ countArray:NSArray,type:Int,rowIndex:Int) {
-        sortArray.removeAllObjects()
-        sortArray.addObjects(from: countArray as [AnyObject])
         var weakeYVals:[ChartDataEntry] = []
         var lightYVals:[ChartDataEntry] = []
         var deepYVals:[ChartDataEntry] = []
         
         var maxValue:Int = 0
-        var sleepValue:[UserSleep] = []
+        var sleepValueArray:[UserSleep] = []
         
         for i:Int in 0 ..< countArray.count {
             let sleep:UserSleep = countArray.object(at: i) as! UserSleep;
-            sleepValue.append(sleep)
+            sleepValueArray.append(sleep)
         }
         
-        sleepValue = sleepValue.sorted(by: {$0.date < $1.date })
+        sleepValueArray = sleepValueArray.sorted(by: {$0.date < $1.date })
 
         
-        for (index,sleep) in sleepValue.enumerated() {
+        for (index,sleep) in sleepValueArray.enumerated() {
             
             var sleepValue:Int = 0
             var weakeValue:Int = 0
@@ -235,7 +230,7 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
             let dateString:String = date.stringFromFormat("dd/MM")
             
             if index>0 {
-                let kSleeps:UserSleep = sortArray[index-1] as! UserSleep
+                let kSleeps:UserSleep = sleepValueArray[index-1]
                 let value1:[Int] = AppTheme.jsonToArray(kSleeps.hourlySleepTime) as! [Int]
                 let value2:[Int] = AppTheme.jsonToArray(kSleeps.hourlyWakeTime) as! [Int]
                 let value3:[Int] = AppTheme.jsonToArray(kSleeps.hourlyLightTime) as! [Int]
@@ -272,7 +267,7 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
             yVals.append(ChartDataEntry(value: 0, xIndex: index))
         }
         
-        if sortArray.count == 0 {
+        if sleepValueArray.count == 0 {
             self.setChartViewLeftAxis(Double(maxValue+7), unitString: " "+NSLocalizedString("hours", comment: ""))
         }else{
             if maxValue == 0 {
