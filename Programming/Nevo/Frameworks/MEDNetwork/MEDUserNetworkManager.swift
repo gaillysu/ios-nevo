@@ -34,14 +34,10 @@ class MEDUserNetworkManager: NSObject {
         loggedIn:Bool, _ user:UserProfile?) -> Void){
         MEDNetworkManager.execute(request: MEDLoginRequest(email: email, password: password, responseBlock: { (success, optionalJson, optionalError) in
             if success, let json = optionalJson{
-                let user:UserProfile = jsonToUser(user: json["user"])
-                user.add({ id, successAdded in
-                    if successAdded! {
-                        completion(true, user)
-                    }else{
-                        completion(false, nil)
-                    }
-                })
+                DispatchQueue.global().async {
+                    let user:UserProfile = jsonToUser(user: json["user"])
+                    completion(true, user)
+                }
             }else{
                 completion(false, nil)
             }

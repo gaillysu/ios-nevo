@@ -192,19 +192,19 @@ class LoginController: UIViewController,UITextFieldDelegate {
                 banner.dismissesOnTap = true
                 banner.show(duration: 1.2)
                 
-                // 似乎没有异步操作，不用手动 dismiss
                 MRProgressOverlayView.dismissAllOverlays(for: self.navigationController!.view, animated: true)
                 
                 if loggedIn {
+                    user?.add({ (id, res) in
+                        
+                    })
                     let dayDate:Date = Date()
                     let stepsArray:NSArray = UserSteps.getCriteria("WHERE date BETWEEN \(Date().beginningOfWeek.timeIntervalSince1970-864000*30) AND \(dayDate.endOfWeek.timeIntervalSince1970)")
                     let sleepArray:NSArray = UserSleep.getCriteria("WHERE date BETWEEN \(Date().beginningOfWeek.timeIntervalSince1970-864000*30) AND \(dayDate.endOfWeek.timeIntervalSince1970)")
                     
-                    let allUsers:NSArray = UserProfile.getAll()
-                    
                     for stepsValue in stepsArray {
                         let stepsModel:UserSteps = stepsValue as! UserSteps
-                        let profile:UserProfile = allUsers[0] as! UserProfile
+                        let profile:UserProfile = user!
                         let dateString:String = Date(timeIntervalSince1970: stepsModel.date).stringFromFormat("yyy-MM-dd")
                         var caloriesValue:Int = 0
                         var milesValue:Int = 0
@@ -221,7 +221,7 @@ class LoginController: UIViewController,UITextFieldDelegate {
 
                     for sleepValue in sleepArray {
                         let sleepModel:UserSleep = sleepValue as! UserSleep
-                        let profile:UserProfile = allUsers[0] as! UserProfile
+                        let profile:UserProfile = user!
                         let dateString:String = Date(timeIntervalSince1970: sleepModel.date).stringFromFormat("yyy-MM-dd")
                         let value:[String:Any] = ["sleep":["uid":profile.id,"deep_sleep":sleepModel.hourlyDeepTime,"light_sleep":sleepModel.hourlyLightTime,"wake_time":sleepModel.hourlyWakeTime,"date":dateString]]
                         
@@ -232,6 +232,17 @@ class LoginController: UIViewController,UITextFieldDelegate {
                             _ = sleepModel.update()
                         }
                     }
+                    
+                    let judgeRootViewController = UIApplication.shared.keyWindow?.rootViewController?.isKind(of: UITabBarController.classForCoder())
+                    
+                    if judgeRootViewController! {
+                        self.dismiss(animated: true, completion: nil)
+                    } else {
+                        let naviController:UINavigationController = UINavigationController(rootViewController: TutorialOneViewController())
+                        naviController.isNavigationBarHidden = true
+                        self.present(naviController, animated: true, completion: nil)
+                    }
+                    
                 } else {
                     if self.pErrorNumber>=3{
                         let forgetPassword:UIAlertController = UIAlertController(title: NSLocalizedString("forget_your_password", comment: ""), message: nil, preferredStyle: UIAlertControllerStyle.alert)
@@ -255,11 +266,6 @@ class LoginController: UIViewController,UITextFieldDelegate {
                     self.pErrorNumber += 1
                 }
             })
-            
-            
-            
-            
-            
         }else{
             
             XCGLogger.default.debug("没有网络")

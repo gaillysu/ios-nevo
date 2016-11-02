@@ -14,7 +14,7 @@ import SwiftyJSON
 
 class MEDNetworkManager: NSObject {
     
-    private static let baseUrl = AppTheme.isTargetLunaR_OR_Nevo() ? "http://cloud.nevowatch.com/" : "http://lunar.karljohnchow.com/"
+    private static let baseUrl = AppTheme.isTargetLunaR_OR_Nevo() ? "http://cloud.nevowatch.com" : "http://lunar.karljohnchow.com"
     
     class func execute(request :MEDNetworkRequest){
         if let urlPart = request.url, let encoding = request.encoding, let method = request.method {
