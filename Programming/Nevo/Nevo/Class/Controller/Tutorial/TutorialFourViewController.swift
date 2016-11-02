@@ -43,6 +43,7 @@ extension TutorialFourViewController {
             detailLabel.backgroundColor = UIColor.clear
             detailLabel.textColor = UIColor.white
             nextButton.setTitleColor(UIColor.getBaseColor(), for: .normal)
+            centerImageView.image = AppTheme.GET_RESOURCES_IMAGE("lunar_open_bt")
         }
     }
 }

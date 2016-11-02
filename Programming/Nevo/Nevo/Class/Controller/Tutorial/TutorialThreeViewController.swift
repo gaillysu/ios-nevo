@@ -25,6 +25,11 @@ class TutorialThreeViewController: UIViewController {
     }
 
     override func viewDidLoad() {
+        //styleEvolve()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
         styleEvolve()
     }
     
@@ -44,6 +49,7 @@ extension TutorialThreeViewController {
             detailLabel.backgroundColor = UIColor.clear
             detailLabel.textColor = UIColor.white
             nextStepButton.setTitleColor(UIColor.getBaseColor(), for: .normal)
+            centerImageView.image = AppTheme.GET_RESOURCES_IMAGE("lunar_settime")
         }
     }
 }

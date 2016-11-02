@@ -41,6 +41,7 @@ extension TutorialSevenViewController {
             detailLabel.backgroundColor = UIColor.clear
             detailLabel.textColor = UIColor.white
             tryAgainButton.backgroundColor = UIColor.getBaseColor()
+            centerImageView.image =  AppTheme.GET_RESOURCES_IMAGE("lunar_not_connect")
         }
     }
 }

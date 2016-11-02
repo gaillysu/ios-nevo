@@ -102,6 +102,9 @@ extension TutorialFiveViewController {
             detailLabel.backgroundColor = UIColor.clear
             detailLabel.textColor = UIColor.white
             progressBar.backgroundColor = UIColor.clear
+            progressBar.trackFillColor = UIColor.getBaseColor()
+            progressBar.centerFillColor = UIColor.getGreyColor()
+            watchImage.image = AppTheme.GET_RESOURCES_IMAGE("lunar_search")
         }
     }
 }
