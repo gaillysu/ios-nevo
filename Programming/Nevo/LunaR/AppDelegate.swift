@@ -45,7 +45,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
     fileprivate var currentDay:UInt8 = 0
     fileprivate var mAlertUpdateFW = false
     
-    fileprivate var watchID:Int = 1
+    fileprivate var watchID:Int = 1 {
+        didSet {
+            let info: [String : Int] = [EVENT_BUS_WATCHID_DIDCHANGE_KEY : watchID]
+            SwiftEventBus.post(EVENT_BUS_WATCHID_DIDCHANGE_KEY, sender: nil, userInfo: info)
+        }
+    }
     fileprivate var watchName:String = "Nevo"
     fileprivate var watchModelNumber:Int = 1
     fileprivate var watchModel:String = "Paris"

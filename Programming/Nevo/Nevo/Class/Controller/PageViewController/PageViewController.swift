@@ -26,9 +26,28 @@ class PageViewController: UIPageViewController,UIActionSheetDelegate {
     var menuView:CVCalendarMenuView?
     var titleView:StepsTitleView?
     fileprivate var selectedController:UIViewController?
-    fileprivate var pagingControllers: [UIViewController] = []
-
     
+    fileprivate var normalControllers: [UIViewController] = []
+    fileprivate var solarControllers: [UIViewController] = []
+    
+    fileprivate var pagingControllers: [UIViewController] {
+        get {
+            if UserDefaults.standard.object(forKey: "WATCHNAME_KEY") != nil {
+                let value:Int = UserDefaults.standard.object(forKey: "WATCHNAME_KEY") as! Int
+                if value>1 {
+                    var t: [UIViewController] = [UIViewController]()
+                    t.append(contentsOf: self.normalControllers)
+                    t.append(contentsOf: self.solarControllers)
+                    return t
+                }
+            }
+            return self.normalControllers
+        }
+        set {
+            
+        }
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         if((UIDevice.current.systemVersion as NSString).floatValue>7.0){
@@ -49,9 +68,17 @@ class PageViewController: UIPageViewController,UIActionSheetDelegate {
         viewController3.view.tag = 2
         viewController3.view.backgroundColor = UIColor.white
         
+        normalControllers = [viewController1, viewController2,viewController3]
         
-        pagingControllers = [viewController1, viewController2,viewController3]
-        selectedController = pagingControllers[0]
+        let viewController4 = SunriseSetController()
+        viewController4.view.tag = 3
+        viewController4.view.backgroundColor = UIColor.white
+        
+        let viewController5 = SolarIndicatorController()
+        viewController5.view.tag = 4
+        viewController5.view.backgroundColor = UIColor.white
+        
+        solarControllers = [viewController4, viewController5]
         
         if UserDefaults.standard.object(forKey: "WATCHNAME_KEY") != nil {
             let value:Int = UserDefaults.standard.object(forKey: "WATCHNAME_KEY") as! Int
@@ -67,6 +94,8 @@ class PageViewController: UIPageViewController,UIActionSheetDelegate {
                 pagingControllers.append(viewController5)
             }
         }
+        
+        selectedController = pagingControllers[0]
         
         let rightItem:UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "edit_icon"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(rightBarButtonAction(_:)))
         rightItem.tintColor = AppTheme.NEVO_SOLAR_YELLOW()
@@ -93,6 +122,11 @@ class PageViewController: UIPageViewController,UIActionSheetDelegate {
             rightItem.tintColor = UIColor.getBaseColor()
         }else{
             self.view.backgroundColor = UIColor.white
+        }
+        
+        // MARK: - SET WATCH_ID NOTIFICATION
+        _ = SwiftEventBus.onMainThread(self, name: EVENT_BUS_WATCHID_DIDCHANGE_KEY) { (notification) in
+            let dict:[String:Int] = notification.userInfo as! [String : Int]
         }
     }
     
@@ -201,6 +235,9 @@ extension PageViewController {
         pageControl.pageIndicatorTintColor = UIColor.lightGray
         pageControl.currentPageIndicatorTintColor = AppTheme.NEVO_SOLAR_YELLOW()
         pageControl.addTarget(self, action: #selector(pageAction(_ :)), for: UIControlEvents.valueChanged)
+        
+        pageControl.isUserInteractionEnabled = false
+        
         self.view.addSubview(pageControl)
         
         pageControl.snp.makeConstraints { (make) -> Void in

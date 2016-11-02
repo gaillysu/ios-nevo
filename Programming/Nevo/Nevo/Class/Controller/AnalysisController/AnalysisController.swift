@@ -8,6 +8,7 @@
 
 import UIKit
 import RealmSwift
+import SwiftEventBus
 
 class AnalysisController: PublicClassController {
     
@@ -42,6 +43,12 @@ class AnalysisController: PublicClassController {
             chartsCollectionView.backgroundColor = UIColor.getGreyColor()
             segmented.tintColor = UIColor.getBaseColor()
             segmented.insertSegment(withTitle: NSLocalizedString("Solar", comment: ""), at: segmented.numberOfSegments, animated: false)
+        }
+        
+        
+        // MARK: - SET WATCH_ID NOTIFICATION
+        _ = SwiftEventBus.onMainThread(self, name: EVENT_BUS_WATCHID_DIDCHANGE_KEY) { (notification) in
+            let dict:[String:Int] = notification.userInfo as! [String : Int]
         }
     }
 
