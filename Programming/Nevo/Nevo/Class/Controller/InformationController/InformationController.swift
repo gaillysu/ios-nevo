@@ -190,61 +190,6 @@ class InformationController: UIViewController,SMSegmentViewDelegate {
                 MRProgressOverlayView.dismissAllOverlays(for: self.navigationController!.view, animated: true)
             })
             
-            
-            
-            HttpPostRequest.postRequest("user/create", data: ["user":registerInfo as AnyObject]) { (result) in
-                
-                timeout.invalidate()
-                
-                MRProgressOverlayView.dismissAllOverlays(for: self.navigationController!.view, animated: true)
-                
-                let json = JSON(result)
-                var message = json["message"].stringValue
-                let status = json["status"].intValue
-                let user:[String : JSON] = json["user"].dictionaryValue
-                
-                switch status {
-                case -1:
-                    message = NSLocalizedString("access_denied", comment: "");
-                case -2:
-                    message = "";
-                case -3:
-                    message = NSLocalizedString("user_exist", comment: "");
-                default:
-                    message = NSLocalizedString("signup_failed", comment: "")
-                }
-                
-                if(user.count>0) {
-                    let dateFormatter = DateFormatter()
-                    dateFormatter.dateFormat = "y-M-d h:m:s.000000"
-                    let birthdayJSON = user["birthday"]
-                    let birthdayBeforeParsed = birthdayJSON!["date"].stringValue
-                    
-                    let birthdayDate = dateFormatter.date(from: birthdayBeforeParsed)
-                    dateFormatter.dateFormat = "y-M-d"
-                    let birthday = dateFormatter.string(from: birthdayDate!)
-                    let sex = user["sex"]!.intValue == 1 ? true : false;
-                    if(status > 0 && UserProfile.getAll().count == 0) {
-                        message = NSLocalizedString("register_success", comment: "");
-                        let userprofile:UserProfile = UserProfile(keyDict: ["id":user["id"]!.intValue,"first_name":user["first_name"]!.stringValue,"last_name":user["last_name"]!.stringValue,"length":user["length"]!.intValue,"email":user["email"]!.stringValue,"sex": sex, "weight":(user["weight"]?.floatValue)!, "birthday":birthday])
-                        userprofile.add({ (id, completion) in
-                        })
-                        self.dismiss(animated: true, completion: nil)
-                        //self.navigationController?.popViewControllerAnimated(true)
-                    }
-                    
-                }else{
-                    if message.isEmpty {
-                        message = NSLocalizedString("no_network", comment: "")
-                    }
-                    
-                }
-                
-                let banner = MEDBanner(title: NSLocalizedString(message, comment: ""), subtitle: nil, image: nil, backgroundColor:AppTheme.NEVO_SOLAR_YELLOW())
-                banner.dismissesOnTap = true
-                banner.show(duration: 1.2)
-            }
-            
 //            // let infoDict:[String:String] = ["email":email!.text!,"first_name":firstNameTextField!.text!,"last_name":lastNameTextField!.text!,"password":password.text!]
             MEDUserNetworkManager.createUser(firstName: registerInfo["first_name"]!, lastName: registerInfo["last_name"]!, email: registerInfo["email"]!, password: registerInfo["password"]!, birthday: registerInfo["birthday"]!, length: registerInfo["length"]!, weight: registerInfo["weight"]!, sex: sex, completion: { (status) in
                 
@@ -255,6 +200,7 @@ class InformationController: UIViewController,SMSegmentViewDelegate {
                 switch status {
                 case .SUCCESS:
                     message = NSLocalizedString("register_success", comment: "")
+                    // 如果要加密，可以把加密后的密码存在 userDefault 里
                     UserDefaults.standard.set(["email" : "\(self.registerInfo["email"])", "password" : "\(self.registerInfo["password"])"], forKey: InformationController.MED_kISFromRegisterController)
                     self.dismiss(animated: true, completion: nil)
                 case .USER_EXIST:
