@@ -166,7 +166,7 @@ class AlarmClockController: UITableViewController,AddAlarmDelegate {
             let titleString:String = NSLocalizedString("alarmTitle", comment: "")
             let msg:String = NSLocalizedString("Nevo supports only 7 alarms for now.", comment: "")
             let buttonString:String = NSLocalizedString("Ok", comment: "")
-            let actionSheet:UIAlertController = UIAlertController(title: titleString, message: msg, preferredStyle: UIAlertControllerStyle.alert)
+            let actionSheet:ActionSheetView = ActionSheetView(title: titleString, message: msg, preferredStyle: UIAlertControllerStyle.alert)
             actionSheet.view.tintColor = AppTheme.NEVO_SOLAR_YELLOW()
             let alertAction:UIAlertAction = UIAlertAction(title: buttonString, style: UIAlertActionStyle.default, handler: { ( alert) -> Void in
                 

@@ -58,7 +58,7 @@ class AddPresetViewController: UIViewController,ButtonManagerCallBack {
             self.navigationController?.popViewController(animated: true)
         }else{
             if((UIDevice.current.systemVersion as NSString).floatValue >= 8.0){
-                let actionSheet:UIAlertController = UIAlertController(title: "", message: NSLocalizedString("goal_must_bigger_1000", comment: ""), preferredStyle: UIAlertControllerStyle.alert)
+                let actionSheet:ActionSheetView = ActionSheetView(title: "", message: NSLocalizedString("goal_must_bigger_1000", comment: ""), preferredStyle: UIAlertControllerStyle.alert)
                 actionSheet.view.tintColor = AppTheme.NEVO_SOLAR_YELLOW()
                 let alertAction:UIAlertAction = UIAlertAction(title: NSLocalizedString("Ok", comment: ""), style: UIAlertActionStyle.default, handler: { (action:UIAlertAction) -> Void in
 

@@ -69,7 +69,7 @@ class ForgotPasswordController: UIViewController {
             MRProgressOverlayView.dismissAllOverlays(for: self.navigationController!.view, animated: true)
             
             if success {
-                let alert:UIAlertController = UIAlertController(title: NSLocalizedString("change_password", comment: ""), message: nil, preferredStyle: UIAlertControllerStyle.alert)
+                let alert:ActionSheetView = ActionSheetView(title: NSLocalizedString("change_password", comment: ""), message: nil, preferredStyle: UIAlertControllerStyle.alert)
                 alert.view.tintColor = AppTheme.NEVO_SOLAR_YELLOW()
                 alert.addTextField(configurationHandler: { (newPassword1:UITextField) in
                     newPassword1.placeholder = NSLocalizedString("new_password", comment: "")

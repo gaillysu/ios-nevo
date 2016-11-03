@@ -322,18 +322,6 @@ class NewAddAlarmController: UITableViewController,ButtonManagerCallBack,Selecte
                 cell.detailTextLabel?.text = name
             }
             
-            // MARK: - APPTHEME ADJUST
-            if !AppTheme.isTargetLunaR_OR_Nevo() {
-                cell.backgroundColor = UIColor.getGreyColor()
-                cell.contentView.backgroundColor = UIColor.getGreyColor()
-                
-                cell.textLabel?.textColor = UIColor.white
-                cell.detailTextLabel?.textColor = UIColor.white
-            } else {
-                cell.backgroundColor = UIColor.white
-                cell.contentView.backgroundColor = UIColor.clear
-            }
-            
             return cell
         default: return UITableViewCell();
         }

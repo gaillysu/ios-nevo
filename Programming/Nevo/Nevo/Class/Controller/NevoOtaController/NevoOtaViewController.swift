@@ -106,7 +106,7 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
                 let updateTitle:String = NSLocalizedString("do_not_exit_this_screen", comment: "")
                 let updatemsg:String = NSLocalizedString("please_follow_the_update_has_been_finished", comment: "")
                 if((UIDevice.current.systemVersion as NSString).floatValue>8.0){
-                    let alert :UIAlertController = UIAlertController(title: updateTitle, message: updatemsg, preferredStyle: UIAlertControllerStyle.alert)
+                    let alert :ActionSheetView = ActionSheetView(title: updateTitle, message: updatemsg, preferredStyle: UIAlertControllerStyle.alert)
                     alert.view.tintColor = AppTheme.NEVO_SOLAR_YELLOW()
                     let alertAction:UIAlertAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: UIAlertActionStyle.cancel) { (action:UIAlertAction) -> Void in
                         self.dismiss(animated: true, completion: nil)

@@ -75,7 +75,7 @@ class ConnectOtherAppsController: UITableViewController {
     func checkPinCode(_ switchView:UISwitch) {
         if switchView.isOn {
             UIApplication.shared.openURL(URL(string:"https://partner.validic.com/applications/47/test/marketplace")!)
-            let alert:UIAlertController = UIAlertController(title: "Please enter the PIN code", message: nil, preferredStyle: UIAlertControllerStyle.alert)
+            let alert:ActionSheetView = ActionSheetView(title: "Please enter the PIN code", message: nil, preferredStyle: UIAlertControllerStyle.alert)
             alert.addTextField { (testField:UITextField) in
             }
             

@@ -203,7 +203,7 @@ extension OldOtaViewController {
         let updateTitle:String = NSLocalizedString("do_not_exit_this_screen", comment: "")
         let updatemsg:String = NSLocalizedString("please_follow_the_update_has_been_finished", comment: "")
         
-        let alertView :UIAlertController = UIAlertController(title: updateTitle, message: updatemsg, preferredStyle: UIAlertControllerStyle.alert)
+        let alertView :ActionSheetView = ActionSheetView(title: updateTitle, message: updatemsg, preferredStyle: UIAlertControllerStyle.alert)
         alertView.view.tintColor = AppTheme.NEVO_SOLAR_YELLOW()
         let alertAction:UIAlertAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: UIAlertActionStyle.cancel) { (action:UIAlertAction) -> Void in
             self.dismiss(animated: true, completion: nil)

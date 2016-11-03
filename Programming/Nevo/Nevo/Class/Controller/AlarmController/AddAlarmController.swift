@@ -85,7 +85,7 @@ class AddAlarmController: UITableViewController,ButtonManagerCallBack,UIAlertVie
                 if((UIDevice.current.systemVersion as NSString).floatValue >= 8.0){
                     let selectedCell:UITableViewCell = tableView.cellForRow(at: indexPath)!
 
-                    let actionSheet:UIAlertController = UIAlertController(title: NSLocalizedString("add_alarm_label", comment: ""), message: nil, preferredStyle: UIAlertControllerStyle.alert)
+                    let actionSheet:ActionSheetView = ActionSheetView(title: NSLocalizedString("add_alarm_label", comment: ""), message: nil, preferredStyle: UIAlertControllerStyle.alert)
                     actionSheet.view.tintColor = AppTheme.NEVO_SOLAR_YELLOW()
                     actionSheet.addTextField(configurationHandler: { (labelText:UITextField) -> Void in
                         labelText.text = selectedCell.detailTextLabel?.text

@@ -31,7 +31,7 @@ class ImagePickerController: NSObject,UIImagePickerControllerDelegate,UINavigati
             pickerController!.present(picker, animated: true, completion: { () -> Void in
             })
         }else{
-            let alert:UIAlertController = UIAlertController(title: "Is not camera", message: nil, preferredStyle: UIAlertControllerStyle.alert)
+            let alert:ActionSheetView = ActionSheetView(title: "Is not camera", message: nil, preferredStyle: UIAlertControllerStyle.alert)
             let action1:UIAlertAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default) { (action) in
                 
             }
