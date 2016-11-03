@@ -24,13 +24,13 @@ class UserAlarm: NSObject {
 
     init(keyDict:NSDictionary) {
         super.init()
-        self.setValue(keyDict.object(forKey: "id"), forKey: "id")
-        self.setValue(keyDict.object(forKey: "timer"), forKey: "timer")
-        self.setValue(keyDict.object(forKey: "label"), forKey: "label")
-        self.setValue(keyDict.object(forKey: "status"), forKey: "status")
-        self.setValue(keyDict.object(forKey: "repeatStatus"), forKey: "repeatStatus")
-        self.setValue(keyDict.object(forKey: "dayOfWeek"), forKey: "dayOfWeek")
-        self.setValue(keyDict.object(forKey: "type"), forKey: "type")
+        for (key,value) in keyDict {
+            self.setValue(value, forKey: key as! String)
+        }
+    }
+    
+    override init() {
+        super.init()
     }
 
     func add(_ result:@escaping ((_ id:Int?,_ completion:Bool?) -> Void)){
@@ -118,4 +118,6 @@ class UserAlarm: NSObject {
 
         }
     }
+    
+    override func setValue(_ value: Any?, forUndefinedKey key: String) {}
 }
