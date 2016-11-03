@@ -705,17 +705,24 @@ extension AppDelegate {
             let profile:UserProfile = login[0] as! UserProfile
             let dateString:String = date.stringFromFormat("yyy-MM-dd")
             var caloriesValue:Int = 0
-            var milesValue:Int = 0
+            var milesValue:Double = 0
             StepGoalSetingController.calculationData((stepsModel.walking_duration+stepsModel.running_duration), steps: stepsModel.steps, completionData: { (miles, calories) in
                 caloriesValue = Int(calories)
-                milesValue = Int(miles)
+                milesValue = miles
             })
             
-            let value:[String:Any] = ["steps":["uid":profile.id,"steps":stepsModel.hourlysteps,"date":dateString,"calories":caloriesValue,"active_time":stepsModel.walking_duration+stepsModel.running_duration,"distance":milesValue]]
-            stepsModel.isUpload = true
-            UPDATE_SERVICE_STEPS_REQUEST.syncStepsToService(paramsValue: value, completion: { (result, status) in
-                
+            let activeTime: Int = stepsModel.walking_duration+stepsModel.running_duration
+            
+            /// TODO 2016-11-03
+            /// distance should be Double ?
+            /// Discussion: <#Say something#>
+            MEDStepsNetworkManager.createSteps(uid: profile.id, steps: stepsModel.hourlysteps, date: dateString, activeTime: activeTime, calories: caloriesValue, distance: milesValue, completion: { (success: Bool) in
+                if success {
+                    stepsModel.isUpload = true
+                    stepsModel.update()
+                }
             })
+            
         }
         if(stepsArray.count>0) {
             let step:UserSteps = stepsArray[0] as! UserSteps
@@ -755,10 +762,10 @@ extension AppDelegate {
         if login.count>0 {
             let profile:UserProfile = login[0] as! UserProfile
             let dateString:String = date.stringFromFormat("yyy-MM-dd")
-            let value:[String:Any] = ["sleep":["uid":profile.id,"deep_sleep":model.hourlyDeepTime,"light_sleep":model.hourlyLightTime,"wake_time":model.hourlyWakeTime,"date":dateString]]
-            model.isUpload = true
-            UPDATE_SERVICE_SLEEP_REQUEST.syncCreateSleepToService(paramsValue:value,completion:{(result,errorid) in
-                
+            
+            MEDSleepNetworkManager.createSleep(uid: profile.id, deepSleep: model.hourlyDeepTime, lightSleep: model.hourlyLightTime, wakeTime: model.hourlyWakeTime, date: dateString, completion: { (success:Bool) in
+                model.isUpload = true
+                _ = model.update()
             })
         }
         

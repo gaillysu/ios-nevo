@@ -12,8 +12,8 @@ import Alamofire
 
 class MEDStepsNetworkManager: NSObject {
     
-    class func createSteps(uid:Int, steps:String, date:String, activeTime:Int, completion:@escaping ((_ created:Bool) -> Void)){
-        MEDNetworkManager.execute(request: MEDStepsCreateRequest(uid: uid, value: steps, date: date, activeTime: activeTime, responseBlock: { (success, optionalJson, optionalError) in
+    class func createSteps(uid:Int, steps:String, date:String, activeTime:Int,calories: Int, distance: Double, completion:@escaping ((_ created:Bool) -> Void)){
+        MEDNetworkManager.execute(request: MEDStepsCreateRequest(uid: uid, value: steps, date: date, activeTime: activeTime, calories: calories, distance: distance, responseBlock: { (success, optionalJson, optionalError) in
             if success, let _ = optionalJson {
                 completion(true)
             }else{
@@ -22,8 +22,8 @@ class MEDStepsNetworkManager: NSObject {
         }))
     }
     
-    class func updateSteps(id:Int, uid:Int, steps:String, date:String, activeTime:Int, completion: @escaping ((_ updated:Bool)->Void)){
-        MEDNetworkManager.execute(request: MEDStepsUpdateRequest(id: id, uid: uid, steps: steps, date: date, activeTime: activeTime, responseBlock: { (success, optionalJson, optionalError) in
+    class func updateSteps(id:Int, uid:Int, steps:String, date:String, activeTime:Int, calories:Int, distance:Double, completion: @escaping ((_ updated:Bool)->Void)){
+        MEDNetworkManager.execute(request: MEDStepsUpdateRequest(id: id, uid: uid, steps: steps, date: date, activeTime: activeTime, calories: calories, distance: distance, responseBlock: { (success, optionalJson, optionalError) in
             if success, let _ = optionalJson{
                 completion(true)
             }else{

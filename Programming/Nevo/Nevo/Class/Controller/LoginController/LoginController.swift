@@ -215,15 +215,19 @@ class LoginController: UIViewController,UITextFieldDelegate {
                         let profile:UserProfile = user!
                         let dateString:String = Date(timeIntervalSince1970: stepsModel.date).stringFromFormat("yyy-MM-dd")
                         var caloriesValue:Int = 0
-                        var milesValue:Int = 0
+                        var milesValue:Double = 0
                         StepGoalSetingController.calculationData((stepsModel.walking_duration+stepsModel.running_duration), steps: stepsModel.steps, completionData: { (miles, calories) in
                             caloriesValue = Int(calories)
-                            milesValue = Int(miles)
+                            milesValue = miles
                         })
                         
-                        let value:[String:Any] = ["steps":["uid":profile.id,"steps":stepsModel.hourlysteps,"date":dateString,"calories":caloriesValue,"active_time":stepsModel.walking_duration+stepsModel.running_duration,"distance":milesValue]]
-                        stepsModel.isUpload = true
-                        UPDATE_SERVICE_STEPS_REQUEST.syncStepsToService(paramsValue: value, completion: { (result, status) in
+//                        let value:[String:Any] = ["steps":["uid":profile.id,"steps":stepsModel.hourlysteps,"date":dateString,"calories":caloriesValue,"active_time":stepsModel.walking_duration+stepsModel.running_duration,"distance":milesValue]]
+                        let activeTime: Int = stepsModel.walking_duration+stepsModel.running_duration
+                        MEDStepsNetworkManager.createSteps(uid: profile.id, steps: stepsModel.hourlysteps, date: dateString, activeTime: activeTime, calories: caloriesValue, distance: milesValue, completion: { (success: Bool) in
+                            if success {
+                                stepsModel.isUpload = true
+                                stepsModel.update()
+                            }
                         })
                     }
 
@@ -231,13 +235,12 @@ class LoginController: UIViewController,UITextFieldDelegate {
                         let sleepModel:UserSleep = sleepValue as! UserSleep
                         let profile:UserProfile = user!
                         let dateString:String = Date(timeIntervalSince1970: sleepModel.date).stringFromFormat("yyy-MM-dd")
-                        let value:[String:Any] = ["sleep":["uid":profile.id,"deep_sleep":sleepModel.hourlyDeepTime,"light_sleep":sleepModel.hourlyLightTime,"wake_time":sleepModel.hourlyWakeTime,"date":dateString]]
                         
                         if !sleepModel.isUpload {
-                            sleepModel.isUpload = true
-                            UPDATE_SERVICE_SLEEP_REQUEST.syncCreateSleepToService(paramsValue:value,completion:{(result,errorid) in
+                            MEDSleepNetworkManager.createSleep(uid: profile.id, deepSleep: sleepModel.hourlyDeepTime, lightSleep: sleepModel.hourlyLightTime, wakeTime: sleepModel.hourlyWakeTime, date: dateString, completion: { (success:Bool) in
+                                sleepModel.isUpload = true
+                                _ = sleepModel.update()
                             })
-                            _ = sleepModel.update()
                         }
                     }
                     
