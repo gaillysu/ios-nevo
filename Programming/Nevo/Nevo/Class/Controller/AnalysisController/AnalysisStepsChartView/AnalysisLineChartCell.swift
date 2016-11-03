@@ -487,12 +487,12 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
         if rowIndex == 0{
             let startTimeInterval:TimeInterval = Date().beginningOfWeek.timeIntervalSince1970
             if xVals.count<7 {
-                if xVals.count == 0 {
-                    let dateString:String = Date().beginningOfWeek.stringFromFormat("dd/MM")
-                    xVals.append(dateString)
-                    yVals.append(ChartDataEntry(value: 0, xIndex: 0))
-                }
-                for index:Int in xVals.count..<7 {
+                for index:Int in 0..<7 {
+                    if xVals.count == 0 {
+                        let dateString:String = Date().beginningOfWeek.stringFromFormat("dd/MM")
+                        xVals.append(dateString)
+                        yVals.append(ChartDataEntry(value: 0, xIndex: 0))
+                    }
                     var getIndex:Int = index
                     if index>=xVals.count {
                         getIndex = index-1
@@ -502,15 +502,14 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
                     let date2:Date = Date(timeIntervalSince1970:startTimeInterval+dayTime*Double(index))
                     let dateString1:String = startDate1.stringFromFormat("dd/MM")
                     let dateString2:String = date2.stringFromFormat("dd/MM")
-                    
                     if dateString1 != dateString2 {
                         xVals.insert(dateString2, at: index)
                         yVals.insert(ChartDataEntry(value: 0, xIndex: index), at: index)
                         completionData?(index,false)
                     }else{
                         let dataentry:ChartDataEntry = yVals[index]
-                        yVals.replaceSubrange(index..<index+1, with: [ChartDataEntry(value: dataentry.value.to2Double(), xIndex: index)])
-                        completionData?(index,true)
+                        yVals.replaceSubrange(index..<index+1, with: [ChartDataEntry(value: dataentry.value.to2Double(), xIndex: getIndex)])
+                        completionData?(getIndex,true)
                     }
                     
                     if index == 6 {
