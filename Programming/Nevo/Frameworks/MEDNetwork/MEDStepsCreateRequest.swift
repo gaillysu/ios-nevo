@@ -9,11 +9,11 @@
 import Foundation
 import SwiftyJSON
 
-class MEDStepsCreateRequest: MEDBaseGetRequest {
+class MEDStepsCreateRequest: MEDBasePostRequest {
     
-    init(uid:Int, value:String, date:String, activeTime:Int, responseBlock: @escaping (_ bool:Bool, _ json:JSON?, _ error:Error?) -> Void) {
+    init(uid:Int, value:String, date:String, activeTime:Int, calories: Int, distance: Double, responseBlock: @escaping (_ bool:Bool, _ json:JSON?, _ error:Error?) -> Void) {
         super.init(response: responseBlock)
         self.url = "/steps/create"
-        self.parameters["params"] = ["steps": ["uid": uid,"steps": value,"date": date,"active_time":activeTime]]
+        self.parameters["params"] = ["steps": ["uid": uid,"steps": value,"date": date,"active_time":activeTime, "calories":calories, "distance":distance]]
     }
 }

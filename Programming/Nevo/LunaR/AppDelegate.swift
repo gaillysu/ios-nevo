@@ -711,11 +711,18 @@ extension AppDelegate {
                 milesValue = Int(miles)
             })
             
-            let value:[String:Any] = ["steps":["uid":profile.id,"steps":stepsModel.hourlysteps,"date":dateString,"calories":caloriesValue,"active_time":stepsModel.walking_duration+stepsModel.running_duration,"distance":milesValue]]
-            stepsModel.isUpload = true
-            UPDATE_SERVICE_STEPS_REQUEST.syncStepsToService(paramsValue: value, completion: { (result, status) in
-                
+            let activeTime: Int = stepsModel.walking_duration+stepsModel.running_duration
+            
+            /// TODO 2016-11-03
+            /// distance should be Double ?
+            /// Discussion: <#Say something#>
+            MEDStepsNetworkManager.createSteps(uid: profile.id, steps: stepsModel.hourlysteps, date: dateString, activeTime: activeTime, calories: caloriesValue, distance: Double(milesValue), completion: { (success: Bool) in
+                if success {
+                    stepsModel.isUpload = true
+                    stepsModel.update()
+                }
             })
+            
         }
         if(stepsArray.count>0) {
             let step:UserSteps = stepsArray[0] as! UserSteps
