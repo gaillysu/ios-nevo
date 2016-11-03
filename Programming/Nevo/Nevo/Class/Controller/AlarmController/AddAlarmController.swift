@@ -34,8 +34,7 @@ class AddAlarmController: UITableViewController,ButtonManagerCallBack,UIAlertVie
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        adTableView.bulidAdTableView(self.navigationItem)
+        self.tableView.register(UINib(nibName:"AddAlarmTableViewCell", bundle: nil), forCellReuseIdentifier: "AddAlarm_Date_identifier")
 
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.save, target: self, action: #selector(controllManager(_:)))
     }
@@ -133,7 +132,11 @@ class AddAlarmController: UITableViewController,ButtonManagerCallBack,UIAlertVie
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat{
         if((indexPath as NSIndexPath).section == 0){
-            let cellHeight:CGFloat = AddAlarmView.addAlarmTimerTableViewCell(indexPath, tableView: tableView, timer:timer).contentView.systemLayoutSizeFitting(UILayoutFittingCompressedSize).height
+            var cellHeight:CGFloat = CGFloat(UserDefaults.standard.double(forKey: "k\(#file)HeightForDatePickerView"))
+            if cellHeight == 0 {
+                cellHeight = AddAlarmTableViewCell.factory().frame.height
+                UserDefaults.standard.set(Double(cellHeight), forKey: "k\(#file)HeightForDatePickerView")
+            }
             return cellHeight
         }else{
             return 45.0
