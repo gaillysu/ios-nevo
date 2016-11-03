@@ -201,7 +201,8 @@ class InformationController: UIViewController,SMSegmentViewDelegate {
                 case .SUCCESS:
                     message = NSLocalizedString("register_success", comment: "")
                     // 如果要加密，可以把加密后的密码存在 userDefault 里
-                    UserDefaults.standard.set(["email" : "\(self.registerInfo["email"])", "password" : "\(self.registerInfo["password"])"], forKey: InformationController.MED_kISFromRegisterController)
+                    // please don't care about the security. if necessary, we can encrypt the password before save
+                    UserDefaults.standard.set(["email" : "\(self.registerInfo["email"]!)", "password" : "\(self.registerInfo["password"]!)"], forKey: InformationController.MED_kISFromRegisterController)
                     self.dismiss(animated: true, completion: nil)
                 case .USER_EXIST:
                     message = NSLocalizedString("user_exist", comment: "")
