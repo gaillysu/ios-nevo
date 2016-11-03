@@ -786,6 +786,10 @@
 		6633057D1DC07EEE0090216F /* lunar_dial.png in Resources */ = {isa = PBXBuildFile; fileRef = 663305781DC07EEE0090216F /* lunar_dial.png */; };
 		6633057E1DC07EEE0090216F /* lunar_Minute.png in Resources */ = {isa = PBXBuildFile; fileRef = 663305791DC07EEE0090216F /* lunar_Minute.png */; };
 		6633057F1DC07EEE0090216F /* lunar_Minute.png in Resources */ = {isa = PBXBuildFile; fileRef = 663305791DC07EEE0090216F /* lunar_Minute.png */; };
+		6650988B1DCB0CF20059D5F7 /* MEDSleepCreateRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6650988A1DCB0CF20059D5F7 /* MEDSleepCreateRequest.swift */; };
+		6650988C1DCB0CF20059D5F7 /* MEDSleepCreateRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6650988A1DCB0CF20059D5F7 /* MEDSleepCreateRequest.swift */; };
+		6650988E1DCB0E220059D5F7 /* MEDSleepNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6650988D1DCB0E220059D5F7 /* MEDSleepNetworkManager.swift */; };
+		6650988F1DCB0E220059D5F7 /* MEDSleepNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6650988D1DCB0E220059D5F7 /* MEDSleepNetworkManager.swift */; };
 		665BD6A51DBEF186008C2623 /* NevoOtaController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61F85F4F1DAF5BF300F341B5 /* NevoOtaController.swift */; };
 		665BD6A61DBEF1D0008C2623 /* ForgotPasswordRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E4DF241DB8C2D500DDA737 /* ForgotPasswordRequest.swift */; };
 		665BD6A71DBEF1D0008C2623 /* UserCreateRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E4DF251DB8C2D500DDA737 /* UserCreateRequest.swift */; };
@@ -1337,6 +1341,8 @@
 		663305771DC07EEE0090216F /* lunar_hour.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lunar_hour.png; sourceTree = "<group>"; };
 		663305781DC07EEE0090216F /* lunar_dial.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lunar_dial.png; sourceTree = "<group>"; };
 		663305791DC07EEE0090216F /* lunar_Minute.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lunar_Minute.png; sourceTree = "<group>"; };
+		6650988A1DCB0CF20059D5F7 /* MEDSleepCreateRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MEDSleepCreateRequest.swift; sourceTree = "<group>"; };
+		6650988D1DCB0E220059D5F7 /* MEDSleepNetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MEDSleepNetworkManager.swift; sourceTree = "<group>"; };
 		665BD6D31DBEFE6D008C2623 /* lunar_dial_2016-10-25.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lunar_dial_2016-10-25.png"; sourceTree = "<group>"; };
 		665BD6D71DBF1297008C2623 /* sunrise.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sunrise.png; sourceTree = "<group>"; };
 		665BD6D81DBF1297008C2623 /* sunset.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sunset.png; sourceTree = "<group>"; };
@@ -2496,6 +2502,7 @@
 			children = (
 				6688A64E1DC981980078E636 /* MEDNetworkManager.swift */,
 				6688A6531DC981980078E636 /* MEDStepsNetworkManager.swift */,
+				6650988D1DCB0E220059D5F7 /* MEDSleepNetworkManager.swift */,
 				6688A6561DC981980078E636 /* MEDUserNetworkManager.swift */,
 			);
 			name = Manager;
@@ -2512,6 +2519,7 @@
 				6688A6541DC981980078E636 /* MEDStepsUpdateRequest.swift */,
 				6688A6551DC981980078E636 /* MEDUserCreateRequest.swift */,
 				6688A6571DC981980078E636 /* MEDUserUpdateRequest.swift */,
+				6650988A1DCB0CF20059D5F7 /* MEDSleepCreateRequest.swift */,
 			);
 			name = Request;
 			sourceTree = "<group>";
@@ -3536,6 +3544,7 @@
 				00C826841DA5E04000ECECEE /* MyNevoHeaderView.xib in Sources */,
 				00C826851DA5E04000ECECEE /* MyNevoView.swift in Sources */,
 				665E331F1DADCD8A00D0E36D /* MEDBanner.swift in Sources */,
+				6650988F1DCB0E220059D5F7 /* MEDSleepNetworkManager.swift in Sources */,
 				00C826871DA5E04000ECECEE /* DeviceScannerView.swift in Sources */,
 				6688A6771DC981990078E636 /* MEDUserCreateRequest.swift in Sources */,
 				00C826881DA5E04000ECECEE /* NevoOtaView.swift in Sources */,
@@ -3586,6 +3595,7 @@
 				00C826B11DA5E04000ECECEE /* StepsTitleView.swift in Sources */,
 				00C826B21DA5E04000ECECEE /* StepsTitleView.xib in Sources */,
 				00C826B31DA5E04000ECECEE /* TutorialOneViewController.swift in Sources */,
+				6650988C1DCB0CF20059D5F7 /* MEDSleepCreateRequest.swift in Sources */,
 				00C826B41DA5E04000ECECEE /* TutorialTwoViewController.swift in Sources */,
 				00C826B51DA5E04000ECECEE /* TutorialThreeViewController.swift in Sources */,
 				00C826B61DA5E04000ECECEE /* TutorialFourViewController.swift in Sources */,
@@ -3764,6 +3774,7 @@
 				611D41431DCAD97C003BC6E3 /* M13CheckboxAnimationPresets.swift in Sources */,
 				611D41441DCAD97C003BC6E3 /* M13CheckboxGestureRecognizer.swift in Sources */,
 				611D41451DCAD97C003BC6E3 /* M13CheckboxManager.swift in Sources */,
+				6650988B1DCB0CF20059D5F7 /* MEDSleepCreateRequest.swift in Sources */,
 				611D41461DCAD97C003BC6E3 /* M13CheckboxPathPresets.swift in Sources */,
 				611D41471DCAD97C003BC6E3 /* M13CheckboxBounceManager.swift in Sources */,
 				611D41481DCAD97C003BC6E3 /* M13CheckboxDotManager.swift in Sources */,
@@ -3787,6 +3798,7 @@
 				611D415A1DCAD97C003BC6E3 /* DailySteps.swift in Sources */,
 				611D415B1DCAD97C003BC6E3 /* DaySleep.swift in Sources */,
 				611D415C1DCAD97C003BC6E3 /* HourlySteps.swift in Sources */,
+				6650988E1DCB0E220059D5F7 /* MEDSleepNetworkManager.swift in Sources */,
 				611D415D1DCAD97C003BC6E3 /* RealTimeCountSteps.swift in Sources */,
 				611D415E1DCAD97C003BC6E3 /* RunningToHK.swift in Sources */,
 				611D415F1DCAD97C003BC6E3 /* Alarm.swift in Sources */,
