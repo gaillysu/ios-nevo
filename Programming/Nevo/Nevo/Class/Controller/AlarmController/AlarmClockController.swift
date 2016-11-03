@@ -16,6 +16,7 @@ class AlarmClockController: UITableViewController,AddAlarmDelegate {
     fileprivate var slectedIndex:Int = -1 //To edit a record the number of rows selected content
     var mWakeAlarmArray:NSMutableArray = NSMutableArray()
     var mSleepAlarmArray:NSMutableArray = NSMutableArray()
+    var oldAlarmArray:[Alarm] = []
     
     var hasWakeAlarmArray:Bool {
         get {
@@ -52,13 +53,18 @@ class AlarmClockController: UITableViewController,AddAlarmDelegate {
         let array:NSArray = UserAlarm.getAll()
         mWakeAlarmArray.removeAllObjects()
         mSleepAlarmArray.removeAllObjects()
-        for alarmModel in array{
+        oldAlarmArray.removeAll()
+        for (index,alarmModel) in array.enumerated() {
             let useralarm:UserAlarm = alarmModel as! UserAlarm
             if useralarm.type == 0 {
                 mWakeAlarmArray.add(useralarm)
+                let date:Date = Date(timeIntervalSince1970: useralarm.timer)
+                let oldAlarm:Alarm = Alarm(index: index, hour: date.hour, minute: date.minute, enable: useralarm.status)
+                oldAlarmArray.append(oldAlarm)
             }else{
                 mSleepAlarmArray.add(useralarm)
             }
+            
         }
 
         if(UserAlarm.isExistInTable()){
@@ -199,7 +205,64 @@ class AlarmClockController: UITableViewController,AddAlarmDelegate {
 
     // MARK: - AddAlarmDelegate
     func onDidAddAlarmAction(_ timer:TimeInterval,repeatStatus:Bool,name:String) {
-    
+        if(AppDelegate.getAppDelegate().isConnected()) {
+            let banner = Banner(title: NSLocalizedString("syncing_Alarm", comment: ""), subtitle: nil, image: nil, backgroundColor: AppTheme.NEVO_SOLAR_YELLOW())
+            banner.dismissesOnTap = true
+            banner.show(duration: 1.5)
+        }else{
+            let banner = Banner(title: NSLocalizedString("no_watch_connected", comment: ""), subtitle: nil, image: nil, backgroundColor: AppTheme.NEVO_SOLAR_YELLOW())
+            banner.dismissesOnTap = true
+            banner.show(duration: 1.5)
+        }
+        
+        if(slectedIndex >= 0){
+            let alarmModel:UserAlarm =  mWakeAlarmArray[slectedIndex] as! UserAlarm
+            let addalarm:UserAlarm = UserAlarm(keyDict: ["id":alarmModel.id,"timer":timer,"label":"\(name)","status":true,"repeatStatus":repeatStatus])
+            if(addalarm.update()){
+                mWakeAlarmArray.replaceObject(at: slectedIndex, with: addalarm)
+                self.isEditing = false
+                self.tableView.setEditing(false, animated: true)
+                self.tableView.reloadData()
+                
+                let date:Date = Date(timeIntervalSince1970: timer)
+                let alarm:Alarm = oldAlarmArray[slectedIndex]
+                let reAlarm:Alarm = Alarm(index:mWakeAlarmArray.count, hour: date.hour, minute: date.minute, enable: alarm.getEnable())
+                oldAlarmArray.replaceSubrange(slectedIndex..<slectedIndex+1, with: [reAlarm])
+                if(AppDelegate.getAppDelegate().isConnected()){
+                    AppDelegate.getAppDelegate().setAlarm(oldAlarmArray.filter{$0.getEnable() == true})
+                }
+                slectedIndex = -1
+            }
+        }else{
+            let date:Date = Date(timeIntervalSince1970: timer)
+            
+            let alarmArray = oldAlarmArray.filter{$0.getEnable() == true}
+            let alarmState:Bool = alarmArray.count>3 ? false:true
+            
+            let alarm:Alarm = Alarm(index:self.oldAlarmArray.count, hour: date.hour, minute: date.minute, enable: alarmState)
+            oldAlarmArray.append(alarm)
+            
+            let addalarm:UserAlarm = UserAlarm()
+            addalarm.id = 0
+            addalarm.timer = timer
+            addalarm.label = "\(name)"
+            addalarm.status = alarmState
+            addalarm.repeatStatus = repeatStatus
+            addalarm.add({ (id, completion) -> Void in
+                if(completion!){
+                    addalarm.id = id!
+                    if(AppDelegate.getAppDelegate().isConnected()){
+                        let kk = self.oldAlarmArray.filter{$0.getEnable() == true}
+                        AppDelegate.getAppDelegate().setAlarm(kk)
+                    }
+                }else{
+                    let aler:UIAlertView = UIAlertView(title: "Tip", message: "Database insert fail", delegate: nil, cancelButtonTitle: "ok")
+                    aler.show()
+                }
+            })
+            self.mWakeAlarmArray.add(addalarm)
+            self.tableView.reloadData()
+        }
     }
     
     func onDidAddAlarmAction(_ timer:TimeInterval,name:String,repeatNumber:Int,alarmType:Int) {
