@@ -51,6 +51,10 @@ class AnalysisController: PublicClassController {
             let dict:[String:Int] = notification.userInfo as! [String : Int]
         }
     }
+    
+    deinit {
+        SwiftEventBus.unregister(self, name: EVENT_BUS_WATCHID_DIDCHANGE_KEY)
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

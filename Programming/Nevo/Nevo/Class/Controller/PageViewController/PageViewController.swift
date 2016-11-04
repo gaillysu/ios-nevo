@@ -126,7 +126,7 @@ class PageViewController: UIPageViewController,UIActionSheetDelegate {
         
         // MARK: - SET WATCH_ID NOTIFICATION
         _ = SwiftEventBus.onMainThread(self, name: EVENT_BUS_WATCHID_DIDCHANGE_KEY) { (notification) in
-            let dict:[String:Int] = notification.userInfo as! [String : Int]
+//            let dict:[String:Int] = notification.userInfo as! [String : Int]
         }
     }
     
@@ -137,10 +137,10 @@ class PageViewController: UIPageViewController,UIActionSheetDelegate {
         }
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    deinit {
+        SwiftEventBus.unregister(self, name: EVENT_BUS_WATCHID_DIDCHANGE_KEY)
     }
+    
     
     func leftBarButtonAction(_ rightBar:UIBarButtonItem) {
         let videoPlay:VideoPlayController = VideoPlayController()
