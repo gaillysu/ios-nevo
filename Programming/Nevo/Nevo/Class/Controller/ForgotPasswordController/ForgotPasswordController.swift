@@ -34,16 +34,6 @@ class ForgotPasswordController: UIViewController {
         let leftButton:UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "cancel_lunar"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(leftCancelAction(_:)))
         self.navigationItem.leftBarButtonItem = leftButton
     }
-
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
     func leftCancelAction(_ sender:UIBarButtonItem) {
         let viewController = self.navigationController?.popViewController(animated: true)
@@ -55,7 +45,10 @@ class ForgotPasswordController: UIViewController {
     @IBAction func buttonAction(_ sender: AnyObject) {
         self.forgotPasswordRequest()
     }
-    
+}
+
+// MARK: - Network
+extension ForgotPasswordController {
     func forgotPasswordRequest() {
         let view = MRProgressOverlayView.showOverlayAdded(to: self.navigationController!.view, title: NSLocalizedString("please_wait", comment: ""), mode: MRProgressOverlayViewMode.indeterminate, animated: true)
         view?.setTintColor(AppTheme.NEVO_SOLAR_YELLOW())
@@ -122,5 +115,4 @@ class ForgotPasswordController: UIViewController {
             }
         }
     }
-
 }
