@@ -99,7 +99,7 @@ class AlarmClockController: UITableViewController,AddAlarmDelegate {
         if(sender.isEqual(rightBarButton)){
             self.tableView.setEditing(false, animated: true)
             self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.plain, target: nil, action: nil)
-            if AppDelegate.getAppDelegate().getMconnectionController()!.getFirmwareVersion().integerValue <= 31 {
+            if AppDelegate.getAppDelegate().getMconnectionController()!.getFirmwareVersion().integerValue <= 31 && AppDelegate.getAppDelegate().getMconnectionController()!.getSoftwareVersion().integerValue <= 18 {
                 let addAlarm:AddAlarmController = AddAlarmController()
                 addAlarm.title = NSLocalizedString("add_alarm", comment: "")
                 addAlarm.mDelegate = self
