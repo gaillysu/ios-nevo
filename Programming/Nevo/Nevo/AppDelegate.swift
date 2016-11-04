@@ -292,8 +292,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
             }
 
             if(packet.getHeader() == SetNortificationRequest.HEADER()) {
-                let weakAlarm:NSArray = UserAlarm.getCriteria("WHERE type = \(0)")
-                let sleepAlarm:NSArray = UserAlarm.getCriteria("WHERE type = \(1)")
+                let alarmArray = UserAlarm.getAll()
+                var weakAlarm:[UserAlarm] = []
+                var sleepAlarm:[UserAlarm] = []
+                for value in alarmArray {
+                    let alarmType:UserAlarm = value as! UserAlarm
+                    if alarmType.type == 0 {
+                        weakAlarm.append(alarmType)
+                    }else{
+                        sleepAlarm.append(alarmType);
+                    }
+                }
                 
                 for index in 0 ..< 14{
                     let date:Date = Date()
@@ -305,7 +314,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                 
                 let date:Date = Date()
                 for (index,Value) in weakAlarm.enumerated() {
-                    let alarm:UserAlarm = Value as! UserAlarm
+                    let alarm:UserAlarm = Value
                     let alarmDay:Date = Date(timeIntervalSince1970: alarm.timer)
                     if alarm.status {
                         let newAlarm:NewAlarm = NewAlarm(alarmhour: alarmDay.hour, alarmmin: alarmDay.minute, alarmNumber: index, alarmWeekday: alarm.dayOfWeek)
@@ -314,7 +323,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                 }
                 
                 for (index,Value) in sleepAlarm.enumerated() {
-                    let alarm:UserAlarm = Value as! UserAlarm
+                    let alarm:UserAlarm = Value
                     let alarmDay:Date = Date(timeIntervalSince1970: alarm.timer)
                     print("alarmDay:\(alarmDay),alarm:\(alarm.type,alarm.status,alarm.dayOfWeek,date.weekday)")
                     if alarm.type == 1 && alarm.status && alarm.dayOfWeek == date.weekday{

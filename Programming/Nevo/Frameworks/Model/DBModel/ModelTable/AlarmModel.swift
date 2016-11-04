@@ -8,6 +8,7 @@
 
 import UIKit
 import FMDB
+import XCGLogger
 
 class AlarmModel: UserDatabaseHelper {
     var timer:TimeInterval = 0.0
@@ -34,21 +35,26 @@ class AlarmModel: UserDatabaseHelper {
             var tableName:String =  NSStringFromClass(self.classForCoder())
             tableName = tableName.replacingOccurrences(of: ".", with: "")
             let sql:String = "SELECT * FROM \(tableName) \(criteria)"
-            let resultSet:FMResultSet = db!.executeQuery(sql, withArgumentsIn: nil)
-            while (resultSet.next()) {
-                let model:AlarmModel = AlarmModel()
-
-                for i:Int in 0 ..< model.columeNames.count {
-                    let columeName:NSString = (model.columeNames.object(at: i) as! NSString)
-                    let columeType:NSString = (model.columeTypes.object(at: i) as! NSString)
-                    if (columeType.isEqual(to: SQLTEXT)) {
-                        model.setValue(resultSet.string(forColumn: "\(columeName)"), forKey: "\(columeName)")
-                    } else {
-                        model.setValue(NSNumber(value: resultSet.longLongInt(forColumn: "\(columeName)") as Int64), forKey: "\(columeName)")
+            do {
+                let resultSet:FMResultSet = try db!.executeQuery(sql, values:[0,1,2,3])
+                while (resultSet.next()) {
+                    let model:AlarmModel = AlarmModel()
+                    
+                    for i:Int in 0 ..< model.columeNames.count {
+                        let columeName:NSString = (model.columeNames.object(at: i) as! NSString)
+                        let columeType:NSString = (model.columeTypes.object(at: i) as! NSString)
+                        if (columeType.isEqual(to: SQLTEXT)) {
+                            model.setValue(resultSet.string(forColumn: "\(columeName)"), forKey: "\(columeName)")
+                        } else {
+                            model.setValue(NSNumber(value: resultSet.longLongInt(forColumn: "\(columeName)") as Int64), forKey: "\(columeName)")
+                        }
                     }
+                    alarm.add(model)
                 }
-                alarm.add(model)
+            }catch let error as NSError  {
+                XCGLogger.default.debug("\(error)");
             }
+ 
         }
         return alarm;
     }
