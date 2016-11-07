@@ -137,10 +137,18 @@ class NewAddAlarmController: UITableViewController,ButtonManagerCallBack,Selecte
             let pickerDate:Date = Date(timeIntervalSince1970: timer)
             let pickerTimer:Int = pickerDate.hour * 60 + pickerDate.minute
             
-            if nowDateTime > pickerTimer {
-                repeatSelectedIndex = Date.tomorrow().weekday
-            } else {
-                repeatSelectedIndex = nowDate.weekday
+            var isEditing:Bool = false
+            for controller in self.navigationController!.viewControllers {
+                if controller is AlarmClockController {
+                    isEditing = controller.isEditing
+                }
+            }
+            if !isEditing {
+                if nowDateTime > pickerTimer {
+                    repeatSelectedIndex = Date.tomorrow().weekday
+                } else {
+                    repeatSelectedIndex = nowDate.weekday
+                }
             }
             
             mDelegate?.onDidAddAlarmAction(timer, name: name, repeatNumber: repeatSelectedIndex, alarmType: alarmTypeIndex)
@@ -171,18 +179,18 @@ class NewAddAlarmController: UITableViewController,ButtonManagerCallBack,Selecte
 
     // MARK: - Table view data source
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
-        switch ((indexPath as NSIndexPath).section){
+        switch (indexPath.section){
         case 0: break
 
         case 1:
-            if((indexPath as NSIndexPath).row == 0){
+            if(indexPath.row == 0){
                 let repeatControll:RepeatViewController = RepeatViewController()
                 repeatControll.selectedDelegate = self
                 repeatControll.selectedIndex = repeatSelectedIndex
                 self.navigationController?.pushViewController(repeatControll, animated: true)
             }
 
-            if((indexPath as NSIndexPath).row == 1){
+            if(indexPath.row == 1){
                 let selectedCell:UITableViewCell = tableView.cellForRow(at: indexPath)!
                 
                 let actionSheet:ActionSheetView = ActionSheetView(title: NSLocalizedString("add_alarm_label", comment: ""), message: nil, preferredStyle: UIAlertControllerStyle.alert)
@@ -249,7 +257,6 @@ class NewAddAlarmController: UITableViewController,ButtonManagerCallBack,Selecte
             var cellHeight:CGFloat = CGFloat(UserDefaults.standard.double(forKey: "k\(#file)HeightForDatePickerView"))
             if cellHeight != 0 {
             } else {
-//                cellHeight =  tableView.dequeueReusableCell(withIdentifier: "AddAlarm_Date_identifier", for: indexPath).contentView.systemLayoutSizeFitting(UILayoutFittingCompressedSize).height
                 cellHeight = AddAlarmTableViewCell.factory().frame.height
                 UserDefaults.standard.set(Double(cellHeight), forKey: "k\(#file)HeightForDatePickerView")
             }
@@ -263,6 +270,7 @@ class NewAddAlarmController: UITableViewController,ButtonManagerCallBack,Selecte
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if section == 0 {
             let  headerCell:NewAddAlarmHeader = tableView.dequeueReusableHeaderFooterView(withIdentifier: "identifier_header") as! NewAddAlarmHeader
+            headerCell.alarmType.selectedSegmentIndex = alarmTypeIndex
             if !AppTheme.isTargetLunaR_OR_Nevo() {
                 headerCell.alarmType.tintColor = UIColor.getBaseColor()
                 headerCell.backgroundColor = UIColor.getGreyColor()
