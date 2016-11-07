@@ -28,9 +28,12 @@ class SetingInfoCell: UITableViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        avatarImageView.layer.cornerRadius = 0.5 * avatarImageView.layer.frame.width
-        avatarImageView.layer.masksToBounds = true
-        
+        let resultArray:NSArray = AppTheme.LoadKeyedArchiverName(NevoAllKeys.MEDAvatarKeyAfterSave() as NSString) as! NSArray
+        if resultArray.count > 0 {
+            avatarImageView.layer.cornerRadius = 0.5 * avatarImageView.layer.frame.width
+            avatarImageView.layer.masksToBounds = true
+        }
+
         if !AppTheme.isTargetLunaR_OR_Nevo() {
             emailLabel.textColor = UIColor.white
             userName.textColor = UIColor.white

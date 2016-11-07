@@ -309,7 +309,8 @@ class SetingViewController: UIViewController,ButtonManagerCallBack,UIAlertViewDe
                 (cell as! SetingInfoCell).userName.text = "\(userprofile.first_name) \(userprofile.last_name)"
                 
                 /// 每次 cell 显示前都给头像先设置成默认图片，不然切换用户时，原 imageView 的 image 因为没有被销毁，还是会显示成上个用户的头像。
-                (cell as! SetingInfoCell).avatarImageView.image = UIImage(named: "usericon")
+                let usericonImage = UIImage(named: "usericon")
+                (cell as! SetingInfoCell).avatarImageView.image = usericonImage
                 
                 let resultArray:NSArray = AppTheme.LoadKeyedArchiverName(NevoAllKeys.MEDAvatarKeyAfterSave() as NSString) as! NSArray
                 
