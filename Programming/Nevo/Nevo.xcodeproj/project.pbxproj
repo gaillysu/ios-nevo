@@ -62,7 +62,6 @@
 		0042C8B41C7DB3EF00177D3D /* NotAlarmView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0042C8B31C7DB3EF00177D3D /* NotAlarmView.xib */; };
 		00478F4F1A8F637D00D0DCE2 /* clockViewHour.png in Resources */ = {isa = PBXBuildFile; fileRef = 00478F4D1A8F637D00D0DCE2 /* clockViewHour.png */; };
 		00478F501A8F637D00D0DCE2 /* clockViewMinute.png in Resources */ = {isa = PBXBuildFile; fileRef = 00478F4E1A8F637D00D0DCE2 /* clockViewMinute.png */; };
-		004ED1F01CB386CC009D053C /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 004ED1EC1CB386CC009D053C /* Info.plist */; };
 		004ED1F11CB386CC009D053C /* iRate.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 004ED1ED1CB386CC009D053C /* iRate.bundle */; };
 		004F74DF1D800EAA0048BA09 /* UserProfileController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 004F74DE1D800EAA0048BA09 /* UserProfileController.xib */; };
 		0050D5F01C28E0DB004F6F80 /* MyNevoController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0050D52D1C28E0DB004F6F80 /* MyNevoController.xib */; };
@@ -371,7 +370,6 @@
 		00D474641D586D1600E2447E /* NevoOTARequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C9A1D224CFA009047AC /* NevoOTARequest.swift */; };
 		00D474651D586D1600E2447E /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C9B1D224CFA009047AC /* Utility.swift */; };
 		00D4747B1D586D1600E2447E /* SyncQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8CB31D224CFA009047AC /* SyncQueue.swift */; };
-		00D4747C1D586D1600E2447E /* Info.plist in Sources */ = {isa = PBXBuildFile; fileRef = 004ED1EC1CB386CC009D053C /* Info.plist */; };
 		00D4747D1D586D1600E2447E /* iRate.bundle in Sources */ = {isa = PBXBuildFile; fileRef = 004ED1ED1CB386CC009D053C /* iRate.bundle */; };
 		00D4747E1D586D1600E2447E /* iRate.h in Sources */ = {isa = PBXBuildFile; fileRef = 004ED1EE1CB386CC009D053C /* iRate.h */; };
 		00D4747F1D586D1600E2447E /* iRate.m in Sources */ = {isa = PBXBuildFile; fileRef = 004ED1EF1CB386CC009D053C /* iRate.m */; };
@@ -542,7 +540,6 @@
 		611D41A81DCAD97D003BC6E3 /* WriteSettingRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8CB21D224CFA009047AC /* WriteSettingRequest.swift */; };
 		611D41A91DCAD97D003BC6E3 /* GetWatchName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005E46891D879FB5009B6E4C /* GetWatchName.swift */; };
 		611D41AA1DCAD97D003BC6E3 /* SyncQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8CB31D224CFA009047AC /* SyncQueue.swift */; };
-		611D41AB1DCAD97D003BC6E3 /* Info.plist in Sources */ = {isa = PBXBuildFile; fileRef = 004ED1EC1CB386CC009D053C /* Info.plist */; };
 		611D41AC1DCAD97D003BC6E3 /* iRate.bundle in Sources */ = {isa = PBXBuildFile; fileRef = 004ED1ED1CB386CC009D053C /* iRate.bundle */; };
 		611D41AD1DCAD97D003BC6E3 /* iRate.h in Sources */ = {isa = PBXBuildFile; fileRef = 004ED1EE1CB386CC009D053C /* iRate.h */; };
 		611D41AE1DCAD97D003BC6E3 /* iRate.m in Sources */ = {isa = PBXBuildFile; fileRef = 004ED1EF1CB386CC009D053C /* iRate.m */; };
@@ -951,7 +948,6 @@
 		0042C8B31C7DB3EF00177D3D /* NotAlarmView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NotAlarmView.xib; sourceTree = "<group>"; };
 		00478F4D1A8F637D00D0DCE2 /* clockViewHour.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clockViewHour.png; sourceTree = "<group>"; };
 		00478F4E1A8F637D00D0DCE2 /* clockViewMinute.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clockViewMinute.png; sourceTree = "<group>"; };
-		004ED1EC1CB386CC009D053C /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		004ED1ED1CB386CC009D053C /* iRate.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = iRate.bundle; sourceTree = "<group>"; };
 		004ED1EE1CB386CC009D053C /* iRate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iRate.h; sourceTree = "<group>"; };
 		004ED1EF1CB386CC009D053C /* iRate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iRate.m; sourceTree = "<group>"; };
@@ -1541,7 +1537,6 @@
 		004ED1EB1CB386CC009D053C /* iRate */ = {
 			isa = PBXGroup;
 			children = (
-				004ED1EC1CB386CC009D053C /* Info.plist */,
 				004ED1ED1CB386CC009D053C /* iRate.bundle */,
 				004ED1EE1CB386CC009D053C /* iRate.h */,
 				004ED1EF1CB386CC009D053C /* iRate.m */,
@@ -3171,7 +3166,6 @@
 				0089B0AE1D6BFF250041148A /* SetingInfoCell.xib in Resources */,
 				0036EB0D1C48C36700DCED46 /* bluetoothoff_background.png in Resources */,
 				0063BC4F1D98D641000BAB44 /* ProfileSetupViewController.xib in Resources */,
-				004ED1F01CB386CC009D053C /* Info.plist in Resources */,
 				614662A71DC9D715001E57CC /* lunar_search.png in Resources */,
 				001F1B7C1B57777B001DD426 /* nevo_wacth.png in Resources */,
 				0036EB051C48BA8300DCED46 /* connected.png in Resources */,
@@ -3714,7 +3708,6 @@
 				00D474641D586D1600E2447E /* NevoOTARequest.swift in Sources */,
 				00D474651D586D1600E2447E /* Utility.swift in Sources */,
 				00D4747B1D586D1600E2447E /* SyncQueue.swift in Sources */,
-				00D4747C1D586D1600E2447E /* Info.plist in Sources */,
 				00D4747D1D586D1600E2447E /* iRate.bundle in Sources */,
 				00D4747E1D586D1600E2447E /* iRate.h in Sources */,
 				6688A65B1DC981980078E636 /* MEDBaseGetRequest.swift in Sources */,
@@ -3894,7 +3887,6 @@
 				611D41A81DCAD97D003BC6E3 /* WriteSettingRequest.swift in Sources */,
 				611D41A91DCAD97D003BC6E3 /* GetWatchName.swift in Sources */,
 				611D41AA1DCAD97D003BC6E3 /* SyncQueue.swift in Sources */,
-				611D41AB1DCAD97D003BC6E3 /* Info.plist in Sources */,
 				611D41AC1DCAD97D003BC6E3 /* iRate.bundle in Sources */,
 				611D41AD1DCAD97D003BC6E3 /* iRate.h in Sources */,
 				611D41AE1DCAD97D003BC6E3 /* iRate.m in Sources */,
