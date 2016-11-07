@@ -104,16 +104,19 @@ class AlarmClockController: UITableViewController,AddAlarmDelegate {
 
         if(sender.isKind(of: UISwitch.classForCoder())){
             let mSwitch:UISwitch = sender as! UISwitch
-            updateNewAlarmSwicthData(alarmArray: &weakeArray,index: mSwitch.tag,status:mSwitch.isOn)
+            updateNewAlarmSwicthData(alarmArray: &weakeArray,mSwitch: mSwitch)
         }
     }
     
     func sleepSwitchManager(_ sender:UISwitch) {
-        updateNewAlarmSwicthData(alarmArray: &sleepArray,index: sender.tag,status:sender.isOn)
+        updateNewAlarmSwicthData(alarmArray: &sleepArray,mSwitch:sender)
         //self.tableView.reloadData()
     }
 
-    func updateNewAlarmSwicthData(alarmArray: inout [UserAlarm],index:Int,status:Bool) {
+    func updateNewAlarmSwicthData(alarmArray: inout [UserAlarm],mSwitch:UISwitch) {
+        let index:Int = mSwitch.tag
+        let alarmModel:UserAlarm =  alarmArray[index]
+        
         var alarmCount:Int = 0
         for alarm in alarmArray{
             let alarmModel:UserAlarm =  alarm
@@ -126,21 +129,21 @@ class AlarmClockController: UITableViewController,AddAlarmDelegate {
         if(alarmCount<7){
             isStatus = true
         }
-
-        let alarmModel:UserAlarm =  alarmArray[index]
+        
         if(isStatus) {
-            let addalarm:UserAlarm = UserAlarm(keyDict: ["id":alarmModel.id,"timer":alarmModel.timer,"label":"\(alarmModel.label)","status":status ? isStatus:status,"repeatStatus":false,"dayOfWeek":alarmModel.dayOfWeek,"type":alarmModel.type])
+            let addalarm:UserAlarm = UserAlarm(keyDict: ["id":alarmModel.id,"timer":alarmModel.timer,"label":"\(alarmModel.label)","status":mSwitch.isOn ? isStatus:false,"repeatStatus":false,"dayOfWeek":alarmModel.dayOfWeek==0 ? 1:alarmModel.dayOfWeek,"type":alarmModel.type])
             let res:Bool = addalarm.update()
             let date:Date = Date(timeIntervalSince1970: addalarm.timer)
-            let newAlarm:NewAlarm = NewAlarm(alarmhour: date.hour, alarmmin: date.minute, alarmNumber: addalarm.type == 1 ? (index+7):index, alarmWeekday: status ? addalarm.dayOfWeek:0)
+            let newAlarm:NewAlarm = NewAlarm(alarmhour: date.hour, alarmmin: date.minute, alarmNumber: addalarm.type == 1 ? (index+7):index, alarmWeekday: mSwitch.isOn ? addalarm.dayOfWeek:0)
             if(AppDelegate.getAppDelegate().isConnected() && res){
                 AppDelegate.getAppDelegate().setNewAlarm(newAlarm)
-                alarmArray.replaceSubrange(index..<index+1, with: [addalarm])
                 self.SyncAlarmAlertView()
             }else{
                 self.willSyncAlarmAlertView()
             }
-            self.tableView.reloadData()
+            alarmArray.replaceSubrange(index..<index+1, with: [addalarm])
+            //initValue()
+            //self.tableView.reloadData()
         }else{
             let titleString:String = NSLocalizedString("alarmTitle", comment: "")
             let msg:String = NSLocalizedString("Nevo supports only 7 alarms for now.", comment: "")
@@ -156,7 +159,6 @@ class AlarmClockController: UITableViewController,AddAlarmDelegate {
         }
 
     }
-
 
     /**
      Will sync when nevo is connected
@@ -241,8 +243,8 @@ class AlarmClockController: UITableViewController,AddAlarmDelegate {
                 if(completion!){
                     addalarm.id = id!
                     if(AppDelegate.getAppDelegate().isConnected()){
-                        let kk = self.oldAlarmArray.filter{$0.getEnable() == true}
-                        AppDelegate.getAppDelegate().setAlarm(kk)
+                        let oldAlarm = self.oldAlarmArray.filter{$0.getEnable() == true}
+                        AppDelegate.getAppDelegate().setAlarm(oldAlarm)
                     }
                 }else{
                     let aler:UIAlertView = UIAlertView(title: "Tip", message: "Database insert fail", delegate: nil, cancelButtonTitle: "ok")
@@ -271,9 +273,9 @@ class AlarmClockController: UITableViewController,AddAlarmDelegate {
             var alarmModel:UserAlarm?
             if weakeArray.count>0 && sleepArray.count>0 {
                 if slectedPath!.section == 0 {
-                    alarmModel = weakeArray[slectedPath!.row]
-                }else{
                     alarmModel = sleepArray[slectedPath!.row]
+                }else{
+                    alarmModel = weakeArray[slectedPath!.row]
                 }
             }else{
                 if weakeArray.count>0 {
@@ -284,7 +286,8 @@ class AlarmClockController: UITableViewController,AddAlarmDelegate {
                 }
             }
             
-            let addalarm:UserAlarm = UserAlarm(keyDict: ["id":alarmModel!.id,"timer":timer,"label":"\(name)","status":alarmModel!.status,"repeatStatus":false,"dayOfWeek":repeatNumber,"type":alarmType])
+            let switchStatus:Bool = (repeatNumber == 0) ? false:alarmModel!.status
+            let addalarm:UserAlarm = UserAlarm(keyDict: ["id":alarmModel!.id,"timer":timer,"label":"\(name)","status":switchStatus,"repeatStatus":false,"dayOfWeek":repeatNumber,"type":alarmType])
             if(addalarm.update()){
                 self.initValue()
                 self.isEditing = false
@@ -317,10 +320,6 @@ class AlarmClockController: UITableViewController,AddAlarmDelegate {
             addalarm.add({ (id, completion) -> Void in
                 if(completion!){
                     addalarm.id = id!
-                    //self.mAlarmArray.append(addalarm)
-                    self.initValue()
-                    self.tableView.reloadData()
-
                     let date:Date = Date(timeIntervalSince1970: timer)
                     let newAlarm:NewAlarm = NewAlarm(alarmhour: date.hour, alarmmin: date.minute, alarmNumber: (alarmType == 1) ? sleepAlarmCount:dayAlarmCount, alarmWeekday: repeatNumber)
 
@@ -337,6 +336,8 @@ class AlarmClockController: UITableViewController,AddAlarmDelegate {
                     aler.show()
                 }
             })
+            self.initValue()
+            self.tableView.reloadData()
         }
     }
 
@@ -447,7 +448,8 @@ class AlarmClockController: UITableViewController,AddAlarmDelegate {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let endCell:AlarmClockVCell = tableView.dequeueReusableCell(withIdentifier: "alarmCell", for: indexPath) as! AlarmClockVCell
         endCell.selectionStyle = UITableViewCellSelectionStyle.none
-
+        
+        
         var alarmModel:UserAlarm?
         if weakeArray.count>0 && sleepArray.count>0 {
             if indexPath.section == 0 {
@@ -463,7 +465,8 @@ class AlarmClockController: UITableViewController,AddAlarmDelegate {
                 alarmModel = sleepArray[indexPath.row]
             }
         }
-        
+        endCell.alarmSwicth.isOn = alarmModel!.status
+        endCell.alarmSwicth.tag = indexPath.row
         endCell.contentView.backgroundColor = UIColor.white
         if !AppTheme.isTargetLunaR_OR_Nevo() {
             endCell.backgroundColor = UIColor.getGreyColor()
@@ -477,15 +480,23 @@ class AlarmClockController: UITableViewController,AddAlarmDelegate {
         let dayArray:[String] = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]
         let date:Date = Date(timeIntervalSince1970: alarmModel!.timer)
         
-        if alarmModel!.dayOfWeek != Date().weekday {
-            if alarmModel?.dayOfWeek == 0 {
-                alarmModel?.dayOfWeek = 2
-            }
-            endCell.alarmIn.text = NSLocalizedString("alarm_on", comment: "")+NSLocalizedString(dayArray[alarmModel!.dayOfWeek-1], comment: "")
+        if !alarmModel!.status {
+            endCell.alarmIn.text = NSLocalizedString("alarm_disabled", comment: "")
         }else{
             let nowHour:Int = abs(date.hour-Date().hour)
             let noeMinte:Int = abs(date.minute-Date().minute)
             endCell.alarmIn.text = NSLocalizedString("alarm_in", comment: "")+"\(nowHour)h \(noeMinte)m"
+            if Date().weekday != alarmModel!.dayOfWeek-1 {
+                if alarmModel!.dayOfWeek == 0 {
+                    alarmModel?.dayOfWeek = Date().weekday
+                    _ = alarmModel?.update()
+                    endCell.alarmIn.text = NSLocalizedString("alarm_on", comment: "")+NSLocalizedString(dayArray[Date().weekday], comment: "")
+                }else{
+                    endCell.alarmIn.text = NSLocalizedString("alarm_on", comment: "")+NSLocalizedString(dayArray[alarmModel!.dayOfWeek-1], comment: "")
+                }
+            }else{
+                endCell.alarmIn.text = NSLocalizedString("alarm_in", comment: "")+"\(nowHour)h \(noeMinte)m"
+            }
         }
         
         endCell.dateLabel.text = stringFromDate(date)
@@ -494,17 +505,24 @@ class AlarmClockController: UITableViewController,AddAlarmDelegate {
             endCell.titleLabel.text = NSLocalizedString("alarmTitle", comment: "")
         }
         
-        endCell.alarmSwicth.tag = (indexPath as NSIndexPath).row
-        endCell.alarmSwicth.isOn = alarmModel!.status
         
-        if !endCell.alarmSwicth.isOn {
-            endCell.alarmIn.text = NSLocalizedString("alarm_disabled", comment: "")
-        }
-        
-        if alarmModel!.type == 1 {
-            endCell.alarmSwicth.addTarget(self, action: #selector(sleepSwitchManager(_:)), for: UIControlEvents.valueChanged)
-        }else{
-            endCell.alarmSwicth.addTarget(self, action: #selector(controllManager(_:)), for: UIControlEvents.valueChanged)
+        endCell.actionCallBack = {
+            (sender) -> Void in
+            let segment:UISwitch = sender as! UISwitch
+            if self.weakeArray.count>0 && self.sleepArray.count>0 {
+                if indexPath.section == 0 {
+                    self.updateNewAlarmSwicthData(alarmArray: &self.sleepArray,mSwitch:segment)
+                }else{
+                    self.updateNewAlarmSwicthData(alarmArray: &self.weakeArray,mSwitch:segment)
+                }
+            }else{
+                if self.weakeArray.count>0 {
+                    self.updateNewAlarmSwicthData(alarmArray: &self.weakeArray,mSwitch:segment)
+                }
+                if self.sleepArray.count>0 {
+                    self.updateNewAlarmSwicthData(alarmArray: &self.sleepArray,mSwitch:segment)
+                }
+            }
         }
         return endCell
     }
