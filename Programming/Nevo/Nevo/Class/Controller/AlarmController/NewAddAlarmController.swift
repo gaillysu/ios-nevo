@@ -164,7 +164,7 @@ class NewAddAlarmController: UITableViewController,ButtonManagerCallBack,Selecte
         if(cell != nil) {
             cell!.detailTextLabel?.text = name
         }
-        repeatSelectedIndex = value
+        repeatSelectedIndex = value+1
     }
 
     // MARK: - SelectedSleepTypeDelegate
@@ -316,7 +316,6 @@ class NewAddAlarmController: UITableViewController,ButtonManagerCallBack,Selecte
             if((indexPath as NSIndexPath).row == 0) {
                 cell.textLabel?.text = NSLocalizedString("\(titleArray[(indexPath as NSIndexPath).row])", comment: "")
                 let repeatDayArray:[String] = [
-                    NSLocalizedString("Disable", comment: ""),
                     NSLocalizedString("Sunday", comment: ""),
                     NSLocalizedString("Monday", comment: ""),
                     NSLocalizedString("Tuesday", comment: ""),

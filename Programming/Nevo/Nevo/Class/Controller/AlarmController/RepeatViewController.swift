@@ -18,7 +18,6 @@ class RepeatViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     let RepeatDayArray:[String] = [
-        NSLocalizedString("Disable", comment: ""),
         NSLocalizedString("Sunday", comment: ""),
         NSLocalizedString("Monday", comment: ""),
         NSLocalizedString("Tuesday", comment: ""),
@@ -29,6 +28,8 @@ class RepeatViewController: UIViewController {
     var selectedIndex:Int = 0
     var selectedDelegate:SelectedRepeatDelegate?
 
+    var actionCallBack:((_ sender:AnyObject) -> Void)?
+    
     init() {
         super.init(nibName: "RepeatViewController", bundle: Bundle.main)
     }
@@ -42,7 +43,6 @@ class RepeatViewController: UIViewController {
         self.navigationItem.title = NSLocalizedString("Repeat", comment: "")
         
         self.automaticallyAdjustsScrollViewInsets = false
-//        tableView.separatorColor = UIColor.getLightBaseColor()
         tableView.separatorStyle = UITableViewCellSeparatorStyle.singleLine
         tableView.tableFooterView = UIView()
         tableView.contentInset = UIEdgeInsets(top: 50, left: 0, bottom: 0, right: 0)
@@ -76,8 +76,8 @@ class RepeatViewController: UIViewController {
     // MARK: - Table view data source
     func tableView(_ tableView: UITableView, didSelectRowAtIndexPath indexPath: IndexPath){
         tableView.deselectRow(at: indexPath, animated: true)
-        selectedDelegate?.onSelectedRepeatAction((indexPath as NSIndexPath).row, name: RepeatDayArray[(indexPath as NSIndexPath).row])
-
+        selectedDelegate?.onSelectedRepeatAction(indexPath.row, name: RepeatDayArray[(indexPath as NSIndexPath).row])
+        actionCallBack?(indexPath as AnyObject)
         selectedIndex = (indexPath as NSIndexPath).row
         for cell in tableView.visibleCells {
             cell.accessoryView = nil

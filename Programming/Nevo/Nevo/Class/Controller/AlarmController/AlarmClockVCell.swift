@@ -14,6 +14,7 @@ class AlarmClockVCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var alarmSwicth: UISwitch!
     @IBOutlet weak var alarmIn: UILabel!
+    var actionCallBack:((_ sender:Any) -> Void)?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -26,4 +27,7 @@ class AlarmClockVCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    @IBAction func controllManager(_ sender: Any) {
+        actionCallBack?(sender)
+    }
 }
