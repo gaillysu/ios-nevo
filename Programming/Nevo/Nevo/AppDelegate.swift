@@ -115,9 +115,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
         //lastSync = userDefaults.double(forKey: LAST_SYNC_DATE_KEY)
         
         adjustLaunchLogic()
-        
-        //cancel all notifications  PM-13:00, PM 19:00
-        LocalNotification.sharedInstance().cancelNotification([NevoAllKeys.LocalStartSportKey(),NevoAllKeys.LocalEndSportKey()])
 
         //Rate our app Pop-up
         iRate.sharedInstance().messageTitle = NSLocalizedString("Rate Nevo", comment: "")
