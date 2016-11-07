@@ -241,8 +241,8 @@ class AlarmClockController: UITableViewController,AddAlarmDelegate {
                 if(completion!){
                     addalarm.id = id!
                     if(AppDelegate.getAppDelegate().isConnected()){
-                        let kk = self.oldAlarmArray.filter{$0.getEnable() == true}
-                        AppDelegate.getAppDelegate().setAlarm(kk)
+                        let oldAlarm = self.oldAlarmArray.filter{$0.getEnable() == true}
+                        AppDelegate.getAppDelegate().setAlarm(oldAlarm)
                     }
                 }else{
                     let aler:UIAlertView = UIAlertView(title: "Tip", message: "Database insert fail", delegate: nil, cancelButtonTitle: "ok")
@@ -271,9 +271,9 @@ class AlarmClockController: UITableViewController,AddAlarmDelegate {
             var alarmModel:UserAlarm?
             if weakeArray.count>0 && sleepArray.count>0 {
                 if slectedPath!.section == 0 {
-                    alarmModel = weakeArray[slectedPath!.row]
-                }else{
                     alarmModel = sleepArray[slectedPath!.row]
+                }else{
+                    alarmModel = weakeArray[slectedPath!.row]
                 }
             }else{
                 if weakeArray.count>0 {
@@ -317,10 +317,6 @@ class AlarmClockController: UITableViewController,AddAlarmDelegate {
             addalarm.add({ (id, completion) -> Void in
                 if(completion!){
                     addalarm.id = id!
-                    //self.mAlarmArray.append(addalarm)
-                    self.initValue()
-                    self.tableView.reloadData()
-
                     let date:Date = Date(timeIntervalSince1970: timer)
                     let newAlarm:NewAlarm = NewAlarm(alarmhour: date.hour, alarmmin: date.minute, alarmNumber: (alarmType == 1) ? sleepAlarmCount:dayAlarmCount, alarmWeekday: repeatNumber)
 
@@ -337,6 +333,8 @@ class AlarmClockController: UITableViewController,AddAlarmDelegate {
                     aler.show()
                 }
             })
+            self.initValue()
+            self.tableView.reloadData()
         }
     }
 
