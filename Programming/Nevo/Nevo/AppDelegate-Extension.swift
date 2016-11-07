@@ -246,10 +246,13 @@ extension AppDelegate {
             }
         }
         
-        /****🌹🌹🌹🌹🌹🌹🌹🌹🌹🌹🌹🌹🌹  TEST  🌹🌹🌹🌹🌹🌹🌹🌹🌹🌹🌹🌹🌹🌹🌹*****/
+        /// Alter the entry of app here when testing a single module.
+        /// 🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧
+        
 //        AppDelegate.getAppDelegate().window? = UIWindow(frame: UIScreen.main.bounds)
 //        AppDelegate.getAppDelegate().window?.rootViewController = SunriseSetController()
 //        AppDelegate.getAppDelegate().window?.makeKeyAndVisible()
-        /*****🌹🌹🌹🌹🌹🌹🌹🌹🌹🌹🌹🌹🌹🌹🌹🌹🌹🌹🌹🌹🌹🌹🌹🌹🌹🌹🌹🌹🌹*****/
+        
+        /// 🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧
     }
 }
