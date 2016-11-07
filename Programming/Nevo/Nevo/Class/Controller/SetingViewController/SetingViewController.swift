@@ -91,11 +91,7 @@ class SetingViewController: UIViewController,ButtonManagerCallBack,UIAlertViewDe
             let user:NSArray = UserProfile.getAll()
             if user.count == 0 {
                 let login:LoginController = LoginController()
-//                login.skipButton.isHidden = true
-//                login.hidesBottomBarWhenPushed = true
-//                self.navigationController?.pushViewController(login, animated: true)
                 let naviController = UINavigationController(rootViewController: login)
-//                naviController.isNavigationBarHidden = true
                 self.present(naviController, animated: true, completion: nil)
             }else{
                 let userprofile:UserProfileController = UserProfileController()
@@ -311,6 +307,9 @@ class SetingViewController: UIViewController,ButtonManagerCallBack,UIAlertViewDe
                 let userprofile:UserProfile = user[0] as! UserProfile
                 (cell as! SetingInfoCell).emailLabel.text = userprofile.email
                 (cell as! SetingInfoCell).userName.text = "\(userprofile.first_name) \(userprofile.last_name)"
+                
+                /// 每次 cell 显示前都给头像先设置成默认图片，不然切换用户时，原 imageView 的 image 因为没有被销毁，还是会显示成上个用户的头像。
+                (cell as! SetingInfoCell).avatarImageView.image = UIImage(named: "usericon")
                 
                 let resultArray:NSArray = AppTheme.LoadKeyedArchiverName(NevoAllKeys.MEDAvatarKeyAfterSave() as NSString) as! NSArray
                 
