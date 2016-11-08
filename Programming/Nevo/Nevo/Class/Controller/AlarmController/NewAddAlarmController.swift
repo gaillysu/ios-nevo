@@ -23,6 +23,15 @@ class NewAddAlarmController: UITableViewController,ButtonManagerCallBack,Selecte
     
     var isOverdue:Bool = false
     
+    fileprivate let repeatDayArray:[String] = [
+        NSLocalizedString("Sunday", comment: ""),
+        NSLocalizedString("Monday", comment: ""),
+        NSLocalizedString("Tuesday", comment: ""),
+        NSLocalizedString("Wednesday", comment: ""),
+        NSLocalizedString("Thursday", comment: ""),
+        NSLocalizedString("Friday", comment: ""),
+        NSLocalizedString("Saturday", comment: "")]
+    
     init() {
         super.init(nibName: "NewAddAlarmController", bundle: Bundle.main)
     }
@@ -310,23 +319,17 @@ class NewAddAlarmController: UITableViewController,ButtonManagerCallBack,Selecte
             cell.preservesSuperviewLayoutMargins = false;
             cell.separatorInset = UIEdgeInsets.zero;
             cell.layoutMargins = UIEdgeInsets.zero;
-            
             cell.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
             cell.selectionStyle = UITableViewCellSelectionStyle.none;
-            if((indexPath as NSIndexPath).row == 0) {
-                cell.textLabel?.text = NSLocalizedString("\(titleArray[(indexPath as NSIndexPath).row])", comment: "")
-                let repeatDayArray:[String] = [
-                    NSLocalizedString("Sunday", comment: ""),
-                    NSLocalizedString("Monday", comment: ""),
-                    NSLocalizedString("Tuesday", comment: ""),
-                    NSLocalizedString("Wednesday", comment: ""),
-                    NSLocalizedString("Thursday", comment: ""),
-                    NSLocalizedString("Friday", comment: ""),
-                    NSLocalizedString("Saturday", comment: "")]
+            if(indexPath.row == 0) {
+                cell.textLabel?.text = NSLocalizedString("\(titleArray[indexPath.row])", comment: "")
                 cell.detailTextLabel?.text = repeatDayArray[repeatSelectedIndex]
-            }else if((indexPath as NSIndexPath).row == 1) {
-                cell.textLabel?.text = NSLocalizedString("\(titleArray[(indexPath as NSIndexPath).row])", comment: "")
+            }else if(indexPath.row == 1) {
+                cell.textLabel?.text = NSLocalizedString("\(titleArray[indexPath.row])", comment: "")
                 cell.detailTextLabel?.text = name
+            }
+            if !AppTheme.isTargetLunaR_OR_Nevo() {
+                cell.backgroundColor = UIColor.getGreyColor()
             }
             
             return cell
