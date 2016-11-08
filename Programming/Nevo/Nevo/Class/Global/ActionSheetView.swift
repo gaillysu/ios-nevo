@@ -41,7 +41,12 @@ class ActionSheetView: UIAlertController {
             UIApplication.shared.keyWindow?.subviewsSatisfy(theCondition: { (v) -> (Bool) in
                 return v.classForCoder == NSClassFromString("_UIAlertControlleriOSActionSheetCancelBackgroundView")
             }, do: { (v) in
-                v.backgroundColor = UIColor.clear
+                v.backgroundColor = UIColor.getGreyColor()
+                v.allSubviews(do: { (v) in
+                    if v.isMember(of: UIView.classForCoder()) {
+                        v.backgroundColor = UIColor.getGreyColor()
+                    }
+                })
             })
             
             
