@@ -232,7 +232,7 @@ extension AnalysisController:UICollectionViewDelegate,UICollectionViewDataSource
                 }
 
                 analysisCell.updateChartData(dataArray[indexPath.row] as! NSArray, chartType: segmented.selectedSegmentIndex,rowIndex:indexPath.row, completionData: { (totalValue, totalCalores, totalTime) in
-                    self.contentTArray.replaceSubrange(Range(0..<1), with: [AppTheme.timerFormatValue(value: Double((18.0*avgNumber)-totalValue))])
+                    self.contentTArray.replaceSubrange(Range(0..<1), with: [AppTheme.timerFormatValue(value: Double((24.0*avgNumber)-totalValue))])
                     self.contentTArray.replaceSubrange(Range(1..<2), with: [AppTheme.timerFormatValue(value: Double(totalValue))])
                 });
             }

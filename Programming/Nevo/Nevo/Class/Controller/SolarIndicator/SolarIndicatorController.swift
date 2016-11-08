@@ -11,6 +11,7 @@ import Charts
 import SwiftEventBus
 import XCGLogger
 import RealmSwift
+import Timepiece
 
 class SolarIndicatorController: PublicClassController {
 
@@ -22,6 +23,7 @@ class SolarIndicatorController: PublicClassController {
     
     fileprivate var onTitle:[String] = [NSLocalizedString("timer_on_battery", comment: ""),NSLocalizedString("timer_on_solar", comment: "")]
     fileprivate var onValue:[Double] = [00,00]
+    fileprivate var selectedDate:Date = Date()
     
     init() {
         super.init(nibName: "SolarIndicatorController", bundle: Bundle.main)
@@ -41,6 +43,22 @@ class SolarIndicatorController: PublicClassController {
         pieChartView.delegate = self
         
         //Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(pvadcAction(_:)), userInfo: nil, repeats: true)
+    }
+    
+    func pvadcAction(_ timer:Timer) {
+        AppDelegate.getAppDelegate().sendRequest(PVADCRequest())
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        if !AppTheme.isTargetLunaR_OR_Nevo() {
+            textCollection.backgroundColor = UIColor.getGreyColor()
+            pieChartView.backgroundColor = UIColor.getGreyColor()
+            self.view.backgroundColor = UIColor.getGreyColor()
+            titleLabel.textColor = UIColor.white
+        }else{
+            textCollection.backgroundColor = UIColor.white
+            pieChartView.backgroundColor = UIColor.white
+        }
         
         //EVENT_BUS_RAWPACKET_DATA_KEY
         _ = SwiftEventBus.onMainThread(self, name: EVENT_BUS_RAWPACKET_DATA_KEY) { (notification) in
@@ -70,35 +88,26 @@ class SolarIndicatorController: PublicClassController {
             }
             
         }
-    }
-    
-    func pvadcAction(_ timer:Timer) {
-        AppDelegate.getAppDelegate().sendRequest(PVADCRequest())
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        if !AppTheme.isTargetLunaR_OR_Nevo() {
-            textCollection.backgroundColor = UIColor.getGreyColor()
-            pieChartView.backgroundColor = UIColor.getGreyColor()
-            self.view.backgroundColor = UIColor.getGreyColor()
-            titleLabel.textColor = UIColor.white
-        }else{
-            textCollection.backgroundColor = UIColor.white
-            pieChartView.backgroundColor = UIColor.white
-        }
         
         _ = SwiftEventBus.onMainThread(self, name: EVENT_BUS_END_BIG_SYNCACTIVITY) { (notification) in
-            
+            self.selectedDate = Date()
             self.updateChartData(date:Date())
         }
         
         _ = SwiftEventBus.onMainThread(self, name: SELECTED_CALENDAR_NOTIFICATION) { (notification) in
             let userinfo:Date = notification.userInfo!["selectedDate"] as! Date
+            self.selectedDate = userinfo
             self.updateChartData(date:userinfo)
         }
         
     }
 
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        SwiftEventBus.unregister(self, name: EVENT_BUS_END_BIG_SYNCACTIVITY)
+        SwiftEventBus.unregister(self, name: SELECTED_CALENDAR_NOTIFICATION)
+        SwiftEventBus.unregister(self, name: EVENT_BUS_RAWPACKET_DATA_KEY)
+    }
     override func viewDidAppear(_ animated: Bool) {
         self.updateChartData(date:Date())
         pieChartView.animate(xAxisDuration: 1.4, easingOption: ChartEasingOption.easeOutBack)
@@ -216,10 +225,18 @@ extension SolarIndicatorController:ChartViewDelegate {
          Time On Battery = Time Of Today (18:00 -> 1080min) - TotalHarvestingTime (200) = 880 -> 14 hours and 40 minutes
          Time On Solar = Total Harvesting Time (200) -> 3 hours and 20
          */
-        yVals1.append(BarChartDataEntry(value: value , xIndex: 0))
-        yVals1.append(BarChartDataEntry(value: 18.0-value , xIndex: 1))
+        let mDay:Date = Date()
+        var todayDate:Double = 0.0
+        if selectedDate.day == mDay.day {
+            todayDate = Double(mDay.hour)+Double(mDay.minute)/60.0
+        }else{
+            todayDate = 24.0
+        }
         
-        onValue.replaceSubrange(0..<1, with: [18.0-value])
+        yVals1.append(BarChartDataEntry(value: value , xIndex: 0))
+        yVals1.append(BarChartDataEntry(value: todayDate-value , xIndex: 1))
+        
+        onValue.replaceSubrange(0..<1, with: [todayDate-value])
         onValue.replaceSubrange(1..<2, with: [value])
         textCollection.reloadData();
         
