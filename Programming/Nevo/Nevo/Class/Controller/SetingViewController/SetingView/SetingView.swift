@@ -18,13 +18,10 @@ class SetingView: UIView {
     var mSendLocalNotificationSwitchButton:UISwitch!
 
     func bulidNotificationViewUI(_ delegate:ButtonManagerCallBack){
-        //title.text = NSLocalizedString("Setting", comment: "")
         mDelegate = delegate
-        //tableListView.backgroundColor = UIColor.white
         tableListView.separatorColor = UIColor.lightGray
         if !AppTheme.isTargetLunaR_OR_Nevo() {
             tableListView.backgroundColor = UIColor.getLightBaseColor()
-            tableListView.separatorColor = UIColor.getLightBaseColor()
         }
     }
 

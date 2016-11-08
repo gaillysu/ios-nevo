@@ -41,7 +41,7 @@ class SetingViewController: UIViewController,ButtonManagerCallBack,UIAlertViewDe
         notificationList.tableListView.register(UINib(nibName:"SetingNotLoginCell" ,bundle: nil), forCellReuseIdentifier: "SetingNotLoginIdentifier")
         notificationList.tableListView.register(UINib(nibName:"SetingInfoCell" ,bundle: nil), forCellReuseIdentifier: "SetingInfoIdentifier")
         
-        SwiftEventBus.onMainThread(self, name: EVENT_BUS_CONNECTION_STATE_CHANGED_KEY) { (notification) in
+        _ = SwiftEventBus.onMainThread(self, name: EVENT_BUS_CONNECTION_STATE_CHANGED_KEY) { (notification) in
             self.checkConnection()
         }
         
@@ -320,7 +320,7 @@ class SetingViewController: UIViewController,ButtonManagerCallBack,UIAlertViewDe
                     }
                 }
                 
-                // MARK: - APPTHEME ADJUST
+                // MARK: - Theme
                 if !AppTheme.isTargetLunaR_OR_Nevo() {
                     cell.backgroundColor = UIColor.getGreyColor()
                     cell.contentView.backgroundColor = UIColor.getGreyColor()
