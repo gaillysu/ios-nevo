@@ -13,6 +13,7 @@ class TutorialSixViewController: UIViewController{
     @IBOutlet weak var tapToContinueButton: UIButton!
 
     @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var imageView: UIImageView!
     
     init() {
         super.init(nibName: "TutorialSixViewController", bundle: Bundle.main)
@@ -29,10 +30,6 @@ class TutorialSixViewController: UIViewController{
     }
     
     @IBAction func tapToContinueAction(_ sender: AnyObject) {
-        //self.navigationController?.popToRootViewControllerAnimated(true)
-        //let tutorialPageSeven = TutorialSevenViewController();
-        //self.navigationController?.pushViewController(tutorialPageSeven, animated: true)
-//        self.dismiss(animated: true, completion: nil)
         if let mainController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController() {
             UIApplication.shared.keyWindow?.rootViewController = mainController
         }
@@ -46,6 +43,7 @@ extension TutorialSixViewController {
             titleLabel.backgroundColor = UIColor.clear
             titleLabel.textColor = UIColor.white
             tapToContinueButton.backgroundColor = UIColor.getBaseColor()
+            imageView.image = UIImage(named: "lunar_connected")
         }
     }
 }

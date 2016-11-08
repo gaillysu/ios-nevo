@@ -16,6 +16,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TutorialSixViewController">
             <connections>
+                <outlet property="imageView" destination="58E-1z-a9k" id="heA-vK-QZq"/>
                 <outlet property="tapToContinueButton" destination="Lk4-Tf-XDL" id="7rr-De-vXv"/>
                 <outlet property="titleLabel" destination="doG-bJ-q3v" id="dLq-gX-34J"/>
                 <outlet property="view" destination="skn-7I-1ge" id="sUI-yC-ewk"/>

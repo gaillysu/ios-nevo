@@ -30,23 +30,7 @@ class PageViewController: UIPageViewController,UIActionSheetDelegate {
     fileprivate var normalControllers: [UIViewController] = []
     fileprivate var solarControllers: [UIViewController] = []
     
-    fileprivate var pagingControllers: [UIViewController] {
-        get {
-            if UserDefaults.standard.object(forKey: "WATCHNAME_KEY") != nil {
-                let value:Int = UserDefaults.standard.object(forKey: "WATCHNAME_KEY") as! Int
-                if value>1 {
-                    var t: [UIViewController] = [UIViewController]()
-                    t.append(contentsOf: self.normalControllers)
-                    t.append(contentsOf: self.solarControllers)
-                    return t
-                }
-            }
-            return self.normalControllers
-        }
-        set {
-            
-        }
-    }
+    fileprivate var pagingControllers: [UIViewController] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -68,28 +52,20 @@ class PageViewController: UIPageViewController,UIActionSheetDelegate {
         viewController3.view.tag = 2
         viewController3.view.backgroundColor = UIColor.white
         
-        normalControllers = [viewController1, viewController2,viewController3]
-        
-        let viewController4 = SunriseSetController()
-        viewController4.view.tag = 3
-        viewController4.view.backgroundColor = UIColor.white
-        
-        let viewController5 = SolarIndicatorController()
-        viewController5.view.tag = 4
-        viewController5.view.backgroundColor = UIColor.white
-        
-        solarControllers = [viewController4, viewController5]
+        pagingControllers = [viewController1, viewController2,viewController3]
         
         if UserDefaults.standard.object(forKey: "WATCHNAME_KEY") != nil {
             let value:Int = UserDefaults.standard.object(forKey: "WATCHNAME_KEY") as! Int
-            if value>1 {
+            if value == 3 {
                 let viewController4 = SunriseSetController()
-                viewController4.view.tag = 3
+                viewController4.view.tag = pagingControllers.count
                 viewController4.view.backgroundColor = UIColor.white
                 pagingControllers.append(viewController4)
-                
+            }
+            
+            if value>1 {
                 let viewController5 = SolarIndicatorController()
-                viewController5.view.tag = 4
+                viewController5.view.tag = pagingControllers.count
                 viewController5.view.backgroundColor = UIColor.white
                 pagingControllers.append(viewController5)
             }

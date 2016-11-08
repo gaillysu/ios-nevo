@@ -171,7 +171,7 @@ extension SolarIndicatorController:ChartViewDelegate {
     }
 
     func setupPieChartView(_ chartView:PieChartView) {
-        
+        chartView.descriptionTextColor = UIColor.white
         chartView.usePercentValuesEnabled = true
         chartView.drawSlicesUnderHoleEnabled = false
         chartView.holeRadiusPercent = 0.0
@@ -209,6 +209,7 @@ extension SolarIndicatorController:ChartViewDelegate {
         var yVals1:[ChartDataEntry] = []
         
         let solarData:SolarHarvest = solarValue[0]
+        let solarHourlyTime:String = solarData.solarHourlyTime;
         let value:Double = Double(solarData.solarTotalTime)/60.0
         
         /*

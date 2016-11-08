@@ -23,6 +23,7 @@ import SwiftyTimer
 import CoreLocation
 import Solar
 import Timepiece
+import RealmSwift
 
 let nevoDBDFileURL:String = "nevoDBName";
 let nevoDBNames:String = "nevo.sqlite";
@@ -42,10 +43,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
     fileprivate var savedDailyHistory:[NevoPacket.DailyHistory] = []
     fileprivate var currentDay:UInt8 = 0
     fileprivate var mAlertUpdateFW = false
-
-    fileprivate var disConnectAlert:UIAlertView?
-    fileprivate let alertUpdateTag:Int = 9000
-    
     fileprivate var watchID:Int = 1 {
         didSet {
             let info: [String : Int] = [EVENT_BUS_WATCHID_DIDCHANGE_KEY : watchID]
@@ -61,6 +58,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
     
     fileprivate var longitude:Double = 0
     fileprivate var latitude:Double = 0
+    fileprivate let realm:Realm = try! Realm()
     
     var isFirsttimeLaunch: Bool {
         get {
@@ -89,6 +87,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
         UIApplication.shared.statusBarStyle = UIStatusBarStyle.default
         
         IQKeyboardManager.sharedManager().enable = true
+        
+        _ = UserSteps.updateTable()
+        
+        _ = UserSleep.updateTable()
         
         //Start the logo for the first time
         if(!UserDefaults.standard.bool(forKey: "LaunchedDatabase")){
@@ -157,10 +159,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
     }
 
     func application(_ application: UIApplication , didReceive notification: UILocalNotification ) {
-        if (disConnectAlert == nil) {
-            disConnectAlert = UIAlertView(title: NSLocalizedString("BLE_LOST_TITLE", comment: ""), message: NSLocalizedString("BLE_CONNECTION_LOST", comment: ""), delegate: nil, cancelButtonTitle: NSLocalizedString("Ok", comment: ""))
-            disConnectAlert?.show()
-        }
+
     }
 
     // MARK: -dbPath
@@ -355,144 +354,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
 
             if(packet.getHeader() == ReadDailyTracker.HEADER()) {
                 let thispacket:DailyTrackerNevoPacket = packet.copy() as DailyTrackerNevoPacket
-
-                let timeStr:String = String(format: "%d" ,thispacket.getDateTimer())
-                if(timeStr.length() < 8 ) {
-                    return
+                let timerInterval:Date = thispacket.getDateTimer()
+                let timeStr:String = thispacket.getDateTimer().stringFromFormat("yyyyMMdd", locale: DateFormatter().locale)
+                
+                if watchID>1 {
+                    saveSolarHarvest(thispacket: thispacket, date: thispacket.getDateTimer())
                 }
                 
-                 let index = timeStr.index(timeStr.startIndex, offsetBy: 4)
-                let year:String = timeStr.substring(to: index)
+                //save steps
+                let hourlySteps = self.saveStepsToDataBase(thispacket: thispacket, date: timerInterval, dateString: timeStr)
                 
-                let range: Range = timeStr.index(timeStr.startIndex, offsetBy: 4)..<timeStr.index(timeStr.startIndex, offsetBy: 6)
-                let month:String = timeStr.substring(with: range)
-                
-                let range2: Range = timeStr.index(timeStr.startIndex, offsetBy: 6)..<timeStr.index(timeStr.startIndex, offsetBy: 8)
-                let day:String = timeStr.substring(with: range2)
-                
-                let timerInterval:Date = Date.date(year: year.toInt(), month: month.toInt(), day: day.toInt())
-                let timerInter:TimeInterval = timerInterval.timeIntervalSince1970
-
-                _ = UserSteps.updateTable()
-                let stepsArray = UserSteps.getCriteria("WHERE createDate = \(timeStr)")
-                let stepsModel:UserSteps = UserSteps()
-                stepsModel.uid = 0
-                stepsModel.steps = thispacket.getDailySteps()
-                stepsModel.goalsteps = thispacket.getStepsGoal()
-                stepsModel.distance = thispacket.getDailyDist()
-                stepsModel.hourlysteps = "\(AppTheme.toJSONString(thispacket.getHourlySteps() as AnyObject!))"
-                stepsModel.hourlydistance = "\(AppTheme.toJSONString(thispacket.getHourlyDist() as AnyObject!))"
-                stepsModel.calories = Double(thispacket.getDailyCalories())
-                stepsModel.hourlycalories = "\(AppTheme.toJSONString(thispacket.getHourlyCalories() as AnyObject!))"
-                stepsModel.inZoneTime = thispacket.getInZoneTime()
-                stepsModel.outZoneTime = thispacket.getOutZoneTime()
-                stepsModel.inactivityTime = thispacket.getDailyRunningDuration()+thispacket.getDailyWalkingDuration()
-                stepsModel.goalreach = Double(thispacket.getDailySteps())/Double(thispacket.getStepsGoal())
-                stepsModel.date = timerInter
-                stepsModel.createDate = "\(timeStr)"
-                stepsModel.walking_distance = thispacket.getDailyWalkingDistance()
-                stepsModel.walking_duration = thispacket.getDailyWalkingDuration()
-                stepsModel.walking_calories = thispacket.getDailyCalories()
-                stepsModel.running_distance = thispacket.getRunningDistance()
-                stepsModel.running_duration = thispacket.getDailyRunningDuration()
-                stepsModel.running_calories = thispacket.getDailyCalories()
-                
-                //upload steps data to Nevo service
-                let login:NSArray = UserProfile.getAll()
-                if login.count>0 {
-                    let profile:UserProfile = login[0] as! UserProfile
-                    let dateString:String = timerInterval.stringFromFormat("yyy-MM-dd")
-                    var caloriesValue:Int = 0
-                    var milesValue:Double = 0
-                    StepGoalSetingController.calculationData((stepsModel.walking_duration+stepsModel.running_duration), steps: stepsModel.steps, completionData: { (miles, calories) in
-                        caloriesValue = Int(calories)
-                        milesValue = miles
-                    })
-                    
-                    let activeTime: Int = stepsModel.walking_duration+stepsModel.running_duration
-                    /// TODO 2016-11-03
-                    /// distance should be Double ?
-                    /// Discussion: <#Say something#>
-                    MEDStepsNetworkManager.createSteps(uid: profile.id, steps: stepsModel.hourlysteps, date: dateString, activeTime: activeTime, calories: caloriesValue, distance: milesValue, completion: { (success: Bool) in
-                        if success {
-                            stepsModel.isUpload = true
-                            stepsModel.update()
-                        }
-                    })
-                }
-                if(stepsArray.count>0) {
-                    let step:UserSteps = stepsArray[0] as! UserSteps
-                    if(step.steps < thispacket.getDailySteps()) {
-                        XCGLogger.default.debug("Data that has been saved····")
-                        stepsModel.id = step.id
-                        DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.default).async(execute: { () -> Void in
-                            stepsModel.update()
-                        })
-                    }
-                }else {
-                    DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.default).async(execute: { () -> Void in
-                        stepsModel.add({ (id, completion) -> Void in
-                        })
-                        
-                    })
-                }
-
                 //save sleep data for every hour.
                 //save format: first write wake, then write sleep(light&deep)
-                _ = UserSleep.updateTable()
-                let sleepArray = UserSleep.getCriteria("WHERE date = \(timerInterval.timeIntervalSince1970)")
-                let model:UserSleep = UserSleep()
-                model.id = 0
-                model.date = timerInterval.timeIntervalSince1970
-                model.totalSleepTime = thispacket.getDailySleepTime()
-                model.hourlySleepTime = "\(AppTheme.toJSONString(thispacket.getHourlySleepTime() as AnyObject!))"
-                model.totalWakeTime = 0
-                model.hourlyWakeTime = "\(AppTheme.toJSONString(thispacket.getHourlyWakeTime() as AnyObject!))"
-                model.totalLightTime = 0
-                model.hourlyLightTime = "\(AppTheme.toJSONString(thispacket.getHourlyLightTime() as AnyObject!))"
-                model.totalDeepTime = 0
-                model.hourlyDeepTime = "\(AppTheme.toJSONString(thispacket.getHourlyDeepTime() as AnyObject!))"
-                
-                //upload sleep data to validic
-                //UPDATE_VALIDIC_REQUEST.updateSleepDataToValidic(NSArray(arrayLiteral: stepsModel))
-                if login.count>0 {
-                    let profile:UserProfile = login[0] as! UserProfile
-                    let dateString:String = timerInterval.stringFromFormat("yyy-MM-dd")
+                self.saveSleepToDataBase(thispacket: thispacket, date: timerInterval, dateString: timeStr)
 
-                    MEDSleepNetworkManager.createSleep(uid: profile.id, deepSleep: model.hourlyDeepTime, lightSleep: model.hourlyLightTime, wakeTime: model.hourlyWakeTime, date: dateString, completion: { (success:Bool) in
-                        model.isUpload = true
-                        _ = model.update()
-                    })
-                }
-                
-                if(sleepArray.count>0) {
-                    let sleep:UserSleep = sleepArray[0] as! UserSleep
-                    let localSleepArray:[Int] = AppTheme.jsonToArray(sleep.hourlySleepTime) as! [Int]
-                    var localTime:Int = 0
-                    
-                    for value in localSleepArray {
-                        localTime+=value
-                    }
-                    
-                    let currentSleepArray:[Int] = thispacket.getHourlySleepTime()
-                    var currentSleepTime:Int = 0
-                    for value in currentSleepArray {
-                        currentSleepTime+=value
-                    }
-                    
-                    if currentSleepTime>localTime {
-                        model.id = sleep.id
-                        DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.default).async(execute: { () -> Void in
-                            _ = model.update()
-                        })
-                    }
-                }else {
-                    DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.default).async(execute: { () -> Void in
-                        _ = model.add({ (id, completion) -> Void in
-                        })
-                        
-                    })
-                }
 
                 //TODO:crash  数组越界
                 if Int(currentDay)<savedDailyHistory.count {
@@ -650,39 +525,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                 let buttonString:String = NSLocalizedString("Update", comment: "")
                 let cancelString:String = NSLocalizedString("Cancel", comment: "")
 
-                if((UIDevice.current.systemVersion as NSString).floatValue >= 8.0){
-                    // is this necessary? i have to change the rootViewController's Class during launch, maybe...
-//                    let tabVC:UITabBarController = self.window?.rootViewController as! UITabBarController
-                    let tabVC = self.window?.rootViewController
-
-                    let actionSheet:ActionSheetView = ActionSheetView(title: titleString, message: msg, preferredStyle: UIAlertControllerStyle.alert)
-                    let alertAction1:AlertAction = AlertAction(title: cancelString, style: UIAlertActionStyle.cancel, handler: { ( alert) -> Void in
-
-                    })
-                    actionSheet.addAction(alertAction1)
-
-                    let alertAction2:AlertAction = AlertAction(title: buttonString, style: UIAlertActionStyle.default, handler: { ( alert) -> Void in
-                        let otaCont:NevoOtaViewController = NevoOtaViewController()
-                        let navigation:UINavigationController = UINavigationController(rootViewController: otaCont)
-                        tabVC?.present(navigation, animated: true, completion: nil)
-
-                    })
-                    actionSheet.addAction(alertAction2)
-                    if !AppTheme.isTargetLunaR_OR_Nevo() {
-                        alertAction1.setValue(UIColor.getBaseColor(), forKey: "titleTextColor")
-                        alertAction2.setValue(UIColor.getBaseColor(), forKey: "titleTextColor")
-                    }else{
-                        alertAction1.setValue(AppTheme.NEVO_SOLAR_YELLOW(), forKey: "titleTextColor")
-                        alertAction2.setValue(AppTheme.NEVO_SOLAR_YELLOW(), forKey: "titleTextColor")
-                    }
-                    tabVC?.present(actionSheet, animated: true, completion: nil)
+                let tabVC = self.window?.rootViewController
+                
+                let actionSheet:ActionSheetView = ActionSheetView(title: titleString, message: msg, preferredStyle: UIAlertControllerStyle.alert)
+                let alertAction1:AlertAction = AlertAction(title: cancelString, style: UIAlertActionStyle.cancel, handler: { ( alert) -> Void in
+                    
+                })
+                actionSheet.addAction(alertAction1)
+                
+                let alertAction2:AlertAction = AlertAction(title: buttonString, style: UIAlertActionStyle.default, handler: { ( alert) -> Void in
+                    let otaCont:NevoOtaViewController = NevoOtaViewController()
+                    let navigation:UINavigationController = UINavigationController(rootViewController: otaCont)
+                    tabVC?.present(navigation, animated: true, completion: nil)
+                    
+                })
+                actionSheet.addAction(alertAction2)
+                if !AppTheme.isTargetLunaR_OR_Nevo() {
+                    alertAction1.setValue(UIColor.getBaseColor(), forKey: "titleTextColor")
+                    alertAction2.setValue(UIColor.getBaseColor(), forKey: "titleTextColor")
                 }else{
-                    let actionSheet:UIAlertView = UIAlertView(title: titleString, message: msg, delegate: self, cancelButtonTitle: cancelString, otherButtonTitles: buttonString)
-                    actionSheet.layer.backgroundColor = AppTheme.NEVO_SOLAR_YELLOW().cgColor
-                    actionSheet.tintColor = AppTheme.NEVO_SOLAR_YELLOW()
-                    actionSheet.tag = alertUpdateTag
-                    actionSheet.show()
+                    alertAction1.setValue(AppTheme.NEVO_SOLAR_YELLOW(), forKey: "titleTextColor")
+                    alertAction2.setValue(AppTheme.NEVO_SOLAR_YELLOW(), forKey: "titleTextColor")
                 }
+                tabVC?.present(actionSheet, animated: true, completion: nil)
 
             }
         }
@@ -755,6 +620,160 @@ extension AppDelegate {
     
     func getLatitude() -> Double {
         return latitude;
+    }
+    
+    func saveSolarHarvest(thispacket:DailyTrackerNevoPacket,date:Date)  {
+        let login:NSArray = UserProfile.getAll()
+        let solar = realm.objects(SolarHarvest.self).filter("date = \(date.timeIntervalSince1970)")
+        
+        if solar.count == 0 {
+            let solarTime:SolarHarvest = SolarHarvest()
+            solarTime.date = date.timeIntervalSince1970
+            solarTime.solarTotalTime = thispacket.getTotalHarvestTime()
+            solarTime.solarHourlyTime = "\(AppTheme.toJSONString(thispacket.getHourlyHarestTime() as AnyObject!))"
+            if login.count>0 {
+                let profile:UserProfile = login[0] as! UserProfile
+                solarTime.uid = profile.id;
+            }
+            try! realm.write({
+                realm.add(solarTime)
+            })
+        }else{
+            let solarTime:SolarHarvest = solar[0] as SolarHarvest
+            try! realm.write({
+                solarTime.date = date.timeIntervalSince1970
+                solarTime.solarTotalTime = thispacket.getTotalHarvestTime()
+                solarTime.solarHourlyTime = "\(AppTheme.toJSONString(thispacket.getHourlyHarestTime() as AnyObject!))"
+                if login.count>0 {
+                    let profile:UserProfile = login[0] as! UserProfile
+                    solarTime.uid = profile.id;
+                }
+            })
+        }
+    }
+    
+    func saveStepsToDataBase(thispacket:DailyTrackerNevoPacket,date:Date,dateString:String) ->[Int] {
+        let stepsArray = UserSteps.getCriteria("WHERE createDate = \(dateString)")
+        let stepsModel:UserSteps = UserSteps()
+        stepsModel.uid = 0
+        stepsModel.steps = thispacket.getDailySteps()
+        stepsModel.goalsteps = thispacket.getStepsGoal()
+        stepsModel.distance = thispacket.getDailyDist()
+        stepsModel.hourlysteps = "\(AppTheme.toJSONString(thispacket.getHourlySteps() as AnyObject!))"
+        stepsModel.hourlydistance = "\(AppTheme.toJSONString(thispacket.getHourlyDist() as AnyObject!))"
+        stepsModel.calories = Double(thispacket.getDailyCalories())
+        stepsModel.hourlycalories = "\(AppTheme.toJSONString(thispacket.getHourlyCalories() as AnyObject!))"
+        stepsModel.inZoneTime = thispacket.getInZoneTime()
+        stepsModel.outZoneTime = thispacket.getOutZoneTime()
+        stepsModel.inactivityTime = thispacket.getDailyRunningDuration()+thispacket.getDailyWalkingDuration()
+        stepsModel.goalreach = Double(thispacket.getDailySteps())/Double(thispacket.getStepsGoal())
+        stepsModel.date = date.timeIntervalSince1970
+        stepsModel.createDate = "\(dateString)"
+        stepsModel.walking_distance = thispacket.getDailyWalkingDistance()
+        stepsModel.walking_duration = thispacket.getDailyWalkingDuration()
+        stepsModel.walking_calories = thispacket.getDailyCalories()
+        stepsModel.running_distance = thispacket.getRunningDistance()
+        stepsModel.running_duration = thispacket.getDailyRunningDuration()
+        stepsModel.running_calories = thispacket.getDailyCalories()
+        
+        //upload steps data to Nevo service
+        let login:NSArray = UserProfile.getAll()
+        if login.count>0 {
+            let profile:UserProfile = login[0] as! UserProfile
+            let dateString:String = date.stringFromFormat("yyy-MM-dd")
+            var caloriesValue:Int = 0
+            var milesValue:Double = 0
+            StepGoalSetingController.calculationData((stepsModel.walking_duration+stepsModel.running_duration), steps: stepsModel.steps, completionData: { (miles, calories) in
+                caloriesValue = Int(calories)
+                milesValue = miles
+            })
+            
+            let activeTime: Int = stepsModel.walking_duration+stepsModel.running_duration
+            /// TODO 2016-11-03
+            /// distance should be Double ?
+            /// Discussion: <#Say something#>
+            MEDStepsNetworkManager.createSteps(uid: profile.id, steps: stepsModel.hourlysteps, date: dateString, activeTime: activeTime, calories: caloriesValue, distance: milesValue, completion: { (success: Bool) in
+                if success {
+                    stepsModel.isUpload = true
+                    stepsModel.update()
+                }
+            })
+        }
+        if(stepsArray.count>0) {
+            let step:UserSteps = stepsArray[0] as! UserSteps
+            if(step.steps < thispacket.getDailySteps()) {
+                XCGLogger.default.debug("Data that has been saved····")
+                stepsModel.id = step.id
+                DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.default).async(execute: { () -> Void in
+                    stepsModel.update()
+                })
+            }
+        }else {
+            DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.default).async(execute: { () -> Void in
+                stepsModel.add({ (id, completion) -> Void in
+                })
+                
+            })
+        }
+        return thispacket.getHourlySteps()
+
+    }
+    
+    func saveSleepToDataBase(thispacket:DailyTrackerNevoPacket,date:Date,dateString:String) {
+        let sleepArray = UserSleep.getCriteria("WHERE date = \(date.timeIntervalSince1970)")
+        let model:UserSleep = UserSleep()
+        model.id = 0
+        model.date = date.timeIntervalSince1970
+        model.totalSleepTime = thispacket.getDailySleepTime()
+        model.hourlySleepTime = "\(AppTheme.toJSONString(thispacket.getHourlySleepTime() as AnyObject!))"
+        model.totalWakeTime = 0
+        model.hourlyWakeTime = "\(AppTheme.toJSONString(thispacket.getHourlyWakeTime() as AnyObject!))"
+        model.totalLightTime = 0
+        model.hourlyLightTime = "\(AppTheme.toJSONString(thispacket.getHourlyLightTime() as AnyObject!))"
+        model.totalDeepTime = 0
+        model.hourlyDeepTime = "\(AppTheme.toJSONString(thispacket.getHourlyDeepTime() as AnyObject!))"
+        
+        //upload sleep data to validic
+        //UPDATE_VALIDIC_REQUEST.updateSleepDataToValidic(NSArray(arrayLiteral: stepsModel))
+        let login:NSArray = UserProfile.getAll()
+        if login.count>0 {
+            let profile:UserProfile = login[0] as! UserProfile
+            let dateString:String = date.stringFromFormat("yyy-MM-dd")
+            
+            MEDSleepNetworkManager.createSleep(uid: profile.id, deepSleep: model.hourlyDeepTime, lightSleep: model.hourlyLightTime, wakeTime: model.hourlyWakeTime, date: dateString, completion: { (success:Bool) in
+                model.isUpload = true
+                _ = model.update()
+            })
+        }
+        
+        if(sleepArray.count>0) {
+            let sleep:UserSleep = sleepArray[0] as! UserSleep
+            let localSleepArray:[Int] = AppTheme.jsonToArray(sleep.hourlySleepTime) as! [Int]
+            var localTime:Int = 0
+            
+            for value in localSleepArray {
+                localTime+=value
+            }
+            
+            let currentSleepArray:[Int] = thispacket.getHourlySleepTime()
+            var currentSleepTime:Int = 0
+            for value in currentSleepArray {
+                currentSleepTime+=value
+            }
+            
+            if currentSleepTime>localTime {
+                model.id = sleep.id
+                DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.default).async(execute: { () -> Void in
+                    _ = model.update()
+                })
+            }
+        }else {
+            DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.default).async(execute: { () -> Void in
+                _ = model.add({ (id, completion) -> Void in
+                })
+                
+            })
+        }
     }
 }
 

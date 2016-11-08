@@ -329,14 +329,14 @@ class DailyTrackerNevoPacket: NevoPacket {
 
     :returns: timer/Year,Month,Day
     */
-    func getDateTimer()->Int{
+    func getDateTimer()->Date{
         var year:Int = Int(NSData2Bytes(getPackets()[0])[2] )
         year = year + Int(NSData2Bytes(getPackets()[0])[3] )<<8
-        var month:NSString = NSString(format: "\(NSData2Bytes(getPackets()[0])[4])" as NSString)
-        month = month.length >= 2 ? NSString(format: "\(NSData2Bytes(getPackets()[0])[4])" as NSString) : NSString(format: "0\(NSData2Bytes(getPackets()[0])[4])" as NSString)
-        var day:NSString = NSString(format: "\(NSData2Bytes(getPackets()[0])[5])" as NSString)
-        day = day.length >= 2 ? NSString(format: "\(NSData2Bytes(getPackets()[0])[5])" as NSString) : NSString(format: "0\(NSData2Bytes(getPackets()[0])[5])" as NSString)
-        return NSString(format: "\(year)%@%@" as NSString,month,day).integerValue
+        let month:Int = Int(NSData2Bytes(getPackets()[0])[4])
+        let day:Int = Int(NSData2Bytes(getPackets()[0])[5])
+        
+        let dateString:String = "\(year.to2String())\(month.to2String())\(day.to2String())"
+        return dateString.dateFromFormat("yyyyMMdd", locale: DateFormatter().locale)!
     }
 
 
@@ -450,7 +450,7 @@ class DailyTrackerNevoPacket: NevoPacket {
         return dailyDistance/100
     }
     
-    func getTotalSwimTime()-> Int {
+    func getTotalHarvestTime()-> Int {
         let packetno = 3
         let offset = 12
         var totalSwim:Int = Int(NSData2Bytes(getPackets()[packetno])[offset])
@@ -460,7 +460,7 @@ class DailyTrackerNevoPacket: NevoPacket {
         return totalSwim/60
     }
     
-    func getHourlySwimTime()-> [Int] {
+    func getHourlyHarestTime()-> [Int] {
         var hourlySwim = [Int](repeating: 0, count: 24)
         let HEADERLENGTH:Int = 6
         var hourlySwimTime:Int = 0

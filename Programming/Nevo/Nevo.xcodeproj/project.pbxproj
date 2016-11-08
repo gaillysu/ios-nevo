@@ -735,6 +735,8 @@
 		614662AB1DC9DEE8001E57CC /* lunar_not_connect.png in Resources */ = {isa = PBXBuildFile; fileRef = 614662A91DC9DECC001E57CC /* lunar_not_connect.png */; };
 		615093391DBF5BC800E52970 /* SetSunriseAndSunsetRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615093371DBF5BC800E52970 /* SetSunriseAndSunsetRequest.swift */; };
 		6150933A1DBF5BC800E52970 /* SetWorldClockRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615093381DBF5BC800E52970 /* SetWorldClockRequest.swift */; };
+		616DCB111DD1A69D00B5773E /* lunar_connected.png in Resources */ = {isa = PBXBuildFile; fileRef = 616DCB101DD1A69D00B5773E /* lunar_connected.png */; };
+		616DCB121DD1A7E500B5773E /* lunar_connected.png in Resources */ = {isa = PBXBuildFile; fileRef = 616DCB101DD1A69D00B5773E /* lunar_connected.png */; };
 		6173DEF31DB0E90C002DF6AF /* SolarIndicatorController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6173DEF61DB0E90C002DF6AF /* SolarIndicatorController.xib */; };
 		6173DEFF1DB0E93D002DF6AF /* SleepHistoricalViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6173DF021DB0E93D002DF6AF /* SleepHistoricalViewController.xib */; };
 		6173DF001DB0E93D002DF6AF /* SleepHistoricalViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6173DF021DB0E93D002DF6AF /* SleepHistoricalViewController.xib */; };
@@ -1286,6 +1288,7 @@
 		614662A91DC9DECC001E57CC /* lunar_not_connect.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lunar_not_connect.png; sourceTree = "<group>"; };
 		615093371DBF5BC800E52970 /* SetSunriseAndSunsetRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetSunriseAndSunsetRequest.swift; sourceTree = "<group>"; };
 		615093381DBF5BC800E52970 /* SetWorldClockRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetWorldClockRequest.swift; sourceTree = "<group>"; };
+		616DCB101DD1A69D00B5773E /* lunar_connected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lunar_connected.png; sourceTree = "<group>"; };
 		6173DEF51DB0E90C002DF6AF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/SolarIndicatorController.xib; sourceTree = "<group>"; };
 		6173DEF81DB0E911002DF6AF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/SolarIndicatorController.strings; sourceTree = "<group>"; };
 		6173DEFC1DB0E91A002DF6AF /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/SolarIndicatorController.strings"; sourceTree = "<group>"; };
@@ -1930,6 +1933,7 @@
 		007F79881A878D0B006C89E6 /* image */ = {
 			isa = PBXGroup;
 			children = (
+				616DCB101DD1A69D00B5773E /* lunar_connected.png */,
 				614662A91DC9DECC001E57CC /* lunar_not_connect.png */,
 				614662A61DC9D715001E57CC /* lunar_search.png */,
 				614662A31DC9D363001E57CC /* lunar_open_bt.png */,
@@ -3007,6 +3011,7 @@
 				00C826E31DA5ECA700ECECEE /* NevoOtaViewController.xib in Resources */,
 				00C826E41DA5ECA700ECECEE /* LineColorCell.xib in Resources */,
 				00C826E51DA5ECA700ECECEE /* NotificationClockCell.xib in Resources */,
+				616DCB121DD1A7E500B5773E /* lunar_connected.png in Resources */,
 				00C826E61DA5ECA700ECECEE /* NotificationViewController.xib in Resources */,
 				00C826E71DA5ECA700ECECEE /* SelectedNotificationTypeController.xib in Resources */,
 				00C826E81DA5ECA700ECECEE /* AddPresetViewController.xib in Resources */,
@@ -3148,6 +3153,7 @@
 				004ED1F11CB386CC009D053C /* iRate.bundle in Resources */,
 				00120E851D75763D00CE0C32 /* RepeatViewCell.xib in Resources */,
 				00FA93E91D9DF33800CB6691 /* ScannerViewController.xib in Resources */,
+				616DCB111DD1A69D00B5773E /* lunar_connected.png in Resources */,
 				00C8C8171D8B950A00621162 /* OldOtaViewController.xib in Resources */,
 				00F0C3541C8993DD005888A7 /* NewAddAlarmController.xib in Resources */,
 				66AC4E5D1DBF537500E431BE /* sunrise.png in Resources */,
