@@ -224,8 +224,16 @@ extension AnalysisController:UICollectionViewDelegate,UICollectionViewDataSource
                 self.contentTArray.replaceSubrange(Range(0..<1), with: [String(format: "0")])
                 self.contentTArray.replaceSubrange(Range(1..<2), with: [String(format: "0")])
                 
+                var avgNumber:Float = 0
+                if (indexPath as NSIndexPath).row == 0 || (indexPath as NSIndexPath).row == 1 {
+                    avgNumber = 7
+                }else{
+                    avgNumber = 30
+                }
+
                 analysisCell.updateChartData(dataArray[indexPath.row] as! NSArray, chartType: segmented.selectedSegmentIndex,rowIndex:indexPath.row, completionData: { (totalValue, totalCalores, totalTime) in
-                    
+                    self.contentTArray.replaceSubrange(Range(0..<1), with: [AppTheme.timerFormatValue(value: Double((18.0*avgNumber)-totalValue))])
+                    self.contentTArray.replaceSubrange(Range(1..<2), with: [AppTheme.timerFormatValue(value: Double(totalValue))])
                 });
             }
             contentCollectionView.reloadData()

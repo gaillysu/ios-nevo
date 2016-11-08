@@ -125,6 +125,13 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
             marker.markerType = .stepsChartType
             lineChartView.marker = marker;
             
+            var totalValue:Int = 0
+            for value in dataArray {
+                let userSleep:SolarHarvest = value as! SolarHarvest
+                let sleepTime:[Int] = AppTheme.jsonToArray(userSleep.solarHourlyTime) as! [Int]
+                totalValue +=  sleepTime.reduce(0, {$0 + $1})
+            }
+            completionData(Float(totalValue)/60.0, 0, 0)
             self.setSloarDataCount(dataArray, type: chartType,rowIndex:rowIndex)
         default: break
         }
