@@ -21,8 +21,10 @@ extension MRProgressOverlayView {
         return newView
     }
     
-        override open class func initialize() {
-            super.initialize()
+    override open class func initialize() {
+        super.initialize()
+        
+        if (self == MRProgressOverlayView.classForCoder()) {
             let newMethod:Method = class_getClassMethod(self, #selector(MEDShowOverlayAddedTo(view:title:mode:animated:)))
             /*+ (instancetype)showOverlayAddedTo:(UIView *)view title:(NSString *)title mode:(MRProgressOverlayViewMode)mode animated:(BOOL)animated */
             
@@ -30,4 +32,5 @@ extension MRProgressOverlayView {
             let oldMethod:Method = class_getClassMethod(self, oldSEL)
             method_exchangeImplementations(newMethod, oldMethod)
         }
+    }
 }
