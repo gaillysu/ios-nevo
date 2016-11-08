@@ -121,6 +121,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
             WorldClockDatabaseHelper().setup()
         }
         
+        _ = UserSteps.updateTable()
         /**
          Initialize the BLE Manager
          */
@@ -663,7 +664,6 @@ extension AppDelegate {
     }
     
     func saveStepsToDataBase(thispacket:LunaRDailyTrackerPacket,date:Date,dateString:String) ->[Int] {
-        _ = UserSteps.updateTable()
         let stepsArray = UserSteps.getCriteria("WHERE createDate = \(dateString)")
         let stepsModel:UserSteps = UserSteps()
         stepsModel.uid = 0
@@ -678,6 +678,7 @@ extension AppDelegate {
             let runValue:Int = stepsRunValue[index]
             hourlyStepsValue.replaceSubrange(index..<index+1, with: [value+runValue])
         }
+        XCGLogger.default.debug("hourlyStepsValue:\(hourlyStepsValue)")
         stepsModel.hourlysteps = "\(AppTheme.toJSONString(hourlyStepsValue as AnyObject!))"
         
         let distanceWalkVlaue = thispacket.getHourlyWalkDist()

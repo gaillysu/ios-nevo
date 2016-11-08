@@ -776,6 +776,8 @@
 		619919321DC6F02800C75AE7 /* SunriseSetView.strings in Resources */ = {isa = PBXBuildFile; fileRef = 619918FF1DC6E2B600C75AE7 /* SunriseSetView.strings */; };
 		619919331DC6F02D00C75AE7 /* WorldClockCell.strings in Resources */ = {isa = PBXBuildFile; fileRef = 619919011DC6E2B600C75AE7 /* WorldClockCell.strings */; };
 		619919361DC764EB00C75AE7 /* lunar_20161011_v3.zip in Resources */ = {isa = PBXBuildFile; fileRef = 6198EE241DC1EE5200FDD850 /* lunar_20161011_v3.zip */; };
+		61DD7AAF1DD08598003FD171 /* PhotoViewController.h in Sources */ = {isa = PBXBuildFile; fileRef = 66D45E781DC0C14C0007B5D0 /* PhotoViewController.h */; };
+		61DD7AB01DD08598003FD171 /* UIImage+Crop.h in Sources */ = {isa = PBXBuildFile; fileRef = 66D45E791DC0C14C0007B5D0 /* UIImage+Crop.h */; };
 		662887521DC1E8BC00EC0983 /* MEDMRProgressOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 662887501DC1E8BC00EC0983 /* MEDMRProgressOverlayView.swift */; };
 		6633057A1DC07EEE0090216F /* lunar_hour.png in Resources */ = {isa = PBXBuildFile; fileRef = 663305771DC07EEE0090216F /* lunar_hour.png */; };
 		6633057B1DC07EEE0090216F /* lunar_hour.png in Resources */ = {isa = PBXBuildFile; fileRef = 663305771DC07EEE0090216F /* lunar_hour.png */; };
@@ -3431,6 +3433,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				61DD7AAF1DD08598003FD171 /* PhotoViewController.h in Sources */,
+				61DD7AB01DD08598003FD171 /* UIImage+Crop.h in Sources */,
 				665BD6A61DBEF1D0008C2623 /* ForgotPasswordRequest.swift in Sources */,
 				665BD6A71DBEF1D0008C2623 /* UserCreateRequest.swift in Sources */,
 				665BD6A81DBEF1D0008C2623 /* SyncStepsToServiceRequest.swift in Sources */,
@@ -4424,6 +4428,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"${PODS_ROOT}/Crashlytics/iOS\"",
@@ -4431,6 +4436,13 @@
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
 				);
 				GCC_NO_COMMON_BLOCKS = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/Crashlytics\"",
+					"\"${PODS_ROOT}/Headers/Public/Fabric\"",
+					"$(PROJECT_DIR)/Nevo/Class/Controller/UserProfileController/Cropper/local/include",
+				);
 				INFOPLIST_FILE = LunaR/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -4458,6 +4470,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"${PODS_ROOT}/Crashlytics/iOS\"",
@@ -4465,6 +4478,13 @@
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
 				);
 				GCC_NO_COMMON_BLOCKS = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/Crashlytics\"",
+					"\"${PODS_ROOT}/Headers/Public/Fabric\"",
+					"$(PROJECT_DIR)/Nevo/Class/Controller/UserProfileController/Cropper/local/include",
+				);
 				INFOPLIST_FILE = LunaR/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

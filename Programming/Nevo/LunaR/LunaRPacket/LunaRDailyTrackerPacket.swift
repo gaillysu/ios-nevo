@@ -63,7 +63,7 @@ class LunaRDailyTrackerPacket: LunaRPacket {
      total walk steps
      */
     func getTotalWalkSteps()->Int {
-        var totalWalkSteps:Int = Int(NSData2Bytes(getPackets()[8])[4] )
+        var totalWalkSteps:Int = Int(NSData2Bytes(getPackets()[1])[8] )
         totalWalkSteps += Int(NSData2Bytes(getPackets()[1])[9] )<<8
         totalWalkSteps += Int(NSData2Bytes(getPackets()[1])[10] )<<16
         totalWalkSteps += Int(NSData2Bytes(getPackets()[1])[11] )<<24
@@ -71,7 +71,7 @@ class LunaRDailyTrackerPacket: LunaRPacket {
     }
     
     func getTotalRunSteps()->Int {
-        var totalRunSteps:Int = Int(NSData2Bytes(getPackets()[12])[4] )
+        var totalRunSteps:Int = Int(NSData2Bytes(getPackets()[1])[12] )
         totalRunSteps += Int(NSData2Bytes(getPackets()[1])[13] )<<8
         totalRunSteps += Int(NSData2Bytes(getPackets()[1])[14] )<<16
         totalRunSteps += Int(NSData2Bytes(getPackets()[1])[15] )<<24
@@ -79,7 +79,7 @@ class LunaRDailyTrackerPacket: LunaRPacket {
     }
     
     func getTotalDistance() -> Int {
-        var totalDist:Int = Int(NSData2Bytes(getPackets()[16])[4] )
+        var totalDist:Int = Int(NSData2Bytes(getPackets()[1])[16] )
         totalDist += Int(NSData2Bytes(getPackets()[1])[17] )<<8
         totalDist += Int(NSData2Bytes(getPackets()[1])[18] )<<16
         totalDist += Int(NSData2Bytes(getPackets()[1])[19] )<<24
