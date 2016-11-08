@@ -109,7 +109,7 @@ class PageViewController: UIPageViewController,UIActionSheetDelegate {
         
         let leftSpacer:UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.fixedSpace, target: nil, action: nil)
         leftSpacer.width = -10;
-//        self.navigationItem.leftBarButtonItems = [leftSpacer,leftItem]
+        //self.navigationItem.leftBarButtonItems = [leftSpacer,leftItem]
         
         self.delegate = self
         self.dataSource = self;
@@ -126,7 +126,7 @@ class PageViewController: UIPageViewController,UIActionSheetDelegate {
         
         // MARK: - SET WATCH_ID NOTIFICATION
         _ = SwiftEventBus.onMainThread(self, name: EVENT_BUS_WATCHID_DIDCHANGE_KEY) { (notification) in
-//            let dict:[String:Int] = notification.userInfo as! [String : Int]
+            //let dict:[String:Int] = notification.userInfo as! [String : Int]
         }
     }
     

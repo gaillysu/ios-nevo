@@ -21,7 +21,7 @@ class SolarIndicatorController: PublicClassController {
     fileprivate let realm:Realm = try! Realm()
     
     fileprivate var onTitle:[String] = [NSLocalizedString("timer_on_battery", comment: ""),NSLocalizedString("timer_on_solar", comment: "")]
-    fileprivate var onValue:[Double] = [130,00]
+    fileprivate var onValue:[Double] = [00,00]
     
     init() {
         super.init(nibName: "SolarIndicatorController", bundle: Bundle.main)
@@ -87,10 +87,20 @@ class SolarIndicatorController: PublicClassController {
             pieChartView.backgroundColor = UIColor.white
         }
         
+        _ = SwiftEventBus.onMainThread(self, name: EVENT_BUS_END_BIG_SYNCACTIVITY) { (notification) in
+            
+            self.updateChartData(date:Date())
+        }
+        
+        _ = SwiftEventBus.onMainThread(self, name: SELECTED_CALENDAR_NOTIFICATION) { (notification) in
+            let userinfo:Date = notification.userInfo!["selectedDate"] as! Date
+            self.updateChartData(date:userinfo)
+        }
+        
     }
 
     override func viewDidAppear(_ animated: Bool) {
-        self.updateChartData()
+        self.updateChartData(date:Date())
         pieChartView.animate(xAxisDuration: 1.4, easingOption: ChartEasingOption.easeOutBack)
         textCollection.reloadData()
     }
@@ -104,9 +114,9 @@ class SolarIndicatorController: PublicClassController {
 
 extension SolarIndicatorController{
 
-    func getSolarData()->[SolarHarvest] {
+    func getSolarData(date:Date)->[SolarHarvest] {
         
-        let solar = realm.objects(SolarHarvest.self).filter("date = \(Date().beginningOfDay.timeIntervalSince1970)")
+        let solar = realm.objects(SolarHarvest.self).filter("date = \(date.beginningOfDay.timeIntervalSince1970)")
         var solarData:[SolarHarvest] = []
         for value in solar {
             solarData.append(value as SolarHarvest)
@@ -145,9 +155,9 @@ extension SolarIndicatorController:UICollectionViewDelegate,UICollectionViewData
 
 // MARK: - ChartViewDelegate
 extension SolarIndicatorController:ChartViewDelegate {
-    func updateChartData() {
+    func updateChartData(date:Date) {
         pieChartView.data = nil
-        var solarValue = self.getSolarData()
+        var solarValue = self.getSolarData(date:date)
         if solarValue.count>0 {
             self.setDataCount(solarValue)
         }else{
@@ -200,10 +210,15 @@ extension SolarIndicatorController:ChartViewDelegate {
         
         let solarData:SolarHarvest = solarValue[0]
         let value:Double = Double(solarData.solarTotalTime)/60.0
-        yVals1.append(BarChartDataEntry(value: value , xIndex: 0))
-        yVals1.append(BarChartDataEntry(value: 24.0-value , xIndex: 1))
         
-        onValue.replaceSubrange(0..<1, with: [24.0-value])
+        /*
+         Time On Battery = Time Of Today (18:00 -> 1080min) - TotalHarvestingTime (200) = 880 -> 14 hours and 40 minutes
+         Time On Solar = Total Harvesting Time (200) -> 3 hours and 20
+         */
+        yVals1.append(BarChartDataEntry(value: value , xIndex: 0))
+        yVals1.append(BarChartDataEntry(value: 18.0-value , xIndex: 1))
+        
+        onValue.replaceSubrange(0..<1, with: [18.0-value])
         onValue.replaceSubrange(1..<2, with: [value])
         textCollection.reloadData();
         

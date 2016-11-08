@@ -19,7 +19,7 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>3</string>
+	<string>4</string>
 	<key>Fabric</key>
 	<dict>
 		<key>APIKey</key>
@@ -43,6 +43,8 @@
 	</dict>
 	<key>NSBluetoothPeripheralUsageDescription</key>
 	<string>Whether to allow the App to use bluetooth?</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Whether to allowed to use your Camera?</string>
 	<key>NSHealthShareUsageDescription</key>
 	<string>Whether to allow the App to share health data?</string>
 	<key>NSHealthUpdateUsageDescription</key>
@@ -53,8 +55,6 @@
 	<string>Whether to allow the use your location information when using the application?</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Whether to allowed to use your Photo Library?</string>
-	<key>NSCameraUsageDescription</key>
-	<string>Whether to allowed to use your Camera?</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Raleway-Bold.ttf</string>
