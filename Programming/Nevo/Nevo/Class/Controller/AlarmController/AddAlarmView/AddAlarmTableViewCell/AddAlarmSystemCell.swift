@@ -26,13 +26,11 @@ class AddAlarmSystemCell: UITableViewCell {
         if !AppTheme.isTargetLunaR_OR_Nevo() {
             backgroundColor = UIColor.getGreyColor()
             contentView.backgroundColor = UIColor.getGreyColor()
-            
             textLabel?.textColor = UIColor.white
             detailTextLabel?.textColor = UIColor.white
-            
             systemTitle.textColor = UIColor.white
-            
             repeatSwicth.tintColor = UIColor.getBaseColor()
+            repeatSwicth.onTintColor = UIColor.getBaseColor()
         }
     }
 

@@ -40,9 +40,6 @@ class NewAddAlarmController: UITableViewController,ButtonManagerCallBack,Selecte
         self.tableView.register(UINib(nibName: "NewAddAlarmHeader", bundle: nil), forHeaderFooterViewReuseIdentifier: "identifier_header")
         self.tableView.register(UINib(nibName: "AlarmTypeCell", bundle: nil), forCellReuseIdentifier: "AlarmType_identifier")
         self.tableView.register(UINib(nibName:"AddAlarmTableViewCell", bundle: nil), forCellReuseIdentifier: "AddAlarm_Date_identifier")
-        //self.tableView.backgroundColor = UIColor.white
-        //self.tableView.separatorStyle = UITableViewCellSeparatorStyle.None
-//        self.tableView.separatorColor = UIColor.getLightBaseColor()
     }
     
     override func viewWillAppear(_ animated: Bool) {

@@ -37,6 +37,12 @@ class AddAlarmController: UITableViewController,ButtonManagerCallBack,UIAlertVie
         self.tableView.register(UINib(nibName:"AddAlarmTableViewCell", bundle: nil), forCellReuseIdentifier: "AddAlarm_Date_identifier")
 
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.save, target: self, action: #selector(controllManager(_:)))
+        
+        // MARK: - About Theme
+        if !AppTheme.isTargetLunaR_OR_Nevo() {
+            view.backgroundColor = UIColor.getLightBaseColor()
+        }
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -159,6 +165,14 @@ class AddAlarmController: UITableViewController,ButtonManagerCallBack,UIAlertVie
                 cell.detailTextLabel?.text = name
                 cell.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
                 cell.selectionStyle = UITableViewCellSelectionStyle.none;
+                
+                if !AppTheme.isTargetLunaR_OR_Nevo() {
+                    cell.backgroundColor = UIColor.getGreyColor()
+                    cell.tintColor = UIColor.getLightBaseColor()
+                    cell.contentView.backgroundColor = UIColor.getGreyColor()
+                    cell.textLabel?.textColor = UIColor.white
+                }
+                
                 return cell
             }
         default: return UITableViewCell();
