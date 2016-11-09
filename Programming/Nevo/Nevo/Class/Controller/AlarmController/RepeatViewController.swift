@@ -102,6 +102,7 @@ class RepeatViewController: UIViewController {
         selectedView.backgroundColor = AppTheme.NEVO_SOLAR_GRAY()
         cell.selectedBackgroundView = selectedView
         cell.backgroundColor = UIColor.white
+        cell.textLabel?.font = UIFont(name: "Raleway", size: 7)!
         cell.textLabel?.text = NSLocalizedString("\(RepeatDayArray[(indexPath as NSIndexPath).row])", comment: "")
         cell.preservesSuperviewLayoutMargins = false;
         cell.separatorInset = UIEdgeInsets.zero;
