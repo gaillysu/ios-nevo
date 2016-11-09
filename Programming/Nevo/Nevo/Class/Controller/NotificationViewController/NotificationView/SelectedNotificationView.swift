@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SnapKit
 
 class SelectedNotificationView: UITableView {
 
@@ -26,6 +27,19 @@ class SelectedNotificationView: UITableView {
             if(view.isKind(of: UIImageView.classForCoder())){
                 let clockImage:UIImageView = view as! UIImageView
                 clockImage.image = UIImage(named: "\(clockIndex)_clock_dial")
+                if !AppTheme.isTargetLunaR_OR_Nevo() {
+                    clockImage.image = UIImage(named: "2_clock_dial")
+                    let colorImage:UIImageView = UIImageView(image: UIImage(named: "\(clockIndex) o'clock"))
+                    colorImage.frame = CGRect(x: 0, y: 0, width: 10, height: 10)
+                    endCell!.contentView.addSubview(colorImage)
+                    colorImage.snp.makeConstraints { (make) -> Void in
+                        make.top.equalTo(clockImage).offset(30)
+                        make.left.equalTo(clockImage).offset(85)
+                        make.right.equalTo(clockImage).offset(-85)
+                        //make.edges.equalTo(clockImage).inset(UIEdgeInsets(top: 30, left: UIScreen.main.bounds.width/2.0-10, bottom: clockImage.frame.size.height-30, right: UIScreen.main.bounds.width/2.0-10))
+                    }
+                }
+                
             }
         }
         endCell?.selectionStyle = UITableViewCellSelectionStyle.none;
