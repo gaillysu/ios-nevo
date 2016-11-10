@@ -45,6 +45,8 @@ class StepGoalSetingController: PublicClassController,ButtonManagerCallBack,Cloc
     override func viewDidLoad() {
         super.viewDidLoad()
         ClockRefreshManager.sharedInstance.setRefreshDelegate(self)
+        
+        getTodayCacheData()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -73,6 +75,22 @@ class StepGoalSetingController: PublicClassController,ButtonManagerCallBack,Cloc
         }else{
             collectionView?.backgroundColor = UIColor.white
         }
+        
+        
+    }
+    
+    func getTodayCacheData() {
+        if UserDefaults.standard.object(forKey: TODAY_DATE_CACHE) != nil {
+            let dataCache:[String:Any] = UserDefaults.standard.object(forKey: TODAY_DATE_CACHE) as! [String : Any]
+            let date:Date = dataCache["DATE"] as! Date
+            if date.day == Date().day {
+                let dailySteps:Int = dataCache[TODAY_DATE_CACHE] as! Int
+                self.contentTArray.replaceSubrange(Range(1..<2), with: ["\(dailySteps)"])
+                StepGoalSetingController.calculationData(0, steps: dailySteps, completionData: { (miles, calories) in
+                    self.contentTArray.replaceSubrange(Range(3..<4), with: [String(format: "%.2f", miles)])
+                })
+            }
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -86,7 +104,6 @@ class StepGoalSetingController: PublicClassController,ButtonManagerCallBack,Cloc
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
         //sync today data
         if !AppDelegate.getAppDelegate().isSyncState() {
             let userDefaults = UserDefaults.standard;
@@ -106,10 +123,12 @@ class StepGoalSetingController: PublicClassController,ButtonManagerCallBack,Cloc
                 self.contentTArray.replaceSubrange(Range(3..<4), with: [String(format: "%.2f", miles)])
             })
             self.collectionView.reloadData()
+            //TODAY_DATE_CACHE
+            UserDefaults.standard.set([TODAY_DATE_CACHE:dailySteps,"DATE":Date()],forKey:TODAY_DATE_CACHE)
+            UserDefaults.standard.synchronize()
         }
         
         _ = SwiftEventBus.onMainThread(self, name: EVENT_BUS_END_BIG_SYNCACTIVITY) { (notification) in
-            
             self.saveContentTArray(Date().beginningOfDay.timeIntervalSince1970)
         }
         
