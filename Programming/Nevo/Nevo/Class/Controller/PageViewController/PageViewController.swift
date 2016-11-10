@@ -548,4 +548,12 @@ extension PageViewController: CVCalendarViewAppearanceDelegate {
     func dayLabelPresentWeekdaySelectedTextColor() -> UIColor {
         return UIColor.white
     }
+    
+    func dayLabelBackgroundColor(by weekDay: Weekday, status: CVStatus, present: CVPresent) -> UIColor?{
+        if !AppTheme.isTargetLunaR_OR_Nevo() {
+            return UIColor.white
+        }else{
+            return AppTheme.NEVO_SOLAR_YELLOW()
+        }
+    }
 }
