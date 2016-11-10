@@ -159,13 +159,16 @@ class AddAlarmController: UITableViewController,ButtonManagerCallBack,UIAlertVie
             if((indexPath as NSIndexPath).row == 0){
                 let cell = AddAlarmView.systemTableViewCell(indexPath, tableView: tableView, title: titleArray[(indexPath as NSIndexPath).row],delegate: self)
                 return cell
-            }else if((indexPath as NSIndexPath).row == 1) {
+            }else if(indexPath.row == 1) {
                 let cell = UITableViewCell(style: UITableViewCellStyle.value1, reuseIdentifier: "SystemLabelCell")
                 cell.textLabel?.text = NSLocalizedString("\(titleArray[(indexPath as NSIndexPath).row])", comment: "")
                 cell.detailTextLabel?.text = name
                 cell.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
                 cell.selectionStyle = UITableViewCellSelectionStyle.none;
-                
+                cell.preservesSuperviewLayoutMargins = false;
+                cell.separatorInset = UIEdgeInsets.zero;
+                cell.layoutMargins = UIEdgeInsets.zero;
+                cell.selectionStyle = UITableViewCellSelectionStyle.none;
                 if !AppTheme.isTargetLunaR_OR_Nevo() {
                     cell.backgroundColor = UIColor.getGreyColor()
                     cell.tintColor = UIColor.getLightBaseColor()

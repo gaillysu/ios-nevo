@@ -26,6 +26,7 @@ class AddAlarmView: UITableView {
         endCell.contentView.backgroundColor = UIColor.clear
         if(timer > 0){
             endCell.datePicker.date = Date(timeIntervalSince1970: timer)
+            endCell.datePicker.backgroundColor = UIColor.white
         }
         return endCell
     }
