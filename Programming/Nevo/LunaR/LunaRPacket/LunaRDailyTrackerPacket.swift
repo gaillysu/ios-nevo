@@ -296,12 +296,12 @@ class LunaRDailyTrackerPacket: LunaRPacket {
         //get every hour Steps:
         for index:Int in 0..<24 {
             let packetno = HEADERLENGTH+index*HOURLYPACKETSNUMBER;
-            let offset = 15;
+            let offset = 14;
             hourlySteps = 0
             if NSData2Bytes(getPackets()[packetno])[offset] != 0xFF
                 && NSData2Bytes(getPackets()[packetno])[offset+1] != 0xFF {
                 hourlySteps = Int(NSData2Bytes(getPackets()[packetno])[offset])
-                hourlySteps += Int(NSData2Bytes(getPackets()[packetno])[offset])<<8
+                hourlySteps += Int(NSData2Bytes(getPackets()[packetno])[offset+1])<<8
             }
             hourlyStepsArray.append(hourlySteps)
         }
@@ -317,12 +317,12 @@ class LunaRDailyTrackerPacket: LunaRPacket {
         //get every hour run Steps:
         for index:Int in 0..<24 {
             let packetno = HEADERLENGTH+index*HOURLYPACKETSNUMBER;
-            let offset = 17;
+            let offset = 16;
             hourlyRunSteps = 0
             if NSData2Bytes(getPackets()[packetno])[offset] != 0xFF
                 && NSData2Bytes(getPackets()[packetno])[offset+1] != 0xFF {
                 hourlyRunSteps = Int(NSData2Bytes(getPackets()[packetno])[offset])
-                hourlyRunSteps += Int(NSData2Bytes(getPackets()[packetno])[offset])<<8
+                hourlyRunSteps += Int(NSData2Bytes(getPackets()[packetno])[offset+1])<<8
             }
             hourlyRunStepsArray.append(hourlyRunSteps)
         }
@@ -343,7 +343,7 @@ class LunaRDailyTrackerPacket: LunaRPacket {
             if NSData2Bytes(getPackets()[packetno])[offset] != 0xFF
                 && NSData2Bytes(getPackets()[packetno])[offset+1] != 0xFF {
                 hourlyWalkTimeValue = Int(NSData2Bytes(getPackets()[packetno])[offset])
-                hourlyWalkTimeValue += Int(NSData2Bytes(getPackets()[packetno])[offset])<<8
+                hourlyWalkTimeValue += Int(NSData2Bytes(getPackets()[packetno])[offset+1])<<8
             }
             hourlyWalkTimeArray.append(hourlyWalkTimeValue)
         }
@@ -364,7 +364,7 @@ class LunaRDailyTrackerPacket: LunaRPacket {
             if NSData2Bytes(getPackets()[packetno])[offset] != 0xFF
                 && NSData2Bytes(getPackets()[packetno])[offset+1] != 0xFF {
                 hourlyRunTimeValue = Int(NSData2Bytes(getPackets()[packetno])[offset])
-                hourlyRunTimeValue += Int(NSData2Bytes(getPackets()[packetno])[offset])<<8
+                hourlyRunTimeValue += Int(NSData2Bytes(getPackets()[packetno])[offset+1])<<8
             }
             hourlyRunTimeArray.append(hourlyRunTimeValue)
         }
