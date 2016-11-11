@@ -10,17 +10,12 @@ import UIKit
 import Timepiece
 import RealmSwift
 
-class MEDUserAlarm:Object {
+class MEDUserAlarm:MEDBaseModel {
     dynamic var timer:TimeInterval = 0.0
     dynamic var label:String = ""
     dynamic var status:Bool = false
     dynamic var alarmWeek:Int = 0 //0-7,0 - disable,1 - Sunday,2 - Monday,3 - Tuesday,4 - Wednesday,5 - Thursday,6 - Friday,7 - Saturday
     dynamic var type:Int = 0 // 0 -> wake; 1 -> sleep
-    dynamic var key:String = ""
-    
-    override static func primaryKey() -> String? {
-        return "key"
-    }
 
     /**
      When it is the first time you install and use must be implemented
