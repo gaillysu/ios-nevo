@@ -742,6 +742,7 @@
 		6173DF001DB0E93D002DF6AF /* SleepHistoricalViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6173DF021DB0E93D002DF6AF /* SleepHistoricalViewController.xib */; };
 		6173DF091DB0E993002DF6AF /* StepsHistoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6173DF0C1DB0E993002DF6AF /* StepsHistoryViewController.xib */; };
 		6173DF0A1DB0E993002DF6AF /* StepsHistoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6173DF0C1DB0E993002DF6AF /* StepsHistoryViewController.xib */; };
+		618278E41DD559BB00652C6B /* MEDDataBaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 618278E31DD559BB00652C6B /* MEDDataBaseManager.swift */; };
 		61879C291DC03BBD0089F1E5 /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66A0E0761DBF6C08001C0C67 /* City.swift */; };
 		61879C2E1DC05B850089F1E5 /* cities.json in Resources */ = {isa = PBXBuildFile; fileRef = 61879C2C1DC05B850089F1E5 /* cities.json */; };
 		61879C2F1DC05B850089F1E5 /* timezones.json in Resources */ = {isa = PBXBuildFile; fileRef = 61879C2D1DC05B850089F1E5 /* timezones.json */; };
@@ -1309,6 +1310,7 @@
 		6173DF0E1DB0E99F002DF6AF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/StepsHistoryViewController.strings; sourceTree = "<group>"; };
 		6173DF101DB0E9A1002DF6AF /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/StepsHistoryViewController.strings"; sourceTree = "<group>"; };
 		6173DF121DB0E9A3002DF6AF /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/StepsHistoryViewController.strings"; sourceTree = "<group>"; };
+		618278E31DD559BB00652C6B /* MEDDataBaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MEDDataBaseManager.swift; sourceTree = "<group>"; };
 		61879C2C1DC05B850089F1E5 /* cities.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = cities.json; sourceTree = "<group>"; };
 		61879C2D1DC05B850089F1E5 /* timezones.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = timezones.json; sourceTree = "<group>"; };
 		61879C341DC0A8B80089F1E5 /* ImagePickerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePickerController.swift; sourceTree = "<group>"; };
@@ -2525,6 +2527,7 @@
 		61D1A8B31DD46B6600B91BDD /* DBManager */ = {
 			isa = PBXGroup;
 			children = (
+				618278E31DD559BB00652C6B /* MEDDataBaseManager.swift */,
 			);
 			name = DBManager;
 			sourceTree = "<group>";
@@ -3988,6 +3991,7 @@
 				611D41CA1DCAD97D003BC6E3 /* SunriseSetButton.swift in Sources */,
 				611D41CB1DCAD97D003BC6E3 /* SunriseSetController.swift in Sources */,
 				611D41CC1DCAD97D003BC6E3 /* SunriseSetView.swift in Sources */,
+				618278E41DD559BB00652C6B /* MEDDataBaseManager.swift in Sources */,
 				61D1A8B51DD46BF000B91BDD /* MEDBaseModel.swift in Sources */,
 				611D41CD1DCAD97D003BC6E3 /* WorldClockCell.swift in Sources */,
 				611D41CE1DCAD97D003BC6E3 /* WorldClockDidSelectedDelegate.swift in Sources */,

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MEDUserSleep: MEDDataBaseRequest {
+class MEDUserSleep: Object {
 
     dynamic var isUpload:Bool = false;
     dynamic var uid:Int = 0

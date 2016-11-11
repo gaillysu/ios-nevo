@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MEDUserProfile: MEDDataBaseRequest {
+class MEDUserProfile: MEDBaseModel {
     dynamic var uid:Int = 0
     dynamic var first_name:String = ""
     dynamic var last_name:String = ""
@@ -19,5 +19,4 @@ class MEDUserProfile: MEDDataBaseRequest {
     dynamic var metricORimperial:Bool = false
     dynamic var created:TimeInterval = Date().timeIntervalSince1970
     dynamic var email:String = ""
-
 }

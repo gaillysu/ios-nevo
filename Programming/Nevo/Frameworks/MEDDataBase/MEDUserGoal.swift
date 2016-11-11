@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MEDUserGoal: MEDDataBaseRequest {
+class MEDUserGoal: MEDBaseModel {
     dynamic var stepsGoal:Int = 0
     dynamic var label:String = ""
     dynamic var status:Bool = false

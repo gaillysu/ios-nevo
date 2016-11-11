@@ -1,8 +1,8 @@
 //
-//  MEDDataBaseRequest.swift
+//  MEDDataBaseManager.swift
 //  Nevo
 //
-//  Created by Cloud on 2016/11/8.
+//  Created by Cloud on 2016/11/11.
 //  Copyright © 2016年 Nevo. All rights reserved.
 //
 
@@ -10,35 +10,22 @@ import UIKit
 import RealmSwift
 import XCGLogger
 
-protocol MEDDataBaseRequest {
-    func add(request:MEDBaseModel)->Bool
-    func update(request:MEDBaseModel)->Bool
-    func remove(request:MEDBaseModel)->Bool
-    static func removeAll(request:MEDBaseModel.Type)->Bool
-    static func getFilter(_ criteria:String,request:MEDBaseModel.Type)->[MEDBaseModel]
-    static func getAll(request:MEDBaseModel.Type)->[MEDBaseModel]
-}
+class MEDDataBaseManager: MEDDataBaseRequest {
 
-class MEDDataBaseRequestImpl:Object {
-    var key:String = ""
-    
-    override static func primaryKey() -> String? {
-        return "key"
-    }
-    
-    func add()->Bool {
+
+    func add(request:MEDBaseModel)->Bool {
         let realm = try! Realm()
         try! realm.write {
-            realm.add(self, update: true)
+            realm.add(request, update: true)
         }
         return true
     }
     
-    func update()->Bool{
+    func update(request:MEDBaseModel)->Bool{
         let realm = try! Realm()
         do {
             try realm.write {
-                realm.add(self, update: true)
+                realm.add(request, update: true)
             }
         } catch let error {
             XCGLogger.default.debug("write database error:\(error)")
@@ -47,11 +34,11 @@ class MEDDataBaseRequestImpl:Object {
         return true
     }
     
-    func remove()->Bool{
+    func remove(request:MEDBaseModel)->Bool{
         let realm = try! Realm()
         do {
             try realm.write {
-                realm.delete(self)
+                realm.delete(request)
             }
         } catch let error {
             XCGLogger.default.debug("write database error:\(error)")
@@ -60,9 +47,9 @@ class MEDDataBaseRequestImpl:Object {
         return true
     }
     
-    class func removeAll()->Bool{
+    class func removeAll(request:MEDBaseModel.Type)->Bool{
         let realm = try! Realm()
-        let selfObject = realm.objects(self)
+        let selfObject = realm.objects(request)
         for object in selfObject {
             do {
                 try realm.write {
@@ -76,20 +63,20 @@ class MEDDataBaseRequestImpl:Object {
         return true
     }
     
-    class func getFilter(_ criteria:String)->[Any]{
+    class func getFilter(_ criteria:String,request:MEDBaseModel.Type)->[MEDBaseModel]{
         let realm = try! Realm()
-        let selfObject = realm.objects(self).filter(criteria)
-        var value:[Any] = []
+        let selfObject = realm.objects(request).filter(criteria)
+        var value:[MEDBaseModel] = []
         for object in selfObject {
             value.append(object)
         }
         return value
     }
     
-    class func getAll()->[Any]{
+    class func getAll(request:MEDBaseModel.Type)->[MEDBaseModel]{
         let realm = try! Realm()
-        let selfObject = realm.objects(self)
-        var value:[Any] = []
+        let selfObject = realm.objects(request)
+        var value:[MEDBaseModel] = []
         for object in selfObject {
             value.append(object)
         }

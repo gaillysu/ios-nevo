@@ -9,11 +9,10 @@
 import UIKit
 import RealmSwift
 
-class MEDUserNotification:MEDDataBaseRequest {
+class MEDUserNotification:MEDBaseModel {
     dynamic var clock:Int = 0
     dynamic var notificationType:String = ""
     dynamic var status:Bool = false
-    
     /**
      When it is the first time you install and use must be implemented
      *在用户第一次安装使用的时候必须实现
