@@ -19,7 +19,7 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Bg9-3S-rqv">
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Bg9-3S-rqv">
                     <rect key="frame" x="50" y="154" width="275" height="50"/>
                     <color key="backgroundColor" red="0.94329023361206055" green="0.57790356874465942" blue="0.092189088463783264" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>

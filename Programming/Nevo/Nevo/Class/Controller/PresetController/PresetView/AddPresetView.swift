@@ -29,7 +29,7 @@ class AddPresetView: UIView {
         rightView.textColor = UIColor.gray
         presetNumber.rightView = rightView
         presetNumber.rightViewMode = UITextFieldViewMode.always
-        presetNumber.textAlignment = NSTextAlignment.right
+        presetNumber.textAlignment = NSTextAlignment.left
         presetNumber.font = UIFont.systemFont(ofSize: 18)
         presetNumber.keyboardType = UIKeyboardType.numberPad
         presetNumber.layer.cornerRadius = 8
