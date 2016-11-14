@@ -41,10 +41,10 @@ class NotificationViewController: UITableViewController,SelectedNotificationDele
         super.viewDidLoad()
         initNotificationSettingArray()
         notificationView.bulidNotificationView(self.navigationItem)
-        //notificationView.backgroundColor = UIColor.white
         
         if !AppTheme.isTargetLunaR_OR_Nevo() {
-            self.tableView.backgroundColor = UIColor.getGreyColor()
+            self.view.backgroundColor = UIColor.getLightBaseColor()
+            self.tableView.backgroundColor = UIColor.getLightBaseColor()
         }
     }
     
@@ -56,11 +56,6 @@ class NotificationViewController: UITableViewController,SelectedNotificationDele
         let indexSet:NSIndexSet = NSIndexSet(indexesIn: NSMakeRange(0, 1))
         tableView.reloadSections(indexSet as IndexSet, with: .automatic)
         tableView.reloadData()
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
     /**
@@ -243,79 +238,5 @@ class NotificationViewController: UITableViewController,SelectedNotificationDele
         }
         
         return UITableViewCell()
-}
-
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
     }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            // Delete the row from the data source
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /**
-    // MARK: - SwitchActionDelegate
-    func onSwitch(results:Bool ,sender:UISwitch){
-    let indexPath:NSIndexPath = NSIndexPath(forRow: sender.tag, inSection: 0)
-    let cell:TableListCell = notificationList.tableListView.cellForRowAtIndexPath(indexPath) as! TableListCell
-    if(results){
-    cell.round.hidden = false
-    }else{
-    cell.round.hidden = true
-    }
-
-    mNotificationType = mNotificationSettingArray[sender.tag-1].getType()
-    let notSetting:NotificationSetting = NotificationSetting.indexOfObjectAtType(mNotificationSettingArray, type: mNotificationType)!
-    EnterNotificationController.setMotorOnOff(NSString(string: notSetting.typeName), motorStatus: results)
-    SetingViewController.refreshNotificationSettingArray(&mNotificationSettingArray)
-    //send request to watch
-    AppDelegate.getAppDelegate().SetNortification(mNotificationSettingArray)
-    }
-
-    // MARK: - SelectionTypeDelegate
-    func onSelectedType(results:Bool,type:NSString){
-    AppTheme.DLog("type===:\(type)")
-    SetingViewController.refreshNotificationSettingArray(&mNotificationSettingArray)
-    notificationList.tableListView.reloadData()
-    }
-
-    */
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
