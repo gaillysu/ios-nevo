@@ -48,6 +48,9 @@ class ProfileSetupViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.checkBox.checkState = .checked
+        
         self.navigationItem.title = NSLocalizedString("Register", comment: "")
         let leftButton:UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "cancel_lunar"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(leftCancelAction(_:)))
         self.navigationItem.leftBarButtonItem = leftButton
