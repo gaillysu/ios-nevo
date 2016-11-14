@@ -9,6 +9,7 @@
 import UIKit
 import RealmSwift
 import Timepiece
+import XCGLogger
 
 class MEDBaseModel: Object,MEDDataBaseRequest {
     var key:String = Date().stringFromFormat("yyyyMMddHHmmss", locale: DateFormatter().locale)

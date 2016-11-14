@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MEDUserSteps: Object {
+class MEDUserSteps: MEDBaseModel {
     dynamic var isUpload:Bool = false;
     dynamic var uid:Int = 0
     dynamic var cid:Int = 0

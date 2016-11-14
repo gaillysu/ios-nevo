@@ -19,11 +19,11 @@ class MEDUserNotification:MEDBaseModel {
      */
     class func defaultNotificationColor() {
         let realm  = try! Realm()
-        let notification = realm.objects(UserNotification.self)
+        let notification = realm.objects(MEDUserNotification.self)
         if notification.count == 0 {
             let notificationTypeArray:[String] = ["Calendar", "Facebook", "EMAIL", "CALL", "SMS","WeChat"]
             for (index,value) in notificationTypeArray.enumerated() {
-                let userNotification:UserNotification = UserNotification()
+                let userNotification:MEDUserNotification = MEDUserNotification()
                 userNotification.key = "\(index)"
                 userNotification.clock = (index+1)*2
                 userNotification.notificationType = value

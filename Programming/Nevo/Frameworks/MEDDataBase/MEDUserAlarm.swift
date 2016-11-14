@@ -23,7 +23,7 @@ class MEDUserAlarm:MEDBaseModel {
      */
     class func defaultAlarm() {
         let realm  = try! Realm()
-        let alarm = realm.objects(UserAlarm.self)
+        let alarm = realm.objects(MEDUserAlarm.self)
         if alarm.count == 0 {
             let currentDate:Date = Date()
             let date1:Date = Date.date(year: currentDate.year, month: currentDate.minute, day: currentDate.day, hour: 8, minute: 0, second: 0)
@@ -31,7 +31,7 @@ class MEDUserAlarm:MEDBaseModel {
             let dateArray:[TimeInterval] = [date1.timeIntervalSince1970,date2.timeIntervalSince1970]
             let nameArray:[String] = [NSLocalizedString("sleep_and_wake", comment: ""),NSLocalizedString("sleep_and_wake", comment: "")]
             for (index,value) in dateArray.enumerated() {
-                let alarm:UserAlarm = UserAlarm()
+                let alarm:MEDUserAlarm = MEDUserAlarm()
                 alarm.timer = value
                 alarm.label = nameArray[index]
                 alarm.status = false

@@ -742,6 +742,8 @@
 		6173DF001DB0E93D002DF6AF /* SleepHistoricalViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6173DF021DB0E93D002DF6AF /* SleepHistoricalViewController.xib */; };
 		6173DF091DB0E993002DF6AF /* StepsHistoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6173DF0C1DB0E993002DF6AF /* StepsHistoryViewController.xib */; };
 		6173DF0A1DB0E993002DF6AF /* StepsHistoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6173DF0C1DB0E993002DF6AF /* StepsHistoryViewController.xib */; };
+		618278E91DD5A3D900652C6B /* UpdateDBControllerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 618278E71DD5A3D900652C6B /* UpdateDBControllerViewController.swift */; };
+		618278EA1DD5A3D900652C6B /* UpdateDBControllerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 618278E81DD5A3D900652C6B /* UpdateDBControllerViewController.xib */; };
 		61879C291DC03BBD0089F1E5 /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66A0E0761DBF6C08001C0C67 /* City.swift */; };
 		61879C2E1DC05B850089F1E5 /* cities.json in Resources */ = {isa = PBXBuildFile; fileRef = 61879C2C1DC05B850089F1E5 /* cities.json */; };
 		61879C2F1DC05B850089F1E5 /* timezones.json in Resources */ = {isa = PBXBuildFile; fileRef = 61879C2D1DC05B850089F1E5 /* timezones.json */; };
@@ -1309,6 +1311,8 @@
 		6173DF0E1DB0E99F002DF6AF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/StepsHistoryViewController.strings; sourceTree = "<group>"; };
 		6173DF101DB0E9A1002DF6AF /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/StepsHistoryViewController.strings"; sourceTree = "<group>"; };
 		6173DF121DB0E9A3002DF6AF /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/StepsHistoryViewController.strings"; sourceTree = "<group>"; };
+		618278E71DD5A3D900652C6B /* UpdateDBControllerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateDBControllerViewController.swift; sourceTree = "<group>"; };
+		618278E81DD5A3D900652C6B /* UpdateDBControllerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UpdateDBControllerViewController.xib; sourceTree = "<group>"; };
 		61879C2C1DC05B850089F1E5 /* cities.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = cities.json; sourceTree = "<group>"; };
 		61879C2D1DC05B850089F1E5 /* timezones.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = timezones.json; sourceTree = "<group>"; };
 		61879C341DC0A8B80089F1E5 /* ImagePickerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePickerController.swift; sourceTree = "<group>"; };
@@ -1578,6 +1582,7 @@
 		0050D5151C28E0DB004F6F80 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				618278E61DD5A3CB00652C6B /* UpdateDBController */,
 				006DA3061D6EC89F0011E09C /* AnalysisController */,
 				0089B0A01D6BF0CB0041148A /* ProfileSetupController */,
 				0089B08F1D6BE9410041148A /* CheckYourIndox */,
@@ -2402,6 +2407,15 @@
 			name = BaseModel;
 			sourceTree = "<group>";
 		};
+		618278E61DD5A3CB00652C6B /* UpdateDBController */ = {
+			isa = PBXGroup;
+			children = (
+				618278E71DD5A3D900652C6B /* UpdateDBControllerViewController.swift */,
+				618278E81DD5A3D900652C6B /* UpdateDBControllerViewController.xib */,
+			);
+			path = UpdateDBController;
+			sourceTree = "<group>";
+		};
 		61879C2B1DC05B850089F1E5 /* Worldclock */ = {
 			isa = PBXGroup;
 			children = (
@@ -3220,6 +3234,7 @@
 				66AC4E5F1DBF537A00E431BE /* lunar_dial_2016-10-25.png in Resources */,
 				00478F4F1A8F637D00D0DCE2 /* clockViewHour.png in Resources */,
 				6173DEF31DB0E90C002DF6AF /* SolarIndicatorController.xib in Resources */,
+				618278EA1DD5A3D900652C6B /* UpdateDBControllerViewController.xib in Resources */,
 				0050D6111C28E0DB004F6F80 /* PresetTableViewCell.xib in Resources */,
 				0063BC281D98D456000BAB44 /* ForgotPasswordController.xib in Resources */,
 				000CB3291C3E436000B4ABEC /* white_hour.png in Resources */,
@@ -3876,6 +3891,7 @@
 				6650988E1DCB0E220059D5F7 /* MEDSleepNetworkManager.swift in Sources */,
 				611D415D1DCAD97C003BC6E3 /* RealTimeCountSteps.swift in Sources */,
 				611D415E1DCAD97C003BC6E3 /* RunningToHK.swift in Sources */,
+				618278E91DD5A3D900652C6B /* UpdateDBControllerViewController.swift in Sources */,
 				611D415F1DCAD97C003BC6E3 /* Alarm.swift in Sources */,
 				611D41601DCAD97C003BC6E3 /* NewAlarm.swift in Sources */,
 				611D41611DCAD97C003BC6E3 /* BaseEntryDatabaseHelper.swift in Sources */,
