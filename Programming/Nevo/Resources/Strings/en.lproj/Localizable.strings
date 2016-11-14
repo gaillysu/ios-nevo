@@ -205,3 +205,6 @@
 // 2016-10-28
 "Delete"="Delete";
 "ota_error_signature_mismatch"="Signature mismatch";
+
+//2016-11-14
+"sign_up"="Sign Up";

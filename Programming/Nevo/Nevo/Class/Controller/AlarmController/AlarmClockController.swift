@@ -18,10 +18,11 @@ class AlarmClockController: UITableViewController,AddAlarmDelegate {
     var oldAlarmArray:[Alarm] = []
     var weakeArray:[UserAlarm] = []
     var sleepArray:[UserAlarm] = []
+    fileprivate var editAlarmTag:Bool = false;
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = NSLocalizedString("sleep_and_wake", comment:"")
+        self.navigationItem.title = NSLocalizedString("alarmTitle", comment:"")
         
         if(UserAlarm.isExistInTable()){
             _ = UserAlarm.updateTable()
@@ -29,8 +30,9 @@ class AlarmClockController: UITableViewController,AddAlarmDelegate {
         
         initValue()
         AppDelegate.getAppDelegate().startConnect(false)
-
-        self.navigationItem.leftBarButtonItem = self.editButtonItem
+        
+        let leftEditItem:UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.edit, target: self, action: #selector(alarmEditAction(_:)))
+        self.navigationItem.leftBarButtonItem = leftEditItem
         self.tableView.sectionFooterHeight = 20
         self.tableView.allowsSelectionDuringEditing = true;
         self.tableView.separatorStyle = UITableViewCellSeparatorStyle.singleLine
@@ -57,6 +59,11 @@ class AlarmClockController: UITableViewController,AddAlarmDelegate {
         
         weakeArray = mAlarmArray.filter({$0.type == 0})
         sleepArray = mAlarmArray.filter({$0.type == 1})
+    }
+    
+    func alarmEditAction(_ leftitem:UIBarButtonItem) {
+        editAlarmTag = !editAlarmTag
+        self.tableView.reloadData()
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -211,8 +218,7 @@ class AlarmClockController: UITableViewController,AddAlarmDelegate {
             if(addalarm.update()){
                 //mAlarmArray.replaceSubrange(slectedPath!.row..<slectedPath!.row+1, with: [addalarm])
                 self.initValue()
-                self.isEditing = false
-                self.tableView.setEditing(false, animated: true)
+                editAlarmTag = false
                 self.tableView.reloadData()
                 
                 let date:Date = Date(timeIntervalSince1970: timer)
@@ -290,8 +296,7 @@ class AlarmClockController: UITableViewController,AddAlarmDelegate {
             let addalarm:UserAlarm = UserAlarm(keyDict: ["id":alarmModel!.id,"timer":timer,"label":"\(name)","status":switchStatus,"repeatStatus":false,"dayOfWeek":repeatNumber,"type":alarmType])
             if(addalarm.update()){
                 self.initValue()
-                self.isEditing = false
-                self.tableView.setEditing(false, animated: true)
+                editAlarmTag = false
                 self.tableView.reloadData()
 
                 let date:Date = Date(timeIntervalSince1970: timer)
@@ -448,6 +453,11 @@ class AlarmClockController: UITableViewController,AddAlarmDelegate {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let endCell:AlarmClockVCell = tableView.dequeueReusableCell(withIdentifier: "alarmCell", for: indexPath) as! AlarmClockVCell
         endCell.selectionStyle = UITableViewCellSelectionStyle.none
+        if editAlarmTag {
+            endCell.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
+        }else{
+            endCell.accessoryType = UITableViewCellAccessoryType.none
+        }
         
         
         var alarmModel:UserAlarm?
@@ -603,7 +613,7 @@ class AlarmClockController: UITableViewController,AddAlarmDelegate {
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
-        if(self.isEditing){
+        if(editAlarmTag){
             slectedPath = indexPath
             var alarmModel:UserAlarm?
             

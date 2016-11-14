@@ -41,7 +41,8 @@ class InformationController: UIViewController,SMSegmentViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = NSLocalizedString("Register", comment: "")
+        self.navigationItem.title = NSLocalizedString("sign_up", comment: "")
+        
         
         let leftButton:UIBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Next", comment: ""), style: UIBarButtonItemStyle.plain, target: self, action: #selector(rightAction(_:)))
         self.navigationItem.rightBarButtonItem = leftButton

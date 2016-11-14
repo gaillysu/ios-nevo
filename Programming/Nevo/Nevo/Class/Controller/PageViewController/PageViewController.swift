@@ -74,11 +74,12 @@ class PageViewController: UIPageViewController,UIActionSheetDelegate {
         
         selectedController = pagingControllers[0]
         
-        let rightItem:UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "edit_icon"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(rightBarButtonAction(_:)))
+        //set_goal
+        let rightItem:UIBarButtonItem = UIBarButtonItem(title: NSLocalizedString("set_goal", comment: ""), style: UIBarButtonItemStyle.plain, target: self, action: #selector(rightBarButtonAction(_:)))
         rightItem.tintColor = AppTheme.NEVO_SOLAR_YELLOW()
         
         let rightSpacer:UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.fixedSpace, target: nil, action: nil)
-        rightSpacer.width = -10;
+        rightSpacer.width = 0;
         self.navigationItem.rightBarButtonItems = [rightSpacer,rightItem]
         
         let leftItem:UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "new_radio"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(leftBarButtonAction(_:)))
