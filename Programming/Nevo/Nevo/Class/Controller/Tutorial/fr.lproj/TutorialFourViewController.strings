@@ -1,6 +1,6 @@
 
 /* Class = "UILabel"; text = "Push and hold the third button, until the blue LED blinks."; ObjectID = "K0B-J6-Yzh"; */
-"K0B-J6-Yzh.text" = "Push and hold the third button, until the blue LED blinks.";
+"K0B-J6-Yzh.text" = "Push any button to turn on the bluetooth! if you want to turn off the bluetooth, hold the lower right button down but for now, let's connect it to the phone!";
 
 /* Class = "UIButton"; normalTitle = "Next"; ObjectID = "N2N-3j-L2h"; */
 "N2N-3j-L2h.normalTitle" = "Next";
