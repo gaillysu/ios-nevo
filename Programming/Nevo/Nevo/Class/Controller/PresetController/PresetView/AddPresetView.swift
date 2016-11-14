@@ -13,7 +13,7 @@ class AddPresetView: UIView {
 
     @IBOutlet weak var presetNumber: UITextField!
     @IBOutlet weak var presetName: UITextField!
-
+    
     func bulidAddPresetView(_ navigation:UINavigationItem,delegate:ButtonManagerCallBack){
         mDelegate = delegate
         navigation.title = NSLocalizedString("add_goal", comment: "")
