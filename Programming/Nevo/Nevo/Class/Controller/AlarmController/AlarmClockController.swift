@@ -21,7 +21,7 @@ class AlarmClockController: UITableViewController,AddAlarmDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = NSLocalizedString("sleep_and_wake", comment:"")
+        self.navigationItem.title = NSLocalizedString("alarmTitle", comment:"")
         
         if(UserAlarm.isExistInTable()){
             _ = UserAlarm.updateTable()
