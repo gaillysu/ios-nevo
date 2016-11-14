@@ -31,9 +31,8 @@ class AlarmClockController: UITableViewController,AddAlarmDelegate {
         initValue()
         AppDelegate.getAppDelegate().startConnect(false)
         
-        let leftEditItem:UIBarButtonItem = self.editButtonItem
-        leftEditItem.action = Selector("alarmEditAction")
-        self.navigationItem.leftBarButtonItem = self.editButtonItem
+        let leftEditItem:UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.edit, target: self, action: #selector(alarmEditAction(_:)))
+        self.navigationItem.leftBarButtonItem = leftEditItem
         self.tableView.sectionFooterHeight = 20
         self.tableView.allowsSelectionDuringEditing = true;
         self.tableView.separatorStyle = UITableViewCellSeparatorStyle.singleLine
@@ -62,7 +61,7 @@ class AlarmClockController: UITableViewController,AddAlarmDelegate {
         sleepArray = mAlarmArray.filter({$0.type == 1})
     }
     
-    func alarmEditAction() {
+    func alarmEditAction(_ leftitem:UIBarButtonItem) {
         editAlarmTag = !editAlarmTag
         self.tableView.reloadData()
     }
