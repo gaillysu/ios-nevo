@@ -50,6 +50,12 @@ class SetingView: UIView {
             let activity:UIActivityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.gray)
             activity.center = CGPoint(x: UIScreen.main.bounds.size.width-activity.frame.size.width, y: 50/2.0)
             endCell?.contentView.addSubview(activity)
+            
+            if !AppTheme.isTargetLunaR_OR_Nevo() {
+                activity.tintColor = UIColor.white
+                activity.color = UIColor.white
+            }
+            
         }else{
             endCell?.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
         }
