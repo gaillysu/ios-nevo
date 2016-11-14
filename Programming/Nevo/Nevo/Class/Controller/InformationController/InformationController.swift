@@ -79,13 +79,13 @@ class InformationController: UIViewController,SMSegmentViewDelegate {
             policyLabel.textColor = UIColor.getBaseColor()
             
             dateOfbirth.backgroundColor = UIColor.getLightBaseColor()
-            dateOfbirth.setValue(UIColor.white, forKeyPath: "placeholderLabel.textColor")
+            dateOfbirth.setValue(UIColor(white: 1, alpha: 0.7), forKeyPath: "placeholderLabel.textColor")
             dateOfbirth.textColor = UIColor.white
             heightTextField.backgroundColor = UIColor.getLightBaseColor()
-            heightTextField.setValue(UIColor.white, forKeyPath: "placeholderLabel.textColor")
+            heightTextField.setValue(UIColor(white: 1, alpha: 0.7), forKeyPath: "placeholderLabel.textColor")
             heightTextField.textColor = UIColor.white
             weightTextfield.backgroundColor = UIColor.getLightBaseColor()
-            weightTextfield.setValue(UIColor.white, forKeyPath: "placeholderLabel.textColor")
+            weightTextfield.setValue(UIColor(white: 1, alpha: 0.7), forKeyPath: "placeholderLabel.textColor")
             weightTextfield.textColor = UIColor.white
         }
     }

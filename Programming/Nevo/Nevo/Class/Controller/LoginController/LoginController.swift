@@ -73,8 +73,9 @@ extension LoginController {
             platformLabel.textColor = UIColor.white
             userNameTextField.backgroundColor = UIColor.getLightBaseColor()
             passwordTextField.backgroundColor = UIColor.getLightBaseColor()
-            userNameTextField.setValue(UIColor.white, forKeyPath: "placeholderLabel.textColor")
-            passwordTextField.setValue(UIColor.white, forKeyPath: "placeholderLabel.textColor")
+            
+            userNameTextField.setValue(UIColor(white: 1, alpha: 0.7), forKeyPath: "placeholderLabel.textColor")
+            passwordTextField.setValue(UIColor(white: 1, alpha: 0.7), forKeyPath: "placeholderLabel.textColor")
             
             registerLabel.textColor = UIColor.getBaseColor()
             
