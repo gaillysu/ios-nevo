@@ -13,7 +13,7 @@ class AddPresetView: UIView {
 
     @IBOutlet weak var presetNumber: UITextField!
     @IBOutlet weak var presetName: UITextField!
-
+    
     func bulidAddPresetView(_ navigation:UINavigationItem,delegate:ButtonManagerCallBack){
         mDelegate = delegate
         navigation.title = NSLocalizedString("add_goal", comment: "")
@@ -28,8 +28,11 @@ class AddPresetView: UIView {
         rightView.font = UIFont.systemFont(ofSize: 18)
         rightView.textColor = UIColor.gray
         presetNumber.rightView = rightView
+        
+        let leftView: UIView = UIView(frame: CGRect(x: 0, y: 0, width: 5, height: presetNumber.frame.size.height))
+        presetNumber.leftView = leftView
+        
         presetNumber.rightViewMode = UITextFieldViewMode.always
-        presetNumber.textAlignment = NSTextAlignment.right
         presetNumber.font = UIFont.systemFont(ofSize: 18)
         presetNumber.keyboardType = UIKeyboardType.numberPad
         presetNumber.layer.cornerRadius = 8
@@ -52,12 +55,12 @@ class AddPresetView: UIView {
             rightView.textColor = UIColor.white
             
             presetNumber.textColor = UIColor.white
-            presetNumber.backgroundColor = UIColor.getLightBaseColor()
+            presetNumber.backgroundColor = UIColor.getGreyColor()
             presetNumber.setValue(UIColor.white, forKeyPath: "_placeholderLabel.textColor")
             presetNumber.tintColor = UIColor.white
             
             presetName.textColor = UIColor.white
-            presetName.backgroundColor = UIColor.getLightBaseColor()
+            presetName.backgroundColor = UIColor.getGreyColor()
             presetName.layer.borderColor = UIColor.gray.cgColor
             presetName.setValue(UIColor.gray, forKeyPath: "_placeholderLabel.textColor")
             presetName.tintColor = UIColor.white

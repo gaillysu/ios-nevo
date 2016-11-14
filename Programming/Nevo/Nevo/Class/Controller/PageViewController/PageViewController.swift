@@ -15,6 +15,7 @@ import LTNavigationBar
 import SnapKit
 import RealmSwift
 import Solar
+import Timepiece
 
 let SELECTED_CALENDAR_NOTIFICATION = "SELECTED_CALENDAR_NOTIFICATION"
 private let CALENDAR_VIEW_TAG = 1800
@@ -449,12 +450,34 @@ extension PageViewController: CVCalendarViewDelegate, CVCalendarMenuViewDelegate
         return false
     }
     
+    func shouldSelectDayView(_ dayView: DayView) -> Bool {
+        let dayDate:Date = dayView.date!.convertedDate()!
+        
+        let nowDate:Date = Date()
+        
+        if (dayDate - nowDate) > 0 {
+            if dayDate.year == nowDate.year && dayDate.month == nowDate.month && dayDate.day == nowDate.day {
+                return true
+            } else {
+                return false
+            }
+            
+        } else {
+            return true
+        }
+    }
+    
     func didSelectDayView(_ dayView: CVCalendarDayView, animationDidFinish: Bool) {
         print("\(dayView.date.commonDescription) is selected!")
         dayView.selectionView?.shape = CVShape.rect
         self.dismissCalendar()
         titleView?.selectedFinishTitleView()
         let dayDate:Date = dayView.date!.convertedDate()!
+        
+        let nowDate:Date = Date()
+        if (dayDate.year >= nowDate.year) && (dayDate.month >= nowDate.month) && (dayDate.day > dayDate.day) {
+        }
+        
         SwiftEventBus.post(SELECTED_CALENDAR_NOTIFICATION, userInfo: ["selectedDate":dayDate])
         
     }
@@ -552,7 +575,7 @@ extension PageViewController: CVCalendarViewAppearanceDelegate {
     
     func dayLabelBackgroundColor(by weekDay: Weekday, status: CVStatus, present: CVPresent) -> UIColor?{
         if !AppTheme.isTargetLunaR_OR_Nevo() {
-            return UIColor.white
+            return UIColor.getBaseColor()
         }else{
             return AppTheme.NEVO_SOLAR_YELLOW()
         }

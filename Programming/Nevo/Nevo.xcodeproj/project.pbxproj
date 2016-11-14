@@ -834,6 +834,10 @@
 		665BD6DD1DBF357D008C2623 /* lunar_dial_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 665BD6DB1DBF357D008C2623 /* lunar_dial_bg.png */; };
 		665BD6DE1DBF357D008C2623 /* lunar_dial_f.png in Resources */ = {isa = PBXBuildFile; fileRef = 665BD6DC1DBF357D008C2623 /* lunar_dial_f.png */; };
 		665E331F1DADCD8A00D0E36D /* MEDBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 665E331D1DADCD8A00D0E36D /* MEDBanner.swift */; };
+		66687CD71DD9654100AD7F7D /* Dispatch+MEDExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66687CD61DD9654100AD7F7D /* Dispatch+MEDExtension.swift */; };
+		66687CD81DD9654100AD7F7D /* Dispatch+MEDExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66687CD61DD9654100AD7F7D /* Dispatch+MEDExtension.swift */; };
+		66687CDA1DD9832800AD7F7D /* StepsCalButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66687CD91DD9832800AD7F7D /* StepsCalButton.swift */; };
+		66687CDB1DD9832800AD7F7D /* StepsCalButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66687CD91DD9832800AD7F7D /* StepsCalButton.swift */; };
 		666F60F11DAF264B0011F3C5 /* AppDelegate-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006DA9FD1D80F2A600B70C0F /* AppDelegate-Extension.swift */; };
 		6688A6591DC981980078E636 /* MEDBaseDeleteRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6688A6461DC981980078E636 /* MEDBaseDeleteRequest.swift */; };
 		6688A65B1DC981980078E636 /* MEDBaseGetRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6688A6471DC981980078E636 /* MEDBaseGetRequest.swift */; };
@@ -1359,6 +1363,8 @@
 		665BD6DB1DBF357D008C2623 /* lunar_dial_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lunar_dial_bg.png; sourceTree = "<group>"; };
 		665BD6DC1DBF357D008C2623 /* lunar_dial_f.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lunar_dial_f.png; sourceTree = "<group>"; };
 		665E331D1DADCD8A00D0E36D /* MEDBanner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MEDBanner.swift; sourceTree = "<group>"; };
+		66687CD61DD9654100AD7F7D /* Dispatch+MEDExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dispatch+MEDExtension.swift"; sourceTree = "<group>"; };
+		66687CD91DD9832800AD7F7D /* StepsCalButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepsCalButton.swift; sourceTree = "<group>"; };
 		6688A6461DC981980078E636 /* MEDBaseDeleteRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MEDBaseDeleteRequest.swift; sourceTree = "<group>"; };
 		6688A6471DC981980078E636 /* MEDBaseGetRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MEDBaseGetRequest.swift; sourceTree = "<group>"; };
 		6688A6481DC981980078E636 /* MEDBaseNetworkRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MEDBaseNetworkRequest.swift; sourceTree = "<group>"; };
@@ -1721,6 +1727,7 @@
 				6173DF0C1DB0E993002DF6AF /* StepsHistoryViewController.xib */,
 				006A626B1D6AB44A00458305 /* StepsTitleView.swift */,
 				006A626C1D6AB44A00458305 /* StepsTitleView.xib */,
+				66687CD91DD9832800AD7F7D /* StepsCalButton.swift */,
 			);
 			path = StepController;
 			sourceTree = "<group>";
@@ -2373,6 +2380,7 @@
 			isa = PBXGroup;
 			children = (
 				1C3712D61DBC5BF2007DC349 /* UIView+MEDExtension.swift */,
+				66687CD61DD9654100AD7F7D /* Dispatch+MEDExtension.swift */,
 			);
 			name = MEDExtension;
 			path = Frameworks/MEDExtension;
@@ -3487,6 +3495,7 @@
 				00C826461DA5E04000ECECEE /* AnalysisRadarViewCell.swift in Sources */,
 				00C826471DA5E04000ECECEE /* AnalysisRadarViewCell.xib in Sources */,
 				00C826481DA5E04000ECECEE /* AnalysisRadarChartView.swift in Sources */,
+				66687CDB1DD9832800AD7F7D /* StepsCalButton.swift in Sources */,
 				6198EE2D1DC2090700FDD850 /* LunaRDailyTrackerInfoPacket.swift in Sources */,
 				00C826491DA5E04000ECECEE /* AnalysisStepsChartView.swift in Sources */,
 				00C8264A1DA5E04000ECECEE /* AnalysisValueCell.swift in Sources */,
@@ -3703,6 +3712,7 @@
 				00D474541D586D1600E2447E /* ClockView.swift in Sources */,
 				00D474551D586D1600E2447E /* DatePickerView.swift in Sources */,
 				00D474561D586D1600E2447E /* DatePickerView.xib in Sources */,
+				66687CD81DD9654100AD7F7D /* Dispatch+MEDExtension.swift in Sources */,
 				00D474581D586D1600E2447E /* ToolbarView.swift in Sources */,
 				00D474591D586D1600E2447E /* Alert.swift in Sources */,
 				00D4745A1D586D1600E2447E /* ClockRefreshManager.swift in Sources */,
@@ -3818,6 +3828,7 @@
 				611D415C1DCAD97C003BC6E3 /* HourlySteps.swift in Sources */,
 				6650988E1DCB0E220059D5F7 /* MEDSleepNetworkManager.swift in Sources */,
 				611D415D1DCAD97C003BC6E3 /* RealTimeCountSteps.swift in Sources */,
+				66687CD71DD9654100AD7F7D /* Dispatch+MEDExtension.swift in Sources */,
 				611D415E1DCAD97C003BC6E3 /* RunningToHK.swift in Sources */,
 				611D415F1DCAD97C003BC6E3 /* Alarm.swift in Sources */,
 				611D41601DCAD97C003BC6E3 /* NewAlarm.swift in Sources */,
@@ -4051,6 +4062,7 @@
 				611D424B1DCAD97D003BC6E3 /* PresetView.swift in Sources */,
 				611D424C1DCAD97D003BC6E3 /* SetingInfoCell.swift in Sources */,
 				611D424D1DCAD97D003BC6E3 /* SetingInfoCell.xib in Sources */,
+				66687CDA1DD9832800AD7F7D /* StepsCalButton.swift in Sources */,
 				611D424E1DCAD97D003BC6E3 /* SetingLoginCell.swift in Sources */,
 				611D424F1DCAD97D003BC6E3 /* SetingLoginCell.xib in Sources */,
 				611D42501DCAD97D003BC6E3 /* SetingNotLoginCell.swift in Sources */,

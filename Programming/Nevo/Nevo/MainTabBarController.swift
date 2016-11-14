@@ -36,7 +36,6 @@ class MainTabBarController: UITabBarController,UITabBarControllerDelegate {
             }
             
             if contll!.isKind(of: AnalysisController.self){
-                
                 (nav as! UINavigationController).tabBarItem.title = NSLocalizedString("Analysis", comment: "")
                 contll?.title = NSLocalizedString("Analysis", comment: "")
             }
@@ -74,5 +73,12 @@ class MainTabBarController: UITabBarController,UITabBarControllerDelegate {
 
 // MARK: - LUNAR EXTENSION
 extension MainTabBarController {
+    fileprivate func scaleImage(_ image:UIImage, to size:CGSize) -> UIImage {
+        UIGraphicsBeginImageContext(size)
+        image.draw(in: CGRect(x: 0, y: 0, width: size.width, height: size.height))
+        let scaledImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+        return scaledImage
+    }
 }
 
