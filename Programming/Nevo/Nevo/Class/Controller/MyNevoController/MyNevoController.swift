@@ -79,7 +79,7 @@ class MyNevoController: UITableViewController,UIAlertViewDelegate {
         
         if !AppTheme.isTargetLunaR_OR_Nevo() {
             self.navigationItem.title = NSLocalizedString("My LunaR", comment: "")
-            self.tableView.backgroundColor = UIColor.getGreyColor()
+            self.tableView.backgroundColor = UIColor.getLightBaseColor()
         }
     }
 
