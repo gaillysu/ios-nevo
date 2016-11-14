@@ -3,7 +3,7 @@
 "Dnl-L7-kCN.normalTitle" = "再试一次";
 
 /* Class = "UILabel"; text = "Make sure the blue LED on the nevo is blinking and try again."; ObjectID = "mVz-rf-Ylf"; */
-"mVz-rf-Ylf.text" = "确保Nevo的蓝色LED闪烁后再试一次。";
+"mVz-rf-Ylf.text" = "确保nevo的蓝色LED闪烁后再试一次。";
 
 /* Class = "UILabel"; text = "Cannot connect"; ObjectID = "uOQ-nw-fA7"; */
 "uOQ-nw-fA7.text" = "不能连接";

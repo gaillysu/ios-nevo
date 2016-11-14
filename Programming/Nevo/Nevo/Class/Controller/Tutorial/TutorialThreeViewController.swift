@@ -31,6 +31,9 @@ class TutorialThreeViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         styleEvolve()
+        if !AppTheme.isTargetLunaR_OR_Nevo() {
+            self.setLunaRtext()
+        }
     }
     
     @IBAction func nextAction(_ sender: AnyObject) {
@@ -51,5 +54,13 @@ extension TutorialThreeViewController {
             nextStepButton.setTitleColor(UIColor.getBaseColor(), for: .normal)
             centerImageView.image = AppTheme.GET_RESOURCES_IMAGE("lunar_settime")
         }
+    }
+    
+    func setLunaRtext() {
+        titleLabel.text = titleLabel.text?.replacingOccurrences(of: "nevo watch", with: "LunaR")
+        titleLabel.text = titleLabel.text?.replacingOccurrences(of: "nevo", with: "LunaR")
+        
+        detailLabel.text = detailLabel.text?.replacingOccurrences(of: "nevo watch", with: "LunaR")
+        detailLabel.text = detailLabel.text?.replacingOccurrences(of: "nevo", with: "LunaR")
     }
 }
