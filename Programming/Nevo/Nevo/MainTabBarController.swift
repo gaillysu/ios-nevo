@@ -28,37 +28,21 @@ class MainTabBarController: UITabBarController,UITabBarControllerDelegate {
             if contll!.isKind(of: AlarmClockController.self){
                 (nav as! UINavigationController).tabBarItem.title = NSLocalizedString("alarmTitle", comment: "")
                 contll?.title = NSLocalizedString("alarmTitle", comment: "")
-                
-                let scaledImage: UIImage = scaleImage(UIImage(named: "new_iOS_alarm_icon")!, to: CGSize(width: 35, height: 35))
-                let tabBarItem: UITabBarItem = UITabBarItem(title: NSLocalizedString("alarmTitle", comment: ""), image: scaledImage, tag: 1993)
-                (nav as! UINavigationController).tabBarItem = tabBarItem
             }
 
             if contll!.isKind(of: PageViewController.self){
                 (nav as! UINavigationController).tabBarItem.title = NSLocalizedString("Dashboard", comment: "")
                 contll?.title = NSLocalizedString("Dashboard", comment: "")
-                
-                let scaledImage: UIImage = scaleImage(UIImage(named: "home_icon")!, to: CGSize(width: 25, height: 25))
-                let tabBarItem: UITabBarItem = UITabBarItem(title: NSLocalizedString("Dashboard", comment: ""), image: scaledImage, tag: 1993)
-                (nav as! UINavigationController).tabBarItem = tabBarItem
             }
             
             if contll!.isKind(of: AnalysisController.self){
                 (nav as! UINavigationController).tabBarItem.title = NSLocalizedString("Analysis", comment: "")
                 contll?.title = NSLocalizedString("Analysis", comment: "")
-                
-                let scaledImage: UIImage = scaleImage(UIImage(named: "analysis_icon")!, to: CGSize(width: 25, height: 25))
-                let tabBarItem: UITabBarItem = UITabBarItem(title: NSLocalizedString("Analysis", comment: ""), image: scaledImage, tag: 1993)
-                (nav as! UINavigationController).tabBarItem = tabBarItem
             }
 
             if contll!.isKind(of: SetingViewController.self){
                 (nav as! UINavigationController).tabBarItem.title = NSLocalizedString("Setting", comment: "")
                 contll?.title = NSLocalizedString("Setting", comment: "")
-                
-                let scaledImage: UIImage = scaleImage(UIImage(named: "new_iOS_setting_icon")!, to: CGSize(width: 25, height: 25))
-                let tabBarItem: UITabBarItem = UITabBarItem(title: NSLocalizedString("Setting", comment: ""), image: scaledImage, tag: 1993)
-                (nav as! UINavigationController).tabBarItem = tabBarItem
             }
 
         }
