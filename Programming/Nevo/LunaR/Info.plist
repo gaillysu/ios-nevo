@@ -42,19 +42,19 @@
 		<true/>
 	</dict>
 	<key>NSBluetoothPeripheralUsageDescription</key>
-	<string>Whether to allow the App to use bluetooth?</string>
+	<string>This app needs bluetooth to connect to the LunaR Watch</string>
 	<key>NSCameraUsageDescription</key>
-	<string>Whether to allowed to use your Camera?</string>
+	<string>This app needs the camera to take a picture for the user profile</string>
 	<key>NSHealthShareUsageDescription</key>
-	<string>Whether to allow the App to share health data?</string>
+	<string>This app needs to share the health for HealthKit!</string>
 	<key>NSHealthUpdateUsageDescription</key>
-	<string>Whether to allow the App to update the health data?</string>
+	<string>This app needs to update the health for HealthKit!</string>
 	<key>NSLocationUsageDescription</key>
-	<string>Whether to allowed to use your location?</string>
+	<string>LunaR needs your location to set the sunset and sunrise time. </string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Whether to allow the use your location information when using the application?</string>
+	<string>LunaR needs your location to set the sunset and sunrise time. </string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Whether to allowed to use your Photo Library?</string>
+	<string>This app needs the photo library usage to choose a photo for the user profile</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Raleway-Bold.ttf</string>
