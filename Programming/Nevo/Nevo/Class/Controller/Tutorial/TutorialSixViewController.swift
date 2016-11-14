@@ -29,6 +29,11 @@ class TutorialSixViewController: UIViewController{
         styleEvolve()
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        self.setLunaRtext()
+    }
+    
     @IBAction func tapToContinueAction(_ sender: AnyObject) {
         if let mainController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController() {
             UIApplication.shared.keyWindow?.rootViewController = mainController
@@ -45,5 +50,10 @@ extension TutorialSixViewController {
             tapToContinueButton.backgroundColor = UIColor.getBaseColor()
             imageView.image = UIImage(named: "lunar_connected")
         }
+    }
+    
+    func setLunaRtext() {
+        titleLabel.text = titleLabel.text?.replacingOccurrences(of: "nevo watch", with: "LunaR")
+        titleLabel.text = titleLabel.text?.replacingOccurrences(of: "nevo", with: "LunaR")
     }
 }

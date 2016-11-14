@@ -36,6 +36,13 @@ class TutorialOneViewController: UIViewController{
         self.view.addGestureRecognizer(logPress)
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        if !AppTheme.isTargetLunaR_OR_Nevo() {
+            self.setLunaRtext()
+        }
+    }
+    
     func logPressAction(_ sender:UITapGestureRecognizer) {
         let otaCont:OldOtaViewController = OldOtaViewController()
         let navigation:UINavigationController = UINavigationController(rootViewController: otaCont)
@@ -68,5 +75,19 @@ extension TutorialOneViewController {
             nextStepButton.backgroundColor = UIColor.getBaseColor()
             nextStepButton.setTitleColor(UIColor.white, for: .normal)
         }
+    }
+    
+    func setLunaRtext() {
+        titleLabel.text = titleLabel.text?.replacingOccurrences(of: "nevo watch", with: "LunaR")
+        titleLabel.text = titleLabel.text?.replacingOccurrences(of: "nevo", with: "LunaR")
+        
+        detailLabel.text = detailLabel.text?.replacingOccurrences(of: "nevo watch", with: "LunaR")
+        detailLabel.text = detailLabel.text?.replacingOccurrences(of: "nevo", with: "LunaR")
+        
+        var buttonText:String = nextStepButton.titleLabel!.text!.replacingOccurrences(of: "nevo", with: "LunaR")
+        buttonText = buttonText.replacingOccurrences(of: "nevo watch", with: "LunaR")
+        nextStepButton.setTitle(buttonText, for: .normal)
+        nextStepButton.setTitle(buttonText, for: .selected)
+        nextStepButton.setTitle(buttonText, for: .highlighted)
     }
 }

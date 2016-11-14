@@ -43,7 +43,10 @@ class TutorialFiveViewController: UIViewController {
     }
 
     override func viewDidLayoutSubviews() {
-
+        super.viewDidLayoutSubviews()
+        if !AppTheme.isTargetLunaR_OR_Nevo() {
+            self.setLunaRtext()
+        }
     }
 
     func timerAction(_ action:Timer) {
@@ -106,5 +109,13 @@ extension TutorialFiveViewController {
             progressBar.centerFillColor = UIColor.getGreyColor()
             watchImage.image = AppTheme.GET_RESOURCES_IMAGE("lunar_search")
         }
+    }
+    
+    func setLunaRtext() {
+        titleLabel.text = titleLabel.text?.replacingOccurrences(of: "nevo watch", with: "LunaR")
+        titleLabel.text = titleLabel.text?.replacingOccurrences(of: "nevo", with: "LunaR")
+        
+        detailLabel.text = detailLabel.text?.replacingOccurrences(of: "nevo watch", with: "LunaR")
+        detailLabel.text = detailLabel.text?.replacingOccurrences(of: "nevo", with: "LunaR")
     }
 }

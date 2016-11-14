@@ -27,8 +27,16 @@ class TutorialSevenViewController: UIViewController {
     override func viewDidLoad() {
         styleEvolve()
     }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        if !AppTheme.isTargetLunaR_OR_Nevo() {
+            self.setLunaRtext()
+        }
+    }
+    
     @IBAction func tryAgainAction(_ sender: AnyObject) {
-        self.navigationController?.popViewController(animated: true)
+        _ = self.navigationController?.popViewController(animated: true)
     }
 }
 
@@ -44,4 +52,13 @@ extension TutorialSevenViewController {
             centerImageView.image =  AppTheme.GET_RESOURCES_IMAGE("lunar_not_connect")
         }
     }
+    
+    func setLunaRtext() {
+        titleLabel.text = titleLabel.text?.replacingOccurrences(of: "nevo watch", with: "LunaR")
+        titleLabel.text = titleLabel.text?.replacingOccurrences(of: "nevo", with: "LunaR")
+        
+        detailLabel.text = detailLabel.text?.replacingOccurrences(of: "nevo watch", with: "LunaR")
+        detailLabel.text = detailLabel.text?.replacingOccurrences(of: "nevo", with: "LunaR")
+    }
+
 }

@@ -27,6 +27,12 @@ class TutorialFourViewController: UIViewController{
     override func viewDidLoad() {
         styleEvolve()
     }
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        if !AppTheme.isTargetLunaR_OR_Nevo() {
+            self.setLunaRtext()
+        }
+    }
 
     @IBAction func nextAction(_ sender: AnyObject) {
         let tutorialFive = TutorialFiveViewController()
@@ -45,5 +51,12 @@ extension TutorialFourViewController {
             nextButton.setTitleColor(UIColor.getBaseColor(), for: .normal)
             centerImageView.image = AppTheme.GET_RESOURCES_IMAGE("lunar_open_bt")
         }
+    }
+    func setLunaRtext() {
+        titleLabel.text = titleLabel.text?.replacingOccurrences(of: "nevo watch", with: "LunaR")
+        titleLabel.text = titleLabel.text?.replacingOccurrences(of: "nevo", with: "LunaR")
+        
+        detailLabel.text = detailLabel.text?.replacingOccurrences(of: "nevo watch", with: "LunaR")
+        detailLabel.text = detailLabel.text?.replacingOccurrences(of: "nevo", with: "LunaR")
     }
 }

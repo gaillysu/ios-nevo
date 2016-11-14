@@ -32,6 +32,13 @@ class TutorialTwoViewController: UIViewController {
         }
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        if !AppTheme.isTargetLunaR_OR_Nevo() {
+            self.setLunaRtext()
+        }
+    }
+    
     @IBAction func turnBluetoothOnAction(_ sender: AnyObject) {
         let tutorialTwo = TutorialThreeViewController()
         self.navigationController?.pushViewController(tutorialTwo, animated: true)
@@ -49,5 +56,13 @@ extension TutorialTwoViewController {
             turnBluetoothOnButton.backgroundColor = UIColor.getBaseColor()
             turnBluetoothOnButton.setTitleColor(UIColor.white, for: .normal)
         }
+    }
+    
+    func setLunaRtext() {
+        titleLabel.text = titleLabel.text?.replacingOccurrences(of: "nevo watch", with: "LunaR")
+        titleLabel.text = titleLabel.text?.replacingOccurrences(of: "nevo", with: "LunaR")
+        
+        detailLabel.text = detailLabel.text?.replacingOccurrences(of: "nevo watch", with: "LunaR")
+        detailLabel.text = detailLabel.text?.replacingOccurrences(of: "nevo", with: "LunaR")
     }
 }
