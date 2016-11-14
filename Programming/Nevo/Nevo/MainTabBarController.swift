@@ -28,7 +28,6 @@ class MainTabBarController: UITabBarController,UITabBarControllerDelegate {
             if contll!.isKind(of: AlarmClockController.self){
                 (nav as! UINavigationController).tabBarItem.title = NSLocalizedString("alarmTitle", comment: "")
                 contll?.title = NSLocalizedString("alarmTitle", comment: "")
-                
                 DispatchQueue.once(token: "MainTabBarController_alarmTitle", block: {
                     (nav as! UINavigationController).tabBarItem.imageInsets = UIEdgeInsets(top: 1, left: 1, bottom: 1, right: 1)
                 })
@@ -89,5 +88,12 @@ class MainTabBarController: UITabBarController,UITabBarControllerDelegate {
 
 // MARK: - LUNAR EXTENSION
 extension MainTabBarController {
+    fileprivate func scaleImage(_ image:UIImage, to size:CGSize) -> UIImage {
+        UIGraphicsBeginImageContext(size)
+        image.draw(in: CGRect(x: 0, y: 0, width: size.width, height: size.height))
+        let scaledImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+        return scaledImage
+    }
 }
 

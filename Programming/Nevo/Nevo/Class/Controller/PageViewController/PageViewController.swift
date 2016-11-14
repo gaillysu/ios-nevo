@@ -551,7 +551,7 @@ extension PageViewController: CVCalendarViewAppearanceDelegate {
     
     func dayLabelBackgroundColor(by weekDay: Weekday, status: CVStatus, present: CVPresent) -> UIColor?{
         if !AppTheme.isTargetLunaR_OR_Nevo() {
-            return UIColor.white
+            return UIColor.getBaseColor()
         }else{
             return AppTheme.NEVO_SOLAR_YELLOW()
         }
