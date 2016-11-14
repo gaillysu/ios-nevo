@@ -8,11 +8,19 @@
 
 import UIKit
 
+public enum AddPresetControllerPurpose {
+    case Add
+    case Edit
+}
+
 
 class AddPresetViewController: UIViewController,ButtonManagerCallBack {
 
     @IBOutlet weak var addPresetView: AddPresetView!
     var addDelegate:AddPresetDelegate?
+    
+    var purpose:AddPresetControllerPurpose = .Add
+    var goalItem:Presets? = nil
     
     init() {
         super.init(nibName: "AddPresetViewController", bundle: Bundle.main)
@@ -26,6 +34,16 @@ class AddPresetViewController: UIViewController,ButtonManagerCallBack {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.automaticallyAdjustsScrollViewInsets = false
+        
+        switch purpose {
+        case .Add:
+            navigationController?.title = NSLocalizedString("add_goal", comment: "")
+        default:
+            navigationController?.title = NSLocalizedString("Edit goal", comment: "")
+            
+            addPresetView.presetNumber.text = "\((goalItem?.steps)!)"
+            addPresetView.presetName.text = goalItem?.label
+        }
         
         addPresetView.bulidAddPresetView(self.navigationItem, delegate: self)
         
@@ -43,17 +61,18 @@ class AddPresetViewController: UIViewController,ButtonManagerCallBack {
         }
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
     // MARK: - ButtonManagerDelegate
     func controllManager(_ sender:AnyObject){
         let number:NSString = addPresetView.presetNumber.text! as NSString
         let length:Int = number.length
         if(length >= 4){
-            addDelegate?.onAddPresetNumber(Int(addPresetView.presetNumber.text!)!, name: addPresetView.presetName.text!)
+            switch purpose {
+            case .Add:
+                addDelegate?.onAddPresetNumber(Int(addPresetView.presetNumber.text!)!, name: addPresetView.presetName.text!)
+            default:
+                goalItem?.label = addPresetView.presetName.text!
+                goalItem?.steps = (addPresetView.presetNumber.text?.toInt())!
+            }
             self.navigationController?.popViewController(animated: true)
         }else{
             if((UIDevice.current.systemVersion as NSString).floatValue >= 8.0){
@@ -76,16 +95,6 @@ class AddPresetViewController: UIViewController,ButtonManagerCallBack {
         addPresetView.presetName.resignFirstResponder()
         addPresetView.presetNumber.resignFirstResponder()
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
 
 extension AddPresetViewController {

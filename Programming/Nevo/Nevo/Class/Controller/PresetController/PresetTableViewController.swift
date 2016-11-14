@@ -39,10 +39,10 @@ class PresetTableViewController: UITableViewController,ButtonManagerCallBack,Add
         styleEvolve()
 
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tableView.reloadData()
     }
 
     // MARK: - AddPresetDelegate
@@ -74,6 +74,7 @@ class PresetTableViewController: UITableViewController,ButtonManagerCallBack,Add
         if(sender.isEqual(presetView.leftButton)){
             //let removeAll:Bool = Presets.removeAll()
             let addPreset:AddPresetViewController = AddPresetViewController()
+            addPreset.purpose = .Add
             addPreset.addDelegate = self
             self.navigationController?.pushViewController(addPreset, animated: true)
         }
@@ -85,23 +86,24 @@ class PresetTableViewController: UITableViewController,ButtonManagerCallBack,Add
             _ = preModel.update()
         }
     }
+}
 
-    // MARK: - Table view data source
-
+// MARK: - Table view data source
+extension PresetTableViewController {
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return prestArray.count
     }
-
-
+    
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
+        
         return presetView.getPresetTableViewCell(indexPath, tableView: tableView,presetArray: prestArray, delegate: self)
     }
-
+    
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
     }
@@ -122,18 +124,27 @@ class PresetTableViewController: UITableViewController,ButtonManagerCallBack,Add
             prestArray.remove(at: (indexPath as NSIndexPath).row)
             tableView.deleteRows(at: [indexPath], with: .fade)
         } else if editingStyle == .insert {
-
-        }    
+            
+        }
     }
     
     // Override to support rearranging the table view.
     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to toIndexPath: IndexPath) {
-
+        
     }
-
+    
     // Override to support conditional rearranging of the table view.
     override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
         return true
+    }
+    
+    // MARK: - Edit the goal item
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let goalItem:Presets = prestArray[(indexPath as NSIndexPath).row]
+        let editGoalController: AddPresetViewController = AddPresetViewController()
+        editGoalController.purpose = .Edit
+        editGoalController.goalItem = goalItem
+        navigationController?.pushViewController(editGoalController, animated: true)
     }
 }
 
