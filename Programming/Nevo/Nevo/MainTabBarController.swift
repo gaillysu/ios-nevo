@@ -28,36 +28,37 @@ class MainTabBarController: UITabBarController,UITabBarControllerDelegate {
             if contll!.isKind(of: AlarmClockController.self){
                 (nav as! UINavigationController).tabBarItem.title = NSLocalizedString("alarmTitle", comment: "")
                 contll?.title = NSLocalizedString("alarmTitle", comment: "")
-                DispatchQueue.once(token: "MainTabBarController_alarmTitle", block: {
-                    (nav as! UINavigationController).tabBarItem.imageInsets = UIEdgeInsets(top: 1, left: 1, bottom: 1, right: 1)
-                })
+                
+                let scaledImage: UIImage = scaleImage(UIImage(named: "new_iOS_alarm_icon")!, to: CGSize(width: 35, height: 35))
+                let tabBarItem: UITabBarItem = UITabBarItem(title: NSLocalizedString("alarmTitle", comment: ""), image: scaledImage, tag: 1993)
+                (nav as! UINavigationController).tabBarItem = tabBarItem
             }
 
             if contll!.isKind(of: PageViewController.self){
                 (nav as! UINavigationController).tabBarItem.title = NSLocalizedString("Dashboard", comment: "")
                 contll?.title = NSLocalizedString("Dashboard", comment: "")
                 
-                DispatchQueue.once(token: "MainTabBarController_Dashboard", block: {
-                    (nav as! UINavigationController).tabBarItem.imageInsets = UIEdgeInsets(top: 3, left: 3, bottom: 3, right: 3)
-                })
+                let scaledImage: UIImage = scaleImage(UIImage(named: "home_icon")!, to: CGSize(width: 25, height: 25))
+                let tabBarItem: UITabBarItem = UITabBarItem(title: NSLocalizedString("Dashboard", comment: ""), image: scaledImage, tag: 1993)
+                (nav as! UINavigationController).tabBarItem = tabBarItem
             }
             
             if contll!.isKind(of: AnalysisController.self){
                 (nav as! UINavigationController).tabBarItem.title = NSLocalizedString("Analysis", comment: "")
                 contll?.title = NSLocalizedString("Analysis", comment: "")
                 
-                DispatchQueue.once(token: "MainTabBarController_Analysis", block: {
-                    (nav as! UINavigationController).tabBarItem.imageInsets = UIEdgeInsets(top: 3, left: 3, bottom: 3, right: 3)
-                })
+                let scaledImage: UIImage = scaleImage(UIImage(named: "analysis_icon")!, to: CGSize(width: 25, height: 25))
+                let tabBarItem: UITabBarItem = UITabBarItem(title: NSLocalizedString("Analysis", comment: ""), image: scaledImage, tag: 1993)
+                (nav as! UINavigationController).tabBarItem = tabBarItem
             }
 
             if contll!.isKind(of: SetingViewController.self){
                 (nav as! UINavigationController).tabBarItem.title = NSLocalizedString("Setting", comment: "")
                 contll?.title = NSLocalizedString("Setting", comment: "")
                 
-                DispatchQueue.once(token: "MainTabBarController_Setting", block: {
-                    (nav as! UINavigationController).tabBarItem.imageInsets = UIEdgeInsets(top: 2, left: 2, bottom: 2, right: 2)
-                })
+                let scaledImage: UIImage = scaleImage(UIImage(named: "new_iOS_setting_icon")!, to: CGSize(width: 25, height: 25))
+                let tabBarItem: UITabBarItem = UITabBarItem(title: NSLocalizedString("Setting", comment: ""), image: scaledImage, tag: 1993)
+                (nav as! UINavigationController).tabBarItem = tabBarItem
             }
 
         }
