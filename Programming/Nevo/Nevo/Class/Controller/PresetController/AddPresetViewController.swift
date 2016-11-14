@@ -25,17 +25,16 @@ class AddPresetViewController: UIViewController,ButtonManagerCallBack {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-//        addPresetView.backgroundColor = UIColor.white
+        self.automaticallyAdjustsScrollViewInsets = false
+        
         addPresetView.bulidAddPresetView(self.navigationItem, delegate: self)
         
-        
         // MARK: - APPTHEME ADJUST
-        
         if !AppTheme.isTargetLunaR_OR_Nevo() {
-            view.backgroundColor = UIColor.getGreyColor()
-            addPresetView.backgroundColor = UIColor.getGreyColor()
-            addPresetView.presetNumber.backgroundColor = UIColor.getLightBaseColor()
-            addPresetView.presetName.backgroundColor = UIColor.getLightBaseColor()
+            view.backgroundColor = UIColor.getLightBaseColor()
+            addPresetView.backgroundColor = UIColor.getLightBaseColor()
+            addPresetView.presetNumber.backgroundColor = UIColor.getGreyColor()
+            addPresetView.presetName.backgroundColor = UIColor.getGreyColor()
         } else {
             view.backgroundColor = UIColor(rgba: "#EFEFF4")
             addPresetView.backgroundColor = UIColor(rgba: "#EFEFF4")
