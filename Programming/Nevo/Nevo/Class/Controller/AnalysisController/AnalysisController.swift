@@ -27,6 +27,8 @@ class AnalysisController: PublicClassController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.segmented.backgroundColor = UIColor(red: 96/255.0, green: 99/255.0, blue: 101/255.0, alpha: 1)
+        
         self.navigationController?.navigationBar.allSubviews(do: { (v) in
             v.isHidden = v.frame.height == 0.5
         })
