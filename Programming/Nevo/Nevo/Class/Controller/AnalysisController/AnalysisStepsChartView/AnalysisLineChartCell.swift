@@ -421,7 +421,8 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
             }
         }
         
-        self.setChartViewLeftAxis(Double(maxValue-(maxValue%2)+800), unitString: "")
+        
+        self.setChartViewLeftAxis(Double(Double(maxValue)/60.0+7), unitString: " "+NSLocalizedString("hours", comment: ""))
         
         self.setYvalueData(rowIndex,completionData:nil)
         
