@@ -16,6 +16,7 @@ class MainTabBarController: UITabBarController,UITabBarControllerDelegate {
         super.viewDidLoad()
         self.delegate = self
         self.tabBar.tintColor = AppTheme.NEVO_SOLAR_YELLOW()
+        
         if !AppTheme.isTargetLunaR_OR_Nevo() {
             self.tabBar.tintColor = UIColor.getBaseColor()
             self.tabBar.barTintColor = UIColor.getGreyColor()
@@ -47,27 +48,6 @@ class MainTabBarController: UITabBarController,UITabBarControllerDelegate {
 
         }
     }
-
-    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController){
-        
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
 
 
