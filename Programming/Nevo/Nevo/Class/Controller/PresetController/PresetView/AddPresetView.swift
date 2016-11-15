@@ -27,8 +27,9 @@ class AddPresetView: UIView {
         rightView.textColor = UIColor.gray
         presetNumber.rightView = rightView
         
-        let leftView: UIView = UIView(frame: CGRect(x: 0, y: 0, width: 5, height: presetNumber.frame.size.height))
+        let leftView: UIView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: presetNumber.frame.size.height))
         presetNumber.leftView = leftView
+        presetNumber.leftViewMode = .always
         
         presetNumber.rightViewMode = UITextFieldViewMode.always
         presetNumber.font = UIFont.systemFont(ofSize: 18)

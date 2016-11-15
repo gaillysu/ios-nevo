@@ -26,9 +26,7 @@ class AnalysisController: PublicClassController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.segmented.backgroundColor = UIColor(red: 96/255.0, green: 99/255.0, blue: 101/255.0, alpha: 1)
-        
+
         self.navigationController?.navigationBar.allSubviews(do: { (v) in
             v.isHidden = v.frame.height == 0.5
         })
@@ -61,11 +59,23 @@ class AnalysisController: PublicClassController {
             v.top.equalTo(segmented.snp.bottom).offset(10)
         }
         
+        let segmentedBackgroundView: UIView = UIView()
+        self.view.insertSubview(segmentedBackgroundView, at: 0)
+        segmentedBackgroundView.snp.makeConstraints { (v) in
+            v.width.equalToSuperview()
+            v.left.equalToSuperview()
+            v.top.equalToSuperview()
+            v.bottom.equalTo(segmentDeviderView.snp.top)
+        }
+        
         if !AppTheme.isTargetLunaR_OR_Nevo() {
             contentCollectionView.backgroundColor = UIColor.getGreyColor()
             chartsCollectionView.backgroundColor = UIColor.getGreyColor()
             segmented.tintColor = UIColor.getBaseColor()
             segmentDeviderView.backgroundColor = UIColor.white
+            
+            self.segmented.backgroundColor = UIColor(red: 96/255.0, green: 99/255.0, blue: 101/255.0, alpha: 1)
+            segmentedBackgroundView.backgroundColor = UIColor(red: 96/255.0, green: 99/255.0, blue: 101/255.0, alpha: 1)
         } else {
             segmentDeviderView.backgroundColor = AppTheme.NEVO_SOLAR_YELLOW()
         }

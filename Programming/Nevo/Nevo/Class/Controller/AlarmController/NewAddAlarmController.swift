@@ -19,8 +19,6 @@ class NewAddAlarmController: UITableViewController,ButtonManagerCallBack,Selecte
     var repeatSelectedIndex:Int = 0
     var alarmTypeIndex:Int = 0
     
-    var appearDate:Date = Date()
-    
     var isOverdue:Bool = false
     
     fileprivate let repeatDayArray:[String] = [
@@ -61,19 +59,6 @@ class NewAddAlarmController: UITableViewController,ButtonManagerCallBack,Selecte
         })
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        
-        let indexPaths:IndexPath = IndexPath(row: 0, section: 0)
-        let timerCell:UITableViewCell = self.tableView.cellForRow(at: indexPaths)!
-        for datePicker in timerCell.contentView.subviews{
-            if(datePicker.isKind(of: UIDatePicker.classForCoder())){
-                let picker:UIDatePicker = datePicker as! UIDatePicker
-                self.appearDate = picker.date
-            }
-        }
-    }
-    
     override func viewDidLayoutSubviews() {
         if self.tableView.tableFooterView == nil {
             let view = UIView()
@@ -106,16 +91,12 @@ class NewAddAlarmController: UITableViewController,ButtonManagerCallBack,Selecte
             self.tableView.tableFooterView = view
         }
     }
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
+    
     func controllManager(_ sender:AnyObject) {
         if(sender.isKind(of: UISwitch.classForCoder())){
 
         }else{
-            let indexPaths:IndexPath = IndexPath(row: 0, section: 0)
+            let indexPaths:IndexPath = IndexPath(row: 0, section: 1)
             let timerCell:UITableViewCell = self.tableView.cellForRow(at: indexPaths)!
             for datePicker in timerCell.contentView.subviews{
                 if(datePicker.isKind(of: UIDatePicker.classForCoder())){
@@ -124,16 +105,7 @@ class NewAddAlarmController: UITableViewController,ButtonManagerCallBack,Selecte
                 }
             }
 
-            let indexPaths2:IndexPath = IndexPath(row: 1, section: 1)
-            let timerCell2:UITableViewCell = self.tableView.cellForRow(at: indexPaths2)!
-            for datePicker in timerCell2.contentView.subviews{
-                if(datePicker.isKind(of: UISwitch.classForCoder())){
-                    let repeatSwicth:UISwitch = datePicker as! UISwitch
-                    repeatStatus = repeatSwicth.isOn
-                }
-            }
-
-            let indexPaths3:IndexPath = IndexPath(row: 1, section: 1)
+            let indexPaths3:IndexPath = IndexPath(row: 1, section: 2)
             let timerCell3:UITableViewCell = self.tableView.cellForRow(at: indexPaths3)!
             name = (timerCell3.detailTextLabel!.text)!
 
@@ -165,7 +137,7 @@ class NewAddAlarmController: UITableViewController,ButtonManagerCallBack,Selecte
 
     // MARK: - SelectedRepeatDelegate
     func onSelectedRepeatAction(_ value:Int,name:String){
-        let indexPath:IndexPath = IndexPath(row: 0, section: 1)
+        let indexPath:IndexPath = IndexPath(row: 0, section: 2)
         let cell = self.tableView.cellForRow(at: indexPath)
         if(cell != nil) {
             cell!.detailTextLabel?.text = name
@@ -175,7 +147,7 @@ class NewAddAlarmController: UITableViewController,ButtonManagerCallBack,Selecte
 
     // MARK: - SelectedSleepTypeDelegate
     func onSelectedSleepTypeAction(_ value:Int,name:String){
-        let indexPath:IndexPath = IndexPath(row: 0, section: 1)
+        let indexPath:IndexPath = IndexPath(row: 0, section: 2)
         let cell = self.tableView.cellForRow(at: indexPath)
         if(cell != nil) {
             cell!.detailTextLabel?.text = name
@@ -188,7 +160,7 @@ class NewAddAlarmController: UITableViewController,ButtonManagerCallBack,Selecte
         switch (indexPath.section){
         case 0: break
 
-        case 1:
+        case 2:
             if(indexPath.row == 0){
                 let repeatControll:RepeatViewController = RepeatViewController()
                 repeatControll.selectedDelegate = self
@@ -232,16 +204,16 @@ class NewAddAlarmController: UITableViewController,ButtonManagerCallBack,Selecte
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 2
+        return 3
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch (section){
         case 0:
-            return 1
+            return 0
         case 1:
-            return 2
-        default: return 1;
+            return 1
+        default: return 2;
         }
     }
     
@@ -254,11 +226,11 @@ class NewAddAlarmController: UITableViewController,ButtonManagerCallBack,Selecte
     }
 
     override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 0
+        return 23
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat{
-        if((indexPath as NSIndexPath).section == 0){
+        if((indexPath as NSIndexPath).section == 1){
             
             var cellHeight:CGFloat = CGFloat(UserDefaults.standard.double(forKey: "k\(#file)HeightForDatePickerView"))
             if cellHeight != 0 {
@@ -279,9 +251,9 @@ class NewAddAlarmController: UITableViewController,ButtonManagerCallBack,Selecte
             headerCell.alarmType.selectedSegmentIndex = alarmTypeIndex
             if !AppTheme.isTargetLunaR_OR_Nevo() {
                 headerCell.alarmType.tintColor = UIColor.getBaseColor()
-                headerCell.backgroundColor = UIColor.getGreyColor()
-                headerCell.contentView.backgroundColor = UIColor.getGreyColor()
-                headerCell.alarmType.backgroundColor = UIColor.getGreyColor()
+                headerCell.backgroundColor = UIColor.getLunarTabBarColor()
+                headerCell.contentView.backgroundColor = UIColor.getLunarTabBarColor()
+                headerCell.alarmType.backgroundColor = UIColor.getLunarTabBarColor()
             }
             
             headerCell.actionCallBack = {
@@ -300,7 +272,7 @@ class NewAddAlarmController: UITableViewController,ButtonManagerCallBack,Selecte
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch ((indexPath as NSIndexPath).section){
-        case 0:
+        case 1:
             let cell:AddAlarmTableViewCell = tableView.dequeueReusableCell(withIdentifier: "AddAlarm_Date_identifier", for: indexPath) as! AddAlarmTableViewCell
             cell.separatorInset = UIEdgeInsets(top: 0, left: UIScreen.main.bounds.size.width, bottom: 0, right: 0)
             cell.selectionStyle = UITableViewCellSelectionStyle.none;
@@ -310,7 +282,7 @@ class NewAddAlarmController: UITableViewController,ButtonManagerCallBack,Selecte
                 cell.datePicker.date = Date(timeIntervalSince1970: timer)
             }
             return cell
-        case 1:
+        case 2:
             let titleArray:[String] = ["Repeat","Label"]
             let cell = tableView.dequeueReusableCell(withIdentifier: "AlarmType_identifier",for: indexPath)
             cell.preservesSuperviewLayoutMargins = false;
@@ -333,16 +305,5 @@ class NewAddAlarmController: UITableViewController,ButtonManagerCallBack,Selecte
         default: return UITableViewCell();
         }
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-    
 }
 
