@@ -50,12 +50,12 @@ class AnalysisController: PublicClassController {
         }
         
         let segmentDeviderView: UIView = UIView()
-        chartsCollectionView.addSubview(segmentDeviderView)
+        segmented.addSubview(segmentDeviderView)
         segmentDeviderView.snp.makeConstraints { (v) in
             v.width.equalTo(UIScreen.main.bounds.width)
             v.height.equalTo(0.5)
-            v.left.equalToSuperview()
-            v.bottom.equalTo(chartsCollectionView.snp.top)
+            v.centerX.equalToSuperview()
+            v.top.equalTo(segmented.snp.bottom).offset(10)
         }
         
         if !AppTheme.isTargetLunaR_OR_Nevo() {

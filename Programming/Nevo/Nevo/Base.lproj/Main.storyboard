@@ -208,7 +208,7 @@
                                 </connections>
                             </segmentedControl>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="rTJ-8y-ijY">
-                                <rect key="frame" x="4" y="112" width="367" height="356"/>
+                                <rect key="frame" x="4" y="117" width="367" height="351"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="ZOG-CO-66Z">
                                     <size key="itemSize" width="367" height="360"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -217,7 +217,7 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="5K1-IL-E6r">
-                                        <rect key="frame" x="0.0" y="-2" width="367" height="360"/>
+                                        <rect key="frame" x="0.0" y="-5" width="367" height="360"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="367" height="360"/>
@@ -267,7 +267,7 @@
                             <constraint firstItem="vct-D8-ynQ" firstAttribute="leading" secondItem="sbM-i3-4xT" secondAttribute="leadingMargin" constant="-16" id="kDP-Gq-KLa"/>
                             <constraint firstAttribute="trailingMargin" secondItem="rTJ-8y-ijY" secondAttribute="trailing" constant="-12" id="kiG-qU-EhN"/>
                             <constraint firstItem="CdT-nP-iHX" firstAttribute="top" secondItem="vct-D8-ynQ" secondAttribute="bottom" id="ows-3H-39y"/>
-                            <constraint firstItem="rTJ-8y-ijY" firstAttribute="top" secondItem="6WP-73-h7Z" secondAttribute="bottom" constant="10" id="tfL-Ds-KiE"/>
+                            <constraint firstItem="rTJ-8y-ijY" firstAttribute="top" secondItem="6WP-73-h7Z" secondAttribute="bottom" constant="15" id="tfL-Ds-KiE"/>
                             <constraint firstItem="rTJ-8y-ijY" firstAttribute="leading" secondItem="sbM-i3-4xT" secondAttribute="leadingMargin" constant="-12" id="wVG-wO-a9X"/>
                         </constraints>
                     </view>
