@@ -37,9 +37,9 @@ class AddPresetViewController: UIViewController,ButtonManagerCallBack {
         
         switch purpose {
         case .Add:
-            navigationController?.title = NSLocalizedString("add_goal", comment: "")
+            navigationItem.title = NSLocalizedString("add_goal", comment: "")
         default:
-            navigationController?.title = NSLocalizedString("Edit goal", comment: "")
+            navigationItem.title = NSLocalizedString("Edit goal", comment: "")
             
             addPresetView.presetNumber.text = "\((goalItem?.steps)!)"
             addPresetView.presetName.text = goalItem?.label

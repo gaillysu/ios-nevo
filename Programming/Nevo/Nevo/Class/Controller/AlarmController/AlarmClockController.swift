@@ -24,6 +24,8 @@ class AlarmClockController: UITableViewController,AddAlarmDelegate {
         super.viewDidLoad()
         self.navigationItem.title = NSLocalizedString("alarmTitle", comment:"")
         
+        tableView.contentInset = UIEdgeInsets(top: 25, left: 0, bottom: 0, right: 0)
+        
         if(UserAlarm.isExistInTable()){
             _ = UserAlarm.updateTable()
         }
