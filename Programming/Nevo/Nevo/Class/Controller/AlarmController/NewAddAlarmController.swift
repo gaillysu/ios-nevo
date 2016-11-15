@@ -251,9 +251,9 @@ class NewAddAlarmController: UITableViewController,ButtonManagerCallBack,Selecte
             headerCell.alarmType.selectedSegmentIndex = alarmTypeIndex
             if !AppTheme.isTargetLunaR_OR_Nevo() {
                 headerCell.alarmType.tintColor = UIColor.getBaseColor()
-                headerCell.backgroundColor = UIColor.getGreyColor()
-                headerCell.contentView.backgroundColor = UIColor.getGreyColor()
-                headerCell.alarmType.backgroundColor = UIColor.getGreyColor()
+                headerCell.backgroundColor = UIColor.getLunarTabBarColor()
+                headerCell.contentView.backgroundColor = UIColor.getLunarTabBarColor()
+                headerCell.alarmType.backgroundColor = UIColor.getLunarTabBarColor()
             }
             
             headerCell.actionCallBack = {
