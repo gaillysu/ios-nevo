@@ -168,10 +168,15 @@ class MyNevoController: UITableViewController,UIAlertViewDelegate {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var detailString:String = ""
+        var isUpdate:Bool = false
         switch ((indexPath as NSIndexPath).row){
         case 0:
-           detailString = "MCU:\(AppDelegate.getAppDelegate().getSoftwareVersion()) BLE:\(AppDelegate.getAppDelegate().getFirmwareVersion())"
-           //buildinSoftwareVersion:Int = 0 buildinFirmwareVersion:Int = 0
+            if(AppDelegate.getAppDelegate().getSoftwareVersion().integerValue < buildinSoftwareVersion && AppDelegate.getAppDelegate().getFirmwareVersion().integerValue < buildinFirmwareVersion){
+                detailString = "MCU:\(AppDelegate.getAppDelegate().getSoftwareVersion()) BLE:\(AppDelegate.getAppDelegate().getFirmwareVersion())"
+            }else{
+                detailString = "There is an update available!"
+                isUpdate = true
+            }
         case 1:
             switch (currentBattery){
             case 0:
@@ -187,16 +192,6 @@ class MyNevoController: UITableViewController,UIAlertViewDelegate {
             detailString = loclString
         default: detailString = NSLocalizedString("", comment: "")
         }
-        return MyNevoView.getMyNevoViewTableViewCell(indexPath, tableView: tableView, title: titleArray[(indexPath as NSIndexPath).row], detailText: detailString)
+        return MyNevoView.getMyNevoViewTableViewCell(indexPath, tableView: tableView, title: titleArray[indexPath.row], detailText: detailString,isUpdate:isUpdate)
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

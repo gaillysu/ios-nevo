@@ -81,7 +81,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
         Fabric.with([Crashlytics.self])
         // Override point for customization after application launch
         UINavigationBar.appearance().tintColor = AppTheme.NEVO_SOLAR_YELLOW()
-        UITabBar.appearance().isTranslucent = true
+        UITabBar.appearance().isTranslucent = false
         UITabBar.appearance().backgroundColor = UIColor.getBarColor()
         UINavigationBar.appearance().lt_setBackgroundColor(UIColor.getBarColor())
         //set navigationBar font style and font color
