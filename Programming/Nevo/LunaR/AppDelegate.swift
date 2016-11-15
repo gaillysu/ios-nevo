@@ -90,7 +90,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
         IQKeyboardManager.sharedManager().enable = true
         
         if !AppTheme.isTargetLunaR_OR_Nevo() {
-            UINavigationBar.appearance().lt_setBackgroundColor(UIColor.getGreyColor())
+//            UINavigationBar.appearance().lt_setBackgroundColor(UIColor.getGreyColor())
+            UINavigationBar.appearance().lt_setBackgroundColor(UIColor.getLunarTabBarColor())
             
             UINavigationBar.appearance().tintColor = UIColor.getBaseColor()
             

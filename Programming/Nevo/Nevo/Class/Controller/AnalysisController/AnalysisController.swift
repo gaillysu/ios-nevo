@@ -27,6 +27,12 @@ class AnalysisController: PublicClassController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.segmented.backgroundColor = UIColor(red: 96/255.0, green: 99/255.0, blue: 101/255.0, alpha: 1)
+        
+        self.navigationController?.navigationBar.allSubviews(do: { (v) in
+            v.isHidden = v.frame.height == 0.5
+        })
+        
         let dict:[String : AnyObject] = [NSForegroundColorAttributeName:UIColor.white]
         segmented.setTitleTextAttributes(dict, for: UIControlState.selected)
         
@@ -46,12 +52,23 @@ class AnalysisController: PublicClassController {
             }
         }
         
+        let segmentDeviderView: UIView = UIView()
+        segmented.addSubview(segmentDeviderView)
+        segmentDeviderView.snp.makeConstraints { (v) in
+            v.width.equalTo(UIScreen.main.bounds.width)
+            v.height.equalTo(0.5)
+            v.centerX.equalToSuperview()
+            v.top.equalTo(segmented.snp.bottom).offset(10)
+        }
+        
         if !AppTheme.isTargetLunaR_OR_Nevo() {
             contentCollectionView.backgroundColor = UIColor.getGreyColor()
             chartsCollectionView.backgroundColor = UIColor.getGreyColor()
             segmented.tintColor = UIColor.getBaseColor()
+            segmentDeviderView.backgroundColor = UIColor.white
+        } else {
+            segmentDeviderView.backgroundColor = AppTheme.NEVO_SOLAR_YELLOW()
         }
-        
         
         // MARK: - SET WATCH_ID NOTIFICATION
         _ = SwiftEventBus.onMainThread(self, name: EVENT_BUS_WATCHID_DIDCHANGE_KEY) { (notification) in
@@ -66,12 +83,6 @@ class AnalysisController: PublicClassController {
     deinit {
         SwiftEventBus.unregister(self, name: EVENT_BUS_WATCHID_DIDCHANGE_KEY)
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
 }
 
 extension AnalysisController {

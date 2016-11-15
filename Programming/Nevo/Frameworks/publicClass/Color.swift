@@ -52,4 +52,7 @@ extension UIColor{
         return UIColor(red: 0/255.0 , green: 0/255.0, blue: 0/255.0, alpha: 0.0)
     }
 
+    public class func getLunarTabBarColor() -> UIColor {
+        return UIColor(red: 96/255.0, green: 99/255.0, blue: 101/255.0, alpha: 1.0)
+    }
 }
