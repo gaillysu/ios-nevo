@@ -81,7 +81,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
         Fabric.with([Crashlytics.self])
         // Override point for customization after application launch
         UINavigationBar.appearance().tintColor = AppTheme.NEVO_SOLAR_YELLOW()
-        UITabBar.appearance().isTranslucent = false
+        UITabBar.appearance().isTranslucent = true
         UITabBar.appearance().backgroundColor = UIColor.getBarColor()
         UINavigationBar.appearance().lt_setBackgroundColor(UIColor.getBarColor())
         //set navigationBar font style and font color
@@ -90,7 +90,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
         IQKeyboardManager.sharedManager().enable = true
         
         if !AppTheme.isTargetLunaR_OR_Nevo() {
-//            UINavigationBar.appearance().lt_setBackgroundColor(UIColor.getGreyColor())
             UINavigationBar.appearance().lt_setBackgroundColor(UIColor.getLunarTabBarColor())
             
             UINavigationBar.appearance().tintColor = UIColor.getBaseColor()
