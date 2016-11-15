@@ -102,6 +102,7 @@
                 <outlet property="dateLabel" destination="ErA-U2-5uH" id="fCN-oS-9UH"/>
                 <outlet property="dialImageView" destination="6ah-ni-lju" id="m5L-Lg-8Kv"/>
                 <outlet property="dialView" destination="ITZ-QK-Ag0" id="1S8-A8-35Z"/>
+                <outlet property="titleLabel" destination="IeO-N2-aId" id="yJ4-mw-SBn"/>
                 <outlet property="weekdayLabel" destination="UOg-nL-ThS" id="ITD-kf-Hm1"/>
                 <outlet property="worldClocksTableView" destination="2v0-ci-act" id="YdX-pc-QMW"/>
             </connections>

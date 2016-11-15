@@ -9,6 +9,7 @@
 import UIKit
 import RealmSwift
 import SwiftEventBus
+import SnapKit
 
 class AnalysisController: PublicClassController {
     
@@ -73,8 +74,58 @@ class AnalysisController: PublicClassController {
         }
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        self.bulidPageControl()
+    }
     deinit {
         SwiftEventBus.unregister(self, name: EVENT_BUS_WATCHID_DIDCHANGE_KEY)
+    }
+}
+
+extension AnalysisController {
+    func bulidPageControl() {
+        if self.view.viewWithTag(1900) != nil {
+            return
+        }
+        let pageControl = UIPageControl(frame: CGRect(x: 100, y: UIScreen.main.bounds.size.height-44, width: 100, height: 20))
+        pageControl.tag = 1900
+        pageControl.numberOfPages = 3
+        pageControl.currentPage = 0
+        pageControl.pageIndicatorTintColor = UIColor.lightGray
+        pageControl.currentPageIndicatorTintColor = AppTheme.NEVO_SOLAR_YELLOW()
+        pageControl.addTarget(self, action: #selector(pageAction(_ :)), for: UIControlEvents.valueChanged)
+        
+        pageControl.isUserInteractionEnabled = false
+        
+        self.view.addSubview(pageControl)
+        
+        pageControl.snp.makeConstraints { (make) -> Void in
+            make.bottom.equalTo(self.view).offset(0)
+            make.left.equalTo(self.view).offset(20)
+            make.right.equalTo(self.view).offset(-20)
+        }
+        
+        if !AppTheme.isTargetLunaR_OR_Nevo() {
+            pageControl.currentPageIndicatorTintColor = UIColor.getBaseColor()
+        }else{
+            pageControl.currentPageIndicatorTintColor = AppTheme.NEVO_SOLAR_YELLOW()
+        }
+    }
+    
+    func setCurrentPageIndex(_ index:Int) {
+        for view in self.view.subviews {
+            if view is  UIPageControl{
+                let page:UIPageControl = view as! UIPageControl
+                page.currentPage = index
+                page.size(forNumberOfPages: index)
+                break
+            }
+        }
+    }
+    
+    func pageAction(_ pageControl: UIPageControl) {
+        print("currentPage is \(pageControl.currentPage)")
     }
 }
 
@@ -168,7 +219,7 @@ extension AnalysisController:UICollectionViewDelegate,UICollectionViewDataSource
         if collectionView.isEqual(chartsCollectionView) {
             let cell:AnalysisLineChartCell = collectionView.dequeueReusableCell(withReuseIdentifier: "AnalysisLineChart_Identifier", for: indexPath) as! AnalysisLineChartCell
             cell.backgroundColor = UIColor.clear
-            cell.setTitle(titleArray[(indexPath as NSIndexPath).row])
+            cell.setTitle(titleArray[indexPath.row])
             return cell
         }else{
             let cell:AnalysisValueCell = collectionView.dequeueReusableCell(withReuseIdentifier: "AnalysisValue_Identifier", for: indexPath) as! AnalysisValueCell
@@ -229,6 +280,7 @@ extension AnalysisController:UICollectionViewDelegate,UICollectionViewDataSource
                     }
                     
                 });
+                
             }else{
                 self.contentTArray.replaceSubrange(Range(0..<1), with: [String(format: "0")])
                 self.contentTArray.replaceSubrange(Range(1..<2), with: [String(format: "0")])
@@ -245,6 +297,7 @@ extension AnalysisController:UICollectionViewDelegate,UICollectionViewDataSource
                     self.contentTArray.replaceSubrange(Range(1..<2), with: [AppTheme.timerFormatValue(value: Double(totalValue))])
                 });
             }
+            setCurrentPageIndex(indexPath.row)
             contentCollectionView.reloadData()
         }
     }

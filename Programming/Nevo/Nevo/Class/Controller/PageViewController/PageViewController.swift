@@ -26,7 +26,7 @@ class PageViewController: UIPageViewController,UIActionSheetDelegate {
     var calendarView:CVCalendarView?
     var menuView:CVCalendarMenuView?
     var titleView:StepsTitleView?
-    fileprivate var selectedController:UIViewController?
+    fileprivate var selectedTag:Int = 0
     
     fileprivate var normalControllers: [UIViewController] = []
     fileprivate var solarControllers: [UIViewController] = []
@@ -71,8 +71,6 @@ class PageViewController: UIPageViewController,UIActionSheetDelegate {
                 pagingControllers.append(viewController5)
             }
         }
-        
-        selectedController = pagingControllers[0]
         
         //set_goal
         let rightItem:UIBarButtonItem = UIBarButtonItem(title: NSLocalizedString("set_goal", comment: ""), style: UIBarButtonItemStyle.plain, target: self, action: #selector(rightBarButtonAction(_:)))
@@ -126,7 +124,7 @@ class PageViewController: UIPageViewController,UIActionSheetDelegate {
     }
     
     func rightBarButtonAction(_ rightBar:UIBarButtonItem){
-        if selectedController!.isKind(of: SunriseSetController.self) {
+        if selectedTag == 3 {
             let addWorldClock:AddWorldClockViewController = AddWorldClockViewController()
             addWorldClock.didSeletedCityDelegate = self
             addWorldClock.hidesBottomBarWhenPushed = true
@@ -207,7 +205,11 @@ extension PageViewController:WorldClockDidSelectedDelegate{
 
 extension PageViewController {
     func bulidPageControl() {
+        if self.view.viewWithTag(1900) != nil {
+            return
+        }
         let pageControl = UIPageControl(frame: CGRect(x: 100, y: UIScreen.main.bounds.size.height-44, width: 100, height: 20))
+        pageControl.tag = 1900
         pageControl.numberOfPages = pagingControllers.count
         pageControl.currentPage = 0
         pageControl.pageIndicatorTintColor = UIColor.lightGray
@@ -248,52 +250,74 @@ extension PageViewController {
 }
 
 extension PageViewController: UIPageViewControllerDataSource,UIPageViewControllerDelegate {
-    func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool){
-        selectedController = previousViewControllers.first
-    }
     
     //返回当前页面的下一个页面
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
+        selectedTag = viewController.view.tag
+        if selectedTag == 3 {
+            //set_goal
+            let rightItem:UIBarButtonItem = UIBarButtonItem(title: NSLocalizedString("set_city", comment: ""), style: UIBarButtonItemStyle.plain, target: self, action: #selector(rightBarButtonAction(_:)))
+            rightItem.tintColor = UIColor.getBaseColor()
+            
+            let rightSpacer:UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.fixedSpace, target: nil, action: nil)
+            rightSpacer.width = 0;
+            self.navigationItem.rightBarButtonItems = [rightSpacer,rightItem]
+        }else{
+            let rightItem:UIBarButtonItem = UIBarButtonItem(title: NSLocalizedString("set_goal", comment: ""), style: UIBarButtonItemStyle.plain, target: self, action: #selector(rightBarButtonAction(_:)))
+            rightItem.tintColor = UIColor.getBaseColor()
+            
+            let rightSpacer:UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.fixedSpace, target: nil, action: nil)
+            rightSpacer.width = 0;
+            self.navigationItem.rightBarButtonItems = [rightSpacer,rightItem]
+        }
         self.setCurrentPageIndex(viewController.view.tag)
         if viewController.isKind(of: StepGoalSetingController.self) {
-            selectedController = pagingControllers[1]
-            return selectedController
+            return pagingControllers[1]
         }else if viewController.isKind(of: StepsHistoryViewController.self) {
-            selectedController = pagingControllers[2]
-            return selectedController
+            return pagingControllers[2]
         }else if viewController.isKind(of: SleepHistoricalViewController.self) {
             if pagingControllers.count>3 {
-                selectedController = pagingControllers[3]
-                return selectedController
+                return pagingControllers[3]
             }
             return nil
         }else if viewController.isKind(of: SunriseSetController.self) {
             if pagingControllers.count>4 {
-                selectedController = pagingControllers[4]
-                return selectedController
+                return pagingControllers[4]
             }
             return nil
         }
-        
         return nil
         
     }
     
     //返回当前页面的上一个页面
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
+        selectedTag = viewController.view.tag
+        if selectedTag == 3 {
+            //set_goal
+            let rightItem:UIBarButtonItem = UIBarButtonItem(title: NSLocalizedString("set_city", comment: ""), style: UIBarButtonItemStyle.plain, target: self, action: #selector(rightBarButtonAction(_:)))
+            rightItem.tintColor = UIColor.getBaseColor()
+            
+            let rightSpacer:UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.fixedSpace, target: nil, action: nil)
+            rightSpacer.width = 0;
+            self.navigationItem.rightBarButtonItems = [rightSpacer,rightItem]
+        }else{
+            let rightItem:UIBarButtonItem = UIBarButtonItem(title: NSLocalizedString("set_goal", comment: ""), style: UIBarButtonItemStyle.plain, target: self, action: #selector(rightBarButtonAction(_:)))
+            rightItem.tintColor = UIColor.getBaseColor()
+            
+            let rightSpacer:UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.fixedSpace, target: nil, action: nil)
+            rightSpacer.width = 0;
+            self.navigationItem.rightBarButtonItems = [rightSpacer,rightItem]
+        }
         self.setCurrentPageIndex(viewController.view.tag)
         if viewController.isKind(of: SolarIndicatorController.self){
-            selectedController = pagingControllers[3]
-            return selectedController
+            return pagingControllers[3]
         }else if viewController.isKind(of: SunriseSetController.self) {
-            selectedController = pagingControllers[2]
-            return selectedController
+            return pagingControllers[2]
         }else if viewController.isKind(of: SleepHistoricalViewController.self) {
-            selectedController = pagingControllers[1]
-            return selectedController
+            return pagingControllers[1]
         }else if viewController.isKind(of: StepsHistoryViewController.self) {
-            selectedController = pagingControllers[0]
-            return selectedController
+            return pagingControllers[0]
         }
         return nil
     }

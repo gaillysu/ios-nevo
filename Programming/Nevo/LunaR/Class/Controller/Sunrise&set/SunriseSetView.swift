@@ -18,6 +18,7 @@ class SunriseSetView:UIView {
     @IBOutlet weak var dialView: UIView!
     @IBOutlet weak var dialImageView: UIImageView!
     @IBOutlet weak var worldClocksTableView: UITableView!
+    @IBOutlet weak var titleLabel: UILabel!
     
     var worldClocks:[WorldClockItem] = [] {
         willSet {
@@ -50,6 +51,7 @@ class SunriseSetView:UIView {
         worldClocksTableView.separatorStyle = .none
         
         worldClocksTableView.register(UINib(nibName: "WorldClockCell",bundle:nil), forCellReuseIdentifier: WorldClockCellReuseID)
+        titleLabel.text = NSLocalizedString("world_clock", comment: "")
     }
     
     public func setDialTime(dateComponents:DateComponents) {
