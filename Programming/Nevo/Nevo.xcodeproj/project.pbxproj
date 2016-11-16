@@ -570,10 +570,6 @@
 		611D41C71DCAD97D003BC6E3 /* AddWorldClockViewController.xib in Sources */ = {isa = PBXBuildFile; fileRef = 619918F61DC6E2B600C75AE7 /* AddWorldClockViewController.xib */; };
 		611D41C81DCAD97D003BC6E3 /* SearchCityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 619918F81DC6E2B600C75AE7 /* SearchCityViewController.swift */; };
 		611D41C91DCAD97D003BC6E3 /* SearchCityViewController.xib in Sources */ = {isa = PBXBuildFile; fileRef = 619918F91DC6E2B600C75AE7 /* SearchCityViewController.xib */; };
-		611D41CA1DCAD97D003BC6E3 /* SunriseSetButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 619919031DC6E2B600C75AE7 /* SunriseSetButton.swift */; };
-		611D41CB1DCAD97D003BC6E3 /* SunriseSetController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 619919041DC6E2B600C75AE7 /* SunriseSetController.swift */; };
-		611D41CC1DCAD97D003BC6E3 /* SunriseSetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 619919051DC6E2B600C75AE7 /* SunriseSetView.swift */; };
-		611D41CD1DCAD97D003BC6E3 /* WorldClockCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 619919061DC6E2B600C75AE7 /* WorldClockCell.swift */; };
 		611D41CE1DCAD97D003BC6E3 /* WorldClockDidSelectedDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 619919071DC6E2B600C75AE7 /* WorldClockDidSelectedDelegate.swift */; };
 		611D41CF1DCAD97D003BC6E3 /* WorldClockItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 619919081DC6E2B600C75AE7 /* WorldClockItem.swift */; };
 		611D41D01DCAD97D003BC6E3 /* WorldClockUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 619919091DC6E2B600C75AE7 /* WorldClockUtil.swift */; };
@@ -724,7 +720,6 @@
 		611D426A1DCAD97D003BC6E3 /* AppDelegate-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006DA9FD1D80F2A600B70C0F /* AppDelegate-Extension.swift */; };
 		611D426B1DCAD97D003BC6E3 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006A62211D6A9F1500458305 /* MainTabBarController.swift */; };
 		611E2E051DC3405D004CD45B /* LunaRStepsGoalPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 611E2E041DC3405D004CD45B /* LunaRStepsGoalPacket.swift */; };
-		614662981DC9B140001E57CC /* SunriseSetView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 619918FB1DC6E2B600C75AE7 /* SunriseSetView.xib */; };
 		614662A11DC9CEFC001E57CC /* lunar_settime.png in Resources */ = {isa = PBXBuildFile; fileRef = 614662A01DC9CEFC001E57CC /* lunar_settime.png */; };
 		614662A21DC9D081001E57CC /* lunar_settime.png in Resources */ = {isa = PBXBuildFile; fileRef = 614662A01DC9CEFC001E57CC /* lunar_settime.png */; };
 		614662A41DC9D363001E57CC /* lunar_open_bt.png in Resources */ = {isa = PBXBuildFile; fileRef = 614662A31DC9D363001E57CC /* lunar_open_bt.png */; };
@@ -757,14 +752,6 @@
 		6199190F1DC6E2B600C75AE7 /* AddWorldClockViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 619918F61DC6E2B600C75AE7 /* AddWorldClockViewController.xib */; };
 		619919101DC6E2B600C75AE7 /* SearchCityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 619918F81DC6E2B600C75AE7 /* SearchCityViewController.swift */; };
 		619919111DC6E2B600C75AE7 /* SearchCityViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 619918F91DC6E2B600C75AE7 /* SearchCityViewController.xib */; };
-		619919121DC6E2B600C75AE7 /* SunriseSetView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 619918FB1DC6E2B600C75AE7 /* SunriseSetView.xib */; };
-		619919131DC6E2B600C75AE7 /* WorldClockCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 619918FD1DC6E2B600C75AE7 /* WorldClockCell.xib */; };
-		619919141DC6E2B600C75AE7 /* SunriseSetView.strings in Resources */ = {isa = PBXBuildFile; fileRef = 619918FF1DC6E2B600C75AE7 /* SunriseSetView.strings */; };
-		619919151DC6E2B600C75AE7 /* WorldClockCell.strings in Resources */ = {isa = PBXBuildFile; fileRef = 619919011DC6E2B600C75AE7 /* WorldClockCell.strings */; };
-		619919161DC6E2B600C75AE7 /* SunriseSetButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 619919031DC6E2B600C75AE7 /* SunriseSetButton.swift */; };
-		619919171DC6E2B600C75AE7 /* SunriseSetController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 619919041DC6E2B600C75AE7 /* SunriseSetController.swift */; };
-		619919181DC6E2B600C75AE7 /* SunriseSetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 619919051DC6E2B600C75AE7 /* SunriseSetView.swift */; };
-		619919191DC6E2B600C75AE7 /* WorldClockCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 619919061DC6E2B600C75AE7 /* WorldClockCell.swift */; };
 		6199191A1DC6E2B600C75AE7 /* WorldClockDidSelectedDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 619919071DC6E2B600C75AE7 /* WorldClockDidSelectedDelegate.swift */; };
 		6199191B1DC6E2B600C75AE7 /* WorldClockItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 619919081DC6E2B600C75AE7 /* WorldClockItem.swift */; };
 		6199191C1DC6E2B600C75AE7 /* WorldClockUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 619919091DC6E2B600C75AE7 /* WorldClockUtil.swift */; };
@@ -774,9 +761,6 @@
 		619919261DC6E54000C75AE7 /* LunaROTAController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6199191F1DC6E33200C75AE7 /* LunaROTAController.xib */; };
 		619919281DC6EEFA00C75AE7 /* AddWorldClockViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 619918F61DC6E2B600C75AE7 /* AddWorldClockViewController.xib */; };
 		6199192A1DC6EF0100C75AE7 /* SearchCityViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 619918F91DC6E2B600C75AE7 /* SearchCityViewController.xib */; };
-		6199192C1DC6F00B00C75AE7 /* WorldClockCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 619918FD1DC6E2B600C75AE7 /* WorldClockCell.xib */; };
-		619919321DC6F02800C75AE7 /* SunriseSetView.strings in Resources */ = {isa = PBXBuildFile; fileRef = 619918FF1DC6E2B600C75AE7 /* SunriseSetView.strings */; };
-		619919331DC6F02D00C75AE7 /* WorldClockCell.strings in Resources */ = {isa = PBXBuildFile; fileRef = 619919011DC6E2B600C75AE7 /* WorldClockCell.strings */; };
 		619919361DC764EB00C75AE7 /* lunar_20161011_v3.zip in Resources */ = {isa = PBXBuildFile; fileRef = 6198EE241DC1EE5200FDD850 /* lunar_20161011_v3.zip */; };
 		61DD7AAF1DD08598003FD171 /* PhotoViewController.h in Sources */ = {isa = PBXBuildFile; fileRef = 66D45E781DC0C14C0007B5D0 /* PhotoViewController.h */; };
 		61DD7AB01DD08598003FD171 /* UIImage+Crop.h in Sources */ = {isa = PBXBuildFile; fileRef = 66D45E791DC0C14C0007B5D0 /* UIImage+Crop.h */; };
@@ -857,6 +841,14 @@
 		6688A6791DC981990078E636 /* MEDUserNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6688A6561DC981980078E636 /* MEDUserNetworkManager.swift */; };
 		6688A67B1DC981990078E636 /* MEDUserUpdateRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6688A6571DC981980078E636 /* MEDUserUpdateRequest.swift */; };
 		6690DF091DB8A84C0042FB9E /* SetingNotLoginCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6690DF0C1DB8A84C0042FB9E /* SetingNotLoginCell.xib */; };
+		6699DD011DDC4EF80077E544 /* SunriseSetController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6699DCFF1DDC4EF80077E544 /* SunriseSetController.swift */; };
+		6699DD021DDC4EF80077E544 /* SunriseSetController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6699DCFF1DDC4EF80077E544 /* SunriseSetController.swift */; };
+		6699DD031DDC4EF80077E544 /* SunriseSetController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6699DD001DDC4EF80077E544 /* SunriseSetController.xib */; };
+		6699DD041DDC4EF80077E544 /* SunriseSetController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6699DD001DDC4EF80077E544 /* SunriseSetController.xib */; };
+		6699DD071DDC53B20077E544 /* NewWorldClockCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6699DD051DDC53B20077E544 /* NewWorldClockCell.swift */; };
+		6699DD081DDC53B20077E544 /* NewWorldClockCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6699DD051DDC53B20077E544 /* NewWorldClockCell.swift */; };
+		6699DD091DDC53B20077E544 /* NewWorldClockCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6699DD061DDC53B20077E544 /* NewWorldClockCell.xib */; };
+		6699DD0A1DDC53B20077E544 /* NewWorldClockCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6699DD061DDC53B20077E544 /* NewWorldClockCell.xib */; };
 		66A0E07D1DBF6C08001C0C67 /* WorldClockDatabaseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66A0E0721DBF6C08001C0C67 /* WorldClockDatabaseHelper.swift */; };
 		66A0E07E1DBF6C08001C0C67 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66A0E0741DBF6C08001C0C67 /* LocationManager.swift */; };
 		66A0E0801DBF6C08001C0C67 /* Timezone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66A0E0771DBF6C08001C0C67 /* Timezone.swift */; };
@@ -1317,30 +1309,12 @@
 		619918F61DC6E2B600C75AE7 /* AddWorldClockViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddWorldClockViewController.xib; sourceTree = "<group>"; };
 		619918F81DC6E2B600C75AE7 /* SearchCityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchCityViewController.swift; sourceTree = "<group>"; };
 		619918F91DC6E2B600C75AE7 /* SearchCityViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchCityViewController.xib; sourceTree = "<group>"; };
-		619918FC1DC6E2B600C75AE7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/SunriseSetView.xib; sourceTree = "<group>"; };
-		619918FE1DC6E2B600C75AE7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/WorldClockCell.xib; sourceTree = "<group>"; };
-		619919001DC6E2B600C75AE7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/SunriseSetView.strings; sourceTree = "<group>"; };
-		619919021DC6E2B600C75AE7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/WorldClockCell.strings; sourceTree = "<group>"; };
-		619919031DC6E2B600C75AE7 /* SunriseSetButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SunriseSetButton.swift; sourceTree = "<group>"; };
-		619919041DC6E2B600C75AE7 /* SunriseSetController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SunriseSetController.swift; sourceTree = "<group>"; };
-		619919051DC6E2B600C75AE7 /* SunriseSetView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SunriseSetView.swift; sourceTree = "<group>"; };
-		619919061DC6E2B600C75AE7 /* WorldClockCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorldClockCell.swift; sourceTree = "<group>"; };
 		619919071DC6E2B600C75AE7 /* WorldClockDidSelectedDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorldClockDidSelectedDelegate.swift; sourceTree = "<group>"; };
 		619919081DC6E2B600C75AE7 /* WorldClockItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorldClockItem.swift; sourceTree = "<group>"; };
 		619919091DC6E2B600C75AE7 /* WorldClockUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorldClockUtil.swift; sourceTree = "<group>"; };
-		6199190A1DC6E2B600C75AE7 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/SunriseSetView.strings"; sourceTree = "<group>"; };
-		6199190B1DC6E2B600C75AE7 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/WorldClockCell.strings"; sourceTree = "<group>"; };
-		6199190C1DC6E2B600C75AE7 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/SunriseSetView.strings"; sourceTree = "<group>"; };
-		6199190D1DC6E2B600C75AE7 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/WorldClockCell.strings"; sourceTree = "<group>"; };
 		6199191E1DC6E33200C75AE7 /* LunaROTAController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LunaROTAController.swift; sourceTree = "<group>"; };
 		6199191F1DC6E33200C75AE7 /* LunaROTAController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LunaROTAController.xib; sourceTree = "<group>"; };
 		619919221DC6E36900C75AE7 /* LunaROtaView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LunaROtaView.swift; sourceTree = "<group>"; };
-		6199192B1DC6F00400C75AE7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/SunriseSetView.strings; sourceTree = "<group>"; };
-		6199192D1DC6F00F00C75AE7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/WorldClockCell.strings; sourceTree = "<group>"; };
-		6199192E1DC6F01700C75AE7 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/SunriseSetView.strings"; sourceTree = "<group>"; };
-		6199192F1DC6F01900C75AE7 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/SunriseSetView.strings"; sourceTree = "<group>"; };
-		619919301DC6F01F00C75AE7 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/WorldClockCell.strings"; sourceTree = "<group>"; };
-		619919311DC6F02200C75AE7 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/WorldClockCell.strings"; sourceTree = "<group>"; };
 		61E4DF1C1DB85C9800DDA737 /* FindPhonePacket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindPhonePacket.swift; sourceTree = "<group>"; };
 		61E4DF1E1DB8749700DDA737 /* SyncStepsToServiceRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncStepsToServiceRequest.swift; sourceTree = "<group>"; };
 		61E4DF201DB898F700DDA737 /* SyncSleepToServiceRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncSleepToServiceRequest.swift; sourceTree = "<group>"; };
@@ -1388,6 +1362,10 @@
 		6690DF121DB8A8590042FB9E /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/SetingNotLoginCell.strings"; sourceTree = "<group>"; };
 		6690DF141DB8A85A0042FB9E /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/SetingNotLoginCell.strings"; sourceTree = "<group>"; };
 		6690DF161DB8A85B0042FB9E /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/SetingNotLoginCell.strings; sourceTree = "<group>"; };
+		6699DCFF1DDC4EF80077E544 /* SunriseSetController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SunriseSetController.swift; sourceTree = "<group>"; };
+		6699DD001DDC4EF80077E544 /* SunriseSetController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SunriseSetController.xib; sourceTree = "<group>"; };
+		6699DD051DDC53B20077E544 /* NewWorldClockCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewWorldClockCell.swift; sourceTree = "<group>"; };
+		6699DD061DDC53B20077E544 /* NewWorldClockCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewWorldClockCell.xib; sourceTree = "<group>"; };
 		66A0E0721DBF6C08001C0C67 /* WorldClockDatabaseHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorldClockDatabaseHelper.swift; sourceTree = "<group>"; };
 		66A0E0741DBF6C08001C0C67 /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		66A0E0761DBF6C08001C0C67 /* City.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
@@ -2456,14 +2434,7 @@
 		619918FA1DC6E2B600C75AE7 /* Sunrise&set */ = {
 			isa = PBXGroup;
 			children = (
-				619918FB1DC6E2B600C75AE7 /* SunriseSetView.xib */,
-				619918FD1DC6E2B600C75AE7 /* WorldClockCell.xib */,
-				619918FF1DC6E2B600C75AE7 /* SunriseSetView.strings */,
-				619919011DC6E2B600C75AE7 /* WorldClockCell.strings */,
-				619919031DC6E2B600C75AE7 /* SunriseSetButton.swift */,
-				619919041DC6E2B600C75AE7 /* SunriseSetController.swift */,
-				619919051DC6E2B600C75AE7 /* SunriseSetView.swift */,
-				619919061DC6E2B600C75AE7 /* WorldClockCell.swift */,
+				666B2CC01DDC104D004BBECB /* view */,
 				619919071DC6E2B600C75AE7 /* WorldClockDidSelectedDelegate.swift */,
 				619919081DC6E2B600C75AE7 /* WorldClockItem.swift */,
 				619919091DC6E2B600C75AE7 /* WorldClockUtil.swift */,
@@ -2489,6 +2460,17 @@
 			);
 			name = MEDWrapper;
 			path = Frameworks/MEDWrapper;
+			sourceTree = "<group>";
+		};
+		666B2CC01DDC104D004BBECB /* view */ = {
+			isa = PBXGroup;
+			children = (
+				6699DCFF1DDC4EF80077E544 /* SunriseSetController.swift */,
+				6699DD001DDC4EF80077E544 /* SunriseSetController.xib */,
+				6699DD051DDC53B20077E544 /* NewWorldClockCell.swift */,
+				6699DD061DDC53B20077E544 /* NewWorldClockCell.xib */,
+			);
+			name = view;
 			sourceTree = "<group>";
 		};
 		6688A6451DC981980078E636 /* MEDNetwork */ = {
@@ -3009,7 +2991,6 @@
 				00C826DB1DA5ECA700ECECEE /* AddAlarmTableViewCell.xib in Resources */,
 				00C826DC1DA5ECA700ECECEE /* AlarmTypeCell.xib in Resources */,
 				00C826DD1DA5ECA700ECECEE /* NewAddAlarmHeader.xib in Resources */,
-				619919151DC6E2B600C75AE7 /* WorldClockCell.strings in Resources */,
 				00C826DE1DA5ECA700ECECEE /* NotAlarmView.xib in Resources */,
 				00C826DF1DA5ECA700ECECEE /* ScannerViewController.xib in Resources */,
 				00C826E01DA5ECA700ECECEE /* OldOtaViewController.xib in Resources */,
@@ -3030,7 +3011,6 @@
 				00C826EE1DA5ECA700ECECEE /* SleepHistoryViewCell.xib in Resources */,
 				6173DF001DB0E93D002DF6AF /* SleepHistoricalViewController.xib in Resources */,
 				00C826F01DA5ECA700ECECEE /* StepGoalSetingController.xib in Resources */,
-				619919141DC6E2B600C75AE7 /* SunriseSetView.strings in Resources */,
 				00C826F11DA5ECA700ECECEE /* StepGoalSetingViewCell.xib in Resources */,
 				619919111DC6E2B600C75AE7 /* SearchCityViewController.xib in Resources */,
 				6173DF0A1DB0E993002DF6AF /* StepsHistoryViewController.xib in Resources */,
@@ -3065,16 +3045,17 @@
 				66D45E7D1DC0C14C0007B5D0 /* icn_back@2x.png in Resources */,
 				6199190F1DC6E2B600C75AE7 /* AddWorldClockViewController.xib in Resources */,
 				665BD6C51DBEF4C7008C2623 /* SetingNotLoginCell.xib in Resources */,
-				619919131DC6E2B600C75AE7 /* WorldClockCell.xib in Resources */,
 				0037EC2C1D235F5300502140 /* connected.png in Resources */,
 				0037EC2D1D235F5300502140 /* connected1.png in Resources */,
 				0037EC2F1D235F5300502140 /* settimer.png in Resources */,
 				665BD6D91DBF1297008C2623 /* sunrise.png in Resources */,
 				0037EC301D235F5300502140 /* turnonnevo.png in Resources */,
+				6699DD041DDC4EF80077E544 /* SunriseSetController.xib in Resources */,
 				0037EC311D235F5300502140 /* tutorialone.png in Resources */,
 				0037EC321D235F5300502140 /* white_clock.png in Resources */,
 				0037EC331D235F5300502140 /* white_hour.png in Resources */,
 				665BD6C21DBEF3C2008C2623 /* SolarIndicatorController.xib in Resources */,
+				6699DD0A1DDC53B20077E544 /* NewWorldClockCell.xib in Resources */,
 				0037EC341D235F5300502140 /* white_minute.png in Resources */,
 				0037EC351D235F5300502140 /* upgrade_clock.png in Resources */,
 				0037EC361D235F5300502140 /* firmware_clock.png in Resources */,
@@ -3092,7 +3073,6 @@
 				0037EC4D1D2385DF00502140 /* Raleway-Bold.ttf in Resources */,
 				0037EC4E1D2385DF00502140 /* Raleway-ExtraBold.ttf in Resources */,
 				0037EC501D2385DF00502140 /* Raleway-Heavy.ttf in Resources */,
-				619919121DC6E2B600C75AE7 /* SunriseSetView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3120,7 +3100,6 @@
 				00120E7B1D7559D500CE0C32 /* Raleway-ExtraLight.ttf in Resources */,
 				00120E7C1D7559D500CE0C32 /* Raleway-Heavy.ttf in Resources */,
 				00120E7D1D7559D500CE0C32 /* Raleway-Light.ttf in Resources */,
-				619919321DC6F02800C75AE7 /* SunriseSetView.strings in Resources */,
 				00120E7E1D7559D500CE0C32 /* Raleway-Medium.ttf in Resources */,
 				66D45E7C1DC0C14C0007B5D0 /* icn_back@2x.png in Resources */,
 				00120E7F1D7559D500CE0C32 /* Raleway-Regular.ttf in Resources */,
@@ -3151,6 +3130,7 @@
 				00EC9E061C85839A00280904 /* TutorialSixViewController.xib in Resources */,
 				00A773961A88562F0018E121 /* Localizable.strings in Resources */,
 				00F0C34C1C893EE6005888A7 /* AlarmTypeController.xib in Resources */,
+				6699DD091DDC53B20077E544 /* NewWorldClockCell.xib in Resources */,
 				0050D5F01C28E0DB004F6F80 /* MyNevoController.xib in Resources */,
 				00EC9DF01C85837500280904 /* TutorialFourViewController.xib in Resources */,
 				006DA3171D6ED6670011E09C /* AnalysisLineChartCell.xib in Resources */,
@@ -3166,6 +3146,7 @@
 				00F0C3541C8993DD005888A7 /* NewAddAlarmController.xib in Resources */,
 				66AC4E5D1DBF537500E431BE /* sunrise.png in Resources */,
 				66AC4E5E1DBF537500E431BE /* sunset.png in Resources */,
+				6699DD031DDC4EF80077E544 /* SunriseSetController.xib in Resources */,
 				007E0CAF1D0E5C3E00B0B600 /* ConnectOtherAppsCell.xib in Resources */,
 				00EC9DAE1C8582E400280904 /* TutorialOneViewController.xib in Resources */,
 				66AC4E5F1DBF537A00E431BE /* lunar_dial_2016-10-25.png in Resources */,
@@ -3189,7 +3170,6 @@
 				0050D5FD1C28E0DB004F6F80 /* NotificationClockCell.xib in Resources */,
 				0036EB091C48BA8300DCED46 /* turnonnevo.png in Resources */,
 				009703C71C9BDB3200F2FF0D /* UserProfileCell.xib in Resources */,
-				6199192C1DC6F00B00C75AE7 /* WorldClockCell.xib in Resources */,
 				006A62751D6AB44A00458305 /* StepsTitleView.xib in Resources */,
 				0042C8B41C7DB3EF00177D3D /* NotAlarmView.xib in Resources */,
 				006A625E1D6AA79E00458305 /* AlarmClockVCell.xib in Resources */,
@@ -3213,7 +3193,6 @@
 				61879C2E1DC05B850089F1E5 /* cities.json in Resources */,
 				6633057E1DC07EEE0090216F /* lunar_Minute.png in Resources */,
 				0050D69B1C2906D8004F6F80 /* Firmwares in Resources */,
-				619919331DC6F02D00C75AE7 /* WorldClockCell.strings in Resources */,
 				00E650991C83DD9000278D3E /* nevoFontImage.png in Resources */,
 				0050D60C1C28E0DB004F6F80 /* AddPresetViewController.xib in Resources */,
 				006A62581D6AA76C00458305 /* AlarmTypeCell.xib in Resources */,
@@ -3225,7 +3204,6 @@
 				00478F501A8F637D00D0DCE2 /* clockViewMinute.png in Resources */,
 				006A624F1D6AA62100458305 /* SolarInforViewCell.xib in Resources */,
 				000CB3281C3E436000B4ABEC /* white_clock.png in Resources */,
-				614662981DC9B140001E57CC /* SunriseSetView.xib in Resources */,
 				6690DF091DB8A84C0042FB9E /* SetingNotLoginCell.xib in Resources */,
 				00C640F61A8DEE0800815CF8 /* clockView600.png in Resources */,
 				0063BC1B1D98CE85000BAB44 /* LoginController.xib in Resources */,
@@ -3545,7 +3523,6 @@
 				00C826711DA5E04000ECECEE /* NewAddAlarmController.xib in Sources */,
 				00C826721DA5E04000ECECEE /* AlarmClockController.swift in Sources */,
 				00C826731DA5E04000ECECEE /* AddAlarmSystemCell.swift in Sources */,
-				619919181DC6E2B600C75AE7 /* SunriseSetView.swift in Sources */,
 				615093391DBF5BC800E52970 /* SetSunriseAndSunsetRequest.swift in Sources */,
 				00C826741DA5E04000ECECEE /* AddAlarmSystemCell.xib in Sources */,
 				00C826751DA5E04000ECECEE /* AddAlarmTableViewCell.swift in Sources */,
@@ -3559,7 +3536,6 @@
 				6688A6591DC981980078E636 /* MEDBaseDeleteRequest.swift in Sources */,
 				00C8267D1DA5E04000ECECEE /* ScannerViewController.swift in Sources */,
 				00C8267E1DA5E04000ECECEE /* ScannerViewController.xib in Sources */,
-				619919161DC6E2B600C75AE7 /* SunriseSetButton.swift in Sources */,
 				6688A66F1DC981990078E636 /* MEDStepsCreateRequest.swift in Sources */,
 				00C8267F1DA5E04000ECECEE /* OldOtaViewController.swift in Sources */,
 				6199191C1DC6E2B600C75AE7 /* WorldClockUtil.swift in Sources */,
@@ -3587,6 +3563,7 @@
 				00C826911DA5E04000ECECEE /* SelectedNotificationView.swift in Sources */,
 				00C826921DA5E04000ECECEE /* NotificationViewController.swift in Sources */,
 				00C826931DA5E04000ECECEE /* NotificationViewController.xib in Sources */,
+				6699DD021DDC4EF80077E544 /* SunriseSetController.swift in Sources */,
 				00C826941DA5E04000ECECEE /* SelectedNotificationTypeController.swift in Sources */,
 				00C826951DA5E04000ECECEE /* SelectedNotificationTypeController.xib in Sources */,
 				00C826961DA5E04000ECECEE /* AddPresetViewController.swift in Sources */,
@@ -3607,7 +3584,6 @@
 				00C826A21DA5E04000ECECEE /* SetingNotLoginCell.swift in Sources */,
 				00C826A41DA5E04000ECECEE /* SetingView.swift in Sources */,
 				00C826A51DA5E04000ECECEE /* SetingViewController.swift in Sources */,
-				619919191DC6E2B600C75AE7 /* WorldClockCell.swift in Sources */,
 				00C826A61DA5E04000ECECEE /* SleepHistoricalView.swift in Sources */,
 				00C826A71DA5E04000ECECEE /* SleepHistoryViewCell.swift in Sources */,
 				00C826A81DA5E04000ECECEE /* SleepHistoryViewCell.xib in Sources */,
@@ -3643,7 +3619,6 @@
 				00C8272F1DA61CAF00ECECEE /* FindWatchRequest.swift in Sources */,
 				00C826261DA5E01C00ECECEE /* M13CheckboxDotManager.swift in Sources */,
 				00C826271DA5E01C00ECECEE /* M13CheckboxExpandManager.swift in Sources */,
-				619919171DC6E2B600C75AE7 /* SunriseSetController.swift in Sources */,
 				00C826281DA5E01C00ECECEE /* M13CheckboxFadeManager.swift in Sources */,
 				00C826291DA5E01C00ECECEE /* M13CheckboxFillManager.swift in Sources */,
 				00C8262A1DA5E01C00ECECEE /* M13CheckboxFlatManager.swift in Sources */,
@@ -3706,6 +3681,7 @@
 				00D4744D1D586D1600E2447E /* View.swift in Sources */,
 				00D4744F1D586D1600E2447E /* PublicClassController.swift in Sources */,
 				6199191B1DC6E2B600C75AE7 /* WorldClockItem.swift in Sources */,
+				6699DD081DDC53B20077E544 /* NewWorldClockCell.swift in Sources */,
 				00D474501D586D1600E2447E /* PublicClassTableViewController.swift in Sources */,
 				00D474521D586D1600E2447E /* AppTheme.swift in Sources */,
 				00D474531D586D1600E2447E /* BalloonMarker.swift in Sources */,
@@ -3868,6 +3844,7 @@
 				611D41811DCAD97C003BC6E3 /* NevoCircleProgressView.swift in Sources */,
 				611D41821DCAD97C003BC6E3 /* AppTheme.swift in Sources */,
 				611D41831DCAD97C003BC6E3 /* BalloonMarker.swift in Sources */,
+				6699DD071DDC53B20077E544 /* NewWorldClockCell.swift in Sources */,
 				611D41841DCAD97C003BC6E3 /* ClockView.swift in Sources */,
 				611D41851DCAD97C003BC6E3 /* DatePickerView.swift in Sources */,
 				611D41861DCAD97C003BC6E3 /* DatePickerView.xib in Sources */,
@@ -3939,10 +3916,6 @@
 				611D41C71DCAD97D003BC6E3 /* AddWorldClockViewController.xib in Sources */,
 				611D41C81DCAD97D003BC6E3 /* SearchCityViewController.swift in Sources */,
 				611D41C91DCAD97D003BC6E3 /* SearchCityViewController.xib in Sources */,
-				611D41CA1DCAD97D003BC6E3 /* SunriseSetButton.swift in Sources */,
-				611D41CB1DCAD97D003BC6E3 /* SunriseSetController.swift in Sources */,
-				611D41CC1DCAD97D003BC6E3 /* SunriseSetView.swift in Sources */,
-				611D41CD1DCAD97D003BC6E3 /* WorldClockCell.swift in Sources */,
 				611D41CE1DCAD97D003BC6E3 /* WorldClockDidSelectedDelegate.swift in Sources */,
 				611D41CF1DCAD97D003BC6E3 /* WorldClockItem.swift in Sources */,
 				611D41D01DCAD97D003BC6E3 /* WorldClockUtil.swift in Sources */,
@@ -3953,6 +3926,7 @@
 				611D41D51DCAD97D003BC6E3 /* LunaRWatchNamePacket.swift in Sources */,
 				611D41D61DCAD97D003BC6E3 /* WorldClockDatabaseHelper.swift in Sources */,
 				611D41D71DCAD97D003BC6E3 /* LocationManager.swift in Sources */,
+				6699DD011DDC4EF80077E544 /* SunriseSetController.swift in Sources */,
 				611D41D81DCAD97D003BC6E3 /* City.swift in Sources */,
 				611D41D91DCAD97D003BC6E3 /* Timezone.swift in Sources */,
 				611D41DA1DCAD97D003BC6E3 /* SolarHarvest.swift in Sources */,
@@ -4374,48 +4348,6 @@
 				6173DF121DB0E9A3002DF6AF /* zh-Hant */,
 			);
 			name = StepsHistoryViewController.xib;
-			sourceTree = "<group>";
-		};
-		619918FB1DC6E2B600C75AE7 /* SunriseSetView.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				619918FC1DC6E2B600C75AE7 /* Base */,
-				6199192B1DC6F00400C75AE7 /* en */,
-				6199192E1DC6F01700C75AE7 /* zh-Hans */,
-				6199192F1DC6F01900C75AE7 /* zh-Hant */,
-			);
-			name = SunriseSetView.xib;
-			sourceTree = "<group>";
-		};
-		619918FD1DC6E2B600C75AE7 /* WorldClockCell.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				619918FE1DC6E2B600C75AE7 /* Base */,
-				6199192D1DC6F00F00C75AE7 /* en */,
-				619919301DC6F01F00C75AE7 /* zh-Hans */,
-				619919311DC6F02200C75AE7 /* zh-Hant */,
-			);
-			name = WorldClockCell.xib;
-			sourceTree = "<group>";
-		};
-		619918FF1DC6E2B600C75AE7 /* SunriseSetView.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				619919001DC6E2B600C75AE7 /* en */,
-				6199190A1DC6E2B600C75AE7 /* zh-Hans */,
-				6199190C1DC6E2B600C75AE7 /* zh-Hant */,
-			);
-			name = SunriseSetView.strings;
-			sourceTree = "<group>";
-		};
-		619919011DC6E2B600C75AE7 /* WorldClockCell.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				619919021DC6E2B600C75AE7 /* en */,
-				6199190B1DC6E2B600C75AE7 /* zh-Hans */,
-				6199190D1DC6E2B600C75AE7 /* zh-Hant */,
-			);
-			name = WorldClockCell.strings;
 			sourceTree = "<group>";
 		};
 		6690DF0C1DB8A84C0042FB9E /* SetingNotLoginCell.xib */ = {
