@@ -48,14 +48,15 @@ class SelectedNotificationView: UITableView {
 
     func getLineColorCell(_ indexPath:IndexPath,tableView:UITableView,cellTitle:String,clockIndex:Int)->UITableViewCell{
         let endCell:LineColorCell = tableView.dequeueReusableCell(withIdentifier: "LineColor_Identifier" ,for: indexPath) as! LineColorCell
-        endCell.imageName.image = UIImage(named: "notifications_check")
-        endCell.imageName.isHidden = true
         endCell.imageView?.image = UIImage(named: cellTitle)
-        if((clockIndex/2 - 1) == (indexPath as NSIndexPath).row){
-            endCell.imageName.isHidden = false
+        if((clockIndex/2 - 1) == indexPath.row){
+            let image = UIImage(named: "notifications_check")
+            endCell.accessoryView = UIImageView(image: image)
+        }else{
+            endCell.accessoryView = nil;
         }
+        AppTheme.isTargetLunaR_OR_Nevo() ? (endCell.textLabel!.text = cellTitle):(endCell.textLabel!.text = "")
         
-        endCell.textLabel!.text = cellTitle
         endCell.textLabel!.backgroundColor = UIColor.clear
         return endCell
     }
