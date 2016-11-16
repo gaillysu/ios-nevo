@@ -36,8 +36,26 @@ class SelectedNotificationView: UITableView {
                         make.top.equalTo(clockImage).offset(30)
                         make.left.equalTo(clockImage).offset(85)
                         make.right.equalTo(clockImage).offset(-85)
-                        //make.edges.equalTo(clockImage).inset(UIEdgeInsets(top: 30, left: UIScreen.main.bounds.width/2.0-10, bottom: clockImage.frame.size.height-30, right: UIScreen.main.bounds.width/2.0-10))
                     }
+                    
+                    /*
+                    var blurEffect: UIBlurEffect?
+                    if #available(iOS 10.0, *) {
+                        blurEffect = UIBlurEffect(style: .regular)
+                    } else {
+                        blurEffect = UIBlurEffect(style: .dark)
+                    }
+                    let blurView: UIVisualEffectView = UIVisualEffectView(effect: blurEffect!)
+                    endCell!.contentView.addSubview(blurView)
+                    blurView.layer.masksToBounds = true;
+                    blurView.layer.cornerRadius = 5.0;
+                    blurView.layer.borderWidth = 1.0;
+                    blurView.layer.borderColor = UIColor.clear.cgColor
+                    blurView.snp.makeConstraints { (make) -> Void in
+                        make.width.equalTo(10)
+                        make.height.equalTo(10)
+                        make.center.equalTo(colorImage)
+                    }*/
                 }
                 
             }
