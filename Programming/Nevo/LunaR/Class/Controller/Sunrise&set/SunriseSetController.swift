@@ -18,7 +18,7 @@ class SunriseSetController: PublicClassController {
     @IBOutlet weak var sunriseSetCollectionView: UICollectionView!
     
     weak var clockView:ClockView? = nil
-    var sunRiseSetTimeArrar:[String] = ["06:00 AM", "18:00 PM"]
+    var sunRiseSetTimeArrar:[String] = ["6:00 AM", "18:00 PM"]
     let WorldClockCellReuseID = "WorldClockCellReuseID"
     
 //    init() {
@@ -30,8 +30,6 @@ class SunriseSetController: PublicClassController {
 //    }
     
     override func viewDidLoad() {
-        addClockView()
-        
         self.view.backgroundColor = UIColor.getGreyColor()
         
         self.sunriseSetCollectionView.dataSource = self
@@ -58,13 +56,14 @@ class SunriseSetController: PublicClassController {
     }
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+        
+        addClockView()
+        
         if !AppTheme.isTargetLunaR_OR_Nevo() {
             self.view.backgroundColor = UIColor.getGreyColor()
         }
         
-        self.clockView?.center = CGPoint(x: self.dailImageView.frame.width / 2.0, y: self.dailImageView.frame.height / 2.0)
-        
-        (self.sunriseSetCollectionView.collectionViewLayout as! UICollectionViewFlowLayout).itemSize = CGSize(width: UIScreen.main.bounds.width / 2.0 - 40, height: self.sunriseSetCollectionView.frame.height - 20)
+        (self.sunriseSetCollectionView.collectionViewLayout as! UICollectionViewFlowLayout).itemSize = CGSize(width: UIScreen.main.bounds.width / 2.0 - 40, height: self.sunriseSetCollectionView.frame.height)
     }
     
 }
@@ -91,6 +90,15 @@ extension SunriseSetController: UICollectionViewDelegate, UICollectionViewDataSo
             let sunsetString:String = sunset!.stringFromFormat("HH:mm a")
             
             self.sunRiseSetTimeArrar = [sunriseString, sunsetString]
+        } else {
+            let solar = Solar(latitude: AppDelegate.getAppDelegate().getLatitude(), longitude: AppDelegate.getAppDelegate().getLongitude())
+            let sunrise = solar?.sunrise
+            let sunset = solar?.sunset
+            
+            let sunriseString = sunrise!.stringFromFormat("HH:mm a")
+            let sunsetString = sunset!.stringFromFormat("HH:mm a")
+            
+            self.sunRiseSetTimeArrar = [sunriseString, sunsetString]
         }
 
         if indexPath.row == 0 {
@@ -109,13 +117,17 @@ extension SunriseSetController: UICollectionViewDelegate, UICollectionViewDataSo
 
 extension SunriseSetController {
     fileprivate func addClockView() {
+        for v in self.dailImageView.subviews {
+            if v is ClockView {
+                v.removeFromSuperview()
+            }
+        }
+        
         let hourImage = AppTheme.GET_RESOURCES_IMAGE("lunar_hour")
         let minuteImage = AppTheme.GET_RESOURCES_IMAGE("lunar_Minute")
         let dialImage = AppTheme.GET_RESOURCES_IMAGE("lunar_dial")
         
-        let dialViewHeight = 250
-        
-        let clockV:ClockView = ClockView(frame: CGRect(x: 0, y: 0, width: dialViewHeight, height: dialViewHeight), hourImage: hourImage, minuteImage: minuteImage, dialImage: dialImage)
+        let clockV:ClockView = ClockView(frame: CGRect(x: 0, y: 0, width: self.dailImageView.bounds.width, height: self.dailImageView.bounds.height), hourImage: hourImage, minuteImage: minuteImage, dialImage: dialImage)
         
         dailImageView.addSubview(clockV)
         
