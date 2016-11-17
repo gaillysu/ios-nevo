@@ -259,7 +259,7 @@ extension LoginController {
                         let forgetPassword:ActionSheetView = ActionSheetView(title: NSLocalizedString("forget_your_password", comment: ""), message: nil, preferredStyle: UIAlertControllerStyle.alert)
                         forgetPassword.view.tintColor = AppTheme.NEVO_SOLAR_YELLOW()
                         
-                        let alertAction:UIAlertAction = UIAlertAction(title: NSLocalizedString("Enter", comment: ""), style: UIAlertActionStyle.default, handler: { (action) in
+                        let alertAction:UIAlertAction = UIAlertAction(title: NSLocalizedString("Yes", comment: ""), style: UIAlertActionStyle.default, handler: { (action) in
                             let forget:ForgotPasswordController = ForgotPasswordController()
                             forget.userEmail = self.userName
                             let nav:UINavigationController = UINavigationController(rootViewController: forget)
@@ -268,7 +268,7 @@ extension LoginController {
                         
                         forgetPassword.addAction(alertAction)
                         
-                        let alertAction2:UIAlertAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: UIAlertActionStyle.cancel, handler: { (action) in
+                        let alertAction2:UIAlertAction = UIAlertAction(title: NSLocalizedString("No", comment: ""), style: UIAlertActionStyle.cancel, handler: { (action) in
                         })
                         forgetPassword.addAction(alertAction2)
                         
