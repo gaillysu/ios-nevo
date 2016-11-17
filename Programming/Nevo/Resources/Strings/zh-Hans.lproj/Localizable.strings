@@ -7,6 +7,8 @@
 */
 "Cancel"="取消";
 "Enter"="确定";
+"Yes"="是的";
+"No"="取消";
 "Notifications"="通知";
 "My nevo"="My nevo";
 "UpdateSuccess1"="升级成功";
@@ -119,7 +121,8 @@
 "signup_failed"="注册失败!";
 "user_exist"="用户已存在!";
 "access_denied"="你的访问授权过期或者失效!";
-"forget_your_password"="你想重置你的密码么?";
+// 因为英文要求改成 "Did you forget your password?", 为了不让 "Yes" & "No" 相反, 这里只好也改了
+"forget_your_password"="你忘记密码了吗?";
 "login_success"="登陆成功";
 "login_error"="密码错误或者用户不存在!";
 "CALORIE"="卡路里";
