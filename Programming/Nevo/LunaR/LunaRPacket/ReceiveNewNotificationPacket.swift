@@ -8,6 +8,27 @@
 
 import UIKit
 
-class ReceiveNewNotificationPacket: NSObject {
+class ReceiveNewNotificationPacket: LunaRPacket {
 
+    func totalStoredApps()->Int {
+        let totalApp:Int = Int(NSData2Bytes(getPackets()[0])[2])
+        return totalApp
+    }
+    
+    func getAappIDLength()->Int {
+        let length:Int = Int(NSData2Bytes(getPackets()[0])[3])
+        return length
+    }
+    
+    func getApplicationID()->String {
+        var data:[UInt8] = NSData2Bytes(getPackets()[0])
+        data.removeSubrange(0..<3)
+        for index:Int in 1..<getPackets().count {
+            var dataValue = NSData2Bytes(getPackets()[index])
+            dataValue.removeSubrange(0..<2)
+            data = data+dataValue
+        }
+        let idString:String = String(data: Bytes2NSData(data), encoding: .utf8)!
+        return idString
+    }
 }
