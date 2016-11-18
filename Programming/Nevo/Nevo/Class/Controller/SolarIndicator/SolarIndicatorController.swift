@@ -138,7 +138,7 @@ extension SolarIndicatorController:UICollectionViewDelegate,UICollectionViewData
     
     // MARK: - UICollectionViewDelegateFlowLayout
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize{
-        return CGSize(width: UIScreen.main.bounds.size.width, height: collectionView.frame.size.height/2 - 10)
+        return CGSize(width: UIScreen.main.bounds.size.width / 2, height: collectionView.frame.size.height)
     }
     
     // MARK: - UICollectionViewDataSource

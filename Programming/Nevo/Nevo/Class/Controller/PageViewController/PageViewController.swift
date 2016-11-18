@@ -208,7 +208,7 @@ extension PageViewController {
         if self.view.viewWithTag(1900) != nil {
             return
         }
-        let pageControl = UIPageControl(frame: CGRect(x: 100, y: UIScreen.main.bounds.size.height-44, width: 100, height: 20))
+        let pageControl = UIPageControl(frame: CGRect(x: 0, y: 0, width: 100, height: 0))
         pageControl.tag = 1900
         pageControl.numberOfPages = pagingControllers.count
         pageControl.currentPage = 0

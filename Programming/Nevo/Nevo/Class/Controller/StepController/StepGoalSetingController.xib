@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -19,11 +22,13 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6hx-b1-hnx">
+                    <rect key="frame" x="20" y="66" width="335" height="309"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="6hx-b1-hnx" secondAttribute="height" multiplier="64:57" constant="-11.93" id="Nm7-PZ-KNs"/>
                     </constraints>
                 </view>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="Y0u-3W-BqB">
+                    <rect key="frame" x="0.0" y="418" width="375" height="212"/>
                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="nHc-cW-gvy">
                         <size key="itemSize" width="50" height="50"/>
                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -43,7 +48,7 @@
                 <constraint firstItem="6hx-b1-hnx" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="66" id="Jx3-3Y-gOQ"/>
                 <constraint firstItem="Y0u-3W-BqB" firstAttribute="top" secondItem="6hx-b1-hnx" secondAttribute="bottom" constant="43" id="Lba-QY-GZa"/>
                 <constraint firstAttribute="trailing" secondItem="Y0u-3W-BqB" secondAttribute="trailing" id="j9g-6G-oby"/>
-                <constraint firstAttribute="bottom" secondItem="Y0u-3W-BqB" secondAttribute="bottom" id="jso-Kf-0U9"/>
+                <constraint firstAttribute="bottom" secondItem="Y0u-3W-BqB" secondAttribute="bottom" constant="37" id="jso-Kf-0U9"/>
                 <constraint firstItem="Y0u-3W-BqB" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="nq5-pe-PeJ"/>
             </constraints>
             <point key="canvasLocation" x="548" y="346"/>
