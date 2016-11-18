@@ -103,6 +103,8 @@ class StepsHistoryViewController: PublicClassController,ChartViewDelegate {
             stepsHistory.backgroundColor = UIColor.getGreyColor()
             chartView.backgroundColor = UIColor.getGreyColor()
         }
+        
+        (stepsHistory.collectionViewLayout as! UICollectionViewFlowLayout).itemSize = CGSize(width: UIScreen.main.bounds.size.width/2.0, height: stepsHistory.frame.height / 2.0)
     }
     
     /**

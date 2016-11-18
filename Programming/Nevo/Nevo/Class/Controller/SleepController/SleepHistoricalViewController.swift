@@ -61,7 +61,7 @@ class SleepHistoricalViewController: PublicClassController,ChartViewDelegate,Sel
     }
     
     override func viewDidLayoutSubviews() {
-        (queryView.detailCollectionView.collectionViewLayout as! UICollectionViewFlowLayout).itemSize = CGSize(width: UIScreen.main.bounds.size.width/2.0, height: 40)
+        (queryView.detailCollectionView.collectionViewLayout as! UICollectionViewFlowLayout).itemSize = CGSize(width: UIScreen.main.bounds.size.width/4.0, height: queryView.detailCollectionView.frame.height / 2.0)
     }
     
     override func viewDidDisappear(_ animated: Bool) {

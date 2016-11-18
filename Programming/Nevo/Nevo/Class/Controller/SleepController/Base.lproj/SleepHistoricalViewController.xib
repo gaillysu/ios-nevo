@@ -34,7 +34,7 @@
                     </constraints>
                 </view>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="CWK-RV-oKL">
-                    <rect key="frame" x="0.0" y="418" width="375" height="249"/>
+                    <rect key="frame" x="0.0" y="410" width="375" height="237"/>
                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="7pd-OM-Y5C">
                         <size key="itemSize" width="105" height="50"/>
                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -60,10 +60,10 @@
                 <constraint firstItem="4sA-Zz-9hO" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="Wg8-lh-7cw"/>
                 <constraint firstItem="CWK-RV-oKL" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="kEn-eB-aiN"/>
                 <constraint firstItem="EV4-cE-sgs" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="20" id="nQG-cL-eBw"/>
-                <constraint firstItem="CWK-RV-oKL" firstAttribute="top" secondItem="4sA-Zz-9hO" secondAttribute="bottom" constant="43" id="o5Z-LK-sUc"/>
+                <constraint firstItem="CWK-RV-oKL" firstAttribute="top" secondItem="4sA-Zz-9hO" secondAttribute="bottom" constant="35" id="o5Z-LK-sUc"/>
                 <constraint firstItem="4sA-Zz-9hO" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="66" id="rTZ-Y6-f5i"/>
                 <constraint firstItem="EV4-cE-sgs" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="snH-iA-fzs"/>
-                <constraint firstAttribute="bottom" secondItem="CWK-RV-oKL" secondAttribute="bottom" id="vGR-fJ-GSn"/>
+                <constraint firstAttribute="bottom" secondItem="CWK-RV-oKL" secondAttribute="bottom" constant="20" id="vGR-fJ-GSn"/>
                 <constraint firstAttribute="trailing" secondItem="CWK-RV-oKL" secondAttribute="trailing" id="x3Q-33-9Qx"/>
                 <constraint firstItem="4sA-Zz-9hO" firstAttribute="top" secondItem="EV4-cE-sgs" secondAttribute="bottom" constant="6" id="z5v-go-MgO"/>
             </constraints>

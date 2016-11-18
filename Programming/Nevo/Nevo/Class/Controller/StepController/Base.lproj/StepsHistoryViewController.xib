@@ -35,7 +35,7 @@
                     </constraints>
                 </view>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="eW0-Ed-FPP">
-                    <rect key="frame" x="0.0" y="418" width="375" height="249"/>
+                    <rect key="frame" x="0.0" y="410" width="375" height="237"/>
                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="Mf2-aB-35s">
                         <size key="itemSize" width="105" height="50"/>
                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -58,11 +58,11 @@
             <constraints>
                 <constraint firstItem="mMJ-ii-LKw" firstAttribute="top" secondItem="PEL-ww-Web" secondAttribute="bottom" constant="6" id="8OF-FC-3CY"/>
                 <constraint firstAttribute="trailing" secondItem="mMJ-ii-LKw" secondAttribute="trailing" constant="20" id="8fe-r5-nii"/>
-                <constraint firstAttribute="bottom" secondItem="eW0-Ed-FPP" secondAttribute="bottom" id="HuH-9R-9cW"/>
+                <constraint firstAttribute="bottom" secondItem="eW0-Ed-FPP" secondAttribute="bottom" constant="20" id="HuH-9R-9cW"/>
                 <constraint firstAttribute="trailing" secondItem="PEL-ww-Web" secondAttribute="trailing" constant="20" id="JLc-cs-JEo"/>
                 <constraint firstItem="PEL-ww-Web" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="N4v-Y3-jQv"/>
                 <constraint firstItem="eW0-Ed-FPP" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="QOg-pt-mf2"/>
-                <constraint firstItem="eW0-Ed-FPP" firstAttribute="top" secondItem="mMJ-ii-LKw" secondAttribute="bottom" constant="43" id="UgS-4h-rLg"/>
+                <constraint firstItem="eW0-Ed-FPP" firstAttribute="top" secondItem="mMJ-ii-LKw" secondAttribute="bottom" constant="35" id="UgS-4h-rLg"/>
                 <constraint firstItem="PEL-ww-Web" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="20" id="cgL-6x-0Cw"/>
                 <constraint firstAttribute="trailing" secondItem="eW0-Ed-FPP" secondAttribute="trailing" id="ppr-sW-GQ3"/>
                 <constraint firstItem="mMJ-ii-LKw" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="66" id="pti-i7-c9A"/>

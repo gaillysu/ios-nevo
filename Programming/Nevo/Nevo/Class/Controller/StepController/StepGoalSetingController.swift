@@ -61,7 +61,7 @@ class StepGoalSetingController: PublicClassController,ButtonManagerCallBack,Cloc
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         let layout:UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize(width: (UIScreen.main.bounds.size.width)/2.0, height: 40)
+        layout.itemSize = CGSize(width: (UIScreen.main.bounds.size.width/4.0), height: self.collectionView.frame.height)
         layout.minimumInteritemSpacing = 0
         layout.minimumLineSpacing = 0
         collectionView.collectionViewLayout = layout
@@ -308,7 +308,7 @@ extension StepGoalSetingController {
 extension StepGoalSetingController:UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout{
     // MARK: - UICollectionViewDelegateFlowLayout
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize{
-        return CGSize(width: (UIScreen.main.bounds.size.width)/2.0, height: collectionView.frame.size.height/2 - 10)
+        return CGSize(width: (UIScreen.main.bounds.size.width)/4.0, height: collectionView.frame.size.height)
     }
     
     // MARK: - UICollectionViewDataSource
