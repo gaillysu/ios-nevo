@@ -10,30 +10,30 @@ import Foundation
 import Timepiece
 import RealmSwift
 import Solar
+import CoreLocation
 
 class SunriseSetController: PublicClassController {
     
     @IBOutlet weak var dailImageView: UIImageView!
     @IBOutlet weak var cityNameLable: UILabel!
+    @IBOutlet weak var cityDateLabel: UILabel!
     @IBOutlet weak var sunriseSetCollectionView: UICollectionView!
+    @IBOutlet weak var button: UIButton!
+    
+    var solar:Solar? = nil
+    var city:City? = nil
     
     weak var clockView:ClockView? = nil
     var sunRiseSetTimeArrar:[String] = ["6:00 AM", "18:00 PM"]
     let WorldClockCellReuseID = "WorldClockCellReuseID"
-    
-//    init() {
-//        super.init(nibName: "SunriseSetController", bundle: Bundle.main)
-//    }
-//    
-//    required convenience init?(coder aDecoder: NSCoder) {
-//        self.init()
-//    }
     
     override func viewDidLoad() {
         self.view.backgroundColor = UIColor.getGreyColor()
         
         self.sunriseSetCollectionView.dataSource = self
         self.sunriseSetCollectionView.delegate = self
+        
+        self.button.backgroundColor = UIColor.getBaseColor()
         
         let layout:UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         layout.itemSize = CGSize(width: 100.0, height: 100.0)
@@ -44,45 +44,12 @@ class SunriseSetController: PublicClassController {
         
         self.sunriseSetCollectionView.register(UINib(nibName:"NewWorldClockCell", bundle: nil), forCellWithReuseIdentifier: WorldClockCellReuseID)
 
-        let now:Date = Date()
-        let cal:Calendar = Calendar.current
-        let dd:DateComponents = (cal as NSCalendar).components([NSCalendar.Unit.year, NSCalendar.Unit.month, NSCalendar.Unit.day ,NSCalendar.Unit.hour, NSCalendar.Unit.minute, NSCalendar.Unit.second,], from: now);
-        
-        setDialTime(dateComponents: dd)
-    }
-    
-    public func setDialTime(dateComponents:DateComponents) {
-        clockView?.setWorldTime(dateConponents: dateComponents)
-    }
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        
-        addClockView()
-        
-        if !AppTheme.isTargetLunaR_OR_Nevo() {
-            self.view.backgroundColor = UIColor.getGreyColor()
-        }
-        
-        (self.sunriseSetCollectionView.collectionViewLayout as! UICollectionViewFlowLayout).itemSize = CGSize(width: UIScreen.main.bounds.width / 2.0 - 40, height: self.sunriseSetCollectionView.frame.height)
-    }
-    
-}
-
-// MARK: - collectionview
-extension SunriseSetController: UICollectionViewDelegate, UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 2
-    }
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell: NewWorldClockCell = collectionView.dequeueReusableCell(withReuseIdentifier: WorldClockCellReuseID, for: indexPath) as! NewWorldClockCell
-        
         let realm = try! Realm()
-
         let citiesArray:[City] = Array(realm.objects(City.self).filter("selected = true"))
         if citiesArray.count>0 {
-            let city = citiesArray[0]
+            self.city = citiesArray[0]
             
-            let solar = Solar(latitude: city.lat,longitude: city.lng)
+            self.solar = Solar(latitude: city!.lat,longitude: self.city!.lng)
             let sunrise = solar!.sunrise
             let sunset = solar!.sunset
             
@@ -99,16 +66,110 @@ extension SunriseSetController: UICollectionViewDelegate, UICollectionViewDataSo
             let sunsetString = sunset!.stringFromFormat("HH:mm a")
             
             self.sunRiseSetTimeArrar = [sunriseString, sunsetString]
+            
+            let geoCoder:CLGeocoder = CLGeocoder()
+            let location:CLLocation = CLLocation(latitude: AppDelegate.getAppDelegate().getLatitude(), longitude: AppDelegate.getAppDelegate().getLongitude())
+            geoCoder.reverseGeocodeLocation(location, completionHandler: { (placeMarks, error) in
+                if error != nil {
+                    if let placeMark = placeMarks?.first {
+                        let city: City = City()
+                        city.country = placeMark.country!
+                        city.name = placeMark.locality!
+                        self.city = city
+                    }
+                }
+            })
         }
+        
+        if let city = self.city {
+            self.cityNameLable.text = city.name + ", " + city.country
+        } else {
+            self.cityNameLable.text = "Shenzhen" + ", " + "China"
+        }
+        self.cityDateLabel.text = solar!.date.stringFromFormat("d MMM, yyyy")
+
+        let now:Date = self.solar!.date
+        let cal:Calendar = Calendar.current
+        let dd:DateComponents = (cal as NSCalendar).components([NSCalendar.Unit.year, NSCalendar.Unit.month, NSCalendar.Unit.day ,NSCalendar.Unit.hour, NSCalendar.Unit.minute, NSCalendar.Unit.second,], from: now);
+        
+        setDialTime(dateComponents: dd)
+    }
+    
+    public func setDialTime(dateComponents:DateComponents) {
+        clockView?.setWorldTime(dateConponents: dateComponents)
+    }
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        addClockView()
+//        self.dailImageView.backgroundColor = UIColor.getBaseColor()
+//        self.dailImageView.layer.cornerRadius = self.dailImageView.frame.width / 2
+//        self.dailImageView.layer.masksToBounds = true
+        
+        if !AppTheme.isTargetLunaR_OR_Nevo() {
+            self.view.backgroundColor = UIColor.getGreyColor()
+        }
+        
+        (self.sunriseSetCollectionView.collectionViewLayout as! UICollectionViewFlowLayout).itemSize = CGSize(width: UIScreen.main.bounds.size.width / 2.0 - 5, height: self.sunriseSetCollectionView.frame.height)
+    }
+    
+    @IBAction func changeCity(_ sender: Any) {
+        let addWorldClock:AddWorldClockViewController = AddWorldClockViewController()
+        addWorldClock.didSeletedCityDelegate = self
+        addWorldClock.hidesBottomBarWhenPushed = true
+        let nav:UINavigationController = UINavigationController(rootViewController: addWorldClock)
+        self.present(nav, animated: true, completion: nil)
+    }
+}
+
+extension SunriseSetController: WorldClockDidSelectedDelegate {
+    func didSelectedLocalTimeZone(_ cityId:Int) {
+        let realm = try! Realm()
+        let citiesArray:[City] = Array(realm.objects(City.self).filter("selected = true"))
+        let city = citiesArray[0]
+        
+        let solar = Solar(latitude: city.lat,
+                          longitude: city.lng)
+        let sunrise = solar!.sunrise
+        let sunset = solar!.sunset
+        
+        let sunriseString:String = sunrise!.stringFromFormat("HH:mm a")
+        let sunsetString:String = sunset!.stringFromFormat("HH:mm a")
+        self.sunRiseSetTimeArrar = [sunriseString, sunsetString]
+        self.sunriseSetCollectionView.reloadData()
+        
+        let now:Date = solar!.date
+        let cal:Calendar = Calendar.current
+        let dd:DateComponents = (cal as NSCalendar).components([NSCalendar.Unit.year, NSCalendar.Unit.month, NSCalendar.Unit.day ,NSCalendar.Unit.hour, NSCalendar.Unit.minute, NSCalendar.Unit.second,], from: now);
+        setDialTime(dateComponents: dd)
+        
+        self.cityNameLable.text = city.name + ", " + city.country
+        self.cityDateLabel.text = solar!.date.stringFromFormat("d MMM, yyyy")
+        
+        let offset = String(format: "%.0f", (sunrise!.timeIntervalSince1970-sunset!.timeIntervalSince1970)/3600)
+        if AppDelegate.getAppDelegate().isConnected() {
+            let setWordClock:SetWorldClockRequest = SetWorldClockRequest(offset: offset.toInt())
+            AppDelegate.getAppDelegate().sendRequest(setWordClock)
+        }
+    }
+}
+
+// MARK: - collectionview
+extension SunriseSetController: UICollectionViewDelegate, UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 2
+    }
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell: NewWorldClockCell = collectionView.dequeueReusableCell(withReuseIdentifier: WorldClockCellReuseID, for: indexPath) as! NewWorldClockCell
 
         if indexPath.row == 0 {
             cell.iconImageView.image = UIImage(named: "sunrise")
-            cell.titleLable.text = "Sunrise"
-            cell.subTitleLabel.text = self.sunRiseSetTimeArrar[0]
+            cell.titleLable.text = self.sunRiseSetTimeArrar[0]
+            cell.subTitleLabel.text = "local time"
         } else {
             cell.iconImageView.image = UIImage(named: "sunset")
-            cell.titleLable.text = "Sunset"
-            cell.subTitleLabel.text = self.sunRiseSetTimeArrar[1]
+            cell.titleLable.text = self.sunRiseSetTimeArrar[1]
+            cell.subTitleLabel.text = "local time"
         }
         
         return cell

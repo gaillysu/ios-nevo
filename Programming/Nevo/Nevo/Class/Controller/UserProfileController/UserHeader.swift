@@ -96,14 +96,14 @@ extension UserHeader:PhotoViewControllerDelegate, UIImagePickerControllerDelegat
     func imageCropper(_ cropperViewController: PhotoViewController!, didFinished editedImage: UIImage!) {
         self.viewController()?.dismiss(animated: true, completion: nil)
         avatarView.setImage(editedImage, for: .normal)
-        AppTheme.KeyedArchiverName(NevoAllKeys.MEDAvatarKeyBeforeSave() as NSString, andObject: editedImage)
+        _ = AppTheme.KeyedArchiverName(NevoAllKeys.MEDAvatarKeyBeforeSave() as NSString, andObject: editedImage)
         
         (self.viewController() as! UserProfileController).isNewPush = false
     }
     
     func imageCropperDidCancel(_ cropperViewController: PhotoViewController!) {
         if self._sourceType == .photoLibrary {
-            cropperViewController.navigationController?.popViewController(animated: true)
+            _ = cropperViewController.navigationController?.popViewController(animated: true)
         } else {
             cropperViewController.dismiss(animated: true, completion: nil)
         }
