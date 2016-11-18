@@ -8,7 +8,7 @@
 
 import UIKit
 
-class EditAppIDPacket: NSObject {
+class EditAppIDPacket: LunaRPacket {
     /*
      Status
      0 - OK

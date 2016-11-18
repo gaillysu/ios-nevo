@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -13,43 +16,52 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="SleepHistoryViewCell" customModule="LunaR" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+            <rect key="frame" x="0.0" y="0.0" width="168" height="76"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+                <rect key="frame" x="0.0" y="0.0" width="168" height="76"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XLg-py-bFt">
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N3Y-EV-x92">
+                        <rect key="frame" x="0.0" y="19" width="168" height="38.5"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="24:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FF3-Sx-tfv">
+                                <rect key="frame" x="0.0" y="20.5" width="168" height="18"/>
+                                <fontDescription key="fontDescription" name="Raleway" family="Raleway" pointSize="15"/>
+                                <color key="textColor" red="0.62745098040000002" green="0.51764705879999995" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XLg-py-bFt">
+                                <rect key="frame" x="0.0" y="0.0" width="168" height="20.5"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="150" id="wvd-6g-zaN"/>
+                            <constraint firstAttribute="bottom" secondItem="FF3-Sx-tfv" secondAttribute="bottom" id="3AD-0k-j30"/>
+                            <constraint firstItem="FF3-Sx-tfv" firstAttribute="top" secondItem="XLg-py-bFt" secondAttribute="bottom" id="IHa-L5-Oxk"/>
+                            <constraint firstAttribute="trailing" secondItem="XLg-py-bFt" secondAttribute="trailing" id="JQ1-lS-BiF"/>
+                            <constraint firstItem="FF3-Sx-tfv" firstAttribute="leading" secondItem="N3Y-EV-x92" secondAttribute="leading" id="Kce-mW-UXk"/>
+                            <constraint firstAttribute="trailing" secondItem="FF3-Sx-tfv" secondAttribute="trailing" id="VAS-gO-wa0"/>
+                            <constraint firstItem="XLg-py-bFt" firstAttribute="top" secondItem="N3Y-EV-x92" secondAttribute="top" id="gAA-U9-f83"/>
+                            <constraint firstItem="XLg-py-bFt" firstAttribute="leading" secondItem="N3Y-EV-x92" secondAttribute="leading" id="gBx-ek-buo"/>
                         </constraints>
-                        <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="17"/>
-                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="24:00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FF3-Sx-tfv">
-                        <fontDescription key="fontDescription" name="Raleway" family="Raleway" pointSize="15"/>
-                        <color key="textColor" red="0.62745098040000002" green="0.51764705879999995" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
+                    </view>
                 </subviews>
             </view>
             <constraints>
-                <constraint firstItem="XLg-py-bFt" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="15" id="7zZ-A8-vNq"/>
-                <constraint firstItem="FF3-Sx-tfv" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="LXp-fe-loE"/>
-                <constraint firstAttribute="bottom" secondItem="XLg-py-bFt" secondAttribute="bottom" id="NtE-cf-SiI"/>
-                <constraint firstItem="XLg-py-bFt" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="Y6x-fZ-5Tm"/>
-                <constraint firstAttribute="trailing" secondItem="FF3-Sx-tfv" secondAttribute="trailing" id="gfC-qZ-sJt"/>
-                <constraint firstItem="FF3-Sx-tfv" firstAttribute="leading" secondItem="XLg-py-bFt" secondAttribute="trailing" constant="10" id="p1T-im-ZWj"/>
-                <constraint firstAttribute="bottom" secondItem="FF3-Sx-tfv" secondAttribute="bottom" id="qap-6z-S1q"/>
+                <constraint firstItem="N3Y-EV-x92" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="1yF-ds-DXm"/>
+                <constraint firstAttribute="trailing" secondItem="N3Y-EV-x92" secondAttribute="trailing" id="3aK-10-OA6"/>
+                <constraint firstItem="N3Y-EV-x92" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="rez-1O-NEe"/>
             </constraints>
-            <size key="customSize" width="320" height="50"/>
+            <size key="customSize" width="168" height="76"/>
             <connections>
-                <outlet property="labelWidth" destination="wvd-6g-zaN" id="D97-tJ-vDb"/>
                 <outlet property="titleLabel" destination="XLg-py-bFt" id="r9y-vw-R3Q"/>
                 <outlet property="valueLabel" destination="FF3-Sx-tfv" id="XeB-lJ-pcP"/>
             </connections>
-            <point key="canvasLocation" x="270" y="191"/>
+            <point key="canvasLocation" x="-90" y="99"/>
         </collectionViewCell>
     </objects>
 </document>

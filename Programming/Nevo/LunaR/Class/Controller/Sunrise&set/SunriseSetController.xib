@@ -57,7 +57,7 @@
                     </constraints>
                 </view>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="I5G-DU-lR2">
-                    <rect key="frame" x="0.0" y="443" width="320" height="125"/>
+                    <rect key="frame" x="0.0" y="423" width="320" height="125"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="125" id="wRQ-Pa-Nad"/>
@@ -70,10 +70,10 @@
                     </collectionViewFlowLayout>
                 </collectionView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Gg-cE-Z2P">
-                    <rect key="frame" x="0.0" y="231" width="320" height="212"/>
+                    <rect key="frame" x="0.0" y="231" width="320" height="192"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hnP-Ql-bc8">
-                            <rect key="frame" x="0.0" y="59" width="320" height="94"/>
+                            <rect key="frame" x="0.0" y="49" width="320" height="94"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Shenzhen, China" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RPk-DE-cDs">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="23"/>
@@ -138,7 +138,7 @@
                 <constraint firstItem="I5G-DU-lR2" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Ips-8C-qQ9"/>
                 <constraint firstItem="JNP-jE-b24" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="JO7-Fo-HbZ"/>
                 <constraint firstItem="sKj-oT-Bfe" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="PyG-vC-dix"/>
-                <constraint firstAttribute="bottom" secondItem="I5G-DU-lR2" secondAttribute="bottom" id="Qpv-lI-Np6"/>
+                <constraint firstAttribute="bottom" secondItem="I5G-DU-lR2" secondAttribute="bottom" constant="20" id="Qpv-lI-Np6"/>
                 <constraint firstItem="G12-Ib-gF0" firstAttribute="width" secondItem="v4i-Je-bg5" secondAttribute="width" id="acw-fI-jKJ"/>
                 <constraint firstAttribute="trailing" secondItem="JNP-jE-b24" secondAttribute="trailing" id="daX-12-TeW"/>
                 <constraint firstAttribute="trailing" secondItem="I5G-DU-lR2" secondAttribute="trailing" id="f4j-Bz-BVL"/>
