@@ -25,6 +25,7 @@ class ClockView: UIView {
         let dialeRect:CGRect = CGRect(x: 0, y: 0, width: frame.size.width, height: frame.size.width)
         mClockDialView = UIImageView(frame: dialeRect)
         mClockDialView.image = dialImage
+        mClockDialView.contentMode = UIViewContentMode.scaleAspectFit;
         self.addSubview(mClockDialView)
 
         // --------------------------------
@@ -33,6 +34,7 @@ class ClockView: UIView {
         let hourImageRect:CGRect = CGRect(x: 0, y: 0, width: self.frame.size.width, height: self.frame.size.width)
         mHourImageView = UIImageView(frame:hourImageRect)
         mHourImageView.image = hourImage
+        mHourImageView.contentMode = UIViewContentMode.scaleAspectFit;
         self.addSubview(mHourImageView)
 
         // ----------------------------------
@@ -41,6 +43,7 @@ class ClockView: UIView {
         let minuteImageRect:CGRect = CGRect(x: 0, y: 0, width: self.frame.size.width, height: self.frame.size.width)
         mMinuteImageView = UIImageView(frame:minuteImageRect)
         mMinuteImageView.image = minuteImage
+        mHourImageView.contentMode = UIViewContentMode.scaleAspectFit;
         self.addSubview(mMinuteImageView)
 
         // ------------------------

@@ -10,6 +10,7 @@ import Foundation
 import Timepiece
 import RealmSwift
 import Solar
+import SnapKit
 
 class SunriseSetController: PublicClassController {
     
@@ -17,7 +18,7 @@ class SunriseSetController: PublicClassController {
     @IBOutlet weak var cityNameLable: UILabel!
     @IBOutlet weak var sunriseSetCollectionView: UICollectionView!
     
-    weak var clockView:ClockView? = nil
+    var clockView:ClockView?
     var sunRiseSetTimeArrar:[String] = ["6:00 AM", "18:00 PM"]
     let WorldClockCellReuseID = "WorldClockCellReuseID"
     
@@ -47,22 +48,21 @@ class SunriseSetController: PublicClassController {
         let now:Date = Date()
         let cal:Calendar = Calendar.current
         let dd:DateComponents = (cal as NSCalendar).components([NSCalendar.Unit.year, NSCalendar.Unit.month, NSCalendar.Unit.day ,NSCalendar.Unit.hour, NSCalendar.Unit.minute, NSCalendar.Unit.second,], from: now);
-        
+
         setDialTime(dateComponents: dd)
     }
     
     public func setDialTime(dateComponents:DateComponents) {
         clockView?.setWorldTime(dateConponents: dateComponents)
     }
+    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        
         addClockView()
         
         if !AppTheme.isTargetLunaR_OR_Nevo() {
             self.view.backgroundColor = UIColor.getGreyColor()
         }
-        
         (self.sunriseSetCollectionView.collectionViewLayout as! UICollectionViewFlowLayout).itemSize = CGSize(width: UIScreen.main.bounds.width / 2.0 - 40, height: self.sunriseSetCollectionView.frame.height)
     }
     
@@ -127,10 +127,11 @@ extension SunriseSetController {
         let minuteImage = AppTheme.GET_RESOURCES_IMAGE("lunar_Minute")
         let dialImage = AppTheme.GET_RESOURCES_IMAGE("lunar_dial")
         
-        let clockV:ClockView = ClockView(frame: CGRect(x: 0, y: 0, width: self.dailImageView.bounds.width, height: self.dailImageView.bounds.height), hourImage: hourImage, minuteImage: minuteImage, dialImage: dialImage)
+        clockView = ClockView(frame: CGRect(x: 0, y: 0, width: self.dailImageView.bounds.width, height: self.dailImageView.bounds.width), hourImage: hourImage, minuteImage: minuteImage, dialImage: dialImage)
         
-        dailImageView.addSubview(clockV)
+        if clockView != nil {
+            dailImageView.addSubview(clockView!)
+        }
         
-        clockView = clockV
     }
 }
