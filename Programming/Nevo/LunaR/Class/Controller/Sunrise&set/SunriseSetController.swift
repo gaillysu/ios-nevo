@@ -11,6 +11,7 @@ import Timepiece
 import RealmSwift
 import Solar
 import CoreLocation
+import SnapKit
 
 class SunriseSetController: PublicClassController {
     
@@ -23,7 +24,7 @@ class SunriseSetController: PublicClassController {
     var solar:Solar? = nil
     var city:City? = nil
     
-    weak var clockView:ClockView? = nil
+    var clockView:ClockView?
     var sunRiseSetTimeArrar:[String] = ["6:00 AM", "18:00 PM"]
     let WorldClockCellReuseID = "WorldClockCellReuseID"
     
@@ -91,16 +92,16 @@ class SunriseSetController: PublicClassController {
         let now:Date = self.solar!.date
         let cal:Calendar = Calendar.current
         let dd:DateComponents = (cal as NSCalendar).components([NSCalendar.Unit.year, NSCalendar.Unit.month, NSCalendar.Unit.day ,NSCalendar.Unit.hour, NSCalendar.Unit.minute, NSCalendar.Unit.second,], from: now);
-        
+
         setDialTime(dateComponents: dd)
     }
     
     public func setDialTime(dateComponents:DateComponents) {
         clockView?.setWorldTime(dateConponents: dateComponents)
     }
+    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        
         addClockView()
 //        self.dailImageView.backgroundColor = UIColor.getBaseColor()
 //        self.dailImageView.layer.cornerRadius = self.dailImageView.frame.width / 2
@@ -188,10 +189,7 @@ extension SunriseSetController {
         let minuteImage = AppTheme.GET_RESOURCES_IMAGE("lunar_Minute")
         let dialImage = AppTheme.GET_RESOURCES_IMAGE("lunar_dial")
         
-        let clockV:ClockView = ClockView(frame: CGRect(x: 0, y: 0, width: self.dailImageView.bounds.width, height: self.dailImageView.bounds.height), hourImage: hourImage, minuteImage: minuteImage, dialImage: dialImage)
-        
-        dailImageView.addSubview(clockV)
-        
-        clockView = clockV
+        clockView = ClockView(frame: CGRect(x: 0, y: 0, width: self.dailImageView.bounds.width, height: self.dailImageView.bounds.width), hourImage: hourImage, minuteImage: minuteImage, dialImage: dialImage)
+        dailImageView.addSubview(clockView!)
     }
 }

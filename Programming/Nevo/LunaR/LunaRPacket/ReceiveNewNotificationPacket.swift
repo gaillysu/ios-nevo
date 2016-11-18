@@ -1,32 +1,28 @@
 //
-//  GetNotificationAppIDPacket.swift
+//  ReceiveNewNotificationPacket.swift
 //  Nevo
 //
-//  Created by Cloud on 2016/11/16.
+//  Created by Cloud on 2016/11/17.
 //  Copyright © 2016年 Nevo. All rights reserved.
 //
 
 import UIKit
 
-class GetNotificationAppIDPacket: LunaRPacket {
+class ReceiveNewNotificationPacket: LunaRPacket {
 
+    func totalStoredApps()->Int {
+        let totalApp:Int = Int(NSData2Bytes(getPackets()[0])[2])
+        return totalApp
+    }
+    
     func getAappIDLength()->Int {
-        let appidLength:Int = Int(NSData2Bytes(getPackets()[0])[2])
-        return appidLength
-    }
-    
-    func getLEDPatternisEnable() ->Int {
-        let appidLength:Int = Int(NSData2Bytes(getPackets()[0])[2])<<8
-        return appidLength
-    }
-    
-    func getLEDPattern() -> UInt32 {
-        return 0xFFFFFF
+        let length:Int = Int(NSData2Bytes(getPackets()[0])[3])
+        return length
     }
     
     func getApplicationID()->String {
         var data:[UInt8] = NSData2Bytes(getPackets()[0])
-        data.removeSubrange(0..<7)
+        data.removeSubrange(0..<3)
         for index:Int in 1..<getPackets().count {
             var dataValue = NSData2Bytes(getPackets()[index])
             dataValue.removeSubrange(0..<2)
@@ -35,5 +31,4 @@ class GetNotificationAppIDPacket: LunaRPacket {
         let idString:String = String(data: Bytes2NSData(data), encoding: .utf8)!
         return idString
     }
-    
 }
