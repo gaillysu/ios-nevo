@@ -184,10 +184,10 @@ extension SunriseSetController {
                 v.removeFromSuperview()
             }
         }
-        
-        let hourImage = AppTheme.GET_RESOURCES_IMAGE("lunar_hour")
-        let minuteImage = AppTheme.GET_RESOURCES_IMAGE("lunar_Minute")
-        let dialImage = AppTheme.GET_RESOURCES_IMAGE("lunar_dial")
+
+        let hourImage = AppTheme.GET_RESOURCES_IMAGE("wacth_hour")
+        let minuteImage = AppTheme.GET_RESOURCES_IMAGE("wacth_mint")
+        let dialImage = AppTheme.GET_RESOURCES_IMAGE("wacth_dial")
         
         clockView = ClockView(frame: CGRect(x: 0, y: 0, width: self.dailImageView.bounds.width, height: self.dailImageView.bounds.width), hourImage: hourImage, minuteImage: minuteImage, dialImage: dialImage)
         dailImageView.addSubview(clockView!)
