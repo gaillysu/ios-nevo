@@ -205,8 +205,8 @@
 
 // 2016-10-27
 "Choose picture source"="Choose picture source";
-"Choose from library"="Choose from library";
-"Choose from Camera"="Choose from Camera";
+"Choose from library"="Choose photo";
+"Choose from Camera"="Take photo";
 
 "move_&_zoom"="Move & Zoom";
 "Yesterday"="Yesterday";

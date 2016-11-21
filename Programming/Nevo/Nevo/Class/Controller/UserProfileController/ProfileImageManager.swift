@@ -9,11 +9,17 @@
 import Foundation
 
 fileprivate let m:ProfileImageManager = ProfileImageManager()
-open class ProfileImageManager {
+public class ProfileImageManager {
     class var manager:ProfileImageManager {
         return m
     }
     
-    open func save(image:UIImage) {
+    public func save(image:UIImage) {
+        _ = AppTheme.KeyedArchiverName(NevoAllKeys.MEDAvatarKeyAfterSave() as NSString, andObject: image)
+    }
+    
+    public func getImage() -> UIImage? {
+        let resultArray:NSArray = AppTheme.LoadKeyedArchiverName(NevoAllKeys.MEDAvatarKeyAfterSave() as NSString) as! NSArray
+        return resultArray.object(at: 0) as? UIImage
     }
 }

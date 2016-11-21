@@ -14,10 +14,9 @@ let userIdentifier:String = "UserProfileIdentifier"
 class UserProfileController: UIViewController,UITableViewDelegate,UITableViewDataSource {
     
     @IBOutlet weak var userInfoTableView: UITableView!
-    @IBOutlet weak var avatarImageView: UIButton!
     
-    
-    open var isNewPush:Bool = true
+    // Judge if is pushed from `SettingController`, or is after dismiss image picker view
+    var isPushed: Bool = true
     
     fileprivate let titleArray:[String] = ["First name","Last Name","Weight","Height","Date of Birth"]
     fileprivate let fieldArray:[String] = ["first_name","last_name","weight","height","date_birth"]
@@ -63,12 +62,13 @@ class UserProfileController: UIViewController,UITableViewDelegate,UITableViewDat
     func saveProfileAction(_ sender:AnyObject) {
         if userprofile != nil {
             if userprofile!.update() {
-                self.navigationController?.popViewController(animated: true)
+                _ = self.navigationController?.popViewController(animated: true)
             }
         }
         
         if let avatarImage = (userInfoTableView.headerView(forSection: 0) as! UserHeader).avatarView.image(for: .normal) {
-            AppTheme.KeyedArchiverName((NevoAllKeys.MEDAvatarKeyAfterSave() as NSString), andObject: avatarImage)
+            let manager = ProfileImageManager.manager
+            manager.save(image: avatarImage)
         }
     }
     
@@ -87,32 +87,34 @@ class UserProfileController: UIViewController,UITableViewDelegate,UITableViewDat
     }
 }
 
-// MARK: - ImagePicker
+
+// MARK: - ImagePicker Module
 extension UserProfileController: UIImagePickerControllerDelegate, UINavigationControllerDelegate, RSKImageCropViewControllerDelegate {
-    @IBAction func avatarButtonClick(_ sender: Any) {
+    func avatarButtonClick(sender: Any) {
         let imagePicker = UIImagePickerController()
         imagePicker.allowsEditing = false
         imagePicker.delegate = self
         
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        alertController.addAction(UIAlertAction(title: "Take photo", style: .default, handler: { action in
+        alertController.addAction(UIAlertAction(title: NSLocalizedString("Choose from Camera", comment: ""), style: .default, handler: { action in
             imagePicker.sourceType = .camera
             self.present(imagePicker, animated: true, completion: nil)
         }))
-        alertController.addAction(UIAlertAction(title: "Choose photo", style: .default, handler: { action in
+        alertController.addAction(UIAlertAction(title: NSLocalizedString("Choose from library", comment: ""), style: .default, handler: { action in
             imagePicker.sourceType = .photoLibrary
             self.present(imagePicker, animated: true, completion: nil)
         }))
-        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { action in
+        alertController.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: { action in
             alertController.dismiss(animated: true, completion: nil)
         }))
         present(alertController, animated: true, completion: nil)
     }
     
     func imageCropViewController(_ controller: RSKImageCropViewController, didCropImage croppedImage: UIImage, usingCropRect cropRect: CGRect) {
-        self.avatarImageView.setImage(croppedImage, for: .normal)
-        let manager = ProfileImageManager.manager
-        manager.save(image: croppedImage)
+        
+        self.isPushed = false
+        let userHeader = self.userInfoTableView.headerView(forSection: 0) as! UserHeader
+        userHeader.changeAvatar(with: croppedImage)
         self.dismiss(animated: true, completion: nil)
     }
     
@@ -149,19 +151,15 @@ extension UserProfileController {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         var header:UserHeader? = nil
         if section == 0 {
-            header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "HeaderViewReuseIdentifier") as! UserHeader
-            
-            var avatarKey:NSString = ""
-            if isNewPush {
-                avatarKey = NevoAllKeys.MEDAvatarKeyAfterSave() as NSString
-            } else {
-                avatarKey = NevoAllKeys.MEDAvatarKeyBeforeSave() as NSString
-            }
-            
-            let resultArray:NSArray = AppTheme.LoadKeyedArchiverName(avatarKey) as! NSArray
-            if resultArray.count > 0 {
-                if let avatar = resultArray.object(at: 0) as? UIImage {
-                    header?.avatarView.setImage(avatar, for: .normal)
+            header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "HeaderViewReuseIdentifier") as! UserHeader?
+
+            if isPushed {
+                let tap:UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.avatarButtonClick(sender:)))
+                header?.avatarView.addGestureRecognizer(tap)
+                
+                let manager = ProfileImageManager.manager
+                if let image = manager.getImage() {
+                    header?.changeAvatar(with: image)
                 }
             }
         }
@@ -216,8 +214,6 @@ extension UserProfileController {
                 cell.valueTextField.text = "\(userprofile!.birthday)"
                 cell.valueTextField.placeholder = "Birthday: "
                 cell.setType(.date)
-                //                cell.textPreFix = "Birthday: "
-            //                cell.textPreFix == ""
             default:
                 break
             }

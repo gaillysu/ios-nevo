@@ -10,6 +10,14 @@ import UIKit
 
 class UserHeader: UITableViewHeaderFooterView {
     @IBOutlet weak var avatarView: UIButton!
+    
+    public func changeAvatar(with image:UIImage) {
+        self.avatarView.setImage(image, for: .normal)
+    }
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+    }
 }
 
 

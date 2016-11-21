@@ -95,6 +95,7 @@ class SetingViewController: UIViewController,ButtonManagerCallBack,UIAlertViewDe
                 self.present(naviController, animated: true, completion: nil)
             }else{
                 let userprofile:UserProfileController = UserProfileController()
+                userprofile.isPushed = true
                 userprofile.title = "Profile"
                 userprofile.hidesBottomBarWhenPushed = true
                 self.navigationController?.pushViewController(userprofile, animated: true)
