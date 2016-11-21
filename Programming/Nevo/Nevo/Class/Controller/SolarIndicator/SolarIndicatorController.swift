@@ -42,6 +42,13 @@ class SolarIndicatorController: PublicClassController {
         pieChartView.legend.enabled = false;
         pieChartView.delegate = self
         
+        
+        let layout:UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+        layout.itemSize = CGSize(width: 0, height: 0)
+        
+        layout.minimumInteritemSpacing = 0
+        layout.minimumLineSpacing = 0
+        textCollection.collectionViewLayout = layout
         //Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(pvadcAction(_:)), userInfo: nil, repeats: true)
     }
     
@@ -114,9 +121,18 @@ class SolarIndicatorController: PublicClassController {
         textCollection.reloadData()
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        let maxWidth:CGFloat = textCollection.findMaxLabelWidth() + 4
+        
+        let layout:UICollectionViewFlowLayout = textCollection.collectionViewLayout as! UICollectionViewFlowLayout
+        layout.itemSize = CGSize(width: maxWidth, height: textCollection.frame.size.height)
+        
+        let spacing:CGFloat = (textCollection.frame.width - 2 * maxWidth) / 3 - 1
+        layout.sectionInset.left = spacing
+        layout.sectionInset.right = spacing
+        layout.minimumInteritemSpacing = spacing
     }
 
 }
@@ -135,12 +151,6 @@ extension SolarIndicatorController{
 }
 
 extension SolarIndicatorController:UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
-    
-    // MARK: - UICollectionViewDelegateFlowLayout
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize{
-        return CGSize(width: UIScreen.main.bounds.size.width / 2, height: collectionView.frame.size.height)
-    }
-    
     // MARK: - UICollectionViewDataSource
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return onTitle.count

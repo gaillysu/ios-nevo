@@ -18,7 +18,7 @@
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xSD-kC-7Ze">
-                        <rect key="frame" x="0.0" y="0.0" width="144" height="45"/>
+                        <rect key="frame" x="0.0" y="28" width="144" height="45"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uK3-c1-ERx">
                                 <rect key="frame" x="0.0" y="0.0" width="144" height="25"/>
@@ -54,7 +54,7 @@
             </view>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="xSD-kC-7Ze" secondAttribute="trailing" id="2bY-jL-Nrk"/>
-                <constraint firstItem="xSD-kC-7Ze" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="GFe-Mz-dM3"/>
+                <constraint firstItem="xSD-kC-7Ze" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="WhD-up-l15"/>
                 <constraint firstItem="xSD-kC-7Ze" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="ncg-Xd-SGk"/>
             </constraints>
             <size key="customSize" width="144" height="101"/>

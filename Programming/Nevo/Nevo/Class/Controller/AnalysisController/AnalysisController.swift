@@ -16,7 +16,7 @@ class AnalysisController: PublicClassController {
     @IBOutlet weak var segmented: UISegmentedControl!
     @IBOutlet weak var chartsCollectionView: UICollectionView!
     @IBOutlet weak var contentCollectionView: UICollectionView!
-
+    
     let titleArray:[String] = [NSLocalizedString("this_week", comment: ""),NSLocalizedString("last_week", comment: ""),NSLocalizedString("last_30_day", comment: "")]
     fileprivate var contentTitleArray:[String] = [NSLocalizedString("average_steps", comment: ""), NSLocalizedString("total_steps", comment: ""), NSLocalizedString("average_calories", comment: ""),NSLocalizedString("average_time", comment: "")]
     fileprivate var contentTArray:[String] = [NSLocalizedString("--", comment: ""),NSLocalizedString("--", comment: ""),NSLocalizedString("--", comment: ""),NSLocalizedString("--", comment: "")]
@@ -26,7 +26,7 @@ class AnalysisController: PublicClassController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         self.navigationController?.navigationBar.allSubviews(do: { (v) in
             v.isHidden = v.frame.height == 0.5
         })
@@ -80,18 +80,38 @@ class AnalysisController: PublicClassController {
             segmentDeviderView.backgroundColor = AppTheme.NEVO_SOLAR_YELLOW()
         }
         
-        // MARK: - SET WATCH_ID NOTIFICATION
-        _ = SwiftEventBus.onMainThread(self, name: EVENT_BUS_WATCHID_DIDCHANGE_KEY) { (notification) in
-            let dict:[String:Int] = notification.userInfo as! [String : Int]
-        }
+        let chartLayout:UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+        chartLayout.itemSize = CGSize(width: 0, height: 0)
+        
+        chartLayout.minimumInteritemSpacing = 0
+        chartLayout.minimumLineSpacing = 0
+        chartsCollectionView.collectionViewLayout = chartLayout
+        
+        let contentLayout:UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+        contentLayout.itemSize = CGSize(width: 0, height: 0)
+        
+        contentLayout.minimumInteritemSpacing = 0
+        contentLayout.minimumLineSpacing = 0
+        contentCollectionView.collectionViewLayout = contentLayout
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         self.bulidPageControl()
-    }
-    deinit {
-        SwiftEventBus.unregister(self, name: EVENT_BUS_WATCHID_DIDCHANGE_KEY)
+        
+        let chartLayout:UICollectionViewFlowLayout = chartsCollectionView.collectionViewLayout as! UICollectionViewFlowLayout
+        chartLayout.itemSize = CGSize(width: chartsCollectionView.frame.size.width, height: chartsCollectionView.frame.size.height)
+        
+        let maxWidth:CGFloat = contentCollectionView.findMaxLabelWidth() + 4
+        print("+++++++\(maxWidth)")
+        let height: CGFloat = (segmented.selectedSegmentIndex == 2) ? (contentCollectionView.frame.size.height - 20) : (contentCollectionView.frame.size.height/2.0 - 10)
+        
+        let contentLayout:UICollectionViewFlowLayout = contentCollectionView.collectionViewLayout as! UICollectionViewFlowLayout
+        contentLayout.itemSize = CGSize(width: maxWidth, height: height)
+        let spacing:CGFloat = (contentCollectionView.frame.width - 2 * maxWidth) / 3 - 1
+        contentLayout.sectionInset.left = spacing
+        contentLayout.sectionInset.right = spacing
+        contentLayout.minimumInteritemSpacing = spacing
     }
 }
 
@@ -144,6 +164,7 @@ extension AnalysisController {
 extension AnalysisController {
     @IBAction func segmentedAction(_ sender: AnyObject) {
         let segment:UISegmentedControl = sender as! UISegmentedControl
+        refreshViewLayout()
         dataArray.removeAllObjects()
         if segment.selectedSegmentIndex == 0 {
             dataArray.addObjects(from: self.getStepsData())
@@ -207,18 +228,6 @@ extension AnalysisController {
 }
 
 extension AnalysisController:UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize{
-        if collectionView.isEqual(chartsCollectionView) {
-            return CGSize(width: collectionView.frame.size.width, height: collectionView.frame.size.height)
-        }else{
-            if segmented.selectedSegmentIndex == 2 {
-                return CGSize(width: collectionView.frame.size.width, height: collectionView.frame.size.height/2.0)
-            }
-            return CGSize(width: collectionView.frame.size.width/2.0, height: collectionView.frame.size.height/2.0)
-        }
-    }
-    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView.isEqual(chartsCollectionView){
             return titleArray.count
@@ -228,6 +237,7 @@ extension AnalysisController:UICollectionViewDelegate,UICollectionViewDataSource
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        refreshViewLayout()
         if collectionView.isEqual(chartsCollectionView) {
             let cell:AnalysisLineChartCell = collectionView.dequeueReusableCell(withReuseIdentifier: "AnalysisLineChart_Identifier", for: indexPath) as! AnalysisLineChartCell
             cell.backgroundColor = UIColor.clear
@@ -312,5 +322,12 @@ extension AnalysisController:UICollectionViewDelegate,UICollectionViewDataSource
             setCurrentPageIndex(indexPath.row)
             contentCollectionView.reloadData()
         }
+    }
+}
+
+// MARK: - Private function
+extension AnalysisController {
+    fileprivate func refreshViewLayout() {
+        self.view.setNeedsLayout()
     }
 }

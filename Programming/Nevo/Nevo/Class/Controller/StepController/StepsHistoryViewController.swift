@@ -109,7 +109,16 @@ class StepsHistoryViewController: PublicClassController,ChartViewDelegate {
             chartView.backgroundColor = UIColor.getGreyColor()
         }
         
-        (stepsHistory.collectionViewLayout as! UICollectionViewFlowLayout).itemSize = CGSize(width: (stepsHistory.frame.size.width)/2.0, height: stepsHistory.frame.size.height/2 - 10)
+        
+        let maxWidth:CGFloat = stepsHistory.findMaxLabelWidth() + 4
+        
+        let layout:UICollectionViewFlowLayout = stepsHistory.collectionViewLayout as! UICollectionViewFlowLayout
+        layout.itemSize = CGSize(width: maxWidth, height: stepsHistory.frame.size.height/2 - 10)
+        
+        let spacing:CGFloat = (stepsHistory.frame.width - 2 * maxWidth) / 3 - 1
+        layout.sectionInset.left = spacing
+        layout.sectionInset.right = spacing
+        layout.minimumInteritemSpacing = spacing
     }
     
     /**
@@ -319,11 +328,6 @@ extension StepsHistoryViewController {
 }
 
 extension StepsHistoryViewController:UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout{
-    // MARK: - UICollectionViewDelegateFlowLayout
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize{
-        return CGSize(width: (collectionView.frame.size.width)/2.0, height: collectionView.frame.size.height/2 - 10)
-    }
-    
     // MARK: - UICollectionViewDataSource
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return contentTitleArray.count

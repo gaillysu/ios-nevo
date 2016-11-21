@@ -41,6 +41,13 @@ class SleepHistoricalViewController: PublicClassController,ChartViewDelegate,Sel
         
         queryView.detailCollectionView.backgroundColor = UIColor.white
         queryView.detailCollectionView.register(UINib(nibName:"SleepHistoryViewCell",bundle: nil) , forCellWithReuseIdentifier: "SleepHistoryValue_Identifier")
+        
+        let layout:UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+        layout.itemSize = CGSize(width: 0, height: 0)
+        
+        layout.minimumInteritemSpacing = 0
+        layout.minimumLineSpacing = 0
+        queryView.detailCollectionView.collectionViewLayout = layout
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -61,7 +68,16 @@ class SleepHistoricalViewController: PublicClassController,ChartViewDelegate,Sel
     }
     
     override func viewDidLayoutSubviews() {
-        (queryView.detailCollectionView.collectionViewLayout as! UICollectionViewFlowLayout).itemSize = CGSize(width: UIScreen.main.bounds.size.width/4.0, height: queryView.detailCollectionView.frame.height / 2.0)
+        
+        let maxWidth:CGFloat = queryView.detailCollectionView.findMaxLabelWidth() + 4
+        
+        let layout:UICollectionViewFlowLayout = queryView.detailCollectionView.collectionViewLayout as! UICollectionViewFlowLayout
+        layout.itemSize = CGSize(width: maxWidth, height: queryView.detailCollectionView.frame.size.height/2 - 10)
+        
+        let spacing:CGFloat = (queryView.detailCollectionView.frame.width - 2 * maxWidth) / 3 - 1
+        layout.sectionInset.left = spacing
+        layout.sectionInset.right = spacing
+        layout.minimumInteritemSpacing = spacing
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -124,10 +140,6 @@ class SleepHistoricalViewController: PublicClassController,ChartViewDelegate,Sel
         }
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
     // MARK: - SelectedChartViewDelegate
     func didSleepSelectedhighlightValue(_ xIndex:Int,dataSetIndex: Int, dataSleep:Sleep) {
@@ -151,11 +163,6 @@ class SleepHistoricalViewController: PublicClassController,ChartViewDelegate,Sel
 }
 
 extension SleepHistoricalViewController:UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout{
-    // MARK: - UICollectionViewDelegateFlowLayout
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize{
-        return CGSize(width: (UIScreen.main.bounds.size.width)/2.0, height: collectionView.frame.size.height/2 - 10)
-    }
-    
     // MARK: - UICollectionViewDataSource
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return contentTitleArray.count

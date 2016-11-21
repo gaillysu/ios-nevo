@@ -816,6 +816,8 @@
 		665BD6D91DBF1297008C2623 /* sunrise.png in Resources */ = {isa = PBXBuildFile; fileRef = 665BD6D71DBF1297008C2623 /* sunrise.png */; };
 		665BD6DA1DBF1297008C2623 /* sunset.png in Resources */ = {isa = PBXBuildFile; fileRef = 665BD6D81DBF1297008C2623 /* sunset.png */; };
 		665E331F1DADCD8A00D0E36D /* MEDBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 665E331D1DADCD8A00D0E36D /* MEDBanner.swift */; };
+		666027B71DE2D63D00E7CBD7 /* UICollectionView+MEDExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666027B61DE2D63D00E7CBD7 /* UICollectionView+MEDExtension.swift */; };
+		666027B81DE2D65100E7CBD7 /* UICollectionView+MEDExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666027B61DE2D63D00E7CBD7 /* UICollectionView+MEDExtension.swift */; };
 		66687CD71DD9654100AD7F7D /* Dispatch+MEDExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66687CD61DD9654100AD7F7D /* Dispatch+MEDExtension.swift */; };
 		66687CD81DD9654100AD7F7D /* Dispatch+MEDExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66687CD61DD9654100AD7F7D /* Dispatch+MEDExtension.swift */; };
 		66687CDA1DD9832800AD7F7D /* StepsCalButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66687CD91DD9832800AD7F7D /* StepsCalButton.swift */; };
@@ -1340,6 +1342,7 @@
 		665BD6D71DBF1297008C2623 /* sunrise.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sunrise.png; sourceTree = "<group>"; };
 		665BD6D81DBF1297008C2623 /* sunset.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sunset.png; sourceTree = "<group>"; };
 		665E331D1DADCD8A00D0E36D /* MEDBanner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MEDBanner.swift; sourceTree = "<group>"; };
+		666027B61DE2D63D00E7CBD7 /* UICollectionView+MEDExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UICollectionView+MEDExtension.swift"; sourceTree = "<group>"; };
 		66687CD61DD9654100AD7F7D /* Dispatch+MEDExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dispatch+MEDExtension.swift"; sourceTree = "<group>"; };
 		66687CD91DD9832800AD7F7D /* StepsCalButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepsCalButton.swift; sourceTree = "<group>"; };
 		6688A6461DC981980078E636 /* MEDBaseDeleteRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MEDBaseDeleteRequest.swift; sourceTree = "<group>"; };
@@ -2353,6 +2356,7 @@
 			children = (
 				1C3712D61DBC5BF2007DC349 /* UIView+MEDExtension.swift */,
 				66687CD61DD9654100AD7F7D /* Dispatch+MEDExtension.swift */,
+				666027B61DE2D63D00E7CBD7 /* UICollectionView+MEDExtension.swift */,
 			);
 			name = MEDExtension;
 			path = Frameworks/MEDExtension;
@@ -3422,6 +3426,7 @@
 				665BD6A61DBEF1D0008C2623 /* ForgotPasswordRequest.swift in Sources */,
 				665BD6A71DBEF1D0008C2623 /* UserCreateRequest.swift in Sources */,
 				665BD6A81DBEF1D0008C2623 /* SyncStepsToServiceRequest.swift in Sources */,
+				666027B81DE2D65100E7CBD7 /* UICollectionView+MEDExtension.swift in Sources */,
 				665BD6A91DBEF1D0008C2623 /* SyncSleepToServiceRequest.swift in Sources */,
 				665BD6AA1DBEF1D0008C2623 /* LoginRequest.swift in Sources */,
 				6688A6631DC981980078E636 /* MEDForgetPasswordRequest.swift in Sources */,
@@ -3762,6 +3767,7 @@
 				611D41311DCAD97C003BC6E3 /* MEDStepsGetRequest.swift in Sources */,
 				611D41321DCAD97C003BC6E3 /* MEDStepsUpdateRequest.swift in Sources */,
 				611D41331DCAD97C003BC6E3 /* MEDUserCreateRequest.swift in Sources */,
+				666027B71DE2D63D00E7CBD7 /* UICollectionView+MEDExtension.swift in Sources */,
 				611D41341DCAD97C003BC6E3 /* MEDUserUpdateRequest.swift in Sources */,
 				611D41351DCAD97C003BC6E3 /* MEDNetworkManager.swift in Sources */,
 				611D41361DCAD97C003BC6E3 /* MEDStepsNetworkManager.swift in Sources */,

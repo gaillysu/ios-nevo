@@ -72,9 +72,16 @@ class StepGoalSetingController: PublicClassController,ButtonManagerCallBack,Cloc
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
 
+        let maxWidth:CGFloat = collectionView.findMaxLabelWidth() + 4
         
-        (collectionView.collectionViewLayout as! UICollectionViewFlowLayout).itemSize = CGSize(width: collectionView.frame.size.width/2.0, height: collectionView.frame.size.height/2 - 10)
-  
+        let layout:UICollectionViewFlowLayout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
+        layout.itemSize = CGSize(width: maxWidth, height: collectionView.frame.size.height/2 - 10)
+        
+        let spacing:CGFloat = (collectionView.frame.width - 2 * maxWidth) / 3 - 1
+        layout.sectionInset.left = spacing
+        layout.sectionInset.right = spacing
+        layout.minimumInteritemSpacing = spacing
+        
         bulidClockViewandProgressBar()
         if !AppTheme.isTargetLunaR_OR_Nevo(){
             collectionView.backgroundColor = UIColor.getGreyColor()
@@ -311,9 +318,9 @@ extension StepGoalSetingController {
 
 // MARK: - CollectionView Delegate
 extension StepGoalSetingController:UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout{
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize{
-        return CGSize(width: collectionView.frame.size.width/2.0, height: collectionView.frame.size.height/2 - 10)
-    }
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize{
+//        return CGSize(width: collectionView.frame.size.width/2.0, height: collectionView.frame.size.height/2 - 10)
+//    }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return contentTitleArray.count
     }

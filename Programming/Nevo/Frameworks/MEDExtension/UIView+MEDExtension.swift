@@ -9,12 +9,6 @@
 
 import Foundation
 
-// MARK: - Some private things in this file
-// (constant & variable)
-private let kUIViewAssociatedKey:String = "kUIViewAssociatedKey"
-private let stringPointer = UnsafeMutablePointer<String>.allocate(capacity: 1)
-
-
 // MARK: - Find views
 extension UIView {
     /// Find all views in this view's hierarchy tree, then let them do an operation
