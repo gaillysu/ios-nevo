@@ -15,7 +15,7 @@ class UserProfileController: UIViewController,UITableViewDelegate,UITableViewDat
     
     @IBOutlet weak var userInfoTableView: UITableView!
     
-    // Judge if is pushed from `SettingController`, or is after dismiss image picker view
+    // Judge if is pushed from `SettingController`, or is after dismiss image picker controller
     var isPushed: Bool = true
     
     fileprivate let titleArray:[String] = ["First name","Last Name","Weight","Height","Date of Birth"]
@@ -41,7 +41,7 @@ class UserProfileController: UIViewController,UITableViewDelegate,UITableViewDat
         let rightItem:UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.save, target: self, action: #selector(saveProfileAction(_:)))
         self.navigationItem.rightBarButtonItem = rightItem
         
-        // MARK: - APPTHEME ADJUST
+        /// APPTHEME ADJUST
         if !AppTheme.isTargetLunaR_OR_Nevo() {
             view.backgroundColor = UIColor.getLightBaseColor()
             userInfoTableView.backgroundColor = UIColor.getLightBaseColor()
@@ -71,20 +71,6 @@ class UserProfileController: UIViewController,UITableViewDelegate,UITableViewDat
             manager.save(image: avatarImage)
         }
     }
-    
-    fileprivate func generatePickerData(_ rangeBegin: Int,rangeEnd: Int, interval: Int)->NSMutableArray{
-        let data:NSMutableArray = NSMutableArray();
-        for i in rangeBegin...rangeEnd{
-            if(interval > 0){
-                if i % interval == 0 {
-                    data.add("\(i)")
-                }
-            }else{
-                data.add("\(i)")
-            }
-        }
-        return data;
-    }
 }
 
 
@@ -95,7 +81,7 @@ extension UserProfileController: UIImagePickerControllerDelegate, UINavigationCo
         imagePicker.allowsEditing = false
         imagePicker.delegate = self
         
-        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let alertController = ActionSheetView(title: nil, message: nil, preferredStyle: .actionSheet)
         alertController.addAction(UIAlertAction(title: NSLocalizedString("Choose from Camera", comment: ""), style: .default, handler: { action in
             imagePicker.sourceType = .camera
             self.present(imagePicker, animated: true, completion: nil)
@@ -164,7 +150,7 @@ extension UserProfileController {
             }
         }
         
-        // MARK: - APPTHEME ADJUST
+        /// APPTHEME ADJUST
         if !AppTheme.isTargetLunaR_OR_Nevo() {
             header?.backgroundColor = UIColor.getGreyColor()
         }
@@ -243,7 +229,7 @@ extension UserProfileController {
             }
         }
         
-        // MARK: - APPTHEME ADJUST
+        /// APPTHEME ADJUST
         if !AppTheme.isTargetLunaR_OR_Nevo() {
             cell.backgroundColor = UIColor.getGreyColor()
             cell.titleLabel.textColor = UIColor.white
@@ -255,5 +241,23 @@ extension UserProfileController {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+    }
+}
+
+
+// MARK: - Private function
+extension UserProfileController {
+    fileprivate func generatePickerData(_ rangeBegin: Int,rangeEnd: Int, interval: Int)->NSMutableArray{
+        let data:NSMutableArray = NSMutableArray();
+        for i in rangeBegin...rangeEnd{
+            if(interval > 0){
+                if i % interval == 0 {
+                    data.add("\(i)")
+                }
+            }else{
+                data.add("\(i)")
+            }
+        }
+        return data;
     }
 }
