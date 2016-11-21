@@ -38,7 +38,6 @@ class StepsHistoryViewController: PublicClassController,ChartViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         if !AppTheme.isTargetLunaR_OR_Nevo(){
             centerTitleLabel.textColor = UIColor.white
         }
@@ -53,7 +52,13 @@ class StepsHistoryViewController: PublicClassController,ChartViewDelegate {
         stepsHistory.backgroundColor = UIColor.white
         stepsHistory.register(UINib(nibName: "StepGoalSetingViewCell", bundle: Bundle.main), forCellWithReuseIdentifier: "StepGoalSetingIdentifier")
         stepsHistory.register(UICollectionViewCell.classForCoder(), forCellWithReuseIdentifier: "StepsHistoryViewCell")
-        (stepsHistory.collectionViewLayout as! UICollectionViewFlowLayout).itemSize = CGSize(width: UIScreen.main.bounds.size.width/2.0, height: 40.0)
+        
+        
+        let layout:UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+        layout.itemSize = CGSize(width: 0, height: 0)
+        layout.minimumInteritemSpacing = 0
+        layout.minimumLineSpacing = 0
+        stepsHistory.collectionViewLayout = layout
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -104,7 +109,7 @@ class StepsHistoryViewController: PublicClassController,ChartViewDelegate {
             chartView.backgroundColor = UIColor.getGreyColor()
         }
         
-        (stepsHistory.collectionViewLayout as! UICollectionViewFlowLayout).itemSize = CGSize(width: UIScreen.main.bounds.size.width/2.0, height: stepsHistory.frame.height / 2.0)
+        (stepsHistory.collectionViewLayout as! UICollectionViewFlowLayout).itemSize = CGSize(width: (stepsHistory.frame.size.width)/2.0, height: stepsHistory.frame.size.height/2 - 10)
     }
     
     /**
@@ -180,11 +185,6 @@ class StepsHistoryViewController: PublicClassController,ChartViewDelegate {
             yAxis.axisLineColor = UIColor.white
             rightAxis.axisLineColor = UIColor.white
         }
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     func bulidStepHistoricalChartView(_ modelArray:NSArray){
@@ -321,7 +321,7 @@ extension StepsHistoryViewController {
 extension StepsHistoryViewController:UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout{
     // MARK: - UICollectionViewDelegateFlowLayout
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize{
-        return CGSize(width: (UIScreen.main.bounds.size.width)/2.0, height: collectionView.frame.size.height/2 - 10)
+        return CGSize(width: (collectionView.frame.size.width)/2.0, height: collectionView.frame.size.height/2 - 10)
     }
     
     // MARK: - UICollectionViewDataSource

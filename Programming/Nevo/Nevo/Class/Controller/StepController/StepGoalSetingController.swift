@@ -34,6 +34,7 @@ class StepGoalSetingController: PublicClassController,ButtonManagerCallBack,Cloc
     var lastSync = 0.0
     
     var shouldSync = false;
+    
     init() {
         super.init(nibName: "StepGoalSetingController", bundle: Bundle.main)
     }
@@ -45,6 +46,16 @@ class StepGoalSetingController: PublicClassController,ButtonManagerCallBack,Cloc
     override func viewDidLoad() {
         super.viewDidLoad()
         ClockRefreshManager.sharedInstance.setRefreshDelegate(self)
+        
+        let layout:UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+        layout.itemSize = CGSize(width: 0, height: 0)
+        
+        layout.minimumInteritemSpacing = 0
+        layout.minimumLineSpacing = 0
+        collectionView.collectionViewLayout = layout
+        
+        collectionView.register(UINib(nibName: "StepGoalSetingViewCell", bundle: Bundle.main), forCellWithReuseIdentifier: "StepGoalSetingIdentifier")
+        collectionView?.register(UICollectionViewCell.classForCoder(), forCellWithReuseIdentifier: "CollectionViewCell")
         
         getTodayCacheData()
     }
@@ -60,36 +71,16 @@ class StepGoalSetingController: PublicClassController,ButtonManagerCallBack,Cloc
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        let layout:UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize(width: (UIScreen.main.bounds.size.width/4.0), height: self.collectionView.frame.height)
-        layout.minimumInteritemSpacing = 0
-        layout.minimumLineSpacing = 0
-        collectionView.collectionViewLayout = layout
+
         
-        collectionView.register(UINib(nibName: "StepGoalSetingViewCell", bundle: Bundle.main), forCellWithReuseIdentifier: "StepGoalSetingIdentifier")
-        collectionView?.register(UICollectionViewCell.classForCoder(), forCellWithReuseIdentifier: "CollectionViewCell")
+        (collectionView.collectionViewLayout as! UICollectionViewFlowLayout).itemSize = CGSize(width: collectionView.frame.size.width/2.0, height: collectionView.frame.size.height/2 - 10)
+  
         bulidClockViewandProgressBar()
         if !AppTheme.isTargetLunaR_OR_Nevo(){
             collectionView.backgroundColor = UIColor.getGreyColor()
             self.view.backgroundColor = UIColor.getGreyColor()
         }else{
             collectionView?.backgroundColor = UIColor.white
-        }
-        
-        
-    }
-    
-    func getTodayCacheData() {
-        if UserDefaults.standard.object(forKey: TODAY_DATE_CACHE) != nil {
-            let dataCache:[String:Any] = UserDefaults.standard.object(forKey: TODAY_DATE_CACHE) as! [String : Any]
-            let date:Date = dataCache["DATE"] as! Date
-            if date.day == Date().day {
-                let dailySteps:Int = dataCache[TODAY_DATE_CACHE] as! Int
-                self.contentTArray.replaceSubrange(Range(1..<2), with: ["\(dailySteps)"])
-                StepGoalSetingController.calculationData(0, steps: dailySteps, completionData: { (miles, calories) in
-                    self.contentTArray.replaceSubrange(Range(3..<4), with: [String(format: "%.2f", miles)])
-                })
-            }
         }
     }
     
@@ -167,6 +158,10 @@ class StepGoalSetingController: PublicClassController,ButtonManagerCallBack,Cloc
             self.checkConnection()
         }
     }
+}
+
+// MARK: - Events handle
+extension StepGoalSetingController {
     /**
      GET Archiver "contentTArray"
      */
@@ -197,7 +192,7 @@ class StepGoalSetingController: PublicClassController,ButtonManagerCallBack,Cloc
             
             let timerValue:Double = Double(dataSteps.walking_duration+dataSteps.running_duration)
             self.contentTArray.replaceSubrange(Range(1..<2), with: ["\(dataSteps.steps)"])
-             self.contentTArray.replaceSubrange(Range(2..<3), with: [AppTheme.timerFormatValue(value: Double(timerValue/60.0))])
+            self.contentTArray.replaceSubrange(Range(2..<3), with: [AppTheme.timerFormatValue(value: Double(timerValue/60.0))])
             StepGoalSetingController.calculationData((dataSteps.walking_duration+dataSteps.running_duration), steps: dataSteps.steps, completionData: { (miles, calories) in
                 self.contentTArray.replaceSubrange(Range(0..<1), with: [String(format: "%.2f", calories)])
                 self.contentTArray.replaceSubrange(Range(3..<4), with: [String(format: "%.2f", miles)])
@@ -206,56 +201,10 @@ class StepGoalSetingController: PublicClassController,ButtonManagerCallBack,Cloc
             //AppTheme.KeyedArchiverName(self.StepsGoalKey, andObject: self.contentTArray)
         }
     }
-
-    /**
-     bulid in clockView
-     */
-    func bulidClockViewandProgressBar() {
-        for view in clockBackGroundView.subviews {
-            if view is ClockView {
-                view.removeFromSuperview()
-            }
-        }
-        
-        if !AppTheme.isTargetLunaR_OR_Nevo(){
-            clockBackGroundView.backgroundColor = UIColor.getGreyColor()
-            mClockTimerView = ClockView(frame:CGRect(x: 0, y: 0, width: clockBackGroundView.bounds.width, height: clockBackGroundView.bounds.width), hourImage:  UIImage(named: "wacth_hour")!, minuteImage: UIImage(named: "wacth_mint")!, dialImage: UIImage(named: "wacth_dial")!)
-        }else{
-            mClockTimerView = ClockView(frame:CGRect(x: 0, y: 0, width: clockBackGroundView.bounds.width, height: clockBackGroundView.bounds.width), hourImage:  UIImage(named: "clockViewHour")!, minuteImage: UIImage(named: "clockViewMinute")!, dialImage: UIImage(named: "clockView600")!)
-        }
-        
-        
-        mClockTimerView?.currentTimer()
-        clockBackGroundView.addSubview(mClockTimerView!)
-        
-        progressView.frame = CGRect(x: clockBackGroundView.frame.origin.x-3, y: clockBackGroundView.frame.origin.y-3, width: clockBackGroundView.bounds.width+6, height: clockBackGroundView.bounds.width+6)
-        progressView.setProgressColor(AppTheme.NEVO_SOLAR_YELLOW())
-        progressView.setProgress(0.0)
-        self.view.layer.addSublayer(progressView)
-    }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-
-    /**
-     set the progress of the progressView
-     
-     :param: progress
-     :param: animated
-     */
-    func setProgress(_ progress: Float,dailySteps:Int,dailyStepGoal:Int){
-        progresValue = CGFloat(progress)
-        progressView.setProgress(progresValue, Steps: dailySteps, GoalStep: dailyStepGoal)
-    }
-    
-    // MARK: - ButtonManagerCallBack
     func controllManager(_ sender:AnyObject) {
-
     }
-
+    
     // MARK: - ClockRefreshDelegate
     func clockRefreshAction(){
         mClockTimerView?.currentTimer()
@@ -264,12 +213,38 @@ class StepGoalSetingController: PublicClassController,ButtonManagerCallBack,Cloc
             XCGLogger.default.debug("getGoalRequest")
         }
     }
-
 }
 
-// MARK: - Data calculation
+
+// MARK: - Private function
 extension StepGoalSetingController {
+    func getTodayCacheData() {
+        if UserDefaults.standard.object(forKey: TODAY_DATE_CACHE) != nil {
+            let dataCache:[String:Any] = UserDefaults.standard.object(forKey: TODAY_DATE_CACHE) as! [String : Any]
+            let date:Date = dataCache["DATE"] as! Date
+            if date.day == Date().day {
+                let dailySteps:Int = dataCache[TODAY_DATE_CACHE] as! Int
+                self.contentTArray.replaceSubrange(Range(1..<2), with: ["\(dailySteps)"])
+                StepGoalSetingController.calculationData(0, steps: dailySteps, completionData: { (miles, calories) in
+                    self.contentTArray.replaceSubrange(Range(3..<4), with: [String(format: "%.2f", miles)])
+                })
+            }
+        }
+    }
     
+    // MARK: - StepGoalSetingController delegate
+    // MARK: - StepGoalSetingController function
+    /**
+     Checks if any device is currently connected
+     */
+    func checkConnection() {
+        if !AppDelegate.getAppDelegate().isConnected() {
+            //We are currently not connected
+            AppDelegate.getAppDelegate().connect()
+        }
+    }
+    
+    // MARK: - Data calculation
     class func calculationData(_ activeTimer:Int,steps:Int,completionData:((_ miles:Double,_ calories:Double) -> Void)) {
         let profile:NSArray = UserProfile.getAll()
         var userProfile:UserProfile?
@@ -288,30 +263,57 @@ extension StepGoalSetingController {
         let calories:Double = (2.0*userWeight*3.5)/200*Double(activeTimer)
         completionData(miles, calories)
     }
-}
-
-// MARK: - SyncControllerDelegate
-extension StepGoalSetingController {
-    // MARK: - StepGoalSetingController function
+    
     /**
-     Checks if any device is currently connected
+     bulid in clockView
      */
-    func checkConnection() {
-        
-        if !AppDelegate.getAppDelegate().isConnected() {
-            //We are currently not connected
-            AppDelegate.getAppDelegate().connect()
+    func bulidClockViewandProgressBar() {
+        for view in self.clockBackGroundView.subviews {
+            if view is ClockView {
+                view.removeFromSuperview()
+            }
         }
-    }
-}
-
-extension StepGoalSetingController:UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout{
-    // MARK: - UICollectionViewDelegateFlowLayout
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize{
-        return CGSize(width: (UIScreen.main.bounds.size.width)/4.0, height: collectionView.frame.size.height)
+        
+        let dialWidth:CGFloat = self.clockBackGroundView.bounds.height
+        
+        if !AppTheme.isTargetLunaR_OR_Nevo(){
+            clockBackGroundView.backgroundColor = UIColor.getGreyColor()
+            mClockTimerView = ClockView(frame:CGRect(x: 0, y: 0, width: dialWidth, height: dialWidth), hourImage:  UIImage(named: "wacth_hour")!, minuteImage: UIImage(named: "wacth_mint")!, dialImage: UIImage(named: "wacth_dial")!)
+        }else{
+            mClockTimerView = ClockView(frame:CGRect(x: 0, y: 0, width: dialWidth, height: dialWidth), hourImage:  UIImage(named: "clockViewHour")!, minuteImage: UIImage(named: "clockViewMinute")!, dialImage: UIImage(named: "clockView600")!)
+        }
+        
+        /// 为了和其它类似界面的布局一致, 约束已经被写死了
+        mClockTimerView?.center.x = clockBackGroundView.frame.width / 2.0
+        mClockTimerView?.center.y = mClockTimerView!.center.y - 20
+        
+        mClockTimerView?.currentTimer()
+        clockBackGroundView.addSubview(mClockTimerView!)
+        
+        progressView.frame = CGRect(x: clockBackGroundView.frame.origin.x-3, y: clockBackGroundView.frame.origin.y-3, width: clockBackGroundView.bounds.width+6, height: clockBackGroundView.bounds.width+6)
+        progressView.setProgressColor(AppTheme.NEVO_SOLAR_YELLOW())
+        progressView.setProgress(0.0)
+        self.view.layer.addSublayer(progressView)
     }
     
-    // MARK: - UICollectionViewDataSource
+    /**
+     set the progress of the progressView
+     
+     :param: progress
+     :param: animated
+     */
+    func setProgress(_ progress: Float,dailySteps:Int,dailyStepGoal:Int){
+        progresValue = CGFloat(progress)
+        progressView.setProgress(progresValue, Steps: dailySteps, GoalStep: dailyStepGoal)
+    }
+}
+
+
+// MARK: - CollectionView Delegate
+extension StepGoalSetingController:UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout{
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize{
+        return CGSize(width: collectionView.frame.size.width/2.0, height: collectionView.frame.size.height/2 - 10)
+    }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return contentTitleArray.count
     }
