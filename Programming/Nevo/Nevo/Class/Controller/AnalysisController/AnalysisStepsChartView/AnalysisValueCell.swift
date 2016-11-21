@@ -10,7 +10,7 @@ import UIKit
 
 class AnalysisValueCell: UICollectionViewCell {
     
-    @IBOutlet weak var labelWidthConstraint: NSLayoutConstraint!
+//    @IBOutlet weak var labelWidthConstraint: NSLayoutConstraint!
     
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var valueLabel: UILabel!
@@ -22,6 +22,7 @@ class AnalysisValueCell: UICollectionViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
+        
         if !AppTheme.isTargetLunaR_OR_Nevo() {
             titleLabel.textColor = UIColor.white
             valueLabel.textColor = UIColor.getBaseColor()
@@ -31,12 +32,12 @@ class AnalysisValueCell: UICollectionViewCell {
     func updateTitleLabel(_ labelText: String){
         let contentDict:[String:AnyObject] = [NSFontAttributeName:titleLabel.font]
         titleLabel.text = labelText
-        let statusLabelSize = labelText.size(attributes: contentDict)
-        if statusLabelSize.width>85 {
-            labelWidthConstraint.constant = statusLabelSize.width+5;
-        }else{
-            labelWidthConstraint.constant = 85
-        }
+//        let statusLabelSize = labelText.size(attributes: contentDict)
+//        if statusLabelSize.width>85 {
+//            labelWidthConstraint.constant = statusLabelSize.width+5;
+//        }else{
+//            labelWidthConstraint.constant = 85
+//        }
         
         layoutIfNeeded()
     }
