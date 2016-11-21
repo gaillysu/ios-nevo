@@ -612,11 +612,6 @@
 		611D42011DCAD97D003BC6E3 /* ConnectOtherAppsController.xib in Sources */ = {isa = PBXBuildFile; fileRef = 0058B3E91CF55D590079A213 /* ConnectOtherAppsController.xib */; };
 		611D42021DCAD97D003BC6E3 /* ConnectOtherAppsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007E0CAC1D0E5C3E00B0B600 /* ConnectOtherAppsCell.swift */; };
 		611D42031DCAD97D003BC6E3 /* ConnectOtherAppsCell.xib in Sources */ = {isa = PBXBuildFile; fileRef = 007E0CAD1D0E5C3E00B0B600 /* ConnectOtherAppsCell.xib */; };
-		611D42041DCAD97D003BC6E3 /* icn_back@2x.png in Sources */ = {isa = PBXBuildFile; fileRef = 66D45E741DC0C14C0007B5D0 /* icn_back@2x.png */; };
-		611D42051DCAD97D003BC6E3 /* PhotoViewController.h in Sources */ = {isa = PBXBuildFile; fileRef = 66D45E781DC0C14C0007B5D0 /* PhotoViewController.h */; };
-		611D42061DCAD97D003BC6E3 /* UIImage+Crop.h in Sources */ = {isa = PBXBuildFile; fileRef = 66D45E791DC0C14C0007B5D0 /* UIImage+Crop.h */; };
-		611D42071DCAD97D003BC6E3 /* UIImage+Crop.m in Sources */ = {isa = PBXBuildFile; fileRef = 66D45E7A1DC0C14C0007B5D0 /* UIImage+Crop.m */; };
-		611D42081DCAD97D003BC6E3 /* WLHCropper.a in Sources */ = {isa = PBXBuildFile; fileRef = 66D45E7B1DC0C14C0007B5D0 /* WLHCropper.a */; };
 		611D42091DCAD97D003BC6E3 /* UserHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00120E751D7550D500CE0C32 /* UserHeader.swift */; };
 		611D420A1DCAD97D003BC6E3 /* UserHeader.xib in Sources */ = {isa = PBXBuildFile; fileRef = 00120E761D7550D500CE0C32 /* UserHeader.xib */; };
 		611D420B1DCAD97D003BC6E3 /* UserProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009703C01C9BD9D700F2FF0D /* UserProfileController.swift */; };
@@ -772,8 +767,6 @@
 		61D1A8AE1DD468A100B91BDD /* MEDUserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61D1A8A71DD468A100B91BDD /* MEDUserProfile.swift */; };
 		61D1A8AF1DD468A100B91BDD /* MEDUserSleep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61D1A8A81DD468A100B91BDD /* MEDUserSleep.swift */; };
 		61D1A8B01DD468A100B91BDD /* MEDUserSteps.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61D1A8A91DD468A100B91BDD /* MEDUserSteps.swift */; };
-		61DD7AAF1DD08598003FD171 /* PhotoViewController.h in Sources */ = {isa = PBXBuildFile; fileRef = 66D45E781DC0C14C0007B5D0 /* PhotoViewController.h */; };
-		61DD7AB01DD08598003FD171 /* UIImage+Crop.h in Sources */ = {isa = PBXBuildFile; fileRef = 66D45E791DC0C14C0007B5D0 /* UIImage+Crop.h */; };
 		61EF09201DDE9E0A003C2EA5 /* DeleteNotificationAppIDPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61EF091F1DDE9E0A003C2EA5 /* DeleteNotificationAppIDPacket.swift */; };
 		61EF09221DDE9EB7003C2EA5 /* DeleteAllAppIDPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61EF09211DDE9EB7003C2EA5 /* DeleteAllAppIDPacket.swift */; };
 		61EF09241DDE9F1B003C2EA5 /* EditAppIDPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61EF09231DDE9F1B003C2EA5 /* EditAppIDPacket.swift */; };
@@ -859,16 +852,13 @@
 		66A0E0801DBF6C08001C0C67 /* Timezone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66A0E0771DBF6C08001C0C67 /* Timezone.swift */; };
 		66AC4E5D1DBF537500E431BE /* sunrise.png in Resources */ = {isa = PBXBuildFile; fileRef = 665BD6D71DBF1297008C2623 /* sunrise.png */; };
 		66AC4E5E1DBF537500E431BE /* sunset.png in Resources */ = {isa = PBXBuildFile; fileRef = 665BD6D81DBF1297008C2623 /* sunset.png */; };
-		66D45E7C1DC0C14C0007B5D0 /* icn_back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 66D45E741DC0C14C0007B5D0 /* icn_back@2x.png */; };
-		66D45E7D1DC0C14C0007B5D0 /* icn_back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 66D45E741DC0C14C0007B5D0 /* icn_back@2x.png */; };
-		66D45E7F1DC0C14C0007B5D0 /* UIImage+Crop.m in Sources */ = {isa = PBXBuildFile; fileRef = 66D45E7A1DC0C14C0007B5D0 /* UIImage+Crop.m */; };
-		66D45E801DC0C14C0007B5D0 /* WLHCropper.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 66D45E7B1DC0C14C0007B5D0 /* WLHCropper.a */; };
-		66D45E811DC0C14C0007B5D0 /* WLHCropper.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 66D45E7B1DC0C14C0007B5D0 /* WLHCropper.a */; };
 		813518AB3D92E43573F28717 /* Pods_LunaR.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E068CB5F57F135B038B3A10 /* Pods_LunaR.framework */; };
 		8A84EC52F1052F0497E54CB5 /* Pods_NevoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7689D6188FDF6CDBFBD84C51 /* Pods_NevoTests.framework */; };
 		9A2D6C3B1A9C6D9F00591BDC /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A2D6C3A1A9C6D9F00591BDC /* HealthKit.framework */; };
 		9AD8F9421A6DF35900F01014 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9AD8F9411A6DF35900F01014 /* Images.xcassets */; };
 		9AD8F9511A6DF35900F01014 /* NevoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD8F9501A6DF35900F01014 /* NevoTests.swift */; };
+		D10C095A1DE2967B008B6E57 /* ProfileImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D10C09591DE2967B008B6E57 /* ProfileImageManager.swift */; };
+		D10C095B1DE2967B008B6E57 /* ProfileImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D10C09591DE2967B008B6E57 /* ProfileImageManager.swift */; };
 		F5A58EFCE1AF535DD4D667CB /* Pods_LunaRTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA6756A2314165C2C74201E8 /* Pods_LunaRTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -1383,11 +1373,6 @@
 		66A0E0741DBF6C08001C0C67 /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		66A0E0761DBF6C08001C0C67 /* City.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
 		66A0E0771DBF6C08001C0C67 /* Timezone.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Timezone.swift; sourceTree = "<group>"; };
-		66D45E741DC0C14C0007B5D0 /* icn_back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icn_back@2x.png"; sourceTree = "<group>"; };
-		66D45E781DC0C14C0007B5D0 /* PhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoViewController.h; sourceTree = "<group>"; };
-		66D45E791DC0C14C0007B5D0 /* UIImage+Crop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Crop.h"; sourceTree = "<group>"; };
-		66D45E7A1DC0C14C0007B5D0 /* UIImage+Crop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Crop.m"; sourceTree = "<group>"; };
-		66D45E7B1DC0C14C0007B5D0 /* WLHCropper.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = WLHCropper.a; sourceTree = "<group>"; };
 		7689D6188FDF6CDBFBD84C51 /* Pods_NevoTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NevoTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		84E3C5A18963C1F2BFFF61CB /* Pods-Nevo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Nevo.release.xcconfig"; path = "Pods/Target Support Files/Pods-Nevo/Pods-Nevo.release.xcconfig"; sourceTree = "<group>"; };
 		8FE857CD8B2EE737CB25062E /* Pods-NevoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NevoTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NevoTests/Pods-NevoTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -1416,6 +1401,7 @@
 		9E98FB3C1C46434100BAB700 /* TutorialSixViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialSixViewController.swift; sourceTree = "<group>"; };
 		AA6756A2314165C2C74201E8 /* Pods_LunaRTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LunaRTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CBB9BF1C2FA9FD4C9B4E48BC /* Pods-LunaRTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LunaRTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LunaRTests/Pods-LunaRTests.debug.xcconfig"; sourceTree = "<group>"; };
+		D10C09591DE2967B008B6E57 /* ProfileImageManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileImageManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1423,7 +1409,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				66D45E811DC0C14C0007B5D0 /* WLHCropper.a in Frameworks */,
 				813518AB3D92E43573F28717 /* Pods_LunaR.framework in Frameworks */,
 				00C826FF1DA5EDFD00ECECEE /* HealthKit.framework in Frameworks */,
 			);
@@ -1448,7 +1433,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				66D45E801DC0C14C0007B5D0 /* WLHCropper.a in Frameworks */,
 				9A2D6C3B1A9C6D9F00591BDC /* HealthKit.framework in Frameworks */,
 				3AF3D240B5808E80F5B2A19E /* Pods_Nevo.framework in Frameworks */,
 			);
@@ -2014,13 +1998,13 @@
 		009703BF1C9BD98300F2FF0D /* UserProfileController */ = {
 			isa = PBXGroup;
 			children = (
-				66D45E731DC0C14C0007B5D0 /* Cropper */,
 				00120E751D7550D500CE0C32 /* UserHeader.swift */,
 				00120E761D7550D500CE0C32 /* UserHeader.xib */,
 				009703C01C9BD9D700F2FF0D /* UserProfileController.swift */,
 				004F74DE1D800EAA0048BA09 /* UserProfileController.xib */,
 				009703C41C9BDB3200F2FF0D /* UserProfileCell.swift */,
 				009703C51C9BDB3200F2FF0D /* UserProfileCell.xib */,
+				D10C09591DE2967B008B6E57 /* ProfileImageManager.swift */,
 			);
 			path = UserProfileController;
 			sourceTree = "<group>";
@@ -2617,42 +2601,6 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		66D45E731DC0C14C0007B5D0 /* Cropper */ = {
-			isa = PBXGroup;
-			children = (
-				66D45E741DC0C14C0007B5D0 /* icn_back@2x.png */,
-				66D45E751DC0C14C0007B5D0 /* usr */,
-				66D45E7B1DC0C14C0007B5D0 /* WLHCropper.a */,
-			);
-			path = Cropper;
-			sourceTree = "<group>";
-		};
-		66D45E751DC0C14C0007B5D0 /* usr */ = {
-			isa = PBXGroup;
-			children = (
-				66D45E761DC0C14C0007B5D0 /* local */,
-			);
-			path = usr;
-			sourceTree = "<group>";
-		};
-		66D45E761DC0C14C0007B5D0 /* local */ = {
-			isa = PBXGroup;
-			children = (
-				66D45E771DC0C14C0007B5D0 /* include */,
-			);
-			path = local;
-			sourceTree = "<group>";
-		};
-		66D45E771DC0C14C0007B5D0 /* include */ = {
-			isa = PBXGroup;
-			children = (
-				66D45E781DC0C14C0007B5D0 /* PhotoViewController.h */,
-				66D45E791DC0C14C0007B5D0 /* UIImage+Crop.h */,
-				66D45E7A1DC0C14C0007B5D0 /* UIImage+Crop.m */,
-			);
-			path = include;
-			sourceTree = "<group>";
-		};
 		9A2D6C3C1A9C717E00591BDC /* NevoHK */ = {
 			isa = PBXGroup;
 			children = (
@@ -3102,7 +3050,6 @@
 				0037EC281D235F5300502140 /* nevoFontImage.png in Resources */,
 				0037EC2A1D235F5300502140 /* bluetoothoff_background.png in Resources */,
 				0037EC551D2385DF00502140 /* Raleway-Thin.ttf in Resources */,
-				66D45E7D1DC0C14C0007B5D0 /* icn_back@2x.png in Resources */,
 				6199190F1DC6E2B600C75AE7 /* AddWorldClockViewController.xib in Resources */,
 				665BD6C51DBEF4C7008C2623 /* SetingNotLoginCell.xib in Resources */,
 				0037EC2C1D235F5300502140 /* connected.png in Resources */,
@@ -3157,7 +3104,6 @@
 				00120E7C1D7559D500CE0C32 /* Raleway-Heavy.ttf in Resources */,
 				00120E7D1D7559D500CE0C32 /* Raleway-Light.ttf in Resources */,
 				00120E7E1D7559D500CE0C32 /* Raleway-Medium.ttf in Resources */,
-				66D45E7C1DC0C14C0007B5D0 /* icn_back@2x.png in Resources */,
 				00120E7F1D7559D500CE0C32 /* Raleway-Regular.ttf in Resources */,
 				00120E801D7559D500CE0C32 /* Raleway-SemiBold.ttf in Resources */,
 				00120E811D7559D500CE0C32 /* Raleway-Thin.ttf in Resources */,
@@ -3344,7 +3290,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		7031D8A6CD34AAE6CA8E6E09 /* [CP] Check Pods Manifest.lock */ = {
@@ -3359,7 +3305,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		8F3E1C68FADAF48A37834A2A /* [CP] Copy Pods Resources */ = {
@@ -3389,7 +3335,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		B8F3A8114D1574770B3E7F2B /* [CP] Copy Pods Resources */ = {
@@ -3419,7 +3365,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		CBF54EAF1C9FBCD50061A356 /* Run Script */ = {
@@ -3473,8 +3419,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				61DD7AAF1DD08598003FD171 /* PhotoViewController.h in Sources */,
-				61DD7AB01DD08598003FD171 /* UIImage+Crop.h in Sources */,
 				665BD6A61DBEF1D0008C2623 /* ForgotPasswordRequest.swift in Sources */,
 				665BD6A71DBEF1D0008C2623 /* UserCreateRequest.swift in Sources */,
 				665BD6A81DBEF1D0008C2623 /* SyncStepsToServiceRequest.swift in Sources */,
@@ -3582,6 +3526,7 @@
 				00C826781DA5E04000ECECEE /* AlarmTypeCell.swift in Sources */,
 				00C826791DA5E04000ECECEE /* AlarmTypeCell.xib in Sources */,
 				00C8267A1DA5E04000ECECEE /* NewAddAlarmHeader.swift in Sources */,
+				D10C095B1DE2967B008B6E57 /* ProfileImageManager.swift in Sources */,
 				00C8267B1DA5E04000ECECEE /* NotAlarmView.swift in Sources */,
 				00C8267C1DA5E04000ECECEE /* NotAlarmView.xib in Sources */,
 				6688A6591DC981980078E636 /* MEDBaseDeleteRequest.swift in Sources */,
@@ -3687,7 +3632,6 @@
 				00C8262E1DA5E01C00ECECEE /* M13CheckboxSpiralPathPresets.swift in Sources */,
 				00C8262F1DA5E01C00ECECEE /* SMAlphaImageSegment.swift in Sources */,
 				00C826301DA5E01C00ECECEE /* SMBasicSegment.swift in Sources */,
-				66D45E7F1DC0C14C0007B5D0 /* UIImage+Crop.m in Sources */,
 				00C826311DA5E01C00ECECEE /* SMBasicSegmentView.swift in Sources */,
 				00C826321DA5E01C00ECECEE /* SMSegment.swift in Sources */,
 				00C826331DA5E01C00ECECEE /* SMSegmentView.swift in Sources */,
@@ -4025,11 +3969,6 @@
 				611D42011DCAD97D003BC6E3 /* ConnectOtherAppsController.xib in Sources */,
 				611D42021DCAD97D003BC6E3 /* ConnectOtherAppsCell.swift in Sources */,
 				611D42031DCAD97D003BC6E3 /* ConnectOtherAppsCell.xib in Sources */,
-				611D42041DCAD97D003BC6E3 /* icn_back@2x.png in Sources */,
-				611D42051DCAD97D003BC6E3 /* PhotoViewController.h in Sources */,
-				611D42061DCAD97D003BC6E3 /* UIImage+Crop.h in Sources */,
-				611D42071DCAD97D003BC6E3 /* UIImage+Crop.m in Sources */,
-				611D42081DCAD97D003BC6E3 /* WLHCropper.a in Sources */,
 				611D42091DCAD97D003BC6E3 /* UserHeader.swift in Sources */,
 				611D420A1DCAD97D003BC6E3 /* UserHeader.xib in Sources */,
 				611D420B1DCAD97D003BC6E3 /* UserProfileController.swift in Sources */,
@@ -4106,6 +4045,7 @@
 				611D424F1DCAD97D003BC6E3 /* SetingLoginCell.xib in Sources */,
 				611D42501DCAD97D003BC6E3 /* SetingNotLoginCell.swift in Sources */,
 				611D42511DCAD97D003BC6E3 /* SetingView.swift in Sources */,
+				D10C095A1DE2967B008B6E57 /* ProfileImageManager.swift in Sources */,
 				611D42521DCAD97D003BC6E3 /* SetingViewController.swift in Sources */,
 				611D42531DCAD97D003BC6E3 /* SleepHistoricalView.swift in Sources */,
 				611D42541DCAD97D003BC6E3 /* SleepHistoryViewCell.swift in Sources */,

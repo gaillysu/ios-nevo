@@ -56,6 +56,7 @@ PODS:
   - RealmSwift (1.1.0):
     - Realm (= 1.1.0)
   - RegexKitLite (4.0)
+  - RSKImageCropper (1.5.1)
   - SnapKit (3.0.1)
   - Solar (1.0.0)
   - SwiftEventBus (2.1.0)
@@ -85,6 +86,7 @@ DEPENDENCIES:
   - PopupController
   - RealmSwift
   - RegexKitLite
+  - RSKImageCropper
   - SnapKit (~> 3.0.1)
   - Solar
   - SwiftEventBus (from `https://github.com/cesarferreira/SwiftEventBus.git`, tag `2.1.0`)
@@ -152,6 +154,7 @@ SPEC CHECKSUMS:
   Realm: ceecf1a4540c4ce9efe196fe73fa9855bce05bd8
   RealmSwift: 838058b2db95b12cb86bd0cf209df642c33fb60a
   RegexKitLite: c0e4c12e6e7de0769f3a3ed679f0f61604170661
+  RSKImageCropper: edd65fedb3734332818deb139906d6b7f54b8a44
   SnapKit: f818b8326d45b4e1c777d0ab27b5c0a3624bfdeb
   Solar: 8db49542f5bf0272a23a488f0769c58af7b6e28e
   SwiftEventBus: 03fb72b65f3ae11912dec2591567b89e5908a781
@@ -162,6 +165,6 @@ SPEC CHECKSUMS:
   XCGLogger: 38063ea89b4c8b23232d18efd2e12eb0005f3ea4
   Zip: 805fc2fa9d2f05bbb7762d982d7a42ccdcc51f42
 
-PODFILE CHECKSUM: a5262645dbc1c3c847a9b93e8f6089244aa47311
+PODFILE CHECKSUM: 34f78afa7b2279777be962db5c57c25e3326c0e4
 
-COCOAPODS: 1.0.1
+COCOAPODS: 1.1.1

@@ -25,6 +25,7 @@ target 'LunaR' do
   pod 'SnapKit', '~> 3.0.1'
   pod 'Solar'
   pod 'Timepiece'
+  pod 'RSKImageCropper'
   target 'LunaRTests' do
       
     inherit! :search_paths
@@ -60,6 +61,7 @@ target 'Nevo' do
     pod 'SnapKit', '~> 3.0.1'
     pod 'Solar'
     pod 'Timepiece'
+    pod 'RSKImageCropper'
   target 'NevoTests' do
     inherit! :search_paths
     # Pods for testing

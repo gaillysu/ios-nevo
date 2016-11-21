@@ -8,11 +8,14 @@
 
 import UIKit
 import XCGLogger
+import RSKImageCropper
 
 let userIdentifier:String = "UserProfileIdentifier"
 class UserProfileController: UIViewController,UITableViewDelegate,UITableViewDataSource {
     
     @IBOutlet weak var userInfoTableView: UITableView!
+    @IBOutlet weak var avatarImageView: UIButton!
+    
     
     open var isNewPush:Bool = true
     
@@ -68,7 +71,77 @@ class UserProfileController: UIViewController,UITableViewDelegate,UITableViewDat
             AppTheme.KeyedArchiverName((NevoAllKeys.MEDAvatarKeyAfterSave() as NSString), andObject: avatarImage)
         }
     }
+    
+    fileprivate func generatePickerData(_ rangeBegin: Int,rangeEnd: Int, interval: Int)->NSMutableArray{
+        let data:NSMutableArray = NSMutableArray();
+        for i in rangeBegin...rangeEnd{
+            if(interval > 0){
+                if i % interval == 0 {
+                    data.add("\(i)")
+                }
+            }else{
+                data.add("\(i)")
+            }
+        }
+        return data;
+    }
+}
 
+// MARK: - ImagePicker
+extension UserProfileController: UIImagePickerControllerDelegate, UINavigationControllerDelegate, RSKImageCropViewControllerDelegate {
+    @IBAction func avatarButtonClick(_ sender: Any) {
+        let imagePicker = UIImagePickerController()
+        imagePicker.allowsEditing = false
+        imagePicker.delegate = self
+        
+        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        alertController.addAction(UIAlertAction(title: "Take photo", style: .default, handler: { action in
+            imagePicker.sourceType = .camera
+            self.present(imagePicker, animated: true, completion: nil)
+        }))
+        alertController.addAction(UIAlertAction(title: "Choose photo", style: .default, handler: { action in
+            imagePicker.sourceType = .photoLibrary
+            self.present(imagePicker, animated: true, completion: nil)
+        }))
+        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { action in
+            alertController.dismiss(animated: true, completion: nil)
+        }))
+        present(alertController, animated: true, completion: nil)
+    }
+    
+    func imageCropViewController(_ controller: RSKImageCropViewController, didCropImage croppedImage: UIImage, usingCropRect cropRect: CGRect) {
+        self.avatarImageView.setImage(croppedImage, for: .normal)
+        let manager = ProfileImageManager.manager
+        manager.save(image: croppedImage)
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    func imageCropViewControllerDidCancelCrop(_ controller: RSKImageCropViewController) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            let imageCropViewController:RSKImageCropViewController = RSKImageCropViewController(image: image, cropMode: RSKImageCropMode.circle)
+            imageCropViewController.delegate = self
+            picker.dismiss(animated: false, completion: {
+                self.present(imageCropViewController, animated: false, completion: nil)
+            })
+        } else {
+            print("Something went wrong")
+            self.dismiss(animated: true, completion: nil)
+        }
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        self.dismiss(animated: true, completion: nil)
+    }
+}
+
+
+
+// MARK: - TableView delegate
+extension UserProfileController {
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return section == 0 ? 150 : 0;
     }
@@ -107,15 +180,15 @@ class UserProfileController: UIViewController,UITableViewDelegate,UITableViewDat
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 50;
     }
-    // MARK: - Table view data source
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }
-
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return section == 0 ? 0 : titleArray.count
     }
-
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell:UserProfileCell = tableView.dequeueReusableCell(withIdentifier: userIdentifier,for: indexPath) as! UserProfileCell
         cell.selectionStyle = UITableViewCellSelectionStyle.none;
@@ -123,7 +196,6 @@ class UserProfileController: UIViewController,UITableViewDelegate,UITableViewDat
         //cell.titleLabel.text = titleArray[indexPath.row]
         cell.updateLabel(NSLocalizedString(fieldArray[(indexPath as NSIndexPath).row], comment: ""))
         if userprofile != nil {
-            
             switch (indexPath as NSIndexPath).row {
             case 0:
                 cell.valueTextField.text = userprofile!.first_name
@@ -144,8 +216,8 @@ class UserProfileController: UIViewController,UITableViewDelegate,UITableViewDat
                 cell.valueTextField.text = "\(userprofile!.birthday)"
                 cell.valueTextField.placeholder = "Birthday: "
                 cell.setType(.date)
-//                cell.textPreFix = "Birthday: "
-//                cell.textPreFix == ""
+                //                cell.textPreFix = "Birthday: "
+            //                cell.textPreFix == ""
             default:
                 break
             }
@@ -181,25 +253,11 @@ class UserProfileController: UIViewController,UITableViewDelegate,UITableViewDat
             cell.titleLabel.textColor = UIColor.white
             cell.valueTextField.textColor = UIColor.getBaseColor()
         }
-
+        
         return cell
     }
-
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-    }
-    
-    fileprivate func generatePickerData(_ rangeBegin: Int,rangeEnd: Int, interval: Int)->NSMutableArray{
-        let data:NSMutableArray = NSMutableArray();
-        for i in rangeBegin...rangeEnd{
-            if(interval > 0){
-                if i % interval == 0 {
-                    data.add("\(i)")
-                }
-            }else{
-                data.add("\(i)")
-            }
-        }
-        return data;
     }
 }

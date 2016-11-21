@@ -15,5 +15,4 @@
 #import "MBProgressHUD.h"
 #import <CommonCrypto/CommonCrypto.h>
 #import "iRate.h"
-#import "PhotoViewController.h"
 #endif
