@@ -20,7 +20,6 @@ extension UICollectionView {
                     if let text = label.text {                        
                         let attr:[String:AnyObject] = [NSFontAttributeName:label.font]
                         let width:CGFloat = (text as NSString).size(attributes: attr).width
-                        print("==============\(width)======\(text)")
                         if width > maxWidth {
                             maxWidth = width
                         }

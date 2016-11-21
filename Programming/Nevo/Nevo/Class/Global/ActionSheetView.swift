@@ -37,6 +37,8 @@ class ActionSheetView: UIAlertController {
         super.viewWillLayoutSubviews()
         
         if !AppTheme.isTargetLunaR_OR_Nevo() {
+            self.view.tintColor = UIColor.getBaseColor()
+            
             //         _UIAlertControlleriOSActionSheetCancelBackgroundView
             UIApplication.shared.keyWindow?.subviewsSatisfy(theCondition: { (v) -> (Bool) in
                 return v.classForCoder == NSClassFromString("_UIAlertControlleriOSActionSheetCancelBackgroundView")
@@ -50,35 +52,15 @@ class ActionSheetView: UIAlertController {
             })
             
             
-            // 标题白色
-            view.subviewsSatisfy(theCondition: { (v) -> (Bool) in
+            view.allSubviews(do: { (v) in
                 if v.isKind(of: UILabel.classForCoder()) {
-                    if (v as! UILabel).text == self.title {
-                        return true
+                    let label = v as! UILabel
+                    if label.text == self.title || label.text == self.message {
+                        label.textColor = UIColor.white
                     }
                 }
-                return false
-            }, do: { (v) in
-                (v as! UILabel).textColor = UIColor.white
-            })
-            
-            // 副标题白色
-            view.subviewsSatisfy(theCondition: { (v) -> (Bool) in
-                if v.isKind(of: UILabel.classForCoder()) {
-                    if (v as! UILabel).text == self.message {
-                        return true
-                    }
-                }
-                return false
-            }, do: { (v) in
-                (v as! UILabel).textColor = UIColor.white
             })
         }
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     override func setValue(_ value: Any?, forUndefinedKey key: String) {
