@@ -54,7 +54,7 @@ class AnalysisController: PublicClassController {
         segmented.addSubview(segmentDeviderView)
         segmentDeviderView.snp.makeConstraints { (v) in
             v.width.equalTo(UIScreen.main.bounds.width)
-            v.height.equalTo(0.5)
+            v.height.equalTo(0.3)
             v.centerX.equalToSuperview()
             v.top.equalTo(segmented.snp.bottom).offset(10)
         }
@@ -72,7 +72,7 @@ class AnalysisController: PublicClassController {
             contentCollectionView.backgroundColor = UIColor.getGreyColor()
             chartsCollectionView.backgroundColor = UIColor.getGreyColor()
             segmented.tintColor = UIColor.getBaseColor()
-            segmentDeviderView.backgroundColor = UIColor.white
+            segmentDeviderView.backgroundColor = UIColor.black
             
             self.segmented.backgroundColor = UIColor(red: 96/255.0, green: 99/255.0, blue: 101/255.0, alpha: 1)
             segmentedBackgroundView.backgroundColor = UIColor(red: 96/255.0, green: 99/255.0, blue: 101/255.0, alpha: 1)
@@ -85,6 +85,7 @@ class AnalysisController: PublicClassController {
         
         chartLayout.minimumInteritemSpacing = 0
         chartLayout.minimumLineSpacing = 0
+        chartLayout.scrollDirection = .horizontal
         chartsCollectionView.collectionViewLayout = chartLayout
         
         let contentLayout:UICollectionViewFlowLayout = UICollectionViewFlowLayout()
