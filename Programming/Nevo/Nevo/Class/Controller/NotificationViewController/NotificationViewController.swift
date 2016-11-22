@@ -11,8 +11,26 @@ import BRYXBanner
 import XCGLogger
 
 class NotificationViewController: UITableViewController,SelectedNotificationDelegate {
-    fileprivate var mNotificationOFFArray:[NotificationSetting] = []
-    fileprivate var mNotificationONArray:[NotificationSetting] = []
+    fileprivate var nevoNotiOFFArray:[NotificationSetting] = []
+    fileprivate var nevoNotiONArray:[NotificationSetting] = []
+    fileprivate var lunarNotiOFFArray:[NotificationSetting] = []
+    fileprivate var lunarNotiONArray:[NotificationSetting] = []
+    
+    fileprivate var mNotificationOFFArray:[NotificationSetting] {
+        if AppTheme.isTargetLunaR_OR_Nevo() {
+            return nevoNotiOFFArray
+        } else {
+            return nevoNotiONArray
+        }
+    }
+    fileprivate var mNotificationONArray:[NotificationSetting] {
+        if AppTheme.isTargetLunaR_OR_Nevo() {
+            return lunarNotiOFFArray
+        } else {
+            return lunarNotiONArray
+        }
+    }
+    
     fileprivate let titleHeader:[String] = ["ACTIVE_NOTIFICATIONS","INACTIVE_NOTIFICATIONS"]
     fileprivate var mNotificationArray:NSArray = NSArray()
 
@@ -60,8 +78,13 @@ class NotificationViewController: UITableViewController,SelectedNotificationDele
      :returns:
      */
     func initNotificationSettingArray() {
-        mNotificationOFFArray.removeAll()
-        mNotificationONArray.removeAll()
+        nevoNotiONArray.removeAll()
+        nevoNotiOFFArray.removeAll()
+        
+        /// Todo: When lunar's new notification module is completed, we can rewrite here.
+        lunarNotiONArray.removeAll()
+        lunarNotiOFFArray.removeAll()
+
         mNotificationArray = UserNotification.getAll()
         
         let notificationTypeArray:[NotificationType] = [
@@ -77,10 +100,14 @@ class NotificationViewController: UITableViewController,SelectedNotificationDele
                 let notification:UserNotification = model as! UserNotification
                 if(notification.NotificationType == notificationType.rawValue as String){
                     let setting:NotificationSetting = NotificationSetting(type: notificationType, clock: notification.clock, color: 0, states:notification.status)
+                    
+                    /// Todo: When lunar's new notification module is completed, we can rewrite here.
                     if(notification.status) {
-                        mNotificationONArray.append(setting)
+                        nevoNotiONArray.append(setting)
+                        lunarNotiONArray.append(setting)
                     }else {
-                        mNotificationOFFArray.append(setting)
+                        nevoNotiOFFArray.append(setting)
+                        lunarNotiOFFArray.append(setting)
                     }
                     break
                 }
