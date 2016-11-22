@@ -568,7 +568,6 @@
 		611D41C81DCAD97D003BC6E3 /* SearchCityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 619918F81DC6E2B600C75AE7 /* SearchCityViewController.swift */; };
 		611D41C91DCAD97D003BC6E3 /* SearchCityViewController.xib in Sources */ = {isa = PBXBuildFile; fileRef = 619918F91DC6E2B600C75AE7 /* SearchCityViewController.xib */; };
 		611D41CE1DCAD97D003BC6E3 /* WorldClockDidSelectedDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 619919071DC6E2B600C75AE7 /* WorldClockDidSelectedDelegate.swift */; };
-		611D41CF1DCAD97D003BC6E3 /* WorldClockItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 619919081DC6E2B600C75AE7 /* WorldClockItem.swift */; };
 		611D41D01DCAD97D003BC6E3 /* WorldClockUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 619919091DC6E2B600C75AE7 /* WorldClockUtil.swift */; };
 		611D41D11DCAD97D003BC6E3 /* LunaRStepsGoalPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 611E2E041DC3405D004CD45B /* LunaRStepsGoalPacket.swift */; };
 		611D41D21DCAD97D003BC6E3 /* LunaRDailyTrackerInfoPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6198EE2A1DC2090700FDD850 /* LunaRDailyTrackerInfoPacket.swift */; };
@@ -747,7 +746,6 @@
 		619919101DC6E2B600C75AE7 /* SearchCityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 619918F81DC6E2B600C75AE7 /* SearchCityViewController.swift */; };
 		619919111DC6E2B600C75AE7 /* SearchCityViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 619918F91DC6E2B600C75AE7 /* SearchCityViewController.xib */; };
 		6199191A1DC6E2B600C75AE7 /* WorldClockDidSelectedDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 619919071DC6E2B600C75AE7 /* WorldClockDidSelectedDelegate.swift */; };
-		6199191B1DC6E2B600C75AE7 /* WorldClockItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 619919081DC6E2B600C75AE7 /* WorldClockItem.swift */; };
 		6199191C1DC6E2B600C75AE7 /* WorldClockUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 619919091DC6E2B600C75AE7 /* WorldClockUtil.swift */; };
 		619919201DC6E33200C75AE7 /* LunaROTAController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6199191E1DC6E33200C75AE7 /* LunaROTAController.swift */; };
 		619919211DC6E33200C75AE7 /* LunaROTAController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6199191F1DC6E33200C75AE7 /* LunaROTAController.xib */; };
@@ -1306,7 +1304,6 @@
 		619918F81DC6E2B600C75AE7 /* SearchCityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchCityViewController.swift; sourceTree = "<group>"; };
 		619918F91DC6E2B600C75AE7 /* SearchCityViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchCityViewController.xib; sourceTree = "<group>"; };
 		619919071DC6E2B600C75AE7 /* WorldClockDidSelectedDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorldClockDidSelectedDelegate.swift; sourceTree = "<group>"; };
-		619919081DC6E2B600C75AE7 /* WorldClockItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorldClockItem.swift; sourceTree = "<group>"; };
 		619919091DC6E2B600C75AE7 /* WorldClockUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorldClockUtil.swift; sourceTree = "<group>"; };
 		6199191E1DC6E33200C75AE7 /* LunaROTAController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LunaROTAController.swift; sourceTree = "<group>"; };
 		6199191F1DC6E33200C75AE7 /* LunaROTAController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LunaROTAController.xib; sourceTree = "<group>"; };
@@ -2456,7 +2453,6 @@
 			children = (
 				666B2CC01DDC104D004BBECB /* view */,
 				619919071DC6E2B600C75AE7 /* WorldClockDidSelectedDelegate.swift */,
-				619919081DC6E2B600C75AE7 /* WorldClockItem.swift */,
 				619919091DC6E2B600C75AE7 /* WorldClockUtil.swift */,
 			);
 			path = "Sunrise&set";
@@ -3685,7 +3681,6 @@
 				00D4744C1D586D1600E2447E /* Color.swift in Sources */,
 				00D4744D1D586D1600E2447E /* View.swift in Sources */,
 				00D4744F1D586D1600E2447E /* PublicClassController.swift in Sources */,
-				6199191B1DC6E2B600C75AE7 /* WorldClockItem.swift in Sources */,
 				6699DD081DDC53B20077E544 /* NewWorldClockCell.swift in Sources */,
 				00D474501D586D1600E2447E /* PublicClassTableViewController.swift in Sources */,
 				00D474521D586D1600E2447E /* AppTheme.swift in Sources */,
@@ -3927,7 +3922,6 @@
 				611D41C81DCAD97D003BC6E3 /* SearchCityViewController.swift in Sources */,
 				611D41C91DCAD97D003BC6E3 /* SearchCityViewController.xib in Sources */,
 				611D41CE1DCAD97D003BC6E3 /* WorldClockDidSelectedDelegate.swift in Sources */,
-				611D41CF1DCAD97D003BC6E3 /* WorldClockItem.swift in Sources */,
 				611D41D01DCAD97D003BC6E3 /* WorldClockUtil.swift in Sources */,
 				611D41D11DCAD97D003BC6E3 /* LunaRStepsGoalPacket.swift in Sources */,
 				611D41D21DCAD97D003BC6E3 /* LunaRDailyTrackerInfoPacket.swift in Sources */,

@@ -28,9 +28,6 @@ class PageViewController: UIPageViewController,UIActionSheetDelegate {
     var titleView:StepsTitleView?
     fileprivate var selectedTag:Int = 0
     
-    fileprivate var normalControllers: [UIViewController] = []
-    fileprivate var solarControllers: [UIViewController] = []
-    
     fileprivate var pagingControllers: [UIViewController] = []
 
     override func viewDidLoad() {
@@ -126,7 +123,10 @@ class PageViewController: UIPageViewController,UIActionSheetDelegate {
     func rightBarButtonAction(_ rightBar:UIBarButtonItem){
         if selectedTag == 3 {
             let addWorldClock:AddWorldClockViewController = AddWorldClockViewController()
-            addWorldClock.didSeletedCityDelegate = self
+            
+            let sunriseSetController:SunriseSetController = pagingControllers[3] as! SunriseSetController
+            addWorldClock.didSeletedCityDelegate = sunriseSetController
+            
             addWorldClock.hidesBottomBarWhenPushed = true
             let nav:UINavigationController = UINavigationController(rootViewController: addWorldClock)
             self.present(nav, animated: true, completion: nil)
