@@ -17,14 +17,10 @@ class NotificationViewController: UITableViewController,SelectedNotificationDele
     fileprivate var mNotificationArray:NSArray = NSArray()
 
     var hasNotiOFF:Bool {
-        get {
-            return self.mNotificationOFFArray.count != 0
-        }
+        return self.mNotificationOFFArray.count != 0
     }
     var hasNotiON:Bool {
-        get {
-            return self.mNotificationONArray.count != 0
-        }
+        return self.mNotificationONArray.count != 0
     }
     
     @IBOutlet weak var notificationView: NotificationView!
@@ -185,7 +181,6 @@ class NotificationViewController: UITableViewController,SelectedNotificationDele
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         if hasNotiON && hasNotiOFF {
             return 2
         } else {
@@ -194,7 +189,6 @@ class NotificationViewController: UITableViewController,SelectedNotificationDele
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         if hasNotiON && hasNotiOFF {
             switch (section){
             case 0:
