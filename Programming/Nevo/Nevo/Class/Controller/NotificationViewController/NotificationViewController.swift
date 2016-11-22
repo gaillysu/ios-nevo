@@ -141,7 +141,12 @@ class NotificationViewController: UITableViewController,SelectedNotificationDele
             }
         }
     }
+}
 
+
+/// Todo:
+/// Need to be carefully, the notifications array might be empty.
+extension NotificationViewController {
     // MARK: - Table view Delegate
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat{
         return 45.0
