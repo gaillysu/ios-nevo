@@ -109,16 +109,8 @@ class StepsHistoryViewController: PublicClassController,ChartViewDelegate {
             chartView.backgroundColor = UIColor.getGreyColor()
         }
         
-        
-        let maxWidth:CGFloat = stepsHistory.findMaxLabelWidth() + 4
-        
         let layout:UICollectionViewFlowLayout = stepsHistory.collectionViewLayout as! UICollectionViewFlowLayout
-        layout.itemSize = CGSize(width: maxWidth, height: stepsHistory.frame.size.height/2 - 10)
-        
-        let spacing:CGFloat = (stepsHistory.frame.width - 2 * maxWidth) / 3 - 1
-        layout.sectionInset.left = spacing
-        layout.sectionInset.right = spacing
-        layout.minimumInteritemSpacing = spacing
+        layout.itemSize = CGSize(width: (stepsHistory.frame.size.width)/2.0, height: stepsHistory.frame.size.height/2.0 - 10)
     }
     
     /**

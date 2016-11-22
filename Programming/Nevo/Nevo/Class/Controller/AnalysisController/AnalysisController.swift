@@ -103,16 +103,10 @@ class AnalysisController: PublicClassController {
         let chartLayout:UICollectionViewFlowLayout = chartsCollectionView.collectionViewLayout as! UICollectionViewFlowLayout
         chartLayout.itemSize = CGSize(width: chartsCollectionView.frame.size.width, height: chartsCollectionView.frame.size.height)
         
-        let maxWidth:CGFloat = contentCollectionView.findMaxLabelWidth() + 4
-        print("+++++++\(maxWidth)")
         let height: CGFloat = (segmented.selectedSegmentIndex == 2) ? (contentCollectionView.frame.size.height - 20) : (contentCollectionView.frame.size.height/2.0 - 10)
         
         let contentLayout:UICollectionViewFlowLayout = contentCollectionView.collectionViewLayout as! UICollectionViewFlowLayout
-        contentLayout.itemSize = CGSize(width: maxWidth, height: height)
-        let spacing:CGFloat = (contentCollectionView.frame.width - 2 * maxWidth) / 3 - 1
-        contentLayout.sectionInset.left = spacing
-        contentLayout.sectionInset.right = spacing
-        contentLayout.minimumInteritemSpacing = spacing
+        contentLayout.itemSize = CGSize(width: contentCollectionView.frame.size.width/2.0, height: height)
     }
 }
 

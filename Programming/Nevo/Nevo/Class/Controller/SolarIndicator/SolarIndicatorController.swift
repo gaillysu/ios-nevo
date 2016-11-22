@@ -124,15 +124,8 @@ class SolarIndicatorController: PublicClassController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-        let maxWidth:CGFloat = textCollection.findMaxLabelWidth() + 4
-        
         let layout:UICollectionViewFlowLayout = textCollection.collectionViewLayout as! UICollectionViewFlowLayout
-        layout.itemSize = CGSize(width: maxWidth, height: textCollection.frame.size.height)
-        
-        let spacing:CGFloat = (textCollection.frame.width - 2 * maxWidth) / 3 - 1
-        layout.sectionInset.left = spacing
-        layout.sectionInset.right = spacing
-        layout.minimumInteritemSpacing = spacing
+        layout.itemSize = CGSize(width: textCollection.frame.width/2.0, height: textCollection.frame.size.height)
     }
 
 }

@@ -68,16 +68,8 @@ class SleepHistoricalViewController: PublicClassController,ChartViewDelegate,Sel
     }
     
     override func viewDidLayoutSubviews() {
-        
-        let maxWidth:CGFloat = queryView.detailCollectionView.findMaxLabelWidth() + 4
-        
         let layout:UICollectionViewFlowLayout = queryView.detailCollectionView.collectionViewLayout as! UICollectionViewFlowLayout
-        layout.itemSize = CGSize(width: maxWidth, height: queryView.detailCollectionView.frame.size.height/2 - 10)
-        
-        let spacing:CGFloat = (queryView.detailCollectionView.frame.width - 2 * maxWidth) / 3 - 1
-        layout.sectionInset.left = spacing
-        layout.sectionInset.right = spacing
-        layout.minimumInteritemSpacing = spacing
+        layout.itemSize = CGSize(width: queryView.detailCollectionView.frame.size.width/2.0, height: queryView.detailCollectionView.frame.size.height/2.0 - 10)
     }
     
     override func viewDidDisappear(_ animated: Bool) {

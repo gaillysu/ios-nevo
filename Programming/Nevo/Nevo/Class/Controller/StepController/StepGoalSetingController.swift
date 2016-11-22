@@ -72,15 +72,8 @@ class StepGoalSetingController: PublicClassController,ButtonManagerCallBack,Cloc
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
 
-        let maxWidth:CGFloat = collectionView.findMaxLabelWidth() + 4
-        
         let layout:UICollectionViewFlowLayout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
-        layout.itemSize = CGSize(width: maxWidth, height: collectionView.frame.size.height/2 - 10)
-        
-        let spacing:CGFloat = (collectionView.frame.width - 2 * maxWidth) / 3 - 1
-        layout.sectionInset.left = spacing
-        layout.sectionInset.right = spacing
-        layout.minimumInteritemSpacing = spacing
+        layout.itemSize = CGSize(width: collectionView.frame.size.width/2.0, height: collectionView.frame.size.height/2.0 - 10)
         
         bulidClockViewandProgressBar()
         if !AppTheme.isTargetLunaR_OR_Nevo(){

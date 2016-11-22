@@ -103,9 +103,6 @@ class SunriseSetController: PublicClassController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         addClockView()
-//        self.dailImageView.backgroundColor = UIColor.getBaseColor()
-//        self.dailImageView.layer.cornerRadius = self.dailImageView.frame.width / 2
-//        self.dailImageView.layer.masksToBounds = true
         
         if !AppTheme.isTargetLunaR_OR_Nevo() {
             self.view.backgroundColor = UIColor.getGreyColor()
