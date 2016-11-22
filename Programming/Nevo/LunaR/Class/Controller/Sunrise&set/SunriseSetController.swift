@@ -108,7 +108,7 @@ class SunriseSetController: PublicClassController {
             self.view.backgroundColor = UIColor.getGreyColor()
         }
         
-        (self.sunriseSetCollectionView.collectionViewLayout as! UICollectionViewFlowLayout).itemSize = CGSize(width: UIScreen.main.bounds.size.width / 2.0 - 5, height: self.sunriseSetCollectionView.frame.height)
+        (self.sunriseSetCollectionView.collectionViewLayout as! UICollectionViewFlowLayout).itemSize = CGSize(width: UIScreen.main.bounds.size.width / 2.0 - 5, height: self.sunriseSetCollectionView.frame.height - 20)
     }
     
     @IBAction func changeCity(_ sender: Any) {

@@ -22,7 +22,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="93" height="136"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zvw-ZH-s0R">
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zvw-ZH-s0R">
                         <rect key="frame" x="0.0" y="33" width="93" height="70"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tsQ-9I-h2O">
@@ -67,9 +67,9 @@
                 </subviews>
             </view>
             <constraints>
-                <constraint firstItem="zvw-ZH-s0R" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="UJk-Kn-swR"/>
                 <constraint firstItem="zvw-ZH-s0R" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="cMz-GV-Mwt"/>
                 <constraint firstAttribute="trailing" secondItem="zvw-ZH-s0R" secondAttribute="trailing" id="mjX-gT-SmN"/>
+                <constraint firstItem="zvw-ZH-s0R" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="xZ9-sM-iop"/>
             </constraints>
             <size key="customSize" width="93" height="136"/>
             <connections>
