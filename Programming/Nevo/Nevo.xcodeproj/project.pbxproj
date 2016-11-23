@@ -852,6 +852,8 @@
 		66A0E0801DBF6C08001C0C67 /* Timezone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66A0E0771DBF6C08001C0C67 /* Timezone.swift */; };
 		66AC4E5D1DBF537500E431BE /* sunrise.png in Resources */ = {isa = PBXBuildFile; fileRef = 665BD6D71DBF1297008C2623 /* sunrise.png */; };
 		66AC4E5E1DBF537500E431BE /* sunset.png in Resources */ = {isa = PBXBuildFile; fileRef = 665BD6D81DBF1297008C2623 /* sunset.png */; };
+		66F260F41DE533EF0021BDBA /* MEDColorful.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66F260F31DE533EF0021BDBA /* MEDColorful.swift */; };
+		66F260F51DE533EF0021BDBA /* MEDColorful.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66F260F31DE533EF0021BDBA /* MEDColorful.swift */; };
 		813518AB3D92E43573F28717 /* Pods_LunaR.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E068CB5F57F135B038B3A10 /* Pods_LunaR.framework */; };
 		8A84EC52F1052F0497E54CB5 /* Pods_NevoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7689D6188FDF6CDBFBD84C51 /* Pods_NevoTests.framework */; };
 		9A2D6C3B1A9C6D9F00591BDC /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A2D6C3A1A9C6D9F00591BDC /* HealthKit.framework */; };
@@ -1373,6 +1375,7 @@
 		66A0E0741DBF6C08001C0C67 /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		66A0E0761DBF6C08001C0C67 /* City.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
 		66A0E0771DBF6C08001C0C67 /* Timezone.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Timezone.swift; sourceTree = "<group>"; };
+		66F260F31DE533EF0021BDBA /* MEDColorful.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MEDColorful.swift; sourceTree = "<group>"; };
 		7689D6188FDF6CDBFBD84C51 /* Pods_NevoTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NevoTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		84E3C5A18963C1F2BFFF61CB /* Pods-Nevo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Nevo.release.xcconfig"; path = "Pods/Target Support Files/Pods-Nevo/Pods-Nevo.release.xcconfig"; sourceTree = "<group>"; };
 		8FE857CD8B2EE737CB25062E /* Pods-NevoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NevoTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NevoTests/Pods-NevoTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -2171,6 +2174,7 @@
 		00AF8C8A1D224CFA009047AC /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				66F260F21DE533EF0021BDBA /* MEDThemeAdaptor */,
 				00AF8C8B1D224CFA009047AC /* Alert.swift */,
 				00AF8C8C1D224CFA009047AC /* ClockRefresh */,
 				00AF8C8E1D224CFA009047AC /* Connection */,
@@ -2599,6 +2603,14 @@
 				610E43F91DC84337001FD1B8 /* SolarHarvest.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		66F260F21DE533EF0021BDBA /* MEDThemeAdaptor */ = {
+			isa = PBXGroup;
+			children = (
+				66F260F31DE533EF0021BDBA /* MEDColorful.swift */,
+			);
+			path = MEDThemeAdaptor;
 			sourceTree = "<group>";
 		};
 		9A2D6C3C1A9C717E00591BDC /* NevoHK */ = {
@@ -3445,6 +3457,7 @@
 				665BD6BA1DBEF1D0008C2623 /* SetCardioRequest.swift in Sources */,
 				665BD6BB1DBEF1D0008C2623 /* SetGoalRequest.swift in Sources */,
 				665BD6BC1DBEF1D0008C2623 /* SetNewAlarmRequest.swift in Sources */,
+				66F260F51DE533EF0021BDBA /* MEDColorful.swift in Sources */,
 				665BD6BD1DBEF1D0008C2623 /* SetNortificationRequest.swift in Sources */,
 				665BD6BE1DBEF1D0008C2623 /* SetProfileRequest.swift in Sources */,
 				665BD6BF1DBEF1D0008C2623 /* SetRTCRequest.swift in Sources */,
@@ -4021,6 +4034,7 @@
 				611D42391DCAD97D003BC6E3 /* NevoOtaViewController.xib in Sources */,
 				611D423A1DCAD97D003BC6E3 /* LineColorCell.swift in Sources */,
 				611D423B1DCAD97D003BC6E3 /* LineColorCell.xib in Sources */,
+				66F260F41DE533EF0021BDBA /* MEDColorful.swift in Sources */,
 				611D423C1DCAD97D003BC6E3 /* NotificationClockCell.swift in Sources */,
 				611D423D1DCAD97D003BC6E3 /* NotificationClockCell.xib in Sources */,
 				611D423E1DCAD97D003BC6E3 /* NotificationView.swift in Sources */,
