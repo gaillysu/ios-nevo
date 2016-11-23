@@ -33,6 +33,7 @@ extension MEDColorfulLooking where Self: UIViewController {
             self.tabBarController?.tabBar.tintColor = UIColor.getBaseColor()
             self.tabBarController?.tabBar.isTranslucent = false
             self.tabBarController?.tabBar.backgroundColor = UIColor.getGreyColor()
+            self.tabBarController?.tabBar.barTintColor = UIColor.getGreyColor()
             
             self.navigationController?.navigationBar.lt_setBackgroundColor(UIColor.getLunarTabBarColor())
             self.navigationController?.navigationBar.tintColor = UIColor.getBaseColor()
