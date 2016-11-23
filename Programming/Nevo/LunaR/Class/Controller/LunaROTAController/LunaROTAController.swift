@@ -211,7 +211,7 @@ extension LunaROTAController {
     
     
     func getBundledFirmwareURLHelper() -> URL {
-        return Bundle.main.url(forResource: "lunar_20161011_v3", withExtension: "zip")!
+        return Bundle.main.url(forResource: "lunar_20161122_v5", withExtension: "zip")!
     }
     
     func setCentralManager(centralManager aCentralManager : CBCentralManager){

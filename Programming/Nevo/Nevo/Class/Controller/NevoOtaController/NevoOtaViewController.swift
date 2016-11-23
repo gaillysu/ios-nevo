@@ -68,13 +68,20 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
             buildinSoftwareVersion = AppTheme.GET_SOFTWARE_VERSION()
             buildinFirmwareVersion = AppTheme.GET_FIRMWARE_VERSION()
 
-            let fileArray = AppTheme.GET_FIRMWARE_FILES("Firmwares")
-
+            var fileArray:NSArray;
+            let watchIdValue:Int = UserDefaults.standard.object(forKey: "WATCHNAME_KEY") as! Int
+            if watchIdValue > 1 {
+                fileArray = AppTheme.GET_FIRMWARE_FILES("Solar_Firmwares")
+            }else{
+                fileArray = AppTheme.GET_FIRMWARE_FILES("Firmwares")
+            }
+            
             if(currentFirmwareVersion.integerValue < buildinFirmwareVersion && currentSoftwareVersion.integerValue != 0) {
                 for tmpfile in fileArray {
                     let selectedFile = tmpfile as! URL
                     let fileExtension:String? = selectedFile.pathExtension
                     if fileExtension == "hex"{
+                        
                         firmwareURLs.append(selectedFile)
                         allTaskNumber += 1
                         break
