@@ -290,10 +290,10 @@ extension StepGoalSetingController {
         mClockTimerView?.currentTimer()
         clockBackGroundView.addSubview(mClockTimerView!)
         
-        progressView.frame = CGRect(x: clockBackGroundView.frame.origin.x-3, y: clockBackGroundView.frame.origin.y-3, width: clockBackGroundView.bounds.width+6, height: clockBackGroundView.bounds.width+6)
+        progressView.frame = CGRect(x: -3, y: -3, width: dialWidth+6, height: dialWidth+6)
         progressView.setProgressColor(AppTheme.NEVO_SOLAR_YELLOW())
         progressView.setProgress(0.0)
-        self.view.layer.addSublayer(progressView)
+        mClockTimerView?.layer.addSublayer(progressView)
     }
     
     /**

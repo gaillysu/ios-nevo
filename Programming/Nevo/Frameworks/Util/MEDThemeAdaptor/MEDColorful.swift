@@ -69,7 +69,14 @@ extension MEDColorfulLooking where Self: UITableViewController {
     }
 }
 
-// MARK: - UITableviewCell
+// MARK: - UITabelView
+extension MEDColorfulLooking where Self: UITableView {
+    public func viewDefaultColorful() {
+        self.backgroundColor = UIColor.getLightBaseColor()
+    }
+}
+
+// MARK: - UITableViewCell
 extension MEDColorfulLooking where Self: UITableViewCell {
     public func viewDefaultColorful() {
         if !AppTheme.isTargetLunaR_OR_Nevo() {
