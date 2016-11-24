@@ -717,9 +717,6 @@ extension AppDelegate {
             
             let activeTime: Int = stepsModel.walking_duration+stepsModel.running_duration
             
-            /// TODO 2016-11-03
-            /// distance should be Double ?
-            /// Discussion: <#Say something#>
             MEDStepsNetworkManager.createSteps(uid: profile.id, steps: stepsModel.hourlysteps, date: dateString, activeTime: activeTime, calories: caloriesValue, distance: milesValue, completion: { (success: Bool) in
                 if success {
                     stepsModel.isUpload = true

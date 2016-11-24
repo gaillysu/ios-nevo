@@ -872,6 +872,8 @@
 		66A0E0801DBF6C08001C0C67 /* Timezone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66A0E0771DBF6C08001C0C67 /* Timezone.swift */; };
 		66AC4E5D1DBF537500E431BE /* sunrise.png in Resources */ = {isa = PBXBuildFile; fileRef = 665BD6D71DBF1297008C2623 /* sunrise.png */; };
 		66AC4E5E1DBF537500E431BE /* sunset.png in Resources */ = {isa = PBXBuildFile; fileRef = 665BD6D81DBF1297008C2623 /* sunset.png */; };
+		66D9AFE41DE6E330009CF3ED /* GetNotificationAppIDPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6199AED41DDC593A00BEA140 /* GetNotificationAppIDPacket.swift */; };
+		66D9AFE51DE6E3AC009CF3ED /* ReceiveNewNotificationPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 610767111DDD8AE600F53AD6 /* ReceiveNewNotificationPacket.swift */; };
 		66F260F41DE533EF0021BDBA /* MEDColorful.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66F260F31DE533EF0021BDBA /* MEDColorful.swift */; };
 		66F260F51DE533EF0021BDBA /* MEDColorful.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66F260F31DE533EF0021BDBA /* MEDColorful.swift */; };
 		813518AB3D92E43573F28717 /* Pods_LunaR.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E068CB5F57F135B038B3A10 /* Pods_LunaR.framework */; };
@@ -3833,6 +3835,7 @@
 				611D41481DCAD97C003BC6E3 /* M13CheckboxDotManager.swift in Sources */,
 				611D41491DCAD97C003BC6E3 /* M13CheckboxExpandManager.swift in Sources */,
 				611D414A1DCAD97C003BC6E3 /* M13CheckboxFadeManager.swift in Sources */,
+				66D9AFE41DE6E330009CF3ED /* GetNotificationAppIDPacket.swift in Sources */,
 				611D414B1DCAD97C003BC6E3 /* M13CheckboxFillManager.swift in Sources */,
 				611D414C1DCAD97C003BC6E3 /* M13CheckboxFlatManager.swift in Sources */,
 				611D414D1DCAD97C003BC6E3 /* M13CheckboxSpiralManager.swift in Sources */,
@@ -3956,6 +3959,7 @@
 				611D41B81DCAD97D003BC6E3 /* FXBlurView.h in Sources */,
 				611D41B91DCAD97D003BC6E3 /* FXBlurView.m in Sources */,
 				611D41BA1DCAD97D003BC6E3 /* Request.swift in Sources */,
+				66D9AFE51DE6E3AC009CF3ED /* ReceiveNewNotificationPacket.swift in Sources */,
 				665098931DCB25110059D5F7 /* MEDSleepDeleteRequest.swift in Sources */,
 				611D41BB1DCAD97D003BC6E3 /* NevoBTimpl.swift in Sources */,
 				611D41BC1DCAD97D003BC6E3 /* NevoBT.swift in Sources */,

@@ -47,7 +47,7 @@ class AddPresetView: UIView {
         presetName.layer.borderWidth = 1
         presetName.layer.borderColor = UIColor.lightGray.cgColor
         presetName.placeholder = NSLocalizedString("goal_name", comment: "")
-        presetName.backgroundColor = AppTheme.NEVO_SOLAR_GRAY()
+        presetName.backgroundColor = UIColor.white
         
         /// Theme adjust
         rightView.viewDefaultColorful()

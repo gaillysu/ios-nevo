@@ -177,7 +177,6 @@ class NewAddAlarmController: UITableViewController,ButtonManagerCallBack,Selecte
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 3
     }
 
@@ -198,13 +197,9 @@ class NewAddAlarmController: UITableViewController,ButtonManagerCallBack,Selecte
             return 0
         }
     }
-
-    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 23
-    }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat{
-        if((indexPath as NSIndexPath).section == 1){
+        if(indexPath.section == 1){
             
             var cellHeight:CGFloat = CGFloat(UserDefaults.standard.double(forKey: "k\(#file)HeightForDatePickerView"))
             if cellHeight != 0 {
@@ -213,8 +208,8 @@ class NewAddAlarmController: UITableViewController,ButtonManagerCallBack,Selecte
                 UserDefaults.standard.set(Double(cellHeight), forKey: "k\(#file)HeightForDatePickerView")
             }
             return cellHeight
-        }else{
-            return 45.0
+        } else {
+            return indexPath.section == 0 ? 0 : 45.0
         }
 
     }
@@ -223,12 +218,6 @@ class NewAddAlarmController: UITableViewController,ButtonManagerCallBack,Selecte
         if section == 0 {
             let  headerCell:NewAddAlarmHeader = tableView.dequeueReusableHeaderFooterView(withIdentifier: "identifier_header") as! NewAddAlarmHeader
             headerCell.alarmType.selectedSegmentIndex = alarmTypeIndex
-            if !AppTheme.isTargetLunaR_OR_Nevo() {
-                headerCell.alarmType.tintColor = UIColor.getBaseColor()
-                headerCell.backgroundColor = UIColor.getLunarTabBarColor()
-                headerCell.contentView.backgroundColor = UIColor.getLunarTabBarColor()
-                headerCell.alarmType.backgroundColor = UIColor.getLunarTabBarColor()
-            }
             
             headerCell.actionCallBack = {
                 (sender) -> Void in

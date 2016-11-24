@@ -19,13 +19,4 @@ class NotAlarmView: UIView {
         view.backgroundColor = UIColor.getBarColor()
         return nibView[0] as! UIView
     }
-
-    /*
-    // Only override drawRect: if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func drawRect(rect: CGRect) {
-        // Drawing code
-    }
-    */
-
 }

@@ -74,9 +74,12 @@ class AnalysisController: PublicClassController {
             segmented.tintColor = UIColor.getBaseColor()
             segmentDeviderView.backgroundColor = UIColor.black
             
-            self.segmented.backgroundColor = UIColor(red: 96/255.0, green: 99/255.0, blue: 101/255.0, alpha: 1)
-            segmentedBackgroundView.backgroundColor = UIColor(red: 96/255.0, green: 99/255.0, blue: 101/255.0, alpha: 1)
+            segmented.backgroundColor = UIColor.getLunarTabBarColor()
+            segmentedBackgroundView.backgroundColor = UIColor.getLunarTabBarColor()
         } else {
+            segmented.backgroundColor = UIColor.getNevoTabBarColor()
+            segmentedBackgroundView.backgroundColor = UIColor.getNevoTabBarColor()
+            
             segmentDeviderView.backgroundColor = AppTheme.NEVO_SOLAR_YELLOW()
         }
         

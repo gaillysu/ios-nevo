@@ -5,8 +5,9 @@
 //  Created by leiyuncun on 16/7/18.
 //  Copyright © 2016年 Nevo. All rights reserved.
 //
-
+ 
 import UIKit
+import SnapKit
 
 class NewAddAlarmHeader: UITableViewHeaderFooterView {
 
@@ -21,13 +22,29 @@ class NewAddAlarmHeader: UITableViewHeaderFooterView {
     override func awakeFromNib() {
         let dict:[String : AnyObject] = [NSForegroundColorAttributeName:UIColor.white]
         alarmType.setTitleTextAttributes(dict, for: UIControlState.selected)
+        
+        let bottomLineView = UIView()
+        addSubview(bottomLineView)
+        
+        bottomLineView.snp.makeConstraints { (v) in
+            v.left.equalToSuperview()
+            v.right.equalToSuperview()
+            v.bottom.equalToSuperview()
+            v.height.equalTo(0.5)
+        }
+        
+        bottomLineView.backgroundColor = AppTheme.NEVO_SOLAR_YELLOW()
+        
+        if !AppTheme.isTargetLunaR_OR_Nevo() {
+            alarmType.tintColor = UIColor.getBaseColor()
+            backgroundColor = UIColor.getLunarTabBarColor()
+            contentView.backgroundColor = UIColor.getLunarTabBarColor()
+            alarmType.backgroundColor = UIColor.getLunarTabBarColor()
+        } else {
+            alarmType.tintColor = AppTheme.NEVO_SOLAR_YELLOW()
+            backgroundColor = UIColor.getNevoTabBarColor()
+            contentView.backgroundColor = UIColor.getNevoTabBarColor()
+            alarmType.backgroundColor = UIColor.getNevoTabBarColor()
+        }
     }
-    /*
-    // Only override drawRect: if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func drawRect(rect: CGRect) {
-        // Drawing code
-    }
-    */
-
 }
