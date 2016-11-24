@@ -40,7 +40,6 @@ class SelectedNotificationTypeController: UITableViewController {
         
         if !AppTheme.isTargetLunaR_OR_Nevo() {
             self.tableView.backgroundColor = UIColor.getLightBaseColor()
-            
         }
     }
 
@@ -139,13 +138,20 @@ class SelectedNotificationTypeController: UITableViewController {
             
             if swicthStates {
                 cell.backgroundColor = UIColor.white
-                cell.isUserInteractionEnabled = true;
+                cell.contentView.backgroundColor = UIColor.white
+                cell.textLabel?.textColor = UIColor.black
+                cell.accessoryView?.isHidden = false
+                cell.isUserInteractionEnabled = true
                 if !AppTheme.isTargetLunaR_OR_Nevo() {
                     cell.backgroundColor = UIColor.getGreyColor()
+                    cell.contentView.backgroundColor = UIColor.getGreyColor()
+                    cell.textLabel?.textColor = UIColor.white
                 }
             }else{
                 cell.backgroundColor = UIColor.clear
-                cell.isUserInteractionEnabled = false;
+                cell.contentView.backgroundColor = UIColor.clear
+                cell.accessoryView?.isHidden = true
+                cell.isUserInteractionEnabled = false
             }
             
             return cell
