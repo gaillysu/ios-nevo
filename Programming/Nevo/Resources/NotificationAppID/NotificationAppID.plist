@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Version</key>
+	<string>0.1</string>
+	<key>NotificationAppID</key>
+	<dict>
+		<key>CALL</key>
+		<dict>
+			<key>bundleId</key>
+			<string>com.apple.mobilephone</string>
+		</dict>
+		<key>Calendar</key>
+		<dict>
+			<key>bundleId</key>
+			<string>com.apple.mobilecal</string>
+		</dict>
+		<key>SMS</key>
+		<dict>
+			<key>bundleId</key>
+			<string>com.apple.MobileSMS</string>
+		</dict>
+		<key>EMAIL</key>
+		<dict>
+			<key>bundleId</key>
+			<string>com.apple.mobilemail</string>
+		</dict>
+		<key>QQ</key>
+		<dict>
+			<key>bundleId</key>
+			<string>com.tencent.mqq</string>
+		</dict>
+		<key>Twitter</key>
+		<dict>
+			<key>bundleId</key>
+			<string>com.atebits.Tweetie2</string>
+		</dict>
+		<key>Inastagram</key>
+		<dict>
+			<key>bundleId</key>
+			<string>com.burbn.instagram</string>
+		</dict>
+		<key>Messenger(Facebook)</key>
+		<dict>
+			<key>bundleId</key>
+			<string>com.facebook.Messenger</string>
+		</dict>
+		<key>WeChat</key>
+		<dict>
+			<key>bundleId</key>
+			<string>com.tencent.xin</string>
+		</dict>
+		<key>Facebook</key>
+		<dict>
+			<key>bundleId</key>
+			<string>com.facebook.Facebook</string>
+		</dict>
+	</dict>
+</dict>
+</plist>

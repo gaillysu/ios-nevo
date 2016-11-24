@@ -11,35 +11,9 @@ import BRYXBanner
 import XCGLogger
 
 class NotificationViewController: UITableViewController,SelectedNotificationDelegate {
-    fileprivate var nevoNotiOFFArray:[NotificationSetting] = []
-    fileprivate var nevoNotiONArray:[NotificationSetting] = []
-    fileprivate var lunarNotiOFFArray:[NotificationSetting] = []
-    fileprivate var lunarNotiONArray:[NotificationSetting] = []
-    
-    fileprivate var mNotificationOFFArray:[NotificationSetting] {
-        if AppTheme.isTargetLunaR_OR_Nevo() {
-            return nevoNotiOFFArray
-        } else {
-            return lunarNotiOFFArray
-        }
-    }
-    fileprivate var mNotificationONArray:[NotificationSetting] {
-        if AppTheme.isTargetLunaR_OR_Nevo() {
-            return nevoNotiONArray
-        } else {
-            return lunarNotiONArray
-        }
-    }
-    
     fileprivate let titleHeader:[String] = ["ACTIVE_NOTIFICATIONS","INACTIVE_NOTIFICATIONS"]
-    fileprivate var mNotificationArray:NSArray = NSArray()
-
-    var hasNotiOFF:Bool {
-        return self.mNotificationOFFArray.count != 0
-    }
-    var hasNotiON:Bool {
-        return self.mNotificationONArray.count != 0
-    }
+    fileprivate var mNotificationArray:[MEDUserNotification] = []
+    fileprivate var allArraySettingArray:[NotificationSetting] = []
     
     @IBOutlet weak var notificationView: NotificationView!
 
@@ -73,58 +47,34 @@ class NotificationViewController: UITableViewController,SelectedNotificationDele
     }
 
     func initNotificationSettingArray() {
-        nevoNotiONArray.removeAll()
-        nevoNotiOFFArray.removeAll()
-        
-        /// Todo: When lunar's new notification module is completed, we can rewrite here.
-        lunarNotiONArray.removeAll()
-        lunarNotiOFFArray.removeAll()
-
-        mNotificationArray = UserNotification.getAll()
-        
-        let notificationTypeArray:[NotificationType] = [
-            NotificationType.call,
-            NotificationType.email,
-            NotificationType.facebook,
-            NotificationType.sms,
-            NotificationType.wechat,
-            NotificationType.calendar]
-        
-        for notificationType in notificationTypeArray {
-            for model in mNotificationArray{
-                let notification:UserNotification = model as! UserNotification
-                if(notification.NotificationType == notificationType.rawValue as String){
-                    let setting:NotificationSetting = NotificationSetting(type: notificationType, clock: notification.clock, color: 0, states:notification.status)
-                    
-                    /// Todo: When lunar's new notification module is completed, we can rewrite here.
-                    if(notification.status) {
-                        nevoNotiONArray.append(setting)
-                        lunarNotiONArray.append(setting)
-                    }else {
-                        nevoNotiOFFArray.append(setting)
-                        lunarNotiOFFArray.append(setting)
-                    }
-                    break
-                }
+        mNotificationArray = MEDUserNotification.getAll() as! [MEDUserNotification]
+        allArraySettingArray.removeAll()
+        for model in mNotificationArray{
+            let notification:MEDUserNotification = model
+            let notificationType:String = notification.notificationType
+            NSLog("notificationType:%@", notification.notificationType)
+            var type = NotificationType(rawValue: notificationType as NSString)
+            if type == nil {
+                type = NotificationType.whatsapp
             }
+            let setting:NotificationSetting = NotificationSetting(type: type!, clock: notification.clock, color: NSNumber(value:notification.clock), states:notification.isAddWatch)
+            allArraySettingArray.append(setting)
         }
     }
-}
 
-// MARK: - SelectedNotificationDelegate
-extension NotificationViewController {
+    // MARK: - SelectedNotificationDelegate
     func didSelectedNotificationDelegate(_ clockIndex:Int,ntSwitchState:Bool,notificationType:String){
         XCGLogger.default.debug("clockIndex····:\(clockIndex),ntSwitchState·····:\(ntSwitchState)")
         for model in mNotificationArray {
-            let notModel:UserNotification = model as! UserNotification
-            if(notModel.NotificationType == notificationType){
-                let notification:UserNotification = UserNotification(keyDict: ["id":notModel.id, "clock":clockIndex, "NotificationType":notificationType,"status":ntSwitchState])
-                if(notification.update()){
+            let notModel:MEDUserNotification = model
+            if(notModel.notificationType == notificationType){
+                notModel.clock = clockIndex
+                notModel.isAddWatch = ntSwitchState
+                if(notModel.update()){
                     initNotificationSettingArray()
                     self.tableView.reloadData()
-                    let allArray:[NotificationSetting] = mNotificationOFFArray + mNotificationONArray
                     if(AppDelegate.getAppDelegate().isConnected()){
-                        AppDelegate.getAppDelegate().SetNortification(allArray)
+                        AppDelegate.getAppDelegate().SetNortification(allArraySettingArray)
                         let banner = MEDBanner(title: NSLocalizedString("sync_notifications", comment: ""), subtitle: nil, image: nil, backgroundColor: AppTheme.NEVO_SOLAR_YELLOW())
                         banner.dismissesOnTap = true
                         banner.show(duration: 2.0)
@@ -138,10 +88,8 @@ extension NotificationViewController {
             }
         }
     }
-}
 
-// MARK: TableView Datasource
-extension NotificationViewController {
+    // MARK: - Table view Delegate
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat{
         return 45.0
     }
@@ -149,38 +97,59 @@ extension NotificationViewController {
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat{
         return 40.0
     }
-    
+
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
+        tableView.deselectRow(at: indexPath, animated: true)
+        let noti:NotificationSetting = allArraySettingArray[indexPath.row]
+        let selectedNot:SelectedNotificationTypeController = SelectedNotificationTypeController()
+        selectedNot.titleString = noti.typeName
+        selectedNot.clockIndex = noti.getClock()
+        selectedNot.swicthStates = noti.getStates()
+        selectedNot.selectedDelegate = self
+        self.navigationController?.pushViewController(selectedNot, animated: true)
+    }
+
+    // MARK: - Table view data source
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String{
-        if hasNotiON && hasNotiOFF {
-            return NSLocalizedString(titleHeader[section], comment: "")
-        } else {
-            return hasNotiON ? NSLocalizedString(titleHeader[0], comment: "") : NSLocalizedString(titleHeader[1], comment: "")
+        return NSLocalizedString(titleHeader[section], comment: "")
+    }
+
+    override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        let headView = view as! UITableViewHeaderFooterView
+        if !AppTheme.isTargetLunaR_OR_Nevo() {
+            headView.textLabel?.textColor = UIColor.white
         }
     }
-    
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        if !hasNotiON && !hasNotiOFF {
-            return 0
-        } else {
-            return hasNotiON && hasNotiOFF ? 2 : 1
-        }
+        return 2
     }
-    
+
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if hasNotiON && hasNotiOFF {
-            return section == 0 ? mNotificationONArray.count : mNotificationOFFArray.count
+        // #warning Incomplete implementation, return the number of rows
+        if mNotificationArray.count>0 {
+            switch (section){
+            case 0:
+                return (allArraySettingArray.filter({$0.getStates() == false})).count
+            case 1:
+                return (allArraySettingArray.filter({$0.getStates() == true})).count
+            default:
+                return 1;
+            }
+        }else{
+            return 1
         }
         
-        return hasNotiON ? mNotificationONArray.count : mNotificationOFFArray.count
     }
-    
+
+
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var noti:NotificationSetting? = nil
-        if hasNotiON && hasNotiOFF {
-            noti = indexPath.section == 0 ? mNotificationONArray[indexPath.row] : mNotificationOFFArray[indexPath.row]
-        } else {
-            noti = hasNotiON ? mNotificationONArray[indexPath.row] : mNotificationOFFArray[indexPath.row]
+        var noti:NotificationSetting? = allArraySettingArray[indexPath.row]
+        switch indexPath.section {
+        case 0:
+            noti = (allArraySettingArray.filter({$0.getStates() == false}))[indexPath.row]
+        default:
+            noti = (allArraySettingArray.filter({$0.getStates() == true}))[indexPath.row]
         }
         
         if let noti = noti {
@@ -190,43 +159,5 @@ extension NotificationViewController {
         }
         
         return UITableViewCell()
-    }
-}
-
-
-// MARK: - TableView Delegate
-extension NotificationViewController {
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
-        tableView.deselectRow(at: indexPath, animated: true)
-        var titleString:String = ""
-        var clockIndex:Int = 0
-        var state:Bool = false
-        
-        var noti:NotificationSetting?
-        if hasNotiON && hasNotiOFF {
-            noti = indexPath.section == 0 ? mNotificationONArray[indexPath.row] : mNotificationOFFArray[indexPath.row]
-        } else {
-            noti = hasNotiON ? mNotificationONArray[indexPath.row] : mNotificationOFFArray[indexPath.row]
-        }
-        
-        if let noti = noti {
-            titleString = noti.typeName
-            clockIndex = noti.getClock()
-            state = noti.getStates()
-        }
-        
-        let selectedNot:SelectedNotificationTypeController = SelectedNotificationTypeController()
-        selectedNot.titleString = titleString
-        selectedNot.clockIndex = clockIndex
-        selectedNot.swicthStates = state
-        selectedNot.selectedDelegate = self
-        self.navigationController?.pushViewController(selectedNot, animated: true)
-    }
-
-    override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        let headView = view as! UITableViewHeaderFooterView
-        if !AppTheme.isTargetLunaR_OR_Nevo() {
-            headView.textLabel?.textColor = UIColor.white
-        }
     }
 }

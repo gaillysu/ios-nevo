@@ -132,19 +132,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
         
         adjustLaunchLogic()
         
-        //cancel all notifications  PM-13:00, PM 19:00
-        
-        //Rate our app Pop-up
-        iRate.sharedInstance().messageTitle = NSLocalizedString("Rate Nevo", comment: "")
-        iRate.sharedInstance().message = NSLocalizedString("If you like Nevo, please take the time, etc", comment:"");
-        iRate.sharedInstance().cancelButtonLabel = NSLocalizedString("No, Thanks", comment:"");
-        iRate.sharedInstance().remindButtonLabel = NSLocalizedString("Remind Me Later", comment:"");
-        iRate.sharedInstance().rateButtonLabel = NSLocalizedString("Rate It Now", comment:"");
-        iRate.sharedInstance().applicationBundleID = "com.nevowatch.Nevo"
-        iRate.sharedInstance().onlyPromptIfLatestVersion = true
-        iRate.sharedInstance().usesPerWeekForPrompt = 1
-        iRate.sharedInstance().previewMode = true
-        iRate.sharedInstance().promptAtLaunch = false
+        MEDUserNotification.defaultNotificationColor()
         
         //start Location
         self.startLocation()
@@ -348,6 +336,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
             if(packet.getHeader() == SetAlarmRequest.HEADER()) {
                 //start sync data
                 self.syncActivityData()
+            }
+            
+            if packet.getHeader() == NewAppIDNotificationRequest.HEADER() {
+                let thispacket = packet.copy() as ReceiveNewNotificationPacket
+                let appidString:String = thispacket.getApplicationID()
+                let object = MEDUserNotification.getFilter("appid = '\(appidString)'")
+                if object.count == 0 {
+                    let userNotification:MEDUserNotification = MEDUserNotification()
+                    userNotification.key = appidString
+                    userNotification.appName = "···"
+                    userNotification.receiveDate = Date().timeIntervalSince1970
+                    userNotification.appid = appidString
+                    _ = userNotification.add()
+                }
+                XCGLogger.default.debug("getApplicationID:\(appidString)")
             }
             
             if(packet.getHeader() == ReadDailyTrackerInfo.HEADER()) {
