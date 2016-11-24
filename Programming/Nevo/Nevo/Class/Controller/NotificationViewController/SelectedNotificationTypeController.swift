@@ -156,7 +156,8 @@ class SelectedNotificationTypeController: UITableViewController {
         tableView.deselectRow(at: indexPath, animated: true)
         if((indexPath as NSIndexPath).section == 2){
             let cell:LineColorCell = tableView.cellForRow(at: indexPath) as! LineColorCell
-            cell.imageName.isHidden = false
+            let image = UIImage(named: "notifications_check")
+            cell.accessoryView = UIImageView(image: image)
             
             let mNotificationArray:NSArray =  UserNotification.getAll()
             for model in mNotificationArray{

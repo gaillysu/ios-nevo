@@ -211,7 +211,20 @@ extension LunaROTAController {
     
     
     func getBundledFirmwareURLHelper() -> URL {
-        return Bundle.main.url(forResource: "lunar_20161011_v3", withExtension: "zip")!
+        let fileArray = AppTheme.GET_FIRMWARE_FILES("DFUFirmware")
+        var lunaRFirmwareUrl:URL?
+        for tmpfile in fileArray {
+            let selectedFile = tmpfile as! URL
+            let fileExtension:String? = selectedFile.pathExtension
+            if fileExtension == "zip"{
+                lunaRFirmwareUrl = selectedFile
+                break
+            }
+        }
+        if lunaRFirmwareUrl == nil {
+            lunaRFirmwareUrl = URL(string: "")
+        }
+        return lunaRFirmwareUrl!
     }
     
     func setCentralManager(centralManager aCentralManager : CBCentralManager){

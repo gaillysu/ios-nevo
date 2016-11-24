@@ -87,13 +87,14 @@ class SunriseSetController: PublicClassController {
         } else {
             self.cityNameLable.text = "Shenzhen" + ", " + "China"
         }
-        self.cityDateLabel.text = solar!.date.stringFromFormat("d MMM, yyyy")
-
-        let now:Date = self.solar!.date
-        let cal:Calendar = Calendar.current
-        let dd:DateComponents = (cal as NSCalendar).components([NSCalendar.Unit.year, NSCalendar.Unit.month, NSCalendar.Unit.day ,NSCalendar.Unit.hour, NSCalendar.Unit.minute, NSCalendar.Unit.second,], from: now);
-
-        setDialTime(dateComponents: dd)
+        if let solarValue = solar {
+            self.cityDateLabel.text = solar!.date.stringFromFormat("d MMM, yyyy")
+            let now:Date = self.solar!.date
+            let cal:Calendar = Calendar.current
+            let dd:DateComponents = (cal as NSCalendar).components([NSCalendar.Unit.year, NSCalendar.Unit.month, NSCalendar.Unit.day ,NSCalendar.Unit.hour, NSCalendar.Unit.minute, NSCalendar.Unit.second,], from: now);
+            
+            setDialTime(dateComponents: dd)
+        }        
     }
     
     public func setDialTime(dateComponents:DateComponents) {

@@ -361,6 +361,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                     saveSolarHarvest(thispacket: thispacket, date: thispacket.getDateTimer())
                 }
                 
+                XCGLogger.default.debug("dateString====:\(timeStr)")
                 //save steps
                 let hourlySteps = self.saveStepsToDataBase(thispacket: thispacket, date: timerInterval, dateString: timeStr)
                 

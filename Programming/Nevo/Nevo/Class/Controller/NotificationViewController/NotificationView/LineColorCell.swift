@@ -10,8 +10,6 @@ import UIKit
 
 class LineColorCell: UITableViewCell {
 
-    @IBOutlet weak var imageName: UIImageView!
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -21,10 +19,6 @@ class LineColorCell: UITableViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         self.textLabel?.backgroundColor = UIColor.clear
-        if !AppTheme.isTargetLunaR_OR_Nevo() {
-            self.textLabel!.textColor = UIColor.white
-            imageName.image = UIImage(named:"notifications_selected_background")
-        }
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
