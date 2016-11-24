@@ -37,8 +37,8 @@ class UserProfileCell: UITableViewCell {
         super.awakeFromNib()
         
         /// APPTHEME ADJUST
-        viewDefaultColorful()
         if !AppTheme.isTargetLunaR_OR_Nevo() {
+            titleLabel.textColor = UIColor.white
             valueTextField.textColor = UIColor.getBaseColor()
         }
     }

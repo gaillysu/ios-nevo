@@ -74,6 +74,10 @@ class SelectedNotificationView: UITableView {
             endCell.accessoryView = nil;
         }
         
+        if !AppTheme.isTargetLunaR_OR_Nevo() {
+            endCell.textLabel?.textColor = UIColor.white
+        }
+        
         endCell.textLabel!.text = cellTitle
         return endCell
     }
