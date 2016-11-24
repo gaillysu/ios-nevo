@@ -66,6 +66,7 @@ extension LoginController {
             logoinButton.titleLabel?.font = UIFont(name: "Raleway", size: 20)
         }
         
+        
         if !AppTheme.isTargetLunaR_OR_Nevo() {
             iconImage.image = UIImage(named: "lunar_logo")
             self.view.backgroundColor = UIColor.getGreyColor()
@@ -165,7 +166,7 @@ extension LoginController {
     }
 }
 
-// MAKR: - Network
+// MARK: - Network
 extension LoginController {
     func loginRequest() {
         userName = userNameTextField!.text!
@@ -188,10 +189,6 @@ extension LoginController {
             
             let view = MRProgressOverlayView.showOverlayAdded(to: self.navigationController!.view, title: NSLocalizedString("please_wait", comment: ""), mode: MRProgressOverlayViewMode.indeterminate, animated: true)
             view?.setTintColor(AppTheme.NEVO_SOLAR_YELLOW())
-            
-            if !AppTheme.isTargetLunaR_OR_Nevo() {
-                view?.setTintColor(UIColor.getBaseColor())
-            }
             
             MEDUserNetworkManager.login(email: userName, password: password, completion: { (loggedIn: Bool, user: UserProfile?) in
                 

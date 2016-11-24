@@ -7,12 +7,10 @@
 //
 
 /// 🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧
-/// 
-/// 风格一致的 App 中, 同一控件在`绝大多数`情景下的配色都是一致的, 比如 tableview 的背景色, switch 的 onTintColor, label 的文字颜色, 所以就在这里把这些封装到方法里, 然后在需要它根据 target 改变的时候调用这个方法即可.
 ///
-/// 或许我也可以用 apptheme 类来解决, 那样需要更多的代码量, 但可能会更加清晰.
+/// Introduction: The views & viewControllers all have a default behavior, call the `viewDefaultColorful()` method to make them colorful. 
 ///
-/// Introduction: The views & viewControllers all have a default behavior, call the `viewDefaultColorful()` method to make them colorful. Maybe use class `apptheme` is a better way, it would be more clear, but need more codes too.
+/// Maybe use class `apptheme` is a better way, it would be more clear, but need more codes too.
 ///
 /// 🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧
 
@@ -162,7 +160,7 @@ extension MEDColorfulLooking where Self: UITextField {
             tintColor = UIColor.white
             
             if value(forKeyPath: "_placeholderLabel.textColor") != nil {
-                setValue(UIColor.gray, forKeyPath: "_placeholderLabel.textColor")
+                setValue(UIColor(white: 1, alpha: 0.7), forKeyPath: "_placeholderLabel.textColor")
             }
         }
     }
