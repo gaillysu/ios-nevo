@@ -110,6 +110,8 @@
 "ACTIVE_NOTIFICATIONS"="ACTIVE NOTIFICATIONS";
 "INACTIVE_NOTIFICATIONS"="INACTIVE NOTIFICATIONS";
 "Allow_Notifications"="Allow Notifications";
+// Lunar's new notification
+"Allow_Notifications_Lunar"="Allow buzzing";
 "syncing_data"="Syncing data";
 "sync_finished"="Sync finished";
 "Update"="Update";
