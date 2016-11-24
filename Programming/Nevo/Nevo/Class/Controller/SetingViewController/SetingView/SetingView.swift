@@ -20,9 +20,9 @@ class SetingView: UIView {
     func bulidNotificationViewUI(_ delegate:ButtonManagerCallBack){
         mDelegate = delegate
         tableListView.separatorColor = UIColor.lightGray
-        if !AppTheme.isTargetLunaR_OR_Nevo() {
-            tableListView.backgroundColor = UIColor.getLightBaseColor()
-        }
+        
+        /// Theme adjust
+        tableListView.viewDefaultColorful()
     }
 
 
@@ -51,11 +51,8 @@ class SetingView: UIView {
             activity.center = CGPoint(x: UIScreen.main.bounds.size.width-activity.frame.size.width, y: 50/2.0)
             endCell?.contentView.addSubview(activity)
             
-            if !AppTheme.isTargetLunaR_OR_Nevo() {
-                activity.tintColor = UIColor.white
-                activity.color = UIColor.white
-            }
-            
+            // Theme adjust
+            activity.viewDefaultColorful()
         }else{
             endCell?.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
         }
@@ -65,13 +62,14 @@ class SetingView: UIView {
         endCell?.textLabel!.backgroundColor = UIColor.clear
         endCell?.imageView?.image = UIImage(named: imageName)
         
+        // Theme adjust
+        endCell?.viewDefaultColorful()
+        mSendLocalNotificationSwitchButton.viewDefaultColorful()
+        
         if !AppTheme.isTargetLunaR_OR_Nevo() {
             if title == "My Nevo" {
              endCell?.textLabel?.text = "My LunaR";
             }
-            endCell?.backgroundColor = UIColor.getGreyColor()
-            mSendLocalNotificationSwitchButton?.onTintColor = UIColor.getBaseColor()
-            endCell?.textLabel?.textColor = UIColor.white
         }
         
         return endCell!
@@ -109,12 +107,10 @@ class SetingView: UIView {
             endCell?.contentView.addSubview(mSendLocalNotificationSwitchButton!)
         }
         
-        if !AppTheme.isTargetLunaR_OR_Nevo() {
-            endCell?.backgroundColor = UIColor.getGreyColor()
-            endCell?.contentView.backgroundColor = UIColor.getGreyColor()
-            mSendLocalNotificationSwitchButton?.onTintColor = UIColor.getBaseColor()
-            endCell?.textLabel?.textColor = UIColor.white
-        }
+        // Theme adjust
+        endCell?.viewDefaultColorful()
+        mSendLocalNotificationSwitchButton.viewDefaultColorful()
+        
         return endCell!
     }
 

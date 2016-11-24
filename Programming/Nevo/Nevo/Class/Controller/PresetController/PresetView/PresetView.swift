@@ -40,14 +40,7 @@ class PresetView: UITableView {
         }
         endCell?.selectionStyle = UITableViewCellSelectionStyle.none;
         
-        if !AppTheme.isTargetLunaR_OR_Nevo() {
-            let cell = endCell as! PresetTableViewCell
-            cell.backgroundColor = UIColor.getGreyColor()
-            cell.contentView.backgroundColor = UIColor.getGreyColor()
-            cell.presetSteps.textColor = UIColor.white
-            cell.presetName.textColor = UIColor.white
-            cell.presetStates.onTintColor = UIColor.getBaseColor()
-        }
+        endCell?.viewDefaultColorful()
         
         return endCell!
     }
@@ -55,13 +48,4 @@ class PresetView: UITableView {
     func controllManager(_ sender:AnyObject){
         mDelegate?.controllManager(sender)
     }
-
-    /*
-    // Only override drawRect: if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func drawRect(rect: CGRect) {
-        // Drawing code
-    }
-    */
-
 }

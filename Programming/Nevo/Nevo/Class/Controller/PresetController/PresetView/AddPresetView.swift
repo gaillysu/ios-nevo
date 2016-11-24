@@ -37,7 +37,7 @@ class AddPresetView: UIView {
         presetNumber.layer.cornerRadius = 8
         presetNumber.layer.masksToBounds = true
         presetNumber.layer.borderWidth = 1
-        presetNumber.layer.borderColor = UIColor.gray.cgColor
+        presetNumber.layer.borderColor = UIColor.lightGray.cgColor
         presetNumber.backgroundColor = UIColor.white
 
         presetName.leftView = UILabel(frame: CGRect(x: 0,y: 0,width: 10,height: presetName.frame.size.height))
@@ -45,36 +45,22 @@ class AddPresetView: UIView {
         presetName.layer.cornerRadius = 8
         presetName.layer.masksToBounds = true
         presetName.layer.borderWidth = 1
-        presetName.layer.borderColor = UIColor.white.cgColor
+        presetName.layer.borderColor = UIColor.lightGray.cgColor
         presetName.placeholder = NSLocalizedString("goal_name", comment: "")
         presetName.backgroundColor = AppTheme.NEVO_SOLAR_GRAY()
         
+        /// Theme adjust
+        rightView.viewDefaultColorful()
+        presetNumber.viewDefaultColorful()
+        presetName.viewDefaultColorful()
+        
         if !AppTheme.isTargetLunaR_OR_Nevo() {
-            
-            rightView.textColor = UIColor.white
-            
-            presetNumber.textColor = UIColor.white
-            presetNumber.backgroundColor = UIColor.getGreyColor()
-            presetNumber.setValue(UIColor.white, forKeyPath: "_placeholderLabel.textColor")
-            presetNumber.tintColor = UIColor.white
-            
-            presetName.textColor = UIColor.white
-            presetName.backgroundColor = UIColor.getGreyColor()
+            presetNumber.layer.borderColor = UIColor.gray.cgColor
             presetName.layer.borderColor = UIColor.gray.cgColor
-            presetName.setValue(UIColor.gray, forKeyPath: "_placeholderLabel.textColor")
-            presetName.tintColor = UIColor.white
         }
     }
 
     func controllManager(_ sender:AnyObject){
         mDelegate?.controllManager(sender)
     }
-    /*
-    // Only override drawRect: if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func drawRect(rect: CGRect) {
-        // Drawing code
-    }
-    */
-
 }

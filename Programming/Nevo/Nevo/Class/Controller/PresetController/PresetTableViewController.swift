@@ -36,19 +36,45 @@ class PresetTableViewController: UITableViewController,ButtonManagerCallBack,Add
         for pArray in array {
             prestArray.append(pArray as! Presets)
         }
-        styleEvolve()
-
+        
+        /// Theme adjust
+        presetView.viewDefaultColorful()
+        if !AppTheme.isTargetLunaR_OR_Nevo() {
+            presetView.separatorColor = UIColor.getLightBaseColor()
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         tableView.reloadData()
     }
+}
 
-    // MARK: - AddPresetDelegate
+// MARK: - Touch Event
+extension PresetTableViewController {
+    func controllManager(_ sender:AnyObject){
+        if(sender.isEqual(presetView.leftButton)){
+            //let removeAll:Bool = Presets.removeAll()
+            let addPreset:AddPresetViewController = AddPresetViewController()
+            addPreset.purpose = .Add
+            addPreset.addDelegate = self
+            self.navigationController?.pushViewController(addPreset, animated: true)
+        }
+        
+        if(sender.isKind(of: UISwitch.classForCoder())){
+            let switchSender:UISwitch = sender as! UISwitch
+            let preModel:Presets = prestArray[switchSender.tag]
+            preModel.status = switchSender.isOn
+            _ = preModel.update()
+        }
+    }
+}
+
+
+// MARK: - AddPresetDelegate
+extension PresetTableViewController {
     func onAddPresetNumber(_ number:Int, name:String){
         var _name = name
-//        NSLog("onAddPresetNumber:\(number),name:\(name)")
         
         if _name.length() == 0 {
             _name = nameIncrease(name: "\(NSLocalizedString("title_goal", comment: ""))", startNum: 1, array: prestArray)
@@ -60,7 +86,6 @@ class PresetTableViewController: UITableViewController,ButtonManagerCallBack,Add
             }
         }
         
-        
         let prestModel:Presets = Presets(keyDict: ["id":0,"steps":number,"label":"\(_name)","status":true])
         prestModel.add { (id, completion) -> Void in
             prestModel.id = id!
@@ -68,27 +93,10 @@ class PresetTableViewController: UITableViewController,ButtonManagerCallBack,Add
             self.tableView.reloadData()
         }
     }
-
-    // MARK: - ButtonManagerCallBack
-    func controllManager(_ sender:AnyObject){
-        if(sender.isEqual(presetView.leftButton)){
-            //let removeAll:Bool = Presets.removeAll()
-            let addPreset:AddPresetViewController = AddPresetViewController()
-            addPreset.purpose = .Add
-            addPreset.addDelegate = self
-            self.navigationController?.pushViewController(addPreset, animated: true)
-        }
-
-        if(sender.isKind(of: UISwitch.classForCoder())){
-            let switchSender:UISwitch = sender as! UISwitch
-            let preModel:Presets = prestArray[switchSender.tag]
-            preModel.status = switchSender.isOn
-            _ = preModel.update()
-        }
-    }
 }
 
-// MARK: - Table view data source
+
+// MARK: - TableView Datasource
 extension PresetTableViewController {
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -104,6 +112,10 @@ extension PresetTableViewController {
         return presetView.getPresetTableViewCell(indexPath, tableView: tableView,presetArray: prestArray, delegate: self)
     }
     
+}
+
+// MARK: - TableView Delegate
+extension PresetTableViewController {
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
     }
@@ -138,7 +150,6 @@ extension PresetTableViewController {
         return true
     }
     
-    // MARK: - Edit the goal item
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let goalItem:Presets = prestArray[(indexPath as NSIndexPath).row]
         let editGoalController: AddPresetViewController = AddPresetViewController()
@@ -148,16 +159,8 @@ extension PresetTableViewController {
     }
 }
 
+// MARK: - Private function
 extension PresetTableViewController {
-    fileprivate func styleEvolve() {
-        if !AppTheme.isTargetLunaR_OR_Nevo() {
-            presetView.backgroundColor = UIColor.getLightBaseColor()
-            presetView.separatorColor = UIColor.getLightBaseColor()
-        }else{
-            //presetView.backgroundColor = UIColor.getLightBaseColor()
-        }
-    }
-    
     fileprivate func nameIncrease(name:String, startNum:Int, array:[Presets]) -> String {
         let _name = "\(name)\(startNum)"
         for perset in array {

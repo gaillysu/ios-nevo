@@ -13,19 +13,13 @@ class SetingNotLoginCell: UITableViewCell {
     @IBOutlet weak var notLoginlabel: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        
+        notLoginlabel.viewDefaultColorful()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
-    }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        if !AppTheme.isTargetLunaR_OR_Nevo() {
-            notLoginlabel.textColor = UIColor.white
-        }
     }
 }
