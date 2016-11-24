@@ -94,19 +94,21 @@ class SelectedNotificationView: UITableView {
     func AllowNotificationsTableViewCell(_ indexPath:IndexPath, tableView:UITableView, title:String, state:Bool)->UITableViewCell {
         let endCellID:String = "AllowNotificationsTableViewCell"
         var endCell = tableView.dequeueReusableCell(withIdentifier: endCellID)
+        var mSwitch:UISwitch?
         if (endCell == nil) {
             endCell = UITableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: endCellID)
-            let mSwitch:UISwitch = UISwitch(frame: CGRect(x: 0,y: 0,width: 51,height: 31))
-            mSwitch.isOn = state
-            mSwitch.tintColor = AppTheme.NEVO_SOLAR_YELLOW()
-            mSwitch.onTintColor = AppTheme.NEVO_SOLAR_YELLOW()
-            mSwitch.center = CGPoint(x: UIScreen.main.bounds.size.width-40, y: (endCell?.contentView.frame.height)!/2)
-            endCell?.contentView.addSubview(mSwitch)
+            mSwitch = UISwitch(frame: CGRect(x: 0,y: 0,width: 51,height: 31))
+            mSwitch?.isOn = state
+            mSwitch?.tintColor = AppTheme.NEVO_SOLAR_YELLOW()
+            mSwitch?.onTintColor = AppTheme.NEVO_SOLAR_YELLOW()
+            mSwitch?.center = CGPoint(x: UIScreen.main.bounds.size.width-40, y: (endCell?.contentView.frame.height)!/2)
+            endCell?.contentView.addSubview(mSwitch!)
         }
+        
         for view in endCell!.contentView.subviews{
             if(view.isKind(of: UISwitch.classForCoder())){
-                let mSwitch:UISwitch = view as! UISwitch
-                mSwitch.isOn = state
+                mSwitch = view as? UISwitch
+                mSwitch?.isOn = state
             }
         }
         endCell?.selectionStyle = UITableViewCellSelectionStyle.none;
@@ -114,6 +116,9 @@ class SelectedNotificationView: UITableView {
         
         if !AppTheme.isTargetLunaR_OR_Nevo() {
             endCell?.textLabel?.textColor = UIColor.white
+            endCell?.backgroundColor = UIColor.getGreyColor()
+            mSwitch?.onTintColor = UIColor.getBaseColor()
+            mSwitch?.tintColor = UIColor.white
         }
         return endCell!
     }

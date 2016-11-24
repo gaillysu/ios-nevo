@@ -16,12 +16,10 @@ protocol SelectedNotificationDelegate {
 class SelectedNotificationTypeController: UITableViewController {
     
     @IBOutlet weak var selectedNotificationView: SelectedNotificationView!
-    let colorArray:[String] = ["2 o'clock","4 o'clock","6 o'clock","8 o'clock","10 o'clock","12 o'clock"]
-    var titleString:String?
-    var clockIndex:Int = 0
-    var swicthStates:Bool = false
+    fileprivate let colorArray:[String] = ["2 o'clock","4 o'clock","6 o'clock","8 o'clock","10 o'clock","12 o'clock"]
     var selectedDelegate:SelectedNotificationDelegate?
-
+    var notSetting:NotificationSetting?
+    
     init() {
         super.init(nibName: "SelectedNotificationTypeController", bundle: Bundle.main)
     }
@@ -32,11 +30,9 @@ class SelectedNotificationTypeController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = NSLocalizedString(titleString!, comment: "")
-        //self.view.backgroundColor = UIColor.white
+        self.navigationItem.title = NSLocalizedString(notSetting!.typeName, comment: "")
         self.tableView.register(UINib(nibName: "LineColorCell",bundle: nil), forCellReuseIdentifier: "LineColor_Identifier")
-        
-        tableView.separatorStyle = swicthStates ? .singleLine : .none
+        tableView.separatorStyle = notSetting!.getStates() ? .singleLine : .none
         
         if !AppTheme.isTargetLunaR_OR_Nevo() {
             self.tableView.backgroundColor = UIColor.getLightBaseColor()
@@ -50,25 +46,10 @@ class SelectedNotificationTypeController: UITableViewController {
 
     func buttonManager(_ sender:AnyObject){
         if(sender.isKind(of: UISwitch.classForCoder())){
-            NSLog(" UISwitch 开关")
             let switchView:UISwitch = sender as! UISwitch
-            let mNotificationArray:NSArray =  UserNotification.getAll()
-            for model in mNotificationArray{
-                let notificationModel:UserNotification = model as! UserNotification
-                if(titleString == notificationModel.NotificationType){
-                    selectedDelegate?.didSelectedNotificationDelegate(notificationModel.clock, ntSwitchState: switchView.isOn,notificationType:notificationModel.NotificationType)
-                    if(switchView.isOn) {
-                        swicthStates = true
-                    }else {
-                        swicthStates = false
-                    }
-                    
-                    tableView.separatorStyle = swicthStates ? .singleLine : .none
-                    
-                    selectedNotificationView.reloadData()
-                    break
-                }
-            }
+            selectedDelegate?.didSelectedNotificationDelegate(notSetting!.getClock(), ntSwitchState: switchView.isOn,notificationType:notSetting!.typeName)
+            tableView.separatorStyle = switchView.isOn ? .singleLine : .none
+            selectedNotificationView.reloadData()
         }
 
     }
@@ -106,23 +87,18 @@ class SelectedNotificationTypeController: UITableViewController {
         switch ((indexPath as NSIndexPath).section){
         case 0:
             let titleString:String = AppTheme.isTargetLunaR_OR_Nevo() ? "Allow_Notifications" : "Allow_Notifications_Lunar"
-            let cell = selectedNotificationView.AllowNotificationsTableViewCell(indexPath, tableView: tableView, title: NSLocalizedString(titleString, comment: ""), state:swicthStates)
+            let cell = selectedNotificationView.AllowNotificationsTableViewCell(indexPath, tableView: tableView, title: NSLocalizedString(titleString, comment: ""), state:notSetting!.getStates())
             for swicthView in cell.contentView.subviews{
                 if(swicthView.isKind(of: UISwitch.classForCoder())){
                     let mSwitch:UISwitch = swicthView as! UISwitch
                     mSwitch.addTarget(self, action: #selector(SelectedNotificationTypeController.buttonManager(_:)), for: UIControlEvents.valueChanged)
-                    if !AppTheme.isTargetLunaR_OR_Nevo() {
-                        cell.backgroundColor = UIColor.getGreyColor()
-                        mSwitch.onTintColor = UIColor.getBaseColor()
-                        mSwitch.tintColor = UIColor.white
-                    }
                 }
             }
             
             return cell
         case 1:
-            let cell = selectedNotificationView.getNotificationClockCell(indexPath, tableView: tableView, title: "", clockIndex: clockIndex)
-            if swicthStates {
+            let cell = selectedNotificationView.getNotificationClockCell(indexPath, tableView: tableView, title: "", clockIndex: notSetting!.getClock())
+            if notSetting!.getStates() {
                 cell.backgroundColor = UIColor.white
                 cell.isUserInteractionEnabled = true;
                 if !AppTheme.isTargetLunaR_OR_Nevo() {
@@ -134,9 +110,9 @@ class SelectedNotificationTypeController: UITableViewController {
             }
             return cell
         case 2:
-            let cell = selectedNotificationView.getLineColorCell(indexPath, tableView: tableView, cellTitle: colorArray[(indexPath as NSIndexPath).row], clockIndex: clockIndex)
+            let cell = selectedNotificationView.getLineColorCell(indexPath, tableView: tableView, cellTitle: colorArray[indexPath.row], clockIndex: notSetting!.getClock())
             
-            if swicthStates {
+            if notSetting!.getStates() {
                 cell.backgroundColor = UIColor.white
                 cell.contentView.backgroundColor = UIColor.white
                 cell.textLabel?.textColor = UIColor.black
@@ -169,8 +145,8 @@ class SelectedNotificationTypeController: UITableViewController {
             let mNotificationArray:NSArray =  UserNotification.getAll()
             for model in mNotificationArray{
                 let notificationModel:UserNotification = model as! UserNotification
-                if(titleString == notificationModel.NotificationType){
-                    clockIndex = ((indexPath as NSIndexPath).row+1)*2
+                if(notSetting!.typeName == notificationModel.NotificationType){
+                    //notSetting!.getClock() = (indexPath.row+1)*2
                     let reloadIndexPath:IndexPath = IndexPath(row: 0, section: 1)
                     selectedDelegate?.didSelectedNotificationDelegate(((indexPath as NSIndexPath).row+1)*2, ntSwitchState: notificationModel.status,notificationType:notificationModel.NotificationType)
                     tableView.reloadRows(at: [reloadIndexPath], with: UITableViewRowAnimation.automatic)

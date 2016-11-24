@@ -52,7 +52,6 @@ class NotificationViewController: UITableViewController,SelectedNotificationDele
         for model in mNotificationArray{
             let notification:MEDUserNotification = model
             let notificationType:String = notification.notificationType
-            NSLog("notificationType:%@", notification.notificationType)
             var type = NotificationType(rawValue: notificationType as NSString)
             if type == nil {
                 type = NotificationType.whatsapp
@@ -68,9 +67,15 @@ class NotificationViewController: UITableViewController,SelectedNotificationDele
         for model in mNotificationArray {
             let notModel:MEDUserNotification = model
             if(notModel.notificationType == notificationType){
-                notModel.clock = clockIndex
-                notModel.isAddWatch = ntSwitchState
-                if(notModel.update()){
+                let model:MEDUserNotification = MEDUserNotification()
+                model.key = notModel.key
+                model.appid = notModel.appid
+                model.appName = notModel.appName
+                model.receiveDate = notModel.receiveDate
+                model.clock = clockIndex
+                model.isAddWatch = ntSwitchState
+                model.deleteFlag = notModel.deleteFlag
+                if(model.update()){
                     initNotificationSettingArray()
                     self.tableView.reloadData()
                     if(AppDelegate.getAppDelegate().isConnected()){
@@ -102,9 +107,7 @@ class NotificationViewController: UITableViewController,SelectedNotificationDele
         tableView.deselectRow(at: indexPath, animated: true)
         let noti:NotificationSetting = allArraySettingArray[indexPath.row]
         let selectedNot:SelectedNotificationTypeController = SelectedNotificationTypeController()
-        selectedNot.titleString = noti.typeName
-        selectedNot.clockIndex = noti.getClock()
-        selectedNot.swicthStates = noti.getStates()
+        selectedNot.notSetting = noti
         selectedNot.selectedDelegate = self
         self.navigationController?.pushViewController(selectedNot, animated: true)
     }
