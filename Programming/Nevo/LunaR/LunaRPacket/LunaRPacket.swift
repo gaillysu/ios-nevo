@@ -71,6 +71,10 @@ class LunaRPacket {
         return LunaRWatchNamePacket(packets: mPackets)
     }
     
+    func copy()->ReceiveNewNotificationPacket {
+        return ReceiveNewNotificationPacket(packets: mPackets)
+    }
+    
     func isVaildPacket() ->Bool {
         if (mPackets.count < 2) {
            return false

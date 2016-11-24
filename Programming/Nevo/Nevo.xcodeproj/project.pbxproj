@@ -731,6 +731,7 @@
 		61798C2B1DE564250087891D /* Solar_Firmwares in Resources */ = {isa = PBXBuildFile; fileRef = 61798C2A1DE564250087891D /* Solar_Firmwares */; };
 		61798C2E1DE58F280087891D /* DFUFirmware in Resources */ = {isa = PBXBuildFile; fileRef = 61798C2D1DE58F280087891D /* DFUFirmware */; };
 		61798C2F1DE590F10087891D /* DFUFirmware in Resources */ = {isa = PBXBuildFile; fileRef = 61798C2D1DE58F280087891D /* DFUFirmware */; };
+		61798C311DE5A0940087891D /* NewAppIDNotificationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61798C301DE5A0940087891D /* NewAppIDNotificationRequest.swift */; };
 		618278E91DD5A3D900652C6B /* UpdateDBControllerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 618278E71DD5A3D900652C6B /* UpdateDBControllerViewController.swift */; };
 		618278EA1DD5A3D900652C6B /* UpdateDBControllerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 618278E81DD5A3D900652C6B /* UpdateDBControllerViewController.xib */; };
 		61879C291DC03BBD0089F1E5 /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66A0E0761DBF6C08001C0C67 /* City.swift */; };
@@ -770,6 +771,22 @@
 		61EF09221DDE9EB7003C2EA5 /* DeleteAllAppIDPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61EF09211DDE9EB7003C2EA5 /* DeleteAllAppIDPacket.swift */; };
 		61EF09241DDE9F1B003C2EA5 /* EditAppIDPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61EF09231DDE9F1B003C2EA5 /* EditAppIDPacket.swift */; };
 		61EF09301DDEF09E003C2EA5 /* MEDBaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61D1A8B41DD46BF000B91BDD /* MEDBaseModel.swift */; };
+		61FC93E31DE6799E000AE93C /* GetNotificationAppIDRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6199AED21DDC51FA00BEA140 /* GetNotificationAppIDRequest.swift */; };
+		61FC93E41DE679A2000AE93C /* GetTotalNotificationAppReuqest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6199AED01DDC3BB900BEA140 /* GetTotalNotificationAppReuqest.swift */; };
+		61FC93E51DE679A6000AE93C /* SetNotificationAppIDRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6199AED61DDC5C8B00BEA140 /* SetNotificationAppIDRequest.swift */; };
+		61FC93E61DE679A9000AE93C /* DeleteNotificationAppIDRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6107670D1DDD88F800F53AD6 /* DeleteNotificationAppIDRequest.swift */; };
+		61FC93E71DE679AC000AE93C /* DeleteAllNotificationAppIDRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6107670F1DDD89BC00F53AD6 /* DeleteAllNotificationAppIDRequest.swift */; };
+		61FC93E81DE679B0000AE93C /* NewAppIDNotificationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61798C301DE5A0940087891D /* NewAppIDNotificationRequest.swift */; };
+		61FC93EB1DE68060000AE93C /* MEDBaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61D1A8B41DD46BF000B91BDD /* MEDBaseModel.swift */; };
+		61FC93EC1DE68064000AE93C /* MEDUserAlarm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61D1A8A41DD468A100B91BDD /* MEDUserAlarm.swift */; };
+		61FC93ED1DE68067000AE93C /* MEDUserGoal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61D1A8A51DD468A100B91BDD /* MEDUserGoal.swift */; };
+		61FC93EE1DE6806B000AE93C /* MEDUserNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61D1A8A61DD468A100B91BDD /* MEDUserNotification.swift */; };
+		61FC93EF1DE6806D000AE93C /* MEDUserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61D1A8A71DD468A100B91BDD /* MEDUserProfile.swift */; };
+		61FC93F01DE68071000AE93C /* MEDUserSleep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61D1A8A81DD468A100B91BDD /* MEDUserSleep.swift */; };
+		61FC93F11DE68074000AE93C /* MEDUserSteps.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61D1A8A91DD468A100B91BDD /* MEDUserSteps.swift */; };
+		61FC93F31DE6810E000AE93C /* NotificationAppID in Resources */ = {isa = PBXBuildFile; fileRef = 61FC93F21DE6810E000AE93C /* NotificationAppID */; };
+		61FC93F41DE681E2000AE93C /* NotificationAppID in Resources */ = {isa = PBXBuildFile; fileRef = 61FC93F21DE6810E000AE93C /* NotificationAppID */; };
+		61FC93F51DE68B8A000AE93C /* MEDDataBaseRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61D1A8A31DD468A100B91BDD /* MEDDataBaseRequest.swift */; };
 		662887521DC1E8BC00EC0983 /* MEDMRProgressOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 662887501DC1E8BC00EC0983 /* MEDMRProgressOverlayView.swift */; };
 		6650988B1DCB0CF20059D5F7 /* MEDSleepCreateRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6650988A1DCB0CF20059D5F7 /* MEDSleepCreateRequest.swift */; };
 		6650988C1DCB0CF20059D5F7 /* MEDSleepCreateRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6650988A1DCB0CF20059D5F7 /* MEDSleepCreateRequest.swift */; };
@@ -1294,6 +1311,7 @@
 		6173DF121DB0E9A3002DF6AF /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/StepsHistoryViewController.strings"; sourceTree = "<group>"; };
 		61798C2A1DE564250087891D /* Solar_Firmwares */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Solar_Firmwares; sourceTree = "<group>"; };
 		61798C2D1DE58F280087891D /* DFUFirmware */ = {isa = PBXFileReference; lastKnownFileType = folder; path = DFUFirmware; sourceTree = "<group>"; };
+		61798C301DE5A0940087891D /* NewAppIDNotificationRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewAppIDNotificationRequest.swift; sourceTree = "<group>"; };
 		618278E71DD5A3D900652C6B /* UpdateDBControllerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateDBControllerViewController.swift; sourceTree = "<group>"; };
 		618278E81DD5A3D900652C6B /* UpdateDBControllerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UpdateDBControllerViewController.xib; sourceTree = "<group>"; };
 		61879C2C1DC05B850089F1E5 /* cities.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = cities.json; sourceTree = "<group>"; };
@@ -1334,6 +1352,7 @@
 		61EF09211DDE9EB7003C2EA5 /* DeleteAllAppIDPacket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeleteAllAppIDPacket.swift; sourceTree = "<group>"; };
 		61EF09231DDE9F1B003C2EA5 /* EditAppIDPacket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditAppIDPacket.swift; sourceTree = "<group>"; };
 		61F85F4F1DAF5BF300F341B5 /* NevoOtaController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NevoOtaController.swift; sourceTree = "<group>"; };
+		61FC93F21DE6810E000AE93C /* NotificationAppID */ = {isa = PBXFileReference; lastKnownFileType = folder; path = NotificationAppID; sourceTree = "<group>"; };
 		662887501DC1E8BC00EC0983 /* MEDMRProgressOverlayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MEDMRProgressOverlayView.swift; sourceTree = "<group>"; };
 		6650988A1DCB0CF20059D5F7 /* MEDSleepCreateRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MEDSleepCreateRequest.swift; sourceTree = "<group>"; };
 		6650988D1DCB0E220059D5F7 /* MEDSleepNetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MEDSleepNetworkManager.swift; sourceTree = "<group>"; };
@@ -1893,6 +1912,7 @@
 			isa = PBXGroup;
 			children = (
 				61879C2B1DC05B850089F1E5 /* Worldclock */,
+				61FC93F21DE6810E000AE93C /* NotificationAppID */,
 				61798C2D1DE58F280087891D /* DFUFirmware */,
 				0050D69A1C2906D8004F6F80 /* Firmwares */,
 				61798C2A1DE564250087891D /* Solar_Firmwares */,
@@ -2279,6 +2299,7 @@
 				6199AED61DDC5C8B00BEA140 /* SetNotificationAppIDRequest.swift */,
 				6107670D1DDD88F800F53AD6 /* DeleteNotificationAppIDRequest.swift */,
 				6107670F1DDD89BC00F53AD6 /* DeleteAllNotificationAppIDRequest.swift */,
+				61798C301DE5A0940087891D /* NewAppIDNotificationRequest.swift */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -2982,6 +3003,7 @@
 				00C826C31DA5ECA700ECECEE /* AnalysisLineChartCell.xib in Resources */,
 				00C826C41DA5ECA700ECECEE /* AnalysisRadarViewCell.xib in Resources */,
 				614662A51DC9D3B5001E57CC /* lunar_open_bt.png in Resources */,
+				61FC93F31DE6810E000AE93C /* NotificationAppID in Resources */,
 				00C826C51DA5ECA700ECECEE /* AnalysisValueCell.xib in Resources */,
 				00C826C61DA5ECA700ECECEE /* ProfileSetupViewController.xib in Resources */,
 				00C826C71DA5ECA700ECECEE /* CheckYourIndoxController.xib in Resources */,
@@ -3162,6 +3184,7 @@
 				0063BC281D98D456000BAB44 /* ForgotPasswordController.xib in Resources */,
 				6199192A1DC6EF0100C75AE7 /* SearchCityViewController.xib in Resources */,
 				0050D5FB1C28E0DB004F6F80 /* LineColorCell.xib in Resources */,
+				61FC93F41DE681E2000AE93C /* NotificationAppID in Resources */,
 				0058B3EB1CF55D590079A213 /* ConnectOtherAppsController.xib in Resources */,
 				0050D5F91C28E0DB004F6F80 /* NevoOtaViewController.xib in Resources */,
 				614662A41DC9D363001E57CC /* lunar_open_bt.png in Resources */,
@@ -3449,10 +3472,12 @@
 				61879C291DC03BBD0089F1E5 /* City.swift in Sources */,
 				665BD6B71DBEF1D0008C2623 /* ReadDailyTracker.swift in Sources */,
 				665BD6B81DBEF1D0008C2623 /* ReadDailyTrackerInfo.swift in Sources */,
+				61798C311DE5A0940087891D /* NewAppIDNotificationRequest.swift in Sources */,
 				665BD6B91DBEF1D0008C2623 /* SetAlarmRequest.swift in Sources */,
 				665BD6BA1DBEF1D0008C2623 /* SetCardioRequest.swift in Sources */,
 				665BD6BB1DBEF1D0008C2623 /* SetGoalRequest.swift in Sources */,
 				665BD6BC1DBEF1D0008C2623 /* SetNewAlarmRequest.swift in Sources */,
+				61FC93F51DE68B8A000AE93C /* MEDDataBaseRequest.swift in Sources */,
 				66F260F51DE533EF0021BDBA /* MEDColorful.swift in Sources */,
 				665BD6BD1DBEF1D0008C2623 /* SetNortificationRequest.swift in Sources */,
 				665BD6BE1DBEF1D0008C2623 /* SetProfileRequest.swift in Sources */,
@@ -3607,12 +3632,14 @@
 				00C826B31DA5E04000ECECEE /* TutorialOneViewController.swift in Sources */,
 				6650988C1DCB0CF20059D5F7 /* MEDSleepCreateRequest.swift in Sources */,
 				00C826B41DA5E04000ECECEE /* TutorialTwoViewController.swift in Sources */,
+				61FC93EE1DE6806B000AE93C /* MEDUserNotification.swift in Sources */,
 				00C826B51DA5E04000ECECEE /* TutorialThreeViewController.swift in Sources */,
 				00C826B61DA5E04000ECECEE /* TutorialFourViewController.swift in Sources */,
 				00C826B71DA5E04000ECECEE /* TutorialFiveViewController.swift in Sources */,
 				00C826B81DA5E04000ECECEE /* TutorialSixViewController.swift in Sources */,
 				6688A6711DC981990078E636 /* MEDStepsGetRequest.swift in Sources */,
 				00C826B91DA5E04000ECECEE /* TutorialSevenViewController.swift in Sources */,
+				61FC93EC1DE68064000AE93C /* MEDUserAlarm.swift in Sources */,
 				0023C0AD1DA64DD400FB33A4 /* PVADCRequest.swift in Sources */,
 				00C826BA1DA5E04000ECECEE /* SleepTutorialController.swift in Sources */,
 				00C826BB1DA5E04000ECECEE /* MorningTutorialController.swift in Sources */,
@@ -3668,6 +3695,7 @@
 				666F60F11DAF264B0011F3C5 /* AppDelegate-Extension.swift in Sources */,
 				00D4743A1D586D1600E2447E /* Presets.swift in Sources */,
 				610E43FA1DC84337001FD1B8 /* SolarHarvest.swift in Sources */,
+				61FC93EF1DE6806D000AE93C /* MEDUserProfile.swift in Sources */,
 				00D4743B1D586D1600E2447E /* PresetsModel.swift in Sources */,
 				00D4743C1D586D1600E2447E /* SleepModel.swift in Sources */,
 				00D4743D1D586D1600E2447E /* StepsModel.swift in Sources */,
@@ -3696,6 +3724,7 @@
 				6107670E1DDD88F800F53AD6 /* DeleteNotificationAppIDRequest.swift in Sources */,
 				00D474531D586D1600E2447E /* BalloonMarker.swift in Sources */,
 				00D474541D586D1600E2447E /* ClockView.swift in Sources */,
+				61FC93F01DE68071000AE93C /* MEDUserSleep.swift in Sources */,
 				00D474551D586D1600E2447E /* DatePickerView.swift in Sources */,
 				00D474561D586D1600E2447E /* DatePickerView.xib in Sources */,
 				66687CD81DD9654100AD7F7D /* Dispatch+MEDExtension.swift in Sources */,
@@ -3726,12 +3755,15 @@
 				6688A66B1DC981990078E636 /* MEDNetworkRequest.swift in Sources */,
 				00D474811D586D1600E2447E /* MBProgressHUD+MJ.h in Sources */,
 				00D474821D586D1600E2447E /* MBProgressHUD+MJ.m in Sources */,
+				61FC93F11DE68074000AE93C /* MEDUserSteps.swift in Sources */,
 				00D474831D586D1600E2447E /* MBProgressHUD.bundle in Sources */,
 				00D474841D586D1600E2447E /* MBProgressHUD.h in Sources */,
 				00D474851D586D1600E2447E /* MBProgressHUD.m in Sources */,
 				00D474861D586D1600E2447E /* NevoHK.swift in Sources */,
 				00D474871D586D1600E2447E /* NevoHKImpl.swift in Sources */,
 				00D474881D586D1600E2447E /* HealthKit.framework in Sources */,
+				61FC93ED1DE68067000AE93C /* MEDUserGoal.swift in Sources */,
+				61FC93EB1DE68060000AE93C /* MEDBaseModel.swift in Sources */,
 				00D474891D586D1600E2447E /* FXBlurView.h in Sources */,
 				00D4748A1D586D1600E2447E /* FXBlurView.m in Sources */,
 				00D4748B1D586D1600E2447E /* Request.swift in Sources */,
@@ -3876,6 +3908,7 @@
 				611D41911DCAD97C003BC6E3 /* NevoOTARequest.swift in Sources */,
 				611D41921DCAD97C003BC6E3 /* Utility.swift in Sources */,
 				611D41931DCAD97C003BC6E3 /* BatteryLevelNevoPacket.swift in Sources */,
+				61FC93E61DE679A9000AE93C /* DeleteNotificationAppIDRequest.swift in Sources */,
 				611D41941DCAD97C003BC6E3 /* DailyStepsNevoPacket.swift in Sources */,
 				611D41951DCAD97C003BC6E3 /* DailyTrackerInfoNevoPacket.swift in Sources */,
 				611D41961DCAD97C003BC6E3 /* DailyTrackerNevoPacket.swift in Sources */,
@@ -3885,6 +3918,7 @@
 				611D419A1DCAD97C003BC6E3 /* GetActivityRequest.swift in Sources */,
 				611D419B1DCAD97C003BC6E3 /* GetStepsGoalRequest.swift in Sources */,
 				611D419C1DCAD97C003BC6E3 /* LedLightOnOffNevoRequest.swift in Sources */,
+				61FC93E51DE679A6000AE93C /* SetNotificationAppIDRequest.swift in Sources */,
 				611D419D1DCAD97C003BC6E3 /* NevoRequest.swift in Sources */,
 				611D419E1DCAD97C003BC6E3 /* ReadBatteryLevelNevoRequest.swift in Sources */,
 				611D419F1DCAD97C003BC6E3 /* ReadDailyTracker.swift in Sources */,
@@ -3896,9 +3930,11 @@
 				611D41A51DCAD97D003BC6E3 /* SetNortificationRequest.swift in Sources */,
 				611D41A61DCAD97D003BC6E3 /* SetProfileRequest.swift in Sources */,
 				611D41A71DCAD97D003BC6E3 /* SetRTCRequest.swift in Sources */,
+				61FC93E41DE679A2000AE93C /* GetTotalNotificationAppReuqest.swift in Sources */,
 				611D41A81DCAD97D003BC6E3 /* WriteSettingRequest.swift in Sources */,
 				611D41A91DCAD97D003BC6E3 /* GetWatchName.swift in Sources */,
 				611D41AA1DCAD97D003BC6E3 /* SyncQueue.swift in Sources */,
+				61FC93E31DE6799E000AE93C /* GetNotificationAppIDRequest.swift in Sources */,
 				611D41AC1DCAD97D003BC6E3 /* iRate.bundle in Sources */,
 				611D41AD1DCAD97D003BC6E3 /* iRate.h in Sources */,
 				611D41AE1DCAD97D003BC6E3 /* iRate.m in Sources */,
@@ -4049,6 +4085,7 @@
 				611D424A1DCAD97D003BC6E3 /* PresetTableViewCell.xib in Sources */,
 				611D424B1DCAD97D003BC6E3 /* PresetView.swift in Sources */,
 				611D424C1DCAD97D003BC6E3 /* SetingInfoCell.swift in Sources */,
+				61FC93E71DE679AC000AE93C /* DeleteAllNotificationAppIDRequest.swift in Sources */,
 				611D424D1DCAD97D003BC6E3 /* SetingInfoCell.xib in Sources */,
 				66687CDA1DD9832800AD7F7D /* StepsCalButton.swift in Sources */,
 				611D424E1DCAD97D003BC6E3 /* SetingLoginCell.swift in Sources */,
@@ -4080,6 +4117,7 @@
 				611D42651DCAD97D003BC6E3 /* SleepTutorialController.swift in Sources */,
 				611D42661DCAD97D003BC6E3 /* MorningTutorialController.swift in Sources */,
 				611D42671DCAD97D003BC6E3 /* Nevo.entitlements in Sources */,
+				61FC93E81DE679B0000AE93C /* NewAppIDNotificationRequest.swift in Sources */,
 				611D42681DCAD97D003BC6E3 /* Nevo-Bridging-Header.h in Sources */,
 				611D42691DCAD97D003BC6E3 /* AppDelegate.swift in Sources */,
 				611D426A1DCAD97D003BC6E3 /* AppDelegate-Extension.swift in Sources */,
