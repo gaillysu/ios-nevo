@@ -15,6 +15,17 @@ class NotificationViewController: UITableViewController,SelectedNotificationDele
     fileprivate var mNotificationArray:[MEDUserNotification] = []
     fileprivate var allArraySettingArray:[NotificationSetting] = []
     
+    
+    fileprivate var onNotificaitons: [NotificationSetting] {
+        return allArraySettingArray.filter({return $0.getStates() == true})
+    }
+    fileprivate var hasOnNotifications: Bool { return onNotificaitons.count == 0}
+    
+    fileprivate var offNotifications: [NotificationSetting] {
+        return allArraySettingArray.filter({return $0.getStates() == false})
+    }
+    fileprivate var hasOffNotifications: Bool { return offNotifications.count == 0}
+    
     @IBOutlet weak var notificationView: NotificationView!
 
     init() {
@@ -61,8 +72,92 @@ class NotificationViewController: UITableViewController,SelectedNotificationDele
             allArraySettingArray.append(setting)
         }
     }
+}
 
-    // MARK: - SelectedNotificationDelegate
+// MARK: - TableView Datasource
+extension NotificationViewController {
+    // MARK: - Table view Delegate
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat{
+        return 45.0
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat{
+        return 40.0
+    }
+    
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        if hasOnNotifications && hasOffNotifications {
+            return 2
+        } else {
+            return !hasOnNotifications && !hasOffNotifications ? 0 : 1
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String{
+        if hasOffNotifications && hasOnNotifications {
+            return titleHeader[section]
+        } else {
+            return hasOnNotifications ? titleHeader[0] : titleHeader[1]
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        let headView = view as! UITableViewHeaderFooterView
+        if !AppTheme.isTargetLunaR_OR_Nevo() {
+            headView.textLabel?.textColor = UIColor.white
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        if hasOffNotifications && hasOnNotifications {
+            return section == 0 ? onNotificaitons.count : offNotifications.count
+        } else {
+            return hasOnNotifications ? onNotificaitons.count : offNotifications.count
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        var noti: NotificationSetting?
+        if hasOnNotifications && hasOffNotifications {
+            noti = indexPath.section == 0 ? onNotificaitons[indexPath.row] : offNotifications[indexPath.row]
+        } else {
+            noti = hasOnNotifications ? onNotificaitons[indexPath.row] : offNotifications[indexPath.row]
+        }
+        
+        if let noti = noti {
+            var detailString:String = ""
+            noti.getStates() ? (detailString = noti.getColorName()) : (detailString = NSLocalizedString("turned_off", comment: ""))
+            return NotificationView.NotificationSystemTableViewCell(indexPath, tableView: tableView, title: noti.typeName, detailLabel:detailString)
+        }
+        
+        return UITableViewCell()
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        var noti: NotificationSetting?
+        if hasOnNotifications && hasOffNotifications {
+            noti = indexPath.section == 0 ? onNotificaitons[indexPath.row] : offNotifications[indexPath.row]
+        } else {
+            noti = hasOnNotifications ? onNotificaitons[indexPath.row] : offNotifications[indexPath.row]
+        }
+        
+        let selectedNot:SelectedNotificationTypeController = SelectedNotificationTypeController()
+        if let noti = noti {
+            selectedNot.titleString = noti.typeName
+            selectedNot.clockIndex = noti.getClock()
+            selectedNot.swicthStates = noti.getStates()
+            selectedNot.selectedDelegate = self
+        }
+        
+        self.navigationController?.pushViewController(selectedNot, animated: true)
+    }
+}
+
+// MARK: - SelectedNotificationDelegate
+extension NotificationViewController {
     func didSelectedNotificationDelegate(_ clockIndex:Int,ntSwitchState:Bool,notificationType:String){
         XCGLogger.default.debug("clockIndex····:\(clockIndex),ntSwitchState·····:\(ntSwitchState)")
         for model in mNotificationArray {
@@ -87,77 +182,5 @@ class NotificationViewController: UITableViewController,SelectedNotificationDele
                 break
             }
         }
-    }
-
-    // MARK: - Table view Delegate
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat{
-        return 45.0
-    }
-
-    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat{
-        return 40.0
-    }
-
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
-        tableView.deselectRow(at: indexPath, animated: true)
-        let noti:NotificationSetting = allArraySettingArray[indexPath.row]
-        let selectedNot:SelectedNotificationTypeController = SelectedNotificationTypeController()
-        selectedNot.titleString = noti.typeName
-        selectedNot.clockIndex = noti.getClock()
-        selectedNot.swicthStates = noti.getStates()
-        selectedNot.selectedDelegate = self
-        self.navigationController?.pushViewController(selectedNot, animated: true)
-    }
-
-    // MARK: - Table view data source
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String{
-        return NSLocalizedString(titleHeader[section], comment: "")
-    }
-
-    override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        let headView = view as! UITableViewHeaderFooterView
-        if !AppTheme.isTargetLunaR_OR_Nevo() {
-            headView.textLabel?.textColor = UIColor.white
-        }
-    }
-    
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
-    }
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        if mNotificationArray.count>0 {
-            switch (section){
-            case 0:
-                return (allArraySettingArray.filter({$0.getStates() == false})).count
-            case 1:
-                return (allArraySettingArray.filter({$0.getStates() == true})).count
-            default:
-                return 1;
-            }
-        }else{
-            return 1
-        }
-        
-    }
-
-
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var noti:NotificationSetting? = allArraySettingArray[indexPath.row]
-        switch indexPath.section {
-        case 0:
-            noti = (allArraySettingArray.filter({$0.getStates() == false}))[indexPath.row]
-        default:
-            noti = (allArraySettingArray.filter({$0.getStates() == true}))[indexPath.row]
-        }
-        
-        if let noti = noti {
-            var detailString:String = ""
-            noti.getStates() ? (detailString = noti.getColorName()) : (detailString = NSLocalizedString("turned_off", comment: ""))
-            return NotificationView.NotificationSystemTableViewCell(indexPath, tableView: tableView, title: noti.typeName, detailLabel:detailString)
-        }
-        
-        return UITableViewCell()
     }
 }
