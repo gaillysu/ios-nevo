@@ -198,13 +198,9 @@ class SetingViewController: UIViewController,ButtonManagerCallBack,UIAlertViewDe
                 })
                 actionSheet.addAction(alertAction2)
                 
-                if !AppTheme.isTargetLunaR_OR_Nevo() {
-                    alertAction.setValue(UIColor.getBaseColor(), forKey: "titleTextColor")
-                    alertAction2.setValue(UIColor.getBaseColor(), forKey: "titleTextColor")
-                }else{
-                    alertAction.setValue(AppTheme.NEVO_SOLAR_YELLOW(), forKey: "titleTextColor")
-                    alertAction2.setValue(AppTheme.NEVO_SOLAR_YELLOW(), forKey: "titleTextColor")
-                }
+                /// Theme adjust
+                alertAction.viewDefaultColorful()
+                alertAction2.viewDefaultColorful()
                 
                 self.present(actionSheet, animated: true, completion: nil)
             }
@@ -238,13 +234,10 @@ class SetingViewController: UIViewController,ButtonManagerCallBack,UIAlertViewDe
                 let cancelAction = AlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil)
                 dialogController.addAction(cancelAction)
                 
-                if !AppTheme.isTargetLunaR_OR_Nevo() {
-                    confirmAction.setValue(UIColor.getBaseColor(), forKey: "titleTextColor")
-                    cancelAction.setValue(UIColor.getBaseColor(), forKey: "titleTextColor")
-                }else{
-                    confirmAction.setValue(AppTheme.NEVO_SOLAR_YELLOW(), forKey: "titleTextColor")
-                    cancelAction.setValue(AppTheme.NEVO_SOLAR_YELLOW(), forKey: "titleTextColor")
-                }
+                /// Theme adjust
+                confirmAction.viewDefaultColorful()
+                cancelAction.viewDefaultColorful()
+
                 self.present(dialogController, animated: true, completion: nil)
             }
             break
@@ -321,19 +314,14 @@ class SetingViewController: UIViewController,ButtonManagerCallBack,UIAlertViewDe
                     }
                 }
                 
-                // MARK: - Theme
-                if !AppTheme.isTargetLunaR_OR_Nevo() {
-                    cell.backgroundColor = UIColor.getGreyColor()
-                    cell.contentView.backgroundColor = UIColor.getGreyColor()
-                }
-                
+                // MARK: - Theme adjust
+                cell.viewDefaultColorful()
                 return cell
             }else{
                 let cell = tableView.dequeueReusableCell(withIdentifier: "SetingNotLoginIdentifier", for: indexPath)
                 cell.separatorInset = UIEdgeInsets(top: 0, left: UIScreen.main.bounds.size.width, bottom: 0, right: 0)
-                if !AppTheme.isTargetLunaR_OR_Nevo() {
-                    cell.backgroundColor = UIColor.getGreyColor()
-                }
+                // MARK: - Theme adjust
+                cell.viewDefaultColorful()
                 return cell
             }
             

@@ -20,6 +20,11 @@ public class ProfileImageManager {
     
     public func getImage() -> UIImage? {
         let resultArray:NSArray = AppTheme.LoadKeyedArchiverName(NevoAllKeys.MEDAvatarKeyAfterSave() as NSString) as! NSArray
-        return resultArray.object(at: 0) as? UIImage
+        if resultArray.count > 0 {
+            return resultArray.object(at: 0) as? UIImage
+        } else {
+            return nil
+        }
+        
     }
 }

@@ -42,10 +42,8 @@ class UserProfileController: UIViewController,UITableViewDelegate,UITableViewDat
         self.navigationItem.rightBarButtonItem = rightItem
         
         /// APPTHEME ADJUST
-        if !AppTheme.isTargetLunaR_OR_Nevo() {
-            view.backgroundColor = UIColor.getLightBaseColor()
-            userInfoTableView.backgroundColor = UIColor.getLightBaseColor()
-        }
+        self.viewDefaultColorful()
+        userInfoTableView.viewDefaultColorful()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -128,7 +126,7 @@ extension UserProfileController: UIImagePickerControllerDelegate, UINavigationCo
 
 
 
-// MARK: - TableView delegate
+// MARK: - TableView Datasource
 extension UserProfileController {
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return section == 0 ? 150 : 0;
@@ -151,12 +149,14 @@ extension UserProfileController {
         }
         
         /// APPTHEME ADJUST
-        if !AppTheme.isTargetLunaR_OR_Nevo() {
-            header?.backgroundColor = UIColor.getGreyColor()
-        }
+        header?.viewDefaultColorful()
         return header;
     }
     
+}
+
+// MARK: - TableView Delegate
+extension UserProfileController {
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         view.backgroundColor = UIColor.white
     }
@@ -177,7 +177,6 @@ extension UserProfileController {
         let cell:UserProfileCell = tableView.dequeueReusableCell(withIdentifier: userIdentifier,for: indexPath) as! UserProfileCell
         cell.selectionStyle = UITableViewCellSelectionStyle.none;
         cell.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
-        //cell.titleLabel.text = titleArray[indexPath.row]
         cell.updateLabel(NSLocalizedString(fieldArray[(indexPath as NSIndexPath).row], comment: ""))
         if userprofile != nil {
             switch (indexPath as NSIndexPath).row {
@@ -227,13 +226,6 @@ extension UserProfileController {
             default:
                 break
             }
-        }
-        
-        /// APPTHEME ADJUST
-        if !AppTheme.isTargetLunaR_OR_Nevo() {
-            cell.backgroundColor = UIColor.getGreyColor()
-            cell.titleLabel.textColor = UIColor.white
-            cell.valueTextField.textColor = UIColor.getBaseColor()
         }
         
         return cell

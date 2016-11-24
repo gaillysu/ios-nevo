@@ -109,7 +109,9 @@ class SunriseSetController: PublicClassController {
             self.view.backgroundColor = UIColor.getGreyColor()
         }
         
-        (self.sunriseSetCollectionView.collectionViewLayout as! UICollectionViewFlowLayout).itemSize = CGSize(width: UIScreen.main.bounds.size.width / 2.0 - 5, height: self.sunriseSetCollectionView.frame.height - 20)
+        let isSmallScreen = AppTheme.GET_IS_iPhone4S() || AppTheme.GET_IS_iPhone5S()
+        let offset: CGFloat = isSmallScreen ? 20 : 37
+        (self.sunriseSetCollectionView.collectionViewLayout as! UICollectionViewFlowLayout).itemSize = CGSize(width: UIScreen.main.bounds.size.width / 2.0 - 5, height: self.sunriseSetCollectionView.frame.height - offset)
     }
     
     @IBAction func changeCity(_ sender: Any) {

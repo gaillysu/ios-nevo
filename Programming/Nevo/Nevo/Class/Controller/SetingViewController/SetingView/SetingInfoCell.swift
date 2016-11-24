@@ -18,7 +18,9 @@ class SetingInfoCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
         
-        styleEvolve()
+        viewDefaultColorful()
+        emailLabel.viewDefaultColorful()
+        userName.viewDefaultColorful()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -34,20 +36,6 @@ class SetingInfoCell: UITableViewCell {
         if resultArray.count > 0 {
             avatarImageView.layer.cornerRadius = 0.5 * avatarImageView.layer.frame.width
             avatarImageView.layer.masksToBounds = true
-        }
-    }
-}
-
-
-// MARK: - Style Evolve
-extension SetingInfoCell {
-    fileprivate func styleEvolve() {
-        // if lunar
-        if !AppTheme.isTargetLunaR_OR_Nevo() {
-            backgroundColor = UIColor.getGreyColor()
-            contentView.backgroundColor = UIColor.getGreyColor()
-            emailLabel.textColor = UIColor.white
-            userName.textColor = UIColor.white
         }
     }
 }

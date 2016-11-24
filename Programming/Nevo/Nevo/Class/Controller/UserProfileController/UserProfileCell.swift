@@ -9,7 +9,7 @@
 import UIKit
 
 
-class UserProfileCell: UITableViewCell,UIPickerViewDelegate,UIPickerViewDataSource {
+class UserProfileCell: UITableViewCell {
     enum `Type`{
         case numeric
         case text
@@ -20,7 +20,6 @@ class UserProfileCell: UITableViewCell,UIPickerViewDelegate,UIPickerViewDataSour
     fileprivate var keyBoardType:Type?{
         didSet {
             if keyBoardType == Type.email {
-                
             }
         }
     }
@@ -36,7 +35,13 @@ class UserProfileCell: UITableViewCell,UIPickerViewDelegate,UIPickerViewDataSour
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        
+        /// APPTHEME ADJUST
+        viewDefaultColorful()
+        if !AppTheme.isTargetLunaR_OR_Nevo() {
+            titleLabel.textColor = UIColor.white
+            valueTextField.textColor = UIColor.getBaseColor()
+        }
     }
 
     func updateLabel(_ labelText: String){
@@ -70,13 +75,10 @@ class UserProfileCell: UITableViewCell,UIPickerViewDelegate,UIPickerViewDataSour
         }
     }
     
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
+}
 
-        // Configure the view for the selected state
-    }
-    
-    // MARK: - UITextFieldDelegate
+// MARK: - UITextFieldDelegate
+extension UserProfileCell {
     func textField(_ textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
         let currentCharacterCount = textField.text?.characters.count ?? 0
         if (range.length + range.location > currentCharacterCount){
@@ -92,7 +94,6 @@ class UserProfileCell: UITableViewCell,UIPickerViewDelegate,UIPickerViewDataSour
         }else{
             editCellTextField?(cellIndex,textField.text!)
         }
-        
     }
     
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
@@ -103,8 +104,10 @@ class UserProfileCell: UITableViewCell,UIPickerViewDelegate,UIPickerViewDataSour
         textField.resignFirstResponder()
         return false
     }
-    
-    // MARK: - UIPickerViewDataSource
+}
+
+// MARK: - UIPickerViewDataSource
+extension UserProfileCell: UIPickerViewDataSource {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 2
     }
@@ -121,12 +124,18 @@ class UserProfileCell: UITableViewCell,UIPickerViewDelegate,UIPickerViewDataSour
         }
     }
     
-    // MARK: - UIPickerViewDelegate
+}
+
+// MARK: - UIPickerViewDelegate
+extension UserProfileCell: UIPickerViewDelegate {
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         valueTextField.text = "\(textPreFix)"+"\(inputVariables[row])"+"\(textPostFix)"
         editCellTextField?(cellIndex,"\(inputVariables[row])")
     }
-    
+}
+
+// MARK: - Private function
+extension UserProfileCell {
     func selectedDateAction(_ date:UIDatePicker) {
         NSLog("date:\(date.date)")
         

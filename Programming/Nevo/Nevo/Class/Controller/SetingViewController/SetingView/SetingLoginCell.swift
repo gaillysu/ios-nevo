@@ -21,14 +21,3 @@ class SetingLoginCell: UITableViewCell {
 
     
 }
-
-// MARK: - Style Evolve
-extension SetingLoginCell {
-    fileprivate func styleEvolve() {
-        // if lunar
-        
-        // this class was never used...
-        if !AppTheme.isTargetLunaR_OR_Nevo() {
-        }
-    }
-}

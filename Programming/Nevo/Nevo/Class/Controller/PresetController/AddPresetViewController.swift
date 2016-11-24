@@ -24,7 +24,6 @@ class AddPresetViewController: UIViewController,ButtonManagerCallBack {
     
     init() {
         super.init(nibName: "AddPresetViewController", bundle: Bundle.main)
-        styleEvolve()
     }
 
     required init(coder aDecoder: NSCoder) {
@@ -47,17 +46,15 @@ class AddPresetViewController: UIViewController,ButtonManagerCallBack {
         
         addPresetView.bulidAddPresetView(self.navigationItem, delegate: self)
         
-        // MARK: - APPTHEME ADJUST
-        if !AppTheme.isTargetLunaR_OR_Nevo() {
-            view.backgroundColor = UIColor.getLightBaseColor()
-            addPresetView.backgroundColor = UIColor.getLightBaseColor()
-            addPresetView.presetNumber.backgroundColor = UIColor.getGreyColor()
-            addPresetView.presetName.backgroundColor = UIColor.getGreyColor()
-        } else {
+        /// Theme adjust
+        viewDefaultColorful()
+        addPresetView.viewDefaultColorful()
+        
+        /// Todo: 2016-11-23
+        /// Quentin
+        if AppTheme.isTargetLunaR_OR_Nevo() {
             view.backgroundColor = UIColor(rgba: "#EFEFF4")
             addPresetView.backgroundColor = UIColor(rgba: "#EFEFF4")
-            addPresetView.presetNumber.backgroundColor = UIColor.white
-            addPresetView.presetName.backgroundColor = UIColor.white
         }
     }
 
@@ -73,7 +70,7 @@ class AddPresetViewController: UIViewController,ButtonManagerCallBack {
                 goalItem?.label = addPresetView.presetName.text!
                 goalItem?.steps = (addPresetView.presetNumber.text?.toInt())!
             }
-            self.navigationController?.popViewController(animated: true)
+            _ = self.navigationController?.popViewController(animated: true)
         }else{
             if((UIDevice.current.systemVersion as NSString).floatValue >= 8.0){
                 let actionSheet:ActionSheetView = ActionSheetView(title: "", message: NSLocalizedString("goal_must_bigger_1000", comment: ""), preferredStyle: UIAlertControllerStyle.alert)
@@ -83,10 +80,6 @@ class AddPresetViewController: UIViewController,ButtonManagerCallBack {
                 })
                 actionSheet.addAction(alertAction)
                 self.present(actionSheet, animated: true, completion: nil)
-            }else{
-                let actionSheet:UIAlertView = UIAlertView(title: "", message: NSLocalizedString("goal_must_bigger_1000", comment: ""), delegate: nil, cancelButtonTitle: NSLocalizedString("Cancel", comment: ""), otherButtonTitles: NSLocalizedString("Ok", comment: ""))
-                actionSheet.alertViewStyle = UIAlertViewStyle.plainTextInput
-                actionSheet.show()
             }
         }
     }
@@ -94,13 +87,5 @@ class AddPresetViewController: UIViewController,ButtonManagerCallBack {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         addPresetView.presetName.resignFirstResponder()
         addPresetView.presetNumber.resignFirstResponder()
-    }
-}
-
-extension AddPresetViewController {
-    fileprivate func styleEvolve() {
-        if !AppTheme.isTargetLunaR_OR_Nevo() {
-//            view.backgroundColor = UIColor.getGreyColor()
-        }
     }
 }
