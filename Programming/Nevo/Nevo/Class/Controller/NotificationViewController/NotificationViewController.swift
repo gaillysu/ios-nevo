@@ -11,21 +11,9 @@ import BRYXBanner
 import XCGLogger
 
 class NotificationViewController: UITableViewController,SelectedNotificationDelegate {
-    fileprivate var mNotificationOFFArray:[NotificationSetting] = []
-    fileprivate var mNotificationONArray:[NotificationSetting] = []
     fileprivate let titleHeader:[String] = ["ACTIVE_NOTIFICATIONS","INACTIVE_NOTIFICATIONS"]
-    fileprivate var mNotificationArray:NSArray = NSArray()
-
-    var hasNotiOFF:Bool {
-        get {
-            return self.mNotificationOFFArray.count != 0
-        }
-    }
-    var hasNotiON:Bool {
-        get {
-            return self.mNotificationONArray.count != 0
-        }
-    }
+    fileprivate var mNotificationArray:[MEDUserNotification] = []
+    fileprivate var allArraySettingArray:[NotificationSetting] = []
     
     @IBOutlet weak var notificationView: NotificationView!
 
@@ -64,31 +52,18 @@ class NotificationViewController: UITableViewController,SelectedNotificationDele
      :returns:
      */
     func initNotificationSettingArray() {
-        mNotificationOFFArray.removeAll()
-        mNotificationONArray.removeAll()
-        mNotificationArray = UserNotification.getAll()
-        
-        let notificationTypeArray:[NotificationType] = [
-            NotificationType.call,
-            NotificationType.email,
-            NotificationType.facebook,
-            NotificationType.sms,
-            NotificationType.wechat,
-            NotificationType.calendar]
-        
-        for notificationType in notificationTypeArray {
-            for model in mNotificationArray{
-                let notification:UserNotification = model as! UserNotification
-                if(notification.NotificationType == notificationType.rawValue as String){
-                    let setting:NotificationSetting = NotificationSetting(type: notificationType, clock: notification.clock, color: 0, states:notification.status)
-                    if(notification.status) {
-                        mNotificationONArray.append(setting)
-                    }else {
-                        mNotificationOFFArray.append(setting)
-                    }
-                    break
-                }
+        mNotificationArray = MEDUserNotification.getAll() as! [MEDUserNotification]
+        allArraySettingArray.removeAll()
+        for model in mNotificationArray{
+            let notification:MEDUserNotification = model
+            let notificationType:String = notification.notificationType
+            NSLog("notificationType:%@", notification.notificationType)
+            var type = NotificationType(rawValue: notificationType as NSString)
+            if type == nil {
+                type = NotificationType.whatsapp
             }
+            let setting:NotificationSetting = NotificationSetting(type: type!, clock: notification.clock, color: NSNumber(value:notification.clock), states:notification.isAddWatch)
+            allArraySettingArray.append(setting)
         }
     }
 
@@ -96,15 +71,15 @@ class NotificationViewController: UITableViewController,SelectedNotificationDele
     func didSelectedNotificationDelegate(_ clockIndex:Int,ntSwitchState:Bool,notificationType:String){
         XCGLogger.default.debug("clockIndex····:\(clockIndex),ntSwitchState·····:\(ntSwitchState)")
         for model in mNotificationArray {
-            let notModel:UserNotification = model as! UserNotification
-            if(notModel.NotificationType == notificationType){
-                let notification:UserNotification = UserNotification(keyDict: ["id":notModel.id, "clock":clockIndex, "NotificationType":notificationType,"status":ntSwitchState])
-                if(notification.update()){
+            let notModel:MEDUserNotification = model
+            if(notModel.notificationType == notificationType){
+                notModel.clock = clockIndex
+                notModel.isAddWatch = ntSwitchState
+                if(notModel.update()){
                     initNotificationSettingArray()
                     self.tableView.reloadData()
-                    let allArray:[NotificationSetting] = mNotificationOFFArray + mNotificationONArray
                     if(AppDelegate.getAppDelegate().isConnected()){
-                        AppDelegate.getAppDelegate().SetNortification(allArray)
+                        AppDelegate.getAppDelegate().SetNortification(allArraySettingArray)
                         let banner = MEDBanner(title: NSLocalizedString("sync_notifications", comment: ""), subtitle: nil, image: nil, backgroundColor: AppTheme.NEVO_SOLAR_YELLOW())
                         banner.dismissesOnTap = true
                         banner.show(duration: 2.0)
@@ -130,51 +105,18 @@ class NotificationViewController: UITableViewController,SelectedNotificationDele
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
         tableView.deselectRow(at: indexPath, animated: true)
-        var titleString:String = ""
-        var clockIndex:Int = 0
-        var state:Bool = false
-        
-        var noti:NotificationSetting?
-        if hasNotiON && hasNotiOFF {
-            switch indexPath.section {
-            case 0:
-                noti = mNotificationONArray[indexPath.row]
-            default:
-                noti = mNotificationOFFArray[indexPath.row]
-            }
-        } else {
-            if hasNotiON {
-                noti = mNotificationONArray[indexPath.row]
-            } else {
-                noti = mNotificationOFFArray[indexPath.row]
-            }
-        }
-        
-        if let noti = noti {
-            titleString = noti.typeName
-            clockIndex = noti.getClock()
-            state = noti.getStates()
-        }
-        
+        let noti:NotificationSetting = allArraySettingArray[indexPath.row]
         let selectedNot:SelectedNotificationTypeController = SelectedNotificationTypeController()
-        selectedNot.titleString = titleString
-        selectedNot.clockIndex = clockIndex
-        selectedNot.swicthStates = state
+        selectedNot.titleString = noti.typeName
+        selectedNot.clockIndex = noti.getClock()
+        selectedNot.swicthStates = noti.getStates()
         selectedNot.selectedDelegate = self
         self.navigationController?.pushViewController(selectedNot, animated: true)
     }
 
     // MARK: - Table view data source
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String{
-        if hasNotiON && hasNotiOFF {
-            return NSLocalizedString(titleHeader[section], comment: "")
-        } else {
-            if hasNotiON {
-                return NSLocalizedString(titleHeader[0], comment: "")
-            } else {
-                return NSLocalizedString(titleHeader[1], comment: "")
-            }
-        }
+        return NSLocalizedString(titleHeader[section], comment: "")
     }
 
     override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
@@ -185,50 +127,34 @@ class NotificationViewController: UITableViewController,SelectedNotificationDele
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        if hasNotiON && hasNotiOFF {
-            return 2
-        } else {
-            return 1
-        }
+        return 2
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        if hasNotiON && hasNotiOFF {
+        if mNotificationArray.count>0 {
             switch (section){
             case 0:
-                return mNotificationONArray.count
+                return (allArraySettingArray.filter({$0.getStates() == false})).count
             case 1:
-                return mNotificationOFFArray.count
+                return (allArraySettingArray.filter({$0.getStates() == true})).count
             default:
                 return 1;
             }
+        }else{
+            return 1
         }
         
-        if hasNotiON {
-            return mNotificationONArray.count
-        } else {
-            return mNotificationOFFArray.count
-        }
     }
 
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var noti:NotificationSetting? = nil
-        if hasNotiON && hasNotiOFF {
-            switch indexPath.section {
-            case 0:
-                noti = mNotificationONArray[(indexPath as NSIndexPath).row]
-            default:
-                noti = mNotificationOFFArray[(indexPath as NSIndexPath).row]
-            }
-        } else {
-            if hasNotiON {
-                noti = mNotificationONArray[(indexPath as NSIndexPath).row]
-            } else {
-                noti = mNotificationOFFArray[(indexPath as NSIndexPath).row]
-            }
+        var noti:NotificationSetting? = allArraySettingArray[indexPath.row]
+        switch indexPath.section {
+        case 0:
+            noti = (allArraySettingArray.filter({$0.getStates() == false}))[indexPath.row]
+        default:
+            noti = (allArraySettingArray.filter({$0.getStates() == true}))[indexPath.row]
         }
         
         if let noti = noti {
