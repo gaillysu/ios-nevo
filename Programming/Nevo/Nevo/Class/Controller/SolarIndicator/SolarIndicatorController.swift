@@ -54,9 +54,6 @@ class SolarIndicatorController: PublicClassController {
         layout.minimumLineSpacing = 0
         layout.headerReferenceSize = CGSize.init(width: 0, height: 0)
         textCollection.collectionViewLayout = layout
-        
-        /// Swift 中 Timer 没有 `resume` 与 `pause`...
-        syncTime = Timer.init(timeInterval: 2, target: self, selector: #selector(pvadcAction(_:)), userInfo: nil, repeats: true)
     }
     
     func pvadcAction(_ timer:Timer) {
@@ -65,7 +62,8 @@ class SolarIndicatorController: PublicClassController {
     
     override func viewWillAppear(_ animated: Bool) {
         
-        RunLoop.current.add(syncTime, forMode: RunLoopMode.commonModes)
+        /// Swift 中 Timer 没有 `resume` 与 `pause`...
+        syncTime = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(pvadcAction(_:)), userInfo: nil, repeats: true)
         syncTime.fire()
         
         if !AppTheme.isTargetLunaR_OR_Nevo() {
@@ -189,14 +187,15 @@ extension SolarIndicatorController:UICollectionViewDelegate,UICollectionViewData
             label!.textColor = AppTheme.isTargetLunaR_OR_Nevo() ? UIColor.black : UIColor.white
             label!.textAlignment = .center
             label?.font = UIFont.init(name: "Raleway", size: 20)
+            
+            headerView.addSubview(label!)
+            label!.snp.makeConstraints { (v) in
+                v.edges.equalToSuperview()
+            }
         }
         
-        headerView.addSubview(label!)
-        label!.snp.makeConstraints { (v) in
-            v.edges.equalToSuperview()
-        }
+        changeValueAnimated(label: label!, from: 0, to: pvadcValue, prefixString: "Amount of ADC: ")
         
-        label!.text = "Amount of ADC: \(pvadcValue)"
         return headerView
     }
 }
