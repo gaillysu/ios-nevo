@@ -16,7 +16,11 @@ class MEDUserAlarm:MEDBaseModel {
     dynamic var status:Bool = false
     dynamic var alarmWeek:Int = 0 //0-7,0 - disable,1 - Sunday,2 - Monday,3 - Tuesday,4 - Wednesday,5 - Thursday,6 - Friday,7 - Saturday
     dynamic var type:Int = 0 // 0 -> wake; 1 -> sleep
-
+    dynamic var key:String = Date().stringFromFormat("yyyyMMddHHmmss", locale: DateFormatter().locale)
+    
+    override static func primaryKey() -> String? {
+        return "key"
+    }
     /**
      When it is the first time you install and use must be implemented
      *在用户第一次安装使用的时候必须实现

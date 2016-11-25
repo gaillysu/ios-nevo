@@ -22,4 +22,9 @@ class MEDUserSleep: MEDBaseModel {
     dynamic var hourlyLightTime:String = "";
     dynamic var totalDeepTime:Int = 0;
     dynamic var hourlyDeepTime:String = "";
+    dynamic var key:String = Date().stringFromFormat("yyyyMMddHHmmss", locale: DateFormatter().locale)
+    
+    override static func primaryKey() -> String? {
+        return "key"
+    }
 }

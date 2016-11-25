@@ -18,6 +18,11 @@ class MEDUserNotification:MEDBaseModel {
     dynamic var receiveDate:TimeInterval = 0
     dynamic var isAddWatch:Bool = false
     dynamic var deleteFlag:Bool = true
+    dynamic var key:String = Date().stringFromFormat("yyyyMMddHHmmss", locale: DateFormatter().locale)
+    
+    override static func primaryKey() -> String? {
+        return "key"
+    }
     /**
      When it is the first time you install and use must be implemented
      *在用户第一次安装使用的时候必须实现

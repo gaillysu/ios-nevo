@@ -12,11 +12,6 @@ import Timepiece
 import XCGLogger
 
 class MEDBaseModel: Object,MEDDataBaseRequest {
-    var key:String = Date().stringFromFormat("yyyyMMddHHmmss", locale: DateFormatter().locale)
-    
-    override static func primaryKey() -> String? {
-        return "key"
-    }
     
     func add()->Bool {
         let realm = try! Realm()

@@ -157,7 +157,6 @@ extension NotificationViewController {
 // MARK: - SelectedNotificationDelegate
 extension NotificationViewController {
     func didSelectedNotificationDelegate(_ clockIndex:Int,ntSwitchState:Bool,notificationType:String){
-        XCGLogger.default.debug("clockIndex····:\(clockIndex),ntSwitchState·····:\(ntSwitchState)")
         for model in mNotificationArray {
             let notModel:MEDUserNotification = model
             if(notModel.notificationType == notificationType){
@@ -166,9 +165,9 @@ extension NotificationViewController {
                 model.appid = notModel.appid
                 model.appName = notModel.appName
                 model.receiveDate = notModel.receiveDate
+                model.notificationType = notModel.notificationType
                 model.clock = clockIndex
                 model.isAddWatch = ntSwitchState
-                model.deleteFlag = notModel.deleteFlag
                 if(model.update()){
                     initNotificationSettingArray()
                     self.tableView.reloadData()

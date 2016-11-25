@@ -48,6 +48,8 @@ class SelectedNotificationTypeController: UITableViewController {
         if(sender.isKind(of: UISwitch.classForCoder())){
             let switchView:UISwitch = sender as! UISwitch
             selectedDelegate?.didSelectedNotificationDelegate(notSetting!.getClock(), ntSwitchState: switchView.isOn,notificationType:notSetting!.typeName)
+            notSetting?.setStates(switchView.isOn)
+            notSetting?.setClock(notSetting!.getClock())
             tableView.separatorStyle = switchView.isOn ? .singleLine : .none
             selectedNotificationView.reloadData()
         }
@@ -59,7 +61,6 @@ class SelectedNotificationTypeController: UITableViewController {
         case 0:
             return 45.0
         case 1:
-            //let cellHeight:CGFloat = selectedNotificationView.getNotificationClockCell(indexPath, tableView: tableView, title: "").contentView.systemLayoutSizeFittingSize(UILayoutFittingCompressedSize).height
             return 185.0
         case 2:
             return 50.0
@@ -82,7 +83,6 @@ class SelectedNotificationTypeController: UITableViewController {
         return 1
     }
 
-
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch ((indexPath as NSIndexPath).section){
         case 0:
@@ -94,7 +94,6 @@ class SelectedNotificationTypeController: UITableViewController {
                     mSwitch.addTarget(self, action: #selector(SelectedNotificationTypeController.buttonManager(_:)), for: UIControlEvents.valueChanged)
                 }
             }
-            
             return cell
         case 1:
             let cell = selectedNotificationView.getNotificationClockCell(indexPath, tableView: tableView, title: "", clockIndex: notSetting!.getClock())
@@ -142,18 +141,11 @@ class SelectedNotificationTypeController: UITableViewController {
             let image = UIImage(named: "notifications_check")
             cell.accessoryView = UIImageView(image: image)
             
-            let mNotificationArray:NSArray =  UserNotification.getAll()
-            for model in mNotificationArray{
-                let notificationModel:UserNotification = model as! UserNotification
-                if(notSetting!.typeName == notificationModel.NotificationType){
-                    //notSetting!.getClock() = (indexPath.row+1)*2
-                    let reloadIndexPath:IndexPath = IndexPath(row: 0, section: 1)
-                    selectedDelegate?.didSelectedNotificationDelegate(((indexPath as NSIndexPath).row+1)*2, ntSwitchState: notificationModel.status,notificationType:notificationModel.NotificationType)
-                    tableView.reloadRows(at: [reloadIndexPath], with: UITableViewRowAnimation.automatic)
-                    tableView.reloadSections(IndexSet(integer: 2), with: UITableViewRowAnimation.automatic)
-                    break
-                }
-            }
+            notSetting?.setClock((indexPath.row+1)*2)
+            selectedDelegate?.didSelectedNotificationDelegate(notSetting!.getClock(), ntSwitchState: notSetting!.getStates(),notificationType:notSetting!.typeName)
+            let reloadIndexPath:IndexPath = IndexPath(row: 0, section: 1)
+            tableView.reloadRows(at: [reloadIndexPath], with: UITableViewRowAnimation.automatic)
+            tableView.reloadSections(IndexSet(integer: 2), with: UITableViewRowAnimation.automatic)
         }
 
     }
