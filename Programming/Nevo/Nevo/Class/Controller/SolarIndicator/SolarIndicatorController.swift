@@ -25,6 +25,9 @@ class SolarIndicatorController: PublicClassController {
     fileprivate var onValue:[Double] = [00,00]
     fileprivate var selectedDate:Date = Date()
     
+    fileprivate weak var syncTimer: Timer? = nil
+    fileprivate var pvadcValue = -1
+    
     init() {
         super.init(nibName: "SolarIndicatorController", bundle: Bundle.main)
     }
@@ -37,6 +40,7 @@ class SolarIndicatorController: PublicClassController {
         super.viewDidLoad()
         
         textCollection.register(UINib(nibName: "SolarInforViewCell",bundle: nil), forCellWithReuseIdentifier: "SolarInfor_Identifier")
+        textCollection.register(UICollectionReusableView.classForCoder(), forSupplementaryViewOfKind: "UICollectionElementKindSectionHeader", withReuseIdentifier: "viewForSupplementaryReuseID")
         
         self.setupPieChartView(pieChartView)
         pieChartView.legend.enabled = false;
@@ -48,8 +52,8 @@ class SolarIndicatorController: PublicClassController {
         
         layout.minimumInteritemSpacing = 0
         layout.minimumLineSpacing = 0
+        layout.headerReferenceSize = CGSize.init(width: 0, height: 0)
         textCollection.collectionViewLayout = layout
-        //Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(pvadcAction(_:)), userInfo: nil, repeats: true)
     }
     
     func pvadcAction(_ timer:Timer) {
@@ -57,6 +61,11 @@ class SolarIndicatorController: PublicClassController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        
+        /// Swift 中 Timer 没有 `resume` 与 `pause`...
+        syncTimer?.invalidate()
+        syncTimer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(pvadcAction(_:)), userInfo: nil, repeats: true)
+        
         if !AppTheme.isTargetLunaR_OR_Nevo() {
             textCollection.backgroundColor = UIColor.getGreyColor()
             pieChartView.backgroundColor = UIColor.getGreyColor()
@@ -78,7 +87,8 @@ class SolarIndicatorController: PublicClassController {
                     
                     var batteryAdcValue:Int = Int(NSData2Bytes(packet.getPackets()[0])[2])
                     batteryAdcValue =  batteryAdcValue + Int(NSData2Bytes(packet.getPackets()[0])[3] )<<8
-                    //self.valueLabel.text = "Amount of ADC:\(pvadcValue)"
+                    self.pvadcValue = pvadcValue
+                    self.textCollection.reloadData()
                     XCGLogger.default.debug("pvadc packet............\(pvadcValue)")
                 }
             }else{
@@ -89,11 +99,11 @@ class SolarIndicatorController: PublicClassController {
                     pvadcValue =  pvadcValue + Int(NSData2Bytes(packet.getPackets()[0])[5] )<<8
                     var batteryAdcValue:Int = Int(NSData2Bytes(packet.getPackets()[0])[2])
                     batteryAdcValue =  batteryAdcValue + Int(NSData2Bytes(packet.getPackets()[0])[3] )<<8
-                    //self.valueLabel.text = "Amount of ADC:\(pvadcValue)"
+                    self.pvadcValue = pvadcValue
+                    self.textCollection.reloadData()
                     XCGLogger.default.debug("pvadc packet............\(pvadcValue)")
                 }
             }
-            
         }
         
         _ = SwiftEventBus.onMainThread(self, name: EVENT_BUS_END_BIG_SYNCACTIVITY) { (notification) in
@@ -111,6 +121,9 @@ class SolarIndicatorController: PublicClassController {
 
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
+        
+        syncTimer?.invalidate()
+        
         SwiftEventBus.unregister(self, name: EVENT_BUS_END_BIG_SYNCACTIVITY)
         SwiftEventBus.unregister(self, name: SELECTED_CALENDAR_NOTIFICATION)
         SwiftEventBus.unregister(self, name: EVENT_BUS_RAWPACKET_DATA_KEY)
@@ -125,7 +138,8 @@ class SolarIndicatorController: PublicClassController {
         super.viewDidLayoutSubviews()
         
         let layout:UICollectionViewFlowLayout = textCollection.collectionViewLayout as! UICollectionViewFlowLayout
-        layout.itemSize = CGSize(width: textCollection.frame.width/2.0, height: textCollection.frame.size.height)
+        layout.itemSize = CGSize(width: textCollection.frame.width/2.0, height: textCollection.frame.size.height / 2)
+        layout.headerReferenceSize = CGSize.init(width: textCollection.frame.width, height: textCollection.frame.size.height / 2)
     }
 
 }
@@ -143,12 +157,11 @@ extension SolarIndicatorController{
     }
 }
 
-extension SolarIndicatorController:UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
-    // MARK: - UICollectionViewDataSource
+// MARK: - UICollectionViewDataSource
+extension SolarIndicatorController:UICollectionViewDelegate,UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return onTitle.count
     }
-    
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SolarInfor_Identifier", for: indexPath)
@@ -162,6 +175,32 @@ extension SolarIndicatorController:UICollectionViewDelegate,UICollectionViewData
             cell.backgroundColor = UIColor.getGreyColor()
         }
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        let headerView: UICollectionReusableView = collectionView.dequeueReusableSupplementaryView(ofKind: "UICollectionElementKindSectionHeader", withReuseIdentifier: "viewForSupplementaryReuseID", for: indexPath)
+        
+        var label = headerView.viewWithTag(201611251159) as? UILabel
+        if label == nil {
+            label = UILabel()
+            label?.tag = 201611251159
+            label!.textColor = AppTheme.isTargetLunaR_OR_Nevo() ? UIColor.black : UIColor.white
+            label!.textAlignment = .center
+            label?.font = UIFont.init(name: "Raleway", size: 20)
+            
+            headerView.addSubview(label!)
+            label!.snp.makeConstraints { (v) in
+                v.edges.equalToSuperview()
+            }
+        }
+        
+        if pvadcValue == -1 {
+            label!.text = "Waiting for sync..."
+        } else {
+            label!.text = "Amount of ADC is: \(pvadcValue)"
+        }
+        
+        return headerView
     }
 }
 
@@ -221,7 +260,7 @@ extension SolarIndicatorController:ChartViewDelegate {
         var yVals1:[ChartDataEntry] = []
         
         let solarData:SolarHarvest = solarValue[0]
-        let solarHourlyTime:String = solarData.solarHourlyTime;
+//        let solarHourlyTime:String = solarData.solarHourlyTime;
         let value:Double = Double(solarData.solarTotalTime)/60.0
         
         /*

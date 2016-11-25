@@ -121,53 +121,56 @@ class PageViewController: UIPageViewController,UIActionSheetDelegate {
     }
     
     func rightBarButtonAction(_ rightBar:UIBarButtonItem){
-        if selectedTag == 3 {
-            let addWorldClock:AddWorldClockViewController = AddWorldClockViewController()
-            
-            let sunriseSetController:SunriseSetController = pagingControllers[3] as! SunriseSetController
-            addWorldClock.didSeletedCityDelegate = sunriseSetController
-            
-            addWorldClock.hidesBottomBarWhenPushed = true
-            let nav:UINavigationController = UINavigationController(rootViewController: addWorldClock)
-            self.present(nav, animated: true, completion: nil)
-            //self.navigationController?.pushViewController(addWorldClock, animated: true)
-        }else{
-            let actionSheet:ActionSheetView = ActionSheetView(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.actionSheet)
-            actionSheet.isSetSubView = true;
-            
-            let array:NSArray = Presets.getAll()
-            for pArray in array {
-                let model:Presets = pArray as! Presets
-                if(model.status){
-                    let titleString:String = " \(model.steps) " + NSLocalizedString("steps_unit", comment: "")
-                    let alertAction2:AlertAction = AlertAction(title: titleString, style: UIAlertActionStyle.default) { (action:UIAlertAction) -> Void in
-                        if((action.title! as NSString).isEqual(to: titleString)){
-                            UserDefaults.standard.set(model.steps, forKey: NUMBER_OF_STEPS_GOAL_KEY)
-                            self.setGoal(NumberOfStepsGoal(steps: model.steps))
-                        }
-                    }
-                    if !AppTheme.isTargetLunaR_OR_Nevo() {
-                        alertAction2.setValue(UIColor.getBaseColor(), forKey: "titleTextColor")
-                    }else{
-                        alertAction2.setValue(AppTheme.NEVO_SOLAR_YELLOW(), forKey: "titleTextColor")
-                    }
-                    actionSheet.addAction(alertAction2)
+        if !AppTheme.isTargetLunaR_OR_Nevo() {
+            if selectedTag == 3 {
+                let addWorldClock:AddWorldClockViewController = AddWorldClockViewController()
+                
+                if pagingControllers[3] is SunriseSetController {
+                    addWorldClock.didSeletedCityDelegate = pagingControllers[3] as! SunriseSetController
                 }
+                
+                addWorldClock.hidesBottomBarWhenPushed = true
+                let nav:UINavigationController = UINavigationController(rootViewController: addWorldClock)
+                self.present(nav, animated: true, completion: nil)
+                return
             }
-            
-            let alertAction:AlertAction = AlertAction(title: NSLocalizedString("Cancel", comment: ""), style: UIAlertActionStyle.cancel, handler: nil)
-            
-            if !AppTheme.isTargetLunaR_OR_Nevo() {
-                alertAction.setValue(UIColor.getBaseColor(), forKey: "titleTextColor")
-            }else{
-                alertAction.setValue(AppTheme.NEVO_SOLAR_YELLOW(), forKey: "titleTextColor")
-            }
-            //alertAction.setValue(UIImage(named: "google"), forKey: "Image")
-            //alertAction.setValue(true, forKey: "checked")
-            actionSheet.addAction(alertAction)
-            
-            self.present(actionSheet, animated: true, completion:nil)
         }
+        
+        let actionSheet:ActionSheetView = ActionSheetView(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.actionSheet)
+        actionSheet.isSetSubView = true;
+        
+        let array:NSArray = Presets.getAll()
+        for pArray in array {
+            let model:Presets = pArray as! Presets
+            if(model.status){
+                let titleString:String = " \(model.steps) " + NSLocalizedString("steps_unit", comment: "")
+                let alertAction2:AlertAction = AlertAction(title: titleString, style: UIAlertActionStyle.default) { (action:UIAlertAction) -> Void in
+                    if((action.title! as NSString).isEqual(to: titleString)){
+                        UserDefaults.standard.set(model.steps, forKey: NUMBER_OF_STEPS_GOAL_KEY)
+                        self.setGoal(NumberOfStepsGoal(steps: model.steps))
+                    }
+                }
+                if !AppTheme.isTargetLunaR_OR_Nevo() {
+                    alertAction2.setValue(UIColor.getBaseColor(), forKey: "titleTextColor")
+                }else{
+                    alertAction2.setValue(AppTheme.NEVO_SOLAR_YELLOW(), forKey: "titleTextColor")
+                }
+                actionSheet.addAction(alertAction2)
+            }
+        }
+        
+        let alertAction:AlertAction = AlertAction(title: NSLocalizedString("Cancel", comment: ""), style: UIAlertActionStyle.cancel, handler: nil)
+        
+        if !AppTheme.isTargetLunaR_OR_Nevo() {
+            alertAction.setValue(UIColor.getBaseColor(), forKey: "titleTextColor")
+        }else{
+            alertAction.setValue(AppTheme.NEVO_SOLAR_YELLOW(), forKey: "titleTextColor")
+        }
+        //alertAction.setValue(UIImage(named: "google"), forKey: "Image")
+        //alertAction.setValue(true, forKey: "checked")
+        actionSheet.addAction(alertAction)
+        
+        self.present(actionSheet, animated: true, completion:nil)
     }
     
     func setGoal(_ goal:Goal) {
