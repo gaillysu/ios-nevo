@@ -15,17 +15,6 @@ class NotificationViewController: UITableViewController,SelectedNotificationDele
     fileprivate var mNotificationArray:[MEDUserNotification] = []
     fileprivate var allArraySettingArray:[NotificationSetting] = []
     
-    
-    fileprivate var onNotificaitons: [NotificationSetting] {
-        return allArraySettingArray.filter({return $0.getStates() == true})
-    }
-    fileprivate var hasOnNotifications: Bool { return onNotificaitons.count == 0}
-    
-    fileprivate var offNotifications: [NotificationSetting] {
-        return allArraySettingArray.filter({return $0.getStates() == false})
-    }
-    fileprivate var hasOffNotifications: Bool { return offNotifications.count == 0}
-    
     @IBOutlet weak var notificationView: NotificationView!
 
     init() {
@@ -74,9 +63,21 @@ class NotificationViewController: UITableViewController,SelectedNotificationDele
     }
 }
 
+// MARK: - Calculate Properties
+extension NotificationViewController {
+    fileprivate var onNotificaitons: [NotificationSetting] {
+        return allArraySettingArray.filter({return $0.getStates() == true})
+    }
+    fileprivate var hasOnNotifications: Bool { return onNotificaitons.count != 0}
+    
+    fileprivate var offNotifications: [NotificationSetting] {
+        return allArraySettingArray.filter({return $0.getStates() == false})
+    }
+    fileprivate var hasOffNotifications: Bool { return offNotifications.count != 0}
+}
+
 // MARK: - TableView Datasource
 extension NotificationViewController {
-    // MARK: - Table view Delegate
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat{
         return 45.0
     }
