@@ -63,18 +63,20 @@ class NotificationViewController: UITableViewController,SelectedNotificationDele
 
     // MARK: - SelectedNotificationDelegate
     func didSelectedNotificationDelegate(_ clockIndex:Int,ntSwitchState:Bool,notificationType:String){
-        XCGLogger.default.debug("clockIndex····:\(clockIndex),ntSwitchState·····:\(ntSwitchState)")
+        XCGLogger.default.debug("clockIndex····:\(clockIndex),ntSwitchState·····:\(ntSwitchState),notificationType·····:\(notificationType)")
         for model in mNotificationArray {
             let notModel:MEDUserNotification = model
+            XCGLogger.default.debug("notModel····:\(notModel),setNotificationType:\(notificationType)")
             if(notModel.notificationType == notificationType){
                 let model:MEDUserNotification = MEDUserNotification()
                 model.key = notModel.key
                 model.appid = notModel.appid
                 model.appName = notModel.appName
                 model.receiveDate = notModel.receiveDate
+                model.notificationType = notModel.notificationType
                 model.clock = clockIndex
                 model.isAddWatch = ntSwitchState
-                model.deleteFlag = notModel.deleteFlag
+                XCGLogger.default.debug("model.key:\(model.key),notModel.key:\(notModel.key)")
                 if(model.update()){
                     initNotificationSettingArray()
                     self.tableView.reloadData()
@@ -104,8 +106,13 @@ class NotificationViewController: UITableViewController,SelectedNotificationDele
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
+        var noti:NotificationSetting?
         tableView.deselectRow(at: indexPath, animated: true)
-        let noti:NotificationSetting = allArraySettingArray[indexPath.row]
+        if indexPath.section == 0 {
+            noti = allArraySettingArray.filter({$0.getStates() == false})[indexPath.row]
+        }else{
+            noti = allArraySettingArray.filter({$0.getStates() == true})[indexPath.row]
+        }
         let selectedNot:SelectedNotificationTypeController = SelectedNotificationTypeController()
         selectedNot.notSetting = noti
         selectedNot.selectedDelegate = self

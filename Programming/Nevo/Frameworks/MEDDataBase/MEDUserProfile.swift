@@ -19,4 +19,9 @@ class MEDUserProfile: MEDBaseModel {
     dynamic var metricORimperial:Bool = false
     dynamic var created:TimeInterval = Date().timeIntervalSince1970
     dynamic var email:String = ""
+    dynamic var key:String = Date().stringFromFormat("yyyyMMddHHmmss", locale: DateFormatter().locale)
+    
+    override static func primaryKey() -> String? {
+        return "key"
+    }
 }

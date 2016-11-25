@@ -31,4 +31,9 @@ class MEDUserSteps: MEDBaseModel {
     dynamic var running_distance:Int = 0
     dynamic var running_duration:Int = 0
     dynamic var running_calories:Int = 0
+    dynamic var key:String = Date().stringFromFormat("yyyyMMddHHmmss", locale: DateFormatter().locale)
+    
+    override static func primaryKey() -> String? {
+        return "key"
+    }
 }
