@@ -714,57 +714,58 @@ extension AppDelegate {
     }
     
     func saveSleepToDataBase(thispacket:LunaRDailyTrackerPacket,date:Date,dateString:String) {
-        let sleepArray = UserSleep.getCriteria("WHERE date = \(date.timeIntervalSince1970)")
-        let model:UserSleep = UserSleep()
-        model.id = 0
-        model.date = date.timeIntervalSince1970
-        model.totalSleepTime = thispacket.getTotalSleepTime()
-        model.hourlySleepTime = "\(AppTheme.toJSONString(thispacket.getHourlySleepTime() as AnyObject!))"
-        model.totalWakeTime = thispacket.getTotalWakeTime()
-        model.hourlyWakeTime = "\(AppTheme.toJSONString(thispacket.getHourlyWakeSleepTime() as AnyObject!))"
-        model.totalLightTime = thispacket.getTotalWakeTime()
-        model.hourlyLightTime = "\(AppTheme.toJSONString(thispacket.getHourlyLightSleepTime() as AnyObject!))"
-        model.totalDeepTime = thispacket.getTotalDeepTime()
-        model.hourlyDeepTime = "\(AppTheme.toJSONString(thispacket.getHourlyDeepSleepTime() as AnyObject!))"
+        let login = MEDUserProfile.getAll()
         
-        //upload sleep data to validic
-        let login:NSArray = UserProfile.getAll()
+        let sleepModel:MEDUserSleep = MEDUserSleep()
+        sleepModel.date = date.timeIntervalSince1970
+        sleepModel.totalSleepTime = thispacket.getTotalSleepTime()
+        sleepModel.hourlySleepTime = "\(AppTheme.toJSONString(thispacket.getHourlySleepTime() as AnyObject!))"
+        sleepModel.totalWakeTime = thispacket.getTotalWakeTime()
+        sleepModel.hourlyWakeTime = "\(AppTheme.toJSONString(thispacket.getHourlyWakeSleepTime() as AnyObject!))"
+        sleepModel.totalLightTime = thispacket.getTotalWakeTime()
+        sleepModel.hourlyLightTime = "\(AppTheme.toJSONString(thispacket.getHourlyLightSleepTime() as AnyObject!))"
+        sleepModel.totalDeepTime = thispacket.getTotalDeepTime()
+        sleepModel.hourlyDeepTime = "\(AppTheme.toJSONString(thispacket.getHourlyDeepSleepTime() as AnyObject!))"
+        
         if login.count>0 {
-            let profile:UserProfile = login[0] as! UserProfile
+            let userProfile:MEDUserProfile = login[0] as! MEDUserProfile
+            let uidString:String = "\(userProfile.uid)"
+            let keys:String = date.stringFromFormat("yyyyMMddHHmmss", locale: DateFormatter().locale)+uidString
+            sleepModel.uid = userProfile.uid
+            sleepModel.key = keys
+            
             let dateString:String = date.stringFromFormat("yyy-MM-dd")
             
-            MEDSleepNetworkManager.createSleep(uid: profile.id, deepSleep: model.hourlyDeepTime, lightSleep: model.hourlyLightTime, wakeTime: model.hourlyWakeTime, date: dateString, completion: { (success:Bool) in
-                model.isUpload = true
-                _ = model.update()
+            MEDSleepNetworkManager.createSleep(uid: userProfile.uid, deepSleep: sleepModel.hourlyDeepTime, lightSleep: sleepModel.hourlyLightTime, wakeTime: sleepModel.hourlyWakeTime, date: dateString, completion: { (success:Bool) in
+                
             })
-        }
-        
-        if(sleepArray.count>0) {
-            let sleep:UserSleep = sleepArray[0] as! UserSleep
-            let localSleepArray:[Int] = AppTheme.jsonToArray(sleep.hourlySleepTime) as! [Int]
-            var localTime:Int = 0
             
-            for value in localSleepArray {
-                localTime+=value
-            }
-            
-            let currentSleepArray:[Int] = thispacket.getHourlySleepTime()
-            var currentSleepTime:Int = 0
-            for value in currentSleepArray {
-                currentSleepTime+=value
-            }
-            
-            if currentSleepTime>localTime {
-                model.id = sleep.id
-                DispatchQueue.global(qos: .background).async {
-                    _ = model.update()
+            let sleepArray = MEDUserSleep.getFilter("key = '\(keys)'")
+            if sleepArray.count>0 {
+                let sleep:MEDUserSleep = sleepArray[0] as! MEDUserSleep
+                let localSleepArray:[Int] = AppTheme.jsonToArray(sleep.hourlySleepTime) as! [Int]
+                var localTime:Int = 0
+                
+                for value in localSleepArray {
+                    localTime+=value
+                }
+                
+                let currentSleepArray:[Int] = thispacket.getHourlySleepTime()
+                var currentSleepTime:Int = 0
+                for value in currentSleepArray {
+                    currentSleepTime+=value
+                }
+                
+                if currentSleepTime>localTime {
+                    sleepModel.isUpload = true
+                    _ = sleepModel.add()
                 }
             }
-        }else {
-            DispatchQueue.global(qos: .background).async {
-                _ = model.add({ (id, completion) -> Void in
-                })
-            }
+        }else{
+            let keys:String = date.stringFromFormat("yyyyMMddHHmmss", locale: DateFormatter().locale)
+            sleepModel.uid = 0
+            sleepModel.key = keys
+            _ = sleepModel.add()
         }
     }
 }
