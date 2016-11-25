@@ -25,7 +25,7 @@ class SolarIndicatorController: PublicClassController {
     fileprivate var onValue:[Double] = [00,00]
     fileprivate var selectedDate:Date = Date()
     
-    fileprivate var syncTime = Timer()
+    fileprivate weak var syncTimer: Timer? = nil
     fileprivate var pvadcValue = -1
     
     init() {
@@ -63,8 +63,8 @@ class SolarIndicatorController: PublicClassController {
     override func viewWillAppear(_ animated: Bool) {
         
         /// Swift 中 Timer 没有 `resume` 与 `pause`...
-        syncTime = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(pvadcAction(_:)), userInfo: nil, repeats: true)
-        syncTime.fire()
+        syncTimer?.invalidate()
+        syncTimer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(pvadcAction(_:)), userInfo: nil, repeats: true)
         
         if !AppTheme.isTargetLunaR_OR_Nevo() {
             textCollection.backgroundColor = UIColor.getGreyColor()
@@ -122,7 +122,7 @@ class SolarIndicatorController: PublicClassController {
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         
-        syncTime.invalidate()
+        syncTimer?.invalidate()
         
         SwiftEventBus.unregister(self, name: EVENT_BUS_END_BIG_SYNCACTIVITY)
         SwiftEventBus.unregister(self, name: SELECTED_CALENDAR_NOTIFICATION)
@@ -192,6 +192,12 @@ extension SolarIndicatorController:UICollectionViewDelegate,UICollectionViewData
             label!.snp.makeConstraints { (v) in
                 v.edges.equalToSuperview()
             }
+        }
+        
+        if pvadcValue == -1 {
+            label!.text = "Waiting for sync..."
+        } else {
+            label!.text = "Amount of ADC is: \(pvadcValue)"
         }
         
         return headerView
