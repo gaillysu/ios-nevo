@@ -260,8 +260,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
             }
             
             if(packet.getHeader() == SetNortificationRequest.HEADER()) {
-                let weakAlarm:NSArray = UserAlarm.getCriteria("WHERE type = \(0)")
-                let sleepAlarm:NSArray = UserAlarm.getCriteria("WHERE type = \(1)")
+                let lunarAlarm:[MEDUserAlarm] = MEDUserAlarm.getAll() as! [MEDUserAlarm]
+                let weakAlarm:[MEDUserAlarm] = lunarAlarm.filter({$0.type == 0})
+                let sleepAlarm:[MEDUserAlarm] = lunarAlarm.filter({$0.type == 1})
                 
                 for index in 0 ..< 14{
                     let date:Date = Date()
@@ -273,24 +274,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                 
                 let date:Date = Date()
                 for (index,Value) in weakAlarm.enumerated() {
-                    let alarm:UserAlarm = Value as! UserAlarm
+                    let alarm:MEDUserAlarm = Value
                     let alarmDay:Date = Date(timeIntervalSince1970: alarm.timer)
                     if alarm.status {
-                        let newAlarm:NewAlarm = NewAlarm(alarmhour: alarmDay.hour, alarmmin: alarmDay.minute, alarmNumber: index, alarmWeekday: alarm.dayOfWeek)
+                        let newAlarm:NewAlarm = NewAlarm(alarmhour: alarmDay.hour, alarmmin: alarmDay.minute, alarmNumber: index, alarmWeekday: alarm.alarmWeek)
                         self.setNewAlarm(newAlarm)
                     }
                 }
                 
                 for (index,Value) in sleepAlarm.enumerated() {
-                    let alarm:UserAlarm = Value as! UserAlarm
+                    let alarm:MEDUserAlarm = Value
                     let alarmDay:Date = Date(timeIntervalSince1970: alarm.timer)
-                    print("alarmDay:\(alarmDay),alarm:\(alarm.type,alarm.status,alarm.dayOfWeek,date.weekday)")
-                    if alarm.type == 1 && alarm.status && alarm.dayOfWeek == date.weekday{
+                    print("alarmDay:\(alarmDay),alarm:\(alarm.type,alarm.status,alarm.alarmWeek,date.weekday)")
+                    if alarm.type == 1 && alarm.status && alarm.alarmWeek == date.weekday{
                         let newAlarm:NewAlarm = NewAlarm(alarmhour: alarmDay.hour, alarmmin: alarmDay.minute, alarmNumber: index+7, alarmWeekday: 0)
                         self.setNewAlarm(newAlarm)
                     }else{
-                        if alarm.status && alarm.dayOfWeek >= date.weekday{
-                            let newAlarm:NewAlarm = NewAlarm(alarmhour: alarmDay.hour, alarmmin: alarmDay.minute, alarmNumber: index+7, alarmWeekday: alarm.dayOfWeek)
+                        if alarm.status && alarm.alarmWeek >= date.weekday{
+                            let newAlarm:NewAlarm = NewAlarm(alarmhour: alarmDay.hour, alarmmin: alarmDay.minute, alarmNumber: index+7, alarmWeekday: alarm.alarmWeek)
                             self.setNewAlarm(newAlarm)
                         }
                     }
@@ -638,13 +639,12 @@ extension AppDelegate {
     }
     
     func saveStepsToDataBase(thispacket:LunaRDailyTrackerPacket,date:Date,dateString:String) ->[Int] {
-        let stepsArray = UserSteps.getCriteria("WHERE createDate = \(dateString)")
-        let stepsModel:UserSteps = UserSteps()
-        stepsModel.uid = 0
-        stepsModel.steps = thispacket.getTotalSteps()
+        let login = MEDUserProfile.getAll()
+        
+        let stepsModel:MEDUserSteps = MEDUserSteps()
+        stepsModel.totalSteps = thispacket.getTotalSteps()
         stepsModel.goalsteps = thispacket.getStepsGoal()
         stepsModel.distance = thispacket.getTotalDistance()
-        
         let stepsWalkValue = thispacket.getHourlyWalkSteps()
         let stepsRunValue = thispacket.getHourlyRunSteps()
         var hourlyStepsValue:[Int] = [Int](repeating: 0, count: 24)
@@ -663,7 +663,7 @@ extension AppDelegate {
             hourlyDistanceValue.replaceSubrange(index..<index+1, with: [distanceValue+value])
         }
         stepsModel.hourlydistance = "\(AppTheme.toJSONString(hourlyDistanceValue as AnyObject!))"
-        stepsModel.calories = Double(thispacket.getTotalCalories())
+        stepsModel.totalCalories = Double(thispacket.getTotalCalories())
         stepsModel.hourlycalories = "\(AppTheme.toJSONString(thispacket.getHourlyCalories() as AnyObject!))"
         stepsModel.inactivityTime = thispacket.getInactivityTime()
         stepsModel.goalreach = Double(thispacket.getTotalSteps())/Double(thispacket.getStepsGoal())
@@ -674,48 +674,46 @@ extension AppDelegate {
         stepsModel.running_distance = thispacket.getTotalRunDistance()
         stepsModel.running_duration = thispacket.getTotalRunTime()
         
-        //upload steps data to Nevo service
-        let login:NSArray = UserProfile.getAll()
         if login.count>0 {
-            let profile:UserProfile = login[0] as! UserProfile
+            let userProfile:MEDUserProfile = login[0] as! MEDUserProfile
+            let uidString:String = "\(userProfile.uid)"
+            let keys:String = date.stringFromFormat("yyyyMMddHHmmss", locale: DateFormatter().locale)+uidString
+            stepsModel.uid = userProfile.uid
+            stepsModel.key = keys
+            
             let dateString:String = date.stringFromFormat("yyy-MM-dd")
             var caloriesValue:Int = 0
             var milesValue:Double = 0
-            StepGoalSetingController.calculationData((stepsModel.walking_duration+stepsModel.running_duration), steps: stepsModel.steps, completionData: { (miles, calories) in
+            StepGoalSetingController.calculationData((stepsModel.walking_duration+stepsModel.running_duration), steps: stepsModel.totalSteps, completionData: { (miles, calories) in
                 caloriesValue = Int(calories)
                 milesValue = miles
             })
             
             let activeTime: Int = stepsModel.walking_duration+stepsModel.running_duration
             
-            MEDStepsNetworkManager.createSteps(uid: profile.id, steps: stepsModel.hourlysteps, date: dateString, activeTime: activeTime, calories: caloriesValue, distance: milesValue, completion: { (success: Bool) in
+            MEDStepsNetworkManager.createSteps(uid: userProfile.uid, steps: stepsModel.hourlysteps, date: dateString, activeTime: activeTime, calories: caloriesValue, distance: milesValue, completion: { (success: Bool) in
                 if success {
                     stepsModel.isUpload = true
-                    stepsModel.update()
+                    _ = stepsModel.add()
+                }else{
+                    stepsModel.isUpload = false
+                    _ = stepsModel.add()
                 }
             })
             
-        }
-        if(stepsArray.count>0) {
-            let step:UserSteps = stepsArray[0] as! UserSteps
-            if(step.steps < thispacket.getTotalSteps()) {
-                XCGLogger.default.debug("Data that has been saved····")
-                stepsModel.id = step.id
-                DispatchQueue.global(qos: .background).async {
-                    stepsModel.update()
-                }
-            }
-        }else {
-            DispatchQueue.global(qos: .background).async {
-                stepsModel.add({ (id, completion) -> Void in
-                })
-            }
+            //let stepsArray = MEDUserSteps.getFilter("key == '\(keys)'")
+        }else{
+            let keys:String = date.stringFromFormat("yyyyMMddHHmmss", locale: DateFormatter().locale)
+            //let stepsArray = MEDUserSteps.getFilter("key == '\(keys)'")
+            stepsModel.uid = 0
+            stepsModel.key = keys
+            stepsModel.isUpload = false
+            _ = stepsModel.add()
         }
         return hourlyStepsValue;
     }
     
     func saveSleepToDataBase(thispacket:LunaRDailyTrackerPacket,date:Date,dateString:String) {
-        _ = UserSleep.updateTable()
         let sleepArray = UserSleep.getCriteria("WHERE date = \(date.timeIntervalSince1970)")
         let model:UserSleep = UserSleep()
         model.id = 0
