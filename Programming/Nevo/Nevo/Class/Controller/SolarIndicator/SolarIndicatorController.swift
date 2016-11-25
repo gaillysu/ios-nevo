@@ -194,8 +194,6 @@ extension SolarIndicatorController:UICollectionViewDelegate,UICollectionViewData
             }
         }
         
-        changeValueAnimated(label: label!, from: 0, to: pvadcValue, prefixString: "Amount of ADC: ")
-        
         return headerView
     }
 }
