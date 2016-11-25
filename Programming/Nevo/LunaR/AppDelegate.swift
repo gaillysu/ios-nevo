@@ -60,8 +60,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
     fileprivate var longitude:Double = 0
     fileprivate var latitude:Double = 0
     
-    fileprivate let realm:Realm = try! Realm()
-    
     var isFirsttimeLaunch: Bool {
         get {
             let result = UserDefaults.standard.bool(forKey: "kLunarIsNotFirstTimeLaunch")
@@ -85,54 +83,37 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
         UITabBar.appearance().backgroundColor = UIColor.getBarColor()
         UINavigationBar.appearance().lt_setBackgroundColor(UIColor.getBarColor())
         //set navigationBar font style and font color
-        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName:UIColor.black,NSFontAttributeName:UIFont(name: "Raleway", size: 20)!]
-        UIApplication.shared.statusBarStyle = UIStatusBarStyle.default
+        UINavigationBar.appearance().lt_setBackgroundColor(UIColor.getLunarTabBarColor())
+        
+        UINavigationBar.appearance().tintColor = UIColor.getBaseColor()
+        
+        UITabBar.appearance().backgroundColor = UIColor.getGreyColor()
+        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName:UIColor.white,NSFontAttributeName:UIFont(name: "Raleway", size: 20)!]
+        
+        UIApplication.shared.statusBarStyle = .lightContent
+
         IQKeyboardManager.sharedManager().enable = true
-        
-        if !AppTheme.isTargetLunaR_OR_Nevo() {
-            UINavigationBar.appearance().lt_setBackgroundColor(UIColor.getLunarTabBarColor())
-            
-            UINavigationBar.appearance().tintColor = UIColor.getBaseColor()
-            
-            UITabBar.appearance().backgroundColor = UIColor.getGreyColor()
-            UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName:UIColor.white,NSFontAttributeName:UIFont(name: "Raleway", size: 20)!]
-            
-            UIApplication.shared.statusBarStyle = .lightContent
-        }else{
-            UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName:UIColor.black,NSFontAttributeName:UIFont(name: "Raleway", size: 20)!]
-            UIApplication.shared.statusBarStyle = UIStatusBarStyle.default
-        }
-        
-        //Start the logo for the first time
-        if(!UserDefaults.standard.bool(forKey: "LaunchedDatabase")){
-            UserDefaults.standard.set(true, forKey: "LaunchedDatabase")
-            UserDefaults.standard.set(true, forKey: "firstDatabase")
-            /**
-             *  Initialize the database
-             */
-            Presets.defaultPresetsGoal()
-            UserAlarm.defaultAlarm()
-            UserNotification.defaultNotificationColor()
-        }else{
-            UserDefaults.standard.set(false, forKey: "firstDatabase")
-        }
-        
+    
         DispatchQueue.global(qos: .background).async {
             WorldClockDatabaseHelper().setup()
         }
         
-        _ = UserSteps.updateTable()
+        MEDUserGoal.defaultUserGoal()
+        
+        MEDUserNotification.defaultNotificationColor()
+        
+        MEDUserAlarm.defaultAlarm()
+        
         /**
          Initialize the BLE Manager
          */
-        mConnectionController = ConnectionControllerImpl()
-        mConnectionController?.setDelegate(self)
+        self.mConnectionController = ConnectionControllerImpl()
+        self.mConnectionController?.setDelegate(self)
+        
+        self.adjustLaunchLogic()
+        
         let userDefaults = UserDefaults.standard;
         //lastSync = userDefaults.double(forKey: LAST_SYNC_DATE_KEY)
-        
-        adjustLaunchLogic()
-        
-        MEDUserNotification.defaultNotificationColor()
         
         //start Location
         self.startLocation()
@@ -275,22 +256,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
             
             if(packet.getHeader() == SetSunriseAndSunsetRequest.HEADER()) {
                 //step5: sync the notification setting, if remove nevo's battery, the nevo notification reset, so here need sync it
-                var mNotificationSettingArray:[NotificationSetting] = []
-                let notArray:NSArray = UserNotification.getAll()
-                let notificationTypeArray:[NotificationType] = [NotificationType.call, NotificationType.email, NotificationType.facebook, NotificationType.sms, NotificationType.wechat]
-                for notificationType in notificationTypeArray {
-                    for model in notArray{
-                        let notification:UserNotification = model as! UserNotification
-                        if(notification.NotificationType == notificationType.rawValue as String){
-                            let setting:NotificationSetting = NotificationSetting(type: notificationType, clock: notification.clock, color: 0, states:notification.status)
-                            mNotificationSettingArray.append(setting)
-                            break
-                        }
-                    }
-                }
-                
-                //start sync notification setting on the phone side
-                SetNortification(mNotificationSettingArray)
+                SetNortification()
             }
             
             if(packet.getHeader() == SetNortificationRequest.HEADER()) {
@@ -637,32 +603,37 @@ extension AppDelegate {
     }
     
     func saveSolarHarvest(thispacket:LunaRDailyTrackerPacket,date:Date)  {
-        let login:NSArray = UserProfile.getAll()
-        let solar = realm.objects(SolarHarvest.self).filter("date = \(date.timeIntervalSince1970)")
-        
-        if solar.count == 0 {
-            let solarTime:SolarHarvest = SolarHarvest()
-            solarTime.date = date.timeIntervalSince1970
-            solarTime.solarTotalTime = thispacket.getTotalSolarHarvestingTime()
-            solarTime.solarHourlyTime = "\(AppTheme.toJSONString(thispacket.getHourlyHarvestTime() as AnyObject!))"
-            if login.count>0 {
-                let profile:UserProfile = login[0] as! UserProfile
-                solarTime.uid = profile.id;
-            }
-            try! realm.write({
-                realm.add(solarTime)
-            })
-        }else{
-            let solarTime:SolarHarvest = solar[0] as SolarHarvest
-            try! realm.write({
+        let login = MEDUserProfile.getAll()
+        if login.count>0 {
+            let userProfile:MEDUserProfile = login[0] as! MEDUserProfile
+            let uidString:String = "\(userProfile.uid)"
+            let keys:String = date.stringFromFormat("yyyyMMddHHmmss", locale: DateFormatter().locale)+uidString
+            let solar = SolarHarvest.getFilter("key = \(keys)")
+            if solar.count == 0 {
+                let solarTime:SolarHarvest = SolarHarvest()
+                solarTime.key = keys
                 solarTime.date = date.timeIntervalSince1970
                 solarTime.solarTotalTime = thispacket.getTotalSolarHarvestingTime()
                 solarTime.solarHourlyTime = "\(AppTheme.toJSONString(thispacket.getHourlyHarvestTime() as AnyObject!))"
-                if login.count>0 {
-                    let profile:UserProfile = login[0] as! UserProfile
-                    solarTime.uid = profile.id;
-                }
-            })
+                solarTime.uid = userProfile.uid
+                _ = solarTime.add()
+            }else{
+                let solarTime:SolarHarvest = solar[0] as! SolarHarvest
+                solarTime.date = date.timeIntervalSince1970
+                solarTime.solarTotalTime = thispacket.getTotalSolarHarvestingTime()
+                solarTime.solarHourlyTime = "\(AppTheme.toJSONString(thispacket.getHourlyHarvestTime() as AnyObject!))"
+                solarTime.uid = userProfile.uid;
+                _ = solarTime.update()
+            }
+        }else{
+            let keys:String = date.stringFromFormat("yyyyMMddHHmmss", locale: DateFormatter().locale)
+            let solarTime:SolarHarvest = SolarHarvest()
+            solarTime.key = keys
+            solarTime.date = date.timeIntervalSince1970
+            solarTime.solarTotalTime = thispacket.getTotalSolarHarvestingTime()
+            solarTime.solarHourlyTime = "\(AppTheme.toJSONString(thispacket.getHourlyHarvestTime() as AnyObject!))"
+            solarTime.uid = 0
+            _ = solarTime.add()
         }
     }
     

@@ -409,7 +409,6 @@
 		6107670E1DDD88F800F53AD6 /* DeleteNotificationAppIDRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6107670D1DDD88F800F53AD6 /* DeleteNotificationAppIDRequest.swift */; };
 		610767101DDD89BC00F53AD6 /* DeleteAllNotificationAppIDRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6107670F1DDD89BC00F53AD6 /* DeleteAllNotificationAppIDRequest.swift */; };
 		610767121DDD8AE600F53AD6 /* ReceiveNewNotificationPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 610767111DDD8AE600F53AD6 /* ReceiveNewNotificationPacket.swift */; };
-		610E43FA1DC84337001FD1B8 /* SolarHarvest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 610E43F91DC84337001FD1B8 /* SolarHarvest.swift */; };
 		611D412C1DCAD97C003BC6E3 /* ImagePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61879C341DC0A8B80089F1E5 /* ImagePickerController.swift */; };
 		611D412D1DCAD97C003BC6E3 /* MEDForgetPasswordRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6688A64B1DC981980078E636 /* MEDForgetPasswordRequest.swift */; };
 		611D412E1DCAD97C003BC6E3 /* MEDLoginRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6688A64D1DC981980078E636 /* MEDLoginRequest.swift */; };
@@ -578,7 +577,6 @@
 		611D41D71DCAD97D003BC6E3 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66A0E0741DBF6C08001C0C67 /* LocationManager.swift */; };
 		611D41D81DCAD97D003BC6E3 /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66A0E0761DBF6C08001C0C67 /* City.swift */; };
 		611D41D91DCAD97D003BC6E3 /* Timezone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66A0E0771DBF6C08001C0C67 /* Timezone.swift */; };
-		611D41DA1DCAD97D003BC6E3 /* SolarHarvest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 610E43F91DC84337001FD1B8 /* SolarHarvest.swift */; };
 		611D41DB1DCAD97D003BC6E3 /* SetSunriseAndSunsetRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615093371DBF5BC800E52970 /* SetSunriseAndSunsetRequest.swift */; };
 		611D41DC1DCAD97D003BC6E3 /* SetWorldClockRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615093381DBF5BC800E52970 /* SetWorldClockRequest.swift */; };
 		611D41DD1DCAD97D003BC6E3 /* FindWatchRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C8272E1DA61CAF00ECECEE /* FindWatchRequest.swift */; };
@@ -787,6 +785,10 @@
 		61FC93F31DE6810E000AE93C /* NotificationAppID in Resources */ = {isa = PBXBuildFile; fileRef = 61FC93F21DE6810E000AE93C /* NotificationAppID */; };
 		61FC93F41DE681E2000AE93C /* NotificationAppID in Resources */ = {isa = PBXBuildFile; fileRef = 61FC93F21DE6810E000AE93C /* NotificationAppID */; };
 		61FC93F51DE68B8A000AE93C /* MEDDataBaseRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61D1A8A31DD468A100B91BDD /* MEDDataBaseRequest.swift */; };
+		61FC93F71DE80B2D000AE93C /* SolarHarvest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61FC93F61DE80B2D000AE93C /* SolarHarvest.swift */; };
+		61FC93F81DE80B30000AE93C /* SolarHarvest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61FC93F61DE80B2D000AE93C /* SolarHarvest.swift */; };
+		61FC93FF1DE829DB000AE93C /* TaskQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61FC93FD1DE829DB000AE93C /* TaskQueue.swift */; };
+		61FC94001DE82A38000AE93C /* TaskQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61FC93FD1DE829DB000AE93C /* TaskQueue.swift */; };
 		662887521DC1E8BC00EC0983 /* MEDMRProgressOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 662887501DC1E8BC00EC0983 /* MEDMRProgressOverlayView.swift */; };
 		6650988B1DCB0CF20059D5F7 /* MEDSleepCreateRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6650988A1DCB0CF20059D5F7 /* MEDSleepCreateRequest.swift */; };
 		6650988C1DCB0CF20059D5F7 /* MEDSleepCreateRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6650988A1DCB0CF20059D5F7 /* MEDSleepCreateRequest.swift */; };
@@ -1292,7 +1294,6 @@
 		6107670D1DDD88F800F53AD6 /* DeleteNotificationAppIDRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeleteNotificationAppIDRequest.swift; sourceTree = "<group>"; };
 		6107670F1DDD89BC00F53AD6 /* DeleteAllNotificationAppIDRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeleteAllNotificationAppIDRequest.swift; sourceTree = "<group>"; };
 		610767111DDD8AE600F53AD6 /* ReceiveNewNotificationPacket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReceiveNewNotificationPacket.swift; sourceTree = "<group>"; };
-		610E43F91DC84337001FD1B8 /* SolarHarvest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SolarHarvest.swift; sourceTree = "<group>"; };
 		611E2E041DC3405D004CD45B /* LunaRStepsGoalPacket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LunaRStepsGoalPacket.swift; sourceTree = "<group>"; };
 		614662A01DC9CEFC001E57CC /* lunar_settime.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lunar_settime.png; sourceTree = "<group>"; };
 		614662A31DC9D363001E57CC /* lunar_open_bt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lunar_open_bt.png; sourceTree = "<group>"; };
@@ -1357,6 +1358,8 @@
 		61EF09231DDE9F1B003C2EA5 /* EditAppIDPacket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditAppIDPacket.swift; sourceTree = "<group>"; };
 		61F85F4F1DAF5BF300F341B5 /* NevoOtaController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NevoOtaController.swift; sourceTree = "<group>"; };
 		61FC93F21DE6810E000AE93C /* NotificationAppID */ = {isa = PBXFileReference; lastKnownFileType = folder; path = NotificationAppID; sourceTree = "<group>"; };
+		61FC93F61DE80B2D000AE93C /* SolarHarvest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SolarHarvest.swift; sourceTree = "<group>"; };
+		61FC93FD1DE829DB000AE93C /* TaskQueue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskQueue.swift; sourceTree = "<group>"; };
 		662887501DC1E8BC00EC0983 /* MEDMRProgressOverlayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MEDMRProgressOverlayView.swift; sourceTree = "<group>"; };
 		6650988A1DCB0CF20059D5F7 /* MEDSleepCreateRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MEDSleepCreateRequest.swift; sourceTree = "<group>"; };
 		6650988D1DCB0E220059D5F7 /* MEDSleepNetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MEDSleepNetworkManager.swift; sourceTree = "<group>"; };
@@ -2507,6 +2510,7 @@
 		61D1A8B11DD46B1F00B91BDD /* MEDModel */ = {
 			isa = PBXGroup;
 			children = (
+				61FC93F61DE80B2D000AE93C /* SolarHarvest.swift */,
 				61D1A8A41DD468A100B91BDD /* MEDUserAlarm.swift */,
 				61D1A8A51DD468A100B91BDD /* MEDUserGoal.swift */,
 				61D1A8A61DD468A100B91BDD /* MEDUserNotification.swift */,
@@ -2523,6 +2527,15 @@
 				61D1A8A31DD468A100B91BDD /* MEDDataBaseRequest.swift */,
 			);
 			name = Request;
+			sourceTree = "<group>";
+		};
+		61FC93FB1DE829DB000AE93C /* TaskQueue */ = {
+			isa = PBXGroup;
+			children = (
+				61FC93FD1DE829DB000AE93C /* TaskQueue.swift */,
+			);
+			name = TaskQueue;
+			path = Frameworks/TaskQueue;
 			sourceTree = "<group>";
 		};
 		665E331C1DADCD7600D0E36D /* MEDWrapper */ = {
@@ -2621,7 +2634,6 @@
 			children = (
 				66A0E0761DBF6C08001C0C67 /* City.swift */,
 				66A0E0771DBF6C08001C0C67 /* Timezone.swift */,
-				610E43F91DC84337001FD1B8 /* SolarHarvest.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2716,6 +2728,7 @@
 		9AD8F95A1A6DFE3400F01014 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				61FC93FB1DE829DB000AE93C /* TaskQueue */,
 				61D1A8A21DD468A100B91BDD /* MEDDataBase */,
 				61879C331DC0A8AD0089F1E5 /* ImagePickerController */,
 				6688A6451DC981980078E636 /* MEDNetwork */,
@@ -3535,6 +3548,7 @@
 				00C8265C1DA5E04000ECECEE /* UserHeader.xib in Sources */,
 				00C8265D1DA5E04000ECECEE /* UserProfileController.swift in Sources */,
 				00C8265E1DA5E04000ECECEE /* UserProfileController.xib in Sources */,
+				61FC93F81DE80B30000AE93C /* SolarHarvest.swift in Sources */,
 				00C8265F1DA5E04000ECECEE /* UserProfileCell.swift in Sources */,
 				00C826601DA5E04000ECECEE /* UserProfileCell.xib in Sources */,
 				6688A6691DC981990078E636 /* MEDNetworkManager.swift in Sources */,
@@ -3585,6 +3599,7 @@
 				665E331F1DADCD8A00D0E36D /* MEDBanner.swift in Sources */,
 				6650988F1DCB0E220059D5F7 /* MEDSleepNetworkManager.swift in Sources */,
 				00C826871DA5E04000ECECEE /* DeviceScannerView.swift in Sources */,
+				61FC94001DE82A38000AE93C /* TaskQueue.swift in Sources */,
 				6688A6771DC981990078E636 /* MEDUserCreateRequest.swift in Sources */,
 				00C826881DA5E04000ECECEE /* NevoOtaView.swift in Sources */,
 				00C826891DA5E04000ECECEE /* SelectFileView.swift in Sources */,
@@ -3701,7 +3716,6 @@
 				00D474391D586D1600E2447E /* NotificationModel.swift in Sources */,
 				666F60F11DAF264B0011F3C5 /* AppDelegate-Extension.swift in Sources */,
 				00D4743A1D586D1600E2447E /* Presets.swift in Sources */,
-				610E43FA1DC84337001FD1B8 /* SolarHarvest.swift in Sources */,
 				61FC93EF1DE6806D000AE93C /* MEDUserProfile.swift in Sources */,
 				00D4743B1D586D1600E2447E /* PresetsModel.swift in Sources */,
 				00D4743C1D586D1600E2447E /* SleepModel.swift in Sources */,
@@ -3809,6 +3823,7 @@
 				611D41301DCAD97C003BC6E3 /* MEDStepsCreateRequest.swift in Sources */,
 				611D41311DCAD97C003BC6E3 /* MEDStepsGetRequest.swift in Sources */,
 				611D41321DCAD97C003BC6E3 /* MEDStepsUpdateRequest.swift in Sources */,
+				61FC93F71DE80B2D000AE93C /* SolarHarvest.swift in Sources */,
 				611D41331DCAD97C003BC6E3 /* MEDUserCreateRequest.swift in Sources */,
 				666027B71DE2D63D00E7CBD7 /* UICollectionView+MEDExtension.swift in Sources */,
 				611D41341DCAD97C003BC6E3 /* MEDUserUpdateRequest.swift in Sources */,
@@ -3988,7 +4003,6 @@
 				6699DD011DDC4EF80077E544 /* SunriseSetController.swift in Sources */,
 				611D41D81DCAD97D003BC6E3 /* City.swift in Sources */,
 				611D41D91DCAD97D003BC6E3 /* Timezone.swift in Sources */,
-				611D41DA1DCAD97D003BC6E3 /* SolarHarvest.swift in Sources */,
 				611D41DB1DCAD97D003BC6E3 /* SetSunriseAndSunsetRequest.swift in Sources */,
 				611D41DC1DCAD97D003BC6E3 /* SetWorldClockRequest.swift in Sources */,
 				61D1A8AD1DD468A100B91BDD /* MEDUserNotification.swift in Sources */,
@@ -4042,6 +4056,7 @@
 				611D42181DCAD97D003BC6E3 /* AlarmTypeController.swift in Sources */,
 				611D42191DCAD97D003BC6E3 /* AlarmTypeController.xib in Sources */,
 				611D421A1DCAD97D003BC6E3 /* RepeatViewController.swift in Sources */,
+				61FC93FF1DE829DB000AE93C /* TaskQueue.swift in Sources */,
 				611D421B1DCAD97D003BC6E3 /* RepeatViewController.xib in Sources */,
 				611D421C1DCAD97D003BC6E3 /* AddAlarmController.swift in Sources */,
 				611D421D1DCAD97D003BC6E3 /* AddAlarmController.xib in Sources */,

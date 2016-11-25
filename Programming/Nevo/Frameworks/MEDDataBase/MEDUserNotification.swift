@@ -29,12 +29,12 @@ class MEDUserNotification:MEDBaseModel {
      */
     
     class func defaultNotificationColor() {
-        let fileResources = AppTheme.GET_FIRMWARE_FILES("NotificationAppID")
-        let url:URL = fileResources[0] as! URL
-        let localDict:NSDictionary = NSDictionary(contentsOf: url)!
-        let realm  = try! Realm()
-        let notification = realm.objects(MEDUserNotification.self)
-        if notification.count == 0 {
+        if(!UserDefaults.standard.bool(forKey: "DefaultNotificationLaunched")){
+            UserDefaults.standard.set(true, forKey: "DefaultNotificationLaunched")
+            UserDefaults.standard.set(true, forKey: "firstDefaultNotification")
+            let fileResources = AppTheme.GET_FIRMWARE_FILES("NotificationAppID")
+            let url:URL = fileResources[0] as! URL
+            let localDict:NSDictionary = NSDictionary(contentsOf: url)!
             for (key,value) in localDict {
                 if (key as! String) == "NotificationAppID" {
                     let valueJson = JSON(value)
@@ -58,6 +58,8 @@ class MEDUserNotification:MEDBaseModel {
                     }
                 }
             }
+        }else{
+            UserDefaults.standard.set(false, forKey: "firstDefaultNotification")
         }
     }
     

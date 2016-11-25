@@ -138,7 +138,10 @@ class SetingView: UIView {
             icon = "WeChat_Icon"
         case .whatsapp:
             icon = "WeChat_Icon"
+        case .other:
+            icon = "WeChat_Icon"
         }
+        
         return icon
     }
     

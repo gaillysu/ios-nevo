@@ -282,7 +282,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                         }
                     }
                 }
-
                 //start sync notification setting on the phone side
                 SetNortification(mNotificationSettingArray)
             }
@@ -580,7 +579,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
 }
 
 extension AppDelegate {
-    
+
     func startLocation() {
         NSLog("AuthorizationStatus:\(LOCATION_MANAGER.gpsAuthorizationStatus)")
         if LOCATION_MANAGER.gpsAuthorizationStatus>2 {

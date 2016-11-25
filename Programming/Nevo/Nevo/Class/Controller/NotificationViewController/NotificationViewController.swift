@@ -54,7 +54,7 @@ class NotificationViewController: UITableViewController,SelectedNotificationDele
             let notificationType:String = notification.notificationType
             var type = NotificationType(rawValue: notificationType as NSString)
             if type == nil {
-                type = NotificationType.whatsapp
+                type = NotificationType.other
             }
             let setting:NotificationSetting = NotificationSetting(type: type!, clock: notification.clock, color: NSNumber(value:notification.clock), states:notification.isAddWatch)
             allArraySettingArray.append(setting)

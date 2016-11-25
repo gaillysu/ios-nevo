@@ -42,10 +42,28 @@ extension AppDelegate {
         sendRequest(SetNewAlarmRequest(alarm:alarm))
     }
     
-    
-    func SetNortification(_ settingArray:[NotificationSetting]) {
+    func SetNortification(_ notfication:[NotificationSetting]) {
         XCGLogger.default.debug("SetNortification")
-        sendRequest(SetNortificationRequest(settingArray: settingArray))
+        sendRequest(SetNortificationRequest(settingArray: notfication))
+    }
+    
+    func SetNortification() {
+        XCGLogger.default.debug("SetNortification")
+        var mNotificationSettingArray:[NotificationSetting] = []
+        let mNotificationArray:[MEDUserNotification] = MEDUserNotification.getAll() as! [MEDUserNotification]
+        for model in mNotificationArray{
+            let notification:MEDUserNotification = model
+            if notification.isAddWatch {
+                let notificationType:String = notification.notificationType
+                var type = NotificationType(rawValue: notificationType as NSString)
+                if type == nil {
+                    type = NotificationType.other
+                }
+                let setting:NotificationSetting = NotificationSetting(type: type!, clock: notification.clock, color: NSNumber(value:notification.clock), states:notification.isAddWatch)
+                mNotificationSettingArray.append(setting)
+            }
+        }
+        sendRequest(SetNortificationRequest(settingArray: mNotificationSettingArray))
     }
     
     func setSunriseAndSunset(sunrise:Date,sunset:Date) {

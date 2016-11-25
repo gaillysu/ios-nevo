@@ -26,14 +26,15 @@ class MEDUserAlarm:MEDBaseModel {
      *在用户第一次安装使用的时候必须实现
      */
     class func defaultAlarm() {
-        let realm  = try! Realm()
-        let alarm = realm.objects(MEDUserAlarm.self)
-        if alarm.count == 0 {
+        //Start the logo for the first time
+        if(!UserDefaults.standard.bool(forKey: "DefaultAlarmLaunched")){
+            UserDefaults.standard.set(true, forKey: "DefaultAlarmLaunched")
+            UserDefaults.standard.set(true, forKey: "firstDefaultAlarm")
             let currentDate:Date = Date()
             let date1:Date = Date.date(year: currentDate.year, month: currentDate.minute, day: currentDate.day, hour: 8, minute: 0, second: 0)
             let date2:Date = Date.date(year: currentDate.year, month: currentDate.minute, day: currentDate.day, hour: 9, minute: 0, second: 0)
             let dateArray:[TimeInterval] = [date1.timeIntervalSince1970,date2.timeIntervalSince1970]
-            let nameArray:[String] = [NSLocalizedString("sleep_and_wake", comment: ""),NSLocalizedString("sleep_and_wake", comment: "")]
+            let nameArray:[String] = [NSLocalizedString("Alarm1", comment: ""),NSLocalizedString("Alarm2", comment: "")]
             for (index,value) in dateArray.enumerated() {
                 let alarm:MEDUserAlarm = MEDUserAlarm()
                 alarm.timer = value
@@ -41,10 +42,10 @@ class MEDUserAlarm:MEDBaseModel {
                 alarm.status = false
                 alarm.alarmWeek = 2
                 alarm.type = 0
-                try! realm.write {
-                    realm.add(alarm)
-                }
+                _ = alarm.add()
             }
+        }else{
+            UserDefaults.standard.set(false, forKey: "firstDefaultAlarm")
         }
     }
 }

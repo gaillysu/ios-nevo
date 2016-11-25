@@ -124,6 +124,6 @@ enum NotificationType:NSString {
     case calendar = "Calendar"
     case wechat = "WeChat"
     case whatsapp = "Whatsapp"
-    
-    static let allValues:[NotificationType] = [call, sms, email, facebook, calendar, wechat, whatsapp]
+    case other = "Other"
+    static let allValues:[NotificationType] = [call, sms, email, facebook, calendar, wechat, whatsapp,other]
 }
