@@ -65,6 +65,41 @@ extension AppDelegate {
         }
         sendRequest(SetNortificationRequest(settingArray: mNotificationSettingArray))
     }
+
+    func LunaRNotfication() {
+        XCGLogger.default.debug("SetNortification")
+        var mNotificationSettingArray:[SetNotificationAppIDRequest] = []
+        let mNotificationArray:[MEDUserNotification] = (MEDUserNotification.getAll() as! [MEDUserNotification]).filter({$0.isAddWatch == true})
+        
+        let queue = TaskQueue()
+        for (index,model) in mNotificationArray.enumerated() {
+            let notification:MEDUserNotification = model
+            if notification.isAddWatch {
+                let notificationType:String = notification.notificationType
+                var type = NotificationType(rawValue: notificationType as NSString)
+                if type == nil {
+                    type = NotificationType.other
+                }
+                
+                let setting:NotificationSetting = NotificationSetting(type: type!, clock: notification.clock, color: NSNumber(value:notification.clock), states:notification.isAddWatch,packet:notification.appid,appName:notification.appName)
+                let packet:String = notification.appid
+                let packetLength:Int = packet.length()
+                let notificationsRequest:SetNotificationAppIDRequest = SetNotificationAppIDRequest(number: index, length: packetLength, pattern: setting.getColor().uint32Value, appid: packet, motorOnOff: true)
+                queue.tasks += {[weak self] result, next in
+                    guard let `self` = self else {return}
+                    self.sendRequest(notificationsRequest)
+                    self.delay(seconds: 1) {
+                        next(nil)
+                    }
+                }
+            }
+        }
+        queue.run()
+    }
+    
+    func delay(seconds:Double, completion: @escaping ()-> Void) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + seconds, execute: completion)
+    }
     
     func setSunriseAndSunset(sunrise:Date,sunset:Date) {
         sendRequest(SetSunriseAndSunsetRequest(sunrise: sunrise, sunset: sunset))
