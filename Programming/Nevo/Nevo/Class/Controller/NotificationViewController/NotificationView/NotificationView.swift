@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class NotificationView: UITableView {
 
@@ -27,8 +28,27 @@ class NotificationView: UITableView {
         let endCell:NotificationTypeCell = tableView.dequeueReusableCell(withIdentifier: "Notification_Identifier", for: indexPath) as! NotificationTypeCell
         endCell.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
         endCell.setTitleLabel(title: NSLocalizedString(title, comment: ""))
-        endCell.setContentLabel(content: NSLocalizedString(detailLabel, comment: ""))
         endCell.setTitleImage(imageName: "new_\(title.lowercased())")
+        
+        if endCell.titleImage.image == nil {
+            endCell.setTitleLabel(title: "loading...")
+            endCell.setTitleImage(imageName: "AppIcon")
+            
+            MEDAppInfoRequester.requesAppInfoWith(bundleId: steting.getPacket(), resultHandle: {
+                (error, appInfo) in
+                
+                if let info = appInfo {
+                    endCell.setTitleLabel(title: info.trackName)
+                    endCell.titleImage.kf.setImage(with: URL(string: info.artworkUrl100), placeholder: UIImage(named:"AppIcon"), options: nil, progressBlock: nil, completionHandler: nil)
+                } else {
+                    
+                }
+                
+            })
+        }
+        
+        
+        endCell.setContentLabel(content: NSLocalizedString(detailLabel, comment: ""))
         endCell.setSwitchState(steting.getStates())
         endCell.notificationSetting = steting
         return endCell

@@ -276,7 +276,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                     for model in notArray{
                         let notification:UserNotification = model as! UserNotification
                         if(notification.NotificationType == notificationType.rawValue as String){
-                            let setting:NotificationSetting = NotificationSetting(type: notificationType, clock: notification.clock, color: 0, states:notification.status)
+                            let setting:NotificationSetting = NotificationSetting(type: notificationType, clock: notification.clock, color: 0, states:notification.status, packet:" ")
                             mNotificationSettingArray.append(setting)
                             break
                         }

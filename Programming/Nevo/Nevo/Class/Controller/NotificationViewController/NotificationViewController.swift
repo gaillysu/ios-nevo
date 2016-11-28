@@ -27,6 +27,7 @@ class NotificationViewController: UITableViewController,SelectedNotificationDele
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         initNotificationSettingArray()
         notificationView.bulidNotificationView(self.navigationItem)
         

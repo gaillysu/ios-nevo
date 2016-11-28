@@ -794,6 +794,10 @@
 		61FC93FF1DE829DB000AE93C /* TaskQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61FC93FD1DE829DB000AE93C /* TaskQueue.swift */; };
 		61FC94001DE82A38000AE93C /* TaskQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61FC93FD1DE829DB000AE93C /* TaskQueue.swift */; };
 		662887521DC1E8BC00EC0983 /* MEDMRProgressOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 662887501DC1E8BC00EC0983 /* MEDMRProgressOverlayView.swift */; };
+		662B3CA91DEBD6E60014FA71 /* MEDAppInfoRequester.swift in Sources */ = {isa = PBXBuildFile; fileRef = 662B3CA81DEBD6E60014FA71 /* MEDAppInfoRequester.swift */; };
+		662B3CAA1DEBD6E60014FA71 /* MEDAppInfoRequester.swift in Sources */ = {isa = PBXBuildFile; fileRef = 662B3CA81DEBD6E60014FA71 /* MEDAppInfoRequester.swift */; };
+		662B3CAC1DEBD79A0014FA71 /* MEDAppInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 662B3CAB1DEBD79A0014FA71 /* MEDAppInfo.swift */; };
+		662B3CAD1DEBD79A0014FA71 /* MEDAppInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 662B3CAB1DEBD79A0014FA71 /* MEDAppInfo.swift */; };
 		6650988B1DCB0CF20059D5F7 /* MEDSleepCreateRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6650988A1DCB0CF20059D5F7 /* MEDSleepCreateRequest.swift */; };
 		6650988C1DCB0CF20059D5F7 /* MEDSleepCreateRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6650988A1DCB0CF20059D5F7 /* MEDSleepCreateRequest.swift */; };
 		6650988E1DCB0E220059D5F7 /* MEDSleepNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6650988D1DCB0E220059D5F7 /* MEDSleepNetworkManager.swift */; };
@@ -1367,6 +1371,8 @@
 		61FC93F61DE80B2D000AE93C /* SolarHarvest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SolarHarvest.swift; sourceTree = "<group>"; };
 		61FC93FD1DE829DB000AE93C /* TaskQueue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskQueue.swift; sourceTree = "<group>"; };
 		662887501DC1E8BC00EC0983 /* MEDMRProgressOverlayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MEDMRProgressOverlayView.swift; sourceTree = "<group>"; };
+		662B3CA81DEBD6E60014FA71 /* MEDAppInfoRequester.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MEDAppInfoRequester.swift; sourceTree = "<group>"; };
+		662B3CAB1DEBD79A0014FA71 /* MEDAppInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MEDAppInfo.swift; sourceTree = "<group>"; };
 		6650988A1DCB0CF20059D5F7 /* MEDSleepCreateRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MEDSleepCreateRequest.swift; sourceTree = "<group>"; };
 		6650988D1DCB0E220059D5F7 /* MEDSleepNetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MEDSleepNetworkManager.swift; sourceTree = "<group>"; };
 		665098901DCB23DC0059D5F7 /* MEDSleepUpdateRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MEDSleepUpdateRequest.swift; sourceTree = "<group>"; };
@@ -1664,6 +1670,7 @@
 		0050D53A1C28E0DB004F6F80 /* NotificationViewController */ = {
 			isa = PBXGroup;
 			children = (
+				662B3CAE1DEBD79E0014FA71 /* MEDAppInfo */,
 				0050D53B1C28E0DB004F6F80 /* NotificationView */,
 				0050D5421C28E0DB004F6F80 /* NotificationViewController.swift */,
 				0050D5431C28E0DB004F6F80 /* NotificationViewController.xib */,
@@ -2544,6 +2551,15 @@
 			);
 			name = TaskQueue;
 			path = Frameworks/TaskQueue;
+			sourceTree = "<group>";
+		};
+		662B3CAE1DEBD79E0014FA71 /* MEDAppInfo */ = {
+			isa = PBXGroup;
+			children = (
+				662B3CA81DEBD6E60014FA71 /* MEDAppInfoRequester.swift */,
+				662B3CAB1DEBD79A0014FA71 /* MEDAppInfo.swift */,
+			);
+			name = MEDAppInfo;
 			sourceTree = "<group>";
 		};
 		665E331C1DADCD7600D0E36D /* MEDWrapper */ = {
@@ -3790,8 +3806,10 @@
 				61FC93F11DE68074000AE93C /* MEDUserSteps.swift in Sources */,
 				00D474831D586D1600E2447E /* MBProgressHUD.bundle in Sources */,
 				00D474841D586D1600E2447E /* MBProgressHUD.h in Sources */,
+				662B3CAD1DEBD79A0014FA71 /* MEDAppInfo.swift in Sources */,
 				00D474851D586D1600E2447E /* MBProgressHUD.m in Sources */,
 				00D474861D586D1600E2447E /* NevoHK.swift in Sources */,
+				662B3CAA1DEBD6E60014FA71 /* MEDAppInfoRequester.swift in Sources */,
 				00D474871D586D1600E2447E /* NevoHKImpl.swift in Sources */,
 				00D474881D586D1600E2447E /* HealthKit.framework in Sources */,
 				61FC93ED1DE68067000AE93C /* MEDUserGoal.swift in Sources */,
@@ -3829,6 +3847,7 @@
 			files = (
 				611D412C1DCAD97C003BC6E3 /* ImagePickerController.swift in Sources */,
 				611D412D1DCAD97C003BC6E3 /* MEDForgetPasswordRequest.swift in Sources */,
+				662B3CA91DEBD6E60014FA71 /* MEDAppInfoRequester.swift in Sources */,
 				611D412E1DCAD97C003BC6E3 /* MEDLoginRequest.swift in Sources */,
 				611D412F1DCAD97C003BC6E3 /* MEDRequestPasswordRequest.swift in Sources */,
 				611D41301DCAD97C003BC6E3 /* MEDStepsCreateRequest.swift in Sources */,
@@ -3905,6 +3924,7 @@
 				611D416E1DCAD97C003BC6E3 /* UserSleep.swift in Sources */,
 				611D416F1DCAD97C003BC6E3 /* UserSteps.swift in Sources */,
 				611D41701DCAD97C003BC6E3 /* Goal.swift in Sources */,
+				662B3CAC1DEBD79A0014FA71 /* MEDAppInfo.swift in Sources */,
 				611D41711DCAD97C003BC6E3 /* NumberOfStepsGoal.swift in Sources */,
 				611D41721DCAD97C003BC6E3 /* NotificationSetting.swift in Sources */,
 				611D41731DCAD97C003BC6E3 /* TypeModel.swift in Sources */,

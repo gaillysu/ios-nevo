@@ -149,5 +149,4 @@ class SelectedNotificationTypeController: UITableViewController {
         }
 
     }
-
 }
