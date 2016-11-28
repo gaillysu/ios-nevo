@@ -79,6 +79,10 @@ class LunaRPacket {
         return GetotalAppIDPacket(packets: mPackets)
     }
     
+    func copy() -> DeleteAllAppIDPacket {
+        return DeleteAllAppIDPacket(packets: mPackets)
+    }
+    
     func isVaildPacket() ->Bool {
         if (mPackets.count < 2) {
            return false

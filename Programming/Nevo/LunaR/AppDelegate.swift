@@ -256,6 +256,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
             
             if(packet.getHeader() == SetSunriseAndSunsetRequest.HEADER()) {
                 //step5: sync the notification setting, if remove nevo's battery, the nevo notification reset, so here need sync it
+                let deleAll:DeleteAllNotificationAppIDRequest = DeleteAllNotificationAppIDRequest()
+                self.sendRequest(deleAll)
+                //SetNortification()
+            }
+            
+            if packet.getHeader() == DeleteAllNotificationAppIDRequest.HEADER() {
+                let thispacket = packet.copy() as DeleteAllAppIDPacket
+                XCGLogger.default.debug("DeleteAllAppIDPacket,state:\(thispacket.getDeleteStatus())")
                 SetNortification()
             }
             

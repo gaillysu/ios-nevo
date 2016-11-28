@@ -22,12 +22,15 @@ class ReceiveNewNotificationPacket: LunaRPacket {
     
     func getApplicationID()->String {
         var data:[UInt8] = NSData2Bytes(getPackets()[0])
-        data.removeSubrange(0..<3)
+        data.removeSubrange(0..<4)
+        let length:Int = self.getAappIDLength()
+        
         for index:Int in 1..<getPackets().count {
             var dataValue = NSData2Bytes(getPackets()[index])
             dataValue.removeSubrange(0..<2)
             data = data+dataValue
         }
+        data.removeSubrange(length..<data.count)
         let idString:String = String(data: Bytes2NSData(data), encoding: .utf8)!
         return idString
     }
