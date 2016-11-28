@@ -13,18 +13,20 @@ class NotificationSetting: NSObject {
     fileprivate let mType:NotificationType
     fileprivate var mClock:Int = 0
     fileprivate var mColor:NSNumber = 0
+    fileprivate var mPacket:String = ""
     var typeName:String {
         get {
             return self.mType.rawValue as String
         }
     }
     
-    init(type:NotificationType, clock:Int , color:NSNumber,states:Bool){
+    init(type:NotificationType, clock:Int , color:NSNumber,states:Bool, packet:String){
         mType = type
         super.init()
         mClock = clock
         mColor = NSNumber(value: self.replaceColor(clock) as UInt32)
         mStates = states
+        mPacket = packet
     }
 
     fileprivate func replaceColor(_ clock:Int)->UInt32{
@@ -84,6 +86,14 @@ class NotificationSetting: NSObject {
     
     func setStates(_ states:Bool) {
         mStates = states
+    }
+    
+    func setPacket(_ packet:String) {
+        mPacket = packet
+    }
+    
+    func getPacket()->String {
+        return mPacket
     }
     /**
     get the type of setting

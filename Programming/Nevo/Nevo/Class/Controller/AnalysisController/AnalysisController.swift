@@ -21,7 +21,6 @@ class AnalysisController: PublicClassController {
     fileprivate var contentTitleArray:[String] = [NSLocalizedString("average_steps", comment: ""), NSLocalizedString("total_steps", comment: ""), NSLocalizedString("average_calories", comment: ""),NSLocalizedString("average_time", comment: "")]
     fileprivate var contentTArray:[String] = [NSLocalizedString("--", comment: ""),NSLocalizedString("--", comment: ""),NSLocalizedString("--", comment: ""),NSLocalizedString("--", comment: "")]
     fileprivate var dataArray:NSMutableArray = NSMutableArray(capacity:3)
-    fileprivate let realm:Realm = try! Realm()
     
     
     override func viewDidLoad() {
@@ -202,22 +201,25 @@ extension AnalysisController {
     
     func getSolarData()->[[SolarHarvest]] {
         let dayDate:Date = Date()
-        let thisWeekSolar = realm.objects(SolarHarvest.self).filter("date > \(dayDate.beginningOfWeek.timeIntervalSince1970-1) AND date < \(dayDate.endOfWeek.timeIntervalSince1970)")
+        let thisWeekSolar = SolarHarvest.getFilter("date > \(dayDate.beginningOfWeek.timeIntervalSince1970-1) AND date < \(dayDate.endOfWeek.timeIntervalSince1970)")
+            //realm.objects(SolarHarvest.self).filter("date > \(dayDate.beginningOfWeek.timeIntervalSince1970-1) AND date < \(dayDate.endOfWeek.timeIntervalSince1970)")
         var thisWeekData:[SolarHarvest] = []
         for value in thisWeekSolar {
-            thisWeekData.append(value as SolarHarvest)
+            thisWeekData.append(value as! SolarHarvest)
         }
 
-        let lastWeekSolar = realm.objects(SolarHarvest.self).filter("date > \(dayDate.beginningOfWeek.timeIntervalSince1970-(86400.0*7)-1) AND date < \(dayDate.beginningOfWeek.timeIntervalSince1970)")
+        let lastWeekSolar = SolarHarvest.getFilter("date > \(dayDate.beginningOfWeek.timeIntervalSince1970-(86400.0*7)-1) AND date < \(dayDate.beginningOfWeek.timeIntervalSince1970)")
+            //realm.objects(SolarHarvest.self).filter("date > \(dayDate.beginningOfWeek.timeIntervalSince1970-(86400.0*7)-1) AND date < \(dayDate.beginningOfWeek.timeIntervalSince1970)")
         var lastWeekData:[SolarHarvest] = []
         for value in lastWeekSolar {
-            lastWeekData.append(value as SolarHarvest)
+            lastWeekData.append(value as! SolarHarvest)
         }
         
-        let last30DaySolar = realm.objects(SolarHarvest.self).filter("date > \(dayDate.beginningOfDay.timeIntervalSince1970-(86400.0*30)) AND date < \(dayDate.endOfDay.timeIntervalSince1970)")
+        let last30DaySolar = SolarHarvest.getFilter("date > \(dayDate.beginningOfDay.timeIntervalSince1970-(86400.0*30)) AND date < \(dayDate.endOfDay.timeIntervalSince1970)")
+            //realm.objects(SolarHarvest.self).filter("date > \(dayDate.beginningOfDay.timeIntervalSince1970-(86400.0*30)) AND date < \(dayDate.endOfDay.timeIntervalSince1970)")
         var last30DayData:[SolarHarvest] = []
         for value in last30DaySolar {
-            last30DayData.append(value as SolarHarvest)
+            last30DayData.append(value as! SolarHarvest)
         }
         
         return [thisWeekData,lastWeekData,last30DayData]

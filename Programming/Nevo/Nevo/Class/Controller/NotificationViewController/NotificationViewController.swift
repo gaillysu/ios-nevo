@@ -34,6 +34,7 @@ class NotificationViewController: UITableViewController,SelectedNotificationDele
             self.view.backgroundColor = UIColor.getLightBaseColor()
             self.tableView.backgroundColor = UIColor.getLightBaseColor()
         }
+        self.tableView.register(UINib(nibName: "NotificationTypeCell", bundle: nil), forCellReuseIdentifier: "Notification_Identifier")
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -56,7 +57,7 @@ class NotificationViewController: UITableViewController,SelectedNotificationDele
             if type == nil {
                 type = NotificationType.other
             }
-            let setting:NotificationSetting = NotificationSetting(type: type!, clock: notification.clock, color: NSNumber(value:notification.clock), states:notification.isAddWatch)
+            let setting:NotificationSetting = NotificationSetting(type: type!, clock: notification.clock, color: NSNumber(value:notification.clock), states:notification.isAddWatch,packet:notification.appid)
             allArraySettingArray.append(setting)
         }
     }
@@ -128,7 +129,7 @@ extension NotificationViewController {
         if let noti = noti {
             var detailString:String = ""
             noti.getStates() ? (detailString = noti.getColorName()) : (detailString = NSLocalizedString("turned_off", comment: ""))
-            return NotificationView.NotificationSystemTableViewCell(indexPath, tableView: tableView, title: noti.typeName, detailLabel:detailString)
+            return NotificationView.NotificationSystemTableViewCell(indexPath, tableView: tableView, title: noti.typeName, detailLabel:detailString,steting:noti)
         }
         
         return UITableViewCell()
