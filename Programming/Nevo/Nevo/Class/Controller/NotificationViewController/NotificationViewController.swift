@@ -159,12 +159,11 @@ extension NotificationViewController {
                             
                             if let newImage = image?.sameSizeWith(image: UIImage(named: "new_call")!) {
                                 endCell.titleImage.image = newImage
-                                endCell.titleImage.layer.cornerRadius = 5
+                                endCell.titleImage.layer.cornerRadius = 7
                                 endCell.titleImage.layer.masksToBounds = true
                             }
                         })
                         
-                        endCell.titleImage.kf.setImage(with: URL(string: info.artworkUrl100), placeholder: UIImage(named:"AppIcon"), options: nil, progressBlock: nil, completionHandler: nil)
                     } else {
                         print("\(error)")
                     }
