@@ -26,5 +26,20 @@ class LunaRStepsGoalPacket: LunaRPacket {
     }
 
     
-   
+    /**
+     get Packet data timer
+     
+     :returns: timer/Year,Month,Day
+     */
+    func getDateTimer()->Date{
+        var year:Int = Int(NSData2Bytes(getPackets()[0])[10] )
+        year = year + Int(NSData2Bytes(getPackets()[0])[11] )<<8
+        let month:Int = Int(NSData2Bytes(getPackets()[0])[12])
+        let day:Int = Int(NSData2Bytes(getPackets()[0])[13])
+        let hour:Int = Int(NSData2Bytes(getPackets()[0])[14])
+        let minute:Int = Int(NSData2Bytes(getPackets()[0])[15])
+        let seconds:Int = Int(NSData2Bytes(getPackets()[0])[16])
+        let dateString:String = "\(year.to2String())\(month.to2String())\(day.to2String()) \(hour.to2String()):\(minute.to2String()):\(seconds.to2String())"
+        return dateString.dateFromFormat("yyyyMMdd hh:mm:ss", locale: DateFormatter().locale)!
+    }
 }

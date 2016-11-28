@@ -59,7 +59,7 @@ extension AppDelegate {
                 if type == nil {
                     type = NotificationType.other
                 }
-                let setting:NotificationSetting = NotificationSetting(type: type!, clock: notification.clock, color: NSNumber(value:notification.clock), states:notification.isAddWatch)
+                let setting:NotificationSetting = NotificationSetting(type: type!, clock: notification.clock, color: NSNumber(value:notification.clock), states:notification.isAddWatch,packet:notification.appid)
                 mNotificationSettingArray.append(setting)
             }
         }

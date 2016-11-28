@@ -23,26 +23,15 @@ class NotificationView: UITableView {
 
      :returns: UITableViewCell
      */
-    class func NotificationSystemTableViewCell(_ indexPath:IndexPath,tableView:UITableView,title:String,detailLabel:String)->UITableViewCell {
-        let endCellID:String = "NotificationSystemTableViewCell"
-        var endCell = tableView.dequeueReusableCell(withIdentifier: endCellID)
-        if (endCell == nil) {
-            endCell = UITableViewCell(style: UITableViewCellStyle.subtitle, reuseIdentifier: endCellID)
-        }
-        endCell?.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
-        //endCell?.selectionStyle = UITableViewCellSelectionStyle.None;
-        endCell?.textLabel?.text = NSLocalizedString(title, comment: "")
-
-        endCell?.detailTextLabel?.text = NSLocalizedString(detailLabel, comment: "")
-        endCell?.detailTextLabel?.font = UIFont.systemFont(ofSize: 13)
-        endCell?.imageView?.image = UIImage(named: "new_\(title.lowercased())")
-        
-        if !AppTheme.isTargetLunaR_OR_Nevo() {
-            endCell?.backgroundColor = UIColor.getGreyColor()
-            endCell?.textLabel?.textColor = UIColor.white
-            endCell?.detailTextLabel?.textColor = UIColor.white
-        }
-        return endCell!
+    class func NotificationSystemTableViewCell(_ indexPath:IndexPath,tableView:UITableView,title:String,detailLabel:String,steting:NotificationSetting)->UITableViewCell {
+        let endCell:NotificationTypeCell = tableView.dequeueReusableCell(withIdentifier: "Notification_Identifier", for: indexPath) as! NotificationTypeCell
+        endCell.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
+        endCell.setTitleLabel(title: NSLocalizedString(title, comment: ""))
+        endCell.setContentLabel(content: NSLocalizedString(detailLabel, comment: ""))
+        endCell.setTitleImage(imageName: "new_\(title.lowercased())")
+        endCell.setSwitchState(steting.getStates())
+        endCell.notificationSetting = steting
+        return endCell
     }
 
     /*
