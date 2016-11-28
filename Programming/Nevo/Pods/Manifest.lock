@@ -81,7 +81,7 @@ DEPENDENCIES:
   - FMDB (~> 2.6.2)
   - iOSDFULibrary (from `https://github.com/NordicSemiconductor/IOS-Pods-DFU-Library.git`, branch `swift3`)
   - IQKeyboardManagerSwift (~> 4.0.6)
-  - Kingfisher
+  - Kingfisher (~> 3.0)
   - LTNavigationBar
   - MRProgress
   - NJKWebViewProgress
@@ -168,6 +168,6 @@ SPEC CHECKSUMS:
   XCGLogger: 38063ea89b4c8b23232d18efd2e12eb0005f3ea4
   Zip: 805fc2fa9d2f05bbb7762d982d7a42ccdcc51f42
 
-PODFILE CHECKSUM: 988eefd48a6c7d7dee33179745a878bf2a31195a
+PODFILE CHECKSUM: 26d620d7bdb793c8bfe73008dd8b6980bd17e510
 
 COCOAPODS: 1.1.1
