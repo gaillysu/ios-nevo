@@ -794,6 +794,8 @@
 		61FC93F81DE80B30000AE93C /* SolarHarvest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61FC93F61DE80B2D000AE93C /* SolarHarvest.swift */; };
 		61FC93FF1DE829DB000AE93C /* TaskQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61FC93FD1DE829DB000AE93C /* TaskQueue.swift */; };
 		61FC94001DE82A38000AE93C /* TaskQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61FC93FD1DE829DB000AE93C /* TaskQueue.swift */; };
+		660C16D01DEC25DA00544F56 /* UIImage+MEDExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 660C16CF1DEC25DA00544F56 /* UIImage+MEDExtension.swift */; };
+		660C16D11DEC25DA00544F56 /* UIImage+MEDExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 660C16CF1DEC25DA00544F56 /* UIImage+MEDExtension.swift */; };
 		662887521DC1E8BC00EC0983 /* MEDMRProgressOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 662887501DC1E8BC00EC0983 /* MEDMRProgressOverlayView.swift */; };
 		662B3CA91DEBD6E60014FA71 /* MEDAppInfoRequester.swift in Sources */ = {isa = PBXBuildFile; fileRef = 662B3CA81DEBD6E60014FA71 /* MEDAppInfoRequester.swift */; };
 		662B3CAA1DEBD6E60014FA71 /* MEDAppInfoRequester.swift in Sources */ = {isa = PBXBuildFile; fileRef = 662B3CA81DEBD6E60014FA71 /* MEDAppInfoRequester.swift */; };
@@ -1372,6 +1374,7 @@
 		61FC93F21DE6810E000AE93C /* NotificationAppID */ = {isa = PBXFileReference; lastKnownFileType = folder; path = NotificationAppID; sourceTree = "<group>"; };
 		61FC93F61DE80B2D000AE93C /* SolarHarvest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SolarHarvest.swift; sourceTree = "<group>"; };
 		61FC93FD1DE829DB000AE93C /* TaskQueue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskQueue.swift; sourceTree = "<group>"; };
+		660C16CF1DEC25DA00544F56 /* UIImage+MEDExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+MEDExtension.swift"; sourceTree = "<group>"; };
 		662887501DC1E8BC00EC0983 /* MEDMRProgressOverlayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MEDMRProgressOverlayView.swift; sourceTree = "<group>"; };
 		662B3CA81DEBD6E60014FA71 /* MEDAppInfoRequester.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MEDAppInfoRequester.swift; sourceTree = "<group>"; };
 		662B3CAB1DEBD79A0014FA71 /* MEDAppInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MEDAppInfo.swift; sourceTree = "<group>"; };
@@ -2399,6 +2402,7 @@
 				1C3712D61DBC5BF2007DC349 /* UIView+MEDExtension.swift */,
 				66687CD61DD9654100AD7F7D /* Dispatch+MEDExtension.swift */,
 				666027B61DE2D63D00E7CBD7 /* UICollectionView+MEDExtension.swift */,
+				660C16CF1DEC25DA00544F56 /* UIImage+MEDExtension.swift */,
 			);
 			name = MEDExtension;
 			path = Frameworks/MEDExtension;
@@ -3601,6 +3605,7 @@
 				00C8266D1DA5E04000ECECEE /* RepeatViewController.xib in Sources */,
 				00C8266E1DA5E04000ECECEE /* AddAlarmController.swift in Sources */,
 				00C8266F1DA5E04000ECECEE /* AddAlarmController.xib in Sources */,
+				660C16D11DEC25DA00544F56 /* UIImage+MEDExtension.swift in Sources */,
 				00C826701DA5E04000ECECEE /* NewAddAlarmController.swift in Sources */,
 				00C826711DA5E04000ECECEE /* NewAddAlarmController.xib in Sources */,
 				00C826721DA5E04000ECECEE /* AlarmClockController.swift in Sources */,
@@ -3978,6 +3983,7 @@
 				611D41981DCAD97C003BC6E3 /* WatchNamePacket.swift in Sources */,
 				611D41991DCAD97C003BC6E3 /* FindPhonePacket.swift in Sources */,
 				611D419A1DCAD97C003BC6E3 /* GetActivityRequest.swift in Sources */,
+				660C16D01DEC25DA00544F56 /* UIImage+MEDExtension.swift in Sources */,
 				611D419B1DCAD97C003BC6E3 /* GetStepsGoalRequest.swift in Sources */,
 				611D419C1DCAD97C003BC6E3 /* LedLightOnOffNevoRequest.swift in Sources */,
 				61FC93E51DE679A6000AE93C /* SetNotificationAppIDRequest.swift in Sources */,
