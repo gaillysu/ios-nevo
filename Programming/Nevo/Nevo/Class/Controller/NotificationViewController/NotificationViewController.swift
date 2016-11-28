@@ -9,6 +9,7 @@
 import UIKit
 import BRYXBanner
 import XCGLogger
+import RealmSwift
 
 class NotificationViewController: UITableViewController,SelectedNotificationDelegate {
     fileprivate let titleHeader:[String] = ["ACTIVE_NOTIFICATIONS","INACTIVE_NOTIFICATIONS"]
@@ -35,6 +36,14 @@ class NotificationViewController: UITableViewController,SelectedNotificationDele
             self.tableView.backgroundColor = UIColor.getLightBaseColor()
         }
         self.tableView.register(UINib(nibName: "NotificationTypeCell", bundle: nil), forCellReuseIdentifier: "Notification_Identifier")
+        
+        let rightItem:UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.refresh, target: self, action: #selector(refreshAction(_:)))
+        self.navigationItem.rightBarButtonItem = rightItem
+    }
+    
+    func refreshAction(_ sender:UIBarButtonItem) {
+        let request:GetTotalNotificationAppReuqest = GetTotalNotificationAppReuqest()
+        AppDelegate.getAppDelegate().sendRequest(request)
     }
     
     override func viewWillAppear(_ animated: Bool) {
