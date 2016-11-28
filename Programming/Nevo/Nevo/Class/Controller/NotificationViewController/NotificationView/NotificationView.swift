@@ -27,7 +27,10 @@ class NotificationView: UITableView {
     class func NotificationSystemTableViewCell(_ indexPath:IndexPath,tableView:UITableView,title:String,detailLabel:String,steting:NotificationSetting)->UITableViewCell {
         let endCell:NotificationTypeCell = tableView.dequeueReusableCell(withIdentifier: "Notification_Identifier", for: indexPath) as! NotificationTypeCell
         endCell.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
-        endCell.setTitleLabel(title: NSLocalizedString(title, comment: ""))
+
+        endCell.setTitleLabel(title: NSLocalizedString(steting.getAppName(), comment: ""))
+        endCell.setContentLabel(content: NSLocalizedString(detailLabel, comment: ""))
+
         endCell.setTitleImage(imageName: "new_\(title.lowercased())")
         
         if endCell.titleImage.image == nil {
@@ -41,9 +44,12 @@ class NotificationView: UITableView {
                     endCell.setTitleLabel(title: info.trackName)
                     endCell.titleImage.kf.setImage(with: URL(string: info.artworkUrl100), placeholder: UIImage(named:"AppIcon"), options: nil, progressBlock: nil, completionHandler: nil)
                 } else {
-                    
+                    #if DEBUG
+                        fatalError("\(error)")
+                    #else
+                        print("\(error)")
+                    #endif
                 }
-                
             })
         }
         

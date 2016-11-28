@@ -14,19 +14,21 @@ class NotificationSetting: NSObject {
     fileprivate var mClock:Int = 0
     fileprivate var mColor:NSNumber = 0
     fileprivate var mPacket:String = ""
+    fileprivate var mAppName:String = ""
     var typeName:String {
         get {
             return self.mType.rawValue as String
         }
     }
     
-    init(type:NotificationType, clock:Int , color:NSNumber,states:Bool, packet:String){
+    init(type:NotificationType, clock:Int , color:NSNumber,states:Bool, packet:String, appName:String){
         mType = type
         super.init()
         mClock = clock
         mColor = NSNumber(value: self.replaceColor(clock) as UInt32)
         mStates = states
         mPacket = packet
+        mAppName = appName
     }
 
     fileprivate func replaceColor(_ clock:Int)->UInt32{
@@ -90,6 +92,14 @@ class NotificationSetting: NSObject {
     
     func setPacket(_ packet:String) {
         mPacket = packet
+    }
+    
+    func setAppName(_ name:String) {
+        mAppName = name
+    }
+    
+    func getAppName() -> String {
+        return mAppName
     }
     
     func getPacket()->String {

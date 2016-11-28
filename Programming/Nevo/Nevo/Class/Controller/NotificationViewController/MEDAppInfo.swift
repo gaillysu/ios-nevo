@@ -30,6 +30,7 @@ class MEDAppInfo: Object {
         } else {
             #if DEBUG
                 fatalError("json 格式解析有问题")
+                return nil
             #else
                 return nil
             #endif

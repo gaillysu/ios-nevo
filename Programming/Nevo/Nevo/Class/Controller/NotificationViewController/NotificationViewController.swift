@@ -9,6 +9,7 @@
 import UIKit
 import BRYXBanner
 import XCGLogger
+import RealmSwift
 
 class NotificationViewController: UITableViewController,SelectedNotificationDelegate {
     fileprivate let titleHeader:[String] = ["ACTIVE_NOTIFICATIONS","INACTIVE_NOTIFICATIONS"]
@@ -58,7 +59,7 @@ class NotificationViewController: UITableViewController,SelectedNotificationDele
             if type == nil {
                 type = NotificationType.other
             }
-            let setting:NotificationSetting = NotificationSetting(type: type!, clock: notification.clock, color: NSNumber(value:notification.clock), states:notification.isAddWatch,packet:notification.appid)
+            let setting:NotificationSetting = NotificationSetting(type: type!, clock: notification.clock, color: NSNumber(value:notification.clock), states:notification.isAddWatch,packet:notification.appid ,appName:notification.appName)
             allArraySettingArray.append(setting)
         }
     }
@@ -130,7 +131,33 @@ extension NotificationViewController {
         if let noti = noti {
             var detailString:String = ""
             noti.getStates() ? (detailString = noti.getColorName()) : (detailString = NSLocalizedString("turned_off", comment: ""))
-            return NotificationView.NotificationSystemTableViewCell(indexPath, tableView: tableView, title: noti.typeName, detailLabel:detailString,steting:noti)
+            
+            let endCell:NotificationTypeCell = tableView.dequeueReusableCell(withIdentifier: "Notification_Identifier", for: indexPath) as! NotificationTypeCell
+            endCell.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
+            endCell.setTitleLabel(title: NSLocalizedString(noti.getAppName(), comment: ""))
+            endCell.setContentLabel(content: NSLocalizedString(detailString, comment: ""))
+            endCell.setTitleImage(imageName: "new_\(noti.typeName.lowercased())")
+            
+            if endCell.titleImage.image == nil {
+                endCell.setTitleLabel(title: "loading...")
+                endCell.setTitleImage(imageName: "AppIcon")
+                
+                MEDAppInfoRequester.requesAppInfoWith(bundleId: noti.getPacket(), resultHandle: {
+                    (error, appInfo) in
+                    
+                    if let info = appInfo {
+                        endCell.setTitleLabel(title: info.trackName)
+                        endCell.titleImage.kf.setImage(with: URL(string: info.artworkUrl100), placeholder: UIImage(named:"AppIcon"), options: nil, progressBlock: nil, completionHandler: nil)
+                    } else {
+                        print("\(error)")
+                    }
+                })
+            }
+            
+            endCell.setSwitchState(noti.getStates())
+            endCell.notificationSetting = noti
+            endCell.addDelegate = self
+            return endCell
         }
         
         return UITableViewCell()
@@ -157,32 +184,32 @@ extension NotificationViewController {
 }
 
 // MARK: - SelectedNotificationDelegate
-extension NotificationViewController {
-    func didSelectedNotificationDelegate(_ clockIndex:Int,ntSwitchState:Bool,notificationType:String){
+extension NotificationViewController:AddPacketToWatchDelegate {
+    func addPacketToWatchDelegate(appid:String){
+        initNotificationSettingArray()
+        self.tableView.reloadData()
+    }
+    
+    func didSelectedNotificationDelegate(_ clockIndex:Int,ntSwitchState:Bool,appid:String){
         for model in mNotificationArray {
             let notModel:MEDUserNotification = model
-            if(notModel.notificationType == notificationType){
-                let model:MEDUserNotification = MEDUserNotification()
-                model.key = notModel.key
-                model.appid = notModel.appid
-                model.appName = notModel.appName
-                model.receiveDate = notModel.receiveDate
-                model.notificationType = notModel.notificationType
-                model.clock = clockIndex
-                model.isAddWatch = ntSwitchState
-                if(model.update()){
-                    initNotificationSettingArray()
-                    self.tableView.reloadData()
-                    if(AppDelegate.getAppDelegate().isConnected()){
-                        AppDelegate.getAppDelegate().SetNortification(allArraySettingArray)
-                        let banner = MEDBanner(title: NSLocalizedString("sync_notifications", comment: ""), subtitle: nil, image: nil, backgroundColor: AppTheme.NEVO_SOLAR_YELLOW())
-                        banner.dismissesOnTap = true
-                        banner.show(duration: 2.0)
-                    }else{
-                        let banner = MEDBanner(title: NSLocalizedString("no_watch_connected", comment: ""), subtitle: nil, image: nil, backgroundColor: AppTheme.NEVO_SOLAR_YELLOW())
-                        banner.dismissesOnTap = true
-                        banner.show(duration: 2.0)
-                    }
+            if(notModel.appid == appid){
+                let realm = try! Realm()
+                try! realm.write {
+                    notModel.clock = clockIndex
+                    notModel.isAddWatch = ntSwitchState
+                }
+                initNotificationSettingArray()
+                self.tableView.reloadData()
+                if(AppDelegate.getAppDelegate().isConnected()){
+                    AppDelegate.getAppDelegate().SetNortification(allArraySettingArray)
+                    let banner = MEDBanner(title: NSLocalizedString("sync_notifications", comment: ""), subtitle: nil, image: nil, backgroundColor: AppTheme.NEVO_SOLAR_YELLOW())
+                    banner.dismissesOnTap = true
+                    banner.show(duration: 2.0)
+                }else{
+                    let banner = MEDBanner(title: NSLocalizedString("no_watch_connected", comment: ""), subtitle: nil, image: nil, backgroundColor: AppTheme.NEVO_SOLAR_YELLOW())
+                    banner.dismissesOnTap = true
+                    banner.show(duration: 2.0)
                 }
                 break
             }
