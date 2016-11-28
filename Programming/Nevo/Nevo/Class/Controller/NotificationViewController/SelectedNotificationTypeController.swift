@@ -10,7 +10,7 @@ import UIKit
 
 protocol SelectedNotificationDelegate {
 
-    func didSelectedNotificationDelegate(_ clockIndex:Int,ntSwitchState:Bool,notificationType:String)
+    func didSelectedNotificationDelegate(_ clockIndex:Int,ntSwitchState:Bool,appid:String)
 }
 
 class SelectedNotificationTypeController: UITableViewController {
@@ -47,7 +47,7 @@ class SelectedNotificationTypeController: UITableViewController {
     func buttonManager(_ sender:AnyObject){
         if(sender.isKind(of: UISwitch.classForCoder())){
             let switchView:UISwitch = sender as! UISwitch
-            selectedDelegate?.didSelectedNotificationDelegate(notSetting!.getClock(), ntSwitchState: switchView.isOn,notificationType:notSetting!.typeName)
+            selectedDelegate?.didSelectedNotificationDelegate(notSetting!.getClock(), ntSwitchState: switchView.isOn,appid:notSetting!.getPacket())
             notSetting?.setStates(switchView.isOn)
             notSetting?.setClock(notSetting!.getClock())
             tableView.separatorStyle = switchView.isOn ? .singleLine : .none
@@ -142,7 +142,7 @@ class SelectedNotificationTypeController: UITableViewController {
             cell.accessoryView = UIImageView(image: image)
             
             notSetting?.setClock((indexPath.row+1)*2)
-            selectedDelegate?.didSelectedNotificationDelegate(notSetting!.getClock(), ntSwitchState: notSetting!.getStates(),notificationType:notSetting!.typeName)
+            selectedDelegate?.didSelectedNotificationDelegate(notSetting!.getClock(), ntSwitchState: notSetting!.getStates(),appid:notSetting!.getPacket())
             let reloadIndexPath:IndexPath = IndexPath(row: 0, section: 1)
             tableView.reloadRows(at: [reloadIndexPath], with: UITableViewRowAnimation.automatic)
             tableView.reloadSections(IndexSet(integer: 2), with: UITableViewRowAnimation.automatic)

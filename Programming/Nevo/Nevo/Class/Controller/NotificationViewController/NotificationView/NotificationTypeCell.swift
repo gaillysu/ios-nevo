@@ -7,6 +7,12 @@
 //
 
 import UIKit
+import RealmSwift
+
+protocol AddPacketToWatchDelegate {
+    
+    func addPacketToWatchDelegate(appid:String)
+}
 
 class NotificationTypeCell: UITableViewCell {
 
@@ -14,6 +20,8 @@ class NotificationTypeCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var contentLabel: UILabel!
     @IBOutlet weak var addSwitch: UISwitch!
+    var addDelegate:AddPacketToWatchDelegate?
+    
     
     var notificationSetting:NotificationSetting?{
         didSet{
@@ -57,8 +65,19 @@ class NotificationTypeCell: UITableViewCell {
     }
     
     @IBAction func addNotificationAction(_ sender: Any) {
-        
-        
+        let swicthState:UISwitch = sender as! UISwitch
+        let mNotificationArray:[MEDUserNotification] = MEDUserNotification.getAll() as! [MEDUserNotification]
+        for model in mNotificationArray{
+            let notification:MEDUserNotification = model
+            if(notification.appid == notificationSetting?.getPacket()){
+                let realm = try! Realm()
+                try! realm.write {
+                    notification.isAddWatch = swicthState.isOn
+                }
+                addDelegate?.addPacketToWatchDelegate(appid: notification.appid)
+                break
+            }
+        }
     }
     
 }

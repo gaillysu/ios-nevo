@@ -330,6 +330,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                 }
             }
             
+            if(packet.getHeader() == GetStepsGoalRequest.HEADER()) {
+                //refresh current hourly steps changing in the healthkit
+                let thispacket = packet.copy() as LunaRStepsGoalPacket
+                let dailySteps:Int = thispacket.getDailySteps()
+                let dailyStepGoal:Int = thispacket.getDailyStepsGoal()
+                let percent :Float = Float(dailySteps)/Float(dailyStepGoal)
+                SwiftEventBus.post(EVENT_BUS_BEGIN_SMALL_SYNCACTIVITY, sender:["STEPS":dailySteps,"GOAL":dailyStepGoal,"PERCENT":percent] as AnyObject)
+                
+            }
+            
+            if (packet.getHeader() == GetTotalNotificationAppReuqest.HEADER()){
+                let thispacket = packet.copy() as GetotalAppIDPacket
+                XCGLogger.default.debug("GetotalAppIDPacket,number:\(thispacket.getTotalAppsNumber()))")
+            }
+            
             if(packet.getHeader() == ReadDailyTracker.HEADER()) {
                 let thispacket:LunaRDailyTrackerPacket = packet.copy() as LunaRDailyTrackerPacket
                 
@@ -425,17 +440,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                     SwiftEventBus.post(EVENT_BUS_END_BIG_SYNCACTIVITY, sender:nil)
                 }
             }
-            
-            if(packet.getHeader() == GetStepsGoalRequest.HEADER()) {
-                //refresh current hourly steps changing in the healthkit
-                let thispacket = packet.copy() as LunaRStepsGoalPacket
-                let dailySteps:Int = thispacket.getDailySteps()
-                let dailyStepGoal:Int = thispacket.getDailyStepsGoal()
-                let percent :Float = Float(dailySteps)/Float(dailyStepGoal)
-                SwiftEventBus.post(EVENT_BUS_BEGIN_SMALL_SYNCACTIVITY, sender:["STEPS":dailySteps,"GOAL":dailyStepGoal,"PERCENT":percent] as AnyObject)
-                XCGLogger.default.debug("DailyStepsNevoPacket,steps:\(dailySteps),stepGoal:\(dailyStepGoal),getRTC:\(thispacket.getDateTimer().stringFromFormat("yyyy-MM-dd hh:mm:ss"))")
-            }
-            
+
             //new find Phone
             if (packet.getHeader() == FindPhonePacket.HEADER()) {
                 AppTheme.playSound()

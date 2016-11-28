@@ -75,6 +75,10 @@ class LunaRPacket {
         return ReceiveNewNotificationPacket(packets: mPackets)
     }
     
+    func copy() -> GetotalAppIDPacket {
+        return GetotalAppIDPacket(packets: mPackets)
+    }
+    
     func isVaildPacket() ->Bool {
         if (mPackets.count < 2) {
            return false
