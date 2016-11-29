@@ -48,7 +48,7 @@ class NotificationTypeCell: UITableViewCell {
     }
     
     func setSwitchState(_ on:Bool) {
-        addSwitch.setOn(on, animated: true)
+        addSwitch.setOn(on, animated: false)
     }
     
     func getSwitchState()->Bool {

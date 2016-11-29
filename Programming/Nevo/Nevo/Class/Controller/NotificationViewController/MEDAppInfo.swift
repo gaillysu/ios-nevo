@@ -10,7 +10,7 @@ import Foundation
 import RealmSwift
 import SwiftyJSON
 
-class MEDAppInfo: Object {
+class MEDAppInfo: Object, NSCopying {
     dynamic var artworkUrl60 = ""
     dynamic var artworkUrl512 = ""
     dynamic var artworkUrl100 = ""
@@ -41,5 +41,18 @@ class MEDAppInfo: Object {
     
     override class func primaryKey() -> String? {
         return "bundleId"
+    }
+    
+    func copy(with zone: NSZone? = nil) -> Any {
+        let info = MEDAppInfo()
+        
+        info.artworkUrl60 = artworkUrl60
+        info.artworkUrl100 = artworkUrl100
+        info.artworkUrl512 = artworkUrl512
+        info.trackName = trackName
+        info.trackCensoredName = trackCensoredName
+        info.bundleId = bundleId
+        
+        return info
     }
 }
