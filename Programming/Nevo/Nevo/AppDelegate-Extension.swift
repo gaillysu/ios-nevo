@@ -48,30 +48,20 @@ extension AppDelegate {
     }
     
     func SetNortification() {
-        XCGLogger.default.debug("SetNortification")
         var mNotificationSettingArray:[NotificationSetting] = []
-        let mNotificationArray:[MEDUserNotification] = MEDUserNotification.getAll() as! [MEDUserNotification]
-        for model in mNotificationArray{
-            let notification:MEDUserNotification = model
-            if notification.isAddWatch {
-                let notificationType:String = notification.notificationType
-                var type = NotificationType(rawValue: notificationType as NSString)
-                if type == nil {
-                    type = NotificationType.other
-                }
-                let setting:NotificationSetting = NotificationSetting(type: type!, clock: notification.clock, color: NSNumber(value:notification.clock), states:notification.isAddWatch,packet:notification.appid,appName:notification.appName)
-                mNotificationSettingArray.append(setting)
-            }
-        }
+        let setting:NotificationSetting = NotificationSetting(type: NotificationType.call, clock: 12, color: NSNumber(value:12), states:true,packet:"com.apple.mobilephone",appName:"Call")
+        mNotificationSettingArray.append(setting)
         sendRequest(SetNortificationRequest(settingArray: mNotificationSettingArray))
     }
 
+    func DeleteAllLunaRNotfication() {
+        XCGLogger.default.debug("DeleteAllLunaRNotfication")
+        sendRequest(DeleteAllNotificationAppIDRequest())
+    }
+    
     func LunaRNotfication() {
-        XCGLogger.default.debug("SetNortification")
-        var mNotificationSettingArray:[SetNotificationAppIDRequest] = []
         let mNotificationArray:[MEDUserNotification] = (MEDUserNotification.getAll() as! [MEDUserNotification]).filter({$0.isAddWatch == true})
         
-        let queue = TaskQueue()
         for (index,model) in mNotificationArray.enumerated() {
             let notification:MEDUserNotification = model
             if notification.isAddWatch {
@@ -84,17 +74,10 @@ extension AppDelegate {
                 let setting:NotificationSetting = NotificationSetting(type: type!, clock: notification.clock, color: NSNumber(value:notification.clock), states:notification.isAddWatch,packet:notification.appid,appName:notification.appName)
                 let packet:String = notification.appid
                 let packetLength:Int = packet.length()
-                let notificationsRequest:SetNotificationAppIDRequest = SetNotificationAppIDRequest(number: index, length: packetLength, pattern: setting.getColor().uint32Value, appid: packet, motorOnOff: true)
-                queue.tasks += {[weak self] result, next in
-                    guard let `self` = self else {return}
-                    self.sendRequest(notificationsRequest)
-                    self.delay(seconds: 1) {
-                        next(nil)
-                    }
-                }
+                let notificationsRequest:SetNotificationAppIDRequest = SetNotificationAppIDRequest(number: index+1, length: packetLength, pattern: setting.getColor().uint32Value, appid: packet, motorOnOff: true)
+                self.sendRequest(notificationsRequest)
             }
         }
-        queue.run()
     }
     
     func delay(seconds:Double, completion: @escaping ()-> Void) {

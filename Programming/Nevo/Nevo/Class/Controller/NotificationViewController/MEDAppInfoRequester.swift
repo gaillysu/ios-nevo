@@ -30,7 +30,7 @@ class MEDAppInfoRequester {
                     if let info = MEDAppInfo.medAppInfoWith(json: json["results"][0]) {
                         let realm = try! Realm()
                         try! realm.write {
-                            realm.add(info)
+                            realm.add(info, update: true)
                         }
                         resultHandle(nil, info)
                     }

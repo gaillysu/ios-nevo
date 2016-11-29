@@ -32,39 +32,43 @@ class SetNotificationAppIDRequest: NevoRequest {
     }
     
     override func getRawDataEx() -> NSArray {
-        var values1 :[UInt8] = [UInt8(listNumber&0xFF),UInt8(appidLength&0xFF),UInt8(ledPattern&0xFF),UInt8((ledPattern>>8)&0xFF),UInt8((ledPattern>>16)&0xFF)]
         let data:Data = appidString.data(using: .utf8)!
-        let dataByte:[UInt8] = values1+NSData2Bytes(data)
+        let values1:[UInt8] = [0x00,SetNotificationAppIDRequest.HEADER(),0x80,UInt8(appidLength&0xFF),UInt8(ledPattern&0xFF),UInt8((ledPattern>>8)&0xFF),UInt8((ledPattern>>16)&0xFF)]+NSData2Bytes(data)
         var dataValue:[[UInt8]] = []
+        let header:UInt8 = 0x00
+        let header1:UInt8 = 0xFF
         
-        if values1.count>=18 {
-            let header:UInt8 = 0x00
-            for index:Int in 0..<dataByte.count/18 {
-                var streetsSlice = dataByte[index*18 ..< 18]
-                if dataValue.count == 0 {
-                    streetsSlice.insert(header, at: 0)
-                    streetsSlice.insert(SetNotificationAppIDRequest.HEADER(), at: 1)
-                    dataValue.append((streetsSlice as! [UInt8]))
-                }else{
-                    streetsSlice.insert(header+UInt8(dataValue.count&0xFF), at: 0)
-                    streetsSlice.insert(SetNotificationAppIDRequest.HEADER(), at: 1)
-                    dataValue.append((streetsSlice as! [UInt8]))
+        var dataValue2:[UInt8] = []
+        for (index,value) in values1.enumerated() {
+            if dataValue2.count<20 {
+                dataValue2.append(value)
+                if index == values1.count-1 {
+                    for _ in dataValue2.count..<20 {
+                        dataValue2.append(header)
+                    }
+                    dataValue.append(dataValue2)
+                    
+                    dataValue2 = []
+                    if dataValue.count<2 {
+                        dataValue2.insert(header1, at: 0)
+                        dataValue2.insert(SetNotificationAppIDRequest.HEADER(), at: 1)
+                        for _ in 0..<18 {
+                            dataValue2.append(header)
+                        }
+                        dataValue.append(dataValue2)
+                    }
                 }
-            }
-            var streetsSlice:[UInt8] = []
-            if values1.count%18 == 0{
-                streetsSlice = dataValue[dataValue.count-1]
-                streetsSlice.replaceSubrange(0..<1, with: [0xFF])
-                dataValue.replaceSubrange(dataValue.count-2..<dataValue.count-1, with: [streetsSlice])
             }else{
-                let remainderValue:Int = values1.count%18
-                streetsSlice = (values1[values1.count-remainderValue ..< remainderValue]) as! [UInt8]
-                streetsSlice.insert(0xFF, at: 0)
-                streetsSlice.insert(SetNotificationAppIDRequest.HEADER(), at: 1)
-                for index:Int in streetsSlice.count..<20 {
-                    streetsSlice.append(0)
+                dataValue.append(dataValue2)
+                dataValue2 = [];
+                if (values1.count - index)>20 {
+                    dataValue2.insert(header+UInt8(dataValue.count&0xFF), at: 0)
+                    dataValue2.insert(SetNotificationAppIDRequest.HEADER(), at: 1)
+                }else{
+                    dataValue2.insert(header1, at: 0)
+                    dataValue2.insert(SetNotificationAppIDRequest.HEADER(), at: 1)
                 }
-                dataValue.append((streetsSlice))
+                dataValue2.append(value)
             }
         }
         
