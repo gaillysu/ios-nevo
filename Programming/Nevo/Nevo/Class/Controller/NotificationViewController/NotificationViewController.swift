@@ -88,6 +88,14 @@ extension NotificationViewController {
 
 // MARK: - TableView Datasource & Delegate
 extension NotificationViewController {
+    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
+        if !AppTheme.isTargetLunaR_OR_Nevo() {
+            return false
+        }else{
+            return true
+        }
+    }
+    
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat{
         return 45.0
     }
@@ -149,14 +157,14 @@ extension NotificationViewController {
             if endCell.titleImage.image == nil {
                 endCell.setTitleLabel(title: "loading...")
                 endCell.setTitleImage(imageName: "AppIcon")
-                
-                MEDAppInfoRequester.requesAppInfoWith(bundleId: noti.getPacket(), resultHandle: {
+                let bundleid:String = noti.getPacket()
+                MEDAppInfoRequester.requesAppInfoWith(bundleId: bundleid, resultHandle: {
                     (error, appInfo) in
-                    
                     if let info = appInfo {
-                        endCell.setTitleLabel(title: info.trackName)
-                        endCell.titleImage.kf.setImage(with: URL(string: info.artworkUrl100), placeholder: UIImage(named:"AppIcon"), options: nil, progressBlock: nil, completionHandler: { (image, error, cache, url) in
-                            
+                        let appName:String = info.trackName
+                        let imageurl:String = info.artworkUrl100
+                        endCell.setTitleLabel(title: appName)
+                        endCell.titleImage.kf.setImage(with: URL(string: imageurl), placeholder: UIImage(named:"AppIcon"), options: nil, progressBlock: nil, completionHandler: { (image, error, cache, url) in
                             if let newImage = image?.sameSizeWith(image: UIImage(named: "new_call")!) {
                                 endCell.titleImage.image = newImage
                                 endCell.titleImage.layer.cornerRadius = 5
@@ -164,7 +172,15 @@ extension NotificationViewController {
                             }
                         })
                         
-                        endCell.titleImage.kf.setImage(with: URL(string: info.artworkUrl100), placeholder: UIImage(named:"AppIcon"), options: nil, progressBlock: nil, completionHandler: nil)
+                        endCell.titleImage.kf.setImage(with: URL(string: imageurl), placeholder: UIImage(named:"AppIcon"), options: nil, progressBlock: nil, completionHandler: nil)
+                        let notifictionObject = MEDUserNotification.getFilter("key = '\(bundleid)'")
+                        if(notifictionObject.count > 0) {
+                            let notifictionValue:MEDUserNotification = notifictionObject[0] as! MEDUserNotification
+                            let realm = try! Realm()
+                            try! realm.write {
+                                notifictionValue.appName = appName
+                            }
+                        }
                     } else {
                         print("\(error)")
                     }
@@ -202,9 +218,10 @@ extension NotificationViewController {
 
 // MARK: - SelectedNotificationDelegate
 extension NotificationViewController:AddPacketToWatchDelegate {
-    func addPacketToWatchDelegate(appid:String){
+    func addPacketToWatchDelegate(appid:String,onOff:Bool){
         initNotificationSettingArray()
         self.tableView.reloadData()
+        AppDelegate.getAppDelegate().LunaRNotfication()
     }
     
     func didSelectedNotificationDelegate(_ clockIndex:Int,ntSwitchState:Bool,appid:String){
