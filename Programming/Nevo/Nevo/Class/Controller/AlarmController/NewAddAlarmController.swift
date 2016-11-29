@@ -62,7 +62,6 @@ class NewAddAlarmController: UITableViewController,ButtonManagerCallBack,Selecte
     }
     
     override func viewDidLayoutSubviews() {
-        print("============================\n\(self.tableView.contentSize)\n=============================\n")
         super.viewDidLayoutSubviews()
     }
     
@@ -83,7 +82,6 @@ class NewAddAlarmController: UITableViewController,ButtonManagerCallBack,Selecte
             let timerCell3:UITableViewCell = self.tableView.cellForRow(at: indexPaths3)!
             name = (timerCell3.detailTextLabel!.text)!
 
-            // 2016-10-28 new feature, adjust the alarm's logic
             let nowDate:Date = Date()
             let nowDateTime:Int = nowDate.hour * 60 + nowDate.minute
             let pickerDate:Date = Date(timeIntervalSince1970: timer)

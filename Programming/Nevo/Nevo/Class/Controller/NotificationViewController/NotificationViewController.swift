@@ -55,6 +55,10 @@ class NotificationViewController: UITableViewController,SelectedNotificationDele
         tableView.reloadData()
     }
 
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+    }
+    
     func initNotificationSettingArray() {
         mNotificationArray = MEDUserNotification.getAll() as! [MEDUserNotification]
         allArraySettingArray.removeAll()
