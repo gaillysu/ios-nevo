@@ -149,7 +149,10 @@ extension NotificationViewController {
             endCell.setTitleImage(imageName: "new_\(noti.typeName.lowercased())")
             
             if endCell.titleImage.image == nil {
-                endCell.setTitleLabel(title: "loading...")
+                if let rawAppName = NSString.init(string: noti.getPacket()).components(separatedBy: ".").last {
+                    endCell.setTitleLabel(title: rawAppName)
+                }
+                
                 endCell.setTitleImage(imageName: "AppIcon")
                 
                 MEDAppInfoRequester.requesAppInfoWith(bundleId: noti.getPacket(), resultHandle: {
@@ -161,8 +164,6 @@ extension NotificationViewController {
                             
                             if let newImage = image?.sameSizeWith(image: UIImage(named: "new_call")!) {
                                 endCell.titleImage.image = newImage
-                                endCell.titleImage.layer.cornerRadius = 7
-                                endCell.titleImage.layer.masksToBounds = true
                             }
                         })
                         
