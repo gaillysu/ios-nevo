@@ -156,11 +156,15 @@ extension NotificationViewController {
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String{
+        var title: String = ""
+        
         if hasOffNotifications && hasOnNotifications {
-            return titleHeader[section]
+            title = titleHeader[section]
         } else {
-            return hasOnNotifications ? titleHeader[0] : titleHeader[1]
+            title = hasOnNotifications ? titleHeader[0] : titleHeader[1]
         }
+        
+        return NSLocalizedString(title, comment: "")
     }
     
     override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
@@ -198,8 +202,6 @@ extension NotificationViewController {
             endCell.setTitleImage(imageName: "new_\(noti.typeName.lowercased())")
             
             if endCell.titleImage.image == nil {
-                endCell.setTitleLabel(title: "loading...")
-                endCell.setTitleImage(imageName: "AppIcon")
                 let bundleid:String = noti.getPacket()
                 if let rawAppName = NSString.init(string: noti.getPacket()).components(separatedBy: ".").last {
                     endCell.setTitleLabel(title: rawAppName)
