@@ -153,14 +153,15 @@ extension NotificationViewController {
                     endCell.setTitleLabel(title: rawAppName)
                 }
                 
-                endCell.setTitleImage(imageName: "AppIcon")
+                let placeholderImage: String = "notiPlaceholder"
+                endCell.setTitleImage(imageName: placeholderImage)
                 
                 MEDAppInfoRequester.requesAppInfoWith(bundleId: noti.getPacket(), resultHandle: {
                     (error, appInfo) in
                     
                     if let info = appInfo {
                         endCell.setTitleLabel(title: info.trackName)
-                        endCell.titleImage.kf.setImage(with: URL(string: info.artworkUrl100), placeholder: UIImage(named:"AppIcon"), options: nil, progressBlock: nil, completionHandler: { (image, error, cache, url) in
+                        endCell.titleImage.kf.setImage(with: URL(string: info.artworkUrl100), placeholder: UIImage(named: placeholderImage), options: nil, progressBlock: nil, completionHandler: { (image, error, cache, url) in
                             
                             if let newImage = image?.sameSizeWith(image: UIImage(named: "new_call")!) {
                                 endCell.titleImage.image = newImage
@@ -168,6 +169,10 @@ extension NotificationViewController {
                         })
                         
                     } else {
+                        let banner = MEDBanner(title: "There seems to be something wrong with your network! so we cannot get the exact names and icons for some apps, please retry later!", subtitle: nil, image: nil, backgroundColor: AppTheme.NEVO_SOLAR_YELLOW())
+                        banner.dismissesOnTap = true
+                        banner.show(duration: 1.5)
+                        
                         print("\(error)")
                     }
                 })
