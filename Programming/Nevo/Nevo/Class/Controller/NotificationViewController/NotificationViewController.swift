@@ -92,9 +92,46 @@ extension NotificationViewController {
 extension NotificationViewController {
     override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
         if !AppTheme.isTargetLunaR_OR_Nevo() {
-            return false
-        }else{
             return true
+        }else{
+            return false
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]?{
+        let button1 = UITableViewRowAction(style: .default, title: NSLocalizedString("Delete", comment:""), handler: { (action, indexPath) in
+            self.tableView(tableView, commit: .delete, forRowAt: indexPath)
+        })
+        
+        // MARK: - APPTHEME ADJUST
+        if !AppTheme.isTargetLunaR_OR_Nevo() {
+            button1.backgroundColor = UIColor.getBaseColor()
+        } else {
+            button1.backgroundColor = AppTheme.NEVO_SOLAR_YELLOW()
+        }
+        return [button1]
+    }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            // Delete the row from the data source
+            var noti: NotificationSetting?
+            if hasOnNotifications && hasOffNotifications {
+                noti = indexPath.section == 0 ? onNotificaitons[indexPath.row] : offNotifications[indexPath.row]
+            } else {
+                noti = hasOnNotifications ? onNotificaitons[indexPath.row] : offNotifications[indexPath.row]
+            }
+            
+            let notfiction = MEDUserNotification.getFilter("key = '\(noti!.getPacket())'")
+            if notfiction.count>0 {
+                let notValue:MEDUserNotification = notfiction[0] as! MEDUserNotification
+                _ = notValue.remove()
+            }
+            
+            initNotificationSettingArray()
+            tableView.reloadData()
+        } else if editingStyle == .insert {
+            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }
     }
     

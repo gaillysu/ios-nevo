@@ -321,11 +321,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
             if packet.getHeader() == NewAppIDNotificationRequest.HEADER() {
                 let thispacket = packet.copy() as ReceiveNewNotificationPacket
                 let appidString:String = thispacket.getApplicationID()
+                let array = appidString.characters.split(separator: ".")
                 let object = MEDUserNotification.getFilter("appid = '\(appidString)'")
                 if object.count == 0 {
                     let userNotification:MEDUserNotification = MEDUserNotification()
                     userNotification.key = appidString
-                    userNotification.appName = "···"
+                    let lastValue = array.last
+                    if lastValue != nil {
+                        userNotification.appName = String(format: "%@", lastValue as! CVarArg)
+                    }else{
+                        userNotification.appName = "Notification"
+                    }
+                    
                     userNotification.receiveDate = Date().timeIntervalSince1970
                     userNotification.appid = appidString
                     _ = userNotification.add()
