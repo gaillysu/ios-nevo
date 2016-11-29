@@ -47,7 +47,7 @@ class DailyStepsNevoPacket: NevoPacket {
         let minute:Int = Int(NSData2Bytes(getPackets()[0])[15])
         let seconds:Int = Int(NSData2Bytes(getPackets()[0])[16])
         let dateString:String = "\(year.to2String())\(month.to2String())\(day.to2String()) \(hour.to2String()):\(minute.to2String()):\(seconds.to2String())"
-        return dateString.dateFromFormat("yyyyMMdd hh:mm:ss", locale: DateFormatter().locale)!
+        return dateString.dateFromFormat("yyyyMMdd HH:mm:ss", locale: DateFormatter().locale)!
     }
    
 }
