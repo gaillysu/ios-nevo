@@ -145,7 +145,7 @@ class AlarmClockController: UITableViewController,AddAlarmDelegate {
             let date:Date = Date(timeIntervalSince1970: addalarm.timer)
             let newAlarm:NewAlarm = NewAlarm(alarmhour: date.hour, alarmmin: date.minute, alarmNumber: addalarm.type == 1 ? (index+7):index, alarmWeekday: mSwitch.isOn ? addalarm.dayOfWeek:0)
             if(AppDelegate.getAppDelegate().isConnected() && res){
-                AppDelegate.getAppDelegate().setNewAlarm(newAlarm)
+                AppDelegate.getAppDelegate().setNewAlarm (newAlarm)
                 self.SyncAlarmAlertView()
             }else{
                 self.willSyncAlarmAlertView()

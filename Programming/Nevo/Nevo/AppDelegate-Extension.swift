@@ -42,6 +42,46 @@ extension AppDelegate {
         sendRequest(SetNewAlarmRequest(alarm:alarm))
     }
     
+    func setNewAlarm() {
+        let lunarAlarm:[MEDUserAlarm] = MEDUserAlarm.getAll() as! [MEDUserAlarm]
+        let weakAlarm:[MEDUserAlarm] = lunarAlarm.filter({$0.type == 0})
+        let sleepAlarm:[MEDUserAlarm] = lunarAlarm.filter({$0.type == 1})
+        
+        for index in 0 ..< 14{
+            let date:Date = Date()
+            let newAlarm:NewAlarm = NewAlarm(alarmhour: date.hour, alarmmin: date.minute, alarmNumber: index, alarmWeekday: 0)
+            if(self.isConnected()){
+                sendRequest(SetNewAlarmRequest(alarm:newAlarm))
+            }
+        }
+        
+        let date:Date = Date()
+        for (index,Value) in weakAlarm.enumerated() {
+            let alarm:MEDUserAlarm = Value
+            let alarmDay:Date = Date(timeIntervalSince1970: alarm.timer)
+            if alarm.status {
+                let newAlarm:NewAlarm = NewAlarm(alarmhour: alarmDay.hour, alarmmin: alarmDay.minute, alarmNumber: index, alarmWeekday: alarm.alarmWeek)
+                sendRequest(SetNewAlarmRequest(alarm:newAlarm))
+            }
+        }
+        
+        for (index,Value) in sleepAlarm.enumerated() {
+            let alarm:MEDUserAlarm = Value
+            let alarmDay:Date = Date(timeIntervalSince1970: alarm.timer)
+            print("alarmDay:\(alarmDay),alarm:\(alarm.type,alarm.status,alarm.alarmWeek,date.weekday)")
+            if alarm.type == 1 && alarm.status && alarm.alarmWeek == date.weekday{
+                let newAlarm:NewAlarm = NewAlarm(alarmhour: alarmDay.hour, alarmmin: alarmDay.minute, alarmNumber: index+7, alarmWeekday: 0)
+                sendRequest(SetNewAlarmRequest(alarm:newAlarm))
+            }else{
+                if alarm.status && alarm.alarmWeek >= date.weekday{
+                    let newAlarm:NewAlarm = NewAlarm(alarmhour: alarmDay.hour, alarmmin: alarmDay.minute, alarmNumber: index+7, alarmWeekday: alarm.alarmWeek)
+                    sendRequest(SetNewAlarmRequest(alarm:newAlarm))
+                }
+            }
+        }
+        
+    }
+    
     func SetNortification(_ notfication:[NotificationSetting]) {
         XCGLogger.default.debug("SetNortification")
         sendRequest(SetNortificationRequest(settingArray: notfication))

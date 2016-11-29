@@ -266,49 +266,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                 SetNortification()
             }
             
-            if packet.getHeader() == DeleteAllNotificationAppIDRequest.HEADER() {
-                let thispacket = packet.copy() as DeleteAllAppIDPacket
-                XCGLogger.default.debug("DeleteAllAppIDPacket,state:\(thispacket.getDeleteStatus())")
-                LunaRNotfication()
-            }
-            
             if(packet.getHeader() == SetNortificationRequest.HEADER()) {
-                let lunarAlarm:[MEDUserAlarm] = MEDUserAlarm.getAll() as! [MEDUserAlarm]
-                let weakAlarm:[MEDUserAlarm] = lunarAlarm.filter({$0.type == 0})
-                let sleepAlarm:[MEDUserAlarm] = lunarAlarm.filter({$0.type == 1})
-                
-                for index in 0 ..< 14{
-                    let date:Date = Date()
-                    let newAlarm:NewAlarm = NewAlarm(alarmhour: date.hour, alarmmin: date.minute, alarmNumber: index, alarmWeekday: 0)
-                    if(self.isConnected()){
-                        self.setNewAlarm(newAlarm)
-                    }
-                }
-                
-                let date:Date = Date()
-                for (index,Value) in weakAlarm.enumerated() {
-                    let alarm:MEDUserAlarm = Value
-                    let alarmDay:Date = Date(timeIntervalSince1970: alarm.timer)
-                    if alarm.status {
-                        let newAlarm:NewAlarm = NewAlarm(alarmhour: alarmDay.hour, alarmmin: alarmDay.minute, alarmNumber: index, alarmWeekday: alarm.alarmWeek)
-                        self.setNewAlarm(newAlarm)
-                    }
-                }
-                
-                for (index,Value) in sleepAlarm.enumerated() {
-                    let alarm:MEDUserAlarm = Value
-                    let alarmDay:Date = Date(timeIntervalSince1970: alarm.timer)
-                    print("alarmDay:\(alarmDay),alarm:\(alarm.type,alarm.status,alarm.alarmWeek,date.weekday)")
-                    if alarm.type == 1 && alarm.status && alarm.alarmWeek == date.weekday{
-                        let newAlarm:NewAlarm = NewAlarm(alarmhour: alarmDay.hour, alarmmin: alarmDay.minute, alarmNumber: index+7, alarmWeekday: 0)
-                        self.setNewAlarm(newAlarm)
-                    }else{
-                        if alarm.status && alarm.alarmWeek >= date.weekday{
-                            let newAlarm:NewAlarm = NewAlarm(alarmhour: alarmDay.hour, alarmmin: alarmDay.minute, alarmNumber: index+7, alarmWeekday: alarm.alarmWeek)
-                            self.setNewAlarm(newAlarm)
-                        }
-                    }
-                }
+                setNewAlarm()
                 //start sync data
                 //self.syncActivityData()
             }
@@ -316,6 +275,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
             if(packet.getHeader() == SetAlarmRequest.HEADER()) {
                 //start sync data
                 self.syncActivityData()
+            }
+            
+            if packet.getHeader() == DeleteAllNotificationAppIDRequest.HEADER() {
+                let thispacket = packet.copy() as DeleteAllAppIDPacket
+                XCGLogger.default.debug("DeleteAllAppIDPacket,state:\(thispacket.getDeleteStatus())")
+                LunaRNotfication()
             }
             
             if packet.getHeader() == NewAppIDNotificationRequest.HEADER() {
@@ -328,7 +293,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                     userNotification.key = appidString
                     let lastValue = array.last
                     if lastValue != nil {
-                        userNotification.appName = String(format: "%@", lastValue as! CVarArg)
+                        userNotification.appName = String(format: "%@", lastValue.debugDescription)
                     }else{
                         userNotification.appName = "Notification"
                     }
