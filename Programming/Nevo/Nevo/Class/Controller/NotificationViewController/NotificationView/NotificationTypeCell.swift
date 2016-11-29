@@ -11,7 +11,7 @@ import RealmSwift
 
 protocol AddPacketToWatchDelegate {
     
-    func addPacketToWatchDelegate(appid:String)
+    func addPacketToWatchDelegate(appid:String,onOff:Bool)
 }
 
 class NotificationTypeCell: UITableViewCell {
@@ -74,7 +74,7 @@ class NotificationTypeCell: UITableViewCell {
                 try! realm.write {
                     notification.isAddWatch = swicthState.isOn
                 }
-                addDelegate?.addPacketToWatchDelegate(appid: notification.appid)
+                addDelegate?.addPacketToWatchDelegate(appid: notification.appid, onOff: swicthState.isOn)
                 break
             }
         }
