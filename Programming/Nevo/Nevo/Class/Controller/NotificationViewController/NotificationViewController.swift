@@ -52,11 +52,13 @@ class NotificationViewController: UITableViewController,SelectedNotificationDele
         
         initNotificationSettingArray()
         
-        let indexSet:NSIndexSet = NSIndexSet(indexesIn: NSMakeRange(0, 1))
-        tableView.reloadSections(indexSet as IndexSet, with: .automatic)
         tableView.reloadData()
     }
 
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+    }
+    
     func initNotificationSettingArray() {
         mNotificationArray = MEDUserNotification.getAll() as! [MEDUserNotification]
         allArraySettingArray.removeAll()
@@ -158,17 +160,22 @@ extension NotificationViewController {
                 endCell.setTitleLabel(title: "loading...")
                 endCell.setTitleImage(imageName: "AppIcon")
                 let bundleid:String = noti.getPacket()
-                MEDAppInfoRequester.requesAppInfoWith(bundleId: bundleid, resultHandle: {
-                    (error, appInfo) in
+                if let rawAppName = NSString.init(string: noti.getPacket()).components(separatedBy: ".").last {
+                    endCell.setTitleLabel(title: rawAppName)
+                }
+                
+                let placeholderImage: String = "notiPlaceholder"
+                endCell.setTitleImage(imageName: placeholderImage)
+                
+                MEDAppInfoRequester.requesAppInfoWith(bundleId: noti.getPacket(), resultHandle: { (error, appInfo) in
                     if let info = appInfo {
                         let appName:String = info.trackName
                         let imageurl:String = info.artworkUrl100
                         endCell.setTitleLabel(title: appName)
-                        endCell.titleImage.kf.setImage(with: URL(string: imageurl), placeholder: UIImage(named:"AppIcon"), options: nil, progressBlock: nil, completionHandler: { (image, error, cache, url) in
+                        endCell.titleImage.kf.setImage(with: URL(string: info.artworkUrl100), placeholder: UIImage(named: placeholderImage), options: nil, progressBlock: nil, completionHandler: { (image, error, cache, url) in
+                            
                             if let newImage = image?.sameSizeWith(image: UIImage(named: "new_call")!) {
                                 endCell.titleImage.image = newImage
-                                endCell.titleImage.layer.cornerRadius = 5
-                                endCell.titleImage.layer.masksToBounds = true
                             }
                         })
                         
@@ -182,6 +189,10 @@ extension NotificationViewController {
                             }
                         }
                     } else {
+                        let banner = MEDBanner(title: "There seems to be something wrong with your network! so we cannot get the exact names and icons for some apps, please retry later!", subtitle: nil, image: nil, backgroundColor: AppTheme.NEVO_SOLAR_YELLOW())
+                        banner.dismissesOnTap = true
+                        banner.show(duration: 1.5)
+                        
                         print("\(error)")
                     }
                 })

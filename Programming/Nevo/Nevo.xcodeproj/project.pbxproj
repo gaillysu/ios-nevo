@@ -796,6 +796,8 @@
 		61FC94001DE82A38000AE93C /* TaskQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61FC93FD1DE829DB000AE93C /* TaskQueue.swift */; };
 		660C16D01DEC25DA00544F56 /* UIImage+MEDExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 660C16CF1DEC25DA00544F56 /* UIImage+MEDExtension.swift */; };
 		660C16D11DEC25DA00544F56 /* UIImage+MEDExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 660C16CF1DEC25DA00544F56 /* UIImage+MEDExtension.swift */; };
+		660C16D21DEC341200544F56 /* GetotalAppIDPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6165A63B1DEBDDD100F7A3E6 /* GetotalAppIDPacket.swift */; };
+		660C16D31DEC341800544F56 /* DeleteAllAppIDPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61EF09211DDE9EB7003C2EA5 /* DeleteAllAppIDPacket.swift */; };
 		662887521DC1E8BC00EC0983 /* MEDMRProgressOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 662887501DC1E8BC00EC0983 /* MEDMRProgressOverlayView.swift */; };
 		662B3CA91DEBD6E60014FA71 /* MEDAppInfoRequester.swift in Sources */ = {isa = PBXBuildFile; fileRef = 662B3CA81DEBD6E60014FA71 /* MEDAppInfoRequester.swift */; };
 		662B3CAA1DEBD6E60014FA71 /* MEDAppInfoRequester.swift in Sources */ = {isa = PBXBuildFile; fileRef = 662B3CA81DEBD6E60014FA71 /* MEDAppInfoRequester.swift */; };
@@ -3999,6 +4001,7 @@
 				611D41A61DCAD97D003BC6E3 /* SetProfileRequest.swift in Sources */,
 				611D41A71DCAD97D003BC6E3 /* SetRTCRequest.swift in Sources */,
 				61FC93E41DE679A2000AE93C /* GetTotalNotificationAppReuqest.swift in Sources */,
+				660C16D31DEC341800544F56 /* DeleteAllAppIDPacket.swift in Sources */,
 				611D41A81DCAD97D003BC6E3 /* WriteSettingRequest.swift in Sources */,
 				611D41A91DCAD97D003BC6E3 /* GetWatchName.swift in Sources */,
 				611D41AA1DCAD97D003BC6E3 /* SyncQueue.swift in Sources */,
@@ -4170,6 +4173,7 @@
 				611D42561DCAD97D003BC6E3 /* SleepHistoricalViewController.swift in Sources */,
 				611D42571DCAD97D003BC6E3 /* StepGoalSetingController.swift in Sources */,
 				611D42581DCAD97D003BC6E3 /* StepGoalSetingController.xib in Sources */,
+				660C16D21DEC341200544F56 /* GetotalAppIDPacket.swift in Sources */,
 				611D42591DCAD97D003BC6E3 /* StepGoalSetingViewCell.swift in Sources */,
 				611D425A1DCAD97D003BC6E3 /* StepGoalSetingViewCell.xib in Sources */,
 				611D425B1DCAD97D003BC6E3 /* StepsHistoryViewController.swift in Sources */,

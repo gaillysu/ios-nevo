@@ -108,12 +108,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
             UserDefaults.standard.set(false, forKey: "firstDatabase")
         }
 
+        MEDUserGoal.defaultUserGoal()
+        MEDUserNotification.defaultNotificationColor()
+        MEDUserAlarm.defaultAlarm()
+        
         /**
         Initialize the BLE Manager
         */
         mConnectionController = ConnectionControllerImpl()
         mConnectionController?.setDelegate(self)
-        let userDefaults = UserDefaults.standard;
+//        let userDefaults = UserDefaults.standard;
         //lastSync = userDefaults.double(forKey: LAST_SYNC_DATE_KEY)
         
         adjustLaunchLogic()
@@ -276,7 +280,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                     for model in notArray{
                         let notification:UserNotification = model as! UserNotification
                         if(notification.NotificationType == notificationType.rawValue as String){
-                            let setting:NotificationSetting = NotificationSetting(type: notificationType, clock: notification.clock, color: 0, states:notification.status, packet:" ")
+                            let setting:NotificationSetting = NotificationSetting(type: notificationType, clock: notification.clock, color: 0, states:notification.status, packet:" ", appName:"")
                             mNotificationSettingArray.append(setting)
                             break
                         }

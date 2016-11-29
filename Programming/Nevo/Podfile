@@ -26,7 +26,7 @@ target 'LunaR' do
   pod 'Solar'
   pod 'Timepiece'
   pod 'RSKImageCropper'
-  pod 'Kingfisher', '~> 3.0'
+  pod 'Kingfisher'
   target 'LunaRTests' do
       
     inherit! :search_paths
@@ -63,6 +63,7 @@ target 'Nevo' do
     pod 'Solar'
     pod 'Timepiece'
     pod 'RSKImageCropper'
+    pod 'Kingfisher'
   target 'NevoTests' do
     inherit! :search_paths
     # Pods for testing

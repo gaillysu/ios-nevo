@@ -33,7 +33,7 @@ class NewAddAlarmHeader: UITableViewHeaderFooterView {
             v.height.equalTo(0.5)
         }
         
-        bottomLineView.backgroundColor = AppTheme.NEVO_SOLAR_YELLOW()
+        bottomLineView.backgroundColor = UIColor.black
         
         if !AppTheme.isTargetLunaR_OR_Nevo() {
             alarmType.tintColor = UIColor.getBaseColor()

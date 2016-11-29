@@ -36,6 +36,9 @@ class NotificationTypeCell: UITableViewCell {
             titleLabel.textColor = UIColor.white
             contentLabel.textColor = UIColor.white
         }
+        
+        titleImage.layer.cornerRadius = 7
+        titleImage.layer.masksToBounds = true
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

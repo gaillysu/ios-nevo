@@ -76,7 +76,7 @@ class AddAlarmController: UITableViewController,ButtonManagerCallBack,UIAlertVie
             name = (timerCell3.detailTextLabel!.text)!
 
             mDelegate?.onDidAddAlarmAction(timer, repeatStatus: repeatStatus, name: name)
-            self.navigationController?.popViewController(animated: true)
+            _ = self.navigationController?.popViewController(animated: true)
         }
 
     }

@@ -24,6 +24,7 @@ import CoreLocation
 import Solar
 import Timepiece
 import RealmSwift
+import Kingfisher
 
 
 let nevoDBDFileURL:String = "nevoDBName";
@@ -103,6 +104,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
         MEDUserNotification.defaultNotificationColor()
         
         MEDUserAlarm.defaultAlarm()
+        
+        let kingfisherCache = KingfisherManager.shared.cache
+        /// Default cache period is 7 days, but the app's icon changes rarely, in case one day there is on network or cache for user... so set 30 days! 
+        kingfisherCache.maxCachePeriodInSecond = TimeInterval(60 * 60 * 24 * 30)
         
         /**
          Initialize the BLE Manager
