@@ -18,7 +18,7 @@ class MEDAppInfoRequester {
         let realm = try! Realm()
         let predicate = NSPredicate(format: "bundleId = %@", bundleId)
         if let info = realm.objects(MEDAppInfo.self).filter(predicate).first {
-            resultHandle(nil, info)
+            resultHandle(nil, (info.copy() as! MEDAppInfo))
             return
         }
         
