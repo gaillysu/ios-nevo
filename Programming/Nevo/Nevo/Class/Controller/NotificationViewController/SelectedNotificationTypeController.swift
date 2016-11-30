@@ -69,7 +69,6 @@ extension SelectedNotificationTypeController {
             return 0
         }
         
-        
         switch (indexPath.section){
         case 1:
             return 185.0
@@ -90,8 +89,14 @@ extension SelectedNotificationTypeController {
             tableView.reloadRows(at: [reloadIndexPath], with: UITableViewRowAnimation.automatic)
             tableView.reloadSections(IndexSet(integer: 2), with: UITableViewRowAnimation.automatic)
         } else if indexPath.section == 3 {
-            selectedDelegate?.didDeleteNotification(appID: notSetting!.getPacket())
-            _ = navigationController?.popViewController(animated: true)
+            let alertController = ActionSheetView.makeWarningAlert(title: NSLocalizedString("DeleteNotificationWarning", comment: ""), message: nil, style: .alert, confirmText: NSLocalizedString("Yes", comment: ""), cancelText: NSLocalizedString("Cancel", comment: ""), okAction: { (_) in
+                self.selectedDelegate?.didDeleteNotification(appID: self.notSetting!.getPacket())
+                _ = self.navigationController?.popViewController(animated: true)
+            }, cancelAction: { (_) in
+                self.dismiss(animated: true, completion: nil)
+            })
+            
+            present(alertController, animated: true, completion: nil)
         }
     }
     
@@ -175,7 +180,7 @@ extension SelectedNotificationTypeController {
             deleteLabel.text = "Delete Notification"
             deleteLabel.textAlignment = .center
             
-            deleteLabel.backgroundColor = UIColor.red
+            deleteLabel.backgroundColor = UIColor.getGreyColor()
             deleteLabel.textColor = UIColor.white
             
             return cell!
