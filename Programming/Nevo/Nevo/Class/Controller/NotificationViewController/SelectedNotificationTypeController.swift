@@ -7,10 +7,11 @@
 //
 
 import UIKit
+import SnapKit
 
 protocol SelectedNotificationDelegate {
-
     func didSelectedNotificationDelegate(_ clockIndex:Int,ntSwitchState:Bool,appid:String)
+    func didDeleteNotification(appID: String)
 }
 
 class SelectedNotificationTypeController: UITableViewController {
@@ -19,6 +20,8 @@ class SelectedNotificationTypeController: UITableViewController {
     fileprivate let colorArray:[String] = ["2 o'clock","4 o'clock","6 o'clock","8 o'clock","10 o'clock","12 o'clock"]
     var selectedDelegate:SelectedNotificationDelegate?
     var notSetting:NotificationSetting?
+    
+    fileprivate var isFirstLoadData: Bool = true
     
     init() {
         super.init(nibName: "SelectedNotificationTypeController", bundle: Bundle.main)
@@ -34,21 +37,17 @@ class SelectedNotificationTypeController: UITableViewController {
         if notSetting!.typeName == "Other" {
             navigationItem.title = notSetting?.getAppName()
         } else {
-            self.navigationItem.title = NSLocalizedString(notSetting!.typeName, comment: "")
+            navigationItem.title = NSLocalizedString(notSetting!.typeName, comment: "")
         }
         
         self.tableView.register(UINib(nibName: "LineColorCell",bundle: nil), forCellReuseIdentifier: "LineColor_Identifier")
-        tableView.separatorStyle = notSetting!.getStates() ? .singleLine : .none
+        selectedNotificationView.separatorStyle = notSetting!.getStates() ? .singleLine : .none
         
         if !AppTheme.isTargetLunaR_OR_Nevo() {
             self.tableView.backgroundColor = UIColor.getLightBaseColor()
         }
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
 
     func buttonManager(_ sender:AnyObject){
         if(sender.isKind(of: UISwitch.classForCoder())){
@@ -57,31 +56,56 @@ class SelectedNotificationTypeController: UITableViewController {
             notSetting?.setStates(switchView.isOn)
             notSetting?.setClock(notSetting!.getClock())
             tableView.separatorStyle = switchView.isOn ? .singleLine : .none
-            selectedNotificationView.reloadData()
+            
+            selectedNotificationView.reloadSections(IndexSet.init(integersIn: 1..<4), with: .automatic)
         }
-
     }
+}
 
+// MARK: - TableView Delegate
+extension SelectedNotificationTypeController {
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat{
-        switch ((indexPath as NSIndexPath).section){
-        case 0:
-            return 45.0
+        if !notSetting!.getStates() && [1, 2, 3].contains(indexPath.section) {
+            return 0
+        }
+        
+        
+        switch (indexPath.section){
         case 1:
             return 185.0
-        case 2:
-            return 50.0
         default: return 45.0;
         }
-
     }
     
-    // MARK: - Table view data source
-
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        
-        return 3
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
+        tableView.deselectRow(at: indexPath, animated: true)
+        if(indexPath.section == 2){
+            let cell:LineColorCell = tableView.cellForRow(at: indexPath) as! LineColorCell
+            let image = UIImage(named: "notifications_check")
+            cell.accessoryView = UIImageView(image: image)
+            
+            notSetting?.setClock((indexPath.row+1)*2)
+            selectedDelegate?.didSelectedNotificationDelegate(notSetting!.getClock(), ntSwitchState: notSetting!.getStates(),appid:notSetting!.getPacket())
+            let reloadIndexPath:IndexPath = IndexPath(row: 0, section: 1)
+            tableView.reloadRows(at: [reloadIndexPath], with: UITableViewRowAnimation.automatic)
+            tableView.reloadSections(IndexSet(integer: 2), with: UITableViewRowAnimation.automatic)
+        } else if indexPath.section == 3 {
+            selectedDelegate?.didDeleteNotification(appID: notSetting!.getPacket())
+            _ = navigationController?.popViewController(animated: true)
+        }
     }
+    
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        cell.separatorInset = UIEdgeInsets.init(top: 0, left: 0, bottom: 0, right: 0)
+    }
+}
 
+// MARK: - TableView DataSource
+extension SelectedNotificationTypeController {
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return 4
+    }
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if(section == 2){
             return colorArray.count
@@ -92,7 +116,7 @@ class SelectedNotificationTypeController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch ((indexPath as NSIndexPath).section){
         case 0:
-            let titleString:String = AppTheme.isTargetLunaR_OR_Nevo() ? "Allow_Notifications" : "Allow_Notifications_Lunar"
+            let titleString:String = "Allow_Notifications"
             let cell = selectedNotificationView.AllowNotificationsTableViewCell(indexPath, tableView: tableView, title: NSLocalizedString(titleString, comment: ""), state:notSetting!.getStates())
             for swicthView in cell.contentView.subviews{
                 if(swicthView.isKind(of: UISwitch.classForCoder())){
@@ -136,23 +160,25 @@ class SelectedNotificationTypeController: UITableViewController {
             }
             
             return cell
-        default: return UITableViewCell();
-        }
-    }
-
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
-        tableView.deselectRow(at: indexPath, animated: true)
-        if((indexPath as NSIndexPath).section == 2){
-            let cell:LineColorCell = tableView.cellForRow(at: indexPath) as! LineColorCell
-            let image = UIImage(named: "notifications_check")
-            cell.accessoryView = UIImageView(image: image)
+        default:
+            var cell = tableView.dequeueReusableCell(withIdentifier: "kDeleteCellIdentifier")
+            if cell == nil {
+                cell = UITableViewCell.init(style: .default, reuseIdentifier: "kDeleteCellIdentifier")
+            }
+            let deleteLabel: UILabel = UILabel()
+            cell!.contentView.addSubview(deleteLabel)
             
-            notSetting?.setClock((indexPath.row+1)*2)
-            selectedDelegate?.didSelectedNotificationDelegate(notSetting!.getClock(), ntSwitchState: notSetting!.getStates(),appid:notSetting!.getPacket())
-            let reloadIndexPath:IndexPath = IndexPath(row: 0, section: 1)
-            tableView.reloadRows(at: [reloadIndexPath], with: UITableViewRowAnimation.automatic)
-            tableView.reloadSections(IndexSet(integer: 2), with: UITableViewRowAnimation.automatic)
+            deleteLabel.snp.makeConstraints({ (v) in
+                v.edges.equalToSuperview()
+            })
+            
+            deleteLabel.text = "Delete Notification"
+            deleteLabel.textAlignment = .center
+            
+            deleteLabel.backgroundColor = UIColor.red
+            deleteLabel.textColor = UIColor.white
+            
+            return cell!
         }
-
     }
 }

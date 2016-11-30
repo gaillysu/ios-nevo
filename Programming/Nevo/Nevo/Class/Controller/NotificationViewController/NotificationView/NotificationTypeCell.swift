@@ -39,6 +39,8 @@ class NotificationTypeCell: UITableViewCell {
         
         titleImage.layer.cornerRadius = 7
         titleImage.layer.masksToBounds = true
+        
+        addSwitch.isHidden = true
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

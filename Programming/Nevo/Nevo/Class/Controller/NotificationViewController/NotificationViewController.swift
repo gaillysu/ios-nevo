@@ -11,7 +11,7 @@ import BRYXBanner
 import XCGLogger
 import RealmSwift
 
-class NotificationViewController: UITableViewController,SelectedNotificationDelegate {
+class NotificationViewController: UITableViewController {
     fileprivate let titleHeader:[String] = ["ACTIVE_NOTIFICATIONS","INACTIVE_NOTIFICATIONS"]
     fileprivate var mNotificationArray:[MEDUserNotification] = []
     fileprivate var allArraySettingArray:[NotificationSetting] = []
@@ -49,29 +49,8 @@ class NotificationViewController: UITableViewController,SelectedNotificationDele
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
         initNotificationSettingArray()
-        
         tableView.reloadData()
-    }
-
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-    }
-    
-    func initNotificationSettingArray() {
-        mNotificationArray = MEDUserNotification.getAll() as! [MEDUserNotification]
-        allArraySettingArray.removeAll()
-        for model in mNotificationArray{
-            let notification:MEDUserNotification = model
-            let notificationType:String = notification.notificationType
-            var type = NotificationType(rawValue: notificationType as NSString)
-            if type == nil {
-                type = NotificationType.other
-            }
-            let setting:NotificationSetting = NotificationSetting(type: type!, clock: notification.clock, color: NSNumber(value:notification.clock), states:notification.isAddWatch,packet:notification.appid ,appName:notification.appName)
-            allArraySettingArray.append(setting)
-        }
     }
 }
 
@@ -86,6 +65,24 @@ extension NotificationViewController {
         return allArraySettingArray.filter({return $0.getStates() == false})
     }
     fileprivate var hasOffNotifications: Bool { return offNotifications.count != 0}
+}
+
+// MARK: - Private function
+extension NotificationViewController {
+    func initNotificationSettingArray() {
+        mNotificationArray = MEDUserNotification.getAll() as! [MEDUserNotification]
+        allArraySettingArray.removeAll()
+        for model in mNotificationArray{
+            let notification:MEDUserNotification = model
+            let notificationType:String = notification.notificationType
+            var type = NotificationType(rawValue: notificationType as NSString)
+            if type == nil {
+                type = NotificationType.other
+            }
+            let setting:NotificationSetting = NotificationSetting(type: type!, clock: notification.clock, color: NSNumber(value:notification.clock), states:notification.isAddWatch,packet:notification.appid ,appName:notification.appName)
+            allArraySettingArray.append(setting)
+        }
+    }
 }
 
 // MARK: - TableView Datasource & Delegate
@@ -103,7 +100,6 @@ extension NotificationViewController {
             self.tableView(tableView, commit: .delete, forRowAt: indexPath)
         })
         
-        // MARK: - APPTHEME ADJUST
         if !AppTheme.isTargetLunaR_OR_Nevo() {
             button1.backgroundColor = UIColor.getBaseColor()
         } else {
@@ -266,8 +262,8 @@ extension NotificationViewController {
     }
 }
 
-// MARK: - SelectedNotificationDelegate
-extension NotificationViewController:AddPacketToWatchDelegate {
+// MARK: - AddPacketToWatchDelegate, SelectedNotificationDelegate
+extension NotificationViewController: AddPacketToWatchDelegate, SelectedNotificationDelegate {
     func addPacketToWatchDelegate(appid:String,onOff:Bool){
         initNotificationSettingArray()
         self.tableView.reloadData()
@@ -298,5 +294,16 @@ extension NotificationViewController:AddPacketToWatchDelegate {
                 break
             }
         }
+    }
+    
+    func didDeleteNotification(appID: String) {
+        let notifications = MEDUserNotification.getFilter("key = '\(appID)'")
+        if notifications.count>0 {
+            let notiValue:MEDUserNotification = notifications[0] as! MEDUserNotification
+            _ = notiValue.remove()
+        }
+        
+        initNotificationSettingArray()
+        tableView.reloadData()
     }
 }

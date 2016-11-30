@@ -34,6 +34,9 @@
                 <constraint firstItem="tnF-3U-L17" firstAttribute="leading" secondItem="KGk-i7-Jjw" secondAttribute="leading" id="jhe-ba-YTP"/>
                 <constraint firstAttribute="trailing" secondItem="tnF-3U-L17" secondAttribute="trailing" id="sk0-ia-Xg3"/>
             </constraints>
+            <connections>
+                <outlet property="lineLabel" destination="tnF-3U-L17" id="o88-Km-85o"/>
+            </connections>
             <point key="canvasLocation" x="400" y="537"/>
         </tableViewCell>
     </objects>
