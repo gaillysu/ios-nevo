@@ -121,7 +121,11 @@ extension NotificationViewController {
             let notfiction = MEDUserNotification.getFilter("key = '\(noti!.getPacket())'")
             if notfiction.count>0 {
                 let notValue:MEDUserNotification = notfiction[0] as! MEDUserNotification
-                _ = notValue.remove()
+                if !notValue.deleteFlag {
+                   _ = notValue.remove()
+                }else{
+                
+                }
             }
             
             initNotificationSettingArray()
