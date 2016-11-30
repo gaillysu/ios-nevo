@@ -137,6 +137,12 @@ class LunaROtaView: UIView {
     fileprivate var OTAprogressView:LunaROTAProgress?//OTA upgrade progress bar object
     var progresValue:CGFloat = 0.0//OTA upgrade progress bar default value
     
+    override func awakeFromNib() {
+        backgroundColor = UIColor.getLightBaseColor()
+        backView.backgroundColor = UIColor.getLunarTabBarColor()
+        updatingView.backgroundColor = UIColor.getLunarTabBarColor()
+    }
+    
     func buildView(_ delegate:ButtonManagerCallBack?) {
         mDelegate = delegate
 
@@ -144,8 +150,6 @@ class LunaROtaView: UIView {
         backButton.layer.cornerRadius = 10.0
         backButton.layer.borderWidth = 1.0
         backButton.layer.borderColor = AppTheme.NEVO_SOLAR_YELLOW().cgColor
-
-        self.backgroundColor = AppTheme.NEVO_CUSTOM_COLOR(Red: 239.0, Green: 239.0, Blue: 244.0)
 
         if(OTAprogressView == nil){
             OTAprogressView = LunaROTAProgress()
