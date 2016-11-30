@@ -454,7 +454,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                 let dailySteps:Int = thispacket.getDailySteps()
                 let dailyStepGoal:Int = thispacket.getDailyStepsGoal()
                 let percent :Float = Float(dailySteps)/Float(dailyStepGoal)
-                XCGLogger.default.debug("DailyStepsNevoPacket,steps:\(dailySteps),stepGoal:\(dailyStepGoal),getRTC:\(thispacket.getDateTimer().stringFromFormat("yyyy-MM-dd hh:mm:ss"))")
+                let buildinFirmwareVersion:Int = AppTheme.GET_FIRMWARE_VERSION()
+                if getFirmwareVersion().integerValue >= buildinFirmwareVersion {
+                    XCGLogger.default.debug("DailyStepsNevoPacket,steps:\(dailySteps),stepGoal:\(dailyStepGoal),getRTC:\(thispacket.getDateTimer().stringFromFormat("yyyy-MM-dd HH:mm:ss"))")
+                }
+                //XCGLogger.default.debug("DailyStepsNevoPacket,steps:\(dailySteps),stepGoal:\(dailyStepGoal),getRTC:\(thispacket.getDateTimer().stringFromFormat("yyyy-MM-dd hh:mm:ss"))")
                 SwiftEventBus.post(EVENT_BUS_BEGIN_SMALL_SYNCACTIVITY, sender:["STEPS":dailySteps,"GOAL":dailyStepGoal,"PERCENT":percent] as AnyObject)
             }
             

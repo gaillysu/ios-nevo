@@ -76,6 +76,7 @@ func Bytes2NSData(_ bytes:[UInt8]) -> Data
 {
   return Data(bytes: UnsafePointer<UInt8>(bytes), count: bytes.count)
 }
+
 func NSData2Bytes(_ data:Data) -> [UInt8]
 {
     let bytes = UnsafeBufferPointer<UInt8>(start: (data as NSData).bytes.bindMemory(to: UInt8.self, capacity: data.count), count:data.count)
@@ -87,6 +88,30 @@ func NSData2Bytes(_ data:Data) -> [UInt8]
     return ret
 }
 
+//十进制-> 二进制
+func dec2bin(number:Int) -> String {
+    var numberValue = number
+    var str = ""
+    while numberValue > 0 {
+        str = "\(numberValue % 2)" + str
+        numberValue /= 2
+    }
+    return str
+}
+
+
+
+//二进制 ->十进制
+func bin2dec(num:String) -> Int {
+    let numValue = num
+    var sum = 0
+    for c in 0..<numValue.length() {
+        let index = numValue.index(numValue.startIndex, offsetBy: c)
+        let value = numValue[index]
+        sum = sum * 2 + "\(value)".toInt()
+    }
+    return sum
+}
 
 func NSData2NSString(_ data:Data) -> NSString {
     let str:NSMutableString = NSMutableString()

@@ -90,6 +90,13 @@ extension NotificationViewController {
 
 // MARK: - TableView Datasource & Delegate
 extension NotificationViewController {
+    
+    func deleteNotificationsAlertView() {
+        let banner = MEDBanner(title: NSLocalizedString("Because it is a basic Notifications can not be deleted", comment: ""), subtitle: nil, image: nil, backgroundColor: AppTheme.NEVO_SOLAR_YELLOW())
+        banner.dismissesOnTap = true
+        banner.show(duration: 1.5)
+    }
+    
     override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
         if !AppTheme.isTargetLunaR_OR_Nevo() {
             return true
@@ -128,7 +135,7 @@ extension NotificationViewController {
                 if !notValue.deleteFlag {
                    _ = notValue.remove()
                 }else{
-                
+                    deleteNotificationsAlertView()
                 }
             }
             

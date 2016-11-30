@@ -10,14 +10,24 @@ import UIKit
 
 class GetNotificationAppIDPacket: LunaRPacket {
 
+    //APPID data length[max = 100 bytes]
     func getAappIDLength()->Int {
         let appidLength:Int = Int(NSData2Bytes(getPackets()[0])[2])
-        return appidLength
+        let dec2bit = String(appidLength, radix: 2)
+        let value = dec2bit.replacingCharacters(in: dec2bit.startIndex..<dec2bit.index(dec2bit.startIndex, offsetBy: 1), with: "0")
+        let bin2decValue = bin2dec(num: value)
+        let length = bin2decValue
+        return length
     }
     
+    //5B LED pattern Disable(0)/Enable(1)
     func getLEDPatternisEnable() ->Int {
-        let appidLength:Int = Int(NSData2Bytes(getPackets()[0])[2])<<8
-        return appidLength
+        let appidLength:Int = Int(NSData2Bytes(getPackets()[0])[2])
+        let dec2bit = String(appidLength, radix: 2)
+        let index = dec2bit.index(dec2bit.startIndex, offsetBy: 1)
+        let value = dec2bit[index]
+        let enable = "\(value)".toInt()
+        return enable
     }
     
     func getLEDPattern() -> UInt32 {
@@ -26,12 +36,15 @@ class GetNotificationAppIDPacket: LunaRPacket {
     
     func getApplicationID()->String {
         var data:[UInt8] = NSData2Bytes(getPackets()[0])
-        data.removeSubrange(0..<7)
+        data.removeSubrange(0..<8)
+        let length:Int = self.getAappIDLength()
+        
         for index:Int in 1..<getPackets().count {
             var dataValue = NSData2Bytes(getPackets()[index])
             dataValue.removeSubrange(0..<2)
             data = data+dataValue
         }
+        data.removeSubrange(length..<data.count)
         let idString:String = String(data: Bytes2NSData(data), encoding: .utf8)!
         return idString
     }

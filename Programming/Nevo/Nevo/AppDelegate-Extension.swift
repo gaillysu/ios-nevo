@@ -162,6 +162,10 @@ extension AppDelegate {
         sendRequest(GetStepsGoalRequest())
     }
     
+    func getLunaRTotalAppId() {
+        let getTotalApp:GetTotalNotificationAppReuqest = GetTotalNotificationAppReuqest()
+        self.sendRequest(getTotalApp)
+    }
     
     func ReadBatteryLevel() {
         sendRequest(ReadBatteryLevelNevoRequest())
@@ -330,5 +334,21 @@ extension AppDelegate {
 //        AppDelegate.getAppDelegate().window?.makeKeyAndVisible()
         
         /// 🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧
+    }
+    
+    func connectedBanner() {
+        if(self.hasSavedAddress()){
+            let banner = MEDBanner(title: NSLocalizedString("Connected", comment: ""), subtitle: nil, image: nil, backgroundColor:UIColor(rgba: "#0dac67"))
+            banner.dismissesOnTap = true
+            banner.show(duration: 1.5)
+        }
+    }
+    
+    func disConnectedBanner() {
+        if(self.hasSavedAddress()){
+            let banner = MEDBanner(title: NSLocalizedString("Disconnected", comment: ""), subtitle: nil, image: nil, backgroundColor: UIColor.red)
+            banner.dismissesOnTap = true
+            banner.show(duration: 1.5)
+        }
     }
 }

@@ -36,7 +36,7 @@ class MyNevoController: UITableViewController,UIAlertViewDelegate {
 
         titleArray = [NSLocalizedString("watch_version", comment: ""),NSLocalizedString("battery", comment: ""),NSLocalizedString("app_version", comment: "")]
         
-        SwiftEventBus.onMainThread(self, name: EVENT_BUS_RSSI_VALUE) { (notification) in
+        _ = SwiftEventBus.onMainThread(self, name: EVENT_BUS_RSSI_VALUE) { (notification) in
             let number:NSNumber = notification.object as! NSNumber
             XCGLogger.default.debug("Red RSSI Value:\(number)")
             if(number.intValue < -85){

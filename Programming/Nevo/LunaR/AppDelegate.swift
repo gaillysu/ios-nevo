@@ -261,48 +261,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
             
             if(packet.getHeader() == SetSunriseAndSunsetRequest.HEADER()) {
                 //step5: sync the notification setting, if remove nevo's battery, the nevo notification reset, so here need sync it
-                //let deleAll:DeleteAllNotificationAppIDRequest = DeleteAllNotificationAppIDRequest()
-                //self.sendRequest(deleAll)
-                SetNortification()
-            }
-            
-            if(packet.getHeader() == SetNortificationRequest.HEADER()) {
                 setNewAlarm()
-                //start sync data
-                //self.syncActivityData()
             }
+
             
             if(packet.getHeader() == SetAlarmRequest.HEADER()) {
                 //start sync data
                 self.syncActivityData()
-            }
-            
-            if packet.getHeader() == DeleteAllNotificationAppIDRequest.HEADER() {
-                let thispacket = packet.copy() as DeleteAllAppIDPacket
-                XCGLogger.default.debug("DeleteAllAppIDPacket,state:\(thispacket.getDeleteStatus())")
-                LunaRNotfication()
-            }
-            
-            if packet.getHeader() == NewAppIDNotificationRequest.HEADER() {
-                let thispacket = packet.copy() as ReceiveNewNotificationPacket
-                let appidString:String = thispacket.getApplicationID()
-                let array = appidString.characters.split(separator: ".")
-                let object = MEDUserNotification.getFilter("appid = '\(appidString)'")
-                if object.count == 0 {
-                    let userNotification:MEDUserNotification = MEDUserNotification()
-                    userNotification.key = appidString
-                    let lastValue = array.last
-                    if lastValue != nil {
-                        userNotification.appName = String(format: "%@", lastValue.debugDescription)
-                    }else{
-                        userNotification.appName = "Notification"
-                    }
-                    
-                    userNotification.receiveDate = Date().timeIntervalSince1970
-                    userNotification.appid = appidString
-                    _ = userNotification.add()
-                }
-                XCGLogger.default.debug("getApplicationID:\(appidString)")
             }
             
             if(packet.getHeader() == ReadDailyTrackerInfo.HEADER()) {
@@ -313,21 +278,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                 if savedDailyHistory.count > 0 {
                     self.getDailyTracker(currentDay)
                 }
-            }
-            
-            if(packet.getHeader() == GetStepsGoalRequest.HEADER()) {
-                //refresh current hourly steps changing in the healthkit
-                let thispacket = packet.copy() as LunaRStepsGoalPacket
-                let dailySteps:Int = thispacket.getDailySteps()
-                let dailyStepGoal:Int = thispacket.getDailyStepsGoal()
-                let percent :Float = Float(dailySteps)/Float(dailyStepGoal)
-                SwiftEventBus.post(EVENT_BUS_BEGIN_SMALL_SYNCACTIVITY, sender:["STEPS":dailySteps,"GOAL":dailyStepGoal,"PERCENT":percent] as AnyObject)
-                
-            }
-            
-            if (packet.getHeader() == GetTotalNotificationAppReuqest.HEADER()){
-                let thispacket = packet.copy() as GetotalAppIDPacket
-                XCGLogger.default.debug("GetotalAppIDPacket,number:\(thispacket.getTotalAppsNumber()))")
             }
             
             if(packet.getHeader() == ReadDailyTracker.HEADER()) {
@@ -419,6 +369,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                     }
                     self.getDailyTracker(currentDay)
                 }else {
+                    self.getLunaRTotalAppId()
                     //currentDay = 0
                     isSync = false
                     self.syncFinished()
@@ -426,6 +377,37 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                 }
             }
             
+            if(packet.getHeader() == GetTotalNotificationAppReuqest.HEADER()) {
+                let thispacket = packet.copy() as GetotalAppIDPacket
+                let currentAppNumber:Int = thispacket.getTotalAppsNumber()
+
+                for i in 0..<currentAppNumber {
+                    let appIDRequest:GetNotificationAppIDRequest = GetNotificationAppIDRequest(number: i)
+                    self.sendRequest(appIDRequest)
+                }
+            }
+            
+            if(packet.getHeader() == GetNotificationAppIDRequest.HEADER()) {
+                let thispacket = packet.copy() as GetNotificationAppIDPacket
+                let appidString:String = thispacket.getApplicationID()
+                XCGLogger.default.debug("getApplicationID:\(appidString)")
+                self.saveNotificationAppID(appid: appidString)
+            }
+            
+            
+            if packet.getHeader() == DeleteAllNotificationAppIDRequest.HEADER() {
+                let thispacket = packet.copy() as DeleteAllAppIDPacket
+                XCGLogger.default.debug("DeleteAllAppIDPacket,state:\(thispacket.getDeleteStatus())")
+                LunaRNotfication()
+            }
+            
+            if packet.getHeader() == NewAppIDNotificationRequest.HEADER() {
+                let thispacket = packet.copy() as ReceiveNewNotificationPacket
+                let appidString:String = thispacket.getApplicationID()
+                XCGLogger.default.debug("getApplicationID:\(appidString)")
+                self.saveNotificationAppID(appid: appidString)
+            }
+
             if(packet.getHeader() == GetStepsGoalRequest.HEADER()) {
                 //refresh current hourly steps changing in the healthkit
                 let thispacket = packet.copy() as LunaRStepsGoalPacket
@@ -433,16 +415,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                 let dailyStepGoal:Int = thispacket.getDailyStepsGoal()
                 let percent :Float = Float(dailySteps)/Float(dailyStepGoal)
                 SwiftEventBus.post(EVENT_BUS_BEGIN_SMALL_SYNCACTIVITY, sender:["STEPS":dailySteps,"GOAL":dailyStepGoal,"PERCENT":percent] as AnyObject)
-                XCGLogger.default.debug("DailyStepsNevoPacket,steps:\(dailySteps),stepGoal:\(dailyStepGoal),getRTC:\(thispacket.getDateTimer().stringFromFormat("yyyy-MM-dd HH:mm:ss"))")
+                let buildinFirmwareVersion:Int = AppTheme.GET_FIRMWARE_VERSION()
+                if getFirmwareVersion().integerValue >= buildinFirmwareVersion {
+                    XCGLogger.default.debug("DailyStepsNevoPacket,steps:\(dailySteps),stepGoal:\(dailyStepGoal),getRTC:\(thispacket.getDateTimer().stringFromFormat("yyyy-MM-dd HH:mm:ss"))")
+                }
             }
             
             //new find Phone
             if (packet.getHeader() == FindPhonePacket.HEADER()) {
-                AppTheme.playSound()
-            }
-            
-            //old find Phone
-            if (TestMode.sharedInstance(packet.getPackets()).isTestModel()) {
                 AppTheme.playSound()
             }
             
@@ -455,14 +435,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
         SwiftEventBus.post(EVENT_BUS_CONNECTION_STATE_CHANGED_KEY, sender:isConnected as AnyObject)
         
         if(isConnected) {
-            if(self.hasSavedAddress()){
-                let banner = MEDBanner(title: NSLocalizedString("Connected", comment: ""), subtitle: nil, image: nil, backgroundColor:UIColor(rgba: "#0dac67"))
-                banner.dismissesOnTap = true
-                banner.show(duration: 1.5)
-            }
+            self.connectedBanner()
             
             ConnectionManager.sharedInstance.checkConnectSendNotification(ConnectionManager.Const.connectionStatus.connected)
             
+            XCGLogger.default.debug("Connected")
             let dispatchTime: DispatchTime = DispatchTime.now() + Double(Int64(1.0 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
             DispatchQueue.main.asyncAfter(deadline: dispatchTime, execute: {
                 //setp1: cmd 0x01, set RTC, for every connected Nevo
@@ -476,14 +453,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
             })
             
         }else {
-            if(self.hasSavedAddress()){
-                let banner = MEDBanner(title: NSLocalizedString("Disconnected", comment: ""), subtitle: nil, image: nil, backgroundColor: UIColor.red)
-                banner.dismissesOnTap = true
-                banner.show(duration: 1.5)
-            }
-            
+            self.disConnectedBanner()
             isSync = false
-            
             ConnectionManager.sharedInstance.checkConnectSendNotification(ConnectionManager.Const.connectionStatus.disconnected)
             SyncQueue.sharedInstance.clear()
             mPacketsbuffer = []
@@ -767,6 +738,25 @@ extension AppDelegate {
             sleepModel.uid = 0
             sleepModel.key = keys
             _ = sleepModel.add()
+        }
+    }
+    
+    func saveNotificationAppID(appid:String) {
+        let array = appid.characters.split(separator: ".")
+        let object = MEDUserNotification.getFilter("appid = '\(appid)'")
+        if object.count == 0 {
+            let userNotification:MEDUserNotification = MEDUserNotification()
+            userNotification.key = appid
+            let lastValue = array.last
+            if lastValue != nil {
+                userNotification.appName = String(format: "%@", lastValue.debugDescription)
+            }else{
+                userNotification.appName = "Notification"
+            }
+            userNotification.notificationType  = NotificationType.other.rawValue as String
+            userNotification.receiveDate = Date().timeIntervalSince1970
+            userNotification.appid = appid
+            _ = userNotification.add()
         }
     }
 }

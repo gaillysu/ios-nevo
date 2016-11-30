@@ -15,7 +15,7 @@ PODS:
   - iOSDFULibrary (1.0.11):
     - Zip (~> 0.6)
   - IQKeyboardManagerSwift (4.0.6)
-  - Kingfisher (3.2.0)
+  - Kingfisher (3.1.3)
   - LTNavigationBar (2.1.6)
   - MRProgress (0.8.3):
     - MRProgress/ActivityIndicator (= 0.8.3)
@@ -81,7 +81,7 @@ DEPENDENCIES:
   - FMDB (~> 2.6.2)
   - iOSDFULibrary (from `https://github.com/NordicSemiconductor/IOS-Pods-DFU-Library.git`, branch `swift3`)
   - IQKeyboardManagerSwift (~> 4.0.6)
-  - Kingfisher
+  - Kingfisher (~> 3.1.3)
   - LTNavigationBar
   - MRProgress
   - NJKWebViewProgress
@@ -149,7 +149,7 @@ SPEC CHECKSUMS:
   FMDB: 854a0341b4726e53276f2a8996f06f1b80f9259a
   iOSDFULibrary: bba594c017769ab19cd5101d41faf8e904c48412
   IQKeyboardManagerSwift: b3015e819559ca76381f87a0833f44d178564603
-  Kingfisher: 50407d1d5dbc34965009d425a286342ff36a84ea
+  Kingfisher: 007f5851c18c81e7cc106c9cbac1bafea1cce5dc
   LTNavigationBar: 9ef51488bf289b1f65dbcb17ac92888c4ae23e30
   MRProgress: 16de7cc9f347e8846797a770db102a323fe7ef09
   NJKWebViewProgress: f481fd424cb5ecc27eacae11b5397db92fba9a4d
@@ -168,6 +168,6 @@ SPEC CHECKSUMS:
   XCGLogger: 38063ea89b4c8b23232d18efd2e12eb0005f3ea4
   Zip: 805fc2fa9d2f05bbb7762d982d7a42ccdcc51f42
 
-PODFILE CHECKSUM: 7a6af38ccf2569501f0f666683dfab9e0fa3dfb8
+PODFILE CHECKSUM: 1ea3d1b8ba44485baff8d04eb3e70d0c28bee3db
 
 COCOAPODS: 1.1.1
