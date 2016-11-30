@@ -66,5 +66,11 @@ class ActionSheetView: UIAlertController {
     override func setValue(_ value: Any?, forUndefinedKey key: String) {
         
     }
-
+    
+    public class func makeWarningAlert(title:String, message:String?, style:UIAlertControllerStyle, confirmText:String, cancelText:String, okAction:(((UIAlertAction) -> Void)?), cancelAction:(((UIAlertAction) -> Void)?)) -> UIAlertController{
+        let alertActionViewController = ActionSheetView(title: title, message: message, preferredStyle: style)
+        alertActionViewController.addAction(UIAlertAction(title: confirmText, style: UIAlertActionStyle.destructive, handler: okAction))
+        alertActionViewController.addAction(UIAlertAction(title: cancelText, style: UIAlertActionStyle.cancel, handler: cancelAction))
+        return alertActionViewController
+    }
 }
