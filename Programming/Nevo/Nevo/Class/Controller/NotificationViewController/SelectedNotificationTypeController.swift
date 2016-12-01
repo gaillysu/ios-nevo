@@ -41,23 +41,11 @@ class SelectedNotificationTypeController: UITableViewController {
         }
         
         self.tableView.register(UINib(nibName: "LineColorCell",bundle: nil), forCellReuseIdentifier: "LineColor_Identifier")
+        self.tableView.register(UINib(nibName: "AllowNotificationsTableViewCell",bundle: nil), forCellReuseIdentifier: "AllowNotifications_Identifier")
         selectedNotificationView.separatorStyle = notSetting!.getStates() ? .singleLine : .none
         
         if !AppTheme.isTargetLunaR_OR_Nevo() {
             self.tableView.backgroundColor = UIColor.getLightBaseColor()
-        }
-    }
-
-
-    func buttonManager(_ sender:AnyObject){
-        if(sender.isKind(of: UISwitch.classForCoder())){
-            let switchView:UISwitch = sender as! UISwitch
-            selectedDelegate?.didSelectedNotificationDelegate(notSetting!.getClock(), ntSwitchState: switchView.isOn,appid:notSetting!.getPacket())
-            notSetting?.setStates(switchView.isOn)
-            notSetting?.setClock(notSetting!.getClock())
-            tableView.separatorStyle = switchView.isOn ? .singleLine : .none
-            
-            selectedNotificationView.reloadSections(IndexSet.init(integersIn: 1..<4), with: .automatic)
         }
     }
 }
@@ -106,7 +94,16 @@ extension SelectedNotificationTypeController {
 }
 
 // MARK: - TableView DataSource
-extension SelectedNotificationTypeController {
+extension SelectedNotificationTypeController:AddPacketToWatchDelegate {
+    func addPacketToWatchDelegate(appid:String,onOff:Bool){
+        selectedDelegate?.didSelectedNotificationDelegate(notSetting!.getClock(), ntSwitchState: onOff,appid:appid)
+        notSetting?.setStates(onOff)
+        notSetting?.setClock(notSetting!.getClock())
+        tableView.separatorStyle = onOff ? .singleLine : .none
+        
+        selectedNotificationView.reloadSections(IndexSet.init(integersIn: 1..<4), with: .automatic)
+    }
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 4
     }
@@ -121,15 +118,22 @@ extension SelectedNotificationTypeController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch ((indexPath as NSIndexPath).section){
         case 0:
-            let titleString:String = "Allow_Notifications"
-            let cell = selectedNotificationView.AllowNotificationsTableViewCell(indexPath, tableView: tableView, title: NSLocalizedString(titleString, comment: ""), state:notSetting!.getStates())
-            for swicthView in cell.contentView.subviews{
-                if(swicthView.isKind(of: UISwitch.classForCoder())){
-                    let mSwitch:UISwitch = swicthView as! UISwitch
-                    mSwitch.addTarget(self, action: #selector(SelectedNotificationTypeController.buttonManager(_:)), for: UIControlEvents.valueChanged)
-                }
+            let allowCell:AllowNotificationsTableViewCell = tableView.dequeueReusableCell(withIdentifier: "AllowNotifications_Identifier", for: indexPath) as! AllowNotificationsTableViewCell
+            allowCell.selectionStyle = UITableViewCellSelectionStyle.none;
+            allowCell.addDelegate = self
+            var titleColor:UIColor?
+            var onColor:UIColor?
+            if !AppTheme.isTargetLunaR_OR_Nevo() {
+                titleColor = UIColor.white
+                onColor = UIColor.getBaseColor()
+                allowCell.backgroundColor = UIColor.getGreyColor()
+            }else{
+                titleColor = UIColor.black
+                onColor = AppTheme.NEVO_SOLAR_YELLOW()
             }
-            return cell
+            allowCell.setAllowSwitch(color: onColor!,isOn:notSetting!.getStates())
+            allowCell.setTitleLabel(title: NSLocalizedString("Allow_Notifications", comment: ""), titleColor: titleColor!, titleFont: nil)
+            return allowCell
         case 1:
             let cell = selectedNotificationView.getNotificationClockCell(indexPath, tableView: tableView, title: "", clockIndex: notSetting!.getClock())
             if notSetting!.getStates() {

@@ -76,9 +76,9 @@ class SelectedNotificationView: UITableView {
         
         if !AppTheme.isTargetLunaR_OR_Nevo() {
             endCell.textLabel?.textColor = UIColor.white
+        }else{
+            endCell.textLabel!.text = cellTitle;
         }
-        
-        endCell.textLabel!.text = cellTitle
         return endCell
     }
 
@@ -91,36 +91,23 @@ class SelectedNotificationView: UITableView {
 
      :returns: return LinkLoss Notifications TableViewCell
      */
-    func AllowNotificationsTableViewCell(_ indexPath:IndexPath, tableView:UITableView, title:String, state:Bool)->UITableViewCell {
-        let endCellID:String = "AllowNotificationsTableViewCell"
-        var endCell = tableView.dequeueReusableCell(withIdentifier: endCellID)
-        var mSwitch:UISwitch?
-        if (endCell == nil) {
-            endCell = UITableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: endCellID)
-            mSwitch = UISwitch(frame: CGRect(x: 0,y: 0,width: 51,height: 31))
-            mSwitch?.isOn = state
-            mSwitch?.tintColor = AppTheme.NEVO_SOLAR_YELLOW()
-            mSwitch?.onTintColor = AppTheme.NEVO_SOLAR_YELLOW()
-            mSwitch?.center = CGPoint(x: UIScreen.main.bounds.size.width-40, y: (endCell?.contentView.frame.height)!/2)
-            endCell?.contentView.addSubview(mSwitch!)
-        }
-        
-        for view in endCell!.contentView.subviews{
-            if(view.isKind(of: UISwitch.classForCoder())){
-                mSwitch = view as? UISwitch
-                mSwitch?.isOn = state
-            }
-        }
-        endCell?.selectionStyle = UITableViewCellSelectionStyle.none;
-        endCell?.textLabel?.text = title
-        
+    func allowNotificationsTableViewCell(_ indexPath:IndexPath, tableView:UITableView, title:String, setting:NotificationSetting)->UITableViewCell {
+        let allowCell:AllowNotificationsTableViewCell = tableView.dequeueReusableCell(withIdentifier: "AllowNotifications_Identifier", for: indexPath) as! AllowNotificationsTableViewCell
+        allowCell.selectionStyle = UITableViewCellSelectionStyle.none;
+        var titleColor:UIColor?
+        var onColor:UIColor?
         if !AppTheme.isTargetLunaR_OR_Nevo() {
-            endCell?.textLabel?.textColor = UIColor.white
-            endCell?.backgroundColor = UIColor.getGreyColor()
-            mSwitch?.onTintColor = UIColor.getBaseColor()
-            mSwitch?.tintColor = UIColor.white
+            titleColor = UIColor.white
+            onColor = UIColor.getBaseColor()
+            allowCell.backgroundColor = UIColor.getGreyColor()
+        }else{
+            titleColor = UIColor.black
+            onColor = AppTheme.NEVO_SOLAR_YELLOW()
         }
-        return endCell!
+        allowCell.setAllowSwitch(color: onColor!,isOn:setting.getStates())
+        allowCell.setTitleLabel(title: title, titleColor: titleColor!, titleFont: nil)
+
+        return allowCell
     }
     /*
     // Only override drawRect: if you perform custom drawing.

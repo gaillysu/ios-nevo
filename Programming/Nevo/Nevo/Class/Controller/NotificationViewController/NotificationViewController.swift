@@ -39,7 +39,7 @@ class NotificationViewController: UITableViewController {
         self.tableView.register(UINib(nibName: "NotificationTypeCell", bundle: nil), forCellReuseIdentifier: "Notification_Identifier")
         
         let rightItem:UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.refresh, target: self, action: #selector(refreshAction(_:)))
-        self.navigationItem.rightBarButtonItem = rightItem
+        //self.navigationItem.rightBarButtonItem = rightItem
     }
     
     func refreshAction(_ sender:UIBarButtonItem) {
@@ -128,7 +128,7 @@ extension NotificationViewController {
             let notfiction = MEDUserNotification.getFilter("key = '\(noti!.getPacket())'")
             if notfiction.count>0 {
                 let notValue:MEDUserNotification = notfiction[0] as! MEDUserNotification
-                if !notValue.deleteFlag {
+                if notValue.deleteFlag {
                    _ = notValue.remove()
                 }else{
                     deleteNotificationsAlertView()

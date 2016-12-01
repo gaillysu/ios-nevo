@@ -709,6 +709,10 @@
 		611D426A1DCAD97D003BC6E3 /* AppDelegate-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006DA9FD1D80F2A600B70C0F /* AppDelegate-Extension.swift */; };
 		611D426B1DCAD97D003BC6E3 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006A62211D6A9F1500458305 /* MainTabBarController.swift */; };
 		611E2E051DC3405D004CD45B /* LunaRStepsGoalPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 611E2E041DC3405D004CD45B /* LunaRStepsGoalPacket.swift */; };
+		612DB7171DEFC7BE000B1747 /* AllowNotificationsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 612DB7151DEFC7BE000B1747 /* AllowNotificationsTableViewCell.swift */; };
+		612DB7181DEFC7BE000B1747 /* AllowNotificationsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 612DB7161DEFC7BE000B1747 /* AllowNotificationsTableViewCell.xib */; };
+		612DB7191DEFCFBB000B1747 /* AllowNotificationsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 612DB7151DEFC7BE000B1747 /* AllowNotificationsTableViewCell.swift */; };
+		612DB71A1DEFCFC2000B1747 /* AllowNotificationsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 612DB7161DEFC7BE000B1747 /* AllowNotificationsTableViewCell.xib */; };
 		614662A11DC9CEFC001E57CC /* lunar_settime.png in Resources */ = {isa = PBXBuildFile; fileRef = 614662A01DC9CEFC001E57CC /* lunar_settime.png */; };
 		614662A21DC9D081001E57CC /* lunar_settime.png in Resources */ = {isa = PBXBuildFile; fileRef = 614662A01DC9CEFC001E57CC /* lunar_settime.png */; };
 		614662A41DC9D363001E57CC /* lunar_open_bt.png in Resources */ = {isa = PBXBuildFile; fileRef = 614662A31DC9D363001E57CC /* lunar_open_bt.png */; };
@@ -1308,6 +1312,8 @@
 		6107670F1DDD89BC00F53AD6 /* DeleteAllNotificationAppIDRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeleteAllNotificationAppIDRequest.swift; sourceTree = "<group>"; };
 		610767111DDD8AE600F53AD6 /* ReceiveNewNotificationPacket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReceiveNewNotificationPacket.swift; sourceTree = "<group>"; };
 		611E2E041DC3405D004CD45B /* LunaRStepsGoalPacket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LunaRStepsGoalPacket.swift; sourceTree = "<group>"; };
+		612DB7151DEFC7BE000B1747 /* AllowNotificationsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllowNotificationsTableViewCell.swift; sourceTree = "<group>"; };
+		612DB7161DEFC7BE000B1747 /* AllowNotificationsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AllowNotificationsTableViewCell.xib; sourceTree = "<group>"; };
 		614662A01DC9CEFC001E57CC /* lunar_settime.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lunar_settime.png; sourceTree = "<group>"; };
 		614662A31DC9D363001E57CC /* lunar_open_bt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lunar_open_bt.png; sourceTree = "<group>"; };
 		614662A61DC9D715001E57CC /* lunar_search.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lunar_search.png; sourceTree = "<group>"; };
@@ -1698,6 +1704,8 @@
 				0050D5411C28E0DB004F6F80 /* SelectedNotificationView.swift */,
 				6165A6351DEBC32500F7A3E6 /* NotificationTypeCell.swift */,
 				6165A6361DEBC32500F7A3E6 /* NotificationTypeCell.xib */,
+				612DB7151DEFC7BE000B1747 /* AllowNotificationsTableViewCell.swift */,
+				612DB7161DEFC7BE000B1747 /* AllowNotificationsTableViewCell.xib */,
 			);
 			path = NotificationView;
 			sourceTree = "<group>";
@@ -3148,6 +3156,7 @@
 				0037EC351D235F5300502140 /* upgrade_clock.png in Resources */,
 				0037EC361D235F5300502140 /* firmware_clock.png in Resources */,
 				0037EC391D235F5300502140 /* nevo_wacth.png in Resources */,
+				612DB71A1DEFCFC2000B1747 /* AllowNotificationsTableViewCell.xib in Resources */,
 				0037EC3A1D235F5300502140 /* clockViewHour.png in Resources */,
 				0037EC3B1D235F5300502140 /* clockViewMinute.png in Resources */,
 				0037EC3C1D235F5300502140 /* clockView600.png in Resources */,
@@ -3278,6 +3287,7 @@
 				61879C2E1DC05B850089F1E5 /* cities.json in Resources */,
 				0050D69B1C2906D8004F6F80 /* Firmwares in Resources */,
 				00E650991C83DD9000278D3E /* nevoFontImage.png in Resources */,
+				612DB7181DEFC7BE000B1747 /* AllowNotificationsTableViewCell.xib in Resources */,
 				0050D60C1C28E0DB004F6F80 /* AddPresetViewController.xib in Resources */,
 				006A62581D6AA76C00458305 /* AlarmTypeCell.xib in Resources */,
 				00E759181C2406E600372529 /* upgrade_clock.png in Resources */,
@@ -3615,6 +3625,7 @@
 				615093391DBF5BC800E52970 /* SetSunriseAndSunsetRequest.swift in Sources */,
 				00C826741DA5E04000ECECEE /* AddAlarmSystemCell.xib in Sources */,
 				00C826751DA5E04000ECECEE /* AddAlarmTableViewCell.swift in Sources */,
+				612DB7191DEFCFBB000B1747 /* AllowNotificationsTableViewCell.swift in Sources */,
 				00C826761DA5E04000ECECEE /* AddAlarmTableViewCell.xib in Sources */,
 				00C826771DA5E04000ECECEE /* AddAlarmView.swift in Sources */,
 				00C826781DA5E04000ECECEE /* AlarmTypeCell.swift in Sources */,
@@ -3971,6 +3982,7 @@
 				611D418C1DCAD97C003BC6E3 /* ConnectionManager.swift in Sources */,
 				611D418D1DCAD97C003BC6E3 /* NevoProfile.swift in Sources */,
 				611D418E1DCAD97C003BC6E3 /* NevoOTAControllerProfile.swift in Sources */,
+				612DB7171DEFC7BE000B1747 /* AllowNotificationsTableViewCell.swift in Sources */,
 				665098911DCB23DC0059D5F7 /* MEDSleepUpdateRequest.swift in Sources */,
 				611D418F1DCAD97C003BC6E3 /* NevoOTAModeProfile.swift in Sources */,
 				611D41901DCAD97C003BC6E3 /* NevoOTAPacketProfile.swift in Sources */,
