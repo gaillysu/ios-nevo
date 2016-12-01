@@ -245,6 +245,8 @@ class NevoOtaController : NSObject,ConnectionControllerDelegate {
         if (dfuResponse.responseStatus == DfuOperationStatus.operation_SUCCESSFUL_RESPONSE.rawValue) {
             XCGLogger.default.debug("successfully received notification for whole File transfer");
             validateFirmware()
+            
+            activateAndReset()
         }else {
             XCGLogger.default.debug("Firmware Image failed, Error Status: \(self.responseErrorMessage(self.dfuResponse.responseStatus))");
             let errorMessage = "Error on Receive Firmware Image\n Message: \(responseErrorMessage(dfuResponse.responseStatus))";
