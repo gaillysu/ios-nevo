@@ -58,7 +58,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
     
     fileprivate var longitude:Double = 0
     fileprivate var latitude:Double = 0
-    fileprivate let realm:Realm = try! Realm()
     
     var isFirsttimeLaunch: Bool {
         get {
@@ -85,6 +84,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
         //set navigationBar font style and font color
         UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName:UIColor.black,NSFontAttributeName:UIFont(name: "Raleway", size: 20)!]
         UIApplication.shared.statusBarStyle = UIStatusBarStyle.default
+        
+        updateDataBase()
         
         IQKeyboardManager.sharedManager().enable = true
         
@@ -166,6 +167,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
 
     }
 
+    func updateDataBase() {
+        let config = Realm.Configuration(
+            // 设置新的架构版本。这个版本号必须高于之前所用的版本号（如果您之前从未设置过架构版本，那么这个版本号设置为 0）
+            schemaVersion: 1,
+            // 设置闭包，这个闭包将会在打开低于上面所设置版本号的 Realm 数据库的时候被自动调用
+            migrationBlock: { migration, oldSchemaVersion in
+                // 目前我们还未进行数据迁移，因此 oldSchemaVersion == 0
+                if (oldSchemaVersion < 1) {
+                    // 什么都不要做！Realm 会自行检测新增和需要移除的属性，然后自动更新硬盘上的数据库架构
+                }
+        })
+        // 告诉 Realm 为默认的 Realm 数据库使用这个新的配置对象
+        Realm.Configuration.defaultConfiguration = config
+    }
+    
     // MARK: -dbPath
     class func dbPath()->String{
         var docsdir:String = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true).last!
@@ -631,8 +647,44 @@ extension AppDelegate {
         return latitude;
     }
     
+    func saveSolarHarvest(thispacket:LunaRDailyTrackerPacket,date:Date)  {
+        let login = MEDUserProfile.getAll()
+        if login.count>0 {
+            let userProfile:MEDUserProfile = login[0] as! MEDUserProfile
+            let uidString:String = "\(userProfile.uid)"
+            let keys:String = date.stringFromFormat("yyyyMMddHHmmss", locale: DateFormatter().locale)+uidString
+            let solar = SolarHarvest.getFilter("key = \(keys)")
+            if solar.count == 0 {
+                let solarTime:SolarHarvest = SolarHarvest()
+                solarTime.key = keys
+                solarTime.date = date.timeIntervalSince1970
+                solarTime.solarTotalTime = thispacket.getTotalSolarHarvestingTime()
+                solarTime.solarHourlyTime = "\(AppTheme.toJSONString(thispacket.getHourlyHarvestTime() as AnyObject!))"
+                solarTime.uid = userProfile.uid
+                _ = solarTime.add()
+            }else{
+                let solarTime:SolarHarvest = solar[0] as! SolarHarvest
+                solarTime.date = date.timeIntervalSince1970
+                solarTime.solarTotalTime = thispacket.getTotalSolarHarvestingTime()
+                solarTime.solarHourlyTime = "\(AppTheme.toJSONString(thispacket.getHourlyHarvestTime() as AnyObject!))"
+                solarTime.uid = userProfile.uid;
+                _ = solarTime.update()
+            }
+        }else{
+            let keys:String = date.stringFromFormat("yyyyMMddHHmmss", locale: DateFormatter().locale)
+            let solarTime:SolarHarvest = SolarHarvest()
+            solarTime.key = keys
+            solarTime.date = date.timeIntervalSince1970
+            solarTime.solarTotalTime = thispacket.getTotalSolarHarvestingTime()
+            solarTime.solarHourlyTime = "\(AppTheme.toJSONString(thispacket.getHourlyHarvestTime() as AnyObject!))"
+            solarTime.uid = 0
+            _ = solarTime.add()
+        }
+    }
+    
     func saveSolarHarvest(thispacket:DailyTrackerNevoPacket,date:Date)  {
         let login:NSArray = UserProfile.getAll()
+        let realm:Realm = try! Realm()
         let solar = realm.objects(SolarHarvest.self).filter("date = \(date.timeIntervalSince1970)")
         
         if solar.count == 0 {
