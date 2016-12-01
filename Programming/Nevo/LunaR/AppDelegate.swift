@@ -391,7 +391,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                 let thispacket = packet.copy() as GetNotificationAppIDPacket
                 let appidString:String = thispacket.getApplicationID()
                 XCGLogger.default.debug("getApplicationID:\(appidString)")
-                self.saveNotificationAppID(appid: appidString)
+                self.saveNotificationAppID(appid: appidString,isNewApp:false)
             }
             
             
@@ -401,11 +401,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                 LunaRNotfication()
             }
             
+            if packet.getHeader() == SetNotificationAppIDRequest.HEADER() {
+                self.getWatchNameRequest()
+                self.getWacthNameTimer = Timer.after(5, {
+                    self.setRTC()
+                })
+            }
+            
             if packet.getHeader() == NewAppIDNotificationRequest.HEADER() {
                 let thispacket = packet.copy() as ReceiveNewNotificationPacket
                 let appidString:String = thispacket.getApplicationID()
                 XCGLogger.default.debug("getApplicationID:\(appidString)")
-                self.saveNotificationAppID(appid: appidString)
+                self.saveNotificationAppID(appid: appidString,isNewApp:true)
             }
 
             if(packet.getHeader() == GetStepsGoalRequest.HEADER()) {
@@ -415,8 +422,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                 let dailyStepGoal:Int = thispacket.getDailyStepsGoal()
                 let percent :Float = Float(dailySteps)/Float(dailyStepGoal)
                 SwiftEventBus.post(EVENT_BUS_BEGIN_SMALL_SYNCACTIVITY, sender:["STEPS":dailySteps,"GOAL":dailyStepGoal,"PERCENT":percent] as AnyObject)
-                let buildinFirmwareVersion:Int = AppTheme.GET_FIRMWARE_VERSION()
-                if getFirmwareVersion().integerValue >= buildinFirmwareVersion {
+                if getFirmwareVersion().integerValue >= buildin_firmware_version {
                     XCGLogger.default.debug("DailyStepsNevoPacket,steps:\(dailySteps),stepGoal:\(dailyStepGoal),getRTC:\(thispacket.getDateTimer().stringFromFormat("yyyy-MM-dd HH:mm:ss"))")
                 }
             }
@@ -430,7 +436,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
         }
     }
     
-    func connectionStateChanged(_ isConnected : Bool) {
+    func connectionStateChanged(_ isConnected : Bool, fromAddress : UUID!,isFirstPair:Bool) {
         //send local notification
         SwiftEventBus.post(EVENT_BUS_CONNECTION_STATE_CHANGED_KEY, sender:isConnected as AnyObject)
         
@@ -440,18 +446,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
             ConnectionManager.sharedInstance.checkConnectSendNotification(ConnectionManager.Const.connectionStatus.connected)
             
             XCGLogger.default.debug("Connected")
-            let dispatchTime: DispatchTime = DispatchTime.now() + Double(Int64(1.0 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
-            DispatchQueue.main.asyncAfter(deadline: dispatchTime, execute: {
-                //setp1: cmd 0x01, set RTC, for every connected Nevo
-                self.mPacketsbuffer = []
-                
+            //setp1: cmd 0x01, set RTC, for every connected Nevo
+            self.mPacketsbuffer = []
+            
+            if isFirstPair {
+                self.deleteAllLunaRNotfication()
+            }else{
                 self.getWatchNameRequest()
                 
                 self.getWacthNameTimer = Timer.after(5, {
                     self.setRTC()
                 })
-            })
-            
+            }
         }else {
             self.disConnectedBanner()
             isSync = false
@@ -741,7 +747,7 @@ extension AppDelegate {
         }
     }
     
-    func saveNotificationAppID(appid:String) {
+    func saveNotificationAppID(appid:String,isNewApp:Bool) {
         let array = appid.characters.split(separator: ".")
         let object = MEDUserNotification.getFilter("appid = '\(appid)'")
         if object.count == 0 {
@@ -757,6 +763,16 @@ extension AppDelegate {
             userNotification.receiveDate = Date().timeIntervalSince1970
             userNotification.appid = appid
             _ = userNotification.add()
+        }else{
+            if !isNewApp {
+                let userNotification:MEDUserNotification = object[0] as! MEDUserNotification
+                if !userNotification.isAddWatch {
+                    let realm = try! Realm()
+                    try! realm.write {
+                        userNotification.isAddWatch = true
+                    }
+                }
+            }
         }
     }
 }

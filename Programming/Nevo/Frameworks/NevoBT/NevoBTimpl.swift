@@ -144,13 +144,10 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
         if(error != nil) {
             XCGLogger.default.debug("Error : \(error!.localizedDescription) for peripheral : \(aPeripheral.name)")
         }
-
-
         //Let's forget this device
         setPeripheral(nil)
 
-        mDelegate?.connectionStateChanged(false, fromAddress: aPeripheral.identifier)
-
+        mDelegate?.connectionStateChanged(false, fromAddress: aPeripheral.identifier,isFirstPair:false)
         if(redRssiTimer.isValid){
             redRssiTimer.invalidate()
         }
@@ -196,9 +193,7 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
             
                 if(aChar.uuid==mProfile?.CALLBACK_CHARACTERISTIC ) {
                     mPeripheral?.setNotifyValue(true,for:aChar)
-            
                     XCGLogger.default.debug("Callback char : \(aChar.uuid.uuidString)")
-                    mDelegate?.connectionStateChanged(true, fromAddress: aPeripheral.identifier)
                 }
                 
                 else if(aChar.uuid==CBUUID(string: "00002a26-0000-1000-8000-00805f9b34fb")) {
@@ -273,6 +268,17 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
         mDelegate?.receivedRSSIValue(RSSI)
     }
 
+    func peripheral(_ peripheral: CBPeripheral, didUpdateNotificationStateFor characteristic: CBCharacteristic, error: Error?) {
+        XCGLogger.default.debug("didUpdateNotificationStateFor:\(characteristic),error:\(error)");
+        //F0BA3021-6CAC-4C99-9089-4B0A1DF45002
+        if let value = characteristic.value {
+            mDelegate?.connectionStateChanged(true, fromAddress: peripheral.identifier,isFirstPair:false)
+        }else{
+            mDelegate?.connectionStateChanged(true, fromAddress: peripheral.identifier,isFirstPair:true);
+        }
+        
+    }
+    
     // MARK: - NevoBT
     /**
     See NevoBT protocol
@@ -435,10 +441,9 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
     See NevoBT protocol
     */
     func disconnect() {
-        if(mPeripheral != nil)
-        {
+        if(mPeripheral != nil) {
             mManager?.cancelPeripheralConnection(mPeripheral!)
-            mDelegate?.connectionStateChanged(false, fromAddress: mPeripheral?.identifier)
+            mDelegate?.connectionStateChanged(false, fromAddress: mPeripheral?.identifier,isFirstPair:false)
         }
         setPeripheral(nil)
         
@@ -448,7 +453,7 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
     See NevoBT protocol
     */
     func isConnected() -> Bool {
-        if(mPeripheral != nil && mPeripheral!.state == CBPeripheralState.connected && isBluetoothEnabled()){
+        if(mPeripheral != nil && mPeripheral!.state == CBPeripheralState.connected && isBluetoothEnabled()) {
             return true
         }
         return false

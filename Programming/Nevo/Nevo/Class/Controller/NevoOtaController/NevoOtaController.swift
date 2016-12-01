@@ -309,7 +309,7 @@ class NevoOtaController : NSObject,ConnectionControllerDelegate {
     /*
     see ConnectionControllerDelegate protocol
     */
-    func connectionStateChanged(_ isConnected : Bool) {
+    func connectionStateChanged(_ isConnected : Bool, fromAddress : UUID!,isFirstPair:Bool) {
 
         mDelegate?.connectionStateChanged(isConnected)
         //only BLE OTA run below code

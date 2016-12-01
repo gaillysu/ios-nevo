@@ -111,11 +111,9 @@ class ConnectionControllerImpl : NSObject, ConnectionController, NevoBTDelegate 
         mDelegate?.bluetoothEnabled(enabled)
     }
 
-    func connectionStateChanged(_ isConnected : Bool, fromAddress : UUID!) {
+    func connectionStateChanged(_ isConnected : Bool, fromAddress : UUID!,isFirstPair:Bool) {
 
-      
-        mDelegate?.connectionStateChanged(isConnected)
-       
+        mDelegate?.connectionStateChanged(isConnected, fromAddress : fromAddress,isFirstPair:isFirstPair)
         
         if (!isConnected) {
             connect()

@@ -49,6 +49,7 @@ class MEDUserNotification:MEDBaseModel {
                         }else{
                             userNotification.clock = (indeValue+1)*2
                         }
+                        userNotification.isAddWatch = true
                         userNotification.appName = key1
                         userNotification.notificationType = key1
                         userNotification.receiveDate = Date().timeIntervalSince1970

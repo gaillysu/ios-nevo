@@ -284,7 +284,7 @@ extension LunaROTAController:SelectPeripheralDelegate {
 }
 
 extension LunaROTAController:ConnectionControllerDelegate {
-    func connectionStateChanged(_ isConnected : Bool) {
+    func connectionStateChanged(_ isConnected : Bool, fromAddress : UUID!,isFirstPair:Bool) {
         if(dfuFirmwareType == DfuFirmwareTypes.application ){
             if isConnected{
                 if state == DFUControllerState.send_RECONNECT{

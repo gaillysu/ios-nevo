@@ -11,6 +11,8 @@ import AudioToolbox
 import RegexKitLite
 import XCGLogger
 
+let buildin_firmware_version = AppTheme.GET_FIRMWARE_VERSION();
+let buildin_software_version = AppTheme.GET_SOFTWARE_VERSION();
 /**
 This class holds all app-wide constants.
 Colors, fonts etc...

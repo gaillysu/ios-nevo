@@ -41,7 +41,7 @@
 			<key>bundleId</key>
 			<string>com.burbn.instagram</string>
 		</dict>
-		<key>Messenger(Facebook)</key>
+		<key>Messenger</key>
 		<dict>
 			<key>bundleId</key>
 			<string>com.facebook.Messenger</string>

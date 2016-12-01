@@ -94,7 +94,7 @@ extension AppDelegate {
         sendRequest(SetNortificationRequest(settingArray: mNotificationSettingArray))
     }
 
-    func DeleteAllLunaRNotfication() {
+    func deleteAllLunaRNotfication() {
         XCGLogger.default.debug("DeleteAllLunaRNotfication")
         sendRequest(DeleteAllNotificationAppIDRequest())
     }
@@ -114,7 +114,7 @@ extension AppDelegate {
                 let setting:NotificationSetting = NotificationSetting(type: type!, clock: notification.clock, color: NSNumber(value:notification.clock), states:notification.isAddWatch,packet:notification.appid,appName:notification.appName)
                 let packet:String = notification.appid
                 let packetLength:Int = packet.length()
-                let notificationsRequest:SetNotificationAppIDRequest = SetNotificationAppIDRequest(number: index+1, length: packetLength, pattern: setting.getColor().uint32Value, appid: packet, motorOnOff: true)
+                let notificationsRequest:SetNotificationAppIDRequest = SetNotificationAppIDRequest(number: index, length: packetLength, pattern: setting.getColor().uint32Value, appid: packet, motorOnOff: true)
                 self.sendRequest(notificationsRequest)
             }
         }
