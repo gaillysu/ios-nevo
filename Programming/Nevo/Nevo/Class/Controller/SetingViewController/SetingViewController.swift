@@ -208,7 +208,7 @@ class SetingViewController: UIViewController,ButtonManagerCallBack,UIAlertViewDe
             if (indexPath as NSIndexPath).row == 3{
                 
                 let dialogController = ActionSheetView(title: NSLocalizedString("Are you sure you want to log out?", comment: ""), message: nil, preferredStyle: .alert)
-                let confirmAction = AlertAction(title: NSLocalizedString("Enter", comment: ""), style: .default, handler: { (_) in
+                let confirmAction = AlertAction(title: NSLocalizedString("Yes", comment: ""), style: .default, handler: { (_) in
                     let users = MEDUserProfile.getAll()
                     if(users.count>0){
                         let userProfile:MEDUserProfile = users.first as! MEDUserProfile
