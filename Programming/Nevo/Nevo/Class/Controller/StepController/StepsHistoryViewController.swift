@@ -148,7 +148,7 @@ class StepsHistoryViewController: PublicClassController,ChartViewDelegate {
         xAxis.drawAxisLineEnabled = true
         xAxis.drawGridLinesEnabled = true
         xAxis.labelPosition = ChartXAxis.LabelPosition.bottom
-        xAxis.labelFont = UIFont(name: "Helvetica-Light", size: 7)!
+        xAxis.labelFont = UIFont(name: "Helvetica-Light", size: 10)!
         
         let yAxis:ChartYAxis = chartView!.leftAxis
         yAxis.labelTextColor = UIColor.black

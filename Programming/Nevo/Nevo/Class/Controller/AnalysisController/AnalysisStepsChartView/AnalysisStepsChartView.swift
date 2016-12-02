@@ -41,7 +41,7 @@ class AnalysisStepsChartView: LineChartView {
         xAxis.axisLineColor = UIColor.black
         xAxis.drawLimitLinesBehindDataEnabled = false;
         xAxis.labelPosition = ChartXAxis.LabelPosition.bottom
-        xAxis.labelFont = UIFont(name: "Helvetica-Light", size: 7)!
+        xAxis.labelFont = UIFont(name: "Helvetica-Light", size: 10)!
         
         if !AppTheme.isTargetLunaR_OR_Nevo() {
             xAxis.labelTextColor = UIColor.white;
@@ -62,14 +62,10 @@ class AnalysisStepsChartView: LineChartView {
     func invalidateChart() {
         var dataSets:[LineChartDataSet] = []
         var chartDataArray:[BarChartDataEntry] = []
-        var maxValue:Double = 0
         for (index,vlaue) in yVals.enumerated() {
-            let chartData1:BarChartDataEntry = BarChartDataEntry(value: 60-vlaue[2], xIndex:index)
+            //vlaue[0]->Deep Sleep, vlaue[1]->Light Sleep, vlaue[2]->Weake Sleep
+            let chartData1:BarChartDataEntry = BarChartDataEntry(value: vlaue[0], xIndex:index)
             chartDataArray.append(chartData1)
-
-            if maxValue < 60-vlaue[2]{
-               maxValue = 60-vlaue[2]
-            }
         }
         
         self.setLeftAxisLimitLine(65)
@@ -105,7 +101,7 @@ class AnalysisStepsChartView: LineChartView {
         let leftAxis:ChartYAxis = self.leftAxis;
         leftAxis.labelCount = 3
         leftAxis.removeAllLimitLines()
-        let valueString:[String] = [NSLocalizedString("deep_sleep", comment: ""),NSLocalizedString("light_sleep", comment: ""),NSLocalizedString("Awake", comment: "")]
+        let valueString:[String] = [NSLocalizedString("Awake", comment: ""),NSLocalizedString("light_sleep", comment: ""),NSLocalizedString("deep_sleep", comment: "")]
         
         let ll1:ChartLimitLine = ChartLimitLine(limit: Double(5), label: valueString[0])
         ll1.lineWidth = 0.5;
