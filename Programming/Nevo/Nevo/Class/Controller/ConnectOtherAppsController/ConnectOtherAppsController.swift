@@ -87,9 +87,9 @@ class ConnectOtherAppsController: UITableViewController {
                 let view = MRProgressOverlayView.showOverlayAdded(to: self.navigationController!.view, title: NSLocalizedString("please_wait", comment: ""), mode: MRProgressOverlayViewMode.indeterminate, animated: true)
                 view?.setTintColor(UIColor.getBaseColor())
                 let textfield:UITextField = alert.textFields![0]
-                let userprofile:UserProfile = UserProfile.getAll()[0] as! UserProfile
+                let userprofile:MEDUserProfile = MEDUserProfile.getAll()[0] as! MEDUserProfile
                 var finalData: [String : AnyObject] = [:]
-                let params: [String: AnyObject] = ["uid":"\(userprofile.id)" as AnyObject];
+                let params: [String: AnyObject] = ["uid":"\(userprofile.uid)" as AnyObject];
                 finalData["user"] = params as AnyObject?
                 finalData["pin"] = textfield.text! as AnyObject?
                 finalData["access_token"] = OrganizationAccessToken as AnyObject?

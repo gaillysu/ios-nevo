@@ -243,12 +243,12 @@ extension StepGoalSetingController {
     
     // MARK: - Data calculation
     class func calculationData(_ activeTimer:Int,steps:Int,completionData:((_ miles:Double,_ calories:Double) -> Void)) {
-        let profile:NSArray = UserProfile.getAll()
-        var userProfile:UserProfile?
+        let profiles = MEDUserProfile.getAll()
+        var userProfile:MEDUserProfile?
         var strideLength:Double = 0
         var userWeight:Double = 0
-        if profile.count>0 {
-            userProfile = profile.object(at: 0) as? UserProfile
+        if profiles.count>0 {
+            userProfile = profiles.first as? MEDUserProfile
             strideLength = Double(userProfile!.length)*0.415/100
             userWeight = Double(userProfile!.weight)
         }else{

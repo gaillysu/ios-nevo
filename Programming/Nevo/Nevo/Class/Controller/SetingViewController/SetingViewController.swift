@@ -88,8 +88,8 @@ class SetingViewController: UIViewController,ButtonManagerCallBack,UIAlertViewDe
         tableView.deselectRow(at: indexPath, animated: true)
         switch ((indexPath as NSIndexPath).section){
         case 0:
-            let user:NSArray = UserProfile.getAll()
-            if user.count == 0 {
+            let users = MEDUserProfile.getAll()
+            if users.count == 0 {
                 let login:LoginController = LoginController()
                 let naviController = UINavigationController(rootViewController: login)
                 self.present(naviController, animated: true, completion: nil)
@@ -130,8 +130,8 @@ class SetingViewController: UIViewController,ButtonManagerCallBack,UIAlertViewDe
             
             if(isEqualString("\(sources[(indexPath as NSIndexPath).row])",string2: NSLocalizedString("Connect to other apps", comment: ""))){
                
-                let user:NSArray = UserProfile.getAll()
-                if user.count == 0 {
+                let users = MEDUserProfile.getAll()
+                if users.count == 0 {
                     let logoin:LoginController = LoginController()
                     logoin.hidesBottomBarWhenPushed = true
                     self.navigationController?.pushViewController(logoin, animated: true)
@@ -209,9 +209,9 @@ class SetingViewController: UIViewController,ButtonManagerCallBack,UIAlertViewDe
                 
                 let dialogController = ActionSheetView(title: NSLocalizedString("Are you sure you want to log out?", comment: ""), message: nil, preferredStyle: .alert)
                 let confirmAction = AlertAction(title: NSLocalizedString("Enter", comment: ""), style: .default, handler: { (_) in
-                    let user:NSArray = UserProfile.getAll()
-                    if(user.count>0){
-                        let userProfile:UserProfile = user.object(at: 0) as! UserProfile
+                    let users = MEDUserProfile.getAll()
+                    if(users.count>0){
+                        let userProfile:MEDUserProfile = users.first as! MEDUserProfile
                         if(userProfile.remove()){
                             let tableViewCell: UITableViewCell = tableView.cellForRow(at: indexPath)!
                             tableViewCell.accessoryType = UITableViewCellAccessoryType.none
@@ -242,9 +242,9 @@ class SetingViewController: UIViewController,ButtonManagerCallBack,UIAlertViewDe
             }
             break
         case 3:
-            let user:NSArray = UserProfile.getAll()
-            if(user.count>0){
-                let userProfile:UserProfile = user.object(at: 0) as! UserProfile
+            let users = MEDUserProfile.getAll()
+            if(users.count>0){
+                let userProfile:MEDUserProfile = users.first as! MEDUserProfile
                 if(userProfile.remove()){
                     let tableViewCell: UITableViewCell = tableView.cellForRow(at: indexPath)!
                     tableViewCell.accessoryType = UITableViewCellAccessoryType.none
@@ -278,8 +278,8 @@ class SetingViewController: UIViewController,ButtonManagerCallBack,UIAlertViewDe
         case 1:
             return sources.count
         case 2:
-            let user:NSArray = UserProfile.getAll()
-            if user.count>0{
+            let users = MEDUserProfile.getAll()
+            if users.count>0{
                 return titleArray.count
             }else{
                 return titleArray.count-1
@@ -293,12 +293,12 @@ class SetingViewController: UIViewController,ButtonManagerCallBack,UIAlertViewDe
     func tableView(_ tableView: UITableView, cellForRowAtIndexPath indexPath: IndexPath) -> UITableViewCell {
         switch ((indexPath as NSIndexPath).section){
         case 0:
-            let user:NSArray = UserProfile.getAll()
-            if user.count>0 {
+            let users = MEDUserProfile.getAll()
+            if users.count>0 {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "SetingInfoIdentifier", for: indexPath)
                 cell.separatorInset = UIEdgeInsets(top: 0, left: UIScreen.main.bounds.size.width, bottom: 0, right: 0)
-                let user:NSArray = UserProfile.getAll()
-                let userprofile:UserProfile = user[0] as! UserProfile
+                let users = MEDUserProfile.getAll()
+                let userprofile:MEDUserProfile = users[0] as! MEDUserProfile
                 (cell as! SetingInfoCell).emailLabel.text = userprofile.email
                 (cell as! SetingInfoCell).userName.text = "\(userprofile.first_name) \(userprofile.last_name)"
                 
@@ -331,9 +331,9 @@ class SetingViewController: UIViewController,ButtonManagerCallBack,UIAlertViewDe
             }
             return notificationList.NotificationSystemTableViewCell(indexPath, tableView: tableView, title: sources[(indexPath as NSIndexPath).row] as! String ,imageName:sourcesImage[(indexPath as NSIndexPath).row])
         case 2:
-            let user:NSArray = UserProfile.getAll()
+            let users = MEDUserProfile.getAll()
             var textString:String = NSLocalizedString("log_out", comment: "")
-            if(user.count == 0){
+            if(users.count == 0){
                 textString = NSLocalizedString("Login", comment: "")
             }
             titleArray[3] = textString

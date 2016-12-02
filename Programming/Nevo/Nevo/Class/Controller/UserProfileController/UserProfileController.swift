@@ -20,7 +20,7 @@ class UserProfileController: UIViewController,UITableViewDelegate,UITableViewDat
     
     fileprivate let titleArray:[String] = ["First name","Last Name","Weight","Height","Date of Birth"]
     fileprivate let fieldArray:[String] = ["first_name","last_name","weight","height","date_birth"]
-    var userprofile:UserProfile?
+    var userprofile:MEDUserProfile?
     
     init() {
         super.init(nibName: "UserProfileController", bundle: Bundle.main)
@@ -49,9 +49,9 @@ class UserProfileController: UIViewController,UITableViewDelegate,UITableViewDat
     override func viewWillAppear(_ animated: Bool) {
         navigationItem.title = NSLocalizedString("Profile", comment: "")
         
-        let userArray:NSArray = UserProfile.getAll()
+        let userArray = MEDUserProfile.getAll()
         if userArray.count>0 {
-            userprofile = userArray[0] as? UserProfile
+            userprofile = userArray[0] as? MEDUserProfile
         }
         
         userInfoTableView.reloadData()
