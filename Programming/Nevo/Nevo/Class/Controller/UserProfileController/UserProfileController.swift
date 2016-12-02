@@ -15,6 +15,8 @@ class UserProfileController: UIViewController,UITableViewDelegate,UITableViewDat
     
     @IBOutlet weak var userInfoTableView: UITableView!
     
+    var newAvatarImage: UIImage?
+    
     // Judge if is pushed from `SettingController`, or is after dismiss image picker controller
     var isPushed: Bool = true
     
@@ -64,7 +66,7 @@ class UserProfileController: UIViewController,UITableViewDelegate,UITableViewDat
             }
         }
         
-        if let avatarImage = (userInfoTableView.headerView(forSection: 0) as! UserHeader).avatarView.image(for: .normal) {
+        if let avatarImage = newAvatarImage {
             let manager = ProfileImageManager.manager
             manager.save(image: avatarImage)
         }
@@ -99,6 +101,8 @@ extension UserProfileController: UIImagePickerControllerDelegate, UINavigationCo
         self.isPushed = false
         let userHeader = self.userInfoTableView.headerView(forSection: 0) as! UserHeader
         userHeader.changeAvatar(with: croppedImage)
+        
+        self.newAvatarImage = croppedImage
         self.dismiss(animated: true, completion: nil)
     }
     

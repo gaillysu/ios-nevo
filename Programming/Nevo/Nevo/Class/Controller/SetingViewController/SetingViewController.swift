@@ -314,13 +314,12 @@ class SetingViewController: UIViewController,ButtonManagerCallBack,UIAlertViewDe
                     }
                 }
                 
-                // MARK: - Theme adjust
                 cell.viewDefaultColorful()
                 return cell
             }else{
                 let cell = tableView.dequeueReusableCell(withIdentifier: "SetingNotLoginIdentifier", for: indexPath)
                 cell.separatorInset = UIEdgeInsets(top: 0, left: UIScreen.main.bounds.size.width, bottom: 0, right: 0)
-                // MARK: - Theme adjust
+
                 cell.viewDefaultColorful()
                 return cell
             }
