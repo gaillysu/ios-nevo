@@ -36,6 +36,8 @@ class UserProfileCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
+        valueTextField.delegate = self
+        
         /// APPTHEME ADJUST
         viewDefaultColorful()
         if !AppTheme.isTargetLunaR_OR_Nevo() {
@@ -78,8 +80,8 @@ class UserProfileCell: UITableViewCell {
 }
 
 // MARK: - UITextFieldDelegate
-extension UserProfileCell {
-    func textField(_ textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+extension UserProfileCell: UITextFieldDelegate {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         let currentCharacterCount = textField.text?.characters.count ?? 0
         if (range.length + range.location > currentCharacterCount){
             return false

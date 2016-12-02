@@ -9,6 +9,8 @@
 import UIKit
 import XCGLogger
 import RSKImageCropper
+import RealmSwift
+import MRProgress
 
 let userIdentifier:String = "UserProfileIdentifier"
 class UserProfileController: UIViewController,UITableViewDelegate,UITableViewDataSource {
@@ -60,11 +62,30 @@ class UserProfileController: UIViewController,UITableViewDelegate,UITableViewDat
     }
 
     func saveProfileAction(_ sender:AnyObject) {
-        if userprofile != nil {
-            if userprofile!.update() {
-                _ = self.navigationController?.popViewController(animated: true)
+        if let user = userprofile {
+            let view = MRProgressOverlayView.showOverlayAdded(to: self.navigationController!.view, title: NSLocalizedString("please_wait", comment: ""), mode: MRProgressOverlayViewMode.indeterminate, animated: true)
+            view?.setTintColor(AppTheme.NEVO_SOLAR_YELLOW())
+            
+            if !AppTheme.isTargetLunaR_OR_Nevo() {
+                view?.setTintColor(UIColor.getBaseColor())
             }
+            
+            MEDUserNetworkManager.updateUser(profile: user, completion: {[weak self] (flag, user) in
+                MRProgressOverlayView.dismissAllOverlays(for: self?.navigationController!.view, animated: true)
+                
+                if flag {
+                    DispatchQueue.main.async {
+                        _ = self?.userprofile?.update()
+                        _ = self?.navigationController?.popViewController(animated: true)
+                    }
+                } else {
+                    let banner = MEDBanner(title: NSLocalizedString("no_network", comment: ""), subtitle: nil, image: nil, backgroundColor: AppTheme.NEVO_SOLAR_YELLOW())
+                    banner.dismissesOnTap = true
+                    banner.show(duration: 1.5)
+                }
+            })
         }
+        
         
         if let avatarImage = newAvatarImage {
             let manager = ProfileImageManager.manager
@@ -212,23 +233,31 @@ extension UserProfileController {
         cell.editCellTextField = {
             (index,text) -> Void in
             XCGLogger.default.debug("Profile TextField\(index)")
-            switch index {
-            case 0:
-                self.userprofile!.first_name = text
-            case 1:
-                self.userprofile!.last_name = text
-            case 3:
-                if Int(text) != nil {
-                    self.userprofile!.length = Int(text)!
+            
+            let realm = try! Realm()
+            do {
+                try realm.write {
+                    switch index {
+                    case 0:
+                        self.userprofile!.first_name = text
+                    case 1:
+                        self.userprofile!.last_name = text
+                    case 3:
+                        if Int(text) != nil {
+                            self.userprofile!.length = Int(text)!
+                        }
+                    case 2:
+                        if Int(text) != nil {
+                            self.userprofile!.weight = Int(text)!
+                        }
+                    case 4:
+                        self.userprofile!.birthday = text
+                    default:
+                        break
+                    }
                 }
-            case 2:
-                if Int(text) != nil {
-                    self.userprofile!.weight = Int(text)!
-                }
-            case 4:
-                self.userprofile!.birthday = text
-            default:
-                break
+            } catch let error {
+                XCGLogger.default.debug("write database error:\(error)")
             }
         }
         
