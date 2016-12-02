@@ -121,6 +121,7 @@ extension SelectedNotificationTypeController:AddPacketToWatchDelegate {
             let allowCell:AllowNotificationsTableViewCell = tableView.dequeueReusableCell(withIdentifier: "AllowNotifications_Identifier", for: indexPath) as! AllowNotificationsTableViewCell
             allowCell.selectionStyle = UITableViewCellSelectionStyle.none;
             allowCell.addDelegate = self
+            allowCell.notificationSetting = notSetting
             var titleColor:UIColor?
             var onColor:UIColor?
             if !AppTheme.isTargetLunaR_OR_Nevo() {

@@ -190,7 +190,7 @@ extension LoginController {
             let view = MRProgressOverlayView.showOverlayAdded(to: self.navigationController!.view, title: NSLocalizedString("please_wait", comment: ""), mode: MRProgressOverlayViewMode.indeterminate, animated: true)
             view?.setTintColor(AppTheme.NEVO_SOLAR_YELLOW())
             
-            MEDUserNetworkManager.login(email: userName, password: password, completion: { (loggedIn: Bool, user: UserProfile?) in
+            MEDUserNetworkManager.login(email: userName, password: password, completion: { (loggedIn: Bool, user: MEDUserProfile?) in
                 
                 let message: String = loggedIn ? NSLocalizedString("login_success", comment: "") : NSLocalizedString("login_error", comment: "")
                 let banner = MEDBanner(title: NSLocalizedString(message, comment: ""), subtitle: nil, image: nil, backgroundColor: AppTheme.NEVO_SOLAR_YELLOW())
@@ -200,16 +200,15 @@ extension LoginController {
                 MRProgressOverlayView.dismissAllOverlays(for: self.navigationController!.view, animated: true)
                 
                 if loggedIn {
-                    user?.add({ (id, res) in
-                        
-                    })
+                    _ = user?.add()
+                    
                     let dayDate:Date = Date()
                     let stepsArray:NSArray = UserSteps.getCriteria("WHERE date BETWEEN \(Date().beginningOfWeek.timeIntervalSince1970-864000*30) AND \(dayDate.endOfWeek.timeIntervalSince1970)")
                     let sleepArray:NSArray = UserSleep.getCriteria("WHERE date BETWEEN \(Date().beginningOfWeek.timeIntervalSince1970-864000*30) AND \(dayDate.endOfWeek.timeIntervalSince1970)")
                     
                     for stepsValue in stepsArray {
                         let stepsModel:UserSteps = stepsValue as! UserSteps
-                        let profile:UserProfile = user!
+                        let profile:MEDUserProfile = user!
                         let dateString:String = Date(timeIntervalSince1970: stepsModel.date).stringFromFormat("yyy-MM-dd")
                         var caloriesValue:Int = 0
                         var milesValue:Double = 0
@@ -220,7 +219,7 @@ extension LoginController {
                         
                         //                        let value:[String:Any] = ["steps":["uid":profile.id,"steps":stepsModel.hourlysteps,"date":dateString,"calories":caloriesValue,"active_time":stepsModel.walking_duration+stepsModel.running_duration,"distance":milesValue]]
                         let activeTime: Int = stepsModel.walking_duration+stepsModel.running_duration
-                        MEDStepsNetworkManager.createSteps(uid: profile.id, steps: stepsModel.hourlysteps, date: dateString, activeTime: activeTime, calories: caloriesValue, distance: milesValue, completion: { (success: Bool) in
+                        MEDStepsNetworkManager.createSteps(uid: profile.uid, steps: stepsModel.hourlysteps, date: dateString, activeTime: activeTime, calories: caloriesValue, distance: milesValue, completion: { (success: Bool) in
                             if success {
                                 stepsModel.isUpload = true
                                 stepsModel.update()
@@ -230,11 +229,11 @@ extension LoginController {
                     
                     for sleepValue in sleepArray {
                         let sleepModel:UserSleep = sleepValue as! UserSleep
-                        let profile:UserProfile = user!
+                        let profile:MEDUserProfile = user!
                         let dateString:String = Date(timeIntervalSince1970: sleepModel.date).stringFromFormat("yyy-MM-dd")
                         
                         if !sleepModel.isUpload {
-                            MEDSleepNetworkManager.createSleep(uid: profile.id, deepSleep: sleepModel.hourlyDeepTime, lightSleep: sleepModel.hourlyLightTime, wakeTime: sleepModel.hourlyWakeTime, date: dateString, completion: { (success:Bool) in
+                            MEDSleepNetworkManager.createSleep(uid: profile.uid, deepSleep: sleepModel.hourlyDeepTime, lightSleep: sleepModel.hourlyLightTime, wakeTime: sleepModel.hourlyWakeTime, date: dateString, completion: { (success:Bool) in
                                 sleepModel.isUpload = true
                                 _ = sleepModel.update()
                             })

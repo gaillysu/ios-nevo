@@ -9,18 +9,22 @@
 import UIKit
 import XCGLogger
 import RSKImageCropper
+import RealmSwift
+import MRProgress
 
 let userIdentifier:String = "UserProfileIdentifier"
 class UserProfileController: UIViewController,UITableViewDelegate,UITableViewDataSource {
     
     @IBOutlet weak var userInfoTableView: UITableView!
     
+    var newAvatarImage: UIImage?
+    
     // Judge if is pushed from `SettingController`, or is after dismiss image picker controller
     var isPushed: Bool = true
     
     fileprivate let titleArray:[String] = ["First name","Last Name","Weight","Height","Date of Birth"]
     fileprivate let fieldArray:[String] = ["first_name","last_name","weight","height","date_birth"]
-    var userprofile:UserProfile?
+    var userprofile:MEDUserProfile?
     
     init() {
         super.init(nibName: "UserProfileController", bundle: Bundle.main)
@@ -49,22 +53,41 @@ class UserProfileController: UIViewController,UITableViewDelegate,UITableViewDat
     override func viewWillAppear(_ animated: Bool) {
         navigationItem.title = NSLocalizedString("Profile", comment: "")
         
-        let userArray:NSArray = UserProfile.getAll()
+        let userArray = MEDUserProfile.getAll()
         if userArray.count>0 {
-            userprofile = userArray[0] as? UserProfile
+            userprofile = userArray[0] as? MEDUserProfile
         }
         
         userInfoTableView.reloadData()
     }
 
     func saveProfileAction(_ sender:AnyObject) {
-        if userprofile != nil {
-            if userprofile!.update() {
-                _ = self.navigationController?.popViewController(animated: true)
+        if let user = userprofile {
+            let view = MRProgressOverlayView.showOverlayAdded(to: self.navigationController!.view, title: NSLocalizedString("please_wait", comment: ""), mode: MRProgressOverlayViewMode.indeterminate, animated: true)
+            view?.setTintColor(AppTheme.NEVO_SOLAR_YELLOW())
+            
+            if !AppTheme.isTargetLunaR_OR_Nevo() {
+                view?.setTintColor(UIColor.getBaseColor())
             }
+            
+            MEDUserNetworkManager.updateUser(profile: user, completion: {[weak self] (flag, user) in
+                MRProgressOverlayView.dismissAllOverlays(for: self?.navigationController!.view, animated: true)
+                
+                if flag {
+                    DispatchQueue.main.async {
+                        _ = self?.userprofile?.update()
+                        _ = self?.navigationController?.popViewController(animated: true)
+                    }
+                } else {
+                    let banner = MEDBanner(title: NSLocalizedString("no_network", comment: ""), subtitle: nil, image: nil, backgroundColor: AppTheme.NEVO_SOLAR_YELLOW())
+                    banner.dismissesOnTap = true
+                    banner.show(duration: 1.5)
+                }
+            })
         }
         
-        if let avatarImage = (userInfoTableView.headerView(forSection: 0) as! UserHeader).avatarView.image(for: .normal) {
+        
+        if let avatarImage = newAvatarImage {
             let manager = ProfileImageManager.manager
             manager.save(image: avatarImage)
         }
@@ -99,6 +122,8 @@ extension UserProfileController: UIImagePickerControllerDelegate, UINavigationCo
         self.isPushed = false
         let userHeader = self.userInfoTableView.headerView(forSection: 0) as! UserHeader
         userHeader.changeAvatar(with: croppedImage)
+        
+        self.newAvatarImage = croppedImage
         self.dismiss(animated: true, completion: nil)
     }
     
@@ -208,23 +233,31 @@ extension UserProfileController {
         cell.editCellTextField = {
             (index,text) -> Void in
             XCGLogger.default.debug("Profile TextField\(index)")
-            switch index {
-            case 0:
-                self.userprofile!.first_name = text
-            case 1:
-                self.userprofile!.last_name = text
-            case 3:
-                if Int(text) != nil {
-                    self.userprofile!.length = Int(text)!
+            
+            let realm = try! Realm()
+            do {
+                try realm.write {
+                    switch index {
+                    case 0:
+                        self.userprofile!.first_name = text
+                    case 1:
+                        self.userprofile!.last_name = text
+                    case 3:
+                        if Int(text) != nil {
+                            self.userprofile!.length = Int(text)!
+                        }
+                    case 2:
+                        if Int(text) != nil {
+                            self.userprofile!.weight = Int(text)!
+                        }
+                    case 4:
+                        self.userprofile!.birthday = text
+                    default:
+                        break
+                    }
                 }
-            case 2:
-                if Int(text) != nil {
-                    self.userprofile!.weight = Int(text)!
-                }
-            case 4:
-                self.userprofile!.birthday = text
-            default:
-                break
+            } catch let error {
+                XCGLogger.default.debug("write database error:\(error)")
             }
         }
         

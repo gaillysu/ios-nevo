@@ -19,9 +19,9 @@ class NevoAllKeys: NSObject {
     }
     
     class func MEDAvatarKeyBeforeSave()->String {
-        return "MEDAvatarKeyBeforeSave" + (UserProfile.getAll().firstObject as! UserProfile).email
+        return "MEDAvatarKeyBeforeSave" + (MEDUserProfile.getAll().first as! MEDUserProfile).email
     }
     class func MEDAvatarKeyAfterSave()->String {
-        return "MEDAvatarKeyAfterSave" + (UserProfile.getAll().firstObject as! UserProfile).email
+        return "MEDAvatarKeyAfterSave" + (MEDUserProfile.getAll().first as! MEDUserProfile).email
     }
 }

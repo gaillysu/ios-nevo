@@ -36,11 +36,11 @@ class MEDUserNetworkManager: NSObject {
         }))
     }
     
-    class func updateUser(profile:UserProfile, completion:@escaping (_ created:Bool, _ profile:UserProfile?) -> Void){
+    class func updateUser(profile:MEDUserProfile, completion:@escaping (_ created:Bool, _ profile:MEDUserProfile?) -> Void){
         MEDNetworkManager.execute(request: MEDUserUpdateRequest(profile: profile, responseBlock: { (success, optionalJson, optionalError) in
             if success, let json = optionalJson{
-                let user:UserProfile = jsonToUser(user: json["user"])
-                
+                let profile: MEDUserProfile = jsonToUser(user: json["user"])
+                completion(true, profile)
             }else{
                 completion(false, nil)
             }
@@ -48,10 +48,10 @@ class MEDUserNetworkManager: NSObject {
     }
     
     class func login(email:String, password:String, completion:@escaping ( _
-        loggedIn:Bool, _ user:UserProfile?) -> Void){
+        loggedIn:Bool, _ user:MEDUserProfile?) -> Void){
         MEDNetworkManager.execute(request: MEDLoginRequest(email: email, password: password, responseBlock: { (success, optionalJson, optionalError) in
             if success, let json = optionalJson{
-                let user:UserProfile = jsonToUser(user: json["user"])
+                let user:MEDUserProfile = jsonToUser(user: json["user"])
                 completion(true, user)
             }else{
                 completion(false, nil)
@@ -83,7 +83,7 @@ class MEDUserNetworkManager: NSObject {
         }))
     }
     
-    private class func jsonToUser(user:JSON) -> UserProfile{
+    private class func jsonToUser(user:JSON) -> MEDUserProfile{
         let jsonBirthday = user["birthday"];
         let dateString: String = jsonBirthday["date"].stringValue
         var birthday:String = ""
@@ -94,6 +94,16 @@ class MEDUserNetworkManager: NSObject {
             dateFormatter.dateFormat = "y-M-d"
             birthday = dateFormatter.string(from: birthdayDate!)
         }
-        return UserProfile(keyDict: ["id":user["id"].intValue,"first_name":user["first_name"].stringValue,"last_name":user["last_name"].stringValue,"birthday":birthday,"length":user["length"].intValue,"email":user["email"].stringValue, "weight":user["weight"].floatValue])
+        
+        let userProfile = MEDUserProfile()
+        userProfile.uid = user["id"].intValue
+        userProfile.first_name = user["first_name"].stringValue
+        userProfile.last_name = user["last_name"].stringValue
+        userProfile.birthday = birthday
+        userProfile.length = user["length"].intValue
+        userProfile.weight = user["weight"].intValue
+        userProfile.email = user["email"].stringValue
+        
+        return userProfile
     }
 }
