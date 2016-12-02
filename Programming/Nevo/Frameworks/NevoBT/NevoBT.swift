@@ -64,22 +64,20 @@ protocol NevoBT {
     /**
     get Nevo 's ble firmware version
     */
-    func  getFirmwareVersion() -> NSString!
+    func getFirmwareVersion() -> Float
     
     /**
     get Nevo 's MCU software version
     */
-    func  getSoftwareVersion() -> NSString!
-
-    /**
-    Get the current connection device of RSSI values
-    */
-    func getRSSI()
+    func getSoftwareVersion() -> Float
     
     //Based on the specified UUID returns whether the device is matched
     func isPairingPeripheral(_ peripheralAddress : UUID) -> Bool
     
     func getBLECentralManager() -> CBCentralManager?
+    
+    //The connection stopped after scanning
+    func stopScan()
 }
 
 protocol NevoBTDelegate {
@@ -102,7 +100,7 @@ protocol NevoBTDelegate {
     @parameter whichfirmware, firmware type
     @parameter version, return the version
     */
-    func firmwareVersionReceived(_ whichfirmware:DfuFirmwareTypes, version:NSString)
+    func firmwareVersionReceived(_ whichfirmware:DfuFirmwareTypes, version:Float)
 
     /**
     *  Receiving the current device signal strength value

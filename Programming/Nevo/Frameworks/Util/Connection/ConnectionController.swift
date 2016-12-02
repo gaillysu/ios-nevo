@@ -81,12 +81,12 @@ protocol ConnectionController {
     /**
     get Nevo 's ble firmware version
     */
-    func  getFirmwareVersion() -> NSString!
+    func getFirmwareVersion() -> Float
     
     /**
     get Nevo 's MCU software version
     */
-    func  getSoftwareVersion() -> NSString!
+    func getSoftwareVersion() -> Float
     
     // BLE Manager bject
     func getBLECentralManager() -> CBCentralManager?
@@ -109,7 +109,7 @@ protocol ConnectionControllerDelegate {
     @parameter whichfirmware, firmware type
     @parameter version, return the version
     */
-    func firmwareVersionReceived(_ whichfirmware:DfuFirmwareTypes, version:NSString)
+    func firmwareVersionReceived(_ whichfirmware:DfuFirmwareTypes, version:Float)
 
     /**
     *  Receiving the current device signal strength value
