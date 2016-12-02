@@ -13,7 +13,7 @@ import Timepiece
 
 let NUMBER_OF_STEPS_GOAL_KEY = "NUMBER_OF_STEPS_GOAL_KEY"
 
-class StepGoalSetingController: PublicClassController,ButtonManagerCallBack,ClockRefreshDelegate {
+class StepGoalSetingController: PublicClassController,ClockRefreshDelegate {
     
     @IBOutlet weak var clockBackGroundView: UIView!
     @IBOutlet weak var collectionView:UICollectionView!
@@ -168,7 +168,7 @@ extension StepGoalSetingController {
     func getContentTArray() {
         let dataArray:NSArray = AppTheme.LoadKeyedArchiverName(StepsGoalKey as NSString) as! NSArray
         if(dataArray.count>0) {
-            let date:TimeInterval = (dataArray[1] as! String).dateFromFormat("YYYY/MM/dd")!.timeIntervalSince1970
+            let date:TimeInterval = (dataArray[1] as! String).dateFromFormat("YYYY/MM/dd", locale: DateFormatter().locale)!.timeIntervalSince1970
             if(date != Date.date(year: Date().year, month: Date().month, day: Date().day).timeIntervalSince1970){ return }
             
             contentTArray = (AppTheme.LoadKeyedArchiverName(StepsGoalKey as NSString) as! NSArray)[0] as! [String]
@@ -186,23 +186,20 @@ extension StepGoalSetingController {
      */
     func saveContentTArray(_ beginningDate:TimeInterval) {
         //Only for today's data
-        let array:NSArray = UserSteps.getCriteria("WHERE date = \(beginningDate)")
+        let array = MEDUserSteps.getFilter("date == \(beginningDate)")
         if array.count>0 {
-            let dataSteps:UserSteps = array[0] as! UserSteps
+            let dataSteps:MEDUserSteps = array[0] as! MEDUserSteps
             
             let timerValue:Double = Double(dataSteps.walking_duration+dataSteps.running_duration)
-            self.contentTArray.replaceSubrange(Range(1..<2), with: ["\(dataSteps.steps)"])
+            self.contentTArray.replaceSubrange(Range(1..<2), with: ["\(dataSteps.totalSteps)"])
             self.contentTArray.replaceSubrange(Range(2..<3), with: [AppTheme.timerFormatValue(value: Double(timerValue/60.0))])
-            StepGoalSetingController.calculationData((dataSteps.walking_duration+dataSteps.running_duration), steps: dataSteps.steps, completionData: { (miles, calories) in
+            StepGoalSetingController.calculationData((dataSteps.walking_duration+dataSteps.running_duration), steps: dataSteps.totalSteps, completionData: { (miles, calories) in
                 self.contentTArray.replaceSubrange(Range(0..<1), with: [String(format: "%.2f", calories)])
                 self.contentTArray.replaceSubrange(Range(3..<4), with: [String(format: "%.2f", miles)])
             })
             self.collectionView.reloadData()
             //AppTheme.KeyedArchiverName(self.StepsGoalKey, andObject: self.contentTArray)
         }
-    }
-    
-    func controllManager(_ sender:AnyObject) {
     }
     
     // MARK: - ClockRefreshDelegate

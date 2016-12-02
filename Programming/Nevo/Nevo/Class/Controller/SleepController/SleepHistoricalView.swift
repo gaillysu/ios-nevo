@@ -8,6 +8,7 @@
 
 import UIKit
 import Charts
+import SwiftyJSON
 
 @objc protocol SelectedChartViewDelegate{
     @objc optional func didSelectedhighlightValue(_ xIndex:Int,dataSetIndex: Int, dataSteps:UserSteps)
@@ -18,15 +19,13 @@ class SleepHistoricalView: UIView, ChartViewDelegate{
 
     @IBOutlet var chartView:AnalysisStepsChartView?
     @IBOutlet weak var detailCollectionView: UICollectionView!
-    fileprivate var queryModel:NSMutableArray = NSMutableArray()
-    fileprivate let sleepArray:NSMutableArray = NSMutableArray();
+    fileprivate var queryModel:[MEDUserSleep] = []
     fileprivate var mDelegate:SelectedChartViewDelegate?
     fileprivate var totalNumber:Double = 0 //The unit is hour
 
-    func bulidQueryView(_ delegate:SelectedChartViewDelegate,modelArray:NSArray){
-        queryModel.removeAllObjects()
-        sleepArray.removeAllObjects()
-        queryModel.addObjects(from: modelArray as [AnyObject])
+    func bulidQueryView(_ delegate:SelectedChartViewDelegate,modelArray:[Any]){
+        queryModel.removeAll()
+        queryModel = modelArray as! [MEDUserSleep]
         if(mDelegate == nil) {
             mDelegate = delegate
             // MARK: - chartView?.marker
@@ -50,43 +49,31 @@ class SleepHistoricalView: UIView, ChartViewDelegate{
         
         if(count == 0) {
             for i:Int in 0..<2 {
-                let seleModel:UserSleep = UserSleep()
+                let seleModel:MEDUserSleep = MEDUserSleep()
                 seleModel.date = Date.yesterday().beginningOfDay.timeIntervalSince1970+Double(i*86400)
                 seleModel.hourlySleepTime = "[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]";
                 seleModel.hourlyWakeTime = "[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]";
                 seleModel.hourlyLightTime = "[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]";
                 seleModel.hourlyDeepTime = "[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]";
-                queryModel.add(seleModel)
+                queryModel.append(seleModel)
             }
         }
         
         var sleepEntry:[[String:[Double]]] = []
-        for i:Int in 0 ..< queryModel.count {
-            /**
-            *  Data sorting,Small to large sort
-            */
-            for j:Int in i ..< queryModel.count {
-                let iSeleModel:UserSleep = queryModel.object(at: i) as! UserSleep;
-                let jSeleModel:UserSleep = queryModel.object(at: j) as! UserSleep;
-                let iSleepDate:Double = iSeleModel.date
-                let jSleepDate:Double = jSeleModel.date
-                if (iSleepDate > jSleepDate){
-                    let temp:UserSleep = queryModel.object(at: i) as! UserSleep;
-                    queryModel.replaceObject(at: i, with: queryModel[j])
-                    queryModel.replaceObject(at: j, with: temp)
-
-                }
-            }
-        }
+        /**
+         *  Data sorting,Small to large sort
+         */
+        queryModel = queryModel.sorted(by: {$0.date < $1.date})
         
         //计算睡眠时间以中午12点为计算起点,
         for i:Int in 0 ..< queryModel.count {
-            let seleModel:UserSleep = queryModel.object(at: i) as! UserSleep;
+            let seleModel:MEDUserSleep = queryModel[i]
             //当天的数据源(没有跨天的数据源)
-            let sleepTimeArray:NSArray = AppTheme.jsonToArray(seleModel.hourlySleepTime as String)
-            let wakeTimeTimeArray:NSArray = AppTheme.jsonToArray(seleModel.hourlyWakeTime as String)
-            let lightTimeTimeArray:NSArray = AppTheme.jsonToArray(seleModel.hourlyLightTime as String)
-            let deepTimeTimeArray:NSArray = AppTheme.jsonToArray(seleModel.hourlyDeepTime as String)
+            
+            let sleepTimeArray = JSON(AppTheme.jsonToArray(seleModel.hourlySleepTime)).arrayValue
+            let wakeTimeTimeArray = JSON(AppTheme.jsonToArray(seleModel.hourlySleepTime)).arrayValue
+            let lightTimeTimeArray = JSON(AppTheme.jsonToArray(seleModel.hourlySleepTime)).arrayValue
+            let deepTimeTimeArray = JSON(AppTheme.jsonToArray(seleModel.hourlySleepTime)).arrayValue
 
             var sleepTimer:Int  = 0
             var wakeTimer:Int  = 0
@@ -96,24 +83,24 @@ class SleepHistoricalView: UIView, ChartViewDelegate{
             if(i == 0){
                 //计算在晚上8点以后的睡眠数据
                 for s:Int in 20 ..< sleepTimeArray.count {
-                    sleepTimer = (sleepTimeArray[s] as! NSNumber).intValue + sleepTimer
-                    wakeTimer = (wakeTimeTimeArray[s] as! NSNumber).intValue + wakeTimer
-                    lightTimer = (lightTimeTimeArray[s] as! NSNumber).intValue + lightTimer
-                    deepTimer = (deepTimeTimeArray[s] as! NSNumber).intValue + deepTimer
-                    if (sleepTimeArray[s] as! NSNumber).int32Value > 0 {
-                        sleepEntry.append(["\(s):00":[(wakeTimeTimeArray[s] as! NSNumber).doubleValue,(lightTimeTimeArray[s] as! NSNumber).doubleValue,(deepTimeTimeArray[s] as! NSNumber).doubleValue]])
+                    sleepTimer = sleepTimeArray[s].intValue + sleepTimer
+                    wakeTimer = wakeTimeTimeArray[s].intValue + wakeTimer
+                    lightTimer = lightTimeTimeArray[s].intValue + lightTimer
+                    deepTimer = deepTimeTimeArray[s].intValue + deepTimer
+                    if sleepTimeArray[s].int32Value > 0 {
+                        sleepEntry.append(["\(s):00":[wakeTimeTimeArray[s].doubleValue,lightTimeTimeArray[s].doubleValue,deepTimeTimeArray[s].doubleValue]])
                     }
                     
                 }
             }else{
                 for s:Int in 0 ..< sleepTimeArray.count-10 {
                     //计算一天中后12小时的数据,
-                    sleepTimer = (sleepTimeArray[s] as! NSNumber).intValue + sleepTimer
-                    wakeTimer = (wakeTimeTimeArray[s] as! NSNumber).intValue + wakeTimer
-                    lightTimer = (lightTimeTimeArray[s] as! NSNumber).intValue + lightTimer
-                    deepTimer = (deepTimeTimeArray[s] as! NSNumber).intValue + deepTimer
-                    if (sleepTimeArray[s] as! NSNumber).int32Value > 0 {
-                        sleepEntry.append(["\(s):00":[(wakeTimeTimeArray[s] as! NSNumber).doubleValue,(lightTimeTimeArray[s] as! NSNumber).doubleValue,(deepTimeTimeArray[s] as! NSNumber).doubleValue]])
+                    sleepTimer = sleepTimeArray[s].intValue + sleepTimer
+                    wakeTimer = wakeTimeTimeArray[s].intValue + wakeTimer
+                    lightTimer = lightTimeTimeArray[s].intValue + lightTimer
+                    deepTimer = deepTimeTimeArray[s].intValue + deepTimer
+                    if sleepTimeArray[s].int32Value > 0 {
+                        sleepEntry.append(["\(s):00":[wakeTimeTimeArray[s].doubleValue,lightTimeTimeArray[s].doubleValue,deepTimeTimeArray[s].doubleValue]])
                     }
                 }
             }
@@ -151,20 +138,11 @@ class SleepHistoricalView: UIView, ChartViewDelegate{
         return totalNumber;
     }
     
-    func calculateDate(_ date:TimeInterval,hour:Int)->String {
-        let date:Date = Date(timeIntervalSince1970: date)
-        var dateString:NSString = date.stringFromFormat("yyyyMMdd") as NSString
-        if(dateString.length < 8) {
-            dateString = "00000000"
-        }
-        return "\(hour):00"
-    }
-    
     func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, dataSetIndex: Int, highlight: ChartHighlight) {
 
-        let sleep:Sleep = self.sleepArray.object(at: entry.xIndex) as! Sleep;
-        chartView.highlightValue(xIndex: entry.xIndex, dataSetIndex: dataSetIndex, callDelegate: false)
-        mDelegate?.didSleepSelectedhighlightValue!(entry.xIndex, dataSetIndex: dataSetIndex, dataSleep: sleep)
+        //let sleep:Sleep = self.sleepArray.object(at: entry.xIndex) as! Sleep;
+        //chartView.highlightValue(xIndex: entry.xIndex, dataSetIndex: dataSetIndex, callDelegate: false)
+        //mDelegate?.didSleepSelectedhighlightValue!(entry.xIndex, dataSetIndex: dataSetIndex, dataSleep: sleep)
     }
 
 }

@@ -19,7 +19,8 @@ class SleepHistoricalViewController: PublicClassController,ChartViewDelegate,Sel
     fileprivate var contentTArray:[String] = ["0","0","0","0"]
     fileprivate var selectedDate:Date = Date()
 
-    fileprivate var todaySleepArray:NSArray = UserSleep.getCriteria("WHERE date BETWEEN \(Date.yesterday().beginningOfDay.timeIntervalSince1970) AND \(Date().endOfDay.timeIntervalSince1970)")
+    fileprivate var todaySleepArray:[Any] = MEDUserSleep.getFilter("date < \(Date.yesterday().beginningOfDay.timeIntervalSince1970) AND date > \(Date().endOfDay.timeIntervalSince1970)")
+        //UserSleep.getCriteria("WHERE date BETWEEN \(Date.yesterday().beginningOfDay.timeIntervalSince1970) AND \(Date().endOfDay.timeIntervalSince1970)")
     init() {
         super.init(nibName: "SleepHistoricalViewController", bundle: Bundle.main)
 
@@ -51,18 +52,20 @@ class SleepHistoricalViewController: PublicClassController,ChartViewDelegate,Sel
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        todaySleepArray = UserSleep.getCriteria("WHERE date BETWEEN \(Date.yesterday().beginningOfDay.timeIntervalSince1970) AND \(Date().endOfDay.timeIntervalSince1970)")
+        todaySleepArray = MEDUserSleep.getFilter("date < \(Date.yesterday().beginningOfDay.timeIntervalSince1970) AND date > \(Date().endOfDay.timeIntervalSince1970)")
+            //UserSleep.getCriteria("WHERE date BETWEEN \(Date.yesterday().beginningOfDay.timeIntervalSince1970) AND \(Date().endOfDay.timeIntervalSince1970)")
         AnalysisSleepData(todaySleepArray)
         
         _ = SwiftEventBus.onMainThread(self, name: SELECTED_CALENDAR_NOTIFICATION) { (notification) in
             let userinfo:Date = notification.userInfo!["selectedDate"] as! Date
             self.selectedDate = userinfo as Date
-            let selectedSleepArray = UserSleep.getCriteria("WHERE date BETWEEN \(userinfo.timeIntervalSince1970-86400) AND \(userinfo.endOfDay.timeIntervalSince1970)")
+            let selectedSleepArray = MEDUserSleep.getFilter("date < \(userinfo.timeIntervalSince1970-86400) AND date > \(userinfo.endOfDay.timeIntervalSince1970)")
+                //UserSleep.getCriteria("WHERE date BETWEEN \(userinfo.timeIntervalSince1970-86400) AND \(userinfo.endOfDay.timeIntervalSince1970)")
             self.AnalysisSleepData(selectedSleepArray)
         }
         
         _ = SwiftEventBus.onMainThread(self, name: EVENT_BUS_END_BIG_SYNCACTIVITY) { (notification) in
-            let syncArray:NSArray = UserSleep.getCriteria("WHERE date BETWEEN \(Date.yesterday().beginningOfDay.timeIntervalSince1970) AND \(Date().endOfDay.timeIntervalSince1970)")
+            let syncArray:[Any] = MEDUserSleep.getFilter("date < \(Date.yesterday().beginningOfDay.timeIntervalSince1970) AND date > \(Date().endOfDay.timeIntervalSince1970)")
             self.AnalysisSleepData(syncArray)
         }
     }
@@ -78,7 +81,7 @@ class SleepHistoricalViewController: PublicClassController,ChartViewDelegate,Sel
         SwiftEventBus.unregister(self, name: EVENT_BUS_END_BIG_SYNCACTIVITY)
     }
     
-    func AnalysisSleepData(_ array:NSArray) {
+    func AnalysisSleepData(_ array:[Any]) {
         queryView.bulidQueryView(self,modelArray: array)
         
         if queryView.chartView!.getYVals().count > 0 {

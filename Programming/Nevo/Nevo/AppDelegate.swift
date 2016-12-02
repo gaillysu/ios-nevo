@@ -647,7 +647,7 @@ extension AppDelegate {
         return latitude;
     }
     
-    func saveSolarHarvest(thispacket:LunaRDailyTrackerPacket,date:Date)  {
+    func saveSolarHarvest(thispacket:DailyTrackerNevoPacket,date:Date)  {
         let login = MEDUserProfile.getAll()
         if login.count>0 {
             let userProfile:MEDUserProfile = login[0] as! MEDUserProfile
@@ -658,15 +658,15 @@ extension AppDelegate {
                 let solarTime:SolarHarvest = SolarHarvest()
                 solarTime.key = keys
                 solarTime.date = date.timeIntervalSince1970
-                solarTime.solarTotalTime = thispacket.getTotalSolarHarvestingTime()
-                solarTime.solarHourlyTime = "\(AppTheme.toJSONString(thispacket.getHourlyHarvestTime() as AnyObject!))"
+                solarTime.solarTotalTime = thispacket.getTotalHarvestTime()
+                solarTime.solarHourlyTime = "\(AppTheme.toJSONString(thispacket.getHourlyHarestTime() as AnyObject!))"
                 solarTime.uid = userProfile.uid
                 _ = solarTime.add()
             }else{
                 let solarTime:SolarHarvest = solar[0] as! SolarHarvest
                 solarTime.date = date.timeIntervalSince1970
-                solarTime.solarTotalTime = thispacket.getTotalSolarHarvestingTime()
-                solarTime.solarHourlyTime = "\(AppTheme.toJSONString(thispacket.getHourlyHarvestTime() as AnyObject!))"
+                solarTime.solarTotalTime = thispacket.getTotalHarvestTime()
+                solarTime.solarHourlyTime = "\(AppTheme.toJSONString(thispacket.getHourlyHarestTime() as AnyObject!))"
                 solarTime.uid = userProfile.uid;
                 _ = solarTime.update()
             }
@@ -675,58 +675,37 @@ extension AppDelegate {
             let solarTime:SolarHarvest = SolarHarvest()
             solarTime.key = keys
             solarTime.date = date.timeIntervalSince1970
-            solarTime.solarTotalTime = thispacket.getTotalSolarHarvestingTime()
-            solarTime.solarHourlyTime = "\(AppTheme.toJSONString(thispacket.getHourlyHarvestTime() as AnyObject!))"
+            solarTime.solarTotalTime = thispacket.getTotalHarvestTime()
+            solarTime.solarHourlyTime = "\(AppTheme.toJSONString(thispacket.getHourlyHarestTime() as AnyObject!))"
             solarTime.uid = 0
             _ = solarTime.add()
         }
     }
     
-    func saveSolarHarvest(thispacket:DailyTrackerNevoPacket,date:Date)  {
-        let login:NSArray = UserProfile.getAll()
-        let realm:Realm = try! Realm()
-        let solar = realm.objects(SolarHarvest.self).filter("date = \(date.timeIntervalSince1970)")
-        
-        if solar.count == 0 {
-            let solarTime:SolarHarvest = SolarHarvest()
-            solarTime.date = date.timeIntervalSince1970
-            solarTime.solarTotalTime = thispacket.getTotalHarvestTime()
-            solarTime.solarHourlyTime = "\(AppTheme.toJSONString(thispacket.getHourlyHarestTime() as AnyObject!))"
-            if login.count>0 {
-                let profile:UserProfile = login[0] as! UserProfile
-                solarTime.uid = profile.id;
-            }
-            try! realm.write({
-                realm.add(solarTime)
-            })
-        }else{
-            let solarTime:SolarHarvest = solar[0] as SolarHarvest
-            try! realm.write({
-                solarTime.date = date.timeIntervalSince1970
-                solarTime.solarTotalTime = thispacket.getTotalHarvestTime()
-                solarTime.solarHourlyTime = "\(AppTheme.toJSONString(thispacket.getHourlyHarestTime() as AnyObject!))"
-                if login.count>0 {
-                    let profile:UserProfile = login[0] as! UserProfile
-                    solarTime.uid = profile.id;
-                }
-            })
-        }
-    }
     
     func saveStepsToDataBase(thispacket:DailyTrackerNevoPacket,date:Date,dateString:String) ->[Int] {
-        let stepsArray = UserSteps.getCriteria("WHERE createDate = \(dateString)")
-        let stepsModel:UserSteps = UserSteps()
-        stepsModel.uid = 0
-        stepsModel.steps = thispacket.getDailySteps()
+        let login = MEDUserProfile.getAll()
+        
+        let stepsModel:MEDUserSteps = MEDUserSteps()
+        stepsModel.totalSteps = thispacket.getDailySteps()
         stepsModel.goalsteps = thispacket.getStepsGoal()
         stepsModel.distance = thispacket.getDailyDist()
         stepsModel.hourlysteps = "\(AppTheme.toJSONString(thispacket.getHourlySteps() as AnyObject!))"
         stepsModel.hourlydistance = "\(AppTheme.toJSONString(thispacket.getHourlyDist() as AnyObject!))"
-        stepsModel.calories = Double(thispacket.getDailyCalories())
+        stepsModel.totalCalories = Double(thispacket.getDailyCalories())
+
+        
+        let distanceWalkVlaue = thispacket.getHourlyDist()
+        let distanceRunVlaue = thispacket.getHourlyRunningDistance()
+        var hourlyDistanceValue:[Int] = [Int](repeating: 0, count: 24)
+        for (index,value) in distanceWalkVlaue.enumerated() {
+            let distanceValue:Int = distanceRunVlaue[index]
+            hourlyDistanceValue.replaceSubrange(index..<index+1, with: [distanceValue+value])
+        }
+        stepsModel.hourlydistance = "\(AppTheme.toJSONString(hourlyDistanceValue as AnyObject!))"
+        stepsModel.totalCalories = Double(thispacket.getDailyCalories())
         stepsModel.hourlycalories = "\(AppTheme.toJSONString(thispacket.getHourlyCalories() as AnyObject!))"
-        stepsModel.inZoneTime = thispacket.getInZoneTime()
-        stepsModel.outZoneTime = thispacket.getOutZoneTime()
-        stepsModel.inactivityTime = thispacket.getDailyRunningDuration()+thispacket.getDailyWalkingDuration()
+        stepsModel.inactivityTime = thispacket.getInactivityTime()
         stepsModel.goalreach = Double(thispacket.getDailySteps())/Double(thispacket.getStepsGoal())
         stepsModel.date = date.timeIntervalSince1970
         stepsModel.createDate = "\(dateString)"
@@ -736,103 +715,123 @@ extension AppDelegate {
         stepsModel.running_distance = thispacket.getRunningDistance()
         stepsModel.running_duration = thispacket.getDailyRunningDuration()
         stepsModel.running_calories = thispacket.getDailyCalories()
+
         
-        //upload steps data to Nevo service
-        let login:NSArray = UserProfile.getAll()
         if login.count>0 {
-            let profile:UserProfile = login[0] as! UserProfile
+            let userProfile:MEDUserProfile = login[0] as! MEDUserProfile
+            let uidString:String = "\(userProfile.uid)"
+            let keys:String = date.stringFromFormat("yyyyMMddHHmmss", locale: DateFormatter().locale)+uidString
+            stepsModel.uid = userProfile.uid
+            stepsModel.key = keys
+            
             let dateString:String = date.stringFromFormat("yyy-MM-dd")
             var caloriesValue:Int = 0
             var milesValue:Double = 0
-            StepGoalSetingController.calculationData((stepsModel.walking_duration+stepsModel.running_duration), steps: stepsModel.steps, completionData: { (miles, calories) in
+            StepGoalSetingController.calculationData((stepsModel.walking_duration+stepsModel.running_duration), steps: stepsModel.totalSteps, completionData: { (miles, calories) in
                 caloriesValue = Int(calories)
                 milesValue = miles
             })
             
             let activeTime: Int = stepsModel.walking_duration+stepsModel.running_duration
-
-            MEDStepsNetworkManager.createSteps(uid: profile.id, steps: stepsModel.hourlysteps, date: dateString, activeTime: activeTime, calories: caloriesValue, distance: milesValue, completion: { (success: Bool) in
-                if success {
-                    stepsModel.isUpload = true
-                    stepsModel.update()
-                }
-            })
-        }
-        if(stepsArray.count>0) {
-            let step:UserSteps = stepsArray[0] as! UserSteps
-            if(step.steps < thispacket.getDailySteps()) {
-                XCGLogger.default.debug("Data that has been saved····")
-                stepsModel.id = step.id
-                DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.default).async(execute: { () -> Void in
-                    stepsModel.update()
-                })
-            }
-        }else {
-            DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.default).async(execute: { () -> Void in
-                stepsModel.add({ (id, completion) -> Void in
-                })
+            
+            MEDStepsNetworkManager.createSteps(uid: userProfile.uid, steps: stepsModel.hourlysteps, date: dateString, activeTime: activeTime, calories: caloriesValue, distance: milesValue, completion: { (success: Bool) in
                 
             })
+            
+            let stepsArray = MEDUserSteps.getFilter("key == '\(keys)'")
+            if stepsArray.count>0 {
+                let steps:MEDUserSteps = stepsArray[0] as! MEDUserSteps
+                let localStepsArray:[Int] = AppTheme.jsonToArray(steps.hourlysteps) as! [Int]
+                var localValue:Int = 0
+                
+                for value in localStepsArray {
+                    localValue+=value
+                }
+                
+                let currentStepsArray:[Int] = thispacket.getHourlySteps()
+                var currentStepsValue:Int = 0
+                for value in currentStepsArray {
+                    currentStepsValue+=value
+                }
+                
+                if currentStepsValue>localValue {
+                    stepsModel.isUpload = true
+                    _ = stepsModel.add()
+                }
+            }else{
+                stepsModel.isUpload = false
+                _ = stepsModel.add()
+            }
+        }else{
+            let keys:String = date.stringFromFormat("yyyyMMddHHmmss", locale: DateFormatter().locale)
+            //let stepsArray = MEDUserSteps.getFilter("key == '\(keys)'")
+            stepsModel.uid = 0
+            stepsModel.key = keys
+            stepsModel.isUpload = false
+            _ = stepsModel.add()
         }
-        return thispacket.getHourlySteps()
-
+        return thispacket.getHourlySteps();
     }
     
     func saveSleepToDataBase(thispacket:DailyTrackerNevoPacket,date:Date,dateString:String) {
-        let sleepArray = UserSleep.getCriteria("WHERE date = \(date.timeIntervalSince1970)")
-        let model:UserSleep = UserSleep()
-        model.id = 0
-        model.date = date.timeIntervalSince1970
-        model.totalSleepTime = thispacket.getDailySleepTime()
-        model.hourlySleepTime = "\(AppTheme.toJSONString(thispacket.getHourlySleepTime() as AnyObject!))"
-        model.totalWakeTime = 0
-        model.hourlyWakeTime = "\(AppTheme.toJSONString(thispacket.getHourlyWakeTime() as AnyObject!))"
-        model.totalLightTime = 0
-        model.hourlyLightTime = "\(AppTheme.toJSONString(thispacket.getHourlyLightTime() as AnyObject!))"
-        model.totalDeepTime = 0
-        model.hourlyDeepTime = "\(AppTheme.toJSONString(thispacket.getHourlyDeepTime() as AnyObject!))"
+        let login = MEDUserProfile.getAll()
         
-        //upload sleep data to validic
-        //UPDATE_VALIDIC_REQUEST.updateSleepDataToValidic(NSArray(arrayLiteral: stepsModel))
-        let login:NSArray = UserProfile.getAll()
+        let sleepModel:MEDUserSleep = MEDUserSleep()
+        sleepModel.date = date.timeIntervalSince1970
+        sleepModel.totalSleepTime = thispacket.getDailySleepTime()
+        sleepModel.hourlySleepTime = "\(AppTheme.toJSONString(thispacket.getHourlySleepTime() as AnyObject!))"
+        sleepModel.totalWakeTime = thispacket.getDailyWakeTime()
+        sleepModel.hourlyWakeTime = "\(AppTheme.toJSONString(thispacket.getHourlyWakeTime() as AnyObject!))"
+        sleepModel.totalLightTime = thispacket.getDailyLightTime()
+        sleepModel.hourlyLightTime = "\(AppTheme.toJSONString(thispacket.getHourlyLightTime() as AnyObject!))"
+        sleepModel.totalDeepTime = thispacket.getDailyDeepTime()
+        sleepModel.hourlyDeepTime = "\(AppTheme.toJSONString(thispacket.getHourlyDeepTime() as AnyObject!))"
+        
         if login.count>0 {
-            let profile:UserProfile = login[0] as! UserProfile
+            let userProfile:MEDUserProfile = login[0] as! MEDUserProfile
+            let uidString:String = "\(userProfile.uid)"
+            let keys:String = date.stringFromFormat("yyyyMMddHHmmss", locale: DateFormatter().locale)+uidString
+            sleepModel.uid = userProfile.uid
+            sleepModel.key = keys
+            
             let dateString:String = date.stringFromFormat("yyy-MM-dd")
             
-            MEDSleepNetworkManager.createSleep(uid: profile.id, deepSleep: model.hourlyDeepTime, lightSleep: model.hourlyLightTime, wakeTime: model.hourlyWakeTime, date: dateString, completion: { (success:Bool) in
-                model.isUpload = true
-                _ = model.update()
-            })
-        }
-        
-        if(sleepArray.count>0) {
-            let sleep:UserSleep = sleepArray[0] as! UserSleep
-            let localSleepArray:[Int] = AppTheme.jsonToArray(sleep.hourlySleepTime) as! [Int]
-            var localTime:Int = 0
-            
-            for value in localSleepArray {
-                localTime+=value
-            }
-            
-            let currentSleepArray:[Int] = thispacket.getHourlySleepTime()
-            var currentSleepTime:Int = 0
-            for value in currentSleepArray {
-                currentSleepTime+=value
-            }
-            
-            if currentSleepTime>localTime {
-                model.id = sleep.id
-                DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.default).async(execute: { () -> Void in
-                    _ = model.update()
-                })
-            }
-        }else {
-            DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.default).async(execute: { () -> Void in
-                _ = model.add({ (id, completion) -> Void in
-                })
+            MEDSleepNetworkManager.createSleep(uid: userProfile.uid, deepSleep: sleepModel.hourlyDeepTime, lightSleep: sleepModel.hourlyLightTime, wakeTime: sleepModel.hourlyWakeTime, date: dateString, completion: { (success:Bool) in
                 
             })
+            
+            let sleepArray = MEDUserSleep.getFilter("key = '\(keys)'")
+            if sleepArray.count>0 {
+                let sleep:MEDUserSleep = sleepArray[0] as! MEDUserSleep
+                let localSleepArray:[Int] = AppTheme.jsonToArray(sleep.hourlySleepTime) as! [Int]
+                var localTime:Int = 0
+                
+                for value in localSleepArray {
+                    localTime+=value
+                }
+                
+                let currentSleepArray:[Int] = thispacket.getHourlySleepTime()
+                var currentSleepTime:Int = 0
+                for value in currentSleepArray {
+                    currentSleepTime+=value
+                }
+                
+                if currentSleepTime>localTime {
+                    sleepModel.isUpload = true
+                    _ = sleepModel.add()
+                }
+            }else{
+                sleepModel.isUpload = true
+                _ = sleepModel.add()
+            }
+        }else{
+            let keys:String = date.stringFromFormat("yyyyMMddHHmmss", locale: DateFormatter().locale)
+            sleepModel.uid = 0
+            sleepModel.key = keys
+            sleepModel.isUpload = false
+            _ = sleepModel.add()
         }
     }
+    
 }
 

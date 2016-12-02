@@ -10,6 +10,7 @@ import UIKit
 import Charts
 import SwiftEventBus
 import Timepiece
+import SwiftyJSON
 
 class StepsHistoryViewController: PublicClassController,ChartViewDelegate {
 
@@ -24,7 +25,6 @@ class StepsHistoryViewController: PublicClassController,ChartViewDelegate {
     fileprivate var contentTitleArray:[String] = [NSLocalizedString("CALORIE", comment: ""), NSLocalizedString("STEPS", comment: ""), NSLocalizedString("TIME", comment: ""),NSLocalizedString("KM", comment: "")]
     fileprivate var contentTArray:[String] = ["0","0","0","0"]
     fileprivate var queryModel:NSMutableArray = NSMutableArray()
-    fileprivate let sleepArray:NSMutableArray = NSMutableArray();
     fileprivate let detailArray:NSMutableArray = NSMutableArray(capacity:1);
     
     init() {
@@ -45,9 +45,7 @@ class StepsHistoryViewController: PublicClassController,ChartViewDelegate {
         self.configChartView()
         let dayDate:Date = Date()
         let dayTime:TimeInterval = Date.date(year: dayDate.year, month: dayDate.month, day: dayDate.day, hour: 0, minute: 0, second: 0).timeIntervalSince1970
-            //NSDate().beginningOfDay.timeIntervalSince1970
-        queryArray = UserSteps.getCriteria("WHERE date = \(dayTime)") //one hour = 3600s
-        self.bulidStepHistoricalChartView(queryArray)
+        self.bulidStepHistoricalChartView(dayTime)
         
         stepsHistory.backgroundColor = UIColor.white
         stepsHistory.register(UINib(nibName: "StepGoalSetingViewCell", bundle: Bundle.main), forCellWithReuseIdentifier: "StepGoalSetingIdentifier")
@@ -65,17 +63,15 @@ class StepsHistoryViewController: PublicClassController,ChartViewDelegate {
         super.viewWillAppear(animated)
         let dayDate:Date = Date()
         let dayTime:TimeInterval = Date.date(year: dayDate.year, month: dayDate.month, day: dayDate.day, hour: 0, minute: 0, second: 0).timeIntervalSince1970
-        queryArray = UserSteps.getCriteria("WHERE date = \(dayTime)")
-        saveContentTArray(stepsArray: queryArray)
+        saveContentTArray(date: dayTime)
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         _ = SwiftEventBus.onMainThread(self, name: SELECTED_CALENDAR_NOTIFICATION) { (notification) in
             let userinfo:Date = notification.userInfo!["selectedDate"] as! Date
-            self.queryArray = UserSteps.getCriteria("WHERE date = \(userinfo.beginningOfDay.timeIntervalSince1970)")
-            self.bulidStepHistoricalChartView(self.queryArray)
-            self.saveContentTArray(stepsArray: self.queryArray)
+            //self.queryArray = UserSteps.getCriteria("WHERE date = \(userinfo.beginningOfDay.timeIntervalSince1970)")
+            self.saveContentTArray(date: userinfo.beginningOfDay.timeIntervalSince1970)
         }
         
         _ = SwiftEventBus.onMainThread(self, name: EVENT_BUS_BEGIN_SMALL_SYNCACTIVITY) { (notification) in
@@ -90,8 +86,7 @@ class StepsHistoryViewController: PublicClassController,ChartViewDelegate {
         }
         
         _ = SwiftEventBus.onMainThread(self, name: EVENT_BUS_END_BIG_SYNCACTIVITY) { (notification) in
-            self.queryArray = UserSteps.getCriteria("WHERE date = \(Date().beginningOfDay.timeIntervalSince1970)")
-            self.saveContentTArray(stepsArray: self.queryArray)
+            self.saveContentTArray(date: Date().beginningOfDay.timeIntervalSince1970)
         }
     }
     override func viewDidDisappear(_ animated: Bool) {
@@ -116,19 +111,17 @@ class StepsHistoryViewController: PublicClassController,ChartViewDelegate {
     /**
      Archiver "contentTArray"
      */
-    func saveContentTArray(stepsArray:NSArray) {
+    func saveContentTArray(date:TimeInterval) {
         //Only for today's data
-        let array:NSArray = stepsArray
-        self.queryArray = array
-        self.bulidStepHistoricalChartView(array)
-        
-        if array.count>0 {
-            let dataSteps:UserSteps = array[0] as! UserSteps
+        self.bulidStepHistoricalChartView(date)
+        let queryArray = MEDUserSteps.getFilter("date == \(date)")
+        if queryArray.count>0 {
+            let dataSteps:MEDUserSteps = queryArray[0] as! MEDUserSteps
             let timerValue:Double = Double(dataSteps.walking_duration+dataSteps.running_duration)
-            self.contentTArray.replaceSubrange(Range(0..<1), with: ["\(dataSteps.calories)"])
-            self.contentTArray.replaceSubrange(Range(1..<2), with: ["\(dataSteps.steps)"])
+            self.contentTArray.replaceSubrange(Range(0..<1), with: ["\(dataSteps.totalCalories)"])
+            self.contentTArray.replaceSubrange(Range(1..<2), with: ["\(dataSteps.totalSteps)"])
             self.contentTArray.replaceSubrange(Range(2..<3), with: [AppTheme.timerFormatValue(value: timerValue/60.0)])
-            self.calculationData((dataSteps.walking_duration+dataSteps.running_duration), steps: dataSteps.steps, completionData: { (miles, calories) in
+            self.calculationData((dataSteps.walking_duration+dataSteps.running_duration), steps: dataSteps.totalSteps, completionData: { (miles, calories) in
                 self.contentTArray.replaceSubrange(Range(0..<1), with: ["\(calories)"])
                 self.contentTArray.replaceSubrange(Range(3..<4), with: ["\(miles)"])
             })
@@ -188,36 +181,22 @@ class StepsHistoryViewController: PublicClassController,ChartViewDelegate {
         }
     }
     
-    func bulidStepHistoricalChartView(_ modelArray:NSArray){
-        queryModel.removeAllObjects()
-        sleepArray.removeAllObjects()
-        queryModel.addObjects(from: modelArray as [AnyObject])
-        self.slidersValueChanged()
-    }
-    
-    func slidersValueChanged(){
-        self.setDataCount(queryModel.count, Range: 50)
+    func bulidStepHistoricalChartView(_ date:TimeInterval){
+        let queryArray = MEDUserSteps.getFilter("date = \(date)")
+        self.setDataCount(queryArray)
     }
 
-    func stringFromDate(_ date:Date) -> String {
-        let dateFormatter:DateFormatter = DateFormatter()
-        dateFormatter.timeZone = TimeZone.current
-        dateFormatter.dateStyle = DateFormatter.Style.medium
-        dateFormatter.timeStyle = DateFormatter.Style.short
-        dateFormatter.dateFormat = "yyyyMMdd"
-        let dateString:String = dateFormatter.string(from: date)
-        return dateString
-    }
     
-    func setDataCount(_ count:Int, Range range:Double){
-        if(count == 0) {
-            let stepsModel:UserSteps = UserSteps()
+    func setDataCount(_ valueArray:[Any]){
+        var stepsValue:[Any] = valueArray
+        if(valueArray.count == 0) {
+            let stepsModel:MEDUserSteps = MEDUserSteps()
             stepsModel.date = Date().timeIntervalSince1970
             stepsModel.createDate = Date().stringFromFormat("yyyyMMdd")
             stepsModel.hourlysteps = "[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]"
             stepsModel.hourlydistance = "[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]"
             stepsModel.hourlycalories = "[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]"
-            queryModel.add(stepsModel)
+            stepsValue.append(stepsModel)
         }
         
         var xVal:[String] = [];
@@ -225,10 +204,10 @@ class StepsHistoryViewController: PublicClassController,ChartViewDelegate {
         
         var tempMaxValue:Double = 0;
         
-        let stepsModel:UserSteps = queryModel.object(at: 0) as! UserSteps;
-        let hourlystepsArray:NSArray = AppTheme.jsonToArray(stepsModel.hourlysteps)
+        let stepsModel:MEDUserSteps = stepsValue[0] as! MEDUserSteps;
+        let hourlystepsArray = JSON(stepsModel.hourlysteps).arrayValue
         for (index,steps) in hourlystepsArray.enumerated(){
-            let val1:Double  = (steps as! NSNumber).doubleValue;
+            let val1:Double  = steps.doubleValue;
             if tempMaxValue < val1 {
                 tempMaxValue = val1
             }
@@ -280,18 +259,6 @@ class StepsHistoryViewController: PublicClassController,ChartViewDelegate {
         //let stepsModel:UserSteps = queryModel.objectAtIndex(0) as! UserSteps;
         //self.didSelectedhighlightValue(entry.xIndex,dataSetIndex: dataSetIndex, dataSteps:stepsModel)
 
-    }
-    
-    func didSelectedhighlightValue(_ xIndex:Int,dataSetIndex: Int, dataSteps:UserSteps) {
-        
-        self.contentTArray.replaceSubrange(Range(0..<1), with: ["\(dataSteps.calories)"])
-        self.contentTArray.replaceSubrange(Range(1..<2), with: ["\(dataSteps.steps)"])
-        self.contentTArray.replaceSubrange(Range(2..<3), with: ["\(dataSteps.walking_duration+dataSteps.running_duration)m"])
-        self.calculationData(0, steps: dataSteps.steps, completionData: { (miles, calories) in
-            self.contentTArray.replaceSubrange(Range(0..<1), with: ["\(calories)"])
-            self.contentTArray.replaceSubrange(Range(3..<4), with: ["\(miles)"])
-        })
-        self.stepsHistory.reloadData()
     }
 }
 
