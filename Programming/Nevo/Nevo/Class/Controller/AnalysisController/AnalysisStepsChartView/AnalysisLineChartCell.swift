@@ -83,9 +83,9 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
             var totalCalores:Int = 0
             var totalTime:Int = 0
             for value in dataArray {
-                let usersteps:UserSteps = value as! UserSteps
-                totalSteps += usersteps.steps
-                totalCalores += Int(usersteps.calories)
+                let usersteps:MEDUserSteps = value as! MEDUserSteps
+                totalSteps += usersteps.totalSteps
+                totalCalores += Int(usersteps.totalCalories)
                 totalTime += (usersteps.walking_duration+usersteps.running_duration)
             }
             completionData(Float(totalSteps), totalCalores, Double(totalTime)/60.0)
@@ -99,7 +99,7 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
             var weakeValue:Int = 0
             var deepValue:Int = 0
             for value in dataArray {
-                let userSleep:UserSleep = value as! UserSleep
+                let userSleep:MEDUserSleep = value as! MEDUserSleep
                 let sleepTime:[Int] = AppTheme.jsonToArray(userSleep.hourlySleepTime) as! [Int]
                 let weakeSleepTime:[Int] = AppTheme.jsonToArray(userSleep.hourlyWakeTime) as! [Int]
                 let deepSleepTime:[Int] = AppTheme.jsonToArray(userSleep.hourlyDeepTime) as! [Int]
@@ -139,10 +139,10 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
     
     func setStepsDataCount(_ countArray:NSArray,type:Int,rowIndex:Int) {
         var maxValue:Int = 0
-        var userStepsArray:[UserSteps] = []
+        var userStepsArray:[MEDUserSteps] = []
         
         for i:Int in 0 ..< countArray.count {
-            let steps:UserSteps = countArray.object(at: i) as! UserSteps;
+            let steps:MEDUserSteps = countArray.object(at: i) as! MEDUserSteps;
             userStepsArray.append(steps)
         }
         
@@ -153,7 +153,7 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
         }
         
         for i:Int in 0..<userStepsArray.count {
-            let usersteps:UserSteps = userStepsArray[i]
+            let usersteps:MEDUserSteps = userStepsArray[i]
             let date:Date = "\(usersteps.createDate)".dateFromFormat("yyyyMMdd",locale: DateFormatter().locale)!
             let dateString:String = date.stringFromFormat("dd/MM")
             let stepsArray:[Int] = AppTheme.jsonToArray(usersteps.hourlysteps) as! [Int]
@@ -209,10 +209,10 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
         var deepYVals:[ChartDataEntry] = []
         
         var maxValue:Int = 0
-        var sleepValueArray:[UserSleep] = []
+        var sleepValueArray:[MEDUserSleep] = []
         
         for i:Int in 0 ..< countArray.count {
-            let sleep:UserSleep = countArray.object(at: i) as! UserSleep;
+            let sleep:MEDUserSleep = countArray.object(at: i) as! MEDUserSleep;
             sleepValueArray.append(sleep)
         }
         
@@ -226,7 +226,7 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
             var lightValue:Int = 0
             var deepValue:Int = 0
             
-            let mSleeps:UserSleep = sleep
+            let mSleeps:MEDUserSleep = sleep
             
             let sleepsValue1:[Int] = AppTheme.jsonToArray(mSleeps.hourlySleepTime) as! [Int]
             let wakeSleep:[Int] = AppTheme.jsonToArray(mSleeps.hourlyWakeTime) as! [Int]
@@ -237,7 +237,7 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
             let dateString:String = date.stringFromFormat("dd/MM")
             
             if index>0 {
-                let kSleeps:UserSleep = sleepValueArray[index-1]
+                let kSleeps:MEDUserSleep = sleepValueArray[index-1]
                 let value1:[Int] = AppTheme.jsonToArray(kSleeps.hourlySleepTime) as! [Int]
                 let value2:[Int] = AppTheme.jsonToArray(kSleeps.hourlyWakeTime) as! [Int]
                 let value3:[Int] = AppTheme.jsonToArray(kSleeps.hourlyLightTime) as! [Int]

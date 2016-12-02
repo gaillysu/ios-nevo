@@ -178,45 +178,43 @@ extension AnalysisController {
     /*
      Get steps data
      */
-    func getStepsData()->[NSArray] {
+    func getStepsData()->[[MEDUserSteps]] {
         let dayDate:Date = Date()
-        let thisWeekArray:NSArray = UserSteps.getCriteria("WHERE date BETWEEN \(dayDate.beginningOfWeek.timeIntervalSince1970) AND \(dayDate.endOfWeek.timeIntervalSince1970)")
-        let lastWeekArray:NSArray = UserSteps.getCriteria("WHERE date BETWEEN \(dayDate.endOfDay.timeIntervalSince1970-(86400.0*7)) AND \(dayDate.beginningOfDay.timeIntervalSince1970+1)")
-        let last30DayArray:NSArray = UserSteps.getCriteria("WHERE date BETWEEN \(dayDate.endOfDay.timeIntervalSince1970-(86400.0*30)) AND \(dayDate.beginningOfDay.timeIntervalSince1970+1)")
+        
+        let thisWeekArray:[MEDUserSteps] = MEDUserSteps.getFilter("date > \(dayDate.beginningOfWeek.timeIntervalSince1970) AND date < \(dayDate.endOfWeek.timeIntervalSince1970)") as! [MEDUserSteps]
+        let lastWeekArray:[MEDUserSteps] = MEDUserSteps.getFilter("date > \(dayDate.endOfDay.timeIntervalSince1970-(86400.0*7)) AND date < \(dayDate.beginningOfDay.timeIntervalSince1970+1)") as! [MEDUserSteps]
+        let last30DayArray:[MEDUserSteps] = MEDUserSteps.getFilter("date > \(dayDate.endOfDay.timeIntervalSince1970-(86400.0*30)) AND date < \(dayDate.beginningOfDay.timeIntervalSince1970+1)") as! [MEDUserSteps]
         return [thisWeekArray,lastWeekArray,last30DayArray]
     }
     
     /*
      Get sleep data
      */
-    func getSleepData()->[NSArray] {
+    func getSleepData()->[[MEDUserSleep]] {
         let nextDay:Double = 86401
         
         let dayDate:Date = Date()
-        let thisWeekArray:NSArray = UserSleep.getCriteria("WHERE date BETWEEN \(dayDate.beginningOfWeek.timeIntervalSince1970-nextDay) AND \(dayDate.endOfWeek.timeIntervalSince1970+nextDay)")
-        let lastWeekArray:NSArray = UserSleep.getCriteria("WHERE date BETWEEN \(dayDate.beginningOfDay.timeIntervalSince1970-(86400.0*7)-nextDay) AND \(dayDate.endOfDay.timeIntervalSince1970+nextDay)")
-        let last30DayArray:NSArray = UserSleep.getCriteria("WHERE date BETWEEN \(dayDate.beginningOfDay.timeIntervalSince1970-(86400.0*30)-nextDay) AND \(dayDate.endOfDay.timeIntervalSince1970+nextDay)")
+        let thisWeekArray:[MEDUserSleep] = MEDUserSleep.getFilter("date > \(dayDate.beginningOfWeek.timeIntervalSince1970-nextDay) AND date < \(dayDate.endOfWeek.timeIntervalSince1970+nextDay)") as! [MEDUserSleep]
+        let lastWeekArray:[MEDUserSleep] = MEDUserSleep.getFilter("date > \(dayDate.beginningOfDay.timeIntervalSince1970-(86400.0*7)-nextDay) AND date < \(dayDate.endOfDay.timeIntervalSince1970+nextDay)") as! [MEDUserSleep]
+        let last30DayArray:[MEDUserSleep] = MEDUserSleep.getFilter("date > \(dayDate.beginningOfDay.timeIntervalSince1970-(86400.0*30)-nextDay) AND date < \(dayDate.endOfDay.timeIntervalSince1970+nextDay)") as! [MEDUserSleep]
         return [thisWeekArray,lastWeekArray,last30DayArray]
     }
     
     func getSolarData()->[[SolarHarvest]] {
         let dayDate:Date = Date()
         let thisWeekSolar = SolarHarvest.getFilter("date > \(dayDate.beginningOfWeek.timeIntervalSince1970-1) AND date < \(dayDate.endOfWeek.timeIntervalSince1970)")
-            //realm.objects(SolarHarvest.self).filter("date > \(dayDate.beginningOfWeek.timeIntervalSince1970-1) AND date < \(dayDate.endOfWeek.timeIntervalSince1970)")
         var thisWeekData:[SolarHarvest] = []
         for value in thisWeekSolar {
             thisWeekData.append(value as! SolarHarvest)
         }
 
         let lastWeekSolar = SolarHarvest.getFilter("date > \(dayDate.beginningOfWeek.timeIntervalSince1970-(86400.0*7)-1) AND date < \(dayDate.beginningOfWeek.timeIntervalSince1970)")
-            //realm.objects(SolarHarvest.self).filter("date > \(dayDate.beginningOfWeek.timeIntervalSince1970-(86400.0*7)-1) AND date < \(dayDate.beginningOfWeek.timeIntervalSince1970)")
         var lastWeekData:[SolarHarvest] = []
         for value in lastWeekSolar {
             lastWeekData.append(value as! SolarHarvest)
         }
         
         let last30DaySolar = SolarHarvest.getFilter("date > \(dayDate.beginningOfDay.timeIntervalSince1970-(86400.0*30)) AND date < \(dayDate.endOfDay.timeIntervalSince1970)")
-            //realm.objects(SolarHarvest.self).filter("date > \(dayDate.beginningOfDay.timeIntervalSince1970-(86400.0*30)) AND date < \(dayDate.endOfDay.timeIntervalSince1970)")
         var last30DayData:[SolarHarvest] = []
         for value in last30DaySolar {
             last30DayData.append(value as! SolarHarvest)

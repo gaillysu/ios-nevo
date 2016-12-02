@@ -205,7 +205,7 @@ class StepsHistoryViewController: PublicClassController,ChartViewDelegate {
         var tempMaxValue:Double = 0;
         
         let stepsModel:MEDUserSteps = stepsValue[0] as! MEDUserSteps;
-        let hourlystepsArray = JSON(stepsModel.hourlysteps).arrayValue
+        let hourlystepsArray = JSON(AppTheme.jsonToArray(stepsModel.hourlysteps)).arrayValue
         for (index,steps) in hourlystepsArray.enumerated(){
             let val1:Double  = steps.doubleValue;
             if tempMaxValue < val1 {
