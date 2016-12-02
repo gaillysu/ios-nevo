@@ -17,6 +17,10 @@ extension String {
         return NSString(format: "%@", self).doubleValue
     }
     
+    func toFloat() -> Float {
+        return NSString(format: "%@", self).floatValue
+    }
+    
     func length() ->Int {
         return NSString(format: "%@", self).length
     }

@@ -60,13 +60,11 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
     override func viewDidAppear(_ animated: Bool) {
         mNevoOtaController!.setConnectControllerDelegate2Self()
         if(mNevoOtaController!.isConnected()) {
-            let currentSoftwareVersion:NSString = mNevoOtaController!.getSoftwareVersion()
-            let currentFirmwareVersion:NSString = mNevoOtaController!.getFirmwareVersion()
-            if((currentSoftwareVersion as String).isEmpty || (currentFirmwareVersion as String).isEmpty) {
+            let currentSoftwareVersion = mNevoOtaController!.getSoftwareVersion()
+            let currentFirmwareVersion = mNevoOtaController!.getFirmwareVersion()
+            if(currentSoftwareVersion == 0 || currentFirmwareVersion == 0) {
                 return
             }
-            buildinSoftwareVersion = AppTheme.GET_SOFTWARE_VERSION()
-            buildinFirmwareVersion = AppTheme.GET_FIRMWARE_VERSION()
 
             var fileArray:NSArray;
             let watchIdValue:Int = UserDefaults.standard.object(forKey: "WATCHNAME_KEY") as! Int
@@ -76,7 +74,7 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
                 fileArray = AppTheme.GET_FIRMWARE_FILES("Firmwares")
             }
             
-            if(currentFirmwareVersion.integerValue < buildinFirmwareVersion && currentSoftwareVersion.integerValue != 0) {
+            if(currentFirmwareVersion < Float(buildin_firmware_version) && currentSoftwareVersion != 0) {
                 for tmpfile in fileArray {
                     let selectedFile = tmpfile as! URL
                     let fileExtension:String? = selectedFile.pathExtension
@@ -89,7 +87,7 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
                 }
             }
 
-            if(currentSoftwareVersion.integerValue < buildinSoftwareVersion) {
+            if(currentSoftwareVersion < Float(buildin_software_version)) {
                 for tmpfile in fileArray {
                     let selectedFile = tmpfile as! URL
                     let fileExtension:String? = selectedFile.pathExtension
@@ -101,15 +99,15 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
                     }
                 }
             }
-            if(currentSoftwareVersion.integerValue < buildinSoftwareVersion) {
+            if(currentSoftwareVersion < Float(buildin_software_version)) {
                 nevoOtaView.setProgress(0.0, currentTask: currentTaskNumber,allTask: allTaskNumber, progressString: "MCU")
             }
 
-            if(currentFirmwareVersion.integerValue < buildinFirmwareVersion ) {
+            if(currentFirmwareVersion < Float(buildin_firmware_version)) {
                 nevoOtaView.setProgress(0.0, currentTask: currentTaskNumber,allTask: allTaskNumber, progressString: "BLE")
             }
 
-            if(currentSoftwareVersion.integerValue < buildinSoftwareVersion || currentFirmwareVersion.integerValue < buildinFirmwareVersion ) {
+            if(currentSoftwareVersion < Float(buildin_software_version) || currentFirmwareVersion < Float(buildin_firmware_version) ) {
                 let updateTitle:String = NSLocalizedString("do_not_exit_this_screen", comment: "")
                 let updatemsg:String = NSLocalizedString("please_follow_the_update_has_been_finished", comment: "")
                 if((UIDevice.current.systemVersion as NSString).floatValue>8.0){
@@ -316,7 +314,7 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
     /**
      see NevoOtaControllerDelegate
      */
-    func firmwareVersionReceived(_ whichfirmware:DfuFirmwareTypes, version:NSString)
+    func firmwareVersionReceived(_ whichfirmware:DfuFirmwareTypes, version:Float)
     {
         XCGLogger.default.debug("version :  \(version)")
         continueButton.isHidden = false

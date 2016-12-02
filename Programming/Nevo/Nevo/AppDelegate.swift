@@ -470,8 +470,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                 let dailySteps:Int = thispacket.getDailySteps()
                 let dailyStepGoal:Int = thispacket.getDailyStepsGoal()
                 let percent :Float = Float(dailySteps)/Float(dailyStepGoal)
-                let buildinFirmwareVersion:Int = AppTheme.GET_FIRMWARE_VERSION()
-                if getFirmwareVersion().integerValue >= buildinFirmwareVersion {
+                if getFirmwareVersion() >= Float(buildin_firmware_version) {
                     XCGLogger.default.debug("DailyStepsNevoPacket,steps:\(dailySteps),stepGoal:\(dailyStepGoal),getRTC:\(thispacket.getDateTimer().stringFromFormat("yyyy-MM-dd HH:mm:ss"))")
                 }
                 //XCGLogger.default.debug("DailyStepsNevoPacket,steps:\(dailySteps),stepGoal:\(dailyStepGoal),getRTC:\(thispacket.getDateTimer().stringFromFormat("yyyy-MM-dd hh:mm:ss"))")
@@ -534,15 +533,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
         }
     }
 
-    func firmwareVersionReceived(_ whichfirmware:DfuFirmwareTypes, version:NSString) {
-        let mcuver = AppTheme.GET_SOFTWARE_VERSION()
-        let blever = AppTheme.GET_FIRMWARE_VERSION()
+    func firmwareVersionReceived(_ whichfirmware:DfuFirmwareTypes, version:Float) {
+        let mcuver = Float(buildin_firmware_version)
+        let blever = Float(buildin_software_version)
 
         XCGLogger.default.debug("Build in software version: \(mcuver), firmware version: \(blever)")
 
-        if ((whichfirmware == DfuFirmwareTypes.softdevice  && version.integerValue < mcuver)
-            || (whichfirmware == DfuFirmwareTypes.application  && version.integerValue < blever)) {
-            //for tutorial screen, don't popup update dialog
+        if ((whichfirmware == DfuFirmwareTypes.softdevice  && version < mcuver)
+            || (whichfirmware == DfuFirmwareTypes.application  && version < blever)) {
+            //for tutorial screen, don't popup update dialog 
             if !mAlertUpdateFW {
                 mAlertUpdateFW = true
                 let titleString:String = NSLocalizedString("Update", comment: "")

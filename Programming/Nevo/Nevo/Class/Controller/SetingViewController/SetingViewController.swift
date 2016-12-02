@@ -229,6 +229,7 @@ class SetingViewController: UIViewController,ButtonManagerCallBack,UIAlertViewDe
                     }
                     
                 })
+                confirmAction.setValue(UIColor.getBaseColor(), forKey: "titleTextColor")
                 dialogController.addAction(confirmAction)
                 
                 let cancelAction = AlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil)
@@ -353,7 +354,7 @@ class SetingViewController: UIViewController,ButtonManagerCallBack,UIAlertViewDe
             return
         }
 
-        if AppDelegate.getAppDelegate().getMconnectionController()!.getSoftwareVersion().integerValue > 25 {
+        if AppDelegate.getAppDelegate().getMconnectionController()!.getSoftwareVersion() > 25 {
             AppDelegate.getAppDelegate().sendRequest(FindWatchRequest(ledtype: FindWatchLEDType.allWhiteLED, motorOnOff: true))
         }else{
             AppDelegate.getAppDelegate().sendRequest(LedLightOnOffNevoRequest(ledpattern: 0x3F0000, motorOnOff: true))

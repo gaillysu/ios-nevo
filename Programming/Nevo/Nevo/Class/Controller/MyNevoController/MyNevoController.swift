@@ -129,7 +129,7 @@ class MyNevoController: UITableViewController,UIAlertViewDelegate {
                 let navigation:UINavigationController = UINavigationController(rootViewController: lunar)
                 self.present(navigation, animated: true, completion: nil)
             }else{
-                if(AppDelegate.getAppDelegate().getSoftwareVersion().integerValue >= buildinSoftwareVersion && AppDelegate.getAppDelegate().getFirmwareVersion().integerValue >= buildinFirmwareVersion){
+                if(AppDelegate.getAppDelegate().getSoftwareVersion() >= Float(buildinSoftwareVersion) && AppDelegate.getAppDelegate().getFirmwareVersion() >= Float(buildinFirmwareVersion)){
                     let banner = MEDBanner(title: NSLocalizedString("is_watch_version", comment: ""), subtitle: nil, image: nil, backgroundColor: AppTheme.NEVO_SOLAR_YELLOW())
                     banner.dismissesOnTap = true
                     banner.show(duration: 1.5)
@@ -171,7 +171,7 @@ class MyNevoController: UITableViewController,UIAlertViewDelegate {
         var isUpdate:Bool = false
         switch ((indexPath as NSIndexPath).row){
         case 0:
-            if(!(AppDelegate.getAppDelegate().getSoftwareVersion().integerValue < buildinSoftwareVersion) && !(AppDelegate.getAppDelegate().getFirmwareVersion().integerValue < buildinFirmwareVersion)){
+            if(!(AppDelegate.getAppDelegate().getSoftwareVersion() < Float(buildin_firmware_version)) && !(AppDelegate.getAppDelegate().getFirmwareVersion() < Float(buildin_software_version))){
                 detailString = "MCU:\(AppDelegate.getAppDelegate().getSoftwareVersion()) BLE:\(AppDelegate.getAppDelegate().getFirmwareVersion())"
             }else{
                 detailString = "There is an update available!"
