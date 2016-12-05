@@ -20,7 +20,7 @@ class AddPresetViewController: UIViewController,ButtonManagerCallBack {
     var addDelegate:AddPresetDelegate?
     
     var purpose:AddPresetControllerPurpose = .Add
-    var goalItem:Presets? = nil
+    var goalItem:MEDUserGoal?
     
     init() {
         super.init(nibName: "AddPresetViewController", bundle: Bundle.main)
@@ -34,13 +34,14 @@ class AddPresetViewController: UIViewController,ButtonManagerCallBack {
         super.viewDidLoad()
         self.automaticallyAdjustsScrollViewInsets = false
         
+        
         switch purpose {
         case .Add:
             navigationItem.title = NSLocalizedString("add_goal", comment: "")
         default:
             navigationItem.title = NSLocalizedString("Edit goal", comment: "")
             
-            addPresetView.presetNumber.text = "\((goalItem?.steps)!)"
+            addPresetView.presetNumber.text = "\((goalItem?.stepsGoal)!)"
             addPresetView.presetName.text = goalItem?.label
         }
         
@@ -68,7 +69,7 @@ class AddPresetViewController: UIViewController,ButtonManagerCallBack {
                 addDelegate?.onAddPresetNumber(Int(addPresetView.presetNumber.text!)!, name: addPresetView.presetName.text!)
             default:
                 goalItem?.label = addPresetView.presetName.text!
-                goalItem?.steps = (addPresetView.presetNumber.text?.toInt())!
+                goalItem?.stepsGoal = (addPresetView.presetNumber.text?.toInt())!
             }
             _ = self.navigationController?.popViewController(animated: true)
         }else{

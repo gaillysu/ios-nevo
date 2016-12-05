@@ -35,6 +35,7 @@ class MEDUserAlarm:MEDBaseModel {
             let nameArray:[String] = [NSLocalizedString("Alarm1", comment: ""),NSLocalizedString("Alarm2", comment: "")]
             for (index,value) in dateArray.enumerated() {
                 let alarm:MEDUserAlarm = MEDUserAlarm()
+                alarm.key = "\(value)"
                 alarm.timer = value
                 alarm.label = nameArray[index]
                 alarm.status = false

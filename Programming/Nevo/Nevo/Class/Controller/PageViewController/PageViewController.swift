@@ -142,15 +142,15 @@ class PageViewController: UIPageViewController,UIActionSheetDelegate {
         let actionSheet:ActionSheetView = ActionSheetView(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.actionSheet)
         actionSheet.isSetSubView = true;
         
-        let array:NSArray = Presets.getAll()
+        let array = MEDUserGoal.getAll()
         for pArray in array {
-            let model:Presets = pArray as! Presets
+            let model:MEDUserGoal = pArray as! MEDUserGoal
             if(model.status){
-                let titleString:String = " \(model.steps) " + NSLocalizedString("steps_unit", comment: "")
+                let titleString:String = " \(model.stepsGoal) " + NSLocalizedString("steps_unit", comment: "")
                 let alertAction2:AlertAction = AlertAction(title: titleString, style: UIAlertActionStyle.default) { (action:UIAlertAction) -> Void in
                     if((action.title! as NSString).isEqual(to: titleString)){
-                        UserDefaults.standard.set(model.steps, forKey: NUMBER_OF_STEPS_GOAL_KEY)
-                        self.setGoal(NumberOfStepsGoal(steps: model.steps))
+                        UserDefaults.standard.set(model.stepsGoal, forKey: NUMBER_OF_STEPS_GOAL_KEY)
+                        self.setGoal(NumberOfStepsGoal(steps: model.stepsGoal))
                     }
                 }
                 if !AppTheme.isTargetLunaR_OR_Nevo() {

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 protocol AddPresetDelegate {
     func onAddPresetNumber(_ number:Int,name:String)
@@ -16,7 +17,7 @@ protocol AddPresetDelegate {
 class PresetTableViewController: UITableViewController,ButtonManagerCallBack,AddPresetDelegate {
         
     @IBOutlet weak var presetView: PresetView!
-    var prestArray:[Presets] = []
+    var prestArray:[MEDUserGoal] = []
 
     init() {
         super.init(nibName: "PresetTableViewController", bundle: Bundle.main)
@@ -29,12 +30,13 @@ class PresetTableViewController: UITableViewController,ButtonManagerCallBack,Add
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.tableView.register(UINib(nibName: "PresetTableViewCell", bundle: nil), forCellReuseIdentifier: "UserGoal_Identifier")
         presetView.bulidPresetView(self.navigationItem,delegateB: self)
         presetView.separatorColor = UIColor.lightGray
 
-        let array:NSArray = Presets.getAll()
+        let array = MEDUserGoal.getAll()
         for pArray in array {
-            prestArray.append(pArray as! Presets)
+            prestArray.append(pArray as! MEDUserGoal)
         }
         
         /// Theme adjust
@@ -63,9 +65,12 @@ extension PresetTableViewController {
         
         if(sender.isKind(of: UISwitch.classForCoder())){
             let switchSender:UISwitch = sender as! UISwitch
-            let preModel:Presets = prestArray[switchSender.tag]
-            preModel.status = switchSender.isOn
-            _ = preModel.update()
+            let preModel:MEDUserGoal = prestArray[switchSender.tag]
+
+            let realm = try! Realm()
+            try! realm.write {
+                preModel.status = switchSender.isOn
+            }
         }
     }
 }
@@ -86,12 +91,14 @@ extension PresetTableViewController {
             }
         }
         
-        let prestModel:Presets = Presets(keyDict: ["id":0,"steps":number,"label":"\(_name)","status":true])
-        prestModel.add { (id, completion) -> Void in
-            prestModel.id = id!
-            self.prestArray.append(prestModel)
-            self.tableView.reloadData()
-        }
+        let prestModel:MEDUserGoal = MEDUserGoal()
+        prestModel.key = "\(number)"
+        prestModel.stepsGoal = number
+        prestModel.label = "\(_name)"
+        prestModel.status = true
+        _ = prestModel.add()
+        self.prestArray.append(prestModel)
+        self.tableView.reloadData()
     }
 }
 
@@ -131,7 +138,7 @@ extension PresetTableViewController {
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            let preModel:Presets = prestArray[(indexPath as NSIndexPath).row]
+            let preModel:MEDUserGoal = prestArray[indexPath.row]
             _ = preModel.remove()
             prestArray.remove(at: (indexPath as NSIndexPath).row)
             tableView.deleteRows(at: [indexPath], with: .fade)
@@ -151,7 +158,7 @@ extension PresetTableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let goalItem:Presets = prestArray[(indexPath as NSIndexPath).row]
+        let goalItem:MEDUserGoal = prestArray[indexPath.row]
         let editGoalController: AddPresetViewController = AddPresetViewController()
         editGoalController.purpose = .Edit
         editGoalController.goalItem = goalItem
@@ -161,7 +168,7 @@ extension PresetTableViewController {
 
 // MARK: - Private function
 extension PresetTableViewController {
-    fileprivate func nameIncrease(name:String, startNum:Int, array:[Presets]) -> String {
+    fileprivate func nameIncrease(name:String, startNum:Int, array:[MEDUserGoal]) -> String {
         let _name = "\(name)\(startNum)"
         for perset in array {
             if _name == perset.label {

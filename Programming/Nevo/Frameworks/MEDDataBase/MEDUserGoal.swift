@@ -29,6 +29,7 @@ class MEDUserGoal: MEDBaseModel {
             let labelArray:[String] = ["Light","Moderate","Heavy"]
             for (index,value) in presetGoal.enumerated() {
                 let userGoal:MEDUserGoal = MEDUserGoal()
+                userGoal.key = "\(value)"
                 userGoal.stepsGoal = value
                 userGoal.label = labelArray[index]
                 userGoal.status = true

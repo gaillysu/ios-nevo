@@ -20,29 +20,22 @@ class PresetView: UITableView {
         navigation.rightBarButtonItem = leftButton
     }
 
-    func getPresetTableViewCell(_ indexPath:IndexPath,tableView:UITableView,presetArray:[Presets],delegate:ButtonManagerCallBack)->UITableViewCell{
-        let endCellID:String = "PresetTableViewCell"
-        var endCell = tableView.dequeueReusableCell(withIdentifier: endCellID)
-        if (endCell == nil) {
-            let nibs:[Any] = Bundle.main.loadNibNamed("PresetTableViewCell", owner: self, options: nil)!
-            endCell = nibs[0] as? PresetTableViewCell;
+    func getPresetTableViewCell(_ indexPath:IndexPath,tableView:UITableView,presetArray:[MEDUserGoal],delegate:ButtonManagerCallBack)->UITableViewCell{
+        let cell:PresetTableViewCell = tableView.dequeueReusableCell(withIdentifier: "UserGoal_Identifier", for: indexPath) as! PresetTableViewCell
+        cell.delegate = delegate
+        cell.presetStates.tag = (indexPath as NSIndexPath).row
 
-        }
-        (endCell as! PresetTableViewCell).delegate = delegate
-        (endCell as! PresetTableViewCell).presetStates.tag = (indexPath as NSIndexPath).row
-
-        let presetModel:Presets = presetArray[(indexPath as NSIndexPath).row]
-        (endCell as! PresetTableViewCell).presetSteps.text = "\(presetModel.steps)"
-        (endCell as! PresetTableViewCell).presetName.text = NSLocalizedString("\(presetModel.label)", comment: "")
-        (endCell as! PresetTableViewCell).presetStates.isOn = presetModel.status
+        let presetModel:MEDUserGoal = presetArray[indexPath.row]
+        cell.presetSteps.text = "\(presetModel.stepsGoal)"
+        cell.presetName.text = NSLocalizedString("\(presetModel.label)", comment: "")
+        cell.presetStates.isOn = presetModel.status
         if(!presetModel.status){
-            (endCell as! PresetTableViewCell).backgroundColor = UIColor.clear
+            cell.backgroundColor = UIColor.clear
         }
-        endCell?.selectionStyle = UITableViewCellSelectionStyle.none;
+        cell.selectionStyle = UITableViewCellSelectionStyle.none;
+        cell.viewDefaultColorful()
         
-        endCell?.viewDefaultColorful()
-        
-        return endCell!
+        return cell
     }
 
     func controllManager(_ sender:AnyObject){
