@@ -171,7 +171,7 @@ class MyNevoController: UITableViewController,UIAlertViewDelegate {
         var isUpdate:Bool = false
         switch ((indexPath as NSIndexPath).row){
         case 0:
-            if(!(AppDelegate.getAppDelegate().getSoftwareVersion() < Float(buildin_firmware_version)) && !(AppDelegate.getAppDelegate().getFirmwareVersion() < Float(buildin_software_version))){
+            if((AppDelegate.getAppDelegate().getSoftwareVersion() < Float(buildin_firmware_version)) && (AppDelegate.getAppDelegate().getFirmwareVersion() < Float(buildin_software_version))){
                 detailString = "MCU:\(AppDelegate.getAppDelegate().getSoftwareVersion()) BLE:\(AppDelegate.getAppDelegate().getFirmwareVersion())"
             }else{
                 detailString = "There is an update available!"

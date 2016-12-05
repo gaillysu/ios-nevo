@@ -89,20 +89,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
         
         IQKeyboardManager.sharedManager().enable = true
         
-        _ = UserSteps.updateTable()
-        
-        _ = UserSleep.updateTable()
-        
         //Start the logo for the first time
         if(!UserDefaults.standard.bool(forKey: "LaunchedDatabase")){
             UserDefaults.standard.set(true, forKey: "LaunchedDatabase")
             UserDefaults.standard.set(true, forKey: "firstDatabase")
-            /**
-            *  Initialize the database
-            */
-            Presets.defaultPresetsGoal()
-            UserAlarm.defaultAlarm()
-            UserNotification.defaultNotificationColor()
             //search not watch = -1
             self.setWatchInfo(-1, model: -1)
         }else{
@@ -118,7 +108,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
         */
         mConnectionController = ConnectionControllerImpl()
         mConnectionController?.setDelegate(self)
-//        let userDefaults = UserDefaults.standard;
+        //let userDefaults = UserDefaults.standard;
         //lastSync = userDefaults.double(forKey: LAST_SYNC_DATE_KEY)
         
         adjustLaunchLogic()
@@ -534,8 +524,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
     }
 
     func firmwareVersionReceived(_ whichfirmware:DfuFirmwareTypes, version:Float) {
-        let mcuver = Float(buildin_firmware_version)
-        let blever = Float(buildin_software_version)
+        let mcuver = Float(buildin_software_version)
+        let blever = Float(buildin_firmware_version)
 
         XCGLogger.default.debug("Build in software version: \(mcuver), firmware version: \(blever)")
 

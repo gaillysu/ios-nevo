@@ -686,7 +686,7 @@ class NevoOtaController : NSObject,ConnectionControllerDelegate {
         self.state = DFUControllerState.inittialize
         
         if(dfuFirmwareType == DfuFirmwareTypes.application ){
-            self.mConnectionController.restoreSavedAddress()
+            self.mConnectionController.forgetSavedAddress()
         }
 
         if switch2SyncController{

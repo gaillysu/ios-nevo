@@ -47,12 +47,6 @@ class ConnectionControllerImpl : NSObject {
     fileprivate var mRetryTimer:Timer?
     
     /**
-    this parameter saved old BLE 's  address, when doing BLE OTA, the address has been changed to another one
-    so, after finisned BLE ota, must restore it to normal 's address
-    */
-    fileprivate var savedAddress:String?
-    
-    /**
     No initialisation outside of this class, this is a singleton
     */
     override init() {
@@ -168,9 +162,7 @@ extension ConnectionControllerImpl:NevoBTDelegate {
             mNevoBT?.stopScan()
             //Let's save this address
             if let address = fromAddress?.uuidString {
-                let userDefaults = UserDefaults.standard;
-                userDefaults.set(address,forKey:SAVED_ADDRESS_KEY)
-                userDefaults.synchronize()
+                self.savedWatchAddress(address)
             }
         }
     }
@@ -224,22 +216,18 @@ extension ConnectionControllerImpl:ConnectionController {
      See ConnectionController protocol
      */
     func forgetSavedAddress() {
-        
         if hasSavedAddress() {
-            savedAddress = UserDefaults.standard.object(forKey: SAVED_ADDRESS_KEY) as? String
+            UserDefaults.standard.removeObject(forKey: SAVED_ADDRESS_KEY);
+            UserDefaults.standard.synchronize()
         }
-        
-        UserDefaults.standard.removeObject(forKey: SAVED_ADDRESS_KEY);
-        UserDefaults.standard.synchronize()
-        
     }
     /**
      See ConnectionController protocol
      */
-    func restoreSavedAddress() {
-        if( savedAddress != nil) {
-            let userDefaults = UserDefaults.standard;
-            userDefaults.set(savedAddress,forKey:SAVED_ADDRESS_KEY)
+    func savedWatchAddress(_ uuidString:String) {
+        let userDefaults = UserDefaults.standard;
+        if userDefaults.object(forKey: SAVED_ADDRESS_KEY) == nil {
+            userDefaults.set(uuidString,forKey:SAVED_ADDRESS_KEY)
             userDefaults.synchronize()
         }
     }
@@ -258,10 +246,9 @@ extension ConnectionControllerImpl:ConnectionController {
     // 如果没有该key,返回false; 如果有该key,但值为空字符串,返回false
     func hasSavedAddress() -> Bool {
         
-        if let saved = UserDefaults.standard.object(forKey: SAVED_ADDRESS_KEY) as? String {
-            return !saved.isEmpty
+        if UserDefaults.standard.object(forKey: SAVED_ADDRESS_KEY) != nil {
+            return true
         }
-        
         return false
     }
     

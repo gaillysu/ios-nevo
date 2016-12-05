@@ -269,7 +269,7 @@ extension LunaROTAController:SelectPeripheralDelegate {
     }
     
     func cancelOTAMode() {
-        AppDelegate.getAppDelegate().getMconnectionController()?.restoreSavedAddress()
+        AppDelegate.getAppDelegate().getMconnectionController()?.forgetSavedAddress()
         AppDelegate.getAppDelegate().getMconnectionController()?.setOTAMode(false, Disconnect: false)
         AppDelegate.getAppDelegate().getMconnectionController()?.setDelegate(AppDelegate.getAppDelegate())
         AppDelegate.getAppDelegate().getMconnectionController()?.connect()

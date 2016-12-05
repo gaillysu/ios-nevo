@@ -287,10 +287,6 @@ extension AppDelegate {
         return self.getMconnectionController()!.hasSavedAddress()
     }
     
-    func restoreSavedAddress() {
-        self.getMconnectionController()?.restoreSavedAddress()
-    }
-    
     func isConnected() -> Bool{
         return self.getMconnectionController()!.isConnected()
         

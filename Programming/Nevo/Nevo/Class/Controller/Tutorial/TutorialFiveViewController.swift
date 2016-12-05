@@ -56,7 +56,7 @@ class TutorialFiveViewController: UIViewController {
             action.isValid ? action.invalidate():()
             if(AppDelegate.getAppDelegate().isConnected()){
                 delay(1.0) {
-                    AppDelegate.getAppDelegate().restoreSavedAddress()
+                    AppDelegate.getAppDelegate().forgetSavedAddress()
                     let tutorialSix = TutorialSixViewController()
                     self.navigationController?.pushViewController(tutorialSix, animated: true)
                 }

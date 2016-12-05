@@ -50,10 +50,10 @@ protocol ConnectionController {
     
     /**
     restore the saved address. BLE OTA use it
-    Usage:forgetSavedAddress()/restoreSavedAddress(), if not call forgetSavedAddress()
+    Usage:saved watch address
     before call it, do nothing
     */
-    func restoreSavedAddress()
+    func savedWatchAddress(_ uuidString:String)
     
     /**
     Tries to send a request, you can't be sure that it will effectively be sent
