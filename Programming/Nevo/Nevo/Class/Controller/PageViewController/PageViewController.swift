@@ -37,6 +37,52 @@ class PageViewController: UIPageViewController,UIActionSheetDelegate {
             self.modalPresentationCapturesStatusBarAppearance = false;
         }
         
+        reloadPageControll()
+        
+        //set_goal
+        let rightItem:UIBarButtonItem = UIBarButtonItem(title: NSLocalizedString("set_goal", comment: ""), style: UIBarButtonItemStyle.plain, target: self, action: #selector(rightBarButtonAction(_:)))
+        rightItem.tintColor = AppTheme.NEVO_SOLAR_YELLOW()
+        
+        let rightSpacer:UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.fixedSpace, target: nil, action: nil)
+        rightSpacer.width = 0;
+        self.navigationItem.rightBarButtonItems = [rightSpacer,rightItem]
+        
+        let leftItem:UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "new_radio"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(leftBarButtonAction(_:)))
+        leftItem.tintColor = AppTheme.NEVO_SOLAR_YELLOW()
+        
+        let leftSpacer:UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.fixedSpace, target: nil, action: nil)
+        leftSpacer.width = -10;
+        //self.navigationItem.leftBarButtonItems = [leftSpacer,leftItem]
+        
+        if !AppTheme.isTargetLunaR_OR_Nevo(){
+            self.view.backgroundColor = UIColor.getGreyColor()
+            leftItem.tintColor = UIColor.getBaseColor()
+            rightItem.tintColor = UIColor.getBaseColor()
+        }else{
+            self.view.backgroundColor = UIColor.white
+        }
+        
+        // MARK: - SET WATCH_ID NOTIFICATION
+        _ = SwiftEventBus.onMainThread(self, name: EVENT_BUS_WATCHID_DIDCHANGE_KEY) { (notification) in
+            //let dict:[String:Int] = notification.userInfo as! [String : Int]
+            self.reloadPageControll()
+        }
+    }
+    
+    override func viewDidLayoutSubviews() {
+        if titleView == nil {
+            self.initTitleView()
+            self.bulidPageControl()
+        }
+    }
+    
+    deinit {
+        SwiftEventBus.unregister(self, name: EVENT_BUS_WATCHID_DIDCHANGE_KEY)
+    }
+    
+    func reloadPageControll() {
+        pagingControllers.removeAll()
+        
         let viewController1 = StepGoalSetingController()
         viewController1.view.tag = 0
         viewController1.view.backgroundColor = UIColor.white
@@ -66,51 +112,11 @@ class PageViewController: UIPageViewController,UIActionSheetDelegate {
             }
         }
         
-        //set_goal
-        let rightItem:UIBarButtonItem = UIBarButtonItem(title: NSLocalizedString("set_goal", comment: ""), style: UIBarButtonItemStyle.plain, target: self, action: #selector(rightBarButtonAction(_:)))
-        rightItem.tintColor = AppTheme.NEVO_SOLAR_YELLOW()
-        
-        let rightSpacer:UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.fixedSpace, target: nil, action: nil)
-        rightSpacer.width = 0;
-        self.navigationItem.rightBarButtonItems = [rightSpacer,rightItem]
-        
-        let leftItem:UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "new_radio"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(leftBarButtonAction(_:)))
-        leftItem.tintColor = AppTheme.NEVO_SOLAR_YELLOW()
-        
-        let leftSpacer:UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.fixedSpace, target: nil, action: nil)
-        leftSpacer.width = -10;
-        //self.navigationItem.leftBarButtonItems = [leftSpacer,leftItem]
-        
         self.delegate = self
         self.dataSource = self;
         self.setViewControllers([pagingControllers[0]], direction: UIPageViewControllerNavigationDirection.forward, animated: true) { (fines) in
         }
-        
-        if !AppTheme.isTargetLunaR_OR_Nevo(){
-            self.view.backgroundColor = UIColor.getGreyColor()
-            leftItem.tintColor = UIColor.getBaseColor()
-            rightItem.tintColor = UIColor.getBaseColor()
-        }else{
-            self.view.backgroundColor = UIColor.white
-        }
-        
-        // MARK: - SET WATCH_ID NOTIFICATION
-        _ = SwiftEventBus.onMainThread(self, name: EVENT_BUS_WATCHID_DIDCHANGE_KEY) { (notification) in
-            //let dict:[String:Int] = notification.userInfo as! [String : Int]
-        }
     }
-    
-    override func viewDidLayoutSubviews() {
-        if titleView == nil {
-            self.initTitleView()
-            self.bulidPageControl()
-        }
-    }
-    
-    deinit {
-        SwiftEventBus.unregister(self, name: EVENT_BUS_WATCHID_DIDCHANGE_KEY)
-    }
-    
     
     func leftBarButtonAction(_ rightBar:UIBarButtonItem) {
         let videoPlay:VideoPlayController = VideoPlayController()

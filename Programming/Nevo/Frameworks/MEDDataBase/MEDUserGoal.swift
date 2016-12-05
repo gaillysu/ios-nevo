@@ -25,8 +25,6 @@ class MEDUserGoal: MEDBaseModel {
     class func defaultUserGoal() {
         //Start the logo for the first time
         if(!UserDefaults.standard.bool(forKey: "DefaultUserGoalLaunched")){
-            UserDefaults.standard.set(true, forKey: "DefaultUserGoalLaunched")
-            UserDefaults.standard.set(true, forKey: "firstDefaultUserGoal")
             let presetGoal:[Int] = [7000, 10000, 20000]
             let labelArray:[String] = ["Light","Moderate","Heavy"]
             for (index,value) in presetGoal.enumerated() {
@@ -36,6 +34,9 @@ class MEDUserGoal: MEDBaseModel {
                 userGoal.status = true
                 _ = userGoal.add()
             }
+            
+            UserDefaults.standard.set(true, forKey: "DefaultUserGoalLaunched")
+            UserDefaults.standard.set(true, forKey: "firstDefaultUserGoal")
         }else{
             UserDefaults.standard.set(false, forKey: "firstDefaultUserGoal")
         }

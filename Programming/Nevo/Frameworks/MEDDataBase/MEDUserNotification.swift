@@ -31,8 +31,6 @@ class MEDUserNotification:MEDBaseModel {
     
     class func defaultNotificationColor() {
         if(!UserDefaults.standard.bool(forKey: "DefaultNotificationLaunched")){
-            UserDefaults.standard.set(true, forKey: "DefaultNotificationLaunched")
-            UserDefaults.standard.set(true, forKey: "firstDefaultNotification")
             let fileResources = AppTheme.GET_FIRMWARE_FILES("NotificationAppID")
             let notNevoAppID = ["com.tencent.mqq","com.atebits.Tweetie2","com.burbn.instagram","com.facebook.Messenger"]
             let url:URL = fileResources[0] as! URL
@@ -46,7 +44,7 @@ class MEDUserNotification:MEDBaseModel {
                         var isNotNevo:Bool = true
                         
                         if AppTheme.isTargetLunaR_OR_Nevo() {
-                            for (index2,value2) in notNevoAppID.enumerated() {
+                            for value2 in notNevoAppID {
                                 if notificationDict["bundleId"]!.stringValue == value2 {
                                     isNotNevo = false;
                                 }
@@ -73,6 +71,8 @@ class MEDUserNotification:MEDBaseModel {
                     }
                 }
             }
+            UserDefaults.standard.set(true, forKey: "DefaultNotificationLaunched")
+            UserDefaults.standard.set(true, forKey: "firstDefaultNotification")
         }else{
             UserDefaults.standard.set(false, forKey: "firstDefaultNotification")
         }

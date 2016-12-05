@@ -642,7 +642,7 @@ extension AppDelegate {
             let userProfile:MEDUserProfile = login[0] as! MEDUserProfile
             let uidString:String = "\(userProfile.uid)"
             let keys:String = date.stringFromFormat("yyyyMMddHHmmss", locale: DateFormatter().locale)+uidString
-            let solar = SolarHarvest.getFilter("key = \(keys)")
+            let solar = SolarHarvest.getFilter("key = '\(keys)'")
             if solar.count == 0 {
                 let solarTime:SolarHarvest = SolarHarvest()
                 solarTime.key = keys
@@ -653,11 +653,13 @@ extension AppDelegate {
                 _ = solarTime.add()
             }else{
                 let solarTime:SolarHarvest = solar[0] as! SolarHarvest
-                solarTime.date = date.timeIntervalSince1970
-                solarTime.solarTotalTime = thispacket.getTotalHarvestTime()
-                solarTime.solarHourlyTime = "\(AppTheme.toJSONString(thispacket.getHourlyHarestTime() as AnyObject!))"
-                solarTime.uid = userProfile.uid;
-                _ = solarTime.update()
+                let realm = try! Realm()
+                try! realm.write {
+                    solarTime.date = date.timeIntervalSince1970
+                    solarTime.solarTotalTime = thispacket.getTotalHarvestTime()
+                    solarTime.solarHourlyTime = "\(AppTheme.toJSONString(thispacket.getHourlyHarestTime() as AnyObject!))"
+                    solarTime.uid = userProfile.uid;
+                }
             }
         }else{
             let keys:String = date.stringFromFormat("yyyyMMddHHmmss", locale: DateFormatter().locale)

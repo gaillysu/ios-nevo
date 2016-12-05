@@ -28,8 +28,6 @@ class MEDUserAlarm:MEDBaseModel {
     class func defaultAlarm() {
         //Start the logo for the first time
         if(!UserDefaults.standard.bool(forKey: "DefaultAlarmLaunched")){
-            UserDefaults.standard.set(true, forKey: "DefaultAlarmLaunched")
-            UserDefaults.standard.set(true, forKey: "firstDefaultAlarm")
             let currentDate:Date = Date()
             let date1:Date = Date.date(year: currentDate.year, month: currentDate.minute, day: currentDate.day, hour: 8, minute: 0, second: 0)
             let date2:Date = Date.date(year: currentDate.year, month: currentDate.minute, day: currentDate.day, hour: 9, minute: 0, second: 0)
@@ -44,6 +42,8 @@ class MEDUserAlarm:MEDBaseModel {
                 alarm.type = 0
                 _ = alarm.add()
             }
+            UserDefaults.standard.set(true, forKey: "DefaultAlarmLaunched")
+            UserDefaults.standard.set(true, forKey: "firstDefaultAlarm")
         }else{
             UserDefaults.standard.set(false, forKey: "firstDefaultAlarm")
         }
