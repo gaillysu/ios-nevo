@@ -21,7 +21,6 @@ let SELECTED_CALENDAR_NOTIFICATION = "SELECTED_CALENDAR_NOTIFICATION"
 private let CALENDAR_VIEW_TAG = 1800
 
 class PageViewController: UIPageViewController,UIActionSheetDelegate {
-    fileprivate var realm:Realm?
     fileprivate var goalArray:[Int] = []
     var calendarView:CVCalendarView?
     var menuView:CVCalendarMenuView?
@@ -37,8 +36,6 @@ class PageViewController: UIPageViewController,UIActionSheetDelegate {
             self.extendedLayoutIncludesOpaqueBars = false;
             self.modalPresentationCapturesStatusBarAppearance = false;
         }
-        
-        realm = try! Realm()
         
         let viewController1 = StepGoalSetingController()
         viewController1.view.tag = 0
@@ -190,7 +187,8 @@ class PageViewController: UIPageViewController,UIActionSheetDelegate {
 
 extension PageViewController:WorldClockDidSelectedDelegate{
     func didSelectedLocalTimeZone(_ cityId:Int){
-        let citiesArray:[City] = Array(realm!.objects(City.self).filter("selected = true"))
+        let realm = try! Realm()
+        let citiesArray:[City] = Array(realm.objects(City.self).filter("selected = true"))
         let city = citiesArray[0]
         
         let solar = Solar(latitude: city.lat,

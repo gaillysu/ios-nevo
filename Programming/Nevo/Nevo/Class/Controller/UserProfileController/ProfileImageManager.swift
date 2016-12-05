@@ -15,13 +15,12 @@ public class ProfileImageManager {
     }
     
     public func save(image:UIImage) {
-        _ = AppTheme.KeyedArchiverName(NevoAllKeys.MEDAvatarKeyAfterSave() as NSString, andObject: image)
+        _ = AppTheme.KeyedArchiverName(NevoAllKeys.MEDAvatarKeyAfterSave(), andObject: image)
     }
     
     public func getImage() -> UIImage? {
-        let resultArray:NSArray = AppTheme.LoadKeyedArchiverName(NevoAllKeys.MEDAvatarKeyAfterSave() as NSString) as! NSArray
-        if resultArray.count > 0 {
-            return resultArray.object(at: 0) as? UIImage
+        if let resultArray = AppTheme.LoadKeyedArchiverName(NevoAllKeys.MEDAvatarKeyAfterSave()) {
+            return resultArray as? UIImage
         } else {
             return nil
         }

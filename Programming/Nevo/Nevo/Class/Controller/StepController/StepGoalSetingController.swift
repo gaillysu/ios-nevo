@@ -115,8 +115,7 @@ class StepGoalSetingController: PublicClassController,ClockRefreshDelegate {
             })
             self.collectionView.reloadData()
             //TODAY_DATE_CACHE
-            UserDefaults.standard.set([TODAY_DATE_CACHE:dailySteps,"DATE":Date()],forKey:TODAY_DATE_CACHE)
-            UserDefaults.standard.synchronize()
+            _ = AppTheme.KeyedArchiverName(TODAY_DATE_CACHE, andObject: [TODAY_DATE_CACHE:dailySteps,"DATE":Date().stringFromFormat("YYYY/MM/dd")])
         }
         
         _ = SwiftEventBus.onMainThread(self, name: EVENT_BUS_END_BIG_SYNCACTIVITY) { (notification) in
@@ -162,24 +161,6 @@ class StepGoalSetingController: PublicClassController,ClockRefreshDelegate {
 
 // MARK: - Events handle
 extension StepGoalSetingController {
-    /**
-     GET Archiver "contentTArray"
-     */
-    func getContentTArray() {
-        let dataArray:NSArray = AppTheme.LoadKeyedArchiverName(StepsGoalKey as NSString) as! NSArray
-        if(dataArray.count>0) {
-            let date:TimeInterval = (dataArray[1] as! String).dateFromFormat("YYYY/MM/dd", locale: DateFormatter().locale)!.timeIntervalSince1970
-            if(date != Date.date(year: Date().year, month: Date().month, day: Date().day).timeIntervalSince1970){ return }
-            
-            contentTArray = (AppTheme.LoadKeyedArchiverName(StepsGoalKey as NSString) as! NSArray)[0] as! [String]
-            let dailyStepGoal:Int = NSString(string: contentTArray[2]).integerValue
-            let dailySteps:Int = NSString(string: contentTArray[1]).integerValue
-            let percent :Float = Float(dailySteps)/Float(dailyStepGoal)
-            
-            self.setProgress(percent, dailySteps: dailySteps, dailyStepGoal: dailyStepGoal)
-            collectionView?.reloadData()
-        }
-    }
     
     /**
      Archiver "contentTArray"
@@ -216,8 +197,8 @@ extension StepGoalSetingController {
 // MARK: - Private function
 extension StepGoalSetingController {
     func getTodayCacheData() {
-        if UserDefaults.standard.object(forKey: TODAY_DATE_CACHE) != nil {
-            let dataCache:[String:Any] = UserDefaults.standard.object(forKey: TODAY_DATE_CACHE) as! [String : Any]
+        if let value = AppTheme.LoadKeyedArchiverName(TODAY_DATE_CACHE) {
+            let dataCache:[String:Any] = value as! [String : Any]
             let date:Date = dataCache["DATE"] as! Date
             if date.day == Date().day {
                 let dailySteps:Int = dataCache[TODAY_DATE_CACHE] as! Int

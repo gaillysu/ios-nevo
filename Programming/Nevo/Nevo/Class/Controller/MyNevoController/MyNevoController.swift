@@ -39,7 +39,7 @@ class MyNevoController: UITableViewController,UIAlertViewDelegate {
         _ = SwiftEventBus.onMainThread(self, name: EVENT_BUS_RSSI_VALUE) { (notification) in
             let number:NSNumber = notification.object as! NSNumber
             XCGLogger.default.debug("Red RSSI Value:\(number)")
-            if(number.intValue < -85){
+            if(number.intValue < -95){
                 if(self.rssialert==nil){
                     self.rssialert = UIAlertView(title: NSLocalizedString("Unstable connection ensure", comment: ""), message:NSLocalizedString("Unstable connection ensure nevo is on and in range", comment: "") , delegate: nil, cancelButtonTitle: nil)
                     self.rssialert?.show()
@@ -172,11 +172,11 @@ class MyNevoController: UITableViewController,UIAlertViewDelegate {
         switch ((indexPath as NSIndexPath).row){
         case 0:
             if((AppDelegate.getAppDelegate().getSoftwareVersion() < Float(buildin_firmware_version)) && (AppDelegate.getAppDelegate().getFirmwareVersion() < Float(buildin_software_version))){
-                detailString = "MCU:\(AppDelegate.getAppDelegate().getSoftwareVersion()) BLE:\(AppDelegate.getAppDelegate().getFirmwareVersion())"
-            }else{
                 detailString = "There is an update available!"
                 NSLog("MCU:\(AppDelegate.getAppDelegate().getSoftwareVersion()) BLE:\(AppDelegate.getAppDelegate().getFirmwareVersion())")
                 isUpdate = true
+            }else{
+                detailString = "MCU:\(AppDelegate.getAppDelegate().getSoftwareVersion()) BLE:\(AppDelegate.getAppDelegate().getFirmwareVersion())"
             }
         case 1:
             switch (currentBattery){

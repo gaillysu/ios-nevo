@@ -280,13 +280,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
             if(packet.getHeader() == SetCardioRequest.HEADER()) {
                 //step5: sync the notification setting, if remove nevo's battery, the nevo notification reset, so here need sync it
                 var mNotificationSettingArray:[NotificationSetting] = []
-                let notArray:NSArray = UserNotification.getAll()
+                let notArray = MEDUserNotification.getAll()
                 let notificationTypeArray:[NotificationType] = [NotificationType.call, NotificationType.email, NotificationType.facebook, NotificationType.sms, NotificationType.wechat]
                 for notificationType in notificationTypeArray {
                     for model in notArray{
-                        let notification:UserNotification = model as! UserNotification
-                        if(notification.NotificationType == notificationType.rawValue as String){
-                            let setting:NotificationSetting = NotificationSetting(type: notificationType, clock: notification.clock, color: 0, states:notification.status, packet:" ", appName:"")
+                        let notification:MEDUserNotification = model as! MEDUserNotification
+                        if(notification.notificationType == notificationType.rawValue as String){
+                            let setting:NotificationSetting = NotificationSetting(type: notificationType, clock: notification.clock, color: 0, states:notification.isAddWatch, packet:" ", appName:"")
                             mNotificationSettingArray.append(setting)
                             break
                         }

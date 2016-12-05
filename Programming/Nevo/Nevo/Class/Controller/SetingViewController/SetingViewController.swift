@@ -307,10 +307,8 @@ class SetingViewController: UIViewController,ButtonManagerCallBack,UIAlertViewDe
                 let usericonImage = UIImage(named: "usericon")
                 (cell as! SetingInfoCell).avatarImageView.image = usericonImage
                 
-                let resultArray:NSArray = AppTheme.LoadKeyedArchiverName(NevoAllKeys.MEDAvatarKeyAfterSave() as NSString) as! NSArray
-                
-                if resultArray.count > 0 {
-                    if let avatar = resultArray.object(at: 0) as? UIImage {
+                if let resultArray = AppTheme.LoadKeyedArchiverName(NevoAllKeys.MEDAvatarKeyAfterSave()) {
+                    if let avatar = resultArray as? UIImage {
                         (cell as! SetingInfoCell).avatarImageView.image = avatar
                     }
                 }

@@ -123,21 +123,16 @@ class AppTheme {
     *	@brief	The archive All current data
     *
     */
-    class func KeyedArchiverName(_ name:NSString,andObject object:AnyObject) ->Bool{
-        var objectArray:[AnyObject] = [object]
-        let senddate:Date = Date()
-        let dateformatter:DateFormatter = DateFormatter()
-
-        dateformatter.dateFormat = "YYYY/MM/dd"// HH:mm:ss
-        let locationString:NSString = dateformatter.string(from: senddate) as NSString
-        objectArray.append(locationString)
-        NSLog("locationString:%@",locationString);
+    class func KeyedArchiverName(_ name:String,andObject object:Any) ->Bool{
+        let date:Date = Date()
+        let locationString:String = date.stringFromFormat("YYYY/MM/dd")
+        XCGLogger.default.debug("locationString:\(locationString)");
 
         let pathArray = NSSearchPathForDirectoriesInDomains(.documentDirectory,.userDomainMask,true)
-        let Path:NSString = (pathArray as NSArray).object(at: 0) as! NSString
-
-        let filename:NSString = Path.appendingPathComponent(name as String) as NSString
-        let iswrite:Bool = NSKeyedArchiver.archiveRootObject(objectArray, toFile: filename as String)
+        let path:String = pathArray[0]
+        let filename:String = path.appending("Archiver_cache/\(name)")
+            //Path.appendingPathComponent( as String) as NSString
+        let iswrite:Bool = NSKeyedArchiver.archiveRootObject(object, toFile: filename as String)
         return iswrite
     }
 
@@ -149,18 +144,18 @@ class AppTheme {
 
      :returns: Archiver data
      */
-    class func LoadKeyedArchiverName(_ name:NSString) ->AnyObject{
+    class func LoadKeyedArchiverName(_ name:String) ->Any?{
         let pathArray = NSSearchPathForDirectoriesInDomains(.documentDirectory,.userDomainMask,true)
-        let Path:NSString = (pathArray as NSArray).object(at: 0) as! NSString
+        let path:String = pathArray[0]
 
-        let filename:NSString = Path.appendingPathComponent(name as String) as NSString
-
-        let flierManager:Bool = FileManager.default.fileExists(atPath: filename as String)
+        let filename:String = path.appending("Archiver_Cache/\(name)")
+            //Path.appendingPathComponent(name as String) as NSString
+        let flierManager:Bool = FileManager.default.fileExists(atPath: filename)
         if(flierManager){
-            let objectArr = NSKeyedUnarchiver.unarchiveObject(withFile: filename as String)!
-            return objectArr as AnyObject
+            let objectArr = NSKeyedUnarchiver.unarchiveObject(withFile: filename)
+            return objectArr
         }
-        return [] as AnyObject
+        return nil
     }
 
     /**

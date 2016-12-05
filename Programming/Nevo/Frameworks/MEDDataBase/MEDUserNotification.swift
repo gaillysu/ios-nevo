@@ -34,6 +34,7 @@ class MEDUserNotification:MEDBaseModel {
             UserDefaults.standard.set(true, forKey: "DefaultNotificationLaunched")
             UserDefaults.standard.set(true, forKey: "firstDefaultNotification")
             let fileResources = AppTheme.GET_FIRMWARE_FILES("NotificationAppID")
+            let notNevoAppID = ["com.tencent.mqq","com.atebits.Tweetie2","com.burbn.instagram","com.facebook.Messenger"]
             let url:URL = fileResources[0] as! URL
             let localDict:NSDictionary = NSDictionary(contentsOf: url)!
             for (key,value) in localDict {
@@ -42,21 +43,33 @@ class MEDUserNotification:MEDBaseModel {
                     var indeValue:Int = 0
                     for (key1,value1) in valueJson {
                         let notificationDict = value1.dictionaryValue
-                        let userNotification:MEDUserNotification = MEDUserNotification()
-                        userNotification.key = notificationDict["bundleId"]!.stringValue
-                        if indeValue>5 {
-                            userNotification.clock = 12
-                        }else{
-                            userNotification.clock = (indeValue+1)*2
+                        var isNotNevo:Bool = true
+                        
+                        if AppTheme.isTargetLunaR_OR_Nevo() {
+                            for (index2,value2) in notNevoAppID.enumerated() {
+                                if notificationDict["bundleId"]!.stringValue == value2 {
+                                    isNotNevo = false;
+                                }
+                            }
                         }
-                        userNotification.isAddWatch = true
-                        userNotification.appName = key1
-                        userNotification.notificationType = key1
-                        userNotification.receiveDate = Date().timeIntervalSince1970
-                        userNotification.appid = notificationDict["bundleId"]!.stringValue
-                        userNotification.deleteFlag = false
-                        _ = userNotification.add()
-                        indeValue+=1
+                        
+                        if isNotNevo {
+                            let userNotification:MEDUserNotification = MEDUserNotification()
+                            userNotification.key = notificationDict["bundleId"]!.stringValue
+                            if indeValue>5 {
+                                userNotification.clock = 12
+                            }else{
+                                userNotification.clock = (indeValue+1)*2
+                            }
+                            userNotification.isAddWatch = true
+                            userNotification.appName = key1
+                            userNotification.notificationType = key1
+                            userNotification.receiveDate = Date().timeIntervalSince1970
+                            userNotification.appid = notificationDict["bundleId"]!.stringValue
+                            userNotification.deleteFlag = false
+                            _ = userNotification.add()
+                            indeValue+=1
+                        }
                     }
                 }
             }
