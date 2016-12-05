@@ -182,11 +182,16 @@ extension SelectedNotificationTypeController:AddPacketToWatchDelegate {
                 v.edges.equalToSuperview()
             })
             
-            deleteLabel.text = "Delete Notification"
+            deleteLabel.font = UIFont(name: "Raleway", size: 16)
+            deleteLabel.text = NSLocalizedString("Delete Notification", comment: "")
             deleteLabel.textAlignment = .center
             
             deleteLabel.backgroundColor = UIColor.getGreyColor()
             deleteLabel.textColor = UIColor.white
+            if AppTheme.isTargetLunaR_OR_Nevo() {
+                deleteLabel.backgroundColor = UIColor.white
+                deleteLabel.textColor = UIColor.black
+            }
             
             return cell!
         }
