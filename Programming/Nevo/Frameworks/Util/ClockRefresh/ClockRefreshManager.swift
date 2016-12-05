@@ -45,6 +45,10 @@ class ClockRefreshManager: NSObject {
             if objectDelegate is StepsHistoryViewController {
                 return
             }
+            
+            if objectDelegate is StepGoalSetingController {
+                return
+            }
         }
         refreshObject.append(delegate)
     }

@@ -179,6 +179,7 @@ class SetingViewController: UIViewController,ButtonManagerCallBack,UIAlertViewDe
                 let alertAction:AlertAction = AlertAction(title: NSLocalizedString("Cancel", comment: ""), style: UIAlertActionStyle.cancel, handler: { (alert) -> Void in
                     
                 })
+                alertAction.setValue(UIColor.getBaseColor(), forKey: "titleTextColor")
                 actionSheet.addAction(alertAction)
                 
                 let alertAction2:AlertAction = AlertAction(title: NSLocalizedString("forget", comment: ""), style: UIAlertActionStyle.default, handler: { ( alert) -> Void in
@@ -196,6 +197,7 @@ class SetingViewController: UIViewController,ButtonManagerCallBack,UIAlertViewDe
                         UIApplication.shared.keyWindow?.rootViewController = nav
                     })
                 })
+                alertAction2.setValue(UIColor.getBaseColor(), forKey: "titleTextColor")
                 actionSheet.addAction(alertAction2)
                 
                 /// Theme adjust
@@ -233,6 +235,7 @@ class SetingViewController: UIViewController,ButtonManagerCallBack,UIAlertViewDe
                 dialogController.addAction(confirmAction)
                 
                 let cancelAction = AlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil)
+                cancelAction.setValue(UIColor.getBaseColor(), forKey: "titleTextColor")
                 dialogController.addAction(cancelAction)
                 
                 /// Theme adjust

@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import XCGLogger
 
 class UserProfileCell: UITableViewCell {
     enum `Type`{
@@ -92,7 +92,8 @@ extension UserProfileCell: UITextFieldDelegate {
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         if keyBoardType == Type.date {
-            editCellTextField?(cellIndex,textField.text!.components(separatedBy: " ")[1])
+            XCGLogger.default.debug("textField.text:\(textField.text!)")
+            editCellTextField?(cellIndex,textField.text!)
         }else{
             editCellTextField?(cellIndex,textField.text!)
         }
