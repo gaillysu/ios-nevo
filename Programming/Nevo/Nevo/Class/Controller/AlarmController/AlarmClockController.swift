@@ -592,6 +592,7 @@ class AlarmClockController: UITableViewController,AddAlarmDelegate {
                 }
             }
 
+            let willAlarmStatus = willAlarm!.status
             if(willAlarm!.remove()){
                 // 如果删除某一个闹钟后, 如果需要删除 tableview 中 section, 就需要执行 deleteSections 方法
                 // if you delete the last one of one section, you need use "deleteSections" instead of "deleteRows"
@@ -608,7 +609,7 @@ class AlarmClockController: UITableViewController,AddAlarmDelegate {
                 }
 
                 //Only delete state switch on will be synchronized to watch
-                if(willAlarm!.status) {
+                if(willAlarmStatus) {
                     if(AppDelegate.getAppDelegate().isConnected()){
                         for alarm in alarmArray {
                             let newAlarm:NewAlarm = alarm
