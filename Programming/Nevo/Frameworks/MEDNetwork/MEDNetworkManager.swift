@@ -19,7 +19,13 @@ class MEDNetworkManager: NSObject {
     class func execute(request :MEDNetworkRequest){
         if let urlPart = request.url, let encoding = request.encoding, let method = request.method {
             let url = MEDNetworkManager.baseUrl + urlPart
-            Alamofire.request(url, method: method, parameters: request.parameters, encoding: encoding, headers: request.headers).responseJSON(completionHandler: { response in
+            
+            let configuration = URLSessionConfiguration.default
+            configuration.timeoutIntervalForRequest = 30
+            
+            let sessionManager = Alamofire.SessionManager(configuration: configuration)
+            
+            sessionManager.request(url, method: method, parameters: request.parameters, encoding: encoding, headers: request.headers).responseJSON(completionHandler: { response in
                  let result = isValidResponse(response: response)
                 request.response(result.success, result.json, result.error)
             })
