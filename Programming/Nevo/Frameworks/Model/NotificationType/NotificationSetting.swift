@@ -8,6 +8,11 @@
 
 import UIKit
 
+public enum HexColorError : Error {
+    case isNotColor,  //在Nevo下面返回的错误
+    isNotValueNull    //获取颜色的时候属性值是空的
+}
+
 class NotificationSetting: NSObject {
     fileprivate var mStates:Bool = true
     fileprivate let mType:NotificationType
@@ -15,13 +20,14 @@ class NotificationSetting: NSObject {
     fileprivate var mColor:NSNumber = 0
     fileprivate var mPacket:String = ""
     fileprivate var mAppName:String = ""
+    fileprivate var hexColor:String  = ""
     var typeName:String {
         get {
             return self.mType.rawValue as String
         }
     }
     
-    init(type:NotificationType, clock:Int , color:NSNumber,states:Bool, packet:String, appName:String){
+    init(type:NotificationType, clock:Int , color:String?,states:Bool, packet:String, appName:String){
         mType = type
         super.init()
         mClock = clock
@@ -29,6 +35,10 @@ class NotificationSetting: NSObject {
         mStates = states
         mPacket = packet
         mAppName = appName
+        
+        if color != nil {
+            hexColor = color!
+        }
     }
 
     fileprivate func replaceColor(_ clock:Int)->UInt32{
@@ -133,6 +143,22 @@ class NotificationSetting: NSObject {
             ledColor = ""
         }
         return ledColor
+    }
+    
+    func getHexColor() throws -> String{
+        if AppTheme.isTargetLunaR_OR_Nevo() {
+            throw HexColorError.isNotColor
+        }
+        return hexColor;
+    }
+    
+    func setHexColor(_ color:String) throws{
+        if AppTheme.isTargetLunaR_OR_Nevo() {
+            throw HexColorError.isNotColor
+            
+        }else{
+            hexColor = color;
+        }
     }
 }
 
