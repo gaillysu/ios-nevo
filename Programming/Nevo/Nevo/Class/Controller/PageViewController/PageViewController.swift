@@ -114,7 +114,7 @@ class PageViewController: UIPageViewController,UIActionSheetDelegate {
         
         self.delegate = self
         self.dataSource = self;
-        self.setViewControllers([pagingControllers[0]], direction: UIPageViewControllerNavigationDirection.forward, animated: true) { (fines) in
+        self.setViewControllers([pagingControllers[0]], direction: UIPageViewControllerNavigationDirection.forward, animated: false) { (fines) in
         }
     }
     
