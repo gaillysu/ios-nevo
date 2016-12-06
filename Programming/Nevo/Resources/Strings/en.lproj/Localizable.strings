@@ -219,3 +219,6 @@
 "Edit goal"="Edit goal";
 "set_city"="Set city";
 "world_clock"="Worldclock";
+
+// Notification Color
+"color"="Color";

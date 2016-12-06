@@ -59,7 +59,7 @@
 "RED"="红色";
 "BLUE"="蓝色";
 "LIGHTGREEN"="浅绿";
-"YELLOW"="黄";
+"YELLOW"="黄色";
 "ORANGE"="橙色";
 "GREEN"="绿色";
 "no_data"="没有数据";
@@ -225,3 +225,6 @@
 "Edit goal"="编辑目标";
 "set_city"="设置城市";
 "world_clock"="世界时钟";
+
+// Notification Color
+"color"="颜色";

@@ -75,6 +75,7 @@ class SelectedNotificationView: UITableView {
         }
         
         if !AppTheme.isTargetLunaR_OR_Nevo() {
+            endCell.accessoryType = .disclosureIndicator
         }else{
             endCell.textLabel!.text = cellTitle;
         }

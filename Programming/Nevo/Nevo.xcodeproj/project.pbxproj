@@ -802,6 +802,16 @@
 		660C16D11DEC25DA00544F56 /* UIImage+MEDExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 660C16CF1DEC25DA00544F56 /* UIImage+MEDExtension.swift */; };
 		660C16D21DEC341200544F56 /* GetotalAppIDPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6165A63B1DEBDDD100F7A3E6 /* GetotalAppIDPacket.swift */; };
 		660C16D31DEC341800544F56 /* DeleteAllAppIDPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61EF09211DDE9EB7003C2EA5 /* DeleteAllAppIDPacket.swift */; };
+		66154B8D1DF68BC500973A9E /* NotiColorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66154B8C1DF68BC500973A9E /* NotiColorController.swift */; };
+		66154B8E1DF68BC500973A9E /* NotiColorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66154B8C1DF68BC500973A9E /* NotiColorController.swift */; };
+		66154BA51DF6A2D000973A9E /* NotiColorDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66154BA41DF6A2D000973A9E /* NotiColorDetailController.swift */; };
+		66154BA61DF6A2D000973A9E /* NotiColorDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66154BA41DF6A2D000973A9E /* NotiColorDetailController.swift */; };
+		66154BA91DF6AA4D00973A9E /* NotiColorEditableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66154BA71DF6AA4D00973A9E /* NotiColorEditableCell.swift */; };
+		66154BAA1DF6AA4D00973A9E /* NotiColorEditableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66154BA71DF6AA4D00973A9E /* NotiColorEditableCell.swift */; };
+		66154BAB1DF6AA4D00973A9E /* NotiColorEditableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 66154BA81DF6AA4D00973A9E /* NotiColorEditableCell.xib */; };
+		66154BAC1DF6AA4D00973A9E /* NotiColorEditableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 66154BA81DF6AA4D00973A9E /* NotiColorEditableCell.xib */; };
+		66154BAE1DF6B7D400973A9E /* MEDNotificationColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66154BAD1DF6B7D400973A9E /* MEDNotificationColor.swift */; };
+		66154BAF1DF6B7D400973A9E /* MEDNotificationColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66154BAD1DF6B7D400973A9E /* MEDNotificationColor.swift */; };
 		662887521DC1E8BC00EC0983 /* MEDMRProgressOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 662887501DC1E8BC00EC0983 /* MEDMRProgressOverlayView.swift */; };
 		662B3CA91DEBD6E60014FA71 /* MEDAppInfoRequester.swift in Sources */ = {isa = PBXBuildFile; fileRef = 662B3CA81DEBD6E60014FA71 /* MEDAppInfoRequester.swift */; };
 		662B3CAA1DEBD6E60014FA71 /* MEDAppInfoRequester.swift in Sources */ = {isa = PBXBuildFile; fileRef = 662B3CA81DEBD6E60014FA71 /* MEDAppInfoRequester.swift */; };
@@ -1383,6 +1393,11 @@
 		61FC93F61DE80B2D000AE93C /* SolarHarvest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SolarHarvest.swift; sourceTree = "<group>"; };
 		61FC93FD1DE829DB000AE93C /* TaskQueue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskQueue.swift; sourceTree = "<group>"; };
 		660C16CF1DEC25DA00544F56 /* UIImage+MEDExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+MEDExtension.swift"; sourceTree = "<group>"; };
+		66154B8C1DF68BC500973A9E /* NotiColorController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotiColorController.swift; sourceTree = "<group>"; };
+		66154BA41DF6A2D000973A9E /* NotiColorDetailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotiColorDetailController.swift; sourceTree = "<group>"; };
+		66154BA71DF6AA4D00973A9E /* NotiColorEditableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotiColorEditableCell.swift; sourceTree = "<group>"; };
+		66154BA81DF6AA4D00973A9E /* NotiColorEditableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NotiColorEditableCell.xib; sourceTree = "<group>"; };
+		66154BAD1DF6B7D400973A9E /* MEDNotificationColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MEDNotificationColor.swift; sourceTree = "<group>"; };
 		662887501DC1E8BC00EC0983 /* MEDMRProgressOverlayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MEDMRProgressOverlayView.swift; sourceTree = "<group>"; };
 		662B3CA81DEBD6E60014FA71 /* MEDAppInfoRequester.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MEDAppInfoRequester.swift; sourceTree = "<group>"; };
 		662B3CAB1DEBD79A0014FA71 /* MEDAppInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MEDAppInfo.swift; sourceTree = "<group>"; };
@@ -1689,6 +1704,10 @@
 				0050D5431C28E0DB004F6F80 /* NotificationViewController.xib */,
 				0050D5441C28E0DB004F6F80 /* SelectedNotificationTypeController.swift */,
 				0050D5451C28E0DB004F6F80 /* SelectedNotificationTypeController.xib */,
+				66154B8C1DF68BC500973A9E /* NotiColorController.swift */,
+				66154BA41DF6A2D000973A9E /* NotiColorDetailController.swift */,
+				66154BA71DF6AA4D00973A9E /* NotiColorEditableCell.swift */,
+				66154BA81DF6AA4D00973A9E /* NotiColorEditableCell.xib */,
 			);
 			path = NotificationViewController;
 			sourceTree = "<group>";
@@ -2549,6 +2568,7 @@
 				61D1A8A71DD468A100B91BDD /* MEDUserProfile.swift */,
 				61D1A8A81DD468A100B91BDD /* MEDUserSleep.swift */,
 				61D1A8A91DD468A100B91BDD /* MEDUserSteps.swift */,
+				66154BAD1DF6B7D400973A9E /* MEDNotificationColor.swift */,
 			);
 			name = MEDModel;
 			sourceTree = "<group>";
@@ -3112,6 +3132,7 @@
 				00C826EB1DA5ECA700ECECEE /* SetingInfoCell.xib in Resources */,
 				00C826EC1DA5ECA700ECECEE /* SetingLoginCell.xib in Resources */,
 				00C826EE1DA5ECA700ECECEE /* SleepHistoryViewCell.xib in Resources */,
+				66154BAC1DF6AA4D00973A9E /* NotiColorEditableCell.xib in Resources */,
 				6173DF001DB0E93D002DF6AF /* SleepHistoricalViewController.xib in Resources */,
 				00C826F01DA5ECA700ECECEE /* StepGoalSetingController.xib in Resources */,
 				00C826F11DA5ECA700ECECEE /* StepGoalSetingViewCell.xib in Resources */,
@@ -3276,6 +3297,7 @@
 				61798C2E1DE58F280087891D /* DFUFirmware in Resources */,
 				0095DDA91D2E0D7D00F80BFD /* wacth_dial.png in Resources */,
 				0050D6941C28E1CD004F6F80 /* AddAlarmSystemCell.xib in Resources */,
+				66154BAB1DF6AA4D00973A9E /* NotiColorEditableCell.xib in Resources */,
 				0036EB0A1C48BA8300DCED46 /* tutorialone.png in Resources */,
 				00EC9DFB1C85838900280904 /* TutorialFiveViewController.xib in Resources */,
 				0089B0B01D6BFF250041148A /* SetingLoginCell.xib in Resources */,
@@ -3570,6 +3592,7 @@
 				66687CDB1DD9832800AD7F7D /* StepsCalButton.swift in Sources */,
 				6198EE2D1DC2090700FDD850 /* LunaRDailyTrackerInfoPacket.swift in Sources */,
 				00C826491DA5E04000ECECEE /* AnalysisStepsChartView.swift in Sources */,
+				66154BAF1DF6B7D400973A9E /* MEDNotificationColor.swift in Sources */,
 				6199AED51DDC593A00BEA140 /* GetNotificationAppIDPacket.swift in Sources */,
 				00C8264A1DA5E04000ECECEE /* AnalysisValueCell.swift in Sources */,
 				6199AED11DDC3BB900BEA140 /* GetTotalNotificationAppReuqest.swift in Sources */,
@@ -3600,6 +3623,7 @@
 				00C8265F1DA5E04000ECECEE /* UserProfileCell.swift in Sources */,
 				00C826601DA5E04000ECECEE /* UserProfileCell.xib in Sources */,
 				6688A6691DC981990078E636 /* MEDNetworkManager.swift in Sources */,
+				66154BAA1DF6AA4D00973A9E /* NotiColorEditableCell.swift in Sources */,
 				00C826611DA5E04000ECECEE /* LoginController.swift in Sources */,
 				00C826621DA5E04000ECECEE /* VideoPlayController.swift in Sources */,
 				619919201DC6E33200C75AE7 /* LunaROTAController.swift in Sources */,
@@ -3611,6 +3635,7 @@
 				00C826671DA5E04000ECECEE /* RepeatViewCell.xib in Sources */,
 				00C826681DA5E04000ECECEE /* AlarmClockVCell.swift in Sources */,
 				00C826691DA5E04000ECECEE /* AlarmClockVCell.xib in Sources */,
+				66154BA61DF6A2D000973A9E /* NotiColorDetailController.swift in Sources */,
 				00C8266A1DA5E04000ECECEE /* AlarmTypeController.swift in Sources */,
 				00C8266B1DA5E04000ECECEE /* AlarmTypeController.xib in Sources */,
 				00C8266C1DA5E04000ECECEE /* RepeatViewController.swift in Sources */,
@@ -3747,6 +3772,7 @@
 				00C8263C1DA5E01C00ECECEE /* AutocompleteField.swift in Sources */,
 				00C8263D1DA5E01C00ECECEE /* CircleProgressView.swift in Sources */,
 				00C8263E1DA5E01C00ECECEE /* NevoCircleProgressView.swift in Sources */,
+				66154B8E1DF68BC500973A9E /* NotiColorController.swift in Sources */,
 				00D4742B1D586D1600E2447E /* NevoAllKeys.swift in Sources */,
 				00D4742C1D586D1600E2447E /* CaloriesToHK.swift in Sources */,
 				00D4742D1D586D1600E2447E /* DailySteps.swift in Sources */,
@@ -4100,6 +4126,7 @@
 				611D42031DCAD97D003BC6E3 /* ConnectOtherAppsCell.xib in Sources */,
 				611D42091DCAD97D003BC6E3 /* UserHeader.swift in Sources */,
 				611D420A1DCAD97D003BC6E3 /* UserHeader.xib in Sources */,
+				66154BA51DF6A2D000973A9E /* NotiColorDetailController.swift in Sources */,
 				611D420B1DCAD97D003BC6E3 /* UserProfileController.swift in Sources */,
 				611D420C1DCAD97D003BC6E3 /* UserProfileController.xib in Sources */,
 				611D420D1DCAD97D003BC6E3 /* UserProfileCell.swift in Sources */,
@@ -4108,6 +4135,7 @@
 				611D42101DCAD97D003BC6E3 /* VideoPlayController.swift in Sources */,
 				611D42111DCAD97D003BC6E3 /* VideoPlayController.xib in Sources */,
 				611D42121DCAD97D003BC6E3 /* SupportViewController.swift in Sources */,
+				66154B8D1DF68BC500973A9E /* NotiColorController.swift in Sources */,
 				611D42131DCAD97D003BC6E3 /* SupportViewController.xib in Sources */,
 				611D42141DCAD97D003BC6E3 /* RepeatViewCell.swift in Sources */,
 				611D42151DCAD97D003BC6E3 /* RepeatViewCell.xib in Sources */,
@@ -4151,6 +4179,7 @@
 				611D42391DCAD97D003BC6E3 /* NevoOtaViewController.xib in Sources */,
 				611D423A1DCAD97D003BC6E3 /* LineColorCell.swift in Sources */,
 				611D423B1DCAD97D003BC6E3 /* LineColorCell.xib in Sources */,
+				66154BAE1DF6B7D400973A9E /* MEDNotificationColor.swift in Sources */,
 				66F260F41DE533EF0021BDBA /* MEDColorful.swift in Sources */,
 				611D423C1DCAD97D003BC6E3 /* NotificationClockCell.swift in Sources */,
 				611D423D1DCAD97D003BC6E3 /* NotificationClockCell.xib in Sources */,
@@ -4185,6 +4214,7 @@
 				611D42561DCAD97D003BC6E3 /* SleepHistoricalViewController.swift in Sources */,
 				611D42571DCAD97D003BC6E3 /* StepGoalSetingController.swift in Sources */,
 				611D42581DCAD97D003BC6E3 /* StepGoalSetingController.xib in Sources */,
+				66154BA91DF6AA4D00973A9E /* NotiColorEditableCell.swift in Sources */,
 				660C16D21DEC341200544F56 /* GetotalAppIDPacket.swift in Sources */,
 				611D42591DCAD97D003BC6E3 /* StepGoalSetingViewCell.swift in Sources */,
 				611D425A1DCAD97D003BC6E3 /* StepGoalSetingViewCell.xib in Sources */,

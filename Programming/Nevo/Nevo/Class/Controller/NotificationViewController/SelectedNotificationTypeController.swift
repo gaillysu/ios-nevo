@@ -8,6 +8,7 @@
 
 import UIKit
 import SnapKit
+import RealmSwift
 
 protocol SelectedNotificationDelegate {
     func didSelectedNotificationDelegate(_ clockIndex:Int,ntSwitchState:Bool,appid:String)
@@ -20,6 +21,7 @@ class SelectedNotificationTypeController: UITableViewController {
     fileprivate let colorArray:[String] = ["2 o'clock","4 o'clock","6 o'clock","8 o'clock","10 o'clock","12 o'clock"]
     var selectedDelegate:SelectedNotificationDelegate?
     var notSetting:NotificationSetting?
+    var notificationColor: MEDNotificationColor?
     
     fileprivate var isFirstLoadData: Bool = true
     
@@ -67,6 +69,14 @@ extension SelectedNotificationTypeController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
         tableView.deselectRow(at: indexPath, animated: true)
         if(indexPath.section == 2){
+            if !AppTheme.isTargetLunaR_OR_Nevo() {
+                let controller = NotiColorController()
+                controller.notificationColor = self.notificationColor
+                controller.notification = self.notSetting
+                navigationController?.pushViewController(controller, animated: true)
+                return
+            }
+            
             let cell:LineColorCell = tableView.cellForRow(at: indexPath) as! LineColorCell
             let image = UIImage(named: "notifications_check")
             cell.accessoryView = UIImageView(image: image)
@@ -110,7 +120,7 @@ extension SelectedNotificationTypeController:AddPacketToWatchDelegate {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if(section == 2){
-            return colorArray.count
+            return AppTheme.isTargetLunaR_OR_Nevo() ? colorArray.count : 1
         }
         return 1
     }
@@ -142,14 +152,32 @@ extension SelectedNotificationTypeController:AddPacketToWatchDelegate {
             }
             return cell
         case 2:
-            let cell = selectedNotificationView.getLineColorCell(indexPath, tableView: tableView, cellTitle: colorArray[indexPath.row], clockIndex: notSetting!.getClock())
+            var cell: UITableViewCell = selectedNotificationView.getLineColorCell(indexPath, tableView: tableView, cellTitle: colorArray[indexPath.row], clockIndex: notSetting!.getClock())
+            
+            if !AppTheme.isTargetLunaR_OR_Nevo() {
+                let realm = try! Realm()
+                let noti = realm.objects(MEDUserNotification.self).filter("appid = \(notSetting?.getPacket())").first
+                if let colorItem: MEDNotificationColor = realm.objects(MEDNotificationColor.self).filter("key = \(noti!.colorKey)").first {
+                    /// 只有一个cell，不用考虑重用
+                    cell = UITableViewCell.init()
+                    cell.accessoryType = .disclosureIndicator
+                    cell.imageView?.image = UIImage.dotImageWith(color: UIColor.init(rgba: colorItem.color), size: CGSize.init(width: 100, height: 100))
+                    cell.textLabel?.text = colorItem.name
+                    
+                    self.notificationColor = colorItem
+                } else {
+                    cell = UITableViewCell.init()
+                    cell.accessoryType = .disclosureIndicator
+                    cell.imageView?.image = UIImage.dotImageWith(color: UIColor.getBaseColor(), size: CGSize.init(width: 100, height: 100))
+                    cell.textLabel?.text = "Default Name"
+                }
+            }
             
             if !AppTheme.isTargetLunaR_OR_Nevo() {
                 cell.backgroundColor = UIColor.getGreyColor()
                 cell.contentView.backgroundColor = UIColor.getGreyColor()
                 cell.textLabel?.textColor = UIColor.white
             }
-            
             return cell
         default:
             var cell = tableView.dequeueReusableCell(withIdentifier: "kDeleteCellIdentifier")

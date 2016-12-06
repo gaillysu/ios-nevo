@@ -18,6 +18,9 @@ class MEDUserNotification:MEDBaseModel {
     dynamic var receiveDate:TimeInterval = 0
     dynamic var isAddWatch:Bool = false
     dynamic var deleteFlag:Bool = true
+    
+    dynamic var colorKey:String = ""
+    
     /***************主键可以自己设定设定后不可更改,后面的内容更新都需要根据主键操作*******************/
     dynamic var key:String = Date().stringFromFormat("yyyyMMddHHmmss", locale: DateFormatter().locale)
     
@@ -77,5 +80,4 @@ class MEDUserNotification:MEDBaseModel {
             UserDefaults.standard.set(false, forKey: "firstDefaultNotification")
         }
     }
-    
 }

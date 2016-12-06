@@ -223,3 +223,6 @@
 "Edit goal"="编辑目标";
 "set_city"="设置城市";
 "world_clock"="世界时钟";
+
+// Notification Color
+"color"="颜色";
