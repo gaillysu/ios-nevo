@@ -57,9 +57,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
     fileprivate var watchModel:String = "Paris"
     fileprivate var isSync:Bool = true; // syc state
     fileprivate var getWacthNameTimer:Timer?
-    
-    fileprivate var longitude:Double = 0
-    fileprivate var latitude:Double = 0
+    //Default Hong Kong
+    fileprivate var longitude:Double = 114.1670679
+    fileprivate var latitude:Double = 22.2782551
     
     var isFirsttimeLaunch: Bool {
         get {
@@ -439,7 +439,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                 let dailyStepGoal:Int = thispacket.getDailyStepsGoal()
                 let percent :Float = Float(dailySteps)/Float(dailyStepGoal)
                 SwiftEventBus.post(EVENT_BUS_BEGIN_SMALL_SYNCACTIVITY, sender:["STEPS":dailySteps,"GOAL":dailyStepGoal,"PERCENT":percent] as AnyObject)
-                if getFirmwareVersion().integerValue >= buildin_firmware_version {
+                if getFirmwareVersion() >= Float(buildin_firmware_version) {
                     XCGLogger.default.debug("DailyStepsNevoPacket,steps:\(dailySteps),stepGoal:\(dailyStepGoal),getRTC:\(thispacket.getDateTimer().stringFromFormat("yyyy-MM-dd HH:mm:ss"))")
                 }
             }
@@ -484,14 +484,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
         }
     }
     
-    func firmwareVersionReceived(_ whichfirmware:DfuFirmwareTypes, version:NSString) {
+    func firmwareVersionReceived(_ whichfirmware:DfuFirmwareTypes, version:Float) {
         let mcuver = AppTheme.GET_SOFTWARE_VERSION()
         let blever = AppTheme.GET_FIRMWARE_VERSION()
         
         XCGLogger.default.debug("Build in software version: \(mcuver), firmware version: \(blever)")
         
-        if ((whichfirmware == DfuFirmwareTypes.softdevice  && version.integerValue < mcuver)
-            || (whichfirmware == DfuFirmwareTypes.application  && version.integerValue < blever)) {
+        if ((whichfirmware == DfuFirmwareTypes.softdevice  && version < Float(mcuver))
+            || (whichfirmware == DfuFirmwareTypes.application  && version < Float(blever))) {
             //for tutorial screen, don't popup update dialog
             if !mAlertUpdateFW {
                 mAlertUpdateFW = true
@@ -577,6 +577,11 @@ extension AppDelegate {
             LOCATION_MANAGER.didFailWithError = { error in
                 XCGLogger.default.debug("Location didFailWithError:\(error)")
             }
+        }else{
+            let banner:MEDBanner = MEDBanner(title: NSLocalizedString("Location Error", comment: ""), subtitle: NSLocalizedString("LunaR needs your location to set the sunset and sunrise time. ", comment: ""), image: nil, backgroundColor: UIColor.getBaseColor(), didTapBlock: {
+                
+            })
+            banner.show()
         }
     }
     

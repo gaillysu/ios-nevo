@@ -15,7 +15,10 @@ class LunaRDailyTrackerPacket: LunaRPacket {
         let month:Int = Int(NSData2Bytes(getPackets()[0])[4])
         let day:Int = Int(NSData2Bytes(getPackets()[0])[5])
         
-        let dateString:String = "\(year.to2String())\(month.to2String())\(day.to2String())"
+        var dateString:String = "\(year.to2String())\(month.to2String())\(day.to2String())"
+        if dateString.toInt() == 0 {
+            dateString = "20000101"
+        }
         return dateString.dateFromFormat("yyyyMMdd", locale: DateFormatter().locale)!
     }
     
