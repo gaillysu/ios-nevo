@@ -297,52 +297,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
             }
 
             if(packet.getHeader() == SetNortificationRequest.HEADER()) {
-                let alarmArray = UserAlarm.getAll()
-                var weakAlarm:[UserAlarm] = []
-                var sleepAlarm:[UserAlarm] = []
-                for value in alarmArray {
-                    let alarmType:UserAlarm = value as! UserAlarm
-                    if alarmType.type == 0 {
-                        weakAlarm.append(alarmType)
-                    }else{
-                        sleepAlarm.append(alarmType);
-                    }
-                }
                 
-                for index in 0 ..< 14{
-                    let date:Date = Date()
-                    let newAlarm:NewAlarm = NewAlarm(alarmhour: date.hour, alarmmin: date.minute, alarmNumber: index, alarmWeekday: 0)
-                    if(self.isConnected()){
-                        self.setNewAlarm(newAlarm)
-                    }
-                }
-                
-                let date:Date = Date()
-                for (index,Value) in weakAlarm.enumerated() {
-                    let alarm:UserAlarm = Value
-                    let alarmDay:Date = Date(timeIntervalSince1970: alarm.timer)
-                    if alarm.status {
-                        let newAlarm:NewAlarm = NewAlarm(alarmhour: alarmDay.hour, alarmmin: alarmDay.minute, alarmNumber: index, alarmWeekday: alarm.dayOfWeek)
-                        self.setNewAlarm(newAlarm)
-                    }
-                }
-                
-                for (index,Value) in sleepAlarm.enumerated() {
-                    let alarm:UserAlarm = Value
-                    let alarmDay:Date = Date(timeIntervalSince1970: alarm.timer)
-                    print("alarmDay:\(alarmDay),alarm:\(alarm.type,alarm.status,alarm.dayOfWeek,date.weekday)")
-                    if alarm.type == 1 && alarm.status && alarm.dayOfWeek == date.weekday{
-                        let newAlarm:NewAlarm = NewAlarm(alarmhour: alarmDay.hour, alarmmin: alarmDay.minute, alarmNumber: index+7, alarmWeekday: 0)
-                        self.setNewAlarm(newAlarm)
-                    }else{
-                        if alarm.status && alarm.dayOfWeek >= date.weekday{
-                            let newAlarm:NewAlarm = NewAlarm(alarmhour: alarmDay.hour, alarmmin: alarmDay.minute, alarmNumber: index+7, alarmWeekday: alarm.dayOfWeek)
-                            self.setNewAlarm(newAlarm)
-                        }
-                    }
-                }
-                //start sync data
-                //self.syncActivityData()
+                self.setNewAlarm()
             }
 
             if(packet.getHeader() == SetAlarmRequest.HEADER()) {
