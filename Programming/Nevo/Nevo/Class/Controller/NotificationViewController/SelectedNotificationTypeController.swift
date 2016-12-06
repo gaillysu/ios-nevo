@@ -137,36 +137,17 @@ extension SelectedNotificationTypeController:AddPacketToWatchDelegate {
             return allowCell
         case 1:
             let cell = selectedNotificationView.getNotificationClockCell(indexPath, tableView: tableView, title: "", clockIndex: notSetting!.getClock())
-            if notSetting!.getStates() {
-                cell.backgroundColor = UIColor.white
-                cell.isUserInteractionEnabled = true;
-                if !AppTheme.isTargetLunaR_OR_Nevo() {
-                    cell.backgroundColor = UIColor.getGreyColor()
-                }
-            }else{
-                cell.backgroundColor = UIColor.clear
-                cell.isUserInteractionEnabled = false;
+            if !AppTheme.isTargetLunaR_OR_Nevo() {
+                cell.backgroundColor = UIColor.getGreyColor()
             }
             return cell
         case 2:
             let cell = selectedNotificationView.getLineColorCell(indexPath, tableView: tableView, cellTitle: colorArray[indexPath.row], clockIndex: notSetting!.getClock())
             
-            if notSetting!.getStates() {
-                cell.backgroundColor = UIColor.white
-                cell.contentView.backgroundColor = UIColor.white
-                cell.textLabel?.textColor = UIColor.black
-                cell.accessoryView?.isHidden = false
-                cell.isUserInteractionEnabled = true
-                if !AppTheme.isTargetLunaR_OR_Nevo() {
-                    cell.backgroundColor = UIColor.getGreyColor()
-                    cell.contentView.backgroundColor = UIColor.getGreyColor()
-                    cell.textLabel?.textColor = UIColor.white
-                }
-            }else{
-                cell.backgroundColor = UIColor.clear
-                cell.contentView.backgroundColor = UIColor.clear
-                cell.accessoryView?.isHidden = true
-                cell.isUserInteractionEnabled = false
+            if !AppTheme.isTargetLunaR_OR_Nevo() {
+                cell.backgroundColor = UIColor.getGreyColor()
+                cell.contentView.backgroundColor = UIColor.getGreyColor()
+                cell.textLabel?.textColor = UIColor.white
             }
             
             return cell
