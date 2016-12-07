@@ -24,16 +24,28 @@ class SetNotificationAppIDRequest: NevoRequest {
         return 0x52
     }
     
-    init(number:Int,hexColor:String,appid:String,motorOnOff:Bool) throws {
+    init(number:Int,hexColor:String,appid:String,notiFictionOnOff:Bool,motorOnOff:Bool) throws {
         super.init()
         listNumber = number
         appidLength = appid.characters.count
         appidString = appid
         
         if (motorOnOff){
-            motorValue = UInt8(0x80&0xFF)
+            motorValue = UInt8(0x88&0xFF)
         }else{
             motorValue = UInt8(0x00&0xFF)
+        }
+        
+        if notiFictionOnOff {
+            var value = dec2bin(number: appidLength)
+            if value.characters.count<8 {
+                for _ in value.characters.count..<8 {
+                    value.insert("0", at: value.startIndex)
+                }
+            }
+            value.replaceSubrange(value.startIndex..<value.index(value.startIndex, offsetBy: 1), with: "1")
+            
+            appidLength = bin2dec(num: value)
         }
         
         let hexString: String = hexColor.substring(from: hexColor.characters.index(hexColor.startIndex, offsetBy: 1))

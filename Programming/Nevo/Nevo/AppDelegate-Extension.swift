@@ -68,12 +68,17 @@ extension AppDelegate {
         for (index,Value) in sleepAlarm.enumerated() {
             let alarm:MEDUserAlarm = Value
             let alarmDay:Date = Date(timeIntervalSince1970: alarm.timer)
-            print("alarmDay:\(alarmDay),alarm:\(alarm.type,alarm.status,alarm.alarmWeek,date.weekday)")
-            if alarm.type == 1 && alarm.status && alarm.alarmWeek == date.weekday{
-                let newAlarm:NewAlarm = NewAlarm(alarmhour: alarmDay.hour, alarmmin: alarmDay.minute, alarmNumber: index+7, alarmWeekday: 0)
-                sendRequest(SetNewAlarmRequest(alarm:newAlarm))
+            if alarm.status && alarm.alarmWeek == date.weekday {
+                let nowDate:Date = Date.date(year: Date().year, month: Date().month, day: Date().day, hour: alarmDay.hour, minute: alarmDay.minute, second: 0)
+                if nowDate.timeIntervalSince1970<Date().timeIntervalSince1970 {
+                    let newAlarm:NewAlarm = NewAlarm(alarmhour: alarmDay.hour, alarmmin: alarmDay.minute, alarmNumber: index+7, alarmWeekday: 0)
+                    sendRequest(SetNewAlarmRequest(alarm:newAlarm))
+                }else{
+                    let newAlarm:NewAlarm = NewAlarm(alarmhour: alarmDay.hour, alarmmin: alarmDay.minute, alarmNumber: index+7, alarmWeekday: alarm.alarmWeek)
+                    sendRequest(SetNewAlarmRequest(alarm:newAlarm))
+                }
             }else{
-                if alarm.status && alarm.alarmWeek >= date.weekday{
+                if alarm.status && alarm.alarmWeek > date.weekday {
                     let newAlarm:NewAlarm = NewAlarm(alarmhour: alarmDay.hour, alarmmin: alarmDay.minute, alarmNumber: index+7, alarmWeekday: alarm.alarmWeek)
                     sendRequest(SetNewAlarmRequest(alarm:newAlarm))
                 }
@@ -111,9 +116,9 @@ extension AppDelegate {
                     type = NotificationType.other
                 }
                 
-                let setting:NotificationSetting = NotificationSetting(type: type!, clock: notification.clock, color: "", states:notification.isAddWatch,packet:notification.appid,appName:notification.appName)
+                let setting:NotificationSetting = NotificationSetting(type: type!, clock: notification.clock, color: "#FF3030", states:notification.isAddWatch,packet:notification.appid,appName:notification.appName)
                 let packet:String = notification.appid
-                let notificationsRequest:SetNotificationAppIDRequest = try! SetNotificationAppIDRequest(number: index, hexColor: try! setting.getHexColor(), appid: packet, motorOnOff: true)
+                let notificationsRequest:SetNotificationAppIDRequest = try! SetNotificationAppIDRequest(number: index, hexColor: try! setting.getHexColor(), appid: packet, notiFictionOnOff: true, motorOnOff: true)
                 self.sendRequest(notificationsRequest)
             }
         }

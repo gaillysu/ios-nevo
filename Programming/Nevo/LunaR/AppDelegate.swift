@@ -402,12 +402,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                     let appIDRequest:GetNotificationAppIDRequest = GetNotificationAppIDRequest(number: i)
                     self.sendRequest(appIDRequest)
                 }
+                
+                if currentAppNumber == 0 {
+                    LunaRNotfication()
+                }
             }
             
             if(packet.getHeader() == GetNotificationAppIDRequest.HEADER()) {
                 let thispacket = packet.copy() as GetNotificationAppIDPacket
                 let appidString:String = thispacket.getApplicationID()
-                XCGLogger.default.debug("getApplicationID:\(appidString)")
+                XCGLogger.default.debug("getApplicationID:\(appidString),LEDPattern:\(thispacket.getLEDPattern())")
                 self.saveNotificationAppID(appid: appidString,isNewApp:false)
             }
             
@@ -419,10 +423,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
             }
             
             if packet.getHeader() == SetNotificationAppIDRequest.HEADER() {
-                self.getWatchNameRequest()
-                self.getWacthNameTimer = Timer.after(5, {
-                    self.setRTC()
-                })
+                XCGLogger.default.debug("SetNotificationAppIDRequest")
             }
             
             if packet.getHeader() == NewAppIDNotificationRequest.HEADER() {
