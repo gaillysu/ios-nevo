@@ -99,8 +99,6 @@ func dec2bin(number:Int) -> String {
     return str
 }
 
-
-
 //二进制 ->十进制
 func bin2dec(num:String) -> Int {
     let numValue = num
@@ -109,6 +107,24 @@ func bin2dec(num:String) -> Int {
         let index = numValue.index(numValue.startIndex, offsetBy: c)
         let value = numValue[index]
         sum = sum * 2 + "\(value)".toInt()
+    }
+    return sum
+}
+
+//十进制 -> 十六进制
+func dec2hex(num:Int) -> String {
+    return String(format: "%0X", num)
+}
+
+//十六进制 -> 十进制
+func hex2dec(num:String) -> Int {
+    let str = num.uppercased()
+    var sum = 0
+    for i in str.utf8 {
+        sum = sum * 16 + Int(i) - 48 // 0-9 从48开始
+        if i >= 65 {                 // A-Z 从65开始，但有初始值10，所以应该是减去55
+            sum -= 7
+        }
     }
     return sum
 }

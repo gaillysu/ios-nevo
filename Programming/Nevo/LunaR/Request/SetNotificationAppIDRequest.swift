@@ -7,33 +7,48 @@
 //
 
 import UIKit
+import UIColor_Hex_Swift
 
 class SetNotificationAppIDRequest: NevoRequest {
     fileprivate var listNumber:Int = 0
     fileprivate var appidLength:Int = 0
     fileprivate var ledPattern:UInt32 = 0
     fileprivate var appidString:String = ""
+    fileprivate var motorValue:UInt8 = 0
+    
+    fileprivate var rValue:Int = 0
+    fileprivate var gValue:Int = 0
+    fileprivate var bValue:Int = 0
     
     class func HEADER() -> UInt8 {
         return 0x52
     }
     
-    init(number:Int,length:Int,pattern:UInt32,appid:String,motorOnOff:Bool) {
+    init(number:Int,hexColor:String,appid:String,motorOnOff:Bool) throws {
         super.init()
         listNumber = number
-        appidLength = length
+        appidLength = appid.characters.count
         appidString = appid
         
         if (motorOnOff){
-            ledPattern = pattern | SetNortificationRequest.SetNortificationRequestValues.VIB_MOTOR
+            motorValue = UInt8(0x80&0xFF)
         }else{
-            ledPattern = pattern & ~SetNortificationRequest.SetNortificationRequestValues.VIB_MOTOR
+            motorValue = UInt8(0x00&0xFF)
         }
+        
+        let hexString: String = hexColor.substring(from: hexColor.characters.index(hexColor.startIndex, offsetBy: 1))
+        var hexValue:  UInt32 = 0
+        guard Scanner(string: hexString).scanHexInt32(&hexValue) else {
+            throw UIColorInputError.unableToScanHexValue
+        }
+        rValue      = Int((hexValue & 0xFF0000) >> 16)
+        gValue      = Int((hexValue & 0x00FF00) >>  8)
+        bValue      = Int( hexValue & 0x0000FF       )
     }
     
     override func getRawDataEx() -> NSArray {
         let data:Data = appidString.data(using: .utf8)!
-        let values1:[UInt8] = [0x00,SetNotificationAppIDRequest.HEADER(),0x80,UInt8(appidLength&0xFF),UInt8(ledPattern&0xFF),UInt8((ledPattern>>8)&0xFF),UInt8((ledPattern>>16)&0xFF)]+NSData2Bytes(data)
+        let values1:[UInt8] = [0x00,SetNotificationAppIDRequest.HEADER(),0x80,UInt8(appidLength&0xFF),0x00,motorValue,UInt8(rValue&0xFF),UInt8(gValue&0xFF),UInt8(bValue&0xFF)]+NSData2Bytes(data)
         var dataValue:[[UInt8]] = []
         let header:UInt8 = 0x00
         let header1:UInt8 = 0xFF

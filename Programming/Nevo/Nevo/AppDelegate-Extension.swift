@@ -89,7 +89,7 @@ extension AppDelegate {
     
     func SetNortification() {
         var mNotificationSettingArray:[NotificationSetting] = []
-        let setting:NotificationSetting = NotificationSetting(type: NotificationType.call, clock: 12, color: NSNumber(value:12), states:true,packet:"com.apple.mobilephone",appName:"Call")
+        let setting:NotificationSetting = NotificationSetting(type: NotificationType.call, clock: 12, color: "", states:true,packet:"com.apple.mobilephone",appName:"Call")
         mNotificationSettingArray.append(setting)
         sendRequest(SetNortificationRequest(settingArray: mNotificationSettingArray))
     }
@@ -111,10 +111,9 @@ extension AppDelegate {
                     type = NotificationType.other
                 }
                 
-                let setting:NotificationSetting = NotificationSetting(type: type!, clock: notification.clock, color: NSNumber(value:notification.clock), states:notification.isAddWatch,packet:notification.appid,appName:notification.appName)
+                let setting:NotificationSetting = NotificationSetting(type: type!, clock: notification.clock, color: "", states:notification.isAddWatch,packet:notification.appid,appName:notification.appName)
                 let packet:String = notification.appid
-                let packetLength:Int = packet.length()
-                let notificationsRequest:SetNotificationAppIDRequest = SetNotificationAppIDRequest(number: index, length: packetLength, pattern: setting.getColor().uint32Value, appid: packet, motorOnOff: true)
+                let notificationsRequest:SetNotificationAppIDRequest = try! SetNotificationAppIDRequest(number: index, hexColor: try! setting.getHexColor(), appid: packet, motorOnOff: true)
                 self.sendRequest(notificationsRequest)
             }
         }

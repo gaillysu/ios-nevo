@@ -24,6 +24,15 @@ class SelectedNotificationTypeController: UITableViewController {
     var notificationColor: MEDNotificationColor?
     
     fileprivate var isFirstLoadData: Bool = true
+    var notificationSection:Int {
+        get{
+            if AppTheme.isTargetLunaR_OR_Nevo() {
+                return 3
+            }else{
+                return 4
+            }
+        }
+    }
     
     init() {
         super.init(nibName: "SelectedNotificationTypeController", bundle: Bundle.main)
@@ -111,11 +120,12 @@ extension SelectedNotificationTypeController:AddPacketToWatchDelegate {
         notSetting?.setClock(notSetting!.getClock())
         tableView.separatorStyle = onOff ? .singleLine : .none
         
-        selectedNotificationView.reloadSections(IndexSet.init(integersIn: 1..<4), with: .automatic)
+        selectedNotificationView.reloadSections(IndexSet.init(integersIn: 1..<notificationSection), with: .automatic)
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 4
+
+        return notificationSection
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
