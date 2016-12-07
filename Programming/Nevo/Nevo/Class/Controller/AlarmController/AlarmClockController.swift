@@ -473,7 +473,7 @@ class AlarmClockController: UITableViewController,AddAlarmDelegate {
         }
         
         
-        var alarmModel:MEDUserAlarm?
+        var alarmModel:MEDUserAlarm = MEDUserAlarm()
         if weakeArray.count>0 && sleepArray.count>0 {
             if indexPath.section == 0 {
                 alarmModel = sleepArray[indexPath.row]
@@ -488,46 +488,35 @@ class AlarmClockController: UITableViewController,AddAlarmDelegate {
                 alarmModel = sleepArray[indexPath.row]
             }
         }
-        endCell.alarmSwicth.isOn = alarmModel!.status
+        endCell.alarmSwicth.isOn = alarmModel.status
         endCell.alarmSwicth.tag = indexPath.row
-        endCell.contentView.backgroundColor = UIColor.white
-        if !AppTheme.isTargetLunaR_OR_Nevo() {
-            endCell.backgroundColor = UIColor.getGreyColor()
-            endCell.contentView.backgroundColor = UIColor.getGreyColor()
-            endCell.dateLabel.textColor = UIColor.white
-            endCell.titleLabel.textColor = UIColor.white
-            endCell.alarmIn.textColor = UIColor.white
-            endCell.alarmSwicth.onTintColor = UIColor.getBaseColor()
-        }
         
         let dayArray:[String] = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]
-        let date:Date = Date(timeIntervalSince1970: alarmModel!.timer)
+        let alarmDay:Date = Date(timeIntervalSince1970: alarmModel.timer)
         
-        if !alarmModel!.status {
+        if !alarmModel.status {
             endCell.alarmIn.text = NSLocalizedString("alarm_disabled", comment: "")
         }else{
-            let nowHour:Int = abs(date.hour-Date().hour)
-            let noeMinte:Int = abs(date.minute-Date().minute)
-            endCell.alarmIn.text = NSLocalizedString("alarm_in", comment: "")+"\(nowHour)h \(noeMinte)m"
-            if Date().weekday != alarmModel!.alarmWeek-1 {
-                if alarmModel!.alarmWeek == 0 {
-                    alarmModel?.alarmWeek = Date().weekday
-                    _ = alarmModel?.update()
-                    endCell.alarmIn.text = NSLocalizedString("alarm_on", comment: "")+NSLocalizedString(dayArray[Date().weekday], comment: "")
-                }else{
-                    endCell.alarmIn.text = NSLocalizedString("alarm_on", comment: "")+NSLocalizedString(dayArray[alarmModel!.alarmWeek-1], comment: "")
-                }
+            print("alarmModel.alarmWeek:\(alarmModel.alarmWeek)")
+            if Date().weekday != alarmModel.alarmWeek{
+                endCell.alarmIn.text = NSLocalizedString("alarm_on", comment: "")+NSLocalizedString(dayArray[alarmModel.alarmWeek], comment: "")
             }else{
-                endCell.alarmIn.text = NSLocalizedString("alarm_in", comment: "")+"\(nowHour)h \(noeMinte)m"
+                let nowDate:Date = Date.date(year: Date().year, month: Date().month, day: Date().day, hour: alarmDay.hour, minute: alarmDay.minute, second: 0)
+                if nowDate.timeIntervalSince1970<Date().timeIntervalSince1970{
+                    endCell.alarmIn.text = NSLocalizedString("alarm_on", comment: "")+NSLocalizedString(dayArray[alarmModel.alarmWeek], comment: "")
+                }else{
+                    let nowHour:Int = abs(alarmDay.hour-Date().hour)
+                    let noeMinte:Int = abs(alarmDay.minute-Date().minute)
+                    endCell.alarmIn.text = NSLocalizedString("alarm_in", comment: "")+"\(nowHour)h \(noeMinte)m"
+                }
             }
         }
         
-        endCell.dateLabel.text = stringFromDate(date)
-        endCell.titleLabel.text = alarmModel!.label
-        if alarmModel?.label.characters.count == 0 {
+        endCell.dateLabel.text = stringFromDate(alarmDay)
+        endCell.titleLabel.text = alarmModel.label
+        if alarmModel.label.characters.count == 0 {
             endCell.titleLabel.text = NSLocalizedString("alarmTitle", comment: "")
         }
-        
         
         endCell.actionCallBack = {
             (sender) -> Void in
