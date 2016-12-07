@@ -15,15 +15,16 @@ import RealmSwift
 class NotiColorDetailController: UITableViewController {
     
     var notificationColor: MEDNotificationColor?
-    var model: MEDNotificationColor = MEDNotificationColor()
+    var notification: NotificationSetting?
+    lazy var model: MEDNotificationColor = {
+        return MEDNotificationColor.factory(name: "Default Name", color: "#7ED8D1", notificationID: self.notification!.getPacket())
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         let rightItem = UIBarButtonItem.init(title: NSLocalizedString("Save", comment: ""), style: .plain, target: self, action: #selector(save))
         navigationItem.rightBarButtonItem = rightItem
-        
-        tableView.register(NotiColorEditableCell.classForCoder(), forCellReuseIdentifier: "kReusableIdentifier")
         
         let colorPickerView = MSColorSelectionView()
         let footerView = UIView()
@@ -37,11 +38,16 @@ class NotiColorDetailController: UITableViewController {
         }
         tableView.tableFooterView = footerView
         
-        if let model = notificationColor {
-            colorPickerView.color = UIColor.init(rgba: model.color)
+        if notificationColor != nil {
+            model = notificationColor!
         }
+        
+        colorPickerView.color = UIColor.init(rgba: model.color)
+        
         colorPickerView.setSelectedIndex(.HSB, animated: false)
         colorPickerView.delegate = self
+        
+        viewDefaultColorful()
     }
 }
 
@@ -49,10 +55,6 @@ extension NotiColorDetailController {
     @objc func save() {
         let realm = try! Realm()
         try! realm.write {
-            let model = MEDNotificationColor()
-            model.color = self.model.color
-            model.name = self.model.name
-            model.notificationID = self.model.notificationID
             realm.add(model, update: true)
         }
     }
@@ -71,23 +73,19 @@ extension NotiColorDetailController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: NotiColorEditableCell = tableView.dequeueReusableCell(withIdentifier: "kReusableIdentifier" ,for: indexPath) as! NotiColorEditableCell
+        let cell: NotiColorEditableCell = NotiColorEditableCell()
         
         cell.model = model
         
         cell.textField.text = model.name
         cell.dotImageView.image = UIImage.dotImageWith(color: UIColor.init(rgba: model.color), size: CGSize(width: 100, height: 100))
         
-        if !AppTheme.isTargetLunaR_OR_Nevo() {
-            cell.backgroundColor = UIColor.getGreyColor()
-            cell.contentView.backgroundColor = UIColor.getGreyColor()
-            cell.textLabel?.textColor = UIColor.white
-        }
+        cell.viewDefaultColorful()
         
         return cell
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 45
+        return 50
     }
 }

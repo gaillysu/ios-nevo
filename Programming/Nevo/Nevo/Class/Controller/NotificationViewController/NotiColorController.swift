@@ -31,6 +31,8 @@ class NotiColorController: UITableViewController {
         navigationItem.rightBarButtonItem = rightItem
         
         tableView.register(UITableViewCell.classForCoder(), forCellReuseIdentifier: "kReusableIdentifier")
+        
+        viewDefaultColorful()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -42,6 +44,7 @@ class NotiColorController: UITableViewController {
 extension NotiColorController {
     @objc func addNotificationColorItem() {
         let controller = NotiColorDetailController()
+        controller.notification = self.notification
         navigationController?.pushViewController(controller, animated: true)
     }
 }
@@ -67,7 +70,8 @@ extension NotiColorController {
         })
         let editAction = UITableViewRowAction(style: .default, title: NSLocalizedString("Edit", comment:""), handler: { (action, indexPath) in
             let controller = NotiColorDetailController()
-            controller.notificationColor = notificationColors[indexPath.row]
+            controller.notification = self.notification
+            controller.notificationColor = self.notificationColors[indexPath.row]
             self.navigationController?.pushViewController(controller, animated: true)
         })
 
@@ -95,11 +99,7 @@ extension NotiColorController {
             cell.accessoryView = nil
         }
         
-        if !AppTheme.isTargetLunaR_OR_Nevo() {
-            cell.backgroundColor = UIColor.getGreyColor()
-            cell.contentView.backgroundColor = UIColor.getGreyColor()
-            cell.textLabel?.textColor = UIColor.white
-        }
+        cell.viewDefaultColorful()
         
         return cell
     }

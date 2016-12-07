@@ -147,9 +147,9 @@ extension SelectedNotificationTypeController:AddPacketToWatchDelegate {
             return allowCell
         case 1:
             let cell = selectedNotificationView.getNotificationClockCell(indexPath, tableView: tableView, title: "", clockIndex: notSetting!.getClock())
-            if !AppTheme.isTargetLunaR_OR_Nevo() {
-                cell.backgroundColor = UIColor.getGreyColor()
-            }
+            
+            cell.viewDefaultColorful()
+            
             return cell
         case 2:
             var cell: UITableViewCell = selectedNotificationView.getLineColorCell(indexPath, tableView: tableView, cellTitle: colorArray[indexPath.row], clockIndex: notSetting!.getClock())
@@ -173,11 +173,8 @@ extension SelectedNotificationTypeController:AddPacketToWatchDelegate {
                 }
             }
             
-            if !AppTheme.isTargetLunaR_OR_Nevo() {
-                cell.backgroundColor = UIColor.getGreyColor()
-                cell.contentView.backgroundColor = UIColor.getGreyColor()
-                cell.textLabel?.textColor = UIColor.white
-            }
+            cell.viewDefaultColorful()
+            
             return cell
         default:
             var cell = tableView.dequeueReusableCell(withIdentifier: "kDeleteCellIdentifier")
@@ -195,13 +192,9 @@ extension SelectedNotificationTypeController:AddPacketToWatchDelegate {
             deleteLabel.text = NSLocalizedString("Delete Notification", comment: "")
             deleteLabel.textAlignment = .center
             
-            deleteLabel.backgroundColor = UIColor.getGreyColor()
-            deleteLabel.textColor = UIColor.white
-            if AppTheme.isTargetLunaR_OR_Nevo() {
-                deleteLabel.backgroundColor = UIColor.white
-                deleteLabel.textColor = UIColor.black
-            }
-            
+            cell!.viewDefaultColorful()
+            deleteLabel.viewDefaultColorful()
+
             return cell!
         }
     }
