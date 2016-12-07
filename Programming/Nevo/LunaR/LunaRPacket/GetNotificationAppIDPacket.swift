@@ -44,12 +44,20 @@ class GetNotificationAppIDPacket: LunaRPacket {
     
     func getLEDPattern() -> UInt32 {
         var data:[UInt8] = NSData2Bytes(getPackets()[0])
-        return 0xFFFFFF
+        data.removeSubrange(8..<data.count)
+        data.removeSubrange(0..<3)
+        
+        var value:Int = 0
+        value = Int(data[0])
+        value += Int(data[1])<<8
+        value += Int(data[2])<<8
+        
+        return UInt32(value&0xFF)
     }
     
     func getApplicationID()->String {
         var data:[UInt8] = NSData2Bytes(getPackets()[0])
-        data.removeSubrange(0..<6)
+        data.removeSubrange(0..<8)
         let length:Int = self.getAappIDLength()
         
         for index:Int in 1..<getPackets().count {
