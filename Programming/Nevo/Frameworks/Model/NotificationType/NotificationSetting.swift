@@ -21,13 +21,16 @@ class NotificationSetting: NSObject {
     fileprivate var mPacket:String = ""
     fileprivate var mAppName:String = ""
     fileprivate var hexColor:String  = ""
+    
+    var lunarColorName: String = ""
+    
     var typeName:String {
         get {
             return self.mType.rawValue as String
         }
     }
     
-    init(type:NotificationType, clock:Int , color:String?,states:Bool, packet:String, appName:String){
+    init(type:NotificationType, clock:Int , color:String?,states:Bool, packet:String, appName:String, colorName: String?){
         mType = type
         super.init()
         mClock = clock
@@ -35,6 +38,9 @@ class NotificationSetting: NSObject {
         mStates = states
         mPacket = packet
         mAppName = appName
+        if colorName != nil {
+            lunarColorName = colorName!
+        }
         
         if color != nil {
             hexColor = color!
@@ -142,6 +148,7 @@ class NotificationSetting: NSObject {
         default:
             ledColor = ""
         }
+        
         return ledColor
     }
     

@@ -19,11 +19,19 @@ extension UIImage {
         return newImage
     }
     
-    public class func dotImageWith(color: UIColor, size: CGSize) -> UIImage {
+    public class func dotImageWith(color: UIColor, backgroundColor: UIColor, size: CGSize) -> UIImage {
+        let rect = CGRect.init(x: 0, y: 0, width: size.width, height: size.height)
+        
         UIGraphicsBeginImageContextWithOptions(size, true, UIScreen.main.scale)
-        let path = UIBezierPath.init(ovalIn: CGRect.init(x: 0, y: 0, width: size.width, height: size.height))
-        color.set()
-        path.fill()
+        let context = UIGraphicsGetCurrentContext()
+        
+        context?.setFillColor(backgroundColor.cgColor)
+        context?.fill(rect)
+        
+        context?.addEllipse(in: rect)
+        context?.setFillColor(color.cgColor)
+        context?.fillEllipse(in: rect)
+        
         let image = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
         return image

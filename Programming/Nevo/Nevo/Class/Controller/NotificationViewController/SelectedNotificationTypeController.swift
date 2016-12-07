@@ -21,17 +21,21 @@ class SelectedNotificationTypeController: UITableViewController {
     fileprivate let colorArray:[String] = ["2 o'clock","4 o'clock","6 o'clock","8 o'clock","10 o'clock","12 o'clock"]
     var selectedDelegate:SelectedNotificationDelegate?
     var notSetting:NotificationSetting?
+    
+    lazy var realm : Realm = {
+        return try! Realm()
+    }()
+
+    lazy var notification: MEDUserNotification = {
+        return self.realm.objects(MEDUserNotification.self).filter("appid == %@", self.notSetting!.getPacket()).first
+    }()!
+    
     var notificationColor: MEDNotificationColor?
     
     fileprivate var isFirstLoadData: Bool = true
+    
     var notificationSection:Int {
-        get{
-            if AppTheme.isTargetLunaR_OR_Nevo() {
-                return 3
-            }else{
-                return 4
-            }
-        }
+        return AppTheme.isTargetLunaR_OR_Nevo() ? 3 : 4
     }
     
     init() {
@@ -53,11 +57,16 @@ class SelectedNotificationTypeController: UITableViewController {
         
         self.tableView.register(UINib(nibName: "LineColorCell",bundle: nil), forCellReuseIdentifier: "LineColor_Identifier")
         self.tableView.register(UINib(nibName: "AllowNotificationsTableViewCell",bundle: nil), forCellReuseIdentifier: "AllowNotifications_Identifier")
+        
         selectedNotificationView.separatorStyle = notSetting!.getStates() ? .singleLine : .none
         
-        if !AppTheme.isTargetLunaR_OR_Nevo() {
-            self.tableView.backgroundColor = UIColor.getLightBaseColor()
-        }
+        viewDefaultColorful()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        tableView.reloadData()
     }
 }
 
@@ -79,9 +88,9 @@ extension SelectedNotificationTypeController {
         tableView.deselectRow(at: indexPath, animated: true)
         if(indexPath.section == 2){
             if !AppTheme.isTargetLunaR_OR_Nevo() {
-                let controller = NotiColorController()
+                let controller = NotiColorController(style: .grouped)
                 controller.notificationColor = self.notificationColor
-                controller.notification = self.notSetting
+                controller.notification = self.notification
                 navigationController?.pushViewController(controller, animated: true)
                 return
             }
@@ -129,10 +138,11 @@ extension SelectedNotificationTypeController:AddPacketToWatchDelegate {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if(section == 2){
-            return AppTheme.isTargetLunaR_OR_Nevo() ? colorArray.count : 1
+        if section == 2 && AppTheme.isTargetLunaR_OR_Nevo() {
+            return colorArray.count
+        } else {
+            return 1
         }
-        return 1
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -162,29 +172,29 @@ extension SelectedNotificationTypeController:AddPacketToWatchDelegate {
             
             return cell
         case 2:
-            var cell: UITableViewCell = selectedNotificationView.getLineColorCell(indexPath, tableView: tableView, cellTitle: colorArray[indexPath.row], clockIndex: notSetting!.getClock())
-            
+            var cell: UITableViewCell = UITableViewCell.init()
             if !AppTheme.isTargetLunaR_OR_Nevo() {
-                let realm = try! Realm()
-                let noti = realm.objects(MEDUserNotification.self).filter("appid = \(notSetting?.getPacket())").first
-                if let colorItem: MEDNotificationColor = realm.objects(MEDNotificationColor.self).filter("key = \(noti!.colorKey)").first {
-                    /// 只有一个cell，不用考虑重用
-                    cell = UITableViewCell.init()
+                if let colorItem: MEDNotificationColor = realm.objects(MEDNotificationColor.self).filter("key == %@", notification.colorKey).first {
                     cell.accessoryType = .disclosureIndicator
-                    cell.imageView?.image = UIImage.dotImageWith(color: UIColor.init(rgba: colorItem.color), size: CGSize.init(width: 100, height: 100))
+                    cell.imageView?.image = UIImage.dotImageWith(color: UIColor.init(rgba: colorItem.color), backgroundColor: UIColor.getGreyColor(), size: CGSize(width: 15, height: 15))
+                    
+                    cell.imageView?.backgroundColor = UIColor.clear
                     cell.textLabel?.text = colorItem.name
                     
                     self.notificationColor = colorItem
                 } else {
-                    cell = UITableViewCell.init()
                     cell.accessoryType = .disclosureIndicator
-                    cell.imageView?.image = UIImage.dotImageWith(color: UIColor.getBaseColor(), size: CGSize.init(width: 100, height: 100))
-                    cell.textLabel?.text = "Default Name"
+                    cell.imageView?.image = UIImage.dotImageWith(color: UIColor.getRandomColor(), backgroundColor: UIColor.getGreyColor(), size: CGSize(width: 15, height: 15))
+                    cell.imageView?.backgroundColor = UIColor.clear
+                    cell.textLabel?.text = "Color"
                 }
+                
+                cell.selectionStyle = .none
+            } else {
+                cell = selectedNotificationView.getLineColorCell(indexPath, tableView: tableView, cellTitle: colorArray[indexPath.row], clockIndex: notSetting!.getClock())
             }
             
             cell.viewDefaultColorful()
-            
             return cell
         default:
             var cell = tableView.dequeueReusableCell(withIdentifier: "kDeleteCellIdentifier")

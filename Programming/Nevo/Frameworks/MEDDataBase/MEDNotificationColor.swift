@@ -12,7 +12,6 @@ class MEDNotificationColor: MEDBaseModel {
     dynamic var name: String = ""
     // #ffffff
     dynamic var color: String = ""
-    dynamic var notificationID: String = ""
     
     dynamic var key:String = NSUUID().uuidString
     
@@ -20,11 +19,10 @@ class MEDNotificationColor: MEDBaseModel {
         return "key"
     }
     
-    class func factory(name: String, color: String, notificationID: String) -> MEDNotificationColor {
+    class func factory(name: String, color: String) -> MEDNotificationColor {
         let model = self.init()
         model.name = name
         model.color = color
-        model.notificationID = notificationID
         return model
     }
 }

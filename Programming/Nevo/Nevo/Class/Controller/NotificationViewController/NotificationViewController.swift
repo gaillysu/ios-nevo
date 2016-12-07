@@ -213,7 +213,7 @@ extension NotificationViewController {
                 let placeholderImage: String = "notiPlaceholder"
                 endCell.setTitleImage(imageName: placeholderImage)
                 
-                MEDAppInfoRequester.requesAppInfoWith(bundleId: noti.getPacket(), resultHandle: { (error, appInfo) in
+                MEDAppInfoRequester.requestAppInfoWith(bundleId: noti.getPacket(), resultHandle: { (error, appInfo) in
                     if let info = appInfo {
                         let appName:String = info.trackName
                         let imageurl:String = info.artworkUrl100

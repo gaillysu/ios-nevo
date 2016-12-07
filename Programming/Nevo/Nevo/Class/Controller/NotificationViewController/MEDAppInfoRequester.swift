@@ -14,7 +14,7 @@ import RealmSwift
 class MEDAppInfoRequester {
     static let baseURL = "https://itunes.apple.com/lookup?bundleId="
     
-    class func requesAppInfoWith(bundleId: String, resultHandle: @escaping (Swift.Error?, MEDAppInfo?) -> Void) {
+    class func requestAppInfoWith(bundleId: String, resultHandle: @escaping (Swift.Error?, MEDAppInfo?) -> Void) {
         let realm = try! Realm()
         let predicate = NSPredicate(format: "bundleId = %@", bundleId)
         if let info = realm.objects(MEDAppInfo.self).filter(predicate).first {

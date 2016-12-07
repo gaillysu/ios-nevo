@@ -12,23 +12,24 @@ import UIColor_Hex_Swift
 
 class NotiColorController: UITableViewController {
     
-    var notification: NotificationSetting?
+    var notification: MEDUserNotification?
     var notificationColor: MEDNotificationColor?
-    fileprivate var notificationColors: [MEDNotificationColor] = []
+    fileprivate var notificationColors: [MEDNotificationColor] {
+        return MEDNotificationColor.getAll() as! [MEDNotificationColor]
+    }
     
     let realm: Realm = try! Realm()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let results = realm.objects(MEDNotificationColor.self)
-        for model in results {
-            notificationColors.append(model)
-        }
-        
         navigationItem.title = NSLocalizedString("color", comment: "")
-        let rightItem: UIBarButtonItem = UIBarButtonItem.init(image: UIImage.init(named: "edit_icon"), style: .plain, target: self, action: #selector(addNotificationColorItem))
+        
+        let rightItem: UIBarButtonItem = UIBarButtonItem.init(barButtonSystemItem: .add, target: self, action: #selector(addNotificationColorItem))
+        
         navigationItem.rightBarButtonItem = rightItem
+        
+        tableView.tableFooterView = UIView()
         
         tableView.register(UITableViewCell.classForCoder(), forCellReuseIdentifier: "kReusableIdentifier")
         
@@ -43,7 +44,7 @@ class NotiColorController: UITableViewController {
 
 extension NotiColorController {
     @objc func addNotificationColorItem() {
-        let controller = NotiColorDetailController()
+        let controller = NotiColorDetailController(style: .grouped)
         controller.notification = self.notification
         navigationController?.pushViewController(controller, animated: true)
     }
@@ -52,8 +53,8 @@ extension NotiColorController {
 extension NotiColorController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         try! realm.write {
-            let model = notificationColors[indexPath.row]
-            model.notificationID = notification!.getPacket()
+            notification?.colorKey = notificationColors[indexPath.row].key
+            tableView.reloadData()
         }
     }
     
@@ -62,20 +63,19 @@ extension NotiColorController {
     }
     
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        let deleteAction = UITableViewRowAction(style: .default, title: NSLocalizedString("Delete", comment:""), handler: { (action, indexPath) in
+        let deleteAction = UITableViewRowAction(style: .destructive, title: NSLocalizedString("Delete", comment:""), handler: { (action, indexPath) in
             try! self.realm.write {
                 self.realm.delete(self.notificationColors[indexPath.row])
             }
             self.tableView.reloadData()
         })
         let editAction = UITableViewRowAction(style: .default, title: NSLocalizedString("Edit", comment:""), handler: { (action, indexPath) in
-            let controller = NotiColorDetailController()
+            let controller = NotiColorDetailController(style: .grouped)
             controller.notification = self.notification
             controller.notificationColor = self.notificationColors[indexPath.row]
             self.navigationController?.pushViewController(controller, animated: true)
         })
-
-        deleteAction.backgroundColor = UIColor.getBaseColor()
+        
         editAction.backgroundColor = UIColor.getBaseColor()
         return [deleteAction, editAction]
     }
@@ -86,13 +86,14 @@ extension NotiColorController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "kReusableIdentifier" ,for: indexPath)
+        cell.selectionStyle = .none
         
         let model = notificationColors[indexPath.row]
         
         cell.textLabel?.text = model.name
-        cell.imageView?.image = UIImage.dotImageWith(color: UIColor.init(rgba: model.color), size: CGSize(width: 100, height: 100))
+        cell.imageView?.image = UIImage.dotImageWith(color: UIColor.init(rgba: model.color), backgroundColor: UIColor.getGreyColor(), size: CGSize(width: 15, height: 15))
         
-        if notificationColor?.notificationID == notification?.getPacket() {
+        if model.key == notification!.colorKey {
             let image = UIImage(named: "notifications_check")
             cell.accessoryView = UIImageView(image: image)
         } else {

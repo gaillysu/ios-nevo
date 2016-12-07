@@ -59,4 +59,11 @@ extension UIColor{
     public class func getNevoTabBarColor() -> UIColor {
         return UIColor(red: 239/255.0, green: 239/255.0, blue: 239/255.0, alpha: 1.0)
     }
+    
+    public class func getRandomColor() -> UIColor {
+        let r = CGFloat(arc4random_uniform(150) + 50)
+        let g = CGFloat(arc4random_uniform(150) + 50)
+        let b = CGFloat(arc4random_uniform(150) + 50)
+        return UIColor(red: r/255.0, green: g/255.0, blue: b/255.0, alpha: 1)
+    }
 }

@@ -15,38 +15,42 @@ import RealmSwift
 class NotiColorDetailController: UITableViewController {
     
     var notificationColor: MEDNotificationColor?
-    var notification: NotificationSetting?
+    var notification: MEDUserNotification?
     lazy var model: MEDNotificationColor = {
-        return MEDNotificationColor.factory(name: "Default Name", color: "#7ED8D1", notificationID: self.notification!.getPacket())
+        if let notificationColor = self.notificationColor {
+            return MEDNotificationColor.factory(name: notificationColor.name, color: notificationColor.color)
+        } else {
+            return MEDNotificationColor.factory(name: "Default Name", color: "#7ED8D1")
+        }
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let rightItem = UIBarButtonItem.init(title: NSLocalizedString("Save", comment: ""), style: .plain, target: self, action: #selector(save))
+        let rightItem = UIBarButtonItem.init(barButtonSystemItem: .save, target: self, action: #selector(save))
         navigationItem.rightBarButtonItem = rightItem
         
-        let colorPickerView = MSColorSelectionView()
-        let footerView = UIView()
+        tableView.isScrollEnabled = false
+        
+        let footerView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height - 200))
+        let colorPickerView = MSColorSelectionView.init(frame: CGRect.init(x: 0, y: 0, width: footerView.frame.width - 50, height: footerView.frame.height))
+        
         footerView.addSubview(colorPickerView)
-        footerView.frame = CGRect.init(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.width)
-        colorPickerView.snp.makeConstraints { (v) in
-            v.top.equalTo(64)
-            v.trailing.equalTo(50)
-            v.leading.equalTo(50)
-            v.height.equalTo(colorPickerView.snp.width)
-        }
+        colorPickerView.center.x = footerView.center.x
         tableView.tableFooterView = footerView
         
-        if notificationColor != nil {
-            model = notificationColor!
-        }
-        
         colorPickerView.color = UIColor.init(rgba: model.color)
-        
+        colorPickerView.backgroundColor = UIColor.getLightBaseColor()
         colorPickerView.setSelectedIndex(.HSB, animated: false)
         colorPickerView.delegate = self
         
+        self.tableView.register(UINib(nibName: "NotiColorEditableCell", bundle: nil), forCellReuseIdentifier: "kNotiColorEditabelCellIdentifier")
+        
+//        colorPickerView.allSubviews { (v) in
+//            if v.isKind(of: MSColorComponentView.self) {
+//                (v as! MSColorComponentView).title = ""
+//            }
+//        }
         viewDefaultColorful()
     }
 }
@@ -55,7 +59,15 @@ extension NotiColorDetailController {
     @objc func save() {
         let realm = try! Realm()
         try! realm.write {
-            realm.add(model, update: true)
+            if let notificationColor = self.notificationColor {
+                notificationColor.color = model.color
+                notificationColor.name = model.name
+                _ = navigationController?.popViewController(animated: true)
+            } else {
+                notification?.colorKey = model.key
+                realm.add(model, update: true)
+                _ = navigationController?.popViewController(animated: true)
+            }
         }
     }
 }
@@ -73,15 +85,14 @@ extension NotiColorDetailController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: NotiColorEditableCell = NotiColorEditableCell()
+        let cell: NotiColorEditableCell = tableView.dequeueReusableCell(withIdentifier: "kNotiColorEditabelCellIdentifier", for: indexPath) as! NotiColorEditableCell
+        cell.selectionStyle = .none
         
         cell.model = model
-        
+        cell.dotImageView.image = UIImage.dotImageWith(color: UIColor.init(rgba: model.color), backgroundColor: UIColor.getGreyColor(), size: CGSize(width: 15, height: 15))
         cell.textField.text = model.name
-        cell.dotImageView.image = UIImage.dotImageWith(color: UIColor.init(rgba: model.color), size: CGSize(width: 100, height: 100))
         
         cell.viewDefaultColorful()
-        
         return cell
     }
     

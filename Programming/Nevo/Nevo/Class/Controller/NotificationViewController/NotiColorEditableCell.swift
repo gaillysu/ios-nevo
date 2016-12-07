@@ -17,6 +17,7 @@ class NotiColorEditableCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        textField.viewDefaultColorful()
         textField.delegate = self
     }
 }
