@@ -121,7 +121,7 @@ class AlarmClockController: UITableViewController,AddAlarmDelegate {
 
     func updateNewAlarmSwicthData(alarmArray: inout [MEDUserAlarm],mSwitch:UISwitch) {
         let index:Int = mSwitch.tag
-        var alarmModel:MEDUserAlarm =  alarmArray[index]
+        let alarmModel:MEDUserAlarm =  alarmArray[index]
         
         var alarmCount:Int = 0
         for alarm in alarmArray{
@@ -224,7 +224,6 @@ class AlarmClockController: UITableViewController,AddAlarmDelegate {
                 alarmModel?.label = name
                 alarmModel?.status = true
             }
-            //mAlarmArray.replaceSubrange(slectedPath!.row..<slectedPath!.row+1, with: [addalarm])
             self.initValue()
             editAlarmTag = false
             self.tableView.reloadData()
@@ -311,10 +310,10 @@ class AlarmClockController: UITableViewController,AddAlarmDelegate {
             editAlarmTag = false
             self.tableView.reloadData()
             
-            let date:Date = Date(timeIntervalSince1970: timer)
-            let newAlarm:NewAlarm = NewAlarm(alarmhour: date.hour, alarmmin: date.minute, alarmNumber: alarmType == 1 ? sleepAlarmCount:dayAlarmCount, alarmWeekday: repeatNumber)
+            //let date:Date = Date(timeIntervalSince1970: timer)
+            //let newAlarm:NewAlarm = NewAlarm(alarmhour: date.hour, alarmmin: date.minute, alarmNumber: alarmType == 1 ? sleepAlarmCount:dayAlarmCount, alarmWeekday: repeatNumber)
             if(AppDelegate.getAppDelegate().isConnected()){
-                AppDelegate.getAppDelegate().setNewAlarm(newAlarm)
+                AppDelegate.getAppDelegate().setNewAlarm()
                 SyncAlarmAlertView()
             }else{
                 willSyncAlarmAlertView()
@@ -340,12 +339,12 @@ class AlarmClockController: UITableViewController,AddAlarmDelegate {
             addalarm.alarmWeek = repeatNumber
             addalarm.type = alarmType
             if addalarm.add() {
-                let date:Date = Date(timeIntervalSince1970: timer)
-                let newAlarm:NewAlarm = NewAlarm(alarmhour: date.hour, alarmmin: date.minute, alarmNumber: (alarmType == 1) ? sleepAlarmCount:dayAlarmCount, alarmWeekday: repeatNumber)
+                //let date:Date = Date(timeIntervalSince1970: timer)
+                //let newAlarm:NewAlarm = NewAlarm(alarmhour: date.hour, alarmmin: date.minute, alarmNumber: (alarmType == 1) ? sleepAlarmCount:dayAlarmCount, alarmWeekday: repeatNumber)
                 
                 if(switchStatus) {
                     if(AppDelegate.getAppDelegate().isConnected()){
-                        AppDelegate.getAppDelegate().setNewAlarm(newAlarm)
+                        AppDelegate.getAppDelegate().setNewAlarm()
                         self.SyncAlarmAlertView()
                     }else{
                         self.willSyncAlarmAlertView()
