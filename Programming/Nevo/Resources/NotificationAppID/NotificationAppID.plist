@@ -10,51 +10,91 @@
 		<dict>
 			<key>bundleId</key>
 			<string>com.apple.mobilephone</string>
+			<key>colorValue</key>
+			<string>#FFFF00</string>
+			<key>colorName</key>
+			<string>Yellow</string>
 		</dict>
 		<key>Calendar</key>
 		<dict>
 			<key>bundleId</key>
 			<string>com.apple.mobilecal</string>
+			<key>colorValue</key>
+			<string>#0000FF</string>
+			<key>colorName</key>
+			<string>Blue</string>
 		</dict>
 		<key>SMS</key>
 		<dict>
 			<key>bundleId</key>
 			<string>com.apple.MobileSMS</string>
+			<key>colorValue</key>
+			<string>#FF0000</string>
+			<key>colorName</key>
+			<string>Red</string>
 		</dict>
 		<key>EMAIL</key>
 		<dict>
 			<key>bundleId</key>
 			<string>com.apple.mobilemail</string>
+			<key>colorValue</key>
+			<string>#00FF00</string>
+			<key>colorName</key>
+			<string>Green</string>
 		</dict>
 		<key>QQ</key>
 		<dict>
 			<key>bundleId</key>
 			<string>com.tencent.mqq</string>
+			<key>colorValue</key>
+			<string>#FF00FF</string>
+			<key>colorName</key>
+			<string>Purple</string>
 		</dict>
 		<key>Twitter</key>
 		<dict>
 			<key>bundleId</key>
 			<string>com.atebits.Tweetie2</string>
+			<key>colorValue</key>
+			<string>#FFD700</string>
+			<key>colorName</key>
+			<string>Gold</string>
 		</dict>
 		<key>Inastagram</key>
 		<dict>
 			<key>bundleId</key>
 			<string>com.burbn.instagram</string>
+			<key>colorValue</key>
+			<string>#FF4500</string>
+			<key>colorName</key>
+			<string>OrangeRed</string>
 		</dict>
 		<key>Messenger</key>
 		<dict>
 			<key>bundleId</key>
 			<string>com.facebook.Messenger</string>
+			<key>colorValue</key>
+			<string>#00BFFF</string>
+			<key>colorName</key>
+			<string>DeepSkyBlue</string>
 		</dict>
 		<key>WeChat</key>
 		<dict>
 			<key>bundleId</key>
 			<string>com.tencent.xin</string>
+			<key>colorValue</key>
+			<string>#40E0D0</string>
+			<key>colorName</key>
+			<string>Turquoise</string>
 		</dict>
 		<key>Facebook</key>
 		<dict>
 			<key>bundleId</key>
 			<string>com.facebook.Facebook</string>
+			<key>colorValue</key>
+			<string>#008B8B</string>
+			<key>colorName</key>
+			<string>DarkCyan</string>
 		</dict>
 	</dict>
 </dict>

@@ -782,6 +782,8 @@ extension AppDelegate {
             }else{
                 userNotification.appName = "Notification"
             }
+            userNotification.colorValue = UIColor.getRandomColor().hexString(false);
+            userNotification.colorName = "Color"
             userNotification.notificationType  = NotificationType.other.rawValue as String
             userNotification.receiveDate = Date().timeIntervalSince1970
             userNotification.appid = appid

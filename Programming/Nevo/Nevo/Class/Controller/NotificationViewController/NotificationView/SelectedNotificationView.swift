@@ -15,7 +15,7 @@ class SelectedNotificationView: UITableView {
         
     }
 
-    func getNotificationClockCell(_ indexPath:IndexPath, tableView:UITableView, title:String, clockIndex: Int)->UITableViewCell {
+    func getNotificationClockCell(_ indexPath:IndexPath, tableView:UITableView, image:UIImage?, clockIndex: Int)->UITableViewCell {
         let endCellID:NSString = "NotificationClockCell"
         var endCell = tableView.dequeueReusableCell(withIdentifier: endCellID as String) as? NotificationClockCell
 
@@ -29,7 +29,7 @@ class SelectedNotificationView: UITableView {
                 clockImage.image = UIImage(named: "\(clockIndex)_clock_dial")
                 if !AppTheme.isTargetLunaR_OR_Nevo() {
                     clockImage.image = UIImage(named: "2_clock_dial")
-                    let colorImage:UIImageView = UIImageView(image: UIImage(named: "\(clockIndex) o'clock"))
+                    let colorImage:UIImageView = UIImageView(image: image!)
                     colorImage.frame = CGRect(x: 0, y: 0, width: 10, height: 10)
                     endCell!.contentView.addSubview(colorImage)
                     colorImage.snp.makeConstraints { (make) -> Void in
@@ -37,25 +37,6 @@ class SelectedNotificationView: UITableView {
                         make.left.equalTo(clockImage).offset(85)
                         make.right.equalTo(clockImage).offset(-85)
                     }
-                    
-                    /*
-                    var blurEffect: UIBlurEffect?
-                    if #available(iOS 10.0, *) {
-                        blurEffect = UIBlurEffect(style: .regular)
-                    } else {
-                        blurEffect = UIBlurEffect(style: .dark)
-                    }
-                    let blurView: UIVisualEffectView = UIVisualEffectView(effect: blurEffect!)
-                    endCell!.contentView.addSubview(blurView)
-                    blurView.layer.masksToBounds = true;
-                    blurView.layer.cornerRadius = 5.0;
-                    blurView.layer.borderWidth = 1.0;
-                    blurView.layer.borderColor = UIColor.clear.cgColor
-                    blurView.snp.makeConstraints { (make) -> Void in
-                        make.width.equalTo(10)
-                        make.height.equalTo(10)
-                        make.center.equalTo(colorImage)
-                    }*/
                 }
                 
             }

@@ -18,8 +18,8 @@ class MEDUserNotification:MEDBaseModel {
     dynamic var receiveDate:TimeInterval = 0
     dynamic var isAddWatch:Bool = false
     dynamic var deleteFlag:Bool = true
-    
-    dynamic var colorKey:String = ""
+    dynamic var colorValue:String = ""
+    dynamic var colorName:String = ""
     
     /***************主键可以自己设定设定后不可更改,后面的内容更新都需要根据主键操作*******************/
     dynamic var key:String = Date().stringFromFormat("yyyyMMddHHmmss", locale: DateFormatter().locale)
@@ -67,6 +67,8 @@ class MEDUserNotification:MEDBaseModel {
                             userNotification.notificationType = key1
                             userNotification.receiveDate = Date().timeIntervalSince1970
                             userNotification.appid = notificationDict["bundleId"]!.stringValue
+                            userNotification.colorValue = notificationDict["colorValue"]!.stringValue
+                            userNotification.colorName = notificationDict["colorName"]!.stringValue
                             userNotification.deleteFlag = false
                             _ = userNotification.add()
                             indeValue+=1

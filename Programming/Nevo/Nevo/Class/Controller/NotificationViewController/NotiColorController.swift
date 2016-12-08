@@ -18,8 +18,6 @@ class NotiColorController: UITableViewController {
         return MEDNotificationColor.getAll() as! [MEDNotificationColor]
     }
     
-    let realm: Realm = try! Realm()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -52,10 +50,13 @@ extension NotiColorController {
 
 extension NotiColorController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let realm = try! Realm()
         try! realm.write {
-            notification?.colorKey = notificationColors[indexPath.row].key
+            notification?.colorValue = notificationColors[indexPath.row].color
+            notification?.colorName = notificationColors[indexPath.row].name
             tableView.reloadData()
         }
+         AppDelegate.getAppDelegate().deleteAllLunaRNotfication()
     }
     
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -64,8 +65,9 @@ extension NotiColorController {
     
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let deleteAction = UITableViewRowAction(style: .destructive, title: NSLocalizedString("Delete", comment:""), handler: { (action, indexPath) in
-            try! self.realm.write {
-                self.realm.delete(self.notificationColors[indexPath.row])
+            let realm = try! Realm()
+            try! realm.write {
+                realm.delete(self.notificationColors[indexPath.row])
             }
             self.tableView.reloadData()
         })
@@ -93,7 +95,7 @@ extension NotiColorController {
         cell.textLabel?.text = model.name
         cell.imageView?.image = UIImage.dotImageWith(color: UIColor.init(rgba: model.color), backgroundColor: UIColor.getGreyColor(), size: CGSize(width: 15, height: 15))
         
-        if model.key == notification!.colorKey {
+        if model.color == notification!.colorValue {
             let image = UIImage(named: "notifications_check")
             cell.accessoryView = UIImageView(image: image)
         } else {

@@ -26,9 +26,15 @@ class SelectedNotificationTypeController: UITableViewController {
         return try! Realm()
     }()
 
-    lazy var notification: MEDUserNotification = {
-        return self.realm.objects(MEDUserNotification.self).filter("appid == %@", self.notSetting!.getPacket()).first
-    }()!
+    var notification: MEDUserNotification? {
+        get{
+            if let model = self.realm.objects(MEDUserNotification.self).filter("appid == %@", self.notSetting!.getPacket()).first {
+               return model
+            }else{
+                return nil
+            }
+        }
+    }
     
     var notificationColor: MEDNotificationColor?
     
@@ -65,7 +71,14 @@ class SelectedNotificationTypeController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+        if notification != nil {
+            let notificationType:String = notification!.notificationType
+            var type = NotificationType(rawValue: notificationType as NSString)
+            if type == nil {
+                type = NotificationType.other
+            }
+            notSetting = NotificationSetting(type: type!, clock: notification!.clock, color: notification!.colorValue, colorName: notification!.colorName, states:notification!.isAddWatch,packet:notification!.appid ,appName:notification!.appName)
+        }
         tableView.reloadData()
     }
 }
@@ -123,14 +136,6 @@ extension SelectedNotificationTypeController {
 
 // MARK: - TableView DataSource
 extension SelectedNotificationTypeController:AddPacketToWatchDelegate {
-    func addPacketToWatchDelegate(appid:String,onOff:Bool){
-        selectedDelegate?.didSelectedNotificationDelegate(notSetting!.getClock(), ntSwitchState: onOff,appid:appid)
-        notSetting?.setStates(onOff)
-        notSetting?.setClock(notSetting!.getClock())
-        tableView.separatorStyle = onOff ? .singleLine : .none
-        
-        selectedNotificationView.reloadSections(IndexSet.init(integersIn: 1..<notificationSection), with: .automatic)
-    }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
 
@@ -166,7 +171,7 @@ extension SelectedNotificationTypeController:AddPacketToWatchDelegate {
             allowCell.setTitleLabel(title: NSLocalizedString("Allow_Notifications", comment: ""), titleColor: titleColor!, titleFont: nil)
             return allowCell
         case 1:
-            let cell = selectedNotificationView.getNotificationClockCell(indexPath, tableView: tableView, title: "", clockIndex: notSetting!.getClock())
+            let cell = selectedNotificationView.getNotificationClockCell(indexPath, tableView: tableView, image: UIImage.dotImageWith(color: UIColor.init(rgba: try! notSetting!.getHexColor()), backgroundColor: UIColor.getGreyColor(), size: CGSize(width: 15, height: 15)), clockIndex: notSetting!.getClock())
             
             cell.viewDefaultColorful()
             
@@ -174,21 +179,10 @@ extension SelectedNotificationTypeController:AddPacketToWatchDelegate {
         case 2:
             var cell: UITableViewCell = UITableViewCell.init()
             if !AppTheme.isTargetLunaR_OR_Nevo() {
-                if let colorItem: MEDNotificationColor = realm.objects(MEDNotificationColor.self).filter("key == %@", notification.colorKey).first {
-                    cell.accessoryType = .disclosureIndicator
-                    cell.imageView?.image = UIImage.dotImageWith(color: UIColor.init(rgba: colorItem.color), backgroundColor: UIColor.getGreyColor(), size: CGSize(width: 15, height: 15))
-                    
-                    cell.imageView?.backgroundColor = UIColor.clear
-                    cell.textLabel?.text = colorItem.name
-                    
-                    self.notificationColor = colorItem
-                } else {
-                    cell.accessoryType = .disclosureIndicator
-                    cell.imageView?.image = UIImage.dotImageWith(color: UIColor.getRandomColor(), backgroundColor: UIColor.getGreyColor(), size: CGSize(width: 15, height: 15))
-                    cell.imageView?.backgroundColor = UIColor.clear
-                    cell.textLabel?.text = "Color"
-                }
-                
+                cell.accessoryType = .disclosureIndicator
+                cell.imageView?.image = UIImage.dotImageWith(color: UIColor.init(rgba: try! notSetting!.getHexColor()), backgroundColor: UIColor.getGreyColor(), size: CGSize(width: 15, height: 15))
+                cell.imageView?.backgroundColor = UIColor.clear
+                cell.textLabel?.text = notSetting!.getLunarColorName()
                 cell.selectionStyle = .none
             } else {
                 cell = selectedNotificationView.getLineColorCell(indexPath, tableView: tableView, cellTitle: colorArray[indexPath.row], clockIndex: notSetting!.getClock())
@@ -217,5 +211,14 @@ extension SelectedNotificationTypeController:AddPacketToWatchDelegate {
 
             return cell!
         }
+    }
+    
+    func addPacketToWatchDelegate(appid:String,onOff:Bool){
+        selectedDelegate?.didSelectedNotificationDelegate(notSetting!.getClock(), ntSwitchState: onOff,appid:appid)
+        notSetting?.setStates(onOff)
+        notSetting?.setClock(notSetting!.getClock())
+        tableView.separatorStyle = onOff ? .singleLine : .none
+        
+        selectedNotificationView.reloadSections(IndexSet.init(integersIn: 1..<notificationSection), with: .automatic)
     }
 }

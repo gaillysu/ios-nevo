@@ -64,7 +64,8 @@ extension NotiColorDetailController {
                 notificationColor.name = model.name
                 _ = navigationController?.popViewController(animated: true)
             } else {
-                notification?.colorKey = model.key
+                notification?.colorValue = model.color
+                notification?.colorName = model.name
                 realm.add(model, update: true)
                 _ = navigationController?.popViewController(animated: true)
             }

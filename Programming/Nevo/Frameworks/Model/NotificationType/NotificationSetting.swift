@@ -21,8 +21,7 @@ class NotificationSetting: NSObject {
     fileprivate var mPacket:String = ""
     fileprivate var mAppName:String = ""
     fileprivate var hexColor:String  = ""
-    
-    var lunarColorName: String = ""
+    fileprivate var lunarColorName: String = ""
     
     var typeName:String {
         get {
@@ -30,7 +29,7 @@ class NotificationSetting: NSObject {
         }
     }
     
-    init(type:NotificationType, clock:Int , color:String?,states:Bool, packet:String, appName:String, colorName: String?){
+    init(type:NotificationType, clock:Int , color:String?,colorName: String?,states:Bool, packet:String, appName:String){
         mType = type
         super.init()
         mClock = clock
@@ -166,6 +165,14 @@ class NotificationSetting: NSObject {
         }else{
             hexColor = color;
         }
+    }
+    
+    func setLunarColorName(_ name:String) {
+        lunarColorName = name
+    }
+    
+    func getLunarColorName()->String {
+        return lunarColorName
     }
 }
 

@@ -79,7 +79,8 @@ extension NotificationViewController {
             if type == nil {
                 type = NotificationType.other
             }
-            let setting:NotificationSetting = NotificationSetting(type: type!, clock: notification.clock, color: "", states:notification.isAddWatch,packet:notification.appid ,appName:notification.appName)
+
+            let setting:NotificationSetting = NotificationSetting(type: type!, clock: notification.clock, color: notification.colorValue, colorName: notification.colorName, states:notification.isAddWatch,packet:notification.appid ,appName:notification.appName)
             allArraySettingArray.append(setting)
         }
     }
@@ -196,7 +197,11 @@ extension NotificationViewController {
         
         if let noti = noti {
             var detailString:String = ""
-            noti.getStates() ? (detailString = noti.getColorName()) : (detailString = NSLocalizedString("turned_off", comment: ""))
+            if !AppTheme.isTargetLunaR_OR_Nevo() {
+                noti.getStates() ? (detailString = noti.getLunarColorName()) : (detailString = NSLocalizedString("turned_off", comment: ""))
+            }else{
+                noti.getStates() ? (detailString = noti.getColorName()) : (detailString = NSLocalizedString("turned_off", comment: ""))
+            }
             
             let endCell:NotificationTypeCell = tableView.dequeueReusableCell(withIdentifier: "Notification_Identifier", for: indexPath) as! NotificationTypeCell
             endCell.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
@@ -278,7 +283,7 @@ extension NotificationViewController: AddPacketToWatchDelegate, SelectedNotifica
     func addPacketToWatchDelegate(appid:String,onOff:Bool){
         initNotificationSettingArray()
         self.tableView.reloadData()
-        AppDelegate.getAppDelegate().LunaRNotfication()
+        AppDelegate.getAppDelegate().deleteAllLunaRNotfication()
     }
     
     func didSelectedNotificationDelegate(_ clockIndex:Int,ntSwitchState:Bool,appid:String){
@@ -296,7 +301,7 @@ extension NotificationViewController: AddPacketToWatchDelegate, SelectedNotifica
                     if AppTheme.isTargetLunaR_OR_Nevo() {
                         AppDelegate.getAppDelegate().SetNortification(allArraySettingArray)
                     }else{
-                        AppDelegate.getAppDelegate().LunaRNotfication()
+                        AppDelegate.getAppDelegate().deleteAllLunaRNotfication()
                     }
                     
                     let banner = MEDBanner(title: NSLocalizedString("sync_notifications", comment: ""), subtitle: nil, image: nil, backgroundColor: AppTheme.NEVO_SOLAR_YELLOW())
