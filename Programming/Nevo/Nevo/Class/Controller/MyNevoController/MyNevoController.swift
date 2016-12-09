@@ -15,8 +15,6 @@ class MyNevoController: UITableViewController,UIAlertViewDelegate {
 
     fileprivate var currentBattery:Int = 0
     fileprivate var rssialert :UIAlertView?
-    fileprivate var buildinSoftwareVersion:Int = 0
-    fileprivate var buildinFirmwareVersion:Int = 0
 
     var titleArray:[String] = []
 
@@ -31,8 +29,6 @@ class MyNevoController: UITableViewController,UIAlertViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = NSLocalizedString("My nevo", comment: "")
-        buildinSoftwareVersion = AppTheme.GET_SOFTWARE_VERSION()
-        buildinFirmwareVersion = AppTheme.GET_FIRMWARE_VERSION()
 
         titleArray = [NSLocalizedString("watch_version", comment: ""),NSLocalizedString("battery", comment: ""),NSLocalizedString("app_version", comment: "")]
         
@@ -67,7 +63,7 @@ class MyNevoController: UITableViewController,UIAlertViewDelegate {
             }
         }
         
-        SwiftEventBus.onMainThread(self, name: EVENT_BUS_CONNECTION_STATE_CHANGED_KEY) { (notification) in
+        _ = SwiftEventBus.onMainThread(self, name: EVENT_BUS_CONNECTION_STATE_CHANGED_KEY) { (notification) in
             let isConnected:Bool = notification.object as! Bool
             if(isConnected){
                 AppDelegate.getAppDelegate().ReadBatteryLevel()
@@ -125,17 +121,23 @@ class MyNevoController: UITableViewController,UIAlertViewDelegate {
         tableView.deselectRow(at: indexPath, animated: true)
         if((indexPath as NSIndexPath).row == 0){
             if !AppTheme.isTargetLunaR_OR_Nevo() {
-                let lunar:LunaROTAController = LunaROTAController()
-                let navigation:UINavigationController = UINavigationController(rootViewController: lunar)
-                self.present(navigation, animated: true, completion: nil)
-            }else{
-                if(AppDelegate.getAppDelegate().getSoftwareVersion() >= Float(buildinSoftwareVersion) && AppDelegate.getAppDelegate().getFirmwareVersion() >= Float(buildinFirmwareVersion)){
+                if(AppDelegate.getAppDelegate().getFirmwareVersion() >= Float(buildin_firmware_version)){
                     let banner = MEDBanner(title: NSLocalizedString("is_watch_version", comment: ""), subtitle: nil, image: nil, backgroundColor: AppTheme.NEVO_SOLAR_YELLOW())
                     banner.dismissesOnTap = true
                     banner.show(duration: 1.5)
                     return
                 }
-                if(buildinSoftwareVersion==0&&buildinFirmwareVersion==0){return}
+                let lunar:LunaROTAController = LunaROTAController()
+                let navigation:UINavigationController = UINavigationController(rootViewController: lunar)
+                self.present(navigation, animated: true, completion: nil)
+            }else{
+                if(AppDelegate.getAppDelegate().getSoftwareVersion() >= Float(buildin_software_version) && AppDelegate.getAppDelegate().getFirmwareVersion() >= Float(buildin_firmware_version)){
+                    let banner = MEDBanner(title: NSLocalizedString("is_watch_version", comment: ""), subtitle: nil, image: nil, backgroundColor: AppTheme.NEVO_SOLAR_YELLOW())
+                    banner.dismissesOnTap = true
+                    banner.show(duration: 1.5)
+                    return
+                }
+                if(buildin_software_version==0&&buildin_firmware_version==0){return}
                 let otaCont:NevoOtaViewController = NevoOtaViewController()
                 let navigation:UINavigationController = UINavigationController(rootViewController: otaCont)
                 self.present(navigation, animated: true, completion: nil)

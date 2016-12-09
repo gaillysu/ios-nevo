@@ -114,7 +114,7 @@ class StepsHistoryViewController: PublicClassController,ChartViewDelegate {
     func saveContentTArray(date:TimeInterval) {
         //Only for today's data
         self.bulidStepHistoricalChartView(date)
-        let queryArray = MEDUserSteps.getFilter("date == \(date)")
+        let queryArray = MEDUserSteps.getFilter("date = \(date)")
         if queryArray.count>0 {
             let dataSteps:MEDUserSteps = queryArray[0] as! MEDUserSteps
             let timerValue:Double = Double(dataSteps.walking_duration+dataSteps.running_duration)

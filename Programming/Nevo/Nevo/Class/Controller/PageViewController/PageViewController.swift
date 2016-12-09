@@ -116,6 +116,7 @@ class PageViewController: UIPageViewController,UIActionSheetDelegate {
         self.dataSource = self;
         self.setViewControllers([pagingControllers[0]], direction: UIPageViewControllerNavigationDirection.forward, animated: false) { (fines) in
         }
+        self.bulidPageControl()
     }
     
     func leftBarButtonAction(_ rightBar:UIBarButtonItem) {

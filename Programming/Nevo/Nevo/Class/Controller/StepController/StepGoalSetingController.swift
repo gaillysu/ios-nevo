@@ -167,7 +167,7 @@ extension StepGoalSetingController {
      */
     func saveContentTArray(_ beginningDate:TimeInterval) {
         //Only for today's data
-        let array = MEDUserSteps.getFilter("date == \(beginningDate)")
+        let array = MEDUserSteps.getFilter("date = \(beginningDate)")
         if array.count>0 {
             let dataSteps:MEDUserSteps = array[0] as! MEDUserSteps
             
