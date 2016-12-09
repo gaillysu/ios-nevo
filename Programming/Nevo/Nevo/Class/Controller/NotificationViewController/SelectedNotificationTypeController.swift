@@ -171,7 +171,7 @@ extension SelectedNotificationTypeController:AddPacketToWatchDelegate {
             allowCell.setTitleLabel(title: NSLocalizedString("Allow_Notifications", comment: ""), titleColor: titleColor!, titleFont: nil)
             return allowCell
         case 1:
-            let cell = selectedNotificationView.getNotificationClockCell(indexPath, tableView: tableView, image: UIImage.dotImageWith(color: UIColor.init(rgba: try! notSetting!.getHexColor()), backgroundColor: UIColor.getGreyColor(), size: CGSize(width: 15, height: 15)), clockIndex: notSetting!.getClock())
+            let cell = selectedNotificationView.getNotificationClockCell(indexPath, tableView: tableView, image: UIImage.dotImageWith(color: UIColor(rgba: notSetting!.getHexColor()), backgroundColor: UIColor.getGreyColor(), size: CGSize(width: 15, height: 15)), clockIndex: notSetting!.getClock())
             
             cell.viewDefaultColorful()
             
@@ -180,7 +180,7 @@ extension SelectedNotificationTypeController:AddPacketToWatchDelegate {
             var cell: UITableViewCell = UITableViewCell.init()
             if !AppTheme.isTargetLunaR_OR_Nevo() {
                 cell.accessoryType = .disclosureIndicator
-                cell.imageView?.image = UIImage.dotImageWith(color: UIColor.init(rgba: try! notSetting!.getHexColor()), backgroundColor: UIColor.getGreyColor(), size: CGSize(width: 15, height: 15))
+                cell.imageView?.image = UIImage.dotImageWith(color: UIColor(rgba:notSetting!.getHexColor()), backgroundColor: UIColor.getGreyColor(), size: CGSize(width: 15, height: 15))
                 cell.imageView?.backgroundColor = UIColor.clear
                 cell.textLabel?.text = notSetting!.getLunarColorName()
                 cell.selectionStyle = .none

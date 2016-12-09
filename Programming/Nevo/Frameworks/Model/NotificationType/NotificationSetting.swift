@@ -151,9 +151,26 @@ class NotificationSetting: NSObject {
         return ledColor
     }
     
-    func getHexColor() throws -> String{
+    func getHexColor() -> String{
         if AppTheme.isTargetLunaR_OR_Nevo() {
-            throw HexColorError.isNotColor
+            var ledColor:String
+            switch mClock {
+            case 2:
+                ledColor = UIColor.red.hexString(false)
+            case 4:
+                ledColor = UIColor.blue.hexString(false)
+            case 6:
+                ledColor = "#90EE90"
+            case 8:
+                ledColor = UIColor.yellow.hexString(false)
+            case 10 :
+                ledColor = UIColor.orange.hexString(false)
+            case 12:
+                ledColor = UIColor.green.hexString(false)
+            default:
+                ledColor = ""
+            }
+            return ledColor
         }
         return hexColor;
     }

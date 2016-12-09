@@ -34,7 +34,7 @@ class SetingViewController: UIViewController,ButtonManagerCallBack,UIAlertViewDe
 
         sources = [NSLocalizedString("Link-Loss Notifications", comment: ""),NSLocalizedString("Notifications", comment: ""),NSLocalizedString("My Nevo", comment: ""),NSLocalizedString("Support", comment: "")]
         sourcesImage = ["new_iOS_link_icon","new_iOS_notfications_icon","new_iOS_mynevo_iocn","new_iOS_support_icon"]
-        titleArray = [NSLocalizedString("goals", comment: ""),NSLocalizedString("find_my_watch", comment: ""),NSLocalizedString("forget_watch", comment: ""),NSLocalizedString("logout", comment: "")]
+        titleArray = [NSLocalizedString("other_settings", comment: ""),NSLocalizedString("find_my_watch", comment: ""),NSLocalizedString("forget_watch", comment: ""),NSLocalizedString("logout", comment: "")]
         titleArrayImage = ["new_iOS_goals_icon","new_iOS_findmywatch_icon","forget_watch","logout"]
         
         notificationList.tableListView.register(UINib(nibName:"SetingLoginCell" ,bundle: nil), forCellReuseIdentifier: "SetingLoginIdentifier")
@@ -101,14 +101,14 @@ class SetingViewController: UIViewController,ButtonManagerCallBack,UIAlertViewDe
                 self.navigationController?.pushViewController(userprofile, animated: true)
             }
         case 1:
-            if(isEqualString("\(sources.object(at: (indexPath as NSIndexPath).row))",string2: NSLocalizedString("Notifications", comment: ""))){
+            if(isEqualString("\(sources.object(at: indexPath.row))",string2: NSLocalizedString("Notifications", comment: ""))){
                 XCGLogger.default.debug("Notifications")
                 let notification:NotificationViewController = NotificationViewController()
                 notification.hidesBottomBarWhenPushed = true
                 self.navigationController?.pushViewController(notification, animated: true)
             }
 
-            if(isEqualString("\(sources.object(at: (indexPath as NSIndexPath).row))",string2: NSLocalizedString("My Nevo", comment: ""))){
+            if(isEqualString("\(sources.object(at: indexPath.row))",string2: NSLocalizedString("My Nevo", comment: ""))){
                 if(AppDelegate.getAppDelegate().isConnected()){
                     XCGLogger.default.debug("My nevo")
                     let mynevo:MyNevoController = MyNevoController()
@@ -121,14 +121,14 @@ class SetingViewController: UIViewController,ButtonManagerCallBack,UIAlertViewDe
                 }
             }
 
-            if(isEqualString("\(sources[(indexPath as NSIndexPath).row])",string2: NSLocalizedString("Support", comment: ""))){
+            if(isEqualString("\(sources[indexPath.row])",string2: NSLocalizedString("Support", comment: ""))){
                 XCGLogger.default.debug("Support")
                 let supportView:SupportViewController = SupportViewController()
                 supportView.hidesBottomBarWhenPushed = true
                 self.navigationController?.pushViewController(supportView, animated: true)
             }
             
-            if(isEqualString("\(sources[(indexPath as NSIndexPath).row])",string2: NSLocalizedString("Connect to other apps", comment: ""))){
+            if(isEqualString("\(sources[indexPath.row])",string2: NSLocalizedString("Connect to other apps", comment: ""))){
                
                 let users = MEDUserProfile.getAll()
                 if users.count == 0 {
@@ -144,7 +144,7 @@ class SetingViewController: UIViewController,ButtonManagerCallBack,UIAlertViewDe
             }
             break
         case 2:
-            if(isEqualString("\(titleArray[(indexPath as NSIndexPath).row])",string2: NSLocalizedString("find_my_watch", comment: ""))){
+            if(isEqualString("\(titleArray[indexPath.row])",string2: NSLocalizedString("find_my_watch", comment: ""))){
                 XCGLogger.default.debug("find_my_watch")
                 findMydevice()
                 let cellView = tableView.cellForRow(at: indexPath)
@@ -165,14 +165,14 @@ class SetingViewController: UIViewController,ButtonManagerCallBack,UIAlertViewDe
                 }
             }
 
-            if(isEqualString("\(titleArray[(indexPath as NSIndexPath).row])",string2: NSLocalizedString("goals", comment: ""))){
-                XCGLogger.default.debug("Preset-goals")
+            if(isEqualString("\(titleArray[indexPath.row])",string2: NSLocalizedString("other_settings", comment: ""))){
+                XCGLogger.default.debug("other settings")
                 let presetView:PresetTableViewController = PresetTableViewController()
                 presetView.hidesBottomBarWhenPushed = true
                 self.navigationController?.pushViewController(presetView, animated: true)
             }
 
-            if(isEqualString("\(titleArray[(indexPath as NSIndexPath).row])",string2: NSLocalizedString("forget_watch", comment: ""))){
+            if(isEqualString("\(titleArray[indexPath.row])",string2: NSLocalizedString("forget_watch", comment: ""))){
                 XCGLogger.default.debug("forget_watch")
                 let actionSheet:ActionSheetView = ActionSheetView(title: NSLocalizedString("forget_watch", comment: ""), message: NSLocalizedString("forget_your_nevo", comment: ""), preferredStyle: UIAlertControllerStyle.alert)
                 
@@ -207,7 +207,7 @@ class SetingViewController: UIViewController,ButtonManagerCallBack,UIAlertViewDe
                 self.present(actionSheet, animated: true, completion: nil)
             }
 
-            if (indexPath as NSIndexPath).row == 3{
+            if indexPath.row == 3{
                 
                 let dialogController = ActionSheetView(title: NSLocalizedString("Are you sure you want to log out?", comment: ""), message: nil, preferredStyle: .alert)
                 let confirmAction = AlertAction(title: NSLocalizedString("Yes", comment: ""), style: .default, handler: { (_) in
@@ -327,10 +327,10 @@ class SetingViewController: UIViewController,ButtonManagerCallBack,UIAlertViewDe
             }
             
         case 1:
-            if((indexPath as NSIndexPath).row == 0){
-                return notificationList.LinkLossNotificationsTableViewCell(indexPath, tableView: tableView, title: sources[(indexPath as NSIndexPath).row] as! String ,imageName:sourcesImage[(indexPath as NSIndexPath).row])
+            if(indexPath.row == 0){
+                return notificationList.LinkLossNotificationsTableViewCell(indexPath, tableView: tableView, title: sources[indexPath.row] as! String ,imageName:sourcesImage[indexPath.row])
             }
-            return notificationList.NotificationSystemTableViewCell(indexPath, tableView: tableView, title: sources[(indexPath as NSIndexPath).row] as! String ,imageName:sourcesImage[(indexPath as NSIndexPath).row])
+            return notificationList.NotificationSystemTableViewCell(indexPath, tableView: tableView, title: sources[indexPath.row] as! String ,imageName:sourcesImage[indexPath.row])
         case 2:
             let users = MEDUserProfile.getAll()
             var textString:String = NSLocalizedString("log_out", comment: "")
@@ -338,9 +338,9 @@ class SetingViewController: UIViewController,ButtonManagerCallBack,UIAlertViewDe
                 textString = NSLocalizedString("Login", comment: "")
             }
             titleArray[3] = textString
-            return notificationList.NotificationSystemTableViewCell(indexPath, tableView: tableView, title: titleArray[(indexPath as NSIndexPath).row] ,imageName:titleArrayImage[(indexPath as NSIndexPath).row])
+            return notificationList.NotificationSystemTableViewCell(indexPath, tableView: tableView, title: titleArray[indexPath.row] ,imageName:titleArrayImage[indexPath.row])
 
-        default: return notificationList.NotificationSystemTableViewCell(indexPath, tableView: tableView, title: sources[1] as! String ,imageName:titleArrayImage[(indexPath as NSIndexPath).row]);
+        default: return notificationList.NotificationSystemTableViewCell(indexPath, tableView: tableView, title: sources[1] as! String ,imageName:titleArrayImage[indexPath.row]);
         }
     }
 
