@@ -21,12 +21,21 @@ class MEDUserNotification:MEDBaseModel {
     dynamic var colorValue:String = ""
     dynamic var colorName:String = ""
     
+    dynamic var colorKey: String = ""
+    
     /***************主键可以自己设定设定后不可更改,后面的内容更新都需要根据主键操作*******************/
     dynamic var key:String = Date().stringFromFormat("yyyyMMddHHmmss", locale: DateFormatter().locale)
     
     override static func primaryKey() -> String? {
         return "key"
     }
+    
+    func colorItem() -> MEDNotificationColor? {
+        let realm = try! Realm()
+        let colorItem = realm.object(ofType: MEDNotificationColor.self, forPrimaryKey: self.colorKey)
+        return colorItem
+    }
+
     /**
      When it is the first time you install and use must be implemented
      *在用户第一次安装使用的时候必须实现
@@ -69,6 +78,12 @@ class MEDUserNotification:MEDBaseModel {
                             userNotification.appid = notificationDict["bundleId"]!.stringValue
                             userNotification.colorValue = notificationDict["colorValue"]!.stringValue
                             userNotification.colorName = notificationDict["colorName"]!.stringValue
+                            
+                            // 可以在这里也顺便初始化 MEDNotificationColor 数据库，让每个 MEDUserNotification 都默认对应一个
+                            let colorItem: MEDNotificationColor = MEDNotificationColor.factory(name: notificationDict["colorName"]!.stringValue, color: notificationDict["colorValue"]!.stringValue)
+                            userNotification.colorKey = colorItem.key
+                            _ = colorItem.add()
+                            
                             userNotification.deleteFlag = false
                             _ = userNotification.add()
                             indeValue+=1

@@ -20,7 +20,7 @@ class NotiColorDetailController: UITableViewController {
         if let notificationColor = self.notificationColor {
             return MEDNotificationColor.factory(name: notificationColor.name, color: notificationColor.color)
         } else {
-            return MEDNotificationColor.factory(name: "Default Name", color: "#7ED8D1")
+            return MEDNotificationColor.factory(name: "Nameless", color: "#7ED8D1")
         }
     }()
     
@@ -46,11 +46,13 @@ class NotiColorDetailController: UITableViewController {
         
         self.tableView.register(UINib(nibName: "NotiColorEditableCell", bundle: nil), forCellReuseIdentifier: "kNotiColorEditabelCellIdentifier")
         
-//        colorPickerView.allSubviews { (v) in
-//            if v.isKind(of: MSColorComponentView.self) {
-//                (v as! MSColorComponentView).title = ""
-//            }
-//        }
+        colorPickerView.allSubviews { (v) in
+            if v.isKind(of: UILabel.self) {
+                if (v as! UILabel).text == NSLocalizedString("Brightness", comment: "") {
+                    (v as! UILabel).textColor = UIColor.white
+                }
+            }
+        }
         viewDefaultColorful()
     }
 }
@@ -60,16 +62,22 @@ extension NotiColorDetailController {
         let realm = try! Realm()
         try! realm.write {
             if let notificationColor = self.notificationColor {
-                notificationColor.color = model.color
-                notificationColor.name = model.name
-                _ = navigationController?.popViewController(animated: true)
+                let count = realm.objects(MEDUserNotification.self).filter("colorKey = '\(notificationColor.key)'").count
+                if count > 1 {
+                    notification?.colorKey = model.key
+                    realm.add(model, update: true)
+                } else {
+                    notificationColor.color = model.color
+                    notificationColor.name = model.name
+                }
             } else {
                 notification?.colorValue = model.color
                 notification?.colorName = model.name
+                notification?.colorKey = model.key
                 realm.add(model, update: true)
-                _ = navigationController?.popViewController(animated: true)
             }
         }
+         _ = navigationController?.popViewController(animated: true)
     }
 }
 
