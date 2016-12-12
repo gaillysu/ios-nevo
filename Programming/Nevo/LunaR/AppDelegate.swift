@@ -45,6 +45,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
     fileprivate var savedDailyHistory:[LunaRPacket.TotalHistory] = []
     fileprivate var currentDay:UInt8 = 0
     fileprivate var mAlertUpdateFW = false
+    fileprivate var isLunaRFirstPair:Bool = false
     
     fileprivate var watchID:Int = 1 {
         didSet {
@@ -159,11 +160,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
     func updateDataBase() {
         let config = Realm.Configuration(
             // 设置新的架构版本。这个版本号必须高于之前所用的版本号（如果您之前从未设置过架构版本，那么这个版本号设置为 0）
-            schemaVersion: 1,
+            schemaVersion: 2,
             // 设置闭包，这个闭包将会在打开低于上面所设置版本号的 Realm 数据库的时候被自动调用
             migrationBlock: { migration, oldSchemaVersion in
                 // 目前我们还未进行数据迁移，因此 oldSchemaVersion == 0
-                if (oldSchemaVersion < 1) {
+                if (oldSchemaVersion < 2) {
                     // 什么都不要做！Realm 会自行检测新增和需要移除的属性，然后自动更新硬盘上的数据库架构
                 }
         })
@@ -424,6 +425,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
             
             if packet.getHeader() == SetNotificationAppIDRequest.HEADER() {
                 XCGLogger.default.debug("SetNotificationAppIDRequest")
+                if isLunaRFirstPair {
+                    self.setRTC()
+                }
             }
             
             if packet.getHeader() == NewAppIDNotificationRequest.HEADER() {
@@ -468,8 +472,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
             self.mPacketsbuffer = []
             
             if isFirstPair {
+                isLunaRFirstPair = true
                 self.deleteAllLunaRNotfication()
             }else{
+                isLunaRFirstPair = false
+                
                 self.getWatchNameRequest()
                 
                 self.getWacthNameTimer = Timer.after(5, {
@@ -486,13 +493,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
     }
     
     func firmwareVersionReceived(_ whichfirmware:DfuFirmwareTypes, version:Float) {
-        let mcuver = AppTheme.GET_SOFTWARE_VERSION()
-        let blever = AppTheme.GET_FIRMWARE_VERSION()
+        let blever = buildin_firmware_version
         
-        XCGLogger.default.debug("Build in software version: \(mcuver), firmware version: \(blever)")
+        XCGLogger.default.debug("Build in firmware version: \(blever)")
         
-        if ((whichfirmware == DfuFirmwareTypes.softdevice  && version < Float(mcuver))
-            || (whichfirmware == DfuFirmwareTypes.application  && version < Float(blever))) {
+        if (whichfirmware == DfuFirmwareTypes.application  && version < Float(blever)) {
             //for tutorial screen, don't popup update dialog
             if !mAlertUpdateFW {
                 mAlertUpdateFW = true

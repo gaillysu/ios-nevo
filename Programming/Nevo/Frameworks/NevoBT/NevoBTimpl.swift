@@ -70,6 +70,8 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
     fileprivate var mSoftwareVersion:Float = 0
 
     fileprivate var redRssiTimer:Timer = Timer()
+    
+    fileprivate var callbackChar:String = ""
     /**
     Basic constructor, just a Delegate handsake
     */
@@ -155,11 +157,13 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
         if let services:[CBService] = aPeripheral.services{
             for aService:CBService in services {
                 XCGLogger.default.debug("Service found with UUID : \(aService.uuid.uuidString)")
-                if (aService.uuid == mProfile?.CONTROL_SERVICE) {
-                    aPeripheral.discoverCharacteristics(nil,for:aService)
+                for controlProfile in mProfile!.CONTROL_SERVICE {
+                    if (aService.uuid == controlProfile) {
+                        aPeripheral.discoverCharacteristics(nil,for:aService)
+                    }
                 }
                 //device info service
-                else if (aService.uuid == CBUUID(string: "0000180a-0000-1000-8000-00805f9b34fb")) {
+                if (aService.uuid == CBUUID(string: "0000180a-0000-1000-8000-00805f9b34fb")) {
                     aPeripheral.discoverCharacteristics(nil,for:aService)
                 }
             }
@@ -179,10 +183,15 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
     
         if let characteristics:[CBCharacteristic] = service.characteristics {
             for aChar:CBCharacteristic in characteristics {
-                if(aChar.uuid==mProfile?.CALLBACK_CHARACTERISTIC ) {
-                    mPeripheral?.setNotifyValue(true,for:aChar)
-                    XCGLogger.default.debug("Callback char : \(aChar.uuid.uuidString)")
-                }else if(aChar.uuid==CBUUID(string: "00002a26-0000-1000-8000-00805f9b34fb")) {
+                for callbackProfile in mProfile!.CALLBACK_CHARACTERISTIC {
+                    if (aChar.uuid == callbackProfile) {
+                        mPeripheral?.setNotifyValue(true,for:aChar)
+                        callbackChar = aChar.uuid.uuidString
+                        XCGLogger.default.debug("Callback char : \(aChar.uuid.uuidString)")
+                    }
+                }
+                
+                if(aChar.uuid==CBUUID(string: "00002a26-0000-1000-8000-00805f9b34fb")) {
                     mPeripheral?.readValue(for: aChar)
                     XCGLogger.default.debug("read firmware version char : \(aChar.uuid.uuidString)")
                 }else if(aChar.uuid==CBUUID(string: "00002a28-0000-1000-8000-00805f9b34fb")) {
@@ -201,13 +210,17 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
     func peripheral(_ aPeripheral:CBPeripheral, didUpdateValueFor characteristic:CBCharacteristic, error  :Error?) {
         
         //We received a value, if it did came from the calllback char, let's return it
-        if (characteristic.uuid==mProfile?.CALLBACK_CHARACTERISTIC) {
-            if error == nil && characteristic.value != nil {
-                XCGLogger.default.debug("Received : \(characteristic.uuid.uuidString) \(self.hexString(characteristic.value!))")
-                /* It is valid data, let's return it to our delegate */
-                mDelegate?.packetReceived( RawPacketImpl(data: characteristic.value! , profile: mProfile!) ,  fromAddress : aPeripheral.identifier )
+        for callbackProfile in mProfile!.CALLBACK_CHARACTERISTIC {
+            if (characteristic.uuid == callbackProfile) {
+                if error == nil && characteristic.value != nil {
+                    XCGLogger.default.debug("Received : \(characteristic.uuid.uuidString) \(self.hexString(characteristic.value!))")
+                    /* It is valid data, let's return it to our delegate */
+                    mDelegate?.packetReceived( RawPacketImpl(data: characteristic.value! , profile: mProfile!) ,  fromAddress : aPeripheral.identifier )
+                }
             }
-        } else if(characteristic.uuid==CBUUID(string: "00002a26-0000-1000-8000-00805f9b34fb")) {
+        }
+        
+        if(characteristic.uuid==CBUUID(string: "00002a26-0000-1000-8000-00805f9b34fb")) {
             if characteristic.value != nil {
                 if let version = String(data: characteristic.value!, encoding: String.Encoding.utf8) {
                     mFirmwareVersion = version.toFloat()
@@ -270,7 +283,7 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
 
             mDelegate?.scanAndConnect()
 
-            let services:[CBUUID] = [mProfile!.CONTROL_SERVICE]
+            let services:[CBUUID] = mProfile!.CONTROL_SERVICE
 
             //No address was specified, we'll search for devices with the right profile.
 
@@ -363,7 +376,7 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
 
         if let services:[CBService] = mPeripheral?.services{
             
-            if( mProfile?.CALLBACK_CHARACTERISTIC != request.getTargetProfile().CALLBACK_CHARACTERISTIC ) {
+            if(!request.getTargetProfile().CALLBACK_CHARACTERISTIC.elementsEqual(mProfile!.CALLBACK_CHARACTERISTIC)) {
                 //We didn't subscribe to this profile's CallbackCharacteristic, there have to be a mistake somewhere
                 XCGLogger.default.debug("The target profile is incompatible with the profile given on this NevoBT's initalisation.")
                 return ;
@@ -371,39 +384,35 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
     
             //Let's assume that you have already discovered the services
             for service:CBService in services {
-                
-                if(service.uuid == request.getTargetProfile().CONTROL_SERVICE) {
-                    
-                    if let characteristics:[CBCharacteristic] = service.characteristics{
-                    
-                        for charac:CBCharacteristic in characteristics {
-                        
-                            if(charac.uuid == request.getTargetProfile().CONTROL_CHARACTERISTIC) {
-    
-                                if request.getRawDataEx().count == 0
-                                {
-                                    XCGLogger.default.debug("Request raw data :\(request.getRawData())")
-                                    //OTA control CHAR, need a response
-                                    if mProfile is NevoOTAControllerProfile && request.getTargetProfile().CONTROL_CHARACTERISTIC == mProfile?.CONTROL_CHARACTERISTIC
-                                    {
-                                        mPeripheral?.writeValue(request.getRawData() as Data,for:charac,type:CBCharacteristicWriteType.withResponse)
-                                    }
-                                    else
-                                    {
-                                        mPeripheral?.writeValue(request.getRawData() as Data,for:charac,type:CBCharacteristicWriteType.withoutResponse)
-                                    }
-                                }else{
-                                    for data in request.getRawDataEx() {
-                                        XCGLogger.default.debug("Request raw data Ex:\(data)")
-                                        mPeripheral?.writeValue(data as! Data,for:charac,type:CBCharacteristicWriteType.withoutResponse)
+                for uuis in request.getTargetProfile().CONTROL_SERVICE {
+                    if service.uuid == uuis{
+                        if let characteristics:[CBCharacteristic] = service.characteristics{
+                            
+                            for charac:CBCharacteristic in characteristics {
+                                for mUUID in request.getTargetProfile().CONTROL_CHARACTERISTIC {
+                                    if charac.uuid == mUUID {
+                                        if request.getRawDataEx().count == 0
+                                        {
+                                            XCGLogger.default.debug("Request raw data :\(request.getRawData())")
+                                            //OTA control CHAR, need a response
+                                            if mProfile is NevoOTAControllerProfile && request.getTargetProfile().CONTROL_CHARACTERISTIC.elementsEqual(mProfile!.CONTROL_CHARACTERISTIC) {
+                                                mPeripheral?.writeValue(request.getRawData() as Data,for:charac,type:CBCharacteristicWriteType.withResponse)
+                                            }else{
+                                                mPeripheral?.writeValue(request.getRawData() as Data,for:charac,type:CBCharacteristicWriteType.withoutResponse)
+                                            }
+                                        }else{
+                                            for data in request.getRawDataEx() {
+                                                XCGLogger.default.debug("Request raw data Ex:\(data)")
+                                                mPeripheral?.writeValue(data as! Data,for:charac,type:CBCharacteristicWriteType.withoutResponse)
+                                            }
+                                        }
                                     }
                                 }
                             }
+                        } else {
+                            XCGLogger.default.debug("No Characteristics found for : \(service.uuid.uuidString), can't send packet")
                         }
-                    } else {
-                        XCGLogger.default.debug("No Characteristics found for : \(service.uuid.uuidString), can't send packet")
                     }
-                    
                 }
             }
 

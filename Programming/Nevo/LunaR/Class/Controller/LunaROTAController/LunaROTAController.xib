@@ -31,7 +31,7 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="upgrade_clock.png" translatesAutoresizingMaskIntoConstraints="NO" id="IS9-SL-jhg">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="2_clock_dial" translatesAutoresizingMaskIntoConstraints="NO" id="IS9-SL-jhg">
                     <rect key="frame" x="35" y="111" width="305" height="305"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="IS9-SL-jhg" secondAttribute="height" multiplier="1:1" id="DBo-RR-sI5"/>
@@ -134,7 +134,7 @@
         </view>
     </objects>
     <resources>
-        <image name="upgrade_clock.png" width="600" height="600"/>
+        <image name="2_clock_dial" width="300" height="300"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

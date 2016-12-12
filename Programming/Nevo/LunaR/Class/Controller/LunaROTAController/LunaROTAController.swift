@@ -123,6 +123,7 @@ extension LunaROTAController:CBCentralManagerDelegate, CBPeripheralDelegate {
     
     func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: Error?) {
         print("Disconnected from peripheral: \(peripheral.name)")
+        self.startDiscovery()
     }
 
 }
@@ -318,7 +319,7 @@ extension LunaROTAController:ConnectionControllerDelegate {
                         //when switch to DFU mode, the identifier has changed another one
                         AppDelegate.getAppDelegate().getMconnectionController()?.forgetSavedAddress()
                         AppDelegate.getAppDelegate().getMconnectionController()?.setOTAMode(true,Disconnect:false)
-                        AppDelegate.getAppDelegate().getMconnectionController()?.connect()
+                        //AppDelegate.getAppDelegate().getMconnectionController()?.connect()
                     })
                 }
             }
