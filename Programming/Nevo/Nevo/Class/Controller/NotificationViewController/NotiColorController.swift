@@ -54,6 +54,7 @@ extension NotiColorController {
         try! realm.write {
             notification?.colorValue = notificationColors[indexPath.row].color
             notification?.colorName = notificationColors[indexPath.row].name
+            notification?.colorKey = notificationColors[indexPath.row].key
             tableView.reloadData()
         }
          AppDelegate.getAppDelegate().deleteAllLunaRNotfication()
@@ -90,12 +91,12 @@ extension NotiColorController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "kReusableIdentifier" ,for: indexPath)
         cell.selectionStyle = .none
         
-        let model = notificationColors[indexPath.row]
+        let notificationColor = notificationColors[indexPath.row]
         
-        cell.textLabel?.text = model.name
-        cell.imageView?.image = UIImage.dotImageWith(color: UIColor.init(rgba: model.color), backgroundColor: UIColor.getGreyColor(), size: CGSize(width: 15, height: 15))
+        cell.textLabel?.text = notificationColor.name
+        cell.imageView?.image = UIImage.dotImageWith(color: UIColor.init(rgba: notificationColor.color), backgroundColor: UIColor.getGreyColor(), size: CGSize(width: 15, height: 15))
         
-        if model.color == notification!.colorValue {
+        if notificationColor.key == notification!.colorKey {
             let image = UIImage(named: "notifications_check")
             cell.accessoryView = UIImageView(image: image)
         } else {

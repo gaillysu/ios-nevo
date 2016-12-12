@@ -39,7 +39,7 @@ class NotificationViewController: UITableViewController {
         self.tableView.register(UINib(nibName: "NotificationTypeCell", bundle: nil), forCellReuseIdentifier: "Notification_Identifier")
         
         let rightItem:UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.refresh, target: self, action: #selector(refreshAction(_:)))
-        //self.navigationItem.rightBarButtonItem = rightItem
+        _ = rightItem
     }
     
     func refreshAction(_ sender:UIBarButtonItem) {

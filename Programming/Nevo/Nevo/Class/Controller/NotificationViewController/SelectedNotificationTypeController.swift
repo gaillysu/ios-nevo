@@ -27,13 +27,7 @@ class SelectedNotificationTypeController: UITableViewController {
     }()
 
     var notification: MEDUserNotification? {
-        get{
-            if let model = self.realm.objects(MEDUserNotification.self).filter("appid == %@", self.notSetting!.getPacket()).first {
-               return model
-            }else{
-                return nil
-            }
-        }
+        return self.realm.objects(MEDUserNotification.self).filter("appid == %@", self.notSetting!.getPacket()).first
     }
     
     var notificationColor: MEDNotificationColor?
@@ -171,7 +165,9 @@ extension SelectedNotificationTypeController:AddPacketToWatchDelegate {
             allowCell.setTitleLabel(title: NSLocalizedString("Allow_Notifications", comment: ""), titleColor: titleColor!, titleFont: nil)
             return allowCell
         case 1:
-            let cell = selectedNotificationView.getNotificationClockCell(indexPath, tableView: tableView, image: UIImage.dotImageWith(color: UIColor.init(rgba: try! notSetting!.getHexColor()), backgroundColor: UIColor.getGreyColor(), size: CGSize(width: 15, height: 15)), clockIndex: notSetting!.getClock())
+            let colorString = try! notSetting!.getHexColor()
+            let color = colorString == "" ? UIColor.getRandomColor() : UIColor.init(rgba: colorString)
+            let cell = selectedNotificationView.getNotificationClockCell(indexPath, tableView: tableView, image: UIImage.dotImageWith(color: color, backgroundColor: UIColor.getGreyColor(), size: CGSize(width: 15, height: 15)), clockIndex: notSetting!.getClock())
             
             cell.viewDefaultColorful()
             
@@ -179,8 +175,11 @@ extension SelectedNotificationTypeController:AddPacketToWatchDelegate {
         case 2:
             var cell: UITableViewCell = UITableViewCell.init()
             if !AppTheme.isTargetLunaR_OR_Nevo() {
-                cell.accessoryType = .disclosureIndicator
-                cell.imageView?.image = UIImage.dotImageWith(color: UIColor.init(rgba: try! notSetting!.getHexColor()), backgroundColor: UIColor.getGreyColor(), size: CGSize(width: 15, height: 15))
+                cell.accessoryType = notSetting!.getStates() ? .disclosureIndicator : .none
+                let colorString = try! notSetting!.getHexColor()
+                let color = colorString == "" ? UIColor.getRandomColor() : UIColor.init(rgba: colorString)
+                
+                cell.imageView?.image = UIImage.dotImageWith(color: color, backgroundColor: UIColor.getGreyColor(), size: CGSize(width: 15, height: 15))
                 cell.imageView?.backgroundColor = UIColor.clear
                 cell.textLabel?.text = notSetting!.getLunarColorName()
                 cell.selectionStyle = .none

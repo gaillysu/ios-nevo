@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import RealmSwift
 
-public enum HexColorError : Error {
+public enum HexColorError : Swift.Error {
     case isNotColor,  //在Nevo下面返回的错误
     isNotValueNull    //获取颜色的时候属性值是空的
 }
@@ -155,24 +156,28 @@ class NotificationSetting: NSObject {
         if AppTheme.isTargetLunaR_OR_Nevo() {
             throw HexColorError.isNotColor
         }
-        return hexColor;
-    }
-    
-    func setHexColor(_ color:String) throws{
-        if AppTheme.isTargetLunaR_OR_Nevo() {
-            throw HexColorError.isNotColor
-            
-        }else{
-            hexColor = color;
+        
+        let realm = try! Realm()
+        let medNotification = realm.objects(MEDUserNotification.self).filter("appid = '\(self.mPacket)'").first
+        if let color = medNotification?.colorItem()?.color {
+            return color
         }
-    }
-    
-    func setLunarColorName(_ name:String) {
-        lunarColorName = name
+        
+        return hexColor
     }
     
     func getLunarColorName()->String {
-        return lunarColorName
+        let realm = try! Realm()
+        let medNotification = realm.objects(MEDUserNotification.self).filter("appid = '\(self.mPacket)'").first
+        if let name = medNotification?.colorItem()?.name {
+            return name
+        }
+        
+        if lunarColorName != "" {
+            return lunarColorName
+        } else {
+            return "nameless"
+        }
     }
 }
 
