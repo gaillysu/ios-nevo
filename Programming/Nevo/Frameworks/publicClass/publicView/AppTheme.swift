@@ -455,4 +455,14 @@ class AppTheme {
         }
         return String(format:"%d h %d m",hours,minutes)
     }
+    
+    //return 0->Metrics,1->imperial,default value = 0
+    class func getUserSelectedUnitValue()->Int {
+        if let value = UserDefaults.standard.object(forKey: "UserSelectedUnit") {
+            let index:Int = value as! Int
+            return index
+        }else{
+            return 0
+        }
+    }
 }

@@ -305,18 +305,30 @@ extension StepGoalSetingController:UICollectionViewDelegate,UICollectionViewData
         }
         let titleString:String = contentTitleArray[(indexPath as NSIndexPath).row]
         cell.titleLabel.text = titleString.capitalized(with: Locale.current)
-        switch (indexPath as NSIndexPath).row {
+        switch indexPath.row {
         case 0:
-            cell.valueLabel.text = "\(contentTArray[(indexPath as NSIndexPath).row]) Cal"
+            var unit:String = "Cal"
+            var unitValue:Double = "\(contentTArray[indexPath.row])".toDouble()
+            if AppTheme.getUserSelectedUnitValue() == 1 {
+                unit = "Btu"
+                unitValue = unitValue*calToBtu
+            }
+            cell.valueLabel.text = "\(unitValue.to2Double()) \(unit)"
             break;
         case 1:
-            cell.valueLabel.text = "\(contentTArray[(indexPath as NSIndexPath).row])"
+            cell.valueLabel.text = "\(contentTArray[indexPath.row])"
             break;
         case 2:
-            cell.valueLabel.text = "\(contentTArray[(indexPath as NSIndexPath).row])"
+            cell.valueLabel.text = "\(contentTArray[indexPath.row])"
             break;
         case 3:
-            cell.valueLabel.text = "\(contentTArray[(indexPath as NSIndexPath).row]) KM"
+            var unit:String = "KM"
+            var unitValue:Double = "\(contentTArray[indexPath.row])".toDouble()
+            if AppTheme.getUserSelectedUnitValue() == 1 {
+                unit = "Mi"
+                unitValue = unitValue*kmToMi
+            }
+            cell.valueLabel.text = "\(unitValue.to2Double()) \(unit)"
             break;
         default:
             break;

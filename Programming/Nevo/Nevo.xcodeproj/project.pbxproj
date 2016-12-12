@@ -122,11 +122,6 @@
 		00C8262C1DA5E01C00ECECEE /* M13CheckboxStrokeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0008EE831D93C39A005E127C /* M13CheckboxStrokeManager.swift */; };
 		00C8262D1DA5E01C00ECECEE /* M13CheckboxDotPathPresets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0008EE851D93C39A005E127C /* M13CheckboxDotPathPresets.swift */; };
 		00C8262E1DA5E01C00ECECEE /* M13CheckboxSpiralPathPresets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0008EE861D93C39A005E127C /* M13CheckboxSpiralPathPresets.swift */; };
-		00C8262F1DA5E01C00ECECEE /* SMAlphaImageSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007865E31D91006F00F33AEA /* SMAlphaImageSegment.swift */; };
-		00C826301DA5E01C00ECECEE /* SMBasicSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007865E41D91006F00F33AEA /* SMBasicSegment.swift */; };
-		00C826311DA5E01C00ECECEE /* SMBasicSegmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007865E51D91006F00F33AEA /* SMBasicSegmentView.swift */; };
-		00C826321DA5E01C00ECECEE /* SMSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007865E61D91006F00F33AEA /* SMSegment.swift */; };
-		00C826331DA5E01C00ECECEE /* SMSegmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007865E71D91006F00F33AEA /* SMSegmentView.swift */; };
 		00C8263C1DA5E01C00ECECEE /* AutocompleteField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007865B61D90DBAF00F33AEA /* AutocompleteField.swift */; };
 		00C8263D1DA5E01C00ECECEE /* CircleProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007865B81D90DBAF00F33AEA /* CircleProgressView.swift */; };
 		00C8263E1DA5E01C00ECECEE /* NevoCircleProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0008EE971D93C5AA005E127C /* NevoCircleProgressView.swift */; };
@@ -409,6 +404,16 @@
 		6107670E1DDD88F800F53AD6 /* DeleteNotificationAppIDRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6107670D1DDD88F800F53AD6 /* DeleteNotificationAppIDRequest.swift */; };
 		610767101DDD89BC00F53AD6 /* DeleteAllNotificationAppIDRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6107670F1DDD89BC00F53AD6 /* DeleteAllNotificationAppIDRequest.swift */; };
 		610767121DDD8AE600F53AD6 /* ReceiveNewNotificationPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 610767111DDD8AE600F53AD6 /* ReceiveNewNotificationPacket.swift */; };
+		6119411E1DFE8B650048BA44 /* SMSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6119411A1DFE8B640048BA44 /* SMSegment.swift */; };
+		6119411F1DFE8B650048BA44 /* SMSegmentAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6119411B1DFE8B650048BA44 /* SMSegmentAppearance.swift */; };
+		611941201DFE8B650048BA44 /* SMSegmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6119411C1DFE8B650048BA44 /* SMSegmentView.swift */; };
+		611941211DFE8B650048BA44 /* SMSegmentViewConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6119411D1DFE8B650048BA44 /* SMSegmentViewConstants.swift */; };
+		611941221DFE8BAB0048BA44 /* SMSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6119411A1DFE8B640048BA44 /* SMSegment.swift */; };
+		611941231DFE8BAD0048BA44 /* SMSegmentAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6119411B1DFE8B650048BA44 /* SMSegmentAppearance.swift */; };
+		611941241DFE8BB00048BA44 /* SMSegmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6119411C1DFE8B650048BA44 /* SMSegmentView.swift */; };
+		611941251DFE8BB30048BA44 /* SMSegmentViewConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6119411D1DFE8B650048BA44 /* SMSegmentViewConstants.swift */; };
+		611941271DFE9EA50048BA44 /* UnitValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 611941261DFE9EA50048BA44 /* UnitValue.swift */; };
+		611941281DFE9F180048BA44 /* UnitValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 611941261DFE9EA50048BA44 /* UnitValue.swift */; };
 		611D412C1DCAD97C003BC6E3 /* ImagePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61879C341DC0A8B80089F1E5 /* ImagePickerController.swift */; };
 		611D412D1DCAD97C003BC6E3 /* MEDForgetPasswordRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6688A64B1DC981980078E636 /* MEDForgetPasswordRequest.swift */; };
 		611D412E1DCAD97C003BC6E3 /* MEDLoginRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6688A64D1DC981980078E636 /* MEDLoginRequest.swift */; };
@@ -446,11 +451,6 @@
 		611D414E1DCAD97C003BC6E3 /* M13CheckboxStrokeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0008EE831D93C39A005E127C /* M13CheckboxStrokeManager.swift */; };
 		611D414F1DCAD97C003BC6E3 /* M13CheckboxDotPathPresets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0008EE851D93C39A005E127C /* M13CheckboxDotPathPresets.swift */; };
 		611D41501DCAD97C003BC6E3 /* M13CheckboxSpiralPathPresets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0008EE861D93C39A005E127C /* M13CheckboxSpiralPathPresets.swift */; };
-		611D41511DCAD97C003BC6E3 /* SMAlphaImageSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007865E31D91006F00F33AEA /* SMAlphaImageSegment.swift */; };
-		611D41521DCAD97C003BC6E3 /* SMBasicSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007865E41D91006F00F33AEA /* SMBasicSegment.swift */; };
-		611D41531DCAD97C003BC6E3 /* SMBasicSegmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007865E51D91006F00F33AEA /* SMBasicSegmentView.swift */; };
-		611D41541DCAD97C003BC6E3 /* SMSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007865E61D91006F00F33AEA /* SMSegment.swift */; };
-		611D41551DCAD97C003BC6E3 /* SMSegmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007865E71D91006F00F33AEA /* SMSegmentView.swift */; };
 		611D41561DCAD97C003BC6E3 /* AutocompleteField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007865B61D90DBAF00F33AEA /* AutocompleteField.swift */; };
 		611D41571DCAD97C003BC6E3 /* CircleProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007865B81D90DBAF00F33AEA /* CircleProgressView.swift */; };
 		611D41581DCAD97C003BC6E3 /* NevoAllKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8D051D224D57009047AC /* NevoAllKeys.swift */; };
@@ -728,6 +728,14 @@
 		6165A6391DEBC33500F7A3E6 /* NotificationTypeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6165A6351DEBC32500F7A3E6 /* NotificationTypeCell.swift */; };
 		6165A63A1DEBC33800F7A3E6 /* NotificationTypeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6165A6361DEBC32500F7A3E6 /* NotificationTypeCell.xib */; };
 		6165A63C1DEBDDD200F7A3E6 /* GetotalAppIDPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6165A63B1DEBDDD100F7A3E6 /* GetotalAppIDPacket.swift */; };
+		6168C6301DFE53D5008FCF97 /* OtherController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6168C62E1DFE53D5008FCF97 /* OtherController.swift */; };
+		6168C6311DFE53D5008FCF97 /* OtherController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6168C62F1DFE53D5008FCF97 /* OtherController.xib */; };
+		6168C6321DFE540F008FCF97 /* OtherController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6168C62E1DFE53D5008FCF97 /* OtherController.swift */; };
+		6168C6331DFE5414008FCF97 /* OtherController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6168C62F1DFE53D5008FCF97 /* OtherController.xib */; };
+		6168C6361DFE8036008FCF97 /* UnitTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6168C6341DFE8036008FCF97 /* UnitTableViewCell.swift */; };
+		6168C6371DFE8036008FCF97 /* UnitTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6168C6351DFE8036008FCF97 /* UnitTableViewCell.xib */; };
+		6168C6381DFE820E008FCF97 /* UnitTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6168C6351DFE8036008FCF97 /* UnitTableViewCell.xib */; };
+		6168C6391DFE8211008FCF97 /* UnitTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6168C6341DFE8036008FCF97 /* UnitTableViewCell.swift */; };
 		616DCB111DD1A69D00B5773E /* lunar_connected.png in Resources */ = {isa = PBXBuildFile; fileRef = 616DCB101DD1A69D00B5773E /* lunar_connected.png */; };
 		616DCB121DD1A7E500B5773E /* lunar_connected.png in Resources */ = {isa = PBXBuildFile; fileRef = 616DCB101DD1A69D00B5773E /* lunar_connected.png */; };
 		6173DEF31DB0E90C002DF6AF /* SolarIndicatorController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6173DEF61DB0E90C002DF6AF /* SolarIndicatorController.xib */; };
@@ -1146,11 +1154,6 @@
 		006DA9FD1D80F2A600B70C0F /* AppDelegate-Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AppDelegate-Extension.swift"; sourceTree = "<group>"; };
 		007865B61D90DBAF00F33AEA /* AutocompleteField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutocompleteField.swift; sourceTree = "<group>"; };
 		007865B81D90DBAF00F33AEA /* CircleProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleProgressView.swift; sourceTree = "<group>"; };
-		007865E31D91006F00F33AEA /* SMAlphaImageSegment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMAlphaImageSegment.swift; sourceTree = "<group>"; };
-		007865E41D91006F00F33AEA /* SMBasicSegment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMBasicSegment.swift; sourceTree = "<group>"; };
-		007865E51D91006F00F33AEA /* SMBasicSegmentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMBasicSegmentView.swift; sourceTree = "<group>"; };
-		007865E61D91006F00F33AEA /* SMSegment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMSegment.swift; sourceTree = "<group>"; };
-		007865E71D91006F00F33AEA /* SMSegmentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMSegmentView.swift; sourceTree = "<group>"; };
 		007E0CAC1D0E5C3E00B0B600 /* ConnectOtherAppsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectOtherAppsCell.swift; sourceTree = "<group>"; };
 		007E0CAD1D0E5C3E00B0B600 /* ConnectOtherAppsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConnectOtherAppsCell.xib; sourceTree = "<group>"; };
 		007F1F501CAA1B630021DF1B /* LocalNotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocalNotification.swift; path = Frameworks/LocalNotification.swift; sourceTree = "<group>"; };
@@ -1321,6 +1324,11 @@
 		6107670D1DDD88F800F53AD6 /* DeleteNotificationAppIDRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeleteNotificationAppIDRequest.swift; sourceTree = "<group>"; };
 		6107670F1DDD89BC00F53AD6 /* DeleteAllNotificationAppIDRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeleteAllNotificationAppIDRequest.swift; sourceTree = "<group>"; };
 		610767111DDD8AE600F53AD6 /* ReceiveNewNotificationPacket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReceiveNewNotificationPacket.swift; sourceTree = "<group>"; };
+		6119411A1DFE8B640048BA44 /* SMSegment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMSegment.swift; sourceTree = "<group>"; };
+		6119411B1DFE8B650048BA44 /* SMSegmentAppearance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMSegmentAppearance.swift; sourceTree = "<group>"; };
+		6119411C1DFE8B650048BA44 /* SMSegmentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMSegmentView.swift; sourceTree = "<group>"; };
+		6119411D1DFE8B650048BA44 /* SMSegmentViewConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMSegmentViewConstants.swift; sourceTree = "<group>"; };
+		611941261DFE9EA50048BA44 /* UnitValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnitValue.swift; sourceTree = "<group>"; };
 		611E2E041DC3405D004CD45B /* LunaRStepsGoalPacket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LunaRStepsGoalPacket.swift; sourceTree = "<group>"; };
 		612DB7151DEFC7BE000B1747 /* AllowNotificationsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllowNotificationsTableViewCell.swift; sourceTree = "<group>"; };
 		612DB7161DEFC7BE000B1747 /* AllowNotificationsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AllowNotificationsTableViewCell.xib; sourceTree = "<group>"; };
@@ -1333,6 +1341,10 @@
 		6165A6351DEBC32500F7A3E6 /* NotificationTypeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationTypeCell.swift; sourceTree = "<group>"; };
 		6165A6361DEBC32500F7A3E6 /* NotificationTypeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NotificationTypeCell.xib; sourceTree = "<group>"; };
 		6165A63B1DEBDDD100F7A3E6 /* GetotalAppIDPacket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetotalAppIDPacket.swift; sourceTree = "<group>"; };
+		6168C62E1DFE53D5008FCF97 /* OtherController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OtherController.swift; sourceTree = "<group>"; };
+		6168C62F1DFE53D5008FCF97 /* OtherController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OtherController.xib; sourceTree = "<group>"; };
+		6168C6341DFE8036008FCF97 /* UnitTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnitTableViewCell.swift; sourceTree = "<group>"; };
+		6168C6351DFE8036008FCF97 /* UnitTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UnitTableViewCell.xib; sourceTree = "<group>"; };
 		616DCB101DD1A69D00B5773E /* lunar_connected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lunar_connected.png; sourceTree = "<group>"; };
 		6173DEF51DB0E90C002DF6AF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/SolarIndicatorController.xib; sourceTree = "<group>"; };
 		6173DEF81DB0E911002DF6AF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/SolarIndicatorController.strings; sourceTree = "<group>"; };
@@ -1588,6 +1600,7 @@
 				0084CB151D9BC68A0047DF39 /* Double+Extension.swift */,
 				0058CBF81D9CC897003CE7DC /* String+Extension.swift */,
 				6104D9C41DC86C7C00663D31 /* Int+Extension.swift */,
+				611941261DFE9EA50048BA44 /* UnitValue.swift */,
 			);
 			path = Global;
 			sourceTree = "<group>";
@@ -1615,6 +1628,7 @@
 		0050D5151C28E0DB004F6F80 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				6168C62D1DFE53BF008FCF97 /* OtherController */,
 				618278E61DD5A3CB00652C6B /* UpdateDBController */,
 				006DA3061D6EC89F0011E09C /* AnalysisController */,
 				0089B0A01D6BF0CB0041148A /* ProfileSetupController */,
@@ -1955,11 +1969,10 @@
 		007865E21D91006F00F33AEA /* SMSegmentView */ = {
 			isa = PBXGroup;
 			children = (
-				007865E31D91006F00F33AEA /* SMAlphaImageSegment.swift */,
-				007865E41D91006F00F33AEA /* SMBasicSegment.swift */,
-				007865E51D91006F00F33AEA /* SMBasicSegmentView.swift */,
-				007865E61D91006F00F33AEA /* SMSegment.swift */,
-				007865E71D91006F00F33AEA /* SMSegmentView.swift */,
+				6119411A1DFE8B640048BA44 /* SMSegment.swift */,
+				6119411B1DFE8B650048BA44 /* SMSegmentAppearance.swift */,
+				6119411C1DFE8B650048BA44 /* SMSegmentView.swift */,
+				6119411D1DFE8B650048BA44 /* SMSegmentViewConstants.swift */,
 			);
 			name = SMSegmentView;
 			path = Frameworks/SMSegmentView;
@@ -2435,6 +2448,17 @@
 			);
 			name = MEDExtension;
 			path = Frameworks/MEDExtension;
+			sourceTree = "<group>";
+		};
+		6168C62D1DFE53BF008FCF97 /* OtherController */ = {
+			isa = PBXGroup;
+			children = (
+				6168C62E1DFE53D5008FCF97 /* OtherController.swift */,
+				6168C62F1DFE53D5008FCF97 /* OtherController.xib */,
+				6168C6341DFE8036008FCF97 /* UnitTableViewCell.swift */,
+				6168C6351DFE8036008FCF97 /* UnitTableViewCell.xib */,
+			);
+			path = OtherController;
 			sourceTree = "<group>";
 		};
 		618278E51DD5A33200652C6B /* BaseModel */ = {
@@ -3111,6 +3135,7 @@
 				00C826D91DA5ECA700ECECEE /* NewAddAlarmController.xib in Resources */,
 				00C826DA1DA5ECA700ECECEE /* AddAlarmSystemCell.xib in Resources */,
 				00C826DB1DA5ECA700ECECEE /* AddAlarmTableViewCell.xib in Resources */,
+				6168C6331DFE5414008FCF97 /* OtherController.xib in Resources */,
 				00C826DC1DA5ECA700ECECEE /* AlarmTypeCell.xib in Resources */,
 				00C826DD1DA5ECA700ECECEE /* NewAddAlarmHeader.xib in Resources */,
 				00C826DE1DA5ECA700ECECEE /* NotAlarmView.xib in Resources */,
@@ -3145,6 +3170,7 @@
 				00C826F51DA5ECA700ECECEE /* TutorialTwoViewController.xib in Resources */,
 				00C826F61DA5ECA700ECECEE /* TutorialThreeViewController.xib in Resources */,
 				00C826F71DA5ECA700ECECEE /* TutorialFourViewController.xib in Resources */,
+				6168C6381DFE820E008FCF97 /* UnitTableViewCell.xib in Resources */,
 				00C826F81DA5ECA700ECECEE /* TutorialFiveViewController.xib in Resources */,
 				00C826F91DA5ECA700ECECEE /* TutorialSixViewController.xib in Resources */,
 				00C826FA1DA5ECA700ECECEE /* TutorialSevenViewController.xib in Resources */,
@@ -3302,6 +3328,7 @@
 				00EC9DFB1C85838900280904 /* TutorialFiveViewController.xib in Resources */,
 				0089B0B01D6BFF250041148A /* SetingLoginCell.xib in Resources */,
 				00EC9DDA1C85834F00280904 /* TutorialTwoViewController.xib in Resources */,
+				6168C6311DFE53D5008FCF97 /* OtherController.xib in Resources */,
 				0063BC351D98D4EC000BAB44 /* InformationController.xib in Resources */,
 				00120E781D7550D500CE0C32 /* UserHeader.xib in Resources */,
 				0036EB061C48BA8300DCED46 /* connected1.png in Resources */,
@@ -3314,6 +3341,7 @@
 				006A62581D6AA76C00458305 /* AlarmTypeCell.xib in Resources */,
 				00E759181C2406E600372529 /* upgrade_clock.png in Resources */,
 				0017DC121C8812640058A065 /* RepeatViewController.xib in Resources */,
+				6168C6371DFE8036008FCF97 /* UnitTableViewCell.xib in Resources */,
 				00EC9DE51C85835F00280904 /* TutorialThreeViewController.xib in Resources */,
 				006A62711D6AB44A00458305 /* StepGoalSetingViewCell.xib in Resources */,
 				00478F501A8F637D00D0DCE2 /* clockViewMinute.png in Resources */,
@@ -3683,6 +3711,7 @@
 				00C8268A1DA5E04000ECECEE /* NevoOtaViewController.swift in Sources */,
 				61EF09221DDE9EB7003C2EA5 /* DeleteAllAppIDPacket.swift in Sources */,
 				00C8268B1DA5E04000ECECEE /* NevoOtaViewController.xib in Sources */,
+				611941241DFE8BB00048BA44 /* SMSegmentView.swift in Sources */,
 				00C8268C1DA5E04000ECECEE /* LineColorCell.swift in Sources */,
 				00C8268D1DA5E04000ECECEE /* LineColorCell.xib in Sources */,
 				00C8268E1DA5E04000ECECEE /* NotificationClockCell.swift in Sources */,
@@ -3700,11 +3729,13 @@
 				00C826991DA5E04000ECECEE /* PresetTableViewController.xib in Sources */,
 				00C8269A1DA5E04000ECECEE /* AddPresetView.swift in Sources */,
 				00C8269B1DA5E04000ECECEE /* PresetTableViewCell.swift in Sources */,
+				611941221DFE8BAB0048BA44 /* SMSegment.swift in Sources */,
 				00C8269C1DA5E04000ECECEE /* PresetTableViewCell.xib in Sources */,
 				61EF09241DDE9F1B003C2EA5 /* EditAppIDPacket.swift in Sources */,
 				6688A65D1DC981980078E636 /* MEDBaseNetworkRequest.swift in Sources */,
 				00C8269D1DA5E04000ECECEE /* PresetView.swift in Sources */,
 				611E2E051DC3405D004CD45B /* LunaRStepsGoalPacket.swift in Sources */,
+				6168C6321DFE540F008FCF97 /* OtherController.swift in Sources */,
 				00C8269E1DA5E04000ECECEE /* SetingInfoCell.swift in Sources */,
 				664AE3321DF7C09C005CD385 /* NotiColorEditableCell.swift in Sources */,
 				00C8269F1DA5E04000ECECEE /* SetingInfoCell.xib in Sources */,
@@ -3735,6 +3766,8 @@
 				00C826B71DA5E04000ECECEE /* TutorialFiveViewController.swift in Sources */,
 				00C826B81DA5E04000ECECEE /* TutorialSixViewController.swift in Sources */,
 				6688A6711DC981990078E636 /* MEDStepsGetRequest.swift in Sources */,
+				611941281DFE9F180048BA44 /* UnitValue.swift in Sources */,
+				6168C6391DFE8211008FCF97 /* UnitTableViewCell.swift in Sources */,
 				00C826B91DA5E04000ECECEE /* TutorialSevenViewController.swift in Sources */,
 				61FC93EC1DE68064000AE93C /* MEDUserAlarm.swift in Sources */,
 				0023C0AD1DA64DD400FB33A4 /* PVADCRequest.swift in Sources */,
@@ -3758,17 +3791,13 @@
 				665098951DCB26670059D5F7 /* MEDSleepDeleteRequest.swift in Sources */,
 				610767121DDD8AE600F53AD6 /* ReceiveNewNotificationPacket.swift in Sources */,
 				00C8262B1DA5E01C00ECECEE /* M13CheckboxSpiralManager.swift in Sources */,
+				611941231DFE8BAD0048BA44 /* SMSegmentAppearance.swift in Sources */,
 				6198EE281DC204BF00FDD850 /* LunaRPacket.swift in Sources */,
 				00C8262C1DA5E01C00ECECEE /* M13CheckboxStrokeManager.swift in Sources */,
 				6688A66D1DC981990078E636 /* MEDRequestPasswordRequest.swift in Sources */,
 				00C8262D1DA5E01C00ECECEE /* M13CheckboxDotPathPresets.swift in Sources */,
 				6104D9C61DC86D4D00663D31 /* Int+Extension.swift in Sources */,
 				00C8262E1DA5E01C00ECECEE /* M13CheckboxSpiralPathPresets.swift in Sources */,
-				00C8262F1DA5E01C00ECECEE /* SMAlphaImageSegment.swift in Sources */,
-				00C826301DA5E01C00ECECEE /* SMBasicSegment.swift in Sources */,
-				00C826311DA5E01C00ECECEE /* SMBasicSegmentView.swift in Sources */,
-				00C826321DA5E01C00ECECEE /* SMSegment.swift in Sources */,
-				00C826331DA5E01C00ECECEE /* SMSegmentView.swift in Sources */,
 				00C8263C1DA5E01C00ECECEE /* AutocompleteField.swift in Sources */,
 				00C8263D1DA5E01C00ECECEE /* CircleProgressView.swift in Sources */,
 				00C8263E1DA5E01C00ECECEE /* NevoCircleProgressView.swift in Sources */,
@@ -3785,6 +3814,7 @@
 				00D474331D586D1600E2447E /* NewAlarm.swift in Sources */,
 				00D474341D586D1600E2447E /* BaseEntryDatabaseHelper.swift in Sources */,
 				6199AED71DDC5C8B00BEA140 /* SetNotificationAppIDRequest.swift in Sources */,
+				611941251DFE8BB30048BA44 /* SMSegmentViewConstants.swift in Sources */,
 				00D474351D586D1600E2447E /* UserDatabaseHelper.swift in Sources */,
 				00D474361D586D1600E2447E /* AlarmModel.swift in Sources */,
 				00D474371D586D1600E2447E /* HealthModel.swift in Sources */,
@@ -3938,11 +3968,6 @@
 				611D414E1DCAD97C003BC6E3 /* M13CheckboxStrokeManager.swift in Sources */,
 				611D414F1DCAD97C003BC6E3 /* M13CheckboxDotPathPresets.swift in Sources */,
 				611D41501DCAD97C003BC6E3 /* M13CheckboxSpiralPathPresets.swift in Sources */,
-				611D41511DCAD97C003BC6E3 /* SMAlphaImageSegment.swift in Sources */,
-				611D41521DCAD97C003BC6E3 /* SMBasicSegment.swift in Sources */,
-				611D41531DCAD97C003BC6E3 /* SMBasicSegmentView.swift in Sources */,
-				611D41541DCAD97C003BC6E3 /* SMSegment.swift in Sources */,
-				611D41551DCAD97C003BC6E3 /* SMSegmentView.swift in Sources */,
 				611D41561DCAD97C003BC6E3 /* AutocompleteField.swift in Sources */,
 				611D41571DCAD97C003BC6E3 /* CircleProgressView.swift in Sources */,
 				611D41581DCAD97C003BC6E3 /* NevoAllKeys.swift in Sources */,
@@ -3994,6 +4019,7 @@
 				611D417F1DCAD97C003BC6E3 /* PublicClassController.swift in Sources */,
 				611D41801DCAD97C003BC6E3 /* PublicClassTableViewController.swift in Sources */,
 				611D41811DCAD97C003BC6E3 /* NevoCircleProgressView.swift in Sources */,
+				6119411E1DFE8B650048BA44 /* SMSegment.swift in Sources */,
 				611D41821DCAD97C003BC6E3 /* AppTheme.swift in Sources */,
 				611D41831DCAD97C003BC6E3 /* BalloonMarker.swift in Sources */,
 				6699DD071DDC53B20077E544 /* NewWorldClockCell.swift in Sources */,
@@ -4068,6 +4094,7 @@
 				611D41BE1DCAD97D003BC6E3 /* Profile.swift in Sources */,
 				611D41BF1DCAD97D003BC6E3 /* Pods_Nevo.framework in Sources */,
 				611D41C01DCAD97D003BC6E3 /* Pods_NevoTests.framework in Sources */,
+				6119411F1DFE8B650048BA44 /* SMSegmentAppearance.swift in Sources */,
 				611D41C11DCAD97D003BC6E3 /* Pods_LunaR.framework in Sources */,
 				611D41C21DCAD97D003BC6E3 /* Pods_LunaRTests.framework in Sources */,
 				611D41C31DCAD97D003BC6E3 /* LunaROtaView.swift in Sources */,
@@ -4077,6 +4104,7 @@
 				611D41C71DCAD97D003BC6E3 /* AddWorldClockViewController.xib in Sources */,
 				611D41C81DCAD97D003BC6E3 /* SearchCityViewController.swift in Sources */,
 				611D41C91DCAD97D003BC6E3 /* SearchCityViewController.xib in Sources */,
+				6168C6361DFE8036008FCF97 /* UnitTableViewCell.swift in Sources */,
 				611D41CE1DCAD97D003BC6E3 /* WorldClockDidSelectedDelegate.swift in Sources */,
 				611D41D01DCAD97D003BC6E3 /* WorldClockUtil.swift in Sources */,
 				611D41D11DCAD97D003BC6E3 /* LunaRStepsGoalPacket.swift in Sources */,
@@ -4141,6 +4169,7 @@
 				611D42151DCAD97D003BC6E3 /* RepeatViewCell.xib in Sources */,
 				611D42161DCAD97D003BC6E3 /* AlarmClockVCell.swift in Sources */,
 				611D42171DCAD97D003BC6E3 /* AlarmClockVCell.xib in Sources */,
+				6168C6301DFE53D5008FCF97 /* OtherController.swift in Sources */,
 				611D42181DCAD97D003BC6E3 /* AlarmTypeController.swift in Sources */,
 				611D42191DCAD97D003BC6E3 /* AlarmTypeController.xib in Sources */,
 				611D421A1DCAD97D003BC6E3 /* RepeatViewController.swift in Sources */,
@@ -4181,6 +4210,7 @@
 				611D423A1DCAD97D003BC6E3 /* LineColorCell.swift in Sources */,
 				611D423B1DCAD97D003BC6E3 /* LineColorCell.xib in Sources */,
 				66154BAE1DF6B7D400973A9E /* MEDNotificationColor.swift in Sources */,
+				611941201DFE8B650048BA44 /* SMSegmentView.swift in Sources */,
 				66F260F41DE533EF0021BDBA /* MEDColorful.swift in Sources */,
 				611D423C1DCAD97D003BC6E3 /* NotificationClockCell.swift in Sources */,
 				611D423D1DCAD97D003BC6E3 /* NotificationClockCell.xib in Sources */,
@@ -4207,6 +4237,7 @@
 				611D424F1DCAD97D003BC6E3 /* SetingLoginCell.xib in Sources */,
 				611D42501DCAD97D003BC6E3 /* SetingNotLoginCell.swift in Sources */,
 				611D42511DCAD97D003BC6E3 /* SetingView.swift in Sources */,
+				611941271DFE9EA50048BA44 /* UnitValue.swift in Sources */,
 				D10C095A1DE2967B008B6E57 /* ProfileImageManager.swift in Sources */,
 				611D42521DCAD97D003BC6E3 /* SetingViewController.swift in Sources */,
 				611D42531DCAD97D003BC6E3 /* SleepHistoricalView.swift in Sources */,
@@ -4227,6 +4258,7 @@
 				611D42601DCAD97D003BC6E3 /* TutorialThreeViewController.swift in Sources */,
 				611D42611DCAD97D003BC6E3 /* TutorialFourViewController.swift in Sources */,
 				611D42621DCAD97D003BC6E3 /* TutorialFiveViewController.swift in Sources */,
+				611941211DFE8B650048BA44 /* SMSegmentViewConstants.swift in Sources */,
 				61D1A8AC1DD468A100B91BDD /* MEDUserGoal.swift in Sources */,
 				611D42631DCAD97D003BC6E3 /* TutorialSixViewController.swift in Sources */,
 				611D42641DCAD97D003BC6E3 /* TutorialSevenViewController.swift in Sources */,

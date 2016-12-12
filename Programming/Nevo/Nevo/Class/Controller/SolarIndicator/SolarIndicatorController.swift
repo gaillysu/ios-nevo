@@ -180,10 +180,10 @@ extension SolarIndicatorController:UICollectionViewDelegate,UICollectionViewData
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         let headerView: UICollectionReusableView = collectionView.dequeueReusableSupplementaryView(ofKind: "UICollectionElementKindSectionHeader", withReuseIdentifier: "viewForSupplementaryReuseID", for: indexPath)
         
-        var label = headerView.viewWithTag(201611251159) as? UILabel
+        var label = headerView.viewWithTag(20161125) as? UILabel
         if label == nil {
             label = UILabel()
-            label?.tag = 201611251159
+            label?.tag = 20161125
             label!.textColor = AppTheme.isTargetLunaR_OR_Nevo() ? UIColor.black : UIColor.white
             label!.textAlignment = .center
             label?.font = UIFont.init(name: "Raleway", size: 20)

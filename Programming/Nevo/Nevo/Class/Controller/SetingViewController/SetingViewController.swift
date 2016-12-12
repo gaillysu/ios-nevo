@@ -167,9 +167,11 @@ class SetingViewController: UIViewController,ButtonManagerCallBack,UIAlertViewDe
 
             if(isEqualString("\(titleArray[indexPath.row])",string2: NSLocalizedString("other_settings", comment: ""))){
                 XCGLogger.default.debug("other settings")
-                let presetView:PresetTableViewController = PresetTableViewController()
-                presetView.hidesBottomBarWhenPushed = true
-                self.navigationController?.pushViewController(presetView, animated: true)
+                //let presetView:PresetTableViewController = PresetTableViewController()
+                //presetView.hidesBottomBarWhenPushed = true
+                let otherController:OtherController = OtherController()
+                otherController.hidesBottomBarWhenPushed = true
+                self.navigationController?.pushViewController(otherController, animated: true)
             }
 
             if(isEqualString("\(titleArray[indexPath.row])",string2: NSLocalizedString("forget_watch", comment: ""))){

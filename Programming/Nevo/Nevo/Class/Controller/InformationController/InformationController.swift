@@ -13,7 +13,7 @@ import SwiftyTimer
 import SwiftyJSON
 import XCGLogger
 
-class InformationController: UIViewController,SMSegmentViewDelegate {
+class InformationController: UIViewController {
 
     static let MED_kISFromRegisterController: String = "MED_kISFromRegisterController"
     
@@ -92,28 +92,32 @@ class InformationController: UIViewController,SMSegmentViewDelegate {
     
     override func viewDidLayoutSubviews() {
         //super.viewDidLayoutSubviews()
-        let segmentProperties = ["OnSelectionBackgroundColour": AppTheme.NEVO_SOLAR_YELLOW(),"OffSelectionBackgroundColour": UIColor.white,"OnSelectionTextColour": UIColor.white,"OffSelectionTextColour": AppTheme.NEVO_SOLAR_YELLOW()]
         if segmentView == nil {
+            let appearance = SMSegmentAppearance()
+            appearance.titleOnSelectionColour       = UIColor.white
+            appearance.titleOffSelectionColour      = UIColor.getBaseColor()
+            appearance.segmentOnSelectionColour     = UIColor.getBaseColor()
+            appearance.segmentOffSelectionColour    = UIColor.getGreyColor()
+            appearance.titleOnSelectionFont         = UIFont.systemFont(ofSize: 12.0)
+            appearance.titleOffSelectionFont        = UIFont.systemFont(ofSize: 12.0)
+            appearance.contentVerticalMargin        = 10.0
+            
+            /*
+             Init SMsegmentView
+             Set divider colour and width here if there is a need
+             */
             let segmentFrame = CGRect(x: 0, y: 0, width: metricsSegment.frame.size.width, height: metricsSegment.frame.size.height)
-            segmentView = SMSegmentView(frame: segmentFrame, separatorColour: UIColor(white: 0.95, alpha: 0.3), separatorWidth: 1.0, segmentProperties: segmentProperties)
-            segmentView!.delegate = self
-            segmentView!.layer.borderColor = AppTheme.NEVO_SOLAR_YELLOW().cgColor
-            segmentView!.layer.borderWidth = 1.0
+            segmentView = SMSegmentView(frame: segmentFrame, dividerColour: UIColor(white: 0.95, alpha: 0.3), dividerWidth: 1.0, segmentAppearance: appearance)
+            segmentView!.layer.borderColor  = AppTheme.NEVO_SOLAR_YELLOW().cgColor
+            segmentView!.layer.borderWidth  = 1.0
             segmentView?.layer.cornerRadius = 10
             
             segmentView!.addSegmentWithTitle(NSLocalizedString("Male", comment: ""), onSelectionImage: nil, offSelectionImage: nil)
             segmentView!.addSegmentWithTitle(NSLocalizedString("Female", comment: ""), onSelectionImage: nil, offSelectionImage: nil)
-            segmentView?.selectSegmentAtIndex(0)
+            segmentView?.selectedSegmentIndex = 0
             metricsSegment.addSubview(segmentView!)
-            
             if !AppTheme.isTargetLunaR_OR_Nevo() {
                 segmentView?.layer.borderColor = UIColor.getBaseColor().cgColor
-                
-                segmentView?.segmentOnSelectionColour = UIColor.getBaseColor()
-                segmentView?.segmentOffSelectionColour = UIColor.getGreyColor()
-                segmentView?.segmentOnSelectionTextColour = UIColor.white
-                segmentView?.segmentOffSelectionTextColour = UIColor.getBaseColor()
-
             }
         }
         
@@ -122,11 +126,6 @@ class InformationController: UIViewController,SMSegmentViewDelegate {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
 
-    }
-    
-    // MARK: - SMSegmentViewDelegate
-    func segmentView(_ segmentView: SMBasicSegmentView, didSelectSegmentAtIndex index: Int) {
-        debugPrint("Select segment at index: \(index)")
     }
     
     override func didReceiveMemoryWarning() {
@@ -170,7 +169,7 @@ class InformationController: UIViewController,SMSegmentViewDelegate {
                 return
             }
             
-            let sex:Int = self.segmentView?.indexOfSelectedSegment == 0 ? 1 : 0
+            let sex:Int = self.segmentView?.selectedSegmentIndex == 0 ? 1 : 0
             registerInfo["birthday"] = dateOfbirth!.text!
             
             // 字典中的数据格式原来是没有单位的数字
