@@ -244,8 +244,8 @@ extension AnalysisController:UICollectionViewDelegate,UICollectionViewDataSource
         }else{
             let cell:AnalysisValueCell = collectionView.dequeueReusableCell(withReuseIdentifier: "AnalysisValue_Identifier", for: indexPath) as! AnalysisValueCell
             cell.backgroundColor = UIColor.clear
-            cell.updateTitleLabel(contentTitleArray[(indexPath as NSIndexPath).row])
-            cell.updateLabel(contentTArray[(indexPath as NSIndexPath).row])
+            cell.updateTitleLabel(contentTitleArray[indexPath.row])
+            cell.updateLabel(contentTArray[indexPath.row])
             return cell
         }
     }
@@ -277,7 +277,7 @@ extension AnalysisController:UICollectionViewDelegate,UICollectionViewDataSource
             
             if segmented.selectedSegmentIndex != 2 {
                 var avgNumber:Float = 0
-                if (indexPath as NSIndexPath).row == 0 || (indexPath as NSIndexPath).row == 1 {
+                if indexPath.row == 0 || indexPath.row == 1 {
                     avgNumber = 7
                 }else{
                     avgNumber = 30

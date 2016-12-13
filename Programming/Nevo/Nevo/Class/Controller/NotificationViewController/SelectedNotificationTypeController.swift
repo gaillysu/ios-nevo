@@ -176,7 +176,7 @@ extension SelectedNotificationTypeController:AddPacketToWatchDelegate {
             var cell: UITableViewCell = UITableViewCell.init()
             if !AppTheme.isTargetLunaR_OR_Nevo() {
                 cell.accessoryType = notSetting!.getStates() ? .disclosureIndicator : .none
-                let colorString = try! notSetting!.getHexColor()
+                let colorString = notSetting!.getHexColor()
                 let color = colorString == "" ? UIColor.getRandomColor() : UIColor.init(rgba: colorString)
                 
                 cell.imageView?.image = UIImage.dotImageWith(color: color, backgroundColor: UIColor.getGreyColor(), size: CGSize(width: 15, height: 15))

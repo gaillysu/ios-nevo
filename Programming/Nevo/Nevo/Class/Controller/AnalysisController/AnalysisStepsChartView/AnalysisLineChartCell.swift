@@ -409,12 +409,11 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
             let sloarValue:SolarHarvest = value
             let date:Date = Date(timeIntervalSince1970: sloarValue.date)
             let dateString:String = date.stringFromFormat("dd/MM")
-            
-            let sloarTime:Double = Double(sloarValue.solarTotalTime)
-            yVals.append(ChartDataEntry(value: sloarTime, xIndex: index))
-            xVals.append(dateString)
-            
+
             let iSloarValue:Int = sloarValue.solarTotalTime
+            let sloarTime:Double = Double(sloarValue.solarTotalTime)
+            yVals.append(ChartDataEntry(value: Double(sloarTime/60.0), xIndex: index))
+            xVals.append(dateString)
             //Calculate the maximum
             if iSloarValue>maxValue {
                 maxValue = iSloarValue
