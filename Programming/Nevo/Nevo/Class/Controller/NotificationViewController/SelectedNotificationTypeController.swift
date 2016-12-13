@@ -52,7 +52,9 @@ class SelectedNotificationTypeController: UITableViewController {
         if notSetting!.typeName == "Other" {
             navigationItem.title = notSetting?.getAppName()
         } else {
-            navigationItem.title = NSLocalizedString(notSetting!.typeName, comment: "")
+            let title:String = notSetting!.typeName
+            let titleString:String = AppTheme.isTargetLunaR_OR_Nevo() ? title.replacingOccurrences(of: "WeChat", with: "Whatsapp"):title
+            navigationItem.title = NSLocalizedString(titleString, comment: "")
         }
         
         self.tableView.register(UINib(nibName: "LineColorCell",bundle: nil), forCellReuseIdentifier: "LineColor_Identifier")

@@ -302,7 +302,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                 let thispacket:LunaRDailyTrackerPacket = packet.copy() as LunaRDailyTrackerPacket
                 
                 let timeStr:String = String(format: "%@" ,thispacket.getDate().stringFromFormat("yyyyMMdd"))
-                if(timeStr.length() < 8 ) {
+                if(timeStr.length() < 8) {
                     return
                 }
                 
@@ -326,7 +326,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                     savedDailyHistory[Int(currentDay)].HourlyCalories = thispacket.getHourlyCalories()
                     
                     //save to health kit
-                    let hk = NevoHKImpl()
+                    let hk = NevoHKImpl.shareNevoHKImplOne
                     hk.requestPermission()
                     
                     let now:Date = Date()

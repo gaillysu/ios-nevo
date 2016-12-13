@@ -195,7 +195,7 @@ class LunaROtaView: UIView {
     }
 
     func upgradeSuccessful(){
-        nevoWacthImage.image = AppTheme.GET_RESOURCES_IMAGE("connected");
+        nevoWacthImage.image = AppTheme.GET_RESOURCES_IMAGE("lunar_connected");
         OTAprogressView!.isHidden = true
         updatingView.isHidden = true
         backView.isHidden = false

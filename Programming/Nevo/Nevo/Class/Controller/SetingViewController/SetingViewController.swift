@@ -297,7 +297,7 @@ class SetingViewController: UIViewController,ButtonManagerCallBack,UIAlertViewDe
     }
 
     func tableView(_ tableView: UITableView, cellForRowAtIndexPath indexPath: IndexPath) -> UITableViewCell {
-        switch ((indexPath as NSIndexPath).section){
+        switch (indexPath.section){
         case 0:
             let users = MEDUserProfile.getAll()
             if users.count>0 {

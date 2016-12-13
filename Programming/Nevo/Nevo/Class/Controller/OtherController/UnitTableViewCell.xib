@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -30,7 +30,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9IB-fw-le5" customClass="SMSegmentView" customModule="LunaR" customModuleProvider="target">
-                        <rect key="frame" x="162" y="5" width="150" height="40"/>
+                        <rect key="frame" x="182" y="7" width="130" height="35"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                 </subviews>
@@ -38,11 +38,11 @@
                     <constraint firstAttribute="bottomMargin" secondItem="owV-Es-BfR" secondAttribute="bottom" constant="-4" id="Bdn-UR-mMb"/>
                     <constraint firstItem="owV-Es-BfR" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" constant="-77" id="RnL-70-fq2"/>
                     <constraint firstAttribute="leadingMargin" secondItem="owV-Es-BfR" secondAttribute="leading" constant="-10" id="See-bC-Qug"/>
-                    <constraint firstItem="9IB-fw-le5" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" constant="77" id="W4l-A8-Qud"/>
+                    <constraint firstItem="9IB-fw-le5" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" constant="87" id="W4l-A8-Qud"/>
                     <constraint firstAttribute="topMargin" secondItem="owV-Es-BfR" secondAttribute="top" constant="3" id="iMg-hS-KCj"/>
                     <constraint firstAttribute="trailingMargin" secondItem="9IB-fw-le5" secondAttribute="trailing" id="nAJ-Ap-iF5"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="9IB-fw-le5" secondAttribute="bottom" constant="-4" id="rKZ-f9-bEf"/>
-                    <constraint firstAttribute="topMargin" secondItem="9IB-fw-le5" secondAttribute="top" constant="3" id="yuz-SV-LfD"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="9IB-fw-le5" secondAttribute="bottom" constant="-0.5" id="rKZ-f9-bEf"/>
+                    <constraint firstAttribute="topMargin" secondItem="9IB-fw-le5" secondAttribute="top" constant="1" id="yuz-SV-LfD"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>

@@ -29,7 +29,7 @@ class UnitTableViewCell: UITableViewCell {
         unitSegmented.layer.borderColor         = UIColor.getBaseColor().cgColor
         unitSegmented.layer.borderWidth         = 1.0
         
-        unitSegmented.addSegmentWithTitle(NSLocalizedString("Metrics", comment: ""), onSelectionImage: nil, offSelectionImage: nil)
+        unitSegmented.addSegmentWithTitle(NSLocalizedString("metrics", comment: ""), onSelectionImage: nil, offSelectionImage: nil)
         unitSegmented.addSegmentWithTitle(NSLocalizedString("imperial", comment: ""), onSelectionImage: nil, offSelectionImage: nil)
         unitSegmented.addTarget(self, action: #selector(segmentViewAction(segmentVie:)), for: .valueChanged)
         

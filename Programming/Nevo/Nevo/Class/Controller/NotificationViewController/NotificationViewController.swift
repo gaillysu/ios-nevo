@@ -205,7 +205,7 @@ extension NotificationViewController {
             
             let endCell:NotificationTypeCell = tableView.dequeueReusableCell(withIdentifier: "Notification_Identifier", for: indexPath) as! NotificationTypeCell
             endCell.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
-            endCell.setTitleLabel(title: NSLocalizedString(noti.getAppName(), comment: ""))
+            endCell.setTitleLabel(title: noti.getAppName())
             endCell.setContentLabel(content: NSLocalizedString(detailString, comment: ""))
             endCell.setTitleImage(imageName: "new_\(noti.typeName.lowercased())")
             

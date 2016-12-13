@@ -314,7 +314,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                     savedDailyHistory[Int(currentDay)].HourlyCalories = thispacket.getHourlyCalories()
                     
                     //save to health kit
-                    let hk = NevoHKImpl()
+                    let hk = NevoHKImpl.shareNevoHKImplOne
                     hk.requestPermission()
                     
                     let now:Date = Date()

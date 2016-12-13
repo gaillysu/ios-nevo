@@ -118,7 +118,7 @@ extension AppDelegate {
                 
                 let setting:NotificationSetting = NotificationSetting(type: type!, clock: notification.clock, color: notification.colorValue,colorName: notification.colorName, states:notification.isAddWatch,packet:notification.appid,appName:notification.appName)
                 let packet:String = notification.appid
-                let notificationsRequest:SetNotificationAppIDRequest = try! SetNotificationAppIDRequest(number: index, hexColor: try! setting.getHexColor(), appid: packet, notiFictionOnOff: true, motorOnOff: true)
+                let notificationsRequest:SetNotificationAppIDRequest = try! SetNotificationAppIDRequest(number: index, hexColor: setting.getHexColor(), appid: packet, notiFictionOnOff: true, motorOnOff: true)
                 self.sendRequest(notificationsRequest)
             }
         }

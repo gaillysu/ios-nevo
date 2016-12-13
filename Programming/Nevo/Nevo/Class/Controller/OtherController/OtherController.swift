@@ -9,7 +9,7 @@
 import UIKit
 
 class OtherController: UITableViewController {
-    fileprivate var itemArray:[String] = ["Goal","Unit"]
+    fileprivate var itemArray:[String] = ["goal","unit"]
     //imperial
     init() {
         super.init(nibName: "OtherController", bundle: Bundle.main)
@@ -27,7 +27,8 @@ class OtherController: UITableViewController {
         if !AppTheme.isTargetLunaR_OR_Nevo() {
             self.tableView.separatorColor = UIColor.getLightBaseColor()
         }
-        
+        self.tableView.separatorStyle = .singleLine
+        self.tableView.separatorColor = UIColor.lightGray
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "other_identifier")
         self.tableView.register(UINib(nibName: "UnitTableViewCell", bundle: nil), forCellReuseIdentifier: "unit_identifier")
     }
@@ -50,7 +51,7 @@ class OtherController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let textValue = itemArray[indexPath.section]
-        if textValue == "Goal" {
+        if textValue == "goal" {
             let cell                    = tableView.dequeueReusableCell(withIdentifier: "other_identifier", for: indexPath)
             cell.textLabel?.text        = NSLocalizedString(textValue, comment: "")
             cell.accessoryType          = UITableViewCellAccessoryType.disclosureIndicator
@@ -61,6 +62,7 @@ class OtherController: UITableViewController {
             cell.titleLabel.text        = NSLocalizedString(textValue, comment: "")
             cell.titleLabel.textColor   = UIColor.white
             cell.viewDefaultColorful()
+            cell.separatorInset         = UIEdgeInsets(top: 0, left: UIScreen.main.bounds.size.width, bottom: 0, right: 0)
             return cell
         }
     }
@@ -68,7 +70,7 @@ class OtherController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
         tableView.deselectRow(at: indexPath, animated: true)
         let textValue = itemArray[indexPath.section]
-        if textValue == "Goal" {
+        if textValue == "goal" {
             let presetView:PresetTableViewController = PresetTableViewController()
             presetView.hidesBottomBarWhenPushed = true
             self.navigationController?.pushViewController(presetView, animated: true)

@@ -58,7 +58,8 @@ class NotificationTypeCell: UITableViewCell {
     }
     
     func setTitleLabel(title:String) {
-        titleLabel.text = title
+        let titleString:String = AppTheme.isTargetLunaR_OR_Nevo() ? title.replacingOccurrences(of: "WeChat", with: "Whatsapp"):title
+        titleLabel.text = NSLocalizedString(titleString, comment: "")
     }
     
     func setContentLabel(content:String) {
@@ -66,7 +67,8 @@ class NotificationTypeCell: UITableViewCell {
     }
     
     func setTitleImage(imageName:String) {
-        titleImage.image = UIImage(named: imageName)
+        let mImageName:String = AppTheme.isTargetLunaR_OR_Nevo() ? imageName.replacingOccurrences(of: "wechat", with: "whatsapp"):imageName
+        titleImage.image = UIImage(named: mImageName)
     }
     
     @IBAction func addNotificationAction(_ sender: Any) {

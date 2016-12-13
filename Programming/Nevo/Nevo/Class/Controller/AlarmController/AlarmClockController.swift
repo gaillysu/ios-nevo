@@ -449,8 +449,6 @@ class AlarmClockController: UITableViewController,AddAlarmDelegate {
             if sleepArray.count>0 {
                 headerLabel.text = NSLocalizedString(titleArray[0], comment: "")
             }
-            
-            //return UIView()
         }
         
         headerLabel.textColor = UIColor.black
