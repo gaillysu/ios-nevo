@@ -23,7 +23,6 @@
 		0023C0AD1DA64DD400FB33A4 /* PVADCRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0023C0AC1DA64DD400FB33A4 /* PVADCRequest.swift */; };
 		00344F5D1C47A86800C2FC7A /* SupportViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00344F5B1C47A86800C2FC7A /* SupportViewController.xib */; };
 		0036EB051C48BA8300DCED46 /* connected.png in Resources */ = {isa = PBXBuildFile; fileRef = 0036EAFF1C48BA8300DCED46 /* connected.png */; };
-		0036EB061C48BA8300DCED46 /* connected1.png in Resources */ = {isa = PBXBuildFile; fileRef = 0036EB001C48BA8300DCED46 /* connected1.png */; };
 		0036EB081C48BA8300DCED46 /* settimer.png in Resources */ = {isa = PBXBuildFile; fileRef = 0036EB021C48BA8300DCED46 /* settimer.png */; };
 		0036EB091C48BA8300DCED46 /* turnonnevo.png in Resources */ = {isa = PBXBuildFile; fileRef = 0036EB031C48BA8300DCED46 /* turnonnevo.png */; };
 		0036EB0A1C48BA8300DCED46 /* tutorialone.png in Resources */ = {isa = PBXBuildFile; fileRef = 0036EB041C48BA8300DCED46 /* tutorialone.png */; };
@@ -34,7 +33,6 @@
 		0037EC281D235F5300502140 /* nevoFontImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 00E650981C83DD9000278D3E /* nevoFontImage.png */; };
 		0037EC2A1D235F5300502140 /* bluetoothoff_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 0036EB0B1C48C36700DCED46 /* bluetoothoff_background.png */; };
 		0037EC2C1D235F5300502140 /* connected.png in Resources */ = {isa = PBXBuildFile; fileRef = 0036EAFF1C48BA8300DCED46 /* connected.png */; };
-		0037EC2D1D235F5300502140 /* connected1.png in Resources */ = {isa = PBXBuildFile; fileRef = 0036EB001C48BA8300DCED46 /* connected1.png */; };
 		0037EC2F1D235F5300502140 /* settimer.png in Resources */ = {isa = PBXBuildFile; fileRef = 0036EB021C48BA8300DCED46 /* settimer.png */; };
 		0037EC301D235F5300502140 /* turnonnevo.png in Resources */ = {isa = PBXBuildFile; fileRef = 0036EB031C48BA8300DCED46 /* turnonnevo.png */; };
 		0037EC311D235F5300502140 /* tutorialone.png in Resources */ = {isa = PBXBuildFile; fileRef = 0036EB041C48BA8300DCED46 /* tutorialone.png */; };
@@ -78,8 +76,6 @@
 		0063BC351D98D4EC000BAB44 /* InformationController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0063BC371D98D4EC000BAB44 /* InformationController.xib */; };
 		0063BC421D98D59F000BAB44 /* CheckYourIndoxController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0063BC441D98D59F000BAB44 /* CheckYourIndoxController.xib */; };
 		0063BC4F1D98D641000BAB44 /* ProfileSetupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0063BC511D98D641000BAB44 /* ProfileSetupViewController.xib */; };
-		006756071D4848A300E8144C /* notification_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 006756061D4848A300E8144C /* notification_background.png */; };
-		006756081D4849D400E8144C /* notification_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 006756061D4848A300E8144C /* notification_background.png */; };
 		006A624F1D6AA62100458305 /* SolarInforViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 006A624B1D6AA62100458305 /* SolarInforViewCell.xib */; };
 		006A62581D6AA76C00458305 /* AlarmTypeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 006A62541D6AA76C00458305 /* AlarmTypeCell.xib */; };
 		006A625E1D6AA79E00458305 /* AlarmClockVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 006A625C1D6AA79E00458305 /* AlarmClockVCell.xib */; };
@@ -978,7 +974,6 @@
 		00344F5A1C47A86800C2FC7A /* SupportViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SupportViewController.swift; sourceTree = "<group>"; };
 		00344F5B1C47A86800C2FC7A /* SupportViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SupportViewController.xib; sourceTree = "<group>"; };
 		0036EAFF1C48BA8300DCED46 /* connected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = connected.png; sourceTree = "<group>"; };
-		0036EB001C48BA8300DCED46 /* connected1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = connected1.png; sourceTree = "<group>"; };
 		0036EB021C48BA8300DCED46 /* settimer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settimer.png; sourceTree = "<group>"; };
 		0036EB031C48BA8300DCED46 /* turnonnevo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = turnonnevo.png; sourceTree = "<group>"; };
 		0036EB041C48BA8300DCED46 /* tutorialone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tutorialone.png; sourceTree = "<group>"; };
@@ -1120,7 +1115,6 @@
 		0063BCA91D991926000BAB44 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/TutorialSixViewController.strings; sourceTree = "<group>"; };
 		0063BCAA1D99192E000BAB44 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/TutorialSevenViewController.xib; sourceTree = "<group>"; };
 		0063BCAB1D991933000BAB44 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/TutorialSevenViewController.strings; sourceTree = "<group>"; };
-		006756061D4848A300E8144C /* notification_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = notification_background.png; sourceTree = "<group>"; };
 		006A62211D6A9F1500458305 /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		006A62241D6AA53100458305 /* PageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
 		006A62331D6AA5F100458305 /* SleepHistoricalView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SleepHistoricalView.swift; sourceTree = "<group>"; };
@@ -2019,7 +2013,6 @@
 				614662A01DC9CEFC001E57CC /* lunar_settime.png */,
 				665BD6D71DBF1297008C2623 /* sunrise.png */,
 				665BD6D81DBF1297008C2623 /* sunset.png */,
-				006756061D4848A300E8144C /* notification_background.png */,
 				0095DDA61D2E0D7D00F80BFD /* wacth_dial.png */,
 				0095DDA71D2E0D7D00F80BFD /* wacth_hour.png */,
 				0095DDA81D2E0D7D00F80BFD /* wacth_mint.png */,
@@ -2027,7 +2020,6 @@
 				00E650981C83DD9000278D3E /* nevoFontImage.png */,
 				0036EB0B1C48C36700DCED46 /* bluetoothoff_background.png */,
 				0036EAFF1C48BA8300DCED46 /* connected.png */,
-				0036EB001C48BA8300DCED46 /* connected1.png */,
 				0036EB021C48BA8300DCED46 /* settimer.png */,
 				0036EB031C48BA8300DCED46 /* turnonnevo.png */,
 				0036EB041C48BA8300DCED46 /* tutorialone.png */,
@@ -3178,7 +3170,6 @@
 				00C826FB1DA5ECA700ECECEE /* SleepTutorialController.xib in Resources */,
 				00C826FC1DA5ECA700ECECEE /* MorningTutorialController.xib in Resources */,
 				00C826FD1DA5ECA700ECECEE /* Main.storyboard in Resources */,
-				006756081D4849D400E8144C /* notification_background.png in Resources */,
 				0095DDAC1D2E0E5500F80BFD /* wacth_dial.png in Resources */,
 				0095DDAD1D2E0E5500F80BFD /* wacth_hour.png in Resources */,
 				0095DDAE1D2E0E5500F80BFD /* wacth_mint.png in Resources */,
@@ -3192,7 +3183,6 @@
 				6199190F1DC6E2B600C75AE7 /* AddWorldClockViewController.xib in Resources */,
 				665BD6C51DBEF4C7008C2623 /* SetingNotLoginCell.xib in Resources */,
 				0037EC2C1D235F5300502140 /* connected.png in Resources */,
-				0037EC2D1D235F5300502140 /* connected1.png in Resources */,
 				0037EC2F1D235F5300502140 /* settimer.png in Resources */,
 				665BD6D91DBF1297008C2623 /* sunrise.png in Resources */,
 				0037EC301D235F5300502140 /* turnonnevo.png in Resources */,
@@ -3249,7 +3239,6 @@
 				00120E801D7559D500CE0C32 /* Raleway-SemiBold.ttf in Resources */,
 				00120E811D7559D500CE0C32 /* Raleway-Thin.ttf in Resources */,
 				00AF8CE01D224CFA009047AC /* DatePickerView.xib in Resources */,
-				006756071D4848A300E8144C /* notification_background.png in Resources */,
 				0091EB1F1D9513F90079EC39 /* NewAddAlarmHeader.xib in Resources */,
 				0050D6921C28E1CD004F6F80 /* AddAlarmController.xib in Resources */,
 				0095DDAB1D2E0D7D00F80BFD /* wacth_mint.png in Resources */,
@@ -3331,7 +3320,6 @@
 				6168C6311DFE53D5008FCF97 /* OtherController.xib in Resources */,
 				0063BC351D98D4EC000BAB44 /* InformationController.xib in Resources */,
 				00120E781D7550D500CE0C32 /* UserHeader.xib in Resources */,
-				0036EB061C48BA8300DCED46 /* connected1.png in Resources */,
 				0050D6961C28E1CD004F6F80 /* AddAlarmTableViewCell.xib in Resources */,
 				61879C2E1DC05B850089F1E5 /* cities.json in Resources */,
 				0050D69B1C2906D8004F6F80 /* Firmwares in Resources */,

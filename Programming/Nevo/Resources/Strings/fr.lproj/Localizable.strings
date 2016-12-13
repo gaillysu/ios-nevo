@@ -28,29 +28,22 @@
 
 //new app string
 "goal"="objectif";
-"you_reached"="Pas";
-"progress"="progrès";
-"day_steps_goal"="objectif";
 "no_step_data"="Aucune donnée de pas";
 "no_sleep_data"="Aucune donnée de suivi de sommeil";
-"select_date"="Sélectionner une date";
-"sleep_duration"="durée de sommeil";
 "deep_sleep"="sommeil profond";
 "light_sleep"="sommeil léger";
 "sleep_timer"="heure de sommeil";
 "wake_timer"="heure de réveil";
-"wake_duration"="durée de réveil";
 "CALL"="Appel";
 "SMS"="(i)Message";
 "EMAIL"="E-mail";
 "Facebook"="Facebook";
 "Calendar"="Calendrier";
-"WeChat"="WhatsApp";
+"WeChat"="WeChat";
 "Whatsapp"="WhatsApp";
 "Setting"="Réglages";
 "find_my_watch"="Trouver ma montre";
 "goals"="Objectifs";
-"last_night"="La nuit dernière";
 "history"="Historique";
 "forget_watch"="Oublier la montre";
 "Support"="Assistance";
@@ -62,9 +55,7 @@
 "YELLOW"="Jaune";
 "ORANGE"="Orange";
 "GREEN"="Vert";
-"no_data"="Aucune donnée";
 "nevo_is_not_connected"="Nevo n'est pas connecté.";
-"did_sleep_with_your_nevo"="Vous n'avez pas dormi avec votre nevo.";
 "search_for_nevo"="Recherche de nevo";
 "bluetooth_turned_off_enable"="Bluetooth désactivé. Activer Bluetooth pour synchroniser";
 "syncing_Alarm"="Synchronisation de l'alarme";
@@ -78,7 +69,6 @@
 "battery_sufficient"="Batterie suffisante";
 "battery_full"="Batterie pleine";
 "alarmTitle"="Alarme";
-"sleepTitle"="Sommeil";
 "set_goal"="Fixer objectif";
 "today"="Aujourd'hui";
 "syncing_data"="Synchronisation des données";
@@ -86,12 +76,10 @@
 "Repeat"="Répéter";
 "Label"="Nom";
 "watch_version"="Version de la montre";
-"battery"="Batterie";
 "app_version"="Version de l'appli";
 "forget"="Oublier";
 "forget_your_nevo"="Voulez-vous oublier votre nevo ?";
 "Link-Loss Notifications"="Link-Loss Warning";
-"nevo_alarms_supports"="Nevo ne supporte que 3 alarmes pour le moment.";
 "press_the_third_button"="Appuyez sur la troisième touche";
 "in_order_reactivate_bluetooth"="Pour réactiver le bluetooth. Ne quittez pas cet écran !";
 "do_not_exit_this_screen"="Ne quittez pas cet écran";
@@ -230,3 +218,6 @@
 // Notification Color
 "color"="Color";
 "other_settings"="Other settings";
+"unit"="Unit";
+"metrics"="Metrics";
+"imperial"="Imperial";

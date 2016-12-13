@@ -28,29 +28,22 @@
 
 //new app string
 "goal"="目标";
-"you_reached"="活动";
-"progress"="进度";
-"day_steps_goal"="goal";
 "no_step_data"="没有活动数据";
 "no_sleep_data"="没有睡眠数据";
-"select_date"="选择一个时间";
-"sleep_duration"="睡眠总时长";
 "deep_sleep"="深睡";
 "light_sleep"="浅睡";
 "sleep_timer"="入睡时间";
 "wake_timer"="醒来时间";
-"wake_duration"="醒来时长";
 "CALL"="电话";
 "SMS"="短信";
 "EMAIL"="邮件";
 "Facebook"="Facebook";
 "Calendar"="日历";
-"WeChat"="Whatsapp";
+"WeChat"="微信";
 "Whatsapp"="Whatsapp";
 "Setting"="设置";
 "find_my_watch"="查找我的手表";
 "goals"="目标";
-"last_night"="昨晚";
 "history"="历史";
 "forget_watch"="忘记手表";
 "Support"="支持";
@@ -62,9 +55,7 @@
 "YELLOW"="黄色";
 "ORANGE"="橙色";
 "GREEN"="绿色";
-"no_data"="没有数据";
 "nevo_is_not_connected"="与nevo没有连接";
-"did_sleep_with_your_nevo"="你的nevo昨晚没有睡眠";
 "search_for_nevo"="搜索nevo";
 "bluetooth_turned_off_enable"="蓝牙已关闭. 启用你的蓝牙并同步";
 "syncing_Alarm"="闹钟同步中";
@@ -77,7 +68,6 @@
 "battery_sufficient"="电量充足";
 "battery_full"="电量满";
 "alarmTitle"="闹钟";
-"sleepTitle"="睡眠";
 "set_goal"="设置目标";
 "today"="今天";
 "syncing_data"="数据同步中";
@@ -85,12 +75,10 @@
 "Repeat"="重复";
 "Label"="标签";
 "watch_version"="手表版本";
-"battery"="电量";
 "app_version"="App版本";
 "forget"="忘记";
 "forget_your_nevo"="你确定要忘记你的nevo?";
 "Link-Loss Notifications"="连接断开通知";
-"nevo_alarms_supports"="Nevo 目前只支持同时开启3个闹钟";
 "press_the_third_button"="按下手表的第三个按钮";
 "in_order_reactivate_bluetooth"="正在激活蓝牙,请不要退出这个屏幕";
 "do_not_exit_this_screen"="不要退出这个屏幕";
@@ -229,3 +217,6 @@
 // Notification Color
 "color"="颜色";
 "other_settings"="更多设置";
+"unit"="单位";
+"metrics"="公制";
+"imperial"="英制";

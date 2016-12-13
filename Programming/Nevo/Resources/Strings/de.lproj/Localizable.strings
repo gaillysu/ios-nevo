@@ -28,18 +28,12 @@
 
 //new app string
 "goal"="Ziel";
-"you_reached"="Schritte";
-"progress"="Fortschritt";
-"day_steps_goal"="Ziel";
 "no_step_data"="Keine Daten zu den Schritten";
 "no_sleep_data"="Keine Schlaf Tracking-Daten";
-"select_date"="Ein Datum wählen";
-"sleep_duration"="Schlafdauer";
 "Deep_sleep"="Tiefschlaf";
 "light_sleep"="leichter Schlaf";
 "sleep_timer"="Schlafzeit";
 "wake_timer"="Wachzeit";
-"wake_duration"="Dauer der Wachzeit";
 "CALL"="Anruf";
 "SMS"="(i) Nachricht";
 "EMAIL"="E-Mail";
@@ -50,7 +44,6 @@
 "Setting"="Einstellungen";
 "find_my_watch"="Meine Uhr finden";
 "goals"="Ziele";
-"last_night"="Letzte Nacht";
 "history"="Verlauf";
 "forget_watch"="Uhr vergessen";
 "Support"="Unterstützung";
@@ -62,9 +55,7 @@
 "YELLOW"="Gelb";
 "ORANGE"="Orange";
 "GREEN"="Grün";
-"no_data"="Keine Daten";
 "nevo_is_not_connected"="Nevo ist nicht angeschlossen.";
-"did_sleep_with_your_nevo"="Sie hatten Nevo beim Schlafen nicht bei sich.";
 "search_for_nevo"="Nach Nevo suchen";
 "bluetooth_turned_off_enable"="Bluetooth ausgeschaltet. Bluetooth aktivieren zum Synchronisieren";
 "syncing_Alarm"="Synchronisier-Alarm";
@@ -78,7 +69,6 @@
 "battery_sufficient"="Batterie ausreichend";
 "battery_full"="Batterie geladen";
 "alarmTitle"="Alarm";
-"sleepTitle"="Schlaf";
 "set_goal"="Ziel setzen";
 "today"="Heute";
 "syncing_data"="Synchronisieren von Daten";
@@ -86,12 +76,10 @@
 "Repeat"="Wiederholen";
 "Label"="Bezeichnung";
 "watch_version"="Uhren-Version";
-"battery"="Batterie";
 "app_version"="App-Version";
 "forget"="Vergessen";
 "forget_your_nevo"="Wollen Sie Ihren Nevo vergessen?";
 "Link-Loss Notifications"="Link-Loss Warning";
-"nevo_alarms_supports"="Nevo unterstützt jetzt nur 3 Alarme.";
 "press_the_third_button"="Drücken Sie den dritten Knopf";
 "in_order_reactivate_bluetooth"="Um Bluetooth wieder zu aktivieren. Diesen Bildschirm nicht verlassen!";
 "do_not_exit_this_screen"="Diesen Bildschirm nicht verlassen!";
@@ -230,3 +218,6 @@
 // Notification Color
 "color"="Color";
 "other_settings"="Other settings";
+"unit"="Unit";
+"metrics"="Metrics";
+"imperial"="Imperial";
