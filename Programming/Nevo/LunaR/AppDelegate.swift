@@ -125,6 +125,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
         
         //start Location
         self.startLocation()
+        
         return true
     }
     
@@ -562,15 +563,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
 extension AppDelegate {
 
     func startLocation() {
-        NSLog("AuthorizationStatus:\(LOCATION_MANAGER.gpsAuthorizationStatus)")
-        if LOCATION_MANAGER.gpsAuthorizationStatus>2 {
-            LOCATION_MANAGER.startLocation()
-            LOCATION_MANAGER.didChangeAuthorization = { status in
+        NSLog("AuthorizationStatus:\(LocationManager.instanceLocation.gpsAuthorizationStatus)")
+        if LocationManager.instanceLocation.gpsAuthorizationStatus>2 {
+            LocationManager.instanceLocation.startLocation()
+            LocationManager.instanceLocation.didChangeAuthorization = { status in
                 let states:CLAuthorizationStatus = status as CLAuthorizationStatus
                 XCGLogger.default.debug("Location didChangeAuthorization:\(states.rawValue)")
             }
             
-            LOCATION_MANAGER.didUpdateLocations = { location in
+            LocationManager.instanceLocation.didUpdateLocations = { location in
                 let locationArray = location as [CLLocation]
                 XCGLogger.default.debug("Location didUpdateLocations:\(locationArray)")
                 self.longitude = locationArray.last!.coordinate.longitude
@@ -580,7 +581,7 @@ extension AppDelegate {
                 
             }
             
-            LOCATION_MANAGER.didFailWithError = { error in
+            LocationManager.instanceLocation.didFailWithError = { error in
                 XCGLogger.default.debug("Location didFailWithError:\(error)")
             }
         }else{
@@ -599,6 +600,14 @@ extension AppDelegate {
             let sunset = solar!.sunset
             self.setSunriseAndSunset(sunrise: sunrise!, sunset: sunset!)
         }
+    }
+    
+    func getSunriseOrSunsetTime()->[String:Date] {
+        let solar = Solar(latitude: latitude,
+                          longitude: longitude)
+        let sunrise = solar!.sunrise
+        let sunset = solar!.sunset
+        return ["sunrise":sunrise!,"sunset":sunset!]
     }
     
     func getLongitude() -> Double {

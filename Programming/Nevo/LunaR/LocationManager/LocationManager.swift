@@ -9,8 +9,10 @@
 import UIKit
 import CoreLocation
 
-let LOCATION_MANAGER:LocationManager = LocationManager()
+
 class LocationManager: NSObject {
+    static let instanceLocation:LocationManager = LocationManager()
+    
     fileprivate var _locationManager : CLLocationManager?
     
     typealias  didUpdateLocationsCallBack=(_ locationArray :[CLLocation])->Void
@@ -38,7 +40,7 @@ class LocationManager: NSObject {
         }
     }
     
-    override init() {
+    fileprivate override init() {
         super.init()
         if CLLocationManager.headingAvailable() {
             _locationManager = CLLocationManager()
