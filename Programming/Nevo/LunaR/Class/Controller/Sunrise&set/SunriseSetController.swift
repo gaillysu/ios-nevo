@@ -12,6 +12,7 @@ import RealmSwift
 import Solar
 import CoreLocation
 import SnapKit
+import XCGLogger
 
 class SunriseSetController: PublicClassController {
     
@@ -49,25 +50,8 @@ class SunriseSetController: PublicClassController {
         let citiesArray:[City] = Array(realm.objects(City.self).filter("selected = true"))
         if citiesArray.count>0 {
             self.city = citiesArray[0]
-            
             self.solar = Solar(latitude: city!.lat,longitude: self.city!.lng)
-            let sunrise = solar!.sunrise
-            let sunset = solar!.sunset
-            
-            let sunriseString:String = sunrise!.stringFromFormat("HH:mm a")
-            let sunsetString:String = sunset!.stringFromFormat("HH:mm a")
-            
-            self.sunRiseSetTimeArrar = [sunriseString, sunsetString]
         } else {
-            let solar = Solar(latitude: AppDelegate.getAppDelegate().getLatitude(), longitude: AppDelegate.getAppDelegate().getLongitude())
-            let sunrise = solar?.sunrise
-            let sunset = solar?.sunset
-            
-            let sunriseString = sunrise!.stringFromFormat("HH:mm a")
-            let sunsetString = sunset!.stringFromFormat("HH:mm a")
-            
-            self.sunRiseSetTimeArrar = [sunriseString, sunsetString]
-            
             let geoCoder:CLGeocoder = CLGeocoder()
             let location:CLLocation = CLLocation(latitude: AppDelegate.getAppDelegate().getLatitude(), longitude: AppDelegate.getAppDelegate().getLongitude())
             geoCoder.reverseGeocodeLocation(location, completionHandler: { (placeMarks, error) in
@@ -88,8 +72,8 @@ class SunriseSetController: PublicClassController {
             self.cityNameLable.text = "Shenzhen" + ", " + "China"
         }
         if let solarValue = solar {
-            self.cityDateLabel.text = solar!.date.stringFromFormat("d MMM, yyyy")
-            let now:Date = self.solar!.date
+            self.cityDateLabel.text = solarValue.date.stringFromFormat("d MMM, yyyy")
+            let now:Date = solarValue.date
             let cal:Calendar = Calendar.current
             let dd:DateComponents = (cal as NSCalendar).components([NSCalendar.Unit.year, NSCalendar.Unit.month, NSCalendar.Unit.day ,NSCalendar.Unit.hour, NSCalendar.Unit.minute, NSCalendar.Unit.second,], from: now);
             
@@ -97,6 +81,17 @@ class SunriseSetController: PublicClassController {
         }        
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        let object:[String:Date] = AppDelegate.getAppDelegate().getSunriseOrSunsetTime()
+        let sunrise:Date         = object["sunrise"]!
+        let sunset:Date          = object["sunset"]!
+        let sunriseString:String = sunrise.stringFromFormat("HH:mm a")
+        let sunsetString:String  = sunset.stringFromFormat("HH:mm a")
+        
+        self.sunRiseSetTimeArrar = [sunriseString, sunsetString]
+        sunriseSetCollectionView.reloadData()
+    }
     public func setDialTime(dateComponents:DateComponents) {
         clockView?.setWorldTime(dateConponents: dateComponents)
     }
@@ -129,19 +124,20 @@ extension SunriseSetController: WorldClockDidSelectedDelegate {
         let citiesArray:[City] = Array(realm.objects(City.self).filter("selected = true"))
         let city = citiesArray[0]
         
-        let solar = Solar(latitude: city.lat,
+        let solar     = Solar(latitude: city.lat,
                           longitude: city.lng)
-        let sunrise = solar!.sunrise
-        let sunset = solar!.sunset
+        let sunrise   = solar!.sunrise
+        let sunset    = solar!.sunset
         
-        let sunriseString:String = sunrise!.stringFromFormat("HH:mm a")
-        let sunsetString:String = sunset!.stringFromFormat("HH:mm a")
-        self.sunRiseSetTimeArrar = [sunriseString, sunsetString]
-        self.sunriseSetCollectionView.reloadData()
-        
-        let now:Date = solar!.date
-        let cal:Calendar = Calendar.current
-        let dd:DateComponents = (cal as NSCalendar).components([NSCalendar.Unit.year, NSCalendar.Unit.month, NSCalendar.Unit.day ,NSCalendar.Unit.hour, NSCalendar.Unit.minute, NSCalendar.Unit.second,], from: now);
+        let timeZone:Timezone = city.timezone!;
+        let gmtOffset:Float = Float(timeZone.gmtTimeOffset)/60.0*3600.0
+        let zone:TimeZone = TimeZone(secondsFromGMT: Int(gmtOffset))!
+        let second:Int = zone.secondsFromGMT()
+        let nowDate:Date = Date().addingTimeInterval(TimeInterval(second))
+        XCGLogger.default.debug("nowDate:\(nowDate.hour),\(nowDate.minute),\(nowDate.second)")
+        let now:Date          = solar!.date
+        let cal:Calendar      = Calendar.current
+        let dd:DateComponents = (cal as NSCalendar).components([NSCalendar.Unit.year, NSCalendar.Unit.month, NSCalendar.Unit.day ,NSCalendar.Unit.hour, NSCalendar.Unit.minute, NSCalendar.Unit.second,], from: nowDate);
         setDialTime(dateComponents: dd)
         
         self.cityNameLable.text = city.name + ", " + city.country
