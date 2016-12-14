@@ -51,33 +51,33 @@ class Timezone: Object {
     
     class func getTimeZoneObject(_ json:JSON) -> Timezone?{
         
-        if let id = json["id"].string,
+        if let id = json["id"].int,
             let name = json["name"].string,
             let gmt = json["gmt"].string,
-            let gmtOffset = json["gmt_offset"].string,
+            let gmtOffset = json["gmt_offset"].int,
             let stdName = json["std_name"].string,
-            let dstMonthStart = json["dst_month_start"].string,
-            let dstDayInMonthStart = json["dst_day_in_month_start"].string,
+            let dstMonthStart = json["dst_month_start"].int,
+            let dstDayInMonthStart = json["dst_day_in_month_start"].int,
             let dstTimeStart = json["dst_time_start"].string,
             let dstName = json["dst_name"].string,
-            let dstTimeOffset = json["dst_time_offset"].string,
-            let dstMonthEnd = json["dst_month_end"].string,
-            let dstDayInMonthEnd = json["dst_day_in_month_end"].string,
+            let dstTimeOffset = json["dst_time_offset"].int,
+            let dstMonthEnd = json["dst_month_end"].int,
+            let dstDayInMonthEnd = json["dst_day_in_month_end"].int,
             let dstTimeEnd = json["dst_time_end"].string
         {
             let timezone:Timezone = Timezone()
             timezone.name = name
-            timezone.id = Int(id)!
+            timezone.id = id
             timezone.gmt = gmt
-            timezone.gmtTimeOffset = Int(gmtOffset)!
+            timezone.gmtTimeOffset = gmtOffset
             timezone.stdName = stdName
-            timezone.dstMonthStart = Int(dstMonthStart)!
-            timezone.dstDayInMonthStart = Int(dstDayInMonthStart)!
+            timezone.dstMonthStart = dstMonthStart
+            timezone.dstDayInMonthStart = dstDayInMonthStart
             timezone.dstTimeStart = dstTimeStart
             timezone.dstName = dstName
-            timezone.dstTimeOffset = Int(dstTimeOffset)!
-            timezone.dstMonthEnd = Int(dstMonthEnd)!
-            timezone.dstDayInMonthEnd = Int(dstDayInMonthEnd)!
+            timezone.dstTimeOffset = dstTimeOffset
+            timezone.dstMonthEnd = dstMonthEnd
+            timezone.dstDayInMonthEnd = dstDayInMonthEnd
             timezone.dstTimeEnd = dstTimeEnd
             return timezone
         } else {
