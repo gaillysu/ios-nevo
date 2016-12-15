@@ -77,13 +77,24 @@ class SunriseSetController: PublicClassController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        let object:[String:Date] = AppDelegate.getAppDelegate().getSunriseOrSunsetTime()
-        let sunrise:Date         = object["sunrise"]!
-        let sunset:Date          = object["sunset"]!
-        let sunriseString:String = sunrise.stringFromFormat("HH:mm a")
-        let sunsetString:String  = sunset.stringFromFormat("HH:mm a")
+        let object: [String: AppDelegate.MEDSolarResult] = AppDelegate.getAppDelegate().getSunriseOrSunsetTime()
+    
+        switch object["sunrise"]!  {
+        case AppDelegate.MEDSolarResult.normal(let sunrise):
+            let sunriseString:String = sunrise.stringFromFormat("HH:mm a")
+            sunRiseSetTimeArrar[0] = sunriseString
+        case AppDelegate.MEDSolarResult.polar(let sunrise):
+            sunRiseSetTimeArrar[0] = sunrise
+        }
         
-        self.sunRiseSetTimeArrar = [sunriseString, sunsetString]
+        switch object["sunset"]! {
+        case AppDelegate.MEDSolarResult.normal(let sunset):
+            let sunsetString:String = sunset.stringFromFormat("HH:mm a")
+            sunRiseSetTimeArrar[1] = sunsetString
+        case AppDelegate.MEDSolarResult.polar(let sunset):
+            sunRiseSetTimeArrar[1] = sunset
+        }
+        
         sunriseSetCollectionView.reloadData()
     }
     
@@ -171,11 +182,15 @@ extension SunriseSetController: UICollectionViewDelegate, UICollectionViewDataSo
         if indexPath.row == 0 {
             cell.iconImageView.image = UIImage(named: "sunrise")
             cell.titleLable.text = self.sunRiseSetTimeArrar[0]
-            cell.subTitleLabel.text = "local time"
         } else {
             cell.iconImageView.image = UIImage(named: "sunset")
             cell.titleLable.text = self.sunRiseSetTimeArrar[1]
-            cell.subTitleLabel.text = "local time"
+        }
+        
+        if sunRiseSetTimeArrar.contains("Polar daylight") || sunRiseSetTimeArrar.contains("Polar night") {
+            cell.subTitleLabel.text = nil
+        } else {
+            cell.subTitleLabel.text = NSLocalizedString("local_time", comment: "")
         }
         
         return cell

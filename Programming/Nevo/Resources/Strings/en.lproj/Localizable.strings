@@ -214,3 +214,5 @@
 "unit"="Unit";
 "metrics"="Metrics";
 "imperial"="Imperial";
+
+"local_time" = "local time";

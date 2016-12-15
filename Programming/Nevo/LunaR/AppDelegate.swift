@@ -596,18 +596,41 @@ extension AppDelegate {
         if longitude != 0 && latitude != 0 {
             let solar = Solar(latitude: latitude,
                               longitude: longitude)
-            let sunrise = solar!.sunrise
-            let sunset = solar!.sunset
-            self.setSunriseAndSunset(sunrise: sunrise!, sunset: sunset!)
+            
+            if let sunrise = solar?.sunrise, let sunset = solar?.sunset {
+                self.setSunriseAndSunset(sunrise: sunrise, sunset: sunset)
+            } else {
+                
+                /// At here, two dates are necessary, so just use HongKong's sunrise & sunset
+                let solar = Solar(latitude: 22.2782551,
+                                  longitude: 114.1670679)
+                self.setSunriseAndSunset(sunrise: solar!.sunrise!, sunset: solar!.sunset!)
+            }
         }
     }
     
-    func getSunriseOrSunsetTime()->[String:Date] {
+    enum MEDSolarResult {
+        case normal(Date)
+        case polar(String)
+    }
+    
+    func getSunriseOrSunsetTime() -> [String: MEDSolarResult] {
         let solar = Solar(latitude: latitude,
                           longitude: longitude)
-        let sunrise = solar!.sunrise
-        let sunset = solar!.sunset
-        return ["sunrise":sunrise!,"sunset":sunset!]
+        
+        if let sunrise = solar?.sunrise, let sunset = solar?.sunset {
+            return ["sunrise": MEDSolarResult.normal(sunrise), "sunset": MEDSolarResult.normal(sunset)]
+        } else {
+            // these areas are in polar day or night!
+            let isNorthernHemisphereHere = latitude > 0
+            let isNorthernHemisphereSummer = (3..<10).contains(Date().month)
+            
+            if isNorthernHemisphereHere == isNorthernHemisphereSummer {
+                return ["sunrise": MEDSolarResult.polar("Polar daylight"), "sunset": MEDSolarResult.polar("Polar daylight")]
+            } else {
+                return ["sunrise": MEDSolarResult.polar("Polar night"), "sunset": MEDSolarResult.polar("Polar night")]
+            }
+        }
     }
     
     func getLongitude() -> Double {
