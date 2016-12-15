@@ -11,7 +11,6 @@ import Charts
 import SwiftyJSON
 
 @objc protocol SelectedChartViewDelegate{
-    @objc optional func didSelectedhighlightValue(_ xIndex:Int,dataSetIndex: Int, dataSteps:UserSteps)
     @objc optional func didSleepSelectedhighlightValue(_ xIndex:Int,dataSetIndex: Int, dataSleep:Sleep)
 }
 

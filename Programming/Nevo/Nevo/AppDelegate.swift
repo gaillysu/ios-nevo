@@ -68,8 +68,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
     }
 
     let dbQueue:FMDatabaseQueue = FMDatabaseQueue(path: AppDelegate.dbPath())
-    let network = NetworkReachabilityManager(host: "drone.karljohnchow.com")
-
+    let network = NetworkReachabilityManager(host: "nevowatch.com")
     class func getAppDelegate()->AppDelegate {
         return UIApplication.shared.delegate as! AppDelegate
     }
@@ -264,6 +263,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                     }
                 }
                 //start sync notification setting on the phone side
+                XCGLogger.default.debug("SetNortification++++++++++++++")
                 SetNortification(mNotificationSettingArray)
             }
 

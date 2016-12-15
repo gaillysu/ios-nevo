@@ -14,6 +14,7 @@ import UIColor_Hex_Swift
 import ActiveLabel
 import XCGLogger
 import SwiftyJSON
+import RealmSwift
 
 class LoginController: UIViewController,UITextFieldDelegate {
 
@@ -203,16 +204,16 @@ extension LoginController {
                     _ = user?.add()
                     
                     let dayDate:Date = Date()
-                    let stepsArray:NSArray = UserSteps.getCriteria("WHERE date BETWEEN \(Date().beginningOfWeek.timeIntervalSince1970-864000*30) AND \(dayDate.endOfWeek.timeIntervalSince1970)")
-                    let sleepArray:NSArray = UserSleep.getCriteria("WHERE date BETWEEN \(Date().beginningOfWeek.timeIntervalSince1970-864000*30) AND \(dayDate.endOfWeek.timeIntervalSince1970)")
+                    let stepsArray = MEDUserSteps.getFilter("date > \(dayDate.beginningOfWeek.timeIntervalSince1970-864000*30) AND date < \(dayDate.endOfWeek.timeIntervalSince1970)")
+                    let sleepArray = MEDUserSleep.getFilter("date > \(dayDate.beginningOfWeek.timeIntervalSince1970-864000*30) AND date < \(dayDate.endOfWeek.timeIntervalSince1970)")
                     
                     for stepsValue in stepsArray {
-                        let stepsModel:UserSteps = stepsValue as! UserSteps
+                        let stepsModel:MEDUserSteps = stepsValue as! MEDUserSteps
                         let profile:MEDUserProfile = user!
                         let dateString:String = Date(timeIntervalSince1970: stepsModel.date).stringFromFormat("yyy-MM-dd")
                         var caloriesValue:Int = 0
                         var milesValue:Double = 0
-                        StepGoalSetingController.calculationData((stepsModel.walking_duration+stepsModel.running_duration), steps: stepsModel.steps, completionData: { (miles, calories) in
+                        StepGoalSetingController.calculationData((stepsModel.walking_duration+stepsModel.running_duration), steps: stepsModel.totalSteps, completionData: { (miles, calories) in
                             caloriesValue = Int(calories)
                             milesValue = miles
                         })
@@ -221,21 +222,25 @@ extension LoginController {
                         let activeTime: Int = stepsModel.walking_duration+stepsModel.running_duration
                         MEDStepsNetworkManager.createSteps(uid: profile.uid, steps: stepsModel.hourlysteps, date: dateString, activeTime: activeTime, calories: caloriesValue, distance: milesValue, completion: { (success: Bool) in
                             if success {
-                                stepsModel.isUpload = true
-                                stepsModel.update()
+                                let realm = try! Realm()
+                                try! realm.write {
+                                    stepsModel.isUpload = true
+                                }
                             }
                         })
                     }
                     
                     for sleepValue in sleepArray {
-                        let sleepModel:UserSleep = sleepValue as! UserSleep
+                        let sleepModel:MEDUserSleep = sleepValue as! MEDUserSleep
                         let profile:MEDUserProfile = user!
                         let dateString:String = Date(timeIntervalSince1970: sleepModel.date).stringFromFormat("yyy-MM-dd")
                         
                         if !sleepModel.isUpload {
                             MEDSleepNetworkManager.createSleep(uid: profile.uid, deepSleep: sleepModel.hourlyDeepTime, lightSleep: sleepModel.hourlyLightTime, wakeTime: sleepModel.hourlyWakeTime, date: dateString, completion: { (success:Bool) in
-                                sleepModel.isUpload = true
-                                _ = sleepModel.update()
+                                let realm = try! Realm()
+                                try! realm.write {
+                                    sleepModel.isUpload = true
+                                }
                             })
                         }
                     }

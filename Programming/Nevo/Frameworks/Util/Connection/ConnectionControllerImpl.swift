@@ -51,8 +51,8 @@ class ConnectionControllerImpl : NSObject {
     */
     override init() {
         super.init()
-        
-        mNevoBT = NevoBTImpl(externalDelegate: self, acceptableDevice: NevoProfile())
+        let profile:Profile = AppTheme.isTargetLunaR_OR_Nevo() ? NevoProfile():LunaRProfile()
+        mNevoBT = NevoBTImpl(externalDelegate: self, acceptableDevice: profile)
         setOTAMode(false,Disconnect:true)
     }
     

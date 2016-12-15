@@ -9,6 +9,7 @@
 import Foundation
 import XCGLogger
 import SwiftEventBus
+import Alamofire
 
 // MARK: - LAUNCH LOGIC
 extension AppDelegate {
@@ -349,6 +350,19 @@ extension AppDelegate {
             let banner = MEDBanner(title: NSLocalizedString("Disconnected", comment: ""), subtitle: nil, image: nil, backgroundColor: UIColor.red)
             banner.dismissesOnTap = true
             banner.show(duration: 1.5)
+        }
+    }
+    
+    /**
+     获取当前手机网络状态
+     
+     - returns: true->网络联通,false->网络不通
+     */
+    func getNetworkState()->Bool {
+        if let networks = network {
+            return networks.isReachable
+        }else{
+            return false;
         }
     }
 }

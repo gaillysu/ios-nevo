@@ -71,7 +71,6 @@ class SetingViewController: UIViewController,ButtonManagerCallBack,UIAlertViewDe
 
     }
 
-
     // MARK: - UITableViewDelegate
     func tableView(_ tableView: UITableView, heightForRowAtIndexPath indexPath: IndexPath) -> CGFloat {
         if (indexPath as NSIndexPath).section == 0 {
@@ -126,21 +125,6 @@ class SetingViewController: UIViewController,ButtonManagerCallBack,UIAlertViewDe
                 let supportView:SupportViewController = SupportViewController()
                 supportView.hidesBottomBarWhenPushed = true
                 self.navigationController?.pushViewController(supportView, animated: true)
-            }
-            
-            if(isEqualString("\(sources[indexPath.row])",string2: NSLocalizedString("Connect to other apps", comment: ""))){
-               
-                let users = MEDUserProfile.getAll()
-                if users.count == 0 {
-                    let logoin:LoginController = LoginController()
-                    logoin.hidesBottomBarWhenPushed = true
-                    self.navigationController?.pushViewController(logoin, animated: true)
-                }else{
-                    XCGLogger.default.debug("Connect to other apps")
-                    let supportView:ConnectOtherAppsController = ConnectOtherAppsController()
-                    supportView.hidesBottomBarWhenPushed = true
-                    self.navigationController?.pushViewController(supportView, animated: true)
-                }
             }
             break
         case 2:

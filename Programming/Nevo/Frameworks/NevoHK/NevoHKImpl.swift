@@ -14,7 +14,7 @@ See NevoHK protocol
 */
 class NevoHKImpl {
     //单例
-    static let shareNevoHKImplOne = NevoHKImpl()
+    static let shareNevoHKlOne = NevoHKImpl()
     
     fileprivate let mHealthKitStore = HKHealthStore()
     fileprivate init() {}
@@ -36,7 +36,7 @@ class NevoHKImpl {
         }
     }
     
-    func authorizeHealthKit(_ completion: ((_ success:Bool, _ error:NSError?) -> Void)!)
+    fileprivate func authorizeHealthKit(_ completion: ((_ success:Bool, _ error:NSError?) -> Void)!)
     {
         // 1. Set the types you want to read from HK Store  HKObjectType.categoryTypeForIdentifier(HKCategoryTypeIdentifierSleepAnalysis)
         //quantityTypeForIdentifier(HKQuantityTypeIdentifierStepCount)

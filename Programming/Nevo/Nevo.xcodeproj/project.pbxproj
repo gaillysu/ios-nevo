@@ -70,7 +70,6 @@
 		0050D6941C28E1CD004F6F80 /* AddAlarmSystemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0050D68A1C28E1CD004F6F80 /* AddAlarmSystemCell.xib */; };
 		0050D6961C28E1CD004F6F80 /* AddAlarmTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0050D68C1C28E1CD004F6F80 /* AddAlarmTableViewCell.xib */; };
 		0050D69B1C2906D8004F6F80 /* Firmwares in Resources */ = {isa = PBXBuildFile; fileRef = 0050D69A1C2906D8004F6F80 /* Firmwares */; };
-		0058B3EB1CF55D590079A213 /* ConnectOtherAppsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0058B3E91CF55D590079A213 /* ConnectOtherAppsController.xib */; };
 		0063BC1B1D98CE85000BAB44 /* LoginController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0063BC1D1D98CE85000BAB44 /* LoginController.xib */; };
 		0063BC281D98D456000BAB44 /* ForgotPasswordController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0063BC2A1D98D456000BAB44 /* ForgotPasswordController.xib */; };
 		0063BC351D98D4EC000BAB44 /* InformationController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0063BC371D98D4EC000BAB44 /* InformationController.xib */; };
@@ -85,7 +84,6 @@
 		006DA3111D6ED5C40011E09C /* AnalysisValueCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 006DA30F1D6ED5C40011E09C /* AnalysisValueCell.xib */; };
 		006DA3171D6ED6670011E09C /* AnalysisLineChartCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 006DA3131D6ED6670011E09C /* AnalysisLineChartCell.xib */; };
 		006DA3191D6ED6670011E09C /* AnalysisRadarViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 006DA3151D6ED6670011E09C /* AnalysisRadarViewCell.xib */; };
-		007E0CAF1D0E5C3E00B0B600 /* ConnectOtherAppsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 007E0CAD1D0E5C3E00B0B600 /* ConnectOtherAppsCell.xib */; };
 		0089B0AE1D6BFF250041148A /* SetingInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0089B0A71D6BFF250041148A /* SetingInfoCell.xib */; };
 		0089B0B01D6BFF250041148A /* SetingLoginCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0089B0A91D6BFF250041148A /* SetingLoginCell.xib */; };
 		0089B0B71D6C4BDC0041148A /* SleepHistoryViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0089B0B51D6C4BDC0041148A /* SleepHistoryViewCell.xib */; };
@@ -142,10 +140,6 @@
 		00C826541DA5E04000ECECEE /* SolarInforViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006A624A1D6AA62100458305 /* SolarInforViewCell.swift */; };
 		00C826551DA5E04000ECECEE /* SolarInforViewCell.xib in Sources */ = {isa = PBXBuildFile; fileRef = 006A624B1D6AA62100458305 /* SolarInforViewCell.xib */; };
 		00C826561DA5E04000ECECEE /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006A62241D6AA53100458305 /* PageViewController.swift */; };
-		00C826571DA5E04000ECECEE /* ConnectOtherAppsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0058B3E81CF55D590079A213 /* ConnectOtherAppsController.swift */; };
-		00C826581DA5E04000ECECEE /* ConnectOtherAppsController.xib in Sources */ = {isa = PBXBuildFile; fileRef = 0058B3E91CF55D590079A213 /* ConnectOtherAppsController.xib */; };
-		00C826591DA5E04000ECECEE /* ConnectOtherAppsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007E0CAC1D0E5C3E00B0B600 /* ConnectOtherAppsCell.swift */; };
-		00C8265A1DA5E04000ECECEE /* ConnectOtherAppsCell.xib in Sources */ = {isa = PBXBuildFile; fileRef = 007E0CAD1D0E5C3E00B0B600 /* ConnectOtherAppsCell.xib */; };
 		00C8265B1DA5E04000ECECEE /* UserHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00120E751D7550D500CE0C32 /* UserHeader.swift */; };
 		00C8265C1DA5E04000ECECEE /* UserHeader.xib in Sources */ = {isa = PBXBuildFile; fileRef = 00120E761D7550D500CE0C32 /* UserHeader.xib */; };
 		00C8265D1DA5E04000ECECEE /* UserProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009703C01C9BD9D700F2FF0D /* UserProfileController.swift */; };
@@ -250,8 +244,6 @@
 		00C826C81DA5ECA700ECECEE /* ForgotPasswordController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0063BC2A1D98D456000BAB44 /* ForgotPasswordController.xib */; };
 		00C826C91DA5ECA700ECECEE /* InformationController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0063BC371D98D4EC000BAB44 /* InformationController.xib */; };
 		00C826CB1DA5ECA700ECECEE /* SolarInforViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 006A624B1D6AA62100458305 /* SolarInforViewCell.xib */; };
-		00C826CC1DA5ECA700ECECEE /* ConnectOtherAppsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0058B3E91CF55D590079A213 /* ConnectOtherAppsController.xib */; };
-		00C826CD1DA5ECA700ECECEE /* ConnectOtherAppsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 007E0CAD1D0E5C3E00B0B600 /* ConnectOtherAppsCell.xib */; };
 		00C826CE1DA5ECA700ECECEE /* UserHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00120E761D7550D500CE0C32 /* UserHeader.xib */; };
 		00C826CF1DA5ECA700ECECEE /* UserProfileController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 004F74DE1D800EAA0048BA09 /* UserProfileController.xib */; };
 		00C826D01DA5ECA700ECECEE /* UserProfileCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 009703C51C9BDB3200F2FF0D /* UserProfileCell.xib */; };
@@ -310,29 +302,12 @@
 		00D474311D586D1600E2447E /* RunningToHK.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C521D224CFA009047AC /* RunningToHK.swift */; };
 		00D474321D586D1600E2447E /* Alarm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C541D224CFA009047AC /* Alarm.swift */; };
 		00D474331D586D1600E2447E /* NewAlarm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C551D224CFA009047AC /* NewAlarm.swift */; };
-		00D474341D586D1600E2447E /* BaseEntryDatabaseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C581D224CFA009047AC /* BaseEntryDatabaseHelper.swift */; };
-		00D474351D586D1600E2447E /* UserDatabaseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C5D1D224CFA009047AC /* UserDatabaseHelper.swift */; };
-		00D474361D586D1600E2447E /* AlarmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C5F1D224CFA009047AC /* AlarmModel.swift */; };
-		00D474371D586D1600E2447E /* HealthModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C611D224CFA009047AC /* HealthModel.swift */; };
-		00D474381D586D1600E2447E /* NevoProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C621D224CFA009047AC /* NevoProfileModel.swift */; };
-		00D474391D586D1600E2447E /* NotificationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C631D224CFA009047AC /* NotificationModel.swift */; };
-		00D4743A1D586D1600E2447E /* Presets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C641D224CFA009047AC /* Presets.swift */; };
-		00D4743B1D586D1600E2447E /* PresetsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C651D224CFA009047AC /* PresetsModel.swift */; };
-		00D4743C1D586D1600E2447E /* SleepModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C661D224CFA009047AC /* SleepModel.swift */; };
-		00D4743D1D586D1600E2447E /* StepsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C671D224CFA009047AC /* StepsModel.swift */; };
-		00D4743E1D586D1600E2447E /* UserAlarm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C681D224CFA009047AC /* UserAlarm.swift */; };
-		00D4743F1D586D1600E2447E /* UserNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C691D224CFA009047AC /* UserNotification.swift */; };
-		00D474401D586D1600E2447E /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C6A1D224CFA009047AC /* UserProfile.swift */; };
-		00D474411D586D1600E2447E /* UserSleep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C6B1D224CFA009047AC /* UserSleep.swift */; };
-		00D474421D586D1600E2447E /* UserSteps.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C6C1D224CFA009047AC /* UserSteps.swift */; };
 		00D474431D586D1600E2447E /* Goal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C6E1D224CFA009047AC /* Goal.swift */; };
 		00D474441D586D1600E2447E /* NumberOfStepsGoal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C6F1D224CFA009047AC /* NumberOfStepsGoal.swift */; };
 		00D474451D586D1600E2447E /* NotificationSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C711D224CFA009047AC /* NotificationSetting.swift */; };
 		00D474461D586D1600E2447E /* TypeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C721D224CFA009047AC /* TypeModel.swift */; };
 		00D474481D586D1600E2447E /* Sleep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C751D224CFA009047AC /* Sleep.swift */; };
 		00D474491D586D1600E2447E /* TestMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C771D224CFA009047AC /* TestMode.swift */; };
-		00D4744A1D586D1600E2447E /* HttpPostRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C791D224CFA009047AC /* HttpPostRequest.swift */; };
-		00D4744B1D586D1600E2447E /* ValidicRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C7A1D224CFA009047AC /* ValidicRequest.swift */; };
 		00D4744C1D586D1600E2447E /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C7C1D224CFA009047AC /* Color.swift */; };
 		00D4744D1D586D1600E2447E /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AFDAA31D47128700F4338B /* View.swift */; };
 		00D4744F1D586D1600E2447E /* PublicClassController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C7E1D224CFA009047AC /* PublicClassController.swift */; };
@@ -458,34 +433,12 @@
 		611D415E1DCAD97C003BC6E3 /* RunningToHK.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C521D224CFA009047AC /* RunningToHK.swift */; };
 		611D415F1DCAD97C003BC6E3 /* Alarm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C541D224CFA009047AC /* Alarm.swift */; };
 		611D41601DCAD97C003BC6E3 /* NewAlarm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C551D224CFA009047AC /* NewAlarm.swift */; };
-		611D41611DCAD97C003BC6E3 /* BaseEntryDatabaseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C581D224CFA009047AC /* BaseEntryDatabaseHelper.swift */; };
-		611D41621DCAD97C003BC6E3 /* UserDatabaseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C5D1D224CFA009047AC /* UserDatabaseHelper.swift */; };
-		611D41631DCAD97C003BC6E3 /* AlarmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C5F1D224CFA009047AC /* AlarmModel.swift */; };
-		611D41641DCAD97C003BC6E3 /* HealthModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C611D224CFA009047AC /* HealthModel.swift */; };
-		611D41651DCAD97C003BC6E3 /* NevoProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C621D224CFA009047AC /* NevoProfileModel.swift */; };
-		611D41661DCAD97C003BC6E3 /* NotificationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C631D224CFA009047AC /* NotificationModel.swift */; };
-		611D41671DCAD97C003BC6E3 /* Presets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C641D224CFA009047AC /* Presets.swift */; };
-		611D41681DCAD97C003BC6E3 /* PresetsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C651D224CFA009047AC /* PresetsModel.swift */; };
-		611D41691DCAD97C003BC6E3 /* SleepModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C661D224CFA009047AC /* SleepModel.swift */; };
-		611D416A1DCAD97C003BC6E3 /* StepsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C671D224CFA009047AC /* StepsModel.swift */; };
-		611D416B1DCAD97C003BC6E3 /* UserAlarm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C681D224CFA009047AC /* UserAlarm.swift */; };
-		611D416C1DCAD97C003BC6E3 /* UserNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C691D224CFA009047AC /* UserNotification.swift */; };
-		611D416D1DCAD97C003BC6E3 /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C6A1D224CFA009047AC /* UserProfile.swift */; };
-		611D416E1DCAD97C003BC6E3 /* UserSleep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C6B1D224CFA009047AC /* UserSleep.swift */; };
-		611D416F1DCAD97C003BC6E3 /* UserSteps.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C6C1D224CFA009047AC /* UserSteps.swift */; };
 		611D41701DCAD97C003BC6E3 /* Goal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C6E1D224CFA009047AC /* Goal.swift */; };
 		611D41711DCAD97C003BC6E3 /* NumberOfStepsGoal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C6F1D224CFA009047AC /* NumberOfStepsGoal.swift */; };
 		611D41721DCAD97C003BC6E3 /* NotificationSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C711D224CFA009047AC /* NotificationSetting.swift */; };
 		611D41731DCAD97C003BC6E3 /* TypeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C721D224CFA009047AC /* TypeModel.swift */; };
 		611D41741DCAD97C003BC6E3 /* Sleep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C751D224CFA009047AC /* Sleep.swift */; };
 		611D41751DCAD97C003BC6E3 /* TestMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C771D224CFA009047AC /* TestMode.swift */; };
-		611D41761DCAD97C003BC6E3 /* ForgotPasswordRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E4DF241DB8C2D500DDA737 /* ForgotPasswordRequest.swift */; };
-		611D41771DCAD97C003BC6E3 /* UserCreateRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E4DF251DB8C2D500DDA737 /* UserCreateRequest.swift */; };
-		611D41781DCAD97C003BC6E3 /* HttpPostRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C791D224CFA009047AC /* HttpPostRequest.swift */; };
-		611D41791DCAD97C003BC6E3 /* ValidicRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C7A1D224CFA009047AC /* ValidicRequest.swift */; };
-		611D417A1DCAD97C003BC6E3 /* SyncStepsToServiceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E4DF1E1DB8749700DDA737 /* SyncStepsToServiceRequest.swift */; };
-		611D417B1DCAD97C003BC6E3 /* SyncSleepToServiceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E4DF201DB898F700DDA737 /* SyncSleepToServiceRequest.swift */; };
-		611D417C1DCAD97C003BC6E3 /* LoginRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E4DF221DB8C20800DDA737 /* LoginRequest.swift */; };
 		611D417D1DCAD97C003BC6E3 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C7C1D224CFA009047AC /* Color.swift */; };
 		611D417E1DCAD97C003BC6E3 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AFDAA31D47128700F4338B /* View.swift */; };
 		611D417F1DCAD97C003BC6E3 /* PublicClassController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C7E1D224CFA009047AC /* PublicClassController.swift */; };
@@ -601,10 +554,6 @@
 		611D41FD1DCAD97D003BC6E3 /* SolarInforViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006A624A1D6AA62100458305 /* SolarInforViewCell.swift */; };
 		611D41FE1DCAD97D003BC6E3 /* SolarInforViewCell.xib in Sources */ = {isa = PBXBuildFile; fileRef = 006A624B1D6AA62100458305 /* SolarInforViewCell.xib */; };
 		611D41FF1DCAD97D003BC6E3 /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006A62241D6AA53100458305 /* PageViewController.swift */; };
-		611D42001DCAD97D003BC6E3 /* ConnectOtherAppsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0058B3E81CF55D590079A213 /* ConnectOtherAppsController.swift */; };
-		611D42011DCAD97D003BC6E3 /* ConnectOtherAppsController.xib in Sources */ = {isa = PBXBuildFile; fileRef = 0058B3E91CF55D590079A213 /* ConnectOtherAppsController.xib */; };
-		611D42021DCAD97D003BC6E3 /* ConnectOtherAppsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007E0CAC1D0E5C3E00B0B600 /* ConnectOtherAppsCell.swift */; };
-		611D42031DCAD97D003BC6E3 /* ConnectOtherAppsCell.xib in Sources */ = {isa = PBXBuildFile; fileRef = 007E0CAD1D0E5C3E00B0B600 /* ConnectOtherAppsCell.xib */; };
 		611D42091DCAD97D003BC6E3 /* UserHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00120E751D7550D500CE0C32 /* UserHeader.swift */; };
 		611D420A1DCAD97D003BC6E3 /* UserHeader.xib in Sources */ = {isa = PBXBuildFile; fileRef = 00120E761D7550D500CE0C32 /* UserHeader.xib */; };
 		611D420B1DCAD97D003BC6E3 /* UserProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009703C01C9BD9D700F2FF0D /* UserProfileController.swift */; };
@@ -834,11 +783,6 @@
 		6658CCEC1DE6D0B400F09C11 /* Apptheme+MEDExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6658CCEB1DE6D0B400F09C11 /* Apptheme+MEDExtension.swift */; };
 		6658CCED1DE6D0B400F09C11 /* Apptheme+MEDExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6658CCEB1DE6D0B400F09C11 /* Apptheme+MEDExtension.swift */; };
 		665BD6A51DBEF186008C2623 /* NevoOtaController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61F85F4F1DAF5BF300F341B5 /* NevoOtaController.swift */; };
-		665BD6A61DBEF1D0008C2623 /* ForgotPasswordRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E4DF241DB8C2D500DDA737 /* ForgotPasswordRequest.swift */; };
-		665BD6A71DBEF1D0008C2623 /* UserCreateRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E4DF251DB8C2D500DDA737 /* UserCreateRequest.swift */; };
-		665BD6A81DBEF1D0008C2623 /* SyncStepsToServiceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E4DF1E1DB8749700DDA737 /* SyncStepsToServiceRequest.swift */; };
-		665BD6A91DBEF1D0008C2623 /* SyncSleepToServiceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E4DF201DB898F700DDA737 /* SyncSleepToServiceRequest.swift */; };
-		665BD6AA1DBEF1D0008C2623 /* LoginRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E4DF221DB8C20800DDA737 /* LoginRequest.swift */; };
 		665BD6AB1DBEF1D0008C2623 /* BatteryLevelNevoPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C9D1D224CFA009047AC /* BatteryLevelNevoPacket.swift */; };
 		665BD6AC1DBEF1D0008C2623 /* DailyStepsNevoPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C9E1D224CFA009047AC /* DailyStepsNevoPacket.swift */; };
 		665BD6AD1DBEF1D0008C2623 /* DailyTrackerInfoNevoPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C9F1D224CFA009047AC /* DailyTrackerInfoNevoPacket.swift */; };
@@ -1036,8 +980,6 @@
 		0050D68D1C28E1CD004F6F80 /* AddAlarmView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddAlarmView.swift; sourceTree = "<group>"; };
 		0050D68E1C28E1CD004F6F80 /* AlarmClockController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlarmClockController.swift; sourceTree = "<group>"; };
 		0050D69A1C2906D8004F6F80 /* Firmwares */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Firmwares; sourceTree = "<group>"; };
-		0058B3E81CF55D590079A213 /* ConnectOtherAppsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectOtherAppsController.swift; sourceTree = "<group>"; };
-		0058B3E91CF55D590079A213 /* ConnectOtherAppsController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConnectOtherAppsController.xib; sourceTree = "<group>"; };
 		0058CBF81D9CC897003CE7DC /* String+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		005BC95D1A88B79F006F9E86 /* FXBlurView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FXBlurView.h; sourceTree = "<group>"; };
 		005BC95E1A88B79F006F9E86 /* FXBlurView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FXBlurView.m; sourceTree = "<group>"; };
@@ -1148,8 +1090,6 @@
 		006DA9FD1D80F2A600B70C0F /* AppDelegate-Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AppDelegate-Extension.swift"; sourceTree = "<group>"; };
 		007865B61D90DBAF00F33AEA /* AutocompleteField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutocompleteField.swift; sourceTree = "<group>"; };
 		007865B81D90DBAF00F33AEA /* CircleProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleProgressView.swift; sourceTree = "<group>"; };
-		007E0CAC1D0E5C3E00B0B600 /* ConnectOtherAppsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectOtherAppsCell.swift; sourceTree = "<group>"; };
-		007E0CAD1D0E5C3E00B0B600 /* ConnectOtherAppsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConnectOtherAppsCell.xib; sourceTree = "<group>"; };
 		007F1F501CAA1B630021DF1B /* LocalNotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocalNotification.swift; path = Frameworks/LocalNotification.swift; sourceTree = "<group>"; };
 		0084CB151D9BC68A0047DF39 /* Double+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Double+Extension.swift"; sourceTree = "<group>"; };
 		0086858F1B40D53C0062F544 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -1195,29 +1135,12 @@
 		00AF8C521D224CFA009047AC /* RunningToHK.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RunningToHK.swift; sourceTree = "<group>"; };
 		00AF8C541D224CFA009047AC /* Alarm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alarm.swift; sourceTree = "<group>"; };
 		00AF8C551D224CFA009047AC /* NewAlarm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewAlarm.swift; sourceTree = "<group>"; };
-		00AF8C581D224CFA009047AC /* BaseEntryDatabaseHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseEntryDatabaseHelper.swift; sourceTree = "<group>"; };
-		00AF8C5D1D224CFA009047AC /* UserDatabaseHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDatabaseHelper.swift; sourceTree = "<group>"; };
-		00AF8C5F1D224CFA009047AC /* AlarmModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlarmModel.swift; sourceTree = "<group>"; };
-		00AF8C611D224CFA009047AC /* HealthModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthModel.swift; sourceTree = "<group>"; };
-		00AF8C621D224CFA009047AC /* NevoProfileModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NevoProfileModel.swift; sourceTree = "<group>"; };
-		00AF8C631D224CFA009047AC /* NotificationModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationModel.swift; sourceTree = "<group>"; };
-		00AF8C641D224CFA009047AC /* Presets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Presets.swift; sourceTree = "<group>"; };
-		00AF8C651D224CFA009047AC /* PresetsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresetsModel.swift; sourceTree = "<group>"; };
-		00AF8C661D224CFA009047AC /* SleepModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SleepModel.swift; sourceTree = "<group>"; };
-		00AF8C671D224CFA009047AC /* StepsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepsModel.swift; sourceTree = "<group>"; };
-		00AF8C681D224CFA009047AC /* UserAlarm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAlarm.swift; sourceTree = "<group>"; };
-		00AF8C691D224CFA009047AC /* UserNotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserNotification.swift; sourceTree = "<group>"; };
-		00AF8C6A1D224CFA009047AC /* UserProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
-		00AF8C6B1D224CFA009047AC /* UserSleep.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSleep.swift; sourceTree = "<group>"; };
-		00AF8C6C1D224CFA009047AC /* UserSteps.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSteps.swift; sourceTree = "<group>"; };
 		00AF8C6E1D224CFA009047AC /* Goal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Goal.swift; sourceTree = "<group>"; };
 		00AF8C6F1D224CFA009047AC /* NumberOfStepsGoal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumberOfStepsGoal.swift; sourceTree = "<group>"; };
 		00AF8C711D224CFA009047AC /* NotificationSetting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationSetting.swift; sourceTree = "<group>"; };
 		00AF8C721D224CFA009047AC /* TypeModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TypeModel.swift; sourceTree = "<group>"; };
 		00AF8C751D224CFA009047AC /* Sleep.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sleep.swift; sourceTree = "<group>"; };
 		00AF8C771D224CFA009047AC /* TestMode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestMode.swift; sourceTree = "<group>"; };
-		00AF8C791D224CFA009047AC /* HttpPostRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpPostRequest.swift; sourceTree = "<group>"; };
-		00AF8C7A1D224CFA009047AC /* ValidicRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValidicRequest.swift; sourceTree = "<group>"; };
 		00AF8C7C1D224CFA009047AC /* Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		00AF8C7E1D224CFA009047AC /* PublicClassController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PublicClassController.swift; sourceTree = "<group>"; };
 		00AF8C7F1D224CFA009047AC /* PublicClassTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PublicClassTableViewController.swift; sourceTree = "<group>"; };
@@ -1386,11 +1309,6 @@
 		61D1A8A91DD468A100B91BDD /* MEDUserSteps.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MEDUserSteps.swift; sourceTree = "<group>"; };
 		61D1A8B41DD46BF000B91BDD /* MEDBaseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MEDBaseModel.swift; sourceTree = "<group>"; };
 		61E4DF1C1DB85C9800DDA737 /* FindPhonePacket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindPhonePacket.swift; sourceTree = "<group>"; };
-		61E4DF1E1DB8749700DDA737 /* SyncStepsToServiceRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncStepsToServiceRequest.swift; sourceTree = "<group>"; };
-		61E4DF201DB898F700DDA737 /* SyncSleepToServiceRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncSleepToServiceRequest.swift; sourceTree = "<group>"; };
-		61E4DF221DB8C20800DDA737 /* LoginRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginRequest.swift; sourceTree = "<group>"; };
-		61E4DF241DB8C2D500DDA737 /* ForgotPasswordRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordRequest.swift; sourceTree = "<group>"; };
-		61E4DF251DB8C2D500DDA737 /* UserCreateRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCreateRequest.swift; sourceTree = "<group>"; };
 		61EF091F1DDE9E0A003C2EA5 /* DeleteNotificationAppIDPacket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeleteNotificationAppIDPacket.swift; sourceTree = "<group>"; };
 		61EF09211DDE9EB7003C2EA5 /* DeleteAllAppIDPacket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeleteAllAppIDPacket.swift; sourceTree = "<group>"; };
 		61EF09231DDE9F1B003C2EA5 /* EditAppIDPacket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditAppIDPacket.swift; sourceTree = "<group>"; };
@@ -1632,7 +1550,6 @@
 				006A62501D6AA75100458305 /* LineLabel */,
 				006A62471D6AA62100458305 /* SolarIndicator */,
 				006A62231D6AA53100458305 /* PageViewController */,
-				0058B3E31CF55CF50079A213 /* ConnectOtherAppsController */,
 				009703BF1C9BD98300F2FF0D /* UserProfileController */,
 				00321D761C993C320069BFCC /* LoginController */,
 				00BF2D971C7FEAB400909316 /* VideoPlayController */,
@@ -1870,17 +1787,6 @@
 			path = AlarmView;
 			sourceTree = "<group>";
 		};
-		0058B3E31CF55CF50079A213 /* ConnectOtherAppsController */ = {
-			isa = PBXGroup;
-			children = (
-				0058B3E81CF55D590079A213 /* ConnectOtherAppsController.swift */,
-				0058B3E91CF55D590079A213 /* ConnectOtherAppsController.xib */,
-				007E0CAC1D0E5C3E00B0B600 /* ConnectOtherAppsCell.swift */,
-				007E0CAD1D0E5C3E00B0B600 /* ConnectOtherAppsCell.xib */,
-			);
-			path = ConnectOtherAppsController;
-			sourceTree = "<group>";
-		};
 		005BC95C1A88B79F006F9E86 /* FXBlurView */ = {
 			isa = PBXGroup;
 			children = (
@@ -2110,7 +2016,6 @@
 			children = (
 				00AF8C4C1D224CFA009047AC /* Activity */,
 				00AF8C531D224CFA009047AC /* Alarm */,
-				00AF8C561D224CFA009047AC /* DBModel */,
 				00AF8C6D1D224CFA009047AC /* Goal */,
 				00AF8C701D224CFA009047AC /* NotificationType */,
 				00AF8C731D224CFA009047AC /* Sleep */,
@@ -2140,44 +2045,6 @@
 				00AF8C551D224CFA009047AC /* NewAlarm.swift */,
 			);
 			path = Alarm;
-			sourceTree = "<group>";
-		};
-		00AF8C561D224CFA009047AC /* DBModel */ = {
-			isa = PBXGroup;
-			children = (
-				00AF8C571D224CFA009047AC /* DBHelper */,
-				00AF8C5E1D224CFA009047AC /* ModelTable */,
-			);
-			path = DBModel;
-			sourceTree = "<group>";
-		};
-		00AF8C571D224CFA009047AC /* DBHelper */ = {
-			isa = PBXGroup;
-			children = (
-				00AF8C581D224CFA009047AC /* BaseEntryDatabaseHelper.swift */,
-				00AF8C5D1D224CFA009047AC /* UserDatabaseHelper.swift */,
-			);
-			path = DBHelper;
-			sourceTree = "<group>";
-		};
-		00AF8C5E1D224CFA009047AC /* ModelTable */ = {
-			isa = PBXGroup;
-			children = (
-				00AF8C5F1D224CFA009047AC /* AlarmModel.swift */,
-				00AF8C611D224CFA009047AC /* HealthModel.swift */,
-				00AF8C621D224CFA009047AC /* NevoProfileModel.swift */,
-				00AF8C631D224CFA009047AC /* NotificationModel.swift */,
-				00AF8C641D224CFA009047AC /* Presets.swift */,
-				00AF8C651D224CFA009047AC /* PresetsModel.swift */,
-				00AF8C661D224CFA009047AC /* SleepModel.swift */,
-				00AF8C671D224CFA009047AC /* StepsModel.swift */,
-				00AF8C681D224CFA009047AC /* UserAlarm.swift */,
-				00AF8C691D224CFA009047AC /* UserNotification.swift */,
-				00AF8C6A1D224CFA009047AC /* UserProfile.swift */,
-				00AF8C6B1D224CFA009047AC /* UserSleep.swift */,
-				00AF8C6C1D224CFA009047AC /* UserSteps.swift */,
-			);
-			path = ModelTable;
 			sourceTree = "<group>";
 		};
 		00AF8C6D1D224CFA009047AC /* Goal */ = {
@@ -2212,21 +2079,6 @@
 				00AF8C771D224CFA009047AC /* TestMode.swift */,
 			);
 			path = TestMode;
-			sourceTree = "<group>";
-		};
-		00AF8C781D224CFA009047AC /* Network */ = {
-			isa = PBXGroup;
-			children = (
-				61E4DF241DB8C2D500DDA737 /* ForgotPasswordRequest.swift */,
-				61E4DF251DB8C2D500DDA737 /* UserCreateRequest.swift */,
-				00AF8C791D224CFA009047AC /* HttpPostRequest.swift */,
-				00AF8C7A1D224CFA009047AC /* ValidicRequest.swift */,
-				61E4DF1E1DB8749700DDA737 /* SyncStepsToServiceRequest.swift */,
-				61E4DF201DB898F700DDA737 /* SyncSleepToServiceRequest.swift */,
-				61E4DF221DB8C20800DDA737 /* LoginRequest.swift */,
-			);
-			name = Network;
-			path = Frameworks/Network;
 			sourceTree = "<group>";
 		};
 		00AF8C7B1D224CFA009047AC /* publicClass */ = {
@@ -2817,7 +2669,6 @@
 				007865B71D90DBAF00F33AEA /* CircleProgressView */,
 				00AF8D051D224D57009047AC /* NevoAllKeys.swift */,
 				00AF8C4B1D224CFA009047AC /* Model */,
-				00AF8C781D224CFA009047AC /* Network */,
 				00AF8C7B1D224CFA009047AC /* publicClass */,
 				00AF8C8A1D224CFA009047AC /* Util */,
 				004ED1EB1CB386CC009D053C /* iRate */,
@@ -3111,8 +2962,6 @@
 				00C826C81DA5ECA700ECECEE /* ForgotPasswordController.xib in Resources */,
 				00C826C91DA5ECA700ECECEE /* InformationController.xib in Resources */,
 				00C826CB1DA5ECA700ECECEE /* SolarInforViewCell.xib in Resources */,
-				00C826CC1DA5ECA700ECECEE /* ConnectOtherAppsController.xib in Resources */,
-				00C826CD1DA5ECA700ECECEE /* ConnectOtherAppsCell.xib in Resources */,
 				00C826CE1DA5ECA700ECECEE /* UserHeader.xib in Resources */,
 				00C826CF1DA5ECA700ECECEE /* UserProfileController.xib in Resources */,
 				00C826D01DA5ECA700ECECEE /* UserProfileCell.xib in Resources */,
@@ -3276,7 +3125,6 @@
 				66AC4E5D1DBF537500E431BE /* sunrise.png in Resources */,
 				66AC4E5E1DBF537500E431BE /* sunset.png in Resources */,
 				6699DD031DDC4EF80077E544 /* SunriseSetController.xib in Resources */,
-				007E0CAF1D0E5C3E00B0B600 /* ConnectOtherAppsCell.xib in Resources */,
 				00EC9DAE1C8582E400280904 /* TutorialOneViewController.xib in Resources */,
 				00478F4F1A8F637D00D0DCE2 /* clockViewHour.png in Resources */,
 				61798C2B1DE564250087891D /* Solar_Firmwares in Resources */,
@@ -3287,7 +3135,6 @@
 				6199192A1DC6EF0100C75AE7 /* SearchCityViewController.xib in Resources */,
 				0050D5FB1C28E0DB004F6F80 /* LineColorCell.xib in Resources */,
 				61FC93F41DE681E2000AE93C /* NotificationAppID in Resources */,
-				0058B3EB1CF55D590079A213 /* ConnectOtherAppsController.xib in Resources */,
 				0050D5F91C28E0DB004F6F80 /* NevoOtaViewController.xib in Resources */,
 				614662A41DC9D363001E57CC /* lunar_open_bt.png in Resources */,
 				0089B0AE1D6BFF250041148A /* SetingInfoCell.xib in Resources */,
@@ -3555,12 +3402,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				665BD6A61DBEF1D0008C2623 /* ForgotPasswordRequest.swift in Sources */,
-				665BD6A71DBEF1D0008C2623 /* UserCreateRequest.swift in Sources */,
-				665BD6A81DBEF1D0008C2623 /* SyncStepsToServiceRequest.swift in Sources */,
 				666027B81DE2D65100E7CBD7 /* UICollectionView+MEDExtension.swift in Sources */,
-				665BD6A91DBEF1D0008C2623 /* SyncSleepToServiceRequest.swift in Sources */,
-				665BD6AA1DBEF1D0008C2623 /* LoginRequest.swift in Sources */,
 				6688A6631DC981980078E636 /* MEDForgetPasswordRequest.swift in Sources */,
 				665BD6AB1DBEF1D0008C2623 /* BatteryLevelNevoPacket.swift in Sources */,
 				665BD6AC1DBEF1D0008C2623 /* DailyStepsNevoPacket.swift in Sources */,
@@ -3625,11 +3467,7 @@
 				00C826541DA5E04000ECECEE /* SolarInforViewCell.swift in Sources */,
 				00C826551DA5E04000ECECEE /* SolarInforViewCell.xib in Sources */,
 				00C826561DA5E04000ECECEE /* PageViewController.swift in Sources */,
-				00C826571DA5E04000ECECEE /* ConnectOtherAppsController.swift in Sources */,
-				00C826581DA5E04000ECECEE /* ConnectOtherAppsController.xib in Sources */,
 				1C3712D81DBC5BF2007DC349 /* UIView+MEDExtension.swift in Sources */,
-				00C826591DA5E04000ECECEE /* ConnectOtherAppsCell.swift in Sources */,
-				00C8265A1DA5E04000ECECEE /* ConnectOtherAppsCell.xib in Sources */,
 				6688A6611DC981980078E636 /* MEDBasePutRequest.swift in Sources */,
 				00C8265B1DA5E04000ECECEE /* UserHeader.swift in Sources */,
 				00C8265C1DA5E04000ECECEE /* UserHeader.xib in Sources */,
@@ -3800,25 +3638,10 @@
 				00D474311D586D1600E2447E /* RunningToHK.swift in Sources */,
 				00D474321D586D1600E2447E /* Alarm.swift in Sources */,
 				00D474331D586D1600E2447E /* NewAlarm.swift in Sources */,
-				00D474341D586D1600E2447E /* BaseEntryDatabaseHelper.swift in Sources */,
 				6199AED71DDC5C8B00BEA140 /* SetNotificationAppIDRequest.swift in Sources */,
 				611941251DFE8BB30048BA44 /* SMSegmentViewConstants.swift in Sources */,
-				00D474351D586D1600E2447E /* UserDatabaseHelper.swift in Sources */,
-				00D474361D586D1600E2447E /* AlarmModel.swift in Sources */,
-				00D474371D586D1600E2447E /* HealthModel.swift in Sources */,
-				00D474381D586D1600E2447E /* NevoProfileModel.swift in Sources */,
-				00D474391D586D1600E2447E /* NotificationModel.swift in Sources */,
 				666F60F11DAF264B0011F3C5 /* AppDelegate-Extension.swift in Sources */,
-				00D4743A1D586D1600E2447E /* Presets.swift in Sources */,
 				61FC93EF1DE6806D000AE93C /* MEDUserProfile.swift in Sources */,
-				00D4743B1D586D1600E2447E /* PresetsModel.swift in Sources */,
-				00D4743C1D586D1600E2447E /* SleepModel.swift in Sources */,
-				00D4743D1D586D1600E2447E /* StepsModel.swift in Sources */,
-				00D4743E1D586D1600E2447E /* UserAlarm.swift in Sources */,
-				00D4743F1D586D1600E2447E /* UserNotification.swift in Sources */,
-				00D474401D586D1600E2447E /* UserProfile.swift in Sources */,
-				00D474411D586D1600E2447E /* UserSleep.swift in Sources */,
-				00D474421D586D1600E2447E /* UserSteps.swift in Sources */,
 				6150933A1DBF5BC800E52970 /* SetWorldClockRequest.swift in Sources */,
 				00D474431D586D1600E2447E /* Goal.swift in Sources */,
 				00D474441D586D1600E2447E /* NumberOfStepsGoal.swift in Sources */,
@@ -3827,8 +3650,6 @@
 				00D474461D586D1600E2447E /* TypeModel.swift in Sources */,
 				00D474481D586D1600E2447E /* Sleep.swift in Sources */,
 				00D474491D586D1600E2447E /* TestMode.swift in Sources */,
-				00D4744A1D586D1600E2447E /* HttpPostRequest.swift in Sources */,
-				00D4744B1D586D1600E2447E /* ValidicRequest.swift in Sources */,
 				6688A67B1DC981990078E636 /* MEDUserUpdateRequest.swift in Sources */,
 				00D4744C1D586D1600E2447E /* Color.swift in Sources */,
 				00D4744D1D586D1600E2447E /* View.swift in Sources */,
@@ -3971,22 +3792,7 @@
 				61EF09301DDEF09E003C2EA5 /* MEDBaseModel.swift in Sources */,
 				611D415F1DCAD97C003BC6E3 /* Alarm.swift in Sources */,
 				611D41601DCAD97C003BC6E3 /* NewAlarm.swift in Sources */,
-				611D41611DCAD97C003BC6E3 /* BaseEntryDatabaseHelper.swift in Sources */,
-				611D41621DCAD97C003BC6E3 /* UserDatabaseHelper.swift in Sources */,
-				611D41631DCAD97C003BC6E3 /* AlarmModel.swift in Sources */,
-				611D41641DCAD97C003BC6E3 /* HealthModel.swift in Sources */,
-				611D41651DCAD97C003BC6E3 /* NevoProfileModel.swift in Sources */,
-				611D41661DCAD97C003BC6E3 /* NotificationModel.swift in Sources */,
-				611D41671DCAD97C003BC6E3 /* Presets.swift in Sources */,
-				611D41681DCAD97C003BC6E3 /* PresetsModel.swift in Sources */,
-				611D41691DCAD97C003BC6E3 /* SleepModel.swift in Sources */,
 				6165A6371DEBC32500F7A3E6 /* NotificationTypeCell.swift in Sources */,
-				611D416A1DCAD97C003BC6E3 /* StepsModel.swift in Sources */,
-				611D416B1DCAD97C003BC6E3 /* UserAlarm.swift in Sources */,
-				611D416C1DCAD97C003BC6E3 /* UserNotification.swift in Sources */,
-				611D416D1DCAD97C003BC6E3 /* UserProfile.swift in Sources */,
-				611D416E1DCAD97C003BC6E3 /* UserSleep.swift in Sources */,
-				611D416F1DCAD97C003BC6E3 /* UserSteps.swift in Sources */,
 				611D41701DCAD97C003BC6E3 /* Goal.swift in Sources */,
 				662B3CAC1DEBD79A0014FA71 /* MEDAppInfo.swift in Sources */,
 				611D41711DCAD97C003BC6E3 /* NumberOfStepsGoal.swift in Sources */,
@@ -3994,13 +3800,6 @@
 				611D41731DCAD97C003BC6E3 /* TypeModel.swift in Sources */,
 				611D41741DCAD97C003BC6E3 /* Sleep.swift in Sources */,
 				611D41751DCAD97C003BC6E3 /* TestMode.swift in Sources */,
-				611D41761DCAD97C003BC6E3 /* ForgotPasswordRequest.swift in Sources */,
-				611D41771DCAD97C003BC6E3 /* UserCreateRequest.swift in Sources */,
-				611D41781DCAD97C003BC6E3 /* HttpPostRequest.swift in Sources */,
-				611D41791DCAD97C003BC6E3 /* ValidicRequest.swift in Sources */,
-				611D417A1DCAD97C003BC6E3 /* SyncStepsToServiceRequest.swift in Sources */,
-				611D417B1DCAD97C003BC6E3 /* SyncSleepToServiceRequest.swift in Sources */,
-				611D417C1DCAD97C003BC6E3 /* LoginRequest.swift in Sources */,
 				665098971DCB28160059D5F7 /* MEDStepsDeleteRequest.swift in Sources */,
 				611D417D1DCAD97C003BC6E3 /* Color.swift in Sources */,
 				611D417E1DCAD97C003BC6E3 /* View.swift in Sources */,
@@ -4136,10 +3935,6 @@
 				611D41FD1DCAD97D003BC6E3 /* SolarInforViewCell.swift in Sources */,
 				611D41FE1DCAD97D003BC6E3 /* SolarInforViewCell.xib in Sources */,
 				611D41FF1DCAD97D003BC6E3 /* PageViewController.swift in Sources */,
-				611D42001DCAD97D003BC6E3 /* ConnectOtherAppsController.swift in Sources */,
-				611D42011DCAD97D003BC6E3 /* ConnectOtherAppsController.xib in Sources */,
-				611D42021DCAD97D003BC6E3 /* ConnectOtherAppsCell.swift in Sources */,
-				611D42031DCAD97D003BC6E3 /* ConnectOtherAppsCell.xib in Sources */,
 				611D42091DCAD97D003BC6E3 /* UserHeader.swift in Sources */,
 				611D420A1DCAD97D003BC6E3 /* UserHeader.xib in Sources */,
 				66154BA51DF6A2D000973A9E /* NotiColorDetailController.swift in Sources */,
