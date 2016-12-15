@@ -593,41 +593,32 @@ extension AppDelegate {
     }
     
     func setSolar() {
-        let solar = Solar(latitude: latitude,
-                          longitude: longitude)
-        
-        if let sunrise = solar?.sunrise, let sunset = solar?.sunset {
+        if let solar = Solar(latitude: latitude, longitude: longitude), let sunrise = solar.sunrise, let sunset = solar.sunset {
             self.setSunriseAndSunset(sunrise: sunrise, sunset: sunset)
         } else {
-            
-            /// At here, two dates are necessary, so just use HongKong's sunrise & sunset
-            /// whatever solar is nil, or solar!.sunrise is nil, just HK!
-            let solar = Solar(latitude: 22.2782551, longitude: 114.1670679)
+            let solar = Solar(latitude: 22.2782551, longitude: 114.1670679)     // HK as Default, every optional must have a value, not nil.
             self.setSunriseAndSunset(sunrise: solar!.sunrise!, sunset: solar!.sunset!)
         }
     }
     
     func getSunriseOrSunsetTime() -> (sunriseDate: Date?, sunsetDate: Date?, additionString: String) {
-        var solar = Solar(latitude: latitude,
-                          longitude: longitude)
-        
-        
-        if solar == nil {   // which is rarely, use HK
-            solar = Solar(latitude: 22.2782551, longitude: 114.1670679)
-        }
-        
-        if let sunrise = solar?.sunrise, let sunset = solar?.sunset {
-            return (sunrise, sunset, "")
-        } else {
-            // these areas are in polar day or night!
-            let isNorthernHemisphereHere = latitude > 0
-            let isNorthernHemisphereSummer = (3..<10).contains(Date().month)
-            
-            if isNorthernHemisphereHere == isNorthernHemisphereSummer {
-                return (nil, nil, "Polar daylight")
+        if let solar = Solar(latitude: latitude, longitude: longitude) {
+            if let sunrise = solar.sunrise, let sunset = solar.sunset {
+                return (sunrise, sunset, "")
             } else {
-                return (nil, nil, "Polar night")
+                // these areas are in polar day or night!
+                let isNorthernHemisphereHere = latitude > 0
+                let isNorthernHemisphereSummer = (3..<10).contains(Date().month)
+                
+                if isNorthernHemisphereHere == isNorthernHemisphereSummer {
+                    return (nil, nil, "Polar daylight")
+                } else {
+                    return (nil, nil, "Polar night")
+                }
             }
+        } else {
+            let solar = Solar(latitude: 22.2782551, longitude: 114.1670679)
+            return (solar?.sunrise, solar?.sunset, "")
         }
     }
     
