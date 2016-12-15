@@ -25,6 +25,8 @@ class SunriseSetController: PublicClassController {
     var solar:Solar? = nil
     var city:City? = nil
     
+    fileprivate var clockTimer:Timer?
+    
     var clockView:ClockView?
     var sunRiseSetTimeArrar:[String] = ["6:00 AM", "18:00 PM"]
     let WorldClockCellReuseID = "WorldClockCellReuseID"
@@ -71,14 +73,6 @@ class SunriseSetController: PublicClassController {
         } else {
             self.cityNameLable.text = "Shenzhen" + ", " + "China"
         }
-        if let solarValue = solar {
-            self.cityDateLabel.text = solarValue.date.stringFromFormat("d MMM, yyyy")
-            let now:Date = solarValue.date
-            let cal:Calendar = Calendar.current
-            let dd:DateComponents = (cal as NSCalendar).components([NSCalendar.Unit.year, NSCalendar.Unit.month, NSCalendar.Unit.day ,NSCalendar.Unit.hour, NSCalendar.Unit.minute, NSCalendar.Unit.second,], from: now);
-            
-            setDialTime(dateComponents: dd)
-        }        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -91,9 +85,6 @@ class SunriseSetController: PublicClassController {
         
         self.sunRiseSetTimeArrar = [sunriseString, sunsetString]
         sunriseSetCollectionView.reloadData()
-    }
-    public func setDialTime(dateComponents:DateComponents) {
-        clockView?.setWorldTime(dateConponents: dateComponents)
     }
     
     override func viewDidLayoutSubviews() {
@@ -120,34 +111,52 @@ class SunriseSetController: PublicClassController {
 
 extension SunriseSetController: WorldClockDidSelectedDelegate {
     func didSelectedLocalTimeZone(_ cityId:Int) {
+        
+        let date:Date = calculateWordClockDialTime()
+        if AppDelegate.getAppDelegate().isConnected() {
+            let setWordClock:SetWorldClockRequest = SetWorldClockRequest(offset: date.hour)
+            AppDelegate.getAppDelegate().sendRequest(setWordClock)
+        }
+    }
+    
+    func calculateWordClockDialTime()-> Date {
+        UserDefaults.standard.set(Date(), forKey: "SET_WORLD_CLOCK_TIME")
+        UserDefaults.standard.synchronize()
+        
         let realm = try! Realm()
         let citiesArray:[City] = Array(realm.objects(City.self).filter("selected = true"))
         let city = citiesArray[0]
         
-        let solar     = Solar(latitude: city.lat,
-                          longitude: city.lng)
-        let sunrise   = solar!.sunrise
-        let sunset    = solar!.sunset
-        
         let timeZone:Timezone = city.timezone!;
         let gmtOffset:Float = Float(timeZone.gmtTimeOffset)/60.0*3600.0
         let zone:TimeZone = TimeZone(secondsFromGMT: Int(gmtOffset))!
-        let second:Int = zone.secondsFromGMT()
-        let nowDate:Date = Date().addingTimeInterval(TimeInterval(second))
-        XCGLogger.default.debug("nowDate:\(nowDate.hour),\(nowDate.minute),\(nowDate.second)")
-        let now:Date          = solar!.date
-        let cal:Calendar      = Calendar.current
-        let dd:DateComponents = (cal as NSCalendar).components([NSCalendar.Unit.year, NSCalendar.Unit.month, NSCalendar.Unit.day ,NSCalendar.Unit.hour, NSCalendar.Unit.minute, NSCalendar.Unit.second,], from: nowDate);
-        setDialTime(dateComponents: dd)
+        let offtSecond:Int = zone.secondsFromGMT()
+        let nowDate:Date = Date().addingTimeInterval(TimeInterval(offtSecond))
+        
+        let sourceTimeZone:TimeZone = TimeZone(abbreviation: "UTC")!//或GMT
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd,h:mm:ss"
+        formatter.timeZone   = sourceTimeZone
+        let dateString:String = formatter.string(from: nowDate)
+        let dateTime:Date = dateString.dateFromFormat("yyyy-MM-dd,h:mm:ss", locale: DateFormatter().locale)!
+        setDialTime(hour:dateTime.hour,minute:dateTime.minute,seconds:dateTime.second)
         
         self.cityNameLable.text = city.name + ", " + city.country
-        self.cityDateLabel.text = solar!.date.stringFromFormat("d MMM, yyyy")
+        self.cityDateLabel.text = dateTime.stringFromFormat("d MMM, yyyy")
         
-        let offset = String(format: "%.0f", (sunrise!.timeIntervalSince1970-sunset!.timeIntervalSince1970)/3600)
-        if AppDelegate.getAppDelegate().isConnected() {
-            let setWordClock:SetWorldClockRequest = SetWorldClockRequest(offset: offset.toInt())
-            AppDelegate.getAppDelegate().sendRequest(setWordClock)
+        if clockTimer == nil {
+            clockTimer = Timer.every(30.seconds) {
+                let startDate:Date = UserDefaults.standard.object(forKey: "SET_WORLD_CLOCK_TIME") as! Date
+                if Date().timeIntervalSince1970-startDate.timeIntervalSince1970 > 30 {
+                    _ = self.calculateWordClockDialTime()
+                }
+            }
         }
+        return dateTime
+    }
+    
+    func setDialTime(hour:Int,minute:Int,seconds:Int) {
+        clockView?.setWorldTime(hour:hour,minute:minute,seconds:seconds)
     }
 }
 
@@ -187,5 +196,7 @@ extension SunriseSetController {
         
         clockView = ClockView(frame: CGRect(x: 0, y: 0, width: self.dailImageView.bounds.width, height: self.dailImageView.bounds.width), hourImage: hourImage, minuteImage: minuteImage, dialImage: dialImage)
         dailImageView.addSubview(clockView!)
+        
+        _ = calculateWordClockDialTime()
     }
 }
