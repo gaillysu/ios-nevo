@@ -2520,7 +2520,7 @@
 				6199191D1DC6E30000C75AE7 /* LunaROTAController */,
 				619918F41DC6E2B600C75AE7 /* AddWorldClockViewController */,
 				619918F71DC6E2B600C75AE7 /* SearchCityViewController */,
-				619918FA1DC6E2B600C75AE7 /* Sunrise&set */,
+				619918FA1DC6E2B600C75AE7 /* SunriseSetController */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -2543,13 +2543,14 @@
 			path = SearchCityViewController;
 			sourceTree = "<group>";
 		};
-		619918FA1DC6E2B600C75AE7 /* Sunrise&set */ = {
+		619918FA1DC6E2B600C75AE7 /* SunriseSetController */ = {
 			isa = PBXGroup;
 			children = (
 				666B2CC01DDC104D004BBECB /* view */,
 				619919071DC6E2B600C75AE7 /* WorldClockDidSelectedDelegate.swift */,
 				619919091DC6E2B600C75AE7 /* WorldClockUtil.swift */,
 			);
+			name = SunriseSetController;
 			path = "Sunrise&set";
 			sourceTree = "<group>";
 		};

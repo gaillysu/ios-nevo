@@ -77,22 +77,16 @@ class SunriseSetController: PublicClassController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        let object: [String: AppDelegate.MEDSolarResult] = AppDelegate.getAppDelegate().getSunriseOrSunsetTime()
+        let result = AppDelegate.getAppDelegate().getSunriseOrSunsetTime()
     
-        switch object["sunrise"]!  {
-        case AppDelegate.MEDSolarResult.normal(let sunrise):
+        if let sunrise = result.sunriseDate, let sunset = result.sunsetDate {
             let sunriseString:String = sunrise.stringFromFormat("HH:mm a")
             sunRiseSetTimeArrar[0] = sunriseString
-        case AppDelegate.MEDSolarResult.polar(let sunrise):
-            sunRiseSetTimeArrar[0] = sunrise
-        }
-        
-        switch object["sunset"]! {
-        case AppDelegate.MEDSolarResult.normal(let sunset):
             let sunsetString:String = sunset.stringFromFormat("HH:mm a")
             sunRiseSetTimeArrar[1] = sunsetString
-        case AppDelegate.MEDSolarResult.polar(let sunset):
-            sunRiseSetTimeArrar[1] = sunset
+        } else {
+            sunRiseSetTimeArrar[0] = result.additionString
+            sunRiseSetTimeArrar[1] = result.additionString
         }
         
         sunriseSetCollectionView.reloadData()
@@ -187,11 +181,7 @@ extension SunriseSetController: UICollectionViewDelegate, UICollectionViewDataSo
             cell.titleLable.text = self.sunRiseSetTimeArrar[1]
         }
         
-        if sunRiseSetTimeArrar.contains("Polar daylight") || sunRiseSetTimeArrar.contains("Polar night") {
-            cell.subTitleLabel.text = nil
-        } else {
-            cell.subTitleLabel.text = NSLocalizedString("local_time", comment: "")
-        }
+        cell.subTitleLabel.text = NSLocalizedString("local_time", comment: "")
         
         return cell
     }
