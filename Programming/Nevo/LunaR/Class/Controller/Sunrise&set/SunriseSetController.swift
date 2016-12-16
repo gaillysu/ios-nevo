@@ -134,7 +134,7 @@ extension SunriseSetController: WorldClockDidSelectedDelegate {
             let timeZone:Timezone   = city.timezone!;
             let gmtOffset:Float     = Float(timeZone.gmtTimeOffset)/60.0*3600.0
             
-            dateTime = convertGMTToLocalDateFormat(Int(gmtOffset))
+            dateTime = Date.convertGMTToLocalDateFormat(Int(gmtOffset))
             
             setDialTime(hour:dateTime!.hour,minute:dateTime!.minute,seconds:dateTime!.second)
             
