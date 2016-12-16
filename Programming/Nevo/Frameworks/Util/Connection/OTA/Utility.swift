@@ -151,4 +151,3 @@ func GmtNSDate2LocaleNSDate(_ gmtDate:Date) ->Date
     let destinationDateNow:Date = Date(timeInterval: interval, since: gmtDate)
     return destinationDateNow
 }
-

@@ -218,3 +218,5 @@
 "unit"="单位";
 "metrics"="公制";
 "imperial"="英制";
+
+"local_time" = "当地时间";

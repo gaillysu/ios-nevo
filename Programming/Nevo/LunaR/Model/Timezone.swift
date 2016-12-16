@@ -54,15 +54,15 @@ class Timezone: Object {
         if let id = json["id"].int,
             let name = json["name"].string,
             let gmt = json["gmt"].string,
-            let gmtOffset = json["gmt_offset"].int,
+            let gmtOffset = json["offset"].int,
             let stdName = json["std_name"].string,
             let dstMonthStart = json["dst_month_start"].int,
-            let dstDayInMonthStart = json["dst_day_in_month_start"].int,
+            let dstDayInMonthStart = json["day_in_month_start"].int,
             let dstTimeStart = json["dst_time_start"].string,
             let dstName = json["dst_name"].string,
             let dstTimeOffset = json["dst_time_offset"].int,
             let dstMonthEnd = json["dst_month_end"].int,
-            let dstDayInMonthEnd = json["dst_day_in_month_end"].int,
+            let dstDayInMonthEnd = json["day_in_month_end"].int,
             let dstTimeEnd = json["dst_time_end"].string
         {
             let timezone:Timezone = Timezone()

@@ -77,13 +77,18 @@ class SunriseSetController: PublicClassController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        let object:[String:Date] = AppDelegate.getAppDelegate().getSunriseOrSunsetTime()
-        let sunrise:Date         = object["sunrise"]!
-        let sunset:Date          = object["sunset"]!
-        let sunriseString:String = sunrise.stringFromFormat("HH:mm a")
-        let sunsetString:String  = sunset.stringFromFormat("HH:mm a")
+        let result = AppDelegate.getAppDelegate().getSunriseOrSunsetTime()
+    
+        if let sunrise = result.sunriseDate, let sunset = result.sunsetDate {
+            let sunriseString:String = sunrise.stringFromFormat("HH:mm a")
+            sunRiseSetTimeArrar[0] = sunriseString
+            let sunsetString:String = sunset.stringFromFormat("HH:mm a")
+            sunRiseSetTimeArrar[1] = sunsetString
+        } else {
+            sunRiseSetTimeArrar[0] = result.additionString
+            sunRiseSetTimeArrar[1] = result.additionString
+        }
         
-        self.sunRiseSetTimeArrar = [sunriseString, sunsetString]
         sunriseSetCollectionView.reloadData()
     }
     
@@ -111,30 +116,31 @@ class SunriseSetController: PublicClassController {
 
 extension SunriseSetController: WorldClockDidSelectedDelegate {
     func didSelectedLocalTimeZone(_ cityId:Int) {
-        
-        let date:Date = calculateWordClockDialTime()
-        if AppDelegate.getAppDelegate().isConnected() {
+        if AppDelegate.getAppDelegate().isConnected(), let date:Date = calculateWordClockDialTime(){
             let setWordClock:SetWorldClockRequest = SetWorldClockRequest(offset: date.hour)
             AppDelegate.getAppDelegate().sendRequest(setWordClock)
         }
     }
     
-    func calculateWordClockDialTime()-> Date {
+    func calculateWordClockDialTime()-> Date? {
         UserDefaults.standard.set(Date(), forKey: "SET_WORLD_CLOCK_TIME")
         UserDefaults.standard.synchronize()
         
         let realm               = try! Realm()
         let citiesArray:[City]  = Array(realm.objects(City.self).filter("selected = true"))
-        let city                = citiesArray[0]
-
-        let timeZone:Timezone   = city.timezone!;
-        let gmtOffset:Float     = Float(timeZone.gmtTimeOffset)/60.0*3600.0
-        
-        let dateTime = convertGMTToLocalDateFormat(Int(gmtOffset))
-        setDialTime(hour:dateTime.hour,minute:dateTime.minute,seconds:dateTime.second)
-        
-        self.cityNameLable.text = city.name + ", " + city.country
-        self.cityDateLabel.text = dateTime.stringFromFormat("d MMM, yyyy")
+        var dateTime:Date?
+        if citiesArray.count>0 {
+            let city = citiesArray[0]
+            let timeZone:Timezone   = city.timezone!;
+            let gmtOffset:Float     = Float(timeZone.gmtTimeOffset)/60.0*3600.0
+            
+            dateTime = Date.convertGMTToLocalDateFormat(Int(gmtOffset))
+            
+            setDialTime(hour:dateTime!.hour,minute:dateTime!.minute,seconds:dateTime!.second)
+            
+            self.cityNameLable.text = city.name + ", " + city.country
+            self.cityDateLabel.text = dateTime!.stringFromFormat("d MMM, yyyy")
+        }
         
         if clockTimer == nil {
             clockTimer = Timer.every(30.seconds) {
@@ -177,12 +183,12 @@ extension SunriseSetController: UICollectionViewDelegate, UICollectionViewDataSo
         if indexPath.row == 0 {
             cell.iconImageView.image = UIImage(named: "sunrise")
             cell.titleLable.text = self.sunRiseSetTimeArrar[0]
-            cell.subTitleLabel.text = "local time"
         } else {
             cell.iconImageView.image = UIImage(named: "sunset")
             cell.titleLable.text = self.sunRiseSetTimeArrar[1]
-            cell.subTitleLabel.text = "local time"
         }
+        
+        cell.subTitleLabel.text = NSLocalizedString("local_time", comment: "")
         
         return cell
     }
