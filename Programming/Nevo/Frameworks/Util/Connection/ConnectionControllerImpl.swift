@@ -270,12 +270,14 @@ extension ConnectionControllerImpl:ConnectionController {
         //We don't set the profile on the NevoBT, because it could create too many issues
         //So we destroy the previous instance and recreate one
         if(OTAMode) {
+            let profile:Profile = AppTheme.isTargetLunaR_OR_Nevo() ? NevoOTAModeProfile():LunaROTAModeProfile()
             if Disconnect
-            { mNevoBT = NevoBTImpl(externalDelegate: self, acceptableDevice: NevoOTAModeProfile())}
+            { mNevoBT = NevoBTImpl(externalDelegate: self, acceptableDevice: profile)}
             else
             { mNevoBT = NevoBTImpl(externalDelegate: self, acceptableDevice: NevoOTAControllerProfile())}
         } else {
-            mNevoBT = NevoBTImpl(externalDelegate: self, acceptableDevice: NevoProfile())
+            let profile:Profile = AppTheme.isTargetLunaR_OR_Nevo() ? NevoProfile():LunaRProfile()
+            mNevoBT = NevoBTImpl(externalDelegate: self, acceptableDevice: profile)
         }
         
     }
@@ -284,16 +286,6 @@ extension ConnectionControllerImpl:ConnectionController {
      See ConnectionController protocol
      */
     func sendRequest(_ request:Request) {
-        if(getOTAMode() && (request.getTargetProfile().CONTROL_SERVICE != NevoOTAModeProfile().CONTROL_SERVICE
-            && request.getTargetProfile().CONTROL_SERVICE != NevoOTAControllerProfile().CONTROL_SERVICE))
-        {
-            XCGLogger.default.debug("ERROR ! The ConnectionController is in OTA mode, impossible to send a normal nevo request !")
-            
-        } else if (!getOTAMode() && request.getTargetProfile().CONTROL_SERVICE != NevoProfile().CONTROL_SERVICE) {
-            
-            XCGLogger.default.debug("ERROR ! The ConnectionController is NOT in OTA mode, impossible to send an OTA nevo request !")
-            
-        }
         mNevoBT?.sendRequest(request)
     }
     

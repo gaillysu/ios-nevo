@@ -44,15 +44,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
     fileprivate var mAlertUpdateFW = false
     fileprivate var isLunaRFirstPair:Bool = false
     
-    fileprivate var watchID:Int = 1 {
-        didSet {
-            let info: [String : Int] = [EVENT_BUS_WATCHID_DIDCHANGE_KEY : watchID]
-            SwiftEventBus.post(EVENT_BUS_WATCHID_DIDCHANGE_KEY, sender: nil, userInfo: info)
-        }
-    }
-    fileprivate var watchName:String = "Nevo"
-    fileprivate var watchModelNumber:Int = 1
-    fileprivate var watchModel:String = "Paris"
     fileprivate var isSync:Bool = true; // syc state
     fileprivate var getWacthNameTimer:Timer?
     //Default Hong Kong
@@ -182,35 +173,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
     }
     
     func setWactnID(_ id:Int) {
-        watchID = id
+        let info: [String : Int] = [EVENT_BUS_WATCHID_DIDCHANGE_KEY : id]
+        SwiftEventBus.post(EVENT_BUS_WATCHID_DIDCHANGE_KEY, sender: nil, userInfo: info)
+        XCGLogger.default.debug("setWactnID")
+        UserDefaults.standard.set(id, forKey: WATCHKEY_SETID)
+        UserDefaults.standard.synchronize()
     }
     
     func getWactnID()->Int {
-        return watchID
+        if let watchID = UserDefaults.standard.object(forKey: WATCHKEY_SETID) {
+            return watchID as! Int
+        }
+        return -1
     }
     
     func setWatchName(_ name:String) {
-        watchName = name
+        UserDefaults.standard.set(name, forKey: WATCHKEY_SETNAME)
+        UserDefaults.standard.synchronize()
     }
     
     func getWatchName() ->String {
-        return watchName;
-    }
-    
-    func setWatchModelNumber(_ number:Int) {
-        watchModelNumber = number
-    }
-    
-    func getWatchModelNumber()->Int {
-        return watchModelNumber
-    }
-    
-    func setWatchModel(_ model:String) {
-        watchModel = model;
-    }
-    
-    func getWatchModel() -> String {
-        return watchModel
+        if let watchID = UserDefaults.standard.object(forKey: WATCHKEY_SETNAME) {
+            return watchID as! String
+        }
+        return "";
     }
     
     // MARK: - ConnectionControllerDelegate

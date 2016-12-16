@@ -224,53 +224,30 @@ extension AppDelegate {
         return isConnected() ? self.getMconnectionController()!.getSoftwareVersion() : 0
     }
     
-    func getWatchInfo() -> (watchModel:String,watchModelNumber:Int,watchName:String,watchId:Int) {
-        return (self.getWatchModel(),self.getWatchModelNumber(),self.getWatchName(),self.getWactnID());
+    func getWatchInfo() -> (watchName:String,watchId:Int) {
+        return (self.getWatchName(),self.getWactnID());
     }
     
     func setWatchInfo(_ id:Int,model:Int) {
         // id = 1-Nevo,2-Nevo Solar,3-Lunar,0xff-Nevo
         XCGLogger.default.debug("setWatchInfo:id\(id),model:\(model)")
-        UserDefaults.standard.set(id, forKey: "WATCHNAME_KEY")
-        UserDefaults.standard.synchronize()
+        
+        self.setWactnID(id)
         switch id {
         case 1:
-            self.setWactnID(1)
             self.setWatchName("Nevo")
             break
         case 2:
-            self.setWactnID(2)
             self.setWatchName("Nevo Solar")
             break
         case 3:
-            self.setWactnID(3)
             self.setWatchName("Lunar")
             break
         default:
-            self.setWactnID(1)
             self.setWatchName("Nevo")
             break
         }
-        
         //model = 1 - Paris,2 - New York,3 - ShangHai
-        switch model {
-        case 1:
-            self.setWatchModelNumber(1)
-            self.setWatchModel("Paris")
-            break
-        case 2:
-            self.setWatchModelNumber(2)
-            self.setWatchModel("New York")
-            break
-        case 3:
-            self.setWatchModelNumber(3)
-            self.setWatchModel("ShangHai")
-            break
-        default:
-            self.setWatchModelNumber(1)
-            self.setWatchModel("Paris")
-            break
-        }
     }
     
     func connect() {

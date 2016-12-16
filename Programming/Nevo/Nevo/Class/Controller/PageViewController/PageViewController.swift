@@ -95,21 +95,19 @@ class PageViewController: UIPageViewController,UIActionSheetDelegate {
         
         pagingControllers = [viewController1, viewController2,viewController3]
         
-        if UserDefaults.standard.object(forKey: "WATCHNAME_KEY") != nil {
-            let value:Int = UserDefaults.standard.object(forKey: "WATCHNAME_KEY") as! Int
-            if value == 3 {
-                let viewController4 = SunriseSetController()
-                viewController4.view.tag = pagingControllers.count
-                viewController4.view.backgroundColor = UIColor.white
-                pagingControllers.append(viewController4)
-            }
-            
-            if value>1 {
-                let viewController5 = SolarIndicatorController()
-                viewController5.view.tag = pagingControllers.count
-                viewController5.view.backgroundColor = UIColor.white
-                pagingControllers.append(viewController5)
-            }
+        let value:Int = AppDelegate.getAppDelegate().getWactnID()
+        if value == 3 {
+            let viewController4 = SunriseSetController()
+            viewController4.view.tag = pagingControllers.count
+            viewController4.view.backgroundColor = UIColor.white
+            pagingControllers.append(viewController4)
+        }
+        
+        if value>1 {
+            let viewController5 = SolarIndicatorController()
+            viewController5.view.tag = pagingControllers.count
+            viewController5.view.backgroundColor = UIColor.white
+            pagingControllers.append(viewController5)
         }
         
         self.delegate = self
@@ -336,9 +334,7 @@ extension PageViewController {
     
     func initTitleView() {
         titleView = StepsTitleView.getStepsTitleView(CGRect(x: 0,y: 0,width: 190,height: 50))
-        let formatter = DateFormatter()
-        formatter.dateFormat = "MMM"
-        let dateString = "\(formatter.string(from: Date())), \(Date().day)"
+        let dateString = "\(Date().stringFromFormat("MMM")), \(Date().day)"
         titleView?.setCalendarButtonTitle(dateString)
         self.navigationItem.titleView = titleView
         titleView!.buttonResultHandler = { result -> Void in
