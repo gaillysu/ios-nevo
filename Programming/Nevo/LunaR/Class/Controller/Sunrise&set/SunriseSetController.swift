@@ -156,28 +156,6 @@ extension SunriseSetController: WorldClockDidSelectedDelegate {
     func setDialTime(hour:Int,minute:Int,seconds:Int) {
         clockView?.setWorldTime(hour:hour,minute:minute,seconds:seconds)
     }
-    
-    /**
-     使用gmt Offset 来格式化所在地方的时间
-     
-     - parameter gmtOffset: Specify the time zone offset
-     
-     - returns: date format
-     */
-    func convertGMTToLocalDateFormat(_ gmtOffset:Int) -> Date {
-        let zone:TimeZone       = TimeZone(secondsFromGMT: Int(gmtOffset))!
-        let offtSecond:Int      = zone.secondsFromGMT()
-        let nowDate:Date        = Date().addingTimeInterval(TimeInterval(offtSecond))
-        
-        let sourceTimeZone:TimeZone = TimeZone(abbreviation: "GMT")!//或UTC
-        let formatter               = DateFormatter()
-        formatter.dateFormat        = "yyyy-MM-dd,h:mm:ss"
-        formatter.timeZone          = sourceTimeZone
-        let dateString:String       = formatter.string(from: nowDate)
-        let dateTime:Date           = dateString.dateFromFormat("yyyy-MM-dd,h:mm:ss", locale: DateFormatter().locale)!
-        return dateTime
-    }
-
 }
 
 // MARK: - collectionview
