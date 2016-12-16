@@ -224,16 +224,13 @@ extension AppDelegate {
         return isConnected() ? self.getMconnectionController()!.getSoftwareVersion() : 0
     }
     
-    func getWatchNameInfo() -> [String:Int] {
-        return [self.getWatchName():self.getWactnID()];
-    }
-    
-    func getWatchModelInfo() -> [String:Int] {
-        return [self.getWatchModel():self.getWatchModelNumber()];
+    func getWatchInfo() -> (watchModel:String,watchModelNumber:Int,watchName:String,watchId:Int) {
+        return (self.getWatchModel(),self.getWatchModelNumber(),self.getWatchName(),self.getWactnID());
     }
     
     func setWatchInfo(_ id:Int,model:Int) {
         // id = 1-Nevo,2-Nevo Solar,3-Lunar,0xff-Nevo
+        XCGLogger.default.debug("setWatchInfo:id\(id),model:\(model)")
         UserDefaults.standard.set(id, forKey: "WATCHNAME_KEY")
         UserDefaults.standard.synchronize()
         switch id {
