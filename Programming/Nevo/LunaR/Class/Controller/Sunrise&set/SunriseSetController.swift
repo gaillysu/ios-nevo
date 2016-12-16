@@ -132,6 +132,7 @@ extension SunriseSetController: WorldClockDidSelectedDelegate {
         if citiesArray.count>0 {
             let city = citiesArray[0]
             let timeZone:Timezone   = city.timezone!;
+            //TODO: 如果gmtTimeOffset 不对就会导致world clock 设置有问题,test发现现在的timeZone get到的offset 计算是有问题的
             let gmtOffset:Float     = Float(timeZone.gmtTimeOffset)/60.0*3600.0
             
             dateTime = Date.convertGMTToLocalDateFormat(Int(gmtOffset))
