@@ -116,38 +116,31 @@ class SunriseSetController: PublicClassController {
 
 extension SunriseSetController: WorldClockDidSelectedDelegate {
     func didSelectedLocalTimeZone(_ cityId:Int) {
-        
-        let date:Date = calculateWordClockDialTime()
-        if AppDelegate.getAppDelegate().isConnected() {
+        if AppDelegate.getAppDelegate().isConnected(), let date:Date = calculateWordClockDialTime(){
             let setWordClock:SetWorldClockRequest = SetWorldClockRequest(offset: date.hour)
             AppDelegate.getAppDelegate().sendRequest(setWordClock)
         }
     }
     
-    func calculateWordClockDialTime()-> Date {
+    func calculateWordClockDialTime()-> Date? {
         UserDefaults.standard.set(Date(), forKey: "SET_WORLD_CLOCK_TIME")
         UserDefaults.standard.synchronize()
         
-        let realm = try! Realm()
-        let citiesArray:[City] = Array(realm.objects(City.self).filter("selected = true"))
-        let city = citiesArray[0]
-        
-        let timeZone:Timezone = city.timezone!;
-        let gmtOffset:Float = Float(timeZone.gmtTimeOffset)/60.0*3600.0
-        let zone:TimeZone = TimeZone(secondsFromGMT: Int(gmtOffset))!
-        let offtSecond:Int = zone.secondsFromGMT()
-        let nowDate:Date = Date().addingTimeInterval(TimeInterval(offtSecond))
-        
-        let sourceTimeZone:TimeZone = TimeZone(abbreviation: "UTC")!//或GMT
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd,h:mm:ss"
-        formatter.timeZone   = sourceTimeZone
-        let dateString:String = formatter.string(from: nowDate)
-        let dateTime:Date = dateString.dateFromFormat("yyyy-MM-dd,h:mm:ss", locale: DateFormatter().locale)!
-        setDialTime(hour:dateTime.hour,minute:dateTime.minute,seconds:dateTime.second)
-        
-        self.cityNameLable.text = city.name + ", " + city.country
-        self.cityDateLabel.text = dateTime.stringFromFormat("d MMM, yyyy")
+        let realm               = try! Realm()
+        let citiesArray:[City]  = Array(realm.objects(City.self).filter("selected = true"))
+        var dateTime:Date?
+        if citiesArray.count>0 {
+            let city = citiesArray[0]
+            let timeZone:Timezone   = city.timezone!;
+            let gmtOffset:Float     = Float(timeZone.gmtTimeOffset)/60.0*3600.0
+            
+            dateTime = convertGMTToLocalDateFormat(Int(gmtOffset))
+            
+            setDialTime(hour:dateTime!.hour,minute:dateTime!.minute,seconds:dateTime!.second)
+            
+            self.cityNameLable.text = city.name + ", " + city.country
+            self.cityDateLabel.text = dateTime!.stringFromFormat("d MMM, yyyy")
+        }
         
         if clockTimer == nil {
             clockTimer = Timer.every(30.seconds) {
@@ -163,6 +156,28 @@ extension SunriseSetController: WorldClockDidSelectedDelegate {
     func setDialTime(hour:Int,minute:Int,seconds:Int) {
         clockView?.setWorldTime(hour:hour,minute:minute,seconds:seconds)
     }
+    
+    /**
+     使用gmt Offset 来格式化所在地方的时间
+     
+     - parameter gmtOffset: Specify the time zone offset
+     
+     - returns: date format
+     */
+    func convertGMTToLocalDateFormat(_ gmtOffset:Int) -> Date {
+        let zone:TimeZone       = TimeZone(secondsFromGMT: Int(gmtOffset))!
+        let offtSecond:Int      = zone.secondsFromGMT()
+        let nowDate:Date        = Date().addingTimeInterval(TimeInterval(offtSecond))
+        
+        let sourceTimeZone:TimeZone = TimeZone(abbreviation: "GMT")!//或UTC
+        let formatter               = DateFormatter()
+        formatter.dateFormat        = "yyyy-MM-dd,h:mm:ss"
+        formatter.timeZone          = sourceTimeZone
+        let dateString:String       = formatter.string(from: nowDate)
+        let dateTime:Date           = dateString.dateFromFormat("yyyy-MM-dd,h:mm:ss", locale: DateFormatter().locale)!
+        return dateTime
+    }
+
 }
 
 // MARK: - collectionview
