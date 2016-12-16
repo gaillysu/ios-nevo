@@ -30,7 +30,7 @@ class MyNevoController: UITableViewController,UIAlertViewDelegate {
         super.viewDidLoad()
         self.navigationItem.title = NSLocalizedString("My nevo", comment: "")
 
-        titleArray = [NSLocalizedString("watch_version", comment: ""),NSLocalizedString("battery", comment: ""),NSLocalizedString("app_version", comment: "")]
+        titleArray = [NSLocalizedString("watch_version", comment: ""),NSLocalizedString("Battery", comment: ""),NSLocalizedString("app_version", comment: "")]
         
         _ = SwiftEventBus.onMainThread(self, name: EVENT_BUS_RSSI_VALUE) { (notification) in
             let number:NSNumber = notification.object as! NSNumber

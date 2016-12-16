@@ -129,15 +129,16 @@ extension NotificationViewController {
             let notfiction = MEDUserNotification.getFilter("key = '\(noti!.getPacket())'")
             if notfiction.count>0 {
                 let notValue:MEDUserNotification = notfiction[0] as! MEDUserNotification
+                
                 if notValue.deleteFlag {
-                   _ = notValue.remove()
+                    _ = notValue.remove()
+                    allArraySettingArray.remove(at: (allArraySettingArray.index(of: noti!))!)
+                    tableView.deleteRows(at: [indexPath], with: .left)
+                    initNotificationSettingArray()
                 }else{
                     deleteNotificationsAlertView()
                 }
             }
-            
-            initNotificationSettingArray()
-            tableView.reloadData()
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }

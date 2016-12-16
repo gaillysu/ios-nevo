@@ -67,7 +67,7 @@
 			<key>colorValue</key>
 			<string>#FF4500</string>
 			<key>colorName</key>
-			<string>OrangeRed</string>
+			<string>Orange Red</string>
 		</dict>
 		<key>Messenger</key>
 		<dict>
@@ -76,7 +76,7 @@
 			<key>colorValue</key>
 			<string>#00BFFF</string>
 			<key>colorName</key>
-			<string>DeepSkyBlue</string>
+			<string>Deep Sky Blue</string>
 		</dict>
 		<key>WeChat</key>
 		<dict>
@@ -94,7 +94,7 @@
 			<key>colorValue</key>
 			<string>#008B8B</string>
 			<key>colorName</key>
-			<string>DarkCyan</string>
+			<string>Dark Cyan</string>
 		</dict>
 	</dict>
 </dict>

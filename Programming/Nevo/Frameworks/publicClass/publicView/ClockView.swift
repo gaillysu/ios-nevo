@@ -87,16 +87,16 @@ class ClockView: UIView {
         mMinuteImageView.transform = CGAffineTransform.identity.rotated(by: DegreesToRadians(CGFloat(angleOfMinute)));
     }
     
-    func setWorldTime(dateConponents:DateComponents) {
-        let seconds:NSInteger = dateConponents.second!
-        let hour:NSInteger = dateConponents.hour!;
-        let minute:NSInteger = dateConponents.minute!;
+    func setWorldTime(hour:Int,minute:Int,seconds:Int) {
+        let mSeconds:CGFloat = CGFloat(seconds)
+        let mHour:CGFloat = CGFloat(hour)
+        let mMinute:CGFloat = CGFloat(minute)
         
-        let angleOfHour:CGFloat = (CGFloat(hour).truncatingRemainder(dividingBy: 12))*30.0 + ((CGFloat(minute) + CGFloat(seconds)/60.0 )/60.0)*30.0;
-        mHourImageView.transform = CGAffineTransform.identity.rotated(by: DegreesToRadians(CGFloat(angleOfHour)));
+        let angleOfHour:CGFloat = (mHour.truncatingRemainder(dividingBy: 12))*30.0 + ((mMinute + mSeconds/60.0 )/60.0)*30.0;
+        mHourImageView.transform = CGAffineTransform.identity.rotated(by: DegreesToRadians(angleOfHour));
         
-        let angleOfMinute:CGFloat = (CGFloat(minute) + CGFloat(seconds)/60.0) * 6.0;
-        mMinuteImageView.transform = CGAffineTransform.identity.rotated(by: DegreesToRadians(CGFloat(angleOfMinute)));
+        let angleOfMinute:CGFloat = (mMinute + mSeconds/60.0) * 6.0;
+        mMinuteImageView.transform = CGAffineTransform.identity.rotated(by: DegreesToRadians(angleOfMinute));
     }
 
     /*

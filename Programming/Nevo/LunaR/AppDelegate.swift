@@ -593,21 +593,33 @@ extension AppDelegate {
     }
     
     func setSolar() {
-        if longitude != 0 && latitude != 0 {
-            let solar = Solar(latitude: latitude,
-                              longitude: longitude)
-            let sunrise = solar!.sunrise
-            let sunset = solar!.sunset
-            self.setSunriseAndSunset(sunrise: sunrise!, sunset: sunset!)
+        if let solar = Solar(latitude: latitude, longitude: longitude), let sunrise = solar.sunrise, let sunset = solar.sunset {
+            self.setSunriseAndSunset(sunrise: sunrise, sunset: sunset)
+        } else {
+            let solar = Solar(latitude: 22.2782551, longitude: 114.1670679)     // HK as Default, every optional must have a value, not nil.
+            self.setSunriseAndSunset(sunrise: solar!.sunrise!, sunset: solar!.sunset!)
         }
     }
     
-    func getSunriseOrSunsetTime()->[String:Date] {
-        let solar = Solar(latitude: latitude,
-                          longitude: longitude)
-        let sunrise = solar!.sunrise
-        let sunset = solar!.sunset
-        return ["sunrise":sunrise!,"sunset":sunset!]
+    func getSunriseOrSunsetTime() -> (sunriseDate: Date?, sunsetDate: Date?, additionString: String) {
+        if let solar = Solar(latitude: latitude, longitude: longitude) {
+            if let sunrise = solar.sunrise, let sunset = solar.sunset {
+                return (sunrise, sunset, "")
+            } else {
+                // these areas are in polar day or night!
+                let isNorthernHemisphereHere = latitude > 0
+                let isNorthernHemisphereSummer = (3..<10).contains(Date().month)
+                
+                if isNorthernHemisphereHere == isNorthernHemisphereSummer {
+                    return (nil, nil, "Polar daylight")
+                } else {
+                    return (nil, nil, "Polar night")
+                }
+            }
+        } else {
+            let solar = Solar(latitude: 22.2782551, longitude: 114.1670679)
+            return (solar?.sunrise, solar?.sunset, "")
+        }
     }
     
     func getLongitude() -> Double {
