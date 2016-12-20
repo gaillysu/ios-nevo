@@ -9,7 +9,7 @@
 import UIKit
 import Timepiece
 
-class WorldClockUtil: NSObject {
+class WorldClockUtil {
     
     class func getStartDateForDST(_ timezone:Timezone) -> Date{
         return getDateFrom(timezone.dstDayInMonthStart, month: timezone.dstMonthStart, time: timezone.dstTimeStart)

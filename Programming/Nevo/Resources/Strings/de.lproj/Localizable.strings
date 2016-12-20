@@ -201,6 +201,7 @@
 
 "move_&_zoom"="Move & Zoom";
 "Yesterday"="Yesterday";
+"tomorrow" = "Tomorrow";
 
 "tips_content_lunar"="Tips:\nSleep alarm allows you set a timer that your LunaR can automatic turn on sleep mode.";
 
@@ -214,6 +215,9 @@
 "Edit goal"="Edit goal";
 "set_city"="Set city";
 "world_clock"="Worldclock";
+"Home_City" = "Home City";
+"locating_city" = "Located City";
+"all_city" = "All Cities";
 
 // Notification Color
 "color"="Color";

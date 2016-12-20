@@ -97,16 +97,14 @@ class PageViewController: UIPageViewController,UIActionSheetDelegate {
         
         let value:Int = AppDelegate.getAppDelegate().getWactnID()
         if value == 3 {
-            let viewController4 = SunriseSetController()
+            let viewController4 = HomeClockController()
             viewController4.view.tag = pagingControllers.count
-            viewController4.view.backgroundColor = UIColor.white
             pagingControllers.append(viewController4)
         }
         
         if value>1 {
             let viewController5 = SolarIndicatorController()
             viewController5.view.tag = pagingControllers.count
-            viewController5.view.backgroundColor = UIColor.white
             pagingControllers.append(viewController5)
         }
         
@@ -127,8 +125,8 @@ class PageViewController: UIPageViewController,UIActionSheetDelegate {
             if selectedTag == 3 {
                 let addWorldClock:AddWorldClockViewController = AddWorldClockViewController()
                 
-                if pagingControllers[3] is SunriseSetController {
-                    addWorldClock.didSeletedCityDelegate = pagingControllers[3] as! SunriseSetController
+                if pagingControllers[3] is HomeClockController {
+                    addWorldClock.didSeletedCityDelegate = pagingControllers[3] as! HomeClockController
                 }
                 
                 addWorldClock.hidesBottomBarWhenPushed = true
@@ -286,7 +284,7 @@ extension PageViewController: UIPageViewControllerDataSource,UIPageViewControlle
                 return pagingControllers[3]
             }
             return nil
-        }else if viewController.isKind(of: SunriseSetController.self) {
+        }else if viewController.isKind(of: HomeClockController.self) {
             if pagingControllers.count>4 {
                 return pagingControllers[4]
             }
@@ -318,7 +316,7 @@ extension PageViewController: UIPageViewControllerDataSource,UIPageViewControlle
         self.setCurrentPageIndex(viewController.view.tag)
         if viewController.isKind(of: SolarIndicatorController.self){
             return pagingControllers[3]
-        }else if viewController.isKind(of: SunriseSetController.self) {
+        }else if viewController.isKind(of: HomeClockController.self) {
             return pagingControllers[2]
         }else if viewController.isKind(of: SleepHistoricalViewController.self) {
             return pagingControllers[1]
