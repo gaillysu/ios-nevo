@@ -32,6 +32,18 @@ class HomeClockUtil {
         return realm.objects(City.self).filter("id = \(primaryKeyByLocating)").first
     }
     
+    func saveHomeCity(city: City) {
+        if let lastCity = getHomeCityWithSelectedFlag() {
+            try! realm.write {
+                lastCity.selected = false
+            }
+        }
+        
+        try! realm.write {
+            city.selected = true
+        }
+    }
+    
     func saveHomeCityWithLocatingKey(city: City) {
         if let lastCity = getHomeCityWithSelectedFlag() {
             try! realm.write {

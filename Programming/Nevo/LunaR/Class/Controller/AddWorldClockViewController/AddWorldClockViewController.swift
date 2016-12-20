@@ -12,14 +12,22 @@ import SwiftyTimer
 
 class AddWorldClockViewController: UIViewController {
     
-    fileprivate var indexes: [String] = []
-    fileprivate var cities: [String: [City]] = [:]
+    var indexes: [String] = []
+    var cities: [String: [City]] = [:]
     
-    fileprivate var searchController: UISearchController?
-    fileprivate var searchList: [String: [(name: String, id: Int)]] = [:]
-    fileprivate var searchCityController: SearchCityViewController = SearchCityViewController()
+    var searchList: [String: [(name: String, id: Int)]] = [:]
+    var searchCityController: SearchCityViewController = SearchCityViewController()
     
     @IBOutlet weak var cityTableView: UITableView!
+    
+    fileprivate lazy var searchController: UISearchController = {
+        $0.delegate = self
+        $0.searchResultsUpdater = self;
+        $0.searchBar.tintColor = UIColor.white
+        $0.searchBar.barTintColor = UIColor.getGreyColor()
+        $0.hidesNavigationBarDuringPresentation = false;
+        return $0
+    }(UISearchController(searchResultsController: self.searchCityController))
     
     fileprivate lazy var realm:Realm = {
         try! Realm()
@@ -102,9 +110,14 @@ extension AddWorldClockViewController {
     }
     
     func didChooseCity(_ city:City){
-        HomeClockUtil.shared.saveHomeCityWithLocatingKey(city: city)
+        if city.id > 0 {
+            HomeClockUtil.shared.saveHomeCity(city: city)
+        } else {
+            HomeClockUtil.shared.saveHomeCityWithLocatingKey(city: city)
+        }
+        
 
-        searchController?.isActive = false
+        searchController.isActive = false
         
         if let city = HomeClockUtil.shared.getHomeCityWithSelectedFlag() {
             didSeletedCityDelegate?.didSelectedLocalTimeZone(city.id)
@@ -120,16 +133,11 @@ extension AddWorldClockViewController {
         cityTableView.sectionIndexBackgroundColor = UIColor.transparent()
         cityTableView.sectionIndexColor = UIColor.white
         cityTableView.backgroundColor = UIColor.getGreyColor()
-        searchController = UISearchController(searchResultsController: searchCityController)
         searchCityController.mDelegate = self
-        searchController?.delegate = self
-        searchController?.searchResultsUpdater = self;
-        searchController?.searchBar.tintColor = UIColor.white
-        searchController?.searchBar.barTintColor = UIColor.getGreyColor()
-        searchController?.hidesNavigationBarDuringPresentation = false;
-        let searchView:UIView = UIView(frame: CGRect(x: 0,y: 0,width: UIScreen.main.bounds.size.width,height: searchController!.searchBar.frame.size.height))
+
+        let searchView:UIView = UIView(frame: CGRect(x: 0,y: 0,width: UIScreen.main.bounds.size.width,height: searchController.searchBar.frame.size.height))
         searchView.backgroundColor = UIColor.getTintColor()
-        searchView.addSubview(searchController!.searchBar)
+        searchView.addSubview(searchController.searchBar)
         cityTableView.tableHeaderView = searchView
         
         let button: UIButton = UIButton(type: UIButtonType.custom)
@@ -170,12 +178,13 @@ extension AddWorldClockViewController: UISearchControllerDelegate {
 extension AddWorldClockViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         NSLog("updateSearchResultsForSearchController")
-        if self.searchController!.searchBar.text != nil {
-            let searchString:String = self.searchController!.searchBar.text!
+        if self.searchController.searchBar.text != nil {
+            let searchString:String = self.searchController.searchBar.text!
             // 过滤数据
             searchList.removeAll()
-            for cityWithIndex:(String, [City]) in self.cities {
-                for city:City in cityWithIndex.1 {
+            for cityWithIndex in self.cities {
+                for city in cityWithIndex.1 {
+                    
                     if (city.name.lowercased().range(of: searchString.lowercased()) != nil || city.country.lowercased().range(of: searchString.lowercased()) != nil) {
                         if var array = searchList[cityWithIndex.0]{
                             array.append(("\(city.name), \(city.country)",city.id))
@@ -186,7 +195,7 @@ extension AddWorldClockViewController: UISearchResultsUpdating {
                     }
                 }
             }
-            if searchList.count>0{
+            if searchList.count > 0 {
                 searchCityController.setSearchList(searchList)
                 searchCityController.tableView.reloadData()
             }else{
@@ -282,9 +291,9 @@ extension AddWorldClockViewController: UITableViewDataSource {
         label.backgroundColor = UIColor.getLightBaseColor()
         
         if section == 0 {
-            label.text = "    " + NSLocalizedString("locating_city", comment: "")
+            label.text = "  " + NSLocalizedString("locating_city", comment: "")
         } else {
-            label.text = "    " + NSLocalizedString("all_city", comment: "")
+            label.text = "  " + NSLocalizedString("all_city", comment: "")
         }
         return label
     }
@@ -293,11 +302,12 @@ extension AddWorldClockViewController: UITableViewDataSource {
 // MARK: DidSelectedDelegate
 extension AddWorldClockViewController:WorldClockDidSelectedDelegate {
     func didSelectedLocalTimeZone(_ cityId:Int) {
-        let city = realm.objects(City.self).filter("id = \(cityId)")
-        if(city.count != 1){
+        let cities = realm.objects(City.self).filter("id = \(cityId)")
+        if(cities.count != 1){
             print("Some programming error, city should always get 1 with unique ID")
             return
         }
-        didChooseCity(city[0])
+        
+        didChooseCity(cities[0])
     }
 }
