@@ -26,6 +26,23 @@ class HomeClockController: PublicClassController {
     var homeTime = Date()
     let formaterString = "d MMM, yyyy"
     
+    lazy var noCityLabel: UILabel = {
+        self.view.addSubview($0)
+        
+        $0.frame = UIScreen.main.bounds
+        $0.font = UIFont(name: "Helvetica-Light", size: 25.0)
+        $0.textColor = UIColor.white
+        $0.backgroundColor = UIColor.getLightBaseColor()
+        $0.text = NSLocalizedString("none_homecity", comment: "")
+        $0.textAlignment = .center
+        $0.lineBreakMode = .byWordWrapping
+        $0.numberOfLines = 10
+        
+        $0.isHidden = false
+        
+        return $0
+    }(UILabel())
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -48,6 +65,8 @@ class HomeClockController: PublicClassController {
 extension HomeClockController {
     func setUpView() {
         if let city = city {
+            noCityLabel.isHidden = true
+            
             cityNameLabel.text = "\(city.name), \(city.country)"
             
             calculateHomeTime()
@@ -56,15 +75,7 @@ extension HomeClockController {
             dateLabel.text = homeTime.stringFromFormat(formaterString)
             return
         } else {
-            todayLabel.text = NSLocalizedString("today", comment: "")
-            cityNameLabel.text = "Shenzhen, China"
-            dateLabel.text = Date().stringFromFormat(formaterString)
-            
-            let addCityController: AddWorldClockViewController = AddWorldClockViewController()
-            addCityController.didSeletedCityDelegate = self
-            addCityController.hidesBottomBarWhenPushed = true
-            let navigationController: UINavigationController = UINavigationController(rootViewController: addCityController)
-            self.present(navigationController, animated: true, completion: nil)
+            noCityLabel.isHidden = false
         }
     }
     

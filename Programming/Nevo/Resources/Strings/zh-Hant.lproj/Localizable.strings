@@ -215,6 +215,8 @@
 "Home_City" = "家乡城市";
 "locating_city" = "定位到的城市";
 "all_city" = "全部城市";
+"Choose_home_city" = "选择你的家乡城市";
+"none_homecity" = "你还没有设置你的家乡城市，点击右上角的按钮来添加一个吧！";
 
 // Notification Color
 "color"="颜色";

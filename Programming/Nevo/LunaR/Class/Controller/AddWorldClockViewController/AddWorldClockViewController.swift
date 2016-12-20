@@ -127,7 +127,7 @@ extension AddWorldClockViewController {
     }
     
     func setupView() {
-        self.navigationItem.title = "Choose a city"
+        self.navigationItem.title = NSLocalizedString("Choose_home_city", comment: "")
         definesPresentationContext = true
         cityTableView.separatorColor = UIColor.white
         cityTableView.sectionIndexBackgroundColor = UIColor.transparent()

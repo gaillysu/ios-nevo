@@ -217,6 +217,8 @@
 "Edit goal"="编辑目标";
 "set_city"="设置城市";
 "world_clock"="世界时钟";
+"Choose_home_city" = "选择你的家乡城市";
+"none_homecity" = "你还没有设置你的家乡城市，点击右上角的按钮来添加一个吧！";
 
 // Notification Color
 "color"="颜色";
