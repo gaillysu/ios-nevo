@@ -84,7 +84,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
         IQKeyboardManager.sharedManager().enable = true
         
         // 在这里授权以保证在接收到数据的时候可以写入
-        NevoHKImpl.shareNevoHKlOne.requestPermission()
+        NevoHKManager.manager.requestPermission()
         
         updateDataBase()
         
@@ -743,7 +743,7 @@ extension AppDelegate {
             savedDailyHistory[Int(currentDay)].HourlyCalories = thispacket.getHourlyCalories()
             
             //save to health kit
-            let hk = NevoHKImpl.shareNevoHKlOne
+            let hk = NevoHKManager.manager
             hk.requestPermission()
             
             let now:Date = Date()

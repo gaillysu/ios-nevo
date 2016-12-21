@@ -213,7 +213,7 @@
 "locating_city" = "Located City";
 "all_city" = "All Cities";
 "Choose_home_city" = "Choose your home city";
-"none_homecity" = "There is no city for your home city yet, Click the upper right button to add one!";
+"none_homecity" = "You haven't chosen your home city yet, click the button in the upper right corner to add one!";
 
 // Notification Color
 "color"="Color";

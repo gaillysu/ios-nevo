@@ -340,7 +340,7 @@
 		00D474841D586D1600E2447E /* MBProgressHUD.h in Sources */ = {isa = PBXBuildFile; fileRef = 00E2BDE01B16CCD0009C757E /* MBProgressHUD.h */; };
 		00D474851D586D1600E2447E /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E2BDE11B16CCD0009C757E /* MBProgressHUD.m */; };
 		00D474861D586D1600E2447E /* NevoHK.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2D6C3D1A9C71E500591BDC /* NevoHK.swift */; };
-		00D474871D586D1600E2447E /* NevoHKImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2D6C3F1A9C783800591BDC /* NevoHKImpl.swift */; };
+		00D474871D586D1600E2447E /* NevoHKManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2D6C3F1A9C783800591BDC /* NevoHKManager.swift */; };
 		00D474881D586D1600E2447E /* HealthKit.framework in Sources */ = {isa = PBXBuildFile; fileRef = 9A2D6C3A1A9C6D9F00591BDC /* HealthKit.framework */; };
 		00D474891D586D1600E2447E /* FXBlurView.h in Sources */ = {isa = PBXBuildFile; fileRef = 005BC95D1A88B79F006F9E86 /* FXBlurView.h */; };
 		00D4748A1D586D1600E2447E /* FXBlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = 005BC95E1A88B79F006F9E86 /* FXBlurView.m */; };
@@ -495,7 +495,7 @@
 		611D41B31DCAD97D003BC6E3 /* MBProgressHUD.h in Sources */ = {isa = PBXBuildFile; fileRef = 00E2BDE01B16CCD0009C757E /* MBProgressHUD.h */; };
 		611D41B41DCAD97D003BC6E3 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E2BDE11B16CCD0009C757E /* MBProgressHUD.m */; };
 		611D41B51DCAD97D003BC6E3 /* NevoHK.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2D6C3D1A9C71E500591BDC /* NevoHK.swift */; };
-		611D41B61DCAD97D003BC6E3 /* NevoHKImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2D6C3F1A9C783800591BDC /* NevoHKImpl.swift */; };
+		611D41B61DCAD97D003BC6E3 /* NevoHKManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2D6C3F1A9C783800591BDC /* NevoHKManager.swift */; };
 		611D41B71DCAD97D003BC6E3 /* HealthKit.framework in Sources */ = {isa = PBXBuildFile; fileRef = 9A2D6C3A1A9C6D9F00591BDC /* HealthKit.framework */; };
 		611D41B81DCAD97D003BC6E3 /* FXBlurView.h in Sources */ = {isa = PBXBuildFile; fileRef = 005BC95D1A88B79F006F9E86 /* FXBlurView.h */; };
 		611D41B91DCAD97D003BC6E3 /* FXBlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = 005BC95E1A88B79F006F9E86 /* FXBlurView.m */; };
@@ -1375,7 +1375,7 @@
 		9A2D6C391A9C6D9F00591BDC /* Nevo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Nevo.entitlements; sourceTree = "<group>"; };
 		9A2D6C3A1A9C6D9F00591BDC /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		9A2D6C3D1A9C71E500591BDC /* NevoHK.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NevoHK.swift; path = Frameworks/NevoHK/NevoHK.swift; sourceTree = "<group>"; };
-		9A2D6C3F1A9C783800591BDC /* NevoHKImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NevoHKImpl.swift; path = Frameworks/NevoHK/NevoHKImpl.swift; sourceTree = "<group>"; };
+		9A2D6C3F1A9C783800591BDC /* NevoHKManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NevoHKManager.swift; path = Frameworks/NevoHK/NevoHKManager.swift; sourceTree = "<group>"; };
 		9AD8F9321A6DF35900F01014 /* Nevo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Nevo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AD8F9361A6DF35900F01014 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9AD8F93A1A6DF35900F01014 /* Nevo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Nevo.xcdatamodel; sourceTree = "<group>"; };
@@ -2572,7 +2572,7 @@
 			isa = PBXGroup;
 			children = (
 				9A2D6C3D1A9C71E500591BDC /* NevoHK.swift */,
-				9A2D6C3F1A9C783800591BDC /* NevoHKImpl.swift */,
+				9A2D6C3F1A9C783800591BDC /* NevoHKManager.swift */,
 			);
 			name = NevoHK;
 			sourceTree = "<group>";
@@ -3691,7 +3691,7 @@
 				00D474851D586D1600E2447E /* MBProgressHUD.m in Sources */,
 				00D474861D586D1600E2447E /* NevoHK.swift in Sources */,
 				662B3CAA1DEBD6E60014FA71 /* MEDAppInfoRequester.swift in Sources */,
-				00D474871D586D1600E2447E /* NevoHKImpl.swift in Sources */,
+				00D474871D586D1600E2447E /* NevoHKManager.swift in Sources */,
 				00D474881D586D1600E2447E /* HealthKit.framework in Sources */,
 				61FC93ED1DE68067000AE93C /* MEDUserGoal.swift in Sources */,
 				61FC93EB1DE68060000AE93C /* MEDBaseModel.swift in Sources */,
@@ -3860,7 +3860,7 @@
 				611D41B31DCAD97D003BC6E3 /* MBProgressHUD.h in Sources */,
 				611D41B41DCAD97D003BC6E3 /* MBProgressHUD.m in Sources */,
 				611D41B51DCAD97D003BC6E3 /* NevoHK.swift in Sources */,
-				611D41B61DCAD97D003BC6E3 /* NevoHKImpl.swift in Sources */,
+				611D41B61DCAD97D003BC6E3 /* NevoHKManager.swift in Sources */,
 				611D41B71DCAD97D003BC6E3 /* HealthKit.framework in Sources */,
 				611D41B81DCAD97D003BC6E3 /* FXBlurView.h in Sources */,
 				611D41B91DCAD97D003BC6E3 /* FXBlurView.m in Sources */,
