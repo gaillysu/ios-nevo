@@ -33,7 +33,6 @@ class AddWorldClockViewController: UIViewController {
         try! Realm()
     }()
     
-    var didSeletedCityDelegate:WorldClockDidSelectedDelegate?
     var currentCity: City?
     
     init() {
@@ -98,12 +97,9 @@ extension AddWorldClockViewController {
     
     func dismissController(){
         if let _ = HomeClockUtil.shared.getHomeCityWithSelectedFlag() {
+            
         } else if let city = currentCity {
             didChooseCity(city)
-        } else {
-            let banner = MEDBanner(title: "You must choose one city as your home city", subtitle: nil, image: nil, backgroundColor: UIColor.getBaseColor())
-            banner.dismissesOnTap = true
-            banner.show(duration: 1.5)
         }
         
         self.dismiss(animated: true, completion: nil)
@@ -116,12 +112,7 @@ extension AddWorldClockViewController {
             HomeClockUtil.shared.saveHomeCityWithLocatingKey(city: city)
         }
         
-
         searchController.isActive = false
-        
-        if let city = HomeClockUtil.shared.getHomeCityWithSelectedFlag() {
-            didSeletedCityDelegate?.didSelectedLocalTimeZone(city.id)
-        }
         
         dismissController()
     }
@@ -133,7 +124,7 @@ extension AddWorldClockViewController {
         cityTableView.sectionIndexBackgroundColor = UIColor.transparent()
         cityTableView.sectionIndexColor = UIColor.white
         cityTableView.backgroundColor = UIColor.getGreyColor()
-        searchCityController.mDelegate = self
+        searchCityController.delegate = self
 
         let searchView:UIView = UIView(frame: CGRect(x: 0,y: 0,width: UIScreen.main.bounds.size.width,height: searchController.searchBar.frame.size.height))
         searchView.backgroundColor = UIColor.getTintColor()
@@ -151,36 +142,35 @@ extension AddWorldClockViewController {
 // MARK: - UISearchControllerDelegate
 extension AddWorldClockViewController: UISearchControllerDelegate {
     func willPresentSearchController(_ searchController: UISearchController) {
-        NSLog("willPresentSearchController")
+        debugLog("willPresentSearchController")
     }
     
     func didPresentSearchController(_ searchController: UISearchController) {
-        NSLog("didPresentSearchController")
+        debugLog("didPresentSearchController")
     }
     func willDismissSearchController(_ searchController: UISearchController) {
         searchCityController.setSearchList( [:])
-        NSLog("willDismissSearchController")
+        debugLog("willDismissSearchController")
     }
     
     func didDismissSearchController(_ searchController: UISearchController) {
-        NSLog("didDismissSearchController")
+        debugLog("didDismissSearchController")
         if searchController.isActive {
             dismissController()
         }
     }
     
     func presentSearchController(_ searchController: UISearchController) {
-        NSLog("presentSearchController")
+        debugLog("presentSearchController")
     }
 }
 
 // MARK: - UISearchResultsUpdatin
 extension AddWorldClockViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
-        NSLog("updateSearchResultsForSearchController")
+        debugLog("updateSearchResultsForSearchController")
         if self.searchController.searchBar.text != nil {
             let searchString:String = self.searchController.searchBar.text!
-            // 过滤数据
             searchList.removeAll()
             for cityWithIndex in self.cities {
                 for city in cityWithIndex.1 {
@@ -299,15 +289,11 @@ extension AddWorldClockViewController: UITableViewDataSource {
     }
 }
 
-// MARK: DidSelectedDelegate
-extension AddWorldClockViewController:WorldClockDidSelectedDelegate {
-    func didSelectedLocalTimeZone(_ cityId:Int) {
-        let cities = realm.objects(City.self).filter("id = \(cityId)")
-        if(cities.count != 1){
-            print("Some programming error, city should always get 1 with unique ID")
-            return
+// MARK: HomeCityProtocol
+extension AddWorldClockViewController: HomeCityDidSelectedProtocol {
+    func didSelectedHomeCity(cityId: Int) {
+        if let city = realm.objects(City.self).filter("id = \(cityId)").first {
+            didChooseCity(city)
         }
-        
-        didChooseCity(cities[0])
     }
 }

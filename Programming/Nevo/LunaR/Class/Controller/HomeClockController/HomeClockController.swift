@@ -47,7 +47,6 @@ class HomeClockController: PublicClassController {
         super.viewDidLoad()
         
         setUpView()
-        navigationItem.title = NSLocalizedString("Home City", comment: "")
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -64,6 +63,8 @@ class HomeClockController: PublicClassController {
  
 extension HomeClockController {
     func setUpView() {
+        navigationItem.title = NSLocalizedString("Home City", comment: "")
+        
         if let city = city {
             noCityLabel.isHidden = true
             
@@ -135,11 +136,3 @@ extension HomeClockController {
     }
 }
 
-extension HomeClockController: WorldClockDidSelectedDelegate {
-    func didSelectedLocalTimeZone(_ cityId:Int) {
-//        if AppDelegate.getAppDelegate().isConnected() {
-//            let setWordClock:SetWorldClockRequest = SetWorldClockRequest(offset: homeTime.hour)
-//            AppDelegate.getAppDelegate().sendRequest(setWordClock)
-//        }
-    }
-}

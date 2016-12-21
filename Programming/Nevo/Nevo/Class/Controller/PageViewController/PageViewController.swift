@@ -125,10 +125,6 @@ class PageViewController: UIPageViewController,UIActionSheetDelegate {
             if selectedTag == 3 {
                 let addWorldClock:AddWorldClockViewController = AddWorldClockViewController()
                 
-                if pagingControllers[3] is HomeClockController {
-                    addWorldClock.didSeletedCityDelegate = pagingControllers[3] as! HomeClockController
-                }
-                
                 addWorldClock.hidesBottomBarWhenPushed = true
                 let nav:UINavigationController = UINavigationController(rootViewController: addWorldClock)
                 self.present(nav, animated: true, completion: nil)
@@ -183,25 +179,6 @@ class PageViewController: UIPageViewController,UIActionSheetDelegate {
             let banner = MEDBanner(title: NSLocalizedString("no_watch_connected", comment: ""), subtitle: nil, image: nil, backgroundColor: AppTheme.NEVO_SOLAR_YELLOW())
             banner.dismissesOnTap = true
             banner.show(duration: 2.0)
-        }
-        
-    }
-}
-
-extension PageViewController:WorldClockDidSelectedDelegate{
-    func didSelectedLocalTimeZone(_ cityId:Int){
-        let realm = try! Realm()
-        let citiesArray:[City] = Array(realm.objects(City.self).filter("selected = true"))
-        let city = citiesArray[0]
-        
-        let solar = Solar(latitude: city.lat,
-                          longitude: city.lng)
-        let sunrise = solar!.sunrise
-        let sunset = solar!.sunset
-        let offset = String(format: "%.0f", (sunrise!.timeIntervalSince1970-sunset!.timeIntervalSince1970)/3600)
-        if AppDelegate.getAppDelegate().isConnected() {
-            let setWordClock:SetWorldClockRequest = SetWorldClockRequest(offset: offset.toInt())
-            AppDelegate.getAppDelegate().sendRequest(setWordClock)
         }
         
     }
