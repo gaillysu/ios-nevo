@@ -81,7 +81,7 @@ extension HomeClockController {
     }
     
     func refreshClockView() {
-        for v in self.dialView.subviews {
+        for v in dialView.subviews {
             if v is ClockView {
                 v.removeFromSuperview()
             }

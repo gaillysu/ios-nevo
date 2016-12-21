@@ -83,7 +83,7 @@ class PageViewController: UIPageViewController,UIActionSheetDelegate {
     func reloadPageControll() {
         pagingControllers.removeAll()
         
-        let viewController1 = StepGoalSetingController()
+        let viewController1 = getDashBoardController()
         viewController1.view.tag = 0
         viewController1.view.backgroundColor = UIColor.white
         let viewController2 = StepsHistoryViewController()
@@ -252,7 +252,7 @@ extension PageViewController: UIPageViewControllerDataSource,UIPageViewControlle
             self.navigationItem.rightBarButtonItems = [rightSpacer,rightItem]
         }
         self.setCurrentPageIndex(viewController.view.tag)
-        if viewController.isKind(of: StepGoalSetingController.self) {
+        if viewController.isKind(of: getDashBoardController().classForCoder) {
             return pagingControllers[1]
         }else if viewController.isKind(of: StepsHistoryViewController.self) {
             return pagingControllers[2]
@@ -581,6 +581,16 @@ extension PageViewController: CVCalendarViewAppearanceDelegate {
             return UIColor.getBaseColor()
         }else{
             return AppTheme.NEVO_SOLAR_YELLOW()
+        }
+    }
+}
+
+extension PageViewController {
+    func getDashBoardController() -> UIViewController {
+        if AppTheme.isTargetLunaR_OR_Nevo() {
+            return StepGoalSetingController()
+        } else {
+            return DashBoardController()
         }
     }
 }

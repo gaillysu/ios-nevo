@@ -118,4 +118,13 @@ class HomeClockUtil {
             }
         })
     }
+    
+    func getHomeTime() -> Date? {
+        if let city = getHomeCityWithSelectedFlag(), let timezone = getTimezoneWithCity(city: city) {
+            let gmtOffset = timezone.gmtTimeOffset * 60
+            return Date.convertGMTToLocalDateFormat(gmtOffset)
+        }
+        
+        return nil
+    }
 }

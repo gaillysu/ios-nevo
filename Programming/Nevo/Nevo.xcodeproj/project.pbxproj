@@ -781,6 +781,12 @@
 		6655C04C1E0A22A5006A8A9D /* HomeCityProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6655C04A1E0A22A5006A8A9D /* HomeCityProtocol.swift */; };
 		6655C04E1E0A26C9006A8A9D /* Misc+MEDExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6655C04D1E0A26C9006A8A9D /* Misc+MEDExtension.swift */; };
 		6655C04F1E0A26C9006A8A9D /* Misc+MEDExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6655C04D1E0A26C9006A8A9D /* Misc+MEDExtension.swift */; };
+		6655C0591E0A53DF006A8A9D /* DashBoardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6655C0571E0A53DF006A8A9D /* DashBoardController.swift */; };
+		6655C05A1E0A53DF006A8A9D /* DashBoardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6655C0571E0A53DF006A8A9D /* DashBoardController.swift */; };
+		6655C0641E0A5A6A006A8A9D /* DashBoardElementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6655C0631E0A5A6A006A8A9D /* DashBoardElementView.swift */; };
+		6655C0651E0A5A6A006A8A9D /* DashBoardElementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6655C0631E0A5A6A006A8A9D /* DashBoardElementView.swift */; };
+		6655C0671E0A68CC006A8A9D /* DashBoardElementView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6655C0661E0A68CC006A8A9D /* DashBoardElementView.xib */; };
+		6655C0681E0A68CC006A8A9D /* DashBoardElementView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6655C0661E0A68CC006A8A9D /* DashBoardElementView.xib */; };
 		6658CCEC1DE6D0B400F09C11 /* Apptheme+MEDExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6658CCEB1DE6D0B400F09C11 /* Apptheme+MEDExtension.swift */; };
 		6658CCED1DE6D0B400F09C11 /* Apptheme+MEDExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6658CCEB1DE6D0B400F09C11 /* Apptheme+MEDExtension.swift */; };
 		665BD6A51DBEF186008C2623 /* NevoOtaController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61F85F4F1DAF5BF300F341B5 /* NevoOtaController.swift */; };
@@ -1332,6 +1338,9 @@
 		665098961DCB28160059D5F7 /* MEDStepsDeleteRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MEDStepsDeleteRequest.swift; sourceTree = "<group>"; };
 		6655C04A1E0A22A5006A8A9D /* HomeCityProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeCityProtocol.swift; sourceTree = "<group>"; };
 		6655C04D1E0A26C9006A8A9D /* Misc+MEDExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Misc+MEDExtension.swift"; sourceTree = "<group>"; };
+		6655C0571E0A53DF006A8A9D /* DashBoardController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashBoardController.swift; sourceTree = "<group>"; };
+		6655C0631E0A5A6A006A8A9D /* DashBoardElementView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashBoardElementView.swift; sourceTree = "<group>"; };
+		6655C0661E0A68CC006A8A9D /* DashBoardElementView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DashBoardElementView.xib; sourceTree = "<group>"; };
 		6658CCEB1DE6D0B400F09C11 /* Apptheme+MEDExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Apptheme+MEDExtension.swift"; sourceTree = "<group>"; };
 		665BD6D71DBF1297008C2623 /* sunrise.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sunrise.png; sourceTree = "<group>"; };
 		665BD6D81DBF1297008C2623 /* sunset.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sunset.png; sourceTree = "<group>"; };
@@ -2373,6 +2382,7 @@
 		619918F31DC6E2B600C75AE7 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				6655C0501E0A323F006A8A9D /* DashBoardController */,
 				6695A7EA1E07CFF3007396DF /* HomeClockController */,
 				6199191D1DC6E30000C75AE7 /* LunaROTAController */,
 				619918F41DC6E2B600C75AE7 /* AddWorldClockViewController */,
@@ -2458,6 +2468,16 @@
 				662B3CAB1DEBD79A0014FA71 /* MEDAppInfo.swift */,
 			);
 			name = MEDAppInfo;
+			sourceTree = "<group>";
+		};
+		6655C0501E0A323F006A8A9D /* DashBoardController */ = {
+			isa = PBXGroup;
+			children = (
+				6655C0571E0A53DF006A8A9D /* DashBoardController.swift */,
+				6655C0631E0A5A6A006A8A9D /* DashBoardElementView.swift */,
+				6655C0661E0A68CC006A8A9D /* DashBoardElementView.xib */,
+			);
+			path = DashBoardController;
 			sourceTree = "<group>";
 		};
 		665E331C1DADCD7600D0E36D /* MEDWrapper */ = {
@@ -2867,7 +2887,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0810;
+				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = Nevo;
 				TargetAttributes = {
 					00EFE0491D227D5F0066C905 = {
@@ -3005,6 +3025,7 @@
 				00C826F51DA5ECA700ECECEE /* TutorialTwoViewController.xib in Resources */,
 				00C826F61DA5ECA700ECECEE /* TutorialThreeViewController.xib in Resources */,
 				00C826F71DA5ECA700ECECEE /* TutorialFourViewController.xib in Resources */,
+				6655C0681E0A68CC006A8A9D /* DashBoardElementView.xib in Resources */,
 				6168C6381DFE820E008FCF97 /* UnitTableViewCell.xib in Resources */,
 				00C826F81DA5ECA700ECECEE /* TutorialFiveViewController.xib in Resources */,
 				00C826F91DA5ECA700ECECEE /* TutorialSixViewController.xib in Resources */,
@@ -3145,6 +3166,7 @@
 				9AD8F9421A6DF35900F01014 /* Images.xcassets in Resources */,
 				00EC9DC41C85832300280904 /* SleepTutorialController.xib in Resources */,
 				00E650A31C8425E600278D3E /* nevoWhiteLEDImage.png in Resources */,
+				6655C0671E0A68CC006A8A9D /* DashBoardElementView.xib in Resources */,
 				619919261DC6E54000C75AE7 /* LunaROTAController.xib in Resources */,
 				0050D6031C28E0DB004F6F80 /* SelectedNotificationTypeController.xib in Resources */,
 				61798C2E1DE58F280087891D /* DFUFirmware in Resources */,
@@ -3546,6 +3568,7 @@
 				00C826981DA5E04000ECECEE /* PresetTableViewController.swift in Sources */,
 				00C826991DA5E04000ECECEE /* PresetTableViewController.xib in Sources */,
 				00C8269A1DA5E04000ECECEE /* AddPresetView.swift in Sources */,
+				6655C0651E0A5A6A006A8A9D /* DashBoardElementView.swift in Sources */,
 				00C8269B1DA5E04000ECECEE /* PresetTableViewCell.swift in Sources */,
 				611941221DFE8BAB0048BA44 /* SMSegment.swift in Sources */,
 				00C8269C1DA5E04000ECECEE /* PresetTableViewCell.xib in Sources */,
@@ -3567,6 +3590,7 @@
 				00C826A71DA5E04000ECECEE /* SleepHistoryViewCell.swift in Sources */,
 				00C826A81DA5E04000ECECEE /* SleepHistoryViewCell.xib in Sources */,
 				00C826A91DA5E04000ECECEE /* SleepHistoricalViewController.swift in Sources */,
+				6655C05A1E0A53DF006A8A9D /* DashBoardController.swift in Sources */,
 				00C826AB1DA5E04000ECECEE /* StepGoalSetingController.swift in Sources */,
 				00C826AC1DA5E04000ECECEE /* StepGoalSetingController.xib in Sources */,
 				00C826AD1DA5E04000ECECEE /* StepGoalSetingViewCell.swift in Sources */,
@@ -3942,6 +3966,7 @@
 				611D42121DCAD97D003BC6E3 /* SupportViewController.swift in Sources */,
 				66154B8D1DF68BC500973A9E /* NotiColorController.swift in Sources */,
 				611D42131DCAD97D003BC6E3 /* SupportViewController.xib in Sources */,
+				6655C0591E0A53DF006A8A9D /* DashBoardController.swift in Sources */,
 				611D42141DCAD97D003BC6E3 /* RepeatViewCell.swift in Sources */,
 				611D42151DCAD97D003BC6E3 /* RepeatViewCell.xib in Sources */,
 				611D42161DCAD97D003BC6E3 /* AlarmClockVCell.swift in Sources */,
@@ -3969,6 +3994,7 @@
 				664AE3311DF7C09C005CD385 /* NotiColorEditableCell.swift in Sources */,
 				611D42281DCAD97D003BC6E3 /* NewAddAlarmHeader.swift in Sources */,
 				611D42291DCAD97D003BC6E3 /* NotAlarmView.swift in Sources */,
+				6655C0641E0A5A6A006A8A9D /* DashBoardElementView.swift in Sources */,
 				611D422A1DCAD97D003BC6E3 /* NotAlarmView.xib in Sources */,
 				611D422B1DCAD97D003BC6E3 /* ScannerViewController.swift in Sources */,
 				611D422C1DCAD97D003BC6E3 /* ScannerViewController.xib in Sources */,
