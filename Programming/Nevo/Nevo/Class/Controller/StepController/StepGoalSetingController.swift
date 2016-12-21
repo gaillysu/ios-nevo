@@ -307,13 +307,7 @@ extension StepGoalSetingController:UICollectionViewDelegate,UICollectionViewData
         cell.titleLabel.text = titleString.capitalized(with: Locale.current)
         switch indexPath.row {
         case 0:
-            var unit:String = "Cal"
-            var unitValue:Double = "\(contentTArray[indexPath.row])".toDouble()
-            if AppTheme.getUserSelectedUnitValue() == 1 {
-                unit = "Btu"
-                unitValue = unitValue*calToBtu
-            }
-            cell.valueLabel.text = "\(unitValue.to2Double()) \(unit)"
+            cell.valueLabel.text = "\(contentTArray[indexPath.row]) Cal"
             break;
         case 1:
             cell.valueLabel.text = "\(contentTArray[indexPath.row])"

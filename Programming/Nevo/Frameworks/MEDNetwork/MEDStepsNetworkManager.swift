@@ -9,6 +9,7 @@
 import UIKit
 import SwiftyJSON
 import Alamofire
+import RealmSwift
 
 class MEDStepsNetworkManager: NSObject {
     
@@ -83,23 +84,23 @@ class MEDStepsNetworkManager: NSObject {
             for (minuteIndex,minuteValue) in (hourValue as! NSArray).enumerated() {
                 if Int(minuteValue as! NSNumber)>0 {
                     seconds += (minuteIndex*5)*60
-                    let queryArray:NSArray = UserSteps.getCriteria("WHERE date = \(Double(dateTimerInterval!+Double(seconds)))")
+                    let queryArray = MEDUserSteps.getFilter("date == \(Double(dateTimerInterval!+Double(seconds)).toDouble())")
                     if queryArray.count == 0 {
-                        let steps:UserSteps = UserSteps(keyDict: ["id":0, "cid":cid, "steps":Int(minuteValue as! NSNumber), "distance": "\(0)","date":Double(dateTimerInterval!+Double(seconds)),"syncnext":true])
-                        steps.add({ (id, completion) in
-                            if successSynced {
-                                successSynced = completion!
-                            }
-                        })
+                        let steps:MEDUserSteps = MEDUserSteps()
+                        steps.cid = cid
+                        steps.totalSteps = Int(minuteValue as! NSNumber)
+                        steps.distance = 0
+                        steps.date = Double(dateTimerInterval!+Double(seconds)).toDouble()
+                        if successSynced {
+                            successSynced = steps.add()
+                        }
                     } else {
                         for (_,value3) in queryArray.enumerated() {
-                            let steps:UserSteps = value3 as! UserSteps
-                            steps.steps = Int(minuteValue as! NSNumber)
-                            // cid => id
-                            steps.id = cid
-                            let dbUpdateStatus = steps.update()
-                            if successSynced {
-                                successSynced = dbUpdateStatus
+                            let steps:MEDUserSteps = value3 as! MEDUserSteps
+                            steps.totalSteps = Int(minuteValue as! NSNumber)
+                            let realm = try! Realm()
+                            try! realm.write {
+                                steps.cid = cid
                             }
                         }
                     }

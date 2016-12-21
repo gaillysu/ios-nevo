@@ -95,21 +95,17 @@ class PageViewController: UIPageViewController,UIActionSheetDelegate {
         
         pagingControllers = [viewController1, viewController2,viewController3]
         
-        if UserDefaults.standard.object(forKey: "WATCHNAME_KEY") != nil {
-            let value:Int = UserDefaults.standard.object(forKey: "WATCHNAME_KEY") as! Int
-            if value == 3 {
-                let viewController4 = SunriseSetController()
-                viewController4.view.tag = pagingControllers.count
-                viewController4.view.backgroundColor = UIColor.white
-                pagingControllers.append(viewController4)
-            }
-            
-            if value>1 {
-                let viewController5 = SolarIndicatorController()
-                viewController5.view.tag = pagingControllers.count
-                viewController5.view.backgroundColor = UIColor.white
-                pagingControllers.append(viewController5)
-            }
+        let value:Int = AppDelegate.getAppDelegate().getWactnID()
+        if value == 3 {
+            let viewController4 = HomeClockController()
+            viewController4.view.tag = pagingControllers.count
+            pagingControllers.append(viewController4)
+        }
+        
+        if value>1 {
+            let viewController5 = SolarIndicatorController()
+            viewController5.view.tag = pagingControllers.count
+            pagingControllers.append(viewController5)
         }
         
         self.delegate = self
@@ -129,8 +125,8 @@ class PageViewController: UIPageViewController,UIActionSheetDelegate {
             if selectedTag == 3 {
                 let addWorldClock:AddWorldClockViewController = AddWorldClockViewController()
                 
-                if pagingControllers[3] is SunriseSetController {
-                    addWorldClock.didSeletedCityDelegate = pagingControllers[3] as! SunriseSetController
+                if pagingControllers[3] is HomeClockController {
+                    addWorldClock.didSeletedCityDelegate = pagingControllers[3] as! HomeClockController
                 }
                 
                 addWorldClock.hidesBottomBarWhenPushed = true
@@ -288,7 +284,7 @@ extension PageViewController: UIPageViewControllerDataSource,UIPageViewControlle
                 return pagingControllers[3]
             }
             return nil
-        }else if viewController.isKind(of: SunriseSetController.self) {
+        }else if viewController.isKind(of: HomeClockController.self) {
             if pagingControllers.count>4 {
                 return pagingControllers[4]
             }
@@ -320,7 +316,7 @@ extension PageViewController: UIPageViewControllerDataSource,UIPageViewControlle
         self.setCurrentPageIndex(viewController.view.tag)
         if viewController.isKind(of: SolarIndicatorController.self){
             return pagingControllers[3]
-        }else if viewController.isKind(of: SunriseSetController.self) {
+        }else if viewController.isKind(of: HomeClockController.self) {
             return pagingControllers[2]
         }else if viewController.isKind(of: SleepHistoricalViewController.self) {
             return pagingControllers[1]
@@ -336,9 +332,7 @@ extension PageViewController {
     
     func initTitleView() {
         titleView = StepsTitleView.getStepsTitleView(CGRect(x: 0,y: 0,width: 190,height: 50))
-        let formatter = DateFormatter()
-        formatter.dateFormat = "MMM"
-        let dateString = "\(formatter.string(from: Date())), \(Date().day)"
+        let dateString = "\(Date().stringFromFormat("MMM")), \(Date().day)"
         titleView?.setCalendarButtonTitle(dateString)
         self.navigationItem.titleView = titleView
         titleView!.buttonResultHandler = { result -> Void in

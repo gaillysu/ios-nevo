@@ -118,11 +118,11 @@ class StepsHistoryViewController: PublicClassController,ChartViewDelegate {
         if queryArray.count>0 {
             let dataSteps:MEDUserSteps = queryArray[0] as! MEDUserSteps
             let timerValue:Double = Double(dataSteps.walking_duration+dataSteps.running_duration)
-            self.contentTArray.replaceSubrange(Range(0..<1), with: ["\(dataSteps.totalCalories)"])
+            self.contentTArray.replaceSubrange(Range(0..<1), with: [String(format: "%.2f", dataSteps.totalCalories)])
             self.contentTArray.replaceSubrange(Range(1..<2), with: ["\(dataSteps.totalSteps)"])
             self.contentTArray.replaceSubrange(Range(2..<3), with: [AppTheme.timerFormatValue(value: timerValue/60.0)])
             self.calculationData((dataSteps.walking_duration+dataSteps.running_duration), steps: dataSteps.totalSteps, completionData: { (miles, calories) in
-                self.contentTArray.replaceSubrange(Range(0..<1), with: ["\(calories)"])
+                self.contentTArray.replaceSubrange(Range(0..<1), with: [String(format: "%.2f", calories)])
                 self.contentTArray.replaceSubrange(Range(3..<4), with: ["\(miles)"])
             })
             self.stepsHistory.reloadData()
@@ -305,13 +305,7 @@ extension StepsHistoryViewController:UICollectionViewDelegate,UICollectionViewDa
         
         switch indexPath.row {
         case 0:
-            var unit:String = "Cal"
-            var unitValue:Double = "\(contentTArray[indexPath.row])".toDouble()
-            if AppTheme.getUserSelectedUnitValue() == 1 {
-                unit = "Btu"
-                unitValue = unitValue*calToBtu
-            }
-            cell.valueLabel.text = "\(unitValue.to2Double()) \(unit)"
+            cell.valueLabel.text = "\(contentTArray[indexPath.row]) Cal"
             break;
         case 1:
             cell.valueLabel.text = "\(contentTArray[indexPath.row])"

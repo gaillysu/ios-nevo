@@ -9,6 +9,7 @@
 import Foundation
 import XCGLogger
 import SwiftEventBus
+import Alamofire
 
 // MARK: - LAUNCH LOGIC
 extension AppDelegate {
@@ -223,56 +224,30 @@ extension AppDelegate {
         return isConnected() ? self.getMconnectionController()!.getSoftwareVersion() : 0
     }
     
-    func getWatchNameInfo() -> [String:Int] {
-        return [self.getWatchName():self.getWactnID()];
-    }
-    
-    func getWatchModelInfo() -> [String:Int] {
-        return [self.getWatchModel():self.getWatchModelNumber()];
+    func getWatchInfo() -> (watchName:String,watchId:Int) {
+        return (self.getWatchName(),self.getWactnID());
     }
     
     func setWatchInfo(_ id:Int,model:Int) {
         // id = 1-Nevo,2-Nevo Solar,3-Lunar,0xff-Nevo
-        UserDefaults.standard.set(id, forKey: "WATCHNAME_KEY")
-        UserDefaults.standard.synchronize()
+        XCGLogger.default.debug("setWatchInfo:id\(id),model:\(model)")
+        
+        self.setWactnID(id)
         switch id {
         case 1:
-            self.setWactnID(1)
             self.setWatchName("Nevo")
             break
         case 2:
-            self.setWactnID(2)
             self.setWatchName("Nevo Solar")
             break
         case 3:
-            self.setWactnID(3)
             self.setWatchName("Lunar")
             break
         default:
-            self.setWactnID(1)
             self.setWatchName("Nevo")
             break
         }
-        
         //model = 1 - Paris,2 - New York,3 - ShangHai
-        switch model {
-        case 1:
-            self.setWatchModelNumber(1)
-            self.setWatchModel("Paris")
-            break
-        case 2:
-            self.setWatchModelNumber(2)
-            self.setWatchModel("New York")
-            break
-        case 3:
-            self.setWatchModelNumber(3)
-            self.setWatchModel("ShangHai")
-            break
-        default:
-            self.setWatchModelNumber(1)
-            self.setWatchModel("Paris")
-            break
-        }
     }
     
     func connect() {
@@ -349,6 +324,19 @@ extension AppDelegate {
             let banner = MEDBanner(title: NSLocalizedString("Disconnected", comment: ""), subtitle: nil, image: nil, backgroundColor: UIColor.red)
             banner.dismissesOnTap = true
             banner.show(duration: 1.5)
+        }
+    }
+    
+    /**
+     获取当前手机网络状态
+     
+     - returns: true->网络联通,false->网络不通
+     */
+    func getNetworkState()->Bool {
+        if let networks = network {
+            return networks.isReachable
+        }else{
+            return false;
         }
     }
 }

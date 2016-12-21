@@ -18,14 +18,29 @@ This profile doesn't expect a callback
 class NevoOTAModeProfile : Profile {
     
     var CONTROL_SERVICE:[CBUUID] {
-        return [CBUUID(string: "F0BA3020-6CAC-4C99-9089-4B0A1DF45002"),CBUUID(string: "F0BA3028-6CAC-4C99-9089-4B0A1DF45002")]
+        return [CBUUID(string: "F0BA3020-6CAC-4C99-9089-4B0A1DF45002")]
     }
     
     var CONTROL_CHARACTERISTIC:[CBUUID] {
-        return [CBUUID(string: "F0BA3023-6CAC-4C99-9089-4B0A1DF45002"),CBUUID(string: "F0BA302B-6CAC-4C99-9089-4B0A1DF45002")]
+        return [CBUUID(string: "F0BA3023-6CAC-4C99-9089-4B0A1DF45002")]
     }
     
     var CALLBACK_CHARACTERISTIC:[CBUUID] {
-        return [CBUUID(string: "F0BA3023-6CAC-4C99-9089-4B0A1DF45002"),CBUUID(string: "F0BA302B-6CAC-4C99-9089-4B0A1DF45002")]
+        return [CBUUID(string: "F0BA3023-6CAC-4C99-9089-4B0A1DF45002")]
+    }
+}
+
+class LunaROTAModeProfile : Profile {
+    
+    var CONTROL_SERVICE:[CBUUID] {
+        return [CBUUID(string: "F0BA3028-6CAC-4C99-9089-4B0A1DF45002")]
+    }
+    
+    var CONTROL_CHARACTERISTIC:[CBUUID] {
+        return [CBUUID(string: "F0BA302B-6CAC-4C99-9089-4B0A1DF45002")]
+    }
+    
+    var CALLBACK_CHARACTERISTIC:[CBUUID] {
+        return [CBUUID(string: "F0BA302B-6CAC-4C99-9089-4B0A1DF45002")]
     }
 }

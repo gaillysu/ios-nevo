@@ -21,7 +21,7 @@ extension Date{
         let zone:TimeZone       = TimeZone(secondsFromGMT: Int(gmtOffset))!
         let offtSecond:Int      = zone.secondsFromGMT()
         let nowDate:Date        = Date().addingTimeInterval(TimeInterval(offtSecond))
-        let sourceTimeZone:TimeZone = TimeZone(abbreviation: "GMT")!//或UTC
+        let sourceTimeZone:TimeZone = TimeZone(abbreviation: "UTC")!//或GMT
         let formatter               = DateFormatter()
         formatter.dateFormat        = "yyyy-MM-dd,h:mm:ss"
         formatter.timeZone          = sourceTimeZone
