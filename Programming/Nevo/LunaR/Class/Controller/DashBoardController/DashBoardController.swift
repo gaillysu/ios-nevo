@@ -145,6 +145,13 @@ extension DashBoardController {
         scrollView.addSubview(caloriseView)
         caloriseView.frame = centerDashView!.bounds
         caloriseView.backgroundColor = UIColor.getGreyColor()
+        
+        let circleView = MEDCircleView()
+        caloriseView.insertSubview(circleView, at: 0)
+        circleView.backgroundColor = UIColor.getGreyColor()
+        circleView.frame = CGRect(x: 0, y: 0, width: caloriseView.frame.width - 20, height: caloriseView.frame.width - 20)
+        circleView.center = caloriseView.center
+        circleView.value = 0.7
     }
 }
 

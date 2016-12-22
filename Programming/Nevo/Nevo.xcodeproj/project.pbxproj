@@ -787,8 +787,6 @@
 		6655C0651E0A5A6A006A8A9D /* DashBoardElementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6655C0631E0A5A6A006A8A9D /* DashBoardElementView.swift */; };
 		6655C0671E0A68CC006A8A9D /* DashBoardElementView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6655C0661E0A68CC006A8A9D /* DashBoardElementView.xib */; };
 		6655C0681E0A68CC006A8A9D /* DashBoardElementView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6655C0661E0A68CC006A8A9D /* DashBoardElementView.xib */; };
-		6658CCEC1DE6D0B400F09C11 /* Apptheme+MEDExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6658CCEB1DE6D0B400F09C11 /* Apptheme+MEDExtension.swift */; };
-		6658CCED1DE6D0B400F09C11 /* Apptheme+MEDExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6658CCEB1DE6D0B400F09C11 /* Apptheme+MEDExtension.swift */; };
 		665BD6A51DBEF186008C2623 /* NevoOtaController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61F85F4F1DAF5BF300F341B5 /* NevoOtaController.swift */; };
 		665BD6AB1DBEF1D0008C2623 /* BatteryLevelNevoPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C9D1D224CFA009047AC /* BatteryLevelNevoPacket.swift */; };
 		665BD6AC1DBEF1D0008C2623 /* DailyStepsNevoPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C9E1D224CFA009047AC /* DailyStepsNevoPacket.swift */; };
@@ -820,6 +818,12 @@
 		665E331F1DADCD8A00D0E36D /* MEDBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 665E331D1DADCD8A00D0E36D /* MEDBanner.swift */; };
 		666027B71DE2D63D00E7CBD7 /* UICollectionView+MEDExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666027B61DE2D63D00E7CBD7 /* UICollectionView+MEDExtension.swift */; };
 		666027B81DE2D65100E7CBD7 /* UICollectionView+MEDExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666027B61DE2D63D00E7CBD7 /* UICollectionView+MEDExtension.swift */; };
+		666262391E0BBC2100991D96 /* AppTheme+MEDExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666262371E0BBC2100991D96 /* AppTheme+MEDExtension.swift */; };
+		6662623A1E0BBC2100991D96 /* AppTheme+MEDExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666262371E0BBC2100991D96 /* AppTheme+MEDExtension.swift */; };
+		6662623B1E0BBC2100991D96 /* MEDColorful.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666262381E0BBC2100991D96 /* MEDColorful.swift */; };
+		6662623C1E0BBC2100991D96 /* MEDColorful.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666262381E0BBC2100991D96 /* MEDColorful.swift */; };
+		6662623E1E0BBCC700991D96 /* MEDCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6662623D1E0BBCC700991D96 /* MEDCircleView.swift */; };
+		6662623F1E0BBCC700991D96 /* MEDCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6662623D1E0BBCC700991D96 /* MEDCircleView.swift */; };
 		66687CD71DD9654100AD7F7D /* Dispatch+MEDExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66687CD61DD9654100AD7F7D /* Dispatch+MEDExtension.swift */; };
 		66687CD81DD9654100AD7F7D /* Dispatch+MEDExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66687CD61DD9654100AD7F7D /* Dispatch+MEDExtension.swift */; };
 		66687CDA1DD9832800AD7F7D /* StepsCalButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66687CD91DD9832800AD7F7D /* StepsCalButton.swift */; };
@@ -858,8 +862,6 @@
 		66AC4E5E1DBF537500E431BE /* sunset.png in Resources */ = {isa = PBXBuildFile; fileRef = 665BD6D81DBF1297008C2623 /* sunset.png */; };
 		66D9AFE41DE6E330009CF3ED /* GetNotificationAppIDPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6199AED41DDC593A00BEA140 /* GetNotificationAppIDPacket.swift */; };
 		66D9AFE51DE6E3AC009CF3ED /* ReceiveNewNotificationPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 610767111DDD8AE600F53AD6 /* ReceiveNewNotificationPacket.swift */; };
-		66F260F41DE533EF0021BDBA /* MEDColorful.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66F260F31DE533EF0021BDBA /* MEDColorful.swift */; };
-		66F260F51DE533EF0021BDBA /* MEDColorful.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66F260F31DE533EF0021BDBA /* MEDColorful.swift */; };
 		813518AB3D92E43573F28717 /* Pods_LunaR.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E068CB5F57F135B038B3A10 /* Pods_LunaR.framework */; };
 		8A84EC52F1052F0497E54CB5 /* Pods_NevoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7689D6188FDF6CDBFBD84C51 /* Pods_NevoTests.framework */; };
 		9A2D6C3B1A9C6D9F00591BDC /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A2D6C3A1A9C6D9F00591BDC /* HealthKit.framework */; };
@@ -1341,11 +1343,13 @@
 		6655C0571E0A53DF006A8A9D /* DashBoardController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashBoardController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		6655C0631E0A5A6A006A8A9D /* DashBoardElementView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashBoardElementView.swift; sourceTree = "<group>"; };
 		6655C0661E0A68CC006A8A9D /* DashBoardElementView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DashBoardElementView.xib; sourceTree = "<group>"; };
-		6658CCEB1DE6D0B400F09C11 /* Apptheme+MEDExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Apptheme+MEDExtension.swift"; sourceTree = "<group>"; };
 		665BD6D71DBF1297008C2623 /* sunrise.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sunrise.png; sourceTree = "<group>"; };
 		665BD6D81DBF1297008C2623 /* sunset.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sunset.png; sourceTree = "<group>"; };
 		665E331D1DADCD8A00D0E36D /* MEDBanner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MEDBanner.swift; sourceTree = "<group>"; };
 		666027B61DE2D63D00E7CBD7 /* UICollectionView+MEDExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UICollectionView+MEDExtension.swift"; sourceTree = "<group>"; };
+		666262371E0BBC2100991D96 /* AppTheme+MEDExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AppTheme+MEDExtension.swift"; sourceTree = "<group>"; };
+		666262381E0BBC2100991D96 /* MEDColorful.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MEDColorful.swift; sourceTree = "<group>"; };
+		6662623D1E0BBCC700991D96 /* MEDCircleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MEDCircleView.swift; sourceTree = "<group>"; };
 		66687CD61DD9654100AD7F7D /* Dispatch+MEDExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dispatch+MEDExtension.swift"; sourceTree = "<group>"; };
 		66687CD91DD9832800AD7F7D /* StepsCalButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepsCalButton.swift; sourceTree = "<group>"; };
 		6688A6461DC981980078E636 /* MEDBaseDeleteRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MEDBaseDeleteRequest.swift; sourceTree = "<group>"; };
@@ -1379,7 +1383,6 @@
 		66A0E0741DBF6C08001C0C67 /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		66A0E0761DBF6C08001C0C67 /* City.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
 		66A0E0771DBF6C08001C0C67 /* Timezone.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Timezone.swift; sourceTree = "<group>"; };
-		66F260F31DE533EF0021BDBA /* MEDColorful.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MEDColorful.swift; sourceTree = "<group>"; };
 		7689D6188FDF6CDBFBD84C51 /* Pods_NevoTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NevoTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		84E3C5A18963C1F2BFFF61CB /* Pods-Nevo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Nevo.release.xcconfig"; path = "Pods/Target Support Files/Pods-Nevo/Pods-Nevo.release.xcconfig"; sourceTree = "<group>"; };
 		8FE857CD8B2EE737CB25062E /* Pods-NevoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NevoTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NevoTests/Pods-NevoTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -2123,7 +2126,6 @@
 		00AF8C8A1D224CFA009047AC /* Util */ = {
 			isa = PBXGroup;
 			children = (
-				66F260F21DE533EF0021BDBA /* MEDThemeAdaptor */,
 				00AF8C8B1D224CFA009047AC /* Alert.swift */,
 				00AF8C8C1D224CFA009047AC /* ClockRefresh */,
 				00AF8C8E1D224CFA009047AC /* Connection */,
@@ -2490,6 +2492,25 @@
 			path = Frameworks/MEDWrapper;
 			sourceTree = "<group>";
 		};
+		666262351E0BBBFF00991D96 /* MEDKit */ = {
+			isa = PBXGroup;
+			children = (
+				666262361E0BBC2100991D96 /* MEDThemeAdaptor */,
+				6662623D1E0BBCC700991D96 /* MEDCircleView.swift */,
+			);
+			name = MEDKit;
+			path = Frameworks/MEDKit;
+			sourceTree = "<group>";
+		};
+		666262361E0BBC2100991D96 /* MEDThemeAdaptor */ = {
+			isa = PBXGroup;
+			children = (
+				666262371E0BBC2100991D96 /* AppTheme+MEDExtension.swift */,
+				666262381E0BBC2100991D96 /* MEDColorful.swift */,
+			);
+			path = MEDThemeAdaptor;
+			sourceTree = "<group>";
+		};
 		6688A6451DC981980078E636 /* MEDNetwork */ = {
 			isa = PBXGroup;
 			children = (
@@ -2582,15 +2603,6 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		66F260F21DE533EF0021BDBA /* MEDThemeAdaptor */ = {
-			isa = PBXGroup;
-			children = (
-				66F260F31DE533EF0021BDBA /* MEDColorful.swift */,
-				6658CCEB1DE6D0B400F09C11 /* Apptheme+MEDExtension.swift */,
-			);
-			path = MEDThemeAdaptor;
-			sourceTree = "<group>";
-		};
 		9A2D6C3C1A9C717E00591BDC /* NevoHK */ = {
 			isa = PBXGroup;
 			children = (
@@ -2677,6 +2689,7 @@
 				61879C331DC0A8AD0089F1E5 /* ImagePickerController */,
 				6688A6451DC981980078E636 /* MEDNetwork */,
 				1C3712D51DBC5BD9007DC349 /* MEDExtension */,
+				666262351E0BBBFF00991D96 /* MEDKit */,
 				665E331C1DADCD7600D0E36D /* MEDWrapper */,
 				0008EE741D93C39A005E127C /* M13Checkbox */,
 				007865E21D91006F00F33AEA /* SMSegmentView */,
@@ -3439,7 +3452,6 @@
 				665BD6BB1DBEF1D0008C2623 /* SetGoalRequest.swift in Sources */,
 				665BD6BC1DBEF1D0008C2623 /* SetNewAlarmRequest.swift in Sources */,
 				61FC93F51DE68B8A000AE93C /* MEDDataBaseRequest.swift in Sources */,
-				66F260F51DE533EF0021BDBA /* MEDColorful.swift in Sources */,
 				665BD6BD1DBEF1D0008C2623 /* SetNortificationRequest.swift in Sources */,
 				665BD6BE1DBEF1D0008C2623 /* SetProfileRequest.swift in Sources */,
 				665BD6BF1DBEF1D0008C2623 /* SetRTCRequest.swift in Sources */,
@@ -3452,6 +3464,7 @@
 				00C826BF1DA5E9E000ECECEE /* ActionSheetView.swift in Sources */,
 				00C826BC1DA5E05100ECECEE /* MainTabBarController.swift in Sources */,
 				00C826411DA5E04000ECECEE /* EventBusKeys.swift in Sources */,
+				6662623C1E0BBC2100991D96 /* MEDColorful.swift in Sources */,
 				00C826421DA5E04000ECECEE /* Double+Extension.swift in Sources */,
 				61879C361DC0ABCF0089F1E5 /* ImagePickerController.swift in Sources */,
 				00C826431DA5E04000ECECEE /* String+Extension.swift in Sources */,
@@ -3472,6 +3485,7 @@
 				00C8264D1DA5E04000ECECEE /* ProfileSetupViewController.swift in Sources */,
 				00C8264E1DA5E04000ECECEE /* CheckYourIndoxController.swift in Sources */,
 				00C8264F1DA5E04000ECECEE /* ForgotPasswordController.swift in Sources */,
+				6662623F1E0BBCC700991D96 /* MEDCircleView.swift in Sources */,
 				00C826501DA5E04000ECECEE /* InformationController.swift in Sources */,
 				610767101DDD89BC00F53AD6 /* DeleteAllNotificationAppIDRequest.swift in Sources */,
 				00C826511DA5E04000ECECEE /* LineLabel.swift in Sources */,
@@ -3545,7 +3559,6 @@
 				6688A6771DC981990078E636 /* MEDUserCreateRequest.swift in Sources */,
 				00C826881DA5E04000ECECEE /* NevoOtaView.swift in Sources */,
 				00C826891DA5E04000ECECEE /* SelectFileView.swift in Sources */,
-				6658CCED1DE6D0B400F09C11 /* Apptheme+MEDExtension.swift in Sources */,
 				6688A6791DC981990078E636 /* MEDUserNetworkManager.swift in Sources */,
 				619919101DC6E2B600C75AE7 /* SearchCityViewController.swift in Sources */,
 				00C8268A1DA5E04000ECECEE /* NevoOtaViewController.swift in Sources */,
@@ -3647,6 +3660,7 @@
 				66154B8E1DF68BC500973A9E /* NotiColorController.swift in Sources */,
 				00D4742B1D586D1600E2447E /* NevoAllKeys.swift in Sources */,
 				00D4742C1D586D1600E2447E /* CaloriesToHK.swift in Sources */,
+				6662623A1E0BBC2100991D96 /* AppTheme+MEDExtension.swift in Sources */,
 				6655C04F1E0A26C9006A8A9D /* Misc+MEDExtension.swift in Sources */,
 				00D4742D1D586D1600E2447E /* DailySteps.swift in Sources */,
 				662887521DC1E8BC00EC0983 /* MEDMRProgressOverlayView.swift in Sources */,
@@ -3791,6 +3805,7 @@
 				6695A7F51E07CFF3007396DF /* WorldClockUtil.swift in Sources */,
 				611D414A1DCAD97C003BC6E3 /* M13CheckboxFadeManager.swift in Sources */,
 				66D9AFE41DE6E330009CF3ED /* GetNotificationAppIDPacket.swift in Sources */,
+				6662623E1E0BBCC700991D96 /* MEDCircleView.swift in Sources */,
 				611D414B1DCAD97C003BC6E3 /* M13CheckboxFillManager.swift in Sources */,
 				611D414C1DCAD97C003BC6E3 /* M13CheckboxFlatManager.swift in Sources */,
 				611D414D1DCAD97C003BC6E3 /* M13CheckboxSpiralManager.swift in Sources */,
@@ -3878,7 +3893,6 @@
 				61FC93E31DE6799E000AE93C /* GetNotificationAppIDRequest.swift in Sources */,
 				611D41AC1DCAD97D003BC6E3 /* iRate.bundle in Sources */,
 				611D41AD1DCAD97D003BC6E3 /* iRate.h in Sources */,
-				6658CCEC1DE6D0B400F09C11 /* Apptheme+MEDExtension.swift in Sources */,
 				611D41AE1DCAD97D003BC6E3 /* iRate.m in Sources */,
 				611D41AF1DCAD97D003BC6E3 /* LocalNotification.swift in Sources */,
 				611D41B01DCAD97D003BC6E3 /* MBProgressHUD+MJ.h in Sources */,
@@ -4015,7 +4029,6 @@
 				611D423B1DCAD97D003BC6E3 /* LineColorCell.xib in Sources */,
 				66154BAE1DF6B7D400973A9E /* MEDNotificationColor.swift in Sources */,
 				611941201DFE8B650048BA44 /* SMSegmentView.swift in Sources */,
-				66F260F41DE533EF0021BDBA /* MEDColorful.swift in Sources */,
 				611D423C1DCAD97D003BC6E3 /* NotificationClockCell.swift in Sources */,
 				611D423D1DCAD97D003BC6E3 /* NotificationClockCell.xib in Sources */,
 				611D423E1DCAD97D003BC6E3 /* NotificationView.swift in Sources */,
@@ -4029,6 +4042,7 @@
 				611D42451DCAD97D003BC6E3 /* AddPresetViewController.xib in Sources */,
 				611D42461DCAD97D003BC6E3 /* PresetTableViewController.swift in Sources */,
 				611D42471DCAD97D003BC6E3 /* PresetTableViewController.xib in Sources */,
+				6662623B1E0BBC2100991D96 /* MEDColorful.swift in Sources */,
 				611D42481DCAD97D003BC6E3 /* AddPresetView.swift in Sources */,
 				611D42491DCAD97D003BC6E3 /* PresetTableViewCell.swift in Sources */,
 				611D424A1DCAD97D003BC6E3 /* PresetTableViewCell.xib in Sources */,
@@ -4056,6 +4070,7 @@
 				611D425A1DCAD97D003BC6E3 /* StepGoalSetingViewCell.xib in Sources */,
 				611D425B1DCAD97D003BC6E3 /* StepsHistoryViewController.swift in Sources */,
 				611D425C1DCAD97D003BC6E3 /* StepsTitleView.swift in Sources */,
+				666262391E0BBC2100991D96 /* AppTheme+MEDExtension.swift in Sources */,
 				61D1A8B01DD468A100B91BDD /* MEDUserSteps.swift in Sources */,
 				611D425D1DCAD97D003BC6E3 /* StepsTitleView.xib in Sources */,
 				611D425E1DCAD97D003BC6E3 /* TutorialOneViewController.swift in Sources */,

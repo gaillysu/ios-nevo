@@ -1,5 +1,5 @@
 //
-//  Apptheme+MEDExtension.swift
+//  AppTheme+MEDExtension.swift
 //  Nevo
 //
 //  Created by Quentin on 24/11/16.

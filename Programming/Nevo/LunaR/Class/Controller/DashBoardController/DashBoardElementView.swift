@@ -101,11 +101,6 @@ class DashBoardCalorieView: UIView {
         titleLabel.text = "CALORIES BURNED"
         valueLabel.text = "366"
         progressLabel.text = "75% OF GOAL"
-        
-        let progressCircle = NevoCircleProgressView()
-        layer.addSublayer(progressCircle)
-        progressCircle.setProgressColor(UIColor.white)
-        progressCircle.setProgress(progress)
     }
     
     class func factory() -> DashBoardCalorieView {
