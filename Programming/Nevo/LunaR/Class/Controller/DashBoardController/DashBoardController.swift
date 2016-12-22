@@ -29,6 +29,7 @@ class DashBoardController: UIViewController {
     weak var sunriseView: DashBoardSunriseView?
     weak var homeClockView: DashBoardHomeClockView?
     weak var sleepHistoryView: DashBoardChargingView?
+    weak var centerDashView: UIView?
     
     lazy var dashView: UIView = {
         
@@ -74,10 +75,82 @@ class DashBoardController: UIViewController {
         super.viewDidLayoutSubviews()
         
         refreshDialView()
+        
+        chargingView?.maskRoundCorner(positions: .topLeft, radius: 5)
+        sunriseView?.maskRoundCorner(positions: .bottomRight, radius: 5)
+        homeClockView?.maskRoundCorner(positions: .topRight, radius: 5)
+        sleepHistoryView?.maskRoundCorner(positions: .bottomLeft, radius: 5)
+        
+        setupCenterDashView()
     }
 }
 
+// MARK: - Setup views
 extension DashBoardController {
+    
+    func setupView() {
+        view.backgroundColor = UIColor.getLightBaseColor()
+        dashView.backgroundColor = UIColor.clear
+        dialView.backgroundColor = UIColor.clear
+        
+        setupDashView()
+    }
+    
+    func setupDashView() {
+        let chargingView = DashBoardChargingView.factory()
+        addToDashView(view: chargingView, position: .topLeft)
+        self.chargingView = chargingView
+        
+        let sunriseView = DashBoardSunriseView.factory()
+        addToDashView(view: sunriseView, position: .bottomRight)
+        self.sunriseView = sunriseView
+        
+        let homeClockView = DashBoardHomeClockView.factory()
+        addToDashView(view: homeClockView, position: .topRight)
+        self.homeClockView = homeClockView
+        
+        let sleepHistoryView = DashBoardChargingView.factory()
+        addToDashView(view: sleepHistoryView, position: .bottomLeft)
+        self.sleepHistoryView = sleepHistoryView
+        sleepHistoryView.imageView.image = UIImage(named: "moon")
+        sleepHistoryView.titleLabel.text = "INACTIVITY"
+        sleepHistoryView.contentLabel.text = "7h 0m"
+        
+        let centerDashView = UIView()
+        dashView.addSubview(centerDashView)
+        self.centerDashView = centerDashView
+        centerDashView.snp.makeConstraints { (v) in
+            v.top.equalToSuperview()
+            v.bottom.equalToSuperview()
+            v.leading.equalTo(chargingView.snp.trailing).offset(self.dashGap)
+            v.trailing.equalTo(homeClockView.snp.leading).offset(0 - self.dashGap)
+        }
+        
+        setupCenterDashView()
+    }
+    
+    func setupCenterDashView() {
+        for view in centerDashView!.subviews {
+            if view.isKind(of: UIScrollView.self) {
+                view.removeFromSuperview()
+            }
+        }
+        
+        let scrollView = UIScrollView(frame: centerDashView!.bounds)
+        centerDashView?.addSubview(scrollView)
+        
+        scrollView.contentSize = CGSize(width: centerDashView!.bounds.width, height: centerDashView!.bounds.height)
+        
+        let caloriseView = DashBoardCalorieView.factory()
+        scrollView.addSubview(caloriseView)
+        caloriseView.frame = centerDashView!.bounds
+        caloriseView.backgroundColor = UIColor.getGreyColor()
+    }
+}
+
+// MARK: - Refresh data
+extension DashBoardController {
+    
     func refreshDialView() {
         for view in dialView.subviews {
             if view is ClockView {
@@ -92,62 +165,40 @@ extension DashBoardController {
         dialView.addSubview(clockView)
     }
     
-    
-    func setupView() {
-        view.backgroundColor = UIColor.getLightBaseColor()
-        dashView.backgroundColor = UIColor.clear
-        dialView.backgroundColor = UIColor.clear
-        
-        setupDashView()
-    }
-    
-    func setupDashView() {
-        let chargingView = DashBoardChargingView.factory()
-        addToDashView(view: chargingView, position: .topLeft)
-        self.chargingView = chargingView
-        chargingView.imageView.image = UIImage(named: "sun")
-        chargingView.titleLabel.text = "HARVEST STATUS"
-        
-        let sunriseView = DashBoardSunriseView.factory()
-        addToDashView(view: sunriseView, position: .bottomRight)
-        self.sunriseView = sunriseView
-        
-        let homeClockView = DashBoardHomeClockView.factory()
-        addToDashView(view: homeClockView, position: .topRight)
-        self.homeClockView = homeClockView
-        homeClockView.titleLabel.text = "HOME TIME"
-        
-        let sleepHistoryView = DashBoardChargingView.factory()
-        addToDashView(view: sleepHistoryView, position: .bottomLeft)
-        self.sleepHistoryView = sleepHistoryView
-        sleepHistoryView.imageView.image = UIImage(named: "moon")
-        sleepHistoryView.titleLabel.text = "INACTIVITY"
-    }
-    
-    
     func refreshDateForDashView() {
         
         // TODO: refresh charging status view
         // TODO: refresh sleep history view
         
-        // refersh sunrise view
+        /// refersh sunrise view
         HomeClockUtil.shared.getLocation { (city) in
             self.sunriseView?.cityLabel.text = city?.name
         }
-        let sunriseAndSet = AppDelegate.getAppDelegate().getSunriseOrSunsetTime()
-        if let sunrise = sunriseAndSet.sunsetDate, let _ = sunriseAndSet.sunsetDate {
+        let sunriseAndSet = AppDelegate.getAppDelegate().getSunriseAndSunsetTime()
+        if let sunrise = sunriseAndSet.sunriseDate, let sunset = sunriseAndSet.sunsetDate {
             let now = Date()
             
-            if sunrise < now {
-                sunriseView?.imageView.image = UIImage(named: "sunrise")
-                sunriseView?.timeLabel.text = sunrise.stringFromFormat("hh:mm a")
+            if now < sunrise {
+                setSunriseView(view: sunriseView, date: sunrise, riseOrSet: "sunrise")
+            } else if now > sunrise && now < sunset {
+                setSunriseView(view: sunriseView, date: sunset, riseOrSet: "sunset")
+            } else {
+                let sunriseAndSet = AppDelegate.getAppDelegate().getSunriseAndSunsetTime(date: Date.tomorrow())
+                if let sunrise = sunriseAndSet.sunriseDate {
+                    setSunriseView(view: sunriseView, date: sunrise, riseOrSet: "sunrise")
+                } else {
+                    sunriseView?.imageView.image = UIImage(named: "sunrise")
+                    sunriseView?.titleLabel.text = "sunrise"
+                    sunriseView?.timeLabel.text = sunriseAndSet.additionString
+                }
             }
         } else {
             sunriseView?.imageView.image = UIImage(named: "sunrise")
+            sunriseView?.titleLabel.text = "sunrise"
             sunriseView?.timeLabel.text = sunriseAndSet.additionString
         }
         
-        // refresh homecity viwe
+        /// refresh homecity viwe
         if let city = HomeClockUtil.shared.getHomeCityWithSelectedFlag() {
             homeClockView?.cityLabel.text = city.name
             homeClockView?.countryLabel.text = city.country
@@ -156,11 +207,13 @@ extension DashBoardController {
             homeClockView?.timeLabel.text = hometime.stringFromFormat("hh:mm a")
         }
     }
-    
+}
+
+
+// MARK: - Private function
+extension DashBoardController {
     func addToDashView(view: UIView, position: UIRectCorner) {
         view.backgroundColor = UIColor.getGreyColor()
-        
-        let dashBoardElementView = view as! DashBoardElementViewCornerable
         
         dashView.addSubview(view)
         view.snp.makeConstraints { (v) in
@@ -171,23 +224,25 @@ extension DashBoardController {
             case UIRectCorner.topLeft:
                 v.top.equalToSuperview()
                 v.leading.equalToSuperview()
-                dashBoardElementView.maskRoundCorner(positions: .topLeft, radius: 5)
             case UIRectCorner.topRight:
                 v.top.equalToSuperview()
                 v.trailing.equalToSuperview()
-                dashBoardElementView.maskRoundCorner(positions: .topRight, radius: 5)
             case UIRectCorner.bottomLeft:
                 v.bottom.equalToSuperview()
                 v.leading.equalToSuperview()
-                dashBoardElementView.maskRoundCorner(positions: .bottomLeft, radius: 5)
             case UIRectCorner.bottomRight:
                 v.bottom.equalToSuperview()
                 v.trailing.equalToSuperview()
-                dashBoardElementView.maskRoundCorner(positions: .bottomRight, radius: 5)
             default:
                 break
             }
         }
+    }
+    
+    func setSunriseView(view: DashBoardSunriseView?, date: Date, riseOrSet: String) {
+        view?.titleLabel.text = riseOrSet
+        view?.imageView.image = UIImage(named: riseOrSet)
+        view?.timeLabel.text = date.stringFromFormat("hh:mm a")
     }
 }
 

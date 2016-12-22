@@ -777,8 +777,8 @@
 		665098951DCB26670059D5F7 /* MEDSleepDeleteRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 665098921DCB25110059D5F7 /* MEDSleepDeleteRequest.swift */; };
 		665098971DCB28160059D5F7 /* MEDStepsDeleteRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 665098961DCB28160059D5F7 /* MEDStepsDeleteRequest.swift */; };
 		665098981DCB28160059D5F7 /* MEDStepsDeleteRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 665098961DCB28160059D5F7 /* MEDStepsDeleteRequest.swift */; };
-		6655C04B1E0A22A5006A8A9D /* HomeCityProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6655C04A1E0A22A5006A8A9D /* HomeCityProtocol.swift */; };
-		6655C04C1E0A22A5006A8A9D /* HomeCityProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6655C04A1E0A22A5006A8A9D /* HomeCityProtocol.swift */; };
+		6655C04B1E0A22A5006A8A9D /* HomeCityDidSelectedProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6655C04A1E0A22A5006A8A9D /* HomeCityDidSelectedProtocol.swift */; };
+		6655C04C1E0A22A5006A8A9D /* HomeCityDidSelectedProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6655C04A1E0A22A5006A8A9D /* HomeCityDidSelectedProtocol.swift */; };
 		6655C04E1E0A26C9006A8A9D /* Misc+MEDExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6655C04D1E0A26C9006A8A9D /* Misc+MEDExtension.swift */; };
 		6655C04F1E0A26C9006A8A9D /* Misc+MEDExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6655C04D1E0A26C9006A8A9D /* Misc+MEDExtension.swift */; };
 		6655C0591E0A53DF006A8A9D /* DashBoardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6655C0571E0A53DF006A8A9D /* DashBoardController.swift */; };
@@ -1336,9 +1336,9 @@
 		665098901DCB23DC0059D5F7 /* MEDSleepUpdateRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MEDSleepUpdateRequest.swift; sourceTree = "<group>"; };
 		665098921DCB25110059D5F7 /* MEDSleepDeleteRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MEDSleepDeleteRequest.swift; sourceTree = "<group>"; };
 		665098961DCB28160059D5F7 /* MEDStepsDeleteRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MEDStepsDeleteRequest.swift; sourceTree = "<group>"; };
-		6655C04A1E0A22A5006A8A9D /* HomeCityProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeCityProtocol.swift; sourceTree = "<group>"; };
+		6655C04A1E0A22A5006A8A9D /* HomeCityDidSelectedProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeCityDidSelectedProtocol.swift; sourceTree = "<group>"; };
 		6655C04D1E0A26C9006A8A9D /* Misc+MEDExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Misc+MEDExtension.swift"; sourceTree = "<group>"; };
-		6655C0571E0A53DF006A8A9D /* DashBoardController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashBoardController.swift; sourceTree = "<group>"; };
+		6655C0571E0A53DF006A8A9D /* DashBoardController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashBoardController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		6655C0631E0A5A6A006A8A9D /* DashBoardElementView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashBoardElementView.swift; sourceTree = "<group>"; };
 		6655C0661E0A68CC006A8A9D /* DashBoardElementView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DashBoardElementView.xib; sourceTree = "<group>"; };
 		6658CCEB1DE6D0B400F09C11 /* Apptheme+MEDExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Apptheme+MEDExtension.swift"; sourceTree = "<group>"; };
@@ -2552,7 +2552,7 @@
 				662AB50E1E07D05300E2AF91 /* HomeClockUtil.swift */,
 				6695A7ED1E07CFF3007396DF /* WorldClockDidSelectedDelegate.swift */,
 				6695A7EE1E07CFF3007396DF /* WorldClockUtil.swift */,
-				6655C04A1E0A22A5006A8A9D /* HomeCityProtocol.swift */,
+				6655C04A1E0A22A5006A8A9D /* HomeCityDidSelectedProtocol.swift */,
 			);
 			path = HomeClockController;
 			sourceTree = "<group>";
@@ -3557,7 +3557,7 @@
 				00C8268E1DA5E04000ECECEE /* NotificationClockCell.swift in Sources */,
 				00C8268F1DA5E04000ECECEE /* NotificationClockCell.xib in Sources */,
 				00C826901DA5E04000ECECEE /* NotificationView.swift in Sources */,
-				6655C04C1E0A22A5006A8A9D /* HomeCityProtocol.swift in Sources */,
+				6655C04C1E0A22A5006A8A9D /* HomeCityDidSelectedProtocol.swift in Sources */,
 				00C826911DA5E04000ECECEE /* SelectedNotificationView.swift in Sources */,
 				00C826921DA5E04000ECECEE /* NotificationViewController.swift in Sources */,
 				00C826931DA5E04000ECECEE /* NotificationViewController.xib in Sources */,
@@ -3943,7 +3943,7 @@
 				611D41F51DCAD97D003BC6E3 /* AnalysisValueCell.xib in Sources */,
 				6655C04E1E0A26C9006A8A9D /* Misc+MEDExtension.swift in Sources */,
 				611D41F61DCAD97D003BC6E3 /* AnalysisController.swift in Sources */,
-				6655C04B1E0A22A5006A8A9D /* HomeCityProtocol.swift in Sources */,
+				6655C04B1E0A22A5006A8A9D /* HomeCityDidSelectedProtocol.swift in Sources */,
 				611D41F71DCAD97D003BC6E3 /* ProfileSetupViewController.swift in Sources */,
 				611D41F81DCAD97D003BC6E3 /* CheckYourIndoxController.swift in Sources */,
 				611D41F91DCAD97D003BC6E3 /* ForgotPasswordController.swift in Sources */,

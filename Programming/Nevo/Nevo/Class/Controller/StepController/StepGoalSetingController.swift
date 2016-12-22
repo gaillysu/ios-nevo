@@ -261,7 +261,6 @@ extension StepGoalSetingController {
             mClockTimerView = ClockView(frame:CGRect(x: 0, y: 0, width: dialWidth, height: dialWidth), hourImage:  UIImage(named: "clockViewHour")!, minuteImage: UIImage(named: "clockViewMinute")!, dialImage: UIImage(named: "clockView600")!)
         }
         
-        /// 为了和其它类似界面的布局一致, 约束已经被写死了
         mClockTimerView?.center.x = clockBackGroundView.frame.width / 2.0
         mClockTimerView?.center.y = mClockTimerView!.center.y - 20
         

@@ -85,13 +85,10 @@ class PageViewController: UIPageViewController,UIActionSheetDelegate {
         
         let viewController1 = getDashBoardController()
         viewController1.view.tag = 0
-        viewController1.view.backgroundColor = UIColor.white
         let viewController2 = StepsHistoryViewController()
         viewController2.view.tag = 1
-        viewController2.view.backgroundColor = UIColor.white
         let viewController3 = SleepHistoricalViewController()
         viewController3.view.tag = 2
-        viewController3.view.backgroundColor = UIColor.white
         
         pagingControllers = [viewController1, viewController2,viewController3]
         

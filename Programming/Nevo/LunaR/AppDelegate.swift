@@ -508,7 +508,7 @@ extension AppDelegate {
         }
     }
     
-    func getSunriseOrSunsetTime() -> (sunriseDate: Date?, sunsetDate: Date?, additionString: String) {
+    func getSunriseAndSunsetTime() -> (sunriseDate: Date?, sunsetDate: Date?, additionString: String) {
         if let solar = Solar(latitude: latitude, longitude: longitude) {
             if let sunrise = solar.sunrise, let sunset = solar.sunset {
                 return (sunrise, sunset, "")
@@ -525,6 +525,27 @@ extension AppDelegate {
             }
         } else {
             let solar = Solar(latitude: 22.2782551, longitude: 114.1670679)
+            return (solar?.sunrise, solar?.sunset, "")
+        }
+    }
+    
+    func getSunriseAndSunsetTime(date: Date) -> (sunriseDate: Date?, sunsetDate: Date?, additionString: String) {
+        if let solar = Solar(forDate: date, withTimeZone: TimeZone.current, latitude: latitude, longitude: longitude) {
+            if let sunrise = solar.sunrise, let sunset = solar.sunset {
+                return (sunrise, sunset, "")
+            } else {
+                // these areas are in polar day or night!
+                let isNorthernHemisphereHere = latitude > 0
+                let isNorthernHemisphereSummer = (3..<10).contains(Date().month)
+                
+                if isNorthernHemisphereHere == isNorthernHemisphereSummer {
+                    return (nil, nil, "Polar daylight")
+                } else {
+                    return (nil, nil, "Polar night")
+                }
+            }
+        } else {
+            let solar = Solar(forDate: date, withTimeZone: TimeZone.current, latitude: 22.2782551, longitude: 114.1670679)
             return (solar?.sunrise, solar?.sunset, "")
         }
     }
