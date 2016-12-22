@@ -9,6 +9,7 @@
 import UIKit
 import SnapKit
 import Timepiece
+import SwiftyTimer
 
 class DashBoardController: UIViewController {
     let dashMargin: CGFloat = 20
@@ -29,21 +30,6 @@ class DashBoardController: UIViewController {
     weak var homeClockView: DashBoardHomeClockView?
     weak var sleepHistoryView: DashBoardChargingView?
     
-    lazy var dialView: UIView = {
-        
-        let dialView = UIView()
-        self.view.addSubview(dialView)
-        
-        dialView.snp.makeConstraints { (v) in
-            v.leading.equalToSuperview()
-            v.trailing.equalToSuperview()
-            v.top.equalToSuperview().offset(60)
-            v.bottom.equalTo(self.dashView).offset(-60)
-        }
-        
-        return dialView
-    }()
-    
     lazy var dashView: UIView = {
         
         let dashView = UIView()
@@ -59,10 +45,29 @@ class DashBoardController: UIViewController {
         return dashView
     }()
     
+    lazy var dialView: UIView = {
+        
+        let dialView = UIView()
+        self.view.addSubview(dialView)
+        
+        dialView.snp.makeConstraints { (v) in
+            v.leading.equalToSuperview()
+            v.trailing.equalToSuperview()
+            v.top.equalToSuperview().offset(50)
+            v.bottom.equalTo(self.dashView.snp.top).offset(-50)
+        }
+        
+        return dialView
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupView()
+        
+        Timer.every(5) {
+            self.refreshDateForDashView()
+        }
     }
     
     override func viewDidLayoutSubviews() {
@@ -82,6 +87,7 @@ extension DashBoardController {
         
         let width = dialView.bounds.height
         let clockView = ClockView(frame:CGRect(x: 0, y: 0, width: width, height: width), hourImage:  UIImage(named: "wacth_hour")!, minuteImage: UIImage(named: "wacth_mint")!, dialImage: UIImage(named: "wacth_dial")!)
+        clockView.center.x = dialView.center.x
         
         dialView.addSubview(clockView)
     }
@@ -89,6 +95,8 @@ extension DashBoardController {
     
     func setupView() {
         view.backgroundColor = UIColor.getLightBaseColor()
+        dashView.backgroundColor = UIColor.clear
+        dialView.backgroundColor = UIColor.clear
         
         setupDashView()
     }
@@ -101,16 +109,16 @@ extension DashBoardController {
         chargingView.titleLabel.text = "HARVEST STATUS"
         
         let sunriseView = DashBoardSunriseView.factory()
-        addToDashView(view: sunriseView, position: .topRight)
+        addToDashView(view: sunriseView, position: .bottomRight)
         self.sunriseView = sunriseView
         
         let homeClockView = DashBoardHomeClockView.factory()
-        addToDashView(view: homeClockView, position: .bottomLeft)
+        addToDashView(view: homeClockView, position: .topRight)
         self.homeClockView = homeClockView
         homeClockView.titleLabel.text = "HOME TIME"
         
         let sleepHistoryView = DashBoardChargingView.factory()
-        addToDashView(view: sleepHistoryView, position: .bottomRight)
+        addToDashView(view: sleepHistoryView, position: .bottomLeft)
         self.sleepHistoryView = sleepHistoryView
         sleepHistoryView.imageView.image = UIImage(named: "moon")
         sleepHistoryView.titleLabel.text = "INACTIVITY"
@@ -161,21 +169,21 @@ extension DashBoardController {
             
             switch position {
             case UIRectCorner.topLeft:
+                v.top.equalToSuperview()
+                v.leading.equalToSuperview()
                 dashBoardElementView.maskRoundCorner(positions: .topLeft, radius: 5)
-                v.top.equalToSuperview()
-                v.leading.equalToSuperview()
             case UIRectCorner.topRight:
-                dashBoardElementView.maskRoundCorner(positions: .topRight, radius: 5)
                 v.top.equalToSuperview()
                 v.trailing.equalToSuperview()
+                dashBoardElementView.maskRoundCorner(positions: .topRight, radius: 5)
             case UIRectCorner.bottomLeft:
-                dashBoardElementView.maskRoundCorner(positions: .bottomLeft, radius: 5)
                 v.bottom.equalToSuperview()
                 v.leading.equalToSuperview()
+                dashBoardElementView.maskRoundCorner(positions: .bottomLeft, radius: 5)
             case UIRectCorner.bottomRight:
-                dashBoardElementView.maskRoundCorner(positions: .bottomRight, radius: 5)
                 v.bottom.equalToSuperview()
                 v.trailing.equalToSuperview()
+                dashBoardElementView.maskRoundCorner(positions: .bottomRight, radius: 5)
             default:
                 break
             }

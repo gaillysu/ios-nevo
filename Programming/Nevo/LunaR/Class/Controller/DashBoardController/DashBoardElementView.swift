@@ -21,7 +21,7 @@ extension DashBoardElementViewCornerable where Self: UIView {
         shapelayer.frame = bounds
         shapelayer.path = maskPath.cgPath
         
-        self.layer.mask = shapelayer
+        layer.mask = shapelayer
     }
 }
 
