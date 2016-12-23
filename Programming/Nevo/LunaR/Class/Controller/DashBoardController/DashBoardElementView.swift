@@ -35,8 +35,8 @@ class DashBoardChargingView: UIView, DashBoardElementViewCornerable {
         super.awakeFromNib()
         
         imageView.image = UIImage(named: "sun")
-        titleLabel.text = "HARVEST STATUS"
-        contentLabel.text = "Charging"
+        titleLabel.text = NSLocalizedString("harvest_status", comment: "")
+        contentLabel.text = NSLocalizedString("charging", comment: "")
     }
     
     class func factory() -> DashBoardChargingView {
@@ -56,7 +56,7 @@ class DashBoardSunriseView: UIView, DashBoardElementViewCornerable {
         imageView.image = UIImage(named: "sunrise")
         cityLabel.text = "Shenzhen"
         timeLabel.text = "06:00 AM"
-        titleLabel.text = "Sunrise"
+        titleLabel.text = NSLocalizedString("sunrise", comment: "")
     }
     
     class func factory() -> DashBoardSunriseView {
@@ -73,7 +73,7 @@ class DashBoardHomeClockView: UIView, DashBoardElementViewCornerable {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        titleLabel.text = "HOME TIME"
+        titleLabel.text = NSLocalizedString("hometime", comment: "")
         cityLabel.text = "Shenzhen"
         countryLabel.text = "China"
         timeLabel.text = Date().stringFromFormat("hh:mm a")
@@ -98,9 +98,9 @@ class DashBoardCalorieView: UIView {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        titleLabel.text = "CALORIES BURNED"
+        titleLabel.text = NSLocalizedString("calories_burned", comment: "")
         valueLabel.text = "366"
-        progressLabel.text = "75% OF GOAL"
+        progressLabel.text = "75% " + NSLocalizedString("of_goa", comment: "")
     }
     
     class func factory() -> DashBoardCalorieView {

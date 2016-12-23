@@ -106,7 +106,7 @@ extension DashBoardController {
         addToDashView(view: sleepHistoryView, position: .bottomLeft)
         self.sleepHistoryView = sleepHistoryView
         sleepHistoryView.imageView.image = UIImage(named: "moon")
-        sleepHistoryView.titleLabel.text = "INACTIVITY"
+        sleepHistoryView.titleLabel.text = NSLocalizedString("inactivity", comment: "")
         sleepHistoryView.contentLabel.text = "7h 0m"
         
         let centerDashView = UIView()
@@ -156,7 +156,7 @@ extension DashBoardController {
         // TODO: refresh charging status view
         // TODO: refresh sleep history view
         
-        /// refersh sunrise view
+        /// refersh sunrise
         HomeClockUtil.shared.getLocation { (city) in
             self.sunriseView?.cityLabel.text = city?.name
         }
@@ -174,17 +174,17 @@ extension DashBoardController {
                     setSunriseView(view: sunriseView, date: sunrise, riseOrSet: "sunrise")
                 } else {
                     sunriseView?.imageView.image = UIImage(named: "sunrise")
-                    sunriseView?.titleLabel.text = "sunrise"
+                    sunriseView?.titleLabel.text = NSLocalizedString("sunrise", comment: "")
                     sunriseView?.timeLabel.text = sunriseAndSet.additionString
                 }
             }
         } else {
             sunriseView?.imageView.image = UIImage(named: "sunrise")
-            sunriseView?.titleLabel.text = "sunrise"
+            sunriseView?.titleLabel.text = NSLocalizedString("sunrise", comment: "")
             sunriseView?.timeLabel.text = sunriseAndSet.additionString
         }
         
-        /// refresh homecity viwe
+        /// refresh homecity
         if let city = HomeClockUtil.shared.getHomeCityWithSelectedFlag() {
             homeClockView?.cityLabel.text = city.name
             homeClockView?.countryLabel.text = city.country
@@ -224,7 +224,7 @@ extension DashBoardController {
     }
     
     func setSunriseView(view: DashBoardSunriseView?, date: Date, riseOrSet: String) {
-        view?.titleLabel.text = riseOrSet
+        view?.titleLabel.text = NSLocalizedString(riseOrSet, comment: "")
         view?.imageView.image = UIImage(named: riseOrSet)
         view?.timeLabel.text = date.stringFromFormat("hh:mm a")
     }

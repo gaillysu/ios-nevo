@@ -229,3 +229,14 @@
 "imperial"="Imperial";
 
 "local_time" = "local time";
+
+// Dashboard of LunaR
+"harvest_status" = "HARVEST STATUS";
+"charging" = "Charging";
+"sunrise" = "Sunrise";
+"sunset" = "Sunset";
+"hometime" = "HOME TIME";
+"calories_burned" = "CALORIES BURNED";
+"of_goal" = "OF GOAL";
+"inactivity" = "INACTIVITY";
+"activity" = "ACTIVITY";
