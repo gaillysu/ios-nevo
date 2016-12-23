@@ -304,9 +304,9 @@ extension AppDelegate {
         /// Alter the entry of app here when testing a single module.
         /// 🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧
         
-//        AppDelegate.getAppDelegate().window? = UIWindow(frame: UIScreen.main.bounds)
-//        AppDelegate.getAppDelegate().window?.rootViewController = DashBoardController()
-//        AppDelegate.getAppDelegate().window?.makeKeyAndVisible()
+        AppDelegate.getAppDelegate().window? = UIWindow(frame: UIScreen.main.bounds)
+        AppDelegate.getAppDelegate().window?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
+        AppDelegate.getAppDelegate().window?.makeKeyAndVisible()
         
         /// 🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧
     }

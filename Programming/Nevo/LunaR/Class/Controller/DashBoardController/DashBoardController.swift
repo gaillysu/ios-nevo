@@ -12,8 +12,8 @@ import Timepiece
 import SwiftyTimer
 
 class DashBoardController: UIViewController {
-    let dashMargin: CGFloat = 20
-    let dashGap: CGFloat = 10
+    let dashMargin: CGFloat = 10
+    let dashGap: CGFloat = 7
     var dashViewWidth: CGFloat {
         return UIScreen.main.bounds.width - 2 * self.dashMargin
     }
@@ -37,7 +37,7 @@ class DashBoardController: UIViewController {
         self.view.addSubview(dashView)
         
         dashView.snp.makeConstraints { (v) in
-            v.leading.equalToSuperview().offset(20)
+            v.leading.equalToSuperview().offset(10)
             v.bottom.equalToSuperview().offset(-30)
             v.width.equalTo(self.dashViewWidth)
             v.height.equalTo(self.dashViewHeight)
@@ -54,8 +54,8 @@ class DashBoardController: UIViewController {
         dialView.snp.makeConstraints { (v) in
             v.leading.equalToSuperview()
             v.trailing.equalToSuperview()
-            v.top.equalToSuperview().offset(50)
-            v.bottom.equalTo(self.dashView.snp.top).offset(-50)
+            v.top.equalToSuperview().offset(40)
+            v.bottom.equalTo(self.dashView.snp.top).offset(-40)
         }
         
         return dialView
@@ -75,13 +75,6 @@ class DashBoardController: UIViewController {
         super.viewDidLayoutSubviews()
         
         refreshDialView()
-        
-        chargingView?.maskRoundCorner(positions: .topLeft, radius: 5)
-        sunriseView?.maskRoundCorner(positions: .bottomRight, radius: 5)
-        homeClockView?.maskRoundCorner(positions: .topRight, radius: 5)
-        sleepHistoryView?.maskRoundCorner(positions: .bottomLeft, radius: 5)
-        
-        setupCenterDashView()
     }
 }
 
@@ -119,36 +112,22 @@ extension DashBoardController {
         let centerDashView = UIView()
         dashView.addSubview(centerDashView)
         self.centerDashView = centerDashView
-        centerDashView.snp.makeConstraints { (v) in
-            v.top.equalToSuperview()
-            v.bottom.equalToSuperview()
-            v.leading.equalTo(chargingView.snp.trailing).offset(self.dashGap)
-            v.trailing.equalTo(homeClockView.snp.leading).offset(0 - self.dashGap)
-        }
+        centerDashView.frame = CGRect(x: dashElementWidth + dashGap, y: 0, width: 2 * dashElementWidth, height: dashViewHeight)
         
-        setupCenterDashView()
-    }
-    
-    func setupCenterDashView() {
-        for view in centerDashView!.subviews {
-            if view.isKind(of: UIScrollView.self) {
-                view.removeFromSuperview()
-            }
-        }
         
-        let scrollView = UIScrollView(frame: centerDashView!.bounds)
-        centerDashView?.addSubview(scrollView)
+        let scrollView = UIScrollView(frame: centerDashView.bounds)
+        centerDashView.addSubview(scrollView)
         
-        scrollView.contentSize = CGSize(width: centerDashView!.bounds.width, height: centerDashView!.bounds.height)
+        scrollView.contentSize = CGSize(width: centerDashView.bounds.width, height: centerDashView.bounds.height)
         
         let caloriseView = DashBoardCalorieView.factory()
         scrollView.addSubview(caloriseView)
-        caloriseView.frame = centerDashView!.bounds
+        caloriseView.frame = centerDashView.bounds
         caloriseView.backgroundColor = UIColor.getGreyColor()
         
         let circleView = MEDCircleView()
         caloriseView.insertSubview(circleView, at: 0)
-        circleView.backgroundColor = UIColor.getGreyColor()
+        circleView.viewColor = UIColor.getGreyColor()
         circleView.frame = CGRect(x: 0, y: 0, width: caloriseView.frame.width - 20, height: caloriseView.frame.width - 20)
         circleView.center = caloriseView.center
         circleView.value = 0.7
@@ -223,27 +202,25 @@ extension DashBoardController {
         view.backgroundColor = UIColor.getGreyColor()
         
         dashView.addSubview(view)
-        view.snp.makeConstraints { (v) in
-            v.height.equalTo(dashElementWidth)
-            v.width.equalTo(dashElementWidth)
+        
+        switch position {
+        case UIRectCorner.topLeft:
+            view.frame = CGRect(x: 0, y: 0, width: dashElementWidth, height: dashElementWidth)
             
-            switch position {
-            case UIRectCorner.topLeft:
-                v.top.equalToSuperview()
-                v.leading.equalToSuperview()
-            case UIRectCorner.topRight:
-                v.top.equalToSuperview()
-                v.trailing.equalToSuperview()
-            case UIRectCorner.bottomLeft:
-                v.bottom.equalToSuperview()
-                v.leading.equalToSuperview()
-            case UIRectCorner.bottomRight:
-                v.bottom.equalToSuperview()
-                v.trailing.equalToSuperview()
-            default:
-                break
-            }
+        case UIRectCorner.topRight:
+            view.frame = CGRect(x: dashViewWidth - dashElementWidth, y: 0, width: dashElementWidth, height: dashElementWidth)
+            
+        case UIRectCorner.bottomLeft:
+            view.frame = CGRect(x: 0, y: dashViewHeight - dashElementWidth, width: dashElementWidth, height: dashElementWidth)
+            
+        case UIRectCorner.bottomRight:
+            view.frame = CGRect(x: dashViewWidth - dashElementWidth, y: dashViewHeight - dashElementWidth, width: dashElementWidth, height: dashElementWidth)
+            
+        default:
+            break
         }
+        
+        (view as! DashBoardElementViewCornerable).maskRoundCorner(positions: position, radius: 5)
     }
     
     func setSunriseView(view: DashBoardSunriseView?, date: Date, riseOrSet: String) {
