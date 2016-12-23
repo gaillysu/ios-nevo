@@ -76,12 +76,7 @@ class StepGoalSetingController: PublicClassController,ClockRefreshDelegate {
         layout.itemSize = CGSize(width: collectionView.frame.size.width/2.0, height: collectionView.frame.size.height/2.0 - 10)
         
         bulidClockViewandProgressBar()
-        if !AppTheme.isTargetLunaR_OR_Nevo(){
-            collectionView.backgroundColor = UIColor.getGreyColor()
-            self.view.backgroundColor = UIColor.getGreyColor()
-        }else{
-            collectionView?.backgroundColor = UIColor.white
-        }
+        collectionView?.backgroundColor = UIColor.white
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -254,12 +249,7 @@ extension StepGoalSetingController {
         
         let dialWidth:CGFloat = self.clockBackGroundView.bounds.height
         
-        if !AppTheme.isTargetLunaR_OR_Nevo(){
-            clockBackGroundView.backgroundColor = UIColor.getGreyColor()
-            mClockTimerView = ClockView(frame:CGRect(x: 0, y: 0, width: dialWidth, height: dialWidth), hourImage:  UIImage(named: "wacth_hour")!, minuteImage: UIImage(named: "wacth_mint")!, dialImage: UIImage(named: "wacth_dial")!)
-        }else{
-            mClockTimerView = ClockView(frame:CGRect(x: 0, y: 0, width: dialWidth, height: dialWidth), hourImage:  UIImage(named: "clockViewHour")!, minuteImage: UIImage(named: "clockViewMinute")!, dialImage: UIImage(named: "clockView600")!)
-        }
+        mClockTimerView = ClockView(frame:CGRect(x: 0, y: 0, width: dialWidth, height: dialWidth), hourImage:  UIImage(named: "clockViewHour")!, minuteImage: UIImage(named: "clockViewMinute")!, dialImage: UIImage(named: "clockView600")!)
         
         mClockTimerView?.center.x = clockBackGroundView.frame.width / 2.0
         mClockTimerView?.center.y = mClockTimerView!.center.y - 20
@@ -297,11 +287,6 @@ extension StepGoalSetingController:UICollectionViewDelegate,UICollectionViewData
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell:StepGoalSetingViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "StepGoalSetingIdentifier", for: indexPath) as! StepGoalSetingViewCell
-        if !AppTheme.isTargetLunaR_OR_Nevo() {
-            cell.backgroundColor = UIColor.getGreyColor()
-            cell.titleLabel.textColor = UIColor.white
-            cell.valueLabel.textColor = UIColor.getBaseColor()
-        }
         let titleString:String = contentTitleArray[(indexPath as NSIndexPath).row]
         cell.titleLabel.text = titleString.capitalized(with: Locale.current)
         switch indexPath.row {

@@ -99,9 +99,9 @@ class StepsHistoryViewController: PublicClassController,ChartViewDelegate {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         if !AppTheme.isTargetLunaR_OR_Nevo(){
-            self.view.backgroundColor = UIColor.getGreyColor()
-            stepsHistory.backgroundColor = UIColor.getGreyColor()
-            chartView.backgroundColor = UIColor.getGreyColor()
+            self.view.backgroundColor = UIColor.getLightBaseColor()
+            stepsHistory.backgroundColor = UIColor.getLightBaseColor()
+            chartView.backgroundColor = UIColor.getLightBaseColor()
         }
         
         let layout:UICollectionViewFlowLayout = stepsHistory.collectionViewLayout as! UICollectionViewFlowLayout
@@ -298,7 +298,7 @@ extension StepsHistoryViewController:UICollectionViewDelegate,UICollectionViewDa
         let titleString:String = contentTitleArray[(indexPath as NSIndexPath).row]
         cell.titleLabel.text = titleString.capitalized(with: Locale.current)
         if !AppTheme.isTargetLunaR_OR_Nevo(){
-            cell.backgroundColor = UIColor.getGreyColor()
+            cell.backgroundColor = UIColor.getLightBaseColor()
             cell.valueLabel.textColor = UIColor.getBaseColor()
             cell.titleLabel.textColor = UIColor.white
         }

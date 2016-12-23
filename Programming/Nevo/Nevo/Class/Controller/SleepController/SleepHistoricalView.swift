@@ -29,9 +29,9 @@ class SleepHistoricalView: UIView, ChartViewDelegate{
             mDelegate = delegate
             // MARK: - chartView?.marker
             if !AppTheme.isTargetLunaR_OR_Nevo() {
-                chartView?.backgroundColor = UIColor.getGreyColor()
-                self.backgroundColor = UIColor.getGreyColor()
-                detailCollectionView.backgroundColor = UIColor.getGreyColor()
+                chartView?.backgroundColor = UIColor.getLightBaseColor()
+                self.backgroundColor = UIColor.getLightBaseColor()
+                detailCollectionView.backgroundColor = UIColor.getLightBaseColor()
             }else{
                 chartView?.backgroundColor = UIColor.white
             }

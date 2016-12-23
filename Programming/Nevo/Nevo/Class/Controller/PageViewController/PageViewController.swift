@@ -55,7 +55,6 @@ class PageViewController: UIPageViewController,UIActionSheetDelegate {
         //self.navigationItem.leftBarButtonItems = [leftSpacer,leftItem]
         
         if !AppTheme.isTargetLunaR_OR_Nevo(){
-            self.view.backgroundColor = UIColor.getGreyColor()
             leftItem.tintColor = UIColor.getBaseColor()
             rightItem.tintColor = UIColor.getBaseColor()
         }else{

@@ -169,7 +169,7 @@ extension SleepHistoricalViewController:UICollectionViewDelegate,UICollectionVie
         cell.valueLabel.text = "\(contentTArray[indexPath.row])"
         
         if !AppTheme.isTargetLunaR_OR_Nevo() {
-            cell.backgroundColor = UIColor.getGreyColor()
+            cell.backgroundColor = UIColor.getLightBaseColor()
             cell.valueLabel.textColor = UIColor.getBaseColor()
             cell.titleLabel.textColor = UIColor.white
         }else{

@@ -80,7 +80,7 @@ class AnalysisStepsChartView: LineChartView {
         lineChartDataSet.valueFont = UIFont.systemFont(ofSize: 9.0)
         var gradientColors:[CGColor] = [AppTheme.NEVO_SOLAR_GRAY().cgColor,AppTheme.NEVO_SOLAR_YELLOW().cgColor];
         if !AppTheme.isTargetLunaR_OR_Nevo() {
-            gradientColors = [UIColor.getBaseColor().cgColor,UIColor.getGreyColor().cgColor];
+            gradientColors = [UIColor.getBaseColor().cgColor,UIColor.getLightBaseColor().cgColor];
         }
         
         let gradient:CGGradient = CGGradient(colorsSpace: nil, colors: gradientColors as CFArray, locations: nil)!

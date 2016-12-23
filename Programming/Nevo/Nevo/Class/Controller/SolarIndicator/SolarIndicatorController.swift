@@ -67,9 +67,9 @@ class SolarIndicatorController: PublicClassController {
         syncTimer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(pvadcAction(_:)), userInfo: nil, repeats: true)
         
         if !AppTheme.isTargetLunaR_OR_Nevo() {
-            textCollection.backgroundColor = UIColor.getGreyColor()
-            pieChartView.backgroundColor = UIColor.getGreyColor()
-            self.view.backgroundColor = UIColor.getGreyColor()
+            textCollection.backgroundColor = UIColor.getLightBaseColor()
+            pieChartView.backgroundColor = UIColor.getLightBaseColor()
+            self.view.backgroundColor = UIColor.getLightBaseColor()
             titleLabel.textColor = UIColor.white
         }else{
             textCollection.backgroundColor = UIColor.white
@@ -172,7 +172,7 @@ extension SolarIndicatorController:UICollectionViewDelegate,UICollectionViewData
         if !AppTheme.isTargetLunaR_OR_Nevo() {
             (cell as! SolarInforViewCell).valueLabel.textColor = UIColor.getBaseColor()
             (cell as! SolarInforViewCell).titleLabel.textColor = UIColor.white
-            cell.backgroundColor = UIColor.getGreyColor()
+            cell.backgroundColor = UIColor.getLightBaseColor()
         }
         return cell
     }

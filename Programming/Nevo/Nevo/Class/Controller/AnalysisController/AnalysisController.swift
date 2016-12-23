@@ -68,8 +68,8 @@ class AnalysisController: PublicClassController {
         }
         
         if !AppTheme.isTargetLunaR_OR_Nevo() {
-            contentCollectionView.backgroundColor = UIColor.getGreyColor()
-            chartsCollectionView.backgroundColor = UIColor.getGreyColor()
+            contentCollectionView.backgroundColor = UIColor.getLightBaseColor()
+            chartsCollectionView.backgroundColor = UIColor.getLightBaseColor()
             segmented.tintColor = UIColor.getBaseColor()
             segmentDeviderView.backgroundColor = UIColor.black
             
