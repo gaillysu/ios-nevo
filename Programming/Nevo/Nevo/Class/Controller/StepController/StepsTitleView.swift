@@ -23,8 +23,6 @@ class StepsTitleView: UIView {
         let view:UIView = nibView[0] as! UIView
         view.frame = frame
         let stepsView:StepsTitleView = nibView[0] as! StepsTitleView
-//        stepsView.calendarButton.tintColor = AppTheme.NEVO_SOLAR_YELLOW()
-//        stepsView.calendarButton.imageEdgeInsets = UIEdgeInsetsMake(10, 10, 10, stepsView.calendarButton.imageEdgeInsets.right+10)
         return stepsView
     }
 
@@ -64,13 +62,4 @@ class StepsTitleView: UIView {
             nextButton.setTitleColor(UIColor.getBaseColor(), for: UIControlState.selected)
         }
     }
-
-    /*
-    // Only override drawRect: if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func drawRect(rect: CGRect) {
-        // Drawing code
-    }
-    */
-
 }

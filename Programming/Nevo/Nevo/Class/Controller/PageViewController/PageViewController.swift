@@ -41,25 +41,19 @@ class PageViewController: UIPageViewController,UIActionSheetDelegate {
         
         //set_goal
         let rightItem:UIBarButtonItem = UIBarButtonItem(title: NSLocalizedString("set_goal", comment: ""), style: UIBarButtonItemStyle.plain, target: self, action: #selector(rightBarButtonAction(_:)))
-        rightItem.tintColor = AppTheme.NEVO_SOLAR_YELLOW()
         
         let rightSpacer:UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.fixedSpace, target: nil, action: nil)
         rightSpacer.width = 0;
         self.navigationItem.rightBarButtonItems = [rightSpacer,rightItem]
         
         let leftItem:UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "new_radio"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(leftBarButtonAction(_:)))
-        leftItem.tintColor = AppTheme.NEVO_SOLAR_YELLOW()
         
         let leftSpacer:UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.fixedSpace, target: nil, action: nil)
         leftSpacer.width = -10;
-        //self.navigationItem.leftBarButtonItems = [leftSpacer,leftItem]
         
-        if !AppTheme.isTargetLunaR_OR_Nevo(){
-            leftItem.tintColor = UIColor.getBaseColor()
-            rightItem.tintColor = UIColor.getBaseColor()
-        }else{
-            self.view.backgroundColor = UIColor.white
-        }
+        leftItem.viewDefaultColorful()
+        rightItem.viewDefaultColorful()
+        viewDefaultColorful()
         
         // MARK: - SET WATCH_ID NOTIFICATION
         _ = SwiftEventBus.onMainThread(self, name: EVENT_BUS_WATCHID_DIDCHANGE_KEY) { (notification) in

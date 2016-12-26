@@ -54,8 +54,8 @@ class DashBoardController: UIViewController {
         dialView.snp.makeConstraints { (v) in
             v.leading.equalToSuperview()
             v.trailing.equalToSuperview()
-            v.top.equalToSuperview().offset(40)
-            v.bottom.equalTo(self.dashView.snp.top).offset(-40)
+            v.top.equalToSuperview().offset(30)
+            v.bottom.equalTo(self.dashView.snp.top).offset(-30)
         }
         
         return dialView

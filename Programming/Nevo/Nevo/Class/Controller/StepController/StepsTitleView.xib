@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -23,7 +23,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" tag="1231" contentMode="scaleToFill" horizontalHuggingPriority="249" horizontalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R3z-vm-dTT" customClass="StepsCalButton" customModule="LunaR" customModuleProvider="target">
-                    <rect key="frame" x="39" y="0.0" width="84" height="30"/>
+                    <rect key="frame" x="35" y="0.0" width="88" height="30"/>
                     <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="18"/>
                     <color key="tintColor" red="0.62745098040000002" green="0.51764705879999995" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <inset key="titleEdgeInsets" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -48,7 +48,7 @@
                 <constraint firstItem="rQA-Kn-8ni" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Jy1-z9-h1s"/>
                 <constraint firstItem="rQA-Kn-8ni" firstAttribute="leading" secondItem="R3z-vm-dTT" secondAttribute="trailing" constant="8" id="Y18-JT-O6B"/>
                 <constraint firstAttribute="bottom" secondItem="rQA-Kn-8ni" secondAttribute="bottom" id="dWq-LG-GVw"/>
-                <constraint firstItem="R3z-vm-dTT" firstAttribute="leading" secondItem="3ZM-uU-yBR" secondAttribute="trailing" constant="9" id="dcu-bG-9PZ"/>
+                <constraint firstItem="R3z-vm-dTT" firstAttribute="leading" secondItem="3ZM-uU-yBR" secondAttribute="trailing" constant="5" id="dcu-bG-9PZ"/>
                 <constraint firstItem="R3z-vm-dTT" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="en1-j9-jI2"/>
                 <constraint firstAttribute="bottom" secondItem="R3z-vm-dTT" secondAttribute="bottom" id="i6w-k1-qtP"/>
                 <constraint firstItem="3ZM-uU-yBR" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="iyS-eb-Itd"/>

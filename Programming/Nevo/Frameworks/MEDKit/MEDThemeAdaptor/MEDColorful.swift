@@ -33,6 +33,8 @@ extension MEDColorfulLooking where Self: UIViewController {
     public func viewDefaultColorful() {
         if !AppTheme.isTargetLunaR_OR_Nevo() {
             view.backgroundColor = UIColor.getLightBaseColor()
+        } else {
+            view.backgroundColor = UIColor.white
         }
     }
 }
