@@ -95,13 +95,7 @@ extension AddWorldClockViewController {
         }
     }
     
-    func dismissController(){
-        if let _ = HomeClockUtil.shared.getHomeCityWithSelectedFlag() {
-            
-        } else if let city = currentCity {
-            didChooseCity(city)
-        }
-        
+    func dismissController() {
         self.dismiss(animated: true, completion: nil)
     }
     
