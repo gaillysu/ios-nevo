@@ -10,7 +10,7 @@ import UIKit
 import Charts
 import SwiftEventBus
 
-class SleepHistoricalViewController: PublicClassController,ChartViewDelegate,SelectedChartViewDelegate {
+class SleepHistoricalViewController: PublicClassController,ChartViewDelegate {
 
     @IBOutlet weak var queryView: SleepHistoricalView!
     @IBOutlet weak var titleLabel: UILabel!
@@ -82,7 +82,7 @@ class SleepHistoricalViewController: PublicClassController,ChartViewDelegate,Sel
     }
     
     func AnalysisSleepData(_ array:[Any]) {
-        queryView.bulidQueryView(self,modelArray: array)
+        queryView.bulidQueryView(modelArray: array)
         
         if queryView.chartView!.getYVals().count > 0 {
             var sleepTime:Double = 0
@@ -133,22 +133,6 @@ class SleepHistoricalViewController: PublicClassController,ChartViewDelegate,Sel
             contentTArray.replaceSubrange(Range(3..<4), with: [AppTheme.timerFormatValue(value: sleepValue)])
             self.queryView.detailCollectionView.reloadData()
         }
-    }
-
-    
-    // MARK: - SelectedChartViewDelegate
-    func didSleepSelectedhighlightValue(_ xIndex:Int,dataSetIndex: Int, dataSleep:Sleep) {
-        contentTArray.removeAll()
-        let startTimer:Date = Date(timeIntervalSince1970: dataSleep.getStartTimer())
-        let endTimer:Date = Date(timeIntervalSince1970: dataSleep.getEndTimer())
-        let startString:String = startTimer.stringFromFormat("hh:mm a")
-        let endString:String = endTimer.stringFromFormat("hh:mm a")
-        
-        contentTArray.insert("\(startString)", at: 0)
-        contentTArray.insert("\(endString)", at: 1)
-        contentTArray.insert(String(format: "%100"), at: 2)
-        contentTArray.insert(String(format: "%dh%dm", Int(dataSleep.getWeakSleep()),Int(((dataSleep.getWeakSleep())*Double(60)).truncatingRemainder(dividingBy: Double(60)))), at: 3)
-        queryView.detailCollectionView.reloadData()
     }
 
     fileprivate func calculateMinutes(_ time:Double) -> (hours:Int,minutes:Int){

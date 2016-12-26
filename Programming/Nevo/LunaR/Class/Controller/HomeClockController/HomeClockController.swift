@@ -46,6 +46,8 @@ class HomeClockController: PublicClassController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        AppDelegate.getAppDelegate().startConnect(false)
+        
         setUpView()
     }
     
