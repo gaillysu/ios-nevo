@@ -47,8 +47,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
     fileprivate var isSync:Bool = true; // syc state
     fileprivate var getWacthNameTimer:Timer?
     
-    fileprivate var longitude:Double = 0
-    fileprivate var latitude:Double = 0
+    var longitude:Double = 0
+    var latitude:Double = 0
     
     var isFirsttimeLaunch: Bool {
         get {

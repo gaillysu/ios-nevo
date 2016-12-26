@@ -51,10 +51,10 @@
                     <rect key="frame" x="0.0" y="356.5" width="375" height="280.5"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UOq-yi-LCD">
-                            <rect key="frame" x="0.0" y="90.5" width="375" height="100"/>
+                            <rect key="frame" x="0.0" y="101" width="375" height="79.5"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Shenzhen China" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gKJ-bo-DMU">
-                                    <rect key="frame" x="0.0" y="0.5" width="375" height="40"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="40"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="40" id="FMP-Lm-qUP"/>
                                     </constraints>
@@ -63,7 +63,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="19 Dec, 2016" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PmF-vE-lSx">
-                                    <rect key="frame" x="0.0" y="60.5" width="375" height="40"/>
+                                    <rect key="frame" x="0.0" y="40" width="375" height="40"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="40" id="4gH-jy-uLR"/>
                                     </constraints>
@@ -75,12 +75,12 @@
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="bottom" secondItem="PmF-vE-lSx" secondAttribute="bottom" id="5vn-2C-Gnt"/>
+                                <constraint firstItem="PmF-vE-lSx" firstAttribute="top" secondItem="gKJ-bo-DMU" secondAttribute="bottom" id="9Kf-uO-IiH"/>
                                 <constraint firstAttribute="trailing" secondItem="PmF-vE-lSx" secondAttribute="trailing" id="CH4-A5-noD"/>
                                 <constraint firstItem="gKJ-bo-DMU" firstAttribute="top" secondItem="UOq-yi-LCD" secondAttribute="top" id="OWl-dc-qZE"/>
                                 <constraint firstItem="PmF-vE-lSx" firstAttribute="leading" secondItem="UOq-yi-LCD" secondAttribute="leading" id="W1N-Mh-SdJ"/>
                                 <constraint firstItem="gKJ-bo-DMU" firstAttribute="leading" secondItem="UOq-yi-LCD" secondAttribute="leading" id="a6G-PP-xy4"/>
                                 <constraint firstAttribute="trailing" secondItem="gKJ-bo-DMU" secondAttribute="trailing" id="knr-zp-58z"/>
-                                <constraint firstItem="PmF-vE-lSx" firstAttribute="top" secondItem="gKJ-bo-DMU" secondAttribute="bottom" constant="20" id="m9J-2o-khR"/>
                             </constraints>
                         </view>
                     </subviews>

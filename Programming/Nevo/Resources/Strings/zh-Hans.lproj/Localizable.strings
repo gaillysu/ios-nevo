@@ -239,3 +239,4 @@
 "of_goal" = "目标已达成";
 "inactivity" = "休息";
 "activity" = "活动";
+"steps_taken" = "已走步数";

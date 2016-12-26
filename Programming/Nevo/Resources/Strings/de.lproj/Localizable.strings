@@ -233,10 +233,11 @@
 // Dashboard of LunaR
 "harvest_status" = "HARVEST STATUS";
 "charging" = "Charging";
-"sunrise" = "Sunrise";
-"sunset" = "Sunset";
+"sunrise" = "SUNRISE";
+"sunset" = "SUNSET";
 "hometime" = "HOME TIME";
 "calories_burned" = "CALORIES BURNED";
 "of_goal" = "OF GOAL";
 "inactivity" = "INACTIVITY";
 "activity" = "ACTIVITY";
+"steps_taken" = "STEPS TAKEN";

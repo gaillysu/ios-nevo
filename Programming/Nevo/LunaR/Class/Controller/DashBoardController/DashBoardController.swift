@@ -66,7 +66,7 @@ class DashBoardController: UIViewController {
         
         setupView()
         
-        Timer.every(5) {
+        Timer.every(30) {
             self.refreshDateForDashView()
         }
     }
