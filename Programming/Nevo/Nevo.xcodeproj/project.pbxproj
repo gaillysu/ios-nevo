@@ -305,8 +305,6 @@
 		00D474431D586D1600E2447E /* Goal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C6E1D224CFA009047AC /* Goal.swift */; };
 		00D474441D586D1600E2447E /* NumberOfStepsGoal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C6F1D224CFA009047AC /* NumberOfStepsGoal.swift */; };
 		00D474451D586D1600E2447E /* NotificationSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C711D224CFA009047AC /* NotificationSetting.swift */; };
-		00D474461D586D1600E2447E /* TypeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C721D224CFA009047AC /* TypeModel.swift */; };
-		00D474481D586D1600E2447E /* Sleep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C751D224CFA009047AC /* Sleep.swift */; };
 		00D474491D586D1600E2447E /* TestMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C771D224CFA009047AC /* TestMode.swift */; };
 		00D4744C1D586D1600E2447E /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C7C1D224CFA009047AC /* Color.swift */; };
 		00D4744D1D586D1600E2447E /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AFDAA31D47128700F4338B /* View.swift */; };
@@ -435,8 +433,6 @@
 		611D41701DCAD97C003BC6E3 /* Goal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C6E1D224CFA009047AC /* Goal.swift */; };
 		611D41711DCAD97C003BC6E3 /* NumberOfStepsGoal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C6F1D224CFA009047AC /* NumberOfStepsGoal.swift */; };
 		611D41721DCAD97C003BC6E3 /* NotificationSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C711D224CFA009047AC /* NotificationSetting.swift */; };
-		611D41731DCAD97C003BC6E3 /* TypeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C721D224CFA009047AC /* TypeModel.swift */; };
-		611D41741DCAD97C003BC6E3 /* Sleep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C751D224CFA009047AC /* Sleep.swift */; };
 		611D41751DCAD97C003BC6E3 /* TestMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C771D224CFA009047AC /* TestMode.swift */; };
 		611D417D1DCAD97C003BC6E3 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C7C1D224CFA009047AC /* Color.swift */; };
 		611D417E1DCAD97C003BC6E3 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AFDAA31D47128700F4338B /* View.swift */; };
@@ -1143,8 +1139,6 @@
 		00AF8C6E1D224CFA009047AC /* Goal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Goal.swift; sourceTree = "<group>"; };
 		00AF8C6F1D224CFA009047AC /* NumberOfStepsGoal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumberOfStepsGoal.swift; sourceTree = "<group>"; };
 		00AF8C711D224CFA009047AC /* NotificationSetting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationSetting.swift; sourceTree = "<group>"; };
-		00AF8C721D224CFA009047AC /* TypeModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TypeModel.swift; sourceTree = "<group>"; };
-		00AF8C751D224CFA009047AC /* Sleep.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sleep.swift; sourceTree = "<group>"; };
 		00AF8C771D224CFA009047AC /* TestMode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestMode.swift; sourceTree = "<group>"; };
 		00AF8C7C1D224CFA009047AC /* Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		00AF8C7E1D224CFA009047AC /* PublicClassController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PublicClassController.swift; sourceTree = "<group>"; };
@@ -2025,7 +2019,6 @@
 				00AF8C531D224CFA009047AC /* Alarm */,
 				00AF8C6D1D224CFA009047AC /* Goal */,
 				00AF8C701D224CFA009047AC /* NotificationType */,
-				00AF8C731D224CFA009047AC /* Sleep */,
 				00AF8C761D224CFA009047AC /* TestMode */,
 			);
 			name = Model;
@@ -2067,17 +2060,8 @@
 			isa = PBXGroup;
 			children = (
 				00AF8C711D224CFA009047AC /* NotificationSetting.swift */,
-				00AF8C721D224CFA009047AC /* TypeModel.swift */,
 			);
 			path = NotificationType;
-			sourceTree = "<group>";
-		};
-		00AF8C731D224CFA009047AC /* Sleep */ = {
-			isa = PBXGroup;
-			children = (
-				00AF8C751D224CFA009047AC /* Sleep.swift */,
-			);
-			path = Sleep;
 			sourceTree = "<group>";
 		};
 		00AF8C761D224CFA009047AC /* TestMode */ = {
@@ -3650,8 +3634,6 @@
 				00D474441D586D1600E2447E /* NumberOfStepsGoal.swift in Sources */,
 				6199190E1DC6E2B600C75AE7 /* AddWorldClockViewController.swift in Sources */,
 				00D474451D586D1600E2447E /* NotificationSetting.swift in Sources */,
-				00D474461D586D1600E2447E /* TypeModel.swift in Sources */,
-				00D474481D586D1600E2447E /* Sleep.swift in Sources */,
 				00D474491D586D1600E2447E /* TestMode.swift in Sources */,
 				6688A67B1DC981990078E636 /* MEDUserUpdateRequest.swift in Sources */,
 				00D4744C1D586D1600E2447E /* Color.swift in Sources */,
@@ -3801,8 +3783,6 @@
 				662B3CAC1DEBD79A0014FA71 /* MEDAppInfo.swift in Sources */,
 				611D41711DCAD97C003BC6E3 /* NumberOfStepsGoal.swift in Sources */,
 				611D41721DCAD97C003BC6E3 /* NotificationSetting.swift in Sources */,
-				611D41731DCAD97C003BC6E3 /* TypeModel.swift in Sources */,
-				611D41741DCAD97C003BC6E3 /* Sleep.swift in Sources */,
 				611D41751DCAD97C003BC6E3 /* TestMode.swift in Sources */,
 				665098971DCB28160059D5F7 /* MEDStepsDeleteRequest.swift in Sources */,
 				611D417D1DCAD97C003BC6E3 /* Color.swift in Sources */,

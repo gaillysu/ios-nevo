@@ -45,7 +45,8 @@ class HomeClockController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        AppDelegate.getAppDelegate().startConnect(false)
     }
     
     override func viewWillAppear(_ animated: Bool) {

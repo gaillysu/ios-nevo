@@ -10,34 +10,25 @@ import UIKit
 import Charts
 import SwiftyJSON
 
-@objc protocol SelectedChartViewDelegate{
-    @objc optional func didSleepSelectedhighlightValue(_ xIndex:Int,dataSetIndex: Int, dataSleep:Sleep)
-}
-
 class SleepHistoricalView: UIView, ChartViewDelegate{
 
     @IBOutlet var chartView:AnalysisStepsChartView?
     @IBOutlet weak var detailCollectionView: UICollectionView!
     fileprivate var queryModel:[MEDUserSleep] = []
-    fileprivate var mDelegate:SelectedChartViewDelegate?
     fileprivate var totalNumber:Double = 0 //The unit is hour
 
-    func bulidQueryView(_ delegate:SelectedChartViewDelegate,modelArray:[Any]){
+    func bulidQueryView(modelArray:[Any]){
         queryModel.removeAll()
         queryModel = modelArray as! [MEDUserSleep]
-        if(mDelegate == nil) {
-            mDelegate = delegate
-            // MARK: - chartView?.marker
-            if !AppTheme.isTargetLunaR_OR_Nevo() {
-                chartView?.backgroundColor = UIColor.getLightBaseColor()
-                self.backgroundColor = UIColor.getLightBaseColor()
-                detailCollectionView.backgroundColor = UIColor.getLightBaseColor()
-            }else{
-                chartView?.backgroundColor = UIColor.white
-            }
-            
-            chartView?.drawSettings(chartView!.xAxis, yAxis: chartView!.leftAxis, rightAxis: chartView!.rightAxis)
+        if !AppTheme.isTargetLunaR_OR_Nevo() {
+            chartView?.backgroundColor = UIColor.getLightBaseColor()
+            self.backgroundColor = UIColor.getLightBaseColor()
+            detailCollectionView.backgroundColor = UIColor.getLightBaseColor()
+        }else{
+            chartView?.backgroundColor = UIColor.white
         }
+        
+        chartView?.drawSettings(chartView!.xAxis, yAxis: chartView!.leftAxis, rightAxis: chartView!.rightAxis)
         chartView?.data = nil
         chartView?.reset()
         self.setDataCount(queryModel.count)
@@ -139,9 +130,6 @@ class SleepHistoricalView: UIView, ChartViewDelegate{
     
     func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, dataSetIndex: Int, highlight: ChartHighlight) {
 
-        //let sleep:Sleep = self.sleepArray.object(at: entry.xIndex) as! Sleep;
-        //chartView.highlightValue(xIndex: entry.xIndex, dataSetIndex: dataSetIndex, callDelegate: false)
-        //mDelegate?.didSleepSelectedhighlightValue!(entry.xIndex, dataSetIndex: dataSetIndex, dataSleep: sleep)
     }
 
 }

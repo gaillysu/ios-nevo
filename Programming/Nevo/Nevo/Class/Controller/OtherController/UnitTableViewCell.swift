@@ -8,49 +8,82 @@
 
 import UIKit
 
-class UnitTableViewCell: UITableViewCell {
+class UnitTableViewCell: UITableViewCell,UITextFieldDelegate,UIPickerViewDelegate, UIPickerViewDataSource {
 
-    @IBOutlet weak var unitSegmented: SMSegmentView!
+    enum TextFieldType {
+        case numeric
+        case text
+        case email
+        case date
+    }
+    
+    @IBOutlet weak var unitSegmented: UIView!
     @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var unitSegmentedField: AutocompleteField!
+
+    
+    let unitArray:[String] = [NSLocalizedString("metrics", comment: ""),NSLocalizedString("imperial", comment: "")]
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        let appearance = SMSegmentAppearance()
-        appearance.titleOnSelectionColour       = UIColor.white
-        appearance.titleOffSelectionColour      = UIColor.getBaseColor()
-        appearance.segmentOnSelectionColour     = UIColor.getBaseColor()
-        appearance.segmentOffSelectionColour    = UIColor.getGreyColor()
-        appearance.titleOnSelectionFont         = UIFont.systemFont(ofSize: 12.0)
-        appearance.titleOffSelectionFont        = UIFont.systemFont(ofSize: 12.0)
-        appearance.contentVerticalMargin        = 10.0
+        unitSegmented.backgroundColor = UIColor.clear
+        separatorInset = UIEdgeInsets.zero
+        preservesSuperviewLayoutMargins = false
+        layoutMargins = UIEdgeInsets.zero
         
-        unitSegmented.segmentAppearance         = appearance
-        unitSegmented.backgroundColor           = UIColor.getBaseColor()
-        unitSegmented.layer.cornerRadius        = 5.0
-        unitSegmented.layer.borderColor         = UIColor.getBaseColor().cgColor
-        unitSegmented.layer.borderWidth         = 1.0
+        unitSegmentedField.textColor = UIColor.white
+        unitSegmentedField.delegate = self
         
-        unitSegmented.addSegmentWithTitle(NSLocalizedString("metrics", comment: ""), onSelectionImage: nil, offSelectionImage: nil)
-        unitSegmented.addSegmentWithTitle(NSLocalizedString("imperial", comment: ""), onSelectionImage: nil, offSelectionImage: nil)
-        unitSegmented.addTarget(self, action: #selector(segmentViewAction(segmentVie:)), for: .valueChanged)
+        let picker = UIPickerView()
+        picker.delegate = self;
+        picker.dataSource = self;
         
+        unitSegmentedField.inputView = picker;
+        unitSegmentedField.backgroundColor = UIColor.clear
         if let value = UserDefaults.standard.object(forKey: "UserSelectedUnit") {
             let index:Int = value as! Int
-            unitSegmented.selectedSegmentIndex = index
+            unitSegmentedField.text = unitArray[index]
+            picker.selectRow(index, inComponent: 0, animated: false)
         }else{
-            unitSegmented.selectedSegmentIndex = 0;
+            unitSegmentedField.text = unitArray[0]
         }
-    }
-
-    func segmentViewAction(segmentVie:SMSegmentView) {
-        let userDefault:UserDefaults = UserDefaults.standard
-        userDefault.set(unitSegmented.selectedSegmentIndex, forKey: "UserSelectedUnit")
-        userDefault.synchronize()
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+    
+    // MARK: - UITextFieldDelegate
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        return true;
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return false
+    }
+    
+    // MARK: - UIPickerViewDataSource
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return unitArray.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return unitArray[row]
+    }
+    
+    // MARK: - UIPickerViewDelegate
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        unitSegmentedField.text = unitArray[row]
+        let userDefault:UserDefaults = UserDefaults.standard
+        userDefault.set(row, forKey: "UserSelectedUnit")
+        userDefault.synchronize()
     }
     
 }
