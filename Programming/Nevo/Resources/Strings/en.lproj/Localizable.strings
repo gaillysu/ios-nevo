@@ -225,8 +225,8 @@
 "local_time" = "local time";
 
 // Dashboard of LunaR
-"harvest_status" = "HARVEST STATUS";
-"charging" = "Charging";
+"harvest_status" = "HARVESTING STATUS";
+"charging" = "CHARGING";
 "sunrise" = "SUNRISE";
 "sunset" = "SUNSET";
 "hometime" = "HOME TIME";
@@ -234,4 +234,6 @@
 "of_goal" = "OF GOAL";
 "inactivity" = "INACTIVITY";
 "activity" = "ACTIVITY";
-"steps_taken" = "STEPS TAKEN"; 
+"steps_taken" = "STEPS TAKEN";
+
+"update_available" = "Version VERSION_NUMBER is now available for your Nevo!"

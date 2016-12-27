@@ -238,3 +238,5 @@
 "inactivity" = "休息";
 "activity" = "活动";
 "steps_taken" = "已走步数";
+
+"update_available" = "你的 Nevo 有新的固件版本 VERSION_NUMBER 可用！"
