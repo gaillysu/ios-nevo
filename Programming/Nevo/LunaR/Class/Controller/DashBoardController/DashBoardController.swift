@@ -82,6 +82,7 @@ class DashBoardController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        AppDelegate.getAppDelegate().startConnect(false)
         
         _ = SwiftEventBus.onMainThread(self, name: EVENT_BUS_RAWPACKET_DATA_KEY) { (notification) in
             var percent:Float = 0

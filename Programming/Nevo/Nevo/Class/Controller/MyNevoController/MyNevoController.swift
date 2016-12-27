@@ -59,7 +59,15 @@ class MyNevoController: UITableViewController,UIAlertViewDelegate {
                     self.tableView.reloadRows(at: [indexPath as IndexPath], with: UITableViewRowAnimation.automatic)
                 }
             }else{
-            
+                let packet = notification.object as! LunaRPacket;
+                //Do nothing
+                let thispacket:BatteryLevelNevoPacket = packet.copy() as BatteryLevelNevoPacket
+                if(thispacket.isReadBatteryCommand(packet.getPackets())){
+                    let batteryValue:Int = thispacket.getBatteryLevel()
+                    self.currentBattery = batteryValue
+                    let indexPath:NSIndexPath = NSIndexPath(row: 1, section: 0)
+                    self.tableView.reloadRows(at: [indexPath as IndexPath], with: UITableViewRowAnimation.automatic)
+                }
             }
         }
         

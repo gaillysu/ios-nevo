@@ -87,6 +87,10 @@ class LunaRPacket {
         return GetNotificationAppIDPacket(packets: mPackets)
     }
     
+    func copy()->BatteryLevelNevoPacket {
+        return BatteryLevelNevoPacket(packets: mPackets)
+    }
+    
     func isVaildPacket() ->Bool {
         if (mPackets.count < 2) {
            return false
