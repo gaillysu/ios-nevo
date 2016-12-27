@@ -680,6 +680,8 @@
 		6173DF001DB0E93D002DF6AF /* SleepHistoricalViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6173DF021DB0E93D002DF6AF /* SleepHistoricalViewController.xib */; };
 		6173DF091DB0E993002DF6AF /* StepsHistoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6173DF0C1DB0E993002DF6AF /* StepsHistoryViewController.xib */; };
 		6173DF0A1DB0E993002DF6AF /* StepsHistoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6173DF0C1DB0E993002DF6AF /* StepsHistoryViewController.xib */; };
+		6176B91C1E1207E4008DC15C /* Float+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6176B91B1E1207E4008DC15C /* Float+Extension.swift */; };
+		6176B91D1E120831008DC15C /* Float+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6176B91B1E1207E4008DC15C /* Float+Extension.swift */; };
 		61798C2B1DE564250087891D /* Solar_Firmwares in Resources */ = {isa = PBXBuildFile; fileRef = 61798C2A1DE564250087891D /* Solar_Firmwares */; };
 		61798C2E1DE58F280087891D /* DFUFirmware in Resources */ = {isa = PBXBuildFile; fileRef = 61798C2D1DE58F280087891D /* DFUFirmware */; };
 		61798C2F1DE590F10087891D /* DFUFirmware in Resources */ = {isa = PBXBuildFile; fileRef = 61798C2D1DE58F280087891D /* DFUFirmware */; };
@@ -1276,6 +1278,7 @@
 		6173DF0E1DB0E99F002DF6AF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/StepsHistoryViewController.strings; sourceTree = "<group>"; };
 		6173DF101DB0E9A1002DF6AF /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/StepsHistoryViewController.strings"; sourceTree = "<group>"; };
 		6173DF121DB0E9A3002DF6AF /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/StepsHistoryViewController.strings"; sourceTree = "<group>"; };
+		6176B91B1E1207E4008DC15C /* Float+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Float+Extension.swift"; sourceTree = "<group>"; };
 		61798C2A1DE564250087891D /* Solar_Firmwares */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Solar_Firmwares; sourceTree = "<group>"; };
 		61798C2D1DE58F280087891D /* DFUFirmware */ = {isa = PBXFileReference; lastKnownFileType = folder; path = DFUFirmware; sourceTree = "<group>"; };
 		61798C301DE5A0940087891D /* NewAppIDNotificationRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewAppIDNotificationRequest.swift; sourceTree = "<group>"; };
@@ -1514,6 +1517,7 @@
 				00C826BD1DA5E9BD00ECECEE /* ActionSheetView.swift */,
 				003DBF761D6D93C400E45244 /* EventBusKeys.swift */,
 				0084CB151D9BC68A0047DF39 /* Double+Extension.swift */,
+				6176B91B1E1207E4008DC15C /* Float+Extension.swift */,
 				0058CBF81D9CC897003CE7DC /* String+Extension.swift */,
 				6104D9C41DC86C7C00663D31 /* Int+Extension.swift */,
 				61C68BA21E038E6100264FF4 /* Date+Extension.swift */,
@@ -3575,6 +3579,7 @@
 				00C826B31DA5E04000ECECEE /* TutorialOneViewController.swift in Sources */,
 				6650988C1DCB0CF20059D5F7 /* MEDSleepCreateRequest.swift in Sources */,
 				00C826B41DA5E04000ECECEE /* TutorialTwoViewController.swift in Sources */,
+				6176B91D1E120831008DC15C /* Float+Extension.swift in Sources */,
 				61FC93EE1DE6806B000AE93C /* MEDUserNotification.swift in Sources */,
 				00C826B51DA5E04000ECECEE /* TutorialThreeViewController.swift in Sources */,
 				00C826B61DA5E04000ECECEE /* TutorialFourViewController.swift in Sources */,
@@ -3975,6 +3980,7 @@
 				611D42321DCAD97D003BC6E3 /* MyNevoHeaderView.xib in Sources */,
 				611D42331DCAD97D003BC6E3 /* MyNevoView.swift in Sources */,
 				611D42341DCAD97D003BC6E3 /* NevoOtaController.swift in Sources */,
+				6176B91C1E1207E4008DC15C /* Float+Extension.swift in Sources */,
 				611D42351DCAD97D003BC6E3 /* DeviceScannerView.swift in Sources */,
 				611D42361DCAD97D003BC6E3 /* NevoOtaView.swift in Sources */,
 				611D42371DCAD97D003BC6E3 /* SelectFileView.swift in Sources */,

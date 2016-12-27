@@ -10,6 +10,8 @@ import UIKit
 import SnapKit
 import Timepiece
 import SwiftyTimer
+import SwiftEventBus
+import XCGLogger
 
 class DashBoardController: UIViewController {
     let dashMargin: CGFloat = 10
@@ -25,11 +27,12 @@ class DashBoardController: UIViewController {
         return self.dashElementWidth * 2 + self.dashGap
     }
     
-    weak var chargingView: DashBoardChargingView?
-    weak var sunriseView: DashBoardSunriseView?
-    weak var homeClockView: DashBoardHomeClockView?
-    weak var sleepHistoryView: DashBoardChargingView?
-    weak var centerDashView: UIView?
+    fileprivate weak var chargingView: DashBoardChargingView?
+    fileprivate weak var sunriseView: DashBoardSunriseView?
+    fileprivate weak var homeClockView: DashBoardHomeClockView?
+    fileprivate weak var sleepHistoryView: DashBoardChargingView?
+    fileprivate weak var centerDashView: UIView?
+    fileprivate weak var stepsView:DashBoardCalorieView?
     
     lazy var dashView: UIView = {
         
@@ -66,9 +69,48 @@ class DashBoardController: UIViewController {
         
         setupView()
         
-        Timer.every(30) {
+        ClockRefreshManager.instance.everyRefresh {
+            if AppDelegate.getAppDelegate().isConnected() {
+                AppDelegate.getAppDelegate().getGoal()
+                XCGLogger.default.debug("getGoalRequest")
+            }
+            
             self.refreshDateForDashView()
+            self.refreshDialView()
         }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        _ = SwiftEventBus.onMainThread(self, name: EVENT_BUS_RAWPACKET_DATA_KEY) { (notification) in
+            var percent:Float = 0
+            var totalSteps:Int = 0
+            if !AppTheme.isTargetLunaR_OR_Nevo() {
+                let packet = notification.object as! LunaRPacket
+                //Do nothing
+                if packet.getHeader() == GetStepsGoalRequest.HEADER(){
+                    let thispacket = packet.copy() as LunaRStepsGoalPacket
+                    totalSteps = thispacket.getDailySteps()
+                    let dailyStepGoal:Int = thispacket.getDailyStepsGoal()
+                    percent = Float(totalSteps)/Float(dailyStepGoal)
+                }
+            }
+            self.refreshCircleViewProgress(progressValue:percent,totalSteps:totalSteps)
+        }
+        
+        _ = SwiftEventBus.onMainThread(self, name: EVENT_BUS_END_BIG_SYNCACTIVITY) { (notification) in
+            let queryArray = MEDUserSleep.getFilter("date = \(Date().beginningOfDay.timeIntervalSince1970)")
+            let userSlepp:MEDUserSleep = queryArray[0] as! MEDUserSleep
+            let totalSleepTime:Double = Double(userSlepp.totalSleepTime)/60.0
+            self.refreshSleepTimer(totalTime: totalSleepTime)
+        }
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        SwiftEventBus.unregister(self, name: EVENT_BUS_RAWPACKET_DATA_KEY)
+        SwiftEventBus.unregister(self, name: EVENT_BUS_END_BIG_SYNCACTIVITY)
     }
     
     override func viewDidLayoutSubviews() {
@@ -124,18 +166,37 @@ extension DashBoardController {
         scrollView.addSubview(caloriseView)
         caloriseView.frame = centerDashView.bounds
         caloriseView.backgroundColor = UIColor.getGreyColor()
+        self.stepsView = caloriseView
         
         let circleView = MEDCircleView()
         caloriseView.insertSubview(circleView, at: 0)
         circleView.viewColor = UIColor.getGreyColor()
         circleView.frame = CGRect(x: 0, y: 0, width: caloriseView.frame.width - 20, height: caloriseView.frame.width - 20)
         circleView.center = caloriseView.center
-        circleView.value = 0.7
+        circleView.value = 0.0
     }
+    
+    
 }
 
 // MARK: - Refresh data
 extension DashBoardController {
+    func refreshCircleViewProgress(progressValue:Float,totalSteps:Int) {
+        for view in self.stepsView!.subviews {
+            if view is MEDCircleView{
+                let medCircleView:MEDCircleView = view as! MEDCircleView
+                medCircleView.value = CGFloat(progressValue)
+            }
+        }
+        
+        self.stepsView?.valueLabel.text     = "\(totalSteps)"
+        let value:Float = progressValue*100
+        self.stepsView?.progressLabel.text  = "\(value.to2Float())% " + NSLocalizedString("of_goal", comment: "")
+    }
+    
+    func refreshSleepTimer(totalTime:Double) {
+        self.sleepHistoryView?.contentLabel.text = AppTheme.timerFormatValue(value: totalTime)
+    }
     
     func refreshDialView() {
         for view in dialView.subviews {
