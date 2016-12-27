@@ -34,7 +34,12 @@ class OtherController: UITableViewController {
 
     // MARK: - Table view data source
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return itemArray.count
+        if AppTheme.isTargetLunaR_OR_Nevo() {
+            return itemArray.count - 1
+        } else {
+            return itemArray.count
+        }
+        
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
