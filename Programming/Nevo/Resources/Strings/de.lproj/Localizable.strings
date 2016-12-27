@@ -225,11 +225,11 @@
 "color"="Color";
 "other_settings"="Other settings";
 "unit"="Unit";
-"metrics"="Metrics";
-"imperial"="Imperial";
+"metrics"="METRICS";
+"imperial"="IMPERIAL";
 
-"local_time" = "local time";
-"home_time" = "home time";
+"local_time" = "LOCAL TIME";
+"home_time" = "HOME TIME";
 
 // Dashboard of LunaR
 "harvest_status" = "HARVESTING STATUS";

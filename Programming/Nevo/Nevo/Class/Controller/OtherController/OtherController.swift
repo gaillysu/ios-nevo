@@ -46,6 +46,7 @@ class OtherController: UITableViewController {
         let textValue = itemArray[indexPath.section]
         if textValue == "goal" {
             let cell                    = tableView.dequeueReusableCell(withIdentifier: "other_identifier", for: indexPath)
+            cell.textLabel?.font        = UIFont(name: "Raleway", size: 17.0)
             cell.textLabel?.text        = NSLocalizedString(textValue, comment: "")
             cell.accessoryType          = UITableViewCellAccessoryType.disclosureIndicator
             cell.viewDefaultColorful()

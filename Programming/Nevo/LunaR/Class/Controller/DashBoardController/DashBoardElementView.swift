@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SnapKit
 
 protocol DashBoardElementViewCornerable {
     func maskRoundCorner(positions: UIRectCorner, radius: CGFloat)
@@ -31,12 +32,36 @@ class DashBoardChargingView: UIView, DashBoardElementViewCornerable {
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var contentLabel: UILabel!
 
+    @IBOutlet weak var imageViewTop: NSLayoutConstraint!
+    @IBOutlet weak var imageViewBottom: NSLayoutConstraint!
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         
         imageView.image = UIImage(named: "sun")
         titleLabel.text = NSLocalizedString("harvest_status", comment: "")
         contentLabel.text = NSLocalizedString("charging", comment: "")
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        let fontAttributes = [NSFontAttributeName: UIFont(name: "Helvetica Neue", size: 8)]
+        if let titleLabelWidth = (titleLabel.text as NSString?)?.size(attributes: fontAttributes).width {
+            if titleLabelWidth < titleLabel.bounds.width {
+                titleLabel.snp.updateConstraints({ (v) in
+                    v.height.equalTo(10)
+                    layoutIfNeeded()
+                })
+            }
+        }
+        
+        if !AppTheme.GET_IS_iPhone5S() {
+            imageViewTop.constant = 10
+            imageViewBottom.constant = 10
+            layoutIfNeeded()
+        }
     }
     
     class func factory() -> DashBoardChargingView {
