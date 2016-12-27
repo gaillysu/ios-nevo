@@ -759,6 +759,7 @@
 		664AE3321DF7C09C005CD385 /* NotiColorEditableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664AE32F1DF7C09C005CD385 /* NotiColorEditableCell.swift */; };
 		664AE3331DF7C09C005CD385 /* NotiColorEditableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 664AE3301DF7C09C005CD385 /* NotiColorEditableCell.xib */; };
 		664AE3341DF7C09C005CD385 /* NotiColorEditableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 664AE3301DF7C09C005CD385 /* NotiColorEditableCell.xib */; };
+		664F45531E120A4D000AEDAE /* MEDSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664F45521E120A4D000AEDAE /* MEDSettings.swift */; };
 		6650988B1DCB0CF20059D5F7 /* MEDSleepCreateRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6650988A1DCB0CF20059D5F7 /* MEDSleepCreateRequest.swift */; };
 		6650988C1DCB0CF20059D5F7 /* MEDSleepCreateRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6650988A1DCB0CF20059D5F7 /* MEDSleepCreateRequest.swift */; };
 		6650988E1DCB0E220059D5F7 /* MEDSleepNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6650988D1DCB0E220059D5F7 /* MEDSleepNetworkManager.swift */; };
@@ -852,6 +853,7 @@
 		66A0E0801DBF6C08001C0C67 /* Timezone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66A0E0771DBF6C08001C0C67 /* Timezone.swift */; };
 		66AC4E5D1DBF537500E431BE /* sunrise.png in Resources */ = {isa = PBXBuildFile; fileRef = 665BD6D71DBF1297008C2623 /* sunrise.png */; };
 		66AC4E5E1DBF537500E431BE /* sunset.png in Resources */ = {isa = PBXBuildFile; fileRef = 665BD6D81DBF1297008C2623 /* sunset.png */; };
+		66B6A51F1E1211BF00E10CD3 /* MEDSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664F45521E120A4D000AEDAE /* MEDSettings.swift */; };
 		66D9AFE41DE6E330009CF3ED /* GetNotificationAppIDPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6199AED41DDC593A00BEA140 /* GetNotificationAppIDPacket.swift */; };
 		66D9AFE51DE6E3AC009CF3ED /* ReceiveNewNotificationPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 610767111DDD8AE600F53AD6 /* ReceiveNewNotificationPacket.swift */; };
 		813518AB3D92E43573F28717 /* Pods_LunaR.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E068CB5F57F135B038B3A10 /* Pods_LunaR.framework */; };
@@ -1320,6 +1322,7 @@
 		662B3CAB1DEBD79A0014FA71 /* MEDAppInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MEDAppInfo.swift; sourceTree = "<group>"; };
 		664AE32F1DF7C09C005CD385 /* NotiColorEditableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotiColorEditableCell.swift; sourceTree = "<group>"; };
 		664AE3301DF7C09C005CD385 /* NotiColorEditableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NotiColorEditableCell.xib; sourceTree = "<group>"; };
+		664F45521E120A4D000AEDAE /* MEDSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MEDSettings.swift; sourceTree = "<group>"; };
 		6650988A1DCB0CF20059D5F7 /* MEDSleepCreateRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MEDSleepCreateRequest.swift; sourceTree = "<group>"; };
 		6650988D1DCB0E220059D5F7 /* MEDSleepNetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MEDSleepNetworkManager.swift; sourceTree = "<group>"; };
 		665098901DCB23DC0059D5F7 /* MEDSleepUpdateRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MEDSleepUpdateRequest.swift; sourceTree = "<group>"; };
@@ -2400,6 +2403,7 @@
 				61D1A8A81DD468A100B91BDD /* MEDUserSleep.swift */,
 				61D1A8A91DD468A100B91BDD /* MEDUserSteps.swift */,
 				66154BAD1DF6B7D400973A9E /* MEDNotificationColor.swift */,
+				664F45521E120A4D000AEDAE /* MEDSettings.swift */,
 			);
 			name = MEDModel;
 			sourceTree = "<group>";
@@ -3409,6 +3413,7 @@
 				665BD6BC1DBEF1D0008C2623 /* SetNewAlarmRequest.swift in Sources */,
 				61FC93F51DE68B8A000AE93C /* MEDDataBaseRequest.swift in Sources */,
 				665BD6BD1DBEF1D0008C2623 /* SetNortificationRequest.swift in Sources */,
+				66B6A51F1E1211BF00E10CD3 /* MEDSettings.swift in Sources */,
 				665BD6BE1DBEF1D0008C2623 /* SetProfileRequest.swift in Sources */,
 				665BD6BF1DBEF1D0008C2623 /* SetRTCRequest.swift in Sources */,
 				665098941DCB26640059D5F7 /* MEDSleepUpdateRequest.swift in Sources */,
@@ -3933,6 +3938,7 @@
 				611D42141DCAD97D003BC6E3 /* RepeatViewCell.swift in Sources */,
 				611D42151DCAD97D003BC6E3 /* RepeatViewCell.xib in Sources */,
 				611D42161DCAD97D003BC6E3 /* AlarmClockVCell.swift in Sources */,
+				664F45531E120A4D000AEDAE /* MEDSettings.swift in Sources */,
 				611D42171DCAD97D003BC6E3 /* AlarmClockVCell.xib in Sources */,
 				6168C6301DFE53D5008FCF97 /* OtherController.swift in Sources */,
 				611D42181DCAD97D003BC6E3 /* AlarmTypeController.swift in Sources */,

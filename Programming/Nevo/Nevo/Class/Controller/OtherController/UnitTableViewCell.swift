@@ -8,7 +8,7 @@
 
 import UIKit
 
-class UnitTableViewCell: UITableViewCell,UITextFieldDelegate,UIPickerViewDelegate, UIPickerViewDataSource {
+class UnitTableViewCell: UITableViewCell {
 
     enum TextFieldType {
         case numeric
@@ -17,12 +17,30 @@ class UnitTableViewCell: UITableViewCell,UITextFieldDelegate,UIPickerViewDelegat
         case date
     }
     
+    enum OtherSettingCellType {
+        case unit
+        case syncTime
+    }
+    var type: OtherSettingCellType = .unit
+    
     @IBOutlet weak var unitSegmented: UIView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var unitSegmentedField: AutocompleteField!
-
+    weak var picker: UIPickerView?
     
-    let unitArray:[String] = [NSLocalizedString("metrics", comment: ""),NSLocalizedString("imperial", comment: "")]
+    
+    
+    let unitArray = [NSLocalizedString("metrics", comment: ""),NSLocalizedString("imperial", comment: "")]
+    let timeOptionArray = [NSLocalizedString("home_time", comment: ""), NSLocalizedString("local_time", comment: "")]
+    
+    var dataArray: [String] {
+        switch type {
+        case .unit:
+            return self.unitArray
+        case .syncTime:
+            return self.timeOptionArray
+        }
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -37,25 +55,48 @@ class UnitTableViewCell: UITableViewCell,UITextFieldDelegate,UIPickerViewDelegat
         let picker = UIPickerView()
         picker.delegate = self;
         picker.dataSource = self;
+        self.picker = picker
         
         unitSegmentedField.inputView = picker;
         unitSegmentedField.backgroundColor = UIColor.clear
-        if let value = UserDefaults.standard.object(forKey: "UserSelectedUnit") {
-            let index:Int = value as! Int
-            unitSegmentedField.text = unitArray[index]
-            picker.selectRow(index, inComponent: 0, animated: false)
-        }else{
-            unitSegmentedField.text = unitArray[0]
-        }
+        unitSegmentedField.tintColor = UIColor.clear
     }
-    
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
+}
 
-        // Configure the view for the selected state
+// MARK: - Mainly API
+extension UnitTableViewCell {
+    class func getCell(with tableView: UITableView, type: OtherSettingCellType) -> UnitTableViewCell {
+        
+        var cell = tableView.dequeueReusableCell(withIdentifier: "") as? UnitTableViewCell
+        if cell == nil {
+            tableView.register(UINib(nibName: "UnitTableViewCell", bundle: nil), forCellReuseIdentifier: "unit_identifier")
+            cell = tableView.dequeueReusableCell(withIdentifier: "unit_identifier") as? UnitTableViewCell
+            
+            cell?.type = type
+        }
+        
+        switch type {
+        case .unit:
+            if let value = MEDSettings.int(forKey: "UserSelectedUnit") {
+                cell?.unitSegmentedField.text = cell?.unitArray[value]
+                cell?.picker?.selectRow(value, inComponent: 0, animated: false)
+            }else{
+                cell?.unitSegmentedField.text = cell?.unitArray[0]
+            }
+            
+        case .syncTime:
+            /// TODO: 同步时间 cell 的默认行为
+            cell?.unitSegmentedField.text = cell?.timeOptionArray[0]
+            cell?.picker?.selectedRow(inComponent: 0)
+            break
+        }
+        
+        return cell!
     }
-    
-    // MARK: - UITextFieldDelegate
+}
+
+// MARK: - UITextFieldDelegate
+extension UnitTableViewCell: UITextFieldDelegate {
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         return true;
     }
@@ -64,26 +105,34 @@ class UnitTableViewCell: UITableViewCell,UITextFieldDelegate,UIPickerViewDelegat
         textField.resignFirstResponder()
         return false
     }
-    
-    // MARK: - UIPickerViewDataSource
+}
+
+// MARK: - UIPickerViewDataSource
+extension UnitTableViewCell: UIPickerViewDelegate {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return unitArray.count
+        return dataArray.count
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return unitArray[row]
+        return dataArray[row]
     }
-    
-    // MARK: - UIPickerViewDelegate
+}
+
+// MARK: - UIPickerViewDelegate
+extension UnitTableViewCell: UIPickerViewDataSource {
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        unitSegmentedField.text = unitArray[row]
-        let userDefault:UserDefaults = UserDefaults.standard
-        userDefault.set(row, forKey: "UserSelectedUnit")
-        userDefault.synchronize()
+        unitSegmentedField.text = dataArray[row]
+        
+        switch type {
+        case .unit:
+            MEDSettings.setValue(row, forKey: "UserSelectedUnit")
+        case .syncTime:
+            /// TODO: 同步时间选择后要做的事
+            break
+        }
     }
-    
 }

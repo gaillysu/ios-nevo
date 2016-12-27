@@ -223,6 +223,7 @@
 "imperial"="Imperial";
 
 "local_time" = "local time";
+"home_time" = "home time";
 
 // Dashboard of LunaR
 "harvest_status" = "HARVESTING STATUS";
@@ -236,4 +237,5 @@
 "activity" = "ACTIVITY";
 "steps_taken" = "STEPS TAKEN";
 
-"update_available" = "Version VERSION_NUMBER is now available for your Nevo!"
+"update_available" = "Version VERSION_NUMBER is now available for your Nevo!";
+"home_local" = "Home/local time";
