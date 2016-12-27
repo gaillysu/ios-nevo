@@ -149,7 +149,7 @@ extension DashBoardController {
         self.sleepHistoryView = sleepHistoryView
         sleepHistoryView.imageView.image = UIImage(named: "moon")
         sleepHistoryView.titleLabel.text = NSLocalizedString("inactivity", comment: "")
-        sleepHistoryView.contentLabel.text = "7h 0m"
+        sleepHistoryView.contentLabel.text = "0h 0m"
         
         let centerDashView = UIView()
         dashView.addSubview(centerDashView)

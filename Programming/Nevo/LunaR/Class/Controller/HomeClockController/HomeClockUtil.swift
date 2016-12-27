@@ -20,8 +20,10 @@ class HomeClockUtil {
         return try! Realm()
     }()
     
-    class var shared: HomeClockUtil {
-        return _shared
+    static var shared: HomeClockUtil = HomeClockUtil()
+    
+    fileprivate init() {
+        
     }
     
     func getHomeCityWithSelectedFlag() -> City? {
