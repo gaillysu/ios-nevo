@@ -99,8 +99,8 @@ class DashBoardCalorieView: UIView {
         super.awakeFromNib()
         
         titleLabel.text = NSLocalizedString("steps_taken", comment: "")
-        valueLabel.text = "366"
-        progressLabel.text = "75% " + NSLocalizedString("of_goal", comment: "")
+        valueLabel.text = "0"
+        progressLabel.text = "0% " + NSLocalizedString("of_goal", comment: "")
     }
     
     class func factory() -> DashBoardCalorieView {

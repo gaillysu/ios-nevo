@@ -45,7 +45,7 @@ class StepGoalSetingController: PublicClassController,ClockRefreshDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        ClockRefreshManager.sharedInstance.setRefreshDelegate(self)
+        ClockRefreshManager.instance.setRefreshDelegate(self)
         
         let layout:UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         layout.itemSize = CGSize(width: 0, height: 0)

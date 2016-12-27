@@ -53,14 +53,12 @@ class SleepHistoricalViewController: PublicClassController,ChartViewDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         todaySleepArray = MEDUserSleep.getFilter("date < \(Date.yesterday().beginningOfDay.timeIntervalSince1970) AND date > \(Date().endOfDay.timeIntervalSince1970)")
-            //UserSleep.getCriteria("WHERE date BETWEEN \(Date.yesterday().beginningOfDay.timeIntervalSince1970) AND \(Date().endOfDay.timeIntervalSince1970)")
         AnalysisSleepData(todaySleepArray)
         
         _ = SwiftEventBus.onMainThread(self, name: SELECTED_CALENDAR_NOTIFICATION) { (notification) in
             let userinfo:Date = notification.userInfo!["selectedDate"] as! Date
             self.selectedDate = userinfo as Date
             let selectedSleepArray = MEDUserSleep.getFilter("date < \(userinfo.timeIntervalSince1970-86400) AND date > \(userinfo.endOfDay.timeIntervalSince1970)")
-                //UserSleep.getCriteria("WHERE date BETWEEN \(userinfo.timeIntervalSince1970-86400) AND \(userinfo.endOfDay.timeIntervalSince1970)")
             self.AnalysisSleepData(selectedSleepArray)
         }
         
