@@ -174,7 +174,15 @@ class MyNevoController: UITableViewController,UIAlertViewDelegate {
         switch ((indexPath as NSIndexPath).row){
         case 0:
             if((AppDelegate.getAppDelegate().getSoftwareVersion() < Float(buildin_firmware_version)) && (AppDelegate.getAppDelegate().getFirmwareVersion() < Float(buildin_software_version))){
-                detailString = "There is an update available!"
+                
+                detailString = NSLocalizedString("update_available", comment: "")
+                if AppTheme.isTargetLunaR_OR_Nevo() {
+                    detailString = detailString.replacingOccurrences(of: "Nevo", with: "LunaR")
+                }
+                
+                detailString = detailString.replacingOccurrences(of: "VERSION_NUMBER", with: buildin_firmware_version.to2String())
+                
+                detailString = "Version \(buildin_firmware_version) is now available for your LunaR!"
                 NSLog("MCU:\(AppDelegate.getAppDelegate().getSoftwareVersion()) BLE:\(AppDelegate.getAppDelegate().getFirmwareVersion())")
                 isUpdate = true
             }else{

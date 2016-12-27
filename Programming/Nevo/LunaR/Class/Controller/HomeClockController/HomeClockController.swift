@@ -10,7 +10,7 @@ import UIKit
 import Timepiece
 import RealmSwift
 
-class HomeClockController: PublicClassController {
+class HomeClockController: UIViewController {
 
     @IBOutlet weak var todayLabel: UILabel!
     @IBOutlet weak var dialView: UIView!
@@ -47,19 +47,21 @@ class HomeClockController: PublicClassController {
         super.viewDidLoad()
         
         AppDelegate.getAppDelegate().startConnect(false)
-        
-        setUpView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
         setUpView()
+        
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         refreshClockView()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
     }
 }
  
@@ -93,9 +95,13 @@ extension HomeClockController {
         let minuteImage = AppTheme.GET_RESOURCES_IMAGE("wacth_mint")
         let dialImage = AppTheme.GET_RESOURCES_IMAGE("wacth_dial")
         
-        clockView = ClockView(frame: CGRect(x: 0, y: 0, width: dialView.bounds.width, height: dialView.bounds.width), hourImage: hourImage, minuteImage: minuteImage, dialImage: dialImage)
+        let clockWidth = dialView.frame.height
         
+        clockView = ClockView(frame: CGRect(x: 0, y: 0, width: clockWidth, height: clockWidth), hourImage: hourImage, minuteImage: minuteImage, dialImage: dialImage)
         setDialTime(hour: homeTime.hour, minute: homeTime.minute, seconds: homeTime.second)
+        
+        clockView?.center.x = dialView.frame.width / 2.0
+        
         dialView.addSubview(clockView!)
     }
     

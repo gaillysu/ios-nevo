@@ -383,7 +383,6 @@
 		611941251DFE8BB30048BA44 /* SMSegmentViewConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6119411D1DFE8B650048BA44 /* SMSegmentViewConstants.swift */; };
 		611941271DFE9EA50048BA44 /* UnitValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 611941261DFE9EA50048BA44 /* UnitValue.swift */; };
 		611941281DFE9F180048BA44 /* UnitValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 611941261DFE9EA50048BA44 /* UnitValue.swift */; };
-		611D412C1DCAD97C003BC6E3 /* ImagePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61879C341DC0A8B80089F1E5 /* ImagePickerController.swift */; };
 		611D412D1DCAD97C003BC6E3 /* MEDForgetPasswordRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6688A64B1DC981980078E636 /* MEDForgetPasswordRequest.swift */; };
 		611D412E1DCAD97C003BC6E3 /* MEDLoginRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6688A64D1DC981980078E636 /* MEDLoginRequest.swift */; };
 		611D412F1DCAD97C003BC6E3 /* MEDRequestPasswordRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6688A6501DC981980078E636 /* MEDRequestPasswordRequest.swift */; };
@@ -692,7 +691,6 @@
 		61879C2F1DC05B850089F1E5 /* timezones.json in Resources */ = {isa = PBXBuildFile; fileRef = 61879C2D1DC05B850089F1E5 /* timezones.json */; };
 		61879C311DC05C410089F1E5 /* cities.json in Resources */ = {isa = PBXBuildFile; fileRef = 61879C2C1DC05B850089F1E5 /* cities.json */; };
 		61879C321DC05C430089F1E5 /* timezones.json in Resources */ = {isa = PBXBuildFile; fileRef = 61879C2D1DC05B850089F1E5 /* timezones.json */; };
-		61879C361DC0ABCF0089F1E5 /* ImagePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61879C341DC0A8B80089F1E5 /* ImagePickerController.swift */; };
 		6198EE281DC204BF00FDD850 /* LunaRPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6198EE271DC204BF00FDD850 /* LunaRPacket.swift */; };
 		6198EE2D1DC2090700FDD850 /* LunaRDailyTrackerInfoPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6198EE2A1DC2090700FDD850 /* LunaRDailyTrackerInfoPacket.swift */; };
 		6198EE2E1DC2090700FDD850 /* LunaRDailyTrackerPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6198EE2B1DC2090700FDD850 /* LunaRDailyTrackerPacket.swift */; };
@@ -1284,7 +1282,6 @@
 		61798C301DE5A0940087891D /* NewAppIDNotificationRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewAppIDNotificationRequest.swift; sourceTree = "<group>"; };
 		61879C2C1DC05B850089F1E5 /* cities.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = cities.json; sourceTree = "<group>"; };
 		61879C2D1DC05B850089F1E5 /* timezones.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = timezones.json; sourceTree = "<group>"; };
-		61879C341DC0A8B80089F1E5 /* ImagePickerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePickerController.swift; sourceTree = "<group>"; };
 		6198EE271DC204BF00FDD850 /* LunaRPacket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LunaRPacket.swift; sourceTree = "<group>"; };
 		6198EE2A1DC2090700FDD850 /* LunaRDailyTrackerInfoPacket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LunaRDailyTrackerInfoPacket.swift; sourceTree = "<group>"; };
 		6198EE2B1DC2090700FDD850 /* LunaRDailyTrackerPacket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LunaRDailyTrackerPacket.swift; sourceTree = "<group>"; };
@@ -2320,15 +2317,6 @@
 			path = Worldclock;
 			sourceTree = "<group>";
 		};
-		61879C331DC0A8AD0089F1E5 /* ImagePickerController */ = {
-			isa = PBXGroup;
-			children = (
-				61879C341DC0A8B80089F1E5 /* ImagePickerController.swift */,
-			);
-			name = ImagePickerController;
-			path = Frameworks/ImagePickerController;
-			sourceTree = "<group>";
-		};
 		6198EE261DC204BF00FDD850 /* LunaRPacket */ = {
 			isa = PBXGroup;
 			children = (
@@ -2660,7 +2648,6 @@
 			children = (
 				61FC93FB1DE829DB000AE93C /* TaskQueue */,
 				61D1A8A21DD468A100B91BDD /* MEDDataBase */,
-				61879C331DC0A8AD0089F1E5 /* ImagePickerController */,
 				6688A6451DC981980078E636 /* MEDNetwork */,
 				1C3712D51DBC5BD9007DC349 /* MEDExtension */,
 				666262351E0BBBFF00991D96 /* MEDKit */,
@@ -3439,7 +3426,6 @@
 				00C826411DA5E04000ECECEE /* EventBusKeys.swift in Sources */,
 				6662623C1E0BBC2100991D96 /* MEDColorful.swift in Sources */,
 				00C826421DA5E04000ECECEE /* Double+Extension.swift in Sources */,
-				61879C361DC0ABCF0089F1E5 /* ImagePickerController.swift in Sources */,
 				00C826431DA5E04000ECECEE /* String+Extension.swift in Sources */,
 				00C826441DA5E04000ECECEE /* AnalysisLineChartCell.swift in Sources */,
 				00C826451DA5E04000ECECEE /* AnalysisLineChartCell.xib in Sources */,
@@ -3739,7 +3725,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				611D412C1DCAD97C003BC6E3 /* ImagePickerController.swift in Sources */,
 				611D412D1DCAD97C003BC6E3 /* MEDForgetPasswordRequest.swift in Sources */,
 				662B3CA91DEBD6E60014FA71 /* MEDAppInfoRequester.swift in Sources */,
 				611D412E1DCAD97C003BC6E3 /* MEDLoginRequest.swift in Sources */,
@@ -4393,6 +4378,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Nevo/Class/Controller/UserProfileController/Cropper",
 				);
+				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -D DEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = com.medcorp.LunaR;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -4632,7 +4618,7 @@
 					"$(PROJECT_DIR)/Nevo/Class/Controller/UserProfileController/Cropper",
 				);
 				ONLY_ACTIVE_ARCH = YES;
-				OTHER_SWIFT_FLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited) -D DEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.nevowatch.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
