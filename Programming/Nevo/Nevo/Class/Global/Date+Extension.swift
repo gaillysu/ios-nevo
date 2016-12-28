@@ -29,4 +29,10 @@ extension Date{
         let dateTime:Date           = dateString.dateFromFormat("yyyy-MM-dd,h:mm:ss", locale: DateFormatter().locale)!
         return dateTime
     }
+    
+    static func getLocalOffSet() -> Int {
+        let zone:TimeZone       = TimeZone.current
+        let offtSecond:Int      = zone.secondsFromGMT()
+        return offtSecond/60
+    }
 }
