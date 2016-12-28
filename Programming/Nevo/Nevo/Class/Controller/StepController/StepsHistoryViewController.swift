@@ -99,9 +99,9 @@ class StepsHistoryViewController: PublicClassController,ChartViewDelegate {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         if !AppTheme.isTargetLunaR_OR_Nevo(){
-            self.view.backgroundColor = UIColor.getGreyColor()
-            stepsHistory.backgroundColor = UIColor.getGreyColor()
-            chartView.backgroundColor = UIColor.getGreyColor()
+            self.view.backgroundColor = UIColor.getLightBaseColor()
+            stepsHistory.backgroundColor = UIColor.getLightBaseColor()
+            chartView.backgroundColor = UIColor.getLightBaseColor()
         }
         
         let layout:UICollectionViewFlowLayout = stepsHistory.collectionViewLayout as! UICollectionViewFlowLayout
@@ -121,8 +121,8 @@ class StepsHistoryViewController: PublicClassController,ChartViewDelegate {
             self.contentTArray.replaceSubrange(Range(0..<1), with: [String(format: "%.2f", dataSteps.totalCalories)])
             self.contentTArray.replaceSubrange(Range(1..<2), with: ["\(dataSteps.totalSteps)"])
             self.contentTArray.replaceSubrange(Range(2..<3), with: [AppTheme.timerFormatValue(value: timerValue/60.0)])
-            self.calculationData((dataSteps.walking_duration+dataSteps.running_duration), steps: dataSteps.totalSteps, completionData: { (miles, calories) in
-                self.contentTArray.replaceSubrange(Range(0..<1), with: [String(format: "%.2f", calories)])
+            DataCalculation.calculationData((dataSteps.walking_duration+dataSteps.running_duration), steps: dataSteps.totalSteps, completionData: { (miles, calories) in
+                self.contentTArray.replaceSubrange(Range(0..<1), with: [String(format: "%.2f", fabs(calories))])
                 self.contentTArray.replaceSubrange(Range(3..<4), with: ["\(miles)"])
             })
             self.stepsHistory.reloadData()
@@ -262,30 +262,6 @@ class StepsHistoryViewController: PublicClassController,ChartViewDelegate {
     }
 }
 
-// MARK: - Data calculation
-extension StepsHistoryViewController {
-    
-    func calculationData(_ activeTimer:Int,steps:Int,completionData:((_ miles:String,_ calories:String) -> Void)) {
-        let profiles = MEDUserProfile.getAll()
-        var userProfile:MEDUserProfile?
-        var strideLength:Double = 0
-        var userWeight:Double = 0
-        if profiles.count>0 {
-            userProfile = profiles.first as? MEDUserProfile
-            strideLength = Double(userProfile!.length)*0.415/100
-            userWeight = Double(userProfile!.weight)
-        }else{
-            strideLength = Double(170)*0.415/100
-            userWeight = 65
-        }
-        
-        let miles:Double = strideLength*Double(steps)/1000
-        //Formula's = (2.0 X persons KG X 3.5)/200 = calories per minute
-        let calories:Double = (2.0*userWeight*3.5)/200*Double(activeTimer)
-        completionData(String(format: "%.2f",miles), String(format: "%.2f",calories))
-    }
-}
-
 extension StepsHistoryViewController:UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout{
     // MARK: - UICollectionViewDataSource
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -298,7 +274,7 @@ extension StepsHistoryViewController:UICollectionViewDelegate,UICollectionViewDa
         let titleString:String = contentTitleArray[(indexPath as NSIndexPath).row]
         cell.titleLabel.text = titleString.capitalized(with: Locale.current)
         if !AppTheme.isTargetLunaR_OR_Nevo(){
-            cell.backgroundColor = UIColor.getGreyColor()
+            cell.backgroundColor = UIColor.getLightBaseColor()
             cell.valueLabel.textColor = UIColor.getBaseColor()
             cell.titleLabel.textColor = UIColor.white
         }

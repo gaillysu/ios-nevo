@@ -24,13 +24,7 @@ class PresetTableViewCell: UITableViewCell,ButtonManagerCallBack {
         
         /// When switch is turned off, cell's color should be clear.
         if(presetStates.isOn){
-            if AppTheme.isTargetLunaR_OR_Nevo() {
-                backgroundColor = UIColor.white
-                contentView.backgroundColor = UIColor.white
-            } else {
-                backgroundColor = UIColor.getGreyColor()
-                contentView.backgroundColor = UIColor.getGreyColor()
-            }
+            viewDefaultColorful()
         }else{
             backgroundColor = UIColor.clear
             contentView.backgroundColor = UIColor.clear

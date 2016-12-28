@@ -10,7 +10,7 @@ import UIKit
 import Charts
 import SwiftEventBus
 
-class SleepHistoricalViewController: PublicClassController,ChartViewDelegate,SelectedChartViewDelegate {
+class SleepHistoricalViewController: PublicClassController,ChartViewDelegate {
 
     @IBOutlet weak var queryView: SleepHistoricalView!
     @IBOutlet weak var titleLabel: UILabel!
@@ -53,14 +53,12 @@ class SleepHistoricalViewController: PublicClassController,ChartViewDelegate,Sel
     
     override func viewWillAppear(_ animated: Bool) {
         todaySleepArray = MEDUserSleep.getFilter("date < \(Date.yesterday().beginningOfDay.timeIntervalSince1970) AND date > \(Date().endOfDay.timeIntervalSince1970)")
-            //UserSleep.getCriteria("WHERE date BETWEEN \(Date.yesterday().beginningOfDay.timeIntervalSince1970) AND \(Date().endOfDay.timeIntervalSince1970)")
         AnalysisSleepData(todaySleepArray)
         
         _ = SwiftEventBus.onMainThread(self, name: SELECTED_CALENDAR_NOTIFICATION) { (notification) in
             let userinfo:Date = notification.userInfo!["selectedDate"] as! Date
             self.selectedDate = userinfo as Date
             let selectedSleepArray = MEDUserSleep.getFilter("date < \(userinfo.timeIntervalSince1970-86400) AND date > \(userinfo.endOfDay.timeIntervalSince1970)")
-                //UserSleep.getCriteria("WHERE date BETWEEN \(userinfo.timeIntervalSince1970-86400) AND \(userinfo.endOfDay.timeIntervalSince1970)")
             self.AnalysisSleepData(selectedSleepArray)
         }
         
@@ -82,7 +80,7 @@ class SleepHistoricalViewController: PublicClassController,ChartViewDelegate,Sel
     }
     
     func AnalysisSleepData(_ array:[Any]) {
-        queryView.bulidQueryView(self,modelArray: array)
+        queryView.bulidQueryView(modelArray: array)
         
         if queryView.chartView!.getYVals().count > 0 {
             var sleepTime:Double = 0
@@ -135,22 +133,6 @@ class SleepHistoricalViewController: PublicClassController,ChartViewDelegate,Sel
         }
     }
 
-    
-    // MARK: - SelectedChartViewDelegate
-    func didSleepSelectedhighlightValue(_ xIndex:Int,dataSetIndex: Int, dataSleep:Sleep) {
-        contentTArray.removeAll()
-        let startTimer:Date = Date(timeIntervalSince1970: dataSleep.getStartTimer())
-        let endTimer:Date = Date(timeIntervalSince1970: dataSleep.getEndTimer())
-        let startString:String = startTimer.stringFromFormat("hh:mm a")
-        let endString:String = endTimer.stringFromFormat("hh:mm a")
-        
-        contentTArray.insert("\(startString)", at: 0)
-        contentTArray.insert("\(endString)", at: 1)
-        contentTArray.insert(String(format: "%100"), at: 2)
-        contentTArray.insert(String(format: "%dh%dm", Int(dataSleep.getWeakSleep()),Int(((dataSleep.getWeakSleep())*Double(60)).truncatingRemainder(dividingBy: Double(60)))), at: 3)
-        queryView.detailCollectionView.reloadData()
-    }
-
     fileprivate func calculateMinutes(_ time:Double) -> (hours:Int,minutes:Int){
         return (Int(time),Int(60*(time.truncatingRemainder(dividingBy: 1))));
     }
@@ -169,7 +151,7 @@ extension SleepHistoricalViewController:UICollectionViewDelegate,UICollectionVie
         cell.valueLabel.text = "\(contentTArray[indexPath.row])"
         
         if !AppTheme.isTargetLunaR_OR_Nevo() {
-            cell.backgroundColor = UIColor.getGreyColor()
+            cell.backgroundColor = UIColor.getLightBaseColor()
             cell.valueLabel.textColor = UIColor.getBaseColor()
             cell.titleLabel.textColor = UIColor.white
         }else{

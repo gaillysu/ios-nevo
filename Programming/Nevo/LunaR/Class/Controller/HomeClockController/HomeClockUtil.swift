@@ -20,8 +20,10 @@ class HomeClockUtil {
         return try! Realm()
     }()
     
-    class var shared: HomeClockUtil {
-        return _shared
+    static var shared: HomeClockUtil = HomeClockUtil()
+    
+    fileprivate init() {
+        
     }
     
     func getHomeCityWithSelectedFlag() -> City? {
@@ -117,5 +119,14 @@ class HomeClockUtil {
                 closure(nil)
             }
         })
+    }
+    
+    func getHomeTime() -> Date? {
+        if let city = getHomeCityWithSelectedFlag(), let timezone = getTimezoneWithCity(city: city) {
+            let gmtOffset = timezone.gmtTimeOffset * 60
+            return Date.convertGMTToLocalDateFormat(gmtOffset)
+        }
+        
+        return nil
     }
 }

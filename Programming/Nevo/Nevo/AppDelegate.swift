@@ -47,8 +47,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
     fileprivate var isSync:Bool = true; // syc state
     fileprivate var getWacthNameTimer:Timer?
     
-    fileprivate var longitude:Double = 0
-    fileprivate var latitude:Double = 0
+    var longitude:Double = 0
+    var latitude:Double = 0
     
     var isFirsttimeLaunch: Bool {
         get {
@@ -278,7 +278,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                 let timerInterval:Date = thispacket.getDateTimer()
                 let timeStr:String = thispacket.getDateTimer().stringFromFormat("yyyyMMdd", locale: DateFormatter().locale)
                 
-                if watchID>1 {
+                if self.getWactnID()>1 {
                     saveSolarHarvest(thispacket: thispacket, date: thispacket.getDateTimer())
                 }
                 
@@ -299,7 +299,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                     savedDailyHistory[Int(currentDay)].HourlyCalories = thispacket.getHourlyCalories()
                     
                     //save to health kit
-                    let hk = NevoHKImpl.shareNevoHKImplOne
+                    let hk = NevoHKManager.manager
                     hk.requestPermission()
                     
                     let now:Date = Date()

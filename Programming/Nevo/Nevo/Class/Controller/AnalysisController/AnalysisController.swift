@@ -42,11 +42,10 @@ class AnalysisController: PublicClassController {
         contentCollectionView.register(UINib(nibName: "AnalysisValueCell",bundle: nil), forCellWithReuseIdentifier: "AnalysisValue_Identifier")
         dataArray.addObjects(from: self.getStepsData())
         
-        if UserDefaults.standard.object(forKey: "WATCHNAME_KEY") != nil {
-            let value:Int = UserDefaults.standard.object(forKey: "WATCHNAME_KEY") as! Int
-            if value>1{
-                segmented.insertSegment(withTitle: NSLocalizedString("Solar", comment: ""), at: segmented.numberOfSegments, animated: false)
-            }
+        let value:Int = AppDelegate.getAppDelegate().getWactnID()
+        
+        if value>1 {
+            segmented.insertSegment(withTitle: NSLocalizedString("Solar", comment: ""), at: segmented.numberOfSegments, animated: false)
         }
         
         let segmentDeviderView: UIView = UIView()
@@ -68,8 +67,8 @@ class AnalysisController: PublicClassController {
         }
         
         if !AppTheme.isTargetLunaR_OR_Nevo() {
-            contentCollectionView.backgroundColor = UIColor.getGreyColor()
-            chartsCollectionView.backgroundColor = UIColor.getGreyColor()
+            contentCollectionView.backgroundColor = UIColor.getLightBaseColor()
+            chartsCollectionView.backgroundColor = UIColor.getLightBaseColor()
             segmented.tintColor = UIColor.getBaseColor()
             segmentDeviderView.backgroundColor = UIColor.black
             

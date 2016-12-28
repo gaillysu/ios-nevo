@@ -213,7 +213,7 @@ extension LoginController {
                         let dateString:String = Date(timeIntervalSince1970: stepsModel.date).stringFromFormat("yyy-MM-dd")
                         var caloriesValue:Int = 0
                         var milesValue:Double = 0
-                        StepGoalSetingController.calculationData((stepsModel.walking_duration+stepsModel.running_duration), steps: stepsModel.totalSteps, completionData: { (miles, calories) in
+                        DataCalculation.calculationData((stepsModel.walking_duration+stepsModel.running_duration), steps: stepsModel.totalSteps, completionData: { (miles, calories) in
                             caloriesValue = Int(calories)
                             milesValue = miles
                         })

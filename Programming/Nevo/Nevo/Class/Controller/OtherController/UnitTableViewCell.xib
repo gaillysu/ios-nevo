@@ -24,19 +24,33 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="owV-Es-BfR">
-                        <rect key="frame" x="18" y="5" width="130" height="40"/>
+                        <rect key="frame" x="18" y="5" width="189" height="40"/>
                         <fontDescription key="fontDescription" name="Raleway" family="Raleway" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9IB-fw-le5" customClass="SMSegmentView" customModule="LunaR" customModuleProvider="target">
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9IB-fw-le5">
                         <rect key="frame" x="182" y="7" width="130" height="35"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Gj8-gY-uRU" customClass="AutocompleteField" customModule="LunaR" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="130" height="35"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Gj8-gY-uRU" firstAttribute="leading" secondItem="9IB-fw-le5" secondAttribute="leading" id="81Q-CK-h6e"/>
+                            <constraint firstAttribute="trailing" secondItem="Gj8-gY-uRU" secondAttribute="trailing" id="aqD-ki-lnH"/>
+                            <constraint firstAttribute="bottom" secondItem="Gj8-gY-uRU" secondAttribute="bottom" id="pgS-fC-BCa"/>
+                            <constraint firstItem="Gj8-gY-uRU" firstAttribute="top" secondItem="9IB-fw-le5" secondAttribute="top" id="wj7-Qd-efg"/>
+                        </constraints>
                     </view>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="owV-Es-BfR" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" constant="-47.5" id="62R-Sj-htM"/>
                     <constraint firstAttribute="bottomMargin" secondItem="owV-Es-BfR" secondAttribute="bottom" constant="-4" id="Bdn-UR-mMb"/>
-                    <constraint firstItem="owV-Es-BfR" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" constant="-77" id="RnL-70-fq2"/>
                     <constraint firstAttribute="leadingMargin" secondItem="owV-Es-BfR" secondAttribute="leading" constant="-10" id="See-bC-Qug"/>
                     <constraint firstItem="9IB-fw-le5" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" constant="87" id="W4l-A8-Qud"/>
                     <constraint firstAttribute="topMargin" secondItem="owV-Es-BfR" secondAttribute="top" constant="3" id="iMg-hS-KCj"/>
@@ -48,6 +62,7 @@
             <connections>
                 <outlet property="titleLabel" destination="owV-Es-BfR" id="wv7-s4-Ark"/>
                 <outlet property="unitSegmented" destination="9IB-fw-le5" id="Qzg-Hx-kke"/>
+                <outlet property="unitSegmentedField" destination="Gj8-gY-uRU" id="AmS-uY-MD0"/>
             </connections>
         </tableViewCell>
     </objects>

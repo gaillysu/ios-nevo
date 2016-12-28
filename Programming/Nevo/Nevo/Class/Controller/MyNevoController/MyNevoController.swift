@@ -59,7 +59,15 @@ class MyNevoController: UITableViewController,UIAlertViewDelegate {
                     self.tableView.reloadRows(at: [indexPath as IndexPath], with: UITableViewRowAnimation.automatic)
                 }
             }else{
-            
+                let packet = notification.object as! LunaRPacket;
+                //Do nothing
+                let thispacket:BatteryLevelNevoPacket = packet.copy() as BatteryLevelNevoPacket
+                if(thispacket.isReadBatteryCommand(packet.getPackets())){
+                    let batteryValue:Int = thispacket.getBatteryLevel()
+                    self.currentBattery = batteryValue
+                    let indexPath:NSIndexPath = NSIndexPath(row: 1, section: 0)
+                    self.tableView.reloadRows(at: [indexPath as IndexPath], with: UITableViewRowAnimation.automatic)
+                }
             }
         }
         
@@ -174,7 +182,15 @@ class MyNevoController: UITableViewController,UIAlertViewDelegate {
         switch ((indexPath as NSIndexPath).row){
         case 0:
             if((AppDelegate.getAppDelegate().getSoftwareVersion() < Float(buildin_firmware_version)) && (AppDelegate.getAppDelegate().getFirmwareVersion() < Float(buildin_software_version))){
-                detailString = "There is an update available!"
+                
+                detailString = NSLocalizedString("update_available", comment: "")
+                if AppTheme.isTargetLunaR_OR_Nevo() {
+                    detailString = detailString.replacingOccurrences(of: "Nevo", with: "LunaR")
+                }
+                
+                detailString = detailString.replacingOccurrences(of: "VERSION_NUMBER", with: buildin_firmware_version.to2String())
+                
+                detailString = "Version \(buildin_firmware_version) is now available for your LunaR!"
                 NSLog("MCU:\(AppDelegate.getAppDelegate().getSoftwareVersion()) BLE:\(AppDelegate.getAppDelegate().getFirmwareVersion())")
                 isUpdate = true
             }else{

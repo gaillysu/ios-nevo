@@ -18,7 +18,7 @@
             <connections>
                 <outlet property="cityNameLabel" destination="gKJ-bo-DMU" id="A70-6h-Ptt"/>
                 <outlet property="dateLabel" destination="PmF-vE-lSx" id="cYj-8g-jzf"/>
-                <outlet property="dialView" destination="Bki-fk-eZx" id="bX6-kl-tGP"/>
+                <outlet property="dialView" destination="5GS-J2-cA2" id="UNB-fn-fPb"/>
                 <outlet property="todayLabel" destination="3hz-ld-poB" id="CY7-iI-lAZ"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -28,88 +28,76 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5GS-J2-cA2">
-                    <rect key="frame" x="0.0" y="75" width="375" height="281.5"/>
-                    <subviews>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bki-fk-eZx">
-                            <rect key="frame" x="46.5" y="0.0" width="281.5" height="281.5"/>
-                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                            <constraints>
-                                <constraint firstAttribute="width" secondItem="Bki-fk-eZx" secondAttribute="height" multiplier="1:1" id="ybw-Iy-uTr"/>
-                            </constraints>
-                        </view>
-                    </subviews>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    <constraints>
-                        <constraint firstItem="Bki-fk-eZx" firstAttribute="centerX" secondItem="5GS-J2-cA2" secondAttribute="centerX" id="449-FV-w8Y"/>
-                        <constraint firstItem="Bki-fk-eZx" firstAttribute="centerY" secondItem="5GS-J2-cA2" secondAttribute="centerY" id="9OK-aR-fdO"/>
-                        <constraint firstAttribute="width" secondItem="5GS-J2-cA2" secondAttribute="height" multiplier="4:3" id="UMb-YA-QyW"/>
-                        <constraint firstItem="Bki-fk-eZx" firstAttribute="height" secondItem="5GS-J2-cA2" secondAttribute="height" id="WcR-h6-nU1"/>
-                    </constraints>
-                </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="39E-si-uVE">
-                    <rect key="frame" x="0.0" y="356.5" width="375" height="280.5"/>
-                    <subviews>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UOq-yi-LCD">
-                            <rect key="frame" x="0.0" y="90.5" width="375" height="100"/>
-                            <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Shenzhen China" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gKJ-bo-DMU">
-                                    <rect key="frame" x="0.0" y="0.5" width="375" height="40"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="40" id="FMP-Lm-qUP"/>
-                                    </constraints>
-                                    <fontDescription key="fontDescription" name="Raleway" family="Raleway" pointSize="24"/>
-                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="19 Dec, 2016" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PmF-vE-lSx">
-                                    <rect key="frame" x="0.0" y="60.5" width="375" height="40"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="40" id="4gH-jy-uLR"/>
-                                    </constraints>
-                                    <fontDescription key="fontDescription" name="Raleway" family="Raleway" pointSize="20"/>
-                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                            </subviews>
-                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                            <constraints>
-                                <constraint firstAttribute="bottom" secondItem="PmF-vE-lSx" secondAttribute="bottom" id="5vn-2C-Gnt"/>
-                                <constraint firstAttribute="trailing" secondItem="PmF-vE-lSx" secondAttribute="trailing" id="CH4-A5-noD"/>
-                                <constraint firstItem="gKJ-bo-DMU" firstAttribute="top" secondItem="UOq-yi-LCD" secondAttribute="top" id="OWl-dc-qZE"/>
-                                <constraint firstItem="PmF-vE-lSx" firstAttribute="leading" secondItem="UOq-yi-LCD" secondAttribute="leading" id="W1N-Mh-SdJ"/>
-                                <constraint firstItem="gKJ-bo-DMU" firstAttribute="leading" secondItem="UOq-yi-LCD" secondAttribute="leading" id="a6G-PP-xy4"/>
-                                <constraint firstAttribute="trailing" secondItem="gKJ-bo-DMU" secondAttribute="trailing" id="knr-zp-58z"/>
-                                <constraint firstItem="PmF-vE-lSx" firstAttribute="top" secondItem="gKJ-bo-DMU" secondAttribute="bottom" constant="20" id="m9J-2o-khR"/>
-                            </constraints>
-                        </view>
-                    </subviews>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    <constraints>
-                        <constraint firstItem="UOq-yi-LCD" firstAttribute="leading" secondItem="39E-si-uVE" secondAttribute="leading" id="OyK-AY-Uku"/>
-                        <constraint firstItem="UOq-yi-LCD" firstAttribute="centerY" secondItem="39E-si-uVE" secondAttribute="centerY" id="XPV-6t-AP8"/>
-                        <constraint firstAttribute="trailing" secondItem="UOq-yi-LCD" secondAttribute="trailing" id="esv-RJ-dQK"/>
-                    </constraints>
-                </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Today" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3hz-ld-poB">
                     <rect key="frame" x="0.0" y="20" width="375" height="35"/>
                     <fontDescription key="fontDescription" name="Raleway" family="Raleway" pointSize="30"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5GS-J2-cA2">
+                    <rect key="frame" x="10" y="66" width="355" height="308"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="5GS-J2-cA2" secondAttribute="height" multiplier="15:13" id="6Z7-rg-NOW"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="39E-si-uVE">
+                    <rect key="frame" x="0.0" y="394" width="375" height="233"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IJz-j2-ycu">
+                            <rect key="frame" x="0.0" y="84" width="375" height="65"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="19 Dec, 2016" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PmF-vE-lSx">
+                                    <rect key="frame" x="0.0" y="45" width="375" height="20"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="20" id="iSO-Wh-Bdu"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" name="Raleway" family="Raleway" pointSize="19"/>
+                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Shenzhen China" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gKJ-bo-DMU">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="25"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="25" id="rTE-52-JAT"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" name="Raleway" family="Raleway" pointSize="22"/>
+                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstItem="gKJ-bo-DMU" firstAttribute="leading" secondItem="IJz-j2-ycu" secondAttribute="leading" id="5M3-7j-c6S"/>
+                                <constraint firstItem="PmF-vE-lSx" firstAttribute="top" secondItem="gKJ-bo-DMU" secondAttribute="bottom" constant="20" id="aXb-qL-5Hn"/>
+                                <constraint firstAttribute="trailing" secondItem="PmF-vE-lSx" secondAttribute="trailing" id="bBb-8t-vbd"/>
+                                <constraint firstItem="gKJ-bo-DMU" firstAttribute="top" secondItem="IJz-j2-ycu" secondAttribute="top" id="h9v-3g-J9O"/>
+                                <constraint firstAttribute="bottom" secondItem="PmF-vE-lSx" secondAttribute="bottom" id="k3K-Ag-zTD"/>
+                                <constraint firstItem="PmF-vE-lSx" firstAttribute="leading" secondItem="IJz-j2-ycu" secondAttribute="leading" id="nHa-wd-MC9"/>
+                                <constraint firstAttribute="trailing" secondItem="gKJ-bo-DMU" secondAttribute="trailing" id="xYk-4Z-sS0"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="IJz-j2-ycu" secondAttribute="trailing" id="Qnq-bt-ovP"/>
+                        <constraint firstItem="IJz-j2-ycu" firstAttribute="centerY" secondItem="39E-si-uVE" secondAttribute="centerY" id="blV-gI-0KY"/>
+                        <constraint firstItem="IJz-j2-ycu" firstAttribute="leading" secondItem="39E-si-uVE" secondAttribute="leading" id="qNN-Zi-ClP"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="39E-si-uVE" firstAttribute="top" secondItem="5GS-J2-cA2" secondAttribute="bottom" constant="20" id="15u-ig-WTe"/>
+                <constraint firstItem="5GS-J2-cA2" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="66" id="2Bd-Sj-Nyb"/>
                 <constraint firstItem="39E-si-uVE" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Ftx-hr-I0R"/>
-                <constraint firstItem="39E-si-uVE" firstAttribute="top" secondItem="5GS-J2-cA2" secondAttribute="bottom" id="GBU-bE-0WC"/>
-                <constraint firstItem="5GS-J2-cA2" firstAttribute="top" secondItem="3hz-ld-poB" secondAttribute="bottom" constant="20" id="GP8-hT-V2P"/>
                 <constraint firstItem="3hz-ld-poB" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="20" id="NVd-ZJ-j9g"/>
-                <constraint firstItem="5GS-J2-cA2" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="RB4-eH-AgF"/>
-                <constraint firstAttribute="bottom" secondItem="39E-si-uVE" secondAttribute="bottom" constant="30" id="XcQ-ac-YfY"/>
+                <constraint firstItem="5GS-J2-cA2" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="RB4-eH-AgF"/>
                 <constraint firstAttribute="trailing" secondItem="39E-si-uVE" secondAttribute="trailing" id="ZZ3-0X-RYO"/>
-                <constraint firstAttribute="trailing" secondItem="5GS-J2-cA2" secondAttribute="trailing" id="eqm-fz-g4k"/>
+                <constraint firstAttribute="trailing" secondItem="5GS-J2-cA2" secondAttribute="trailing" constant="10" id="eqm-fz-g4k"/>
                 <constraint firstItem="3hz-ld-poB" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="pam-3f-kJg"/>
                 <constraint firstAttribute="trailing" secondItem="3hz-ld-poB" secondAttribute="trailing" id="s7Q-Pf-MMC"/>
+                <constraint firstAttribute="bottom" secondItem="39E-si-uVE" secondAttribute="bottom" constant="40" id="sH3-Wb-jJQ"/>
             </constraints>
             <point key="canvasLocation" x="53.5" y="-48.5"/>
         </view>

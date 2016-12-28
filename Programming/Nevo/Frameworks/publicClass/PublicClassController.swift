@@ -22,7 +22,7 @@ class PublicClassController: UIViewController {
         
         let app_Name:String = infoDictionary["CFBundleName"] as! String
         if app_Name == "LunaR" {
-            self.view.backgroundColor = UIColor(rgba: "#54575a")
+            self.view.backgroundColor = UIColor.getLightBaseColor()
         }
 
         

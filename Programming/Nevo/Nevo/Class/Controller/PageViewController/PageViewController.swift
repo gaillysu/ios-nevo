@@ -41,26 +41,19 @@ class PageViewController: UIPageViewController,UIActionSheetDelegate {
         
         //set_goal
         let rightItem:UIBarButtonItem = UIBarButtonItem(title: NSLocalizedString("set_goal", comment: ""), style: UIBarButtonItemStyle.plain, target: self, action: #selector(rightBarButtonAction(_:)))
-        rightItem.tintColor = AppTheme.NEVO_SOLAR_YELLOW()
         
         let rightSpacer:UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.fixedSpace, target: nil, action: nil)
         rightSpacer.width = 0;
         self.navigationItem.rightBarButtonItems = [rightSpacer,rightItem]
         
         let leftItem:UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "new_radio"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(leftBarButtonAction(_:)))
-        leftItem.tintColor = AppTheme.NEVO_SOLAR_YELLOW()
         
         let leftSpacer:UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.fixedSpace, target: nil, action: nil)
         leftSpacer.width = -10;
-        //self.navigationItem.leftBarButtonItems = [leftSpacer,leftItem]
         
-        if !AppTheme.isTargetLunaR_OR_Nevo(){
-            self.view.backgroundColor = UIColor.getGreyColor()
-            leftItem.tintColor = UIColor.getBaseColor()
-            rightItem.tintColor = UIColor.getBaseColor()
-        }else{
-            self.view.backgroundColor = UIColor.white
-        }
+        leftItem.viewDefaultColorful()
+        rightItem.viewDefaultColorful()
+        viewDefaultColorful()
         
         // MARK: - SET WATCH_ID NOTIFICATION
         _ = SwiftEventBus.onMainThread(self, name: EVENT_BUS_WATCHID_DIDCHANGE_KEY) { (notification) in
@@ -83,15 +76,12 @@ class PageViewController: UIPageViewController,UIActionSheetDelegate {
     func reloadPageControll() {
         pagingControllers.removeAll()
         
-        let viewController1 = StepGoalSetingController()
+        let viewController1 = getDashBoardController()
         viewController1.view.tag = 0
-        viewController1.view.backgroundColor = UIColor.white
         let viewController2 = StepsHistoryViewController()
         viewController2.view.tag = 1
-        viewController2.view.backgroundColor = UIColor.white
         let viewController3 = SleepHistoricalViewController()
         viewController3.view.tag = 2
-        viewController3.view.backgroundColor = UIColor.white
         
         pagingControllers = [viewController1, viewController2,viewController3]
         
@@ -124,10 +114,6 @@ class PageViewController: UIPageViewController,UIActionSheetDelegate {
         if !AppTheme.isTargetLunaR_OR_Nevo() {
             if selectedTag == 3 {
                 let addWorldClock:AddWorldClockViewController = AddWorldClockViewController()
-                
-                if pagingControllers[3] is HomeClockController {
-                    addWorldClock.didSeletedCityDelegate = pagingControllers[3] as! HomeClockController
-                }
                 
                 addWorldClock.hidesBottomBarWhenPushed = true
                 let nav:UINavigationController = UINavigationController(rootViewController: addWorldClock)
@@ -183,25 +169,6 @@ class PageViewController: UIPageViewController,UIActionSheetDelegate {
             let banner = MEDBanner(title: NSLocalizedString("no_watch_connected", comment: ""), subtitle: nil, image: nil, backgroundColor: AppTheme.NEVO_SOLAR_YELLOW())
             banner.dismissesOnTap = true
             banner.show(duration: 2.0)
-        }
-        
-    }
-}
-
-extension PageViewController:WorldClockDidSelectedDelegate{
-    func didSelectedLocalTimeZone(_ cityId:Int){
-        let realm = try! Realm()
-        let citiesArray:[City] = Array(realm.objects(City.self).filter("selected = true"))
-        let city = citiesArray[0]
-        
-        let solar = Solar(latitude: city.lat,
-                          longitude: city.lng)
-        let sunrise = solar!.sunrise
-        let sunset = solar!.sunset
-        let offset = String(format: "%.0f", (sunrise!.timeIntervalSince1970-sunset!.timeIntervalSince1970)/3600)
-        if AppDelegate.getAppDelegate().isConnected() {
-            let setWordClock:SetWorldClockRequest = SetWorldClockRequest(offset: offset.toInt())
-            AppDelegate.getAppDelegate().sendRequest(setWordClock)
         }
         
     }
@@ -275,7 +242,7 @@ extension PageViewController: UIPageViewControllerDataSource,UIPageViewControlle
             self.navigationItem.rightBarButtonItems = [rightSpacer,rightItem]
         }
         self.setCurrentPageIndex(viewController.view.tag)
-        if viewController.isKind(of: StepGoalSetingController.self) {
+        if viewController.isKind(of: getDashBoardController().classForCoder) {
             return pagingControllers[1]
         }else if viewController.isKind(of: StepsHistoryViewController.self) {
             return pagingControllers[2]
@@ -604,6 +571,16 @@ extension PageViewController: CVCalendarViewAppearanceDelegate {
             return UIColor.getBaseColor()
         }else{
             return AppTheme.NEVO_SOLAR_YELLOW()
+        }
+    }
+}
+
+extension PageViewController {
+    func getDashBoardController() -> UIViewController {
+        if AppTheme.isTargetLunaR_OR_Nevo() {
+            return StepGoalSetingController()
+        } else {
+            return DashBoardController()
         }
     }
 }

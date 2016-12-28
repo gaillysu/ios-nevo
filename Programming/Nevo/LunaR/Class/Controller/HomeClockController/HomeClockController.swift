@@ -10,7 +10,7 @@ import UIKit
 import Timepiece
 import RealmSwift
 
-class HomeClockController: PublicClassController {
+class HomeClockController: UIViewController {
 
     @IBOutlet weak var todayLabel: UILabel!
     @IBOutlet weak var dialView: UIView!
@@ -46,28 +46,49 @@ class HomeClockController: PublicClassController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setUpView()
-        navigationItem.title = NSLocalizedString("Home City", comment: "")
+        AppDelegate.getAppDelegate().startConnect(false)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
         setUpView()
+        
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         refreshClockView()
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+    }
 }
  
 extension HomeClockController {
     func setUpView() {
+        navigationItem.title = NSLocalizedString("Home City", comment: "")
+        
         if let city = city {
             noCityLabel.isHidden = true
             
-            cityNameLabel.text = "\(city.name), \(city.country)"
+            let cityNameValue:String = "\(city.name), \(city.country)"
+            if let name = cityNameLabel.text {
+                if name != cityNameValue {
+                    if let city = HomeClockUtil.shared.getHomeCityWithSelectedFlag(), let timezone = HomeClockUtil.shared.getTimezoneWithCity(city: city) {
+                        let cityZone = timezone.gmtTimeOffset
+                        let localZone = Date.getLocalOffSet()
+                        let offset = 23-abs((localZone-cityZone)/60)
+                        let setWordClock:SetWorldClockRequest = SetWorldClockRequest(offset: offset)
+                        AppDelegate.getAppDelegate().sendRequest(setWordClock)
+                    }else{
+                        let setWordClock:SetWorldClockRequest = SetWorldClockRequest(offset: 0)
+                        AppDelegate.getAppDelegate().sendRequest(setWordClock)
+                    }
+
+                }
+            }
+            cityNameLabel.text = cityNameValue
             
             calculateHomeTime()
             
@@ -80,7 +101,7 @@ extension HomeClockController {
     }
     
     func refreshClockView() {
-        for v in self.dialView.subviews {
+        for v in dialView.subviews {
             if v is ClockView {
                 v.removeFromSuperview()
             }
@@ -90,9 +111,13 @@ extension HomeClockController {
         let minuteImage = AppTheme.GET_RESOURCES_IMAGE("wacth_mint")
         let dialImage = AppTheme.GET_RESOURCES_IMAGE("wacth_dial")
         
-        clockView = ClockView(frame: CGRect(x: 0, y: 0, width: dialView.bounds.width, height: dialView.bounds.width), hourImage: hourImage, minuteImage: minuteImage, dialImage: dialImage)
+        let clockWidth = dialView.frame.height
         
+        clockView = ClockView(frame: CGRect(x: 0, y: 0, width: clockWidth, height: clockWidth), hourImage: hourImage, minuteImage: minuteImage, dialImage: dialImage)
         setDialTime(hour: homeTime.hour, minute: homeTime.minute, seconds: homeTime.second)
+        
+        clockView?.center.x = dialView.frame.width / 2.0
+        
         dialView.addSubview(clockView!)
     }
     
@@ -135,11 +160,3 @@ extension HomeClockController {
     }
 }
 
-extension HomeClockController: WorldClockDidSelectedDelegate {
-    func didSelectedLocalTimeZone(_ cityId:Int) {
-//        if AppDelegate.getAppDelegate().isConnected() {
-//            let setWordClock:SetWorldClockRequest = SetWorldClockRequest(offset: homeTime.hour)
-//            AppDelegate.getAppDelegate().sendRequest(setWordClock)
-//        }
-    }
-}

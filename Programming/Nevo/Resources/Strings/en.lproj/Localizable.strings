@@ -213,13 +213,29 @@
 "locating_city" = "Located City";
 "all_city" = "All Cities";
 "Choose_home_city" = "Choose your home city";
-"none_homecity" = "There is no city for your home city yet, Click the upper right button to add one!";
+"none_homecity" = "You haven't chosen your home city yet, click the button in the upper right corner to add one!";
 
 // Notification Color
 "color"="Color";
 "other_settings"="Other settings";
 "unit"="Unit";
-"metrics"="Metrics";
-"imperial"="Imperial";
+"metrics"="METRICS";
+"imperial"="IMPERIAL";
 
-"local_time" = "local time";
+"local_time" = "LOCAL TIME";
+"home_time" = "HOME TIME";
+
+// Dashboard of LunaR
+"harvest_status" = "HARVESTING STATUS";
+"charging" = "CHARGING";
+"sunrise" = "SUNRISE";
+"sunset" = "SUNSET";
+"hometime" = "HOME TIME";
+"calories_burned" = "CALORIES BURNED";
+"of_goal" = "OF GOAL";
+"inactivity" = "INACTIVITY";
+"activity" = "ACTIVITY";
+"steps_taken" = "STEPS TAKEN";
+
+"update_available" = "Version VERSION_NUMBER is now available for your Nevo!";
+"home_local" = "Watch digital time";

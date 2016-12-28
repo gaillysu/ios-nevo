@@ -16,4 +16,8 @@ extension Double {
     func toDouble() -> Double {
         return NSString(format: "%.0f", self).doubleValue
     }
+    
+    func toInt() -> Int {
+        return Int(self)
+    }
 }

@@ -226,3 +226,19 @@
 "imperial"="英制";
 
 "local_time" = "当地时间";
+"home_time" = "家乡时间";
+
+// Dashboard of LunaR
+"harvest_status" = "充电状态";
+"charging" = "正在充电";
+"sunrise" = "日出";
+"sunset" = "日落";
+"hometime" = "家乡时间";
+"calories_burned" = "燃烧卡路里";
+"of_goal" = "目标已达成";
+"inactivity" = "休息";
+"activity" = "活动";
+"steps_taken" = "已走步数";
+
+"update_available" = "你的 Nevo 有新的固件版本 VERSION_NUMBER 可用！";
+"home_local" = "手表数字时间";

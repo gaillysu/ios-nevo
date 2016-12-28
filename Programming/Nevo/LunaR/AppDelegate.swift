@@ -47,8 +47,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
     fileprivate var isSync:Bool = true; // syc state
     fileprivate var getWacthNameTimer:Timer?
     //Default Hong Kong
-    fileprivate var longitude:Double = 114.1670679
-    fileprivate var latitude:Double = 22.2782551
+    var longitude:Double = 114.1670679
+    var latitude:Double = 22.2782551
     
     var isFirsttimeLaunch: Bool {
         get {
@@ -84,7 +84,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
         IQKeyboardManager.sharedManager().enable = true
         
         // 在这里授权以保证在接收到数据的时候可以写入
-        NevoHKImpl.shareNevoHKlOne.requestPermission()
+        NevoHKManager.manager.requestPermission()
         
         updateDataBase()
         
@@ -118,35 +118,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
         self.startLocation()
         
         return true
-    }
-    
-    func applicationWillResignActive(_ application: UIApplication) {
-        // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-        // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
-    }
-    
-    func applicationDidEnterBackground(_ application: UIApplication) {
-        UIApplication.shared.beginBackgroundTask (expirationHandler: { () -> Void in })
-        
-        // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
-        // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-    }
-    
-    func applicationWillEnterForeground(_ application: UIApplication) {
-        // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
-    }
-    
-    func applicationDidBecomeActive(_ application: UIApplication) {
-        // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-    }
-    
-    func applicationWillTerminate(_ application: UIApplication) {
-        // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-        // Saves changes in the application's managed object context before the application terminates.
-    }
-    
-    func application(_ application: UIApplication , didReceive notification: UILocalNotification ) {
-        
     }
     
     func updateDataBase() {
@@ -508,27 +479,6 @@ extension AppDelegate {
         }
     }
     
-    func getSunriseOrSunsetTime() -> (sunriseDate: Date?, sunsetDate: Date?, additionString: String) {
-        if let solar = Solar(latitude: latitude, longitude: longitude) {
-            if let sunrise = solar.sunrise, let sunset = solar.sunset {
-                return (sunrise, sunset, "")
-            } else {
-                // these areas are in polar day or night!
-                let isNorthernHemisphereHere = latitude > 0
-                let isNorthernHemisphereSummer = (3..<10).contains(Date().month)
-                
-                if isNorthernHemisphereHere == isNorthernHemisphereSummer {
-                    return (nil, nil, "Polar daylight")
-                } else {
-                    return (nil, nil, "Polar night")
-                }
-            }
-        } else {
-            let solar = Solar(latitude: 22.2782551, longitude: 114.1670679)
-            return (solar?.sunrise, solar?.sunset, "")
-        }
-    }
-    
     func getLongitude() -> Double {
         return longitude;
     }
@@ -618,7 +568,7 @@ extension AppDelegate {
             let dateString:String = date.stringFromFormat("yyy-MM-dd")
             var caloriesValue:Int = 0
             var milesValue:Double = 0
-            StepGoalSetingController.calculationData((stepsModel.walking_duration+stepsModel.running_duration), steps: stepsModel.totalSteps, completionData: { (miles, calories) in
+            DataCalculation.calculationData((stepsModel.walking_duration+stepsModel.running_duration), steps: stepsModel.totalSteps, completionData: { (miles, calories) in
                 caloriesValue = Int(calories)
                 milesValue = miles
             })
@@ -743,7 +693,7 @@ extension AppDelegate {
             savedDailyHistory[Int(currentDay)].HourlyCalories = thispacket.getHourlyCalories()
             
             //save to health kit
-            let hk = NevoHKImpl.shareNevoHKlOne
+            let hk = NevoHKManager.manager
             hk.requestPermission()
             
             let now:Date = Date()
