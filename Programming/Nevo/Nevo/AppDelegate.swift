@@ -278,7 +278,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                 let timerInterval:Date = thispacket.getDateTimer()
                 let timeStr:String = thispacket.getDateTimer().stringFromFormat("yyyyMMdd", locale: DateFormatter().locale)
                 
-                if watchID>1 {
+                if self.getWactnID()>1 {
                     saveSolarHarvest(thispacket: thispacket, date: thispacket.getDateTimer())
                 }
                 

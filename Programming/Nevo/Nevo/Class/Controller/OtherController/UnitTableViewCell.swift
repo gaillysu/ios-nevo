@@ -131,7 +131,17 @@ extension UnitTableViewCell: UIPickerViewDataSource {
         case .unit:
             MEDSettings.setValue(row, forKey: "UserSelectedUnit")
         case .syncTime:
-            /// TODO: 同步时间选择后要做的事
+            // TODO: 同步时间选择后要做的事
+            //0->home_time ,1->local_time
+            MEDSettings.setValue(row, forKey: "SET_SYNCTIME_TYPE")
+            if AppDelegate.getAppDelegate().isConnected(), let date:Date = HomeClockUtil.shared.getHomeTime(){
+                let offset = fabs(Date().timeIntervalSince1970-date.timeIntervalSince1970)/3600
+                let setWordClock:SetWorldClockRequest = SetWorldClockRequest(offset: offset.toInt())
+                AppDelegate.getAppDelegate().sendRequest(setWordClock)
+            }else{
+                let setWordClock:SetWorldClockRequest = SetWorldClockRequest(offset: 0)
+                AppDelegate.getAppDelegate().sendRequest(setWordClock)
+            }
             break
         }
     }

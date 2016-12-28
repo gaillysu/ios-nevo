@@ -32,12 +32,12 @@ class ClockRefreshManager: NSObject {
     
     func everyRefresh(_ block: @escaping () -> Void) {
         if #available(iOS 10.0, *) {
-            let timer = Timer.scheduledTimer(withTimeInterval: 10, repeats: true) { (timer) in
+            let timer = Timer.scheduledTimer(withTimeInterval: 15, repeats: true) { (timer) in
                 block()
             }
             RunLoop.current.add(timer, forMode: RunLoopMode.commonModes)
         } else {
-            let timer = Timer.every(10.seconds, {
+            let timer = Timer.every(15.seconds, {
                 block()
             })
             RunLoop.current.add(timer, forMode: RunLoopMode.commonModes)

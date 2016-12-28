@@ -82,6 +82,7 @@ class DashBoardController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        AppDelegate.getAppDelegate().startConnect(false)
         
         _ = SwiftEventBus.onMainThread(self, name: EVENT_BUS_RAWPACKET_DATA_KEY) { (notification) in
             var percent:Float = 0
@@ -149,7 +150,7 @@ extension DashBoardController {
         self.sleepHistoryView = sleepHistoryView
         sleepHistoryView.imageView.image = UIImage(named: "moon")
         sleepHistoryView.titleLabel.text = NSLocalizedString("inactivity", comment: "")
-        sleepHistoryView.contentLabel.text = "7h 0m"
+        sleepHistoryView.contentLabel.text = "0h 0m"
         
         let centerDashView = UIView()
         dashView.addSubview(centerDashView)
