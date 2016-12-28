@@ -147,8 +147,10 @@ extension MEDColorfulLooking where Self: UILabel {
 extension MEDColorfulLooking where Self: UISwitch {
     public func viewDefaultColorful() {
         if !AppTheme.isTargetLunaR_OR_Nevo() {
+            tintColor = UIColor.getBaseColor()
             onTintColor = UIColor.getBaseColor()
         } else {
+            tintColor = AppTheme.NEVO_SOLAR_YELLOW()
             onTintColor = AppTheme.NEVO_SOLAR_YELLOW()
         }
     }

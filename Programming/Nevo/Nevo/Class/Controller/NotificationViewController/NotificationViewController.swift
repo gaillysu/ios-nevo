@@ -322,7 +322,11 @@ extension NotificationViewController: AddPacketToWatchDelegate, SelectedNotifica
         let notifications = MEDUserNotification.getFilter("key = '\(appID)'")
         if notifications.count>0 {
             let notiValue:MEDUserNotification = notifications[0] as! MEDUserNotification
-            _ = notiValue.remove()
+            if notiValue.deleteFlag {
+                _ = notiValue.remove()
+            } else {
+                deleteNotificationsAlertView()
+            }
         }
         
         initNotificationSettingArray()
