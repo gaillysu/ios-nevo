@@ -51,8 +51,6 @@ class AddPresetViewController: UIViewController,ButtonManagerCallBack {
         viewDefaultColorful()
         addPresetView.viewDefaultColorful()
         
-        /// Todo: 2016-11-23
-        /// Quentin
         if AppTheme.isTargetLunaR_OR_Nevo() {
             view.backgroundColor = UIColor(rgba: "#EFEFF4")
             addPresetView.backgroundColor = UIColor(rgba: "#EFEFF4")

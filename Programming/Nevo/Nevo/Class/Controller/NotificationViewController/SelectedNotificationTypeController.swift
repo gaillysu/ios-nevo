@@ -114,12 +114,22 @@ extension SelectedNotificationTypeController {
             tableView.reloadRows(at: [reloadIndexPath], with: UITableViewRowAnimation.automatic)
             tableView.reloadSections(IndexSet(integer: 2), with: UITableViewRowAnimation.automatic)
         } else if indexPath.section == 3 {
-            let alertController = ActionSheetView.makeWarningAlert(title: NSLocalizedString("DeleteNotificationWarning", comment: ""), message: nil, style: .alert, confirmText: NSLocalizedString("Yes", comment: ""), cancelText: NSLocalizedString("Cancel", comment: ""), okAction: { (_) in
+            let alertController = ActionSheetView(title: NSLocalizedString("DeleteNotificationWarning", comment: ""), message: nil, preferredStyle: .alert)
+            let confirmAction = UIAlertAction(title: NSLocalizedString("Yes", comment: ""), style: .default, handler: { (_) in
                 self.selectedDelegate?.didDeleteNotification(appID: self.notSetting!.getPacket())
                 _ = self.navigationController?.popViewController(animated: true)
-            }, cancelAction: { (_) in
+
+            })
+            
+            let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: { (_) in
                 self.dismiss(animated: true, completion: nil)
             })
+            
+            alertController.addAction(confirmAction)
+            alertController.addAction(cancelAction)
+            
+            confirmAction.viewDefaultColorful()
+            cancelAction.viewDefaultColorful()
             
             present(alertController, animated: true, completion: nil)
         }
