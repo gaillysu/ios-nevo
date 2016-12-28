@@ -329,6 +329,8 @@
 		1C3712D81DBC5BF2007DC349 /* UIView+MEDExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C3712D61DBC5BF2007DC349 /* UIView+MEDExtension.swift */; };
 		3AF3D240B5808E80F5B2A19E /* Pods_Nevo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C2AEB04A0C7F45FE876ABED /* Pods_Nevo.framework */; };
 		6104D9C61DC86D4D00663D31 /* Int+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6104D9C41DC86C7C00663D31 /* Int+Extension.swift */; };
+		61070B4C1E134D3F0038D64E /* DataCalculation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61070B4B1E134D3F0038D64E /* DataCalculation.swift */; };
+		61070B4D1E134D4E0038D64E /* DataCalculation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61070B4B1E134D3F0038D64E /* DataCalculation.swift */; };
 		6107670E1DDD88F800F53AD6 /* DeleteNotificationAppIDRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6107670D1DDD88F800F53AD6 /* DeleteNotificationAppIDRequest.swift */; };
 		610767101DDD89BC00F53AD6 /* DeleteAllNotificationAppIDRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6107670F1DDD89BC00F53AD6 /* DeleteAllNotificationAppIDRequest.swift */; };
 		610767121DDD8AE600F53AD6 /* ReceiveNewNotificationPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 610767111DDD8AE600F53AD6 /* ReceiveNewNotificationPacket.swift */; };
@@ -1188,6 +1190,7 @@
 		4D889843ECCF8C9F30888205 /* Pods-LunaRTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LunaRTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-LunaRTests/Pods-LunaRTests.release.xcconfig"; sourceTree = "<group>"; };
 		57C68BE0457DB1BFF58A2389 /* Pods-LunaR.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LunaR.release.xcconfig"; path = "Pods/Target Support Files/Pods-LunaR/Pods-LunaR.release.xcconfig"; sourceTree = "<group>"; };
 		6104D9C41DC86C7C00663D31 /* Int+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Int+Extension.swift"; sourceTree = "<group>"; };
+		61070B4B1E134D3F0038D64E /* DataCalculation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataCalculation.swift; sourceTree = "<group>"; };
 		6107670D1DDD88F800F53AD6 /* DeleteNotificationAppIDRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeleteNotificationAppIDRequest.swift; sourceTree = "<group>"; };
 		6107670F1DDD89BC00F53AD6 /* DeleteAllNotificationAppIDRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeleteAllNotificationAppIDRequest.swift; sourceTree = "<group>"; };
 		610767111DDD8AE600F53AD6 /* ReceiveNewNotificationPacket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReceiveNewNotificationPacket.swift; sourceTree = "<group>"; };
@@ -1465,6 +1468,7 @@
 				6104D9C41DC86C7C00663D31 /* Int+Extension.swift */,
 				61C68BA21E038E6100264FF4 /* Date+Extension.swift */,
 				611941261DFE9EA50048BA44 /* UnitValue.swift */,
+				61070B4B1E134D3F0038D64E /* DataCalculation.swift */,
 			);
 			path = Global;
 			sourceTree = "<group>";
@@ -3612,6 +3616,12 @@
 				61EF09201DDE9E0A003C2EA5 /* DeleteNotificationAppIDPacket.swift in Sources */,
 				6688A6731DC981990078E636 /* MEDStepsNetworkManager.swift in Sources */,
 				00C8272F1DA61CAF00ECECEE /* FindWatchRequest.swift in Sources */,
+				00C826261DA5E01C00ECECEE /* M13CheckboxDotManager.swift in Sources */,
+				61070B4D1E134D4E0038D64E /* DataCalculation.swift in Sources */,
+				00C826271DA5E01C00ECECEE /* M13CheckboxExpandManager.swift in Sources */,
+				00C826281DA5E01C00ECECEE /* M13CheckboxFadeManager.swift in Sources */,
+				00C826291DA5E01C00ECECEE /* M13CheckboxFillManager.swift in Sources */,
+				00C8262A1DA5E01C00ECECEE /* M13CheckboxFlatManager.swift in Sources */,
 				665098951DCB26670059D5F7 /* MEDSleepDeleteRequest.swift in Sources */,
 				610767121DDD8AE600F53AD6 /* ReceiveNewNotificationPacket.swift in Sources */,
 				6198EE281DC204BF00FDD850 /* LunaRPacket.swift in Sources */,
@@ -3977,6 +3987,7 @@
 				611D42451DCAD97D003BC6E3 /* AddPresetViewController.xib in Sources */,
 				611D42461DCAD97D003BC6E3 /* PresetTableViewController.swift in Sources */,
 				611D42471DCAD97D003BC6E3 /* PresetTableViewController.xib in Sources */,
+				61070B4C1E134D3F0038D64E /* DataCalculation.swift in Sources */,
 				6662623B1E0BBC2100991D96 /* MEDColorful.swift in Sources */,
 				611D42481DCAD97D003BC6E3 /* AddPresetView.swift in Sources */,
 				611D42491DCAD97D003BC6E3 /* PresetTableViewCell.swift in Sources */,

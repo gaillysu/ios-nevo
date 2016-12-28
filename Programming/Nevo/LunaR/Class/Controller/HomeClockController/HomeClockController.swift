@@ -72,7 +72,23 @@ extension HomeClockController {
         if let city = city {
             noCityLabel.isHidden = true
             
-            cityNameLabel.text = "\(city.name), \(city.country)"
+            let cityNameValue:String = "\(city.name), \(city.country)"
+            if let name = cityNameLabel.text {
+                if name != cityNameValue {
+                    if let city = HomeClockUtil.shared.getHomeCityWithSelectedFlag(), let timezone = HomeClockUtil.shared.getTimezoneWithCity(city: city) {
+                        let cityZone = timezone.gmtTimeOffset
+                        let localZone = Date.getLocalOffSet()
+                        let offset = 23-abs((localZone-cityZone)/60)
+                        let setWordClock:SetWorldClockRequest = SetWorldClockRequest(offset: offset)
+                        AppDelegate.getAppDelegate().sendRequest(setWordClock)
+                    }else{
+                        let setWordClock:SetWorldClockRequest = SetWorldClockRequest(offset: 0)
+                        AppDelegate.getAppDelegate().sendRequest(setWordClock)
+                    }
+
+                }
+            }
+            cityNameLabel.text = cityNameValue
             
             calculateHomeTime()
             
