@@ -11,6 +11,7 @@ import XCGLogger
 import SwiftEventBus
 import Alamofire
 import Solar
+import RealmSwift
 
 // MARK: - LAUNCH LOGIC
 extension AppDelegate {
@@ -384,5 +385,28 @@ extension AppDelegate {
             let solar = Solar(forDate: date, withTimeZone: TimeZone.current, latitude: 22.2782551, longitude: 114.1670679)
             return (solar?.sunrise, solar?.sunset, "")
         }
+    }
+}
+
+extension AppDelegate {
+
+    func copyBundleRealm() {        
+        let config = Realm.Configuration(
+            // 获取需要打包文件的 URL 路径
+            fileURL: Bundle.main.url(forResource: "LunaRDefault", withExtension: "realm"),
+            // 以只读模式打开文件，因为应用数据包并不可写
+            readOnly: true)
+        
+        // 通过配置打开 Realm 数据库
+        let realm = try! Realm(configuration: config)
+        
+        // 通过配置打开 Realm 数据库
+        let cityResults = realm.objects(City.self)
+        let timeZoneResults = realm.objects(Timezone.self)
+        
+//        let realms = try! Realm()
+//        try! realms.write {
+//            realms.add(results, update: true)
+//        }
     }
 }
