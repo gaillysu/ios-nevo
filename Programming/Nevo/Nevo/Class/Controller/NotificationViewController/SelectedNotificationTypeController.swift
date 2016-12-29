@@ -50,7 +50,9 @@ class SelectedNotificationTypeController: UITableViewController {
         super.viewDidLoad()
         
         if notSetting!.typeName == "Other" {
-            navigationItem.title = notSetting?.getAppName()
+            if let name = notSetting?.getAppName() {
+                navigationItem.title = name
+            }
         } else {
             let title:String = notSetting!.typeName
             let titleString:String = AppTheme.isTargetLunaR_OR_Nevo() ? title.replacingOccurrences(of: "WeChat", with: "Whatsapp"):title
