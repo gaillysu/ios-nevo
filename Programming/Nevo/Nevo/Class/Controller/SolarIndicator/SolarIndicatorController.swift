@@ -46,7 +46,6 @@ class SolarIndicatorController: PublicClassController {
         pieChartView.legend.enabled = false;
         pieChartView.delegate = self
         
-        
         let layout:UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         layout.itemSize = CGSize(width: 0, height: 0)
         
@@ -175,32 +174,6 @@ extension SolarIndicatorController:UICollectionViewDelegate,UICollectionViewData
             cell.backgroundColor = UIColor.getLightBaseColor()
         }
         return cell
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        let headerView: UICollectionReusableView = collectionView.dequeueReusableSupplementaryView(ofKind: "UICollectionElementKindSectionHeader", withReuseIdentifier: "viewForSupplementaryReuseID", for: indexPath)
-        
-        var label = headerView.viewWithTag(20161125) as? UILabel
-        if label == nil {
-            label = UILabel()
-            label?.tag = 20161125
-            label!.textColor = AppTheme.isTargetLunaR_OR_Nevo() ? UIColor.black : UIColor.white
-            label!.textAlignment = .center
-            label?.font = UIFont.init(name: "Raleway", size: 20)
-            
-            headerView.addSubview(label!)
-            label!.snp.makeConstraints { (v) in
-                v.edges.equalToSuperview()
-            }
-        }
-        
-        if pvadcValue == -1 {
-            label!.text = "Waiting for sync..."
-        } else {
-            label!.text = "Amount of ADC is: \(pvadcValue)"
-        }
-        
-        return headerView
     }
 }
 
