@@ -20,7 +20,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="49.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="owV-Es-BfR">
@@ -30,10 +30,10 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9IB-fw-le5">
-                        <rect key="frame" x="182" y="7" width="130" height="35"/>
+                        <rect key="frame" x="182" y="8" width="130" height="34"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Gj8-gY-uRU" customClass="AutocompleteField" customModule="LunaR" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="130" height="35"/>
+                                <rect key="frame" x="0.0" y="0.0" width="130" height="34"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -55,8 +55,8 @@
                     <constraint firstItem="9IB-fw-le5" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" constant="87" id="W4l-A8-Qud"/>
                     <constraint firstAttribute="topMargin" secondItem="owV-Es-BfR" secondAttribute="top" constant="3" id="iMg-hS-KCj"/>
                     <constraint firstAttribute="trailingMargin" secondItem="9IB-fw-le5" secondAttribute="trailing" id="nAJ-Ap-iF5"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="9IB-fw-le5" secondAttribute="bottom" constant="-0.5" id="rKZ-f9-bEf"/>
-                    <constraint firstAttribute="topMargin" secondItem="9IB-fw-le5" secondAttribute="top" constant="1" id="yuz-SV-LfD"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="9IB-fw-le5" secondAttribute="bottom" id="rKZ-f9-bEf"/>
+                    <constraint firstAttribute="topMargin" secondItem="9IB-fw-le5" secondAttribute="top" id="yuz-SV-LfD"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
