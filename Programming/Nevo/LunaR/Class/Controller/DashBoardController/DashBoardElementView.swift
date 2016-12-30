@@ -79,8 +79,8 @@ class DashBoardSunriseView: UIView, DashBoardElementViewCornerable {
         super.awakeFromNib()
         
         imageView.image = UIImage(named: "sunrise")
-        cityLabel.text = "City Name"
-        timeLabel.text = "06:00 AM"
+        cityLabel.text = NSLocalizedString("Calculating", comment: "")
+        timeLabel.text = ""
         titleLabel.text = NSLocalizedString("sunrise", comment: "")
     }
     

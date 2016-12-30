@@ -246,3 +246,7 @@
 
 "failed_locate" = "定位失败";
 "locating" = "定位中...";
+"Calculating" = "计算中...";
+
+"tap_to" = "点击来";
+"Select_city" = "选择一个城市";

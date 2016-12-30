@@ -243,3 +243,7 @@
 
 "failed_locate" = "Failed to locate";
 "locating" = "Locating...";
+"Calculating" = "Calculating...";
+
+"tap_to" = "Tap To";
+"Select_city" = "select a city";

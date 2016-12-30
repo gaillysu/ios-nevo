@@ -253,7 +253,18 @@ extension DashBoardController {
         if let city = HomeClockUtil.shared.getHomeCityWithSelectedFlag() {
             homeClockView?.cityLabel.text = city.name
             homeClockView?.countryLabel.text = city.country
+            
+            removeSelectCityGes(fromView: homeClockView!.cityLabel)
+            removeSelectCityGes(fromView: homeClockView!.countryLabel)
+
+        } else {
+            homeClockView?.cityLabel.text = NSLocalizedString("tap_to", comment: "")
+            homeClockView?.countryLabel.text = NSLocalizedString("Select_city", comment: "")
+            
+            addSelectCityGes(toView: homeClockView!.cityLabel)
+            addSelectCityGes(toView: homeClockView!.countryLabel)
         }
+        
         if let hometime = HomeClockUtil.shared.getHomeTime() {
             homeClockView?.timeLabelText = hometime.stringFromFormat("hh:mm a")
         }
@@ -295,3 +306,24 @@ extension DashBoardController {
     }
 }
 
+extension DashBoardController {
+    fileprivate func addSelectCityGes(toView view: UIView) {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(selectCity))
+        view.addGestureRecognizer(tap)
+    }
+    
+    fileprivate func removeSelectCityGes(fromView view: UIView) {
+        if let geses = view.gestureRecognizers {
+            for ges in geses {
+                view.removeGestureRecognizer(ges)
+            }
+        }
+    }
+    
+    @objc func selectCity() {
+        let selectCityController: AddWorldClockViewController = AddWorldClockViewController()
+        selectCityController.hidesBottomBarWhenPushed = true
+        let navigationController: UINavigationController = UINavigationController(rootViewController: selectCityController)
+        present(navigationController, animated: true, completion: nil)
+    }
+}
