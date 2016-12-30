@@ -229,6 +229,7 @@
 
 "local_time" = "当地时间";
 "home_time" = "家乡时间";
+"home_time2" = "家乡时间";
 
 // Dashboard of LunaR
 "harvest_status" = "充电状态";

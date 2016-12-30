@@ -224,6 +224,7 @@
 
 "local_time" = "LOCAL TIME";
 "home_time" = "HOME TIME";
+"home_time2" = "Home Time";
 
 // Dashboard of LunaR
 "harvest_status" = "HARVESTING STATUS";
