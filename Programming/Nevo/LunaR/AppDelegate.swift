@@ -67,24 +67,47 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         Fabric.with([Crashlytics.self])
         // Override point for customization after application launch
-        UINavigationBar.appearance().tintColor = AppTheme.NEVO_SOLAR_YELLOW()
-        UITabBar.appearance().isTranslucent = true
-        UITabBar.appearance().backgroundColor = UIColor.getBarColor()
-        UINavigationBar.appearance().lt_setBackgroundColor(UIColor.getBarColor())
+        
+        let kingfisherCache = KingfisherManager.shared.cache
+        /// Default cache period is 7 days, but the app's icon changes rarely, in case one day there is on network or cache for user... so set 30 days!
+        kingfisherCache.maxCachePeriodInSecond = TimeInterval(60 * 60 * 24 * 30)
+        
+        /**
+         Initialize the BLE Manager
+         */
+        self.mConnectionController = ConnectionControllerImpl()
+        self.mConnectionController?.setDelegate(self)
+        
+        startAppSetup()
+        
+        //let userDefaults = UserDefaults.standard;
+        //lastSync = userDefaults.double(forKey: LAST_SYNC_DATE_KEY)
+        return true
+    }
+    
+    /// 每次开app需要设置的
+    func startAppSetup() {
+        UINavigationBar.appearance().tintColor  = AppTheme.NEVO_SOLAR_YELLOW()
+        UITabBar.appearance().isTranslucent     = true
+        UITabBar.appearance().backgroundColor   = UIColor.getBarColor()
+        
         //set navigationBar font style and font color
+        UINavigationBar.appearance().lt_setBackgroundColor(UIColor.getBarColor())
         UINavigationBar.appearance().lt_setBackgroundColor(UIColor.getLunarTabBarColor())
+        UINavigationBar.appearance().tintColor              = UIColor.getBaseColor()
+        UINavigationBar.appearance().titleTextAttributes    = [NSForegroundColorAttributeName:UIColor.white,NSFontAttributeName:UIFont(name: "Raleway", size: 20)!]
         
-        UINavigationBar.appearance().tintColor = UIColor.getBaseColor()
+        UITabBar.appearance().backgroundColor               = UIColor.getGreyColor()
         
-        UITabBar.appearance().backgroundColor = UIColor.getGreyColor()
-        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName:UIColor.white,NSFontAttributeName:UIFont(name: "Raleway", size: 20)!]
+        UIApplication.shared.statusBarStyle                 = .lightContent
         
-        UIApplication.shared.statusBarStyle = .lightContent
-        
-        IQKeyboardManager.sharedManager().enable = true
+        IQKeyboardManager.sharedManager().enable            = true
         
         // 在这里授权以保证在接收到数据的时候可以写入
         NevoHKManager.manager.requestPermission()
+    
+        //start Location
+        self.startLocation()
         
         copyBundleRealmToDocumentFolder()
         
@@ -96,26 +119,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
         
         MEDUserAlarm.defaultAlarm()
         
-        
-        let kingfisherCache = KingfisherManager.shared.cache
-        /// Default cache period is 7 days, but the app's icon changes rarely, in case one day there is on network or cache for user... so set 30 days! 
-        kingfisherCache.maxCachePeriodInSecond = TimeInterval(60 * 60 * 24 * 30)
-        
-        /**
-         Initialize the BLE Manager
-         */
-        self.mConnectionController = ConnectionControllerImpl()
-        self.mConnectionController?.setDelegate(self)
-        
         self.adjustLaunchLogic()
-        
-        let userDefaults = UserDefaults.standard;
-        //lastSync = userDefaults.double(forKey: LAST_SYNC_DATE_KEY)
-        
-        //start Location
-        self.startLocation()
-        
-        return true
     }
     
     func updateDataBase() {
