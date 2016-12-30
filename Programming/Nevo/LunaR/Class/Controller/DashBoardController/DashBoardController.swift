@@ -80,6 +80,12 @@ class DashBoardController: UIViewController {
         }
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        viewWillAppear(animated)
+        
+        refreshDateForDashView()
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         AppDelegate.getAppDelegate().startConnect(false)
@@ -215,9 +221,6 @@ extension DashBoardController {
     
     func refreshDateForDashView() {
         
-        // TODO: refresh charging status view
-        // TODO: refresh sleep history view
-        
         /// refersh sunrise
         HomeClockUtil.shared.getLocation { (city) in
             self.sunriseView?.cityLabel.text = city?.name
@@ -252,7 +255,7 @@ extension DashBoardController {
             homeClockView?.countryLabel.text = city.country
         }
         if let hometime = HomeClockUtil.shared.getHomeTime() {
-            homeClockView?.timeLabel.text = hometime.stringFromFormat("hh:mm a")
+            homeClockView?.timeLabelText = hometime.stringFromFormat("hh:mm a")
         }
     }
 }
