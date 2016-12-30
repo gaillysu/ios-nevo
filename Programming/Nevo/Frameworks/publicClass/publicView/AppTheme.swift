@@ -13,6 +13,11 @@ import XCGLogger
 
 let buildin_firmware_version = AppTheme.GET_FIRMWARE_VERSION();
 let buildin_software_version = AppTheme.GET_SOFTWARE_VERSION();
+
+enum ActionType {
+    case get
+    case set
+}
 /**
 This class holds all app-wide constants.
 Colors, fonts etc...
@@ -464,5 +469,22 @@ class AppTheme {
         }else{
             return 0
         }
+    }
+    
+    class func realmISFirstCopy(findKey:ActionType)->Bool {
+        if findKey == .get {
+            if let value = UserDefaults.standard.object(forKey: "ISFirstCopy") {
+                let index:Bool = value as! Bool
+                return index
+            }else{
+                return false
+            }
+        }
+        
+        if findKey == .set {
+            UserDefaults.standard.set(true, forKey: "ISFirstCopy")
+            return true
+        }
+        return false
     }
 }

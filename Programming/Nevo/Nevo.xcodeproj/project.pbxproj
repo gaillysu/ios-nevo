@@ -632,12 +632,14 @@
 		61D1A8AE1DD468A100B91BDD /* MEDUserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61D1A8A71DD468A100B91BDD /* MEDUserProfile.swift */; };
 		61D1A8AF1DD468A100B91BDD /* MEDUserSleep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61D1A8A81DD468A100B91BDD /* MEDUserSleep.swift */; };
 		61D1A8B01DD468A100B91BDD /* MEDUserSteps.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61D1A8A91DD468A100B91BDD /* MEDUserSteps.swift */; };
+		61E8EC751E15EDA2004F0DBE /* default.realm in Resources */ = {isa = PBXBuildFile; fileRef = 61F0164A1E14E92600691DBD /* default.realm */; };
 		61EF09201DDE9E0A003C2EA5 /* DeleteNotificationAppIDPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61EF091F1DDE9E0A003C2EA5 /* DeleteNotificationAppIDPacket.swift */; };
 		61EF09221DDE9EB7003C2EA5 /* DeleteAllAppIDPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61EF09211DDE9EB7003C2EA5 /* DeleteAllAppIDPacket.swift */; };
 		61EF09241DDE9F1B003C2EA5 /* EditAppIDPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61EF09231DDE9F1B003C2EA5 /* EditAppIDPacket.swift */; };
 		61EF09301DDEF09E003C2EA5 /* MEDBaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61D1A8B41DD46BF000B91BDD /* MEDBaseModel.swift */; };
-		61F016461E14A69A00691DBD /* LunaRDefault.realm in Resources */ = {isa = PBXBuildFile; fileRef = 61F016451E14A69A00691DBD /* LunaRDefault.realm */; };
-		61F016471E14A9AD00691DBD /* LunaRDefault.realm in Resources */ = {isa = PBXBuildFile; fileRef = 61F016451E14A69A00691DBD /* LunaRDefault.realm */; };
+		61F016491E14E85400691DBD /* URL+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61F016481E14E85400691DBD /* URL+Extension.swift */; };
+		61F0164B1E14E92600691DBD /* default.realm in Resources */ = {isa = PBXBuildFile; fileRef = 61F0164A1E14E92600691DBD /* default.realm */; };
+		61F0164C1E14E94600691DBD /* URL+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61F016481E14E85400691DBD /* URL+Extension.swift */; };
 		61FC93E31DE6799E000AE93C /* GetNotificationAppIDRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6199AED21DDC51FA00BEA140 /* GetNotificationAppIDRequest.swift */; };
 		61FC93E41DE679A2000AE93C /* GetTotalNotificationAppReuqest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6199AED01DDC3BB900BEA140 /* GetTotalNotificationAppReuqest.swift */; };
 		61FC93E51DE679A6000AE93C /* SetNotificationAppIDRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6199AED61DDC5C8B00BEA140 /* SetNotificationAppIDRequest.swift */; };
@@ -1261,7 +1263,8 @@
 		61EF091F1DDE9E0A003C2EA5 /* DeleteNotificationAppIDPacket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeleteNotificationAppIDPacket.swift; sourceTree = "<group>"; };
 		61EF09211DDE9EB7003C2EA5 /* DeleteAllAppIDPacket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeleteAllAppIDPacket.swift; sourceTree = "<group>"; };
 		61EF09231DDE9F1B003C2EA5 /* EditAppIDPacket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditAppIDPacket.swift; sourceTree = "<group>"; };
-		61F016451E14A69A00691DBD /* LunaRDefault.realm */ = {isa = PBXFileReference; lastKnownFileType = file; path = LunaRDefault.realm; sourceTree = "<group>"; };
+		61F016481E14E85400691DBD /* URL+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "URL+Extension.swift"; sourceTree = "<group>"; };
+		61F0164A1E14E92600691DBD /* default.realm */ = {isa = PBXFileReference; lastKnownFileType = file; path = default.realm; sourceTree = "<group>"; };
 		61F85F4F1DAF5BF300F341B5 /* NevoOtaController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NevoOtaController.swift; sourceTree = "<group>"; };
 		61FC93F21DE6810E000AE93C /* NotificationAppID */ = {isa = PBXFileReference; lastKnownFileType = folder; path = NotificationAppID; sourceTree = "<group>"; };
 		61FC93F61DE80B2D000AE93C /* SolarHarvest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SolarHarvest.swift; sourceTree = "<group>"; };
@@ -1474,6 +1477,7 @@
 				61C68BA21E038E6100264FF4 /* Date+Extension.swift */,
 				611941261DFE9EA50048BA44 /* UnitValue.swift */,
 				61070B4B1E134D3F0038D64E /* DataCalculation.swift */,
+				61F016481E14E85400691DBD /* URL+Extension.swift */,
 			);
 			path = Global;
 			sourceTree = "<group>";
@@ -2176,7 +2180,7 @@
 		6163B5101E14A64400867C70 /* DefaultRealm */ = {
 			isa = PBXGroup;
 			children = (
-				61F016451E14A69A00691DBD /* LunaRDefault.realm */,
+				61F0164A1E14E92600691DBD /* default.realm */,
 				6163B51B1E14A64400867C70 /* default.realm.note */,
 			);
 			path = DefaultRealm;
@@ -2960,6 +2964,7 @@
 				00C826C51DA5ECA700ECECEE /* AnalysisValueCell.xib in Resources */,
 				00C826C61DA5ECA700ECECEE /* ProfileSetupViewController.xib in Resources */,
 				00C826C71DA5ECA700ECECEE /* CheckYourIndoxController.xib in Resources */,
+				61E8EC751E15EDA2004F0DBE /* default.realm in Resources */,
 				61879C321DC05C430089F1E5 /* timezones.json in Resources */,
 				61879C311DC05C410089F1E5 /* cities.json in Resources */,
 				00C826C81DA5ECA700ECECEE /* ForgotPasswordController.xib in Resources */,
@@ -3020,7 +3025,6 @@
 				00C826F91DA5ECA700ECECEE /* TutorialSixViewController.xib in Resources */,
 				00C826FA1DA5ECA700ECECEE /* TutorialSevenViewController.xib in Resources */,
 				614662A21DC9D081001E57CC /* lunar_settime.png in Resources */,
-				61F016471E14A9AD00691DBD /* LunaRDefault.realm in Resources */,
 				00C826FB1DA5ECA700ECECEE /* SleepTutorialController.xib in Resources */,
 				00C826FC1DA5ECA700ECECEE /* MorningTutorialController.xib in Resources */,
 				00C826FD1DA5ECA700ECECEE /* Main.storyboard in Resources */,
@@ -3124,7 +3128,6 @@
 				0036EB081C48BA8300DCED46 /* settimer.png in Resources */,
 				0063BC421D98D59F000BAB44 /* CheckYourIndoxController.xib in Resources */,
 				00120E851D75763D00CE0C32 /* RepeatViewCell.xib in Resources */,
-				61F016461E14A69A00691DBD /* LunaRDefault.realm in Resources */,
 				00FA93E91D9DF33800CB6691 /* ScannerViewController.xib in Resources */,
 				616DCB111DD1A69D00B5773E /* lunar_connected.png in Resources */,
 				00C8C8171D8B950A00621162 /* OldOtaViewController.xib in Resources */,
@@ -3191,6 +3194,7 @@
 				00C640F61A8DEE0800815CF8 /* clockView600.png in Resources */,
 				0063BC1B1D98CE85000BAB44 /* LoginController.xib in Resources */,
 				614662AA1DC9DECC001E57CC /* lunar_not_connect.png in Resources */,
+				61F0164B1E14E92600691DBD /* default.realm in Resources */,
 				00BF2D9B1C7FED2200909316 /* VideoPlayController.xib in Resources */,
 				619919281DC6EEFA00C75AE7 /* AddWorldClockViewController.xib in Resources */,
 				0089B0B71D6C4BDC0041148A /* SleepHistoryViewCell.xib in Resources */,
@@ -3609,6 +3613,7 @@
 				666792F61E134DAF00344188 /* M13CheckboxGestureRecognizer.swift in Sources */,
 				666793231E134F4800344188 /* Color.swift in Sources */,
 				00C826AF1DA5E04000ECECEE /* StepsHistoryViewController.swift in Sources */,
+				61F0164C1E14E94600691DBD /* URL+Extension.swift in Sources */,
 				00C826B11DA5E04000ECECEE /* StepsTitleView.swift in Sources */,
 				00C826B21DA5E04000ECECEE /* StepsTitleView.xib in Sources */,
 				00C826B31DA5E04000ECECEE /* TutorialOneViewController.swift in Sources */,
@@ -3829,6 +3834,7 @@
 				611D419F1DCAD97C003BC6E3 /* ReadDailyTracker.swift in Sources */,
 				666793071E134DAF00344188 /* M13CheckboxSpiralManager.swift in Sources */,
 				611D41A01DCAD97D003BC6E3 /* ReadDailyTrackerInfo.swift in Sources */,
+				61F016491E14E85400691DBD /* URL+Extension.swift in Sources */,
 				611D41A11DCAD97D003BC6E3 /* SetAlarmRequest.swift in Sources */,
 				611D41A21DCAD97D003BC6E3 /* SetCardioRequest.swift in Sources */,
 				666793031E134DAF00344188 /* M13CheckboxFillManager.swift in Sources */,

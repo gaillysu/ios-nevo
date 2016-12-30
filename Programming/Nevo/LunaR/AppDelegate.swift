@@ -86,14 +86,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
         // 在这里授权以保证在接收到数据的时候可以写入
         NevoHKManager.manager.requestPermission()
         
+        copyBundleRealmToDocumentFolder()
         
-
         updateDataBase()
-        
-        //copyBundleRealm()
-        DispatchQueue.global(qos: .background).async {
-            WorldClockDatabaseHelper().setup()
-        }
         
         MEDUserGoal.defaultUserGoal()
         

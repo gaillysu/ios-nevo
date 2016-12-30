@@ -390,23 +390,36 @@ extension AppDelegate {
 
 extension AppDelegate {
 
-    func copyBundleRealm() {        
-        let config = Realm.Configuration(
-            // 获取需要打包文件的 URL 路径
-            fileURL: Bundle.main.url(forResource: "LunaRDefault", withExtension: "realm"),
-            // 以只读模式打开文件，因为应用数据包并不可写
-            readOnly: true)
+    func copyBundleRealmToDocumentFolder() {
+        if !AppTheme.realmISFirstCopy(findKey: .get) {
+            DispatchQueue.global(qos: .background).async {
+                WorldClockDatabaseHelper().setup()
+            }
+            return
+        }
+        // copy over old data files for migration
+        let defaultURL = Realm.Configuration.defaultConfiguration.fileURL!
         
-        // 通过配置打开 Realm 数据库
-        let realm = try! Realm(configuration: config)
+        if let v0URL = URL.bundleURL(name: "default") {
+            do {
+                if FileManager.default.fileExists(atPath: defaultURL.path) {
+                    try FileManager.default.removeItem(at: defaultURL)
+                }
+                try FileManager.default.copyItem(at: v0URL, to: defaultURL)
+                _ = AppTheme.realmISFirstCopy(findKey: .set)
+            } catch let error {
+                print("file copy or remove error:\(error)");
+            }
+        }
         
-        // 通过配置打开 Realm 数据库
-        let cityResults = realm.objects(City.self)
-        let timeZoneResults = realm.objects(Timezone.self)
+        let migrationBlock: MigrationBlock = { migration, oldSchemaVersion in
+            if oldSchemaVersion < 1 {
+            }
+            print("Migration complete.")
+        }
         
-//        let realms = try! Realm()
-//        try! realms.write {
-//            realms.add(results, update: true)
-//        }
+        Realm.Configuration.defaultConfiguration = Realm.Configuration(schemaVersion: 1, migrationBlock: migrationBlock)
+
+        print("Migrated objects in the default Realm: \(try! Realm().objects(City.self))")
     }
 }
