@@ -14,13 +14,4 @@ class MyNevoHeaderView: UIImageView {
         let nibView:[Any] = Bundle.main.loadNibNamed("MyNevoHeaderView", owner: nil, options: nil)!
         return nibView[0] as! UIImageView
     }
-
-    /*
-    // Only override drawRect: if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func drawRect(rect: CGRect) {
-        // Drawing code
-    }
-    */
-
 }

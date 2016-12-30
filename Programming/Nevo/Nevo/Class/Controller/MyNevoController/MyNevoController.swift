@@ -160,7 +160,7 @@ class MyNevoController: UITableViewController,UIAlertViewDelegate {
         if !AppTheme.isTargetLunaR_OR_Nevo() {
             headerimage.image = UIImage(named: "myLunaR_icon")
         }
-        let view:UIView = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: headerimage.frame.size.height))
+        let view:UIView = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: headerimage.frame.size.height + 70))
         view.addSubview(headerimage)
         headerimage.center = CGPoint(x: view.frame.size.width/2.0, y: view.frame.size.height/2.0)
         return view
