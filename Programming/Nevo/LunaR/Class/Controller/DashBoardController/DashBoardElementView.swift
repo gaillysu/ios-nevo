@@ -41,13 +41,13 @@ class DashBoardChargingView: UIView, DashBoardElementViewCornerable {
         
         imageView.image = UIImage(named: "sun")
         titleLabel.text = NSLocalizedString("harvest_status", comment: "")
-        contentLabel.text = NSLocalizedString("charging", comment: "")
+        contentLabel.text = NSLocalizedString("nosolar", comment: "")
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        let fontAttributes = [NSFontAttributeName: UIFont(name: "Helvetica Neue", size: 8)]
+        let fontAttributes = [NSFontAttributeName: UIFont(name: "Raleway", size: 8)]
         if let titleLabelWidth = (titleLabel.text as NSString?)?.size(attributes: fontAttributes).width {
             if titleLabelWidth < titleLabel.bounds.width {
                 titleLabel.snp.updateConstraints({ (v) in
@@ -67,6 +67,36 @@ class DashBoardChargingView: UIView, DashBoardElementViewCornerable {
     class func factory() -> DashBoardChargingView {
         return Bundle.main.loadNibNamed("DashBoardElementView", owner: nil, options: nil)![0] as! DashBoardChargingView
     }
+    
+    func startRotateImageView() {
+        contentLabel.text = NSLocalizedString("charging", comment: "")
+        
+        let circleByOneSecond:CGFloat = 2;
+        
+        let rotationAnimation:CABasicAnimation = CABasicAnimation(keyPath: "transform.rotation.z")
+        rotationAnimation.fromValue            = 0;
+        rotationAnimation.toValue              = M_PI * 100000
+        rotationAnimation.duration             = CFTimeInterval((1.0/circleByOneSecond)*100000);
+        rotationAnimation.timingFunction       = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
+        imageView.layer.add(rotationAnimation, forKey: nil)
+    }
+    
+    func stopRotateImageView() {
+        contentLabel.text = NSLocalizedString("nosolar", comment: "")
+        let pausedTime:CFTimeInterval = imageView.layer.convertTime(CACurrentMediaTime(), from: nil)
+        layer.speed = 0.0;
+        layer.timeOffset = pausedTime;
+    }
+    
+    func resumeRotateImageView() {
+        //let pausedTime:CFTimeInterval = imageView.layer.timeOffset;
+        imageView.layer.speed = 1.0;
+        imageView.layer.timeOffset = 0.0;
+        imageView.layer.beginTime = 0.0;
+        let timeSincePause:CFTimeInterval = imageView.layer.convertTime(CACurrentMediaTime(), from: nil)
+        layer.beginTime = timeSincePause;
+    }
+
 }
 
 class DashBoardSunriseView: UIView, DashBoardElementViewCornerable {

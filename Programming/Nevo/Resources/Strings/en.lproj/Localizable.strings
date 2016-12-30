@@ -239,3 +239,4 @@
 
 "update_available" = "Version VERSION_NUMBER is now available for your Nevo!";
 "home_local" = "Watch digital time";
+"nosolar"="No Solar";

@@ -33,6 +33,7 @@ class DashBoardController: UIViewController {
     fileprivate weak var sleepHistoryView: DashBoardChargingView?
     fileprivate weak var centerDashView: UIView?
     fileprivate weak var stepsView:DashBoardCalorieView?
+    fileprivate var pvadcTimer:Timer?
     
     lazy var dashView: UIView = {
         
@@ -78,6 +79,14 @@ class DashBoardController: UIViewController {
             self.refreshDateForDashView()
             self.refreshDialView()
         }
+        
+        getSoloarCharging()
+    }
+    
+    func getSoloarCharging() {
+        pvadcTimer = Timer.every(3.seconds) {
+            AppDelegate.getAppDelegate().sendRequest(PVADCRequest())
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -89,15 +98,29 @@ class DashBoardController: UIViewController {
             var totalSteps:Int = 0
             if !AppTheme.isTargetLunaR_OR_Nevo() {
                 let packet = notification.object as! LunaRPacket
-                //Do nothing
                 if packet.getHeader() == GetStepsGoalRequest.HEADER(){
                     let thispacket = packet.copy() as LunaRStepsGoalPacket
                     totalSteps = thispacket.getDailySteps()
                     let dailyStepGoal:Int = thispacket.getDailyStepsGoal()
                     percent = Float(totalSteps)/Float(dailyStepGoal)
                 }
+                
+                if packet.getHeader() == PVADCRequest.HEADER(){
+                    var pvadcValue:Int = Int(NSData2Bytes(packet.getPackets()[0])[4])
+                    pvadcValue =  pvadcValue + Int(NSData2Bytes(packet.getPackets()[0])[5] )<<8
+                    var batteryAdcValue:Int = Int(NSData2Bytes(packet.getPackets()[0])[2])
+                    batteryAdcValue =  batteryAdcValue + Int(NSData2Bytes(packet.getPackets()[0])[3] )<<8
+                    
+                    XCGLogger.default.debug("pvadc packet............\(pvadcValue)")
+                    if pvadcValue>170 {
+                        self.chargingView?.startRotateImageView()
+                    }else{
+                        self.chargingView?.stopRotateImageView()
+                    }
+                }
             }
             self.refreshCircleViewProgress(progressValue:percent,totalSteps:totalSteps)
+            
         }
         
         _ = SwiftEventBus.onMainThread(self, name: EVENT_BUS_END_BIG_SYNCACTIVITY) { (notification) in
@@ -110,6 +133,10 @@ class DashBoardController: UIViewController {
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
+        
+        pvadcTimer?.invalidate()
+        pvadcTimer = nil
+        
         SwiftEventBus.unregister(self, name: EVENT_BUS_RAWPACKET_DATA_KEY)
         SwiftEventBus.unregister(self, name: EVENT_BUS_END_BIG_SYNCACTIVITY)
     }
