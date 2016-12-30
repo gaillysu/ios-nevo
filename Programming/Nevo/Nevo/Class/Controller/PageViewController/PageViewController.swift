@@ -59,6 +59,7 @@ class PageViewController: UIPageViewController,UIActionSheetDelegate {
         _ = SwiftEventBus.onMainThread(self, name: EVENT_BUS_WATCHID_DIDCHANGE_KEY) { (notification) in
             //let dict:[String:Int] = notification.userInfo as! [String : Int]
             self.reloadPageControll()
+            self.setNumberOfPages()
         }
     }
     
@@ -176,7 +177,7 @@ class PageViewController: UIPageViewController,UIActionSheetDelegate {
 
 extension PageViewController {
     func bulidPageControl() {
-        if self.view.viewWithTag(1900) != nil {
+        if let pageView = self.view.viewWithTag(1900) {
             return
         }
         let pageControl = UIPageControl(frame: CGRect(x: 0, y: 0, width: 100, height: 0))
@@ -201,6 +202,16 @@ extension PageViewController {
             pageControl.currentPageIndicatorTintColor = UIColor.getBaseColor()
         }else{
             pageControl.currentPageIndicatorTintColor = AppTheme.NEVO_SOLAR_YELLOW()
+        }
+    }
+    
+    func setNumberOfPages() {
+        for view in self.view.subviews {
+            if view is  UIPageControl{
+                let page:UIPageControl = view as! UIPageControl
+                page.numberOfPages = pagingControllers.count
+                break
+            }
         }
     }
     

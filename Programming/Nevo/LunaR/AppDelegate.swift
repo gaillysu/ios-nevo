@@ -146,11 +146,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
     }
     
     func setWactnID(_ id:Int) {
-        let info: [String : Int] = [EVENT_BUS_WATCHID_DIDCHANGE_KEY : id]
-        SwiftEventBus.post(EVENT_BUS_WATCHID_DIDCHANGE_KEY, sender: nil, userInfo: info)
         XCGLogger.default.debug("setWactnID")
         UserDefaults.standard.set(id, forKey: WATCHKEY_SETID)
         UserDefaults.standard.synchronize()
+        
+        delay(seconds: 1.seconds) {
+            SwiftEventBus.post(EVENT_BUS_WATCHID_DIDCHANGE_KEY, sender: nil)
+        }
     }
     
     func getWactnID()->Int {
