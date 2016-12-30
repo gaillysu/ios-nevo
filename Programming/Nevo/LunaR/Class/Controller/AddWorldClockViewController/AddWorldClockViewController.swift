@@ -64,7 +64,7 @@ class AddWorldClockViewController: UIViewController {
                 self.cityTableView.reloadRows(at: [IndexPath.init(row: 0, section: 0)], with: .automatic)
             } else {
                 let cell = self.cityTableView.cellForRow(at: IndexPath.init(row: 0, section: 0))
-                cell?.textLabel?.text = "Failure to locate..."
+                cell?.textLabel?.text = NSLocalizedString("failed_locate", comment: "")
             }
         }
     }
@@ -245,9 +245,9 @@ extension AddWorldClockViewController: UITableViewDataSource {
         
         if indexPath.section == 0 {
             if let city = currentCity {
-                cell?.textLabel?.text = "\(city.country), \(city.name)"
+                cell?.textLabel?.text = "\(city.name), \(city.country)"
             } else {
-                cell?.textLabel?.text = "Locating..."
+                cell?.textLabel?.text = NSLocalizedString("locating", comment: "")
             }
             
         } else {

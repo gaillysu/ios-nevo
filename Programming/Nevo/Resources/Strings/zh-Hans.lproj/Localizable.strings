@@ -244,3 +244,6 @@
 
 "update_available" = "你的 Nevo 有新的固件版本 VERSION_NUMBER 可用！";
 "home_local" = "手表数字时间";
+
+"failed_locate" = "定位失败";
+"locating" = "定位中...";
