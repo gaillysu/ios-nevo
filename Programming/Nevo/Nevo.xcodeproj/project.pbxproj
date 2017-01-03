@@ -829,6 +829,8 @@
 		6688A6791DC981990078E636 /* MEDUserNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6688A6561DC981980078E636 /* MEDUserNetworkManager.swift */; };
 		6688A67B1DC981990078E636 /* MEDUserUpdateRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6688A6571DC981980078E636 /* MEDUserUpdateRequest.swift */; };
 		6690DF091DB8A84C0042FB9E /* SetingNotLoginCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6690DF0C1DB8A84C0042FB9E /* SetingNotLoginCell.xib */; };
+		6691AAD31E1B7E54006B2140 /* MEDTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6691AAD21E1B7E54006B2140 /* MEDTextField.swift */; };
+		6691AAD41E1B7E54006B2140 /* MEDTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6691AAD21E1B7E54006B2140 /* MEDTextField.swift */; };
 		6695A7EF1E07CFF3007396DF /* HomeClockController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6695A7EB1E07CFF3007396DF /* HomeClockController.swift */; };
 		6695A7F01E07CFF3007396DF /* HomeClockController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6695A7EB1E07CFF3007396DF /* HomeClockController.swift */; };
 		6695A7F11E07CFF3007396DF /* HomeClockController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6695A7EC1E07CFF3007396DF /* HomeClockController.xib */; };
@@ -1354,6 +1356,7 @@
 		6690DF121DB8A8590042FB9E /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/SetingNotLoginCell.strings"; sourceTree = "<group>"; };
 		6690DF141DB8A85A0042FB9E /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/SetingNotLoginCell.strings"; sourceTree = "<group>"; };
 		6690DF161DB8A85B0042FB9E /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/SetingNotLoginCell.strings; sourceTree = "<group>"; };
+		6691AAD21E1B7E54006B2140 /* MEDTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MEDTextField.swift; sourceTree = "<group>"; };
 		6695A7EB1E07CFF3007396DF /* HomeClockController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeClockController.swift; sourceTree = "<group>"; };
 		6695A7EC1E07CFF3007396DF /* HomeClockController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeClockController.xib; sourceTree = "<group>"; };
 		6695A7ED1E07CFF3007396DF /* WorldClockDidSelectedDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorldClockDidSelectedDelegate.swift; sourceTree = "<group>"; };
@@ -2334,6 +2337,7 @@
 				666793301E1350FC00344188 /* ToolbarView.swift */,
 				666262361E0BBC2100991D96 /* MEDThemeAdaptor */,
 				6662623D1E0BBCC700991D96 /* MEDCircleView.swift */,
+				6691AAD21E1B7E54006B2140 /* MEDTextField.swift */,
 			);
 			name = MEDKit;
 			path = Frameworks/MEDKit;
@@ -3630,6 +3634,7 @@
 				666792EC1E134DAF00344188 /* iRate.m in Sources */,
 				666793101E134DAF00344188 /* MBProgressHUD+MJ.m in Sources */,
 				662887521DC1E8BC00EC0983 /* MEDMRProgressOverlayView.swift in Sources */,
+				6691AAD41E1B7E54006B2140 /* MEDTextField.swift in Sources */,
 				6667930E1E134DAF00344188 /* M13CheckboxSpiralPathPresets.swift in Sources */,
 				666792E81E134DAF00344188 /* FXBlurView.m in Sources */,
 				00D4742E1D586D1600E2447E /* DaySleep.swift in Sources */,
@@ -3900,6 +3905,7 @@
 				611D41FD1DCAD97D003BC6E3 /* SolarInforViewCell.swift in Sources */,
 				611D41FE1DCAD97D003BC6E3 /* SolarInforViewCell.xib in Sources */,
 				611D41FF1DCAD97D003BC6E3 /* PageViewController.swift in Sources */,
+				6691AAD31E1B7E54006B2140 /* MEDTextField.swift in Sources */,
 				611D42091DCAD97D003BC6E3 /* UserHeader.swift in Sources */,
 				611D420A1DCAD97D003BC6E3 /* UserHeader.xib in Sources */,
 				66154BA51DF6A2D000973A9E /* NotiColorDetailController.swift in Sources */,

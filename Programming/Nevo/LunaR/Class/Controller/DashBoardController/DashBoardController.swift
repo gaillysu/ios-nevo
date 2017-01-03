@@ -75,15 +75,15 @@ class DashBoardController: UIViewController {
                 XCGLogger.default.debug("getGoalRequest")
             }
             
-            self.refreshDateForDashView()
+            self.refreshDataForDashView()
             self.refreshDialView()
         }
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        viewWillAppear(animated)
+        super.viewWillAppear(animated)
         
-        refreshDateForDashView()
+        refreshDataForDashView()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -219,12 +219,17 @@ extension DashBoardController {
         dialView.addSubview(clockView)
     }
     
-    func refreshDateForDashView() {
+    func refreshDataForDashView() {
         
         /// refersh sunrise
         HomeClockUtil.shared.getLocation { (city) in
-            self.sunriseView?.cityLabel.text = city?.name
+            if let city = city {
+                self.sunriseView?.cityLabel.text = city.name
+            } else {
+                self.sunriseView?.cityLabel.text = NSLocalizedString("failed_locate", comment: "")
+            }
         }
+        
         let sunriseAndSet = AppDelegate.getAppDelegate().getSunriseAndSunsetTime()
         if let sunrise = sunriseAndSet.sunriseDate, let sunset = sunriseAndSet.sunsetDate {
             let now = Date()
@@ -240,13 +245,11 @@ extension DashBoardController {
                 } else {
                     sunriseView?.imageView.image = UIImage(named: "sunrise")
                     sunriseView?.titleLabel.text = NSLocalizedString("sunrise", comment: "")
-                    sunriseView?.timeLabel.text = sunriseAndSet.additionString
                 }
             }
         } else {
             sunriseView?.imageView.image = UIImage(named: "sunrise")
             sunriseView?.titleLabel.text = NSLocalizedString("sunrise", comment: "")
-            sunriseView?.timeLabel.text = sunriseAndSet.additionString
         }
         
         /// refresh homecity
@@ -308,7 +311,14 @@ extension DashBoardController {
 
 extension DashBoardController {
     fileprivate func addSelectCityGes(toView view: UIView) {
-        let tap = UITapGestureRecognizer(target: self, action: #selector(selectCity))
+        if let geses = view.gestureRecognizers {
+            for ges in geses {
+                view.removeGestureRecognizer(ges)
+            }
+        }
+        
+        view.isUserInteractionEnabled = true
+        let tap = UITapGestureRecognizer(target: self, action: #selector(self.selectCity))
         view.addGestureRecognizer(tap)
     }
     

@@ -93,7 +93,7 @@ extension HomeClockController {
             
             calculateHomeTime()
             
-            dateLabel.text = isPastOrComing(date: homeTime) + "" + homeTime.stringFromFormat(formaterString)
+            dateLabel.text = isPastOrComing(date: homeTime) + "  " + homeTime.stringFromFormat(formaterString)
             return
         } else {
             noCityLabel.isHidden = false

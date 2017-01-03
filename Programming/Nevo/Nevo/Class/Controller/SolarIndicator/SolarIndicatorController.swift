@@ -138,7 +138,6 @@ class SolarIndicatorController: PublicClassController {
         
         let layout:UICollectionViewFlowLayout = textCollection.collectionViewLayout as! UICollectionViewFlowLayout
         layout.itemSize = CGSize(width: textCollection.frame.width/2.0, height: textCollection.frame.size.height / 2)
-        layout.headerReferenceSize = CGSize.init(width: textCollection.frame.width, height: textCollection.frame.size.height / 2)
     }
 
 }
@@ -278,7 +277,6 @@ extension SolarIndicatorController:ChartViewDelegate {
         pFormatter.maximumFractionDigits = 1;
         pFormatter.multiplier = 1.0;
         pFormatter.percentSymbol = " %";
-        
         
         data.setValueFormatter(pFormatter)
         data.setValueFont(UIFont(name: "HelveticaNeue-Light", size: 16.0))

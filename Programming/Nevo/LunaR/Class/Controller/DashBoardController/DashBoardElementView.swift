@@ -102,8 +102,8 @@ class DashBoardHomeClockView: UIView, DashBoardElementViewCornerable {
         
         set {
             timeLabel.text = newValue
-            if !AppTheme.GET_IS_iPhone5S() {
-                timeLabel.text = " \(newValue) "
+            if !AppTheme.GET_IS_iPhone5S(), let text = newValue {
+                timeLabel.text = " \(text) "
             }
             
             timeLabel.sizeToFit()

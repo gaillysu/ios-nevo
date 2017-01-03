@@ -103,11 +103,6 @@ class MyNevoController: UITableViewController,UIAlertViewDelegate {
         SwiftEventBus.unregister(self, name: EVENT_BUS_RAWPACKET_DATA_KEY)
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
     func reconnect() {
         AppDelegate.getAppDelegate().connect()
     }
@@ -120,7 +115,7 @@ class MyNevoController: UITableViewController,UIAlertViewDelegate {
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat{
         if(section == 0){
             let headerimage:UIImageView = MyNevoHeaderView.getMyNevoHeaderView()
-            return headerimage.frame.size.height
+            return headerimage.frame.size.height + 70
         }
         return 0
     }

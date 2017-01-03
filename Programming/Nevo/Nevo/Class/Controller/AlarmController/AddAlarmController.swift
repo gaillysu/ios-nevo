@@ -162,6 +162,7 @@ class AddAlarmController: UITableViewController,ButtonManagerCallBack,UIAlertVie
             }else if(indexPath.row == 1) {
                 let cell = UITableViewCell(style: UITableViewCellStyle.value1, reuseIdentifier: "SystemLabelCell")
                 cell.textLabel?.text = NSLocalizedString("\(titleArray[(indexPath as NSIndexPath).row])", comment: "")
+                cell.textLabel?.font = UIFont(name: "Raleway", size: 17)
                 cell.detailTextLabel?.text = name
                 cell.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
                 cell.selectionStyle = UITableViewCellSelectionStyle.none;

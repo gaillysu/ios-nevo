@@ -23,12 +23,9 @@ class UnitTableViewCell: UITableViewCell {
     }
     var type: OtherSettingCellType = .unit
     
-    @IBOutlet weak var unitSegmented: UIView!
     @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var unitSegmentedField: AutocompleteField!
+    @IBOutlet weak var unitSegmentedField: MEDTextField!
     weak var picker: UIPickerView?
-    
-    
     
     let unitArray = [NSLocalizedString("metrics", comment: ""),NSLocalizedString("imperial", comment: "")]
     let timeOptionArray = [NSLocalizedString("home_time", comment: ""), NSLocalizedString("local_time", comment: "")]
@@ -44,7 +41,6 @@ class UnitTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        unitSegmented.backgroundColor = UIColor.clear
         separatorInset = UIEdgeInsets.zero
         preservesSuperviewLayoutMargins = false
         layoutMargins = UIEdgeInsets.zero
@@ -98,6 +94,7 @@ extension UnitTableViewCell {
 // MARK: - UITextFieldDelegate
 extension UnitTableViewCell: UITextFieldDelegate {
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        textField.contentVerticalAlignment = .center
         return true;
     }
     
