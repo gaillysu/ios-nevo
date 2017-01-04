@@ -22,7 +22,7 @@ import XCGLogger
 import SwiftyTimer
 import CoreLocation
 import Solar
-import Timepiece
+ 
 import RealmSwift
 
 let nevoDBDFileURL:String = "nevoDBName";

@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import Timepiece
+ 
 import RealmSwift
 
 class MEDUserAlarm:MEDBaseModel {

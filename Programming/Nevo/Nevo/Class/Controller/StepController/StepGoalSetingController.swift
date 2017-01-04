@@ -9,7 +9,7 @@
 import UIKit
 import SwiftEventBus
 import XCGLogger
-import Timepiece
+ 
 
 let NUMBER_OF_STEPS_GOAL_KEY = "NUMBER_OF_STEPS_GOAL_KEY"
 

@@ -15,7 +15,7 @@ import LTNavigationBar
 import SnapKit
 import RealmSwift
 import Solar
-import Timepiece
+ 
 
 let SELECTED_CALENDAR_NOTIFICATION = "SELECTED_CALENDAR_NOTIFICATION"
 private let CALENDAR_VIEW_TAG = 1800
@@ -455,7 +455,7 @@ extension PageViewController: CVCalendarViewDelegate, CVCalendarMenuViewDelegate
     }
     
     func shouldSelectDayView(_ dayView: DayView) -> Bool {
-        let dayDate:Date = dayView.date!.convertedDate()!
+        let dayDate:Date = dayView.date!.convertedDate(calendar: Calendar.current)!
         
         let nowDate:Date = Date()
         
@@ -476,7 +476,7 @@ extension PageViewController: CVCalendarViewDelegate, CVCalendarMenuViewDelegate
         dayView.selectionView?.shape = CVShape.rect
         self.dismissCalendar()
         titleView?.selectedFinishTitleView()
-        let dayDate:Date = dayView.date!.convertedDate()!
+        let dayDate:Date = dayView.date!.convertedDate(calendar: Calendar.current)!
         
         let nowDate:Date = Date()
         if (dayDate.year >= nowDate.year) && (dayDate.month >= nowDate.month) && (dayDate.day > dayDate.day) {
@@ -504,7 +504,7 @@ extension PageViewController: CVCalendarViewDelegate, CVCalendarMenuViewDelegate
     func presentedDateUpdated(_ date: CVDate) {
         let formatter = DateFormatter()
         formatter.dateFormat = "MMM"
-        let dateString = "\(formatter.string(from: date.convertedDate()!)), \(date.day)"
+        let dateString = "\(formatter.string(from: date.convertedDate(calendar: Calendar.current)!)), \(date.day)"
         titleView?.setCalendarButtonTitle(dateString)
     }
     

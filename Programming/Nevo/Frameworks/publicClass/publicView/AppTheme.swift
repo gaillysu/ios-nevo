@@ -32,17 +32,17 @@ class AppTheme {
             return UIColor.getBaseColor()
         }
         
-        return UIColor(rgba: "#A08455")
+        return UIColor("#A08455")
     }
 
     class func NEVO_SOLAR_GRAY() -> UIColor {
         
-        return UIColor(rgba: "#E5E4E2")
+        return UIColor("#E5E4E2")
     }
     
     class func NEVO_SOLAR_DARK_GRAY() -> UIColor {
         
-        return UIColor(rgba: "#BCBCBC")
+        return UIColor("#BCBCBC")
     }
     
     /**

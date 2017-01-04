@@ -12,7 +12,7 @@ class CheckYourIndoxController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationController?.navigationBar.lt_setBackgroundColor(UIColor(rgba: "#54575a"))
+        self.navigationController?.navigationBar.lt_setBackgroundColor(UIColor("#54575a"))
         UIApplication.shared.statusBarStyle = UIStatusBarStyle.lightContent
         
         let leftButton:UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "cancel_lunar"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(leftCancelAction(_:)))

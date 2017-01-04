@@ -14,7 +14,7 @@ class AnalysisStepsChartView: LineChartView {
     fileprivate var xVals:[String] = [];
     fileprivate var yVals:[[Double]] = [];
     
-    func drawSettings(_ xAxis:ChartXAxis, yAxis:ChartYAxis, rightAxis:ChartYAxis){
+    func drawSettings(_ xAxis:XAxis, yAxis:YAxis, rightAxis:YAxis){
         noDataText = NSLocalizedString("no_sleep_data", comment: "")
         descriptionText = ""
         dragEnabled = false
@@ -40,7 +40,7 @@ class AnalysisStepsChartView: LineChartView {
         xAxis.labelTextColor = UIColor.black;
         xAxis.axisLineColor = UIColor.black
         xAxis.drawLimitLinesBehindDataEnabled = false;
-        xAxis.labelPosition = ChartXAxis.LabelPosition.bottom
+        xAxis.labelPosition = XAxis.LabelPosition.bottom
         xAxis.labelFont = UIFont(name: "Helvetica-Light", size: 10)!
         
         if !AppTheme.isTargetLunaR_OR_Nevo() {
@@ -64,13 +64,14 @@ class AnalysisStepsChartView: LineChartView {
         var chartDataArray:[BarChartDataEntry] = []
         for (index,vlaue) in yVals.enumerated() {
             //vlaue[0]->Deep Sleep, vlaue[1]->Light Sleep, vlaue[2]->Weake Sleep
-            let chartData1:BarChartDataEntry = BarChartDataEntry(value: vlaue[0], xIndex:index)
+            let chartData1:BarChartDataEntry = BarChartDataEntry(x: Double(index), y: vlaue[0])
+                //BarChartDataEntry(value: vlaue[0], xIndex:index)
             chartDataArray.append(chartData1)
         }
         
         self.setLeftAxisLimitLine(65)
         
-        let lineChartDataSet = LineChartDataSet(yVals: chartDataArray, label: "");
+        let lineChartDataSet = LineChartDataSet(values: chartDataArray, label: "");
         lineChartDataSet.setColor(UIColor.white)
         lineChartDataSet.highlightColor = AppTheme.NEVO_SOLAR_YELLOW()
         lineChartDataSet.lineWidth = 1.5
@@ -85,11 +86,12 @@ class AnalysisStepsChartView: LineChartView {
         
         let gradient:CGGradient = CGGradient(colorsSpace: nil, colors: gradientColors as CFArray, locations: nil)!
         lineChartDataSet.fillAlpha = 1;
-        lineChartDataSet.fill = ChartFill.fillWithLinearGradient(gradient, angle: 80.0)
+        lineChartDataSet.fill = Fill.fillWithLinearGradient(gradient, angle: 80.0)
         lineChartDataSet.drawFilledEnabled = true
         dataSets.append(lineChartDataSet)
         
-        let lineChartData = LineChartData(xVals: xVals, dataSets: dataSets)
+        let lineChartData = LineChartData(dataSets: dataSets)
+            //LineChartData(xVals: xVals, dataSets: dataSets)
         lineChartData.setValueFont(UIFont(name: "HelveticaNeue-Light", size: 7.0))
         lineChartData.setDrawValues(false)
         data = lineChartData
@@ -98,7 +100,7 @@ class AnalysisStepsChartView: LineChartView {
     
     fileprivate func setLeftAxisLimitLine(_ max:Double) {
         // x-axis limit line
-        let leftAxis:ChartYAxis = self.leftAxis;
+        let leftAxis:YAxis = self.leftAxis;
         leftAxis.labelCount = 3
         leftAxis.removeAllLimitLines()
         let valueString:[String] = [NSLocalizedString("Awake", comment: ""),NSLocalizedString("light_sleep", comment: ""),NSLocalizedString("deep_sleep", comment: "")]

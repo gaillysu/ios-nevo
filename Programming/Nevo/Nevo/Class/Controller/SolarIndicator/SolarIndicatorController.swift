@@ -11,7 +11,7 @@ import Charts
 import SwiftEventBus
 import XCGLogger
 import RealmSwift
-import Timepiece
+ 
 
 class SolarIndicatorController: PublicClassController {
 
@@ -248,8 +248,8 @@ extension SolarIndicatorController:ChartViewDelegate {
         chartView.rotationEnabled = true;
         chartView.highlightPerTapEnabled = true;
         
-        let l:ChartLegend = chartView.legend;
-        l.position = ChartLegend.Position.rightOfChart;
+        let l:Legend = chartView.legend;
+        l.position = Legend.Position.rightOfChart;
         l.xEntrySpace = 7.0;
         l.yEntrySpace = 0.0;
         l.yOffset = 0.0;
@@ -275,8 +275,8 @@ extension SolarIndicatorController:ChartViewDelegate {
             todayDate = 24.0
         }
         
-        yVals1.append(BarChartDataEntry(value: value , xIndex: 0))
-        yVals1.append(BarChartDataEntry(value: todayDate-value , xIndex: 1))
+        yVals1.append(BarChartDataEntry(x: 1, y: todayDate-value))
+        yVals1.append(BarChartDataEntry(x: 1, y: todayDate-value))
         
         onValue.replaceSubrange(0..<1, with: [todayDate-value])
         onValue.replaceSubrange(1..<2, with: [value])
@@ -286,7 +286,8 @@ extension SolarIndicatorController:ChartViewDelegate {
         xVals.append(NSLocalizedString("Solar", comment: ""))
         xVals.append(NSLocalizedString("Battery", comment: ""))
         
-        let dataSet:PieChartDataSet = PieChartDataSet(yVals: yVals1, label: "")
+        let dataSet:PieChartDataSet = PieChartDataSet(values: yVals1, label: "")
+            //PieChartDataSet(yVals: yVals1, label: "")
         dataSet.sliceSpace = 2.0;
         var colors:[UIColor] = [];
         if !AppTheme.isTargetLunaR_OR_Nevo() {
@@ -298,7 +299,8 @@ extension SolarIndicatorController:ChartViewDelegate {
         }
         dataSet.colors = colors
         
-        let data:PieChartData = PieChartData(xVals: xVals, dataSets: [dataSet])
+        let data:PieChartData = PieChartData(dataSets: [dataSet])
+            //PieChartData(xVals: xVals, dataSets: [dataSet])
         //data.highlightEnabled = false
         let pFormatter:NumberFormatter = NumberFormatter()
         pFormatter.numberStyle = NumberFormatter.Style.percent;
@@ -306,15 +308,15 @@ extension SolarIndicatorController:ChartViewDelegate {
         pFormatter.multiplier = 1.0;
         pFormatter.percentSymbol = " %";
         
-        
-        data.setValueFormatter(pFormatter)
+        let valueFormatter:LargeValueFormatter = LargeValueFormatter()
+        data.setValueFormatter(valueFormatter)
         data.setValueFont(UIFont(name: "HelveticaNeue-Light", size: 16.0))
         data.setValueTextColor(UIColor.white)
         pieChartView.data = data;
         pieChartView.highlightValues(nil)
     }
 
-    func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, dataSetIndex: Int, highlight: ChartHighlight) {
+    func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, dataSetIndex: Int, highlight: Highlight) {
     
     }
 }

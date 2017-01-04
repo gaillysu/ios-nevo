@@ -94,7 +94,7 @@ extension NotiColorController {
         let notificationColor = notificationColors[indexPath.row]
         
         cell.textLabel?.text = notificationColor.name
-        cell.imageView?.image = UIImage.dotImageWith(color: UIColor.init(rgba: notificationColor.color), backgroundColor: UIColor.getGreyColor(), size: CGSize(width: 15, height: 15))
+        cell.imageView?.image = UIImage.dotImageWith(color: UIColor(notificationColor.color), backgroundColor: UIColor.getGreyColor(), size: CGSize(width: 15, height: 15))
         
         if notificationColor.key == notification!.colorKey {
             let image = UIImage(named: "notifications_check")

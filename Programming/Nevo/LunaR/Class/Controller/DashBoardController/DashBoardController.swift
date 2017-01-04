@@ -8,7 +8,7 @@
 
 import UIKit
 import SnapKit
-import Timepiece
+ 
 import SwiftyTimer
 import SwiftEventBus
 import XCGLogger

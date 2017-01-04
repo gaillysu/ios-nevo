@@ -13,39 +13,39 @@ extension UIColor{
     
     public class func getBaseColor() -> UIColor {
         if !AppTheme.isTargetLunaR_OR_Nevo(){
-            return UIColor(rgba: "#7ED8D1")
+            return UIColor("#7ED8D1")
         }else{
-            return UIColor(rgba: "#A08455")
+            return UIColor("#A08455")
         }
         
     }
     
     public class func getTintColor() -> UIColor {
-        return UIColor(rgba: "#B37EBD");
+        return UIColor("#B37EBD");
     }
     
     public class func getGreyColor() -> UIColor {
-        return UIColor(rgba: "#54575a");
+        return UIColor("#54575a");
     }
     
     public class func getLightBaseColor() -> UIColor {
-        return UIColor(rgba: "#3A3739")
+        return UIColor("#3A3739")
     }
     
     public class func getWhiteBaseColor() -> UIColor {
-        return UIColor(rgba: "#C7C7CC")
+        return UIColor("#C7C7CC")
     }
 
     public class func getNevoBaseColor() -> UIColor {
-        return UIColor(rgba: "#A08455")
+        return UIColor("#A08455")
     }
     
     public class func getCalendarColor() -> UIColor {
-        return UIColor(rgba: "#E5E4E2")
+        return UIColor("#E5E4E2")
     }
     
     public class func getBarColor() -> UIColor {
-        return UIColor(rgba: "#EFEFEF")
+        return UIColor("#EFEFEF")
     }
     
     public class func transparent() -> UIColor {

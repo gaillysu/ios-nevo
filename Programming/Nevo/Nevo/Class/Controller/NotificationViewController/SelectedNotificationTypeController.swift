@@ -180,7 +180,7 @@ extension SelectedNotificationTypeController:AddPacketToWatchDelegate {
             return allowCell
         case 1:
             let colorString = notSetting!.getHexColor()
-            let color = colorString == "" ? UIColor.getRandomColor() : UIColor.init(rgba: colorString)
+            let color = colorString == "" ? UIColor.getRandomColor() : UIColor(colorString)
             let cell = selectedNotificationView.getNotificationClockCell(indexPath, tableView: tableView, image: UIImage.dotImageWith(color: color, backgroundColor: UIColor.getGreyColor(), size: CGSize(width: 15, height: 15)), clockIndex: notSetting!.getClock())
             
             cell.viewDefaultColorful()
@@ -191,7 +191,7 @@ extension SelectedNotificationTypeController:AddPacketToWatchDelegate {
             if !AppTheme.isTargetLunaR_OR_Nevo() {
                 cell.accessoryType = notSetting!.getStates() ? .disclosureIndicator : .none
                 let colorString = notSetting!.getHexColor()
-                let color = colorString == "" ? UIColor.getRandomColor() : UIColor.init(rgba: colorString)
+                let color = colorString == "" ? UIColor.getRandomColor() : UIColor(colorString)
                 
                 cell.imageView?.image = UIImage.dotImageWith(color: color, backgroundColor: UIColor.getGreyColor(), size: CGSize(width: 15, height: 15))
 

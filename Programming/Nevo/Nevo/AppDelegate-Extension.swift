@@ -208,7 +208,7 @@ extension AppDelegate {
      When the sync process is finished, le't refresh the date of sync
      */
     func syncFinished() {
-        let banner = MEDBanner(title: NSLocalizedString("sync_finished", comment: ""), subtitle: nil, image: nil, backgroundColor: UIColor(rgba:"#0dac67"))
+        let banner = MEDBanner(title: NSLocalizedString("sync_finished", comment: ""), subtitle: nil, image: nil, backgroundColor: UIColor("#0dac67"))
         banner.dismissesOnTap = true
         banner.show(duration: 1.5)
         lastSync = Date().timeIntervalSince1970
@@ -316,7 +316,7 @@ extension AppDelegate {
     
     func connectedBanner() {
         if(self.hasSavedAddress()){
-            let banner = MEDBanner(title: NSLocalizedString("Connected", comment: ""), subtitle: nil, image: nil, backgroundColor:UIColor(rgba: "#0dac67"))
+            let banner = MEDBanner(title: NSLocalizedString("Connected", comment: ""), subtitle: nil, image: nil, backgroundColor:UIColor("#0dac67"))
             banner.dismissesOnTap = true
             banner.show(duration: 1.5)
         }

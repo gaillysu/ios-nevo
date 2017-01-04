@@ -37,18 +37,18 @@ class AnalysisRadarViewCell: UICollectionViewCell,ChartViewDelegate {
         marker.minimumSize = CGSize(width: 80.0, height: 40.0);
         radarChartView.marker = marker;
         
-        let xAxis:ChartXAxis = radarChartView.xAxis;
+        let xAxis:XAxis = radarChartView.xAxis;
         xAxis.labelFont = UIFont(name: "HelveticaNeue-Light", size: 9.0)!
         xAxis.labelTextColor = UIColor.white
         
-        let yAxis:ChartYAxis = radarChartView.yAxis;
+        let yAxis: YAxis = radarChartView.yAxis;
         yAxis.labelFont = UIFont(name: "HelveticaNeue-Light", size: 9.0)!
         yAxis.labelTextColor = UIColor.white
         yAxis.labelCount = 5;
-        yAxis.axisMinValue = 0.0;
+        yAxis.axisMinimum = 0.0;
         
-        let l:ChartLegend = radarChartView.legend;
-        l.position = ChartLegend.Position.rightOfChart;
+        let l:Legend = radarChartView.legend;
+        l.position = Legend.Position.rightOfChart;
         l.font = UIFont(name: "HelveticaNeue-Light", size: 10.0)!
         l.xEntrySpace = 7.0;
         l.yEntrySpace = 5.0;
@@ -71,8 +71,8 @@ class AnalysisRadarViewCell: UICollectionViewCell,ChartViewDelegate {
         var yVals2:[ChartDataEntry] = [];
         
         for i:Int in 0..<count {
-            yVals1.append(ChartDataEntry(value: Double(arc4random_uniform(UInt32(mult)) + UInt32(mult)/2), xIndex: i))
-            yVals2.append(ChartDataEntry(value: Double(arc4random_uniform(UInt32(mult)) + UInt32(mult)/2), xIndex: i))
+            yVals1.append(ChartDataEntry(x: Double(arc4random_uniform(UInt32(mult)) + UInt32(mult)/2), y: Double(i)))
+            yVals2.append(ChartDataEntry(x: Double(arc4random_uniform(UInt32(mult)) + UInt32(mult)/2), y: Double(i)))
         }
 
         
@@ -81,20 +81,21 @@ class AnalysisRadarViewCell: UICollectionViewCell,ChartViewDelegate {
             xVals.append(parties[i%parties.count])
         }
         
-        let set1:RadarChartDataSet = RadarChartDataSet(yVals: yVals1, label: "Set 1")
+        let set1:RadarChartDataSet = RadarChartDataSet(values: yVals1, label: "Set 1")
         set1.setColor(UIColor.getBaseColor())
         set1.fillColor = UIColor.getBaseColor();
         set1.drawFilledEnabled = true;
         set1.lineWidth = 0.3;
         
-        let set2:RadarChartDataSet = RadarChartDataSet(yVals: yVals2, label: "Set 2")
+        let set2:RadarChartDataSet = RadarChartDataSet(values: yVals2, label: "Set 2")
 
         set2.setColor(UIColor.getTintColor())
         set2.fillColor = UIColor.getTintColor()
         set2.drawFilledEnabled = true;
         set2.lineWidth = 0.3;
         
-        let data:RadarChartData = RadarChartData(xVals: xVals, dataSets: [set1, set2])
+        let data:RadarChartData = RadarChartData(dataSets: [set1, set2])
+            //RadarChartData(xVals: xVals, dataSets: [set1, set2])
         data.setValueTextColor(UIColor.white)
         data.setValueFont(UIFont(name: "HelveticaNeue-Light", size: 8.0))
         data.setDrawValues(false)
