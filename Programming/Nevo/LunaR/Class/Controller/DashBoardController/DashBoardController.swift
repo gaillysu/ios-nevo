@@ -125,9 +125,11 @@ class DashBoardController: UIViewController {
         
         _ = SwiftEventBus.onMainThread(self, name: EVENT_BUS_END_BIG_SYNCACTIVITY) { (notification) in
             let queryArray = MEDUserSleep.getFilter("date = \(Date().beginningOfDay.timeIntervalSince1970)")
-            let userSlepp:MEDUserSleep = queryArray[0] as! MEDUserSleep
-            let totalSleepTime:Double = Double(userSlepp.totalSleepTime)/60.0
-            self.refreshSleepTimer(totalTime: totalSleepTime)
+            if queryArray.count>0 {
+                let userSlepp:MEDUserSleep = queryArray[0] as! MEDUserSleep
+                let totalSleepTime:Double = Double(userSlepp.totalSleepTime)/60.0
+                self.refreshSleepTimer(totalTime: totalSleepTime)
+            }
         }
     }
     

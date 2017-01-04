@@ -205,6 +205,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
             
             if(packet.getHeader() == SetRTCRequest.HEADER()) {
                 //setp2:start set user profile
+                self.setWorldTime()
                 self.SetProfile()
             }
             
@@ -483,6 +484,22 @@ extension AppDelegate {
         }
     }
     
+    func setWorldTime() {
+        if let city = HomeClockUtil.shared.getHomeCityWithSelectedFlag(), let timezone = HomeClockUtil.shared.getTimezoneWithCity(city: city) {
+            let cityZone = timezone.gmtTimeOffset
+            let localZone = Date.getLocalOffSet()
+            var offset = 23-abs((localZone-cityZone)/60)
+            if localZone == cityZone {
+                offset = 0
+            }
+            let setWordClock:SetWorldClockRequest = SetWorldClockRequest(offset: offset)
+            self.sendRequest(setWordClock)
+        }else{
+            let setWordClock:SetWorldClockRequest = SetWorldClockRequest(offset: 0)
+            self.sendRequest(setWordClock)
+        }
+    }
+    
     func getLongitude() -> Double {
         return longitude;
     }
@@ -497,7 +514,7 @@ extension AppDelegate {
             let userProfile:MEDUserProfile = login[0] as! MEDUserProfile
             let uidString:String = "\(userProfile.uid)"
             let keys:String = date.stringFromFormat("yyyyMMddHHmmss", locale: DateFormatter().locale)+uidString
-            let solar = SolarHarvest.getFilter("key = \(keys)")
+            let solar = SolarHarvest.getFilter("key = '\(keys)'")
             if solar.count == 0 {
                 let solarTime:SolarHarvest = SolarHarvest()
                 solarTime.key = keys
@@ -508,11 +525,13 @@ extension AppDelegate {
                 _ = solarTime.add()
             }else{
                 let solarTime:SolarHarvest = solar[0] as! SolarHarvest
-                solarTime.date = date.timeIntervalSince1970
-                solarTime.solarTotalTime = thispacket.getTotalSolarHarvestingTime()
-                solarTime.solarHourlyTime = "\(AppTheme.toJSONString(thispacket.getHourlyHarvestTime() as AnyObject!))"
-                solarTime.uid = userProfile.uid;
-                _ = solarTime.update()
+                let realm = try! Realm()
+                try! realm.write {
+                    solarTime.date = date.timeIntervalSince1970
+                    solarTime.solarTotalTime = thispacket.getTotalSolarHarvestingTime()
+                    solarTime.solarHourlyTime = "\(AppTheme.toJSONString(thispacket.getHourlyHarvestTime() as AnyObject!))"
+                    solarTime.uid = userProfile.uid;
+                }
             }
         }else{
             let keys:String = date.stringFromFormat("yyyyMMddHHmmss", locale: DateFormatter().locale)

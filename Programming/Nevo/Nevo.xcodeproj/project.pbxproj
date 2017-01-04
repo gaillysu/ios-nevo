@@ -559,7 +559,6 @@
 		614662AB1DC9DEE8001E57CC /* lunar_not_connect.png in Resources */ = {isa = PBXBuildFile; fileRef = 614662A91DC9DECC001E57CC /* lunar_not_connect.png */; };
 		615093391DBF5BC800E52970 /* SetSunriseAndSunsetRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615093371DBF5BC800E52970 /* SetSunriseAndSunsetRequest.swift */; };
 		6150933A1DBF5BC800E52970 /* SetWorldClockRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615093381DBF5BC800E52970 /* SetWorldClockRequest.swift */; };
-		6163B5251E14A64400867C70 /* default.realm.note in Resources */ = {isa = PBXBuildFile; fileRef = 6163B51B1E14A64400867C70 /* default.realm.note */; };
 		6165A6371DEBC32500F7A3E6 /* NotificationTypeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6165A6351DEBC32500F7A3E6 /* NotificationTypeCell.swift */; };
 		6165A6381DEBC32500F7A3E6 /* NotificationTypeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6165A6361DEBC32500F7A3E6 /* NotificationTypeCell.xib */; };
 		6165A6391DEBC33500F7A3E6 /* NotificationTypeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6165A6351DEBC32500F7A3E6 /* NotificationTypeCell.swift */; };
@@ -612,7 +611,6 @@
 		61D1A8AE1DD468A100B91BDD /* MEDUserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61D1A8A71DD468A100B91BDD /* MEDUserProfile.swift */; };
 		61D1A8AF1DD468A100B91BDD /* MEDUserSleep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61D1A8A81DD468A100B91BDD /* MEDUserSleep.swift */; };
 		61D1A8B01DD468A100B91BDD /* MEDUserSteps.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61D1A8A91DD468A100B91BDD /* MEDUserSteps.swift */; };
-		61E8EC751E15EDA2004F0DBE /* default.realm in Resources */ = {isa = PBXBuildFile; fileRef = 61F0164A1E14E92600691DBD /* default.realm */; };
 		61E8EC841E16017D004F0DBE /* ActionSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E8EC771E16017D004F0DBE /* ActionSheetView.swift */; };
 		61E8EC851E16017D004F0DBE /* AlertAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E8EC781E16017D004F0DBE /* AlertAction.swift */; };
 		61E8EC861E16017D004F0DBE /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E8EC791E16017D004F0DBE /* Color.swift */; };
@@ -643,7 +641,6 @@
 		61EF09221DDE9EB7003C2EA5 /* DeleteAllAppIDPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61EF09211DDE9EB7003C2EA5 /* DeleteAllAppIDPacket.swift */; };
 		61EF09241DDE9F1B003C2EA5 /* EditAppIDPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61EF09231DDE9F1B003C2EA5 /* EditAppIDPacket.swift */; };
 		61EF09301DDEF09E003C2EA5 /* MEDBaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61D1A8B41DD46BF000B91BDD /* MEDBaseModel.swift */; };
-		61F0164B1E14E92600691DBD /* default.realm in Resources */ = {isa = PBXBuildFile; fileRef = 61F0164A1E14E92600691DBD /* default.realm */; };
 		61FC93E31DE6799E000AE93C /* GetNotificationAppIDRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6199AED21DDC51FA00BEA140 /* GetNotificationAppIDRequest.swift */; };
 		61FC93E41DE679A2000AE93C /* GetTotalNotificationAppReuqest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6199AED01DDC3BB900BEA140 /* GetTotalNotificationAppReuqest.swift */; };
 		61FC93E51DE679A6000AE93C /* SetNotificationAppIDRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6199AED61DDC5C8B00BEA140 /* SetNotificationAppIDRequest.swift */; };
@@ -857,6 +854,9 @@
 		9AD8F9511A6DF35900F01014 /* NevoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD8F9501A6DF35900F01014 /* NevoTests.swift */; };
 		D10C095A1DE2967B008B6E57 /* ProfileImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D10C09591DE2967B008B6E57 /* ProfileImageManager.swift */; };
 		D10C095B1DE2967B008B6E57 /* ProfileImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D10C09591DE2967B008B6E57 /* ProfileImageManager.swift */; };
+		D11C142A1E1CA94600962F46 /* default.realm in Resources */ = {isa = PBXBuildFile; fileRef = D11C14281E1CA94500962F46 /* default.realm */; };
+		D11C142B1E1CA94600962F46 /* default.realm.lock in Resources */ = {isa = PBXBuildFile; fileRef = D11C14291E1CA94500962F46 /* default.realm.lock */; };
+		D11C142C1E1CAA6900962F46 /* default.realm in Resources */ = {isa = PBXBuildFile; fileRef = D11C14281E1CA94500962F46 /* default.realm */; };
 		F5A58EFCE1AF535DD4D667CB /* Pods_LunaRTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA6756A2314165C2C74201E8 /* Pods_LunaRTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -1201,7 +1201,6 @@
 		614662A91DC9DECC001E57CC /* lunar_not_connect.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lunar_not_connect.png; sourceTree = "<group>"; };
 		615093371DBF5BC800E52970 /* SetSunriseAndSunsetRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetSunriseAndSunsetRequest.swift; sourceTree = "<group>"; };
 		615093381DBF5BC800E52970 /* SetWorldClockRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetWorldClockRequest.swift; sourceTree = "<group>"; };
-		6163B51B1E14A64400867C70 /* default.realm.note */ = {isa = PBXFileReference; lastKnownFileType = file; path = default.realm.note; sourceTree = "<group>"; };
 		6165A6351DEBC32500F7A3E6 /* NotificationTypeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationTypeCell.swift; sourceTree = "<group>"; };
 		6165A6361DEBC32500F7A3E6 /* NotificationTypeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NotificationTypeCell.xib; sourceTree = "<group>"; };
 		6165A63B1DEBDDD100F7A3E6 /* GetotalAppIDPacket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetotalAppIDPacket.swift; sourceTree = "<group>"; };
@@ -1266,7 +1265,6 @@
 		61EF091F1DDE9E0A003C2EA5 /* DeleteNotificationAppIDPacket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeleteNotificationAppIDPacket.swift; sourceTree = "<group>"; };
 		61EF09211DDE9EB7003C2EA5 /* DeleteAllAppIDPacket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeleteAllAppIDPacket.swift; sourceTree = "<group>"; };
 		61EF09231DDE9F1B003C2EA5 /* EditAppIDPacket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditAppIDPacket.swift; sourceTree = "<group>"; };
-		61F0164A1E14E92600691DBD /* default.realm */ = {isa = PBXFileReference; lastKnownFileType = file; path = default.realm; sourceTree = "<group>"; };
 		61F85F4F1DAF5BF300F341B5 /* NevoOtaController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NevoOtaController.swift; sourceTree = "<group>"; };
 		61FC93F21DE6810E000AE93C /* NotificationAppID */ = {isa = PBXFileReference; lastKnownFileType = folder; path = NotificationAppID; sourceTree = "<group>"; };
 		61FC93F61DE80B2D000AE93C /* SolarHarvest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SolarHarvest.swift; sourceTree = "<group>"; };
@@ -1399,6 +1397,8 @@
 		AA6756A2314165C2C74201E8 /* Pods_LunaRTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LunaRTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CBB9BF1C2FA9FD4C9B4E48BC /* Pods-LunaRTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LunaRTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LunaRTests/Pods-LunaRTests.debug.xcconfig"; sourceTree = "<group>"; };
 		D10C09591DE2967B008B6E57 /* ProfileImageManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileImageManager.swift; sourceTree = "<group>"; };
+		D11C14281E1CA94500962F46 /* default.realm */ = {isa = PBXFileReference; lastKnownFileType = file; path = default.realm; sourceTree = "<group>"; };
+		D11C14291E1CA94500962F46 /* default.realm.lock */ = {isa = PBXFileReference; lastKnownFileType = file; path = default.realm.lock; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1775,7 +1775,7 @@
 		007F79731A878D0B006C89E6 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				6163B5101E14A64400867C70 /* DefaultRealm */,
+				D11C14271E1CA94500962F46 /* DefaultRealm */,
 				61879C2B1DC05B850089F1E5 /* Worldclock */,
 				61FC93F21DE6810E000AE93C /* NotificationAppID */,
 				61798C2D1DE58F280087891D /* DFUFirmware */,
@@ -2156,15 +2156,6 @@
 			);
 			name = MEDExtension;
 			path = Frameworks/MEDExtension;
-			sourceTree = "<group>";
-		};
-		6163B5101E14A64400867C70 /* DefaultRealm */ = {
-			isa = PBXGroup;
-			children = (
-				61F0164A1E14E92600691DBD /* default.realm */,
-				6163B51B1E14A64400867C70 /* default.realm.note */,
-			);
-			path = DefaultRealm;
 			sourceTree = "<group>";
 		};
 		6168C62D1DFE53BF008FCF97 /* OtherController */ = {
@@ -2760,6 +2751,15 @@
 			name = Seven;
 			sourceTree = "<group>";
 		};
+		D11C14271E1CA94500962F46 /* DefaultRealm */ = {
+			isa = PBXGroup;
+			children = (
+				D11C14281E1CA94500962F46 /* default.realm */,
+				D11C14291E1CA94500962F46 /* default.realm.lock */,
+			);
+			path = DefaultRealm;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -2877,6 +2877,7 @@
 					00EFE0491D227D5F0066C905 = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = WEGPWR9LDA;
+						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -2956,7 +2957,7 @@
 				00C826C51DA5ECA700ECECEE /* AnalysisValueCell.xib in Resources */,
 				00C826C61DA5ECA700ECECEE /* ProfileSetupViewController.xib in Resources */,
 				00C826C71DA5ECA700ECECEE /* CheckYourIndoxController.xib in Resources */,
-				61E8EC751E15EDA2004F0DBE /* default.realm in Resources */,
+				D11C142C1E1CAA6900962F46 /* default.realm in Resources */,
 				61879C321DC05C430089F1E5 /* timezones.json in Resources */,
 				61879C311DC05C410089F1E5 /* cities.json in Resources */,
 				00C826C81DA5ECA700ECECEE /* ForgotPasswordController.xib in Resources */,
@@ -3099,7 +3100,6 @@
 				666793351E1350FC00344188 /* DatePickerView.xib in Resources */,
 				0095DDAA1D2E0D7D00F80BFD /* wacth_hour.png in Resources */,
 				004F74DF1D800EAA0048BA09 /* UserProfileController.xib in Resources */,
-				6163B5251E14A64400867C70 /* default.realm.note in Resources */,
 				0091EB391D951D9E0079EC39 /* Main.storyboard in Resources */,
 				0050D5F21C28E0DB004F6F80 /* MyNevoHeaderView.xib in Resources */,
 				0050D60E1C28E0DB004F6F80 /* PresetTableViewController.xib in Resources */,
@@ -3145,6 +3145,7 @@
 				006DA3191D6ED6670011E09C /* AnalysisRadarViewCell.xib in Resources */,
 				0050D5FD1C28E0DB004F6F80 /* NotificationClockCell.xib in Resources */,
 				0036EB091C48BA8300DCED46 /* turnonnevo.png in Resources */,
+				D11C142B1E1CA94600962F46 /* default.realm.lock in Resources */,
 				6695A7F11E07CFF3007396DF /* HomeClockController.xib in Resources */,
 				009703C71C9BDB3200F2FF0D /* UserProfileCell.xib in Resources */,
 				006A62751D6AB44A00458305 /* StepsTitleView.xib in Resources */,
@@ -3175,6 +3176,7 @@
 				612DB7181DEFC7BE000B1747 /* AllowNotificationsTableViewCell.xib in Resources */,
 				0050D60C1C28E0DB004F6F80 /* AddPresetViewController.xib in Resources */,
 				006A62581D6AA76C00458305 /* AlarmTypeCell.xib in Resources */,
+				D11C142A1E1CA94600962F46 /* default.realm in Resources */,
 				00E759181C2406E600372529 /* upgrade_clock.png in Resources */,
 				0017DC121C8812640058A065 /* RepeatViewController.xib in Resources */,
 				6168C6371DFE8036008FCF97 /* UnitTableViewCell.xib in Resources */,
@@ -3186,7 +3188,6 @@
 				00C640F61A8DEE0800815CF8 /* clockView600.png in Resources */,
 				0063BC1B1D98CE85000BAB44 /* LoginController.xib in Resources */,
 				614662AA1DC9DECC001E57CC /* lunar_not_connect.png in Resources */,
-				61F0164B1E14E92600691DBD /* default.realm in Resources */,
 				00BF2D9B1C7FED2200909316 /* VideoPlayController.xib in Resources */,
 				619919281DC6EEFA00C75AE7 /* AddWorldClockViewController.xib in Resources */,
 				0089B0B71D6C4BDC0041148A /* SleepHistoryViewCell.xib in Resources */,
@@ -4360,6 +4361,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = WEGPWR9LDA;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -4386,6 +4388,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.medcorp.LunaR;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "LunaR/LunaR-Bridging-Header.h";
 			};
 			name = Debug;
@@ -4403,6 +4406,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = WEGPWR9LDA;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -4428,6 +4432,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.medcorp.LunaR;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "LunaR/LunaR-Bridging-Header.h";
 			};
 			name = Release;
