@@ -29,6 +29,8 @@ class NoneAlarmView: UIView {
         
         label.font = UIFont(name: "Raleway", size: 16)
         label.textAlignment = .center
+        label.numberOfLines = Int.max
+        label.lineBreakMode = .byWordWrapping
         
         label.text = NSLocalizedString("none_alarm", comment: "")
         

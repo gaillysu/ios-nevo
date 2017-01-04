@@ -245,3 +245,5 @@
 "home_local" = "手表数字时间";
 
 "none_alarm" = "你还没有设置闹钟，点击右上角的加号按钮来添加一个吧！";
+"nevo_alarms_limit" = "Nevo 目前只支持打开3个闹钟。";
+"lunar_alarms_limit" = "LunaR 目前只支持打开7个睡眠闹钟与7个起床闹钟。";
