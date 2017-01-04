@@ -77,11 +77,6 @@ class AlarmClockController: UITableViewController,AddAlarmDelegate {
                 v.isHidden = false
         })
     }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
 
     // MARK: - ButtonManagerCallBack
     /*
@@ -105,7 +100,6 @@ class AlarmClockController: UITableViewController,AddAlarmDelegate {
                 addAlarm.hidesBottomBarWhenPushed = true
                 self.navigationController?.show(addAlarm, sender: self)
             }
-            
         }
 
         if(sender.isKind(of: UISwitch.classForCoder())){
@@ -168,7 +162,6 @@ class AlarmClockController: UITableViewController,AddAlarmDelegate {
             
             self.present(actionSheet, animated: true, completion: nil)
         }
-
     }
 
     /**
@@ -657,15 +650,5 @@ class AlarmClockController: UITableViewController,AddAlarmDelegate {
             }
         }
 
-    }
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to toIndexPath: IndexPath) {
-
-    }
-
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
     }
 }

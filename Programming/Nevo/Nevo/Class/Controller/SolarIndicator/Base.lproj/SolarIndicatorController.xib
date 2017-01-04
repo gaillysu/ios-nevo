@@ -35,7 +35,7 @@
                     </constraints>
                 </view>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="0ig-73-4dq">
-                    <rect key="frame" x="0.0" y="394" width="375" height="236"/>
+                    <rect key="frame" x="0.0" y="394" width="375" height="243"/>
                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="5" minimumInteritemSpacing="0.0" id="KGd-Hx-YIh">
                         <size key="itemSize" width="320" height="40"/>
                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -65,7 +65,7 @@
                 <constraint firstItem="0ig-73-4dq" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="kB8-2z-6r2"/>
                 <constraint firstItem="j2C-vS-BTS" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="66" id="pYs-yC-13o"/>
                 <constraint firstItem="6uW-aw-Xqo" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="rIa-hp-YIk"/>
-                <constraint firstAttribute="bottom" secondItem="0ig-73-4dq" secondAttribute="bottom" constant="37" id="sun-vd-NPi"/>
+                <constraint firstAttribute="bottom" secondItem="0ig-73-4dq" secondAttribute="bottom" constant="30" id="sun-vd-NPi"/>
                 <constraint firstItem="0ig-73-4dq" firstAttribute="top" secondItem="j2C-vS-BTS" secondAttribute="bottom" constant="20" id="ue7-p7-6ee"/>
             </constraints>
             <point key="canvasLocation" x="33.5" y="122.5"/>

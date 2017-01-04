@@ -20,24 +20,9 @@ class AddAlarmSystemCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
         
-        // MARK: - APPTHEME ADJUST
-        if !AppTheme.isTargetLunaR_OR_Nevo() {
-            backgroundColor = UIColor.getGreyColor()
-            contentView.backgroundColor = UIColor.getGreyColor()
-            textLabel?.textColor = UIColor.white
-            detailTextLabel?.textColor = UIColor.white
-            systemTitle.textColor = UIColor.white
-            repeatSwicth.tintColor = UIColor.getBaseColor()
-            repeatSwicth.onTintColor = UIColor.getBaseColor()
-        }
+        viewDefaultColorful()
+        systemTitle.viewDefaultColorful()
+        repeatSwicth.viewDefaultColorful()
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-    
 }

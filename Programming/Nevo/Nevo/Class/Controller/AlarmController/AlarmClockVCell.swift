@@ -18,26 +18,15 @@ class AlarmClockVCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
-    }
-    
-    override func layoutSubviews() {
+        
+        viewDefaultColorful()
+        dateLabel.viewDefaultColorful()
+        titleLabel.viewDefaultColorful()
+        alarmSwicth.viewDefaultColorful()
+        
         if !AppTheme.isTargetLunaR_OR_Nevo() {
-            backgroundColor = UIColor.getGreyColor()
-            contentView.backgroundColor = UIColor.getGreyColor()
-            dateLabel.textColor = UIColor.white
-            titleLabel.textColor = UIColor.white
             alarmIn.textColor = UIColor.white
-            alarmSwicth.onTintColor = UIColor.getBaseColor()
-        }else{
-            contentView.backgroundColor = UIColor.white
         }
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
     
     @IBAction func controllManager(_ sender: Any) {

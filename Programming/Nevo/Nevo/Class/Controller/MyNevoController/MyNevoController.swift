@@ -103,11 +103,6 @@ class MyNevoController: UITableViewController,UIAlertViewDelegate {
         SwiftEventBus.unregister(self, name: EVENT_BUS_RAWPACKET_DATA_KEY)
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
     func reconnect() {
         AppDelegate.getAppDelegate().connect()
     }
@@ -120,7 +115,7 @@ class MyNevoController: UITableViewController,UIAlertViewDelegate {
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat{
         if(section == 0){
             let headerimage:UIImageView = MyNevoHeaderView.getMyNevoHeaderView()
-            return headerimage.frame.size.height
+            return headerimage.frame.size.height + 70
         }
         return 0
     }
@@ -160,7 +155,7 @@ class MyNevoController: UITableViewController,UIAlertViewDelegate {
         if !AppTheme.isTargetLunaR_OR_Nevo() {
             headerimage.image = UIImage(named: "myLunaR_icon")
         }
-        let view:UIView = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: headerimage.frame.size.height))
+        let view:UIView = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: headerimage.frame.size.height + 70))
         view.addSubview(headerimage)
         headerimage.center = CGPoint(x: view.frame.size.width/2.0, y: view.frame.size.height/2.0)
         return view

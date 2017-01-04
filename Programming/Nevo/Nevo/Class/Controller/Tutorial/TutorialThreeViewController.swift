@@ -25,14 +25,17 @@ class TutorialThreeViewController: UIViewController {
     }
 
     override func viewDidLoad() {
-        //styleEvolve()
+        styleEvolve()
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        styleEvolve()
         if !AppTheme.isTargetLunaR_OR_Nevo() {
             self.setLunaRtext()
+        }
+        
+        if !AppTheme.isTargetLunaR_OR_Nevo() {
+            centerImageView.center.x = UIScreen.main.bounds.width / 2
         }
     }
     

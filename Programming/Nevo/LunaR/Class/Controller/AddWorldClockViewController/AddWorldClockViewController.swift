@@ -61,10 +61,10 @@ class AddWorldClockViewController: UIViewController {
         
         Timer.after(5) { 
             if let _ = self.currentCity {
-                self.cityTableView.reloadRows(at: [IndexPath.init(row: 0, section: 0)], with: .automatic)
+                self.cityTableView.reloadRows(at: [IndexPath.init(row: 0, section: 0)], with: .none)
             } else {
                 let cell = self.cityTableView.cellForRow(at: IndexPath.init(row: 0, section: 0))
-                cell?.textLabel?.text = "Failure to locate..."
+                cell?.textLabel?.text = NSLocalizedString("failed_locate", comment: "")
             }
         }
     }
@@ -90,7 +90,7 @@ extension AddWorldClockViewController {
         HomeClockUtil.shared.getLocation { (city) in
             if let city = city {
                 self.currentCity = city
-                self.cityTableView.reloadRows(at: [IndexPath(row: 0, section: 0)], with: .automatic)
+                self.cityTableView.reloadRows(at: [IndexPath(row: 0, section: 0)], with: .none)
             }
         }
     }
@@ -129,7 +129,7 @@ extension AddWorldClockViewController {
         button.setImage(UIImage(named: "cancel_lunar")!, for: UIControlState())
         button.addTarget(self, action: #selector(dismissController), for: UIControlEvents.touchUpInside)
         button.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: button)
+        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: button)
     }
 }
 
@@ -245,11 +245,10 @@ extension AddWorldClockViewController: UITableViewDataSource {
         
         if indexPath.section == 0 {
             if let city = currentCity {
-                cell?.textLabel?.text = "\(city.country), \(city.name)"
+                cell?.textLabel?.text = "\(city.name), \(city.country)"
             } else {
-                cell?.textLabel?.text = "Locating..."
+                cell?.textLabel?.text = NSLocalizedString("locating", comment: "")
             }
-            
         } else {
             let sectionName: String = self.indexes[indexPath.section - 1]
             if let citiesForSection:[City] = self.cities[sectionName]{

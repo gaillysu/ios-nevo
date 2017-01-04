@@ -39,13 +39,11 @@ class SupportViewController: UIViewController,NJKWebViewProgressDelegate,UIWebVi
         progressView = NJKWebViewProgressView(frame: barFrame);
         progressView!.autoresizingMask = [UIViewAutoresizing.flexibleWidth ,UIViewAutoresizing.flexibleTopMargin]
 
-
         let request:URLRequest = URLRequest(url: URL(string:"http://support.nevowatch.com/support/home")!)
         supportWebview.loadRequest(request)
     }
 
     override func viewDidAppear(_ animated: Bool) {
-        //[self.navigationController.navigationBar addSubview:_progressView];
         self.navigationController!.navigationBar.addSubview(progressView!)
     }
 
@@ -53,26 +51,13 @@ class SupportViewController: UIViewController,NJKWebViewProgressDelegate,UIWebVi
         progressView?.removeFromSuperview()
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
     func webViewProgress(_ webViewProgress:NJKWebViewProgress ,updateProgress progress:Float) {
         //[_progressView setProgress:progress animated:YES];
         //self.title = [_webView stringByEvaluatingJavaScriptFromString:@"document.title"];
         progressView?.setProgress(progress, animated: true)
-        self.navigationItem.title = supportWebview.stringByEvaluatingJavaScript(from: "document.title")
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    
+    func webViewDidFinishLoad(_ webView: UIWebView) {
+        navigationItem.title = supportWebview.stringByEvaluatingJavaScript(from: "document.title")
     }
-    */
-
 }

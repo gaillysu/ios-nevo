@@ -20,7 +20,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="49.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="owV-Es-BfR">
@@ -29,40 +29,29 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9IB-fw-le5">
-                        <rect key="frame" x="182" y="7" width="130" height="35"/>
-                        <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Gj8-gY-uRU" customClass="AutocompleteField" customModule="LunaR" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="130" height="35"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="right" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="Gj8-gY-uRU" customClass="MEDTextField" customModule="LunaR" customModuleProvider="target">
+                        <rect key="frame" x="105" y="4" width="200" height="42"/>
                         <constraints>
-                            <constraint firstItem="Gj8-gY-uRU" firstAttribute="leading" secondItem="9IB-fw-le5" secondAttribute="leading" id="81Q-CK-h6e"/>
-                            <constraint firstAttribute="trailing" secondItem="Gj8-gY-uRU" secondAttribute="trailing" id="aqD-ki-lnH"/>
-                            <constraint firstAttribute="bottom" secondItem="Gj8-gY-uRU" secondAttribute="bottom" id="pgS-fC-BCa"/>
-                            <constraint firstItem="Gj8-gY-uRU" firstAttribute="top" secondItem="9IB-fw-le5" secondAttribute="top" id="wj7-Qd-efg"/>
+                            <constraint firstAttribute="width" constant="200" id="4ww-rx-cmc"/>
                         </constraints>
-                    </view>
+                        <nil key="textColor"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <textInputTraits key="textInputTraits"/>
+                    </textField>
                 </subviews>
                 <constraints>
                     <constraint firstItem="owV-Es-BfR" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" constant="-47.5" id="62R-Sj-htM"/>
                     <constraint firstAttribute="bottomMargin" secondItem="owV-Es-BfR" secondAttribute="bottom" constant="-4" id="Bdn-UR-mMb"/>
+                    <constraint firstItem="Gj8-gY-uRU" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="3.5" id="Oq6-6i-nsJ"/>
                     <constraint firstAttribute="leadingMargin" secondItem="owV-Es-BfR" secondAttribute="leading" constant="-10" id="See-bC-Qug"/>
-                    <constraint firstItem="9IB-fw-le5" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" constant="87" id="W4l-A8-Qud"/>
+                    <constraint firstAttribute="trailing" secondItem="Gj8-gY-uRU" secondAttribute="trailing" constant="15" id="hjA-6C-SWE"/>
                     <constraint firstAttribute="topMargin" secondItem="owV-Es-BfR" secondAttribute="top" constant="3" id="iMg-hS-KCj"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="9IB-fw-le5" secondAttribute="trailing" id="nAJ-Ap-iF5"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="9IB-fw-le5" secondAttribute="bottom" constant="-0.5" id="rKZ-f9-bEf"/>
-                    <constraint firstAttribute="topMargin" secondItem="9IB-fw-le5" secondAttribute="top" constant="1" id="yuz-SV-LfD"/>
+                    <constraint firstAttribute="bottom" secondItem="Gj8-gY-uRU" secondAttribute="bottom" constant="4" id="rgk-pz-XBR"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="titleLabel" destination="owV-Es-BfR" id="wv7-s4-Ark"/>
-                <outlet property="unitSegmented" destination="9IB-fw-le5" id="Qzg-Hx-kke"/>
-                <outlet property="unitSegmentedField" destination="Gj8-gY-uRU" id="AmS-uY-MD0"/>
+                <outlet property="unitSegmentedField" destination="Gj8-gY-uRU" id="tsG-qa-Unz"/>
             </connections>
         </tableViewCell>
     </objects>

@@ -68,6 +68,7 @@ class HomeClockController: UIViewController {
 extension HomeClockController {
     func setUpView() {
         navigationItem.title = NSLocalizedString("Home City", comment: "")
+        todayLabel.text = NSLocalizedString("home_time2", comment: "")
         
         if let city = city {
             noCityLabel.isHidden = true
@@ -92,8 +93,7 @@ extension HomeClockController {
             
             calculateHomeTime()
             
-            todayLabel.text = isPastOrComing(date: homeTime)
-            dateLabel.text = homeTime.stringFromFormat(formaterString)
+            dateLabel.text = isPastOrComing(date: homeTime) + "  " + homeTime.stringFromFormat(formaterString)
             return
         } else {
             noCityLabel.isHidden = false

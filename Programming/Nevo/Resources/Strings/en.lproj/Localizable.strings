@@ -224,6 +224,7 @@
 
 "local_time" = "LOCAL TIME";
 "home_time" = "HOME TIME";
+"home_time2" = "Home Time";
 
 // Dashboard of LunaR
 "harvest_status" = "HARVESTING STATUS";
@@ -239,3 +240,10 @@
 
 "update_available" = "Version VERSION_NUMBER is now available for your Nevo!";
 "home_local" = "Watch digital time";
+
+"failed_locate" = "Failed to locate";
+"locating" = "Locating...";
+"Calculating" = "Calculating...";
+
+"tap_to" = "Tap To";
+"Select_city" = "select a city";

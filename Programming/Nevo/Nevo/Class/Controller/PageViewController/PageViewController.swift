@@ -85,7 +85,15 @@ class PageViewController: UIPageViewController,UIActionSheetDelegate {
         
         pagingControllers = [viewController1, viewController2,viewController3]
         
-        let value:Int = AppDelegate.getAppDelegate().getWactnID()
+        var value:Int = AppDelegate.getAppDelegate().getWactnID()
+        
+        // MARK: - !!! TEMPORARY ADJUSTMENT, 临时调整
+#if DEBUG
+        if !AppTheme.isTargetLunaR_OR_Nevo() {
+            value = 3
+        }
+#endif
+        
         if value == 3 {
             let viewController4 = HomeClockController()
             viewController4.view.tag = pagingControllers.count

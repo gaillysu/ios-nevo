@@ -284,35 +284,6 @@ extension AppDelegate {
         }
     }
     
-    func adjustLaunchLogic() {
-        let hasWatch:Bool = AppDelegate.getAppDelegate().hasSavedAddress()
-        let isFirsttimeLaunch = AppDelegate.getAppDelegate().isFirsttimeLaunch
-        if isFirsttimeLaunch {
-            let naviController = UINavigationController(rootViewController: LoginController())
-            AppDelegate.getAppDelegate().window? = UIWindow(frame: UIScreen.main.bounds)
-            AppDelegate.getAppDelegate().window?.rootViewController = naviController
-            AppDelegate.getAppDelegate().window?.makeKeyAndVisible()
-        } else {
-            if !hasWatch {
-                let naviController:UINavigationController = UINavigationController(rootViewController: TutorialOneViewController())
-                naviController.isNavigationBarHidden = true
-                AppDelegate.getAppDelegate().window? = UIWindow(frame: UIScreen.main.bounds)
-                AppDelegate.getAppDelegate().window?.rootViewController = naviController
-                AppDelegate.getAppDelegate().window?.makeKeyAndVisible()
-            }
-        }
-        
-        /// Alter the entry of app here when testing a single module.
-        /// 🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧
-        #if DEBUG
-        
-        AppDelegate.getAppDelegate().window? = UIWindow(frame: UIScreen.main.bounds)
-        AppDelegate.getAppDelegate().window?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
-        AppDelegate.getAppDelegate().window?.makeKeyAndVisible()
-        #endif
-        /// 🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧
-    }
-    
     func connectedBanner() {
         if(self.hasSavedAddress()){
             let banner = MEDBanner(title: NSLocalizedString("Connected", comment: ""), subtitle: nil, image: nil, backgroundColor:UIColor(rgba: "#0dac67"))
@@ -345,6 +316,10 @@ extension AppDelegate {
 
 extension AppDelegate {
     func getSunriseAndSunsetTime() -> (sunriseDate: Date?, sunsetDate: Date?, additionString: String) {
+        if latitude == 0 && longitude == 0 {
+            return (nil, nil, NSLocalizedString("failed_locate", comment: ""))
+        }
+        
         if let solar = Solar(latitude: latitude, longitude: longitude) {
             if let sunrise = solar.sunrise, let sunset = solar.sunset {
                 return (sunrise, sunset, "")
@@ -360,12 +335,15 @@ extension AppDelegate {
                 }
             }
         } else {
-            let solar = Solar(latitude: 22.2782551, longitude: 114.1670679)
-            return (solar?.sunrise, solar?.sunset, "")
+            return (nil, nil, NSLocalizedString("failed_locate", comment: ""))
         }
     }
     
     func getSunriseAndSunsetTime(date: Date) -> (sunriseDate: Date?, sunsetDate: Date?, additionString: String) {
+        if latitude == 0 && longitude == 0 {
+            return (nil, nil, NSLocalizedString("failed_locate", comment: ""))
+        }
+        
         if let solar = Solar(forDate: date, withTimeZone: TimeZone.current, latitude: latitude, longitude: longitude) {
             if let sunrise = solar.sunrise, let sunset = solar.sunset {
                 return (sunrise, sunset, "")
@@ -381,8 +359,39 @@ extension AppDelegate {
                 }
             }
         } else {
-            let solar = Solar(forDate: date, withTimeZone: TimeZone.current, latitude: 22.2782551, longitude: 114.1670679)
-            return (solar?.sunrise, solar?.sunset, "")
+            return (nil, nil, NSLocalizedString("failed_locate", comment: ""))
         }
+    }
+}
+
+// MARK: - 调整 App 的启动逻辑
+extension AppDelegate {
+    func adjustLaunchLogic() {
+        let hasWatch:Bool = AppDelegate.getAppDelegate().hasSavedAddress()
+        let isFirsttimeLaunch = AppDelegate.getAppDelegate().isFirsttimeLaunch
+        if isFirsttimeLaunch {
+            let naviController = UINavigationController(rootViewController: LoginController())
+            AppDelegate.getAppDelegate().window? = UIWindow(frame: UIScreen.main.bounds)
+            AppDelegate.getAppDelegate().window?.rootViewController = naviController
+            AppDelegate.getAppDelegate().window?.makeKeyAndVisible()
+        } else {
+            if !hasWatch {
+                let naviController:UINavigationController = UINavigationController(rootViewController: TutorialOneViewController())
+                naviController.isNavigationBarHidden = true
+                AppDelegate.getAppDelegate().window? = UIWindow(frame: UIScreen.main.bounds)
+                AppDelegate.getAppDelegate().window?.rootViewController = naviController
+                AppDelegate.getAppDelegate().window?.makeKeyAndVisible()
+            }
+        }
+        
+        /// Alter the entry of app here when testing a single module.
+        /// 🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧
+        #if DEBUG
+            
+            AppDelegate.getAppDelegate().window? = UIWindow(frame: UIScreen.main.bounds)
+            AppDelegate.getAppDelegate().window?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
+            AppDelegate.getAppDelegate().window?.makeKeyAndVisible()
+        #endif
+        /// 🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧
     }
 }

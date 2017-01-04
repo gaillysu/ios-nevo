@@ -75,9 +75,15 @@ class DashBoardController: UIViewController {
                 XCGLogger.default.debug("getGoalRequest")
             }
             
-            self.refreshDateForDashView()
+            self.refreshDataForDashView()
             self.refreshDialView()
         }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        refreshDataForDashView()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -213,15 +219,17 @@ extension DashBoardController {
         dialView.addSubview(clockView)
     }
     
-    func refreshDateForDashView() {
-        
-        // TODO: refresh charging status view
-        // TODO: refresh sleep history view
+    func refreshDataForDashView() {
         
         /// refersh sunrise
         HomeClockUtil.shared.getLocation { (city) in
-            self.sunriseView?.cityLabel.text = city?.name
+            if let city = city {
+                self.sunriseView?.cityLabel.text = city.name
+            } else {
+                self.sunriseView?.cityLabel.text = NSLocalizedString("failed_locate", comment: "")
+            }
         }
+        
         let sunriseAndSet = AppDelegate.getAppDelegate().getSunriseAndSunsetTime()
         if let sunrise = sunriseAndSet.sunriseDate, let sunset = sunriseAndSet.sunsetDate {
             let now = Date()
@@ -237,22 +245,31 @@ extension DashBoardController {
                 } else {
                     sunriseView?.imageView.image = UIImage(named: "sunrise")
                     sunriseView?.titleLabel.text = NSLocalizedString("sunrise", comment: "")
-                    sunriseView?.timeLabel.text = sunriseAndSet.additionString
                 }
             }
         } else {
             sunriseView?.imageView.image = UIImage(named: "sunrise")
             sunriseView?.titleLabel.text = NSLocalizedString("sunrise", comment: "")
-            sunriseView?.timeLabel.text = sunriseAndSet.additionString
         }
         
         /// refresh homecity
         if let city = HomeClockUtil.shared.getHomeCityWithSelectedFlag() {
             homeClockView?.cityLabel.text = city.name
             homeClockView?.countryLabel.text = city.country
+            
+            removeSelectCityGes(fromView: homeClockView!.cityLabel)
+            removeSelectCityGes(fromView: homeClockView!.countryLabel)
+
+        } else {
+            homeClockView?.cityLabel.text = NSLocalizedString("tap_to", comment: "")
+            homeClockView?.countryLabel.text = NSLocalizedString("Select_city", comment: "")
+            
+            addSelectCityGes(toView: homeClockView!.cityLabel)
+            addSelectCityGes(toView: homeClockView!.countryLabel)
         }
+        
         if let hometime = HomeClockUtil.shared.getHomeTime() {
-            homeClockView?.timeLabel.text = hometime.stringFromFormat("hh:mm a")
+            homeClockView?.timeLabelText = hometime.stringFromFormat("hh:mm a")
         }
     }
 }
@@ -292,3 +309,31 @@ extension DashBoardController {
     }
 }
 
+extension DashBoardController {
+    fileprivate func addSelectCityGes(toView view: UIView) {
+        if let geses = view.gestureRecognizers {
+            for ges in geses {
+                view.removeGestureRecognizer(ges)
+            }
+        }
+        
+        view.isUserInteractionEnabled = true
+        let tap = UITapGestureRecognizer(target: self, action: #selector(self.selectCity))
+        view.addGestureRecognizer(tap)
+    }
+    
+    fileprivate func removeSelectCityGes(fromView view: UIView) {
+        if let geses = view.gestureRecognizers {
+            for ges in geses {
+                view.removeGestureRecognizer(ges)
+            }
+        }
+    }
+    
+    @objc func selectCity() {
+        let selectCityController: AddWorldClockViewController = AddWorldClockViewController()
+        selectCityController.hidesBottomBarWhenPushed = true
+        let navigationController: UINavigationController = UINavigationController(rootViewController: selectCityController)
+        present(navigationController, animated: true, completion: nil)
+    }
+}

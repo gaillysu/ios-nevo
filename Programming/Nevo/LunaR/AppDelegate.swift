@@ -46,9 +46,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
     
     fileprivate var isSync:Bool = true; // syc state
     fileprivate var getWacthNameTimer:Timer?
-    //Default Hong Kong
-    var longitude:Double = 114.1670679
-    var latitude:Double = 22.2782551
+    
+    // MARK: - 如果是 (0, 0), 表示定位失败
+    var longitude:Double = 0
+    var latitude:Double = 0
     
     var isFirsttimeLaunch: Bool {
         get {
