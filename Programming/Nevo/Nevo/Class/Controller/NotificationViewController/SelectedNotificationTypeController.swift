@@ -114,7 +114,7 @@ extension SelectedNotificationTypeController {
             tableView.reloadRows(at: [reloadIndexPath], with: UITableViewRowAnimation.automatic)
             tableView.reloadSections(IndexSet(integer: 2), with: UITableViewRowAnimation.automatic)
         } else if indexPath.section == 3 {
-            let alertController = ActionSheetView(title: NSLocalizedString("DeleteNotificationWarning", comment: ""), message: nil, preferredStyle: .alert)
+            let alertController = MEDAlertController(title: NSLocalizedString("DeleteNotificationWarning", comment: ""), message: nil, preferredStyle: .alert)
             let confirmAction = UIAlertAction(title: NSLocalizedString("Yes", comment: ""), style: .default, handler: { (_) in
                 self.selectedDelegate?.didDeleteNotification(appID: self.notSetting!.getPacket())
                 _ = self.navigationController?.popViewController(animated: true)

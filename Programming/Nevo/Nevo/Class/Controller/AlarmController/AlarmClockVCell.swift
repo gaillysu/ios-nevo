@@ -8,38 +8,30 @@
 
 import UIKit
 
+/// Cell on main Alarm Controller
+
 class AlarmClockVCell: UITableViewCell {
 
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var alarmSwicth: UISwitch!
-    @IBOutlet weak var alarmIn: UILabel!
-    var actionCallBack:((_ sender:Any) -> Void)?
+    @IBOutlet weak var alarmInLabel: UILabel!
+    
+    var actionCallBack:((_ sender: Any) -> Void)?
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        
+        viewDefaultColorful()
+        alarmSwicth.viewDefaultColorful()
+        dateLabel.viewDefaultColorful()
+        titleLabel.viewDefaultColorful()
+        alarmInLabel.viewDefaultColorful()
     }
-    
-    override func layoutSubviews() {
-        if !AppTheme.isTargetLunaR_OR_Nevo() {
-            backgroundColor = UIColor.getGreyColor()
-            contentView.backgroundColor = UIColor.getGreyColor()
-            dateLabel.textColor = UIColor.white
-            titleLabel.textColor = UIColor.white
-            alarmIn.textColor = UIColor.white
-            alarmSwicth.onTintColor = UIColor.getBaseColor()
-        }else{
-            contentView.backgroundColor = UIColor.white
-        }
-    }
+}
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-    
+// MARK: - Actions
+extension AlarmClockVCell {
     @IBAction func controllManager(_ sender: Any) {
         actionCallBack?(sender)
     }

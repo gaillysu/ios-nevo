@@ -94,7 +94,6 @@
 "sync_finished"="Sync finished";
 "Update"="Update";
 "Add"="Add";
-"no_alarm_content"="You don’t have any alarm set. Set an alarm by tapping on the plus button in the upper right corner.";
 "An_update_is_available_for_your_watch"="An update is available for your watch.";
 "goal_must_bigger_1000"="Goal must be bigger than 1000.";
 //new Nevo
@@ -239,3 +238,5 @@
 
 "update_available" = "Version VERSION_NUMBER is now available for your Nevo!";
 "home_local" = "Watch digital time";
+
+"none_alarm" = "You don’t have any alarm set. Set an alarm by tapping on the plus button in the upper right corner.";

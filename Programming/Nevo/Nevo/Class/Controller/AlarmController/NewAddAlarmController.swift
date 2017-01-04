@@ -143,7 +143,7 @@ class NewAddAlarmController: UITableViewController,ButtonManagerCallBack,Selecte
             if(indexPath.row == 1){
                 let selectedCell:UITableViewCell = tableView.cellForRow(at: indexPath)!
                 
-                let actionSheet:ActionSheetView = ActionSheetView(title: NSLocalizedString("add_alarm_label", comment: ""), message: nil, preferredStyle: UIAlertControllerStyle.alert)
+                let actionSheet:MEDAlertController = MEDAlertController(title: NSLocalizedString("add_alarm_label", comment: ""), message: nil, preferredStyle: UIAlertControllerStyle.alert)
                 actionSheet.addTextField(configurationHandler: { (labelText:UITextField) -> Void in
                     labelText.text = selectedCell.detailTextLabel?.text
                 })

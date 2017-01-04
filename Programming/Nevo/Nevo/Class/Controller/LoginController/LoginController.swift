@@ -257,7 +257,7 @@ extension LoginController {
                     
                 } else {
                     if self.pErrorNumber>=3{
-                        let forgetPassword:ActionSheetView = ActionSheetView(title: NSLocalizedString("forget_your_password", comment: ""), message: nil, preferredStyle: UIAlertControllerStyle.alert)
+                        let forgetPassword:MEDAlertController = MEDAlertController(title: NSLocalizedString("forget_your_password", comment: ""), message: nil, preferredStyle: UIAlertControllerStyle.alert)
                         forgetPassword.view.tintColor = AppTheme.NEVO_SOLAR_YELLOW()
                         
                         let alertAction:UIAlertAction = UIAlertAction(title: NSLocalizedString("Yes", comment: ""), style: UIAlertActionStyle.default, handler: { (action) in

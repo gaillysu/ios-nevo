@@ -51,7 +51,6 @@
 		0037EC531D2385DF00502140 /* Raleway-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0037EC4A1D2385DF00502140 /* Raleway-Regular.ttf */; };
 		0037EC541D2385DF00502140 /* Raleway-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0037EC4B1D2385DF00502140 /* Raleway-SemiBold.ttf */; };
 		0037EC551D2385DF00502140 /* Raleway-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0037EC4C1D2385DF00502140 /* Raleway-Thin.ttf */; };
-		0042C8B41C7DB3EF00177D3D /* NotAlarmView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0042C8B31C7DB3EF00177D3D /* NotAlarmView.xib */; };
 		00478F4F1A8F637D00D0DCE2 /* clockViewHour.png in Resources */ = {isa = PBXBuildFile; fileRef = 00478F4D1A8F637D00D0DCE2 /* clockViewHour.png */; };
 		00478F501A8F637D00D0DCE2 /* clockViewMinute.png in Resources */ = {isa = PBXBuildFile; fileRef = 00478F4E1A8F637D00D0DCE2 /* clockViewMinute.png */; };
 		004F74DF1D800EAA0048BA09 /* UserProfileController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 004F74DE1D800EAA0048BA09 /* UserProfileController.xib */; };
@@ -151,8 +150,6 @@
 		00C826781DA5E04000ECECEE /* AlarmTypeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006A62531D6AA76C00458305 /* AlarmTypeCell.swift */; };
 		00C826791DA5E04000ECECEE /* AlarmTypeCell.xib in Sources */ = {isa = PBXBuildFile; fileRef = 006A62541D6AA76C00458305 /* AlarmTypeCell.xib */; };
 		00C8267A1DA5E04000ECECEE /* NewAddAlarmHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006A62551D6AA76C00458305 /* NewAddAlarmHeader.swift */; };
-		00C8267B1DA5E04000ECECEE /* NotAlarmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0042C8B11C7DB37200177D3D /* NotAlarmView.swift */; };
-		00C8267C1DA5E04000ECECEE /* NotAlarmView.xib in Sources */ = {isa = PBXBuildFile; fileRef = 0042C8B31C7DB3EF00177D3D /* NotAlarmView.xib */; };
 		00C8267D1DA5E04000ECECEE /* ScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FA93E61D9DF32300CB6691 /* ScannerViewController.swift */; };
 		00C8267E1DA5E04000ECECEE /* ScannerViewController.xib in Sources */ = {isa = PBXBuildFile; fileRef = 00FA93E81D9DF33800CB6691 /* ScannerViewController.xib */; };
 		00C8267F1DA5E04000ECECEE /* OldOtaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0050D5221C28E0DB004F6F80 /* OldOtaViewController.swift */; };
@@ -213,7 +210,7 @@
 		00C826BA1DA5E04000ECECEE /* SleepTutorialController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E6509A1C83EE6700278D3E /* SleepTutorialController.swift */; };
 		00C826BB1DA5E04000ECECEE /* MorningTutorialController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E6509E1C840FD500278D3E /* MorningTutorialController.swift */; };
 		00C826BC1DA5E05100ECECEE /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006A62211D6A9F1500458305 /* MainTabBarController.swift */; };
-		00C826BF1DA5E9E000ECECEE /* ActionSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C826BD1DA5E9BD00ECECEE /* ActionSheetView.swift */; };
+		00C826BF1DA5E9E000ECECEE /* MEDAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C826BD1DA5E9BD00ECECEE /* MEDAlertController.swift */; };
 		00C826C21DA5EA9000ECECEE /* AlertAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C826C01DA5EA5700ECECEE /* AlertAction.swift */; };
 		00C826C31DA5ECA700ECECEE /* AnalysisLineChartCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 006DA3131D6ED6670011E09C /* AnalysisLineChartCell.xib */; };
 		00C826C41DA5ECA700ECECEE /* AnalysisRadarViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 006DA3151D6ED6670011E09C /* AnalysisRadarViewCell.xib */; };
@@ -239,7 +236,6 @@
 		00C826DB1DA5ECA700ECECEE /* AddAlarmTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0050D68C1C28E1CD004F6F80 /* AddAlarmTableViewCell.xib */; };
 		00C826DC1DA5ECA700ECECEE /* AlarmTypeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 006A62541D6AA76C00458305 /* AlarmTypeCell.xib */; };
 		00C826DD1DA5ECA700ECECEE /* NewAddAlarmHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0091EB211D9513F90079EC39 /* NewAddAlarmHeader.xib */; };
-		00C826DE1DA5ECA700ECECEE /* NotAlarmView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0042C8B31C7DB3EF00177D3D /* NotAlarmView.xib */; };
 		00C826DF1DA5ECA700ECECEE /* ScannerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00FA93E81D9DF33800CB6691 /* ScannerViewController.xib */; };
 		00C826E01DA5ECA700ECECEE /* OldOtaViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00C8C8161D8B950A00621162 /* OldOtaViewController.xib */; };
 		00C826E11DA5ECA700ECECEE /* MyNevoController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0050D52D1C28E0DB004F6F80 /* MyNevoController.xib */; };
@@ -438,7 +434,7 @@
 		611D41DD1DCAD97D003BC6E3 /* FindWatchRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C8272E1DA61CAF00ECECEE /* FindWatchRequest.swift */; };
 		611D41DE1DCAD97D003BC6E3 /* PVADCRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0023C0AC1DA64DD400FB33A4 /* PVADCRequest.swift */; };
 		611D41E81DCAD97D003BC6E3 /* AlertAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C826C01DA5EA5700ECECEE /* AlertAction.swift */; };
-		611D41E91DCAD97D003BC6E3 /* ActionSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C826BD1DA5E9BD00ECECEE /* ActionSheetView.swift */; };
+		611D41E91DCAD97D003BC6E3 /* MEDAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C826BD1DA5E9BD00ECECEE /* MEDAlertController.swift */; };
 		611D41EA1DCAD97D003BC6E3 /* EventBusKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003DBF761D6D93C400E45244 /* EventBusKeys.swift */; };
 		611D41EB1DCAD97D003BC6E3 /* Double+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0084CB151D9BC68A0047DF39 /* Double+Extension.swift */; };
 		611D41EC1DCAD97D003BC6E3 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0058CBF81D9CC897003CE7DC /* String+Extension.swift */; };
@@ -493,8 +489,6 @@
 		611D42261DCAD97D003BC6E3 /* AlarmTypeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006A62531D6AA76C00458305 /* AlarmTypeCell.swift */; };
 		611D42271DCAD97D003BC6E3 /* AlarmTypeCell.xib in Sources */ = {isa = PBXBuildFile; fileRef = 006A62541D6AA76C00458305 /* AlarmTypeCell.xib */; };
 		611D42281DCAD97D003BC6E3 /* NewAddAlarmHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006A62551D6AA76C00458305 /* NewAddAlarmHeader.swift */; };
-		611D42291DCAD97D003BC6E3 /* NotAlarmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0042C8B11C7DB37200177D3D /* NotAlarmView.swift */; };
-		611D422A1DCAD97D003BC6E3 /* NotAlarmView.xib in Sources */ = {isa = PBXBuildFile; fileRef = 0042C8B31C7DB3EF00177D3D /* NotAlarmView.xib */; };
 		611D422B1DCAD97D003BC6E3 /* ScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FA93E61D9DF32300CB6691 /* ScannerViewController.swift */; };
 		611D422C1DCAD97D003BC6E3 /* ScannerViewController.xib in Sources */ = {isa = PBXBuildFile; fileRef = 00FA93E81D9DF33800CB6691 /* ScannerViewController.xib */; };
 		611D422D1DCAD97D003BC6E3 /* OldOtaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0050D5221C28E0DB004F6F80 /* OldOtaViewController.swift */; };
@@ -811,6 +805,8 @@
 		66687CDA1DD9832800AD7F7D /* StepsCalButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66687CD91DD9832800AD7F7D /* StepsCalButton.swift */; };
 		66687CDB1DD9832800AD7F7D /* StepsCalButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66687CD91DD9832800AD7F7D /* StepsCalButton.swift */; };
 		666F60F11DAF264B0011F3C5 /* AppDelegate-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006DA9FD1D80F2A600B70C0F /* AppDelegate-Extension.swift */; };
+		667149F91E1CAB1C009A34B4 /* NoneAlarmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 667149F81E1CAB1C009A34B4 /* NoneAlarmView.swift */; };
+		667149FA1E1CAB1C009A34B4 /* NoneAlarmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 667149F81E1CAB1C009A34B4 /* NoneAlarmView.swift */; };
 		6688A6591DC981980078E636 /* MEDBaseDeleteRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6688A6461DC981980078E636 /* MEDBaseDeleteRequest.swift */; };
 		6688A65B1DC981980078E636 /* MEDBaseGetRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6688A6471DC981980078E636 /* MEDBaseGetRequest.swift */; };
 		6688A65D1DC981980078E636 /* MEDBaseNetworkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6688A6481DC981980078E636 /* MEDBaseNetworkRequest.swift */; };
@@ -908,8 +904,6 @@
 		0037EC4B1D2385DF00502140 /* Raleway-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-SemiBold.ttf"; sourceTree = "<group>"; };
 		0037EC4C1D2385DF00502140 /* Raleway-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-Thin.ttf"; sourceTree = "<group>"; };
 		003DBF761D6D93C400E45244 /* EventBusKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventBusKeys.swift; sourceTree = "<group>"; };
-		0042C8B11C7DB37200177D3D /* NotAlarmView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotAlarmView.swift; sourceTree = "<group>"; };
-		0042C8B31C7DB3EF00177D3D /* NotAlarmView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NotAlarmView.xib; sourceTree = "<group>"; };
 		00478F4D1A8F637D00D0DCE2 /* clockViewHour.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clockViewHour.png; sourceTree = "<group>"; };
 		00478F4E1A8F637D00D0DCE2 /* clockViewMinute.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clockViewMinute.png; sourceTree = "<group>"; };
 		004F74DE1D800EAA0048BA09 /* UserProfileController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserProfileController.xib; sourceTree = "<group>"; };
@@ -1144,7 +1138,7 @@
 		00BF2D981C7FED2200909316 /* VideoPlayController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoPlayController.swift; sourceTree = "<group>"; };
 		00BF2D991C7FED2200909316 /* VideoPlayController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VideoPlayController.xib; sourceTree = "<group>"; };
 		00C640F51A8DEE0800815CF8 /* clockView600.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clockView600.png; sourceTree = "<group>"; };
-		00C826BD1DA5E9BD00ECECEE /* ActionSheetView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionSheetView.swift; sourceTree = "<group>"; };
+		00C826BD1DA5E9BD00ECECEE /* MEDAlertController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MEDAlertController.swift; sourceTree = "<group>"; };
 		00C826C01DA5EA5700ECECEE /* AlertAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertAction.swift; sourceTree = "<group>"; };
 		00C826FE1DA5EDFD00ECECEE /* LunaR.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LunaR.entitlements; sourceTree = "<group>"; };
 		00C8272E1DA61CAF00ECECEE /* FindWatchRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindWatchRequest.swift; sourceTree = "<group>"; };
@@ -1331,6 +1325,7 @@
 		666793301E1350FC00344188 /* ToolbarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToolbarView.swift; sourceTree = "<group>"; };
 		66687CD61DD9654100AD7F7D /* Dispatch+MEDExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dispatch+MEDExtension.swift"; sourceTree = "<group>"; };
 		66687CD91DD9832800AD7F7D /* StepsCalButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepsCalButton.swift; sourceTree = "<group>"; };
+		667149F81E1CAB1C009A34B4 /* NoneAlarmView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoneAlarmView.swift; sourceTree = "<group>"; };
 		6688A6461DC981980078E636 /* MEDBaseDeleteRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MEDBaseDeleteRequest.swift; sourceTree = "<group>"; };
 		6688A6471DC981980078E636 /* MEDBaseGetRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MEDBaseGetRequest.swift; sourceTree = "<group>"; };
 		6688A6481DC981980078E636 /* MEDBaseNetworkRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MEDBaseNetworkRequest.swift; sourceTree = "<group>"; };
@@ -1460,7 +1455,7 @@
 			isa = PBXGroup;
 			children = (
 				00C826C01DA5EA5700ECECEE /* AlertAction.swift */,
-				00C826BD1DA5E9BD00ECECEE /* ActionSheetView.swift */,
+				00C826BD1DA5E9BD00ECECEE /* MEDAlertController.swift */,
 				003DBF761D6D93C400E45244 /* EventBusKeys.swift */,
 				0084CB151D9BC68A0047DF39 /* Double+Extension.swift */,
 				6176B91B1E1207E4008DC15C /* Float+Extension.swift */,
@@ -1725,8 +1720,7 @@
 				006A62541D6AA76C00458305 /* AlarmTypeCell.xib */,
 				006A62551D6AA76C00458305 /* NewAddAlarmHeader.swift */,
 				0091EB211D9513F90079EC39 /* NewAddAlarmHeader.xib */,
-				0042C8B11C7DB37200177D3D /* NotAlarmView.swift */,
-				0042C8B31C7DB3EF00177D3D /* NotAlarmView.xib */,
+				667149F81E1CAB1C009A34B4 /* NoneAlarmView.swift */,
 			);
 			path = AlarmView;
 			sourceTree = "<group>";
@@ -2967,7 +2961,6 @@
 				6168C6331DFE5414008FCF97 /* OtherController.xib in Resources */,
 				00C826DC1DA5ECA700ECECEE /* AlarmTypeCell.xib in Resources */,
 				00C826DD1DA5ECA700ECECEE /* NewAddAlarmHeader.xib in Resources */,
-				00C826DE1DA5ECA700ECECEE /* NotAlarmView.xib in Resources */,
 				00C826DF1DA5ECA700ECECEE /* ScannerViewController.xib in Resources */,
 				6165A63A1DEBC33800F7A3E6 /* NotificationTypeCell.xib in Resources */,
 				00C826E01DA5ECA700ECECEE /* OldOtaViewController.xib in Resources */,
@@ -3135,7 +3128,6 @@
 				6695A7F11E07CFF3007396DF /* HomeClockController.xib in Resources */,
 				009703C71C9BDB3200F2FF0D /* UserProfileCell.xib in Resources */,
 				006A62751D6AB44A00458305 /* StepsTitleView.xib in Resources */,
-				0042C8B41C7DB3EF00177D3D /* NotAlarmView.xib in Resources */,
 				006A625E1D6AA79E00458305 /* AlarmClockVCell.xib in Resources */,
 				6173DF091DB0E993002DF6AF /* StepsHistoryViewController.xib in Resources */,
 				9AD8F9421A6DF35900F01014 /* Images.xcassets in Resources */,
@@ -3426,7 +3418,7 @@
 				665BD6A51DBEF186008C2623 /* NevoOtaController.swift in Sources */,
 				666793181E134DAF00344188 /* SMSegmentAppearance.swift in Sources */,
 				00C826C21DA5EA9000ECECEE /* AlertAction.swift in Sources */,
-				00C826BF1DA5E9E000ECECEE /* ActionSheetView.swift in Sources */,
+				00C826BF1DA5E9E000ECECEE /* MEDAlertController.swift in Sources */,
 				00C826BC1DA5E05100ECECEE /* MainTabBarController.swift in Sources */,
 				666792F21E134DAF00344188 /* M13Checkbox.swift in Sources */,
 				00C826411DA5E04000ECECEE /* EventBusKeys.swift in Sources */,
@@ -3512,9 +3504,7 @@
 				6667931A1E134DAF00344188 /* SMSegmentView.swift in Sources */,
 				00C8267A1DA5E04000ECECEE /* NewAddAlarmHeader.swift in Sources */,
 				D10C095B1DE2967B008B6E57 /* ProfileImageManager.swift in Sources */,
-				00C8267B1DA5E04000ECECEE /* NotAlarmView.swift in Sources */,
 				6695A7F01E07CFF3007396DF /* HomeClockController.swift in Sources */,
-				00C8267C1DA5E04000ECECEE /* NotAlarmView.xib in Sources */,
 				666793001E134DAF00344188 /* M13CheckboxExpandManager.swift in Sources */,
 				6688A6591DC981980078E636 /* MEDBaseDeleteRequest.swift in Sources */,
 				00C8267D1DA5E04000ECECEE /* ScannerViewController.swift in Sources */,
@@ -3616,12 +3606,7 @@
 				61EF09201DDE9E0A003C2EA5 /* DeleteNotificationAppIDPacket.swift in Sources */,
 				6688A6731DC981990078E636 /* MEDStepsNetworkManager.swift in Sources */,
 				00C8272F1DA61CAF00ECECEE /* FindWatchRequest.swift in Sources */,
-				00C826261DA5E01C00ECECEE /* M13CheckboxDotManager.swift in Sources */,
 				61070B4D1E134D4E0038D64E /* DataCalculation.swift in Sources */,
-				00C826271DA5E01C00ECECEE /* M13CheckboxExpandManager.swift in Sources */,
-				00C826281DA5E01C00ECECEE /* M13CheckboxFadeManager.swift in Sources */,
-				00C826291DA5E01C00ECECEE /* M13CheckboxFillManager.swift in Sources */,
-				00C8262A1DA5E01C00ECECEE /* M13CheckboxFlatManager.swift in Sources */,
 				665098951DCB26670059D5F7 /* MEDSleepDeleteRequest.swift in Sources */,
 				610767121DDD8AE600F53AD6 /* ReceiveNewNotificationPacket.swift in Sources */,
 				6198EE281DC204BF00FDD850 /* LunaRPacket.swift in Sources */,
@@ -3665,6 +3650,7 @@
 				00D474591D586D1600E2447E /* Alert.swift in Sources */,
 				00D4745A1D586D1600E2447E /* ClockRefreshManager.swift in Sources */,
 				00D4745B1D586D1600E2447E /* ConnectionController.swift in Sources */,
+				667149FA1E1CAB1C009A34B4 /* NoneAlarmView.swift in Sources */,
 				6165A63C1DEBDDD200F7A3E6 /* GetotalAppIDPacket.swift in Sources */,
 				00D4745C1D586D1600E2447E /* ConnectionControllerImpl.swift in Sources */,
 				6688A6671DC981990078E636 /* MEDLoginRequest.swift in Sources */,
@@ -3873,7 +3859,7 @@
 				666792ED1E134DAF00344188 /* LocalNotification.swift in Sources */,
 				61D1A8AA1DD468A100B91BDD /* MEDDataBaseRequest.swift in Sources */,
 				611D41E81DCAD97D003BC6E3 /* AlertAction.swift in Sources */,
-				611D41E91DCAD97D003BC6E3 /* ActionSheetView.swift in Sources */,
+				611D41E91DCAD97D003BC6E3 /* MEDAlertController.swift in Sources */,
 				611D41EA1DCAD97D003BC6E3 /* EventBusKeys.swift in Sources */,
 				61D1A8AB1DD468A100B91BDD /* MEDUserAlarm.swift in Sources */,
 				6667931D1E134DAF00344188 /* TaskQueue.swift in Sources */,
@@ -3949,14 +3935,13 @@
 				611D42271DCAD97D003BC6E3 /* AlarmTypeCell.xib in Sources */,
 				664AE3311DF7C09C005CD385 /* NotiColorEditableCell.swift in Sources */,
 				611D42281DCAD97D003BC6E3 /* NewAddAlarmHeader.swift in Sources */,
-				611D42291DCAD97D003BC6E3 /* NotAlarmView.swift in Sources */,
 				6655C0641E0A5A6A006A8A9D /* DashBoardElementView.swift in Sources */,
-				611D422A1DCAD97D003BC6E3 /* NotAlarmView.xib in Sources */,
 				611D422B1DCAD97D003BC6E3 /* ScannerViewController.swift in Sources */,
 				666793171E134DAF00344188 /* SMSegmentAppearance.swift in Sources */,
 				611D422C1DCAD97D003BC6E3 /* ScannerViewController.xib in Sources */,
 				611D422D1DCAD97D003BC6E3 /* OldOtaViewController.swift in Sources */,
 				611D422E1DCAD97D003BC6E3 /* OldOtaViewController.xib in Sources */,
+				667149F91E1CAB1C009A34B4 /* NoneAlarmView.swift in Sources */,
 				611D422F1DCAD97D003BC6E3 /* MyNevoController.swift in Sources */,
 				611D42301DCAD97D003BC6E3 /* MyNevoController.xib in Sources */,
 				611D42311DCAD97D003BC6E3 /* MyNevoHeaderView.swift in Sources */,

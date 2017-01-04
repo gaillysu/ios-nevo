@@ -389,7 +389,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                 //                    let tabVC:UITabBarController = self.window?.rootViewController as! UITabBarController
                 let tabVC = self.window?.rootViewController
                 
-                let actionSheet:ActionSheetView = ActionSheetView(title: titleString, message: msg, preferredStyle: UIAlertControllerStyle.alert)
+                let actionSheet:MEDAlertController = MEDAlertController(title: titleString, message: msg, preferredStyle: UIAlertControllerStyle.alert)
                 let alertAction1:AlertAction = AlertAction(title: cancelString, style: UIAlertActionStyle.cancel, handler: { ( alert) -> Void in
                     
                 })

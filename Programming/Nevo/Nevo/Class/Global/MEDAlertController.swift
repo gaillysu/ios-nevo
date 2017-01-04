@@ -1,5 +1,5 @@
 //
-//  ActionSheetView.swift
+//  MEDAlertController.swift
 //  Nevo
 //
 //  Created by leiyuncun on 16/7/27.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ActionSheetView: UIAlertController {
+class MEDAlertController: UIAlertController {
     var isSetSubView:Bool = false
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,17 +40,17 @@ class ActionSheetView: UIAlertController {
             self.view.tintColor = UIColor.getBaseColor()
             
             //         _UIAlertControlleriOSActionSheetCancelBackgroundView
-            UIApplication.shared.keyWindow?.subviewsSatisfy(theCondition: { (v) -> (Bool) in
-                return v.classForCoder == NSClassFromString("_UIAlertControlleriOSActionSheetCancelBackgroundView")
-            }, do: { (v) in
-                v.backgroundColor = UIColor.getGreyColor()
+            UIApplication.shared.keyWindow?.allSubviews(do: { (v) in
+                if v.classForCoder == NSClassFromString("_UIAlertControlleriOSActionSheetCancelBackgroundView") {
+                    v.backgroundColor = UIColor.getGreyColor()
+                }
+                
                 v.allSubviews(do: { (v) in
                     if v.isMember(of: UIView.classForCoder()) {
                         v.backgroundColor = UIColor.getGreyColor()
                     }
                 })
             })
-            
             
             view.allSubviews(do: { (v) in
                 if v.isKind(of: UILabel.classForCoder()) {
