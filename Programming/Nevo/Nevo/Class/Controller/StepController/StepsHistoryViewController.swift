@@ -156,8 +156,8 @@ class StepsHistoryViewController: PublicClassController,ChartViewDelegate {
         yAxis.drawAxisLineEnabled  = true
         yAxis.drawGridLinesEnabled  = true
         yAxis.drawLimitLinesBehindDataEnabled = true
-        yAxis.axisMaxValue = 500;
-        yAxis.axisMinValue = 0
+        yAxis.axisMaximum = 500;
+        yAxis.axisMinimum = 0
         yAxis.setLabelCount(5, force: true)
         
         let rightAxis:YAxis = chartView!.rightAxis
@@ -199,13 +199,16 @@ class StepsHistoryViewController: PublicClassController,ChartViewDelegate {
             stepsValue.append(stepsModel)
         }
         
-        var xVal:[String] = [];
         var yVal:[BarChartDataEntry] = [];
         
         var tempMaxValue:Double = 0;
         
         let stepsModel:MEDUserSteps = stepsValue[0] as! MEDUserSteps;
         let hourlystepsArray = JSON(AppTheme.jsonToArray(stepsModel.hourlysteps)).arrayValue
+        
+        let formatter:ChartFormatter = ChartFormatter()
+        let xaxis:XAxis = XAxis()
+        
         for (index,steps) in hourlystepsArray.enumerated(){
             let val1:Double  = steps.doubleValue;
             if tempMaxValue < val1 {
@@ -216,9 +219,13 @@ class StepsHistoryViewController: PublicClassController,ChartViewDelegate {
             if(dateString.length < 8) {
                 dateString = "00000000"
             }
-            xVal.append("\(index):00")
             yVal.append(BarChartDataEntry(x: Double(index), yValues: [val1]))
+            _ = formatter.stringForValue(Double(index), axis: xaxis)
         }
+        
+        xaxis.valueFormatter = formatter
+        chartView?.xAxis.valueFormatter = xaxis.valueFormatter
+        
         let steps:Int = 500
         let remaining = Double(steps - (Int(tempMaxValue) % steps))
         var maxValue = remaining + tempMaxValue
@@ -232,7 +239,6 @@ class StepsHistoryViewController: PublicClassController,ChartViewDelegate {
         chartView!.leftAxis.axisMaximum = maxValue
         
         //柱状图表
-        //ChartColorTemplates.getDeepSleepColor()
         let set1:BarChartDataSet  = BarChartDataSet(values: yVal, label: "")
         //每个数据区块的颜色
         if !AppTheme.isTargetLunaR_OR_Nevo() {
@@ -248,7 +254,6 @@ class StepsHistoryViewController: PublicClassController,ChartViewDelegate {
         let dataSets:[BarChartDataSet] = [set1];
         
         let data:BarChartData = BarChartData(dataSets: dataSets)
-            //BarChartData(xVals: xVal, dataSets: dataSets)
         data.setDrawValues(false);//false 显示柱状图数值否则不显示
         chartView?.data = data;
         chartView?.animate(yAxisDuration: 2.0, easingOption: ChartEasingOption.easeInOutCirc)

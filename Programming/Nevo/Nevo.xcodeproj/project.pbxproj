@@ -613,6 +613,10 @@
 		61D1A8B01DD468A100B91BDD /* MEDUserSteps.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61D1A8A91DD468A100B91BDD /* MEDUserSteps.swift */; };
 		61E2A50B1E1DF86A009A563B /* LargeValueFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E2A50A1E1DF86A009A563B /* LargeValueFormatter.swift */; };
 		61E2A50C1E1DF878009A563B /* LargeValueFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E2A50A1E1DF86A009A563B /* LargeValueFormatter.swift */; };
+		61E2A50F1E1E2E58009A563B /* ChartFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E2A50E1E1E2E58009A563B /* ChartFormatter.swift */; };
+		61E2A5101E1E2EC9009A563B /* ChartFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E2A50E1E1E2E58009A563B /* ChartFormatter.swift */; };
+		61E2A5121E1E35CA009A563B /* AnalysisFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E2A5111E1E35CA009A563B /* AnalysisFormatter.swift */; };
+		61E2A5131E1E366B009A563B /* AnalysisFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E2A5111E1E35CA009A563B /* AnalysisFormatter.swift */; };
 		61E8EC841E16017D004F0DBE /* ActionSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E8EC771E16017D004F0DBE /* ActionSheetView.swift */; };
 		61E8EC851E16017D004F0DBE /* AlertAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E8EC781E16017D004F0DBE /* AlertAction.swift */; };
 		61E8EC861E16017D004F0DBE /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E8EC791E16017D004F0DBE /* Color.swift */; };
@@ -1267,6 +1271,8 @@
 		61D1A8A91DD468A100B91BDD /* MEDUserSteps.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MEDUserSteps.swift; sourceTree = "<group>"; };
 		61D1A8B41DD46BF000B91BDD /* MEDBaseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MEDBaseModel.swift; sourceTree = "<group>"; };
 		61E2A50A1E1DF86A009A563B /* LargeValueFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LargeValueFormatter.swift; sourceTree = "<group>"; };
+		61E2A50E1E1E2E58009A563B /* ChartFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartFormatter.swift; sourceTree = "<group>"; };
+		61E2A5111E1E35CA009A563B /* AnalysisFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalysisFormatter.swift; sourceTree = "<group>"; };
 		61E4DF1C1DB85C9800DDA737 /* FindPhonePacket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindPhonePacket.swift; sourceTree = "<group>"; };
 		61E8EC771E16017D004F0DBE /* ActionSheetView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionSheetView.swift; sourceTree = "<group>"; };
 		61E8EC781E16017D004F0DBE /* AlertAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertAction.swift; sourceTree = "<group>"; };
@@ -2808,6 +2814,8 @@
 			isa = PBXGroup;
 			children = (
 				61E2A50A1E1DF86A009A563B /* LargeValueFormatter.swift */,
+				61E2A50E1E1E2E58009A563B /* ChartFormatter.swift */,
+				61E2A5111E1E35CA009A563B /* AnalysisFormatter.swift */,
 			);
 			path = ValueFormatter;
 			sourceTree = "<group>";
@@ -3700,6 +3708,7 @@
 				666793101E134DAF00344188 /* MBProgressHUD+MJ.m in Sources */,
 				662887521DC1E8BC00EC0983 /* MEDMRProgressOverlayView.swift in Sources */,
 				6667930E1E134DAF00344188 /* M13CheckboxSpiralPathPresets.swift in Sources */,
+				61E2A5101E1E2EC9009A563B /* ChartFormatter.swift in Sources */,
 				666792E81E134DAF00344188 /* FXBlurView.m in Sources */,
 				00D4742E1D586D1600E2447E /* DaySleep.swift in Sources */,
 				00D4742F1D586D1600E2447E /* HourlySteps.swift in Sources */,
@@ -3712,6 +3721,7 @@
 				666F60F11DAF264B0011F3C5 /* AppDelegate-Extension.swift in Sources */,
 				61FC93EF1DE6806D000AE93C /* MEDUserProfile.swift in Sources */,
 				61E8EC991E16019C004F0DBE /* Int+Extension.swift in Sources */,
+				61E2A5131E1E366B009A563B /* AnalysisFormatter.swift in Sources */,
 				6150933A1DBF5BC800E52970 /* SetWorldClockRequest.swift in Sources */,
 				61E8EC971E160196004F0DBE /* EventBusKeys.swift in Sources */,
 				00D474431D586D1600E2447E /* Goal.swift in Sources */,
@@ -3842,6 +3852,7 @@
 				66687CD71DD9654100AD7F7D /* Dispatch+MEDExtension.swift in Sources */,
 				611D415E1DCAD97C003BC6E3 /* RunningToHK.swift in Sources */,
 				61E8EC8F1E16017D004F0DBE /* UnitValue.swift in Sources */,
+				61E2A50F1E1E2E58009A563B /* ChartFormatter.swift in Sources */,
 				61EF09301DDEF09E003C2EA5 /* MEDBaseModel.swift in Sources */,
 				611D415F1DCAD97C003BC6E3 /* Alarm.swift in Sources */,
 				611D41601DCAD97C003BC6E3 /* NewAlarm.swift in Sources */,
@@ -3921,6 +3932,7 @@
 				66D9AFE51DE6E3AC009CF3ED /* ReceiveNewNotificationPacket.swift in Sources */,
 				665098931DCB25110059D5F7 /* MEDSleepDeleteRequest.swift in Sources */,
 				666792E51E134DAF00344188 /* CircleProgressView.swift in Sources */,
+				61E2A5121E1E35CA009A563B /* AnalysisFormatter.swift in Sources */,
 				611D41BB1DCAD97D003BC6E3 /* NevoBTimpl.swift in Sources */,
 				611D41BC1DCAD97D003BC6E3 /* NevoBT.swift in Sources */,
 				611D41BD1DCAD97D003BC6E3 /* RawPacket.swift in Sources */,

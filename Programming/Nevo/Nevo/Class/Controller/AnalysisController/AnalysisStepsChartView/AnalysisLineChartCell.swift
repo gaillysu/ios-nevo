@@ -171,7 +171,15 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
         
         self.setYvalueData(rowIndex,completionData: nil)
         
-        let set1:LineChartDataSet = LineChartDataSet(values: yVals, label: "55")
+        let formatter:AnalysisFormatter = AnalysisFormatter(xArray:xVals)
+        let xaxis:XAxis = XAxis()
+        for (index,vlaue) in xVals.enumerated() {
+            _ = formatter.stringForValue(Double(index), axis: nil)
+        }
+        xaxis.valueFormatter = formatter
+        lineChartView.xAxis.valueFormatter = xaxis.valueFormatter
+        
+        let set1:LineChartDataSet = LineChartDataSet(values: yVals, label: "")
         set1.lineDashLengths = [0.0, 0];
         set1.highlightLineDashLengths = [0.0, 0.0];
         set1.setColor(AppTheme.NEVO_SOLAR_YELLOW())
@@ -372,6 +380,14 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
             dataSets.append(set1)
         }
         
+        let formatter:AnalysisFormatter = AnalysisFormatter(xArray:xVals)
+        let xaxis:XAxis = XAxis()
+        for (index,vlaue) in xVals.enumerated() {
+            _ = formatter.stringForValue(Double(index), axis: nil)
+        }
+        xaxis.valueFormatter = formatter
+        lineChartView.xAxis.valueFormatter = xaxis.valueFormatter
+        
         let data:LineChartData = LineChartData(dataSets: dataSets)
             //LineChartData(xVals: xVals, dataSets: dataSets)
         lineChartView.data = data;
@@ -449,6 +465,14 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
         set1.fill = Fill.fillWithLinearGradient(gradient, angle: 80.0)
         set1.drawFilledEnabled = true
         set1.mode = LineChartDataSet.Mode.cubicBezier
+        
+        let formatter:AnalysisFormatter = AnalysisFormatter(xArray:xVals)
+        let xaxis:XAxis = XAxis()
+        for (index,vlaue) in xVals.enumerated() {
+            _ = formatter.stringForValue(Double(index), axis: nil)
+        }
+        xaxis.valueFormatter = formatter
+        lineChartView.xAxis.valueFormatter = xaxis.valueFormatter
         
         let data:LineChartData = LineChartData(dataSets: [set1])
             //LineChartData(xVals: xVals, dataSets: [set1])

@@ -62,12 +62,21 @@ class AnalysisStepsChartView: LineChartView {
     func invalidateChart() {
         var dataSets:[LineChartDataSet] = []
         var chartDataArray:[BarChartDataEntry] = []
+        
         for (index,vlaue) in yVals.enumerated() {
             //vlaue[0]->Deep Sleep, vlaue[1]->Light Sleep, vlaue[2]->Weake Sleep
             let chartData1:BarChartDataEntry = BarChartDataEntry(x: Double(index), y: vlaue[0])
-                //BarChartDataEntry(value: vlaue[0], xIndex:index)
             chartDataArray.append(chartData1)
         }
+        
+        let formatter:ChartFormatter = ChartFormatter()
+        let xaxis:XAxis = XAxis()
+        for vlaue in xVals {
+            let array = (vlaue as String).components(separatedBy: ":")
+            _ = formatter.stringForValue(array[0].toDouble(), axis: nil)
+        }
+        xaxis.valueFormatter = formatter
+        self.xAxis.valueFormatter = xaxis.valueFormatter
         
         self.setLeftAxisLimitLine(65)
         
