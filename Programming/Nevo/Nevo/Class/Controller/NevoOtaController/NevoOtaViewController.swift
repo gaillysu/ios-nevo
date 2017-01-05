@@ -9,7 +9,7 @@
 import UIKit
 import XCGLogger
 
-protocol ButtonManagerCallBack {
+protocol ButtonManagerCallBack: class {
     func controllManager(_ sender:AnyObject)
 }
 

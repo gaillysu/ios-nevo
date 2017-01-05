@@ -13,13 +13,13 @@ class NewAddAlarmController: UITableViewController,ButtonManagerCallBack,Selecte
         
     var mDelegate:AddAlarmDelegate?
 
-    var timer:TimeInterval = 0.0
-    var repeatStatus:Bool = false
-    var name:String = ""
-    var repeatSelectedIndex:Int = 0
-    var alarmTypeIndex:Int = 0
+    var timer: TimeInterval = 0.0
+    var repeatStatus: Bool = false
+    var name: String = ""
+    var repeatSelectedIndex: Int = 0
+    var alarmTypeIndex: Int = 0
     
-    var isOverdue:Bool = false
+    var isOverdue: Bool = false
     
     fileprivate let repeatDayArray:[String] = [
         NSLocalizedString("Sunday", comment: ""),
@@ -29,14 +29,6 @@ class NewAddAlarmController: UITableViewController,ButtonManagerCallBack,Selecte
         NSLocalizedString("Thursday", comment: ""),
         NSLocalizedString("Friday", comment: ""),
         NSLocalizedString("Saturday", comment: "")]
-    
-    init() {
-        super.init(nibName: "NewAddAlarmController", bundle: Bundle.main)
-    }
-
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
 
     override func viewDidLoad() {
         super.viewDidLoad()

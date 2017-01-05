@@ -105,6 +105,7 @@ extension MEDColorfulLooking where Self: UITableViewCell {
             backgroundColor = UIColor.getGreyColor()
             contentView.backgroundColor = UIColor.getGreyColor()
             textLabel?.textColor = UIColor.white
+            detailTextLabel?.textColor = UIColor.white
         }
     }
 }
@@ -183,6 +184,16 @@ extension MEDColorfulLooking where Self: UIActivityIndicatorView {
         if !AppTheme.isTargetLunaR_OR_Nevo() {
             color = UIColor.white
             tintColor = UIColor.white
+        }
+    }
+}
+
+extension MEDColorfulLooking where Self: UIDatePicker {
+    public func viewDefaultColorful() {
+        backgroundColor = UIColor.clear
+        
+        if !AppTheme.isTargetLunaR_OR_Nevo() {
+            setValue(UIColor.white, forKey: "textColor")
         }
     }
 }

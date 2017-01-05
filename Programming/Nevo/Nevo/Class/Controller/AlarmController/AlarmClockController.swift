@@ -116,13 +116,13 @@ extension AlarmClockController {
                 addAlarmController = {
                     $0.mDelegate = self
                     return $0
-                }(AddAlarmController())
+                }(AddAlarmController(style: .grouped))
             }else{
                 
                 addAlarmController = {
                     $0.mDelegate = self
                     return $0
-                }(NewAddAlarmController())
+                }(NewAddAlarmController(style: .grouped))
             }
             
             addAlarmController!.title = NSLocalizedString("add_alarm", comment: "")
@@ -202,6 +202,7 @@ extension AlarmClockController {
 
 // MARK: - UITableView DataSource
 extension AlarmClockController {
+    
     override func numberOfSections(in tableView: UITableView) -> Int{
         tableView.backgroundView = nil
         
@@ -389,7 +390,7 @@ extension AlarmClockController {
                     $0.repeatStatus = alarmModel!.status;
                     $0.mDelegate = self
                     return $0
-                }(AddAlarmController())
+                }(AddAlarmController(style: .grouped))
             } else {
                 addAlarmController = {
                     $0.timer = alarmModel!.timer
@@ -398,14 +399,13 @@ extension AlarmClockController {
                     $0.repeatSelectedIndex = alarmModel!.alarmWeek
                     $0.mDelegate = self
                     return $0
-                }(NewAddAlarmController())
+                }(NewAddAlarmController(style: .grouped))
             }
             
             addAlarmController!.title = NSLocalizedString("edit_alarm", comment: "")
             addAlarmController!.hidesBottomBarWhenPushed = true
             navigationController?.pushViewController(addAlarmController!, animated: true)
         }
-
     }
 
     override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
@@ -457,9 +457,6 @@ extension AlarmClockController {
                 alarmModel.status = true
             }
             
-            initializeAlarmData()
-            tableView.reloadData()
-            
             let date = Date(timeIntervalSince1970: timer)
             let alarm = oldAlarmArray[selectedIndex!.row]
             
@@ -472,6 +469,9 @@ extension AlarmClockController {
             }
             
             selectedIndex = nil
+            
+            initializeAlarmData()
+            tableView.reloadData()
         } else {
             
             let date = Date(timeIntervalSince1970: timer)
@@ -499,6 +499,8 @@ extension AlarmClockController {
             
             initializeAlarmData()
             tableView.reloadData()
+            
+            navigationItem.leftBarButtonItem = leftDoneItem
         }
     }
     
@@ -574,6 +576,8 @@ extension AlarmClockController {
             
             initializeAlarmData()
             tableView.reloadData()
+            
+            navigationItem.leftBarButtonItem = leftDoneItem
         }
     }
 }

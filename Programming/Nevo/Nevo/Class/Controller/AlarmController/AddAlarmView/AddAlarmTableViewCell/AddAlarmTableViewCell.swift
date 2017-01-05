@@ -14,7 +14,7 @@ class AddAlarmTableViewCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+ 
         datePicker.datePickerMode = UIDatePickerMode.time;
         datePicker.addTarget(self, action: #selector(AddAlarmTableViewCell.selectedTimerAction(_:)), for: UIControlEvents.valueChanged)
     }

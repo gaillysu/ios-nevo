@@ -9,16 +9,7 @@
 import UIKit
 
 class AddAlarmView: UITableView {
-
-    /**
-     returns the time zone TableViewCell selector
-
-     :param: indexPath TableView path
-     :param: tableView TableView Object
-
-     :returns: time zone TableViewCell selector
-     */
-    class func addAlarmTimerTableViewCell(_ indexPath:IndexPath,tableView:UITableView,timer:TimeInterval)->UITableViewCell {
+    class func addAlarmTimerTableViewCell(_ indexPath: IndexPath, tableView: UITableView, timer: TimeInterval) -> UITableViewCell {
         let endCell:AddAlarmTableViewCell = tableView.dequeueReusableCell(withIdentifier: "AddAlarm_Date_identifier", for: indexPath) as! AddAlarmTableViewCell
         endCell.separatorInset = UIEdgeInsets(top: 0, left: UIScreen.main.bounds.size.width, bottom: 0, right: 0)
         endCell.selectionStyle = UITableViewCellSelectionStyle.none;
@@ -70,12 +61,4 @@ class AddAlarmView: UITableView {
     func buttonManage(_ sender:AnyObject){
         NSLog("------------")
     }
-    /*
-    // Only override drawRect: if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func drawRect(rect: CGRect) {
-        // Drawing code
-    }
-    */
-
 }

@@ -43,13 +43,13 @@ class MEDAlertController: UIAlertController {
             UIApplication.shared.keyWindow?.allSubviews(do: { (v) in
                 if v.classForCoder == NSClassFromString("_UIAlertControlleriOSActionSheetCancelBackgroundView") {
                     v.backgroundColor = UIColor.getGreyColor()
+                    
+                    v.allSubviews(do: { (v) in
+                        if v.isMember(of: UIView.classForCoder()) {
+                            v.backgroundColor = UIColor.getGreyColor()
+                        }
+                    })
                 }
-                
-                v.allSubviews(do: { (v) in
-                    if v.isMember(of: UIView.classForCoder()) {
-                        v.backgroundColor = UIColor.getGreyColor()
-                    }
-                })
             })
             
             view.allSubviews(do: { (v) in
