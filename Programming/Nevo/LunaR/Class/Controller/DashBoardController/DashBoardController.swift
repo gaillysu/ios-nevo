@@ -78,14 +78,20 @@ class DashBoardController: UIViewController {
             
             self.refreshDateForDashView()
             self.refreshDialView()
+            let tap:UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.tapAction(_:)))
+            self.view.addGestureRecognizer(tap)
         }
-        
-        getSoloarCharging()
+    }
+    
+    func tapAction(_ tap:UIGestureRecognizer) {
+        self.chargingView?.stopRotateImageView()
     }
     
     func getSoloarCharging() {
-        pvadcTimer = Timer.every(3.seconds) {
-            AppDelegate.getAppDelegate().sendRequest(PVADCRequest())
+        if pvadcTimer == nil {
+            pvadcTimer = Timer.every(3.seconds) {
+                AppDelegate.getAppDelegate().sendRequest(PVADCRequest())
+            }
         }
     }
     
@@ -93,16 +99,19 @@ class DashBoardController: UIViewController {
         super.viewDidAppear(animated)
         AppDelegate.getAppDelegate().startConnect(false)
         
+        getSoloarCharging()
+        
         _ = SwiftEventBus.onMainThread(self, name: EVENT_BUS_RAWPACKET_DATA_KEY) { (notification) in
-            var percent:Float = 0
-            var totalSteps:Int = 0
             if !AppTheme.isTargetLunaR_OR_Nevo() {
+                var percent:Float = 0
+                var totalSteps:Int = 0
                 let packet = notification.object as! LunaRPacket
                 if packet.getHeader() == GetStepsGoalRequest.HEADER(){
                     let thispacket = packet.copy() as LunaRStepsGoalPacket
                     totalSteps = thispacket.getDailySteps()
                     let dailyStepGoal:Int = thispacket.getDailyStepsGoal()
                     percent = Float(totalSteps)/Float(dailyStepGoal)
+                    self.refreshCircleViewProgress(progressValue:percent,totalSteps:totalSteps)
                 }
                 
                 if packet.getHeader() == PVADCRequest.HEADER(){
@@ -113,14 +122,14 @@ class DashBoardController: UIViewController {
                     
                     XCGLogger.default.debug("pvadc packet............\(pvadcValue)")
                     if pvadcValue>170 {
-                        self.chargingView?.startRotateImageView()
+                        if let res = self.chargingView?.getAnimationState() ,!res {
+                            self.chargingView?.startRotateImageView()
+                        }
                     }else{
                         self.chargingView?.stopRotateImageView()
                     }
                 }
             }
-            self.refreshCircleViewProgress(progressValue:percent,totalSteps:totalSteps)
-            
         }
         
         _ = SwiftEventBus.onMainThread(self, name: EVENT_BUS_END_BIG_SYNCACTIVITY) { (notification) in

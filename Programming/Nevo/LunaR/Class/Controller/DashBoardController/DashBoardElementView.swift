@@ -27,14 +27,14 @@ extension DashBoardElementViewCornerable where Self: UIView {
 }
 
 
-class DashBoardChargingView: UIView, DashBoardElementViewCornerable {
+class DashBoardChargingView: UIView, DashBoardElementViewCornerable,CAAnimationDelegate {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var contentLabel: UILabel!
 
     @IBOutlet weak var imageViewTop: NSLayoutConstraint!
     @IBOutlet weak var imageViewBottom: NSLayoutConstraint!
-    
+    fileprivate var isAnimation:Bool = false
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -68,16 +68,22 @@ class DashBoardChargingView: UIView, DashBoardElementViewCornerable {
         return Bundle.main.loadNibNamed("DashBoardElementView", owner: nil, options: nil)![0] as! DashBoardChargingView
     }
     
+    // return ->true:in animation, ->false:not animation
+    func getAnimationState()->Bool {
+        return isAnimation
+    }
+    
     func startRotateImageView() {
         contentLabel.text = NSLocalizedString("charging", comment: "")
         
-        let circleByOneSecond:CGFloat = 2;
+        let circleByOneSecond:CGFloat = 1;
         
         let rotationAnimation:CABasicAnimation = CABasicAnimation(keyPath: "transform.rotation.z")
         rotationAnimation.fromValue            = 0;
         rotationAnimation.toValue              = M_PI * 100000
         rotationAnimation.duration             = CFTimeInterval((1.0/circleByOneSecond)*100000);
         rotationAnimation.timingFunction       = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
+        rotationAnimation.delegate = self
         imageView.layer.add(rotationAnimation, forKey: nil)
     }
     
@@ -86,15 +92,25 @@ class DashBoardChargingView: UIView, DashBoardElementViewCornerable {
         let pausedTime:CFTimeInterval = imageView.layer.convertTime(CACurrentMediaTime(), from: nil)
         layer.speed = 0.0;
         layer.timeOffset = pausedTime;
+        //set animation state
+        isAnimation = false
     }
     
     func resumeRotateImageView() {
-        //let pausedTime:CFTimeInterval = imageView.layer.timeOffset;
         imageView.layer.speed = 1.0;
         imageView.layer.timeOffset = 0.0;
         imageView.layer.beginTime = 0.0;
         let timeSincePause:CFTimeInterval = imageView.layer.convertTime(CACurrentMediaTime(), from: nil)
         layer.beginTime = timeSincePause;
+    }
+    
+    // MARK: - CAAnimationDelegate
+    func animationDidStart(_ anim: CAAnimation){
+        isAnimation = true
+    }
+    
+    func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
+        isAnimation = false
     }
 
 }
