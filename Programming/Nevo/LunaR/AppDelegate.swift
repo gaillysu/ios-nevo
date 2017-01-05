@@ -488,9 +488,12 @@ extension AppDelegate {
         if let city = HomeClockUtil.shared.getHomeCityWithSelectedFlag(), let timezone = HomeClockUtil.shared.getTimezoneWithCity(city: city) {
             let cityZone = timezone.gmtTimeOffset
             let localZone = Date.getLocalOffSet()
-            var offset = 23-abs((localZone-cityZone)/60)
-            if localZone == cityZone {
-                offset = 0
+            
+            var offset = 0
+            if localZone>cityZone {
+                offset = 24-(localZone-cityZone)/60
+            }else{
+                offset = (cityZone-localZone)/60
             }
             let setWordClock:SetWorldClockRequest = SetWorldClockRequest(offset: offset)
             self.sendRequest(setWordClock)
