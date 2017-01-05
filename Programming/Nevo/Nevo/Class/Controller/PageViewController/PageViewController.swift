@@ -86,7 +86,12 @@ class PageViewController: UIPageViewController,UIActionSheetDelegate {
         
         pagingControllers = [viewController1, viewController2,viewController3]
         
-        let value:Int = AppDelegate.getAppDelegate().getWactnID()
+        var value:Int = AppDelegate.getAppDelegate().getWactnID()
+        
+        if !AppTheme.isTargetLunaR_OR_Nevo() {
+            value = 3
+        }
+        
         if value == 3 {
             let viewController4 = HomeClockController()
             viewController4.view.tag = pagingControllers.count
@@ -123,7 +128,7 @@ class PageViewController: UIPageViewController,UIActionSheetDelegate {
             }
         }
         
-        let actionSheet:ActionSheetView = ActionSheetView(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.actionSheet)
+        let actionSheet:MEDAlertController = MEDAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.actionSheet)
         actionSheet.isSetSubView = true;
         
         let array = MEDUserGoal.getAll()

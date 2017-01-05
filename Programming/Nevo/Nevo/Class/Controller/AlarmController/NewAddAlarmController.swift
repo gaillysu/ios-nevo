@@ -9,44 +9,36 @@
 import Foundation
 import UIKit
 
-class NewAddAlarmController: UITableViewController,ButtonManagerCallBack,SelectedRepeatDelegate,SelectedSleepTypeDelegate {
+class NewAddAlarmController: UITableViewController {
         
     var mDelegate:AddAlarmDelegate?
 
-    var timer:TimeInterval = 0.0
-    var repeatStatus:Bool = false
-    var name:String = ""
-    var repeatSelectedIndex:Int = 0
-    var alarmTypeIndex:Int = 0
+    var timer: TimeInterval = 0.0
+    var repeatStatus: Bool = false
+    var name: String = ""
+    var repeatSelectedIndex: Int = 1
+    var alarmTypeIndex: Int = 0
     
-    var isOverdue:Bool = false
+    var isEdited: Bool = false
     
-    fileprivate let repeatDayArray:[String] = [
-        NSLocalizedString("Sunday", comment: ""),
-        NSLocalizedString("Monday", comment: ""),
-        NSLocalizedString("Tuesday", comment: ""),
-        NSLocalizedString("Wednesday", comment: ""),
-        NSLocalizedString("Thursday", comment: ""),
-        NSLocalizedString("Friday", comment: ""),
-        NSLocalizedString("Saturday", comment: "")]
+    var isOverdue: Bool = false
     
-    init() {
-        super.init(nibName: "NewAddAlarmController", bundle: Bundle.main)
-    }
-
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+    let repeatDayArray = [NSLocalizedString("Sunday", comment: ""),
+                          NSLocalizedString("Monday", comment: ""),
+                          NSLocalizedString("Tuesday", comment: ""),
+                          NSLocalizedString("Wednesday", comment: ""),
+                          NSLocalizedString("Thursday", comment: ""),
+                          NSLocalizedString("Friday", comment: ""),
+                          NSLocalizedString("Saturday", comment: "")]
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = NSLocalizedString("add_alarm", comment: "")
         
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.save, target: self, action: #selector(controllManager(_:)))
+        viewDefaultColorful()
         
-        self.tableView.register(UINib(nibName: "NewAddAlarmHeader", bundle: nil), forHeaderFooterViewReuseIdentifier: "identifier_header")
-        self.tableView.register(UINib(nibName: "AlarmTypeCell", bundle: nil), forCellReuseIdentifier: "AlarmType_identifier")
-        self.tableView.register(UINib(nibName:"AddAlarmTableViewCell", bundle: nil), forCellReuseIdentifier: "AddAlarm_Date_identifier")
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.save, target: self, action: #selector(controllManager(_:)))
+        
+        tableView.register(UINib(nibName: "NewAddAlarmHeader", bundle: nil), forHeaderFooterViewReuseIdentifier: "identifier_header")
         
         addTipsLabel()
     }
@@ -54,167 +46,108 @@ class NewAddAlarmController: UITableViewController,ButtonManagerCallBack,Selecte
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        navigationController?.navigationBar.subviewsSatisfy(theCondition: { (v) -> (Bool) in
-            return v.frame.height == 0.5
-            }, do: { (v) in
-                v.isHidden = true
+        navigationController?.navigationBar.allSubviews(do: { (v) in
+            v.isHidden = v.frame.height == 0.5
         })
     }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-    }
-    
+}
+
+
+// MARK: - Touch Events
+extension NewAddAlarmController: ButtonManagerCallBack {
     func controllManager(_ sender:AnyObject) {
-        if(sender.isKind(of: UISwitch.classForCoder())){
-
-        }else{
-            let indexPaths:IndexPath = IndexPath(row: 0, section: 1)
-            let timerCell:UITableViewCell = self.tableView.cellForRow(at: indexPaths)!
-            for datePicker in timerCell.contentView.subviews{
-                if(datePicker.isKind(of: UIDatePicker.classForCoder())){
-                    let picker:UIDatePicker = datePicker as! UIDatePicker
-                    timer = picker.date.timeIntervalSince1970
-                }
+        var indexPath = IndexPath(row: 0, section: 1)
+        
+        var cell = tableView.cellForRow(at: indexPath)!
+        for view in cell.contentView.subviews{
+            if(view.isKind(of: UIDatePicker.classForCoder())){
+                let picker = view as! UIDatePicker
+                timer = picker.date.timeIntervalSince1970
             }
-
-            let indexPaths3:IndexPath = IndexPath(row: 1, section: 2)
-            let timerCell3:UITableViewCell = self.tableView.cellForRow(at: indexPaths3)!
-            name = (timerCell3.detailTextLabel!.text)!
-
-            let nowDate:Date = Date()
-            let nowDateTime:Int = nowDate.hour * 60 + nowDate.minute
-            let pickerDate:Date = Date(timeIntervalSince1970: timer)
-            let pickerTimer:Int = pickerDate.hour * 60 + pickerDate.minute
-            
-            var isEditing:Bool = false
-            for controller in self.navigationController!.viewControllers {
-                if controller is AlarmClockController {
-                    isEditing = controller.isEditing
-                }
-            }
-            if !isEditing {
-                if nowDateTime > pickerTimer {
-                    repeatSelectedIndex = Date.tomorrow().weekday
-                } else {
-                    repeatSelectedIndex = nowDate.weekday
-                }
-            }
-            
-            mDelegate?.onDidAddAlarmAction(timer, name: name, repeatNumber: repeatSelectedIndex, alarmType: alarmTypeIndex)
-            self.navigationController!.popViewController(animated: true)
         }
 
-    }
-
-    // MARK: - SelectedRepeatDelegate
-    func onSelectedRepeatAction(_ value:Int,name:String){
-        let indexPath:IndexPath = IndexPath(row: 0, section: 2)
-        let cell = self.tableView.cellForRow(at: indexPath)
-        if(cell != nil) {
-            cell!.detailTextLabel?.text = name
+        indexPath = IndexPath(row: 1, section: 2)
+        cell = tableView.cellForRow(at: indexPath)!
+        if let name = cell.detailTextLabel?.text {
+            self.name = name
         }
-        repeatSelectedIndex = value+1
-    }
 
-    // MARK: - SelectedSleepTypeDelegate
-    func onSelectedSleepTypeAction(_ value:Int,name:String){
-        let indexPath:IndexPath = IndexPath(row: 0, section: 2)
-        let cell = self.tableView.cellForRow(at: indexPath)
-        if(cell != nil) {
-            cell!.detailTextLabel?.text = name
+        let nowDate = Date()
+        let nowDateTime = nowDate.hour * 60 + nowDate.minute
+        let pickerDate = Date(timeIntervalSince1970: timer)
+        let pickerTime = pickerDate.hour * 60 + pickerDate.minute
+        
+        if !isEdited {
+            if nowDateTime > pickerTime {
+                repeatSelectedIndex = Date.tomorrow().weekday
+            } else {
+                repeatSelectedIndex = nowDate.weekday
+            }
         }
-        alarmTypeIndex = value
+        
+        mDelegate?.onDidAddAlarmAction(timer, name: name, repeatNumber: repeatSelectedIndex, alarmType: alarmTypeIndex)
+        
+        navigationController!.popViewController(animated: true)
     }
+}
 
-    // MARK: - Table view data source
+
+// MARK: - Tableview delegate
+extension NewAddAlarmController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
-        switch (indexPath.section){
-        case 0: break
-
+        switch (indexPath.section) {
+            
         case 2:
-            if(indexPath.row == 0){
-                let repeatControll:RepeatViewController = RepeatViewController()
-                repeatControll.selectedDelegate = self
-                repeatControll.selectedIndex = repeatSelectedIndex
-                self.navigationController?.pushViewController(repeatControll, animated: true)
+            if indexPath.row == 0 {
+                let repeatController = RepeatViewController()
+                repeatController.selectedDelegate = self
+                
+                repeatController.selectedIndex = repeatSelectedIndex - 1
+                
+                navigationController?.pushViewController(repeatController, animated: true)
+                
+                isEdited = true
             }
 
-            if(indexPath.row == 1){
+            if indexPath.row == 1 {
                 let selectedCell:UITableViewCell = tableView.cellForRow(at: indexPath)!
                 
-                let actionSheet:ActionSheetView = ActionSheetView(title: NSLocalizedString("add_alarm_label", comment: ""), message: nil, preferredStyle: UIAlertControllerStyle.alert)
+                let actionSheet = MEDAlertController(title: NSLocalizedString("add_alarm_label", comment: ""), message: nil, preferredStyle: UIAlertControllerStyle.alert)
                 actionSheet.addTextField(configurationHandler: { (labelText:UITextField) -> Void in
                     labelText.text = selectedCell.detailTextLabel?.text
                 })
                 
-                let alertAction:UIAlertAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: UIAlertActionStyle.cancel, handler: { (action:UIAlertAction) -> Void in
+                let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: { (_) in
                     
+                    self.dismiss(animated: true, completion: nil)
                 })
-                actionSheet.addAction(alertAction)
                 
-                let alertAction1:UIAlertAction = UIAlertAction(title: NSLocalizedString("Add", comment: ""), style: UIAlertActionStyle.default, handler: { (action:UIAlertAction) -> Void in
+                actionSheet.addAction(cancelAction)
+                
+                let confirmAction = UIAlertAction(title: NSLocalizedString("Add", comment: ""), style: .default, handler: { (_) in
                     let labelText:UITextField = actionSheet.textFields![0]
                     selectedCell.detailTextLabel?.text = labelText.text
-                    selectedCell.layoutSubviews()
+                    
+                    self.dismiss(animated: true, completion: nil)
                 })
-                // MARK: - APPTHEME ADJUST
-                if !AppTheme.isTargetLunaR_OR_Nevo() {
-                    alertAction.setValue(UIColor.getBaseColor(), forKey: "titleTextColor")
-                    alertAction1.setValue(UIColor.getBaseColor(), forKey: "titleTextColor")
-                }else{
-                    alertAction.setValue(AppTheme.NEVO_SOLAR_YELLOW(), forKey: "titleTextColor")
-                    alertAction1.setValue(AppTheme.NEVO_SOLAR_YELLOW(), forKey: "titleTextColor")
-                }
-                actionSheet.addAction(alertAction1)
-                self.present(actionSheet, animated: true, completion: nil)
+                
+                actionSheet.addAction(confirmAction)
+                
+                cancelAction.setValue(UIColor.getBaseColor(), forKey: "titleTextColor")
+                confirmAction.setValue(UIColor.getBaseColor(), forKey: "titleTextColor")
+                
+                present(actionSheet, animated: true, completion: nil)
             }
 
         default: break
         }
     }
-
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return 3
-    }
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        switch (section){
-        case 0:
-            return 0
-        case 1:
-            return 1
-        default: return 2;
-        }
-    }
     
-    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if section == 0 {
-            return 45
-        }else {
-            return 0
-        }
-    }
-    
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat{
-        if(indexPath.section == 1){
-            
-            var cellHeight:CGFloat = CGFloat(UserDefaults.standard.double(forKey: "k\(#file)HeightForDatePickerView"))
-            if cellHeight != 0 {
-            } else {
-                cellHeight = AddAlarmTableViewCell.factory().frame.height
-                UserDefaults.standard.set(Double(cellHeight), forKey: "k\(#file)HeightForDatePickerView")
-            }
-            return cellHeight
-        } else {
-            return indexPath.section == 0 ? 0 : 45.0
-        }
-
-    }
-
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        
         if section == 0 {
-            let  headerCell:NewAddAlarmHeader = tableView.dequeueReusableHeaderFooterView(withIdentifier: "identifier_header") as! NewAddAlarmHeader
+            
+            let headerCell = tableView.dequeueReusableHeaderFooterView(withIdentifier: "identifier_header") as! NewAddAlarmHeader
             headerCell.alarmType.selectedSegmentIndex = alarmTypeIndex
             
             headerCell.actionCallBack = {
@@ -223,81 +156,90 @@ class NewAddAlarmController: UITableViewController,ButtonManagerCallBack,Selecte
                 self.alarmTypeIndex = segment.selectedSegmentIndex
             }
             return headerCell
-        }else{
+        } else {
             return nil
         }
     }
+}
+
+// MARK: - TableView Datasource
+extension NewAddAlarmController {
+
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return 3
+    }
+
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return section
+    }
     
-    override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return section == 0 ? 45 : 0
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return indexPath.section == 1 ? 235 : 45
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        switch ((indexPath as NSIndexPath).section){
+        
+        switch indexPath.section {
+        
         case 1:
-            let cell:AddAlarmTableViewCell = tableView.dequeueReusableCell(withIdentifier: "AddAlarm_Date_identifier", for: indexPath) as! AddAlarmTableViewCell
-            cell.separatorInset = UIEdgeInsets(top: 0, left: UIScreen.main.bounds.size.width, bottom: 0, right: 0)
-            cell.selectionStyle = UITableViewCellSelectionStyle.none;
-            cell.backgroundColor = UIColor.white
-            cell.contentView.backgroundColor = UIColor.clear
-            if(timer > 0){
-                cell.datePicker.date = Date(timeIntervalSince1970: timer)
-            }
-            return cell
+            return AddAlarmDatePickerCell.reusableCell(tableView: tableView, time: timer)
+            
         case 2:
-            let titleArray:[String] = ["Repeat","Label"]
-            let cell = tableView.dequeueReusableCell(withIdentifier: "AlarmType_identifier",for: indexPath)
-            cell.preservesSuperviewLayoutMargins = false;
-            cell.separatorInset = UIEdgeInsets.zero;
-            cell.layoutMargins = UIEdgeInsets.zero;
-            cell.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
-            cell.selectionStyle = UITableViewCellSelectionStyle.none;
-            if(indexPath.row == 0) {
-                cell.textLabel?.text = NSLocalizedString("\(titleArray[indexPath.row])", comment: "")
-                cell.detailTextLabel?.text = repeatDayArray[repeatSelectedIndex]
-            }else if(indexPath.row == 1) {
-                cell.textLabel?.text = NSLocalizedString("\(titleArray[indexPath.row])", comment: "")
+            let titleArray = ["Repeat","Label"]
+            let cell = AddAlarmCell.reusableCellForNewAlarm(tableView: tableView, title: titleArray[indexPath.row])
+            
+            if indexPath.row == 0 {
+                cell.detailTextLabel?.text = repeatDayArray[repeatSelectedIndex - 1]
+            } else if indexPath.row == 1 {
                 cell.detailTextLabel?.text = name
-            }
-            if !AppTheme.isTargetLunaR_OR_Nevo() {
-                cell.backgroundColor = UIColor.getGreyColor()
             }
             
             return cell
+            
         default: return UITableViewCell();
         }
     }
+}
+
+// MARK: - SelectedRepeatDelegate
+extension NewAddAlarmController: SelectedRepeatDelegate {
     
-    fileprivate func addTipsLabel() {
-        if self.tableView.tableFooterView == nil {
-            let view = UIView(frame:CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width-20, height: 120))
-            
-            let tipsString:String = NSLocalizedString(AppTheme.isTargetLunaR_OR_Nevo() ? "tips_content" : "tips_content_lunar", comment: "")
-            let tipsLabel:UILabel = UILabel(frame: CGRect(x: 10,y: 0,width: UIScreen.main.bounds.size.width-20,height: 120))
-            tipsLabel.backgroundColor = UIColor.clear
-            tipsLabel.numberOfLines = 0
-            tipsLabel.text = tipsString
-            tipsLabel.font = UIFont(name: "HelveticaNeue-Thin", size: 16)
-            
-            
-            // MARK:- THEME ADJUST
-            if !AppTheme.isTargetLunaR_OR_Nevo() {
-                //                self.tableView.backgroundColor = UIColor.getGreyColor()
-                self.tableView.backgroundColor = UIColor.getLightBaseColor()
-                tipsLabel.textColor = UIColor.white
-                let attributeDict:[String : AnyObject] = [NSFontAttributeName: UIFont(name: "HelveticaNeue-Thin", size: 16)!]
-                let AttributedStr:NSMutableAttributedString = NSMutableAttributedString(string: tipsString, attributes: attributeDict)
-                AttributedStr.addAttribute(NSForegroundColorAttributeName, value: UIColor.getBaseColor(), range: NSMakeRange(0, 5))
-                tipsLabel.attributedText = AttributedStr
-            }else{
-                let attributeDict:[String : AnyObject] = [NSFontAttributeName: UIFont(name: "HelveticaNeue-Thin", size: 16)!]
-                let AttributedStr:NSMutableAttributedString = NSMutableAttributedString(string: tipsString, attributes: attributeDict)
-                AttributedStr.addAttribute(NSForegroundColorAttributeName, value: AppTheme.NEVO_SOLAR_YELLOW(), range: NSMakeRange(0, 5))
-                tipsLabel.attributedText = AttributedStr
-            }
-            
-            view.addSubview(tipsLabel)
-            self.tableView.tableFooterView = view
+    func onSelectedRepeatAction(_ value: Int, name: String){
+        let indexPath = IndexPath(row: 0, section: 2)
+        if let cell = tableView.cellForRow(at: indexPath) {
+            cell.detailTextLabel?.text = name
         }
+        
+        repeatSelectedIndex = value + 1
+    }
+}
+
+// MARK: - Setup Views
+extension NewAddAlarmController {
+    
+    func addTipsLabel() {
+        let view = UIView(frame:CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width - 20, height: 120))
+        
+        let tipsString = NSLocalizedString(AppTheme.isTargetLunaR_OR_Nevo() ? "tips_content" : "tips_content_lunar", comment: "")
+        
+        let tipsLabel = UILabel(frame: CGRect(x: 10,y: 0, width: UIScreen.main.bounds.size.width - 20, height: 120))
+        tipsLabel.viewDefaultColorful()
+        
+        tipsLabel.numberOfLines = 0
+        tipsLabel.text = tipsString
+        tipsLabel.font = UIFont(name: "HelveticaNeue-Thin", size: 16)
+        
+        let attributeDict: [String : AnyObject] = [NSFontAttributeName: UIFont(name: "HelveticaNeue-Thin", size: 16)!]
+        let attributedStr: NSMutableAttributedString = NSMutableAttributedString(string: tipsString, attributes: attributeDict)
+        attributedStr.addAttribute(NSForegroundColorAttributeName, value: UIColor.getBaseColor(), range: NSMakeRange(0, 5))
+        tipsLabel.attributedText = attributedStr
+        
+        view.addSubview(tipsLabel)
+        tableView.tableFooterView = view
     }
 }
 

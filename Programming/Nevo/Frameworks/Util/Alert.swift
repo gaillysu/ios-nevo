@@ -11,7 +11,7 @@ import Foundation
 open class Alert: NSObject {
     
     class func Warning(_ delegate: UIViewController, message: String) {
-        let alert = ActionSheetView(title: "Warning", message: message, preferredStyle: UIAlertControllerStyle.alert)
+        let alert = MEDAlertController(title: "Warning", message: message, preferredStyle: UIAlertControllerStyle.alert)
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
         delegate.present(alert, animated: true, completion: nil)
     }

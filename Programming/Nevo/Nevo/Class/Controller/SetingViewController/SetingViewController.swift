@@ -158,7 +158,7 @@ class SetingViewController: UIViewController,ButtonManagerCallBack,UIAlertViewDe
 
             if(isEqualString("\(titleArray[indexPath.row])",string2: NSLocalizedString("forget_watch", comment: ""))){
                 XCGLogger.default.debug("forget_watch")
-                let actionSheet:ActionSheetView = ActionSheetView(title: NSLocalizedString("forget_watch", comment: ""), message: NSLocalizedString("forget_your_nevo", comment: ""), preferredStyle: UIAlertControllerStyle.alert)
+                let actionSheet:MEDAlertController = MEDAlertController(title: NSLocalizedString("forget_watch", comment: ""), message: NSLocalizedString("forget_your_nevo", comment: ""), preferredStyle: UIAlertControllerStyle.alert)
                 
                 let alertAction:AlertAction = AlertAction(title: NSLocalizedString("Cancel", comment: ""), style: UIAlertActionStyle.cancel, handler: { (alert) -> Void in
                     
@@ -193,7 +193,7 @@ class SetingViewController: UIViewController,ButtonManagerCallBack,UIAlertViewDe
 
             if indexPath.row == 3{
                 
-                let dialogController = ActionSheetView(title: NSLocalizedString("Are you sure you want to log out?", comment: ""), message: nil, preferredStyle: .alert)
+                let dialogController = MEDAlertController(title: NSLocalizedString("Are you sure you want to log out?", comment: ""), message: nil, preferredStyle: .alert)
                 let confirmAction = AlertAction(title: NSLocalizedString("Yes", comment: ""), style: .default, handler: { (_) in
                     let users = MEDUserProfile.getAll()
                     if(users.count>0){
