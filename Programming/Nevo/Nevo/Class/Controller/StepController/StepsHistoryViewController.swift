@@ -229,7 +229,7 @@ class StepsHistoryViewController: PublicClassController,ChartViewDelegate {
         }
         
         chartView!.leftAxis.setLabelCount(labelCount, force: true)
-        chartView!.leftAxis.axisMaxValue = maxValue
+        chartView!.leftAxis.axisMaximum = maxValue
         
         //柱状图表
         //ChartColorTemplates.getDeepSleepColor()

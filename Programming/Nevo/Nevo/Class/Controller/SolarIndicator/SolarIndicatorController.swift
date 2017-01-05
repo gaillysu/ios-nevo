@@ -275,7 +275,7 @@ extension SolarIndicatorController:ChartViewDelegate {
             todayDate = 24.0
         }
         
-        yVals1.append(BarChartDataEntry(x: 1, y: todayDate-value))
+        yVals1.append(BarChartDataEntry(x: 0, y: value))
         yVals1.append(BarChartDataEntry(x: 1, y: todayDate-value))
         
         onValue.replaceSubrange(0..<1, with: [todayDate-value])

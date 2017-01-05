@@ -153,7 +153,7 @@ open class BalloonMarker:NSUIView, IMarker
     
     open  func refreshContent(entry: ChartDataEntry, highlight: Highlight)
     {
-        let label = entry.x.description
+        let label = entry.y.description
         if markerType == .stepsChartType {
             labelns = String(format: "%d", label.toInt())
         }else{

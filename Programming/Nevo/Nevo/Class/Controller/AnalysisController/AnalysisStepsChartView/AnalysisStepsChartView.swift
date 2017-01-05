@@ -16,7 +16,7 @@ class AnalysisStepsChartView: LineChartView {
     
     func drawSettings(_ xAxis:XAxis, yAxis:YAxis, rightAxis:YAxis){
         noDataText = NSLocalizedString("no_sleep_data", comment: "")
-        descriptionText = ""
+        chartDescription?.text = ""
         dragEnabled = false
         setScaleEnabled(false)
         pinchZoomEnabled = false
@@ -30,8 +30,8 @@ class AnalysisStepsChartView: LineChartView {
         rightAxis.drawLabelsEnabled = false;
         rightAxis.drawZeroLineEnabled = false
 
-        yAxis.axisMaxValue = 65
-        yAxis.axisMinValue = 0
+        yAxis.axisMaximum = 65
+        yAxis.axisMinimum = 0
         yAxis.axisLineColor = UIColor.white
         yAxis.drawGridLinesEnabled = false
         yAxis.drawLabelsEnabled = false
