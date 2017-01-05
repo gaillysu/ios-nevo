@@ -9,7 +9,6 @@
 import UIKit
 import BRYXBanner
 import RealmSwift
-import Timepiece
 
 class AlarmClockController: UITableViewController {
     
