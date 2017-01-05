@@ -158,7 +158,7 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
             let stepsArray:[Int] = AppTheme.jsonToArray(usersteps.hourlysteps) as! [Int]
             let totalSteps:Int = stepsArray.reduce(0, {$0 + $1})
             
-            yVals.append(ChartDataEntry(x: Double(totalSteps), y: Double(i)))
+            yVals.append(ChartDataEntry(x: Double(i), y: Double(totalSteps)))
             xVals.append(dateString)
             
             //Calculate the maximum
@@ -171,7 +171,7 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
         
         self.setYvalueData(rowIndex,completionData: nil)
         
-        let set1:LineChartDataSet = LineChartDataSet(values: yVals, label: "")
+        let set1:LineChartDataSet = LineChartDataSet(values: yVals, label: "55")
         set1.lineDashLengths = [0.0, 0];
         set1.highlightLineDashLengths = [0.0, 0.0];
         set1.setColor(AppTheme.NEVO_SOLAR_YELLOW())
@@ -266,11 +266,11 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
                 self.setChartViewLeftAxis(Double(maxValue/60+2), unitString: " "+NSLocalizedString("hours", comment: ""))
             }
             
-            weakeYVals.append(ChartDataEntry(x: (Double(weakeValue)/60).to2Double(), y: Double(index)))
-            lightYVals.append(ChartDataEntry(x: (Double(lightValue)/60).to2Double(), y: Double(index)))
-            deepYVals.append(ChartDataEntry(x: (Double(deepValue)/60).to2Double(), y: Double(index)))
+            weakeYVals.append(ChartDataEntry(x: Double(index), y: (Double(weakeValue)/60).to2Double()))
+            lightYVals.append(ChartDataEntry(x: Double(index), y: (Double(lightValue)/60).to2Double()))
+            deepYVals.append(ChartDataEntry(x: Double(index), y: (Double(deepValue)/60).to2Double()))
             xVals.append(dateString)
-            yVals.append(ChartDataEntry(x: 0, y: Double(index)))
+            yVals.append(ChartDataEntry(x: Double(index), y: 0))
         }
         
         if sleepValueArray.count == 0 {
@@ -284,9 +284,9 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
         if rowIndex == 0 || rowIndex == 1{
             if xVals.count<7 {
                 for index:Int in xVals.count..<7 {
-                    weakeYVals.append(ChartDataEntry(x: 0, y: Double(index)))
-                    lightYVals.append(ChartDataEntry(x: 0, y: Double(index)))
-                    deepYVals.append(ChartDataEntry(x: 0, y: Double(index)))
+                    weakeYVals.append(ChartDataEntry(x: Double(index), y: 0))
+                    lightYVals.append(ChartDataEntry(x: Double(index), y: 0))
+                    deepYVals.append(ChartDataEntry(x: Double(index), y: 0))
                 }
             }
         }
@@ -300,19 +300,19 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
                     let weakeDataentry:ChartDataEntry = weakeYVals[yvalsIndex]
                     let lightDataentry:ChartDataEntry = lightYVals[yvalsIndex]
                     let deepDataentry:ChartDataEntry = deepYVals[yvalsIndex]
-                    weakeYVals.replaceSubrange(yvalsIndex..<yvalsIndex+1, with: [ChartDataEntry(x: weakeDataentry.x.to2Double(), y: Double(yvalsIndex))])
-                    lightYVals.replaceSubrange(yvalsIndex..<yvalsIndex+1, with: [ChartDataEntry(x: lightDataentry.x.to2Double(), y: Double(yvalsIndex))])
-                    deepYVals.replaceSubrange(yvalsIndex..<yvalsIndex+1, with: [ChartDataEntry(x: deepDataentry.x.to2Double(), y: Double(yvalsIndex))])
+                    weakeYVals.replaceSubrange(yvalsIndex..<yvalsIndex+1, with: [ChartDataEntry(x: Double(yvalsIndex), y: Double(weakeDataentry.y))])
+                    lightYVals.replaceSubrange(yvalsIndex..<yvalsIndex+1, with: [ChartDataEntry(x: Double(yvalsIndex), y: lightDataentry.y)])
+                    deepYVals.replaceSubrange(yvalsIndex..<yvalsIndex+1, with: [ChartDataEntry(x: Double(yvalsIndex), y: deepDataentry.y)])
                 }else{
-                    weakeYVals.insert(ChartDataEntry(x: 0, y: Double(yvalsIndex)), at: yvalsIndex)
-                    lightYVals.insert(ChartDataEntry(x: 0, y: Double(yvalsIndex)), at: yvalsIndex)
-                    deepYVals.insert(ChartDataEntry(x: 0, y: Double(yvalsIndex)), at: yvalsIndex)
+                    weakeYVals.insert(ChartDataEntry(x: Double(yvalsIndex), y: 0), at: yvalsIndex)
+                    lightYVals.insert(ChartDataEntry(x:Double(yvalsIndex), y: 0), at: yvalsIndex)
+                    deepYVals.insert(ChartDataEntry(x: Double(yvalsIndex), y: 0), at: yvalsIndex)
                 }
                 
             }else{
-                weakeYVals.insert(ChartDataEntry(x: 0, y: Double(yvalsIndex)), at: yvalsIndex)
-                lightYVals.insert(ChartDataEntry(x: 0, y: Double(yvalsIndex)), at: yvalsIndex)
-                deepYVals.insert(ChartDataEntry(x: 0, y: Double(yvalsIndex)), at: yvalsIndex)
+                weakeYVals.insert(ChartDataEntry(x: Double(yvalsIndex), y: 0), at: yvalsIndex)
+                lightYVals.insert(ChartDataEntry(x: Double(yvalsIndex), y: 0), at: yvalsIndex)
+                deepYVals.insert(ChartDataEntry(x: Double(yvalsIndex), y: 0), at: yvalsIndex)
             }
         }
         
@@ -412,7 +412,7 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
 
             let iSloarValue:Int = sloarValue.solarTotalTime
             let sloarTime:Double = Double(sloarValue.solarTotalTime)
-            yVals.append(ChartDataEntry(x: Double(sloarTime/60.0), y: Double(index)))
+            yVals.append(ChartDataEntry(x: Double(index), y: Double(sloarTime/60.0)))
             xVals.append(dateString)
             //Calculate the maximum
             if iSloarValue>maxValue {
@@ -517,11 +517,11 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
                     let dateString2:String = date2.stringFromFormat("dd/MM")
                     if dateString1 != dateString2 {
                         xVals.insert(dateString2, at: index)
-                        yVals.insert(ChartDataEntry(x: 0, y: Double(index)), at: index)
+                        yVals.insert(ChartDataEntry(x: Double(index), y: 0), at: index)
                         completionData?(index,false)
                     }else{
                         let dataentry:ChartDataEntry = yVals[index]
-                        yVals.replaceSubrange(index..<index+1, with: [ChartDataEntry(x: dataentry.x.to2Double(), y: Double(getIndex))])
+                        yVals.replaceSubrange(index..<index+1, with: [ChartDataEntry(x: Double(getIndex), y: dataentry.y)])
                         completionData?(getIndex,true)
                     }
                     
@@ -535,7 +535,7 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
                             }
                         }
                         let dataentry:ChartDataEntry = yVals[yVals.count-1]
-                        yVals.replaceSubrange(yVals.count-1..<yVals.count, with: [ChartDataEntry(x: dataentry.x.to2Double(), y: Double(yVals.count-1))])
+                        yVals.replaceSubrange(yVals.count-1..<yVals.count, with: [ChartDataEntry(x: Double(yVals.count-1), y: dataentry.y)])
                         completionData?(yVals.count-1,true)
                     }
                 }
@@ -549,7 +549,7 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
                     if xVals.count==0 {
                         let dateString:String = Date(timeIntervalSince1970: startTimeInterval).stringFromFormat("dd/MM")
                         xVals.append(dateString)
-                        yVals.append(ChartDataEntry(x: 0, y: Double(index)))
+                        yVals.append(ChartDataEntry(x: Double(index), y: 0))
                     }
                     
                     var getIndex:Int = index
@@ -563,11 +563,11 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
                     
                     if dateString1 != dateString2 {
                         xVals.insert(dateString2, at: index)
-                        yVals.insert(ChartDataEntry(x: 0, y: Double(index)), at: index)
+                        yVals.insert(ChartDataEntry(x: Double(index), y: 0), at: index)
                         completionData?(index,false)
                     }else{
                         let dataentry:ChartDataEntry = yVals[index]
-                        yVals.replaceSubrange(index..<index+1, with: [ChartDataEntry(x: dataentry.x.to2Double(), y: Double(index))])
+                        yVals.replaceSubrange(index..<index+1, with: [ChartDataEntry(x: Double(index), y: dataentry.y)])
                         completionData?(index,true)
                     }
                     
@@ -581,7 +581,7 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
                             }
                         }
                         let dataentry:ChartDataEntry = yVals[yVals.count-1]
-                        yVals.replaceSubrange(yVals.count-1..<yVals.count, with: [ChartDataEntry(x: dataentry.x.to2Double(), y: Double(yVals.count-1))])
+                        yVals.replaceSubrange(yVals.count-1..<yVals.count, with: [ChartDataEntry(x: Double(yVals.count-1), y: dataentry.y)])
                         completionData?(yVals.count-1,true)
                     }
                 }
@@ -595,7 +595,7 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
                     if xVals.count==0 {
                         let dateString:String = Date(timeIntervalSince1970: startTimeInterval).stringFromFormat("dd/MM")
                         xVals.append(dateString)
-                        yVals.append(ChartDataEntry(x: 0, y: Double(index)))
+                        yVals.append(ChartDataEntry(x: Double(index), y: 0))
                     }
                     var getIndex:Int = index
                     if index>=xVals.count {
@@ -608,11 +608,11 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
                     
                     if dateString1 != dateString2 {
                         xVals.insert(dateString2, at: index)
-                        yVals.insert(ChartDataEntry(x: 0, y: Double(index)), at: index)
+                        yVals.insert(ChartDataEntry(x: Double(index), y: 0), at: index)
                         completionData?(index,false)
                     }else{
                         let dataentry:ChartDataEntry = yVals[index]
-                        yVals.replaceSubrange(index..<index+1, with: [ChartDataEntry(x: dataentry.x.to2Double(), y: Double(index))])
+                        yVals.replaceSubrange(index..<index+1, with: [ChartDataEntry(x: Double(index), y: dataentry.y)])
                         completionData?(index,true)
                     }
                     
@@ -626,7 +626,7 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
                             }
                         }
                         let dataentry:ChartDataEntry = yVals[yVals.count-1]
-                        yVals.replaceSubrange(yVals.count-1..<yVals.count, with: [ChartDataEntry(x: dataentry.x.to2Double(), y: Double(yVals.count-1))])
+                        yVals.replaceSubrange(yVals.count-1..<yVals.count, with: [ChartDataEntry(x: Double(yVals.count-1), y: dataentry.y)])
                         completionData?(yVals.count-1,true)
                     }
                 }
