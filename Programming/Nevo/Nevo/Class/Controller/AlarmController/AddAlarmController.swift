@@ -55,11 +55,8 @@ extension AddAlarmController {
         
         cell = tableView.cellForRow(at: indexPaths)!
         
-        for view in cell.contentView.subviews{
-            if(view.isKind(of: UISwitch.classForCoder())){
-                let repeatSwitch = view as! UISwitch
-                repeatStatus = repeatSwitch.isOn
-            }
+        if let view = cell.accessoryView, let s = view as? UISwitch{
+            repeatStatus = s.isOn
         }
 
         indexPaths = IndexPath(row: 1, section: 1)

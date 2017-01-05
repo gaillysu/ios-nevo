@@ -11,7 +11,7 @@ import BRYXBanner
 import RealmSwift
 import Timepiece
 
-class AlarmClockController: UITableViewController,AddAlarmDelegate {
+class AlarmClockController: UITableViewController {
     
     @IBOutlet weak var rightBarButton: UIBarButtonItem!
     
@@ -22,6 +22,10 @@ class AlarmClockController: UITableViewController,AddAlarmDelegate {
     var oldAlarmArray: [Alarm] = []
     var wakeArray: [MEDUserAlarm] = []
     var sleepArray: [MEDUserAlarm] = []
+    
+    var isOldAddAlarmFlag: Bool {
+        return AppDelegate.getAppDelegate().getMconnectionController()!.getFirmwareVersion() <= 31 && AppDelegate.getAppDelegate().getMconnectionController()!.getSoftwareVersion() <= 18
+    }
     
     lazy var leftEditItem: UIBarButtonItem = {
         return UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(alarmEditAction(_:)))
@@ -61,6 +65,8 @@ class AlarmClockController: UITableViewController,AddAlarmDelegate {
         navigationController?.navigationBar.allSubviews(do: { (v) in
             v.isHidden = v.frame.height == 0.5
         })
+        
+        navigationItem.leftBarButtonItem = leftEditItem
     }
 }
 
@@ -111,13 +117,12 @@ extension AlarmClockController {
             
             var addAlarmController: UIViewController?
             
-            if AppDelegate.getAppDelegate().getMconnectionController()!.getFirmwareVersion() <= 31 && AppDelegate.getAppDelegate().getMconnectionController()!.getSoftwareVersion() <= 18 {
+            if isOldAddAlarmFlag {
                 
                 addAlarmController = {
                     $0.mDelegate = self
                     return $0
-//                }(AddAlarmController(style: .grouped))
-              }(NewAddAlarmController(style: .grouped))
+                }(AddAlarmController(style: .grouped))
             } else {
                 
                 addAlarmController = {
@@ -130,15 +135,6 @@ extension AlarmClockController {
             addAlarmController!.hidesBottomBarWhenPushed = true
             navigationController?.show(addAlarmController!, sender: self)
         }
-
-        if(sender.isKind(of: UISwitch.classForCoder())){
-            let mSwitch: UISwitch = sender as! UISwitch
-            updateNewAlarmData(alarmArray: &wakeArray, mSwitch: mSwitch)
-        }
-    }
-    
-    func sleepSwitchManager(_ sender:UISwitch) {
-        updateNewAlarmData(alarmArray: &sleepArray,mSwitch:sender)
     }
 
     func updateNewAlarmData(alarmArray: inout [MEDUserAlarm], mSwitch: UISwitch) {
@@ -156,7 +152,7 @@ extension AlarmClockController {
         }
 
         var maxCount = 0
-        if !AppTheme.isTargetLunaR_OR_Nevo() {
+        if isOldAddAlarmFlag {
             maxCount = 4
         } else {
             maxCount = 8
@@ -269,11 +265,11 @@ extension AlarmClockController {
         }else{
             print("alarmModel.alarmWeek:\(alarmModel.alarmWeek)")
             if Date().weekday != alarmModel.alarmWeek{
-                cell.alarmInLabel.text = NSLocalizedString("alarm_on", comment: "") + NSLocalizedString(dayArray[alarmModel.alarmWeek], comment: "")
+                cell.alarmInLabel.text = NSLocalizedString("alarm_on", comment: "") + NSLocalizedString(dayArray[alarmModel.alarmWeek - 1], comment: "")
             }else{
                 let nowDate = Date.date(year: Date().year, month: Date().month, day: Date().day, hour: alarmDate.hour, minute: alarmDate.minute, second: 0)
                 if nowDate.timeIntervalSince1970 < Date().timeIntervalSince1970 {
-                    cell.alarmInLabel.text = NSLocalizedString("alarm_on", comment: "") + NSLocalizedString(dayArray[alarmModel.alarmWeek], comment: "")
+                    cell.alarmInLabel.text = NSLocalizedString("alarm_on", comment: "") + NSLocalizedString(dayArray[alarmModel.alarmWeek - 1], comment: "")
                 } else {
                     let nowHour:Int = abs(alarmDate.hour-Date().hour)
                     let nowMinute:Int = abs(alarmDate.minute-Date().minute)
@@ -342,10 +338,15 @@ extension AlarmClockController {
             } else {
                 sleepArray.remove(at: indexPath.row)
             }
+            
+            if improviseArray(section: indexPath.section).count == 0 {
+                tableView.deleteSections(IndexSet(integer: indexPath.section), with: .left)
+            } else {
+                tableView.deleteRows(at: [indexPath], with: .left)
+            }
 
             let status = alarm.status
             if(alarm.remove()){
-                // 如果删除某一个闹钟后, 如果需要删除 tableview 中 section, 就需要执行 deleteSections 方法
                 var newAlarmArray: [NewAlarm] = []
                 
                 let allAlarmArray = wakeArray + sleepArray
@@ -368,8 +369,6 @@ extension AlarmClockController {
                         willSyncAlarmAlertView()
                     }
                 }
-                
-                tableView.reloadData()
             }
         }
     }
@@ -387,7 +386,7 @@ extension AlarmClockController {
             
             var addAlarmController: UIViewController?
             
-            if AppDelegate.getAppDelegate().getMconnectionController()!.getFirmwareVersion() <= 31 && AppDelegate.getAppDelegate().getMconnectionController()!.getSoftwareVersion() <= 18 {
+            if isOldAddAlarmFlag {
                 
                 addAlarmController = {
                     $0.timer = alarmModel!.timer
@@ -440,7 +439,7 @@ extension AlarmClockController {
 }
 
 // MARK: - AddAlarmDelegate
-extension AlarmClockController {
+extension AlarmClockController: AddAlarmDelegate {
     
     func onDidAddAlarmAction(_ timer: TimeInterval, repeatStatus: Bool, name: String) {
         
@@ -505,7 +504,7 @@ extension AlarmClockController {
             initializeAlarmData()
             tableView.reloadData()
             
-            navigationItem.leftBarButtonItem = leftDoneItem
+            navigationItem.leftBarButtonItem = leftEditItem
         }
     }
     
@@ -524,7 +523,7 @@ extension AlarmClockController {
                 wakeAlarmCount += 1
             }
         }
-        
+
         if (selectedIndex != nil) {
             let alarmModel = improviseArray(section: selectedIndex!.section)[selectedIndex!.row]
             
@@ -582,7 +581,7 @@ extension AlarmClockController {
             initializeAlarmData()
             tableView.reloadData()
             
-            navigationItem.leftBarButtonItem = leftDoneItem
+            navigationItem.leftBarButtonItem = leftEditItem
         }
     }
 }

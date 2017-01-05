@@ -33,6 +33,9 @@ class RepeatViewController: UITableViewController {
         
         tableView.tableFooterView = UIView()
         
+        tableView.contentOffset = CGPoint(x: 0, y: 45)
+        tableView.contentInset = UIEdgeInsets(top: 45, left: 0, bottom: 0, right: 0)
+        
         viewDefaultColorful()
     }
 

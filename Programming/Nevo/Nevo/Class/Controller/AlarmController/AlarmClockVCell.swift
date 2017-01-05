@@ -27,6 +27,8 @@ class AlarmClockVCell: UITableViewCell {
         dateLabel.viewDefaultColorful()
         titleLabel.viewDefaultColorful()
         alarmInLabel.viewDefaultColorful()
+        
+        separatorInset = .zero
     }
 }
 

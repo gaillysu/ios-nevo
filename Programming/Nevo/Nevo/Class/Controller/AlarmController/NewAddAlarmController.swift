@@ -16,7 +16,7 @@ class NewAddAlarmController: UITableViewController {
     var timer: TimeInterval = 0.0
     var repeatStatus: Bool = false
     var name: String = ""
-    var repeatSelectedIndex: Int = 0
+    var repeatSelectedIndex: Int = 1
     var alarmTypeIndex: Int = 0
     
     var isEdited: Bool = false
@@ -101,7 +101,9 @@ extension NewAddAlarmController {
             if indexPath.row == 0 {
                 let repeatController = RepeatViewController()
                 repeatController.selectedDelegate = self
-                repeatController.selectedIndex = repeatSelectedIndex
+                
+                repeatController.selectedIndex = repeatSelectedIndex - 1
+                
                 navigationController?.pushViewController(repeatController, animated: true)
                 
                 isEdited = true
@@ -110,7 +112,7 @@ extension NewAddAlarmController {
             if indexPath.row == 1 {
                 let selectedCell:UITableViewCell = tableView.cellForRow(at: indexPath)!
                 
-                let actionSheet:MEDAlertController = MEDAlertController(title: NSLocalizedString("add_alarm_label", comment: ""), message: nil, preferredStyle: UIAlertControllerStyle.alert)
+                let actionSheet = MEDAlertController(title: NSLocalizedString("add_alarm_label", comment: ""), message: nil, preferredStyle: UIAlertControllerStyle.alert)
                 actionSheet.addTextField(configurationHandler: { (labelText:UITextField) -> Void in
                     labelText.text = selectedCell.detailTextLabel?.text
                 })
@@ -191,7 +193,7 @@ extension NewAddAlarmController {
             let cell = AddAlarmCell.reusableCellForNewAlarm(tableView: tableView, title: titleArray[indexPath.row])
             
             if indexPath.row == 0 {
-                cell.detailTextLabel?.text = repeatDayArray[repeatSelectedIndex]
+                cell.detailTextLabel?.text = repeatDayArray[repeatSelectedIndex - 1]
             } else if indexPath.row == 1 {
                 cell.detailTextLabel?.text = name
             }
