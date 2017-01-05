@@ -463,9 +463,8 @@ class AppTheme {
     
     //return 0->Metrics,1->imperial,default value = 0
     class func getUserSelectedUnitValue()->Int {
-        if let value = UserDefaults.standard.object(forKey: "UserSelectedUnit") {
-            let index:Int = value as! Int
-            return index
+        if let row = MEDSettings.int(forKey: "UserSelectedUnit") {
+            return row
         }else{
             return 0
         }

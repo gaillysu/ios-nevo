@@ -485,22 +485,28 @@ extension AppDelegate {
     }
     
     func setWorldTime() {
-        if let city = HomeClockUtil.shared.getHomeCityWithSelectedFlag(), let timezone = HomeClockUtil.shared.getTimezoneWithCity(city: city) {
-            let cityZone = timezone.gmtTimeOffset
-            let localZone = Date.getLocalOffSet()
-            
-            var offset = 0
-            if localZone>cityZone {
-                offset = 24-(localZone-cityZone)/60
+        if let row = MEDSettings.int(forKey: "SET_SYNCTIME_TYPE"), row == 0 {
+            if let city = HomeClockUtil.shared.getHomeCityWithSelectedFlag(), let timezone = HomeClockUtil.shared.getTimezoneWithCity(city: city) {
+                let cityZone = timezone.gmtTimeOffset
+                let localZone = Date.getLocalOffSet()
+                
+                var offset = 0
+                if localZone>cityZone {
+                    offset = 24-(localZone-cityZone)/60
+                }else{
+                    offset = (cityZone-localZone)/60
+                }
+                let setWordClock:SetWorldClockRequest = SetWorldClockRequest(offset: offset)
+                self.sendRequest(setWordClock)
             }else{
-                offset = (cityZone-localZone)/60
+                let setWordClock:SetWorldClockRequest = SetWorldClockRequest(offset: 0)
+                self.sendRequest(setWordClock)
             }
-            let setWordClock:SetWorldClockRequest = SetWorldClockRequest(offset: offset)
-            self.sendRequest(setWordClock)
         }else{
             let setWordClock:SetWorldClockRequest = SetWorldClockRequest(offset: 0)
             self.sendRequest(setWordClock)
         }
+        
     }
     
     func getLongitude() -> Double {
