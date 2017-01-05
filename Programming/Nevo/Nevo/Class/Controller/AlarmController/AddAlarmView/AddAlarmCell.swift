@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 class AddAlarmCell: UITableViewCell {
     
     lazy var repeatSwitch: UISwitch = {
@@ -25,6 +26,7 @@ class AddAlarmCell: UITableViewCell {
         let addAlarmCell = cell as! AddAlarmCell
         
         addAlarmCell.textLabel?.text = NSLocalizedString(title, comment: "")
+        addAlarmCell.textLabel?.font = UIFont(name: "Raleway", size: 16)
         
         if title == "Repeat" {
             addAlarmCell.accessoryType = .none
@@ -40,5 +42,25 @@ class AddAlarmCell: UITableViewCell {
         addAlarmCell.repeatSwitch.viewDefaultColorful()
         
         return addAlarmCell
+    }
+    
+    class func reusableCellForNewAlarm(tableView: UITableView, title: String) -> AddAlarmCell {
+        let reusableID = "AddAlarmCell_ReusableID"
+        var cell = tableView.dequeueReusableCell(withIdentifier: reusableID)
+        
+        if cell == nil {
+            cell = AddAlarmCell(style: .value1, reuseIdentifier: reusableID)
+        }
+        
+        cell?.textLabel?.font = UIFont(name: "Raleway", size: 16)
+        cell?.textLabel?.text = NSLocalizedString(title, comment: "")
+        
+        cell?.accessoryType = .disclosureIndicator
+        
+        cell?.selectionStyle = .none
+        
+        cell?.viewDefaultColorful()
+        
+        return cell as! AddAlarmCell
     }
 }

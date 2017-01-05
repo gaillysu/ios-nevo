@@ -108,6 +108,9 @@ extension AddAlarmController {
                 
                 actionSheet.addAction(confirmAction)
                 
+                cancelAction.setValue(UIColor.getBaseColor(), forKey: "titleTextColor")
+                confirmAction.setValue(UIColor.getBaseColor(), forKey: "titleTextColor")
+                
                 present(actionSheet, animated: true, completion: nil)
             }
 

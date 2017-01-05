@@ -175,6 +175,8 @@ extension MEDColorfulLooking where Self: UISegmentedControl {
     public func viewDefaultColorful() {
         if !AppTheme.isTargetLunaR_OR_Nevo() {
             tintColor = UIColor.getBaseColor()
+        } else {
+            tintColor = UIColor.getBaseColor()
         }
     }
 }

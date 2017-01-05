@@ -10,119 +10,91 @@ import UIKit
 
 protocol SelectedRepeatDelegate {
 
-    func onSelectedRepeatAction(_ value:Int,name:String)
-    
+    func onSelectedRepeatAction(_ value: Int,name: String)
 }
 
-class RepeatViewController: UIViewController {
-
-    @IBOutlet weak var tableView: UITableView!
-    let RepeatDayArray:[String] = [
-        NSLocalizedString("Sunday", comment: ""),
-        NSLocalizedString("Monday", comment: ""),
-        NSLocalizedString("Tuesday", comment: ""),
-        NSLocalizedString("Wednesday", comment: ""),
-        NSLocalizedString("Thursday", comment: ""),
-        NSLocalizedString("Friday", comment: ""),
-        NSLocalizedString("Saturday", comment: "")]
-    var selectedIndex:Int = 0
-    var selectedDelegate:SelectedRepeatDelegate?
-
-    var actionCallBack:((_ sender:AnyObject) -> Void)?
+class RepeatViewController: UITableViewController {
     
-    init() {
-        super.init(nibName: "RepeatViewController", bundle: Bundle.main)
-    }
-
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+    let repeatDayArray = [NSLocalizedString("Sunday", comment: ""),
+                          NSLocalizedString("Monday", comment: ""),
+                          NSLocalizedString("Tuesday", comment: ""),
+                          NSLocalizedString("Wednesday", comment: ""),
+                          NSLocalizedString("Thursday", comment: ""),
+                          NSLocalizedString("Friday", comment: ""),
+                          NSLocalizedString("Saturday", comment: "")]
+    
+    var selectedIndex: Int = 0
+    var selectedDelegate: SelectedRepeatDelegate?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = NSLocalizedString("Repeat", comment: "")
         
-        self.automaticallyAdjustsScrollViewInsets = false
-        tableView.separatorStyle = UITableViewCellSeparatorStyle.singleLine
+        navigationItem.title = NSLocalizedString("Repeat", comment: "")
+        
         tableView.tableFooterView = UIView()
-        tableView.contentInset = UIEdgeInsets(top: 50, left: 0, bottom: 0, right: 0)
         
-        tableView.register(UINib(nibName: "RepeatViewCell",bundle: nil), forCellReuseIdentifier: "RepeatView_Identifier")
-        
-        // MARK: - APPTHEME ADJUST
-        if !AppTheme.isTargetLunaR_OR_Nevo() {
-            self.view.backgroundColor = UIColor.getLightBaseColor()
-            tableView.backgroundColor = UIColor.getLightBaseColor()
-        }else{
-            
-        }
+        viewDefaultColorful()
     }
 
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
         navigationController?.navigationBar.subviewsSatisfy(theCondition: { (v) -> (Bool) in
             return v.frame.height == 0.5
         }, do: { (v) in
-                v.isHidden = false
+            v.isHidden = false
         })
     }
+}
+
+// MARK: - TableView Delegate
+extension RepeatViewController {
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-    // MARK: - Table view data source
-    func tableView(_ tableView: UITableView, didSelectRowAtIndexPath indexPath: IndexPath){
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        selectedDelegate?.onSelectedRepeatAction(indexPath.row, name: RepeatDayArray[(indexPath as NSIndexPath).row])
-        actionCallBack?(indexPath as AnyObject)
-        selectedIndex = (indexPath as NSIndexPath).row
-        for cell in tableView.visibleCells {
-            cell.accessoryView = nil
-        }
+        
+        selectedDelegate?.onSelectedRepeatAction(indexPath.row, name: repeatDayArray[indexPath.row])
+        
+        navigationController!.popViewController(animated: true)
+    }
+}
 
-        let cell = tableView.cellForRow(at: indexPath)
-        if(view == nil){
-            let selectedImage:UIImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 25, height: 25))
-            selectedImage.image = UIImage(named: "notifications_check")
-            cell?.accessoryView = selectedImage
-        }
-        self.navigationController!.popViewController(animated: true)
+// MARK: - Tableview Datasource
+extension RepeatViewController {
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return repeatDayArray.count
     }
 
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return RepeatDayArray.count
-    }
-
-    func tableView(_ tableView: UITableView, cellForRowAtIndexPath indexPath: IndexPath) -> UITableViewCell {
-        let cell:RepeatViewCell = tableView.dequeueReusableCell(withIdentifier: "RepeatView_Identifier",for: indexPath) as! RepeatViewCell
-        let selectedView:UIView = UIView()
-        selectedView.backgroundColor = AppTheme.NEVO_SOLAR_GRAY()
-        cell.selectedBackgroundView = selectedView
-        cell.backgroundColor = UIColor.white
-        cell.textLabel?.font = UIFont(name: "Raleway", size: 16)!
-        cell.textLabel?.text = NSLocalizedString("\(RepeatDayArray[(indexPath as NSIndexPath).row])", comment: "")
-        cell.preservesSuperviewLayoutMargins = false;
-        cell.separatorInset = UIEdgeInsets.zero;
-        cell.layoutMargins = UIEdgeInsets.zero;
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        // MARK: - APPTHEME ADJUST
-        if !AppTheme.isTargetLunaR_OR_Nevo() {
-            cell.backgroundColor = UIColor.getGreyColor()
-            cell.textLabel?.textColor = UIColor.white
+        let reusableID = "RepeatViewCell_Identifier"
+        var cell = tableView.dequeueReusableCell(withIdentifier: reusableID)
+        if cell == nil {
+            cell = UITableViewCell(style: .value1, reuseIdentifier: reusableID)
         }
         
-        if((indexPath as NSIndexPath).row == selectedIndex) {
-            let selectedImage:UIImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 30, height: 23))
-            selectedImage.contentMode = UIViewContentMode.scaleAspectFit
+        cell!.viewDefaultColorful()
+        cell!.separatorInset = .zero
+        
+        cell!.textLabel?.font = UIFont(name: "Raleway", size: 16)!
+        cell!.textLabel?.text = NSLocalizedString(repeatDayArray[indexPath.row], comment: "")
+        
+        cell!.selectionStyle = .gray
+        
+        cell?.layoutMargins = .zero
+        cell?.preservesSuperviewLayoutMargins = false
+        
+        if(indexPath.row == selectedIndex) {
+            let selectedImage = UIImageView(frame: CGRect(x: 0, y: 0, width: 30, height: 23))
+            selectedImage.contentMode = .scaleAspectFit
             selectedImage.image = UIImage(named: "notifications_check")
             selectedImage.tag = 1500
-            cell.accessoryView = selectedImage
+            cell!.accessoryView = selectedImage
         }
-        return cell
+        
+        return cell!
     }
-
 }
 

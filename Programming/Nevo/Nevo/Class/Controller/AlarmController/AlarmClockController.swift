@@ -116,8 +116,9 @@ extension AlarmClockController {
                 addAlarmController = {
                     $0.mDelegate = self
                     return $0
-                }(AddAlarmController(style: .grouped))
-            }else{
+//                }(AddAlarmController(style: .grouped))
+              }(NewAddAlarmController(style: .grouped))
+            } else {
                 
                 addAlarmController = {
                     $0.mDelegate = self
@@ -141,6 +142,8 @@ extension AlarmClockController {
     }
 
     func updateNewAlarmData(alarmArray: inout [MEDUserAlarm], mSwitch: UISwitch) {
+        tableView.reloadData()
+        
         let index = mSwitch.tag
         let alarmModel = alarmArray[index]
         
@@ -371,7 +374,9 @@ extension AlarmClockController {
         }
     }
 
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.reloadRows(at: [indexPath], with: .none)
+        
         if(isEditingFlag){
             
             selectedIndex = indexPath
