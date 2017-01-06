@@ -169,6 +169,7 @@ extension AlarmClockController {
             let date = Date(timeIntervalSince1970: alarmModel.timer)
             
             let newAlarm = NewAlarm(alarmhour: date.hour, alarmmin: date.minute, alarmNumber: alarmModel.type == 1 ? (index+7):index, alarmWeekday: mSwitch.isOn ? alarmModel.alarmWeek:0)
+            
             if(AppDelegate.getAppDelegate().isConnected()){
                 AppDelegate.getAppDelegate().setNewAlarm (newAlarm)
                 syncAlarmAlertView()
@@ -261,17 +262,22 @@ extension AlarmClockController {
             cell.alarmInLabel.text = NSLocalizedString("alarm_disabled", comment: "")
         }else{
             print("alarmModel.alarmWeek:\(alarmModel.alarmWeek)")
-            if Date().weekday != alarmModel.alarmWeek{
-                cell.alarmInLabel.text = NSLocalizedString("alarm_on", comment: "") + NSLocalizedString(dayArray[alarmModel.alarmWeek - 1], comment: "")
-            }else{
-                let nowDate = Date.date(year: Date().year, month: Date().month, day: Date().day, hour: alarmDate.hour, minute: alarmDate.minute, second: 0)
-                if nowDate.timeIntervalSince1970 < Date().timeIntervalSince1970 {
+            
+            if !(alarmModel.alarmWeek == 0) {
+                if Date().weekday != alarmModel.alarmWeek{
                     cell.alarmInLabel.text = NSLocalizedString("alarm_on", comment: "") + NSLocalizedString(dayArray[alarmModel.alarmWeek - 1], comment: "")
-                } else {
-                    let nowHour:Int = abs(alarmDate.hour-Date().hour)
-                    let nowMinute:Int = abs(alarmDate.minute-Date().minute)
-                    cell.alarmInLabel.text = NSLocalizedString("alarm_in", comment: "")+"\(nowHour)h \(nowMinute)m"
+                }else{
+                    let nowDate = Date.date(year: Date().year, month: Date().month, day: Date().day, hour: alarmDate.hour, minute: alarmDate.minute, second: 0)
+                    if nowDate.timeIntervalSince1970 < Date().timeIntervalSince1970 {
+                        cell.alarmInLabel.text = NSLocalizedString("alarm_on", comment: "") + NSLocalizedString(dayArray[alarmModel.alarmWeek - 1], comment: "")
+                    } else {
+                        let nowHour:Int = abs(alarmDate.hour-Date().hour)
+                        let nowMinute:Int = abs(alarmDate.minute-Date().minute)
+                        cell.alarmInLabel.text = NSLocalizedString("alarm_in", comment: "")+"\(nowHour)h \(nowMinute)m"
+                    }
                 }
+            } else {
+                cell.alarmInLabel.text = "Alarm is available"
             }
         }
         
