@@ -11,6 +11,7 @@ import XCGLogger
 import SwiftEventBus
 import Alamofire
 import Solar
+import RealmSwift
 
 // MARK: - LAUNCH LOGIC
 extension AppDelegate {
@@ -207,7 +208,7 @@ extension AppDelegate {
      When the sync process is finished, le't refresh the date of sync
      */
     func syncFinished() {
-        let banner = MEDBanner(title: NSLocalizedString("sync_finished", comment: ""), subtitle: nil, image: nil, backgroundColor: UIColor(rgba:"#0dac67"))
+        let banner = MEDBanner(title: NSLocalizedString("sync_finished", comment: ""), subtitle: nil, image: nil, backgroundColor: UIColor("#0dac67"))
         banner.dismissesOnTap = true
         banner.show(duration: 1.5)
         lastSync = Date().timeIntervalSince1970
@@ -286,7 +287,7 @@ extension AppDelegate {
     
     func connectedBanner() {
         if(self.hasSavedAddress()){
-            let banner = MEDBanner(title: NSLocalizedString("Connected", comment: ""), subtitle: nil, image: nil, backgroundColor:UIColor(rgba: "#0dac67"))
+            let banner = MEDBanner(title: NSLocalizedString("Connected", comment: ""), subtitle: nil, image: nil, backgroundColor:UIColor("#0dac67"))
             banner.dismissesOnTap = true
             banner.show(duration: 1.5)
         }
@@ -393,5 +394,38 @@ extension AppDelegate {
             AppDelegate.getAppDelegate().window?.makeKeyAndVisible()
         #endif
         /// 🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧
+    }
+    
+    func copyBundleRealmToDocumentFolder() {
+        if !AppTheme.realmISFirstCopy(findKey: .get) {
+            DispatchQueue.global(qos: .background).async {
+                WorldClockDatabaseHelper().setup()
+            }
+            return
+        }
+        // copy over old data files for migration
+        let defaultURL = Realm.Configuration.defaultConfiguration.fileURL!
+        
+        if let v0URL = URL.bundleURL(name: "default") {
+            do {
+                if FileManager.default.fileExists(atPath: defaultURL.path) {
+                    try FileManager.default.removeItem(at: defaultURL)
+                }
+                try FileManager.default.copyItem(at: v0URL, to: defaultURL)
+                _ = AppTheme.realmISFirstCopy(findKey: .set)
+            } catch let error {
+                print("file copy or remove error:\(error)");
+            }
+        }
+        
+        let migrationBlock: MigrationBlock = { migration, oldSchemaVersion in
+            if oldSchemaVersion < 1 {
+            }
+            print("Migration complete.")
+        }
+        
+        Realm.Configuration.defaultConfiguration = Realm.Configuration(schemaVersion: 1, migrationBlock: migrationBlock)
+        
+        print("Migrated objects in the default Realm: \(try! Realm().objects(City.self))")
     }
 }

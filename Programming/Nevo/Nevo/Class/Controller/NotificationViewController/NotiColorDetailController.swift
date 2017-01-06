@@ -39,7 +39,7 @@ class NotiColorDetailController: UITableViewController {
         colorPickerView.center.x = footerView.center.x
         tableView.tableFooterView = footerView
         
-        colorPickerView.color = UIColor.init(rgba: model.color)
+        colorPickerView.color = UIColor(model.color)
         colorPickerView.backgroundColor = UIColor.getLightBaseColor()
         colorPickerView.setSelectedIndex(.HSB, animated: false)
         colorPickerView.delegate = self
@@ -98,7 +98,7 @@ extension NotiColorDetailController {
         cell.selectionStyle = .none
         
         cell.model = model
-        cell.dotImageView.image = UIImage.dotImageWith(color: UIColor.init(rgba: model.color), backgroundColor: UIColor.getGreyColor(), size: CGSize(width: 15, height: 15))
+        cell.dotImageView.image = UIImage.dotImageWith(color: UIColor(model.color), backgroundColor: UIColor.getGreyColor(), size: CGSize(width: 15, height: 15))
         cell.textField.text = model.name
         
         cell.viewDefaultColorful()

@@ -128,7 +128,7 @@ class SleepHistoricalView: UIView, ChartViewDelegate{
         return totalNumber;
     }
     
-    func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, dataSetIndex: Int, highlight: ChartHighlight) {
+    func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, dataSetIndex: Int, highlight: Highlight) {
 
     }
 

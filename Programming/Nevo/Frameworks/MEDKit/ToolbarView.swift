@@ -28,7 +28,7 @@ class ToolbarView: UIView {
         
         let app_Name:String = infoDictionary["CFBundleName"] as! String
         if app_Name == "LunaR" {
-            segment.tintColor = UIColor(rgba: "#7ED8D1")
+            segment.tintColor = UIColor("#7ED8D1")
         }else{
             segment.tintColor = AppTheme.NEVO_SOLAR_YELLOW()
         }

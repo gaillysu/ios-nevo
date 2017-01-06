@@ -50,7 +50,7 @@ class LocationManager: NSObject {
             _locationManager?.requestAlwaysAuthorization()
             _locationManager?.requestWhenInUseAuthorization()
         }else{
-            let alert:ActionSheetView = ActionSheetView(title: "GPS use of infor", message: "GPS devices do not available", preferredStyle: UIAlertControllerStyle.alert)
+            let alert:MEDAlertController = MEDAlertController(title: "GPS use of infor", message: "GPS devices do not available", preferredStyle: UIAlertControllerStyle.alert)
             let action:UIAlertAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil)
             alert.addAction(action)
             UIApplication.shared.keyWindow?.rootViewController?.present(alert, animated: true, completion: nil)
@@ -61,7 +61,7 @@ class LocationManager: NSObject {
         if CLLocationManager.locationServicesEnabled() {
             _locationManager?.startUpdatingLocation()
         }else{
-            let alert:ActionSheetView = ActionSheetView(title: nil, message: "Location services is not open", preferredStyle: UIAlertControllerStyle.alert)
+            let alert:MEDAlertController = MEDAlertController(title: nil, message: "Location services is not open", preferredStyle: UIAlertControllerStyle.alert)
             let action:UIAlertAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil)
             alert.addAction(action)
             UIApplication.shared.keyWindow?.rootViewController?.present(alert, animated: true, completion: nil)

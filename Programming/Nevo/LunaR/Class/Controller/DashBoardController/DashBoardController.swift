@@ -8,7 +8,7 @@
 
 import UIKit
 import SnapKit
-import Timepiece
+ 
 import SwiftyTimer
 import SwiftEventBus
 import XCGLogger
@@ -33,6 +33,7 @@ class DashBoardController: UIViewController {
     fileprivate weak var sleepHistoryView: DashBoardChargingView?
     fileprivate weak var centerDashView: UIView?
     fileprivate weak var stepsView:DashBoardCalorieView?
+    fileprivate var pvadcTimer:Timer?
     
     lazy var dashView: UIView = {
         
@@ -77,6 +78,20 @@ class DashBoardController: UIViewController {
             
             self.refreshDataForDashView()
             self.refreshDialView()
+            let tap:UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.tapAction(_:)))
+            self.view.addGestureRecognizer(tap)
+        }
+    }
+    
+    func tapAction(_ tap:UIGestureRecognizer) {
+        self.chargingView?.stopRotateImageView()
+    }
+    
+    func getSoloarCharging() {
+        if pvadcTimer == nil {
+            pvadcTimer = Timer.every(3.seconds) {
+                AppDelegate.getAppDelegate().sendRequest(PVADCRequest())
+            }
         }
     }
     
@@ -90,32 +105,55 @@ class DashBoardController: UIViewController {
         super.viewDidAppear(animated)
         AppDelegate.getAppDelegate().startConnect(false)
         
+        getSoloarCharging()
+        
         _ = SwiftEventBus.onMainThread(self, name: EVENT_BUS_RAWPACKET_DATA_KEY) { (notification) in
-            var percent:Float = 0
-            var totalSteps:Int = 0
             if !AppTheme.isTargetLunaR_OR_Nevo() {
+                var percent:Float = 0
+                var totalSteps:Int = 0
                 let packet = notification.object as! LunaRPacket
-                //Do nothing
                 if packet.getHeader() == GetStepsGoalRequest.HEADER(){
                     let thispacket = packet.copy() as LunaRStepsGoalPacket
                     totalSteps = thispacket.getDailySteps()
                     let dailyStepGoal:Int = thispacket.getDailyStepsGoal()
                     percent = Float(totalSteps)/Float(dailyStepGoal)
+                    self.refreshCircleViewProgress(progressValue:percent,totalSteps:totalSteps)
+                }
+                
+                if packet.getHeader() == PVADCRequest.HEADER(){
+                    var pvadcValue:Int = Int(NSData2Bytes(packet.getPackets()[0])[4])
+                    pvadcValue =  pvadcValue + Int(NSData2Bytes(packet.getPackets()[0])[5] )<<8
+                    var batteryAdcValue:Int = Int(NSData2Bytes(packet.getPackets()[0])[2])
+                    batteryAdcValue =  batteryAdcValue + Int(NSData2Bytes(packet.getPackets()[0])[3] )<<8
+                    
+                    XCGLogger.default.debug("pvadc packet............\(pvadcValue)")
+                    if pvadcValue>170 {
+                        if let res = self.chargingView?.getAnimationState() ,!res {
+                            self.chargingView?.startRotateImageView()
+                        }
+                    }else{
+                        self.chargingView?.stopRotateImageView()
+                    }
                 }
             }
-            self.refreshCircleViewProgress(progressValue:percent,totalSteps:totalSteps)
         }
         
         _ = SwiftEventBus.onMainThread(self, name: EVENT_BUS_END_BIG_SYNCACTIVITY) { (notification) in
             let queryArray = MEDUserSleep.getFilter("date = \(Date().beginningOfDay.timeIntervalSince1970)")
-            let userSlepp:MEDUserSleep = queryArray[0] as! MEDUserSleep
-            let totalSleepTime:Double = Double(userSlepp.totalSleepTime)/60.0
-            self.refreshSleepTimer(totalTime: totalSleepTime)
+            if queryArray.count>0 {
+                let userSlepp:MEDUserSleep = queryArray[0] as! MEDUserSleep
+                let totalSleepTime:Double = Double(userSlepp.totalSleepTime)/60.0
+                self.refreshSleepTimer(totalTime: totalSleepTime)
+            }
         }
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
+        
+        pvadcTimer?.invalidate()
+        pvadcTimer = nil
+        
         SwiftEventBus.unregister(self, name: EVENT_BUS_RAWPACKET_DATA_KEY)
         SwiftEventBus.unregister(self, name: EVENT_BUS_END_BIG_SYNCACTIVITY)
     }

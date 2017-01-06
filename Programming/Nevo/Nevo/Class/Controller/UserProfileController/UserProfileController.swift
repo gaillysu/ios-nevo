@@ -102,7 +102,7 @@ extension UserProfileController: UIImagePickerControllerDelegate, UINavigationCo
         imagePicker.allowsEditing = false
         imagePicker.delegate = self
         
-        let alertController = ActionSheetView(title: nil, message: nil, preferredStyle: .actionSheet)
+        let alertController = MEDAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         alertController.addAction(UIAlertAction(title: NSLocalizedString("Choose from Camera", comment: ""), style: .default, handler: { action in
             imagePicker.sourceType = .camera
             self.present(imagePicker, animated: true, completion: nil)

@@ -27,27 +27,27 @@ extension DashBoardElementViewCornerable where Self: UIView {
 }
 
 
-class DashBoardChargingView: UIView, DashBoardElementViewCornerable {
+class DashBoardChargingView: UIView, DashBoardElementViewCornerable,CAAnimationDelegate {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var contentLabel: UILabel!
 
     @IBOutlet weak var imageViewTop: NSLayoutConstraint!
     @IBOutlet weak var imageViewBottom: NSLayoutConstraint!
-    
+    fileprivate var isAnimation:Bool = false
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
         imageView.image = UIImage(named: "sun")
         titleLabel.text = NSLocalizedString("harvest_status", comment: "")
-        contentLabel.text = NSLocalizedString("charging", comment: "")
+        contentLabel.text = NSLocalizedString("nosolar", comment: "")
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        let fontAttributes = [NSFontAttributeName: UIFont(name: "Helvetica Neue", size: 8)]
+        let fontAttributes = [NSFontAttributeName: UIFont(name: "Raleway", size: 8)]
         if let titleLabelWidth = (titleLabel.text as NSString?)?.size(attributes: fontAttributes).width {
             if titleLabelWidth < titleLabel.bounds.width {
                 titleLabel.snp.updateConstraints({ (v) in
@@ -67,6 +67,52 @@ class DashBoardChargingView: UIView, DashBoardElementViewCornerable {
     class func factory() -> DashBoardChargingView {
         return Bundle.main.loadNibNamed("DashBoardElementView", owner: nil, options: nil)![0] as! DashBoardChargingView
     }
+    
+    // return ->true:in animation, ->false:not animation
+    func getAnimationState()->Bool {
+        return isAnimation
+    }
+    
+    func startRotateImageView() {
+        contentLabel.text = NSLocalizedString("charging", comment: "")
+        
+        let circleByOneSecond:CGFloat = 1;
+        
+        let rotationAnimation:CABasicAnimation = CABasicAnimation(keyPath: "transform.rotation.z")
+        rotationAnimation.fromValue            = 0;
+        rotationAnimation.toValue              = M_PI * 100000
+        rotationAnimation.duration             = CFTimeInterval((1.0/circleByOneSecond)*100000);
+        rotationAnimation.timingFunction       = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
+        rotationAnimation.delegate = self
+        imageView.layer.add(rotationAnimation, forKey: nil)
+    }
+    
+    func stopRotateImageView() {
+        contentLabel.text = NSLocalizedString("nosolar", comment: "")
+        let pausedTime:CFTimeInterval = imageView.layer.convertTime(CACurrentMediaTime(), from: nil)
+        layer.speed = 0.0;
+        layer.timeOffset = pausedTime;
+        //set animation state
+        isAnimation = false
+    }
+    
+    func resumeRotateImageView() {
+        imageView.layer.speed = 1.0;
+        imageView.layer.timeOffset = 0.0;
+        imageView.layer.beginTime = 0.0;
+        let timeSincePause:CFTimeInterval = imageView.layer.convertTime(CACurrentMediaTime(), from: nil)
+        layer.beginTime = timeSincePause;
+    }
+    
+    // MARK: - CAAnimationDelegate
+    func animationDidStart(_ anim: CAAnimation){
+        isAnimation = true
+    }
+    
+    func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
+        isAnimation = false
+    }
+
 }
 
 class DashBoardSunriseView: UIView, DashBoardElementViewCornerable {

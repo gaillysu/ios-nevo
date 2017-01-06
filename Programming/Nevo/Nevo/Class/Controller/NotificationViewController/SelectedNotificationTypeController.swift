@@ -114,7 +114,7 @@ extension SelectedNotificationTypeController {
             tableView.reloadRows(at: [reloadIndexPath], with: UITableViewRowAnimation.automatic)
             tableView.reloadSections(IndexSet(integer: 2), with: UITableViewRowAnimation.automatic)
         } else if indexPath.section == 3 {
-            let alertController = ActionSheetView(title: NSLocalizedString("DeleteNotificationWarning", comment: ""), message: nil, preferredStyle: .alert)
+            let alertController = MEDAlertController(title: NSLocalizedString("DeleteNotificationWarning", comment: ""), message: nil, preferredStyle: .alert)
             let confirmAction = UIAlertAction(title: NSLocalizedString("Yes", comment: ""), style: .default, handler: { (_) in
                 self.selectedDelegate?.didDeleteNotification(appID: self.notSetting!.getPacket())
                 _ = self.navigationController?.popViewController(animated: true)
@@ -178,7 +178,7 @@ extension SelectedNotificationTypeController:AddPacketToWatchDelegate {
             return allowCell
         case 1:
             let colorString = notSetting!.getHexColor()
-            let color = colorString == "" ? UIColor.getRandomColor() : UIColor.init(rgba: colorString)
+            let color = colorString == "" ? UIColor.getRandomColor() : UIColor(colorString)
             let cell = selectedNotificationView.getNotificationClockCell(indexPath, tableView: tableView, image: UIImage.dotImageWith(color: color, backgroundColor: UIColor.getGreyColor(), size: CGSize(width: 15, height: 15)), clockIndex: notSetting!.getClock())
             
             cell.viewDefaultColorful()
@@ -189,7 +189,7 @@ extension SelectedNotificationTypeController:AddPacketToWatchDelegate {
             if !AppTheme.isTargetLunaR_OR_Nevo() {
                 cell.accessoryType = notSetting!.getStates() ? .disclosureIndicator : .none
                 let colorString = notSetting!.getHexColor()
-                let color = colorString == "" ? UIColor.getRandomColor() : UIColor.init(rgba: colorString)
+                let color = colorString == "" ? UIColor.getRandomColor() : UIColor(colorString)
                 
                 cell.imageView?.image = UIImage.dotImageWith(color: color, backgroundColor: UIColor.getGreyColor(), size: CGSize(width: 15, height: 15))
 

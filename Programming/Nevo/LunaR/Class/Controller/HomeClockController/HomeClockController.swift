@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import Timepiece
+ 
 import RealmSwift
 
 class HomeClockController: UIViewController {
@@ -79,7 +79,10 @@ extension HomeClockController {
                     if let city = HomeClockUtil.shared.getHomeCityWithSelectedFlag(), let timezone = HomeClockUtil.shared.getTimezoneWithCity(city: city) {
                         let cityZone = timezone.gmtTimeOffset
                         let localZone = Date.getLocalOffSet()
-                        let offset = 23-abs((localZone-cityZone)/60)
+                        var offset = 23-abs((localZone-cityZone)/60)
+                        if localZone == cityZone {
+                            offset = 0
+                        }
                         let setWordClock:SetWorldClockRequest = SetWorldClockRequest(offset: offset)
                         AppDelegate.getAppDelegate().sendRequest(setWordClock)
                     }else{
