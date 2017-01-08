@@ -175,6 +175,8 @@ extension MEDColorfulLooking where Self: UISegmentedControl {
     public func viewDefaultColorful() {
         if !AppTheme.isTargetLunaR_OR_Nevo() {
             tintColor = UIColor.getBaseColor()
+        } else {
+            tintColor = UIColor.getBaseColor()
         }
     }
 }
@@ -184,6 +186,16 @@ extension MEDColorfulLooking where Self: UIActivityIndicatorView {
         if !AppTheme.isTargetLunaR_OR_Nevo() {
             color = UIColor.white
             tintColor = UIColor.white
+        }
+    }
+}
+
+extension MEDColorfulLooking where Self: UIDatePicker {
+    public func viewDefaultColorful() {
+        backgroundColor = UIColor.clear
+        
+        if !AppTheme.isTargetLunaR_OR_Nevo() {
+            setValue(UIColor.white, forKey: "textColor")
         }
     }
 }

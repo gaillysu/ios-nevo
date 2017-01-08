@@ -9,7 +9,7 @@
 import UIKit
 import Charts
 import SwiftEventBus
-import Timepiece
+ 
 import SwiftyJSON
 
 class StepsHistoryViewController: PublicClassController,ChartViewDelegate {
@@ -142,25 +142,25 @@ class StepsHistoryViewController: PublicClassController,ChartViewDelegate {
         chartView!.setScaleEnabled(false)
         chartView.delegate = self
         
-        let xAxis:ChartXAxis = chartView!.xAxis
+        let xAxis:XAxis = chartView!.xAxis
         xAxis.labelTextColor = UIColor.black
         xAxis.axisLineColor = UIColor.black
         xAxis.drawAxisLineEnabled = true
         xAxis.drawGridLinesEnabled = true
-        xAxis.labelPosition = ChartXAxis.LabelPosition.bottom
+        xAxis.labelPosition = XAxis.LabelPosition.bottom
         xAxis.labelFont = UIFont(name: "Helvetica-Light", size: 10)!
         
-        let yAxis:ChartYAxis = chartView!.leftAxis
+        let yAxis:YAxis = chartView!.leftAxis
         yAxis.labelTextColor = UIColor.black
         yAxis.axisLineColor = UIColor.black
         yAxis.drawAxisLineEnabled  = true
         yAxis.drawGridLinesEnabled  = true
         yAxis.drawLimitLinesBehindDataEnabled = true
-        yAxis.axisMaxValue = 500;
-        yAxis.axisMinValue = 0
+        yAxis.axisMaximum = 500;
+        yAxis.axisMinimum = 0
         yAxis.setLabelCount(5, force: true)
         
-        let rightAxis:ChartYAxis = chartView!.rightAxis
+        let rightAxis:YAxis = chartView!.rightAxis
         rightAxis.labelTextColor = UIColor.clear
         rightAxis.axisLineColor = UIColor.black
         rightAxis.drawAxisLineEnabled  = true
@@ -199,13 +199,16 @@ class StepsHistoryViewController: PublicClassController,ChartViewDelegate {
             stepsValue.append(stepsModel)
         }
         
-        var xVal:[String] = [];
         var yVal:[BarChartDataEntry] = [];
         
         var tempMaxValue:Double = 0;
         
         let stepsModel:MEDUserSteps = stepsValue[0] as! MEDUserSteps;
         let hourlystepsArray = JSON(AppTheme.jsonToArray(stepsModel.hourlysteps)).arrayValue
+        
+        let formatter:ChartFormatter = ChartFormatter()
+        let xaxis:XAxis = XAxis()
+        
         for (index,steps) in hourlystepsArray.enumerated(){
             let val1:Double  = steps.doubleValue;
             if tempMaxValue < val1 {
@@ -216,9 +219,13 @@ class StepsHistoryViewController: PublicClassController,ChartViewDelegate {
             if(dateString.length < 8) {
                 dateString = "00000000"
             }
-            xVal.append("\(index):00")
-            yVal.append(BarChartDataEntry(values: [val1], xIndex:index))
+            yVal.append(BarChartDataEntry(x: Double(index), yValues: [val1]))
+            _ = formatter.stringForValue(Double(index), axis: xaxis)
         }
+        
+        xaxis.valueFormatter = formatter
+        chartView?.xAxis.valueFormatter = xaxis.valueFormatter
+        
         let steps:Int = 500
         let remaining = Double(steps - (Int(tempMaxValue) % steps))
         var maxValue = remaining + tempMaxValue
@@ -229,11 +236,10 @@ class StepsHistoryViewController: PublicClassController,ChartViewDelegate {
         }
         
         chartView!.leftAxis.setLabelCount(labelCount, force: true)
-        chartView!.leftAxis.axisMaxValue = maxValue
+        chartView!.leftAxis.axisMaximum = maxValue
         
         //柱状图表
-        //ChartColorTemplates.getDeepSleepColor()
-        let set1:BarChartDataSet  = BarChartDataSet(yVals: yVal, label: "")
+        let set1:BarChartDataSet  = BarChartDataSet(values: yVal, label: "")
         //每个数据区块的颜色
         if !AppTheme.isTargetLunaR_OR_Nevo() {
             set1.colors = [UIColor.getBaseColor()];
@@ -243,17 +249,18 @@ class StepsHistoryViewController: PublicClassController,ChartViewDelegate {
             set1.highlightColor = AppTheme.NEVO_SOLAR_YELLOW()
         }
         
-        set1.barSpace = 0.1;
+        set1.barBorderWidth = 0.1
+        //set1.barSpace = 0.1;
         let dataSets:[BarChartDataSet] = [set1];
         
-        let data:BarChartData = BarChartData(xVals: xVal, dataSets: dataSets)
+        let data:BarChartData = BarChartData(dataSets: dataSets)
         data.setDrawValues(false);//false 显示柱状图数值否则不显示
         chartView?.data = data;
         chartView?.animate(yAxisDuration: 2.0, easingOption: ChartEasingOption.easeInOutCirc)
-        chartView?.moveViewToX(CGFloat(yVal.count))
+        chartView?.moveViewToX(Double(yVal.count))
     }
     
-    func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, dataSetIndex: Int, highlight: ChartHighlight) {
+    func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, dataSetIndex: Int, highlight: Highlight) {
         //chartView.highlightValue(xIndex: entry.xIndex, dataSetIndex: dataSetIndex, callDelegate: false)
         //NSLog("chartValueSelected:  %d",entry.xIndex)
         //let stepsModel:UserSteps = queryModel.objectAtIndex(0) as! UserSteps;

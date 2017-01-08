@@ -22,7 +22,7 @@ import XCGLogger
 import SwiftyTimer
 import CoreLocation
 import Solar
-import Timepiece
+ 
 import RealmSwift
 
 let nevoDBDFileURL:String = "nevoDBName";
@@ -453,7 +453,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
 
                 let tabVC = self.window?.rootViewController
                 
-                let actionSheet:ActionSheetView = ActionSheetView(title: titleString, message: msg, preferredStyle: UIAlertControllerStyle.alert)
+                let actionSheet:MEDAlertController = MEDAlertController(title: titleString, message: msg, preferredStyle: UIAlertControllerStyle.alert)
                 let alertAction1:AlertAction = AlertAction(title: cancelString, style: UIAlertActionStyle.cancel, handler: { ( alert) -> Void in
                     
                 })
@@ -624,7 +624,7 @@ extension AppDelegate {
             let dateString:String = date.stringFromFormat("yyy-MM-dd")
             var caloriesValue:Int = 0
             var milesValue:Double = 0
-            StepGoalSetingController.calculationData((stepsModel.walking_duration+stepsModel.running_duration), steps: stepsModel.totalSteps, completionData: { (miles, calories) in
+            DataCalculation.calculationData((stepsModel.walking_duration+stepsModel.running_duration), steps: stepsModel.totalSteps, completionData: { (miles, calories) in
                 caloriesValue = Int(calories)
                 milesValue = miles
             })

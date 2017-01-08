@@ -13,6 +13,11 @@ import XCGLogger
 
 let buildin_firmware_version = AppTheme.GET_FIRMWARE_VERSION();
 let buildin_software_version = AppTheme.GET_SOFTWARE_VERSION();
+
+enum ActionType {
+    case get
+    case set
+}
 /**
 This class holds all app-wide constants.
 Colors, fonts etc...
@@ -27,17 +32,17 @@ class AppTheme {
             return UIColor.getBaseColor()
         }
         
-        return UIColor(rgba: "#A08455")
+        return UIColor("#A08455")
     }
 
     class func NEVO_SOLAR_GRAY() -> UIColor {
         
-        return UIColor(rgba: "#E5E4E2")
+        return UIColor("#E5E4E2")
     }
     
     class func NEVO_SOLAR_DARK_GRAY() -> UIColor {
         
-        return UIColor(rgba: "#BCBCBC")
+        return UIColor("#BCBCBC")
     }
     
     /**
@@ -458,11 +463,27 @@ class AppTheme {
     
     //return 0->Metrics,1->imperial,default value = 0
     class func getUserSelectedUnitValue()->Int {
-        if let value = UserDefaults.standard.object(forKey: "UserSelectedUnit") {
-            let index:Int = value as! Int
-            return index
+        if let row = MEDSettings.int(forKey: "UserSelectedUnit") {
+            return row
         }else{
             return 0
         }
+    }
+    
+    class func realmISFirstCopy(findKey:ActionType)->Bool {
+        if findKey == .get {
+            if let value = UserDefaults.standard.object(forKey: "ISFirstCopy") {
+                let index:Bool = value as! Bool
+                return index
+            }else{
+                return false
+            }
+        }
+        
+        if findKey == .set {
+            UserDefaults.standard.set(true, forKey: "ISFirstCopy")
+            return true
+        }
+        return false
     }
 }

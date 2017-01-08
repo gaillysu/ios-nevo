@@ -22,7 +22,7 @@ import XCGLogger
 import SwiftyTimer
 import CoreLocation
 import Solar
-import Timepiece
+ 
 import RealmSwift
 import Kingfisher
 
@@ -68,40 +68,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         Fabric.with([Crashlytics.self])
         // Override point for customization after application launch
-        UINavigationBar.appearance().tintColor = AppTheme.NEVO_SOLAR_YELLOW()
-        UITabBar.appearance().isTranslucent = true
-        UITabBar.appearance().backgroundColor = UIColor.getBarColor()
-        UINavigationBar.appearance().lt_setBackgroundColor(UIColor.getBarColor())
-        //set navigationBar font style and font color
-        UINavigationBar.appearance().lt_setBackgroundColor(UIColor.getLunarTabBarColor())
-        
-        UINavigationBar.appearance().tintColor = UIColor.getBaseColor()
-        
-        UITabBar.appearance().backgroundColor = UIColor.getGreyColor()
-        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName:UIColor.white,NSFontAttributeName:UIFont(name: "Raleway", size: 20)!]
-        
-        UIApplication.shared.statusBarStyle = .lightContent
-        
-        IQKeyboardManager.sharedManager().enable = true
-        
-        // 在这里授权以保证在接收到数据的时候可以写入
-        NevoHKManager.manager.requestPermission()
-        
-        updateDataBase()
-        
-        DispatchQueue.global(qos: .background).async {
-            WorldClockDatabaseHelper().setup()
-        }
-        
-        MEDUserGoal.defaultUserGoal()
-        
-        MEDUserNotification.defaultNotificationColor()
-        
-        MEDUserAlarm.defaultAlarm()
-        
         
         let kingfisherCache = KingfisherManager.shared.cache
-        /// Default cache period is 7 days, but the app's icon changes rarely, in case one day there is on network or cache for user... so set 30 days! 
+        /// Default cache period is 7 days, but the app's icon changes rarely, in case one day there is on network or cache for user... so set 30 days!
         kingfisherCache.maxCachePeriodInSecond = TimeInterval(60 * 60 * 24 * 30)
         
         /**
@@ -110,25 +79,58 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
         self.mConnectionController = ConnectionControllerImpl()
         self.mConnectionController?.setDelegate(self)
         
-        self.adjustLaunchLogic()
+        startAppSetup()
         
-        let userDefaults = UserDefaults.standard;
+        //let userDefaults = UserDefaults.standard;
         //lastSync = userDefaults.double(forKey: LAST_SYNC_DATE_KEY)
+        return true
+    }
+    
+    /// 每次开app需要设置的
+    func startAppSetup() {
+        UINavigationBar.appearance().tintColor  = AppTheme.NEVO_SOLAR_YELLOW()
+        UITabBar.appearance().isTranslucent     = true
+        UITabBar.appearance().backgroundColor   = UIColor.getBarColor()
         
+        //set navigationBar font style and font color
+        UINavigationBar.appearance().lt_setBackgroundColor(UIColor.getBarColor())
+        UINavigationBar.appearance().lt_setBackgroundColor(UIColor.getLunarTabBarColor())
+        UINavigationBar.appearance().tintColor              = UIColor.getBaseColor()
+        UINavigationBar.appearance().titleTextAttributes    = [NSForegroundColorAttributeName:UIColor.white,NSFontAttributeName:UIFont(name: "Raleway", size: 20)!]
+        
+        UITabBar.appearance().backgroundColor               = UIColor.getGreyColor()
+        
+        UIApplication.shared.statusBarStyle                 = .lightContent
+        
+        IQKeyboardManager.sharedManager().enable            = true
+        
+        // 在这里授权以保证在接收到数据的时候可以写入
+        NevoHKManager.manager.requestPermission()
+    
         //start Location
         self.startLocation()
         
-        return true
+        copyBundleRealmToDocumentFolder()
+        
+        updateDataBase()
+        
+        MEDUserGoal.defaultUserGoal()
+        
+        MEDUserNotification.defaultNotificationColor()
+        
+        MEDUserAlarm.defaultAlarm()
+        
+        self.adjustLaunchLogic()
     }
     
     func updateDataBase() {
         let config = Realm.Configuration(
             // 设置新的架构版本。这个版本号必须高于之前所用的版本号（如果您之前从未设置过架构版本，那么这个版本号设置为 0）
-            schemaVersion: 2,
+            schemaVersion: 3,
             // 设置闭包，这个闭包将会在打开低于上面所设置版本号的 Realm 数据库的时候被自动调用
             migrationBlock: { migration, oldSchemaVersion in
                 // 目前我们还未进行数据迁移，因此 oldSchemaVersion == 0
-                if (oldSchemaVersion < 2) {
+                if (oldSchemaVersion < 3) {
                     // 什么都不要做！Realm 会自行检测新增和需要移除的属性，然后自动更新硬盘上的数据库架构
                 }
         })
@@ -145,11 +147,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
     }
     
     func setWactnID(_ id:Int) {
-        let info: [String : Int] = [EVENT_BUS_WATCHID_DIDCHANGE_KEY : id]
-        SwiftEventBus.post(EVENT_BUS_WATCHID_DIDCHANGE_KEY, sender: nil, userInfo: info)
         XCGLogger.default.debug("setWactnID")
         UserDefaults.standard.set(id, forKey: WATCHKEY_SETID)
         UserDefaults.standard.synchronize()
+        
+        delay(seconds: 1.seconds) {
+            SwiftEventBus.post(EVENT_BUS_WATCHID_DIDCHANGE_KEY, sender: nil)
+        }
     }
     
     func getWactnID()->Int {
@@ -202,6 +206,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
             
             if(packet.getHeader() == SetRTCRequest.HEADER()) {
                 //setp2:start set user profile
+                self.setWorldTime()
                 self.SetProfile()
             }
             
@@ -390,7 +395,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                 //                    let tabVC:UITabBarController = self.window?.rootViewController as! UITabBarController
                 let tabVC = self.window?.rootViewController
                 
-                let actionSheet:ActionSheetView = ActionSheetView(title: titleString, message: msg, preferredStyle: UIAlertControllerStyle.alert)
+                let actionSheet:MEDAlertController = MEDAlertController(title: titleString, message: msg, preferredStyle: UIAlertControllerStyle.alert)
                 let alertAction1:AlertAction = AlertAction(title: cancelString, style: UIAlertActionStyle.cancel, handler: { ( alert) -> Void in
                     
                 })
@@ -480,6 +485,31 @@ extension AppDelegate {
         }
     }
     
+    func setWorldTime() {
+        if let row = MEDSettings.int(forKey: "SET_SYNCTIME_TYPE"), row == 0 {
+            if let city = HomeClockUtil.shared.getHomeCityWithSelectedFlag(), let timezone = HomeClockUtil.shared.getTimezoneWithCity(city: city) {
+                let cityZone = timezone.gmtTimeOffset
+                let localZone = Date.getLocalOffSet()
+                
+                var offset = 0
+                if localZone>cityZone {
+                    offset = 24-(localZone-cityZone)/60
+                }else{
+                    offset = (cityZone-localZone)/60
+                }
+                let setWordClock:SetWorldClockRequest = SetWorldClockRequest(offset: offset)
+                self.sendRequest(setWordClock)
+            }else{
+                let setWordClock:SetWorldClockRequest = SetWorldClockRequest(offset: 0)
+                self.sendRequest(setWordClock)
+            }
+        }else{
+            let setWordClock:SetWorldClockRequest = SetWorldClockRequest(offset: 0)
+            self.sendRequest(setWordClock)
+        }
+        
+    }
+    
     func getLongitude() -> Double {
         return longitude;
     }
@@ -494,7 +524,7 @@ extension AppDelegate {
             let userProfile:MEDUserProfile = login[0] as! MEDUserProfile
             let uidString:String = "\(userProfile.uid)"
             let keys:String = date.stringFromFormat("yyyyMMddHHmmss", locale: DateFormatter().locale)+uidString
-            let solar = SolarHarvest.getFilter("key = \(keys)")
+            let solar = SolarHarvest.getFilter("key = '\(keys)'")
             if solar.count == 0 {
                 let solarTime:SolarHarvest = SolarHarvest()
                 solarTime.key = keys
@@ -505,11 +535,13 @@ extension AppDelegate {
                 _ = solarTime.add()
             }else{
                 let solarTime:SolarHarvest = solar[0] as! SolarHarvest
-                solarTime.date = date.timeIntervalSince1970
-                solarTime.solarTotalTime = thispacket.getTotalSolarHarvestingTime()
-                solarTime.solarHourlyTime = "\(AppTheme.toJSONString(thispacket.getHourlyHarvestTime() as AnyObject!))"
-                solarTime.uid = userProfile.uid;
-                _ = solarTime.update()
+                let realm = try! Realm()
+                try! realm.write {
+                    solarTime.date = date.timeIntervalSince1970
+                    solarTime.solarTotalTime = thispacket.getTotalSolarHarvestingTime()
+                    solarTime.solarHourlyTime = "\(AppTheme.toJSONString(thispacket.getHourlyHarvestTime() as AnyObject!))"
+                    solarTime.uid = userProfile.uid;
+                }
             }
         }else{
             let keys:String = date.stringFromFormat("yyyyMMddHHmmss", locale: DateFormatter().locale)

@@ -13,13 +13,9 @@ import HealthKit
 See NevoHK protocol
 */
 
-fileprivate let nevoHKManage = NevoHKManager()
-
 class NevoHKManager {
     
-    static var manager: NevoHKManager {
-        return nevoHKManage
-    }
+    static let manager: NevoHKManager = NevoHKManager()
     
     fileprivate let mHealthKitStore = HKHealthStore()
     fileprivate init() {}

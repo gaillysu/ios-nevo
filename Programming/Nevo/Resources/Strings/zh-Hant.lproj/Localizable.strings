@@ -102,7 +102,6 @@
 "sync_finished"="同步完成";
 "Update"="升级";
 "Add"="添加";
-"no_alarm_content"="你没有设置一个闹钟,可以点击右上角的加好按钮添加一个闹钟";
 "An_update_is_available_for_your_watch"="你的手表有可用的更新";
 "goal_must_bigger_1000"="目标值必须是大于1000";
 //new Nevo
@@ -224,7 +223,6 @@
 "unit"="单位";
 "metrics"="公制";
 "imperial"="英制";
-
 "local_time" = "当地时间";
 "home_time" = "家乡时间";
 "home_time2" = "家乡时间";
@@ -240,13 +238,14 @@
 "inactivity" = "休息";
 "activity" = "活动";
 "steps_taken" = "已走步数";
-
 "update_available" = "你的 Nevo 有新的固件版本 VERSION_NUMBER 可用！";
 "home_local" = "手表数字时间";
-
 "failed_locate" = "定位失败";
 "locating" = "定位中...";
 "Calculating" = "计算中...";
-
 "tap_to" = "点击来";
 "Select_city" = "选择一个城市";
+"nosolar"="No Solar";
+"none_alarm" = "你还没有设置闹钟，点击右上角的加号按钮来添加一个吧！";
+"nevo_alarms_limit" = "Nevo 目前只支持打开3个闹钟。";
+"lunar_alarms_limit" = "LunaR 目前只支持打开7个睡眠闹钟与7个起床闹钟。";
