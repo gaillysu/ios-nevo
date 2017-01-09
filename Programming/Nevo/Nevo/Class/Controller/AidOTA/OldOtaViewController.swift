@@ -10,7 +10,6 @@ import UIKit
 import XCGLogger
 import iOSDFULibrary
 import CoreBluetooth
-import PopupController
 
 class OldOtaViewController: UIViewController  {
 
@@ -23,7 +22,6 @@ class OldOtaViewController: UIViewController  {
     fileprivate var selectedFirmware : DFUFirmware?
     fileprivate var selectedFileURL  : URL?
     fileprivate var secureDFU        : Bool?
-    fileprivate var popupView:PopupController?
     
     override func viewDidLayoutSubviews(){
         //init the view

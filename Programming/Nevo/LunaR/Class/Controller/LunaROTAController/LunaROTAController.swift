@@ -10,7 +10,6 @@ import UIKit
 import XCGLogger
 import iOSDFULibrary
 import CoreBluetooth
-import PopupController
 import MRProgress
 
 class LunaROTAController: UIViewController,ButtonManagerCallBack  {
@@ -130,14 +129,17 @@ extension LunaROTAController:CBCentralManagerDelegate, CBPeripheralDelegate {
 
 //MARK: - DFUServiceDelegate
 extension LunaROTAController:DFUServiceDelegate {
-    func didStateChangedTo(_ state:DFUState) {
+    /**
+     Callback called when state of the DFU Service has changed.
+     
+     This method is called in the main thread and is safe to update any UI.
+     
+     - parameter state: the new state fo the service
+     */
+    func dfuStateDidChange(to state: DFUState) {
         switch state {
         case .aborted:
             lunarOtaView.setProgress(0, currentTask: 1, allTask: 1, progressString: nil)
-            break
-        case .signatureMismatch:
-            lunarOtaView.setProgress(0, currentTask: 1, allTask: 1, progressString: NSLocalizedString("ota_error_signature_mismatch", comment: ""))
-            self.lunarOtaView.upgradeError()
             break
         case .completed:
             lunarOtaView.setProgress(1, currentTask: 1, allTask: 1, progressString: NSLocalizedString("UpdateSuccess1", comment: ""))
@@ -156,17 +158,13 @@ extension LunaROTAController:DFUServiceDelegate {
             break
         case .validating:
             break
-        case .operationNotPermitted:
-            break
-        case .failed:
-            break
         }
         
         //self.dfuStatusLabel.text = state.description()
         logWith(LogLevel.info, message: "Changed state to: \(state.description())")
     }
     
-    func didErrorOccur(_ error: DFUError, withMessage message: String) {
+    func dfuError(_ error: DFUError, didOccurWithMessage message: String) {
         lunarOtaView.setProgress(0, currentTask: 1, allTask: 1, progressString: message)
         logWith(LogLevel.error, message: message)
     }
@@ -174,7 +172,8 @@ extension LunaROTAController:DFUServiceDelegate {
 
 //MARK: - DFUProgressDelegate
 extension LunaROTAController:DFUProgressDelegate{
-    func onUploadProgress(_ part: Int, totalParts: Int, progress: Int, currentSpeedBytesPerSecond: Double, avgSpeedBytesPerSecond: Double) {
+    func dfuProgressDidChange(for part: Int, outOf totalParts: Int, to progress: Int,
+                              currentSpeedBytesPerSecond: Double, avgSpeedBytesPerSecond: Double) {
         lunarOtaView.setProgress(Float(progress) / 100.0, currentTask: 1, allTask: 1, progressString: "Updating :\(part)/\(totalParts)")
         XCGLogger.default.debug("progress:\(progress)"+"Speed : \(String(format:"%.1f", avgSpeedBytesPerSecond/1024)) Kbps, pt. \(part)/\(totalParts)")
     }
@@ -245,24 +244,22 @@ extension LunaROTAController {
         
         selectedFileURL  = self.getBundledFirmwareURLHelper()
         selectedFirmware = DFUFirmware(urlToZipFile: selectedFileURL!)
-        
+    
         let dfuInitiator = DFUServiceInitiator(centralManager: centralManager!, target: dfuPeripheral!)
-        _ = dfuInitiator.withFirmwareFile(selectedFirmware!)
         dfuInitiator.delegate = self
         dfuInitiator.progressDelegate = self
         dfuInitiator.logger = self
-        dfuController = dfuInitiator.start()
+        
+        // This enables the experimental Buttonless DFU feature from SDK 12.
+        // Please, read the field documentation before use.
+        //dfuInitiator.enableUnsafeExperimentalButtonlessServiceInSecureDfu = true
+        
+        dfuController = dfuInitiator.with(firmware: selectedFirmware!).start()
     }
 }
 
 //MARK: - SelectPeripheralDelegate
-extension LunaROTAController:SelectPeripheralDelegate {
-    func onDidSelectPeripheral(_ dFUMode:Bool,_ peripheral:CBPeripheral, _ manager:CBCentralManager){
-        self.setTargetPeripheral(aPeripheral: peripheral)
-        self.setCentralManager(centralManager: manager)
-        self.showAlertView()
-    }
-    
+extension LunaROTAController {
     func setOTAMode(){
         let view = MRProgressOverlayView.showOverlayAdded(to: self.navigationController!.view, title: NSLocalizedString("please_wait", comment: ""), mode: MRProgressOverlayViewMode.indeterminate, animated: true)
         view?.setTintColor(UIColor.getBaseColor())
@@ -299,6 +296,7 @@ extension LunaROTAController:ConnectionControllerDelegate {
                     AppDelegate.getAppDelegate().getMconnectionController()?.disconnect()
                     self.centralManager = AppDelegate.getAppDelegate().getMconnectionController()!.getBLECentralManager()!
                     self.centralManager?.delegate = self
+                    self.centralManager!.connect(dfuPeripheral!)
                     self.startDiscovery()
                 }
             }else{
