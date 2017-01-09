@@ -1,0 +1,149 @@
+PODS:
+  - ActiveLabel (0.7.0)
+  - Alamofire (4.2.0)
+  - BRYXBanner (0.7.1)
+  - Charts (3.0.1):
+    - Charts/Core (= 3.0.1)
+  - Charts/Core (3.0.1)
+  - Crashlytics (3.8.3):
+    - Fabric (~> 1.6.3)
+  - CVCalendar (1.4.1)
+  - Fabric (1.6.11)
+  - FMDB (2.6.2):
+    - FMDB/standard (= 2.6.2)
+  - FMDB/standard (2.6.2)
+  - iOSDFULibrary (1.0.11):
+    - Zip (~> 0.6)
+  - IQKeyboardManagerSwift (4.0.8)
+  - Kingfisher (3.1.4)
+  - LTNavigationBar (2.1.9)
+  - MRProgress (0.8.3):
+    - MRProgress/ActivityIndicator (= 0.8.3)
+    - MRProgress/Blur (= 0.8.3)
+    - MRProgress/Circular (= 0.8.3)
+    - MRProgress/Icons (= 0.8.3)
+    - MRProgress/NavigationBarProgress (= 0.8.3)
+    - MRProgress/Overlay (= 0.8.3)
+  - MRProgress/ActivityIndicator (0.8.3):
+    - MRProgress/Stopable
+  - MRProgress/Blur (0.8.3):
+    - MRProgress/Helper
+  - MRProgress/Circular (0.8.3):
+    - MRProgress/Helper
+    - MRProgress/ProgressBaseClass
+    - MRProgress/Stopable
+  - MRProgress/Helper (0.8.3)
+  - MRProgress/Icons (0.8.3)
+  - MRProgress/NavigationBarProgress (0.8.3):
+    - MRProgress/ProgressBaseClass
+  - MRProgress/Overlay (0.8.3):
+    - MRProgress/ActivityIndicator
+    - MRProgress/Blur
+    - MRProgress/Circular
+    - MRProgress/Helper
+    - MRProgress/Icons
+  - MRProgress/ProgressBaseClass (0.8.3)
+  - MRProgress/Stopable (0.8.3):
+    - MRProgress/Helper
+  - MSColorPicker (1.0.0)
+  - NJKWebViewProgress (0.2.3):
+    - NJKWebViewProgress/Core (= 0.2.3)
+    - NJKWebViewProgress/ProgressView (= 0.2.3)
+  - NJKWebViewProgress/Core (0.2.3)
+  - NJKWebViewProgress/ProgressView (0.2.3)
+  - PopupController (0.2.0)
+  - Realm (2.1.2):
+    - Realm/Headers (= 2.1.2)
+  - Realm/Headers (2.1.2)
+  - RealmSwift (2.1.2):
+    - Realm (= 2.1.2)
+  - RegexKitLite (4.0)
+  - RSKImageCropper (1.5.2)
+  - SnapKit (3.0.2)
+  - Solar (1.0.0)
+  - SwiftEventBus (2.2.0)
+  - SwiftyJSON (3.1.3)
+  - SwiftyTimer (2.0.0)
+  - UIColor_Hex_Swift (3.0.2)
+  - XCGLogger (4.0.0):
+    - XCGLogger/Core (= 4.0.0)
+  - XCGLogger/Core (4.0.0)
+  - Zip (0.6.0)
+
+DEPENDENCIES:
+  - ActiveLabel
+  - Alamofire
+  - BRYXBanner
+  - Charts (~> 3.0.0)
+  - Crashlytics
+  - CVCalendar (~> 1.4.0)
+  - Fabric
+  - FMDB (~> 2.6.2)
+  - iOSDFULibrary (from `https://github.com/NordicSemiconductor/IOS-Pods-DFU-Library.git`, branch `swift3`)
+  - IQKeyboardManagerSwift (~> 4.0.6)
+  - Kingfisher (~> 3.1.3)
+  - LTNavigationBar
+  - MRProgress
+  - MSColorPicker
+  - NJKWebViewProgress
+  - PopupController
+  - RealmSwift
+  - RegexKitLite
+  - RSKImageCropper
+  - SnapKit (~> 3.0.1)
+  - Solar
+  - SwiftEventBus (from `https://github.com/cesarferreira/SwiftEventBus.git`, tag `2.2.0`)
+  - SwiftyJSON
+  - SwiftyTimer
+  - UIColor_Hex_Swift
+  - XCGLogger (~> 4.0.0)
+
+EXTERNAL SOURCES:
+  iOSDFULibrary:
+    :branch: swift3
+    :git: https://github.com/NordicSemiconductor/IOS-Pods-DFU-Library.git
+  SwiftEventBus:
+    :git: https://github.com/cesarferreira/SwiftEventBus.git
+    :tag: 2.2.0
+
+CHECKOUT OPTIONS:
+  iOSDFULibrary:
+    :commit: 72194a80c667245b10af1e4c5f54379cabe0ebc6
+    :git: https://github.com/NordicSemiconductor/IOS-Pods-DFU-Library.git
+  SwiftEventBus:
+    :git: https://github.com/cesarferreira/SwiftEventBus.git
+    :tag: 2.2.0
+
+SPEC CHECKSUMS:
+  ActiveLabel: eb405c5b99275be52fac161f7a55cab1dd672c54
+  Alamofire: aa2e09d871c9160ac53c90e83c68064a94e3dfbe
+  BRYXBanner: 34eabf9c6c009f187948ca78a4f3bba3767d0f04
+  Charts: 0e84f4418e87dad6a9edde221fba37ebb51d3ba7
+  Crashlytics: 2b6dbe138a42395577cfa73dfa1aa7248cadf39e
+  CVCalendar: 61912eb5dc39c3bcfe22a731147a559a696fbc15
+  Fabric: 5911403591946b8228ab1c51d98f1d7137e863c6
+  FMDB: 854a0341b4726e53276f2a8996f06f1b80f9259a
+  iOSDFULibrary: bba594c017769ab19cd5101d41faf8e904c48412
+  IQKeyboardManagerSwift: c04bc9f68473823f825eb44d958fce98d921bead
+  Kingfisher: 6c67e3e57f2d81a9cfdfa25052cd86f33ceac9bb
+  LTNavigationBar: c278785bed344862e18146b5f06792932e4feacc
+  MRProgress: 16de7cc9f347e8846797a770db102a323fe7ef09
+  MSColorPicker: 1d11c8f6b74a811ac5a9dace4cc5211ef8002c5c
+  NJKWebViewProgress: f481fd424cb5ecc27eacae11b5397db92fba9a4d
+  PopupController: 0b69fdf11cbeaa807789a8c3992599083640988f
+  Realm: efe855f4d977c8ce5a82d3116d9f1ff155a6550c
+  RealmSwift: 17d6ee30b6f9df86364408c2197492e33bfea567
+  RegexKitLite: c0e4c12e6e7de0769f3a3ed679f0f61604170661
+  RSKImageCropper: 27d0e7efa800b509720163c3561fe08a04853780
+  SnapKit: 2e456761aa92d4d4067a7a5594c18769d451a8ad
+  Solar: 8db49542f5bf0272a23a488f0769c58af7b6e28e
+  SwiftEventBus: 39cde57d1881f9d6e8afb1f9e41f973e331bf847
+  SwiftyJSON: 38a8ea2006779c0fc4c310cb2ee8195327740faf
+  SwiftyTimer: 2efd74b060d69ad4f1496baf5bbedbe132125fcf
+  UIColor_Hex_Swift: 95f718452092a3efc8a827dffd2c04d3237be02d
+  XCGLogger: 38063ea89b4c8b23232d18efd2e12eb0005f3ea4
+  Zip: 805fc2fa9d2f05bbb7762d982d7a42ccdcc51f42
+
+PODFILE CHECKSUM: 314fd170fccdaf01daff8b209c37a5898da3b9c6
+
+COCOAPODS: 1.2.0.beta.3
