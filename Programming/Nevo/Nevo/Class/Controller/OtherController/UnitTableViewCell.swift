@@ -84,7 +84,7 @@ extension UnitTableViewCell {
         case .syncTime:
             /// TODO: 同步时间 cell 的默认行为
             if let value = MEDSettings.int(forKey: "SET_SYNCTIME_TYPE") {
-                cell?.unitSegmentedField.text = cell?.timeOptionArray[0]
+                cell?.unitSegmentedField.text = cell?.timeOptionArray[value]
                 cell?.picker?.selectRow(value, inComponent: 0, animated: false)
             }else{
                 cell?.unitSegmentedField.text = cell?.timeOptionArray[0]
