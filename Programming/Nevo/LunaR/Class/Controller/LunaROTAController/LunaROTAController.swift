@@ -287,17 +287,13 @@ extension LunaROTAController:ConnectionControllerDelegate {
             if isConnected{
                 if state == DFUControllerState.send_RECONNECT{
                     state = DFUControllerState.send_START_COMMAND
+                    
+                    AppDelegate.getAppDelegate().getMconnectionController()?.sendRequest(SetOTAModeRequest())
+                    
                     let dispatchTime: DispatchTime = DispatchTime.now() + Double(Int64(0.8 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
                     DispatchQueue.main.asyncAfter(deadline: dispatchTime, execute: {
-                        AppDelegate.getAppDelegate().getMconnectionController()?.sendRequest(SetOTAModeRequest())
+                        AppDelegate.getAppDelegate().getMconnectionController()?.disconnect()
                     })
-                }else if state == DFUControllerState.discovering{
-                    state = DFUControllerState.send_FIRMWARE_DATA
-                    AppDelegate.getAppDelegate().getMconnectionController()?.disconnect()
-                    self.centralManager = AppDelegate.getAppDelegate().getMconnectionController()!.getBLECentralManager()!
-                    self.centralManager?.delegate = self
-                    self.centralManager!.connect(dfuPeripheral!)
-                    self.startDiscovery()
                 }
             }else{
                 if state == DFUControllerState.idle{
@@ -310,14 +306,16 @@ extension LunaROTAController:ConnectionControllerDelegate {
                 }else if state == DFUControllerState.send_START_COMMAND{
                     self.state = DFUControllerState.discovering
                     //reset it by BLE peer disconnect
-                    AppDelegate.getAppDelegate().getMconnectionController()?.setOTAMode(false,Disconnect:false)
                     let dispatchTime: DispatchTime = DispatchTime.now() + Double(Int64(1.0 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
                     DispatchQueue.main.asyncAfter(deadline: dispatchTime, execute: {
                         XCGLogger.default.debug("***********again set OTA mode,forget it firstly,and scan DFU service*******")
                         //when switch to DFU mode, the identifier has changed another one
                         AppDelegate.getAppDelegate().getMconnectionController()?.forgetSavedAddress()
                         AppDelegate.getAppDelegate().getMconnectionController()?.setOTAMode(true,Disconnect:false)
-                        //AppDelegate.getAppDelegate().getMconnectionController()?.connect()
+
+                        self.centralManager = AppDelegate.getAppDelegate().getMconnectionController()!.getBLECentralManager()!
+                        self.centralManager?.delegate = self
+                        self.startDiscovery()
                     })
                 }
             }

@@ -27,7 +27,11 @@ class SetOTAModeRequest : Request {
     let values :[UInt8] = [0x00,0x72,0xA0,0x8A,0x7D,0xDE,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
     let values2 :[UInt8] = [0xFF,0x72,0x00,0x00,0x00,0x00,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
     func getTargetProfile() -> Profile {
-        return NevoOTAModeProfile()
+        if AppTheme.isTargetLunaR_OR_Nevo() {
+            return NevoOTAModeProfile()
+        }else{
+            return LunaROTAModeProfile()
+        }
     }
     
     func getRawData() -> Data {
