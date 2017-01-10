@@ -271,18 +271,15 @@ extension SolarIndicatorController:ChartViewDelegate {
         }
         dataSet.colors = colors
         
-        let data:PieChartData = PieChartData(dataSets: [dataSet])
-            //PieChartData(xVals: xVals, dataSets: [dataSet])
-        //data.highlightEnabled = false
         let pFormatter:NumberFormatter = NumberFormatter()
         pFormatter.numberStyle = NumberFormatter.Style.percent;
         pFormatter.maximumFractionDigits = 1;
         pFormatter.multiplier = 1.0;
         pFormatter.percentSymbol = " %";
         
-        let valueFormatter:LargeValueFormatter = LargeValueFormatter()
-        data.setValueFormatter(valueFormatter)
-
+        let data:PieChartData = PieChartData(dataSets: [dataSet])
+        //data.highlightEnabled = false
+        data.setValueFormatter(DefaultValueFormatter(formatter: pFormatter))
         data.setValueFont(UIFont(name: "HelveticaNeue-Light", size: 16.0))
         data.setValueTextColor(UIColor.white)
         pieChartView.data = data;
