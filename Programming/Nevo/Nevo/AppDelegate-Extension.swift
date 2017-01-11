@@ -429,3 +429,9 @@ extension AppDelegate {
         print("Migrated objects in the default Realm: \(try! Realm().objects(City.self))")
     }
 }
+
+// MARK: - Fake Functions for Nevo
+extension AppDelegate {
+    func setWorldTime() {
+    }
+}
