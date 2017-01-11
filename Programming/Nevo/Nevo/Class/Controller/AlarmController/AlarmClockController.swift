@@ -61,8 +61,10 @@ class AlarmClockController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        navigationController?.navigationBar.allSubviews(do: { (v) in
-            v.isHidden = v.frame.height == 0.5
+        navigationController?.navigationBar.subviewsSatisfy(theCondition: { (v) -> (Bool) in
+            return v.frame.height == 0.5
+        }, do: { (v) in
+            v.isHidden = false
         })
         
         navigationItem.leftBarButtonItem = leftEditItem
@@ -233,7 +235,12 @@ extension AlarmClockController {
         headerLabel.textAlignment = .center
         
         headerLabel.viewDefaultColorful()
-        headerLabel.backgroundColor = UIColor.getGreyColor()
+        
+        if !AppTheme.isTargetLunaR_OR_Nevo() {
+            headerLabel.backgroundColor = UIColor.getGreyColor()
+        } else {
+            headerLabel.backgroundColor = UIColor.white
+        }
         
         return headerLabel
     }

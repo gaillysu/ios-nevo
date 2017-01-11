@@ -399,7 +399,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
 
         if(isConnected) {
             if(self.hasSavedAddress()){
-                let banner = MEDBanner(title: NSLocalizedString("Connected", comment: ""), subtitle: nil, image: nil, backgroundColor:UIColor(rgba: "#0dac67"))
+                let banner = MEDBanner(title: NSLocalizedString("Connected", comment: ""), subtitle: nil, image: nil, backgroundColor:UIColor("#0dac67"))
                 banner.dismissesOnTap = true
                 banner.show(duration: 1.5)
             }

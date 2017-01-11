@@ -295,15 +295,13 @@ extension DashBoardController {
             homeClockView?.cityLabel.text = city.name
             homeClockView?.countryLabel.text = city.country
             
-            removeSelectCityGes(fromView: homeClockView!.cityLabel)
-            removeSelectCityGes(fromView: homeClockView!.countryLabel)
+            removeSelectCityGes(fromView: homeClockView!)
 
         } else {
             homeClockView?.cityLabel.text = NSLocalizedString("tap_to", comment: "")
             homeClockView?.countryLabel.text = NSLocalizedString("Select_city", comment: "")
             
-            addSelectCityGes(toView: homeClockView!.cityLabel)
-            addSelectCityGes(toView: homeClockView!.countryLabel)
+            addSelectCityGes(toView: homeClockView!)
         }
         
         if let hometime = HomeClockUtil.shared.getHomeTime() {
