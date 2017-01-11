@@ -8,7 +8,6 @@
 
 import UIKit
 import CoreBluetooth
-import PopupController
 
 @objc protocol SelectPeripheralDelegate{
     @objc optional func onDidSelectPeripheral(_ dFUMode:Bool,_ peripheral:CBPeripheral, _ manager:CBCentralManager)

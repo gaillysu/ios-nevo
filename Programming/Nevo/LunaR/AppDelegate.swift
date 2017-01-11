@@ -9,7 +9,6 @@
 import UIKit
 import CoreData
 import HealthKit
-import FMDB
 import Alamofire
 import BRYXBanner
 import Fabric

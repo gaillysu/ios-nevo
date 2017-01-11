@@ -127,10 +127,6 @@
 		00C826701DA5E04000ECECEE /* NewAddAlarmController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F0C3511C8993DD005888A7 /* NewAddAlarmController.swift */; };
 		00C826721DA5E04000ECECEE /* AlarmClockController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0050D68E1C28E1CD004F6F80 /* AlarmClockController.swift */; };
 		00C8267A1DA5E04000ECECEE /* NewAddAlarmHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006A62551D6AA76C00458305 /* NewAddAlarmHeader.swift */; };
-		00C8267D1DA5E04000ECECEE /* ScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FA93E61D9DF32300CB6691 /* ScannerViewController.swift */; };
-		00C8267E1DA5E04000ECECEE /* ScannerViewController.xib in Sources */ = {isa = PBXBuildFile; fileRef = 00FA93E81D9DF33800CB6691 /* ScannerViewController.xib */; };
-		00C8267F1DA5E04000ECECEE /* OldOtaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0050D5221C28E0DB004F6F80 /* OldOtaViewController.swift */; };
-		00C826801DA5E04000ECECEE /* OldOtaViewController.xib in Sources */ = {isa = PBXBuildFile; fileRef = 00C8C8161D8B950A00621162 /* OldOtaViewController.xib */; };
 		00C826811DA5E04000ECECEE /* MyNevoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0050D52C1C28E0DB004F6F80 /* MyNevoController.swift */; };
 		00C826821DA5E04000ECECEE /* MyNevoController.xib in Sources */ = {isa = PBXBuildFile; fileRef = 0050D52D1C28E0DB004F6F80 /* MyNevoController.xib */; };
 		00C826831DA5E04000ECECEE /* MyNevoHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0050D52F1C28E0DB004F6F80 /* MyNevoHeaderView.swift */; };
@@ -203,8 +199,6 @@
 		00C826D31DA5ECA700ECECEE /* SupportViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00344F5B1C47A86800C2FC7A /* SupportViewController.xib */; };
 		00C826D51DA5ECA700ECECEE /* AlarmClockVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 006A625C1D6AA79E00458305 /* AlarmClockVCell.xib */; };
 		00C826DD1DA5ECA700ECECEE /* NewAddAlarmHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0091EB211D9513F90079EC39 /* NewAddAlarmHeader.xib */; };
-		00C826DF1DA5ECA700ECECEE /* ScannerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00FA93E81D9DF33800CB6691 /* ScannerViewController.xib */; };
-		00C826E01DA5ECA700ECECEE /* OldOtaViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00C8C8161D8B950A00621162 /* OldOtaViewController.xib */; };
 		00C826E11DA5ECA700ECECEE /* MyNevoController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0050D52D1C28E0DB004F6F80 /* MyNevoController.xib */; };
 		00C826E21DA5ECA700ECECEE /* MyNevoHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0050D5301C28E0DB004F6F80 /* MyNevoHeaderView.xib */; };
 		00C826E31DA5ECA700ECECEE /* NevoOtaViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0050D5391C28E0DB004F6F80 /* NevoOtaViewController.xib */; };
@@ -233,7 +227,6 @@
 		00C826FD1DA5ECA700ECECEE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0091EB3B1D951D9E0079EC39 /* Main.storyboard */; };
 		00C826FF1DA5EDFD00ECECEE /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A2D6C3A1A9C6D9F00591BDC /* HealthKit.framework */; };
 		00C8272F1DA61CAF00ECECEE /* FindWatchRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C8272E1DA61CAF00ECECEE /* FindWatchRequest.swift */; };
-		00C8C8171D8B950A00621162 /* OldOtaViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00C8C8161D8B950A00621162 /* OldOtaViewController.xib */; };
 		00D4742A1D586CCA00E2447E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EFE04C1D227D5F0066C905 /* AppDelegate.swift */; };
 		00D4742C1D586D1600E2447E /* CaloriesToHK.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C4D1D224CFA009047AC /* CaloriesToHK.swift */; };
 		00D4742D1D586D1600E2447E /* DailySteps.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C4E1D224CFA009047AC /* DailySteps.swift */; };
@@ -286,7 +279,6 @@
 		00EFE0561D227D5F0066C905 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 00EFE0551D227D5F0066C905 /* Assets.xcassets */; };
 		00EFE0641D227D5F0066C905 /* LunaRTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EFE0631D227D5F0066C905 /* LunaRTests.swift */; };
 		00EFE06F1D227D5F0066C905 /* LunaRUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EFE06E1D227D5F0066C905 /* LunaRUITests.swift */; };
-		00FA93E91D9DF33800CB6691 /* ScannerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00FA93E81D9DF33800CB6691 /* ScannerViewController.xib */; };
 		1C3712D81DBC5BF2007DC349 /* UIView+MEDExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C3712D61DBC5BF2007DC349 /* UIView+MEDExtension.swift */; };
 		3AF3D240B5808E80F5B2A19E /* Pods_Nevo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C2AEB04A0C7F45FE876ABED /* Pods_Nevo.framework */; };
 		6107670E1DDD88F800F53AD6 /* DeleteNotificationAppIDRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6107670D1DDD88F800F53AD6 /* DeleteNotificationAppIDRequest.swift */; };
@@ -432,10 +424,6 @@
 		611D421E1DCAD97D003BC6E3 /* NewAddAlarmController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F0C3511C8993DD005888A7 /* NewAddAlarmController.swift */; };
 		611D42201DCAD97D003BC6E3 /* AlarmClockController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0050D68E1C28E1CD004F6F80 /* AlarmClockController.swift */; };
 		611D42281DCAD97D003BC6E3 /* NewAddAlarmHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006A62551D6AA76C00458305 /* NewAddAlarmHeader.swift */; };
-		611D422B1DCAD97D003BC6E3 /* ScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FA93E61D9DF32300CB6691 /* ScannerViewController.swift */; };
-		611D422C1DCAD97D003BC6E3 /* ScannerViewController.xib in Sources */ = {isa = PBXBuildFile; fileRef = 00FA93E81D9DF33800CB6691 /* ScannerViewController.xib */; };
-		611D422D1DCAD97D003BC6E3 /* OldOtaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0050D5221C28E0DB004F6F80 /* OldOtaViewController.swift */; };
-		611D422E1DCAD97D003BC6E3 /* OldOtaViewController.xib in Sources */ = {isa = PBXBuildFile; fileRef = 00C8C8161D8B950A00621162 /* OldOtaViewController.xib */; };
 		611D422F1DCAD97D003BC6E3 /* MyNevoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0050D52C1C28E0DB004F6F80 /* MyNevoController.swift */; };
 		611D42301DCAD97D003BC6E3 /* MyNevoController.xib in Sources */ = {isa = PBXBuildFile; fileRef = 0050D52D1C28E0DB004F6F80 /* MyNevoController.xib */; };
 		611D42311DCAD97D003BC6E3 /* MyNevoHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0050D52F1C28E0DB004F6F80 /* MyNevoHeaderView.swift */; };
@@ -572,6 +560,8 @@
 		61E2A5131E1E366B009A563B /* AnalysisFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E2A5111E1E35CA009A563B /* AnalysisFormatter.swift */; };
 		61E2A5151E1E5D6D009A563B /* MEDAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E2A5141E1E5D6D009A563B /* MEDAlertController.swift */; };
 		61E2A5161E1E5E01009A563B /* MEDAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E2A5141E1E5D6D009A563B /* MEDAlertController.swift */; };
+		61E2A5181E232D35009A563B /* PieChartDataFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E2A5171E232D35009A563B /* PieChartDataFormatter.swift */; };
+		61E2A5191E232D86009A563B /* PieChartDataFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E2A5171E232D35009A563B /* PieChartDataFormatter.swift */; };
 		61E8EC841E16017D004F0DBE /* ActionSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E8EC771E16017D004F0DBE /* ActionSheetView.swift */; };
 		61E8EC851E16017D004F0DBE /* AlertAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E8EC781E16017D004F0DBE /* AlertAction.swift */; };
 		61E8EC861E16017D004F0DBE /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E8EC791E16017D004F0DBE /* Color.swift */; };
@@ -898,7 +888,6 @@
 		00478F4D1A8F637D00D0DCE2 /* clockViewHour.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clockViewHour.png; sourceTree = "<group>"; };
 		00478F4E1A8F637D00D0DCE2 /* clockViewMinute.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clockViewMinute.png; sourceTree = "<group>"; };
 		004F74DE1D800EAA0048BA09 /* UserProfileController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserProfileController.xib; sourceTree = "<group>"; };
-		0050D5221C28E0DB004F6F80 /* OldOtaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OldOtaViewController.swift; sourceTree = "<group>"; };
 		0050D52C1C28E0DB004F6F80 /* MyNevoController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyNevoController.swift; sourceTree = "<group>"; };
 		0050D52D1C28E0DB004F6F80 /* MyNevoController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyNevoController.xib; sourceTree = "<group>"; };
 		0050D52F1C28E0DB004F6F80 /* MyNevoHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyNevoHeaderView.swift; sourceTree = "<group>"; };
@@ -1123,7 +1112,6 @@
 		00C826C01DA5EA5700ECECEE /* AlertAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertAction.swift; sourceTree = "<group>"; };
 		00C826FE1DA5EDFD00ECECEE /* LunaR.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LunaR.entitlements; sourceTree = "<group>"; };
 		00C8272E1DA61CAF00ECECEE /* FindWatchRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindWatchRequest.swift; sourceTree = "<group>"; };
-		00C8C8161D8B950A00621162 /* OldOtaViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OldOtaViewController.xib; sourceTree = "<group>"; };
 		00E650981C83DD9000278D3E /* nevoFontImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nevoFontImage.png; sourceTree = "<group>"; };
 		00E6509A1C83EE6700278D3E /* SleepTutorialController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SleepTutorialController.swift; sourceTree = "<group>"; };
 		00E6509E1C840FD500278D3E /* MorningTutorialController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MorningTutorialController.swift; sourceTree = "<group>"; };
@@ -1151,8 +1139,6 @@
 		00EFE06E1D227D5F0066C905 /* LunaRUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LunaRUITests.swift; sourceTree = "<group>"; };
 		00EFE0701D227D5F0066C905 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00F0C3511C8993DD005888A7 /* NewAddAlarmController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewAddAlarmController.swift; sourceTree = "<group>"; };
-		00FA93E61D9DF32300CB6691 /* ScannerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScannerViewController.swift; sourceTree = "<group>"; };
-		00FA93E81D9DF33800CB6691 /* ScannerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ScannerViewController.xib; sourceTree = "<group>"; };
 		0C2AEB04A0C7F45FE876ABED /* Pods_Nevo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Nevo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0E068CB5F57F135B038B3A10 /* Pods_LunaR.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LunaR.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1215057C1EF17F735A5EFDD9 /* Pods-LunaR.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LunaR.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LunaR/Pods-LunaR.debug.xcconfig"; sourceTree = "<group>"; };
@@ -1224,6 +1210,7 @@
 		61E2A50E1E1E2E58009A563B /* ChartFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartFormatter.swift; sourceTree = "<group>"; };
 		61E2A5111E1E35CA009A563B /* AnalysisFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalysisFormatter.swift; sourceTree = "<group>"; };
 		61E2A5141E1E5D6D009A563B /* MEDAlertController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MEDAlertController.swift; sourceTree = "<group>"; };
+		61E2A5171E232D35009A563B /* PieChartDataFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PieChartDataFormatter.swift; sourceTree = "<group>"; };
 		61E4DF1C1DB85C9800DDA737 /* FindPhonePacket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindPhonePacket.swift; sourceTree = "<group>"; };
 		61E8EC771E16017D004F0DBE /* ActionSheetView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionSheetView.swift; sourceTree = "<group>"; };
 		61E8EC781E16017D004F0DBE /* AlertAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertAction.swift; sourceTree = "<group>"; };
@@ -1477,7 +1464,6 @@
 				00BF2D971C7FEAB400909316 /* VideoPlayController */,
 				00344F591C47A79600C2FC7A /* SupportViewController */,
 				0050D6841C28E1CD004F6F80 /* AlarmController */,
-				0050D5201C28E0DB004F6F80 /* AidOTA */,
 				0050D52B1C28E0DB004F6F80 /* MyNevoController */,
 				0050D5321C28E0DB004F6F80 /* NevoOtaController */,
 				0050D53A1C28E0DB004F6F80 /* NotificationViewController */,
@@ -1488,17 +1474,6 @@
 				0050D5731C28E0DB004F6F80 /* Tutorial */,
 			);
 			path = Controller;
-			sourceTree = "<group>";
-		};
-		0050D5201C28E0DB004F6F80 /* AidOTA */ = {
-			isa = PBXGroup;
-			children = (
-				00FA93E61D9DF32300CB6691 /* ScannerViewController.swift */,
-				00FA93E81D9DF33800CB6691 /* ScannerViewController.xib */,
-				0050D5221C28E0DB004F6F80 /* OldOtaViewController.swift */,
-				00C8C8161D8B950A00621162 /* OldOtaViewController.xib */,
-			);
-			path = AidOTA;
 			sourceTree = "<group>";
 		};
 		0050D52B1C28E0DB004F6F80 /* MyNevoController */ = {
@@ -2752,6 +2727,7 @@
 				61E2A50A1E1DF86A009A563B /* LargeValueFormatter.swift */,
 				61E2A50E1E1E2E58009A563B /* ChartFormatter.swift */,
 				61E2A5111E1E35CA009A563B /* AnalysisFormatter.swift */,
+				61E2A5171E232D35009A563B /* PieChartDataFormatter.swift */,
 			);
 			path = ValueFormatter;
 			sourceTree = "<group>";
@@ -2968,9 +2944,7 @@
 				00C826D51DA5ECA700ECECEE /* AlarmClockVCell.xib in Resources */,
 				6168C6331DFE5414008FCF97 /* OtherController.xib in Resources */,
 				00C826DD1DA5ECA700ECECEE /* NewAddAlarmHeader.xib in Resources */,
-				00C826DF1DA5ECA700ECECEE /* ScannerViewController.xib in Resources */,
 				6165A63A1DEBC33800F7A3E6 /* NotificationTypeCell.xib in Resources */,
-				00C826E01DA5ECA700ECECEE /* OldOtaViewController.xib in Resources */,
 				665BD6DA1DBF1297008C2623 /* sunset.png in Resources */,
 				00C826E11DA5ECA700ECECEE /* MyNevoController.xib in Resources */,
 				00C826E21DA5ECA700ECECEE /* MyNevoHeaderView.xib in Resources */,
@@ -3104,9 +3078,7 @@
 				00344F5D1C47A86800C2FC7A /* SupportViewController.xib in Resources */,
 				0036EB081C48BA8300DCED46 /* settimer.png in Resources */,
 				0063BC421D98D59F000BAB44 /* CheckYourIndoxController.xib in Resources */,
-				00FA93E91D9DF33800CB6691 /* ScannerViewController.xib in Resources */,
 				616DCB111DD1A69D00B5773E /* lunar_connected.png in Resources */,
-				00C8C8171D8B950A00621162 /* OldOtaViewController.xib in Resources */,
 				66AC4E5D1DBF537500E431BE /* sunrise.png in Resources */,
 				66AC4E5E1DBF537500E431BE /* sunset.png in Resources */,
 				00EC9DAE1C8582E400280904 /* TutorialOneViewController.xib in Resources */,
@@ -3463,6 +3435,7 @@
 				61FC93F81DE80B30000AE93C /* SolarHarvest.swift in Sources */,
 				00C8265F1DA5E04000ECECEE /* UserProfileCell.swift in Sources */,
 				00C826601DA5E04000ECECEE /* UserProfileCell.xib in Sources */,
+				61E2A5191E232D86009A563B /* PieChartDataFormatter.swift in Sources */,
 				6688A6691DC981990078E636 /* MEDNetworkManager.swift in Sources */,
 				00C826611DA5E04000ECECEE /* LoginController.swift in Sources */,
 				00C826621DA5E04000ECECEE /* VideoPlayController.swift in Sources */,
@@ -3496,12 +3469,8 @@
 				6695A7F01E07CFF3007396DF /* HomeClockController.swift in Sources */,
 				666793001E134DAF00344188 /* M13CheckboxExpandManager.swift in Sources */,
 				6688A6591DC981980078E636 /* MEDBaseDeleteRequest.swift in Sources */,
-				00C8267D1DA5E04000ECECEE /* ScannerViewController.swift in Sources */,
 				D1BE2B2A1E1D1AF300E6713D /* NSTimeInterval+Timepiece.swift in Sources */,
-				00C8267E1DA5E04000ECECEE /* ScannerViewController.xib in Sources */,
 				6688A66F1DC981990078E636 /* MEDStepsCreateRequest.swift in Sources */,
-				00C8267F1DA5E04000ECECEE /* OldOtaViewController.swift in Sources */,
-				00C826801DA5E04000ECECEE /* OldOtaViewController.xib in Sources */,
 				00C826811DA5E04000ECECEE /* MyNevoController.swift in Sources */,
 				00C826821DA5E04000ECECEE /* MyNevoController.xib in Sources */,
 				00C826831DA5E04000ECECEE /* MyNevoHeaderView.swift in Sources */,
@@ -3598,7 +3567,6 @@
 				61EF09201DDE9E0A003C2EA5 /* DeleteNotificationAppIDPacket.swift in Sources */,
 				6688A6731DC981990078E636 /* MEDStepsNetworkManager.swift in Sources */,
 				00C8272F1DA61CAF00ECECEE /* FindWatchRequest.swift in Sources */,
-				61070B4D1E134D4E0038D64E /* DataCalculation.swift in Sources */,
 				665098951DCB26670059D5F7 /* MEDSleepDeleteRequest.swift in Sources */,
 				610767121DDD8AE600F53AD6 /* ReceiveNewNotificationPacket.swift in Sources */,
 				6198EE281DC204BF00FDD850 /* LunaRPacket.swift in Sources */,
@@ -3945,13 +3913,9 @@
 				611D42281DCAD97D003BC6E3 /* NewAddAlarmHeader.swift in Sources */,
 				61E8EC881E16017D004F0DBE /* Date+Extension.swift in Sources */,
 				6655C0641E0A5A6A006A8A9D /* DashBoardElementView.swift in Sources */,
-				611D422B1DCAD97D003BC6E3 /* ScannerViewController.swift in Sources */,
 				666793171E134DAF00344188 /* SMSegmentAppearance.swift in Sources */,
-				611D422C1DCAD97D003BC6E3 /* ScannerViewController.xib in Sources */,
 				61E8EC8D1E16017D004F0DBE /* NevoAllKeys.swift in Sources */,
-				611D422D1DCAD97D003BC6E3 /* OldOtaViewController.swift in Sources */,
 				61E8EC861E16017D004F0DBE /* Color.swift in Sources */,
-				611D422E1DCAD97D003BC6E3 /* OldOtaViewController.xib in Sources */,
 				667149F91E1CAB1C009A34B4 /* NoneAlarmView.swift in Sources */,
 				611D422F1DCAD97D003BC6E3 /* MyNevoController.swift in Sources */,
 				611D42301DCAD97D003BC6E3 /* MyNevoController.xib in Sources */,
@@ -3963,6 +3927,7 @@
 				611D42351DCAD97D003BC6E3 /* DeviceScannerView.swift in Sources */,
 				611D42361DCAD97D003BC6E3 /* NevoOtaView.swift in Sources */,
 				611D42371DCAD97D003BC6E3 /* SelectFileView.swift in Sources */,
+				61E2A5181E232D35009A563B /* PieChartDataFormatter.swift in Sources */,
 				611D42381DCAD97D003BC6E3 /* NevoOtaViewController.swift in Sources */,
 				666792F71E134DAF00344188 /* M13CheckboxManager.swift in Sources */,
 				611D42391DCAD97D003BC6E3 /* NevoOtaViewController.xib in Sources */,

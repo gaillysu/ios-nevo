@@ -232,7 +232,6 @@ extension SolarIndicatorController:ChartViewDelegate {
         var yVals1:[ChartDataEntry] = []
         
         let solarData:SolarHarvest = solarValue[0]
-//        let solarHourlyTime:String = solarData.solarHourlyTime;
         let value:Double = Double(solarData.solarTotalTime)/60.0
         
         /*
@@ -259,7 +258,6 @@ extension SolarIndicatorController:ChartViewDelegate {
         xVals.append(NSLocalizedString("Battery", comment: ""))
         
         let dataSet:PieChartDataSet = PieChartDataSet(values: yVals1, label: "")
-            //PieChartDataSet(yVals: yVals1, label: "")
         dataSet.sliceSpace = 2.0;
         var colors:[UIColor] = [];
         if !AppTheme.isTargetLunaR_OR_Nevo() {
@@ -271,18 +269,14 @@ extension SolarIndicatorController:ChartViewDelegate {
         }
         dataSet.colors = colors
         
-        let data:PieChartData = PieChartData(dataSets: [dataSet])
-            //PieChartData(xVals: xVals, dataSets: [dataSet])
-        //data.highlightEnabled = false
         let pFormatter:NumberFormatter = NumberFormatter()
         pFormatter.numberStyle = NumberFormatter.Style.percent;
         pFormatter.maximumFractionDigits = 1;
         pFormatter.multiplier = 1.0;
         pFormatter.percentSymbol = " %";
         
-        let valueFormatter:LargeValueFormatter = LargeValueFormatter()
-        data.setValueFormatter(valueFormatter)
-
+        let data:PieChartData = PieChartData(dataSets: [dataSet])
+        data.setValueFormatter(DefaultValueFormatter(formatter: pFormatter))
         data.setValueFont(UIFont(name: "HelveticaNeue-Light", size: 16.0))
         data.setValueTextColor(UIColor.white)
         pieChartView.data = data;
