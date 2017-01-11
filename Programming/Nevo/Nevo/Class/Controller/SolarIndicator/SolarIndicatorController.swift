@@ -232,7 +232,6 @@ extension SolarIndicatorController:ChartViewDelegate {
         var yVals1:[ChartDataEntry] = []
         
         let solarData:SolarHarvest = solarValue[0]
-//        let solarHourlyTime:String = solarData.solarHourlyTime;
         let value:Double = Double(solarData.solarTotalTime)/60.0
         
         /*
@@ -259,7 +258,6 @@ extension SolarIndicatorController:ChartViewDelegate {
         xVals.append(NSLocalizedString("Battery", comment: ""))
         
         let dataSet:PieChartDataSet = PieChartDataSet(values: yVals1, label: "")
-            //PieChartDataSet(yVals: yVals1, label: "")
         dataSet.sliceSpace = 2.0;
         var colors:[UIColor] = [];
         if !AppTheme.isTargetLunaR_OR_Nevo() {
@@ -278,7 +276,6 @@ extension SolarIndicatorController:ChartViewDelegate {
         pFormatter.percentSymbol = " %";
         
         let data:PieChartData = PieChartData(dataSets: [dataSet])
-        //data.highlightEnabled = false
         data.setValueFormatter(DefaultValueFormatter(formatter: pFormatter))
         data.setValueFont(UIFont(name: "HelveticaNeue-Light", size: 16.0))
         data.setValueTextColor(UIColor.white)

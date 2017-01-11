@@ -249,11 +249,6 @@ extension LunaROTAController {
         dfuInitiator.delegate = self
         dfuInitiator.progressDelegate = self
         dfuInitiator.logger = self
-        
-        // This enables the experimental Buttonless DFU feature from SDK 12.
-        // Please, read the field documentation before use.
-        //dfuInitiator.enableUnsafeExperimentalButtonlessServiceInSecureDfu = true
-        
         dfuController = dfuInitiator.with(firmware: selectedFirmware!).start()
     }
 }
