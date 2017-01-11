@@ -10,9 +10,13 @@ import UIKit
 import Charts
 
 class ChartFormatter: NSObject, IValueFormatter, IAxisValueFormatter {
+    fileprivate var xVals:[String] = []
+    init(_ xAray:[String]) {
+        xVals = xAray
+    }
     
     public func stringForValue(_ value: Double, axis: AxisBase?) -> String{
-        return "\(Int(value)):00"
+        return xVals[Int(value)]
     }
     
     public func stringForValue(_ value: Double,

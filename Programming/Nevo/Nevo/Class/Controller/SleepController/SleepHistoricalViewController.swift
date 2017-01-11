@@ -52,18 +52,18 @@ class SleepHistoricalViewController: PublicClassController,ChartViewDelegate {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        todaySleepArray = MEDUserSleep.getFilter("date < \(Date.yesterday().beginningOfDay.timeIntervalSince1970) AND date > \(Date().endOfDay.timeIntervalSince1970)")
+        todaySleepArray = MEDUserSleep.getFilter("date >= \(Date.yesterday().beginningOfDay.timeIntervalSince1970) AND date <= \(Date().endOfDay.timeIntervalSince1970)")
         AnalysisSleepData(todaySleepArray)
         
         _ = SwiftEventBus.onMainThread(self, name: SELECTED_CALENDAR_NOTIFICATION) { (notification) in
             let userinfo:Date = notification.userInfo!["selectedDate"] as! Date
             self.selectedDate = userinfo as Date
-            let selectedSleepArray = MEDUserSleep.getFilter("date < \(userinfo.timeIntervalSince1970-86400) AND date > \(userinfo.endOfDay.timeIntervalSince1970)")
+            let selectedSleepArray = MEDUserSleep.getFilter("date >= \(userinfo.timeIntervalSince1970-86400) AND date <= \(userinfo.endOfDay.timeIntervalSince1970)")
             self.AnalysisSleepData(selectedSleepArray)
         }
         
         _ = SwiftEventBus.onMainThread(self, name: EVENT_BUS_END_BIG_SYNCACTIVITY) { (notification) in
-            let syncArray:[Any] = MEDUserSleep.getFilter("date < \(Date.yesterday().beginningOfDay.timeIntervalSince1970) AND date > \(Date().endOfDay.timeIntervalSince1970)")
+            let syncArray:[Any] = MEDUserSleep.getFilter("date >= \(Date.yesterday().beginningOfDay.timeIntervalSince1970) AND date <=\(Date().endOfDay.timeIntervalSince1970)")
             self.AnalysisSleepData(syncArray)
         }
     }

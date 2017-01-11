@@ -64,16 +64,16 @@ class AnalysisStepsChartView: LineChartView {
         var chartDataArray:[BarChartDataEntry] = []
         
         for (index,vlaue) in yVals.enumerated() {
-            //vlaue[0]->Deep Sleep, vlaue[1]->Light Sleep, vlaue[2]->Weake Sleep
-            let chartData1:BarChartDataEntry = BarChartDataEntry(x: Double(index), y: vlaue[0])
+            //vlaue[2]->Deep Sleep, vlaue[1]->Light Sleep, vlaue[0]->Weake Sleep
+            let chartData1:BarChartDataEntry = BarChartDataEntry(x: Double(index), y: vlaue[2])
             chartDataArray.append(chartData1)
         }
         
-        let formatter:ChartFormatter = ChartFormatter()
+        let formatter:ChartFormatter = ChartFormatter(xVals)
         let xaxis:XAxis = XAxis()
-        for vlaue in xVals {
+        for (index,vlaue) in xVals.enumerated() {
             let array = (vlaue as String).components(separatedBy: ":")
-            _ = formatter.stringForValue(array[0].toDouble(), axis: nil)
+            _ = formatter.stringForValue(Double(index), axis: nil)
         }
         xaxis.valueFormatter = formatter
         self.xAxis.valueFormatter = xaxis.valueFormatter
