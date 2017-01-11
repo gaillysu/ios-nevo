@@ -617,7 +617,47 @@ extension AppDelegate {
                 }
             })
             
-            //let stepsArray = MEDUserSteps.getFilter("key == '\(keys)'")
+            let stepsArray = MEDUserSteps.getFilter("key == '\(keys)'")
+            if stepsArray.count>0 {
+                let steps:MEDUserSteps = stepsArray[0] as! MEDUserSteps
+                let localStepsArray:[Int] = AppTheme.jsonToArray(steps.hourlysteps) as! [Int]
+                var localValue:Int = 0
+                
+                for value in localStepsArray {
+                    localValue+=value
+                }
+                
+                let currentStepsArray:[Int] = hourlyStepsValue
+                var currentStepsValue:Int = 0
+                for value in currentStepsArray {
+                    currentStepsValue+=value
+                }
+                
+                if currentStepsValue>localValue {
+                    let realm = try! Realm()
+                    try! realm.write {
+                        steps.isUpload = true
+                        steps.totalSteps       = stepsModel.totalSteps
+                        steps.goalsteps        = stepsModel.goalsteps
+                        steps.distance         = stepsModel.distance
+                        steps.hourlysteps      = stepsModel.hourlysteps
+                        steps.hourlydistance   = stepsModel.hourlydistance
+                        steps.totalCalories    = stepsModel.totalCalories
+                        steps.hourlycalories   = stepsModel.hourlycalories
+                        steps.inactivityTime   = stepsModel.inactivityTime
+                        steps.goalreach        = stepsModel.goalreach
+                        steps.date             = stepsModel.date
+                        steps.createDate       = stepsModel.createDate
+                        steps.walking_distance = stepsModel.walking_distance
+                        steps.walking_duration = stepsModel.walking_duration
+                        steps.running_distance = stepsModel.running_distance
+                        steps.running_duration = stepsModel.running_duration
+                    }
+                }
+            }else{
+                stepsModel.isUpload = false
+                _ = stepsModel.add()
+            }
         }else{
             let keys:String = date.stringFromFormat("yyyyMMddHHmmss", locale: DateFormatter().locale)
             //let stepsArray = MEDUserSteps.getFilter("key == '\(keys)'")
@@ -633,22 +673,23 @@ extension AppDelegate {
         let login = MEDUserProfile.getAll()
         
         let sleepModel:MEDUserSleep = MEDUserSleep()
-        sleepModel.date = date.timeIntervalSince1970
-        sleepModel.totalSleepTime = thispacket.getTotalSleepTime()
-        sleepModel.hourlySleepTime = "\(AppTheme.toJSONString(thispacket.getHourlySleepTime() as AnyObject!))"
-        sleepModel.totalWakeTime = thispacket.getTotalWakeTime()
-        sleepModel.hourlyWakeTime = "\(AppTheme.toJSONString(thispacket.getHourlyWakeSleepTime() as AnyObject!))"
-        sleepModel.totalLightTime = thispacket.getTotalWakeTime()
-        sleepModel.hourlyLightTime = "\(AppTheme.toJSONString(thispacket.getHourlyLightSleepTime() as AnyObject!))"
-        sleepModel.totalDeepTime = thispacket.getTotalDeepTime()
-        sleepModel.hourlyDeepTime = "\(AppTheme.toJSONString(thispacket.getHourlyDeepSleepTime() as AnyObject!))"
+        sleepModel.date             = date.timeIntervalSince1970
+        sleepModel.totalSleepTime   = thispacket.getTotalSleepTime()
+        sleepModel.hourlySleepTime  = "\(AppTheme.toJSONString(thispacket.getHourlySleepTime() as AnyObject!))"
+        sleepModel.totalWakeTime    = thispacket.getTotalWakeTime()
+        sleepModel.hourlyWakeTime   = "\(AppTheme.toJSONString(thispacket.getHourlyWakeSleepTime() as AnyObject!))"
+        sleepModel.totalLightTime   = thispacket.getTotalWakeTime()
+        sleepModel.hourlyLightTime  = "\(AppTheme.toJSONString(thispacket.getHourlyLightSleepTime() as AnyObject!))"
+        sleepModel.totalDeepTime    = thispacket.getTotalDeepTime()
+        sleepModel.hourlyDeepTime   = "\(AppTheme.toJSONString(thispacket.getHourlyDeepSleepTime() as AnyObject!))"
         
         if login.count>0 {
-            let userProfile:MEDUserProfile = login[0] as! MEDUserProfile
-            let uidString:String = "\(userProfile.uid)"
-            let keys:String = date.stringFromFormat("yyyyMMddHHmmss", locale: DateFormatter().locale)+uidString
-            sleepModel.uid = userProfile.uid
-            sleepModel.key = keys
+            let userProfile:MEDUserProfile  = login[0] as! MEDUserProfile
+            let uidString:String            = "\(userProfile.uid)"
+            let keys:String                 = date.stringFromFormat("yyyyMMddHHmmss", locale: DateFormatter().locale)+uidString
+            sleepModel.uid                  = userProfile.uid
+            sleepModel.key                  = keys
+            sleepModel.isUpload             = true
             
             let dateString:String = date.stringFromFormat("yyy-MM-dd")
             
@@ -673,9 +714,22 @@ extension AppDelegate {
                 }
                 
                 if currentSleepTime>localTime {
-                    sleepModel.isUpload = true
-                    _ = sleepModel.add()
+                    let realm = try! Realm()
+                    try! realm.write {
+                        sleep.date = date.timeIntervalSince1970
+                        sleep.totalSleepTime    = thispacket.getTotalSleepTime()
+                        sleep.hourlySleepTime   = "\(AppTheme.toJSONString(thispacket.getHourlySleepTime() as AnyObject!))"
+                        sleep.totalWakeTime     = thispacket.getTotalWakeTime()
+                        sleep.hourlyWakeTime    = "\(AppTheme.toJSONString(thispacket.getHourlyWakeSleepTime() as AnyObject!))"
+                        sleep.totalLightTime    = thispacket.getTotalWakeTime()
+                        sleep.hourlyLightTime   = "\(AppTheme.toJSONString(thispacket.getHourlyLightSleepTime() as AnyObject!))"
+                        sleep.totalDeepTime     = thispacket.getTotalDeepTime()
+                        sleep.hourlyDeepTime    = "\(AppTheme.toJSONString(thispacket.getHourlyDeepSleepTime() as AnyObject!))"
+                        sleep.isUpload          = true
+                    }
                 }
+            }else{
+                _ = sleepModel.add()
             }
         }else{
             let keys:String = date.stringFromFormat("yyyyMMddHHmmss", locale: DateFormatter().locale)

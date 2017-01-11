@@ -200,14 +200,11 @@ class StepsHistoryViewController: PublicClassController,ChartViewDelegate {
         }
         
         var yVal:[BarChartDataEntry] = [];
-        
+        var xVal:[String] = [];
         var tempMaxValue:Double = 0;
         
         let stepsModel:MEDUserSteps = stepsValue[0] as! MEDUserSteps;
         let hourlystepsArray = JSON(AppTheme.jsonToArray(stepsModel.hourlysteps)).arrayValue
-        
-        let formatter:ChartFormatter = ChartFormatter()
-        let xaxis:XAxis = XAxis()
         
         for (index,steps) in hourlystepsArray.enumerated(){
             let val1:Double  = steps.doubleValue;
@@ -215,14 +212,19 @@ class StepsHistoryViewController: PublicClassController,ChartViewDelegate {
                 tempMaxValue = val1
             }
             let date:Date = Date(timeIntervalSince1970: stepsModel.date)
-            var dateString:NSString = date.stringFromFormat("yyyyMMdd") as NSString
-            if(dateString.length < 8) {
+            var dateString:String = date.stringFromFormat("yyyyMMdd")
+            if(dateString.length() < 8) {
                 dateString = "00000000"
             }
             yVal.append(BarChartDataEntry(x: Double(index), yValues: [val1]))
-            _ = formatter.stringForValue(Double(index), axis: xaxis)
+            xVal.append("\(index):00")
         }
         
+        let formatter:ChartFormatter = ChartFormatter(xVal)
+        let xaxis:XAxis = XAxis()
+        for (index,_) in xVal.enumerated() {
+            _ = formatter.stringForValue(Double(index), axis: xaxis)
+        }
         xaxis.valueFormatter = formatter
         chartView?.xAxis.valueFormatter = xaxis.valueFormatter
         
