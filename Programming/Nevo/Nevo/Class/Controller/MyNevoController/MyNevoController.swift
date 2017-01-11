@@ -134,16 +134,18 @@ class MyNevoController: UITableViewController,UIAlertViewDelegate {
                 let navigation:UINavigationController = UINavigationController(rootViewController: lunar)
                 self.present(navigation, animated: true, completion: nil)
             }else{
-                if(AppDelegate.getAppDelegate().getSoftwareVersion() >= Float(buildin_software_version) && AppDelegate.getAppDelegate().getFirmwareVersion() >= Float(buildin_firmware_version)){
-                    let banner = MEDBanner(title: NSLocalizedString("is_watch_version", comment: ""), subtitle: nil, image: nil, backgroundColor: AppTheme.NEVO_SOLAR_YELLOW())
-                    banner.dismissesOnTap = true
-                    banner.show(duration: 1.5)
-                    return
+//                if(AppDelegate.getAppDelegate().getSoftwareVersion() >= Float(buildin_software_version) && AppDelegate.getAppDelegate().getFirmwareVersion() >= Float(buildin_firmware_version)){
+//                    let banner = MEDBanner(title: NSLocalizedString("is_watch_version", comment: ""), subtitle: nil, image: nil, backgroundColor: AppTheme.NEVO_SOLAR_YELLOW())
+//                    banner.dismissesOnTap = true
+//                    banner.show(duration: 1.5)
+//                    return
+//                }
+                if(true){
+                    let otaCont:NevoOtaViewController = NevoOtaViewController()
+                    let navigation:UINavigationController = UINavigationController(rootViewController: otaCont)
+                    self.present(navigation, animated: true, completion: nil)
                 }
-                if(buildin_software_version==0&&buildin_firmware_version==0){return}
-                let otaCont:NevoOtaViewController = NevoOtaViewController()
-                let navigation:UINavigationController = UINavigationController(rootViewController: otaCont)
-                self.present(navigation, animated: true, completion: nil)
+                
             }
             
         }
@@ -176,7 +178,7 @@ class MyNevoController: UITableViewController,UIAlertViewDelegate {
         var isUpdate:Bool = false
         switch ((indexPath as NSIndexPath).row){
         case 0:
-            if((AppDelegate.getAppDelegate().getSoftwareVersion() < Float(buildin_firmware_version)) && (AppDelegate.getAppDelegate().getFirmwareVersion() < Float(buildin_software_version))){
+            if(false){
                 
                 detailString = NSLocalizedString("update_available", comment: "")
                 if AppTheme.isTargetLunaR_OR_Nevo() {

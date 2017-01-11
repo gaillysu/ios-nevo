@@ -138,7 +138,7 @@ extension UnitTableViewCell: UIPickerViewDataSource {
             // TODO: 同步时间选择后要做的事
             //0->home_time ,1->local_time
             MEDSettings.setValue(row, forKey: "SET_SYNCTIME_TYPE")
-            AppDelegate.getAppDelegate().setWorldTime()
+            //AppDelegate.getAppDelegate().setWorldTime()
             break
         }
     }
