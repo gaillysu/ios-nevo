@@ -305,7 +305,7 @@ extension DashBoardController {
         }
         
         if let hometime = HomeClockUtil.shared.getHomeTime() {
-            homeClockView?.timeLabelText = hometime.stringFromFormat("hh:mm a")
+            homeClockView?.timeLabel.text = hometime.stringFromFormat("hh:mm a")
         }
     }
 }

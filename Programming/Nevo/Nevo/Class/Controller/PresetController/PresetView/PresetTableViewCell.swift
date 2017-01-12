@@ -26,9 +26,13 @@ class PresetTableViewCell: UITableViewCell,ButtonManagerCallBack {
         if(presetStates.isOn){
             viewDefaultColorful()
         }else{
-            backgroundColor = UIColor.clear
-            contentView.backgroundColor = UIColor.clear
+            if AppTheme.isTargetLunaR_OR_Nevo() {
+                backgroundColor = UIColor.clear
+                contentView.backgroundColor = UIColor.clear
+            }
         }
+        
+        separatorInset = .zero
     }
 
     override func awakeFromNib() {
@@ -38,8 +42,5 @@ class PresetTableViewCell: UITableViewCell,ButtonManagerCallBack {
         presetSteps.viewDefaultColorful()
         presetName.viewDefaultColorful()
         presetStates.viewDefaultColorful()
-        if !AppTheme.isTargetLunaR_OR_Nevo() {
-            separatorLineLabel.backgroundColor = UIColor.getLightBaseColor()
-        }
     }
 }

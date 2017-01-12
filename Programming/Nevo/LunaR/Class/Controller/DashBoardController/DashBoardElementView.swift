@@ -141,20 +141,9 @@ class DashBoardHomeClockView: UIView, DashBoardElementViewCornerable {
     @IBOutlet weak var cityLabel: UILabel!
     @IBOutlet weak var countryLabel: UILabel!
     
-    var timeLabelText: String? {
-        get {
-            return timeLabel.text
-        }
-        
-        set {
-            timeLabel.text = newValue
-            if !AppTheme.GET_IS_iPhone5S(), let text = newValue {
-                timeLabel.text = " \(text) "
-            }
-            
-            timeLabel.sizeToFit()
-        }
-    }
+    @IBOutlet weak var timeLabelLeading: NSLayoutConstraint!
+    @IBOutlet weak var timeLabelTrailing: NSLayoutConstraint!
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -163,12 +152,15 @@ class DashBoardHomeClockView: UIView, DashBoardElementViewCornerable {
         cityLabel.text = "City Name"
         countryLabel.text = "Country Name"
         timeLabel.text = Date().stringFromFormat("hh:mm a")
-
-        timeLabel.sizeToFit()
         
         timeLabel.layer.backgroundColor = UIColor.getLightBaseColor().cgColor
         timeLabel.layer.cornerRadius = 3
         timeLabel.layer.masksToBounds = true
+        
+        if !AppTheme.GET_IS_iPhone5S() {
+            timeLabelLeading.constant = 5
+            timeLabelTrailing.constant = 5
+        }
     }
     
     class func factory() -> DashBoardHomeClockView {

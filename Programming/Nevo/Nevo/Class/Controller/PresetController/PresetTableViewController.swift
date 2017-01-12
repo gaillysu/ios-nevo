@@ -41,9 +41,8 @@ class PresetTableViewController: UITableViewController,ButtonManagerCallBack,Add
         
         /// Theme adjust
         presetView.viewDefaultColorful()
-        if !AppTheme.isTargetLunaR_OR_Nevo() {
-            presetView.separatorColor = UIColor.getLightBaseColor()
-        }
+        
+        presetView.separatorInset = .zero
     }
     
     override func viewWillAppear(_ animated: Bool) {

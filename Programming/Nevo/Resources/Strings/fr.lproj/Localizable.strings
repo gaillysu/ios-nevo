@@ -231,7 +231,7 @@
 "home_time2" = "Home Time";
 
 // Dashboard of LunaR
-"harvest_status" = "HARVESTING STATUS";
+"harvest_status" = "HARVESTING";
 "charging" = "CHARGING";
 "sunrise" = "SUNRISE";
 "sunset" = "SUNSET";
@@ -248,7 +248,7 @@
 "Calculating" = "Calculating...";
 "tap_to" = "Tap To";
 "Select_city" = "select a city";
-"nosolar"="No Solar";
+"nosolar"="No sun!";
 "none_alarm" = "You don’t have any alarm set. Set an alarm by tapping on the plus button in the upper right corner.";
 "nevo_alarms_limit" = "Nevo supports only 3 alarms on for now.";
 "lunar_alarms_limit" = "LunaR supports only 7 wake and 7 sleep alarms on for now.";
