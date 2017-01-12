@@ -437,23 +437,32 @@ extension AppDelegate {
         if !AppTheme.isTargetLunaR_OR_Nevo() {
             if let row = MEDSettings.int(forKey: "SET_SYNCTIME_TYPE"), row == 0 {
                 if let city = HomeClockUtil.shared.getHomeCityWithSelectedFlag(), let timezone = HomeClockUtil.shared.getTimezoneWithCity(city: city) {
-                    let cityZone = timezone.gmtTimeOffset
+                    let cityZone = timezone.gmtTimeOffset*60
                     let localZone = Date.getLocalOffSet()
                     
-                    var offset = 0
+                    var hourOffset = 0
+                    var minOffset = 0
                     if localZone>cityZone {
-                        offset = 24-(localZone-cityZone)/60
+                        let remainder = (localZone-cityZone)%3600
+                        if remainder != 0 {
+                            minOffset = remainder/60
+                        }
+                        hourOffset = 24-Int((localZone-cityZone)/3600)
                     }else{
-                        offset = (cityZone-localZone)/60
+                        let remainder = (cityZone-localZone)%3600
+                        if remainder != 0 {
+                            minOffset = remainder/60
+                        }
+                        hourOffset = Int((cityZone-localZone)/3600)
                     }
-                    let setWordClock:SetWorldClockRequest = SetWorldClockRequest(offset: offset)
+                    let setWordClock:SetWorldClockRequest = SetWorldClockRequest(hourOffset: hourOffset, minOffset: minOffset)
                     self.sendRequest(setWordClock)
                 }else{
-                    let setWordClock:SetWorldClockRequest = SetWorldClockRequest(offset: 0)
+                    let setWordClock:SetWorldClockRequest = SetWorldClockRequest(hourOffset: 0, minOffset: 0)
                     self.sendRequest(setWordClock)
                 }
             }else{
-                let setWordClock:SetWorldClockRequest = SetWorldClockRequest(offset: 0)
+                let setWordClock:SetWorldClockRequest = SetWorldClockRequest(hourOffset: 0, minOffset: 0)
                 self.sendRequest(setWordClock)
             }
         }
