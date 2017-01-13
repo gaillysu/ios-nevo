@@ -31,6 +31,8 @@ class AddAlarmController: UITableViewController, ButtonManagerCallBack, UIAlertV
         tableView.register(UINib(nibName:"AddAlarmTableViewCell", bundle: nil), forCellReuseIdentifier: "AddAlarm_Date_identifier")
 
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.save, target: self, action: #selector(controllManager(_:)))
+        
+        tableView.isScrollEnabled = false
     }
 }
 
