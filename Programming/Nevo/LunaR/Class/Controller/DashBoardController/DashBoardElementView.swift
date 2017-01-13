@@ -76,6 +76,8 @@ class DashBoardChargingView: UIView, DashBoardElementViewCornerable,CAAnimationD
     func startRotateImageView() {
         contentLabel.text = NSLocalizedString("charging", comment: "")
         
+        imageView.layer.removeAllAnimations()
+        
         let circleByOneSecond:CGFloat = 1;
         
         let rotationAnimation:CABasicAnimation = CABasicAnimation(keyPath: "transform.rotation.z")
@@ -89,19 +91,11 @@ class DashBoardChargingView: UIView, DashBoardElementViewCornerable,CAAnimationD
     
     func stopRotateImageView() {
         contentLabel.text = NSLocalizedString("nosolar", comment: "")
-        let pausedTime:CFTimeInterval = imageView.layer.convertTime(CACurrentMediaTime(), from: nil)
-        layer.speed = 0.0;
-        layer.timeOffset = pausedTime;
+        
+        imageView.layer.removeAllAnimations()
+        
         //set animation state
         isAnimation = false
-    }
-    
-    func resumeRotateImageView() {
-        imageView.layer.speed = 1.0;
-        imageView.layer.timeOffset = 0.0;
-        imageView.layer.beginTime = 0.0;
-        let timeSincePause:CFTimeInterval = imageView.layer.convertTime(CACurrentMediaTime(), from: nil)
-        layer.beginTime = timeSincePause;
     }
     
     // MARK: - CAAnimationDelegate
