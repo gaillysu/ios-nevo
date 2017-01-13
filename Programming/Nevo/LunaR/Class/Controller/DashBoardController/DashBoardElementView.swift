@@ -156,10 +156,20 @@ class DashBoardHomeClockView: UIView, DashBoardElementViewCornerable {
         timeLabel.layer.backgroundColor = UIColor.getLightBaseColor().cgColor
         timeLabel.layer.cornerRadius = 3
         timeLabel.layer.masksToBounds = true
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
         
         if !AppTheme.GET_IS_iPhone5S() {
-            timeLabelLeading.constant = 5
-            timeLabelTrailing.constant = 5
+            let timeLabelText: NSString? = timeLabel.text as NSString?
+            if let timeLabelTextLength = timeLabelText?.boundingRect(with: timeLabel.frame.size, options: .usesLineFragmentOrigin, attributes: [NSFontAttributeName: UIFont(name: "Raleway", size: 15)!], context :nil).width {
+                
+                let margin = (frame.width - timeLabelTextLength) / 2
+                
+                timeLabelLeading.constant = margin / 2
+                timeLabelTrailing.constant = margin / 2
+            }
         }
     }
     

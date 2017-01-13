@@ -31,10 +31,8 @@ class NewAddAlarmHeader: UITableViewHeaderFooterView {
             v.left.equalToSuperview()
             v.right.equalToSuperview()
             v.bottom.equalToSuperview()
-            v.height.equalTo(0.5)
+            v.height.equalTo(0.3)
         }
-        
-        bottomLineView.backgroundColor = UIColor.black
         
         alarmType.viewDefaultColorful()
         
@@ -42,10 +40,14 @@ class NewAddAlarmHeader: UITableViewHeaderFooterView {
             backgroundColor = UIColor.getLunarTabBarColor()
             contentView.backgroundColor = UIColor.getLunarTabBarColor()
             alarmType.backgroundColor = UIColor.getLunarTabBarColor()
+            
+            bottomLineView.backgroundColor = UIColor.white
         } else {
             backgroundColor = UIColor.getNevoTabBarColor()
             contentView.backgroundColor = UIColor.getNevoTabBarColor()
             alarmType.backgroundColor = UIColor.getNevoTabBarColor()
+            
+            bottomLineView.backgroundColor = UIColor.getBaseColor()
         }
     }
 }

@@ -53,11 +53,6 @@ class SetingViewController: UIViewController,ButtonManagerCallBack,UIAlertViewDe
         notificationList.tableListView.reloadData()
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
     func userProfileAction(_ sender:AnyObject) {
         
     }

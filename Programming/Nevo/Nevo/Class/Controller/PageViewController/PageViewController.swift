@@ -68,6 +68,14 @@ class PageViewController: UIPageViewController,UIActionSheetDelegate {
             self.initTitleView()
             self.bulidPageControl()
         }
+        
+        tabBarController?.tabBar.subviewsSatisfy(theCondition: { (v) -> (Bool) in
+            return v.frame.height == 0.5
+        }, do: { (v) in
+            if !AppTheme.isTargetLunaR_OR_Nevo() {
+                v.backgroundColor = UIColor.getBarSeparatorColor()
+            }
+        })
     }
     
     deinit {

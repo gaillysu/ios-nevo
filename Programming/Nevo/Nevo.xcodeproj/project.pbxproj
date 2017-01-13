@@ -639,6 +639,7 @@
 		665098951DCB26670059D5F7 /* MEDSleepDeleteRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 665098921DCB25110059D5F7 /* MEDSleepDeleteRequest.swift */; };
 		665098971DCB28160059D5F7 /* MEDStepsDeleteRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 665098961DCB28160059D5F7 /* MEDStepsDeleteRequest.swift */; };
 		665098981DCB28160059D5F7 /* MEDStepsDeleteRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 665098961DCB28160059D5F7 /* MEDStepsDeleteRequest.swift */; };
+		6651E7E41E286704007DCDF1 /* UINavigationBar+MEDExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6651E7E31E286704007DCDF1 /* UINavigationBar+MEDExtension.swift */; };
 		6655C04B1E0A22A5006A8A9D /* HomeCityDidSelectedProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6655C04A1E0A22A5006A8A9D /* HomeCityDidSelectedProtocol.swift */; };
 		6655C04C1E0A22A5006A8A9D /* HomeCityDidSelectedProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6655C04A1E0A22A5006A8A9D /* HomeCityDidSelectedProtocol.swift */; };
 		6655C04E1E0A26C9006A8A9D /* Misc+MEDExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6655C04D1E0A26C9006A8A9D /* Misc+MEDExtension.swift */; };
@@ -1241,6 +1242,7 @@
 		665098901DCB23DC0059D5F7 /* MEDSleepUpdateRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MEDSleepUpdateRequest.swift; sourceTree = "<group>"; };
 		665098921DCB25110059D5F7 /* MEDSleepDeleteRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MEDSleepDeleteRequest.swift; sourceTree = "<group>"; };
 		665098961DCB28160059D5F7 /* MEDStepsDeleteRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MEDStepsDeleteRequest.swift; sourceTree = "<group>"; };
+		6651E7E31E286704007DCDF1 /* UINavigationBar+MEDExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UINavigationBar+MEDExtension.swift"; sourceTree = "<group>"; };
 		6655C04A1E0A22A5006A8A9D /* HomeCityDidSelectedProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeCityDidSelectedProtocol.swift; sourceTree = "<group>"; };
 		6655C04D1E0A26C9006A8A9D /* Misc+MEDExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Misc+MEDExtension.swift"; sourceTree = "<group>"; };
 		6655C0571E0A53DF006A8A9D /* DashBoardController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashBoardController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -2089,6 +2091,7 @@
 				666027B61DE2D63D00E7CBD7 /* UICollectionView+MEDExtension.swift */,
 				660C16CF1DEC25DA00544F56 /* UIImage+MEDExtension.swift */,
 				6655C04D1E0A26C9006A8A9D /* Misc+MEDExtension.swift */,
+				6651E7E31E286704007DCDF1 /* UINavigationBar+MEDExtension.swift */,
 			);
 			name = MEDExtension;
 			path = Frameworks/MEDExtension;
@@ -3400,6 +3403,7 @@
 				6198EE2D1DC2090700FDD850 /* LunaRDailyTrackerInfoPacket.swift in Sources */,
 				00C826491DA5E04000ECECEE /* AnalysisStepsChartView.swift in Sources */,
 				66154BAF1DF6B7D400973A9E /* MEDNotificationColor.swift in Sources */,
+				6651E7E41E286704007DCDF1 /* UINavigationBar+MEDExtension.swift in Sources */,
 				61E8EC9C1E1601BD004F0DBE /* UnitValue.swift in Sources */,
 				6199AED51DDC593A00BEA140 /* GetNotificationAppIDPacket.swift in Sources */,
 				00C8264A1DA5E04000ECECEE /* AnalysisValueCell.swift in Sources */,
