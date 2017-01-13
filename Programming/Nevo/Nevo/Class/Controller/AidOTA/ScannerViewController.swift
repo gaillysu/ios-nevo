@@ -114,10 +114,9 @@ class ScannerViewController: UIViewController, CBCentralManagerDelegate, UITable
         tableView.deselectRow(at: indexPath, animated: true)
         self.selectedPeripheral = discoveredPeripherals![(indexPath as NSIndexPath).row]
         self.selectedPeripheralIsSecure = securePeripheralMarkers![(indexPath as NSIndexPath).row]
+        self.didDelegate?.onDidSelectPeripheral!(self.selectedPeripheralIsSecure!, self.selectedPeripheral!, self.centralManager)
 
-        self.dismiss(animated: true) { 
-            self.didDelegate?.onDidSelectPeripheral!(self.selectedPeripheralIsSecure!, self.selectedPeripheral!, self.centralManager)
-        }
+        _=self.navigationController?.popViewController(animated: true)
         //didDelegate?.onDidSelectPeripheral(nil)
     }
 }

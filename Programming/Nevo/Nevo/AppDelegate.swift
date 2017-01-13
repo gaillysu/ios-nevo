@@ -9,7 +9,6 @@
 import UIKit
 import CoreData
 import HealthKit
-import FMDB
 import Alamofire
 import BRYXBanner
 import Fabric
@@ -58,7 +57,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
         }
     }
 
-    let dbQueue:FMDatabaseQueue = FMDatabaseQueue(path: AppDelegate.dbPath())
     let network = NetworkReachabilityManager(host: "nevowatch.com")
     class func getAppDelegate()->AppDelegate {
         return UIApplication.shared.delegate as! AppDelegate

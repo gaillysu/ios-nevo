@@ -44,7 +44,9 @@ class TutorialOneViewController: UIViewController{
     }
     
     func logPressAction(_ sender:UITapGestureRecognizer) {
-
+        let olaController:OldOtaViewController = OldOtaViewController()
+        let nav:UINavigationController = UINavigationController(rootViewController: olaController)
+        self.present(nav, animated: true, completion: nil)
     }
     
     @IBAction func activateYourNevoAction(_ sender: AnyObject) {
