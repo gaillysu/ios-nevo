@@ -60,6 +60,10 @@ extension UIColor{
         return UIColor(red: 239/255.0, green: 239/255.0, blue: 239/255.0, alpha: 1.0)
     }
     
+    public class func getBarSeparatorColor() -> UIColor {
+        return UIColor("#FFFAFA")
+    }
+    
     public class func getRandomColor() -> UIColor {
         let r = CGFloat(arc4random_uniform(150) + 50)
         let g = CGFloat(arc4random_uniform(150) + 50)

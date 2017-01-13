@@ -135,20 +135,9 @@ class DashBoardHomeClockView: UIView, DashBoardElementViewCornerable {
     @IBOutlet weak var cityLabel: UILabel!
     @IBOutlet weak var countryLabel: UILabel!
     
-    var timeLabelText: String? {
-        get {
-            return timeLabel.text
-        }
-        
-        set {
-            timeLabel.text = newValue
-            if !AppTheme.GET_IS_iPhone5S(), let text = newValue {
-                timeLabel.text = " \(text) "
-            }
-            
-            timeLabel.sizeToFit()
-        }
-    }
+    @IBOutlet weak var timeLabelLeading: NSLayoutConstraint!
+    @IBOutlet weak var timeLabelTrailing: NSLayoutConstraint!
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -157,12 +146,25 @@ class DashBoardHomeClockView: UIView, DashBoardElementViewCornerable {
         cityLabel.text = "City Name"
         countryLabel.text = "Country Name"
         timeLabel.text = Date().stringFromFormat("hh:mm a")
-
-        timeLabel.sizeToFit()
         
         timeLabel.layer.backgroundColor = UIColor.getLightBaseColor().cgColor
         timeLabel.layer.cornerRadius = 3
         timeLabel.layer.masksToBounds = true
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        if !AppTheme.GET_IS_iPhone5S() {
+            let timeLabelText: NSString? = timeLabel.text as NSString?
+            if let timeLabelTextLength = timeLabelText?.boundingRect(with: timeLabel.frame.size, options: .usesLineFragmentOrigin, attributes: [NSFontAttributeName: UIFont(name: "Raleway", size: 15)!], context :nil).width {
+                
+                let margin = (frame.width - timeLabelTextLength) / 2
+                
+                timeLabelLeading.constant = margin / 2
+                timeLabelTrailing.constant = margin / 2
+            }
+        }
     }
     
     class func factory() -> DashBoardHomeClockView {

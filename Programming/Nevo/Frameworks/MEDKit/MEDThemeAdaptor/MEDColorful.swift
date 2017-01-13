@@ -106,6 +106,11 @@ extension MEDColorfulLooking where Self: UITableViewCell {
             contentView.backgroundColor = UIColor.getGreyColor()
             textLabel?.textColor = UIColor.white
             detailTextLabel?.textColor = UIColor.white
+        } else {
+            backgroundColor = UIColor.white
+            contentView.backgroundColor = UIColor.white
+            textLabel?.textColor = UIColor.black
+            detailTextLabel?.textColor = UIColor.black
         }
     }
 }

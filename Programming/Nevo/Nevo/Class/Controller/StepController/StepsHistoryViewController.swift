@@ -88,6 +88,8 @@ class StepsHistoryViewController: PublicClassController,ChartViewDelegate {
         _ = SwiftEventBus.onMainThread(self, name: EVENT_BUS_END_BIG_SYNCACTIVITY) { (notification) in
             self.saveContentTArray(date: Date().beginningOfDay.timeIntervalSince1970)
         }
+        
+        stepsHistory.reloadData()
     }
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)

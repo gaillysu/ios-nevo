@@ -428,11 +428,10 @@ extension AppDelegate {
         
         print("Migrated objects in the default Realm: \(try! Realm().objects(City.self))")
     }
-}
-
+} 
 // MARK: - Fake Functions for Nevo
 extension AppDelegate {
-
+    
     func setWorldTime() {
         if !AppTheme.isTargetLunaR_OR_Nevo() {
             if let row = MEDSettings.int(forKey: "SET_SYNCTIME_TYPE"), row == 0 {
