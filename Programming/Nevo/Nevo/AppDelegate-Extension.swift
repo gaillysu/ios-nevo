@@ -227,14 +227,14 @@ extension AppDelegate {
     }
     
     func getWatchInfo() -> (watchName:String,watchId:Int) {
-        return (self.getWatchName(),self.getWactnID());
+        return (self.getWatchName(),self.getWatchID());
     }
     
     func setWatchInfo(_ id:Int,model:Int) {
         // id = 1-Nevo,2-Nevo Solar,3-Lunar,0xff-Nevo
         XCGLogger.default.debug("setWatchInfo:id\(id),model:\(model)")
         
-        self.setWactnID(id)
+        self.setWatchID(id)
         switch id {
         case 1:
             self.setWatchName("Nevo")

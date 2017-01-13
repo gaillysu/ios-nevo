@@ -94,7 +94,7 @@ class PageViewController: UIPageViewController,UIActionSheetDelegate {
         
         pagingControllers = [viewController1, viewController2,viewController3]
         
-        var value:Int = AppDelegate.getAppDelegate().getWactnID()
+        var value:Int = AppDelegate.getAppDelegate().getWatchID()
         
 
         if !AppTheme.isTargetLunaR_OR_Nevo() {

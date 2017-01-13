@@ -160,7 +160,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
         return mConnectionController
     }
     
-    func setWactnID(_ id:Int) {
+    func setWatchID(_ id:Int) {
         let info: [String : Int] = [EVENT_BUS_WATCHID_DIDCHANGE_KEY : id]
         SwiftEventBus.post(EVENT_BUS_WATCHID_DIDCHANGE_KEY, sender: nil, userInfo: info)
         
@@ -168,7 +168,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
         UserDefaults.standard.synchronize()
     }
     
-    func getWactnID()->Int {
+    func getWatchID()->Int {
         if let watchID = UserDefaults.standard.object(forKey: WATCHKEY_SETID) {
             return watchID as! Int
         }
@@ -278,7 +278,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                 let timerInterval:Date = thispacket.getDateTimer()
                 let timeStr:String = thispacket.getDateTimer().stringFromFormat("yyyyMMdd", locale: DateFormatter().locale)
                 
-                if self.getWactnID()>1 {
+                if self.getWatchID()>1 {
                     saveSolarHarvest(thispacket: thispacket, date: thispacket.getDateTimer())
                 }
                 
