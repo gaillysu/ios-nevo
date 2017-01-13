@@ -33,6 +33,6 @@ extension Date{
     static func getLocalOffSet() -> Int {
         let zone:TimeZone       = TimeZone.current
         let offtSecond:Int      = zone.secondsFromGMT()
-        return offtSecond/60
+        return offtSecond
     }
 }

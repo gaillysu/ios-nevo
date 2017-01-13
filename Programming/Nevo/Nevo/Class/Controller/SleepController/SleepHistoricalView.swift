@@ -117,7 +117,7 @@ class SleepHistoricalView: UIView, ChartViewDelegate{
         if sleepEntry.count == 0 {
             for i:Int in 0..<8 {
                 NSLog("value2:\(0),\(i)")
-                chartView!.addDataPoint("\(i):00", entry: [0,0,60])
+                chartView!.addDataPoint("\(i):00", entry: [60,0,0])
             }
         }
         
