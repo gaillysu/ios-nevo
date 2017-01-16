@@ -235,7 +235,7 @@
 "inactivity" = "INACTIVITY";
 "activity" = "ACTIVITY";
 "steps_taken" = "STEPS TAKEN";
-"update_available" = "Version VERSION_NUMBER is now available for your Nevo!";
+"update_available" = "Version: VERSION_NUMBER is available!";
 "home_local" = "Watch digital time";
 "failed_locate" = "Failed to locate";
 "locating" = "Locating...";

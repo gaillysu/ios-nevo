@@ -185,11 +185,11 @@ class MyNevoController: UITableViewController,UIAlertViewDelegate {
                 
                 detailString = detailString.replacingOccurrences(of: "VERSION_NUMBER", with: buildin_firmware_version.to2String())
                 
-                detailString = "Version \(buildin_firmware_version) is now available for your LunaR!"
+                detailString = "Version: \(buildin_firmware_version) is available!"
                 NSLog("MCU:\(AppDelegate.getAppDelegate().getSoftwareVersion()) BLE:\(AppDelegate.getAppDelegate().getFirmwareVersion())")
                 isUpdate = true
             }else{
-                detailString = "MCU:\(AppDelegate.getAppDelegate().getSoftwareVersion()) BLE:\(AppDelegate.getAppDelegate().getFirmwareVersion())"
+                detailString = "Version: \(AppDelegate.getAppDelegate().getFirmwareVersion())"
             }
         case 1:
             switch (currentBattery){
