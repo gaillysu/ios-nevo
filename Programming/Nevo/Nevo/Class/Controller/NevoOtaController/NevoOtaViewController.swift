@@ -67,7 +67,8 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
             }
 
             var fileArray:NSArray;
-            let watchIdValue:Int = UserDefaults.standard.object(forKey: "WATCHNAME_KEY") as! Int
+            
+            let watchIdValue:Int = AppDelegate.getAppDelegate().getWatchID()
             if watchIdValue > 1 {
                 fileArray = AppTheme.GET_FIRMWARE_FILES("Solar_Firmwares")
             }else{

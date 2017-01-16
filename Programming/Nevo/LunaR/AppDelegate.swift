@@ -145,8 +145,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
         return mConnectionController
     }
     
-    func setWactnID(_ id:Int) {
-        XCGLogger.default.debug("setWactnID")
+    func setWatchID(_ id:Int) {
+        XCGLogger.default.debug("setWatchID")
         UserDefaults.standard.set(id, forKey: WATCHKEY_SETID)
         UserDefaults.standard.synchronize()
         
@@ -155,7 +155,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
         }
     }
     
-    func getWactnID()->Int {
+    func getWatchID()->Int {
         if let watchID = UserDefaults.standard.object(forKey: WATCHKEY_SETID) {
             return watchID as! Int
         }
@@ -401,7 +401,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                 actionSheet.addAction(alertAction1)
                 
                 let alertAction2:AlertAction = AlertAction(title: buttonString, style: UIAlertActionStyle.default, handler: { ( alert) -> Void in
-                    let otaCont:NevoOtaViewController = NevoOtaViewController()
+                    let otaCont:LunaROTAController = LunaROTAController()
                     let navigation:UINavigationController = UINavigationController(rootViewController: otaCont)
                     tabVC?.present(navigation, animated: true, completion: nil)
                     

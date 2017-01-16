@@ -42,7 +42,7 @@ class AnalysisController: PublicClassController {
         contentCollectionView.register(UINib(nibName: "AnalysisValueCell",bundle: nil), forCellWithReuseIdentifier: "AnalysisValue_Identifier")
         dataArray.addObjects(from: self.getStepsData())
         
-        let value:Int = AppDelegate.getAppDelegate().getWactnID()
+        let value:Int = AppDelegate.getAppDelegate().getWatchID()
         
         if value>1 {
             segmented.insertSegment(withTitle: NSLocalizedString("Solar", comment: ""), at: segmented.numberOfSegments, animated: false)
