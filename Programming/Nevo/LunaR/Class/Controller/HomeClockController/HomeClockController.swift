@@ -24,7 +24,7 @@ class HomeClockController: UIViewController {
     var clockView: ClockView?
     
     var homeTime = Date()
-    let formaterString = "d MMM, yyyy"
+    let formatString = "d MMM, yyyy"
     
     lazy var noCityLabel: UILabel = {
         self.view.addSubview($0)
@@ -83,7 +83,7 @@ extension HomeClockController {
             
             calculateHomeTime()
             
-            dateLabel.text = isPastOrComing(date: homeTime) + "  " + homeTime.stringFromFormat(formaterString)
+            dateLabel.text = isPastOrComing(date: homeTime) + "  " + homeTime.stringFromFormat(formatString)
             return
         } else {
             noCityLabel.isHidden = false
@@ -144,8 +144,7 @@ extension HomeClockController {
     func calculateHomeTime() {
         /// self's city must be non-nil now
         if let timezone = HomeClockUtil.shared.getTimezoneWithCity(city: city!) {
-            let gmtOffset = timezone.gmtTimeOffset * 60 // Second as unit
-            homeTime = Date.convertGMTToLocalDateFormat(gmtOffset)
+            homeTime = HomeClockUtil.shared.calculateHomeTimeWithTimezone(timezone, useTranslatedDate: true)
         }
     }
 }
