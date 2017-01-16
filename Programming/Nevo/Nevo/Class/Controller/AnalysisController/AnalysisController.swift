@@ -70,7 +70,7 @@ class AnalysisController: PublicClassController {
             contentCollectionView.backgroundColor = UIColor.getLightBaseColor()
             chartsCollectionView.backgroundColor = UIColor.getLightBaseColor()
             segmented.tintColor = UIColor.getBaseColor()
-            segmentDeviderView.backgroundColor = UIColor.white
+            segmentDeviderView.backgroundColor = UIColor("#AAAAB4")
             
             segmented.backgroundColor = UIColor.getLunarTabBarColor()
             segmentedBackgroundView.backgroundColor = UIColor.getLunarTabBarColor()

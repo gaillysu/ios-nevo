@@ -73,7 +73,7 @@ class PageViewController: UIPageViewController,UIActionSheetDelegate {
             return v.frame.height == 0.5
         }, do: { (v) in
             if !AppTheme.isTargetLunaR_OR_Nevo() {
-                v.backgroundColor = UIColor.getBarSeparatorColor()
+                v.backgroundColor = UIColor("#AAAAB4")
             }
         })
     }

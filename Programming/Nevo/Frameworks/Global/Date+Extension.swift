@@ -23,10 +23,10 @@ extension Date{
         let nowDate:Date        = Date().addingTimeInterval(TimeInterval(offtSecond))
         let sourceTimeZone:TimeZone = TimeZone(abbreviation: "UTC")!//或GMT
         let formatter               = DateFormatter()
-        formatter.dateFormat        = "yyyy-MM-dd,h:mm:ss"
+        formatter.dateFormat        = "yyyy-MM-dd,HH:mm:ss"
         formatter.timeZone          = sourceTimeZone
         let dateString:String       = formatter.string(from: nowDate)
-        let dateTime:Date           = dateString.dateFromFormat("yyyy-MM-dd,h:mm:ss", locale: DateFormatter().locale)!
+        let dateTime:Date           = dateString.dateFromFormat("yyyy-MM-dd,HH:mm:ss", locale: DateFormatter().locale)!
         return dateTime
     }
     

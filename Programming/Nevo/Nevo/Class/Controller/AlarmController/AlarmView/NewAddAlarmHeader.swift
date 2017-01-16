@@ -41,7 +41,7 @@ class NewAddAlarmHeader: UITableViewHeaderFooterView {
             contentView.backgroundColor = UIColor.getLunarTabBarColor()
             alarmType.backgroundColor = UIColor.getLunarTabBarColor()
             
-            bottomLineView.backgroundColor = UIColor.white
+            bottomLineView.backgroundColor = UIColor("#AAAAB4")
         } else {
             backgroundColor = UIColor.getNevoTabBarColor()
             contentView.backgroundColor = UIColor.getNevoTabBarColor()
