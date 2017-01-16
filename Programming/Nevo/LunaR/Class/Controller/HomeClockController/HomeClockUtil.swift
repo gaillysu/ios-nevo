@@ -131,16 +131,9 @@ class HomeClockUtil {
     
     
     func calculateHomeTimeWithTimezone(_ timezone: Timezone, useTranslatedDate: Bool) -> Date {
-        let gmtOffset = timezone.gmtTimeOffset * 60 // seconds from gmt
+        let gmtOffset = timezone.getOffsetFromUTC() * 60 // seconds from gmt
         
         var homeTime = Date(timeInterval: TimeInterval(gmtOffset), since: Date())   // time from gmt
-        
-        let dstBeginTime = WorldClockUtil.getStartDateForDST(timezone)
-        let dstEndTime = WorldClockUtil.getStopDateForDST(timezone)
-        
-        if timezone.dstTimeOffset > 0 && homeTime > dstBeginTime && homeTime < dstEndTime {
-            homeTime = Date(timeInterval: TimeInterval(timezone.dstTimeOffset * 60), since: homeTime)
-        }
         
         if useTranslatedDate {
             let format = "yyyyMMdd HHmmSS"
