@@ -542,6 +542,14 @@
 		6199AED31DDC51FA00BEA140 /* GetNotificationAppIDRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6199AED21DDC51FA00BEA140 /* GetNotificationAppIDRequest.swift */; };
 		6199AED51DDC593A00BEA140 /* GetNotificationAppIDPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6199AED41DDC593A00BEA140 /* GetNotificationAppIDPacket.swift */; };
 		6199AED71DDC5C8B00BEA140 /* SetNotificationAppIDRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6199AED61DDC5C8B00BEA140 /* SetNotificationAppIDRequest.swift */; };
+		61CEC5BD1E2C5A2E001E5567 /* OldOtaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61CEC5B91E2C5A2E001E5567 /* OldOtaViewController.swift */; };
+		61CEC5BE1E2C5A2E001E5567 /* OldOtaViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 61CEC5BA1E2C5A2E001E5567 /* OldOtaViewController.xib */; };
+		61CEC5BF1E2C5A2E001E5567 /* ScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61CEC5BB1E2C5A2E001E5567 /* ScannerViewController.swift */; };
+		61CEC5C01E2C5A2E001E5567 /* ScannerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 61CEC5BC1E2C5A2E001E5567 /* ScannerViewController.xib */; };
+		61CEC5C11E2C5A3E001E5567 /* OldOtaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61CEC5B91E2C5A2E001E5567 /* OldOtaViewController.swift */; };
+		61CEC5C21E2C5A45001E5567 /* OldOtaViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 61CEC5BA1E2C5A2E001E5567 /* OldOtaViewController.xib */; };
+		61CEC5C31E2C5A48001E5567 /* ScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61CEC5BB1E2C5A2E001E5567 /* ScannerViewController.swift */; };
+		61CEC5C41E2C5A4B001E5567 /* ScannerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 61CEC5BC1E2C5A2E001E5567 /* ScannerViewController.xib */; };
 		61D1A8AA1DD468A100B91BDD /* MEDDataBaseRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61D1A8A31DD468A100B91BDD /* MEDDataBaseRequest.swift */; };
 		61D1A8AB1DD468A100B91BDD /* MEDUserAlarm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61D1A8A41DD468A100B91BDD /* MEDUserAlarm.swift */; };
 		61D1A8AC1DD468A100B91BDD /* MEDUserGoal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61D1A8A51DD468A100B91BDD /* MEDUserGoal.swift */; };
@@ -1193,6 +1201,10 @@
 		6199AED21DDC51FA00BEA140 /* GetNotificationAppIDRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetNotificationAppIDRequest.swift; sourceTree = "<group>"; };
 		6199AED41DDC593A00BEA140 /* GetNotificationAppIDPacket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetNotificationAppIDPacket.swift; sourceTree = "<group>"; };
 		6199AED61DDC5C8B00BEA140 /* SetNotificationAppIDRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetNotificationAppIDRequest.swift; sourceTree = "<group>"; };
+		61CEC5B91E2C5A2E001E5567 /* OldOtaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OldOtaViewController.swift; sourceTree = "<group>"; };
+		61CEC5BA1E2C5A2E001E5567 /* OldOtaViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OldOtaViewController.xib; sourceTree = "<group>"; };
+		61CEC5BB1E2C5A2E001E5567 /* ScannerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScannerViewController.swift; sourceTree = "<group>"; };
+		61CEC5BC1E2C5A2E001E5567 /* ScannerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ScannerViewController.xib; sourceTree = "<group>"; };
 		61D1A8A31DD468A100B91BDD /* MEDDataBaseRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MEDDataBaseRequest.swift; sourceTree = "<group>"; };
 		61D1A8A41DD468A100B91BDD /* MEDUserAlarm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MEDUserAlarm.swift; sourceTree = "<group>"; };
 		61D1A8A51DD468A100B91BDD /* MEDUserGoal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MEDUserGoal.swift; sourceTree = "<group>"; };
@@ -1446,6 +1458,7 @@
 		0050D5151C28E0DB004F6F80 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				61CEC5B81E2C5A2E001E5567 /* AidOTA */,
 				6168C62D1DFE53BF008FCF97 /* OtherController */,
 				006DA3061D6EC89F0011E09C /* AnalysisController */,
 				0089B0A01D6BF0CB0041148A /* ProfileSetupController */,
@@ -2190,6 +2203,17 @@
 			path = LunaROTAController;
 			sourceTree = "<group>";
 		};
+		61CEC5B81E2C5A2E001E5567 /* AidOTA */ = {
+			isa = PBXGroup;
+			children = (
+				61CEC5B91E2C5A2E001E5567 /* OldOtaViewController.swift */,
+				61CEC5BA1E2C5A2E001E5567 /* OldOtaViewController.xib */,
+				61CEC5BB1E2C5A2E001E5567 /* ScannerViewController.swift */,
+				61CEC5BC1E2C5A2E001E5567 /* ScannerViewController.xib */,
+			);
+			path = AidOTA;
+			sourceTree = "<group>";
+		};
 		61D1A8A21DD468A100B91BDD /* MEDDataBase */ = {
 			isa = PBXGroup;
 			children = (
@@ -2930,6 +2954,7 @@
 				61879C321DC05C430089F1E5 /* timezones.json in Resources */,
 				61879C311DC05C410089F1E5 /* cities.json in Resources */,
 				00C826C81DA5ECA700ECECEE /* ForgotPasswordController.xib in Resources */,
+				61CEC5C21E2C5A45001E5567 /* OldOtaViewController.xib in Resources */,
 				00C826C91DA5ECA700ECECEE /* InformationController.xib in Resources */,
 				00C826CB1DA5ECA700ECECEE /* SolarInforViewCell.xib in Resources */,
 				00C826CE1DA5ECA700ECECEE /* UserHeader.xib in Resources */,
@@ -2997,6 +3022,7 @@
 				665BD6D91DBF1297008C2623 /* sunrise.png in Resources */,
 				0037EC301D235F5300502140 /* turnonnevo.png in Resources */,
 				0037EC311D235F5300502140 /* tutorialone.png in Resources */,
+				61CEC5C41E2C5A4B001E5567 /* ScannerViewController.xib in Resources */,
 				665BD6C21DBEF3C2008C2623 /* SolarIndicatorController.xib in Resources */,
 				0037EC351D235F5300502140 /* upgrade_clock.png in Resources */,
 				666792EA1E134DAF00344188 /* iRate.bundle in Resources */,
@@ -3047,6 +3073,7 @@
 				00120E7D1D7559D500CE0C32 /* Raleway-Light.ttf in Resources */,
 				00120E7E1D7559D500CE0C32 /* Raleway-Medium.ttf in Resources */,
 				00120E7F1D7559D500CE0C32 /* Raleway-Regular.ttf in Resources */,
+				61CEC5C01E2C5A2E001E5567 /* ScannerViewController.xib in Resources */,
 				00120E801D7559D500CE0C32 /* Raleway-SemiBold.ttf in Resources */,
 				00120E811D7559D500CE0C32 /* Raleway-Thin.ttf in Resources */,
 				0091EB1F1D9513F90079EC39 /* NewAddAlarmHeader.xib in Resources */,
@@ -3095,6 +3122,7 @@
 				001F1B7C1B57777B001DD426 /* nevo_wacth.png in Resources */,
 				0036EB051C48BA8300DCED46 /* connected.png in Resources */,
 				006DA3191D6ED6670011E09C /* AnalysisRadarViewCell.xib in Resources */,
+				61CEC5BE1E2C5A2E001E5567 /* OldOtaViewController.xib in Resources */,
 				0050D5FD1C28E0DB004F6F80 /* NotificationClockCell.xib in Resources */,
 				0036EB091C48BA8300DCED46 /* turnonnevo.png in Resources */,
 				D11C142B1E1CA94600962F46 /* default.realm.lock in Resources */,
@@ -3527,6 +3555,7 @@
 				00C826A51DA5E04000ECECEE /* SetingViewController.swift in Sources */,
 				00C826A61DA5E04000ECECEE /* SleepHistoricalView.swift in Sources */,
 				00C826A71DA5E04000ECECEE /* SleepHistoryViewCell.swift in Sources */,
+				61CEC5C31E2C5A48001E5567 /* ScannerViewController.swift in Sources */,
 				00C826A81DA5E04000ECECEE /* SleepHistoryViewCell.xib in Sources */,
 				00C826A91DA5E04000ECECEE /* SleepHistoricalViewController.swift in Sources */,
 				6655C05A1E0A53DF006A8A9D /* DashBoardController.swift in Sources */,
@@ -3560,6 +3589,7 @@
 				61FC93EC1DE68064000AE93C /* MEDUserAlarm.swift in Sources */,
 				0023C0AD1DA64DD400FB33A4 /* PVADCRequest.swift in Sources */,
 				00C826BA1DA5E04000ECECEE /* SleepTutorialController.swift in Sources */,
+				61CEC5C11E2C5A3E001E5567 /* OldOtaViewController.swift in Sources */,
 				6695A7F61E07CFF3007396DF /* WorldClockUtil.swift in Sources */,
 				00C826BB1DA5E04000ECECEE /* MorningTutorialController.swift in Sources */,
 				61EF09201DDE9E0A003C2EA5 /* DeleteNotificationAppIDPacket.swift in Sources */,
@@ -3840,6 +3870,7 @@
 				61D1A8AD1DD468A100B91BDD /* MEDUserNotification.swift in Sources */,
 				611D41DD1DCAD97D003BC6E3 /* FindWatchRequest.swift in Sources */,
 				611D41DE1DCAD97D003BC6E3 /* PVADCRequest.swift in Sources */,
+				61CEC5BD1E2C5A2E001E5567 /* OldOtaViewController.swift in Sources */,
 				666792ED1E134DAF00344188 /* LocalNotification.swift in Sources */,
 				61D1A8AA1DD468A100B91BDD /* MEDDataBaseRequest.swift in Sources */,
 				6658D6ED1E1DDD4F00858DF0 /* AddAlarmDatePickerCell.swift in Sources */,
@@ -3972,6 +4003,7 @@
 				611D425A1DCAD97D003BC6E3 /* StepGoalSetingViewCell.xib in Sources */,
 				611D425B1DCAD97D003BC6E3 /* StepsHistoryViewController.swift in Sources */,
 				611D425C1DCAD97D003BC6E3 /* StepsTitleView.swift in Sources */,
+				61CEC5BF1E2C5A2E001E5567 /* ScannerViewController.swift in Sources */,
 				61D1A8B01DD468A100B91BDD /* MEDUserSteps.swift in Sources */,
 				611D425D1DCAD97D003BC6E3 /* StepsTitleView.xib in Sources */,
 				611D425E1DCAD97D003BC6E3 /* TutorialOneViewController.swift in Sources */,
