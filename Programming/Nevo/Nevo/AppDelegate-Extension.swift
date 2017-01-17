@@ -47,14 +47,28 @@ extension AppDelegate {
     
     func setNewAlarm() {
         let lunarAlarm:[MEDUserAlarm] = MEDUserAlarm.getAll() as! [MEDUserAlarm]
-        let weakAlarm:[MEDUserAlarm] = lunarAlarm.filter({$0.type == 0})
-        let sleepAlarm:[MEDUserAlarm] = lunarAlarm.filter({$0.type == 1})
+        var weakAlarm:[MEDUserAlarm] = lunarAlarm.filter({$0.type == 0})
+        var sleepAlarm:[MEDUserAlarm] = lunarAlarm.filter({$0.type == 1})
         
-        for index in 0 ..< 14{
-            let date:Date = Date()
-            let newAlarm:NewAlarm = NewAlarm(alarmhour: date.hour, alarmmin: date.minute, alarmNumber: index, alarmWeekday: 0)
-            if(self.isConnected()){
-                sendRequest(SetNewAlarmRequest(alarm:newAlarm))
+        if weakAlarm.count<7 {
+            for _ in weakAlarm.count..<7 {
+                let alarm:MEDUserAlarm = MEDUserAlarm()
+                alarm.timer = Date().timeIntervalSince1970
+                alarm.label = "Off"
+                alarm.status = false
+                alarm.alarmWeek = 0
+                weakAlarm.append(alarm)
+            }
+        }
+        
+        if sleepAlarm.count<7 {
+            for _ in sleepAlarm.count..<7 {
+                let alarm:MEDUserAlarm = MEDUserAlarm()
+                alarm.timer = Date().timeIntervalSince1970
+                alarm.label = "Off"
+                alarm.status = false
+                alarm.alarmWeek = 0
+                sleepAlarm.append(alarm)
             }
         }
         
@@ -62,16 +76,14 @@ extension AppDelegate {
         for (index,Value) in weakAlarm.enumerated() {
             let alarm:MEDUserAlarm = Value
             let alarmDay:Date = Date(timeIntervalSince1970: alarm.timer)
-            if alarm.status {
-                let newAlarm:NewAlarm = NewAlarm(alarmhour: alarmDay.hour, alarmmin: alarmDay.minute, alarmNumber: index, alarmWeekday: alarm.alarmWeek)
-                sendRequest(SetNewAlarmRequest(alarm:newAlarm))
-            }
+            let newAlarm:NewAlarm = NewAlarm(alarmhour: alarmDay.hour, alarmmin: alarmDay.minute, alarmNumber: index, alarmWeekday: alarm.alarmWeek)
+            sendRequest(SetNewAlarmRequest(alarm:newAlarm))
         }
         
         for (index,Value) in sleepAlarm.enumerated() {
             let alarm:MEDUserAlarm = Value
             let alarmDay:Date = Date(timeIntervalSince1970: alarm.timer)
-            if alarm.status && alarm.alarmWeek == date.weekday {
+            if alarm.alarmWeek == date.weekday {
                 let nowDate:Date = Date.date(year: Date().year, month: Date().month, day: Date().day, hour: alarmDay.hour, minute: alarmDay.minute, second: 0)
                 if nowDate.timeIntervalSince1970<Date().timeIntervalSince1970 {
                     let newAlarm:NewAlarm = NewAlarm(alarmhour: alarmDay.hour, alarmmin: alarmDay.minute, alarmNumber: index+7, alarmWeekday: 0)
@@ -81,7 +93,7 @@ extension AppDelegate {
                     sendRequest(SetNewAlarmRequest(alarm:newAlarm))
                 }
             }else{
-                if alarm.status && alarm.alarmWeek > date.weekday {
+                if alarm.alarmWeek > date.weekday {
                     let newAlarm:NewAlarm = NewAlarm(alarmhour: alarmDay.hour, alarmmin: alarmDay.minute, alarmNumber: index+7, alarmWeekday: alarm.alarmWeek)
                     sendRequest(SetNewAlarmRequest(alarm:newAlarm))
                 }

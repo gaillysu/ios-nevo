@@ -193,6 +193,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
             //We just received a full response, so we can safely send the next request
             SyncQueue.sharedInstance.next()
             
+            if(packet.getHeader() == ReadBatteryLevelNevoRequest.HEADER()){
+                let thispacket:BatteryLevelNevoPacket = packet.copy() as BatteryLevelNevoPacket
+                if(thispacket.isReadBatteryCommand(packet.getPackets())){
+                    let batteryValue:Int = thispacket.getBatteryLevel()
+                    SwiftEventBus.post(EVENT_BUS_BATTERY_STATUS_CHANGED, sender:batteryValue);
+                }
+            }
+            
             if(packet.getHeader() == GetWatchName.HEADER()) {
                 let watchpacket = packet.copy() as LunaRWatchNamePacket
                 self.setWatchInfo(watchpacket.getWatchID(), model: watchpacket.getModelNumber())
