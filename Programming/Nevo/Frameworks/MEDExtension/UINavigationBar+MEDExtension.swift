@@ -17,7 +17,7 @@ extension UINavigationBar {
         }) { (v) in
             
             if !AppTheme.isTargetLunaR_OR_Nevo() {
-                v.backgroundColor = UIColor.white
+                v.backgroundColor = UIColor("#AAAAB4")
             }
         }
     }

@@ -123,10 +123,30 @@ class HomeClockUtil {
     
     func getHomeTime() -> Date? {
         if let city = getHomeCityWithSelectedFlag(), let timezone = getTimezoneWithCity(city: city) {
-            let gmtOffset = timezone.gmtTimeOffset * 60
-            return Date.convertGMTToLocalDateFormat(gmtOffset)
+            return calculateHomeTimeWithTimezone(timezone, useTranslatedDate: true)
         }
         
         return nil
+    }
+    
+    
+    func calculateHomeTimeWithTimezone(_ timezone: Timezone, useTranslatedDate: Bool) -> Date {
+        let gmtOffset = timezone.getOffsetFromUTC() * 60 // seconds from gmt
+        
+        var homeTime = Date(timeInterval: TimeInterval(gmtOffset), since: Date())   // time from gmt
+        
+        if useTranslatedDate {
+            let format = "yyyyMMdd HHmmSS"
+            let formatter = DateFormatter()
+            formatter.dateFormat = format
+            formatter.timeZone = TimeZone(secondsFromGMT: 0)
+            let dateString = formatter.string(from: homeTime)
+            
+            if let date = dateString.dateFromFormat(format, locale: DateFormatter().locale) {
+                homeTime = date
+            }
+        }
+        
+        return homeTime
     }
 }

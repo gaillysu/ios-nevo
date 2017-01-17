@@ -14,6 +14,10 @@ import RealmSwift
 class MEDAppInfoRequester {
     static let baseURL = "https://itunes.apple.com/lookup?bundleId="
     
+    enum ResponseError: Error {
+        case illegalBundleID
+    }
+    
     class func requestAppInfoWith(bundleId: String, resultHandle: @escaping (Swift.Error?, MEDAppInfo?) -> Void) {
         let realm = try! Realm()
         let predicate = NSPredicate(format: "bundleId = %@", bundleId)
@@ -27,14 +31,18 @@ class MEDAppInfoRequester {
                 switch response.result {
                 case .success(let data):
                     let json = JSON(data)
-                    if let info = MEDAppInfo.medAppInfoWith(json: json["results"][0]) {
-                        let realm = try! Realm()
-                        try! realm.write {
-                            realm.add(info, update: true)
-                        }
-                        resultHandle(nil, info)
-                    }
                     
+                    if json.count == 0 {
+                        resultHandle(ResponseError.illegalBundleID, nil)
+                    } else {
+                        if let info = MEDAppInfo.medAppInfoWith(json: json["results"][0]) {
+                            let realm = try! Realm()
+                            try! realm.write {
+                                realm.add(info, update: true)
+                            }
+                            resultHandle(nil, info)
+                        }
+                    }
                 case .failure(let error):
                     resultHandle(error, nil)
                 }
