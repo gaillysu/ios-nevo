@@ -246,7 +246,9 @@ class NevoOtaController : NSObject,ConnectionControllerDelegate {
             XCGLogger.default.debug("successfully received notification for whole File transfer");
             validateFirmware()
             
-            activateAndReset()
+            AppDelegate.getAppDelegate().delay(seconds: 0.2, completion: {
+                self.activateAndReset()
+            })
         }else {
             XCGLogger.default.debug("Firmware Image failed, Error Status: \(self.responseErrorMessage(self.dfuResponse.responseStatus))");
             let errorMessage = "Error on Receive Firmware Image\n Message: \(responseErrorMessage(dfuResponse.responseStatus))";
