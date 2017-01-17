@@ -593,10 +593,8 @@ extension AppDelegate {
             MEDStepsNetworkManager.createSteps(uid: userProfile.uid, steps: stepsModel.hourlysteps, date: dateString, activeTime: activeTime, calories: caloriesValue, distance: milesValue, completion: { (success: Bool) in
                 if success {
                     stepsModel.isUpload = true
-                    _ = stepsModel.add()
                 }else{
                     stepsModel.isUpload = false
-                    _ = stepsModel.add()
                 }
             })
             
