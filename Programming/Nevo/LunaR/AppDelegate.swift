@@ -193,6 +193,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
             //We just received a full response, so we can safely send the next request
             SyncQueue.sharedInstance.next()
             
+            if(packet.getHeader() == ReadBatteryLevelNevoRequest.HEADER()){
+                let thispacket:BatteryLevelNevoPacket = packet.copy() as BatteryLevelNevoPacket
+                if(thispacket.isReadBatteryCommand(packet.getPackets())){
+                    let batteryValue:Int = thispacket.getBatteryLevel()
+                    SwiftEventBus.post(EVENT_BUS_BATTERY_STATUS_CHANGED, sender:batteryValue);
+                }
+            }
+            
             if(packet.getHeader() == GetWatchName.HEADER()) {
                 let watchpacket = packet.copy() as LunaRWatchNamePacket
                 self.setWatchInfo(watchpacket.getWatchID(), model: watchpacket.getModelNumber())
@@ -585,10 +593,8 @@ extension AppDelegate {
             MEDStepsNetworkManager.createSteps(uid: userProfile.uid, steps: stepsModel.hourlysteps, date: dateString, activeTime: activeTime, calories: caloriesValue, distance: milesValue, completion: { (success: Bool) in
                 if success {
                     stepsModel.isUpload = true
-                    _ = stepsModel.add()
                 }else{
                     stepsModel.isUpload = false
-                    _ = stepsModel.add()
                 }
             })
             
