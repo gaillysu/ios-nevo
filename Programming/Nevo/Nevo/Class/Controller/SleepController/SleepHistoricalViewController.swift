@@ -95,7 +95,13 @@ class SleepHistoricalViewController: PublicClassController,ChartViewDelegate {
                     if NSString(format:"\(Int(sleep))" as NSString).length == 1 {
                         reString.replaceSubrange(subRange, with: "0\(Int(sleep))")
                     }else{
-                        reString.replaceSubrange(subRange, with: "\(Int(sleep))")
+                        if sleep<60 {
+                            reString.replaceSubrange(subRange, with: "\(Int(sleep))")
+                        }else{
+                            let timerArray:[String] = reString.components(separatedBy: ":")
+                            let hour = timerArray[0].toInt()
+                            reString = "\(hour):00"
+                        }
                     }
                     contentTArray.replaceSubrange(Range(0..<1), with: [reString])
                 }
@@ -106,17 +112,23 @@ class SleepHistoricalViewController: PublicClassController,ChartViewDelegate {
                     var reString:String = queryView.chartView!.getXVals()[queryView.chartView!.getXVals().count-1]
                     let subRange = Range(reString.characters.index(reString.endIndex, offsetBy: -2)..<reString.endIndex)
                     
-                    if NSString(format:"\(Int(endSleep))" as NSString).length == 1 {
+                    let endSleepString:String = String(format: "%.0f", endSleep)
+                    if endSleepString.length() == 1 {
                         reString.replaceSubrange(subRange, with: "0\(Int(endSleep))")
                     }else{
-                        reString.replaceSubrange(subRange, with: "\(Int(endSleep))")
+                        if endSleep<60 {
+                            reString.replaceSubrange(subRange, with: "\(Int(endSleep))")
+                        }else{
+                            let timerArray:[String] = reString.components(separatedBy: ":")
+                            let hour = timerArray[0].toInt()+1
+                            reString = "\(hour):00"
+                        }
                     }
                     if queryView.getTotalSleepNumber() == 0 {
                         contentTArray.replaceSubrange(Range(1..<2), with: ["0"])
                     }else{
                         contentTArray.replaceSubrange(Range(1..<2), with: [reString])
                     }
-                    
                 }
             }
             

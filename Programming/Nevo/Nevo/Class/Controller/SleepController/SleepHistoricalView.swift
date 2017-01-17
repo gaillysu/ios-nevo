@@ -107,14 +107,18 @@ class SleepHistoricalView: UIView, ChartViewDelegate{
             totalNumber += val1+val2+val3
         }
         
-        for value in sleepEntry{
-            for (key,value2) in value {
-                NSLog("value2:\(value2),\(key)")
-                chartView!.addDataPoint(key, entry: value2)
+        if sleepEntry.count != 0{
+            for index in sleepEntry.count..<sleepEntry.count+1 {
+                sleepEntry.append(["\(index):00":[0,0,0]])
             }
-        }
-        
-        if sleepEntry.count == 0 {
+            
+            for value in sleepEntry{
+                for (key,value2) in value {
+                    NSLog("value2:\(value2),\(key)")
+                    chartView!.addDataPoint(key, entry: value2)
+                }
+            }
+        }else{
             for i:Int in 0..<8 {
                 NSLog("value2:\(0),\(i)")
                 chartView!.addDataPoint("\(i):00", entry: [60,0,0])
