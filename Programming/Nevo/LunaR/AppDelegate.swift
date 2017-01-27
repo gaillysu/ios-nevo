@@ -591,11 +591,12 @@ extension AppDelegate {
             let activeTime: Int = stepsModel.walking_duration+stepsModel.running_duration
             
             MEDStepsNetworkManager.createSteps(uid: userProfile.uid, steps: stepsModel.hourlysteps, date: dateString, activeTime: activeTime, calories: caloriesValue, distance: milesValue, completion: { (success: Bool) in
-                if success {
-                    stepsModel.isUpload = true
-                }else{
-                    stepsModel.isUpload = false
-                }
+                // TODO This is a bug, We cannot set this on another thread because we don't know when it returns. 
+//                if success {
+//                    stepsModel.isUpload = true
+//                }else{
+//                    stepsModel.isUpload = false
+//                }
             })
             
             let stepsArray = MEDUserSteps.getFilter("key == '\(keys)'")
