@@ -13,7 +13,7 @@ protocol ButtonManagerCallBack: class {
     func controllManager(_ sender:AnyObject)
 }
 
-class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonManagerCallBack,PtlSelectFile,UIAlertViewDelegate  {
+class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonManagerCallBack,PtlSelectFile  {
 
     @IBOutlet var nevoOtaView: NevoOtaView!
 
@@ -136,18 +136,6 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-
-    //MARK: - UIAlertViewDelegate
-    func alertView(_ alertView: UIAlertView, clickedButtonAt buttonIndex: Int) {
-        if(buttonIndex==1) {
-            currentIndex = 0
-            uploadPressed()
-        }
-
-        if(buttonIndex==0) {
-            self.dismiss(animated: true, completion: nil)
-        }
     }
 
     //MARK: -
@@ -288,6 +276,7 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
             self.initValue()
 
             let alert :UIAlertView = UIAlertView(title: NSLocalizedString("Firmware Upgrade", comment: ""), message: errString as String, delegate: nil, cancelButtonTitle: NSLocalizedString("Ok", comment: ""))
+            alert.delegate = self
             alert.show()
             self.mNevoOtaController!.reset(false)
             self.currentTaskNumber -= 1;
@@ -372,6 +361,19 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
         }
     }
     
+}
+
+extension NevoOtaViewController:UIAlertViewDelegate{
+    func alertView(_ alertView: UIAlertView, clickedButtonAt buttonIndex: Int) {
+        if(buttonIndex==1) {
+            currentIndex = 0
+            uploadPressed()
+        }
+        
+        if(buttonIndex==0) {
+            self.dismiss(animated: true, completion: nil)
+        }
+    }
 }
 
 protocol PtlSelectFile {
