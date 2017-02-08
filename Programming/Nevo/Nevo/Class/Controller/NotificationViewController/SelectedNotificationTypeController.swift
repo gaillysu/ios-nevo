@@ -200,6 +200,10 @@ extension SelectedNotificationTypeController:AddPacketToWatchDelegate {
                 cell = selectedNotificationView.getLineColorCell(indexPath, tableView: tableView, cellTitle: colorArray[indexPath.row], clockIndex: notSetting!.getClock())
             }
             
+            if !notSetting!.getStates() {
+                cell.accessoryView = nil
+            }
+            
             cell.viewDefaultColorful()
             return cell
         default:

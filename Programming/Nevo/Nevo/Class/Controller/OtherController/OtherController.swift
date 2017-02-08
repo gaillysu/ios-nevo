@@ -59,14 +59,12 @@ class OtherController: UITableViewController {
         }else if textValue == "unit" {
             let cell:UnitTableViewCell  = UnitTableViewCell.getCell(with: tableView, type: .unit)
             cell.titleLabel.text        = NSLocalizedString(textValue, comment: "")
-            cell.titleLabel.textColor   = UIColor.white
             cell.viewDefaultColorful()
             cell.separatorInset         = UIEdgeInsets(top: 0, left: UIScreen.main.bounds.size.width, bottom: 0, right: 0)
             return cell
         } else {
             let cell:UnitTableViewCell  = UnitTableViewCell.getCell(with: tableView, type: .syncTime)
             cell.titleLabel.text        = NSLocalizedString(textValue, comment: "")
-            cell.titleLabel.textColor   = UIColor.white
             cell.viewDefaultColorful()
             cell.separatorInset         = UIEdgeInsets(top: 0, left: UIScreen.main.bounds.size.width, bottom: 0, right: 0)
             return cell

@@ -345,16 +345,22 @@ extension AlarmClockController {
             
             if improviseArray(section: indexPath.section) == wakeArray {
                 wakeArray.remove(at: indexPath.row)
+                
+                if wakeArray.count == 0 {
+                    tableView.deleteSections(IndexSet(integer: indexPath.section), with: .left)
+                } else {
+                    tableView.deleteRows(at: [indexPath], with: .left)
+                }
             } else {
                 sleepArray.remove(at: indexPath.row)
+                
+                if sleepArray.count == 0 {
+                    tableView.deleteSections(IndexSet(integer: indexPath.section), with: .left)
+                } else {
+                    tableView.deleteRows(at: [indexPath], with: .left)
+                }
             }
             
-            if improviseArray(section: indexPath.section).count == 0 {
-                tableView.deleteSections(IndexSet(integer: indexPath.section), with: .left)
-            } else {
-                tableView.deleteRows(at: [indexPath], with: .left)
-            }
-
             let status = alarm.status
             if(alarm.remove()){
                 var newAlarmArray: [NewAlarm] = []
