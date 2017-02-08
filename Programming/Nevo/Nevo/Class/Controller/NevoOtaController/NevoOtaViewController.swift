@@ -13,7 +13,7 @@ protocol ButtonManagerCallBack: class {
     func controllManager(_ sender:AnyObject)
 }
 
-class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonManagerCallBack,PtlSelectFile,UIAlertViewDelegate  {
+class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonManagerCallBack,PtlSelectFile  {
 
     @IBOutlet var nevoOtaView: NevoOtaView!
 
@@ -62,9 +62,6 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
         if(mNevoOtaController!.isConnected()) {
             let currentSoftwareVersion = mNevoOtaController!.getSoftwareVersion()
             let currentFirmwareVersion = mNevoOtaController!.getFirmwareVersion()
-            if(currentSoftwareVersion == 0 || currentFirmwareVersion == 0) {
-                return
-            }
 
             var fileArray:NSArray;
             
@@ -75,7 +72,7 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
                 fileArray = AppTheme.GET_FIRMWARE_FILES("Firmwares")
             }
             
-            if(currentFirmwareVersion < Float(buildin_firmware_version) && currentSoftwareVersion != 0) {
+            if(currentFirmwareVersion <= Float(buildin_firmware_version)) {
                 for tmpfile in fileArray {
                     let selectedFile = tmpfile as! URL
                     let fileExtension:String? = selectedFile.pathExtension
@@ -88,11 +85,11 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
                 }
             }
 
-            if(currentSoftwareVersion < Float(buildin_software_version)) {
+            if(currentSoftwareVersion <= Float(buildin_software_version)) {
                 for tmpfile in fileArray {
                     let selectedFile = tmpfile as! URL
                     let fileExtension:String? = selectedFile.pathExtension
-
+                    
                     if fileExtension == "bin"{
                         firmwareURLs.append(selectedFile)
                         allTaskNumber += 1
@@ -100,38 +97,31 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
                     }
                 }
             }
-            if(currentSoftwareVersion < Float(buildin_software_version)) {
+            
+            if(currentSoftwareVersion <= Float(buildin_software_version)) {
                 nevoOtaView.setProgress(0.0, currentTask: currentTaskNumber,allTask: allTaskNumber, progressString: "MCU")
             }
 
-            if(currentFirmwareVersion < Float(buildin_firmware_version)) {
+            if(currentFirmwareVersion <= Float(buildin_firmware_version)) {
                 nevoOtaView.setProgress(0.0, currentTask: currentTaskNumber,allTask: allTaskNumber, progressString: "BLE")
             }
 
-            if(currentSoftwareVersion < Float(buildin_software_version) || currentFirmwareVersion < Float(buildin_firmware_version) ) {
+            if(currentSoftwareVersion <= Float(buildin_software_version) || currentFirmwareVersion <= Float(buildin_firmware_version) ) {
                 let updateTitle:String = NSLocalizedString("do_not_exit_this_screen", comment: "")
                 let updatemsg:String = NSLocalizedString("please_follow_the_update_has_been_finished", comment: "")
-                if((UIDevice.current.systemVersion as NSString).floatValue>8.0){
-                    let alert :MEDAlertController = MEDAlertController(title: updateTitle, message: updatemsg, preferredStyle: UIAlertControllerStyle.alert)
-                    alert.view.tintColor = AppTheme.NEVO_SOLAR_YELLOW()
-                    let alertAction:UIAlertAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: UIAlertActionStyle.cancel) { (action:UIAlertAction) -> Void in
-                        self.dismiss(animated: true, completion: nil)
-                    }
-                    alert.addAction(alertAction)
-
-                    let alertAction2:UIAlertAction = UIAlertAction(title: NSLocalizedString("Enter", comment: ""), style: UIAlertActionStyle.default) { (action:UIAlertAction) -> Void in
-                        self.currentIndex = 0
-                        self.uploadPressed()
-                    }
-                    alert.addAction(alertAction2)
-                    self.present(alert, animated: true, completion: nil)
-
-                }else{
-                    let alert :UIAlertView = UIAlertView(title: updateTitle, message: updatemsg, delegate: self, cancelButtonTitle: NSLocalizedString("Cancel", comment: ""))
-                    alert.addButton(withTitle: NSLocalizedString("Enter", comment: ""))
-                    alert.show()
-                    
+                let alert :MEDAlertController = MEDAlertController(title: updateTitle, message: updatemsg, preferredStyle: UIAlertControllerStyle.alert)
+                alert.view.tintColor = AppTheme.NEVO_SOLAR_YELLOW()
+                let alertAction:UIAlertAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: UIAlertActionStyle.cancel) { (action:UIAlertAction) -> Void in
+                    self.dismiss(animated: true, completion: nil)
                 }
+                alert.addAction(alertAction)
+                
+                let alertAction2:UIAlertAction = UIAlertAction(title: NSLocalizedString("Enter", comment: ""), style: UIAlertActionStyle.default) { (action:UIAlertAction) -> Void in
+                    self.currentIndex = 0
+                    self.uploadPressed()
+                }
+                alert.addAction(alertAction2)
+                self.present(alert, animated: true, completion: nil)
             }
         }
     }
@@ -146,18 +136,6 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-
-    //MARK: - UIAlertViewDelegate
-    func alertView(_ alertView: UIAlertView, clickedButtonAt buttonIndex: Int) {
-        if(buttonIndex==1) {
-            currentIndex = 0
-            uploadPressed()
-        }
-
-        if(buttonIndex==0) {
-            self.dismiss(animated: true, completion: nil)
-        }
     }
 
     //MARK: -
@@ -298,6 +276,7 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
             self.initValue()
 
             let alert :UIAlertView = UIAlertView(title: NSLocalizedString("Firmware Upgrade", comment: ""), message: errString as String, delegate: nil, cancelButtonTitle: NSLocalizedString("Ok", comment: ""))
+            alert.delegate = self
             alert.show()
             self.mNevoOtaController!.reset(false)
             self.currentTaskNumber -= 1;
@@ -382,6 +361,19 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
         }
     }
     
+}
+
+extension NevoOtaViewController:UIAlertViewDelegate{
+    func alertView(_ alertView: UIAlertView, clickedButtonAt buttonIndex: Int) {
+        if(buttonIndex==1) {
+            currentIndex = 0
+            uploadPressed()
+        }
+        
+        if(buttonIndex==0) {
+            self.dismiss(animated: true, completion: nil)
+        }
+    }
 }
 
 protocol PtlSelectFile {

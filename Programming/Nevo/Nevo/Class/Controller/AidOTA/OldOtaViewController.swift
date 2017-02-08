@@ -95,7 +95,8 @@ extension OldOtaViewController:DFUServiceDelegate {
             nevoOtaView.setProgress(0, currentTask: 1, allTask: 1, progressString: nil)
             break
         case .completed:
-            nevoOtaView.setProgress(0, currentTask: 1, allTask: 1, progressString: nil)
+            nevoOtaView.setProgress(1, currentTask: 1, allTask: 1, progressString: NSLocalizedString("UpdateSuccess1", comment: ""))
+            self.nevoOtaView.upgradeSuccessful()
             break
         case .connecting:
             break
@@ -124,7 +125,8 @@ extension OldOtaViewController:DFUServiceDelegate {
 extension OldOtaViewController:DFUProgressDelegate{
     func dfuProgressDidChange(for part: Int, outOf totalParts: Int, to progress: Int,
                               currentSpeedBytesPerSecond: Double, avgSpeedBytesPerSecond: Double) {
-        nevoOtaView.setProgress(Float(progress/100), currentTask: 1, allTask: 1, progressString: "Speed : \(String(format:"%.1f", avgSpeedBytesPerSecond/1024)) Kbps, pt. \(part)/\(totalParts)")
+        //nevoOtaView.setProgress(Float(progress/100), currentTask: 1, allTask: 1, progressString: "Speed : \(String(format:"%.1f", avgSpeedBytesPerSecond/1024)) Kbps, pt. \(part)/\(totalParts)")
+        nevoOtaView.setProgress(Float(progress) / 100.0, currentTask: 1, allTask: 1, progressString: "Updating :\(part)/\(totalParts)")
     }
 }
 
