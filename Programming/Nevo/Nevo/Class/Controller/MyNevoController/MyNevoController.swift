@@ -172,7 +172,7 @@ class MyNevoController: UITableViewController,UIAlertViewDelegate {
                 
                 detailString = detailString.replacingOccurrences(of: "VERSION_NUMBER", with: buildin_firmware_version.to2String())
                 
-                if AppTheme.isTargetLunaR_OR_Nevo() {
+                if !AppTheme.isTargetLunaR_OR_Nevo() {
                     detailString = detailString.replacingOccurrences(of: "Nevo", with: "LunaR")
                 }
                 
