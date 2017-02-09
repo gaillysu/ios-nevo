@@ -32,11 +32,11 @@ class OldOtaViewController: UIViewController  {
         super.viewDidLoad()
         UIApplication.shared.isIdleTimerDisabled = true
         
-        let leftItem:UIBarButtonItem = UIBarButtonItem(image:UIImage(named:"left_button") , style: UIBarButtonItemStyle.plain, target: self, action: #selector(backAction(_:)))
+        let leftItem:UIBarButtonItem = UIBarButtonItem(image:UIImage(named:"cancel_lunar") , style: UIBarButtonItemStyle.plain, target: self, action: #selector(backAction(_:)))
         leftItem.tintColor = UIColor.black
         self.navigationItem.leftBarButtonItem = leftItem
         
-        let rightItem:UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.add, target: self, action: #selector(scanAction(_:)))
+        let rightItem:UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.search, target: self, action: #selector(scanAction(_:)))
         rightItem.tintColor = UIColor.black
         self.navigationItem.rightBarButtonItem = rightItem
         

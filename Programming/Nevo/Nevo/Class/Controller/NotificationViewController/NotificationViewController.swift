@@ -104,15 +104,16 @@ extension NotificationViewController {
     }
     
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]?{
+        if AppTheme.isTargetLunaR_OR_Nevo() {
+            return []
+        }
+        
         let button1 = UITableViewRowAction(style: .default, title: NSLocalizedString("Delete", comment:""), handler: { (action, indexPath) in
             self.tableView(tableView, commit: .delete, forRowAt: indexPath)
         })
         
-        if !AppTheme.isTargetLunaR_OR_Nevo() {
-            button1.backgroundColor = UIColor.getBaseColor()
-        } else {
-            button1.backgroundColor = AppTheme.NEVO_SOLAR_YELLOW()
-        }
+        button1.backgroundColor = UIColor.getBaseColor()
+        
         return [button1]
     }
     

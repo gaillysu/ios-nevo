@@ -56,6 +56,14 @@ class UnitTableViewCell: UITableViewCell {
         unitSegmentedField.inputView = picker;
         unitSegmentedField.backgroundColor = UIColor.clear
         unitSegmentedField.tintColor = UIColor.clear
+        
+        if AppTheme.isTargetLunaR_OR_Nevo() {
+            titleLabel.textColor = UIColor.black
+            unitSegmentedField.textColor = UIColor.black
+        } else {
+            titleLabel.textColor = UIColor.white
+            unitSegmentedField.textColor = UIColor.white
+        }
     }
 }
 

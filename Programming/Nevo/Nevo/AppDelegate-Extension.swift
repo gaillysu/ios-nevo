@@ -96,6 +96,9 @@ extension AppDelegate {
                 if alarm.alarmWeek > date.weekday {
                     let newAlarm:NewAlarm = NewAlarm(alarmhour: alarmDay.hour, alarmmin: alarmDay.minute, alarmNumber: index+7, alarmWeekday: alarm.alarmWeek)
                     sendRequest(SetNewAlarmRequest(alarm:newAlarm))
+                }else{
+                    let newAlarm:NewAlarm = NewAlarm(alarmhour: alarmDay.hour, alarmmin: alarmDay.minute, alarmNumber: index+7, alarmWeekday: 0)
+                    sendRequest(SetNewAlarmRequest(alarm:newAlarm))
                 }
             }
         }
