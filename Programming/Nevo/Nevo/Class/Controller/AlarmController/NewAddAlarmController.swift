@@ -101,7 +101,7 @@ extension NewAddAlarmController {
             
         case 2:
             if indexPath.row == 0 {
-                let repeatController = RepeatViewController()
+                let repeatController = RepeatViewController(style: .grouped)
                 repeatController.selectedDelegate = self
                 
                 repeatController.selectedIndex = repeatSelectedIndex - 1

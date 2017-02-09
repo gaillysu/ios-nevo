@@ -124,42 +124,27 @@ class AppTheme {
         return UIColor(red: 48/255.0, green: 48/255.0, blue: 48/255.0, alpha: 1)
     }
 
-    /**
-    *	@brief	The archive All current data
-    *
-    */
-    class func KeyedArchiverName(_ name:String,andObject object:Any) ->Bool{
-        let date:Date = Date()
-        let locationString:String = date.stringFromFormat("YYYY/MM/dd")
-        XCGLogger.default.debug("locationString:\(locationString)");
-
+    class func KeyedArchiverName(_ name:String,andObject object:Any) -> Bool{
         let pathArray = NSSearchPathForDirectoriesInDomains(.documentDirectory,.userDomainMask,true)
-        let path:String = pathArray[0]
-        let filename:String = path.appending("Archiver_cache/\(name)")
-            //Path.appendingPathComponent( as String) as NSString
-        let iswrite:Bool = NSKeyedArchiver.archiveRootObject(object, toFile: filename as String)
-        return iswrite
+        let path = pathArray[0]
+        let filename = path.appending("/Archiver_cache/\(name)")
+        
+        return NSKeyedArchiver.archiveRootObject(object, toFile: filename)
     }
 
     /**
-     解档的数据是包含时间戳的数据数组,要获得原始数据需要自行转换,归档的数据类型都是以弱类型归档解档可自行转换
-     index 1 = time stamp  index 0 = data
-
-     :param: name Archiver Name
-
-     :returns: Archiver data
+     * 解档的数据是原始对象, 要获得原始数据需要自行转换
      */
-    class func LoadKeyedArchiverName(_ name:String) ->Any?{
+    class func LoadKeyedArchiverName(_ name:String) -> Any?{
+        
         let pathArray = NSSearchPathForDirectoriesInDomains(.documentDirectory,.userDomainMask,true)
-        let path:String = pathArray[0]
-
-        let filename:String = path.appending("Archiver_Cache/\(name)")
-            //Path.appendingPathComponent(name as String) as NSString
-        let flierManager:Bool = FileManager.default.fileExists(atPath: filename)
-        if(flierManager){
+        let path = pathArray[0]
+        let filename = path.appending("/Archiver_Cache/\(name)")
+        if FileManager.default.fileExists(atPath: filename) {
             let objectArr = NSKeyedUnarchiver.unarchiveObject(withFile: filename)
             return objectArr
         }
+        
         return nil
     }
 

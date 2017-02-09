@@ -88,8 +88,8 @@ class UserProfileController: UIViewController,UITableViewDelegate,UITableViewDat
         
         
         if let avatarImage = newAvatarImage {
-            let manager = ProfileImageManager.manager
-            manager.save(image: avatarImage)
+            let manager = ProfileImageManager.shared
+            _ = manager.save(image: avatarImage)
         }
     }
 }
@@ -128,6 +128,8 @@ extension UserProfileController: UIImagePickerControllerDelegate, UINavigationCo
     }
     
     func imageCropViewControllerDidCancelCrop(_ controller: RSKImageCropViewController) {
+        
+        self.isPushed = false
         self.dismiss(animated: true, completion: nil)
     }
     
@@ -166,7 +168,7 @@ extension UserProfileController {
                 let tap:UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.avatarButtonClick(sender:)))
                 header?.avatarView.addGestureRecognizer(tap)
                 
-                let manager = ProfileImageManager.manager
+                let manager = ProfileImageManager.shared
                 if let image = manager.getImage() {
                     header?.changeAvatar(with: image)
                 }
