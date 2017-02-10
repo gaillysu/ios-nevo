@@ -82,7 +82,7 @@ class DashBoardController: UIViewController {
             self.view.addGestureRecognizer(tap)
         }
         
-        if let cacheData = AppTheme.LoadKeyedArchiverName("SYNC_STEPS_CACHE.plist") {
+        if let cacheData = AppTheme.LoadKeyedArchiverName("SYNC_STEPS_CACHE") {
             let data = cacheData as! [String:Any]
             let isToday = data["SYNC_DATE"] as! Date
             if isToday.stringFromFormat("yyyyMMdd") == Date().stringFromFormat("yyyyMMdd") {
@@ -130,7 +130,7 @@ class DashBoardController: UIViewController {
                     let dailyStepGoal:Int = thispacket.getDailyStepsGoal()
                     percent = Float(totalSteps)/Float(dailyStepGoal)
                     self.refreshCircleViewProgress(progressValue:percent,totalSteps:totalSteps)
-                    let cacheState:Bool = AppTheme.KeyedArchiverName("SYNC_STEPS_CACHE.plist", andObject: ["STEPS":totalSteps,"GOAL_STEPS":dailyStepGoal,"SYNC_DATE":Date()])
+                    let cacheState:Bool = AppTheme.KeyedArchiverName("SYNC_STEPS_CACHE", andObject: ["STEPS":totalSteps,"GOAL_STEPS":dailyStepGoal,"SYNC_DATE":Date()])
                     if cacheState {
                         NSLog("SYNC_STEPS_CACHE")
                     }
