@@ -81,6 +81,18 @@ class DashBoardController: UIViewController {
             let tap:UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.tapAction(_:)))
             self.view.addGestureRecognizer(tap)
         }
+        
+        if let cacheData = AppTheme.LoadKeyedArchiverName("SYNC_STEPS_CACHE") {
+            let data = cacheData as! [String:Any]
+            let isToday = data["SYNC_DATE"] as! Date
+            if isToday.stringFromFormat("yyyyMMdd") == Date().stringFromFormat("yyyyMMdd") {
+                let dailyStepGoal:Int = data["GOAL_STEPS"] as! Int
+                let totalSteps:Int = data["STEPS"] as! Int
+                let percent = Float(totalSteps)/Float(dailyStepGoal)
+                self.refreshCircleViewProgress(progressValue:percent,totalSteps:totalSteps)
+            }
+            
+        }
     }
     
     func tapAction(_ tap:UIGestureRecognizer) {
@@ -118,6 +130,10 @@ class DashBoardController: UIViewController {
                     let dailyStepGoal:Int = thispacket.getDailyStepsGoal()
                     percent = Float(totalSteps)/Float(dailyStepGoal)
                     self.refreshCircleViewProgress(progressValue:percent,totalSteps:totalSteps)
+                    let cacheState:Bool = AppTheme.KeyedArchiverName("SYNC_STEPS_CACHE", andObject: ["STEPS":totalSteps,"GOAL_STEPS":dailyStepGoal,"SYNC_DATE":Date()])
+                    if cacheState {
+                        NSLog("SYNC_STEPS_CACHE")
+                    }
                 }
                 
                 if packet.getHeader() == PVADCRequest.HEADER(){
