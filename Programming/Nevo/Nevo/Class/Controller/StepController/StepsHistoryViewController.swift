@@ -22,7 +22,7 @@ class StepsHistoryViewController: PublicClassController,ChartViewDelegate {
     let SELECTED_DATA:String = "SELECTED_DATA"
     
     fileprivate var queryArray:NSArray = NSArray()
-    fileprivate var contentTitleArray:[String] = [NSLocalizedString("CALORIE", comment: ""), NSLocalizedString("STEPS", comment: ""), NSLocalizedString("TIME", comment: ""),NSLocalizedString("KM", comment: "")]
+    fileprivate var contentTitleArray:[String] = [NSLocalizedString("CALORIE", comment: ""), NSLocalizedString("STEPS", comment: ""), NSLocalizedString("TIME", comment: ""),NSLocalizedString("Distance", comment: "")]
     fileprivate var contentTArray:[String] = ["0","0","0","0"]
     fileprivate var queryModel:NSMutableArray = NSMutableArray()
     fileprivate let detailArray:NSMutableArray = NSMutableArray(capacity:1);
