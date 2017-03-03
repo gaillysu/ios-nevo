@@ -246,3 +246,5 @@
 "none_alarm" = "You don’t have any alarm set. Set an alarm by tapping on the plus button in the upper right corner.";
 "nevo_alarms_limit" = "Nevo supports only 3 alarms on for now.";
 "lunar_alarms_limit" = "LunaR supports only 7 wake and 7 sleep alarms on for now.";
+
+"Distance"="Distance";

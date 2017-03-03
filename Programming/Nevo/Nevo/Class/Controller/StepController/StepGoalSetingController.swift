@@ -26,7 +26,7 @@ class StepGoalSetingController: PublicClassController,ClockRefreshDelegate {
     
     fileprivate var mCurrentGoal:Goal = NumberOfStepsGoal()
     fileprivate var mVisiable:Bool = true
-    fileprivate var contentTitleArray:[String] = [NSLocalizedString("CALORIE", comment: ""), NSLocalizedString("STEPS", comment: ""), NSLocalizedString("TIME", comment: ""),NSLocalizedString("KM", comment: "")]
+    fileprivate var contentTitleArray:[String] = [NSLocalizedString("CALORIE", comment: ""), NSLocalizedString("STEPS", comment: ""), NSLocalizedString("TIME", comment: ""),NSLocalizedString("Distance", comment: "")]
     fileprivate var contentTArray:[String] = ["0","0","0","0"]
     
     fileprivate let SYNC_INTERVAL:TimeInterval = 1*3*60 //unit is second in iOS, every 3min, do sync
