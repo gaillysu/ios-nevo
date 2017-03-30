@@ -90,8 +90,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
         /**
         Initialize the BLE Manager
         */
-        mConnectionController = ConnectionControllerImpl()
-        mConnectionController?.setDelegate(self)
+        self.setUpBTManager()
         //let userDefaults = UserDefaults.standard;
         //lastSync = userDefaults.double(forKey: LAST_SYNC_DATE_KEY)
         
@@ -116,6 +115,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
     
     func getMconnectionController()->ConnectionControllerImpl?{
         return mConnectionController
+    }
+    
+    func setUpBTManager() {
+        if mConnectionController == nil {
+            self.mConnectionController = ConnectionControllerImpl()
+            self.mConnectionController?.setDelegate(self)
+        }else{
+            self.mConnectionController?.setDelegate(self)
+        }
+    }
+    
+    func cleanUpBTManager() {
+        if mConnectionController != nil {
+            mConnectionController?.stopScan()
+            mConnectionController?.disconnect()
+            mConnectionController = nil
+        }
     }
     
     func setWatchID(_ id:Int) {
