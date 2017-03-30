@@ -130,7 +130,7 @@ class AppTheme {
         let filePath = rootPath.appending("\(name).data")
         if !FileManager.default.fileExists(atPath: rootPath) {
             do {
-                try FileManager.default.createDirectory(atPath: filePath, withIntermediateDirectories: true, attributes: nil)
+                try FileManager.default.createDirectory(atPath: rootPath, withIntermediateDirectories: true, attributes: nil)
             } catch let error {
                 print("Archiver error:\(error)")
             }
