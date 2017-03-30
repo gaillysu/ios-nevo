@@ -54,6 +54,7 @@ class OldOtaViewController: UIViewController  {
         if dfuController != nil {
             dfuController?.abort()
         }
+        AppDelegate.getAppDelegate().setUpBTManager()
     }
     
     func backAction(_ sender:AnyObject) {
