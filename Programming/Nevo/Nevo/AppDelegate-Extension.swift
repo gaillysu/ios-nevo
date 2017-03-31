@@ -280,12 +280,18 @@ extension AppDelegate {
     }
     
     func hasSavedAddress()->Bool {
-        return self.getMconnectionController()!.hasSavedAddress()
+        if let value = self.getMconnectionController() {
+            return value.hasSavedAddress()
+        }else{
+            return false
+        }
     }
     
     func isConnected() -> Bool{
-        return self.getMconnectionController()!.isConnected()
-        
+        if let value = self.getMconnectionController() {
+            return value.isConnected()
+        }
+        return false;
     }
     
     func sendRequest(_ r:Request) {
