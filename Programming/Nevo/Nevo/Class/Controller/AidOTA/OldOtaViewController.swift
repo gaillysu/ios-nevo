@@ -32,6 +32,8 @@ class OldOtaViewController: UIViewController  {
         super.viewDidLoad()
         UIApplication.shared.isIdleTimerDisabled = true
         
+        AppDelegate.getAppDelegate().cleanUpBTManager()
+        
         let leftItem:UIBarButtonItem = UIBarButtonItem(image:UIImage(named:"cancel_lunar") , style: UIBarButtonItemStyle.plain, target: self, action: #selector(backAction(_:)))
         leftItem.tintColor = UIColor.black
         self.navigationItem.leftBarButtonItem = leftItem
@@ -52,6 +54,7 @@ class OldOtaViewController: UIViewController  {
         if dfuController != nil {
             dfuController?.abort()
         }
+        AppDelegate.getAppDelegate().setUpBTManager()
     }
     
     func backAction(_ sender:AnyObject) {
@@ -74,15 +77,15 @@ class OldOtaViewController: UIViewController  {
 //MARK: - CBCentralManagerDelegate
 extension OldOtaViewController:CBCentralManagerDelegate, CBPeripheralDelegate {
     func centralManagerDidUpdateState(_ central: CBCentralManager) {
-        logWith(LogLevel.verbose, message: "UpdatetState: \(centralManager?.state.rawValue)")
+        logWith(LogLevel.verbose, message: "UpdatetState: \(String(describing: centralManager?.state.rawValue))")
     }
     
     func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
-        print("Connected to peripheral: \(peripheral.name)")
+        print("Connected to peripheral: \(String(describing: peripheral.name))")
     }
     
     func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: Error?) {
-        print("Disconnected from peripheral: \(peripheral.name)")
+        print("Disconnected from peripheral: \(String(describing: peripheral.name))")
     }
 
 }
@@ -125,7 +128,6 @@ extension OldOtaViewController:DFUServiceDelegate {
 extension OldOtaViewController:DFUProgressDelegate{
     func dfuProgressDidChange(for part: Int, outOf totalParts: Int, to progress: Int,
                               currentSpeedBytesPerSecond: Double, avgSpeedBytesPerSecond: Double) {
-        //nevoOtaView.setProgress(Float(progress/100), currentTask: 1, allTask: 1, progressString: "Speed : \(String(format:"%.1f", avgSpeedBytesPerSecond/1024)) Kbps, pt. \(part)/\(totalParts)")
         nevoOtaView.setProgress(Float(progress) / 100.0, currentTask: 1, allTask: 1, progressString: "Updating :\(part)/\(totalParts)")
     }
 }

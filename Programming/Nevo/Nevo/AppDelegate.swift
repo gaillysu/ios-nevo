@@ -21,12 +21,8 @@ import XCGLogger
 import SwiftyTimer
 import CoreLocation
 import Solar
- 
 import RealmSwift
 
-let nevoDBDFileURL:String = "nevoDBName";
-let nevoDBNames:String = "nevo.sqlite";
-let umengAppKey:String = "56cd052d67e58ed65f002a2f"
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelegate,UIAlertViewDelegate {
@@ -94,60 +90,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
         /**
         Initialize the BLE Manager
         */
-        mConnectionController = ConnectionControllerImpl()
-        mConnectionController?.setDelegate(self)
+        self.setUpBTManager()
         //let userDefaults = UserDefaults.standard;
         //lastSync = userDefaults.double(forKey: LAST_SYNC_DATE_KEY)
         
         adjustLaunchLogic()
-
-        //Rate our app Pop-up
-        iRate.sharedInstance().messageTitle = NSLocalizedString("Rate Nevo", comment: "")
-        iRate.sharedInstance().message = NSLocalizedString("If you like Nevo, please take the time, etc", comment:"");
-        iRate.sharedInstance().cancelButtonLabel = NSLocalizedString("No, Thanks", comment:"");
-        iRate.sharedInstance().remindButtonLabel = NSLocalizedString("Remind Me Later", comment:"");
-        iRate.sharedInstance().rateButtonLabel = NSLocalizedString("Rate It Now", comment:"");
-        iRate.sharedInstance().applicationBundleID = "com.nevowatch.Nevo"
-        iRate.sharedInstance().onlyPromptIfLatestVersion = true
-        iRate.sharedInstance().usesPerWeekForPrompt = 1
-        iRate.sharedInstance().previewMode = true
-        iRate.sharedInstance().promptAtLaunch = false
         
         return true
     }
 
     func updateDataBase() {
         let config = Realm.Configuration(
-            // 设置新的架构版本。这个版本号必须高于之前所用的版本号（如果您之前从未设置过架构版本，那么这个版本号设置为 0）
             schemaVersion: 2,
-            // 设置闭包，这个闭包将会在打开低于上面所设置版本号的 Realm 数据库的时候被自动调用
             migrationBlock: { migration, oldSchemaVersion in
-                // 目前我们还未进行数据迁移，因此 oldSchemaVersion == 0
                 if (oldSchemaVersion < 2) {
-                    // 什么都不要做！Realm 会自行检测新增和需要移除的属性，然后自动更新硬盘上的数据库架构
                 }
         })
-        // 告诉 Realm 为默认的 Realm 数据库使用这个新的配置对象
         Realm.Configuration.defaultConfiguration = config
-    }
-    
-    // MARK: -dbPath
-    class func dbPath()->String{
-        var docsdir:String = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true).last!
-        let filemanage:FileManager = FileManager.default
-        //nevoDBDFileURL
-        docsdir = docsdir.appendingFormat("%@%@/", "/",nevoDBDFileURL)
-        var isDir : ObjCBool = ObjCBool(false)
-        let exit:Bool = filemanage.fileExists(atPath: docsdir, isDirectory:&isDir )
-        if (!exit || !isDir.boolValue) {
-            do{
-                try filemanage.createDirectory(atPath: docsdir, withIntermediateDirectories: true, attributes: nil)
-            }catch let error as NSError{
-                NSLog("failed: \(error.localizedDescription)")
-            }
-        }
-        let dbpath:String = docsdir + nevoDBNames
-        return dbpath;
     }
 
     func isSyncState()-> Bool {
@@ -156,6 +115,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
     
     func getMconnectionController()->ConnectionControllerImpl?{
         return mConnectionController
+    }
+    
+    func setUpBTManager() {
+        if mConnectionController == nil {
+            self.mConnectionController = ConnectionControllerImpl()
+            self.mConnectionController?.setDelegate(self)
+        }else{
+            self.mConnectionController?.setDelegate(self)
+        }
+    }
+    
+    func cleanUpBTManager() {
+        if mConnectionController != nil {
+            mConnectionController?.stopScan()
+            mConnectionController?.disconnect()
+            mConnectionController = nil
+        }
     }
     
     func setWatchID(_ id:Int) {

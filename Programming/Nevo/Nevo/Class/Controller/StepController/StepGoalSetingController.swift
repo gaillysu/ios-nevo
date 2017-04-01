@@ -110,7 +110,8 @@ class StepGoalSetingController: PublicClassController,ClockRefreshDelegate {
             })
             self.collectionView.reloadData()
             //TODAY_DATE_CACHE
-            _ = AppTheme.KeyedArchiverName(TODAY_DATE_CACHE, andObject: [TODAY_DATE_CACHE:dailySteps,"DATE":Date().stringFromFormat("YYYY/MM/dd")])
+            let cacheData:SyncStepsCache = SyncStepsCache(date: Date(), steps: dailySteps)
+            _ = AppTheme.KeyedArchiverName(TODAY_DATE_CACHE, andObject: cacheData)
         }
         
         _ = SwiftEventBus.onMainThread(self, name: EVENT_BUS_END_BIG_SYNCACTIVITY) { (notification) in
@@ -193,14 +194,16 @@ extension StepGoalSetingController {
 extension StepGoalSetingController {
     func getTodayCacheData() {
         if let value = AppTheme.LoadKeyedArchiverName(TODAY_DATE_CACHE) {
-            let dataCache:[String:Any] = value as! [String : Any]
-            let date:Date = dataCache["DATE"] as! Date
-            if date.day == Date().day {
-                let dailySteps:Int = dataCache[TODAY_DATE_CACHE] as! Int
-                self.contentTArray.replaceSubrange(Range(1..<2), with: ["\(dailySteps)"])
-                DataCalculation.calculationData(0, steps: dailySteps, completionData: { (miles, calories) in
-                    self.contentTArray.replaceSubrange(Range(3..<4), with: [String(format: "%.2f", miles)])
-                })
+            if value is SyncStepsCache {
+                let cacheData:SyncStepsCache = value as! SyncStepsCache
+                if let date:Date = cacheData.todayDate, let dailySteps:Int = cacheData.todaySteps {
+                    if date.day == Date().day {
+                        self.contentTArray.replaceSubrange(Range(1..<2), with: ["\(dailySteps)"])
+                        DataCalculation.calculationData(0, steps: dailySteps, completionData: { (miles, calories) in
+                            self.contentTArray.replaceSubrange(Range(3..<4), with: [String(format: "%.2f", miles)])
+                        })
+                    }
+                }
             }
         }
     }
@@ -258,9 +261,6 @@ extension StepGoalSetingController {
 
 // MARK: - CollectionView Delegate
 extension StepGoalSetingController:UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout{
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize{
-//        return CGSize(width: collectionView.frame.size.width/2.0, height: collectionView.frame.size.height/2 - 10)
-//    }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return contentTitleArray.count
     }

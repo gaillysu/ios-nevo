@@ -162,6 +162,7 @@ class SetingViewController: UIViewController,ButtonManagerCallBack,UIAlertViewDe
                 actionSheet.addAction(alertAction)
                 
                 let alertAction2:AlertAction = AlertAction(title: NSLocalizedString("forget", comment: ""), style: UIAlertActionStyle.default, handler: { ( alert) -> Void in
+                    AppDelegate.getAppDelegate().disconnect()
                     
                     AppDelegate.getAppDelegate().forgetSavedAddress()
                     

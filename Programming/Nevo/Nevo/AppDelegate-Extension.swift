@@ -280,12 +280,18 @@ extension AppDelegate {
     }
     
     func hasSavedAddress()->Bool {
-        return self.getMconnectionController()!.hasSavedAddress()
+        if let value = self.getMconnectionController() {
+            return value.hasSavedAddress()
+        }else{
+            return false
+        }
     }
     
     func isConnected() -> Bool{
-        return self.getMconnectionController()!.isConnected()
-        
+        if let value = self.getMconnectionController() {
+            return value.isConnected()
+        }
+        return false;
     }
     
     func sendRequest(_ r:Request) {
@@ -360,7 +366,7 @@ extension AppDelegate {
             return (nil, nil, NSLocalizedString("failed_locate", comment: ""))
         }
         
-        if let solar = Solar(forDate: date, withTimeZone: TimeZone.current, latitude: latitude, longitude: longitude) {
+        if let solar = Solar(for: date, latitude: latitude, longitude: longitude) {
             if let sunrise = solar.sunrise, let sunset = solar.sunset {
                 return (sunrise, sunset, "")
             } else {

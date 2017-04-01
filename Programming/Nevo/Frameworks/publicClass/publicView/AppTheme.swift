@@ -125,12 +125,12 @@ class AppTheme {
     }
 
     class func KeyedArchiverName(_ name:String,andObject object:Any) -> Bool{
-        let pathArray = NSSearchPathForDirectoriesInDomains(.documentDirectory,.userDomainMask,true)
-        let rootPath = pathArray[0].appending("/med_cache/")
+        let pathArray = NSSearchPathForDirectoriesInDomains(.libraryDirectory,.userDomainMask,true)
+        let rootPath = pathArray[0].appending("/Caches/med_cache/")
         let filePath = rootPath.appending("\(name).data")
         if !FileManager.default.fileExists(atPath: rootPath) {
             do {
-                try FileManager.default.createDirectory(atPath: filePath, withIntermediateDirectories: true, attributes: nil)
+                try FileManager.default.createDirectory(atPath: rootPath, withIntermediateDirectories: true, attributes: nil)
             } catch let error {
                 print("Archiver error:\(error)")
             }
@@ -143,9 +143,9 @@ class AppTheme {
      */
     class func LoadKeyedArchiverName(_ name:String) -> Any?{
         
-        let pathArray = NSSearchPathForDirectoriesInDomains(.documentDirectory,.userDomainMask,true)
+        let pathArray = NSSearchPathForDirectoriesInDomains(.libraryDirectory,.userDomainMask,true)
         let path = pathArray[0]
-        let filename = path.appending("/med_cache/\(name).data")
+        let filename = path.appending("/Caches/med_cache/\(name).data")
         if FileManager.default.fileExists(atPath: filename) {
             let objectArr = NSKeyedUnarchiver.unarchiveObject(withFile: filename)
             return objectArr
