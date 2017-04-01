@@ -52,7 +52,7 @@ class FindWatchRequest: NevoRequest {
     }
     
     override func getRawDataEx() -> NSArray {
-        let values1 :[UInt8] = [0x00,FindWatchRequest.HEADER(),UInt8(mLedpattern!&0xFF),UInt8((mLedpattern!>>8)&0xFF),UInt8((mLedpattern!>>16)&0xFF),0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        let values1 :[UInt8] = [0x00,FindWatchRequest.HEADER(),0,0,0xBF,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
         let values2 :[UInt8] = [0xFF,FindWatchRequest.HEADER(),0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
         
         return NSArray(array: [Data(bytes: UnsafePointer<UInt8>(values1), count: values1.count)
