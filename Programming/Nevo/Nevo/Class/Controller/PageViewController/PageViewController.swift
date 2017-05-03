@@ -1,4 +1,4 @@
-//
+    //
 //  PageViewController.swift
 //  Nevo
 //
@@ -352,16 +352,16 @@ extension PageViewController {
             calendarBackGroundView.addGestureRecognizer(tap)
             self.view.addSubview(calendarBackGroundView)
             
-            let fillView:UIView = UIView(frame: CGRect(x: 0,y: 0,width: UIScreen.main.bounds.size.width,height: 260))
+            let fillView:UIView = UIView(frame: CGRect(x: 0,y: 0,width: UIScreen.main.bounds.size.width,height: 240))
             calendarBackGroundView.addSubview(fillView)
             
-            self.menuView = CVCalendarMenuView(frame: CGRect(x: 10, y: 20, width: UIScreen.main.bounds.size.width - 20, height: 20))
+            self.menuView = CVCalendarMenuView(frame: CGRect(x: 0, y: 5, width: UIScreen.main.bounds.size.width, height: 30))
             self.menuView?.dayOfWeekFont = UIFont.systemFont(ofSize: 15)
             self.menuView!.menuViewDelegate = self
             fillView.addSubview(menuView!)
             
             // CVCalendarView initialization with frame
-            self.calendarView = CVCalendarView(frame: CGRect(x: 10, y: 40, width: UIScreen.main.bounds.size.width - 20, height: 220))
+            self.calendarView = CVCalendarView(frame: CGRect(x: 0, y: (self.menuView?.frame.origin.y)! + (self.menuView?.frame.height)!, width: UIScreen.main.bounds.size.width, height: fillView.frame.height - (self.menuView?.frame.height)!))
             
             calendarView?.isHidden = false
             fillView.addSubview(calendarView!)
@@ -528,7 +528,7 @@ extension PageViewController: CVCalendarViewDelegate, CVCalendarMenuViewDelegate
     }
     
     func weekdaySymbolType() -> WeekdaySymbolType {
-        return .veryShort
+        return .short
     }
     
     func shouldShowCustomSingleSelection() -> Bool {
@@ -538,6 +538,9 @@ extension PageViewController: CVCalendarViewDelegate, CVCalendarMenuViewDelegate
 
 // MARK: - CVCalendarViewAppearanceDelegate
 extension PageViewController: CVCalendarViewAppearanceDelegate {
+    
+    
+    
     func dayLabelPresentWeekdayInitallyBold() -> Bool {
         return false
     }
@@ -578,14 +581,11 @@ extension PageViewController: CVCalendarViewAppearanceDelegate {
         }
     }
     
+    
     /// Text color.
     func dayLabelWeekdaySelectedTextColor() -> UIColor {
         return UIColor.white
     }
-    
-    //    func dayLabelPresentWeekdayTextColor() -> UIColor {
-    //        return UIColor.whiteColor()
-    //    }
     
     func dayLabelPresentWeekdaySelectedTextColor() -> UIColor {
         return UIColor.white

@@ -818,6 +818,7 @@
 		9A2D6C3B1A9C6D9F00591BDC /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A2D6C3A1A9C6D9F00591BDC /* HealthKit.framework */; };
 		9AD8F9421A6DF35900F01014 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9AD8F9411A6DF35900F01014 /* Images.xcassets */; };
 		9AD8F9511A6DF35900F01014 /* NevoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD8F9501A6DF35900F01014 /* NevoTests.swift */; };
+		CB13422C1EB9AF8B006674DB /* UserDefaults+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB13422B1EB9AF8B006674DB /* UserDefaults+Extension.swift */; };
 		D10C095A1DE2967B008B6E57 /* ProfileImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D10C09591DE2967B008B6E57 /* ProfileImageManager.swift */; };
 		D10C095B1DE2967B008B6E57 /* ProfileImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D10C09591DE2967B008B6E57 /* ProfileImageManager.swift */; };
 		D11C142A1E1CA94600962F46 /* default.realm in Resources */ = {isa = PBXBuildFile; fileRef = D11C14281E1CA94500962F46 /* default.realm */; };
@@ -1372,6 +1373,7 @@
 		9E98FB361C4640AF00BAB700 /* TutorialSevenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialSevenViewController.swift; sourceTree = "<group>"; };
 		9E98FB3C1C46434100BAB700 /* TutorialSixViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialSixViewController.swift; sourceTree = "<group>"; };
 		AA6756A2314165C2C74201E8 /* Pods_LunaRTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LunaRTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CB13422B1EB9AF8B006674DB /* UserDefaults+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Extension.swift"; sourceTree = "<group>"; };
 		CBB9BF1C2FA9FD4C9B4E48BC /* Pods-LunaRTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LunaRTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LunaRTests/Pods-LunaRTests.debug.xcconfig"; sourceTree = "<group>"; };
 		D10C09591DE2967B008B6E57 /* ProfileImageManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileImageManager.swift; sourceTree = "<group>"; };
 		D11C14281E1CA94500962F46 /* default.realm */ = {isa = PBXFileReference; lastKnownFileType = file; path = default.realm; sourceTree = "<group>"; };
@@ -2108,6 +2110,7 @@
 				660C16CF1DEC25DA00544F56 /* UIImage+MEDExtension.swift */,
 				6655C04D1E0A26C9006A8A9D /* Misc+MEDExtension.swift */,
 				6651E7E31E286704007DCDF1 /* UINavigationBar+MEDExtension.swift */,
+				CB13422B1EB9AF8B006674DB /* UserDefaults+Extension.swift */,
 			);
 			name = MEDExtension;
 			path = Frameworks/MEDExtension;
@@ -3945,6 +3948,7 @@
 				6667931B1E134DAF00344188 /* SMSegmentViewConstants.swift in Sources */,
 				61E8EC871E16017D004F0DBE /* DataCalculation.swift in Sources */,
 				666793011E134DAF00344188 /* M13CheckboxFadeManager.swift in Sources */,
+				CB13422C1EB9AF8B006674DB /* UserDefaults+Extension.swift in Sources */,
 				611D42201DCAD97D003BC6E3 /* AlarmClockController.swift in Sources */,
 				61D1A8AE1DD468A100B91BDD /* MEDUserProfile.swift in Sources */,
 				664AE3311DF7C09C005CD385 /* NotiColorEditableCell.swift in Sources */,

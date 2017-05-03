@@ -91,13 +91,11 @@ class SetingViewController: UIViewController,ButtonManagerCallBack,UIAlertViewDe
         case 1:
             switch indexPath.row {
             case 1:
-                XCGLogger.default.debug("Notifications")
                 let notification:NotificationViewController = NotificationViewController()
                 notification.hidesBottomBarWhenPushed = true
                 self.navigationController?.pushViewController(notification, animated: true)
             case 2:
                 if(AppDelegate.getAppDelegate().isConnected()){
-                    XCGLogger.default.debug("My nevo")
                     let mynevo:MyNevoController = MyNevoController()
                     mynevo.hidesBottomBarWhenPushed = true
                     self.navigationController?.pushViewController(mynevo, animated: true)
@@ -137,7 +135,6 @@ class SetingViewController: UIViewController,ButtonManagerCallBack,UIAlertViewDe
                     }
                 }
             case 2:
-                XCGLogger.default.debug("forget_watch")
                 let actionSheet:MEDAlertController = MEDAlertController(title: NSLocalizedString("forget_watch", comment: ""), message: NSLocalizedString("forget_your_nevo", comment: ""), preferredStyle: UIAlertControllerStyle.alert)
                 
                 let alertAction:AlertAction = AlertAction(title: NSLocalizedString("Cancel", comment: ""), style: UIAlertActionStyle.cancel, handler: { (alert) -> Void in
@@ -286,7 +283,8 @@ class SetingViewController: UIViewController,ButtonManagerCallBack,UIAlertViewDe
             if(indexPath.row == 0){
                 return notificationList.LinkLossNotificationsTableViewCell(indexPath, tableView: tableView, title: sources[indexPath.row] as! String ,imageName:sourcesImage[indexPath.row])
             }
-            return notificationList.NotificationSystemTableViewCell(indexPath, tableView: tableView, title: sources[indexPath.row] as! String ,imageName:sourcesImage[indexPath.row])
+            let cell = notificationList.NotificationSystemTableViewCell(indexPath, tableView: tableView, title: sources[indexPath.row] as! String ,imageName:sourcesImage[indexPath.row])
+            return cell
         case 2:
             let users = MEDUserProfile.getAll()
             var textString:String = NSLocalizedString("log_out", comment: "")
@@ -322,7 +320,7 @@ class SetingViewController: UIViewController,ButtonManagerCallBack,UIAlertViewDe
      Checks if any device is currently connected
      */
     func checkConnection() {
-        
+        notificationList.tableListView.reloadRows(at: [IndexPath(row: 2, section: 1)], with: UITableViewRowAnimation.fade)
         if !AppDelegate.getAppDelegate().isConnected() {
             //We are currently not connected
             reconnect()

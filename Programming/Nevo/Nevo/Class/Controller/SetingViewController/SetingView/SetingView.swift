@@ -7,16 +7,16 @@
 //
 
 import UIKit
-
+import UIColor_Hex_Swift
 private let NotificationSwitchButtonTAG:Int = 1690
 class SetingView: UIView {
-
+    
     @IBOutlet var tableListView: UITableView!
     
     fileprivate var mDelegate:ButtonManagerCallBack?
     //var animationView:AnimationView!
     var mSendLocalNotificationSwitchButton:UISwitch!
-
+    
     func bulidNotificationViewUI(_ delegate:ButtonManagerCallBack){
         mDelegate = delegate
         tableListView.separatorColor = UIColor.lightGray
@@ -24,19 +24,19 @@ class SetingView: UIView {
         /// Theme adjust
         tableListView.viewDefaultColorful()
     }
-
-
+    
+    
     @IBAction func buttonAction(_ sender: AnyObject) {
         mDelegate?.controllManager(sender)
     }
     
     /**
      Constructing the title only TableViewCell
-
+     
      :param: indexPath The path of the TableView
      :param: tableView TableView Object
      :param: title     The title string
-
+     
      :returns: UITableViewCell
      */
     func NotificationSystemTableViewCell(_ indexPath:IndexPath,tableView:UITableView,title:String,imageName:String)->UITableViewCell {
@@ -66,22 +66,39 @@ class SetingView: UIView {
         endCell?.viewDefaultColorful()
         mSendLocalNotificationSwitchButton.viewDefaultColorful()
         
-        if !AppTheme.isTargetLunaR_OR_Nevo() {
-            if title == "My Nevo" {
-             endCell?.textLabel?.text = "My LunaR";
+        if title == "My Nevo" {
+            if !AppTheme.isTargetLunaR_OR_Nevo() {
+                endCell?.textLabel?.text = "My LunaR";
             }
+            let connectionController = AppDelegate.getAppDelegate().getMconnectionController()!
+            let nameString = endCell?.textLabel?.text
+            
+            var statusString = NSLocalizedString("Disconnected", comment: "")
+            var color = UIColor.init("#C60000")
+            if connectionController.isConnected() {
+                
+                if Int(connectionController.getFirmwareVersion()) > AppTheme.GET_FIRMWARE_VERSION() || Int(connectionController.getSoftwareVersion()) < AppTheme.GET_SOFTWARE_VERSION() {
+                    statusString = NSLocalizedString("New Version Available!", comment: "")
+                    color = UIColor.getBaseColor()
+                } else{
+                    statusString = NSLocalizedString("Connected", comment: "")
+                    color = UIColor.init("#00B000")
+                }
+            }
+            let attributedString = NSMutableAttributedString(string: "\(nameString!) \(statusString)")
+            attributedString.addAttribute(NSForegroundColorAttributeName, value: color, range: NSMakeRange((nameString?.length())! + 1, statusString.length()))
+            endCell?.textLabel?.attributedText = attributedString
         }
-        
         return endCell!
     }
-
+    
     /**
      LinkLoss Notifications TableViewCell
-
+     
      :param: indexPath Path
      :param: tableView tableView object
      :param: title     title string
-
+     
      :returns: return LinkLoss Notifications TableViewCell
      */
     func LinkLossNotificationsTableViewCell(_ indexPath:IndexPath,tableView:UITableView,title:String ,imageName:String)->UITableViewCell {
@@ -113,14 +130,14 @@ class SetingView: UIView {
         
         return endCell!
     }
-
+    
     /**
-    get the icon according to the notificationSetting
-    
-    :param: notificationSetting NotificationSetting
-    
-    :returns: return the icon
-    */
+     get the icon according to the notificationSetting
+     
+     :param: notificationSetting NotificationSetting
+     
+     :returns: return the icon
+     */
     class func getNotificationSettingIcon(_ notificationSetting:NotificationSetting) -> String {
         var icon:String = ""
         switch notificationSetting.getType() {
@@ -169,12 +186,12 @@ class SetingView: UIView {
     func SendLocalNotificationSwitchAction(_ swicth:UISwitch) {
         mDelegate?.controllManager(swicth)
     }
-
+    
     /*
-    // Only override drawRect: if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func drawRect(rect: CGRect) {
-        // Drawing code
-    }
-    */
+     // Only override drawRect: if you perform custom drawing.
+     // An empty implementation adversely affects performance during animation.
+     override func drawRect(rect: CGRect) {
+     // Drawing code
+     }
+     */
 }

@@ -51,7 +51,7 @@
                 <constraint firstAttribute="bottom" secondItem="Y0u-3W-BqB" secondAttribute="bottom" constant="10" id="jso-Kf-0U9"/>
                 <constraint firstItem="Y0u-3W-BqB" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="nq5-pe-PeJ"/>
             </constraints>
-            <point key="canvasLocation" x="548" y="346"/>
+            <point key="canvasLocation" x="352" y="295"/>
         </view>
     </objects>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
