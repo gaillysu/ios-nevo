@@ -91,7 +91,7 @@ class NevoOtaController : NSObject,ConnectionControllerDelegate {
     
     fileprivate func convertHexFileToBin(_ hexFileData:Data){
         binFileData = IntelHex2BinConverter.convert(hexFileData)
-        XCGLogger.default.debug("HexFileSize: \(hexFileData.count) and BinFileSize: \(self.binFileData?.count)")
+        XCGLogger.default.debug("HexFileSize: \(hexFileData.count) and BinFileSize: \(String(describing: self.binFileData?.count))")
         numberOfPackets =  (binFileData?.count)! / enumPacketOption.packet_SIZE.rawValue
         bytesInLastPacket = ((binFileData?.count)! % enumPacketOption.packet_SIZE.rawValue);
         if (bytesInLastPacket == 0) {

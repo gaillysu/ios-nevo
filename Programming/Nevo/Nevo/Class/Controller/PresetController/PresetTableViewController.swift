@@ -55,7 +55,7 @@ class PresetTableViewController: UITableViewController,ButtonManagerCallBack,Add
 extension PresetTableViewController {
     func controllManager(_ sender:AnyObject){
         if(sender.isEqual(presetView.leftButton)){
-            //let removeAll:Bool = Presets.removeAll()
+            
             let addPreset:AddPresetViewController = AddPresetViewController()
             addPreset.purpose = .Add
             addPreset.addDelegate = self

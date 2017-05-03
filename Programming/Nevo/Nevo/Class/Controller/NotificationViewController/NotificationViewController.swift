@@ -246,7 +246,7 @@ extension NotificationViewController {
                         banner.dismissesOnTap = true
                         banner.show(duration: 1.5)
                         
-                        print("\(error)")
+                        print("\(String(describing: error))")
                     }
                 })
             }

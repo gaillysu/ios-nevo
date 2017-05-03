@@ -305,7 +305,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                             
                             hk.writeDataPoint(CaloriesToHK(calories: Double(savedDailyHistory[Int(currentDay)].HourlyCalories[index]), date: Date.date(year: saveDay.year, month: saveDay.month, day: saveDay.day, hour: index, minute: 0, second: 0)), resultHandler: { (result, error) in
                                 if (result != true) {
-                                    XCGLogger.default.debug("Save Hourly Calories error\(index),\(error)")
+                                    XCGLogger.default.debug("Save Hourly Calories error\(index),\(String(describing: error))")
                                 }else{
                                     XCGLogger.default.debug("Save Hourly Calories OK")
                                 }

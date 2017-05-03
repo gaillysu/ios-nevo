@@ -75,7 +75,6 @@ extension UnitTableViewCell {
         if cell == nil {
             tableView.register(UINib(nibName: "UnitTableViewCell", bundle: nil), forCellReuseIdentifier: "unit_identifier")
             cell = tableView.dequeueReusableCell(withIdentifier: "unit_identifier") as? UnitTableViewCell
-            
             cell?.type = type
         }
         
