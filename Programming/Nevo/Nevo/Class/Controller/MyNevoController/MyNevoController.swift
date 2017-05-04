@@ -108,7 +108,7 @@ class MyNevoController: UITableViewController,UIAlertViewDelegate {
         tableView.deselectRow(at: indexPath, animated: true)
         if((indexPath as NSIndexPath).row == 0){
             if !AppTheme.isTargetLunaR_OR_Nevo() {
-                if(AppDelegate.getAppDelegate().getFirmwareVersion() >= Float(buildin_firmware_version)){
+                if(UserDefaults.standard.getFirmwareVersion() >= buildin_firmware_version){
                     let banner = MEDBanner(title: NSLocalizedString("is_watch_version", comment: ""), subtitle: nil, image: nil, backgroundColor: AppTheme.NEVO_SOLAR_YELLOW())
                     banner.dismissesOnTap = true
                     banner.show(duration: 1.5)
@@ -118,7 +118,7 @@ class MyNevoController: UITableViewController,UIAlertViewDelegate {
                 let navigation:UINavigationController = UINavigationController(rootViewController: lunar)
                 self.present(navigation, animated: true, completion: nil)
             }else{
-                if(AppDelegate.getAppDelegate().getSoftwareVersion() >= Float(buildin_software_version) && AppDelegate.getAppDelegate().getFirmwareVersion() >= Float(buildin_firmware_version)){
+                if(UserDefaults.standard.getSoftwareVersion() >= buildin_software_version && UserDefaults.standard.getFirmwareVersion() >= buildin_firmware_version){
                     let banner = MEDBanner(title: NSLocalizedString("is_watch_version", comment: ""), subtitle: nil, image: nil, backgroundColor: AppTheme.NEVO_SOLAR_YELLOW())
                     banner.dismissesOnTap = true
                     banner.show(duration: 1.5)
@@ -160,8 +160,8 @@ class MyNevoController: UITableViewController,UIAlertViewDelegate {
         var isUpdate:Bool = false
         switch ((indexPath as NSIndexPath).row){
         case 0:
-            var softwareFlag = AppDelegate.getAppDelegate().getSoftwareVersion() < Float(buildin_software_version)
-            let firmwareFlag = AppDelegate.getAppDelegate().getFirmwareVersion() < Float(buildin_firmware_version)
+            var softwareFlag = UserDefaults.standard.getSoftwareVersion() < buildin_software_version
+            let firmwareFlag = UserDefaults.standard.getFirmwareVersion() < buildin_firmware_version
             
             if !AppTheme.isTargetLunaR_OR_Nevo() {
                 softwareFlag = true
@@ -176,12 +176,12 @@ class MyNevoController: UITableViewController,UIAlertViewDelegate {
                     detailString = detailString.replacingOccurrences(of: "Nevo", with: "LunaR")
                 }
                 
-                debugLog("MCU:\(AppDelegate.getAppDelegate().getSoftwareVersion()) BLE:\(AppDelegate.getAppDelegate().getFirmwareVersion())")
+                debugLog("MCU:\(UserDefaults.standard.getSoftwareVersion()) BLE:\(UserDefaults.standard.getFirmwareVersion())")
                 
                 isUpdate = true
             } else {
                 if AppTheme.isTargetLunaR_OR_Nevo() {
-                    detailString = "MCU:\(AppDelegate.getAppDelegate().getSoftwareVersion()) BLE:\(AppDelegate.getAppDelegate().getFirmwareVersion())"
+                    detailString = "MCU:\(UserDefaults.standard.getSoftwareVersion()) BLE:\(UserDefaults.standard.getFirmwareVersion())"
                 } else {
                     detailString = "Version: \(buildin_firmware_version) is available!"
                 }

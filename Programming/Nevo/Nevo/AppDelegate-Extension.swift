@@ -231,16 +231,7 @@ extension AppDelegate {
         userDefaults.set(Date().timeIntervalSince1970,forKey:LAST_SYNC_DATE_KEY)
         userDefaults.synchronize()
     }
-    
-    // MARK: - ConnectionController protocol
-    func  getFirmwareVersion() -> Float{
-        return isConnected() ? self.getMconnectionController()!.getFirmwareVersion() : 0
-    }
-    
-    func  getSoftwareVersion() -> Float{
-        return isConnected() ? self.getMconnectionController()!.getSoftwareVersion() : 0
-    }
-    
+        
     func getWatchInfo() -> (watchName:String,watchId:Int) {
         return (self.getWatchName(),self.getWatchID());
     }

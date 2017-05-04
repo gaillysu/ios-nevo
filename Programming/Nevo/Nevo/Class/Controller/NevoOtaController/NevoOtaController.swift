@@ -422,7 +422,7 @@ class NevoOtaController : NSObject,ConnectionControllerDelegate {
     /**
     See ConnectionControllerDelegate
     */
-    func firmwareVersionReceived(_ whichfirmware:DfuFirmwareTypes, version:Float){
+    func firmwareVersionReceived(_ whichfirmware:DfuFirmwareTypes, version:Int){
         mDelegate?.firmwareVersionReceived(whichfirmware, version: version)
     }
 
@@ -697,21 +697,6 @@ class NevoOtaController : NSObject,ConnectionControllerDelegate {
         self.mConnectionController.setOTAMode(false,Disconnect:true)
         self.mConnectionController.connect()
     }
-    
-    /**
-    See ConnectionController protocol
-    */
-    func  getFirmwareVersion() -> Float{
-        return isConnected() ? self.mConnectionController.getFirmwareVersion() : 0
-    }
-    
-    /**
-    See ConnectionController protocol
-    */
-    func  getSoftwareVersion() -> Float{
-        return isConnected() ? self.mConnectionController.getSoftwareVersion() : 0
-    }
-
 }
 
 /**
@@ -730,7 +715,7 @@ protocol NevoOtaControllerDelegate {
     @parameter whichfirmware, firmware type
     @parameter version, return the version
     */
-    func firmwareVersionReceived(_ whichfirmware:DfuFirmwareTypes, version:Float)
+    func firmwareVersionReceived(_ whichfirmware:DfuFirmwareTypes, version:Int)
     /**
     See SyncControllerDelegate
     */

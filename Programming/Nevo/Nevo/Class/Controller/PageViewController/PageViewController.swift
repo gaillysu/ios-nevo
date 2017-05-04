@@ -144,7 +144,7 @@ class PageViewController: UIPageViewController,UIActionSheetDelegate {
         for pArray in array {
             let model:MEDUserGoal = pArray as! MEDUserGoal
             if(model.status){
-                let titleString:String = " \(model.stepsGoal) " + NSLocalizedString("steps_unit", comment: "")
+                let titleString:String = "\(model.label): \(model.stepsGoal) " + NSLocalizedString("steps_unit", comment: "")
                 let alertAction2:AlertAction = AlertAction(title: titleString, style: UIAlertActionStyle.default) { (action:UIAlertAction) -> Void in
                     if((action.title! as NSString).isEqual(to: titleString)){
                         UserDefaults.standard.set(model.stepsGoal, forKey: NUMBER_OF_STEPS_GOAL_KEY)

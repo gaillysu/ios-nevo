@@ -23,7 +23,8 @@ class AlarmClockController: UITableViewController {
     var sleepArray: [MEDUserAlarm] = []
     
     var isOldAddAlarmFlag: Bool {
-        return AppDelegate.getAppDelegate().getMconnectionController()!.getFirmwareVersion() <= 31 && AppDelegate.getAppDelegate().getMconnectionController()!.getSoftwareVersion() <= 18
+        let userDefaults = UserDefaults.standard
+        return userDefaults.getFirmwareVersion() <= 31 && userDefaults.getSoftwareVersion() <= 18
     }
     
     lazy var leftEditItem: UIBarButtonItem = {

@@ -329,7 +329,7 @@ extension LunaROTAController:ConnectionControllerDelegate {
      @parameter whichfirmware, firmware type
      @parameter version, return the version
      */
-    func firmwareVersionReceived(_ whichfirmware:DfuFirmwareTypes, version:Float){
+    func firmwareVersionReceived(_ whichfirmware:DfuFirmwareTypes, version:Int){
     
     }
     

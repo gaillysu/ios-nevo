@@ -2,7 +2,7 @@
 //  AppDelegate.swift
 //  Nevo
 //
-//  Created by Hugo Garcia-Cotte on 20/1/15.
+//  Created by Karl on 20/1/15.
 //  Copyright (c) 2015 Nevo. All rights reserved.
 //
 
@@ -354,7 +354,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                 let dailySteps:Int = thispacket.getDailySteps()
                 let dailyStepGoal:Int = thispacket.getDailyStepsGoal()
                 let percent :Float = Float(dailySteps)/Float(dailyStepGoal)
-                if getFirmwareVersion() >= Float(buildin_firmware_version) {
+                if UserDefaults.standard.getFirmwareVersion() >= buildin_firmware_version {
                     XCGLogger.default.debug("DailyStepsNevoPacket,steps:\(dailySteps),stepGoal:\(dailyStepGoal),getRTC:\(thispacket.getDateTimer().stringFromFormat("yyyy-MM-dd HH:mm:ss"))")
                 }
                 //XCGLogger.default.debug("DailyStepsNevoPacket,steps:\(dailySteps),stepGoal:\(dailyStepGoal),getRTC:\(thispacket.getDateTimer().stringFromFormat("yyyy-MM-dd hh:mm:ss"))")
@@ -417,9 +417,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
         }
     }
 
-    func firmwareVersionReceived(_ whichfirmware:DfuFirmwareTypes, version:Float) {
-        let mcuver = Float(buildin_software_version)
-        let blever = Float(buildin_firmware_version)
+    func firmwareVersionReceived(_ whichfirmware:DfuFirmwareTypes, version:Int) {
+        let mcuver = buildin_software_version
+        let blever = buildin_firmware_version
 
         XCGLogger.default.debug("Build in software version: \(mcuver), firmware version: \(blever)")
 

@@ -59,7 +59,6 @@
 		0050D5FD1C28E0DB004F6F80 /* NotificationClockCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0050D53F1C28E0DB004F6F80 /* NotificationClockCell.xib */; };
 		0050D6011C28E0DB004F6F80 /* NotificationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0050D5431C28E0DB004F6F80 /* NotificationViewController.xib */; };
 		0050D6031C28E0DB004F6F80 /* SelectedNotificationTypeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0050D5451C28E0DB004F6F80 /* SelectedNotificationTypeController.xib */; };
-		0050D60C1C28E0DB004F6F80 /* AddPresetViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0050D5501C28E0DB004F6F80 /* AddPresetViewController.xib */; };
 		0050D60E1C28E0DB004F6F80 /* PresetTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0050D5521C28E0DB004F6F80 /* PresetTableViewController.xib */; };
 		0050D6111C28E0DB004F6F80 /* PresetTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0050D5561C28E0DB004F6F80 /* PresetTableViewCell.xib */; };
 		0050D69B1C2906D8004F6F80 /* Firmwares in Resources */ = {isa = PBXBuildFile; fileRef = 0050D69A1C2906D8004F6F80 /* Firmwares */; };
@@ -147,11 +146,8 @@
 		00C826931DA5E04000ECECEE /* NotificationViewController.xib in Sources */ = {isa = PBXBuildFile; fileRef = 0050D5431C28E0DB004F6F80 /* NotificationViewController.xib */; };
 		00C826941DA5E04000ECECEE /* SelectedNotificationTypeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0050D5441C28E0DB004F6F80 /* SelectedNotificationTypeController.swift */; };
 		00C826951DA5E04000ECECEE /* SelectedNotificationTypeController.xib in Sources */ = {isa = PBXBuildFile; fileRef = 0050D5451C28E0DB004F6F80 /* SelectedNotificationTypeController.xib */; };
-		00C826961DA5E04000ECECEE /* AddPresetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0050D54F1C28E0DB004F6F80 /* AddPresetViewController.swift */; };
-		00C826971DA5E04000ECECEE /* AddPresetViewController.xib in Sources */ = {isa = PBXBuildFile; fileRef = 0050D5501C28E0DB004F6F80 /* AddPresetViewController.xib */; };
 		00C826981DA5E04000ECECEE /* PresetTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0050D5511C28E0DB004F6F80 /* PresetTableViewController.swift */; };
 		00C826991DA5E04000ECECEE /* PresetTableViewController.xib in Sources */ = {isa = PBXBuildFile; fileRef = 0050D5521C28E0DB004F6F80 /* PresetTableViewController.xib */; };
-		00C8269A1DA5E04000ECECEE /* AddPresetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0050D5541C28E0DB004F6F80 /* AddPresetView.swift */; };
 		00C8269B1DA5E04000ECECEE /* PresetTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0050D5551C28E0DB004F6F80 /* PresetTableViewCell.swift */; };
 		00C8269C1DA5E04000ECECEE /* PresetTableViewCell.xib in Sources */ = {isa = PBXBuildFile; fileRef = 0050D5561C28E0DB004F6F80 /* PresetTableViewCell.xib */; };
 		00C8269D1DA5E04000ECECEE /* PresetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0050D5571C28E0DB004F6F80 /* PresetView.swift */; };
@@ -206,7 +202,6 @@
 		00C826E51DA5ECA700ECECEE /* NotificationClockCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0050D53F1C28E0DB004F6F80 /* NotificationClockCell.xib */; };
 		00C826E61DA5ECA700ECECEE /* NotificationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0050D5431C28E0DB004F6F80 /* NotificationViewController.xib */; };
 		00C826E71DA5ECA700ECECEE /* SelectedNotificationTypeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0050D5451C28E0DB004F6F80 /* SelectedNotificationTypeController.xib */; };
-		00C826E81DA5ECA700ECECEE /* AddPresetViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0050D5501C28E0DB004F6F80 /* AddPresetViewController.xib */; };
 		00C826E91DA5ECA700ECECEE /* PresetTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0050D5521C28E0DB004F6F80 /* PresetTableViewController.xib */; };
 		00C826EA1DA5ECA700ECECEE /* PresetTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0050D5561C28E0DB004F6F80 /* PresetTableViewCell.xib */; };
 		00C826EB1DA5ECA700ECECEE /* SetingInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0089B0A71D6BFF250041148A /* SetingInfoCell.xib */; };
@@ -243,7 +238,6 @@
 		00D4744F1D586D1600E2447E /* PublicClassController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C7E1D224CFA009047AC /* PublicClassController.swift */; };
 		00D474501D586D1600E2447E /* PublicClassTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C7F1D224CFA009047AC /* PublicClassTableViewController.swift */; };
 		00D474521D586D1600E2447E /* AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C831D224CFA009047AC /* AppTheme.swift */; };
-		00D474591D586D1600E2447E /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C8B1D224CFA009047AC /* Alert.swift */; };
 		00D4745A1D586D1600E2447E /* ClockRefreshManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C8D1D224CFA009047AC /* ClockRefreshManager.swift */; };
 		00D4745B1D586D1600E2447E /* ConnectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C8F1D224CFA009047AC /* ConnectionController.swift */; };
 		00D4745C1D586D1600E2447E /* ConnectionControllerImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C901D224CFA009047AC /* ConnectionControllerImpl.swift */; };
@@ -319,7 +313,6 @@
 		611D417F1DCAD97C003BC6E3 /* PublicClassController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C7E1D224CFA009047AC /* PublicClassController.swift */; };
 		611D41801DCAD97C003BC6E3 /* PublicClassTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C7F1D224CFA009047AC /* PublicClassTableViewController.swift */; };
 		611D41821DCAD97C003BC6E3 /* AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C831D224CFA009047AC /* AppTheme.swift */; };
-		611D41881DCAD97C003BC6E3 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C8B1D224CFA009047AC /* Alert.swift */; };
 		611D41891DCAD97C003BC6E3 /* ClockRefreshManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C8D1D224CFA009047AC /* ClockRefreshManager.swift */; };
 		611D418A1DCAD97C003BC6E3 /* ConnectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C8F1D224CFA009047AC /* ConnectionController.swift */; };
 		611D418B1DCAD97C003BC6E3 /* ConnectionControllerImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C901D224CFA009047AC /* ConnectionControllerImpl.swift */; };
@@ -442,11 +435,8 @@
 		611D42411DCAD97D003BC6E3 /* NotificationViewController.xib in Sources */ = {isa = PBXBuildFile; fileRef = 0050D5431C28E0DB004F6F80 /* NotificationViewController.xib */; };
 		611D42421DCAD97D003BC6E3 /* SelectedNotificationTypeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0050D5441C28E0DB004F6F80 /* SelectedNotificationTypeController.swift */; };
 		611D42431DCAD97D003BC6E3 /* SelectedNotificationTypeController.xib in Sources */ = {isa = PBXBuildFile; fileRef = 0050D5451C28E0DB004F6F80 /* SelectedNotificationTypeController.xib */; };
-		611D42441DCAD97D003BC6E3 /* AddPresetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0050D54F1C28E0DB004F6F80 /* AddPresetViewController.swift */; };
-		611D42451DCAD97D003BC6E3 /* AddPresetViewController.xib in Sources */ = {isa = PBXBuildFile; fileRef = 0050D5501C28E0DB004F6F80 /* AddPresetViewController.xib */; };
 		611D42461DCAD97D003BC6E3 /* PresetTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0050D5511C28E0DB004F6F80 /* PresetTableViewController.swift */; };
 		611D42471DCAD97D003BC6E3 /* PresetTableViewController.xib in Sources */ = {isa = PBXBuildFile; fileRef = 0050D5521C28E0DB004F6F80 /* PresetTableViewController.xib */; };
-		611D42481DCAD97D003BC6E3 /* AddPresetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0050D5541C28E0DB004F6F80 /* AddPresetView.swift */; };
 		611D42491DCAD97D003BC6E3 /* PresetTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0050D5551C28E0DB004F6F80 /* PresetTableViewCell.swift */; };
 		611D424A1DCAD97D003BC6E3 /* PresetTableViewCell.xib in Sources */ = {isa = PBXBuildFile; fileRef = 0050D5561C28E0DB004F6F80 /* PresetTableViewCell.xib */; };
 		611D424B1DCAD97D003BC6E3 /* PresetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0050D5571C28E0DB004F6F80 /* PresetView.swift */; };
@@ -915,11 +905,8 @@
 		0050D5431C28E0DB004F6F80 /* NotificationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NotificationViewController.xib; sourceTree = "<group>"; };
 		0050D5441C28E0DB004F6F80 /* SelectedNotificationTypeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectedNotificationTypeController.swift; sourceTree = "<group>"; };
 		0050D5451C28E0DB004F6F80 /* SelectedNotificationTypeController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SelectedNotificationTypeController.xib; sourceTree = "<group>"; };
-		0050D54F1C28E0DB004F6F80 /* AddPresetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddPresetViewController.swift; sourceTree = "<group>"; };
-		0050D5501C28E0DB004F6F80 /* AddPresetViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddPresetViewController.xib; sourceTree = "<group>"; };
 		0050D5511C28E0DB004F6F80 /* PresetTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresetTableViewController.swift; sourceTree = "<group>"; };
 		0050D5521C28E0DB004F6F80 /* PresetTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PresetTableViewController.xib; sourceTree = "<group>"; };
-		0050D5541C28E0DB004F6F80 /* AddPresetView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddPresetView.swift; sourceTree = "<group>"; };
 		0050D5551C28E0DB004F6F80 /* PresetTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresetTableViewCell.swift; sourceTree = "<group>"; };
 		0050D5561C28E0DB004F6F80 /* PresetTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PresetTableViewCell.xib; sourceTree = "<group>"; };
 		0050D5571C28E0DB004F6F80 /* PresetView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresetView.swift; sourceTree = "<group>"; };
@@ -1080,7 +1067,6 @@
 		00AF8C7E1D224CFA009047AC /* PublicClassController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PublicClassController.swift; sourceTree = "<group>"; };
 		00AF8C7F1D224CFA009047AC /* PublicClassTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PublicClassTableViewController.swift; sourceTree = "<group>"; };
 		00AF8C831D224CFA009047AC /* AppTheme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppTheme.swift; sourceTree = "<group>"; };
-		00AF8C8B1D224CFA009047AC /* Alert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
 		00AF8C8D1D224CFA009047AC /* ClockRefreshManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClockRefreshManager.swift; sourceTree = "<group>"; };
 		00AF8C8F1D224CFA009047AC /* ConnectionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectionController.swift; sourceTree = "<group>"; };
 		00AF8C901D224CFA009047AC /* ConnectionControllerImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectionControllerImpl.swift; sourceTree = "<group>"; };
@@ -1567,8 +1553,6 @@
 		0050D54E1C28E0DB004F6F80 /* PresetController */ = {
 			isa = PBXGroup;
 			children = (
-				0050D54F1C28E0DB004F6F80 /* AddPresetViewController.swift */,
-				0050D5501C28E0DB004F6F80 /* AddPresetViewController.xib */,
 				0050D5511C28E0DB004F6F80 /* PresetTableViewController.swift */,
 				0050D5521C28E0DB004F6F80 /* PresetTableViewController.xib */,
 				0050D5531C28E0DB004F6F80 /* PresetView */,
@@ -1579,7 +1563,6 @@
 		0050D5531C28E0DB004F6F80 /* PresetView */ = {
 			isa = PBXGroup;
 			children = (
-				0050D5541C28E0DB004F6F80 /* AddPresetView.swift */,
 				0050D5551C28E0DB004F6F80 /* PresetTableViewCell.swift */,
 				0050D5561C28E0DB004F6F80 /* PresetTableViewCell.xib */,
 				0050D5571C28E0DB004F6F80 /* PresetView.swift */,
@@ -1944,7 +1927,6 @@
 		00AF8C8A1D224CFA009047AC /* Util */ = {
 			isa = PBXGroup;
 			children = (
-				00AF8C8B1D224CFA009047AC /* Alert.swift */,
 				00AF8C8C1D224CFA009047AC /* ClockRefresh */,
 				00AF8C8E1D224CFA009047AC /* Connection */,
 				00AF8CB31D224CFA009047AC /* SyncQueue.swift */,
@@ -2990,7 +2972,6 @@
 				616DCB121DD1A7E500B5773E /* lunar_connected.png in Resources */,
 				00C826E61DA5ECA700ECECEE /* NotificationViewController.xib in Resources */,
 				00C826E71DA5ECA700ECECEE /* SelectedNotificationTypeController.xib in Resources */,
-				00C826E81DA5ECA700ECECEE /* AddPresetViewController.xib in Resources */,
 				666793121E134DAF00344188 /* MBProgressHUD.bundle in Resources */,
 				00C826E91DA5ECA700ECECEE /* PresetTableViewController.xib in Resources */,
 				00C826EA1DA5ECA700ECECEE /* PresetTableViewCell.xib in Resources */,
@@ -3165,7 +3146,6 @@
 				0050D69B1C2906D8004F6F80 /* Firmwares in Resources */,
 				00E650991C83DD9000278D3E /* nevoFontImage.png in Resources */,
 				612DB7181DEFC7BE000B1747 /* AllowNotificationsTableViewCell.xib in Resources */,
-				0050D60C1C28E0DB004F6F80 /* AddPresetViewController.xib in Resources */,
 				D11C142A1E1CA94600962F46 /* default.realm in Resources */,
 				00E759181C2406E600372529 /* upgrade_clock.png in Resources */,
 				6168C6371DFE8036008FCF97 /* UnitTableViewCell.xib in Resources */,
@@ -3542,13 +3522,10 @@
 				00C826931DA5E04000ECECEE /* NotificationViewController.xib in Sources */,
 				00C826941DA5E04000ECECEE /* SelectedNotificationTypeController.swift in Sources */,
 				00C826951DA5E04000ECECEE /* SelectedNotificationTypeController.xib in Sources */,
-				00C826961DA5E04000ECECEE /* AddPresetViewController.swift in Sources */,
-				00C826971DA5E04000ECECEE /* AddPresetViewController.xib in Sources */,
 				00C826981DA5E04000ECECEE /* PresetTableViewController.swift in Sources */,
 				00C826991DA5E04000ECECEE /* PresetTableViewController.xib in Sources */,
 				6667931E1E134DAF00344188 /* TaskQueue.swift in Sources */,
 				666793141E134DAF00344188 /* MBProgressHUD.m in Sources */,
-				00C8269A1DA5E04000ECECEE /* AddPresetView.swift in Sources */,
 				6655C0651E0A5A6A006A8A9D /* DashBoardElementView.swift in Sources */,
 				00C8269B1DA5E04000ECECEE /* PresetTableViewCell.swift in Sources */,
 				00C8269C1DA5E04000ECECEE /* PresetTableViewCell.xib in Sources */,
@@ -3656,7 +3633,6 @@
 				666792FC1E134DAF00344188 /* M13CheckboxBounceManager.swift in Sources */,
 				61FC93F01DE68071000AE93C /* MEDUserSleep.swift in Sources */,
 				66687CD81DD9654100AD7F7D /* Dispatch+MEDExtension.swift in Sources */,
-				00D474591D586D1600E2447E /* Alert.swift in Sources */,
 				00D4745A1D586D1600E2447E /* ClockRefreshManager.swift in Sources */,
 				61E8EC981E160199004F0DBE /* Float+Extension.swift in Sources */,
 				61E8EC941E16018B004F0DBE /* DataCalculation.swift in Sources */,
@@ -3790,7 +3766,6 @@
 				611D41801DCAD97C003BC6E3 /* PublicClassTableViewController.swift in Sources */,
 				611D41821DCAD97C003BC6E3 /* AppTheme.swift in Sources */,
 				D1BE2B1C1E1D1AC100E6713D /* Duration.swift in Sources */,
-				611D41881DCAD97C003BC6E3 /* Alert.swift in Sources */,
 				611D41891DCAD97C003BC6E3 /* ClockRefreshManager.swift in Sources */,
 				611D418A1DCAD97C003BC6E3 /* ConnectionController.swift in Sources */,
 				611D418B1DCAD97C003BC6E3 /* ConnectionControllerImpl.swift in Sources */,
@@ -3987,12 +3962,9 @@
 				611D42421DCAD97D003BC6E3 /* SelectedNotificationTypeController.swift in Sources */,
 				666792FB1E134DAF00344188 /* M13CheckboxBounceManager.swift in Sources */,
 				611D42431DCAD97D003BC6E3 /* SelectedNotificationTypeController.xib in Sources */,
-				611D42441DCAD97D003BC6E3 /* AddPresetViewController.swift in Sources */,
-				611D42451DCAD97D003BC6E3 /* AddPresetViewController.xib in Sources */,
 				611D42461DCAD97D003BC6E3 /* PresetTableViewController.swift in Sources */,
 				611D42471DCAD97D003BC6E3 /* PresetTableViewController.xib in Sources */,
 				6662623B1E0BBC2100991D96 /* MEDColorful.swift in Sources */,
-				611D42481DCAD97D003BC6E3 /* AddPresetView.swift in Sources */,
 				611D42491DCAD97D003BC6E3 /* PresetTableViewCell.swift in Sources */,
 				611D424A1DCAD97D003BC6E3 /* PresetTableViewCell.xib in Sources */,
 				611D424B1DCAD97D003BC6E3 /* PresetView.swift in Sources */,

@@ -43,7 +43,11 @@ class SetingView: UIView {
         let endCellID:String = "NotificationSystemTableViewCell"
         var endCell = tableView.dequeueReusableCell(withIdentifier: endCellID)
         if (endCell == nil) {
-            endCell = UITableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: endCellID)
+            if indexPath.row == 2 && indexPath.section == 1 {
+                endCell = UITableViewCell(style: UITableViewCellStyle.value1, reuseIdentifier: endCellID)
+            }else{
+                endCell = UITableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: endCellID)
+            }
         }
         endCell?.backgroundColor = UIColor.white
         if(title == NSLocalizedString("find_my_watch", comment: "") || title == NSLocalizedString("forget_watch", comment: "")) {
@@ -71,23 +75,20 @@ class SetingView: UIView {
                 endCell?.textLabel?.text = "My LunaR";
             }
             let connectionController = AppDelegate.getAppDelegate().getMconnectionController()!
-            let nameString = endCell?.textLabel?.text
-            
             var statusString = NSLocalizedString("Disconnected", comment: "")
             var color = UIColor.init("#C60000")
             if connectionController.isConnected() {
-                
-                if Int(connectionController.getFirmwareVersion()) > AppTheme.GET_FIRMWARE_VERSION() || Int(connectionController.getSoftwareVersion()) < AppTheme.GET_SOFTWARE_VERSION() {
+                if UserDefaults.standard.getFirmwareVersion() < AppTheme.GET_FIRMWARE_VERSION() || UserDefaults.standard.getSoftwareVersion() < AppTheme.GET_SOFTWARE_VERSION() {
                     statusString = NSLocalizedString("New Version Available!", comment: "")
                     color = UIColor.getBaseColor()
-                } else{
+                } else {
                     statusString = NSLocalizedString("Connected", comment: "")
                     color = UIColor.init("#00B000")
                 }
             }
-            let attributedString = NSMutableAttributedString(string: "\(nameString!) \(statusString)")
-            attributedString.addAttribute(NSForegroundColorAttributeName, value: color, range: NSMakeRange((nameString?.length())! + 1, statusString.length()))
-            endCell?.textLabel?.attributedText = attributedString
+            endCell?.detailTextLabel?.text = statusString
+            endCell?.detailTextLabel?.textColor = color
+            endCell?.detailTextLabel?.alpha = 0.7
         }
         return endCell!
     }

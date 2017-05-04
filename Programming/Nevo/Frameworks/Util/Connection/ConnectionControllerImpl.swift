@@ -170,7 +170,7 @@ extension ConnectionControllerImpl:NevoBTDelegate {
     /**
      See NevoBTDelegate
      */
-    func firmwareVersionReceived(_ whichfirmware:DfuFirmwareTypes, version:Float) {
+    func firmwareVersionReceived(_ whichfirmware:DfuFirmwareTypes, version:Int) {
         mDelegate?.firmwareVersionReceived(whichfirmware, version: version)
     }
     
@@ -287,20 +287,6 @@ extension ConnectionControllerImpl:ConnectionController {
      */
     func sendRequest(_ request:Request) {
         mNevoBT?.sendRequest(request)
-    }
-    
-    /**
-     See ConnectionController protocol
-     */
-    func getFirmwareVersion() -> Float {
-        return mNevoBT!.getFirmwareVersion()
-    }
-    
-    /**
-     See ConnectionController protocol
-     */
-    func getSoftwareVersion() -> Float {
-        return mNevoBT!.getSoftwareVersion()
     }
     
     func isBluetoothEnabled() -> Bool {

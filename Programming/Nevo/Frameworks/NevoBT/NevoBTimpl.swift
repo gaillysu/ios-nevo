@@ -24,7 +24,7 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
     /**
     How long before we retry to connect when the central manager is powering up
     */
-    fileprivate let RETRY_DURATION : TimeInterval = 0.500
+    fileprivate let RETRY_DURATION : TimeInterval = 10.0
     
     /**
     Gets notified when a periphare connects/disconnects and when we receive data
@@ -59,16 +59,6 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
     */
     fileprivate var mTimer : Timer?
     
-    /**
-    Ble firmware version
-    */
-    fileprivate var mFirmwareVersion:Float = 0
-    
-    /**
-    MCU Software version
-    */
-    fileprivate var mSoftwareVersion:Float = 0
-
     fileprivate var redRssiTimer:Timer = Timer()
     
     fileprivate var callbackChar:String = ""
@@ -223,24 +213,20 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
         if(characteristic.uuid==CBUUID(string: "00002a26-0000-1000-8000-00805f9b34fb")) {
             if characteristic.value != nil {
                 if let version = String(data: characteristic.value!, encoding: String.Encoding.utf8) {
-                    mFirmwareVersion = version.toFloat()
-                }else{
-                    mFirmwareVersion = 0
+                    UserDefaults.standard.setFirmwareVersion(version: version.toInt())
                 }
             }
-            XCGLogger.default.debug("get firmware version char : \(characteristic.uuid.uuidString), version : \(self.mFirmwareVersion)")
+            XCGLogger.default.debug("get firmware version char : \(characteristic.uuid.uuidString), version : \(UserDefaults.standard.getFirmwareVersion())")
             //tell OTA new version
-            mDelegate?.firmwareVersionReceived(DfuFirmwareTypes.application, version: mFirmwareVersion)
+            mDelegate?.firmwareVersionReceived(DfuFirmwareTypes.application, version: UserDefaults.standard.getFirmwareVersion())
         } else if(characteristic.uuid==CBUUID(string: "00002a28-0000-1000-8000-00805f9b34fb")) {
             if(characteristic.value != nil){
                 if let version = String(data: characteristic.value!, encoding: String.Encoding.utf8) {
-                    mSoftwareVersion = version.toFloat()
-                }else{
-                    mSoftwareVersion = 0
+                    UserDefaults.standard.setSoftwareVersion(version: version.toInt())
                 }
             }
-            XCGLogger.default.debug("get software version char : \(characteristic.uuid.uuidString), version : \(self.mSoftwareVersion)")
-            mDelegate?.firmwareVersionReceived(DfuFirmwareTypes.softdevice, version: mSoftwareVersion)
+            XCGLogger.default.debug("get software version char : \(characteristic.uuid.uuidString), version : \(UserDefaults.standard.getSoftwareVersion())")
+            mDelegate?.firmwareVersionReceived(DfuFirmwareTypes.softdevice, version: UserDefaults.standard.getSoftwareVersion())
         }
     }
     
@@ -454,21 +440,7 @@ class NevoBTImpl : NSObject, NevoBT, CBCentralManagerDelegate, CBPeripheralDeleg
     func getProfile() -> Profile {
         return mProfile!
     }
-
-    /**
-    See NevoBT protocol
-    */
-    func getFirmwareVersion() -> Float {
-        return mFirmwareVersion
-    }
-    
-    /**
-    See NevoBT protocol
-    */
-    func getSoftwareVersion() -> Float {
-        return mSoftwareVersion
-    }
-
+ 
     // MARK: - Red RSSI NSTimer
     func redRSSI(_ timer:Timer){
         getRSSI()
