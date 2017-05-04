@@ -802,6 +802,8 @@
 		CBBC48241EBB05FB00867AB0 /* Int+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBBC48231EBB05FB00867AB0 /* Int+Extension.swift */; };
 		CBBC48281EBB16C200867AB0 /* BluetoothScanDurationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBBC48261EBB16C200867AB0 /* BluetoothScanDurationViewController.swift */; };
 		CBBC48291EBB16C200867AB0 /* BluetoothScanDurationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CBBC48271EBB16C200867AB0 /* BluetoothScanDurationViewController.xib */; };
+		CBD429AA1EBB2DE200135D70 /* SetBLEConnectionTimeoutRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD429A91EBB2DE200135D70 /* SetBLEConnectionTimeoutRequest.swift */; };
+		CBD429AC1EBB338400135D70 /* UITableViewCell+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD429AB1EBB338400135D70 /* UITableViewCell+Extension.swift */; };
 		D10C095A1DE2967B008B6E57 /* ProfileImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D10C09591DE2967B008B6E57 /* ProfileImageManager.swift */; };
 		D10C095B1DE2967B008B6E57 /* ProfileImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D10C09591DE2967B008B6E57 /* ProfileImageManager.swift */; };
 		D11C142A1E1CA94600962F46 /* default.realm in Resources */ = {isa = PBXBuildFile; fileRef = D11C14281E1CA94500962F46 /* default.realm */; };
@@ -1352,6 +1354,8 @@
 		CBBC48231EBB05FB00867AB0 /* Int+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Int+Extension.swift"; sourceTree = "<group>"; };
 		CBBC48261EBB16C200867AB0 /* BluetoothScanDurationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BluetoothScanDurationViewController.swift; path = Nevo/Class/Controller/BluetoothScanDurationViewController/BluetoothScanDurationViewController.swift; sourceTree = SOURCE_ROOT; };
 		CBBC48271EBB16C200867AB0 /* BluetoothScanDurationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = BluetoothScanDurationViewController.xib; path = Nevo/Class/Controller/BluetoothScanDurationViewController/BluetoothScanDurationViewController.xib; sourceTree = SOURCE_ROOT; };
+		CBD429A91EBB2DE200135D70 /* SetBLEConnectionTimeoutRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetBLEConnectionTimeoutRequest.swift; sourceTree = "<group>"; };
+		CBD429AB1EBB338400135D70 /* UITableViewCell+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+Extension.swift"; sourceTree = "<group>"; };
 		D10C09591DE2967B008B6E57 /* ProfileImageManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileImageManager.swift; sourceTree = "<group>"; };
 		D11C14281E1CA94500962F46 /* default.realm */ = {isa = PBXFileReference; lastKnownFileType = file; path = default.realm; sourceTree = "<group>"; };
 		D11C14291E1CA94500962F46 /* default.realm.lock */ = {isa = PBXFileReference; lastKnownFileType = file; path = default.realm.lock; sourceTree = "<group>"; };
@@ -1979,12 +1983,14 @@
 			children = (
 				00AF8CA31D224CFA009047AC /* GetActivityRequest.swift */,
 				00AF8CA41D224CFA009047AC /* GetStepsGoalRequest.swift */,
+				005E46891D879FB5009B6E4C /* GetWatchName.swift */,
 				00AF8CA51D224CFA009047AC /* LedLightOnOffNevoRequest.swift */,
 				00AF8CA61D224CFA009047AC /* NevoRequest.swift */,
 				00AF8CA71D224CFA009047AC /* ReadBatteryLevelNevoRequest.swift */,
 				00AF8CA81D224CFA009047AC /* ReadDailyTracker.swift */,
 				00AF8CA91D224CFA009047AC /* ReadDailyTrackerInfo.swift */,
 				00AF8CAA1D224CFA009047AC /* SetAlarmRequest.swift */,
+				CBD429A91EBB2DE200135D70 /* SetBLEConnectionTimeoutRequest.swift */,
 				00AF8CAB1D224CFA009047AC /* SetCardioRequest.swift */,
 				00AF8CAC1D224CFA009047AC /* SetGoalRequest.swift */,
 				00AF8CAD1D224CFA009047AC /* SetNewAlarmRequest.swift */,
@@ -1992,7 +1998,6 @@
 				00AF8CAF1D224CFA009047AC /* SetProfileRequest.swift */,
 				00AF8CB01D224CFA009047AC /* SetRTCRequest.swift */,
 				00AF8CB21D224CFA009047AC /* WriteSettingRequest.swift */,
-				005E46891D879FB5009B6E4C /* GetWatchName.swift */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -2085,6 +2090,7 @@
 				6651E7E31E286704007DCDF1 /* UINavigationBar+MEDExtension.swift */,
 				CB13422B1EB9AF8B006674DB /* UserDefaults+Extension.swift */,
 				CBBC48231EBB05FB00867AB0 /* Int+Extension.swift */,
+				CBD429AB1EBB338400135D70 /* UITableViewCell+Extension.swift */,
 			);
 			name = MEDExtension;
 			path = Frameworks/MEDExtension;
@@ -3890,6 +3896,7 @@
 				611D42101DCAD97D003BC6E3 /* VideoPlayController.swift in Sources */,
 				611D42111DCAD97D003BC6E3 /* VideoPlayController.xib in Sources */,
 				611D42121DCAD97D003BC6E3 /* SupportViewController.swift in Sources */,
+				CBD429AC1EBB338400135D70 /* UITableViewCell+Extension.swift in Sources */,
 				66154B8D1DF68BC500973A9E /* NotiColorController.swift in Sources */,
 				611D42131DCAD97D003BC6E3 /* SupportViewController.xib in Sources */,
 				6655C0591E0A53DF006A8A9D /* DashBoardController.swift in Sources */,
@@ -3915,6 +3922,7 @@
 				6655C0641E0A5A6A006A8A9D /* DashBoardElementView.swift in Sources */,
 				666793171E134DAF00344188 /* SMSegmentAppearance.swift in Sources */,
 				61E8EC8D1E16017D004F0DBE /* NevoAllKeys.swift in Sources */,
+				CBD429AA1EBB2DE200135D70 /* SetBLEConnectionTimeoutRequest.swift in Sources */,
 				61E8EC861E16017D004F0DBE /* Color.swift in Sources */,
 				667149F91E1CAB1C009A34B4 /* NoneAlarmView.swift in Sources */,
 				611D422F1DCAD97D003BC6E3 /* MyNevoController.swift in Sources */,

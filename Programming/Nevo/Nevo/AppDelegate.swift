@@ -94,7 +94,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
         let userDefaults = UserDefaults.standard;
         //lastSync = userDefaults.double(forKey: LAST_SYNC_DATE_KEY)
         if userDefaults.getDurationSearch() == 0 {
-            userDefaults.setDurationSearch(version: 60)
+            userDefaults.setDurationSearch(version: 15)
         }
         adjustLaunchLogic()
         
@@ -237,7 +237,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
             }
 
             if(packet.getHeader() == SetNortificationRequest.HEADER()) {
-                
+                if UserDefaults.standard.getFirmwareVersion() >= 40 && UserDefaults.standard.getSoftwareVersion() >= 27{
+                    self.updateBluetoothScanPeriod()
+                }else{
+                    self.setNewAlarm()
+                }
+            }
+            
+            if packet.getHeader() == SetBLEConnectionTimeoutRequest.HEADER() {
                 self.setNewAlarm()
             }
 
@@ -713,6 +720,9 @@ extension AppDelegate {
             _ = sleepModel.add()
         }
     }
-    
+
+    func updateBluetoothScanPeriod() {
+        sendRequest(SetBLEConnectionTimeoutRequest(minutes: UInt16(UserDefaults.standard.getDurationSearch())))
+    }
 }
 

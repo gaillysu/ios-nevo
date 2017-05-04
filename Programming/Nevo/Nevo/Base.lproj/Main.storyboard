@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES" initialViewController="VSL-Nt-5H3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES" initialViewController="VSL-Nt-5H3">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -34,8 +34,8 @@
         <scene sceneID="qEP-IN-OCQ">
             <objects>
                 <navigationController useStoryboardIdentifierAsRestorationIdentifier="YES" id="bGr-qo-zHH" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Setting" image="new_iOS_setting_icon" id="FTX-5o-89V"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="p9j-eT-GsY">
+                    <tabBarItem key="tabBarItem" title="Setting" image="icon_settings" id="FTX-5o-89V"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="p9j-eT-GsY">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -56,7 +56,7 @@
             <objects>
                 <navigationController id="rem-vM-ODh" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Dashboard" image="home_icon" id="ba1-Wn-XQe"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="gdh-sX-Da8">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="gdh-sX-Da8">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -72,7 +72,7 @@
         <scene sceneID="ct5-Mu-dmL">
             <objects>
                 <navigationController id="Hsa-EN-v8Q" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Alarm" image="new_iOS_alarm_icon" id="dU5-Ty-hhC"/>
+                    <tabBarItem key="tabBarItem" title="Alarm" image="icon_alarm" id="dU5-Ty-hhC"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="0g2-Qz-bFf">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -297,8 +297,8 @@
     <resources>
         <image name="analysis_icon" width="30" height="30"/>
         <image name="home_icon" width="30" height="30"/>
-        <image name="new_iOS_alarm_icon" width="35" height="36"/>
-        <image name="new_iOS_setting_icon" width="30" height="30"/>
+        <image name="icon_alarm" width="35" height="36"/>
+        <image name="icon_settings" width="35" height="36"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

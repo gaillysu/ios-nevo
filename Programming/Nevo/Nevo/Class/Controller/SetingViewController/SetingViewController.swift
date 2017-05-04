@@ -16,10 +16,9 @@ class SetingViewController: UIViewController,ButtonManagerCallBack,UIAlertViewDe
     @IBOutlet var notificationList: SetingView!
     
     fileprivate var mNotificationType:NotificationType = NotificationType.call
-    var sources:NSArray!
-    var sourcesImage:[String] = []
-    var titleArray:[String] = []
-    var titleArrayImage:[String] = []
+    var watchSettingsArray:[(cellName:String,imageName:String)] = []
+    var appSettingsArray:[(cellName:String,imageName:String)] = []
+    var otherSettingsArray:[(cellName:String,imageName:String)] = []
     var selectedB:Bool = false
     //vibrate and show all color light to find my device, only send one request in 6 sec
     //this action take lot power and we maybe told customer less to use it
@@ -31,11 +30,19 @@ class SetingViewController: UIViewController,ButtonManagerCallBack,UIAlertViewDe
         self.navigationItem.title = NSLocalizedString("Setting", comment: "")
         
         notificationList.bulidNotificationViewUI(self)
+        watchSettingsArray = [
+            (NSLocalizedString("My Nevo", comment: ""),"icon_nevo"),
+            (NSLocalizedString("Notifications", comment: ""),"icon_bell"),
+            (NSLocalizedString("Search Duration", comment: ""), "icon_bluetooth"),
+            (NSLocalizedString("Link-Loss Notifications", comment: ""),"icon_chain"),
+            (NSLocalizedString("find_my_watch", comment: ""),"icon_crosshair")]
         
-        sources = [NSLocalizedString("Link-Loss Notifications", comment: ""),NSLocalizedString("Notifications", comment: ""),NSLocalizedString("My Nevo", comment: ""),NSLocalizedString("Support", comment: "")]
-        sourcesImage = ["new_iOS_link_icon","new_iOS_notfications_icon","new_iOS_mynevo_iocn","new_iOS_support_icon"]
-        titleArray = [NSLocalizedString("other_settings", comment: ""),NSLocalizedString("find_my_watch", comment: ""),NSLocalizedString("forget_watch", comment: ""),NSLocalizedString("logout", comment: "")]
-        titleArrayImage = ["new_iOS_goals_icon","new_iOS_findmywatch_icon","forget_watch","logout"]
+        appSettingsArray = [
+            (NSLocalizedString("goals", comment: ""), "icon_goals"),
+            (NSLocalizedString("unit", comment: ""), "icon_scale")]
+        
+        otherSettingsArray = [(NSLocalizedString("Support", comment: ""),"icon_support")]
+        
         
         notificationList.tableListView.register(UINib(nibName:"SetingLoginCell" ,bundle: nil), forCellReuseIdentifier: "SetingLoginIdentifier")
         notificationList.tableListView.register(UINib(nibName:"SetingNotLoginCell" ,bundle: nil), forCellReuseIdentifier: "SetingNotLoginIdentifier")
@@ -64,7 +71,12 @@ class SetingViewController: UIViewController,ButtonManagerCallBack,UIAlertViewDe
     func tableView(_ tableView: UITableView, heightForRowAtIndexPath indexPath: IndexPath) -> CGFloat {
         if (indexPath as NSIndexPath).section == 0 {
             return 80
+        } else if indexPath.row == 2 && indexPath.section == 1{
+            if UserDefaults.standard.getFirmwareVersion() < 40 && UserDefaults.standard.getSoftwareVersion() < 27{
+                return 0
+            }
         }
+    
         return 50.0
     }
     
@@ -90,11 +102,7 @@ class SetingViewController: UIViewController,ButtonManagerCallBack,UIAlertViewDe
             }
         case 1:
             switch indexPath.row {
-            case 1:
-                let notification:NotificationViewController = NotificationViewController()
-                notification.hidesBottomBarWhenPushed = true
-                self.navigationController?.pushViewController(notification, animated: true)
-            case 2:
+            case 0:
                 if(AppDelegate.getAppDelegate().isConnected()){
                     let mynevo:MyNevoController = MyNevoController()
                     mynevo.hidesBottomBarWhenPushed = true
@@ -104,19 +112,18 @@ class SetingViewController: UIViewController,ButtonManagerCallBack,UIAlertViewDe
                     banner.dismissesOnTap = true
                     banner.show(duration: 1.5)
                 }
-            case 3:
-                UIApplication.shared.openURL(URL(string: "http://support.nevowatch.com/support/home")!)
-            default:
                 return
-            }
-        
-        case 2:
-            switch indexPath.row {
-            case 0:
-                let otherController:OtherController = OtherController()
-                otherController.hidesBottomBarWhenPushed = true
-                self.navigationController?.pushViewController(otherController, animated: true)
             case 1:
+                let notificationViewController = NotificationViewController()
+                notificationViewController.hidesBottomBarWhenPushed = true
+                self.navigationController?.pushViewController(notificationViewController, animated: true)
+            case 2:
+                
+                let bluetoothScanDurationViewController = BluetoothScanDurationViewController()
+                bluetoothScanDurationViewController.hidesBottomBarWhenPushed = true
+                self.navigationController?.pushViewController(bluetoothScanDurationViewController, animated: true)
+                break;
+            case 4:
                 findMydevice()
                 let cellView = tableView.cellForRow(at: indexPath)
                 if(cellView != nil){
@@ -134,106 +141,36 @@ class SetingViewController: UIViewController,ButtonManagerCallBack,UIAlertViewDe
                         }
                     }
                 }
-            case 2:
-                let actionSheet:MEDAlertController = MEDAlertController(title: NSLocalizedString("forget_watch", comment: ""), message: NSLocalizedString("forget_your_nevo", comment: ""), preferredStyle: UIAlertControllerStyle.alert)
-                
-                let alertAction:AlertAction = AlertAction(title: NSLocalizedString("Cancel", comment: ""), style: UIAlertActionStyle.cancel, handler: { (alert) -> Void in
-                    
-                })
-                alertAction.setValue(UIColor.getBaseColor(), forKey: "titleTextColor")
-                actionSheet.addAction(alertAction)
-                
-                let alertAction2:AlertAction = AlertAction(title: NSLocalizedString("forget", comment: ""), style: UIAlertActionStyle.default, handler: { ( alert) -> Void in
-                    AppDelegate.getAppDelegate().disconnect()
-                    
-                    AppDelegate.getAppDelegate().forgetSavedAddress()
-                    
-                    //forget watch set wacthid= -1
-                    AppDelegate.getAppDelegate().setWatchInfo(-1, model: -1)
-                    
-                    let tutrorial:TutorialOneViewController = TutorialOneViewController()
-                    let nav:UINavigationController = UINavigationController(rootViewController: tutrorial)
-                    nav.isNavigationBarHidden = true
-                    
-                    self.present(nav, animated: true, completion: {
-                        UIApplication.shared.keyWindow?.rootViewController = nav
-                    })
-                })
-                alertAction2.setValue(UIColor.getBaseColor(), forKey: "titleTextColor")
-                actionSheet.addAction(alertAction2)
-                
-                /// Theme adjust
-                alertAction.viewDefaultColorful()
-                alertAction2.viewDefaultColorful()
-                
-                self.present(actionSheet, animated: true, completion: nil)
-
-            case 3:
-                let dialogController = MEDAlertController(title: NSLocalizedString("Are you sure you want to log out?", comment: ""), message: nil, preferredStyle: .alert)
-                let confirmAction = AlertAction(title: NSLocalizedString("Yes", comment: ""), style: .default, handler: { (_) in
-                    let users = MEDUserProfile.getAll()
-                    if(users.count>0){
-                        let userProfile:MEDUserProfile = users.first as! MEDUserProfile
-                        if(userProfile.remove()){
-                            let tableViewCell: UITableViewCell = tableView.cellForRow(at: indexPath)!
-                            tableViewCell.accessoryType = UITableViewCellAccessoryType.none
-                            tableViewCell.textLabel?.text = "Login"
-                            tableView.reloadData()
-                        }else{
-                            let banner = MEDBanner(title: NSLocalizedString("Logout_error", comment: ""), subtitle: nil, image: nil, backgroundColor: AppTheme.NEVO_SOLAR_YELLOW())
-                            banner.dismissesOnTap = true
-                            banner.show(duration: 1.2)
-                        }
-                    }else{
-                        let loginController:LoginController = LoginController()
-                        loginController.hidesBottomBarWhenPushed = true
-                        self.navigationController?.pushViewController(loginController, animated: true)
-                    }
-                    
-                })
-                confirmAction.setValue(UIColor.getBaseColor(), forKey: "titleTextColor")
-                dialogController.addAction(confirmAction)
-                
-                let cancelAction = AlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil)
-                cancelAction.setValue(UIColor.getBaseColor(), forKey: "titleTextColor")
-                dialogController.addAction(cancelAction)
-                
-                /// Theme adjust
-                confirmAction.viewDefaultColorful()
-                cancelAction.viewDefaultColorful()
-                
-                self.present(dialogController, animated: true, completion: nil)
             default:
-                return
+                break
+            }
+            
+        case 2:
+            switch indexPath.row {
+            case 0:
+                let presetTableViewController = PresetTableViewController()
+                presetTableViewController.hidesBottomBarWhenPushed = true
+                self.navigationController?.pushViewController(presetTableViewController, animated: true)
+            case 1:
+                
+                notificationList.unitTextField?.becomeFirstResponder()
+                if let picker =  notificationList.picker{
+                    picker.selectedRow(inComponent: MEDSettings.int(forKey: "UserSelectedUnit")!)
+                }
+
+                break
+            default:
+                break
             }
         case 3:
-            let users = MEDUserProfile.getAll()
-            if(users.count>0){
-                let userProfile:MEDUserProfile = users.first as! MEDUserProfile
-                if(userProfile.remove()){
-                    let tableViewCell: UITableViewCell = tableView.cellForRow(at: indexPath)!
-                    tableViewCell.accessoryType = UITableViewCellAccessoryType.none
-                    tableViewCell.backgroundColor=UIColor(red:129.0/255.0, green: 150.0/255.0, blue: 248.0/255.0, alpha: 1.0)
-                    let loginLabel = tableViewCell.contentView.viewWithTag(1900)
-                    (loginLabel as! UILabel).text = "Login"
-                } else {
-                    let loginController:LoginController = LoginController()
-                    loginController.hidesBottomBarWhenPushed = true
-                    self.navigationController?.pushViewController(loginController, animated: true)
-                }
-            }else{
-                let loginController:LoginController = LoginController()
-                loginController.hidesBottomBarWhenPushed = true
-                self.navigationController?.pushViewController(loginController, animated: true)
-            }
+            UIApplication.shared.openURL(URL(string: "http://support.nevowatch.com/support/home")!)
         default: break
         }
-        
     }
     
     // MARK: - UITableViewDataSource
     func numberOfSectionsInTableView(_ tableView: UITableView) -> Int{
-        return 3
+        return 4
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
@@ -241,20 +178,16 @@ class SetingViewController: UIViewController,ButtonManagerCallBack,UIAlertViewDe
         case 0:
             return 1
         case 1:
-            return sources.count
+            return watchSettingsArray.count
         case 2:
-            let users = MEDUserProfile.getAll()
-            if users.count>0{
-                return titleArray.count
-            }else{
-                return titleArray.count-1
-            }
+            return appSettingsArray.count
         case 3:
-            return 1
+            return otherSettingsArray.count
         default:
             return 0
         }
     }
+    
     
     func tableView(_ tableView: UITableView, cellForRowAtIndexPath indexPath: IndexPath) -> UITableViewCell {
         switch (indexPath.section){
@@ -280,26 +213,21 @@ class SetingViewController: UIViewController,ButtonManagerCallBack,UIAlertViewDe
             }
             
         case 1:
-            if(indexPath.row == 0){
-                return notificationList.LinkLossNotificationsTableViewCell(indexPath, tableView: tableView, title: sources[indexPath.row] as! String ,imageName:sourcesImage[indexPath.row])
+            let setting = watchSettingsArray[indexPath.row]
+            if(indexPath.row == 3){
+                return notificationList.LinkLossNotificationsTableViewCell(indexPath, tableView: tableView, model: setting)
             }
-            let cell = notificationList.NotificationSystemTableViewCell(indexPath, tableView: tableView, title: sources[indexPath.row] as! String ,imageName:sourcesImage[indexPath.row])
-            return cell
+            return notificationList.NotificationSystemTableViewCell(indexPath, tableView: tableView, model: setting)
         case 2:
-            let users = MEDUserProfile.getAll()
-            var textString:String = NSLocalizedString("log_out", comment: "")
-            if(users.count == 0){
-                textString = NSLocalizedString("Login", comment: "")
-            }
-            titleArray[3] = textString
-            return notificationList.NotificationSystemTableViewCell(indexPath, tableView: tableView, title: titleArray[indexPath.row] ,imageName:titleArrayImage[indexPath.row])
-            
-        default: return notificationList.NotificationSystemTableViewCell(indexPath, tableView: tableView, title: sources[1] as! String ,imageName:titleArrayImage[indexPath.row]);
+            return notificationList.NotificationSystemTableViewCell(indexPath, tableView: tableView, model: appSettingsArray[indexPath.row])
+        case 3:
+            return notificationList.NotificationSystemTableViewCell(indexPath, tableView: tableView, model: otherSettingsArray[indexPath.row])
+        default:
+            return notificationList.NotificationSystemTableViewCell(indexPath, tableView: tableView, model: otherSettingsArray[indexPath.row]);
         }
     }
     
     // MARK: - SetingViewController function
-    
     func findMydevice(){
         let minDelay:Double = 6
         let offset:Double = (Date().timeIntervalSince1970 - mFindMydeviceDatetime.timeIntervalSince1970)

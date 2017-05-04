@@ -46,6 +46,7 @@ extension AppDelegate {
     }
     
     func setNewAlarm() {
+        print("Setting new alarm anyway")
         let lunarAlarm:[MEDUserAlarm] = MEDUserAlarm.getAll() as! [MEDUserAlarm]
         var weakAlarm:[MEDUserAlarm] = lunarAlarm.filter({$0.type == 0})
         var sleepAlarm:[MEDUserAlarm] = lunarAlarm.filter({$0.type == 1})

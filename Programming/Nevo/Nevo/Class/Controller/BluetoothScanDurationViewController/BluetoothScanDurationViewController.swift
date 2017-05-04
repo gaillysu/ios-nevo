@@ -7,21 +7,36 @@
 //
 
 import UIKit
+import MSCellAccessory
 
 class BluetoothScanDurationViewController: UIViewController {
 
-    let identfier = "UITableViewCellStyle"
+    let identifier = "UITableViewCellStyle"
     @IBOutlet weak var tableView: UITableView!
+    
+    fileprivate let presets = [2, 5, 10, 15, 20, 30, 40, 50, 60]
+    fileprivate var selectedScanDuration = UserDefaults.standard.getDurationSearch()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: identfier)
+        title = "Scan Duration"
+        
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: identifier)
     }
 }
 extension BluetoothScanDurationViewController:UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        if let index = presets.index(of: selectedScanDuration){
+            tableView.cellForRow(at: IndexPath(row: index, section: 0))?.accessoryView = nil
+        }
+        tableView.cellForRow(at: indexPath)?.accessoryView = MSCellAccessory.init(type: FLAT_CHECKMARK, color: UIColor.getBaseColor())
+        let minutes = presets[indexPath.row]
+        selectedScanDuration = minutes
+        UserDefaults.standard.setDurationSearch(version: minutes)
+        tableView.deselectRow(at: indexPath, animated: true)
+        AppDelegate.getAppDelegate().updateBluetoothScanPeriod()
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -29,10 +44,20 @@ extension BluetoothScanDurationViewController:UITableViewDelegate, UITableViewDa
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return presets.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: identfier)
+        var cell = tableView.dequeueReusableCell(withIdentifier: identifier)
+        let time = presets[indexPath.row]
+        if cell == nil {
+            cell = UITableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: identifier)
+        }
+        if time == selectedScanDuration{
+            cell?.accessoryView = MSCellAccessory.init(type: FLAT_CHECKMARK, color: UIColor.getBaseColor())
+        }
+        
+        cell?.textLabel?.text = time.timeRepresentation()
+        return cell!
     }
 }

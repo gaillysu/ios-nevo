@@ -60,7 +60,7 @@ target 'Nevo' do
     pod 'RSKImageCropper'
     pod 'Kingfisher', '~> 3.1.3'
     pod 'MSColorPicker'
-    pod 'Font-Awesome-Swift', '~> 1.6.1'
+    pod 'MSCellAccessory'
 
   target 'NevoTests' do
     inherit! :search_paths
