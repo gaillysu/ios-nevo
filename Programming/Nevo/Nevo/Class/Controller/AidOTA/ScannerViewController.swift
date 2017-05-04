@@ -120,7 +120,6 @@ class ScannerViewController: UIViewController, CBCentralManagerDelegate, UITable
         AppDelegate.getAppDelegate().delay(seconds: 1.2) { 
             self.didDelegate?.onDidSelectPeripheral!(self.selectedPeripheralIsSecure!, self.selectedPeripheral!, self.centralManager)
         }
-        //didDelegate?.onDidSelectPeripheral(nil)
     }
 }
 

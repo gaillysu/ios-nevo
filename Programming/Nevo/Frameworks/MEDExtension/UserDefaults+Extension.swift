@@ -38,6 +38,20 @@ extension UserDefaults{
         return "SOFTWARE_VERSION_KEY"
     }
 
+    // MARK: - DURATION SEARCH
+    func getDurationSearch() -> Int{
+        return integer(forKey: getDurationSearchKey())
+    }
+    
+    func setDurationSearch(version:Int){
+        set(version, forKey: getDurationSearchKey())
+        synchronize()
+    }
+    
+    private func getDurationSearchKey() -> String{
+        return "DURATION_SEARCH_KEY"
+    }
+
 
 
 }

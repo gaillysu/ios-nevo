@@ -91,9 +91,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
         Initialize the BLE Manager
         */
         self.setUpBTManager()
-        //let userDefaults = UserDefaults.standard;
+        let userDefaults = UserDefaults.standard;
         //lastSync = userDefaults.double(forKey: LAST_SYNC_DATE_KEY)
-        
+        if userDefaults.getDurationSearch() == 0 {
+            userDefaults.setDurationSearch(version: 60)
+        }
         adjustLaunchLogic()
         
         return true

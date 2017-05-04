@@ -79,7 +79,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
         self.mConnectionController?.setDelegate(self)
         
         startAppSetup()
-        
         //let userDefaults = UserDefaults.standard;
         //lastSync = userDefaults.double(forKey: LAST_SYNC_DATE_KEY)
         return true
