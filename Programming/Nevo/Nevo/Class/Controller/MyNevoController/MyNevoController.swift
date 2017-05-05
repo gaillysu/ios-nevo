@@ -12,25 +12,26 @@ import SwiftEventBus
 import XCGLogger
 
 class MyNevoController: UITableViewController,UIAlertViewDelegate {
-
-    fileprivate var currentBattery:Int = 0
+    
+    fileprivate var currentBattery:Int = -1
     fileprivate var rssialert :UIAlertView?
-
-    var titleArray:[String] = []
-
+    
+    let watchInfoArray:[String] = [NSLocalizedString("watch_version", comment: ""),NSLocalizedString("Battery", comment: ""),NSLocalizedString("app_version", comment: "")]
+    
+    let forgetWatchArray:[String] = [NSLocalizedString("forget_watch", comment: "")]
+    
+    
     init() {
         super.init(nibName: "MyNevoController", bundle: Bundle.main)
     }
-
+    
     required init(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = NSLocalizedString("My nevo", comment: "")
-
-        titleArray = [NSLocalizedString("watch_version", comment: ""),NSLocalizedString("Battery", comment: ""),NSLocalizedString("app_version", comment: "")]
+        self.title = NSLocalizedString("My nevo", comment: "")
         
         _ = SwiftEventBus.onMainThread(self, name: EVENT_BUS_RSSI_VALUE) { (notification) in
             let number:NSNumber = notification.object as! NSNumber
@@ -47,7 +48,6 @@ class MyNevoController: UITableViewController,UIAlertViewDelegate {
         }
         
         //RAWPACKET DATA
-        
         _ = SwiftEventBus.onMainThread(self, name: EVENT_BUS_BATTERY_STATUS_CHANGED) { (notification) in
             let batteryValue = notification.object as! Int;
             self.currentBattery = batteryValue
@@ -70,7 +70,7 @@ class MyNevoController: UITableViewController,UIAlertViewDelegate {
             self.tableView.backgroundColor = UIColor.getLightBaseColor()
         }
     }
-
+    
     override func viewDidAppear(_ animated: Bool) {
         AppDelegate.getAppDelegate().startConnect(false)
         if AppDelegate.getAppDelegate().isConnected() {
@@ -86,121 +86,168 @@ class MyNevoController: UITableViewController,UIAlertViewDelegate {
         SwiftEventBus.unregister(self, name: EVENT_BUS_CONNECTION_STATE_CHANGED_KEY)
         SwiftEventBus.unregister(self, name: EVENT_BUS_RAWPACKET_DATA_KEY)
     }
-
+    
     func reconnect() {
         AppDelegate.getAppDelegate().connect()
     }
-
-    // MARK: - UITableViewDelegate
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 45.0
-    }
-
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat{
-        if(section == 0){
+        if section == 0 {
             let headerimage:UIImageView = MyNevoHeaderView.getMyNevoHeaderView()
             return headerimage.frame.size.height + 70
         }
         return 0
     }
+    
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
         tableView.deselectRow(at: indexPath, animated: true)
-        if((indexPath as NSIndexPath).row == 0){
-            if !AppTheme.isTargetLunaR_OR_Nevo() {
-                if(UserDefaults.standard.getFirmwareVersion() >= buildin_firmware_version){
-                    let banner = MEDBanner(title: NSLocalizedString("is_watch_version", comment: ""), subtitle: nil, image: nil, backgroundColor: AppTheme.NEVO_SOLAR_YELLOW())
-                    banner.dismissesOnTap = true
-                    banner.show(duration: 1.5)
-                    return
+        if indexPath.section == 0 {
+            
+            
+            if indexPath.row == 0 {
+                if !AppTheme.isTargetLunaR_OR_Nevo() {
+                    if(UserDefaults.standard.getFirmwareVersion() >= buildin_firmware_version){
+                        let banner = MEDBanner(title: NSLocalizedString("is_watch_version", comment: ""), subtitle: nil, image: nil, backgroundColor: AppTheme.NEVO_SOLAR_YELLOW())
+                        banner.dismissesOnTap = true
+                        banner.show(duration: 1.5)
+                        return
+                    }
+                    let lunar:LunaROTAController = LunaROTAController()
+                    let navigation:UINavigationController = UINavigationController(rootViewController: lunar)
+                    self.present(navigation, animated: true, completion: nil)
+                }else{
+//                    if(UserDefaults.standard.getSoftwareVersion() >= buildin_software_version && UserDefaults.standard.getFirmwareVersion() >= buildin_firmware_version){
+//                        let banner = MEDBanner(title: NSLocalizedString("is_watch_version", comment: ""), subtitle: nil, image: nil, backgroundColor: AppTheme.NEVO_SOLAR_YELLOW())
+//                        banner.dismissesOnTap = true
+//                        banner.show(duration: 1.5)
+//                        return
+//                    } else if(AppDelegate.getAppDelegate().isConnected()){
+                        let otaCont:NevoOtaViewController = NevoOtaViewController()
+                        let navigation:UINavigationController = UINavigationController(rootViewController: otaCont)
+                        self.present(navigation, animated: true, completion: nil)
+//                    }else{
+//                        let banner = MEDBanner(title: NSLocalizedString("nevo_is_not_connected", comment: ""), subtitle: nil, image: nil, backgroundColor: AppTheme.NEVO_SOLAR_YELLOW())
+//                        banner.dismissesOnTap = true
+//                        banner.show(duration: 1.5)
+//                    }
                 }
-                let lunar:LunaROTAController = LunaROTAController()
-                let navigation:UINavigationController = UINavigationController(rootViewController: lunar)
-                self.present(navigation, animated: true, completion: nil)
-            }else{
-                if(UserDefaults.standard.getSoftwareVersion() >= buildin_software_version && UserDefaults.standard.getFirmwareVersion() >= buildin_firmware_version){
-                    let banner = MEDBanner(title: NSLocalizedString("is_watch_version", comment: ""), subtitle: nil, image: nil, backgroundColor: AppTheme.NEVO_SOLAR_YELLOW())
-                    banner.dismissesOnTap = true
-                    banner.show(duration: 1.5)
-                    return
-                }
-                if(buildin_software_version==0&&buildin_firmware_version==0){return}
-                let otaCont:NevoOtaViewController = NevoOtaViewController()
-                let navigation:UINavigationController = UINavigationController(rootViewController: otaCont)
-                self.present(navigation, animated: true, completion: nil)
+                
             }
+        } else if indexPath.section == 1 && indexPath.row == 0 {
+            let actionSheet:MEDAlertController = MEDAlertController(title: NSLocalizedString("forget_watch", comment: ""), message: NSLocalizedString("forget_your_nevo", comment: ""), preferredStyle: UIAlertControllerStyle.alert)
+            
+            let cancelAction:AlertAction = AlertAction(title: NSLocalizedString("Cancel", comment: ""), style: UIAlertActionStyle.cancel, handler: nil)
+            cancelAction.setValue(UIColor.getBaseColor(), forKey: "titleTextColor")
+            actionSheet.addAction(cancelAction)
+            
+            let forgetAction:AlertAction = AlertAction(title: NSLocalizedString("forget", comment: ""), style: UIAlertActionStyle.default, handler: { ( alert) -> Void in
+                AppDelegate.getAppDelegate().disconnect()
+                AppDelegate.getAppDelegate().forgetSavedAddress()
+                
+                AppDelegate.getAppDelegate().setWatchInfo(-1, model: -1)
+                let tutrorial:TutorialOneViewController = TutorialOneViewController()
+                let nav:UINavigationController = UINavigationController(rootViewController: tutrorial)
+                nav.isNavigationBarHidden = true
+                
+                self.present(nav, animated: true, completion: {
+                    UIApplication.shared.keyWindow?.rootViewController = nav
+                })
+            })
+            forgetAction.setValue(UIColor.getBaseColor(), forKey: "titleTextColor")
+            actionSheet.addAction(forgetAction)
+            self.present(actionSheet, animated: true, completion: nil)
             
         }
-
+        
     }
-
+    
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView{
-        let headerimage:UIImageView = MyNevoHeaderView.getMyNevoHeaderView()
-        if !AppTheme.isTargetLunaR_OR_Nevo() {
-            headerimage.image = UIImage(named: "myLunaR_icon")
+        if section == 0     {
+            let headerimage:UIImageView = MyNevoHeaderView.getMyNevoHeaderView()
+            if !AppTheme.isTargetLunaR_OR_Nevo() {
+                headerimage.image = UIImage(named: "myLunaR_icon")
+            }
+            let view:UIView = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: headerimage.frame.size.height + 70))
+            view.addSubview(headerimage)
+            headerimage.center = CGPoint(x: view.frame.size.width/2.0, y: view.frame.size.height/2.0)
+            return view
         }
-        let view:UIView = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: headerimage.frame.size.height + 70))
-        view.addSubview(headerimage)
-        headerimage.center = CGPoint(x: view.frame.size.width/2.0, y: view.frame.size.height/2.0)
-        return view
+        return UIView(frame: CGRect(x: 0, y: 0, width: 0, height:0 ))
     }
-
+    
     // MARK: - UITableViewDataSource
     override func numberOfSections(in tableView: UITableView) -> Int{
-        return 1
-
+        return 2
+        
     }
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
-        return titleArray.count
+        switch section {
+        case 0:
+            return watchInfoArray.count
+        case 1:
+            return forgetWatchArray.count
+        default:
+            return 0
+        }
+        
     }
-
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var detailString:String = ""
         var isUpdate:Bool = false
-        switch ((indexPath as NSIndexPath).row){
-        case 0:
-            var softwareFlag = UserDefaults.standard.getSoftwareVersion() < buildin_software_version
-            let firmwareFlag = UserDefaults.standard.getFirmwareVersion() < buildin_firmware_version
+        if indexPath.section  == 0 {
             
-            if !AppTheme.isTargetLunaR_OR_Nevo() {
-                softwareFlag = true
-            }
             
-            if(softwareFlag && firmwareFlag){
-                detailString = NSLocalizedString("update_available", comment: "")
-                
-                detailString = detailString.replacingOccurrences(of: "VERSION_NUMBER", with: buildin_firmware_version.to2String())
-                
-                if !AppTheme.isTargetLunaR_OR_Nevo() {
-                    detailString = detailString.replacingOccurrences(of: "Nevo", with: "LunaR")
-                }
-                
-                debugLog("MCU:\(UserDefaults.standard.getSoftwareVersion()) BLE:\(UserDefaults.standard.getFirmwareVersion())")
-                
-                isUpdate = true
-            } else {
-                if AppTheme.isTargetLunaR_OR_Nevo() {
-                    detailString = "MCU:\(UserDefaults.standard.getSoftwareVersion()) BLE:\(UserDefaults.standard.getFirmwareVersion())"
-                } else {
-                    detailString = "Version: \(buildin_firmware_version) is available!"
-                }
-            }
-        case 1:
-            switch (currentBattery){
+            switch (indexPath.row){
             case 0:
-                detailString = NSLocalizedString("battery_low", comment: "")
+                var softwareFlag = UserDefaults.standard.getSoftwareVersion() < buildin_software_version
+                let firmwareFlag = UserDefaults.standard.getFirmwareVersion() < buildin_firmware_version
+                if !AppTheme.isTargetLunaR_OR_Nevo() {
+                    softwareFlag = true
+                }
+                if(softwareFlag && firmwareFlag){
+                    detailString = NSLocalizedString("update_available", comment: "")
+                    
+                    detailString = detailString.replacingOccurrences(of: "VERSION_NUMBER", with: "\(buildin_firmware_version.to2String())/\(buildin_software_version.to2String())")
+                    
+                    if !AppTheme.isTargetLunaR_OR_Nevo() {
+                        detailString = detailString.replacingOccurrences(of: "Nevo", with: "LunaR")
+                    }
+                    
+                    debugLog("MCU:\(UserDefaults.standard.getSoftwareVersion()) BLE:\(UserDefaults.standard.getFirmwareVersion())")
+                    
+                    isUpdate = true
+                } else {
+                    if AppTheme.isTargetLunaR_OR_Nevo() {
+                        detailString = "MCU:\(UserDefaults.standard.getSoftwareVersion()) BLE:\(UserDefaults.standard.getFirmwareVersion())"
+                    } else {
+                        detailString = "Version: \(buildin_firmware_version) is available!"
+                    }
+                }
             case 1:
-                detailString = NSLocalizedString("battery_sufficient", comment: "")
+                switch (currentBattery){
+                case -1:
+                    detailString = "Unavailable"
+                case 0:
+                    detailString = NSLocalizedString("battery_low", comment: "")
+                case 1:
+                    detailString = NSLocalizedString("battery_sufficient", comment: "")
+                case 2:
+                    detailString = NSLocalizedString("battery_full", comment: "")
+                default: detailString = NSLocalizedString("", comment: "")
+                }
             case 2:
-                detailString = NSLocalizedString("battery_full", comment: "")
+                let loclString:String = (Bundle.main.infoDictionary! as NSDictionary).object(forKey: "CFBundleShortVersionString") as! String
+                detailString = loclString
             default: detailString = NSLocalizedString("", comment: "")
             }
-        case 2:
-            let loclString:String = (Bundle.main.infoDictionary! as NSDictionary).object(forKey: "CFBundleShortVersionString") as! String
-            detailString = loclString
-        default: detailString = NSLocalizedString("", comment: "")
+            return MyNevoView.getMyNevoViewTableViewCell(indexPath, tableView: tableView, title: watchInfoArray[indexPath.row], detailText: detailString,isUpdate:isUpdate)
+        } else if indexPath.section == 1 {
+            let cell = MyNevoView.getMyNevoViewTableViewCell(indexPath, tableView: tableView, title: forgetWatchArray[indexPath.row], detailText: "",isUpdate:isUpdate)
+            cell.textLabel?.textColor = UIColor.darkRed()
+            return cell
         }
-        return MyNevoView.getMyNevoViewTableViewCell(indexPath, tableView: tableView, title: titleArray[indexPath.row], detailText: detailString,isUpdate:isUpdate)
+        return MyNevoView.getMyNevoViewTableViewCell(indexPath, tableView: tableView, title: watchInfoArray[0], detailText: "",isUpdate:isUpdate)
     }
 }

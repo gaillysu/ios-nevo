@@ -66,6 +66,10 @@ extension PresetTableViewController {
                 self.presetArray.append(presetModel)
                 self.tableView.insertRows(at: [IndexPath(row: self.presetArray.count - 1 , section: 0)], with: UITableViewRowAnimation.automatic)
             }))
+            alertController.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
+            alertController.actions.forEach { action in
+                action.setValue(UIColor.getBaseColor(), forKey: "titleTextColor")
+            }
             self.present(alertController, animated: true, completion: nil)
         }
         
@@ -95,7 +99,6 @@ extension PresetTableViewController {
                 textfield.text = "\(goal.stepsGoal)"
             }
         })
-        alertController.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .destructive, handler: nil))
         return alertController
     }
 }
@@ -157,6 +160,10 @@ extension PresetTableViewController {
             }
             tableView.reloadRows(at: [indexPath], with: .automatic)
         }))
+        alertController.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
+        alertController.actions.forEach { action in
+            action.setValue(UIColor.getBaseColor(), forKey: "titleTextColor")
+        }
         self.present(alertController, animated: true, completion: nil)
     }
 }

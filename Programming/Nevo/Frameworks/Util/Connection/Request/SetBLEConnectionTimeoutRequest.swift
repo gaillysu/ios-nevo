@@ -21,13 +21,16 @@ class SetBLEConnectionTimeoutRequest: NevoRequest {
     }
     
     override func getRawDataEx() -> NSArray {
-//        UInt8(mLedpattern!&0xFF),
-//        UInt8((mLedpattern!>>8)&0xFF),
-
-        let values1 :[UInt8] = [0x00,GetActivityRequest.HEADER(),
+        let values1 :[UInt8] = [
+            0x00,
+            SetBLEConnectionTimeoutRequest.HEADER(),
             UInt8(minutes & 0xFF),
-            UInt8((minutes >> 8) & 0xFF)]
-        let values2 :[UInt8] = [0xFF,GetActivityRequest.HEADER()]
+            UInt8((minutes >> 8) & 0xFF),
+            0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        let values2 :[UInt8] = [
+            0xFF,
+            SetBLEConnectionTimeoutRequest.HEADER(),
+            0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
         return NSArray(array: [Data(bytes: UnsafePointer<UInt8>(values1), count: values1.count)
             ,Data(bytes: UnsafePointer<UInt8>(values2), count: values2.count)])
     }

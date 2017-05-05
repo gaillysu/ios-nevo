@@ -18,10 +18,8 @@ class MyNevoView: UITableView {
         }
         if(indexPath.row == 0 && isUpdate) {
             endCell?.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
-            endCell?.detailTextLabel?.font = UIFont(name: "Raleway", size: 13)!
         }else{
             endCell?.accessoryType = UITableViewCellAccessoryType.none
-            endCell?.detailTextLabel?.font = UIFont(name: "Raleway", size: 15)!
         }
         endCell?.selectionStyle = UITableViewCellSelectionStyle.none;
         endCell?.textLabel?.backgroundColor = UIColor.clear

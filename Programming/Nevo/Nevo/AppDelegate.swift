@@ -478,6 +478,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
     }
 
     func bluetoothEnabled(_ enabled:Bool) {
+        let info: [String : Bool] = [EVENT_BUS_BLUETOOTH_STATE_CHANGED : enabled]
+        SwiftEventBus.post(EVENT_BUS_BLUETOOTH_STATE_CHANGED, sender: nil, userInfo: info)
         if(!enabled && self.hasSavedAddress()) {
             let banner = MEDBanner(title: NSLocalizedString("bluetooth_turned_off_enable", comment: ""), subtitle: nil, image: nil, backgroundColor: UIColor.red)
             banner.dismissesOnTap = true

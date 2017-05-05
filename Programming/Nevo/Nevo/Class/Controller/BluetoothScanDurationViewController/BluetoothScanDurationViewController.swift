@@ -43,10 +43,18 @@ extension BluetoothScanDurationViewController:UITableViewDelegate, UITableViewDa
         return 1
     }
     
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return "Nevo Scan Duration"
+    }
+    
+    func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+        return "When the watch gets disconnected it will scan for the selected duration. Note that the watch will drain more battery when it scans longer. We suggest not to let it scan for longer then 15 minutes"
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return presets.count
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var cell = tableView.dequeueReusableCell(withIdentifier: identifier)
         let time = presets[indexPath.row]
@@ -56,7 +64,6 @@ extension BluetoothScanDurationViewController:UITableViewDelegate, UITableViewDa
         if time == selectedScanDuration{
             cell?.accessoryView = MSCellAccessory.init(type: FLAT_CHECKMARK, color: UIColor.getBaseColor())
         }
-        
         cell?.textLabel?.text = time.timeRepresentation()
         return cell!
     }

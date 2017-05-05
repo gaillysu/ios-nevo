@@ -27,13 +27,14 @@ class SetingViewController: UIViewController,ButtonManagerCallBack,UIAlertViewDe
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        notificationList.settingsViewController = self
         self.navigationItem.title = NSLocalizedString("Setting", comment: "")
         
         notificationList.bulidNotificationViewUI(self)
         watchSettingsArray = [
             (NSLocalizedString("My Nevo", comment: ""),"icon_nevo"),
             (NSLocalizedString("Notifications", comment: ""),"icon_bell"),
-            (NSLocalizedString("Search Duration", comment: ""), "icon_bluetooth"),
+            (NSLocalizedString("Scan Duration", comment: ""), "icon_bluetooth"),
             (NSLocalizedString("Link-Loss Notifications", comment: ""),"icon_chain"),
             (NSLocalizedString("find_my_watch", comment: ""),"icon_crosshair")]
         
@@ -52,6 +53,9 @@ class SetingViewController: UIViewController,ButtonManagerCallBack,UIAlertViewDe
             self.checkConnection()
         }
         
+        _ = SwiftEventBus.onMainThread(self, name: EVENT_BUS_BLUETOOTH_STATE_CHANGED) { (notification) in
+            self.checkConnection()
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -71,12 +75,7 @@ class SetingViewController: UIViewController,ButtonManagerCallBack,UIAlertViewDe
     func tableView(_ tableView: UITableView, heightForRowAtIndexPath indexPath: IndexPath) -> CGFloat {
         if (indexPath as NSIndexPath).section == 0 {
             return 80
-        } else if indexPath.row == 2 && indexPath.section == 1{
-            if UserDefaults.standard.getFirmwareVersion() < 40 && UserDefaults.standard.getSoftwareVersion() < 27{
-                return 0
-            }
         }
-    
         return 50.0
     }
     
@@ -103,25 +102,23 @@ class SetingViewController: UIViewController,ButtonManagerCallBack,UIAlertViewDe
         case 1:
             switch indexPath.row {
             case 0:
-                if(AppDelegate.getAppDelegate().isConnected()){
-                    let mynevo:MyNevoController = MyNevoController()
-                    mynevo.hidesBottomBarWhenPushed = true
-                    self.navigationController?.pushViewController(mynevo, animated: true)
-                }else{
-                    let banner = MEDBanner(title: NSLocalizedString("nevo_is_not_connected", comment: ""), subtitle: nil, image: nil, backgroundColor: AppTheme.NEVO_SOLAR_YELLOW())
-                    banner.dismissesOnTap = true
-                    banner.show(duration: 1.5)
-                }
+                let myNevoController = MyNevoController()
+                myNevoController.hidesBottomBarWhenPushed = true
+                self.navigationController?.pushViewController(myNevoController, animated: true)
                 return
             case 1:
                 let notificationViewController = NotificationViewController()
                 notificationViewController.hidesBottomBarWhenPushed = true
                 self.navigationController?.pushViewController(notificationViewController, animated: true)
             case 2:
+                if UserDefaults.standard.getFirmwareVersion() >= 40 && UserDefaults.standard.getSoftwareVersion() >= 27{
+                    let bluetoothScanDurationViewController = BluetoothScanDurationViewController()
+                    bluetoothScanDurationViewController.hidesBottomBarWhenPushed = true
+                    self.navigationController?.pushViewController(bluetoothScanDurationViewController, animated: true)
+                }else{
+                    showUpdateNevoAlertView()
+                }
                 
-                let bluetoothScanDurationViewController = BluetoothScanDurationViewController()
-                bluetoothScanDurationViewController.hidesBottomBarWhenPushed = true
-                self.navigationController?.pushViewController(bluetoothScanDurationViewController, animated: true)
                 break;
             case 4:
                 findMydevice()
@@ -152,12 +149,7 @@ class SetingViewController: UIViewController,ButtonManagerCallBack,UIAlertViewDe
                 presetTableViewController.hidesBottomBarWhenPushed = true
                 self.navigationController?.pushViewController(presetTableViewController, animated: true)
             case 1:
-                
                 notificationList.unitTextField?.becomeFirstResponder()
-                if let picker =  notificationList.picker{
-                    picker.selectedRow(inComponent: MEDSettings.int(forKey: "UserSelectedUnit")!)
-                }
-
                 break
             default:
                 break
@@ -187,7 +179,6 @@ class SetingViewController: UIViewController,ButtonManagerCallBack,UIAlertViewDe
             return 0
         }
     }
-    
     
     func tableView(_ tableView: UITableView, cellForRowAtIndexPath indexPath: IndexPath) -> UITableViewCell {
         switch (indexPath.section){
@@ -248,7 +239,7 @@ class SetingViewController: UIViewController,ButtonManagerCallBack,UIAlertViewDe
      Checks if any device is currently connected
      */
     func checkConnection() {
-        notificationList.tableListView.reloadRows(at: [IndexPath(row: 2, section: 1)], with: UITableViewRowAnimation.fade)
+        notificationList.tableListView.reloadRows(at: [IndexPath(row: 0, section: 1)], with: UITableViewRowAnimation.fade)
         if !AppDelegate.getAppDelegate().isConnected() {
             //We are currently not connected
             reconnect()
@@ -260,22 +251,32 @@ class SetingViewController: UIViewController,ButtonManagerCallBack,UIAlertViewDe
     }
     
     
-    func alertView(_ alertView: UIAlertView, clickedButtonAt buttonIndex: Int){
-        if(buttonIndex == 1){
-            AppTheme.toOpenUpdateURL()
-        }
-        if(buttonIndex == 0) {
-            AppDelegate.getAppDelegate().forgetSavedAddress()
-            let tutrorial:TutorialOneViewController = TutorialOneViewController()
-            let nav:UINavigationController = UINavigationController(rootViewController: tutrorial)
-            nav.isNavigationBarHidden = true
-            self.present(nav, animated: true, completion: nil)
-        }
-    }
-    
     func isEqualString(_ string1:String,string2:String)->Bool{
         let object1:NSString = NSString(format: "\(string1)" as NSString)
         return object1.isEqual(to: string2)
+    }
+    
+    func showUpdateNevoAlertView(){
+        let alertController = UIAlertController(title: NSLocalizedString("Update", comment: ""), message: "Update your Nevo to use this feature", preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
+        
+        alertController.addAction(UIAlertAction(title: NSLocalizedString("Update", comment: ""), style: .default, handler: { _ in
+            
+            if AppDelegate.getAppDelegate().isConnected() {
+                let otaCont:NevoOtaViewController = NevoOtaViewController()
+                let navigation:UINavigationController = UINavigationController(rootViewController: otaCont)
+                self.present(navigation, animated: true, completion: nil)
+            }else{
+                let banner = MEDBanner(title: NSLocalizedString("nevo_is_not_connected", comment: ""), subtitle: nil, image: nil, backgroundColor: AppTheme.NEVO_SOLAR_YELLOW())
+                banner.dismissesOnTap = true
+                banner.show(duration: 1.5)
+            }
+            
+        }))
+        alertController.actions.forEach { action in
+            action.setValue(UIColor.getBaseColor(), forKey: "titleTextColor")
+        }
+        self.present(alertController, animated: true, completion: nil)
     }
 }
 
