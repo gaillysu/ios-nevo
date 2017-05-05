@@ -162,7 +162,7 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
     //upload button function
     func uploadPressed() {
         if currentIndex >= firmwareURLs.count  || firmwareURLs.count == 0 {
-            onError(NSLocalizedString("checking_firmware", comment: "") as NSString)
+            onError(NSLocalizedString("checking_firmware", comment: ""))
             return
         }
 
@@ -171,7 +171,6 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
             //onError(NSLocalizedString("update_error_noconnect", comment: "") as NSString)
             return
         }
-
         currentTaskNumber += 1;
         selectedFileURL = firmwareURLs[currentIndex]
         let fileExtension:String? = selectedFileURL!.pathExtension
@@ -199,12 +198,7 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
     See SyncControllerDelegate
     */
     func receivedRSSIValue(_ number:NSNumber) {
-        //AppTheme.DLog("Red RSSI Value:\(number)")
-        if(number.int32Value < -85) {
-            
-        }else {
-            
-        }
+ 
     }
 
     //user cancel
@@ -284,7 +278,7 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
 
     }
     //Error happen
-    func onError(_ errString : NSString){
+    func onError(_ errString : String){
 
         DispatchQueue.main.async(execute: {
 
