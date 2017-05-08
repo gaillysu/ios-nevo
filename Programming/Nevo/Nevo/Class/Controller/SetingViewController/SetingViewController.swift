@@ -45,7 +45,6 @@ class SetingViewController: UIViewController,ButtonManagerCallBack,UIAlertViewDe
         otherSettingsArray = [(NSLocalizedString("Support", comment: ""),"icon_support")]
         
         
-        notificationList.tableListView.register(UINib(nibName:"SetingLoginCell" ,bundle: nil), forCellReuseIdentifier: "SetingLoginIdentifier")
         notificationList.tableListView.register(UINib(nibName:"SetingNotLoginCell" ,bundle: nil), forCellReuseIdentifier: "SetingNotLoginIdentifier")
         notificationList.tableListView.register(UINib(nibName:"SetingInfoCell" ,bundle: nil), forCellReuseIdentifier: "SetingInfoIdentifier")
         

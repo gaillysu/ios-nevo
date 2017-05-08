@@ -13,6 +13,11 @@ class UserHeader: UITableViewHeaderFooterView {
     
     public func changeAvatar(with image:UIImage) {
         self.avatarView.setImage(image, for: .normal)
+        avatarView.layer.cornerRadius = avatarView.frame.height/2
+        avatarView.layer.masksToBounds = true
+        avatarView.layer.borderWidth = 1
+        avatarView.layer.borderColor = UIColor.lightGray.cgColor
+        
     }
     
     override func awakeFromNib() {

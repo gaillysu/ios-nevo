@@ -116,20 +116,20 @@ class MyNevoController: UITableViewController,UIAlertViewDelegate {
                     let navigation:UINavigationController = UINavigationController(rootViewController: lunar)
                     self.present(navigation, animated: true, completion: nil)
                 }else{
-//                    if(UserDefaults.standard.getSoftwareVersion() >= buildin_software_version && UserDefaults.standard.getFirmwareVersion() >= buildin_firmware_version){
-//                        let banner = MEDBanner(title: NSLocalizedString("is_watch_version", comment: ""), subtitle: nil, image: nil, backgroundColor: AppTheme.NEVO_SOLAR_YELLOW())
-//                        banner.dismissesOnTap = true
-//                        banner.show(duration: 1.5)
-//                        return
-//                    } else if(AppDelegate.getAppDelegate().isConnected()){
+                    if(UserDefaults.standard.getSoftwareVersion() >= buildin_software_version && UserDefaults.standard.getFirmwareVersion() >= buildin_firmware_version){
+                        let banner = MEDBanner(title: NSLocalizedString("is_watch_version", comment: ""), subtitle: nil, image: nil, backgroundColor: AppTheme.NEVO_SOLAR_YELLOW())
+                        banner.dismissesOnTap = true
+                        banner.show(duration: 1.5)
+                        return
+                    } else if(AppDelegate.getAppDelegate().isConnected()){
                         let otaCont:NevoOtaViewController = NevoOtaViewController()
                         let navigation:UINavigationController = UINavigationController(rootViewController: otaCont)
                         self.present(navigation, animated: true, completion: nil)
-//                    }else{
-//                        let banner = MEDBanner(title: NSLocalizedString("nevo_is_not_connected", comment: ""), subtitle: nil, image: nil, backgroundColor: AppTheme.NEVO_SOLAR_YELLOW())
-//                        banner.dismissesOnTap = true
-//                        banner.show(duration: 1.5)
-//                    }
+                    }else{
+                        let banner = MEDBanner(title: NSLocalizedString("nevo_is_not_connected", comment: ""), subtitle: nil, image: nil, backgroundColor: AppTheme.NEVO_SOLAR_YELLOW())
+                        banner.dismissesOnTap = true
+                        banner.show(duration: 1.5)
+                    }
                 }
                 
             }

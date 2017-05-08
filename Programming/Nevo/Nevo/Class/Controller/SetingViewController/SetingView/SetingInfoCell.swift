@@ -17,22 +17,20 @@ class SetingInfoCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        
         viewDefaultColorful()
         emailLabel.viewDefaultColorful()
         userName.viewDefaultColorful()
-    }
-    
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
+        avatarImageView.layer.cornerRadius = avatarImageView.frame.height/2
+        avatarImageView.layer.masksToBounds = true
+        avatarImageView.layer.borderWidth = 1
+        avatarImageView.layer.borderColor = UIColor.lightGray.cgColor
         
-        // Configure the view for the selected state
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
         if MEDUserProfile.getAll().count > 0 {
-            if let resultArray = AppTheme.LoadKeyedArchiverName(NevoAllKeys.MEDAvatarKeyAfterSave()) {
+            if let _ = AppTheme.LoadKeyedArchiverName(NevoAllKeys.MEDAvatarKeyAfterSave()) {
                 avatarImageView.layer.cornerRadius = 0.5 * avatarImageView.layer.frame.width
                 avatarImageView.layer.masksToBounds = true
             }
