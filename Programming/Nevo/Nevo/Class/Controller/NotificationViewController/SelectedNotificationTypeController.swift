@@ -234,7 +234,6 @@ extension SelectedNotificationTypeController:AddPacketToWatchDelegate {
         notSetting?.setStates(onOff)
         notSetting?.setClock(notSetting!.getClock())
         tableView.separatorStyle = onOff ? .singleLine : .none
-        
         selectedNotificationView.reloadSections(IndexSet.init(integersIn: 1..<notificationSection), with: .automatic)
     }
 }

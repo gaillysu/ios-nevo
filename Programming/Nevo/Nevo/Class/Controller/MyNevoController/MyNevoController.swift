@@ -201,13 +201,15 @@ class MyNevoController: UITableViewController,UIAlertViewDelegate {
             
             switch (indexPath.row){
             case 0:
-                var softwareFlag = UserDefaults.standard.getSoftwareVersion() < buildin_software_version
-                let firmwareFlag = UserDefaults.standard.getFirmwareVersion() < buildin_firmware_version
+                let currentSoftwareVersion = UserDefaults.standard.getSoftwareVersion()
+                let currentFirmwareVersion = UserDefaults.standard.getFirmwareVersion()
+                var softwareFlag = currentSoftwareVersion < buildin_software_version
+                let firmwareFlag = currentFirmwareVersion < buildin_firmware_version
                 if !AppTheme.isTargetLunaR_OR_Nevo() {
                     softwareFlag = true
                 }
                 if(softwareFlag && firmwareFlag){
-                    detailString = NSLocalizedString("update_available", comment: "")
+                    detailString = "\(NSLocalizedString("update_available", comment: "")), \(currentFirmwareVersion)/\(currentSoftwareVersion)"
                     
                     detailString = detailString.replacingOccurrences(of: "VERSION_NUMBER", with: "\(buildin_firmware_version.to2String())/\(buildin_software_version.to2String())")
                     
