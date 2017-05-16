@@ -358,7 +358,7 @@ extension AppDelegate {
             return (nil, nil, NSLocalizedString("failed_locate", comment: ""))
         }
         
-        if let solar = Solar(forDate: date, latitude: latitude, longitude: longitude) {
+        if let solar = Solar(for: date, latitude: latitude, longitude: longitude) {
             if let sunrise = solar.sunrise, let sunset = solar.sunset {
                 return (sunrise, sunset, "")
             } else {

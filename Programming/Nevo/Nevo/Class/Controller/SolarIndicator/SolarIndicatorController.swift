@@ -25,9 +25,6 @@ class SolarIndicatorController: PublicClassController {
     fileprivate var onValue:[Double] = [00,00]
     fileprivate var selectedDate:Date = Date()
     
-    fileprivate weak var syncTimer: Timer? = nil
-    fileprivate var pvadcValue = -1
-    
     init() {
         super.init(nibName: "SolarIndicatorController", bundle: Bundle.main)
     }
@@ -55,55 +52,10 @@ class SolarIndicatorController: PublicClassController {
         textCollection.collectionViewLayout = layout
     }
     
-    func pvadcAction(_ timer:Timer) {
-        AppDelegate.getAppDelegate().sendRequest(PVADCRequest())
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
         
-        /// Swift 中 Timer 没有 `resume` 与 `pause`...
-        syncTimer?.invalidate()
-        syncTimer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(pvadcAction(_:)), userInfo: nil, repeats: true)
-        
-        if !AppTheme.isTargetLunaR_OR_Nevo() {
-            textCollection.backgroundColor = UIColor.getLightBaseColor()
-            pieChartView.backgroundColor = UIColor.getLightBaseColor()
-            self.view.backgroundColor = UIColor.getLightBaseColor()
-            titleLabel.textColor = UIColor.white
-        }else{
-            textCollection.backgroundColor = UIColor.white
-            pieChartView.backgroundColor = UIColor.white
-        }
-        
-        //EVENT_BUS_RAWPACKET_DATA_KEY
-        _ = SwiftEventBus.onMainThread(self, name: EVENT_BUS_RAWPACKET_DATA_KEY) { (notification) in
-            if AppTheme.isTargetLunaR_OR_Nevo() {
-                let packet = notification.object as! NevoPacket
-                //Do nothing
-                if packet.getHeader() == PVADCRequest.HEADER(){
-                    var pvadcValue:Int = Int(NSData2Bytes(packet.getPackets()[0])[4])
-                    pvadcValue =  pvadcValue + Int(NSData2Bytes(packet.getPackets()[0])[5] )<<8
-                    
-                    var batteryAdcValue:Int = Int(NSData2Bytes(packet.getPackets()[0])[2])
-                    batteryAdcValue =  batteryAdcValue + Int(NSData2Bytes(packet.getPackets()[0])[3] )<<8
-                    self.pvadcValue = pvadcValue
-                    self.textCollection.reloadData()
-                    XCGLogger.default.debug("pvadc packet............\(pvadcValue)")
-                }
-            }else{
-                let packet = notification.object as! LunaRPacket
-                //Do nothing
-                if packet.getHeader() == PVADCRequest.HEADER(){
-                    var pvadcValue:Int = Int(NSData2Bytes(packet.getPackets()[0])[4])
-                    pvadcValue =  pvadcValue + Int(NSData2Bytes(packet.getPackets()[0])[5] )<<8
-                    var batteryAdcValue:Int = Int(NSData2Bytes(packet.getPackets()[0])[2])
-                    batteryAdcValue =  batteryAdcValue + Int(NSData2Bytes(packet.getPackets()[0])[3] )<<8
-                    self.pvadcValue = pvadcValue
-                    self.textCollection.reloadData()
-                    XCGLogger.default.debug("pvadc packet............\(pvadcValue)")
-                }
-            }
-        }
+        textCollection.backgroundColor = UIColor.white
+        pieChartView.backgroundColor = UIColor.white
         
         _ = SwiftEventBus.onMainThread(self, name: EVENT_BUS_END_BIG_SYNCACTIVITY) { (notification) in
             self.selectedDate = Date()
@@ -120,8 +72,6 @@ class SolarIndicatorController: PublicClassController {
 
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        
-        syncTimer?.invalidate()
         
         SwiftEventBus.unregister(self, name: EVENT_BUS_END_BIG_SYNCACTIVITY)
         SwiftEventBus.unregister(self, name: SELECTED_CALENDAR_NOTIFICATION)
