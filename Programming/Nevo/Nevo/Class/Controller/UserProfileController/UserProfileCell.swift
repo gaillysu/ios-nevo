@@ -40,10 +40,6 @@ class UserProfileCell: UITableViewCell {
         
         /// APPTHEME ADJUST
         viewDefaultColorful()
-        if !AppTheme.isTargetLunaR_OR_Nevo() {
-            titleLabel.textColor = UIColor.white
-            valueTextField.textColor = UIColor.getBaseColor()
-        }
     }
 
     func updateLabel(_ labelText: String){

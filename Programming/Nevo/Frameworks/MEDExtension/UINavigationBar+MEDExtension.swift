@@ -15,10 +15,7 @@ extension UINavigationBar {
         subviewsSatisfy(theCondition: { (v) -> (Bool) in
             return v.frame.height == 0.5
         }) { (v) in
-            
-            if !AppTheme.isTargetLunaR_OR_Nevo() {
-                v.backgroundColor = UIColor("#AAAAB4")
-            }
+
         }
     }
     

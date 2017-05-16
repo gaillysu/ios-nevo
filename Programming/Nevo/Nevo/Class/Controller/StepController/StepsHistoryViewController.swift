@@ -38,10 +38,6 @@ class StepsHistoryViewController: PublicClassController,ChartViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if !AppTheme.isTargetLunaR_OR_Nevo(){
-            centerTitleLabel.textColor = UIColor.white
-        }
-        
         self.configChartView()
         let dayDate:Date = Date()
         let dayTime:TimeInterval = Date.date(year: dayDate.year, month: dayDate.month, day: dayDate.day, hour: 0, minute: 0, second: 0).timeIntervalSince1970
@@ -100,11 +96,6 @@ class StepsHistoryViewController: PublicClassController,ChartViewDelegate {
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        if !AppTheme.isTargetLunaR_OR_Nevo(){
-            self.view.backgroundColor = UIColor.getLightBaseColor()
-            stepsHistory.backgroundColor = UIColor.getLightBaseColor()
-            chartView.backgroundColor = UIColor.getLightBaseColor()
-        }
         
         let layout:UICollectionViewFlowLayout = stepsHistory.collectionViewLayout as! UICollectionViewFlowLayout
         layout.itemSize = CGSize(width: (stepsHistory.frame.size.width)/2.0, height: stepsHistory.frame.size.height/2.0 - 10)
@@ -173,14 +164,6 @@ class StepsHistoryViewController: PublicClassController,ChartViewDelegate {
         chartView!.rightAxis.enabled = false
         chartView.drawBarShadowEnabled = false
         
-        if !AppTheme.isTargetLunaR_OR_Nevo() {
-            xAxis.labelTextColor = UIColor.white
-            xAxis.axisLineColor = UIColor.white
-            
-            yAxis.labelTextColor = UIColor.white
-            yAxis.axisLineColor = UIColor.white
-            rightAxis.axisLineColor = UIColor.white
-        }
     }
     
     func bulidStepHistoricalChartView(_ date:TimeInterval){
@@ -245,13 +228,8 @@ class StepsHistoryViewController: PublicClassController,ChartViewDelegate {
         //柱状图表
         let set1:BarChartDataSet  = BarChartDataSet(values: yVal, label: "")
         //每个数据区块的颜色
-        if !AppTheme.isTargetLunaR_OR_Nevo() {
-            set1.colors = [UIColor.getBaseColor()];
-            set1.highlightColor = UIColor.getBaseColor()
-        }else{
-            set1.colors = [AppTheme.NEVO_SOLAR_YELLOW()];
-            set1.highlightColor = AppTheme.NEVO_SOLAR_YELLOW()
-        }
+        set1.colors = [AppTheme.NEVO_SOLAR_YELLOW()];
+        set1.highlightColor = AppTheme.NEVO_SOLAR_YELLOW()
         
         set1.barBorderWidth = 0.1
         //set1.barSpace = 0.1;
@@ -284,11 +262,6 @@ extension StepsHistoryViewController:UICollectionViewDelegate,UICollectionViewDa
         cell.backgroundColor = UIColor.white
         let titleString:String = contentTitleArray[(indexPath as NSIndexPath).row]
         cell.titleLabel.text = titleString.capitalized(with: Locale.current)
-        if !AppTheme.isTargetLunaR_OR_Nevo(){
-            cell.backgroundColor = UIColor.getLightBaseColor()
-            cell.valueLabel.textColor = UIColor.getBaseColor()
-            cell.titleLabel.textColor = UIColor.white
-        }
         
         switch indexPath.row {
         case 0:

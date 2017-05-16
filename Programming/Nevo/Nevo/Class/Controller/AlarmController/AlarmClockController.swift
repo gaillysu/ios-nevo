@@ -183,7 +183,7 @@ extension AlarmClockController {
             let title = NSLocalizedString("alarmTitle", comment: "")
             let actionMsg = NSLocalizedString("Ok", comment: "")
             
-            let localizedKey = AppTheme.isTargetLunaR_OR_Nevo() ? "nevo_alarms_limit" : "lunar_alarms_limit"
+            let localizedKey = "nevo_alarms_limit"
             let detailMsg = NSLocalizedString(localizedKey, comment: "")
             
             let actionSheet = MEDAlertController(title: title, message: detailMsg, preferredStyle: .alert)
@@ -236,12 +236,7 @@ extension AlarmClockController {
         headerLabel.textAlignment = .center
         
         headerLabel.viewDefaultColorful()
-        
-        if !AppTheme.isTargetLunaR_OR_Nevo() {
-            headerLabel.backgroundColor = UIColor.getGreyColor()
-        } else {
-            headerLabel.backgroundColor = UIColor.white
-        }
+        headerLabel.backgroundColor = UIColor.white
         
         return headerLabel
     }

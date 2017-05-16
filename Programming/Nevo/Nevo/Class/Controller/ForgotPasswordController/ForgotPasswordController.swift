@@ -53,11 +53,6 @@ extension ForgotPasswordController {
         let view = MRProgressOverlayView.showOverlayAdded(to: self.navigationController!.view, title: NSLocalizedString("please_wait", comment: ""), mode: MRProgressOverlayViewMode.indeterminate, animated: true)
         view?.setTintColor(AppTheme.NEVO_SOLAR_YELLOW())
         
-        if !AppTheme.isTargetLunaR_OR_Nevo() {
-            view?.setTintColor(UIColor.getBaseColor())
-        }
-        
-        
         MEDUserNetworkManager.requestPassword(email: emailTextField.text!) { (success:Bool, token:String, id:Int) in
             MRProgressOverlayView.dismissAllOverlays(for: self.navigationController!.view, animated: true)
             
@@ -85,10 +80,6 @@ extension ForgotPasswordController {
                     if textField[0].text! == textField[1].text! {
                         let view = MRProgressOverlayView.showOverlayAdded(to: self.navigationController!.view, title: NSLocalizedString("please_wait", comment: ""), mode: MRProgressOverlayViewMode.indeterminate, animated: true)
                         view?.setTintColor(AppTheme.NEVO_SOLAR_YELLOW())
-                        
-                        if !AppTheme.isTargetLunaR_OR_Nevo() {
-                            view?.setTintColor(UIColor.getBaseColor())
-                        }
                         
                         MEDUserNetworkManager.forgetPassword(email: self.emailTextField.text!, password: textField[0].text!, id: id, token: token, completion: { (changeSuccess: Bool) in
                             MRProgressOverlayView.dismissAllOverlays(for: self.navigationController!.view, animated: true)

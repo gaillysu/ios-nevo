@@ -64,11 +64,6 @@ class MyNevoController: UITableViewController,UIAlertViewDelegate {
                 self.rssialert = nil
             }
         }
-        
-        if !AppTheme.isTargetLunaR_OR_Nevo() {
-            self.navigationItem.title = NSLocalizedString("My LunaR", comment: "")
-            self.tableView.backgroundColor = UIColor.getLightBaseColor()
-        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -105,31 +100,19 @@ class MyNevoController: UITableViewController,UIAlertViewDelegate {
             
             
             if indexPath.row == 0 {
-                if !AppTheme.isTargetLunaR_OR_Nevo() {
-                    if(UserDefaults.standard.getFirmwareVersion() >= buildin_firmware_version){
-                        let banner = MEDBanner(title: NSLocalizedString("is_watch_version", comment: ""), subtitle: nil, image: nil, backgroundColor: AppTheme.NEVO_SOLAR_YELLOW())
-                        banner.dismissesOnTap = true
-                        banner.show(duration: 1.5)
-                        return
-                    }
-                    let lunar:LunaROTAController = LunaROTAController()
-                    let navigation:UINavigationController = UINavigationController(rootViewController: lunar)
+                if(UserDefaults.standard.getSoftwareVersion() >= buildin_software_version && UserDefaults.standard.getFirmwareVersion() >= buildin_firmware_version){
+                    let banner = MEDBanner(title: NSLocalizedString("is_watch_version", comment: ""), subtitle: nil, image: nil, backgroundColor: AppTheme.NEVO_SOLAR_YELLOW())
+                    banner.dismissesOnTap = true
+                    banner.show(duration: 1.5)
+                    return
+                } else if(AppDelegate.getAppDelegate().isConnected()){
+                    let otaCont:NevoOtaViewController = NevoOtaViewController()
+                    let navigation:UINavigationController = UINavigationController(rootViewController: otaCont)
                     self.present(navigation, animated: true, completion: nil)
                 }else{
-                    if(UserDefaults.standard.getSoftwareVersion() >= buildin_software_version && UserDefaults.standard.getFirmwareVersion() >= buildin_firmware_version){
-                        let banner = MEDBanner(title: NSLocalizedString("is_watch_version", comment: ""), subtitle: nil, image: nil, backgroundColor: AppTheme.NEVO_SOLAR_YELLOW())
-                        banner.dismissesOnTap = true
-                        banner.show(duration: 1.5)
-                        return
-                    } else if(AppDelegate.getAppDelegate().isConnected()){
-                        let otaCont:NevoOtaViewController = NevoOtaViewController()
-                        let navigation:UINavigationController = UINavigationController(rootViewController: otaCont)
-                        self.present(navigation, animated: true, completion: nil)
-                    }else{
-                        let banner = MEDBanner(title: NSLocalizedString("nevo_is_not_connected", comment: ""), subtitle: nil, image: nil, backgroundColor: AppTheme.NEVO_SOLAR_YELLOW())
-                        banner.dismissesOnTap = true
-                        banner.show(duration: 1.5)
-                    }
+                    let banner = MEDBanner(title: NSLocalizedString("nevo_is_not_connected", comment: ""), subtitle: nil, image: nil, backgroundColor: AppTheme.NEVO_SOLAR_YELLOW())
+                    banner.dismissesOnTap = true
+                    banner.show(duration: 1.5)
                 }
                 
             }
@@ -164,9 +147,6 @@ class MyNevoController: UITableViewController,UIAlertViewDelegate {
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView{
         if section == 0     {
             let headerimage:UIImageView = MyNevoHeaderView.getMyNevoHeaderView()
-            if !AppTheme.isTargetLunaR_OR_Nevo() {
-                headerimage.image = UIImage(named: "myLunaR_icon")
-            }
             let view:UIView = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: headerimage.frame.size.height + 70))
             view.addSubview(headerimage)
             headerimage.center = CGPoint(x: view.frame.size.width/2.0, y: view.frame.size.height/2.0)
@@ -205,27 +185,16 @@ class MyNevoController: UITableViewController,UIAlertViewDelegate {
                 let currentFirmwareVersion = UserDefaults.standard.getFirmwareVersion()
                 var softwareFlag = currentSoftwareVersion < buildin_software_version
                 let firmwareFlag = currentFirmwareVersion < buildin_firmware_version
-                if !AppTheme.isTargetLunaR_OR_Nevo() {
-                    softwareFlag = true
-                }
                 if(softwareFlag && firmwareFlag){
                     detailString = "\(NSLocalizedString("update_available", comment: "")), \(currentFirmwareVersion)/\(currentSoftwareVersion)"
                     
                     detailString = detailString.replacingOccurrences(of: "VERSION_NUMBER", with: "\(buildin_firmware_version.to2String())/\(buildin_software_version.to2String())")
                     
-                    if !AppTheme.isTargetLunaR_OR_Nevo() {
-                        detailString = detailString.replacingOccurrences(of: "Nevo", with: "LunaR")
-                    }
-                    
                     debugLog("MCU:\(UserDefaults.standard.getSoftwareVersion()) BLE:\(UserDefaults.standard.getFirmwareVersion())")
                     
                     isUpdate = true
                 } else {
-                    if AppTheme.isTargetLunaR_OR_Nevo() {
-                        detailString = "MCU:\(UserDefaults.standard.getSoftwareVersion()) BLE:\(UserDefaults.standard.getFirmwareVersion())"
-                    } else {
-                        detailString = "Version: \(buildin_firmware_version) is available!"
-                    }
+                    detailString = "MCU:\(UserDefaults.standard.getSoftwareVersion()) BLE:\(UserDefaults.standard.getFirmwareVersion())"
                 }
             case 1:
                 switch (currentBattery){

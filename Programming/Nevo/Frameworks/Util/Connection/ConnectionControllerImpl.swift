@@ -51,7 +51,7 @@ class ConnectionControllerImpl : NSObject {
     */
     override init() {
         super.init()
-        let profile:Profile = AppTheme.isTargetLunaR_OR_Nevo() ? NevoProfile():LunaRProfile()
+        let profile:Profile = NevoProfile()
         mNevoBT = NevoBTImpl(externalDelegate: self, acceptableDevice: profile)
         setOTAMode(false,Disconnect:true)
     }
@@ -270,13 +270,13 @@ extension ConnectionControllerImpl:ConnectionController {
         //We don't set the profile on the NevoBT, because it could create too many issues
         //So we destroy the previous instance and recreate one
         if(OTAMode) {
-            let profile:Profile = AppTheme.isTargetLunaR_OR_Nevo() ? NevoOTAModeProfile():LunaROTAModeProfile()
+            let profile:Profile = NevoOTAModeProfile()
             if Disconnect
             { mNevoBT = NevoBTImpl(externalDelegate: self, acceptableDevice: profile)}
             else
             { mNevoBT = NevoBTImpl(externalDelegate: self, acceptableDevice: NevoOTAControllerProfile())}
         } else {
-            let profile:Profile = AppTheme.isTargetLunaR_OR_Nevo() ? NevoProfile():LunaRProfile()
+            let profile:Profile = NevoProfile()
             mNevoBT = NevoBTImpl(externalDelegate: self, acceptableDevice: profile)
         }
         

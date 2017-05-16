@@ -54,33 +54,6 @@ class ProfileSetupViewController: UIViewController {
         self.navigationItem.title = NSLocalizedString("Register", comment: "")
         let leftButton:UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "cancel_lunar"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(leftCancelAction(_:)))
         self.navigationItem.leftBarButtonItem = leftButton
-        
-        if !AppTheme.isTargetLunaR_OR_Nevo() {
-            self.view.backgroundColor = UIColor.getGreyColor()
-            signupLabel.textColor = UIColor.white
-            email.backgroundColor = UIColor.getLightBaseColor()
-            email.setValue(UIColor(white: 1, alpha: 0.7), forKeyPath: "placeholderLabel.textColor")
-            firstNameTextField.backgroundColor = UIColor.getLightBaseColor()
-            firstNameTextField.setValue(UIColor(white: 1, alpha: 0.7), forKeyPath: "placeholderLabel.textColor")
-            lastNameTextField.backgroundColor = UIColor.getLightBaseColor()
-            lastNameTextField.setValue(UIColor(white: 1, alpha: 0.7), forKeyPath: "placeholderLabel.textColor")
-            password.backgroundColor = UIColor.getLightBaseColor()
-            password.setValue(UIColor(white: 1, alpha: 0.7), forKeyPath: "placeholderLabel.textColor")
-            retypePassword.backgroundColor = UIColor.getLightBaseColor()
-            retypePassword.setValue(UIColor(white: 1, alpha: 0.7), forKeyPath: "placeholderLabel.textColor")
-            termsLabel.textColor = UIColor.getBaseColor()
-            agreeLabel.textColor = UIColor.white
-            checkBox.tintColor = UIColor.getBaseColor()
-            checkBox.setValue(UIColor.getBaseColor(), forKeyPath: "secondaryTintColor")
-            checkBox.setValue(UIColor.getBaseColor(), forKeyPath: "secondaryCheckmarkTintColor")
-            submitButton.backgroundColor = UIColor.getBaseColor()
-            
-            email.textColor = UIColor.white
-            firstNameTextField.textColor = UIColor.white
-            lastNameTextField.textColor = UIColor.white
-            password.textColor = UIColor.white
-            retypePassword.textColor = UIColor.white
-        }
     }
     
     override func viewWillAppear(_ animated: Bool) {

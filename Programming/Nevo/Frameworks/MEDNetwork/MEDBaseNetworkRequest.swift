@@ -24,8 +24,7 @@ class MEDBaseNetworkRequest: MEDNetworkRequest {
             headers?[authorizationHeader.key] = authorizationHeader.value
         }
         
-        // Sfz1Nk9Qt3J0dt7jNOLX0x7VHaT83V8h
-        let token: String = AppTheme.isTargetLunaR_OR_Nevo() ? "SU9gPy5e1d1t7W8FG2fQ6MuT06cY95MB" : "Sfz1Nk9Qt3J0dt7jNOLX0x7VHaT83V8h"
+        let token: String = "SU9gPy5e1d1t7W8FG2fQ6MuT06cY95MB"
         
         self.parameters = ["token":token]
         self.response = response

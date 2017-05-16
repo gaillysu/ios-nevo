@@ -68,10 +68,6 @@ class UserProfileController: UIViewController,UITableViewDelegate,UITableViewDat
             let view = MRProgressOverlayView.showOverlayAdded(to: self.navigationController!.view, title: NSLocalizedString("please_wait", comment: ""), mode: MRProgressOverlayViewMode.indeterminate, animated: true)
             view?.setTintColor(AppTheme.NEVO_SOLAR_YELLOW())
             
-            if !AppTheme.isTargetLunaR_OR_Nevo() {
-                view?.setTintColor(UIColor.getBaseColor())
-            }
-            
             MEDUserNetworkManager.updateUser(profile: user, completion: {[weak self] (flag, user) in
                 MRProgressOverlayView.dismissAllOverlays(for: self?.navigationController!.view, animated: true)
                 

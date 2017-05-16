@@ -66,20 +66,9 @@ class AnalysisController: PublicClassController {
             v.bottom.equalTo(segmentDeviderView.snp.top)
         }
         
-        if !AppTheme.isTargetLunaR_OR_Nevo() {
-            contentCollectionView.backgroundColor = UIColor.getLightBaseColor()
-            chartsCollectionView.backgroundColor = UIColor.getLightBaseColor()
-            segmented.tintColor = UIColor.getBaseColor()
-            segmentDeviderView.backgroundColor = UIColor("#AAAAB4")
-            
-            segmented.backgroundColor = UIColor.getLunarTabBarColor()
-            segmentedBackgroundView.backgroundColor = UIColor.getLunarTabBarColor()
-        } else {
-            segmented.backgroundColor = UIColor.getNevoTabBarColor()
-            segmentedBackgroundView.backgroundColor = UIColor.getNevoTabBarColor()
-            
-            segmentDeviderView.backgroundColor = AppTheme.NEVO_SOLAR_YELLOW()
-        }
+        segmented.backgroundColor = UIColor.getNevoTabBarColor()
+        segmentedBackgroundView.backgroundColor = UIColor.getNevoTabBarColor()
+        segmentDeviderView.backgroundColor = AppTheme.NEVO_SOLAR_YELLOW()
         
         let chartLayout:UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         chartLayout.itemSize = CGSize(width: 0, height: 0)
@@ -134,11 +123,7 @@ extension AnalysisController {
             make.right.equalTo(self.view).offset(-20)
         }
         
-        if !AppTheme.isTargetLunaR_OR_Nevo() {
-            pageControl.currentPageIndicatorTintColor = UIColor.getBaseColor()
-        }else{
-            pageControl.currentPageIndicatorTintColor = AppTheme.NEVO_SOLAR_YELLOW()
-        }
+        pageControl.currentPageIndicatorTintColor = AppTheme.NEVO_SOLAR_YELLOW()
     }
     
     func setCurrentPageIndex(_ index:Int) {

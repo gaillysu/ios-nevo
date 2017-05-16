@@ -28,9 +28,6 @@ class AppTheme {
     sRGB value : #ff9933
     */
     class func NEVO_SOLAR_YELLOW() -> UIColor {
-        if !AppTheme.isTargetLunaR_OR_Nevo() {
-            return UIColor.getBaseColor()
-        }
         
         return UIColor("#A08455")
     }
@@ -308,34 +305,19 @@ class AppTheme {
     class func GET_FIRMWARE_VERSION() ->Int
     {
         var buildinFirmwareVersion:Int  = 0
-        var fileArray:NSArray = GET_FIRMWARE_FILES("Firmwares")
-        if AppTheme.isTargetLunaR_OR_Nevo() {
-            fileArray = GET_FIRMWARE_FILES("Firmwares")
-        }else{
-            fileArray = GET_FIRMWARE_FILES("DFUFirmware")
-        }
+        let fileArray:NSArray = GET_FIRMWARE_FILES("Firmwares")
         
         for tmpfile in fileArray {
             let selectedFile:URL = tmpfile as! URL
             let fileName:NSString? = (selectedFile.path as NSString).lastPathComponent as NSString?
             let fileExtension:String? = selectedFile.pathExtension
 
-            if AppTheme.isTargetLunaR_OR_Nevo(){
-                if fileExtension == "hex" {
-                    let ran:NSRange = fileName!.range(of: "_v")
-                    let ran2:NSRange = fileName!.range(of: ".hex")
-                    let string:String = fileName!.substring(with: NSRange(location: ran.location + ran.length,length: ran2.location-ran.location-ran.length))
-                    buildinFirmwareVersion = Int(string)!
-                    break
-                }
-            }else{
-                if fileExtension == "zip" {
-                    let ran:NSRange = fileName!.range(of: "_v")
-                    let ran2:NSRange = fileName!.range(of: ".zip")
-                    let string:String = fileName!.substring(with: NSRange(location: ran.location + ran.length,length: ran2.location-ran.location-ran.length))
-                    buildinFirmwareVersion = Int(string)!
-                    break
-                }
+            if fileExtension == "hex" {
+                let ran:NSRange = fileName!.range(of: "_v")
+                let ran2:NSRange = fileName!.range(of: ".hex")
+                let string:String = fileName!.substring(with: NSRange(location: ran.location + ran.length,length: ran2.location-ran.location-ran.length))
+                buildinFirmwareVersion = Int(string)!
+                break
             }
             
         }

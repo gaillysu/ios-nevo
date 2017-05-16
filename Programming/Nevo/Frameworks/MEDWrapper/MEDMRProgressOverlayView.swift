@@ -12,12 +12,6 @@ import MRProgress
 extension MRProgressOverlayView {
     @objc class func MEDShowOverlayAddedTo(view:UIView, title:NSString, mode:MRProgressOverlayViewMode, animated:Bool) -> UIView {
         let newView = MRProgressOverlayView.MEDShowOverlayAddedTo(view: view, title: title, mode: mode, animated: animated)
-        if !AppTheme.isTargetLunaR_OR_Nevo() {
-            (newView as! MRProgressOverlayView).titleLabel.textColor = UIColor.white
-            for subview in newView.subviews {
-                subview.backgroundColor = UIColor.getGreyColor()
-            }
-        }
         return newView
     }
     

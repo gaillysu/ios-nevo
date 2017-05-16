@@ -35,7 +35,7 @@ class SelectedNotificationTypeController: UITableViewController {
     fileprivate var isFirstLoadData: Bool = true
     
     var notificationSection:Int {
-        return AppTheme.isTargetLunaR_OR_Nevo() ? 3 : 4
+        return 3
     }
     
     init() {
@@ -53,7 +53,7 @@ class SelectedNotificationTypeController: UITableViewController {
             navigationItem.title = name
         } else {
             let title:String = notSetting!.typeName
-            let titleString:String = AppTheme.isTargetLunaR_OR_Nevo() ? title.replacingOccurrences(of: "WeChat", with: "Whatsapp"):title
+            let titleString:String = title.replacingOccurrences(of: "WeChat", with: "Whatsapp")
             navigationItem.title = NSLocalizedString(titleString, comment: "")
         }
         
@@ -96,14 +96,6 @@ extension SelectedNotificationTypeController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
         tableView.deselectRow(at: indexPath, animated: true)
         if(indexPath.section == 2){
-            if !AppTheme.isTargetLunaR_OR_Nevo() {
-                let controller = NotiColorController(style: .grouped)
-                controller.notificationColor = self.notificationColor
-                controller.notification = self.notification
-                navigationController?.pushViewController(controller, animated: true)
-                return
-            }
-            
             let cell:LineColorCell = tableView.cellForRow(at: indexPath) as! LineColorCell
             let image = UIImage(named: "notifications_check")
             cell.accessoryView = UIImageView(image: image)
@@ -149,11 +141,7 @@ extension SelectedNotificationTypeController:AddPacketToWatchDelegate {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 2 && AppTheme.isTargetLunaR_OR_Nevo() {
-            return colorArray.count
-        } else {
-            return 1
-        }
+        return colorArray.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -163,18 +151,10 @@ extension SelectedNotificationTypeController:AddPacketToWatchDelegate {
             allowCell.selectionStyle = UITableViewCellSelectionStyle.none;
             allowCell.addDelegate = self
             allowCell.notificationSetting = notSetting
-            var titleColor:UIColor?
-            var onColor:UIColor?
-            if !AppTheme.isTargetLunaR_OR_Nevo() {
-                titleColor = UIColor.white
-                onColor = UIColor.getBaseColor()
-                allowCell.backgroundColor = UIColor.getGreyColor()
-            }else{
-                titleColor = UIColor.black
-                onColor = AppTheme.NEVO_SOLAR_YELLOW()
-            }
-            allowCell.setAllowSwitch(color: onColor!,isOn:notSetting!.getStates())
-            allowCell.setTitleLabel(title: NSLocalizedString("Allow_Notifications", comment: ""), titleColor: titleColor!, titleFont: nil)
+            let titleColor:UIColor = UIColor.black
+            let onColor:UIColor = AppTheme.NEVO_SOLAR_YELLOW()
+            allowCell.setAllowSwitch(color: onColor,isOn:notSetting!.getStates())
+            allowCell.setTitleLabel(title: NSLocalizedString("Allow_Notifications", comment: ""), titleColor: titleColor, titleFont: nil)
             return allowCell
         case 1:
             let colorString = notSetting!.getHexColor()
@@ -186,19 +166,7 @@ extension SelectedNotificationTypeController:AddPacketToWatchDelegate {
             return cell
         case 2:
             var cell: UITableViewCell = UITableViewCell.init()
-            if !AppTheme.isTargetLunaR_OR_Nevo() {
-                cell.accessoryType = notSetting!.getStates() ? .disclosureIndicator : .none
-                let colorString = notSetting!.getHexColor()
-                let color = colorString == "" ? UIColor.getRandomColor() : UIColor(colorString)
-                
-                cell.imageView?.image = UIImage.dotImageWith(color: color, backgroundColor: UIColor.getGreyColor(), size: CGSize(width: 15, height: 15))
-
-                cell.imageView?.backgroundColor = UIColor.clear
-                cell.textLabel?.text = notSetting!.getLunarColorName()
-                cell.selectionStyle = .none
-            } else {
-                cell = selectedNotificationView.getLineColorCell(indexPath, tableView: tableView, cellTitle: colorArray[indexPath.row], clockIndex: notSetting!.getClock())
-            }
+            cell = selectedNotificationView.getLineColorCell(indexPath, tableView: tableView, cellTitle: colorArray[indexPath.row], clockIndex: notSetting!.getClock())
             
             if !notSetting!.getStates() {
                 cell.accessoryView = nil

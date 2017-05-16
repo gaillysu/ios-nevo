@@ -27,11 +27,6 @@ class MyNevoView: UITableView {
         endCell?.detailTextLabel?.backgroundColor = UIColor.clear
         endCell?.detailTextLabel?.text = detailText
         
-        if !AppTheme.isTargetLunaR_OR_Nevo() {
-            endCell?.backgroundColor = UIColor.getGreyColor()
-            endCell?.textLabel?.textColor = UIColor.white
-            endCell?.detailTextLabel?.textColor = UIColor.white
-        }
         return endCell!
     }
 }

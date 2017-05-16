@@ -20,13 +20,7 @@ class SleepHistoricalView: UIView, ChartViewDelegate{
     func bulidQueryView(modelArray:[Any]){
         queryModel.removeAll()
         queryModel = modelArray as! [MEDUserSleep]
-        if !AppTheme.isTargetLunaR_OR_Nevo() {
-            chartView?.backgroundColor = UIColor.getLightBaseColor()
-            self.backgroundColor = UIColor.getLightBaseColor()
-            detailCollectionView.backgroundColor = UIColor.getLightBaseColor()
-        }else{
-            chartView?.backgroundColor = UIColor.white
-        }
+        chartView?.backgroundColor = UIColor.white
         
         chartView?.drawSettings(chartView!.xAxis, yAxis: chartView!.leftAxis, rightAxis: chartView!.rightAxis)
         chartView?.data = nil

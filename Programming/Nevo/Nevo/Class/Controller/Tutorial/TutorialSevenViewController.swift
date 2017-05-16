@@ -25,40 +25,15 @@ class TutorialSevenViewController: UIViewController {
     }
 
     override func viewDidLoad() {
-        styleEvolve()
+        
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        if !AppTheme.isTargetLunaR_OR_Nevo() {
-            self.setLunaRtext()
-        }
+
     }
     
     @IBAction func tryAgainAction(_ sender: AnyObject) {
         _ = self.navigationController?.popViewController(animated: true)
     }
-}
-
-extension TutorialSevenViewController {
-    fileprivate func styleEvolve() {
-        if !AppTheme.isTargetLunaR_OR_Nevo() {
-            view.backgroundColor = UIColor.getGreyColor()
-            titleLabel.backgroundColor = UIColor.clear
-            titleLabel.textColor = UIColor.white
-            detailLabel.backgroundColor = UIColor.clear
-            detailLabel.textColor = UIColor.white
-            tryAgainButton.backgroundColor = UIColor.getBaseColor()
-            centerImageView.image =  AppTheme.GET_RESOURCES_IMAGE("lunar_not_connect")
-        }
-    }
-    
-    func setLunaRtext() {
-        titleLabel.text = titleLabel.text?.replacingOccurrences(of: "nevo watch", with: "LunaR")
-        titleLabel.text = titleLabel.text?.replacingOccurrences(of: "nevo", with: "LunaR")
-        
-        detailLabel.text = detailLabel.text?.replacingOccurrences(of: "nevo watch", with: "LunaR")
-        detailLabel.text = detailLabel.text?.replacingOccurrences(of: "nevo", with: "LunaR")
-    }
-
 }
