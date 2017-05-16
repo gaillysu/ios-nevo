@@ -12,12 +12,7 @@ import UIColor_Hex_Swift
 extension UIColor{
     
     public class func getBaseColor() -> UIColor {
-        if !AppTheme.isTargetLunaR_OR_Nevo(){
-            return UIColor("#7ED8D1")
-        }else{
-            return UIColor("#A08455")
-        }
-        
+        return UIColor("#A08455")
     }
     
     public class func getTintColor() -> UIColor {

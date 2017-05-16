@@ -117,38 +117,9 @@ extension AppDelegate {
         mNotificationSettingArray.append(setting)
         sendRequest(SetNortificationRequest(settingArray: mNotificationSettingArray))
     }
-
-    func deleteAllLunaRNotfication() {
-        XCGLogger.default.debug("DeleteAllLunaRNotfication")
-        sendRequest(DeleteAllNotificationAppIDRequest())
-    }
-    
-    func LunaRNotfication() {
-        let mNotificationArray:[MEDUserNotification] = (MEDUserNotification.getAll() as! [MEDUserNotification]).filter({$0.isAddWatch == true})
-        
-        for (index,model) in mNotificationArray.enumerated() {
-            let notification:MEDUserNotification = model
-            if notification.isAddWatch {
-                let notificationType:String = notification.notificationType
-                var type = NotificationType(rawValue: notificationType as NSString)
-                if type == nil {
-                    type = NotificationType.other
-                }
-                
-                let setting:NotificationSetting = NotificationSetting(type: type!, clock: notification.clock, color: notification.colorValue,colorName: notification.colorName, states:notification.isAddWatch,packet:notification.appid,appName:notification.appName)
-                let packet:String = notification.appid
-                let notificationsRequest:SetNotificationAppIDRequest = try! SetNotificationAppIDRequest(number: index, hexColor: setting.getHexColor(), appid: packet, notiFictionOnOff: true, motorOnOff: true)
-                self.sendRequest(notificationsRequest)
-            }
-        }
-    }
     
     func delay(seconds:Double, completion: @escaping ()-> Void) {
         DispatchQueue.main.asyncAfter(deadline: .now() + seconds, execute: completion)
-    }
-    
-    func setSunriseAndSunset(sunrise:Date,sunset:Date) {
-        sendRequest(SetSunriseAndSunsetRequest(sunrise: sunrise, sunset: sunset))
     }
     
     /**
@@ -183,11 +154,6 @@ extension AppDelegate {
     
     func getGoal(){
         sendRequest(GetStepsGoalRequest())
-    }
-    
-    func getLunaRTotalAppId() {
-        let getTotalApp:GetTotalNotificationAppReuqest = GetTotalNotificationAppReuqest()
-        self.sendRequest(getTotalApp)
     }
     
     func ReadBatteryLevel() {
@@ -328,56 +294,6 @@ extension AppDelegate {
     }
 }
 
-extension AppDelegate {
-    func getSunriseAndSunsetTime() -> (sunriseDate: Date?, sunsetDate: Date?, additionString: String) {
-        if latitude == 0 && longitude == 0 {
-            return (nil, nil, NSLocalizedString("failed_locate", comment: ""))
-        }
-        
-        if let solar = Solar(latitude: latitude, longitude: longitude) {
-            if let sunrise = solar.sunrise, let sunset = solar.sunset {
-                return (sunrise, sunset, "")
-            } else {
-                // these areas are in polar day or night!
-                let isNorthernHemisphereHere = latitude > 0
-                let isNorthernHemisphereSummer = (3..<10).contains(Date().month)
-                
-                if isNorthernHemisphereHere == isNorthernHemisphereSummer {
-                    return (nil, nil, "Polar daylight")
-                } else {
-                    return (nil, nil, "Polar night")
-                }
-            }
-        } else {
-            return (nil, nil, NSLocalizedString("failed_locate", comment: ""))
-        }
-    }
-    
-    func getSunriseAndSunsetTime(date: Date) -> (sunriseDate: Date?, sunsetDate: Date?, additionString: String) {
-        if latitude == 0 && longitude == 0 {
-            return (nil, nil, NSLocalizedString("failed_locate", comment: ""))
-        }
-        
-        if let solar = Solar(for: date, latitude: latitude, longitude: longitude) {
-            if let sunrise = solar.sunrise, let sunset = solar.sunset {
-                return (sunrise, sunset, "")
-            } else {
-                // these areas are in polar day or night!
-                let isNorthernHemisphereHere = latitude > 0
-                let isNorthernHemisphereSummer = (3..<10).contains(Date().month)
-                
-                if isNorthernHemisphereHere == isNorthernHemisphereSummer {
-                    return (nil, nil, "Polar daylight")
-                } else {
-                    return (nil, nil, "Polar night")
-                }
-            }
-        } else {
-            return (nil, nil, NSLocalizedString("failed_locate", comment: ""))
-        }
-    }
-}
-
 // MARK: - 调整 App 的启动逻辑
 extension AppDelegate {
     func adjustLaunchLogic() {
@@ -409,74 +325,4 @@ extension AppDelegate {
         /// 🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧
     }
     
-    func copyBundleRealmToDocumentFolder() {
-        if !AppTheme.realmISFirstCopy(findKey: .get) {
-            DispatchQueue.global(qos: .background).async {
-                WorldClockDatabaseHelper().setup()
-            }
-            return
-        }
-        // copy over old data files for migration
-        let defaultURL = Realm.Configuration.defaultConfiguration.fileURL!
-        
-        if let v0URL = URL.bundleURL(name: "default") {
-            do {
-                if FileManager.default.fileExists(atPath: defaultURL.path) {
-                    try FileManager.default.removeItem(at: defaultURL)
-                }
-                try FileManager.default.copyItem(at: v0URL, to: defaultURL)
-                _ = AppTheme.realmISFirstCopy(findKey: .set)
-            } catch let error {
-                print("file copy or remove error:\(error)");
-            }
-        }
-        
-        let migrationBlock: MigrationBlock = { migration, oldSchemaVersion in
-            if oldSchemaVersion < 1 {
-            }
-            print("Migration complete.")
-        }
-        
-        Realm.Configuration.defaultConfiguration = Realm.Configuration(schemaVersion: 1, migrationBlock: migrationBlock)
-        
-        print("Migrated objects in the default Realm: \(try! Realm().objects(City.self))")
-    }
-} 
-// MARK: - Fake Functions for Nevo
-extension AppDelegate {
-    
-    func setWorldTime() {
-        if !AppTheme.isTargetLunaR_OR_Nevo() {
-            if let row = MEDSettings.int(forKey: "SET_SYNCTIME_TYPE"), row == 0 {
-                if let city = HomeClockUtil.shared.getHomeCityWithSelectedFlag(), let timezone = HomeClockUtil.shared.getTimezoneWithCity(city: city) {
-                    let cityZone = timezone.gmtTimeOffset*60
-                    let localZone = Date.getLocalOffSet()
-                    
-                    var hourOffset = 0
-                    var minOffset = 0
-                    if localZone>cityZone {
-                        let remainder = (localZone-cityZone)%3600
-                        if remainder != 0 {
-                            minOffset = remainder/60
-                        }
-                        hourOffset = 24-Int((localZone-cityZone)/3600)
-                    }else{
-                        let remainder = (cityZone-localZone)%3600
-                        if remainder != 0 {
-                            minOffset = remainder/60
-                        }
-                        hourOffset = Int((cityZone-localZone)/3600)
-                    }
-                    let setWordClock:SetWorldClockRequest = SetWorldClockRequest(hourOffset: hourOffset, minOffset: minOffset)
-                    self.sendRequest(setWordClock)
-                }else{
-                    let setWordClock:SetWorldClockRequest = SetWorldClockRequest(hourOffset: 0, minOffset: 0)
-                    self.sendRequest(setWordClock)
-                }
-            }else{
-                let setWordClock:SetWorldClockRequest = SetWorldClockRequest(hourOffset: 0, minOffset: 0)
-                self.sendRequest(setWordClock)
-            }
-        }
-    }
 }

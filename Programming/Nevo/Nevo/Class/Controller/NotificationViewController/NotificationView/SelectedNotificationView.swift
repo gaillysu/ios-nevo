@@ -27,18 +27,6 @@ class SelectedNotificationView: UITableView {
             if(view.isKind(of: UIImageView.classForCoder())){
                 let clockImage:UIImageView = view as! UIImageView
                 clockImage.image = UIImage(named: "\(clockIndex)_clock_dial")
-                if !AppTheme.isTargetLunaR_OR_Nevo() {
-                    clockImage.image = UIImage(named: "2_clock_dial")
-                    let colorImage:UIImageView = UIImageView(image: image!)
-                    colorImage.frame = CGRect(x: 0, y: 0, width: 10, height: 10)
-                    endCell!.contentView.addSubview(colorImage)
-                    colorImage.snp.makeConstraints { (make) -> Void in
-                        make.top.equalTo(clockImage).offset(30)
-                        make.left.equalTo(clockImage).offset(85)
-                        make.right.equalTo(clockImage).offset(-85)
-                    }
-                }
-                
             }
         }
         endCell?.selectionStyle = UITableViewCellSelectionStyle.none;
@@ -55,11 +43,7 @@ class SelectedNotificationView: UITableView {
             endCell.accessoryView = nil;
         }
         
-        if !AppTheme.isTargetLunaR_OR_Nevo() {
-            endCell.accessoryType = .disclosureIndicator
-        }else{
-            endCell.textLabel!.text = cellTitle;
-        }
+        endCell.textLabel!.text = cellTitle;
         return endCell
     }
 
@@ -75,18 +59,10 @@ class SelectedNotificationView: UITableView {
     func allowNotificationsTableViewCell(_ indexPath:IndexPath, tableView:UITableView, title:String, setting:NotificationSetting)->UITableViewCell {
         let allowCell:AllowNotificationsTableViewCell = tableView.dequeueReusableCell(withIdentifier: "AllowNotifications_Identifier", for: indexPath) as! AllowNotificationsTableViewCell
         allowCell.selectionStyle = UITableViewCellSelectionStyle.none;
-        var titleColor:UIColor?
-        var onColor:UIColor?
-        if !AppTheme.isTargetLunaR_OR_Nevo() {
-            titleColor = UIColor.white
-            onColor = UIColor.getBaseColor()
-            allowCell.backgroundColor = UIColor.getGreyColor()
-        }else{
-            titleColor = UIColor.black
-            onColor = AppTheme.NEVO_SOLAR_YELLOW()
-        }
-        allowCell.setAllowSwitch(color: onColor!,isOn:setting.getStates())
-        allowCell.setTitleLabel(title: title, titleColor: titleColor!, titleFont: nil)
+        let titleColor:UIColor = UIColor.black
+        let onColor:UIColor = AppTheme.NEVO_SOLAR_YELLOW()
+        allowCell.setAllowSwitch(color: onColor,isOn:setting.getStates())
+        allowCell.setTitleLabel(title: title, titleColor: titleColor, titleFont: nil)
 
         return allowCell
     }

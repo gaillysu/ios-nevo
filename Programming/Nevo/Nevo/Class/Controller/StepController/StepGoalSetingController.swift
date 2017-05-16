@@ -125,28 +125,16 @@ class StepGoalSetingController: PublicClassController,ClockRefreshDelegate {
         
         //RAWPACKET DATA
         _ = SwiftEventBus.onMainThread(self, name: EVENT_BUS_RAWPACKET_DATA_KEY) { (notification) in
-            var percent:Float = 0
-            if AppTheme.isTargetLunaR_OR_Nevo() {
-                let packet = notification.object as! NevoPacket
-                //Do nothing
-                if packet.getHeader() == GetStepsGoalRequest.HEADER(){
-                    let thispacket = packet.copy() as DailyStepsNevoPacket
-                    let dailySteps:Int = thispacket.getDailySteps()
-                    let dailyStepGoal:Int = thispacket.getDailyStepsGoal()
-                    percent = Float(dailySteps)/Float(dailyStepGoal)
-                    
-                }
-            }else{
-                let packet = notification.object as! LunaRPacket
-                //Do nothing
-                if packet.getHeader() == GetStepsGoalRequest.HEADER(){
-                    let thispacket = packet.copy() as LunaRStepsGoalPacket
-                    let dailySteps:Int = thispacket.getDailySteps()
-                    let dailyStepGoal:Int = thispacket.getDailyStepsGoal()
-                    percent = Float(dailySteps)/Float(dailyStepGoal)
-                }
+            let packet = notification.object as! NevoPacket
+            //Do nothing
+            if packet.getHeader() == GetStepsGoalRequest.HEADER(){
+                var percent:Float = 0
+                let thispacket = packet.copy() as DailyStepsNevoPacket
+                let dailySteps:Int = thispacket.getDailySteps()
+                let dailyStepGoal:Int = thispacket.getDailyStepsGoal()
+                percent = Float(dailySteps)/Float(dailyStepGoal)
+                self.progressView.setProgress(CGFloat(percent))
             }
-            self.progressView.setProgress(CGFloat(percent))
         }
         
         _ = SwiftEventBus.onMainThread(self, name: EVENT_BUS_CONNECTION_STATE_CHANGED_KEY) { (notification) in

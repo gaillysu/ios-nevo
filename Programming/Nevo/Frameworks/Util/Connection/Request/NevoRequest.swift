@@ -14,7 +14,7 @@ All requests that should be sent to nevo have to extend this class
 */
 class NevoRequest : Request {
     func getTargetProfile() -> Profile {
-        let profile:Profile = AppTheme.isTargetLunaR_OR_Nevo() ? NevoProfile():LunaRProfile()
+        let profile:Profile = NevoProfile()
         return profile
     }
     

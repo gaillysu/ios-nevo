@@ -67,24 +67,6 @@ extension LoginController {
             logoinButton.titleLabel?.font = UIFont(name: "Raleway", size: 20)
         }
         
-        
-        if !AppTheme.isTargetLunaR_OR_Nevo() {
-            iconImage.image = UIImage(named: "lunar_logo")
-            self.view.backgroundColor = UIColor.getGreyColor()
-            logoinButton.backgroundColor = UIColor.getBaseColor()
-            platformLabel.textColor = UIColor.white
-            userNameTextField.backgroundColor = UIColor.getLightBaseColor()
-            passwordTextField.backgroundColor = UIColor.getLightBaseColor()
-            
-            userNameTextField.setValue(UIColor(white: 1, alpha: 0.7), forKeyPath: "placeholderLabel.textColor")
-            passwordTextField.setValue(UIColor(white: 1, alpha: 0.7), forKeyPath: "placeholderLabel.textColor")
-            
-            registerLabel.textColor = UIColor.getBaseColor()
-            
-            userNameTextField.textColor = UIColor.white
-            passwordTextField.textColor = UIColor.white
-        }
-        
     }
     
     

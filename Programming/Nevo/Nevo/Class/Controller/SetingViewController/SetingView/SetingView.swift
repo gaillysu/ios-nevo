@@ -77,9 +77,7 @@ class SetingView: UIView {
         cell?.viewDefaultColorful()
 
         if indexPath.row == 0 && indexPath.section == 1 {
-            if !AppTheme.isTargetLunaR_OR_Nevo() {
-                cell?.textLabel?.text = "My LunaR";
-            }
+
             let connectionController = AppDelegate.getAppDelegate().getMconnectionController()!
             var statusString = NSLocalizedString("Disconnected", comment: "")
             var color = UIColor.darkRed()

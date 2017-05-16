@@ -57,7 +57,6 @@ extension NotiColorController {
             notification?.colorKey = notificationColors[indexPath.row].key
             tableView.reloadData()
         }
-         AppDelegate.getAppDelegate().deleteAllLunaRNotfication()
     }
     
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {

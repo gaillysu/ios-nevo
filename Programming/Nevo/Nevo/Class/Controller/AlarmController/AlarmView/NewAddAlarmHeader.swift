@@ -36,18 +36,10 @@ class NewAddAlarmHeader: UITableViewHeaderFooterView {
         
         alarmType.viewDefaultColorful()
         
-        if !AppTheme.isTargetLunaR_OR_Nevo() {
-            backgroundColor = UIColor.getLunarTabBarColor()
-            contentView.backgroundColor = UIColor.getLunarTabBarColor()
-            alarmType.backgroundColor = UIColor.getLunarTabBarColor()
-            
-            bottomLineView.backgroundColor = UIColor("#AAAAB4")
-        } else {
-            backgroundColor = UIColor.getNevoTabBarColor()
-            contentView.backgroundColor = UIColor.getNevoTabBarColor()
-            alarmType.backgroundColor = UIColor.getNevoTabBarColor()
-            
-            bottomLineView.backgroundColor = UIColor.getBaseColor()
-        }
+        backgroundColor = UIColor.getNevoTabBarColor()
+        contentView.backgroundColor = UIColor.getNevoTabBarColor()
+        alarmType.backgroundColor = UIColor.getNevoTabBarColor()
+        
+        bottomLineView.backgroundColor = UIColor.getBaseColor()
     }
 }

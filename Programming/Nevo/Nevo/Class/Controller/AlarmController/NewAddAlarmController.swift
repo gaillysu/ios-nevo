@@ -227,7 +227,7 @@ extension NewAddAlarmController {
     func addTipsLabel() {
         let view = UIView(frame:CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width - 20, height: 120))
         
-        let tipsString = NSLocalizedString(AppTheme.isTargetLunaR_OR_Nevo() ? "tips_content" : "tips_content_lunar", comment: "")
+        let tipsString = NSLocalizedString("tips_content", comment: "")
         
         let tipsLabel = UILabel(frame: CGRect(x: 10,y: -20, width: UIScreen.main.bounds.size.width - 20, height: 120))
         tipsLabel.viewDefaultColorful()

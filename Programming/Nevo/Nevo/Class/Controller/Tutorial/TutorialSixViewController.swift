@@ -24,36 +24,16 @@ class TutorialSixViewController: UIViewController{
     }
 
     override func viewDidLoad() {
-        print("LOLOL")
-        
-        styleEvolve()
+
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        self.setLunaRtext()
     }
     
     @IBAction func tapToContinueAction(_ sender: AnyObject) {
         if let mainController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController() {
             UIApplication.shared.keyWindow?.rootViewController = mainController
         }
-    }
-}
-
-extension TutorialSixViewController {
-    fileprivate func styleEvolve() {
-        if !AppTheme.isTargetLunaR_OR_Nevo() {
-            view.backgroundColor = UIColor.getGreyColor()
-            titleLabel.backgroundColor = UIColor.clear
-            titleLabel.textColor = UIColor.white
-            tapToContinueButton.backgroundColor = UIColor.getBaseColor()
-            imageView.image = UIImage(named: "lunar_connected")
-        }
-    }
-    
-    func setLunaRtext() {
-        titleLabel.text = titleLabel.text?.replacingOccurrences(of: "nevo watch", with: "LunaR")
-        titleLabel.text = titleLabel.text?.replacingOccurrences(of: "nevo", with: "LunaR")
     }
 }

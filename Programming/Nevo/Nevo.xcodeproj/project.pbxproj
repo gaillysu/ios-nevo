@@ -24,30 +24,6 @@
 		0036EB091C48BA8300DCED46 /* turnonnevo.png in Resources */ = {isa = PBXBuildFile; fileRef = 0036EB031C48BA8300DCED46 /* turnonnevo.png */; };
 		0036EB0A1C48BA8300DCED46 /* tutorialone.png in Resources */ = {isa = PBXBuildFile; fileRef = 0036EB041C48BA8300DCED46 /* tutorialone.png */; };
 		0036EB0D1C48C36700DCED46 /* bluetoothoff_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 0036EB0B1C48C36700DCED46 /* bluetoothoff_background.png */; };
-		0037EC1E1D235F5300502140 /* Firmwares in Resources */ = {isa = PBXBuildFile; fileRef = 0050D69A1C2906D8004F6F80 /* Firmwares */; };
-		0037EC1F1D235F5300502140 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 00A773911A88562F0018E121 /* Localizable.strings */; };
-		0037EC271D235F5300502140 /* nevoWhiteLEDImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 00E650A21C8425E600278D3E /* nevoWhiteLEDImage.png */; };
-		0037EC281D235F5300502140 /* nevoFontImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 00E650981C83DD9000278D3E /* nevoFontImage.png */; };
-		0037EC2A1D235F5300502140 /* bluetoothoff_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 0036EB0B1C48C36700DCED46 /* bluetoothoff_background.png */; };
-		0037EC2C1D235F5300502140 /* connected.png in Resources */ = {isa = PBXBuildFile; fileRef = 0036EAFF1C48BA8300DCED46 /* connected.png */; };
-		0037EC2F1D235F5300502140 /* settimer.png in Resources */ = {isa = PBXBuildFile; fileRef = 0036EB021C48BA8300DCED46 /* settimer.png */; };
-		0037EC301D235F5300502140 /* turnonnevo.png in Resources */ = {isa = PBXBuildFile; fileRef = 0036EB031C48BA8300DCED46 /* turnonnevo.png */; };
-		0037EC311D235F5300502140 /* tutorialone.png in Resources */ = {isa = PBXBuildFile; fileRef = 0036EB041C48BA8300DCED46 /* tutorialone.png */; };
-		0037EC351D235F5300502140 /* upgrade_clock.png in Resources */ = {isa = PBXBuildFile; fileRef = 00E759171C2406E600372529 /* upgrade_clock.png */; };
-		0037EC361D235F5300502140 /* firmware_clock.png in Resources */ = {isa = PBXBuildFile; fileRef = 00E759131C23E83200372529 /* firmware_clock.png */; };
-		0037EC391D235F5300502140 /* nevo_wacth.png in Resources */ = {isa = PBXBuildFile; fileRef = 001F1B7A1B57777B001DD426 /* nevo_wacth.png */; };
-		0037EC3A1D235F5300502140 /* clockViewHour.png in Resources */ = {isa = PBXBuildFile; fileRef = 00478F4D1A8F637D00D0DCE2 /* clockViewHour.png */; };
-		0037EC3B1D235F5300502140 /* clockViewMinute.png in Resources */ = {isa = PBXBuildFile; fileRef = 00478F4E1A8F637D00D0DCE2 /* clockViewMinute.png */; };
-		0037EC3C1D235F5300502140 /* clockView600.png in Resources */ = {isa = PBXBuildFile; fileRef = 00C640F51A8DEE0800815CF8 /* clockView600.png */; };
-		0037EC4D1D2385DF00502140 /* Raleway-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0037EC441D2385DF00502140 /* Raleway-Bold.ttf */; };
-		0037EC4E1D2385DF00502140 /* Raleway-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0037EC451D2385DF00502140 /* Raleway-ExtraBold.ttf */; };
-		0037EC4F1D2385DF00502140 /* Raleway-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0037EC461D2385DF00502140 /* Raleway-ExtraLight.ttf */; };
-		0037EC501D2385DF00502140 /* Raleway-Heavy.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0037EC471D2385DF00502140 /* Raleway-Heavy.ttf */; };
-		0037EC511D2385DF00502140 /* Raleway-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0037EC481D2385DF00502140 /* Raleway-Light.ttf */; };
-		0037EC521D2385DF00502140 /* Raleway-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0037EC491D2385DF00502140 /* Raleway-Medium.ttf */; };
-		0037EC531D2385DF00502140 /* Raleway-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0037EC4A1D2385DF00502140 /* Raleway-Regular.ttf */; };
-		0037EC541D2385DF00502140 /* Raleway-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0037EC4B1D2385DF00502140 /* Raleway-SemiBold.ttf */; };
-		0037EC551D2385DF00502140 /* Raleway-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0037EC4C1D2385DF00502140 /* Raleway-Thin.ttf */; };
 		00478F4F1A8F637D00D0DCE2 /* clockViewHour.png in Resources */ = {isa = PBXBuildFile; fileRef = 00478F4D1A8F637D00D0DCE2 /* clockViewHour.png */; };
 		00478F501A8F637D00D0DCE2 /* clockViewMinute.png in Resources */ = {isa = PBXBuildFile; fileRef = 00478F4E1A8F637D00D0DCE2 /* clockViewMinute.png */; };
 		004F74DF1D800EAA0048BA09 /* UserProfileController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 004F74DE1D800EAA0048BA09 /* UserProfileController.xib */; };
@@ -81,175 +57,10 @@
 		0095DDA91D2E0D7D00F80BFD /* wacth_dial.png in Resources */ = {isa = PBXBuildFile; fileRef = 0095DDA61D2E0D7D00F80BFD /* wacth_dial.png */; };
 		0095DDAA1D2E0D7D00F80BFD /* wacth_hour.png in Resources */ = {isa = PBXBuildFile; fileRef = 0095DDA71D2E0D7D00F80BFD /* wacth_hour.png */; };
 		0095DDAB1D2E0D7D00F80BFD /* wacth_mint.png in Resources */ = {isa = PBXBuildFile; fileRef = 0095DDA81D2E0D7D00F80BFD /* wacth_mint.png */; };
-		0095DDAC1D2E0E5500F80BFD /* wacth_dial.png in Resources */ = {isa = PBXBuildFile; fileRef = 0095DDA61D2E0D7D00F80BFD /* wacth_dial.png */; };
-		0095DDAD1D2E0E5500F80BFD /* wacth_hour.png in Resources */ = {isa = PBXBuildFile; fileRef = 0095DDA71D2E0D7D00F80BFD /* wacth_hour.png */; };
-		0095DDAE1D2E0E5500F80BFD /* wacth_mint.png in Resources */ = {isa = PBXBuildFile; fileRef = 0095DDA81D2E0D7D00F80BFD /* wacth_mint.png */; };
 		009703C71C9BDB3200F2FF0D /* UserProfileCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 009703C51C9BDB3200F2FF0D /* UserProfileCell.xib */; };
 		00A773961A88562F0018E121 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 00A773911A88562F0018E121 /* Localizable.strings */; };
 		00BF2D9B1C7FED2200909316 /* VideoPlayController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00BF2D991C7FED2200909316 /* VideoPlayController.xib */; };
 		00C640F61A8DEE0800815CF8 /* clockView600.png in Resources */ = {isa = PBXBuildFile; fileRef = 00C640F51A8DEE0800815CF8 /* clockView600.png */; };
-		00C826441DA5E04000ECECEE /* AnalysisLineChartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006DA3121D6ED6670011E09C /* AnalysisLineChartCell.swift */; };
-		00C826451DA5E04000ECECEE /* AnalysisLineChartCell.xib in Sources */ = {isa = PBXBuildFile; fileRef = 006DA3131D6ED6670011E09C /* AnalysisLineChartCell.xib */; };
-		00C826461DA5E04000ECECEE /* AnalysisRadarViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006DA3141D6ED6670011E09C /* AnalysisRadarViewCell.swift */; };
-		00C826471DA5E04000ECECEE /* AnalysisRadarViewCell.xib in Sources */ = {isa = PBXBuildFile; fileRef = 006DA3151D6ED6670011E09C /* AnalysisRadarViewCell.xib */; };
-		00C826481DA5E04000ECECEE /* AnalysisRadarChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006DA30A1D6ED5910011E09C /* AnalysisRadarChartView.swift */; };
-		00C826491DA5E04000ECECEE /* AnalysisStepsChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006DA30B1D6ED5910011E09C /* AnalysisStepsChartView.swift */; };
-		00C8264A1DA5E04000ECECEE /* AnalysisValueCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006DA30E1D6ED5C40011E09C /* AnalysisValueCell.swift */; };
-		00C8264B1DA5E04000ECECEE /* AnalysisValueCell.xib in Sources */ = {isa = PBXBuildFile; fileRef = 006DA30F1D6ED5C40011E09C /* AnalysisValueCell.xib */; };
-		00C8264C1DA5E04000ECECEE /* AnalysisController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006DA3071D6EC89F0011E09C /* AnalysisController.swift */; };
-		00C8264D1DA5E04000ECECEE /* ProfileSetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0089B0A11D6BF0CB0041148A /* ProfileSetupViewController.swift */; };
-		00C8264E1DA5E04000ECECEE /* CheckYourIndoxController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0089B0901D6BE9410041148A /* CheckYourIndoxController.swift */; };
-		00C8264F1DA5E04000ECECEE /* ForgotPasswordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0089B0931D6BE9410041148A /* ForgotPasswordController.swift */; };
-		00C826501DA5E04000ECECEE /* InformationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0089B0961D6BE9410041148A /* InformationController.swift */; };
-		00C826511DA5E04000ECECEE /* LineLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006A62511D6AA75100458305 /* LineLabel.swift */; };
-		00C826521DA5E04000ECECEE /* SolarIndicatorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006A62481D6AA62100458305 /* SolarIndicatorController.swift */; };
-		00C826541DA5E04000ECECEE /* SolarInforViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006A624A1D6AA62100458305 /* SolarInforViewCell.swift */; };
-		00C826551DA5E04000ECECEE /* SolarInforViewCell.xib in Sources */ = {isa = PBXBuildFile; fileRef = 006A624B1D6AA62100458305 /* SolarInforViewCell.xib */; };
-		00C826561DA5E04000ECECEE /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006A62241D6AA53100458305 /* PageViewController.swift */; };
-		00C8265B1DA5E04000ECECEE /* UserHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00120E751D7550D500CE0C32 /* UserHeader.swift */; };
-		00C8265C1DA5E04000ECECEE /* UserHeader.xib in Sources */ = {isa = PBXBuildFile; fileRef = 00120E761D7550D500CE0C32 /* UserHeader.xib */; };
-		00C8265D1DA5E04000ECECEE /* UserProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009703C01C9BD9D700F2FF0D /* UserProfileController.swift */; };
-		00C8265E1DA5E04000ECECEE /* UserProfileController.xib in Sources */ = {isa = PBXBuildFile; fileRef = 004F74DE1D800EAA0048BA09 /* UserProfileController.xib */; };
-		00C8265F1DA5E04000ECECEE /* UserProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009703C41C9BDB3200F2FF0D /* UserProfileCell.swift */; };
-		00C826601DA5E04000ECECEE /* UserProfileCell.xib in Sources */ = {isa = PBXBuildFile; fileRef = 009703C51C9BDB3200F2FF0D /* UserProfileCell.xib */; };
-		00C826611DA5E04000ECECEE /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00321D771C993C320069BFCC /* LoginController.swift */; };
-		00C826621DA5E04000ECECEE /* VideoPlayController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00BF2D981C7FED2200909316 /* VideoPlayController.swift */; };
-		00C826631DA5E04000ECECEE /* VideoPlayController.xib in Sources */ = {isa = PBXBuildFile; fileRef = 00BF2D991C7FED2200909316 /* VideoPlayController.xib */; };
-		00C826641DA5E04000ECECEE /* SupportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00344F5A1C47A86800C2FC7A /* SupportViewController.swift */; };
-		00C826651DA5E04000ECECEE /* SupportViewController.xib in Sources */ = {isa = PBXBuildFile; fileRef = 00344F5B1C47A86800C2FC7A /* SupportViewController.xib */; };
-		00C826681DA5E04000ECECEE /* AlarmClockVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006A625B1D6AA79E00458305 /* AlarmClockVCell.swift */; };
-		00C826691DA5E04000ECECEE /* AlarmClockVCell.xib in Sources */ = {isa = PBXBuildFile; fileRef = 006A625C1D6AA79E00458305 /* AlarmClockVCell.xib */; };
-		00C8266C1DA5E04000ECECEE /* RepeatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0017DC0F1C8812640058A065 /* RepeatViewController.swift */; };
-		00C8266E1DA5E04000ECECEE /* AddAlarmController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0050D6851C28E1CD004F6F80 /* AddAlarmController.swift */; };
-		00C826701DA5E04000ECECEE /* NewAddAlarmController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F0C3511C8993DD005888A7 /* NewAddAlarmController.swift */; };
-		00C826721DA5E04000ECECEE /* AlarmClockController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0050D68E1C28E1CD004F6F80 /* AlarmClockController.swift */; };
-		00C8267A1DA5E04000ECECEE /* NewAddAlarmHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006A62551D6AA76C00458305 /* NewAddAlarmHeader.swift */; };
-		00C826811DA5E04000ECECEE /* MyNevoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0050D52C1C28E0DB004F6F80 /* MyNevoController.swift */; };
-		00C826821DA5E04000ECECEE /* MyNevoController.xib in Sources */ = {isa = PBXBuildFile; fileRef = 0050D52D1C28E0DB004F6F80 /* MyNevoController.xib */; };
-		00C826831DA5E04000ECECEE /* MyNevoHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0050D52F1C28E0DB004F6F80 /* MyNevoHeaderView.swift */; };
-		00C826841DA5E04000ECECEE /* MyNevoHeaderView.xib in Sources */ = {isa = PBXBuildFile; fileRef = 0050D5301C28E0DB004F6F80 /* MyNevoHeaderView.xib */; };
-		00C826851DA5E04000ECECEE /* MyNevoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0050D5311C28E0DB004F6F80 /* MyNevoView.swift */; };
-		00C826871DA5E04000ECECEE /* DeviceScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0050D5351C28E0DB004F6F80 /* DeviceScannerView.swift */; };
-		00C826881DA5E04000ECECEE /* NevoOtaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0050D5361C28E0DB004F6F80 /* NevoOtaView.swift */; };
-		00C826891DA5E04000ECECEE /* SelectFileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0050D5371C28E0DB004F6F80 /* SelectFileView.swift */; };
-		00C8268A1DA5E04000ECECEE /* NevoOtaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0050D5381C28E0DB004F6F80 /* NevoOtaViewController.swift */; };
-		00C8268B1DA5E04000ECECEE /* NevoOtaViewController.xib in Sources */ = {isa = PBXBuildFile; fileRef = 0050D5391C28E0DB004F6F80 /* NevoOtaViewController.xib */; };
-		00C8268C1DA5E04000ECECEE /* LineColorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0050D53C1C28E0DB004F6F80 /* LineColorCell.swift */; };
-		00C8268D1DA5E04000ECECEE /* LineColorCell.xib in Sources */ = {isa = PBXBuildFile; fileRef = 0050D53D1C28E0DB004F6F80 /* LineColorCell.xib */; };
-		00C8268E1DA5E04000ECECEE /* NotificationClockCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0050D53E1C28E0DB004F6F80 /* NotificationClockCell.swift */; };
-		00C8268F1DA5E04000ECECEE /* NotificationClockCell.xib in Sources */ = {isa = PBXBuildFile; fileRef = 0050D53F1C28E0DB004F6F80 /* NotificationClockCell.xib */; };
-		00C826901DA5E04000ECECEE /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0050D5401C28E0DB004F6F80 /* NotificationView.swift */; };
-		00C826911DA5E04000ECECEE /* SelectedNotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0050D5411C28E0DB004F6F80 /* SelectedNotificationView.swift */; };
-		00C826921DA5E04000ECECEE /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0050D5421C28E0DB004F6F80 /* NotificationViewController.swift */; };
-		00C826931DA5E04000ECECEE /* NotificationViewController.xib in Sources */ = {isa = PBXBuildFile; fileRef = 0050D5431C28E0DB004F6F80 /* NotificationViewController.xib */; };
-		00C826941DA5E04000ECECEE /* SelectedNotificationTypeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0050D5441C28E0DB004F6F80 /* SelectedNotificationTypeController.swift */; };
-		00C826951DA5E04000ECECEE /* SelectedNotificationTypeController.xib in Sources */ = {isa = PBXBuildFile; fileRef = 0050D5451C28E0DB004F6F80 /* SelectedNotificationTypeController.xib */; };
-		00C826981DA5E04000ECECEE /* PresetTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0050D5511C28E0DB004F6F80 /* PresetTableViewController.swift */; };
-		00C826991DA5E04000ECECEE /* PresetTableViewController.xib in Sources */ = {isa = PBXBuildFile; fileRef = 0050D5521C28E0DB004F6F80 /* PresetTableViewController.xib */; };
-		00C8269B1DA5E04000ECECEE /* PresetTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0050D5551C28E0DB004F6F80 /* PresetTableViewCell.swift */; };
-		00C8269C1DA5E04000ECECEE /* PresetTableViewCell.xib in Sources */ = {isa = PBXBuildFile; fileRef = 0050D5561C28E0DB004F6F80 /* PresetTableViewCell.xib */; };
-		00C8269D1DA5E04000ECECEE /* PresetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0050D5571C28E0DB004F6F80 /* PresetView.swift */; };
-		00C8269E1DA5E04000ECECEE /* SetingInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0089B0A61D6BFF250041148A /* SetingInfoCell.swift */; };
-		00C8269F1DA5E04000ECECEE /* SetingInfoCell.xib in Sources */ = {isa = PBXBuildFile; fileRef = 0089B0A71D6BFF250041148A /* SetingInfoCell.xib */; };
-		00C826A21DA5E04000ECECEE /* SetingNotLoginCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0089B0AA1D6BFF250041148A /* SetingNotLoginCell.swift */; };
-		00C826A41DA5E04000ECECEE /* SetingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0089B0AC1D6BFF250041148A /* SetingView.swift */; };
-		00C826A51DA5E04000ECECEE /* SetingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0050D55D1C28E0DB004F6F80 /* SetingViewController.swift */; };
-		00C826A61DA5E04000ECECEE /* SleepHistoricalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006A62331D6AA5F100458305 /* SleepHistoricalView.swift */; };
-		00C826A71DA5E04000ECECEE /* SleepHistoryViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0089B0B41D6C4BDC0041148A /* SleepHistoryViewCell.swift */; };
-		00C826A81DA5E04000ECECEE /* SleepHistoryViewCell.xib in Sources */ = {isa = PBXBuildFile; fileRef = 0089B0B51D6C4BDC0041148A /* SleepHistoryViewCell.xib */; };
-		00C826A91DA5E04000ECECEE /* SleepHistoricalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006A62341D6AA5F200458305 /* SleepHistoricalViewController.swift */; };
-		00C826AB1DA5E04000ECECEE /* StepGoalSetingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006A62651D6AB44A00458305 /* StepGoalSetingController.swift */; };
-		00C826AC1DA5E04000ECECEE /* StepGoalSetingController.xib in Sources */ = {isa = PBXBuildFile; fileRef = 006A62661D6AB44A00458305 /* StepGoalSetingController.xib */; };
-		00C826AD1DA5E04000ECECEE /* StepGoalSetingViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006A62671D6AB44A00458305 /* StepGoalSetingViewCell.swift */; };
-		00C826AE1DA5E04000ECECEE /* StepGoalSetingViewCell.xib in Sources */ = {isa = PBXBuildFile; fileRef = 006A62681D6AB44A00458305 /* StepGoalSetingViewCell.xib */; };
-		00C826AF1DA5E04000ECECEE /* StepsHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006A62691D6AB44A00458305 /* StepsHistoryViewController.swift */; };
-		00C826B11DA5E04000ECECEE /* StepsTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006A626B1D6AB44A00458305 /* StepsTitleView.swift */; };
-		00C826B21DA5E04000ECECEE /* StepsTitleView.xib in Sources */ = {isa = PBXBuildFile; fileRef = 006A626C1D6AB44A00458305 /* StepsTitleView.xib */; };
-		00C826B31DA5E04000ECECEE /* TutorialOneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E98FB281C463A3B00BAB700 /* TutorialOneViewController.swift */; };
-		00C826B41DA5E04000ECECEE /* TutorialTwoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E98FB2A1C463BB200BAB700 /* TutorialTwoViewController.swift */; };
-		00C826B51DA5E04000ECECEE /* TutorialThreeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E98FB2C1C463D2A00BAB700 /* TutorialThreeViewController.swift */; };
-		00C826B61DA5E04000ECECEE /* TutorialFourViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E98FB2E1C463E1C00BAB700 /* TutorialFourViewController.swift */; };
-		00C826B71DA5E04000ECECEE /* TutorialFiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E98FB341C46405800BAB700 /* TutorialFiveViewController.swift */; };
-		00C826B81DA5E04000ECECEE /* TutorialSixViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E98FB3C1C46434100BAB700 /* TutorialSixViewController.swift */; };
-		00C826B91DA5E04000ECECEE /* TutorialSevenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E98FB361C4640AF00BAB700 /* TutorialSevenViewController.swift */; };
-		00C826BA1DA5E04000ECECEE /* SleepTutorialController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E6509A1C83EE6700278D3E /* SleepTutorialController.swift */; };
-		00C826BB1DA5E04000ECECEE /* MorningTutorialController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E6509E1C840FD500278D3E /* MorningTutorialController.swift */; };
-		00C826BC1DA5E05100ECECEE /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006A62211D6A9F1500458305 /* MainTabBarController.swift */; };
-		00C826C31DA5ECA700ECECEE /* AnalysisLineChartCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 006DA3131D6ED6670011E09C /* AnalysisLineChartCell.xib */; };
-		00C826C41DA5ECA700ECECEE /* AnalysisRadarViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 006DA3151D6ED6670011E09C /* AnalysisRadarViewCell.xib */; };
-		00C826C51DA5ECA700ECECEE /* AnalysisValueCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 006DA30F1D6ED5C40011E09C /* AnalysisValueCell.xib */; };
-		00C826C61DA5ECA700ECECEE /* ProfileSetupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0063BC511D98D641000BAB44 /* ProfileSetupViewController.xib */; };
-		00C826C71DA5ECA700ECECEE /* CheckYourIndoxController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0063BC441D98D59F000BAB44 /* CheckYourIndoxController.xib */; };
-		00C826C81DA5ECA700ECECEE /* ForgotPasswordController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0063BC2A1D98D456000BAB44 /* ForgotPasswordController.xib */; };
-		00C826C91DA5ECA700ECECEE /* InformationController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0063BC371D98D4EC000BAB44 /* InformationController.xib */; };
-		00C826CB1DA5ECA700ECECEE /* SolarInforViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 006A624B1D6AA62100458305 /* SolarInforViewCell.xib */; };
-		00C826CE1DA5ECA700ECECEE /* UserHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00120E761D7550D500CE0C32 /* UserHeader.xib */; };
-		00C826CF1DA5ECA700ECECEE /* UserProfileController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 004F74DE1D800EAA0048BA09 /* UserProfileController.xib */; };
-		00C826D01DA5ECA700ECECEE /* UserProfileCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 009703C51C9BDB3200F2FF0D /* UserProfileCell.xib */; };
-		00C826D11DA5ECA700ECECEE /* LoginController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0063BC1D1D98CE85000BAB44 /* LoginController.xib */; };
-		00C826D21DA5ECA700ECECEE /* VideoPlayController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00BF2D991C7FED2200909316 /* VideoPlayController.xib */; };
-		00C826D31DA5ECA700ECECEE /* SupportViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00344F5B1C47A86800C2FC7A /* SupportViewController.xib */; };
-		00C826D51DA5ECA700ECECEE /* AlarmClockVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 006A625C1D6AA79E00458305 /* AlarmClockVCell.xib */; };
-		00C826DD1DA5ECA700ECECEE /* NewAddAlarmHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0091EB211D9513F90079EC39 /* NewAddAlarmHeader.xib */; };
-		00C826E11DA5ECA700ECECEE /* MyNevoController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0050D52D1C28E0DB004F6F80 /* MyNevoController.xib */; };
-		00C826E21DA5ECA700ECECEE /* MyNevoHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0050D5301C28E0DB004F6F80 /* MyNevoHeaderView.xib */; };
-		00C826E31DA5ECA700ECECEE /* NevoOtaViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0050D5391C28E0DB004F6F80 /* NevoOtaViewController.xib */; };
-		00C826E41DA5ECA700ECECEE /* LineColorCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0050D53D1C28E0DB004F6F80 /* LineColorCell.xib */; };
-		00C826E51DA5ECA700ECECEE /* NotificationClockCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0050D53F1C28E0DB004F6F80 /* NotificationClockCell.xib */; };
-		00C826E61DA5ECA700ECECEE /* NotificationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0050D5431C28E0DB004F6F80 /* NotificationViewController.xib */; };
-		00C826E71DA5ECA700ECECEE /* SelectedNotificationTypeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0050D5451C28E0DB004F6F80 /* SelectedNotificationTypeController.xib */; };
-		00C826E91DA5ECA700ECECEE /* PresetTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0050D5521C28E0DB004F6F80 /* PresetTableViewController.xib */; };
-		00C826EA1DA5ECA700ECECEE /* PresetTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0050D5561C28E0DB004F6F80 /* PresetTableViewCell.xib */; };
-		00C826EB1DA5ECA700ECECEE /* SetingInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0089B0A71D6BFF250041148A /* SetingInfoCell.xib */; };
-		00C826EE1DA5ECA700ECECEE /* SleepHistoryViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0089B0B51D6C4BDC0041148A /* SleepHistoryViewCell.xib */; };
-		00C826F01DA5ECA700ECECEE /* StepGoalSetingController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 006A62661D6AB44A00458305 /* StepGoalSetingController.xib */; };
-		00C826F11DA5ECA700ECECEE /* StepGoalSetingViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 006A62681D6AB44A00458305 /* StepGoalSetingViewCell.xib */; };
-		00C826F31DA5ECA700ECECEE /* StepsTitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 006A626C1D6AB44A00458305 /* StepsTitleView.xib */; };
-		00C826F41DA5ECA700ECECEE /* TutorialOneViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00EC9DB01C8582E400280904 /* TutorialOneViewController.xib */; };
-		00C826F51DA5ECA700ECECEE /* TutorialTwoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00EC9DDC1C85834F00280904 /* TutorialTwoViewController.xib */; };
-		00C826F61DA5ECA700ECECEE /* TutorialThreeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00EC9DE71C85835F00280904 /* TutorialThreeViewController.xib */; };
-		00C826F71DA5ECA700ECECEE /* TutorialFourViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00EC9DF21C85837500280904 /* TutorialFourViewController.xib */; };
-		00C826F81DA5ECA700ECECEE /* TutorialFiveViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00EC9DFD1C85838900280904 /* TutorialFiveViewController.xib */; };
-		00C826F91DA5ECA700ECECEE /* TutorialSixViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00EC9E081C85839A00280904 /* TutorialSixViewController.xib */; };
-		00C826FA1DA5ECA700ECECEE /* TutorialSevenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00EC9E131C8583AA00280904 /* TutorialSevenViewController.xib */; };
-		00C826FB1DA5ECA700ECECEE /* SleepTutorialController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00EC9DC61C85832300280904 /* SleepTutorialController.xib */; };
-		00C826FC1DA5ECA700ECECEE /* MorningTutorialController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00EC9DD11C85833400280904 /* MorningTutorialController.xib */; };
-		00C826FD1DA5ECA700ECECEE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0091EB3B1D951D9E0079EC39 /* Main.storyboard */; };
-		00C826FF1DA5EDFD00ECECEE /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A2D6C3A1A9C6D9F00591BDC /* HealthKit.framework */; };
-		00D4742C1D586D1600E2447E /* CaloriesToHK.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C4D1D224CFA009047AC /* CaloriesToHK.swift */; };
-		00D4742D1D586D1600E2447E /* DailySteps.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C4E1D224CFA009047AC /* DailySteps.swift */; };
-		00D4742E1D586D1600E2447E /* DaySleep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C4F1D224CFA009047AC /* DaySleep.swift */; };
-		00D4742F1D586D1600E2447E /* HourlySteps.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C501D224CFA009047AC /* HourlySteps.swift */; };
-		00D474301D586D1600E2447E /* RealTimeCountSteps.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C511D224CFA009047AC /* RealTimeCountSteps.swift */; };
-		00D474311D586D1600E2447E /* RunningToHK.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C521D224CFA009047AC /* RunningToHK.swift */; };
-		00D474321D586D1600E2447E /* Alarm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C541D224CFA009047AC /* Alarm.swift */; };
-		00D474331D586D1600E2447E /* NewAlarm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C551D224CFA009047AC /* NewAlarm.swift */; };
-		00D474431D586D1600E2447E /* Goal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C6E1D224CFA009047AC /* Goal.swift */; };
-		00D474441D586D1600E2447E /* NumberOfStepsGoal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C6F1D224CFA009047AC /* NumberOfStepsGoal.swift */; };
-		00D474451D586D1600E2447E /* NotificationSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C711D224CFA009047AC /* NotificationSetting.swift */; };
-		00D474491D586D1600E2447E /* TestMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C771D224CFA009047AC /* TestMode.swift */; };
-		00D4744F1D586D1600E2447E /* PublicClassController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C7E1D224CFA009047AC /* PublicClassController.swift */; };
-		00D474501D586D1600E2447E /* PublicClassTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C7F1D224CFA009047AC /* PublicClassTableViewController.swift */; };
-		00D474521D586D1600E2447E /* AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C831D224CFA009047AC /* AppTheme.swift */; };
-		00D4745A1D586D1600E2447E /* ClockRefreshManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C8D1D224CFA009047AC /* ClockRefreshManager.swift */; };
-		00D4745B1D586D1600E2447E /* ConnectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C8F1D224CFA009047AC /* ConnectionController.swift */; };
-		00D4745C1D586D1600E2447E /* ConnectionControllerImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C901D224CFA009047AC /* ConnectionControllerImpl.swift */; };
-		00D4745D1D586D1600E2447E /* ConnectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C911D224CFA009047AC /* ConnectionManager.swift */; };
-		00D4745E1D586D1600E2447E /* NevoProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C921D224CFA009047AC /* NevoProfile.swift */; };
-		00D474611D586D1600E2447E /* NevoOTAControllerProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C971D224CFA009047AC /* NevoOTAControllerProfile.swift */; };
-		00D474621D586D1600E2447E /* NevoOTAModeProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C981D224CFA009047AC /* NevoOTAModeProfile.swift */; };
-		00D474631D586D1600E2447E /* NevoOTAPacketProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C991D224CFA009047AC /* NevoOTAPacketProfile.swift */; };
-		00D474641D586D1600E2447E /* NevoOTARequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C9A1D224CFA009047AC /* NevoOTARequest.swift */; };
-		00D474651D586D1600E2447E /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C9B1D224CFA009047AC /* Utility.swift */; };
-		00D4747B1D586D1600E2447E /* SyncQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8CB31D224CFA009047AC /* SyncQueue.swift */; };
-		00D474861D586D1600E2447E /* NevoHK.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2D6C3D1A9C71E500591BDC /* NevoHK.swift */; };
-		00D474871D586D1600E2447E /* NevoHKManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2D6C3F1A9C783800591BDC /* NevoHKManager.swift */; };
-		00D474881D586D1600E2447E /* HealthKit.framework in Sources */ = {isa = PBXBuildFile; fileRef = 9A2D6C3A1A9C6D9F00591BDC /* HealthKit.framework */; };
-		00D4748B1D586D1600E2447E /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD8F9821A6E2C8E00F01014 /* Request.swift */; };
-		00D4748C1D586D1600E2447E /* NevoBTimpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD8F9611A6E00E800F01014 /* NevoBTimpl.swift */; };
-		00D4748D1D586D1600E2447E /* NevoBT.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD8F9781A6E05F700F01014 /* NevoBT.swift */; };
-		00D4748E1D586D1600E2447E /* RawPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD8F98C1A6E2D6E00F01014 /* RawPacket.swift */; };
-		00D4748F1D586D1600E2447E /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD8F98E1A6E2EE000F01014 /* Profile.swift */; };
 		00E650991C83DD9000278D3E /* nevoFontImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 00E650981C83DD9000278D3E /* nevoFontImage.png */; };
 		00E650A31C8425E600278D3E /* nevoWhiteLEDImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 00E650A21C8425E600278D3E /* nevoWhiteLEDImage.png */; };
 		00E759141C23E83200372529 /* firmware_clock.png in Resources */ = {isa = PBXBuildFile; fileRef = 00E759131C23E83200372529 /* firmware_clock.png */; };
@@ -263,7 +74,6 @@
 		00EC9DFB1C85838900280904 /* TutorialFiveViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00EC9DFD1C85838900280904 /* TutorialFiveViewController.xib */; };
 		00EC9E061C85839A00280904 /* TutorialSixViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00EC9E081C85839A00280904 /* TutorialSixViewController.xib */; };
 		00EC9E111C8583AA00280904 /* TutorialSevenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00EC9E131C8583AA00280904 /* TutorialSevenViewController.xib */; };
-		1C3712D81DBC5BF2007DC349 /* UIView+MEDExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C3712D61DBC5BF2007DC349 /* UIView+MEDExtension.swift */; };
 		3AF3D240B5808E80F5B2A19E /* Pods_Nevo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C2AEB04A0C7F45FE876ABED /* Pods_Nevo.framework */; };
 		611D412D1DCAD97C003BC6E3 /* MEDForgetPasswordRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6688A64B1DC981980078E636 /* MEDForgetPasswordRequest.swift */; };
 		611D412E1DCAD97C003BC6E3 /* MEDLoginRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6688A64D1DC981980078E636 /* MEDLoginRequest.swift */; };
@@ -440,43 +250,21 @@
 		611D426B1DCAD97D003BC6E3 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006A62211D6A9F1500458305 /* MainTabBarController.swift */; };
 		612DB7171DEFC7BE000B1747 /* AllowNotificationsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 612DB7151DEFC7BE000B1747 /* AllowNotificationsTableViewCell.swift */; };
 		612DB7181DEFC7BE000B1747 /* AllowNotificationsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 612DB7161DEFC7BE000B1747 /* AllowNotificationsTableViewCell.xib */; };
-		612DB7191DEFCFBB000B1747 /* AllowNotificationsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 612DB7151DEFC7BE000B1747 /* AllowNotificationsTableViewCell.swift */; };
-		612DB71A1DEFCFC2000B1747 /* AllowNotificationsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 612DB7161DEFC7BE000B1747 /* AllowNotificationsTableViewCell.xib */; };
 		614662A11DC9CEFC001E57CC /* lunar_settime.png in Resources */ = {isa = PBXBuildFile; fileRef = 614662A01DC9CEFC001E57CC /* lunar_settime.png */; };
-		614662A21DC9D081001E57CC /* lunar_settime.png in Resources */ = {isa = PBXBuildFile; fileRef = 614662A01DC9CEFC001E57CC /* lunar_settime.png */; };
 		614662A41DC9D363001E57CC /* lunar_open_bt.png in Resources */ = {isa = PBXBuildFile; fileRef = 614662A31DC9D363001E57CC /* lunar_open_bt.png */; };
-		614662A51DC9D3B5001E57CC /* lunar_open_bt.png in Resources */ = {isa = PBXBuildFile; fileRef = 614662A31DC9D363001E57CC /* lunar_open_bt.png */; };
 		614662A71DC9D715001E57CC /* lunar_search.png in Resources */ = {isa = PBXBuildFile; fileRef = 614662A61DC9D715001E57CC /* lunar_search.png */; };
-		614662A81DC9D77F001E57CC /* lunar_search.png in Resources */ = {isa = PBXBuildFile; fileRef = 614662A61DC9D715001E57CC /* lunar_search.png */; };
 		614662AA1DC9DECC001E57CC /* lunar_not_connect.png in Resources */ = {isa = PBXBuildFile; fileRef = 614662A91DC9DECC001E57CC /* lunar_not_connect.png */; };
-		614662AB1DC9DEE8001E57CC /* lunar_not_connect.png in Resources */ = {isa = PBXBuildFile; fileRef = 614662A91DC9DECC001E57CC /* lunar_not_connect.png */; };
 		6165A6371DEBC32500F7A3E6 /* NotificationTypeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6165A6351DEBC32500F7A3E6 /* NotificationTypeCell.swift */; };
 		6165A6381DEBC32500F7A3E6 /* NotificationTypeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6165A6361DEBC32500F7A3E6 /* NotificationTypeCell.xib */; };
-		6165A6391DEBC33500F7A3E6 /* NotificationTypeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6165A6351DEBC32500F7A3E6 /* NotificationTypeCell.swift */; };
-		6165A63A1DEBC33800F7A3E6 /* NotificationTypeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6165A6361DEBC32500F7A3E6 /* NotificationTypeCell.xib */; };
 		616DCB111DD1A69D00B5773E /* lunar_connected.png in Resources */ = {isa = PBXBuildFile; fileRef = 616DCB101DD1A69D00B5773E /* lunar_connected.png */; };
-		616DCB121DD1A7E500B5773E /* lunar_connected.png in Resources */ = {isa = PBXBuildFile; fileRef = 616DCB101DD1A69D00B5773E /* lunar_connected.png */; };
 		616E67341E8BA0D600C1F269 /* SyncStepsCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 616E67331E8BA0D600C1F269 /* SyncStepsCache.swift */; };
 		6173DEF31DB0E90C002DF6AF /* SolarIndicatorController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6173DEF61DB0E90C002DF6AF /* SolarIndicatorController.xib */; };
 		6173DEFF1DB0E93D002DF6AF /* SleepHistoricalViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6173DF021DB0E93D002DF6AF /* SleepHistoricalViewController.xib */; };
-		6173DF001DB0E93D002DF6AF /* SleepHistoricalViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6173DF021DB0E93D002DF6AF /* SleepHistoricalViewController.xib */; };
 		6173DF091DB0E993002DF6AF /* StepsHistoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6173DF0C1DB0E993002DF6AF /* StepsHistoryViewController.xib */; };
-		6173DF0A1DB0E993002DF6AF /* StepsHistoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6173DF0C1DB0E993002DF6AF /* StepsHistoryViewController.xib */; };
-		61798C2B1DE564250087891D /* Solar_Firmwares in Resources */ = {isa = PBXBuildFile; fileRef = 61798C2A1DE564250087891D /* Solar_Firmwares */; };
-		61798C2E1DE58F280087891D /* DFUFirmware in Resources */ = {isa = PBXBuildFile; fileRef = 61798C2D1DE58F280087891D /* DFUFirmware */; };
-		61798C2F1DE590F10087891D /* DFUFirmware in Resources */ = {isa = PBXBuildFile; fileRef = 61798C2D1DE58F280087891D /* DFUFirmware */; };
-		61879C2E1DC05B850089F1E5 /* cities.json in Resources */ = {isa = PBXBuildFile; fileRef = 61879C2C1DC05B850089F1E5 /* cities.json */; };
-		61879C2F1DC05B850089F1E5 /* timezones.json in Resources */ = {isa = PBXBuildFile; fileRef = 61879C2D1DC05B850089F1E5 /* timezones.json */; };
-		61879C311DC05C410089F1E5 /* cities.json in Resources */ = {isa = PBXBuildFile; fileRef = 61879C2C1DC05B850089F1E5 /* cities.json */; };
-		61879C321DC05C430089F1E5 /* timezones.json in Resources */ = {isa = PBXBuildFile; fileRef = 61879C2D1DC05B850089F1E5 /* timezones.json */; };
 		61CEC5BD1E2C5A2E001E5567 /* OldOtaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61CEC5B91E2C5A2E001E5567 /* OldOtaViewController.swift */; };
 		61CEC5BE1E2C5A2E001E5567 /* OldOtaViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 61CEC5BA1E2C5A2E001E5567 /* OldOtaViewController.xib */; };
 		61CEC5BF1E2C5A2E001E5567 /* ScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61CEC5BB1E2C5A2E001E5567 /* ScannerViewController.swift */; };
 		61CEC5C01E2C5A2E001E5567 /* ScannerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 61CEC5BC1E2C5A2E001E5567 /* ScannerViewController.xib */; };
-		61CEC5C11E2C5A3E001E5567 /* OldOtaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61CEC5B91E2C5A2E001E5567 /* OldOtaViewController.swift */; };
-		61CEC5C21E2C5A45001E5567 /* OldOtaViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 61CEC5BA1E2C5A2E001E5567 /* OldOtaViewController.xib */; };
-		61CEC5C31E2C5A48001E5567 /* ScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61CEC5BB1E2C5A2E001E5567 /* ScannerViewController.swift */; };
-		61CEC5C41E2C5A4B001E5567 /* ScannerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 61CEC5BC1E2C5A2E001E5567 /* ScannerViewController.xib */; };
 		61D1A8AA1DD468A100B91BDD /* MEDDataBaseRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61D1A8A31DD468A100B91BDD /* MEDDataBaseRequest.swift */; };
 		61D1A8AB1DD468A100B91BDD /* MEDUserAlarm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61D1A8A41DD468A100B91BDD /* MEDUserAlarm.swift */; };
 		61D1A8AC1DD468A100B91BDD /* MEDUserGoal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61D1A8A51DD468A100B91BDD /* MEDUserGoal.swift */; };
@@ -485,15 +273,10 @@
 		61D1A8AF1DD468A100B91BDD /* MEDUserSleep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61D1A8A81DD468A100B91BDD /* MEDUserSleep.swift */; };
 		61D1A8B01DD468A100B91BDD /* MEDUserSteps.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61D1A8A91DD468A100B91BDD /* MEDUserSteps.swift */; };
 		61E2A50B1E1DF86A009A563B /* LargeValueFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E2A50A1E1DF86A009A563B /* LargeValueFormatter.swift */; };
-		61E2A50C1E1DF878009A563B /* LargeValueFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E2A50A1E1DF86A009A563B /* LargeValueFormatter.swift */; };
 		61E2A50F1E1E2E58009A563B /* ChartFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E2A50E1E1E2E58009A563B /* ChartFormatter.swift */; };
-		61E2A5101E1E2EC9009A563B /* ChartFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E2A50E1E1E2E58009A563B /* ChartFormatter.swift */; };
 		61E2A5121E1E35CA009A563B /* AnalysisFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E2A5111E1E35CA009A563B /* AnalysisFormatter.swift */; };
-		61E2A5131E1E366B009A563B /* AnalysisFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E2A5111E1E35CA009A563B /* AnalysisFormatter.swift */; };
 		61E2A5151E1E5D6D009A563B /* MEDAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E2A5141E1E5D6D009A563B /* MEDAlertController.swift */; };
-		61E2A5161E1E5E01009A563B /* MEDAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E2A5141E1E5D6D009A563B /* MEDAlertController.swift */; };
 		61E2A5181E232D35009A563B /* PieChartDataFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E2A5171E232D35009A563B /* PieChartDataFormatter.swift */; };
-		61E2A5191E232D86009A563B /* PieChartDataFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E2A5171E232D35009A563B /* PieChartDataFormatter.swift */; };
 		61E8EC841E16017D004F0DBE /* ActionSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E8EC771E16017D004F0DBE /* ActionSheetView.swift */; };
 		61E8EC851E16017D004F0DBE /* AlertAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E8EC781E16017D004F0DBE /* AlertAction.swift */; };
 		61E8EC861E16017D004F0DBE /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E8EC791E16017D004F0DBE /* Color.swift */; };
@@ -506,204 +289,74 @@
 		61E8EC8E1E16017D004F0DBE /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E8EC811E16017D004F0DBE /* String+Extension.swift */; };
 		61E8EC8F1E16017D004F0DBE /* UnitValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E8EC821E16017D004F0DBE /* UnitValue.swift */; };
 		61E8EC901E16017D004F0DBE /* URL+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E8EC831E16017D004F0DBE /* URL+Extension.swift */; };
-		61E8EC911E160183004F0DBE /* ActionSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E8EC771E16017D004F0DBE /* ActionSheetView.swift */; };
-		61E8EC921E160185004F0DBE /* AlertAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E8EC781E16017D004F0DBE /* AlertAction.swift */; };
-		61E8EC931E160188004F0DBE /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E8EC791E16017D004F0DBE /* Color.swift */; };
-		61E8EC941E16018B004F0DBE /* DataCalculation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E8EC7A1E16017D004F0DBE /* DataCalculation.swift */; };
-		61E8EC951E16018F004F0DBE /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E8EC7B1E16017D004F0DBE /* Date+Extension.swift */; };
-		61E8EC961E160192004F0DBE /* Double+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E8EC7C1E16017D004F0DBE /* Double+Extension.swift */; };
-		61E8EC971E160196004F0DBE /* EventBusKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E8EC7D1E16017D004F0DBE /* EventBusKeys.swift */; };
-		61E8EC981E160199004F0DBE /* Float+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E8EC7E1E16017D004F0DBE /* Float+Extension.swift */; };
-		61E8EC9A1E1601A2004F0DBE /* NevoAllKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E8EC801E16017D004F0DBE /* NevoAllKeys.swift */; };
-		61E8EC9B1E1601AC004F0DBE /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E8EC811E16017D004F0DBE /* String+Extension.swift */; };
-		61E8EC9C1E1601BD004F0DBE /* UnitValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E8EC821E16017D004F0DBE /* UnitValue.swift */; };
-		61E8EC9D1E1601C0004F0DBE /* URL+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E8EC831E16017D004F0DBE /* URL+Extension.swift */; };
 		61EF09301DDEF09E003C2EA5 /* MEDBaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61D1A8B41DD46BF000B91BDD /* MEDBaseModel.swift */; };
-		61FC93EB1DE68060000AE93C /* MEDBaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61D1A8B41DD46BF000B91BDD /* MEDBaseModel.swift */; };
-		61FC93EC1DE68064000AE93C /* MEDUserAlarm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61D1A8A41DD468A100B91BDD /* MEDUserAlarm.swift */; };
-		61FC93ED1DE68067000AE93C /* MEDUserGoal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61D1A8A51DD468A100B91BDD /* MEDUserGoal.swift */; };
-		61FC93EE1DE6806B000AE93C /* MEDUserNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61D1A8A61DD468A100B91BDD /* MEDUserNotification.swift */; };
-		61FC93EF1DE6806D000AE93C /* MEDUserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61D1A8A71DD468A100B91BDD /* MEDUserProfile.swift */; };
-		61FC93F01DE68071000AE93C /* MEDUserSleep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61D1A8A81DD468A100B91BDD /* MEDUserSleep.swift */; };
-		61FC93F11DE68074000AE93C /* MEDUserSteps.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61D1A8A91DD468A100B91BDD /* MEDUserSteps.swift */; };
-		61FC93F31DE6810E000AE93C /* NotificationAppID in Resources */ = {isa = PBXBuildFile; fileRef = 61FC93F21DE6810E000AE93C /* NotificationAppID */; };
+		61F321AB1ECA97A900116F35 /* Solar_Firmwares in Resources */ = {isa = PBXBuildFile; fileRef = 61F321AA1ECA97A900116F35 /* Solar_Firmwares */; };
+		61F321AD1ECA9EFC00116F35 /* FindWatchRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61F321AC1ECA9EFC00116F35 /* FindWatchRequest.swift */; };
 		61FC93F41DE681E2000AE93C /* NotificationAppID in Resources */ = {isa = PBXBuildFile; fileRef = 61FC93F21DE6810E000AE93C /* NotificationAppID */; };
-		61FC93F51DE68B8A000AE93C /* MEDDataBaseRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61D1A8A31DD468A100B91BDD /* MEDDataBaseRequest.swift */; };
 		61FC93F71DE80B2D000AE93C /* SolarHarvest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61FC93F61DE80B2D000AE93C /* SolarHarvest.swift */; };
-		61FC93F81DE80B30000AE93C /* SolarHarvest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61FC93F61DE80B2D000AE93C /* SolarHarvest.swift */; };
 		660C16D01DEC25DA00544F56 /* UIImage+MEDExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 660C16CF1DEC25DA00544F56 /* UIImage+MEDExtension.swift */; };
-		660C16D11DEC25DA00544F56 /* UIImage+MEDExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 660C16CF1DEC25DA00544F56 /* UIImage+MEDExtension.swift */; };
 		66154B8D1DF68BC500973A9E /* NotiColorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66154B8C1DF68BC500973A9E /* NotiColorController.swift */; };
-		66154B8E1DF68BC500973A9E /* NotiColorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66154B8C1DF68BC500973A9E /* NotiColorController.swift */; };
 		66154BA51DF6A2D000973A9E /* NotiColorDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66154BA41DF6A2D000973A9E /* NotiColorDetailController.swift */; };
-		66154BA61DF6A2D000973A9E /* NotiColorDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66154BA41DF6A2D000973A9E /* NotiColorDetailController.swift */; };
 		66154BAE1DF6B7D400973A9E /* MEDNotificationColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66154BAD1DF6B7D400973A9E /* MEDNotificationColor.swift */; };
-		66154BAF1DF6B7D400973A9E /* MEDNotificationColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66154BAD1DF6B7D400973A9E /* MEDNotificationColor.swift */; };
-		662887521DC1E8BC00EC0983 /* MEDMRProgressOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 662887501DC1E8BC00EC0983 /* MEDMRProgressOverlayView.swift */; };
 		662B3CA91DEBD6E60014FA71 /* MEDAppInfoRequester.swift in Sources */ = {isa = PBXBuildFile; fileRef = 662B3CA81DEBD6E60014FA71 /* MEDAppInfoRequester.swift */; };
-		662B3CAA1DEBD6E60014FA71 /* MEDAppInfoRequester.swift in Sources */ = {isa = PBXBuildFile; fileRef = 662B3CA81DEBD6E60014FA71 /* MEDAppInfoRequester.swift */; };
 		662B3CAC1DEBD79A0014FA71 /* MEDAppInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 662B3CAB1DEBD79A0014FA71 /* MEDAppInfo.swift */; };
-		662B3CAD1DEBD79A0014FA71 /* MEDAppInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 662B3CAB1DEBD79A0014FA71 /* MEDAppInfo.swift */; };
 		664AE3311DF7C09C005CD385 /* NotiColorEditableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664AE32F1DF7C09C005CD385 /* NotiColorEditableCell.swift */; };
-		664AE3321DF7C09C005CD385 /* NotiColorEditableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664AE32F1DF7C09C005CD385 /* NotiColorEditableCell.swift */; };
 		664AE3331DF7C09C005CD385 /* NotiColorEditableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 664AE3301DF7C09C005CD385 /* NotiColorEditableCell.xib */; };
-		664AE3341DF7C09C005CD385 /* NotiColorEditableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 664AE3301DF7C09C005CD385 /* NotiColorEditableCell.xib */; };
 		664F45531E120A4D000AEDAE /* MEDSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664F45521E120A4D000AEDAE /* MEDSettings.swift */; };
 		6650988B1DCB0CF20059D5F7 /* MEDSleepCreateRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6650988A1DCB0CF20059D5F7 /* MEDSleepCreateRequest.swift */; };
-		6650988C1DCB0CF20059D5F7 /* MEDSleepCreateRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6650988A1DCB0CF20059D5F7 /* MEDSleepCreateRequest.swift */; };
 		6650988E1DCB0E220059D5F7 /* MEDSleepNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6650988D1DCB0E220059D5F7 /* MEDSleepNetworkManager.swift */; };
-		6650988F1DCB0E220059D5F7 /* MEDSleepNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6650988D1DCB0E220059D5F7 /* MEDSleepNetworkManager.swift */; };
 		665098911DCB23DC0059D5F7 /* MEDSleepUpdateRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 665098901DCB23DC0059D5F7 /* MEDSleepUpdateRequest.swift */; };
 		665098931DCB25110059D5F7 /* MEDSleepDeleteRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 665098921DCB25110059D5F7 /* MEDSleepDeleteRequest.swift */; };
-		665098941DCB26640059D5F7 /* MEDSleepUpdateRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 665098901DCB23DC0059D5F7 /* MEDSleepUpdateRequest.swift */; };
-		665098951DCB26670059D5F7 /* MEDSleepDeleteRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 665098921DCB25110059D5F7 /* MEDSleepDeleteRequest.swift */; };
 		665098971DCB28160059D5F7 /* MEDStepsDeleteRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 665098961DCB28160059D5F7 /* MEDStepsDeleteRequest.swift */; };
-		665098981DCB28160059D5F7 /* MEDStepsDeleteRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 665098961DCB28160059D5F7 /* MEDStepsDeleteRequest.swift */; };
-		6651E7E41E286704007DCDF1 /* UINavigationBar+MEDExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6651E7E31E286704007DCDF1 /* UINavigationBar+MEDExtension.swift */; };
 		6655C04E1E0A26C9006A8A9D /* Misc+MEDExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6655C04D1E0A26C9006A8A9D /* Misc+MEDExtension.swift */; };
-		6655C04F1E0A26C9006A8A9D /* Misc+MEDExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6655C04D1E0A26C9006A8A9D /* Misc+MEDExtension.swift */; };
 		6658D6ED1E1DDD4F00858DF0 /* AddAlarmDatePickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6658D6EC1E1DDD4F00858DF0 /* AddAlarmDatePickerCell.swift */; };
-		6658D6EE1E1DDD4F00858DF0 /* AddAlarmDatePickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6658D6EC1E1DDD4F00858DF0 /* AddAlarmDatePickerCell.swift */; };
-		665BD6A51DBEF186008C2623 /* NevoOtaController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61F85F4F1DAF5BF300F341B5 /* NevoOtaController.swift */; };
-		665BD6AB1DBEF1D0008C2623 /* BatteryLevelNevoPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C9D1D224CFA009047AC /* BatteryLevelNevoPacket.swift */; };
-		665BD6AC1DBEF1D0008C2623 /* DailyStepsNevoPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C9E1D224CFA009047AC /* DailyStepsNevoPacket.swift */; };
-		665BD6AD1DBEF1D0008C2623 /* DailyTrackerInfoNevoPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8C9F1D224CFA009047AC /* DailyTrackerInfoNevoPacket.swift */; };
-		665BD6AE1DBEF1D0008C2623 /* DailyTrackerNevoPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8CA01D224CFA009047AC /* DailyTrackerNevoPacket.swift */; };
-		665BD6AF1DBEF1D0008C2623 /* NevoPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8CA11D224CFA009047AC /* NevoPacket.swift */; };
-		665BD6B01DBEF1D0008C2623 /* WatchNamePacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005E468B1D87DBE1009B6E4C /* WatchNamePacket.swift */; };
-		665BD6B11DBEF1D0008C2623 /* FindPhonePacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E4DF1C1DB85C9800DDA737 /* FindPhonePacket.swift */; };
-		665BD6B21DBEF1D0008C2623 /* GetActivityRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8CA31D224CFA009047AC /* GetActivityRequest.swift */; };
-		665BD6B31DBEF1D0008C2623 /* GetStepsGoalRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8CA41D224CFA009047AC /* GetStepsGoalRequest.swift */; };
-		665BD6B41DBEF1D0008C2623 /* LedLightOnOffNevoRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8CA51D224CFA009047AC /* LedLightOnOffNevoRequest.swift */; };
-		665BD6B51DBEF1D0008C2623 /* NevoRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8CA61D224CFA009047AC /* NevoRequest.swift */; };
-		665BD6B61DBEF1D0008C2623 /* ReadBatteryLevelNevoRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8CA71D224CFA009047AC /* ReadBatteryLevelNevoRequest.swift */; };
-		665BD6B71DBEF1D0008C2623 /* ReadDailyTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8CA81D224CFA009047AC /* ReadDailyTracker.swift */; };
-		665BD6B81DBEF1D0008C2623 /* ReadDailyTrackerInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8CA91D224CFA009047AC /* ReadDailyTrackerInfo.swift */; };
-		665BD6B91DBEF1D0008C2623 /* SetAlarmRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8CAA1D224CFA009047AC /* SetAlarmRequest.swift */; };
-		665BD6BA1DBEF1D0008C2623 /* SetCardioRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8CAB1D224CFA009047AC /* SetCardioRequest.swift */; };
-		665BD6BB1DBEF1D0008C2623 /* SetGoalRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8CAC1D224CFA009047AC /* SetGoalRequest.swift */; };
-		665BD6BC1DBEF1D0008C2623 /* SetNewAlarmRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8CAD1D224CFA009047AC /* SetNewAlarmRequest.swift */; };
-		665BD6BD1DBEF1D0008C2623 /* SetNortificationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8CAE1D224CFA009047AC /* SetNortificationRequest.swift */; };
-		665BD6BE1DBEF1D0008C2623 /* SetProfileRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8CAF1D224CFA009047AC /* SetProfileRequest.swift */; };
-		665BD6BF1DBEF1D0008C2623 /* SetRTCRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8CB01D224CFA009047AC /* SetRTCRequest.swift */; };
-		665BD6C01DBEF1D0008C2623 /* WriteSettingRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF8CB21D224CFA009047AC /* WriteSettingRequest.swift */; };
-		665BD6C11DBEF1D0008C2623 /* GetWatchName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005E46891D879FB5009B6E4C /* GetWatchName.swift */; };
-		665BD6C21DBEF3C2008C2623 /* SolarIndicatorController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6173DEF61DB0E90C002DF6AF /* SolarIndicatorController.xib */; };
-		665BD6C51DBEF4C7008C2623 /* SetingNotLoginCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6690DF0C1DB8A84C0042FB9E /* SetingNotLoginCell.xib */; };
-		665BD6D91DBF1297008C2623 /* sunrise.png in Resources */ = {isa = PBXBuildFile; fileRef = 665BD6D71DBF1297008C2623 /* sunrise.png */; };
-		665BD6DA1DBF1297008C2623 /* sunset.png in Resources */ = {isa = PBXBuildFile; fileRef = 665BD6D81DBF1297008C2623 /* sunset.png */; };
-		665E331F1DADCD8A00D0E36D /* MEDBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 665E331D1DADCD8A00D0E36D /* MEDBanner.swift */; };
 		666027B71DE2D63D00E7CBD7 /* UICollectionView+MEDExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666027B61DE2D63D00E7CBD7 /* UICollectionView+MEDExtension.swift */; };
-		666027B81DE2D65100E7CBD7 /* UICollectionView+MEDExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666027B61DE2D63D00E7CBD7 /* UICollectionView+MEDExtension.swift */; };
 		6662623B1E0BBC2100991D96 /* MEDColorful.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666262381E0BBC2100991D96 /* MEDColorful.swift */; };
-		6662623C1E0BBC2100991D96 /* MEDColorful.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666262381E0BBC2100991D96 /* MEDColorful.swift */; };
 		6662623E1E0BBCC700991D96 /* MEDCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6662623D1E0BBCC700991D96 /* MEDCircleView.swift */; };
-		6662623F1E0BBCC700991D96 /* MEDCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6662623D1E0BBCC700991D96 /* MEDCircleView.swift */; };
 		666792E31E134DAF00344188 /* AutocompleteField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666792B81E134DAF00344188 /* AutocompleteField.swift */; };
-		666792E41E134DAF00344188 /* AutocompleteField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666792B81E134DAF00344188 /* AutocompleteField.swift */; };
 		666792E51E134DAF00344188 /* CircleProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666792BA1E134DAF00344188 /* CircleProgressView.swift */; };
-		666792E61E134DAF00344188 /* CircleProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666792BA1E134DAF00344188 /* CircleProgressView.swift */; };
 		666792E71E134DAF00344188 /* FXBlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = 666792BD1E134DAF00344188 /* FXBlurView.m */; };
-		666792E81E134DAF00344188 /* FXBlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = 666792BD1E134DAF00344188 /* FXBlurView.m */; };
 		666792E91E134DAF00344188 /* iRate.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 666792BF1E134DAF00344188 /* iRate.bundle */; };
-		666792EA1E134DAF00344188 /* iRate.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 666792BF1E134DAF00344188 /* iRate.bundle */; };
 		666792EB1E134DAF00344188 /* iRate.m in Sources */ = {isa = PBXBuildFile; fileRef = 666792C11E134DAF00344188 /* iRate.m */; };
-		666792EC1E134DAF00344188 /* iRate.m in Sources */ = {isa = PBXBuildFile; fileRef = 666792C11E134DAF00344188 /* iRate.m */; };
 		666792ED1E134DAF00344188 /* LocalNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666792C21E134DAF00344188 /* LocalNotification.swift */; };
-		666792EE1E134DAF00344188 /* LocalNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666792C21E134DAF00344188 /* LocalNotification.swift */; };
 		666792EF1E134DAF00344188 /* M13Checkbox+IB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666792C41E134DAF00344188 /* M13Checkbox+IB.swift */; };
-		666792F01E134DAF00344188 /* M13Checkbox+IB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666792C41E134DAF00344188 /* M13Checkbox+IB.swift */; };
 		666792F11E134DAF00344188 /* M13Checkbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666792C51E134DAF00344188 /* M13Checkbox.swift */; };
-		666792F21E134DAF00344188 /* M13Checkbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666792C51E134DAF00344188 /* M13Checkbox.swift */; };
 		666792F31E134DAF00344188 /* M13CheckboxAnimationPresets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666792C61E134DAF00344188 /* M13CheckboxAnimationPresets.swift */; };
-		666792F41E134DAF00344188 /* M13CheckboxAnimationPresets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666792C61E134DAF00344188 /* M13CheckboxAnimationPresets.swift */; };
 		666792F51E134DAF00344188 /* M13CheckboxGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666792C71E134DAF00344188 /* M13CheckboxGestureRecognizer.swift */; };
-		666792F61E134DAF00344188 /* M13CheckboxGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666792C71E134DAF00344188 /* M13CheckboxGestureRecognizer.swift */; };
 		666792F71E134DAF00344188 /* M13CheckboxManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666792C81E134DAF00344188 /* M13CheckboxManager.swift */; };
-		666792F81E134DAF00344188 /* M13CheckboxManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666792C81E134DAF00344188 /* M13CheckboxManager.swift */; };
 		666792F91E134DAF00344188 /* M13CheckboxPathPresets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666792C91E134DAF00344188 /* M13CheckboxPathPresets.swift */; };
-		666792FA1E134DAF00344188 /* M13CheckboxPathPresets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666792C91E134DAF00344188 /* M13CheckboxPathPresets.swift */; };
 		666792FB1E134DAF00344188 /* M13CheckboxBounceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666792CB1E134DAF00344188 /* M13CheckboxBounceManager.swift */; };
-		666792FC1E134DAF00344188 /* M13CheckboxBounceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666792CB1E134DAF00344188 /* M13CheckboxBounceManager.swift */; };
 		666792FD1E134DAF00344188 /* M13CheckboxDotManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666792CC1E134DAF00344188 /* M13CheckboxDotManager.swift */; };
-		666792FE1E134DAF00344188 /* M13CheckboxDotManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666792CC1E134DAF00344188 /* M13CheckboxDotManager.swift */; };
 		666792FF1E134DAF00344188 /* M13CheckboxExpandManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666792CD1E134DAF00344188 /* M13CheckboxExpandManager.swift */; };
-		666793001E134DAF00344188 /* M13CheckboxExpandManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666792CD1E134DAF00344188 /* M13CheckboxExpandManager.swift */; };
 		666793011E134DAF00344188 /* M13CheckboxFadeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666792CE1E134DAF00344188 /* M13CheckboxFadeManager.swift */; };
-		666793021E134DAF00344188 /* M13CheckboxFadeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666792CE1E134DAF00344188 /* M13CheckboxFadeManager.swift */; };
 		666793031E134DAF00344188 /* M13CheckboxFillManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666792CF1E134DAF00344188 /* M13CheckboxFillManager.swift */; };
-		666793041E134DAF00344188 /* M13CheckboxFillManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666792CF1E134DAF00344188 /* M13CheckboxFillManager.swift */; };
 		666793051E134DAF00344188 /* M13CheckboxFlatManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666792D01E134DAF00344188 /* M13CheckboxFlatManager.swift */; };
-		666793061E134DAF00344188 /* M13CheckboxFlatManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666792D01E134DAF00344188 /* M13CheckboxFlatManager.swift */; };
 		666793071E134DAF00344188 /* M13CheckboxSpiralManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666792D11E134DAF00344188 /* M13CheckboxSpiralManager.swift */; };
-		666793081E134DAF00344188 /* M13CheckboxSpiralManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666792D11E134DAF00344188 /* M13CheckboxSpiralManager.swift */; };
 		666793091E134DAF00344188 /* M13CheckboxStrokeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666792D21E134DAF00344188 /* M13CheckboxStrokeManager.swift */; };
-		6667930A1E134DAF00344188 /* M13CheckboxStrokeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666792D21E134DAF00344188 /* M13CheckboxStrokeManager.swift */; };
 		6667930B1E134DAF00344188 /* M13CheckboxDotPathPresets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666792D41E134DAF00344188 /* M13CheckboxDotPathPresets.swift */; };
-		6667930C1E134DAF00344188 /* M13CheckboxDotPathPresets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666792D41E134DAF00344188 /* M13CheckboxDotPathPresets.swift */; };
 		6667930D1E134DAF00344188 /* M13CheckboxSpiralPathPresets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666792D51E134DAF00344188 /* M13CheckboxSpiralPathPresets.swift */; };
-		6667930E1E134DAF00344188 /* M13CheckboxSpiralPathPresets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666792D51E134DAF00344188 /* M13CheckboxSpiralPathPresets.swift */; };
 		6667930F1E134DAF00344188 /* MBProgressHUD+MJ.m in Sources */ = {isa = PBXBuildFile; fileRef = 666792D81E134DAF00344188 /* MBProgressHUD+MJ.m */; };
-		666793101E134DAF00344188 /* MBProgressHUD+MJ.m in Sources */ = {isa = PBXBuildFile; fileRef = 666792D81E134DAF00344188 /* MBProgressHUD+MJ.m */; };
 		666793111E134DAF00344188 /* MBProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 666792D91E134DAF00344188 /* MBProgressHUD.bundle */; };
-		666793121E134DAF00344188 /* MBProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 666792D91E134DAF00344188 /* MBProgressHUD.bundle */; };
 		666793131E134DAF00344188 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 666792DB1E134DAF00344188 /* MBProgressHUD.m */; };
-		666793141E134DAF00344188 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 666792DB1E134DAF00344188 /* MBProgressHUD.m */; };
 		666793151E134DAF00344188 /* SMSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666792DD1E134DAF00344188 /* SMSegment.swift */; };
-		666793161E134DAF00344188 /* SMSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666792DD1E134DAF00344188 /* SMSegment.swift */; };
 		666793171E134DAF00344188 /* SMSegmentAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666792DE1E134DAF00344188 /* SMSegmentAppearance.swift */; };
-		666793181E134DAF00344188 /* SMSegmentAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666792DE1E134DAF00344188 /* SMSegmentAppearance.swift */; };
 		666793191E134DAF00344188 /* SMSegmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666792DF1E134DAF00344188 /* SMSegmentView.swift */; };
-		6667931A1E134DAF00344188 /* SMSegmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666792DF1E134DAF00344188 /* SMSegmentView.swift */; };
 		6667931B1E134DAF00344188 /* SMSegmentViewConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666792E01E134DAF00344188 /* SMSegmentViewConstants.swift */; };
-		6667931C1E134DAF00344188 /* SMSegmentViewConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666792E01E134DAF00344188 /* SMSegmentViewConstants.swift */; };
 		6667931D1E134DAF00344188 /* TaskQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666792E21E134DAF00344188 /* TaskQueue.swift */; };
-		6667931E1E134DAF00344188 /* TaskQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666792E21E134DAF00344188 /* TaskQueue.swift */; };
 		6667932A1E13502A00344188 /* BalloonMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666793291E13502A00344188 /* BalloonMarker.swift */; };
-		6667932B1E13502A00344188 /* BalloonMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666793291E13502A00344188 /* BalloonMarker.swift */; };
 		666793311E1350FC00344188 /* ClockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6667932C1E1350FC00344188 /* ClockView.swift */; };
-		666793321E1350FC00344188 /* ClockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6667932C1E1350FC00344188 /* ClockView.swift */; };
 		666793331E1350FC00344188 /* DatePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6667932D1E1350FC00344188 /* DatePickerView.swift */; };
-		666793341E1350FC00344188 /* DatePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6667932D1E1350FC00344188 /* DatePickerView.swift */; };
 		666793351E1350FC00344188 /* DatePickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6667932E1E1350FC00344188 /* DatePickerView.xib */; };
-		666793361E1350FC00344188 /* DatePickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6667932E1E1350FC00344188 /* DatePickerView.xib */; };
 		666793371E1350FC00344188 /* NevoCircleProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6667932F1E1350FC00344188 /* NevoCircleProgressView.swift */; };
-		666793381E1350FC00344188 /* NevoCircleProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6667932F1E1350FC00344188 /* NevoCircleProgressView.swift */; };
 		666793391E1350FC00344188 /* ToolbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666793301E1350FC00344188 /* ToolbarView.swift */; };
-		6667933A1E1350FC00344188 /* ToolbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666793301E1350FC00344188 /* ToolbarView.swift */; };
 		66687CD71DD9654100AD7F7D /* Dispatch+MEDExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66687CD61DD9654100AD7F7D /* Dispatch+MEDExtension.swift */; };
-		66687CD81DD9654100AD7F7D /* Dispatch+MEDExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66687CD61DD9654100AD7F7D /* Dispatch+MEDExtension.swift */; };
 		66687CDA1DD9832800AD7F7D /* StepsCalButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66687CD91DD9832800AD7F7D /* StepsCalButton.swift */; };
-		66687CDB1DD9832800AD7F7D /* StepsCalButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66687CD91DD9832800AD7F7D /* StepsCalButton.swift */; };
-		666F60F11DAF264B0011F3C5 /* AppDelegate-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006DA9FD1D80F2A600B70C0F /* AppDelegate-Extension.swift */; };
 		667149F91E1CAB1C009A34B4 /* NoneAlarmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 667149F81E1CAB1C009A34B4 /* NoneAlarmView.swift */; };
-		667149FA1E1CAB1C009A34B4 /* NoneAlarmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 667149F81E1CAB1C009A34B4 /* NoneAlarmView.swift */; };
-		6688A6591DC981980078E636 /* MEDBaseDeleteRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6688A6461DC981980078E636 /* MEDBaseDeleteRequest.swift */; };
-		6688A65B1DC981980078E636 /* MEDBaseGetRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6688A6471DC981980078E636 /* MEDBaseGetRequest.swift */; };
-		6688A65D1DC981980078E636 /* MEDBaseNetworkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6688A6481DC981980078E636 /* MEDBaseNetworkRequest.swift */; };
-		6688A65F1DC981980078E636 /* MEDBasePostRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6688A6491DC981980078E636 /* MEDBasePostRequest.swift */; };
-		6688A6611DC981980078E636 /* MEDBasePutRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6688A64A1DC981980078E636 /* MEDBasePutRequest.swift */; };
-		6688A6631DC981980078E636 /* MEDForgetPasswordRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6688A64B1DC981980078E636 /* MEDForgetPasswordRequest.swift */; };
-		6688A6671DC981990078E636 /* MEDLoginRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6688A64D1DC981980078E636 /* MEDLoginRequest.swift */; };
-		6688A6691DC981990078E636 /* MEDNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6688A64E1DC981980078E636 /* MEDNetworkManager.swift */; };
-		6688A66B1DC981990078E636 /* MEDNetworkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6688A64F1DC981980078E636 /* MEDNetworkRequest.swift */; };
-		6688A66D1DC981990078E636 /* MEDRequestPasswordRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6688A6501DC981980078E636 /* MEDRequestPasswordRequest.swift */; };
-		6688A66F1DC981990078E636 /* MEDStepsCreateRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6688A6511DC981980078E636 /* MEDStepsCreateRequest.swift */; };
-		6688A6711DC981990078E636 /* MEDStepsGetRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6688A6521DC981980078E636 /* MEDStepsGetRequest.swift */; };
-		6688A6731DC981990078E636 /* MEDStepsNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6688A6531DC981980078E636 /* MEDStepsNetworkManager.swift */; };
-		6688A6751DC981990078E636 /* MEDStepsUpdateRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6688A6541DC981980078E636 /* MEDStepsUpdateRequest.swift */; };
-		6688A6771DC981990078E636 /* MEDUserCreateRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6688A6551DC981980078E636 /* MEDUserCreateRequest.swift */; };
-		6688A6791DC981990078E636 /* MEDUserNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6688A6561DC981980078E636 /* MEDUserNetworkManager.swift */; };
-		6688A67B1DC981990078E636 /* MEDUserUpdateRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6688A6571DC981980078E636 /* MEDUserUpdateRequest.swift */; };
 		6690DF091DB8A84C0042FB9E /* SetingNotLoginCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6690DF0C1DB8A84C0042FB9E /* SetingNotLoginCell.xib */; };
 		6691AAD31E1B7E54006B2140 /* MEDTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6691AAD21E1B7E54006B2140 /* MEDTextField.swift */; };
-		6691AAD41E1B7E54006B2140 /* MEDTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6691AAD21E1B7E54006B2140 /* MEDTextField.swift */; };
 		66AC4E5D1DBF537500E431BE /* sunrise.png in Resources */ = {isa = PBXBuildFile; fileRef = 665BD6D71DBF1297008C2623 /* sunrise.png */; };
 		66AC4E5E1DBF537500E431BE /* sunset.png in Resources */ = {isa = PBXBuildFile; fileRef = 665BD6D81DBF1297008C2623 /* sunset.png */; };
-		66B6A51F1E1211BF00E10CD3 /* MEDSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664F45521E120A4D000AEDAE /* MEDSettings.swift */; };
 		66CDAC6C1E1DE9B10038FED6 /* AddAlarmCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66CDAC6B1E1DE9B10038FED6 /* AddAlarmCell.swift */; };
-		66CDAC6D1E1DE9B10038FED6 /* AddAlarmCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66CDAC6B1E1DE9B10038FED6 /* AddAlarmCell.swift */; };
-		813518AB3D92E43573F28717 /* Pods_LunaR.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E068CB5F57F135B038B3A10 /* Pods_LunaR.framework */; };
 		8A84EC52F1052F0497E54CB5 /* Pods_NevoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7689D6188FDF6CDBFBD84C51 /* Pods_NevoTests.framework */; };
 		9A2D6C3B1A9C6D9F00591BDC /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A2D6C3A1A9C6D9F00591BDC /* HealthKit.framework */; };
 		9AD8F9421A6DF35900F01014 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9AD8F9411A6DF35900F01014 /* Images.xcassets */; };
@@ -715,10 +368,6 @@
 		CBD429AA1EBB2DE200135D70 /* SetBLEConnectionTimeoutRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD429A91EBB2DE200135D70 /* SetBLEConnectionTimeoutRequest.swift */; };
 		CBD429AC1EBB338400135D70 /* UITableViewCell+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD429AB1EBB338400135D70 /* UITableViewCell+Extension.swift */; };
 		D10C095A1DE2967B008B6E57 /* ProfileImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D10C09591DE2967B008B6E57 /* ProfileImageManager.swift */; };
-		D10C095B1DE2967B008B6E57 /* ProfileImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D10C09591DE2967B008B6E57 /* ProfileImageManager.swift */; };
-		D11C142A1E1CA94600962F46 /* default.realm in Resources */ = {isa = PBXBuildFile; fileRef = D11C14281E1CA94500962F46 /* default.realm */; };
-		D11C142B1E1CA94600962F46 /* default.realm.lock in Resources */ = {isa = PBXBuildFile; fileRef = D11C14291E1CA94500962F46 /* default.realm.lock */; };
-		D11C142C1E1CAA6900962F46 /* default.realm in Resources */ = {isa = PBXBuildFile; fileRef = D11C14281E1CA94500962F46 /* default.realm */; };
 		D1BE2B1C1E1D1AC100E6713D /* Duration.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1BE2B141E1D1AC100E6713D /* Duration.swift */; };
 		D1BE2B1D1E1D1AC100E6713D /* Int+Timepiece.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1BE2B151E1D1AC100E6713D /* Int+Timepiece.swift */; };
 		D1BE2B1E1E1D1AC100E6713D /* NSCalendar+Timepiece.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1BE2B161E1D1AC100E6713D /* NSCalendar+Timepiece.swift */; };
@@ -727,32 +376,9 @@
 		D1BE2B211E1D1AC100E6713D /* NSDateComponents+Timepiece.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1BE2B191E1D1AC100E6713D /* NSDateComponents+Timepiece.swift */; };
 		D1BE2B221E1D1AC100E6713D /* NSTimeInterval+Timepiece.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1BE2B1A1E1D1AC100E6713D /* NSTimeInterval+Timepiece.swift */; };
 		D1BE2B231E1D1AC100E6713D /* String+Timepiece.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1BE2B1B1E1D1AC100E6713D /* String+Timepiece.swift */; };
-		D1BE2B241E1D1AE100E6713D /* Duration.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1BE2B141E1D1AC100E6713D /* Duration.swift */; };
-		D1BE2B251E1D1AE500E6713D /* Int+Timepiece.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1BE2B151E1D1AC100E6713D /* Int+Timepiece.swift */; };
-		D1BE2B261E1D1AE800E6713D /* NSCalendar+Timepiece.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1BE2B161E1D1AC100E6713D /* NSCalendar+Timepiece.swift */; };
-		D1BE2B271E1D1AEB00E6713D /* NSCalendarUnit+Timepiece.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1BE2B171E1D1AC100E6713D /* NSCalendarUnit+Timepiece.swift */; };
-		D1BE2B281E1D1AEE00E6713D /* NSDate+Timepiece.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1BE2B181E1D1AC100E6713D /* NSDate+Timepiece.swift */; };
-		D1BE2B291E1D1AF100E6713D /* NSDateComponents+Timepiece.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1BE2B191E1D1AC100E6713D /* NSDateComponents+Timepiece.swift */; };
-		D1BE2B2A1E1D1AF300E6713D /* NSTimeInterval+Timepiece.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1BE2B1A1E1D1AC100E6713D /* NSTimeInterval+Timepiece.swift */; };
-		D1BE2B2B1E1D1AF600E6713D /* String+Timepiece.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1BE2B1B1E1D1AC100E6713D /* String+Timepiece.swift */; };
-		F5A58EFCE1AF535DD4D667CB /* Pods_LunaRTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA6756A2314165C2C74201E8 /* Pods_LunaRTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		00EFE0601D227D5F0066C905 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9AD8F92A1A6DF35800F01014 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 00EFE0491D227D5F0066C905;
-			remoteInfo = LunaR;
-		};
-		00EFE06B1D227D5F0066C905 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9AD8F92A1A6DF35800F01014 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 00EFE0491D227D5F0066C905;
-			remoteInfo = LunaR;
-		};
 		9AD8F94B1A6DF35900F01014 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9AD8F92A1A6DF35800F01014 /* Project object */;
@@ -1018,9 +644,6 @@
 		00EC9DD51C85833800280904 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/MorningTutorialController.strings"; sourceTree = "<group>"; };
 		00EC9DD71C85833900280904 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/MorningTutorialController.strings"; sourceTree = "<group>"; };
 		00EC9DD91C85833A00280904 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/MorningTutorialController.strings; sourceTree = "<group>"; };
-		00EFE04A1D227D5F0066C905 /* LunaR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LunaR.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		00EFE05F1D227D5F0066C905 /* LunaRTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LunaRTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		00EFE06A1D227D5F0066C905 /* LunaRUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LunaRUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00F0C3511C8993DD005888A7 /* NewAddAlarmController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewAddAlarmController.swift; sourceTree = "<group>"; };
 		0C2AEB04A0C7F45FE876ABED /* Pods_Nevo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Nevo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0E068CB5F57F135B038B3A10 /* Pods_LunaR.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LunaR.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1052,10 +675,6 @@
 		6173DF0E1DB0E99F002DF6AF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/StepsHistoryViewController.strings; sourceTree = "<group>"; };
 		6173DF101DB0E9A1002DF6AF /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/StepsHistoryViewController.strings"; sourceTree = "<group>"; };
 		6173DF121DB0E9A3002DF6AF /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/StepsHistoryViewController.strings"; sourceTree = "<group>"; };
-		61798C2A1DE564250087891D /* Solar_Firmwares */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Solar_Firmwares; sourceTree = "<group>"; };
-		61798C2D1DE58F280087891D /* DFUFirmware */ = {isa = PBXFileReference; lastKnownFileType = folder; path = DFUFirmware; sourceTree = "<group>"; };
-		61879C2C1DC05B850089F1E5 /* cities.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = cities.json; sourceTree = "<group>"; };
-		61879C2D1DC05B850089F1E5 /* timezones.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = timezones.json; sourceTree = "<group>"; };
 		61CEC5B91E2C5A2E001E5567 /* OldOtaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OldOtaViewController.swift; sourceTree = "<group>"; };
 		61CEC5BA1E2C5A2E001E5567 /* OldOtaViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OldOtaViewController.xib; sourceTree = "<group>"; };
 		61CEC5BB1E2C5A2E001E5567 /* ScannerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScannerViewController.swift; sourceTree = "<group>"; };
@@ -1086,6 +705,8 @@
 		61E8EC811E16017D004F0DBE /* String+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		61E8EC821E16017D004F0DBE /* UnitValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnitValue.swift; sourceTree = "<group>"; };
 		61E8EC831E16017D004F0DBE /* URL+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "URL+Extension.swift"; sourceTree = "<group>"; };
+		61F321AA1ECA97A900116F35 /* Solar_Firmwares */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Solar_Firmwares; sourceTree = "<group>"; };
+		61F321AC1ECA9EFC00116F35 /* FindWatchRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindWatchRequest.swift; sourceTree = "<group>"; };
 		61F85F4F1DAF5BF300F341B5 /* NevoOtaController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NevoOtaController.swift; sourceTree = "<group>"; };
 		61FC93F21DE6810E000AE93C /* NotificationAppID */ = {isa = PBXFileReference; lastKnownFileType = folder; path = NotificationAppID; sourceTree = "<group>"; };
 		61FC93F61DE80B2D000AE93C /* SolarHarvest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SolarHarvest.swift; sourceTree = "<group>"; };
@@ -1216,8 +837,6 @@
 		CBD429A91EBB2DE200135D70 /* SetBLEConnectionTimeoutRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetBLEConnectionTimeoutRequest.swift; sourceTree = "<group>"; };
 		CBD429AB1EBB338400135D70 /* UITableViewCell+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+Extension.swift"; sourceTree = "<group>"; };
 		D10C09591DE2967B008B6E57 /* ProfileImageManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileImageManager.swift; sourceTree = "<group>"; };
-		D11C14281E1CA94500962F46 /* default.realm */ = {isa = PBXFileReference; lastKnownFileType = file; path = default.realm; sourceTree = "<group>"; };
-		D11C14291E1CA94500962F46 /* default.realm.lock */ = {isa = PBXFileReference; lastKnownFileType = file; path = default.realm.lock; sourceTree = "<group>"; };
 		D1BE2B141E1D1AC100E6713D /* Duration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Duration.swift; sourceTree = "<group>"; };
 		D1BE2B151E1D1AC100E6713D /* Int+Timepiece.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Int+Timepiece.swift"; sourceTree = "<group>"; };
 		D1BE2B161E1D1AC100E6713D /* NSCalendar+Timepiece.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSCalendar+Timepiece.swift"; sourceTree = "<group>"; };
@@ -1229,30 +848,6 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		00EFE0471D227D5F0066C905 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				813518AB3D92E43573F28717 /* Pods_LunaR.framework in Frameworks */,
-				00C826FF1DA5EDFD00ECECEE /* HealthKit.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		00EFE05C1D227D5F0066C905 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				F5A58EFCE1AF535DD4D667CB /* Pods_LunaRTests.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		00EFE0671D227D5F0066C905 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		9AD8F92F1A6DF35900F01014 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -1567,12 +1162,9 @@
 		007F79731A878D0B006C89E6 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				D11C14271E1CA94500962F46 /* DefaultRealm */,
-				61879C2B1DC05B850089F1E5 /* Worldclock */,
 				61FC93F21DE6810E000AE93C /* NotificationAppID */,
-				61798C2D1DE58F280087891D /* DFUFirmware */,
 				0050D69A1C2906D8004F6F80 /* Firmwares */,
-				61798C2A1DE564250087891D /* Solar_Firmwares */,
+				61F321AA1ECA97A900116F35 /* Solar_Firmwares */,
 				00A773901A88562F0018E121 /* Strings */,
 				007F79741A878D0B006C89E6 /* Font */,
 				007F79881A878D0B006C89E6 /* image */,
@@ -1838,6 +1430,7 @@
 		00AF8CA21D224CFA009047AC /* Request */ = {
 			isa = PBXGroup;
 			children = (
+				61F321AC1ECA9EFC00116F35 /* FindWatchRequest.swift */,
 				00AF8CA31D224CFA009047AC /* GetActivityRequest.swift */,
 				00AF8CA41D224CFA009047AC /* GetStepsGoalRequest.swift */,
 				005E46891D879FB5009B6E4C /* GetWatchName.swift */,
@@ -1914,15 +1507,6 @@
 				61D1A8B41DD46BF000B91BDD /* MEDBaseModel.swift */,
 			);
 			name = BaseModel;
-			sourceTree = "<group>";
-		};
-		61879C2B1DC05B850089F1E5 /* Worldclock */ = {
-			isa = PBXGroup;
-			children = (
-				61879C2C1DC05B850089F1E5 /* cities.json */,
-				61879C2D1DC05B850089F1E5 /* timezones.json */,
-			);
-			path = Worldclock;
 			sourceTree = "<group>";
 		};
 		61CEC5B81E2C5A2E001E5567 /* AidOTA */ = {
@@ -2240,9 +1824,6 @@
 			children = (
 				9AD8F9321A6DF35900F01014 /* Nevo.app */,
 				9AD8F94A1A6DF35900F01014 /* NevoTests.xctest */,
-				00EFE04A1D227D5F0066C905 /* LunaR.app */,
-				00EFE05F1D227D5F0066C905 /* LunaRTests.xctest */,
-				00EFE06A1D227D5F0066C905 /* LunaRUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -2398,15 +1979,6 @@
 			path = AidOTA;
 			sourceTree = "<group>";
 		};
-		D11C14271E1CA94500962F46 /* DefaultRealm */ = {
-			isa = PBXGroup;
-			children = (
-				D11C14281E1CA94500962F46 /* default.realm */,
-				D11C14291E1CA94500962F46 /* default.realm.lock */,
-			);
-			path = DefaultRealm;
-			sourceTree = "<group>";
-		};
 		D1BE2B131E1D1AC100E6713D /* OldTimepiece */ = {
 			isa = PBXGroup;
 			children = (
@@ -2436,65 +2008,6 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		00EFE0491D227D5F0066C905 /* LunaR */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 00EFE0711D227D5F0066C905 /* Build configuration list for PBXNativeTarget "LunaR" */;
-			buildPhases = (
-				7031D8A6CD34AAE6CA8E6E09 /* [CP] Check Pods Manifest.lock */,
-				00EFE0461D227D5F0066C905 /* Sources */,
-				00EFE0471D227D5F0066C905 /* Frameworks */,
-				00EFE0481D227D5F0066C905 /* Resources */,
-				31696D40EF69A119AAB9A1E4 /* [CP] Embed Pods Frameworks */,
-				B8F3A8114D1574770B3E7F2B /* [CP] Copy Pods Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = LunaR;
-			productName = LunaR;
-			productReference = 00EFE04A1D227D5F0066C905 /* LunaR.app */;
-			productType = "com.apple.product-type.application";
-		};
-		00EFE05E1D227D5F0066C905 /* LunaRTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 00EFE0741D227D5F0066C905 /* Build configuration list for PBXNativeTarget "LunaRTests" */;
-			buildPhases = (
-				64E5A60CAE77018E275E3C0F /* [CP] Check Pods Manifest.lock */,
-				00EFE05B1D227D5F0066C905 /* Sources */,
-				00EFE05C1D227D5F0066C905 /* Frameworks */,
-				00EFE05D1D227D5F0066C905 /* Resources */,
-				F935D71A108E977A2B2FCE06 /* [CP] Embed Pods Frameworks */,
-				8F3E1C68FADAF48A37834A2A /* [CP] Copy Pods Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				00EFE0611D227D5F0066C905 /* PBXTargetDependency */,
-			);
-			name = LunaRTests;
-			productName = LunaRTests;
-			productReference = 00EFE05F1D227D5F0066C905 /* LunaRTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		00EFE0691D227D5F0066C905 /* LunaRUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 00EFE0771D227D5F0066C905 /* Build configuration list for PBXNativeTarget "LunaRUITests" */;
-			buildPhases = (
-				00EFE0661D227D5F0066C905 /* Sources */,
-				00EFE0671D227D5F0066C905 /* Frameworks */,
-				00EFE0681D227D5F0066C905 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				00EFE06C1D227D5F0066C905 /* PBXTargetDependency */,
-			);
-			name = LunaRUITests;
-			productName = LunaRUITests;
-			productReference = 00EFE06A1D227D5F0066C905 /* LunaRUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 		9AD8F9311A6DF35900F01014 /* Nevo */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9AD8F9541A6DF35900F01014 /* Build configuration list for PBXNativeTarget "Nevo" */;
@@ -2547,33 +2060,6 @@
 				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = Nevo;
 				TargetAttributes = {
-					00EFE0491D227D5F0066C905 = {
-						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = WEGPWR9LDA;
-						ProvisioningStyle = Automatic;
-						SystemCapabilities = {
-							com.apple.BackgroundModes = {
-								enabled = 1;
-							};
-							com.apple.HealthKit = {
-								enabled = 1;
-							};
-							com.apple.InAppPurchase = {
-								enabled = 0;
-							};
-							com.apple.VPNLite = {
-								enabled = 0;
-							};
-						};
-					};
-					00EFE05E1D227D5F0066C905 = {
-						CreatedOnToolsVersion = 7.3.1;
-						TestTargetID = 00EFE0491D227D5F0066C905;
-					};
-					00EFE0691D227D5F0066C905 = {
-						CreatedOnToolsVersion = 7.3.1;
-						TestTargetID = 00EFE0491D227D5F0066C905;
-					};
 					9AD8F9311A6DF35900F01014 = {
 						CreatedOnToolsVersion = 6.1.1;
 						DevelopmentTeam = WEGPWR9LDA;
@@ -2611,126 +2097,11 @@
 			targets = (
 				9AD8F9311A6DF35900F01014 /* Nevo */,
 				9AD8F9491A6DF35900F01014 /* NevoTests */,
-				00EFE0491D227D5F0066C905 /* LunaR */,
-				00EFE05E1D227D5F0066C905 /* LunaRTests */,
-				00EFE0691D227D5F0066C905 /* LunaRUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		00EFE0481D227D5F0066C905 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				00C826C31DA5ECA700ECECEE /* AnalysisLineChartCell.xib in Resources */,
-				00C826C41DA5ECA700ECECEE /* AnalysisRadarViewCell.xib in Resources */,
-				614662A51DC9D3B5001E57CC /* lunar_open_bt.png in Resources */,
-				61FC93F31DE6810E000AE93C /* NotificationAppID in Resources */,
-				00C826C51DA5ECA700ECECEE /* AnalysisValueCell.xib in Resources */,
-				00C826C61DA5ECA700ECECEE /* ProfileSetupViewController.xib in Resources */,
-				00C826C71DA5ECA700ECECEE /* CheckYourIndoxController.xib in Resources */,
-				D11C142C1E1CAA6900962F46 /* default.realm in Resources */,
-				61879C321DC05C430089F1E5 /* timezones.json in Resources */,
-				61879C311DC05C410089F1E5 /* cities.json in Resources */,
-				00C826C81DA5ECA700ECECEE /* ForgotPasswordController.xib in Resources */,
-				61CEC5C21E2C5A45001E5567 /* OldOtaViewController.xib in Resources */,
-				00C826C91DA5ECA700ECECEE /* InformationController.xib in Resources */,
-				00C826CB1DA5ECA700ECECEE /* SolarInforViewCell.xib in Resources */,
-				00C826CE1DA5ECA700ECECEE /* UserHeader.xib in Resources */,
-				00C826CF1DA5ECA700ECECEE /* UserProfileController.xib in Resources */,
-				00C826D01DA5ECA700ECECEE /* UserProfileCell.xib in Resources */,
-				00C826D11DA5ECA700ECECEE /* LoginController.xib in Resources */,
-				00C826D21DA5ECA700ECECEE /* VideoPlayController.xib in Resources */,
-				00C826D31DA5ECA700ECECEE /* SupportViewController.xib in Resources */,
-				00C826D51DA5ECA700ECECEE /* AlarmClockVCell.xib in Resources */,
-				00C826DD1DA5ECA700ECECEE /* NewAddAlarmHeader.xib in Resources */,
-				6165A63A1DEBC33800F7A3E6 /* NotificationTypeCell.xib in Resources */,
-				665BD6DA1DBF1297008C2623 /* sunset.png in Resources */,
-				00C826E11DA5ECA700ECECEE /* MyNevoController.xib in Resources */,
-				00C826E21DA5ECA700ECECEE /* MyNevoHeaderView.xib in Resources */,
-				00C826E31DA5ECA700ECECEE /* NevoOtaViewController.xib in Resources */,
-				00C826E41DA5ECA700ECECEE /* LineColorCell.xib in Resources */,
-				00C826E51DA5ECA700ECECEE /* NotificationClockCell.xib in Resources */,
-				616DCB121DD1A7E500B5773E /* lunar_connected.png in Resources */,
-				00C826E61DA5ECA700ECECEE /* NotificationViewController.xib in Resources */,
-				00C826E71DA5ECA700ECECEE /* SelectedNotificationTypeController.xib in Resources */,
-				666793121E134DAF00344188 /* MBProgressHUD.bundle in Resources */,
-				00C826E91DA5ECA700ECECEE /* PresetTableViewController.xib in Resources */,
-				00C826EA1DA5ECA700ECECEE /* PresetTableViewCell.xib in Resources */,
-				00C826EB1DA5ECA700ECECEE /* SetingInfoCell.xib in Resources */,
-				00C826EE1DA5ECA700ECECEE /* SleepHistoryViewCell.xib in Resources */,
-				664AE3341DF7C09C005CD385 /* NotiColorEditableCell.xib in Resources */,
-				6173DF001DB0E93D002DF6AF /* SleepHistoricalViewController.xib in Resources */,
-				00C826F01DA5ECA700ECECEE /* StepGoalSetingController.xib in Resources */,
-				00C826F11DA5ECA700ECECEE /* StepGoalSetingViewCell.xib in Resources */,
-				6173DF0A1DB0E993002DF6AF /* StepsHistoryViewController.xib in Resources */,
-				614662AB1DC9DEE8001E57CC /* lunar_not_connect.png in Resources */,
-				00C826F31DA5ECA700ECECEE /* StepsTitleView.xib in Resources */,
-				00C826F41DA5ECA700ECECEE /* TutorialOneViewController.xib in Resources */,
-				614662A81DC9D77F001E57CC /* lunar_search.png in Resources */,
-				00C826F51DA5ECA700ECECEE /* TutorialTwoViewController.xib in Resources */,
-				00C826F61DA5ECA700ECECEE /* TutorialThreeViewController.xib in Resources */,
-				00C826F71DA5ECA700ECECEE /* TutorialFourViewController.xib in Resources */,
-				00C826F81DA5ECA700ECECEE /* TutorialFiveViewController.xib in Resources */,
-				00C826F91DA5ECA700ECECEE /* TutorialSixViewController.xib in Resources */,
-				00C826FA1DA5ECA700ECECEE /* TutorialSevenViewController.xib in Resources */,
-				614662A21DC9D081001E57CC /* lunar_settime.png in Resources */,
-				00C826FB1DA5ECA700ECECEE /* SleepTutorialController.xib in Resources */,
-				00C826FC1DA5ECA700ECECEE /* MorningTutorialController.xib in Resources */,
-				00C826FD1DA5ECA700ECECEE /* Main.storyboard in Resources */,
-				0095DDAC1D2E0E5500F80BFD /* wacth_dial.png in Resources */,
-				0095DDAD1D2E0E5500F80BFD /* wacth_hour.png in Resources */,
-				0095DDAE1D2E0E5500F80BFD /* wacth_mint.png in Resources */,
-				0037EC1E1D235F5300502140 /* Firmwares in Resources */,
-				0037EC1F1D235F5300502140 /* Localizable.strings in Resources */,
-				0037EC271D235F5300502140 /* nevoWhiteLEDImage.png in Resources */,
-				0037EC281D235F5300502140 /* nevoFontImage.png in Resources */,
-				0037EC2A1D235F5300502140 /* bluetoothoff_background.png in Resources */,
-				0037EC551D2385DF00502140 /* Raleway-Thin.ttf in Resources */,
-				665BD6C51DBEF4C7008C2623 /* SetingNotLoginCell.xib in Resources */,
-				0037EC2C1D235F5300502140 /* connected.png in Resources */,
-				0037EC2F1D235F5300502140 /* settimer.png in Resources */,
-				665BD6D91DBF1297008C2623 /* sunrise.png in Resources */,
-				0037EC301D235F5300502140 /* turnonnevo.png in Resources */,
-				0037EC311D235F5300502140 /* tutorialone.png in Resources */,
-				61CEC5C41E2C5A4B001E5567 /* ScannerViewController.xib in Resources */,
-				665BD6C21DBEF3C2008C2623 /* SolarIndicatorController.xib in Resources */,
-				0037EC351D235F5300502140 /* upgrade_clock.png in Resources */,
-				666792EA1E134DAF00344188 /* iRate.bundle in Resources */,
-				0037EC361D235F5300502140 /* firmware_clock.png in Resources */,
-				0037EC391D235F5300502140 /* nevo_wacth.png in Resources */,
-				612DB71A1DEFCFC2000B1747 /* AllowNotificationsTableViewCell.xib in Resources */,
-				0037EC3A1D235F5300502140 /* clockViewHour.png in Resources */,
-				0037EC3B1D235F5300502140 /* clockViewMinute.png in Resources */,
-				0037EC3C1D235F5300502140 /* clockView600.png in Resources */,
-				0037EC541D2385DF00502140 /* Raleway-SemiBold.ttf in Resources */,
-				61798C2F1DE590F10087891D /* DFUFirmware in Resources */,
-				0037EC4F1D2385DF00502140 /* Raleway-ExtraLight.ttf in Resources */,
-				0037EC511D2385DF00502140 /* Raleway-Light.ttf in Resources */,
-				666793361E1350FC00344188 /* DatePickerView.xib in Resources */,
-				0037EC531D2385DF00502140 /* Raleway-Regular.ttf in Resources */,
-				0037EC521D2385DF00502140 /* Raleway-Medium.ttf in Resources */,
-				0037EC4D1D2385DF00502140 /* Raleway-Bold.ttf in Resources */,
-				0037EC4E1D2385DF00502140 /* Raleway-ExtraBold.ttf in Resources */,
-				0037EC501D2385DF00502140 /* Raleway-Heavy.ttf in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		00EFE05D1D227D5F0066C905 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		00EFE0681D227D5F0066C905 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		9AD8F9301A6DF35900F01014 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -2740,6 +2111,7 @@
 				00120E7A1D7559D500CE0C32 /* Raleway-ExtraBold.ttf in Resources */,
 				00120E7B1D7559D500CE0C32 /* Raleway-ExtraLight.ttf in Resources */,
 				00120E7C1D7559D500CE0C32 /* Raleway-Heavy.ttf in Resources */,
+				61F321AB1ECA97A900116F35 /* Solar_Firmwares in Resources */,
 				666792E91E134DAF00344188 /* iRate.bundle in Resources */,
 				00120E7D1D7559D500CE0C32 /* Raleway-Light.ttf in Resources */,
 				00120E7E1D7559D500CE0C32 /* Raleway-Medium.ttf in Resources */,
@@ -2764,7 +2136,6 @@
 				6165A6381DEBC32500F7A3E6 /* NotificationTypeCell.xib in Resources */,
 				006A626F1D6AB44A00458305 /* StepGoalSetingController.xib in Resources */,
 				666793111E134DAF00344188 /* MBProgressHUD.bundle in Resources */,
-				61879C2F1DC05B850089F1E5 /* timezones.json in Resources */,
 				00EC9E061C85839A00280904 /* TutorialSixViewController.xib in Resources */,
 				CBBC48291EBB16C200867AB0 /* BluetoothScanDurationViewController.xib in Resources */,
 				00A773961A88562F0018E121 /* Localizable.strings in Resources */,
@@ -2779,7 +2150,6 @@
 				66AC4E5E1DBF537500E431BE /* sunset.png in Resources */,
 				00EC9DAE1C8582E400280904 /* TutorialOneViewController.xib in Resources */,
 				00478F4F1A8F637D00D0DCE2 /* clockViewHour.png in Resources */,
-				61798C2B1DE564250087891D /* Solar_Firmwares in Resources */,
 				6173DEF31DB0E90C002DF6AF /* SolarIndicatorController.xib in Resources */,
 				0050D6111C28E0DB004F6F80 /* PresetTableViewCell.xib in Resources */,
 				0063BC281D98D456000BAB44 /* ForgotPasswordController.xib in Resources */,
@@ -2797,7 +2167,6 @@
 				61CEC5BE1E2C5A2E001E5567 /* OldOtaViewController.xib in Resources */,
 				0050D5FD1C28E0DB004F6F80 /* NotificationClockCell.xib in Resources */,
 				0036EB091C48BA8300DCED46 /* turnonnevo.png in Resources */,
-				D11C142B1E1CA94600962F46 /* default.realm.lock in Resources */,
 				009703C71C9BDB3200F2FF0D /* UserProfileCell.xib in Resources */,
 				006A62751D6AB44A00458305 /* StepsTitleView.xib in Resources */,
 				006A625E1D6AA79E00458305 /* AlarmClockVCell.xib in Resources */,
@@ -2806,7 +2175,6 @@
 				00EC9DC41C85832300280904 /* SleepTutorialController.xib in Resources */,
 				00E650A31C8425E600278D3E /* nevoWhiteLEDImage.png in Resources */,
 				0050D6031C28E0DB004F6F80 /* SelectedNotificationTypeController.xib in Resources */,
-				61798C2E1DE58F280087891D /* DFUFirmware in Resources */,
 				0095DDA91D2E0D7D00F80BFD /* wacth_dial.png in Resources */,
 				664AE3331DF7C09C005CD385 /* NotiColorEditableCell.xib in Resources */,
 				0036EB0A1C48BA8300DCED46 /* tutorialone.png in Resources */,
@@ -2814,11 +2182,9 @@
 				00EC9DDA1C85834F00280904 /* TutorialTwoViewController.xib in Resources */,
 				0063BC351D98D4EC000BAB44 /* InformationController.xib in Resources */,
 				00120E781D7550D500CE0C32 /* UserHeader.xib in Resources */,
-				61879C2E1DC05B850089F1E5 /* cities.json in Resources */,
 				0050D69B1C2906D8004F6F80 /* Firmwares in Resources */,
 				00E650991C83DD9000278D3E /* nevoFontImage.png in Resources */,
 				612DB7181DEFC7BE000B1747 /* AllowNotificationsTableViewCell.xib in Resources */,
-				D11C142A1E1CA94600962F46 /* default.realm in Resources */,
 				00E759181C2406E600372529 /* upgrade_clock.png in Resources */,
 				00EC9DE51C85835F00280904 /* TutorialThreeViewController.xib in Resources */,
 				006A62711D6AB44A00458305 /* StepGoalSetingViewCell.xib in Resources */,
@@ -2888,66 +2254,6 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-NevoTests/Pods-NevoTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		31696D40EF69A119AAB9A1E4 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LunaR/Pods-LunaR-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		64E5A60CAE77018E275E3C0F /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		7031D8A6CD34AAE6CA8E6E09 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		8F3E1C68FADAF48A37834A2A /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LunaRTests/Pods-LunaRTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		A82B3BB9F620E3880AC4AEF0 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -2961,21 +2267,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		B8F3A8114D1574770B3E7F2B /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LunaR/Pods-LunaR-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		C08F421768D6100F6384CF43 /* [CP] Check Pods Manifest.lock */ = {
@@ -3022,307 +2313,9 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Nevo/Pods-Nevo-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		F935D71A108E977A2B2FCE06 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LunaRTests/Pods-LunaRTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		00EFE0461D227D5F0066C905 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				666027B81DE2D65100E7CBD7 /* UICollectionView+MEDExtension.swift in Sources */,
-				6688A6631DC981980078E636 /* MEDForgetPasswordRequest.swift in Sources */,
-				665BD6AB1DBEF1D0008C2623 /* BatteryLevelNevoPacket.swift in Sources */,
-				665BD6AC1DBEF1D0008C2623 /* DailyStepsNevoPacket.swift in Sources */,
-				665BD6AD1DBEF1D0008C2623 /* DailyTrackerInfoNevoPacket.swift in Sources */,
-				665BD6AE1DBEF1D0008C2623 /* DailyTrackerNevoPacket.swift in Sources */,
-				D1BE2B281E1D1AEE00E6713D /* NSDate+Timepiece.swift in Sources */,
-				61E8EC921E160185004F0DBE /* AlertAction.swift in Sources */,
-				665BD6AF1DBEF1D0008C2623 /* NevoPacket.swift in Sources */,
-				665BD6B01DBEF1D0008C2623 /* WatchNamePacket.swift in Sources */,
-				665BD6B11DBEF1D0008C2623 /* FindPhonePacket.swift in Sources */,
-				665BD6B21DBEF1D0008C2623 /* GetActivityRequest.swift in Sources */,
-				665BD6B31DBEF1D0008C2623 /* GetStepsGoalRequest.swift in Sources */,
-				665BD6B41DBEF1D0008C2623 /* LedLightOnOffNevoRequest.swift in Sources */,
-				665BD6B51DBEF1D0008C2623 /* NevoRequest.swift in Sources */,
-				665BD6B61DBEF1D0008C2623 /* ReadBatteryLevelNevoRequest.swift in Sources */,
-				665BD6B71DBEF1D0008C2623 /* ReadDailyTracker.swift in Sources */,
-				665BD6B81DBEF1D0008C2623 /* ReadDailyTrackerInfo.swift in Sources */,
-				665BD6B91DBEF1D0008C2623 /* SetAlarmRequest.swift in Sources */,
-				665BD6BA1DBEF1D0008C2623 /* SetCardioRequest.swift in Sources */,
-				665BD6BB1DBEF1D0008C2623 /* SetGoalRequest.swift in Sources */,
-				665BD6BC1DBEF1D0008C2623 /* SetNewAlarmRequest.swift in Sources */,
-				61FC93F51DE68B8A000AE93C /* MEDDataBaseRequest.swift in Sources */,
-				61E2A5161E1E5E01009A563B /* MEDAlertController.swift in Sources */,
-				665BD6BD1DBEF1D0008C2623 /* SetNortificationRequest.swift in Sources */,
-				666793321E1350FC00344188 /* ClockView.swift in Sources */,
-				61E8EC911E160183004F0DBE /* ActionSheetView.swift in Sources */,
-				66B6A51F1E1211BF00E10CD3 /* MEDSettings.swift in Sources */,
-				665BD6BE1DBEF1D0008C2623 /* SetProfileRequest.swift in Sources */,
-				665BD6BF1DBEF1D0008C2623 /* SetRTCRequest.swift in Sources */,
-				665098941DCB26640059D5F7 /* MEDSleepUpdateRequest.swift in Sources */,
-				665BD6C01DBEF1D0008C2623 /* WriteSettingRequest.swift in Sources */,
-				6688A65F1DC981980078E636 /* MEDBasePostRequest.swift in Sources */,
-				665BD6C11DBEF1D0008C2623 /* GetWatchName.swift in Sources */,
-				665BD6A51DBEF186008C2623 /* NevoOtaController.swift in Sources */,
-				666793181E134DAF00344188 /* SMSegmentAppearance.swift in Sources */,
-				00C826BC1DA5E05100ECECEE /* MainTabBarController.swift in Sources */,
-				666792F21E134DAF00344188 /* M13Checkbox.swift in Sources */,
-				6662623C1E0BBC2100991D96 /* MEDColorful.swift in Sources */,
-				00C826441DA5E04000ECECEE /* AnalysisLineChartCell.swift in Sources */,
-				00C826451DA5E04000ECECEE /* AnalysisLineChartCell.xib in Sources */,
-				00C826461DA5E04000ECECEE /* AnalysisRadarViewCell.swift in Sources */,
-				00C826471DA5E04000ECECEE /* AnalysisRadarViewCell.xib in Sources */,
-				00C826481DA5E04000ECECEE /* AnalysisRadarChartView.swift in Sources */,
-				666793041E134DAF00344188 /* M13CheckboxFillManager.swift in Sources */,
-				66687CDB1DD9832800AD7F7D /* StepsCalButton.swift in Sources */,
-				00C826491DA5E04000ECECEE /* AnalysisStepsChartView.swift in Sources */,
-				66154BAF1DF6B7D400973A9E /* MEDNotificationColor.swift in Sources */,
-				6651E7E41E286704007DCDF1 /* UINavigationBar+MEDExtension.swift in Sources */,
-				61E8EC9C1E1601BD004F0DBE /* UnitValue.swift in Sources */,
-				00C8264A1DA5E04000ECECEE /* AnalysisValueCell.swift in Sources */,
-				00C8264B1DA5E04000ECECEE /* AnalysisValueCell.xib in Sources */,
-				00C8264C1DA5E04000ECECEE /* AnalysisController.swift in Sources */,
-				00C8264D1DA5E04000ECECEE /* ProfileSetupViewController.swift in Sources */,
-				00C8264E1DA5E04000ECECEE /* CheckYourIndoxController.swift in Sources */,
-				666793161E134DAF00344188 /* SMSegment.swift in Sources */,
-				00C8264F1DA5E04000ECECEE /* ForgotPasswordController.swift in Sources */,
-				6662623F1E0BBCC700991D96 /* MEDCircleView.swift in Sources */,
-				00C826501DA5E04000ECECEE /* InformationController.swift in Sources */,
-				00C826511DA5E04000ECECEE /* LineLabel.swift in Sources */,
-				00C826521DA5E04000ECECEE /* SolarIndicatorController.swift in Sources */,
-				00C826541DA5E04000ECECEE /* SolarInforViewCell.swift in Sources */,
-				00C826551DA5E04000ECECEE /* SolarInforViewCell.xib in Sources */,
-				00C826561DA5E04000ECECEE /* PageViewController.swift in Sources */,
-				1C3712D81DBC5BF2007DC349 /* UIView+MEDExtension.swift in Sources */,
-				6688A6611DC981980078E636 /* MEDBasePutRequest.swift in Sources */,
-				00C8265B1DA5E04000ECECEE /* UserHeader.swift in Sources */,
-				00C8265C1DA5E04000ECECEE /* UserHeader.xib in Sources */,
-				00C8265D1DA5E04000ECECEE /* UserProfileController.swift in Sources */,
-				666792F41E134DAF00344188 /* M13CheckboxAnimationPresets.swift in Sources */,
-				00C8265E1DA5E04000ECECEE /* UserProfileController.xib in Sources */,
-				61FC93F81DE80B30000AE93C /* SolarHarvest.swift in Sources */,
-				00C8265F1DA5E04000ECECEE /* UserProfileCell.swift in Sources */,
-				00C826601DA5E04000ECECEE /* UserProfileCell.xib in Sources */,
-				61E2A5191E232D86009A563B /* PieChartDataFormatter.swift in Sources */,
-				6688A6691DC981990078E636 /* MEDNetworkManager.swift in Sources */,
-				00C826611DA5E04000ECECEE /* LoginController.swift in Sources */,
-				00C826621DA5E04000ECECEE /* VideoPlayController.swift in Sources */,
-				666793341E1350FC00344188 /* DatePickerView.swift in Sources */,
-				00C826631DA5E04000ECECEE /* VideoPlayController.xib in Sources */,
-				00C826641DA5E04000ECECEE /* SupportViewController.swift in Sources */,
-				00C826651DA5E04000ECECEE /* SupportViewController.xib in Sources */,
-				D1BE2B261E1D1AE800E6713D /* NSCalendar+Timepiece.swift in Sources */,
-				00C826681DA5E04000ECECEE /* AlarmClockVCell.swift in Sources */,
-				666792F81E134DAF00344188 /* M13CheckboxManager.swift in Sources */,
-				00C826691DA5E04000ECECEE /* AlarmClockVCell.xib in Sources */,
-				66154BA61DF6A2D000973A9E /* NotiColorDetailController.swift in Sources */,
-				666792FE1E134DAF00344188 /* M13CheckboxDotManager.swift in Sources */,
-				666793061E134DAF00344188 /* M13CheckboxFlatManager.swift in Sources */,
-				00C8266C1DA5E04000ECECEE /* RepeatViewController.swift in Sources */,
-				61E8EC9B1E1601AC004F0DBE /* String+Extension.swift in Sources */,
-				00C8266E1DA5E04000ECECEE /* AddAlarmController.swift in Sources */,
-				660C16D11DEC25DA00544F56 /* UIImage+MEDExtension.swift in Sources */,
-				00C826701DA5E04000ECECEE /* NewAddAlarmController.swift in Sources */,
-				00C826721DA5E04000ECECEE /* AlarmClockController.swift in Sources */,
-				612DB7191DEFCFBB000B1747 /* AllowNotificationsTableViewCell.swift in Sources */,
-				6667931C1E134DAF00344188 /* SMSegmentViewConstants.swift in Sources */,
-				66CDAC6D1E1DE9B10038FED6 /* AddAlarmCell.swift in Sources */,
-				6667931A1E134DAF00344188 /* SMSegmentView.swift in Sources */,
-				00C8267A1DA5E04000ECECEE /* NewAddAlarmHeader.swift in Sources */,
-				D10C095B1DE2967B008B6E57 /* ProfileImageManager.swift in Sources */,
-				666793001E134DAF00344188 /* M13CheckboxExpandManager.swift in Sources */,
-				6688A6591DC981980078E636 /* MEDBaseDeleteRequest.swift in Sources */,
-				D1BE2B2A1E1D1AF300E6713D /* NSTimeInterval+Timepiece.swift in Sources */,
-				6688A66F1DC981990078E636 /* MEDStepsCreateRequest.swift in Sources */,
-				00C826811DA5E04000ECECEE /* MyNevoController.swift in Sources */,
-				00C826821DA5E04000ECECEE /* MyNevoController.xib in Sources */,
-				00C826831DA5E04000ECECEE /* MyNevoHeaderView.swift in Sources */,
-				00C826841DA5E04000ECECEE /* MyNevoHeaderView.xib in Sources */,
-				00C826851DA5E04000ECECEE /* MyNevoView.swift in Sources */,
-				665E331F1DADCD8A00D0E36D /* MEDBanner.swift in Sources */,
-				6650988F1DCB0E220059D5F7 /* MEDSleepNetworkManager.swift in Sources */,
-				00C826871DA5E04000ECECEE /* DeviceScannerView.swift in Sources */,
-				6688A6771DC981990078E636 /* MEDUserCreateRequest.swift in Sources */,
-				00C826881DA5E04000ECECEE /* NevoOtaView.swift in Sources */,
-				00C826891DA5E04000ECECEE /* SelectFileView.swift in Sources */,
-				666792E61E134DAF00344188 /* CircleProgressView.swift in Sources */,
-				6688A6791DC981990078E636 /* MEDUserNetworkManager.swift in Sources */,
-				00C8268A1DA5E04000ECECEE /* NevoOtaViewController.swift in Sources */,
-				61E8EC9A1E1601A2004F0DBE /* NevoAllKeys.swift in Sources */,
-				666793081E134DAF00344188 /* M13CheckboxSpiralManager.swift in Sources */,
-				00C8268B1DA5E04000ECECEE /* NevoOtaViewController.xib in Sources */,
-				00C8268C1DA5E04000ECECEE /* LineColorCell.swift in Sources */,
-				6658D6EE1E1DDD4F00858DF0 /* AddAlarmDatePickerCell.swift in Sources */,
-				00C8268D1DA5E04000ECECEE /* LineColorCell.xib in Sources */,
-				00C8268E1DA5E04000ECECEE /* NotificationClockCell.swift in Sources */,
-				00C8268F1DA5E04000ECECEE /* NotificationClockCell.xib in Sources */,
-				00C826901DA5E04000ECECEE /* NotificationView.swift in Sources */,
-				00C826911DA5E04000ECECEE /* SelectedNotificationView.swift in Sources */,
-				00C826921DA5E04000ECECEE /* NotificationViewController.swift in Sources */,
-				00C826931DA5E04000ECECEE /* NotificationViewController.xib in Sources */,
-				00C826941DA5E04000ECECEE /* SelectedNotificationTypeController.swift in Sources */,
-				00C826951DA5E04000ECECEE /* SelectedNotificationTypeController.xib in Sources */,
-				00C826981DA5E04000ECECEE /* PresetTableViewController.swift in Sources */,
-				00C826991DA5E04000ECECEE /* PresetTableViewController.xib in Sources */,
-				6667931E1E134DAF00344188 /* TaskQueue.swift in Sources */,
-				666793141E134DAF00344188 /* MBProgressHUD.m in Sources */,
-				00C8269B1DA5E04000ECECEE /* PresetTableViewCell.swift in Sources */,
-				00C8269C1DA5E04000ECECEE /* PresetTableViewCell.xib in Sources */,
-				6688A65D1DC981980078E636 /* MEDBaseNetworkRequest.swift in Sources */,
-				00C8269D1DA5E04000ECECEE /* PresetView.swift in Sources */,
-				61E8EC9D1E1601C0004F0DBE /* URL+Extension.swift in Sources */,
-				00C8269E1DA5E04000ECECEE /* SetingInfoCell.swift in Sources */,
-				664AE3321DF7C09C005CD385 /* NotiColorEditableCell.swift in Sources */,
-				00C8269F1DA5E04000ECECEE /* SetingInfoCell.xib in Sources */,
-				00C826A21DA5E04000ECECEE /* SetingNotLoginCell.swift in Sources */,
-				00C826A41DA5E04000ECECEE /* SetingView.swift in Sources */,
-				00C826A51DA5E04000ECECEE /* SetingViewController.swift in Sources */,
-				00C826A61DA5E04000ECECEE /* SleepHistoricalView.swift in Sources */,
-				00C826A71DA5E04000ECECEE /* SleepHistoryViewCell.swift in Sources */,
-				61CEC5C31E2C5A48001E5567 /* ScannerViewController.swift in Sources */,
-				00C826A81DA5E04000ECECEE /* SleepHistoryViewCell.xib in Sources */,
-				00C826A91DA5E04000ECECEE /* SleepHistoricalViewController.swift in Sources */,
-				00C826AB1DA5E04000ECECEE /* StepGoalSetingController.swift in Sources */,
-				666792E41E134DAF00344188 /* AutocompleteField.swift in Sources */,
-				00C826AC1DA5E04000ECECEE /* StepGoalSetingController.xib in Sources */,
-				00C826AD1DA5E04000ECECEE /* StepGoalSetingViewCell.swift in Sources */,
-				6667933A1E1350FC00344188 /* ToolbarView.swift in Sources */,
-				00C826AE1DA5E04000ECECEE /* StepGoalSetingViewCell.xib in Sources */,
-				666792F61E134DAF00344188 /* M13CheckboxGestureRecognizer.swift in Sources */,
-				00C826AF1DA5E04000ECECEE /* StepsHistoryViewController.swift in Sources */,
-				00C826B11DA5E04000ECECEE /* StepsTitleView.swift in Sources */,
-				00C826B21DA5E04000ECECEE /* StepsTitleView.xib in Sources */,
-				D1BE2B2B1E1D1AF600E6713D /* String+Timepiece.swift in Sources */,
-				00C826B31DA5E04000ECECEE /* TutorialOneViewController.swift in Sources */,
-				6650988C1DCB0CF20059D5F7 /* MEDSleepCreateRequest.swift in Sources */,
-				00C826B41DA5E04000ECECEE /* TutorialTwoViewController.swift in Sources */,
-				666792FA1E134DAF00344188 /* M13CheckboxPathPresets.swift in Sources */,
-				61E8EC931E160188004F0DBE /* Color.swift in Sources */,
-				61FC93EE1DE6806B000AE93C /* MEDUserNotification.swift in Sources */,
-				00C826B51DA5E04000ECECEE /* TutorialThreeViewController.swift in Sources */,
-				61E8EC961E160192004F0DBE /* Double+Extension.swift in Sources */,
-				00C826B61DA5E04000ECECEE /* TutorialFourViewController.swift in Sources */,
-				00C826B71DA5E04000ECECEE /* TutorialFiveViewController.swift in Sources */,
-				00C826B81DA5E04000ECECEE /* TutorialSixViewController.swift in Sources */,
-				6688A6711DC981990078E636 /* MEDStepsGetRequest.swift in Sources */,
-				00C826B91DA5E04000ECECEE /* TutorialSevenViewController.swift in Sources */,
-				666792EE1E134DAF00344188 /* LocalNotification.swift in Sources */,
-				61FC93EC1DE68064000AE93C /* MEDUserAlarm.swift in Sources */,
-				00C826BA1DA5E04000ECECEE /* SleepTutorialController.swift in Sources */,
-				61CEC5C11E2C5A3E001E5567 /* OldOtaViewController.swift in Sources */,
-				00C826BB1DA5E04000ECECEE /* MorningTutorialController.swift in Sources */,
-				6688A6731DC981990078E636 /* MEDStepsNetworkManager.swift in Sources */,
-				665098951DCB26670059D5F7 /* MEDSleepDeleteRequest.swift in Sources */,
-				6688A66D1DC981990078E636 /* MEDRequestPasswordRequest.swift in Sources */,
-				666793381E1350FC00344188 /* NevoCircleProgressView.swift in Sources */,
-				66154B8E1DF68BC500973A9E /* NotiColorController.swift in Sources */,
-				61E2A50C1E1DF878009A563B /* LargeValueFormatter.swift in Sources */,
-				00D4742C1D586D1600E2447E /* CaloriesToHK.swift in Sources */,
-				6655C04F1E0A26C9006A8A9D /* Misc+MEDExtension.swift in Sources */,
-				00D4742D1D586D1600E2447E /* DailySteps.swift in Sources */,
-				61E8EC951E16018F004F0DBE /* Date+Extension.swift in Sources */,
-				666792EC1E134DAF00344188 /* iRate.m in Sources */,
-				666793101E134DAF00344188 /* MBProgressHUD+MJ.m in Sources */,
-				662887521DC1E8BC00EC0983 /* MEDMRProgressOverlayView.swift in Sources */,
-				6691AAD41E1B7E54006B2140 /* MEDTextField.swift in Sources */,
-				6667930E1E134DAF00344188 /* M13CheckboxSpiralPathPresets.swift in Sources */,
-				61E2A5101E1E2EC9009A563B /* ChartFormatter.swift in Sources */,
-				666792E81E134DAF00344188 /* FXBlurView.m in Sources */,
-				00D4742E1D586D1600E2447E /* DaySleep.swift in Sources */,
-				00D4742F1D586D1600E2447E /* HourlySteps.swift in Sources */,
-				00D474301D586D1600E2447E /* RealTimeCountSteps.swift in Sources */,
-				00D474311D586D1600E2447E /* RunningToHK.swift in Sources */,
-				D1BE2B251E1D1AE500E6713D /* Int+Timepiece.swift in Sources */,
-				00D474321D586D1600E2447E /* Alarm.swift in Sources */,
-				00D474331D586D1600E2447E /* NewAlarm.swift in Sources */,
-				666F60F11DAF264B0011F3C5 /* AppDelegate-Extension.swift in Sources */,
-				61FC93EF1DE6806D000AE93C /* MEDUserProfile.swift in Sources */,
-				61E2A5131E1E366B009A563B /* AnalysisFormatter.swift in Sources */,
-				61E8EC971E160196004F0DBE /* EventBusKeys.swift in Sources */,
-				00D474431D586D1600E2447E /* Goal.swift in Sources */,
-				00D474441D586D1600E2447E /* NumberOfStepsGoal.swift in Sources */,
-				00D474451D586D1600E2447E /* NotificationSetting.swift in Sources */,
-				00D474491D586D1600E2447E /* TestMode.swift in Sources */,
-				6688A67B1DC981990078E636 /* MEDUserUpdateRequest.swift in Sources */,
-				6667930C1E134DAF00344188 /* M13CheckboxDotPathPresets.swift in Sources */,
-				00D4744F1D586D1600E2447E /* PublicClassController.swift in Sources */,
-				00D474501D586D1600E2447E /* PublicClassTableViewController.swift in Sources */,
-				00D474521D586D1600E2447E /* AppTheme.swift in Sources */,
-				6165A6391DEBC33500F7A3E6 /* NotificationTypeCell.swift in Sources */,
-				666792FC1E134DAF00344188 /* M13CheckboxBounceManager.swift in Sources */,
-				61FC93F01DE68071000AE93C /* MEDUserSleep.swift in Sources */,
-				66687CD81DD9654100AD7F7D /* Dispatch+MEDExtension.swift in Sources */,
-				00D4745A1D586D1600E2447E /* ClockRefreshManager.swift in Sources */,
-				61E8EC981E160199004F0DBE /* Float+Extension.swift in Sources */,
-				61E8EC941E16018B004F0DBE /* DataCalculation.swift in Sources */,
-				00D4745B1D586D1600E2447E /* ConnectionController.swift in Sources */,
-				667149FA1E1CAB1C009A34B4 /* NoneAlarmView.swift in Sources */,
-				00D4745C1D586D1600E2447E /* ConnectionControllerImpl.swift in Sources */,
-				6688A6671DC981990078E636 /* MEDLoginRequest.swift in Sources */,
-				00D4745D1D586D1600E2447E /* ConnectionManager.swift in Sources */,
-				00D4745E1D586D1600E2447E /* NevoProfile.swift in Sources */,
-				00D474611D586D1600E2447E /* NevoOTAControllerProfile.swift in Sources */,
-				00D474621D586D1600E2447E /* NevoOTAModeProfile.swift in Sources */,
-				6667932B1E13502A00344188 /* BalloonMarker.swift in Sources */,
-				00D474631D586D1600E2447E /* NevoOTAPacketProfile.swift in Sources */,
-				00D474641D586D1600E2447E /* NevoOTARequest.swift in Sources */,
-				00D474651D586D1600E2447E /* Utility.swift in Sources */,
-				00D4747B1D586D1600E2447E /* SyncQueue.swift in Sources */,
-				6688A65B1DC981980078E636 /* MEDBaseGetRequest.swift in Sources */,
-				D1BE2B291E1D1AF100E6713D /* NSDateComponents+Timepiece.swift in Sources */,
-				665098981DCB28160059D5F7 /* MEDStepsDeleteRequest.swift in Sources */,
-				6688A6751DC981990078E636 /* MEDStepsUpdateRequest.swift in Sources */,
-				6688A66B1DC981990078E636 /* MEDNetworkRequest.swift in Sources */,
-				D1BE2B271E1D1AEB00E6713D /* NSCalendarUnit+Timepiece.swift in Sources */,
-				61FC93F11DE68074000AE93C /* MEDUserSteps.swift in Sources */,
-				6667930A1E134DAF00344188 /* M13CheckboxStrokeManager.swift in Sources */,
-				662B3CAD1DEBD79A0014FA71 /* MEDAppInfo.swift in Sources */,
-				00D474861D586D1600E2447E /* NevoHK.swift in Sources */,
-				662B3CAA1DEBD6E60014FA71 /* MEDAppInfoRequester.swift in Sources */,
-				00D474871D586D1600E2447E /* NevoHKManager.swift in Sources */,
-				00D474881D586D1600E2447E /* HealthKit.framework in Sources */,
-				61FC93ED1DE68067000AE93C /* MEDUserGoal.swift in Sources */,
-				61FC93EB1DE68060000AE93C /* MEDBaseModel.swift in Sources */,
-				00D4748B1D586D1600E2447E /* Request.swift in Sources */,
-				00D4748C1D586D1600E2447E /* NevoBTimpl.swift in Sources */,
-				666793021E134DAF00344188 /* M13CheckboxFadeManager.swift in Sources */,
-				00D4748D1D586D1600E2447E /* NevoBT.swift in Sources */,
-				00D4748E1D586D1600E2447E /* RawPacket.swift in Sources */,
-				00D4748F1D586D1600E2447E /* Profile.swift in Sources */,
-				D1BE2B241E1D1AE100E6713D /* Duration.swift in Sources */,
-				666792F01E134DAF00344188 /* M13Checkbox+IB.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		00EFE05B1D227D5F0066C905 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		00EFE0661D227D5F0066C905 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		9AD8F92E1A6DF35900F01014 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -3426,6 +2419,7 @@
 				611D41A11DCAD97D003BC6E3 /* SetAlarmRequest.swift in Sources */,
 				611D41A21DCAD97D003BC6E3 /* SetCardioRequest.swift in Sources */,
 				666793031E134DAF00344188 /* M13CheckboxFillManager.swift in Sources */,
+				61F321AD1ECA9EFC00116F35 /* FindWatchRequest.swift in Sources */,
 				61E8EC851E16017D004F0DBE /* AlertAction.swift in Sources */,
 				611D41A31DCAD97D003BC6E3 /* SetGoalRequest.swift in Sources */,
 				666793391E1350FC00344188 /* ToolbarView.swift in Sources */,
@@ -3615,16 +2609,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		00EFE0611D227D5F0066C905 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 00EFE0491D227D5F0066C905 /* LunaR */;
-			targetProxy = 00EFE0601D227D5F0066C905 /* PBXContainerItemProxy */;
-		};
-		00EFE06C1D227D5F0066C905 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 00EFE0491D227D5F0066C905 /* LunaR */;
-			targetProxy = 00EFE06B1D227D5F0066C905 /* PBXContainerItemProxy */;
-		};
 		9AD8F94C1A6DF35900F01014 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 9AD8F9311A6DF35900F01014 /* Nevo */;
@@ -3900,166 +2884,6 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		00EFE0721D227D5F0066C905 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1215057C1EF17F735A5EFDD9 /* Pods-LunaR.debug.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CLANG_ANALYZER_NONNULL = YES;
-				CODE_SIGN_ENTITLEMENTS = LunaR/LunaR.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = WEGPWR9LDA;
-				ENABLE_BITCODE = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"${PODS_ROOT}/Crashlytics/iOS\"",
-					"\"${PODS_ROOT}/Fabric/iOS\"",
-					"$(PROJECT_DIR)/build/Debug-iphoneos",
-				);
-				GCC_NO_COMMON_BLOCKS = YES;
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"${PODS_ROOT}/Headers/Public\"",
-					"\"${PODS_ROOT}/Headers/Public/Crashlytics\"",
-					"\"${PODS_ROOT}/Headers/Public/Fabric\"",
-					"$(PROJECT_DIR)/Nevo/Class/Controller/UserProfileController/Cropper/local/include",
-				);
-				INFOPLIST_FILE = LunaR/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Nevo/Class/Controller/UserProfileController/Cropper",
-				);
-				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -D DEBUG";
-				PRODUCT_BUNDLE_IDENTIFIER = com.medcorp.LunaR;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "LunaR/LunaR-Bridging-Header.h";
-			};
-			name = Debug;
-		};
-		00EFE0731D227D5F0066C905 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 57C68BE0457DB1BFF58A2389 /* Pods-LunaR.release.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CLANG_ANALYZER_NONNULL = YES;
-				CODE_SIGN_ENTITLEMENTS = LunaR/LunaR.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = WEGPWR9LDA;
-				ENABLE_BITCODE = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"${PODS_ROOT}/Crashlytics/iOS\"",
-					"\"${PODS_ROOT}/Fabric/iOS\"",
-					"$(PROJECT_DIR)/build/Debug-iphoneos",
-				);
-				GCC_NO_COMMON_BLOCKS = YES;
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"${PODS_ROOT}/Headers/Public\"",
-					"\"${PODS_ROOT}/Headers/Public/Crashlytics\"",
-					"\"${PODS_ROOT}/Headers/Public/Fabric\"",
-					"$(PROJECT_DIR)/Nevo/Class/Controller/UserProfileController/Cropper/local/include",
-				);
-				INFOPLIST_FILE = LunaR/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Nevo/Class/Controller/UserProfileController/Cropper",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.medcorp.LunaR;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "LunaR/LunaR-Bridging-Header.h";
-			};
-			name = Release;
-		};
-		00EFE0751D227D5F0066C905 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = CBB9BF1C2FA9FD4C9B4E48BC /* Pods-LunaRTests.debug.xcconfig */;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CLANG_ANALYZER_NONNULL = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = LunaRTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.medcorp.LunaRTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LunaR.app/LunaR";
-			};
-			name = Debug;
-		};
-		00EFE0761D227D5F0066C905 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4D889843ECCF8C9F30888205 /* Pods-LunaRTests.release.xcconfig */;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CLANG_ANALYZER_NONNULL = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = LunaRTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.medcorp.LunaRTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LunaR.app/LunaR";
-			};
-			name = Release;
-		};
-		00EFE0781D227D5F0066C905 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ANALYZER_NONNULL = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = LunaRUITests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.medcorp.LunaRUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "1e4a840c-f839-4957-9051-5736de9e653b";
-				TEST_TARGET_NAME = LunaR;
-			};
-			name = Debug;
-		};
-		00EFE0791D227D5F0066C905 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ANALYZER_NONNULL = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = LunaRUITests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.medcorp.LunaRUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "1e4a840c-f839-4957-9051-5736de9e653b";
-				TEST_TARGET_NAME = LunaR;
-			};
-			name = Release;
-		};
 		9AD8F9521A6DF35900F01014 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -4270,33 +3094,6 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		00EFE0711D227D5F0066C905 /* Build configuration list for PBXNativeTarget "LunaR" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				00EFE0721D227D5F0066C905 /* Debug */,
-				00EFE0731D227D5F0066C905 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		00EFE0741D227D5F0066C905 /* Build configuration list for PBXNativeTarget "LunaRTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				00EFE0751D227D5F0066C905 /* Debug */,
-				00EFE0761D227D5F0066C905 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		00EFE0771D227D5F0066C905 /* Build configuration list for PBXNativeTarget "LunaRUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				00EFE0781D227D5F0066C905 /* Debug */,
-				00EFE0791D227D5F0066C905 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		9AD8F92D1A6DF35800F01014 /* Build configuration list for PBXProject "Nevo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

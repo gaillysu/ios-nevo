@@ -117,11 +117,6 @@ extension SolarIndicatorController:UICollectionViewDelegate,UICollectionViewData
         (cell as! SolarInforViewCell).updateTitleLabel(onTitle[(indexPath as NSIndexPath).row])
         (cell as! SolarInforViewCell).valueLabel.text = AppTheme.timerFormatValue(value: onValue[indexPath.row])
         
-        if !AppTheme.isTargetLunaR_OR_Nevo() {
-            (cell as! SolarInforViewCell).valueLabel.textColor = UIColor.getBaseColor()
-            (cell as! SolarInforViewCell).titleLabel.textColor = UIColor.white
-            cell.backgroundColor = UIColor.getLightBaseColor()
-        }
         return cell
     }
 }
@@ -209,14 +204,7 @@ extension SolarIndicatorController:ChartViewDelegate {
         
         let dataSet:PieChartDataSet = PieChartDataSet(values: yVals1, label: "")
         dataSet.sliceSpace = 2.0;
-        var colors:[UIColor] = [];
-        if !AppTheme.isTargetLunaR_OR_Nevo() {
-            colors.append(UIColor.getBaseColor())
-            colors.append(UIColor.getTintColor())
-        }else{
-            colors.append(AppTheme.NEVO_SOLAR_YELLOW())
-            colors.append(AppTheme.NEVO_SOLAR_DARK_GRAY())
-        }
+        var colors:[UIColor] = [AppTheme.NEVO_SOLAR_YELLOW(),AppTheme.NEVO_SOLAR_DARK_GRAY()];
         dataSet.colors = colors
         
         let pFormatter:NumberFormatter = NumberFormatter()

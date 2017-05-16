@@ -25,42 +25,15 @@ class TutorialFourViewController: UIViewController{
     }
 
     override func viewDidLoad() {
-        styleEvolve()
+        
     }
+    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        if !AppTheme.isTargetLunaR_OR_Nevo() {
-            self.setLunaRtext()
-        }
-        
-        if !AppTheme.isTargetLunaR_OR_Nevo() {
-            centerImageView.center.x = UIScreen.main.bounds.width / 2
-        }
     }
 
     @IBAction func nextAction(_ sender: AnyObject) {
         let tutorialFive = TutorialFiveViewController()
         self.navigationController?.pushViewController(tutorialFive, animated: true)
-    }
-}
-
-extension TutorialFourViewController {
-    fileprivate func styleEvolve() {
-        if !AppTheme.isTargetLunaR_OR_Nevo() {
-            view.backgroundColor = UIColor.getGreyColor()
-            titleLabel.backgroundColor = UIColor.clear
-            titleLabel.textColor = UIColor.white
-            detailLabel.backgroundColor = UIColor.clear
-            detailLabel.textColor = UIColor.white
-            nextButton.setTitleColor(UIColor.getBaseColor(), for: .normal)
-            centerImageView.image = AppTheme.GET_RESOURCES_IMAGE("lunar_open_bt")
-        }
-    }
-    func setLunaRtext() {
-        titleLabel.text = titleLabel.text?.replacingOccurrences(of: "nevo watch", with: "LunaR")
-        titleLabel.text = titleLabel.text?.replacingOccurrences(of: "nevo", with: "LunaR")
-        
-        detailLabel.text = detailLabel.text?.replacingOccurrences(of: "nevo watch", with: "LunaR")
-        detailLabel.text = detailLabel.text?.replacingOccurrences(of: "nevo", with: "LunaR")
     }
 }

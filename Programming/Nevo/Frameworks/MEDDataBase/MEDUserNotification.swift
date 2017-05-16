@@ -55,11 +55,9 @@ class MEDUserNotification:MEDBaseModel {
                         let notificationDict = value1.dictionaryValue
                         var isNotNevo:Bool = true
                         
-                        if AppTheme.isTargetLunaR_OR_Nevo() {
-                            for value2 in notNevoAppID {
-                                if notificationDict["bundleId"]!.stringValue == value2 {
-                                    isNotNevo = false;
-                                }
+                        for value2 in notNevoAppID {
+                            if notificationDict["bundleId"]!.stringValue == value2 {
+                                isNotNevo = false;
                             }
                         }
                         

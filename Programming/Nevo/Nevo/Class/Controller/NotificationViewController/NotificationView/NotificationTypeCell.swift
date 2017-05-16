@@ -31,11 +31,6 @@ class NotificationTypeCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        if !AppTheme.isTargetLunaR_OR_Nevo() {
-            self.backgroundColor = UIColor.getGreyColor()
-            titleLabel.textColor = UIColor.white
-            contentLabel.textColor = UIColor.white
-        }
         
         titleImage.layer.cornerRadius = 7
         titleImage.layer.masksToBounds = true
@@ -58,7 +53,7 @@ class NotificationTypeCell: UITableViewCell {
     }
     
     func setTitleLabel(title:String) {
-        let titleString:String = AppTheme.isTargetLunaR_OR_Nevo() ? title.replacingOccurrences(of: "WeChat", with: "Whatsapp"):title
+        let titleString:String = title.replacingOccurrences(of: "WeChat", with: "Whatsapp")
         titleLabel.text = NSLocalizedString(titleString, comment: "")
     }
     
@@ -67,7 +62,7 @@ class NotificationTypeCell: UITableViewCell {
     }
     
     func setTitleImage(imageName:String) {
-        let mImageName:String = AppTheme.isTargetLunaR_OR_Nevo() ? imageName.replacingOccurrences(of: "wechat", with: "whatsapp"):imageName
+        let mImageName:String = imageName.replacingOccurrences(of: "wechat", with: "whatsapp")
         titleImage.image = UIImage(named: mImageName)
     }
     

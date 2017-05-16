@@ -64,30 +64,6 @@ class InformationController: UIViewController {
         weightPickerView.dataSource = self
         weightPickerView.delegate = self
         weightTextfield.inputView = weightPickerView
-        
-        
-        if !AppTheme.isTargetLunaR_OR_Nevo() {
-            view.backgroundColor = UIColor.getGreyColor()
-            titleLabel.backgroundColor = UIColor.clear
-            titleLabel.textColor = UIColor.white
-            detailLabel.backgroundColor = UIColor.clear
-            detailLabel.textColor = UIColor.white
-            detailLabel2.backgroundColor = UIColor.clear
-            detailLabel2.textColor = UIColor.white
-            
-            policyLabel.backgroundColor = UIColor.clear
-            policyLabel.textColor = UIColor.getBaseColor()
-            
-            dateOfbirth.backgroundColor = UIColor.getLightBaseColor()
-            dateOfbirth.setValue(UIColor(white: 1, alpha: 0.7), forKeyPath: "placeholderLabel.textColor")
-            dateOfbirth.textColor = UIColor.white
-            heightTextField.backgroundColor = UIColor.getLightBaseColor()
-            heightTextField.setValue(UIColor(white: 1, alpha: 0.7), forKeyPath: "placeholderLabel.textColor")
-            heightTextField.textColor = UIColor.white
-            weightTextfield.backgroundColor = UIColor.getLightBaseColor()
-            weightTextfield.setValue(UIColor(white: 1, alpha: 0.7), forKeyPath: "placeholderLabel.textColor")
-            weightTextfield.textColor = UIColor.white
-        }
     }
     
     override func viewDidLayoutSubviews() {
@@ -116,9 +92,6 @@ class InformationController: UIViewController {
             segmentView!.addSegmentWithTitle(NSLocalizedString("Female", comment: ""), onSelectionImage: nil, offSelectionImage: nil)
             segmentView?.selectedSegmentIndex = 0
             metricsSegment.addSubview(segmentView!)
-            if !AppTheme.isTargetLunaR_OR_Nevo() {
-                segmentView?.layer.borderColor = UIColor.getBaseColor().cgColor
-            }
         }
         
     }
@@ -180,10 +153,6 @@ class InformationController: UIViewController {
             
             let view = MRProgressOverlayView.showOverlayAdded(to: self.navigationController!.view, title: NSLocalizedString("please_wait", comment: ""), mode: MRProgressOverlayViewMode.indeterminate, animated: true)
             view?.setTintColor(AppTheme.NEVO_SOLAR_YELLOW())
-            
-            if !AppTheme.isTargetLunaR_OR_Nevo() {
-                view?.setTintColor(UIColor.getBaseColor())
-            }
             
             //timeout
             let timeout:Timer = Timer.after(50.seconds, {

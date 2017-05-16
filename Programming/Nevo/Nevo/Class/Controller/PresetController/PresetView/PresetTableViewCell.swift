@@ -26,10 +26,8 @@ class PresetTableViewCell: UITableViewCell,ButtonManagerCallBack {
         if(presetStates.isOn){
             viewDefaultColorful()
         }else{
-            if AppTheme.isTargetLunaR_OR_Nevo() {
-                backgroundColor = UIColor.clear
-                contentView.backgroundColor = UIColor.clear
-            }
+            backgroundColor = UIColor.clear
+            contentView.backgroundColor = UIColor.clear
         }
         
         separatorInset = .zero

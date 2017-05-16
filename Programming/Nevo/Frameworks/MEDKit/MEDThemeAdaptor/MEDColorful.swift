@@ -31,51 +31,27 @@ extension NSObject: MEDColorfulLooking {}
 // MARK: - UIViewController
 extension MEDColorfulLooking where Self: UIViewController {
     public func viewDefaultColorful() {
-        if !AppTheme.isTargetLunaR_OR_Nevo() {
-            view.backgroundColor = UIColor.getLightBaseColor()
-        } else {
-            view.backgroundColor = UIColor.white
-        }
+        view.backgroundColor = UIColor.white
     }
 }
 
 extension MEDColorfulLooking where Self: UITabBarController {
     public func viewDefaultColorful() {
-        if !AppTheme.isTargetLunaR_OR_Nevo() {
-            tabBar.tintColor = UIColor.getBaseColor()
-            tabBar.isTranslucent = false
-            tabBar.backgroundColor = UIColor.getGreyColor()
-            tabBar.barTintColor = UIColor.getGreyColor()
-        } else {
-            tabBar.tintColor = AppTheme.NEVO_SOLAR_YELLOW()
-            tabBar.isTranslucent = false
-        }
+        tabBar.tintColor = AppTheme.NEVO_SOLAR_YELLOW()
+        tabBar.isTranslucent = false
     }
 }
 
 extension MEDColorfulLooking where Self: UINavigationController {
     public func viewDefaultColorful() {
-        if !AppTheme.isTargetLunaR_OR_Nevo() {
-            navigationBar.lt_setBackgroundColor(UIColor.getLunarTabBarColor())
-            navigationBar.tintColor = UIColor.getBaseColor()
-            
-            if var naviTitleAttrs = navigationController?.navigationBar.titleTextAttributes {
-                naviTitleAttrs[NSForegroundColorAttributeName] = UIColor.white
-            } else {
-                navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
-            }
-        } else {
-            navigationBar.lt_setBackgroundColor(UIColor.white)
-            navigationBar.tintColor = AppTheme.NEVO_SOLAR_YELLOW()
-        }
+        navigationBar.lt_setBackgroundColor(UIColor.white)
+        navigationBar.tintColor = AppTheme.NEVO_SOLAR_YELLOW()
     }
 }
 
 extension MEDColorfulLooking where Self: UITableViewController {
     public func viewDefaultColorful() {
-        if !AppTheme.isTargetLunaR_OR_Nevo() {
-            tableView.backgroundColor = UIColor.getLightBaseColor()
-        }
+        
     }
 }
 
@@ -84,124 +60,77 @@ extension MEDColorfulLooking where Self: UITableViewController {
 // MARK: - UIView
 extension MEDColorfulLooking where Self: UIView {
     public func viewDefaultColorful() {
-        if !AppTheme.isTargetLunaR_OR_Nevo() {
-            backgroundColor = UIColor.getLightBaseColor()
-        }
+        
     }
 }
 
 extension MEDColorfulLooking where Self: UITableView {
     public func viewDefaultColorful() {
-        if !AppTheme.isTargetLunaR_OR_Nevo(){
-            backgroundColor = UIColor.getLightBaseColor()
-            /// Seperator color
-        }
+        
     }
 }
 
 extension MEDColorfulLooking where Self: UITableViewCell {
     public func viewDefaultColorful() {
-        if !AppTheme.isTargetLunaR_OR_Nevo() {
-            backgroundColor = UIColor.getGreyColor()
-            contentView.backgroundColor = UIColor.getGreyColor()
-            textLabel?.textColor = UIColor.white
-            detailTextLabel?.textColor = UIColor.white
-        } else {
-            backgroundColor = UIColor.white
-            contentView.backgroundColor = UIColor.white
-            textLabel?.textColor = UIColor.black
-            detailTextLabel?.textColor = UIColor.black
-        }
+        backgroundColor = UIColor.white
+        contentView.backgroundColor = UIColor.white
+        textLabel?.textColor = UIColor.black
+        detailTextLabel?.textColor = UIColor.black
     }
 }
 
 extension MEDColorfulLooking where Self: UICollectionView {
     public func viewDefaultColorful() {
-        if !AppTheme.isTargetLunaR_OR_Nevo(){
-            backgroundColor = UIColor.getLightBaseColor()
-        }
+        
     }
 }
 
 extension MEDColorfulLooking where Self: UICollectionViewCell {
     public func viewDefaultColorful() {
-        if !AppTheme.isTargetLunaR_OR_Nevo() {
-            backgroundColor = UIColor.getGreyColor()
-            contentView.backgroundColor = UIColor.getGreyColor()
-        }
+        
     }
 }
 
 extension MEDColorfulLooking where Self: UIButton {
     public func viewDefaultColorful() {
-        if !AppTheme.isTargetLunaR_OR_Nevo() {
-            backgroundColor = UIColor.clear
-            setTitleColor(UIColor.white, for: .normal)
-        }
+        
     }
 }
 
 extension MEDColorfulLooking where Self: UILabel {
     public func viewDefaultColorful() {
-        if !AppTheme.isTargetLunaR_OR_Nevo() {
-            backgroundColor = UIColor.clear
-            textColor = UIColor.white
-        }
+        
     }
 }
 
 extension MEDColorfulLooking where Self: UISwitch {
     public func viewDefaultColorful() {
-        if !AppTheme.isTargetLunaR_OR_Nevo() {
-            tintColor = UIColor.getBaseColor()
-            onTintColor = UIColor.getBaseColor()
-        } else {
-            tintColor = AppTheme.NEVO_SOLAR_YELLOW()
-            onTintColor = AppTheme.NEVO_SOLAR_YELLOW()
-        }
+        tintColor = AppTheme.NEVO_SOLAR_YELLOW()
+        onTintColor = AppTheme.NEVO_SOLAR_YELLOW()
     }
 }
 
 extension MEDColorfulLooking where Self: UITextField {
     public func viewDefaultColorful() {
-        if !AppTheme.isTargetLunaR_OR_Nevo() {
-            backgroundColor = UIColor.getGreyColor()
-            textColor = UIColor.white
-            tintColor = UIColor.white
-            
-            if value(forKeyPath: "_placeholderLabel.textColor") != nil {
-                setValue(UIColor(white: 1, alpha: 0.7), forKeyPath: "_placeholderLabel.textColor")
-            }
-        }
+        
     }
 }
 
 extension MEDColorfulLooking where Self: UISegmentedControl {
     public func viewDefaultColorful() {
-        if !AppTheme.isTargetLunaR_OR_Nevo() {
-            tintColor = UIColor.getBaseColor()
-        } else {
-            tintColor = UIColor.getBaseColor()
-        }
+        tintColor = UIColor.getBaseColor()
     }
 }
 
 extension MEDColorfulLooking where Self: UIActivityIndicatorView {
     public func viewDefaultColorful() {
-        if !AppTheme.isTargetLunaR_OR_Nevo() {
-            color = UIColor.white
-            tintColor = UIColor.white
-        }
+        
     }
 }
 
 extension MEDColorfulLooking where Self: UIDatePicker {
     public func viewDefaultColorful() {
         backgroundColor = UIColor.clear
-        
-        if !AppTheme.isTargetLunaR_OR_Nevo() {
-            setValue(UIColor.white, forKey: "textColor")
-        }
     }
 }
 
@@ -210,17 +139,13 @@ extension MEDColorfulLooking where Self: UIDatePicker {
 // MARK: - NSObject
 extension MEDColorfulLooking where Self: UIBarButtonItem {
     public func viewDefaultColorful() {
-        if !AppTheme.isTargetLunaR_OR_Nevo() {
-            tintColor = UIColor.getBaseColor()
-        } else {
-            tintColor = AppTheme.NEVO_SOLAR_YELLOW()
-        }
+        tintColor = AppTheme.NEVO_SOLAR_YELLOW()
     }
 }
 
 extension MEDColorfulLooking where Self: UIAlertAction {
     public func viewDefaultColorful() {
-        let titleTextColor = AppTheme.isTargetLunaR_OR_Nevo() ? AppTheme.NEVO_SOLAR_YELLOW() : UIColor.getBaseColor()
+        let titleTextColor = AppTheme.NEVO_SOLAR_YELLOW()
         if value(forKey: "_titleTextColor") != nil {
             setValue(titleTextColor, forKey: "_titleTextColor")
         }

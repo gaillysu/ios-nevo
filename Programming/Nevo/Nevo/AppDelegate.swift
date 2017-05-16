@@ -42,9 +42,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
     fileprivate var isSync:Bool = true; // syc state
     fileprivate var getWacthNameTimer:Timer?
     
-    var longitude:Double = 0
-    var latitude:Double = 0
-    
     var isFirsttimeLaunch: Bool {
         get {
             let result = UserDefaults.standard.bool(forKey: "kIsNotFirstTimeLaunch")
@@ -457,13 +454,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                     
                 })
                 actionSheet.addAction(alertAction2)
-                if !AppTheme.isTargetLunaR_OR_Nevo() {
-                    alertAction1.setValue(UIColor.getBaseColor(), forKey: "titleTextColor")
-                    alertAction2.setValue(UIColor.getBaseColor(), forKey: "titleTextColor")
-                }else{
-                    alertAction1.setValue(AppTheme.NEVO_SOLAR_YELLOW(), forKey: "titleTextColor")
-                    alertAction2.setValue(AppTheme.NEVO_SOLAR_YELLOW(), forKey: "titleTextColor")
-                }
+                alertAction1.setValue(AppTheme.NEVO_SOLAR_YELLOW(), forKey: "titleTextColor")
+                alertAction2.setValue(AppTheme.NEVO_SOLAR_YELLOW(), forKey: "titleTextColor")
                 tabVC?.present(actionSheet, animated: true, completion: nil)
 
             }
@@ -497,43 +489,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
 }
 
 extension AppDelegate {
-
-    func startLocation() {
-        NSLog("AuthorizationStatus:\(LocationManager.instanceLocation.gpsAuthorizationStatus)")
-        if LocationManager.instanceLocation.gpsAuthorizationStatus>2 {
-            LocationManager.instanceLocation.startLocation()
-            LocationManager.instanceLocation.didChangeAuthorization = { status in
-                let states:CLAuthorizationStatus = status as CLAuthorizationStatus
-                XCGLogger.default.debug("Location didChangeAuthorization:\(states.rawValue)")
-            }
-            
-            LocationManager.instanceLocation.didUpdateLocations = { location in
-                let locationArray = location as [CLLocation]
-                XCGLogger.default.debug("Location didUpdateLocations:\(locationArray)")
-                self.longitude = locationArray.last!.coordinate.longitude
-                self.latitude = locationArray.last!.coordinate.latitude
-                NSLog("longitude:\(self.longitude),latitude:\(self.latitude)")
-//                self.setSolar()
-            }
-            
-            LocationManager.instanceLocation.didFailWithError = { error in
-                XCGLogger.default.debug("Location didFailWithError:\(error)")
-            }
-        }else{
-            let banner:MEDBanner = MEDBanner(title: NSLocalizedString("Location Error", comment: ""), subtitle: NSLocalizedString("LunaR needs your location to set the sunset and sunrise time. ", comment: ""), image: nil, backgroundColor: UIColor.getBaseColor(), didTapBlock: {
-                
-            })
-            banner.show()
-        }
-    }
-    
-    func getLongitude() -> Double {
-        return longitude;
-    }
-    
-    func getLatitude() -> Double {
-        return latitude;
-    }
     
     func saveSolarHarvest(thispacket:DailyTrackerNevoPacket,date:Date)  {
         let login = MEDUserProfile.getAll()

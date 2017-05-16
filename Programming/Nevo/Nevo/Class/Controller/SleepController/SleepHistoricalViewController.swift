@@ -33,10 +33,6 @@ class SleepHistoricalViewController: PublicClassController,ChartViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if !AppTheme.isTargetLunaR_OR_Nevo(){
-            titleLabel.textColor = UIColor.white
-        }
-        
         self.navigationItem.title = NSLocalizedString("sleep_history_title", comment: "")
         contentTitleArray = [NSLocalizedString("sleep_timer", comment: ""), NSLocalizedString("wake_timer", comment: ""), NSLocalizedString("Quality", comment: ""), NSLocalizedString("Duration", comment: "")]
         
@@ -162,13 +158,7 @@ extension SleepHistoricalViewController:UICollectionViewDelegate,UICollectionVie
         cell.updateTitleLabel(contentTitleArray[indexPath.row])
         cell.valueLabel.text = "\(contentTArray[indexPath.row])"
         
-        if !AppTheme.isTargetLunaR_OR_Nevo() {
-            cell.backgroundColor = UIColor.getLightBaseColor()
-            cell.valueLabel.textColor = UIColor.getBaseColor()
-            cell.titleLabel.textColor = UIColor.white
-        }else{
-            cell.backgroundColor = UIColor.white
-        }
+        cell.backgroundColor = UIColor.white
         return cell
     }
 }
