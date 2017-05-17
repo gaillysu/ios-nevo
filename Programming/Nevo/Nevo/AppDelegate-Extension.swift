@@ -260,7 +260,8 @@ extension AppDelegate {
             } )
         }else {
             //tell caller
-            SwiftEventBus.post(EVENT_BUS_CONNECTION_STATE_CHANGED_KEY, sender:false as AnyObject)
+            let state = PostConnectionState(false, address: nil, pairState: nil)
+            SwiftEventBus.post(EVENT_BUS_CONNECTION_STATE_CHANGED_KEY, sender: state)
         }
     }
     

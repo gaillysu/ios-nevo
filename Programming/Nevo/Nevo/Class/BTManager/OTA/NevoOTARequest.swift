@@ -47,15 +47,20 @@ enum DfuFirmwareTypes:UInt8{
 
 class SetOTAModeRequest : Request {
     
-    let values :[UInt8] = [0x00,0x72,0xA0,0x8A,0x7D,0xDE,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-    let values2 :[UInt8] = [0xFF,0x72,0x00,0x00,0x00,0x00,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+    class func HEADER()->UInt8 {
+        return 0x72
+    }
+    
+    let values :[UInt8] = [0x00,SetOTAModeRequest.HEADER(),0xA0,0x8A,0x7D,0xDE,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+    let values2 :[UInt8] = [0xFF,SetOTAModeRequest.HEADER(),0x00,0x00,0x00,0x00,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
     func getTargetProfile() -> Profile {
-        return NevoOTAModeProfile()
+        return NevoProfile()
     }
     
     func getRawData() -> Data {
         return Data(bytes: UnsafePointer<UInt8>(values), count: values.count)
     }
+    
     func getRawDataEx() -> NSArray {
         return NSArray(array: [Data(bytes: UnsafePointer<UInt8>(values), count: values.count),
                                Data(bytes: UnsafePointer<UInt8>(values2), count: values2.count)])

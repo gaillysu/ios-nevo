@@ -56,6 +56,7 @@ class ConnectionControllerImpl : NSObject {
         setOTAMode(false,Disconnect:true)
     }
     
+    
     /**
     See ConnectionController protocol
     */
@@ -236,7 +237,10 @@ extension ConnectionControllerImpl:ConnectionController {
      See ConnectionController protocol
      */
     func isConnected() -> Bool {
-        return mNevoBT!.isConnected()
+        if let nevoBT = mNevoBT {
+            return nevoBT.isConnected()
+        }
+        return false
     }
     
     /**

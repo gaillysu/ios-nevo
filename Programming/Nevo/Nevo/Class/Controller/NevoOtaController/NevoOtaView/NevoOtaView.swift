@@ -143,12 +143,11 @@ class NevoOtaView: UIView {
 
     fileprivate var mDelegate:ButtonManagerCallBack?
     fileprivate var tipView:FXBlurView?;
-    fileprivate var mOTADelegate:NevoOtaController?//OTA for watch version number object
+    fileprivate var mOTADelegate:NevoMCUOtaController?//OTA for watch version number object
     fileprivate var OTAprogressView:OTAProgress?//OTA upgrade progress bar object
     var progresValue:CGFloat = 0.0//OTA upgrade progress bar default value
     
-    func buildView(_ delegate:ButtonManagerCallBack?) {
-        mDelegate = delegate
+    func buildView() {
 
         backButton.layer.masksToBounds = true
         backButton.layer.cornerRadius = 10.0
@@ -219,6 +218,7 @@ class NevoOtaView: UIView {
     func upgradeSuccessful(){
         nevoWacthImage.image = AppTheme.GET_RESOURCES_IMAGE("connected");
         OTAprogressView!.isHidden = true
+        backView.isHidden = false
     }
 
     /**

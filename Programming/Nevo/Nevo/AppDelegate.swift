@@ -383,7 +383,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
 
     func connectionStateChanged(_ isConnected : Bool, fromAddress : UUID!,isFirstPair:Bool) {
         //send local notification
-        SwiftEventBus.post(EVENT_BUS_CONNECTION_STATE_CHANGED_KEY, sender:isConnected as AnyObject)
+        let state = PostConnectionState(isConnected, address: fromAddress, pairState: isFirstPair)
+        SwiftEventBus.post(EVENT_BUS_CONNECTION_STATE_CHANGED_KEY, sender:state)
 
         if(isConnected) {
             if(self.hasSavedAddress()){

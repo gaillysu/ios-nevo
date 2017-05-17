@@ -25,7 +25,7 @@ class OldOtaViewController: UIViewController  {
     
     override func viewDidLayoutSubviews(){
         //init the view
-        nevoOtaView.buildView(nil)
+        nevoOtaView.buildView()
     }
 
     override func viewDidLoad() {

@@ -78,10 +78,9 @@ class SetingView: UIView {
 
         if indexPath.row == 0 && indexPath.section == 1 {
 
-            let connectionController = AppDelegate.getAppDelegate().getMconnectionController()!
             var statusString = NSLocalizedString("Disconnected", comment: "")
             var color = UIColor.darkRed()
-            if connectionController.isConnected() {
+            if AppDelegate.getAppDelegate().isConnected() {
                 if UserDefaults.standard.getFirmwareVersion() < AppTheme.GET_FIRMWARE_VERSION() || UserDefaults.standard.getSoftwareVersion() < AppTheme.GET_SOFTWARE_VERSION() {
                     statusString = NSLocalizedString("New Version Available!", comment: "")
                     color = UIColor.getBaseColor()
