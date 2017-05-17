@@ -329,14 +329,14 @@ class DailyTrackerNevoPacket: NevoPacket {
 
     :returns: timer/Year,Month,Day
     */
-    func getDateTimer()->Date{
+    func getDateTimer()->Date?{
         var year:Int = Int(NSData2Bytes(getPackets()[0])[2] )
         year = year + Int(NSData2Bytes(getPackets()[0])[3] )<<8
         let month:Int = Int(NSData2Bytes(getPackets()[0])[4])
         let day:Int = Int(NSData2Bytes(getPackets()[0])[5])
         
         let dateString:String = "\(year.to2String())\(month.to2String())\(day.to2String())"
-        return dateString.dateFromFormat("yyyyMMdd", locale: DateFormatter().locale)!
+        return dateString.dateFromFormat("yyyyMMdd", locale: DateFormatter().locale)
     }
 
 

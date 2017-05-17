@@ -228,9 +228,7 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
 
         }else{
             mNevoOtaController!.setStatus(DFUControllerState.send_RESET)
-
             initValue()
-
             if(currentIndex == 1) {
                 //Ble升级完成请打开手表蓝牙,确保连接上并弹出配对信息,点击配对按钮后在点击继续Mcu按钮,不然会出现超时现象
                 let alertTip :UIAlertView = UIAlertView(title: NSLocalizedString("Firmware Upgrade", comment: ""), message: NSLocalizedString("update_ble_success_message", comment: ""), delegate: nil, cancelButtonTitle: NSLocalizedString("Ok", comment: ""))
@@ -281,9 +279,7 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
     func onError(_ errString : String){
 
         DispatchQueue.main.async(execute: {
-
             self.initValue()
-
             let alert :UIAlertView = UIAlertView(title: NSLocalizedString("Firmware Upgrade", comment: ""), message: errString as String, delegate: nil, cancelButtonTitle: NSLocalizedString("Ok", comment: ""))
             alert.delegate = self
             alert.show()
@@ -351,14 +347,13 @@ class NevoOtaViewController: UIViewController,NevoOtaControllerDelegate,ButtonMa
     /**
      PtlSelectFile
 
-     :param: path <#path description#>
+     :param: path path description
      */
     func onFileSelected(_ selectedFile:URL) {
         XCGLogger.default.debug("onFileSelected")
         if (selectedFile.path != nil) {
             let fileExtension:String? = selectedFile.pathExtension
             //set the file information
-
             selectedFileURL = selectedFile
             if fileExtension == "bin" {
                 enumFirmwareType = DfuFirmwareTypes.softdevice

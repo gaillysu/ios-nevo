@@ -74,7 +74,7 @@
 "in_order_reactivate_bluetooth"="In order to reactivate the bluetooth. Don’t exit this screen!";
 "do_not_exit_this_screen"="Do not exit this screen";
 "please_follow_the_update_has_been_finished"="Please follow the instructions and wait untill the update has been finished.";
-"update_ble_success_message"="Ble upgrade completed, reconnect the watch to the phone by pressing and holding the third button on the watch. Make sure that the watch is paired so it won't interrupt the upgrade procedure. Once it's connected you can continue to upgrade the Mcu by clicking on continue.";
+"update_ble_success_message"="To continue please unpair the watch in the BT settings and return the app to automatically repair it. Once it's connected you can continue to upgrade the MCU by clicking on continue.";
 "Ok"="OK";
 "is_watch_version"="Your watch is up to date";
 "steps_unit"="steps";

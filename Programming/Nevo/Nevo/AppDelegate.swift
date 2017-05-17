@@ -263,20 +263,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
 
             if(packet.getHeader() == ReadDailyTracker.HEADER()) {
                 let thispacket:DailyTrackerNevoPacket = packet.copy() as DailyTrackerNevoPacket
-                let timerInterval:Date = thispacket.getDateTimer()
-                let timeStr:String = thispacket.getDateTimer().stringFromFormat("yyyyMMdd", locale: DateFormatter().locale)
+                guard let timeInterval = thispacket.getDateTimer() else{
+                    print("ERROR! COULD NOT PARSE DATE CORRECTLY SOMEHOW.")
+                    return
+                }
+                let timeStr:String = timeInterval.stringFromFormat("yyyyMMdd", locale: DateFormatter().locale)
                 
                 if self.getWatchID()>1 {
-                    saveSolarHarvest(thispacket: thispacket, date: thispacket.getDateTimer())
+                    saveSolarHarvest(thispacket: thispacket, date: timeInterval)
                 }
                 
                 XCGLogger.default.debug("dateString====:\(timeStr)")
                 //save steps
-                let hourlySteps = self.saveStepsToDataBase(thispacket: thispacket, date: timerInterval, dateString: timeStr)
+                let hourlySteps = self.saveStepsToDataBase(thispacket: thispacket, date: timeInterval, dateString: timeStr)
                 
                 //save sleep data for every hour.
                 //save format: first write wake, then write sleep(light&deep)
-                self.saveSleepToDataBase(thispacket: thispacket, date: timerInterval, dateString: timeStr)
+                self.saveSleepToDataBase(thispacket: thispacket, date: timeInterval, dateString: timeStr)
 
 
                 //TODO:crash  数组越界
