@@ -51,8 +51,6 @@ extension UIColor{
         return UIColor("#00B000")
     }
     
-    
-    
     public class func transparent() -> UIColor {
         return UIColor(red: 0/255.0 , green: 0/255.0, blue: 0/255.0, alpha: 0.0)
     }

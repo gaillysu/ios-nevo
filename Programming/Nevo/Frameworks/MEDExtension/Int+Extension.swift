@@ -75,4 +75,19 @@ extension Int{
         return value1.floatValue
     }
     
+    //decimal-> binary
+    func dec2binString() -> String {
+        var numberValue = self
+        var str = ""
+        while numberValue > 0 {
+            str = "\(numberValue % 2)" + str
+            numberValue /= 2
+        }
+        return str
+    }
+    
+    //decimal -> hexadecimal
+    func dec2hex() -> String {
+        return String(format: "%0X", self)
+    }
 }

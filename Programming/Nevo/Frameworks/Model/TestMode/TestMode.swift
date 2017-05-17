@@ -47,8 +47,8 @@ class TestMode: NSObject {
     }
 
     func setPacketData(_ data:[Data]){
-        let header:UInt8 = NSData2Bytes(data[0])[1]
-        let instruction:UInt8 = NSData2Bytes(data[0])[2]
+        let header:UInt8 = data[0].data2Bytes()[1]
+        let instruction:UInt8 = data[0].data2Bytes()[2]
         if(header == 0xF1 && (instruction == 0x02)){
             pressedData = data;
             packetData?.removeAll(keepingCapacity: true)
@@ -61,11 +61,11 @@ class TestMode: NSObject {
 
     func isTestModel()->Bool {
         if(pressedData?.count>0 && packetData?.count>0){
-            let header:UInt8 = NSData2Bytes(pressedData![0])[1]
-            let instruction:UInt8 = NSData2Bytes(pressedData![0])[2]
+            let header:UInt8 = pressedData![0].data2Bytes()[1]
+            let instruction:UInt8 = pressedData![0].data2Bytes()[2]
 
-            let isModelHeader:UInt8 = NSData2Bytes(packetData![0])[1]
-            let isModelInstruction:UInt8 = NSData2Bytes(packetData![0])[2]
+            let isModelHeader:UInt8 = packetData![0].data2Bytes()[1]
+            let isModelInstruction:UInt8 = packetData![0].data2Bytes()[2]
 
             if(header == 0xF1 && (instruction == 0x02) && isModelHeader == 0xF1 && (isModelInstruction == 0x00)){
                 pressedData?.removeAll(keepingCapacity: true)

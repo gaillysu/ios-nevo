@@ -12,7 +12,41 @@ import Foundation
 import XCGLogger
 import iOSDFULibrary
 
+struct DFUResponse
+{
+    var responseCode:UInt8;
+    var requestedCode:UInt8;
+    var responseStatus:UInt8;
+}
+
+enum DFUControllerState:Int
+{
+    case inittialize = 0,
+    discovering,
+    idle,
+    send_NOTIFICATION_REQUEST,
+    send_START_COMMAND,
+    send_RECEIVE_COMMAND,
+    send_FIRMWARE_DATA,
+    send_VALIDATE_COMMAND,
+    send_RESET,
+    wait_RECEIPT,
+    finished,
+    canceled,
+    send_RECONNECT
+}
+
 class NevoOtaController : NSObject,ConnectionControllerDelegate {
+    enum DfuOperationStatus:UInt8{
+        case operation_SUCCESSFUL_RESPONSE = 0x01,
+        operation_INVALID_RESPONSE = 0x02,
+        operation_NOT_SUPPORTED_RESPONSE = 0x03,
+        data_SIZE_EXCEEDS_LIMIT_RESPONSE = 0x04,
+        crc_ERROR_RESPONSE = 0x05,
+        operation_FAILED_RESPONSE = 0x06
+        
+    }
+
     var mDelegate : NevoOtaControllerDelegate?
     let mConnectionController : ConnectionController = AppDelegate.getAppDelegate().getMconnectionController()!
     
@@ -92,10 +126,10 @@ class NevoOtaController : NSObject,ConnectionControllerDelegate {
     fileprivate func convertHexFileToBin(_ hexFileData:Data){
         binFileData = IntelHex2BinConverter.convert(hexFileData)
         XCGLogger.default.debug("HexFileSize: \(hexFileData.count) and BinFileSize: \(String(describing: self.binFileData?.count))")
-        numberOfPackets =  (binFileData?.count)! / enumPacketOption.packet_SIZE.rawValue
-        bytesInLastPacket = ((binFileData?.count)! % enumPacketOption.packet_SIZE.rawValue);
+        numberOfPackets =  (binFileData?.count)! / EnumPacketOption.packet_SIZE.rawValue
+        bytesInLastPacket = ((binFileData?.count)! % EnumPacketOption.packet_SIZE.rawValue);
         if (bytesInLastPacket == 0) {
-            bytesInLastPacket = enumPacketOption.packet_SIZE.rawValue;
+            bytesInLastPacket = EnumPacketOption.packet_SIZE.rawValue;
         }else{
             numberOfPackets = numberOfPackets + 1
         }
@@ -108,10 +142,10 @@ class NevoOtaController : NSObject,ConnectionControllerDelegate {
     
     fileprivate func writeNextPacket(){
         var percentage :Int = 0;
-        for index:Int in 0 ..< Int(enumPacketOption.packets_NOTIFICATION_INTERVAL.rawValue) {
+        for index:Int in 0 ..< Int(EnumPacketOption.packets_NOTIFICATION_INTERVAL.rawValue) {
             if (self.writingPacketNumber > self.numberOfPackets-2) {
                 XCGLogger.default.debug("writing last packet");
-                let dataRange : Range = self.writingPacketNumber*enumPacketOption.packet_SIZE.rawValue..<(self.writingPacketNumber*enumPacketOption.packet_SIZE.rawValue+self.bytesInLastPacket)
+                let dataRange : Range = self.writingPacketNumber*EnumPacketOption.packet_SIZE.rawValue..<(self.writingPacketNumber*EnumPacketOption.packet_SIZE.rawValue+self.bytesInLastPacket)
                     //NSMakeRange(self.writingPacketNumber*enumPacketOption.packet_SIZE.rawValue, self.bytesInLastPacket);
                 let nextPacketData : Data = (binFileData?.subdata(in: dataRange))!
 
@@ -129,7 +163,7 @@ class NevoOtaController : NSObject,ConnectionControllerDelegate {
                 break;
 
             }
-            let dataRange : Range = self.writingPacketNumber*enumPacketOption.packet_SIZE.rawValue..<(self.writingPacketNumber*enumPacketOption.packet_SIZE.rawValue+enumPacketOption.packet_SIZE.rawValue)
+            let dataRange : Range = self.writingPacketNumber*EnumPacketOption.packet_SIZE.rawValue..<(self.writingPacketNumber*EnumPacketOption.packet_SIZE.rawValue+EnumPacketOption.packet_SIZE.rawValue)
                 //NSMakeRange(self.writingPacketNumber*enumPacketOption.packet_SIZE.rawValue, enumPacketOption.packet_SIZE.rawValue);
 
             let    nextPacketData : Data  = (self.binFileData?.subdata(in: dataRange))!
@@ -137,7 +171,7 @@ class NevoOtaController : NSObject,ConnectionControllerDelegate {
             XCGLogger.default.debug("packet data: \(nextPacketData)");
 
             mConnectionController.sendRequest(OnePacketRequest(packetdata: nextPacketData ))
-            progress = Double(self.writingPacketNumber * enumPacketOption.packet_SIZE.rawValue) / Double(self.binFileSize) * 100.0
+            progress = Double(self.writingPacketNumber * EnumPacketOption.packet_SIZE.rawValue) / Double(self.binFileSize) * 100.0
             percentage = Int(progress)
 
             XCGLogger.default.debug("DFUOperations: onTransferPercentage \(percentage)");
@@ -303,7 +337,7 @@ class NevoOtaController : NSObject,ConnectionControllerDelegate {
         //dicard those packets from  NevoProfile
         if !(packet.getSourceProfile() is NevoProfile){
             if(dfuFirmwareType == DfuFirmwareTypes.application && mConnectionController.getOTAMode() == true){
-                processDFUResponse(NSData2Bytes(packet.getRawData()))
+                processDFUResponse(packet.getRawData().data2Bytes())
             }else if(dfuFirmwareType == DfuFirmwareTypes.softdevice) {
                 SyncQueue.sharedInstance_ota.next()
                 MCU_processDFUResponse(packet)
@@ -614,7 +648,7 @@ class NevoOtaController : NSObject,ConnectionControllerDelegate {
     func MCU_processDFUResponse(_ packet:RawPacket){
         XCGLogger.default.debug("didReceiveReceipt")
         mPacketsbuffer.append(packet.getRawData())
-        var databyte:[UInt8] = NSData2Bytes(packet.getRawData())
+        var databyte:[UInt8] = packet.getRawData().data2Bytes()
         
         if(databyte[0] == 0xFF){
             if( databyte[1] == 0x70){
@@ -625,7 +659,7 @@ class NevoOtaController : NSObject,ConnectionControllerDelegate {
             }
 
             if( databyte[1] == 0x71 && self.state == DFUControllerState.finished){
-                var databyte1:[UInt8] = NSData2Bytes(mPacketsbuffer[0])
+                var databyte1:[UInt8] = mPacketsbuffer[0].data2Bytes()
                 
                 if(databyte1[1] == 0x71
                     && databyte1[2] == 0xFF

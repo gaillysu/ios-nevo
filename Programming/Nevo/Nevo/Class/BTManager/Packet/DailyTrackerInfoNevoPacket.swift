@@ -18,7 +18,7 @@ class DailyTrackerInfoNevoPacket: NevoPacket {
     {
             var days:[DailyHistory] = []
         
-            let total:Int = Int(NSData2Bytes(getPackets()[1])[12])
+            let total:Int = Int(getPackets()[1].data2Bytes()[12])
             var year:Int = 0
             var month:Int = 0
             var day:Int = 0
@@ -28,21 +28,21 @@ class DailyTrackerInfoNevoPacket: NevoPacket {
                 format.dateFormat = "yyyyMMddHHmmss"
                 
                 if (i<=3) {
-                    year  = Int(NSData2Bytes(getPackets()[0])[2+4*i] ) + Int(NSData2Bytes(getPackets()[0])[3+4*i])<<8
-                    month = Int(NSData2Bytes(getPackets()[0])[4+4*i] )
-                    day   = Int(NSData2Bytes(getPackets()[0])[5+4*i] )
+                    year  = Int(getPackets()[0].data2Bytes()[2+4*i] ) + Int(getPackets()[0].data2Bytes()[3+4*i])<<8
+                    month = Int(getPackets()[0].data2Bytes()[4+4*i] )
+                    day   = Int(getPackets()[0].data2Bytes()[5+4*i] )
                 }else if (i == 4) {
-                    year  = Int(NSData2Bytes(getPackets()[0])[2+4*i] ) + Int(NSData2Bytes(getPackets()[0])[3+4*i])<<8
-                    month = Int(NSData2Bytes(getPackets()[1])[2] )
-                    day   = Int(NSData2Bytes(getPackets()[1])[3] )
+                    year  = Int(getPackets()[0].data2Bytes()[2+4*i] ) + Int(getPackets()[0].data2Bytes()[3+4*i])<<8
+                    month = Int(getPackets()[1].data2Bytes()[2] )
+                    day   = Int(getPackets()[1].data2Bytes()[3] )
                 }else if (i == 5) {
-                    year  = Int(NSData2Bytes(getPackets()[1])[4] ) + Int(NSData2Bytes(getPackets()[1])[5])<<8
-                    month = Int(NSData2Bytes(getPackets()[1])[6] )
-                    day   = Int(NSData2Bytes(getPackets()[1])[7] )
+                    year  = Int(getPackets()[1].data2Bytes()[4] ) + Int(getPackets()[1].data2Bytes()[5])<<8
+                    month = Int(getPackets()[1].data2Bytes()[6] )
+                    day   = Int(getPackets()[1].data2Bytes()[7] )
                 }else if (i == 6) {
-                    year  = Int(NSData2Bytes(getPackets()[1])[8] ) + Int(NSData2Bytes(getPackets()[1])[9])<<8
-                    month = Int(NSData2Bytes(getPackets()[1])[10] )
-                    day   = Int(NSData2Bytes(getPackets()[1])[11] )
+                    year  = Int(getPackets()[1].data2Bytes()[8] ) + Int(getPackets()[1].data2Bytes()[9])<<8
+                    month = Int(getPackets()[1].data2Bytes()[10] )
+                    day   = Int(getPackets()[1].data2Bytes()[11] )
                 }
                 
                 //vaild year,month, day

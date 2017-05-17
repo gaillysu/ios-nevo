@@ -14,7 +14,7 @@ class WatchNamePacket: NevoPacket {
      - returns: 1-Nevo,2-Nevo Solar,3-Lunar,0xff-Nevo
      */
     func getWatchID() ->Int {
-        let watch_id:Int = Int(NSData2Bytes(getPackets()[0])[2] )
+        let watch_id:Int = Int(getPackets()[0].data2Bytes()[2] )
         return watch_id
     }
     
@@ -23,7 +23,7 @@ class WatchNamePacket: NevoPacket {
      - returns: 1 - Paris,2 - New York,3 - ShangHai
      */
     func getModelNumber() ->Int {
-        let modelNumber:Int = Int(NSData2Bytes(getPackets()[0])[5] )
+        let modelNumber:Int = Int(getPackets()[0].data2Bytes()[5] )
         return modelNumber
     }
 

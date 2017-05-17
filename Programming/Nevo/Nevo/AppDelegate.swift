@@ -255,7 +255,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                 let thispacket = packet.copy() as DailyTrackerInfoNevoPacket
                 currentDay = 0
                 savedDailyHistory = thispacket.getDailyTrackerInfo()
-                XCGLogger.default.debug("History Total Days:\(self.savedDailyHistory.count),Today is \(GmtNSDate2LocaleNSDate(Date()))")
+                XCGLogger.default.debug("History Total Days:\(self.savedDailyHistory.count),Today is \(Date().gmtDate2LocaleDate())")
                 if savedDailyHistory.count > 0 {
                     self.getDailyTracker(currentDay)
                 }

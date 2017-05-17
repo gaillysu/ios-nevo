@@ -19,7 +19,7 @@ class BatteryLevelNevoPacket: NevoPacket {
      0xff - not ready
 */
    func getBatteryLevel() ->Int {
-    return Int(NSData2Bytes(getPackets()[0])[2] )
+    return Int(getPackets()[0].data2Bytes()[2])
    }
 
     /*
@@ -29,13 +29,13 @@ class BatteryLevelNevoPacket: NevoPacket {
      */
     
     func getBattCapacity() ->Int {
-        return Int(NSData2Bytes(getPackets()[0])[3] )
+        return Int(getPackets()[0].data2Bytes()[3])
     }
     
     func isReadBatteryCommand(_ data:[Data])->Bool{
-        let header:UInt8 = NSData2Bytes(data[0])[0]
-        let instruction:UInt8 = NSData2Bytes(data[0])[1]
-        if(header == 0x00 && instruction == 0x40 ){
+        let header:UInt8 = data[0].data2Bytes()[0]
+        let instruction:UInt8 = data[0].data2Bytes()[1]
+        if(header == 0x00 && instruction == 0x40){
             return true
         }else{
             return false

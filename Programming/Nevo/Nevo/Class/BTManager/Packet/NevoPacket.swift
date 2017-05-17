@@ -53,7 +53,7 @@ class NevoPacket {
         if(packets.count >= 2)
         {
         mPackets = packets
-        mHeader = NSData2Bytes(mPackets[0])[1]
+        mHeader = mPackets[0].data2Bytes()[1]
         }
     }
     
@@ -99,11 +99,11 @@ class NevoPacket {
         {
             for i:Int in 0  ..< mPackets.count 
             {
-                if UInt8(i) != NSData2Bytes(mPackets[i])[0] && i != mPackets.count - 1
+                if UInt8(i) != mPackets[i].data2Bytes()[0] && i != mPackets.count - 1
                 {
                     return false
                 }
-                if mHeader != NSData2Bytes(mPackets[i])[1]
+                if mHeader != mPackets[i].data2Bytes()[1]
                 {
                     return false
                 }

@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import UIKit
 
 /**
 
@@ -21,6 +20,30 @@ this file include all  OTA request class
 /**
 below class is for Nordic BLE OTA, Firmware is hex file
 */
+enum EnumPacketOption: Int{
+    case packets_NOTIFICATION_INTERVAL = 10,
+    packet_SIZE = 20
+}
+
+enum DfuOperations :UInt8 {
+    case start_DFU_REQUEST = 0x01,
+    initialize_DFU_PARAMETERS_REQUEST = 0x02,
+    receive_FIRMWARE_IMAGE_REQUEST = 0x03,
+    validate_FIRMWARE_REQUEST = 0x04,
+    activate_AND_RESET_REQUEST = 0x05,
+    reset_SYSTEM = 0x06,
+    packet_RECEIPT_NOTIFICATION_REQUEST = 0x08,
+    response_CODE = 0x10,
+    packet_RECEIPT_NOTIFICATION_RESPONSE = 0x11
+    
+}
+
+enum DfuFirmwareTypes:UInt8{
+    case  softdevice = 0x01,
+    bootloader = 0x02,
+    softdevice_AND_BOOTLOADER = 0x03,
+    application = 0x04
+}
 
 class SetOTAModeRequest : Request {
     
@@ -133,8 +156,7 @@ class ResetSystemRequest:Request {
 }
 
 class EnablePacketNotifyRequest:Request {
-    
-    let values :[UInt8] = [DfuOperations.packet_RECEIPT_NOTIFICATION_REQUEST.rawValue, UInt8(enumPacketOption.packets_NOTIFICATION_INTERVAL.rawValue),0]
+    let values :[UInt8] = [DfuOperations.packet_RECEIPT_NOTIFICATION_REQUEST.rawValue, UInt8(EnumPacketOption.packets_NOTIFICATION_INTERVAL.rawValue),0]
     
     func getTargetProfile() -> Profile {
         return NevoOTAControllerProfile()
