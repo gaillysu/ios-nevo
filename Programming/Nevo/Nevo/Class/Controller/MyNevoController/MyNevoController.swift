@@ -56,8 +56,8 @@ class MyNevoController: UITableViewController,UIAlertViewDelegate {
         }
         
         _ = SwiftEventBus.onMainThread(self, name: EVENT_BUS_CONNECTION_STATE_CHANGED_KEY) { (notification) in
-            let isConnected:Bool = notification.object as! Bool
-            if(isConnected){
+            let connected = notification.object as! PostConnectionState
+            if let connectedState = connected.isConnected {
                 AppDelegate.getAppDelegate().ReadBatteryLevel()
             }else{
                 self.rssialert?.dismiss(withClickedButtonIndex: 1, animated: true)
@@ -106,9 +106,15 @@ class MyNevoController: UITableViewController,UIAlertViewDelegate {
                     banner.show(duration: 1.5)
                     return
                 } else if(AppDelegate.getAppDelegate().isConnected()){
-                    let otaCont:NevoOtaViewController = NevoOtaViewController()
-                    let navigation:UINavigationController = UINavigationController(rootViewController: otaCont)
-                    self.present(navigation, animated: true, completion: nil)
+                    if !AppDelegate.getAppDelegate().isSyncState() {
+                        let otaCont:NevoOtaViewController = NevoOtaViewController()
+                        let navigation:UINavigationController = UINavigationController(rootViewController: otaCont)
+                        self.present(navigation, animated: true, completion: nil)
+                    }else{
+                        let banner = MEDBanner(title: "In sync data, sync is completed in OTA, please", subtitle: nil, image: nil, backgroundColor: AppTheme.NEVO_SOLAR_YELLOW())
+                        banner.dismissesOnTap = true
+                        banner.show(duration: 1.5)
+                    }
                 }else{
                     let banner = MEDBanner(title: NSLocalizedString("nevo_is_not_connected", comment: ""), subtitle: nil, image: nil, backgroundColor: AppTheme.NEVO_SOLAR_YELLOW())
                     banner.dismissesOnTap = true

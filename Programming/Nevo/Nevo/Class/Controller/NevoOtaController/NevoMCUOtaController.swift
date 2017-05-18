@@ -95,50 +95,13 @@ class NevoMCUOtaController : NSObject,ConnectionControllerDelegate {
     fileprivate  var checksum:Int = 0
     //end added
     
-    override init() {
+    init(_ delegate:NevoOtaControllerDelegate) {
         super.init()
+        mDelegate = delegate
         mConnectionController.setDelegate(self)
         mConnectionController.connect()
-
     }
 
-    fileprivate func openFile(_ fileURL:URL){
-        let selectedFileName:NSString  = fileURL.lastPathComponent as NSString
-        let filetype:NSString = selectedFileName.substring(from: selectedFileName.length - 3) as NSString
-        
-        XCGLogger.default.debug("selected file extension is \(filetype)")
-        
-        if filetype == "hex"{
-            let hexFileData :Data = try! Data(contentsOf: fileURL);
-            if (hexFileData.count > 0) {
-                convertHexFileToBin(hexFileData)
-            }else{
-                XCGLogger.default.debug("Error: file is empty!");
-                let errorMessage = "Error on openning file\n Message: file is empty or not exist";
-                mDelegate?.onError(errorMessage)
-            }
-        }else{
-            MCU_openfirmware(fileURL)
-        }
-    }
-    
-    fileprivate func convertHexFileToBin(_ hexFileData:Data){
-        binFileData = IntelHex2BinConverter.convert(hexFileData)
-        XCGLogger.default.debug("HexFileSize: \(hexFileData.count) and BinFileSize: \(String(describing: self.binFileData?.count))")
-        numberOfPackets =  (binFileData?.count)! / EnumPacketOption.packet_SIZE.rawValue
-        bytesInLastPacket = ((binFileData?.count)! % EnumPacketOption.packet_SIZE.rawValue);
-        if (bytesInLastPacket == 0) {
-            bytesInLastPacket = EnumPacketOption.packet_SIZE.rawValue;
-        }else{
-            numberOfPackets = numberOfPackets + 1
-        }
-        XCGLogger.default.debug("Number of Packets \(self.numberOfPackets) Bytes in last Packet \(self.bytesInLastPacket)")
-        writingPacketNumber = 0
-
-        binFileSize = (binFileData?.count)!
-        dfuFirmwareType = DfuFirmwareTypes.application
-    }
-    
     fileprivate func writeNextPacket(){
         var percentage :Int = 0;
         for index:Int in 0 ..< Int(EnumPacketOption.packets_NOTIFICATION_INTERVAL.rawValue) {
@@ -335,9 +298,7 @@ class NevoMCUOtaController : NSObject,ConnectionControllerDelegate {
     func packetReceived(_ packet:RawPacket) {
         //dicard those packets from  NevoProfile
         if !(packet.getSourceProfile() is NevoProfile){
-            if(dfuFirmwareType == DfuFirmwareTypes.application && mConnectionController.getOTAMode() == true){
-                processDFUResponse(packet.getRawData().data2Bytes())
-            }else if(dfuFirmwareType == DfuFirmwareTypes.softdevice) {
+            if(dfuFirmwareType == DfuFirmwareTypes.softdevice) {
                 SyncQueue.sharedInstance_ota.next()
                 MCU_processDFUResponse(packet)
             }
@@ -348,56 +309,14 @@ class NevoMCUOtaController : NSObject,ConnectionControllerDelegate {
     */
     func connectionStateChanged(_ isConnected : Bool, fromAddress : UUID!,isFirstPair:Bool) {
 
-        mDelegate?.connectionStateChanged(isConnected)
+        mDelegate?.connectionStateChanged(isConnected, fromAddress: fromAddress, isFirstPair: isFirstPair)
         //only BLE OTA run below code
-        if(dfuFirmwareType == DfuFirmwareTypes.application ){
-            if isConnected{
-                if state == DFUControllerState.send_RECONNECT{
-                    state = DFUControllerState.send_START_COMMAND
-                    let dispatchTime: DispatchTime = DispatchTime.now() + Double(Int64(1.0 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
-                    DispatchQueue.main.asyncAfter(deadline: dispatchTime, execute: {
-                        self.mConnectionController.sendRequest(SetOTAModeRequest())
-                    })
-
-                }else if state == DFUControllerState.discovering{
-                    state = DFUControllerState.send_FIRMWARE_DATA
-                    let dispatchTime: DispatchTime = DispatchTime.now() + Double(Int64(1.0 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
-                    DispatchQueue.main.asyncAfter(deadline: dispatchTime, execute: {
-                        self.mConnectionController.sendRequest(StartOTARequest())
-                        self.mConnectionController.sendRequest(writeFileSizeRequest(filelength: self.binFileSize))
-                    })
-                }
-            }else{
-                if state == DFUControllerState.idle{
-                    self.state = DFUControllerState.send_RECONNECT
-
-                    let dispatchTime: DispatchTime = DispatchTime.now() + Double(Int64(1.0 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
-                    DispatchQueue.main.asyncAfter(deadline: dispatchTime, execute: {
-                        self.mConnectionController.connect()
-                    })
-                }else if state == DFUControllerState.send_START_COMMAND{
-                    self.state = DFUControllerState.discovering
-                    //reset it by BLE peer disconnect
-                    self.mConnectionController.setOTAMode(false,Disconnect:false)
-
-                    let dispatchTime: DispatchTime = DispatchTime.now() + Double(Int64(1.0 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
-                    DispatchQueue.main.asyncAfter(deadline: dispatchTime, execute: {
-                        XCGLogger.default.debug("***********again set OTA mode,forget it firstly,and scan DFU service*******")
-                        //when switch to DFU mode, the identifier has changed another one
-                        self.mConnectionController.forgetSavedAddress()
-                        self.mConnectionController.setOTAMode(true,Disconnect:false)
-                        self.mConnectionController.connect()
-                    })
-                }
-            }
-        }
-            //only MCU OTA run below code
-        else{
-            if(isConnected){
+        if(dfuFirmwareType == DfuFirmwareTypes.softdevice)//only MCU OTA run below code
+        {
+            if isConnected {
                 if self.state == DFUControllerState.send_RECONNECT{
                     if self.mcu_broken_state == DFUControllerState.send_FIRMWARE_DATA
-                    || self.mcu_broken_state == DFUControllerState.wait_RECEIPT
-                    {
+                    || self.mcu_broken_state == DFUControllerState.wait_RECEIPT {
                         //reset it
                         self.mcu_broken_state = DFUControllerState.inittialize
                         self.state = DFUControllerState.send_FIRMWARE_DATA
@@ -407,29 +326,26 @@ class NevoMCUOtaController : NSObject,ConnectionControllerDelegate {
                             firmwareDataBytesSent = firmwareDataBytesSent - DFUCONTROLLER_PAGE_SIZE
                         }
                         MCU_sendFirmwareChunk()
-                    }else{
+                    }else {
                         //MCU got broken is more than 30s, app will get timeout and retry connect again,
                         //when got connected, will send restart OTA cmd and retry do OTA from page No.0
                         self.state = DFUControllerState.send_START_COMMAND
                         let dispatchTime: DispatchTime = DispatchTime.now() + Double(Int64(1.0 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
                         DispatchQueue.main.asyncAfter(deadline: dispatchTime, execute: {
-                        self.mConnectionController.sendRequest(Mcu_SetOTAModeRequest())
+                            self.mConnectionController.sendRequest(Mcu_SetOTAModeRequest())
                         })
                     }
                 }
                 
             }else{
-                if self.state == DFUControllerState.idle{
+                if self.state == DFUControllerState.idle {
                     self.state = DFUControllerState.send_RECONNECT
                     let dispatchTime: DispatchTime = DispatchTime.now() + Double(Int64(1.0 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
                     DispatchQueue.main.asyncAfter(deadline: dispatchTime, execute: {
 
                         self.mConnectionController.connect()
                     })
-                }
-                
-                else if self.state == DFUControllerState.send_FIRMWARE_DATA || self.state == DFUControllerState.wait_RECEIPT
-                {
+                }else if self.state == DFUControllerState.send_FIRMWARE_DATA || self.state == DFUControllerState.wait_RECEIPT {
                     //keep state within 30s timeout
                     self.mcu_broken_state = self.state
                     self.state = DFUControllerState.send_RECONNECT
@@ -480,22 +396,16 @@ class NevoMCUOtaController : NSObject,ConnectionControllerDelegate {
         state = DFUControllerState.idle
         dfuFirmwareType = firmwareType
         firmwareFile = firmwareURL
-        //Hex to bin and read it to buffer
-        openFile(firmwareURL)
+
+        MCU_openfirmware(firmwareURL)
         //enable it done after doing discover service
-        //[dfuRequests enableNotification];
-        if(dfuFirmwareType == DfuFirmwareTypes.application ){
-            mConnectionController.setOTAMode(true,Disconnect:true)
-        }else if(dfuFirmwareType == DfuFirmwareTypes.softdevice){
-            mConnectionController.setOTAMode(true,Disconnect:true)
-        }
+        mConnectionController.setOTAMode(true,Disconnect:true)
     }
     
     func timeroutProc(_ timer:Timer){
         if lastprogress == progress  && progress != 100.0{
             //when MCU got broken and got timeout(30s), reset mcu_broken_state
-            if(dfuFirmwareType == DfuFirmwareTypes.softdevice)
-            {
+            if(dfuFirmwareType == DfuFirmwareTypes.softdevice) {
                 self.mcu_broken_state = DFUControllerState.inittialize
             }
             XCGLogger.default.debug("* * * OTA timeout * * *")
@@ -507,11 +417,7 @@ class NevoMCUOtaController : NSObject,ConnectionControllerDelegate {
     }
 
     fileprivate func performOldDFUOnFile(){
-        if (self.dfuFirmwareType == DfuFirmwareTypes.application){
-            openFile(firmwareFile!)
-            mConnectionController.sendRequest(StartOTAOldRequest())
-            mConnectionController.sendRequest(writeFileSizeOldRequest(filelength: binFileSize))
-        }else{
+        if self.dfuFirmwareType == DfuFirmwareTypes.softdevice {
             let errorMessage = "Old DFU only supports Application upload"
             mDelegate?.onError(errorMessage)
             resetSystem()
@@ -520,9 +426,6 @@ class NevoMCUOtaController : NSObject,ConnectionControllerDelegate {
     
     func cancelDFU(){
         XCGLogger.default.debug("cancelDFU");
-        if (self.dfuFirmwareType == DfuFirmwareTypes.application){
-            resetSystem()
-        }
         mDelegate?.onDFUCancelled()
     }
 
@@ -715,10 +618,6 @@ class NevoMCUOtaController : NSObject,ConnectionControllerDelegate {
         //reset it to INIT status !!!IMPORTANT!!!
         self.state = DFUControllerState.inittialize
         
-        if(dfuFirmwareType == DfuFirmwareTypes.application ){
-            self.mConnectionController.forgetSavedAddress()
-        }
-
         if switch2SyncController{
             self.mConnectionController.setDelegate(AppDelegate.getAppDelegate())
         }
@@ -732,7 +631,7 @@ this protocol is defined for OTA UIView controller
 */
 protocol NevoOtaControllerDelegate {
     
-    func connectionStateChanged(_ isConnected : Bool)
+    func connectionStateChanged(_ isConnected : Bool, fromAddress : UUID?,isFirstPair:Bool?)
     func onDFUStarted()
     func onDFUCancelled()
     func onTransferPercentage(_: Int)

@@ -342,6 +342,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                 //end save
                 currentDay += 1
                 if(currentDay < UInt8(savedDailyHistory.count)) {
+                    isSync = true
                     if currentDay == 1 {
                         SwiftEventBus.post(EVENT_BUS_BEGIN_BIG_SYNCACTIVITY, sender:nil)
                     }
@@ -437,28 +438,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                 mAlertUpdateFW = true
                 let titleString:String = NSLocalizedString("Update", comment: "")
                 let msg:String = NSLocalizedString("An_update_is_available_for_your_watch", comment: "")
-                let buttonString:String = NSLocalizedString("Update", comment: "")
-                let cancelString:String = NSLocalizedString("Cancel", comment: "")
+                //let buttonString:String = NSLocalizedString("Update", comment: "")
+                //let cancelString:String = NSLocalizedString("Cancel", comment: "")
 
-                let tabVC = self.window?.rootViewController
-                
-                let actionSheet:MEDAlertController = MEDAlertController(title: titleString, message: msg, preferredStyle: UIAlertControllerStyle.alert)
-                let alertAction1:AlertAction = AlertAction(title: cancelString, style: UIAlertActionStyle.cancel, handler: { ( alert) -> Void in
-                    
-                })
-                actionSheet.addAction(alertAction1)
-                
-                let alertAction2:AlertAction = AlertAction(title: buttonString, style: UIAlertActionStyle.default, handler: { ( alert) -> Void in
-                    let otaCont:NevoOtaViewController = NevoOtaViewController()
-                    let navigation:UINavigationController = UINavigationController(rootViewController: otaCont)
-                    tabVC?.present(navigation, animated: true, completion: nil)
-                    
-                })
-                actionSheet.addAction(alertAction2)
-                alertAction1.setValue(AppTheme.NEVO_SOLAR_YELLOW(), forKey: "titleTextColor")
-                alertAction2.setValue(AppTheme.NEVO_SOLAR_YELLOW(), forKey: "titleTextColor")
-                tabVC?.present(actionSheet, animated: true, completion: nil)
-
+                let banner = MEDBanner(title: titleString, subtitle: msg, image: nil, backgroundColor: AppTheme.NEVO_SOLAR_YELLOW())
+                banner.dismissesOnTap = true
+                banner.show(duration: 1.5)
             }
         }
     }

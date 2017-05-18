@@ -224,27 +224,12 @@
 "home_time" = "Home Time";
 "home_time2" = "Home Time";
 
-// Dashboard of LunaR
-"harvest_status" = "HARVESTING";
-"charging" = "CHARGING";
-"sunrise" = "SUNRISE";
-"sunset" = "SUNSET";
-"hometime" = "HOME TIME";
-"calories_burned" = "CALORIES BURNED";
-"of_goal" = "OF GOAL";
-"inactivity" = "INACTIVITY";
-"activity" = "ACTIVITY";
-"steps_taken" = "STEPS TAKEN";
 "update_available" = "VERSION_NUMBER is available!";
-"home_local" = "Watch digital time";
-"failed_locate" = "Failed to locate";
-"locating" = "Locating...";
-"Calculating" = "Calculating...";
-"tap_to" = "Tap To";
-"Select_city" = "select a city";
-"nosolar"="No sun!";
 "none_alarm" = "You don’t have any alarm set. Set an alarm by tapping on the plus button in the upper right corner.";
 "nevo_alarms_limit" = "Nevo supports only 3 alarms on for now.";
-"lunar_alarms_limit" = "LunaR supports only 7 wake and 7 sleep alarms on for now.";
-
 "Distance"="Distance";
+
+//2017-05-18
+"clean_pairing_infomation"="CLEAN UP THE PAIRING INFORMATION";
+"go_bluetooth_system_message"="Go to bluetooth system remove the  pairing information";
+"go_settings"="Go Settings";

@@ -230,27 +230,12 @@
 "home_time" = "家乡时间";
 "home_time2" = "家乡时间";
 
-// Dashboard of LunaR
-"harvest_status" = "充电状态";
-"charging" = "正在充电";
-"sunrise" = "日出";
-"sunset" = "日落";
-"hometime" = "家乡时间";
-"calories_burned" = "燃烧卡路里";
-"of_goal" = "目标已达成";
-"inactivity" = "休息";
-"activity" = "活动";
-"steps_taken" = "已走步数";
 "update_available" = "你的 Nevo 有新的固件版本 VERSION_NUMBER 可用！";
-"home_local" = "手表数字时间";
-"failed_locate" = "定位失败";
-"locating" = "定位中...";
-"Calculating" = "计算中...";
-"tap_to" = "点击来";
-"Select_city" = "选择一个城市";
-"nosolar"="没有阳光";
 "none_alarm" = "你还没有设置闹钟，点击右上角的加号按钮来添加一个吧！";
 "nevo_alarms_limit" = "Nevo 目前只支持打开3个闹钟。";
-"lunar_alarms_limit" = "LunaR 目前只支持打开7个睡眠闹钟与7个起床闹钟。";
-
 "Distance"="距离";
+
+//2017-05-18
+"clean_pairing_infomation"="CLEAN UP THE PAIRING INFORMATION";
+"go_bluetooth_system_message"="Go to bluetooth system remove the  pairing information";
+"go_settings"="Go Settings";

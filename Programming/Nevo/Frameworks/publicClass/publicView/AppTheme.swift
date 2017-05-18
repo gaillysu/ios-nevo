@@ -66,8 +66,8 @@ class AppTheme {
 
     :returns: Return to obtain images of the object
     */
-    class func GET_RESOURCES_IMAGE(_ imageName:String) -> UIImage {
-        let imagePath:String = Bundle.main.path(forResource: imageName, ofType: "png")!
+    class func GET_RESOURCES_IMAGE(_ imageName:String, typeName:String) -> UIImage {
+        let imagePath:String = Bundle.main.path(forResource: imageName, ofType: typeName)!
         return UIImage(contentsOfFile: imagePath)!
 
     }
@@ -149,57 +149,6 @@ class AppTheme {
         }
         
         return nil
-    }
-
-    /**
-    Calculate the height of the Label to display text
-
-    :param: string Need to display the source text
-    :param: object The control position and size the source object
-
-    :returns: Returns the modified position and size of the source object
-    */
-    class func getLabelSize(_ string:String , andObject object:CGRect, andFont font:UIFont) ->CGRect{
-        var frame:CGRect = object
-        let loclString:NSString = string as NSString
-        //NSStringDrawingOptions.UsesLineFragmentOrigin|NSStringDrawingOptions.UsesFontLeading,
-        var labelSize:CGSize = loclString.boundingRect(with: CGSize(width: frame.size.width, height: 1000), options: NSStringDrawingOptions.usesLineFragmentOrigin, attributes: [NSFontAttributeName:font], context: nil).size
-        labelSize.height = ceil(labelSize.height);
-        labelSize.width = ceil(labelSize.width);
-
-        var messageframe:CGRect  = frame;
-        messageframe.size.height = labelSize.height;
-        frame = messageframe;
-        return frame
-    }
-    
-    class func getWidthLabelSize(_ string:String , andObject object:CGRect, andFont font:UIFont) ->CGRect{
-        let frame:CGRect = object
-        let loclString:NSString = string as NSString
-        //NSStringDrawingOptions.UsesLineFragmentOrigin|NSStringDrawingOptions.UsesFontLeading
-        var labelSize:CGSize = loclString.boundingRect(with: CGSize(width: 1000, height: frame.size.height), options: NSStringDrawingOptions.usesLineFragmentOrigin, attributes: [NSFontAttributeName:font], context: nil).size
-        labelSize.height = ceil(labelSize.height);
-        labelSize.width = ceil(labelSize.width);
-        
-        var messageframe:CGRect  = object;
-        messageframe.size.width = labelSize.width;
-        return messageframe
-    }
-
-    /**
-    Phone the current language
-
-    :returns: Language
-    */
-    class func getPreferredLanguage()->NSString{
-
-        let defaults:UserDefaults = UserDefaults.standard
-
-        let allLanguages:NSArray = defaults.object(forKey: "AppleLanguages") as! NSArray
-
-        let preferredLang:NSString = allLanguages.object(at: 0) as! NSString
-        return preferredLang;
-    
     }
 
     /**
@@ -458,5 +407,14 @@ class AppTheme {
             return true
         }
         return false
+    }
+    
+    static func openBluetoothSystem() {
+        let url:URL = URL(string: "App-Prefs:root=Bluetooth")!
+        if #available(iOS 10.0, *) {
+            UIApplication.shared.open(url, options: Dictionary(), completionHandler: nil)
+        } else {
+            UIApplication.shared.openURL(url)
+        }
     }
 }
