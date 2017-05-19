@@ -323,7 +323,7 @@ extension ConnectionManager:ConnectionControllerDelegate {
                 banner.show(duration: 1.5)
             }
             
-            ConnectionManager.sharedInstance.checkConnectSendNotification(ConnectionManager.Const.connectionStatus.connected)
+            LocalNotificationManager.sharedInstance.checkConnectSendNotification(LocalNotificationManager.Const.connectionStatus.connected)
             
             let dispatchTime: DispatchTime = DispatchTime.now() + Double(Int64(1.0 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
             DispatchQueue.main.asyncAfter(deadline: dispatchTime, execute: {
@@ -348,7 +348,7 @@ extension ConnectionManager:ConnectionControllerDelegate {
             
             isSync = false
             
-            ConnectionManager.sharedInstance.checkConnectSendNotification(ConnectionManager.Const.connectionStatus.disconnected)
+            LocalNotificationManager.sharedInstance.checkConnectSendNotification(LocalNotificationManager.Const.connectionStatus.disconnected)
             SyncQueue.sharedInstance.clear()
             mPacketsbuffer = []
         }
@@ -474,7 +474,7 @@ extension ConnectionManager {
                 solarTime.key = keys
                 solarTime.date = date.timeIntervalSince1970
                 solarTime.solarTotalTime = thispacket.getTotalHarvestTime()
-                solarTime.solarHourlyTime = "\(AppTheme.toJSONString(thispacket.getHourlyHarestTime() as AnyObject!))"
+                solarTime.solarHourlyTime = thispacket.getHourlyHarestTime().toJSONString()
                 solarTime.uid = userProfile.uid
                 _ = solarTime.add()
             }else{
@@ -483,7 +483,7 @@ extension ConnectionManager {
                 try! realm.write {
                     solarTime.date = date.timeIntervalSince1970
                     solarTime.solarTotalTime = thispacket.getTotalHarvestTime()
-                    solarTime.solarHourlyTime = "\(AppTheme.toJSONString(thispacket.getHourlyHarestTime() as AnyObject!))"
+                    solarTime.solarHourlyTime = thispacket.getHourlyHarestTime().toJSONString()
                     solarTime.uid = userProfile.uid;
                 }
             }
@@ -493,7 +493,7 @@ extension ConnectionManager {
             solarTime.key = keys
             solarTime.date = date.timeIntervalSince1970
             solarTime.solarTotalTime = thispacket.getTotalHarvestTime()
-            solarTime.solarHourlyTime = "\(AppTheme.toJSONString(thispacket.getHourlyHarestTime() as AnyObject!))"
+            solarTime.solarHourlyTime = thispacket.getHourlyHarestTime().toJSONString()
             solarTime.uid = 0
             _ = solarTime.add()
         }
@@ -507,8 +507,8 @@ extension ConnectionManager {
         stepsModel.totalSteps = thispacket.getDailySteps()
         stepsModel.goalsteps = thispacket.getStepsGoal()
         stepsModel.distance = thispacket.getDailyDist()
-        stepsModel.hourlysteps = "\(AppTheme.toJSONString(thispacket.getHourlySteps() as AnyObject!))"
-        stepsModel.hourlydistance = "\(AppTheme.toJSONString(thispacket.getHourlyDist() as AnyObject!))"
+        stepsModel.hourlysteps = thispacket.getHourlySteps().toJSONString()
+        stepsModel.hourlydistance = thispacket.getHourlyDist().toJSONString()
         stepsModel.totalCalories = Double(thispacket.getDailyCalories())
         
         
@@ -519,9 +519,9 @@ extension ConnectionManager {
             let distanceValue:Int = distanceRunVlaue[index]
             hourlyDistanceValue.replaceSubrange(index..<index+1, with: [distanceValue+value])
         }
-        stepsModel.hourlydistance = "\(AppTheme.toJSONString(hourlyDistanceValue as AnyObject!))"
+        stepsModel.hourlydistance = hourlyDistanceValue.toJSONString()
         stepsModel.totalCalories = Double(thispacket.getDailyCalories())
-        stepsModel.hourlycalories = "\(AppTheme.toJSONString(thispacket.getHourlyCalories() as AnyObject!))"
+        stepsModel.hourlycalories = thispacket.getHourlyCalories().toJSONString()
         stepsModel.inactivityTime = thispacket.getInactivityTime()
         stepsModel.goalreach = Double(thispacket.getDailySteps())/Double(thispacket.getStepsGoal())
         stepsModel.date = date.timeIntervalSince1970
