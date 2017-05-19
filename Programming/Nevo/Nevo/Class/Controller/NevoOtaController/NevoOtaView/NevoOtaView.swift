@@ -185,7 +185,7 @@ class NevoOtaView: UIView {
         OTAprogressView?.setProgress(progresValue)
         progresLabel.text = String(format: "%.0f%c", progresValue*100,37)
         if progressString == nil {
-            messageLabel.text = NSLocalizedString("Updating", comment: "") + " \(String(describing: progressString)) " + "(\(currentTask)/\(allTask))"
+            messageLabel.text = NSLocalizedString("Updating", comment: "") + "(\(currentTask)/\(allTask))"
         }else{
             messageLabel.text = progressString!
         }
@@ -206,17 +206,13 @@ class NevoOtaView: UIView {
         nevoWacthImage.image = AppTheme.GET_RESOURCES_IMAGE("connected",typeName:"png");
         OTAprogressView!.isHidden = true
         backView.isHidden = false
+        updatingView.isHidden = true
     }
-
-    /**
-    Close the OTA attention function
-    */
-    func closeTipView(){
-        UIView.animate(withDuration: 0.25, animations: { () -> Void in
-            self.tipView!.transform = CGAffineTransform(scaleX: 0.05, y: 0.05);
-        }) { (Bool) -> Void in
-            self.tipView!.removeFromSuperview()
-        }
-
+    
+    func startProgress() {
+        nevoWacthImage.image = AppTheme.GET_RESOURCES_IMAGE("upgrade_clock",typeName:"png");
+        OTAprogressView!.isHidden = false
+        backView.isHidden = true
+        updatingView.isHidden = false
     }
 }

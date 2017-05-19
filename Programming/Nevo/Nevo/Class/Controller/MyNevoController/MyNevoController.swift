@@ -106,7 +106,7 @@ class MyNevoController: UITableViewController,UIAlertViewDelegate {
                     banner.show(duration: 1.5)
                     return
                 } else if(AppDelegate.getAppDelegate().isConnected()){
-                    if !AppDelegate.getAppDelegate().isSyncState() {
+                    if !AppDelegate.getAppDelegate().isSyncState() || UserDefaults.standard.getSoftwareVersion() == 0 {
                         let otaCont:NevoOtaViewController = NevoOtaViewController()
                         let navigation:UINavigationController = UINavigationController(rootViewController: otaCont)
                         self.present(navigation, animated: true, completion: nil)

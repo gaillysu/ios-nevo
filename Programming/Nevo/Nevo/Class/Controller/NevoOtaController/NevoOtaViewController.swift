@@ -46,7 +46,6 @@ class NevoOtaViewController: UIViewController  {
     fileprivate var mNevoOtaController : NevoMCUOtaController?
     fileprivate var allTaskNumber:Int = 0;//计算所有OTA任务数量
     fileprivate var currentTaskNumber:Int = 0;//当前在第几个任务
-    fileprivate var continueButton:UIButton = UIButton(type: UIButtonType.custom)
     
     fileprivate lazy var dialogProperties: PopupDialog = {
         let title = NSLocalizedString("clean_pairing_infomation", comment: "")
@@ -141,6 +140,8 @@ class NevoOtaViewController: UIViewController  {
                 }
             }
             
+            currentTaskNumber = allTaskNumber == 1 ? 1:2
+            
             if(currentSoftwareVersion < buildin_software_version) {
                 nevoOtaView.setProgress(0.0, currentTask: currentTaskNumber,allTask: allTaskNumber, progressString: "MCU")
             }
@@ -187,38 +188,42 @@ class NevoOtaViewController: UIViewController  {
 //MARK: - Nevo Ota MCU
 extension NevoOtaViewController: NevoOtaControllerDelegate {
     func addContinueMCUView() {
-        let continueView:UIView = UIView(frame: CGRect(x: 0, y: 0, width: nevoOtaView.backView.frame.width, height: nevoOtaView.backView.frame.height))
-        continueView.center = CGPoint(x: UIScreen.main.bounds.size.width/2.0, y: (nevoOtaView.backView.frame.origin.y+nevoOtaView.backView.frame.size.height/2.0))
-        continueView.tag = 1360
-        self.view.addSubview(continueView)
-        
-        let titleLabel:UILabel = UILabel(frame: CGRect(x: 0,  y: 0, width: continueView.frame.size.width, height: 35))
-        titleLabel.font = UIFont.systemFont(ofSize: 19)
-        titleLabel.text = NSLocalizedString("press_the_third_button", comment: "")
-        titleLabel.textAlignment = NSTextAlignment.center
-        continueView.addSubview(titleLabel)
-        
-        let titleLabel2:UILabel = UILabel(frame: CGRect(x: 0, y: 35, width: continueView.frame.size.width, height: 50))
-        titleLabel2.font = UIFont.systemFont(ofSize: 16)
-        titleLabel2.text = NSLocalizedString("in_order_reactivate_bluetooth", comment: "")
-        titleLabel2.numberOfLines = 0
-        titleLabel2.textAlignment = NSTextAlignment.center
-        continueView.addSubview(titleLabel2)
-
-        continueButton.setTitle(NSLocalizedString("Continue", comment: ""), for: UIControlState())
-        continueButton.setTitleColor(AppTheme.NEVO_SOLAR_YELLOW(), for: UIControlState())
-        continueButton.frame = CGRect(x: 0, y: 0, width: 135, height: 35)
-        continueButton.center = CGPoint(x: UIScreen.main.bounds.size.width/2.0, y: (titleLabel2.frame.origin.y+titleLabel2.frame.size.height)+20)
-        continueButton.addTarget(self, action: #selector(continueAction(_:)), for: UIControlEvents.touchUpInside)
-        continueButton.layer.masksToBounds = true
-        continueButton.layer.cornerRadius = 8.0
-        continueButton.layer.borderWidth = 1.0
-        continueButton.layer.borderColor = AppTheme.NEVO_SOLAR_YELLOW().cgColor
-        continueView.addSubview(continueButton)
+        if self.view.viewWithTag(1360) == nil {
+            let continueView:UIView = UIView(frame: CGRect(x: 0, y: 0, width: nevoOtaView.backView.frame.width, height: nevoOtaView.backView.frame.height))
+            continueView.center = CGPoint(x: UIScreen.main.bounds.size.width/2.0, y: (nevoOtaView.backView.frame.origin.y+nevoOtaView.backView.frame.size.height/2.0))
+            continueView.tag = 1360
+            self.view.addSubview(continueView)
+            
+            let titleLabel:UILabel = UILabel(frame: CGRect(x: 0,  y: 0, width: continueView.frame.size.width, height: 35))
+            titleLabel.font = UIFont.systemFont(ofSize: 19)
+            titleLabel.text = NSLocalizedString("press_the_third_button", comment: "")
+            titleLabel.textAlignment = NSTextAlignment.center
+            continueView.addSubview(titleLabel)
+            
+            let titleLabel2:UILabel = UILabel(frame: CGRect(x: 0, y: 35, width: continueView.frame.size.width, height: 50))
+            titleLabel2.font = UIFont.systemFont(ofSize: 16)
+            titleLabel2.text = NSLocalizedString("in_order_reactivate_bluetooth", comment: "")
+            titleLabel2.numberOfLines = 0
+            titleLabel2.textAlignment = NSTextAlignment.center
+            continueView.addSubview(titleLabel2)
+            
+            let continueButton:UIButton = UIButton(type: UIButtonType.custom)
+            continueButton.setTitle(NSLocalizedString("Continue", comment: ""), for: UIControlState())
+            continueButton.setTitleColor(AppTheme.NEVO_SOLAR_YELLOW(), for: UIControlState())
+            continueButton.frame = CGRect(x: 0, y: 0, width: 135, height: 35)
+            continueButton.center = CGPoint(x: UIScreen.main.bounds.size.width/2.0, y: (titleLabel2.frame.origin.y+titleLabel2.frame.size.height)+20)
+            continueButton.addTarget(self, action: #selector(continueAction(_:)), for: UIControlEvents.touchUpInside)
+            continueButton.layer.masksToBounds = true
+            continueButton.layer.cornerRadius = 8.0
+            continueButton.layer.borderWidth = 1.0
+            continueButton.layer.borderColor = AppTheme.NEVO_SOLAR_YELLOW().cgColor
+            continueView.addSubview(continueButton)
+        }
     }
     
     func removeContinueMCUView() {
         if let view = self.view.viewWithTag(1360) {
+            view.removeAllSubviews()
             view.removeFromSuperview()
         }
     }
@@ -234,14 +239,17 @@ extension NevoOtaViewController: NevoOtaControllerDelegate {
             self.mNevoOtaController!.reset(false)
             return
         }
-        currentTaskNumber += 1;
         if let fileExtension:String = mcuSelectedFileURL?.pathExtension {
             if fileExtension == "bin" {
                 enumFirmwareType = DfuFirmwareTypes.softdevice
+                
                 nevoOtaView.setProgress(0.0, currentTask: currentTaskNumber,allTask: allTaskNumber, progressString: "Mcu")
                 mNevoOtaController?.performDFUOnFile(mcuSelectedFileURL!, firmwareType: DfuFirmwareTypes.softdevice)
             }
         }
+        
+        
+        nevoOtaView.startProgress()
     }
     
     //MARK: - NevoOtaControllerDelegate
@@ -299,7 +307,8 @@ extension NevoOtaViewController: NevoOtaControllerDelegate {
     
     //percent is[0..100]
     func onTransferPercentage(_ percent:Int) {
-        nevoOtaView.setProgress((Float(percent)/100.0), currentTask: currentTaskNumber, allTask: allTaskNumber, progressString: "Mcu")
+        currentTaskNumber = allTaskNumber == 1 ? 1:2
+        nevoOtaView.setProgress((Float(percent)/100.0), currentTask: currentTaskNumber, allTask: allTaskNumber, progressString: "Updating Mcu: \(currentTaskNumber)/\(allTaskNumber)")
     }
 }
 
@@ -424,7 +433,6 @@ extension NevoOtaViewController {
             return
         }
         
-        currentTaskNumber += 1
         selectedFirmware = DFUFirmware(urlToBinOrHexFile: bleSelectedFileURL!, urlToDatFile: nil, type: DFUFirmwareType.application)
         let dfuInitiator = DFUServiceInitiator(centralManager: centralManager!, target: dfuPeripheral!)
         dfuInitiator.delegate = self
@@ -497,11 +505,10 @@ extension NevoOtaViewController:DFUServiceDelegate {
     func dfuStateDidChange(to state: DFUState) {
         switch state {
         case .aborted:
-            nevoOtaView.setProgress(0, currentTask: currentTaskNumber, allTask: allTaskNumber, progressString: nil)
+            nevoOtaView.setProgress(0, currentTask: 1, allTask: allTaskNumber, progressString: nil)
             break
         case .completed:
-            nevoOtaView.setProgress(1.0, currentTask: currentTaskNumber,allTask: allTaskNumber, progressString: NSLocalizedString("UpdateSuccess1", comment: ""))
-            currentTaskNumber += 1
+            nevoOtaView.setProgress(1.0, currentTask: 1,allTask: allTaskNumber, progressString: NSLocalizedString("UpdateSuccess1", comment: ""))
             onSuccessfulFileTranferred()
             self.dialogCleanPairInformation()
             cancelBLEOTAMode()
@@ -523,7 +530,7 @@ extension NevoOtaViewController:DFUServiceDelegate {
     }
     
     func dfuError(_ error: DFUError, didOccurWithMessage message: String) {
-        nevoOtaView.setProgress(0, currentTask: 1, allTask: 1, progressString: message)
+        nevoOtaView.setProgress(0, currentTask: 1, allTask: allTaskNumber, progressString: message)
         logWith(LogLevel.error, message: message)
     }
 }
@@ -532,7 +539,7 @@ extension NevoOtaViewController:DFUServiceDelegate {
 extension NevoOtaViewController:DFUProgressDelegate{
     func dfuProgressDidChange(for part: Int, outOf totalParts: Int, to progress: Int,
                               currentSpeedBytesPerSecond: Double, avgSpeedBytesPerSecond: Double) {
-        nevoOtaView.setProgress(Float(progress) / 100.0, currentTask: 1, allTask: 1, progressString: "Updating :\(part)/\(totalParts)")
+        nevoOtaView.setProgress(Float(progress) / 100.0, currentTask: 1, allTask: allTaskNumber, progressString: "Updating BLE:\(1)/\(allTaskNumber)")
         XCGLogger.default.debug("progress:\(progress)"+"Speed : \(String(format:"%.1f", avgSpeedBytesPerSecond/1024)) Kbps, pt. \(part)/\(totalParts)")
     }
 }
