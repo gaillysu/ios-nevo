@@ -32,7 +32,7 @@ class OldOtaViewController: UIViewController  {
         super.viewDidLoad()
         UIApplication.shared.isIdleTimerDisabled = true
         
-        AppDelegate.getAppDelegate().cleanUpBTManager()
+        ConnectionManager.manager.cleanUpBTManager()
         
         let leftItem:UIBarButtonItem = UIBarButtonItem(image:UIImage(named:"cancel_lunar") , style: UIBarButtonItemStyle.plain, target: self, action: #selector(backAction(_:)))
         leftItem.tintColor = UIColor.black
@@ -54,7 +54,8 @@ class OldOtaViewController: UIViewController  {
         if dfuController != nil {
             dfuController?.abort()
         }
-        AppDelegate.getAppDelegate().setUpBTManager()
+        
+        ConnectionManager.manager.setUpBTManager()
     }
     
     func backAction(_ sender:AnyObject) {

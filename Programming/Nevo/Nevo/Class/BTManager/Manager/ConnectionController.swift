@@ -22,7 +22,7 @@ protocol ConnectionController {
     Layer struct: L1(NevoBT) -->L2 (ConnectionController,Single instance) -->L3 (syncController, single instance)
     -->L4(UI viewController), L1 is the base Layer, L4 is the top layer
     */
-    func setDelegate(_ connectionDelegate: ConnectionControllerDelegate)
+    func setDelegate(_ connectionDelegate: ConnectionControllerDelegate?)
     
     /**
     Tries to connect to a Nevo

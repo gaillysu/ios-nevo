@@ -28,7 +28,7 @@ class TutorialFiveViewController: UIViewController {
     }
 
     override func viewDidLoad() {
-        AppDelegate.getAppDelegate().connect()
+        ConnectionManager.manager.connect()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -51,9 +51,9 @@ class TutorialFiveViewController: UIViewController {
         progressBar.setProgress(progresValue, animated: true)
         if(progresValue > 1){
             action.isValid ? action.invalidate():()
-            if(AppDelegate.getAppDelegate().isConnected()){
+            if ConnectionManager.manager.isConnected {
                 delay(1.0) {
-                    AppDelegate.getAppDelegate().forgetSavedAddress()
+                    ConnectionManager.manager.forgetSavedAddress()
                     let tutorialSix = TutorialSixViewController()
                     self.navigationController?.pushViewController(tutorialSix, animated: true)
                 }
@@ -75,7 +75,7 @@ class TutorialFiveViewController: UIViewController {
             }
 
         }else{
-            if(AppDelegate.getAppDelegate().isConnected()){
+            if ConnectionManager.manager.isConnected {
                 action.isValid ? action.invalidate():()
                 delay(1.0) {
                     let tutorialSix = TutorialSixViewController()

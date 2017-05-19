@@ -83,19 +83,19 @@ class StepGoalSetingController: PublicClassController,ClockRefreshDelegate {
         
         saveContentTArray(Date().beginningOfDay.timeIntervalSince1970)
         
-        if(AppDelegate.getAppDelegate().hasSavedAddress()) {
-            AppDelegate.getAppDelegate().startConnect(false)
+        if ConnectionManager.manager.hasSavedAddress() {
+            ConnectionManager.manager.startConnect(false)
         }
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         //sync today data
-        if !AppDelegate.getAppDelegate().isSyncState() {
+        if !ConnectionManager.manager.isSync {
             let userDefaults = UserDefaults.standard;
             lastSync = userDefaults.double(forKey: TODAY_SYNC_DATE_KEY)
             if( Date().timeIntervalSince1970-lastSync > SYNC_INTERVAL) {
-                AppDelegate.getAppDelegate().getTodayTracker();
+                ConnectionManager.manager.getTodayTracker();
                 UserDefaults.standard.set(Date().timeIntervalSince1970,forKey:TODAY_SYNC_DATE_KEY)
                 UserDefaults.standard.synchronize()
             }
@@ -170,8 +170,8 @@ extension StepGoalSetingController {
     // MARK: - ClockRefreshDelegate
     func clockRefreshAction(){
         mClockTimerView?.currentTimer()
-        if AppDelegate.getAppDelegate().isConnected() {
-            AppDelegate.getAppDelegate().getGoal()
+        if ConnectionManager.manager.isConnected {
+            ConnectionManager.manager.getGoal()
             XCGLogger.default.debug("getGoalRequest")
         }
     }
@@ -202,9 +202,9 @@ extension StepGoalSetingController {
      Checks if any device is currently connected
      */
     func checkConnection() {
-        if !AppDelegate.getAppDelegate().isConnected() {
+        if !ConnectionManager.manager.isConnected {
             //We are currently not connected
-            AppDelegate.getAppDelegate().connect()
+            ConnectionManager.manager.connect()
         }
     }
     

@@ -50,7 +50,7 @@ class AlarmClockController: UITableViewController {
         
         leftBarButtonReaction()
         
-        AppDelegate.getAppDelegate().startConnect(false)
+        ConnectionManager.manager.startConnect(false)
         
         tableView.register(UINib(nibName: "AlarmClockVCell",bundle:nil), forCellReuseIdentifier: "alarmCell")
     }
@@ -173,8 +173,8 @@ extension AlarmClockController {
             
             let newAlarm = NewAlarm(alarmhour: date.hour, alarmmin: date.minute, alarmNumber: alarmModel.type == 1 ? (index+7):index, alarmWeekday: mSwitch.isOn ? alarmModel.alarmWeek:0)
             
-            if(AppDelegate.getAppDelegate().isConnected()){
-                AppDelegate.getAppDelegate().setNewAlarm (newAlarm)
+            if ConnectionManager.manager.isConnected {
+                ConnectionManager.manager.setNewAlarm (newAlarm)
                 syncAlarmAlertView()
             }else{
                 willSyncAlarmAlertView()
@@ -372,9 +372,9 @@ extension AlarmClockController {
                 }
 
                 if(status) {
-                    if(AppDelegate.getAppDelegate().isConnected()){
+                    if ConnectionManager.manager.isConnected {
                         for alarm in newAlarmArray {
-                            AppDelegate.getAppDelegate().setNewAlarm(alarm)
+                            ConnectionManager.manager.setNewAlarm(alarm)
                         }
                         syncAlarmAlertView()
                     }else{
@@ -432,8 +432,8 @@ extension AlarmClockController {
 // MARK: - About connection, sync, etc
 extension AlarmClockController {
     func checkConnection() {
-        if !AppDelegate.getAppDelegate().isConnected() {
-            AppDelegate.getAppDelegate().connect()
+        if !ConnectionManager.manager.isConnected {
+            ConnectionManager.manager.connect()
         }
     }
     
@@ -455,7 +455,7 @@ extension AlarmClockController: AddAlarmDelegate {
     
     func onDidAddAlarmAction(_ timer: TimeInterval, repeatStatus: Bool, name: String) {
         
-        if(AppDelegate.getAppDelegate().isConnected()) {
+        if ConnectionManager.manager.isConnected {
             syncAlarmAlertView()
         } else {
             willSyncAlarmAlertView()
@@ -480,8 +480,8 @@ extension AlarmClockController: AddAlarmDelegate {
             
             oldAlarmArray.replaceSubrange(selectedIndex!.row..<selectedIndex!.row+1, with: [tempAlarm])
             
-            if(AppDelegate.getAppDelegate().isConnected()){
-                AppDelegate.getAppDelegate().setAlarm(oldAlarmArray.filter{$0.getEnable() == true})
+            if ConnectionManager.manager.isConnected {
+                ConnectionManager.manager.setAlarm(self.oldAlarmArray.filter{$0.getEnable() == true})
             }
             
             selectedIndex = nil
@@ -505,9 +505,9 @@ extension AlarmClockController: AddAlarmDelegate {
             newAlarm.status = alarmState
             newAlarm.type = 0
             if newAlarm.add() {
-                if(AppDelegate.getAppDelegate().isConnected()){
+                if ConnectionManager.manager.isConnected {
                     let oldAlarm = self.oldAlarmArray.filter{$0.getEnable() == true}
-                    AppDelegate.getAppDelegate().setAlarm(oldAlarm)
+                    ConnectionManager.manager.setAlarm(oldAlarm)
                 }
             }else{
                 print("Database insert error.")
@@ -555,8 +555,8 @@ extension AlarmClockController: AddAlarmDelegate {
             
             tableView.reloadData()
             
-            if(AppDelegate.getAppDelegate().isConnected()){
-                AppDelegate.getAppDelegate().setNewAlarm()
+            if ConnectionManager.manager.isConnected {
+                ConnectionManager.manager.setNewAlarm()
                 syncAlarmAlertView()
             }else{
                 willSyncAlarmAlertView()
@@ -579,8 +579,8 @@ extension AlarmClockController: AddAlarmDelegate {
            
             if newAlarm.add() {
                 if(switchStatus) {
-                    if(AppDelegate.getAppDelegate().isConnected()){
-                        AppDelegate.getAppDelegate().setNewAlarm()
+                    if ConnectionManager.manager.isConnected {
+                        ConnectionManager.manager.setNewAlarm()
                         syncAlarmAlertView()
                     }else{
                         willSyncAlarmAlertView()

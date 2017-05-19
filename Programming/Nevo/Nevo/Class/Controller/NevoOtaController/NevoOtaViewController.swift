@@ -91,13 +91,13 @@ class NevoOtaViewController: UIViewController  {
 
     override func viewDidAppear(_ animated: Bool) {
 
-        if AppDelegate.getAppDelegate().isConnected() {
+        if ConnectionManager.manager.isConnected {
             let currentSoftwareVersion = UserDefaults.standard.getSoftwareVersion()
             let currentFirmwareVersion = UserDefaults.standard.getFirmwareVersion()
 
             var fileArray:NSArray;
             
-            let watchIdValue:Int = AppDelegate.getAppDelegate().getWatchID()
+            let watchIdValue:Int = ConnectionManager.manager.getWatchID()
             if watchIdValue > 1 {
                 fileArray = AppTheme.GET_FIRMWARE_FILES("Solar_Firmwares")
             }else{
@@ -158,7 +158,7 @@ class NevoOtaViewController: UIViewController  {
 
     override func viewDidDisappear(_ animated: Bool) {
         UIApplication.shared.isIdleTimerDisabled = false
-        AppDelegate.getAppDelegate().setUpBTManager()
+        ConnectionManager.manager.setUpBTManager()
     }
 
     override func didReceiveMemoryWarning() {
@@ -167,7 +167,6 @@ class NevoOtaViewController: UIViewController  {
     }
 
     deinit {
-        SwiftEventBus.unregister(self, name: EVENT_BUS_CONNECTION_STATE_CHANGED_KEY)
         SwiftEventBus.unregister(self, name: EVENT_BUS_RAWPACKET_DATA_KEY)
     }
 
@@ -258,9 +257,7 @@ extension NevoOtaViewController: NevoOtaControllerDelegate {
         if let pair = isFirstPair,pair {
             dismisDialog()
             
-            if currentTaskNumber == allTaskNumber {
-                addContinueMCUView()
-            }
+            addContinueMCUView()
         }
     }
     
@@ -372,7 +369,7 @@ extension NevoOtaViewController {
     func startBLEOTARequest() {
         let view = MRProgressOverlayView.showOverlayAdded(to: self.navigationController!.view, title: NSLocalizedString("please_wait", comment: ""), mode: MRProgressOverlayViewMode.indeterminate, animated: true)
         view?.setTintColor(AppTheme.NEVO_SOLAR_YELLOW())
-        AppDelegate.getAppDelegate().sendRequest(SetOTAModeRequest())
+        ConnectionManager.manager.sendRequest(SetOTAModeRequest())
         startTimer = Timer.after(10) {
              XCGLogger.default.debug("from timer out:switchNordicBLEOTAMode")
             self.switchNordicBLEOTAMode()
@@ -383,13 +380,13 @@ extension NevoOtaViewController {
         startTimer?.invalidate()
         startTimer = nil
         
-        if let connectManager = AppDelegate.getAppDelegate().getMconnectionController() {
+        if let connect = ConnectionManager.manager.getMconnectionController() {
             XCGLogger.default.debug("***********again set OTA mode,forget it firstly,and scan DFU service*******")
-            AppDelegate.getAppDelegate().getMconnectionController()?.disconnect()
+            ConnectionManager.manager.getMconnectionController()?.disconnect()
             
-            AppDelegate.getAppDelegate().getMconnectionController()?.forgetSavedAddress()
+            ConnectionManager.manager.getMconnectionController()?.forgetSavedAddress()
             
-            AppDelegate.getAppDelegate().cleanUpBTManager()
+            ConnectionManager.manager.cleanUpBTManager()
         }
         
         if centralManager == nil {
@@ -402,20 +399,22 @@ extension NevoOtaViewController {
     func cancelBLEOTAMode() {
         if let manager = centralManager {
             manager.stopScan()
-            guard dfuPeripheral == nil else {
+            guard dfuPeripheral != nil else {
                 print("No DFU peripheral was set")
                 self.centralManager = nil
                 return
             }
+
             manager.cancelPeripheralConnection(dfuPeripheral!)
             self.centralManager = nil
         }
         
-        AppDelegate.getAppDelegate().setUpBTManager()
-        AppDelegate.getAppDelegate().getMconnectionController()?.forgetSavedAddress()
-        AppDelegate.getAppDelegate().getMconnectionController()?.setOTAMode(false, Disconnect: true)
-        AppDelegate.getAppDelegate().getMconnectionController()?.setDelegate(AppDelegate.getAppDelegate())
-        AppDelegate.getAppDelegate().getMconnectionController()?.connect()
+        ConnectionManager.manager.setUpBTManager()
+        ConnectionManager.manager.getMconnectionController()?.forgetSavedAddress()
+        ConnectionManager.manager.getMconnectionController()?.setOTAMode(false, Disconnect: true)
+        ConnectionManager.manager.getMconnectionController()?.connect()
+        
+        mNevoOtaController = NevoMCUOtaController(self)
     }
     
     func setCentralManager(centralManager aCentralManager : CBCentralManager){

@@ -91,7 +91,7 @@ class PageViewController: UIPageViewController,UIActionSheetDelegate {
         
         pagingControllers = [viewController1, viewController2,viewController3]
         
-        let value:Int = AppDelegate.getAppDelegate().getWatchID()
+        let value:Int = ConnectionManager.manager.getWatchID()
         
         if value>1 {
             let viewController4 = SolarIndicatorController()
@@ -140,11 +140,11 @@ class PageViewController: UIPageViewController,UIActionSheetDelegate {
     }
     
     func setGoal(_ goal:Goal) {
-        if(AppDelegate.getAppDelegate().isConnected()){
+        if ConnectionManager.manager.isConnected {
             let banner = MEDBanner(title: NSLocalizedString("syncing_goal", comment: ""), subtitle: nil, image: nil, backgroundColor: AppTheme.NEVO_SOLAR_YELLOW())
             banner.dismissesOnTap = true
             banner.show(duration: 2.0)
-            AppDelegate.getAppDelegate().setGoal(goal)
+            ConnectionManager.manager.setGoal(goal)
         }else{
             let banner = MEDBanner(title: NSLocalizedString("no_watch_connected", comment: ""), subtitle: nil, image: nil, backgroundColor: AppTheme.NEVO_SOLAR_YELLOW())
             banner.dismissesOnTap = true

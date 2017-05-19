@@ -60,9 +60,7 @@ class ConnectionControllerImpl : NSObject {
     /**
     See ConnectionController protocol
     */
-    func setDelegate(_ delegate:ConnectionControllerDelegate) {
-        XCGLogger.default.debug("New delegate : \(delegate)")
-        
+    func setDelegate(_ delegate:ConnectionControllerDelegate?) {        
         mDelegate = delegate
     }
 

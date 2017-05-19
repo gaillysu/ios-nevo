@@ -11,10 +11,9 @@ import BRYXBanner
 import SwiftEventBus
 import XCGLogger
 
-class MyNevoController: UITableViewController,UIAlertViewDelegate {
+class MyNevoController: UITableViewController {
     
     fileprivate var currentBattery:Int = -1
-    fileprivate var rssialert :UIAlertView?
     
     let watchInfoArray:[String] = [NSLocalizedString("watch_version", comment: ""),NSLocalizedString("Battery", comment: ""),NSLocalizedString("app_version", comment: "")]
     
@@ -36,15 +35,8 @@ class MyNevoController: UITableViewController,UIAlertViewDelegate {
         _ = SwiftEventBus.onMainThread(self, name: EVENT_BUS_RSSI_VALUE) { (notification) in
             let number:NSNumber = notification.object as! NSNumber
             XCGLogger.default.debug("Red RSSI Value:\(number)")
-            if(number.intValue < -95){
-                if(self.rssialert==nil){
-                    self.rssialert = UIAlertView(title: NSLocalizedString("Unstable connection ensure", comment: ""), message:NSLocalizedString("Unstable connection ensure nevo is on and in range", comment: "") , delegate: nil, cancelButtonTitle: nil)
-                    self.rssialert?.show()
-                }
-            }else{
-                self.rssialert?.dismiss(withClickedButtonIndex: 1, animated: true)
-                self.rssialert = nil
-            }
+            //NSLocalizedString("Unstable connection ensure", comment: "")
+            //NSLocalizedString("Unstable connection ensure nevo is on and in range", comment: "")
         }
         
         //RAWPACKET DATA
@@ -58,33 +50,32 @@ class MyNevoController: UITableViewController,UIAlertViewDelegate {
         _ = SwiftEventBus.onMainThread(self, name: EVENT_BUS_CONNECTION_STATE_CHANGED_KEY) { (notification) in
             let connected = notification.object as! PostConnectionState
             if let connectedState = connected.isConnected {
-                AppDelegate.getAppDelegate().ReadBatteryLevel()
-            }else{
-                self.rssialert?.dismiss(withClickedButtonIndex: 1, animated: true)
-                self.rssialert = nil
+                ConnectionManager.manager.getBatteryLevel()
             }
         }
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        AppDelegate.getAppDelegate().startConnect(false)
-        if AppDelegate.getAppDelegate().isConnected() {
-            AppDelegate.getAppDelegate().ReadBatteryLevel()
+        
+        if ConnectionManager.manager.isConnected {
+            ConnectionManager.manager.getBatteryLevel()
+        }else{
+            ConnectionManager.manager.startConnect(false)
         }
         let indexPath:IndexPath = IndexPath(row: 0, section: 0)
         self.tableView.reloadRows(at: [indexPath], with: UITableViewRowAnimation.automatic)
     }
     
     override func viewDidDisappear(_ animated: Bool) {
-        rssialert?.dismiss(withClickedButtonIndex: 1, animated: true)
         SwiftEventBus.unregister(self, name: EVENT_BUS_RSSI_VALUE)
         SwiftEventBus.unregister(self, name: EVENT_BUS_CONNECTION_STATE_CHANGED_KEY)
         SwiftEventBus.unregister(self, name: EVENT_BUS_RAWPACKET_DATA_KEY)
     }
     
     func reconnect() {
-        AppDelegate.getAppDelegate().connect()
+        ConnectionManager.manager.connect()
     }
+    
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat{
         if section == 0 {
             let headerimage:UIImageView = MyNevoHeaderView.getMyNevoHeaderView()
@@ -105,8 +96,8 @@ class MyNevoController: UITableViewController,UIAlertViewDelegate {
                     banner.dismissesOnTap = true
                     banner.show(duration: 1.5)
                     return
-                } else if(AppDelegate.getAppDelegate().isConnected()){
-                    if !AppDelegate.getAppDelegate().isSyncState() || UserDefaults.standard.getSoftwareVersion() == 0 {
+                } else if ConnectionManager.manager.isConnected {
+                    if !ConnectionManager.manager.isSync || UserDefaults.standard.getSoftwareVersion() == 0 {
                         let otaCont:NevoOtaViewController = NevoOtaViewController()
                         let navigation:UINavigationController = UINavigationController(rootViewController: otaCont)
                         self.present(navigation, animated: true, completion: nil)
@@ -130,10 +121,10 @@ class MyNevoController: UITableViewController,UIAlertViewDelegate {
             actionSheet.addAction(cancelAction)
             
             let forgetAction:AlertAction = AlertAction(title: NSLocalizedString("forget", comment: ""), style: UIAlertActionStyle.default, handler: { ( alert) -> Void in
-                AppDelegate.getAppDelegate().disconnect()
-                AppDelegate.getAppDelegate().forgetSavedAddress()
+                ConnectionManager.manager.disconnect()
+                ConnectionManager.manager.forgetSavedAddress()
+                ConnectionManager.manager.setWatchInfo(-1, model: -1)
                 
-                AppDelegate.getAppDelegate().setWatchInfo(-1, model: -1)
                 let tutrorial:TutorialOneViewController = TutorialOneViewController()
                 let nav:UINavigationController = UINavigationController(rootViewController: tutrorial)
                 nav.isNavigationBarHidden = true

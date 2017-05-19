@@ -134,7 +134,7 @@ class InformationController: UIViewController {
     }
     
     func registerRequest() {
-        if AppDelegate.getAppDelegate().network!.isReachable {
+        if MEDNetworkManager.manager.networkState {
             if(AppTheme.isNull(dateOfbirth!.text!) || AppTheme.isNull(heightTextField.text!) || AppTheme.isNull(weightTextfield.text!)) {
                 let banner = MEDBanner(title: NSLocalizedString("one_of_the_fields_are_empty", comment: ""), subtitle: nil, image: nil, backgroundColor:AppTheme.NEVO_SOLAR_YELLOW())
                 banner.dismissesOnTap = true

@@ -13,8 +13,42 @@ import XCGLogger
 import SwiftyJSON
 
 class MEDNetworkManager: NSObject {
+    enum NetworkType {
+        case ethernetOrWiFi
+        case wwan
+        case unknown
+    }
     
-    private static let baseUrl = "http://cloud.nevowatch.com"
+    static let manager = MEDNetworkManager()
+    
+    fileprivate static let baseUrl = "http://cloud.nevowatch.com"
+    
+    fileprivate let reachability = NetworkReachabilityManager(host: "cloud.nevowatch.com")
+
+    var networkState:Bool {
+        if let network = reachability  {
+            return network.isReachable
+        }
+        
+        return false
+    }
+    
+    var networkType:NetworkType {
+        if let wwan = reachability,wwan.isReachableOnWWAN {
+            return NetworkType.wwan
+        }
+        
+        if let wifi = reachability, wifi.isReachableOnEthernetOrWiFi {
+            return NetworkType.ethernetOrWiFi
+        }
+        
+        return NetworkType.unknown
+    }
+    
+    
+    fileprivate override init() {
+        super.init()
+    }
     
     class func execute(request :MEDNetworkRequest){
         if let urlPart = request.url, let encoding = request.encoding, let method = request.method {

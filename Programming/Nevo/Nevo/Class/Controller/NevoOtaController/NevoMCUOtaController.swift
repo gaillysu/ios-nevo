@@ -11,6 +11,7 @@ mNevoOtaController = NevoOtaController(controller: self)
 import Foundation
 import XCGLogger
 import iOSDFULibrary
+import SwiftEventBus
 
 struct DFUResponse
 {
@@ -48,7 +49,7 @@ class NevoMCUOtaController : NSObject,ConnectionControllerDelegate {
     }
 
     var mDelegate : NevoOtaControllerDelegate?
-    let mConnectionController : ConnectionController = AppDelegate.getAppDelegate().getMconnectionController()!
+    let mConnectionController : ConnectionController = ConnectionManager.manager.getMconnectionController()!
     
     var dfuFirmwareType : DfuFirmwareTypes = DfuFirmwareTypes.application
     fileprivate var mPacketsbuffer:[Data]=[]
@@ -242,7 +243,7 @@ class NevoMCUOtaController : NSObject,ConnectionControllerDelegate {
             XCGLogger.default.debug("successfully received notification for whole File transfer");
             validateFirmware()
             
-            AppDelegate.getAppDelegate().delay(seconds: 0.2, completion: {
+            DispatchQueue.main.asyncAfter(deadline: .now()+0.2, execute: { 
                 self.activateAndReset()
             })
         }else {
@@ -619,7 +620,7 @@ class NevoMCUOtaController : NSObject,ConnectionControllerDelegate {
         self.state = DFUControllerState.inittialize
         
         if switch2SyncController{
-            self.mConnectionController.setDelegate(AppDelegate.getAppDelegate())
+            self.mConnectionController.setDelegate(ConnectionManager.manager)
         }
         self.mConnectionController.setOTAMode(false,Disconnect:true)
         self.mConnectionController.connect()

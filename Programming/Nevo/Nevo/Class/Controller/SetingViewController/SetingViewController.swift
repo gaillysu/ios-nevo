@@ -58,7 +58,7 @@ class SetingViewController: UIViewController,ButtonManagerCallBack,UIAlertViewDe
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        AppDelegate.getAppDelegate().startConnect(false)
+        ConnectionManager.manager.startConnect(false)
         notificationList.tableListView.reloadData()
     }
     
@@ -66,7 +66,7 @@ class SetingViewController: UIViewController,ButtonManagerCallBack,UIAlertViewDe
     func controllManager(_ sender:AnyObject){
         if sender.isEqual(notificationList.mSendLocalNotificationSwitchButton){
             XCGLogger.default.debug("setIsSendLocalMsg \(self.notificationList.mSendLocalNotificationSwitchButton.isOn)")
-            ConnectionManager.sharedInstance.setIsSendLocalMsg(notificationList.mSendLocalNotificationSwitchButton.isOn)
+            LocalNotificationManager.sharedInstance.setIsSendLocalMsg(notificationList.mSendLocalNotificationSwitchButton.isOn)
         }
     }
     
@@ -227,9 +227,9 @@ class SetingViewController: UIViewController,ButtonManagerCallBack,UIAlertViewDe
         }
         
         if UserDefaults.standard.getSoftwareVersion() > 25 {
-            AppDelegate.getAppDelegate().sendRequest(FindWatchRequest(ledtype: FindWatchLEDType.allWhiteLED, motorOnOff: true))
+            ConnectionManager.manager.sendRequest(FindWatchRequest(ledtype: FindWatchLEDType.allWhiteLED, motorOnOff: true))
         }else{
-            AppDelegate.getAppDelegate().sendRequest(LedLightOnOffNevoRequest(ledpattern: 0x3F0000, motorOnOff: true))
+            ConnectionManager.manager.sendRequest(LedLightOnOffNevoRequest(ledpattern: 0x3F0000, motorOnOff: true))
         }
         mFindMydeviceDatetime = Date()
     }
@@ -239,14 +239,14 @@ class SetingViewController: UIViewController,ButtonManagerCallBack,UIAlertViewDe
      */
     func checkConnection() {
         notificationList.tableListView.reloadRows(at: [IndexPath(row: 0, section: 1)], with: UITableViewRowAnimation.fade)
-        if !AppDelegate.getAppDelegate().isConnected() {
+        if !ConnectionManager.manager.isConnected {
             //We are currently not connected
             reconnect()
         }
     }
     
     func reconnect() {
-        AppDelegate.getAppDelegate().connect()
+        ConnectionManager.manager.connect()
     }
     
     
@@ -261,7 +261,7 @@ class SetingViewController: UIViewController,ButtonManagerCallBack,UIAlertViewDe
         
         alertController.addAction(UIAlertAction(title: NSLocalizedString("Update", comment: ""), style: .default, handler: { _ in
             
-            if AppDelegate.getAppDelegate().isConnected() {
+            if ConnectionManager.manager.isConnected {
                 let otaCont:NevoOtaViewController = NevoOtaViewController()
                 let navigation:UINavigationController = UINavigationController(rootViewController: otaCont)
                 self.present(navigation, animated: true, completion: nil)

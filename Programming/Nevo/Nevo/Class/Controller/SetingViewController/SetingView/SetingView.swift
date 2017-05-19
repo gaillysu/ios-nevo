@@ -80,7 +80,7 @@ class SetingView: UIView {
 
             var statusString = NSLocalizedString("Disconnected", comment: "")
             var color = UIColor.darkRed()
-            if AppDelegate.getAppDelegate().isConnected() {
+            if ConnectionManager.manager.isConnected {
                 if UserDefaults.standard.getFirmwareVersion() < AppTheme.GET_FIRMWARE_VERSION() || UserDefaults.standard.getSoftwareVersion() < AppTheme.GET_SOFTWARE_VERSION() {
                     statusString = NSLocalizedString("New Version Available!", comment: "")
                     color = UIColor.getBaseColor()
@@ -141,7 +141,7 @@ class SetingView: UIView {
         if view == nil {
             mSendLocalNotificationSwitchButton = UISwitch(frame: CGRect(x: 0,y: 0,width: 51,height: 31))
             mSendLocalNotificationSwitchButton.tag = NotificationSwitchButtonTAG
-            mSendLocalNotificationSwitchButton?.isOn = ConnectionManager.sharedInstance.getIsSendLocalMsg()
+            mSendLocalNotificationSwitchButton?.isOn = LocalNotificationManager.sharedInstance.getIsSendLocalMsg()
             mSendLocalNotificationSwitchButton?.onTintColor = AppTheme.NEVO_SOLAR_YELLOW()
             mSendLocalNotificationSwitchButton?.addTarget(self, action: #selector(SetingView.buttonAction(_:)), for: UIControlEvents.valueChanged)
             mSendLocalNotificationSwitchButton?.center = CGPoint(x: UIScreen.main.bounds.size.width-32, y: 50.0/2.0)
@@ -188,7 +188,7 @@ class SetingView: UIView {
             mSendLocalNotificationSwitchButton = UISwitch(frame: CGRect(x: 0, y: 0, width: 50, height: 40))
             mSendLocalNotificationSwitchButton.center = CGPoint(x: cell!.contentView.frame.size.width-60, y: 65/2.0)
             mSendLocalNotificationSwitchButton.addTarget(self, action: #selector(SetingView.SendLocalNotificationSwitchAction(_:)), for: UIControlEvents.valueChanged)
-            mSendLocalNotificationSwitchButton.isOn = ConnectionManager.sharedInstance.getIsSendLocalMsg()
+            mSendLocalNotificationSwitchButton.isOn = LocalNotificationManager.sharedInstance.getIsSendLocalMsg()
             mSendLocalNotificationSwitchButton.tintColor = AppTheme.NEVO_SOLAR_GRAY()
             mSendLocalNotificationSwitchButton.onTintColor = AppTheme.NEVO_SOLAR_YELLOW()
             cell?.contentView.addSubview(mSendLocalNotificationSwitchButton)

@@ -185,26 +185,6 @@ class AppTheme {
     }
 
     /**
-    Put the object into a json string
-
-    :param: object 转换对象
-
-    :returns: 返回转换后的json字符串
-    */
-    class func toJSONString(_ object:AnyObject!)->NSString{
-
-        do{
-            let data = try JSONSerialization.data(withJSONObject: object, options: JSONSerialization.WritingOptions.prettyPrinted)
-            var strJson=NSString(data: data, encoding: String.Encoding.utf8.rawValue)
-            strJson = strJson?.replacingOccurrences(of: "\n", with: "") as NSString?
-            strJson = strJson?.replacingOccurrences(of: " ", with: "") as NSString?
-            return strJson!
-        }catch{
-            return ""
-        }
-    }
-
-    /**
     Json string into an array
 
     :param: object 转换对象

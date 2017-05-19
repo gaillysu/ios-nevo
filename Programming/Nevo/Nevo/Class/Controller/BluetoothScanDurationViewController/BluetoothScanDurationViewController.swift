@@ -36,7 +36,7 @@ extension BluetoothScanDurationViewController:UITableViewDelegate, UITableViewDa
         selectedScanDuration = minutes
         UserDefaults.standard.setDurationSearch(version: minutes)
         tableView.deselectRow(at: indexPath, animated: true)
-        AppDelegate.getAppDelegate().updateBluetoothScanPeriod()
+        ConnectionManager.manager.updateBluetoothScanPeriod()
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {

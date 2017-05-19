@@ -1,5 +1,5 @@
 //
-//  ConnectionManager.swift
+//  LocalNotificationManager.swift
 //  Nevo
 //
 //  Created by ideas on 15/3/24.
@@ -9,7 +9,7 @@
 import UIKit
 import XCGLogger
 
-class ConnectionManager: NSObject {
+class LocalNotificationManager: NSObject {
     fileprivate var mConnectedLocalMsg:[UILocalNotification] = []
     fileprivate var mDisconnectedLocalMsg:[UILocalNotification] = []
     fileprivate var mIsSendLocalMsg:Bool = false
@@ -34,9 +34,9 @@ class ConnectionManager: NSObject {
     /**
     A classic singelton pattern
     */
-    class var sharedInstance : ConnectionManager {
+    class var sharedInstance : LocalNotificationManager {
         struct Singleton {
-            static let instance = ConnectionManager()
+            static let instance = LocalNotificationManager()
         }
         return Singleton.instance
     }
@@ -83,14 +83,14 @@ class ConnectionManager: NSObject {
         //remove all connected msg before
         removeAllConnectionMsgBefore()
         let nowTime = Int(Date().timeIntervalSince1970)
-        ConnectionManager.Const.connectedTime = timeInter
+        LocalNotificationManager.Const.connectedTime = timeInter
         
-        if ConnectionManager.Const.connectedTime != nil {
+        if LocalNotificationManager.Const.connectedTime != nil {
             //if disconnecttime and connectedtime not more than 20 seconds, not show the connected msg
-            if let preDisconnectTime = ConnectionManager.Const.disconnectTime {
-                if nowTime - preDisconnectTime > Int(ConnectionManager.Const.maxReconnectTime) {
+            if let preDisconnectTime = LocalNotificationManager.Const.disconnectTime {
+                if nowTime - preDisconnectTime > Int(LocalNotificationManager.Const.maxReconnectTime) {
                     XCGLogger.default.debug("show the connected msg")
-                    let connectedMsg = AppTheme.LocalNotificationBody(NSLocalizedString(ConnectionManager.Const.connectionStatus.connected.rawValue,comment: "") as NSString)
+                    let connectedMsg = AppTheme.LocalNotificationBody(NSLocalizedString(LocalNotificationManager.Const.connectionStatus.connected.rawValue,comment: "") as NSString)
                     mConnectedLocalMsg.append(connectedMsg)
                 }
             }
@@ -98,9 +98,9 @@ class ConnectionManager: NSObject {
         
         
         //if disconnecttime and connectedtime not more than 20 seconds, cancel the disconnect msg
-        if let preDisconnectedTime = ConnectionManager.Const.disconnectTime {
+        if let preDisconnectedTime = LocalNotificationManager.Const.disconnectTime {
             XCGLogger.default.debug("checkConnectSendNotification connected time \(nowTime) offset: \(nowTime - preDisconnectedTime)")
-            if nowTime - preDisconnectedTime < Int(ConnectionManager.Const.maxReconnectTime) {
+            if nowTime - preDisconnectedTime < Int(LocalNotificationManager.Const.maxReconnectTime) {
                 var arrayIndex = 0
                 for disMsg in mDisconnectedLocalMsg {
                     let disMsgTimer:Date = disMsg.fireDate!
@@ -122,7 +122,7 @@ class ConnectionManager: NSObject {
     remove all connection msg before, so we only see one msg
     */
     func removeAllConnectionMsgBefore(_ type:Const.connectionLocalMsgType = Const.connectionLocalMsgType.all) {
-        if ConnectionManager.Const.isShowBeforeMsg == false {
+        if LocalNotificationManager.Const.isShowBeforeMsg == false {
             if type == Const.connectionLocalMsgType.all || type == Const.connectionLocalMsgType.connected {
                 for cmsgTimer in mConnectedLocalMsg {
                     UIApplication.shared.cancelLocalNotification(cmsgTimer)
@@ -145,12 +145,12 @@ class ConnectionManager: NSObject {
     :param: timeInter timeIntervalSince1970
     */
     func setDisconnectTime(_ timeInter:Int) {
-        removeAllConnectionMsgBefore(ConnectionManager.Const.connectionLocalMsgType.disconnected)
-        ConnectionManager.Const.disconnectTime = timeInter
-        if let connectedTime = ConnectionManager.Const.connectedTime {
+        removeAllConnectionMsgBefore(LocalNotificationManager.Const.connectionLocalMsgType.disconnected)
+        LocalNotificationManager.Const.disconnectTime = timeInter
+        if let connectedTime = LocalNotificationManager.Const.connectedTime {
             XCGLogger.default.debug("checkConnectSendNotification disconnected time \(timeInter) offset: \(timeInter - connectedTime)")
         }
-        let disconnectMsg = AppTheme.LocalNotificationBody(NSLocalizedString(ConnectionManager.Const.connectionStatus.disconnected.rawValue,comment: "") as NSString, delay: ConnectionManager.Const.maxReconnectTime)
+        let disconnectMsg = AppTheme.LocalNotificationBody(NSLocalizedString(LocalNotificationManager.Const.connectionStatus.disconnected.rawValue,comment: "") as NSString, delay: LocalNotificationManager.Const.maxReconnectTime)
         //NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("aWindowBecameMain"), name: UILocalNotificationDefaultSoundName, object: nil)
         //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(aWindowBecameMain:) name:NSWindowDidBecomeMainNotification object:nil];
         //UIApplicationLaunchOptionsLocalNotificationKey
@@ -163,7 +163,7 @@ class ConnectionManager: NSObject {
     
     :param: type ConnectionManager.Const.connectionStatus
     */
-    func checkConnectSendNotification(_ type:ConnectionManager.Const.connectionStatus){
+    func checkConnectSendNotification(_ type:LocalNotificationManager.Const.connectionStatus){
         //if not open the send local notification , not go on
         if getIsSendLocalMsg() == false {
             XCGLogger.default.debug("checkConnectSendNotification local notification not open")

@@ -195,8 +195,8 @@ extension NotificationViewController: AddPacketToWatchDelegate, SelectedNotifica
                 }
                 initNotificationSettingArray()
                 self.tableView.reloadData()
-                if(AppDelegate.getAppDelegate().isConnected()){
-                    AppDelegate.getAppDelegate().SetNortification(allArraySettingArray)
+                if ConnectionManager.manager.isConnected {
+                    ConnectionManager.manager.setNortification(allArraySettingArray)
                     
                     let banner = MEDBanner(title: NSLocalizedString("sync_notifications", comment: ""), subtitle: nil, image: nil, backgroundColor: AppTheme.NEVO_SOLAR_YELLOW())
                     banner.dismissesOnTap = true

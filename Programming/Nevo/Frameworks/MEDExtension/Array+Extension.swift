@@ -14,3 +14,21 @@ extension Array where Iterator.Element == UInt8 {
         return Data(bytes: UnsafePointer<UInt8>(self), count: self.count)
     }
 }
+
+extension Array where Iterator.Element == Int {
+    
+    func toJSONString()-> String {
+        do{
+            let data = try JSONSerialization.data(withJSONObject: self, options: JSONSerialization.WritingOptions.prettyPrinted)
+            var strJson = String(data: data, encoding: String.Encoding.utf8)
+            strJson = strJson?.replacingOccurrences(of: "\n", with: "")
+            strJson = strJson?.replacingOccurrences(of: " ", with: "")
+            if let returnString = strJson {
+                return returnString
+            }
+            return ""
+        }catch{
+            return ""
+        }
+    }
+}

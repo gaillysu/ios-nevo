@@ -117,7 +117,8 @@ class ScannerViewController: UIViewController, CBCentralManagerDelegate, UITable
         if self.navigationController?.popViewController(animated: true) == nil {
             self.dismiss(animated: true, completion: nil)
         }
-        AppDelegate.getAppDelegate().delay(seconds: 1.2) { 
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.2) {
             self.didDelegate?.onDidSelectPeripheral!(self.selectedPeripheralIsSecure!, self.selectedPeripheral!, self.centralManager)
         }
     }

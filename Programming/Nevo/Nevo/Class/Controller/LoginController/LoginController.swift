@@ -154,7 +154,7 @@ extension LoginController {
     func loginRequest() {
         userName = userNameTextField!.text!
         password = passwordTextField!.text!
-        if AppDelegate.getAppDelegate().network!.isReachable {
+        if MEDNetworkManager.manager.networkState {
             XCGLogger.default.debug("有网络")
             if(AppTheme.isNull(userName) || AppTheme.isEmail(userName)) {
                 let banner = MEDBanner(title: NSLocalizedString("Email is not filled in", comment: ""), subtitle: nil, image: nil, backgroundColor:AppTheme.NEVO_SOLAR_YELLOW())
