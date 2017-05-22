@@ -43,7 +43,7 @@ class MEDUserNotification:MEDBaseModel {
     
     class func defaultNotificationColor() {
         if(!UserDefaults.standard.bool(forKey: "DefaultNotificationLaunched")){
-            let fileResources = AppTheme.GET_FIRMWARE_FILES("NotificationAppID")
+            let fileResources = Tools.GET_FIRMWARE_FILES("NotificationAppID")
             let notNevoAppID = ["com.tencent.mqq","com.atebits.Tweetie2","com.burbn.instagram","com.facebook.Messenger"]
             let url:URL = fileResources[0] as! URL
             let localDict:NSDictionary = NSDictionary(contentsOf: url)!

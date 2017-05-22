@@ -90,7 +90,7 @@ class LocalNotificationManager: NSObject {
             if let preDisconnectTime = LocalNotificationManager.Const.disconnectTime {
                 if nowTime - preDisconnectTime > Int(LocalNotificationManager.Const.maxReconnectTime) {
                     XCGLogger.default.debug("show the connected msg")
-                    let connectedMsg = AppTheme.LocalNotificationBody(NSLocalizedString(LocalNotificationManager.Const.connectionStatus.connected.rawValue,comment: "") as NSString)
+                    let connectedMsg = LocalNotificationManager.LocalNotificationBody(NSLocalizedString(LocalNotificationManager.Const.connectionStatus.connected.rawValue,comment: "") as NSString)
                     mConnectedLocalMsg.append(connectedMsg)
                 }
             }
@@ -150,10 +150,7 @@ class LocalNotificationManager: NSObject {
         if let connectedTime = LocalNotificationManager.Const.connectedTime {
             XCGLogger.default.debug("checkConnectSendNotification disconnected time \(timeInter) offset: \(timeInter - connectedTime)")
         }
-        let disconnectMsg = AppTheme.LocalNotificationBody(NSLocalizedString(LocalNotificationManager.Const.connectionStatus.disconnected.rawValue,comment: "") as NSString, delay: LocalNotificationManager.Const.maxReconnectTime)
-        //NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("aWindowBecameMain"), name: UILocalNotificationDefaultSoundName, object: nil)
-        //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(aWindowBecameMain:) name:NSWindowDidBecomeMainNotification object:nil];
-        //UIApplicationLaunchOptionsLocalNotificationKey
+        let disconnectMsg = LocalNotificationManager.LocalNotificationBody(NSLocalizedString(LocalNotificationManager.Const.connectionStatus.disconnected.rawValue,comment: "") as NSString, delay: LocalNotificationManager.Const.maxReconnectTime)
         mDisconnectedLocalMsg.append(disconnectMsg)
     }
 
@@ -180,5 +177,30 @@ class LocalNotificationManager: NSObject {
         }
     }
     
-    
+    /**
+     Local notifications
+     
+     :param: string Inform the content
+     */
+    class func LocalNotificationBody(_ string:NSString, delay:Double=0) -> UILocalNotification {
+        if (UIDevice.current.systemVersion as NSString).floatValue >= 8.0 {
+            let categorys:UIMutableUserNotificationCategory = UIMutableUserNotificationCategory()
+            categorys.identifier = "alert";
+            //UIUserNotificationType.Badge|UIUserNotificationType.Sound|UIUserNotificationType.Alert
+            let localUns:UIUserNotificationSettings = UIUserNotificationSettings(types: [UIUserNotificationType.badge,UIUserNotificationType.sound,UIUserNotificationType.alert], categories: Set(arrayLiteral: categorys))
+            UIApplication.shared.registerUserNotificationSettings(localUns)
+        }
+        
+        
+        let notification:UILocalNotification=UILocalNotification()
+        notification.timeZone = TimeZone.current
+        notification.fireDate = Date().addingTimeInterval(delay)
+        notification.alertBody=string as String;
+        notification.applicationIconBadgeNumber = 0;
+        notification.soundName = UILocalNotificationDefaultSoundName;
+        notification.category = "invite"
+        UIApplication.shared.scheduleLocalNotification(notification)
+        return notification
+    }
+
 }

@@ -157,7 +157,7 @@ open class BalloonMarker:NSUIView, IMarker
         if markerType == .stepsChartType {
             labelns = String(format: "%d", label.toInt())
         }else{
-            labelns = String(format: "%@", AppTheme.timerFormatValue(value: label.toDouble()))
+            labelns = String(format: "%@", label.toDouble().timerFormatValue())
         }
         
         _drawAttributes.removeAll()

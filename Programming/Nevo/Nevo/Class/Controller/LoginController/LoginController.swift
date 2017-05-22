@@ -63,7 +63,7 @@ extension LoginController {
         let tap:UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapAction(_:)))
         registerLabel.addGestureRecognizer(tap)
         
-        if AppTheme.GET_IS_iPhone5S()||AppTheme.GET_IS_iPhone4S() {
+        if Tools.GET_IS_iPhone5S()||Tools.GET_IS_iPhone4S() {
             logoinButton.titleLabel?.font = UIFont(name: "Raleway", size: 20)
         }
         
@@ -152,18 +152,36 @@ extension LoginController {
 // MARK: - Network
 extension LoginController {
     func loginRequest() {
+        
+        guard userNameTextField!.text != nil else {
+            let banner = MEDBanner(title: NSLocalizedString("Email is not filled in", comment: ""), subtitle: nil, image: nil, backgroundColor:UIColor.baseColor)
+            banner.dismissesOnTap = true
+            banner.show(duration: 1.2)
+            userName = ""
+            return
+        }
+        
+        guard passwordTextField!.text != nil else {
+            let banner = MEDBanner(title: NSLocalizedString("Password is not filled in", comment: ""), subtitle: nil, image: nil, backgroundColor:UIColor.baseColor)
+            banner.dismissesOnTap = true
+            banner.show(duration: 1.2)
+            userName = ""
+            return
+        }
+        
         userName = userNameTextField!.text!
         password = passwordTextField!.text!
+        
         if MEDNetworkManager.manager.networkState {
             XCGLogger.default.debug("有网络")
-            if(AppTheme.isNull(userName) || AppTheme.isEmail(userName)) {
+            if(userName.isEmpty || !userName.isEmail()) {
                 let banner = MEDBanner(title: NSLocalizedString("Email is not filled in", comment: ""), subtitle: nil, image: nil, backgroundColor:UIColor.baseColor)
                 banner.dismissesOnTap = true
                 banner.show(duration: 1.2)
                 return
             }
             
-            if AppTheme.isNull(password) || AppTheme.isPassword(password) {
+            if password.isEmpty {
                 let banner = MEDBanner(title: NSLocalizedString("Password is not filled in", comment: ""), subtitle: nil, image: nil, backgroundColor:UIColor.baseColor)
                 banner.dismissesOnTap = true
                 banner.show(duration: 1.2)

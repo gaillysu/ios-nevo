@@ -113,13 +113,13 @@ class StepsHistoryViewController: PublicClassController,ChartViewDelegate {
             let timerValue:Double = Double(dataSteps.walking_duration+dataSteps.running_duration)
             self.contentTArray.replaceSubrange(Range(0..<1), with: [String(format: "%.2f", dataSteps.totalCalories)])
             self.contentTArray.replaceSubrange(Range(1..<2), with: ["\(dataSteps.totalSteps)"])
-            self.contentTArray.replaceSubrange(Range(2..<3), with: [AppTheme.timerFormatValue(value: timerValue/60.0)])
+            self.contentTArray.replaceSubrange(Range(2..<3), with: [(timerValue/60.0).timerFormatValue()])
             DataCalculation.calculationData((dataSteps.walking_duration+dataSteps.running_duration), steps: dataSteps.totalSteps, completionData: { (miles, calories) in
                 self.contentTArray.replaceSubrange(Range(0..<1), with: [String(format: "%.2f", fabs(calories))])
                 self.contentTArray.replaceSubrange(Range(3..<4), with: ["\(miles)"])
             })
             self.stepsHistory.reloadData()
-            //AppTheme.KeyedArchiverName(self.StepsGoalKey, andObject: self.contentTArray)
+            //Tools.KeyedArchiverName(self.StepsGoalKey, andObject: self.contentTArray)
         }
     }
     
@@ -276,7 +276,7 @@ extension StepsHistoryViewController:UICollectionViewDelegate,UICollectionViewDa
         case 3:
             var unit:String = "KM"
             var unitValue:Double = "\(contentTArray[indexPath.row])".toDouble()
-            if AppTheme.getUserSelectedUnitValue() == 1 {
+            if UserDefaults.standard.getUserSelectedUnitValue() == 1 {
                 unit = "Mi"
                 unitValue = unitValue*kmToMi
             }

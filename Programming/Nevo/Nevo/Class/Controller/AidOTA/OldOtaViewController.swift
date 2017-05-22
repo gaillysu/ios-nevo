@@ -166,7 +166,7 @@ extension OldOtaViewController {
     }
     
     func getBundledFirmwareURLHelper() -> URL {
-        let fileArray:NSArray = AppTheme.GET_FIRMWARE_FILES("Firmwares")
+        let fileArray:NSArray = Tools.GET_FIRMWARE_FILES("Firmwares")
         for tmpfile in fileArray {
             let selectedFile:URL = tmpfile as! URL
             let fileExtension:String? = selectedFile.pathExtension

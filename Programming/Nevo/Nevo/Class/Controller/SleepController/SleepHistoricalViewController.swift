@@ -136,7 +136,7 @@ class SleepHistoricalViewController: PublicClassController,ChartViewDelegate {
             }
             
             contentTArray.replaceSubrange(Range(2..<3), with: [quality])
-            contentTArray.replaceSubrange(Range(3..<4), with: [AppTheme.timerFormatValue(value: sleepValue)])
+            contentTArray.replaceSubrange(Range(3..<4), with: [sleepValue.timerFormatValue()])
             self.queryView.detailCollectionView.reloadData()
         }
     }

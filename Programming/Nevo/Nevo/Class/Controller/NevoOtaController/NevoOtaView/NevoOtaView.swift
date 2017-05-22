@@ -159,7 +159,7 @@ class NevoOtaView: UIView {
         if(OTAprogressView == nil){
             OTAprogressView = OTAProgress()
         }
-        if(AppTheme.GET_IS_iPhone4S()) {
+        if(Tools.GET_IS_iPhone4S()) {
             let point:CGPoint = nevoWacthImage.center
             nevoWacthImage.frame = CGRect(x: 0, y: 0, width: nevoWacthImage.frame.size.width-20, height: nevoWacthImage.frame.size.width-20)
             nevoWacthImage.center = point

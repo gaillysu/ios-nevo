@@ -81,10 +81,10 @@ class SetingView: UIView {
             var statusString = NSLocalizedString("Disconnected", comment: "")
             var color = UIColor.darkRed
             if ConnectionManager.manager.isConnected {
-                if UserDefaults.standard.getFirmwareVersion() < AppTheme.GET_FIRMWARE_VERSION() || UserDefaults.standard.getSoftwareVersion() < AppTheme.GET_SOFTWARE_VERSION() {
+                if UserDefaults.standard.getFirmwareVersion() < buildin_firmware_version || UserDefaults.standard.getSoftwareVersion() < buildin_software_version {
                     statusString = NSLocalizedString("New Version Available!", comment: "")
                     color = UIColor.baseColor
-                } else {
+                }else {
                     statusString = NSLocalizedString("Connected", comment: "")
                     color = UIColor.darkGreen
                 }
@@ -114,14 +114,12 @@ class SetingView: UIView {
             activity.viewDefaultColorful()
             cell?.accessoryType = .none
         }else if indexPath.row == 1 && indexPath.section == 2{
-            if let unit = MEDSettings.int(forKey: "UserSelectedUnit"){
-                if unit == 0 {
-                    cell?.detailTextLabel?.text = "Metrics"
-                } else {
-                    cell?.detailTextLabel?.text = "Imperical"
-                }
-            }
             cell?.detailTextLabel?.textColor = UIColor.lightGray
+            if UserDefaults.standard.getUserSelectedUnitValue() == 0 {
+                cell?.detailTextLabel?.text = "Metrics"
+            } else {
+                cell?.detailTextLabel?.text = "Imperical"
+            }
         }
         return cell!
     }
@@ -206,7 +204,7 @@ class SetingView: UIView {
 }
 
 // MARK: - UIPickerViewDataSource
-extension SetingView: UIPickerViewDelegate {
+extension SetingView: UIPickerViewDataSource {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
@@ -227,9 +225,9 @@ extension SetingView: UITextFieldDelegate{
 }
 
 // MARK: - UIPickerViewDelegate
-extension SetingView: UIPickerViewDataSource {
+extension SetingView: UIPickerViewDelegate {
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        MEDSettings.setValue(row, forKey: "UserSelectedUnit")
+        UserDefaults.standard.setUserSelectedUnitValue(row)
         let cell = self.tableListView.cellForRow(at: IndexPath(row: 1, section: 2))
         if row == 0 {
             cell?.detailTextLabel?.text = "Metrics"

@@ -180,7 +180,7 @@ extension NewAddAlarmController {
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        let timePickerHeight: CGFloat = AppTheme.GET_IS_iPhone5S() ? 190 : 235
+        let timePickerHeight: CGFloat = Tools.GET_IS_iPhone5S() ? 190 : 235
         return indexPath.section == 1 ? timePickerHeight : 45
     }
     

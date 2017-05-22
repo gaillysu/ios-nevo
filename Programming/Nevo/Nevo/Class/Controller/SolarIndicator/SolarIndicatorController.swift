@@ -115,7 +115,7 @@ extension SolarIndicatorController:UICollectionViewDelegate,UICollectionViewData
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SolarInfor_Identifier", for: indexPath)
         cell.backgroundColor = UIColor.white
         (cell as! SolarInforViewCell).updateTitleLabel(onTitle[(indexPath as NSIndexPath).row])
-        (cell as! SolarInforViewCell).valueLabel.text = AppTheme.timerFormatValue(value: onValue[indexPath.row])
+        (cell as! SolarInforViewCell).valueLabel.text = onValue[indexPath.row].timerFormatValue()
         
         return cell
     }

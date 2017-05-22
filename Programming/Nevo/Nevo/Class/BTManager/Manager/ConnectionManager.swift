@@ -296,12 +296,12 @@ extension ConnectionManager:ConnectionControllerDelegate {
             
             //new find Phone
             if (packet.getHeader() == FindPhonePacket.HEADER()) {
-                AppTheme.playSound()
+                Tools.playSound()
             }
             
             //old find Phone
             if (TestMode.sharedInstance(packet.getPackets()).isTestModel()) {
-                AppTheme.playSound()
+                Tools.playSound()
             }
             
             mPacketsbuffer = []

@@ -30,7 +30,7 @@ class SetingInfoCell: UITableViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         if MEDUserProfile.getAll().count > 0 {
-            if let _ = AppTheme.LoadKeyedArchiverName(NevoAllKeys.MEDAvatarKeyAfterSave()) {
+            if let _ = Tools.LoadKeyedArchiverName(NevoAllKeys.MEDAvatarKeyAfterSave()) {
                 avatarImageView.layer.cornerRadius = 0.5 * avatarImageView.layer.frame.width
                 avatarImageView.layer.masksToBounds = true
             }

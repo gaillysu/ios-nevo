@@ -56,7 +56,7 @@ class NevoOtaViewController: UIViewController  {
         }
         
         let buttonOne = DefaultButton(title: NSLocalizedString("go_settings", comment: "")) {
-            AppTheme.openBluetoothSystem()
+            Tools.openBluetoothSystem()
         }
         popup.addButtons([buttonOne])
         return popup
@@ -98,9 +98,9 @@ class NevoOtaViewController: UIViewController  {
             
             let watchIdValue:Int = ConnectionManager.manager.getWatchID()
             if watchIdValue > 1 {
-                fileArray = AppTheme.GET_FIRMWARE_FILES("Solar_Firmwares")
+                fileArray = Tools.GET_FIRMWARE_FILES("Solar_Firmwares")
             }else{
-                fileArray = AppTheme.GET_FIRMWARE_FILES("Firmwares")
+                fileArray = Tools.GET_FIRMWARE_FILES("Firmwares")
             }
 
             for tmpfile in fileArray {

@@ -48,10 +48,22 @@ extension UserDefaults{
         synchronize()
     }
     
+    //return 0->Metrics,1->imperial,default value = 0
+    func getUserSelectedUnitValue() -> Int {
+        guard object(forKey: "UserSelectedUnit") != nil else {
+            
+            return 0
+        }
+        
+        let value = object(forKey: "UserSelectedUnit") as! Int
+        return value
+    }
+    
+    func setUserSelectedUnitValue(_ value:Int) {
+        set(value, forKey: "UserSelectedUnit")
+    }
+    
     private func getDurationSearchKey() -> String{
         return "DURATION_SEARCH_KEY"
     }
-
-
-
 }

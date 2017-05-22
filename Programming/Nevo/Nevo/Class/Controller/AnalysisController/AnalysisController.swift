@@ -274,12 +274,12 @@ extension AnalysisController:UICollectionViewDelegate,UICollectionViewDataSource
                         self.contentTArray.replaceSubrange(Range(0..<1), with: [stepsOrSleepValue1])
                         self.contentTArray.replaceSubrange(Range(1..<2), with: [String(format: "%.0f",totalValue)])
                         self.contentTArray.replaceSubrange(Range(2..<3), with: [String(format: "%.0f",Float(totalCalores)/Float(avgNumber))])
-                        self.contentTArray.replaceSubrange(Range(3..<4), with: [AppTheme.timerFormatValue(value: Double(totalTime)/Double(avgNumber))])
+                        self.contentTArray.replaceSubrange(Range(3..<4), with: [(Double(totalTime)/Double(avgNumber)).timerFormatValue()])
                     }else{
-                        stepsOrSleepValue1 = AppTheme.timerFormatValue(value: Double(totalValue/avgNumber))
+                        stepsOrSleepValue1 = Double(totalValue/avgNumber).timerFormatValue()
                         self.contentTArray.replaceSubrange(Range(0..<1), with: [stepsOrSleepValue1])
-                        self.contentTArray.replaceSubrange(Range(1..<2), with: [AppTheme.timerFormatValue(value: Double(totalValue))])
-                        self.contentTArray.replaceSubrange(Range(2..<3), with: [AppTheme.timerFormatValue(value: Double(totalCalores)/Double(avgNumber))])
+                        self.contentTArray.replaceSubrange(Range(1..<2), with: [Double(totalValue).timerFormatValue()])
+                        self.contentTArray.replaceSubrange(Range(2..<3), with: [(Double(totalCalores)/Double(avgNumber)).timerFormatValue()])
                         self.contentTArray.replaceSubrange(Range(3..<4), with: [String(format: "%.0f%c",totalTime,37)])
                     }
                     
@@ -297,8 +297,8 @@ extension AnalysisController:UICollectionViewDelegate,UICollectionViewDataSource
                 }
 
                 analysisCell.updateChartData(dataArray[indexPath.row] as! NSArray, chartType: segmented.selectedSegmentIndex,rowIndex:indexPath.row, completionData: { (totalValue, totalCalores, totalTime) in
-                    self.contentTArray.replaceSubrange(Range(0..<1), with: [AppTheme.timerFormatValue(value: Double((24.0*avgNumber)-totalValue))])
-                    self.contentTArray.replaceSubrange(Range(1..<2), with: [AppTheme.timerFormatValue(value: Double(totalValue))])
+                    self.contentTArray.replaceSubrange(Range(0..<1), with: [Double((24.0*avgNumber)-totalValue).timerFormatValue()])
+                    self.contentTArray.replaceSubrange(Range(1..<2), with: [Double(totalValue).timerFormatValue()])
                 });
             }
             setCurrentPageIndex(indexPath.row)

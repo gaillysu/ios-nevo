@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import RegexKitLite
 
 extension String {
     func toInt() -> Int {
@@ -59,5 +60,10 @@ extension String {
         }catch{
             return []
         }
+    }
+    
+    func isEmail()-> Bool {
+        let email = self
+        return email.isMatched(byRegex: "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}")
     }
 }

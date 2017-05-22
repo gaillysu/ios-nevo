@@ -8,7 +8,6 @@
 
 import UIKit
 import RealmSwift
- 
 import XCGLogger
 
 class MEDBaseModel: Object,MEDDataBaseRequest {

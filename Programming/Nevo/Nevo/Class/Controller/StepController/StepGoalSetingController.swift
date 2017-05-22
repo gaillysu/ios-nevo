@@ -111,7 +111,7 @@ class StepGoalSetingController: PublicClassController,ClockRefreshDelegate {
             self.collectionView.reloadData()
             //TODAY_DATE_CACHE
             let cacheData:SyncStepsCache = SyncStepsCache(date: Date(), steps: dailySteps)
-            _ = AppTheme.KeyedArchiverName(TODAY_DATE_CACHE, andObject: cacheData)
+            _ = Tools.KeyedArchiverName(TODAY_DATE_CACHE, andObject: cacheData)
         }
         
         _ = SwiftEventBus.onMainThread(self, name: EVENT_BUS_END_BIG_SYNCACTIVITY) { (notification) in
@@ -157,13 +157,13 @@ extension StepGoalSetingController {
             
             let timerValue:Double = Double(dataSteps.walking_duration+dataSteps.running_duration)
             self.contentTArray.replaceSubrange(Range(1..<2), with: ["\(dataSteps.totalSteps)"])
-            self.contentTArray.replaceSubrange(Range(2..<3), with: [AppTheme.timerFormatValue(value: Double(timerValue/60.0))])
+            self.contentTArray.replaceSubrange(Range(2..<3), with: [Double(timerValue/60.0).timerFormatValue()])
             DataCalculation.calculationData((dataSteps.walking_duration+dataSteps.running_duration), steps: dataSteps.totalSteps, completionData: { (miles, calories) in
                 self.contentTArray.replaceSubrange(Range(0..<1), with: [String(format: "%.2f", calories)])
                 self.contentTArray.replaceSubrange(Range(3..<4), with: [String(format: "%.2f", miles)])
             })
             self.collectionView.reloadData()
-            //AppTheme.KeyedArchiverName(self.StepsGoalKey, andObject: self.contentTArray)
+            //Tools.KeyedArchiverName(self.StepsGoalKey, andObject: self.contentTArray)
         }
     }
     
@@ -181,7 +181,7 @@ extension StepGoalSetingController {
 // MARK: - Private function
 extension StepGoalSetingController {
     func getTodayCacheData() {
-        if let value = AppTheme.LoadKeyedArchiverName(TODAY_DATE_CACHE) {
+        if let value = Tools.LoadKeyedArchiverName(TODAY_DATE_CACHE) {
             if value is SyncStepsCache {
                 let cacheData:SyncStepsCache = value as! SyncStepsCache
                 if let date:Date = cacheData.todayDate, let dailySteps:Int = cacheData.todaySteps {
@@ -270,7 +270,7 @@ extension StepGoalSetingController:UICollectionViewDelegate,UICollectionViewData
         case 3:
             var unit:String = "KM"
             var unitValue:Double = "\(contentTArray[indexPath.row])".toDouble()
-            if AppTheme.getUserSelectedUnitValue() == 1 {
+            if UserDefaults.standard.getUserSelectedUnitValue() == 1 {
                 unit = "Mi"
                 unitValue = unitValue*kmToMi
             }
