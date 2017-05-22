@@ -152,9 +152,9 @@ class NevoOtaView: UIView {
         backButton.layer.masksToBounds = true
         backButton.layer.cornerRadius = 10.0
         backButton.layer.borderWidth = 1.0
-        backButton.layer.borderColor = AppTheme.NEVO_SOLAR_YELLOW().cgColor
+        backButton.layer.borderColor = UIColor.baseColor.cgColor
 
-        self.backgroundColor = AppTheme.NEVO_CUSTOM_COLOR(Red: 239.0, Green: 239.0, Blue: 244.0)
+        self.backgroundColor = UIColor.NEVO_CUSTOM_COLOR(Red: 239.0, Green: 239.0, Blue: 244.0)
 
         if(OTAprogressView == nil){
             OTAprogressView = OTAProgress()
@@ -164,7 +164,7 @@ class NevoOtaView: UIView {
             nevoWacthImage.frame = CGRect(x: 0, y: 0, width: nevoWacthImage.frame.size.width-20, height: nevoWacthImage.frame.size.width-20)
             nevoWacthImage.center = point
         }
-        OTAprogressView?.setProgressColor(AppTheme.NEVO_SOLAR_YELLOW())
+        OTAprogressView?.setProgressColor(UIColor.baseColor)
         OTAprogressView?.frame = CGRect(x: nevoWacthImage.frame.origin.x, y: nevoWacthImage.frame.origin.y, width: nevoWacthImage.frame.size.width, height: nevoWacthImage.frame.size.height)
         OTAprogressView?.setProgress(progresValue)
         self.layer.addSublayer(OTAprogressView!)
@@ -203,14 +203,14 @@ class NevoOtaView: UIView {
     Upgrade success callback function
     */
     func upgradeSuccessful(){
-        nevoWacthImage.image = AppTheme.GET_RESOURCES_IMAGE("connected",typeName:"png");
+        nevoWacthImage.image = UIImage.getFolderFile("connected",type:"png");
         OTAprogressView!.isHidden = true
         backView.isHidden = false
         updatingView.isHidden = true
     }
     
     func startProgress() {
-        nevoWacthImage.image = AppTheme.GET_RESOURCES_IMAGE("upgrade_clock",typeName:"png");
+        nevoWacthImage.image = UIImage.getFolderFile("upgrade_clock",type:"png");
         OTAprogressView!.isHidden = false
         backView.isHidden = true
         updatingView.isHidden = false

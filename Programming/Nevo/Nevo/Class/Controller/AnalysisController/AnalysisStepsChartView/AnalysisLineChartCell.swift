@@ -44,7 +44,7 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
         
         let xAxis:XAxis = lineChartView.xAxis
         xAxis.labelTextColor = UIColor.black;
-        xAxis.axisLineColor = AppTheme.NEVO_SOLAR_GRAY()
+        xAxis.axisLineColor = UIColor.baseColor
         xAxis.drawLimitLinesBehindDataEnabled = false;
         xAxis.labelPosition = XAxis.LabelPosition.bottom
         xAxis.labelFont = UIFont(name: "Raleway", size: 7)!
@@ -68,7 +68,7 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
         
         switch chartType {
         case 0:
-            let marker:BalloonMarker = BalloonMarker(color: AppTheme.NEVO_SOLAR_YELLOW(), font: UIFont.systemFont(ofSize: 12.0), insets: UIEdgeInsetsMake(8.0, 8.0, 20.0, 8.0))
+            let marker:BalloonMarker = BalloonMarker(color: UIColor.baseColor, font: UIFont.systemFont(ofSize: 12.0), insets: UIEdgeInsetsMake(8.0, 8.0, 20.0, 8.0))
             marker.minimumSize = CGSize(width: 80.0, height: 40.0);
             marker.markerType = .stepsChartType
             lineChartView.marker = marker;
@@ -84,7 +84,7 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
             completionData(Float(totalSteps), totalCalores, Double(totalTime)/60.0)
             self.setStepsDataCount(dataArray, type: chartType,rowIndex:rowIndex)
         case 1:
-            let marker:BalloonMarker = BalloonMarker(color: AppTheme.NEVO_SOLAR_YELLOW(), font: UIFont.systemFont(ofSize: 12.0), insets: UIEdgeInsetsMake(8.0, 8.0, 20.0, 8.0))
+            let marker:BalloonMarker = BalloonMarker(color: UIColor.baseColor, font: UIFont.systemFont(ofSize: 12.0), insets: UIEdgeInsetsMake(8.0, 8.0, 20.0, 8.0))
             marker.minimumSize = CGSize(width: 80.0, height: 40.0);
             marker.markerType = .sleepChartType
             lineChartView.marker = marker;
@@ -93,9 +93,9 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
             var deepValue:Int = 0
             for value in dataArray {
                 let userSleep:MEDUserSleep = value as! MEDUserSleep
-                let sleepTime:[Int] = AppTheme.jsonToArray(userSleep.hourlySleepTime) as! [Int]
-                let weakeSleepTime:[Int] = AppTheme.jsonToArray(userSleep.hourlyWakeTime) as! [Int]
-                let deepSleepTime:[Int] = AppTheme.jsonToArray(userSleep.hourlyDeepTime) as! [Int]
+                let sleepTime:[Int] = userSleep.hourlyWakeTime.jsonToArray() as! [Int]
+                let weakeSleepTime:[Int] = userSleep.hourlyWakeTime.jsonToArray() as! [Int]
+                let deepSleepTime:[Int] = userSleep.hourlyDeepTime.jsonToArray() as! [Int]
                 
                 totalValue +=  sleepTime.reduce(0, {$0 + $1})
                 
@@ -113,7 +113,7 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
             completionData(Float(totalValue)/60.0, weakeValue, quality)
             self.setSleepDataCount(dataArray, type: chartType,rowIndex:rowIndex)
         case 2:
-            let marker:BalloonMarker = BalloonMarker(color: AppTheme.NEVO_SOLAR_YELLOW(), font: UIFont.systemFont(ofSize: 12.0), insets: UIEdgeInsetsMake(8.0, 8.0, 20.0, 8.0))
+            let marker:BalloonMarker = BalloonMarker(color: UIColor.baseColor, font: UIFont.systemFont(ofSize: 12.0), insets: UIEdgeInsetsMake(8.0, 8.0, 20.0, 8.0))
             marker.minimumSize = CGSize(width: 80.0, height: 40.0);
             marker.markerType = .stepsChartType
             lineChartView.marker = marker;
@@ -121,7 +121,7 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
             var totalValue:Int = 0
             for value in dataArray {
                 let userSleep:SolarHarvest = value as! SolarHarvest
-                let sleepTime:[Int] = AppTheme.jsonToArray(userSleep.solarHourlyTime) as! [Int]
+                let sleepTime:[Int] = userSleep.solarHourlyTime.jsonToArray() as! [Int]
                 totalValue +=  sleepTime.reduce(0, {$0 + $1})
             }
             completionData(Float(totalValue)/60.0, 0, 0)
@@ -149,7 +149,7 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
             let usersteps:MEDUserSteps = userStepsArray[i]
             let date:Date = "\(usersteps.createDate)".dateFromFormat("yyyyMMdd",locale: DateFormatter().locale)!
             let dateString:String = date.stringFromFormat("dd/MM")
-            let stepsArray:[Int] = AppTheme.jsonToArray(usersteps.hourlysteps) as! [Int]
+            let stepsArray:[Int] = usersteps.hourlysteps.jsonToArray() as! [Int]
             let totalSteps:Int = stepsArray.reduce(0, {$0 + $1})
             
             yVals.append(ChartDataEntry(x: Double(i), y: Double(totalSteps)))
@@ -176,10 +176,10 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
         let set1:LineChartDataSet = LineChartDataSet(values: yVals, label: "")
         set1.lineDashLengths = [0.0, 0];
         set1.highlightLineDashLengths = [0.0, 0.0];
-        set1.setColor(AppTheme.NEVO_SOLAR_YELLOW())
-        set1.setCircleColor(AppTheme.NEVO_SOLAR_GRAY())
+        set1.setColor(UIColor.baseColor)
+        set1.setCircleColor(UIColor.nevoGray)
         set1.valueTextColor = UIColor.black
-        set1.highlightColor = AppTheme.NEVO_SOLAR_YELLOW()
+        set1.highlightColor = UIColor.baseColor
         set1.lineWidth = 1.0;
         set1.circleRadius = 0.0;
         //set1?.drawCirclesEnabled = false;
@@ -187,7 +187,7 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
         set1.drawCircleHoleEnabled = false;
         set1.valueFont = UIFont.systemFont(ofSize: 9.0)
         
-        var gradientColors:[CGColor] = [AppTheme.NEVO_SOLAR_YELLOW().cgColor,AppTheme.NEVO_SOLAR_GRAY().cgColor];
+        var gradientColors:[CGColor] = [UIColor.baseColor.cgColor,UIColor.darkGray.cgColor];
         let gradient:CGGradient = CGGradient(colorsSpace: nil, colors: gradientColors as CFArray, locations: nil)!
         set1.fillAlpha = 1;
         set1.fill = Fill.fillWithLinearGradient(gradient, angle: 80.0)
@@ -226,20 +226,20 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
             
             let mSleeps:MEDUserSleep = sleep
             
-            let sleepsValue1:[Int] = AppTheme.jsonToArray(mSleeps.hourlySleepTime) as! [Int]
-            let wakeSleep:[Int] = AppTheme.jsonToArray(mSleeps.hourlyWakeTime) as! [Int]
-            let lightSleep:[Int] = AppTheme.jsonToArray(mSleeps.hourlyLightTime) as! [Int]
-            let deepSleep:[Int] = AppTheme.jsonToArray(mSleeps.hourlyDeepTime) as! [Int]
+            let sleepsValue1:[Int] = mSleeps.hourlySleepTime.jsonToArray() as! [Int]
+            let wakeSleep:[Int] = mSleeps.hourlyWakeTime.jsonToArray() as! [Int]
+            let lightSleep:[Int] = mSleeps.hourlyLightTime.jsonToArray() as! [Int]
+            let deepSleep:[Int] = mSleeps.hourlyDeepTime.jsonToArray() as! [Int]
             
             let date:Date = Date(timeIntervalSince1970: mSleeps.date)
             let dateString:String = date.stringFromFormat("dd/MM")
             
             if index>0 {
                 let kSleeps:MEDUserSleep = sleepValueArray[index-1]
-                let value1:[Int] = AppTheme.jsonToArray(kSleeps.hourlySleepTime) as! [Int]
-                let value2:[Int] = AppTheme.jsonToArray(kSleeps.hourlyWakeTime) as! [Int]
-                let value3:[Int] = AppTheme.jsonToArray(kSleeps.hourlyLightTime) as! [Int]
-                let value4:[Int] = AppTheme.jsonToArray(kSleeps.hourlyDeepTime) as! [Int]
+                let value1:[Int] = kSleeps.hourlySleepTime.jsonToArray() as! [Int]
+                let value2:[Int] = kSleeps.hourlyLightTime.jsonToArray() as! [Int]
+                let value3:[Int] = kSleeps.hourlyLightTime.jsonToArray() as! [Int]
+                let value4:[Int] = kSleeps.hourlyDeepTime.jsonToArray() as! [Int]
                 
                 
                 sleepValue = value1.dropFirst(18).reduce(0, {$0 + $1})
@@ -349,10 +349,10 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
             let set1:LineChartDataSet = LineChartDataSet(values: values, label: "")
             set1.lineDashLengths = [0.0, 0];
             set1.highlightLineDashLengths = [0.0, 0.0];
-            set1.setColor(AppTheme.NEVO_SOLAR_YELLOW())
-            set1.setCircleColor(AppTheme.NEVO_SOLAR_GRAY())
+            set1.setColor(UIColor.baseColor)
+            set1.setCircleColor(UIColor.nevoGray)
             set1.valueTextColor = UIColor.black
-            set1.highlightColor = AppTheme.NEVO_SOLAR_YELLOW()
+            set1.highlightColor = UIColor.baseColor
             set1.lineWidth = 1.0;
             set1.circleRadius = 0.0;
             set1.drawValuesEnabled = false
@@ -360,7 +360,7 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
             set1.valueFont = UIFont.systemFont(ofSize: 9.0)
             //set1.mode = LineChartDataSet.Mode.CubicBezier
             
-            var gradientColors:[UIColor] = [UIColor.lightGray,AppTheme.NEVO_SOLAR_YELLOW(),AppTheme.NEVO_SOLAR_GRAY()];
+            var gradientColors:[UIColor] = [UIColor.lightGray,UIColor.baseColor,UIColor.nevoGray];
             set1.fillAlpha = 0.5;
             set1.fill = Fill.fillWithColor(gradientColors[index])
             //fillWithLinearGradient(gradient, angle: 90.0)
@@ -432,10 +432,10 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
         let set1:LineChartDataSet = LineChartDataSet(values: yVals, label: "")
         set1.lineDashLengths = [0.0, 0];
         set1.highlightLineDashLengths = [0.0, 0.0];
-        set1.setColor(AppTheme.NEVO_SOLAR_YELLOW())
-        set1.setCircleColor(AppTheme.NEVO_SOLAR_GRAY())
+        set1.setColor(UIColor.baseColor)
+        set1.setCircleColor(UIColor.nevoGray)
         set1.valueTextColor = UIColor.black
-        set1.highlightColor = AppTheme.NEVO_SOLAR_YELLOW()
+        set1.highlightColor = UIColor.baseColor
         set1.lineWidth = 1.0;
         set1.circleRadius = 0.0;
         //set1?.drawCirclesEnabled = false;
@@ -443,7 +443,7 @@ class AnalysisLineChartCell: UICollectionViewCell,ChartViewDelegate {
         set1.drawCircleHoleEnabled = false;
         set1.valueFont = UIFont.systemFont(ofSize: 9.0)
         
-        var gradientColors:[CGColor] = [AppTheme.NEVO_SOLAR_GRAY().cgColor,AppTheme.NEVO_SOLAR_YELLOW().cgColor];
+        var gradientColors:[CGColor] = [UIColor.nevoGray.cgColor,UIColor.baseColor.cgColor];
         let gradient:CGGradient = CGGradient(colorsSpace: nil, colors: gradientColors as CFArray, locations: nil)!
         set1.fillAlpha = 1;
         set1.fill = Fill.fillWithLinearGradient(gradient, angle: 80.0)

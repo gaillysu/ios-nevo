@@ -266,14 +266,14 @@ class SetingViewController: UIViewController,ButtonManagerCallBack,UIAlertViewDe
                 let navigation:UINavigationController = UINavigationController(rootViewController: otaCont)
                 self.present(navigation, animated: true, completion: nil)
             }else{
-                let banner = MEDBanner(title: NSLocalizedString("nevo_is_not_connected", comment: ""), subtitle: nil, image: nil, backgroundColor: AppTheme.NEVO_SOLAR_YELLOW())
+                let banner = MEDBanner(title: NSLocalizedString("nevo_is_not_connected", comment: ""), subtitle: nil, image: nil, backgroundColor: UIColor.baseColor)
                 banner.dismissesOnTap = true
                 banner.show(duration: 1.5)
             }
             
         }))
         alertController.actions.forEach { action in
-            action.setValue(UIColor.getBaseColor(), forKey: "titleTextColor")
+            action.setValue(UIColor.baseColor, forKey: "titleTextColor")
         }
         self.present(alertController, animated: true, completion: nil)
     }

@@ -135,8 +135,8 @@ extension NewAddAlarmController {
                 
                 actionSheet.addAction(confirmAction)
                 
-                cancelAction.setValue(UIColor.getBaseColor(), forKey: "titleTextColor")
-                confirmAction.setValue(UIColor.getBaseColor(), forKey: "titleTextColor")
+                cancelAction.setValue(UIColor.baseColor, forKey: "titleTextColor")
+                confirmAction.setValue(UIColor.baseColor, forKey: "titleTextColor")
                 
                 present(actionSheet, animated: true, completion: nil)
             }
@@ -238,7 +238,7 @@ extension NewAddAlarmController {
         
         let attributeDict: [String : AnyObject] = [NSFontAttributeName: UIFont(name: "HelveticaNeue-Thin", size: 16)!]
         let attributedStr: NSMutableAttributedString = NSMutableAttributedString(string: tipsString, attributes: attributeDict)
-        attributedStr.addAttribute(NSForegroundColorAttributeName, value: UIColor.getBaseColor(), range: NSMakeRange(0, 5))
+        attributedStr.addAttribute(NSForegroundColorAttributeName, value: UIColor.baseColor, range: NSMakeRange(0, 5))
         tipsLabel.attributedText = attributedStr
         
         view.addSubview(tipsLabel)

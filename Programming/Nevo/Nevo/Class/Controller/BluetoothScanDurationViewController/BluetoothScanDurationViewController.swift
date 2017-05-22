@@ -31,7 +31,7 @@ extension BluetoothScanDurationViewController:UITableViewDelegate, UITableViewDa
         if let index = presets.index(of: selectedScanDuration){
             tableView.cellForRow(at: IndexPath(row: index, section: 0))?.accessoryView = nil
         }
-        tableView.cellForRow(at: indexPath)?.accessoryView = MSCellAccessory.init(type: FLAT_CHECKMARK, color: UIColor.getBaseColor())
+        tableView.cellForRow(at: indexPath)?.accessoryView = MSCellAccessory.init(type: FLAT_CHECKMARK, color: UIColor.baseColor)
         let minutes = presets[indexPath.row]
         selectedScanDuration = minutes
         UserDefaults.standard.setDurationSearch(version: minutes)
@@ -62,7 +62,7 @@ extension BluetoothScanDurationViewController:UITableViewDelegate, UITableViewDa
             cell = UITableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: identifier)
         }
         if time == selectedScanDuration{
-            cell?.accessoryView = MSCellAccessory.init(type: FLAT_CHECKMARK, color: UIColor.getBaseColor())
+            cell?.accessoryView = MSCellAccessory.init(type: FLAT_CHECKMARK, color: UIColor.baseColor)
         }
         cell?.textLabel?.text = time.timeRepresentation()
         return cell!

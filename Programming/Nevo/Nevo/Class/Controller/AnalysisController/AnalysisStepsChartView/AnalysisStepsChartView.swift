@@ -43,7 +43,7 @@ class AnalysisStepsChartView: LineChartView {
         xAxis.labelPosition = XAxis.LabelPosition.bottom
         xAxis.labelFont = UIFont(name: "Helvetica-Light", size: 10)!
         
-        //let marker:BalloonMarker = BalloonMarker(color: AppTheme.NEVO_SOLAR_YELLOW(), font: UIFont(name: "Helvetica-Light", size: 11)!, insets: UIEdgeInsetsMake(8.0, 8.0, 15.0, 8.0))
+        //let marker:BalloonMarker = BalloonMarker(color: UIColor.baseColor, font: UIFont(name: "Helvetica-Light", size: 11)!, insets: UIEdgeInsetsMake(8.0, 8.0, 15.0, 8.0))
         //marker.minimumSize = CGSizeMake(60, 25);
         //self.marker = marker;
     }
@@ -76,13 +76,13 @@ class AnalysisStepsChartView: LineChartView {
         
         let lineChartDataSet = LineChartDataSet(values: chartDataArray, label: "");
         lineChartDataSet.setColor(UIColor.white)
-        lineChartDataSet.highlightColor = AppTheme.NEVO_SOLAR_YELLOW()
+        lineChartDataSet.highlightColor = UIColor.baseColor
         lineChartDataSet.lineWidth = 1.5
         lineChartDataSet.circleRadius = 0.0
         lineChartDataSet.mode = LineChartDataSet.Mode.cubicBezier
         lineChartDataSet.drawCircleHoleEnabled = false
         lineChartDataSet.valueFont = UIFont.systemFont(ofSize: 9.0)
-        var gradientColors:[CGColor] = [AppTheme.NEVO_SOLAR_GRAY().cgColor,AppTheme.NEVO_SOLAR_YELLOW().cgColor];
+        var gradientColors:[CGColor] = [UIColor.nevoGray.cgColor,UIColor.baseColor.cgColor];
         
         let gradient:CGGradient = CGGradient(colorsSpace: nil, colors: gradientColors as CFArray, locations: nil)!
         lineChartDataSet.fillAlpha = 1;

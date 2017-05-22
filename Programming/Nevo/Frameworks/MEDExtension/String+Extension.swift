@@ -49,4 +49,15 @@ extension String {
         }
         return sum
     }
+    
+    func jsonToArray() -> [Any] {
+        do{
+            let data:Data = self.data(using: String.Encoding.utf8)!
+            let array = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.mutableContainers)
+            let JsonToArray = array as! [Any]
+            return JsonToArray
+        }catch{
+            return []
+        }
+    }
 }

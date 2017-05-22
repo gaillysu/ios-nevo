@@ -78,7 +78,7 @@ extension NotificationViewController {
 extension NotificationViewController {
     
     func deleteNotificationsAlertView() {
-        let banner = MEDBanner(title: NSLocalizedString("Because it is a basic Notifications can not be deleted", comment: ""), subtitle: nil, image: nil, backgroundColor: AppTheme.NEVO_SOLAR_YELLOW())
+        let banner = MEDBanner(title: NSLocalizedString("Because it is a basic Notifications can not be deleted", comment: ""), subtitle: nil, image: nil, backgroundColor: UIColor.baseColor)
         banner.dismissesOnTap = true
         banner.show(duration: 1.5)
     }
@@ -198,11 +198,11 @@ extension NotificationViewController: AddPacketToWatchDelegate, SelectedNotifica
                 if ConnectionManager.manager.isConnected {
                     ConnectionManager.manager.setNortification(allArraySettingArray)
                     
-                    let banner = MEDBanner(title: NSLocalizedString("sync_notifications", comment: ""), subtitle: nil, image: nil, backgroundColor: AppTheme.NEVO_SOLAR_YELLOW())
+                    let banner = MEDBanner(title: NSLocalizedString("sync_notifications", comment: ""), subtitle: nil, image: nil, backgroundColor: UIColor.baseColor)
                     banner.dismissesOnTap = true
                     banner.show(duration: 2.0)
                 }else{
-                    let banner = MEDBanner(title: NSLocalizedString("no_watch_connected", comment: ""), subtitle: nil, image: nil, backgroundColor: AppTheme.NEVO_SOLAR_YELLOW())
+                    let banner = MEDBanner(title: NSLocalizedString("no_watch_connected", comment: ""), subtitle: nil, image: nil, backgroundColor: UIColor.baseColor)
                     banner.dismissesOnTap = true
                     banner.show(duration: 2.0)
                 }

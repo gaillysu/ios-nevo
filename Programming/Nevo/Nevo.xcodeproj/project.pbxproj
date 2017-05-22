@@ -344,7 +344,6 @@
 		666793331E1350FC00344188 /* DatePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6667932D1E1350FC00344188 /* DatePickerView.swift */; };
 		666793351E1350FC00344188 /* DatePickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6667932E1E1350FC00344188 /* DatePickerView.xib */; };
 		666793371E1350FC00344188 /* NevoCircleProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6667932F1E1350FC00344188 /* NevoCircleProgressView.swift */; };
-		666793391E1350FC00344188 /* ToolbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666793301E1350FC00344188 /* ToolbarView.swift */; };
 		66687CD71DD9654100AD7F7D /* Dispatch+MEDExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66687CD61DD9654100AD7F7D /* Dispatch+MEDExtension.swift */; };
 		66687CDA1DD9832800AD7F7D /* StepsCalButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66687CD91DD9832800AD7F7D /* StepsCalButton.swift */; };
 		667149F91E1CAB1C009A34B4 /* NoneAlarmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 667149F81E1CAB1C009A34B4 /* NoneAlarmView.swift */; };
@@ -760,7 +759,6 @@
 		6667932D1E1350FC00344188 /* DatePickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePickerView.swift; sourceTree = "<group>"; };
 		6667932E1E1350FC00344188 /* DatePickerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DatePickerView.xib; sourceTree = "<group>"; };
 		6667932F1E1350FC00344188 /* NevoCircleProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NevoCircleProgressView.swift; sourceTree = "<group>"; };
-		666793301E1350FC00344188 /* ToolbarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToolbarView.swift; sourceTree = "<group>"; };
 		66687CD61DD9654100AD7F7D /* Dispatch+MEDExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dispatch+MEDExtension.swift"; sourceTree = "<group>"; };
 		66687CD91DD9832800AD7F7D /* StepsCalButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepsCalButton.swift; sourceTree = "<group>"; };
 		667149F81E1CAB1C009A34B4 /* NoneAlarmView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoneAlarmView.swift; sourceTree = "<group>"; };
@@ -1614,7 +1612,6 @@
 				6667932D1E1350FC00344188 /* DatePickerView.swift */,
 				6667932E1E1350FC00344188 /* DatePickerView.xib */,
 				6667932F1E1350FC00344188 /* NevoCircleProgressView.swift */,
-				666793301E1350FC00344188 /* ToolbarView.swift */,
 				666262361E0BBC2100991D96 /* MEDThemeAdaptor */,
 				6662623D1E0BBCC700991D96 /* MEDCircleView.swift */,
 				6691AAD21E1B7E54006B2140 /* MEDTextField.swift */,
@@ -2406,7 +2403,6 @@
 				666793071E134DAF00344188 /* M13CheckboxSpiralManager.swift in Sources */,
 				666793031E134DAF00344188 /* M13CheckboxFillManager.swift in Sources */,
 				61E8EC851E16017D004F0DBE /* AlertAction.swift in Sources */,
-				666793391E1350FC00344188 /* ToolbarView.swift in Sources */,
 				61E2A50B1E1DF86A009A563B /* LargeValueFormatter.swift in Sources */,
 				611D41B51DCAD97D003BC6E3 /* NevoHK.swift in Sources */,
 				666792EF1E134DAF00344188 /* M13Checkbox+IB.swift in Sources */,

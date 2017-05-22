@@ -92,7 +92,7 @@ class MyNevoController: UITableViewController {
             
             if indexPath.row == 0 {
                 if(UserDefaults.standard.getSoftwareVersion() >= buildin_software_version && UserDefaults.standard.getFirmwareVersion() >= buildin_firmware_version){
-                    let banner = MEDBanner(title: NSLocalizedString("is_watch_version", comment: ""), subtitle: nil, image: nil, backgroundColor: AppTheme.NEVO_SOLAR_YELLOW())
+                    let banner = MEDBanner(title: NSLocalizedString("is_watch_version", comment: ""), subtitle: nil, image: nil, backgroundColor: UIColor.baseColor)
                     banner.dismissesOnTap = true
                     banner.show(duration: 1.5)
                     return
@@ -102,12 +102,12 @@ class MyNevoController: UITableViewController {
                         let navigation:UINavigationController = UINavigationController(rootViewController: otaCont)
                         self.present(navigation, animated: true, completion: nil)
                     }else{
-                        let banner = MEDBanner(title: "In sync data, sync is completed in OTA, please", subtitle: nil, image: nil, backgroundColor: AppTheme.NEVO_SOLAR_YELLOW())
+                        let banner = MEDBanner(title: "In sync data, sync is completed in OTA, please", subtitle: nil, image: nil, backgroundColor: UIColor.baseColor)
                         banner.dismissesOnTap = true
                         banner.show(duration: 1.5)
                     }
                 }else{
-                    let banner = MEDBanner(title: NSLocalizedString("nevo_is_not_connected", comment: ""), subtitle: nil, image: nil, backgroundColor: AppTheme.NEVO_SOLAR_YELLOW())
+                    let banner = MEDBanner(title: NSLocalizedString("nevo_is_not_connected", comment: ""), subtitle: nil, image: nil, backgroundColor: UIColor.baseColor)
                     banner.dismissesOnTap = true
                     banner.show(duration: 1.5)
                 }
@@ -117,7 +117,7 @@ class MyNevoController: UITableViewController {
             let actionSheet:MEDAlertController = MEDAlertController(title: NSLocalizedString("forget_watch", comment: ""), message: NSLocalizedString("forget_your_nevo", comment: ""), preferredStyle: UIAlertControllerStyle.alert)
             
             let cancelAction:AlertAction = AlertAction(title: NSLocalizedString("Cancel", comment: ""), style: UIAlertActionStyle.cancel, handler: nil)
-            cancelAction.setValue(UIColor.getBaseColor(), forKey: "titleTextColor")
+            cancelAction.setValue(UIColor.baseColor, forKey: "titleTextColor")
             actionSheet.addAction(cancelAction)
             
             let forgetAction:AlertAction = AlertAction(title: NSLocalizedString("forget", comment: ""), style: UIAlertActionStyle.default, handler: { ( alert) -> Void in
@@ -133,7 +133,7 @@ class MyNevoController: UITableViewController {
                     UIApplication.shared.keyWindow?.rootViewController = nav
                 })
             })
-            forgetAction.setValue(UIColor.getBaseColor(), forKey: "titleTextColor")
+            forgetAction.setValue(UIColor.baseColor, forKey: "titleTextColor")
             actionSheet.addAction(forgetAction)
             self.present(actionSheet, animated: true, completion: nil)
             
@@ -213,7 +213,7 @@ class MyNevoController: UITableViewController {
             return MyNevoView.getMyNevoViewTableViewCell(indexPath, tableView: tableView, title: watchInfoArray[indexPath.row], detailText: detailString,isUpdate:isUpdate)
         } else if indexPath.section == 1 {
             let cell = MyNevoView.getMyNevoViewTableViewCell(indexPath, tableView: tableView, title: forgetWatchArray[indexPath.row], detailText: "",isUpdate:isUpdate)
-            cell.textLabel?.textColor = UIColor.darkRed()
+            cell.textLabel?.textColor = UIColor.darkRed
             return cell
         }
         return MyNevoView.getMyNevoViewTableViewCell(indexPath, tableView: tableView, title: watchInfoArray[0], detailText: "",isUpdate:isUpdate)

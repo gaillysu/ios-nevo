@@ -60,7 +60,7 @@ class SelectedNotificationView: UITableView {
         let allowCell:AllowNotificationsTableViewCell = tableView.dequeueReusableCell(withIdentifier: "AllowNotifications_Identifier", for: indexPath) as! AllowNotificationsTableViewCell
         allowCell.selectionStyle = UITableViewCellSelectionStyle.none;
         let titleColor:UIColor = UIColor.black
-        let onColor:UIColor = AppTheme.NEVO_SOLAR_YELLOW()
+        let onColor:UIColor = UIColor.baseColor
         allowCell.setAllowSwitch(color: onColor,isOn:setting.getStates())
         allowCell.setTitleLabel(title: title, titleColor: titleColor, titleFont: nil)
 

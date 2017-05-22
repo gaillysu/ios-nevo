@@ -54,10 +54,10 @@ class SleepHistoricalView: UIView, ChartViewDelegate{
             let seleModel:MEDUserSleep = queryModel[i]
             //当天的数据源(没有跨天的数据源)
             
-            let sleepTimeArray = JSON(AppTheme.jsonToArray(seleModel.hourlySleepTime)).arrayValue
-            let wakeTimeTimeArray = JSON(AppTheme.jsonToArray(seleModel.hourlyWakeTime)).arrayValue
-            let lightTimeTimeArray = JSON(AppTheme.jsonToArray(seleModel.hourlyLightTime)).arrayValue
-            let deepTimeTimeArray = JSON(AppTheme.jsonToArray(seleModel.hourlyDeepTime)).arrayValue
+            let sleepTimeArray = JSON(seleModel.hourlySleepTime.jsonToArray()).arrayValue
+            let wakeTimeTimeArray = JSON(seleModel.hourlyWakeTime.jsonToArray()).arrayValue
+            let lightTimeTimeArray = JSON(seleModel.hourlyLightTime.jsonToArray()).arrayValue
+            let deepTimeTimeArray = JSON(seleModel.hourlyDeepTime.jsonToArray()).arrayValue
 
             var sleepTimer:Int  = 0
             var wakeTimer:Int  = 0

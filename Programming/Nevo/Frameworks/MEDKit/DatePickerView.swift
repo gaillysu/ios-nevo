@@ -57,18 +57,18 @@ class DatePickerView: UIViewController,UIPickerViewDataSource,UIPickerViewDelega
         selectDate.insert(true, at: 3)
 
         /**确定*/
-        doneButton.setTitleColor(AppTheme.NEVO_SOLAR_YELLOW(), for: UIControlState())
-        doneButton.setTitleColor(AppTheme.NEVO_SOLAR_YELLOW(), for: UIControlState.selected)
-        doneButton.setTitleColor(AppTheme.NEVO_SOLAR_YELLOW(), for: UIControlState.highlighted)
+        doneButton.setTitleColor(UIColor.baseColor, for: UIControlState())
+        doneButton.setTitleColor(UIColor.baseColor, for: UIControlState.selected)
+        doneButton.setTitleColor(UIColor.baseColor, for: UIControlState.highlighted)
         doneButton.layer.cornerRadius = 3;
         doneButton.layer.borderWidth = 1;
         doneButton.layer.borderColor = UIColor.gray.cgColor;
         doneButton.layer.masksToBounds = true;
 
         /**取消按钮*/
-        cancelButton.setTitleColor(AppTheme.NEVO_SOLAR_YELLOW(), for: UIControlState())
-        cancelButton.setTitleColor(AppTheme.NEVO_SOLAR_YELLOW(), for: UIControlState.selected)
-        cancelButton.setTitleColor(AppTheme.NEVO_SOLAR_YELLOW(), for: UIControlState.highlighted)
+        cancelButton.setTitleColor(UIColor.baseColor, for: UIControlState())
+        cancelButton.setTitleColor(UIColor.baseColor, for: UIControlState.selected)
+        cancelButton.setTitleColor(UIColor.baseColor, for: UIControlState.highlighted)
         cancelButton.layer.cornerRadius = 3;
         cancelButton.layer.borderWidth = 1;
         cancelButton.layer.borderColor = UIColor.gray.cgColor;

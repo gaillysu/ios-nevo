@@ -157,26 +157,26 @@ extension LoginController {
         if MEDNetworkManager.manager.networkState {
             XCGLogger.default.debug("有网络")
             if(AppTheme.isNull(userName) || AppTheme.isEmail(userName)) {
-                let banner = MEDBanner(title: NSLocalizedString("Email is not filled in", comment: ""), subtitle: nil, image: nil, backgroundColor:AppTheme.NEVO_SOLAR_YELLOW())
+                let banner = MEDBanner(title: NSLocalizedString("Email is not filled in", comment: ""), subtitle: nil, image: nil, backgroundColor:UIColor.baseColor)
                 banner.dismissesOnTap = true
                 banner.show(duration: 1.2)
                 return
             }
             
             if AppTheme.isNull(password) || AppTheme.isPassword(password) {
-                let banner = MEDBanner(title: NSLocalizedString("Password is not filled in", comment: ""), subtitle: nil, image: nil, backgroundColor:AppTheme.NEVO_SOLAR_YELLOW())
+                let banner = MEDBanner(title: NSLocalizedString("Password is not filled in", comment: ""), subtitle: nil, image: nil, backgroundColor:UIColor.baseColor)
                 banner.dismissesOnTap = true
                 banner.show(duration: 1.2)
                 return
             }
             
             let view = MRProgressOverlayView.showOverlayAdded(to: self.navigationController!.view, title: NSLocalizedString("please_wait", comment: ""), mode: MRProgressOverlayViewMode.indeterminate, animated: true)
-            view?.setTintColor(AppTheme.NEVO_SOLAR_YELLOW())
+            view?.setTintColor(UIColor.baseColor)
             
             MEDUserNetworkManager.login(email: userName, password: password, completion: { (loggedIn: Bool, user: MEDUserProfile?) in
                 
                 let message: String = loggedIn ? NSLocalizedString("login_success", comment: "") : NSLocalizedString("login_error", comment: "")
-                let banner = MEDBanner(title: NSLocalizedString(message, comment: ""), subtitle: nil, image: nil, backgroundColor: AppTheme.NEVO_SOLAR_YELLOW())
+                let banner = MEDBanner(title: NSLocalizedString(message, comment: ""), subtitle: nil, image: nil, backgroundColor: UIColor.baseColor)
                 banner.dismissesOnTap = true
                 banner.show(duration: 1.2)
                 
@@ -240,7 +240,7 @@ extension LoginController {
                 } else {
                     if self.pErrorNumber>=3{
                         let forgetPassword:MEDAlertController = MEDAlertController(title: NSLocalizedString("forget_your_password", comment: ""), message: nil, preferredStyle: UIAlertControllerStyle.alert)
-                        forgetPassword.view.tintColor = AppTheme.NEVO_SOLAR_YELLOW()
+                        forgetPassword.view.tintColor = UIColor.baseColor
                         
                         let alertAction:UIAlertAction = UIAlertAction(title: NSLocalizedString("Yes", comment: ""), style: UIAlertActionStyle.default, handler: { (action) in
                             let forget:ForgotPasswordController = ForgotPasswordController()
@@ -264,7 +264,7 @@ extension LoginController {
             
             XCGLogger.default.debug("没有网络")
             let view = MRProgressOverlayView.showOverlayAdded(to: self.navigationController!.view, title: "No internet", mode: MRProgressOverlayViewMode.cross, animated: true)
-            view?.setTintColor(UIColor.getBaseColor())
+            view?.setTintColor(UIColor.baseColor)
             Timer.after(1, {
                 MRProgressOverlayView.dismissAllOverlays(for: self.navigationController!.view, animated: true)
             })

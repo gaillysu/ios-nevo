@@ -71,8 +71,8 @@ class InformationController: UIViewController {
         if segmentView == nil {
             let appearance = SMSegmentAppearance()
             appearance.titleOnSelectionColour       = UIColor.white
-            appearance.titleOffSelectionColour      = UIColor.getBaseColor()
-            appearance.segmentOnSelectionColour     = UIColor.getBaseColor()
+            appearance.titleOffSelectionColour      = UIColor.baseColor
+            appearance.segmentOnSelectionColour     = UIColor.baseColor
             appearance.segmentOffSelectionColour    = UIColor.getGreyColor()
             appearance.titleOnSelectionFont         = UIFont.systemFont(ofSize: 12.0)
             appearance.titleOffSelectionFont        = UIFont.systemFont(ofSize: 12.0)
@@ -84,7 +84,7 @@ class InformationController: UIViewController {
              */
             let segmentFrame = CGRect(x: 0, y: 0, width: metricsSegment.frame.size.width, height: metricsSegment.frame.size.height)
             segmentView = SMSegmentView(frame: segmentFrame, dividerColour: UIColor(white: 0.95, alpha: 0.3), dividerWidth: 1.0, segmentAppearance: appearance)
-            segmentView!.layer.borderColor  = AppTheme.NEVO_SOLAR_YELLOW().cgColor
+            segmentView!.layer.borderColor  = UIColor.baseColor.cgColor
             segmentView!.layer.borderWidth  = 1.0
             segmentView?.layer.cornerRadius = 10
             
@@ -136,7 +136,7 @@ class InformationController: UIViewController {
     func registerRequest() {
         if MEDNetworkManager.manager.networkState {
             if(AppTheme.isNull(dateOfbirth!.text!) || AppTheme.isNull(heightTextField.text!) || AppTheme.isNull(weightTextfield.text!)) {
-                let banner = MEDBanner(title: NSLocalizedString("one_of_the_fields_are_empty", comment: ""), subtitle: nil, image: nil, backgroundColor:AppTheme.NEVO_SOLAR_YELLOW())
+                let banner = MEDBanner(title: NSLocalizedString("one_of_the_fields_are_empty", comment: ""), subtitle: nil, image: nil, backgroundColor:UIColor.baseColor)
                 banner.dismissesOnTap = true
                 banner.show(duration: 0.6)
                 return
@@ -152,7 +152,7 @@ class InformationController: UIViewController {
             registerInfo["sex"] = "\(sex)"
             
             let view = MRProgressOverlayView.showOverlayAdded(to: self.navigationController!.view, title: NSLocalizedString("please_wait", comment: ""), mode: MRProgressOverlayViewMode.indeterminate, animated: true)
-            view?.setTintColor(AppTheme.NEVO_SOLAR_YELLOW())
+            view?.setTintColor(UIColor.baseColor)
             
             //timeout
             let timeout:Timer = Timer.after(50.seconds, {
@@ -179,7 +179,7 @@ class InformationController: UIViewController {
                     message = NSLocalizedString("signup_failed", comment: "")
                 }
                 
-                let banner = MEDBanner(title: NSLocalizedString(message, comment: ""), subtitle: nil, image: nil, backgroundColor:AppTheme.NEVO_SOLAR_YELLOW())
+                let banner = MEDBanner(title: NSLocalizedString(message, comment: ""), subtitle: nil, image: nil, backgroundColor:UIColor.baseColor)
                 banner.dismissesOnTap = true
                 banner.show(duration: 1.2)
             })
@@ -189,7 +189,7 @@ class InformationController: UIViewController {
         }else{
             XCGLogger.default.debug("注册的时候没有网络")
             let view = MRProgressOverlayView.showOverlayAdded(to: self.navigationController!.view, title: "No internet", mode: MRProgressOverlayViewMode.cross, animated: true)
-            view?.setTintColor(UIColor.getBaseColor())
+            view?.setTintColor(UIColor.baseColor)
             Timer.after(0.6.seconds, {
                 MRProgressOverlayView.dismissAllOverlays(for: self.navigationController!.view, animated: true)
             })

@@ -14,7 +14,7 @@ class MEDBanner:Banner {
         var newTitle = title
         var newSubTitle = subtitle
    
-        super.init(title: newTitle, subtitle: newSubTitle, image: image, backgroundColor: UIColor.getBaseColor(), didTapBlock: didTapBlock)
+        super.init(title: newTitle, subtitle: newSubTitle, image: image, backgroundColor: UIColor.baseColor, didTapBlock: didTapBlock)
         
     }
     

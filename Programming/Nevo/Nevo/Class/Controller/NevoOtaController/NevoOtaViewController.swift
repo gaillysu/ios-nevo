@@ -30,7 +30,6 @@ class NevoOtaViewController: UIViewController  {
     fileprivate var selectedFirmware : DFUFirmware?
     
     fileprivate var legacyDfuServiceUUID        : CBUUID = NevoOTAPacketProfile().CONTROL_SERVICE.last!
-    fileprivate var secureDfuServiceUUID        : CBUUID = CBUUID(string: "FE59")
     fileprivate var discoveredPeripherals       : [CBPeripheral] = []
     fileprivate var securePeripheralMarkers     : [Bool]?
     
@@ -208,14 +207,14 @@ extension NevoOtaViewController: NevoOtaControllerDelegate {
             
             let continueButton:UIButton = UIButton(type: UIButtonType.custom)
             continueButton.setTitle(NSLocalizedString("Continue", comment: ""), for: UIControlState())
-            continueButton.setTitleColor(AppTheme.NEVO_SOLAR_YELLOW(), for: UIControlState())
+            continueButton.setTitleColor(UIColor.baseColor, for: UIControlState())
             continueButton.frame = CGRect(x: 0, y: 0, width: 135, height: 35)
             continueButton.center = CGPoint(x: UIScreen.main.bounds.size.width/2.0, y: (titleLabel2.frame.origin.y+titleLabel2.frame.size.height)+20)
             continueButton.addTarget(self, action: #selector(continueAction(_:)), for: UIControlEvents.touchUpInside)
             continueButton.layer.masksToBounds = true
             continueButton.layer.cornerRadius = 8.0
             continueButton.layer.borderWidth = 1.0
-            continueButton.layer.borderColor = AppTheme.NEVO_SOLAR_YELLOW().cgColor
+            continueButton.layer.borderColor = UIColor.baseColor.cgColor
             continueView.addSubview(continueButton)
         }
     }
@@ -317,7 +316,7 @@ extension NevoOtaViewController {
         let updateTitle:String = "Message"
         let updatemsg:String = message
         let alert :MEDAlertController = MEDAlertController(title: updateTitle, message: updatemsg, preferredStyle: UIAlertControllerStyle.alert)
-        alert.view.tintColor = AppTheme.NEVO_SOLAR_YELLOW()
+        alert.view.tintColor = UIColor.baseColor
         let alertAction:UIAlertAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: UIAlertActionStyle.cancel) { (action:UIAlertAction) -> Void in
             self.dismiss(animated: true, completion: nil)
         }
@@ -334,7 +333,7 @@ extension NevoOtaViewController {
         let updateTitle:String = NSLocalizedString("do_not_exit_this_screen", comment: "")
         let updatemsg:String = NSLocalizedString("please_follow_the_update_has_been_finished", comment: "")
         let alert :MEDAlertController = MEDAlertController(title: updateTitle, message: updatemsg, preferredStyle: UIAlertControllerStyle.alert)
-        alert.view.tintColor = AppTheme.NEVO_SOLAR_YELLOW()
+        alert.view.tintColor = UIColor.baseColor
         let alertAction:UIAlertAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: UIAlertActionStyle.cancel) { (action:UIAlertAction) -> Void in
             self.dismiss(animated: true, completion: nil)
         }
@@ -368,7 +367,7 @@ extension NevoOtaViewController {
     
     func startBLEOTARequest() {
         let view = MRProgressOverlayView.showOverlayAdded(to: self.navigationController!.view, title: NSLocalizedString("please_wait", comment: ""), mode: MRProgressOverlayViewMode.indeterminate, animated: true)
-        view?.setTintColor(AppTheme.NEVO_SOLAR_YELLOW())
+        view?.setTintColor(UIColor.baseColor)
         ConnectionManager.manager.sendRequest(SetOTAModeRequest())
         startTimer = Timer.after(10) {
              XCGLogger.default.debug("from timer out:switchNordicBLEOTAMode")
@@ -450,7 +449,7 @@ extension NevoOtaViewController {
 //MARK: - CBCentralManagerDelegate
 extension NevoOtaViewController:CBCentralManagerDelegate, CBPeripheralDelegate {
     func startDiscovery() {
-        centralManager?.scanForPeripherals(withServices: [legacyDfuServiceUUID, secureDfuServiceUUID], options: nil)
+        centralManager?.scanForPeripherals(withServices: [legacyDfuServiceUUID], options: nil)
     }
     
     func centralManagerDidUpdateState(_ central: CBCentralManager) {

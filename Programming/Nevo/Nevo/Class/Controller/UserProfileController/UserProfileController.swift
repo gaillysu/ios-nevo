@@ -66,7 +66,7 @@ class UserProfileController: UIViewController,UITableViewDelegate,UITableViewDat
     func saveProfileAction(_ sender:AnyObject) {
         if let user = userprofile {
             let view = MRProgressOverlayView.showOverlayAdded(to: self.navigationController!.view, title: NSLocalizedString("please_wait", comment: ""), mode: MRProgressOverlayViewMode.indeterminate, animated: true)
-            view?.setTintColor(AppTheme.NEVO_SOLAR_YELLOW())
+            view?.setTintColor(UIColor.baseColor)
             
             MEDUserNetworkManager.updateUser(profile: user, completion: {[weak self] (flag, user) in
                 MRProgressOverlayView.dismissAllOverlays(for: self?.navigationController!.view, animated: true)
@@ -77,7 +77,7 @@ class UserProfileController: UIViewController,UITableViewDelegate,UITableViewDat
                         _ = self?.navigationController?.popViewController(animated: true)
                     }
                 } else {
-                    let banner = MEDBanner(title: NSLocalizedString("no_network", comment: ""), subtitle: nil, image: nil, backgroundColor: AppTheme.NEVO_SOLAR_YELLOW())
+                    let banner = MEDBanner(title: NSLocalizedString("no_network", comment: ""), subtitle: nil, image: nil, backgroundColor: UIColor.baseColor)
                     banner.dismissesOnTap = true
                     banner.show(duration: 1.5)
                 }
@@ -113,7 +113,7 @@ extension UserProfileController: UIImagePickerControllerDelegate, UINavigationCo
             alertController.dismiss(animated: true, completion: nil)
         }))
         alertController.actions.forEach { action in
-            action.setValue(UIColor.getBaseColor(), forKey: "titleTextColor")
+            action.setValue(UIColor.baseColor, forKey: "titleTextColor")
         }
         present(alertController, animated: true, completion: nil)
     }
@@ -264,7 +264,7 @@ extension UserProfileController {
             cell.valueTextField.isEnabled = false
             cell.selectionStyle = .default
             cell.accessoryType = .none
-            cell.titleLabel.textColor = UIColor.darkRed()
+            cell.titleLabel.textColor = UIColor.darkRed
         }
         return cell
     }
@@ -280,11 +280,11 @@ extension UserProfileController {
                         self.navigationController?.popViewController(animated: true)
                     }
             })
-            confirmAction.setValue(UIColor.getBaseColor(), forKey: "titleTextColor")
+            confirmAction.setValue(UIColor.baseColor, forKey: "titleTextColor")
             dialogController.addAction(confirmAction)
             
             let cancelAction = AlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil)
-            cancelAction.setValue(UIColor.getBaseColor(), forKey: "titleTextColor")
+            cancelAction.setValue(UIColor.baseColor, forKey: "titleTextColor")
             dialogController.addAction(cancelAction)
             
             self.present(dialogController, animated: true, completion: nil)

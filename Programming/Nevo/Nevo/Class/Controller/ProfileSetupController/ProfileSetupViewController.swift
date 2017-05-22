@@ -79,26 +79,26 @@ class ProfileSetupViewController: UIViewController {
     @IBAction func buttonActionManager(_ sender: AnyObject) {
         
         if AppTheme.isEmail(email!.text!) {
-            let banner = MEDBanner(title: NSLocalizedString("The format of your E-mail address seems to be wrong", comment: ""), subtitle: nil, image: nil, backgroundColor:AppTheme.NEVO_SOLAR_YELLOW())
+            let banner = MEDBanner(title: NSLocalizedString("The format of your E-mail address seems to be wrong", comment: ""), subtitle: nil, image: nil, backgroundColor:UIColor.baseColor)
             banner.dismissesOnTap = true
             banner.show(duration: 0.6)
             return
         }
         
         if(AppTheme.isNull(email!.text!) || AppTheme.isNull(firstNameTextField!.text!) || AppTheme.isNull(lastNameTextField!.text!) || AppTheme.isPassword(password.text!) || AppTheme.isPassword(retypePassword.text!)) {
-            let banner = MEDBanner(title: NSLocalizedString("one_of_the_fields_are_empty", comment: ""), subtitle: nil, image: nil, backgroundColor:AppTheme.NEVO_SOLAR_YELLOW())
+            let banner = MEDBanner(title: NSLocalizedString("one_of_the_fields_are_empty", comment: ""), subtitle: nil, image: nil, backgroundColor:UIColor.baseColor)
             banner.dismissesOnTap = true
             banner.show(duration: 0.6)
             
         }else{
             if retypePassword.text! != password.text! {
-                let banner = MEDBanner(title: NSLocalizedString("two_password_is_not_the_same", comment: ""), subtitle: nil, image: nil, backgroundColor:AppTheme.NEVO_SOLAR_YELLOW())
+                let banner = MEDBanner(title: NSLocalizedString("two_password_is_not_the_same", comment: ""), subtitle: nil, image: nil, backgroundColor:UIColor.baseColor)
                 banner.dismissesOnTap = true
                 banner.show(duration: 0.6)
             }else{
                 if checkBox.checkState == .unchecked {
                     // TODO: 字符串本地化
-                    let banner = MEDBanner(title: NSLocalizedString("Please agree the terms and conditions first", comment: ""), subtitle: nil, image: nil, backgroundColor:AppTheme.NEVO_SOLAR_YELLOW())
+                    let banner = MEDBanner(title: NSLocalizedString("Please agree the terms and conditions first", comment: ""), subtitle: nil, image: nil, backgroundColor:UIColor.baseColor)
                     banner.dismissesOnTap = true
                     banner.show(duration: 0.6)
                 } else {

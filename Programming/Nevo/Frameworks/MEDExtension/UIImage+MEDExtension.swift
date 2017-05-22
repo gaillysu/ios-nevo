@@ -36,4 +36,17 @@ extension UIImage {
         UIGraphicsEndImageContext()
         return image
     }
+    
+    /**
+     Access to resources image
+     
+     :param: imageName resource name picture
+     
+     :returns: Return to obtain images of the object
+     */
+    open class func getFolderFile(_ name:String, type:String) -> UIImage {
+        let imagePath:String = Bundle.main.path(forResource: name, ofType: type)!
+        return UIImage(contentsOfFile: imagePath)!
+        
+    }
 }

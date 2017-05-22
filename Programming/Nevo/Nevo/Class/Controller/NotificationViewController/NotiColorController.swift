@@ -78,7 +78,7 @@ extension NotiColorController {
             self.navigationController?.pushViewController(controller, animated: true)
         })
         
-        editAction.backgroundColor = UIColor.getBaseColor()
+        editAction.backgroundColor = UIColor.baseColor
         return [deleteAction, editAction]
     }
     

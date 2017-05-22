@@ -82,8 +82,8 @@ class AnalysisRadarViewCell: UICollectionViewCell,ChartViewDelegate {
         }
         
         let set1:RadarChartDataSet = RadarChartDataSet(values: yVals1, label: "Set 1")
-        set1.setColor(UIColor.getBaseColor())
-        set1.fillColor = UIColor.getBaseColor();
+        set1.setColor(UIColor.baseColor)
+        set1.fillColor = UIColor.baseColor;
         set1.drawFilledEnabled = true;
         set1.lineWidth = 0.3;
         

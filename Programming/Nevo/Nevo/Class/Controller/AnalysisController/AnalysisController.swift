@@ -68,7 +68,7 @@ class AnalysisController: PublicClassController {
         
         segmented.backgroundColor = UIColor.getNevoTabBarColor()
         segmentedBackgroundView.backgroundColor = UIColor.getNevoTabBarColor()
-        segmentDeviderView.backgroundColor = AppTheme.NEVO_SOLAR_YELLOW()
+        segmentDeviderView.backgroundColor = UIColor.baseColor
         
         let chartLayout:UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         chartLayout.itemSize = CGSize(width: 0, height: 0)
@@ -110,7 +110,7 @@ extension AnalysisController {
         pageControl.numberOfPages = 3
         pageControl.currentPage = 0
         pageControl.pageIndicatorTintColor = UIColor.lightGray
-        pageControl.currentPageIndicatorTintColor = AppTheme.NEVO_SOLAR_YELLOW()
+        pageControl.currentPageIndicatorTintColor = UIColor.baseColor
         pageControl.addTarget(self, action: #selector(pageAction(_ :)), for: UIControlEvents.valueChanged)
         
         pageControl.isUserInteractionEnabled = false
@@ -123,7 +123,7 @@ extension AnalysisController {
             make.right.equalTo(self.view).offset(-20)
         }
         
-        pageControl.currentPageIndicatorTintColor = AppTheme.NEVO_SOLAR_YELLOW()
+        pageControl.currentPageIndicatorTintColor = UIColor.baseColor
     }
     
     func setCurrentPageIndex(_ index:Int) {

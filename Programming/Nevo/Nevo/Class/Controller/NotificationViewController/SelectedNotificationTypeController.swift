@@ -152,13 +152,13 @@ extension SelectedNotificationTypeController:AddPacketToWatchDelegate {
             allowCell.addDelegate = self
             allowCell.notificationSetting = notSetting
             let titleColor:UIColor = UIColor.black
-            let onColor:UIColor = AppTheme.NEVO_SOLAR_YELLOW()
+            let onColor:UIColor = UIColor.baseColor
             allowCell.setAllowSwitch(color: onColor,isOn:notSetting!.getStates())
             allowCell.setTitleLabel(title: NSLocalizedString("Allow_Notifications", comment: ""), titleColor: titleColor, titleFont: nil)
             return allowCell
         case 1:
             let colorString = notSetting!.getHexColor()
-            let color = colorString == "" ? UIColor.getRandomColor() : UIColor(colorString)
+            let color = colorString == "" ? UIColor.getRandomColor : UIColor(colorString)
             let cell = selectedNotificationView.getNotificationClockCell(indexPath, tableView: tableView, image: UIImage.dotImageWith(color: color, backgroundColor: UIColor.getGreyColor(), size: CGSize(width: 15, height: 15)), clockIndex: notSetting!.getClock())
             
             cell.viewDefaultColorful()

@@ -51,14 +51,14 @@ class ForgotPasswordController: UIViewController {
 extension ForgotPasswordController {
     func forgotPasswordRequest() {
         let view = MRProgressOverlayView.showOverlayAdded(to: self.navigationController!.view, title: NSLocalizedString("please_wait", comment: ""), mode: MRProgressOverlayViewMode.indeterminate, animated: true)
-        view?.setTintColor(AppTheme.NEVO_SOLAR_YELLOW())
+        view?.setTintColor(UIColor.baseColor)
         
         MEDUserNetworkManager.requestPassword(email: emailTextField.text!) { (success:Bool, token:String, id:Int) in
             MRProgressOverlayView.dismissAllOverlays(for: self.navigationController!.view, animated: true)
             
             if success {
                 let alert:MEDAlertController = MEDAlertController(title: NSLocalizedString("change_password", comment: ""), message: nil, preferredStyle: UIAlertControllerStyle.alert)
-                alert.view.tintColor = AppTheme.NEVO_SOLAR_YELLOW()
+                alert.view.tintColor = UIColor.baseColor
                 alert.addTextField(configurationHandler: { (newPassword1:UITextField) in
                     newPassword1.placeholder = NSLocalizedString("new_password", comment: "")
                     newPassword1.isSecureTextEntry = true
@@ -72,19 +72,19 @@ extension ForgotPasswordController {
                 let alertAction:UIAlertAction = UIAlertAction(title: NSLocalizedString("Enter", comment: ""), style: .default, handler: { (action) in
                     let textField:[UITextField] = alert.textFields!
                     if textField[0].text == nil || textField[1].text == nil {
-                        let banner = MEDBanner(title: NSLocalizedString("Please enter a new password", comment: ""), subtitle: nil, image: nil, backgroundColor:AppTheme.NEVO_SOLAR_YELLOW())
+                        let banner = MEDBanner(title: NSLocalizedString("Please enter a new password", comment: ""), subtitle: nil, image: nil, backgroundColor:UIColor.baseColor)
                         banner.dismissesOnTap = true
                         banner.show(duration: 1.2)
                         return
                     }
                     if textField[0].text! == textField[1].text! {
                         let view = MRProgressOverlayView.showOverlayAdded(to: self.navigationController!.view, title: NSLocalizedString("please_wait", comment: ""), mode: MRProgressOverlayViewMode.indeterminate, animated: true)
-                        view?.setTintColor(AppTheme.NEVO_SOLAR_YELLOW())
+                        view?.setTintColor(UIColor.baseColor)
                         
                         MEDUserNetworkManager.forgetPassword(email: self.emailTextField.text!, password: textField[0].text!, id: id, token: token, completion: { (changeSuccess: Bool) in
                             MRProgressOverlayView.dismissAllOverlays(for: self.navigationController!.view, animated: true)
                             if changeSuccess {
-                                let banner = MEDBanner(title: NSLocalizedString("Password has been changed", comment: ""), subtitle: nil, image: nil, backgroundColor:AppTheme.NEVO_SOLAR_YELLOW())
+                                let banner = MEDBanner(title: NSLocalizedString("Password has been changed", comment: ""), subtitle: nil, image: nil, backgroundColor:UIColor.baseColor)
                                 banner.dismissesOnTap = true
                                 banner.show(duration: 1.2)
                                 self.dismiss(animated: true, completion: nil)
@@ -92,7 +92,7 @@ extension ForgotPasswordController {
                             
                         })
                     }else{
-                        let banner = MEDBanner(title: NSLocalizedString("two_password_is_not_the_same", comment: ""), subtitle: nil, image: nil, backgroundColor:AppTheme.NEVO_SOLAR_YELLOW())
+                        let banner = MEDBanner(title: NSLocalizedString("two_password_is_not_the_same", comment: ""), subtitle: nil, image: nil, backgroundColor:UIColor.baseColor)
                         banner.dismissesOnTap = true
                         banner.show(duration: 1.2)
                     }

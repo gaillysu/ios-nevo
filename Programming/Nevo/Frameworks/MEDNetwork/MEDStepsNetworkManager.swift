@@ -78,17 +78,18 @@ class MEDStepsNetworkManager: NSObject {
         formatter.dateFormat = "yyyy-MM-dd"
         let date = formatter.date(from: dateArray[0])
         let dateTimerInterval  = date?.beginningOfDay.timeIntervalSince1970
-        let stepsArray:NSArray = AppTheme.jsonToArray(stepsString)
+        let stepsArray:[Any] = stepsString.jsonToArray()
+            //AppTheme.jsonToArray(stepsString)
         for (hourIndex,hourValue) in stepsArray.enumerated() {
             var seconds:Int = hourIndex*60*60
-            for (minuteIndex,minuteValue) in (hourValue as! NSArray).enumerated() {
-                if Int(minuteValue as! NSNumber)>0 {
+            for (minuteIndex,minuteValue) in (hourValue as! [Int]).enumerated() {
+                if Int(minuteValue)>0 {
                     seconds += (minuteIndex*5)*60
                     let queryArray = MEDUserSteps.getFilter("date == \(Double(dateTimerInterval!+Double(seconds)).toDouble())")
                     if queryArray.count == 0 {
                         let steps:MEDUserSteps = MEDUserSteps()
                         steps.cid = cid
-                        steps.totalSteps = Int(minuteValue as! NSNumber)
+                        steps.totalSteps = Int(minuteValue)
                         steps.distance = 0
                         steps.date = Double(dateTimerInterval!+Double(seconds)).toDouble()
                         if successSynced {
@@ -97,7 +98,7 @@ class MEDStepsNetworkManager: NSObject {
                     } else {
                         for (_,value3) in queryArray.enumerated() {
                             let steps:MEDUserSteps = value3 as! MEDUserSteps
-                            steps.totalSteps = Int(minuteValue as! NSNumber)
+                            steps.totalSteps = Int(minuteValue)
                             let realm = try! Realm()
                             try! realm.write {
                                 steps.cid = cid

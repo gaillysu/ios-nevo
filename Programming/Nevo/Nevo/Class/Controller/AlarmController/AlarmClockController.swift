@@ -187,7 +187,7 @@ extension AlarmClockController {
             let detailMsg = NSLocalizedString(localizedKey, comment: "")
             
             let actionSheet = MEDAlertController(title: title, message: detailMsg, preferredStyle: .alert)
-            actionSheet.view.tintColor = AppTheme.NEVO_SOLAR_YELLOW()
+            actionSheet.view.tintColor = UIColor.baseColor
             
             let action = AlertAction(title: actionMsg, style: .default, handler: { (_) in
                 self.dismiss(animated: true, completion: nil)
@@ -330,7 +330,7 @@ extension AlarmClockController {
             self.tableView(tableView, commit: .delete, forRowAt: indexPath)
         })
         
-        action.backgroundColor = UIColor.getBaseColor()
+        action.backgroundColor = UIColor.baseColor
         
         return [action]
     }
@@ -438,13 +438,13 @@ extension AlarmClockController {
     }
     
     func willSyncAlarmAlertView() {
-        let banner = MEDBanner(title: NSLocalizedString("no_watch_connected", comment: ""), subtitle: nil, image: nil, backgroundColor: AppTheme.NEVO_SOLAR_YELLOW())
+        let banner = MEDBanner(title: NSLocalizedString("no_watch_connected", comment: ""), subtitle: nil, image: nil, backgroundColor: UIColor.baseColor)
         banner.dismissesOnTap = true
         banner.show(duration: 1.5)
     }
     
     func syncAlarmAlertView() {
-        let banner = MEDBanner(title: NSLocalizedString("syncing_Alarm", comment: ""), subtitle: nil, image: nil, backgroundColor: AppTheme.NEVO_SOLAR_YELLOW())
+        let banner = MEDBanner(title: NSLocalizedString("syncing_Alarm", comment: ""), subtitle: nil, image: nil, backgroundColor: UIColor.baseColor)
         banner.dismissesOnTap = true
         banner.show(duration: 1.5)
     }

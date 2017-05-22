@@ -155,7 +155,7 @@ extension SolarIndicatorController:ChartViewDelegate {
         centerText.setAttributes([NSFontAttributeName:UIFont(name: "HelveticaNeue-Light", size: 13.0)!], range: NSMakeRange(0, centerText.length))
         centerText.addAttributes([NSFontAttributeName:UIFont(name: "HelveticaNeue-Light", size: 11.0)!,NSForegroundColorAttributeName:UIColor.gray], range: NSMakeRange(10, centerText.length - 10))
         centerText.addAttributes([NSFontAttributeName:UIFont(name: "HelveticaNeue-LightItalic", size: 11.0)!,NSForegroundColorAttributeName:UIColor(red: 51.0/255.0, green: 181.0/255.0, blue: 229.0/255.0, alpha: 1.0)], range: NSMakeRange(centerText.length - 19, 19))
-        //let marker:BalloonMarker = BalloonMarker(color: UIColor.getBaseColor(), font: UIFont(name: "Helvetica-Light", size: 11)!, insets: UIEdgeInsetsMake(8.0, 8.0, 15.0, 8.0))
+        //let marker:BalloonMarker = BalloonMarker(color: UIColor.baseColor, font: UIFont(name: "Helvetica-Light", size: 11)!, insets: UIEdgeInsetsMake(8.0, 8.0, 15.0, 8.0))
         //marker.minimumSize = CGSizeMake(60, 25);
         //chartView.marker = marker
         chartView.centerAttributedText = centerText
@@ -204,7 +204,7 @@ extension SolarIndicatorController:ChartViewDelegate {
         
         let dataSet:PieChartDataSet = PieChartDataSet(values: yVals1, label: "")
         dataSet.sliceSpace = 2.0;
-        var colors:[UIColor] = [AppTheme.NEVO_SOLAR_YELLOW(),AppTheme.NEVO_SOLAR_DARK_GRAY()];
+        var colors:[UIColor] = [UIColor.baseColor,UIColor.nevoGray];
         dataSet.colors = colors
         
         let pFormatter:NumberFormatter = NumberFormatter()

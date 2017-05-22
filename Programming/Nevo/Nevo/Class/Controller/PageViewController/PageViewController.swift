@@ -127,13 +127,13 @@ class PageViewController: UIPageViewController,UIActionSheetDelegate {
                         self.setGoal(NumberOfStepsGoal(steps: model.stepsGoal))
                     }
                 }
-                alertAction2.setValue(AppTheme.NEVO_SOLAR_YELLOW(), forKey: "titleTextColor")
+                alertAction2.setValue(UIColor.baseColor, forKey: "titleTextColor")
                 actionSheet.addAction(alertAction2)
             }
         }
         
         let alertAction:AlertAction = AlertAction(title: NSLocalizedString("Cancel", comment: ""), style: UIAlertActionStyle.cancel, handler: nil)
-        alertAction.setValue(AppTheme.NEVO_SOLAR_YELLOW(), forKey: "titleTextColor")
+        alertAction.setValue(UIColor.baseColor, forKey: "titleTextColor")
         actionSheet.addAction(alertAction)
         
         self.present(actionSheet, animated: true, completion:nil)
@@ -141,12 +141,12 @@ class PageViewController: UIPageViewController,UIActionSheetDelegate {
     
     func setGoal(_ goal:Goal) {
         if ConnectionManager.manager.isConnected {
-            let banner = MEDBanner(title: NSLocalizedString("syncing_goal", comment: ""), subtitle: nil, image: nil, backgroundColor: AppTheme.NEVO_SOLAR_YELLOW())
+            let banner = MEDBanner(title: NSLocalizedString("syncing_goal", comment: ""), subtitle: nil, image: nil, backgroundColor: UIColor.baseColor)
             banner.dismissesOnTap = true
             banner.show(duration: 2.0)
             ConnectionManager.manager.setGoal(goal)
         }else{
-            let banner = MEDBanner(title: NSLocalizedString("no_watch_connected", comment: ""), subtitle: nil, image: nil, backgroundColor: AppTheme.NEVO_SOLAR_YELLOW())
+            let banner = MEDBanner(title: NSLocalizedString("no_watch_connected", comment: ""), subtitle: nil, image: nil, backgroundColor: UIColor.baseColor)
             banner.dismissesOnTap = true
             banner.show(duration: 2.0)
         }
@@ -164,7 +164,7 @@ extension PageViewController {
         pageControl.numberOfPages = pagingControllers.count
         pageControl.currentPage = 0
         pageControl.pageIndicatorTintColor = UIColor.lightGray
-        pageControl.currentPageIndicatorTintColor = AppTheme.NEVO_SOLAR_YELLOW()
+        pageControl.currentPageIndicatorTintColor = UIColor.baseColor
         pageControl.addTarget(self, action: #selector(pageAction(_ :)), for: UIControlEvents.valueChanged)
         
         pageControl.isUserInteractionEnabled = false
@@ -177,7 +177,7 @@ extension PageViewController {
             make.right.equalTo(self.view).offset(-20)
         }
         
-        pageControl.currentPageIndicatorTintColor = AppTheme.NEVO_SOLAR_YELLOW()
+        pageControl.currentPageIndicatorTintColor = UIColor.baseColor
     }
     
     func setNumberOfPages() {
@@ -468,11 +468,11 @@ extension PageViewController: CVCalendarViewAppearanceDelegate {
     }
     
     func dayLabelWeekdaySelectedBackgroundColor() -> UIColor {
-        return AppTheme.NEVO_SOLAR_YELLOW()
+        return UIColor.baseColor
     }
     
     func dayLabelPresentWeekdayTextColor() -> UIColor{
-        return AppTheme.NEVO_SOLAR_YELLOW()
+        return UIColor.baseColor
     }
     
     func dayLabelPresentWeekdayHighlightedTextColor() -> UIColor {
@@ -490,7 +490,7 @@ extension PageViewController: CVCalendarViewAppearanceDelegate {
     }
     
     func dayLabelBackgroundColor(by weekDay: Weekday, status: CVStatus, present: CVPresent) -> UIColor?{
-        return AppTheme.NEVO_SOLAR_YELLOW()
+        return UIColor.baseColor
     }
 }
 

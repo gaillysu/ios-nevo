@@ -23,55 +23,7 @@ This class holds all app-wide constants.
 Colors, fonts etc...
 */
 class AppTheme {
-    /**
-    This color should be used app wide on all actionable elements
-    sRGB value : #ff9933
-    */
-    class func NEVO_SOLAR_YELLOW() -> UIColor {
-        
-        return UIColor("#A08455")
-    }
-
-    class func NEVO_SOLAR_GRAY() -> UIColor {
-        
-        return UIColor("#E5E4E2")
-    }
     
-    class func NEVO_SOLAR_DARK_GRAY() -> UIColor {
-        
-        return UIColor("#BCBCBC")
-    }
-    
-    /**
-    Custom colors
-
-    :param: reds   The red channel value
-    :param: greens The green channel value
-    :param: blue   The blue channel value
-
-    :returns: Custom colors
-    */
-    class func NEVO_CUSTOM_COLOR(Red reds:CGFloat = 186, Green greens:CGFloat = 185, Blue blue:CGFloat = 182) -> UIColor {
-        return UIColor(red: reds/255.0 , green: greens/255.0, blue: blue/255.0, alpha: 1)
-    }
-    
-    class func PALETTE_BAGGROUND_COLOR() -> UIColor {
-        return UIColor(red: 10/255.0, green: 255/255.0, blue: 178/255.0, alpha: 1)//Uniform
-    }
-
-    /**
-    Access to resources image
-
-    :param: imageName resource name picture
-
-    :returns: Return to obtain images of the object
-    */
-    class func GET_RESOURCES_IMAGE(_ imageName:String, typeName:String) -> UIImage {
-        let imagePath:String = Bundle.main.path(forResource: imageName, ofType: typeName)!
-        return UIImage(contentsOfFile: imagePath)!
-
-    }
-
     /**
      Determine whether the iPhone5s
     :returns: If it returns true or false
@@ -182,24 +134,6 @@ class AppTheme {
             //AudioServicesPlaySystemSound(shake_sound_male_id);
         //}
         //AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);   //手机震动
-    }
-
-    /**
-    Json string into an array
-
-    :param: object 转换对象
-
-    :returns: 返回转换后的数组
-    */
-    class func jsonToArray(_ object:String)->NSArray{
-        do{
-            let data:Data = object.data(using: String.Encoding.utf8)!
-            let array = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.mutableContainers)
-            let JsonToArray = array as! NSArray
-            return JsonToArray
-        }catch{
-            return NSArray()
-        }
     }
 
     class func navigationbar(_ navigation:UINavigationController, reset:Bool) {
@@ -313,22 +247,6 @@ class AppTheme {
         #else
             fun()
         #endif
-    }
-
-    class func getWakeSleepColor () -> UIColor{
-        return UIColor(red: 253/255.0, green: 230/255.0, blue: 156.0/255.0, alpha: 1.0)
-    }
-    
-    class func getLightSleepColor () -> UIColor{
-        return UIColor(red: 251.0/255.0, green: 193.0/255.0, blue: 11.0/255.0, alpha: 1.0)
-    }
-    
-    class func getDeepSleepColor () -> UIColor{
-        return UIColor(red: 249.0/255.0, green: 160.0/255.0, blue: 1.0/255.0, alpha: 1.0)
-    }
-    
-    class func getStepsColor () -> UIColor{
-        return UIColor(red: 179.0/255.0, green: 179.0/255.0, blue: 179.0/255.0, alpha: 1.0)
     }
     
     class func isEmail(_ email:String)->Bool{

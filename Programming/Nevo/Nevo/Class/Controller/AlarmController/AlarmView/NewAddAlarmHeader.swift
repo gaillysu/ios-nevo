@@ -40,6 +40,6 @@ class NewAddAlarmHeader: UITableViewHeaderFooterView {
         contentView.backgroundColor = UIColor.getNevoTabBarColor()
         alarmType.backgroundColor = UIColor.getNevoTabBarColor()
         
-        bottomLineView.backgroundColor = UIColor.getBaseColor()
+        bottomLineView.backgroundColor = UIColor.baseColor
     }
 }

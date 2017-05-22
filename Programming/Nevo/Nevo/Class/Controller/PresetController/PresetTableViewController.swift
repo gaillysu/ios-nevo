@@ -68,7 +68,7 @@ extension PresetTableViewController {
             }))
             alertController.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
             alertController.actions.forEach { action in
-                action.setValue(UIColor.getBaseColor(), forKey: "titleTextColor")
+                action.setValue(UIColor.baseColor, forKey: "titleTextColor")
             }
             self.present(alertController, animated: true, completion: nil)
         }
@@ -126,7 +126,7 @@ extension PresetTableViewController {
         let deleteButton = UITableViewRowAction(style: .default, title: "Delete", handler: { (action, indexPath) in
             self.tableView(tableView, commit: .delete, forRowAt: indexPath)
         })
-        deleteButton.backgroundColor = AppTheme.NEVO_SOLAR_YELLOW()
+        deleteButton.backgroundColor = UIColor.baseColor
         return [deleteButton]
     }
     
@@ -162,7 +162,7 @@ extension PresetTableViewController {
         }))
         alertController.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
         alertController.actions.forEach { action in
-            action.setValue(UIColor.getBaseColor(), forKey: "titleTextColor")
+            action.setValue(UIColor.baseColor, forKey: "titleTextColor")
         }
         self.present(alertController, animated: true, completion: nil)
     }

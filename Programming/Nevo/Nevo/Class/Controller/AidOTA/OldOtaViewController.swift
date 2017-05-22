@@ -148,7 +148,7 @@ extension OldOtaViewController {
         let updatemsg:String = NSLocalizedString("please_follow_the_update_has_been_finished", comment: "")
         
         let alertView :MEDAlertController = MEDAlertController(title: updateTitle, message: updatemsg, preferredStyle: UIAlertControllerStyle.alert)
-        alertView.view.tintColor = AppTheme.NEVO_SOLAR_YELLOW()
+        alertView.view.tintColor = UIColor.baseColor
         let alertAction:UIAlertAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: UIAlertActionStyle.cancel) { (action:UIAlertAction) -> Void in
             self.dismiss(animated: true, completion: nil)
         }

@@ -189,7 +189,7 @@ class StepsHistoryViewController: PublicClassController,ChartViewDelegate {
         var tempMaxValue:Double = 0;
         
         let stepsModel:MEDUserSteps = stepsValue[0] as! MEDUserSteps;
-        let hourlystepsArray = JSON(AppTheme.jsonToArray(stepsModel.hourlysteps)).arrayValue
+        let hourlystepsArray = JSON(stepsModel.hourlysteps.jsonToArray()).arrayValue
         
         for (index,steps) in hourlystepsArray.enumerated(){
             let val1:Double  = steps.doubleValue;
@@ -228,8 +228,8 @@ class StepsHistoryViewController: PublicClassController,ChartViewDelegate {
         //柱状图表
         let set1:BarChartDataSet  = BarChartDataSet(values: yVal, label: "")
         //每个数据区块的颜色
-        set1.colors = [AppTheme.NEVO_SOLAR_YELLOW()];
-        set1.highlightColor = AppTheme.NEVO_SOLAR_YELLOW()
+        set1.colors = [UIColor.baseColor];
+        set1.highlightColor = UIColor.baseColor
         
         set1.barBorderWidth = 0.1
         //set1.barSpace = 0.1;

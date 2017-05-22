@@ -375,7 +375,7 @@ extension ConnectionManager:ConnectionControllerDelegate {
                 //let buttonString:String = NSLocalizedString("Update", comment: "")
                 //let cancelString:String = NSLocalizedString("Cancel", comment: "")
                 
-                let banner = MEDBanner(title: titleString, subtitle: msg, image: nil, backgroundColor: AppTheme.NEVO_SOLAR_YELLOW())
+                let banner = MEDBanner(title: titleString, subtitle: msg, image: nil, backgroundColor: UIColor.baseColor)
                 banner.dismissesOnTap = true
                 banner.show(duration: 1.5)
             }
@@ -401,7 +401,7 @@ extension ConnectionManager:ConnectionControllerDelegate {
     
     func scanAndConnect() {
         if(self.hasSavedAddress()) {
-            let banner = MEDBanner(title: NSLocalizedString("search_for_nevo", comment: ""), subtitle: nil, image: nil, backgroundColor: AppTheme.NEVO_SOLAR_YELLOW())
+            let banner = MEDBanner(title: NSLocalizedString("search_for_nevo", comment: ""), subtitle: nil, image: nil, backgroundColor: UIColor.baseColor)
             banner.dismissesOnTap = true
             banner.show(duration: 1.5)
         }
@@ -558,7 +558,7 @@ extension ConnectionManager {
             let stepsArray = MEDUserSteps.getFilter("key == '\(keys)'")
             if stepsArray.count>0 {
                 let steps:MEDUserSteps = stepsArray[0] as! MEDUserSteps
-                let localStepsArray:[Int] = AppTheme.jsonToArray(steps.hourlysteps) as! [Int]
+                let localStepsArray:[Int] = steps.hourlysteps.jsonToArray() as! [Int]
                 var localValue:Int = 0
                 
                 for value in localStepsArray {
@@ -620,7 +620,7 @@ extension ConnectionManager {
             let sleepArray = MEDUserSleep.getFilter("key = '\(keys)'")
             if sleepArray.count>0 {
                 let sleep:MEDUserSleep = sleepArray[0] as! MEDUserSleep
-                let localSleepArray:[Int] = AppTheme.jsonToArray(sleep.hourlySleepTime) as! [Int]
+                let localSleepArray:[Int] = sleep.hourlySleepTime.jsonToArray() as! [Int]
                 var localTime:Int = 0
                 
                 for value in localSleepArray {
@@ -868,7 +868,7 @@ extension ConnectionManager {
             self.getDailyTrackerInfo()
             lastSync = Date().timeIntervalSince1970
             if isConnected {
-                let banner = MEDBanner(title: NSLocalizedString("syncing_data", comment: ""), subtitle: nil, image: nil, backgroundColor: AppTheme.NEVO_SOLAR_YELLOW())
+                let banner = MEDBanner(title: NSLocalizedString("syncing_data", comment: ""), subtitle: nil, image: nil, backgroundColor: UIColor.baseColor)
                 banner.dismissesOnTap = true
                 banner.show(duration: 1.5)
             }

@@ -37,7 +37,7 @@ extension MEDColorfulLooking where Self: UIViewController {
 
 extension MEDColorfulLooking where Self: UITabBarController {
     public func viewDefaultColorful() {
-        tabBar.tintColor = AppTheme.NEVO_SOLAR_YELLOW()
+        tabBar.tintColor = UIColor.baseColor
         tabBar.isTranslucent = false
     }
 }
@@ -45,7 +45,7 @@ extension MEDColorfulLooking where Self: UITabBarController {
 extension MEDColorfulLooking where Self: UINavigationController {
     public func viewDefaultColorful() {
         navigationBar.lt_setBackgroundColor(UIColor.white)
-        navigationBar.tintColor = AppTheme.NEVO_SOLAR_YELLOW()
+        navigationBar.tintColor = UIColor.baseColor
     }
 }
 
@@ -105,8 +105,8 @@ extension MEDColorfulLooking where Self: UILabel {
 
 extension MEDColorfulLooking where Self: UISwitch {
     public func viewDefaultColorful() {
-        tintColor = AppTheme.NEVO_SOLAR_YELLOW()
-        onTintColor = AppTheme.NEVO_SOLAR_YELLOW()
+        tintColor = UIColor.baseColor
+        onTintColor = UIColor.baseColor
     }
 }
 
@@ -118,7 +118,7 @@ extension MEDColorfulLooking where Self: UITextField {
 
 extension MEDColorfulLooking where Self: UISegmentedControl {
     public func viewDefaultColorful() {
-        tintColor = UIColor.getBaseColor()
+        tintColor = UIColor.baseColor
     }
 }
 
@@ -139,13 +139,13 @@ extension MEDColorfulLooking where Self: UIDatePicker {
 // MARK: - NSObject
 extension MEDColorfulLooking where Self: UIBarButtonItem {
     public func viewDefaultColorful() {
-        tintColor = AppTheme.NEVO_SOLAR_YELLOW()
+        tintColor = UIColor.baseColor
     }
 }
 
 extension MEDColorfulLooking where Self: UIAlertAction {
     public func viewDefaultColorful() {
-        let titleTextColor = AppTheme.NEVO_SOLAR_YELLOW()
+        let titleTextColor = UIColor.baseColor
         if value(forKey: "_titleTextColor") != nil {
             setValue(titleTextColor, forKey: "_titleTextColor")
         }
