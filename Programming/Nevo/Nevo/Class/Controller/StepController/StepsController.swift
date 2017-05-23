@@ -54,7 +54,7 @@ class StepsController: PublicClassController,ClockRefreshDelegate {
         layout.minimumLineSpacing = 0
         collectionView.collectionViewLayout = layout
         
-        collectionView.register(UINib(nibName: "StepGoalSetingViewCell", bundle: Bundle.main), forCellWithReuseIdentifier: "StepGoalSetingIdentifier")
+        collectionView.register(UINib(nibName: "StepViewCell", bundle: Bundle.main), forCellWithReuseIdentifier: "StepViewCellIdentifier")
         collectionView?.register(UICollectionViewCell.classForCoder(), forCellWithReuseIdentifier: "CollectionViewCell")
         
         getTodayCacheData()
@@ -254,7 +254,7 @@ extension StepsController:UICollectionViewDelegate,UICollectionViewDataSource,UI
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell:StepGoalSetingViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "StepGoalSetingIdentifier", for: indexPath) as! StepGoalSetingViewCell
+        let cell:StepViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "StepViewCellIdentifier", for: indexPath) as! StepViewCell
         let titleString:String = contentTitleArray[(indexPath as NSIndexPath).row]
         cell.titleLabel.text = titleString.capitalized(with: Locale.current)
         switch indexPath.row {

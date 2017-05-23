@@ -222,9 +222,9 @@ extension SettingViewController {
         case 2:
             switch indexPath.row {
             case 0:
-                let presetTableViewController = PresetTableViewController()
-                presetTableViewController.hidesBottomBarWhenPushed = true
-                self.navigationController?.pushViewController(presetTableViewController, animated: true)
+                let goalController = UserGoalController()
+                goalController.hidesBottomBarWhenPushed = true
+                self.navigationController?.pushViewController(goalController, animated: true)
             case 1:
                 showSelectedUnitAlertView()
                 break

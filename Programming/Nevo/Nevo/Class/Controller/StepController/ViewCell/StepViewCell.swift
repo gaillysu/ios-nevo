@@ -8,7 +8,7 @@
 
 import UIKit
 
-class StepGoalSetingViewCell: UICollectionViewCell {
+class StepViewCell: UICollectionViewCell {
 
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var valueLabel: UILabel!

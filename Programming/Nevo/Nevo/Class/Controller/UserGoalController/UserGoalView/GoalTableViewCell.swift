@@ -7,21 +7,30 @@
 //
 
 import UIKit
+import RealmSwift
 
-class PresetTableViewCell: UITableViewCell,ButtonManagerCallBack {
+class GoalTableViewCell: UITableViewCell,ButtonManagerCallBack {
 
     @IBOutlet weak var presetSteps: UILabel!
     @IBOutlet weak var presetName: UILabel!
     @IBOutlet weak var presetStates: UISwitch!
-    
     @IBOutlet weak var separatorLineLabel: UILabel!
     
-    var delegate:ButtonManagerCallBack?
+    var presetModel:MEDUserGoal? {
+        didSet{
+            if let model = presetModel {
+                presetSteps.text = "\(model.stepsGoal)"
+                presetName.text = NSLocalizedString("\(model.label)", comment: "")
+                presetStates.isOn = model.status
+                if(!model.status){
+                    backgroundColor = UIColor.clear
+                }
+            }
+        }
+    }
 
 
     @IBAction func controllManager(_ sender: AnyObject) {
-       delegate?.controllManager(sender)
-        
         /// When switch is turned off, cell's color should be clear.
         if(presetStates.isOn){
             viewDefaultColorful()
@@ -29,8 +38,14 @@ class PresetTableViewCell: UITableViewCell,ButtonManagerCallBack {
             backgroundColor = UIColor.clear
             contentView.backgroundColor = UIColor.clear
         }
-        
         separatorInset = .zero
+
+        if let model = presetModel {
+            let realm = try! Realm()
+            try! realm.write {
+                model.status = presetStates.isOn
+            }
+        }
     }
 
     override func awakeFromNib() {

@@ -44,7 +44,7 @@ class StepsHistoryViewController: PublicClassController,ChartViewDelegate {
         self.bulidStepHistoricalChartView(dayTime)
         
         stepsHistory.backgroundColor = UIColor.white
-        stepsHistory.register(UINib(nibName: "StepGoalSetingViewCell", bundle: Bundle.main), forCellWithReuseIdentifier: "StepGoalSetingIdentifier")
+        stepsHistory.register(UINib(nibName: "StepViewCell", bundle: Bundle.main), forCellWithReuseIdentifier: "StepViewIdentifier")
         stepsHistory.register(UICollectionViewCell.classForCoder(), forCellWithReuseIdentifier: "StepsHistoryViewCell")
         
         
@@ -241,14 +241,6 @@ class StepsHistoryViewController: PublicClassController,ChartViewDelegate {
         chartView?.animate(yAxisDuration: 2.0, easingOption: ChartEasingOption.easeInOutCirc)
         chartView?.moveViewToX(Double(yVal.count))
     }
-    
-    func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, dataSetIndex: Int, highlight: Highlight) {
-        //chartView.highlightValue(xIndex: entry.xIndex, dataSetIndex: dataSetIndex, callDelegate: false)
-        //NSLog("chartValueSelected:  %d",entry.xIndex)
-        //let stepsModel:UserSteps = queryModel.objectAtIndex(0) as! UserSteps;
-        //self.didSelectedhighlightValue(entry.xIndex,dataSetIndex: dataSetIndex, dataSteps:stepsModel)
-
-    }
 }
 
 extension StepsHistoryViewController:UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout{
@@ -258,7 +250,7 @@ extension StepsHistoryViewController:UICollectionViewDelegate,UICollectionViewDa
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell:StepGoalSetingViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "StepGoalSetingIdentifier", for: indexPath) as! StepGoalSetingViewCell
+        let cell:StepViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "StepViewIdentifier", for: indexPath) as! StepViewCell
         cell.backgroundColor = UIColor.white
         let titleString:String = contentTitleArray[(indexPath as NSIndexPath).row]
         cell.titleLabel.text = titleString.capitalized(with: Locale.current)
