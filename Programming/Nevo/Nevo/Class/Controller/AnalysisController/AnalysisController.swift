@@ -25,6 +25,7 @@ class AnalysisController: PublicClassController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.title = NSLocalizedString("Analysis", comment: "")
         
         self.navigationController?.navigationBar.allSubviews(do: { (v) in
             v.isHidden = v.frame.height == 0.5
@@ -33,7 +34,6 @@ class AnalysisController: PublicClassController {
         let dict:[String : AnyObject] = [NSForegroundColorAttributeName:UIColor.white]
         segmented.setTitleTextAttributes(dict, for: UIControlState.selected)
         
-        contentCollectionView.backgroundColor = UIColor.white
         chartsCollectionView.backgroundColor = UIColor.clear
         chartsCollectionView.bounces = false;
         chartsCollectionView.register(UINib(nibName: "AnalysisRadarViewCell",bundle: nil), forCellWithReuseIdentifier: "AnalysisRadar_Identifier")
@@ -84,6 +84,7 @@ class AnalysisController: PublicClassController {
         contentLayout.minimumInteritemSpacing = 0
         contentLayout.minimumLineSpacing = 0
         contentCollectionView.collectionViewLayout = contentLayout
+        contentCollectionView.backgroundColor = UIColor.white
     }
     
     override func viewDidLayoutSubviews() {

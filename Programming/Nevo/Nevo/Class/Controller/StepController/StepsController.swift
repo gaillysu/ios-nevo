@@ -13,7 +13,7 @@ import XCGLogger
 
 let NUMBER_OF_STEPS_GOAL_KEY = "NUMBER_OF_STEPS_GOAL_KEY"
 
-class StepGoalSetingController: PublicClassController,ClockRefreshDelegate {
+class StepsController: PublicClassController,ClockRefreshDelegate {
     
     @IBOutlet weak var clockBackGroundView: UIView!
     @IBOutlet weak var collectionView:UICollectionView!
@@ -36,7 +36,7 @@ class StepGoalSetingController: PublicClassController,ClockRefreshDelegate {
     var shouldSync = false;
     
     init() {
-        super.init(nibName: "StepGoalSetingController", bundle: Bundle.main)
+        super.init(nibName: "StepsController", bundle: Bundle.main)
     }
 
     required init(coder aDecoder: NSCoder) {
@@ -144,7 +144,7 @@ class StepGoalSetingController: PublicClassController,ClockRefreshDelegate {
 }
 
 // MARK: - Events handle
-extension StepGoalSetingController {
+extension StepsController {
     
     /**
      Archiver "contentTArray"
@@ -179,7 +179,7 @@ extension StepGoalSetingController {
 
 
 // MARK: - Private function
-extension StepGoalSetingController {
+extension StepsController {
     func getTodayCacheData() {
         if let value = Tools.LoadKeyedArchiverName(TODAY_DATE_CACHE) {
             if value is SyncStepsCache {
@@ -248,7 +248,7 @@ extension StepGoalSetingController {
 
 
 // MARK: - CollectionView Delegate
-extension StepGoalSetingController:UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout{
+extension StepsController:UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return contentTitleArray.count
     }

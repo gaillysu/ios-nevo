@@ -8,7 +8,6 @@
 
 import Foundation
 import AudioToolbox
-
 import XCGLogger
 
 let buildin_firmware_version = Tools.GET_FIRMWARE_VERSION();

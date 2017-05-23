@@ -15,7 +15,7 @@ class SetingView: UIView {
     
     @IBOutlet var tableListView: UITableView!
     
-    var settingsViewController:SetingViewController?
+    var settingsViewController:SettingViewController?
     fileprivate var mDelegate:ButtonManagerCallBack?
     //var animationView:AnimationView!
     var mSendLocalNotificationSwitchButton:UISwitch!

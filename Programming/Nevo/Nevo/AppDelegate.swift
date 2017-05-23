@@ -59,6 +59,7 @@ extension AppDelegate {
         UINavigationBar.appearance().tintColor = UIColor.baseColor
         UITabBar.appearance().isTranslucent = true
         UITabBar.appearance().backgroundColor = UIColor.getBarColor()
+        UITabBar.appearance().tintColor = UIColor.baseColor
         UINavigationBar.appearance().lt_setBackgroundColor(UIColor.getBarColor())
         //set navigationBar font style and font color
         UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName:UIColor.black,NSFontAttributeName:UIFont(name: "Raleway", size: 20)!]
@@ -70,28 +71,36 @@ extension AppDelegate {
         let isFirsttimeLaunch = self.isFirsttimeLaunch
         if isFirsttimeLaunch {
             let naviController = UINavigationController(rootViewController: LoginController())
-            self.window? = UIWindow(frame: UIScreen.main.bounds)
+            self.window = UIWindow(frame: UIScreen.main.bounds)
             self.window?.rootViewController = naviController
             self.window?.makeKeyAndVisible()
         } else {
             if !hasWatch {
                 let naviController:UINavigationController = UINavigationController(rootViewController: TutorialOneViewController())
                 naviController.isNavigationBarHidden = true
-                self.window? = UIWindow(frame: UIScreen.main.bounds)
+                self.window = UIWindow(frame: UIScreen.main.bounds)
                 self.window?.rootViewController = naviController
                 self.window?.makeKeyAndVisible()
+            }else{
+                initTabBarControl()
             }
         }
         
         /// Alter the entry of app here when testing a single module.
         /// 🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧
         #if DEBUG
-            
-            AppDelegate.getAppDelegate().window? = UIWindow(frame: UIScreen.main.bounds)
-            AppDelegate.getAppDelegate().window?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
-            AppDelegate.getAppDelegate().window?.makeKeyAndVisible()
+            self.window = UIWindow(frame: UIScreen.main.bounds)
+            self.window?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
+            self.window?.makeKeyAndVisible()
         #endif
         /// 🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧
+    }
+    
+    func initTabBarControl() {
+        let homeTabbar = HomeTabBarController()
+        self.window = UIWindow(frame: UIScreen.main.bounds)
+        self.window?.rootViewController = homeTabbar
+        self.window?.makeKeyAndVisible()
     }
     
 }

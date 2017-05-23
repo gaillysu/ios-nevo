@@ -30,7 +30,7 @@ class PageViewController: UIPageViewController,UIActionSheetDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        if((UIDevice.current.systemVersion as NSString).floatValue>7.0){
+        if(UIDevice.current.systemVersion.toFloat()>7.0){
             self.edgesForExtendedLayout = UIRectEdge();
             self.extendedLayoutIncludesOpaqueBars = false;
             self.modalPresentationCapturesStatusBarAppearance = false;
@@ -496,6 +496,6 @@ extension PageViewController: CVCalendarViewAppearanceDelegate {
 
 extension PageViewController {
     func getDashBoardController() -> UIViewController {
-        return StepGoalSetingController()
+        return StepsController()
     }
 }

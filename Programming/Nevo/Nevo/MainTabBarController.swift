@@ -37,7 +37,7 @@ class MainTabBarController: UITabBarController,UITabBarControllerDelegate {
                 contll?.title = NSLocalizedString("Analysis", comment: "")
             }
 
-            if contll!.isKind(of: SetingViewController.self){
+            if contll!.isKind(of: SettingViewController.self){
                 (nav as! UINavigationController).tabBarItem.title = NSLocalizedString("Setting", comment: "")
                 contll?.title = NSLocalizedString("Setting", comment: "")
             }

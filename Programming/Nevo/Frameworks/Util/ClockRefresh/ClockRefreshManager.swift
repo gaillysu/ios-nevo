@@ -55,7 +55,7 @@ class ClockRefreshManager: NSObject {
                 return
             }
             
-            if objectDelegate is StepGoalSetingController {
+            if objectDelegate is StepsController {
                 return
             }
         }

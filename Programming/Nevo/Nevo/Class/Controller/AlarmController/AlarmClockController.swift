@@ -11,27 +11,28 @@ import BRYXBanner
 import RealmSwift
 
 class AlarmClockController: UITableViewController {
-    
-    @IBOutlet weak var rightBarButton: UIBarButtonItem!
-    
     fileprivate var selectedIndex: IndexPath?
     fileprivate var isEditingFlag: Bool = false;
-    
-    var allAlarmArray: [MEDUserAlarm] = []
-    var oldAlarmArray: [Alarm] = []
-    var wakeArray: [MEDUserAlarm] = []
-    var sleepArray: [MEDUserAlarm] = []
-    
-    var isOldAddAlarmFlag: Bool {
+    fileprivate var allAlarmArray: [MEDUserAlarm] = []
+    fileprivate var oldAlarmArray: [Alarm] = []
+    fileprivate var wakeArray: [MEDUserAlarm] = []
+    fileprivate var sleepArray: [MEDUserAlarm] = []
+    fileprivate var isOldAddAlarmFlag: Bool {
         let userDefaults = UserDefaults.standard
         return userDefaults.getFirmwareVersion() <= 31 && userDefaults.getSoftwareVersion() <= 18
     }
     
-    lazy var leftEditItem: UIBarButtonItem = {
+    fileprivate lazy var rightBarButton: UIBarButtonItem = {
+        let rightItem: UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.add, target: self, action: #selector(addAlarmAction(_ :)))
+        
+        return rightItem
+    }()
+    
+    fileprivate lazy var leftEditItem: UIBarButtonItem = {
         return UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(alarmEditAction(_:)))
     }()
     
-    lazy var leftDoneItem: UIBarButtonItem = {
+    fileprivate lazy var leftDoneItem: UIBarButtonItem = {
         return UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(alarmEditAction(_:)))
     }()
     
@@ -39,8 +40,9 @@ class AlarmClockController: UITableViewController {
         super.viewDidLoad()
         
         navigationItem.title = NSLocalizedString("alarmTitle", comment:"")
-        tableView.contentInset = UIEdgeInsets(top: 25, left: 0, bottom: 0, right: 0)
         tableView.sectionFooterHeight = 20
+        tableView.alwaysBounceVertical = true
+        tableView.bounces = true
         tableView.allowsSelectionDuringEditing = true;
         tableView.separatorStyle = UITableViewCellSeparatorStyle.singleLine
         
@@ -74,8 +76,33 @@ class AlarmClockController: UITableViewController {
 
 // MARK: - Left bar button
 extension AlarmClockController {
+    func addAlarmAction(_ leftitem:UIBarButtonItem) {
+        tableView.reloadData()
+        
+        tableView.setEditing(false, animated: true)
+        
+        var addAlarmController: UIViewController?
+        
+        if isOldAddAlarmFlag {
+            
+            addAlarmController = {
+                $0.mDelegate = self
+                return $0
+            }(AddAlarmController(style: .grouped))
+        } else {
+            
+            addAlarmController = {
+                $0.mDelegate = self
+                return $0
+            }(NewAddAlarmController(style: .grouped))
+        }
+        addAlarmController!.title = NSLocalizedString("add_alarm", comment: "")
+        addAlarmController!.hidesBottomBarWhenPushed = true
+        navigationController?.show(addAlarmController!, sender: self)
+    }
     
     func leftBarButtonReaction() {
+        navigationItem.rightBarButtonItem = rightBarButton
         navigationItem.leftBarButtonItem = isEditingFlag ? leftDoneItem : leftEditItem
     }
     
@@ -110,33 +137,6 @@ extension AlarmClockController {
 
 // MARK: - ButtonManagerCallBack
 extension AlarmClockController {
-
-    @IBAction func controllManager(_ sender:AnyObject){
-        tableView.reloadData()
-        
-        if(sender.isEqual(rightBarButton)){
-            tableView.setEditing(false, animated: true)
-            
-            var addAlarmController: UIViewController?
-            
-            if isOldAddAlarmFlag {
-                
-                addAlarmController = {
-                    $0.mDelegate = self
-                    return $0
-                }(AddAlarmController(style: .grouped))
-            } else {
-                
-                addAlarmController = {
-                    $0.mDelegate = self
-                    return $0
-                }(NewAddAlarmController(style: .grouped))
-            }
-            addAlarmController!.title = NSLocalizedString("add_alarm", comment: "")
-            addAlarmController!.hidesBottomBarWhenPushed = true
-            navigationController?.show(addAlarmController!, sender: self)
-        }
-    }
 
     func updateNewAlarmData(alarmArray: inout [MEDUserAlarm], mSwitch: UISwitch) {
         tableView.reloadData()

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AnalysisController" customModule="Nevo" customModuleProvider="target">
+            <connections>
+                <outlet property="chartsCollectionView" destination="XUS-72-z1c" id="5N3-SN-AGb"/>
+                <outlet property="contentCollectionView" destination="vn6-aA-YKJ" id="Na2-vd-rfL"/>
+                <outlet property="segmented" destination="Ah7-d5-yZs" id="7CH-bf-CTR"/>
+                <outlet property="view" destination="iN0-l3-epB" id="iB9-gP-1PJ"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Ah7-d5-yZs">
+                    <rect key="frame" x="16" y="15" width="343" height="29"/>
+                    <segments>
+                        <segment title="Steps"/>
+                        <segment title="Sleep"/>
+                    </segments>
+                    <color key="tintColor" red="0.62745098040000002" green="0.51764705879999995" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <connections>
+                        <action selector="segmentedAction:" destination="-1" eventType="valueChanged" id="WCQ-sD-m2X"/>
+                    </connections>
+                </segmentedControl>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="XUS-72-z1c">
+                    <rect key="frame" x="4" y="53" width="367" height="464"/>
+                    <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="hJU-wf-7Os">
+                        <size key="itemSize" width="367" height="360"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                    <cells/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="usx-Gn-N5R"/>
+                        <outlet property="delegate" destination="-1" id="bJw-uZ-4Ec"/>
+                    </connections>
+                </collectionView>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="vn6-aA-YKJ">
+                    <rect key="frame" x="0.0" y="537" width="375" height="130"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="130" id="iGv-gg-a68"/>
+                    </constraints>
+                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="acB-pK-aJo">
+                        <size key="itemSize" width="50" height="50"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                    <cells/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="yAI-ea-cpn"/>
+                        <outlet property="delegate" destination="-1" id="mxY-WU-n0V"/>
+                    </connections>
+                </collectionView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="XUS-72-z1c" firstAttribute="top" secondItem="Ah7-d5-yZs" secondAttribute="bottom" constant="10" id="4z0-yU-fJR"/>
+                <constraint firstAttribute="bottom" secondItem="vn6-aA-YKJ" secondAttribute="bottom" id="6ea-r8-wjB"/>
+                <constraint firstAttribute="trailing" secondItem="XUS-72-z1c" secondAttribute="trailing" constant="4" id="Lt5-zV-mkn"/>
+                <constraint firstItem="vn6-aA-YKJ" firstAttribute="top" secondItem="XUS-72-z1c" secondAttribute="bottom" constant="20" id="NgO-7k-b44"/>
+                <constraint firstItem="Ah7-d5-yZs" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="bE6-tF-6XV"/>
+                <constraint firstItem="Ah7-d5-yZs" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="15" id="bqQ-9A-0iD"/>
+                <constraint firstItem="vn6-aA-YKJ" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="ggT-dD-saD"/>
+                <constraint firstAttribute="trailing" secondItem="Ah7-d5-yZs" secondAttribute="trailing" constant="16" id="m5C-Jb-O2N"/>
+                <constraint firstAttribute="trailing" secondItem="vn6-aA-YKJ" secondAttribute="trailing" id="phH-k7-w4Q"/>
+                <constraint firstItem="XUS-72-z1c" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="4" id="rzy-be-0XF"/>
+            </constraints>
+        </view>
+    </objects>
+</document>
