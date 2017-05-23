@@ -22,7 +22,7 @@ class LoginController: UIViewController,UITextFieldDelegate {
     @IBOutlet weak var userNameTextField: AutocompleteField!
     @IBOutlet weak var passwordTextField: AutocompleteField!
     @IBOutlet weak var logoinButton: UIButton!
-    @IBOutlet weak var registerLabel: ActiveLabel!
+    @IBOutlet weak var registerButton: UIButton!
     @IBOutlet weak var platformLabel: UILabel!
  
     var userName:String = ""
@@ -60,9 +60,6 @@ extension LoginController {
             self.navigationItem.leftBarButtonItem = nil
         }
         
-        let tap:UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapAction(_:)))
-        registerLabel.addGestureRecognizer(tap)
-        
         if Tools.GET_IS_iPhone5S()||Tools.GET_IS_iPhone4S() {
             logoinButton.titleLabel?.font = UIFont(name: "Raleway", size: 20)
         }
@@ -97,8 +94,6 @@ extension LoginController {
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-//        self.userNameTextField.text = ""
-        // when back from the forgot-password controller, the passwordTextField is supposed to be empty. though, if want the field be filled with the new password, it would be ok.
         self.passwordTextField.text = ""
     }
 }
@@ -106,14 +101,6 @@ extension LoginController {
 
 // MARK: - Touch Event
 extension LoginController {
-    
-    func tapAction(_ sender:UITapGestureRecognizer) {
-        let register:ProfileSetupViewController = ProfileSetupViewController()
-        let naviController:UINavigationController = UINavigationController(rootViewController: register)
-        
-        self.present(naviController, animated: true, completion: nil)
-    }
-    
     func rightAction(_ sender:UIBarButtonItem) {
         let register:ProfileSetupViewController = ProfileSetupViewController()
         self.navigationController?.pushViewController(register, animated: true)
@@ -126,6 +113,13 @@ extension LoginController {
             let register:ProfileSetupViewController = ProfileSetupViewController()
             self.present(UINavigationController(rootViewController: register), animated: true, completion: nil)
         }
+    }
+    
+    @IBAction func registerButtonAction(_ sender: AnyObject) {
+        let register:ProfileSetupViewController = ProfileSetupViewController()
+        let naviController:UINavigationController = UINavigationController(rootViewController: register)
+        
+        self.present(naviController, animated: true, completion: nil)
     }
     
     func delay(_ delay:Double, closure:@escaping ()->()) {

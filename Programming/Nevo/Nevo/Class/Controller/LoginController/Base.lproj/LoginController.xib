@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -13,13 +13,13 @@
         </array>
     </customFonts>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LoginController" customModule="LunaR" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LoginController" customModule="Nevo" customModuleProvider="target">
             <connections>
                 <outlet property="iconImage" destination="h44-yr-a8T" id="w2L-rG-FH1"/>
                 <outlet property="logoinButton" destination="WVZ-VY-fkM" id="Nad-84-SJW"/>
                 <outlet property="passwordTextField" destination="fmC-FL-Zk2" id="tSG-HU-i81"/>
                 <outlet property="platformLabel" destination="g5g-mC-67u" id="RnN-WI-9Ft"/>
-                <outlet property="registerLabel" destination="4fD-c2-9vf" id="0Zp-bm-dAe"/>
+                <outlet property="registerButton" destination="WDe-GT-JZX" id="1oX-do-VYI"/>
                 <outlet property="userNameTextField" destination="Tnd-gn-9VW" id="ozR-zm-0Mq"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -44,7 +44,7 @@
                     <color key="textColor" red="0.62745098040000002" green="0.51764705879999995" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" verticalHuggingPriority="236" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="E-mail" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Tnd-gn-9VW" customClass="AutocompleteField" customModule="LunaR" customModuleProvider="target">
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" verticalHuggingPriority="236" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="E-mail" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Tnd-gn-9VW" customClass="AutocompleteField" customModule="Nevo" customModuleProvider="target">
                     <rect key="frame" x="40" y="279" width="295" height="50"/>
                     <color key="backgroundColor" red="0.89803921568627454" green="0.89411764705882346" blue="0.88627450980392153" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
@@ -67,7 +67,7 @@
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                 </textField>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" verticalHuggingPriority="235" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fmC-FL-Zk2" customClass="AutocompleteField" customModule="LunaR" customModuleProvider="target">
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" verticalHuggingPriority="235" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fmC-FL-Zk2" customClass="AutocompleteField" customModule="Nevo" customModuleProvider="target">
                     <rect key="frame" x="40" y="339" width="295" height="50"/>
                     <color key="backgroundColor" red="0.89803921568627454" green="0.89411764705882346" blue="0.88627450980392153" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
@@ -103,39 +103,41 @@
                         <action selector="buttonAction:" destination="-1" eventType="touchUpInside" id="ZwU-5T-JpB"/>
                     </connections>
                 </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="234" text="Register" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4fD-c2-9vf" customClass="ActiveLabel" customModule="ActiveLabel">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WDe-GT-JZX">
                     <rect key="frame" x="40" y="592" width="295" height="50"/>
-                    <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="24"/>
-                    <color key="textColor" red="0.62745098040000002" green="0.51764705879999995" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
+                    <color key="tintColor" red="0.62745098039215685" green="0.51764705882352935" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <state key="normal" title="Register"/>
+                    <connections>
+                        <action selector="registerButtonAction:" destination="-1" eventType="touchUpInside" id="lAg-X5-bHo"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstAttribute="bottom" secondItem="WDe-GT-JZX" secondAttribute="bottom" constant="25" id="4UV-E1-Aos"/>
                 <constraint firstItem="fmC-FL-Zk2" firstAttribute="width" secondItem="Tnd-gn-9VW" secondAttribute="width" id="5Zn-e7-oc4"/>
                 <constraint firstItem="h44-yr-a8T" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="6V5-jE-HpJ"/>
                 <constraint firstItem="g5g-mC-67u" firstAttribute="top" secondItem="h44-yr-a8T" secondAttribute="bottom" constant="20" id="9ez-HJ-PFC"/>
                 <constraint firstItem="fmC-FL-Zk2" firstAttribute="centerX" secondItem="Tnd-gn-9VW" secondAttribute="centerX" id="DEg-lO-iCf"/>
-                <constraint firstAttribute="bottom" secondItem="4fD-c2-9vf" secondAttribute="bottom" constant="25" id="KlS-HL-V0B"/>
+                <constraint firstItem="WVZ-VY-fkM" firstAttribute="centerX" secondItem="WDe-GT-JZX" secondAttribute="centerX" id="LTc-ib-2Pc"/>
                 <constraint firstAttribute="trailing" secondItem="h44-yr-a8T" secondAttribute="trailing" constant="20" id="Sj2-b9-ZLS"/>
                 <constraint firstItem="h44-yr-a8T" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="Teg-zg-qG3"/>
+                <constraint firstItem="WDe-GT-JZX" firstAttribute="width" secondItem="WVZ-VY-fkM" secondAttribute="width" id="Vhq-tl-6Sc"/>
                 <constraint firstItem="fmC-FL-Zk2" firstAttribute="top" secondItem="Tnd-gn-9VW" secondAttribute="bottom" constant="10" id="XDR-wD-9bE"/>
-                <constraint firstItem="4fD-c2-9vf" firstAttribute="centerX" secondItem="WVZ-VY-fkM" secondAttribute="centerX" id="Xhb-Lq-p0g"/>
-                <constraint firstItem="4fD-c2-9vf" firstAttribute="width" secondItem="WVZ-VY-fkM" secondAttribute="width" id="Xhm-KL-eq9"/>
                 <constraint firstItem="WVZ-VY-fkM" firstAttribute="width" secondItem="fmC-FL-Zk2" secondAttribute="width" id="Z4l-i4-Dd5"/>
                 <constraint firstItem="Tnd-gn-9VW" firstAttribute="top" secondItem="g5g-mC-67u" secondAttribute="bottom" constant="40" id="cgn-1p-Dnf"/>
                 <constraint firstItem="h44-yr-a8T" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="75" id="eYE-P0-P4c"/>
                 <constraint firstAttribute="trailing" secondItem="Tnd-gn-9VW" secondAttribute="trailing" constant="40" id="eyh-OR-Hz6"/>
                 <constraint firstItem="fmC-FL-Zk2" firstAttribute="height" secondItem="Tnd-gn-9VW" secondAttribute="height" id="gXt-rV-fxU"/>
+                <constraint firstItem="WDe-GT-JZX" firstAttribute="height" secondItem="WVZ-VY-fkM" secondAttribute="height" id="ma9-0l-Cbd"/>
                 <constraint firstItem="g5g-mC-67u" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="v9q-Zg-raT"/>
                 <constraint firstItem="WVZ-VY-fkM" firstAttribute="height" secondItem="fmC-FL-Zk2" secondAttribute="height" id="vFi-Zg-jam"/>
                 <constraint firstItem="Tnd-gn-9VW" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="40" id="wgs-gt-jhX"/>
                 <constraint firstItem="g5g-mC-67u" firstAttribute="width" secondItem="h44-yr-a8T" secondAttribute="width" id="wxx-b8-0N0"/>
                 <constraint firstItem="WVZ-VY-fkM" firstAttribute="top" secondItem="fmC-FL-Zk2" secondAttribute="bottom" constant="20" id="xGM-xH-2l4"/>
-                <constraint firstItem="4fD-c2-9vf" firstAttribute="height" secondItem="WVZ-VY-fkM" secondAttribute="height" id="ybN-sU-j7W"/>
                 <constraint firstItem="WVZ-VY-fkM" firstAttribute="centerX" secondItem="fmC-FL-Zk2" secondAttribute="centerX" id="ygz-1N-t1n"/>
             </constraints>
-            <point key="canvasLocation" x="163" y="243"/>
+            <point key="canvasLocation" x="162.5" y="242.5"/>
         </view>
     </objects>
     <resources>

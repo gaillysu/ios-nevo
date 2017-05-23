@@ -18,7 +18,6 @@
 		00120E801D7559D500CE0C32 /* Raleway-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0037EC4B1D2385DF00502140 /* Raleway-SemiBold.ttf */; };
 		00120E811D7559D500CE0C32 /* Raleway-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0037EC4C1D2385DF00502140 /* Raleway-Thin.ttf */; };
 		001F1B7C1B57777B001DD426 /* nevo_wacth.png in Resources */ = {isa = PBXBuildFile; fileRef = 001F1B7A1B57777B001DD426 /* nevo_wacth.png */; };
-		00344F5D1C47A86800C2FC7A /* SupportViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00344F5B1C47A86800C2FC7A /* SupportViewController.xib */; };
 		0036EB051C48BA8300DCED46 /* connected.png in Resources */ = {isa = PBXBuildFile; fileRef = 0036EAFF1C48BA8300DCED46 /* connected.png */; };
 		0036EB081C48BA8300DCED46 /* settimer.png in Resources */ = {isa = PBXBuildFile; fileRef = 0036EB021C48BA8300DCED46 /* settimer.png */; };
 		0036EB091C48BA8300DCED46 /* turnonnevo.png in Resources */ = {isa = PBXBuildFile; fileRef = 0036EB031C48BA8300DCED46 /* turnonnevo.png */; };
@@ -137,8 +136,6 @@
 		611D420F1DCAD97D003BC6E3 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00321D771C993C320069BFCC /* LoginController.swift */; };
 		611D42101DCAD97D003BC6E3 /* VideoPlayController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00BF2D981C7FED2200909316 /* VideoPlayController.swift */; };
 		611D42111DCAD97D003BC6E3 /* VideoPlayController.xib in Sources */ = {isa = PBXBuildFile; fileRef = 00BF2D991C7FED2200909316 /* VideoPlayController.xib */; };
-		611D42121DCAD97D003BC6E3 /* SupportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00344F5A1C47A86800C2FC7A /* SupportViewController.swift */; };
-		611D42131DCAD97D003BC6E3 /* SupportViewController.xib in Sources */ = {isa = PBXBuildFile; fileRef = 00344F5B1C47A86800C2FC7A /* SupportViewController.xib */; };
 		611D42161DCAD97D003BC6E3 /* AlarmClockVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006A625B1D6AA79E00458305 /* AlarmClockVCell.swift */; };
 		611D42171DCAD97D003BC6E3 /* AlarmClockVCell.xib in Sources */ = {isa = PBXBuildFile; fileRef = 006A625C1D6AA79E00458305 /* AlarmClockVCell.xib */; };
 		611D421A1DCAD97D003BC6E3 /* RepeatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0017DC0F1C8812640058A065 /* RepeatViewController.swift */; };
@@ -387,8 +384,6 @@
 		001F1B7A1B57777B001DD426 /* nevo_wacth.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nevo_wacth.png; sourceTree = "<group>"; };
 		00321D6C1C98EBB10069BFCC /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		00321D771C993C320069BFCC /* LoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
-		00344F5A1C47A86800C2FC7A /* SupportViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SupportViewController.swift; sourceTree = "<group>"; };
-		00344F5B1C47A86800C2FC7A /* SupportViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SupportViewController.xib; sourceTree = "<group>"; };
 		0036EAFF1C48BA8300DCED46 /* connected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = connected.png; sourceTree = "<group>"; };
 		0036EB021C48BA8300DCED46 /* settimer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settimer.png; sourceTree = "<group>"; };
 		0036EB031C48BA8300DCED46 /* turnonnevo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = turnonnevo.png; sourceTree = "<group>"; };
@@ -861,15 +856,6 @@
 			path = LoginController;
 			sourceTree = "<group>";
 		};
-		00344F591C47A79600C2FC7A /* SupportViewController */ = {
-			isa = PBXGroup;
-			children = (
-				00344F5A1C47A86800C2FC7A /* SupportViewController.swift */,
-				00344F5B1C47A86800C2FC7A /* SupportViewController.xib */,
-			);
-			path = SupportViewController;
-			sourceTree = "<group>";
-		};
 		0050D5141C28E0DB004F6F80 /* Class */ = {
 			isa = PBXGroup;
 			children = (
@@ -902,7 +888,6 @@
 				0050D55E1C28E0DB004F6F80 /* SleepController */,
 				006A62471D6AA62100458305 /* SolarIndicator */,
 				0050D56A1C28E0DB004F6F80 /* StepController */,
-				00344F591C47A79600C2FC7A /* SupportViewController */,
 				0050D5731C28E0DB004F6F80 /* Tutorial */,
 				009703BF1C9BD98300F2FF0D /* UserProfileController */,
 				00BF2D971C7FEAB400909316 /* VideoPlayController */,
@@ -2183,7 +2168,6 @@
 				00EC9DF01C85837500280904 /* TutorialFourViewController.xib in Resources */,
 				006DA3171D6ED6670011E09C /* AnalysisLineChartCell.xib in Resources */,
 				6190A1751ED4203D00584FFA /* UserGoalController.xib in Resources */,
-				00344F5D1C47A86800C2FC7A /* SupportViewController.xib in Resources */,
 				6190A1601ED41F2900584FFA /* LinkLossNotificationsCell.xib in Resources */,
 				6190A1481ED41C2500584FFA /* SleepHistoryViewCell.xib in Resources */,
 				0036EB081C48BA8300DCED46 /* settimer.png in Resources */,
@@ -2527,12 +2511,10 @@
 				61F321ED1ECADBBE00116F35 /* LedLightOnOffNevoRequest.swift in Sources */,
 				611D42101DCAD97D003BC6E3 /* VideoPlayController.swift in Sources */,
 				611D42111DCAD97D003BC6E3 /* VideoPlayController.xib in Sources */,
-				611D42121DCAD97D003BC6E3 /* SupportViewController.swift in Sources */,
 				612ECA341ECEC50800657D97 /* ConnectionManager.swift in Sources */,
 				CBD429AC1EBB338400135D70 /* UITableViewCell+Extension.swift in Sources */,
 				66154B8D1DF68BC500973A9E /* NotiColorController.swift in Sources */,
 				61F321F61ECADBBE00116F35 /* SetNewAlarmRequest.swift in Sources */,
-				611D42131DCAD97D003BC6E3 /* SupportViewController.xib in Sources */,
 				611D42161DCAD97D003BC6E3 /* AlarmClockVCell.swift in Sources */,
 				D1BE2B221E1D1AC100E6713D /* NSTimeInterval+Timepiece.swift in Sources */,
 				611D42171DCAD97D003BC6E3 /* AlarmClockVCell.xib in Sources */,
