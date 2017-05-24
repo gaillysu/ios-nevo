@@ -211,8 +211,10 @@
 		6190A1761ED4203D00584FFA /* GoalTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6190A1711ED4203D00584FFA /* GoalTableViewCell.swift */; };
 		6190A1771ED4203D00584FFA /* GoalTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6190A1721ED4203D00584FFA /* GoalTableViewCell.xib */; };
 		6190A18B1ED5194100584FFA /* SettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6190A18A1ED5194100584FFA /* SettingViewController.xib */; };
-		6190A18E1ED51A8F00584FFA /* SettingSectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6190A18D1ED51A8F00584FFA /* SettingSectionModel.swift */; };
-		6190A1901ED51AF600584FFA /* SettingSectionModelItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6190A18F1ED51AF600584FFA /* SettingSectionModelItem.swift */; };
+		6190A1941ED56C8500584FFA /* SettingSectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6190A1921ED56C8500584FFA /* SettingSectionModel.swift */; };
+		6190A1951ED56C8500584FFA /* SettingSectionModelItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6190A1931ED56C8500584FFA /* SettingSectionModelItem.swift */; };
+		6190A1981ED5707900584FFA /* StepsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6190A1971ED5707900584FFA /* StepsModel.swift */; };
+		6190A19A1ED570A200584FFA /* StepsModelItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6190A1991ED570A100584FFA /* StepsModelItem.swift */; };
 		61A4DD841ECD759700C30523 /* forgetDevice.png in Resources */ = {isa = PBXBuildFile; fileRef = 61A4DD831ECD759700C30523 /* forgetDevice.png */; };
 		61CEC5BD1E2C5A2E001E5567 /* OldOtaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61CEC5B91E2C5A2E001E5567 /* OldOtaViewController.swift */; };
 		61CEC5BE1E2C5A2E001E5567 /* OldOtaViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 61CEC5BA1E2C5A2E001E5567 /* OldOtaViewController.xib */; };
@@ -623,8 +625,10 @@
 		6190A1711ED4203D00584FFA /* GoalTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoalTableViewCell.swift; sourceTree = "<group>"; };
 		6190A1721ED4203D00584FFA /* GoalTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GoalTableViewCell.xib; sourceTree = "<group>"; };
 		6190A18A1ED5194100584FFA /* SettingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SettingViewController.xib; path = Nevo/Class/Controller/SettingViewController/SettingViewController.xib; sourceTree = SOURCE_ROOT; };
-		6190A18D1ED51A8F00584FFA /* SettingSectionModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingSectionModel.swift; sourceTree = "<group>"; };
-		6190A18F1ED51AF600584FFA /* SettingSectionModelItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingSectionModelItem.swift; sourceTree = "<group>"; };
+		6190A1921ED56C8500584FFA /* SettingSectionModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingSectionModel.swift; sourceTree = "<group>"; };
+		6190A1931ED56C8500584FFA /* SettingSectionModelItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingSectionModelItem.swift; sourceTree = "<group>"; };
+		6190A1971ED5707900584FFA /* StepsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepsModel.swift; sourceTree = "<group>"; };
+		6190A1991ED570A100584FFA /* StepsModelItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepsModelItem.swift; sourceTree = "<group>"; };
 		61A4DD831ECD759700C30523 /* forgetDevice.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = forgetDevice.png; sourceTree = "<group>"; };
 		61CEC5B91E2C5A2E001E5567 /* OldOtaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OldOtaViewController.swift; sourceTree = "<group>"; };
 		61CEC5BA1E2C5A2E001E5567 /* OldOtaViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OldOtaViewController.xib; sourceTree = "<group>"; };
@@ -1438,10 +1442,28 @@
 		6190A18C1ED51A5A00584FFA /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				6190A18D1ED51A8F00584FFA /* SettingSectionModel.swift */,
-				6190A18F1ED51AF600584FFA /* SettingSectionModelItem.swift */,
+				6190A1961ED5706600584FFA /* StepsViewModel */,
+				6190A1911ED56C8500584FFA /* SettingViewModel */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		6190A1911ED56C8500584FFA /* SettingViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				6190A1921ED56C8500584FFA /* SettingSectionModel.swift */,
+				6190A1931ED56C8500584FFA /* SettingSectionModelItem.swift */,
+			);
+			path = SettingViewModel;
+			sourceTree = "<group>";
+		};
+		6190A1961ED5706600584FFA /* StepsViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				6190A1971ED5707900584FFA /* StepsModel.swift */,
+				6190A1991ED570A100584FFA /* StepsModelItem.swift */,
+			);
+			path = StepsViewModel;
 			sourceTree = "<group>";
 		};
 		61CEC5B81E2C5A2E001E5567 /* AidOTA */ = {
@@ -2401,7 +2423,7 @@
 				611D415C1DCAD97C003BC6E3 /* HourlySteps.swift in Sources */,
 				6650988E1DCB0E220059D5F7 /* MEDSleepNetworkManager.swift in Sources */,
 				611D415D1DCAD97C003BC6E3 /* RealTimeCountSteps.swift in Sources */,
-				6190A18E1ED51A8F00584FFA /* SettingSectionModel.swift in Sources */,
+				6190A1941ED56C8500584FFA /* SettingSectionModel.swift in Sources */,
 				66687CD71DD9654100AD7F7D /* Dispatch+MEDExtension.swift in Sources */,
 				6190A1761ED4203D00584FFA /* GoalTableViewCell.swift in Sources */,
 				611D415E1DCAD97C003BC6E3 /* RunningToHK.swift in Sources */,
@@ -2441,7 +2463,7 @@
 				D1BE2B1D1E1D1AC100E6713D /* Int+Timepiece.swift in Sources */,
 				666793371E1350FC00344188 /* NevoCircleProgressView.swift in Sources */,
 				660C16D01DEC25DA00544F56 /* UIImage+MEDExtension.swift in Sources */,
-				6190A1901ED51AF600584FFA /* SettingSectionModelItem.swift in Sources */,
+				6190A1951ED56C8500584FFA /* SettingSectionModelItem.swift in Sources */,
 				61F321E31ECADBBE00116F35 /* DailyTrackerInfoNevoPacket.swift in Sources */,
 				D1BE2B1E1E1D1AC100E6713D /* NSCalendar+Timepiece.swift in Sources */,
 				61D2805F1ED286D2000C553F /* MEDUserGoal.swift in Sources */,
@@ -2480,6 +2502,7 @@
 				61E8EC841E16017D004F0DBE /* ActionSheetView.swift in Sources */,
 				6667931D1E134DAF00344188 /* TaskQueue.swift in Sources */,
 				666792FD1E134DAF00344188 /* M13CheckboxDotManager.swift in Sources */,
+				6190A1981ED5707900584FFA /* StepsModel.swift in Sources */,
 				666792EB1E134DAF00344188 /* iRate.m in Sources */,
 				61F321EA1ECADBBE00116F35 /* GetActivityRequest.swift in Sources */,
 				61D280641ED286D2000C553F /* SolarHarvest.swift in Sources */,
@@ -2611,6 +2634,7 @@
 				611D42601DCAD97D003BC6E3 /* TutorialThreeViewController.swift in Sources */,
 				611D42611DCAD97D003BC6E3 /* TutorialFourViewController.swift in Sources */,
 				611D42621DCAD97D003BC6E3 /* TutorialFiveViewController.swift in Sources */,
+				6190A19A1ED570A200584FFA /* StepsModelItem.swift in Sources */,
 				61F321DF1ECADBBE00116F35 /* NevoOTAPacketProfile.swift in Sources */,
 				611D42631DCAD97D003BC6E3 /* TutorialSixViewController.swift in Sources */,
 				611D42641DCAD97D003BC6E3 /* TutorialSevenViewController.swift in Sources */,

@@ -9,7 +9,11 @@
 import UIKit
 import SwiftEventBus
 import XCGLogger
- 
+#if !RX_NO_MODULE
+    import RxSwift
+    import RxCocoa
+    import RxDataSources
+#endif
 
 let NUMBER_OF_STEPS_GOAL_KEY = "NUMBER_OF_STEPS_GOAL_KEY"
 
@@ -28,6 +32,13 @@ class StepsController: PublicClassController,ClockRefreshDelegate {
     fileprivate var mVisiable:Bool = true
     fileprivate var contentTitleArray:[String] = [NSLocalizedString("CALORIE", comment: ""), NSLocalizedString("STEPS", comment: ""), NSLocalizedString("TIME", comment: ""),NSLocalizedString("Distance", comment: "")]
     fileprivate var contentTArray:[String] = ["0","0","0","0"]
+    
+    let stepsItems = Variable([
+        StepsModel(items: [StepsModelItem(title: NSLocalizedString("CALORIE", comment: ""), value: "")]),
+        StepsModel(items: [StepsModelItem(title: NSLocalizedString("STEPS", comment: ""), value: "")]),
+        StepsModel(items: [StepsModelItem(title: NSLocalizedString("TIME", comment: ""), value: "")]),
+        StepsModel(items: [StepsModelItem(title: NSLocalizedString("Distance", comment: ""), value: "")])
+        ])
     
     fileprivate let SYNC_INTERVAL:TimeInterval = 1*3*60 //unit is second in iOS, every 3min, do sync
     fileprivate let TODAY_SYNC_DATE_KEY = "TODAY_SYNC_DATE_KEY"
@@ -49,24 +60,13 @@ class StepsController: PublicClassController,ClockRefreshDelegate {
         
         let layout:UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         layout.itemSize = CGSize(width: 0, height: 0)
-        
         layout.minimumInteritemSpacing = 0
         layout.minimumLineSpacing = 0
         collectionView.collectionViewLayout = layout
-        
         collectionView.register(UINib(nibName: "StepViewCell", bundle: Bundle.main), forCellWithReuseIdentifier: "StepViewCellIdentifier")
         collectionView?.register(UICollectionViewCell.classForCoder(), forCellWithReuseIdentifier: "CollectionViewCell")
         
         getTodayCacheData()
-    }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        SwiftEventBus.unregister(self, name: SELECTED_CALENDAR_NOTIFICATION)
-        SwiftEventBus.unregister(self, name: EVENT_BUS_BEGIN_SMALL_SYNCACTIVITY)
-        SwiftEventBus.unregister(self, name: EVENT_BUS_END_BIG_SYNCACTIVITY)
-        SwiftEventBus.unregister(self, name: EVENT_BUS_RAWPACKET_DATA_KEY)
-        SwiftEventBus.unregister(self, name: EVENT_BUS_CONNECTION_STATE_CHANGED_KEY)
     }
     
     override func viewDidLayoutSubviews() {
@@ -87,6 +87,20 @@ class StepsController: PublicClassController,ClockRefreshDelegate {
             ConnectionManager.manager.startConnect(false)
         }
     }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        unregisterEventBus()
+    }
+    
+    func unregisterEventBus() {
+        SwiftEventBus.unregister(self, name: SELECTED_CALENDAR_NOTIFICATION)
+        SwiftEventBus.unregister(self, name: EVENT_BUS_BEGIN_SMALL_SYNCACTIVITY)
+        SwiftEventBus.unregister(self, name: EVENT_BUS_END_BIG_SYNCACTIVITY)
+        SwiftEventBus.unregister(self, name: EVENT_BUS_RAWPACKET_DATA_KEY)
+        SwiftEventBus.unregister(self, name: EVENT_BUS_CONNECTION_STATE_CHANGED_KEY)
+    }
+    
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)

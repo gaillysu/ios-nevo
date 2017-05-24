@@ -21,6 +21,25 @@ class SettingViewController: UITableViewController {
     //this action take lot power and we maybe told customer less to use it
     var mFindMydeviceDatetime:Date = Date(timeIntervalSinceNow: -6)
     
+    let settingItems = Variable([
+        SettingSectionModel(header:"User info",footer:"",items:[
+            SettingSectionModelItem(label: "User", type: SetingType.userInfo, name:"usericon")]),
+        SettingSectionModel(header:"Watch Settings",footer:"",items:[
+            SettingSectionModelItem(label: NSLocalizedString("My Nevo", comment: ""), type: SetingType.myNevo, name:"icon_nevo"),
+            SettingSectionModelItem(label: NSLocalizedString("Notifications", comment: ""), type: SetingType.notifications, name:"icon_bell"),
+            SettingSectionModelItem(label: NSLocalizedString("Scan Duration", comment: ""), type: SetingType.scanDuration, name:"icon_bluetooth"),
+            SettingSectionModelItem(label: NSLocalizedString("Link-Loss Notifications", comment: ""), type: SetingType.linkLoss, name:"icon_chain"),
+            SettingSectionModelItem(label: NSLocalizedString("find_my_watch", comment: ""), type: SetingType.findWatch, name:"icon_crosshair")
+            ]),
+        SettingSectionModel(header:"App Settings",footer:"",items:[
+            SettingSectionModelItem(label: NSLocalizedString("goals", comment: ""), type: SetingType.goal, name:"icon_goals"),
+            SettingSectionModelItem(label: NSLocalizedString("unit", comment: ""), type: SetingType.unit, name:"icon_scale")
+            ]),
+        SettingSectionModel(header:"Other Settings",footer:"",items:[
+            SettingSectionModelItem(label: NSLocalizedString("Support", comment: ""), type: SetingType.support, name:"icon_support")
+            ])
+        ])
+    
     var disposeBag = DisposeBag()
     
     override func viewDidLoad() {
@@ -36,25 +55,6 @@ class SettingViewController: UITableViewController {
         tableView.register(UINib(nibName:"SetingDefaultCell" ,bundle: nil), forCellReuseIdentifier: "SetingDefault_Identifier")
         
         let dataSource = RxTableViewSectionedReloadDataSource<SettingSectionModel>()
-        
-        let items = Variable([
-            SettingSectionModel(header:"User info",footer:"",items:[
-                SettingSectionModelItem(label: "User", type: SetingType.userInfo, name:"usericon")]),
-            SettingSectionModel(header:"Watch Settings",footer:"",items:[
-                SettingSectionModelItem(label: NSLocalizedString("My Nevo", comment: ""), type: SetingType.myNevo, name:"icon_nevo"),
-                SettingSectionModelItem(label: NSLocalizedString("Notifications", comment: ""), type: SetingType.notifications, name:"icon_bell"),
-                SettingSectionModelItem(label: NSLocalizedString("Scan Duration", comment: ""), type: SetingType.scanDuration, name:"icon_bluetooth"),
-                SettingSectionModelItem(label: NSLocalizedString("Link-Loss Notifications", comment: ""), type: SetingType.linkLoss, name:"icon_chain"),
-                SettingSectionModelItem(label: NSLocalizedString("find_my_watch", comment: ""), type: SetingType.findWatch, name:"icon_crosshair")
-                ]),
-            SettingSectionModel(header:"App Settings",footer:"",items:[
-                SettingSectionModelItem(label: NSLocalizedString("goals", comment: ""), type: SetingType.goal, name:"icon_goals"),
-                SettingSectionModelItem(label: NSLocalizedString("unit", comment: ""), type: SetingType.unit, name:"icon_scale")
-                ]),
-            SettingSectionModel(header:"Other Settings",footer:"",items:[
-                SettingSectionModelItem(label: NSLocalizedString("Support", comment: ""), type: SetingType.support, name:"icon_support")
-                ])
-            ])
         
         dataSource.configureCell = { (_ , tv, indexPath, element) in
             if element.type == .userInfo {
@@ -89,9 +89,9 @@ class SettingViewController: UITableViewController {
             }
         }
         
-        dataSource.setSections(items.value)
+        dataSource.setSections(settingItems.value)
         
-        items.asObservable().bind(to: tableView.rx.items(dataSource: dataSource)).disposed(by: disposeBag)
+        settingItems.asObservable().bind(to: tableView.rx.items(dataSource: dataSource)).disposed(by: disposeBag)
         
         tableView.rx
             .setDelegate(self)
